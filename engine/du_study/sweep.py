@@ -312,6 +312,105 @@ R.add_driver("Post-2029 fiscal regime (a priced tail, NOT the contested judgemen
              "carried as a named tail scenario and priced, never averaged into the base",
              [f_fiscal, f_fs23, neg_regime, neg_regime_post29])
 
+# ---- ADDED 17-Aug-2026: the cost side and the mobile mix, swept properly ----------------
+# Root cause of the additions: the study year's disclosed detail was swept for REVENUE but not
+# for COST. du splits its direct costs three ways by nature on the face of the income statement
+# and four ways by segment in the segment note, in every filing, and the first edition's forecast
+# used none of it — it held one contribution margin per segment instead. Same failure class the
+# cost-stack escalation rule was adopted for.
+f_dcnat = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
+    "Direct costs disclosed BY NATURE across four audited years: interconnect 2,768.0 (FY2022) / "
+    "2,729.6 / 2,811.2 / 2,914.2 (FY2025); commission 463.8 / 535.5 / 596.2 / 686.4; devices and "
+    "other direct services 1,303.4 / 1,405.6 / 1,411.0 / 1,658.8. AR2024 Note 27 prints FY2024 "
+    "devices at 1,402.1 against AR2025's re-presented 1,411.0 (+8.9) — the later filing is taken "
+    "as the authority and the discrepancy is recorded",
+    "AR2023 Note 26 / AR2024 Note 27 / AR2025 income statement, investors.du.ae", CO,
+    "2026-02-09", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="Each direct-cost line now carries its OWN driver and escalator: interconnect "
+                 "per subscriber per month (falling 4.2% like-for-like), commission per "
+                 "subscriber per month (rising 3.1%), devices held flat. Contribution margin "
+                 "became an OUTPUT rather than an input.")
+f_dcseg = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
+    "Direct costs disclosed BY SEGMENT for both halves of 2026 and both audited years "
+    "(H1-2026: mobile 1,371.2 / fixed 303.3 / wholesale 195.9 / ICT 715.0, against H1-2025 "
+    "1,357.5 / 313.5 / 178.9 / 702.4). The by-nature and by-segment cuts are never "
+    "cross-tabulated by the company; the joint is recovered exactly under two structural "
+    "assumptions and TESTED — the residual mobile device cost stays positive and foots to the "
+    "disclosed devices line in all four periods",
+    "H1-2026 reviewed interim FS Note 17 + AR2025 Note 38, investors.du.ae", CO, "2026-07-22",
+    is_fs_data=True, fiscal_period="H1-2026",
+    model_impact="Gives the per-unit cost anchor a REVIEWED near-term actual rather than a "
+                 "stale full-year rate. Three of the four H2-2025 rates were cheaper than H1, "
+                 "so carrying an H1 rate into H2 overstates cost.")
+f_mix = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.S,
+    "Mobile base split prepaid/postpaid every quarter (Q4-2024 7,116/1,800 through Q2-2026 "
+    "7,227/2,053) alongside a SINGLE blended ARPU (65.8 / 63.5 / 63.3 / 64.5 / 65.3 / 63.4 / "
+    "63.4). The postpaid share jumped 20.4% to 22.1% in two quarters — prepaid -499k against "
+    "postpaid +74k, a visitor-SIM collapse rather than postpaid strength",
+    "du quarterly analyst presentations, mobile KPI slide (Q2-2026 deck slide 12)", IR,
+    "2026-07-23", fiscal_period="Q2-2026",
+    model_impact="The flat blended ARPU is two offsetting forces, not stability: a mix shift "
+                 "worth about +2.6% against per-leg erosion of about -2.4%. If prepaid recovers "
+                 "as the subscriber path assumes, the tailwind goes. Priced as the "
+                 "mix-exhaustion scenario, worth -17% on the DCF.")
+f_sukuk = R.add(Ring.COUNTRY, "sovereign / rates", FindingClass.B,
+    "The only AED federal tranche maturing beyond January 2031 is the February-2033 Islamic "
+    "Treasury SUKUK, and BOTH of its prints are now recorded: debut AED 550mn at 3.779% "
+    "(22-Feb-2026) and a second tap of the same instrument at 4.13% at a 10bp spread "
+    "(23-Apr-2026). The Jan-2031 T-Bond chain over the same window runs 3.90% (31-Jan) / 3.85% "
+    "(14-Mar) / 4.30% (23-May) / 4.48% (30-Jul)",
+    "UAE Ministry of Finance auction result releases, mof.gov.ae", REG, "2026-04-23",
+    model_impact="Settles an external challenge that the risk-free rate should be 3.779%: that "
+                 "is a debut print the issuer's own re-offer contradicted 35bp higher two months "
+                 "later. rf stays 4.48%; 4.13% is published as the longest-tenor alternative and "
+                 "the 3.779% case is PRICED (+22.7%) before being rejected.")
+
+neg_legarpu = R.add_negative(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    "Searched for separately disclosed PREPAID and POSTPAID ARPU across du's Q2-2026, Q1-2026 "
+    "and Q4-FY2025 earnings releases and analyst presentations, the FY2025 annual report, and "
+    "the audited segment note. NOT DISCLOSED ANYWHERE — the split exists at subscriber level "
+    "only; the segment note splits Mobile/Fixed and never prepaid/postpaid. This is the REGIONAL "
+    "norm, not a du-specific gap: e&, stc and Mobily all publish the subscriber split with one "
+    "blended ARPU, and Ooredoo is the sole Gulf exception (Q2-2026 postpaid/prepaid ratios 7.22x "
+    "Qatar, 4.67x Kuwait, 2.92x Oman). CONSEQUENCE: a two-leg mobile build is NOT identified — "
+    "solving for the implied leg ratio on all 21 available quarter pairs gives -45x to +17x, "
+    "with 9 pairs negative and only 5 inside the peer band. The build stays on the blended "
+    "figure, the finest level du sources, and the gap is FLAGGED rather than filled with an "
+    "imported ratio", "2026-08-17")
+neg_duir = R.add_negative(Ring.COMPANY, "official financial statements",
+    "Primary-access attempt logged rather than papered over: investors.du.ae is INTERMITTENT from "
+    "this environment — HTTP 200 on a direct request on 17-Aug-2026 but HTTP 503 on every attempt "
+    "in a parallel verification pass (five static-file URLs over HTTP/1.1, HTTP/2 and forced "
+    "TLS1.2; reader proxy blocked; archive egress blocked; the DFM API returned 404). The "
+    "deck-level ARPU and subscriber series therefore rest on this study's own first-hand extract "
+    "of the Q2-2026 documents rather than on a fresh re-read. CONSEQUENCE: this does NOT block "
+    "the build — the blended ARPU level is corroborated two ways (the presentation KPI slide and "
+    "the Q4-FY2025 earnings release both print FY2025 63.3) and the subscribers x ARPU frame "
+    "reproduces audited mobile segment revenue to within 0.05%. Recorded so a reader can grade "
+    "the channel", "2026-08-17")
+
+R.add_driver("Mobile direct cost per subscriber per month (interconnect + commission + devices)",
+             DriverMode.BOTTOM_UP,
+             "Three physically distinct cost lines, each on its own driver and escalator, "
+             "anchored on the H1-2026 reviewed actual. Contribution margin is the OUTPUT",
+             [f_dcnat, f_dcseg, f_q2])
+R.add_driver("Fixed capacity cost per subscriber per month", DriverMode.BOTTOM_UP,
+             "Per-subscriber capacity and direct cost, anchored on the H1-2026 reviewed actual "
+             "and held flat against an observed 9.2% like-for-like decline",
+             [f_dcseg, f_q2])
+R.add_driver("Wholesale and ICT direct cost as a rate on their own revenue",
+             DriverMode.TOP_DOWN,
+             "FLAGGED as the finest sourced level: the company discloses NO volume unit for "
+             "either segment, so a cost-per-unit build is impossible. Both rates are anchored on "
+             "the H1-2026 reviewed actual and held flat",
+             [f_dcseg, neg_legarpu])
+R.add_driver("Blended mobile ARPU path", DriverMode.TOP_DOWN,
+             "FLAGGED: du discloses no prepaid/postpaid ARPU (dated negative search), and the "
+             "two-leg split is demonstrably unidentified, so the blended series is the finest "
+             "sourced level. The mix-exhaustion downside is priced rather than assumed away",
+             [f_mix, neg_legarpu, f_q2])
+
 errors, warnings = R.validate()
 print(R.qc_line())
 for w in warnings:

@@ -31,6 +31,7 @@ TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
 FILL_G = PatternFill('solid', start_color='F6F1E6')
 NUM0 = '#,##0;(#,##0);"-"'; NUM1 = '#,##0.0;(#,##0.0);"-"'
+NUM2 = '#,##0.00;(#,##0.00);"-"'
 PCT = '0.0%;(0.0%);"-"'; PCT2 = '0.00%'; PX = '0.00;(0.00);"-"'; MULT = '0.00x'; DF4 = '0.0000'
 YH = ['FY2023', 'FY2024', 'FY2025']
 YF = D['fcst']['years']
@@ -38,6 +39,7 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
+UC = D['unitcost']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 SEGS = ['mobile', 'fixed', 'wholesale', 'ict']
@@ -123,8 +125,15 @@ for i, ln in enumerate([
  'subscribers-x-ARPU frame reproduces the audited FY2025 mobile segment to within 0.1%. Fixed = subscriber',
  'base x implied revenue per subscriber (a consumer-plus-enterprise blend, so an intensity metric, not a',
  'tariff). Wholesale and ICT are grown on their own paths — the war-hit roaming/transit recovery and the',
- 'data-centre ramp respectively. Contribution margins are the audited Note 38 rates; the opex stack below',
- 'them carries ONE escalator per cost class. Group EBITDA margin is an OUTPUT of all of this, not an input.', '',
+ 'data-centre ramp respectively.', '',
+ 'How cost is built, and why no margin is an input. Direct cost is a COST PER UNIT, not a margin. Mobile',
+ 'carries three separate per-subscriber lines - interconnect, commission, and devices - each with its own',
+ 'escalator, because they are driven by physically different things: termination rates and messaging-app',
+ 'substitution, the cost of winning a customer, and handset volume. Fixed carries a per-subscriber capacity',
+ 'cost. Wholesale and ICT carry a cost rate on their own revenue because the company discloses no volume',
+ 'unit for either - that gap is flagged rather than filled. Every rate is anchored on the H1-2026 reviewed',
+ 'actual and held flat unless a named mechanism has a measured direction in the half-year pair. CONTRIBUTION',
+ 'MARGIN AND GROUP EBITDA MARGIN ARE THEREFORE OUTPUTS, computed on the Segments sheet, never typed in.', '',
  'The contested judgement — the required return. This is the one judgement that moves the answer more',
  'than any other, so it is computed BOTH WAYS on the Fundamental Valuation sheet and never averaged.',
  "Framing 1 takes du's own measured beta and capitalises the terminal at the Gordon rate. Framing 2",
@@ -349,6 +358,21 @@ block('Anchors', [
     ('reg_share', 'Regulated revenue share (Framing B base, audited FY2023)', IN['reg_share'], PCT),
     ('royB_rev', 'Framing B — royalty rate on regulated revenue', IN['royB_rev_rate'], PCT),
     ('royB_prof', 'Framing B — royalty rate on regulated profit', IN['royB_prof_rate'], PCT)])
+block('H1-2026 reviewed segment actuals — the base the FY2026 build chains off', [
+    ('h1_mobile', 'Mobile revenue, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['h1_26_seg']['mobile'], NUM0),
+    ('h1_fixed', 'Fixed revenue, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['h1_26_seg']['fixed'], NUM0),
+    ('subs_m_q2', "Mobile subscribers at 30-Jun-2026 ('000, reviewed period end)",
+     BU['subs_mobile']['Q2_2026'], NUM0),
+    ('subs_f_q2', "Fixed subscribers at 30-Jun-2026 ('000, reviewed period end)",
+     BU['subs_fixed']['Q2_2026'], NUM0),
+    ('whl_fy25', 'Wholesale revenue FY2025 (AED mn, audited)', SEG['rev']['wholesale'], NUM0),
+    ('ict_fy25', 'ICT revenue FY2025 (AED mn, audited)', SEG['rev']['ict'], NUM0),
+    ('h1_whl', 'Wholesale revenue, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['h1_26_seg']['wholesale'], NUM0),
+    ('h1_ict', 'ICT revenue, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['h1_26_seg']['ict'], NUM0)])
 block('Unit build — mobile and fixed (subscribers x ARPU)', [
     ('subs_m', "Mobile subscribers, end of year ('000)", IN['subs_mobile_path'], NUM0),
     ('subs_f', "Fixed subscribers, end of year ('000)", IN['subs_fixed_path'], NUM0),
@@ -356,11 +380,39 @@ block('Unit build — mobile and fixed (subscribers x ARPU)', [
     ('arpu_f', 'Implied fixed revenue per subscriber (AED/month)', IN['arpu_fixed_path'], NUM0),
     ('g_whl', 'Wholesale revenue growth', IN['seg_g']['wholesale'], PCT),
     ('g_ict', 'ICT and associated telecom revenue growth', IN['seg_g']['ict'], PCT)])
-block('Segment contribution margins (audited FY2025 rates; ICT lifted on scale)', [
-    ('cm_mobile', 'Mobile — contribution margin', IN['contrib_margin_path']['mobile'], PCT),
-    ('cm_fixed', 'Fixed — contribution margin', IN['contrib_margin_path']['fixed'], PCT),
-    ('cm_whl', 'Wholesale — contribution margin', IN['contrib_margin_path']['wholesale'], PCT),
-    ('cm_ict', 'ICT — contribution margin', IN['contrib_margin_path']['ict'], PCT)])
+block('Direct-cost stack — cost per unit, one escalator per driver class. '
+      'CONTRIBUTION MARGIN IS NOT AN INPUT HERE: it is computed on the Segments sheet as '
+      'what is left after each cost line is grown on its own physical driver.', [
+    ('uc_inter_h1', 'Mobile interconnect cost, H1-2026 actual (AED/subscriber/month)',
+     UC['hist']['H126']['mob_inter'], NUM2),
+    ('esc_inter', 'Mobile interconnect escalator (termination rates, OTT substitution)',
+     IN['esc_dc_inter'], PCT),
+    ('uc_comm_h1', 'Mobile commission cost, H1-2026 actual (AED/subscriber/month)',
+     UC['hist']['H126']['mob_comm'], NUM2),
+    ('esc_comm', 'Mobile commission escalator (acquisition/retention cost)',
+     IN['esc_dc_comm'], PCT),
+    ('uc_dev_h1', 'Mobile devices and direct services, H1-2026 actual (AED/subscriber/month)',
+     UC['hist']['H126']['mob_dev'], NUM2),
+    ('esc_dev', 'Mobile devices escalator (held flat — lumpy, no trend read into it)',
+     IN['esc_dc_dev'], PCT),
+    ('uc_fixed_h1', 'Fixed capacity and direct cost, H1-2026 actual (AED/subscriber/month)',
+     UC['hist']['H126']['fixed_cap'], NUM2),
+    ('esc_fixed', 'Fixed capacity escalator (held flat against an observed decline)',
+     IN['esc_dc_fixed'], PCT),
+    ('dc_rate_whl', 'Wholesale direct cost / wholesale revenue (H1-2026 rate, held flat)',
+     IN['dc_rate_wholesale'], PCT),
+    ('dc_rate_ict', 'ICT direct cost / ICT revenue (H1-2026 rate, held flat)',
+     IN['dc_rate_ict'], PCT),
+    ('h1_dc_mobile', 'Mobile direct cost, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['seg_dc_h1']['H126']['mobile'], NUM0),
+    ('h1_dc_fixed', 'Fixed direct cost, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['seg_dc_h1']['H126']['fixed'], NUM0),
+    ('h1_dc_whl', 'Wholesale direct cost, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['seg_dc_h1']['H126']['wholesale'], NUM0),
+    ('h1_dc_ict', 'ICT direct cost, six months to 30-Jun-2026 (AED mn, reviewed)',
+     IN['seg_dc_h1']['H126']['ict'], NUM0),
+    ('arpu_drift', 'Blended ARPU drift (mix-exhaustion sensitivity; zero in the base case)',
+     IN['arpu_drift'], PCT)])
 block('Operating expense stack — one escalator per cost class', [
     ('staff26', 'Staff cost, FY2026E level (AED mn)', IN['staff_fy26'], NUM0),
     ('esc_staff', 'Staff escalator (UAE wage inflation)', IN['esc_staff'], PCT),
@@ -479,13 +531,38 @@ title(ws, 'Segments — the unit build and the margin stack', 'FY2025 disclosed 
 hdr(ws, 4, ['Segment', 'FY2025 revenue', 'Share', 'FY2025 margin'] + YF)
 r = 5
 REV_TOT = r + len(SEGS)                          # 9
+# THE UNIT BUILD IS LIVE IN THE SHEET (changed 17-Aug-2026). Forecast segment revenue was
+# previously PASTED as "the unit build's output". It is not an unreadable grid — mobile and fixed
+# are two multiplications off drivers that already sit on Assumptions, and wholesale and ICT are a
+# growth step. All twenty cells are therefore formulas now, and changing a subscriber count or an
+# ARPU reprices the model from the top.
+_SEGROW = {}
 for s in SEGS:
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     put(ws, f'B{r}', SEG['rev'][s], BLUE, NUM0)
     putf(ws, f'C{r}', f'=B{r}/$B${REV_TOT}', SEG['rev'][s] / HI['FY25']['rev'], PCT)
     put(ws, f'D{r}', SEG['margin'][s], BLUE, PCT)
+    _SEGROW[s] = r
     for i in range(5):
-        put(ws, f'{get_column_letter(5+i)}{r}', F['seg_rev'][s][i], BLUE, NUM0)
+        col = get_column_letter(5 + i)
+        if s in ('mobile', 'fixed'):
+            _sub = 'subs_m' if s == 'mobile' else 'subs_f'
+            _arp = 'arpu_m' if s == 'mobile' else 'arpu_f'
+            _q2 = 'subs_m_q2' if s == 'mobile' else 'subs_f_q2'
+            _h1 = 'h1_mobile' if s == 'mobile' else 'h1_fixed'
+            if i == 0:
+                # FY2026 = reviewed H1 actual + unit-built H2 on the average of the Jun-2026
+                # base and the year-end base
+                f_ = (f'={a(_h1)}+({a(_q2)}+{a(_sub, 0)})/2*{a(_arp, 0)}*6/1000')
+            else:
+                f_ = (f'=({a(_sub, i-1)}+{a(_sub, i)})/2*{a(_arp, i)}'
+                      f'*(1+{a("arpu_drift")})^{i}*12/1000')
+        else:
+            _g = 'g_whl' if s == 'wholesale' else 'g_ict'
+            base = f"{a('whl_fy25') if s == 'wholesale' else a('ict_fy25')}" if i == 0 \
+                else f'{get_column_letter(4+i)}{r}'
+            f_ = f'={base}*(1+{a(_g, i)})'
+        putf(ws, f'{col}{r}', f_, F['seg_rev'][s][i], NUM0)
     r += 1
 _last = r - 1                                    # 8
 band(ws, r, 9); put(ws, f'A{r}', 'Total revenue', bold=True, fmt=None)
@@ -494,21 +571,103 @@ putf(ws, f'C{r}', f'=SUM(C5:C{_last})', 1.0, PCT, bold=True)
 for i in range(5):
     col = get_column_letter(5 + i)
     putf(ws, f'{col}{r}', f'=SUM({col}5:{col}{_last})', F['rev'][i], NUM0, bold=True)
-r += 2                                           # 11
-hdr(ws, r, ['Contribution — revenue x the margin path'] + YF); r += 1
-first_c = r                                      # 12
-CMKEY = dict(mobile='cm_mobile', fixed='cm_fixed', wholesale='cm_whl', ict='cm_ict')
+r += 2
+# ---- THE DIRECT-COST UNIT STACK (installed 17-Aug-2026) ---------------------------
+# This block replaces a row of PASTED contribution margins. The margin used to be an input
+# held at the audited FY2025 rate; it is now the OUTPUT of a costed unit build, so a change
+# to any per-unit cost driver reprices the model from here down.
+hdr(ws, r, ['Direct cost per unit — each line grown on its own physical driver'] + YF); r += 1
+UROW = {}
+for key, label, base_key, esc_key in (
+        ('mi', 'Mobile interconnect (AED per subscriber per month)', 'uc_inter_h1', 'esc_inter'),
+        ('mc', 'Mobile commission (AED per subscriber per month)', 'uc_comm_h1', 'esc_comm'),
+        ('md', 'Mobile devices and direct services (AED per subscriber per month)',
+         'uc_dev_h1', 'esc_dev')):
+    put(ws, f'A{r}', label, fmt=None)
+    for i in range(5):
+        putf(ws, f'{CD[i]}{r}', f'={a(base_key)}*(1+{a(esc_key)})^{i}',
+             F['unit_cost'][{'mi': 'mob_inter', 'mc': 'mob_comm', 'md': 'mob_dev'}[key]][i], NUM2)
+    UROW[key] = r; r += 1
+band(ws, r, 6); put(ws, f'A{r}', 'Mobile — total direct cost per subscriber per month',
+                    bold=True, fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f"={CD[i]}{UROW['mi']}+{CD[i]}{UROW['mc']}+{CD[i]}{UROW['md']}",
+         F['unit_cost']['mob_tot'][i], NUM2, bold=True)
+UROW['mt'] = r; r += 1
+put(ws, f'A{r}', 'Fixed capacity and direct cost (AED per subscriber per month)', fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f"={a('uc_fixed_h1')}*(1+{a('esc_fixed')})^{i}",
+         F['unit_cost']['fixed_cap'][i], NUM2)
+UROW['fc'] = r; r += 1
+put(ws, f'A{r}', 'Wholesale direct cost / wholesale revenue (no disclosed unit — flagged)',
+    fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f"={a('dc_rate_whl')}", F['unit_cost']['whl_rate'][i], PCT)
+UROW['wr'] = r; r += 1
+put(ws, f'A{r}', 'ICT direct cost / ICT revenue (no disclosed unit — flagged)', fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f"={a('dc_rate_ict')}", F['unit_cost']['ict_rate'][i], PCT)
+UROW['ir'] = r; r += 2
+
+hdr(ws, r, ['Direct cost (AED mn) — volume x cost per unit'] + YF); r += 1
+first_dc = r
+DCROW = {}
+for j, s in enumerate(SEGS):
+    put(ws, f'A{r}', SEG['names'][s], fmt=None)
+    _rev_row = 5 + j
+    for i in range(5):
+        rcol = get_column_letter(5 + i)          # revenue table runs E:I
+        if s in ('mobile', 'fixed'):
+            _sub = 'subs_m' if s == 'mobile' else 'subs_f'
+            _q2 = 'subs_m_q2' if s == 'mobile' else 'subs_f_q2'
+            _h1dc = 'h1_dc_mobile' if s == 'mobile' else 'h1_dc_fixed'
+            _urow = UROW['mt'] if s == 'mobile' else UROW['fc']
+            if i == 0:
+                f_ = (f'={a(_h1dc)}+({a(_q2)}+{a(_sub, 0)})/2*{CD[0]}{_urow}*6/1000')
+            else:
+                f_ = f'=({a(_sub, i-1)}+{a(_sub, i)})/2*{CD[i]}{_urow}*12/1000'
+        else:
+            _h1dc = 'h1_dc_whl' if s == 'wholesale' else 'h1_dc_ict'
+            _h1r = 'h1_whl' if s == 'wholesale' else 'h1_ict'
+            _urow = UROW['wr'] if s == 'wholesale' else UROW['ir']
+            if i == 0:
+                f_ = (f'={a(_h1dc)}+({rcol}{_rev_row}-{a(_h1r)})*{CD[0]}{_urow}')
+            else:
+                f_ = f'={rcol}{_rev_row}*{CD[i]}{_urow}'
+        putf(ws, f'{CD[i]}{r}', f_, F['seg_dc'][s][i], NUM0)
+    DCROW[s] = r; r += 1
+band(ws, r, 6); put(ws, f'A{r}', 'Total direct cost', bold=True, fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f'=SUM({CD[i]}{first_dc}:{CD[i]}{r-1})', F['dc_tot'][i], NUM0,
+         bold=True)
+DC_TOT = r; r += 2
+
+hdr(ws, r, ['Contribution = revenue less direct cost — AN OUTPUT, NOT AN INPUT'] + YF); r += 1
+first_c = r
 for j, s in enumerate(SEGS):
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     for i in range(5):
-        putf(ws, f'{CD[i]}{r}',
-             f'={get_column_letter(5+i)}{5+j}*{a(CMKEY[s], i)}', F['contrib'][s][i], NUM0)
+        putf(ws, f'{CD[i]}{r}', f'={get_column_letter(5+i)}{5+j}-{CD[i]}{DCROW[s]}',
+             F['contrib'][s][i], NUM0)
     r += 1
 band(ws, r, 6); put(ws, f'A{r}', 'Total contribution', bold=True, fmt=None)
 for i in range(5):
     putf(ws, f'{CD[i]}{r}', f'=SUM({CD[i]}{first_c}:{CD[i]}{r-1})', F['contrib_tot'][i], NUM0,
          bold=True)
-CONTRIB_TOT = r                                  # 16
+CONTRIB_TOT = r; r += 2
+
+hdr(ws, r, ['Contribution margin — computed, never assumed'] + YF); r += 1
+for j, s in enumerate(SEGS):
+    put(ws, f'A{r}', SEG['names'][s], fmt=None)
+    for i in range(5):
+        putf(ws, f'{CD[i]}{r}',
+             f'={CD[i]}{first_c+j}/{get_column_letter(5+i)}{5+j}',
+             F['contrib_margin'][s][i], PCT)
+    r += 1
+band(ws, r, 6); put(ws, f'A{r}', 'Group gross margin', bold=True, fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f'={CD[i]}{CONTRIB_TOT}/{get_column_letter(5+i)}{REV_TOT}',
+         F['gross_margin'][i], PCT, bold=True)
 r += 2
 hdr(ws, r, ['Operating expense stack — one escalator per cost class'] + YF); r += 1
 OL = F['opex_lines']
@@ -1193,7 +1352,9 @@ for lab, grid, vals, gfmt in [
          'revenue-per-subscriber paths', SN['arpu_grid'], SN['grid_arpu'], '{:.2f}x'),
         ("Subscriber path shift ('000) — applied in full to the mobile base and at 8% of that "
          'to the fixed base', SN['subs_grid'], SN['grid_subs'], '{:+.0f}'),
-        ('Contribution margins, multiplicative', SN['mg_grid'], SN['grid_margin'], '{:.2f}x'),
+        ('Direct cost per unit, multiplicative', SN['mg_grid'], SN['grid_margin'], '{:.2f}x'),
+        ('Blended ARPU drift per year (mix exhaustion)', SN['drift_grid'],
+         SN['grid_drift'], '{:+.1%}'),
         ('Capex path multiplier', SN['capex_grid'], SN['grid_capex'], '{:.3f}x'),
         ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], '{:.1%}'),
         ('Terminal return on invested capital', SN['roic_grid'], SN['grid_roic'], '{:.1%}'),

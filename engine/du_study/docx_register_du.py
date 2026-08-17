@@ -213,12 +213,19 @@ table([['Judgement', 'Basis', 'What would overturn it'],
         'the company\'s own Q2 commentary (recovery underway, gross adds below pre-war), '
         'Dubai population re-acceleration', 'a re-opened conflict, or two quarters of '
         'negative total net adds'],
-       ['Blended ARPU essentially flat', 'four quarters printed within 63.3-63.4; postpaid '
-        'mix offsetting prepaid dilution; no price war in the record', 'ARPU below AED 60 '
-        'without a disclosed mix explanation'],
-       ['Contribution margins hold at audited FY2025 rates (ICT lifts on scale)',
-        'two consistent disclosed years within ~1pp per segment', 'a disclosed margin '
-        'reset — e.g. wholesale repricing or ICT mix collapse'],
+       ['Blended ARPU held roughly flat — the study\'s most fragile revenue judgement',
+        'the last three prints are 65.3 / 63.4 / 63.4, and the mix decomposition shows the '
+        'flat headline is two offsetting forces: a postpaid mix shift worth about +2.6% '
+        'against per-leg erosion of about -2.4%. Holding flat assumes both continue',
+        'a quarter in which the postpaid mix share FALLS back toward 20% while blended ARPU '
+        'follows it down — the mix-exhaustion case, priced in the sensitivity table'],
+       ['Every direct-cost unit rate is anchored on the H1-2026 reviewed actual and held '
+        'flat, except mobile interconnect (-1.5%/yr) and mobile commission (+3.0%/yr)',
+        'the like-for-like half-year pair measures interconnect per subscriber falling 4.2% '
+        'and commission per subscriber rising 3.1%; three of the four second-half 2025 rates '
+        'came in cheaper than the first half, so carrying an H1 rate into H2 overstates cost',
+        'a disclosed reset in any single line — wholesale repricing, an ICT mix collapse, or '
+        'interconnect per subscriber turning UP in a half-year pair'],
        ['Capex peaks at 15.5% of revenue then glides to 13%', 'commitments up ~14% in six '
         'months; the disclosed data-centre programme; no numeric company guidance '
         '(flagged)', 'company capex guidance above the path, or the programme extending '

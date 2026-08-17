@@ -23,6 +23,8 @@ def row_of(label):
         raise KeyError(f'no Assumptions row labelled {label!r}')
     return A[label]
 
+PATH_COLS = ['B', 'C', 'D', 'E', 'F']   # the five forecast-year columns of a path input
+
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
     return dict(dcf=bk.cell_value('DCF', 'C63'),
@@ -58,8 +60,6 @@ CASES = [
      'dcf', -1, 'a worse licence-renewal outcome (higher fee ratio) must lower the valuation'),
     ('PP&E depreciation rate on opening balance (audited FY2025)', 'C', +0.03, 'pv_expl', +1,
      'within a fixed EBITDA, faster depreciation is a larger tax shield on the explicit window'),
-    ('Mobile — contribution margin', 'C', +0.01, 'dcf', +1,
-     'a richer mobile contribution margin must raise EBITDA and the valuation'),
     ('Capital expenditure / revenue', 'C', +0.02, 'dcf', -1,
      'heavier capex must absorb cash and lower the valuation'),
     ('Justified price/earnings (GCC telecom peer median)', 'C', +1.0, 'central', +1,
@@ -84,13 +84,63 @@ CASES = [
      'a costlier lease book must drain the cash walk'),
     ('Yield on cash and term deposits (audited FY2025 effective)', 'C', +0.02, 'nc30', +1,
      'a better deposit yield must build cash faster'),
+    # ---- unit build, now live in the sheet ----------------------------------------------
+    # ---- direct-cost unit stack (installed 17-Aug-2026): margin is an OUTPUT, so each
+    # ---- per-unit cost driver must move the valuation the OTHER way -----------------------
+    ('Mobile interconnect cost, H1-2026 actual (AED/subscriber/month)', 'C', +1.00, 'dcf', -1,
+     'a costlier interconnect bill per subscriber must compress the contribution margin '
+     'and lower the valuation'),
+    ('Mobile interconnect escalator (termination rates, OTT substitution)', 'C', +0.02,
+     'dcf', -1, 'interconnect cost per subscriber rising instead of falling must lower value'),
+    ('Mobile commission cost, H1-2026 actual (AED/subscriber/month)', 'C', +1.00, 'dcf', -1,
+     'a costlier acquisition commission per subscriber must lower the valuation'),
+    ('Mobile commission escalator (acquisition/retention cost)', 'C', +0.02, 'dcf', -1,
+     'faster-rising commission per subscriber must lower the valuation'),
+    ('Mobile devices and direct services, H1-2026 actual (AED/subscriber/month)', 'C', +1.00,
+     'dcf', -1, 'a costlier device/direct-services line per subscriber must lower value'),
+    ('Fixed capacity and direct cost, H1-2026 actual (AED/subscriber/month)', 'C', +5.00,
+     'dcf', -1, 'a costlier fixed capacity bill per subscriber must lower the valuation'),
+    ('Wholesale direct cost / wholesale revenue (H1-2026 rate, held flat)', 'C', +0.02,
+     'dcf', -1, 'a worse wholesale cost rate must lower the valuation'),
+    ('ICT direct cost / ICT revenue (H1-2026 rate, held flat)', 'C', +0.02, 'dcf', -1,
+     'a worse ICT cost rate must lower the valuation'),
+    ('Blended ARPU drift (mix-exhaustion sensitivity; zero in the base case)', 'C', -0.02,
+     'dcf', -1, 'the mix-exhaustion case: an eroding blended ARPU must lower the valuation'),
+    ("Mobile subscribers, end of year ('000)", 'PATH', +200.0, 'dcf', +1,
+     'unit build: more mobile subscribers must raise revenue and the valuation'),
+    ('Blended mobile ARPU (AED/month)', 'PATH', +2.0, 'dcf', +1,
+     'unit build: a higher mobile ARPU must raise revenue and the valuation'),
+    ("Fixed subscribers, end of year ('000)", 'PATH', +25.0, 'dcf', +1,
+     'unit build: more fixed subscribers must raise revenue and the valuation'),
+    ('Implied fixed revenue per subscriber (AED/month)', 'PATH', +20.0, 'dcf', +1,
+     'unit build: a higher fixed revenue intensity must raise the valuation'),
+    ('Wholesale revenue growth', 'PATH', +0.02, 'dcf', +1,
+     'unit build: faster wholesale growth must raise the valuation'),
+    ('ICT and associated telecom revenue growth', 'PATH', +0.02, 'dcf', +1,
+     'unit build: faster ICT growth must raise the valuation'),
+    # A one-year-only lift in H1 revenue raises FY2026 capex (and so the PP&E and invested-capital
+    # base) permanently, against one year of extra revenue. It is therefore near-neutral by
+    # construction, and the terminal dilution slightly wins — a real property of the model, not a
+    # broken chain. Asserted on the line it unambiguously must move: FY2026 EBITDA.
+    ('Mobile revenue, six months to 30-Jun-2026 (AED mn, reviewed)', 'C', +100.0, 'ebitda26', +1,
+     'the FY2026 build chains off the reviewed H1 actual, so it must reach FY2026 EBITDA'),
 ]
 
 fails, moved = [], []
 for label, col, bump, key, sign, why in CASES:
     r = row_of(label)
-    cur = wb['Assumptions'][f'{col}{r}'].value
-    out = read({('Assumptions', f'{col}{r}'): cur + bump})
+    if col == 'PATH':
+        # bump every forecast year of the path at once
+        ov = {}
+        for _c in PATH_COLS:
+            _v = wb['Assumptions'][f'{_c}{r}'].value
+            if isinstance(_v, (int, float)):
+                ov[('Assumptions', f'{_c}{r}')] = _v + bump
+        assert ov, f'{label!r} is not a path input'
+        out = read(ov)
+    else:
+        cur = wb['Assumptions'][f'{col}{r}'].value
+        out = read({('Assumptions', f'{col}{r}'): cur + bump})
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
     ok = (delta * sign > 0) and abs(rel) > 1e-6
@@ -103,11 +153,8 @@ for label, col, bump, key, sign, why in CASES:
 
 # a driver that moves NOTHING anywhere is a dead input: catch those too
 DEAD_OK = {
-    # unit-build inputs whose OUTPUT (segment revenue) is pasted per the declared
-    # three-pasted-classes rule — they parameterise the engine's build, not the sheet:
-    "Mobile subscribers, end of year ('000)", "Fixed subscribers, end of year ('000)",
-    'Blended mobile ARPU (AED/month)', 'Implied fixed revenue per subscriber (AED/month)',
-    'Wholesale revenue growth', 'ICT and associated telecom revenue growth',
+    # (the six unit-build drivers that used to sit here are now LIVE in the sheet and are
+    #  tested as real drivers in CASES below — see the six rows tagged 'unit build')
     # Framing B parameters: the Framing-B fair value is an engine re-run (pasted), so
     # these price the ALTERNATIVE framing, not the base sheet:
     'Regulated revenue share (Framing B base, audited FY2023)',

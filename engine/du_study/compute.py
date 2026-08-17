@@ -242,6 +242,105 @@ INP = dict(
     direct_costs_hist=I(dict(FY24=-4818.442, FY25=-5259.425),
                         AR25 + ", face of the income statement: interconnect + commission + devices "
                         "and other direct services cost", "2026-02-09", "Company"),
+    # ---- direct costs BY NATURE, four fiscal years + both 2026 interims ----
+    # REGISTERED 17-Aug-2026. These were disclosed all along and were NOT swept in: the
+    # forecast held one blended contribution margin per segment instead of driving each
+    # physically distinct cost line on its own driver. Same failure class as ARCC.
+    dc_nature_hist=I(dict(
+        FY22=dict(interconnect=2768.016, commission=463.784, devices=1303.426),
+        FY23=dict(interconnect=2729.605, commission=535.469, devices=1405.604),
+        FY24=dict(interconnect=2811.223, commission=596.223, devices=1410.996),
+        FY25=dict(interconnect=2914.172, commission=686.408, devices=1658.845),
+    ), "Operating-expenses note, by nature: " + AR23 + " Note 26 (FY2022 'Product costs' and "
+       "FY2023); " + AR24 + " Note 27 (FY2023-24, where the line is renamed 'Cost of devices and "
+       "direct services'); " + AR25 + " face of the income statement (FY2024-25). NOTE A REAL "
+       "DISCREPANCY: AR2024 Note 27 prints FY2024 devices as 1,402.121 while AR2025 re-presents "
+       "the same year at 1,410.996 (+8.875). The later filing is taken as the authority, and the "
+       "FY2024 by-nature lines then foot exactly to the disclosed 4,818.442 total",
+       "2026-02-09", "Company"),
+    dc_nature_h1=I(dict(
+        H125=dict(interconnect=1442.312, commission=331.701, devices=778.268),
+        H126=dict(interconnect=1456.789, commission=359.188, devices=769.467),
+    ), H126 + ", face of the income statement: the three direct-cost lines with their H1-2025 "
+       "comparatives. THE LIKE-FOR-LIKE HALF-YEAR PAIR is what makes a per-unit escalator "
+       "sourced rather than assumed", "2026-07-22", "Company"),
+    seg_dc_hist=I(dict(
+        FY24=dict(mobile=2562.523, fixed=615.065, wholesale=284.092, ict=1356.762),
+        FY25=dict(mobile=2771.294, fixed=621.852, wholesale=348.749, ict=1517.530),
+    ), AR25 + ", Note 38: 'interconnect and other direct costs' by segment (segment revenue less "
+       "segment contribution)", "2026-02-09", "Company"),
+    seg_dc_h1=I(dict(
+        H125=dict(mobile=1357.492, fixed=313.489, wholesale=178.922, ict=702.378),
+        H126=dict(mobile=1371.245, fixed=303.283, wholesale=195.926, ict=714.990),
+    ), H126 + ", Note 17 segment analysis: segment revenue less segment contribution ('gross "
+       "margin'), for the six months ended 30-Jun-2026 and the 30-Jun-2025 comparative",
+       "2026-07-22", "Company"),
+    h1_25_seg=I(dict(mobile=3457.094, fixed=2140.263, wholesale=1283.306, ict=869.632),
+                H126 + ", Note 17: H1-2025 comparative segment revenue; foots to 7,750.295",
+                "2026-07-22", "Company"),
+    subs_prepaid=I(dict(Q4_2024=7116, Q1_2025=7292, Q2_2025=7254, Q3_2025=7248, Q4_2025=7726,
+                        Q1_2026=7670, Q2_2026=7227),
+                   IRQ2 + " + prior quarterly decks: prepaid mobile customers ('000). "
+                   "REGISTERED 17-Aug-2026 — du discloses the mobile base SPLIT by prepaid and "
+                   "postpaid every quarter, and the prior edition modelled only the total",
+                   "2026-07-23", "Company"),
+    subs_postpaid=I(dict(Q4_2024=1800, Q1_2025=1845, Q2_2025=1884, Q3_2025=1922, Q4_2025=1979,
+                         Q1_2026=2023, Q2_2026=2053),
+                    IRQ2 + " + prior quarterly decks: postpaid mobile customers ('000)",
+                    "2026-07-23", "Company"),
+    arpu_leg_disclosed=I(0.0, "NEGATIVE RESULT, dated 17-Aug-2026: du discloses a SINGLE BLENDED "
+                         "mobile ARPU line in its quarterly KPI table and nowhere publishes "
+                         "prepaid or postpaid ARPU separately — checked across the Q2-2026, "
+                         "Q1-2026 and Q4-2025 earnings releases and analyst presentations and the "
+                         "FY2025 annual report, and confirmed against the audited segment note (Note 38, "
+                         "interim Note 17), which splits Mobile/Fixed and never prepaid/postpaid. "
+                         "The value 0.0 records the count of separately disclosed leg ARPUs. "
+                         "CORRECTED 17-Aug-2026: an earlier draft of this note called the omission "
+                         "a du-specific choice against a sector norm. It is the REGIONAL norm — "
+                         "e& (du's own duopoly counterparty), stc and Mobily all publish the "
+                         "subscriber split with a single blended ARPU, exactly as du does; Ooredoo "
+                         "is the sole Gulf exception. ACCESS CAVEAT, logged not papered over: "
+                         "investors.du.ae is intermittent from this environment (HTTP 200 on a "
+                         "direct request during this session, HTTP 503 on every attempt in a "
+                         "parallel verification pass), so the deck-level negative rests on the "
+                         "documents captured in this study's own first-hand extract of the "
+                         "Q2-2026 presentation rather than on a fresh re-read. Consequence: the mobile "
+                         "price driver is built on the blended figure and the two-leg split is "
+                         "shown to be UNIDENTIFIED rather than estimated (see the identification "
+                         "test in the derivation log)", "2026-08-17", "Company"),
+    arpu_mobile_q=I(dict(Q4_2024=65.8, Q1_2025=63.5, Q2_2025=63.3, Q3_2025=64.5, Q4_2025=65.3,
+                         Q1_2026=63.4, Q2_2026=63.4, FY_2024=62.5, FY_2025=63.3),
+                    "du quarterly analyst presentation, mobile segment KPI slide (Q2-2026 deck "
+                    "slide 12) — the full blended-ARPU series, AED/month. REGISTERED 17-Aug-2026: "
+                    "the prior edition carried only three points and its driver note described "
+                    "the company as printing '63.3-63.4', which understates the real dispersion — "
+                    "the quarterly series ranges 63.3 to 65.8 and fell from 65.3 (Q4-2025) to "
+                    "63.4 (Q2-2026). FY2025 63.3 is corroborated independently by the Q4-FY2025 "
+                    "earnings release, and the subscribers x ARPU build reproduces audited mobile "
+                    "segment revenue to within 0.05%, so the level is not in doubt",
+                    "2026-07-23", "Company"),
+    arpu_ratio_peers=I(dict(ooredoo_qatar=7.22, ooredoo_kuwait=4.67, ooredoo_oman=2.92),
+                       "Postpaid/prepaid ARPU ratios at the ONLY Gulf operator that discloses "
+                       "both legs, from Ooredoo's own Q2-2026 disclosure (QAR: Qatar 239.8/33.2, "
+                       "Kuwait 161.5/34.6, Oman 67.2/23.0). Used ONLY to bound the identification "
+                       "test and the mix decomposition — never to build revenue. The 2.9x-7.2x "
+                       "spread across three markets of a SINGLE operator is itself evidence that "
+                       "an imported ratio cannot pin down du's split", "2026-08-17", "Industry"),
+    arpu_ratio_norm=I(3.0, "Central postpaid/prepaid ARPU ratio used ONLY for the mix "
+                      "decomposition — never to build revenue. Set at the low end of the peer "
+                      "band above, which makes the decomposition's implied per-leg erosion the "
+                      "SMALLEST of the defensible range: a higher ratio implies a larger mix "
+                      "tailwind and therefore worse underlying erosion, so 3.0x is the "
+                      "conservative choice for the risk being flagged", "2026-08-17", "House"),
+    arpu_drift=I(0.0, "Annual compounding shift applied to the registered blended mobile ARPU "
+                 "path, zero in the base case. Exists so the mix-exhaustion risk identified by "
+                 "the decomposition below can be PRICED rather than described",
+                 "2026-08-17", "House"),
+    subs_mobile_h1_25=I(9138.0, "Mobile customers at 30-Jun-2025 ('000), du Q2-2025 quarterly "
+                        "disclosure — needed to put the H1-2025 comparative cost on the same "
+                        "average-base denominator as H1-2026", "2025-07-23", "Company"),
+    subs_fixed_h1_25=I(706.0, "Fixed customers at 30-Jun-2025 ('000), same source",
+                       "2025-07-23", "Company"),
     opex_before_dna_hist=I(dict(FY24=-3347.636, FY25=-3307.608),
                            AR25 + ", total net operating expenses before depreciation and "
                            "amortization", "2026-02-09", "Company"),
@@ -267,10 +366,10 @@ INP = dict(
                AR25 + ", net cash generated from operating activities", "2026-02-09", "Company"),
     div_paid_hist=I(dict(FY24=-1858.491, FY25=-2629.085),
                     AR25 + ", dividends paid (financing activities)", "2026-02-09", "Company"),
-    subs_mobile_hist_display=I(dict(FY24=8916.0, FY25=9704.0),
+    subs_mobile_hist_display=I(dict(FY23=8554.0, FY24=8916.0, FY25=9704.0),
                                IRQ2 + " and the Q4/FY2025 deck: mobile customers at 31-Dec-2024 and "
                                "31-Dec-2025 ('000)", "2026-02-10", "Company"),
-    subs_fixed_hist_display=I(dict(FY24=682.0, FY25=735.0),
+    subs_fixed_hist_display=I(dict(FY23=604.0, FY24=682.0, FY25=735.0),
                               IRQ2 + " and the Q4/FY2025 deck: fixed customers at 31-Dec-2024 and "
                               "31-Dec-2025 ('000)", "2026-02-10", "Company"),
     arpu_hist_display=I(dict(FY24=65.8, FY25=63.3),
@@ -302,6 +401,18 @@ INP = dict(
                 "both audited/reviewed", "2026-07-22", "Company/derived"),
     h2_25_ebitda=I(3688.201, "DERIVED (flagged): FY2025 EBITDA 7,338.388 − H1-2025 3,650.187",
                    "2026-07-22", "Company/derived"),
+    h1_26_seg=I(dict(mobile=3646.314, fixed=2382.608, wholesale=1257.566, ict=911.085),
+                H126 + ", segment revenue for the six months ended 30-Jun-2026 (Note 17 segment "
+                "analysis); ties exactly to reviewed total revenue 8,197.573. REGISTERED "
+                "17-Aug-2026 — previously a typed dict inside the build, so it was an input with "
+                "no four-field record", "2026-07-22", "Company"),
+    subs_mobile_fy23=I(8554.0, "Mobile customer base at 31-Dec-2023: 8,554 thousand, du Annual "
+                       "Report 2024 operational highlights (page 6), which prints the 2023 and "
+                       "2024 bases side by side", "2025-02-10", "Company"),
+    subs_fixed_fy23=I(604.0, "Fixed customer base at 31-Dec-2023: 604 thousand, same source and "
+                      "page. This SETTLES an external challenge that the 682 thousand figure was "
+                      "FY2023: du's own report shows 604 (2023) and 682 (2024)", "2025-02-10",
+                      "Company"),
     dps_h1_26=I(0.26, H126 + " + Q2 earnings release: interim AED 0.26/share approved by the "
                 "Board 23-Jul-2026 (AED 1,178.556mn), +8.3% y/y", "2026-07-23", "Company"),
 
@@ -348,7 +459,13 @@ INP = dict(
     arpu_mobile_path=I([63.4, 63.6, 63.8, 64.0, 64.2],
                        "House forecast, blended mobile ARPU AED/month: held essentially flat "
                        "(+0.3%/yr) — postpaid mix gain (+9% y/y postpaid growth) offsetting "
-                       "prepaid dilution; company printed 63.3-63.4 across FY2025-Q2-2026",
+                       "prepaid dilution. CORRECTED 17-Aug-2026: the prior note said the company "
+                       "'printed 63.3-63.4', which flattered the stability of the series — the "
+                       "disclosed quarterly range is 63.3 to 65.8, and the last three prints run "
+                       "65.3 (Q4-2025) -> 63.4 (Q1-2026) -> 63.4 (Q2-2026), i.e. DOWN 2.9% from "
+                       "the recent peak. Holding the path flat is therefore an assumption that "
+                       "the recent decline stops, and the mix decomposition shows why it is "
+                       "fragile; the downside is priced as the mix-exhaustion scenario",
                        "2026-08-09", "House"),
     arpu_fixed_path=I([537.0, 545.0, 553.0, 561.0, 569.0],
                       "House forecast, implied fixed revenue per subscriber AED/month (fixed "
@@ -363,15 +480,59 @@ INP = dict(
             "actual +4.8%, Q4-heavy seasonality) accelerating to +11% on the data-centre ramp "
             "(Microsoft hyperscale agreement, du Q4-2025 deck) then easing to +8%",
             "2026-08-09", "House"),
-    contrib_margin_path=I(dict(
-        mobile=[0.608, 0.608, 0.608, 0.608, 0.608],
-        fixed=[0.858, 0.858, 0.858, 0.858, 0.858],
-        wholesale=[0.864, 0.864, 0.864, 0.864, 0.864],
-        ict=[0.194, 0.200, 0.205, 0.210, 0.215]),
-        "Segment contribution margins: mobile/fixed/wholesale held at the audited FY2025 rates "
-        "(60.8% / 85.8% / 86.4% — FY2024: 60.9% / 84.6% / 88.0%); ICT lifted 19.4% -> 21.5% "
-        "over five years on data-centre scale (still the thinnest-margin segment)",
-        "2026-08-09", "House"),
+    # ---- direct-cost stack: COST PER UNIT, ONE ESCALATOR PER DRIVER CLASS ---
+    # REPLACES contrib_margin_path (retired 17-Aug-2026). The retired driver set a
+    # contribution MARGIN per segment as an INPUT, held at the audited FY2025 rate. That
+    # broke two standing rules at once: §1.6 requires margins to be OUTPUTS, and the
+    # cost-stack escalation rule requires each physically distinct cost line to carry its
+    # own driver. It also ignored six months of reviewed H1-2026 data in favour of a
+    # stale full-year rate — the ARCC failure exactly.
+    #
+    # Every base rate below is COMPUTED from the registered filings (seg_dc_h1 / dc_nature_h1
+    # over the disclosed average subscriber base), never typed. Only the escalators are
+    # House inputs, and the default is FLAT: a rate drifts only where a named structural
+    # mechanism has a MEASURED like-for-like direction in du's own half-year pair.
+    esc_dc_inter=I(-0.015, "Mobile interconnect cost per subscriber per month, -1.5%/yr. "
+                   "MEASURED: 17.54 (H1-2025) -> 16.81 (H1-2026), -4.2% like-for-like. "
+                   "MECHANISM: regulated mobile-termination rates ratchet down and terminated "
+                   "voice/SMS keeps migrating to OTT, so the per-subscriber off-net bill falls "
+                   "even as the base grows. The forecast takes barely a third of the observed "
+                   "decline, on the view that it decays as the OTT substitution matures",
+                   "2026-08-17", "House"),
+    esc_dc_comm=I(0.030, "Mobile commission cost per subscriber per month, +3.0%/yr. MEASURED: "
+                  "6.12 (H1-2025) -> 6.31 (H1-2026), +3.1% like-for-like, and 5.69 -> 6.14 "
+                  "across FY2024-25. MECHANISM: dealer and retail acquisition/retention "
+                  "commission per subscriber, rising with competitive intensity in a "
+                  "two-player market. The observed rate is carried forward unchanged",
+                  "2026-08-17", "House"),
+    esc_dc_dev=I(0.0, "Mobile devices and direct-services cost per subscriber per month, held "
+                 "FLAT. MEASURED but NOT extrapolated: 1.40 (H1-2025) -> 0.96 (H1-2026), with "
+                 "0.52 in FY2024 and 1.26 in FY2025. This is the handset/direct-services "
+                 "residual after ICT takes the bulk of the disclosed devices line — small "
+                 "(under AED 1.5/sub/month) and visibly lumpy, so no trend is read into it",
+                 "2026-08-17", "House"),
+    esc_dc_fixed=I(0.0, "Fixed capacity and direct cost per subscriber per month, held FLAT at "
+                   "the H1-2026 reviewed rate. MEASURED but NOT extrapolated: 79.71 (FY2024) -> "
+                   "73.14 (FY2025) -> 68.35 (H1-2026), a -9.2% like-for-like half-year fall. "
+                   "The mechanism (fibre/FWA scale plus enterprise mix) is real but decays at an "
+                   "unmeasurable rate, so the observed improvement is stopped dead rather than "
+                   "projected. Because revenue per subscriber escalates 1.5%/yr against a flat "
+                   "cost, the fixed margin still widens as an OUTPUT",
+                   "2026-08-17", "House"),
+    dc_rate_wholesale=I(0.1558, "Wholesale direct cost as a share of wholesale revenue, held "
+                        "FLAT at the H1-2026 reviewed rate. The series worsens at every "
+                        "observation — 11.97% (FY2024), 13.58% (FY2025), 13.94% (H1-2025), "
+                        "15.58% (H1-2026) — which du's own Q2 commentary attributes to the "
+                        "conflict-hit roaming and transit mix. The forecast takes NO credit for "
+                        "the recovery that commentary implies, and equally does not project "
+                        "further deterioration", "2026-08-17", "House"),
+    dc_rate_ict=I(0.7848, "ICT and associated-services direct cost as a share of ICT revenue, "
+                  "held FLAT at the H1-2026 reviewed rate. The history does not support a "
+                  "trend in either direction: 79.25% (FY2024) worsened to 80.61% (FY2025) then "
+                  "improved to 78.48% (H1-2026). The prior edition projected a 2.1pp margin "
+                  "improvement on a data-centre-scale story; that story is not measurable in "
+                  "the disclosed series, so it has been removed and the rate held flat",
+                  "2026-08-17", "House"),
 
     # ---- opex stack — ONE ESCALATOR PER DRIVER CLASS -----------------------
     # (cost-stack escalation rule: each physically distinct cost line gets its
@@ -444,6 +605,17 @@ INP = dict(
     rf=I(4.14, "PLACEHOLDER — DO NOT SHIP", "1900-01-01", "SENTINEL"),
 
     # ---- lens inputs -------------------------------------------------------
+    e1_horizon_years=I(2.4027, "Years from the 07-Aug-2026 anchor to 31-Dec-2028, the date "
+                       "Expert 1's FY2028 earnings multiple values: 877 calendar days / 365. "
+                       "REGISTERED 17-Aug-2026 after an external critique showed the lens was "
+                       "discounting over a NET 1.40 years, a full year short of anchor "
+                       "consistency", "2026-08-17", "House"),
+    guidance_mid=I(0.05, "Midpoint of du's own FY2026 revenue-growth guidance of 4%-6%, revised "
+                   "and confirmed in the Q2-2026 analyst presentation (slide 16, 'Guidance "
+                   "confirmed for EBITDA margin and slightly adjusted for revenue growth'). Used "
+                   "only to PRICE a critique finding, never as a build driver — reverse-engineering "
+                   "a forecast to a guidance number is the opposite of a ground-up build",
+                   "2026-07-23", "Company"),
     lens_weights=I(dict(dcf=0.45, relative=0.25, normalized=0.20, book=0.10),
                    "House synthesis weights, operating-company pattern (SWDY reference study)",
                    "2026-08-09", "House"),
@@ -615,35 +787,257 @@ say(f"[Unit-build reconciliation, FY2025] avg mobile base {_avg_subs_25:,.0f}k x
     f" — the subscribers-x-ARPU frame reproduces the audited segment to within a percent.")
 assert abs(_unit_mobile_25 / SRH['FY25']['mobile'] - 1) < 0.02
 
-H1_SEG = dict(mobile=3646.314, fixed=2382.608, wholesale=1257.566, ict=911.085)
+H1_SEG = V['h1_26_seg']
 assert abs(sum(H1_SEG.values()) - V['h1_26_rev']) < 0.01, 'H1-2026 segments != reviewed total'
 
-def build(arpu_mult=1.0, subs_shift=0.0, contrib_mult=1.0, opex_shift=0.0, capex_mult=1.0):
+# ---------------------------------------------------------------------------
+# MOBILE PRICE: is a prepaid/postpaid split IDENTIFIED from du's disclosure?
+# ---------------------------------------------------------------------------
+# du publishes the mobile base split by prepaid and postpaid every quarter but publishes only
+# ONE blended ARPU. A two-leg revenue build therefore needs the leg ARPUs, which are two
+# unknowns per period against one disclosed equation. The test below asks whether the split
+# is nonetheless pinned down by the fact that the MIX moved: if both leg ARPUs were constant,
+# the blended series and the mix series together determine the ratio between them.
+_pp = {k: V['subs_postpaid'][k] / (V['subs_prepaid'][k] + V['subs_postpaid'][k])
+       for k in V['subs_postpaid']}
+_m_fy25 = (_pp['Q4_2024'] + _pp['Q4_2025']) / 2          # average-base proxy for FY2025
+_m_q226 = _pp['Q2_2026']
+_a_fy25, _a_q226 = V['arpu_mobile']['FY2025'], V['arpu_mobile']['Q2_2026']
+_rel = _a_q226 / _a_fy25
+_r_implied = ((1 - _m_fy25) - _rel * (1 - _m_q226)) / (_rel * _m_q226 - _m_fy25)
+
+# The single-pair result above depends entirely on WHICH pair is chosen, so run every pair.
+# If the split were identified, the implied ratio would be stable across pairs.
+_AQ = {k: v for k, v in V['arpu_mobile_q'].items() if k in _pp}
+_pairs = []
+for _i, _ka in enumerate(list(_AQ)):
+    for _kb in list(_AQ)[_i + 1:]:
+        _rl = _AQ[_kb] / _AQ[_ka]
+        _dn = _rl * _pp[_kb] - _pp[_ka]
+        if abs(_dn) < 1e-9:
+            continue
+        _pairs.append((_ka, _kb, ((1 - _pp[_ka]) - _rl * (1 - _pp[_kb])) / _dn))
+_rv = [r for _, _, r in _pairs]
+_neg = sum(1 for r in _rv if r < 0)
+_sub1 = sum(1 for r in _rv if 0 <= r < 1)
+_lo, _hi = min(V['arpu_ratio_peers'].values()), max(V['arpu_ratio_peers'].values())
+_inband = sum(1 for r in _rv if _lo <= r <= _hi)
+say(f"[Mobile mix, disclosed] postpaid share of the base "
+    f"{_pp['Q4_2024']:.1%} (Q4-2024) -> {_pp['Q4_2025']:.1%} (Q4-2025) -> {_m_q226:.1%} "
+    f"(Q2-2026). The Q2-2026 jump is not postpaid strength alone: prepaid fell "
+    f"{V['subs_prepaid']['Q2_2026'] - V['subs_prepaid']['Q4_2025']:+,.0f}k while postpaid rose "
+    f"{V['subs_postpaid']['Q2_2026'] - V['subs_postpaid']['Q4_2025']:+,.0f}k.")
+say(f"[Is a prepaid/postpaid split IDENTIFIED? — NO. Tested across every quarter pair, not one] "
+    f"du publishes the base split every quarter but only ONE blended ARPU, so a two-leg build "
+    f"needs two unknowns per period against one disclosed equation. The mix DID move, which in "
+    f"principle pins the ratio between the legs if both are constant — so solve for it on all "
+    f"{len(_pairs)} available quarter pairs. The implied postpaid/prepaid ARPU ratio ranges "
+    f"{min(_rv):.1f}x to {max(_rv):.1f}x. {_neg} of {len(_pairs)} pairs imply a NEGATIVE ratio "
+    f"and {_sub1} imply a postpaid subscriber worth LESS than a prepaid one — both impossible. "
+    f"Only {_inband} sit inside the {_lo:.1f}x-{_hi:.1f}x band observed at the one Gulf operator "
+    f"that discloses both legs. An estimator that swings from {min(_rv):.0f}x to {max(_rv):.0f}x "
+    f"depending on which two quarters you pick is not identifying anything. THE SPLIT IS "
+    f"THEREFORE NOT BUILT: the build stays on the blended figure, which is the finest level du "
+    f"sources, and the gap is flagged rather than filled with an imported ratio. Note the "
+    f"arithmetic is also mix-preserving — at unchanged mix EVERY ratio in the peer band "
+    f"reproduces the same blended ARPU and the same audited revenue — so a split would add an "
+    f"unsourced driver and no information.")
+_r = V['arpu_ratio_norm']
+_b0 = (1 - _m_fy25) + _r * _m_fy25
+_b1 = (1 - _m_q226) + _r * _m_q226
+mix_lift = _b1 / _b0 - 1
+leg_erosion = _rel / (_b1 / _b0) - 1
+say(f"[What the flat blended ARPU is actually hiding — mix decomposition] at a {_r:.1f}x "
+    f"postpaid/prepaid ratio, the {(_m_q226-_m_fy25)*100:+.2f}pp mix shift alone would have "
+    f"lifted blended ARPU {mix_lift:+.2%}. The company printed {_rel-1:+.2%}. So each leg's own "
+    f"ARPU eroded about {leg_erosion:+.2%} over the same span, and the flat headline is a "
+    f"COINCIDENCE of two offsetting forces, not stability. THE RISK THIS CREATES: the mix shift "
+    f"came from a one-off collapse in low-value visitor prepaid SIMs, and the subscriber path "
+    f"in this study assumes prepaid RECOVERS. A recovering prepaid base pushes the postpaid "
+    f"share back DOWN, which removes the tailwind and leaves the underlying leg erosion "
+    f"exposed. Priced below as the mix-exhaustion scenario, and carried into the caveats.")
+assert _neg > 0 and _inband < len(_pairs) / 2, (
+    'the non-identification finding rests on the implied ratio being unstable and often '
+    'impossible across pairs; if most pairs landed in the peer band the split WOULD be '
+    'identified and the build should then use it')
+
+# ---------------------------------------------------------------------------
+# THE DIRECT-COST JOINT: by-nature x by-segment, recovered exactly
+# ---------------------------------------------------------------------------
+# du discloses direct costs two ways and never cross-tabulates them: by NATURE on the face
+# of the income statement (interconnect / commission / devices and other direct services)
+# and by SEGMENT in the segment note (one 'interconnect and other direct costs' line per
+# segment). Both marginals are disclosed; the joint is not. It is recoverable exactly under
+# two structural assumptions:
+#   A1  fixed and wholesale direct cost is entirely interconnect and capacity — neither
+#       segment carries dealer commission (no consumer acquisition channel) or device cost.
+#   A2  commission is entirely mobile — it is the dealer/retail acquisition and recharge
+#       commission on the consumer mobile base.
+# Under A1+A2 the mobile interconnect line falls out as a residual from total interconnect,
+# and the mobile device line as a residual from mobile's own segment total. The TEST that
+# the assumption set is not nonsense: the residual mobile device cost must be POSITIVE and
+# small in every period, and ICT's own direct cost plus that residual must foot to the
+# disclosed devices line. Both hold in all four disclosed periods (see the assert below).
+def dc_joint(nature, seg):
+    """Split a period's direct costs into the by-nature x by-segment joint."""
+    mob_inter = nature['interconnect'] - seg['fixed'] - seg['wholesale']
+    mob_dev = seg['mobile'] - nature['commission'] - mob_inter
+    return dict(mob_inter=mob_inter, mob_comm=nature['commission'], mob_dev=mob_dev,
+                ict_dev=seg['ict'], fixed_cap=seg['fixed'], whl_cap=seg['wholesale'])
+
+_DCP = {}
+for _p, _nat, _seg in (('FY24', V['dc_nature_hist']['FY24'], V['seg_dc_hist']['FY24']),
+                       ('FY25', V['dc_nature_hist']['FY25'], V['seg_dc_hist']['FY25']),
+                       ('H125', V['dc_nature_h1']['H125'], V['seg_dc_h1']['H125']),
+                       ('H126', V['dc_nature_h1']['H126'], V['seg_dc_h1']['H126'])):
+    _j = dc_joint(_nat, _seg)
+    assert _j['mob_dev'] > 0, f'{_p}: residual mobile device cost is negative — A1/A2 broken'
+    assert abs(_j['ict_dev'] + _j['mob_dev'] - _nat['devices']) < 1e-6, (
+        f"{_p}: ICT direct cost + residual mobile device cost does not foot to the disclosed "
+        f"devices line")
+    assert abs(sum((_j['mob_inter'], _j['mob_comm'], _j['mob_dev'])) - _seg['mobile']) < 1e-6
+    _DCP[_p] = _j
+
+# Average subscriber bases and month counts for each disclosed period, so a per-unit rate is
+# always cost over the base that actually carried it.
+_DEN = {
+    'FY24': (( V['subs_mobile_fy23'] + V['subs_mobile']['Q4_2024']) / 2,
+             ( V['subs_fixed_fy23'] + V['subs_fixed']['Q4_2024']) / 2, 12),
+    'FY25': ((V['subs_mobile']['Q4_2024'] + V['subs_mobile']['Q4_2025']) / 2,
+             (V['subs_fixed']['Q4_2024'] + V['subs_fixed']['Q4_2025']) / 2, 12),
+    'H125': ((V['subs_mobile']['Q4_2024'] + V['subs_mobile_h1_25']) / 2,
+             (V['subs_fixed']['Q4_2024'] + V['subs_fixed_h1_25']) / 2, 6),
+    'H126': ((V['subs_mobile']['Q4_2025'] + V['subs_mobile']['Q2_2026']) / 2,
+             (V['subs_fixed']['Q4_2025'] + V['subs_fixed']['Q2_2026']) / 2, 6),
+}
+DCU = {}   # per-unit direct cost rates, AED per subscriber per month / % of own revenue
+for _p, _j in _DCP.items():
+    _m, _f, _n = _DEN[_p]
+    _sr = (V['seg_rev_hist']['FY24'] if _p == 'FY24' else V['seg_rev_hist']['FY25'] if _p == 'FY25'
+           else V['h1_25_seg'] if _p == 'H125' else H1_SEG)
+    DCU[_p] = dict(
+        mob_inter=_j['mob_inter'] / _m / _n * 1000,
+        mob_comm=_j['mob_comm'] / _m / _n * 1000,
+        mob_dev=_j['mob_dev'] / _m / _n * 1000,
+        mob_tot=(_j['mob_inter'] + _j['mob_comm'] + _j['mob_dev']) / _m / _n * 1000,
+        fixed_cap=_j['fixed_cap'] / _f / _n * 1000,
+        whl_rate=_j['whl_cap'] / _sr['wholesale'],
+        ict_rate=_j['ict_dev'] / _sr['ict'],
+    )
+say("[Direct-cost unit rates, from du's own filings] AED per subscriber per month unless "
+    "shown as a rate. " + " | ".join(
+        f"{p}: mobile interconnect {DCU[p]['mob_inter']:.2f} + commission "
+        f"{DCU[p]['mob_comm']:.2f} + devices {DCU[p]['mob_dev']:.2f} = {DCU[p]['mob_tot']:.2f}; "
+        f"fixed capacity {DCU[p]['fixed_cap']:.2f}; wholesale {DCU[p]['whl_rate']:.2%}; "
+        f"ICT {DCU[p]['ict_rate']:.2%}" for p in ('FY24', 'FY25', 'H125', 'H126')))
+say(f"[Like-for-like half-year direction] mobile interconnect "
+    f"{DCU['H125']['mob_inter']:.2f} -> {DCU['H126']['mob_inter']:.2f} "
+    f"({DCU['H126']['mob_inter']/DCU['H125']['mob_inter']-1:+.1%}); commission "
+    f"{DCU['H125']['mob_comm']:.2f} -> {DCU['H126']['mob_comm']:.2f} "
+    f"({DCU['H126']['mob_comm']/DCU['H125']['mob_comm']-1:+.1%}); fixed capacity "
+    f"{DCU['H125']['fixed_cap']:.2f} -> {DCU['H126']['fixed_cap']:.2f} "
+    f"({DCU['H126']['fixed_cap']/DCU['H125']['fixed_cap']-1:+.1%}). Only the first two carry a "
+    f"named mechanism and a drift; the rest are anchored on H1-2026 and held flat.")
+
+# H2-2025 rates, to show that anchoring H2-2026 on the H1-2026 rate is CONSERVATIVE wherever
+# the second half of a year is cheaper than the first.
+_H2_25 = dict(
+    mobile=V['seg_dc_hist']['FY25']['mobile'] - V['seg_dc_h1']['H125']['mobile'],
+    fixed=V['seg_dc_hist']['FY25']['fixed'] - V['seg_dc_h1']['H125']['fixed'],
+    wholesale=V['seg_dc_hist']['FY25']['wholesale'] - V['seg_dc_h1']['H125']['wholesale'],
+    ict=V['seg_dc_hist']['FY25']['ict'] - V['seg_dc_h1']['H125']['ict'])
+_h2m = (V['subs_mobile_h1_25'] + V['subs_mobile']['Q4_2025']) / 2
+_h2f = (V['subs_fixed_h1_25'] + V['subs_fixed']['Q4_2025']) / 2
+H2_25_U = dict(
+    mob_tot=_H2_25['mobile'] / _h2m / 6 * 1000,
+    fixed_cap=_H2_25['fixed'] / _h2f / 6 * 1000,
+    whl_rate=_H2_25['wholesale'] / (V['seg_rev_hist']['FY25']['wholesale']
+                                    - V['h1_25_seg']['wholesale']),
+    ict_rate=_H2_25['ict'] / (V['seg_rev_hist']['FY25']['ict'] - V['h1_25_seg']['ict']))
+say(f"[Is the H1 rate a fair stand-in for H2? — H2-2025 actuals] mobile "
+    f"{H2_25_U['mob_tot']:.2f} vs H1-2025 {DCU['H125']['mob_tot']:.2f}; fixed "
+    f"{H2_25_U['fixed_cap']:.2f} vs {DCU['H125']['fixed_cap']:.2f}; wholesale "
+    f"{H2_25_U['whl_rate']:.2%} vs {DCU['H125']['whl_rate']:.2%}; ICT "
+    f"{H2_25_U['ict_rate']:.2%} vs {DCU['H125']['ict_rate']:.2%}. Three of the four second-half "
+    f"rates came in CHEAPER than the first half, so carrying the H1-2026 rate into H2-2026 "
+    f"overstates cost rather than understating it.")
+
+def build(arpu_mult=1.0, subs_shift=0.0, dc_mult=1.0, opex_shift=0.0, capex_mult=1.0,
+          arpu_drift=None):
     """arpu_mult scales the mobile+fixed price paths; subs_shift adds N thousand
-    to every point of both subscriber paths; contrib_mult scales all contribution
-    margins; opex_shift adds a fraction of revenue to the opex stack;
-    capex_mult scales the capex path."""
+    to every point of both subscriber paths; dc_mult scales every direct-cost
+    unit rate (so a HIGHER dc_mult is worth LESS); opex_shift adds a fraction of
+    revenue to the opex stack; capex_mult scales the capex path."""
     sm = [s + subs_shift for s in V['subs_mobile_path']]
     sf = [s + subs_shift * 0.08 for s in V['subs_fixed_path']]
-    am = [a * arpu_mult for a in V['arpu_mobile_path']]
-    af = [a * arpu_mult for a in V['arpu_fixed_path']]
+    dr = V['arpu_drift'] if arpu_drift is None else arpu_drift
+    am = [a * arpu_mult * (1 + dr) ** i for i, a in enumerate(V['arpu_mobile_path'])]
+    af = [a * arpu_mult * (1 + dr) ** i for i, a in enumerate(V['arpu_fixed_path'])]
+    # Per-unit direct-cost paths: anchored on the H1-2026 reviewed actual, drifting only
+    # where a named mechanism has a measured direction. Year 0 is the H2-2026 rate.
+    A = DCU['H126']
+    ui = [A['mob_inter'] * (1 + V['esc_dc_inter']) ** i * dc_mult for i in range(5)]
+    uc = [A['mob_comm'] * (1 + V['esc_dc_comm']) ** i * dc_mult for i in range(5)]
+    ud = [A['mob_dev'] * (1 + V['esc_dc_dev']) ** i * dc_mult for i in range(5)]
+    um = [ui[i] + uc[i] + ud[i] for i in range(5)]
+    uf = [A['fixed_cap'] * (1 + V['esc_dc_fixed']) ** i * dc_mult for i in range(5)]
+    rw = V['dc_rate_wholesale'] * dc_mult
+    ri = V['dc_rate_ict'] * dc_mult
     seg_rev = {s: [] for s in SEGS}
-    # FY2026: reviewed H1 actual + unit-built H2
+    seg_dc = {s: [] for s in SEGS}
+    # FY2026: reviewed H1 actual + unit-built H2, on BOTH sides of the margin
     seg_rev['mobile'].append(H1_SEG['mobile']
                              + (V['subs_mobile']['Q2_2026'] + sm[0]) / 2 * am[0] * 6 / 1000)
     seg_rev['fixed'].append(H1_SEG['fixed']
                             + (V['subs_fixed']['Q2_2026'] + sf[0]) / 2 * af[0] * 6 / 1000)
     seg_rev['wholesale'].append(SRH['FY25']['wholesale'] * (1 + V['seg_g']['wholesale'][0]))
     seg_rev['ict'].append(SRH['FY25']['ict'] * (1 + V['seg_g']['ict'][0]))
+    seg_dc['mobile'].append(V['seg_dc_h1']['H126']['mobile']
+                            + (V['subs_mobile']['Q2_2026'] + sm[0]) / 2 * um[0] * 6 / 1000)
+    seg_dc['fixed'].append(V['seg_dc_h1']['H126']['fixed']
+                           + (V['subs_fixed']['Q2_2026'] + sf[0]) / 2 * uf[0] * 6 / 1000)
+    seg_dc['wholesale'].append(V['seg_dc_h1']['H126']['wholesale']
+                               + (seg_rev['wholesale'][0] - H1_SEG['wholesale']) * rw)
+    seg_dc['ict'].append(V['seg_dc_h1']['H126']['ict']
+                         + (seg_rev['ict'][0] - H1_SEG['ict']) * ri)
     for i in range(1, 5):
         seg_rev['mobile'].append((sm[i - 1] + sm[i]) / 2 * am[i] * 12 / 1000)
         seg_rev['fixed'].append((sf[i - 1] + sf[i]) / 2 * af[i] * 12 / 1000)
         seg_rev['wholesale'].append(seg_rev['wholesale'][-1] * (1 + V['seg_g']['wholesale'][i]))
         seg_rev['ict'].append(seg_rev['ict'][-1] * (1 + V['seg_g']['ict'][i]))
+        seg_dc['mobile'].append((sm[i - 1] + sm[i]) / 2 * um[i] * 12 / 1000)
+        seg_dc['fixed'].append((sf[i - 1] + sf[i]) / 2 * uf[i] * 12 / 1000)
+        seg_dc['wholesale'].append(seg_rev['wholesale'][i] * rw)
+        seg_dc['ict'].append(seg_rev['ict'][i] * ri)
     rev = [sum(seg_rev[s][i] for s in SEGS) for i in range(5)]
-    contrib = {s: [seg_rev[s][i] * V['contrib_margin_path'][s][i] * contrib_mult
-                   for i in range(5)] for s in SEGS}
+    # Contribution is now what is LEFT after a costed unit build — an output, not an input.
+    contrib = {s: [seg_rev[s][i] - seg_dc[s][i] for i in range(5)] for s in SEGS}
+    contrib_margin = {s: [contrib[s][i] / seg_rev[s][i] for i in range(5)] for s in SEGS}
     contrib_tot = [sum(contrib[s][i] for s in SEGS) for i in range(5)]
+    # The same total, re-cut by NATURE. This is an ALLOCATION of the segment build, not a
+    # second independent forecast: du never cross-tabulates the two cuts, so the joint rests
+    # on A1+A2 above. Presenting it as independent corroboration would be false.
+    dc_nature = dict(
+        interconnect=[(sm[i - 1] + sm[i]) / 2 * ui[i] * (12 if i else 12) / 1000 if i else
+                      _DCP['H126']['mob_inter']
+                      + (V['subs_mobile']['Q2_2026'] + sm[0]) / 2 * ui[0] * 6 / 1000
+                      for i in range(5)],
+        commission=[(sm[i - 1] + sm[i]) / 2 * uc[i] * 12 / 1000 if i else
+                    _DCP['H126']['mob_comm']
+                    + (V['subs_mobile']['Q2_2026'] + sm[0]) / 2 * uc[0] * 6 / 1000
+                    for i in range(5)],
+        devices=[(sm[i - 1] + sm[i]) / 2 * ud[i] * 12 / 1000 + seg_dc['ict'][i] if i else
+                 _DCP['H126']['mob_dev']
+                 + (V['subs_mobile']['Q2_2026'] + sm[0]) / 2 * ud[0] * 6 / 1000
+                 + seg_dc['ict'][0]
+                 for i in range(5)])
+    # fixed + wholesale capacity cost is interconnect by A1, so add it back to that line
+    dc_nature['interconnect'] = [dc_nature['interconnect'][i] + seg_dc['fixed'][i]
+                                 + seg_dc['wholesale'][i] for i in range(5)]
+    for i in range(5):
+        assert abs(sum(dc_nature[k][i] for k in dc_nature)
+                   - sum(seg_dc[s][i] for s in SEGS)) < 1e-6, (
+            f'year {i}: the by-nature re-cut does not foot to the by-segment total')
     ob = V['opex_base_fy25']
     staff = [V['staff_fy26'] * (1 + V['esc_staff']) ** i for i in range(5)]
     network = [ob['network'] * (1 + V['esc_network']) ** (i + 1) for i in range(5)]
@@ -658,12 +1052,39 @@ def build(arpu_mult=1.0, subs_shift=0.0, contrib_mult=1.0, opex_shift=0.0, capex
     capex = [V['capex_pct'][i] * rev[i] * capex_mult for i in range(5)]
     return dict(rev=rev, seg_rev=seg_rev, contrib=contrib, contrib_tot=contrib_tot,
                 opex=opex, ebitda=ebitda, capex=capex,
+                seg_dc=seg_dc, contrib_margin=contrib_margin, dc_nature=dc_nature,
+                unit_cost=dict(mob_inter=ui, mob_comm=uc, mob_dev=ud, mob_tot=um, fixed_cap=uf,
+                               whl_rate=[rw] * 5, ict_rate=[ri] * 5),
                 opex_lines=dict(staff=staff, network=network, admin=admin, other=other,
                                 marketing=marketing, licence=licence, ecl=ecl))
 
 _B = build()
 rev, seg_rev, ebitda, capex = _B['rev'], _B['seg_rev'], _B['ebitda'], _B['capex']
 contrib_tot, opex_fc = _B['contrib_tot'], _B['opex']
+seg_dc, contrib_margin = _B['seg_dc'], _B['contrib_margin']
+dc_nature_fc, unit_cost = _B['dc_nature'], _B['unit_cost']
+dc_tot = [sum(seg_dc[s][i] for s in SEGS) for i in range(5)]
+gross_margin = [1 - dc_tot[i] / rev[i] for i in range(5)]
+say("[Contribution margin — now an OUTPUT of a costed unit build] " + "; ".join(
+    f"{s} " + "->".join(f"{contrib_margin[s][i]:.1%}" for i in (0, 4))
+    + f" (audited FY2025 {SCH['FY25'][s]/SRH['FY25'][s]:.1%}, H1-2026 actual "
+    f"{1 - V['seg_dc_h1']['H126'][s]/H1_SEG[s]:.1%})" for s in SEGS))
+_gm_fy25 = 1 - (-V['direct_costs_hist']['FY25']) / V['rev_fy25']
+_gm_h126 = 1 - sum(V['seg_dc_h1']['H126'].values()) / V['h1_26_rev']
+say(f"[Group gross margin — OUTPUT] " + " -> ".join(f"{g:.1%}" for g in gross_margin)
+    + f", against an audited FY2025 {_gm_fy25:.1%} and an H1-2026 reviewed {_gm_h126:.1%}. "
+    f"Nothing here was assumed: the margin is what is left after each cost line is grown on "
+    f"its own physical driver.")
+# The retired construction, kept as an audit trail: what the margin path WOULD have been under
+# the withdrawn contribution-margin input, so the size of the correction is visible.
+_retired_cm = dict(mobile=[0.608] * 5, fixed=[0.858] * 5, wholesale=[0.864] * 5,
+                   ict=[0.194, 0.200, 0.205, 0.210, 0.215])
+_retired_contrib = [sum(seg_rev[s][i] * _retired_cm[s][i] for s in SEGS) for i in range(5)]
+say(f"[Size of the correction] contribution under the retired flat-margin input " +
+    " -> ".join(f"{c:,.0f}" for c in _retired_contrib) + " vs the unit-built "
+    + " -> ".join(f"{c:,.0f}" for c in contrib_tot) + ", i.e. "
+    + " -> ".join(f"{contrib_tot[i]-_retired_contrib[i]:+,.0f}" for i in range(5))
+    + ". The retired input ignored six months of reviewed data in every segment.")
 ebitda_margin = [ebitda[i] / rev[i] for i in range(5)]
 g26 = rev[0] / V['rev_fy25'] - 1
 say(f"[Revenue build] FY26E {rev[0]:,.0f} ({g26:+.1%} vs guidance 4-6% revised 23-Jul-2026) -> "
@@ -671,11 +1092,32 @@ say(f"[Revenue build] FY26E {rev[0]:,.0f} ({g26:+.1%} vs guidance 4-6% revised 2
     ", ".join(f"{s} {seg_rev[s][0]:,.0f}" for s in SEGS))
 assert 0.035 <= g26 <= 0.065, f'FY2026E growth {g26:.1%} outside the guidance sanity band'
 say(f"[EBITDA — an OUTPUT, not an input] " +
-    " -> ".join(f"{ebitda[i]:,.0f} ({ebitda_margin[i]:.1%})" for i in range(5)) +
-    f". H1-2026 actual margin was 49.2% and H2 is seasonally softer (H2-2025: "
-    f"{V['h2_25_ebitda']/V['h2_25_rev']:.1%}); the FY26E output sits against the company's "
-    f"46-47% guidance — ABOVE it, because H1 already printed 49.2% and the build holds "
-    f"disclosed contribution margins rather than forcing the guidance midpoint.")
+    " -> ".join(f"{ebitda[i]:,.0f} ({ebitda_margin[i]:.1%})" for i in range(5)) + ".")
+# The FY2026E margin sits above the company's 46-47% guided range, so the implied SECOND HALF
+# is the number that has to be defended, not the full year: H1 is already a reviewed actual.
+_h2_26_rev = rev[0] - V['h1_26_rev']
+_h2_26_ebitda = ebitda[0] - V['h1_26_ebitda']
+_h2_26_margin = _h2_26_ebitda / _h2_26_rev
+_h1_25_margin = V['h1_25_ebitda'] / V['h1_25_rev']
+_h1_26_margin = V['h1_26_ebitda'] / V['h1_26_rev']
+_h2_25_margin = V['h2_25_ebitda'] / V['h2_25_rev']
+say(f"[Is the FY2026E margin too rich? — TEST IT ON THE IMPLIED SECOND HALF] the build's "
+    f"FY26E {ebitda_margin[0]:.1%} sits above the company's guided 46-47%, so the claim to "
+    f"defend is the implied H2-2026 margin of {_h2_26_margin:.1%}. H1 improved "
+    f"{(_h1_26_margin - _h1_25_margin)*100:+.1f}pp y/y ({_h1_25_margin:.1%} -> "
+    f"{_h1_26_margin:.1%}); "
+    f"the implied H2 improves only {(_h2_26_margin - _h2_25_margin)*100:+.1f}pp y/y "
+    f"({_h2_25_margin:.1%} -> {_h2_26_margin:.1%}). The forecast therefore assumes the y/y "
+    f"margin gain roughly HALVES in the second half. The guided range is a full-year figure "
+    f"the company set in July against a first half that had already printed "
+    f"{_h1_26_margin:.1%}; hitting the 46.5% midpoint would require an H2 margin of "
+    f"{(0.465 * rev[0] - V['h1_26_ebitda']) / _h2_26_rev:.1%}, i.e. a y/y DETERIORATION of "
+    f"{((0.465 * rev[0] - V['h1_26_ebitda']) / _h2_26_rev - _h2_25_margin)*100:+.1f}pp against an "
+    f"H1 that improved. That is a possible outcome and it is priced in the sensitivity, but it "
+    f"is not the central case the filings support.")
+assert _h2_26_margin - _h2_25_margin < _h1_26_margin - _h1_25_margin, (
+    'the implied H2 y/y margin gain must not exceed the actual H1 gain — that would be '
+    'an acceleration the forecast has no evidence for')
 assert 0.44 <= ebitda_margin[0] <= 0.50
 
 # ---- D&A from asset roll-forwards ------------------------------------------
@@ -893,29 +1335,54 @@ say(f"[Post-2029 fiscal tail — no longer the contested judgement, du disclosed
     f"{dcf_ps - dcf_ps_B:+.2f}/share ({(dcf_ps_B/dcf_ps-1):+.0%}). Published side by side; "
     f"never averaged.")
 
-# ---- rf-tenor alternative, priced --------------------------------------------
-ke_rf_alt = (V['rf_alt'] - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
-wacc_rf_alt = we_exp * ke_rf_alt + wd_exp * kd_at
-_shift = wacc_rf_alt - wacc_exp
-_fwd_alt = [w + _shift for w in fwd]
-_df_alt, cc = [], 1.0
-for w in _fwd_alt:
-    cc /= (1 + w); _df_alt.append(cc)
-_tv_alt = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term + _shift - V['g_term'])
-_ev_alt = sum(fcff[i] * _df_alt[i] for i in range(5)) + _tv_alt * _df_alt[-1]
-dcf_ps_rf_alt = (_ev_alt - LEASE + NETCASH + INVEST) / SH * ((1 + ke_rf_alt) ** T_ANCHOR) \
-                - V['div_between']
-say(f"[rf tenor gap, PRICED] 10y peg-extrapolated rf {V['rf_alt']:.2%} instead of the Jan-2031 "
-    f"AED print {V['rf']:.2%} -> WACC {wacc_rf_alt:.2%} -> AED {dcf_ps_rf_alt:.2f} "
-    f"({dcf_ps_rf_alt-dcf_ps:+.2f}/share)")
+# ---- rf-tenor alternatives, both priced, neither averaged ---------------------
+def dcf_at_rf(rf_):
+    _ke = (rf_ - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
+    _w = we_exp * _ke + wd_exp * kd_at
+    _sh = _w - wacc_exp
+    _dfa, cc = [], 1.0
+    for w in [x + _sh for x in fwd]:
+        cc /= (1 + w); _dfa.append(cc)
+    _tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term + _sh - V['g_term'])
+    _ev = sum(fcff[i] * _dfa[i] for i in range(5)) + _tv * _dfa[-1]
+    return ((_ev - LEASE + NETCASH + INVEST) / SH * ((1 + _ke) ** T_ANCHOR)
+            - V['div_between']), _w
+
+dcf_ps_rf_alt, wacc_rf_alt = dcf_at_rf(V['rf_alt'])
+dcf_ps_rf_long, wacc_rf_long = dcf_at_rf(V['rf_alt_long'])
+say(f"[rf tenor gap, BOTH ALTERNATIVES PRICED] base rf {V['rf']:.2%} (Jan-2031 AED T-Bond, "
+    f"30-Jul-2026) -> AED {dcf_ps:.2f}. LONGER, LOWER: the Feb-2033 AED Islamic Treasury Sukuk "
+    f"second tap at {V['rf_alt_long']:.2%} (23-Apr-2026) -> WACC {wacc_rf_long:.2%} -> AED "
+    f"{dcf_ps_rf_long:.2f} ({dcf_ps_rf_long-dcf_ps:+.2f}/share, "
+    f"{dcf_ps_rf_long/dcf_ps-1:+.1%}). LONGER, HIGHER: the 10y peg-extrapolated "
+    f"{V['rf_alt']:.2%} -> WACC {wacc_rf_alt:.2%} -> AED {dcf_ps_rf_alt:.2f} "
+    f"({dcf_ps_rf_alt-dcf_ps:+.2f}/share). The base sits BETWEEN the two, which is the point: "
+    f"there is no liquid 10-year AED point, so the tenor choice is a real range and it is "
+    f"published as one.")
+# An external critique argued for the Feb-2033 sukuk's DEBUT print instead. Price that too,
+# rather than only asserting it is stale.
+dcf_ps_rf_debut, wacc_rf_debut = dcf_at_rf(V['rf_sukuk_debut'])
+say(f"[The critique's rf, PRICED before it is judged] the Feb-2033 sukuk's DEBUT print "
+    f"{V['rf_sukuk_debut']:.3%} (22-Feb-2026) -> WACC {wacc_rf_debut:.2%} -> AED "
+    f"{dcf_ps_rf_debut:.2f} ({dcf_ps_rf_debut-dcf_ps:+.2f}/share, "
+    f"{dcf_ps_rf_debut/dcf_ps-1:+.1%}) — so the finding is MATERIAL and had to be re-derived, "
+    f"not waved away. It is nonetheless REJECTED on the evidence: the issuer's own second tap of "
+    f"the SAME instrument cleared {V['rf_alt_long']:.2%} two months later, and the Jan-2031 "
+    f"T-Bond moved 3.90% -> 3.85% -> 4.30% -> 4.48% across the same window. A debut print 5.5 "
+    f"months before the anchor is not the rate that prevailed at the anchor.")
+assert V['rf_sukuk_debut'] < V['rf_alt_long'] < V['rf'], (
+    'the rf evidence chain must run debut < second tap < the Jan-2031 print used, which is what '
+    'makes the staleness argument rather than a preference')
 
 # ---- scenarios on the DCF -----------------------------------------------------
-def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, contrib_mult=1.0, opex_shift=0.0,
+def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, dc_mult=1.0, opex_shift=0.0,
+                 arpu_drift=None,
                  capex_mult=1.0, wacc_shift=0.0, g=None, tax=None, nwc=None):
     g = V['g_term'] if g is None else g
     t_ = TAX if tax is None else tax
     nw = nwc_pct if nwc is None else nwc
-    B = build(arpu_mult=arpu_mult, subs_shift=subs_shift, contrib_mult=contrib_mult,
+    B = build(arpu_mult=arpu_mult, subs_shift=subs_shift, dc_mult=dc_mult,
+              arpu_drift=arpu_drift,
               opex_shift=opex_shift, capex_mult=capex_mult)
     _rev, _ebitda, _capex = B['rev'], B['ebitda'], B['capex']
     _ct = [c * V['capex_tang_share'] for c in _capex]
@@ -949,9 +1416,9 @@ def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, contrib_mult=1.0, opex_shift=0.0
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine != base: {_base_chk} vs {dcf_ps}'
 
-dcf_bear = dcf_scenario(arpu_mult=0.95, subs_shift=-250.0, contrib_mult=0.97,
+dcf_bear = dcf_scenario(arpu_mult=0.95, subs_shift=-250.0, dc_mult=1.03,
                         opex_shift=+0.005, wacc_shift=+0.01, g=0.02, capex_mult=1.08)
-dcf_bull = dcf_scenario(arpu_mult=1.03, subs_shift=+200.0, contrib_mult=1.015,
+dcf_bull = dcf_scenario(arpu_mult=1.03, subs_shift=+200.0, dc_mult=0.985,
                         opex_shift=-0.005, wacc_shift=-0.005, g=0.03, capex_mult=0.95)
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} AED per share")
 
@@ -1061,7 +1528,19 @@ grid_arpu = [dcf_scenario(arpu_mult=m) for m in arpu_grid]
 subs_grid = [-400.0, -200.0, 0.0, 200.0, 400.0]
 grid_subs = [dcf_scenario(subs_shift=s) for s in subs_grid]
 mg_grid = [0.94, 0.97, 1.00, 1.03, 1.06]
-grid_margin = [dcf_scenario(contrib_mult=m) for m in mg_grid]
+grid_margin = [dcf_scenario(dc_mult=m) for m in mg_grid]
+# THE MIX-EXHAUSTION SCENARIO, priced. The blended ARPU path is flat-to-slightly-up because a
+# postpaid mix tailwind offsets per-leg erosion; if prepaid recovers as the subscriber path
+# assumes, the tailwind goes and the erosion shows through.
+drift_grid = [-0.025, -0.015, 0.0, 0.005, 0.010]
+grid_drift = [dcf_scenario(arpu_drift=d) for d in drift_grid]
+dcf_mix_exhaust = dcf_scenario(arpu_drift=leg_erosion / 1.0 if leg_erosion < 0 else -0.02)
+say(f"[Mix-exhaustion scenario, PRICED] if the postpaid mix tailwind exhausts and the blended "
+    f"ARPU path instead erodes at the per-leg rate the decomposition implies "
+    f"({leg_erosion:+.2%}/yr), the DCF is AED {dcf_mix_exhaust:.2f} against the base "
+    f"{dcf_ps:.2f} ({dcf_mix_exhaust - dcf_ps:+.2f}/share, "
+    f"{dcf_mix_exhaust / dcf_ps - 1:+.1%}). Grid across ARPU drift: " +
+    ", ".join(f"{d:+.1%} -> {v:.2f}" for d, v in zip(drift_grid, grid_drift)) + ".")
 capex_grid = [0.85, 0.925, 1.00, 1.10, 1.20]
 grid_capex = [dcf_scenario(capex_mult=m) for m in capex_grid]
 nwc_grid = [-0.10, -0.085, nwc_pct, -0.050, -0.030]
@@ -1077,11 +1556,22 @@ dcf_opex_1pp = dcf_scenario(opex_shift=+0.01)   # +1pp of revenue in the cost st
 dcf_tax_per_pp = (grid_tax[0] - grid_tax[4]) / ((tax_grid[4] - tax_grid[0]) * 100)
 
 # ---- expert panel: three genuinely different methods ---------------------------
-# Expert 1 — earnings power on a through-cycle multiple
+# Expert 1 — earnings power on a through-cycle multiple.
+# CORRECTED 17-Aug-2026 (external finding CC7, and it was right): the lens values FY2028
+# earnings, which arrive at 31-Dec-2028 — 2.40 years after the 07-Aug-2026 anchor. The prior
+# construction discounted two years from a 31-Dec-2025 base and then accreted to the anchor, a
+# NET 1.40 years, so it was a full year short. Correcting the horizon alone would have dropped
+# the dividends receivable in the meantime from a company paying out about all of its earnings,
+# so those are now discounted in explicitly. Both defects were in the same three lines.
 e1_eps = eps_fc[2]
-e1_base, e1_lo, e1_hi = (to_anchor(15.0 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'],
-                         to_anchor(12.0 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'],
-                         to_anchor(17.5 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'])
+_e1_yrs = V['e1_horizon_years']
+_e1_divs = [(dps_fc[0] * 0.5, _e1_yrs - 2.0), (dps_fc[1], _e1_yrs - 1.0), (dps_fc[2], _e1_yrs)]
+_e1_dpv = sum(d / (1 + ke_exp) ** t for d, t in _e1_divs)
+
+def _e1_at(mult):
+    return mult * e1_eps / (1 + ke_exp) ** _e1_yrs + _e1_dpv
+
+e1_base, e1_lo, e1_hi = _e1_at(15.0), _e1_at(12.0), _e1_at(17.5)
 # Expert 2 — dividend discount (the natural lens for a ~100%-payout duopoly)
 e2_dps = dps_fc[0]
 e2_ke = ke_term
@@ -1109,6 +1599,130 @@ experts = dict(
             spread=[roic[i] - fwd[i] for i in range(5)]),
 )
 panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
+
+# ---------------------------------------------------------------------------
+# THREE CRITIQUE FINDINGS THAT WERE NEVER PRICED — priced here, 17-Aug-2026
+# ---------------------------------------------------------------------------
+# The response procedure forbids calling a finding immaterial without a number beside the word.
+# Three findings in the 17-Aug response were bucketed without one. That was a procedural
+# failure regardless of where they land, so each is now priced on the real chain.
+#
+# (1) Expert 1's discounting horizon. The lens values FY2028 earnings on a through-cycle
+# multiple. As built it accretes to the anchor from a 31-Dec-2025 base after discounting two
+# years, a NET exponent of (T_ANCHOR - 2) = -1.40 years. But FY2028 earnings arrive at
+# 31-Dec-2028, which is 2.40 years after the 07-Aug-2026 anchor. The horizon is a full year
+# short. Correcting it alone, however, would drop nearly three years of dividends from a
+# ~98%-payout company, so the coherent correction adds those back.
+_e1_years_anchor = V['e1_horizon_years']
+_e1_eq_2028 = 15.0 * e1_eps                                   # equity value at 31-Dec-2028
+# what the RETIRED construction produced, kept only to size the correction
+_e1_as_built = to_anchor(_e1_eq_2028) / (1 + ke_exp) ** 2 - V['div_between']
+_e1_horizon_only = _e1_eq_2028 / (1 + ke_exp) ** _e1_years_anchor
+_e1_div_pv = _e1_dpv
+_e1_coherent = e1_base                                        # now the PUBLISHED Expert 1
+say(f"[CC7 PRICED — Expert 1's discounting horizon] as built AED {_e1_as_built:.2f} (net "
+    f"exponent {T_ANCHOR - 2:+.2f} years). Horizon corrected to the anchor-consistent "
+    f"{_e1_years_anchor:.2f} years and nothing else: AED {_e1_horizon_only:.2f} "
+    f"({_e1_horizon_only - _e1_as_built:+.2f}/share). But that version silently discards the "
+    f"dividends receivable between the anchor and FY2028, worth AED {_e1_div_pv:.2f} in present "
+    f"value on a payout near 100%; adding them back gives AED {_e1_coherent:.2f} "
+    f"({_e1_coherent - _e1_as_built:+.2f}/share vs as built, "
+    f"{(_e1_coherent - _e1_as_built) / central:+.1%} of the weighted central). VERDICT: the "
+    f"finding's PREMISE is correct and was under-priced by being left unpriced — the horizon "
+    f"really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once "
+    f"the omitted dividends are restored. Expert 1 is republished on the coherent construction.")
+
+# (2) The synthesis weights. One critique asked what happens if the market-multiple family
+# (relative + normalised) carries 25% rather than 45%. Priced both ways for where the freed
+# weight goes, because that choice drives the answer more than the reweighting itself.
+_lens = dict(dcf=dcf_ps, relative=rel_ps, normalized=norm_ps, book=book_ps)
+def _weighted(w):
+    return sum(_lens[k] * w[k] for k in _lens)
+_w_base = dict(V['lens_weights'])
+_fam = _w_base['relative'] + _w_base['normalized']
+_scale = 0.25 / _fam
+_w_to_dcf = dict(dcf=_w_base['dcf'] + (_fam - 0.25), book=_w_base['book'],
+                 relative=_w_base['relative'] * _scale,
+                 normalized=_w_base['normalized'] * _scale)
+_w_to_book = dict(dcf=_w_base['dcf'], book=_w_base['book'] + (_fam - 0.25),
+                  relative=_w_base['relative'] * _scale,
+                  normalized=_w_base['normalized'] * _scale)
+for _w in (_w_base, _w_to_dcf, _w_to_book):
+    assert abs(sum(_w.values()) - 1.0) < 1e-9, 'lens weights must sum to one'
+cc10_to_dcf, cc10_to_book = _weighted(_w_to_dcf), _weighted(_w_to_book)
+say(f"[CC10 PRICED — the market-multiple family at 25% instead of "
+    f"{_fam:.0%}] as published the central is AED {central:.2f}. Moving the freed "
+    f"{_fam - 0.25:.0%} to the cash-flow lens gives AED {cc10_to_dcf:.2f} "
+    f"({cc10_to_dcf - central:+.2f}/share, {cc10_to_dcf/central - 1:+.1%}); moving it to the "
+    f"book lens gives AED {cc10_to_book:.2f} ({cc10_to_book - central:+.2f}/share, "
+    f"{cc10_to_book/central - 1:+.1%}). So the finding is worth up to "
+    f"{max(abs(cc10_to_dcf - central), abs(cc10_to_book - central)):.2f}/share — NOT immaterial, "
+    f"and the range between the two destinations is itself "
+    f"{abs(cc10_to_dcf - cc10_to_book):.2f}/share, which is the honest disclosure: the weight "
+    f"scheme is a house judgement and it moves the answer. VERDICT: weights unchanged (the "
+    f"operating-company pattern is applied consistently across studies, and re-tuning them for "
+    f"one name is how a house standard stops being one), but the reweighted values are now "
+    f"PUBLISHED beside the central rather than asserted to be immaterial.")
+
+# (3) Revenue at the guidance midpoint. The build lands at +4.3% against a guided 4-6%.
+# The gap is priced BOTH WAYS because the attribution decides most of the value: revenue won
+# on price carries no incremental unit cost or capex, revenue won on volume carries both.
+_g_mid = V['guidance_mid']
+def _solve(fn, lo, hi, target):
+    """Bisect for the driver value at which fn() reaches target. The target is an ARGUMENT:
+    an earlier version closed over the guidance midpoint, which silently mis-solved the
+    matched-revenue calibration below and was caught by its own assertion."""
+    for _ in range(60):
+        mid = (lo + hi) / 2
+        if fn(mid) < target:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+_m_price = _solve(lambda m: build(arpu_mult=m)['rev'][0] / V['rev_fy25'] - 1, 1.0, 1.2,
+                  _g_mid)
+_m_vol = _solve(lambda sh: build(subs_shift=sh)['rev'][0] / V['rev_fy25'] - 1, 0.0,
+                2000.0, _g_mid)
+cc3_price = dcf_scenario(arpu_mult=_m_price)
+cc3_vol = dcf_scenario(subs_shift=_m_vol)
+say(f"[CC3 PRICED — revenue at the guidance midpoint] the build lands at "
+    f"{g26:+.1%} against du's guided 4-6%, so the midpoint {_g_mid:+.1%} is "
+    f"{(_g_mid - g26)*100:+.1f}pp above it, worth about AED "
+    f"{(_g_mid - g26) * V['rev_fy25']:,.0f}mn of FY2026 revenue. Won on PRICE (blended ARPU "
+    f"{_m_price:.3f}x, no incremental unit cost or capex): AED {cc3_price:.2f} "
+    f"({cc3_price - dcf_ps:+.2f}/share). Won on VOLUME (+{_m_vol:,.0f}k subscribers, carrying "
+    f"both unit cost and the capex it implies): AED {cc3_vol:.2f} "
+    f"({cc3_vol - dcf_ps:+.2f}/share). So the finding is worth AED "
+    f"{min(cc3_price, cc3_vol) - dcf_ps:+.2f} to {max(cc3_price, cc3_vol) - dcf_ps:+.2f} a share "
+    f"and is NOT immaterial.")
+# The volume case comes out HIGHER, which contradicted the first expectation written here. The
+# expectation was not wrong about attribution; the TEST was wrong about what it held constant.
+_rev_price = sum(build(arpu_mult=_m_price)['rev'])
+_rev_vol = sum(build(subs_shift=_m_vol)['rev'])
+say(f"[Why volume looks better here — the comparison was mis-specified, and the fix] calibrating "
+    f"both cases on FY2026 growth does NOT hold revenue constant, because H1-2026 is a reviewed "
+    f"ACTUAL: a subscriber shift can only move the second half of FY2026, so matching FY2026 "
+    f"needs a shift large enough to then apply to the WHOLE of FY2027-FY2030. Five-year revenue "
+    f"comes out {_rev_price:,.0f} on price against {_rev_vol:,.0f} on volume "
+    f"({_rev_vol/_rev_price - 1:+.2%}) — the volume case simply sells more over the window. That "
+    f"is a timing artefact of the calibration, not evidence about attribution.")
+# Re-calibrate the volume case to the SAME five-year revenue, so attribution is isolated.
+_m_vol_matched = _solve(lambda sh: sum(build(subs_shift=sh)['rev']) / _rev_price - 1.0, 0.0,
+                        2000.0, 0.0)
+cc3_vol_matched = dcf_scenario(subs_shift=_m_vol_matched)
+say(f"[CC3, attribution isolated on matched five-year revenue] +{_m_vol_matched:,.0f}k "
+    f"subscribers delivers the same {_rev_price:,.0f} of five-year revenue as the price case. "
+    f"On PRICE: AED {cc3_price:.2f}. On VOLUME: AED {cc3_vol_matched:.2f} "
+    f"({cc3_vol_matched - cc3_price:+.2f}/share, {cc3_vol_matched/cc3_price - 1:+.1%}). NOW the "
+    f"expected ordering holds: identical revenue is worth less when it has to be bought with "
+    f"per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, "
+    f"published as a range. The build stays below the midpoint because it is driven by disclosed "
+    f"subscriber and ARPU paths rather than reverse-engineered to a guidance number — but the "
+    f"reader is entitled to see what the midpoint is worth and that HOW it is won matters as "
+    f"much as whether it is.")
+assert cc3_vol_matched < cc3_price, (
+    'on matched five-year revenue, revenue won on volume must be worth LESS than revenue won on '
+    'price, because it carries per-unit cost and capex')
 say(f"[Expert panel] Expert 1 {e1_base:.2f} [{e1_lo:.2f}-{e1_hi:.2f}]; Expert 2 {e2_base:.2f} "
     f"[{e2_lo:.2f}-{e2_hi:.2f}]; Expert 3 {e3_base:.2f} [{e3_lo:.2f}-{e3_hi:.2f}]; panel "
     f"median {panel_centre:.2f} ({panel_centre/SPOT-1:+.0%} vs spot)")
@@ -1143,7 +1757,16 @@ OUT = dict(
               np=np_fc, eps=eps_fc, dps=dps_fc, div=div_fc, equity=eq_fc, net_cash=ncash_fc,
               int_inc=int_inc_fc, int_exp=int_exp_fc, payout=PAYOUT,
               dep_yield=dep_yield, lease_rate=lease_rate, glide_frac=glide_frac,
-              taxB_path=taxB_path, fcffB=fcffB, npB=npB),
+              taxB_path=taxB_path, fcffB=fcffB, npB=npB,
+              seg_dc=seg_dc, dc_tot=dc_tot, contrib_margin=contrib_margin,
+              gross_margin=gross_margin, dc_nature=dc_nature_fc, unit_cost=unit_cost,
+              retired_contrib=_retired_contrib,
+              h2_26=dict(rev=_h2_26_rev, ebitda=_h2_26_ebitda, margin=_h2_26_margin,
+                         h2_25_margin=_h2_25_margin, h1_26_margin=_h1_26_margin,
+                         h1_25_margin=_h1_25_margin,
+                         margin_at_guidance_mid=(0.465 * rev[0] - V['h1_26_ebitda'])
+                         / _h2_26_rev)),
+    unitcost=dict(hist=DCU, joint=_DCP, h2_25=H2_25_U, den={k: list(v) for k, v in _DEN.items()}),
     seg_fy25=dict(rev=SRH['FY25'], contrib=SCH['FY25'], names=SEGNAME,
                   margin={s: SCH['FY25'][s] / SRH['FY25'][s] for s in SEGS}),
     bottomup=dict(seg_rev_hist=SRH, seg_contrib_hist=SCH,
@@ -1184,6 +1807,17 @@ OUT = dict(
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,
               grid_exp_term=grid_exp_term, beta_grid=beta_grid, grid_beta=grid_beta,
               tax_grid=tax_grid, grid_tax=grid_tax, arpu_grid=arpu_grid, grid_arpu=grid_arpu,
+              drift_grid=drift_grid, grid_drift=grid_drift,
+              cc3=dict(price=cc3_price, vol=cc3_vol, vol_matched=cc3_vol_matched,
+                       m_price=_m_price, m_vol=_m_vol, m_vol_matched=_m_vol_matched,
+                       g_mid=_g_mid, g_build=g26,
+                       rev_price=_rev_price, rev_vol=_rev_vol),
+              cc10=dict(to_dcf=cc10_to_dcf, to_book=cc10_to_book, family=_fam,
+                        w_to_dcf=_w_to_dcf, w_to_book=_w_to_book),
+              cc7=dict(as_built=_e1_as_built, horizon_only=_e1_horizon_only,
+                       coherent=_e1_coherent, div_pv=_e1_div_pv,
+                       years=_e1_years_anchor, net_exp_as_built=T_ANCHOR - 2),
+              dcf_mix_exhaust=dcf_mix_exhaust,
               subs_grid=subs_grid, grid_subs=grid_subs, mg_grid=mg_grid,
               grid_margin=grid_margin, capex_grid=capex_grid, grid_capex=grid_capex,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,

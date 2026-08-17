@@ -373,20 +373,26 @@ rows.append(['EBITDA margin — an OUTPUT', pc(HI['FY25']['ebitda']/HI['FY25']['
             + [pc(m) for m in F['ebitda_margin']])
 table(rows, [1.95, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], band_rows={4}, size=8.4)
 caption(f'{T()} — the build\'s output. FY2026E growth of {sgn(F["rev"][0]/HI["FY25"]["rev"]-1,1)} '
-        'lands inside the company\'s own revised 4-6% guidance; the margin output sits just '
-        'above the guided 46-47% because the first half already printed 49.2% and the build '
-        'holds the audited contribution margins rather than forcing the guidance midpoint. '
-        'The cost stack behind it carries one escalator per cost class: wages on UAE wage '
+        'lands inside the company\'s own revised 4-6% guidance. EVERY MARGIN IN THIS TABLE IS AN '
+        'OUTPUT. Nothing about profitability is assumed: each cost line is grown on its own '
+        'physical driver and the margin is whatever is left. On the direct-cost side that means '
+        'mobile carries three separate per-subscriber costs — interconnect, which falls as '
+        'termination rates ratchet down and terminated traffic migrates to messaging apps; '
+        'commission, which rises with the cost of winning and keeping a customer; and a small, '
+        'lumpy device line held flat — while fixed carries a per-subscriber capacity cost and '
+        'wholesale and ICT carry a cost rate on their own revenue, because the company discloses '
+        'no volume unit for either. On the operating-cost side, wages escalate on UAE wage '
         'inflation, network on network scale, the licence fee and credit losses on revenue, '
-        'administration on CPI — never one blended index. Two things a reader should be able to '
-        'see: the ICT contribution margin is LIFTED across the forecast, from the audited '
-        f"{pc(SEG['margin']['ict'])} to {pc(IN['contrib_margin_path']['ict'][-1])}, on "
-        'data-centre scale — the other three segments are held at their audited rates; and total '
+        'administration on CPI — never one blended index across physically different costs. '
+        'Two things a reader should be able to see. First, the group gross margin '
+        f"{pc(F['gross_margin'][0])} -> {pc(F['gross_margin'][-1])} DECLINES even though not one "
+        'segment margin declines: that is mix, not erosion — ICT is the fastest-growing segment '
+        'and by far the thinnest, so it dilutes the group as it grows. A single blended margin '
+        'assumption cannot show that, which is the argument for building this way. Second, total '
         f"operating expenses before depreciation RISE {pc(F['opex'][0]/3307.608-1,1)} in FY2026E "
-        'against the audited 2025 figure. In the previous edition of this study they fell, '
-        'because the staff line was built on a mis-stated seasonal ratio — which made the margin '
-        'expansion an artefact of one input rather than an output of the build. That is corrected '
-        'here, and the FY2026E margin now lands inside the company\'s own 46-47% guidance.')
+        'against the audited 2025 figure. In an earlier edition of this study they fell, because '
+        'the staff line was built on a mis-stated seasonal ratio — which made margin expansion an '
+        'artefact of one input rather than an output of the build.')
 figure(os.path.join(HERE, 'fig7_mix.png'), 7.0,
        f'{FG()} — revenue by segment and the EBITDA margin path. ICT is the growth leg; '
        'mobile the recovery story; the margin is flat by construction of the disclosed '
@@ -552,7 +558,8 @@ for lab, grid, vals, gf in [
         ('Combined fiscal take', SN['tax_grid'], SN['grid_tax'], '{:.0%}'),
         ('Blended ARPU (×)', SN['arpu_grid'], SN['grid_arpu'], '{:.2f}'),
         ("Subscribers ('000, shift)", SN['subs_grid'], SN['grid_subs'], '{:+.0f}'),
-        ('Contribution margins (×)', SN['mg_grid'], SN['grid_margin'], '{:.2f}'),
+        ('Direct cost per unit (×)', SN['mg_grid'], SN['grid_margin'], '{:.2f}'),
+        ('Blended ARPU drift (%/yr)', SN['drift_grid'], SN['grid_drift'], '{:+.1%}'),
         ('Capex path (×)', SN['capex_grid'], SN['grid_capex'], '{:.2f}'),
         ('Terminal ROIC', SN['roic_grid'], SN['grid_roic'], '{:.0%}')]:
     rows.append([f"{lab}  ({' / '.join(gf.format(g) for g in grid)})"]
