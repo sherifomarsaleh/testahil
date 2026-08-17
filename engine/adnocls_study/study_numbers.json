@@ -5585,19 +5585,19 @@
    "bull": 10.626023163685712
   },
   "book": {
-   "bear": 5.674133719386008,
+   "bear": 3.4879664013174283,
    "base": 5.114347317822031,
-   "bull": 9.274880131275525
+   "bull": 7.641367496609398
   },
   "central": {
-   "bear": 5.306691957412977,
+   "bear": 4.97876685970269,
    "base": 6.5987605988054385,
-   "bull": 9.637949681667308
+   "bull": 9.39292278646739
   },
   "central_beta_alt": {
-   "bear": 5.306691957412977,
+   "bear": 4.97876685970269,
    "base": 7.68213618218267,
-   "bull": 9.637949681667308
+   "bull": 9.39292278646739
   }
  },
  "lens_weights": {
@@ -5716,8 +5716,10 @@
   "bvps_usd": 0.6858015608097221,
   "bvps_aed": 2.5186062320737044,
   "base": 5.114347317822031,
-  "bear": 5.674133719386008,
-  "bull": 9.274880131275525
+  "ke_bear": 0.1093644,
+  "ke_bull": 0.07751459999999999,
+  "bear": 3.4879664013174283,
+  "bull": 7.641367496609398
  },
  "peers": [
   {
@@ -5826,9 +5828,11 @@
    "g": 0.02,
    "value": 9387793.969163582,
    "base": 4.659955276266538,
+   "ke_lo": 0.1093644,
+   "ke_hi": 0.07751459999999999,
    "rng": [
-    5.218718235662369,
-    8.11377510886807
+    3.410372734655293,
+    6.548699942289825
    ],
    "falsifier": "A year in which free cash flow to the firm falls below the ordinary distribution plus the perpetual coupon, without a matching fall in capital expenditure, would break the annuity this rests on."
   },
@@ -9625,6 +9629,16 @@
   },
   {
    "check": "the beta used is the one the regression produced",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "every lens range brackets its own base",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "every expert range brackets its own base",
    "passed": true,
    "detail": ""
   }

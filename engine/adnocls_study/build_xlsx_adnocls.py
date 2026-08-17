@@ -48,7 +48,8 @@ HI, HB, HC_, CCC = D['hist_is'], D['hist_bs'], D['hist_cf'], D['ccc']
 SEGH, GRPH = D['seg_hist'], D['grp_hist']
 FLEET, DRV = D['fleet'], D['drivers']
 FC, FIN, FBS = D['fcst'], D['fin'], D['fcst_bs']
-WACC, DCFB, DCFA = D['wacc'], D['dcf'], D['dcf_asset_beta']
+WACC, DCFB, DCFA = D['wacc'], D['dcf'], D['dcf_beta_alt']
+BF = D['beta_framing']
 LN, LW, REL, NRM, BK = D['lenses'], D['lens_weights'], D['rel'], D['norm'], D['book']
 EXP, SN, STK, SOTP = D['experts'], D['sens'], D['strike'], D['sotp']
 PEERS, TECH, STEP0 = D['peers'], D['technicals'], D['step0']
@@ -161,7 +162,14 @@ FCFF_F = [NOPAT_F[i] + DNA_F[i] - CAPEX[i] - DNWC_F[i] for i in range(5)]
 MKTCAP = SH * SPOT / PEG * 1000.0
 RF_STAR = V['rf_observed'] - V['sov_spread']
 KE = RF_STAR + V['beta'] * V['erp_total']
-KE_A = RF_STAR + 1.0 * V['erp_total']
+# The alternative construction is the SAME regression measured against a different market:
+# an equal-weight composite of the exchange's own names rather than its published index.
+KE_A = RF_STAR + V['beta_composite'] * V['erp_total']
+# The regression's own 90% confidence interval, and the lead-lag sum beta, priced through
+# the same cost-of-equity construction so the reader sees the span the estimate supports.
+KE_CI_LO = RF_STAR + V['beta_ci_lo'] * V['erp_total']
+KE_CI_HI = RF_STAR + V['beta_ci_hi'] * V['erp_total']
+KE_DIMSON = RF_STAR + V['beta_dimson'] * V['erp_total']
 KD1 = V['sofr'] + V['shldr_margin']
 KD_BANK = (V['bank_loan_lo'] + V['bank_loan_hi']) / 2
 KD_OTHER = (V['other_borr_lo'] + V['other_borr_hi']) / 2
@@ -177,7 +185,7 @@ KD_AT = KD * (1 - TAXS)
 WE = MKTCAP / (MKTCAP + DEBT_NOW); WD = 1 - WE
 W_EXP = WE * KE + WD * KD_AT
 KE_T = V['rf_terminal'] + V['beta'] * V['erp_total']
-KE_T_A = V['rf_terminal'] + 1.0 * V['erp_total']
+KE_T_A = V['rf_terminal'] + V['beta_composite'] * V['erp_total']
 KD_T = V['rf_terminal'] + (KD - RF_STAR)
 KD_T_AT = KD_T * (1 - TAXS)
 W_TERM = WE * KE_T + WD * KD_T_AT
@@ -282,8 +290,12 @@ ROE_SUST = sum(ROE_F) / 5.0
 BVPS0 = EQP0 / SH / 1000.0
 PB_FAIR = (ROE_SUST - G) / (KE - G)
 BOOK_BASE = PB_FAIR * BVPS0 * PEG
-BOOK_BEAR = ((ROE_SUST * 0.85) - G) / (KE_A - G) * BVPS0 * PEG
-BOOK_BULL = ((ROE_SUST * 1.15) - G) / ((RF_STAR + 0.55 * V['erp_total']) - G) * BVPS0 * PEG
+# The two bounds of the book lens are discounted at the two ends of the regressed beta's
+# own 90% confidence interval — a HIGHER beta for the low bound, a LOWER beta for the high
+# bound. They must never be built on the alternative index construction: that construction
+# now carries the LOWER beta, so using it as a downside would invert the range.
+BOOK_BEAR = ((ROE_SUST * 0.85) - G) / (KE_CI_HI - G) * BVPS0 * PEG
+BOOK_BULL = ((ROE_SUST * 1.15) - G) / (KE_CI_LO - G) * BVPS0 * PEG
 VSB_RATIO = V['vessel_sale_price'] / V['vessel_sale_book']
 
 LB = {'dcf': (LN['dcf']['bear'], DC['fv_aed'], LN['dcf']['bull']),
@@ -416,7 +428,8 @@ for i, ln in enumerate([
  '  (3) WHOLE-MODEL RE-RUNS, where each figure is a complete revaluation of the entire model and so cannot be',
  '      a single formula: the Monte Carlo price map, the two sensitivity grids, the discounted-cash-flow',
  '      bear and bull bounds (each of which re-runs the fleet build at a different rate anchor, a different',
- '      beta and a different capital-expenditure path) and the three expert-panel legs.',
+ '      beta — the two ends of the regression\'s own confidence interval — and a different capital-expenditure',
+ '      path) and the three expert-panel legs.',
  '  THE MONTE CARLO AND SENSITIVITY GRIDS DO NOT REDRAW WHEN A DRIVER IS CHANGED. Changing a blue cell',
  '  reprices the whole valuation chain, but those grids are engine outputs and stay as they were run.',
  '  Anything else pasted is a defect.', '',
@@ -426,11 +439,19 @@ for i, ln in enumerate([
  'cost per vessel per day escalated on a services-and-wage escalator. The gas carriers are built from',
  'contracted vessel-years times an implied day rate. The five remaining units are grown on their own revenue',
  'and margin drivers, anchored on what each actually earned in the first quarter of 2026.', '',
- 'THE CONTESTED JUDGEMENT, PUBLISHED BOTH WAYS. The stock\'s own weekly regression against its local index',
- f"gives a beta of {V['beta']:.3f}, which passes the usability gate and is the primary reading. An asset-risk",
- 'beta of 1.00 — what a listed fleet owner might be expected to carry — gives a materially different cost of',
- 'equity. BOTH are carried through the model in full, side by side, on the Summary and Fundamental Valuation',
- 'sheets. They are NOT averaged into one number.', '',
+ 'THE CONTESTED JUDGEMENT, PUBLISHED BOTH WAYS — HOW THE MARKET IS MEASURED. The same weekly regression of the',
+ 'stock\'s own returns is run against two different measures of its market, and the answer moves a long way',
+ 'between them. Against the published index of the exchange the share is listed on — the index the method',
+ f"asks for, and the primary reading — the beta is {V['beta']:.3f}. Against an equal-weight composite of that same",
+ f"exchange's names, which gives its smallest listings the same say as its largest, the beta is",
+ f"{V['beta_composite']:.3f}. The published index is weighted by size and is therefore dominated by the very group this",
+ 'company belongs to; the composite is not. That single difference in construction, and nothing about the',
+ 'company, moves the cost of equity and the cash-flow value materially. BOTH are carried through the model in',
+ 'full, side by side, on the Summary, Fundamental Valuation and DCF sheets. They are NOT averaged into one',
+ f"number. The regression's own 90% confidence interval on the primary estimate runs {V['beta_ci_lo']:.3f} to "
+ f"{V['beta_ci_hi']:.3f}, and",
+ 'those two bounds — not round numbers chosen by hand — are the betas used in the bear and bull cases, so the',
+ 'published range is the range the estimate itself supports.', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges and distributions.', '',
  'Sourcing note, up front. FY2023, FY2024 and FY2025 come from the company\'s own audited consolidated',
@@ -515,8 +536,16 @@ block('Cost of capital', [
      V['rf_observed'], PCT2),
     ('sov', 'Sovereign default spread (netted out of the risk-free rate)', V['sov_spread'],
      PCT2),
-    ('beta', 'Beta — own-stock weekly regression against its local index', V['beta'], BETA),
-    ('beta_a', 'Asset-risk beta — the contested alternative', 1.0, BETA),
+    ('beta', 'Beta — own-stock weekly regression against the published index of its own '
+     'exchange', V['beta'], BETA),
+    ('beta_a', 'Beta — the same regression against an equal-weight composite of that '
+     'exchange\'s names (the disclosed alternative)', V['beta_composite'], BETA),
+    ('beta_ci_lo', 'Beta — lower bound of the regression\'s 90% confidence interval (the '
+     'bull-case beta)', V['beta_ci_lo'], BETA),
+    ('beta_ci_hi', 'Beta — upper bound of the regression\'s 90% confidence interval (the '
+     'bear-case beta)', V['beta_ci_hi'], BETA),
+    ('beta_dimson', 'Beta — lead-lag sum beta from the same series, one lead and two lags',
+     V['beta_dimson'], BETA),
     ('erp', 'Equity risk premium (mature premium plus country risk)', V['erp_total'], PCT2),
     ('rf_term', 'Terminal risk-free rate', V['rf_terminal'], PCT2),
     ('tax_stat', 'Statutory corporate tax rate', TAXS, PCT)])
@@ -638,8 +667,9 @@ DF_ = dict(rev=5, ebitda=6, mgn=7, dna=8, ebit=9, tax=10, nopat=11, adddna=12,
            wb=92, mktcap=93, borr=94, we=95, wd=96, wacc=97, rfterm=98, keterm=99,
            kdterm=100, kdtermat=101, waccterm=102,
            ab=104, betaa=105, kea=106, keta=107, wacca=108, wactermsa=109,
-           ahdr=110, glidea=111, dfa=112, pva=113, pvexa=114, tva=115, pvtva=116,
-           evopsa=117, tvsharea=118, eva=119, eqa=120, fvaeda=121)
+           cib=111, cilo=112, cihi=113, kecilo=114, kecihi=115, dims=116, kedims=117,
+           ahdr=119, glidea=120, dfa=121, pva=122, pvexa=123, tva=124, pvtva=125,
+           evopsa=126, tvsharea=127, eva=128, eqa=129, fvaeda=130)
 # Income statement
 IS = dict(rev=5, dc=6, gp=7, ga=8, ecl=9, oi=10, oe=11, op=12, dna=13, ebitda=14,
           ebjv=15, ebrep=16, opcost=17, mgn=18, assoc=19, bargain=20, prevheld=21,
@@ -681,7 +711,7 @@ SU = dict(hdr=4, dcf=5, rel=6, norm=7, book=8, central=9, cb=11, dcfa=12, centra
 # Fundamental valuation
 FV = dict(hdr=4, dcf=5, dcfbear=6, dcfbull=7, rel=8, norm=9, book=10, central=12,
           cb=14, beta=15, ke=16, wacc=17, fv=18, cen=19, betaa=20, kea=21, wacca=22,
-          fva=23, cena=24, note=25, eb=27, ehdr=28, e0=29, epanel=32)
+          fva=23, cena=24, cilo=25, cihi=26, note=27, eb=29, ehdr=30, e0=31, epanel=34)
 # Per-share & ratios
 PS = dict(eps=5, epsaed=6, ordps=7, bvps=8, fcffps=9, dpsps=10, payout=11, gm=12,
           ebm=13, ebitm=14, netm=15, roe=16, roic=17, ndeb=18, cover=19, dso=20,
@@ -1167,14 +1197,16 @@ for rw, lab, fml, xp, fmt, gr in [
 band(ws, RN['bbase'], 5)
 put(ws, f"A{RN['bbase']}", 'BOOK LENS — value per share (AED)', bold=True, fmt=None)
 putf(ws, f"C{RN['bbase']}", f"=C{RN['bpb']}*C{RN['bbvpsaed']}", BOOK_BASE, PX, bold=True)
-put(ws, f"A{RN['bbear']}", 'Bear — return 15% lower against the asset-risk cost of equity '
-    '(C) / bull — return 15% higher against a lower premium (D)', fmt=None)
+put(ws, f"A{RN['bbear']}", 'Bear — return 15% lower, discounted at the cost of equity built '
+    'on the TOP of the beta\'s 90% confidence interval (C) / bull — return 15% higher, '
+    'discounted at the cost of equity built on the BOTTOM of the same interval (D)',
+    fmt=None)
 putf(ws, f"C{RN['bbear']}",
-     f"=(C{RN['broe']}*0.85-C{RN['bg']})/(DCF!$C${DF_['kea']}-C{RN['bg']})"
+     f"=(C{RN['broe']}*0.85-C{RN['bg']})/(DCF!$C${DF_['kecihi']}-C{RN['bg']})"
      f"*C{RN['bbvpsaed']}", BOOK_BEAR, PX)
 putf(ws, f"D{RN['bbear']}",
-     f"=(C{RN['broe']}*1.15-C{RN['bg']})/((DCF!$C${DF_['rfstar']}+0.55*{a('erp')})"
-     f"-C{RN['bg']})*C{RN['bbvpsaed']}", BOOK_BULL, PX)
+     f"=(C{RN['broe']}*1.15-C{RN['bg']})/(DCF!$C${DF_['kecilo']}-C{RN['bg']})"
+     f"*C{RN['bbvpsaed']}", BOOK_BULL, PX)
 
 band(ws, RN['vsb'], 5)
 put(ws, f"A{RN['vsb']}", 'THE REALISED VESSEL SALE — DIRECT EVIDENCE ON CARRYING VALUES',
@@ -1439,23 +1471,45 @@ for rw, lab, fml, xp, fmt, gr in _w:
 band(ws, DF_['wacc'], 4); band(ws, DF_['waccterm'], 4)
 
 band(ws, DF_['ab'], 6)
-put(ws, f"A{DF_['ab']}", 'THE CONTESTED JUDGEMENT — THE SAME MODEL ON AN ASSET-RISK BETA '
-    'OF 1.00', bold=True, fmt=None)
+put(ws, f"A{DF_['ab']}", 'THE CONTESTED JUDGEMENT — THE SAME MODEL ON THE COMPOSITE-INDEX '
+    'BETA', bold=True, fmt=None)
 for rw, lab, fml, xp, fmt, gr in [
-        (DF_['betaa'], 'Asset-risk beta', f"={a('beta_a')}", 1.0, BETA, True),
-        (DF_['kea'], 'Cost of equity on the asset-risk beta',
+        (DF_['betaa'], 'Beta against an equal-weight composite of the exchange\'s names — '
+         'the disclosed alternative construction', f"={a('beta_a')}", V['beta_composite'],
+         BETA, True),
+        (DF_['kea'], 'Cost of equity on the composite-index beta',
          f"=C{DF_['rfstar']}+C{DF_['betaa']}*C{DF_['erp']}", KE_A, PCT2, False),
-        (DF_['keta'], 'Terminal cost of equity on the asset-risk beta',
+        (DF_['keta'], 'Terminal cost of equity on the composite-index beta',
          f"=C{DF_['rfterm']}+C{DF_['betaa']}*C{DF_['erp']}", KE_T_A, PCT2, False),
-        (DF_['wacca'], 'Cost of capital — explicit window, asset-risk beta',
+        (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta',
          f"=C{DF_['we']}*C{DF_['kea']}+C{DF_['wd']}*C{DF_['kdat']}", W_EXP_A, PCT2, False),
-        (DF_['wactermsa'], 'Terminal cost of capital, asset-risk beta',
+        (DF_['wactermsa'], 'Terminal cost of capital, composite-index beta',
          f"=C{DF_['we']}*C{DF_['keta']}+C{DF_['wd']}*C{DF_['kdtermat']}", W_TERM_A, PCT2,
          False)]:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
-hdr(ws, DF_['ahdr'], ['The same cash flows, discounted at the asset-risk cost of capital']
-    + YFE)
+band(ws, DF_['cib'], 6)
+put(ws, f"A{DF_['cib']}", 'HOW PRECISE THE PRIMARY BETA IS — THE INTERVAL AROUND IT, '
+    'PRICED', bold=True, fmt=None)
+for rw, lab, fml, xp, fmt, gr in [
+        (DF_['cilo'], 'Beta — lower bound of the 90% confidence interval on the primary '
+         'regression', f"={a('beta_ci_lo')}", V['beta_ci_lo'], BETA, True),
+        (DF_['cihi'], 'Beta — upper bound of the 90% confidence interval on the primary '
+         'regression', f"={a('beta_ci_hi')}", V['beta_ci_hi'], BETA, True),
+        (DF_['kecilo'], 'Cost of equity at the lower confidence bound — the bull-case '
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*C{DF_['erp']}", KE_CI_LO,
+         PCT2, False),
+        (DF_['kecihi'], 'Cost of equity at the upper confidence bound — the bear-case '
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*C{DF_['erp']}", KE_CI_HI,
+         PCT2, False),
+        (DF_['dims'], 'Beta — lead-lag sum beta, one lead and two lags',
+         f"={a('beta_dimson')}", V['beta_dimson'], BETA, True),
+        (DF_['kedims'], 'Cost of equity on the lead-lag sum beta',
+         f"=C{DF_['rfstar']}+C{DF_['dims']}*C{DF_['erp']}", KE_DIMSON, PCT2, False)]:
+    put(ws, f'A{rw}', lab, fmt=None)
+    putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
+hdr(ws, DF_['ahdr'],
+    ['The same cash flows, discounted at the composite-index cost of capital'] + YFE)
 wf(DF_['glidea'], 'Forward cost of capital — the glide',
    lambda i: (f"=$C${DF_['wacca']}+($C${DF_['wactermsa']}-$C${DF_['wacca']})*{i+1}/5"),
    DA['glide'], PCT2)
@@ -1480,16 +1534,21 @@ for rw, lab, fml, xp, fmt in [
         (DF_['eqa'], 'Equity attributable to ordinary shareholders',
          f"=C{DF_['eva']}+C{DF_['nd']}+C{DF_['defd']}+C{DF_['hyb']}+C{DF_['nci']}",
          DA['equity'], NUM0),
-        (DF_['fvaeda'], 'Fair value per share (AED) — asset-risk beta',
+        (DF_['fvaeda'], 'Fair value per share (AED) — composite-index beta',
          f"=C{DF_['eqa']}/{a('shares')}/1000*{a('fx')}", DA['fv_aed'], PX)]:
     put(ws, f'A{rw}', lab, bold=(rw == DF_['fvaeda']), fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, bold=(rw == DF_['fvaeda']))
 band(ws, DF_['fvaeda'], 4)
 note(ws, f"A{DF_['fvaeda']+2}", 'The two readings above are carried side by side and are '
-     'never averaged. The regressed beta is the primary reading because it passes the '
-     'usability gate on the stock\'s own history; the asset-risk beta is what a listed '
-     'fleet owner might instead be expected to carry, and the gap between the two is the '
-     'single most consequential judgement in this study.')
+     'never averaged. They are the SAME regression of the same weekly returns; only the '
+     'measure of the market differs. The published index of the exchange is what the '
+     'method asks for and is the primary reading — it is weighted by size, and is '
+     'therefore dominated by the same large-capitalisation group this company belongs to. '
+     'The equal-weight composite gives the exchange\'s smallest names the same say as its '
+     'largest and is the construction an earlier version of this study used; it is '
+     'published beside the primary reading because a gap of this size is a fact about how '
+     'the index is built, not about the company, and the reader is entitled to see it. '
+     'The gap between the two is the single most consequential judgement in this study.')
 
 # ============ 9 INCOME STATEMENT =================================================
 ws = sheet('Income Statement')
@@ -2034,6 +2093,15 @@ for i, b in enumerate(SN['betas']):
     put(ws, f'A{rw}', f'{b:.3f}', fmt=None)
     for j in range(len(SN['gs'])):
         put(ws, f'{get_column_letter(2+j)}{rw}', SN['grid_beta_g'][i][j], BLUE, PX)
+note(ws, f"A{SE['bg0']+len(SN['betas'])}",
+     f"The beta rows are not evenly spaced round numbers. They span the two index "
+     f"constructions and the interval around the adopted one: {SN['betas'][0]:.3f} is the "
+     f"equal-weight composite of the exchange's own names, {V['beta']:.3f} is the adopted "
+     f"regression against the exchange's published index, and {SN['betas'][-1]:.3f} is the "
+     f"top of that regression's own 90% confidence interval (its bottom, "
+     f"{V['beta_ci_lo']:.3f}, sits just above the composite reading). The terminal growth "
+     f"column at {V['g_terminal']:.1%} is the one the model runs on, so the cell where "
+     f"that column meets the {V['beta']:.3f} row is the published cash-flow value.")
 band(ws, SE['ab'], 8)
 put(ws, f"A{SE['ab']}", 'Mid-cycle tanker rate anchor, as a multiple of the base anchor',
     bold=True, fmt=None)
@@ -2303,7 +2371,8 @@ putf(ws, f"G{SU['central']}", f"=C{SU['central']}/$C${SU['spot']}-1", CENTRAL / 
 band(ws, SU['cb'], 8)
 put(ws, f"A{SU['cb']}", 'THE CONTESTED JUDGEMENT — PUBLISHED BOTH WAYS, NEVER AVERAGED',
     bold=True, fmt=None)
-put(ws, f"A{SU['dcfa']}", 'Discounted cash flow (asset-risk beta of 1.00)', fmt=None)
+put(ws, f"A{SU['dcfa']}", 'Discounted cash flow (composite-index beta of '
+    f"{V['beta_composite']:.3f})", fmt=None)
 putf(ws, f"B{SU['dcfa']}", f"=B{SU['dcf']}", LN['dcf']['bear'], PX)
 putf(ws, f"C{SU['dcfa']}", f"=DCF!$C${DF_['fvaeda']}", DA['fv_aed'], PX, green=True)
 putf(ws, f"D{SU['dcfa']}", f"=D{SU['dcf']}", LN['dcf']['bull'], PX)
@@ -2311,7 +2380,8 @@ putf(ws, f"E{SU['dcfa']}", f"=E{SU['dcf']}", LW['dcf'], PCT)
 putf(ws, f"F{SU['dcfa']}", f"=C{SU['dcfa']}*E{SU['dcfa']}", DA['fv_aed'] * LW['dcf'], PX)
 putf(ws, f"G{SU['dcfa']}", f"=C{SU['dcfa']}/$C${SU['spot']}-1", DA['fv_aed'] / SPOT - 1, PCT)
 putf(ws, f"H{SU['dcfa']}", f"=DCF!$C${DF_['tvsharea']}", DA['tv_share'], PCT, green=True)
-put(ws, f"A{SU['centrala']}", 'Weighted central on the asset-risk beta', bold=True, fmt=None)
+put(ws, f"A{SU['centrala']}", 'Weighted central on the composite-index beta', bold=True,
+    fmt=None)
 putf(ws, f"C{SU['centrala']}",
      f"=F{SU['dcfa']}+F{SU['rel']}+F{SU['norm']}+F{SU['book']}", CENTRAL_A, PX, bold=True)
 putf(ws, f"G{SU['centrala']}", f"=C{SU['centrala']}/$C${SU['spot']}-1", CENTRAL_A / SPOT - 1,
@@ -2337,8 +2407,14 @@ _KEY = [('Shares outstanding (mn)', f"={a('shares')}", SH, NUM1),
          HI['ebitda_reported'][2], NUM0),
         ('FY2025 profit attributable to shareholders (USD 000)',
          f"='Income Statement'!D{IS['npa']}", H_NPA[2], NUM0),
-        ('Cost of equity — regressed beta', f"=DCF!$C${DF_['ke']}", KE, PCT2),
-        ('Cost of equity — asset-risk beta', f"=DCF!$C${DF_['kea']}", KE_A, PCT2),
+        ('Cost of equity — published-index beta (primary)', f"=DCF!$C${DF_['ke']}", KE,
+         PCT2),
+        ('Cost of equity — composite-index beta (alternative)', f"=DCF!$C${DF_['kea']}",
+         KE_A, PCT2),
+        ('Cost of equity at the lower 90% confidence bound on the primary beta',
+         f"=DCF!$C${DF_['kecilo']}", KE_CI_LO, PCT2),
+        ('Cost of equity at the upper 90% confidence bound on the primary beta',
+         f"=DCF!$C${DF_['kecihi']}", KE_CI_HI, PCT2),
         ('Cost of debt — the three constructions averaged', f"=DCF!$C${DF_['kd']}", KD,
          PCT2),
         ('Cost of capital — explicit window', f"=DCF!$C${DF_['wacc']}", W_EXP, PCT2),
@@ -2357,8 +2433,8 @@ note(ws, f"A{SU['key0']+len(_KEY)+1}", 'The terminal value share beside the disc
      'outlives the forecast window, and it is the reason the terminal cost of capital and '
      'the terminal growth rate carry more of this valuation than any single trading year.')
 ANCH.update(summary_central=f"C{SU['central']}", summary_spot=f"C{SU['spot']}",
-            dcf_fv=f"C{DF_['fvaed']}", dcf_fv_asset=f"C{DF_['fvaeda']}",
-            summary_central_asset=f"C{SU['centrala']}")
+            dcf_fv=f"C{DF_['fvaed']}", dcf_fv_beta_alt=f"C{DF_['fvaeda']}",
+            summary_central_beta_alt=f"C{SU['centrala']}")
 
 # ============ 3 FUNDAMENTAL VALUATION (filled) ==================================
 ws = wb['Fundamental Valuation']
@@ -2366,10 +2442,15 @@ hdr(ws, FV['hdr'], ['Lens / step', 'Basis', 'AED per share'])
 _fv = [(FV['dcf'], 'Discounted cash flow (own regressed beta)',
         'links to the DCF sheet — five explicit years plus a capitalised terminal value',
         f"=DCF!$C${DF_['fvaed']}", DC['fv_aed'], True),
-       (FV['dcfbear'], '  bear', 'beta 1.10, rate anchor 0.85x, capital expenditure 1.10x '
-        '— a whole-model re-run', LN['dcf']['bear'], LN['dcf']['bear'], False),
-       (FV['dcfbull'], '  bull', 'beta 0.55, rate anchor 1.15x, capital expenditure 0.95x '
-        '— a whole-model re-run', LN['dcf']['bull'], LN['dcf']['bull'], False),
+       (FV['dcfbear'], '  bear', f"beta {V['beta_ci_hi']:.3f} — the TOP of the "
+        "regression's own 90% confidence interval, not a round number picked by hand — "
+        'with the rate anchor at 0.85x and capital expenditure at 1.10x. A whole-model '
+        're-run', LN['dcf']['bear'], LN['dcf']['bear'], False),
+       (FV['dcfbull'], '  bull', f"beta {V['beta_ci_lo']:.3f} — the BOTTOM of the same "
+        'interval — with the rate anchor at 1.15x and capital expenditure at 0.95x. Taking '
+        'both bounds from the interval means the published range is the range the estimate '
+        'itself supports. A whole-model re-run', LN['dcf']['bull'], LN['dcf']['bull'],
+        False),
        (FV['rel'], 'Relative multiples',
         'blended enterprise and earnings multiples on 2026 earnings',
         f"='Relative & Normalized'!$C${RN['base']}", REL_BASE, True),
@@ -2392,43 +2473,63 @@ put(ws, f"A{FV['central']}", 'Weighted central', bold=True, fmt=None)
 putf(ws, f"C{FV['central']}", f"=Summary!$C${SU['central']}", CENTRAL, PX, bold=True,
      green=True)
 band(ws, FV['cb'], 3)
-put(ws, f"A{FV['cb']}", 'THE CONTESTED JUDGEMENT — TWO BETAS, BOTH CARRIED THROUGH IN FULL',
-    bold=True, fmt=None)
+put(ws, f"A{FV['cb']}", 'THE CONTESTED JUDGEMENT — TWO INDEX CONSTRUCTIONS, BOTH CARRIED '
+    'THROUGH IN FULL', bold=True, fmt=None)
 for rw, lab, basis, fml, xp, fmt in [
-        (FV['beta'], 'Beta — own-stock weekly regression',
+        (FV['beta'], 'Beta — weekly regression against the published index of its own '
+         'exchange (primary)',
          f"{D['beta']['n']} weekly observations, R-squared {D['beta']['r2']:.1%}, standard "
-         f"error {D['beta']['se']:.3f} — the usability gate is passed",
+         f"error {D['beta']['se']:.3f}, 90% confidence interval "
+         f"{V['beta_ci_lo']:.3f} to {V['beta_ci_hi']:.3f} — the usability gate is passed, "
+         'and this is the index the method asks for',
          f"={a('beta')}", V['beta'], BETA),
-        (FV['ke'], 'Cost of equity on the regressed beta',
+        (FV['ke'], 'Cost of equity on the published-index beta',
          'normalised risk-free rate plus beta times the equity risk premium',
          f"=DCF!$C${DF_['ke']}", KE, PCT2),
-        (FV['wacc'], 'Cost of capital on the regressed beta',
+        (FV['wacc'], 'Cost of capital on the published-index beta',
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacc']}", W_EXP, PCT2),
-        (FV['fv'], 'Fair value per share — regressed beta (AED)', 'the primary reading',
-         f"=DCF!$C${DF_['fvaed']}", DC['fv_aed'], PX),
-        (FV['cen'], 'Weighted central — regressed beta (AED)', 'all four lenses',
+        (FV['fv'], 'Fair value per share — published-index beta (AED)',
+         'the primary reading', f"=DCF!$C${DF_['fvaed']}", DC['fv_aed'], PX),
+        (FV['cen'], 'Weighted central — published-index beta (AED)', 'all four lenses',
          f"=Summary!$C${SU['central']}", CENTRAL, PX),
-        (FV['betaa'], 'Asset-risk beta', 'what a listed fleet owner might be expected to '
-         'carry; the sector prior for a spot tanker owner is 0.9 to 1.4',
-         f"={a('beta_a')}", 1.0, BETA),
-        (FV['kea'], 'Cost of equity on the asset-risk beta',
-         'the same construction at a beta of 1.00', f"=DCF!$C${DF_['kea']}", KE_A, PCT2),
-        (FV['wacca'], 'Cost of capital on the asset-risk beta',
+        (FV['betaa'], 'Beta — the same regression against an equal-weight composite of the '
+         'same exchange\'s names (alternative)',
+         'the published index is weighted by size and is dominated by the same '
+         'large-capitalisation group this company belongs to; the composite gives the '
+         'exchange\'s smallest names the same say as its largest. Only the measure of the '
+         'market changes',
+         f"={a('beta_a')}", V['beta_composite'], BETA),
+        (FV['kea'], 'Cost of equity on the composite-index beta',
+         'the same construction, the same premium, the composite beta',
+         f"=DCF!$C${DF_['kea']}", KE_A, PCT2),
+        (FV['wacca'], 'Cost of capital on the composite-index beta',
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacca']}", W_EXP_A, PCT2),
-        (FV['fva'], 'Fair value per share — asset-risk beta (AED)',
+        (FV['fva'], 'Fair value per share — composite-index beta (AED)',
          'the alternative reading', f"=DCF!$C${DF_['fvaeda']}", DA['fv_aed'], PX),
-        (FV['cena'], 'Weighted central — asset-risk beta (AED)',
+        (FV['cena'], 'Weighted central — composite-index beta (AED)',
          'all four lenses, the discounted-cash-flow leg swapped',
-         f"=Summary!$C${SU['centrala']}", CENTRAL_A, PX)]:
+         f"=Summary!$C${SU['centrala']}", CENTRAL_A, PX),
+        (FV['cilo'], 'Beta — lower bound of the 90% confidence interval on the primary '
+         'regression', 'the bull-case beta; the bear and bull cases take the two ends of '
+         'this interval rather than round numbers picked by hand',
+         f"={a('beta_ci_lo')}", V['beta_ci_lo'], BETA),
+        (FV['cihi'], 'Beta — upper bound of the 90% confidence interval on the primary '
+         'regression', 'the bear-case beta; the published range is therefore the range '
+         'the estimate itself supports', f"={a('beta_ci_hi')}", V['beta_ci_hi'], BETA)]:
     put(ws, f'A{rw}', lab, fmt=None)
     put(ws, f'B{rw}', basis, fmt=None, wrap=True)
     ws.row_dimensions[rw].height = 26
     putf(ws, f'C{rw}', fml, xp, fmt, green=True)
 note(ws, f"A{FV['note']}", 'These two readings are published side by side and are never '
-     'averaged into a single number. The regression passes its usability gate on the '
-     'stock\'s own history, but that history is only three years long and the beta\'s own '
-     'confidence interval spans more than half the point estimate, so the asset-risk '
-     'reading is not a stress case — it is a second legitimate answer to the same question.')
+     'averaged into a single number. They are the same regression of the same weekly '
+     'returns; what differs is how the market itself is measured. The published index of '
+     'the exchange is what the beta method asks for and is the primary reading. The '
+     'equal-weight composite is what an earlier construction of this study used, and it is '
+     'kept in view because a difference of this size is a property of index construction '
+     'rather than a fact about the company. The regression passes its usability gate, but '
+     'the history is only three years long and the 90% interval shown above spans more '
+     'than half the point estimate, so the alternative is not a stress case — it is a '
+     'second legitimate answer to the same question.')
 band(ws, FV['eb'], 5)
 put(ws, f"A{FV['eb']}", 'EXPERT PANEL — THREE METHODS, WORKED INDEPENDENTLY', bold=True,
     fmt=None)
@@ -2516,7 +2617,30 @@ close(PB_FAIR, BK['pb_fair'], 1e-12)
 close(BVPS0, BK['bvps_usd'], 1e-12)
 close(VSB_RATIO, BK['vessel_value_to_book'], 1e-12)
 close(CENTRAL, D['central'], 1e-9)
-close(CENTRAL_A, D['central_asset_beta'], 1e-9)
+close(CENTRAL_A, D['central_beta_alt'], 1e-9)
+# the beta framing block published in the study must be the framing the workbook builds
+close(BF['primary']['beta'], V['beta'], 1e-12)
+close(BF['primary']['ke'], KE, 1e-12)
+close(BF['primary']['wacc'], W_EXP, 1e-12)
+close(BF['primary']['fv'], DC['fv_aed'], 1e-9)
+close(BF['primary']['central'], CENTRAL, 1e-9)
+close(BF['alternative']['beta'], V['beta_composite'], 1e-12)
+close(BF['alternative']['ke'], KE_A, 1e-12)
+close(BF['alternative']['fv'], DA['fv_aed'], 1e-9)
+close(BF['alternative']['central'], CENTRAL_A, 1e-9)
+close(BF['ci90'][0], V['beta_ci_lo'], 1e-12)
+close(BF['ci90'][1], V['beta_ci_hi'], 1e-12)
+close(BF['dimson'], V['beta_dimson'], 1e-12)
+close(KE_DIMSON, WACC['ke_dimson'], 1e-12)
+# the sensitivity beta grid must span the two constructions and the interval around the
+# adopted one — not round numbers chosen by hand
+close(SN['betas'][0], V['beta_composite'], 1e-12)
+close(SN['betas'][2], V['beta'], 1e-12)
+close(SN['betas'][4], V['beta_ci_hi'], 1e-12)
+assert SN['betas'] == sorted(SN['betas']), 'the sensitivity beta grid is not monotone'
+_gi = SN['gs'].index(G)
+close(SN['grid_beta_g'][2][_gi], DC['fv_aed'], 1e-6)
+close(SN['grid_beta_g'][0][_gi], DA['fv_aed'], 1e-6)
 close(CENTRAL_BEAR, LN['central']['bear'], 1e-9)
 close(CENTRAL_BULL, LN['central']['bull'], 1e-9)
 close(BLEND_EV, REL['blend_ev_ebitda'], 1e-12)
@@ -2538,7 +2662,9 @@ for i in range(5):
         close(SEG_EB_F[s][i], D['fcst_seg'][s]['ebitda'][i], 1e-6)
 
 ANCH.update(
-    fv=f"DCF!C{DF_['fvaed']}", fv_asset=f"DCF!C{DF_['fvaeda']}",
+    fv=f"DCF!C{DF_['fvaed']}", fv_beta_alt=f"DCF!C{DF_['fvaeda']}",
+    ke_ci_lo=f"DCF!C{DF_['kecilo']}", ke_ci_hi=f"DCF!C{DF_['kecihi']}",
+    ke_dimson=f"DCF!C{DF_['kedims']}",
     fv_usd=f"DCF!C{DF_['fvusd']}", pv_expl=f"DCF!C{DF_['pvex']}", tv=f"DCF!C{DF_['tv']}",
     ev=f"DCF!C{DF_['ev']}", tv_share=f"DCF!C{DF_['tvshare']}",
     wacc=f"DCF!C{DF_['wacc']}", wacc_term=f"DCF!C{DF_['waccterm']}",
@@ -2548,10 +2674,12 @@ ANCH.update(
     tax26=f"DCF!B{DF_['taxtot']}", fcff26=f"DCF!B{DF_['fcff']}",
     tankers26=f"Segments!B{SG['teb']}", tankers30=f"Segments!F{SG['teb']}",
     gas28=f"Segments!D{SG['gaseb']}",
-    central=f"Summary!C{SU['central']}", central_asset=f"Summary!C{SU['centrala']}",
+    central=f"Summary!C{SU['central']}", central_beta_alt=f"Summary!C{SU['centrala']}",
     relative=f"'Relative & Normalized'!C{RN['base']}",
     normalized=f"'Relative & Normalized'!C{RN['nbase']}",
     book=f"'Relative & Normalized'!C{RN['bbase']}",
+    book_bear=f"'Relative & Normalized'!C{RN['bbear']}",
+    book_bull=f"'Relative & Normalized'!D{RN['bbear']}",
     roe_sust=f"'Relative & Normalized'!C{RN['broe']}",
     sotp=f"'SOTP Bridge'!C{SB['bfv']}",
     nd30=f"'Balance Sheet'!I{BS['nd']}", bvps30=f"'Balance Sheet'!I{BS['bvps']}",

@@ -19,13 +19,15 @@ F, FSG, FGR, FIN, FBS = D['fcst'], D['fcst_seg'], D['fcst_group'], D['fin'], D['
 FSUS, FINS = D['fcst_sustained'], D['fin_sustained']
 GD = D['guidance_check']
 W, BR = D['wacc'], D['bridge']
-DCF, DCFA, DCFH = D['dcf'], D['dcf_asset_beta'], D['dcf_hybrid_pv']
+DCF, DCFA, DCFH = D['dcf'], D['dcf_beta_alt'], D['dcf_hybrid_pv']
 DCFS, DCFB, DCFU = D['dcf_sustained'], D['dcf_bear'], D['dcf_bull']
 LN, LW = D['lenses'], D['lens_weights']
 REL, NRM, BK, SOTP, PEERS = D['rel'], D['norm'], D['book'], D['sotp'], D['peers']
 EXP, PANEL = D['experts'], D['panel_centre']
 SN, STK, S0, BT, TC, BE = (D['sens'], D['strike'], D['step0'], D['backtest'],
                            D['technicals'], D['beta'])
+BF = D['beta_framing']
+BFP, BFA = BF['primary'], BF['alternative']
 MCC = SN['market_cross_check']
 E1, E2, E3 = EXP['e1'], EXP['e2'], EXP['e3']
 
@@ -112,7 +114,11 @@ q1_25_ebitda = sum(IN[f'q1_25_ebitda_{s.lower().replace(" ", "_").replace("-", "
 owned_total = sum(FLT['owned'].values())
 spot_total = sum(FLT['spot'].values())
 fixed_total = sum(FLT['fixed'].values())
-beta_gap = LN['dcf']['base'] - LN['dcf_asset_beta']['base']
+# The alternative construction sits ABOVE the adopted one: it measures the market with an
+# equal-weight composite, which produces a lower beta and therefore a higher value. The gap
+# is always quoted as a positive distance and always in that direction.
+beta_gap = LN['dcf_beta_alt']['base'] - LN['dcf']['base']
+central_gap = D['central_beta_alt'] - D['central']
 tv_pv = DCF['nopat_t1'] * (1 - DCF['reinvest'])
 anchor_span = max(SN['anchor'].values()) - min(SN['anchor'].values())
 beta_row = SN['betas'].index(IN['beta'])
@@ -161,17 +167,20 @@ box([("READ FIRST — what this document is. ",
       f"the Central Bank of the UAE has maintained since 1997. Amounts are in US dollars "
       f"unless a dirham sign says otherwise; per-share figures are in dirhams so that they "
       f"can be compared with the screen."),
-     ("The single largest uncertainty, and it is published both ways. ",
-      f"Roughly half of this company's revenue is contracted work for its parent group and "
-      f"about a third of its {YRL[0]} earnings is exposed to spot shipping rates. The "
-      f"share's own price history gives a beta of {p3(IN['beta'])}, which is what a "
-      f"half-contracted business should look like. An asset-risk view says a fleet owner "
-      f"carries the risk of the market it trades in, whoever the customer is, and prices "
-      f"the equity at a beta of one. On the first the cash-flow model gives AED "
-      f"{p2(LN['dcf']['base'])} a share; on the second, AED "
-      f"{p2(LN['dcf_asset_beta']['base'])}. Both are computed in full, both appear side by "
-      f"side in every table that matters, and they are never averaged into a single "
-      f"number.")])
+     ("How the market is measured, and it is published both ways. ",
+      f"The cost of equity here rests on a beta of {p3(IN['beta'])}, measured by regressing "
+      f"the share's own weekly returns on {BFP['label']} — the {BE['regressor']}. That is "
+      f"the index the share is listed against, and it is the right yardstick. An earlier "
+      f"construction of this study measured the market instead as an equal-weight composite "
+      f"of the same exchange's names and obtained {p3(BFA['beta'])}. The difference is a "
+      f"property of index construction rather than of the company: the published index is "
+      f"weighted by size and is dominated by the same large-capitalisation group this "
+      f"share belongs to, while an equal-weight composite gives the exchange's smallest "
+      f"names the same say as its largest. On the published index the cash-flow model gives "
+      f"AED {p2(LN['dcf']['base'])} a share; on the composite, AED "
+      f"{p2(LN['dcf_beta_alt']['base'])}. The first is adopted. Both are computed in full, "
+      f"both appear side by side in every table that matters, and they are never averaged "
+      f"into a single number.")])
 
 # ================================ 2  HEADLINE ================================
 H2('Headline')
@@ -208,27 +217,33 @@ P(f"That merchant half is having an extraordinary year. Very large crude carrier
   f"those rates hold is the whole valuation.")
 P(f"This study says they do not hold, and prices the fleet reverting over five years to "
   f"the average of what it earned in {HYRS[1]} and {HYRS[2]}. That is a judgement, and "
-  f"section 1.7 sets out the outside evidence for it. On that base, and on the share's own "
-  f"regressed beta, the four lenses centre at AED {p2(D['central'])} against a market "
-  f"price of {p2(SPOT)} — the central estimate sits {sgn(D['central']/SPOT-1, 0)} above "
-  f"the market price, or equivalently the price sits "
-  f"{sgn(SPOT/D['central']-1, 0)} against that estimate. Price "
-  f"the same cash flows at an asset-risk beta of one and the centre falls to AED "
-  f"{p2(D['central_asset_beta'])}, which is within a few fils of the market. The gap "
-  f"between those two numbers, AED {p2(beta_gap)} a share on the cash-flow lens alone, is "
-  f"about the same size as moving the whole tanker-rate anchor across its tested range, "
-  f"and less than half of what the beta alone moves across the range tested in section "
-  f"1.9. This study therefore does "
-  f"not present one answer; it presents the two answers and says exactly what separates "
-  f"them.", space_after=10)
+  f"section 1.7 sets out the outside evidence for it. On that base the four lenses centre "
+  f"at AED {p2(D['central'])} against a market price of {p2(SPOT)} — {ab(D['central'])}. "
+  f"The cash-flow lens on its own lands at AED {p2(LN['dcf']['base'])}, "
+  f"{ab(LN['dcf']['base'])}. The honest conclusion is that this share is close to fairly "
+  f"priced on the evidence assembled here, not materially cheap.")
+P(f"The reason that conclusion is stronger than it looks rests on the discount rate. "
+  f"Measured against {BFP['label']}, this share's beta is {p3(IN['beta'])} — it moves with "
+  f"the market, near enough one for one, on {n0(BE['n'])} weekly observations. The economic "
+  f"prior for an asset-heavy fleet owner is that it carries the risk of the market its "
+  f"ships trade in whoever signs the charter, and that prior is now confirmed by the "
+  f"regression rather than contradicted by it. The two views have converged, which they "
+  f"had not done when the market was measured a different way: an equal-weight composite "
+  f"of the same exchange's names gives {p3(BFA['beta'])} and lifts the cash-flow lens to "
+  f"AED {p2(LN['dcf_beta_alt']['base'])}. That construction is published beside the "
+  f"adopted one throughout, because a gap of AED {p2(beta_gap)} a share that turns on how "
+  f"an index is weighted is something a reader is entitled to see rather than a detail to "
+  f"bury. What remains genuinely open is not the discount rate but where tanker rates "
+  f"settle after {YRL[0][:4]}, which is section 1.7.", space_after=10)
 
 # ============================ 3  VALUATION SUMMARY ===========================
 H2('Valuation summary — every read at a glance')
 rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
         ['Discounted cash flow',
          f"five-year free cash flow to the firm, cost of capital gliding "
-         f"{pc(W['wacc'])} to {pc(W['wacc_term'])} on the share's own regressed beta of "
-         f"{p3(IN['beta'])}, terminal growth {pc(IN['g_terminal'], 0)}; "
+         f"{pc(W['wacc'])} to {pc(W['wacc_term'])} on the share's own beta of "
+         f"{p3(IN['beta'])} against {BFP['label']}, terminal growth "
+         f"{pc(IN['g_terminal'], 0)}; "
          f"{pc(DCF['tv_share'], 0)} of enterprise value comes from the terminal value",
          f"{p2(LN['dcf']['bear'])} – {p2(LN['dcf']['bull'])}", p2(LN['dcf']['base']),
          vs(LN['dcf']['base'])],
@@ -252,20 +267,22 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
         ['Weighted central',
          f"discounted cash flow {pc(LW['dcf'], 0)} · relative {pc(LW['relative'], 0)} · "
          f"normalised {pc(LW['normalized'], 0)} · book {pc(LW['book'], 0)}, on the "
-         f"share's own regressed beta",
+         f"beta measured against {BFP['label']}",
          f"{p2(LN['central']['bear'])} – {p2(LN['central']['bull'])}", p2(D['central']),
          vs(D['central'])],
         ['Market price', f"closing price on {M['price_date']}", '—', p2(SPOT), '—'],
         ['ALTERNATIVE READINGS — not included in the weighted central above',
          '', '', '', ''],
-        ['Cost of equity on an asset-risk beta',
-         f"the identical model and identical cash flows at a beta of one instead of "
-         f"{p3(IN['beta'])} — cost of capital gliding {pc(DCFA['wacc'])} to "
+        ['The market measured as an equal-weight composite',
+         f"the identical model and identical cash flows with the beta regressed against "
+         f"{BFA['label']} instead of {BFP['label']} — {p3(BFA['beta'])} instead of "
+         f"{p3(IN['beta'])}, cost of capital gliding {pc(DCFA['wacc'])} to "
          f"{pc(DCFA['wacc_term'])}, and {pc(DCFA['tv_share'], 0)} of enterprise value "
-         f"from the terminal value. This is the study's central contested judgement and "
-         f"it is computed both ways in section 1.1; the weighted central on this "
-         f"construction is AED {p2(D['central_asset_beta'])}",
-         '—', p2(LN['dcf_asset_beta']['base']), vs(LN['dcf_asset_beta']['base'])],
+         f"from the terminal value. The published index is the yardstick this study "
+         f"adopts; the composite is shown because the gap turns on index weighting rather "
+         f"than on the company (section 1.8). The weighted central on this construction is "
+         f"AED {p2(D['central_beta_alt'])}",
+         '—', p2(LN['dcf_beta_alt']['base']), vs(LN['dcf_beta_alt']['base'])],
         ['Rates hold near current levels',
          "the same model with the fleet reverting to a rate anchor 30% above the "
          "2024-2025 average rather than to it — the direction the company's own guidance "
@@ -278,19 +295,24 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
          '—', p2(DCFH['fv_aed']), vs(DCFH['fv_aed'])]]
 table(rows, [1.42, 2.86, 1.06, 0.82, 0.84], band_rows={5, 7}, size=8.4,
       left_cols=(1,))
-caption(f"The alternative readings are shown so that each genuinely contested choice "
-        f"carries a number the reader can see, rather than being averaged silently into "
-        f"the headline. They are deliberately excluded from the weighted central because "
-        f"each answers a different question — which beta a half-contracted fleet owner "
-        f"should carry, where shipping rates settle, and whether a perpetual security is "
-        f"a liability at face or at coupon — and blending them would hide the "
-        f"disagreement instead of showing it. Ranges are bear-to-bull within each lens; "
-        f"the central is the weighted base. The beta reading is the largest of the three: "
-        f"AED {p2(beta_gap)} a share separates the two constructions on the cash-flow "
-        f"lens, and both are carried at full size through section 1.1, the crux in "
-        f"section 1.7, the comparison in section 4 and the expert panel. Terminal value "
-        f"is {pc(DCF['tv_share'], 0)} of the cash-flow model's enterprise value — a high "
-        f"share, disclosed here, again in the bridge, and stressed in section 1.9.")
+caption(f"The alternative readings are shown so that each genuinely contested or "
+        f"consequential choice carries a number the reader can see, rather than being "
+        f"averaged silently into the headline. They are deliberately excluded from the "
+        f"weighted central because each answers a different question — how the market "
+        f"against which this share's risk is measured should itself be measured, where "
+        f"shipping rates settle, and whether a perpetual security is a liability at face "
+        f"or at coupon — and blending them would hide the difference instead of showing "
+        f"it. Ranges are bear-to-bull within each lens; within the cash-flow lens the two "
+        f"bounds are set by the two ends of the beta's own 90% confidence interval, "
+        f"{BF['ci90'][1]:.3f} at the bear end and {BF['ci90'][0]:.3f} at the bull end, so "
+        f"the published span is the span the estimate itself supports rather than a pair "
+        f"of round numbers chosen by hand. The index reading is the largest of the three "
+        f"alternatives: AED {p2(beta_gap)} a share separates the two constructions on the "
+        f"cash-flow lens and AED {p2(central_gap)} on the weighted central, and both are "
+        f"carried at full size through section 1.1, section 1.8, the comparison in "
+        f"section 4 and the expert panel. Terminal value is {pc(DCF['tv_share'], 0)} of "
+        f"the cash-flow model's enterprise value — a high share, disclosed here, again in "
+        f"the bridge, and stressed in section 1.9.")
 
 # ============================= 4  COMPANY OVERVIEW ===========================
 H2('Company overview — ADNOC Logistics & Services at a glance')
@@ -491,24 +513,34 @@ rows = [['Line', 'USD mn', 'Note'],
 table(rows, [2.55, 0.95, 3.50], size=8.2, band_rows={5, 12, 14, 15},
       align_right_from=1, left_cols=(2,))
 
-H2('The contested judgement, computed both ways')
-P(f"One choice in the construction above moves the answer further than any operating "
-  f"assumption in the study: which beta belongs in the cost of equity. The "
-  f"share's own weekly returns, regressed against an equal-weight index of the Abu Dhabi "
-  f"names in this study's price library over its full listed history, give "
-  f"{p3(BE['beta'])} — with {n0(BE['n'])} observations, an R-squared of "
-  f"{BE['r2']:.3f}, a standard error of {BE['se']:.3f} and a 90% interval of "
-  f"[{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}]. That is a usable estimate and it is "
-  f"economically coherent: a listed crude and product tanker owner would normally sit at "
-  f"{BE['plausibility']['tanker_owner_prior'].split(': ')[1]}, a contracted marine "
+H2('How the market is measured, computed both ways')
+P(f"One input in the construction above moves the answer further than any operating "
+  f"assumption in the study, and it is not a judgement about the company — it is a choice "
+  f"about what "
+  f"“the market” means. Regressed against {BFP['label']}, the {BE['regressor']}, "
+  f"the share's own weekly returns over its full listed history give a beta of "
+  f"{p3(BE['beta'])} — {n0(BE['n'])} observations, an R-squared of {BE['r2']:.3f}, a "
+  f"standard error of {BE['se']:.3f} and a 90% interval of [{BE['ci90'][0]:.2f}, "
+  f"{BE['ci90'][1]:.2f}]. That is the index the share is listed against, it is the "
+  f"yardstick this study adopts, and the estimate is close enough to one that this share "
+  f"is best described as moving with its market. It also settles an argument. The economic "
+  f"prior for a fleet owner is that it bears the risk of the market its ships trade in "
+  f"whoever signs the charter — a listed crude and product tanker owner would normally sit "
+  f"at {BE['plausibility']['tanker_owner_prior'].split(': ')[1]} and a contracted marine "
   f"services provider at "
-  f"{BE['plausibility']['contracted_services_prior'].split(': ')[1]}, and this company is "
-  f"half of each. The opposing view is that a fleet owner bears the risk of the market its "
-  f"ships trade in whoever signs the charter, that three years of price history is a thin "
-  f"basis for a permanent discount rate, and that the equity should therefore be priced at "
-  f"a beta of one. Both are defensible. Both are computed.")
-rows = [['Line', "On the share's own beta", 'On an asset-risk beta of one'],
-        ['Beta used', p3(IN['beta']), p2(1.0)],
+  f"{BE['plausibility']['contracted_services_prior'].split(': ')[1]} — and the regression "
+  f"now agrees with that prior rather than contradicting it.")
+P(f"Run the same regression against {BFA['label']} and it gives {p3(BFA['beta'])} instead. "
+  f"That is a large difference and it has nothing to do with this company: a published "
+  f"index is weighted by size and is therefore dominated by the same large-capitalisation "
+  f"group the subject belongs to, while an equal-weight composite gives the exchange's "
+  f"smallest and least liquid names the same say as its largest. Measuring a share's "
+  f"co-movement against the second is measuring it against a different market. The "
+  f"published index is adopted; the composite construction was what an earlier version of "
+  f"this study used, and it is set out in full beside the adopted one below because a "
+  f"reader is entitled to see how much of a valuation turns on a weighting convention.")
+rows = [['Line', f"Against {BFP['label']}", f"Against {BFA['label']}"],
+        ['Beta used', p3(IN['beta']), p3(BFA['beta'])],
         ['Cost of equity', pc(W['ke'], 2), pc(W['ke_beta1'], 2)],
         ['Cost of capital, explicit window', pc(DCF['wacc'], 2), pc(DCFA['wacc'], 2)],
         ['Cost of capital, terminal', pc(DCF['wacc_term'], 2), pc(DCFA['wacc_term'], 2)],
@@ -523,15 +555,20 @@ rows = [['Line', "On the share's own beta", 'On an asset-risk beta of one'],
         ['Fair value per share (AED)', p2(DCF['fv_aed']), p2(DCFA['fv_aed'])],
         ['Against the market price', vs(DCF['fv_aed']), vs(DCFA['fv_aed'])]]
 table(rows, [3.10, 1.95, 1.95], size=8.5, band_rows={10, 11})
-caption(f"Identical cash flows, identical bridge, one input different. The whole of the "
-        f"AED {p2(beta_gap)} between the two columns is the beta, and most of that lands "
-        f"in the terminal value: a {(DCFA['wacc_term']-DCF['wacc_term'])*10000:,.0f} basis "
-        f"point difference in the terminal cost of capital changes the capitalisation "
-        f"factor on a perpetuity by roughly a quarter. The two columns are never averaged. "
-        f"A reader who believes the price history is telling the truth about this company's "
-        f"risk should use the left column; a reader who believes a fleet owner cannot "
-        f"escape its market should use the right one. The market price currently sits "
-        f"almost exactly on the right column.")
+caption(f"Identical cash flows, identical bridge, one input different — and that input is "
+        f"the series the returns are regressed on, not anything about the business. The "
+        f"whole of the AED {p2(beta_gap)} between the two columns is the beta, and most of "
+        f"it lands in the terminal value: a "
+        f"{(DCF['wacc_term']-DCFA['wacc_term'])*10000:,.0f} basis point difference in the "
+        f"terminal cost of capital changes the capitalisation factor on a perpetuity by "
+        f"roughly a quarter, which is also why the terminal value falls from "
+        f"{pc(DCFA['tv_share'], 0)} of enterprise value to {pc(DCF['tv_share'], 0)} of it "
+        f"when the published index is used. The two columns are never averaged. The left "
+        f"column is the adopted construction because the published index of the exchange "
+        f"the share is listed on is the market this share is measured against; the right "
+        f"column is published so that the size of the convention is visible. Note which "
+        f"way the adoption cuts: it lowers the fair value and moves the cash-flow lens from "
+        f"{ab(LN['dcf_beta_alt']['base'])} to {ab(LN['dcf']['base'])}.")
 
 # ---- 1.2 book ---------------------------------------------------------------
 H2('1.2  Book value and sustainable return — the asset lens')
@@ -545,13 +582,18 @@ P(f"Equity attributable to ordinary shareholders was USD {m0(IN['q1_26_eqp'])} m
 P(f"A justified price-to-book multiple is the sustainable return on equity less growth, "
   f"divided by the cost of equity less growth. At {pc(BK['roe_sustainable'])}, "
   f"{pc(BK['g'], 0)} growth and a cost of equity of {pc(BK['ke'], 2)} that gives "
-  f"{xt(BK['pb_fair'], 2)} book, or AED {p2(LN['book']['base'])} a share. The bear bound "
-  f"of AED {p2(LN['book']['bear'])} takes the same construction at a beta of one and a "
-  f"return one seventh lower; the bull bound of AED {p2(LN['book']['bull'])} takes a "
-  f"lower country charge and a return one seventh higher. The lens carries the lowest "
-  f"weight of the four, at {pc(LW['book'], 0)}, because a book multiple derived from a "
-  f"cost of equity inherits the same contested beta as the cash-flow model, and because "
-  f"carrying value is a poor description of what a fleet is worth.")
+  f"{xt(BK['pb_fair'], 2)} book, or AED {p2(LN['book']['base'])} a share. The bounds move "
+  f"with the beta and with the return together: the bear bound of AED "
+  f"{p2(LN['book']['bear'])} takes a cost of equity of {pc(BK['ke_bear'], 2)}, built on "
+  f"the upper end {BF['ci90'][1]:.3f} of the beta's own 90% confidence interval, together "
+  f"with a return one seventh lower; the bull bound of AED {p2(LN['book']['bull'])} takes "
+  f"{pc(BK['ke_bull'], 2)} on the lower end {BF['ci90'][0]:.3f} of the same interval with "
+  f"a return one seventh higher. Both ends are therefore drawn from the estimate's own "
+  f"statistical uncertainty rather than from round numbers chosen by hand. The lens "
+  f"carries the lowest weight of the four, at {pc(LW['book'], 0)}, because a book multiple "
+  f"derived from a cost of equity inherits the same discount rate as the cash-flow model "
+  f"rather than testing it independently, and because carrying value is a poor description "
+  f"of what a fleet is worth.")
 P(f"On that last point there is one piece of hard evidence, and it is worth more than any "
   f"amount of argument. In January {YRL[0][:4]} the company completed the sale of a "
   f"2017-built very large crude carrier for USD {m0(BK['vessel_sale_price'])} million "
@@ -574,8 +616,10 @@ rows = [['Line', 'Value'],
         ['Long-run growth', pc(BK['g'], 0)],
         ['Justified price to book', xt(BK['pb_fair'], 2)],
         ['Fair value per share (AED)', p2(LN['book']['base'])],
-        [f"Range — bear {p2(LN['book']['bear'])} at a beta of one and a lower return, "
-         f"bull {p2(LN['book']['bull'])} at a lower country charge and a higher return",
+        [f"Range — bear at the top of the beta's 90% interval ({BF['ci90'][1]:.3f}, cost "
+         f"of equity {pc(BK['ke_bear'], 2)}) and a return one seventh lower; bull at the "
+         f"bottom of it ({BF['ci90'][0]:.3f}, {pc(BK['ke_bull'], 2)}) and a return one "
+         f"seventh higher",
          f"{p2(LN['book']['bear'])} – {p2(LN['book']['bull'])}"],
         ['Memorandum — the price the market pays for that book today',
          xt(REL['own_pb'], 2)],
@@ -718,12 +762,12 @@ caption(f"The two constructions disagree by a wide margin — AED "
 # ---- 1.5 synthesis -----------------------------------------------------------
 H2('1.5  Synthesis — four lenses, one field')
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       f"Figure 1 — the four lenses, both cost-of-equity framings and the two weighted "
+       f"Figure 1 — the four lenses, both measurements of the market and the two weighted "
        f"centrals, against the market price of AED {p2(SPOT)}. Each bar is that lens's "
-       f"bear-to-bull span; the brass tick is its base case. The top two rows are the same "
-       f"model on two betas.")
+       f"bear-to-bull span; the brass tick is its base case. The two cash-flow rows are the "
+       f"same model with the beta regressed on two different market series.")
 rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution']]
-lensnames = [('dcf', 'Cash-flow model — own beta'),
+lensnames = [('dcf', 'Cash-flow model — published index'),
              ('relative', 'Relative multiples'),
              ('normalized', 'Normalised earnings power'),
              ('book', 'Book value and sustainable return')]
@@ -731,28 +775,35 @@ for k, nm in lensnames:
     l = LN[k]
     rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), pc(LW[k], 0),
                  p2(l['base'] * LW[k])])
-rows.append(['Weighted central — own beta', p2(LN['central']['bear']), p2(D['central']),
-             p2(LN['central']['bull']), pc(1.0, 0), p2(D['central'])])
-rows.append(['Cash-flow model — asset beta', p2(LN['dcf_asset_beta']['bear']),
-             p2(LN['dcf_asset_beta']['base']), p2(LN['dcf_asset_beta']['bull']),
-             pc(LW['dcf'], 0), p2(LN['dcf_asset_beta']['base'] * LW['dcf'])])
-rows.append(['Weighted central — asset beta', p2(LN['central_asset_beta']['bear']),
-             p2(D['central_asset_beta']), p2(LN['central_asset_beta']['bull']),
-             pc(1.0, 0), p2(D['central_asset_beta'])])
+rows.append(['Weighted central — published index', p2(LN['central']['bear']),
+             p2(D['central']), p2(LN['central']['bull']), pc(1.0, 0), p2(D['central'])])
+rows.append(['Cash-flow model — equal-weight composite', p2(LN['dcf_beta_alt']['bear']),
+             p2(LN['dcf_beta_alt']['base']), p2(LN['dcf_beta_alt']['bull']),
+             pc(LW['dcf'], 0), p2(LN['dcf_beta_alt']['base'] * LW['dcf'])])
+rows.append(['Weighted central — equal-weight composite',
+             p2(LN['central_beta_alt']['bear']), p2(D['central_beta_alt']),
+             p2(LN['central_beta_alt']['bull']), pc(1.0, 0), p2(D['central_beta_alt'])])
 table(rows, [2.42, 0.86, 0.86, 0.86, 0.86, 1.14], size=8.5, band_rows={5, 7})
 P(f"The four lenses do not agree and the disagreement is informative. The two that price "
   f"earnings through a multiple — relative and normalised — land at AED "
   f"{p2(LN['relative']['base'])} and AED {p2(LN['normalized']['base'])}, both above the "
-  f"market. The book lens lands at AED {p2(LN['book']['base'])}. The cash-flow model lands "
-  f"at AED {p2(LN['dcf']['base'])} on the share's own beta and AED "
-  f"{p2(LN['dcf_asset_beta']['base'])} on a beta of one. Notice what that means: the "
-  f"multiple-based lenses import a cost of capital rather than state one, and the two "
-  f"comparators they import it from are themselves a contracted shipowner and a pair of "
-  f"spot tanker owners, so they already carry an implicit answer to the same beta question "
-  f"the cash-flow model asks explicitly. The weighted central of AED {p2(D['central'])} on "
-  f"the own-beta construction and AED {p2(D['central_asset_beta'])} on the asset-beta one "
-  f"bracket the market price rather than pointing at it, which is the honest description "
-  f"of what this evidence supports.")
+  f"market. The two that discount or capitalise a cost of equity land below it: the "
+  f"cash-flow model at AED {p2(LN['dcf']['base'])} and the book lens at AED "
+  f"{p2(LN['book']['base'])}. That split is not a coincidence, and it is the most useful "
+  f"thing this table says. The multiple-based lenses import a cost of capital rather than "
+  f"state one, and the comparators they import it from are a contracted shipowner and a "
+  f"pair of spot tanker owners, so they already embed an answer to the question the "
+  f"cash-flow model now asks explicitly and answers with a measured beta of "
+  f"{p3(IN['beta'])}. Where the two families disagree, the disagreement is about the "
+  f"discount rate rather than about the cash flows.")
+P(f"Weighted together, the four centre at AED {p2(D['central'])}, {ab(D['central'])}. "
+  f"Measuring the market as an equal-weight composite instead lifts that to AED "
+  f"{p2(D['central_beta_alt'])}, {ab(D['central_beta_alt'])}. Neither figure supports a "
+  f"claim that this share is materially mispriced: on the adopted construction the centre "
+  f"of the evidence sits about {abs(D['central']/SPOT-1)*100:.0f}% above the screen, which "
+  f"is well inside the width of any one of these lenses. The honest reading of the field "
+  f"is that the share is close to fairly priced, with the fleet's earning power in "
+  f"{YRL[1][:4]} and beyond — not the discount rate — deciding which way it resolves.")
 
 # ---- 1.6 drivers -------------------------------------------------------------
 H2('1.6  The drivers — every disclosed unit grown on its own driver')
@@ -947,20 +998,21 @@ P(f"The alternative — rates settling {pc(0.30, 0)} above the mid-cycle anchor 
   f"than adopted, because the two observations above are external, dated and specific, "
   f"while the case for sustained strength rests on a view about future supply and demand "
   f"that this study is not in a position to hold with confidence.")
-P(f"One more comparison puts the crux in proportion. Moving the mid-cycle rate anchor "
-  f"across the whole tested range, from {pc(min(float(k) for k in SN['anchor']))} to "
+P(f"One more comparison puts the crux in proportion, and it is worth being careful about "
+  f"what it does and does not show. Moving the mid-cycle rate anchor across the whole "
+  f"tested range, from {pc(min(float(k) for k in SN['anchor']))} to "
   f"{pc(max(float(k) for k in SN['anchor']))} of the base, moves fair value by AED "
-  f"{p2(anchor_span)} a share. Changing the beta from the share's own {p3(IN['beta'])} to "
-  f"an asset-risk one moves it by AED {p2(beta_gap)} — the same order of magnitude, so "
-  f"the two published constructions of the discount rate differ by about as much as the "
-  f"whole operating crux. Widen the beta to the range actually tested in section 1.9, "
-  f"{p2(SN['betas'][0])} to {p2(SN['betas'][-1])}, and it moves fair value by AED "
-  f"{p2(max(beta_span)-min(beta_span))}, which is "
-  f"{(max(beta_span)-min(beta_span))/anchor_span:.1f} times the rate anchor and the "
-  f"widest single sensitivity in the study. That a discount-rate input rivals and then "
-  f"exceeds the operating question is uncomfortable for a valuation, and it is stated "
-  f"rather than buried. It is also the reason both constructions are published and "
-  f"neither is averaged.")
+  f"{p2(anchor_span)} a share — and that range is wide enough to carry fair value across "
+  f"the market price, which it reaches between the {pc(1.1, 0)} and {pc(1.2, 0)} anchors. "
+  f"Widening the beta across the {p3(SN['betas'][0])}-to-{p3(SN['betas'][-1])} range "
+  f"tested in section 1.9 moves it by AED {p2(max(beta_span)-min(beta_span))}, which is "
+  f"{(max(beta_span)-min(beta_span))/anchor_span:.1f} times as much and remains the "
+  f"widest single sensitivity in the study. But the two are not comparable as open "
+  f"questions. The beta is measured, with a 90% interval of [{BF['ci90'][0]:.2f}, "
+  f"{BF['ci90'][1]:.2f}] that the bear and bull cases already carry at full width; where "
+  f"tanker rates settle after {YRL[0][:4]} is not measured by anything and cannot be. That "
+  f"is why this section, and not the discount rate, is where the study says its judgement "
+  f"is genuinely exposed.")
 
 # ---- 1.8 macro ---------------------------------------------------------------
 H2('1.8  Macro and country — the sourced cost of capital')
@@ -985,17 +1037,18 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          '2% inflation objective plus a 1.25% long-run real policy rate, the same '
          'construction the terminal growth rate rests on'],
         ['Beta', p3(W['beta']), p3(W['beta']),
-         f"own-stock weekly regression against an equal-weight index of Abu Dhabi names "
-         f"over the full listed history: n = {n0(BE['n'])}, R-squared "
-         f"{BE['r2']:.3f}, standard error {BE['se']:.3f}, 90% interval "
-         f"[{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}]. The asset-risk alternative of one "
-         f"is priced in full above and again below"],
+         f"own-stock weekly regression against the {BE['regressor']} over the full listed "
+         f"history: n = {n0(BE['n'])}, R-squared {BE['r2']:.3f}, standard error "
+         f"{BE['se']:.3f}, 90% interval [{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}]. The "
+         f"evidence table below sets this out in full alongside the equal-weight "
+         f"composite, which gives {p3(BFA['beta'])}"],
         ['Equity risk premium', pc(W['erp'], 2), pc(W['erp'], 2),
          f"the January {YRL[0][:4]} country-risk file: a mature-market premium of "
          f"{pc(W['erp_mature'], 2)} plus a UAE country premium of {pc(W['crp'], 2)}"],
         ['Cost of equity', pc(W['ke'], 2), pc(W['ke_term'], 2),
-         f"adjusted risk-free rate plus beta times the premium. At a beta of one it would "
-         f"be {pc(W['ke_beta1'], 2)}"],
+         f"adjusted risk-free rate plus beta times the premium. On the equal-weight "
+         f"composite's {p3(BFA['beta'])} it would be {pc(W['ke_beta1'], 2)}; on the "
+         f"lead-lag sum beta of {p3(IN['beta_dimson'])}, {pc(W['ke_dimson'], 2)}"],
         ['Cost of debt, pre-tax', pc(W['kd'], 2), pc(W['kd_term'], 2),
          'a weighted read of six disclosed instruments — the evidence table follows'],
         ['Cost of debt, after tax', pc(W['kd_after_tax'], 2), '',
@@ -1014,6 +1067,68 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          'published so the discount factors in section 1.1 are reproducible']]
 table(rows, [1.55, 1.00, 0.72, 3.73], size=8.1, band_rows={6, 11},
       left_cols=(3,))
+
+H2('The beta — what it was measured against, and what a different market would give')
+P(f"A beta is a statement about co-movement with a market, so the series chosen to stand "
+  f"for the market decides the answer. This study regresses the share's own weekly returns "
+  f"on the {BE['regressor']} — the published, capitalisation-weighted index of the "
+  f"exchange the share is listed on. The index series runs from "
+  f"{BE['regressor_span'][0]} to {BE['regressor_span'][1]} across "
+  f"{n0(BE['regressor_rows'])} sessions and was screened against the exchange's own "
+  f"trading calendar before use.")
+rows = [['Item', 'Value', 'Note'],
+        ['Market series used', BE['regressor'], BE['regressor_basis']],
+        ['Span of that series',
+         f"{BE['regressor_span'][0]} to {BE['regressor_span'][1]}",
+         f"{n0(BE['regressor_rows'])} sessions"],
+        ['Observations in the regression', n0(BE['n']),
+         f"weekly returns over the share's full listed history of "
+         f"{BE['window_years']:.2f} years — the share listed in June 2023, so a five-year "
+         f"window does not exist for it"],
+        ['Beta', p3(BE['beta']),
+         'the adopted figure, used in the cost of equity above'],
+        ['Standard error', f"{BE['se']:.3f}",
+         'against the estimate itself, which is the usability test this has to pass'],
+        ['R-squared', f"{BE['r2']:.3f}",
+         'the share of the weekly return variance the index explains'],
+        ['90% confidence interval',
+         f"{BE['ci90'][0]:.3f} to {BE['ci90'][1]:.3f}",
+         'the bear and bull cases in this study take these two bounds directly, so the '
+         'published fair-value range is the range this estimate itself supports'],
+        ['Lead-lag sum beta', p3(BE['dimson']['sum_beta']),
+         f"one lead and two lags, which recovers co-movement booked late because the share "
+         f"does not trade on every session. It is {BE['dimson']['uplift_vs_ols']:+.3f} "
+         f"against the adopted figure, so the correction points slightly higher rather "
+         f"than lower"],
+        ['The same regression on an equal-weight composite', p3(BFA['beta']),
+         f"{BE['composite_variant']['note']} R-squared "
+         f"{BE['composite_variant']['r2']:.3f} on {n0(BE['composite_variant']['n'])} "
+         f"observations across {n0(BE['composite_names'])} names"],
+        ['The same regression on the wider two-exchange composite',
+         p3(BE['full_library_variant']['beta']),
+         f"{BE['full_library_variant']['note']} R-squared "
+         f"{BE['full_library_variant']['r2']:.3f} across "
+         f"{n0(BE['full_library_variant']['names'])} names"],
+        ['Weekly observations excluded', n0(BE['unused_stock_weeks']), BE['unused_note']]]
+table(rows, [1.72, 1.10, 4.18], size=8.0, band_rows={4, 9}, left_cols=(1, 2))
+caption(f"Why the published index and the composite differ by {BFP['beta']-BFA['beta']:.3f} "
+        f"of a beta is a fact about index construction, not about the company. A published "
+        f"index is weighted by size, so it is dominated by the same large-capitalisation "
+        f"group this share belongs to and a large share moving with its large peers "
+        f"registers as full co-movement. An equal-weight composite gives the exchange's "
+        f"smallest and thinnest names the same say as its largest, so it measures "
+        f"co-movement against a market this share is not really a member of, and a large "
+        f"liquid name will look defensive against it almost mechanically. Two disclosures "
+        f"cut against the adopted figure rather than for it and are stated here rather "
+        f"than left out. The share is itself a constituent of the index it is measured "
+        f"against, and on a capitalisation-weighted index that cannot be removed; run the "
+        f"equal-weight proxy both ways and including the subject lifts the measured beta "
+        f"by {BE['self_inclusion_bias']['beta_proxy_including_subject']-BE['self_inclusion_bias']['beta_proxy_excluding_subject']:.3f}, "
+        f"which is the scale of the same pull the published-index figure carries. And the "
+        f"index series ends {BE['regressor_span'][1]}, before the share's last session "
+        f"used elsewhere in this study, so {n0(BE['unused_stock_weeks'])} weekly "
+        f"observations fall outside the window rather than being paired against a stale "
+        f"index level.")
 
 H2('The cost of debt — six instruments, not an assumption')
 P(f"A single disclosed range is not evidence of what a company pays. Six separate "
@@ -1041,16 +1156,17 @@ P("Five choices above are legitimately arguable. Each alternative is computed an
   "value published, so a reader who prefers a different convention can take the number "
   "directly instead of guessing at its size.")
 rows = [['The choice made', 'The alternative', 'Value on the alternative', 'Why ours'],
-        [f"Cost of equity on the share's own regressed beta of {p3(IN['beta'])}",
-         f"An asset-risk beta of one, on the view that a fleet owner carries its market's "
-         f"risk whoever signs the charter — cost of equity {pc(W['ke_beta1'], 2)} instead "
-         f"of {pc(W['ke'], 2)}",
-         f"AED {p2(LN['dcf_asset_beta']['base'])} against {p2(LN['dcf']['base'])}",
-         'Neither is preferred. This is the study’s central contested judgement and '
-         'both are carried as equals through the summary, the bridge, the crux and the '
-         'expert panel. The regression passes its usability conditions and the estimate is '
-         'economically coherent for a half-contracted business; the asset-risk view is '
-         'the more conservative and is what the market price currently implies'],
+        [f"Beta measured against {BFP['label']}, giving {p3(IN['beta'])}",
+         f"The same regression against {BFA['label']}, giving {p3(BFA['beta'])} — cost of "
+         f"equity {pc(W['ke_beta1'], 2)} instead of {pc(W['ke'], 2)}",
+         f"AED {p2(LN['dcf_beta_alt']['base'])} against {p2(LN['dcf']['base'])}",
+         'The published index is preferred, and not narrowly: it is the index of the '
+         'exchange the share is listed on, and measuring a share against a composite in '
+         'which the exchange’s smallest names carry the same weight as its largest '
+         'measures it against a market it is not a member of. The composite is published '
+         'at full size because it is what an earlier construction of this study used and '
+         'the difference is large. Note that the adopted choice is the less flattering '
+         'one'],
         ['Perpetual capital securities deducted at carrying value',
          'Deducted at the present value of their perpetual coupon, capitalised at the '
          'terminal cost of capital',
@@ -1090,8 +1206,9 @@ H2('1.9  Sensitivity')
 figure(os.path.join(HERE, 'fig2_sens.png'), 7.0,
        f"Figure 4 — left, fair value across beta and terminal growth; right, fair value "
        f"against the mid-cycle rate the fleet reverts to. The market price of AED "
-       f"{p2(SPOT)} is reached in the beta grid at a beta of one, and is not reached "
-       f"anywhere in the rate-anchor range.")
+       f"{p2(SPOT)} is crossed in the beta grid between the {p2(SN['betas'][1])} and "
+       f"{p3(SN['betas'][2])} rows, and in the rate-anchor range between the "
+       f"{pc(1.1, 0)} and {pc(1.2, 0)} anchors.")
 P("Each anchor is varied independently around its own base, so each row shows what the "
   "valuation needs that one thing to do.")
 rows = [['Beta →'] + [p3(b) if abs(b - IN['beta']) < 1e-9 else p2(b)
@@ -1100,13 +1217,17 @@ for j, g in enumerate(SN['gs']):
     rows.append([f"terminal growth {pc(g, 1)}"] +
                 [p2(SN['grid_beta_g'][i][j]) for i in range(len(SN['betas']))])
 table(rows, [1.60, 1.08, 1.08, 1.08, 1.08, 1.08], size=8.4)
-caption(f"Fair value in AED per share. The adopted construction is the "
-        f"{p3(IN['beta'])} column at {pc(IN['g_terminal'], 1)} growth; the asset-risk "
-        f"alternative is the {p2(1.0)} column at the same growth. Beta moves the answer "
-        f"across the whole width of this table; growth moves it a fraction of that.")
+caption(f"Fair value in AED per share. The adopted construction is the {p3(IN['beta'])} "
+        f"column at {pc(IN['g_terminal'], 1)} growth; the equal-weight composite "
+        f"alternative is the {p3(SN['betas'][0])} column at the same growth. The "
+        f"right-hand column of {p3(SN['betas'][-1])} is the top of the regression's own "
+        f"90% confidence interval and is where the bear case is struck; the bull case is "
+        f"struck at the bottom of that interval, {BF['ci90'][0]:.3f}, which sits just "
+        f"inside the left-hand column. Beta moves the answer across the whole width of "
+        f"this table; growth moves it a fraction of that.")
 rows = [['Sensitivity', 'Range tested', 'Fair value span (AED/share)', 'Swing']]
 rows.append(['Beta in the cost of equity',
-             f"{p2(SN['betas'][0])} – {p2(SN['betas'][-1])}",
+             f"{p3(SN['betas'][0])} – {p3(SN['betas'][-1])}",
              f"{p2(min(beta_span))} – {p2(max(beta_span))}",
              p2(max(beta_span) - min(beta_span))])
 rows.append(['Mid-cycle rate the fleet reverts to',
@@ -1129,13 +1250,20 @@ rows.append(['Terminal growth',
              f"{p2(min(g_span))} – {p2(max(g_span))}",
              p2(max(g_span) - min(g_span))])
 rows.append(['Bear-to-bull scenario composite',
-             'rates, beta and capital expenditure moved together',
+             f"rates, capital expenditure and the beta at the two ends of its own 90% "
+             f"interval — {BF['ci90'][1]:.3f} in the bear, {BF['ci90'][0]:.3f} in the bull",
              f"{p2(LN['dcf']['bear'])} – {p2(LN['dcf']['bull'])}",
              p2(LN['dcf']['bull'] - LN['dcf']['bear'])])
 table(rows, [2.10, 1.95, 1.60, 1.35], size=8.4, left_cols=(1, 2))
 caption(f"Ranked by single-row swing, the beta is the largest by a wide margin — larger "
         f"than the operating crux, larger than the capital programme, larger than the tax "
-        f"exposure. The tax row deserves its own note: at a uniform {pc(IN['tax_topup_rate'], 0)} the "
+        f"exposure. That is worth reading precisely. The width of the beta row is the "
+        f"width of a measured statistical interval, and the study publishes its bear and "
+        f"bull cases at that interval's two ends rather than choosing a comfortable point "
+        f"inside it; the width of the rate-anchor row is a judgement about the future that "
+        f"no amount of data settles. The first is uncertainty that has been quantified, "
+        f"the second is uncertainty that has not. The tax row deserves its own note: at a "
+        f"uniform {pc(IN['tax_topup_rate'], 0)} the "
         f"value falls to AED {p2(SN['tax']['0.15'])}, a loss of AED "
         f"{p2(DCF['fv_aed']-SN['tax']['0.15'])} a share, and that is the priced cost of "
         f"the shipping relief being withdrawn. Every row is a full re-run of the unit "
@@ -1182,11 +1310,16 @@ P(f"{TC['tech']['summary']}")
 P(f"The structure to watch is straightforward. {TC['tech']['bull']} {TC['tech']['bear']} "
   f"None of this is a valuation argument — it is the price context the valuation has to be "
   f"read against. It is worth noting where the fundamental estimates sit relative to this "
-  f"ladder: the asset-beta central of AED {p2(D['central_asset_beta'])} sits above every "
-  f"computed resistance in the table, and the own-beta central of AED {p2(D['central'])} "
-  f"further above again. The price map in the next section, which knows nothing about "
-  f"value, does not reach either within three months at any percentile shown.",
-  space_after=10)
+  f"ladder, because on the adopted construction they now sit inside it rather than far "
+  f"above it: the weighted central of AED {p2(D['central'])} sits at the furthest computed "
+  f"resistance of {p2(TC['levels']['res'][-1])}, and the cash-flow lens on its own, at AED "
+  f"{p2(LN['dcf']['base'])}, sits between the first and second computed supports of "
+  f"{p2(TC['levels']['sup'][0])} and {p2(TC['levels']['sup'][1])}. The equal-weight "
+  f"composite reading of AED {p2(D['central_beta_alt'])} is the only one of the three "
+  f"above every level in the table. A valuation and a level ladder are unrelated "
+  f"constructions and their agreeing here proves nothing; it is recorded because the two "
+  f"disagreed markedly under the study's earlier measurement of the market and no longer "
+  f"do.", space_after=10)
 
 # =========================== 7  §3  PRICE MAP ================================
 H1('3  A probabilistic price map')
@@ -1233,8 +1366,9 @@ P("This is a map of price dispersion, not a forecast, and it is never blended wi
   "fair-value work above.")
 figure(os.path.join(HERE, 'fig4_fan.png'), 7.0,
        f"Figure 6 — the forward price cone to three months. The dashed lines are the two "
-       f"fundamental centrals: AED {p2(D['central'])} on the share's own beta and AED "
-       f"{p2(D['central_asset_beta'])} on an asset-risk beta.")
+       f"fundamental centrals: AED {p2(D['central'])} on the beta measured against the "
+       f"published index, and AED {p2(D['central_beta_alt'])} on the equal-weight "
+       f"composite.")
 
 H2('Percentile map (AED per share)')
 rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'Above the price today'],
@@ -1277,19 +1411,20 @@ caption("Touch probabilities exceed finish probabilities because a path can visi
 # ========================= 8  §4  COMPARISON =================================
 H1('4  Comparison of the lenses')
 rows = [['Read', 'What it says', 'What it assumes'],
-        ['Fundamental — own beta',
-         f"AED {p2(D['central'])}, {ab(D['central'])}",
-         f"that the share's own three years of price history describe its risk, and that "
-         f"the tanker fleet reverts to its {HYRS[1]}-{HYRS[2]} average rate"],
-        ['Fundamental — asset beta',
-         f"AED {p2(D['central_asset_beta'])}, {vs(D['central_asset_beta'])}",
-         'that a fleet owner carries the risk of the market it trades in whoever signs '
-         'the charter, with the same operating forecast'],
-        ['Cash flow alone, own beta',
+        ['Fundamental — published index',
+         f"AED {p2(D['central'])}, {vs(D['central'])}",
+         f"that the share's own listed history, measured against its exchange's published "
+         f"index, describes its risk, and that the tanker fleet reverts to its "
+         f"{HYRS[1]}-{HYRS[2]} average rate"],
+        ['Fundamental — equal-weight composite',
+         f"AED {p2(D['central_beta_alt'])}, {vs(D['central_beta_alt'])}",
+         'that the market is better represented by an equal-weight composite of the '
+         "exchange's names than by its published index, with the same operating forecast"],
+        ['Cash flow alone, published index',
          f"AED {p2(LN['dcf']['base'])}, {vs(LN['dcf']['base'])}",
          f"a cost of capital gliding {pc(W['wacc'], 2)} to {pc(W['wacc_term'])}"],
-        ['Cash flow alone, asset beta',
-         f"AED {p2(LN['dcf_asset_beta']['base'])}, {vs(LN['dcf_asset_beta']['base'])}",
+        ['Cash flow alone, equal-weight composite',
+         f"AED {p2(LN['dcf_beta_alt']['base'])}, {vs(LN['dcf_beta_alt']['base'])}",
          f"the same, gliding {pc(DCFA['wacc'], 2)} to {pc(DCFA['wacc_term'])}"],
         ['Multiples, blended',
          f"AED {p2(LN['relative']['base'])}, {vs(LN['relative']['base'])}",
@@ -1308,23 +1443,27 @@ rows = [['Read', 'What it says', 'What it assumes'],
          f"above the price today",
          'that volatility persists as it has; no view on value at all']]
 table(rows, [1.85, 2.05, 3.10], size=8.3, align_right_from=9)
-P(f"Read down that table and one thing stands out: the market price sits almost exactly on "
-  f"the asset-beta reading and well below the own-beta one. That is not a coincidence and "
-  f"it is not evidence that the market is wrong. It is the clearest available statement of "
-  f"what the marginal buyer believes — that this is a shipping company whose earnings "
-  f"belong to a cyclical world market, not a contracted infrastructure business that "
-  f"happens to own ships. The two multiple lenses land above the market, but they import "
-  f"their cost of capital from comparators rather than state one, so they are evidence "
-  f"about relative pricing rather than an independent answer.")
-P(f"This study declines to choose between the two readings, and says why. The regression "
-  f"is real: {n0(BE['n'])} weekly observations, an R-squared of {BE['r2']:.3f}, and a beta "
-  f"that sits exactly where a half-contracted business should sit. But three years is a "
-  f"short history, and it covers a period in which the contracted logistics arm grew "
-  f"faster than the merchant fleet — the mix that produced that beta is not the mix the "
-  f"forecast contains. A reader who weights the evidence toward the price history gets AED "
-  f"{p2(D['central'])}; a reader who weights it toward the economics of fleet ownership "
-  f"gets AED {p2(D['central_asset_beta'])}. Both numbers are in this document at full "
-  f"size and neither is hidden inside an average.")
+P(f"Read down that table and the striking thing is how little room there is between the "
+  f"reads. The market price of AED {p2(SPOT)} sits above the cash-flow lens of AED "
+  f"{p2(LN['dcf']['base'])} and below the weighted central of AED {p2(D['central'])}, a "
+  f"band of roughly {abs(D['central']/LN['dcf']['base']-1)*100:.0f}% from end to end. The "
+  f"two multiple lenses land above the market, but they import their cost of capital from "
+  f"comparators rather than state one, so they are evidence about relative pricing rather "
+  f"than an independent answer; the expert panel in Appendix C, which prices mid-cycle "
+  f"earnings rather than a terminal value, centres at AED {p2(PANEL)}, {ab(PANEL)}. Read "
+  f"together, the evidence brackets the screen price. It does not point away from it.")
+P(f"This is a weaker claim than the study previously made, and the reason is worth stating "
+  f"plainly. The cash-flow lens rests on a beta of {p3(IN['beta'])}, measured on "
+  f"{n0(BE['n'])} weekly observations against the {BE['regressor']} — the published index "
+  f"of the share's own exchange. The economic prior for a fleet owner has always been that "
+  f"it carries the risk of the market its ships trade in whoever signs the charter, and "
+  f"that prior and the regression now say the same thing. Measure the market instead as an "
+  f"equal-weight composite of the same exchange's names and the beta falls to "
+  f"{p3(BFA['beta'])} and the central rises to AED {p2(D['central_beta_alt'])} — a "
+  f"difference of AED {p2(central_gap)} a share that turns entirely on index weighting. "
+  f"Both numbers are in this document at full size and neither is hidden inside an "
+  f"average, but the adopted one is the published index, and on it this share is close to "
+  f"fairly priced rather than materially cheap.")
 P("No recommendation and no forecast of the share price is expressed here or anywhere "
   "else in this document. The output is a range and a distribution.", space_after=10)
 
@@ -1393,21 +1532,26 @@ rows = [['Zone', 'Three-month range (AED)', 'How to read it'],
          'parent'],
         ['Lower half of the central band',
          f"{p2(H3M['pct']['p25'])} – {p2(H3M['pct']['p50'])}",
-         'ordinary drift lower; this zone sits below every fundamental lens in the study '
-         'except the bear bounds'],
+         'ordinary drift lower; the cash-flow lens on its own sits inside this zone and '
+         'the book lens below it, so this is not a range at which the fundamental work '
+         'would call the share cheap'],
         ['Upper half of the central band',
          f"{p2(H3M['pct']['p50'])} – {p2(H3M['pct']['p75'])}",
-         'ordinary drift higher; the market continuing to price the asset-beta reading'],
+         'ordinary drift higher; this zone contains the study’s own weighted central, so '
+         'no repricing of the business is needed to reach it'],
         ['Upper tail', f"above {p2(H3M['pct']['p95'])}",
-         'a 1-in-20 outcome; the zone in which the market would begin to price something '
-         'closer to the own-beta reading, or to price the rate strength as durable'],
-        ['Where the asset-beta central sits', p2(D['central_asset_beta']),
-         f"between the 75th and 95th percentile of the three-month distribution — "
-         f"reachable inside the horizon without anything unusual happening"],
-        ['Where the own-beta central sits', p2(D['central']),
-         f"above the 95th percentile of the three-month distribution. The valuation and "
-         f"the price map genuinely disagree on this construction, and stating the gap at "
-         f"full size is the point"]]
+         'a 1-in-20 outcome; the zone in which the market would be pricing the rate '
+         'strength as durable, or the equal-weight reading of the discount rate'],
+        ['Where the weighted central sits', p2(D['central']),
+         f"between the 50th and 75th percentile of the three-month distribution. The "
+         f"valuation and the price map — which knows nothing about value — are in the same "
+         f"place, which is a change from this study's earlier measurement of the market "
+         f"and is the clearest sign that the share is close to fairly priced"],
+        ['Where the cash-flow lens alone sits', p2(LN['dcf']['base']),
+         f"between the 25th and 50th percentile — below the price today, and reachable "
+         f"inside the horizon without anything unusual happening"],
+        ['Where the equal-weight composite central sits', p2(D['central_beta_alt']),
+         f"between the 75th and 95th percentile of the three-month distribution"]]
 table(rows, [1.80, 1.70, 3.50], size=8.4, left_cols=(2,))
 
 # ============================= 11  §7  CAVEATS ===============================

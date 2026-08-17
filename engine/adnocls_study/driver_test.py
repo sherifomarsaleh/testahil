@@ -30,11 +30,12 @@ for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     if isinstance(c.value, str) and c.value.strip():
         A.setdefault(c.value, c.row)
 
-HEADLINES = ['fv', 'fv_asset', 'central', 'central_asset', 'pv_expl', 'tv', 'ev',
-             'tv_share', 'wacc', 'wacc_term', 'ke', 'kd', 'rev26', 'ebitda26', 'ebitda30',
+HEADLINES = ['fv', 'fv_beta_alt', 'central', 'central_beta_alt', 'pv_expl', 'tv', 'ev',
+             'tv_share', 'wacc', 'wacc_term', 'ke', 'ke_ci_lo', 'ke_ci_hi', 'ke_dimson',
+             'kd', 'rev26', 'ebitda26', 'ebitda30',
              'nopat26', 'tax26', 'fcff26', 'tankers26', 'tankers30', 'gas28', 'relative',
-             'normalized', 'book', 'roe_sust', 'sotp', 'nd30', 'bvps30', 'nwc26', 'ppe30',
-             'npa26', 'ordn26']
+             'normalized', 'book', 'book_bear', 'book_bull', 'roe_sust', 'sotp', 'nd30',
+             'bvps30', 'nwc26', 'ppe30', 'npa26', 'ordn26']
 
 
 def split(ref):
@@ -67,23 +68,41 @@ YRCOL = [('B', 'FY2026'), ('C', 'FY2027'), ('D', 'FY2028'), ('E', 'FY2029'), ('F
 CASES = [
     ('Terminal growth', 'C', +0.005, 'fv', +1,
      'a higher terminal growth rate must raise the discounted cash flow'),
-    ('Beta — own-stock weekly regression against its local index', 'C', +0.20, 'fv', -1,
+    ('Beta — own-stock weekly regression against the published index of its own exchange',
+     'C', +0.20, 'fv', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('Terminal risk-free rate', 'C', +0.01, 'fv', -1,
      'a higher terminal risk-free rate raises the terminal cost of capital and must lower '
      'the valuation'),
     ('Equity risk premium (mature premium plus country risk)', 'C', +0.01, 'fv', -1,
      'a higher equity risk premium must lower the valuation'),
-    # DECOMPOSED, NOT ASSUMED. The expectation going in was that a wider sovereign spread
-    # must RAISE the fair value, because the spread is subtracted from the observed yield
-    # to normalise it. That is true of the EXPLICIT window and is asserted below: the
-    # normalised risk-free rate falls 24.6%, the explicit cost of capital falls 12.5% and
-    # the present value of the five forecast years rises 1.3%. It REVERSES at the terminal,
-    # because the terminal cost of debt is built as the terminal risk-free rate plus the
-    # company's own credit spread measured over the NORMALISED rate: narrowing that rate
-    # widens the modelled credit spread, so the terminal cost of debt rises 19.9% and the
-    # terminal cost of capital with it. The terminal value is 84% of enterprise value, so
-    # the terminal channel wins and the net effect on fair value is a fall of 0.06%.
+    # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE BETA CHANGED, BECAUSE THE NET
+    # SIGN FLIPPED. Both channels below are unchanged in mechanism and both are still
+    # asserted; what changed is which one wins, and it changed for a reason the model can
+    # be made to show.
+    #   The normalisation channel: the spread is subtracted from the observed yield, so a
+    # wider spread lowers the normalised risk-free rate (-24.6%), the cost of equity
+    # (-10.7%) and the explicit cost of capital (-10.2%), and the present value of the five
+    # forecast years rises 1.24%.
+    #   The credit-spread channel that opposes it: the terminal cost of debt is the
+    # terminal risk-free rate plus the company's own credit spread measured over the
+    # NORMALISED rate, so narrowing that rate widens the modelled spread — the terminal
+    # cost of debt rises 19.9% and the terminal cost of capital 0.91%. The terminal cost of
+    # EQUITY is built off the terminal risk-free rate and is untouched, so only the debt
+    # weight carries this.
+    #   WHY THE NET SIGN MOVED. Under the previous beta the terminal cost of capital was
+    # 6.51% against 2% terminal growth, a capitalisation denominator of 4.51%, and the
+    # terminal value was 84% of enterprise value. On the FTSE ADX General Index beta the
+    # terminal cost of capital is 8.21%, the denominator 6.21%, and the terminal value 78%.
+    # The SAME 0.91% rise in the terminal rate now cuts the terminal value by only 1.20%
+    # instead of ~1.7%, because a wider denominator is proportionally less sensitive — and
+    # it is cutting a smaller share of the answer. Meanwhile the discount factor on that
+    # terminal value RISES 1.33%, because the glide starts from an explicit rate that fell
+    # 0.92 percentage points. The two together leave the present value of the terminal
+    # value 0.12% HIGHER, not lower, so the normalisation channel now wins outright and
+    # fair value rises 0.44%. The direction assertion is corrected, not relaxed: every
+    # component assertion below is kept, and the terminal value's own fall is now asserted
+    # separately so the opposing channel cannot go quiet unnoticed.
     ('Sovereign default spread (netted out of the risk-free rate)', 'C', +0.01, 'wacc', -1,
      'the normalisation channel: the spread is subtracted from the observed yield, so a '
      'wider spread lowers the normalised risk-free rate and the explicit cost of capital'),
@@ -91,14 +110,46 @@ CASES = [
      +1, 'and therefore raises the present value of the five forecast years'),
     ('Sovereign default spread (netted out of the risk-free rate)', 'C', +0.01,
      'wacc_term', +1,
-     'the credit-spread channel that reverses it: the terminal cost of debt is the '
+     'the credit-spread channel that opposes it: the terminal cost of debt is the '
      'terminal risk-free rate plus the credit spread measured over the NORMALISED rate, so '
      'narrowing that rate widens the spread and raises the terminal cost of capital'),
-    ('Sovereign default spread (netted out of the risk-free rate)', 'C', +0.01, 'fv', -1,
-     'net of the two, the terminal channel wins because the terminal value is 84% of '
-     'enterprise value — decomposed, not assumed'),
-    ('Asset-risk beta — the contested alternative', 'C', +0.20, 'fv_asset', -1,
-     'the contested alternative must reprice its own leg of the model'),
+    ('Sovereign default spread (netted out of the risk-free rate)', 'C', +0.01, 'tv', -1,
+     'and that dearer terminal rate must still cut the terminal value itself — the '
+     'opposing channel is asserted in its own right, not inferred from the net'),
+    ('Sovereign default spread (netted out of the risk-free rate)', 'C', +0.01, 'fv', +1,
+     'net of the two, the normalisation channel now wins: at the higher discount rate the '
+     'terminal capitalisation denominator is wider and the terminal value is a smaller '
+     'share of the answer, so the terminal cut no longer outweighs the cheaper explicit '
+     'window and the larger discount factor it produces — decomposed, not assumed'),
+    ('Beta — the same regression against an equal-weight composite of that exchange\'s '
+     'names (the disclosed alternative)', 'C', +0.20, 'fv_beta_alt', -1,
+     'the contested alternative construction must reprice its own leg of the model'),
+    ('Beta — the same regression against an equal-weight composite of that exchange\'s '
+     'names (the disclosed alternative)', 'C', +0.20, 'fv', 0,
+     'and it must NOT touch the primary reading — the two constructions are carried side '
+     'by side, never blended'),
+    # The two ends of the regression's own 90% confidence interval. They set the bear and
+    # bull discount rates, so each must move its own cost of equity UP and the bound that
+    # is discounted at it DOWN. This pair of assertions is what would have caught the
+    # inversion that appeared when the low bound was built on the alternative index
+    # construction instead: that construction now carries the LOWER beta, so it stopped
+    # being the demanding case the moment the regressor changed.
+    ('Beta — lower bound of the regression\'s 90% confidence interval (the bull-case '
+     'beta)', 'C', +0.20, 'ke_ci_lo', +1,
+     'a higher beta at the lower bound must raise the cost of equity built on it'),
+    ('Beta — lower bound of the regression\'s 90% confidence interval (the bull-case '
+     'beta)', 'C', +0.20, 'book_bull', -1,
+     'and must therefore lower the bull bound of the book lens, which is discounted at it'),
+    ('Beta — upper bound of the regression\'s 90% confidence interval (the bear-case '
+     'beta)', 'C', +0.20, 'ke_ci_hi', +1,
+     'a higher beta at the upper bound must raise the cost of equity built on it'),
+    ('Beta — upper bound of the regression\'s 90% confidence interval (the bear-case '
+     'beta)', 'C', +0.20, 'book_bear', -1,
+     'and must therefore lower the bear bound of the book lens, which is discounted at it'),
+    ('Beta — lead-lag sum beta from the same series, one lead and two lags', 'C', +0.20,
+     'ke_dimson', +1,
+     'the lead-lag corroboration beta must reprice its own cost of equity; it is published '
+     'as a check on the primary estimate and deliberately drives nothing else'),
 ] + [
     (MID, col, +5000.0, 'fv', +1,
      f'a higher mid-cycle anchor for the {name} class must raise the valuation')
@@ -184,7 +235,7 @@ CASES = [
     # net of reinvestment: depreciation is NOT added back there, so terminal NOPAT falls
     # 5.8% and the terminal value 6.3%. The smaller asset base only partly offsets, because
     # NOPAT falls faster than invested capital (the return on invested capital falls 2.3%).
-    # The terminal value is 84% of enterprise value, so the net effect is a 5.9% fall.
+    # The terminal value is 78% of enterprise value, so the net effect is a 5.9% fall.
     ('Depreciation rate on property, plant and equipment', 'C', +0.01, 'fcff26', +1,
      'the explicit-window channel: depreciation is added back, so only its tax shield '
      'reaches free cash flow, and free cash flow rises'),
@@ -202,7 +253,11 @@ for label, col, bump, key, sign, why in CASES:
     out = read({('Assumptions', f'{col}{rr}'): cur + bump})
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
-    ok = (delta * sign > 0) and abs(rel) > 1e-9
+    # sign 0 is an ISOLATION assertion, not a weaker one: the driver must leave this
+    # headline exactly where it was. It is how the two beta constructions are held apart —
+    # if one ever leaked into the other's leg, they would be blended rather than published
+    # side by side, which is the one thing this study says it never does.
+    ok = (abs(delta) < 1e-12) if sign == 0 else ((delta * sign > 0) and abs(rel) > 1e-9)
     table.append((label, col, bump, key, base[key], out[key], rel, sign, ok, why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label[:52]:54s} {col} {bump:+11g} -> {key:14s} "
           f'{base[key]:>12,.4f} -> {out[key]:>12,.4f} ({rel:+.3%})')

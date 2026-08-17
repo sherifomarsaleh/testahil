@@ -28,9 +28,11 @@ wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT, ANCH = XP['expected'], XP['anchors']
-DCF, DCFA, LN, WACC = D['dcf'], D['dcf_asset_beta'], D['lenses'], D['wacc']
+DCF, DCFA, LN, WACC = D['dcf'], D['dcf_beta_alt'], D['lenses'], D['wacc']
 HI, HB, FC, FIN, FBS = D['hist_is'], D['hist_bs'], D['fcst'], D['fin'], D['fcst_bs']
 REL, NRM, BK, SOTP = D['rel'], D['norm'], D['book'], D['sotp']
+V_ = {k: v['value'] for k, v in D['inputs'].items()}
+BF = D['beta_framing']
 SH = D['meta']['shares_mn']
 
 BK_ = xlcalc.Book(wb)
@@ -103,10 +105,17 @@ checks = [
     ('Equity weight', g('DCF', 'C95'), WACC['we'], 0.00005),
     ('Cost of capital — explicit window', g('DCF', 'C97'), WACC['wacc'], 0.00005),
     ('Cost of capital — terminal', g('DCF', 'C102'), WACC['wacc_term'], 0.00005),
-    ('Cost of equity on the asset-risk beta', g('DCF', 'C106'), WACC['ke_beta1'], 0.00005),
-    ('DCF fair value per share — asset-risk beta (AED)', g('DCF', 'C121'), DCFA['fv_aed'],
-     0.005),
-    ('DCF terminal value share — asset-risk beta', g('DCF', 'C118'), DCFA['tv_share'],
+    ('Cost of equity on the composite-index beta', g('DCF', 'C106'), WACC['ke_beta1'],
+     0.00005),
+    ('Cost of equity at the lower 90% confidence bound', g('DCF', 'C114'),
+     WACC['rf_star'] + V_['beta_ci_lo'] * WACC['erp'], 0.00005),
+    ('Cost of equity at the upper 90% confidence bound', g('DCF', 'C115'),
+     WACC['rf_star'] + V_['beta_ci_hi'] * WACC['erp'], 0.00005),
+    ('Cost of equity on the lead-lag sum beta', g('DCF', 'C117'), WACC['ke_dimson'],
+     0.00005),
+    ('DCF fair value per share — composite-index beta (AED)', g('DCF', 'C130'),
+     DCFA['fv_aed'], 0.005),
+    ('DCF terminal value share — composite-index beta', g('DCF', 'C127'), DCFA['tv_share'],
      0.0005),
     ('Bridge equity attributable', g('SOTP Bridge', 'C15'), DCF['equity'], 1.0),
     ('Bridge terminal value share', g('SOTP Bridge', 'C8'), DCF['tv_share'], 0.0005),
@@ -132,6 +141,10 @@ checks = [
      LN['normalized']['base'], 0.005),
     ('Book lens value per share', g('Relative & Normalized', 'C52'), LN['book']['base'],
      0.005),
+    # the two bounds are discounted at the two ends of the beta's own confidence interval;
+    # built on the alternative index construction they would invert, so they are reconciled
+    ('Book lens bear bound', g('Relative & Normalized', 'C53'), LN['book']['bear'], 0.005),
+    ('Book lens bull bound', g('Relative & Normalized', 'D53'), LN['book']['bull'], 0.005),
     ('Sustainable return on equity', g('Relative & Normalized', 'C48'),
      BK['roe_sustainable'], 0.0005),
     ('Justified price / book', g('Relative & Normalized', 'C51'), BK['pb_fair'], 0.005),
@@ -143,9 +156,23 @@ checks = [
      REL['own_pe_ttm'], 0.005),
     ('Summary weighted central', g('Summary', ANCH['summary_central']), D['central'],
      0.005),
-    ('Summary weighted central — asset-risk beta',
-     g('Summary', ANCH['summary_central_asset']), D['central_asset_beta'], 0.005),
+    ('Summary weighted central — composite-index beta',
+     g('Summary', ANCH['summary_central_beta_alt']), D['central_beta_alt'], 0.005),
     ('Summary expert panel average', g('Summary', 'C15'), D['panel_centre'], 0.005),
+    # the beta block on the Fundamental Valuation sheet must be the framing the study
+    # publishes: both constructions in full, and the interval beside them
+    ('Beta — published index of its own exchange (primary)',
+     g('Fundamental Valuation', 'C15'), BF['primary']['beta'], 1e-9),
+    ('Fair value on the primary beta', g('Fundamental Valuation', 'C18'),
+     BF['primary']['fv'], 0.005),
+    ('Beta — equal-weight composite of the same exchange (alternative)',
+     g('Fundamental Valuation', 'C20'), BF['alternative']['beta'], 1e-9),
+    ('Fair value on the alternative beta', g('Fundamental Valuation', 'C23'),
+     BF['alternative']['fv'], 0.005),
+    ('Beta — lower bound of the 90% confidence interval',
+     g('Fundamental Valuation', 'C25'), BF['ci90'][0], 1e-9),
+    ('Beta — upper bound of the 90% confidence interval',
+     g('Fundamental Valuation', 'C26'), BF['ci90'][1], 1e-9),
     ('Income statement FY2025 EBITDA (operating)', g('Income Statement', 'D14'),
      HI['ebitda_op'][2], 1.0),
     ('Income statement FY2025 EBITDA as reported', g('Income Statement', 'D16'),

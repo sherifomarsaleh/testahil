@@ -59,6 +59,23 @@ def H2(t):
     return B.P(t, size=11, bold=True, space_before=9, space_after=3)
 
 
+def H1_NEW_PAGE(t):
+    """A section that must start at the top of a page.
+
+    NOT a page-break paragraph. A break of its own is a paragraph like any other, and when the
+    section before it ends near the foot of a page — the input register does, and does so at a
+    different place every time an input is added — the spacer after the last table and the
+    break itself both slide onto the next page and are rendered as a blank sheet before the
+    heading. Carrying the break ON the heading cannot produce that: there is no paragraph
+    between the two sections at all, so the heading starts the page it breaks to."""
+    while doc.paragraphs and not doc.paragraphs[-1].text.strip():
+        el = doc.paragraphs[-1]._element
+        el.getparent().remove(el)
+    p = H1(t)
+    p.paragraph_format.page_break_before = True
+    return p
+
+
 def bullet(text):
     return P('   •  ' + text, size=9.6, space_after=3)
 
@@ -182,7 +199,8 @@ PERDAY_PREFIX = ('tce_', 'tc_out_')
 COUNT_EXACT = {'spot_vessels_total', 'jub_owned', 'jub_chartered', 'osv_owned', 'gas_owned',
                'gas_lt_contracted'}
 COUNT_RE = re.compile(r'^tnk_[a-z0-9]+_(n|spot)$')
-RATIO3 = {'beta', 'beta_se', 'beta_r2', 'beta_dimson'}
+RATIO3 = {'beta', 'beta_se', 'beta_r2', 'beta_dimson', 'beta_composite',
+          'beta_ci_lo', 'beta_ci_hi'}
 MULT = {'nd_ebitda_target_lo', 'nd_ebitda_target_hi', 'tnk_grossup_25', 'tnk_grossup_26'}
 DAYS = {'dso_days', 'dio_days', 'dpo_days'}
 
@@ -285,7 +303,14 @@ def held(fname):
 
 # ---------------------------------------------------------------- numbers used in prose
 W = D['wacc']; BR = D['beta']; BRG = D['bridge']; L = D['lenses']
-DCF, DCFS, DCFA = D['dcf'], D['dcf_sustained'], D['dcf_asset_beta']
+DCF, DCFS, DCFA = D['dcf'], D['dcf_sustained'], D['dcf_beta_alt']
+BF = D['beta_framing']                  # the two market measurements, side by side
+BC = BR['composite_variant']            # the same regression against the equal-weight composite
+BSI = BR['self_inclusion_bias']         # the share sits inside the index it is measured against
+CENTRAL_ALT = D['central_beta_alt']
+# The confidence level of the published interval is read off the input's own source text
+# rather than asserted here, so the document and the model can never name different levels.
+CI_LEVEL = re.search(r'(\d+%)', INP['beta_ci_lo']['source']).group(1)
 LW = D['lens_weights']; REL = D['rel']; GC = D['guidance_check']
 PEG = META['fx']
 SHARES = META['shares_mn']
@@ -309,6 +334,38 @@ def idate(k):
 
 def sdate(fid):
     return fdate(FID[fid]['source_date'])
+
+
+def find_one(**want):
+    """A research finding located by WHAT IT IS, never by its position in the file. The
+    identifiers renumber whenever a finding is added — one was, for the index series — so a
+    document that cites them by number silently re-dates itself. Matching on the fields that
+    describe the finding cannot drift that way, and the assertion below is what proves it."""
+    hits = [f for f in R['findings'] if all(f.get(k) == v for k, v in want.items())]
+    assert len(hits) == 1, f'{len(hits)} findings match {want}, expected exactly one'
+    return hits[0]
+
+
+def fs_date(period):
+    """The date the filing for a fiscal period itself bears."""
+    return fdate(find_one(category='official financial statements',
+                          fiscal_period=period)['source_date'])
+
+
+def rd_date(period):
+    """The date a regular disclosure for a period bears (the reviewed interim information)."""
+    return fdate(find_one(category='regular disclosures', fiscal_period=period,
+                          is_fs_data=True)['source_date'])
+
+
+def gd_date():
+    """The date the management commentary carrying the raised guidance bears."""
+    return fdate(find_one(category='strategic plans & guidance',
+                          klass='DRIVER_UNLOCK')['source_date'])
+
+
+IDX = find_one(source_type='PRIMARY_MARKET_DATA')   # the index series the beta is measured on
+IDX_FROM, IDX_TO = BR['regressor_span']
 
 
 LAYERS = ['Company', 'Industry', 'Country', 'Global', 'Market']
@@ -384,8 +441,11 @@ T([['Layer', 'Inputs', 'What sits in it, and what it may be the source of'],
     "equity risk premium, and the long-run nominal anchor behind the terminal discount rate."],
    ['Market', f"{LAYER_N['Market']:,}",
     "The security itself: the last close used throughout the study, and the statistics "
-    "estimated from its own price history — the regression slope against its home market, "
-    "its standard error, the fit of that regression and the lead-lag variant."]],
+    "estimated from its own price history — the slope of its weekly returns against the "
+    "published index of the exchange it trades on, the standard error and fit of that "
+    "regression, the two bounds of the interval around the slope, the lead-lag variant, and "
+    "the slope the same returns give when they are measured against an equal-weight composite "
+    "of that exchange's own names instead of the published index."]],
   [1.15, 0.70, 5.25], aligns=['L', 'R', 'L'], size=8.4)
 
 H2("Why the company's own statements are the only admissible source for its own history")
@@ -418,7 +478,7 @@ P(f"Every document below was downloaded from the company's own investor pages an
 H2("The company's own documents")
 T([['Document', 'Date', 'File held', 'What was taken from it'],
    ['Consolidated financial statements for the year ended 31 December 2025, audited',
-    sdate('F13'), held('FS_FY2025.pdf'),
+    fs_date('FY2025'), held('FS_FY2025.pdf'),
     'The 2025 income statement, balance sheet and cash flow statement with the 2024 '
     'comparatives; the operating-segment schedule by business unit including segment '
     'earnings, depreciation and property; the revenue-by-service and cost-by-nature notes; '
@@ -426,35 +486,35 @@ T([['Document', 'Date', 'File held', 'What was taken from it'],
     'acquisition; the perpetual capital securities; the goodwill test that the terminal '
     'growth rate is taken from; share capital and treasury. ' + supplies('FS25')],
    ['Consolidated financial statements for the year ended 31 December 2024, audited',
-    sdate('F14'), held('FS_FY2024.pdf'),
+    fs_date('FY2024'), held('FS_FY2024.pdf'),
     'The 2024 statements and the 2023 comparatives they carry — the second and third '
     'historical years of the income statement, balance sheet and cash flow, and the segment '
     'schedule under the reporting structure then in force. ' + supplies('FS24')],
    ['Consolidated financial statements for the year ended 31 December 2023, audited',
-    sdate('F15'), held('FS_FY2023.pdf'),
+    fs_date('FY2023'), held('FS_FY2023.pdf'),
     'The third historical year, and the segment schedule that makes the later '
     'reclassification visible. ' + supplies('FS23')],
    ['Consolidated financial statements for the year ended 31 December 2022, audited',
-    sdate('F23'), held('FS_FY2022.pdf'),
+    fs_date('FY2022'), held('FS_FY2022.pdf'),
     'Completes the four-year audited record and carries the segment schedule from before the '
     'group was reorganised, which is the evidence that the segment series is not comparable '
     'across the whole span. ' + supplies('FS22')],
-   ['Annual Report and Accounts 2025', sdate('F13'), held('AR2025.pdf'),
+   ['Annual Report and Accounts 2025', fs_date('FY2025'), held('AR2025.pdf'),
     'The audited statements as machine-readable text where the standalone filing is an image, '
     'plus the fleet, order-book and operating review. ' + supplies('AR25')],
-   ['Annual Report and Accounts 2024', sdate('F14'), held('AR2024.pdf'),
+   ['Annual Report and Accounts 2024', fs_date('FY2024'), held('AR2024.pdf'),
     'The same for the 2024 statements and their 2023 comparatives; this is the volume the '
     '2023 figures were read from.'],
-   ['Annual Report and Accounts 2023', sdate('F15'), held('AR2023.pdf'),
+   ['Annual Report and Accounts 2023', fs_date('FY2023'), held('AR2023.pdf'),
     'NOT HELD as a separate volume. The 2023 audited statements themselves are held and were '
     'read directly, and the 2024 volume carries the 2023 comparatives, so no figure depends '
     'on it. Recorded rather than quietly dropped.'],
    ['Condensed consolidated interim financial information for the three months ended 31 March '
-    '2026, reviewed', sdate('F16'), held('FS_Q1_2026.pdf'),
+    '2026, reviewed', rd_date('Q1 2026'), held('FS_Q1_2026.pdf'),
     'The first-quarter income statement with 2025 comparatives, the balance sheet at the '
     'valuation date, the full segment schedule, the cash flow, the borrowings and related-'
     'party rates, and the events-after-reporting note. ' + supplies('Q126')],
-   ['Management commentary on the first quarter of 2026', sdate('F17'),
+   ['Management commentary on the first quarter of 2026', gd_date(),
     held('MDA_Q1_2026.pdf'),
     'The raised guidance for 2026 by line and by business unit, the distribution policy, the '
     'medium-term leverage target, net debt and free cash flow, and the segment revenue and '
@@ -531,10 +591,25 @@ T([['Document', 'Publisher', 'Date', 'What was taken from it'],
     f"The enterprise-to-earnings multiple of {D['peers'][2]['ev_ebitda']:.2f}x for the second "
     f"spot comparator. Aggregator figures appear only here, as a labelled cross-check in the "
     f"comparison lens."],
-   ['Daily price history for the stock and for the Abu Dhabi listed names in the study library',
+   [f"Daily history of the {BR['regressor']}",
+    'Published by FTSE Russell with the Abu Dhabi Securities Exchange; the series obtained as '
+    'a dated export',
+    fdate(IDX['source_date']),
+    f"The market the beta is measured against: {BR['regressor_rows']:,} daily sessions from "
+    f"{fdate(IDX_FROM)} to {fdate(IDX_TO)}, checked session by session against the exchange's "
+    f"own trading calendar before use. This is the capitalisation-weighted index of the "
+    f"exchange the share is listed on, which is the market measurement the method calls for. "
+    f"Regressed on it, the stock's weekly returns give a slope of {BR['beta']:.3f}. It is "
+    f"market data rather than company data, so it is not covered by the rule that admits only "
+    f"the company's own filings — that rule governs the company's own reported history, which "
+    f"an index level is not."],
+   ['Daily price history for the stock, and for the Abu Dhabi listed names held alongside it',
     f"{META['exchange']}", fdate(META['price_date']),
-    f"The last close of {fval('spot_aed', IV['spot_aed'])} used throughout, and the "
-    f"{BR['n']:,} weekly observations behind the regression against the home market."]],
+    f"The last close of {fval('spot_aed', IV['spot_aed'])} used throughout; the "
+    f"{BR['n']:,} paired weekly observations behind the regression against the published "
+    f"index; and the equal-weight composite of {BR['composite_names']:,} of the exchange's own "
+    f"names, which is the alternative measurement of the market the same regression is also "
+    f"run against."]],
   [1.72, 1.30, 0.68, 3.40], aligns=['L', 'L', 'L', 'L'], size=7.7)
 
 P('The company site was reached for every company document. Of the three investor pages '
@@ -546,8 +621,7 @@ P('The company site was reached for every company document. Of the three investo
 # ============================================================================
 # 4  THE FULL INPUT REGISTER
 # ============================================================================
-doc.add_page_break()
-H1('The input register — every figure the model uses')
+H1_NEW_PAGE('The input register — every figure the model uses')
 P(f"All {len(INP):,} inputs, grouped by research layer and, within a layer, in the order the "
   f"model declares them — which follows the shape of the accounts: income statement, "
   f"balance sheet, cash flow, the disclosed quarter, then segments, service lines, cost "
@@ -574,11 +648,22 @@ for k, v in INP.items():
     assert set(v) >= {'value', 'source', 'date', 'layer'}, f'{k} is not four-field complete'
     assert str(v['source']).strip() and str(v['date']).strip(), f'{k} has an empty field'
 
+# The two market measurements the document sets side by side must BE the ones the model
+# holds, not a pair retyped into this builder. Same for the interval and the lead-lag variant.
+for _lbl, _doc_val, _key in (
+        ('published index', BF['primary']['beta'], 'beta'),
+        ('equal-weight composite', BF['alternative']['beta'], 'beta_composite'),
+        ('lower bound', BF['ci90'][0], 'beta_ci_lo'),
+        ('upper bound', BF['ci90'][1], 'beta_ci_hi'),
+        ('lead-lag variant', BR['dimson']['sum_beta'], 'beta_dimson')):
+    assert abs(_doc_val - IV[_key]) < 5e-4, f'{_lbl} disagrees with the {_key} input'
+assert abs(BC['beta'] - IV['beta_composite']) < 5e-4, 'the composite slope disagrees with itself'
+assert BF['alternative']['ke'] == W['ke_beta1'], 'the alternative cost of equity is not the one built'
+
 # ============================================================================
 # 5  JUDGEMENTS
 # ============================================================================
-doc.add_page_break()
-H1('The judgements, stated separately')
+H1_NEW_PAGE('The judgements, stated separately')
 P("These are the places where the study chose rather than read. Each row states what was "
   "taken, and what evidence would overturn it — written before the outcome is known, so "
   "that a reader can hold the study to it. They are collected here so they can be found "
@@ -603,18 +688,38 @@ JUD = [
      "a collapse to the 2025 average would make it too generous. The sensitivity is carried "
      "in the study rather than buried, because the first half is already realised and only "
      "the back half is assumed."),
-    ('The cost of equity, and the choice of beta',
-     f"A slope of {BR['beta']:.3f} from the stock's own weekly returns against an index of its "
-     f"home market over its full listed history — {BR['n']:,} observations, R-squared "
-     f"{BR['r2']:.3f}, standard error {BR['se']:.3f} — giving a cost of equity of "
-     f"{W['ke'] * 100:.2f}%. Because the listed history is only {BR['window_years']:.2f} years "
-     f"and the free float small, the entire valuation is ALSO published at a beta of 1.0, "
-     f"which raises the cost of equity to {W['ke_beta1'] * 100:.2f}% and moves the central "
-     f"figure from AED {D['central']:,.2f} to AED {D['central_asset_beta']:,.2f} a share.",
-     f"A longer price history is the only real answer and it arrives with time. Meanwhile the "
-     f"lead-lag variant of the same regression gives {BR['dimson']['sum_beta']:.3f}, and a "
-     f"listed tanker owner's sector slope sits well above 1.0 — either would push the cost "
-     f"of equity toward the published alternative. The study does not average the two."),
+    ('Which measurement of the market the beta is regressed against',
+     f"The published index of the exchange the share is listed on — {BR['regressor']} — "
+     f"because that is the market the share actually trades in and the measurement the method "
+     f"calls for. Weekly returns over the full listed history give a slope of {BR['beta']:.3f} "
+     f"({BR['n']:,} paired observations, R-squared {BR['r2']:.3f}, standard error "
+     f"{BR['se']:.3f}) and a cost of equity of {W['ke'] * 100:.2f}%. The same returns over the "
+     f"same window, measured against an equal-weight composite of that exchange's own names "
+     f"instead, give {BC['beta']:.3f}, a cost of equity of "
+     f"{BF['alternative']['ke'] * 100:.2f}% and a central figure of AED "
+     f"{BF['alternative']['central']:,.2f} against the published AED {D['central']:,.2f}. Both "
+     f"constructions are computed in full and published side by side; neither is averaged into "
+     f"the other.",
+     f"A longer price history — the listed record is only {BR['window_years']:.2f} years, and "
+     f"length is the one thing that cannot be manufactured. A different definition of the "
+     f"index, since what the two constructions disagree about is which names are in the market "
+     f"and how much say each of them gets. Or evidence that the share's own membership of the "
+     f"index it is measured against materially inflates the slope: it is a constituent, so its "
+     f"own returns sit on both sides of the regression and cannot be taken out of a "
+     f"capitalisation-weighted index. How large that pull is has been measured on the "
+     f"composite, where the share CAN be removed, and it is set out overleaf."),
+    ('The beta used in the low and the high case',
+     f"The regression's own {CI_LEVEL} confidence bounds rather than round numbers picked by "
+     f"hand: {BF['ci90'][1]:.3f} in the low case and {BF['ci90'][0]:.3f} in the high case. A "
+     f"higher slope discounts harder, so the upper bound is what belongs in the low case. On "
+     f"the cash-flow lens those give AED {L['dcf']['bear']:,.2f} and AED "
+     f"{L['dcf']['bull']:,.2f} a share against a base of AED {L['dcf']['base']:,.2f}.",
+     f"A tighter interval, which only more observations give. The standard error is "
+     f"{BR['se']:.3f} on a slope of {BR['beta']:.3f}, so the two bounds are "
+     f"{(BF['ci90'][1] - BF['ci90'][0]) / BR['beta'] * 100:.0f}% of the estimate apart and the "
+     f"cases inherit that width honestly. Round betas chosen by hand would look tidier and "
+     f"would be telling the reader less. The lead-lag variant of the same regression, at "
+     f"{BR['dimson']['sum_beta']:.3f}, sits inside these bounds."),
     ('The recovery in engineering and construction revenue after 2026',
      f"Revenue of {usdm(IV['drv_rev_offshore_projects_2026'])} in 2026 — inside the "
      f"company's own stated range — recovering to "
@@ -737,8 +842,7 @@ T([['The judgement', 'What the study took', 'What would overturn it']]
 # ============================================================================
 # 6  NEGATIVE RESULTS
 # ============================================================================
-doc.add_page_break()
-H1('Negative results — what was looked for and not found')
+H1_NEW_PAGE('Negative results — what was looked for and not found')
 P("An empty search is a result. Each row below is something the study went looking for, could "
   "not obtain, and therefore had to handle another way — recorded here so that a reader "
   "can see where the evidence stops and judgement starts, rather than discovering it by "
@@ -786,6 +890,23 @@ NEG = [
      "Not disclosed at any level. The running cost is solved so that the disclosed rates less "
      "that cost reproduce reported 2025 segment earnings exactly, which anchors it to a "
      "disclosed outcome, but it remains a derived figure and is labelled as one."),
+    ('An index level for the last two weeks of the stock’s own price history',
+     fdate(R['sweep_date']),
+     f"The index series obtained ends {fdate(IDX_TO)}, while the stock's own history runs to "
+     f"{fdate(META['price_date'])} and is used to that date everywhere else in the study. No "
+     f"later index level could be obtained, so {BR['unused_stock_weeks']} weekly stock "
+     f"observations fall outside the regression: the window stops where the index stops, "
+     f"rather than pairing the stock against an index level that has stopped moving. Related "
+     f"and not searchable at all: the share is itself a constituent of the index it is "
+     f"measured against, so on a capitalisation-weighted index its own returns cannot be "
+     f"removed from the thing they are being regressed on. That one is measured instead of "
+     f"searched for — the equal-weight composite is run both with the share inside it and with "
+     f"it taken out, giving {BSI['beta_proxy_including_subject']:.3f} against "
+     f"{BSI['beta_proxy_excluding_subject']:.3f}. The difference of "
+     f"{BSI['beta_proxy_including_subject'] - BSI['beta_proxy_excluding_subject']:.3f} is the "
+     f"scale of the upward pull the published-index slope also carries, and it is disclosed in "
+     f"the study. It works against the study's own conclusion, since removing it would lower "
+     f"the beta and lift the valuation."),
     ('The Annual Report and Accounts for 2023 as a separate volume',
      fdate('2026-08-09'),
      "Not obtained from the investor pages. It costs the study nothing: the 2023 audited "
@@ -800,13 +921,14 @@ T([['What was searched for', 'Date searched', 'Outcome, and how the study handle
 # ============================================================================
 # 7  DISCREPANCIES
 # ============================================================================
-H1('Where a secondary source disagreed with the filings')
+H1('Where two readings of the same figure disagreed')
 P("Every disagreement found between a secondary source and the company's own documents is "
   "recorded here with the resolution. In each case the filing was used. The point of the "
   "table is not that the study got it right; it is that a reader who has seen the other "
-  "figure should be able to find out immediately why it is not the one in the model.")
-T([['Where they disagree', 'What the secondary source said',
-    "What the company's own filing says", 'Which was used, and why'],
+  "figure should be able to find out immediately why it is not the one in the model. The last "
+  "row is a different animal and is included deliberately: there both readings are correct, "
+  "and what separates them is not a source but a construction.")
+DISC = [
    ['2026 net profit guidance',
     'Press coverage of the guidance raise reported growth in the high-60% range for 2026 net '
     'profit.',
@@ -841,7 +963,29 @@ T([['Where they disagree', 'What the secondary source said',
     'The published file. A number taken from a blog post, or from a write-up of one that '
     'another write-up contradicts, is not a source this study can cite and a reader cannot '
     'check it. Recorded because a reader who has seen the update would otherwise think the '
-    'figure is simply stale.']],
+    'figure is simply stale.'],
+   ['The beta, measured against two different definitions of the same market',
+    f"An equal-weight composite of the exchange's own listed names — {BR['composite_names']:,} "
+    f"of them, the subject excluded — gives a slope of {BC['beta']:.3f} over the same window "
+    f"(R-squared {BC['r2']:.3f}, standard error {BC['se']:.3f}, {BC['n']:,} observations). "
+    f"This is the measurement the study used before the published index could be obtained.",
+    f"{BR['regressor']}, the capitalisation-weighted index the exchange itself publishes and "
+    f"the share is a constituent of, gives {BR['beta']:.3f} on the same returns over the same "
+    f"window (R-squared {BR['r2']:.3f}, standard error {BR['se']:.3f}, {BR['n']:,} "
+    f"observations).",
+    "The published index, and the gap between the two is worth more than the answer. This is "
+    "not two sources disagreeing about a fact — both slopes are correctly computed from the "
+    "same price history. What differs is how the market itself is defined. A "
+    "capitalisation-weighted index is dominated by the exchange's largest companies, which is "
+    "exactly the group the subject sits in, so the share moves with that index more closely "
+    "than it moves with an average in which the exchange's smallest names count for as much as "
+    "its largest. The index of the exchange the share is listed on is the market the share "
+    "actually trades in, so that is what is used; the composite is published beside it and the "
+    "cost of equity is shown on both, because a difference of this size is a fact about index "
+    "construction a reader is entitled to see rather than a detail to bury."],
+]
+T([['Where they disagree', 'The other reading, and where it comes from',
+    'The reading this study used, and where it comes from', 'Why that one']] + DISC,
   [1.05, 1.85, 2.10, 2.10], aligns=['L', 'L', 'L', 'L'], size=7.6)
 
 H2('Three definitions of net debt circulate in the company’s own documents')
@@ -876,8 +1020,7 @@ T([['The definition', 'At 31 Mar 2026', 'Used?'],
 # ============================================================================
 # 8  SOURCE INTEGRITY
 # ============================================================================
-doc.add_page_break()
-H1('Source integrity')
+H1_NEW_PAGE('Source integrity')
 P(f"Every historical figure in this study — every income-statement line, every balance-"
   f"sheet line, every cash-flow line, every segment, service line and cost line — traces "
   f"to the company's own issued financial statements, read from the filing itself rather than "
@@ -890,6 +1033,16 @@ P("The company's own website was reached for every one of those documents. Three
   "from this environment, and the documents it lists were obtained through the other two "
   "pages on the same site, so no company figure rests on anything but a document downloaded "
   "from the company itself.")
+P(f"One source in this document is neither a company filing nor an aggregator, and it is worth "
+  f"being explicit about why it is admissible. The beta is regressed against "
+  f"{BR['regressor']} — {BR['regressor_rows']:,} daily sessions from {fdate(IDX_FROM)} to "
+  f"{fdate(IDX_TO)}, checked against the exchange's own trading calendar before use. An index "
+  f"level is market data, not company data: it is the price at which a market cleared, not a "
+  f"figure the company reported about itself. The rule that admits only the company's own "
+  f"issued documents governs the company's own reported history, and an index level is outside "
+  f"it by construction — there is no filing that could be the source of it. The same is true "
+  f"of the stock's own closing prices. What the rule does require of them is that they are "
+  f"dated, screened before use and named, which they are, here and at the rows they feed.")
 P(f"Aggregators appear in exactly one place: the three comparable operators' statistics pages "
   f"used in the comparison lens, listed by name and date in the external documents table "
   f"above and labelled as cross-checks wherever a multiple derived from them appears. No "
@@ -955,6 +1108,6 @@ print(f'  inputs rendered    : {rendered:,}  (layers: '
       + ', '.join(f'{k} {v}' for k, v in LAYER_N.items()) + ')')
 print(f'  judgement rows     : {len(JUD)}')
 print(f'  negative results   : {len(NEG)}')
-print(f'  discrepancy rows   : 3 + a three-way net-debt note')
+print(f'  discrepancy rows   : {len(DISC)} + a three-way net-debt note')
 print(f'  tables             : {len(doc.tables)}')
 print(f'  external-reader scrub: 0 hits over {len(all_text()):,} text blocks')

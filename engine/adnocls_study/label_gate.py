@@ -20,7 +20,7 @@ wb = openpyxl.load_workbook(
     os.path.join(HERE, 'ADNOCLS_Valuation_Model_09082026_public.xlsx'))
 V = {k: v['value'] for k, v in D['inputs'].items()}
 HI, HB, FC, FIN, FBS = D['hist_is'], D['hist_bs'], D['fcst'], D['fin'], D['fcst_bs']
-DCF, DCFA, WACC = D['dcf'], D['dcf_asset_beta'], D['wacc']
+DCF, DCFA, WACC = D['dcf'], D['dcf_beta_alt'], D['wacc']
 LN, REL, NRM, BK, SOTP = D['lenses'], D['rel'], D['norm'], D['book'], D['sotp']
 FL, SEGF = D['fleet'], D['fcst_seg']
 SH, PEG = D['meta']['shares_mn'], D['meta']['fx']
@@ -44,9 +44,9 @@ CASES = [
     ('Summary', 'A7', 'C7', ['normalised'], LN['normalized']['base']),
     ('Summary', 'A8', 'C8', ['book value'], LN['book']['base']),
     ('Summary', 'A9', 'C9', ['weighted central'], D['central']),
-    ('Summary', 'A12', 'C12', ['asset-risk beta'], DCFA['fv_aed']),
-    ('Summary', 'A13', 'C13', ['weighted central', 'asset-risk beta'],
-     D['central_asset_beta']),
+    ('Summary', 'A12', 'C12', ['composite-index beta'], DCFA['fv_aed']),
+    ('Summary', 'A13', 'C13', ['weighted central', 'composite-index beta'],
+     D['central_beta_alt']),
     ('Summary', 'A5', 'H5', ['discounted cash flow'], DCF['tv_share']),
     ('Summary', 'A15', 'C15', ['expert panel'], D['panel_centre']),
     # --- SOTP Bridge ---------------------------------------------------------
@@ -106,8 +106,32 @@ CASES = [
     ('DCF', 'A96', 'C96', ['debt weight'], WACC['wd']),
     ('DCF', 'A97', 'C97', ['cost of capital', 'explicit'], WACC['wacc']),
     ('DCF', 'A102', 'C102', ['terminal cost of capital'], WACC['wacc_term']),
-    ('DCF', 'A106', 'C106', ['cost of equity', 'asset-risk beta'], WACC['ke_beta1']),
-    ('DCF', 'A121', 'C121', ['fair value per share', 'asset-risk beta'], DCFA['fv_aed']),
+    ('DCF', 'A105', 'C105', ['equal-weight composite', 'alternative'],
+     V['beta_composite']),
+    ('DCF', 'A106', 'C106', ['cost of equity', 'composite-index beta'], WACC['ke_beta1']),
+    ('DCF', 'A112', 'C112', ['lower bound', '90% confidence interval'], V['beta_ci_lo']),
+    ('DCF', 'A113', 'C113', ['upper bound', '90% confidence interval'], V['beta_ci_hi']),
+    ('DCF', 'A114', 'C114', ['cost of equity', 'lower confidence bound'],
+     WACC['rf_star'] + V['beta_ci_lo'] * WACC['erp']),
+    ('DCF', 'A115', 'C115', ['cost of equity', 'upper confidence bound'],
+     WACC['rf_star'] + V['beta_ci_hi'] * WACC['erp']),
+    ('DCF', 'A116', 'C116', ['lead-lag sum beta'], V['beta_dimson']),
+    ('DCF', 'A117', 'C117', ['cost of equity', 'lead-lag sum beta'], WACC['ke_dimson']),
+    ('DCF', 'A130', 'C130', ['fair value per share', 'composite-index beta'],
+     DCFA['fv_aed']),
+    # --- Fundamental Valuation: the two constructions and the interval beside them ----
+    ('Fundamental Valuation', 'A15', 'C15', ['beta', 'published index', 'primary'],
+     D['beta_framing']['primary']['beta']),
+    ('Fundamental Valuation', 'A18', 'C18', ['fair value per share', 'published-index '
+     'beta'], D['beta_framing']['primary']['fv']),
+    ('Fundamental Valuation', 'A20', 'C20', ['beta', 'equal-weight composite',
+     'alternative'], D['beta_framing']['alternative']['beta']),
+    ('Fundamental Valuation', 'A23', 'C23', ['fair value per share', 'composite-index '
+     'beta'], D['beta_framing']['alternative']['fv']),
+    ('Fundamental Valuation', 'A25', 'C25', ['lower bound', '90% confidence interval'],
+     D['beta_framing']['ci90'][0]),
+    ('Fundamental Valuation', 'A26', 'C26', ['upper bound', '90% confidence interval'],
+     D['beta_framing']['ci90'][1]),
     # --- Income statement ----------------------------------------------------
     ('Income Statement', 'A5', 'D5', ['revenue'], HI['revenue'][2]),
     ('Income Statement', 'A12', 'D12', ['operating profit'], HI['ebit'][2]),
@@ -145,6 +169,9 @@ CASES = [
      BK['roe_sustainable']),
     ('Relative & Normalized', 'A51', 'C51', ['justified price / book'], BK['pb_fair']),
     ('Relative & Normalized', 'A52', 'C52', ['book lens'], LN['book']['base']),
+    ('Relative & Normalized', 'A53', 'C53', ['bear', 'top', 'confidence interval'],
+     LN['book']['bear']),
+    ('Relative & Normalized', 'A53', 'D53', ['bull', 'bottom'], LN['book']['bull']),
     ('Relative & Normalized', 'A27', 'C27', ['enterprise value', 'ebitda'],
      REL['own_ev_ebitda_ttm']),
     ('Relative & Normalized', 'A29', 'C29', ['price /', 'ordinary shareholders'],

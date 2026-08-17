@@ -1046,6 +1046,14 @@ rf_star = V['rf_observed'] - V['sov_spread']            # country risk enters on
 ke = rf_star + V['beta'] * V['erp_total']
 ke_dimson = rf_star + V['beta_dimson'] * V['erp_total']
 ke_beta1 = rf_star + V['beta_composite'] * V['erp_total']
+# The two bounds of the regressed beta's own 90% confidence interval, carried as costs of
+# equity. Every low/high bound in the study that moves with the discount rate uses these,
+# so the published span is the span the estimate itself supports. NOTE: ke_beta1 is the
+# ALTERNATIVE construction (a LOWER beta, so a HIGHER value) and must never be used as a
+# downside bound — it was, while it stood for a beta of one, and that silently inverted
+# the book lens's low bound and Expert 2's low bound when the regressor changed.
+ke_ci_hi = rf_star + V['beta_ci_hi'] * V['erp_total']   # high beta -> low value
+ke_ci_lo = rf_star + V['beta_ci_lo'] * V['erp_total']   # low beta  -> high value
 
 # --- cost of debt: three independent constructions, averaged on the sheet ------
 kd_m1 = V['sofr'] + V['shldr_margin']                        # the marginal drawdown rate
@@ -1286,9 +1294,9 @@ book = dict(roe_sustainable=roe_sust, ke=ke, g=g_b, pb_fair=pb_fair,
             vessel_value_to_book=V['vessel_sale_price'] / V['vessel_sale_book'],
             bvps_usd=bvps_now, bvps_aed=bvps_now * peg,
             base=pb_fair * bvps_now * peg,
-            bear=((roe_sust * 0.85) - g_b) / (ke_beta1 - g_b) * bvps_now * peg,
-            bull=((roe_sust * 1.15) - g_b) / ((rf_star + 0.55 * V['erp_total']) - g_b)
-            * bvps_now * peg)
+            ke_bear=ke_ci_hi, ke_bull=ke_ci_lo,
+            bear=((roe_sust * 0.85) - g_b) / (ke_ci_hi - g_b) * bvps_now * peg,
+            bull=((roe_sust * 1.15) - g_b) / (ke_ci_lo - g_b) * bvps_now * peg)
 
 # --- discounted cash flow, with scenarios --------------------------------------
 BASE_MID = dict(TCE_MID)
@@ -1394,9 +1402,9 @@ e2_val = e2_fcfe * (1 + e2_g) / (e2_ke - e2_g)
 e2 = dict(method_short='owner cash earnings', fcff=e2_fcff, interest_after_tax=e2_int_at,
           hybrid_coupon=HYB_COUPON, fcfe=e2_fcfe, ke=e2_ke, g=e2_g, value=e2_val,
           base=e2_val / shares_mn / 1000.0 * peg,
-          rng=[e2_fcfe * (1 + 0.01) / (ke_beta1 - 0.01) / shares_mn / 1000.0 * peg,
-               e2_fcfe * (1 + 0.025) / ((rf_star + 0.55 * V['erp_total']) - 0.025)
-               / shares_mn / 1000.0 * peg],
+          ke_lo=ke_ci_hi, ke_hi=ke_ci_lo,
+          rng=[e2_fcfe * (1 + 0.01) / (ke_ci_hi - 0.01) / shares_mn / 1000.0 * peg,
+               e2_fcfe * (1 + 0.025) / (ke_ci_lo - 0.025) / shares_mn / 1000.0 * peg],
           falsifier='A year in which free cash flow to the firm falls below the ordinary '
                     'distribution plus the perpetual coupon, without a matching fall in '
                     'capital expenditure, would break the annuity this rests on.')
@@ -1574,6 +1582,13 @@ A('the price map was struck on the same close as the study',
 A('the technical read was computed on the same close', abs(tech['close'] - spot_aed) < 1e-9)
 A('the beta used is the one the regression produced',
   abs(V['beta'] - round(beta_res['adopted']['beta_used'], 3)) < 1e-9)
+# Every published range must bracket its own base. A bound built on an alternative cost of
+# equity silently inverts the moment that alternative stops being the demanding one, which
+# is exactly what happened when the regressor changed, so it is asserted rather than assumed.
+A('every lens range brackets its own base',
+  all(L['bear'] <= L['base'] <= L['bull'] for L in lenses.values()))
+A('every expert range brackets its own base',
+  all(e['rng'][0] <= e['base'] <= e['rng'][1] for e in experts.values()))
 
 # ============================================================================
 # OUTPUT
