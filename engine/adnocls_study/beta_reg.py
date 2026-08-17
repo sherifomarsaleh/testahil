@@ -1,26 +1,34 @@
-"""ADNOCLS beta — tier-1 own-stock weekly regression against the FTSE ADX General
-Index, the subject's own local market index, with the usability gate deciding the
-adopted figure in code rather than in prose.
+"""ADNOCLS beta — the adopted figure comes from engine/beta_regression.py, which is the
+only admissible producer of a regression beta in this repository, and everything else in
+this file is DISCLOSURE around it.
 
-Three things are produced rather than asserted:
-  * the diagnostic triple (n, R-squared, SE) and the resulting 90% confidence interval;
-  * a Dimson (1979) lead-lag sum-beta, the standard correction for co-movement a
-    stock books late;
-  * the self-inclusion variant, so the contamination from leaving the subject inside
-    its own equal-weight index is visible as a number.
+`own_stock_beta('ADNOCLS', 'AE', 'ADX')` resolves the regressor itself from the exchange
+registry, runs the data-quality gate on both series before a single return is computed,
+and matches the weekly grid to the exchange's real trading week. Its returned record is
+the provenance: index file, index as-of, week rule, window, the diagnostic triple and the
+interval. NOTHING IN THE DELIVERED DOCUMENTS DESCRIBES THE REGRESSION EXCEPT OUT OF THAT
+RECORD — this study was one of the eight that were found still regressing against a
+hand-built composite through their own script, and the failure that made the rule binding
+was a source string describing a construction the study no longer used.
 
-The regressor is the published FTSE ADX General Index, which is what the beta rule
-asks for: the stock's own price history against its own local index. Two equal-weight
-composites built from the engine's own UAE price library are run alongside it and both
-are reported — the ADX-listed subset and the full ADX+DFM library — so the difference
-between a published capitalisation-weighted index and a hand-built equal-weight proxy
-is visible as a number rather than assumed immaterial.
+Two things the record does not carry are computed here and published as disclosure,
+each labelled as the study-local construction it is:
+  * the equal-weight composite variants — the ADX-listed subset and the wider ADX+DFM
+    library — so the difference between a published capitalisation-weighted index and a
+    hand-built proxy is visible as a number rather than assumed immaterial. They are
+    reported, never adopted;
+  * the self-inclusion variant, so the contamination from leaving the subject inside its
+    own equal-weight index is visible as a number.
 
-Window: the longest window up to five years. ADNOCLS listed on 02-Jun-2023, so the
-longest available window is the full listed history — stated in the output, not
-silently truncated to a five-year label. The index series supplied ends before the
-stock's last session, so the regression stops where the index stops and the unused
-tail is reported rather than quietly dropped.
+The sanctioned estimate is itself a lead-lag (Dimson) sum beta — one lag, the
+contemporaneous term and one lead — so no separate lead-lag correction is computed or
+published here: it is already inside the adopted figure. The cross-check the record does
+carry is the Blume shrinkage, two-thirds of the measured slope plus one-third of 1.0.
+
+Window: the routine takes the longest window up to five years. ADNOCLS listed on
+02-Jun-2023 and the index series ends before the share's last session, so the window is
+the listed history to the index's last session — reported from the record, not from a
+five-year label.
 """
 import sys, os, glob, json
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -56,9 +64,15 @@ def ols(X, y):
     return b, r2, se, ss_res
 
 
-IDX_PATH = os.path.join(HERE, '..', 'raw_indices', 'AE', 'ADXGENERAL.csv')
+# THE ADOPTED FIGURE, AND WITH IT THE PROVENANCE. Everything below that describes the
+# regression reads out of this record; the study does not choose the regressor, name the
+# file, count the observations or date the series for itself.
+SANCTIONED = own_stock_beta(TKR, 'AE', 'ADX')
+
+IDX_PATH = os.path.join(HERE, '..', SANCTIONED['index_file'])   # resolved, not chosen
+IDX_CODE = os.path.basename(SANCTIONED['index_file'])[:-4]
 IDX_NAME = 'FTSE ADX General Index'
-idx_raw, idx_log = clean_ohlc(load_ohlc(IDX_PATH), 'ADXGENERAL', verbose=False,
+idx_raw, idx_log = clean_ohlc(load_ohlc(IDX_PATH), IDX_CODE, verbose=False,
                               market='AE')
 idx_px = idx_raw.set_index('Date')['Price']
 
@@ -109,15 +123,13 @@ mkt_index = np.log(wk_idx / wk_idx.shift(1)).dropna()
 al = pd.concat([re_.rename('sub'), mkt_index.rename('mkt')], axis=1, sort=True).dropna()
 unused_weeks = int((wk_sub.index > wk_idx.index.max()).sum())
 
-# ---- tier-1 contemporaneous OLS beta against the published index -----------
-x, y = al['mkt'].values, al['sub'].values
-n = len(x)
-b, r2, se, _ = ols(np.column_stack([np.ones(n), x]), y)
-beta, se_beta = float(b[1]), float(se[1])
+# ---- the adopted figure, read out of the sanctioned record ------------------
+beta, se_beta, r2, n = (SANCTIONED['beta'], SANCTIONED['se'],
+                        SANCTIONED['r2'], SANCTIONED['n'])
+ci = tuple(SANCTIONED['ci90'])
+ok, msg = SANCTIONED['usable'], SANCTIONED['gate_msg']
 att = RegressionBetaAttempt(beta=beta, r_squared=r2, n_obs=n, se_beta=se_beta,
-                            frequency='weekly')
-ok, msg = att.is_usable()
-ci = (beta - 1.645 * se_beta, beta + 1.645 * se_beta)
+                            frequency=SANCTIONED['frequency'])
 
 # ---- equal-weight composite variants, disclosed not adopted ----------------
 al_adx = pd.concat([re_.rename('sub'), mkt_adx.rename('mkt')], axis=1, sort=True).dropna()
@@ -127,21 +139,12 @@ al_full = pd.concat([re_.rename('sub'), mkt_all.rename('mkt')], axis=1, sort=Tru
 b_f, r2_f, se_f, _ = ols(
     np.column_stack([np.ones(len(al_full)), al_full['mkt'].values]), al_full['sub'].values)
 
-# ---- Dimson sum-beta (1 lead, contemporaneous, 2 lags) ---------------------
-D = al.copy()
-D['lead'] = D['mkt'].shift(-1)
-D['lag1'] = D['mkt'].shift(1)
-D['lag2'] = D['mkt'].shift(2)
-D = D.dropna()
-Xd = np.column_stack([np.ones(len(D)), D['lead'], D['mkt'], D['lag1'], D['lag2']])
-bd, r2d, sed, _ = ols(Xd, D['sub'].values)
-sum_beta = float(bd[1:].sum())
-Xd_inv = np.linalg.inv(Xd.T @ Xd)
-resid = D['sub'].values - Xd @ bd
-sigma2 = float((resid ** 2).sum() / (len(D) - Xd.shape[1]))
-cov_b = Xd_inv * sigma2
-se_sum = float(np.sqrt(cov_b[1:, 1:].sum()))
-dim_ci = (sum_beta - 1.645 * se_sum, sum_beta + 1.645 * se_sum)
+# NO LEAD-LAG BLOCK IS COMPUTED HERE. The sanctioned routine runs the regression with one
+# lag, the contemporaneous term and one lead and returns their sum, so the adopted beta IS
+# the lead-lag estimate. A second, study-local sum-beta published beside it as "the
+# correction" would tell a reader the adopted figure lacks a correction it already carries.
+# The cross-check the record does supply is the Blume shrinkage below.
+BLUME = float(SANCTIONED['blume_crosscheck'])
 
 # ---- the subject is INSIDE the published index, and that cannot be removed ----
 # ADNOCLS is a constituent of the index it is regressed against. On an equal-weight
@@ -155,37 +158,19 @@ b_in, r2_in, se_in, _ = ols(
     np.column_stack([np.ones(len(al_in)), al_in['mkt'].values]), al_in['sub'].values)
 
 # ---- the gate decides ------------------------------------------------------
-weak = bool(r2 < 0.10 or (ci[1] - ci[0]) > 2 * abs(beta))
-if ok:
-    beta_used = beta
-    basis = 'tier-1 own-stock weekly regression (usability gate PASSED)'
-    why = (f"n = {n} weekly observations, R-squared = {r2:.3f} against the 0.05 floor, "
-           f"SE(beta) = {se_beta:.3f} against |beta| = {abs(beta):.3f}. All three "
-           f"conditions of the usability gate are met, so the regression estimate is "
-           f"adopted rather than a default.")
-else:
-    beta_used = 1.0
-    basis = 'tier-3 default on a GENUINE usability-gate failure, disclosed with diagnostics'
-    why = (f"The tier-1 regression FAILS the usability gate: {msg}. A silent default is "
-           f"forbidden; a default shown with the diagnostics that triggered it is "
-           f"permitted, and this is that case.")
-
-# The engine's sanctioned routine resolves the regressor itself from the (market,
-# exchange) registry, runs the data-quality gate on BOTH series and matches the weekly
-# grid to the exchange's real trading week. A study-local composite is no longer an
-# admissible source for a beta, so the adopted figure comes from here and the composites
-# below survive only as disclosure.
-SANCTIONED = own_stock_beta(TKR, 'AE', 'ADX')
-beta, se_beta, r2, n = (SANCTIONED['beta'], SANCTIONED['se'],
-                        SANCTIONED['r2'], SANCTIONED['n'])
-ci = tuple(SANCTIONED['ci90'])
-ok, msg = SANCTIONED['usable'], SANCTIONED['gate_msg']
-beta_used = beta
-basis = ('tier-1 own-stock weekly regression against the exchange\'s published index, '
-         'produced by the engine\'s sanctioned routine')
-why = (f"n = {n} weekly observations against the published index of the share's own "
-       f"exchange, R-squared = {r2:.3f}, SE(beta) = {se_beta:.3f}. {msg}.")
+# The gate is the routine's own, not a second one re-implemented here: a study that
+# re-derives the verdict can disagree with the record it is quoting.
 weak = bool(SANCTIONED['weak'])
+if not ok:                                                   # pragma: no cover
+    raise SystemExit(f'the sanctioned regression FAILS the usability gate: {msg}. A '
+                     f'silent default is forbidden — stop and disclose.')
+beta_used = beta
+basis = ("tier-1 own-stock weekly regression against the published index of the share's "
+         "own exchange, produced by the engine's sanctioned routine")
+why = (f"n = {n} weekly observations against the published index of the share's own "
+       f"exchange, resolved by the routine from the exchange the share is listed on, over "
+       f"{SANCTIONED['first_obs']} to {SANCTIONED['last_obs']}. R-squared = {r2:.3f}, "
+       f"SE(beta) = {se_beta:.3f}. {msg}.")
 
 out = dict(
     ticker=TKR,
@@ -194,22 +179,43 @@ out = dict(
     ci90=[float(ci[0]), float(ci[1])],
     usable=bool(ok), gate_msg=msg,
     regressor=IDX_NAME,
+    regressor_code=IDX_CODE,
+    regressor_file=SANCTIONED['index_file'],
+    regressor_asof=SANCTIONED['index_asof'],
+    regressor_conforming=bool(SANCTIONED['conforming']),
+    regressor_interim_note=SANCTIONED['interim_note'],
+    week_rule=SANCTIONED['week_rule'],
     regressor_basis=('The published capitalisation-weighted index of the exchange the '
-                     'share is listed on — the local index the beta rule asks for.'),
+                     'share is listed on — the local index the beta rule asks for, '
+                     'resolved from that exchange by the routine rather than chosen by '
+                     'the study.'),
     regressor_rows=int(len(idx_raw)),
     regressor_span=[str(idx_raw['Date'].min().date()), str(idx_raw['Date'].max().date())],
-    regressor_repairs=idx_log,
+    regressor_repairs=SANCTIONED['index_dq'],
+    stock_repairs=SANCTIONED['stock_dq'],
     unused_stock_weeks=unused_weeks,
-    unused_note=(f'The index series supplied ends {idx_raw["Date"].max().date()}, before '
-                 f'the last stock session used elsewhere in the study (2026-08-07). '
-                 f'{unused_weeks} weekly stock observations therefore fall outside the '
-                 'regression. The window stops where the index stops rather than pairing '
-                 'the stock against a stale index level.'),
+    unused_note=(f"The index series ends {SANCTIONED['index_asof']}, before the last stock "
+                 f'session used elsewhere in the study (2026-08-07). {unused_weeks} weekly '
+                 'stock observations therefore fall outside the regression. The window '
+                 'stops where the index stops rather than pairing the stock against a '
+                 'stale index level.'),
     composite_names=len(rets_adx), composite_basis='ADX-listed names in the UAE library',
-    window_years=round(span_years, 2), frequency='weekly',
-    window_note=("The stock listed on 02-Jun-2023, so the longest window available is "
-                 f"{span_years:.2f} years, short of the five-year target. The regression "
-                 "uses the full listed history."),
+    window_years=SANCTIONED['window_years'], frequency=SANCTIONED['frequency'],
+    first_obs=SANCTIONED['first_obs'], last_obs=SANCTIONED['last_obs'],
+    listed_years=round(span_years, 2),
+    window_note=("The stock listed on 02-Jun-2023 and the index series ends before its "
+                 f"last session, so the regression window runs {SANCTIONED['first_obs']} "
+                 f"to {SANCTIONED['last_obs']} — {SANCTIONED['window_years']:.2f} years, "
+                 "short of the five-year target, which no amount of method can create."),
+    lead_lag=("The estimate is a lead-lag sum beta: the routine regresses on one lag, the "
+              "contemporaneous return and one lead and sums the three slopes, so the "
+              "co-movement a thinly traded share books late is already inside the adopted "
+              "figure rather than published beside it as a separate correction."),
+    blume_crosscheck=BLUME,
+    blume_note=("Blume shrinkage on the adopted slope — two-thirds of the measured figure "
+                "plus one-third of 1.0, the standard adjustment for the tendency of a "
+                "measured beta to drift toward the market over time. It is a cross-check "
+                "reported by the same record, and it is not what the study discounts at."),
     weak=weak,
     weak_reason=(f"R-squared = {r2*100:.1f}% against the 10% weak-instrument threshold; "
                  f"the 90% confidence interval [{ci[0]:.2f}, {ci[1]:.2f}] spans "
@@ -218,10 +224,12 @@ out = dict(
     adopted=dict(
         beta_used=float(beta_used), basis=basis, why=why,
         corroboration=(
-            f"Cross-checked three ways. (i) The Dimson sum-beta is {sum_beta:.3f} with a 90% "
-            f"interval of [{dim_ci[0]:.2f}, {dim_ci[1]:.2f}]; the adopted {beta_used:.2f} "
-            f"{'sits inside' if dim_ci[0] <= beta_used <= dim_ci[1] else 'sits outside'} it. "
-            f"(ii) Regressing against an equal-weight composite of the exchange's own "
+            f"Cross-checked three ways. (i) Shrunk toward the market on the Blume "
+            f"adjustment the same record reports, the slope is {BLUME:.3f}, which "
+            f"{'sits inside' if ci[0] <= BLUME <= ci[1] else 'sits outside'} the "
+            f"regression's own 90% interval of [{ci[0]:.2f}, {ci[1]:.2f}] and moves the "
+            f"estimate {'toward' if abs(BLUME - 1) < abs(beta_used - 1) else 'away from'} "
+            f"one. (ii) Regressing against an equal-weight composite of the exchange's own "
             f"names instead of the published index gives {float(b_c[1]):.3f} "
             f"(R-squared {float(r2_c):.3f}), and against the wider ADX+DFM library "
             f"{float(b_f[1]):.3f} (R-squared {float(r2_f):.3f}). (iii) The sector prior for "
@@ -238,15 +246,6 @@ out = dict(
     full_library_variant=dict(beta=float(b_f[1]), r2=float(r2_f), n=int(len(al_full)),
                               se=float(se_f[1]), names=len(rets_all),
                               note="ADX + DFM equal-weight composite; disclosed, not adopted."),
-    dimson=dict(
-        sum_beta=sum_beta, se_sum=se_sum, r2=float(r2d), n=int(len(D)),
-        ci90=[float(dim_ci[0]), float(dim_ci[1])],
-        coefficients=dict(lead=float(bd[1]), contemporaneous=float(bd[2]),
-                          lag1=float(bd[3]), lag2=float(bd[4])),
-        uplift_vs_ols=float(sum_beta - beta),
-        note=("Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. "
-              "The uplift over the contemporaneous OLS beta measures how much co-movement "
-              "is booked late because the stock does not trade on every session.")),
     self_inclusion_bias=dict(
         beta_proxy_including_subject=float(b_in[1]), r2_including=float(r2_in),
         beta_proxy_excluding_subject=float(b_c[1]), r2_excluding=float(r2_c),
@@ -272,15 +271,19 @@ out = dict(
                   "estimate between the two priors is the economically coherent answer.")),
 )
 json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
-print(f"OLS beta   {beta:.3f} | R2 {r2:.3f} | n {n} | SE {se_beta:.3f} "
-      f"| CI90 [{ci[0]:.2f},{ci[1]:.2f}] | usable={ok} | weak={weak}")
+print(f"SANCTIONED beta {beta:.4f} | R2 {r2:.3f} | n {n} | SE {se_beta:.3f} "
+      f"| CI90 [{ci[0]:.4f},{ci[1]:.4f}] | usable={ok} | weak={weak}")
 print(f"  gate: {msg}")
-print(f"Dimson sum {sum_beta:.3f} | SE {se_sum:.3f} | R2 {r2d:.3f} | n {len(D)} "
-      f"| CI90 [{dim_ci[0]:.2f},{dim_ci[1]:.2f}] | uplift {sum_beta-beta:+.3f}")
+print(f"  regressor {IDX_CODE} ({SANCTIONED['index_file']}) as of "
+      f"{SANCTIONED['index_asof']}, week rule {SANCTIONED['week_rule']}, "
+      f"conforming={SANCTIONED['conforming']}; lead-lag sum beta by construction")
+print(f"  Blume cross-check {BLUME:.4f}")
 print(f"  composite {len(rets_adx)} ADX names ({TKR} excluded from its own index); "
       f"full library variant beta {float(b_f[1]):.3f} on {len(rets_all)} names")
 print(f"  self-inclusion: beta {float(b_in[1]):.3f} (R2 {float(r2_in):.3f}) if {TKR} is left IN")
 print(f"  thin trading: flat_frac {flat_self:.3f} vs AE median {flat_median:.3f} "
       f"({flat_self/flat_median:.2f}x)")
-print(f"  window {span_years:.2f} yr (listed 02-Jun-2023)")
+print(f"  regression window {SANCTIONED['window_years']:.2f} yr "
+      f"({SANCTIONED['first_obs']} to {SANCTIONED['last_obs']}); "
+      f"listed history {span_years:.2f} yr from 02-Jun-2023")
 print(f"  ADOPTED beta = {beta_used:.3f} — {basis}")

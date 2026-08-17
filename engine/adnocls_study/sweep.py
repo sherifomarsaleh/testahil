@@ -15,6 +15,13 @@ from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass, Sourc
 
 R = SweepRegister(ticker='ADNOCLS', asset_class=AssetClass.STOCK, sweep_date='2026-08-09')
 
+# The beta finding below describes a measurement, so it is written FROM THE MEASUREMENT'S
+# OWN RECORD rather than typed. A register entry that quotes a figure by hand goes stale
+# the moment the regression is re-run, and this one did: it carried the previous edition's
+# slope after the engine's sanctioned routine had already replaced it.
+BR = json.load(open(os.path.join(HERE, 'beta_result.json')))
+BS = BR['sanctioned']
+
 CO = SourceType.COMPANY_OFFICIAL
 IR = SourceType.COMPANY_IR
 REG = SourceType.REGULATOR_OFFICIAL
@@ -126,10 +133,13 @@ F['C4'] = R.add(
     'July 2026.',
     'Daily index history, investing.com export, screened against the exchange calendar',
     MKT, '2026-07-24',
-    model_impact='The regressor in the beta estimate, and therefore the largest single '
-                 'input to the cost of equity. Regressed against it the beta is 1.085; '
-                 'against an equal-weight composite of the same exchange it is 0.705. Both '
-                 'are published, and the index is what is adopted.')
+    model_impact=('The regressor in the beta estimate, and therefore the largest single '
+                  'input to the cost of equity. It is resolved from the exchange the share '
+                  f"is listed on rather than chosen by the study: {BS['n']} weekly "
+                  f"observations from {BS['first_obs']} to {BS['last_obs']} give a beta of "
+                  f"{BS['beta']:.4f}; against an equal-weight composite of the same "
+                  f"exchange's names it is {BR['composite_variant']['beta']:.3f}. Both are "
+                  'published, and the index is what is adopted.'))
 F['C3'] = R.add(
     Ring.COUNTRY, 'fiscal / political events with sector read-through', FindingClass.S,
     'The company is majority-owned by the national oil company. A secondary placement in '

@@ -255,6 +255,33 @@ for _lbl, _v in (('first-edition central', CENTRAL_ED1), ('first-edition cash fl
                  ('second-edition cash flow', DCF_ED2)):
     assert 1.0 < _v < 100.0, f'{_lbl} recovered as {_v}, which is not a share price'
 
+
+# The SUPERSEDED edition's beta statistics, recovered the same way — the reviews quote them
+# verbatim, so the figures this edition is compared against come out of a committed file
+# rather than out of memory. The comparison the document then draws is asserted here: if a
+# later re-measurement ever NARROWED the interval, the sentences below would be false and
+# this fails before anything is written.
+def _prior_stat(pattern, group=1):
+    counts = _collections.Counter(
+        m.group(group) for r in _ADJ for v in r.values() if isinstance(v, str)
+        for m in _re.finditer(pattern, v))
+    assert counts, f'no superseded figure recoverable for {pattern!r}'
+    return float(counts.most_common(1)[0][0])
+
+
+PRIOR_BETA = _prior_stat(r'β\s*(\d\.\d{3})')
+PRIOR_CI_LO = _prior_stat(r'CI\s*\[(\d\.\d{3}),\s*\d\.\d{3}\]')
+PRIOR_CI_HI = _prior_stat(r'CI\s*\[\d\.\d{3},\s*(\d\.\d{3})\]')
+PRIOR_WIDTH = PRIOR_CI_HI - PRIOR_CI_LO
+CI_WIDTH = IN['beta_ci_hi'] - IN['beta_ci_lo']
+assert 0.3 < PRIOR_BETA < 3.0 and PRIOR_CI_LO < PRIOR_BETA < PRIOR_CI_HI, \
+    f'the superseded beta recovered as {PRIOR_BETA} [{PRIOR_CI_LO}, {PRIOR_CI_HI}]'
+assert abs(PRIOR_BETA - IN['beta']) > 1e-4, \
+    'the superseded beta and the adopted beta are the same figure — nothing was re-measured'
+assert CI_WIDTH > PRIOR_WIDTH, \
+    ('the re-measured interval is NOT wider than the superseded one, so every sentence '
+     'in this document that says it widened is false')
+
 # ---- the purchase announced on the anchor date -------------------------------
 # Eleven vessels for about USD 1.3 billion, announced on the same day as the closing price
 # this study is anchored on. The first edition left it out entirely, which compared a fair
@@ -690,7 +717,16 @@ caption(f"The alternative readings are shown so that each genuinely contested or
         f"rather than the statistics. The bounds are still drawn from the estimate's own "
         f"interval rather than from round numbers chosen by hand — but they are not the "
         f"span the estimate alone supports, and an earlier edition described them as though "
-        f"they were. The index reading is the largest of the three "
+        f"they were. Those bounds are WIDER in this edition than in the last one, and the "
+        f"reason is worth stating rather than burying: the beta has been re-measured on the "
+        f"exchange's own trading week, and its 90% interval widened from "
+        f"[{PRIOR_CI_LO:.3f}, {PRIOR_CI_HI:.3f}] to [{IN['beta_ci_lo']:.3f}, "
+        f"{IN['beta_ci_hi']:.3f}]. The bear and bull cases take those bounds directly, so "
+        f"they widened with it. A published range that grows is not a defect in the study; "
+        f"it is the honest width of what {n0(BE['n'])} weekly observations on a "
+        f"{BE['window_years']:.1f}-year history can support, and the previous edition's "
+        f"tighter range was claiming more precision than the data holds. The index reading "
+        f"is the largest of the three "
         f"alternatives: AED {p2(beta_gap)} a share separates the two constructions on the "
         f"cash-flow lens and AED {p2(central_gap)} on the weighted central, and both are "
         f"carried at full size through section 1.1, section 1.8, the comparison in "
@@ -995,10 +1031,11 @@ P(f"One input in the construction above moves the answer further than any operat
   f"assumption in the study, and it is not a judgement about the company — it is a choice "
   f"about what "
   f"“the market” means. Regressed against {BFP['label']}, the {BE['regressor']}, "
-  f"the share's own weekly returns over its full listed history give a beta of "
-  f"{p3(BE['beta'])} — {n0(BE['n'])} observations, an R-squared of {BE['r2']:.3f}, a "
-  f"standard error of {BE['se']:.3f} and a 90% interval of [{BE['ci90'][0]:.2f}, "
-  f"{BE['ci90'][1]:.2f}]. That is the index the share is listed against, it is the "
+  f"the share's own weekly returns from {BE['first_obs']} to {BE['last_obs']} give a beta "
+  f"of {p3(BE['beta'])} — {n0(BE['n'])} observations, an R-squared of "
+  f"{IN['beta_r2']:.3f}, a standard error of {IN['beta_se']:.3f} and a 90% interval of "
+  f"[{IN['beta_ci_lo']:.3f}, {IN['beta_ci_hi']:.3f}]. That is the index the share is "
+  f"listed against, it is the "
   f"yardstick this study adopts, and the estimate is close enough to one that this share "
   f"is best described as moving with its market. It also settles an argument. The economic "
   f"prior for a fleet owner is that it bears the risk of the market its ships trade in "
@@ -1008,14 +1045,20 @@ P(f"One input in the construction above moves the answer further than any operat
   f"{BE['plausibility']['contracted_services_prior'].split(': ')[1]} — and the regression "
   f"now agrees with that prior rather than contradicting it.")
 P(f"Run the same returns against {BFA['label']} and the slope is {p3(BFA['beta'])} instead. "
-  f"One qualification before the explanation, because the two runs are not quite the "
-  f"identical regression: the published-index run pairs {n0(BE['n'])} weekly observations "
-  f"and the composite run pairs {n0(BE['composite_variant']['n'])}, because the index "
-  f"series obtained stops earlier than the exchange's own price history does. The samples "
+  f"Two qualifications before the explanation. The first is that the runs are not quite "
+  f"the identical regression: the published-index run pairs {n0(BE['n'])} weekly "
+  f"observations and the composite run pairs {n0(BE['composite_variant']['n'])}, because "
+  f"the index series obtained stops earlier than the exchange's own price history does and "
+  f"because the two series are screened and aligned to the exchange's trading week before "
+  f"they are paired. The samples "
   f"differ by {n0(abs(BE['composite_variant']['n'] - BE['n']))} weeks out of "
   f"{n0(BE['n'])}, so a small part of the gap between the two slopes is sample rather than "
   f"market definition, and an earlier edition called them the same regression without "
-  f"saying so. The rest of the difference is large and it has nothing to do with this "
+  f"saying so. The second is that only the published-index figure is a measurement the "
+  f"study is entitled to discount at: the composite is a basket assembled here, and a "
+  f"basket assembled by the same hand that uses it can be assembled until it agrees. It is "
+  f"published for comparison and it prices nothing. The rest of the difference is large "
+  f"and it has nothing to do with this "
   f"company: a published "
   f"index is weighted by size and is therefore dominated by the same large-capitalisation "
   f"group the subject belongs to, while an equal-weight composite gives the exchange's "
@@ -1884,7 +1927,8 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
         ['Cost of equity', pc(W['ke'], 2), pc(W['ke_term'], 2),
          f"adjusted risk-free rate plus beta times the premium. On the equal-weight "
          f"composite's {p3(BFA['beta'])} it would be {pc(W['ke_beta1'], 2)}; on the "
-         f"lead-lag sum beta of {p3(IN['beta_dimson'])}, {pc(W['ke_dimson'], 2)}"],
+         f"measured slope shrunk toward the market at {p3(IN['beta_blume'])}, "
+         f"{pc(W['ke_blume'], 2)}"],
         ['Cost of debt, pre-tax', pc(W['kd'], 2), pc(W['kd_term'], 2),
          f"the plain AVERAGE of three constructions built on six disclosed instruments — "
          f"the evidence table follows. It is not a weighted figure and an earlier edition "
@@ -1934,36 +1978,40 @@ table(rows, [1.55, 1.00, 0.72, 3.73], size=8.1, band_rows={6, 11},
 
 H2('The beta — what it was measured against, and what a different market would give')
 P(f"A beta is a statement about co-movement with a market, so the series chosen to stand "
-  f"for the market decides the answer. This study regresses the share's own weekly returns "
-  f"on the {BE['regressor']} — the published, capitalisation-weighted index of the "
-  f"exchange the share is listed on. The index series runs from "
+  f"for the market decides the answer. That series is not chosen here. It follows from "
+  f"where the share is listed: the regression is run against the {BE['regressor']} "
+  f"({BE['regressor_code']}), the published, capitalisation-weighted index of the exchange "
+  f"the share trades on, taken as of {BE['regressor_asof']}. The index series runs from "
   f"{BE['regressor_span'][0]} to {BE['regressor_span'][1]} across "
-  f"{n0(BE['regressor_rows'])} sessions and was screened against the exchange's own "
-  f"trading calendar before use.")
+  f"{n0(BE['regressor_rows'])} sessions; it and the share's own history are both screened "
+  f"for data quality before a single return is computed, and the returns are paired on the "
+  f"exchange's own trading week rather than on a calendar week that would fall on days the "
+  f"exchange is shut. Every figure in the table below is read out of that measurement's "
+  f"own record, including the description of what was measured against what.")
 rows = [['Item', 'Value', 'Note'],
-        ['Market series used', BE['regressor'], BE['regressor_basis']],
+        ['Market series used', f"{BE['regressor']} ({BE['regressor_code']})",
+         BE['regressor_basis']],
         ['Span of that series',
          f"{BE['regressor_span'][0]} to {BE['regressor_span'][1]}",
-         f"{n0(BE['regressor_rows'])} sessions"],
+         f"{n0(BE['regressor_rows'])} sessions, taken as of {BE['regressor_asof']}. "
+         f"{BE['regressor_repairs'][0].capitalize() if BE['regressor_repairs'] else 'No repairs were needed'}"],
+        ['How the slope is measured', 'lead-lag sum', BE['lead_lag']],
         ['Observations in the regression', n0(BE['n']),
-         f"weekly returns over the share's full listed history of "
+         f"weekly returns from {BE['first_obs']} to {BE['last_obs']}, "
          f"{BE['window_years']:.2f} years — the share listed in June 2023, so a five-year "
          f"window does not exist for it"],
         ['Beta', p3(BE['beta']),
          'the adopted figure, used in the cost of equity above'],
-        ['Standard error', f"{BE['se']:.3f}",
+        ['Standard error', f"{IN['beta_se']:.3f}",
          'against the estimate itself, which is the usability test this has to pass'],
-        ['R-squared', f"{BE['r2']:.3f}",
+        ['R-squared', f"{IN['beta_r2']:.3f}",
          'the share of the weekly return variance the index explains'],
         ['90% confidence interval',
-         f"{BE['ci90'][0]:.3f} to {BE['ci90'][1]:.3f}",
+         f"{IN['beta_ci_lo']:.3f} to {IN['beta_ci_hi']:.3f}",
          'the bear and bull cases in this study take these two bounds directly, so the '
-         'published fair-value range is the range this estimate itself supports'],
-        ['Lead-lag sum beta', p3(BE['dimson']['sum_beta']),
-         f"one lead and two lags, which recovers co-movement booked late because the share "
-         f"does not trade on every session. It is {BE['dimson']['uplift_vs_ols']:+.3f} "
-         f"against the adopted figure, so the correction points slightly higher rather "
-         f"than lower"],
+         'published fair-value range is the range this estimate itself supports — and it '
+         'is a wider interval than the previous edition of this study published'],
+        ['Shrunk toward the market', p3(IN['beta_blume']), BE['blume_note']],
         ['The same regression on an equal-weight composite', p3(BFA['beta']),
          f"{BE['composite_variant']['note']} R-squared "
          f"{BE['composite_variant']['r2']:.3f} on {n0(BE['composite_variant']['n'])} "
@@ -1974,7 +2022,12 @@ rows = [['Item', 'Value', 'Note'],
          f"{BE['full_library_variant']['r2']:.3f} across "
          f"{n0(BE['full_library_variant']['names'])} names"],
         ['Weekly observations excluded', n0(BE['unused_stock_weeks']), BE['unused_note']]]
-table(rows, [1.72, 1.10, 4.18], size=8.0, band_rows={4, 9}, left_cols=(1, 2))
+# The two shaded rows are the adopted figure and the composite it is set against; they move
+# with the table, so they are located by what they say rather than by a remembered index.
+_bandr = {i for i, r in enumerate(rows)
+          if r[0] in ('Beta', 'The same regression on an equal-weight composite')}
+assert len(_bandr) == 2, 'the beta evidence table lost one of the two rows it shades'
+table(rows, [1.72, 1.10, 4.18], size=8.0, band_rows=_bandr, left_cols=(1, 2))
 caption(f"Why the published index and the composite differ by {BFP['beta']-BFA['beta']:.3f} "
         f"of a beta is a fact about index construction, not about the company. A published "
         f"index is weighted by size, so it is dominated by the same large-capitalisation "
@@ -1989,7 +2042,7 @@ caption(f"Why the published index and the composite differ by {BFP['beta']-BFA['
         f"equal-weight proxy both ways and including the subject lifts the measured beta "
         f"by {BE['self_inclusion_bias']['beta_proxy_including_subject']-BE['self_inclusion_bias']['beta_proxy_excluding_subject']:.3f}, "
         f"which is the scale of the same pull the published-index figure carries. And the "
-        f"index series ends {BE['regressor_span'][1]}, before the share's last session "
+        f"index series ends {BE['regressor_asof']}, before the share's last session "
         f"used elsewhere in this study, so {n0(BE['unused_stock_weeks'])} weekly "
         f"observations fall outside the window rather than being paired against a stale "
         f"index level.")

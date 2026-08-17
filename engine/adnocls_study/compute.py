@@ -32,6 +32,19 @@ CALLQ126 = "ADNOC L&S plc, Q1 2026 earnings call transcript"
 
 INPUTS = {}
 
+# THE BETA'S PROVENANCE IS READ, NEVER TYPED. The regression is produced by the engine's
+# sanctioned routine, and the record it returns — regressor, index file, as-of date,
+# window, observation count and diagnostics — is what the source strings below are built
+# from. The rule exists because a study was found carrying a source string that described
+# the construction it used to run rather than the one it now runs, and a typed string
+# cannot fail when the regression moves underneath it.
+BETA_REC = json.load(open(os.path.join(HERE, 'beta_result.json')))
+BETA_SAN = BETA_REC['sanctioned']
+# The week the returns are measured over is a fact about the exchange, so it is read off
+# the record too — and rendered in the words a reader outside this project uses.
+BETA_WEEK = {'W-FRI': 'Friday close to Friday close',
+             'W-THU': 'Thursday close to Thursday close'}[BETA_SAN['week_rule']]
+
 
 def IN(key, value, source, date, layer):
     INPUTS[key] = dict(value=value, source=source, date=date, layer=layer)
@@ -632,24 +645,42 @@ IN('tax_topup_rate', 0.15, "Domestic minimum top-up tax of 15% applying in the U
    '2025-01-01', 'Country')
 IN('tax_stat', 0.09, "UAE corporate tax, Federal Decree-Law 47 of 2022 — the 9% standard "
    "rate applying to taxable income above the threshold", '2023-06-01', 'Country')
-IN('beta', 1.1032, "Weekly regression of the share's own returns on the published index of its own "
-   "exchange, produced by the engine's sanctioned beta routine — 159 weekly observations "
-   "from 2023-06-16 to 2026-07-17, R-squared 0.181, standard error 0.315",
-   '2026-07-24', 'Market')
-IN('beta_se', 0.3147, "Standard error of the same regression", '2026-07-24', 'Market')
-IN('beta_r2', 0.1814, "R-squared of the same regression", '2026-07-24', 'Market')
-IN('beta_dimson', 1.0688, "Lead-lag sum beta from the same series, one lead and two lags — "
-   "the correction for co-movement a share books late because it does not trade every "
-   "session", '2026-07-24', 'Market')
-IN('beta_composite', 0.705, "The same regression run against an equal-weight composite of "
-   "the exchange's own listed names instead of the published index. Reported because the "
-   "gap between the two is large and is a property of index construction, not of the "
-   "company: the published index is weighted by size and is dominated by the same "
-   "large-capitalisation group the subject belongs to", '2026-08-07', 'Market')
-IN('beta_ci_lo', 0.5855, "Lower bound of the 90% confidence interval on the regressed beta",
-   '2026-07-24', 'Market')
-IN('beta_ci_hi', 1.6210, "Upper bound of the 90% confidence interval on the regressed beta",
-   '2026-07-24', 'Market')
+IN('beta', round(BETA_SAN['beta'], 4),
+   f"Weekly regression of the share's own returns on the {BETA_REC['regressor']} "
+   f"({BETA_REC['regressor_code']}), the published index of the exchange the share is "
+   f"listed on — the market series is resolved from that listing rather than chosen by "
+   f"this study, and it is taken as of {BETA_SAN['index_asof']}. {BETA_SAN['n']} weekly "
+   f"observations measured {BETA_WEEK} on the exchange's own trading week, from "
+   f"{BETA_SAN['first_obs']} to {BETA_SAN['last_obs']}, with both series screened for "
+   f"data quality before they are paired. The slope is a lead-lag sum — one lag, the "
+   f"contemporaneous return and one lead, added together. R-squared {BETA_SAN['r2']:.4f}, "
+   f"standard error {BETA_SAN['se']:.4f}",
+   BETA_SAN['index_asof'], 'Market')
+IN('beta_se', round(BETA_SAN['se'], 4), "Standard error of the same regression",
+   BETA_SAN['index_asof'], 'Market')
+IN('beta_r2', round(BETA_SAN['r2'], 4), "R-squared of the same regression",
+   BETA_SAN['index_asof'], 'Market')
+IN('beta_blume', round(BETA_SAN['blume_crosscheck'], 4),
+   "Blume cross-check reported with the same regression — two-thirds of the measured "
+   "slope plus one-third of 1.0, the standard adjustment for the tendency of a measured "
+   "beta to drift toward the market over time. Published as a check on the adopted "
+   "figure; the study does not discount at it",
+   BETA_SAN['index_asof'], 'Market')
+IN('beta_composite', round(BETA_REC['composite_variant']['beta'], 3),
+   "The share's own returns regressed against an equal-weight composite of the exchange's "
+   "own listed names instead of the published index — a basket assembled for this study "
+   "alone, published for comparison and never adopted, because a hand-built basket is not "
+   "the market this share is listed against. "
+   "Reported because the gap between the two is large and is a property of index "
+   "construction, not of the company: the published index is weighted by size and is "
+   "dominated by the same large-capitalisation group the subject belongs to",
+   '2026-08-07', 'Market')
+IN('beta_ci_lo', round(BETA_SAN['ci90'][0], 4),
+   "Lower bound of the 90% confidence interval on the regressed beta",
+   BETA_SAN['index_asof'], 'Market')
+IN('beta_ci_hi', round(BETA_SAN['ci90'][1], 4),
+   "Upper bound of the 90% confidence interval on the regressed beta",
+   BETA_SAN['index_asof'], 'Market')
 IN('g_terminal', 0.02, FS25 + " — the company's own value-in-use test projects cash flows "
    "beyond its plan at a growth rate equal to an estimated 2% inflation rate; adopted here "
    "as the terminal growth rate", '2025-12-31', 'Company')
@@ -1219,7 +1250,7 @@ mktcap = shares_mn * spot_aed / peg * 1000.0            # USD'000
 spot_usd = spot_aed / peg
 rf_star = V['rf_observed'] - V['sov_spread']            # country risk enters once, via the ERP
 ke = rf_star + V['beta'] * V['erp_total']
-ke_dimson = rf_star + V['beta_dimson'] * V['erp_total']
+ke_blume = rf_star + V['beta_blume'] * V['erp_total']
 ke_beta1 = rf_star + V['beta_composite'] * V['erp_total']
 # The two bounds of the regressed beta's own 90% confidence interval, carried as costs of
 # equity. Every low/high bound in the study that moves with the discount rate uses these,
@@ -1275,9 +1306,9 @@ wacc_glide = [wacc + (wacc_term - wacc) * (i + 1) / 5.0 for i in range(5)]
 
 wacc_blk = dict(
     rf_observed=V['rf_observed'], sov_spread=V['sov_spread'], rf_star=rf_star,
-    beta=V['beta'], beta_se=V['beta_se'], beta_r2=V['beta_r2'], beta_dimson=V['beta_dimson'],
+    beta=V['beta'], beta_se=V['beta_se'], beta_r2=V['beta_r2'], beta_blume=V['beta_blume'],
     erp=V['erp_total'], crp=V['crp'], erp_mature=V['erp_mature'],
-    ke=ke, ke_dimson=ke_dimson, ke_beta1=ke_beta1,
+    ke=ke, ke_blume=ke_blume, ke_beta1=ke_beta1,
     kd_method1=kd_m1, kd_method2=kd_m2, kd_method3=kd_m3, kd=kd,
     kd_balance_weighted=kd_balance_weighted, kd_construction='average of three constructions',
     kd_bank_mid=kd_bank_mid, kd_other_mid=kd_other_mid, kd_thirdparty=kd_thirdparty,
@@ -1706,7 +1737,9 @@ panel_centre = (e1['base'] + e2['base'] + e3['base']) / 3.0
 # ============================================================================
 # SENSITIVITY
 # ============================================================================
-BETAS = [0.705, 0.90, 1.1032, 1.35, 1.621]   # composite · mid · adopted · mid · CI top   # composite · mid · adopted · mid · CI top
+# composite · mid · adopted · mid · top of the regression's own 90% interval. The two
+# mid rows sit roughly halfway between their neighbours so the grid is read across evenly.
+BETAS = [V['beta_composite'], 0.90, V['beta'], 1.35, V['beta_ci_hi']]
 GS = [0.010, 0.015, 0.020, 0.025]
 sens_beta_g = [[dcf_scenario(b, 1.0, 1.0, True)['fv_aed'] if g == V['g_terminal'] else None
                 for g in GS] for b in BETAS]
@@ -1859,6 +1892,28 @@ A('the price map was struck on the same close as the study',
 A('the technical read was computed on the same close', abs(tech['close'] - spot_aed) < 1e-9)
 A('the beta used is the one the regression produced',
   abs(V['beta'] - round(beta_res['adopted']['beta_used'], 4)) < 1e-9)
+# ...and that regression is the SANCTIONED one, against a conforming regressor. The
+# adopted figure agreeing with the record's own adopted field is not enough: a study-local
+# script can write any figure into that field, which is the failure this checks for.
+A('the beta is the sanctioned routine\'s, on a conforming regressor',
+  abs(V['beta'] - round(beta_res['sanctioned']['beta'], 4)) < 1e-9
+  and beta_res['sanctioned']['conforming'] and beta_res['sanctioned']['usable']
+  and beta_res['sanctioned']['interim_note'] is None)
+A('the published interval, standard error and Blume check are the record\'s',
+  abs(V['beta_ci_lo'] - round(beta_res['sanctioned']['ci90'][0], 4)) < 1e-9
+  and abs(V['beta_ci_hi'] - round(beta_res['sanctioned']['ci90'][1], 4)) < 1e-9
+  and abs(V['beta_se'] - round(beta_res['sanctioned']['se'], 4)) < 1e-9
+  and abs(V['beta_blume'] - round(beta_res['sanctioned']['blume_crosscheck'], 4)) < 1e-9)
+# The Blume cross-check is a SHRINKAGE of the adopted slope toward 1.0, and the study says
+# so. If it ever stopped being that — the record swapping in a different cross-check, or
+# the wrong field being read, which is exactly how a lead-lag figure once ended up carrying
+# this label — the description in the documents would be false and this fails first.
+A('the Blume cross-check is the adopted slope shrunk toward one',
+  abs(V['beta_blume'] - (2 / 3 * beta_res['sanctioned']['beta'] + 1 / 3)) < 5e-5
+  and abs(V['beta_blume'] - 1.0) < abs(V['beta'] - 1.0))
+A('the disclosed composite is published but discounted at nowhere',
+  V['beta_composite'] != V['beta'] and abs(ke - (rf_star + V['beta'] * V['erp_total'])) < 1e-12
+  and abs(wacc_blk['ke'] - ke) < 1e-12)
 # Every published range must bracket its own base. A bound built on an alternative cost of
 # equity silently inverts the moment that alternative stops being the demanding one, which
 # is exactly what happened when the regressor changed, so it is asserted rather than assumed.
@@ -1918,7 +1973,7 @@ OUT = dict(
                          label="an equal-weight composite of the same exchange's names",
                          ke=ke_beta1, fv=dcf_beta_alt['fv_aed'], central=central_alt),
         ci90=[V['beta_ci_lo'], V['beta_ci_hi']],
-        dimson=V['beta_dimson'],
+        blume=V['beta_blume'],
         note=('The two constructions differ only in how the market is measured. The '
               'published index is weighted by size and is therefore dominated by the same '
               'large-capitalisation group the subject belongs to; an equal-weight composite '

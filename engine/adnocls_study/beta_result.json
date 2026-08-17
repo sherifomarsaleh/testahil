@@ -43,7 +43,13 @@
  "usable": true,
  "gate_msg": "passes minimum usability gate",
  "regressor": "FTSE ADX General Index",
- "regressor_basis": "The published capitalisation-weighted index of the exchange the share is listed on \u2014 the local index the beta rule asks for.",
+ "regressor_code": "FADGI",
+ "regressor_file": "raw_indices/AE/FADGI.csv",
+ "regressor_asof": "2026-07-24",
+ "regressor_conforming": true,
+ "regressor_interim_note": null,
+ "week_rule": "W-FRI",
+ "regressor_basis": "The published capitalisation-weighted index of the exchange the share is listed on \u2014 the local index the beta rule asks for, resolved from that exchange by the routine rather than chosen by the study.",
  "regressor_rows": 3883,
  "regressor_span": [
   "2011-01-02",
@@ -52,21 +58,28 @@
  "regressor_repairs": [
   "dropped 1 interior stale/no-trade rows"
  ],
+ "stock_repairs": [],
  "unused_stock_weeks": 2,
- "unused_note": "The index series supplied ends 2026-07-24, before the last stock session used elsewhere in the study (2026-08-07). 2 weekly stock observations therefore fall outside the regression. The window stops where the index stops rather than pairing the stock against a stale index level.",
+ "unused_note": "The index series ends 2026-07-24, before the last stock session used elsewhere in the study (2026-08-07). 2 weekly stock observations therefore fall outside the regression. The window stops where the index stops rather than pairing the stock against a stale index level.",
  "composite_names": 12,
  "composite_basis": "ADX-listed names in the UAE library",
- "window_years": 3.18,
+ "window_years": 3.09,
  "frequency": "weekly",
- "window_note": "The stock listed on 02-Jun-2023, so the longest window available is 3.18 years, short of the five-year target. The regression uses the full listed history.",
+ "first_obs": "2023-06-16",
+ "last_obs": "2026-07-17",
+ "listed_years": 3.18,
+ "window_note": "The stock listed on 02-Jun-2023 and the index series ends before its last session, so the regression window runs 2023-06-16 to 2026-07-17 \u2014 3.09 years, short of the five-year target, which no amount of method can create.",
+ "lead_lag": "The estimate is a lead-lag sum beta: the routine regresses on one lag, the contemporaneous return and one lead and sums the three slopes, so the co-movement a thinly traded share books late is already inside the adopted figure rather than published beside it as a separate correction.",
+ "blume_crosscheck": 1.0688130662467181,
+ "blume_note": "Blume shrinkage on the adopted slope \u2014 two-thirds of the measured figure plus one-third of 1.0, the standard adjustment for the tendency of a measured beta to drift toward the market over time. It is a cross-check reported by the same record, and it is not what the study discounts at.",
  "weak": false,
  "weak_reason": "R-squared = 18.1% against the 10% weak-instrument threshold; the 90% confidence interval [0.59, 1.62] spans 0.94x the point estimate",
  "warnings": [],
  "adopted": {
   "beta_used": 1.1032195993700773,
-  "basis": "tier-1 own-stock weekly regression against the exchange's published index, produced by the engine's sanctioned routine",
-  "why": "n = 159 weekly observations against the published index of the share's own exchange, R-squared = 0.181, SE(beta) = 0.315. passes minimum usability gate.",
-  "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 1.164 with a 90% interval of [0.57, 1.76]; the adopted 1.10 sits inside it. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.771 (R-squared 0.183). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "basis": "tier-1 own-stock weekly regression against the published index of the share's own exchange, produced by the engine's sanctioned routine",
+  "why": "n = 159 weekly observations against the published index of the share's own exchange, resolved by the routine from the exchange the share is listed on, over 2023-06-16 to 2026-07-17. R-squared = 0.181, SE(beta) = 0.315. passes minimum usability gate.",
+  "corroboration": "Cross-checked three ways. (i) Shrunk toward the market on the Blume adjustment the same record reports, the slope is 1.069, which sits inside the regression's own 90% interval of [0.59, 1.62] and moves the estimate toward one. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.771 (R-squared 0.183). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
   "sensitivity_required": [
    0.5,
    0.7,
@@ -90,24 +103,6 @@
   "se": 0.12761706387805016,
   "names": 26,
   "note": "ADX + DFM equal-weight composite; disclosed, not adopted."
- },
- "dimson": {
-  "sum_beta": 1.1639170928204468,
-  "se_sum": 0.35973300093434596,
-  "r2": 0.18047245780608945,
-  "n": 158,
-  "ci90": [
-   0.5721563062834476,
-   1.755677879357446
-  ],
-  "coefficients": {
-   "lead": 0.3097993212059375,
-   "contemporaneous": 1.0764526497658635,
-   "lag1": -0.2995088049239431,
-   "lag2": 0.0771739267725888
-  },
-  "uplift_vs_ols": 0.060697493450369455,
-  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
  },
  "self_inclusion_bias": {
   "beta_proxy_including_subject": 0.9073276815884009,

@@ -104,7 +104,7 @@
    "source_date": "2026-07-24",
    "detail": "",
    "url": "",
-   "model_impact": "The regressor in the beta estimate, and therefore the largest single input to the cost of equity. Regressed against it the beta is 1.085; against an equal-weight composite of the same exchange it is 0.705. Both are published, and the index is what is adopted.",
+   "model_impact": "The regressor in the beta estimate, and therefore the largest single input to the cost of equity. It is resolved from the exchange the share is listed on rather than chosen by the study: 159 weekly observations from 2023-06-16 to 2026-07-17 give a beta of 1.1032; against an equal-weight composite of the same exchange's names it is 0.705. Both are published, and the index is what is adopted.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
