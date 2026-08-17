@@ -155,8 +155,18 @@ INP = dict(
     cash_jun26=I(2472.012, "Cash and cash equivalents 30-Jun-2026", "2026-08-05",
                  "Company"),
     deposits_jun26=I(40.212, "Term deposits (>3m) 30-Jun-2026", "2026-08-05", "Company"),
-    nci_book_jun26=I(190.745, "Non-controlling interests (30% of DXB CoolCo et al.), "
+    nci_book_jun26=I(190.745, "Non-controlling interests (15% of DXB CoolCo et al. — "
+                     "the H1-2026 subsidiary note shows Dxb CoolCo FZCO at 85%/85%), "
                      "30-Jun-2026 reviewed BS", "2026-08-05", "Company"),
+    recv_jun26=I(1294.442, "Financial assets at amortised cost, 30-Jun-2026 reviewed BS: "
+                 "non-current 1,273.130 + current 21.312. Note 8 composition: AED 1,005.030 "
+                 "from Dubai Aviation City Corporation (DXB CoolCo acquisition, 2023) + AED "
+                 "289.412 from Nakheel PJSC (Empower Snow acquisition, 2021) — related-party "
+                 "acquisition receivables under common control, NOT an operating concession "
+                 "asset. Clean financial-asset treatment adopted per critique (17-Aug-2026): "
+                 "interest income excluded from operating EBITDA/FCFF, asset added at book "
+                 "in the EV-to-equity bridge, and excluded from terminal invested capital",
+                 "2026-08-05", "Company"),
     invprop_jun26=I(168.716, "Investment properties 30-Jun-2026 (non-operating side "
                     "pocket, added in the bridge at book)", "2026-08-05", "Company"),
     fvtpl_jun26=I(53.411, "Financial assets at FVTPL 30-Jun-2026 (cash-like, added in "
@@ -313,17 +323,24 @@ ga_cash25 = V['ga_fy25'] - dep_ga25                            # 236.074
 WAGE_ESC = 0.025
 
 def ebitda_build(rev, cons):
+    # OPERATING EBITDA — concession/receivable interest EXCLUDED (clean
+    # financial-asset treatment, adopted 17-Aug-2026 per critique): the interest
+    # belongs to the related-party acquisition receivables, which are valued at
+    # book in the bridge instead.
     ew = {y: EW_RATIO * cons[y] for y in YRS_F}
     oc = {y: other_cos25 * (1 + WAGE_ESC) ** (i + 1) for i, y in enumerate(YRS_F)}
     ga = {y: ga_cash25 * (1 + WAGE_ESC) ** (i + 1) for i, y in enumerate(YRS_F)}
     intco = {y: V['intco_fy25'] * (1 - 0.03) ** (i + 1) for i, y in enumerate(YRS_F)}
     oi = {y: V['oi_fy25'] for y in YRS_F}
-    ebitda = {y: rev[y] + intco[y] - ew[y] - oc[y] - ga[y] + oi[y] for y in YRS_F}
+    ebitda = {y: rev[y] - ew[y] - oc[y] - ga[y] + oi[y] for y in YRS_F}
     return ebitda, ew, oc, ga, intco, oi
 
-# FY2025 reconciliation of the same identity against the AUDITED print:
-ebitda25_build = (V['rev_fy25'] + V['intco_fy25'] - V['ew_cost_fy25'] - other_cos25
-                  - ga_cash25 + V['oi_fy25'] + V['ecl_fy25'])
+# FY2025 reconciliation against the AUDITED print: the audited op+D&A includes
+# the receivable interest inside gross profit; the OPERATING build excludes it,
+# so the identity is build_ex + interest == audited:
+ebitda25_ex = (V['rev_fy25'] - V['ew_cost_fy25'] - other_cos25
+               - ga_cash25 + V['oi_fy25'] + V['ecl_fy25'])
+ebitda25_build = ebitda25_ex + V['intco_fy25']
 # audited: op 1,272.512 + dna 369.717 = 1,642.229; the identity must close to
 # < 0.5 (rounding inside note components) — ASSERTED below.
 
@@ -380,32 +397,67 @@ net_debt = (V['borrow_jun26'] + V['lease_jun26'] - V['cash_jun26']
 wd = net_debt / (net_debt + mktcap)
 we = 1 - wd
 
-def wacc_of(tax, ke):
-    return we * ke + wd * V['kd_marg'] * (1 - tax)
+def wacc_of(tax_shield, ke):
+    return we * ke + wd * V['kd_marg'] * (1 - tax_shield)
 
+# The Pillar-Two top-up is a minimum-ETR charge on profits, not a higher
+# statutory rate on the taxable base — it does not enlarge the value of
+# interest deductibility. The 15% framing therefore keeps the 9% debt shield
+# (critique finding, accepted 17-Aug-2026): both framings discount at the
+# same WACC and differ only in NOPAT.
 WACC = dict(
     rating_ct=wacc_of(V['tax_ct'], ke_rating),
     cds_ct=wacc_of(V['tax_ct'], ke_cds),
-    rating_dmtt=wacc_of(V['tax_dmtt'], ke_rating),
-    cds_dmtt=wacc_of(V['tax_dmtt'], ke_cds))
+    rating_dmtt=wacc_of(V['tax_ct'], ke_rating),
+    cds_dmtt=wacc_of(V['tax_ct'], ke_cds))
+
+# THREE WACC CONSTRUCTIONS, all priced (adopted 17-Aug-2026 — the construction
+# was previously a single unpriced choice):
+#   base    — target-structure NET debt weights (company policy ~2x EBITDA,
+#             payout ~= FCFE so surplus cash is transient), Kd = facility rate;
+#   gross   — gross-debt weights, cash at par in the bridge (the standard
+#             textbook frame);
+#   carry   — net weights with the cost of NET debt blended for the negative
+#             carry on the cash pile (gross Kd on borrowings less the deposit
+#             yield on cash).
+gross_debt = V['borrow_jun26'] + V['lease_jun26']
+wd_gross = gross_debt / (gross_debt + mktcap)
+WACC_GROSS = (1 - wd_gross) * ke_rating + wd_gross * V['kd_marg'] * (1 - V['tax_ct'])
+cash_all = V['cash_jun26'] + V['deposits_jun26']
+kd_net_carry = (gross_debt * V['kd_marg'] * (1 - V['tax_ct'])
+                - cash_all * 0.035 * (1 - V['tax_ct'])) / net_debt
+WACC_CARRY = we * ke_rating + wd * kd_net_carry
+ke_dfm = rf_star_rating + 0.652 * V['erp_rating']
+WACC_DFM_BETA = we * ke_dfm + wd * V['kd_marg'] * (1 - V['tax_ct'])
 # No Kd glide: the AED curve is flat-to-mildly-hawkish (Fed dots), both RCFs are
 # floating, and the 2025 refinance already reset the margin — a glide would be
 # invented, not sourced. Explicit-window WACC == terminal WACC, stated openly.
 
 # ============================== DCF (FCFF) ===================================
 def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
+    # VALUATION CLOCK (fixed 17-Aug-2026 per critique): the bridge is struck on
+    # the 30-Jun-2026 reviewed balance sheet, so the cash-flow clock starts
+    # there too — FY2026 contributes its SECOND HALF only (half-year stub at
+    # t=0.5) and later year-ends sit at 1.5..4.5 years. The previous full-year-
+    # at-t=1 convention double-counted H1-2026 cash already inside the June net
+    # debt.
     ebit = {y: eb[y] - dna[y] for y in YRS_F}
     nopat = {y: ebit[y] * (1 - tax) for y in YRS_F}
     fcff = {y: nopat[y] + dna[y] - capex[y] - dnwc[y] for y in YRS_F}
+    flow = dict(fcff); flow['FY26'] = fcff['FY26'] * 0.5
     df_, pv = {}, {}
     for i, y in enumerate(YRS_F):
-        df_[y] = 1 / (1 + wacc) ** (i + 1)
-        pv[y] = fcff[y] * df_[y]
+        t = i + 0.5
+        df_[y] = 1 / (1 + wacc) ** t
+        pv[y] = flow[y] * df_[y]
     pv_explicit = sum(pv.values())
-    # terminal: ROIC-consistent reinvestment
+    # terminal: ROIC-consistent reinvestment. Invested capital = plant + net
+    # working capital ONLY — the related-party receivables are valued at book
+    # in the bridge and their interest is outside operating NOPAT, so they no
+    # longer sit in operating capital.
     ppe_d = ppe_d if ppe_d is not None else ppe_b
     nwc_d = nwc_d if nwc_d is not None else nwc_b
-    ic_term = ppe_d['FY30'] + 1150.0 + nwc_d['FY30']   # PPE + concession asset + NWC
+    ic_term = ppe_d['FY30'] + nwc_d['FY30']
     nopat_t1 = nopat['FY30'] * (1 + V['g_term'])
     roic_term = nopat['FY30'] / ic_term
     rr_term = V['g_term'] / roic_term
@@ -413,8 +465,9 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
     tv = fcff_t1 / (wacc - V['g_term'])
     pv_tv = tv * df_['FY30']
     ev = pv_explicit + pv_tv
-    # EV -> equity bridge (30-Jun-2026 reviewed BS)
-    eq = (ev - net_debt + V['invprop_jun26'] + V['fvtpl_jun26'] + V['fvoci_jun26'])
+    # EV -> equity bridge (30-Jun-2026 reviewed BS), receivables at book:
+    eq = (ev - net_debt + V['recv_jun26'] + V['invprop_jun26'] + V['fvtpl_jun26']
+          + V['fvoci_jun26'])
     nci_frac = V['nci_pat_fy25'] / V['pat_fy25']       # 1.06% of profits
     nci_val = eq * nci_frac
     eq_attr = eq - nci_val
@@ -429,27 +482,47 @@ D_base_ct = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_ct'],
 D_base_dmtt = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_dmtt'],
                   WACC['rating_dmtt'], 'base / 15% DMTT / rating-basis ERP')
 D_pers_ct = dcf(rev_p, eb_p, dna_p, capex_p, dnwc_p, V['tax_ct'],
-                WACC['rating_ct'], 'consumption-persists / 9% CT')
+                WACC['rating_ct'], 'consumption-persists / 9% CT',
+                ppe_d=ppe_p, nwc_d=nwc_p)
 D_pers_dmtt = dcf(rev_p, eb_p, dna_p, capex_p, dnwc_p, V['tax_dmtt'],
-                  WACC['rating_dmtt'], 'consumption-persists / 15% DMTT')
+                  WACC['rating_dmtt'], 'consumption-persists / 15% DMTT',
+                  ppe_d=ppe_p, nwc_d=nwc_p)
 D_base_cds = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_ct'],
                  WACC['cds_ct'], 'base / 9% CT / CDS-basis ERP')
+D_base_dfm = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_ct'],
+                 WACC_DFM_BETA, 'base / 9% CT / DFM-index beta 0.652')
+D_base_gross = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_ct'],
+                   WACC_GROSS, 'base / 9% CT / gross-debt WACC weights')
+D_base_carry = dcf(rev_b, eb_b, dna_b, capex_b, dnwc_b, V['tax_ct'],
+                   WACC_CARRY, 'base / 9% CT / negative-carry net-debt cost')
 
 # ====================== OTHER LENSES =========================================
 # Relative multiples (peer set: Tabreed primary, DEWA secondary — cross-check
 # sources only). Tabreed FY2025: EBITDA 1.27bn, net debt ~4.6x EBITDA, so the
 # comparison runs at the EV line:
-TABREED_EV_EBITDA = 10.7   # derived: USD 2.11bn cap x 3.6725 + 5.84bn ND / 1.27bn
+# Peer multiples restruck like-for-like (critique, accepted 17-Aug-2026):
+# TRAILING peer multiple x TRAILING Empower operating EBITDA (ex receivable
+# interest), and the bridge carries the receivables at book like the DCF's.
+# The 22-Jun-2026 peer marks are retained pending an anchor-date remark and
+# the staleness is disclosed with a sensitivity (Tabreed traded lower by the
+# anchor; each 0.5x of multiple = AED 0.078/share on this lens).
+# Peer marks RESTRUCK AT THE SUBJECT'S ANCHOR DATE (critique, accepted; fact-
+# check 17-Aug-2026): Tabreed closed AED 2.46 on 6-and-7-Aug-2026 (2.72 on
+# 22-Jun, -9.6%). EV = 2,835m sh x 2.46 = 6,974 + net debt 5,846 = 12,820 /
+# FY2025 EBITDA 1,268 = 10.1x; P/E = 6,974 / 465 = 15.0x.
+TABREED_EV_EBITDA = 10.1
 DEWA_PE = 16.8
-TABREED_PE = 16.6
-ebitda26 = eb_b['FY26']
-ev_rel = TABREED_EV_EBITDA * ebitda26
-eq_rel = (ev_rel - net_debt + V['invprop_jun26'] + V['fvtpl_jun26']
-          + V['fvoci_jun26'])
+TABREED_PE = 15.0
+ebitda_trail = EBITDA25 - V['intco_fy25']          # FY2025A operating EBITDA ex interest
+ev_rel = TABREED_EV_EBITDA * ebitda_trail
+eq_rel = (ev_rel - net_debt + V['recv_jun26'] + V['invprop_jun26']
+          + V['fvtpl_jun26'] + V['fvoci_jun26'])
 ps_rel = eq_rel * (1 - V['nci_pat_fy25'] / V['pat_fy25']) / V['shares_mn']
-# peer P/E on FY2026E attributable profit (base, 9%):
+# peer P/E on FY2026E attributable profit (base, 9%) — profit INCLUDES the
+# receivable interest (it is real income; only the operating EBITDA excludes it):
 fin_net26 = -(V['kd_marg'] * V['borrow_jun26'] - 0.035 * V['cash_jun26'])
-np26 = (eb_b['FY26'] - dna_b['FY26'] + fin_net26) * (1 - V['tax_ct'])
+intco26 = intco_b['FY26']
+np26 = (eb_b['FY26'] + intco26 - dna_b['FY26'] + fin_net26) * (1 - V['tax_ct'])
 npa26 = np26 * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
 ps_pe = TABREED_PE * npa26 / V['shares_mn']
 
@@ -457,20 +530,29 @@ ps_pe = TABREED_PE * npa26 / V['shares_mn']
 # level and the 9%/15% average burden shown separately; normalized EPS x a
 # justified multiple from Ke and sustainable payout:
 rev_norm26 = cons_per_rt25 * rt_avg['FY26'] + cap_b['FY26'] + V['pipes_rev_fy25']
-eb_norm26 = (rev_norm26 + intco_b['FY26'] - EW_RATIO * cons_per_rt25 * rt_avg['FY26']
+eb_norm26 = (rev_norm26 + intco26 - EW_RATIO * cons_per_rt25 * rt_avg['FY26']
              - oc_b['FY26'] - ga_b['FY26'] + V['oi_fy25'])
 np_norm26 = (eb_norm26 - dna_b['FY26'] + fin_net26) * (1 - V['tax_ct'])
 npa_norm26 = np_norm26 * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
 eps_norm = npa_norm26 / V['shares_mn']
 roe_sust = V['npa_fy25'] / ((V['eq_attr_fy25'] + 3197.590) / 2)   # avg FY24-25 equity
 rr_eq = V['g_term'] / roe_sust
-pe_just = (1 - rr_eq) * (1 + V['g_term']) / (ke_rating - V['g_term'])
+# FORWARD justified P/E on a FORWARD EPS (critique: the (1+g) factor converts
+# leading to trailing and double-counts growth on a forward base — removed):
+pe_just = (1 - rr_eq) / (ke_rating - V['g_term'])
 ps_norm = eps_norm * pe_just
+# the same lens under the 15% framing, tax flowed through EARNINGS AND ROE:
+roe_15 = roe_sust * (1 - V['tax_dmtt']) / (1 - V['tax_ct'])
+pe_just_15 = (1 - V['g_term'] / roe_15) / (ke_rating - V['g_term'])
+ps_norm_15 = eps_norm * (1 - V['tax_dmtt']) / (1 - V['tax_ct']) * pe_just_15
 
-# Book value & sustainable return:
+# Book value & sustainable return — BOTH tax framings (critique: the 15%
+# column previously left this lens untouched):
 bvps = V['eq_attr_jun26'] / V['shares_mn']
 pb_just = (roe_sust - V['g_term']) / (ke_rating - V['g_term'])
 ps_book = bvps * pb_just
+pb_just_15 = (roe_15 - V['g_term']) / (ke_rating - V['g_term'])
+ps_book_15 = bvps * pb_just_15
 
 # DDM cross-check (used by Expert 2): committed AED 875m through 2026, then
 # growing at g on the RT path:
@@ -485,12 +567,12 @@ DEWA_BUYIN = 2.16
 lenses = dict(
     dcf=dict(ps=D_base_ct['ps'], ps_dmtt=D_base_dmtt['ps'], weight=0.50),
     relative=dict(ps=ps_rel, ps_pe=ps_pe, weight=0.20),
-    normalized=dict(ps=ps_norm, weight=0.15),
-    book=dict(ps=ps_book, weight=0.15))
+    normalized=dict(ps=ps_norm, ps_dmtt=ps_norm_15, weight=0.15),
+    book=dict(ps=ps_book, ps_dmtt=ps_book_15, weight=0.15))
 central_ct = (0.50 * D_base_ct['ps'] + 0.20 * ps_rel + 0.15 * ps_norm
               + 0.15 * ps_book)
-central_dmtt = (0.50 * D_base_dmtt['ps'] + 0.20 * ps_rel + 0.15 * ps_norm * (1 - 0.066)
-                + 0.15 * ps_book)
+central_dmtt = (0.50 * D_base_dmtt['ps'] + 0.20 * ps_rel + 0.15 * ps_norm_15
+                + 0.15 * ps_book_15)
 
 # ---- bear / bull: FULL model re-runs, not lens blends -----------------------
 # BEAR — war re-escalation economics: consumption per-RT falls a further 6% in
@@ -520,7 +602,7 @@ for i, y in enumerate(YRS_F):
     ppe_open = ppe_bear[y]
 nwc_bear, dnwc_bear = nwc_block(rev_bear)
 ke_bear = ke_rating + 0.010
-wacc_bear = we * ke_bear + wd * V['kd_marg'] * (1 - V['tax_dmtt'])
+wacc_bear = we * ke_bear + wd * V['kd_marg'] * (1 - V['tax_ct'])   # shield stays 9%
 D_bear = dcf(rev_bear, eb_bear, dna_bear, capex_bear, dnwc_bear, V['tax_dmtt'],
              wacc_bear, 'BEAR: re-escalation / persist-6% / 50k RT / 15% / +100bp',
              ppe_d=ppe_bear, nwc_d=nwc_bear)
@@ -551,7 +633,7 @@ D_bull = dcf(rev_bull, eb_bull, dna_bull, capex_bull, dnwc_bull, V['tax_ct'],
 bear, bull = D_bear['ps'], D_bull['ps']
 
 # ====================== SENSITIVITY GRIDS ====================================
-g_grid = [0.015, 0.020, 0.025, 0.030, 0.035]
+g_grid = [0.0, 0.010, 0.020, 0.025, 0.030]
 wacc_grid = [WACC['rating_ct'] - 0.01, WACC['rating_ct'] - 0.005, WACC['rating_ct'],
              WACC['rating_ct'] + 0.005, WACC['rating_ct'] + 0.01]
 sens_wg = []
@@ -559,15 +641,16 @@ for w_ in wacc_grid:
     row = []
     for g_ in g_grid:
         nopat30 = D_base_ct['nopat']['FY30']
-        ic30 = ppe_b['FY30'] + 1150.0 + nwc_b['FY30']
+        ic30 = ppe_b['FY30'] + nwc_b['FY30']
         roic_ = nopat30 / ic30
         rr_ = g_ / roic_
         tv_ = nopat30 * (1 + g_) * (1 - rr_) / (w_ - g_)
-        pv_e = sum(D_base_ct['fcff'][y] / (1 + w_) ** (i + 1)
+        flows = dict(D_base_ct['fcff']); flows['FY26'] *= 0.5
+        pv_e = sum(flows[y] / (1 + w_) ** (i + 0.5)
                    for i, y in enumerate(YRS_F))
-        ev_ = pv_e + tv_ / (1 + w_) ** 5
-        eq_ = (ev_ - net_debt + V['invprop_jun26'] + V['fvtpl_jun26']
-               + V['fvoci_jun26']) * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
+        ev_ = pv_e + tv_ / (1 + w_) ** 4.5
+        eq_ = (ev_ - net_debt + V['recv_jun26'] + V['invprop_jun26']
+               + V['fvtpl_jun26'] + V['fvoci_jun26']) * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
         row.append(eq_ / V['shares_mn'])
     sens_wg.append(row)
 
@@ -584,7 +667,7 @@ for lvl in crux_levels:
     eb_a, *_ = ebitda_build(rev_a, cons_a)
     nwc_a, dnwc_a = nwc_block(rev_a)
     Da = dcf(rev_a, eb_a, dna_b, capex_b, dnwc_a, V['tax_ct'],
-             WACC['rating_ct'], f'crux {lvl:.0%}')
+             WACC['rating_ct'], f'crux {lvl:.0%}', nwc_d=nwc_a)
     crux_rows.append(dict(level=lvl, ps=Da['ps']))
 
 # ============================ ASSERT BLOCK ===================================
@@ -662,11 +745,18 @@ out = dict(
               erp_rating=V['erp_rating'], erp_cds=V['erp_cds'],
               ke_rating=ke_rating, ke_cds=ke_cds, kd=V['kd_marg'],
               kd_at_ct=V['kd_marg'] * (1 - V['tax_ct']),
-              kd_at_dmtt=V['kd_marg'] * (1 - V['tax_dmtt']),
-              we=we, wd=wd, mktcap=mktcap, net_debt=net_debt, **WACC),
+              kd_at_dmtt=V['kd_marg'] * (1 - V['tax_ct']),
+              we=we, wd=wd, mktcap=mktcap, net_debt=net_debt,
+              constructions=dict(
+                  base_net_target=WACC['rating_ct'], gross=WACC_GROSS,
+                  carry=WACC_CARRY, dfm_beta=WACC_DFM_BETA,
+                  gross_debt=gross_debt, kd_net_carry=kd_net_carry,
+                  ke_dfm=ke_dfm),
+              **WACC),
     dcf=dict(base_ct=D_base_ct, base_dmtt=D_base_dmtt, pers_ct=D_pers_ct,
              pers_dmtt=D_pers_dmtt, base_cds=D_base_cds, bear=D_bear,
-             bull=D_bull),
+             bull=D_bull, base_dfm_beta=D_base_dfm, base_gross_wacc=D_base_gross,
+             base_carry_wacc=D_base_carry),
     scenarios=dict(bear=dict(rt_path=rt_path_bear, rev=rev_bear,
                              ebitda=eb_bear, wacc=wacc_bear, ke=ke_bear,
                              tax=V['tax_dmtt']),
@@ -676,10 +766,14 @@ out = dict(
     lenses=lenses,
     rel=dict(tabreed_ev_ebitda=TABREED_EV_EBITDA, tabreed_pe=TABREED_PE,
              dewa_pe=DEWA_PE, ev_rel=ev_rel, ps_rel=ps_rel, ps_pe=ps_pe,
-             np26=np26, npa26=npa26),
+             np26=np26, npa26=npa26, ebitda_trail=ebitda_trail,
+             mult_date='2026-08-07 anchor (restruck: Tabreed 2.46 on 6/7-Aug; '
+                       '0.5x of multiple = AED 0.078/share on this lens)'),
     norm=dict(rev=rev_norm26, ebitda=eb_norm26, npa=npa_norm26, eps=eps_norm,
-              pe_just=pe_just, ps=ps_norm),
-    book=dict(bvps=bvps, roe_sust=roe_sust, pb_just=pb_just, ps=ps_book),
+              pe_just=pe_just, ps=ps_norm, pe_just_15=pe_just_15,
+              ps_15=ps_norm_15, roe_15=roe_15),
+    book=dict(bvps=bvps, roe_sust=roe_sust, pb_just=pb_just, ps=ps_book,
+              pb_just_15=pb_just_15, ps_15=ps_book_15),
     ddm=dict(dps=dps, ps=ps_ddm, policy_mn=V['div_policy']),
     dewa_buyin=dict(price=DEWA_BUYIN, date='2026-02-11',
                     note='related-party CONTROL price for Dubai Holding\'s 24% — '
@@ -720,6 +814,9 @@ print(f"\nWACC: rating/9% {WACC['rating_ct']:.4f} | CDS/9% {WACC['cds_ct']:.4f} 
 print(f"Ke rating {ke_rating:.4f} | Ke CDS {ke_cds:.4f} | Kd 4.92% | wd {wd:.3f}")
 print(f"\nDCF ps: base/9% {D_base_ct['ps']:.3f} | base/15% {D_base_dmtt['ps']:.3f} "
       f"| persist/9% {D_pers_ct['ps']:.3f} | persist/15% {D_pers_dmtt['ps']:.3f}")
+print(f"constructions: DFM-beta {D_base_dfm['ps']:.3f} | gross-WACC "
+      f"{D_base_gross['ps']:.3f} | carry-WACC {D_base_carry['ps']:.3f} "
+      f"(WACCs {WACC_DFM_BETA:.4f}/{WACC_GROSS:.4f}/{WACC_CARRY:.4f})")
 print(f"TV share of EV: {D_base_ct['tv_share']:.1%}")
 print(f"lenses: rel(EV/EBITDA) {ps_rel:.3f} | rel(P/E) {ps_pe:.3f} | norm "
       f"{ps_norm:.3f} | book {ps_book:.3f} | ddm {ps_ddm:.3f}")
