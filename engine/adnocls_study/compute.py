@@ -767,7 +767,7 @@ for g in GROUPS:
 import datetime as _date
 
 
-def _d(s_):
+def _dstr(s_):
     return _date.date(*map(int, s_.split('-')))
 
 
@@ -796,7 +796,7 @@ CHARTER_TABLE = [
     ('Arzanah', 'vlcc', 12, 70000, '2027-02-01'),
     ('Habshan', 'vlcc', 12, 72500, '2027-02-21'),
 ]
-CHARTERS = [dict(name=n, klass=k, rate=r, start=_minus_months(_d(e), p), end=_d(e),
+CHARTERS = [dict(name=n, klass=k, rate=r, start=_minus_months(_dstr(e), p), end=_dstr(e),
                  period_months=p)
             for n, k, p, r, e in CHARTER_TABLE]
 for _c in CHARTERS:
@@ -804,6 +804,39 @@ for _c in CHARTERS:
        IP26 + f" — charters out: {_c['name']}, a {_c['klass'].upper()} fixed for "
               f"{_c['period_months']} months to {_c['end']:%d %b %Y}",
        '2026-04-30', 'Company')
+
+
+# On 7 August 2026 -- the anchor date of this study, and therefore already inside the
+# market price it is compared against -- the company announced the purchase of eleven
+# vessels for about USD 1.3 billion: six very large crude carriers and three gas carriers
+# bought secondhand for delivery in the third quarter, and two gas carrier newbuildings
+# resold from a Chinese yard for the fourth. It takes the fleet to fourteen crude carriers
+# and twelve gas carriers. The first edition of this study omitted it, which left a fair
+# value that excluded the vessels being compared with a price that already included them.
+ACQ_COST = IN('acq_2026_cost', 1300000, "Announced 7 August 2026 — purchase of eleven "
+              "vessels, six very large crude carriers and five gas carriers, for about USD "
+              "1.3 billion; nine delivering in the third quarter of 2026 and two gas carrier "
+              "newbuildings in the fourth", '2026-08-07', 'Company')
+ACQUIRED = [
+    ('vlcc', 6, '2026-09-01'),      # six crude carriers, secondhand, Q3 delivery
+]
+ACQ_GAS = [(3, '2026-09-01'), (2, '2026-11-15')]   # gas carriers, Q3 then Q4
+IN('acq_2026_vlcc', 6, "Announced 7 August 2026 — very large crude carriers in that "
+   "purchase, taking the owned crude fleet to fourteen", '2026-08-07', 'Company')
+IN('acq_2026_gas', 5, "Announced 7 August 2026 — gas carriers in that purchase, taking the "
+   "owned gas fleet to twelve very large gas carriers", '2026-08-07', 'Company')
+
+
+def acquired_days(klass, a, b):
+    """Vessel-days the newly bought ships contribute between a and b."""
+    days = 0
+    for k, n, start in ACQUIRED:
+        if k != klass:
+            continue
+        lo = max(a, _dstr(start))
+        if b > lo:
+            days += n * (b - lo).days
+    return days
 
 
 def charter_days(klass, a, b):
@@ -841,15 +874,24 @@ def implied_spot(klass, blend, fleet_n, a, b):
 
 
 # Quarterly windows, so each blend is converted on the fleet and charters of its own quarter
-Q25 = [(_d('2025-01-01'), _d('2025-04-01')), (_d('2025-04-01'), _d('2025-07-01')),
-       (_d('2025-07-01'), _d('2025-10-01')), (_d('2025-10-01'), _d('2026-01-01'))]
-Q26 = [(_d('2026-01-01'), _d('2026-04-01')), (_d('2026-04-01'), _d('2026-07-01'))]
+Q25 = [(_dstr('2025-01-01'), _dstr('2025-04-01')), (_dstr('2025-04-01'), _dstr('2025-07-01')),
+       (_dstr('2025-07-01'), _dstr('2025-10-01')), (_dstr('2025-10-01'), _dstr('2026-01-01'))]
+Q26 = [(_dstr('2026-01-01'), _dstr('2026-04-01')), (_dstr('2026-04-01'), _dstr('2026-07-01'))]
 
 TCE25 = {c: sum(TCE_FY25[c]) / 4 for c in TCE_FY25}
 TCE24 = {c: sum(TCE_FY24[c]) / 4 for c in TCE_FY24}
 TCE24['mr'] = TCE25['mr']          # 2024 quarterly rates for this class are not disclosed
-TCE25['hs'] = TCE25['mr']          # the smallest tankers are not broken out; the medium-
-TCE24['hs'] = TCE24['mr']          # range rate stands in and the gap is flagged
+# The smallest tankers are not broken out by quarter. The first edition stood the
+# medium-range rate in for them, but the company said on the first-quarter call that
+# "Handysize rates were softer, down 21%" while medium range was "up 29%" — the two
+# classes moved in OPPOSITE directions, so the substitution was not merely imprecise, it
+# had the sign wrong. The disclosed relative move is applied instead.
+HS_REL = IN('handysize_relative', 0.79, CALLQ126 + " — Handysize rates were softer, down "
+            "21%, against medium range up 29%; the two smallest classes moved in opposite "
+            "directions, so the medium-range rate is scaled by the disclosed Handysize "
+            "move rather than used unadjusted", '2026-05-14', 'Company')
+TCE25['hs'] = TCE25['mr'] * HS_REL
+TCE24['hs'] = TCE24['mr'] * HS_REL
 BLEND_MID = {c: (TCE24[c] + TCE25[c]) / 2 for c in CLASSES}
 
 # spot rates implied by the disclosed blends, class by class
@@ -858,7 +900,7 @@ SPOT_25 = {c: sum(implied_spot(c, TCE_FY25.get(c, [TCE25[c]] * 4)[i], FLEET_FY25
 SPOT_MID = {c: implied_spot(c, BLEND_MID[c], FLEET_FY25[c], *Q25[0]) for c in CLASSES}
 Q1_BLEND = {c: V[f'tce_{c}_q1_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
 Q2_BLEND = {c: V[f'tce_{c}_q2_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
-Q1_BLEND['hs'] = Q1_BLEND['mr']; Q2_BLEND['hs'] = Q2_BLEND['mr']
+Q1_BLEND['hs'] = Q1_BLEND['mr'] * HS_REL; Q2_BLEND['hs'] = Q2_BLEND['mr'] * HS_REL
 SPOT_Q1 = {c: implied_spot(c, Q1_BLEND[c], FLEET[c], *Q26[0]) for c in CLASSES}
 SPOT_Q2 = {c: implied_spot(c, Q2_BLEND[c], FLEET[c], *Q26[1]) for c in CLASSES}
 
@@ -912,7 +954,8 @@ def tanker_leg(mode):
         tce_rev = 0.0
         for c in CLASSES:
             cd, crev = charter_days(c, a, b)
-            sd = FLEET[c] * yr_days - cd
+            # the ships bought in August 2026 trade at spot from delivery
+            sd = FLEET[c] * yr_days - cd + acquired_days(c, a, b)
             tce_rev += (crev + sd * spot[c][i]) / 1000.0
         opex = vessel_days_25 * opex_day_25 * (1 + OPEX_ESC) ** (i + 1) / 1000.0
         rev.append(tce_rev * gross_up_26)
@@ -922,6 +965,9 @@ def tanker_leg(mode):
 
 # --- gas carriers: contracted vessel-years x implied day rate ------------------
 GAS_VY = [10.75, 13.0, 21.25, 25.0, 25.0]
+# the five gas carriers bought on 7 August 2026: three delivering in the third quarter,
+# two newbuildings in the fourth, so 2026 carries only the part-year
+GAS_VY = [v + a for v, a in zip(GAS_VY, [3 * (4 / 12.0) + 2 * (1.5 / 12.0), 5, 5, 5, 5])]
 IN('gas_vessel_years_26', GAS_VY[0], IP26 + " — gas fleet contract table, consolidated "
    "vessel-quarters averaged over the year (floating storage 2, the four spot liquefied "
    "natural gas carriers to mid-year, one very large gas carrier, the ethane carrier ramp "
@@ -1080,15 +1126,36 @@ DEP_RATE = IN('dep_rate_ppe', round(V['q1_26_dep_ppe'] * 4 /
               "quarter is the better forward basis than the 2025 full year, whose average "
               "balance is distorted by the fleet acquired at the start of that year",
               '2026-03-31', 'Company')
+IN('life_tankers', 25, FS25 + " — accounting policies: tankers are depreciated straight "
+   "line over 25 years, dry-bulk and containers 25, gas carriers 25 to 40, offshore vessels "
+   "20 to 25 and jack-up barges 40, with dry-docking components over 2 to 5",
+   '2025-12-31', 'Company')
+IN('dep_rate_realised_fy25', 0.0675, FS25 + " — depreciation charged on property, plant "
+   "and equipment in 2025 over the average balance for the year. It is higher than the "
+   "rate used here, and both are higher than the disclosed useful lives imply for a fleet "
+   "written off over 25 to 40 years, because dry-docking components are written off over "
+   "2 to 5 years. The rate used is the more conservative of the two available forward "
+   "bases and is sensitised", '2025-12-31', 'Company')
 OTHER_DNA25 = IN('other_dna_run_rate',
                  (V['q1_26_dep_rou'] + V['q1_26_dep_ip'] + V['q1_26_amort']) * 4,
                  Q126 + " — depreciation on right-of-use assets and investment properties "
                  "plus amortisation of intangibles in the first quarter, annualised",
                  '2026-03-31', 'Company')
 opcost_25 = V['rev_fy25'] - ebitda_op[2]
-DSO = ccc['dso'][2]
+# Receivables were calibrated on 2025 revenue, which carries a 2.72x gross-up from
+# charter-equivalent revenue, and then applied to forecast revenue built at 1.60x. The
+# same absolute receivable balance against a smaller revenue line is MORE days, not the
+# same days, so the ratio is re-based onto the basis the forecast actually uses. This also
+# falsifies the first edition's claim that the gross-up "never touches the valuation": it
+# reaches it through receivables and the change in working capital.
+DSO_REPORTED = ccc['dso'][2]
+_rev25_fwd_basis = (V['rev_fy25'] - V['seg_rev_tankers_fy25'] + tce_rev_25 * gross_up_26)
+DSO = DSO_REPORTED * V['rev_fy25'] / _rev25_fwd_basis
 DIO_OP = V['inv_fy25'] / opcost_25 * 365
 DPO_OP = (V['pay_fy25'] + V['dtr_c_fy25']) / opcost_25 * 365
+IN('dso_days_reported', round(DSO_REPORTED, 1), FS25 + " — trade and other receivables "
+   "plus amounts due from related parties over reported 2025 revenue", '2025-12-31',
+   'Company')
 IN('dso_days', round(DSO, 1), FS25 + " — trade and other receivables plus amounts due from "
    "related parties over revenue, in days", '2025-12-31', 'Company')
 IN('dio_days', round(DIO_OP, 1), FS25 + " — inventories over total operating cost, in days",
@@ -1106,12 +1173,15 @@ for _g, _r in TAX_SEG.items():
 def project(mode):
     f = build_forecast(mode)
     rev, ebitda = f['revenue'], f['ebitda']
+    # the vessels bought in August 2026 are added to the asset base in the year they
+    # arrive, so they depreciate and shield tax exactly as any other vessel does
     ppe_open, ppe, dep_ppe, dna = V['ppe_fy25'], [], [], []
+    ACQ_CAPEX = [ACQ_COST, 0.0, 0.0, 0.0, 0.0]
     for i in range(5):
-        d = DEP_RATE * (ppe_open + (ppe_open + CAPEX[i]) ) / 2.0
+        d = DEP_RATE * (ppe_open + (ppe_open + CAPEX[i] + ACQ_CAPEX[i])) / 2.0
         # solve the roll consistently: depreciation on the average of opening and closing
-        d = DEP_RATE * (ppe_open + max(ppe_open + CAPEX[i] - d, 0)) / 2.0
-        close = ppe_open + CAPEX[i] - d
+        d = DEP_RATE * (ppe_open + max(ppe_open + CAPEX[i] + ACQ_CAPEX[i] - d, 0)) / 2.0
+        close = ppe_open + CAPEX[i] + ACQ_CAPEX[i] - d
         dep_ppe.append(d); ppe.append(close)
         dna.append(d + OTHER_DNA25 * (1 + OPEX_ESC) ** (i + 1))
         ppe_open = close
@@ -1173,7 +1243,13 @@ debt_now = V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
 kd_m2 = (V['q1_26_shldr_loan'] * kd_m1 + V['q1_26_borrowings'] * kd_thirdparty
          + V['q1_26_leases'] * kd_lease) / debt_now
 kd_m3 = kd_bank_mid
+# Three independent constructions, AVERAGED. The first edition's prose described this as
+# "weighted across the drawn book", which it is not: only the second construction is
+# balance-weighted, and that one alone gives 5.69%. The average is the triangulation the
+# study set out to show; the balance-weighted figure is published beside it rather than
+# the average being mislabelled as it.
 kd = (kd_m1 + kd_m2 + kd_m3) / 3
+kd_balance_weighted = kd_m2
 # The perpetual capital securities are deducted in the equity bridge as a claim ranking
 # ahead of the ordinary shares. A claim that is deducted from enterprise value must also
 # be WEIGHTED in the cost of capital at its own cost — those are the two halves of one
@@ -1202,6 +1278,7 @@ wacc_blk = dict(
     erp=V['erp_total'], crp=V['crp'], erp_mature=V['erp_mature'],
     ke=ke, ke_dimson=ke_dimson, ke_beta1=ke_beta1,
     kd_method1=kd_m1, kd_method2=kd_m2, kd_method3=kd_m3, kd=kd,
+    kd_balance_weighted=kd_balance_weighted, kd_construction='average of three constructions',
     kd_bank_mid=kd_bank_mid, kd_other_mid=kd_other_mid, kd_thirdparty=kd_thirdparty,
     kd_lease=kd_lease, kd_after_tax=kd * (1 - tax_stat),
     tax_stat=tax_stat, we=we, wd=wd, wacc=wacc,
@@ -1228,7 +1305,7 @@ wacc_blk = dict(
 # ============================================================================
 NETDEBT_CO = V['q1_26_netdebt']
 DEFERRED = V['q1_26_pcp']
-NETDEBT = NETDEBT_CO + DEFERRED
+NETDEBT = NETDEBT_CO + DEFERRED + ACQ_COST   # the August purchase is committed and funded
 HYBRID = V['q1_26_hybrid']
 NCI_BV = V['q1_26_nci']
 # Minorities take 8.8% of profit but hold only 5.1% of book equity, so book understates
@@ -1375,6 +1452,10 @@ contracted_mult = PEERS[0]['ev_ebitda']
 spot_mult = (PEERS[1]['ev_ebitda'] + PEERS[2]['ev_ebitda']) / 2
 blend_ev_ebitda = (1 - SPOT_W) * contracted_mult + SPOT_W * spot_mult
 blend_pe = (1 - SPOT_W) * PEERS[0]['pe_fwd'] + SPOT_W * PEERS[1]['pe_fwd']
+# The peers' forward multiples are applied to the company's forward earnings, which is
+# consistent. What was NOT consistent was the table beside them, which quoted the company
+# on a TRAILING multiple against peers shown forward. Both bases are now published.
+blend_pe_ttm = (1 - SPOT_W) * PEERS[0]['pe_ttm'] + SPOT_W * PEERS[1]['pe_ttm']
 
 BASE = project('reversion')
 GUID = project('sustained')
