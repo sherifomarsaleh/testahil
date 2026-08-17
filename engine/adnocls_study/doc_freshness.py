@@ -6,12 +6,15 @@ vocabulary scrub, the table-width check, the figure check and the label gate whi
 quoting a fair value the model no longer produces. That is exactly the failure the
 beta rebuild could have shipped.
 
-This asserts that every headline figure the model produces appears somewhere in the
-rendered text of the study, and that the figures it SUPERSEDED do not. Both halves
-matter: finding the new number proves the rebuild ran, and not finding the old one
-proves nothing was left behind in a sentence the rebuild did not reach.
+Three assertions, and the distinction between the second and third is the whole point.
+Every headline figure the model currently produces must appear in the rendered text —
+that proves the rebuild ran. Every figure of the ALTERNATIVE construction must also
+appear — the study publishes both legs and dropping one would be a silent retreat from
+the dual framing. Only the FRAMING the rebuild replaced is banned, never a number: the
+alternative leg's cost of capital and terminal share look exactly like the superseded
+edition's, because on that leg they still are its numbers.
 """
-import os, sys, json, subprocess
+import os, re, sys, json, subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
@@ -45,14 +48,30 @@ MUST = [
     ('the terminal-value share', f"{D['dcf']['tv_share'] * 100:.0f}%"),
 ]
 
-# Figures the model no longer produces. A rebuild that leaves one of these in a
-# sentence has not finished, however clean everything else looks.
+# The alternative construction is PUBLISHED, not superseded, so its figures must be
+# present. Only the framing the rebuild replaced is banned. Getting this distinction
+# wrong is how a freshness check starts failing correct documents: 7.31% and an 84%
+# terminal share are not stale numbers, they are the alternative leg's own numbers and
+# the study is required to carry them.
+ALTERNATIVE = [
+    ('the alternative beta', f"{D['inputs']['beta_composite']['value']:.3f}"),
+    ('the alternative cost of capital',
+     f"{D['dcf_beta_alt']['wacc'] * 100:.2f}%"),
+    ('the alternative terminal share',
+     f"{D['dcf_beta_alt']['tv_share'] * 100:.0f}% of enterprise value"),
+]
+# Framing the rebuild replaced. A sentence carrying one of these has not been reached,
+# however clean everything else looks.
+# Regexes, not substrings, and the reason is a bug this check produced on itself:
+# 'beta of 1.0' matches the PREFIX of 'beta of 1.085', so a plain substring test failed
+# the document for containing the very figure it is supposed to contain. Every pattern
+# here ends on a boundary.
 SUPERSEDED = [
-    ('the first edition beta', '0.705', 'appears only as the disclosed alternative'),
-    ('the first edition cost of capital', '7.31%', None),
-    ('the first edition terminal-value share', '84% of enterprise value', None),
-    ('asset-risk beta wording', 'asset-risk beta', None),
-    ('asset beta wording', 'asset beta', None),
+    ('asset-risk beta wording', r'asset-risk beta'),
+    ('asset beta wording', r'asset beta'),
+    ('beta-of-one wording', r'beta of one\b'),
+    ('beta-of-1.0 wording', r'beta of 1\.0(?!\d)'),
+    ('beta-of-1 wording', r'beta of 1(?![\d.])'),
 ]
 
 fails = []
@@ -66,13 +85,19 @@ for label, needle in MUST:
         fails.append(f'{label} ({needle}) missing from the study')
 
 print('=' * 74)
-print('nothing superseded survives in the text')
-for label, needle, allowed in SUPERSEDED:
-    n = t.count(needle)
-    # 0.705 is legitimately present as the published alternative; everything else is not
-    ok = (n > 0) if allowed else (n == 0)
-    print(f'  {"OK  " if ok else "FAIL"}  {label:<32} {needle!r} appears {n}x')
-    if not ok:
+print('the alternative construction is carried, not dropped')
+for label, needle in ALTERNATIVE:
+    hit = needle in t
+    print(f'  {"OK  " if hit else "MISS"}  {label:<32} {needle}')
+    if not hit:
+        fails.append(f'{label} ({needle}) missing — the alternative leg must be published')
+
+print('=' * 74)
+print('no superseded framing survives in the text')
+for label, needle in SUPERSEDED:
+    n = len(re.findall(needle, t))
+    print(f'  {"OK  " if n == 0 else "FAIL"}  {label:<32} {needle!r} appears {n}x')
+    if n:
         fails.append(f'{label}: {needle!r} appears {n}x and should not')
 
 print('=' * 74)
@@ -94,4 +119,5 @@ if fails:
         print('  -', f)
     sys.exit(1)
 print(f'DOCUMENTS ARE CURRENT — {len(MUST)} headline figures found, '
-      f'{len(SUPERSEDED) - 1} superseded figures absent')
+      f'{len(ALTERNATIVE)} alternative-construction figures carried, '
+      f'{len(SUPERSEDED)} superseded phrasings absent')
