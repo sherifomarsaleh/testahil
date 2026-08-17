@@ -34,7 +34,7 @@ def style(ax):
 # ---- F1 football field ------------------------------------------------------
 L = d['lenses']
 names = ['FCFF DCF\n(primary)', 'Relative\n(P/E · dividend yield)', 'Normalised\nearnings power',
-         'Book value /\nsustainable return', 'Weighted central']
+         'Book value /\nsustainable return', 'Weighted central\n(bar = span across all four lenses)']
 keys = ['dcf', 'relative', 'normalized', 'book', 'central']
 fig, ax = plt.subplots(figsize=(9.7, 4.2), dpi=110)
 xmax = max(L[k]['bull'] for k in keys); xmin = min(L[k]['bear'] for k in keys)
@@ -73,8 +73,12 @@ for i in range(tab.shape[0]):
 ax.set_xticks(range(len(S['g_grid'])), [f'{x*100:.1f}%' for x in S['g_grid']])
 ax.set_yticks(range(len(S['wt_grid'])), [f'{x*100:.2f}%' for x in S['wt_grid']])
 ax.set_xlabel('terminal growth g'); ax.set_ylabel('terminal cost of capital')
-ax.set_title(f'DCF fair value (AED/share) — terminal cost of capital × terminal growth; '
-             f'bold ≈ spot {spot:.2f}', fontsize=10, pad=8)
+_near = int((abs(tab - spot) < 0.8).sum())
+# Only advertise the bolding if a cell actually earns it. On this build the whole grid sits
+# ABOVE spot, so promising bold cells and showing none sends a reader hunting for nothing.
+ax.set_title('DCF fair value (AED/share) — terminal cost of capital × terminal growth; '
+             + (f'bold \u2248 spot {spot:.2f}' if _near else
+                f'every cell is ABOVE the spot of {spot:.2f}'), fontsize=10, pad=8)
 ax.grid(False); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_sens.png')); plt.close(fig)
 
 # ---- F3 moving-average stack -------------------------------------------------
@@ -85,7 +89,7 @@ for n, c in [(20, GOLD), (50, BRASS), (100, SAGE), (200, '#7B8D88')]:
     ma = df.set_index('Date')['Price'].rolling(n).mean().iloc[-260:]
     ax.plot(ma.index, ma.values, color=c, lw=1.2, label=f'SMA {n}')
 ax.legend(frameon=False, fontsize=8.5, ncol=5, labelcolor=INK, loc='upper left')
-ax.set_title('du — price against the moving-average stack, last 260 sessions',
+ax.set_title('du — price against the moving-average stack, last twelve months',
              fontsize=10, pad=8)
 ax.set_ylabel('AED'); style(ax)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig3_ma.png')); plt.close(fig)
@@ -104,7 +108,13 @@ ax.text(1, cb + 0.020 * rng, f'fundamental central ≈ {cb:.1f}', color=BRASS, f
         va='bottom')
 ax.text(days[-1] - 1, spot - 0.022 * rng, f'spot {spot:.2f}', color=GREY, fontsize=8.6,
         ha='right', va='top')
-ax.set_xlabel('trading sessions ahead'); ax.set_ylabel('AED / share')
+# Horizons in this house are CALENDAR, everywhere and in every deliverable. The simulation
+# steps in sessions internally — sessions are only ever a device for SIZING the cone — so the
+# axis is relabelled in calendar months, with ticks placed at the session counts those months
+# actually project to. Publishing a session axis would put a retired unit in front of a reader.
+_n = len(days) - 1
+ax.set_xticks([0, _n / 3.0, 2 * _n / 3.0, _n], ['0', '1', '2', '3'])
+ax.set_xlabel('calendar months ahead'); ax.set_ylabel('AED / share')
 ax.legend(frameon=False, fontsize=8.5, labelcolor=INK, loc='upper left')
 ax.set_title('Forward price cone to three months — 50,000 simulated paths', fontsize=10, pad=8)
 style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig4_fan.png')); plt.close(fig)

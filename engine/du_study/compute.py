@@ -50,6 +50,33 @@ H126 = ("Reviewed condensed consolidated interim FS for the six months ended 30-
 IRQ2 = "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR)"
 IRQ4 = "Company Q4/FY2025 results presentation, 10-Feb-2026, investors.du.ae (COMPANY_IR)"
 
+# ---------------------------------------------------------------------------
+# Like-for-like half-year unit-cost deltas, computed BEFORE the register so the register's
+# own justification text quotes the arithmetic instead of restating it by hand.
+# ---------------------------------------------------------------------------
+# ADDED 17-Aug-2026 after a rendered-PDF read caught two typed narrative figures ("-4.2%",
+# "+3.1%") disagreeing with the computed values (-4.13%, +2.98%). Same defect class as the
+# numerals once typed into the workbook builder: a number stated in prose that nothing checks.
+# These are derived from the raw disclosed figures that appear as literals in the register
+# below, and are re-asserted against the full DCU table once that is built.
+def _lfl(h125, h126, m125, m126):
+    """Per-subscriber-per-month rate for each half, and the like-for-like change."""
+    r125 = h125 / m125 / 6 * 1000
+    r126 = h126 / m126 / 6 * 1000
+    return r125, r126, r126 / r125 - 1
+
+# average mobile base over each half: (opening + closing) / 2, from the disclosed quarter ends
+_M125 = (8916.0 + 9138.0) / 2
+_M126 = (9704.0 + 9280.0) / 2
+_F125 = (682.0 + 706.0) / 2
+_F126 = (735.0 + 744.0) / 2
+# mobile interconnect = total interconnect less the fixed and wholesale segment direct costs
+_I125, _I126, _D_INTER = _lfl(1442.312 - (2140.263 - 1826.774) - (1283306 - 1104384) / 1000,
+                              1456.789 - (2382.608 - 2079.325) - (1257.566 - 1061.640),
+                              _M125, _M126)
+_C125, _C126, _D_COMM = _lfl(331.701, 359.188, _M125, _M126)
+_X125, _X126, _D_FIXED = _lfl(2140.263 - 1826.774, 2382.608 - 2079.325, _F125, _F126)
+
 INP = dict(
     # ---- anchors --------------------------------------------------------
     spot=I(12.30, "Uploaded DFM daily price history for DU, last close 07-Aug-2026", "2026-08-07",
@@ -493,14 +520,16 @@ INP = dict(
     # House inputs, and the default is FLAT: a rate drifts only where a named structural
     # mechanism has a MEASURED like-for-like direction in du's own half-year pair.
     esc_dc_inter=I(-0.015, "Mobile interconnect cost per subscriber per month, -1.5%/yr. "
-                   "MEASURED: 17.54 (H1-2025) -> 16.81 (H1-2026), -4.2% like-for-like. "
+                   f"MEASURED: {_I125:.2f} (H1-2025) -> {_I126:.2f} (H1-2026), "
+                   f"{_D_INTER:+.2%} like-for-like. "
                    "MECHANISM: regulated mobile-termination rates ratchet down and terminated "
                    "voice/SMS keeps migrating to OTT, so the per-subscriber off-net bill falls "
                    "even as the base grows. The forecast takes barely a third of the observed "
                    "decline, on the view that it decays as the OTT substitution matures",
                    "2026-08-17", "House"),
     esc_dc_comm=I(0.030, "Mobile commission cost per subscriber per month, +3.0%/yr. MEASURED: "
-                  "6.12 (H1-2025) -> 6.31 (H1-2026), +3.1% like-for-like, and 5.69 -> 6.14 "
+                  f"{_C125:.2f} (H1-2025) -> {_C126:.2f} (H1-2026), {_D_COMM:+.2%} "
+                  "like-for-like, and 5.69 -> 6.14 "
                   "across FY2024-25. MECHANISM: dealer and retail acquisition/retention "
                   "commission per subscriber, rising with competitive intensity in a "
                   "two-player market. The observed rate is carried forward unchanged",
@@ -513,7 +542,8 @@ INP = dict(
                  "2026-08-17", "House"),
     esc_dc_fixed=I(0.0, "Fixed capacity and direct cost per subscriber per month, held FLAT at "
                    "the H1-2026 reviewed rate. MEASURED but NOT extrapolated: 79.71 (FY2024) -> "
-                   "73.14 (FY2025) -> 68.35 (H1-2026), a -9.2% like-for-like half-year fall. "
+                   f"73.14 (FY2025) -> {_X126:.2f} (H1-2026), a {_D_FIXED:+.2%} like-for-like "
+                   "half-year fall. "
                    "The mechanism (fibre/FWA scale plus enterprise mix) is real but decays at an "
                    "unmeasurable rate, so the observed improvement is stopped dead rather than "
                    "projected. Because revenue per subscriber escalates 1.5%/yr against a flat "
@@ -924,6 +954,19 @@ for _p, _j in _DCP.items():
         whl_rate=_j['whl_cap'] / _sr['wholesale'],
         ict_rate=_j['ict_dev'] / _sr['ict'],
     )
+# GATE (added 17-Aug-2026): the deltas quoted inside the register's own justification text are
+# computed in a pre-pass from raw disclosed figures; the full joint recovery above computes them
+# again by a different route. They must agree, or a register note is describing arithmetic the
+# model does not perform — the failure a rendered-PDF read caught by hand this once.
+for _lab, _pre, _post in (
+        ('mobile interconnect', _D_INTER,
+         DCU['H126']['mob_inter'] / DCU['H125']['mob_inter'] - 1),
+        ('mobile commission', _D_COMM, DCU['H126']['mob_comm'] / DCU['H125']['mob_comm'] - 1),
+        ('fixed capacity', _D_FIXED, DCU['H126']['fixed_cap'] / DCU['H125']['fixed_cap'] - 1)):
+    assert abs(_pre - _post) < 5e-5, (
+        f'{_lab}: the like-for-like delta quoted in the register ({_pre:+.4%}) disagrees with the '
+        f'one the joint recovery produces ({_post:+.4%})')
+
 say("[Direct-cost unit rates, from du's own filings] AED per subscriber per month unless "
     "shown as a rate. " + " | ".join(
         f"{p}: mobile interconnect {DCU[p]['mob_inter']:.2f} + commission "
@@ -1766,7 +1809,18 @@ OUT = dict(
                          h1_25_margin=_h1_25_margin,
                          margin_at_guidance_mid=(0.465 * rev[0] - V['h1_26_ebitda'])
                          / _h2_26_rev)),
-    unitcost=dict(hist=DCU, joint=_DCP, h2_25=H2_25_U, den={k: list(v) for k, v in _DEN.items()}),
+    unitcost=dict(hist=DCU, joint=_DCP, h2_25=H2_25_U, den={k: list(v) for k, v in _DEN.items()},
+                  arpu_q=V['arpu_mobile_q'], peers=V['arpu_ratio_peers'],
+                  nature_hist=V['dc_nature_hist'], nature_h1=V['dc_nature_h1'],
+                  seg_dc_hist=V['seg_dc_hist'], seg_dc_h1=V['seg_dc_h1'],
+                  mix=dict(fy25=_m_fy25, q226=_m_q226, ratio=_r, lift=mix_lift,
+                           erosion=leg_erosion, printed=_rel - 1,
+                           prepaid_drop=V['subs_prepaid']['Q2_2026'] - V['subs_prepaid']['Q4_2025'],
+                           postpaid_gain=V['subs_postpaid']['Q2_2026'] - V['subs_postpaid']['Q4_2025'],
+                           share={k: _pp[k] for k in _pp}),
+                  ident=dict(pairs=len(_pairs), lo=min(_rv), hi=max(_rv), neg=_neg,
+                             sub1=_sub1, inband=_inband,
+                             band=[_lo, _hi], single=_r_implied)),
     seg_fy25=dict(rev=SRH['FY25'], contrib=SCH['FY25'], names=SEGNAME,
                   margin={s: SCH['FY25'][s] / SRH['FY25'][s] for s in SEGS}),
     bottomup=dict(seg_rev_hist=SRH, seg_contrib_hist=SCH,
@@ -1789,6 +1843,8 @@ OUT = dict(
              div_between=V['div_between'], roic_term=roic_term, rr_term=rr_term,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
              ps_framing_b=dcf_ps_B, ps_rf_alt=dcf_ps_rf_alt,
+             ps_rf_long=dcf_ps_rf_long, ps_rf_debut=dcf_ps_rf_debut,
+             wacc_rf_long=wacc_rf_long, wacc_rf_debut=wacc_rf_debut,
              ev_ebitda_now=ev_ebitda_now, ebitda_term=ebitda_term,
              tv_implied_mult=tv_implied_mult, ps_mkt_term=dcf_ps_mkt_term,
              rou_repl_retired=rou_repl_retired),

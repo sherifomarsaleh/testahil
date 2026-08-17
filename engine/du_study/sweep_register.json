@@ -464,7 +464,7 @@
    "source_date": "2026-02-09",
    "detail": "",
    "url": "",
-   "model_impact": "Each direct-cost line now carries its OWN driver and escalator: interconnect per subscriber per month (falling 4.2% like-for-like), commission per subscriber per month (rising 3.1%), devices held flat. Contribution margin became an OUTPUT rather than an input.",
+   "model_impact": "Each direct-cost line now carries its OWN driver and escalator: interconnect per subscriber per month (falling 4.1% like-for-like), commission per subscriber per month (rising 3.0%), devices held flat. Contribution margin became an OUTPUT rather than an input.",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },

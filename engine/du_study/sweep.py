@@ -327,8 +327,8 @@ f_dcnat = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
     "AR2023 Note 26 / AR2024 Note 27 / AR2025 income statement, investors.du.ae", CO,
     "2026-02-09", is_fs_data=True, fiscal_period="FY2025",
     model_impact="Each direct-cost line now carries its OWN driver and escalator: interconnect "
-                 "per subscriber per month (falling 4.2% like-for-like), commission per "
-                 "subscriber per month (rising 3.1%), devices held flat. Contribution margin "
+                 "per subscriber per month (falling 4.1% like-for-like), commission per "
+                 "subscriber per month (rising 3.0%), devices held flat. Contribution margin "
                  "became an OUTPUT rather than an input.")
 f_dcseg = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
     "Direct costs disclosed BY SEGMENT for both halves of 2026 and both audited years "

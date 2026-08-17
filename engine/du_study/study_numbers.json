@@ -1211,13 +1211,13 @@
   },
   "esc_dc_inter": {
    "value": -0.015,
-   "source": "Mobile interconnect cost per subscriber per month, -1.5%/yr. MEASURED: 17.54 (H1-2025) -> 16.81 (H1-2026), -4.2% like-for-like. MECHANISM: regulated mobile-termination rates ratchet down and terminated voice/SMS keeps migrating to OTT, so the per-subscriber off-net bill falls even as the base grows. The forecast takes barely a third of the observed decline, on the view that it decays as the OTT substitution matures",
+   "source": "Mobile interconnect cost per subscriber per month, -1.5%/yr. MEASURED: 17.54 (H1-2025) -> 16.81 (H1-2026), -4.13% like-for-like. MECHANISM: regulated mobile-termination rates ratchet down and terminated voice/SMS keeps migrating to OTT, so the per-subscriber off-net bill falls even as the base grows. The forecast takes barely a third of the observed decline, on the view that it decays as the OTT substitution matures",
    "date": "2026-08-17",
    "ring": "House"
   },
   "esc_dc_comm": {
    "value": 0.03,
-   "source": "Mobile commission cost per subscriber per month, +3.0%/yr. MEASURED: 6.12 (H1-2025) -> 6.31 (H1-2026), +3.1% like-for-like, and 5.69 -> 6.14 across FY2024-25. MECHANISM: dealer and retail acquisition/retention commission per subscriber, rising with competitive intensity in a two-player market. The observed rate is carried forward unchanged",
+   "source": "Mobile commission cost per subscriber per month, +3.0%/yr. MEASURED: 6.12 (H1-2025) -> 6.31 (H1-2026), +2.98% like-for-like, and 5.69 -> 6.14 across FY2024-25. MECHANISM: dealer and retail acquisition/retention commission per subscriber, rising with competitive intensity in a two-player market. The observed rate is carried forward unchanged",
    "date": "2026-08-17",
    "ring": "House"
   },
@@ -1229,7 +1229,7 @@
   },
   "esc_dc_fixed": {
    "value": 0.0,
-   "source": "Fixed capacity and direct cost per subscriber per month, held FLAT at the H1-2026 reviewed rate. MEASURED but NOT extrapolated: 79.71 (FY2024) -> 73.14 (FY2025) -> 68.35 (H1-2026), a -9.2% like-for-like half-year fall. The mechanism (fibre/FWA scale plus enterprise mix) is real but decays at an unmeasurable rate, so the observed improvement is stopped dead rather than projected. Because revenue per subscriber escalates 1.5%/yr against a flat cost, the fixed margin still widens as an OUTPUT",
+   "source": "Fixed capacity and direct cost per subscriber per month, held FLAT at the H1-2026 reviewed rate. MEASURED but NOT extrapolated: 79.71 (FY2024) -> 73.14 (FY2025) -> 68.35 (H1-2026), a -9.21% like-for-like half-year fall. The mechanism (fibre/FWA scale plus enterprise mix) is real but decays at an unmeasurable rate, so the observed improvement is stopped dead rather than projected. Because revenue per subscriber escalates 1.5%/yr against a flat cost, the fixed margin still widens as an OUTPUT",
    "date": "2026-08-17",
    "ring": "House"
   },
@@ -2271,6 +2271,116 @@
     739.5,
     6
    ]
+  },
+  "arpu_q": {
+   "Q4_2024": 65.8,
+   "Q1_2025": 63.5,
+   "Q2_2025": 63.3,
+   "Q3_2025": 64.5,
+   "Q4_2025": 65.3,
+   "Q1_2026": 63.4,
+   "Q2_2026": 63.4,
+   "FY_2024": 62.5,
+   "FY_2025": 63.3
+  },
+  "peers": {
+   "ooredoo_qatar": 7.22,
+   "ooredoo_kuwait": 4.67,
+   "ooredoo_oman": 2.92
+  },
+  "nature_hist": {
+   "FY22": {
+    "interconnect": 2768.016,
+    "commission": 463.784,
+    "devices": 1303.426
+   },
+   "FY23": {
+    "interconnect": 2729.605,
+    "commission": 535.469,
+    "devices": 1405.604
+   },
+   "FY24": {
+    "interconnect": 2811.223,
+    "commission": 596.223,
+    "devices": 1410.996
+   },
+   "FY25": {
+    "interconnect": 2914.172,
+    "commission": 686.408,
+    "devices": 1658.845
+   }
+  },
+  "nature_h1": {
+   "H125": {
+    "interconnect": 1442.312,
+    "commission": 331.701,
+    "devices": 778.268
+   },
+   "H126": {
+    "interconnect": 1456.789,
+    "commission": 359.188,
+    "devices": 769.467
+   }
+  },
+  "seg_dc_hist": {
+   "FY24": {
+    "mobile": 2562.523,
+    "fixed": 615.065,
+    "wholesale": 284.092,
+    "ict": 1356.762
+   },
+   "FY25": {
+    "mobile": 2771.294,
+    "fixed": 621.852,
+    "wholesale": 348.749,
+    "ict": 1517.53
+   }
+  },
+  "seg_dc_h1": {
+   "H125": {
+    "mobile": 1357.492,
+    "fixed": 313.489,
+    "wholesale": 178.922,
+    "ict": 702.378
+   },
+   "H126": {
+    "mobile": 1371.245,
+    "fixed": 303.283,
+    "wholesale": 195.926,
+    "ict": 714.99
+   }
+  },
+  "mix": {
+   "fy25": 0.20289988024931993,
+   "q226": 0.22122844827586208,
+   "ratio": 3.0,
+   "lift": 0.026075645396384184,
+   "erosion": -0.023873353466018044,
+   "printed": 0.0015797788309637184,
+   "prepaid_drop": -499,
+   "postpaid_gain": 74,
+   "share": {
+    "Q4_2024": 0.2018842530282638,
+    "Q1_2025": 0.20192623399365217,
+    "Q2_2025": 0.206172028890348,
+    "Q3_2025": 0.20959651035986915,
+    "Q4_2025": 0.2039155074703761,
+    "Q1_2026": 0.20870731455689673,
+    "Q2_2026": 0.22122844827586208
+   }
+  },
+  "ident": {
+   "pairs": 21,
+   "lo": -45.207067496392085,
+   "hi": 16.77347346002919,
+   "neg": 9,
+   "sub1": 2,
+   "inband": 5,
+   "band": [
+    2.92,
+    7.22
+   ],
+   "single": 0.9154206150382568
   }
  },
  "seg_fy25": {
@@ -2485,6 +2595,10 @@
   "bull": 28.653303688485405,
   "ps_framing_b": 16.114292874250424,
   "ps_rf_alt": 17.897290924711083,
+  "ps_rf_long": 20.815293287666663,
+  "ps_rf_debut": 23.181074632632782,
+  "wacc_rf_long": 0.06072434110999575,
+  "wacc_rf_debut": 0.05733229629209379,
   "ev_ebitda_now": 7.555316462511931,
   "ebitda_term": 9542.235090701864,
   "tv_implied_mult": 10.08649012975652,

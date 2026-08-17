@@ -115,7 +115,7 @@ analysis" and the Gross Margin definition verbatim) · Mobily 14–15.6x (stale 
 "20.7 is e&'s share price mistranscribed" (3–7 Aug closes were 20.30/21.00/21.00/20.98/20.50 —
 no session printed 20.70, two providers agreeing to the fil; my own trail records 20.7 as a
 *normalized* P/E, so the defect is a basis mislabel) · "longest AED tenor is worth −1.01/share"
-(the actual Feb-2033 print at 3.779% moves value **+12.8%**; the 4.48% choice is conservative) ·
+(**SUPERSEDED 17-Aug-2026 — this line's own numbers were wrong; see the addendum below**) ·
 "Table 8's shown inputs don't give shown outputs" (same-basis is correct; the row fails to SHOW
 the second change) · 682k re-dated to FY2023 (unproven; my series has Q4-2024=682 and the deck
 confirms Q2-2025=706) · "a point estimate is a price target" (the house standard mandates a
@@ -166,3 +166,69 @@ reinvestment of 6.33%; terminal implied capex 2,937 vs FY2030E actual 2,860 — 
   dividend PAID in the window.
 - **A single-driver sensitivity grid must return the base case at the base parameter**, asserted
   in code.
+
+
+---
+
+## Addendum, 17-Aug-2026 (edition 4) — the risk-free finding, fully re-derived
+
+The body above rejected a critique's claim about the longest AED tenor and quantified the 3.779%
+case at "+12.8% to value". **Both that number and its framing were wrong**, and part of the
+correction runs against me. Re-derived first-hand from the UAE Ministry of Finance's own auction
+releases:
+
+- **3.779% and 4.13% are the SAME instrument** — the debut issuance (AED 550mn, 22-Feb-2026) and
+  the second tap (23-Apr-2026) of the **February-2033 Islamic Treasury Sukuk**. The critique quoted
+  the ministry accurately; it took a debut print that the issuer's own re-offer contradicted 35bp
+  higher two months later.
+- **It is a sukuk, not a T-Bond.** This register called it a bond. Corrected.
+- **Only one of the two prints was recorded.** Both now are.
+- **The auction spread was presented as a clean verbatim quotation.** The ministry's sentence is
+  malformed — it covers two tranches in one clause — so the 4bp is now stated as *read from* the
+  release rather than quoted from it.
+- **Exactly one AED federal tranche exists beyond January 2031**, corroborated by the ministry's own
+  January-2026 statement that outstandings then spanned two to five years.
+
+**Priced before judged, on the production chain.** The critique's 3.779% gives AED
+23.18 against a base of 18.89 — **+22.7%**,
+not the +12.8% reported above (that figure was computed against a superseded build and against the
+wrong alternative). At that magnitude the finding required a full primary re-derivation regardless
+of first impressions, and got one.
+
+**Verdict: REJECTED, with receipts.** A print five and a half months before the anchor, contradicted
+by the issuer's own re-offer of the identical instrument, is not the rate that prevailed at the
+anchor — the Jan-2031 bond moved 3.90% → 3.85% → 4.30% → 4.48% across the same window. rf stays
+4.48%. But the honest reading is that the **tenor choice is a range, not a
+point**, so both defensible longer alternatives are now published rather than selected between:
+AED 20.82 at 4.13% and AED 17.90 at the peg-extrapolated 4.69%.
+
+## Addendum — the three findings this document left unpriced
+
+Step 3 forbids calling a finding immaterial without a number beside the word. Three findings were
+bucketed here without one. That is a procedural failure independent of where they land, so all three
+are now priced on the production chain.
+
+| Finding | Priced | Verdict |
+|---|---|---|
+| **CC7** — Expert 1's discounting horizon should be anchor-consistent | 9.88 → **11.54** (+1.65/sh, +11.9% of central) | **Premise CORRECT, and under-priced by being left unpriced.** The lens discounted over a net 1.40 years where 2.40 separate the anchor from the date those earnings arrive. But the CONCLUSION — that the lens was overstated — is wrong in sign: correcting the horizon alone silently discards AED 1.64 of dividends from a ~98%-payout company. Both defects sat in the same three lines. **Expert 1 republished on the coherent construction.** |
+| **CC10** — market-multiple family at 25% rather than 45% | **15.91** (freed weight to the cash-flow lens) / **14.95** (to the book lens) | **NOT immaterial** — up to 2.01/share, with 0.95/share between the two destinations. Weights unchanged: the scheme applies to every operating company this house covers, and re-tuning it for one name is how a standard stops being one. The alternatives are now PUBLISHED in §4 rather than described as immaterial. |
+| **CC3** — revenue at the guidance midpoint | **19.54** won on price / **19.68** won on volume | **Material, published as a range** — and a lesson. The first comparison was MIS-SPECIFIED: calibrating both on FY2026 growth does not hold revenue constant, because H1-2026 is a reviewed actual, so a subscriber shift big enough to move the second half then applies to all of FY2027-30. The model's own assertion caught it. Re-run on matched five-year revenue, price beats volume by AED 0.20, as the mechanism predicts. |
+
+## Addendum — what the self-audit had still not found
+
+Edition 3's self-audit found seven defects no critique raised. It missed the largest one, which
+surfaced only when three challenge questions forced a rebuild instead of a defence:
+
+**The cost side was not built bottom-up at all.** du discloses direct costs three ways by nature and
+four ways by segment, in every filing. Edition 3 used neither — it held one contribution MARGIN per
+segment as an INPUT at the audited FY2025 rate, discarding six months of reviewed data and making
+profitability an assumption rather than a result. Edition 4 recovers the by-nature × by-segment
+joint exactly, builds mobile direct cost as a three-line per-subscriber stack, and makes every
+margin an output. It also surfaces a downside neither the critiques nor the self-audit found: the
+flat blended ARPU is a coincidence of a +2.6% mix tailwind against
+-2.4% per-leg erosion, worth **-17.3%** on the
+cash-flow lens if the tailwind exhausts.
+
+Recorded as a standing rule: **a self-audit that only re-checks the work it already did will keep
+missing the work it never did.** Ask what the filings disclose that the model does not consume, not
+only whether the model's own numbers tie.

@@ -8,11 +8,17 @@ os.chdir(HERE)
 exec(open(os.path.join(HERE, 'docx_base.py')).read())
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+
+def H3(text):
+    """A sub-heading inside a numbered section — used where a single judgement needs its own
+    argument rather than a paragraph buried in a longer one."""
+    H2(text)
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
+UC = D['unitcost']
 BT = D['backtest']; BT5, BTF = BT['production'], BT['full']   # production = the post-break set actually used
 SPOT, SH = M['spot'], M['shares_mn']
 CEN, LO_, HI_ = D['central'], D['span'][0], D['span'][1]
@@ -350,19 +356,144 @@ P('Mobile and Fixed are built as volume × price — the finest level the compan
   f"{n0(IN['subs_mobile_path'][0])}k by end-2026 (the company itself reports gross adds still "
   f"below pre-war levels), then to {n0(IN['subs_mobile_path'][-1])}k by end-2030 — growth of "
   'roughly a quarter-million customers a year, well below the boom year 2025 added, with ARPU '
-  f"essentially flat (AED {IN['arpu_mobile_path'][0]:.1f} → {IN['arpu_mobile_path'][-1]:.1f}: "
-  'postpaid mix gains offsetting prepaid dilution, and no price war anywhere in the record).')
+  f"held roughly flat (AED {IN['arpu_mobile_path'][0]:.1f} → {IN['arpu_mobile_path'][-1]:.1f}).")
+H3('Why the flat ARPU path is this study\'s most fragile revenue judgement')
+P('The company prints one blended mobile ARPU, and it has barely moved: AED '
+  f"{UC['arpu_q']['FY_2025']:.1f} in FY2025 and {UC['arpu_q']['Q2_2026']:.1f} in the second "
+  'quarter of 2026. Read on its own, that looks like pricing stability. It is not. du also '
+  'discloses the customer base split between prepaid and postpaid every quarter, and that mix '
+  f"moved sharply: the postpaid share went from {UC['mix']['fy25']:.1%} to "
+  f"{UC['mix']['q226']:.1%} in two quarters — not because postpaid surged, but because prepaid "
+  f"COLLAPSED, losing {abs(UC['mix']['prepaid_drop']):,.0f} thousand customers against "
+  f"{UC['mix']['postpaid_gain']:,.0f} thousand postpaid gained. Those were largely low-value "
+  'visitor SIMs, the cheapest customers on the book.')
+P('A postpaid customer is worth a multiple of a prepaid one. So a mix shift of that size is a '
+  'mechanical tailwind to the blended figure. At the ratio observed at the one Gulf operator '
+  f"that discloses both legs, the mix shift alone would have lifted blended ARPU about "
+  f"{UC['mix']['lift']:+.1%}. The company reported {UC['mix']['printed']:+.1%}. The arithmetic "
+  f"only closes if each leg's OWN price fell about {UC['mix']['erosion']:+.1%} over the same "
+  'span. In other words the flat headline is not stability — it is two forces of similar size '
+  'pulling in opposite directions, and the disclosure is not granular enough to separate them.')
+P('This matters because of what the forecast assumes elsewhere. The subscriber path in this '
+  'study has prepaid RECOVERING as tourism normalises. A recovering prepaid base pushes the '
+  'postpaid share back down, which removes the tailwind — and if the underlying per-leg erosion '
+  'continues, the blended figure falls rather than holding flat. Holding the path flat is '
+  'therefore a joint assumption that BOTH forces persist and keep cancelling. Section 1.9 '
+  'prices the alternative directly: if the blended path instead erodes at the rate the '
+  f"decomposition implies, the cash-flow lens reads AED {SN['dcf_mix_exhaust']:.2f} rather than "
+  f"AED {DCF['ps']:.2f}, {SN['dcf_mix_exhaust']/DCF['ps']-1:+.0%}. It is the largest single "
+  'downside in the study that does not come from the discount rate.')
+P('A reader will reasonably ask why the two legs are not simply modelled separately. Because '
+  'they cannot be identified. du publishes no prepaid or postpaid ARPU anywhere — not in the '
+  'earnings releases, not in the presentations, not in the audited segment note, which splits '
+  'Mobile from Fixed and never splits mobile itself. That is the regional norm rather than a du '
+  'quirk: e&, stc and Mobily all publish the subscriber split with a single blended price, and '
+  'Ooredoo is the sole Gulf exception. The mix did move, which in principle pins down the ratio '
+  'between the legs if both prices were stable — so this study solved for that ratio on all '
+  f"{UC['ident']['pairs']} available quarter pairs. The answers range from "
+  f"{UC['ident']['lo']:.0f}× to {UC['ident']['hi']:.0f}×. {UC['ident']['neg']} of the "
+  f"{UC['ident']['pairs']} imply a NEGATIVE ratio and {UC['ident']['sub1']} imply a postpaid "
+  'customer worth LESS than a prepaid one; both are impossible. An estimate that swings that '
+  'far depending on which two quarters are chosen is not measuring anything. So the split is '
+  'NOT built. Building it would replace one disclosed number with two undisclosed ones joined '
+  'by an imported assumption, and — because the arithmetic is mix-preserving — would reproduce '
+  'exactly the same revenue while looking more precise. The gap is flagged instead, and the '
+  'risk it creates is priced.')
 P(f"Fixed: subscribers {n0(BU['subs_fixed']['Q4_2024'])}k at 31-Dec-2024 → "
   f"{n0(BU['subs_fixed']['Q4_2025'])}k at 31-Dec-2025 → {n0(BU['subs_fixed']['Q2_2026'])}k at "
   f"30-Jun-2026, forecast to {n0(IN['subs_fixed_path'][-1])}k on continued fibre and fixed-wireless share "
   'gain, times an implied revenue per subscription (a consumer-plus-enterprise blend, so a '
-  'revenue-intensity metric rather than a tariff) rising gently with the enterprise mix. '
+  'revenue-intensity metric rather than a tariff) rising gently with the enterprise mix. That '
+  'intensity metric is itself an implied figure — segment revenue over the average base — so it '
+  'is a weaker construction than the mobile one and is labelled as such rather than presented '
+  'as a price. '
   'Wholesale and ICT disclose no unit measures anywhere in the filings — that gap is flagged, '
   'and both are grown at segment level: wholesale on a war-recovery path (roaming and transit '
   f"were hit; {sgn(IN['seg_g']['wholesale'][0])} in 2026 then ~+2%), ICT on the data-centre "
   f"ramp ({sgn(IN['seg_g']['ict'][1])} at peak), which is anchored on the company's own "
   'disclosed programme: five data centres, a hyperscale campus with Microsoft as anchor '
   'tenant, and capital commitments UP a quarter-billion dirhams in six months.')
+H3('How the cost side is built — cost per unit, and why no margin is an input')
+P('The company discloses its direct costs twice over, and never joins them up. On the face of '
+  'the income statement they are split by NATURE into three lines — interconnect, commission, '
+  'and devices and other direct services. In the segment note they are split by SEGMENT, one '
+  '"interconnect and other direct costs" line each for Mobile, Fixed, Wholesale and ICT. Both '
+  'views are published every period; the cross-tabulation between them never is.')
+P('That cross-tabulation is recoverable, and recovering it is what lets the cost side be built '
+  'per unit rather than as a margin. Two structural facts do the work: Fixed and Wholesale carry '
+  'no consumer acquisition channel and no handset sales, so their direct cost is interconnect '
+  'and capacity; and commission is dealer and retail commission on the consumer mobile base, so '
+  'it is a mobile cost. Given those, mobile interconnect falls out of total interconnect as a '
+  'residual, and the mobile device line falls out of mobile\'s own segment total. The test that '
+  'this is not a convenient fiction is that the residual device cost must come out POSITIVE and '
+  'small in every period, and ICT\'s own direct cost plus that residual must foot exactly to the '
+  'disclosed devices line. Both hold in all four disclosed periods, and the model asserts them '
+  'rather than trusting them.')
+P('What emerges is a genuine per-unit cost stack for the mobile business, with each line moving '
+  'for its own reason:')
+rows = [['AED per mobile subscriber per month', 'FY2024A', 'FY2025A', 'H1-2025A', 'H1-2026A']]
+for k, lab in (('mob_inter', 'Interconnect'), ('mob_comm', 'Commission'),
+               ('mob_dev', 'Devices and other direct services')):
+    rows.append([lab] + [f"{UC['hist'][pp][k]:.2f}" for pp in ('FY24', 'FY25', 'H125', 'H126')])
+rows.append(['Total mobile direct cost per subscriber',
+             *[f"{UC['hist'][pp]['mob_tot']:.2f}" for pp in ('FY24', 'FY25', 'H125', 'H126')]])
+rows.append(['Fixed capacity cost per subscription',
+             *[f"{UC['hist'][pp]['fixed_cap']:.2f}" for pp in ('FY24', 'FY25', 'H125', 'H126')]])
+rows.append(['Wholesale direct cost / own revenue',
+             *[f"{UC['hist'][pp]['whl_rate']:.1%}" for pp in ('FY24', 'FY25', 'H125', 'H126')]])
+rows.append(['ICT direct cost / own revenue',
+             *[f"{UC['hist'][pp]['ict_rate']:.1%}" for pp in ('FY24', 'FY25', 'H125', 'H126')]])
+table(rows, [3.10, 0.95, 0.95, 0.95, 0.95], size=8.4)
+caption(f'{T()} — the direct-cost stack per unit, recovered from the company\'s own two '
+        'disclosures. The two half-year columns are the important ones: they are like-for-like, '
+        'so they measure DIRECTION rather than mixing seasonality into a year-on-year change.')
+P('The like-for-like half-years give each line a measured direction, and only two of them get to '
+  'move in the forecast. Interconnect per subscriber fell '
+  f"{UC['hist']['H126']['mob_inter']/UC['hist']['H125']['mob_inter']-1:+.1%}, and there is a "
+  'named mechanism for it: regulated mobile-termination rates ratchet down, and terminated voice '
+  'and SMS keep migrating to messaging apps, so the off-net bill per customer falls even as the '
+  f"base grows. The forecast takes {IN['esc_dc_inter']:+.1%} a year — barely a third of the "
+  'observed fall, on the view that it decays as the substitution matures. Commission per '
+  f"subscriber rose {UC['hist']['H126']['mob_comm']/UC['hist']['H125']['mob_comm']-1:+.1%}, "
+  'which is the cost of winning and keeping a customer in a two-player market rising; the '
+  f"observed rate of {IN['esc_dc_comm']:+.1%} is carried forward unchanged. Everything else is "
+  'anchored on the H1-2026 reviewed actual and held FLAT — including the fixed capacity cost, '
+  f"which fell {UC['hist']['H126']['fixed_cap']/UC['hist']['H125']['fixed_cap']-1:+.1%} "
+  'like-for-like. Stopping that improvement dead rather than projecting it is deliberate: the '
+  'mechanism is real but decays at a rate the disclosure cannot size.')
+P('Two of those choices deserve to be challenged, so here is the evidence for them. Holding the '
+  'H1-2026 rate through the second half of 2026 could flatter the year if second halves are '
+  'structurally cheaper. They are: measured on 2025, the second-half rates came in at AED '
+  f"{UC['h2_25']['mob_tot']:.2f} per mobile subscriber against {UC['hist']['H125']['mob_tot']:.2f} "
+  f"in the first half, AED {UC['h2_25']['fixed_cap']:.2f} against "
+  f"{UC['hist']['H125']['fixed_cap']:.2f} on fixed, and {UC['h2_25']['whl_rate']:.1%} against "
+  f"{UC['hist']['H125']['whl_rate']:.1%} on wholesale. Three of the four were CHEAPER in the "
+  'second half, so carrying a first-half rate forward overstates cost rather than understating '
+  'it. And the wholesale rate has worsened at every single observation — '
+  f"{UC['hist']['FY24']['whl_rate']:.1%}, {UC['hist']['FY25']['whl_rate']:.1%}, "
+  f"{UC['hist']['H125']['whl_rate']:.1%}, {UC['hist']['H126']['whl_rate']:.1%} — which the "
+  'company attributes to the conflict-hit roaming and transit mix. The forecast takes no credit '
+  'for the recovery that attribution implies, and equally does not project further decay.')
+P('Wholesale and ICT cannot be built per unit at all, because no volume measure for either is '
+  'disclosed anywhere in the filings. Both therefore carry a cost RATE on their own revenue, '
+  'anchored on the reviewed half-year. That is the weakest part of the cost build and is '
+  'labelled as such: it is the finest level the disclosure supports, not the level the method '
+  'would prefer. The ICT rate in particular is held flat rather than improving, which reverses '
+  'a judgement in the previous edition of this study — that edition projected a 2.1 percentage '
+  'point margin gain on a data-centre-scale argument, and the disclosed series does not support '
+  f"a trend in either direction ({UC['hist']['FY24']['ict_rate']:.1%} worsened to "
+  f"{UC['hist']['FY25']['ict_rate']:.1%} before improving to {UC['hist']['H126']['ict_rate']:.1%}). "
+  'A story that cannot be measured has been removed from the model.')
+P('The consequence is the point of the whole exercise: NO margin in this study is an input. '
+  'Contribution margin by segment, group gross margin and group EBITDA margin are all computed '
+  'from volumes times unit costs, and they can therefore disagree with each other in informative '
+  f"ways. They do. Group gross margin declines across the forecast, {F['gross_margin'][0]:.1%} to "
+  f"{F['gross_margin'][-1]:.1%}, while NOT ONE segment margin declines. That is entirely mix: "
+  'ICT is the fastest-growing segment and by a wide margin the thinnest, so it dilutes the group '
+  'as it succeeds. A single blended margin assumption — which is what the previous edition of '
+  'this study used — cannot produce that result, and a reader looking at it would have no way to '
+  'tell dilution-by-growth apart from erosion. That distinction is the argument for building '
+  'the cost side this way.')
 H2('What the build produces — margins as outputs')
 rows = [['', 'FY2025A'] + F['years']]
 rows.append(['Revenue (AED mn)', n0(HI['FY25']['rev'])] + [n0(x) for x in F['rev']])
@@ -395,8 +526,10 @@ caption(f'{T()} — the build\'s output. FY2026E growth of {sgn(F["rev"][0]/HI["
         'artefact of one input rather than an output of the build.')
 figure(os.path.join(HERE, 'fig7_mix.png'), 7.0,
        f'{FG()} — revenue by segment and the EBITDA margin path. ICT is the growth leg; '
-       'mobile the recovery story; the margin is flat by construction of the disclosed '
-       'contribution margins and the escalating cost stack.')
+       'mobile the recovery story. The group EBITDA margin is flat-to-slightly-rising as an '
+       'OUTPUT: segment margins widen modestly on the per-unit cost build while ICT — the '
+       'fastest-growing and thinnest segment — dilutes the group as it grows. The two effects '
+       'very nearly cancel, which is a result of the build rather than an assumption in it.')
 
 # =========================== 1.7 CRUX ========================================
 H2('1.7  The crux — what required return does this business deserve?')
@@ -522,9 +655,14 @@ P(f"du's beta is measured, not assumed: weekly log-returns against the FTSE ADX 
   'central judgement rather than dismissing it.')
 H2('Where this construction is contested, and what the alternatives are worth')
 rows = [['Contested construction', 'Base', 'Alternative', 'Worth (AED/share)'],
-        ['Risk-free tenor: Jan-2031 AED print vs 10y peg-extrapolated proxy',
+        ['Risk-free tenor, LONGER AND HIGHER: Jan-2031 AED print vs a 10-year '
+         'peg-extrapolated proxy',
          pc(IN['rf'],2), pc(IN['rf_alt'],2),
          f"{p2(DCF['ps_rf_alt'])} vs {p2(DCF['ps'])} ({p2(DCF['ps_rf_alt']-DCF['ps'])})"],
+        ['Risk-free tenor, LONGER AND LOWER: the Feb-2033 AED sukuk, the only federal tranche '
+         'beyond Jan-2031',
+         pc(IN['rf'],2), pc(IN['rf_alt_long'],2),
+         f"{p2(DCF['ps_rf_long'])} vs {p2(DCF['ps'])} ({p2(DCF['ps_rf_long']-DCF['ps'])})"],
         ['Sovereign basis: market-observed 4bp (primary) vs the ratings table 42bp',
          f"spread {pc(IN['sov_spread_rating'],2)}, ERP {pc(IN['erp_rating'],2)}",
          f"spread {pc(IN['sov_spread_mkt'],2)}, ERP {pc(IN['erp_mkt'],2)}",
@@ -548,10 +686,41 @@ caption(f'{T()} — every contested construction priced, not just named. Two ret
         'below the matched-tenor Treasury, which a hard peg cannot support.')
 
 # =========================== 1.9 SENSITIVITY =================================
+P('The risk-free rate deserves its own paragraph, because it is the input an external review '
+  'of this study contested hardest and because the resolution runs against that review. There is '
+  'no liquid ten-year dirham government point at all: the UAE federal curve\'s longest '
+  'conventional Treasury bond matures in January 2031, and the ONLY federal tranche beyond it is '
+  'a February-2033 Islamic Treasury Sukuk — a different instrument type, which an earlier edition '
+  'of this study mislabelled as a bond. That sukuk has been sold twice. Its debut, in February '
+  f"2026, cleared {pc(IN['rf_sukuk_debut'],3)}. A second tap of the SAME instrument two months "
+  f"later cleared {pc(IN['rf_alt_long'],2)} — 35 basis points higher. The review argued for the "
+  f"debut print, which would put the cash-flow lens at AED {p2(DCF['ps_rf_debut'])} rather than "
+  f"AED {p2(DCF['ps'])}, {DCF['ps_rf_debut']/DCF['ps']-1:+.0%}. That is far too large to wave "
+  'away, so it was re-derived from the issuer\'s own auction releases rather than argued about.')
+P('The debut print does not survive that re-derivation. It is five and a half months older than '
+  'this study\'s anchor, the issuer\'s own re-offer of the identical instrument contradicted it, '
+  'and the Jan-2031 bond moved 3.90% → 3.85% → 4.30% → 4.48% across the same window. Using a '
+  'stale debut as the current risk-free rate would import a rate environment that had ceased to '
+  'exist. The rate used therefore stays at the most recent primary print on the longest liquid '
+  f"tenor, {pc(IN['rf'],2)} — but the honest observation is that the tenor choice is a genuine "
+  f"RANGE, not a point: the two defensible longer alternatives sit on either side of it, worth "
+  f"{p2(DCF['ps_rf_long']-DCF['ps'])} and {p2(DCF['ps_rf_alt']-DCF['ps'])} a share, so both are "
+  'published in the table above rather than one being selected. One further correction belongs '
+  'here: the spread on that auction is read FROM the ministry\'s release, not quoted from it. '
+  'The original sentence is malformed, covering two tranches at once, and an earlier edition of '
+  'this study presented it as a clean quotation. It was not.')
 H2('1.9  Sensitivity — the discount rate, the growth, the regime and the war')
 figure(os.path.join(HERE, 'fig2_sens.png'), 6.6,
        f'{FG()} — DCF fair value against the terminal cost of capital and terminal growth. '
-       'Bold cells sit within about 80 fils of spot.')
+       'The centre cell reproduces the headline cash-flow lens exactly, which is the check a '
+       'sensitivity grid has to pass before any other cell in it means anything. Note what the '
+       'grid says as a whole: across the entire plausible range of terminal discount rate and '
+       f"terminal growth, every cell sits ABOVE the spot price of AED {p2(SPOT)} — the lowest, "
+       f"at a {pc(SN['wt_grid'][-1],2)} terminal cost of capital and "
+       f"{pc(SN['g_grid'][0],1)} growth, still reads AED {SN['grid_wacc_g'][-1][0]:.1f}. For the "
+       'market to be right on this lens, something outside this grid has to be wrong — the '
+       'fiscal regime, the terminal multiple, or the cash flows themselves. Sections 1.7 and 4 '
+       'take that seriously rather than treating the grid as vindication.')
 rows = [['Driver (grid)', '', '', 'base', '', '', 'swing']]
 for lab, grid, vals, gf in [
         ('Beta', SN['beta_grid'], SN['grid_beta'], '{:.2f}'),
@@ -573,12 +742,29 @@ caption(f'{T()} — single-driver sensitivities on the DCF (AED/share); the midd
         'discount rate dwarfs every operating driver, and the fiscal take comes next; among '
         'operating drivers ARPU is king, which is why a duopoly that does not price-war deserves '
         'its premium.')
+P('Two rows deserve a note. The ARPU-drift row is not a generic price sensitivity: it is the '
+  'mix-exhaustion case set out in 1.6, and it is the largest operating downside in the study — '
+  f"AED {p2(SN['grid_drift'][0])} at {SN['drift_grid'][0]:+.1%} a year against AED "
+  f"{p2(DCF['ps'])} in the base. The direct-cost row now scales COST PER UNIT rather than a "
+  'margin, so it is a driver rather than an assumption being nudged.')
+P('One further test belongs here, because an external review asked for it: what is revenue at '
+  f"the company's guided midpoint worth? The build lands at {sgn(SN['cc3']['g_build'],1)} against "
+  f"a guided 4-6%, so the {sgn(SN['cc3']['g_mid'],1)} midpoint is worth about AED "
+  f"{n0((SN['cc3']['g_mid']-SN['cc3']['g_build'])*HI['FY25']['rev'])}mn of FY2026 revenue. The "
+  'answer depends less on the revenue than on HOW it is won. Won on price, with no incremental '
+  f"unit cost or capex behind it, the cash-flow lens reads AED {p2(SN['cc3']['price'])}; won on "
+  'volume, carrying both, it reads AED '
+  f"{p2(SN['cc3']['vol'])}. On the same five-year revenue the price route is worth AED "
+  f"{p2(SN['cc3']['price']-SN['cc3']['vol_matched'])} more per share than the volume route. "
+  'The build deliberately stays below the midpoint: it is driven by the disclosed subscriber and '
+  'ARPU paths, and reverse-engineering a forecast to a guidance number is the opposite of '
+  'building it from the ground up.')
 
 # =========================== 2 TECHNICAL ======================================
 H1('2  Technical and price structure')
 figure(os.path.join(HERE, 'fig3_ma.png'), 7.0,
        f'{FG()} — price against the 20-, 50-, 100- and 200-session moving averages over the '
-       'last 260 sessions.')
+       'the last twelve months of trading.')
 import numpy as np
 from primitives import load_ohlc
 from data_quality import clean_ohlc
@@ -691,6 +877,16 @@ P('What would close the gap from each side. The DCF is right and the market re-r
   'this balance: it leans toward the cash flows but pays the market-anchored lenses the '
   f"{pc(LN['relative']['w']+LN['normalized']['w'],0)} respect their discipline has earned — while "
   'noting, as 1.4 does, that those two lenses are one reading of one multiple, not two.')
+P('Those weights are a house judgement, and an external review was right to ask what they are '
+  f"worth. If the market-anchored family carried {pc(SN['cc10']['family']*0.5555,0)} of the "
+  f"weight instead of {pc(SN['cc10']['family'],0)}, the central would read AED "
+  f"{p2(SN['cc10']['to_dcf'])} were the freed weight given to the cash-flow lens and AED "
+  f"{p2(SN['cc10']['to_book'])} were it given to the book lens — up to "
+  f"{p2(max(abs(SN['cc10']['to_dcf']-CEN), abs(SN['cc10']['to_book']-CEN)))} a share, and "
+  f"{p2(abs(SN['cc10']['to_dcf']-SN['cc10']['to_book']))} between the two destinations. The "
+  'weights are NOT changed — the same scheme is applied to every operating company this house '
+  'covers, and re-tuning it for one name is how a standard stops being one — but the alternatives '
+  'are published here rather than described as immaterial, because they plainly are not.')
 figure(os.path.join(HERE, 'figD1_experts.png'), 7.0,
        f'{FG()} — the expert panel\'s three independent reads (Appendix C), against spot.')
 
@@ -770,12 +966,46 @@ for head, body in [
     ('Wholesale and ICT are built top-down. ', 'No unit disclosures exist for either; both '
      'are flagged. The ICT ramp in particular leans on a disclosed programme whose revenue '
      'model (colocation vs services) the company has not yet broken out.'),
+    ('The flat ARPU path, and the risk hidden inside it. ',
+     'The single most fragile revenue judgement in this study is that blended mobile ARPU holds '
+     'roughly flat. Section 1.6 decomposes why: the flat reported figure is a postpaid mix '
+     f"tailwind worth about {UC['mix']['lift']:+.1%} set against per-leg price erosion of about "
+     f"{UC['mix']['erosion']:+.1%}. Both must persist, and keep cancelling, for the path to hold. "
+     'The mix shift came from a collapse in low-value visitor prepaid SIMs, and this study\'s own '
+     'subscriber path assumes prepaid RECOVERS — which removes the tailwind and leaves the '
+     f"erosion exposed. Priced: the cash-flow lens falls to AED {p2(SN['dcf_mix_exhaust'])} "
+     f"({SN['dcf_mix_exhaust']/DCF['ps']-1:+.0%}). We cannot separate the two legs because du "
+     'publishes no prepaid or postpaid ARPU, and solving for the ratio across all '
+     f"{UC['ident']['pairs']} available quarter pairs gives answers from "
+     f"{UC['ident']['lo']:.0f}× to {UC['ident']['hi']:.0f}× — so the gap is flagged, "
+     'not filled.'),
+    ('What we cannot build from the disclosure. ',
+     'Wholesale and ICT direct costs carry a rate on their own revenue rather than a cost per '
+     'unit, because no volume measure for either segment is disclosed anywhere in the filings. '
+     'That is the weakest part of an otherwise per-unit cost build. The ICT rate is held flat '
+     'rather than improving, which withdraws a data-centre-scale margin story the previous '
+     'edition of this study carried: the disclosed series does not support a trend in either '
+     'direction, and an unmeasurable story has no place in the model.'),
+    ('The second half of 2026 is a forecast, not a print. ',
+     f"The FY2026E EBITDA margin of {pc(F['ebitda_margin'][0],1)} sits above the company's own "
+     'guided 46-47%, so the claim that has to stand up is the implied SECOND-HALF margin of '
+     f"{pc(F['h2_26']['margin'],1)}. The first half improved "
+     f"{(F['h2_26']['h1_26_margin']-F['h2_26']['h1_25_margin'])*100:+.1f} points year on year; "
+     f"the implied second half improves only "
+     f"{(F['h2_26']['margin']-F['h2_26']['h2_25_margin'])*100:+.1f} points, so the forecast "
+     'already assumes the year-on-year gain roughly halves. Reaching the guided midpoint would '
+     f"instead require a second-half margin of {pc(F['h2_26']['margin_at_guidance_mid'],1)}, a "
+     'year-on-year DETERIORATION against a first half that improved. Possible, and priced in '
+     '1.9 — but not what the filings point to.'),
     ('What would change our mind, concretely. ', 'A royalty construction harsher than '
      'Framing B; licence renewal terms materially above the current fee ratio; two '
-     'consecutive quarters of negative postpaid net adds; ARPU breaking below AED 60 '
-     'without a mix explanation; or the payout being cut other than for a named investment '
-     'programme. Any one of these re-opens the build; the register in Appendix B tells a '
-     'reader exactly which inputs to re-examine first.')]:
+     'consecutive quarters of negative postpaid net adds; a quarter in which the postpaid '
+     'share of the mobile base FALLS back toward 20% while blended ARPU follows it down — '
+     'the mix-exhaustion case above; mobile interconnect cost per subscriber turning UP in a '
+     'like-for-like half-year pair, which would remove the only cost tailwind in the build; '
+     'or the payout being cut other than for a named investment programme. Any one of these '
+     're-opens the build; the register in Appendix B tells a reader exactly which inputs to '
+     're-examine first.')]:
     bullet(body, bold_head=head)
 P('', space_after=6)
 
@@ -922,15 +1152,28 @@ P('Worldview: buy durable earnings power at a multiple that does not need the st
 rows = [['Step', 'Value'],
         ['Mid-cycle earnings per share (FY2028E)', p2(E1['eps'])],
         ['Through-cycle multiple applied', f"{E1['pe']:.1f}×"],
-        ['Value at FY2028 (EPS × multiple)', p2(E1['eps'] * E1['pe'])],
-        ['discounted two years at the cost of equity',
-         p2(E1['eps'] * E1['pe'] / (1 + W['ke_exp']) ** 2)],
-        [f"× the anchor accretion factor of {DCF['roll']:.4f}, as every other lens is rolled",
-         p2(E1['base'] + IN['div_between'])],
-        ['less the dividends gone ex before the anchor', p2(IN['div_between'])],
+        ['Value at FY2028, i.e. at 31-Dec-2028 (EPS × multiple)', p2(E1['eps'] * E1['pe'])],
+        [f"discounted {SN['cc7']['years']:.2f} years — 31-Dec-2028 back to the anchor — at the "
+         f"{pc(W['ke_exp'],2)} cost of equity",
+         p2(E1['eps'] * E1['pe'] / (1 + W['ke_exp']) ** SN['cc7']['years'])],
+        ['plus the present value of dividends receivable between the anchor and FY2028',
+         p2(SN['cc7']['div_pv'])],
         ['Expert 1 fair value (anchor date)', p2(E1['base'])],
         ['Range: 12× to 17.5× the same earnings', f"{p2(E1['rng'][0])} – {p2(E1['rng'][1])}"]]
-table(rows, [4.30, 2.30], band_rows={5})
+table(rows, [4.30, 2.30], band_rows={4})
+P('This construction was CORRECTED after external review, and the reviewer was right. The '
+  'previous edition discounted two years from a 31-Dec-2025 base and then applied the same '
+  'anchor-accretion factor the other lenses use, which nets to '
+  f"{abs(SN['cc7']['net_exp_as_built']):.2f} years of discounting — a full year short of the "
+  f"{SN['cc7']['years']:.2f} years that actually separate the anchor from the date these "
+  'earnings arrive. Correcting the horizon on its own, though, changes almost nothing '
+  f"(AED {p2(SN['cc7']['horizon_only'])}) and would introduce a second, larger error: "
+  'discounting a 2028 equity value straight to today silently discards the dividends paid in '
+  'between, which for a company distributing essentially all of its earnings is worth AED '
+  f"{p2(SN['cc7']['div_pv'])} per share. Both defects sat in the same three lines. Fixed "
+  f"together, this lens moves from AED {p2(SN['cc7']['as_built'])} to AED {p2(E1['base'])}."
+  ' The reviewer\'s premise was correct and their conclusion — that the lens was overstated — '
+  'was wrong in sign.')
 P(f"Named sensitivity: the multiple. Each turn of the multiple is worth AED "
   f"{p2(abs(E1['rng'][1]-E1['rng'][0])/5.5)} per share at mid-cycle earnings. Falsifier, "
   'stated in advance: if FY2027 earnings per share prints below the FY2026 estimate — i.e. '
