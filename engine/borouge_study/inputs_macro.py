@@ -110,6 +110,22 @@ MAC = dict(
                       "17 June 2026; the dirham peg means the Base Rate tracks the "
                       "Federal Reserve's policy path", "2026-06-17", "Country"),
 
+    # ---------------- the local market index, the beta regressor --------------
+    adx_index_sessions=I(3883, "FTSE ADX General Index daily history, 2 January 2011 to "
+                         "24 July 2026, 3,883 sessions after the cleaning gate (one "
+                         "stale no-trade row dropped). This is the regressor for the "
+                         "company's own beta: the beta rule requires a stock's own price "
+                         "history against its OWN local index. Trading-day density runs "
+                         "238-252 sessions a year against an ADX calendar of about 250, "
+                         "and no session closes unchanged, so the series carries no "
+                         "stale-price artefact that would bias a covariance downward",
+                         "2026-07-24", "Country"),
+    adx_index_last=I(9828.14, "FTSE ADX General Index close on 24 July 2026, the last "
+                     "session in the series. It ends two weeks behind the share price "
+                     "series, which is immaterial for a five-year weekly regression but "
+                     "is the as-of date any beta quoted from it carries",
+                     "2026-07-24", "Country"),
+
     # ---------------- sector beta, from the original file --------------------
     sector_unlevered_beta=I(1.0021, DAMO_BETA + ". Chemical (Basic) is the right row: "
                             "Borouge sells commodity polyethylene and polypropylene "

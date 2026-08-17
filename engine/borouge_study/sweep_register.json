@@ -112,6 +112,21 @@
    "fid": "F08",
    "ring": "COUNTRY",
    "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FTSE ADX General Index daily history, 2 January 2011 to 24 July 2026 \u2014 3,883 sessions after cleaning, 238-252 trading days a year against an ADX calendar of about 250, and not one session closing unchanged",
+   "source_name": "FTSE ADX General Index daily series, engine/raw_indices/AE/FADGI.csv",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-07-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "THE BETA REGRESSOR. The beta rule requires a stock's own price history against its OWN local index; this is that index. It replaces the equal-weight basket of other AE names the previous revision used as a stand-in, and moves the measured beta from 0.271 to 0.415 \u2014 which raises the cost of equity and lowers every beta-sensitive lens.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
    "klass": "STRUCTURAL",
    "headline": "UAE Ministry of Finance dirham Treasury bond and sukuk auction, July 2026: the January-2031 T-Bond cleared at 4.48%. The same programme's January 2026 final terms carried a 3.90% coupon",
    "source_name": "UAE Ministry of Finance auction result reported by the Emirates News Agency (WAM); Ministry of Finance Treasury Bonds Programme Final Terms, 29 January 2026",
@@ -124,7 +139,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F09",
+   "fid": "F10",
    "ring": "COUNTRY",
    "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
    "klass": "DRIVER_UNLOCK",
@@ -139,7 +154,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F10",
+   "fid": "F11",
    "ring": "COUNTRY",
    "category": "fiscal / political events with sector read-through",
    "klass": "BASE_CHANGER",
@@ -154,7 +169,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F11",
+   "fid": "F12",
    "ring": "INDUSTRY",
    "category": "demand drivers & capacity/supply balance",
    "klass": "BASE_CHANGER",
@@ -169,7 +184,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F12",
+   "fid": "F13",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "DRIVER_UNLOCK",
@@ -184,7 +199,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F13",
+   "fid": "F14",
    "ring": "INDUSTRY",
    "category": "new entrants (named-competitor level)",
    "klass": "STRUCTURAL",
@@ -199,7 +214,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F14",
+   "fid": "F15",
    "ring": "INDUSTRY",
    "category": "technology substitution",
    "klass": "COLOR",
@@ -214,7 +229,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F15",
+   "fid": "F16",
    "ring": "INDUSTRY",
    "category": "competitor capacity / price moves (named)",
    "klass": "STRUCTURAL",
@@ -229,7 +244,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F16",
+   "fid": "F17",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -244,7 +259,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F17",
+   "fid": "F18",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -259,7 +274,7 @@
    "fiscal_period": "FY2024"
   },
   {
-   "fid": "F18",
+   "fid": "F19",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -274,7 +289,7 @@
    "fiscal_period": "FY2023"
   },
   {
-   "fid": "F19",
+   "fid": "F20",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -289,7 +304,7 @@
    "fiscal_period": "FY2022"
   },
   {
-   "fid": "F20",
+   "fid": "F21",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -304,7 +319,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F21",
+   "fid": "F22",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -319,7 +334,7 @@
    "fiscal_period": "Q2 2026"
   },
   {
-   "fid": "F22",
+   "fid": "F23",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -334,7 +349,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F23",
+   "fid": "F24",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "DRIVER_UNLOCK",
@@ -349,7 +364,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F24",
+   "fid": "F25",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -364,7 +379,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F25",
+   "fid": "F26",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "BASE_CHANGER",
@@ -379,7 +394,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F26",
+   "fid": "F27",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -394,7 +409,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F27",
+   "fid": "F28",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -409,7 +424,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F28",
+   "fid": "F29",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -424,7 +439,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F29",
+   "fid": "F30",
    "ring": "COUNTRY",
    "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
    "klass": "NEGATIVE_SEARCH",
@@ -439,7 +454,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F30",
+   "fid": "F31",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "NEGATIVE_SEARCH",
@@ -454,7 +469,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F31",
+   "fid": "F32",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -475,11 +490,11 @@
    "mode": "BOTTOM_UP",
    "justification": "Nameplate capacity by product times a disclosed utilisation path. Utilisation, tonnes produced and tonnes sold are all published by product in the company's own Management Discussion & Analysis, and the forecast path is anchored on the rates the plant actually demonstrated in 2024 and 2025.",
    "sweep_refs": [
-    "F22",
-    "F16",
+    "F23",
     "F17",
     "F18",
-    "F23",
+    "F19",
+    "F24",
     "F05"
    ]
   },
@@ -488,8 +503,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Published benchmark plus the company's own published premium, times a realisation residual measured against three years of audited revenue. Every leg is disclosed; nothing is solved backwards out of a target.",
    "sweep_refs": [
-    "F12",
-    "F22",
+    "F13",
+    "F23",
     "F02",
     "F03"
    ]
@@ -499,9 +514,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Cost per tonne of production from the disclosed cost line over disclosed tonnes, split into the contracted ethane leg and the market-priced propylene leg, with the market share of the mix as the forecast driver. The traded leg escalates on its own price path, never on the domestic inflation index.",
    "sweep_refs": [
-    "F21",
-    "F20",
     "F22",
+    "F21",
+    "F23",
     "F03"
    ]
   },
@@ -510,10 +525,10 @@
    "mode": "BOTTOM_UP",
    "justification": "Regressed across the three audited years into a USD 663m fixed leg and a USD 201 per-tonne variable leg. The fixed leg escalates on UAE consumer inflation \u2014 the only leg that does \u2014 and the variable leg moves with tonnes.",
    "sweep_refs": [
-    "F16",
     "F17",
     "F18",
-    "F22",
+    "F19",
+    "F23",
     "F06"
    ]
   },
@@ -522,8 +537,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Per tonne sold from the disclosed line, at USD 78, 88 and 77 across the audited years against USD 177 in H1-2026 on re-routed shipping. The forecast path is the route decision, which is why it is the second variable the two constructions split on.",
    "sweep_refs": [
-    "F21",
     "F22",
+    "F23",
     "F05"
    ]
   },
@@ -532,9 +547,9 @@
    "mode": "BOTTOM_UP",
    "justification": "The company's own three-year mean of 28.74%, taken from the tax note, not the 9% federal headline. The H1-2026 interim rate of 25.10% is disclosed and deliberately not carried forward.",
    "sweep_refs": [
-    "F09",
-    "F16",
-    "F21"
+    "F10",
+    "F17",
+    "F22"
    ]
   },
   {
@@ -542,8 +557,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Days sales outstanding 51, days inventory 62, days payable 92, a 20-day cash cycle, each measured from the audited statements. Receivables, inventory and payables are projected from those days against forecast revenue and cost \u2014 no plug.",
    "sweep_refs": [
-    "F16",
-    "F26"
+    "F17",
+    "F27"
    ]
   },
   {
@@ -552,9 +567,10 @@
    "justification": "Risk-free rate normalised by the sovereign's own default spread; equity risk premium from the sovereign's own row; beta from the stock's own five-year weekly regression against its own market, published beside a sector bottom-up beta because the own-stock estimate is weak; marginal cost of debt tested against the sovereign and against the related-party facilities actually in place.",
    "sweep_refs": [
     "F07",
-    "F08",
+    "F09",
     "F01",
-    "F26"
+    "F27",
+    "F08"
    ]
   },
   {
@@ -562,9 +578,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Long-run dollar inflation, on the specific ground that Borouge plc's owned capacity is fixed: the 1.4 million tonne Borouge 4 expansion next door is owned by its parents, not by it. This is a driver read off a named transaction, not a convention.",
    "sweep_refs": [
-    "F13",
-    "F24",
-    "F10"
+    "F14",
+    "F25",
+    "F11"
    ]
   },
   {
@@ -572,8 +588,8 @@
    "mode": "TOP_DOWN",
    "justification": "No medium-term capital programme is published, so steady-state maintenance capital expenditure is set from the company's own three-year outturn against its current-year guide, and sensitised. Flagged as the one materially top-down driver in the build.",
    "sweep_refs": [
-    "F31",
-    "F16"
+    "F32",
+    "F17"
    ]
   },
   {
@@ -581,7 +597,7 @@
    "mode": "TOP_DOWN",
    "justification": "Carried at zero real escalation because the pricing formula is not disclosed. The gap is flagged rather than filled with an assumed formula, and the sensitivity shows what a non-zero escalator would cost.",
    "sweep_refs": [
-    "F27"
+    "F28"
    ]
   }
  ],
@@ -640,5 +656,5 @@
   "Q1 2026",
   "Q2 2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [BOROUGE, 2026-08-09]: PASS \u2014 4/4 rings, 31 findings (6 B \u00b7 6 S \u00b7 13 D \u00b7 1 C \u00b7 5 NEG), driver gate 11 rows (9 bottom-up / 2 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 2"
+ "qc_line": "QC(m) \u2014 Information Sweep [BOROUGE, 2026-08-09]: PASS \u2014 4/4 rings, 32 findings (6 B \u00b7 6 S \u00b7 14 D \u00b7 1 C \u00b7 5 NEG), driver gate 11 rows (9 bottom-up / 2 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 2"
 }

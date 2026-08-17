@@ -186,14 +186,14 @@
   "erp_default_spread_basis": 0.0465,
   "mature_erp": 0.0423,
   "crp": 0.0064,
-  "beta_own": 0.27098462571939275,
-  "beta_used": 0.27098462571939275,
+  "beta_own": 0.41528940171777734,
+  "beta_used": 0.41528940171777734,
   "beta_bottom_up": 1.121165861667308,
   "sector_unlevered": 1.0021,
   "de_ratio": 0.16672711800998807,
-  "ke_own": 0.05739695127253443,
+  "ke_own": 0.06442459386365576,
   "ke_bottom_up": 0.0988007774631979,
-  "ke_own_ds": 0.05680078509595177,
+  "ke_own_ds": 0.06351095717987665,
   "ke_bu_ds": 0.09633421256752983,
   "sofr": 0.0365,
   "kd_related_party": 0.05523714285714286,
@@ -205,17 +205,17 @@
   "equity_weight": 0.857098446212201,
   "debt_weight": 0.142901553787799,
   "tax": 0.2873603961007691,
-  "wacc_own": 0.05484680827418632,
+  "wacc_own": 0.060870189819571104,
   "wacc_bottom_up": 0.09033396336944403,
-  "wacc_own_ds": 0.05433583517055306,
+  "wacc_own_ds": 0.06008711323750156,
   "wacc_bu_ds": 0.08821987442988537,
-  "wacc": 0.05484680827418632,
+  "wacc": 0.060870189819571104,
   "mktcap": 19642.875370782847
  },
  "grid_2x2": {
   "own_stock_beta": {
-   "normalisation": 3.328643488050918,
-   "prolonged": 3.323995712332845
+   "normalisation": 2.7931007568227475,
+   "prolonged": 2.79174410781394
   },
   "bottom_up_sector_beta": {
    "normalisation": 1.4905335829107,
@@ -388,8 +388,8 @@
      "nwc": 566.7423562408097,
      "d_nwc": 11.758110440201904,
      "fcff": 1316.704058192986,
-     "discount_factor": 0.9480049540426442,
-     "pv_fcff": 1248.2419701750048,
+     "discount_factor": 0.9426223958372101,
+     "pv_fcff": 1241.1547339424496,
      "ppe_close": 5982.232
     },
     {
@@ -423,8 +423,8 @@
      "nwc": 558.5685315886122,
      "d_nwc": -8.173824652197482,
      "fcff": 1318.1542887687913,
-     "discount_factor": 0.8987133928893959,
-     "pv_fcff": 1184.6429132111089,
+     "discount_factor": 0.8885369811338819,
+     "pv_fcff": 1171.228832411301,
      "ppe_close": 5908.808533088511
     },
     {
@@ -458,8 +458,8 @@
      "nwc": 529.2844570287656,
      "d_nwc": -29.28407455984666,
      "fcff": 1243.598719765017,
-     "discount_factor": 0.8519847487236205,
-     "pv_fcff": 1059.5271427720143,
+     "discount_factor": 0.8375548579463817,
+     "pv_fcff": 1041.582149075091,
      "ppe_close": 5840.213784773187
     },
     {
@@ -493,8 +493,8 @@
      "nwc": 534.6637054788766,
      "d_nwc": 5.379248450111049,
      "fcff": 1223.436354169266,
-     "discount_factor": 0.8076857625587697,
-     "pv_fcff": 988.1521246593246,
+     "discount_factor": 0.7894979668425125,
+     "pv_fcff": 965.9005141778515,
      "ppe_close": 5776.130192777802
     },
     {
@@ -528,22 +528,22 @@
      "nwc": 543.5973057469892,
      "d_nwc": 8.933600268112514,
      "fcff": 1248.2189003380242,
-     "discount_factor": 0.7656901042154245,
-     "pv_fcff": 955.7488598834843,
+     "discount_factor": 0.7441984650136955,
+     "pv_fcff": 928.9225896326406,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 5436.313010700937,
+   "pv_explicit": 5348.788819239334,
    "terminal_nopat": 1221.2290549874872,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
    "terminal_fcff": 1017.6908791562392,
-   "terminal_value": 29204.708538833966,
-   "pv_terminal": 22361.756324680875,
-   "ev_core": 27798.069335381813,
-   "ev": 30767.89916231337,
-   "tv_share_of_ev": 0.7267885339429052,
+   "terminal_value": 24900.56649232658,
+   "pv_terminal": 18530.9633615609,
+   "ev_core": 23879.75218080023,
+   "ev": 26384.73286012853,
+   "tv_share_of_ev": 0.7023365921420448,
    "b4": {
     "steady_from_cumulative": 400.0,
     "steady_from_accretion": 119.45508921189533,
@@ -553,45 +553,45 @@
       "year": 2026,
       "ramp": 0.1,
       "net_profit": 11.945508921189534,
-      "pv": 11.32440163584828
+      "pv": 11.260104238786445
      },
      {
       "year": 2027,
       "ramp": 0.3,
       "net_profit": 35.8365267635686,
-      "pv": 32.20676655705838
+      "pv": 31.842079304824807
      },
      {
       "year": 2028,
       "ramp": 0.6,
       "net_profit": 71.6730535271372,
-      "pv": 61.06434849957259
+      "pv": 60.03011416550481
      },
      {
       "year": 2029,
       "ramp": 1.0,
       "net_profit": 119.45508921189533,
-      "pv": 96.48217482163554
+      "pv": 94.3095500617823
      },
      {
       "year": 2030,
       "ramp": 1.0,
       "net_profit": 119.45508921189533,
-      "pv": 91.46557970771896
+      "pv": 88.89829402956656
      }
     ],
-    "pv_explicit": 292.5432712218338,
-    "pv_terminal": 2677.2865557097225,
-    "value": 2969.8298269315565,
-    "share_of_ev": 0.0965236466508317
+    "pv_explicit": 286.34014180046495,
+    "pv_terminal": 2218.640537527835,
+    "value": 2504.9806793283,
+    "share_of_ev": 0.09494053597615608
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 27243.38716231337,
-   "per_share_usd": 0.9063699082507606,
-   "per_share_aed": 3.328643488050918,
-   "wacc": 0.05484680827418632,
+   "equity": 22860.22086012853,
+   "per_share_usd": 0.7605447942335596,
+   "per_share_aed": 2.7931007568227475,
+   "wacc": 0.060870189819571104,
    "tax": 0.2873603961007691
   },
   "prolonged": {
@@ -629,8 +629,8 @@
      "nwc": 578.3429329765195,
      "d_nwc": 23.358687175911655,
      "fcff": 1345.4082311689026,
-     "discount_factor": 0.9480049540426442,
-     "pv_fcff": 1275.4536683578708,
+     "discount_factor": 0.9426223958372101,
+     "pv_fcff": 1268.211930243534,
      "ppe_close": 5982.232
     },
     {
@@ -664,8 +664,8 @@
      "nwc": 581.2846408971305,
      "d_nwc": 2.9417079206110657,
      "fcff": 1325.2666977774606,
-     "discount_factor": 0.8987133928893959,
-     "pv_fcff": 1191.0349304429074,
+     "discount_factor": 0.8885369811338819,
+     "pv_fcff": 1177.5484708404535,
      "ppe_close": 5908.808533088511
     },
     {
@@ -699,8 +699,8 @@
      "nwc": 569.8108442356775,
      "d_nwc": -11.473796661453093,
      "fcff": 1290.4368642400168,
-     "discount_factor": 0.8519847487236205,
-     "pv_fcff": 1099.4325275232275,
+     "discount_factor": 0.8375548579463817,
+     "pv_fcff": 1080.8116645173216,
      "ppe_close": 5840.213784773187
     },
     {
@@ -734,8 +734,8 @@
      "nwc": 558.09288902862,
      "d_nwc": -11.717955207057457,
      "fcff": 1277.3671473428508,
-     "discount_factor": 0.8076857625587697,
-     "pv_fcff": 1031.7112584691308,
+     "discount_factor": 0.7894979668425125,
+     "pv_fcff": 1008.4787657386008,
      "ppe_close": 5776.130192777802
     },
     {
@@ -769,22 +769,22 @@
      "nwc": 543.7411123958038,
      "d_nwc": -14.351776632816154,
      "fcff": 1258.8412112823878,
-     "discount_factor": 0.7656901042154245,
-     "pv_fcff": 963.8822582574827,
+     "discount_factor": 0.7441984650136955,
+     "pv_fcff": 936.8276971323342,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 5561.514643050619,
+   "pv_explicit": 5471.8785284722435,
    "terminal_nopat": 1208.3127277117908,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
    "terminal_fcff": 1006.9272730931589,
-   "terminal_value": 28895.824982601534,
-   "pv_terminal": 22125.247242318837,
-   "ev_core": 27686.76188536946,
-   "ev": 30729.85929598776,
-   "tv_share_of_ev": 0.7199918173789887,
+   "terminal_value": 24637.20568801913,
+   "pv_terminal": 18334.970655250523,
+   "ev_core": 23806.849183722767,
+   "ev": 26373.629323711073,
+   "tv_share_of_ev": 0.6952008929148998,
    "b4": {
     "steady_from_cumulative": 400.0,
     "steady_from_accretion": 122.4021219564223,
@@ -794,45 +794,45 @@
       "year": 2026,
       "ramp": 0.1,
       "net_profit": 12.240212195642231,
-      "pv": 11.603781800002025
+      "pv": 11.537898145412118
      },
      {
       "year": 2027,
       "ramp": 0.3,
       "net_profit": 36.72063658692669,
-      "pv": 33.00132789609537
+      "pv": 32.62764357826221
      },
      {
       "year": 2028,
       "ramp": 0.6,
       "net_profit": 73.44127317385338,
-      "pv": 62.57084467096824
+      "pv": 61.51109512052818
      },
      {
       "year": 2029,
       "ramp": 1.0,
       "net_profit": 122.4021219564223,
-      "pv": 98.86245121118448
+      "pv": 96.63622642180466
      },
      {
       "year": 2030,
       "ramp": 1.0,
       "net_profit": 122.4021219564223,
-      "pv": 93.7220935170021
+      "pv": 91.09147127438862
      }
     ],
-    "pv_explicit": 299.76049909525216,
-    "pv_terminal": 2743.3369115230494,
-    "value": 3043.0974106183016,
-    "share_of_ev": 0.09902737859315949
+    "pv_explicit": 293.4043345403958,
+    "pv_terminal": 2273.375805447909,
+    "value": 2566.7801399883047,
+    "share_of_ev": 0.0973237360881786
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 27205.34729598776,
-   "per_share_usd": 0.9051043464486985,
-   "per_share_aed": 3.323995712332845,
-   "wacc": 0.05484680827418632,
+   "equity": 22849.117323711074,
+   "per_share_usd": 0.7601753867430743,
+   "per_share_aed": 2.79174410781394,
+   "wacc": 0.060870189819571104,
    "tax": 0.2873603961007691
   }
  },
@@ -959,19 +959,19 @@
   }
  },
  "lenses": {
-  "dcf_normalisation_own_beta": 3.328643488050918,
-  "dcf_prolonged_own_beta": 3.323995712332845,
+  "dcf_normalisation_own_beta": 2.7931007568227475,
+  "dcf_prolonged_own_beta": 2.79174410781394,
   "dcf_normalisation_sector_beta": 1.4905335829107,
   "dcf_prolonged_sector_beta": 1.4964343993523577,
-  "book_value_own_beta": 2.838866074088719,
+  "book_value_own_beta": 2.3897784314647748,
   "book_value_sector_beta": 1.3472574720665518,
   "relative_multiples": 1.7283955956864667,
-  "normalised_earnings_own_beta": 3.0481477274413113,
+  "normalised_earnings_own_beta": 2.5354510410380477,
   "normalised_earnings_sector_beta": 1.292922367759479
  },
  "fair_low": 1.292922367759479,
  "fair_mid": 1.7283955956864667,
- "fair_high": 3.328643488050918,
+ "fair_high": 2.7931007568227475,
  "book_value": {
   "bvps_usd": 0.12396151546472536,
   "roe_hist": [
@@ -980,8 +980,8 @@
    0.26637758783031906
   ],
   "roe_sustainable": 0.25320208114182485,
-  "justified_pb": 6.235858090204704,
-  "value_aed": 2.838866074088719,
+  "justified_pb": 5.2493914037244584,
+  "value_aed": 2.3897784314647748,
   "justified_pb_sector_beta": 2.9593880752094934,
   "value_aed_sector_beta": 1.3472574720665518
  },
@@ -1011,18 +1011,18 @@
   "da": 400.0,
   "ebit": 1670.6862901969243,
   "nopat": 1190.5972160858116,
-  "ev": 28472.17280077693,
-  "equity": 24947.660800776932,
-  "value_aed": 3.0481477274413113,
+  "ev": 24275.99066993,
+  "equity": 20751.478669930002,
+  "value_aed": 2.5354510410380477,
   "value_aed_sector_beta": 1.292922367759479
  },
  "sensitivity": {
   "wacc_grid": [
-   0.04484680827418632,
-   0.049846808274186326,
-   0.05484680827418632,
-   0.05984680827418632,
-   0.06484680827418632
+   0.0508701898195711,
+   0.055870189819571106,
+   0.060870189819571104,
+   0.0658701898195711,
+   0.0708701898195711
   ],
   "g_grid": [
    0.01,
@@ -1034,76 +1034,76 @@
   "grids": {
    "normalisation": [
     [
-     3.7498435896144406,
-     4.183155930830396,
-     4.788891871042499,
-     5.697367275109789,
-     7.214445320758032
+     3.1442279562791056,
+     3.4254801688703833,
+     3.796299748193475,
+     4.308619459734347,
+     5.064139479754758
     ],
     [
-     3.2342368049844925,
-     3.535780111410452,
-     3.936752484538973,
-     4.497179179287316,
-     5.337574022929579
+     2.762087159533806,
+     2.9658040725896533,
+     3.22501899416255,
+     3.566698720784074,
+     4.038657825302612
     ],
     [
-     2.83338406848312,
-     3.0505266898778878,
-     3.328643488050918,
-     3.698378029418823,
-     4.215039878604873
+     2.4548835719303894,
+     2.6060532247829324,
+     2.7931007568227475,
+     3.0310293835476094,
+     3.3445625169202065
     ],
     [
-     2.5127596699721804,
-     2.6731800659875753,
-     2.872715859395584,
-     3.1282044878252866,
-     3.467765960545859
+     2.2025034644543666,
+     2.3167711043149954,
+     2.454983916629508,
+     2.625930154850942,
+     2.8432981041841887
     ],
     [
-     2.2504275569770553,
-     2.3712772018230144,
-     2.5180813433954015,
-     2.7006103364041194,
-     2.934242139350521
+     1.9914416549302003,
+     2.0790455434770894,
+     2.1830196646821394,
+     2.3087172444822457,
+     2.4641111325354195
     ]
    ],
    "prolonged": [
     [
-     3.74186871291263,
-     4.172673199158415,
-     4.7749127929079,
-     5.678156267992609,
-     7.186513311602237
+     3.1401889860084764,
+     3.4199052275910518,
+     3.7887075727037454,
+     4.298249741797451,
+     5.049685455943532
     ],
     [
-     3.2296201360232155,
-     3.529499080615648,
-     3.928266392952499,
-     4.4856209083850835,
-     5.321421095518148
+     2.760464590887417,
+     2.963130781103675,
+     3.221015750687338,
+     3.5609506171453673,
+     4.03050938212596
     ],
     [
-     2.831315622646603,
-     3.0473242130981104,
-     3.323995712332845,
-     3.6918172539628564,
-     4.205816051980442
+     2.45515056652296,
+     2.6055916592710027,
+     2.79174410781394,
+     3.0285414918071347,
+     3.340592472104112
     ],
     [
-     2.512674989977435,
-     2.6723106337889444,
-     2.870876831005995,
-     3.125131452148273,
-     3.4630616223785307
+     2.204276152519297,
+     2.318036444009447,
+     2.4556415187247853,
+     2.6258427856985653,
+     2.84227114251834
     ],
     [
-     2.2519181219152333,
-     2.3722213585059517,
-     2.518367752446483,
-     2.700085745663211,
-     2.932687328423496
+     1.9944321098869144,
+     2.081684594628747,
+     2.185247232331754,
+     2.3104536022852282,
+     2.465247293329601
     ]
    ]
   },
@@ -1111,45 +1111,45 @@
    "normalisation": [
     [
      -100,
-     2.1627835447656003
+     1.7969724683853043
     ],
     [
      -50,
-     2.7457135164082604
+     2.295036612604027
     ],
     [
      0,
-     3.328643488050918
+     2.7931007568227475
     ],
     [
      50,
-     3.9115734596935785
+     3.2911649010414705
     ],
     [
      100,
-     4.49450343133624
+     3.7892290452601953
     ]
    ],
    "prolonged": [
     [
      -100,
-     2.181377475722164
+     1.8168303057173738
     ],
     [
      -50,
-     2.752686594027506
+     2.3042872067656583
     ],
     [
      0,
-     3.323995712332845
+     2.79174410781394
     ],
     [
      50,
-     3.8953048306381874
+     3.2792010088622257
     ],
     [
      100,
-     4.466613948943528
+     3.7666579099105086
     ]
    ]
   },
@@ -1157,67 +1157,67 @@
    "normalisation": [
     [
      -0.1,
-     2.6921032749094307
+     2.2486926635965028
     ],
     [
      -0.05,
-     3.010373381480176
+     2.5208967102096262
     ],
     [
      0.0,
-     3.328643488050918
+     2.7931007568227475
     ],
     [
      0.05,
-     3.6469135946216613
+     3.0653048034358705
     ],
     [
      0.1,
-     3.965183701192406
+     3.337508850048993
     ]
    ],
    "prolonged": [
     [
      -0.1,
-     2.673054932267894
+     2.233868743063614
     ],
     [
      -0.05,
-     2.998525322300371
+     2.5128064254387783
     ],
     [
      0.0,
-     3.323995712332845
+     2.79174410781394
     ],
     [
      0.05,
-     3.6494661023653205
+     3.070681790189105
     ],
     [
      0.1,
-     3.974936492397797
+     3.3496194725642683
     ]
    ]
   }
  },
  "alt_wacc": {
   "own_stock_beta": {
-   "beta": 0.27098462571939275,
-   "ke": 0.05739695127253443,
-   "wacc": 0.05484680827418632,
-   "basis": "Tier-1 own-stock weekly regression against an equal-weight UAE market composite, the beta hierarchy's first choice. It passes the usability gate on all three conditions.",
-   "against": "It is flagged weak by the same machinery: an R-squared of 0.088 and a 90% interval of [0.17, 0.37] spanning 0.72 times the point estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin trading does not explain it. What it most plausibly measures is a share with a 10% free float that has traded in a narrow band, not the risk of a business whose earnings track a global commodity benchmark.",
+   "beta": 0.41528940171777734,
+   "ke": 0.06442459386365576,
+   "wacc": 0.060870189819571104,
+   "basis": "Tier-1 own-stock weekly regression against the FTSE ADX General Index \u2014 the company's own local market index, which is what the beta rule asks for. It passes the usability gate on all three conditions.",
+   "against": "It is flagged weak by the same machinery: an R-squared of 0.094 and a 90% interval of [0.27, 0.56] spanning 0.70 times the point estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin trading does not explain it. What it most plausibly measures is a share with a 10% free float that has traded in a narrow band, not the risk of a business whose earnings track a global commodity benchmark. It is, however, materially HIGHER than the 0.271 an equal-weight composite of the other listed UAE names produces, because an equal-weight composite over-weights small, thinly traded constituents and understates covariance with any single large name.",
    "value_aed": {
-    "normalisation": 3.328643488050918,
-    "prolonged": 3.323995712332845
+    "normalisation": 2.7931007568227475,
+    "prolonged": 2.79174410781394
    },
    "ev": {
-    "normalisation": 30767.89916231337,
-    "prolonged": 30729.85929598776
+    "normalisation": 26384.73286012853,
+    "prolonged": 26373.629323711073
    },
    "tv_share": {
-    "normalisation": 0.7267885339429052,
-    "prolonged": 0.7199918173789887
+    "normalisation": 0.7023365921420448,
+    "prolonged": 0.6952008929148998
    }
   },
   "bottom_up_sector_beta": {
@@ -1242,27 +1242,72 @@
  },
  "beta_detail": {
   "ticker": "BOROUGE",
-  "beta": 0.27098462571939275,
-  "r2": 0.08825322272667646,
-  "n": 216,
-  "se": 0.05954010511035082,
+  "regressor": "FTSE ADX General Index",
+  "regressor_file": "engine/raw_indices/AE/FADGI.csv",
+  "regressor_span": [
+   "2011-01-02",
+   "2026-07-24"
+  ],
+  "regressor_rows": 3883,
+  "regressor_repairs": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "regressor_flat_frac": 0.0,
+  "regressor_max_abs_log": 0.0841,
+  "beta": 0.41528940171777734,
+  "r2": 0.09449503178860574,
+  "n": 215,
+  "se": 0.08808500376795605,
   "ci90": [
-   0.17304115281286564,
-   0.36892809862591985
+   0.27038957051948964,
+   0.560189232916065
   ],
   "usable": true,
   "gate_msg": "passes minimum usability gate",
-  "composite_names": 17,
   "window_years": 5,
   "frequency": "weekly",
   "weak": true,
-  "weak_reason": "R-squared = 8.8% against the 10% weak-instrument threshold; the 90% confidence interval [0.17, 0.37] spans 0.72x the point estimate",
+  "weak_reason": "R-squared = 9.4% against the 10% weak-instrument threshold; the 90% confidence interval [0.27, 0.56] spans 0.70x the point estimate",
   "warnings": [],
+  "window_sensitivity": {
+   "2": {
+    "years": 2,
+    "beta": 0.38235683667954184,
+    "r2": 0.07398564667825736,
+    "n": 102,
+    "se": 0.13527077619018538,
+    "alpha": -0.00010185914310172898
+   },
+   "3": {
+    "years": 3,
+    "beta": 0.38410666070202965,
+    "r2": 0.07555808968839939,
+    "n": 154,
+    "se": 0.10897562608459944,
+    "alpha": -0.0009000571402267985
+   },
+   "4": {
+    "years": 4,
+    "beta": 0.3645097543937371,
+    "r2": 0.0680186047609751,
+    "n": 206,
+    "se": 0.09446780680717118,
+    "alpha": -0.001019666453990293
+   },
+   "5": {
+    "years": 5,
+    "beta": 0.41528940171777734,
+    "r2": 0.09449503178860574,
+    "n": 215,
+    "se": 0.08808500376795605,
+    "alpha": -0.0012279942319211562
+   }
+  },
   "adopted": {
-   "beta_used": 0.27098462571939275,
-   "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-   "why": "n = 216 weekly observations, R-squared = 0.088 against the 0.05 floor, SE(beta) = 0.060 against |beta| = 0.271. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-   "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.194 with a 90% interval of [0.00, 0.39]; the adopted 0.27 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+   "beta_used": 0.41528940171777734,
+   "basis": "tier-1 own-stock weekly regression against its own local index (usability gate PASSED)",
+   "why": "n = 215 weekly observations against the ADX general index, R-squared = 0.094 against the 0.05 floor, SE(beta) = 0.088 against |beta| = 0.415. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
+   "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 0.351 with a 90% interval of [0.06, 0.64]; the adopted 0.42 sits inside it. (ii) The same regression against an equal-weight composite of the other 17 names in the AE library gives 0.271 (R-squared 0.088) \u2014 a different construction of 'the market' reaching a similar answer. (iii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
    "sensitivity_required": [
     0.6,
     0.8,
@@ -1272,35 +1317,45 @@
    ]
   },
   "dimson": {
-   "sum_beta": 0.19445857770034608,
-   "se_sum": 0.11598950470467737,
-   "r2": 0.08771221638838389,
-   "n": 213,
+   "sum_beta": 0.35070738192588663,
+   "se_sum": 0.17800085299401422,
+   "r2": 0.09653119195127946,
+   "n": 212,
    "ci90": [
-    0.0036558424611518037,
-    0.38526131293954036
+    0.05789597875073321,
+    0.64351878510104
    ],
    "coefficients": {
-    "lead": -0.005714915841570217,
-    "contemporaneous": 0.2534299109765811,
-    "lag1": 0.022464334436065072,
-    "lag2": -0.07572075187072987
+    "lead": 0.022073109662263612,
+    "contemporaneous": 0.395836610184398,
+    "lag1": 0.057282332808116176,
+    "lag2": -0.12448467072889115
    },
-   "uplift_vs_ols": -0.07652604801904667,
+   "uplift_vs_ols": -0.06458201979189071,
    "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
   },
-  "self_inclusion_bias": {
-   "beta_index_including_subject": 0.3285972846615872,
-   "r2_including": 0.11964141122352034,
-   "beta_index_excluding_subject": 0.27098462571939275,
-   "r2_excluding": 0.08825322272667646,
-   "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
+  "composite_corroboration": {
+   "beta": 0.27098462571939275,
+   "r2": 0.08825322272667646,
+   "se": 0.05954010511035082,
+   "n": 216,
+   "names": 17,
+   "note": "An equal-weight composite of the other AE names in the price library, the regressor the previous revision of this study used. It is retained as a corroboration only. An equal-weight composite over-weights small, thinly traded constituents, which is why the capitalisation-weighted general index is the correct regressor and this is the cross-check."
+  },
+  "index_membership": {
+   "subject_is_constituent": true,
+   "market_cap_aed_bn": 72.1,
+   "adx_total_aed_bn": 3100.0,
+   "weight_upper_bound": 0.0233,
+   "weight_estimate_free_float": 0.0023,
+   "note": "The subject IS a constituent of its own regressor, which injects a self-covariance term into the numerator exactly as it did with the composite. The difference is magnitude: in a seventeen-name equal-weight composite the subject carried about a seventeenth of the index; in a free-float capitalisation-weighted general index with roughly a 10% float it carries well under one per cent. The contamination is therefore an order of magnitude smaller and is bounded above rather than assumed away."
   },
   "thin_trading": {
    "flat_frac": 0.2483,
    "ae_panel_median": 0.1261,
    "ratio": 1.97,
-   "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
+   "index_flat_frac": 0.0,
+   "note": "Share of sessions closing unchanged, against the median of the AE library and against the index itself. A high ratio is the documented mechanism for a downward-biased contemporaneous beta, and it is why the Dimson correction is run."
   },
   "plausibility": {
    "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
@@ -1379,6 +1434,18 @@
    "value": 0.0365,
    "source": "Central Bank of the UAE Base Rate, held at 3.65% since 17 June 2026; the dirham peg means the Base Rate tracks the Federal Reserve's policy path",
    "date": "2026-06-17",
+   "ring": "Country"
+  },
+  "adx_index_sessions": {
+   "value": 3883,
+   "source": "FTSE ADX General Index daily history, 2 January 2011 to 24 July 2026, 3,883 sessions after the cleaning gate (one stale no-trade row dropped). This is the regressor for the company's own beta: the beta rule requires a stock's own price history against its OWN local index. Trading-day density runs 238-252 sessions a year against an ADX calendar of about 250, and no session closes unchanged, so the series carries no stale-price artefact that would bias a covariance downward",
+   "date": "2026-07-24",
+   "ring": "Country"
+  },
+  "adx_index_last": {
+   "value": 9828.14,
+   "source": "FTSE ADX General Index close on 24 July 2026, the last session in the series. It ends two weeks behind the share price series, which is immaterial for a five-year weekly regression but is the as-of date any beta quoted from it carries",
+   "date": "2026-07-24",
    "ring": "Country"
   },
   "sector_unlevered_beta": {
@@ -3036,17 +3103,17 @@
   "Selling and distribution: $78 / $88 / $77 per tonne sold in the audited years, against $177 in H1-2026 while alternative logistics routes are in use.",
   "Asset-conversion cycle from the statements: 51 days sales outstanding, 62 days inventory, 92 days payable, a cash cycle of 20 days. The balance sheet and the cash flow are projected from these, not plugged.",
   "Cost of capital: rf* = 4.65% US 10-year less 0.23% US default spread = 4.42%; the dirham construction gives 4.48% less 0.42% = 4.06%, and the +0.36% gap under a hard peg is reported, not reconciled away.",
-  "  Beta: own-stock regression 0.271 (weak, R-squared 0.088); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.121.",
-  "  Ke 5.74% on the own-stock beta and 9.88% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
-  "  Equity weight 85.7% on market value. WACC 5.48% on the own-stock beta and 9.03% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
-  "DCF [Normalisation]: EV $30,768m, terminal value 72.7% of enterprise value, equity $27,243m, AED 3.33 per share against a AED 2.40 close.",
-  "DCF [Prolonged disruption]: EV $30,730m, terminal value 72.0% of enterprise value, equity $27,205m, AED 3.32 per share against a AED 2.40 close.",
-  "Book value lens: sustainable return on equity 25.3% against a cost of equity of 5.74% justifies 6.24x book of $0.1240 per share, or AED 2.84.",
+  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.121.",
+  "  Ke 6.44% on the own-stock beta and 9.88% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
+  "  Equity weight 85.7% on market value. WACC 6.09% on the own-stock beta and 9.03% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
+  "DCF [Normalisation]: EV $26,385m, terminal value 70.2% of enterprise value, equity $22,860m, AED 2.79 per share against a AED 2.40 close.",
+  "DCF [Prolonged disruption]: EV $26,374m, terminal value 69.5% of enterprise value, equity $22,849m, AED 2.79 per share against a AED 2.40 close.",
+  "Book value lens: sustainable return on equity 25.3% against a cost of equity of 6.44% justifies 5.25x book of $0.1240 per share, or AED 2.39.",
   "Relative lens: 9 of 11 listed peers are loss-making and 2 have undefined EV/EBITDA, so the naive median of 13.4x is rejected. Three through-cycle anchors (LyondellBasell 7.18x, Industries 9.90x, Damodaran 8.65x) give a median of 8.65x, which on a mid-cycle EBITDA of $2,042m is AED 1.73 per share.",
-  "Normalised earnings power: mid-cycle EBITDA $2,071m capitalised at 5.48% gives AED 3.05 per share.",
+  "Normalised earnings power: mid-cycle EBITDA $2,071m capitalised at 6.09% gives AED 2.54 per share.",
   "The 2x2 of the two contested judgements, AED per share:",
-  "   own_stock_beta           normalisation=3.33  prolonged=3.32",
+  "   own_stock_beta           normalisation=2.79  prolonged=2.79",
   "   bottom_up_sector_beta    normalisation=1.49  prolonged=1.50",
-  "All lenses across both constructions span AED 1.29 to AED 3.33, median AED 1.73, against a close of AED 2.40."
+  "All lenses across both constructions span AED 1.29 to AED 2.79, median AED 1.73, against a close of AED 2.40."
  ]
 }

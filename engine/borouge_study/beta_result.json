@@ -1,26 +1,71 @@
 {
  "ticker": "BOROUGE",
- "beta": 0.27098462571939275,
- "r2": 0.08825322272667646,
- "n": 216,
- "se": 0.05954010511035082,
+ "regressor": "FTSE ADX General Index",
+ "regressor_file": "engine/raw_indices/AE/FADGI.csv",
+ "regressor_span": [
+  "2011-01-02",
+  "2026-07-24"
+ ],
+ "regressor_rows": 3883,
+ "regressor_repairs": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "regressor_flat_frac": 0.0,
+ "regressor_max_abs_log": 0.0841,
+ "beta": 0.41528940171777734,
+ "r2": 0.09449503178860574,
+ "n": 215,
+ "se": 0.08808500376795605,
  "ci90": [
-  0.17304115281286564,
-  0.36892809862591985
+  0.27038957051948964,
+  0.560189232916065
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "composite_names": 17,
  "window_years": 5,
  "frequency": "weekly",
  "weak": true,
- "weak_reason": "R-squared = 8.8% against the 10% weak-instrument threshold; the 90% confidence interval [0.17, 0.37] spans 0.72x the point estimate",
+ "weak_reason": "R-squared = 9.4% against the 10% weak-instrument threshold; the 90% confidence interval [0.27, 0.56] spans 0.70x the point estimate",
  "warnings": [],
+ "window_sensitivity": {
+  "2": {
+   "years": 2,
+   "beta": 0.38235683667954184,
+   "r2": 0.07398564667825736,
+   "n": 102,
+   "se": 0.13527077619018538,
+   "alpha": -0.00010185914310172898
+  },
+  "3": {
+   "years": 3,
+   "beta": 0.38410666070202965,
+   "r2": 0.07555808968839939,
+   "n": 154,
+   "se": 0.10897562608459944,
+   "alpha": -0.0009000571402267985
+  },
+  "4": {
+   "years": 4,
+   "beta": 0.3645097543937371,
+   "r2": 0.0680186047609751,
+   "n": 206,
+   "se": 0.09446780680717118,
+   "alpha": -0.001019666453990293
+  },
+  "5": {
+   "years": 5,
+   "beta": 0.41528940171777734,
+   "r2": 0.09449503178860574,
+   "n": 215,
+   "se": 0.08808500376795605,
+   "alpha": -0.0012279942319211562
+  }
+ },
  "adopted": {
-  "beta_used": 0.27098462571939275,
-  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-  "why": "n = 216 weekly observations, R-squared = 0.088 against the 0.05 floor, SE(beta) = 0.060 against |beta| = 0.271. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-  "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.194 with a 90% interval of [0.00, 0.39]; the adopted 0.27 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "beta_used": 0.41528940171777734,
+  "basis": "tier-1 own-stock weekly regression against its own local index (usability gate PASSED)",
+  "why": "n = 215 weekly observations against the ADX general index, R-squared = 0.094 against the 0.05 floor, SE(beta) = 0.088 against |beta| = 0.415. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
+  "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 0.351 with a 90% interval of [0.06, 0.64]; the adopted 0.42 sits inside it. (ii) The same regression against an equal-weight composite of the other 17 names in the AE library gives 0.271 (R-squared 0.088) \u2014 a different construction of 'the market' reaching a similar answer. (iii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
   "sensitivity_required": [
    0.6,
    0.8,
@@ -30,35 +75,45 @@
   ]
  },
  "dimson": {
-  "sum_beta": 0.19445857770034608,
-  "se_sum": 0.11598950470467737,
-  "r2": 0.08771221638838389,
-  "n": 213,
+  "sum_beta": 0.35070738192588663,
+  "se_sum": 0.17800085299401422,
+  "r2": 0.09653119195127946,
+  "n": 212,
   "ci90": [
-   0.0036558424611518037,
-   0.38526131293954036
+   0.05789597875073321,
+   0.64351878510104
   ],
   "coefficients": {
-   "lead": -0.005714915841570217,
-   "contemporaneous": 0.2534299109765811,
-   "lag1": 0.022464334436065072,
-   "lag2": -0.07572075187072987
+   "lead": 0.022073109662263612,
+   "contemporaneous": 0.395836610184398,
+   "lag1": 0.057282332808116176,
+   "lag2": -0.12448467072889115
   },
-  "uplift_vs_ols": -0.07652604801904667,
+  "uplift_vs_ols": -0.06458201979189071,
   "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
  },
- "self_inclusion_bias": {
-  "beta_index_including_subject": 0.3285972846615872,
-  "r2_including": 0.11964141122352034,
-  "beta_index_excluding_subject": 0.27098462571939275,
-  "r2_excluding": 0.08825322272667646,
-  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
+ "composite_corroboration": {
+  "beta": 0.27098462571939275,
+  "r2": 0.08825322272667646,
+  "se": 0.05954010511035082,
+  "n": 216,
+  "names": 17,
+  "note": "An equal-weight composite of the other AE names in the price library, the regressor the previous revision of this study used. It is retained as a corroboration only. An equal-weight composite over-weights small, thinly traded constituents, which is why the capitalisation-weighted general index is the correct regressor and this is the cross-check."
+ },
+ "index_membership": {
+  "subject_is_constituent": true,
+  "market_cap_aed_bn": 72.1,
+  "adx_total_aed_bn": 3100.0,
+  "weight_upper_bound": 0.0233,
+  "weight_estimate_free_float": 0.0023,
+  "note": "The subject IS a constituent of its own regressor, which injects a self-covariance term into the numerator exactly as it did with the composite. The difference is magnitude: in a seventeen-name equal-weight composite the subject carried about a seventeenth of the index; in a free-float capitalisation-weighted general index with roughly a 10% float it carries well under one per cent. The contamination is therefore an order of magnitude smaller and is bounded above rather than assumed away."
  },
  "thin_trading": {
   "flat_frac": 0.2483,
   "ae_panel_median": 0.1261,
   "ratio": 1.97,
-  "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
+  "index_flat_frac": 0.0,
+  "note": "Share of sessions closing unchanged, against the median of the AE library and against the index itself. A high ratio is the documented mechanism for a downward-biased contemporaneous beta, and it is why the Dimson correction is run."
  },
  "plausibility": {
   "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",

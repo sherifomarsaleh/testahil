@@ -619,9 +619,9 @@ for key in RES:
 alt_wacc = {
     'own_stock_beta': dict(
         beta=beta_used_own, ke=KE_OWN, wacc=WACC_OWN,
-        basis=("Tier-1 own-stock weekly regression against an equal-weight UAE market "
-               "composite, the beta hierarchy's first choice. It passes the usability "
-               "gate on all three conditions."),
+        basis=("Tier-1 own-stock weekly regression against the FTSE ADX General Index "
+               "— the company's own local market index, which is what the beta rule "
+               "asks for. It passes the usability gate on all three conditions."),
         against=("It is flagged weak by the same machinery: an R-squared of "
                  f"{BETA['r2']:.3f} and a 90% interval of "
                  f"[{BETA['ci90'][0]:.2f}, {BETA['ci90'][1]:.2f}] spanning "
@@ -629,7 +629,12 @@ alt_wacc = {
                  "estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin "
                  "trading does not explain it. What it most plausibly measures is a "
                  "share with a 10% free float that has traded in a narrow band, not the "
-                 "risk of a business whose earnings track a global commodity benchmark.")),
+                 "risk of a business whose earnings track a global commodity benchmark. "
+                 "It is, however, materially HIGHER than the "
+                 f"{BETA['composite_corroboration']['beta']:.3f} an equal-weight "
+                 "composite of the other listed UAE names produces, because an "
+                 "equal-weight composite over-weights small, thinly traded constituents "
+                 "and understates covariance with any single large name.")),
     'bottom_up_sector_beta': dict(
         beta=BETA_BU, ke=KE_BU, wacc=WACC_BU,
         basis=("Global Chemical (Basic) unlevered beta corrected for cash, re-levered to "

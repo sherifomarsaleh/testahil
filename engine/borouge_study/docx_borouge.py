@@ -457,12 +457,14 @@ P('If a reader has time for one number in this study, it is the beta — the mea
 rows = [['', 'The share’s own history', 'Built up from the sector'],
         ['Beta', f'{W["beta_own"]:.3f}', f'{W["beta_bottom_up"]:.3f}'],
         ['How it was measured',
-         f'{BETA["n"]} weekly observations over {BETA["window_years"]} years against a '
-         f'{BETA["composite_names"]}-name UAE market composite',
+         f'{BETA["n"]} weekly observations over {BETA["window_years"]} years against the '
+         f'{BETA["regressor"]}',
          'Global chemicals unlevered beta, re-levered at this company’s own debt and tax'],
         ['Statistical quality',
          f'R-squared {BETA["r2"]:.3f}; 90% interval [{BETA["ci90"][0]:.2f}, '
-         f'{BETA["ci90"][1]:.2f}], spanning 0.72 times the estimate itself',
+         f'{BETA["ci90"][1]:.2f}], spanning '
+         f'{(BETA["ci90"][1] - BETA["ci90"][0]) / BETA["beta"]:.2f} times the estimate '
+         f'itself',
          'No sampling error of its own, but it is somebody else’s companies'],
         ['Cost of equity', pc(W['ke_own'], 2), pc(W['ke_bottom_up'], 2)],
         ['Cost of capital', pc(W['wacc_own'], 2), pc(W['wacc_bottom_up'], 2)],
@@ -481,6 +483,37 @@ P(f'The case for the low measured beta is that it is this company’s own histor
   f'earnings track a global commodity benchmark. A reader who finds that argument '
   f'persuasive should read the sector-beta column; a reader who trusts measured history '
   f'over analogy should read the other. The study does not choose for them.')
+
+P('Because this is the number that matters most, it was tested four ways rather than '
+  'measured once.')
+rows = [['Test', 'Result', 'What it says']]
+WS = BETA['window_sensitivity']
+rows.append(['Window length',
+             ' · '.join(f'{y}yr {WS[str(y)]["beta"]:.2f}' for y in (2, 3, 4, 5)),
+             'Stable. The rule permits any window from two to five years, and the answer '
+             'barely moves across all four — so the estimate is not an artefact of where '
+             'the window was cut'])
+rows.append(['Lead-lag correction for thin trading',
+             f'{BETA["dimson"]["sum_beta"]:.3f} against {BETA["beta"]:.3f}',
+             'Moves the estimate DOWN, not up. Infrequent trading is the usual '
+             'explanation for a low measured beta, and here it is ruled out rather than '
+             'assumed'])
+rows.append(['A different construction of "the market"',
+             f'{BETA["composite_corroboration"]["beta"]:.3f} against an equal-weight '
+             f'basket of the other {BETA["composite_corroboration"]["names"]} listed '
+             f'UAE names',
+             'Lower still. An equal-weight basket over-weights small, thinly traded '
+             'companies, which is exactly why the market-capitalisation-weighted index '
+             'is the right measure and this is only a cross-check'])
+rows.append(['Is the share inside its own index?',
+             f'Yes, at under '
+             f'{BETA["index_membership"]["weight_upper_bound"] * 100:.1f}% of it',
+             'It is a constituent, so a little of its own movement is inside the thing '
+             'it is measured against. At this weight the effect is negligible; in the '
+             'equal-weight basket above it would not have been'])
+table(rows, [1.70, 1.95, 3.15], size=8.3)
+caption('Table 8 — The beta tested four ways. Every test points the same direction: the '
+        'measured figure is genuinely low, and it is genuinely uncertain.')
 
 H2('1.8  Macro, country and the cost of capital')
 P('The cost of capital is built from the ground up, and country risk is charged exactly '
@@ -511,7 +544,7 @@ for label, val, src in [
 ]:
     rows.append([label, val, src])
 table(rows, [2.05, 0.95, 3.90], size=8.6, band_rows={3, 7, 13, 14})
-caption('Table 8 — The cost of capital, built line by line. The risk-free rate is '
+caption('Table 9 — The cost of capital, built line by line. The risk-free rate is '
         'normalised by the sovereign’s own default spread BEFORE a country premium is '
         'added, so sovereign risk is charged once rather than twice.')
 
@@ -538,7 +571,7 @@ rows = [['Evidence', 'Rate', 'Read'],
          f'test is shown rather than asserted'],
         ['After tax', pc(W['kd'] * (1 - W['tax']), 2), 'What enters the cost of capital']]
 table(rows, [1.95, 0.80, 4.15], size=8.6)
-caption('Table 9 — The cost-of-debt evidence. Every contested construction in this study '
+caption('Table 10 — The cost-of-debt evidence. Every contested construction in this study '
         'is priced rather than argued.')
 
 H2('1.9  Sensitivity')
@@ -565,7 +598,7 @@ rows.append([f'Cost of capital, ±100 basis points',
              px(SN['grids']['normalisation'][4][2]), px(SN['grids']['normalisation'][2][2]),
              px(SN['grids']['normalisation'][0][2])])
 table(rows, [3.10, 1.30, 1.30, 1.30], size=8.9)
-caption('Table 10 — The crux sensitised in observable units: dollars per tonne of premium '
+caption('Table 11 — The crux sensitised in observable units: dollars per tonne of premium '
         'and percentage points of utilisation, not abstract multiples.')
 
 # =============================================================== 6 SECTION 2
@@ -597,7 +630,7 @@ rows = [['Reading', 'Value', 'What it says'],
         ['Nearest support', px(TE['levels']['sup'][0]),
          'Then ' + ' and '.join(px(x) for x in TE['levels']['sup'][1:])]]
 table(rows, [1.90, 1.15, 3.85], size=8.8)
-caption('Table 11 — The price structure. Levels are ordered from nearest to the close '
+caption('Table 12 — The price structure. Levels are ordered from nearest to the close '
         'outward in both directions.')
 P('This section describes the tape and nothing else. It carries no view on what the '
   'business is worth — that is what the four lenses above are for — and the two are '
@@ -626,7 +659,7 @@ for tag, name in [('1M', 'One month'), ('3M', 'Three months')]:
                 [px(hz['pct'][p]) for p in ('p5', 'p25', 'p50', 'p75', 'p95')] +
                 [pc(hz['p_above'], 0)])
 table(rows, [1.05, 1.05, 0.72, 0.72, 0.78, 0.72, 0.72, 1.04], size=8.7)
-caption('Table 12 — The percentile map, in dirhams a share.')
+caption('Table 13 — The percentile map, in dirhams a share.')
 figure('fig4_fan.png', 6.9,
        'Figure 6 — The three-month band. The shaded areas are the middle 50% and the '
        'middle 90% of simulated outcomes.')
@@ -643,7 +676,7 @@ for p_ in (5, 10, 15, 20):
     rows.append([f'Down {p_}%', px(SPOT * (1 - p_ / 100)),
                  pc(h1m['touch_dn'][str(p_)], 0), pc(h3m['touch_dn'][str(p_)], 0)])
 table(rows, [1.60, 1.40, 1.85, 1.95], size=8.8)
-caption('Table 13 — The chance the price trades through each level at any point inside '
+caption('Table 14 — The chance the price trades through each level at any point inside '
         'the window, not just where it finishes.')
 
 box([
@@ -707,7 +740,7 @@ rows.append(['Normalised earnings power',
              f'{px(LEN_["normalised_earnings_sector_beta"])} – '
              f'{px(LEN_["normalised_earnings_own_beta"])}'])
 table(rows, [1.50, 1.90, 2.05, 1.35], size=8.5)
-caption('Table 14 — What each lens is for, and where each one breaks.')
+caption('Table 15 — What each lens is for, and where each one breaks.')
 P(f'The pattern is clear once the columns are read separately. Inside the low-risk '
   f'column the four lenses span {px(LEN_["relative_multiples"])} to '
   f'{px(LEN_["dcf_normalisation_own_beta"])}; inside the high-risk column they span '
@@ -756,7 +789,7 @@ for what, when, why in [
 ]:
     rows.append([what, when, why])
 table(rows, [1.45, 1.20, 4.15], size=8.5)
-caption('Table 15 — What to watch, and what each observation would actually settle.')
+caption('Table 16 — What to watch, and what each observation would actually settle.')
 
 # =============================================================== 10 SECTION 6
 H1('6  Reading the probability zones')
@@ -827,7 +860,7 @@ for concern, matters, settle in [
 ]:
     rows.append([concern, matters, settle])
 table(rows, [1.65, 2.35, 2.80], size=8.4)
-caption('Table 16 — What could be wrong, how much it would cost, and what evidence would '
+caption('Table 17 — What could be wrong, how much it would cost, and what evidence would '
         'resolve it.')
 
 # =============================================================== 12 APPENDIX A

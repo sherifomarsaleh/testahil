@@ -200,13 +200,24 @@ P('These are the places where the study chose. Each is stated with the reasoning
 rows = [['Judgement', 'What the study did', 'What would overturn it']]
 for j, did, over in [
     ('Which beta to use',
-     f'Neither. Both are published: the share’s own five-year weekly regression of '
-     f'{BETA["beta"]:.3f}, and a sector bottom-up beta re-levered to '
-     f'{W["beta_bottom_up"]:.3f}. The two are carried side by side to a value per share '
-     f'everywhere they appear',
+     f'Neither. Both are published: the share’s own five-year weekly regression against '
+     f'the {BETA["regressor"]}, giving {BETA["beta"]:.3f}, and a sector bottom-up beta '
+     f're-levered to {W["beta_bottom_up"]:.3f}. The two are carried side by side to a '
+     f'value per share everywhere they appear',
      'A longer trading history or a wider free float that let the share’s own regression '
      'pass a strong-instrument test rather than a minimum one. A rising R-squared would '
      'settle it empirically'),
+    ('Which index to regress against',
+     f'The {BETA["regressor"]}, the company’s own local market index. An earlier revision '
+     f'of this study used an equal-weight basket of the other listed UAE names, adopted '
+     f'only because no index series was available; that basket gives '
+     f'{BETA["composite_corroboration"]["beta"]:.3f} against the index’s '
+     f'{BETA["beta"]:.3f}. An equal-weight basket over-weights small, thinly traded '
+     f'constituents and understates covariance with a large name, so the '
+     f'capitalisation-weighted index is the correct measure and the basket is retained '
+     f'as a cross-check',
+     'A free-float-weighted index series that excluded the subject, which would remove '
+     'even the sub-one-per-cent self-covariance the current regressor carries'),
     ('Whether thin trading explains the low beta',
      'No. A lead-lag correction for infrequent trading was run and moves the estimate '
      f'DOWN to {BETA["dimson"]["sum_beta"]:.3f}, not up. So the low reading is not a '

@@ -138,6 +138,19 @@ f_sovereign = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/d
                  "the same risk is not charged twice. Both equity-risk-premium bases are "
                  "published because the CDS basis is unavailable for this sovereign.")
 
+f_adx_index = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.D,
+    "FTSE ADX General Index daily history, 2 January 2011 to 24 July 2026 — 3,883 "
+    "sessions after cleaning, 238-252 trading days a year against an ADX calendar of "
+    "about 250, and not one session closing unchanged",
+    "FTSE ADX General Index daily series, engine/raw_indices/AE/FADGI.csv",
+    PMD, "2026-07-24",
+    model_impact="THE BETA REGRESSOR. The beta rule requires a stock's own price history "
+                 "against its OWN local index; this is that index. It replaces the "
+                 "equal-weight basket of other AE names the previous revision used as a "
+                 "stand-in, and moves the measured beta from 0.271 to 0.415 — which "
+                 "raises the cost of equity and lowers every beta-sensitive lens.")
+
 f_uae_bond = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
     FindingClass.S,
     "UAE Ministry of Finance dirham Treasury bond and sukuk auction, July 2026: the "
@@ -456,7 +469,7 @@ R.add_driver("Cost of capital", DriverMode.BOTTOM_UP,
     "regression against its own market, published beside a sector bottom-up beta "
     "because the own-stock estimate is weak; marginal cost of debt tested against the "
     "sovereign and against the related-party facilities actually in place.",
-    [f_sovereign, f_uae_bond, f_rate, f_capital])
+    [f_sovereign, f_uae_bond, f_rate, f_capital, f_adx_index])
 
 R.add_driver("Terminal growth", DriverMode.BOTTOM_UP,
     "Long-run dollar inflation, on the specific ground that Borouge plc's owned capacity "
