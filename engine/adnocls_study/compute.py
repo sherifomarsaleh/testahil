@@ -1231,6 +1231,16 @@ DEFERRED = V['q1_26_pcp']
 NETDEBT = NETDEBT_CO + DEFERRED
 HYBRID = V['q1_26_hybrid']
 NCI_BV = V['q1_26_nci']
+# Minorities take 8.8% of profit but hold only 5.1% of book equity, so book understates
+# their claim on VALUE. But the dominant minority is already priced elsewhere: 251,985 of
+# the 264,512 arose on the Navig8 combination (equity statement), and that 20% is
+# CONTRACTED for purchase in mid-2027 -- its present value sits in the bridge already as
+# deferred consideration. Deducting it again at a share of equity value would count it
+# twice. Only the remaining minorities are lifted from book to value.
+NCI_NAVIG8 = IN('nci_navig8', 251985, FS25 + " — statement of changes in equity: "
+                "non-controlling interests arising on business combinations, being the 20% "
+                "of the acquired tanker business", '2025-12-31', 'Company')
+NCI_OTHER_BV = NCI_BV - NCI_NAVIG8
 JV_BV = 493120
 IN('jv_bv_q126', JV_BV, Q126 + " — investment in joint ventures and associates",
    '2026-03-31', 'Company')
@@ -1238,6 +1248,12 @@ STUB = 0.75      # the valuation date is 31 March 2026; three quarters of 2026 r
 Q1_FCF = IN('q1_26_fcf', 130000, MDAQ126 + " — free cash flow of USD 130 million in the "
             "first quarter of 2026, already reflected in net debt at the valuation date",
             '2026-03-31', 'Company')
+
+
+def nci_deduction(equity_pre):
+    """Minorities: the contracted slice at its contracted price, the rest at value."""
+    share_other = NCI_SHARE * NCI_OTHER_BV / NCI_BV
+    return NCI_NAVIG8 + max(NCI_OTHER_BV, equity_pre * share_other)
 
 
 def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
@@ -1264,13 +1280,16 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
     nd = NETDEBT + (HYBRID if hybrid_as_debt else 0.0)
-    eq = ev - nd - NCI_BV
+    pre_nci = ev - nd
+    nci_ded = nci_deduction(pre_nci)
+    eq = pre_nci - nci_ded
     fv_usd = eq / shares_mn / 1000.0      # equity is USD thousand, shares are millions
     return dict(wacc=w, wacc_term=wt, g=g, glide=glide, df=df, fcff=fcff, pv=pv,
                 pv_explicit=pv_expl, roic_terminal=roic_t, reinvest=reinv,
                 nopat_t1=nopat_t1, tv=tv, pv_tv=pv_tv, tv_share=pv_tv / ev_ops,
                 ev_ops=ev_ops, jv=JV_BV, ev=ev, net_debt=nd, deferred=DEFERRED,
-                hybrid=HYBRID if hybrid_as_debt else 0.0, nci=NCI_BV,
+                hybrid=HYBRID if hybrid_as_debt else 0.0, nci=nci_ded,
+                nci_book=NCI_BV, nci_navig8=NCI_NAVIG8, nci_other_bv=NCI_OTHER_BV,
                 equity=eq, fv_usd=fv_usd, fv_aed=fv_usd * peg,
                 ic_terminal=ic_end)
 
@@ -1365,7 +1384,8 @@ BSB = forecast_bs(BASE, FINB)
 
 
 def equity_from_ev(ev, hybrid_as_debt=True):
-    return ev + JV_BV - NETDEBT - (HYBRID if hybrid_as_debt else 0.0) - NCI_BV
+    pre = ev + JV_BV - NETDEBT - (HYBRID if hybrid_as_debt else 0.0)
+    return pre - nci_deduction(pre)
 
 
 def per_share(eq):
