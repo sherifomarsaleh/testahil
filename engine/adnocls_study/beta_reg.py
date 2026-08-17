@@ -1,6 +1,6 @@
-"""ADNOCLS beta — tier-1 own-stock weekly regression against an equal-weight UAE
-composite built from the engine's own AE price library, with the usability gate
-deciding the adopted figure in code rather than in prose.
+"""ADNOCLS beta — tier-1 own-stock weekly regression against the FTSE ADX General
+Index, the subject's own local market index, with the usability gate deciding the
+adopted figure in code rather than in prose.
 
 Three things are produced rather than asserted:
   * the diagnostic triple (n, R-squared, SE) and the resulting 90% confidence interval;
@@ -9,14 +9,18 @@ Three things are produced rather than asserted:
   * the self-inclusion variant, so the contamination from leaving the subject inside
     its own equal-weight index is visible as a number.
 
-Two composites are run and both are reported: the ADX-LISTED subset (the subject's
-own exchange, the closer analogue of a local index) and the full UAE library
-(ADX + DFM). The ADX-only regression is the adopted one; the full-library figure is
-disclosed so the choice is auditable.
+The regressor is the published FTSE ADX General Index, which is what the beta rule
+asks for: the stock's own price history against its own local index. Two equal-weight
+composites built from the engine's own UAE price library are run alongside it and both
+are reported — the ADX-listed subset and the full ADX+DFM library — so the difference
+between a published capitalisation-weighted index and a hand-built equal-weight proxy
+is visible as a number rather than assumed immaterial.
 
-Window: the protocol asks for the longest window up to five years. ADNOCLS listed on
-02-Jun-2023, so the longest available window is the full listed history — stated in
-the output, not silently truncated to a five-year label.
+Window: the longest window up to five years. ADNOCLS listed on 02-Jun-2023, so the
+longest available window is the full listed history — stated in the output, not
+silently truncated to a five-year label. The index series supplied ends before the
+stock's last session, so the regression stops where the index stops and the unused
+tail is reported rather than quietly dropped.
 """
 import sys, os, glob, json
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +54,12 @@ def ols(X, y):
     se = np.sqrt(np.diag(XtX_inv) * sigma2)
     return b, r2, se, ss_res
 
+
+IDX_PATH = os.path.join(HERE, '..', 'raw_indices', 'AE', 'ADXGENERAL.csv')
+IDX_NAME = 'FTSE ADX General Index'
+idx_raw, idx_log = clean_ohlc(load_ohlc(IDX_PATH), 'ADXGENERAL', verbose=False,
+                              market='AE')
+idx_px = idx_raw.set_index('Date')['Price']
 
 raw, _ = clean_ohlc(load_ohlc(os.path.join(HERE, f'{TKR}_Stock_Price_History.csv')),
                     TKR, verbose=False, market='AE')
@@ -92,9 +102,13 @@ def build(comp):
 rets_adx, mkt_adx = build(comp_adx)
 rets_all, mkt_all = build(comp_all)
 
-al = pd.concat([re_.rename('sub'), mkt_adx.rename('mkt')], axis=1, sort=True).dropna()
+wk_idx = weekly(idx_px[idx_px.index >= cut])
+mkt_index = np.log(wk_idx / wk_idx.shift(1)).dropna()
 
-# ---- tier-1 contemporaneous OLS beta, ADX composite ------------------------
+al = pd.concat([re_.rename('sub'), mkt_index.rename('mkt')], axis=1, sort=True).dropna()
+unused_weeks = int((wk_sub.index > wk_idx.index.max()).sum())
+
+# ---- tier-1 contemporaneous OLS beta against the published index -----------
 x, y = al['mkt'].values, al['sub'].values
 n = len(x)
 b, r2, se, _ = ols(np.column_stack([np.ones(n), x]), y)
@@ -104,7 +118,10 @@ att = RegressionBetaAttempt(beta=beta, r_squared=r2, n_obs=n, se_beta=se_beta,
 ok, msg = att.is_usable()
 ci = (beta - 1.645 * se_beta, beta + 1.645 * se_beta)
 
-# ---- full-library (ADX + DFM) variant --------------------------------------
+# ---- equal-weight composite variants, disclosed not adopted ----------------
+al_adx = pd.concat([re_.rename('sub'), mkt_adx.rename('mkt')], axis=1, sort=True).dropna()
+b_c, r2_c, se_c, _ = ols(
+    np.column_stack([np.ones(len(al_adx)), al_adx['mkt'].values]), al_adx['sub'].values)
 al_full = pd.concat([re_.rename('sub'), mkt_all.rename('mkt')], axis=1, sort=True).dropna()
 b_f, r2_f, se_f, _ = ols(
     np.column_stack([np.ones(len(al_full)), al_full['mkt'].values]), al_full['sub'].values)
@@ -125,7 +142,12 @@ cov_b = Xd_inv * sigma2
 se_sum = float(np.sqrt(cov_b[1:, 1:].sum()))
 dim_ci = (sum_beta - 1.645 * se_sum, sum_beta + 1.645 * se_sum)
 
-# ---- disclosure variant: the same regression WITH the subject left in the index --
+# ---- the subject is INSIDE the published index, and that cannot be removed ----
+# ADNOCLS is a constituent of the index it is regressed against. On an equal-weight
+# proxy the subject can simply be dropped; on a published capitalisation-weighted
+# index it cannot. The equal-weight proxy is therefore run both ways so the size of
+# that contamination is measurable, and the measurement is reported against the index
+# regression rather than left implicit.
 mkt_in = pd.DataFrame({**rets_adx, TKR: re_}).mean(axis=1, skipna=True)
 al_in = pd.concat([re_.rename('sub'), mkt_in.rename('mkt')], axis=1, sort=True).dropna()
 b_in, r2_in, se_in, _ = ols(
@@ -152,6 +174,18 @@ out = dict(
     beta=beta, r2=float(r2), n=int(n), se=se_beta,
     ci90=[float(ci[0]), float(ci[1])],
     usable=bool(ok), gate_msg=msg,
+    regressor=IDX_NAME,
+    regressor_basis=('The published capitalisation-weighted index of the exchange the '
+                     'share is listed on — the local index the beta rule asks for.'),
+    regressor_rows=int(len(idx_raw)),
+    regressor_span=[str(idx_raw['Date'].min().date()), str(idx_raw['Date'].max().date())],
+    regressor_repairs=idx_log,
+    unused_stock_weeks=unused_weeks,
+    unused_note=(f'The index series supplied ends {idx_raw["Date"].max().date()}, before '
+                 f'the last stock session used elsewhere in the study (2026-08-07). '
+                 f'{unused_weeks} weekly stock observations therefore fall outside the '
+                 'regression. The window stops where the index stops rather than pairing '
+                 'the stock against a stale index level.'),
     composite_names=len(rets_adx), composite_basis='ADX-listed names in the UAE library',
     window_years=round(span_years, 2), frequency='weekly',
     window_note=("The stock listed on 02-Jun-2023, so the longest window available is "
@@ -168,15 +202,23 @@ out = dict(
             f"Cross-checked three ways. (i) The Dimson sum-beta is {sum_beta:.3f} with a 90% "
             f"interval of [{dim_ci[0]:.2f}, {dim_ci[1]:.2f}]; the adopted {beta_used:.2f} "
             f"{'sits inside' if dim_ci[0] <= beta_used <= dim_ci[1] else 'sits outside'} it. "
-            f"(ii) Regressing against the wider ADX+DFM library instead gives "
+            f"(ii) Regressing against an equal-weight composite of the exchange's own "
+            f"names instead of the published index gives {float(b_c[1]):.3f} "
+            f"(R-squared {float(r2_c):.3f}), and against the wider ADX+DFM library "
             f"{float(b_f[1]):.3f} (R-squared {float(r2_f):.3f}). (iii) The sector prior for "
             f"a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine "
             f"services provider 0.5-0.9; the adopted figure is read against both in the "
             f"study rather than accepted at face value."),
         sensitivity_required=[0.5, 0.7, 0.9, 1.1, 1.3]),
+    composite_variant=dict(beta=float(b_c[1]), r2=float(r2_c), n=int(len(al_adx)),
+                           se=float(se_c[1]), names=len(rets_adx),
+                           note=("Equal-weight composite of the exchange's own listed "
+                                 "names, the subject excluded. This was the regressor "
+                                 "before the published index was available; disclosed so "
+                                 "the effect of the change is visible, not adopted.")),
     full_library_variant=dict(beta=float(b_f[1]), r2=float(r2_f), n=int(len(al_full)),
                               se=float(se_f[1]), names=len(rets_all),
-                              note="ADX + DFM composite; disclosed, not adopted."),
+                              note="ADX + DFM equal-weight composite; disclosed, not adopted."),
     dimson=dict(
         sum_beta=sum_beta, se_sum=se_sum, r2=float(r2d), n=int(len(D)),
         ci90=[float(dim_ci[0]), float(dim_ci[1])],
@@ -187,12 +229,16 @@ out = dict(
               "The uplift over the contemporaneous OLS beta measures how much co-movement "
               "is booked late because the stock does not trade on every session.")),
     self_inclusion_bias=dict(
-        beta_index_including_subject=float(b_in[1]), r2_including=float(r2_in),
-        beta_index_excluding_subject=beta, r2_excluding=float(r2),
-        note=("Leaving the subject inside its own equal-weight index injects a "
-              "self-covariance term into the numerator. The excluding figure is the correct "
-              "one and is what is reported; the including figure is disclosed so the size of "
-              "the contamination is visible rather than assumed away.")),
+        beta_proxy_including_subject=float(b_in[1]), r2_including=float(r2_in),
+        beta_proxy_excluding_subject=float(b_c[1]), r2_excluding=float(r2_c),
+        note=("The subject is a constituent of the published index it is regressed "
+              "against, and on a capitalisation-weighted index that cannot be undone. "
+              "The equal-weight proxy is run both ways to measure how large the resulting "
+              "self-covariance is: the two figures here differ by "
+              f"{abs(float(b_in[1]) - float(b_c[1])):.3f}, which is the scale of the "
+              "upward pull the published-index beta also carries. It is disclosed rather "
+              "than assumed away, and it works against the study's own conclusion, since "
+              "removing it would lower the beta further.")),
     thin_trading=dict(
         flat_frac=round(flat_self, 4), ae_panel_median=round(flat_median, 4),
         ratio=round(flat_self / flat_median, 2),

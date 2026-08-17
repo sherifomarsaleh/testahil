@@ -24,6 +24,7 @@ Nothing in this directory is part of any MC panel.
 
 | Market | File | Span | Source format |
 |---|---|---|---|
+| AE | `AE/ADXGENERAL.csv` | 2011-01-02 → 2026-07-24, 3,883 sessions | investing.com daily export |
 | EG | `EG/EGX30.csv` | 2011-01-02 → 2026-07-22 | investing.com daily export |
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |

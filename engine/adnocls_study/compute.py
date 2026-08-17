@@ -632,13 +632,23 @@ IN('tax_topup_rate', 0.15, "Domestic minimum top-up tax of 15% applying in the U
    '2025-01-01', 'Country')
 IN('tax_stat', 0.09, "UAE corporate tax, Federal Decree-Law 47 of 2022 — the 9% standard "
    "rate applying to taxable income above the threshold", '2023-06-01', 'Country')
-IN('beta', 0.705, "Weekly regression of the stock's own returns on an equal-weight index of "
-   "the Abu Dhabi listed names in the study's price library, over the full listed history",
-   '2026-08-07', 'Market')
-IN('beta_se', 0.122, "Standard error of the same regression", '2026-08-07', 'Market')
-IN('beta_r2', 0.172, "R-squared of the same regression", '2026-08-07', 'Market')
-IN('beta_dimson', 0.806, "Dimson lead-lag sum beta from the same series, one lead and two "
-   "lags", '2026-08-07', 'Market')
+IN('beta', 1.085, "Weekly regression of the stock's own returns on the FTSE ADX General "
+   "Index — the published index of the exchange the share is listed on — over the full "
+   "listed history to the index's last available session", '2026-07-24', 'Market')
+IN('beta_se', 0.199, "Standard error of the same regression", '2026-07-24', 'Market')
+IN('beta_r2', 0.158, "R-squared of the same regression", '2026-07-24', 'Market')
+IN('beta_dimson', 1.164, "Lead-lag sum beta from the same series, one lead and two lags — "
+   "the correction for co-movement a share books late because it does not trade every "
+   "session", '2026-07-24', 'Market')
+IN('beta_composite', 0.705, "The same regression run against an equal-weight composite of "
+   "the exchange's own listed names instead of the published index. Reported because the "
+   "gap between the two is large and is a property of index construction, not of the "
+   "company: the published index is weighted by size and is dominated by the same "
+   "large-capitalisation group the subject belongs to", '2026-08-07', 'Market')
+IN('beta_ci_lo', 0.758, "Lower bound of the 90% confidence interval on the regressed beta",
+   '2026-07-24', 'Market')
+IN('beta_ci_hi', 1.412, "Upper bound of the 90% confidence interval on the regressed beta",
+   '2026-07-24', 'Market')
 IN('g_terminal', 0.02, FS25 + " — the company's own value-in-use test projects cash flows "
    "beyond its plan at a growth rate equal to an estimated 2% inflation rate; adopted here "
    "as the terminal growth rate", '2025-12-31', 'Company')
@@ -1035,7 +1045,7 @@ spot_usd = spot_aed / peg
 rf_star = V['rf_observed'] - V['sov_spread']            # country risk enters once, via the ERP
 ke = rf_star + V['beta'] * V['erp_total']
 ke_dimson = rf_star + V['beta_dimson'] * V['erp_total']
-ke_beta1 = rf_star + 1.0 * V['erp_total']
+ke_beta1 = rf_star + V['beta_composite'] * V['erp_total']
 
 # --- cost of debt: three independent constructions, averaged on the sheet ------
 kd_m1 = V['sofr'] + V['shldr_margin']                        # the marginal drawdown rate
@@ -1303,10 +1313,14 @@ def dcf_scenario(beta_s, anchor_mult, capex_mult=1.0, hybrid_as_debt=False):
 # are classified, so they are deducted in the bridge in every case. What is genuinely
 # contested is the cost of equity, and that is what is published both ways.
 dcf_own_beta = dcf(BASE, hybrid_as_debt=True)
-dcf_asset_beta = dcf_scenario(1.00, 1.00, 1.00, hybrid_as_debt=True)
+dcf_beta_alt = dcf_scenario(V['beta_composite'], 1.00, 1.00, hybrid_as_debt=True)
 dcf_sustained = dcf(GUID, hybrid_as_debt=True)
-dcf_bear = dcf_scenario(1.10, 0.85, 1.10, hybrid_as_debt=True)
-dcf_bull = dcf_scenario(0.55, 1.15, 0.95, hybrid_as_debt=True)
+# The bear and bull cases no longer use round numbers picked by hand. The beta in each
+# is the regression's OWN 90% confidence bound, so the span of the fair-value range is
+# the span the estimate itself supports rather than a judgement about how wrong it
+# might be. The rate anchor and capital expenditure move with it.
+dcf_bear = dcf_scenario(V['beta_ci_hi'], 0.85, 1.10, hybrid_as_debt=True)
+dcf_bull = dcf_scenario(V['beta_ci_lo'], 1.15, 0.95, hybrid_as_debt=True)
 # the alternative treatment of the securities themselves, disclosed in the bridge:
 # deducted at carrying value, or at the present value of their perpetual coupon
 hyb_pv_coupon = HYB_COUPON / wacc_term
@@ -1332,20 +1346,20 @@ for _k, _w in LENS_W.items():
 lenses = {
     'dcf': dict(bear=dcf_bear['fv_aed'], base=dcf_own_beta['fv_aed'],
                 bull=dcf_bull['fv_aed'], tv_share=dcf_own_beta['tv_share']),
-    'dcf_asset_beta': dict(bear=dcf_bear['fv_aed'], base=dcf_asset_beta['fv_aed'],
+    'dcf_beta_alt': dict(bear=dcf_bear['fv_aed'], base=dcf_beta_alt['fv_aed'],
                            bull=dcf_bull['fv_aed'],
-                           tv_share=dcf_asset_beta['tv_share']),
+                           tv_share=dcf_beta_alt['tv_share']),
     'relative': dict(bear=rel['bear'], base=rel['base'], bull=rel['bull']),
     'normalized': dict(bear=norm['bear'], base=norm['base'], bull=norm['bull']),
     'book': dict(bear=book['bear'], base=book['base'], bull=book['bull']),
 }
-for _lab, _dcfkey in (('central', 'dcf'), ('central_asset_beta', 'dcf_asset_beta')):
+for _lab, _dcfkey in (('central', 'dcf'), ('central_beta_alt', 'dcf_beta_alt')):
     lenses[_lab] = dict(
         bear=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['bear'] for k in LENS_W),
         base=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['base'] for k in LENS_W),
         bull=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['bull'] for k in LENS_W))
 central = lenses['central']['base']
-central_alt = lenses['central_asset_beta']['base']
+central_alt = lenses['central_beta_alt']['base']
 
 # ============================================================================
 # EXPERT PANEL — three methods, cast by approach, worked end to end
@@ -1415,7 +1429,7 @@ panel_centre = (e1['base'] + e2['base'] + e3['base']) / 3.0
 # ============================================================================
 # SENSITIVITY
 # ============================================================================
-BETAS = [0.50, 0.705, 0.90, 1.00, 1.20]
+BETAS = [0.705, 0.90, 1.085, 1.25, 1.412]   # composite · mid · adopted · mid · CI top
 GS = [0.010, 0.015, 0.020, 0.025]
 sens_beta_g = [[dcf_scenario(b, 1.0, 1.0, True)['fv_aed'] if g == V['g_terminal'] else None
                 for g in GS] for b in BETAS]
@@ -1596,9 +1610,26 @@ OUT = dict(
     fin=FINB, fin_sustained=FING, fcst_bs=BSB,
     guidance_check=guidance_check(build_forecast('reversion')),
     wacc=wacc_blk,
-    dcf=dcf_own_beta, dcf_asset_beta=dcf_asset_beta, dcf_sustained=dcf_sustained,
+    dcf=dcf_own_beta, dcf_beta_alt=dcf_beta_alt, dcf_sustained=dcf_sustained,
     dcf_bear=dcf_bear, dcf_bull=dcf_bull, dcf_hybrid_pv=dcf_hyb_pv,
-    lenses=lenses, lens_weights=LENS_W, central=central, central_asset_beta=central_alt,
+    lenses=lenses, lens_weights=LENS_W, central=central, central_beta_alt=central_alt,
+    beta_framing=dict(
+        primary=dict(beta=V['beta'], label='the published index of its own exchange',
+                     ke=ke, wacc=wacc_blk['wacc'], fv=dcf_own_beta['fv_aed'],
+                     central=central),
+        alternative=dict(beta=V['beta_composite'],
+                         label="an equal-weight composite of the same exchange's names",
+                         ke=ke_beta1, fv=dcf_beta_alt['fv_aed'], central=central_alt),
+        ci90=[V['beta_ci_lo'], V['beta_ci_hi']],
+        dimson=V['beta_dimson'],
+        note=('The two constructions differ only in how the market is measured. The '
+              'published index is weighted by size and is therefore dominated by the same '
+              'large-capitalisation group the subject belongs to; an equal-weight composite '
+              'gives the exchange\'s smallest names the same say as its largest. The first '
+              'is the index the beta rule asks for and is what the study adopts. The second '
+              'is what an earlier construction used and is published beside it, because a '
+              'difference of this size is a fact about index construction that a reader is '
+              'entitled to see rather than a detail to bury.')),
     rel=rel, norm=norm, book=book, peers=PEERS, sotp=sotp,
     experts=experts, panel_centre=panel_centre,
     sens=sens,
