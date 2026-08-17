@@ -32,10 +32,13 @@ for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
 
 HEADLINES = ['fv', 'fv_beta_alt', 'central', 'central_beta_alt', 'pv_expl', 'tv', 'ev',
              'tv_share', 'wacc', 'wacc_term', 'ke', 'ke_ci_lo', 'ke_ci_hi', 'ke_dimson',
-             'kd', 'rev26', 'ebitda26', 'ebitda30',
+             'kd', 'wh', 'kh', 'kh_term', 'rev26', 'ebitda26', 'ebitda30',
              'nopat26', 'tax26', 'fcff26', 'tankers26', 'tankers30', 'gas28', 'relative',
-             'normalized', 'book', 'book_bear', 'book_bull', 'roe_sust', 'sotp', 'nd30',
-             'bvps30', 'nwc26', 'ppe30', 'npa26', 'ordn26']
+             'normalized', 'book', 'book_bear', 'book_bull', 'book_equity', 'roe_sust',
+             'sotp', 'nd30', 'bvps30', 'nwc26', 'ppe30', 'npa26', 'ordn26',
+             'eps26', 'eps26_pre', 'eveb_bridge',
+             'tnk_spot_vlcc_q1', 'tnk_tce26', 'tnk_tce30', 'tnk_opexday',
+             'gas_rate_solved']
 
 
 def split(ref):

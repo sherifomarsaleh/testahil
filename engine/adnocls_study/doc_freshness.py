@@ -32,6 +32,7 @@ def money(x):
 
 
 bf = D['beta_framing']
+W, FL, BK, REL, FIN = D['wacc'], D['fleet'], D['book'], D['rel'], D['fin']
 MUST = [
     ('the adopted beta', f"{D['inputs']['beta']['value']:.3f}"),
     ('the alternative beta', f"{D['inputs']['beta_composite']['value']:.3f}"),
@@ -44,8 +45,30 @@ MUST = [
     ('the book lens', money(D['lenses']['book']['base'])),
     ('the market price', money(D['meta']['spot_aed'])),
     ('the cost of equity', f"{bf['primary']['ke'] * 100:.2f}"),
-    ('the cost of capital', f"{D['wacc']['wacc'] * 100:.2f}"),
+    ('the cost of capital', f"{W['wacc'] * 100:.2f}"),
+    ('the terminal cost of capital', f"{W['wacc_term'] * 100:.2f}%"),
     ('the terminal-value share', f"{D['dcf']['tv_share'] * 100:.0f}%"),
+    # the rebuilt tanker leg — the published blend and the rate solved out of it must BOTH
+    # be present, because the whole correction is the difference between them
+    ('the published first-quarter blend', f"{FL['blend_q1_26']['vlcc']:,.0f}"),
+    ('the implied first-quarter spot', f"{FL['spot_q1_26']['vlcc']:,.0f}"),
+    ('the implied second-quarter spot', f"{FL['spot_q2_26']['vlcc']:,.0f}"),
+    ('the charter count', f"{len(FL['charters'])}"),
+    # the perpetual securities now carry a weight as well as a deduction
+    ('the perpetual weight', f"{W['wh'] * 100:.1f}%"),
+    ('the perpetual coupon rate', f"{W['kh'] * 100:.2f}%"),
+    ('the ordinary equity weight', f"{W['we'] * 100:.1f}%"),
+    # the asset lens is residual income, so its fade and its terminal share must show
+    ('the residual-income fade', f"{BK['fade'] * 100:.0f}%"),
+    # the enterprise multiple, published on both bases
+    ('the enterprise multiple, market basis', f"{REL['own_ev_ebitda_26']:.2f}"),
+    ('the enterprise multiple, bridge basis', f"{REL['own_ev_ebitda_26_bridge']:.2f}"),
+    # earnings per share struck after the coupon, with the pre-coupon figure as a memo
+    ('earnings per share after the coupon', f"{FIN['eps'][0]:.3f}"),
+    ('earnings per share before the coupon', f"{FIN['eps_pre_coupon'][0]:.3f}"),
+    # the minority deduction is neither book nor a flat share of value
+    ('the minority deduction', f"{D['dcf']['nci'] / 1000.0:,.0f}"),
+    ('the contracted minority at book', f"{D['dcf']['nci_navig8'] / 1000.0:,.0f}"),
 ]
 
 # The alternative construction is PUBLISHED, not superseded, so its figures must be
@@ -72,6 +95,19 @@ SUPERSEDED = [
     ('beta-of-one wording', r'beta of one\b'),
     ('beta-of-1.0 wording', r'beta of 1\.0(?!\d)'),
     ('beta-of-1 wording', r'beta of 1(?![\d.])'),
+    # The four corrections this edition makes each had a sentence that justified the
+    # superseded construction. Those sentences are what must not survive — not the numbers,
+    # and not the words used to DESCRIBE the superseded construction in the section that
+    # exists to describe it. Each pattern below is a justification, never a description.
+    ('the old excuse for leaving the perpetuals out of the weights',
+     r'rather than carried in the weights'),
+    ('the old excuse, second half', r'do not enter the cost of capital twice'),
+    ('the justified-multiple lens presented as the method',
+     r'a justified [\d.]+. book value on'),
+    ('the justified-multiple formula presented as the method',
+     r'A justified price-to-book multiple is the sustainable return'),
+    ('the published class rate presented as a spot rate',
+     r'trade at spot rates and \d+ sit on'),
 ]
 
 fails = []
@@ -104,9 +140,21 @@ print('=' * 74)
 print('the bibliography agrees with the same file')
 tb = text(BIB)
 n_inputs = len(D['inputs'])
-for label, needle in [('the input count', str(n_inputs)),
+for label, needle in [('the input count', f'{n_inputs:,}'),
                       ('the adopted beta', f"{D['inputs']['beta']['value']:.3f}"),
-                      ('the alternative beta', '0.705')]:
+                      ('the alternative beta',
+                       f"{D['inputs']['beta_composite']['value']:.3f}"),
+                      # the three judgements added in this edition, and the quotation the
+                      # tanker rebuild rests on, must all reach the delivered register
+                      ('the implied first-quarter spot',
+                       f"{D['fleet']['spot_q1_26']['vlcc']:,.0f}"),
+                      ('the published first-quarter blend',
+                       f"{D['fleet']['blend_q1_26']['vlcc']:,.0f}"),
+                      ('the blended-rate quotation', 'blended rate that we give there'),
+                      ('the residual-income fade',
+                       f"{D['book']['fade'] * 100:.0f}%"),
+                      ('the minority deduction',
+                       f"{D['dcf']['nci'] / 1000.0:,.1f}m")]:
     hit = needle in tb
     print(f'  {"OK  " if hit else "MISS"}  {label:<32} {needle}')
     if not hit:

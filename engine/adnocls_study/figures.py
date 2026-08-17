@@ -299,7 +299,11 @@ style(axm)
 fig.tight_layout()
 save(fig, 'fig7_mix.png')
 
-# ---- F8 tanker time-charter equivalent by class by quarter ---------------------
+# ---- F8 tanker earnings per vessel-day: the published blend AND the implied spot ----
+# The company publishes ONE rate per class per quarter and it is a blend across the whole
+# class — vessels on charter out at fixed rates are inside it. The rate an uncommitted
+# vessel actually earns is solved out of that blend. Both belong on this figure: the
+# difference between them is the study's central operating correction.
 QLAB = ['2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4',
         '2025 Q1', '2025 Q2', '2025 Q3', '2025 Q4', '2026 Q1', '2026 Q2']
 QKEY = ['24q1', '24q2', '24q3', '24q4', '25q1', '25q2', '25q3', '25q4',
@@ -308,7 +312,9 @@ CLS = [('vlcc', 'Very large crude carriers', RUST),
        ('lr2', 'Long range 2', BRASS),
        ('lr1', 'Long range 1', TEAL),
        ('mr', 'Medium range', SLATE)]
-fig, ax = plt.subplots(figsize=(10.4, 4.9), dpi=110)
+FL = D['fleet']
+fig, (ax, axb) = plt.subplots(1, 2, figsize=(11.4, 5.1), dpi=110,
+                              gridspec_kw={'width_ratios': [1.60, 1.0], 'wspace': 0.20})
 xs = np.arange(len(QLAB))
 ax.axvspan(7.5, 9.5, color=GOLD, alpha=0.13, zorder=0)
 for key, lbl, col in CLS:
@@ -320,37 +326,86 @@ for key, lbl, col in CLS:
             ys.append(IN[k])
     ax.plot(xx, ys, color=col, lw=2.0, marker='o', ms=5, label=lbl, zorder=3)
     ax.annotate(f'{ys[-1]:,.0f}', (xx[-1], ys[-1]), textcoords='offset points',
-                xytext=(7, 0), ha='left', va='center', fontsize=8.4, color=col)
-mid = D['fleet']['tce_mid']
+                xytext=(6, -9), ha='left', va='center', fontsize=8.2, color=col)
+# the same class, as an uncommitted vessel actually earns it — solved from the blend
+vspot = [FL['spot_q1_26']['vlcc'], FL['spot_q2_26']['vlcc']]
+ax.plot([8, 9], vspot, color=RUST, lw=1.8, ls='--', marker='o', ms=6, mfc=BG, mew=1.8,
+        zorder=4)
+ax.annotate(f'{vspot[1]:,.0f}', (9, vspot[1]), textcoords='offset points',
+            xytext=(6, 4), ha='left', va='center', fontsize=8.2, color=RUST)
+ax.annotate(f'{vspot[0]:,.0f}', (8, vspot[0]), textcoords='offset points',
+            xytext=(-6, 7), ha='right', va='center', fontsize=8.2, color=RUST)
+mid = FL['spot_mid']
 for key, lbl, col in CLS:
     ax.plot([-0.35, len(QLAB) - 0.55], [mid[key]] * 2, color=col, lw=1.0, ls=':',
             alpha=0.75, zorder=1)
-ax.text(0.15, 175000, 'dotted lines: the mid-cycle rate each class reverts to in the '
-        'forecast', fontsize=8.2, color=GREY, va='center', ha='left')
+ax.text(-0.25, 15200, 'dotted lines: the mid-cycle rate each class reverts to', fontsize=8.0,
+        color=GREY, va='center', ha='left')
+ax.text(8.5, 15200, 'shaded: the study year', fontsize=8.0, color=BRASS, va='center',
+        ha='center')
 mcc = D['sens']['market_cross_check']
 ax.plot([-0.35, len(QLAB) - 0.55], [mcc['vlcc_1y_tc']] * 2, color=INK, lw=1.3, ls='-.',
         alpha=0.9, zorder=2)
-ax.text(0.15, mcc['vlcc_1y_tc'] * 1.10,
+ax.text(-0.25, mcc['vlcc_1y_tc'] * 1.24,
         f'one-year time charter fixed by a listed owner, early 2026: '
-        f'{mcc["vlcc_1y_tc"]:,.0f} a day', fontsize=8.2, color=INK, va='bottom',
+        f'{mcc["vlcc_1y_tc"]:,.0f} a day', fontsize=8.0, color=INK, va='bottom',
         ha='left')
 ax.set_yscale('log')
-ticks = [20000, 30000, 50000, 80000, 130000, 200000, 300000]
+ticks = [20000, 30000, 50000, 80000, 130000, 200000, 300000, 500000]
 ax.set_yticks(ticks)
 ax.set_yticklabels([f'{t/1000:,.0f}k' for t in ticks], fontsize=8.6)
 ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-ax.set_ylim(13500, 400000)
+ax.set_ylim(13000, 900000)
 ax.set_xticks(xs)
-ax.set_xticklabels(QLAB, fontsize=8.4)
-ax.set_xlim(-0.45, len(QLAB) - 0.20)
-ax.text(8.5, 392000, 'first quarter reported;\nsecond quarter as indicated',
-        ha='center', va='top', fontsize=8.4, color=BRASS)
-ax.set_ylabel('time-charter equivalent (USD per vessel per day, log scale)', fontsize=9)
-ax.legend(frameon=False, fontsize=8.5, ncol=4, labelcolor=INK, loc='lower left')
-ax.set_title('The crux, made visible — tanker earnings per vessel per day by class, '
-             'by quarter', fontsize=10, pad=9)
+ax.set_xticklabels(QLAB, fontsize=8.0, rotation=45, ha='right')
+ax.set_xlim(-0.45, len(QLAB) + 0.35)
+from matplotlib.lines import Line2D as _L2D
+h, l = ax.get_legend_handles_labels()
+h += [_L2D([0], [0], color=RUST, lw=1.8, ls='--', marker='o', ms=6, mfc=BG, mew=1.8)]
+l += ['Very large crude carriers, not on charter out']
+ax.legend(h, l, frameon=False, fontsize=8.0, ncol=2, labelcolor=INK, loc='upper left',
+          handlelength=2.4, columnspacing=1.2)
+ax.set_ylabel('USD per vessel per day (logarithmic scale)', fontsize=9)
+ax.set_title('Published rate by class, by quarter — a blend across the whole class',
+             fontsize=9.6, pad=9)
 style(ax)
-fig.tight_layout()
+
+# right panel — the same first quarter, published blend against the rate solved out of it
+labs = [lbl.replace('Very large crude carriers', 'Very large\ncrude carriers')
+           .replace('Long range ', 'Long range\n').replace('Medium range', 'Medium\nrange')
+        for _, lbl, _ in CLS]
+bx = np.arange(len(CLS))
+blend = [FL['blend_q1_26'][k] for k, _, _ in CLS]
+spot = [FL['spot_q1_26'][k] for k, _, _ in CLS]
+axb.bar(bx - 0.20, blend, width=0.38, color=SAGE, alpha=0.85, edgecolor=SAGE,
+        label='published blended rate')
+axb.bar(bx + 0.20, spot, width=0.38, color=GOLD, alpha=0.95, edgecolor=BRASS,
+        label='rate a vessel not on charter out earns')
+pad_ = 0.020 * max(spot)
+for i, (b_, s_) in enumerate(zip(blend, spot)):
+    # where no vessel of the class is on charter out the two are the same number, and two
+    # labels printed at the same height read as one impossible figure. One label, centred.
+    if abs(s_ - b_) < 1.0:
+        axb.text(i, s_ + pad_, f'{s_:,.0f}', ha='center', va='bottom', fontsize=8.2,
+                 color=INK)
+        continue
+    axb.text(i - 0.20, b_ + pad_, f'{b_:,.0f}', ha='center', va='bottom', fontsize=8.2,
+             color=INK)
+    axb.text(i + 0.20, s_ + pad_, f'{s_:,.0f}', ha='center', va='bottom', fontsize=8.2,
+             color=BRASS, fontweight='bold')
+axb.set_xticks(bx)
+axb.set_xticklabels(labs, fontsize=8.2)
+axb.set_ylim(0, max(spot) * 1.30)
+axb.set_yticks([0, 50000, 100000, 150000, 200000])
+axb.set_yticklabels(['0', '50k', '100k', '150k', '200k'], fontsize=8.6)
+axb.legend(frameon=False, fontsize=8.2, labelcolor=INK, loc='upper right')
+axb.set_ylabel('USD per vessel per day', fontsize=9)
+axb.set_title('The first quarter of 2026, both ways — the\ndifference is the charters '
+              'inside the blend', fontsize=9.6, pad=9)
+style(axb)
+fig.suptitle('The crux, made visible — what a tanker earns per day, as published and as '
+             'an uncommitted vessel actually earns it', fontsize=10.4, y=0.99)
+fig.tight_layout(rect=[0, 0, 1, 0.945])
 save(fig, 'fig8_tce.png')
 
 # ---- FD1 the three expert ranges ----------------------------------------------

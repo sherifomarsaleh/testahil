@@ -605,6 +605,43 @@ T([['Document', 'Publisher', 'Date', 'What was taken from it'],
     f"run against."]],
   [1.72, 1.30, 0.68, 3.40], aligns=['L', 'L', 'L', 'L'], size=7.7)
 
+H2('A quotation this study turns on')
+P(f"One sentence spoken on an earnings call changed the shape of the model more than any "
+  f"document in the tables above, so it is reproduced here in full with its context rather "
+  f"than cited. On the first-quarter {META['price_date'][:4]} call, an analyst asked how "
+  f"the reported rate for the largest tanker class squared with what the spot market was "
+  f"paying at the time. The chief financial officer answered:", size=9.5)
+panel([('', f"“… was related to our full fleet of {D['fleet']['owned']['vlcc']}, and it "
+            f"includes all the vessels on long-term charter as well … it's a blended rate "
+            f"that we give there, which is obviously less than the spot rate.”")])
+T([['Field', 'Detail'],
+   ['Source', DOCS['CALLQ126'] + f", {META['company']}"],
+   ['Date', fdate('2026-05-14')],
+   ['File held', held('CALL_Q1_2026.pdf')],
+   ['Speaker', 'The chief financial officer, answering an analyst question on the rate '
+    'reported for very large crude carriers in the first quarter'],
+   ['What it establishes',
+    f"That the single rate the company publishes for each vessel class each quarter is an "
+    f"average across the whole class, taken over the vessels trading in the open market "
+    f"AND the vessels already committed on charters out at rates fixed earlier. It is "
+    f"therefore lower than what an uncommitted vessel earns, by an amount that depends on "
+    f"how many of the class are committed and at what rates."],
+   ['What it changed',
+    f"The first edition of the study read the published figure as the open-market rate and "
+    f"then added the chartered vessels beside it at their own, lower, disclosed rates — "
+    f"charging the same drag twice. The model now carries each of the "
+    f"{len(D['fleet']['charters'])} chartered vessels individually for exactly the days "
+    f"its own contract runs, and solves the open-market rate out of the published average "
+    f"instead of assuming it. For the largest class in the first quarter of "
+    f"{META['price_date'][:4]} the solved figure is "
+    f"{D['fleet']['spot_q1_26']['vlcc']:,.0f}/day against a published "
+    f"{D['fleet']['blend_q1_26']['vlcc']:,.0f}/day."],
+   ['How it is used',
+    'As evidence about what a disclosed figure means, not as the source of a figure. '
+    'Every rate in the model still comes from a published table; what the quotation '
+    'changes is the arithmetic applied to those tables.']],
+  [1.05, 6.05], aligns=['L', 'L'], size=7.9)
+
 P('The company site was reached for every company document. Of the three investor pages '
   'tried, two returned everything asked of them; one index page returned a server error from '
   'this environment and its documents were obtained through the other two, so nothing was '
@@ -636,7 +673,15 @@ for lay in LAYERS:
         rendered += 1
     T(rows, REG_W, aligns=['L', 'R', 'L', 'L'], size=7.4, cell_lr=58)
 
-assert rendered == len(INP), f'rendered {rendered} of {len(INP)} inputs'
+# The register is counted LIVE off the numbers file and every count in this document is
+# derived from that one number. Counting against a known total is the check that matters:
+# a renderer that silently drops a row reports success on its own terms, so the register
+# is reconciled row by row against the file it came from, and the count the prose states
+# is asserted to be the same object rather than a figure typed beside it.
+N_INPUTS = len(INP)
+assert rendered == N_INPUTS, f'rendered {rendered} of {N_INPUTS} inputs'
+assert sum(LAYER_N.values()) == N_INPUTS, 'the layer counts do not reconcile to the register'
+assert N_INPUTS == len({k for k in INP}), 'an input key is duplicated'
 for k, v in INP.items():
     assert set(v) >= {'value', 'source', 'date', 'layer'}, f'{k} is not four-field complete'
     assert str(v['source']).strip() and str(v['date']).strip(), f'{k} has an empty field'
@@ -676,6 +721,58 @@ JUD = [
      "outright; none is obtainable. Failing that, a second and third quarter printing at "
      "either level settles it — the second-quarter results were scheduled for 11 August "
      "2026, days after this study was struck."),
+    ('How the tanker fleet is built, vessel by vessel, off the published charter table',
+     f"Each of the {len(D['fleet']['charters']):,} vessels chartered out is carried at its "
+     f"own disclosed rate for exactly the days its own contract runs, and the rate an "
+     f"uncommitted vessel earns is SOLVED out of the class average the company publishes "
+     f"rather than assumed — the average multiplied by the class's vessel-days, less what "
+     f"the committed vessels earned, over the days the uncommitted vessels had. Nothing "
+     f"about the market rate is assumed. What IS judged is that the published average is a "
+     f"straight vessel-day average of the whole class, which is what the chief financial "
+     f"officer's own description of it implies. Only the expiry and the period are "
+     f"published for each charter, so each start date is the expiry less the period; no "
+     f"date is invented.",
+     "A disclosed split between committed and uncommitted earnings, which the company does "
+     "not publish, would replace the construction outright. Failing that, the check "
+     "available is internal and it passes: where a class has no vessel on charter out, the "
+     "published average and the solved rate come out identical. If the company weights its "
+     "published average differently — by revenue rather than by vessel-days, say, or "
+     "excluding off-hire — the solved rate is too high by the amount the average is "
+     "understated, and a reported half-year would show it."),
+    ('The rate at which the excess return fades in the asset lens',
+     f"{fval('ri_fade', IV['ri_fade'])} a year. The asset lens is built as residual income "
+     f"— opening ordinary book, plus the return earned above the cost of equity on that "
+     f"book for five years discounted, plus a remainder beyond the forecast in which the "
+     f"excess return decays at this rate. The remainder is "
+     f"{D['book']['pv_terminal'] / D['book']['equity_value'] * 100:.0f}% of what the lens "
+     f"produces. The economic case for a fade is that a fleet has to be replaced at market "
+     f"prices rather than at the value it is carried at, so a return above the cost of "
+     f"equity cannot persist unchanged; the SPEED is chosen rather than measured.",
+     "Nothing observable fixes it, and that is the honest answer. A longer record of this "
+     "company earning above its cost of equity through a full rate cycle would argue for a "
+     "slower fade; a period of newbuild deliveries competing the return away would argue "
+     "for a faster one. A slower fade raises this lens and a faster one lowers it, which "
+     "is one reason it carries the lowest weight of the four."),
+    ('How the minority interests are deducted',
+     f"Not at book, and not at a flat share of equity value either. Of the "
+     f"{usdm(IV['q1_26_nci'], 1)} of minority book at the valuation date "
+     f"({usdm(IV['nci_fy25'], 1)} at the {FS_YEARS[-1][2:]} year end), "
+     f"{usdm(IV['nci_navig8'], 1)} arose on the tanker combination, and that 20% is "
+     f"contracted for purchase in mid-2027 at a price already carried in the bridge as "
+     f"deferred consideration ({usdm(IV['q1_26_pcp'], 1)}). Deducting it again at a share "
+     f"of equity value would count the same claim twice, so it stays at book. Only the "
+     f"remaining {usdm(D['dcf']['nci_other_bv'], 1)} is lifted from book to its share of "
+     f"value, giving a total deduction of {usdm(D['dcf']['nci'], 1)}.",
+     f"A review of the first edition called it a critical failure that minorities were "
+     f"deducted at book when they take "
+     f"{fval('nci_share', IV['nci_share'])} of profit. The premise is right and the "
+     f"conclusion is not, and the arithmetic is published so a reader can decide for "
+     f"themselves: at book the deduction is {usdm(IV['q1_26_nci'], 1)}, as taken here it "
+     f"is {usdm(D['dcf']['nci'], 1)}, and applying the profit share to the whole equity "
+     f"value with nothing netted off would make it "
+     f"{usdm(IV['nci_share'] * (D['dcf']['ev'] - D['dcf']['net_debt']), 1)}. What would "
+     f"overturn it is the purchase not completing, or completing at a different price — "
+     f"at which point the deferred-consideration line changes and this one follows it."),
     ('The step-down in rates assumed for the second half of 2026',
      f"A half-and-half blend: {fval('h2_2026_reversion', IV['h2_2026_reversion'])} weight on "
      f"the 2025 average rate against the rate achieved in the first quarter of 2026. A "
@@ -758,15 +855,25 @@ JUD = [
      f"lens entirely is reading a different study, and the four lens values are published "
      f"separately so that they can."),
     ('The treatment of the perpetual capital securities',
-     f"Deducted in full — {usdm(IV['q1_26_hybrid'], 1)} — in the bridge from enterprise "
-     f"to equity value, and charged as debt-like in the cash-flow lens, although the company "
-     f"classifies them as equity because their coupons are payable solely at its discretion. "
-     f"Their coupons never touch the income statement, so earnings available to ordinary "
-     f"holders are struck after them.",
-     f"They rank ahead of the ordinary shares whichever way they are classified, which is why "
-     f"they are deducted. Treating them as equity instead would add about AED "
-     f"{HYB_PER_SHARE:,.2f} a share. A redemption, or a coupon actually deferred, would "
-     f"resolve the question in one direction or the other."),
+     f"Two things at once, and they are the two halves of one treatment. They are deducted "
+     f"in full — {usdm(IV['q1_26_hybrid'], 1)} — in the bridge from enterprise to equity "
+     f"value, because they rank ahead of the ordinary shares however the company "
+     f"classifies them; and they are WEIGHTED in the cost of capital at "
+     f"{W['wh'] * 100:.1f}% of total capital at their own coupon of {W['kh'] * 100:.2f}%, "
+     f"because they are a third kind of capital funding the same enterprise. That coupon "
+     f"floats, so it normalises with the risk-free rate in the terminal, at "
+     f"{W['kh_term'] * 100:.2f}%. Their coupons never touch the income statement, so "
+     f"earnings available to ordinary holders are struck after them.",
+     f"The first edition deducted them but did NOT weight them, on the ground that doing "
+     f"both would charge for them twice. That was wrong, and two independent reviews said "
+     f"so: deducting a claim from value and pricing the capital it supplies are different "
+     f"operations, and doing only the first removed a cheap tranche of funding from the "
+     f"enterprise without letting it lower the rate the enterprise is discounted at. "
+     f"Correcting it moves the cost of capital to {W['wacc'] * 100:.2f}% and the terminal "
+     f"rate to {W['wacc_term'] * 100:.2f}%. Treating the securities as ordinary equity "
+     f"instead — deducting nothing — would add about AED {HYB_PER_SHARE:,.2f} a share. A "
+     f"redemption, or a coupon actually deferred, would resolve the classification in one "
+     f"direction or the other."),
     ('The terminal growth rate',
      f"{fval('g_terminal', IV['g_terminal'])}, taken from the company's own goodwill "
      f"value-in-use test, which projects cash flows beyond its plan at a rate equal to an "
@@ -961,6 +1068,24 @@ DISC = [
     'another write-up contradicts, is not a source this study can cite and a reader cannot '
     'check it. Recorded because a reader who has seen the update would otherwise think the '
     'figure is simply stale.'],
+   ['What the published rate per vessel class actually is',
+    f"Read as the rate a vessel earns in the open market. On that reading the largest "
+    f"class earned {D['fleet']['blend_q1_26']['vlcc']:,.0f}/day in the first quarter of "
+    f"2026, and the vessels on charter out are a separate, lower, additional exposure. "
+    f"This is how the first edition of this study read it, and it is how the figure is "
+    f"usually quoted.",
+    f"A BLEND across the whole class, including the vessels already on charter out. The "
+    f"company said so itself on the first-quarter call — the quotation is set out in full "
+    f"with the documents above. Taking the {len(D['fleet']['charters']):,} charters back "
+    f"out at their own disclosed rates, the rate an uncommitted vessel must have earned in "
+    f"the same quarter is {D['fleet']['spot_q1_26']['vlcc']:,.0f}/day.",
+    "The company's own description of its own disclosure. This is not two sources "
+    "disagreeing: there is one figure and two readings of what it covers, and only one of "
+    "them is the company's. The consequence of the wrong reading was not a wrong rate but "
+    "a double count — the first edition applied the blended rate to the whole class AND "
+    "added the chartered vessels again at their own rates, charging the drag of the "
+    "charters twice and understating the fleet. The correction is set out in the study's "
+    "own section on what changed in this edition."],
    ['The beta, measured against two different definitions of the same market',
     f"An equal-weight composite of the exchange's own listed names — {BR['composite_names']:,} "
     f"of them, the subject excluded — gives a slope of {BC['beta']:.3f} over the same window "
@@ -1089,6 +1214,12 @@ if hits:
     for h in hits[:20]:
         print('  SCRUB HIT', h)
     sys.exit(f'external-reader scrub found {len(hits)} hits')
+
+# the count the document STATES must be the count it rendered — a stale figure in the
+# prose beside a correct register is exactly the failure a reader cannot see
+_stated = f'{N_INPUTS:,}'
+assert any(_stated in c for c in all_text()), \
+    f'the register count {_stated} does not appear in the rendered text'
 
 widths_bad = []
 for t in doc.tables:

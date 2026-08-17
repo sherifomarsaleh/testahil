@@ -14,9 +14,50 @@ expected-value gate in recalc.py.
 
 Used by recalc.py — does the workbook reproduce the model? — and by driver_test.py — does
 changing a driver on the Assumptions sheet actually reprice the workbook?
+
+TEXT IS NEVER A NUMBER HERE. An earlier version of this evaluator quietly read the string
+'-' as zero and treated any other text operand as if it were nothing at all. That made it
+MORE PERMISSIVE THAN THE APPLICATION THE READER OPENS THE FILE IN: a workbook that raised
+#VALUE! in 689 cells across twelve sheets in LibreOffice reconciled here cell-for-cell, and
+this evaluator reported it clean. A verifier that accepts what the real spreadsheet rejects
+is not a verifier. So any text reaching an arithmetic operator — including a display dash
+in a cell some formula turns out to read — is a hard failure, raised as TextOperand and
+reported like any other unresolvable cell. The two places a spreadsheet genuinely does
+ignore text are kept, because they are what Excel and LibreOffice actually do: a BLANK cell
+counts as zero in arithmetic, and text inside a SUM/AVERAGE/MIN/MAX RANGE is skipped rather
+than propagated. Text passed to one of those functions as a direct scalar argument is not
+ignored — it raises, exactly as the applications do.
 """
+import datetime
 import re
 from openpyxl.utils import range_boundaries, get_column_letter
+
+EPOCH = datetime.date(1899, 12, 30)          # the spreadsheet's own day zero
+
+
+class TextOperand(ValueError):
+    """Text has reached an arithmetic operator, where a real spreadsheet raises #VALUE!."""
+
+
+def as_number(v):
+    """A cell value as the number a spreadsheet would use, or None if it is not one.
+
+    A DATE IS A NUMBER. Excel and LibreOffice store a date as the count of days since
+    30 December 1899 and subtract one from another to get days; the reader sees a date only
+    because of the cell's format. openpyxl hands such a cell back as a datetime, so it is
+    converted here rather than rejected — rejecting it would make this evaluator STRICTER
+    than the applications, which is its own kind of wrong answer.
+    """
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    if isinstance(v, datetime.datetime):
+        return (v.date() - EPOCH).days + (v - datetime.datetime.combine(
+            v.date(), datetime.time())).total_seconds() / 86400.0
+    if isinstance(v, datetime.date):
+        return float((v - EPOCH).days)
+    return None
 
 FUNC = re.compile(r'\b(SUM|MIN|MAX|MEDIAN|AVERAGE)\(([^()]*)\)')
 # An UNQUOTED sheet name may not contain a hyphen or a space: every sheet in this workbook
@@ -53,20 +94,34 @@ class Book:
                 v = self.evaluate(v[1:], sheet)
             finally:
                 self.stack.pop()
-        elif isinstance(v, str):
-            v = 0.0 if v == '-' else v
         elif v is None:
-            v = 0.0
+            v = 0.0          # a BLANK cell is zero in arithmetic, in Excel as here
+        # a text cell is returned AS TEXT: whether that is fatal depends on what reads it,
+        # and the decision is made at the point of use, never by coercing it here
         self.cache[key] = v
         return v
 
+    def numeric(self, sheet, coord, where):
+        """A cell's value where a number is required. Text raises, as it does in Excel."""
+        v = self.cell_value(sheet, coord)
+        n = as_number(v)
+        if n is None:
+            kind = 'the text' if isinstance(v, str) else ''
+            raise TextOperand(
+                f'{sheet}!{coord} holds {kind} {v!r}, which {where} reads as a number. '
+                f'Excel and LibreOffice raise #VALUE! here and so does this evaluator: no '
+                f'text may sit anywhere in an arithmetic chain')
+        return n
+
     def range_values(self, sheet, rng):
+        """Text inside a SUM/AVERAGE range is SKIPPED — that is what Excel does — so this
+        is the one place text is tolerated, and only because tolerating it is correct."""
         c1, r1, c2, r2 = range_boundaries(rng)
         out = []
         for rr in range(r1, r2 + 1):
             for cc in range(c1, c2 + 1):
-                out.append(self.cell_value(sheet, f'{get_column_letter(cc)}{rr}'))
-        return [x for x in out if isinstance(x, (int, float))]
+                out.append(as_number(self.cell_value(sheet, f'{get_column_letter(cc)}{rr}')))
+        return [x for x in out if x is not None]
 
     def arg_values(self, arg, sheet):
         """A function argument is either one range, or a comma-separated list of scalars."""
@@ -77,6 +132,7 @@ class Book:
             if sm:
                 tgt = sm.group(1) or sm.group(2); rng = sm.group(3)
             return self.range_values(tgt, rng.replace('$', ''))
+        # a scalar argument is NOT a range: text here is an error, not something to skip
         return [float(self.evaluate(part, sheet)) for part in arg.split(',') if part.strip()]
 
     def evaluate(self, expr, sheet):
@@ -102,21 +158,22 @@ class Book:
                 vs = sorted(vals); n = len(vs)
                 val = (vs[n // 2] if n % 2 else (vs[n // 2 - 1] + vs[n // 2]) / 2)
             e = e[:m.start()] + repr(float(val)) + e[m.end():]
-        # cross-sheet single-cell references
+        # cross-sheet single-cell references — each one lands in an arithmetic expression,
+        # so each one must be a number
         while True:
             m = SHEETREF.search(e)
             if not m:
                 break
             tgt = m.group(1) or m.group(2)
-            v = self.cell_value(tgt, m.group(3).replace('$', ''))
-            e = e[:m.start()] + repr(float(v or 0)) + e[m.end():]
+            v = self.numeric(tgt, m.group(3).replace('$', ''), f'the formula {expr!r}')
+            e = e[:m.start()] + repr(v) + e[m.end():]
         # same-sheet references
         while True:
             m = CELLREF.search(e)
             if not m:
                 break
-            v = self.cell_value(sheet, f'{m.group(2)}{m.group(4)}')
-            e = e[:m.start()] + repr(float(v or 0)) + e[m.end():]
+            v = self.numeric(sheet, f'{m.group(2)}{m.group(4)}', f'the formula {expr!r}')
+            e = e[:m.start()] + repr(v) + e[m.end():]
         e = e.replace('^', '**')   # Excel exponentiation
         if not re.fullmatch(r'[-+*/(). 0-9eE]+', e.replace('**', '*')):
             raise ValueError(f'unparsed formula fragment: {expr!r} -> {e!r}')
