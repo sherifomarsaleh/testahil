@@ -382,9 +382,21 @@ INP = dict(
                   "tranche, 4 basis points above comparable US Treasuries. This is a local-"
                   "currency sovereign yield at a tenor matching the forecast horizon, not a "
                   "US Treasury substituted for one", "2026-07-30", "Country"),
-    sov_spread=I(0.0042, "Damodaran country risk premium file, January 2026 vintage: United "
-                 "Arab Emirates, Moody's Aa2, adjusted default spread 0.42%",
-                 "2026-01-01", "Country"),
+    sov_spread=I(0.0004,
+                 "Sovereign default spread ACTUALLY EMBEDDED IN THE INSTRUMENT the risk-free "
+                 "rate is taken from: the UAE Ministry of Finance July-2026 auction cleared "
+                 "the January-2031 dirham Treasury Bond at 4.48%, a spread of 4 basis points "
+                 "over comparable US Treasuries. CHANGED 09-Aug-2026, superseding the 0.42% "
+                 "ratings-based figure from the published country-risk file. The "
+                 "normalisation exists to remove sovereign credit risk from the observed "
+                 "yield so it is not counted twice inside the equity risk premium; the amount "
+                 "to remove is the amount the yield actually contains. Removing 42 basis "
+                 "points from a bond carrying 4 produced a normalised rate 38 basis points "
+                 "BELOW the matched-tenor US Treasury and 59 below the US 10-year, which "
+                 "cannot be right for a currency hard-pegged to the dollar. The 0.42% "
+                 "ratings figure remains the basis of the country risk premium added back "
+                 "inside the equity risk premium, so country risk still enters exactly once",
+                 "2026-07-30", "Country"),
     erp_total=I(0.0487, "Damodaran country risk premium file, January 2026 vintage: United "
                 "Arab Emirates total equity risk premium 4.87%, being the 4.23% mature-market "
                 "premium plus a 0.64% country risk premium", "2026-01-01", "Country"),
@@ -483,6 +495,74 @@ INP = dict(
                   "what the company describes as prudence-based provisioning; FY2026 carries "
                   "the realised first half annualised, then a normalised level escalating "
                   "with inflation", "2026-08-05", "Company"),
+    stations_g=I([0.025, 0.045, 0.040, 0.035, 0.030],
+                 "Service-station network growth. The network grew 11.3% in the year to "
+                 "June 2026 (939 to 1,045 stations) on the company's stated expansion "
+                 "programme across the United Arab Emirates, Saudi Arabia and Egypt. The "
+                 "path decelerates from that realised rate as the domestic network "
+                 "saturates and the incremental site becomes marginal. This is a CAPITAL "
+                 "decision and is modelled separately from throughput because the two have "
+                 "different futures", "2026-06-30", "Company"),
+    litres_per_station_g=I([-0.010, -0.025, -0.020, -0.010, -0.005],
+                           "Growth in litres sold per station. Realised at MINUS 9.3% in "
+                           "the year to June 2026: retail volume rose 1.0% while the "
+                           "network rose 11.3%, so throughput per site fell. The decline "
+                           "fades as the expansion rate itself slows and the newest sites "
+                           "mature toward the network average. This is the single most "
+                           "important observable on the terminal-growth question and it is "
+                           "now a model driver rather than a narrative aside",
+                           "2026-06-30", "Company"),
+    vol_corp_g=I([0.000, 0.005, 0.010, 0.010, 0.010],
+                 "Corporate fuel volume growth. Realised MINUS 2.6% in the first half of "
+                 "2026 (2,068 to 2,015 million litres) on customer rationalisation. Held "
+                 "roughly flat thereafter", "2026-06-30", "Company"),
+    vol_avi_g=I([0.000, 0.040, 0.030, 0.025, 0.020],
+                "Aviation fuel volume growth. Realised PLUS 53.9% in the first half of 2026 "
+                "(232 to 357 million litres) on new airline contracts and Gulf traffic "
+                "recovery. Faded hard, because a 54% step is a contract ramp and not a "
+                "growth rate; carrying it forward would capitalise a one-off", 
+                "2026-06-30", "Company"),
+    price_corp=I([3.05, 2.95, 2.98, 3.01, 3.04],
+                 "Realised corporate price per litre, on the same crude path as the retail "
+                 "leg. Anchored on the 3.12 realised in the first half of 2026",
+                 "2026-06-30", "Company"),
+    price_avi=I([4.55, 4.40, 4.44, 4.49, 4.53],
+                "Realised aviation price per litre, on the same crude path. Anchored on the "
+                "4.64 realised in the first half of 2026. Jet fuel prices roughly 50% above "
+                "the corporate leg, which is why blending the two destroys information",
+                "2026-06-30", "Company"),
+    fueltxn_g=I([0.010, 0.025, 0.022, 0.020, 0.018],
+                "Growth in fuel transactions. Realised 4.9% in the first half of 2026 (96.2 "
+                "to 100.9 million) on the larger network", "2026-06-30", "Company"),
+    conversion_g=I([-0.005, -0.010, 0.000, 0.005, 0.005],
+                   "Growth in the non-fuel conversion rate — the share of fuel customers "
+                   "who also buy inside. It FELL from 27.0% to 26.2% in the year to June "
+                   "2026, which is the opposite of what the non-fuel strategy needs, and "
+                   "the forecast carries that deterioration before assuming it stabilises",
+                   "2026-06-30", "Company"),
+    basket_g=I([0.015, 0.035, 0.030, 0.030, 0.030],
+               "Growth in the average non-fuel basket, on the domestic price escalator plus "
+               "the stated shift toward higher-margin food service", "2026-06-30", "Company"),
+    dep_rate=I(0.0836,
+               "Depreciation and amortisation as a share of the OPENING fixed and "
+               "right-of-use asset base, measured off the audited FY2025 accounts (775.9 on "
+               "an opening base of 9,278.5). Replaces a hardcoded five-year depreciation "
+               "array: the charge is now an output of the asset base the model itself rolls "
+               "forward", "2025-12-31", "Company"),
+    maint_capex_rate=I(0.0836,
+                       "Maintenance capital spending as a share of the opening fixed and "
+                       "right-of-use base, set equal to the depreciation rate — the "
+                       "standard steady-state condition that a network replaces what it "
+                       "consumes. Growth spending is modelled separately, per station added",
+                       "2025-12-31", "Company"),
+    capex_per_station=I(3.5924,
+                        "Capital cost per station added, in AED million. Backed out of the "
+                        "company's OWN FY2026 capital-spending guidance: the guidance "
+                        "midpoint of 1,010 less maintenance of 792.4 on the opening base "
+                        "leaves 217.6 for the 60.6 stations the network plan adds, giving "
+                        "3.59 per station (about USD 1.0 million). So FY2026 still "
+                        "reconciles to guidance while FY2027-30 follow the network plan "
+                        "rather than a pasted array", "2026-02-03", "Company"),
     dna_fwd=I([800.0, 830.0, 862.0, 894.0, 926.0],
               "Depreciation and amortisation, grown on the asset base as capital spending "
               "exceeds the current charge; the first half of 2026 charge of AED 369.7 million "
@@ -536,6 +616,13 @@ INP = dict(
     wd_terminal=I(0.100, "Terminal debt weight, above today's 5.5% because the current "
                   "weight reflects an unusually high equity market value against a small "
                   "and stable borrowing book", "2026-08-05", "Market"),
+    payout_floor=I(0.75,
+                   "Dividend policy FLOOR as the company actually states it: USD 700 million "
+                   "a year, or a minimum of 75% of net profit, whichever is higher, for the "
+                   "years 2024 to 2030. ADDED 09-Aug-2026: the study previously used the "
+                   "realised 92% payout as though it were the policy term, in two places, "
+                   "contradicting both the primary disclosure and the study's own catalyst "
+                   "table", "2026-04-01", "Company"),
     payout=I(0.92, "Dividend payout used in the equity roll-forward. Dividends paid were AED "
              "2,622.9 million, AED 2,613.7 million and AED 2,599.1 million in FY2023, FY2024 "
              "and FY2025 against profit attributable to owners of AED 2,601.4 million, AED "
@@ -647,6 +734,55 @@ UB['margin_retail_growth_h1'] = UB['margin_retail_h126'] / UB['margin_retail_h12
 UB['margin_comm_growth_h1'] = UB['margin_comm_h126'] / UB['margin_comm_h125'] - 1
 UB['gm_nonfuel_fy25'] = V['gp_nonfuel_fy25'] / V['rev_nonfuel_fy25']
 UB['gm_nonfuel_h126'] = V['gp_nonfuel_h126'] / V['rev_nonfuel_h126']
+
+# ---- BOTTOM-UP UNIT ANCHORS (added 09-Aug-2026) -------------------------------------
+# Every one of these is derived from two disclosed quantities, never asserted. Where the
+# company does not disclose a split, the allocation is named and flagged rather than hidden.
+#
+# Retail throughput. The company discloses the station count and the retail volume, so the
+# litres each station actually sells is arithmetic, not an assumption — and it is the number
+# that shows retail growth is network-led: throughput per station fell 9.3% year on year
+# while the network grew 11.3%.
+UB['litres_per_station_fy25'] = V['vol_retail_fy25'] / V['stations_fy25']
+UB['litres_per_station_h126'] = V['vol_retail_h126'] / V['stations_h126']
+UB['litres_per_station_h125'] = V['vol_retail_h125'] / V['stations_h125']
+UB['litres_per_station_growth_h1'] = (UB['litres_per_station_h126']
+                                      / UB['litres_per_station_h125'] - 1)
+UB['stations_growth_h1'] = V['stations_h126'] / V['stations_h125'] - 1
+
+# Corporate and aviation volumes for FY2025. FLAGGED GAP: the company splits commercial
+# VOLUME at the half year and commercial REVENUE at the full year, but does not split the
+# full-year volume. It is allocated here on the DISCLOSED first-half-2025 volume ratio, and
+# the allocation is checked against the disclosed full-year revenue: it implies a corporate
+# realised price of about 2.28 and an aviation price of about 3.70 against first-half-2025
+# disclosed prices of 2.27 and 3.52, so the allocation is consistent with the revenue split
+# rather than merely convenient.
+UB['corp_share_vol_h125'] = V['vol_corp_h125'] / (V['vol_corp_h125'] + V['vol_avi_h125'])
+UB['vol_corp_fy25'] = V['vol_comm_fy25'] * UB['corp_share_vol_h125']
+UB['vol_avi_fy25'] = V['vol_comm_fy25'] * (1 - UB['corp_share_vol_h125'])
+UB['price_corp_fy25'] = V['rev_corp_fy25'] / UB['vol_corp_fy25']
+UB['price_avi_fy25'] = V['rev_avi_fy25'] / UB['vol_avi_fy25']
+UB['price_corp_h125'] = V['rev_corp_h125'] / V['vol_corp_h125']
+UB['price_avi_h125'] = V['rev_avi_h125'] / V['vol_avi_h125']
+UB['vol_corp_growth_h1'] = V['vol_corp_h126'] / V['vol_corp_h125'] - 1
+UB['vol_avi_growth_h1'] = V['vol_avi_h126'] / V['vol_avi_h125'] - 1
+
+# Non-fuel, built as transactions x basket. Fuel transactions for FY2025 are derived from
+# the disclosed retail volume and the disclosed litres per fuel transaction, so the
+# transaction base is arithmetic from two reported numbers.
+UB['litres_per_txn_h126'] = V['vol_retail_h126'] / V['fueltxn_h126']
+UB['fueltxn_fy25'] = V['vol_retail_fy25'] / UB['litres_per_txn_h126']
+UB['conversion_h126'] = V['nonfueltxn_h126'] / V['fueltxn_h126']
+UB['conversion_h125'] = V['nonfueltxn_h125'] / V['fueltxn_h125']
+UB['conversion_fy25'] = UB['conversion_h125']
+UB['basket_fy25'] = V['rev_nonfuel_fy25'] / (UB['fueltxn_fy25'] * UB['conversion_fy25'])
+UB['basket_h126'] = V['rev_nonfuel_h126'] / V['nonfueltxn_h126']
+
+# Depreciation and maintenance capital spending, measured off the audited history rather
+# than pasted as five-year arrays.
+UB['fixed_base_fy24'] = H['FY2024']['ppe'] + H['FY2024']['rou']
+UB['fixed_base_fy25'] = H['FY2025']['ppe'] + H['FY2025']['rou']
+UB['dep_rate_fy25'] = H['FY2025']['dna'] / UB['fixed_base_fy24']
 # the segment gross profits must rebuild the reported total
 _seg = V['gp_retfuel_fy25'] + V['gp_nonfuel_fy25'] + V['gp_comm_fy25']
 assert abs(_seg - V['gp_fy25']) < 1.0, f'FY2025 segment gross profit {_seg} vs reported {V["gp_fy25"]}'
@@ -659,26 +795,73 @@ _rvh = (V['rev_retfuel_h126'] + V['rev_nonfuel_h126'] + V['rev_corp_h126'] + V['
 assert abs(_rvh - V['rev_h126']) < 0.01, 'first-half revenue disaggregation does not rebuild'
 
 # ============================ FORECAST ============================
+# BUILT BOTTOM-UP, at the finest level the company actually discloses. Rebuilt 09-Aug-2026
+# after an external audit showed the previous build blended corporate and aviation into one
+# "commercial" leg while the company reports them separately — and that the unexplained +17%
+# FY2026 margin step was sitting inside exactly that blend. Four legs now, each on its own
+# physical driver:
+#
+#   retail fuel   = SERVICE STATIONS x LITRES PER STATION, both disclosed, then x margin/litre
+#   corporate     = own volume x own realised price, own volume driver
+#   aviation      = own volume x own realised price, own volume driver
+#   non-fuel      = NON-FUEL TRANSACTIONS x BASKET, both disclosed, then x gross margin
+#
+# and two capital lines that were hardcoded arrays and are now derived from the asset base:
+#
+#   depreciation  = OPENING fixed and right-of-use base x a rate measured off the history
+#   capital spend = maintenance (% of the opening base) + growth (stations added x unit cost)
+#
+# WHAT THIS EXPOSES, which the blended build hid: retail volume growth is NOT organic. The
+# network grew 11.3% year on year while retail volume grew 1.0%, so litres per station fell
+# 9.3%. The forecast now carries those two facts as separate drivers instead of netting them
+# into one growth rate, because they have different futures — stations are a capital decision
+# and throughput per station is a demand observation.
 F = dict(years=YRS)
-vol_r, vol_c = [], []
-v = V['vol_retail_fy25']
-for g in V['vol_retail_g']:
-    v *= (1 + g)
-    vol_r.append(v)
-v = V['vol_comm_fy25']
-for g in V['vol_comm_g']:
-    v *= (1 + g)
-    vol_c.append(v)
-F['vol_retail'] = vol_r
-F['vol_comm'] = vol_c
-F['vol_total'] = [a + b for a, b in zip(vol_r, vol_c)]
 
+# ---- retail fuel: stations x litres per station -------------------------------------
+# EVERY leg is anchored on the ANNUALISED DISCLOSED FIRST HALF of 2026, not on FY2025.
+# Two quarters of the study year are already on the public record, and the sweep rule
+# requires them swept in before the build. The first element of each driver array is
+# therefore the SECOND-HALF SHAPE on that realised run rate; growth proper starts FY2027.
+# An earlier version grew the FY2025 base instead and put aviation 24% BELOW its own
+# realised half-year run rate — the forecast contradicted the disclosure it was built on.
+sta, lps = [], []
+_s, _l = V['stations_h126'], UB['litres_per_station_h126'] * 2
+for i in range(N):
+    _s *= (1 + V['stations_g'][i])
+    _l *= (1 + V['litres_per_station_g'][i])
+    sta.append(_s)
+    lps.append(_l)
+F['stations'] = sta
+F['litres_per_station'] = lps
+vol_r = [sta[i] * lps[i] for i in range(N)]
+F['vol_retail'] = vol_r
+
+# ---- corporate and aviation: separate legs, opposite volume directions --------------
+vol_co, vol_av = [], []
+_c, _a = V['vol_corp_h126'] * 2, V['vol_avi_h126'] * 2
+for i in range(N):
+    _c *= (1 + V['vol_corp_g'][i])
+    _a *= (1 + V['vol_avi_g'][i])
+    vol_co.append(_c)
+    vol_av.append(_a)
+F['vol_corp'] = vol_co
+F['vol_avi'] = vol_av
+vol_c = [vol_co[i] + vol_av[i] for i in range(N)]
+F['vol_comm'] = vol_c
+F['vol_total'] = [vol_r[i] + vol_c[i] for i in range(N)]
+
+# ---- margins per litre --------------------------------------------------------------
 m = UB['margin_retail_fy25']
 mr = []
 for g in V['gp_retfuel_per_l_g']:
     m *= (1 + g)
     mr.append(m)
 F['margin_retail'] = mr
+# FLAGGED GAP: the company discloses commercial VOLUME split corporate/aviation and
+# commercial REVENUE split, but NOT the gross-profit split between them. So the margin per
+# litre is carried at the level it is disclosed — blended across the two legs — and the
+# FY2026 step in it is carried BOTH WAYS below rather than asserted once.
 m = UB['margin_comm_fy25']
 mc = []
 for g in V['gp_comm_per_l_g']:
@@ -687,14 +870,28 @@ for g in V['gp_comm_per_l_g']:
 F['margin_comm'] = mc
 
 F['price_retail'] = V['price_retfuel']
-F['price_comm'] = V['price_comm']
+F['price_corp'] = V['price_corp']
+F['price_avi'] = V['price_avi']
 F['rev_retfuel'] = [vol_r[i] * F['price_retail'][i] for i in range(N)]
-F['rev_comm'] = [vol_c[i] * F['price_comm'][i] for i in range(N)]
-rn = []
-r = V['rev_nonfuel_fy25']
-for g in V['rev_nonfuel_g']:
-    r *= (1 + g)
-    rn.append(r)
+F['rev_corp'] = [vol_co[i] * F['price_corp'][i] for i in range(N)]
+F['rev_avi'] = [vol_av[i] * F['price_avi'][i] for i in range(N)]
+F['rev_comm'] = [F['rev_corp'][i] + F['rev_avi'][i] for i in range(N)]
+F['price_comm'] = [F['rev_comm'][i] / vol_c[i] for i in range(N)]   # an OUTPUT of the mix
+
+# ---- non-fuel: transactions x basket ------------------------------------------------
+ftxn, ntxn, bask, rn = [], [], [], []
+_f, _cv, _b = V['fueltxn_h126'] * 2, UB['conversion_h126'], UB['basket_h126']
+for i in range(N):
+    _f *= (1 + V['fueltxn_g'][i])
+    _cv *= (1 + V['conversion_g'][i])
+    _b *= (1 + V['basket_g'][i])
+    ftxn.append(_f)
+    ntxn.append(_f * _cv)
+    bask.append(_b)
+    rn.append(_f * _cv * _b)
+F['fuel_txn'] = ftxn
+F['nonfuel_txn'] = ntxn
+F['basket'] = bask
 F['rev_nonfuel'] = rn
 F['revenue'] = [F['rev_retfuel'][i] + F['rev_comm'][i] + rn[i] for i in range(N)]
 
@@ -723,8 +920,28 @@ for g in V['other_income_g']:
     oi.append(o)
 F['other_income'] = oi
 F['impairments'] = V['impair_norm']
-F['dna'] = V['dna_fwd']
-F['capex'] = V['capex_fwd']
+
+# ---- depreciation and capital spending, DERIVED from the asset base -----------------
+# Both were hardcoded five-year arrays. Depreciation is now the opening fixed and
+# right-of-use base times a rate measured off the audited history; capital spending is
+# maintenance on that base plus the cost of the stations actually being added. The station
+# unit cost is backed out of the company's own FY2026 capital-spending guidance, so the
+# FY2026 total still reconciles to guidance while FY2027-30 follow the network plan.
+_open = V['ppe_fy25'] + V['rou_fy25']
+_prev_sta = V['stations_fy25']
+dna, cpx = [], []
+for i in range(N):
+    _d = _open * V['dep_rate']
+    _maint = _open * V['maint_capex_rate']
+    _adds = sta[i] - _prev_sta
+    _growth = _adds * V['capex_per_station']
+    dna.append(_d)
+    cpx.append(_maint + _growth)
+    _open = _open + _maint + _growth - _d
+    _prev_sta = sta[i]
+F['dna'] = dna
+F['capex'] = cpx
+F['fixed_base'] = None   # rolled inside the balance sheet, not double-kept here
 
 for fr, gpk in (('A', 'gross_profit_A'), ('B', 'gross_profit_B')):
     F[f'ebitda_{fr}'] = [F[gpk][i] - co[i] + oi[i] - F['impairments'][i] for i in range(N)]
@@ -792,10 +1009,18 @@ W['we'] = W['mcap'] / (W['mcap'] + W['net_debt'])
 W['wd'] = 1 - W['we']
 W['wacc'] = W['we'] * W['ke'] + W['wd'] * W['kd_aftertax']
 # Terminal beta DERIVED from the measured beta, not pasted beside it.
-W['beta_drift_frac'] = V['beta_drift_frac']
-W['beta_terminal'] = W['beta'] + V['beta_drift_frac'] * (1 - W['beta'])
+# D4, 09-Aug-2026 — FLAT COST OF CAPITAL. The sliding schedule is scoped by the standing
+# protocol to markets in monetary transition and is explicitly excluded for currency-pegged
+# markets, where the risk-free rate already sits at its long-run norm: "for GCC names the
+# sliding schedule does nothing... today is the terminal, so explicit = terminal and the
+# glide collapses to flat." Neither leg of the previous glide was supported anyway. The beta
+# drift of 0.389 toward the market was an unanchored input, and the 10% terminal debt weight
+# contradicted this model's own forecast balance sheet, which DE-gears net debt from 2,985 to
+# 409 by FY2030. Both are retired to the sensitivity table as priced constructions.
+W['beta_drift_frac'] = 0.0
+W['beta_terminal'] = W['beta']
 W['ke_terminal'] = W['rf_star'] + W['beta_terminal'] * W['erp']
-W['wd_terminal'] = V['wd_terminal']
+W['wd_terminal'] = W['wd']   # flat structure: explicit = terminal
 W['wacc_terminal'] = ((1 - W['wd_terminal']) * W['ke_terminal']
                       + W['wd_terminal'] * W['kd_aftertax'])
 # the discount rate glides from the year-one rate to the terminal rate in equal steps,
@@ -900,9 +1125,27 @@ L['eps_fwd_B'] = eps_fwd_B
 # regimes that are not the same instrument as an administered monthly price.
 L['pe_method_today'] = L['pe_now']
 L['pe_method_own_mean'] = L['own_pe_mean']
-L['pe_method_justified'] = V['payout'] * (1 + V['g_terminal']) / (W['ke'] - V['g_terminal'])
+# The justified multiple must use the POLICY floor the company actually committed to — a
+# minimum of 75% of net profit — not the 92% it happened to pay. The 92% is a realised ratio
+# and was being presented as a policy term in two places.
+# The justified multiple must satisfy the SUSTAINABLE-GROWTH IDENTITY g = retention x ROE,
+# for the same reason the terminal block must satisfy g = ROIC x RR. Plugging either the
+# realised 92% payout or the 75% policy floor into the Gordon formula breaks it: at a return
+# on equity of 80.8%, a 75% payout implies 20% growth, not 1.5%. The retention consistent
+# with 1.5% growth is g / ROE, so the payout the multiple must use is 1 - g / ROE. Deriving it
+# this way also removes the free parameter the critiques were right to object to.
+L['pe_retention_implied'] = V['g_terminal'] / L['roe_sust']
+L['pe_payout_implied'] = 1 - L['pe_retention_implied']
+L['pe_method_justified'] = (L['pe_payout_implied'] * (1 + V['g_terminal'])
+                            / (W['ke'] - V['g_terminal']))
+# CHANGED 09-Aug-2026 after four independent audits made the same finding. The reference
+# multiple was the average of three legs, two of which were THE TRADED PRICE divided by
+# earnings — so a lens presented as independent evidence about value was two-thirds a
+# restatement of the price it was being compared against. The traded multiples are retained
+# and PUBLISHED as context, but the reference is now the fundamentals-derived leg alone.
 L['pe_methods'] = [L['pe_method_today'], L['pe_method_own_mean'], L['pe_method_justified']]
-L['just_fwd_pe'] = sum(L['pe_methods']) / 3
+L['pe_context'] = [L['pe_method_today'], L['pe_method_own_mean']]
+L['just_fwd_pe'] = L['pe_method_justified']
 L['rel_A'] = eps_fwd_A * L['just_fwd_pe']
 L['rel_B'] = eps_fwd_B * L['just_fwd_pe']
 
@@ -913,7 +1156,15 @@ norm_nopat = norm_ebit * (1 - W['tax_fcff'])
 L['norm_ebitda'] = norm_ebitda
 L['norm_ebit'] = norm_ebit
 L['norm_nopat'] = norm_nopat
-L['norm_ev'] = norm_nopat / (W['wacc'] - V['g_terminal'])
+# D2, 09-Aug-2026 — the terminal-reinvestment identity g = ROIC x RR governs EVERY
+# perpetuity, not only the cash-flow model's terminal block. This lens previously capitalised
+# a growing perpetuity with NO reinvestment charge — growth for free — which is precisely the
+# defect that identity rule was adopted to prevent, and it was described three times as a
+# zero-growth reading. Reinvestment is now forced to g / ROIC, the same charge the DCF makes
+# for the same growth.
+L['norm_reinvest'] = V['g_terminal'] / V['roic_terminal']
+L['norm_ev'] = (norm_nopat * (1 - L['norm_reinvest'])
+                / (W['wacc'] - V['g_terminal']))
 L['norm_equity'] = (L['norm_ev'] - H['FY2025']['net_debt_company']
                     - V['lease_fy25'] - V['nciq_fy25'])
 L['norm_ps'] = L['norm_equity'] / V['shares_mn']
@@ -921,7 +1172,11 @@ L['norm_ps'] = L['norm_equity'] / V['shares_mn']
 # 5. dividend capitalisation — the shareholder's actual cash claim
 L['dps'] = V['dps']
 L['div_yield_now'] = V['dps'] / V['spot']
-L['div_ps'] = V['dps'] * (1 + V['g_terminal']) / (W['ke'] - V['g_terminal'])
+# The dividend is a FIXED policy commitment held flat from 2024 through 2030. Capitalising it
+# as a growing perpetuity credited growth the policy explicitly does not promise. It is now
+# valued as the flat commitment it is.
+L['div_ps'] = V['dps'] / W['ke']
+L['div_ps_grown'] = V['dps'] * (1 + V['g_terminal']) / (W['ke'] - V['g_terminal'])
 
 # The four lenses of the study's own structure, in its order: the cash-flow model,
 # book value and sustainable return, relative multiples, normalised earnings power.
@@ -950,8 +1205,17 @@ L['centre_B'] = (sum(i['value'] * i['weight'] for i in L['items_B'])
                  + sum(i['value'] * i['weight'] for i in L['shared_B']))
 _wt = sum(i['weight'] for i in L['items_A']) + sum(i['weight'] for i in L['shared'])
 assert abs(_wt - 1.0) < 1e-12, 'the lens weights do not sum to one'
-L['fair_bear'] = min(L['centre_A'], L['centre_B']) * 0.85
-L['fair_bull'] = max(L['centre_A'], L['centre_B']) * 1.15
+# CHANGED 09-Aug-2026. The published field was the two weighted centres times 0.85 and 1.15
+# — an undisclosed +/-15% band presented as the spread of the methods, which it was not: it
+# NARROWED the actual spread at both ends while the caption said it widened it, and the
+# dividend reading fell outside the range it was said to lie within. The field is now the
+# ACTUAL minimum and maximum of the readings, so "the spread between them IS the uncertainty"
+# is true as written.
+_readings = [DCF['frame_A']['per_share'], DCF['frame_B']['per_share'], L['norm_ps'],
+             L['rel_A'], L['rel_B'], L['book_ps'], L['div_ps']]
+L['readings_all'] = _readings
+L['fair_bear'] = min(_readings)
+L['fair_bull'] = max(_readings)
 L['book_lens'] = L['book_ps']
 
 # ============================ SENSITIVITY ============================
@@ -960,7 +1224,10 @@ def revalue(wacc_t=None, g=None, beta=None, inv=None, volg=None, marg=None,
     b = beta if beta is not None else W['beta']
     ke = W['rf_star'] + b * W['erp']
     w0 = W['we'] * ke + W['wd'] * W['kd_aftertax']
-    ket = W['rf_star'] + (b + (W['beta_terminal'] - W['beta'])) * W['erp']
+    # The terminal beta follows the SAME rule the model itself uses, not a fixed additive
+    # shift. Under a flat pegged-market cost of capital that rule is the identity, so the
+    # beta ladder now reproduces the model at every point instead of only at the base case.
+    ket = W['rf_star'] + (b + W['beta_drift_frac'] * (1 - b)) * W['erp']
     wt = wacc_t if wacc_t is not None else (
         (1 - W['wd_terminal']) * ket + W['wd_terminal'] * W['kd_aftertax'])
     gg = g if g is not None else V['g_terminal']
@@ -969,14 +1236,23 @@ def revalue(wacc_t=None, g=None, beta=None, inv=None, volg=None, marg=None,
     for i in range(N):
         acc *= (1 + rates[i])
         dfs.append(1 / acc)
-    vr = F['vol_retail']
+    # Volume sensitivity moves EVERY leg, which is what the text says it does. The previous
+    # version moved retail only while the study described it as the whole volume path.
+    vr, vc_ = F['vol_retail'], F['vol_comm']
     if volg is not None:
-        vr, v0 = [], V['vol_retail_fy25']
-        for gr in V['vol_retail_g']:
-            v0 *= (1 + gr + volg)
-            vr.append(v0)
+        vr, s0, l0 = [], V['stations_fy25'], UB['litres_per_station_fy25']
+        for i in range(N):
+            s0 *= (1 + V['stations_g'][i])
+            l0 *= (1 + V['litres_per_station_g'][i] + volg)
+            vr.append(s0 * l0)
+        vc_, c0, a0 = [], UB['vol_corp_fy25'], UB['vol_avi_fy25']
+        for i in range(N):
+            c0 *= (1 + V['vol_corp_g'][i] + volg)
+            a0 *= (1 + V['vol_avi_g'][i] + volg)
+            vc_.append(c0 + a0)
     mr = F['margin_retail'] if marg is None else [m * (1 + marg) for m in F['margin_retail']]
-    gps = [vr[i] * mr[i] + F['gp_comm_struct'][i] + F['gp_nonfuel'][i] for i in range(N)]
+    mc_ = F['margin_comm'] if marg is None else [m * (1 + marg) for m in F['margin_comm']]
+    gps = [vr[i] * mr[i] + vc_[i] * mc_[i] + F['gp_nonfuel'][i] for i in range(N)]
     im = F[f'invmove_{frame}'] if inv is None else inv
     gpt = [gps[i] + im[i] for i in range(N)]
     ebitda = [gpt[i] - F['cash_opex'][i] + F['other_income'][i] - F['impairments'][i]
