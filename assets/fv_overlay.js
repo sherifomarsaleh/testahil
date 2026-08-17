@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 86,
+ "n": 87,
  "rows": [
   {
    "ticker": "HELI",
@@ -4742,6 +4742,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00104
    },
    "market": "SA"
+  },
+  {
+   "ticker": "ADNOCDRILL",
+   "name": "ADNOC Drilling Company P.J.S.C.",
+   "code": "ADX:ADNOCDRILL",
+   "ccy": "AED",
+   "spot": 5.94,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.46,
+   "fv_base": 4.92,
+   "fv_full": 6.21,
+   "gap_base_pct": -17.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.074665,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -7.24,
+     "base": -2.52,
+     "full": 0.6
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0097,
+     "full": 0.2556
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0142,
+     "full": 0.4343
+    },
+    "required_cagr": {
+     "bear": -0.9985,
+     "base": -0.8957,
+     "full": 0.7048
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0025
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.139974,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -3.86,
+     "base": -1.35,
+     "full": 0.32
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0011,
+     "base": 0.0794,
+     "full": 0.3617
+    },
+    "p_touch": {
+     "bear": 0.0018,
+     "base": 0.1372,
+     "full": 0.6729
+    },
+    "required_cagr": {
+     "bear": -0.8849,
+     "base": -0.5293,
+     "full": 0.1946
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00254
+   },
+   "market": "AE"
   },
   {
    "ticker": "SCEM",
