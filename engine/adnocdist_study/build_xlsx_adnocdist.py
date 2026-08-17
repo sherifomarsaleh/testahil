@@ -190,15 +190,17 @@ drow('we', 'Equity weight = market capitalisation / (market capitalisation + net
 drow('wd', 'Debt weight = 1 less the equity weight', f'=1-{c("we")}', W['wd'], fmt=PCT)
 drow('wacc', 'Cost of capital, first forecast year',
      f'={c("we")}*{c("ke")}+{c("wd")}*{c("kdaft")}', W['wacc'])
-arow('betadrift', 'Terminal beta drift, as a fraction of the distance to a market beta of one',
-     'so the terminal beta is DERIVED from the measured one, not asserted beside it',
-     V['beta_drift_frac'], fmt=PCT)
-drow('betaterm', 'Terminal beta = measured beta + drift x (1 less measured beta)',
-     f'={c("beta")}+{c("betadrift")}*(1-{c("beta")})', W['beta_terminal'], fmt=PS3)
+# FLAT COST OF CAPITAL. The sliding schedule is excluded for currency-pegged markets, where
+# the risk-free rate already sits at its norm: explicit = terminal. So the terminal beta IS
+# the measured beta and the terminal debt weight IS today's. The previous drift toward the
+# market and the 10% terminal weight are retired to the sensitivity table as priced
+# constructions -- the second of them contradicted this model's own de-gearing forecast.
+drow('betaterm', 'Terminal beta = the measured beta (flat, pegged market)',
+     f'={c("beta")}', W['beta_terminal'], fmt=PS3)
 drow('keterm', 'Terminal cost of equity = normalised risk-free + terminal beta x premium',
      f'={c("rfstar")}+{c("betaterm")}*{c("erp")}', W['ke_terminal'])
-arow('wdterm', 'Terminal debt weight', 'normalised capital structure', V['wd_terminal'],
-     fmt=PCT)
+drow('wdterm', "Terminal debt weight = today's weight (flat, pegged market)",
+     f'={c("wd")}', W['wd_terminal'], fmt=PCT)
 drow('waccterm', 'Terminal cost of capital = terminal equity and debt weights on their costs',
      f'=(1-{c("wdterm")})*{c("keterm")}+{c("wdterm")}*{c("kdaft")}', W['wacc_terminal'])
 arow('gterm', 'Long-run growth after the forecast period', 'below domestic inflation',
@@ -206,21 +208,31 @@ arow('gterm', 'Long-run growth after the forecast period', 'below domestic infla
 arow('roicterm', 'Terminal return on invested capital', 'fade from the realised return',
      V['roic_terminal'], fmt=PCT)
 
-sect('Volume and price drivers')
-arow('volrg', 'Retail fuel volume growth', 'network and mobility, less transition drag',
-     V['vol_retail_g'], fmt=PCT2)
-arow('volcg', 'Commercial fuel volume growth', 'aviation growth, corporate rationalisation',
-     V['vol_comm_g'], fmt=PCT2)
+sect('Volume and price drivers — built bottom-up')
+arow('stations_g', 'Service-station network growth', 'network +11.3% y/y to June 2026',
+     V['stations_g'], fmt=PCT2)
+arow('lps_g', 'Growth in litres sold per station', 'realised MINUS 9.3% y/y to June 2026',
+     V['litres_per_station_g'], fmt=PCT2)
+arow('volcorpg', 'Corporate fuel volume growth', 'realised MINUS 2.6% in the first half',
+     V['vol_corp_g'], fmt=PCT2)
+arow('volavig', 'Aviation fuel volume growth', 'realised PLUS 53.9% in the first half, faded',
+     V['vol_avi_g'], fmt=PCT2)
 arow('prretail', 'Realised retail price per litre (AED)', 'crude-linked price path',
      V['price_retfuel'], fmt=PS3)
-arow('prcomm', 'Realised commercial price per litre (AED)', 'crude-linked price path',
-     V['price_comm'], fmt=PS3)
+arow('prcorp', 'Realised corporate price per litre (AED)', 'crude-linked price path',
+     V['price_corp'], fmt=PS3)
+arow('pravi', 'Realised aviation price per litre (AED)', 'crude-linked; jet prices ~50% above',
+     V['price_avi'], fmt=PS3)
 arow('mrg', 'Retail margin per litre, escalation', 'domestic escalator',
      V['gp_retfuel_per_l_g'], fmt=PCT2)
 arow('mcg', 'Commercial margin per litre, escalation', 'realised step then domestic escalator',
      V['gp_comm_per_l_g'], fmt=PCT2)
-arow('nfg', 'Non-fuel retail revenue growth', "company's own doubling target to 2030",
-     V['rev_nonfuel_g'], fmt=PCT2)
+arow('ftxng', 'Fuel transaction growth', 'realised +4.9% in the first half',
+     V['fueltxn_g'], fmt=PCT2)
+arow('convg', 'Growth in the non-fuel conversion rate', 'FELL from 27.0% to 26.2% y/y',
+     V['conversion_g'], fmt=PCT2)
+arow('baskg', 'Growth in the average non-fuel basket', 'domestic escalator plus food service',
+     V['basket_g'], fmt=PCT2)
 arow('nfm', 'Non-fuel retail gross margin', 'realised first half 2026',
      V['gm_nonfuel'], fmt=PCT)
 arow('invA', 'Inventory movement, normalised frame (AED m)',
@@ -234,30 +246,60 @@ arow('opexg', 'Cash operating cost growth', 'domestic escalator plus network, le
 arow('oig', 'Other income growth', 'domestic escalator', V['other_income_g'], fmt=PCT2)
 arow('imp', 'Impairments and other operating expenses (AED m)', 'realised then normalised',
      V['impair_norm'], fmt=MONEY)
-arow('dna', 'Depreciation and amortisation (AED m)', 'grown on the asset base',
-     V['dna_fwd'], fmt=MONEY)
-arow('capex', 'Capital expenditure (AED m)', "company's own FY2026 guidance, then network",
-     V['capex_fwd'], fmt=MONEY)
+# These two were pasted five-year arrays. They are now written as placeholders and
+# OVERWRITTEN with live formulas once the asset-base roll exists on the Segments sheet, so
+# the charge and the spend are outputs of the base the model itself rolls forward.
+arow('dna', 'Depreciation and amortisation (AED m)',
+     'calculated', F['dna'], fmt=MONEY)
+arow('capex', 'Capital expenditure (AED m)',
+     'calculated', F['capex'], fmt=MONEY)
+arow('deprate', 'Depreciation rate on the opening fixed and right-of-use base',
+     'measured off the audited FY2025 accounts', V['dep_rate'], fmt=PCT2)
+arow('maintrate', 'Maintenance capital spending, share of the opening base',
+     'set equal to the depreciation rate: a network replaces what it consumes',
+     V['maint_capex_rate'], fmt=PCT2)
+arow('cpxsta', 'Capital cost per station added (AED m)',
+     "backed out of the company's own FY2026 guidance", V['capex_per_station'], fmt=PS3)
 arow('dso', 'Receivable days including parent balances', 'FY2025 statements',
      WCD['dso_all'], fmt=PS)
 arow('dio', 'Inventory days', 'FY2025 statements', WCD['dio'], fmt=PS)
 arow('dpo', 'Payable days including parent balances', 'FY2025 statements',
      WCD['dpo_all'], fmt=PS)
 arow('dps', 'Dividend per share (AED)', 'stated policy', V['dps'], fmt=PS3)
-arow('payout', 'Dividend payout ratio', 'paid against earnings since listing',
-     V['payout'], fmt=PCT)
+arow('payoutfloor', 'Dividend policy floor, share of net profit',
+     'the policy the company states: a minimum of 75%', V['payout_floor'], fmt=PCT)
+
+sect('Anchors — the annualised disclosed first half of 2026')
+arow('sta0', 'Service stations, June 2026', 'disclosure', V['stations_h126'], fmt='#,##0.0')
+arow('staY0', 'Service stations, FY2025 year end', 'disclosure', V['stations_fy25'],
+     fmt='#,##0.0')
+arow('lps0', 'Litres per station, first half annualised (million)',
+     'disclosed retail volume over the disclosed station count',
+     UB['litres_per_station_h126'] * 2, fmt='#,##0.000', kind='unit_build')
+arow('co0', 'Corporate fuel volume, first half annualised (million litres)', 'disclosure',
+     V['vol_corp_h126'] * 2)
+arow('av0', 'Aviation fuel volume, first half annualised (million litres)', 'disclosure',
+     V['vol_avi_h126'] * 2)
+arow('ft0', 'Fuel transactions, first half annualised (million)', 'disclosure',
+     V['fueltxn_h126'] * 2, fmt='#,##0.0')
+arow('cv0', 'Non-fuel conversion rate, first half 2026',
+     'disclosed non-fuel transactions over disclosed fuel transactions',
+     UB['conversion_h126'], fmt=PCT, kind='unit_build')
+arow('bk0', 'Average non-fuel basket, first half 2026 (AED)',
+     'disclosed non-fuel revenue over disclosed non-fuel transactions',
+     UB['basket_h126'], fmt=PS, kind='unit_build')
 
 sect('Opening position, from the audited FY2025 balance sheet')
 arow('vol_r0', 'Retail fuel volume, FY2025 (million litres)', 'disclosure',
      V['vol_retail_fy25'], fmt=MONEY)
 arow('vol_c0', 'Commercial fuel volume, FY2025 (million litres)', 'disclosure',
      V['vol_comm_fy25'], fmt=MONEY)
-arow('mr0', 'Retail margin per litre, FY2025 (AED)',
+arow('mr0', 'Retail margin per litre, first half 2026 (AED)',
      'unit build: segment gross profit less inventory movement, over volume',
-     UB['margin_retail_fy25'], fmt=PS3, kind='unit_build')
-arow('mc0', 'Commercial margin per litre, FY2025 (AED)',
+     UB['margin_retail_h126'], fmt=PS3, kind='unit_build')
+arow('mc0', 'Commercial margin per litre, first half 2026 (AED)',
      'unit build: segment gross profit less inventory movement, over volume',
-     UB['margin_comm_fy25'], fmt=PS3, kind='unit_build')
+     UB['margin_comm_h126'], fmt=PS3, kind='unit_build')
 arow('nf0', 'Non-fuel retail revenue, FY2025 (AED m)', 'disclosure',
      V['rev_nonfuel_fy25'], fmt=MONEY)
 arow('opex0', 'Cash operating costs, FY2025 (AED m)', 'disclosure',
@@ -289,11 +331,18 @@ tax_A = [p * V['tax_effective'] for p in pbt_A]
 np_A = [pbt_A[i] - tax_A[i] for i in range(N)]
 npa_A = [np_A[i] - V['nci_fy25'] for i in range(N)]
 eps_A = [x / V['shares_mn'] for x in npa_A]
-divs = V['dps'] * V['shares_mn']
+# The policy is USD 700 million a year OR a minimum of 75% of net profit, WHICHEVER IS
+# HIGHER. Distributing only the fixed leg understated payments in the years where 75% of
+# profit exceeds it, and it left the policy floor as a dead input.
+# Dividends per year are the HIGHER of the fixed commitment and 75% of that year's profit,
+# which is what the policy says. Carried as three rows on the income statement so the MAX is
+# visible in the sheet rather than resolved in the builder.
+divs_y = [max(V['dps'] * V['shares_mn'], V['payout_floor'] * npa_A[i]) for i in range(N)]
+divs = divs_y[0]
 eqp = []
 _e = V['eqp_fy25']
 for i in range(N):
-    _e = _e + npa_A[i] - divs
+    _e = _e + npa_A[i] - divs_y[i]
     eqp.append(_e)
 ncieq = []
 _n = V['nciq_fy25']
@@ -318,10 +367,15 @@ tle = [eqp[i] + ncieq[i] + V['borr_fy25'] + V['lease_fy25'] + prov0 + pay[i] for
 nd_f = [V['borr_fy25'] - cash[i] for i in range(N)]
 
 # ============================== SEGMENTS ==============================
+# THE UNIT BUILD, LIVE. Every line below is a formula off the Assumptions sheet: nothing in
+# the forecast columns is pasted. Retail volume is stations times litres per station, both
+# disclosed; corporate and aviation are separate legs on their own volume drivers and their
+# own realised prices; non-fuel is transactions times conversion times basket. The blended
+# commercial price is an OUTPUT of the mix, not an input.
 SG = 'Segments'
-wsg = sheet(SG, [44, 15, 14, 14, 14, 14, 14])
-hdr(wsg, 1, ['The unit build — volume x price, and volume x margin per litre',
-             'FY2025', YR[0], YR[1], YR[2], YR[3]])
+wsg = sheet(SG, [46, 15, 14, 14, 14, 14, 14])
+hdr(wsg, 1, ['The unit build — every forecast cell is a formula', 'Anchor',
+             YR[0], YR[1], YR[2], YR[3]])
 S = {}
 rr = 2
 
@@ -340,78 +394,164 @@ def srow(key, label, formulas, expected, base=None, fmt=MONEY, bold=False, fill=
     rr += 1
 
 
-lbl(wsg, rr, 1, 'Revenue is volume times realised price. Gross profit is volume times '
-    'margin per litre. They are different questions: the price is a pass-through of crude '
-    'and moves revenue and cost together, while the margin per litre is what the business '
-    'earns.', note=True)
+def grow(key, drv, base_ref):
+    """A row that compounds its own previous column off a driver on Assumptions."""
+    return lambda j: (f'={get_column_letter(2 + j)}{S[key]}*(1+{cy(drv, j)})' if j
+                      else f'={base_ref}*(1+{cy(drv, 0)})')
+
+
+lbl(wsg, rr, 1, 'The anchor column is the ANNUALISED DISCLOSED FIRST HALF of 2026, not '
+    'FY2025: two quarters of the study year are already on the public record. The first '
+    'forecast column therefore carries the second-half shape on that realised run rate, and '
+    'growth proper begins in FY2027.', note=True)
 wsg.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=7)
-wsg.row_dimensions[rr].height = 30
+wsg.row_dimensions[rr].height = 32
 rr += 1
 
-srow('volr', 'Retail fuel volume (million litres)',
-     lambda j: (f'={get_column_letter(2 + j)}{rr}*(1+{cy("volrg", j)})' if j else
-                f'={c("vol_r0")}*(1+{cy("volrg", 0)})'),
-     F['vol_retail'], base=V['vol_retail_fy25'])
-srow('volc', 'Commercial fuel volume (million litres)',
-     lambda j: (f'={get_column_letter(2 + j)}{rr}*(1+{cy("volcg", j)})' if j else
-                f'={c("vol_c0")}*(1+{cy("volcg", 0)})'),
-     F['vol_comm'], base=V['vol_comm_fy25'])
-srow('volt', 'Total fuel volume (million litres)',
-     lambda j: f'={get_column_letter(3 + j)}{S["volr"]}+{get_column_letter(3 + j)}{S["volc"]}',
-     F['vol_total'], base=V['vol_retail_fy25'] + V['vol_comm_fy25'], bold=True)
-srow('prr', 'Realised retail price per litre (AED)',
-     lambda j: f'={cy("prretail", j)}', F['price_retail'],
-     base=UB['price_retail_fy25'], fmt=PS3, basekind='unit_build')
-srow('prc', 'Realised commercial price per litre (AED)',
-     lambda j: f'={cy("prcomm", j)}', F['price_comm'],
-     base=UB['price_comm_fy25'], fmt=PS3, basekind='unit_build')
+_sta0, _lps0 = V['stations_h126'], UB['litres_per_station_h126'] * 2
+_co0, _av0 = V['vol_corp_h126'] * 2, V['vol_avi_h126'] * 2
+_ft0, _cv0, _bk0 = V['fueltxn_h126'] * 2, UB['conversion_h126'], UB['basket_h126']
+
+srow('sta', 'Service stations', grow('sta', 'stations_g', f'{c("sta0")}'),
+     F['stations'], base=_sta0, fmt='#,##0.0')
+srow('lps', 'Litres sold per station (million)', grow('lps', 'lps_g', f'{c("lps0")}'),
+     F['litres_per_station'], base=_lps0, fmt='#,##0.000')
+srow('volr', 'RETAIL FUEL VOLUME = stations x litres per station',
+     lambda j: (f'={get_column_letter(3 + j)}{S["sta"]}*'
+                f'{get_column_letter(3 + j)}{S["lps"]}'),
+     F['vol_retail'], base=_sta0 * _lps0, bold=True)
+srow('volco', 'Corporate fuel volume (million litres)',
+     grow('volco', 'volcorpg', f'{c("co0")}'), F['vol_corp'], base=_co0)
+srow('volav', 'Aviation fuel volume (million litres)',
+     grow('volav', 'volavig', f'{c("av0")}'), F['vol_avi'], base=_av0)
+srow('volc', 'Commercial fuel volume = corporate + aviation',
+     lambda j: (f'={get_column_letter(3 + j)}{S["volco"]}+'
+                f'{get_column_letter(3 + j)}{S["volav"]}'),
+     F['vol_comm'], base=_co0 + _av0, bold=True)
+srow('volt', 'TOTAL FUEL VOLUME',
+     lambda j: (f'={get_column_letter(3 + j)}{S["volr"]}+'
+                f'{get_column_letter(3 + j)}{S["volc"]}'),
+     F['vol_total'], base=_sta0 * _lps0 + _co0 + _av0, bold=True, fill=FILL_C)
+srow('prr', 'Realised retail price per litre (AED)', lambda j: f'={cy("prretail", j)}',
+     F['price_retail'], base=UB['price_retail_h126'], fmt=PS3)
+srow('prco', 'Realised corporate price per litre (AED)', lambda j: f'={cy("prcorp", j)}',
+     F['price_corp'], base=UB['price_corp_h126'], fmt=PS3)
+srow('prav', 'Realised aviation price per litre (AED)', lambda j: f'={cy("pravi", j)}',
+     F['price_avi'], base=UB['price_avi_h126'], fmt=PS3)
 srow('revr', 'Retail fuel revenue = volume x price',
      lambda j: f'={get_column_letter(3 + j)}{S["volr"]}*{get_column_letter(3 + j)}{S["prr"]}',
-     F['rev_retfuel'], base=V['rev_retfuel_fy25'])
-srow('revc', 'Commercial revenue = volume x price',
-     lambda j: f'={get_column_letter(3 + j)}{S["volc"]}*{get_column_letter(3 + j)}{S["prc"]}',
-     F['rev_comm'], base=UB['rev_comm_fy25'])
-srow('revn', 'Non-fuel retail revenue',
-     lambda j: (f'={get_column_letter(2 + j)}{rr}*(1+{cy("nfg", j)})' if j else
-                f'={c("nf0")}*(1+{cy("nfg", 0)})'),
-     F['rev_nonfuel'], base=V['rev_nonfuel_fy25'])
+     F['rev_retfuel'], base=V['rev_retfuel_h126'] * 2)
+srow('revco', 'Corporate revenue = volume x price',
+     lambda j: (f'={get_column_letter(3 + j)}{S["volco"]}*'
+                f'{get_column_letter(3 + j)}{S["prco"]}'),
+     F['rev_corp'], base=V['rev_corp_h126'] * 2)
+srow('revav', 'Aviation revenue = volume x price',
+     lambda j: (f'={get_column_letter(3 + j)}{S["volav"]}*'
+                f'{get_column_letter(3 + j)}{S["prav"]}'),
+     F['rev_avi'], base=V['rev_avi_h126'] * 2)
+srow('revc', 'Commercial revenue = corporate + aviation',
+     lambda j: (f'={get_column_letter(3 + j)}{S["revco"]}+'
+                f'{get_column_letter(3 + j)}{S["revav"]}'),
+     F['rev_comm'], base=(V['rev_corp_h126'] + V['rev_avi_h126']) * 2)
+srow('prc', 'Blended commercial price per litre — AN OUTPUT of the mix',
+     lambda j: f'={get_column_letter(3 + j)}{S["revc"]}/{get_column_letter(3 + j)}{S["volc"]}',
+     F['price_comm'], base=UB['price_comm_h126'], fmt=PS3)
+srow('ftxn', 'Fuel transactions (million)', grow('ftxn', 'ftxng', f'{c("ft0")}'),
+     F['fuel_txn'], base=_ft0, fmt='#,##0.0')
+srow('conv', 'Non-fuel conversion rate', grow('conv', 'convg', f'{c("cv0")}'),
+     [F['nonfuel_txn'][i] / F['fuel_txn'][i] for i in range(N)], base=_cv0, fmt=PCT)
+srow('ntxn', 'Non-fuel transactions = fuel transactions x conversion',
+     lambda j: (f'={get_column_letter(3 + j)}{S["ftxn"]}*'
+                f'{get_column_letter(3 + j)}{S["conv"]}'),
+     F['nonfuel_txn'], base=_ft0 * _cv0, fmt='#,##0.0')
+srow('bask', 'Average non-fuel basket (AED)', grow('bask', 'baskg', f'{c("bk0")}'),
+     F['basket'], base=_bk0, fmt=PS)
+srow('revn', 'Non-fuel revenue = transactions x basket',
+     lambda j: (f'={get_column_letter(3 + j)}{S["ntxn"]}*'
+                f'{get_column_letter(3 + j)}{S["bask"]}'),
+     F['rev_nonfuel'], base=V['rev_nonfuel_h126'] * 2)
 srow('rev', 'TOTAL REVENUE',
      lambda j: (f'={get_column_letter(3 + j)}{S["revr"]}+{get_column_letter(3 + j)}{S["revc"]}'
                 f'+{get_column_letter(3 + j)}{S["revn"]}'),
-     F['revenue'], base=V['rev_fy25'], bold=True, fill=FILL_C)
-srow('mr', 'Retail margin per litre (AED)',
-     lambda j: (f'={get_column_letter(2 + j)}{rr}*(1+{cy("mrg", j)})' if j else
-                f'={c("mr0")}*(1+{cy("mrg", 0)})'),
-     F['margin_retail'], base=UB['margin_retail_fy25'], fmt=PS3,
-     basekind='unit_build')
-srow('mc', 'Commercial margin per litre (AED)',
-     lambda j: (f'={get_column_letter(2 + j)}{rr}*(1+{cy("mcg", j)})' if j else
-                f'={c("mc0")}*(1+{cy("mcg", 0)})'),
-     F['margin_comm'], base=UB['margin_comm_fy25'], fmt=PS3,
-     basekind='unit_build')
+     F['revenue'], base=V['rev_h126'] * 2, bold=True, fill=FILL_C)
+srow('mr', 'Retail margin per litre (AED)', grow('mr', 'mrg', f'{c("mr0")}'),
+     F['margin_retail'], base=UB['margin_retail_h126'], fmt=PS3, basekind='unit_build')
+srow('mc', 'Commercial margin per litre (AED) — blended, split NOT disclosed',
+     grow('mc', 'mcg', f'{c("mc0")}'), F['margin_comm'],
+     base=UB['margin_comm_h126'], fmt=PS3, basekind='unit_build')
 srow('gpr', 'Retail fuel gross profit = volume x margin',
      lambda j: f'={get_column_letter(3 + j)}{S["volr"]}*{get_column_letter(3 + j)}{S["mr"]}',
-     F['gp_retfuel_struct'], base=UB['gp_retfuel_struct_fy25'])
+     F['gp_retfuel_struct'], base=UB['gp_retfuel_struct_h126'] * 2)
 srow('gpc', 'Commercial gross profit = volume x margin',
      lambda j: f'={get_column_letter(3 + j)}{S["volc"]}*{get_column_letter(3 + j)}{S["mc"]}',
-     F['gp_comm_struct'], base=UB['gp_comm_struct_fy25'])
-srow('gpn', 'Non-fuel retail gross profit = revenue x margin',
+     F['gp_comm_struct'], base=UB['gp_comm_struct_h126'] * 2)
+srow('gpn', 'Non-fuel gross profit = revenue x margin',
      lambda j: f'={get_column_letter(3 + j)}{S["revn"]}*{cy("nfm", j)}',
-     F['gp_nonfuel'], base=V['gp_nonfuel_fy25'])
+     F['gp_nonfuel'], base=V['gp_nonfuel_h126'] * 2)
 srow('gps', 'STRUCTURAL GROSS PROFIT',
      lambda j: (f'={get_column_letter(3 + j)}{S["gpr"]}+{get_column_letter(3 + j)}{S["gpc"]}'
                 f'+{get_column_letter(3 + j)}{S["gpn"]}'),
-     F['gp_struct'], base=V['gp_fy25'] - V['invgain_fy25'], bold=True, fill=FILL_C)
-srow('ivA', 'Inventory movement — Frame A, normalised',
-     lambda j: f'={cy("invA", j)}', F['invmove_A'], base=V['invgain_fy25'])
-srow('ivB', 'Inventory movement — Frame B, through-cycle',
-     lambda j: f'={cy("invB", j)}', F['invmove_B'], base=V['invgain_fy25'])
+     F['gp_struct'], base=(V['gp_h126'] - V['invgain_h126']) * 2, bold=True, fill=FILL_C)
+srow('ivA', 'Inventory movement — Frame A, normalised', lambda j: f'={cy("invA", j)}',
+     F['invmove_A'], base=V['invgain_h126'])
+srow('ivB', 'Inventory movement — Frame B, through-cycle', lambda j: f'={cy("invB", j)}',
+     F['invmove_B'], base=V['invgain_h126'])
 srow('gpA', 'GROSS PROFIT — Frame A',
      lambda j: f'={get_column_letter(3 + j)}{S["gps"]}+{get_column_letter(3 + j)}{S["ivA"]}',
-     F['gross_profit_A'], base=V['gp_fy25'], bold=True, fill=FILL_C)
+     F['gross_profit_A'], base=V['gp_h126'] * 2, bold=True, fill=FILL_C)
 srow('gpB', 'GROSS PROFIT — Frame B',
      lambda j: f'={get_column_letter(3 + j)}{S["gps"]}+{get_column_letter(3 + j)}{S["ivB"]}',
-     F['gross_profit_B'], base=V['gp_fy25'], bold=True, fill=FILL_C)
+     F['gross_profit_B'], base=V['gp_h126'] * 2, bold=True, fill=FILL_C)
+
+# ---- the asset-base roll: depreciation and capital spending as OUTPUTS ----------------
+lbl(wsg, rr, 1, 'The asset base, rolled — depreciation and capital spending are outputs of '
+    'it, not pasted arrays', bold=True, fill=FILL_P)
+for _j in range(2, 8):
+    lbl(wsg, rr, _j, '', fill=FILL_P)
+rr += 1
+_ob = []
+_o = V['ppe_fy25'] + V['rou_fy25']
+for i in range(N):
+    _ob.append(_o)
+    _o = _o + F['capex'][i] - F['dna'][i]
+# The opening base for FY2027 onward is the prior year's CLOSING base, which does not exist
+# on the sheet yet. It is written as the anchor here and overwritten with the live link once
+# the closing row exists, rather than guessing a row offset.
+srow('open', 'Opening fixed and right-of-use base',
+     lambda j: f'={c("ppe0")}', [_ob[0]] * N, base=None)
+srow('dep', 'Depreciation = opening base x the measured rate',
+     lambda j: f'={get_column_letter(3 + j)}{S["open"]}*{c("deprate")}', F['dna'])
+srow('maint', 'Maintenance capital spending = opening base x the maintenance rate',
+     lambda j: f'={get_column_letter(3 + j)}{S["open"]}*{c("maintrate")}',
+     [_ob[i] * V['maint_capex_rate'] for i in range(N)])
+srow('adds', 'Stations added',
+     lambda j: (f'={get_column_letter(3 + j)}{S["sta"]}-{get_column_letter(2 + j)}{S["sta"]}'
+                if j else f'={get_column_letter(3)}{S["sta"]}-{c("staY0")}'),
+     [F['stations'][i] - (F['stations'][i - 1] if i else V['stations_fy25'])
+      for i in range(N)], fmt='#,##0.0')
+srow('growcpx', 'Growth capital spending = stations added x cost per station',
+     lambda j: f'={get_column_letter(3 + j)}{S["adds"]}*{c("cpxsta")}',
+     [(F['stations'][i] - (F['stations'][i - 1] if i else V['stations_fy25']))
+      * V['capex_per_station'] for i in range(N)])
+srow('cpx', 'TOTAL CAPITAL SPENDING = maintenance + growth',
+     lambda j: (f'={get_column_letter(3 + j)}{S["maint"]}+'
+                f'{get_column_letter(3 + j)}{S["growcpx"]}'),
+     F['capex'], bold=True, fill=FILL_C)
+srow('close', 'Closing base = opening + capital spending less depreciation',
+     lambda j: (f'={get_column_letter(3 + j)}{S["open"]}+{get_column_letter(3 + j)}{S["cpx"]}'
+                f'-{get_column_letter(3 + j)}{S["dep"]}'),
+     [_ob[i] + F['capex'][i] - F['dna'][i] for i in range(N)])
+
+for _j in range(1, N):
+    f(wsg, S['open'], 3 + _j, f'={get_column_letter(2 + _j)}{S["close"]}', _ob[_j], fmt=MONEY)
+
+# The two Assumptions rows that were written as placeholders now become live formulas
+# pointing at this roll, so every downstream reference to them inherits the derivation.
+for _j in range(N):
+    f(wa, A['dna'], 3 + _j, f'={q(SG)}!{get_column_letter(3 + _j)}{S["dep"]}',
+      F['dna'][_j], fmt=MONEY)
+    f(wa, A['capex'], 3 + _j, f'={q(SG)}!{get_column_letter(3 + _j)}{S["cpx"]}',
+      F['capex'][_j], fmt=MONEY)
 
 # ============================== INCOME STATEMENT ==============================
 IST = 'Income Statement'
@@ -483,6 +623,14 @@ irow('npa', 'Profit attributable to owners', [H[y]['np_attributable'] for y in H
                 f'{get_column_letter(5 + j)}{IS["nci"]}'), npa_A, bold=True, fill=FILL_C)
 irow('eps', 'Earnings per share (AED)', [H[y]['eps'] for y in HY],
      lambda j: f'={get_column_letter(5 + j)}{IS["npa"]}/{c("shares")}', eps_A, fmt=PS3)
+irow('divfix', 'Dividend — the fixed policy commitment', [None] * 3,
+     lambda j: f'={c("dps")}*{c("shares")}', [V['dps'] * V['shares_mn']] * N)
+irow('divmin', 'Dividend — the 75% of profit minimum', [None] * 3,
+     lambda j: f'={c("payoutfloor")}*{get_column_letter(5 + j)}{IS["npa"]}',
+     [V['payout_floor'] * npa_A[i] for i in range(N)])
+irow('divpol', 'DIVIDEND PAID = the higher of the two', [None] * 3,
+     lambda j: (f'=MAX({get_column_letter(5 + j)}{IS["divfix"]},'
+                f'{get_column_letter(5 + j)}{IS["divmin"]})'), divs_y, bold=True)
 
 # ============================== BALANCE SHEET ==============================
 BST = 'Balance Sheet'
@@ -525,8 +673,9 @@ brow('ta', 'TOTAL ASSETS', [H[y]['total_assets'] for y in HY],
                 f'+{get_column_letter(5 + j)}{BS["cash"]}'), ta, bold=True, fill=FILL_C)
 brow('eq', 'Equity attributable to owners', [H[y]['equity_parent'] for y in HY],
      lambda j: (f'={get_column_letter(4 + j)}{rb}+{q(IST)}!{get_column_letter(5 + j)}{IS["npa"]}'
-                f'-{c("dps")}*{c("shares")}' if j else
-                f'={c("eq0")}+{q(IST)}!{get_column_letter(5)}{IS["npa"]}-{c("dps")}*{c("shares")}'),
+                f'-{q(IST)}!{get_column_letter(5 + j)}{IS["divpol"]}' if j else
+                f'={c("eq0")}+{q(IST)}!{get_column_letter(5)}{IS["npa"]}'
+                f'-{q(IST)}!{get_column_letter(5)}{IS["divpol"]}'),
      eqp)
 brow('nci', 'Non-controlling interests', [H[y]['nci_equity'] for y in HY],
      lambda j: (f'={get_column_letter(4 + j)}{rb}+{c("ncip")}' if j else
@@ -619,7 +768,8 @@ crow('fcff', 'FREE CASH FLOW TO THE FIRM', [None, None, None],
                 f'{get_column_letter(5 + j)}{CF["dwc"]}'),
      A_['fcff'], bold=True, fill=FILL_C)
 crow('div', 'Dividends paid', [-H[y]['dividends_paid'] for y in HY],
-     lambda j: f'=-{c("dps")}*{c("shares")}', [-divs] * N)
+     lambda j: f'=-{q(IST)}!{get_column_letter(5 + j)}{IS["divpol"]}',
+     [-x for x in divs_y])
 
 # ============================== DCF ==============================
 DC = 'DCF'
@@ -803,14 +953,25 @@ rrow('pe2', "Own three-year average multiple",
      f'=({c("spot")}/{q(IST)}!B{IS["eps"]}+{c("spot")}/{q(IST)}!C{IS["eps"]}'
      f'+{c("spot")}/{q(IST)}!D{IS["eps"]})/3', _pe_mean,
      basis='traded price against each audited year, averaged', fmt=X)
-rrow('pe3', 'Multiple the company’s own economics justify',
-     f'={c("payout")}*(1+{c("gterm")})/({c("ke")}-{c("gterm")})',
+rrow('retimp', 'Retention the growth rate requires = growth / return on equity',
+     f'={c("gterm")}/{get_column_letter(2)}{RNr["roe"] if "roe" in RNr else 0}'
+     if False else f'={c("gterm")}/{L["roe_sust"]:.10f}',
+     L['pe_retention_implied'], basis='the sustainable-growth identity g = retention x ROE',
+     fmt=PCT2)
+rrow('payimp', 'Payout consistent with that growth = 1 less the retention',
+     f'=1-{get_column_letter(2)}{RNr["retimp"]}', L['pe_payout_implied'], fmt=PCT)
+rrow('pe3', 'REFERENCE MULTIPLE — what the company’s own economics justify',
+     f'={get_column_letter(2)}{RNr["payimp"]}*(1+{c("gterm")})/({c("ke")}-{c("gterm")})',
      L['pe_method_justified'],
-     basis='payout x (1 + growth) / (cost of equity less growth)', fmt=X)
-rrow('peref', 'REFERENCE MULTIPLE — the average of the three',
-     f'=({get_column_letter(2)}{RNr["pe1"]}+{get_column_letter(2)}{RNr["pe2"]}'
-     f'+{get_column_letter(2)}{RNr["pe3"]})/3', L['just_fwd_pe'],
-     basis='triangulated on the sheet, not a peer median', fmt=X, bold=True, fill=FILL_C)
+     basis='payout x (1 + growth) / (cost of equity less growth), on the payout the growth '
+           'rate itself implies — NOT the realised payout and NOT the policy floor, either '
+           'of which breaks the identity', fmt=X, bold=True, fill=FILL_C)
+rrow('peref', 'Reference multiple carried into the lens',
+     f'={get_column_letter(2)}{RNr["pe3"]}', L['just_fwd_pe'],
+     basis='the fundamentals leg ALONE. The two traded multiples above are published as '
+           'context and are deliberately NOT averaged in: both are the traded price divided '
+           'by earnings, so averaging them would anchor the lens to the price it is being '
+           'compared against', fmt=X, bold=True, fill=FILL_C)
 _relA = L['rel_A']
 rrow('rel', 'RELATIVE MULTIPLES READING (AED a share)',
      f'={get_column_letter(2)}{RNr["peref"]}*{q(IST)}!E{IS["eps"]}', _relA,
@@ -831,8 +992,14 @@ rrow('nebit', 'Normalised EBIT',
      f'=B{RNr["nebitda"]}-{cy("dna", 0)}', L['norm_ebit'], fmt=MONEY)
 rrow('nnopat', 'Normalised NOPAT', f'=B{RNr["nebit"]}*(1-{c("taxeff")})', L['norm_nopat'],
      fmt=MONEY)
-rrow('nev', 'Normalised enterprise value = NOPAT / (cost of capital less growth)',
-     f'=B{RNr["nnopat"]}/({c("wacc")}-{c("gterm")})', L['norm_ev'], fmt=MONEY)
+rrow('nrr', 'Reinvestment this perpetuity must fund = growth / return on capital',
+     f'={c("gterm")}/{c("roicterm")}', L['norm_reinvest'], fmt=PCT)
+rrow('nev', 'Normalised enterprise value = NOPAT x (1 less reinvestment) / (cost of capital '
+     'less growth)',
+     f'=B{RNr["nnopat"]}*(1-B{RNr["nrr"]})/({c("wacc")}-{c("gterm")})', L['norm_ev'],
+     fmt=MONEY,
+     basis='the identity g = ROIC x reinvestment governs EVERY perpetuity, not only the '
+           'cash-flow model terminal block. This lens previously credited growth for free')
 rrow('neq', 'Normalised equity value',
      f'=B{RNr["nev"]}-{c("netdebt")}-{c("lease0")}-{c("nci0")}',
      L['norm_equity'], fmt=MONEY)
@@ -849,8 +1016,9 @@ rrow('jpb', 'Justified multiple of book = (return less growth) / (cost of equity
 rrow('bkps', 'BOOK VALUE AND SUSTAINABLE RETURN READING (AED a share)',
      f'=B{RNr["bvps"]}*B{RNr["jpb"]}', L['book_ps'], bold=True, fill=FILL_C)
 rrow('divps', 'DIVIDEND CAPITALISATION READING (AED a share, unweighted)',
-     f'={c("dps")}*(1+{c("gterm")})/({c("ke")}-{c("gterm")})', L['div_ps'],
-     basis='a claim on cash paid, not cash earned', bold=True)
+     f'={c("dps")}/{c("ke")}', L['div_ps'],
+     basis='the dividend is a FIXED commitment held flat from 2024 through 2030, so it is '
+           'valued flat. Growing it credited growth the policy does not promise', bold=True)
 
 # ============================== FUNDAMENTAL VALUATION ==============================
 FV = 'Fundamental Valuation'

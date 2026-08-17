@@ -118,8 +118,16 @@ def pc(x, d=1): return f'{x * 100:.{d}f}%'
 # particular outcome. The first edition of this study hardcoded "permanent decline" into
 # five separate places, and changing the market index the beta is measured against would
 # have left all five asserting the opposite of what the model now says.
+# Whether the implied beta clears the regression's own upper bound is an OUTPUT, and it is
+# computed here. An earlier edition asserted it sat ABOVE 0.79 while printing 0.77 beside it,
+# and rested the ranking of the three explanations on that false inequality.
+_BETA_HI = BETAJ['primary']['ci90'][1]
+_BETA_SIDE = 'ABOVE' if CRUX['beta_implied'] > _BETA_HI else 'BELOW'
+_BETA_LIKELY = ('the least likely of the three' if CRUX['beta_implied'] > _BETA_HI
+                else 'not ruled out by the regression at all, which is why this study does '
+                     'NOT discard it on that ground')
 _G_IMP = CRUX['g_implied']
-_INFL = V['gp_retfuel_per_l_g'][-1]        # the domestic escalator, looked up not typed
+_INFL = V['cash_opex_g'][-1]   # THE ACTUAL COST ESCALATOR: cash operating costs
 _REAL_EROSION = _INFL - _G_IMP             # positive: the base erodes in real terms
 
 if _G_IMP < 0:
@@ -592,7 +600,7 @@ rows += [[f"ADNOC Distribution today", f"{n1(LN['pe_now'])}x", 'trailing price /
           'what this company\'s own return, growth and cost of equity justify — NOT a peer '
           'median']]
 table(rows, [2.15, 0.8, 1.6, 2.35], band_rows={12}, size=8.4)
-caption(f"Table {tnum()} — the multiple evidence. The company trades close to the middle of the "
+caption(f"Table {tnum()} — the multiple evidence. The company trades toward the upper end of the "
         f"international set on enterprise value to EBITDA and slightly below its closest "
         f"regional comparable. That is useful context and it is NOT the source of the "
         f"reference multiple, which is built from the company's own economics.")
@@ -628,7 +636,7 @@ table(rows, [5.15, 1.15], band_rows={5, 13, 14}, size=8.8)
 caption(f"Table {tnum()} — normalised earnings power. This reading is capitalised at TODAY's "
         f"cost of capital of {pc(W['wacc'], 2)} rather than the terminal "
         f"{pc(W['wacc_terminal'], 2)} the cash-flow model glides to, which is why it lands "
-        f"above the Frame A cash-flow reading despite crediting no growth at all. The two "
+        f"above the Frame A cash-flow reading even though it charges the same reinvestment for growth that the cash-flow model does. The two "
         f"disagreements — no growth, but a lower discount rate — very nearly cancel.")
 
 H2('1.5 Synthesis — four methods, one field')
@@ -644,7 +652,7 @@ rows += [['Discounted cash flow', n2(A['per_share']), n2(Bf['per_share']),
           'what the volume and margin path is worth, discounted'],
          ['Normalised earnings power', n2(LN['norm_ps']), n2(LN['norm_ps']),
           pc(LN['items_A'][1]['weight'], 0),
-          'what it is worth if it never grows again'],
+          'what it is worth on structural earnings with growth paid for'],
          ['Relative multiples', n2(LN['rel_A']), n2(LN['rel_B']),
           pc(LN['shared'][0]['weight'], 0),
           'what its own economics justify paying for its earnings'],
@@ -660,7 +668,7 @@ caption(f"Table {tnum()} — the four methods and their weights. The field runs 
         f"{M['currency']} {n2(min(A['per_share'], LN['norm_ps'], LN['rel_A'], LN['book_ps']))} "
         f"to {M['currency']} "
         f"{n2(max(Bf['per_share'], LN['norm_ps'], LN['rel_B'], LN['book_ps']))} across the "
-        f"individual readings; the published low and high of {M['currency']} "
+        f"individual readings; the published low and high are the actual minimum and maximum of the readings, {M['currency']} "
         f"{n2(LN['fair_bear'])} to {M['currency']} {n2(LN['fair_bull'])} widen that by a "
         f"further margin either side of the centres, because a field built only from the "
         f"points a model happens to produce understates the uncertainty in the model itself.")
@@ -670,7 +678,7 @@ P("No segment is grown on a blended rate. Each disclosed leg is built from its o
   "driver: litres times margin per litre for the two fuel legs, and revenue times gross "
   "margin for non-fuel retail, which is a shop and not a pump. Revenue per litre is then an "
   "OUTPUT of the committee-set price path, and gross margin is an OUTPUT of the two "
-  "together. Margins are never assumed.")
+  "together. Margins are outputs of volume and margin per litre, and where a step in a margin per litre is carried it is disclosed and priced rather than asserted.")
 rows = [[f"Volume and margin build", 'FY2025'] + [y.replace('FY', '') for y in YR]]
 rows.append(['Retail fuel volume (m litres)', n0(UB['vol_retail_fy25'])] +
             [n0(x) for x in FC['vol_retail']])
@@ -678,9 +686,9 @@ rows.append(['   growth', ''] + [pc(x) for x in V['vol_retail_g']])
 rows.append(['Commercial fuel volume (m litres)', n0(UB['vol_comm_fy25'])] +
             [n0(x) for x in FC['vol_comm']])
 rows.append(['   growth', ''] + [pc(x) for x in V['vol_comm_g']])
-rows.append(['Retail margin per litre (fils)', n1(UB['margin_retail_fy25'] * 1000)] +
+rows.append(['Retail margin per litre (fils)', n1(UB['margin_retail_h126'] * 100)] +
             [n1(x * 1000) for x in FC['margin_retail']])
-rows.append(['Commercial margin per litre (fils)', n1(UB['margin_comm_fy25'] * 1000)] +
+rows.append(['Commercial margin per litre (fils)', n1(UB['margin_comm_h126'] * 100)] +
             [n1(x * 1000) for x in FC['margin_comm']])
 rows.append([f"Retail price per litre ({M['currency']})", n2(UB['price_retail_fy25'])] +
             [n2(x) for x in FC['price_retail']])
@@ -688,7 +696,7 @@ rows.append([f"Commercial price per litre ({M['currency']})", n2(UB['price_comm_
             [n2(x) for x in FC['price_comm']])
 table(rows, [2.15, 0.79, 0.79, 0.79, 0.79, 0.79, 0.79], size=8.4)
 caption(f"Table {tnum()} — the physical build. Retail margin per litre begins at "
-        f"{n1(UB['margin_retail_fy25'] * 1000)} fils in FY2025 — comfortably above the "
+        f"{n1(UB['margin_retail_h126'] * 100)} fils in FY2025 — comfortably above the "
         f"{n0(E['CO-08']['value'])}-fils floor the parent supply agreement guarantees — and is "
         f"grown at the disclosed rate rather than assumed to expand. The price per litre falls "
         f"between FY2026 and FY2027 because the crude path underlying the committee's formula "
@@ -1844,9 +1852,8 @@ rows = [['What the traded price requires', 'Value'],
         [f"Value if any ONE of the three is true ({M['currency']})", n2(CRUX['spot'])]]
 table(rows, [5.15, 1.15], band_rows={6, 10, 12, 15}, size=8.8)
 P(f"Named sensitivity: which explanation is chosen. They are not equivalent. The implied beta "
-  f"of {n2(CRUX['beta_implied'])} sits ABOVE the 90% upper bound of the regression, "
-  f"{n2(BETA_CH['ci90'][1])}, so on the evidence available it is the least likely of the "
-  f"three. The implied terminal discount rate of {pc(CRUX['wacc_term_implied'], 2)} requires "
+  f"of {n2(CRUX['beta_implied'])} sits {_BETA_SIDE} the 90% upper bound of the regression, "
+  f"{n2(BETA_CH['ci90'][1])}, so on the evidence available it is {_BETA_LIKELY}. The implied terminal discount rate of {pc(CRUX['wacc_term_implied'], 2)} requires "
   f"either that beta or a materially higher equity risk premium than the source file "
   f"publishes. The implied growth rate is the only one of the three that is neither "
   f"contradicted by the data nor dependent on a disputed premium — which is why this expert "

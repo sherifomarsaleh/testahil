@@ -1,30 +1,15 @@
 {
- "formulas": 568,
- "checked": 568,
+ "formulas": 692,
+ "checked": 692,
  "unresolvable": 0,
  "unchecked": 0,
- "mismatched": 432,
+ "mismatched": 0,
  "headline_checks": 21,
- "headline_failures": [
-  "terminal cost of capital: workbook 0.079023686422 vs model 0.07437428020423498",
-  "enterprise value, Frame A: workbook 57046.36770599843 vs model 57724.808191531105",
-  "enterprise value, Frame B: workbook 60748.16982816624 vs model 61684.103536261886",
-  "terminal share of enterprise value, Frame A: workbook 0.7361696383606555 vs model 0.7476508597589268",
-  "terminal share of enterprise value, Frame B: workbook 0.7361384702487533 vs model 0.7478883782532598",
-  "terminal share shown on Summary: workbook 0.7361696383606555 vs model 0.7476508597589268",
-  "equity value, Frame A: workbook 52384.54570599843 vs model 53062.986191531105",
-  "equity value, Frame B: workbook 56086.34782816624 vs model 57022.281536261886",
-  "value per share, Frame A: workbook 4.1907636564798745 vs model 4.245038895322488",
-  "value per share, Frame B: workbook 4.486907826253299 vs model 4.561782522900951",
-  "weighted centre, Frame A: workbook 4.16555809131601 vs model 3.9655364499704504",
-  "weighted centre, Frame B: workbook 4.331791784242386 vs model 4.136341226455205",
-  "present value of five years, Frame A: workbook 15050.56382208459 vs model 14566.805717713742",
-  "present value of the terminal, Frame A: workbook 41995.803883913846 vs model 43158.00247381737"
- ],
+ "headline_failures": [],
  "paste_counts": {
-  "audited": 299,
-  "unit_build": 6,
+  "audited": 353,
+  "unit_build": 7,
   "grid": 125,
-  "label": 470
+  "label": 549
  }
 }

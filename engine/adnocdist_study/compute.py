@@ -852,7 +852,7 @@ F['vol_comm'] = vol_c
 F['vol_total'] = [vol_r[i] + vol_c[i] for i in range(N)]
 
 # ---- margins per litre --------------------------------------------------------------
-m = UB['margin_retail_fy25']
+m = UB['margin_retail_h126']
 mr = []
 for g in V['gp_retfuel_per_l_g']:
     m *= (1 + g)
@@ -862,7 +862,7 @@ F['margin_retail'] = mr
 # commercial REVENUE split, but NOT the gross-profit split between them. So the margin per
 # litre is carried at the level it is disclosed — blended across the two legs — and the
 # FY2026 step in it is carried BOTH WAYS below rather than asserted once.
-m = UB['margin_comm_fy25']
+m = UB['margin_comm_h126']
 mc = []
 for g in V['gp_comm_per_l_g']:
     m *= (1 + g)
