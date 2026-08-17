@@ -2066,14 +2066,18 @@ P(f"This expert lands at AED {p2(E2['base'])}, below the study's own weighted ce
   f"is building the assets that produce the later number is a real charge against it. That "
   f"is the method doing what it says it does, and it is why the range extends as high as "
   f"AED {p2(E2['rng'][1])}.")
+e2_alt_val = E2['fcfe'] * (1 + E2['g']) / (W['ke_beta1'] - E2['g'])
 P(f"Named sensitivity: this method is a single-stage capitalisation, so it is more "
-  f"sensitive to the cost of equity than anything else in the study. At a cost of equity "
-  f"on a beta of one — {pc(W['ke_beta1'], 2)} instead of {pc(E2['ke'], 2)} — the same "
-  f"owner cash earnings capitalise to roughly AED "
-  f"{p2(E2['fcfe']*(1+E2['g'])/(W['ke_beta1']-E2['g'])/SH/1000.0*PEG)} a share, a fall of "
-  f"about {pc(1-((E2['fcfe']*(1+E2['g'])/(W['ke_beta1']-E2['g']))/E2['value']), 0)}. This "
-  f"expert is therefore the one most exposed to the study's central contested judgement, "
-  f"and says so.")
+  f"sensitive to the cost of equity than anything else in the study. Capitalise the same "
+  f"owner cash earnings at the cost of equity the equal-weight composite produces — "
+  f"{pc(W['ke_beta1'], 2)} instead of {pc(E2['ke'], 2)} — and the answer is roughly AED "
+  f"{p2(e2_alt_val/SH/1000.0*PEG)} a share, a rise of about "
+  f"{pc(e2_alt_val/E2['value']-1, 0)}. The direction is worth being explicit about: a "
+  f"lower discount rate raises a perpetuity, so the construction this study does not adopt "
+  f"is the generous one. Within the adopted construction, the two ends of the beta's own "
+  f"90% interval are what set this expert's published range, and they span AED "
+  f"{p2(E2['rng'][1]-E2['rng'][0])}. This expert is therefore the one most exposed to the "
+  f"discount rate, and says so.")
 P(f"Falsifier, stated in advance: {E2['falsifier']}", space_after=8)
 
 H2('C.3  Expert 3 — cash returns against the cost of capital')
@@ -2135,8 +2139,10 @@ caption(f"This is the most revealing exhibit in the study. The spread is positiv
         f"confirmation of it, and is read as such.")
 P(f"Named sensitivity: a one-percentage-point parallel reduction in the cost-of-capital "
   f"schedule widens the spread in every year and lifts this valuation by roughly a fifth; "
-  f"the same move in the opposite direction takes it below the market price. Nothing in "
-  f"the operating build has a comparable effect on this method, which is the point it is "
+  f"the same move in the opposite direction removes about the same amount from a base of "
+  f"AED {p2(E3['base'])} that already sits {ab(E3['base'])}, and takes the fifth-year "
+  f"spread of {E3['spread'][4]*100:+.1f} percentage points close to zero. Nothing in the "
+  f"operating build has a comparable effect on this method, which is the point it is "
   f"making.")
 P(f"Falsifier, stated in advance: {E3['falsifier']}", space_after=8)
 
@@ -2172,12 +2178,14 @@ rows = [['Challenge', 'From', 'Conceded or rejected'],
         ['"All three of you are arguing about the numerator. The number that actually '
          'decides this valuation is the beta, and only one of you prices it."',
          'The panel to itself',
-         f"Accepted as the central unresolved issue, and it is why the panel divides the "
-         f"way it does. Expert 1 never touches it. Expert 2 is fully exposed to it, which "
-         f"is why its range spans AED {p2(E2['rng'][1]-E2['rng'][0])}. Expert 3 prices it "
-         f"year by year and finds that the spread stays positive on either construction, "
-         f"which is the one useful thing the panel can say about it: the business creates "
-         f"value at both costs of capital — the argument is only about how much."]]
+         f"Accepted, and it is why the panel divides the way it does. Expert 1 never "
+         f"touches it. Expert 2 is fully exposed to it, which is why its range spans AED "
+         f"{p2(E2['rng'][1]-E2['rng'][0])}, struck at the two ends of the beta's own 90% "
+         f"interval. Expert 3 prices it year by year and finds the spread stays positive "
+         f"on either measurement of the market, which is the one useful thing the panel "
+         f"can say about it: the business creates value at both costs of capital — the "
+         f"argument is only about how much, and it is now an argument about statistical "
+         f"width rather than about which yardstick to use."]]
 table(rows, [2.45, 1.20, 3.35], size=8.0, align_right_from=9)
 
 H2('C.5  The three in one room')
@@ -2192,10 +2200,10 @@ P(f"The panel spans AED {p2(min(E1['base'], E2['base'], E3['base']))} to "
   f"standards of this series. That narrowness is itself informative: three methods that "
   f"share almost nothing methodologically land within AED "
   f"{p2(max(E1['base'], E2['base'], E3['base'])-min(E1['base'], E2['base'], E3['base']))} "
-  f"of one another, and all three land near the market price rather than near this "
+  f"of one another. All three land at or below the market price, and all three below this "
   f"study's own weighted central of AED {p2(D['central'])}.")
 P(f"The panel centre of AED {p2(PANEL)} sits {ab(PANEL)} and "
-  f"{sgn(PANEL/D['central']-1, 0)} against this study's own-beta central. That gap is "
+  f"{sgn(PANEL/D['central']-1, 0)} against this study's weighted central. That gap is "
   f"real and it has a single explanation: every one of the three experts works from "
   f"mid-cycle or five-year-average earnings, and none of them capitalises a terminal value "
   f"the way the cash-flow model does. The cash-flow model puts {pc(DCF['tv_share'], 0)} of "
@@ -2214,8 +2222,9 @@ rows = [['Assumption', 'Expert 1', 'Expert 2', 'Expert 3', 'Why it swings the an
         ['The cost of equity', 'implicit inside the multiple, never stated',
          f"{pc(E2['ke'], 2)} explicit, and the whole answer moves with it",
          'the full glide, year by year, on both sides of the spread',
-         'Expert 2 is fully exposed, Expert 1 not at all — which is why they can agree on '
-         'a number for entirely different reasons'],
+         f"Expert 2 is fully exposed, Expert 1 not at all — which is why Expert 1 lands "
+         f"AED {p2(E1['base']-E2['base'])} above Expert 2 without ever taking a position "
+         f"on the question"],
         ['Terminal value', 'none — no perpetuity at all',
          'a single perpetuity of owner cash earnings',
          'a fading economic-profit perpetuity',
