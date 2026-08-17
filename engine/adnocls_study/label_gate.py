@@ -246,9 +246,10 @@ CASES = [
     ('DCF', f"A{DF_['kecihi']}", f"C{DF_['kecihi']}",
      ['cost of equity', 'upper confidence bound'],
      WACC['rf_star'] + V['beta_ci_hi'] * WACC['erp']),
-    ('DCF', f"A{DF_['dims']}", f"C{DF_['dims']}", ['lead-lag sum beta'], V['beta_dimson']),
-    ('DCF', f"A{DF_['kedims']}", f"C{DF_['kedims']}",
-     ['cost of equity', 'lead-lag sum beta'], WACC['ke_dimson']),
+    ('DCF', f"A{DF_['blume']}", f"C{DF_['blume']}", ['shrunk toward the market'],
+     V['beta_blume']),
+    ('DCF', f"A{DF_['keblume']}", f"C{DF_['keblume']}",
+     ['cost of equity', 'shrunk toward the market'], WACC['ke_blume']),
     ('DCF', f"A{DF_['fvaeda']}", f"C{DF_['fvaeda']}",
      ['fair value per share', 'composite-index beta'], DCFA['fv_aed']),
     # --- Fundamental Valuation: the two constructions and the interval beside them ----

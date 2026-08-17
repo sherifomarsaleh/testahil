@@ -141,8 +141,10 @@ checks = [
      WACC['rf_star'] + V_['beta_ci_lo'] * WACC['erp'], 0.00005),
     ('Cost of equity at the upper 90% confidence bound', g('DCF', f"C{DF_['kecihi']}"),
      WACC['rf_star'] + V_['beta_ci_hi'] * WACC['erp'], 0.00005),
-    ('Cost of equity on the lead-lag sum beta', g('DCF', f"C{DF_['kedims']}"),
-     WACC['ke_dimson'], 0.00005),
+    # the sanctioned beta routine returns a Blume shrink as its cross-check rather than a
+    # lead-lag sum, so this reconciliation follows the figure the model actually publishes
+    ('Cost of equity on the beta shrunk toward the market',
+     g('DCF', f"C{DF_['keblume']}"), WACC['ke_blume'], 0.00005),
     ('DCF fair value per share — composite-index beta (AED)',
      g('DCF', f"C{DF_['fvaeda']}"), DCFA['fv_aed'], 0.005),
     ('DCF terminal value share — composite-index beta', g('DCF', f"C{DF_['tvsharea']}"),

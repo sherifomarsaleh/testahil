@@ -32,7 +32,7 @@ for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
         A.setdefault(c.value, c.row)
 
 HEADLINES = ['fv', 'fv_beta_alt', 'central', 'central_beta_alt', 'pv_expl', 'tv', 'ev',
-             'tv_share', 'wacc', 'wacc_term', 'ke', 'ke_ci_lo', 'ke_ci_hi', 'ke_dimson',
+             'tv_share', 'wacc', 'wacc_term', 'ke', 'ke_ci_lo', 'ke_ci_hi', 'ke_blume',
              'kd', 'kd_balance_weighted', 'wh', 'kh', 'kh_term', 'rev26', 'ebitda26',
              'ebitda30',
              'nopat26', 'tax26', 'fcff26', 'tankers26', 'tankers30', 'gas26', 'gas28',
@@ -169,8 +169,9 @@ CASES = [
     ('Beta — upper bound of the regression\'s 90% confidence interval (the bear-case '
      'beta)', 'C', +0.20, 'book_bear', -1,
      'and must therefore lower the bear bound of the book lens, which is discounted at it'),
-    ('Beta — lead-lag sum beta from the same series, one lead and two lags', 'C', +0.20,
-     'ke_dimson', +1,
+    ('Beta — the measured slope shrunk toward the market: two-thirds of it '
+     'plus one-third of 1.0', 'C', +0.20,
+     'ke_blume', +1,
      'the lead-lag corroboration beta must reprice its own cost of equity; it is published '
      'as a check on the primary estimate and deliberately drives nothing else'),
     # ---- the perpetual capital securities now carry weight in the cost of capital -----
