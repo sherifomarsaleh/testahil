@@ -7,7 +7,7 @@ const FV_OVERLAY = {
  "generated_from": "assets/data.js",
  "engine_configs": {
   "AE": {
-   "nu": 10.0,
+   "nu": 8.0,
    "width_cal": 0.979,
    "rf_live": 0.0365,
    "width_overlay_active": false
@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 81,
+ "n": 82,
  "rows": [
   {
    "ticker": "HELI",
@@ -160,7 +160,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -1.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -171,25 +171,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.097925,
+    "sigma_h": 0.098576,
     "mu_h": 0.0,
     "G": {
-     "bear": -4.05,
+     "bear": -4.02,
      "base": -0.18,
-     "full": 4.43
+     "full": 4.4
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0005,
-     "base": 0.4202,
-     "full": 0.0003
+     "bear": 0.0008,
+     "base": 0.4187,
+     "full": 0.0005
     },
     "p_touch": {
-     "bear": 0.0008,
-     "base": 0.7405,
-     "full": 0.0004
+     "bear": 0.0011,
+     "base": 0.7391,
+     "full": 0.0009
     },
     "required_cagr": {
      "bear": -0.9914,
@@ -199,29 +199,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0018
+    "selftest_max_dev": 0.00294
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.174693,
+    "sigma_h": 0.175854,
     "mu_h": 0.0,
     "G": {
-     "bear": -2.27,
+     "bear": -2.25,
      "base": -0.1,
-     "full": 2.48
+     "full": 2.46
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0147,
-     "base": 0.455,
-     "full": 0.0098
+     "bear": 0.0157,
+     "base": 0.4542,
+     "full": 0.0108
     },
     "p_touch": {
-     "bear": 0.0248,
-     "base": 0.8513,
-     "full": 0.0165
+     "bear": 0.0256,
+     "base": 0.8505,
+     "full": 0.018
     },
     "required_cagr": {
      "bear": -0.7953,
@@ -231,7 +231,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00223
+    "selftest_max_dev": 0.00288
    },
    "market": "AE"
   },
@@ -344,7 +344,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -2.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -355,25 +355,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.087025,
+    "sigma_h": 0.087603,
     "mu_h": 0.002736,
     "G": {
-     "bear": -2.35,
+     "bear": -2.33,
      "base": -0.27,
-     "full": 1.92
+     "full": 1.91
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0119,
-     "base": 0.3712,
-     "full": 0.0303
+     "bear": 0.0129,
+     "base": 0.3689,
+     "full": 0.0309
     },
     "p_touch": {
-     "bear": 0.0172,
-     "base": 0.6649,
-     "full": 0.0446
+     "bear": 0.0192,
+     "base": 0.6591,
+     "full": 0.0472
     },
     "required_cagr": {
      "bear": -0.914,
@@ -383,14 +383,14 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00162
+    "selftest_max_dev": 0.00244
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.16036,
+    "sigma_h": 0.161425,
     "mu_h": 0.009543,
     "G": {
-     "bear": -1.28,
+     "bear": -1.27,
      "base": -0.15,
      "full": 1.04
     },
@@ -398,14 +398,14 @@ const FV_OVERLAY = {
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0833,
-     "base": 0.4111,
-     "full": 0.1485
+     "bear": 0.0822,
+     "base": 0.4094,
+     "full": 0.1458
     },
     "p_touch": {
-     "bear": 0.1475,
-     "base": 0.8026,
-     "full": 0.2581
+     "bear": 0.1466,
+     "base": 0.8003,
+     "full": 0.2537
     },
     "required_cagr": {
      "bear": -0.5587,
@@ -415,7 +415,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.001
+    "selftest_max_dev": 0.00138
    },
    "market": "AE"
   },
@@ -1356,7 +1356,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 6.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -1367,25 +1367,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.095494,
+    "sigma_h": 0.096129,
     "mu_h": 0.002974,
     "G": {
-     "bear": -1.99,
-     "base": 0.7,
-     "full": 3.74
+     "bear": -1.97,
+     "base": 0.69,
+     "full": 3.72
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0239,
-     "base": 0.2369,
-     "full": 0.001
+     "bear": 0.0247,
+     "base": 0.2334,
+     "full": 0.0014
     },
     "p_touch": {
-     "bear": 0.0366,
-     "base": 0.3924,
-     "full": 0.0013
+     "bear": 0.0381,
+     "base": 0.3867,
+     "full": 0.0021
     },
     "required_cagr": {
      "bear": -0.8973,
@@ -1395,29 +1395,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00169
+    "selftest_max_dev": 0.00277
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.173117,
+    "sigma_h": 0.174268,
     "mu_h": 0.009878,
     "G": {
-     "bear": -1.1,
+     "bear": -1.09,
      "base": 0.38,
-     "full": 2.06
+     "full": 2.05
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1133,
-     "base": 0.361,
-     "full": 0.0243
+     "bear": 0.1114,
+     "base": 0.3585,
+     "full": 0.0251
     },
     "p_touch": {
-     "bear": 0.2038,
-     "base": 0.6458,
-     "full": 0.0412
+     "bear": 0.1998,
+     "base": 0.6417,
+     "full": 0.0425
     },
     "required_cagr": {
      "bear": -0.5316,
@@ -1427,7 +1427,99 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0014
+    "selftest_max_dev": 0.00205
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "2POINTZERO",
+   "name": "Two Point Zero Group",
+   "code": "ADX:2POINTZERO",
+   "ccy": "AED",
+   "spot": 2.06,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.55,
+   "fv_base": 1.91,
+   "fv_full": 2.27,
+   "gap_base_pct": -7.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.101923,
+    "mu_h": 0.004843,
+    "G": {
+     "bear": -2.79,
+     "base": -0.74,
+     "full": 0.95
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0056,
+     "base": 0.1944,
+     "full": 0.1633
+    },
+    "p_touch": {
+     "bear": 0.0085,
+     "base": 0.335,
+     "full": 0.2655
+    },
+    "required_cagr": {
+     "bear": -0.9671,
+     "base": -0.5964,
+     "full": 2.2056
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00539
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.192042,
+    "mu_h": 0.009662,
+    "G": {
+     "bear": -1.48,
+     "base": -0.39,
+     "full": 0.51
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0575,
+     "base": 0.311,
+     "full": 0.3067
+    },
+    "p_touch": {
+     "bear": 0.102,
+     "base": 0.5903,
+     "full": 0.5468
+    },
+    "required_cagr": {
+     "bear": -0.6795,
+     "base": -0.261,
+     "full": 0.4745
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00124
    },
    "market": "AE"
   },
@@ -1616,98 +1708,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "2POINTZERO",
-   "name": "Two Point Zero Group",
-   "code": "ADX:2POINTZERO",
-   "ccy": "AED",
-   "spot": 2.06,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.55,
-   "fv_base": 1.91,
-   "fv_full": 2.27,
-   "gap_base_pct": -7.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.979,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.10125,
-    "mu_h": 0.004843,
-    "G": {
-     "bear": -2.81,
-     "base": -0.75,
-     "full": 0.96
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0048,
-     "base": 0.1976,
-     "full": 0.1662
-    },
-    "p_touch": {
-     "bear": 0.0065,
-     "base": 0.3397,
-     "full": 0.2697
-    },
-    "required_cagr": {
-     "bear": -0.9671,
-     "base": -0.5964,
-     "full": 2.2056
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00421
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.190775,
-    "mu_h": 0.009662,
-    "G": {
-     "bear": -1.49,
-     "base": -0.4,
-     "full": 0.51
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0577,
-     "base": 0.3141,
-     "full": 0.3098
-    },
-    "p_touch": {
-     "bear": 0.0999,
-     "base": 0.5963,
-     "full": 0.5539
-    },
-    "required_cagr": {
-     "bear": -0.6795,
-     "base": -0.261,
-     "full": 0.4745
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00119
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "FAB",
    "name": "First Abu Dhabi Bank",
    "code": "ADX:FAB",
@@ -1724,7 +1724,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 6.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -1735,25 +1735,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.077679,
+    "sigma_h": 0.078195,
     "mu_h": 0.002676,
     "G": {
      "bear": -1.12,
-     "base": 0.83,
-     "full": 2.35
+     "base": 0.82,
+     "full": 2.34
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1122,
-     "base": 0.1978,
-     "full": 0.0135
+     "bear": 0.1103,
+     "base": 0.1946,
+     "full": 0.0144
     },
     "p_touch": {
-     "bear": 0.1846,
-     "base": 0.3263,
-     "full": 0.0193
+     "bear": 0.1806,
+     "base": 0.3191,
+     "full": 0.021
     },
     "required_cagr": {
      "bear": -0.6492,
@@ -1763,29 +1763,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.0022
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.138679,
+    "sigma_h": 0.1396,
     "mu_h": 0.0096,
     "G": {
      "bear": -0.63,
      "base": 0.46,
-     "full": 1.32
+     "full": 1.31
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.2264,
-     "base": 0.3342,
-     "full": 0.0966
+     "bear": 0.223,
+     "base": 0.3314,
+     "full": 0.0951
     },
     "p_touch": {
-     "bear": 0.4259,
-     "base": 0.5926,
-     "full": 0.1668
+     "bear": 0.417,
+     "base": 0.587,
+     "full": 0.1644
     },
     "required_cagr": {
      "bear": -0.2948,
@@ -1795,7 +1795,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00088
+    "selftest_max_dev": 0.00141
    },
    "market": "AE"
   },
@@ -3472,7 +3472,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -11.7,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -3483,24 +3483,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.068338,
+    "sigma_h": 0.068792,
     "mu_h": 0.003527,
     "G": {
-     "bear": -14.79,
-     "base": -1.81,
-     "full": 5.53
+     "bear": -14.69,
+     "base": -1.8,
+     "full": 5.49
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.0318,
+     "base": 0.0324,
      "full": 0.0001
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.0498,
+     "base": 0.0513,
      "full": 0.0001
     },
     "required_cagr": {
@@ -3511,29 +3511,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00126
+    "selftest_max_dev": 0.00193
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.128582,
+    "sigma_h": 0.129437,
     "mu_h": 0.010545,
     "G": {
-     "bear": -7.86,
+     "bear": -7.81,
      "base": -0.96,
-     "full": 2.94
+     "full": 2.92
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.1346,
-     "full": 0.0048
+     "base": 0.1322,
+     "full": 0.0056
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.2471,
-     "full": 0.0079
+     "base": 0.2424,
+     "full": 0.0094
     },
     "required_cagr": {
      "bear": -0.9825,
@@ -3543,7 +3543,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00244
+    "selftest_max_dev": 0.00292
    },
    "market": "AE"
   },
@@ -3840,7 +3840,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 13.1,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -3851,24 +3851,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.06197,
+    "sigma_h": 0.062382,
     "mu_h": 0.002984,
     "G": {
-     "bear": -2.12,
-     "base": 1.99,
-     "full": 5.79
+     "bear": -2.1,
+     "base": 1.98,
+     "full": 5.75
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.018,
-     "base": 0.0274,
-     "full": 0.0
+     "bear": 0.0189,
+     "base": 0.0281,
+     "full": 0.0001
     },
     "p_touch": {
-     "bear": 0.0271,
-     "base": 0.0397,
+     "bear": 0.0294,
+     "base": 0.043,
      "full": 0.0001
     },
     "required_cagr": {
@@ -3879,29 +3879,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0011
+    "selftest_max_dev": 0.0018
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.109664,
+    "sigma_h": 0.110392,
     "mu_h": 0.009418,
     "G": {
-     "bear": -1.2,
-     "base": 1.13,
-     "full": 3.27
+     "bear": -1.19,
+     "base": 1.12,
+     "full": 3.25
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.091,
-     "base": 0.1359,
-     "full": 0.0026
+     "bear": 0.0897,
+     "base": 0.1334,
+     "full": 0.0032
     },
     "p_touch": {
-     "bear": 0.1641,
-     "base": 0.2329,
-     "full": 0.0045
+     "bear": 0.1625,
+     "base": 0.2298,
+     "full": 0.0055
     },
     "required_cagr": {
      "bear": -0.4085,
@@ -3911,7 +3911,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00072
+    "selftest_max_dev": 0.00113
    },
    "market": "AE"
   },
@@ -3932,7 +3932,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -15.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -3943,25 +3943,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.078009,
+    "sigma_h": 0.078527,
     "mu_h": 0.00365,
     "G": {
-     "bear": -6.4,
-     "base": -2.16,
-     "full": 3.25
+     "bear": -6.36,
+     "base": -2.15,
+     "full": 3.23
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.0165,
-     "full": 0.0025
+     "base": 0.0174,
+     "full": 0.0031
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.025,
-     "full": 0.0032
+     "base": 0.027,
+     "full": 0.0045
     },
     "required_cagr": {
      "bear": -0.9975,
@@ -3971,29 +3971,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00194
+    "selftest_max_dev": 0.00284
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.148759,
+    "sigma_h": 0.149748,
     "mu_h": 0.009099,
     "G": {
-     "bear": -3.36,
-     "base": -1.14,
-     "full": 1.71
+     "bear": -3.33,
+     "base": -1.13,
+     "full": 1.69
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0017,
-     "base": 0.1053,
-     "full": 0.0479
+     "bear": 0.0022,
+     "base": 0.1036,
+     "full": 0.048
     },
     "p_touch": {
-     "bear": 0.0026,
-     "base": 0.1891,
-     "full": 0.0829
+     "bear": 0.0039,
+     "base": 0.1853,
+     "full": 0.0823
     },
     "required_cagr": {
      "bear": -0.8643,
@@ -4003,7 +4003,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00123
+    "selftest_max_dev": 0.00179
    },
    "market": "AE"
   },
@@ -4024,7 +4024,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -15.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -4035,25 +4035,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.07644,
+    "sigma_h": 0.076948,
     "mu_h": 0.0,
     "G": {
-     "bear": -9.07,
-     "base": -2.18,
-     "full": 1.23
+     "bear": -9.01,
+     "base": -2.17,
+     "full": 1.22
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.0175,
-     "full": 0.0999
+     "base": 0.0184,
+     "full": 0.0983
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.026,
-     "full": 0.16
+     "base": 0.0283,
+     "full": 0.158
     },
     "required_cagr": {
      "bear": -0.9998,
@@ -4063,29 +4063,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00208
+    "selftest_max_dev": 0.00297
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.142459,
+    "sigma_h": 0.143406,
     "mu_h": -0.003945,
     "G": {
-     "bear": -4.87,
-     "base": -1.17,
-     "full": 0.66
+     "bear": -4.83,
+     "base": -1.16,
+     "full": 0.65
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0001,
-     "base": 0.1152,
-     "full": 0.2302
+     "bear": 0.0003,
+     "base": 0.1132,
+     "full": 0.2268
     },
     "p_touch": {
-     "bear": 0.0002,
-     "base": 0.1985,
-     "full": 0.4258
+     "bear": 0.0003,
+     "base": 0.1949,
+     "full": 0.4191
     },
     "required_cagr": {
      "bear": -0.9375,
@@ -4095,7 +4095,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00095
+    "selftest_max_dev": 0.00148
    },
    "market": "AE"
   },
@@ -4116,7 +4116,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 13.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -4127,24 +4127,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.051524,
+    "sigma_h": 0.051867,
     "mu_h": 0.00299,
     "G": {
      "bear": -0.23,
-     "base": 2.45,
-     "full": 6.21
+     "base": 2.44,
+     "full": 6.17
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3755,
-     "base": 0.0116,
-     "full": 0.0
+     "bear": 0.3732,
+     "base": 0.0126,
+     "full": 0.0001
     },
     "p_touch": {
-     "bear": 0.6864,
-     "base": 0.0162,
+     "bear": 0.6814,
+     "base": 0.0179,
      "full": 0.0
     },
     "required_cagr": {
@@ -4155,29 +4155,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
+    "selftest_max_dev": 0.00131
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.098221,
+    "sigma_h": 0.098873,
     "mu_h": 0.008942,
     "G": {
      "bear": -0.12,
-     "base": 1.29,
-     "full": 3.26
+     "base": 1.28,
+     "full": 3.24
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.408,
-     "base": 0.1054,
-     "full": 0.0027
+     "bear": 0.4063,
+     "base": 0.1037,
+     "full": 0.0033
     },
     "p_touch": {
-     "bear": 0.8176,
-     "base": 0.1803,
-     "full": 0.0046
+     "bear": 0.8151,
+     "base": 0.1782,
+     "full": 0.0057
     },
     "required_cagr": {
      "bear": -0.0471,
@@ -4187,7 +4187,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0013
+    "selftest_max_dev": 0.00142
    },
    "market": "AE"
   },
@@ -4282,6 +4282,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00159
    },
    "market": "SA"
+  },
+  {
+   "ticker": "AIRARABIA",
+   "name": "Air Arabia PJSC",
+   "code": "DFM:AIRARABIA",
+   "ccy": "AED",
+   "spot": 5.24,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.01,
+   "fv_base": 4.17,
+   "fv_full": 6.97,
+   "gap_base_pct": -20.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.098557,
+    "mu_h": -0.00191,
+    "G": {
+     "bear": -9.72,
+     "base": -2.32,
+     "full": 2.89
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0145,
+     "full": 0.0049
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0217,
+     "full": 0.007
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9355,
+     "full": 29.6774
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00209
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.171952,
+    "mu_h": -0.003824,
+    "G": {
+     "bear": -5.57,
+     "base": -1.33,
+     "full": 1.66
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.085,
+     "full": 0.0441
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.146,
+     "full": 0.0777
+    },
+    "required_cagr": {
+     "bear": -0.9783,
+     "base": -0.5989,
+     "full": 2.1304
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00215
+   },
+   "market": "AE"
   },
   {
    "ticker": "ALINMA",
@@ -4852,7 +4944,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 31.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -4863,24 +4955,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.086298,
+    "sigma_h": 0.086871,
     "mu_h": 0.003035,
     "G": {
      "bear": -0.25,
-     "base": 3.16,
-     "full": 6.35
+     "base": 3.14,
+     "full": 6.31
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3785,
-     "base": 0.0029,
+     "bear": 0.3763,
+     "base": 0.0036,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.6809,
-     "base": 0.0037,
+     "bear": 0.6765,
+     "base": 0.005,
      "full": 0.0
     },
     "required_cagr": {
@@ -4891,29 +4983,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00181
+    "selftest_max_dev": 0.00281
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.166116,
+    "sigma_h": 0.16722,
     "mu_h": 0.00983,
     "G": {
      "bear": -0.13,
-     "base": 1.64,
-     "full": 3.3
+     "base": 1.63,
+     "full": 3.28
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4186,
-     "base": 0.0535,
-     "full": 0.0023
+     "bear": 0.4171,
+     "base": 0.0534,
+     "full": 0.003
     },
     "p_touch": {
-     "bear": 0.818,
-     "base": 0.0933,
-     "full": 0.0041
+     "bear": 0.8158,
+     "base": 0.0918,
+     "full": 0.005
     },
     "required_cagr": {
      "bear": -0.0824,
@@ -4923,7 +5015,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00137
+    "selftest_max_dev": 0.00199
    },
    "market": "AE"
   },
@@ -4944,7 +5036,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 33.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -4955,24 +5047,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.083172,
+    "sigma_h": 0.083725,
     "mu_h": 0.0,
     "G": {
-     "bear": -2.5,
-     "base": 3.46,
-     "full": 7.15
+     "bear": -2.48,
+     "base": 3.44,
+     "full": 7.1
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0095,
-     "base": 0.0016,
+     "bear": 0.0105,
+     "base": 0.0021,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0135,
-     "base": 0.002,
+     "bear": 0.0153,
+     "base": 0.0029,
      "full": 0.0
     },
     "required_cagr": {
@@ -4983,29 +5075,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00387
+    "selftest_max_dev": 0.00163
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.160011,
+    "sigma_h": 0.161074,
     "mu_h": 0.010363,
     "G": {
-     "bear": -1.3,
-     "base": 1.8,
-     "full": 3.72
+     "bear": -1.29,
+     "base": 1.79,
+     "full": 3.69
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0793,
-     "base": 0.0407,
-     "full": 0.0011
+     "bear": 0.0784,
+     "base": 0.041,
+     "full": 0.0015
     },
     "p_touch": {
-     "bear": 0.1406,
-     "base": 0.0699,
-     "full": 0.0021
+     "bear": 0.1388,
+     "base": 0.0703,
+     "full": 0.0026
     },
     "required_cagr": {
      "bear": -0.5642,
@@ -5015,7 +5107,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.001
+    "selftest_max_dev": 0.00105
    },
    "market": "AE"
   },
@@ -5036,7 +5128,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 33.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -5047,25 +5139,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.085109,
+    "sigma_h": 0.085674,
     "mu_h": 0.002625,
     "G": {
      "bear": 0.51,
-     "base": 3.42,
-     "full": 5.12
+     "base": 3.4,
+     "full": 5.09
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3006,
-     "base": 0.0018,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.5057,
+     "bear": 0.2975,
      "base": 0.0023,
      "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.5013,
+     "base": 0.0032,
+     "full": 0.0003
     },
     "required_cagr": {
      "bear": 0.6896,
@@ -5075,29 +5167,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00163
+    "selftest_max_dev": 0.00234
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.158589,
+    "sigma_h": 0.159642,
     "mu_h": 0.010458,
     "G": {
-     "bear": 0.28,
-     "base": 1.83,
-     "full": 2.75
+     "bear": 0.27,
+     "base": 1.82,
+     "full": 2.73
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4097,
-     "base": 0.0381,
-     "full": 0.0067
+     "bear": 0.408,
+     "base": 0.0385,
+     "full": 0.0076
     },
     "p_touch": {
-     "bear": 0.7296,
-     "base": 0.065,
-     "full": 0.0108
+     "bear": 0.7282,
+     "base": 0.0658,
+     "full": 0.0126
     },
     "required_cagr": {
      "bear": 0.191,
@@ -5107,7 +5199,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00145
+    "selftest_max_dev": 0.00205
    },
    "market": "AE"
   },
@@ -5128,7 +5220,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 24.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -5139,24 +5231,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.064442,
+    "sigma_h": 0.06487,
     "mu_h": 0.003738,
     "G": {
-     "bear": -3.15,
-     "base": 3.38,
-     "full": 9.48
+     "bear": -3.13,
+     "base": 3.36,
+     "full": 9.42
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0025,
-     "base": 0.002,
+     "bear": 0.0031,
+     "base": 0.0026,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0036,
-     "base": 0.0026,
+     "bear": 0.0049,
+     "base": 0.0036,
      "full": 0.0
     },
     "required_cagr": {
@@ -5167,29 +5259,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00199
+    "selftest_max_dev": 0.00273
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.114791,
+    "sigma_h": 0.115554,
     "mu_h": 0.011173,
     "G": {
-     "bear": -1.77,
-     "base": 1.9,
-     "full": 5.32
+     "bear": -1.75,
+     "base": 1.89,
+     "full": 5.29
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0319,
-     "base": 0.0359,
-     "full": 0.0001
+     "bear": 0.0325,
+     "base": 0.0364,
+     "full": 0.0002
     },
     "p_touch": {
-     "bear": 0.056,
-     "base": 0.0607,
-     "full": 0.0001
+     "bear": 0.0561,
+     "base": 0.0618,
+     "full": 0.0003
     },
     "required_cagr": {
      "bear": -0.5556,
@@ -5199,7 +5291,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00214
+    "selftest_max_dev": 0.00258
    },
    "market": "AE"
   },
@@ -5312,7 +5404,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 33.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -5323,24 +5415,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.075903,
+    "sigma_h": 0.076408,
     "mu_h": 0.002704,
     "G": {
      "bear": 0.0,
-     "base": 3.81,
-     "full": 6.93
+     "base": 3.79,
+     "full": 6.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.5155,
-     "base": 0.0009,
+     "bear": 0.5158,
+     "base": 0.0012,
      "full": 0.0
     },
     "p_touch": {
      "bear": 1.0,
-     "base": 0.0012,
+     "base": 0.0019,
      "full": 0.0
     },
     "required_cagr": {
@@ -5351,29 +5443,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00198
+    "selftest_max_dev": 0.00157
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.145181,
+    "sigma_h": 0.146145,
     "mu_h": 0.009879,
     "G": {
      "bear": 0.0,
-     "base": 1.99,
-     "full": 3.62
+     "base": 1.98,
+     "full": 3.6
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.5296,
-     "base": 0.0284,
-     "full": 0.0013
+     "bear": 0.5301,
+     "base": 0.0291,
+     "full": 0.0018
     },
     "p_touch": {
      "bear": 1.0,
-     "base": 0.048,
-     "full": 0.0025
+     "base": 0.0491,
+     "full": 0.0029
     },
     "required_cagr": {
      "bear": 0.0,
@@ -5383,7 +5475,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
+    "selftest_max_dev": 0.00164
    },
    "market": "AE"
   },
@@ -5404,7 +5496,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 36.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -5415,24 +5507,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.086819,
+    "sigma_h": 0.087396,
     "mu_h": 0.00277,
     "G": {
      "bear": -0.1,
-     "base": 3.59,
-     "full": 5.53
+     "base": 3.57,
+     "full": 5.49
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4445,
-     "base": 0.0013,
+     "bear": 0.4434,
+     "base": 0.0018,
      "full": 0.0001
     },
     "p_touch": {
-     "bear": 0.8012,
-     "base": 0.0018,
+     "bear": 0.7997,
+     "base": 0.0025,
      "full": 0.0001
     },
     "required_cagr": {
@@ -5443,29 +5535,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00177
+    "selftest_max_dev": 0.00228
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.153564,
+    "sigma_h": 0.154584,
     "mu_h": 0.009662,
     "G": {
      "bear": -0.05,
-     "base": 2.03,
-     "full": 3.12
+     "base": 2.02,
+     "full": 3.1
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4491,
-     "base": 0.0262,
-     "full": 0.0033
+     "bear": 0.4481,
+     "base": 0.0269,
+     "full": 0.004
     },
     "p_touch": {
-     "bear": 0.8823,
-     "base": 0.0443,
-     "full": 0.0055
+     "bear": 0.8814,
+     "base": 0.0453,
+     "full": 0.0068
     },
     "required_cagr": {
      "bear": -0.0329,
@@ -5475,7 +5567,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00118
+    "selftest_max_dev": 0.00176
    },
    "market": "AE"
   },
@@ -5840,6 +5932,90 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "AGTHIA",
+   "name": "Agthia Group PJSC",
+   "code": "ADX:AGTHIA",
+   "ccy": "AED",
+   "spot": 3.2,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 18,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.05,
+   "fv_base": 4.37,
+   "fv_full": 6.09,
+   "gap_base_pct": 36.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.070581,
+    "mu_h": 0.00312,
+    "G": {
+     "bear": -0.68,
+     "base": 4.41,
+     "full": 9.12
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.4379,
+     "base": 41.0705,
+     "full": 2256.3961
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00289
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.135297,
+    "mu_h": 0.009331,
+    "G": {
+     "bear": -0.35,
+     "base": 2.3,
+     "full": 4.76
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3189,
+     "base": 0.0163,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.6152,
+     "base": 0.0266,
+     "full": 0.0006
+    },
+    "required_cagr": {
+     "bear": -0.1747,
+     "base": 2.478,
+     "full": 12.118
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00129
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "RIBL",
    "name": "Riyad Bank",
    "code": "TADAWUL:1010",
@@ -5924,23 +6100,23 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "AGTHIA",
-   "name": "Agthia Group PJSC",
-   "code": "ADX:AGTHIA",
+   "ticker": "BURJEEL",
+   "name": "Burjeel Holdings PLC",
+   "code": "ADX:BURJEEL",
    "ccy": "AED",
-   "spot": 3.2,
+   "spot": 1.2,
    "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 18,
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 3.05,
-   "fv_base": 4.37,
-   "fv_full": 6.09,
-   "gap_base_pct": 36.6,
+   "fv_bear": 1.14,
+   "fv_base": 1.85,
+   "fv_full": 2.35,
+   "gap_base_pct": 54.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -5951,12 +6127,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.070116,
-    "mu_h": 0.00312,
+    "sigma_h": 0.0975,
+    "mu_h": 0.0,
     "G": {
-     "bear": -0.68,
+     "bear": -0.53,
      "base": 4.44,
-     "full": 9.18
+     "full": 6.89
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -5964,46 +6140,46 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.4379,
-     "base": 41.0705,
-     "full": 2256.3961
+     "bear": -0.4596,
+     "base": 179.2544,
+     "full": 3180.5547
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00207
+    "selftest_max_dev": 0.00463
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.134405,
-    "mu_h": 0.009331,
+    "sigma_h": 0.177142,
+    "mu_h": 0.008299,
     "G": {
-     "bear": -0.36,
-     "base": 2.32,
-     "full": 4.79
+     "bear": -0.29,
+     "base": 2.44,
+     "full": 3.79
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3218,
-     "base": 0.0153,
-     "full": 0.0002
+     "bear": 0.3539,
+     "base": 0.0122,
+     "full": 0.0013
     },
     "p_touch": {
-     "bear": 0.6193,
-     "base": 0.0257,
-     "full": 0.0005
+     "bear": 0.6762,
+     "base": 0.0199,
+     "full": 0.0022
     },
     "required_cagr": {
-     "bear": -0.1747,
-     "base": 2.478,
-     "full": 12.118
+     "bear": -0.1855,
+     "base": 4.6489,
+     "full": 13.7078
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00084
+    "selftest_max_dev": 0.00255
    },
    "market": "AE"
   },
@@ -6090,90 +6266,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00336
    },
    "market": "EG"
-  },
-  {
-   "ticker": "BURJEEL",
-   "name": "Burjeel Holdings PLC",
-   "code": "ADX:BURJEEL",
-   "ccy": "AED",
-   "spot": 1.2,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.14,
-   "fv_base": 1.85,
-   "fv_full": 2.35,
-   "gap_base_pct": 54.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.979,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.096856,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -0.53,
-     "base": 4.47,
-     "full": 6.94
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.4596,
-     "base": 179.2544,
-     "full": 3180.5547
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00723
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.175973,
-    "mu_h": 0.008299,
-    "G": {
-     "bear": -0.29,
-     "base": 2.46,
-     "full": 3.82
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3564,
-     "base": 0.0112,
-     "full": 0.0009
-    },
-    "p_touch": {
-     "bear": 0.6819,
-     "base": 0.0188,
-     "full": 0.0016
-    },
-    "required_cagr": {
-     "bear": -0.1855,
-     "base": 4.6489,
-     "full": 13.7078
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00189
-   },
-   "market": "AE"
   },
   {
    "ticker": "EFIH",
@@ -6276,7 +6368,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 38.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -6287,12 +6379,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.063113,
+    "sigma_h": 0.063532,
     "mu_h": 0.002717,
     "G": {
-     "bear": 1.62,
-     "base": 5.16,
-     "full": 6.67
+     "bear": 1.61,
+     "base": 5.13,
+     "full": 6.63
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6307,29 +6399,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00147
+    "selftest_max_dev": 0.00148
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.118103,
+    "sigma_h": 0.118888,
     "mu_h": 0.009479,
     "G": {
      "bear": 0.86,
-     "base": 2.76,
-     "full": 3.57
+     "base": 2.74,
+     "full": 3.54
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.2006,
-     "base": 0.0067,
-     "full": 0.0015
+     "bear": 0.1973,
+     "base": 0.0077,
+     "full": 0.002
     },
     "p_touch": {
-     "bear": 0.349,
-     "base": 0.0109,
-     "full": 0.0027
+     "bear": 0.3422,
+     "base": 0.0127,
+     "full": 0.0032
     },
     "required_cagr": {
      "bear": 0.5043,
@@ -6339,7 +6431,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00102
+    "selftest_max_dev": 0.00147
    },
    "market": "AE"
   },
@@ -7084,7 +7176,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -72.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -7095,12 +7187,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.026253,
+    "sigma_h": 0.026428,
     "mu_h": 0.002969,
     "G": {
-     "bear": -60.31,
-     "base": -49.17,
-     "full": -35.41
+     "bear": -59.92,
+     "base": -48.85,
+     "full": -35.17
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7115,16 +7207,16 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00046
+    "selftest_max_dev": 0.00077
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.058513,
+    "sigma_h": 0.058902,
     "mu_h": 0.009273,
     "G": {
-     "bear": -27.06,
-     "base": -22.06,
-     "full": -15.89
+     "bear": -26.88,
+     "base": -21.92,
+     "full": -15.78
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7139,7 +7231,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00049
+    "selftest_max_dev": 0.00071
    },
    "market": "AE"
   },
@@ -7252,7 +7344,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -0.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 10.0,
+    "nu": 8.0,
     "width_cal": 0.979,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -7263,25 +7355,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.086261,
+    "sigma_h": 0.086834,
     "mu_h": 0.002821,
     "G": {
-     "bear": -2.09,
+     "bear": -2.08,
      "base": -0.01,
-     "full": 1.72
+     "full": 1.71
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0194,
-     "base": 0.4834,
-     "full": 0.0446
+     "bear": 0.0203,
+     "base": 0.4831,
+     "full": 0.0447
     },
     "p_touch": {
-     "bear": 0.0296,
-     "base": 0.866,
-     "full": 0.0672
+     "bear": 0.0315,
+     "base": 0.8658,
+     "full": 0.07
     },
     "required_cagr": {
      "bear": -0.8855,
@@ -7291,14 +7383,14 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00158
+    "selftest_max_dev": 0.00245
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.15362,
+    "sigma_h": 0.154641,
     "mu_h": 0.009838,
     "G": {
-     "bear": -1.18,
+     "bear": -1.17,
      "base": -0.0,
      "full": 0.96
     },
@@ -7306,14 +7398,14 @@ const FV_OVERLAY = {
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0979,
-     "base": 0.4708,
-     "full": 0.169
+     "bear": 0.0964,
+     "base": 0.4703,
+     "full": 0.1661
     },
     "p_touch": {
-     "bear": 0.1753,
-     "base": 0.9204,
-     "full": 0.294
+     "bear": 0.1732,
+     "base": 0.9201,
+     "full": 0.2899
     },
     "required_cagr": {
      "bear": -0.5145,
@@ -7323,7 +7415,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
+    "selftest_max_dev": 0.00201
    },
    "market": "AE"
   }

@@ -49,13 +49,13 @@ const TICKERS = {
     levels: { res:[5.40, 5.62, 6.03], sup:[3.80, 3.68, 3.60] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 5.24 above a falling 20-day (5.09), a rising 50-day (5.20) and a rising 200-day (4.82). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.15 (~2.9%) points to a normal tape. MACD (12·26·9) is below zero but turning up (−0.02 / −0.06 / +0.04). Over the last year it has ranged 3.63–6.03; the last close sits 13% below that high and 44% above that low.",
+      summary: "The price closed 5.24 above a falling 20-day (5.09), a rising 50-day (5.20) and a rising 200-day (4.82). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.15 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.06 / +0.04). Over the last year it has ranged 3.63\u20136.03; the last close sits 13% below that high and 44% above that low.",
       bull: "A daily close back above 5.40 would clear the nearest resistance and open the 6.03 zone.",
       bear: "A close below 3.80 would break the nearest support and open the 3.60 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-09" }
+      mc:   { data:"2026-08-07", computed:"2026-08-17" },
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
       study: "files/AIRARABIA_Valuation_Study_09-08-2026.pdf?v=0817a",
