@@ -463,23 +463,29 @@ ETR25 = inp('etr_fy25', 0.14, FS25 + ', note 28: effective tax rate of 14% (2024
 ETR_H1_26 = inp('etr_h1_26', 24.101 / 171.084, IH26 + ': income tax and zakat of USD 24,101 '
                 'thousand on profit before tax of USD 171,084 thousand', '2026-06-30', 'Company')
 
-BETA = inp('beta', 0.894, 'Ordinary least squares regression of 182 complete weekly logarithmic '
-           'returns of the company\'s own shares against the Tadawul All Share Index, windows '
-           'labelled 30 December 2022 to 17 July 2026 — no observation after the 7 August 2026 '
-           'price anchor enters the sample, and the count is the number of Fridays on which '
-           'both series have a complete week after holiday alignment. Standard error 0.193, '
-           't-statistic 4.63, R-squared 10.6%; the '
-           'regression clears the usability gate of at least 24 observations, R-squared of at '
-           'least 5% and a standard error below the absolute coefficient. Americana is '
-           'concurrently listed on the Abu Dhabi Securities Exchange and the Saudi Exchange, so '
-           'this is the company\'s own share price against the index of one of its two home '
-           'markets; both currencies are pegged to the US dollar. A daily history for the Abu '
-           'Dhabi index could not be obtained from any machine-readable source reachable for '
-           'this study, and the substitution is recorded rather than hidden. Cross-checks: the '
-           'Abu Dhabi line against an equally weighted composite of eighteen covered UAE names '
-           'gives 0.603, and two UAE-listed consumer peers give a median of 0.583 — both below '
-           'the adopted figure, so the adopted beta is the conservative one.',
-           '2026-08-09', 'Market')
+BETA = inp('beta', 0.930, 'Ordinary least squares regression of 183 complete weekly logarithmic '
+           'returns of the company\'s own Abu Dhabi-listed shares against the FTSE ADX General '
+           'Index — the published index of the exchange those shares trade on — over windows '
+           'labelled 30 December 2022 to 17 July 2026, which is the whole life of the listing, '
+           'the company having floated in December 2022. The figure carries the Dimson lead-lag '
+           'correction, and both series pass the data-quality screen first. Standard error '
+           '0.412, R-squared 8.4%: it clears the usability gate of at least 24 observations, '
+           'R-squared of at least 5% and a standard error below the absolute coefficient, but '
+           'only just, and the imprecision is the honest headline — a 90% confidence interval '
+           'runs from 0.25 to 1.61, so this estimate cannot be told apart from most plausible '
+           'alternatives. A Blume adjustment towards the market gives 0.953, close enough to '
+           'confirm the level. The index is quoted in dirhams, the same currency the shares '
+           'trade in, and strikes at the same closing auction on the same exchange. Cross-checks '
+           'from earlier editions of this study, all disclosed and none adopted, and every one '
+           'now known to be non-conforming: the company\'s Riyadh line against the Saudi index '
+           'gave 0.894 — a different country\'s market cycle, and the input the first edition '
+           'used before the Abu Dhabi index was available; an equally weighted composite of '
+           'eighteen covered UAE names gave 0.586; and a US-listed UAE index fund, which prices '
+           'hours after the Abu Dhabi close, gave 0.469. The composite and the fund understated '
+           'the beta by roughly half. A composite is not a substitute and not a tier: it is a '
+           'coverage artefact that changes whenever a stock is added, it mixes two exchanges '
+           'inside one market code, and it shares its constituents with the company being '
+           'priced.', '2026-08-10', 'Market')
 
 KD = inp('cost_of_debt', 40.867 / ((578.831 + 637.466) / 2),
          'The group\'s own incremental borrowing rate, read out of its lease accounting: '
@@ -1459,6 +1465,7 @@ OUT = dict(
     wacc=dict(rf_ust=UST10, us_default_spread=US_DEFAULT_SPREAD, us_cds=US_CDS,
               rf_rating=RF_RATING, rf_cds=RF_CDS,
               erp_rating=ERP_BLEND_RATING, erp_cds=ERP_BLEND_CDS,
+              beta_provenance=json.load(open(os.path.join(HERE, 'beta_result.json'))),
               beta=BETA, ke_rating=KE_RATING, ke_cds=KE_CDS, ke_terminal=KE_TERM,
               kd=KD, kd_fy24=KD_FY24, kd_after_tax=KD_AT,
               debt_weight=WD, equity_weight=WE,
