@@ -1136,9 +1136,9 @@
    "ring": "Global"
   },
   "beta_raw": {
-   "value": 0.664,
-   "source": "Own-stock 5-year weekly regression against an equal-weight ADX composite built from the full committed 18-name UAE price library; n=249 weekly observations, R-squared 0.160, standard error 0.097, 90% interval 0.50 to 0.82. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. Source: engine/adnocdrill_study/beta_reg.py",
-   "date": "2026-08-07",
+   "value": 0.795,
+   "source": "Own-stock 5-year weekly regression against the FTSE ADX General Index \u2014 the headline index of the exchange the stock actually trades on, held at engine/raw_indices/AE/ADXGENERAL.csv (3,884 sessions, 02-Jan-2011 to 24-Jul-2026, screened for blanks, duplicate dates, limit-exceeding single-session moves and trading-day density before use). n=247 weekly observations, R-squared 0.128, standard error 0.133, 90% interval 0.58 to 1.01. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. SUPERSEDES a prior 0.664 measured against an equal-weight composite of the 18-name UAE price library; that composite under-weights the large-capitalisation names the published index is concentrated in, and it is retained as a robustness check rather than as the regressor. The index series ends 24-Jul-2026 against a 07-Aug-2026 price anchor, a 14-day gap that costs the regression two of roughly 250 weekly observations. Source: engine/adnocdrill_study/beta_reg.py",
+   "date": "2026-07-24",
    "ring": "Market"
   },
   "esc_wages": {
@@ -1576,11 +1576,11 @@
   "rf_observed": 0.0469,
   "us_default_spread": 0.0023,
   "rf_star": 0.0446,
-  "beta": 0.664,
+  "beta": 0.795,
   "erp_rating": 0.0487,
   "erp_cds": 0.0493,
-  "ke_rating": 0.0769368,
-  "ke_cds": 0.07733519999999999,
+  "ke_rating": 0.0833165,
+  "ke_cds": 0.08379349999999999,
   "kd_candidates": {
    "term_matched": 0.0515,
    "spot_floating": 0.044,
@@ -1597,9 +1597,9 @@
   "net_debt": 2158539.0,
   "weight_equity": 0.9229794147432171,
   "weight_debt": 0.0770205852567829,
-  "wacc_rating": 0.07462065236427508,
-  "wacc_cds": 0.07498836736310877,
-  "wacc_used": 0.07462065236427508
+  "wacc_rating": 0.08050898413651238,
+  "wacc_cds": 0.08094924531734489,
+  "wacc_used": 0.08050898413651238
  },
  "market": {
   "spot_aed": 5.94,
@@ -1659,8 +1659,8 @@
      "working_capital": 290185.375186504,
      "delta_wc": 26874.37518650398,
      "fcff": 1326552.1916957153,
-     "discount_factor": 0.9305609358985405,
-     "pv_fcff": 1234437.6490226248,
+     "discount_factor": 0.9254897596239322,
+     "pv_fcff": 1227710.469021068,
      "ppe_open": 5533656.0,
      "ppe_close": 5706830.695585906,
      "interest": 119305.93,
@@ -1749,8 +1749,8 @@
      "working_capital": 304899.00626062724,
      "delta_wc": 14713.63107412326,
      "fcff": 1513493.198240063,
-     "discount_factor": 0.8659436554203676,
-     "pv_fcff": 1310599.8325378632,
+     "discount_factor": 0.8565312951687639,
+     "pv_fcff": 1296354.2893176759,
      "ppe_open": 5706830.695585906,
      "ppe_close": 5763518.495036803,
      "interest": 119305.93,
@@ -1839,8 +1839,8 @@
      "working_capital": 316348.1418600614,
      "delta_wc": 11449.135599434143,
      "fcff": 1683444.0942333203,
-     "discount_factor": 0.8058133384233803,
-     "pv_fcff": 1356541.7056232756,
+     "discount_factor": 0.7927109424761146,
+     "pv_fcff": 1334484.5545455446,
      "ppe_open": 5763518.495036803,
      "ppe_close": 5734809.398258105,
      "interest": 119305.93,
@@ -1929,8 +1929,8 @@
      "working_capital": 329081.4504192523,
      "delta_wc": 12733.30855919089,
      "fcff": 1852939.2454825477,
-     "discount_factor": 0.7498584143627882,
-     "pv_fcff": 1389442.0845281244,
+     "discount_factor": 0.73364585960348,
+     "pv_fcff": 1359401.2055450673,
      "ppe_open": 5734809.398258105,
      "ppe_close": 5608833.517756293,
      "interest": 119305.93,
@@ -2019,8 +2019,8 @@
      "working_capital": 339440.34521130123,
      "delta_wc": 10358.894792048959,
      "fcff": 1945874.9890763436,
-     "discount_factor": 0.6977889478608318,
-     "pv_fcff": 1357810.0612962893,
+     "discount_factor": 0.6789817302535179,
+     "pv_fcff": 1321213.566940101,
      "ppe_open": 5608833.517756293,
      "ppe_close": 5454851.024916127,
      "interest": 119305.93,
@@ -2069,14 +2069,14 @@
    "terminal_roic": 0.18,
    "terminal_nopat": 1847307.6758039333,
    "reinvestment_rate": 0.1388888888888889,
-   "terminal_value": 32057965.57444855,
-   "pv_terminal": 22369694.06875322,
-   "pv_explicit": 6648831.333008178,
-   "enterprise_value": 29018525.401761398,
-   "tv_pct_of_ev": 0.7708763198351699,
-   "equity_value": 27205591.401761398,
-   "value_per_share_usd": 1.7011308132567513,
-   "value_per_share_aed": 6.247402911685419
+   "terminal_value": 28657291.96851332,
+   "pv_terminal": 19457777.68516142,
+   "pv_explicit": 6539164.085369457,
+   "enterprise_value": 25996941.770530876,
+   "tv_pct_of_ev": 0.7484641023129113,
+   "equity_value": 24184007.770530876,
+   "value_per_share_usd": 1.5121950557497237,
+   "value_per_share_aed": 5.55353634224086
   },
   "B": {
    "case": "B",
@@ -2126,8 +2126,8 @@
      "working_capital": 290185.375186504,
      "delta_wc": 26874.37518650398,
      "fcff": 1326552.1916957153,
-     "discount_factor": 0.9305609358985405,
-     "pv_fcff": 1234437.6490226248,
+     "discount_factor": 0.9254897596239322,
+     "pv_fcff": 1227710.469021068,
      "ppe_open": 5533656.0,
      "ppe_close": 5706830.695585906,
      "interest": 119305.93,
@@ -2216,8 +2216,8 @@
      "working_capital": 298673.7061809773,
      "delta_wc": 8488.330994473305,
      "fcff": 1582188.0091385012,
-     "discount_factor": 0.8659436554203676,
-     "pv_fcff": 1370085.6681956677,
+     "discount_factor": 0.8565312951687639,
+     "pv_fcff": 1355193.5446678887,
      "ppe_open": 5706830.695585906,
      "ppe_close": 5683518.495036803,
      "interest": 119305.93,
@@ -2306,8 +2306,8 @@
      "working_capital": 298936.05554926733,
      "delta_wc": 262.34936829004437,
      "fcff": 1756777.2733527916,
-     "discount_factor": 0.8058133384233803,
-     "pv_fcff": 1415634.5595067362,
+     "discount_factor": 0.7927109424761146,
+     "pv_fcff": 1392616.5680801102,
      "ppe_open": 5683518.495036803,
      "ppe_close": 5542425.705515572,
      "interest": 119305.93,
@@ -2396,8 +2396,8 @@
      "working_capital": 301472.0094192468,
      "delta_wc": 2535.9538699794794,
      "fcff": 1885254.9567423197,
-     "discount_factor": 0.7498584143627882,
-     "pv_fcff": 1413674.2925323828,
+     "discount_factor": 0.73364585960348,
+     "pv_fcff": 1383109.4933109407,
      "ppe_open": 5542425.705515572,
      "ppe_close": 5314765.491454426,
      "interest": 119305.93,
@@ -2486,8 +2486,8 @@
      "working_capital": 305994.08956053545,
      "delta_wc": 4522.080141288636,
      "fcff": 1923552.1951668966,
-     "discount_factor": 0.6977889478608318,
-     "pv_fcff": 1342233.4624209022,
+     "discount_factor": 0.6789817302535179,
+     "pv_fcff": 1306056.797707372,
      "ppe_open": 5314765.491454426,
      "ppe_close": 5088779.404150661,
      "interest": 119305.93,
@@ -2536,14 +2536,14 @@
    "terminal_roic": 0.18,
    "terminal_nopat": 1727619.5108244866,
    "reinvestment_rate": 0.08333333333333333,
-   "terminal_value": 26562124.959315423,
-   "pv_terminal": 18534757.228308648,
-   "pv_explicit": 6776065.631678314,
-   "enterprise_value": 25310822.85998696,
-   "tv_pct_of_ev": 0.7322858419435122,
-   "equity_value": 23497888.85998696,
-   "value_per_share_usd": 1.469292918352746,
-   "value_per_share_aed": 5.395978242650459
+   "terminal_value": 24174565.35359565,
+   "pv_terminal": 16414088.211911123,
+   "pv_explicit": 6664686.87278738,
+   "enterprise_value": 23078775.084698502,
+   "tv_pct_of_ev": 0.7112200778278678,
+   "equity_value": 21265841.084698502,
+   "value_per_share_usd": 1.3297258274877943,
+   "value_per_share_aed": 4.883418101448925
   }
  },
  "relative": {
@@ -2742,13 +2742,13 @@
  "book": {
   "roe_fy25": 0.36634034521354814,
   "roe_sustainable": 0.3674356711161862,
-  "justified_pb": 6.593314780968142,
-  "cost_of_equity": 0.0769368,
+  "justified_pb": 5.872020287846255,
+  "cost_of_equity": 0.0833165,
   "growth": 0.025,
   "book_equity": 4233719.0,
-  "equity_value": 27914242.06116566,
-  "value_per_share_usd": 1.7454418320743483,
-  "value_per_share_aed": 6.410135128293044,
+  "equity_value": 24860483.86104016,
+  "value_per_share_usd": 1.5544942399505972,
+  "value_per_share_aed": 5.708880096218568,
   "current_pb": 6.109744804924233
  },
  "normalised": {
@@ -2765,19 +2765,19 @@
   "dna": 391991.2464200824,
   "ebit": 1708117.2059428443,
   "nopat": 1554386.6574079883,
-  "capitalisation_rate": 0.05962065236427508,
-  "enterprise_value": 26071278.923800953,
-  "equity_value": 24258344.923800953,
-  "value_per_share_usd": 1.5168432628087083,
-  "value_per_share_aed": 5.570606882664981
+  "capitalisation_rate": 0.06550898413651238,
+  "enterprise_value": 23727839.43907365,
+  "equity_value": 21914905.43907365,
+  "value_per_share_usd": 1.370310990909115,
+  "value_per_share_aed": 5.032467114113724
  },
  "sensitivity": {
   "wacc_grid": [
-   0.064621,
-   0.069621,
-   0.074621,
-   0.079621,
-   0.084621
+   0.070509,
+   0.075509,
+   0.080509,
+   0.085509,
+   0.090509
   ],
   "g_grid": [
    0.01,
@@ -2788,61 +2788,61 @@
   ],
   "matrix": [
    [
-    6.439473892704435,
-    6.828836475852107,
-    7.303575178495154,
-    7.896012299223474,
-    8.657142213453122
+    5.769166086163977,
+    6.062699876390865,
+    6.412729861015036,
+    6.837877475707652,
+    7.365957883791108
    ],
    [
-    5.86179219004092,
-    6.167691868302923,
-    6.533583992603078,
-    6.979635898737802,
-    7.53619504708212
+    5.294433301743014,
+    5.5289157579540085,
+    5.804201257221636,
+    6.132407355740817,
+    6.5309769546689775
    ],
    [
-    5.373388977815597,
-    5.617194738766592,
-    5.904167753049582,
-    6.2473571087518565,
-    6.665660749023269
+    4.8869298185536,
+    5.076403732773973,
+    5.295900983486154,
+    5.553534670320419,
+    5.860630429140301
    ],
    [
-    4.955035063878917,
-    5.151671126876438,
-    5.379973582807436,
-    5.648638645472497,
-    5.969867582500469
+    4.53330570271436,
+    4.687882638175869,
+    4.864891506686237,
+    5.069893117310771,
+    5.310451849370167
    ],
    [
-    4.5926548285967,
-    4.752822038737026,
-    4.93658968054318,
-    5.149895367859067,
-    5.400850828456897
+    4.223527178768087,
+    4.350648222464476,
+    4.494741103123664,
+    4.659691966991841,
+    4.8506714456797635
    ]
   ],
   "margin_shift": [
    {
     "shift": -0.04,
-    "aed": 5.471874275925205
+    "aed": 4.8583974087636514
    },
    {
     "shift": -0.02,
-    "aed": 5.859638593805311
+    "aed": 5.205966875502256
    },
    {
     "shift": 0.0,
-    "aed": 6.247402911685418
+    "aed": 5.55353634224086
    },
    {
     "shift": 0.02,
-    "aed": 6.635167229565526
+    "aed": 5.901105808979465
    },
    {
     "shift": 0.04,
-    "aed": 7.022931547445633
+    "aed": 6.248675275718069
    }
   ],
   "beta_grid": [
@@ -2851,30 +2851,30 @@
     "aed": 7.387409647763772
    },
    {
-    "beta": 0.6,
-    "aed": 6.6496603564905215
-   },
-   {
     "beta": 0.664,
     "aed": 6.247402911685418
    },
    {
-    "beta": 0.8,
-    "aed": 5.52994449165278
+    "beta": 0.795,
+    "aed": 5.55353634224086
    },
    {
-    "beta": 1.0,
-    "aed": 4.7199599381143225
+    "beta": 0.9,
+    "aed": 5.094898154178789
+   },
+   {
+    "beta": 1.01,
+    "aed": 4.685293656086891
    }
   ]
  },
  "fair_value": {
   "by_lens": {
-   "dcf_A": 6.247402911685419,
-   "dcf_B": 5.395978242650459,
+   "dcf_A": 5.55353634224086,
+   "dcf_B": 4.883418101448925,
    "relative": 4.058492332329408,
-   "book": 6.410135128293044,
-   "normalised": 5.570606882664981
+   "book": 5.708880096218568,
+   "normalised": 5.032467114113724
   },
   "weights": {
    "dcf_A": 0.25,
@@ -2883,21 +2883,21 @@
    "book": 0.15,
    "normalised": 0.15
   },
-  "central": 5.519655056693554,
+  "central": 5.032139158938172,
   "low": 4.058492332329408,
-  "high": 6.410135128293044,
+  "high": 5.708880096218568,
   "spot": 5.94,
-  "upside_central": -0.07076514197078221,
+  "upside_central": -0.1528385254312843,
   "lens_range": {
    "dcf_A": {
-    "bear": 5.648676479469689,
-    "base": 6.247402911685419,
-    "bull": 6.979692495465288
+    "bear": 5.069894525638941,
+    "base": 5.55353634224086,
+    "bull": 6.132409373287555
    },
    "dcf_B": {
-    "bear": 4.954797022996693,
-    "base": 5.395978242650459,
-    "bull": 5.917443513705311
+    "bear": 4.515000834928367,
+    "base": 4.883418101448925,
+    "bull": 5.312300636475432
    },
    "relative": {
     "bear": 3.072625032470192,
@@ -2905,20 +2905,20 @@
     "bull": 4.764959157932728
    },
    "book": {
-    "bear": 5.847218426942332,
-    "base": 6.410135128293044,
-    "bull": 7.092982609192152
+    "bear": 5.25805921254539,
+    "base": 5.708880096218568,
+    "bull": 6.24425658344284
    },
    "normalised": {
-    "bear": 5.243458168375043,
-    "base": 5.570606882664981,
-    "bull": 5.897755596954919
+    "bear": 4.734724445330244,
+    "base": 5.032467114113724,
+    "bull": 5.330209782897206
    }
   },
   "central_range": {
-   "bear": 4.928994871408241,
-   "base": 5.519655056693554,
-   "bull": 6.125886564801255
+   "bear": 4.509666395317211,
+   "base": 5.032139158938172,
+   "bull": 5.550339288978299
   }
  },
  "register": [
@@ -4045,9 +4045,9 @@
    "ring": "Global"
   },
   {
-   "value": 0.664,
-   "source": "Own-stock 5-year weekly regression against an equal-weight ADX composite built from the full committed 18-name UAE price library; n=249 weekly observations, R-squared 0.160, standard error 0.097, 90% interval 0.50 to 0.82. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. Source: engine/adnocdrill_study/beta_reg.py",
-   "date": "2026-08-07",
+   "value": 0.795,
+   "source": "Own-stock 5-year weekly regression against the FTSE ADX General Index \u2014 the headline index of the exchange the stock actually trades on, held at engine/raw_indices/AE/ADXGENERAL.csv (3,884 sessions, 02-Jan-2011 to 24-Jul-2026, screened for blanks, duplicate dates, limit-exceeding single-session moves and trading-day density before use). n=247 weekly observations, R-squared 0.128, standard error 0.133, 90% interval 0.58 to 1.01. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. SUPERSEDES a prior 0.664 measured against an equal-weight composite of the 18-name UAE price library; that composite under-weights the large-capitalisation names the published index is concentrated in, and it is retained as a robustness check rather than as the regressor. The index series ends 24-Jul-2026 against a 07-Aug-2026 price anchor, a 14-day gap that costs the regression two of roughly 250 weekly observations. Source: engine/adnocdrill_study/beta_reg.py",
+   "date": "2026-07-24",
    "ring": "Market"
   },
   {

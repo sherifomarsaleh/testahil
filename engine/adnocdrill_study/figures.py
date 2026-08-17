@@ -60,6 +60,10 @@ band = dict(LR); band['central'] = CR
 fig, ax = plt.subplots(figsize=(9.8, 4.6), dpi=120)
 xmax = max(band[k]['bull'] for k in keys)
 xmin = min(band[k]['bear'] for k in keys)
+# Labels sit in a single column to the right of the WIDEST bar and of the
+# market-price line, not at each bar's own end — otherwise the vertical price
+# line runs straight through whichever label happens to start behind it.
+label_x = max(xmax, spot) + 0.04 * (xmax - xmin)
 for i, k in enumerate(keys):
     y = len(keys) - 1 - i
     b, ba, bu = band[k]['bear'], band[k]['base'], band[k]['bull']
@@ -67,7 +71,7 @@ for i, k in enumerate(keys):
     ax.barh(y, bu - b, left=b, height=0.46, color=col,
             alpha=0.52 if k == 'central' else 0.32, edgecolor=col, linewidth=1.1)
     ax.plot([ba, ba], [y - 0.23, y + 0.23], color=BRASS, lw=3.4)
-    ax.text(bu + 0.02 * (xmax - xmin), y, f'{b:.2f}–{bu:.2f} · base {ba:.2f}',
+    ax.text(label_x, y, f'{b:.2f}–{bu:.2f} · base {ba:.2f}',
             va='center', fontsize=8.6, color=INK)
 ax.axvline(spot, color=INK, lw=1.6)
 ax.text(spot + 0.008 * (xmax - xmin), -0.72, f'market price {spot:.2f}', color=INK, fontsize=9,
@@ -100,9 +104,8 @@ ax.set_yticks(range(len(S['wacc_grid'])))
 ax.set_yticklabels([f'{x*100:.2f}%' for x in S['wacc_grid']])
 ax.set_xlabel('terminal growth rate')
 ax.set_ylabel('weighted average cost of capital')
-ax.set_title(f'Discounted-cash-flow value (AED/share), continued-expansion case — '
-             f'bold cells lie within AED 0.20 of the market price {spot:.2f}',
-             fontsize=9.6, pad=8)
+ax.set_title(f'Value (AED/share), continued-expansion case — bold is within AED 0.20 of '
+             f'the market price {spot:.2f}', fontsize=9.4, pad=8)
 ax.grid(False)
 fig.tight_layout()
 save(fig, 'fig2_sens.png')
@@ -235,17 +238,18 @@ lo = [e['range'][0] for e in EX['experts']]
 base_ = [e['base'] for e in EX['experts']]
 hi = [e['range'][1] for e in EX['experts']]
 ys = np.arange(len(labels))[::-1]
+ex_label_x = max(max(hi), spot) + 0.06        # clear of the market-price line
 for y, l_, b_, h_ in zip(ys, lo, base_, hi):
     ax.plot([l_, h_], [y, y], color=SAGE, lw=7, solid_capstyle='butt', alpha=0.45)
     ax.plot([b_, b_], [y - 0.18, y + 0.18], color=BRASS, lw=3.2)
-    ax.text(h_ + 0.06, y, f'{l_:.2f}–{h_:.2f} · base {b_:.2f}', va='center', fontsize=8.6,
+    ax.text(ex_label_x, y, f'{l_:.2f}–{h_:.2f} · base {b_:.2f}', va='center', fontsize=8.6,
             color=INK)
 ax.axvline(spot, color=INK, lw=1.5)
 ax.text(spot + 0.03, -0.78, f'market price {spot:.2f}', fontsize=8.8, color=INK, va='top')
 ax.set_yticks(ys)
 ax.set_yticklabels(labels, fontsize=9)
 ax.set_xlabel('AED per share')
-ax.set_xlim(min(lo) - 0.25, max(hi) + 1.35)
+ax.set_xlim(min(lo) - 0.25, ex_label_x + 1.30)
 ax.set_ylim(-1.15, len(labels) - 0.45)
 ax.set_title('Three independent valuations of the same company, by method', fontsize=10, pad=8)
 style(ax)

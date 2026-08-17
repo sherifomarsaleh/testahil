@@ -416,13 +416,21 @@ INP = dict(
                       f"marginal borrowing margin", "2025-10-16", "Company"),
     sofr_spot=I(0.0365, "Secured Overnight Financing Rate, New York Fed via the St. Louis Fed "
                 "(series SOFR), 06-Aug-2026", "2026-08-06", "Global"),
-    beta_raw=I(0.664, "Own-stock 5-year weekly regression against an equal-weight ADX composite "
-               "built from the full committed 18-name UAE price library; n=249 weekly "
-               "observations, R-squared 0.160, standard error 0.097, 90% interval 0.50 to 0.82. "
-               "Clears the regression usability gate (n>=24, R-squared>=5%, standard error below "
-               "the absolute beta), so the first tier of the beta hierarchy applies and no peer "
-               "beta is needed. Source: engine/adnocdrill_study/beta_reg.py", "2026-08-07",
-               "Market"),
+    beta_raw=I(0.795, "Own-stock 5-year weekly regression against the FTSE ADX General Index — "
+               "the headline index of the exchange the stock actually trades on, held at "
+               "engine/raw_indices/AE/ADXGENERAL.csv (3,884 sessions, 02-Jan-2011 to "
+               "24-Jul-2026, screened for blanks, duplicate dates, limit-exceeding single-session "
+               "moves and trading-day density before use). n=247 weekly observations, R-squared "
+               "0.128, standard error 0.133, 90% interval 0.58 to 1.01. Clears the regression "
+               "usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so "
+               "the first tier of the beta hierarchy applies and no peer beta is needed. "
+               "SUPERSEDES a prior 0.664 measured against an equal-weight composite of the "
+               "18-name UAE price library; that composite under-weights the large-capitalisation "
+               "names the published index is concentrated in, and it is retained as a robustness "
+               "check rather than as the regressor. The index series ends 24-Jul-2026 against a "
+               "07-Aug-2026 price anchor, a 14-day gap that costs the regression two of roughly "
+               "250 weekly observations. Source: engine/adnocdrill_study/beta_reg.py",
+               "2026-07-24", "Market"),
 
     # ---------------- cost escalators, one per driver class ------------------
     esc_wages=I(0.020, "Staff-cost escalator. United Arab Emirates consumer price inflation ran "
@@ -1035,7 +1043,10 @@ SENS = dict(
                     aed=revalue(wacc=(mkt_cap / (mkt_cap + net_debt_now))
                                 * (rf_star + b * V('erp_rating'))
                                 + (net_debt_now / (mkt_cap + net_debt_now)) * kd_after_tax))
-               for b in (0.50, 0.60, 0.664, 0.80, 1.00)],
+               # The grid spans the whole robustness set: the equal-weight-composite
+               # beta at the bottom, the adopted index beta in the middle, and the
+               # top of its own 90% interval — which reaches 1.01 — at the top.
+               for b in (0.50, 0.664, 0.795, 0.90, 1.01)],
 )
 
 # ============================ ASSERTS ========================================

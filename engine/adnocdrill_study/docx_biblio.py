@@ -82,6 +82,13 @@ DOCS = [
     ('Daily price history, October 2021 to 7 August 2026', 'Market data',
      '1,215 sessions, screened for corporate actions and non-trading rows before use',
      '7 August 2026', 'Supplied price file'),
+    (f'{BETA["regressor"]} daily history, January 2011 to July 2026', 'Market data',
+     f'{BETA["regressor_rows"]:,} sessions; screened before use for blank prices, duplicate '
+     f'dates, any single-session move beyond the exchange limit, and trading-day density '
+     f'against the real exchange calendar ({min(BETA["regressor_density"].values())}–'
+     f'{max(BETA["regressor_density"].values())} sessions a year, 2021–2025). It is the '
+     f'regressor for the equity beta',
+     '24 July 2026', 'Supplied index file'),
 ]
 for r in DOCS:
     rows.append(list(r))
@@ -145,13 +152,23 @@ JUD = [
      'The company has explicitly declined to guide beyond 2026 until phasing is fixed, so there '
      'is no evidential basis on which to prefer one',
      'Published 2027 and medium-term guidance'),
-    ('The beta is the company\'s own regression',
-     f'{BETA["beta"]:.3f}, from a five-year weekly regression against a local composite',
+    ('The beta is regressed against the published index, not a constructed composite',
+     f'{BETA["beta"]:.3f}, from a five-year weekly regression against the {BETA["regressor"]}',
      f'The listing dates from October 2021, so a full five-year window exists and clears the '
      f'usability standard: {BETA["n"]} observations, R-squared {BETA["r2"]:.3f}, standard error '
-     f'{BETA["se"]:.3f}',
+     f'{BETA["se"]:.3f}. This SUPERSEDES an earlier '
+     f'{BETA["robustness"]["weekly_5yr_vs_equal_weight_composite"]["beta"]:.3f} measured against '
+     f'an equal-weight composite of the market\'s listed names. A composite of that kind '
+     f'under-weights the large-capitalisation constituents the published index is concentrated '
+     f'in, and the difference is worth '
+     f'{BETA["beta"] - BETA["robustness"]["weekly_5yr_vs_equal_weight_composite"]["beta"]:+.3f} '
+     f'of beta despite a weekly return correlation of '
+     f'{BETA["composite_vs_index_correlation"]:.2f} between the two series',
      'A materially different beta from a longer record, or a stress episode that breaks the '
-     'historical correlation. The valuation is more sensitive to this than to any other input'),
+     'historical correlation. The valuation is more sensitive to this than to any other input, '
+     'and the estimate is not stable across windows — the three-year run gives '
+     f'{BETA["robustness"]["weekly_3yr_vs_index"]["beta"]:.3f} and the monthly run '
+     f'{BETA["robustness"]["monthly_5yr_vs_index"]["beta"]:.3f}'),
     ('The cost of debt is term-matched, not spot',
      f'{D["wacc"]["kd_pretax"]*100:.2f}%, the five-year Treasury yield plus the company\'s own '
      f'0.75% facility margin',
@@ -246,6 +263,13 @@ NEG = [
      'Not required for the valuation, which is built in US dollars because the cash flows are. '
      'A dirham-basis cross-check would need this curve and is therefore not published rather '
      'than being estimated'),
+    ('An index series running to the valuation anchor',
+     'The supplied index history for the exchange',
+     f'Obtained, but it ends {BETA["index_asof"]} against a price anchor of '
+     f'{BETA["price_asof"]} — a {BETA["asof_gap_days"]}-day gap',
+     'Used as it stands. The regression\'s overlap simply ends at the index\'s last full week, '
+     'costing two of roughly 250 weekly observations, which does not move the estimate. The gap '
+     'is stated in the study and the index should be refreshed alongside the price series'),
     ('Peer rig counts, to compute enterprise value per rig',
      'Peer disclosures',
      'Not gathered. Collecting rig counts on a consistent definition across thirteen peers was '

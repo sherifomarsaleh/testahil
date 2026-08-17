@@ -86,9 +86,10 @@ H_1('Headline')
 P(f'ADNOC Drilling trades at AED {SPOT:.2f}. Five independent lenses put fair value between '
   f'AED {FV["low"]:.2f} and AED {FV["high"]:.2f}, with a weighted central of '
   f'AED {FV["central"]:.2f} — {pc(abs(FV["upside_central"]))} '
-  f'{"below" if FV["upside_central"] < 0 else "above"} the market. The company is not '
-  f'mispriced by a wide margin; it is priced for the continuation of a programme that its own '
-  f'customer has not yet extended beyond 2027.')
+  f'{"below" if FV["upside_central"] < 0 else "above"} the market — and the market price sits '
+  f'above every one of the five lenses. The company is priced for the continuation of a '
+  f'programme that its own customer has not yet extended beyond 2027, and for a cost of capital '
+  f'at the defensive end of what its own trading record supports.')
 P('Three things carry the analysis.', bold=True, space_after=3)
 d.bullet('The business is an exceptional operator on almost any measure. Revenue compounded '
          f'from USD {bn(H["2023"]["revenue"])}bn in 2023 to USD {bn(H["2025"]["revenue"])}bn in '
@@ -335,11 +336,16 @@ rows.append(['Value per share (AED)', '', '', f'{NORM["value_per_share_aed"]:.2f
 T(rows, [2.90, 0.85, 1.75, 1.55], band_rows={6, 7, 9, 10, 11, 12})
 
 H_2('1.5 Synthesis — four lenses, one field')
-P(f'The five readings span AED {FV["low"]:.2f} to AED {FV["high"]:.2f}. That is a wide field, '
-  'and the width is informative rather than embarrassing: the asset-and-multiple lenses sit '
-  'below the market and the cash-flow-and-franchise lenses sit at or above it, which is exactly '
-  'what happens when a company earns an exceptional return on a modest asset base. The market '
-  'price sits inside the field, above the weighted central and below the top of it.')
+P(f'The five readings span AED {FV["low"]:.2f} to AED {FV["high"]:.2f}, and the width is '
+  'informative rather than embarrassing: the multiple lens sits well below the rest because it '
+  'reads the company as one of a class of drillers, while the cash-flow and franchise lenses '
+  'read it as a business earning an exceptional return on a modest asset base. What has changed '
+  'since the cost of capital was rebuilt on the published index is where the market price sits '
+  f'relative to that field. At a cost of capital of {pc(W["wacc_rating"], 2)} the market price '
+  f'of AED {SPOT:.2f} is above every one of the five lenses, not merely above the weighted central. That is a '
+  'stronger statement than this study made on a lower beta, and it rests on a single input — so '
+  'the beta table in section 1.8 and the beta row of the sensitivity in section 1.9 should be '
+  'read before the conclusion is.')
 
 H_2('1.6 Drivers')
 P('Revenue is built from the bottom up: rigs in service times revenue per rig-year, by class, '
@@ -484,38 +490,86 @@ rows.append(['Sovereign floor',
 T(rows, [1.80, 2.75, 0.75, 1.70], band_rows={4})
 
 H_3('Beta')
-P(f'The beta is the company\'s own: a five-year weekly regression of its returns against an '
-  f'equal-weight Abu Dhabi composite built from the full committed price library, giving '
+RB_ = BETA['robustness']
+P(f'The beta is the company\'s own, measured against the index it actually trades in: a '
+  f'five-year weekly regression of its returns against the {BETA["regressor"]}, giving '
   f'{BETA["beta"]:.3f} on {BETA["n"]} weekly observations with an R-squared of '
   f'{BETA["r2"]:.3f}, a standard error of {BETA["se"]:.3f} and a 90% interval of '
   f'{BETA["ci90"][0]:.2f} to {BETA["ci90"][1]:.2f}. Because the listing dates from October 2021 '
-  'a full five-year window exists, so no peer beta is needed. Two robustness checks are carried '
-  f'rather than hidden: weighting the composite by traded value gives '
-  f'{BETA["robustness_turnover_weighted"]["beta"]:.3f}, and a two-year window gives '
-  f'{BETA["robustness_2yr_window"]["beta"]:.3f}. All three are well below one, which is what a '
-  'contracted revenue stream from a state counterparty should look like — and all three are '
-  'below the level at which the valuation would fall to the market price. The sensitivity to '
-  'beta is published in section 1.9 for that reason.')
+  'a full five-year window exists, so no peer beta is needed.', space_after=4)
+P('Five robustness runs are published rather than hidden, and they do not all agree:',
+  space_after=3)
+rows = [['Regression', 'Beta', 'R-squared', 'Weeks', 'Standard error']]
+rows.append([f'Five-year weekly against the index (adopted)', f'{BETA["beta"]:.3f}',
+             f'{BETA["r2"]:.3f}', f'{BETA["n"]}', f'{BETA["se"]:.3f}'])
+for key, nice in (('weekly_4yr_vs_index', 'Four-year weekly against the index'),
+                  ('weekly_3yr_vs_index', 'Three-year weekly against the index'),
+                  ('weekly_2yr_vs_index', 'Two-year weekly against the index'),
+                  ('monthly_5yr_vs_index', 'Five-year monthly against the index'),
+                  ('weekly_5yr_vs_equal_weight_composite',
+                   'Five-year weekly against an equal-weight composite of the market'),
+                  ('weekly_5yr_vs_turnover_weighted_composite',
+                   'Five-year weekly against a turnover-weighted composite')):
+    r_ = RB_[key]
+    rows.append([nice, f'{r_["beta"]:.3f}', f'{r_["r2"]:.3f}', f'{r_["n"]}', f'{r_["se"]:.3f}'])
+T(rows, [2.95, 0.80, 1.00, 0.75, 1.10])
+P(f'Three things in that table matter. First, the published index is the regressor, not a '
+  f'composite: an equal-weight average of the market\'s constituents under-weights the '
+  f'large-capitalisation names the index is concentrated in, and here that difference is worth '
+  f'{BETA["beta"] - RB_["weekly_5yr_vs_equal_weight_composite"]["beta"]:+.3f} of beta — about '
+  f'{(BETA["beta"] - RB_["weekly_5yr_vs_equal_weight_composite"]["beta"]) * V("erp_rating") * 10000:.0f} '
+  f'basis points on the cost of equity. The two series are far from interchangeable despite a '
+  f'weekly return correlation of {BETA["composite_vs_index_correlation"]:.2f}.', space_after=4)
+P(f'Second, the estimate is not stable across windows. The three-year window gives '
+  f'{RB_["weekly_3yr_vs_index"]["beta"]:.3f} — above one — and the monthly regression gives '
+  f'{RB_["monthly_5yr_vs_index"]["beta"]:.3f}. The five-year weekly run is adopted because it '
+  'has the most observations and the tightest standard error, not because it is the middle of '
+  'the range. A reader who prefers the three-year window should read the beta row of the '
+  'sensitivity table in section 1.9 and take the answer there.', space_after=4)
+P(f'Third, one is no longer outside the confidence interval. The 90% interval reaches '
+  f'{BETA["ci90"][1]:.2f}. A contracted revenue stream from a state counterparty ought to be '
+  'defensive, and on the five-year weekly measure it is, but the evidence for that is weaker '
+  'than a point estimate suggests. The sensitivity to beta is published in section 1.9 for '
+  'exactly that reason, and it is the largest single sensitivity in this study.', space_after=4)
+P(f'One disclosure on timing: the index series runs to {BETA["index_asof"]} while the price '
+  f'series runs to {BETA["price_asof"]}, so the regression\'s overlap ends '
+  f'{BETA["asof_gap_days"]} days before the valuation anchor. That costs two of roughly 250 '
+  'weekly observations and does not move the estimate, but it is stated rather than passed '
+  'over.')
 
 H_2('1.9 Sensitivity')
 d.figure(os.path.join(HERE, 'fig2_sens.png'), 6.4,
          'Discounted-cash-flow value per share against the cost of capital and the terminal '
          'growth rate, continued-expansion case. Bold cells lie within AED 0.20 of the market '
          'price.')
-rows = [['Driver', 'Move', 'Value per share (AED)', 'Change']]
+rows = [['Driver', 'Move', 'Value per share (AED)', 'Change against the base']]
+
+
+def _chg(v):
+    """The base case is in both grids by construction; say so rather than
+    printing a zero that reads like a missing number."""
+    r = v / CA['value_per_share_aed'] - 1
+    return 'base case' if abs(r) < 5e-4 else pc(r)
+
+
 for bpt in SENS['beta_grid']:
-    rows.append(['Equity beta', f'{bpt["beta"]:.3f}', f'{bpt["aed"]:.2f}',
-                 pc(bpt['aed'] / CA['value_per_share_aed'] - 1)])
+    rows.append(['Equity beta', f'{bpt["beta"]:.3f}', f'{bpt["aed"]:.2f}', _chg(bpt['aed'])])
 for msh in SENS['margin_shift']:
     rows.append(['EBITDA margin', f'{msh["shift"]*100:+.0f} points', f'{msh["aed"]:.2f}',
-                 pc(msh['aed'] / CA['value_per_share_aed'] - 1)])
-T(rows, [1.85, 1.55, 1.85, 1.45])
+                 _chg(msh['aed'])])
+T(rows, [1.75, 1.45, 1.75, 2.05])
+_b_hi = max(SENS['beta_grid'], key=lambda b: b['beta'])
+_b_lo = min(SENS['beta_grid'], key=lambda b: b['beta'])
 P('The single most powerful driver is the beta, and it is the one input in the whole model that '
-  'is estimated from market data rather than read from a filing. At a beta of 1.00 — the level '
-  'a reader who distrusts a 0.66 regression might impose — the continued-expansion case falls '
-  f'to AED {[b["aed"] for b in SENS["beta_grid"] if b["beta"]==1.00][0]:.2f}, well below the '
-  'market price. That is stated here rather than buried in a footnote because it is the '
-  'quickest way to overturn this study.')
+  'is estimated from market data rather than read from a filing. Across the range the '
+  'regressions in section 1.8 actually produced — from '
+  f'{_b_lo["beta"]:.2f} on a turnover-weighted composite to {_b_hi["beta"]:.2f} at the top of '
+  f'the adopted regression\'s own confidence interval — the continued-expansion case runs from '
+  f'AED {_b_lo["aed"]:.2f} down to AED {_b_hi["aed"]:.2f}. That is a spread of AED '
+  f'{_b_lo["aed"] - _b_hi["aed"]:.2f}, wider than the gap between the two terminal cases and '
+  'wider than the gap between the central and the market price. It is stated here rather than '
+  'buried in a footnote because it is the quickest way to overturn this study — in either '
+  'direction.')
 
 # ============================== 6. §2 TECHNICAL ==============================
 d.page_break()
@@ -692,10 +746,15 @@ rows = [['Caveat', 'What it does to the answer', 'What would settle it']]
 rows.append(['The terminal value is more than seven-tenths of enterprise value in both cases',
              'Most of this valuation is a claim about a period nobody has contracted for',
              'Published 2027 and medium-term guidance'])
-rows.append([f'The beta of {W["beta"]:.2f} does more work than any other input',
-             f'At a beta of 1.00 the valuation falls to AED '
-             f'{[b["aed"] for b in SENS["beta_grid"] if b["beta"]==1.00][0]:.2f}',
-             'A longer trading record, or a stress episode that tests the correlation'])
+rows.append([f'The beta of {W["beta"]:.2f} does more work than any other input, and it is not '
+             f'stable across estimation windows',
+             f'The regressions actually run span {min(RB_[k]["beta"] for k in RB_):.2f} to '
+             f'{max(RB_[k]["beta"] for k in RB_):.2f}, and across the sensitivity grid the '
+             f'continued-expansion case runs from AED {_b_lo["aed"]:.2f} to AED '
+             f'{_b_hi["aed"]:.2f} — a wider spread than the gap between the two terminal cases',
+             'A longer trading record, or a stress episode that tests the correlation. The '
+             'index series is also two weeks behind the price anchor and should be refreshed '
+             'alongside it'])
 rows.append(['One customer group, which is also the controlling shareholder',
              'Contract terms are set inside a group, not in a market; the model reads realised '
              'rates and cannot see the negotiation behind them',
