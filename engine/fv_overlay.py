@@ -39,9 +39,11 @@ proves the reconstruction reproduces the published quantiles.
 
 Usage
 -----
-    python3 engine/fv_overlay.py --market EG
-    python3 engine/fv_overlay.py --market EG --ticker ELEC --verbose
-    python3 engine/fv_overlay.py --market EG --json out.json --md out.md
+    python3 engine/fv_overlay.py                       # every covered name, per-row market
+    python3 engine/fv_overlay.py --ticker ELEC --verbose
+    python3 engine/fv_overlay.py --json out.json --md out.md
+(--market is accepted for CLI compatibility but rows resolve their own market
+from assets/markets.js — see run_market.)
 """
 from __future__ import annotations
 
@@ -386,28 +388,65 @@ def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED)
     return row
 
 
-def run_market(market="EG", only=None, n_paths=N_PATHS, seed=SEED):
-    profile = PROFILES[market]
-    prefix = {"EG": "EGX"}.get(market)
+def load_market_of():
+    """TICKERS-key -> market, from the generated registry. File placement is the
+    single source of a name's market; assets/markets.js is the committed bridge."""
+    src = open(os.path.join(REPO, "assets", "markets.js"), encoding="utf-8").read()
+    m = re.search(r"const MARKET_OF = (\{.*?\});", src, re.S)
+    if not m:
+        raise RuntimeError("MARKET_OF not found in assets/markets.js — "
+                           "run scripts/build_market_registry.py --write first")
+    # The registry keys two names by their LEDGER instrument casing ("Samsung",
+    # "Kakao") while TICKERS keys are uppercase — fold case so neither is
+    # spuriously BLOCKED. Uppercase collisions would be a registry bug; assert.
+    raw = json.loads(m.group(1))
+    up = {k.upper(): v for k, v in raw.items()}
+    assert len(up) == len(raw), "MARKET_OF has case-colliding keys"
+    return up
+
+
+def run_market(market="ALL", only=None, n_paths=N_PATHS, seed=SEED):
+    """Every covered name, EACH computed under ITS OWN market's committed profile
+    and cash hurdle.
+
+    [CHANGED 10-Aug-2026] This used to take one market, filter to it (a prefix map
+    that only knew EG), and stamp that single profile on every row. The first
+    non-EG publish (MODON, ADX) exposed both defects at once: the EG-only prefix
+    map filtered NOTHING for AE, so all 79 names were emitted — every EGX row
+    silently recomputed under the AE fit and judged against a 3.65% cash hurdle
+    instead of 19.5%. Markets are now resolved PER ROW from the registry and the
+    profile/hurdle follow the row, never the CLI argument. The `market` argument
+    is retained for CLI compatibility but no longer filters rows or selects a
+    profile. A name missing from the registry is emitted as a BLOCKED row, loudly,
+    never silently dropped."""
+    market_of = load_market_of()
     tickers = load_tickers()
-    rows = []
+    rows, configs = [], {}
     for tkr, t in tickers.items():
-        if prefix and not str(t.get("code", "")).startswith(prefix):
-            continue
         if only and tkr != only:
             continue
-        rows.append(overlay_for_ticker(tkr, t, profile, market=market,
-                                       n_paths=n_paths, seed=seed))
+        mkt = market_of.get(tkr)
+        if mkt is None or mkt not in PROFILES:
+            rows.append({"ticker": tkr, "overlay_status":
+                         f"BLOCKED — no market registry entry or profile ({mkt})"})
+            continue
+        profile = PROFILES[mkt]
+        configs.setdefault(mkt, {
+            "nu": profile.nu, "width_cal": profile.width_cal,
+            "rf_live": profile.rf_live,
+            "width_overlay_active": profile.width_overlay_active})
+        row = overlay_for_ticker(tkr, t, profile, market=mkt,
+                                 n_paths=n_paths, seed=seed)
+        row["market"] = mkt
+        rows.append(row)
     # 1e9 for a blocked row (no "3M") and for a base G that is None (a zero fair value):
     # both sort to the end rather than raising on abs(None).
     rows.sort(key=lambda r: abs(r.get("3M", {}).get("G", {}).get("base") or 1e9))
     return {
         "protocol": "Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)",
-        "phase": "A", "market": market,
+        "phase": "A", "market": "ALL",
         "generated_from": "assets/data.js",
-        "engine_config": {"nu": profile.nu, "width_cal": profile.width_cal,
-                          "rf_live": profile.rf_live,
-                          "width_overlay_active": profile.width_overlay_active},
+        "engine_configs": {m: configs[m] for m in sorted(configs)},
         "n": len(rows), "rows": rows,
     }
 
@@ -416,13 +455,12 @@ def run_market(market="EG", only=None, n_paths=N_PATHS, seed=SEED):
 def to_markdown(res: dict) -> str:
     rows = [r for r in res["rows"] if "1M" in r]
     blocked = [r for r in res["rows"] if "1M" not in r]
-    rf = res["engine_config"]["rf_live"]
+    eng = "; ".join(f"{m}: nu={c['nu']}, width={c['width_cal']}, "
+                    f"rf={c['rf_live']:.2%}"
+                    for m, c in res["engine_configs"].items())
     L = [f"# Fair-value / MC overlay — {res['market']} (Phase A)", "",
          f"Protocol: `{res['protocol']}`  ",
-         f"Engine: nu={res['engine_config']['nu']}, "
-         f"width_cal={res['engine_config']['width_cal']}, "
-         f"overlay_active={res['engine_config']['width_overlay_active']}, "
-         f"cash hurdle rf={rf:.2%}  ",
+         f"Engine (per market): {eng}  ",
          f"Names: {len(rows)} computed, {len(blocked)} blocked", "",
          "`G` is the fair-value gap in the name's own horizon volatility "
          "(drift-free). Probabilities are suppressed in NOT-EXPRESSIBLE per "
@@ -506,7 +544,7 @@ def main():
     if a.js_out:
         with open(a.js_out, "w") as fh:
             fh.write("/* GENERATED by engine/fv_overlay.py — do not hand-edit.\n"
-                     "   Regenerate: python3 engine/fv_overlay.py --market EG "
+                     "   Regenerate: python3 engine/fv_overlay.py "
                      "--js assets/fv_overlay.js */\n"
                      "const FV_OVERLAY = " + json.dumps(res, indent=1) + ";\n")
         print(f"wrote {a.js_out}")

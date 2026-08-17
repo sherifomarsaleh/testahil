@@ -265,7 +265,7 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
 
 
 def render(market, series, disp, nu, width_cal, header2, header3, out_path,
-           spacing='postbreak'):
+           spacing='postbreak', ccy='USD'):
     df, wins = windows(market, series, nu, width_cal,
                        MP.PROFILES[market].rf_live, spacing=spacing)
     dates = pd.to_datetime(df['Date'])
@@ -364,7 +364,7 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
                 ymax = max(seg.max(), max(w['p95'] for w in wins))
                 ax.set_ylim(ymin * (1 - pad), ymax * (1 + pad))
     ax.legend(loc='upper left', frameon=False, fontsize=12.5)
-    ax.set_ylabel('Price (USD, log)', fontsize=12.5)
+    ax.set_ylabel(f'Price ({ccy}, log)', fontsize=12.5)
     ax.grid(True, which='major', color='#e3ecea', lw=0.8)
     ax.tick_params(labelsize=12.5)
     for s in ('top', 'right'):
@@ -476,7 +476,7 @@ def resolve(site_key):
     """
     if site_key in PANELS:
         mkt, ser, disp, panel = PANELS[site_key]
-        return mkt, ser, panel, disp
+        return mkt, ser, panel, disp, 'USD'    # the metals panels are quoted in USD
     src = open(os.path.join(ROOT, 'assets', 'data.js'), encoding='utf-8').read()
     m = re.search(r'\n  "?' + re.escape(site_key) + r'"?: \{(.*?)\n  \},',
                   src, re.S)
@@ -487,13 +487,18 @@ def resolve(site_key):
         raise SystemExit(f'{site_key}: no market resolved from its code: prefix')
     mkt = EX[pre.group(1)]
     ser = SERIES_OVERRIDE.get(site_key, site_key)
-    return mkt, ser, LEDGER_ALIAS.get(site_key, site_key), site_key
+    # The y-axis label is the QUOTE currency, read from the entry's own ccy: field. It was
+    # hardcoded to USD for every ticker, which printed "Price (USD, log)" over an AED, EGP,
+    # SAR or KRW series on every non-US calibration chart on the site.
+    cm = re.search(r'ccy:\s*"([A-Z]{3})"', m.group(1))
+    ccy = cm.group(1) if cm else 'USD'
+    return mkt, ser, LEDGER_ALIAS.get(site_key, site_key), site_key, ccy
 
 
 def build(site_key):
     """Regenerate one published panel using the LIVE config production runs."""
     import json
-    mkt, ser, panel_key, disp = resolve(site_key)
+    mkt, ser, panel_key, disp, ccy = resolve(site_key)
     prof = MP.PROFILES[mkt]
     fc = json.load(open(os.path.join(HERE, 'fitted_configs.json')))
     pn = fc.get(mkt, {}).get('per_name', {}).get(ser, {})
@@ -525,7 +530,7 @@ def build(site_key):
         h3 += ("  \u00b7  \u26a0 SELF-GRADED: single-name panel, no "
                "leave-one-out possible \u2014 this verdict is circular")
     out = os.path.join(ROOT, 'assets', f'calibration_{panel_key}.png')
-    r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing='postbreak')
+    r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing='postbreak', ccy=ccy)
     return r
 
 

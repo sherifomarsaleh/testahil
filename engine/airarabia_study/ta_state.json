@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "AIRARABIA",
+ "close": 5.24,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 3908,
+ "rows_in": 3908,
+ "repairs": [],
+ "ma": {
+  "20": 5.085999999999999,
+  "50": 5.2014,
+  "200": 4.81775
+ },
+ "ma_slope": {
+  "20": "falling",
+  "50": "rising",
+  "200": "rising"
+ },
+ "rsi": 53.650940123816014,
+ "atr": 0.15338010018952347,
+ "macd": {
+  "macd": -0.019998680806159186,
+  "signal": -0.05562731742554586,
+  "hist": 0.03562863661938667
+ },
+ "ma_cross": {
+  "ago": 450,
+  "kind": "golden"
+ },
+ "atr_pct": 0.02927101148655028,
+ "hi_52w": 6.03,
+ "lo_52w": 3.63,
+ "pct_off_high": 0.13101160862354894,
+ "pct_off_low": 0.44352617079889817,
+ "levels": {
+  "res": [
+   5.4,
+   5.62,
+   6.03
+  ],
+  "sup": [
+   3.8,
+   3.68,
+   3.6
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 5.4,
+    "score": 1.4375217018733546,
+    "kind": "swing",
+    "touches": 1
+   },
+   {
+    "level": 5.616730806166174,
+    "score": 5.871065764759424,
+    "kind": "swing",
+    "touches": 3
+   },
+   {
+    "level": 6.03,
+    "score": 0.7922638467635158,
+    "kind": "swing",
+    "touches": 1
+   }
+  ],
+  "sup": [
+   {
+    "level": 3.8038434703641397,
+    "score": 5.378202578191815,
+    "kind": "swing",
+    "touches": 6
+   },
+   {
+    "level": 3.68222424312694,
+    "score": 5.144553677493652,
+    "kind": "swing",
+    "touches": 6
+   },
+   {
+    "level": 3.598249999323805,
+    "score": 6.335684938352967,
+    "kind": "swing",
+    "touches": 8
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+  "summary": "The price closed 5.24 above a falling 20-day (5.09), a rising 50-day (5.20) and a rising 200-day (4.82). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.15 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.06 / +0.04). Over the last year it has ranged 3.63\u20136.03; the last close sits 13% below that high and 44% above that low.",
+  "bull": "A daily close back above 5.40 would clear the nearest resistance and open the 6.03 zone.",
+  "bear": "A close below 3.80 would break the nearest support and open the 3.60 zone."
+ }
+}

@@ -24,12 +24,31 @@ Nothing in this directory is part of any MC panel.
 
 | Market | File | Span | Source format |
 |---|---|---|---|
-| AE | `AE/ADXGENERAL.csv` | 2011-01-02 → 2026-07-24 | investing.com daily export |
+| AE | `AE/FADGI.csv` (FTSE ADX General) | 2011-01-02 → 2026-07-24 | investing.com daily export |
+| AE | `AE/ADXGENERAL.csv` | 2011-01-02 -> 2026-07-24 | investing.com daily export |
 | EG | `EG/EGX30.csv` | 2011-01-02 → 2026-07-22 | investing.com daily export |
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |
 | QA | `QA/QATAR10.csv` | — | investing.com daily export |
+| SA | `SA/TASI.csv` (Tadawul All Share) | 2011-01-01 → 2026-07-27 | investing.com daily export |
 | US | `US/NASDAQCOMP.csv` | — | investing.com daily export |
+
+## Missing — no conforming beta is possible in these markets
+
+**BR, GB.** (SA/TASI supplied 10-Aug-2026.) Under the amended BETA rule (10-Aug-2026) a constituent
+composite is not a substitute, so a study on a name in these markets must STOP AND ASK
+for the index rather than build one.
+
+AE/FADGI was added 10-Aug-2026. Until then every AE beta ran against an equal-weight
+composite of the covered `raw_ohlc/AE/` names — which mixed ADX and DFM constituents,
+so an ADX-listed share was regressed against an ADX/DFM mongrel. On FERTIGLB that
+composite gave beta 0.492 (R² 6.2%) against the real index's 0.931 (R² 10.0%): a ~40%
+understatement that overstated fair value by 21.6%. The same substitution was in force
+in all seven EGX studies. See the BETA section of `Standing_Research_Protocol.md`.
+
+**A market having a file here is not the same as its studies using it.** EGX30 landed
+09-Aug-2026 and no EGX study regressed against it; they all kept the composite until the
+rule was made explicit. When adding an index, re-derive the betas that predate it.
 
 EG/EGX30 was added 9-Aug-2026. Until then this directory carried an index for
 every covered market EXCEPT Egypt — the largest panel, and the one whose beta
@@ -38,29 +57,34 @@ a chat tool, so every EGX beta rested on a file that was in no repository.
 Trading-day density is 241–244 sessions/year for 2021–2025 against a real EGX
 calendar of ~245, and no row carries a blank price.
 
-AE/ADXGENERAL is the FTSE ADX General Index, added 9-Aug-2026 for the ADNOCDIST
-study. Before it, an ADX name's beta was regressed against an equal-weight
-composite built from the `raw_ohlc/AE` library — the house stand-in when a
-market's index was missing. That stand-in is NOT interchangeable with the real
-index, and the direction of its error is systematic rather than random: the
-equal-weight composite's weekly volatility is 1.34x the published
-capitalisation-weighted index's, and since beta divides covariance by the
-market's own variance, the more volatile stand-in returns a LOWER beta. For
-ADNOCDIST it gave 0.507 against the published index's 0.649, on an almost
-unchanged correlation (0.44 vs 0.42). Any other AE study whose beta predates this
-file was therefore biased low and should be re-measured against it.
+AE/FADGI (the FTSE ADX General Index) was added 9-Aug-2026, and the gap it closed was
+the same one EGX30 closed for Egypt: until it arrived, the UAE beta had no local index to
+regress against, and the BOROUGE study's first revision used an equal-weight basket of the
+other names in `raw_ohlc/AE/` as a stand-in. That stand-in is not the market. An
+equal-weight basket over-weights small, thinly traded constituents, which drags its own
+volatility up and its covariance with any single large name down; on BOROUGE it produced a
+beta of 0.271 against the index's 0.415, a 35% understatement. Any AE beta measured before
+9-Aug-2026 rests on the basket and should be re-run.
 
-The index is screened on its own terms and NOT through `data_quality.clean_ohlc`.
-That gate asks whether a move exceeds what one session can physically produce
-under the exchange's own daily price limit — a test about corporate actions in a
-single stock. An index has neither, so the gate has nothing to say about it;
-applying it would risk "repairing" a real market move. Screening instead checks
-continuity, duplication, non-positive levels, and whether the trading-day pattern
-matches the exchange calendar. It does: 3,884 sessions, no duplicate or
-out-of-order dates, largest single-session move 8.4% (March 2020), and the
-weekday distribution switches cleanly from Sunday-Thursday to Monday-Friday at
-the January 2022 workweek change.
+Cleaning gate on FADGI: 3,884 rows in, 3,883 out (one stale no-trade row dropped),
+238-252 trading days a year against an ADX calendar of about 250, ZERO sessions closing
+unchanged, and a maximum daily move of 8.4% against the ADX ±15% limit. A cap-weighted
+index with no flat sessions carries no stale-price artefact, which matters because a stale
+regressor biases every beta measured against it downward.
 
 Note the series ends 2026-07-22, a few weeks behind spot. That is immaterial for
 a 2–5yr weekly beta regression but should be refreshed alongside the price
 libraries; flag the as-of date whenever a beta is quoted from it.
+
+
+AE/ADXGENERAL is the FTSE ADX General Index, added 9-Aug-2026 for the ADNOCDIST
+study. Before it, an ADX name's beta was regressed against an equal-weight composite
+built from the `raw_ohlc/AE` library. That stand-in is NOT interchangeable with the
+real index and its error is systematic: the composite's weekly volatility is 1.34x the
+published capitalisation-weighted index's, and since beta divides covariance by the
+market's own variance, the more volatile stand-in returns a LOWER beta. For ADNOCDIST
+it gave 0.507 against the published index's 0.649 on an almost unchanged correlation.
+Any other AE study whose beta predates this file was biased low and should be
+re-measured. The index is screened on its own terms and NOT through
+`data_quality.clean_ohlc`: that gate tests moves against an exchange daily price limit,
+which an index does not have, so applying it would risk repairing a real market move.

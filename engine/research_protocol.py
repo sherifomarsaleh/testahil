@@ -286,3 +286,46 @@ if __name__ == "__main__":
     print("SIGCM module loaded; clauses:", len(SIGCM_CLAUSES),
           "| model-study depth standards:", len(MODEL_STUDY_DEPTH),
           "| reference set:", "/".join(REFERENCE_SET))
+
+
+# ---------------------------------------------------------------------------
+# BETA PROVENANCE GATE  [ADDED 10-Aug-2026]
+#
+# SIGCMChecklist.beta_own_history_vs_egx30 is a BOOLEAN a study sets itself, and every
+# study in this repo set it True while regressing against an equal-weight composite of
+# the covered names. A self-attestation cannot catch that. This gate inspects the actual
+# beta record produced by engine/beta_regression.py and fails on the evidence.
+# ---------------------------------------------------------------------------
+def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -> None:
+    """Raise unless this beta came from the exchange's PUBLISHED index.
+
+    `rec` is the dict returned by beta_regression.own_stock_beta(). Passing a
+    hand-assembled dict without provenance fails, which is the point.
+    """
+    required = ('beta', 'r2', 'se', 'n', 'usable', 'index_file', 'index_asof',
+                'market', 'exchange', 'conforming')
+    missing = [k for k in required if k not in rec]
+    if missing:
+        raise AssertionError(
+            f"BETA PROVENANCE FAIL — record is missing {missing}. A beta is only quotable "
+            f"with its regressor and diagnostics attached; produce it with "
+            f"engine/beta_regression.own_stock_beta(), never a study-local composite."
+        )
+    idx = str(rec['index_file']).replace('\\', '/')
+    if 'raw_indices/' not in idx:
+        raise AssertionError(
+            f"BETA PROVENANCE FAIL — regressor {idx!r} is not a published index under "
+            f"raw_indices/. A constituent composite is not a substitute and not a tier."
+        )
+    if not rec['usable'] and not tier2_fallback_documented:
+        raise AssertionError(
+            f"BETA PROVENANCE FAIL — {rec.get('ticker','?')} fails the usability gate "
+            f"({rec.get('gate_msg')}). It must fall to a SAME-COUNTRY peer beta (tier 2) or "
+            f"beta=1.0 (tier 3) shown with the failed diagnostics — it may NOT keep a "
+            f"composite number. Pass tier2_fallback_documented=True once that is done."
+        )
+    if not rec['conforming'] and not rec.get('interim_note'):
+        raise AssertionError(
+            "BETA PROVENANCE FAIL — an interim index substitution is in force but its "
+            "disclosure note is absent. Any beta on an interim regressor must quote it."
+        )

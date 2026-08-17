@@ -399,8 +399,20 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=10.0, width_cal=0.979,
+    nu=8.0, width_cal=0.979,
     fit_meta=(
+        "UPDATE 09-Aug-2026: AIRARABIA added (18 -> 19 names, 261 -> 279 pooled "
+        "windows; DFM low-cost carrier, new coverage for the Air Arabia study). "
+        "Pooled MLE moves nu 10 -> 8 with cal unchanged at 0.979 -- the published "
+        "90% cone halfwidth moves 0.66%, well inside the 5% materiality band (nu "
+        "remains weakly identified; the (nu,cal) pair is the fitted object). "
+        "Market panel PARITY +0.0068 CI[-0.000,+0.014], unchanged. AIRARABIA "
+        "arrives PARITY +0.0013 CI_b2[-0.026,+0.013] under its LONO fit (nu=10/"
+        "0.979) -- not a FAIL. MATERIALITY ITEM reviewed via this study's PR: "
+        "ENBD BOUNDARY(PARITY-flagged) -> PARITY (-0.0116, CI_b2[-0.053,+0.009]; "
+        "an improvement -- the flag clears, no verdict worsens, no new FAIL, no "
+        "lost PASS; ADCB/ADIB/ALDAR/DIB/EMAAR keep PASS). LULU still "
+        "PROVISIONAL(insufficient-windows). "
         "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN "
         "through the data-quality gate - supersedes nu=4/cal=1.070. Adds "
         "ADIB/DIB/TWOPOINTZERO/EAND to the prior 10. Tail moves 4 -> 10: the old "

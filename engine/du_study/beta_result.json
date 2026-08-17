@@ -1,0 +1,32 @@
+{
+ "beta": 0.4879595874282318,
+ "r2": 0.12046293890041448,
+ "n": 256,
+ "se": 0.08273082248993131,
+ "ci90": [
+  0.3518673844322948,
+  0.6240517904241688
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "window_years": 5,
+ "frequency": "weekly",
+ "index": "FTSE ADX General (user-supplied export, adopted per instruction as the UAE base market index; series to 24-Jul-2026)",
+ "weak": false,
+ "warnings": [],
+ "dfm_alt": {
+  "beta": 0.4715600357114492,
+  "r2": 0.20228373108313535,
+  "n": 259,
+  "se": 0.05841362753766983,
+  "note": "DFM General Index (DU's own listing venue) \u2014 the house own-local-index default, published as the alternative"
+ },
+ "composite_alt": {
+  "beta": 0.3996691918562717,
+  "r2": 0.14151887359959447,
+  "n": 256,
+  "se": 0.06176493778254817,
+  "names": 18,
+  "note": "equal-weight AE library composite, house cross-check construction"
+ }
+}

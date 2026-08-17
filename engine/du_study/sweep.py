@@ -1,0 +1,423 @@
+"""DU — four-ring Information Sweep register (Step 2A). Runs BEFORE any
+forecast driver is set. Every mandatory category of every ring is closed by a
+dated finding or a dated negative search.
+
+Primary access succeeded end-to-end this build: investors.du.ae served the
+audited FY2023/FY2024/FY2025 annual reports and both 2026 reviewed interims
+directly, so every Company-ring financial figure is COMPANY_OFFICIAL from the
+filings themselves. The one primary-source failure worth recording is UAE
+sovereign CDS (cbonds 403; Damodaran prints NA) — logged, proxied by the traded
+Abu Dhabi USD spread, never silently substituted.
+"""
+import sys, os, json
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
+                            SourceType, DriverMode)
+
+SWEEP_DATE = "2026-08-09"
+R = SweepRegister("DU", AssetClass.STOCK, SWEEP_DATE)
+CO, IR, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.COMPANY_IR,
+                                SourceType.REGULATOR_OFFICIAL, SourceType.PRIMARY_MARKET_DATA,
+                                SourceType.REPUTABLE_PRESS, SourceType.AGGREGATOR)
+
+R.record_primary_access("https://investors.du.ae/", True, SWEEP_DATE,
+                        "IR portal reachable; served AR2023/AR2024/AR2025 PDFs, Q1-2026 and "
+                        "H1-2026 reviewed FS, earnings releases and analyst decks directly")
+R.record_primary_access("https://www.du.ae/about-us/investor-relations", True, SWEEP_DATE,
+                        "301 -> investors.du.ae")
+R.record_primary_access("https://pages.stern.nyu.edu/~adamodar/ (ctryprem)", True, SWEEP_DATE,
+                        "UAE row read fresh from the original dataset, 05-Jan-2026 update")
+R.record_primary_access("https://api2.dfm.ae/web/widgets/v1/data (DFM index API)", True,
+                        SWEEP_DATE, "official DFMGI closes 2025-2026; spliced with "
+                        "cross-validated Yahoo history for 2021-2024 (identical on all 307 "
+                        "overlapping sessions)")
+R.record_primary_access("FTSE ADX General index history (user-supplied investing.com export, 2011..24-Jul-2026)", True, "2026-08-10",
+                        "adopted per user instruction as the UAE base market index for the beta regression; DFM General retained as the published alternative")
+R.record_primary_access("cbonds/worldgovernmentbonds UAE 5y CDS", False, SWEEP_DATE,
+                        "403 / JS-only; UAE CDS also NA in Damodaran — market-spread basis "
+                        "built from the traded Abu Dhabi USD 10y (+25bp) instead, and both "
+                        "ERP bases are published")
+
+R.declare_study_year("2026", ["Q1-2026", "Q2-2026"])
+
+# ---------------------------------------------------------------- RING 1 GLOBAL
+f_rate = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
+    "Fed at 3.50-3.75% with ZERO 2026 cuts delivered and markets pricing possible hikes "
+    "(~4% year-end); US 10Y 4.68% (08-Aug-2026). The AED is hard-pegged, so this is the UAE "
+    "rate anchor: AED T-bond Jan-2031 auctioned at 4.48% (22-Jul-2026), through UST at +4bp",
+    "US Treasury market / UAE MoF T-bond auction results / house FED_SCHEDULE", PMD,
+    "2026-08-08",
+    model_impact="Sets rf 4.48% (AED, longest liquid tenor) and keeps the WACC glide SHALLOW "
+                 "(terminal rf 4.30%) — a hiking tail risk argues against assuming cheap "
+                 "terminal money.")
+f_oil = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.C,
+    "Oil averaging ~$89/bbl in 2026 (IMF July-2026 assumption) — a fiscal TAILWIND for the "
+    "UAE state (du's controlling shareholder base and its enterprise/government demand), not "
+    "a cost line: du's cost stack is interconnect, staff, network and licence fees, none "
+    "oil-indexed",
+    "IMF WEO Update, July 2026", REG, "2026-07-29",
+    model_impact="No per-unit energy escalator needed in the cost stack (unlike an "
+                 "energy-conversion business); UAE fiscal strength supports the "
+                 "government/enterprise ICT demand line.")
+f_gdem = R.add(Ring.GLOBAL, "global sector demand", FindingClass.S,
+    "Global telecom 2026: low-single-digit service-revenue growth, 5G monetisation via FWA "
+    "and B2B, and an AI/data-centre capex supercycle pulling telcos into hyperscaler "
+    "partnerships — the exact leg du is building (Microsoft hyperscale anchor tenancy)",
+    "Sector coverage (press synthesis, labelled)", PRESS, "2026-06-30",
+    model_impact="Supports the ICT segment's +8-11% growth path and the elevated 15.5% "
+                 "near-term capex intensity.")
+f_trade = R.add(Ring.GLOBAL, "trade / sanctions / supply chains", FindingClass.S,
+    "US/Israel-Iran war from 28-Feb-2026: Hormuz disruption, Gulf security fears, regional "
+    "tourism collapse. Ceasefire in place; IMF baseline has Hormuz reopening from mid-July "
+    "2026 and prewar conditions by March 2027, with re-escalation the named top downside",
+    "IMF WEO Update July 2026 + regional coverage", REG, "2026-07-29",
+    model_impact="THE swing factor for prepaid subscribers, roaming and wholesale transit: "
+                 "the base case assumes recovery through H2-2026/2027 (mobile base "
+                 "9.28m -> 9.45m by end-2026); the bear scenario re-opens the conflict.")
+
+# ---------------------------------------------------------------- RING 2 COUNTRY
+f_macro = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.S,
+    "UAE real GDP ~5.6% (2025), ~3-5.6% forecast 2026 (IMF Apr-2026 WEO 3.1%; CBUAE ~5%); "
+    "CPI ~1.8-2.5%; CBUAE base rate 3.65% tracking the Fed under the hard peg; Aa2/stable; "
+    "MENA regional growth slashed to 0.7% for 2026 by the July WEO Update on the war, "
+    "rebounding 6.5% in 2027",
+    "IMF WEO Apr-2026 + July-2026 Update; CBUAE", REG, "2026-07-29",
+    model_impact="Terminal nominal growth 2.5% sits well inside long-run nominal GDP ~4%+; "
+                 "no FX/deval leg in an AED model (hard peg, Aa2).")
+f_reg = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    FindingClass.B,
+    "TDRA licence: the FY2025/H1-2026 notes disclose the licence term extended only to "
+    "08-Aug-2026 with renewal 'in final stage, expected to conclude on or before August 8, "
+    "2026' — i.e. the licence horizon expires within days of this study's anchor. Licence "
+    "fees run 2.7% of revenue. No public announcement of concluded terms was found by the "
+    "sweep date (negative search logged below)",
+    "du H1-2026 reviewed FS Note 5 (licence) + AR2025", CO, "2026-07-22",
+    model_impact="Base case carries renewal on comparable terms (fees held at 2.70% of "
+                 "revenue); a renewal on materially worse terms is priced in the crux "
+                 "sensitivity (each +1pp of revenue in licence fees is ~AED -1.0/share).")
+f_fiscal = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.B,
+    "The 38% federal royalty + 9% CT regime (combined floor AED 1.8bn/yr) is legislated "
+    "2024-2026 by Cabinet decision 8/38 of 2023, and du's H1-2026 statement notes (22-Jul-2026) "
+    "describe that window. An MoF notification extending the same structure to 2027-2029 was "
+    "disclosed by e& and — SEE THE CORRECTED ENTRY BELOW — by du itself on 24-Jul-2026, which "
+    "this study's first edition missed",
+    "du H1-2026 FS Note 14 (COMPANY_OFFICIAL) + e& disclosure of the MoF notification",
+    REG, "2026-07-17",
+    model_impact="Current regime is the base on DISCLOSED FACT through 2029. A reversion after "
+                 "pre-2024 construction (15% regulated revenue + 30% regulated profit = 51-53% "
+                 "take). BOTH computed: AED 19.14 vs 16.29 per share on the DCF.")
+
+# ---------------------------------------------------------------- RING 3 INDUSTRY
+f_dem = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.S,
+    "UAE telecom demand = population + tourism + enterprise digitalisation. Dubai population "
+    "growth slowed to 1.55% in Q1-2026 on the war then RE-ACCELERATED to 1.86% in Q2 (4.74m "
+    "end-Q2); tourism collapsed (hotel occupancy projections ~80% -> ~10%, March airport "
+    "traffic -66%) and is now recovering under the ceasefire",
+    "Dubai Statistics Center / press coverage of the tourism shock", PRESS, "2026-07-15",
+    model_impact="Drives the subscriber paths: prepaid recovery +170k in H2-2026, then "
+                 "+210-310k/yr — below the 2025 boom (+788k), above the conflict trough.")
+f_price = R.add(Ring.INDUSTRY, "pricing", FindingClass.S,
+    "UAE mobile pricing is rational-duopoly: du's blended mobile ARPU printed 63.3-63.4 "
+    "AED/month across FY2025-Q2-2026 (company KPI) with postpaid +9% y/y mix gain offsetting "
+    "prepaid dilution — no price war anywhere in the disclosure record",
+    "du quarterly presentations (ARPU series)", IR, "2026-07-23",
+    model_impact="ARPU path held essentially flat (+0.3%/yr); the ±8% ARPU sensitivity spans "
+                 "AED 15.9-22.4 on the DCF.")
+R.add_negative(Ring.INDUSTRY, "new entrants (named-competitor level)",
+    "UAE third mobile licence / new MVNO 2025-2026 (TDRA announcements, press)", SWEEP_DATE)
+f_tech = R.add(Ring.INDUSTRY, "technology substitution", FindingClass.S,
+    "5G-Advanced/FWA substitutes fixed broadband (du deployed world-first L-Band + U6GHz "
+    "next-gen 5G, Q2-2026); satellite D2D remains complementary at UAE price points; "
+    "data-centre/AI services substitute legacy ICT resale — du is building five DCs plus a "
+    "$544.5m hyperscale campus with Microsoft as anchor tenant",
+    "du Q2-2026 presentation + Microsoft/du announcement (Apr-2025)", IR, "2026-07-23",
+    model_impact="Underwrites the fixed segment's +4.5-7.5% growth (FWA share gain) and the "
+                 "ICT ramp; also the 15.5% capex peak.")
+f_comp = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", FindingClass.S,
+    "e& (EAND, the incumbent, ~2/3 mobile share historically): FY2025 DPS raised to 90 fils "
+    "with 95 fils guided for FY2026 — the duopoly is in harvest-and-distribute mode, not "
+    "land-grab; Mobily (KSA #2, the closest structural analogue) trades ~15.5x trailing P/E",
+    "e& IR dividend policy + aggregator multiple reads (labelled cross-check)", PRESS,
+    "2026-08-08",
+    model_impact="Peer P/E median 15.5x anchors the relative lens; duopoly rationality "
+                 "supports flat-ARPU and stable contribution margins.")
+
+# ---------------------------------------------------------------- RING 4 COMPANY
+f_guide = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.S,
+    "FY2026 guidance CUT at the Q2 print (23-Jul-2026): revenue growth 4-6% (from 5-7% set "
+    "Feb-2026 and explicitly maintained 22-Apr-2026); EBITDA margin confirmed 46-47%. The "
+    "interim dividend was RAISED 8.3% to 26 fils in the same release",
+    "du Q2-2026 earnings release", IR, "2026-07-23", fiscal_period="Q2-2026",
+    model_impact="FY2026E revenue build lands +4.3%, inside the revised band; the margin "
+                 "OUTPUT (47.1%) sits just above guidance because H1 already printed 49.2%.")
+f_fs25 = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
+    "FY2025 audited consolidated FS (KPMG, unmodified, 09-Feb-2026): revenue 15,905.421mn "
+    "(+8.7%), EBITDA 7,338.388mn (46.1%), net profit 2,905.085mn, EPS 0.64, zero borrowings, "
+    "net cash 2,249.7mn before leases 1,938.8mn; DPS 0.64 (~100% payout)",
+    "Integrated Annual Report 2025, investors.du.ae", CO, "2026-02-09",
+    is_fs_data=True, fiscal_period="FY2025",
+    model_impact="The roll-forward base for every statement line in the model.")
+f_fs24 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
+    "FY2024 audited FS (PwC, unqualified, 10-Feb-2025): revenue 14,635.917mn, net profit "
+    "2,487.547mn; first year of the 38%+9% regime (combined 44.7%/42.2% takes on the two "
+    "presentation bases)",
+    "Annual Report 2024, investors.du.ae", CO, "2025-02-10", is_fs_data=True,
+    fiscal_period="FY2024",
+    model_impact="Second audited year; carries the FY2023 royalty-accrual disclosure that "
+                 "makes the working-capital series like-for-like.")
+f_fs23 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
+    "FY2023 audited FS (PwC, unqualified, 13-Feb-2024): revenue 13,636.340mn, net profit "
+    "1,667.851mn under the OLD royalty regime (53.1% take) — the evidence base for Framing B",
+    "Annual Report 2023, investors.du.ae", CO, "2024-02-13", is_fs_data=True,
+    fiscal_period="FY2023",
+    model_impact="Third audited year (target met); prices the contested judgement's "
+                 "reversion leg.")
+f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
+    "FY2022 complete comparatives (full IS/BS/CF columns in the audited FY2023 statements): "
+    "revenue 12,754.492mn, net profit 1,219.561mn, EPS 0.27, total equity 8,770.152mn, zero "
+    "borrowings (last term loan repaid during FY2022), old-regime royalty take",
+    "Annual Report 2023 (FY2022 comparative columns), investors.du.ae", CO, "2024-02-13",
+    is_fs_data=True, fiscal_period="FY2022",
+    model_impact="Fourth complete fiscal year (target met): extends the margin, payout and "
+                 "working-capital history behind the forecast ratios.")
+f_q1 = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
+    "Q1-2026 reviewed FS (KPMG ISRE 2410): revenue 4,114.108mn (+6.9%), EBITDA margin 49.5%, "
+    "net profit 834.177mn; balance sheet carried the AED 0.40 final dividend as payable",
+    "Q1-2026 condensed consolidated interim FS, investors.du.ae", CO, "2026-04-22",
+    is_fs_data=True, fiscal_period="Q1-2026",
+    model_impact="First study-year quarter, swept in BEFORE the build.")
+f_q2 = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
+    "H1-2026 reviewed FS (KPMG, 22-Jul-2026): H1 revenue 8,197.573mn (+5.8%), EBITDA "
+    "4,031.922mn (49.2%), net profit 1,631.971mn (+12.6%); 30-Jun balance sheet: cash "
+    "307.2mn, term deposits NIL (Q2 absorbed ~4.1bn of royalty + final dividend), leases "
+    "1,735.1mn, AED 2.0bn RCF undrawn; Q2 mobile net adds -412k (prepaid -442k, war)",
+    "H1-2026 condensed consolidated interim FS, investors.du.ae", CO, "2026-07-22",
+    is_fs_data=True, fiscal_period="Q2-2026",
+    model_impact="FY2026E = H1 ACTUAL + unit-built H2; the war's subscriber damage is in the "
+                 "base, not assumed away.")
+f_ir = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "Quarterly KPI series from the analyst decks: mobile subscribers 8,916k (Q4-24) -> "
+    "9,704k (Q4-25) -> 9,280k (Q2-26); prepaid/postpaid split; fixed 682k -> 744k; blended "
+    "mobile ARPU 63.3-65.8 AED/mo; capex intensity by quarter; opFCF = EBITDA - capex. None "
+    "of this appears in any financial statement — this is the disclosure that CONVERTS the "
+    "mobile and fixed forecasts from top-down to bottom-up (subscribers x ARPU)",
+    "du quarterly analyst presentations + earnings releases (Q4-2025 through Q2-2026)", IR,
+    "2026-07-23", fiscal_period="Q2-2026",
+    model_impact="DRIVER UNLOCK: mobile revenue = avg base x ARPU x 12 reproduces the "
+                 "audited FY2025 segment to -0.04%; both unit paths are forecast drivers.")
+f_spo = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
+    FindingClass.C,
+    "NAMED TRANSACTION: Secondary Public Offering of 342,084,084 du shares (7.55% of capital) "
+    "by Mamoura Diversified Global Holding PJSC (Mubadala subsidiary) — 75% of its du stake — "
+    "completed 2025, widening free float; Emirates Investment Authority remains the "
+    "controlling shareholder. Also: Associated Group's holding amended to DH 8 LLC",
+    "Integrated Annual Report 2025 (governance section), investors.du.ae", CO, "2026-02-09",
+    model_impact="No control change; better float/liquidity supports the tier-1 own-index "
+                 "beta regression's representativeness.")
+f_cap = R.add(Ring.COMPANY, "management & capital actions", FindingClass.S,
+    "Capital actions 2026: AED 2.0bn 7-year unsecured RCF signed 06-Apr-2026 (undrawn); "
+    "final FY2025 DPS 0.40 paid 28-Apr-2026; interim 0.26 declared 23-Jul-2026 (+8.3%); "
+    "du Ventures $50m VC fund launched Q2-2026 (Shorooq partnership); two Cayman SPVs "
+    "incorporated H1-2026 (Investment Company 1/2)",
+    "H1-2026 FS notes + Q2-2026 release", CO, "2026-07-23", fiscal_period="Q2-2026",
+    model_impact="98% payout carried forward; liquidity backstop lets the balance sheet run "
+                 "to near-zero term deposits through the capex peak without new equity.")
+f_dc = R.add(Ring.COMPANY, "one-off base-resetting transactions", FindingClass.S,
+    "The hyperscale data-centre programme: $544.5m (~AED 2.0bn) build with Microsoft as "
+    "anchor tenant (announced Apr-2025), five DCs in operation/ramp, GPU-as-a-service and "
+    "sovereign-cloud services launching from the Q4-2025 deck onwards; Q2-2026 capex +19.8% "
+    "y/y on the DC/cloud/AI acceleration",
+    "du announcements + Q4-2025/Q2-2026 decks", IR, "2026-07-23",
+    model_impact="Resets the ICT growth base (+8-11%/yr) AND the capex path (15.5% of "
+                 "revenue at peak, gliding to 13.0%) — both flagged as house paths on "
+                 "sourced commitment evidence (commitments 2,411.8mn at 30-Jun-2026).")
+R.add_negative(Ring.COMPANY, "one-off base-resetting transactions",
+    "du M&A / acquisitions / disposals 2025-2026 beyond the DC programme and SPO "
+    "(press, DFM disclosures)", SWEEP_DATE)
+R.add_negative(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    "licence FEE or revenue-share TERMS for the renewed licence. The renewal itself was "
+    "announced by TDRA on 12-Aug-2026 (20 years, effective 09-Aug-2026, superseding the 2006 "
+    "licence) - AFTER this study's anchor and date-stamp - but the announcement sets out "
+    "obligations only and publishes no fee or revenue-share term, so the economics remain "
+    "unsourced and the study's held fee ratio is an assumption, not a confirmed fact",
+    "2026-08-17")
+neg_whl = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "wholesale unit KPIs (transit minutes, IRU capacity, roaming volumes) anywhere in "
+    "AR2023-AR2025, interim FS, or any analyst deck", SWEEP_DATE)
+neg_ict = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "ICT/data-centre unit KPIs (racks, MW, utilisation, contract backlog) in any du "
+    "disclosure; only programme-level capex and partner names are public", SWEEP_DATE)
+neg_capex = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
+    "numeric FY2026 capex guidance in the Feb/Apr/Jul-2026 releases and decks "
+    "(revenue growth and EBITDA margin are guided; capex is not)", SWEEP_DATE)
+neg_regime = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.B,
+    "CORRECTED 17-Aug-2026 — THIS WAS PREVIOUSLY LOGGED AS A NEGATIVE SEARCH, WRONGLY. du "
+    "published its OWN disclosure announcement 'Extension of Federal Royalty Scheme for the "
+    "Period 2027-2029' on 24-JUL-2026 — sixteen days before this sweep date. The extension "
+    "carries the SAME structure (38% federal royalty on post-royalty UAE net profit + 9% "
+    "corporate income tax) and EXPRESSLY RETAINS the floor: 'The aggregate annual amount of "
+    "Federal Royalty and Corporate Tax payable by the Company shall not be lower than AED 1.8 "
+    "billion'. Period covered: 1-Jan-2027 to 31-Dec-2029. The prior edition recorded that only "
+    "e& had disclosed the extension; that was a sourcing failure, not a genuine absence",
+    "du disclosure announcement, Extension of Federal Royalty Scheme 2027-2029", CO,
+    "2026-07-24", fiscal_period="Q2-2026",
+    model_impact="DEMOTES the study's former contested judgement. The 2027-2029 regime is settled, "
+                 "so Framing A is the base on disclosed fact rather than on assumption, and a "
+                 "reversion is repriced as a POST-2029 TAIL. The contested judgement is recast as "
+                 "the REQUIRED RETURN (measured beta vs the market's own terminal multiple).")
+neg_regime_post29 = R.add_negative(Ring.COUNTRY,
+    "fiscal / political events with sector read-through",
+    "any disclosure of the royalty/corporate-tax regime applying AFTER 31-Dec-2029, in du's "
+    "filings, e&'s filings, MoF releases or Cabinet decisions - none exists; the post-2029 "
+    "reversion is therefore modelled as a tail, not forecast", "2026-08-17")
+
+# ---------------------------------------------------------------- DRIVER GATE
+R.add_driver("Mobile revenue (subscribers x ARPU)", DriverMode.BOTTOM_UP,
+             "Company-disclosed quarterly subscriber base (prepaid/postpaid) and blended "
+             "ARPU reproduce the audited segment to -0.04% in FY2025; both are forecast "
+             "at unit level", [f_ir, f_fs25, f_dem])
+R.add_driver("Fixed revenue (subscribers x implied revenue-per-sub)", DriverMode.BOTTOM_UP,
+             "Subscriber base disclosed quarterly; revenue-per-sub is implied (consumer + "
+             "enterprise blend) — unit build with the intensity metric flagged as implied",
+             [f_ir, f_tech])
+R.add_driver("Wholesale revenue", DriverMode.TOP_DOWN,
+             "No unit KPIs (minutes/transit) disclosed anywhere in the record — FLAGGED: "
+             "segment-level growth on the war-recovery path is the finest sourced level",
+             [f_q2, f_trade, neg_whl])
+R.add_driver("ICT & associated telecom revenue", DriverMode.TOP_DOWN,
+             "No unit KPIs (racks/MW/contract book) disclosed — FLAGGED: segment-level "
+             "growth on the sourced data-centre programme evidence",
+             [f_dc, f_gdem, neg_ict])
+R.add_driver("Segment contribution margins", DriverMode.BOTTOM_UP,
+             "Disclosed per segment in Note 38 (two consistent years); held at audited "
+             "FY2025 rates, ICT lifted on scale", [f_fs25])
+R.add_driver("Opex stack (staff/network/marketing/licence/admin/ECL)", DriverMode.BOTTOM_UP,
+             "Disclosed by nature on the face of the income statement; one escalator per "
+             "driver class (wages, network scale, revenue-linked regulatory fee, CPI)",
+             [f_fs25, f_q2]),
+R.add_driver("Capex path (15.5% -> 13.0% of revenue)", DriverMode.TOP_DOWN,
+             "No numeric FY2026 capex guidance published — FLAGGED as a house path anchored "
+             "on disclosed commitments (2,411.8mn) and the disclosed DC programme",
+             [f_dc, f_q2, neg_capex])
+R.add_driver("Post-2029 fiscal regime (a priced tail, NOT the contested judgement)",
+             DriverMode.TOP_DOWN,
+             "2027-2029 is SETTLED by du's own 24-Jul-2026 disclosure, so the base case rests on "
+             "disclosed fact rather than assumption. Nothing is disclosed for any period after "
+             "31-Dec-2029 (dated negative search), so a reversion to the pre-2024 construction is "
+             "carried as a named tail scenario and priced, never averaged into the base",
+             [f_fiscal, f_fs23, neg_regime, neg_regime_post29])
+
+# ---- ADDED 17-Aug-2026: the cost side and the mobile mix, swept properly ----------------
+# Root cause of the additions: the study year's disclosed detail was swept for REVENUE but not
+# for COST. du splits its direct costs three ways by nature on the face of the income statement
+# and four ways by segment in the segment note, in every filing, and the first edition's forecast
+# used none of it — it held one contribution margin per segment instead. Same failure class the
+# cost-stack escalation rule was adopted for.
+f_dcnat = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
+    "Direct costs disclosed BY NATURE across four audited years: interconnect 2,768.0 (FY2022) / "
+    "2,729.6 / 2,811.2 / 2,914.2 (FY2025); commission 463.8 / 535.5 / 596.2 / 686.4; devices and "
+    "other direct services 1,303.4 / 1,405.6 / 1,411.0 / 1,658.8. AR2024 Note 27 prints FY2024 "
+    "devices at 1,402.1 against AR2025's re-presented 1,411.0 (+8.9) — the later filing is taken "
+    "as the authority and the discrepancy is recorded",
+    "AR2023 Note 26 / AR2024 Note 27 / AR2025 income statement, investors.du.ae", CO,
+    "2026-02-09", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="Each direct-cost line now carries its OWN driver and escalator: interconnect "
+                 "per subscriber per month (falling 4.1% like-for-like), commission per "
+                 "subscriber per month (rising 3.0%), devices held flat. Contribution margin "
+                 "became an OUTPUT rather than an input.")
+f_dcseg = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
+    "Direct costs disclosed BY SEGMENT for both halves of 2026 and both audited years "
+    "(H1-2026: mobile 1,371.2 / fixed 303.3 / wholesale 195.9 / ICT 715.0, against H1-2025 "
+    "1,357.5 / 313.5 / 178.9 / 702.4). The by-nature and by-segment cuts are never "
+    "cross-tabulated by the company; the joint is recovered exactly under two structural "
+    "assumptions and TESTED — the residual mobile device cost stays positive and foots to the "
+    "disclosed devices line in all four periods",
+    "H1-2026 reviewed interim FS Note 17 + AR2025 Note 38, investors.du.ae", CO, "2026-07-22",
+    is_fs_data=True, fiscal_period="H1-2026",
+    model_impact="Gives the per-unit cost anchor a REVIEWED near-term actual rather than a "
+                 "stale full-year rate. Three of the four H2-2025 rates were cheaper than H1, "
+                 "so carrying an H1 rate into H2 overstates cost.")
+f_mix = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.S,
+    "Mobile base split prepaid/postpaid every quarter (Q4-2024 7,116/1,800 through Q2-2026 "
+    "7,227/2,053) alongside a SINGLE blended ARPU (65.8 / 63.5 / 63.3 / 64.5 / 65.3 / 63.4 / "
+    "63.4). The postpaid share jumped 20.4% to 22.1% in two quarters — prepaid -499k against "
+    "postpaid +74k, a visitor-SIM collapse rather than postpaid strength",
+    "du quarterly analyst presentations, mobile KPI slide (Q2-2026 deck slide 12)", IR,
+    "2026-07-23", fiscal_period="Q2-2026",
+    model_impact="The flat blended ARPU is two offsetting forces, not stability: a mix shift "
+                 "worth about +2.6% against per-leg erosion of about -2.4%. If prepaid recovers "
+                 "as the subscriber path assumes, the tailwind goes. Priced as the "
+                 "mix-exhaustion scenario, worth -17% on the DCF.")
+f_sukuk = R.add(Ring.COUNTRY, "sovereign / rates", FindingClass.B,
+    "The only AED federal tranche maturing beyond January 2031 is the February-2033 Islamic "
+    "Treasury SUKUK, and BOTH of its prints are now recorded: debut AED 550mn at 3.779% "
+    "(22-Feb-2026) and a second tap of the same instrument at 4.13% at a 10bp spread "
+    "(23-Apr-2026). The Jan-2031 T-Bond chain over the same window runs 3.90% (31-Jan) / 3.85% "
+    "(14-Mar) / 4.30% (23-May) / 4.48% (30-Jul)",
+    "UAE Ministry of Finance auction result releases, mof.gov.ae", REG, "2026-04-23",
+    model_impact="Settles an external challenge that the risk-free rate should be 3.779%: that "
+                 "is a debut print the issuer's own re-offer contradicted 35bp higher two months "
+                 "later. rf stays 4.48%; 4.13% is published as the longest-tenor alternative and "
+                 "the 3.779% case is PRICED (+22.7%) before being rejected.")
+
+neg_legarpu = R.add_negative(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    "Searched for separately disclosed PREPAID and POSTPAID ARPU across du's Q2-2026, Q1-2026 "
+    "and Q4-FY2025 earnings releases and analyst presentations, the FY2025 annual report, and "
+    "the audited segment note. NOT DISCLOSED ANYWHERE — the split exists at subscriber level "
+    "only; the segment note splits Mobile/Fixed and never prepaid/postpaid. This is the REGIONAL "
+    "norm, not a du-specific gap: e&, stc and Mobily all publish the subscriber split with one "
+    "blended ARPU, and Ooredoo is the sole Gulf exception (Q2-2026 postpaid/prepaid ratios 7.22x "
+    "Qatar, 4.67x Kuwait, 2.92x Oman). CONSEQUENCE: a two-leg mobile build is NOT identified — "
+    "solving for the implied leg ratio on all 21 available quarter pairs gives -45x to +17x, "
+    "with 9 pairs negative and only 5 inside the peer band. The build stays on the blended "
+    "figure, the finest level du sources, and the gap is FLAGGED rather than filled with an "
+    "imported ratio", "2026-08-17")
+neg_duir = R.add_negative(Ring.COMPANY, "official financial statements",
+    "Primary-access attempt logged rather than papered over: investors.du.ae is INTERMITTENT from "
+    "this environment — HTTP 200 on a direct request on 17-Aug-2026 but HTTP 503 on every attempt "
+    "in a parallel verification pass (five static-file URLs over HTTP/1.1, HTTP/2 and forced "
+    "TLS1.2; reader proxy blocked; archive egress blocked; the DFM API returned 404). The "
+    "deck-level ARPU and subscriber series therefore rest on this study's own first-hand extract "
+    "of the Q2-2026 documents rather than on a fresh re-read. CONSEQUENCE: this does NOT block "
+    "the build — the blended ARPU level is corroborated two ways (the presentation KPI slide and "
+    "the Q4-FY2025 earnings release both print FY2025 63.3) and the subscribers x ARPU frame "
+    "reproduces audited mobile segment revenue to within 0.05%. Recorded so a reader can grade "
+    "the channel", "2026-08-17")
+
+R.add_driver("Mobile direct cost per subscriber per month (interconnect + commission + devices)",
+             DriverMode.BOTTOM_UP,
+             "Three physically distinct cost lines, each on its own driver and escalator, "
+             "anchored on the H1-2026 reviewed actual. Contribution margin is the OUTPUT",
+             [f_dcnat, f_dcseg, f_q2])
+R.add_driver("Fixed capacity cost per subscriber per month", DriverMode.BOTTOM_UP,
+             "Per-subscriber capacity and direct cost, anchored on the H1-2026 reviewed actual "
+             "and held flat against an observed 9.2% like-for-like decline",
+             [f_dcseg, f_q2])
+R.add_driver("Wholesale and ICT direct cost as a rate on their own revenue",
+             DriverMode.TOP_DOWN,
+             "FLAGGED as the finest sourced level: the company discloses NO volume unit for "
+             "either segment, so a cost-per-unit build is impossible. Both rates are anchored on "
+             "the H1-2026 reviewed actual and held flat",
+             [f_dcseg, neg_legarpu])
+R.add_driver("Blended mobile ARPU path", DriverMode.TOP_DOWN,
+             "FLAGGED: du discloses no prepaid/postpaid ARPU (dated negative search), and the "
+             "two-leg split is demonstrably unidentified, so the blended series is the finest "
+             "sourced level. The mix-exhaustion downside is priced rather than assumed away",
+             [f_mix, neg_legarpu, f_q2])
+
+errors, warnings = R.validate()
+print(R.qc_line())
+for w in warnings:
+    print("WARN:", w)
+fresh = R.check_freshness("2026-08-09")
+if fresh:
+    print("WARN:", fresh)
+assert not errors, errors
+R.to_json(os.path.join(HERE, 'sweep_register.json'))
+print("wrote sweep_register.json |", R.counts())
