@@ -311,53 +311,108 @@ GR8 (liquidity discount — unpriced, and non-standard for a large-cap), GR9 (pe
 volume decline — implied growth is +0.59%), GT8 (AED 4.30 — built on the un-found
 zero-growth error).
 
-**Your decision (3):**
+**Settled by rule, not referred (4).** An earlier draft of this response put three of these
+to the user as judgement calls. That was wrong: the project instructions and the Standing
+Research Protocol decide all three, and deriving them from the rules surfaced a fourth
+defect that none of the four critiques found.
 
-| Choice | Branch A | Branch B | My recommendation |
-|---|---|---|---|
-| Which rf* to publish | (a) 4.44%, observed instrument + observed spread → centre **4.166 (+2.3%)** | (e) 4.89%, tenor-matched → centre **3.917 (−3.8%)** | **(a)**, with (b) and (e) in the sensitivity table. Publishing (a) is the conservative choice *against* my own prior conclusion while resting only on observed data |
-| The normalised lens | True zero growth → **3.248** | Growth with reinvestment charged → **3.947** | **Reinvestment charged.** Relabel either way |
-| Frame B | Delete it (two critiques demand this) | Keep both frames, sharpen the terminal disclosure | **Keep.** The dual-framing rule requires it; deleting removes a disclosure |
+**D1 — The risk-free rate: local AED bond less its OWN observed spread = 4.48% − 0.04% =
+rf\* 4.44%.**
+- *"rf from the local govt bond even for pegged currencies (never shortcut to USD)"* — this
+  eliminates the US-10-year constructions (b) and (c) outright, whatever their coherence
+  appeal. Two of the critiques' preferred anchors are not available to me.
+- *"rf\* = local govt-bond yield − that sovereign's OWN default spread (≈0 for mature AAA)"* —
+  the spread **in that instrument** is 4bp (own record C-06), and the parenthetical is the
+  guide for a Aa2/AA sovereign. 42bp is a generic ratings-table lookup, not this bond's spread.
+- *"Country risk enters ONCE, via the CRP inside the ERP"* — the rule is anti-double-count.
+  Stripping 42bp from a 4bp spread does not count country risk once; it counts it at negative
+  value.
+- *"Kd … MUST sit ABOVE the local sovereign (a same-currency corporate cannot borrow below
+  its sovereign)"* — the protocol already enforces a no-arbitrage ordering on constructed
+  rates. A pegged-currency riskless rate below the anchor currency's riskless rate breaches
+  the same principle.
+- The constructed 10-year AED point (4.93%) becomes a **priced construction** under *"every
+  contested construction PRICED, not just named"* — in §1.8 and the sensitivity table, not
+  as the base rate.
 
----
+**D2 — The normalised-earnings lens: charge RR = g ÷ ROIC = 6.0%. Lens 4.222 → 3.685.**
+- *"Terminal reinvestment is no longer a free input. It is forced to RR = g / ROIC, so the
+  identity g = ROIC × RR … now holds by construction rather than by assertion."* Adopted
+  from the CLHO failure, which was **exactly this defect**: "The CLHO study capitalised
+  final-year FCFF directly… That looks neutral. It is not. It silently adopts whatever
+  reinvestment rate happens to fall out."
+- The rule governs every perpetuity. This lens is a perpetuity. My DCF terminal block already
+  obeys it; the normalised lens did not — an internal inconsistency against a standing rule,
+  not a matter of taste.
+- **Not** true zero growth (3.074): the lens holds the same terminal growth as the DCF, so
+  the difference between the two readings is what is *normalised*, not the growth rate. The
+  "if this company never grew again" language goes either way.
+
+**D3 — Frame B: KEEP.**
+- *"The study's single most consequential contested judgement is computed BOTH ways and
+  published side by side — summary table, body, workbook, and an expert's range — never
+  averaged into a single number that would hide the disagreement."*
+- Two critiques demand deletion. Deleting it would breach a standing rule and remove a
+  disclosure. Rejected on the rule, not on preference.
+
+**D4 — NEW, found by deriving D1 rather than by any critique: the WACC glide must collapse
+to FLAT.**
+- *"The sliding schedule is a device for markets in monetary transition… **It does not apply
+  to currency-pegged markets (UAE, Saudi, Qatar)** where the risk-free rate already sits at
+  its norm."* And the precedent: *"For GCC names the sliding schedule does nothing. The AED
+  is pegged to the USD… today is the terminal, so explicit = terminal and the glide collapses
+  to flat. Measured on EAND's published model: +0.0%."*
+- Neither glide component is rule-supported. The **beta drift** of 0.389 is an unanchored
+  input — Cowork #31 is right that calling it "derived" relabels an assertion. The
+  **terminal debt weight** of 10% is contradicted by my own forecast balance sheet, which
+  de-gears net debt from 2,985 to 409 (Cowork #20); *"normalized target structure when
+  leverage is changing"* does not authorise re-gearing a company that is de-gearing.
+- **Effect: DCF 4.191 → 4.508, +0.317. This moves value UP, against every critique's
+  direction.** It is reported because calibration cuts both ways: accepting a wrong finding
+  is as much a failure as dismissing a right one, and no critique found this.
+- The beta drift becomes a priced construction in §1.8, not the base case.
 
 ## PART 5 — WHERE THIS LANDS
 
-Correcting only what is arithmetic or definitional — not one matter of judgement:
+Applying the four rule-derived decisions, in order. Every step is a rule, not a preference:
 
-| | Published | + rf* at 4.44% | + normalised lens with reinvestment | + justified-only reference multiple |
+| | DCF A | Normalised | Centre | vs spot |
 |---|---|---|---|---|
-| Discounted cash flow | 4.450 | 4.191 | 4.191 | 4.191 |
-| Normalised earnings power | 4.222 | 3.940 | ~3.70 | ~3.70 |
-| Relative multiples | 5.094 | 5.000 | 5.000 | ~4.33 |
-| Book value / sustainable return | 3.580 | 3.357 | 3.357 | 3.357 |
-| **Weighted centre** | **4.391 (+7.9%)** | **4.166 (+2.3%)** | **~4.11 (+1.0%)** | **~3.97 (−2.5%)** |
+| **Published** | 4.450 | 4.222 | **4.391** | **+7.9%** |
+| D1 — rf\* 4.44% (local bond, own observed spread) | 4.191 | 3.944 | 4.166 | +2.3% |
+| D2 — normalised lens charged RR = g/ROIC | 4.191 | 3.685 | 4.101 | +0.8% |
+| D4 — flat WACC (pegged market: explicit = terminal) | **4.508** | 3.685 | **4.228** | **+3.9%** |
 
-**The direction of my conclusion does not survive.** The study's central claim — that the
-price sits below what the cash the business generates is worth — compresses to inside its
-own rounding on the first correction and inverts on the third. I am not going to defend it.
+**I have to correct what I told the user last turn.** I reported that "the direction of the
+conclusion does not survive". On the rule-derived reconstruction it does survive, at
+**+3.9% rather than +7.9%** — because the same rule-set that strips 38bp of over-normalisation
+out of the risk-free rate also removes an unauthorised WACC glide that was suppressing value.
+My earlier statement priced the corrections the critiques found and not the one they missed,
+and it was therefore wrong in direction as well as magnitude. The centre roughly halves; it
+does not invert.
 
-Three things are worth saying plainly in the other direction, because calibration cuts both
-ways. The DCF machinery reproduces to six decimals in all four critiques. Every FY2025
-input traces exactly to the audited accounts — Cowork verified ~34 line items, including
-all three inventory-movement figures and every balance-sheet caption. And both margin-per-
-litre unit builds derive precisely from disclosed segment gross profit less disclosed
-inventory movements. The failures here are in **inputs, labels and claims**, not in the
-model's arithmetic.
+Three things still hold from the critiques, and they are the substance:
+- The DCF machinery reproduces to six decimals in all four audits, every FY2025 input traces
+  to the audited accounts, and both margin-per-litre unit builds derive exactly from
+  disclosed segment gross profit less disclosed inventory movements.
+- The failures are in **inputs, labels and claims** — not arithmetic. The published field,
+  the "no vendor" contract, the fils units, the beta ladder, the "2% cost escalator", the
+  implied-beta inequality, the p95 sentence and the dividend-cover sentence are all wrong as
+  written and all get fixed.
+- The two findings that most damage my own reasoning are Code #8 (the sensitivity ladders are
+  retail-only, so volume alone nearly does explain the gap) and Cowork #21 (terminal ROIC
+  carries 0.53/share of undisclosed range). Neither is repaired by D1–D4.
 
-The most uncomfortable finding is not any single number. It is CW #10: the study asserts
-"No data vendor, broker note or press report was used as the source of any number about the
-company itself" while its own research record sources the share price and market
-capitalisation to an aggregator. That is a declared contract broken by the document's own
-appendix, and it is mine.
-
----
+The most uncomfortable finding remains CW #10: the study asserts "No data vendor, broker note
+or press report was used as the source of any number about the company itself" while its own
+research record sources the share price to an aggregator. That is a declared contract broken
+by the document's own appendix.
 
 ## PART 6 — RECONCILIATION
 
 **103 raised · 103 answered · 0 unaddressed.**
 Accept and implement 79 · accept defect / reject fix 6 · unproven → research 8 ·
-reject with receipts 7 · your decision 3.
+reject with receipts 7 · settled by rule 4 (one of which no critique found).
 
 Nothing here is implemented yet. On approval I will implement, re-run every gate, and report
 before/after plus any further defect the fixes surface.
