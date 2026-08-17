@@ -19,11 +19,49 @@ from docx.oxml import OxmlElement
 D = json.load(open('study_numbers.json'))
 SW = json.load(open('sweep_register.json'))
 BR = json.load(open('beta_result.json'))
-INP = D['inputs']
+BR_DFM = json.load(open('beta_result_dfmgi.json'))
+INP = {k: dict(v) for k, v in D['inputs'].items()}   # copy — display overrides below
 IN = {k: v['value'] for k, v in INP.items()}
 W, BC, BD = D['wacc'], D['dcf']['base_ct'], D['dcf']['base_dmtt']
 PC, PD = D['dcf']['pers_ct'], D['dcf']['pers_dmtt']
 U, CRX = D['unit'], D['crux']
+WC = W['constructions']
+DGW, DCW, DFB = D['dcf']['base_gross_wacc'], D['dcf']['base_carry_wacc'], D['dcf']['base_dfm_beta']
+CEN = D['central']
+
+# -------- 17-Aug-2026 revision: display corrections to three source strings ----
+# The committed numbers file still carries three pre-audit source descriptions;
+# the VALUES are unchanged — only the description text is corrected here, per the
+# externally verified facts in critique_facts.json (tenor/most-recent wording,
+# refinancing scope + August EIBOR, receivable naming) and the revised terminal
+# construction. Each correction is catalogued in the critique-response note.
+INP['rf_aed']['source'] = (
+    'UAE dirham T-Bond, Jan-2031 tranche, auction YTM 30-Jul-2026 — the most RECENT AED '
+    'sovereign print (4.50-year tenor; a longer Feb-2033 T-Sukuk exists — first 7-year AED '
+    'tranche, AED 1,650m, ISIN AED01889C262 — whose last print, 4.13% in the April tap, '
+    'predates the July repricing and is therefore not the anchor; both stated in the study. '
+    'The tenor gap vs the cash-flow horizon is flagged; spread over UST was ~4bp at issue)')
+INP['kd_marg']['source'] = (
+    "Cost-of-debt anchor = the company's own disclosed all-in borrowing cost (the accounting "
+    "capitalisation rate on general borrowings, note 30 — an average, not a marginal print), "
+    "struck after the 2025 refinancing into two AED 2.75bn revolving tranches at EIBOR + a "
+    "REDUCED margin; per the H1-2026 borrowings note only ONE tranche has been extended (to "
+    "Feb-2028) — the other still matures Sep-2027, a dated roll risk stated in the study; "
+    "sits above the 4.48% AED sovereign as a same-currency corporate must (2024 comparison: "
+    "5.993%; 3M EIBOR ~3.9% in Aug-2026, 3.66% at end-March, + implied margin ~0.9-1.3%)")
+INP['intco_fy23']['source'] = (
+    'Interest income on financial assets at amortised cost (the related-party acquisition '
+    'receivables — concession-grantor financial asset under IFRIC 12 from Dubai Aviation '
+    'City, and the Nakheel minimum-demand commitment), presented INSIDE gross profit, '
+    'FY2023 audited FS')
+INP['g_term']['source'] = (
+    'Terminal growth, two-stage: 2.5% VOLUME-ONLY for a ten-year second stage under the '
+    "regulator's no-indexation rule (Dubai 2040 build-out, the contracted backlog and the "
+    '163-186 new-contracts/yr signing run-rate), then a 1.5% perpetuity (long-run '
+    'densification, zero real tariff growth); the published grid extends to 0% so the '
+    'flat-everything end is visible. The former "long-run UAE nominal-GDP-consistent" label '
+    'was wrong in the conservative direction (UAE nominal GDP CAGR 2024-29 ≈ 5.7%) and is '
+    'withdrawn')
 
 def p3(x): return f"{x:.3f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
@@ -31,6 +69,10 @@ def n0(x): return f"{x:,.0f}"
 
 # -------- sanitiser: internal working vocabulary never reaches the reader ----
 CLEAN = [
+    (r'retained in beta_result_dfmgi\.json as a comparison',
+     'retained as the archived comparison regression — priced as a full parallel valuation '
+     'since the 17-Aug revision'),
+    (r'beta_result_dfmgi\.json', 'the comparison regression record'),
     (r'\s*—\s*passes the usability gate \(beta_result\.json\)',
      ' — meets the study’s minimum statistical-usability standard'),
     (r'\(sweep_external\.json, COUNTRY sources\)', '(recorded source list)'),
@@ -135,12 +177,15 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('TESTAHIL Research — Valuation Study · Bibliography and Source Register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   9 August 2026')
+r2 = p.add_run('   9 August 2026 · revised 17 August 2026')
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
 H1('Emirates Central Cooling Systems Corporation PJSC (DFM: EMPOWER)')
-P('Companion document to the valuation study dated 9 August 2026. It exists so a reader can '
+P('Companion document to the valuation study dated 9 August 2026 and revised 17 August 2026 '
+  'following an external audit — the findings, dispositions and prices are catalogued in the '
+  'accompanying critique-response note, and the register below reflects the revised inputs '
+  'and constructions. It exists so a reader can '
   'check the study rather than trust it: every input the model uses is listed with its value, '
   'its source and construction, the date the source itself bears (not the date it was read), '
   'and the research layer it belongs to. The judgements — the places where the analyst chose '
@@ -177,7 +222,11 @@ rows.append(['Audited consolidated financial statements FY2023 (PwC, unqualified
              '14-Feb-2024', '/media/vn1fsmte/2023_financial_statements_e.pdf',
              'Full FY2023 statements: revenue, cost of sales, operating profit, the tax '
              'CREDIT from first recognition of deferred tax assets; the airport-cooling '
-             'concession acquisition (70% of DXB CoolCo, 35-year concession) and the '
+             'concession acquisition — 85% of DXB CoolCo with the seller (Dubai Aviation '
+             'City) retaining the 15% minority recognised at AED 157.5m, accounted for as a '
+             'service concession under IFRIC 12 with a financial-asset receivable of AED '
+             '1,050.0m recovered over the concession, stated as "a term of 35 years from '
+             'the commencement date (5 July 2023)" — and the '
              'borrowing step-up that funded it; consumption revenue in the auditor\'s '
              'key-audit-matter section'])
 rows.append(['Audited consolidated financial statements FY2024 (PwC, unqualified)',
@@ -243,16 +292,23 @@ P('These are the places where the analyst chose rather than observed. Each carri
   'and re-run the model, which is built so that changing any of these reprices everything '
   'downstream.')
 rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
-        ['The consumption recovery (the crux)',
-         f"Usage per connected ton carries a {pc(abs(U['crux_shock']), 0)} shock in 2026 and "
-         f"recovers to the 2025 level through 2027; the never-recovers case is computed as a "
-         f"full alternative model ({p3(PC['ps'])} against {p3(BC['ps'])} per share) and "
-         f"published beside it",
-         'The interim notes tie the usage fall partly to conflict-hit hospitality occupancy; '
+        ['The consumption recovery (the crux) — DUAL-FRAMED since the 17-Aug revision',
+         f"Usage per connected ton carries a {pc(abs(U['crux_shock']), 0)} shock in 2026. The "
+         f"recovery (de-escalation) case restores the 2025 level through 2027; the "
+         f"continuation case — the world as it stood on the published facts at the anchor — "
+         f"is a full parallel model ({p3(PC['ps'])} against {p3(BC['ps'])} per share on the "
+         f"primary lens; weighted centrals {CEN['continuation_ct']:.2f}/{CEN['ct']:.2f} at 9% "
+         f"tax). NEITHER is privileged as the base: the external audit established that the "
+         f"de-escalation the recovery case requires had not occurred at the anchor date, so "
+         f"the two are published side by side like the tax framings",
+         'The interim notes tie the usage fall mainly to lower hospitality activity (the '
+         'company\'s own attribution; weather minor); '
          'capacity connections kept growing through the same half, so the loss reads as '
-         'demand-cyclical, not structural',
-         'Two consecutive half-years with equivalent full-load hours below the 2026 trough — '
-         'then the never-recovers column becomes the base'],
+         'demand-cyclical, not structural — but the macro condition for recovery is a fact '
+         'about the war, not the company, and is not asserted',
+         'De-escalation implemented (strait reopened, attack tempo fading) promotes the '
+         'recovery case; two consecutive half-years with equivalent full-load hours below '
+         'the 2026 trough retire it'],
         ['The tax framing (dual-framed throughout)',
          f"The audited {pc(IN['tax_ct'], 0)} effective rate is the base; the "
          f"{pc(IN['tax_dmtt'], 0)} domestic minimum top-up rate is computed as a full second "
@@ -263,13 +319,53 @@ rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
          'genuinely unresolved in the guidance read for this study',
          'A Ministry of Finance clarification or the tax note of the FY2026 filing — either '
          'way, the corresponding published column simply takes over'],
-        ['Terminal growth',
-         f"{pc(IN['g_term'], 1)} in nominal dirhams, sensitised {pc(0.015, 1)}–{pc(0.035, 1)}",
-         'Bounded by the flat regulated tariff and Dubai build-out saturation: connected '
-         'capacity already covers most of the contracted pipeline, so perpetual growth above '
-         'nominal GDP would require expansion the company has not announced',
-         'A new-emirate or acquisition-led expansion commitment, or a tariff regime with '
-         'real escalation'],
+        ['Terminal growth — RELABELLED and RESTRUCTURED in the 17-Aug revision',
+         f"Two-stage: {pc(IN['g_term'], 1)} VOLUME-ONLY for ten further years, then a "
+         f"{pc(0.015, 1)} perpetuity; the published grid extends to {pc(0.0, 1)}",
+         'The regulator\'s tariff instrument bars indexation of capacity charges, so any '
+         'perpetual growth must be volume; the ten-year stage rests on the Dubai 2040 '
+         'build-out, the contracted backlog and the disclosed signing run-rate, and the '
+         'former "nominal-GDP-consistent" label is withdrawn (it understated nominal GDP '
+         'growth — an error in the conservative direction). The tension is stated: '
+         f"{pc(IN['g_term'], 1)} volume growth forever would double the connected base every "
+         f"~28 years, which is why the perpetuity steps down",
+         'A new-emirate or acquisition-led expansion commitment (raises the bound), a tariff '
+         'regime with escalation (impossible under the current instrument without a rule '
+         'change), or connections stalling below the signing run-rate (lowers it)'],
+        ['The valuation clock (stub convention) — ADOPTED in the 17-Aug revision',
+         'Bridge and cash-flow clock BOTH at 30-Jun-2026: 2026 contributes its second half '
+         'only, discounted at half a year; later year-ends at 1.5-4.5 years; terminal at 4.5',
+         'The prior convention discounted the full 2026 year against the June balance sheet '
+         'and so double-counted roughly AED 200m of first-half cash — the audit\'s finding, '
+         'confirmed and repriced',
+         'Nothing — this is now the dating convention, stated so the reader can reproduce '
+         'the discounting'],
+        ['The related-party acquisition receivables — CLEAN treatment since the 17-Aug '
+         'revision',
+         'Interest income excluded from operating EBITDA and free cash flow; the asset '
+         '(AED 1,294.4m at 30-Jun-2026: Dubai Aviation City 1,005.0 + Nakheel 289.4) added '
+         'at BOOK in the bridge; excluded from terminal invested capital. Rental income on '
+         'the investment properties treated identically (excluded from operating earnings; '
+         'the properties sit in the bridge at book)',
+         'A financial asset\'s return cannot be capitalised as an operating perpetuity while '
+         'the asset is also added — that prices it twice. The first edition\'s treatment was '
+         'incoherent in exactly that way (audit finding, conceded); rental income was the '
+         'same defect found by the re-check against the other-income note',
+         'A disclosed impairment, restructuring or prepayment of either receivable — the '
+         'book-value leg would then be re-marked'],
+        ['The cost-of-capital construction — DUAL-FRAMED since the 17-Aug revision',
+         f"Base: target net-debt weights at {WC['base_net_target']*100:.2f}%. Priced "
+         f"alternatives, each a full parallel valuation: gross-debt weights "
+         f"({WC['gross']*100:.2f}%, {DGW['ps']:.3f}/share), net debt at its negative carry "
+         f"({WC['carry']*100:.2f}%, {DCW['ps']:.3f}), and the listing-exchange (DFM) index "
+         f"beta ({WC['dfm_beta']*100:.2f}%, {DFB['ps']:.3f})",
+         'The audit\'s largest contested findings were constructions of the discount rate '
+         'pulling in opposite directions; arbitration on coherence and company policy '
+         '(net-debt target ~2x EBITDA, payout ≈ free cash flow to equity, so surplus cash '
+         'is transient) keeps the target-net base — and every alternative is priced instead '
+         'of argued away',
+         'The company running a durable structural cash pile (promotes the carry '
+         'construction) or de-rating its net-debt policy (promotes gross weights)'],
         ['Capital expenditure per new refrigeration ton',
          f"AED {n0(U['capex_per_rt'] * 1000)} per RT added (derived: 2025 cash capital "
          f"expenditure over the year's added tons), plus a {pc(U['maint_pct'], 1)} "
@@ -303,16 +399,20 @@ rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
          'Connections printing outside the guidance band, or the contracted backlog '
          'shrinking two decks running'],
         ['The cost of equity construction',
-         f"Risk-free = the longest dirham sovereign print less the UAE's own default spread; "
+         f"Risk-free = the most recent dirham sovereign print less the UAE's own default "
+         f"spread; "
          f"beta {BR['beta']:.3f} from the stock's own weekly history against the FTSE ADX "
-         f"General Index (adopted as the UAE market index by instruction; the DFM-index "
-         f"regression, 0.652, is retained as a comparison); the published UAE equity risk "
+         f"General Index (adopted as the UAE market index by explicit instruction; the "
+         f"DFM-index regression, {BR_DFM['beta']:.3f}, is priced as a full parallel "
+         f"valuation since the 17-Aug revision); the published UAE equity risk "
          f"premium; both spread bases computed "
          f"(they converge: {pc(W['ke_rating'], 2)} against {pc(W['ke_cds'], 2)})",
          'Country risk must enter once — through the premium — not twice; the two published '
          'bases are both carried precisely because the choice between them is contested, and '
-         'here it turns out to cost nothing',
-         'A longer dirham sovereign issue (replacing the tenor-mismatched anchor) or the '
+         'here it turns out to cost nothing. The beta-index choice, by contrast, is worth a '
+         'fifth of the primary lens and is therefore priced, not footnoted',
+         'A longer LIQUID dirham sovereign print post-repricing (the stale Feb-2033 tap does '
+         'not qualify and is named as such) or the '
          'beta interval shifting as the listing history lengthens'],
         ['Minority interests at their profit share',
          f"Minorities are charged {pc(IN['nci_pat_fy25'] / IN['pat_fy25'], 1)} of equity "
@@ -321,13 +421,15 @@ rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
          'valuing everyone else\'s above it would apply two standards to the same '
          'subsidiaries',
          'A disclosed transaction in the minority stakes establishing a different value'],
-        ['No accretion roll to the anchor date',
-         'The valuation is struck on the 30-Jun-2026 reviewed balance sheet and compared '
-         'directly with the 07-Aug-2026 closing price',
-         'The window is five weeks with no dividend inside it; an accretion roll would move '
-         'the comparison by well under one percent of value',
-         'Nothing — stated so the reader knows the dating convention rather than to invite '
-         'evidence']]
+        ['The tax framing keeps the interest shield in BOTH columns',
+         f"Both framings discount at {pc(W['rating_ct'], 2)}: the {pc(IN['tax_dmtt'], 0)} "
+         f"minimum top-up is a minimum-effective-rate charge, not a higher statutory rate, "
+         f"so the {pc(IN['tax_ct'], 0)} interest shield survives in the 15% column",
+         'Pillar-Two mechanics: the top-up restores the effective rate to the minimum; it '
+         'does not change the statutory deductibility of interest — the audit\'s point, '
+         'accepted and implemented',
+         'UAE implementing rules explicitly recomputing the debt shield at the top-up rate '
+         'for in-scope entities']]
 table(rows, [1.50, 2.90, 2.75, 2.65], size=7.9)
 
 # ---------------------------------------------------- 4. negative results
@@ -374,14 +476,41 @@ rows = [['Item', 'What was found', 'Handling'],
          'sparsity and the stale endpoint are flagged in the study. Never used for '
          'Empower\'s own prices, which come from the supplied exchange history through '
          '07-Aug-2026'],
-        ['Conflict and ceasefire status, August 2026',
-         'Reference and wire sources genuinely disagree: one widely used reference page '
-         'records the ceasefire as holding since 8 April; another records it declared over '
-         'on 8 July with low-intensity fighting after, following the June framework '
-         'agreements',
-         'BOTH readings are recorded and the status is treated as an unresolved, fragile '
-         'truce; the bear scenario prices the re-escalation reading rather than averaging '
-         'the two'],
+        ['Conflict and ceasefire status, August 2026 — RESOLVED in the 17-Aug revision',
+         'The first edition treated the truce status as an unresolved disagreement between '
+         'sources and leaned on the stale reading ("holding since 8 April"). The dated '
+         'timeline record, externally re-verified for the revision, is unambiguous: the '
+         'ceasefire was declared over on 8 July, the Strait of Hormuz was closed from 11 '
+         'July (US blockade 14 July) and remained closed at the 7 August anchor, and an '
+         'ADNOC tanker was attacked at sea on 8 August',
+         'The study now states the anchor-date facts plainly, relabels the cases so that '
+         'recovery is conditioned on a de-escalation that had not occurred, publishes the '
+         'continuation central beside it, and carries a dated 17-August postscript for the '
+         'newest events (tankers hit 12/14 August; Iran-Oman reopening agreement announced '
+         'and the formal ceasefire ended 17 August)'],
+        ["The study's own first edition vs the external audit — recorded on the same terms "
+         "as any other source discrepancy",
+         'The audit found the first edition carrying a stale ceasefire reading (above); '
+         'missing the regulator\'s current tariff instrument (v1.3 of 17-Sep-2025 and v1.4 '
+         'of 6-Feb-2026, with explicit caps and the no-indexation rule) and the Nov-2025 '
+         'fees-and-fines resolution; overstating the refinancing scope (one tranche '
+         'extended, not both); a receivable shown at its current portion in three '
+         'balance-sheet columns; and a stale peer mark. The re-check that followed also '
+         'found, and this register discloses, a FY2025 statement-face mis-split (G&A '
+         '256.383 / other income 24.430, where the first pass carried 246.577 / 14.624 — '
+         'both pairs close the operating-profit identity, which is why the assertion never '
+         'caught it) and a rental-income double-count against the investment properties',
+         'Every item is corrected in the revised deliverables; the full list with prices is '
+         'in the accompanying critique-response note. The mis-split is a reminder that an '
+         'identity check constrains SUMS, not splits — the note-level composition (note 29) '
+         'is now the control'],
+        ['Peer market value dating',
+         'The relative lens was originally struck on a data-provider mark dated 22-Jun-2026 '
+         'while the study anchored 7-Aug-2026 — the same input carrying two dates inside '
+         'one document set, and the peer had itself sold off ~10% between them',
+         'Peer marks are restruck on the anchor dates (Tabreed 2.46 on 6/7-Aug-2026; '
+         'trailing multiple on trailing operating EBITDA, like-for-like) and the dating '
+         'rule — one anchor for every market input — is stated'],
         ['A peer\'s quarterly earnings figure',
          'One aggregator rendered Tabreed\'s quarterly EBITDA in dollars where the company '
          'release states dirhams — a transcription error in the aggregator',

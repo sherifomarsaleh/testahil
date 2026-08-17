@@ -18,7 +18,13 @@ NS = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
 W = NS['w']
 
 TOKENS = ['step 0', 'step 2a', 'gate', 'ring', 'sweep', 'sigcm', 'parity', 'fail',
-          'boundary', 'materiality', 'engine', 'mc_v3', 'protocol', 'qc', 'verdict']
+          'boundary', 'materiality', 'engine', 'mc_v3', 'protocol', 'qc', 'verdict',
+          'critique_response', 'critique_facts', 'study_numbers', 'addendum']
+
+# internal file paths must never reach a reader (e.g. the critique-response
+# register is referred to as "the accompanying critique-response note", never by
+# its repository filename) — catch any bare filename with a working extension
+FILEPAT = r'\b[\w][\w.\-]*\.(?:json|py|md|csv|npy)\b'
 
 DOCS = ['EMPOWER_Valuation_Study_09-08-2026_public.docx',
         'EMPOWER_Bibliography_09-08-2026.docx']
@@ -40,6 +46,9 @@ def scrub(path):
         for m in re.finditer(pat, txt, re.I):
             lo, hi = max(0, m.start() - 60), min(len(txt), m.end() + 60)
             hits.append((tok, '…' + txt[lo:hi] + '…'))
+    for m in re.finditer(FILEPAT, txt, re.I):
+        lo, hi = max(0, m.start() - 60), min(len(txt), m.end() + 60)
+        hits.append(('file-path ' + m.group(0), '…' + txt[lo:hi] + '…'))
     return hits
 
 def cell_text_and_size(tc):

@@ -197,12 +197,7 @@ H1_PAT_G = _H1IS['profit_after_tax'] / _H1IS_P['profit_after_tax'] - 1
 _KPI = EXI['ir_deck']['h1_2026_kpis_as_presented']
 H1_EB_G = float(rx(r'\+([\d.]+)% YoY', _KPI['ebitda']['value'])) / 100
 H1_EB_25 = float(rx(r'H1-2025: AED (\d+)m', _KPI['ebitda']['value']))
-FY25_EB_CO = EXI['ir_deck']['annual_revenue_ebitda_bars']['ebitda']['2025'] \
-    if 'annual_revenue_ebitda_bars' in EXI['ir_deck'] else None
-if FY25_EB_CO is None:      # locate the deck's FY2025 EBITDA bar wherever the extract holds it
-    for _k, _v in EXI['ir_deck'].items():
-        if isinstance(_v, dict) and isinstance(_v.get('ebitda'), dict) and '2025' in _v['ebitda']:
-            FY25_EB_CO = _v['ebitda']['2025']; break
+FY25_EB_CO = _KPI['quarterly_table']['ebitda_aed_m']['2025']['FY']   # deck p9/p10, FY2025
 # implied H2-2026 on the company's own EBITDA definition (operating + receivable
 # interest + rental) against H2-2025 on the same deck definition
 H2_IMPL = (B['ebitda']['FY26'] + B['intco']['FY26'] + IN['rental_fy25']) - IN['ebitda_h1_26']
@@ -360,7 +355,8 @@ box([("READ FIRST — what this document is. ",
       f"The changes and their prices are catalogued in the accompanying critique-response note "
       f"({N_FINDINGS} findings, each answered). The re-check also surfaced two corrections of "
       f"this study's own making, disclosed openly: the first edition's FY2025 statement face "
-      f"carried administrative expenses of {GA_OLD} and other income of {OI_OLD} where the "
+      f"carried administrative expenses of {n1(float(GA_OLD))} and other income of "
+      f"{n1(float(OI_OLD))} where the "
       f"audited figures are {n1(abs(HI['FY25']['ga']))} and {n1(IN['oi_fy25'])} — both pairs "
       f"close the operating-profit identity to the dirham, which is why the arithmetic "
       f"cross-check could not catch the mis-split — and rental income earned on the investment "
@@ -557,7 +553,8 @@ rows = [['Item', 'Detail'],
          f"{100 - int(DXB_PCT)}% minority; inside the connected base)"],
         ['Scale', f"{n0(RT_H1)}k RT connected / {n0(IN['rt_contracted'])}k RT contracted at "
          f"30 June 2026 ({sgn(RT_ADD_H1 / RT25Y, 1)} connected in the half); about {BLDGS} "
-         f"buildings; roughly {DUBAI_SHARE}% of the Dubai district-cooling market"],
+         f"buildings; roughly {DUBAI_SHARE}% of the Dubai district-cooling market (the "
+         f"company's 2022 listing-era disclosure, not restated since)"],
         ['Revenue model', f"Two legs on one asset base: capacity (demand) charges, contracted "
          f"and paid on connected tons regardless of usage — about {MIXD}% of first-half 2026 "
          f"revenue per the earnings deck — and metered consumption charges, about {MIXC}%, with "
@@ -1429,15 +1426,20 @@ rows.append(['Earnings per share (AED, derived)'] +
             [p3(HI[y]['npa'] / SH) for y in ('FY23', 'FY24', 'FY25')] + ['—'] * 5)
 table(rows, [1.90, 0.6375, 0.6375, 0.6375, 0.6375, 0.6375, 0.6375, 0.6375, 0.6375],
       size=7.8, band_rows={7, 8})
-caption("Every FY2023-25 line is taken directly from the company's audited consolidated "
-        "statements (the 2023 income-statement figure of interest income on the airport "
-        "concession receivable is presented INSIDE gross profit by the company, and the same "
-        "presentation is kept here). EBITDA is a house derivation — operating profit plus "
-        "depreciation and amortisation — labelled as such; the audited statements contain no "
-        "EBITDA line. The 2023 tax line is a CREDIT (first recognition of deferred tax assets "
-        "ahead of UAE corporate tax). Forecast financing, tax and attributable lines are shown "
-        "only where the model constructs them; the free-cash-flow waterfall in section 1.1 is "
-        "a pre-financing measure by construction.")
+caption(f"Every FY2023-25 line is taken directly from the company's audited consolidated "
+        f"statements (the interest income on the related-party acquisition receivables is "
+        f"presented INSIDE gross profit by the company, and the same "
+        f"presentation is kept here). Historical EBITDA is a house derivation — operating "
+        f"profit plus "
+        f"depreciation and amortisation — labelled as such; the audited statements contain no "
+        f"EBITDA line. The FORECAST rows are on the stricter operating basis, which excludes "
+        f"the receivable interest and rental income (2025 on that basis: {n1(OPEB25)} — the "
+        f"exact identity is in section 1.6), because those returns belong to assets the "
+        f"bridge adds at book. The 2023 tax line is a CREDIT (first recognition of deferred "
+        f"tax assets "
+        f"ahead of UAE corporate tax). Forecast financing, tax and attributable lines are shown "
+        f"only where the model constructs them; the free-cash-flow waterfall in section 1.1 is "
+        f"a pre-financing measure by construction.")
 
 H2('A.2  Balance sheet — condensed house layout (consolidated, AED mn)')
 def bs_col(src, m):
@@ -1508,13 +1510,25 @@ cj = bs_col(bj, dict(
     eqt='total_equity'))
 for c in (c23, c24, c25, cj):
     c['nd'] = c['borrow'] + c.get('lease', 0) - c['cash'] - c['dep']
+# Related-party acquisition receivables at FULL carrying value (non-current +
+# current) in every column — the first edition's dict merge let the small current
+# portion overwrite the full figure in three columns (critique CW2/CC12, fixed)
+c23['conc'] = (b23r['non_current_assets']['financial_assets_amortised_cost']
+               + b23r['current_assets']['financial_assets_amortised_cost']) / 1000.0
+c24['conc'] = (b24r['financial_assets_amortised_cost_non_current']
+               + b24r['financial_assets_amortised_cost_current']) / 1000.0
+c25['conc'] = (b25r['non_current_assets']['financial_assets_at_amortised_cost']
+               + b25r['current_assets']['financial_assets_at_amortised_cost']) / 1000.0
+cj['conc'] = (bjr['non_current_assets']['financial_assets_at_amortised_cost']
+              + bjr['current_assets']['financial_assets_at_amortised_cost']) / 1000.0
 COLS = [('FY2023', c23), ('FY2024', c24), ('FY2025', c25), ('30-Jun-2026', cj)]
 def bsr(label, key, neg=False):
     return [label] + [(f"({n0(c[key])})" if neg else n0(c[key])) for _, c in COLS]
 rows = [['AED mn'] + [nm for nm, _ in COLS],
         bsr('Property, plant and equipment', 'ppe'),
         bsr('Intangible assets', 'intang'),
-        bsr('Airport-concession receivable (amortised cost, non-current)', 'conc'),
+        bsr('Related-party acquisition receivables (amortised cost, current + non-current)',
+            'conc'),
         bsr('Investment properties', 'invprop'),
         bsr('Inventories', 'inv'),
         bsr('Trade and other receivables', 'recv'),
@@ -1531,6 +1545,9 @@ rows = [['AED mn'] + [nm for nm, _ in COLS],
         bsr('Net debt (borrowings + leases − cash − deposits)', 'nd')]
 table(rows, [3.10, 0.90, 0.90, 0.90, 1.20], size=8.3, band_rows={9, 16, 17})
 caption(f"FY2023, FY2024 and FY2025 are audited; the June-2026 column is the reviewed interim. "
+        f"The receivables row carries the FULL carrying value — current and non-current "
+        f"portions summed — in every column, amortising from {n0(c23['conc'])} at FY2023 to "
+        f"{n0(cj['conc'])} at June 2026. "
         f"The net-debt row reproduces the company's own presented figure at 30 June 2026 "
         f"({n0(IN['netdebt_jun26_co'])}mn) exactly. The 2023 step-up in borrowings funded the "
         f"airport-concession acquisition; the 2024-25 rise in cash is retained operating cash "
@@ -1553,11 +1570,15 @@ table(rows, [2.60, 0.88, 0.88, 0.88, 0.88, 0.88], size=8.3, band_rows={6, 7})
 P(f"Two features to read carefully. Net working capital is negative and grows more negative "
   f"with revenue — customer deposits and payables to the related-party supplier fund the "
   f"cycle, so each year RELEASES cash into the free-cash-flow line. And free cash flow to "
-  f"equity — the firm figure less roughly AED {n0(NF25 * (1 - IN['tax_ct']))}mn of after-tax "
-  f"net finance cost — runs almost exactly at the AED {n0(IN['div_policy'])}mn payout in the "
+  f"equity — the firm figure less roughly AED {n0(NF_AT)}mn of after-tax "
+  f"net finance cost on the model's own forecast finance line — runs almost exactly at the "
+  f"AED {n0(IN['div_policy'])}mn payout in the "
   f"shock year: the dividend is covered, with the growth funded by the working-capital release "
-  f"and the revolving facilities' headroom. Net borrowings are held flat by construction; the "
-  f"model neither assumes deleveraging credit nor new debt-funded expansion.")
+  f"and the revolving facilities' headroom. The debt convention is stated precisely: GROSS "
+  f"borrowings are held flat by construction, while NET debt falls as retained cash builds — "
+  f"the model neither assumes deleveraging credit nor new debt-funded expansion. Both the "
+  f"equity roll and the net-debt roll start from the same 30 June 2026 reviewed balance "
+  f"sheet, on the same clock as the valuation bridge.")
 
 # =========================== 13. APPENDIX B ==================================
 H1('Appendix B  Peer frame, risk register — and the research register')
@@ -1567,16 +1588,20 @@ rows = [['Measure', 'Empower', 'Tabreed', 'DEWA (parent)'],
         ['What it is', 'Dubai district cooling, about ' + DUBAI_SHARE + '% of the emirate',
          'UAE-wide and regional district cooling; the only listed pure peer',
          'the Dubai power and water monopoly; consolidates Empower'],
-        ['2025 revenue (AED mn)', n0(IN['rev_fy25']), n0(TB['fy2025']['revenue_aed_m']), '—'],
+        ['2025 revenue (AED mn)', n0(IN['rev_fy25']), n0(TB_REV),
+         '—'],
         ['2025 EBITDA margin', pc(HI['FY25']['ebitda'] / HI['FY25']['rev']),
-         pc(TB['fy2025']['ebitda_aed_m'] / TB['fy2025']['revenue_aed_m']), '—'],
+         pc(TB['fy2025']['ebitda_aed_m'] / TB_REV), '—'],
         ['Net debt / EBITDA', f"{n1(NDX)}×", f"{TB_NDX}×", '—'],
-        ['Trailing price / earnings', f"{n1(SPOT / (IN['npa_fy25'] / SH))}×",
+        ['Trailing enterprise value / EBITDA', f"{n1(EMP_EVEB)}×",
+         f"{n1(REL['tabreed_ev_ebitda'])}×", '—'],
+        ['Trailing price / earnings', f"{n1(EMP_PE_TR)}×",
          f"{n1(REL['tabreed_pe'])}×", f"{n1(REL['dewa_pe'])}×"],
         ['Dividend yield', pc(YLD, 1), TB_YLD, DEWA_YLD],
         ['Source and date', 'this study, audited statements and the 7-Aug-2026 close',
-         'FY2025 results via exchange disclosures; market value from a data provider dated '
-         '22-Jun-2026; multiples derived and flagged as derived',
+         f"FY2025 results as reported via exchange disclosures; market value RESTRUCK at the "
+         f"{p2(TB_PX)} close of 6/7-Aug-2026 (the 22-Jun data-provider mark of "
+         f"{p2(TB_PX_JUN)} is superseded); multiples derived and flagged as derived",
          'market data as of early Aug-2026; secondary marker only — the parent consolidates '
          'the subject']]
 table(rows, [1.55, 1.80, 1.85, 1.80], size=8.2)
@@ -1588,14 +1613,21 @@ P("Emicool, the third Dubai operator, is private (a Dubai Investments / Actis jo
 
 H2('B.2  Risk register')
 rows = [['Risk', 'Mechanism', 'Where it is priced'],
-        ['Tariff review', 'the regulator approves tariffs; a cut would reprice the capacity '
-         'charge — the profit pool itself',
-         'NOT priced — flagged as the model\'s single most valuable assumption (sections 1.7 '
-         'and 7); a cut is a regime change requiring a re-model'],
-        ['War re-escalation', 'hospitality occupancy → consumption; risk premium → discount '
+        ['Tariff review', 'the Supreme Council of Energy approves tariffs on the bureau\'s '
+         'recommendation; a cap cut would reprice the capacity '
+         'charge — the profit pool itself. The current instrument bars indexation of '
+         'capacity charges, so the upside direction is already closed by rule',
+         'the downside is NOT priced — flagged as the model\'s single most valuable '
+         'assumption (sections 1.7 '
+         'and 7); a cut is a regime change requiring a re-model. The no-escalation side IS '
+         'priced: the build holds the tariff flat everywhere and terminal growth is '
+         'volume-only'],
+        ['War continuation / re-escalation', 'hospitality occupancy → consumption; risk '
+         'premium → discount '
          'rate; connection pipeline → volumes',
-         f"the bear scenario, AED {p3(CEN['bear'])} per share, is a full re-run with all four "
-         f"channels moved together"],
+         f"the continuation case is one of the two published centrals ({p2(CEN_C_CT)} / "
+         f"{p2(CEN_C_DM)}); the bear scenario, AED {p3(CEN['bear'])} per share, is a full "
+         f"re-run with all four channels moved together"],
         ['Minimum top-up tax', f"consolidation into the DEWA group could lift the rate from "
          f"{pc(IN['tax_ct'], 0)} to {pc(IN['tax_dmtt'], 0)}",
          f"published as a full second column everywhere: {p3(abs(DMTT_DELTA))} per share on "
@@ -1636,23 +1668,42 @@ rows = [['Source', 'Type', 'Date', 'What was taken'],
         ['H1-2026 earnings presentation', 'Company investor relations', '5-Aug-2026',
          'connected and contracted capacity, connection guidance, equivalent full-load hours, '
          'the revenue mix, net debt as presented, and the dividend commitment'],
-        ['Dubai Executive Council Resolution 6/2021; Regulatory and Supervisory Bureau '
-         'instruments', 'Regulator', '2021–2025',
-         'the tariff-regulation frame behind the flat-tariff assumption'],
+        ['Dubai Executive Council Resolution 6/2021 (the district-cooling law)', 'Regulator',
+         '2021', 'the tariff-regulation frame: the bureau assesses and recommends, the '
+         'Supreme Council of Energy approves'],
+        ['Regulatory and Supervisory Bureau tariff instrument, version 1.3 (17-Sep-2025) and '
+         'version 1.4 (6-Feb-2026) — primary documents, read in full', 'Regulator',
+         'Sep-2025 / Feb-2026',
+         f"the explicit tariff caps ({RD10_CAP} AED/ton-hour consumption-with-capacity "
+         f"including fuel surcharge; {RD10_FUEL} fuel surcharge; AED {RD10_BILL}/month "
+         f"billing fee; {RD10_EXC} excess-demand cap) and the verbatim no-indexation rule "
+         f"for capacity charges — added in the 17-Aug revision after the external audit "
+         f"showed the first edition had missed both instruments"],
+        ['Dubai Executive Council Resolution 87/2025 (18-Nov-2025) — primary document',
+         'Regulator', 'Nov-2025',
+         f"the AED {ECR_FEE}/refrigeration-ton annual service fee and the AED {ECR_FINE} "
+         f"fine for unapproved tariffs — same revision, same reason"],
         ['UAE Ministry of Finance dirham T-Bond auction result', 'Sovereign data', '30-Jul-2026',
          'the risk-free anchor'],
+        ['UAE Ministry of Finance outstanding-securities programme table', 'Sovereign data',
+         'read 17-Aug-2026',
+         f"the full dirham curve, including the February-2033 sukuk (AED {SUK33_MN}mn, "
+         f"{SUK33_ISIN}) named in section 1.8 as the longer-but-stale print"],
         ['Published country-risk dataset (July-2026 edition)', 'Reference dataset', '1-Jul-2026',
          'the UAE default spreads and equity risk premia on both bases'],
         ['DFM daily price history for EMPOWER (supplied) and the FTSE ADX General Index history (supplied)',
-         'Market data', 'to 7-Aug-2026',
+         'Market data', 'to 7-Aug-2026 (index file to 24-Jul-2026)',
          'the anchor price, volatility, the moving-average structure, the beta regression and '
          'the price distributions'],
         ['Tabreed and DEWA results and market data', 'Peer disclosures / market data',
-         'Jun–Aug 2026', 'the relative-multiples lens — cross-check only, never a source for '
-         'Empower\'s own numbers'],
-        ['Wire and reference coverage of the 2026 conflict and ceasefire', 'Press',
-         'to 9-Aug-2026', 'the macro timeline; where sources disagreed on the truce status, '
-         'both readings were recorded rather than resolved']]
+         'restruck 6/7-Aug-2026', 'the relative-multiples lens — cross-check only, never a '
+         'source for Empower\'s own numbers; the peer mark is struck on the anchor dates, not '
+         'the June data-provider pull'],
+        ['Wire and reference coverage of the 2026 conflict, cross-checked against the dated '
+         'timeline record', 'Press',
+         'to 17-Aug-2026', 'the macro timeline as stated in the headline — strait closure, '
+         'ceasefire end, tanker attacks — externally re-verified in the 17-Aug revision after '
+         'the first edition carried a stale truce reading']]
 table(rows, [2.30, 1.20, 0.90, 2.60], size=8.2)
 
 # =========================== 14. APPENDIX C ==================================
@@ -1669,7 +1720,7 @@ P("Worldview: a regulated utility with contracted revenue is the one class of bu
   "precisely here. When it fails: when the terminal assumptions smuggle in more value than the "
   "explicit years justify — which is why every terminal choice below is shown and challenged "
   "in C.4.")
-rows = [['Step (base case, ' + pc(IN['tax_ct'], 0) + ' tax, AED mn)'] + YRS,
+rows = [['Step (recovery case, ' + pc(IN['tax_ct'], 0) + ' tax, AED mn)'] + YRS,
         ['Revenue'] + [n0(B['rev'][y]) for y in YRS],
         ['EBITDA'] + [n0(B['ebitda'][y]) for y in YRS],
         ['EBIT'] + [n0(BC['ebit'][y]) for y in YRS],
@@ -1678,9 +1729,11 @@ rows = [['Step (base case, ' + pc(IN['tax_ct'], 0) + ' tax, AED mn)'] + YRS,
         ['Present value'] + [n0(BC['pv'][y]) for y in YRS]]
 table(rows, [3.00, 0.80, 0.80, 0.80, 0.80, 0.80], size=8.4, band_rows={6})
 rows = [['Terminal block and bridge', 'Value'],
-        ['Sum of the five present values (AED mn)', n0(BC['pv_explicit'])],
-        [f"Terminal value — final NOPAT × (1 + {pc(IN['g_term'], 1)}) × (1 − "
-         f"{pc(BC['rr_term'], 1)}) ÷ ({pc(W['rating_ct'], 2)} − {pc(IN['g_term'], 1)})",
+        ['Sum of the five present values (AED mn; 2026 at half weight — the 30-June clock)',
+         n0(BC['pv_explicit'])],
+        [f"Terminal value, two-stage — ten years of final-NOPAT growth at "
+         f"{pc(IN['g_term'], 1)} (volume-only), then a perpetuity at {pc(G2, 1)}; "
+         f"reinvestment = growth ÷ {pc(BC['roic_term'], 1)} return in each stage",
          n0(BC['tv'])],
         ['Present value of the terminal value (AED mn)', n0(BC['pv_tv'])],
         ['Enterprise value (AED mn)', n0(BC['ev'])],
@@ -1694,13 +1747,14 @@ rows = [['Terminal block and bridge', 'Value'],
          'move in the cost of capital', f"{p2(E1_LO)} – {p2(E1_HI)}"]]
 table(rows, [4.55, 2.45], size=8.4, band_rows={7})
 P(f"Named sensitivity: the consumption-recovery grid of section 1.7 — the full span from "
-  f"never-recovers to overshoot is worth AED "
+  f"continuation (never-recovers) to overshoot is worth AED "
   f"{p3(CRX['rows'][-1]['ps'] - CRX['rows'][0]['ps'])} per share, while a half-point of "
   f"discount rate is worth about AED {p3(abs(_dn50 - _up50) / 2)}. My valuation is a "
   f"discount-rate argument first and a volume argument barely at all.")
 P("Falsifier, stated in advance: two consecutive half-years with equivalent full-load hours "
   "below the 2026 trough. That would mean the demand loss is structural, not "
-  "hospitality-linked, and the recovery leg of my base case should be discarded rather than "
+  "hospitality-linked, and the recovery leg of my central case should be discarded rather "
+  "than "
   "delayed.", space_after=8)
 
 H2('C.2  Expert 2 (income) — the committed dividend, capitalised')
@@ -1723,15 +1777,17 @@ P("Coverage is the whole argument, so here it is, line by line:")
 rows = [['AED mn'] + YRS,
         [f"Free cash flow to the firm ({pc(IN['tax_ct'], 0)})"] +
         [n0(BC['fcff'][y]) for y in YRS],
-        ['Less after-tax net finance cost (held at the 2025 level — the book is floating and '
-         'was just refinanced)'] + [f"({n0(NF25 * (1 - IN['tax_ct']))})" for _ in YRS],
+        ["Less after-tax net finance cost (the model's OWN forecast finance line — the "
+         "June-2026 debt book and cash balance carried forward — not the 2025 actual)"] +
+        [f"({n0(NF_AT)})" for _ in YRS],
         ['Free cash flow to equity'] +
-        [n0(BC['fcff'][y] - NF25 * (1 - IN['tax_ct'])) for y in YRS],
+        [n0(BC['fcff'][y] - NF_AT) for y in YRS],
         ['Dividend'] + [n0(IN['div_policy'])] * 5,
-        ['Coverage'] + [f"{(BC['fcff'][y] - NF25 * (1 - IN['tax_ct'])) / IN['div_policy']:.2f}×"
+        ['Coverage'] + [f"{(BC['fcff'][y] - NF_AT) / IN['div_policy']:.2f}×"
                         for y in YRS]]
 table(rows, [3.00, 0.80, 0.80, 0.80, 0.80, 0.80], size=8.3, band_rows={5})
-P(f"In the shock year coverage is almost exactly one — the payout absorbs essentially all the "
+P(f"In the shock year coverage is {(BC['fcff']['FY26'] - NF_AT) / IN['div_policy']:.2f}× — "
+  f"the payout absorbs essentially all the "
   f"equity cash flow, and the growth is funded by the working-capital release and the "
   f"revolving facilities' headroom. That is covered, not slack, and it is why my number sits "
   f"below the cash-flow expert's: I pay for the distribution I can see, not the terminal "
@@ -1819,7 +1875,8 @@ P(f"The panel spans AED {p2(min(E1_LO, E2_LO, SPOT))} to {p2(max(E1_HI, E2_HI, D
   f"{p2(E3_CENTRAL)}). Notice what the room agrees on: every range sits at or above the market "
   f"price, every method finds the capacity charge rather than the meter carrying the value, "
   f"and every falsifier is observable within two reporting periods. The study's own weighted "
-  f"central ({p3(CEN['ct'])} / {p3(CEN['dmtt'])} by tax framing) sits between Expert 1 and "
+  f"centrals (recovery {p2(CEN_R_CT)} / {p2(CEN_R_DM)}, continuation {p2(CEN_C_CT)} / "
+  f"{p2(CEN_C_DM)} by tax framing) sit between Expert 1 and "
   f"Expert 2 — which is what a weighting that gives the market regime a real vote should "
   f"produce.")
 
@@ -1836,7 +1893,7 @@ rows = [['Assumption', 'Expert 1', 'Expert 2', 'Expert 3', 'What it is worth'],
          f"3's — the largest single gap in the room"],
         ['Consumption recovery', 'recovers through 2027; grid shown', 'not sensitive — the '
          'dividend is fixed either way', 'embedded in the peer prices',
-         f"AED {p3(abs(BC['ps'] - PC['ps']))} per share even in the never-recovers case — "
+         f"AED {p3(abs(BC['ps'] - PC['ps']))} per share even in the continuation case — "
          f"small by construction (the pass-through)"],
         ['Risk premium', 'model-built cost of equity from the sovereign and the published '
          'premium', f"the same {pc(W['ke_rating'], 2)} rate, applied to a committed flow",
@@ -1858,6 +1915,12 @@ P("This series publishes independent, educational valuation studies of listed co
   "target. Where a figure is estimated rather than disclosed, it is labelled. Where a source "
   "could not be reached or a disclosure does not exist, the gap is recorded in the "
   "accompanying bibliography rather than quietly filled in.")
+P(f"This edition was revised on 17 August 2026 after an external audit of the 9 August "
+  f"study. Every one of the {N_FINDINGS} findings raised — accepted, rejected or arbitrated "
+  f"— is catalogued with its disposition and its price in the accompanying critique-response "
+  f"note, which ships alongside this document and the bibliography; the material changes are "
+  f"also summarised in the READ FIRST box at the front. Corrections found by this study's own "
+  f"re-check are disclosed there on the same terms as the external findings.")
 P("The probabilistic price map in section 3 is produced by a volatility model that is tested "
   "by walk-forward simulation against a carry-anchored random-walk benchmark before it is "
   "allowed to publish a range. It describes price dispersion and carries no view on value. It "
@@ -1865,18 +1928,23 @@ P("The probabilistic price map in section 3 is produced by a volatility model th
 
 # =========================== 16. DISCLOSURE ==================================
 H1('Disclosure & Disclaimer')
-P("For information only — not investment advice. This document is educational analysis and is "
-  "not an offer or a solicitation to buy or sell any security. It contains no recommendation, "
-  "no rating and no price target. The author holds no position in the security discussed and "
-  "has no business relationship with the company. Figures are drawn from public sources "
-  "believed reliable but not independently verified; where figures are derived or estimated "
-  "this is stated in the text. Valuation is inherently uncertain and depends on assumptions "
-  "that reasonable analysts will dispute — several such disputes are set out explicitly in "
-  "this document, and two (the tax framing and the consumption recovery) are published as "
-  "full alternative computations rather than resolved silently. Past performance and "
-  "simulated distributions are not guides to future returns. Readers must reach their own "
-  "conclusions and should consider taking independent advice. No liability is accepted for "
-  "any loss arising from use of this material.", size=9.2, color=GREY)
+P(f"For information only — not investment advice. This document is educational analysis and "
+  f"is not an offer or a solicitation to buy or sell any security. It contains no "
+  f"recommendation and no rating, and it expresses no single-number price target: the central "
+  f"estimates are printed to two decimals as summaries of ranges, the published field is "
+  f"labelled scenario risk, and the cost-of-capital construction range "
+  f"({p2(CONS_LO)}–{p2(CONS_HI)} on the primary lens, with the beta interval mapping to "
+  f"roughly {p2(BETA_PS_LO)}–{p2(BETA_PS_HI)}) is stated beside it — construction risk is "
+  f"additional to scenario risk. The author holds no position in the security discussed and "
+  f"has no business relationship with the company. Figures are drawn from public sources "
+  f"believed reliable but not independently verified; where figures are derived or estimated "
+  f"this is stated in the text. Valuation is inherently uncertain and depends on assumptions "
+  f"that reasonable analysts will dispute — several such disputes are set out explicitly in "
+  f"this document, and two (the tax framing and the consumption recovery) are published as "
+  f"full alternative computations rather than resolved silently. Past performance and "
+  f"simulated distributions are not guides to future returns. Readers must reach their own "
+  f"conclusions and should consider taking independent advice. No liability is accepted for "
+  f"any loss arising from use of this material.", size=9.2, color=GREY)
 
 out = os.path.join(HERE, 'EMPOWER_Valuation_Study_09-08-2026_public.docx')
 finalize(doc)

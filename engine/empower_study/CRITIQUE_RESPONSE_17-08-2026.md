@@ -124,9 +124,19 @@ have failed; this one found 13 and still missed the ceasefire staleness — reco
 ## Contradictions between critiques, arbitrated
 1. **WACC construction**: CW/CC (gross weights, value +9%) vs GT (net weights with carry, value −4%). Both observe the same real defect (an unpriced construction); their fixes are mutually exclusive. Arbitrated by coherence + company policy receipts: target-net base retained, ALL THREE constructions priced side by side. 2. **NCI**: GT (book) vs GR (profit-share superior) — profit-share wins on the two-standards coherence test. 3. **Refinancing scope**: CW (one tranche) vs GR (both) — primary borrowings note decides for CW. 4. **Spot**: GT (1.56) vs GR (1.50 verified) — anchor-date discipline decides for GR.
 
-## Revised results (all fixes implemented, 17-Aug-2026)
-Primary lens 2.31 (9%) / 2.14 (15%) · weighted central **1.96 (9%) / 1.84 (15%)** ·
-scenario field 1.56-2.35 · construction range on the primary lens 2.23 (carry WACC) to
-2.79 (DFM beta) · crux cost 2.8% (true re-runs) · TV 79.6% of EV. Verification on the
-rebuilt deliverables: compute asserts 9/9; workbook recalc all-formula-cells clean; driver
-test directional with dead-input sweep clean; scrub and table checks clean; PDFs re-read.
+## Revised results (all fixes implemented — FINAL, second run, 17-Aug-2026)
+Primary lens 2.12 (9%) / 1.96 (15%) · dual weighted centrals, published side by side with
+neither privileged as base: **recovery (de-escalation) 1.84 (9%) / 1.73 (15%)** and
+**continuation 1.81 (9%) / 1.70 (15%)** · scenario field 1.45-2.15 · construction range on
+the primary lens 2.05 (carry WACC) to 2.49 (DFM beta), with gross-weights at 2.27 ·
+crux cost 2.8% (true re-runs) · TV 78.1% of EV. The second run additionally found and
+fixed a FY2025 statement-face extraction error (G&A 256.383 / other income 24.430 vs the
+first pass's 246.577 / 14.624 — both pairs close the operating-profit identity, hence
+unseen by the assertion) and the rental double-count against the investment properties
+(CCU6, confirmed against note 29), adopted the two-stage terminal (FY31-40 at 2.5%
+volume-only, then 1.5% perpetuity), added the physical EFLH × tariff build showing the
+derived 0.634 AED/RTh sits 1.4% below the RD10 v1.3 cap of 0.643 (no tariff headroom),
+and de-privileged the recovery case into the dual-central presentation above.
+Verification on the rebuilt deliverables: compute asserts 9/9; workbook recalc
+all-formula-cells clean; driver test directional with dead-input sweep clean; scrub and
+table checks clean; PDFs re-read.
