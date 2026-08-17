@@ -1,20 +1,20 @@
 {
- "beta": 0.651569693939167,
- "r2": 0.15720515440205796,
- "n": 190,
- "se": 0.11002959036369793,
+ "beta": 0.8626390296739008,
+ "r2": 0.10290211091712265,
+ "n": 189,
+ "se": 0.18625848916447127,
  "ci90": [
-  0.47057101779088384,
-  0.8325683700874501
+  0.5562438149983455,
+  1.1690342443494561
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "index": "DFMGI (DFM General Index)",
+ "index": "FADGI (FTSE ADX General Index), per instruction",
  "window": [
   "2022-11-25",
-  "2026-07-17"
+  "2026-07-24"
  ],
- "window_years": 3.64,
+ "window_years": 3.66,
  "frequency": "weekly",
  "weak": false,
  "warnings": []

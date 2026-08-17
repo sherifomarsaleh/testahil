@@ -587,14 +587,16 @@ rows = [['Component', f"Credit-rating basis", f"Market-spread basis", 'Construct
         ['Adjusted risk-free rate', pc(W['rf_star_rating'], 2), pc(W['rf_star_cds'], 2),
          'country risk must enter once, through the equity premium — not twice'],
         ['Beta', f"{BR['beta']:.3f}", f"{BR['beta']:.3f}",
-         f"own-stock weekly regression against the DFM General Index over the full listing "
-         f"window ({BR['window_years']:.1f} years, n={BR['n']}): R² {BR['r2']:.3f}, standard "
+         f"own-stock weekly regression against the FTSE ADX General Index — adopted as the "
+         f"UAE market index for this study by instruction; the same regression against the "
+         f"listing exchange's own DFM index gives 0.652 and is kept as a comparison — over "
+         f"the full listing window ({BR['window_years']:.1f} years, n={BR['n']}): R² {BR['r2']:.3f}, standard "
          f"error {BR['se']:.3f}, 90% interval {BR['ci90'][0]:.2f}–{BR['ci90'][1]:.2f}"],
         ['Equity risk premium', pc(IN['erp_rating'], 2), pc(IN['erp_cds'], 2),
          'the UAE total premium on each basis, same dataset — the same basis of spread that was '
          'stripped from the risk-free rate is the one added back here'],
         ['Cost of equity', pc(W['ke_rating'], 2), pc(W['ke_cds'], 2),
-         'the two constructions CONVERGE to within a basis point — the contested choice of '
+         'the two constructions CONVERGE to within a few basis points — the contested choice of '
          'basis is priced and turns out to cost nothing'],
         ['Cost of debt (marginal)', pc(W['kd_marg'] if 'kd_marg' in W else W['kd'], 2),
          pc(W['kd'], 2),
@@ -1156,7 +1158,7 @@ rows = [['Source', 'Type', 'Date', 'What was taken'],
          'the risk-free anchor'],
         ['Published country-risk dataset (July-2026 edition)', 'Reference dataset', '1-Jul-2026',
          'the UAE default spreads and equity risk premia on both bases'],
-        ['DFM daily price history for EMPOWER (supplied) and a DFM General Index series',
+        ['DFM daily price history for EMPOWER (supplied) and the FTSE ADX General Index history (supplied)',
          'Market data', 'to 7-Aug-2026',
          'the anchor price, volatility, the moving-average structure, the beta regression and '
          'the price distributions'],

@@ -200,10 +200,14 @@ INP = dict(
                  "July-2026", "2026-07-01", "Country"),
     erp_cds=I(0.050083, "UAE total ERP, sovereign-CDS basis (via Abu Dhabi CDS), "
               "Damodaran July-2026", "2026-07-01", "Country"),
-    beta=I(0.652, "Own-stock weekly regression vs DFM General Index, full listing "
-           "window 25-Nov-2022..17-Jul-2026 (3.64y, inside the 2-5y band): beta 0.652, "
-           "R2 0.157, n 190, SE 0.110, CI90 [0.47, 0.83] — passes the usability gate "
-           "(beta_result.json)", "2026-08-09", "Company"),
+    beta=I(0.863, "Own-stock weekly regression vs the FTSE ADX General Index — the "
+           "UAE base market index PER EXPLICIT INSTRUCTION 10-Aug-2026, replacing the "
+           "listing exchange's own DFM General Index (that regression, beta 0.652, is "
+           "retained in beta_result_dfmgi.json as a comparison). User-supplied FADGI "
+           "history 2011-2026; regression window 25-Nov-2022..24-Jul-2026 (3.66y, "
+           "clipped at the index file's endpoint two weeks before the anchor): beta "
+           "0.863, R2 0.103, n 189, SE 0.186, CI90 [0.56, 1.17] — passes the "
+           "usability gate (beta_result.json)", "2026-08-10", "Company"),
     kd_marg=I(0.0492, "Marginal cost of debt = the company's OWN FY2025 borrowing-cost "
               "capitalisation rate (note 30), struck on the 2025 full refinance of both "
               "AED 2.75bn RCFs at EIBOR + a REDUCED margin; sits above the 4.48% AED "

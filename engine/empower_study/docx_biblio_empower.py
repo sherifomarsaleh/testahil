@@ -304,8 +304,10 @@ rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
          'shrinking two decks running'],
         ['The cost of equity construction',
          f"Risk-free = the longest dirham sovereign print less the UAE's own default spread; "
-         f"beta {BR['beta']:.3f} from the stock's own weekly history against the DFM General "
-         f"Index; the published UAE equity risk premium; both spread bases computed "
+         f"beta {BR['beta']:.3f} from the stock's own weekly history against the FTSE ADX "
+         f"General Index (adopted as the UAE market index by instruction; the DFM-index "
+         f"regression, 0.652, is retained as a comparison); the published UAE equity risk "
+         f"premium; both spread bases computed "
          f"(they converge: {pc(W['ke_rating'], 2)} against {pc(W['ke_cds'], 2)})",
          'Country risk must enter once — through the premium — not twice; the two published '
          'bases are both carried precisely because the choice between them is contested, and '
@@ -361,11 +363,12 @@ table(rows, [2.45, 3.75, 3.60], size=8.2)
 # ---------------------------------------------------- 5. aggregator notes
 H1('5  Aggregator and press data — discrepancies found and how they were handled')
 rows = [['Item', 'What was found', 'Handling'],
-        ['DFM General Index daily series (Yahoo Finance chart API)',
-         'The retrieved index series is sparse — roughly a fifth of trading sessions are '
-         'missing — and it ends at 16-Jul-2026, three weeks before the anchor date. A '
-         'separately quoted "live" index level on an aggregator page matched the stale '
-         '16-Jul close exactly',
+        ['Market index series for the beta regression',
+         'The FTSE ADX General Index history used (supplied export) ends at 24-Jul-2026, '
+         'two weeks before the anchor date, so the regression window clips there. The '
+         'previously used DFM General Index series (an aggregator pull, ~a fifth of '
+         'sessions missing, ending 16-Jul-2026) is retained only as the archived '
+         'comparison regression (beta 0.652 against 0.863 adopted)',
          'Used for ONE purpose only: the market side of the beta regression, where the '
          'weekly sampling (last observation of each week) absorbs the missing sessions; the '
          'sparsity and the stale endpoint are flagged in the study. Never used for '

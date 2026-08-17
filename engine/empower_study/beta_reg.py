@@ -1,12 +1,11 @@
-"""EMPOWER beta — tier-1 own-stock weekly regression vs the DFM General Index
-(DFMGI), the stock's own local index. Window = full listing history
-(16-Nov-2022 IPO -> latest common date, ~3.7y, inside the 2-5y band).
-Index series: DFMGI.AE daily closes (Yahoo Finance chart API pull,
-scratchpad/dfmgi_daily.csv committed alongside as dfmgi_daily.csv) — the index
-is market data, not company historicals, so SIGCM clause 1 is not implicated;
-the series' ~20% missing-session sparsity is flagged in the bibliography and
-absorbed by the weekly resample (last observation in each Mon-Fri week).
-RegressionBetaAttempt usability gate applied as everywhere else."""
+"""EMPOWER beta — own-stock weekly regression vs the FTSE ADX General Index
+(FADGI), used as the UAE base market index PER EXPLICIT INSTRUCTION (10-Aug-2026)
+in place of the listing exchange's own DFM General Index. The DFMGI regression
+is retained as beta_result_dfmgi.json for comparison. Window = full listing
+history (16-Nov-2022 IPO -> latest common week, ~3.7y, inside the 2-5y band).
+The index is market data, not company historicals; the user-supplied export is
+the build source and its 24-Jul-2026 endpoint (two weeks before the study
+anchor) is flagged. RegressionBetaAttempt usability gate applied as always."""
 import sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
@@ -24,8 +23,13 @@ emp, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'EMPOWER_Stock_Price_History.cs
                     'EMPOWER', verbose=False, market='AE')
 emp = emp.set_index('Date')['Price']
 
-idx = pd.read_csv(os.path.join(HERE, 'dfmgi_daily.csv'), parse_dates=['Date'])
-idx = idx.set_index('Date')['Close'].astype(float).dropna()
+# FTSE ADX General: user-supplied investing.com export (comma-grouped prices),
+# 03-Jan-2011..24-Jul-2026 — ends two weeks before the study anchor; the
+# regression window clips to the last common week (flagged in the register).
+idx = pd.read_csv(os.path.join(HERE, 'FTSE_ADX_General_Historical_Data.csv'))
+idx['Date'] = pd.to_datetime(idx['Date'], format='%m/%d/%Y')
+idx['Close'] = idx['Price'].astype(str).str.replace(',', '').astype(float)
+idx = idx.sort_values('Date').set_index('Date')['Close'].dropna()
 
 wk_e, wk_m = weekly(emp), weekly(idx)
 re = np.log(wk_e / wk_e.shift(1)).dropna()
@@ -45,7 +49,7 @@ ok, msg = att.is_usable()
 ci = (b[1] - 1.645 * se_b, b[1] + 1.645 * se_b)
 out = dict(beta=float(b[1]), r2=float(r2), n=n, se=float(se_b),
            ci90=[float(ci[0]), float(ci[1])], usable=bool(ok), gate_msg=msg,
-           index='DFMGI (DFM General Index)',
+           index='FADGI (FTSE ADX General Index), per instruction',
            window=[str(al.index.min().date()), str(al.index.max().date())],
            window_years=round((al.index.max() - al.index.min()).days / 365.25, 2),
            frequency='weekly',
