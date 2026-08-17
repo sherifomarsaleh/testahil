@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 84,
+ "n": 85,
  "rows": [
   {
    "ticker": "HELI",
@@ -3270,6 +3270,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00111
    },
    "market": "QA"
+  },
+  {
+   "ticker": "DU",
+   "name": "Emirates Integrated Telecommunications Company PJSC",
+   "code": "DFM:DU",
+   "ccy": "AED",
+   "spot": 12.3,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 9.74,
+   "fv_base": 13.9,
+   "fv_full": 20.28,
+   "gap_base_pct": 13.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.076466,
+    "mu_h": -0.001627,
+    "G": {
+     "bear": -3.05,
+     "base": 1.6,
+     "full": 6.54
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.004,
+     "base": 0.0491,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0062,
+     "base": 0.0776,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9392,
+     "base": 3.3383,
+     "full": 402.6027
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00186
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.138082,
+    "mu_h": -0.003257,
+    "G": {
+     "bear": -1.69,
+     "base": 0.89,
+     "full": 3.62
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0453,
+     "base": 0.1622,
+     "full": 0.0015
+    },
+    "p_touch": {
+     "bear": 0.077,
+     "base": 0.2953,
+     "full": 0.0026
+    },
+    "required_cagr": {
+     "bear": -0.6068,
+     "base": 0.6309,
+     "full": 6.3901
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00181
+   },
+   "market": "AE"
   },
   {
    "ticker": "SAMSUNG",
