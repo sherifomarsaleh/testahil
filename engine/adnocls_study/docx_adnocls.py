@@ -1557,22 +1557,26 @@ table(rows, [1.80, 1.70, 3.50], size=8.4, left_cols=(2,))
 # ============================= 11  §7  CAVEATS ===============================
 H1('7  Caveats and what would change our mind')
 for head, body in [
-    ("The beta is the study, and it is unresolved. ",
-     f"The difference between the share's own regressed beta of {p3(IN['beta'])} and an "
-     f"asset-risk beta of one is AED {p2(beta_gap)} a share on the cash-flow lens — larger "
-     f"than the capital-expenditure row and the tax row, and about the same size as moving "
-     f"the tanker-rate anchor across its whole tested range. Across the beta range tested "
-     f"in section 1.9 the swing is AED {p2(max(beta_span)-min(beta_span))}, the widest "
-     f"single sensitivity in the study. The regression is real and passes its usability "
-     f"conditions, "
-     f"but it rests on {BE['window_years']:.1f} years of history in a period when the "
-     f"contracted arm was growing faster than the merchant fleet. Both readings are "
-     f"published as equals. If forced to say which way the evidence leans: the market "
-     f"price sits on the asset-beta reading."),
+    ("The beta still moves the answer more than anything else, even though it is now "
+     "settled. ",
+     f"Regressed against the {BE['regressor']}, the beta is {p3(IN['beta'])}; regressed "
+     f"against an equal-weight composite of the same exchange's names it is "
+     f"{p3(BFA['beta'])}, worth AED {p2(beta_gap)} a share on the cash-flow lens. Across "
+     f"the beta range tested in section 1.9 the swing is AED "
+     f"{p2(max(beta_span)-min(beta_span))}, still the widest single sensitivity in the "
+     f"study. What has changed is that this is no longer an unresolved argument between a "
+     f"regression and an economic prior — the published index of the share's own exchange "
+     f"is the right yardstick and the two now agree. What remains is ordinary statistical "
+     f"uncertainty: {BE['window_years']:.1f} years of listed history, an R-squared of "
+     f"{BE['r2']:.3f}, and a 90% interval of [{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}] "
+     f"that this study's bear and bull cases carry at full width rather than narrowing. A "
+     f"longer history could still move the point estimate inside that interval, and the "
+     f"share is a constituent of the index it is measured against, which pulls the "
+     f"estimate up rather than down (section 1.8)."),
     ("The terminal value is most of the answer. ",
      f"{pc(DCF['tv_share'], 0)} of the cash-flow model's enterprise value is the terminal "
-     f"value on the own-beta construction, {pc(DCFA['tv_share'], 0)} on the asset-beta "
-     f"one. That is high, and it is the arithmetic consequence of discounting a business "
+     f"value on the adopted construction, {pc(DCFA['tv_share'], 0)} on the equal-weight "
+     f"composite. That is high, and it is the arithmetic consequence of discounting a business "
      f"whose explicit years are depressed by a heavy capital programme — capital "
      f"expenditure runs USD {m0(F['capex'][0])} million in {YRL[0]} against earnings of "
      f"USD {m0(F['ebitda'][0])} million. The terminal assumptions are stressed across the "
@@ -1652,14 +1656,20 @@ for head, body in [
      f"The share listed in June 2023, so the cleaned series spans "
      f"{S0['span_years']:.1f} years. That is short for a beta and too short for a "
      f"five-year test of the price map, which is why the map's width setting rests on the "
-     f"wider Abu Dhabi panel and why the beta is corroborated three ways in section 1.8 "
-     f"rather than accepted at face value."),
+     f"wider Abu Dhabi panel and why the beta is set out against three separate market "
+     f"series in section 1.8 rather than accepted at face value. One further limit belongs "
+     f"here: the index series supplied ends {BE['regressor_span'][1]}, before the share's "
+     f"last session used elsewhere in this study, so {n0(BE['unused_stock_weeks'])} weekly "
+     f"observations sit outside the regression. The window was stopped where the index "
+     f"stops rather than pairing the share against a stale index level."),
     ("What would change our mind, specifically. ",
      f"Upward: one-year time-charter fixtures settling durably above the mid-cycle anchor "
      f"used here; the contracted gas programme delivering on time and taking spot exposure "
      f"below the disclosed {pc(IN['spot_share_ebitda_29'], 0)}; a longer price history "
-     f"that keeps the regressed beta near {p3(IN['beta'])} as the mix shifts toward "
-     f"shipping. Downward: rates reverting faster than the four-year glide assumed here; "
+     f"that settles the beta toward the lower end of its interval as the contracted "
+     f"programme comes in, which would lift the cash-flow lens directly. Downward: the "
+     f"same history settling it toward the upper end; rates reverting faster than the "
+     f"four-year glide assumed here; "
      f"the shipping tax relief being withdrawn; a capital programme that grows without a "
      f"matching contracted return; or evidence that the contracted relationship with the "
      f"parent is repriced rather than renewed.")]:
@@ -1855,8 +1865,9 @@ rows = [['Risk', 'Mechanism', 'Rough valuation impact'],
          'the base case glides to the mid-cycle anchor over four years; a faster reversion '
          'compresses the explicit years and the terminal return on capital together',
          f"the rate-anchor row spans AED {p2(anchor_span)} a share"],
-        ['The cost-of-equity construction',
-         'the share’s own regressed beta against an asset-risk beta of one',
+        ['How the market is measured in the beta',
+         'the published index of the share’s own exchange against an equal-weight '
+         'composite of the same exchange’s names',
          f"AED {p2(beta_gap)} a share between the two published constructions, and AED "
          f"{p2(max(beta_span)-min(beta_span))} across the beta range tested in section "
          f"1.9 — the widest single sensitivity in the study"],
@@ -2041,8 +2052,10 @@ rows = [['Line', 'Value'],
          f"× {1+E2['g']:.2f} ÷ ({pc(E2['ke'], 2)} − {pc(E2['g'], 0)})"],
         ['Equity value (USD mn)', m0(E2['value'])],
         ['Fair value (AED per share)', p2(E2['base'])],
-        ['Range — the low end at a cost of equity on a beta of one and lower growth, the '
-         'high end at a lower country charge and higher growth',
+        [f"Range — the low end at a cost of equity of {pc(E2['ke_lo'], 2)}, built on the "
+         f"top of the beta's 90% interval ({BF['ci90'][1]:.3f}), with lower growth; the "
+         f"high end at {pc(E2['ke_hi'], 2)} on the bottom of it ({BF['ci90'][0]:.3f}) "
+         f"with higher growth",
          f"{p2(E2['rng'][0])} – {p2(E2['rng'][1])}"]]
 table(rows, [4.80, 2.20], size=8.4, band_rows={8})
 P(f"This expert lands at AED {p2(E2['base'])}, below the study's own weighted central of "
