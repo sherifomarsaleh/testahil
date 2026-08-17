@@ -159,3 +159,35 @@ convention double-counted H1-2026 cash (~AED 200m).
   judgements table (valuation clock; receivable treatment; WACC construction
   now dual-framed; g relabelled), and the discrepancy table (add: study's own
   first edition vs audit — ceasefire status, RD10 instruments missed).
+
+## SECOND-RUN ADDENDUM (17-Aug, after the depth re-check) — all in study_numbers.json
+- REVISED HEADLINE NUMBERS: DCF 2.115 (9%) / 1.958 (15%); weighted centrals now DUAL:
+  "recovery (de-escalation)" 1.843 / 1.729 AND "continuation" (central.continuation_ct /
+  .continuation_dmtt) side by side — NEITHER is called "base" anywhere; the two cases are
+  presented exactly like the tax framings. Field bear 1.454 / bull 2.153; TV 78.1% of EV;
+  constructions gross/carry/DFM-beta re-run on the final architecture (read dcf.* keys).
+- FY2025 STATEMENT-FACE CORRECTION (own second-run finding, disclosed openly): G&A is
+  256.383 and other income 24.430 (note 29: rental 18.094 + grant 2.780 + scrap 1.482 +
+  others 2.074); the first edition carried 246.577/14.624 — both pairs close the
+  operating-profit identity, which is why the assertion never caught it. State this
+  correction in the READ FIRST revision note.
+- RENTAL DOUBLE-COUNT FIX (critique CCU6, CONFIRMED against note 29): rental income is the
+  return on the investment properties the bridge adds at book — now excluded from
+  operating EBITDA along with the receivable interest. FY2025 identity: operating EBITDA
+  1,549.7 + interest 58.3 + rental 18.1 + ECL 16.1 = 1,642.2 (audited-derived).
+- TWO-STAGE TERMINAL (critiques CW11+CC3+GR1): FY31-40 at 2.5% (Dubai 2040 build-out,
+  volume-only under RD10), then 1.5% perpetuity (long-run densification, zero real tariff);
+  reinvestment ROIC-consistent per stage. Replaces the flat 2.5% perpetuity; state it in
+  §1.1/1.9 and the reader-facing justification.
+- PHYSICAL UNIT BUILD (§1.6): consumption decomposed to connected RT x EFLH hours x
+  AED/RTh: derived rate 0.634 AED/RTh sits 1.4% BELOW the RD10 v1.3 cap of 0.643 — Empower
+  already prices at the regulated cap, so there is no tariff headroom (hardens the
+  flat-tariff base, removes upside); FY2025 EFLH ~1,880 hrs, H1-2026 698 hrs (-9%); the
+  crux restated in hours. unit_physical key carries the numbers.
+- DXB CoolCo: 85%/15% FROM ACQUISITION (FY2023 filing: NCI 157,500 = DACC's 15%); the
+  concession term is now PRIMARY-SOURCED: "a term of 35 years from the commencement date
+  (5 July 2023)", IFRIC 12, financial asset 1,050,000k recovered over the concession.
+  Rename the receivables: "concession-grantor financial assets under IFRIC 12 (DACC) and
+  the Nakheel minimum-demand commitment (Empower Snow Master Concession Agreement)".
+- CRITIQUE-RESPONSE cross-reference: READ FIRST and About must reference the accompanying
+  critique-response register (CRITIQUE_RESPONSE_17-08-2026) listing all 77 findings.

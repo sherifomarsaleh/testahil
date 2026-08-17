@@ -76,15 +76,25 @@ INP = dict(
               "2024-02-14", "Company"),
     ga_fy24=I(235.119, "General & administrative expenses, FY2024 audited FS",
               "2025-02-14", "Company"),
-    ga_fy25=I(246.577, "General & administrative expenses, FY2025 audited FS",
-              "2026-02-09", "Company"),
+    ga_fy25=I(256.383, "General & administrative expenses, FY2025 audited FS statement "
+              "face (OCR, verified against the operating-profit identity to the dirham; "
+              "CORRECTED 17-Aug-2026 — a first-pass extraction carried 246.577, which also "
+              "closed the identity because 9.806 had been shifted between G&A and other "
+              "income)", "2026-02-09", "Company"),
     ecl_fy24=I(17.482, "Reversal of expected credit losses, FY2024 audited FS",
                "2025-02-14", "Company"),
     ecl_fy25=I(16.137, "Reversal of expected credit losses, FY2025 audited FS",
                "2026-02-09", "Company"),
     oi_fy23=I(7.120, "Other income, FY2023 audited FS", "2024-02-14", "Company"),
     oi_fy24=I(7.938, "Other income, FY2024 audited FS", "2025-02-14", "Company"),
-    oi_fy25=I(14.624, "Other income, FY2025 audited FS", "2026-02-09", "Company"),
+    oi_fy25=I(24.430, "Other income, FY2025 audited FS statement face; note 29 "
+              "composition: rental income 18.094 + government grant 2.780 + scrap 1.482 + "
+              "others 2.074 (CORRECTED 17-Aug-2026 from a first-pass 14.624)",
+              "2026-02-09", "Company"),
+    rental_fy25=I(18.094, "Rental income inside other income, FY2025 note 29 — the return "
+                  "on the investment properties the bridge adds at book, so it is EXCLUDED "
+                  "from operating EBITDA (double-count fix, critique CCU6 confirmed against "
+                  "the note)", "2026-02-09", "Company"),
     op_fy23=I(1119.871, "Operating profit, FY2023 audited FS", "2024-02-14", "Company"),
     op_fy24=I(1192.444, "Operating profit, FY2024 audited FS", "2025-02-14", "Company"),
     op_fy25=I(1272.512, "Operating profit, FY2025 audited FS", "2026-02-09", "Company"),
@@ -319,7 +329,8 @@ dep_cos25 = 341.696 + 5.361 + 12.157
 other_cos25 = V['cos_fy25'] - V['ew_cost_fy25'] - dep_cos25    # 162.419
 # Class 3 — G&A ex its depreciation (wage class):
 dep_ga25 = 10.503
-ga_cash25 = V['ga_fy25'] - dep_ga25                            # 236.074
+ga_cash25 = V['ga_fy25'] - dep_ga25                            # 245.880
+OI_OP = V['oi_fy25'] - V['rental_fy25']                        # 6.336 grant+scrap+others
 WAGE_ESC = 0.025
 
 def ebitda_build(rev, cons):
@@ -331,7 +342,7 @@ def ebitda_build(rev, cons):
     oc = {y: other_cos25 * (1 + WAGE_ESC) ** (i + 1) for i, y in enumerate(YRS_F)}
     ga = {y: ga_cash25 * (1 + WAGE_ESC) ** (i + 1) for i, y in enumerate(YRS_F)}
     intco = {y: V['intco_fy25'] * (1 - 0.03) ** (i + 1) for i, y in enumerate(YRS_F)}
-    oi = {y: V['oi_fy25'] for y in YRS_F}
+    oi = {y: OI_OP for y in YRS_F}
     ebitda = {y: rev[y] - ew[y] - oc[y] - ga[y] + oi[y] for y in YRS_F}
     return ebitda, ew, oc, ga, intco, oi
 
@@ -339,8 +350,8 @@ def ebitda_build(rev, cons):
 # the receivable interest inside gross profit; the OPERATING build excludes it,
 # so the identity is build_ex + interest == audited:
 ebitda25_ex = (V['rev_fy25'] - V['ew_cost_fy25'] - other_cos25
-               - ga_cash25 + V['oi_fy25'] + V['ecl_fy25'])
-ebitda25_build = ebitda25_ex + V['intco_fy25']
+               - ga_cash25 + OI_OP + V['ecl_fy25'])
+ebitda25_build = ebitda25_ex + V['intco_fy25'] + V['rental_fy25']
 # audited: op 1,272.512 + dna 369.717 = 1,642.229; the identity must close to
 # < 0.5 (rounding inside note components) — ASSERTED below.
 
@@ -458,11 +469,21 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
     ppe_d = ppe_d if ppe_d is not None else ppe_b
     nwc_d = nwc_d if nwc_d is not None else nwc_b
     ic_term = ppe_d['FY30'] + nwc_d['FY30']
-    nopat_t1 = nopat['FY30'] * (1 + V['g_term'])
     roic_term = nopat['FY30'] / ic_term
-    rr_term = V['g_term'] / roic_term
-    fcff_t1 = nopat_t1 * (1 - rr_term)
-    tv = fcff_t1 / (wacc - V['g_term'])
+    # TWO-STAGE TERMINAL (adopted 17-Aug-2026 per critique: a fade, not a flat
+    # perpetuity): stage 1, FY31-FY40, grows at g1 = 2.5%/yr — the Dubai 2040
+    # build-out window, volume-only under the RD10 no-indexation tariff regime;
+    # stage 2 perpetuity at g2 = 1.5% (long-run densification with ~zero real
+    # tariff growth). Reinvestment is ROIC-consistent in each stage.
+    g1, g2 = V['g_term'], 0.015
+    rr1, rr2 = g1 / roic_term, g2 / roic_term
+    rr_term = rr1
+    tv = 0.0
+    nop_k = nopat['FY30']
+    for k in range(1, 11):
+        nop_k = nop_k * (1 + g1)
+        tv += nop_k * (1 - rr1) / (1 + wacc) ** k
+    tv += (nop_k * (1 + g2) * (1 - rr2) / (wacc - g2)) / (1 + wacc) ** 10
     pv_tv = tv * df_['FY30']
     ev = pv_explicit + pv_tv
     # EV -> equity bridge (30-Jun-2026 reviewed BS), receivables at book:
@@ -522,7 +543,8 @@ ps_rel = eq_rel * (1 - V['nci_pat_fy25'] / V['pat_fy25']) / V['shares_mn']
 # receivable interest (it is real income; only the operating EBITDA excludes it):
 fin_net26 = -(V['kd_marg'] * V['borrow_jun26'] - 0.035 * V['cash_jun26'])
 intco26 = intco_b['FY26']
-np26 = (eb_b['FY26'] + intco26 - dna_b['FY26'] + fin_net26) * (1 - V['tax_ct'])
+np26 = (eb_b['FY26'] + intco26 + V['rental_fy25'] - dna_b['FY26']
+        + fin_net26) * (1 - V['tax_ct'])
 npa26 = np26 * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
 ps_pe = TABREED_PE * npa26 / V['shares_mn']
 
@@ -530,8 +552,9 @@ ps_pe = TABREED_PE * npa26 / V['shares_mn']
 # level and the 9%/15% average burden shown separately; normalized EPS x a
 # justified multiple from Ke and sustainable payout:
 rev_norm26 = cons_per_rt25 * rt_avg['FY26'] + cap_b['FY26'] + V['pipes_rev_fy25']
-eb_norm26 = (rev_norm26 + intco26 - EW_RATIO * cons_per_rt25 * rt_avg['FY26']
-             - oc_b['FY26'] - ga_b['FY26'] + V['oi_fy25'])
+eb_norm26 = (rev_norm26 + intco26 + V['rental_fy25']
+             - EW_RATIO * cons_per_rt25 * rt_avg['FY26']
+             - oc_b['FY26'] - ga_b['FY26'] + OI_OP)
 np_norm26 = (eb_norm26 - dna_b['FY26'] + fin_net26) * (1 - V['tax_ct'])
 npa_norm26 = np_norm26 * (1 - V['nci_pat_fy25'] / V['pat_fy25'])
 eps_norm = npa_norm26 / V['shares_mn']
@@ -643,8 +666,13 @@ for w_ in wacc_grid:
         nopat30 = D_base_ct['nopat']['FY30']
         ic30 = ppe_b['FY30'] + nwc_b['FY30']
         roic_ = nopat30 / ic30
-        rr_ = g_ / roic_
-        tv_ = nopat30 * (1 + g_) * (1 - rr_) / (w_ - g_)
+        g2_ = min(0.015, g_)
+        rr1_, rr2_ = g_ / roic_, g2_ / roic_
+        tv_ = 0.0; nk = nopat30
+        for k in range(1, 11):
+            nk = nk * (1 + g_)
+            tv_ += nk * (1 - rr1_) / (1 + w_) ** k
+        tv_ += (nk * (1 + g2_) * (1 - rr2_) / (w_ - g2_)) / (1 + w_) ** 10
         flows = dict(D_base_ct['fcff']); flows['FY26'] *= 0.5
         pv_e = sum(flows[y] / (1 + w_) ** (i + 0.5)
                    for i, y in enumerate(YRS_F))
@@ -724,6 +752,21 @@ out = dict(
               ownership='DEWA 80% (since Feb-2026), free float ~20%'),
     inputs=INP,
     hist_is=hist_is,
+    unit_physical=dict(
+        rate_aed_per_rth=0.49 * V['rev_h1_26'] / 1174.0,
+        rate_source="H1-2026 consumption revenue (deck mix 49% x 1,519.415) / "
+                    "1,174m RTh (deck p4) = 0.634 AED/RTh — 1.4% BELOW the RD10 "
+                    "v1.3 regulated cap of 0.643 AED/TRh incl. fuel surcharge: "
+                    "Empower already prices at the cap, so there is no tariff "
+                    "headroom (supports the flat-tariff base and caps upside)",
+        rth_fy25_mn=V['cons_rev']['2025'] / (0.49 * V['rev_h1_26'] / 1174.0),
+        eflh_fy25_hrs=(V['cons_rev']['2025'] / (0.49 * V['rev_h1_26'] / 1174.0))
+                      * 1000.0 / rt_avg25,
+        eflh_h1_2026_hrs=698.0,
+        note="Consumption leg decomposed to physical units: revenue = connected "
+             "RT x EFLH hours x AED/RTh rate. The crux in these units: the "
+             "shock year runs ~6% fewer EFLH hours; recovery restores the "
+             "FY2025 ~1,880-hour year."),
     unit=dict(rt_path=rt_path, rt_avg=rt_avg, cons_per_rt25=cons_per_rt25,
               cap_per_rt25=cap_per_rt25, cons25=cons25, cap25=cap25,
               crux_shock=CRUX_SHOCK, ew_ratio=EW_RATIO,
@@ -778,8 +821,13 @@ out = dict(
     dewa_buyin=dict(price=DEWA_BUYIN, date='2026-02-11',
                     note='related-party CONTROL price for Dubai Holding\'s 24% — '
                          'a disclosed reference point, never fair value'),
-    central=dict(ct=central_ct, dmtt=central_dmtt, bear=bear, bull=bull,
-                 spot=V['spot']),
+    central=dict(ct=central_ct, dmtt=central_dmtt,
+                 continuation_ct=central_ct - 0.5 * (D_base_ct['ps'] - D_pers_ct['ps']),
+                 continuation_dmtt=central_dmtt - 0.5 * (D_base_dmtt['ps'] - D_pers_dmtt['ps']),
+                 labels="recovery (de-escalation) / continuation — published side "
+                        "by side like the tax framings; neither is privileged as "
+                        "'base' after the 17-Aug macro fact-check",
+                 bear=bear, bull=bull, spot=V['spot']),
     sens_wg=dict(g_grid=g_grid, wacc_grid=wacc_grid, table=sens_wg),
     crux=dict(levels=crux_levels, rows=crux_rows,
               persist_ps_ct=D_pers_ct['ps'], persist_ps_dmtt=D_pers_dmtt['ps']),

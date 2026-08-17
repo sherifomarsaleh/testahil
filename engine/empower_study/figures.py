@@ -261,15 +261,17 @@ pv_exp, pv_tv, ev = B['pv_explicit'], B['pv_tv'], B['ev']
 nd = D['wacc']['net_debt']
 side = (D['inputs']['invprop_jun26']['value'] + D['inputs']['fvtpl_jun26']['value']
         + D['inputs']['fvoci_jun26']['value'])
+recv = D['inputs']['recv_jun26']['value']
 nci, eq, ps = B['nci_val'], B['eq_attr'], B['ps']
-assert abs(ev - nd + side - nci - eq) < 1.0
+assert abs(ev - nd + recv + side - nci - eq) < 1.0
 steps = [  # (label, base, height, colour, printed value)
     ('PV explicit\nFCFF FY26–30', 0, pv_exp, SAGE_L, pv_exp),
     ('PV terminal\nvalue', pv_exp, pv_tv, GOLD_L, pv_tv),
     ('Enterprise\nvalue', 0, ev, TEAL_L, ev),
     ('Net debt\n(Jun-26)', ev - nd, nd, RUST_L, -nd),
-    ('Inv. property\n+ FVTPL/FVOCI', ev - nd, side, SAGE_L, side),
-    ('Non-controlling\ninterests', ev - nd + side - nci, nci, RUST_L, -nci),
+    ('Concession-grantor\nreceivables at book', ev - nd, recv, SAGE_L, recv),
+    ('Inv. property\n+ FVTPL/FVOCI', ev - nd + recv, side, SAGE_L, side),
+    ('Non-controlling\ninterests', ev - nd + recv + side - nci, nci, RUST_L, -nci),
     ('Equity attributable\nto holders', 0, eq, TEAL_L, eq),
 ]
 fig, ax = plt.subplots(figsize=(9.8, 4.6), dpi=110)
