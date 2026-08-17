@@ -75,7 +75,8 @@ rich([('Four methods, on their stated weights, put the equity between a weighted
       (f' a share (the widest single-lens extremes span {aed(LN["low"]):.2f} to '
        f'{aed(LN["high"]):.2f}), with a weighted central value of AED ', dict()),
       (f'{central_a:.2f}', dict(bold=True)),
-      (f' — about {pc(LN["central"]/SPOT-1, 0)} above the AED {SPOTA:.2f} the market is paying. '
+      (f' — about {pc(abs(LN["central"]/SPOT-1), 0)} '
+       f'{"above" if LN["central"] >= SPOT else "below"} the AED {SPOTA:.2f} the market is paying. '
        'That gap is not the interesting part of this study. The interesting part is that the '
        'whole of it, and rather more, turns on a single question the filings do not answer.',
        dict())])
@@ -529,23 +530,48 @@ rows = [['Evidence on the cost of debt', 'Rate'],
         ['Bank debt outstanding at 31 December 2025', 'none']]
 table(rows, [5.60, 1.15], size=9.0)
 
-P('Beta is measured on the company\'s own share price. Americana is concurrently listed in '
-  'Abu Dhabi and Riyadh. A daily history for the Abu Dhabi general index was sought and not '
-  'obtained from the machine-readable sources tried for this study — the Yahoo quote for the '
-  'index returns a single observation with no history, and the exchange\'s own site and the '
-  'main data portals refused automated access — so the regression runs the company\'s own '
-  'shares against the index of its other home market, whose series is fully available: '
-  f'{BETA["tier1_own_vs_tasi"]["n"]} complete weekly observations, windows labelled '
-  f'{BETA["tier1_own_vs_tasi"]["first"]} to {BETA["tier1_own_vs_tasi"]["last"]}, with nothing '
-  f'after the 7 August price anchor in the sample. Beta {W["beta"]:.3f}, standard error '
-  f'{BETA["tier1_own_vs_tasi"]["se_beta"]:.3f}, R-squared '
-  f'{pc(BETA["tier1_own_vs_tasi"]["r2"])}. Two cross-checks point much lower — the Abu Dhabi '
-  f'line against an equally weighted composite of eighteen UAE-listed names gives '
+P('Beta is measured on the company\'s own share price against the index of the exchange those '
+  'shares trade on. The Abu Dhabi general index history was obtained directly: '
+  f'{BETA["index_series"]["sessions"]:,} daily closes from '
+  f'{BETA["index_series"]["first"]} to {BETA["index_series"]["last"]}, screened before use for '
+  'duplicate dates, non-positive levels and trading-day density, and showing plainly the '
+  'January 2022 change in the trading week. The regression uses '
+  f'{BETA["tier1_own_vs_adx_index"]["n"]} complete weekly observations, windows labelled '
+  f'{BETA["tier1_own_vs_adx_index"]["first"]} to {BETA["tier1_own_vs_adx_index"]["last"]} — the '
+  'whole life of the listing, which began in December 2022 — with nothing after the 7 August '
+  f'price anchor in the sample. Beta {W["beta"]:.3f}, standard error '
+  f'{BETA["tier1_own_vs_adx_index"]["se_beta"]:.3f}, t-statistic '
+  f'{BETA["tier1_own_vs_adx_index"]["t_beta"]:.2f}, R-squared '
+  f'{pc(BETA["tier1_own_vs_adx_index"]["r2"])}. Stock and index are struck at the same closing '
+  'auction on the same exchange in the same currency, so no timing correction applies; computed '
+  f'as a check, the lead-lag sum is {BETA["tier1_dimson_diagnostic"]["beta"]:.3f}, close enough '
+  'to confirm there is nothing to correct.')
+
+P('That the index measures its market is checked rather than assumed. Regressed identically, '
+  f'Aldar returns {BETA["index_validation_constituents"]["ALDAR"]["beta"]:.2f}, Emaar '
+  f'{BETA["index_validation_constituents"]["EMAAR"]["beta"]:.2f}, Abu Dhabi Commercial Bank '
+  f'{BETA["index_validation_constituents"]["ADCB"]["beta"]:.2f} and the food company Agthia '
+  f'{BETA["index_validation_constituents"]["AGTHIA"]["beta"]:.2f}. Property and banking run '
+  'above the index and a consumer staple well below it, which is the pattern an index '
+  'concentrated in property, banking and the large Abu Dhabi holding companies should produce '
+  '— and it places this restaurant operator, at the market average, in a sensible position '
+  'rather than an accidental one.')
+
+P('The precision is modest and is stated as such rather than dressed up: one standard error '
+  f'spans {W["beta"]-BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f} to '
+  f'{W["beta"]+BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f}, which is wide enough that this '
+  'estimate cannot be told apart from several plausible alternatives. Three of them are '
+  'computed and disclosed, and none is adopted: the company\'s Riyadh line against the Saudi '
+  f'index gives {BETA["crosscheck_saudi_line_vs_tasi"]["beta"]:.3f}, an equally weighted '
+  'composite of eighteen UAE-listed names gives '
   f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f}, and two UAE-listed consumer '
-  f'companies give a median of {BETA["peer_median_beta"]:.3f} — so the adopted figure is the '
-  'conservative one, and the choice is worth sizing: at a beta near 0.60 the cost of capital '
-  'falls by roughly one and a half points and the cash-flow value rises by roughly a third. '
-  'The adopted beta is the single largest conservative judgement in this study.')
+  f'companies give a median of {BETA["peer_median_beta"]:.3f}. The composite is a diagnostic '
+  'and deliberately not the regressor: it is a selected subset of names whose own sector mix '
+  'would stand in for the market, and this company is one of its constituents, so its shares '
+  'would be regressed partly against themselves. The choice is worth sizing, because it is '
+  'large: at a beta near 0.60 the cost of capital falls by roughly one and a half points and '
+  'the cash-flow value rises by roughly half. Beta is the least precisely measured input in '
+  'this study and the one most worth arguing with.')
 
 H2('1.9  Sensitivity')
 figure('fig8_tornado.png', 6.6,

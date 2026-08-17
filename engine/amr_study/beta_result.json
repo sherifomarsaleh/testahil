@@ -1,7 +1,114 @@
 {
- "note": "AMR \u2014 equity beta from the stock's OWN price history against a local index.\n\nBeta hierarchy (house rule, strict preference order):\n  (1) own-stock 2-5yr WEEKLY regression vs its OWN local index, usability gate\n      n>=24, R^2>=5%, SE(beta) < |beta|;\n  (2) same-country peer beta (median unlevered, re-levered);\n  (3) beta = 1.0.\n\nSOURCING NOTE (recorded, not hidden). Americana is CONCURRENTLY DUAL-LISTED:\nADX (AMR, AED) and the Saudi Exchange (6015, SAR), same shares, both home\nmarkets, both currencies hard-pegged to the US dollar. A daily history for the\nFTSE ADX General Index could not be obtained from any machine-readable source\nreachable this session (Yahoo carries the FADGI.FGI quote but returns a single\nobservation with no timeseries; stooq and investing.com's data endpoints are\nJavaScript-walled or return 403; adx.ae returns 403 and its data service\nrejected every route probed). The Saudi Exchange line and the Tadawul All Share\nIndex ARE both available as full daily series, so the tier-(1) regression is run\nthere: the company's own shares against the index of a market in which those\nsame shares are listed. Two independent cross-checks are computed and reported\nalongside \u2014 a UAE-listed consumer-peer beta from the local price library, and\nthe ADX line regressed on an equal-weighted composite of the covered UAE panel\n(a CONSTRUCTED proxy, never presented as the index).",
- "tier1_own_vs_tasi": {
-  "label": "AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, truncated at the 07-Aug-2026 anchor",
+ "note": "AMR \u2014 equity beta from the stock's OWN price history against its OWN market's index.\n\nBeta hierarchy (house rule, strict preference order):\n  (1) own-stock 2-5yr WEEKLY regression vs its OWN local index, usability gate\n      n>=24, R^2>=5%, SE(beta) < |beta|;\n  (2) same-country peer beta (median unlevered, re-levered);\n  (3) beta = 1.0.\n\n[CHANGED 10-Aug-2026] TIER (1) NOW RUNS AGAINST THE ACTUAL FTSE ADX GENERAL INDEX.\nThe first edition regressed the company's SAUDI line against the Tadawul All Share\nIndex, because no daily history for the Abu Dhabi index could be reached from this\nenvironment. That was disclosed rather than hidden, but it priced a UAE-listed\ncompany's systematic risk against a different country's market cycle, and it produced\nthe highest beta of every estimate available (0.894, against 0.47-0.60 for every\nUAE-based one) \u2014 which flows straight into a higher discount rate and a lower value.\n\nThe index history was then supplied directly, 3,884 daily closes from 2 January 2011\nto 24 July 2026, and is committed at engine/market_indices/AE_FADGI.csv. This is the\ncompany's own exchange's own index: same market, same session, same currency, no\nproxy and no substitution. It is deliberately NOT placed under engine/raw_ohlc/AE/,\nwhich is the calibration panel of covered STOCKS \u2014 an index dropped in there would\nsilently join a panel it has no business in.\n\nScreened before use, as any series must be: 3,884 sessions over 15.6 years, 250 a\nyear, no duplicate dates, no non-positive values, largest single-session move 8.8%.\nThe weekday mix shows the January-2022 trading-week change plainly \u2014 Sunday-Thursday\nbefore it, Monday-Friday after \u2014 so the weekly sampling below uses the Friday close\nthat has applied throughout this stock's entire listed life (it floated in December\n2022, after the change).\n\nWHY THERE IS NO TIMING CORRECTION HERE. An earlier revision of this file regressed\nagainst a UAE index FUND priced in New York, which closes hours after Abu Dhabi; that\ngap biases a plain regression downward and needed a Dimson lead-lag correction. Against\nthe exchange's own index that problem does not exist \u2014 both series are struck at the\nsame closing auction on the same exchange \u2014 so the contemporaneous coefficient is the\nestimate, and the Dimson sum is reported only as a diagnostic. It is materially the\nsame number here, which is itself the evidence that no correction is warranted.\n\nA constructed composite of the covered UAE names is retained as a DIAGNOSTIC and is\nnever the regressor: it is a selection-biased subset whose sector mix would become the\n\"market\", and the subject is one of its own constituents, so the stock would be partly\nregressed against itself.\n\nThe index's own behaviour is checked rather than assumed: regressed the same way, two\nof the exchange's heavyweights and a large bank should land near or below 1.0, and a\ndefensive food name well below. Those numbers are reported below.\n\nEvery estimate that has ever informed this input stays on the record: the retired\nTadawul regression, the UAE consumer peers, and the composite.",
+ "index_series": {
+  "label": "FTSE ADX General Index (AED, the exchange the shares are listed on)",
+  "file": "engine/market_indices/AE_FADGI.csv",
+  "sessions": 3884,
+  "first": "2011-01-02",
+  "last": "2026-07-24",
+  "note": "Supplied as a primary export. Its last session precedes the 7 August 2026 price anchor, so the regression window ends there; no observation after the anchor can enter the sample by construction."
+ },
+ "tier1_own_vs_adx_index": {
+  "label": "AMR (ADX line, AED) weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on), truncated at the 07-Aug-2026 anchor",
+  "n": 185,
+  "alpha": -0.001738053482803954,
+  "beta": 1.0261119326129644,
+  "se_beta": 0.25385385106843394,
+  "t_beta": 4.042136561230836,
+  "r2": 0.08196528928471658,
+  "first": "2022-12-23",
+  "last": "2026-07-24",
+  "gate": {
+   "n_ge_24": true,
+   "r2_ge_5pct": true,
+   "se_lt_abs_beta": true
+  },
+  "usable": true
+ },
+ "tier1_dimson_diagnostic": {
+  "label": "Same regression, Dimson lead-lag sum \u2014 a DIAGNOSTIC only: both series strike at the same closing auction on the same exchange, so there is no non-synchronous trading to correct for, and the sum should and does land near the plain coefficient",
+  "n": 184,
+  "beta": 0.9343130064164618,
+  "se_beta": 0.4121678547021199,
+  "t_beta": 2.2668264779933027,
+  "coef_lag": -0.13370385839904594,
+  "coef_contemporaneous": 1.0432624736223617,
+  "coef_lead": 0.024754391193145986,
+  "first": "2022-12-23",
+  "last": "2026-07-17"
+ },
+ "index_validation_constituents": {
+  "ALDAR": {
+   "label": "ALDAR weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on) \u2014 index sanity check, not a valuation input",
+   "n": 255,
+   "alpha": 0.001039592735343816,
+   "beta": 1.581563122851433,
+   "se_beta": 0.13737889585113738,
+   "t_beta": 11.512416904014147,
+   "r2": 0.34377031283844983,
+   "first": "2021-08-20",
+   "last": "2026-07-24",
+   "gate": {
+    "n_ge_24": true,
+    "r2_ge_5pct": true,
+    "se_lt_abs_beta": true
+   },
+   "usable": true
+  },
+  "EMAAR": {
+   "label": "EMAAR weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on) \u2014 index sanity check, not a valuation input",
+   "n": 255,
+   "alpha": 0.003078355776048581,
+   "beta": 1.5043462583524707,
+   "se_beta": 0.1514978234407117,
+   "t_beta": 9.929820931989779,
+   "r2": 0.28043505946867975,
+   "first": "2021-08-20",
+   "last": "2026-07-24",
+   "gate": {
+    "n_ge_24": true,
+    "r2_ge_5pct": true,
+    "se_lt_abs_beta": true
+   },
+   "usable": true
+  },
+  "ADCB": {
+   "label": "ADCB weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on) \u2014 index sanity check, not a valuation input",
+   "n": 255,
+   "alpha": 0.0019256170162523381,
+   "beta": 1.360532914889515,
+   "se_beta": 0.10841962930828028,
+   "t_beta": 12.54876929177628,
+   "r2": 0.38363581455734985,
+   "first": "2021-08-20",
+   "last": "2026-07-24",
+   "gate": {
+    "n_ge_24": true,
+    "r2_ge_5pct": true,
+    "se_lt_abs_beta": true
+   },
+   "usable": true
+  },
+  "AGTHIA": {
+   "label": "AGTHIA weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on) \u2014 index sanity check, not a valuation input",
+   "n": 255,
+   "alpha": -0.0027272714211115765,
+   "beta": 0.415513311965139,
+   "se_beta": 0.13114941340821248,
+   "t_beta": 3.1682437699650428,
+   "r2": 0.038160940308629154,
+   "first": "2021-08-20",
+   "last": "2026-07-24",
+   "gate": {
+    "n_ge_24": true,
+    "r2_ge_5pct": false,
+    "se_lt_abs_beta": true
+   },
+   "usable": false
+  }
+ },
+ "crosscheck_saudi_line_vs_tasi": {
+  "label": "AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index \u2014 the FIRST EDITION's regressor, retained as a disclosed cross-check: a different country's market cycle",
   "n": 182,
   "alpha": -0.002136972895349638,
   "beta": 0.8943688741134201,
@@ -19,14 +126,14 @@
  },
  "crosscheck_adx_line_vs_uae_composite": {
   "label": "AMR (ADX line, AED) weekly vs equal-weighted composite of the 18 covered UAE names (CONSTRUCTED PROXY, not the exchange index)",
-  "n": 187,
-  "alpha": -0.002687600885058062,
-  "beta": 0.6028769440485089,
-  "se_beta": 0.15450540870024776,
-  "t_beta": 3.9019795431118918,
-  "r2": 0.07604150613285376,
+  "n": 189,
+  "alpha": -0.0020242244287403785,
+  "beta": 0.5864953191360646,
+  "se_beta": 0.15301360434447417,
+  "t_beta": 3.8329619228869887,
+  "r2": 0.07284188986242057,
   "first": "2022-12-23",
-  "last": "2026-07-24",
+  "last": "2026-08-07",
   "gate": {
    "n_ge_24": true,
    "r2_ge_5pct": true,
@@ -38,11 +145,11 @@
   "AGTHIA": {
    "label": "AGTHIA (UAE-listed consumer) weekly vs the same constructed composite",
    "n": 257,
-   "alpha": -0.003089786949707091,
-   "beta": 0.5023108601672728,
-   "se_beta": 0.09515324362403112,
-   "t_beta": 5.2789672851511,
-   "r2": 0.09851784327079327,
+   "alpha": -0.0031255870613151027,
+   "beta": 0.49581615412031643,
+   "se_beta": 0.09276784970848935,
+   "t_beta": 5.344698143574017,
+   "r2": 0.10073781260866199,
    "first": "2021-08-20",
    "last": "2026-07-24",
    "gate": {
@@ -55,11 +162,11 @@
   "LULU": {
    "label": "LULU (UAE-listed consumer) weekly vs the same constructed composite",
    "n": 88,
-   "alpha": -0.008260016808860831,
-   "beta": 0.6630929796964479,
-   "se_beta": 0.16224455311270938,
-   "t_beta": 4.0869968635298655,
-   "r2": 0.1626384330630738,
+   "alpha": -0.008187298044210787,
+   "beta": 0.6525233349230679,
+   "se_beta": 0.1622481359604666,
+   "t_beta": 4.021761674242358,
+   "r2": 0.15830325926450528,
    "first": "2024-11-22",
    "last": "2026-07-24",
    "gate": {
@@ -70,15 +177,20 @@
    "usable": true
   }
  },
- "peer_median_beta": 0.5827019199318604,
+ "peer_median_beta": 0.5741697445216922,
  "adopted": {
-  "beta": 0.894,
-  "tier": "(1) own-stock weekly regression against a local index of a market in which the shares are listed",
-  "basis": "AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, truncated at the 07-Aug-2026 anchor",
-  "n_weeks": 182,
-  "r2": 0.1063,
-  "se": 0.1933,
-  "window": "2022-12-30 .. 2026-07-17",
-  "gate_passed": true
+  "beta": 1.026,
+  "tier": "(1) own-stock weekly regression against its OWN exchange index",
+  "basis": "AMR (ADX line, AED) weekly vs the FTSE ADX General Index (AED, the exchange the shares are listed on), truncated at the 07-Aug-2026 anchor",
+  "index": "FTSE ADX General Index (AED, the exchange the shares are listed on)",
+  "n_weeks": 185,
+  "se": 0.2539,
+  "t_stat": 4.04,
+  "r2": 0.082,
+  "window": "2022-12-23 .. 2026-07-24",
+  "dimson_diagnostic": 0.934,
+  "dimson_se": 0.4122,
+  "gate_passed": true,
+  "superseded": "first edition used 0.894 \u2014 the Saudi line against the Tadawul All Share Index \u2014 because no Abu Dhabi index series could be obtained at the time; it is retained below as a cross-check"
  }
 }
