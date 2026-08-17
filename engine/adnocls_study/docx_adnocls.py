@@ -126,6 +126,17 @@ g_col = SN['gs'].index(IN['g_terminal'])
 beta_span = [r[g_col] for r in SN['grid_beta_g']]
 g_span = SN['grid_beta_g'][beta_row]
 capex_span = list(SN['capex'].values())
+# Which two consecutive rate anchors the market price falls between — read off the grid, so
+# the sentence that names them cannot drift away from the table it describes.
+_anch = sorted(SN['anchor'].items(), key=lambda kv: float(kv[0]))
+anchor_cross = next(((float(_anch[i][0]), float(_anch[i + 1][0]))
+                     for i in range(len(_anch) - 1)
+                     if _anch[i][1] <= SPOT <= _anch[i + 1][1]), None)
+# and which two beta columns it falls between, on the adopted terminal growth row
+_bcol = SN['gs'].index(IN['g_terminal'])
+_bser = [(b, SN['grid_beta_g'][i][_bcol]) for i, b in enumerate(SN['betas'])]
+beta_cross = next(((_bser[i][0], _bser[i + 1][0]) for i in range(len(_bser) - 1)
+                   if _bser[i + 1][1] <= SPOT <= _bser[i][1]), None)
 tax_span = list(SN['tax'].values())
 e1_pe_lo = E1['rng'][0] / E1['eps_usd'] / PEG
 e1_pe_hi = E1['rng'][1] / E1['eps_usd'] / PEG
@@ -1003,7 +1014,8 @@ P(f"One more comparison puts the crux in proportion, and it is worth being caref
   f"tested range, from {pc(min(float(k) for k in SN['anchor']))} to "
   f"{pc(max(float(k) for k in SN['anchor']))} of the base, moves fair value by AED "
   f"{p2(anchor_span)} a share — and that range is wide enough to carry fair value across "
-  f"the market price, which it reaches between the {pc(1.1, 0)} and {pc(1.2, 0)} anchors. "
+  f"the market price, which it reaches between the {pc(anchor_cross[0], 0)} and "
+  f"{pc(anchor_cross[1], 0)} anchors. "
   f"Widening the beta across the {p3(SN['betas'][0])}-to-{p3(SN['betas'][-1])} range "
   f"tested in section 1.9 moves it by AED {p2(max(beta_span)-min(beta_span))}, which is "
   f"{(max(beta_span)-min(beta_span))/anchor_span:.1f} times as much and remains the "
@@ -1206,13 +1218,12 @@ H2('1.9  Sensitivity')
 figure(os.path.join(HERE, 'fig2_sens.png'), 7.0,
        f"Figure 4 — left, fair value across beta and terminal growth; right, fair value "
        f"against the mid-cycle rate the fleet reverts to. The market price of AED "
-       f"{p2(SPOT)} is crossed in the beta grid between the {p2(SN['betas'][1])} and "
-       f"{p3(SN['betas'][2])} rows, and in the rate-anchor range between the "
-       f"{pc(1.1, 0)} and {pc(1.2, 0)} anchors.")
+       f"{p2(SPOT)} is crossed in the beta grid between the {p3(beta_cross[0])} and "
+       f"{p3(beta_cross[1])} rows, and in the rate-anchor range between the "
+       f"{pc(anchor_cross[0], 0)} and {pc(anchor_cross[1], 0)} anchors.")
 P("Each anchor is varied independently around its own base, so each row shows what the "
   "valuation needs that one thing to do.")
-rows = [['Beta →'] + [p3(b) if abs(b - IN['beta']) < 1e-9 else p2(b)
-                           for b in SN['betas']]]
+rows = [['Beta →'] + [p3(b) for b in SN['betas']]]
 for j, g in enumerate(SN['gs']):
     rows.append([f"terminal growth {pc(g, 1)}"] +
                 [p2(SN['grid_beta_g'][i][j]) for i in range(len(SN['betas']))])

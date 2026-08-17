@@ -82,10 +82,11 @@ ax.set_yticklabels(names[::-1], fontsize=8.4)
 ax.set_xlabel('AED per share')
 ax.set_xlim(xmin - 0.06 * rng, xmax + 0.34 * rng)
 ax.set_ylim(-1.15, len(keys) - 0.40)
-ax.set_title('ADNOC Logistics & Services — fair-value field by lens (bear–bull span; '
-             'brass tick = base)\nThe two cash-flow rows are the same model with the beta '
-             'measured against two different market series, never averaged',
-             fontsize=10, pad=11)
+ax.set_title('ADNOC Logistics & Services — fair-value field by lens\n'
+             '(bear–bull span; brass tick = base). The two cash-flow rows are the same '
+             'model,\nwith the beta measured against two different market series — never '
+             'averaged',
+             fontsize=9.6, pad=10)
 style(ax)
 fig.tight_layout()
 save(fig, 'fig1_football.png')
@@ -106,9 +107,13 @@ for i in range(tab.shape[0]):
                 fontweight='bold' if abs(v - SPOT) < 0.35 else 'normal')
 ax.set_xticks(range(len(S['gs'])))
 ax.set_xticklabels([f'{x*100:.1f}%' for x in S['gs']], fontsize=8.6)
+BFG = D['beta_framing']
+_tags = {round(IN['beta'], 3): 'adopted',
+         round(BFG['alternative']['beta'], 3): 'composite',
+         round(BFG['ci90'][1], 3): '90% upper'}
 ax.set_yticks(range(len(S['betas'])))
-ax.set_yticklabels([f'{b:.3f}' if abs(b - IN['beta']) < 1e-9 else f'{b:.2f}'
-                    for b in S['betas']], fontsize=8.6)
+ax.set_yticklabels([f'{b:.3f}\n{_tags[round(b, 3)]}' if round(b, 3) in _tags
+                    else f'{b:.3f}' for b in S['betas']], fontsize=8.0)
 ax.set_xlabel('terminal growth rate', fontsize=9)
 ax.set_ylabel('beta used in the cost of equity', fontsize=9)
 ax.set_title('Fair value (AED/share) — beta × terminal growth\nbold = within '
@@ -191,14 +196,15 @@ ax.fill_between(days, fan[1], fan[3], color=GOLD, alpha=0.32,
 ax.plot(days, fan[2], color=INK, lw=2, label='median path')
 ax.axhline(SPOT, color=GREY, lw=1.2, ls=':')
 cb = D['central']
-cba = D['central_asset_beta']
+cba = D['central_beta_alt']
 ax.axhline(cb, color=BRASS, lw=1.5, ls='--')
 ax.axhline(cba, color=TEAL, lw=1.5, ls='--')
-ymax, ymin = fan[4].max(), fan[0].min()
+ymax, ymin = max(fan[4].max(), cba), fan[0].min()
 r = ymax - ymin
-ax.text(days[-1] - 0.5, cb + 0.018 * r, f'weighted central, own beta  {cb:.2f}',
+ax.text(days[-1] - 0.5, cb + 0.018 * r, f'weighted central, published index  {cb:.2f}',
         color=BRASS, fontsize=8.6, va='bottom', ha='right')
-ax.text(days[-1] - 0.5, cba + 0.018 * r, f'weighted central, asset beta  {cba:.2f}',
+ax.text(days[-1] - 0.5, cba + 0.018 * r,
+        f'weighted central, equal-weight composite  {cba:.2f}',
         color=TEAL, fontsize=8.6, va='bottom', ha='right')
 ax.text(0.8, SPOT - 0.030 * r, f'market price {SPOT:.2f}', color=GREY,
         fontsize=8.6, ha='left', va='top')
@@ -358,6 +364,7 @@ los = [lo for _, _, (lo, hi) in ex]
 xr = max(his) - min(los)
 for i, (nm, ba, (lo, hi)) in enumerate(ex):
     y = len(ex) - 1 - i
+    lo, hi = min(lo, hi, ba), max(lo, hi, ba)     # a base never sits outside its own bar
     ax.barh(y, hi - lo, left=lo, height=0.44, color=SAGE, alpha=0.32, edgecolor=SAGE)
     ax.plot([ba, ba], [y - 0.22, y + 0.22], color=BRASS, lw=3.4)
     ax.text(hi + 0.02 * xr, y, f'{lo:.2f}–{hi:.2f}  ·  base {ba:.2f}', va='center',

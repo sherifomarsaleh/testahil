@@ -324,16 +324,9 @@ ND_FOOTNOTE = IV['q1_26_shldr_loan'] + IV['q1_26_leases'] - IV['q1_26_cash']
 ND_PRINTED = IV['q1_26_netdebt']
 ND_STUDY = BRG['net_debt']
 
-FID = {f['fid']: f for f in R['findings']}
-
-
 def idate(k):
     """The date an input carries, so a document's date and its figures never disagree."""
     return fdate(INP[k]['date'])
-
-
-def sdate(fid):
-    return fdate(FID[fid]['source_date'])
 
 
 def find_one(**want):
@@ -397,7 +390,7 @@ panel([
      "front to back: find the figure you want to test, and the row tells you where it came "
      "from and how it was built. The tables after it are the short ones that matter most — "
      "what the study judged rather than observed, what it looked for and could not find, and "
-     "where a secondary source disagreed with the company's own filings."),
+     "where two readings of the same figure disagreed."),
     ('What is not here. ',
      "Nothing is summarised out. Where a figure is derived, solved or assumed, the row says so "
      "in its own words rather than presenting it as a disclosure. Where a search came back "
@@ -659,6 +652,9 @@ for _lbl, _doc_val, _key in (
     assert abs(_doc_val - IV[_key]) < 5e-4, f'{_lbl} disagrees with the {_key} input'
 assert abs(BC['beta'] - IV['beta_composite']) < 5e-4, 'the composite slope disagrees with itself'
 assert BF['alternative']['ke'] == W['ke_beta1'], 'the alternative cost of equity is not the one built'
+assert BF['primary']['ke'] == W['ke'], 'the adopted cost of equity is not the one built'
+assert BF['primary']['central'] == D['central'], 'the published central figure disagrees with itself'
+assert BF['alternative']['central'] == CENTRAL_ALT, 'the alternative central disagrees with itself'
 
 # ============================================================================
 # 5  JUDGEMENTS
