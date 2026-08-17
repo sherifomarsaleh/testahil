@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 85,
+ "n": 86,
  "rows": [
   {
    "ticker": "HELI",
@@ -2442,6 +2442,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00275
    },
    "market": "EG"
+  },
+  {
+   "ticker": "ADNOCDIST",
+   "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
+   "code": "ADX:ADNOCDIST",
+   "ccy": "AED",
+   "spot": 4.07,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.36,
+   "fv_base": 4.41,
+   "fv_full": 5.17,
+   "gap_base_pct": 8.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.059538,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -3.22,
+     "base": 1.35,
+     "full": 4.02
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0029,
+     "base": 0.0792,
+     "full": 0.0008
+    },
+    "p_touch": {
+     "bear": 0.0044,
+     "base": 0.1259,
+     "full": 0.0013
+    },
+    "required_cagr": {
+     "bear": -0.8998,
+     "base": 1.619,
+     "full": 16.6504
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00307
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.111837,
+    "mu_h": -0.00246,
+    "G": {
+     "bear": -1.71,
+     "base": 0.72,
+     "full": 2.14
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0432,
+     "base": 0.209,
+     "full": 0.0186
+    },
+    "p_touch": {
+     "bear": 0.0732,
+     "base": 0.3846,
+     "full": 0.0317
+    },
+    "required_cagr": {
+     "bear": -0.5355,
+     "base": 0.3784,
+     "full": 1.6037
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00208
+   },
+   "market": "AE"
   },
   {
    "ticker": "ORWE",

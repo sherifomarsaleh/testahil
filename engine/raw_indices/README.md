@@ -25,6 +25,7 @@ Nothing in this directory is part of any MC panel.
 | Market | File | Span | Source format |
 |---|---|---|---|
 | AE | `AE/FADGI.csv` (FTSE ADX General) | 2011-01-02 → 2026-07-24 | investing.com daily export |
+| AE | `AE/ADXGENERAL.csv` | 2011-01-02 -> 2026-07-24 | investing.com daily export |
 | EG | `EG/EGX30.csv` | 2011-01-02 → 2026-07-22 | investing.com daily export |
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |
@@ -74,3 +75,16 @@ regressor biases every beta measured against it downward.
 Note the series ends 2026-07-22, a few weeks behind spot. That is immaterial for
 a 2–5yr weekly beta regression but should be refreshed alongside the price
 libraries; flag the as-of date whenever a beta is quoted from it.
+
+
+AE/ADXGENERAL is the FTSE ADX General Index, added 9-Aug-2026 for the ADNOCDIST
+study. Before it, an ADX name's beta was regressed against an equal-weight composite
+built from the `raw_ohlc/AE` library. That stand-in is NOT interchangeable with the
+real index and its error is systematic: the composite's weekly volatility is 1.34x the
+published capitalisation-weighted index's, and since beta divides covariance by the
+market's own variance, the more volatile stand-in returns a LOWER beta. For ADNOCDIST
+it gave 0.507 against the published index's 0.649 on an almost unchanged correlation.
+Any other AE study whose beta predates this file was biased low and should be
+re-measured. The index is screened on its own terms and NOT through
+`data_quality.clean_ohlc`: that gate tests moves against an exchange daily price limit,
+which an index does not have, so applying it would risk repairing a real market move.
