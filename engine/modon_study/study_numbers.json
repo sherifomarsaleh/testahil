@@ -257,18 +257,18 @@
   "rf_star": 0.0406,
   "sov_spread": 0.0042,
   "erp": 0.0487,
-  "beta": 1.03,
-  "ke_exp": 0.09076100000000001,
+  "beta": 1.746,
+  "ke_exp": 0.1256302,
   "kd": 0.0536,
   "kd_at": 0.045292,
   "we_exp": 0.8290140771361635,
   "wd_exp": 0.17098592286383657,
-  "wacc_exp": 0.08298644107330422,
-  "ke_term": 0.09076100000000001,
+  "wacc_exp": 0.11189349873178052,
+  "ke_term": 0.1256302,
   "kd_term": 0.0536,
   "kd_term_at": 0.045292,
   "wd_term": 0.08020685679031156,
-  "wacc_term": 0.08711407442860132,
+  "wacc_term": 0.11918652549780859,
   "eibor6": 0.0371,
   "kd_margin": 0.0165,
   "kd_eff_fy25": 0.0591569493325048,
@@ -277,11 +277,11 @@
  },
  "contested": {
   "name": "development sales trajectory (sustained-normalising vs run-off stress)",
-  "base_ps": 5.2917989217253325,
-  "runoff_ps": 3.7840783271845235,
-  "bull_ps": 6.305618176058718,
-  "runoff_ev": 60900.95719247659,
-  "base_ev": 85824.33874042283,
+  "base_ps": 3.542281748960128,
+  "runoff_ps": 2.643232316556594,
+  "bull_ps": 4.1337524764574205,
+  "runoff_ev": 41969.431808136535,
+  "base_ev": 56712.41961510183,
   "runoff_rev": [
    11045.65,
    25019.21139,
@@ -299,8 +299,8 @@
   "note": "published side by side; the run-off is now labelled a stress: the H1-2026 disclosure falsified it as a live central path"
  },
  "egy_stress": {
-  "ke": 0.10671706478266589,
-  "ps": 4.311736370448707,
+  "ke": 0.15267805350537342,
+  "ps": 2.8275647592104556,
   "fgn_share": 0.170797409390457
  },
  "fcst": {
@@ -445,18 +445,18 @@
    9423.119532835542
   ],
   "df": [
-   0.9609227828448683,
-   0.8872897631964225,
-   0.8192990507961165,
-   0.7565182902790014,
-   0.6985482565499589
+   0.9483494672093778,
+   0.8529139421096175,
+   0.7670824076968219,
+   0.689888382809821,
+   0.6204626464645254
   ],
   "pv": [
-   1303.5682104409495,
-   1798.2958598471819,
-   4059.461619025206,
-   5604.218620631863,
-   6582.503720924131
+   1286.5115073895959,
+   1728.6253876932456,
+   3800.7386797883664,
+   5110.630332116,
+   5846.693683294703
   ],
   "red_rev": [
    7223.65,
@@ -597,11 +597,11 @@
   "nwc_30jun": 33953.649000000005
  },
  "dcf": {
-  "pv_explicit": 19348.04803086933,
-  "tv": 95163.4909775188,
-  "pv_tv": 66476.2907095535,
-  "ev": 85824.33874042283,
-  "tv_share": 0.7745622242498387,
+  "pv_explicit": 17773.19959028191,
+  "tv": 62758.36304844542,
+  "pv_tv": 38939.22002481992,
+  "ev": 56712.41961510183,
+  "tv_share": 0.6866083353363198,
   "cash_avail": 8600.0,
   "cash_total": 12303.24,
   "restricted": 3703.24,
@@ -610,21 +610,21 @@
   "assoc": 2826.454,
   "finass": 392.972,
   "nci_book": 922.342,
-  "nci_val": 1730.6987748084564,
-  "eq_attr": 85726.58196561437,
-  "ps_jun": 5.244152592733037,
-  "roll": 1.0090856107158896,
-  "ps": 5.2917989217253325,
+  "nci_val": 1148.4603923020368,
+  "eq_attr": 57196.9012227998,
+  "ps_jun": 3.49890630148013,
+  "roll": 1.0123968588303291,
+  "ps": 3.542281748960128,
   "anchor_days": 38,
   "roic_term": 0.085,
   "rr_term": 0.29411764705882354,
   "g": 0.025,
   "nopat_term": 8373.905562072772,
-  "ps_grosscash": 5.520395478237414,
-  "ps_booknci": 5.341697814358385,
-  "bear": 3.7840783271845235,
-  "bull": 6.305618176058718,
-  "ps_egystress": 4.311736370448707
+  "ps_grosscash": 3.7716284300490335,
+  "ps_booknci": 3.5562855679963317,
+  "bear": 2.643232316556594,
+  "bull": 4.1337524764574205,
+  "ps_egystress": 2.8275647592104556
  },
  "rel": {
   "pe_just": 7.5,
@@ -693,8 +693,8 @@
  "book": {
   "bvps": 3.4499512451153356,
   "roe_sust": 0.075,
-  "pb_just": 0.7603290704216783,
-  "base": 2.6469306725241797,
+  "pb_just": 0.49686873324310193,
+  "base": 1.735423264423875,
   "roe_fy25": 0.07762394723744538,
   "roe_fy25_clean": 0.06563074392980686,
   "pb_trailing": 0.8203014474499886,
@@ -702,10 +702,10 @@
  },
  "sotp": {
   "ev_split": {
-   "red": 57565.24153144195,
-   "aim": 8531.299060054273,
-   "hosp": 2724.392916174382,
-   "ect": 17003.40523275221
+   "red": 38038.90808701545,
+   "aim": 5637.452257209644,
+   "hosp": 1800.2692071511474,
+   "ect": 11235.790063725586
   },
   "weights": {
    "red": 2261.929994799141,
@@ -719,9 +719,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 3.7840783271845235,
-   "base": 5.2917989217253325,
-   "bull": 6.305618176058718,
+   "bear": 2.643232316556594,
+   "base": 3.542281748960128,
+   "bull": 4.1337524764574205,
    "w": 0.4
   },
   "relative": {
@@ -740,23 +740,23 @@
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 1.5881584035145078,
-   "base": 2.6469306725241797,
-   "bull": 3.705702941533852,
+   "bear": 1.041253958654325,
+   "base": 1.735423264423875,
+   "bull": 2.4295925701934253,
    "w": 0.2
   },
   "central": {
    "name": "Weighted central",
    "bear": 1.0308987135928862,
-   "base": 3.3772715975978316,
-   "bull": 6.305618176058718,
+   "base": 2.4951632468716887,
+   "bull": 4.1337524764574205,
    "w": 1.0
   }
  },
- "central": 3.3772715975978316,
+ "central": 2.4951632468716887,
  "span": [
   1.0308987135928862,
-  6.305618176058718
+  4.1337524764574205
  ],
  "spot": 2.83,
  "sens": {
@@ -768,62 +768,62 @@
    0.035
   ],
   "wacc_grid": [
-   0.07298644107330422,
-   0.07798644107330421,
-   0.08298644107330422,
-   0.08798644107330422,
-   0.09298644107330421
+   0.10189349873178052,
+   0.10689349873178051,
+   0.11189349873178052,
+   0.11689349873178052,
+   0.12189349873178051
   ],
   "table": [
    [
-    6.042201126082581,
-    6.10721428904692,
-    6.180544547870568,
-    6.264795543624948,
-    6.363784279482363
+    4.001441345629771,
+    3.9594628325458303,
+    3.910344772050745,
+    3.8527483081186245,
+    3.7849775021452055
    ],
    [
-    5.630966604933419,
-    5.664779705951927,
-    5.7008811742258265,
-    5.739924640865718,
-    5.782838862569954
+    3.816186596964378,
+    3.770181264157251,
+    3.716987369055611,
+    3.655330156427179,
+    3.5836145307161873
    ],
    [
-    5.272022262605483,
-    5.28268685237433,
-    5.2917989217253325,
-    5.298950728670187,
-    5.303578050656447
+    3.6472096550081528,
+    3.5983026868907944,
+    3.542281748960128,
+    3.47795036510495,
+    3.4038278151253123
    ],
    [
-    4.95597119576637,
-    4.94933727846957,
-    4.938715350961064,
-    4.923136085639504,
-    4.9012883190227905
+    3.4924501671133386,
+    3.441519430814956,
+    3.383630639503766,
+    3.317670925679249,
+    3.2422767350484145
    ],
    [
-    4.675542181427662,
-    4.655928128818662,
-    4.6308093130353045,
-    4.598940538029852,
-    4.558670424322702
+    3.3501819166628937,
+    3.2979153140301185,
+    3.238898679586645,
+    3.1721028825091726,
+    3.0962783846695534
    ]
   ],
   "beta_grid": [
-   0.8,
-   0.9,
-   1.03,
-   1.1,
-   1.2
+   0.952,
+   1.349,
+   1.746,
+   2.143,
+   2.54
   ],
   "grid_beta": [
-   6.308360959810829,
-   5.820961579529833,
-   5.2917989217253325,
-   5.0457112922861365,
-   4.7322477167536325
+   5.59677097746544,
+   4.332789993007912,
+   3.542281748960128,
+   3.000067693883474,
+   2.5990309498164894
   ],
   "mg_grid": [
    -0.04,
@@ -833,11 +833,11 @@
    0.04
   ],
   "grid_margin": [
-   4.792998926154786,
-   5.042398923940059,
-   5.2917989217253325,
-   5.541198919510606,
-   5.790598917295879
+   3.2369664650988357,
+   3.3896241070294812,
+   3.542281748960128,
+   3.694939390890774,
+   3.8475970328214215
   ],
   "conv_grid": [
    -0.06,
@@ -847,11 +847,11 @@
    0.06
   ],
   "grid_conv": [
-   4.8493419852166895,
-   5.088978093938395,
-   5.2917989217253325,
-   5.462012652655713,
-   5.603513696301147
+   3.199828427616535,
+   3.383396312468598,
+   3.542281748960128,
+   3.6791581843364947,
+   3.796504953962525
   ],
   "sales_grid": [
    0.5,
@@ -861,11 +861,11 @@
    1.5
   ],
   "grid_sales": [
-   4.098077467988583,
-   4.694938194856958,
-   5.2917989217253325,
-   5.888659648593707,
-   6.485520375462085
+   2.827625020137998,
+   3.1852380805095453,
+   3.542281748960128,
+   3.8993254174107115,
+   4.256369085861295
   ],
   "nwc_grid": [
    -1000.0,
@@ -875,11 +875,11 @@
    1000.0
   ],
   "grid_nwc": [
-   5.0424067612814465,
-   5.1671028415033895,
-   5.2917989217253325,
-   5.4164950019472755,
-   5.5411910821692185
+   3.3068730463986626,
+   3.4245773976793954,
+   3.542281748960128,
+   3.6599861002408605,
+   3.777690451521593
   ],
   "dso_grid": [
    -60.0,
@@ -889,11 +889,11 @@
    60.0
   ],
   "grid_dso": [
-   5.615709443012417,
-   5.4537541823688755,
-   5.2917989217253325,
-   5.12984366108179,
-   4.967888400438247
+   3.8566894813899837,
+   3.6994856151750564,
+   3.542281748960128,
+   3.3850778827452,
+   3.2278740165302726
   ],
   "ke_grid": [
    0.0,
@@ -903,18 +903,18 @@
    0.02
   ],
   "grid_ke": [
-   5.2917989217253325,
-   4.938715350961064,
-   4.6308093130353045,
-   4.359881599769382,
-   4.119606091590888
+   3.542281748960128,
+   3.383630639503766,
+   3.238898679586645,
+   3.106314064026041,
+   2.9843942947840536
   ]
  },
  "market_implied": {
-  "ke_add": 0.061803349912400676,
+  "ke_add": 0.026934149912400687,
   "ke": 0.1525643499124007,
   "note": "cost-of-equity adder reconciling the base DCF to the market price",
-  "runoff_discount": 0.25212964550191763
+  "runoff_discount": -0.0706588226367908
  },
  "experts": {
   "e1": {
@@ -932,12 +932,12 @@
   },
   "e2": {
    "method_short": "owner cash flow, run-off stress basis",
-   "base": 3.6195916268074533,
+   "base": 2.478745616179524,
    "rng": [
-    2.895673301445963,
-    5.027208975639065
+    1.9829964929436192,
+    3.3651676615121215
    ],
-   "runoff_ps": 3.7840783271845235,
+   "runoff_ps": 2.643232316556594,
    "haircut": 0.25,
    "rp_book": 10755.509,
    "note": "builds on the study's own run-off scenario with an independent receivable haircut \u2014 labelled as derived, not independent"
@@ -953,7 +953,7 @@
    "npa26": 4785.094650150099
   }
  },
- "panel_centre": 3.6195916268074533,
+ "panel_centre": 2.478745616179524,
  "terminal_recon": {
   "roic_fy25_clean": 0.06134848228063011,
   "roic_path": [
@@ -2345,33 +2345,59 @@
    "ring": "Country"
   },
   "beta": {
-   "value": 1.03,
-   "source": "OWN-STOCK regression against an equal-weight proxy of the 18 ADX/DFM names in the house library (the official FTSE ADX General index remains unobtainable \u2014 7 sources logged): 3-year weekly beta 1.025 (SE 0.109, R2 0.367, n 155, gate PASS); 5-year 1.071 (R2 0.142, spans the pre-2022 thin-trading regime); 2-year 1.055 (R2 0.460). Adopted 1.03, FLAGGED: proxy index, not the official benchmark. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) is REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised 0.8-1.2",
-   "date": "2026-08-09",
+   "value": 1.746,
+   "source": "TIER 1 \u2014 own-stock weekly regression against the PUBLISHED INDEX OF THE EXCHANGE THE STOCK IS LISTED ON (FTSE ADX General, raw_indices/AE/FADGI.csv, as of 2026-07-24), produced by the house regression module and passed through the beta-provenance gate, not by a study-local script. Dimson lead-lag corrected, which matters here: 84.75% of the shares sit with a single holder, and non-synchronous trading biases a naive beta DOWNWARD \u2014 the correction is worth +0.352 of beta (1.394 naive on the same weeks). Diagnostics: SE 0.397, R2 0.128, n 253, 90% CI [1.092, 2.399], usability gate PASS. Blume cross-check 1.497. THE CONFIDENCE INTERVAL IS WIDE \u2014 this beta is quoted with its interval everywhere it supports a conclusion, never as a precise point. SUPERSEDES both earlier regressors: revision 2 used an equal-weight composite of the house UAE library (1.03 adopted) and an intermediate revision-3 pass used a study-local naive regression on the official series (1.278). A constituent composite is not a substitute and not a tier. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) stays REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised in steps of one standard error",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_record": {
+   "value": {
+    "beta": 1.7457708115733528,
+    "se": 0.39715649701645106,
+    "r2": 0.12846332548762018,
+    "n": 253,
+    "ci90": [
+     1.092448373981291,
+     2.3990932491654147
+    ],
+    "usable": true,
+    "weak": false,
+    "dimson": true,
+    "index_file": "raw_indices/AE/FADGI.csv",
+    "index_asof": "2026-07-24",
+    "window_years": 4.89,
+    "first_obs": "2021-08-27",
+    "last_obs": "2026-07-17",
+    "blume_crosscheck": 1.4971805410489016,
+    "conforming": true
+   },
+   "source": "Full beta provenance record as returned by the house regression module and accepted by the beta-provenance gate: regressor, as-of date, diagnostics, confidence interval and conformance flag",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_naive_same_weeks": {
+   "value": {
+    "beta": 1.394333684644842,
+    "se": 0.2382946319446572,
+    "r2": 0.11919648249083459,
+    "n": 255
+   },
+   "source": "The same regression WITHOUT the Dimson thin-trading correction, on the same weeks, so the correction is visible rather than buried in a default argument",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_retired_regressors": {
+   "value": {
+    "rev2_proxy_composite": 1.03,
+    "rev3_naive_on_official": 1.278
+   },
+   "source": "Retired regressors, kept so the swap can be priced: the revision-2 equal-weight composite of the house UAE library, and the intermediate study-local naive regression on the official series",
+   "date": "2026-08-10",
    "ring": "House"
   },
-  "beta_reg_detail": {
-   "value": {
-    "w3y": [
-     1.025,
-     0.109,
-     0.367,
-     155
-    ],
-    "w5y": [
-     1.071,
-     0.164,
-     0.142,
-     259
-    ],
-    "w2y": [
-     1.055,
-     0.114,
-     0.46,
-     103
-    ]
-   },
-   "source": "Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs the equal-weight 18-name panel proxy, computed from the house price library",
+  "beta_rev2_published": {
+   "value": 1.03,
+   "source": "The beta PUBLISHED at revision 2 (proxy composite). Registered so the correction can be stated against what readers actually saw",
    "date": "2026-08-09",
    "ring": "House"
   },
@@ -2653,6 +2679,6 @@
   "Step 0 PASS carried",
   "strike anchor equals study spot",
   "q=0 sourced",
-  "input register carries 205 four-field inputs"
+  "input register carries 208 four-field inputs"
  ]
 }

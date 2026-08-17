@@ -239,18 +239,29 @@ f_h1r = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)"
                  "the bridge uses the 30-Jun balance sheet and available cash, and "
                  "the run-off scenario is demoted to a stress reading.")
 
-f_beta = R.add(Ring.INDUSTRY, "beta evidence (regression + industry cross-check)",
-    FindingClass.S,
-    "Own-stock weekly regression vs an equal-weight proxy of the 18 ADX/DFM names in "
-    "the house library: beta 1.025 (3y, SE 0.109, R2 0.367, n 155, gate PASS); 1.071 "
-    "(5y); 1.055 (2y). Damodaran EM industry route rejected as primary (RE Development "
-    "unlevered 0.45 dominated by highly-levered Chinese developers, D/E 1.97); "
-    "retained as a lower-bound cross-check (relevered 0.56-0.59)",
-    "House regression on the price library; Damodaran betaemerg.xls (07-Jan-2026)",
-    PMD, "2026-08-09",
-    model_impact="Beta upgrades from the tier-3 assumption 1.0 to 1.03 (proxy-index "
-                 "regression, flagged: proxy is not the official benchmark); "
-                 "sensitised 0.8-1.2.")
+f_beta = R.add(Ring.INDUSTRY, "beta evidence (published-index regression + cross-checks)",
+    FindingClass.B,
+    "Own-stock weekly regression against the PUBLISHED INDEX OF THE EXCHANGE the stock "
+    "is listed on (FTSE ADX General, raw_indices/AE/FADGI.csv, as of 24-Jul-2026), "
+    "produced by the house regression module and accepted by the beta-provenance gate. "
+    "Beta 1.746 on 253 weekly observations over 4.9 years (SE 0.397, R2 0.128, 90% range "
+    "1.09-2.40, usability gate PASS), Dimson thin-trading corrected - warranted by a "
+    "float with 84.75% in a single holder, and worth +0.351 of beta against the "
+    "uncorrected 1.394 on the same weeks. Long-run-adjusted (Blume) cross-check 1.497. "
+    "SUPERSEDES two earlier regressors: the revision-2 equal-weight composite of the "
+    "house UAE library (1.03) and an intermediate study-local naive regression on the "
+    "official series (1.278). A composite of the names this programme happens to cover "
+    "is a coverage artefact, not a market. Damodaran EM industry route stays rejected as "
+    "primary (RE Development unlevered 0.45 dominated by highly-levered Chinese "
+    "developers, D/E 1.97); retained as a lower-bound cross-check",
+    "Official FTSE ADX General daily history (raw_indices/AE/FADGI.csv); house beta "
+    "regression module; Damodaran betaemerg.xls (07-Jan-2026)",
+    PMD, "2026-08-10",
+    model_impact="Beta 1.03 -> 1.746: Ke 9.08% -> 12.56%, WACC 8.30% -> 11.14%, DCF "
+                 "5.29 -> 3.54, book 2.65 -> 1.74, weighted central 3.38 -> 2.50 "
+                 "(-26%), which moves the read from a 19% discount to a 12% premium "
+                 "against the market price. Sensitised in steps of one standard error. "
+                 "The single largest change in revision 3 and it moves against value.")
 
 # ---- primary access log (successes AND failures, per the standing rule) -------
 R.record_primary_access("https://www.modon.ae/investor-relations", True, SWEEP_DATE,

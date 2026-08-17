@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 80,
+ "n": 81,
  "rows": [
   {
    "ticker": "HELI",
@@ -3456,6 +3456,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "MODON",
+   "name": "Modon Holding PSC",
+   "code": "ADX:MODON",
+   "ccy": "AED",
+   "spot": 2.83,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.03,
+   "fv_base": 2.5,
+   "fv_full": 4.13,
+   "gap_base_pct": -11.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.068338,
+    "mu_h": 0.003527,
+    "G": {
+     "bear": -14.79,
+     "base": -1.81,
+     "full": 5.53
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0318,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0498,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.7741,
+     "full": 92.3176
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00126
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.128582,
+    "mu_h": 0.010545,
+    "G": {
+     "bear": -7.86,
+     "base": -0.96,
+     "full": 2.94
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.1346,
+     "full": 0.0048
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.2471,
+     "full": 0.0079
+    },
+    "required_cagr": {
+     "bear": -0.9825,
+     "base": -0.391,
+     "full": 3.5358
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00244
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ABUK",
    "name": "Abu Kir Fertilizers",
    "code": "EGX:ABUK",
@@ -3916,6 +4008,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "FERTIGLB",
+   "name": "Fertiglobe plc",
+   "code": "ADX:FERTIGLB",
+   "ccy": "AED",
+   "spot": 2.54,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.27,
+   "fv_base": 2.15,
+   "fv_full": 2.79,
+   "gap_base_pct": -15.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.07644,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -9.07,
+     "base": -2.18,
+     "full": 1.23
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0175,
+     "full": 0.0999
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.026,
+     "full": 0.16
+    },
+    "required_cagr": {
+     "bear": -0.9998,
+     "base": -0.8647,
+     "full": 2.0849
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00208
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.142459,
+    "mu_h": -0.003945,
+    "G": {
+     "bear": -4.87,
+     "base": -1.17,
+     "full": 0.66
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.1152,
+     "full": 0.2302
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.1985,
+     "full": 0.4258
+    },
+    "required_cagr": {
+     "bear": -0.9375,
+     "base": -0.4866,
+     "full": 0.4557
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00095
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ADNOCGAS",
    "name": "ADNOC Gas",
    "code": "ADX:ADNOCGAS",
@@ -4282,98 +4466,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00347
    },
    "market": "EG"
-  },
-  {
-   "ticker": "MODON",
-   "name": "Modon Holding PSC",
-   "code": "ADX:MODON",
-   "ccy": "AED",
-   "spot": 2.83,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.03,
-   "fv_base": 3.38,
-   "fv_full": 6.31,
-   "gap_base_pct": 19.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.979,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.068338,
-    "mu_h": 0.003527,
-    "G": {
-     "bear": -14.79,
-     "base": 2.6,
-     "full": 11.73
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0087,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.0121,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": 7.4249,
-     "full": 15096.8492
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00126
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.128582,
-    "mu_h": 0.010545,
-    "G": {
-     "bear": -7.86,
-     "base": 1.38,
-     "full": 6.24
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0885,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.1519,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.9825,
-     "base": 1.0348,
-     "full": 23.7156
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00244
-   },
-   "market": "AE"
   },
   {
    "ticker": "ORAS",

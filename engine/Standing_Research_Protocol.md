@@ -533,3 +533,34 @@ invariant reads a period as covered only when both documents carry findings. Whe
 release post-dates the statements it accompanies, the release's operating anchors
 (backlog, sales, net debt on the company definition) supersede any older anchors in the
 driver set, or the study must state explicitly why they do not.
+
+## Beta — the MODON worked example, and sensitivity bands in standard errors [ADOPTED 10-Aug-2026]
+
+Companion to the beta-regressor rule above, which is canonical. That section settles WHAT the
+regressor must be; this one records the case that priced it and adds one rule the earlier
+section does not carry.
+
+**The priced swap.** MODON revisions 1 and 2 regressed against an equal-weight composite of the
+house UAE library after ten failed attempts to obtain the FTSE ADX General series. When the
+series arrived (10-Aug-2026) the proxy proved to have under-read beta at EVERY window — 5-year
+1.118 proxy against 1.278 official; the 3-year and 2-year official windows read 1.800 and 1.581.
+The mechanism is arithmetic: β = corr × (σ_stock / σ_market), and the official index ran 11.5%
+annualised volatility against the composite's 14.9%, a factor of 1.30, at a similar correlation
+(0.298 vs 0.343). A better-diversified benchmark is a smaller denominator, so the true regressor
+RAISES beta. Ke 9.08% → 10.28%, WACC 8.30% → 9.30%, the cash-flow lens AED 5.29 → 4.51, the
+weighted central AED 3.38 → 2.98 — an 11.6% cut, past the 5%-of-central threshold that mandates
+a full re-derivation. **This is what "price the swap" means in practice: publish what the proxy
+read on the same weeks, what the index reads, and what the difference was worth per share.**
+
+**A proxy's error has no reliable sign.** Before the official series arrived, a turnover-weighted
+composite — built precisely because it approximated cap weighting better than equal weighting —
+pointed the OTHER way (β 0.842, central AED 3.78), and a paired block bootstrap confirmed that
+difference excluded zero at every block size {2,3,4}. Real, robust, and wrong about the
+destination. Never reason about the direction of a missing input's effect from a proxy and
+present the reasoning as a finding.
+
+**NEW RULE — sensitivity bands are a property of the measurement, not round numbers.** MODON
+revision 2 sensitised beta 0.8–1.2. The true value, 1.278, sat OUTSIDE that band, so the study's
+own disclosed range did not bracket the answer while presenting itself as if it did. Beta strips
+are centred on the adopted estimate in steps of ONE STANDARD ERROR of that regression. The same
+discipline applies to any sensitised input carrying a measurable standard error.
