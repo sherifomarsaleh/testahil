@@ -335,6 +335,9 @@ E2_BRIDGED = aed_ps(E2['value'] * (1 - IN['nci_share']) + BR['jv'])
 # is exactly how a document drifts from its own filing, so the sentence is taken from the
 # committed source text and only the leading citation is trimmed off it.
 DEP_LIVES = SRC['life_tankers'].split(' — ', 1)[1]
+_pfx = 'accounting policies: '
+assert DEP_LIVES.startswith(_pfx), 'the useful-life source text no longer opens as expected'
+DEP_LIVES = DEP_LIVES[len(_pfx):]
 assert 'depreciated straight line' in DEP_LIVES, \
     'the useful-life source text is not the policy sentence this quotes'
 
@@ -494,7 +497,7 @@ box([("READ FIRST — what this document is. ",
       f"stopped the smallest tankers being carried at a rate that moved the opposite way "
       f"from theirs, re-based receivable days onto the revenue the forecast is actually "
       f"built at, and corrected two descriptions that did not match what the model does. "
-      f"The section headed “What changed in this edition, and why”, immediately after the "
+      f"The section headed “What changed in these editions, and why”, immediately after the "
       f"caveats, sets both rounds out row by row with the direction and the size of each. A "
       f"study that has been corrected and does not say so is worse than one that was right "
       f"the first time.")])
@@ -862,8 +865,8 @@ caption(f"Every line is computed, not typed. The waterfall runs earnings before 
         f"relieved under UAE law and the shipping units bore about "
         f"{pc(IN['tax_shipping'], 0)} in {HYRS[2]}. Working capital is carried at the "
         f"collection, inventory and payment cycle the {HYRS[2]} statements actually show, "
-        f"re-based onto the revenue this forecast is built at — the two paragraphs below "
-        f"set out why that re-basing was needed and what it cost.")
+        f"re-based onto the revenue this forecast is built at — the table below sets out "
+        f"why that re-basing was needed and what it cost.")
 H2('Two lines that price a fleet, and how each is set')
 P(f"The capital-intensive lines in that waterfall are depreciation and working capital, and "
   f"both were challenged in review. Neither is an assumption dropped in from outside, and "
@@ -969,7 +972,13 @@ rows = [['Line', 'USD mn', 'Note'],
          f"the terminal cost of capital, instead of the USD {m0(BR['hybrid'])} million "
          f"carrying value. Worth AED {p2(DCFH['fv_aed']-DCF['fv_aed'])} a share. The "
          f"securities are perpetual and non-amortising, so which of the two is right "
-         f"depends on whether the company ever calls them; both are shown"]]
+         f"depends on whether the company ever calls them; both are shown. Note what makes "
+         f"them differ, because it is not a second valuation of the claim: the same coupon "
+         f"capitalised at the securities' OWN rate of {pc(W['kh'], 2)} gives USD "
+         f"{m0(HYB_AT_OWN_COUPON)} million, the carrying value to the dollar. The whole of "
+         f"the difference is the choice of discount rate, and the rate used here is "
+         f"{(W['wacc_term']-W['kh'])*10000:,.0f} basis points above the one the security "
+         f"itself pays"]]
 # The bridge must FOOT. The line the first edition was missing was worth USD 1.3 billion and
 # nothing in the document would have shown it: every figure in the table was individually
 # correct and the column simply did not add up to the equity value printed under it.
@@ -1338,7 +1347,7 @@ rows.append(['MEMORANDUM — the Shipping leg with the exposure share re-based t
              f"against Shipping's own {YRL[0]} earnings rather than the group's it is "
              f"{pc(SHIP_W_LEG, 0)}, which lowers the leg multiple to {xt(SHIP_MULT_LEG, 2)} "
              f"and the cross-check by AED {p2(SOTP['fv_aed']-SOTP_FV_REBASED)} a share"])
-table(rows, [1.75, 1.02, 0.72, 1.11, 2.40], size=8.0, band_rows={4, 9, 10},
+table(rows, [1.75, 1.02, 0.72, 1.11, 2.40], size=8.0, band_rows={4, 9},
       left_cols=(4,))
 caption(f"The sum of the parts lands at AED {p2(SOTP['fv_aed'])} against the blended "
         f"relative lens at AED {p2(LN['relative']['base'])}, and the difference is almost "
@@ -1348,7 +1357,12 @@ caption(f"The sum of the parts lands at AED {p2(SOTP['fv_aed'])} against the ble
         f"to the consolidated figure and then averages an enterprise measure with an "
         f"after-tax earnings measure. Both are disclosed. Neither is included in the "
         f"weighted central, which rests on the cash-flow model and the three lenses beside "
-        f"it.")
+        f"it. On the exposure share re-based to the leg it is applied to — the memorandum "
+        f"row above, and the more defensible construction of the two — the cross-check "
+        f"reads AED {p2(SOTP_FV_REBASED)} instead. The row is published as a memorandum "
+        f"rather than substituted into the table because the weighting the table uses is "
+        f"the company's own disclosed figure taken at face value, and a reader should be "
+        f"able to see both what the disclosure says and what re-basing it does.")
 
 # ---- 1.4 normalised ----------------------------------------------------------
 H2('1.4  Normalised earnings power — what the group earns in an ordinary year')
@@ -1618,7 +1632,7 @@ rows.append(["Group — earnings, on the group band and the company's own report
              m0(GD['Group']['guided_ebitda'])])
 rows.append(['Difference — the group band against the three unit bands', '', '',
              f"{'+' if GUID_EBITDA_GAP >= 0 else ''}{m0(GUID_EBITDA_GAP)}"])
-table(rows, [3.10, 1.30, 1.10, 1.50], size=8.2, band_rows={4, 6, 11, 13}, left_cols=(0,))
+table(rows, [3.10, 1.30, 1.10, 1.50], size=8.2, band_rows={4, 6, 10, 12}, left_cols=(0,))
 caption(f"Every row multiplies out. The two DIFFERENCE rows are the point of the table and "
         f"they are a property of the guidance, not of this conversion: management's three "
         f"unit bands and its group band do not reconcile at their midpoints. On revenue the "
