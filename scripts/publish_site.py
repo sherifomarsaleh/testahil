@@ -127,18 +127,22 @@ def surfaces(ticker: str) -> None:
     print(run(["python3", "scripts/build_market_registry.py", "--write"]).strip()[-200:])
     # The Ticker Picker reads a GENERATED overlay that nothing here used to rebuild, so a
     # published name simply was not on that page — SWDY, SCEM and EGCH all shipped green
-    # and invisible. The overlay is fitted per market and only EG has a fit today.
+    # and invisible. The overlay now covers every fitted market (see step 5 below).
     # these run last: they rewrite the ticker's own data.js block, so the entry must exist.
     print(run(["python3", "engine/ta_chart.py", "--only", ticker, "--write"]).strip()[-200:])
     print(run(["python3", "engine/apply_technicals.py", "--only", ticker,
                "--write"]).strip()[-300:])
     # 5. the fair-value overlay feeds picker.html. It was NOT in this list, so four
     # consecutive EG publishes shipped without ever reaching the Ticker Picker — the
-    # page simply read a file nobody had regenerated. It is a per-MARKET file, so it is
-    # rebuilt for the ticker's own market.
+    # page simply read a file nobody had regenerated.
+    #
+    # It rebuilds EVERY market in one file — fv_overlay resolves each row's market from
+    # the registry and prices it with that market's own profile and cash hurdle, so no
+    # --market argument is needed or wanted. The page sections by market on top of that,
+    # which only holds together if the whole file is rebuilt at once.
     mkt = market_of(ticker)
     if mkt:
-        out = run(["python3", "engine/fv_overlay.py", "--market", mkt,
+        out = run(["python3", "engine/fv_overlay.py",
                    "--js", "assets/fv_overlay.js"])
         blocked = [l for l in out.splitlines() if "BLOCKED" in l]
         if blocked:
@@ -151,7 +155,7 @@ def surfaces(ticker: str) -> None:
                     f"`fairAsof` (the close the FAIR VALUE is struck on); without it the "
                     f"overlay falls back to the publication date in the study filename and "
                     f"reports look-ahead against the cone anchor.")
-        print(f"  fv_overlay regenerated for {mkt}")
+        print("  fv_overlay regenerated for every fitted market")
     else:
         print(f"  no market resolved for {ticker} — fv_overlay not regenerated")
 

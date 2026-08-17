@@ -457,20 +457,24 @@ INP = dict(
     erp_cds=I(None, "UAE sovereign CDS column: NA in Damodaran's January-2026 file — no "
               "CDS-basis ERP exists to publish; stated plainly rather than substituted",
               "2026-01-05", "Country"),
-    beta_used=I(1.086, "Tier-1 OWN-STOCK regression: AIRARABIA weekly log-returns vs the DFM "
-                "General Index (DFMGI), 5-year window to 16-Jul-2026: beta 1.086, R-squared "
-                "0.402, n=258, SE 0.083, CI90 [0.95, 1.22] — clears the usability gate, not "
-                "weak-instrument flagged. DFMGI is the stock's own market: every filing states "
-                "the ordinary shares are listed on the Dubai Financial Market (FY2025 note 1; "
-                "FY2025 annual report; Q1-2026 interim note 1) and the annual report benchmarks "
-                "the share price against DFMGI. See beta_result.json", "2026-08-09", "House"),
-    beta_alt_benchmark=I(0.812, "ALTERNATIVE-BENCHMARK cross-check, published not adopted: the "
-                "same own-stock 5-year weekly regression run against the FTSE ADX General Index "
-                "(index series to 24-Jul-2026): beta 0.812, R-squared 0.135, n=260, SE 0.128, "
-                "CI90 [0.60, 1.02]. It clears the same usability gate but explains a THIRD as "
-                "much of the stock's weekly variance as its own exchange's composite does, which "
-                "is itself the evidence that DFMGI is the right regressor for a DFM-listed name. "
-                "Priced in full rather than mentioned", "2026-08-17", "House"),
+    beta_used=I(0.812, "Tier-1 OWN-STOCK regression against the index the binding beta rule "
+                "RESOLVES for this stock's exchange, not one this study picked: "
+                "market_index_path('AE','DFM') -> FTSE ADX General (FADGI). 5-year weekly window "
+                "to 24-Jul-2026: beta 0.812, R-squared 0.135, n=260, SE 0.128, CI90 [0.60, 1.02] "
+                "— clears the usability gate. The exchange is DFM on primary evidence (FY2025 "
+                "statements Note 1; FY2025 annual report; Q1-2026 interim Note 1) and the market "
+                "code alone does not resolve, since AE spans ADX and DFM. FADGI applies under a "
+                "REGISTERED INTERIM SUBSTITUTION (no DFM General series is registered); the note "
+                "is quoted in full in the report, as an interim regressor requires. See "
+                "beta_result.json", "2026-08-17", "House"),
+    beta_alt_benchmark=I(1.086, "CROSS-CHECK, published not adopted: the same own-stock 5-year "
+                "weekly regression against a DFM General series (DFMGI) held in the repo but NOT "
+                "registered as a regressor — beta 1.086, R-squared 0.402, n=258, SE 0.083, CI90 "
+                "[0.95, 1.22]. It has the higher explanatory power, and registering it is exactly "
+                "the amendment the interim note anticipates ('replace with a DFM index when one "
+                "is supplied') — but that amendment travels on its own branch with both protocol "
+                "files in sync, so until it lands this is a priced cross-check, not the basis. An "
+                "earlier edition of this study adopted it; corrected here", "2026-08-17", "House"),
     kd_booked_path=I([0.031, 0.033, 0.035, 0.036, 0.037],
                      "BOOKED blended finance-cost rate on the rolling gross debt book: FY2025 "
                      "effective 2.73% (finance costs 66.7 / average gross debt), rising as new "
@@ -1082,21 +1086,30 @@ def dcf_beta(b):
 # the alternative-benchmark regression sits in the grid as its own labelled column, so the
 # reader sees the priced consequence of the other UAE market proxy, not just its coefficient
 BETA_ALT = V['beta_alt_benchmark']
-beta_grid = [round(BETA_ALT, 3), 0.95, round(BETA, 3), 1.20, 1.35]
+# ASCENDING in beta, with the adopted value in the middle column (the caption rule below
+# asserts that), and the cross-check regression as the labelled rightmost column. The pair
+# is not symmetric because the two regressions are what they are: 0.812 adopted, 1.086 on
+# the cross-check, with 0.60 the lower bound of the adopted 90% interval.
+beta_grid = [0.60, 0.70, round(BETA, 3), 0.95, round(BETA_ALT, 3)]
+assert all(beta_grid[i] < beta_grid[i + 1] for i in range(4)), 'beta grid must be ascending'
+assert abs(beta_grid[2] - BETA) < 1e-9, 'the adopted beta must sit in the middle column'
 grid_beta = [dcf_beta(b) for b in beta_grid]
 dcf_ps_beta_alt = dcf_beta(BETA_ALT)
 ke_alt = rf_star + BETA_ALT * V['erp_rating']
 wacc_alt = we_gross * ke_alt + wd_gross * kd_at
-say(f"[Beta — respective market, both benchmarks priced] ADOPTED: own-stock 5-year weekly vs "
-    f"the DFM General Index, the exchange the filings say the shares are listed on = "
-    f"{BETA:.3f} (R2 {beta_res_pre['r2']:.3f}, n {beta_res_pre['n']}) -> Ke {ke_exp:.2%}, WACC "
-    f"{wacc_exp:.2%}, DCF AED {dcf_ps:.2f}. CROSS-CHECK on the other UAE market proxy, the "
-    f"FTSE ADX General Index, same window and gate = {BETA_ALT:.3f} (R2 "
+say(f"[Beta — resolved by the exchange rule, both regressions priced] ADOPTED: own-stock 5-year "
+    f"weekly vs {beta_res_pre['index']}, the index the binding rule resolves for a DFM-listed "
+    f"share = {BETA:.3f} (R2 {beta_res_pre['r2']:.3f}, n {beta_res_pre['n']}, SE "
+    f"{beta_res_pre['se']:.3f}) -> Ke {ke_exp:.2%}, WACC {wacc_exp:.2%}, DCF AED {dcf_ps:.2f}. "
+    f"It applies under a REGISTERED INTERIM SUBSTITUTION, quoted in the report. CROSS-CHECK on "
+    f"the unregistered DFM General series held in the repo = {BETA_ALT:.3f} (R2 "
     f"{beta_res_pre['alt_benchmark']['r2']:.3f}, n {beta_res_pre['alt_benchmark']['n']}) -> Ke "
     f"{ke_alt:.2%}, WACC {wacc_alt:.2%}, DCF AED {dcf_ps_beta_alt:.2f} "
-    f"({dcf_ps_beta_alt-dcf_ps:+.2f}/share, {dcf_ps_beta_alt/dcf_ps-1:+.1%}). The adopted "
-    f"regressor explains {beta_res_pre['r2']/beta_res_pre['alt_benchmark']['r2']:.1f}x as much "
-    f"of the stock's weekly variance; the cross-check is published, not adopted.")
+    f"({dcf_ps_beta_alt-dcf_ps:+.2f}/share, {dcf_ps_beta_alt/dcf_ps-1:+.1%}). The cross-check "
+    f"has the HIGHER explanatory power "
+    f"({beta_res_pre['alt_benchmark']['r2']/beta_res_pre['r2']:.1f}x), which is why registering "
+    f"it is a live open item — but it is not the registered regressor today, so it is published "
+    f"beside the adopted figure rather than used.")
 fuel_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_fuel = [dcf_scenario(fuel_mult=m) for m in fuel_grid]
 paxg_grid = [0.90, 0.95, 1.0, 1.05, 1.10]

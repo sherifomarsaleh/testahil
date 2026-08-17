@@ -275,21 +275,29 @@ rows = [['Component', 'Value', 'Evidence'],
          'on 07-Aug-2026); the rating-table netting (0.42%, rf* 4.06%) is the disclosed alternative'],
         ['Net risk-free rate', pct(W['rf_star'],2), 'derived'],
         ['Beta — adopted', f"{IN['beta_used']:.3f}",
-         'own-stock five-year weekly regression against the general index of the exchange the shares '
-         'actually trade on: R² 0.40, 258 weeks, standard error 0.083, 90% interval 0.95–1.22. Every '
-         'filing states the ordinary shares are listed on the Dubai Financial Market (2025 statements '
-         'note 1; 2025 annual report; the Q1-2026 interim, note 1), and the annual report itself '
-         'benchmarks the share price against that index'],
-        ['Beta — alternative benchmark (published, not adopted)', f"{W['beta_alt']:.3f}",
-         'the identical regression against the Abu Dhabi general index, the other UAE market proxy, '
-         f"on the same window and the same usability test: R² {W['beta']['alt_benchmark']['r2']:.2f}, "
+         'own-stock five-year weekly regression against the published index of the exchange this '
+         f"share is listed on: R² {W['beta']['r2']:.2f}, {W['beta']['n']} weeks, standard error "
+         f"{W['beta']['se']:.3f}, 90% interval {W['beta']['ci90'][0]:.2f}–{W['beta']['ci90'][1]:.2f}. "
+         'The listing is a primary-source fact rather than an inference from the head office (the '
+         'company is Sharjah-domiciled and its own investment portfolio holds securities listed on '
+         'both UAE exchanges): the 2025 statements note 1, the 2025 annual report and the Q1-2026 '
+         'interim note 1 all state the ordinary shares are listed on the Dubai Financial Market. No '
+         'Dubai general-index series is registered for this purpose, so the regression stands on the '
+         'FTSE Abu Dhabi general index as a registered interim substitute — stated in full below, as '
+         'an interim regressor requires'],
+        ['Beta — cross-check (published, not used)', f"{W['beta_alt']:.3f}",
+         'the identical regression against a Dubai general-index series that is held but is not the '
+         f"registered regressor: R² {W['beta']['alt_benchmark']['r2']:.2f}, "
          f"{W['beta']['alt_benchmark']['n']} weeks, standard error "
          f"{W['beta']['alt_benchmark']['se']:.3f}, 90% interval "
          f"{W['beta']['alt_benchmark']['ci90'][0]:.2f}–{W['beta']['alt_benchmark']['ci90'][1]:.2f}. "
-         'It is the lower beta, and it would RAISE the valuation — but it explains a third as much of '
-         f"the share's weekly movement, which is the reason it is not adopted. Priced in full: cost of "
-         f"equity {pct(W['ke_alt'],2)}, cost of capital {pct(W['wacc_alt'],2)}, cash-flow value AED "
-         f"{D['dcf']['ps_beta_alt']:.2f} per share ({D['dcf']['ps_beta_alt']-D['dcf']['ps']:+.2f}, "
+         "It is the HIGHER beta and explains three times as much of this share's weekly movement, so "
+         'on the evidence it is the better measurement — and it would LOWER the valuation. It is '
+         'published rather than used because which index a beta is measured against is a matter of '
+         'method, settled once for every company, not something one study decides for itself. Priced '
+         f"in full: cost of equity {pct(W['ke_alt'],2)}, cost of capital {pct(W['wacc_alt'],2)}, "
+         f"cash-flow value AED {D['dcf']['ps_beta_alt']:.2f} per share "
+         f"({D['dcf']['ps_beta_alt']-D['dcf']['ps']:+.2f}, "
          f"{D['dcf']['ps_beta_alt']/D['dcf']['ps']-1:+.0%})"],
         ['Equity risk premium', pct(IN['erp_rating'],2),
          'Damodaran UAE row, January-2026 (mature 4.23% + country 0.64%). The same file publishes no '
@@ -313,6 +321,22 @@ rows = [['Cost-of-debt evidence', 'Rate', 'Nature'],
         ['ADOPTED marginal unsecured cost of debt', pct(IN['kd'],2),
          'sovereign + ~100bp; above every secured print and the deposit rate, as it must be']]
 table(rows, [2.80, 0.95, 3.25], size=8.6, band_rows={6})
+P("On the index the beta is measured against — stated plainly, because it is the second most "
+  "consequential number in this valuation after the fuel path. This share is listed in Dubai, and "
+  "the natural regressor would be a Dubai general index. No Dubai general-index series is held for "
+  "this purpose, so every company measured this way stands on the FTSE Abu Dhabi general index "
+  "instead, one UAE market proxy standing in for the other. That substitution is better supported "
+  f"than it sounds: across five years of weekly returns the Abu Dhabi index explains the "
+  "Dubai-listed shares BETTER than it explains the Abu Dhabi-listed ones it actually covers "
+  "(median R² 0.240 against 0.127), and every one of those Dubai names clears the minimum "
+  "usability threshold. It is nonetheless a substitute, and for THIS share it is the weaker of the "
+  f"two available measurements: {W['beta']['alt_benchmark']['r2']:.2f} against "
+  f"{W['beta']['r2']:.2f} on explanatory power. Both are therefore published with their full "
+  f"statistics and both are priced — AED {D['dcf']['ps']:.2f} on the measurement used, AED "
+  f"{D['dcf']['ps_beta_alt']:.2f} on the cross-check, a "
+  f"{abs(D['dcf']['ps_beta_alt']/D['dcf']['ps']-1):.0%} difference in the cash-flow value. A "
+  "reader who prefers the Dubai measurement can read the second figure as this study's own, "
+  "already-computed answer; it is not hidden in a sensitivity table.")
 P(f"Tax: the UAE Domestic Minimum Top-up Tax puts the group at a 15% statutory rate from 2025; the "
   f"audited effective rates were 8.79% (FY2024, the 9% year) and 11.6% on the filing's own tax-for-"
   f"the-year reconciliation (11.0% on the income-statement charge, which nets a prior-period credit — "
@@ -330,7 +354,7 @@ figure('fig2_sens.png', 6.3,
        'Figure 3 — DCF fair value across terminal cost of capital × terminal growth.')
 rows = [['Driver (whole-model re-runs)', '-2 steps', '-1', 'Base', '+1', '+2']]
 for lbl, xs, vals, fmtx in [
-        ('Beta (leftmost = the alternative benchmark)', SN['beta_grid'], SN['grid_beta'],
+        ('Beta (rightmost = the Dubai-index cross-check)', SN['beta_grid'], SN['grid_beta'],
          lambda x: f'{x:.2f}'),
         ('Fuel path multiplier', SN['fuel_grid'], SN['grid_fuel'], lambda x: f'{x:.3g}×'),
         ('Passenger volumes', SN['paxg_grid'], SN['grid_pax'], lambda x: f'{x:.2f}×'),
@@ -349,7 +373,7 @@ caption('Each cell is a complete revaluation at the perturbed driver, all else h
         'rebuild.) The middle column is the base value of AED '
         + px(DCF['ps']) + ' on every row EXCEPT the JV row, whose base (the audited carrying value) is '
         'its leftmost column — the remaining columns price successively richer JV framings — and the '
-        'beta row, whose leftmost column is the alternative-benchmark regression described in 1.8.')
+        'beta row, whose RIGHTMOST column is the Dubai-index cross-check described in 1.8.')
 
 # ============================== 2 TECHNICAL ====================================
 H1('2  Technical and price structure')

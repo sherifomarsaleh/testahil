@@ -122,14 +122,17 @@ f_idx = R.add(Ring.COUNTRY, "market benchmark for the cost-of-equity regression"
     "stock against the DFM general index. The company's INVESTMENT portfolio holds both "
     "DFM-listed (AED 5,631mn) and Abu Dhabi-listed (AED 4,730mn) securities (Note 11), which "
     "is why the listing venue was read off the filing rather than inferred. The FTSE ADX "
-    "General Index 2011-2026 was also obtained and regressed as an alternative benchmark",
+    "General Index 2011-2026 is the series the exchange-keyed beta rule resolves for DFM "
+    "names under a registered interim substitution (no DFM General series is registered)",
     "FY2025 audited financial statements Note 1 and Note 11; FY2025 annual report; Q1-2026 "
     "interim Note 1; FTSE ADX General Index history (aggregator, index only)",
     CO, "2026-08-17",
-    model_impact="Beta ADOPTED from the own-stock 5-year weekly regression against the DFM "
-                 "general index (1.086, R2 0.40). The same regression against the Abu Dhabi "
-                 "index gives 0.812 at R2 0.14 — a third of the explanatory power — worth "
-                 "+0.83/share if adopted; published as a priced cross-check, not adopted.")
+    model_impact="Beta ADOPTED from the own-stock 5-year weekly regression against the FTSE "
+                 "ADX General index (0.812, R2 0.135), the regressor the rule resolves for a "
+                 "DFM-listed name. The DFM General series held in the repo gives 1.086 at R2 "
+                 "0.402 — 3x the explanatory power and worth -0.83/share — and is published as "
+                 "a priced cross-check; registering it is a pending rule amendment, not a "
+                 "study-level choice.")
 
 # --------------------------------------------------------------- RING 3 INDUSTRY
 f_dem = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.S,

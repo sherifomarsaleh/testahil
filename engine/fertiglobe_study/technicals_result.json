@@ -1,0 +1,54 @@
+{
+ "market": "AE",
+ "series": "FERTIGLB",
+ "close": 2.54,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 1194,
+ "rows_in": 1194,
+ "repairs": [],
+ "ma": {
+  "20": 2.631,
+  "50": 2.7664,
+  "200": 2.7793
+ },
+ "ma_slope": {
+  "20": "falling",
+  "50": "falling",
+  "200": "flat"
+ },
+ "rsi": 34.35977867396181,
+ "atr": 0.06170853878218178,
+ "macd": {
+  "macd": -0.0574,
+  "signal": -0.0582,
+  "hist": 0.0008
+ },
+ "ma_cross": {
+  "ago": 1,
+  "kind": "death"
+ },
+ "atr_pct": 0.02429470030794558,
+ "hi_52w": 3.85,
+ "lo_52w": 2.35,
+ "pct_off_high": 0.34025974025974026,
+ "pct_off_low": 0.08085106382978721,
+ "levels": {
+  "res": [
+   2.59,
+   2.69,
+   2.74
+  ],
+  "sup": [
+   2.45,
+   2.34,
+   2.25
+  ]
+ },
+ "tech": {
+  "trend": "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
+  "summary": "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
+  "bull": "A daily close back above 2.59 would clear the nearest resistance and open the 2.74 zone.",
+  "bear": "A close below 2.45 would break the nearest support and open the 2.25 zone."
+ }
+}

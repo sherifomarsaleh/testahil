@@ -1,0 +1,40 @@
+{
+ "ticker": "FERTIGLB",
+ "market": "AE",
+ "exchange": "ADX",
+ "beta": 0.9314887244038245,
+ "r2": 0.09960762477978735,
+ "se": 0.2833283694717916,
+ "n": 242,
+ "ci90": [
+  0.4654135566227273,
+  1.3975638921849216
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": true,
+ "warnings": [],
+ "window_years": 4.68,
+ "first_obs": "2021-11-12",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 0.9543258162692163,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": null,
+ "conforming": true,
+ "composite_crosscheck_RETIRED": {
+  "beta": 0.493551965992403,
+  "r2": 0.0626234336850543,
+  "n": 248,
+  "names": 19,
+  "note": "RETIRED equal-weight composite \u2014 shown only to size the correction"
+ },
+ "naive_index_beta": 0.8101870844634133
+}

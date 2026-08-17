@@ -1,27 +1,28 @@
-"""AIRARABIA beta — tier-1 own-stock weekly regression vs the stock's OWN local
-index, plus a SECOND-BENCHMARK cross-check.
+"""AIRARABIA beta — regressed against the index the BINDING beta rule resolves for this
+stock's exchange, plus the other UAE market proxy as a published cross-check.
 
-WHICH INDEX IS "OWN" IS A PRIMARY-SOURCE QUESTION, NOT AN INFERENCE. Air Arabia
-is Sharjah-domiciled and its investment portfolio holds both DFM- and ADX-listed
-securities (FY2025 note 11), so the listing venue has to be read off the filing
-rather than assumed from the head office. Every filing states it identically:
-"The Company's ordinary shares are listed on the Dubai Financial Market, United
-Arab Emirates" — FY2025 statements note 1, the FY2025 annual report, and the
-most recent filing (Q1-2026 interim, note 1). The 2025 annual report's own
-share-price chart benchmarks AIRARABIA against DFMGI. So the ADOPTED regressor
-is the DFM General Index (engine/raw_indices/AE/DFMGI.csv).
+WHICH INDEX IS THE REGRESSOR IS NOT THIS STUDY'S CHOICE. It is resolved by
+wacc_builder.market_index_path(market, exchange), the hard gate adopted 10-Aug-2026 and
+re-keyed on EXCHANGE the same day. Air Arabia is DFM-listed — stated identically in Note 1
+of the FY2025 audited statements, the FY2025 annual report and the Q1-2026 interim, and the
+annual report's own share-price chart benchmarks the stock against the DFM general index —
+so the exchange passed to the resolver is DFM, never the market code alone ("AE" spans ADX
+and DFM, and the resolver REFUSES to resolve an unqualified "AE" for exactly that reason).
 
-The FTSE ADX General Index (engine/raw_indices/AE/ADXGENERAL.csv) is regressed
-too, as an ALTERNATIVE-BENCHMARK cross-check on the same window and the same
-usability gate. It is NOT adopted — a UAE name's beta against a different
-emirate's exchange composite is a robustness read, not its own local index — but
-it answers the fair objection that a single-benchmark regression coheres
-internally without being externally verified: a second, independently sourced
-market proxy either reproduces the beta or does not. Both are published.
+For ("AE", "DFM") the resolver returns FTSE ADX General (FADGI) under a registered INTERIM
+substitution: no DFM General series is registered in this repo, and the substitution is
+empirically the better-supported half — over five years of weekly returns FADGI explains
+the six covered DFM names BETTER than it explains the ADX names it actually covers. Any
+beta built on an interim substitute MUST quote the note, so the study carries it verbatim.
 
-The DFMGI feed lags the stock library by ~3 weeks (last index row 16-Jul-2026);
-each regression window is truncated to its own overlap, which costs ~3 of ~260
-weekly observations against DFMGI, and is flagged rather than papered over.
+An earlier edition of this study adopted a Yahoo-sourced DFM General series (DFMGI) as the
+regressor on the reasoning that a DFM-listed share should be measured against the DFM
+index. That reasoning is right in principle and is what the interim note anticipates
+("Replace with a DFM index when one is supplied") — but registering a new regressor is an
+amendment to the beta rule, which travels on its own branch with both protocol files in
+sync, not something a study silently does to itself. So DFMGI stays in the repo and stays
+PUBLISHED here as the cross-check, and the conforming FADGI regression is what the
+valuation adopts.
 """
 import sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -30,7 +31,12 @@ import numpy as np
 import pandas as pd
 from primitives import load_ohlc
 from data_quality import clean_ohlc
-from wacc_builder import RegressionBetaAttempt
+from wacc_builder import RegressionBetaAttempt, market_index_path, index_interim_note
+
+MARKET, EXCHANGE = 'AE', 'DFM'
+ADOPTED_PATH = market_index_path(MARKET, EXCHANGE)
+INTERIM_NOTE = index_interim_note(MARKET, EXCHANGE)
+print(f"resolver -> {os.path.basename(ADOPTED_PATH)} for ({MARKET}, {EXCHANGE})")
 
 def weekly(px):
     return px.resample('W-THU').last().dropna()
@@ -39,9 +45,8 @@ stk, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'AIRARABIA_Stock_Price_History.
                     'AIRARABIA', verbose=False, market='AE')
 stk = stk.set_index('Date')['Price']
 
-def regress(index_file, label):
-    idx = load_ohlc(os.path.join(HERE, '..', 'raw_indices', 'AE', index_file))
-    idx = idx.set_index('Date')['Price']
+def regress(index_path, label):
+    idx = load_ohlc(index_path).set_index('Date')['Price']
     last_common = min(stk.index.max(), idx.index.max())
     cut = last_common - pd.DateOffset(years=5)
     wk_s = weekly(stk[(stk.index >= cut) & (stk.index <= last_common)])
@@ -63,7 +68,7 @@ def regress(index_file, label):
     ci = (b[1] - 1.645 * se_b, b[1] + 1.645 * se_b)
     out = dict(beta=float(b[1]), r2=float(r2), n=n, se=float(se_b),
                ci90=[float(ci[0]), float(ci[1])], usable=bool(ok), gate_msg=msg,
-               index=label, index_file=index_file, window_years=5,
+               index=label, index_file=os.path.basename(index_path), window_years=5,
                frequency='weekly', window_end=str(last_common.date()),
                weak=bool(r2 < 0.10 or (ci[1] - ci[0]) > 2 * abs(b[1])),
                warnings=att.interim_warnings())
@@ -75,21 +80,29 @@ def regress(index_file, label):
           f"| to {last_common.date()} | weak={out['weak']}")
     return out
 
-# ADOPTED — the stock's own local index, per the filing
-out = regress('DFMGI.csv', 'DFM General Index (DFMGI)')
-# CROSS-CHECK — a second, independently sourced UAE market proxy
-alt = regress('ADXGENERAL.csv', 'FTSE ADX General Index')
-out['alt_benchmark'] = alt
+# ADOPTED — whatever the binding rule resolves for this stock's exchange
+out = regress(ADOPTED_PATH, 'FTSE ADX General Index (FADGI)')
+assert out['usable'], 'the resolved regressor must clear the usability gate'
+out['exchange'] = EXCHANGE
+out['interim_note'] = INTERIM_NOTE
 out['adopted_reason'] = (
-    'DFM General Index adopted: every filing states the ordinary shares are listed on the '
-    'Dubai Financial Market (FY2025 note 1, FY2025 annual report, Q1-2026 interim note 1), '
-    'and the annual report benchmarks the share price against DFMGI. The FTSE ADX General '
-    'regression is published as an alternative-benchmark cross-check, not as the adopted beta.')
+    'Resolved by the binding beta rule: wacc_builder.market_index_path("AE", "DFM") -> '
+    'FADGI, an INTERIM substitution registered because no DFM General series is registered '
+    'in the repo. The exchange is DFM on primary evidence (FY2025 statements Note 1, FY2025 '
+    'annual report, Q1-2026 interim Note 1); the market code alone does not resolve.')
+
+# CROSS-CHECK — the DFM General series held in the repo but not registered as a regressor
+alt = regress(os.path.join(HERE, '..', 'raw_indices', 'AE', 'DFMGI.csv'),
+              'DFM General Index (DFMGI)')
+alt['status'] = ('held in the repo, NOT the registered regressor. Registering it is an '
+                 'amendment to the beta rule, which the interim note anticipates; until '
+                 'that amendment lands this is a published cross-check, not the basis.')
+out['alt_benchmark'] = alt
 d = out['beta'] - alt['beta']
-overlap = (out['ci90'][0] <= alt['beta'] <= out['ci90'][1])
 out['alt_benchmark']['delta_vs_adopted'] = float(d)
-out['alt_benchmark']['inside_adopted_ci90'] = bool(overlap)
-print(f"cross-check: alternative-benchmark beta differs by {d:+.3f}; "
-      f"{'INSIDE' if overlap else 'OUTSIDE'} the adopted 90% interval")
+out['alt_benchmark']['inside_adopted_ci90'] = bool(out['ci90'][0] <= alt['beta'] <= out['ci90'][1])
+print(f"cross-check: DFMGI beta differs by {d:+.3f}; "
+      f"{'INSIDE' if out['alt_benchmark']['inside_adopted_ci90'] else 'OUTSIDE'} "
+      f"the adopted 90% interval")
 
 json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)

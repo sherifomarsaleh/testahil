@@ -141,12 +141,13 @@ for i, ln in enumerate([
  'aircraft-lease income grow on their own paths. Costs are built the same way: fuel, staff, maintenance,',
  'landing, handling and other costs are each per-passenger rates with their OWN escalator (fuel on the',
  'commodity path, staff on wages, airport charges on UAE inflation). Margins are OUTPUTS.', '',
- 'The beta is switchable, and both regressions are in the sheet. The adopted beta is this stock\'s own',
- 'five-year weekly regression against the Dubai market index — the exchange every filing says the shares',
- 'are listed on, and the index the company\'s own annual report benchmarks itself against. The same',
- 'regression run against the Abu Dhabi market index is carried beside it as a cross-check: it is a lower',
- 'beta, but it explains only a third as much of the share\'s weekly movement, which is why it is published',
- 'rather than adopted. Set the benchmark switch on Assumptions to 1 and the whole workbook reprices on it.', '',
+ 'The beta is switchable, and both regressions are in the sheet. This share is listed in Dubai, but no',
+ 'Dubai general-index series is held for measuring betas, so the regression stands on the Abu Dhabi',
+ 'general index — one UAE market proxy standing in for the other, applied the same way to every company',
+ 'measured this way. The same regression against a Dubai index series is carried beside it as a',
+ 'cross-check, and for this share it is the stronger measurement: a higher beta explaining three times',
+ 'as much of the weekly movement, and a LOWER value. Set the benchmark switch on Assumptions to 1 and',
+ 'the whole workbook reprices onto it — both answers are in the sheet, neither is buried.', '',
  'Two judgements are shown both ways, never averaged. The fuel path: the base case follows the official',
  'US energy-agency curve (relief from 2027); the alternative holds the airline-association high-fuel',
  'assumption. And the joint-venture network (Abu Dhabi, Egypt, Pakistan, Morocco, the new Saudi venture):',
@@ -222,9 +223,9 @@ SCALARS = [
     ('AED government bond yield (January-2031 tranche)', IN['rf'], PCT2),
     ('Observed sovereign spread at the auction (netted out)', IN['sov_spread_obs'], PCT2),
     ('Rating-table sovereign spread (alternative netting, disclosed)', IN['sov_spread_rating'], PCT2),
-    ('Beta — adopted (own stock, five-year weekly vs the Dubai market index)',
+    ('Beta — adopted (own stock, five-year weekly vs the Abu Dhabi market index)',
      IN['beta_used'], NUM2),
-    ('Beta — alternative benchmark (same regression vs the Abu Dhabi market index)',
+    ('Beta — cross-check (same regression vs the Dubai market index)',
      IN['beta_alt_benchmark'], NUM2),
     ('Equity risk premium', IN['erp_rating'], PCT2),
     ('Terminal risk-free rate', IN['rf_term'], PCT2),
@@ -252,7 +253,7 @@ SCALARS = [
     ('Scenario: capital-expenditure multiplier', 1.0, NUM2),
     ('Scenario: cost-of-capital shift', 0.0, PCT2),
     ('Scenario: high-fuel switch (0 = base path, 1 = alternative)', 0.0, NUM2),
-    ('Scenario: beta benchmark switch (0 = adopted index, 1 = alternative index)', 0.0, NUM2),
+    ('Scenario: beta benchmark switch (0 = adopted index, 1 = cross-check index)', 0.0, NUM2),
     ('Cash administrative costs, FY2025 (AED mn, audited less its depreciation)', GA_CASH_25, NUM1),
     ('Cargo revenue, FY2025 (AED mn, disclosed)', 186.948, NUM1),
     ('Service revenue, FY2025 (AED mn, disclosed)', 223.323, NUM1),
@@ -410,11 +411,11 @@ putf(wsD, 'C6', f"={AR('Observed sovereign spread at the auction (netted out)')}
 put(wsD, 'A6', 'less the observed auction spread over US Treasuries', fmt=None)
 putf(wsD, 'C7', '=C5-C6', W['rf_star'], PCT2)
 put(wsD, 'A7', 'Net risk-free rate', fmt=None)
-_BSW = AR('Scenario: beta benchmark switch (0 = adopted index, 1 = alternative index)')
+_BSW = AR('Scenario: beta benchmark switch (0 = adopted index, 1 = cross-check index)')
 putf(wsD, 'C8',
-     f"={AR('Beta — adopted (own stock, five-year weekly vs the Dubai market index)')}"
+     f"={AR('Beta — adopted (own stock, five-year weekly vs the Abu Dhabi market index)')}"
      f"*(1-{_BSW})"
-     f"+{AR('Beta — alternative benchmark (same regression vs the Abu Dhabi market index)')}"
+     f"+{AR('Beta — cross-check (same regression vs the Dubai market index)')}"
      f"*{_BSW}",
      IN['beta_used'], NUM2)
 put(wsD, 'A8', 'Beta (switchable: adopted index / alternative benchmark)', fmt=None)
@@ -1132,7 +1133,7 @@ def vec(lbl, xs, vals, xfmt='{}'):
     for j, v in enumerate(vals):
         put(wsX, f'{get_column_letter(2+j)}{r}', v, BLUE, PX)
     r += 2
-vec('Beta (leftmost column = the alternative-benchmark regression, published not adopted)',
+vec('Beta (rightmost column = the Dubai-index cross-check, published not used)',
     SN['beta_grid'], SN['grid_beta'])
 vec('Fuel cost per passenger (multiplier on the base path)', SN['fuel_grid'], SN['grid_fuel'])
 vec('Passenger volumes (multiplier)', SN['paxg_grid'], SN['grid_pax'])

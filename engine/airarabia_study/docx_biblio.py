@@ -147,13 +147,14 @@ rows += [
      '19.48mn passengers, +13.9% — the home hub\'s growth'],
     ['Dubai Financial Market price history', 'DFM via uploaded export', '07-Aug-2026',
      'The share-price series 2011–2026 (3,908 sessions) for the price map, beta and technicals'],
-    ['DFM General Index history', 'Yahoo Finance (aggregator, index only)', '16-Jul-2026',
-     'The ADOPTED regression index for beta — the exchange the shares are listed on per note 1 of '
-     'every filing. Market data only, never a source for company figures'],
     ['FTSE ADX General Index history, 2011–2026', 'Investing.com (aggregator, index only)',
      '24-Jul-2026',
-     'The ALTERNATIVE-BENCHMARK regressor: the same beta regression re-run against the other UAE '
-     'market proxy as an external check on a single-benchmark fit. Published, not adopted'],
+     'The ADOPTED regression index for beta — the series this share is measured against, one UAE '
+     'market proxy standing in for the other because no Dubai general-index series is held for '
+     'this purpose. Market data only, never a source for company figures'],
+    ['DFM General Index history', 'Yahoo Finance (aggregator, index only)', '16-Jul-2026',
+     'The CROSS-CHECK regression index: the same beta regression against a Dubai index series. '
+     "Higher explanatory power on this share, and published in full beside the adopted figure"],
     ['Quarterly Economic Review, June-2026 edition', 'Central Bank of the UAE', '30-Jun-2026',
      'The CURRENT 2026 projection: real GDP +1.7% (2027: +9.8%), inflation 2.3% — replacing the '
      'stale March-2026 vintage an earlier draft cited'],
@@ -224,14 +225,16 @@ rows = [['Judgement', 'What was decided', 'What would overturn it'],
      'Two consecutive quarters of realised jet fuel above ~$150/bbl would make the high-fuel '
      'framing the base'],
     ['Which market index the beta is measured against',
-     'The general index of the Dubai exchange, because note 1 of the 2025 statements, the 2025 '
-     'annual report and the Q1-2026 interim all state the ordinary shares are listed there, and the '
-     'annual report benchmarks the share price against that index. The same regression against the '
-     'Abu Dhabi general index gives a lower beta (0.812 against 1.086) and a HIGHER value, and is '
-     'published in full beside the adopted figure rather than left out',
-     'A change of listing venue, a dual listing, or evidence that the Abu Dhabi index better '
-     'explains this share\'s weekly returns — today it explains a third as much (R² 0.14 against '
-     '0.40), which is why it is the cross-check and not the basis'],
+     'The FTSE Abu Dhabi general index. The listing itself is Dubai — note 1 of the 2025 '
+     'statements, the 2025 annual report and the Q1-2026 interim all state it, and the company is '
+     'Sharjah-domiciled with portfolio holdings on both exchanges, so the venue was read off the '
+     'filing rather than inferred. No Dubai general-index series is held for measuring betas, so '
+     'this share stands on the Abu Dhabi index like every other company measured this way. The '
+     'Dubai-index regression is the cross-check: a HIGHER beta (1.086 against 0.812) and a LOWER '
+     'value (AED 3.51 against 4.35 on the cash-flow lens), published in full',
+     'A Dubai general-index series being adopted for this purpose would replace the measurement '
+     'outright — on this share it is the stronger fit (R² 0.40 against 0.14) and it is already '
+     'computed and published here, so the substitution is the open question, not the arithmetic'],
     ['The JV network (dual-framed)',
      'Base carries the audited AED 363mn carrying value; the alternative capitalises the AED '
      '190mn profit share at 15×',
