@@ -1496,7 +1496,7 @@ def dcf_scenario(beta_s, anchor_mult, capex_mult=1.0, hybrid_as_debt=False):
     CAPEX[:] = [c * capex_mult for c in old_capex]
     kes = rf_star + beta_s * V['erp_total']
     ket = V['rf_terminal'] + beta_s * V['erp_total']
-    w = we * kes + wd * kd * (1 - tax_stat)
+    w = we * kes + wd * kd * (1 - tax_stat) + wh * kh   # the perpetual tranche too
     wt = we * ket + wd * kd_term * (1 - tax_stat) + wh * kh_term
     p = project('reversion')
     d = dcf(p, hybrid_as_debt=hybrid_as_debt, wacc_ov=w, term_wacc_ov=wt)
@@ -1633,7 +1633,10 @@ grid = []
 for b in BETAS:
     row = []
     kes = rf_star + b * V['erp_total']; ket = V['rf_terminal'] + b * V['erp_total']
-    w = we * kes + wd * kd * (1 - tax_stat); wt = we * ket + wd * kd_term * (1 - tax_stat)
+    # every cost-of-capital construction in this file must carry the same three tranches,
+    # or the sensitivity grid disagrees with the base it is supposed to be centred on
+    w = we * kes + wd * kd * (1 - tax_stat) + wh * kh
+    wt = we * ket + wd * kd_term * (1 - tax_stat) + wh * kh_term
     for g in GS:
         row.append(dcf(BASE, hybrid_as_debt=True, wacc_ov=w, term_wacc_ov=wt,
                        g_ov=g)['fv_aed'])
@@ -1759,6 +1762,11 @@ A('country risk is charged once', abs(rf_star - (V['rf_observed'] - V['sov_sprea
 A('the discount factors compound',
   abs(dcf_own_beta['df'][1] - dcf_own_beta['df'][0]
       / (1 + dcf_own_beta['glide'][1])) < 1e-9)
+_gi = sens['betas'].index(V['beta']); _gj = sens['gs'].index(V['g_terminal'])
+A('the sensitivity grid is centred on the value it brackets',
+  abs(sens['grid_beta_g'][_gi][_gj] - dcf_own_beta['fv_aed']) < 0.005,
+  f"grid centre {sens['grid_beta_g'][_gi][_gj]:.4f} vs base {dcf_own_beta['fv_aed']:.4f} — "
+  "every cost-of-capital construction must carry the same three tranches")
 A('the terminal value share is computed, not asserted',
   0.0 < dcf_own_beta['tv_share'] < 1.0)
 A('the calibration evidence is the committed market fit',
