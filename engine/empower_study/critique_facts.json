@@ -1,0 +1,197 @@
+{
+  "_meta": {
+    "purpose": "Independent verification of factual claims in the 9-Aug-2026 external audit of the EMPOWER valuation study",
+    "verified_on": "2026-08-17",
+    "verdict_scale": "CONFIRMED / REFUTED / PARTIAL / UNRESOLVED"
+  },
+  "1_war_timeline": {
+    "claim": "(a) Iran struck UAE (Fujairah) ~4 May 2026; (b) US-Iran engagement in Strait of Hormuz ~7 May 2026; (c) Trump declared ceasefire 'over' 8 July 2026; (d) strait closed as of early Aug 2026, status of UAE-soil strikes 8 Jul-9 Aug; (e) status mid-Aug 2026",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "a_fujairah_4_may": {
+        "quote": "4 May: 'UAE officials state that Iran attacked the oil Industry Zone in the port of Fujairah with drones, setting several storage tanks on fire and injuring several workers. Four missiles were also launched by Iran according to the UAE, but those were destroyed.' (cites India Today 04-05-2026 and NYT 'Strikes in U.A.E., Oman and at Sea Strain Iran Truce to the Breaking Point' 05-05-2026)",
+        "url": "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "date": "2026-05-04"
+      },
+      "b_hormuz_7_may": {
+        "quote": "7 May: 'The US said that it carried out strikes on Iranian military sites in Bandar Abbas and Qeshm Island in response to an earlier combined missile, drone, and small boat attack on American destroyers crossing the Strait of Hormuz.' (cites CNN 07-05-2026, Al Jazeera 08-05-2026). Also 4 May: US forces destroyed six or seven Iranian small boats in the strait (NYT 04-05-2026).",
+        "url": "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "date": "2026-05-07"
+      },
+      "c_trump_8_july": {
+        "quote": "8 July: 'Trump declared that the MOU with Iran is \"over\" after Iran launched attacks on commercial vessels in the Strait of Hormuz... shattering a brief diplomatic calm.' Pentagon later dated the war as 'resumed on July 7'.",
+        "url": "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "date": "2026-07-08"
+      },
+      "d_status_on_9_aug": {
+        "quote": "11 July: 'The IRGC navy said that it closed the Strait until further notice'. 14 July: 'the U.S. Navy reinstated the naval blockade'. 3 Aug: Iran-Oman talks 'not enough to open the Strait of Hormuz' (FM spokesman Baghaei). 6 Aug: 'Oman accepted the framework of an agreement with Iran to temporarily reopen the Hormuz' (not yet reopened). 8 Aug: 'The UAE stated that Iran attacked an Abu Dhabi National Oil Company tanker in the Hormuz.' No strike on UAE soil is recorded between 8 Jul and 9 Aug - attacks in that window were on shipping (13 Jul: two Emirati tankers struck in Omani territorial waters, one Indian crew member killed).",
+        "url": "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "date": "2026-07-11 to 2026-08-08"
+      },
+      "e_mid_august": {
+        "quote": "13 Aug: Hegseth said the US can maintain the naval blockade 'indefinitely'. 12 & 14 Aug: ADNOC vessels attacked passing through the Hormuz. 17 Aug: 'Iran stated that it reached an agreement with Oman over the Hormuz'; 'The 60-day deadline for the US and Iran to negotiate a final deal to end the war passed'; 'Following the official end of the US-Iran ceasefire, Trump urged Iran to surrender.'",
+        "url": "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "date": "2026-08-12 to 2026-08-17"
+      }
+    },
+    "notes": "All five sub-claims check out against the Wikipedia timeline (which cites Reuters/AP/CNN/NYT/Al Jazeera wire reports throughout). Precision points: (c) what Trump declared 'over' on 8 July was the Islamabad MOU/truce; (d) as of 9-Aug-2026 the strait was closed (IRGC closure 11 Jul + US blockade from 14 Jul) and NO new strikes on UAE soil had occurred since 8 July - the 8-Aug ADNOC tanker attack was at sea; the last recorded strikes on UAE territory were in the 4-7 May wave. (e) As of 17-Aug the strait remained closed/blockaded with an Iran-Oman reopening agreement announced but not implemented, and the ceasefire formally ended."
+  },
+  "2_rsb_rd10_v13": {
+    "claim": "RSB RD10 v1.3 (17-Sep-2025) contains explicit tariff caps (0.643 AED/TRh consumption-with-capacity, 0.075 fuel surcharge, AED 30/mo billing fee, 120% excess-demand fee); states indexation/escalation of Capacity Charges will not be approved; RSB assesses/recommends while DSCE approves. Also: does RD10 v1.4 (Feb-2026) exist?",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "version_date": {
+        "quote": "Amendment history: '1.3 | Explicit reference to all tariff caps. Introduction of policy for Single Building Systems. Strengthening obligations on Permit Holders to carry through capacity/consumption charges. | 17-09-2025 | R. Alaileh'",
+        "url": "https://rsbdubai.gov.ae/media/mbgja0qx/rd10-tariffsv13.pdf",
+        "date": "2025-09-17"
+      },
+      "caps": {
+        "quote": "Section 7 table: 'Consumption Tariff (where there is an associated Capacity Tariff) | AED/TRh | 0.643 (inclusive of Fuel Surcharge)'; 'Fuel Surcharge | AED/TRh | 0.075'; 'Billing Services Fee | AED/Month | 30'; 'Excess Demand Fee | % of Capacity Tariff | 120% (for Buildings only) - Excess Demand Fee shall not exceed 120% of approved Capacity Tariff.'",
+        "url": "https://rsbdubai.gov.ae/media/mbgja0qx/rd10-tariffsv13.pdf",
+        "date": "2025-09-17"
+      },
+      "no_indexation": {
+        "quote": "Capacity Tariff conditions of approval: 'Tariff arrangements that include indexation or escalation of Capacity Charges will not be approved.'",
+        "url": "https://rsbdubai.gov.ae/media/mbgja0qx/rd10-tariffsv13.pdf",
+        "date": "2025-09-17"
+      },
+      "rsb_recommends_dsce_approves": {
+        "quote": "Section 3(b): 'Permit Holders must submit to the RSB their proposed schedule of tariffs. The RSB will assess submissions and, if necessary, make recommendations to the DSCE on the approval of such tariffs.' Section 7(a): tariffs 'subject to the Caps approved by the DSCE.' (DSCE defined as 'the Dubai Supreme Council of Energy.')",
+        "url": "https://rsbdubai.gov.ae/media/mbgja0qx/rd10-tariffsv13.pdf",
+        "date": "2025-09-17"
+      },
+      "v14_exists": {
+        "quote": "RD10 v1.4 amendment history row: '1.4 | Adjusting the reconnection fee | 06-02-2026 | R. Alaileh'",
+        "url": "https://rsbdubai.gov.ae/media/baufmpnp/rd10-tariffs-v14.pdf",
+        "date": "2026-02-06"
+      }
+    },
+    "notes": "All sub-claims confirmed against the primary PDF. Nuance: the 0.643 cap is stated as inclusive of the fuel surcharge; the AED 30 billing fee is per month per the Unit column. RD10 v1.4 does exist, published 06-Feb-2026, and its only change is the reconnection fee - the caps and no-indexation language carry through unchanged ('This version of RD10 supersedes all previous versions')."
+  },
+  "3_ecr_87_2025": {
+    "claim": "ECR 87/2025 (Nov-2025) introduces a recurring AED 1.55 per RT per annum service fee on district cooling providers plus fines for charging tariffs not approved by the Supreme Council of Energy",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "issuance": {
+        "quote": "'Executive Council Resolution No. (87) of 2025 Approving the Fees and Fines Related to District Cooling Services in the Emirate of Dubai' - 'Issued in Dubai on 18 November 2025'",
+        "url": "https://dlp.dubai.gov.ae/Legislation%20Reference/2025/Executive%20Council%20Resolution%20No.%20(87)%20of%202025%20to%20District%20Cooling%20Service.pdf",
+        "date": "2025-11-18"
+      },
+      "service_fee": {
+        "quote": "Schedule (1) Annual Service Fees: 'Provision of District Cooling Services - AED 1.55 per refrigeration tonne per annum' (also AED 1,000 per Building per annum for single-building providers, AED 1.50 per supply point per annum for billing services)",
+        "url": "https://dlp.dubai.gov.ae/Legislation%20Reference/2025/Executive%20Council%20Resolution%20No.%20(87)%20of%202025%20to%20District%20Cooling%20Service.pdf",
+        "date": "2025-11-18"
+      },
+      "fine": {
+        "quote": "Schedule (2) Violations and Fines, item 4: 'Charging or collecting from Customers any charges or tariffs not approved by the SCE - 100,000 (dirhams)'",
+        "url": "https://dlp.dubai.gov.ae/Legislation%20Reference/2025/Executive%20Council%20Resolution%20No.%20(87)%20of%202025%20to%20District%20Cooling%20Service.pdf",
+        "date": "2025-11-18"
+      }
+    },
+    "notes": "Confirmed against the official Dubai Legislation Portal PDF. Issued 18-Nov-2025, in force on Official Gazette publication. The AED 1.55/RT/annum is an annual (recurring) service fee on providers; the unapproved-tariff fine is AED 100,000 per Schedule 2 item 4."
+  },
+  "4_aed_sovereign_curve": {
+    "claim": "A UAE dirham T-Sukuk maturing 19 Feb 2033 exists (ISIN AED01889C262, ~AED 1,650m, first 7-year AED sukuk, priced ~3.779% in Feb-2026); it is the longest-maturity AED sovereign instrument as of Aug-2026",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "debut": {
+        "quote": "MoF (Feb-2026): 'the first-ever 7-year tranche of UAE dirham-denominated Islamic Treasury Sukuk (T-Sukuk) valued at AED 550 million', maturity February 2033, 'yield to maturity of 3.779%', ~6x oversubscribed (bids ~AED 3.1bn on the 7yr tranche)",
+        "url": "https://mof.gov.ae/en/news/strong-demand-for-the-debut-issuance-of-seven-year-tenor-dirhams-in-the-islamic-treasury-sukuk-auction-held-for-the-month-of-february-2026/",
+        "date": "2026-02"
+      },
+      "size_and_isin": {
+        "quote": "MoF FDMO T-bonds issuance programme page: 19 February 2033 T-Sukuk, ISIN AED01889C262, 2026 issuances AED 1,650 million across three AED 550m tranches (issue dates 10-Mar, 21-Apr, 23-Jun-2026); longest-dated security in the programme (other tranches mature May 2026-Oct 2027 for sukuk, plus T-Bonds to Jan 2031)",
+        "url": "https://mof.gov.ae/en/public-finance/public-debt/fdmo-tbonds-issuance-program/",
+        "date": "2026-08-17 (fetched)"
+      },
+      "recent_yield": {
+        "quote": "April 2026 auction (second tap on the Feb-2033 tranche): 'a Yield to Maturity (YTM) of 3.92% for the October 2027 tranche and 4.13% for the February 2033 tranche... a tight spread of 10 basis points... above comparable U.S. Treasuries'. For curve context, the July 2026 auction priced the Jan-2031 T-Bond at 4.48% YTM and Oct-2027 T-Sukuk at 4.49%.",
+        "url": "https://mof.gov.ae/en/news/islamic-treasury-sukuk-auction-for-april-2026-attracts-bids-worth-aed-5-20-billion/",
+        "date": "2026-04"
+      }
+    },
+    "notes": "All elements of the claim check out: existence, ISIN, first-7-year status, 3.779% debut pricing in Feb-2026, and ~AED 1,650m outstanding (550m debut + April tap + June tap). It is the longest-maturity instrument in the AED T-Sukuk/T-Bond programme as of Aug-2026. Most recent primary-auction yield retrieved for the 2033 tranche is 4.13% (April 2026 tap); the June 2026 tap's YTM was not retrieved. Yields have moved materially above the 3.779% debut level since the war escalation (Jan-2031 T-Bond at 4.48% in the late-July auction). Minor caveat: the exact maturity day (19 Feb) and ISIN come from the MoF programme page as summarized by the fetch tool; press releases confirm 'February 2033'."
+  },
+  "5_tabreed_share_price": {
+    "claim": "TABREED (DFM) closed ~AED 2.46 on 6-Aug-2026, down ~11% from ~AED 2.72 on 22-Jun-2026",
+    "verdict": "PARTIAL",
+    "evidence": {
+      "closes": {
+        "quote": "Daily close history: Jun 22, 2026 = 2.72; Aug 5, 2026 = 2.48; Aug 6, 2026 = 2.46; Aug 7, 2026 = 2.46; Aug 10, 2026 = 2.43",
+        "url": "https://stockanalysis.com/quote/dfm/TABREED/history/",
+        "date": "2026-08-17 (fetched)"
+      }
+    },
+    "notes": "The dated price levels are CONFIRMED: 2.46 on both 6-Aug and 7-Aug-2026, and 2.72 on 22-Jun-2026. The arithmetic in the claim is off: 2.46 vs 2.72 is a decline of ~9.6%, not ~11%. 22-Jun (2.72) was the local peak in the series retrieved. Source is a near-primary aggregator of DFM closes (stockanalysis.com); DFM's own historical data was not directly accessible."
+  },
+  "6_empower_listing_date": {
+    "claim": "EMPOWER debuted on DFM on 15 or 16 November 2022",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "listing": {
+        "quote": "Dubai Media Office press release dated 15-11-2022: 'Empower debuts listing and trading of its shares on the Dubai Financial Market'. IPO materials: 'Empower is expected to commence trading on the DFM on 15 November 2022, under the symbol EMPOWER and ISIN AEE01134E227.' IPO raised AED 2.6bn (USD 724m), market cap at listing AED 13.3bn.",
+        "url": "https://mediaoffice.ae/en/news/2022/November/15-11/Empower-debuts-listing-and-trading-of-its-shares-on-the-Dubai-Financial-Market",
+        "date": "2022-11-15"
+      }
+    },
+    "notes": "15 November 2022, per Dubai Media Office (primary) - not 16 November."
+  },
+  "7_empower_h1_2026_release": {
+    "claim": "EMPOWER H1-2026 results released 5 or 6 August 2026 (interim FS PDF stamped 05-08-2026; press coverage 6-Aug)",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "press_date": {
+        "quote": "TradeArabia dateline: 'DUBAI Thu, 06 Aug 2026' - 'Empower net profit up 16.2pc in H1; revenue soars to $413m' (H1-2026 revenue AED 1.519bn +4.5%, net profit after tax AED 468m +16.2%, EBITDA AED 773m). WAM-sourced coverage (Emirates 24|7, bignewsnetwork) also dated 6 August 2026.",
+        "url": "https://tradearabia.com/News/466281/Empower-net-profit-up-16.2pc-in-H1-revenue-soars-to-$413m",
+        "date": "2026-08-06"
+      }
+    },
+    "notes": "Both halves of the claim are consistent with the record: the interim financial statements are stamped 05-08-2026 (board approval date, per the study's own FS copy) and the public announcement / WAM press coverage is dated Thursday 6-Aug-2026. No press item dated 5-Aug was found."
+  },
+  "8_3m_eibor": {
+    "claim": "3M EIBOR fixing ~3.94-3.95% in the first week of August 2026, vs 3.66% on 31-Mar-2026",
+    "verdict": "PARTIAL",
+    "evidence": {
+      "march_anchor": {
+        "quote": "'the 3-month EIBOR as of March 31, 2026 was 3.66%' (aggregator quoting CBUAE fixing)",
+        "url": "https://tradingeconomics.com/united-arab-emirates/interbank-rate",
+        "date": "2026-03-31"
+      },
+      "august_levels": {
+        "quote": "TradingEconomics: 'Interbank Rate in the United Arab Emirates increased to 3.94 percent on Thursday August 13 from 3.85 in the previous day'; later 'increased to 3.96 percent on Monday August 17 from 3.95 in the previous day'. FCMB (EIBOR tracker quoting CBUAE fixing): 3-month = 3.937320 as of 17 Aug 2026 08:16, 3.957290 value-dated 19 Aug 2026.",
+        "url": "https://tradingeconomics.com/united-arab-emirates/interbank-rate ; https://fcmb.ae/eibor-rate-today",
+        "date": "2026-08-12 to 2026-08-19"
+      }
+    },
+    "notes": "The 31-Mar-2026 anchor (3.66%) is confirmed, and 3M EIBOR was indisputably in the 3.94-3.96% area by 13-17 August. The exact fixing for the first week of August (3-7 Aug) could not be independently retrieved: the CBUAE EIBOR page/xlsx is behind a Cloudflare challenge from this environment and the Wayback Machine availability API was returning 502s. One aggregator point (3.85% on 12-Aug per TradingEconomics) suggests the first-week fixing may have been slightly below 3.94-3.95; alternatively the aggregator series lags the CBUAE fixing. Direction and magnitude of the claim (~+30bp since end-March, high-3.8s/low-3.9s) are right; the precise first-week level is unverified to the second decimal."
+  },
+  "9_cbuae_june_2026_qer": {
+    "claim": "CBUAE June-2026 Quarterly Economic Review forecast 2026 GDP growth of 1.7% (cut from 5.6%) and a 2027 rebound to ~9.8%, describing the slowdown as temporary",
+    "verdict": "CONFIRMED",
+    "evidence": {
+      "june_qer": {
+        "quote": "'In 2026, UAE real GDP growth is projected at 1.7%, reflecting temporary moderation in both hydrocarbon and non-hydrocarbon sectors... In 2027, overall GDP growth is projected at 9.8%, driven [primarily by the assumed normalisation and step-up in hydrocarbon output and sustained non-hydrocarbon growth].' Table 2.2: Overall GDP 2026f = 1.7, 2027f = 9.8 (hydrocarbon 0.8/25.7, non-hydrocarbon 1.9/4.5).",
+        "url": "https://www.centralbank.ae/media/rafjunsc/qer_june_2026.pdf",
+        "date": "2026-06"
+      },
+      "prior_projection": {
+        "quote": "March 2026 QER: 'The UAE's outlook remains strong, with real GDP growth estimated at 5.6% in 2025 and projected to remain [strong]'; Table 2.1: Overall GDP 2026f = 5.6, 2027f = 4.4.",
+        "url": "https://www.centralbank.ae/media/lgnfakgc/qer-march_2026.pdf",
+        "date": "2026-03"
+      }
+    },
+    "notes": "Fully confirmed against both primary PDFs: the June-2026 QER cut the 2026 projection to 1.7% from 5.6% in the March-2026 QER, projects 9.8% for 2027, and uses 'temporary moderation' language repeatedly (maritime-route disruptions, trade, tourism, sentiment)."
+  },
+  "10_uae_nominal_gdp_runrate": {
+    "claim": "UAE nominal GDP growth run-rate 2024-2029 of ~4.5-6%/yr per IMF WEO",
+    "verdict": "PARTIAL",
+    "evidence": {
+      "imf_datamapper": {
+        "quote": "IMF WEO (April-2026 vintage, DataMapper NGDPD for ARE, USD bn - AED growth identical under the 3.6725 peg): 2023: 522.6, 2024: 552.3 (+5.7%), 2025: 571.6 (+3.5%), 2026: 621.5 (+8.7%), 2027: 648.7 (+4.4%), 2028: 686.4 (+5.8%), 2029: 727.7 (+6.0%). CAGR 2023->2029 = 5.7%/yr.",
+        "url": "https://www.imf.org/external/datamapper/api/v1/NGDPD/ARE",
+        "date": "2026-08-17 (fetched; latest WEO vintage = April 2026)"
+      }
+    },
+    "notes": "The multi-year average is squarely inside the claimed band: nominal GDP CAGR over 2024-2029 is ~5.7%/yr (band claimed: 4.5-6%). But it is not a steady run-rate year-by-year: individual years range from +3.5% (2025) to +8.7% (2026, an outlier reflecting the IMF's post-war oil-output/price assumptions). So 'roughly 4.5-6%/yr on average' is fair; 'every year in 4.5-6%' would be wrong. Figures are USD; the AED/USD peg makes AED nominal growth identical."
+  }
+}
