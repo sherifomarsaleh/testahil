@@ -1,0 +1,214 @@
+{
+ "full": {
+  "label": "FULL cleaned history (= entire listed life, 4.8 yr)",
+  "windows": 14,
+  "first_origin": "2022-11-11",
+  "last_origin": "2026-02-19",
+  "span_years": 3.27,
+  "skill_norm": -0.001473305731265695,
+  "skill_raw": -0.0034593189641765054,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.028,
+    0.0133,
+    "PARITY"
+   ],
+   "3": [
+    -0.0304,
+    0.0086,
+    "PARITY"
+   ],
+   "4": [
+    -0.0313,
+    0.0054,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.42857142857142855,
+  "cov80": 0.7857142857142857,
+  "cov90": 1.0,
+  "pit_mean": 0.42566071428571434,
+  "pit_hist": [
+   2,
+   3,
+   0,
+   3,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "chi2": 6.0,
+  "chi2_p": 0.74,
+  "ks_stat": 0.221,
+  "ks_p": 0.437,
+  "uniform": true,
+  "width_vs_benchmark": 1.134859544491362
+ },
+ "five_year": {
+  "label": "LAST FIVE YEARS of origins",
+  "windows": 14,
+  "first_origin": "2022-11-11",
+  "last_origin": "2026-02-19",
+  "span_years": 3.27,
+  "skill_norm": -0.001473305731265695,
+  "skill_raw": -0.0034593189641765054,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.028,
+    0.0133,
+    "PARITY"
+   ],
+   "3": [
+    -0.0304,
+    0.0086,
+    "PARITY"
+   ],
+   "4": [
+    -0.0313,
+    0.0054,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.42857142857142855,
+  "cov80": 0.7857142857142857,
+  "cov90": 1.0,
+  "pit_mean": 0.42566071428571434,
+  "pit_hist": [
+   2,
+   3,
+   0,
+   3,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "chi2": 6.0,
+  "chi2_p": 0.74,
+  "ks_stat": 0.221,
+  "ks_p": 0.437,
+  "uniform": true,
+  "width_vs_benchmark": 1.134859544491362
+ },
+ "production": {
+  "label": "production window set (post-break origins)",
+  "windows": 14,
+  "first_origin": "2022-11-11",
+  "last_origin": "2026-02-19",
+  "span_years": 3.27,
+  "skill_norm": -0.001473305731265695,
+  "skill_raw": -0.0034593189641765054,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.028,
+    0.0133,
+    "PARITY"
+   ],
+   "3": [
+    -0.0304,
+    0.0086,
+    "PARITY"
+   ],
+   "4": [
+    -0.0313,
+    0.0054,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.42857142857142855,
+  "cov80": 0.7857142857142857,
+  "cov90": 1.0,
+  "pit_mean": 0.42566071428571434,
+  "pit_hist": [
+   2,
+   3,
+   0,
+   3,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "chi2": 6.0,
+  "chi2_p": 0.74,
+  "ks_stat": 0.221,
+  "ks_p": 0.437,
+  "uniform": true,
+  "width_vs_benchmark": 1.134859544491362
+ },
+ "staggered": {
+  "label": "STAGGERED-ORIGIN uniformity diagnostic (5 grids pooled)",
+  "windows": 70,
+  "first_origin": "2022-11-11",
+  "last_origin": "2026-04-27",
+  "span_years": 3.46,
+  "skill_norm": -0.00024221461941942302,
+  "skill_raw": -0.00014403419603703504,
+  "verdict": "DIAGNOSTIC ONLY (overlapping grids)",
+  "ci_blocks": {
+   "2": [
+    -0.0129,
+    0.0101,
+    "PARITY"
+   ],
+   "3": [
+    -0.0142,
+    0.0105,
+    "PARITY"
+   ],
+   "4": [
+    -0.0151,
+    0.0113,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5,
+  "cov80": 0.8285714285714286,
+  "cov90": 1.0,
+  "pit_mean": 0.4074821428571429,
+  "pit_hist": [
+   8,
+   12,
+   9,
+   14,
+   2,
+   4,
+   8,
+   5,
+   4,
+   4
+  ],
+  "chi2": 19.43,
+  "chi2_p": 0.022,
+  "ks_stat": 0.232,
+  "ks_p": 0.001,
+  "uniform": false,
+  "width_vs_benchmark": 1.1441402213579066
+ },
+ "listing_date": "2021-10-28",
+ "history_span_years": 4.77,
+ "five_year_note": "FERTIGLB listed on 27-Oct-2021. The cleaned series is 4.77 years long, so a literal five-year lookback predates the instrument's existence. Sets (1) and (2) are therefore identical and represent the maximum evidence obtainable.",
+ "fit": {
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "market_verdict": "PARITY",
+  "market_skill": 0.0068,
+  "market_ci90": [
+   -0.001,
+   0.014
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 18,
+  "panel_windows": 261
+ }
+}

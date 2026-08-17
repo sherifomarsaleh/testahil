@@ -1,0 +1,122 @@
+{
+ "five_year": {
+  "label": "UAE panel, last five years of origins",
+  "names": 19,
+  "windows": 271,
+  "first_origin": "2022-01-18",
+  "last_origin": "2026-04-21",
+  "span_years": 4.25,
+  "skill_norm": 0.0065233971456855055,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.001,
+    0.0136,
+    "PARITY"
+   ],
+   "3": [
+    -0.0014,
+    0.0137,
+    "PARITY"
+   ],
+   "4": [
+    -0.001,
+    0.0138,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5276752767527675,
+  "cov80": 0.8007380073800738,
+  "cov90": 0.8929889298892989,
+  "pit_mean": 0.4924372693726937,
+  "pit_hist": [
+   25,
+   27,
+   30,
+   25,
+   34,
+   26,
+   31,
+   22,
+   22,
+   29
+  ],
+  "chi2": 5.05,
+  "chi2_p": 0.83,
+  "ks_stat": 0.038,
+  "ks_p": 0.808,
+  "pit_roughly_uniform": true,
+  "width_vs_benchmark": 1.117396571035621
+ },
+ "full": {
+  "label": "UAE panel, all post-break origins",
+  "names": 19,
+  "windows": 271,
+  "first_origin": "2022-01-18",
+  "last_origin": "2026-04-21",
+  "span_years": 4.25,
+  "skill_norm": 0.0065233971456855055,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.001,
+    0.0136,
+    "PARITY"
+   ],
+   "3": [
+    -0.0014,
+    0.0137,
+    "PARITY"
+   ],
+   "4": [
+    -0.001,
+    0.0138,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5276752767527675,
+  "cov80": 0.8007380073800738,
+  "cov90": 0.8929889298892989,
+  "pit_mean": 0.4924372693726937,
+  "pit_hist": [
+   25,
+   27,
+   30,
+   25,
+   34,
+   26,
+   31,
+   22,
+   22,
+   29
+  ],
+  "chi2": 5.05,
+  "chi2_p": 0.83,
+  "ks_stat": 0.038,
+  "ks_p": 0.808,
+  "pit_roughly_uniform": true,
+  "width_vs_benchmark": 1.117396571035621
+ },
+ "per_name_windows": {
+  "ADCB": 17,
+  "ADIB": 17,
+  "ADNOCGAS": 9,
+  "AGTHIA": 17,
+  "ALDAR": 17,
+  "ALPHADHABI": 15,
+  "AMR": 10,
+  "BURJEEL": 10,
+  "DEWA": 12,
+  "DIB": 17,
+  "EAND": 17,
+  "EMAARDEV": 17,
+  "EMAAR": 17,
+  "ENBD": 17,
+  "FAB": 17,
+  "IHC": 18,
+  "LULU": 2,
+  "SALIK": 11,
+  "TWOPOINTZERO": 14
+ },
+ "note": "Americana itself contributes no window before December 2023 because it listed on 12 December 2022 and a full year of history is required before the first origin. The five-year evidence is therefore panel-level, and the single-name result is reported separately and in full."
+}
