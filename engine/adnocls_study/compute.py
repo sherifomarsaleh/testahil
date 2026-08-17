@@ -751,87 +751,173 @@ for g in GROUPS:
 # ============================================================================
 # FORECAST — built unit by unit, five years, two rate paths
 # ============================================================================
-# --- tankers: vessel by vessel, at the rate each one actually earns -------------
-# The fleet splits in two. Forty-five vessels trade at spot rates and carry the whole of
-# the rate risk; eight sit on charters out at rates already fixed and disclosed. They are
-# modelled separately, because averaging them would hide exactly the exposure that matters.
+# --- tankers: vessel by vessel, on the disclosed charter table -------------------
+# The company publishes a rate per class each quarter, but the CFO stated on the
+# first-quarter call that this rate is a BLEND across the whole class -- "the $144,000 was
+# related to our full fleet of 8, and it includes all the vessels on long-term charter as
+# well ... it's a blended rate that we give there, which is obviously less than the spot
+# rate". Treating that blend as a spot rate and then adding the chartered vessels again at
+# their own rates counts the charter drag twice, so it is not done here.
+#
+# Instead every chartered vessel is carried individually, at its own disclosed rate, for
+# exactly the days its own contract runs, and the SPOT rate is DERIVED from the published
+# blend by removing those vessels:
+#     spot = (blend x class vessel-days  -  charter revenue) / spot vessel-days
+# Nothing about the spot rate is assumed; it is solved out of the company's own disclosure.
+import datetime as _date
+
+
+def _d(s_):
+    return _date.date(*map(int, s_.split('-')))
+
+
+def _minus_months(d, n):
+    y, m = d.year, d.month - n
+    while m <= 0:
+        m += 12; y -= 1
+    day = min(d.day, [31, 29 if y % 4 == 0 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30,
+                      31][m - 1])
+    return _date.date(y, m, day)
+
+
+# The twelve charters out, exactly as published: vessel, class, period, rate, expiry.
+# The start is the expiry less the disclosed period, so no date is invented.
+CHARTER_TABLE = [
+    ('Navig8 Macallister', 'lr1', 20, 19750, '2027-03-28'),
+    ('Navig8 Martinez', 'lr1', 32, 19750, '2028-03-28'),
+    ('Navig8 Prosperity', 'lr2', 36, 30561, '2026-05-04'),
+    ('Navig8 Promise', 'lr2', 12, 32125, '2026-07-02'),
+    ('Navig8 Pride', 'lr2', 12, 32125, '2026-07-09'),
+    ('Navig8 Prestige', 'lr2', 12, 36850, '2026-10-08'),
+    ('Navig8 Providence', 'lr2', 12, 42000, '2027-01-31'),
+    ('Navig8 Passion', 'lr2', 12, 42000, '2027-02-06'),
+    ('Zakum', 'vlcc', 22, 50633, '2027-09-02'),
+    ('Hili', 'vlcc', 22, 50633, '2027-09-16'),
+    ('Arzanah', 'vlcc', 12, 70000, '2027-02-01'),
+    ('Habshan', 'vlcc', 12, 72500, '2027-02-21'),
+]
+CHARTERS = [dict(name=n, klass=k, rate=r, start=_minus_months(_d(e), p), end=_d(e),
+                 period_months=p)
+            for n, k, p, r, e in CHARTER_TABLE]
+for _c in CHARTERS:
+    IN(f"charter_{_c['name'].lower().replace(' ', '_')}", _c['rate'],
+       IP26 + f" — charters out: {_c['name']}, a {_c['klass'].upper()} fixed for "
+              f"{_c['period_months']} months to {_c['end']:%d %b %Y}",
+       '2026-04-30', 'Company')
+
+
+def charter_days(klass, a, b):
+    """Vessel-days and revenue (USD) that class's charters out earn between a and b."""
+    days = rev = 0
+    for c in CHARTERS:
+        if c['klass'] != klass:
+            continue
+        lo, hi = max(a, c['start']), min(b, c['end'])
+        n = (hi - lo).days
+        if n > 0:
+            days += n
+            rev += n * c['rate']
+    return days, rev
+
+
 CLASSES = ['hs', 'mr', 'lr1', 'lr2', 'vlcc']
-FLEET = {c: V[f'tnk_{c}_n'] for c in CLASSES}
-SPOT_N = {c: V[f'tnk_{c}_spot'] for c in CLASSES}
-FIXED_N = {c: FLEET[c] - SPOT_N[c] for c in CLASSES}
-TC_OUT = {'hs': 0.0, 'mr': 0.0, 'lr1': V['tc_out_lr1'], 'lr2': V['tc_out_lr2'],
-          'vlcc': V['tc_out_vlcc']}
+FLEET_FY25 = {c: V[f'tnk_{c}_n'] for c in CLASSES}           # owned at 31-Dec-2025
+# One 2017-built very large crude carrier was sold in January 2026, so the fleet the
+# valuation date actually owns is one smaller. The first edition used the year-end count.
+FLEET = dict(FLEET_FY25); FLEET['vlcc'] = FLEET_FY25['vlcc'] - 1
+IN('vlcc_sold_jan26', 1, "ADNOC L&S plc, FY2025 earnings release" + " — the 2017-built very large crude carrier sold in "
+   "January 2026, which reduces the owned fleet between the year end and the valuation "
+   "date", '2026-01-31', 'Company')
+
+
+def implied_spot(klass, blend, fleet_n, a, b):
+    """Back out the spot rate the published blend implies for a class over [a, b)."""
+    total_days = fleet_n * (b - a).days
+    cd, crev = charter_days(klass, a, b)
+    sd = total_days - cd
+    if sd <= 0:
+        return blend
+    return (blend * total_days - crev) / sd
+
+
+# Quarterly windows, so each blend is converted on the fleet and charters of its own quarter
+Q25 = [(_d('2025-01-01'), _d('2025-04-01')), (_d('2025-04-01'), _d('2025-07-01')),
+       (_d('2025-07-01'), _d('2025-10-01')), (_d('2025-10-01'), _d('2026-01-01'))]
+Q26 = [(_d('2026-01-01'), _d('2026-04-01')), (_d('2026-04-01'), _d('2026-07-01'))]
+
 TCE25 = {c: sum(TCE_FY25[c]) / 4 for c in TCE_FY25}
 TCE24 = {c: sum(TCE_FY24[c]) / 4 for c in TCE_FY24}
 TCE24['mr'] = TCE25['mr']          # 2024 quarterly rates for this class are not disclosed
 TCE25['hs'] = TCE25['mr']          # the smallest tankers are not broken out; the medium-
-TCE24['hs'] = TCE24['mr']          # range rate is used for them and the gap is flagged
-TCE_EXIT = {c: TCE_FY25[c][3] for c in TCE_FY25}
-TCE_EXIT['hs'] = TCE_EXIT['mr']
-TCE_MID = {c: (TCE24[c] + TCE25[c]) / 2 for c in CLASSES}       # mid-cycle anchor
-Q1_26 = {c: V[f'tce_{c}_q1_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
-Q2_26 = {c: V[f'tce_{c}_q2_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
-Q1_26['hs'] = Q1_26['mr']; Q2_26['hs'] = Q2_26['mr']
+TCE24['hs'] = TCE24['mr']          # range rate stands in and the gap is flagged
+BLEND_MID = {c: (TCE24[c] + TCE25[c]) / 2 for c in CLASSES}
 
-vessel_days_25 = sum(FLEET.values()) * 365
-tce_rev_25 = sum(FLEET[c] * TCE25[c] for c in FLEET) * 365 / 1000.0
+# spot rates implied by the disclosed blends, class by class
+SPOT_25 = {c: sum(implied_spot(c, TCE_FY25.get(c, [TCE25[c]] * 4)[i], FLEET_FY25[c], *Q25[i])
+                  for i in range(4)) / 4 for c in CLASSES}
+SPOT_MID = {c: implied_spot(c, BLEND_MID[c], FLEET_FY25[c], *Q25[0]) for c in CLASSES}
+Q1_BLEND = {c: V[f'tce_{c}_q1_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+Q2_BLEND = {c: V[f'tce_{c}_q2_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+Q1_BLEND['hs'] = Q1_BLEND['mr']; Q2_BLEND['hs'] = Q2_BLEND['mr']
+SPOT_Q1 = {c: implied_spot(c, Q1_BLEND[c], FLEET[c], *Q26[0]) for c in CLASSES}
+SPOT_Q2 = {c: implied_spot(c, Q2_BLEND[c], FLEET[c], *Q26[1]) for c in CLASSES}
+
+# the running cost is solved so the same construction reproduces reported 2025 earnings
+vessel_days_25 = sum(FLEET_FY25.values()) * 365
+tce_rev_25 = sum(FLEET_FY25[c] * TCE25[c] for c in FLEET_FY25) * 365 / 1000.0
 opex_day_25 = (tce_rev_25 - V['seg_ebitda_tankers_fy25']) * 1000.0 / vessel_days_25
 IN('tnk_opex_day', round(opex_day_25, 0), "Implied all-in running cost per vessel per day, "
-   "solved so that the owned-fleet time-charter equivalent less running cost reproduces the "
-   "reported Tankers earnings before interest, tax, depreciation and amortisation for 2025",
-   '2025-12-31', 'Company')
+   "solved so that the owned fleet's charter-equivalent revenue less running cost "
+   "reproduces the reported Tankers earnings before interest, tax, depreciation and "
+   "amortisation for 2025", '2025-12-31', 'Company')
 gross_up_25 = V['seg_rev_tankers_fy25'] / tce_rev_25
 IN('tnk_grossup_25', round(gross_up_25, 3), "Ratio of reported Tankers revenue to "
-   "owned-fleet time-charter-equivalent revenue in 2025 — the voyage-cost and low-margin "
-   "relet and third-party trading content of gross revenue", '2025-12-31', 'Company')
+   "owned-fleet charter-equivalent revenue in 2025 — the voyage-cost and low-margin relet "
+   "and third-party trading content of gross revenue", '2025-12-31', 'Company')
 gross_up_26 = 1.60
 IN('tnk_grossup_26', gross_up_26, "The same ratio for 2026 onward. Reported first-quarter "
    "revenue was flat year on year while the rate earned per vessel more than doubled, "
    "because low-margin relet and third-party trading fell away; the ratio is set well below "
-   "the 2025 level to reflect that and is a presentational driver only — it moves revenue, "
-   "never earnings", '2026-03-31', 'Company')
+   "the 2025 level to reflect that and is presentational only — it moves revenue, never "
+   "earnings", '2026-03-31', 'Company')
 
 OPEX_ESC = IN('opex_escalation', 0.02, "Running-cost escalation applied to crew, technical "
               "management, insurance and repairs — a domestic services and wage escalator, "
-              "not a commodity index, because these are the physical drivers of the line",
+              "not a commodity index, because those are the physical drivers of the line",
               '2026-08-09', 'Industry')
-H2_26_REVERSION = IN('h2_2026_reversion', 0.50, "Weight placed on the 2025 average rate, "
-                     "against the rate achieved in the first quarter of 2026, in setting "
-                     "the second half of 2026. A half-and-half blend is a deliberate step "
-                     "down from a first half running far above it", '2026-08-09', 'Industry')
+H2_26_REVERSION = IN('h2_2026_reversion', 0.50, "Weight placed on the 2025 implied spot "
+                     "rate, against the rate implied by the first quarter of 2026, in "
+                     "setting the second half of 2026", '2026-08-09', 'Industry')
 
 
 def spot_path(mode):
-    """Spot time-charter equivalent per class, FY2026-FY2030.
-
-    2026 is built from what the fleet actually earned in the first quarter, the level the
-    second quarter was crossing at, and a second half stepped back toward the 2025 average.
-    From 2027 the path glides to a mid-cycle anchor — the average of the 2024 and 2025
-    outcomes — which is where the whole valuation question sits.
-    """
+    """Implied SPOT rate per class, FY2026-FY2030 — never the published blend."""
     out = {}
     for c in CLASSES:
-        h2 = Q1_26[c] * (1 - H2_26_REVERSION) + TCE25[c] * H2_26_REVERSION
-        y26 = (Q1_26[c] + Q2_26[c] + 2 * h2) / 4.0
-        end = TCE_MID[c] * (1.0 if mode == 'reversion' else 1.30)
+        h2 = SPOT_Q1[c] * (1 - H2_26_REVERSION) + SPOT_25[c] * H2_26_REVERSION
+        y26 = (SPOT_Q1[c] + SPOT_Q2[c] + 2 * h2) / 4.0
+        end = SPOT_MID[c] * (1.0 if mode == 'reversion' else 1.30)
         out[c] = [y26] + [y26 + (end - y26) * i / 4.0 for i in range(1, 5)]
     return out
 
 
 def tanker_leg(mode):
-    tce = spot_path(mode)
+    """Every vessel priced on its own terms: chartered vessels at their own rate for
+    exactly the days their own contract runs, everything else at the implied spot rate."""
+    spot = spot_path(mode)
     rev, ebitda = [], []
-    for i in range(5):
-        spot_rev = sum(SPOT_N[c] * tce[c][i] for c in CLASSES) * 365 / 1000.0
-        # charters out roll off during 2027; from 2028 the whole fleet is at spot
-        roll = [1.0, 0.5, 0.0, 0.0, 0.0][i]
-        fixed_rev = sum(FIXED_N[c] * (TC_OUT[c] * roll + tce[c][i] * (1 - roll))
-                        for c in CLASSES) * 365 / 1000.0
-        tce_rev = spot_rev + fixed_rev
+    for i, y in enumerate(range(2026, 2031)):
+        a, b = _date.date(y, 1, 1), _date.date(y + 1, 1, 1)
+        yr_days = (b - a).days
+        tce_rev = 0.0
+        for c in CLASSES:
+            cd, crev = charter_days(c, a, b)
+            sd = FLEET[c] * yr_days - cd
+            tce_rev += (crev + sd * spot[c][i]) / 1000.0
         opex = vessel_days_25 * opex_day_25 * (1 + OPEX_ESC) ** (i + 1) / 1000.0
         rev.append(tce_rev * gross_up_26)
         ebitda.append(tce_rev - opex)
-    return rev, ebitda, tce
+    return rev, ebitda, spot
 
 
 # --- gas carriers: contracted vessel-years x implied day rate ------------------
@@ -855,6 +941,12 @@ gas_rate_25 = V['seg_rev_gas_carriers_fy25'] * 1000.0 / (gas_vy_25 * 365)
 IN('gas_rate_day', round(gas_rate_25, 0), "Implied average charter revenue per gas vessel "
    "per day, solved from reported 2025 Gas Carriers revenue over consolidated vessel-years. "
    "Per-vessel rates are not disclosed, so this is the finest level the disclosure supports",
+   '2025-12-31', 'Company')
+JV_GAS = IN('jv_gas_fy25', 21313, FS25 + " — operating segments note: the share of profit from the "
+   "AW Shipping joint venture carried inside the disclosed Gas Carriers earnings",
+   '2025-12-31', 'Company')
+JV_SERVICES = IN('jv_services_fy25', 16079, FS25 + " — operating segments note: the share of profit from "
+   "joint ventures and associates carried inside the disclosed Services earnings",
    '2025-12-31', 'Company')
 GAS_MARGIN = IN('gas_margin', 0.70, "Gas Carriers earnings margin held near the 2025 "
                 "outcome of 72% net of joint-venture profit, reflecting that fifteen of "
@@ -918,11 +1010,23 @@ def build_forecast(mode):
     gas_rev = [GAS_VY[i] * 365 * gas_rate_25 * (1 + OPEX_ESC) ** (i + 1) / 1000.0
                for i in range(5)]
     gas_ebitda = [r * GAS_MARGIN for r in gas_rev]
+    # The company's disclosed segment earnings INCLUDE its share of joint-venture and
+    # associate profit -- verifiable exactly in the 2025 segment note, where Gas Carriers'
+    # operating profit plus its own depreciation falls short of its disclosed earnings by
+    # 21,313, precisely the AW Shipping share, and Services by 16,079, precisely the
+    # Navig8 share. Those earnings are equity-accounted, not consolidated cash flow, and
+    # the equity bridge already adds the joint ventures at carrying value. Leaving them in
+    # the forecast would count them twice, so they are removed here.
+    gas_ebitda = [e - JV_GAS * (1 + OPEX_ESC) ** (i + 1)
+                  for i, e in enumerate(gas_ebitda)]
     seg = {'Tankers': dict(rev=tnk_rev, ebitda=tnk_ebitda),
            'Gas Carriers': dict(rev=gas_rev, ebitda=gas_ebitda)}
     for s_, d in DRV.items():
-        seg[s_] = dict(rev=list(d['rev']),
-                       ebitda=[r * m for r, m in zip(d['rev'], d['mar'])])
+        eb = [r * m for r, m in zip(d['rev'], d['mar'])]
+        if s_ == 'Services':                       # same joint-venture removal
+            eb = [e - JV_SERVICES * (1 + OPEX_ESC) ** (i + 1)
+                  for i, e in enumerate(eb)]
+        seg[s_] = dict(rev=list(d['rev']), ebitda=eb)
     grp = {g: dict(rev=[sum(seg[s_]['rev'][i] for s_ in SEGS if SEG_GROUP[s_] == g)
                         for i in range(5)],
                    ebitda=[sum(seg[s_]['ebitda'][i] for s_ in SEGS if SEG_GROUP[s_] == g)
@@ -1070,14 +1174,26 @@ kd_m2 = (V['q1_26_shldr_loan'] * kd_m1 + V['q1_26_borrowings'] * kd_thirdparty
          + V['q1_26_leases'] * kd_lease) / debt_now
 kd_m3 = kd_bank_mid
 kd = (kd_m1 + kd_m2 + kd_m3) / 3
-we = mktcap / (mktcap + debt_now)
-wd = 1 - we
+# The perpetual capital securities are deducted in the equity bridge as a claim ranking
+# ahead of the ordinary shares. A claim that is deducted from enterprise value must also
+# be WEIGHTED in the cost of capital at its own cost — those are the two halves of one
+# treatment, not a double count. The first edition weighted only equity and debt, which
+# subtracted a cheap tranche of capital from value without letting it price that value.
+# Two independent reviews reached the same conclusion; it is adopted here.
+kh = V['sofr'] + V['hybrid_margin']            # the perpetual's own coupon rate
+hybrid_cap = V['q1_26_hybrid']
+cap_total = mktcap + debt_now + hybrid_cap
+we = mktcap / cap_total
+wd = debt_now / cap_total
+wh = hybrid_cap / cap_total
 tax_stat = V['tax_stat']
-wacc = we * ke + wd * kd * (1 - tax_stat)
+wacc = we * ke + wd * kd * (1 - tax_stat) + wh * kh   # the coupon is not tax-deductible: it is an equity distribution
 # terminal: the same construction on a long-run risk-free anchor
 ke_term = V['rf_terminal'] + V['beta'] * V['erp_total']
 kd_term = V['rf_terminal'] + (kd - rf_star)
-wacc_term = we * ke_term + wd * kd_term * (1 - tax_stat)
+# the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
+kh_term = V['rf_terminal'] + V['hybrid_margin']
+wacc_term = we * ke_term + wd * kd_term * (1 - tax_stat) + wh * kh_term
 wacc_glide = [wacc + (wacc_term - wacc) * (i + 1) / 5.0 for i in range(5)]
 
 wacc_blk = dict(
@@ -1090,6 +1206,7 @@ wacc_blk = dict(
     kd_lease=kd_lease, kd_after_tax=kd * (1 - tax_stat),
     tax_stat=tax_stat, we=we, wd=wd, wacc=wacc,
     rf_terminal=V['rf_terminal'], ke_term=ke_term, kd_term=kd_term, wacc_term=wacc_term,
+    kh=kh, kh_term=kh_term, wh=wh, hybrid_cap=hybrid_cap,
     wacc_glide=wacc_glide, mktcap=mktcap, debt=debt_now, spot_usd=spot_usd,
     kd_evidence=[
         ('Parent revolving credit facility, drawn January 2026', 'SOFR + 0.80%', kd_m1),
@@ -1184,9 +1301,14 @@ def finance_roll(path):
     pat = [p - t for p, t in zip(pbt, tax)]
     nci = [p * NCI_SHARE for p in pat]
     npa = [p - n for p, n in zip(pat, nci)]
-    eps = [n / shares_mn / 1000.0 for n in npa]
+    # earnings per ORDINARY share: the perpetual coupon ranks ahead of the ordinary
+    # shares, so it comes out of the numerator. Leaving it in credits the ordinary
+    # holders with a return that is contractually someone else's.
+    eps = [(n - HYB_COUPON) / shares_mn / 1000.0 for n in npa]
+    eps_pre_coupon = [n / shares_mn / 1000.0 for n in npa]
     return dict(net_debt=nd, gross_debt=gross, interest=interest, fin_income=fin_inc,
-                pbt=pbt, tax=tax, pat=pat, nci=nci, npa=npa, eps=eps, dps=DPS_USD,
+                pbt=pbt, tax=tax, pat=pat, nci=nci, npa=npa, eps=eps, eps_pre_coupon=eps_pre_coupon,
+                npa_ordinary=[n - HYB_COUPON for n in npa], dps=DPS_USD,
                 hybrid_coupon=HYB_COUPON,
                 nd_ebitda=[n / e for n, e in zip(nd, path['ebitda'])],
                 payout=[d / n for d, n in zip(DPS_USD, npa)])
@@ -1264,6 +1386,8 @@ rel = dict(
     bear=per_share(equity_from_ev(rel_ev_lo)),
     bull=per_share(equity_from_ev(rel_ev_hi)),
     own_ev_ebitda_ttm=(mktcap + NETDEBT) / ebitda_rep[2],
+    own_ev_bridge=mktcap + NETDEBT + HYBRID + NCI_BV,
+    own_ev_ebitda_26_bridge=(mktcap + NETDEBT + HYBRID + NCI_BV) / BASE['ebitda'][0],
     own_ev_ebitda_26=(mktcap + NETDEBT) / BASE['ebitda'][0],
     own_pe_ttm=mktcap / (V['npa_fy25'] - V['hybrid_coupon_fy25']),
     own_pb=mktcap / (V['q1_26_eqp'] + HYBRID),
@@ -1287,33 +1411,76 @@ norm['bull'] = per_share(equity_from_ev(contracted_mult * norm_ebitda))
 # --- book value and sustainable return ----------------------------------------
 roe_sust = sum(b['roe'] for b in BSB) / 5.0
 g_b = V['g_terminal']
-pb_fair = (roe_sust - g_b) / (ke - g_b)
-bvps_now = (V['q1_26_eqp']) / shares_mn / 1000.0
-book = dict(roe_sustainable=roe_sust, ke=ke, g=g_b, pb_fair=pb_fair,
+# A single-stage justified price-to-book, (ROE - g)/(Ke - g), assumes a steady state:
+# it is only coherent if the company distributes exactly what it does not need to fund g.
+# At a sustainable return of 16.9% and 2% growth that means paying out 88% of earnings.
+# This company pays out 31-39% and compounds its book at 9.6% a year against a 9.34% cost
+# of equity -- above it, where the formula is not merely wrong but undefined. So the
+# single-stage form is not used. The lens is built instead as RESIDUAL INCOME over the
+# model's own forecast: the book the company already has, plus the value of earning more
+# than the cost of equity on it while that lasts, plus a fading remainder.
+def residual_income(ke_r, roe_scale=1.0):
+    """Book value plus the present value of returns above the cost of equity."""
+    b0 = V['q1_26_eqp'] / 1000.0                      # opening ordinary book, USD mn
+    b, pv, detail = b0, 0.0, []
+    for i in range(5):
+        roe_i = FINB_ROE[i] * roe_scale
+        ri = (roe_i - ke_r) * b                       # residual income earned on that book
+        df = 1.0 / (1 + ke_r) ** (i + 1)
+        pv += ri * df
+        detail.append(dict(year=YF[i], opening_book=b, roe=roe_i, residual_income=ri,
+                           discount_factor=df, pv=ri * df))
+        b = BSB[i]['equity_parent'] / 1000.0          # the model's own roll-forward
+    # beyond the forecast the excess return fades: competition and a fleet that has to be
+    # replaced at market prices, not at book, pull the return toward the cost of capital
+    roe_t = FINB_ROE[-1] * roe_scale
+    ri_t = (roe_t - ke_r) * b
+    tv = ri_t / (ke_r + FADE - G_B)                   # fading perpetuity
+    pv += tv / (1 + ke_r) ** 5
+    return b0 + pv, detail, tv / (1 + ke_r) ** 5
+
+
+FADE = IN('ri_fade', 0.10, "Rate at which the return above the cost of equity is assumed to "
+          "decay beyond the forecast. A fleet has to be replaced at market prices rather "
+          "than at the book value it is carried at, so an excess return cannot persist "
+          "unchanged; a fifth a year is the house convention for an asset-heavy business "
+          "and is sensitised from 5% to 30% in the sensitivity section", '2026-08-09', 'Industry')
+G_B = g_b
+# the return has to be struck on what the ORDINARY holders actually earn, so the
+# perpetual coupon -- which ranks ahead of them -- comes out of the numerator first
+FINB_ROE = [(FINB['npa'][i] - HYB_COUPON) / BSB[i]['equity_parent'] for i in range(5)]
+ri_base, ri_detail, ri_pv_tv = residual_income(ke)
+ri_bear, _, _ = residual_income(ke_ci_hi, 0.85)
+ri_bull, _, _ = residual_income(ke_ci_lo, 1.15)
+bvps_now = V['q1_26_eqp'] / shares_mn / 1000.0
+pb_fair = ri_base / (V['q1_26_eqp'] / 1000.0)
+book = dict(roe_sustainable=roe_sust, ke=ke, g=g_b, pb_fair=pb_fair, method='residual income',
+            fade=FADE, roe_path=FINB_ROE, detail=ri_detail, pv_terminal=ri_pv_tv,
             vessel_sale_price=V['vessel_sale_price'], vessel_sale_book=V['vessel_sale_book'],
             vessel_value_to_book=V['vessel_sale_price'] / V['vessel_sale_book'],
             bvps_usd=bvps_now, bvps_aed=bvps_now * peg,
-            base=pb_fair * bvps_now * peg,
+            equity_value=ri_base,
+            base=ri_base / shares_mn * peg,
             ke_bear=ke_ci_hi, ke_bull=ke_ci_lo,
-            bear=((roe_sust * 0.85) - g_b) / (ke_ci_hi - g_b) * bvps_now * peg,
-            bull=((roe_sust * 1.15) - g_b) / (ke_ci_lo - g_b) * bvps_now * peg)
+            bear=ri_bear / shares_mn * peg,
+            bull=ri_bull / shares_mn * peg)
 
 # --- discounted cash flow, with scenarios --------------------------------------
-BASE_MID = dict(TCE_MID)
+BASE_MID = dict(SPOT_MID)
 
 
 def dcf_scenario(beta_s, anchor_mult, capex_mult=1.0, hybrid_as_debt=False):
-    global TCE_MID, CAPEX
-    old_mid, old_capex = dict(TCE_MID), list(CAPEX)
-    TCE_MID.update({c: BASE_MID[c] * anchor_mult for c in BASE_MID})
+    global SPOT_MID, CAPEX
+    old_mid, old_capex = dict(SPOT_MID), list(CAPEX)
+    SPOT_MID.update({c: BASE_MID[c] * anchor_mult for c in BASE_MID})
     CAPEX[:] = [c * capex_mult for c in old_capex]
     kes = rf_star + beta_s * V['erp_total']
     ket = V['rf_terminal'] + beta_s * V['erp_total']
     w = we * kes + wd * kd * (1 - tax_stat)
-    wt = we * ket + wd * kd_term * (1 - tax_stat)
+    wt = we * ket + wd * kd_term * (1 - tax_stat) + wh * kh_term
     p = project('reversion')
     d = dcf(p, hybrid_as_debt=hybrid_as_debt, wacc_ov=w, term_wacc_ov=wt)
-    TCE_MID.update(old_mid); CAPEX[:] = old_capex
+    SPOT_MID.update(old_mid); CAPEX[:] = old_capex
     return d
 
 
@@ -1610,9 +1777,14 @@ OUT = dict(
     seg_hist=seg_hist, grp_hist=grp_hist, segs=SEGS, seg_group=SEG_GROUP,
     groups=GROUPS,
     product_lines=PRODUCT_LINES, cost_lines=COST_LINES,
-    fleet=dict(owned=FLEET, spot=SPOT_N, fixed=FIXED_N, tc_out=TC_OUT,
-               tce_fy24=TCE24, tce_fy25=TCE25, tce_exit=TCE_EXIT, tce_mid=BASE_MID,
-               q1_26=Q1_26, q2_26=Q2_26, opex_day=opex_day_25,
+    fleet=dict(owned=FLEET, owned_fy25=FLEET_FY25, charters=[
+                   dict(name=c['name'], klass=c['klass'], rate=c['rate'],
+                        start=str(c['start']), end=str(c['end']),
+                        period_months=c['period_months']) for c in CHARTERS],
+               blend_fy24=TCE24, blend_fy25=TCE25, blend_mid=BLEND_MID,
+               blend_q1_26=Q1_BLEND, blend_q2_26=Q2_BLEND,
+               spot_fy25=SPOT_25, spot_mid=SPOT_MID, spot_q1_26=SPOT_Q1,
+               spot_q2_26=SPOT_Q2, tce_mid=BASE_MID, opex_day=opex_day_25,
                gas_vessel_years=GAS_VY, gas_rate_day=gas_rate_25,
                vessel_days_25=vessel_days_25, tce_rev_25=tce_rev_25),
     drivers=DRV, driver_why=DRV_WHY,
