@@ -144,98 +144,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "AMR",
-   "name": "Americana Restaurants International PLC",
-   "code": "ADX:AMR",
-   "ccy": "AED",
-   "spot": 2.23,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.5,
-   "fv_base": 2.19,
-   "fv_full": 3.44,
-   "gap_base_pct": -1.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.979,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.097925,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -4.05,
-     "base": -0.18,
-     "full": 4.43
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.4202,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0008,
-     "base": 0.7405,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.9914,
-     "base": -0.1952,
-     "full": 180.5695
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0018
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.174693,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -2.27,
-     "base": -0.1,
-     "full": 2.48
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0147,
-     "base": 0.455,
-     "full": 0.0098
-    },
-    "p_touch": {
-     "bear": 0.0248,
-     "base": 0.8513,
-     "full": 0.0165
-    },
-    "required_cagr": {
-     "bear": -0.7953,
-     "base": -0.0698,
-     "full": 4.6626
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00223
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "ACWA",
    "name": "ACWA Power Company",
    "code": "TADAWUL:2082",
@@ -878,6 +786,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00147
    },
    "market": "QA"
+  },
+  {
+   "ticker": "AMR",
+   "name": "Americana Restaurants International PLC",
+   "code": "ADX:AMR",
+   "ccy": "AED",
+   "spot": 2.23,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.48,
+   "fv_base": 2.15,
+   "fv_full": 3.33,
+   "gap_base_pct": -3.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.097925,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -4.19,
+     "base": -0.37,
+     "full": 4.09
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.3427,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.0006,
+     "base": 0.5973,
+     "full": 0.0005
+    },
+    "required_cagr": {
+     "bear": -0.9927,
+     "base": -0.3549,
+     "full": 121.9341
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0018
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.174693,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -2.35,
+     "base": -0.21,
+     "full": 2.3
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0127,
+     "base": 0.4099,
+     "full": 0.014
+    },
+    "p_touch": {
+     "bear": 0.0213,
+     "base": 0.7626,
+     "full": 0.0239
+    },
+    "required_cagr": {
+     "bear": -0.806,
+     "base": -0.136,
+     "full": 3.9723
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00223
+   },
+   "market": "AE"
   },
   {
    "ticker": "QGTS",
