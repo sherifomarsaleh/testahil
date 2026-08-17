@@ -56,6 +56,21 @@ a chat tool, so every EGX beta rested on a file that was in no repository.
 Trading-day density is 241–244 sessions/year for 2021–2025 against a real EGX
 calendar of ~245, and no row carries a blank price.
 
+AE/FADGI (the FTSE ADX General Index) was added 9-Aug-2026, and the gap it closed was
+the same one EGX30 closed for Egypt: until it arrived, the UAE beta had no local index to
+regress against, and the BOROUGE study's first revision used an equal-weight basket of the
+other names in `raw_ohlc/AE/` as a stand-in. That stand-in is not the market. An
+equal-weight basket over-weights small, thinly traded constituents, which drags its own
+volatility up and its covariance with any single large name down; on BOROUGE it produced a
+beta of 0.271 against the index's 0.415, a 35% understatement. Any AE beta measured before
+9-Aug-2026 rests on the basket and should be re-run.
+
+Cleaning gate on FADGI: 3,884 rows in, 3,883 out (one stale no-trade row dropped),
+238-252 trading days a year against an ADX calendar of about 250, ZERO sessions closing
+unchanged, and a maximum daily move of 8.4% against the ADX ±15% limit. A cap-weighted
+index with no flat sessions carries no stale-price artefact, which matters because a stale
+regressor biases every beta measured against it downward.
+
 Note the series ends 2026-07-22, a few weeks behind spot. That is immaterial for
 a 2–5yr weekly beta regression but should be refreshed alongside the price
 libraries; flag the as-of date whenever a beta is quoted from it.
