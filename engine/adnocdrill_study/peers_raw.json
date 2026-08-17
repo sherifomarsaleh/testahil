@@ -1,0 +1,431 @@
+[
+ {
+  "symbol": "2382.SR",
+  "name": "ADES Holding",
+  "group": "MENA NOC-contracted driller",
+  "price": 17.55,
+  "currency": "SAR",
+  "ltm_ebitda": 3660567000.0,
+  "ltm_revenue": 7425761000.0,
+  "ltm_net_income": 839885000.0,
+  "total_debt": 20488144000.0,
+  "cash": 2435773000.0,
+  "shares": 1104149513.0,
+  "book_equity": 6768046000.0,
+  "latest_period": "2026-03-31",
+  "ebitda_quarters": [
+   [
+    "2025-03-31",
+    795358000.0
+   ],
+   [
+    "2025-06-30",
+    834784000.0
+   ],
+   [
+    "2025-12-31",
+    939690000.0
+   ],
+   [
+    "2026-03-31",
+    1090735000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "2381.SR",
+  "name": "Arabian Drilling",
+  "group": "MENA NOC-contracted driller",
+  "price": 82.6,
+  "currency": "SAR",
+  "ltm_ebitda": 1108539437.0,
+  "ltm_revenue": 3419503755.0,
+  "ltm_net_income": -58789126.0,
+  "total_debt": 2917016265.0,
+  "cash": 566327517.0,
+  "shares": 89000000.0,
+  "book_equity": 5753455017.0,
+  "latest_period": "2026-03-31",
+  "ebitda_quarters": [
+   [
+    "2025-03-31",
+    380910044.0
+   ],
+   [
+    "2025-06-30",
+    297957857.0
+   ],
+   [
+    "2025-12-31",
+    137994116.0
+   ],
+   [
+    "2026-03-31",
+    291677420.0
+   ]
+  ]
+ },
+ {
+  "symbol": "HP",
+  "name": "Helmerich & Payne",
+  "group": "Global land driller",
+  "price": 37.1,
+  "currency": "USD",
+  "ltm_ebitda": 794456000.0,
+  "ltm_revenue": 3995992000.0,
+  "ltm_net_income": -136996000.0,
+  "total_debt": 1862116000.0,
+  "cash": 204427000.0,
+  "shares": 99917504.0,
+  "book_equity": 2574091000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    154757000.0
+   ],
+   [
+    "2025-12-31",
+    123796000.0
+   ],
+   [
+    "2026-03-31",
+    159985000.0
+   ],
+   [
+    "2026-06-30",
+    355918000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "NBR",
+  "name": "Nabors Industries",
+  "group": "Global land driller",
+  "price": 81.59,
+  "currency": "USD",
+  "ltm_ebitda": 1308166000.0,
+  "ltm_revenue": 3214062000.0,
+  "ltm_net_income": 247050000.0,
+  "total_debt": 2128532000.0,
+  "cash": 509782000.0,
+  "shares": 14801000.0,
+  "book_equity": 544128000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    634718000.0
+   ],
+   [
+    "2025-12-31",
+    234246000.0
+   ],
+   [
+    "2026-03-31",
+    221093000.0
+   ],
+   [
+    "2026-06-30",
+    218109000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "PTEN",
+  "name": "Patterson-UTI",
+  "group": "Global land driller",
+  "price": 9.87,
+  "currency": "USD",
+  "ltm_ebitda": 872833000.0,
+  "ltm_revenue": 4672065000.0,
+  "ltm_net_income": -89725000.0,
+  "total_debt": 1285581000.0,
+  "cash": 201024000.0,
+  "shares": 381380305.0,
+  "book_equity": 3099876000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    232456000.0
+   ],
+   [
+    "2025-12-31",
+    223494000.0
+   ],
+   [
+    "2026-03-31",
+    207807000.0
+   ],
+   [
+    "2026-06-30",
+    209076000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "PDS",
+  "name": "Precision Drilling",
+  "group": "Global land driller",
+  "price": 75.75,
+  "currency": "USD",
+  "ltm_ebitda": 228669000.0,
+  "ltm_revenue": 1919609000.0,
+  "ltm_net_income": -32755000.0,
+  "total_debt": 697024000.0,
+  "cash": 66292000.0,
+  "shares": 12852644.0,
+  "book_equity": 1600737000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    40566000.0
+   ],
+   [
+    "2025-12-31",
+    -33893000.0
+   ],
+   [
+    "2026-03-31",
+    123874000.0
+   ],
+   [
+    "2026-06-30",
+    98122000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "VAL",
+  "name": "Valaris",
+  "group": "Global offshore driller",
+  "price": 78.78,
+  "currency": "USD",
+  "ltm_ebitda": 606300000.0,
+  "ltm_revenue": 2137700000.0,
+  "ltm_net_income": 939600000.0,
+  "total_debt": 1165500000.0,
+  "cash": 541200000.0,
+  "shares": 69251780.0,
+  "book_equity": 3220700000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    277900000.0
+   ],
+   [
+    "2025-12-31",
+    101800000.0
+   ],
+   [
+    "2026-03-31",
+    77400000.0
+   ],
+   [
+    "2026-06-30",
+    149200000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "NE",
+  "name": "Noble Corporation",
+  "group": "Global offshore driller",
+  "price": 40.77,
+  "currency": "USD",
+  "ltm_ebitda": 928575000.0,
+  "ltm_revenue": 3067807000.0,
+  "ltm_net_income": 149583000.0,
+  "total_debt": 1888430000.0,
+  "cash": 456208000.0,
+  "shares": 159641226.0,
+  "book_equity": 4483942000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    198386000.0
+   ],
+   [
+    "2025-12-31",
+    203226000.0
+   ],
+   [
+    "2026-03-31",
+    371571000.0
+   ],
+   [
+    "2026-06-30",
+    155392000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "BORR",
+  "name": "Borr Drilling",
+  "group": "Global offshore driller",
+  "price": 3.86,
+  "currency": "USD",
+  "ltm_ebitda": 452000000.0,
+  "ltm_revenue": 1051200000.0,
+  "ltm_net_income": 32900000.0,
+  "total_debt": 2304900000.0,
+  "cash": 246000000.0,
+  "shares": 307701075.0,
+  "book_equity": 1197200000.0,
+  "latest_period": "2026-03-31",
+  "ebitda_quarters": [
+   [
+    "2025-06-30",
+    131300000.0
+   ],
+   [
+    "2025-09-30",
+    130500000.0
+   ],
+   [
+    "2025-12-31",
+    105700000.0
+   ],
+   [
+    "2026-03-31",
+    84500000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "SLB",
+  "name": "SLB",
+  "group": "Diversified oilfield services",
+  "price": 50.53,
+  "currency": "USD",
+  "ltm_ebitda": 6663000000.0,
+  "ltm_revenue": 36366000000.0,
+  "ltm_net_income": 3101000000.0,
+  "total_debt": 12798000000.0,
+  "cash": 2743000000.0,
+  "shares": 1484143231.0,
+  "book_equity": 26074000000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    1780000000.0
+   ],
+   [
+    "2025-12-31",
+    1267000000.0
+   ],
+   [
+    "2026-03-31",
+    1757000000.0
+   ],
+   [
+    "2026-06-30",
+    1859000000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "HAL",
+  "name": "Halliburton",
+  "group": "Diversified oilfield services",
+  "price": 31.89,
+  "currency": "USD",
+  "ltm_ebitda": 3592000000.0,
+  "ltm_revenue": 22373000000.0,
+  "ltm_net_income": 1602000000.0,
+  "total_debt": 8199000000.0,
+  "cash": 2048000000.0,
+  "shares": 834000000.0,
+  "book_equity": 11010000000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    615000000.0
+   ],
+   [
+    "2025-12-31",
+    945000000.0
+   ],
+   [
+    "2026-03-31",
+    968000000.0
+   ],
+   [
+    "2026-06-30",
+    1064000000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "BKR",
+  "name": "Baker Hughes",
+  "group": "Diversified oilfield services",
+  "price": 61.55,
+  "currency": "USD",
+  "ltm_ebitda": 5080000000.0,
+  "ltm_revenue": 27725000000.0,
+  "ltm_net_income": 3096000000.0,
+  "total_debt": 16253000000.0,
+  "cash": 15727000000.0,
+  "shares": 992327000.0,
+  "book_equity": 19908000000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    1159000000.0
+   ],
+   [
+    "2025-12-31",
+    916000000.0
+   ],
+   [
+    "2026-03-31",
+    1714000000.0
+   ],
+   [
+    "2026-06-30",
+    1291000000.0
+   ]
+  ]
+ },
+ {
+  "symbol": "WFRD",
+  "name": "Weatherford Intl",
+  "group": "Diversified oilfield services",
+  "price": 86.82,
+  "currency": "USD",
+  "ltm_ebitda": 848000000.0,
+  "ltm_revenue": 4778000000.0,
+  "ltm_net_income": 366000000.0,
+  "total_debt": 1622000000.0,
+  "cash": 1100000000.0,
+  "shares": 71800000.0,
+  "book_equity": 1788000000.0,
+  "latest_period": "2026-06-30",
+  "ebitda_quarters": [
+   [
+    "2025-09-30",
+    240000000.0
+   ],
+   [
+    "2025-12-31",
+    233000000.0
+   ],
+   [
+    "2026-03-31",
+    202000000.0
+   ],
+   [
+    "2026-06-30",
+    173000000.0
+   ]
+  ]
+ }
+]
