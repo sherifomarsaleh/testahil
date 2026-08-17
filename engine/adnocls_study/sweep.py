@@ -119,6 +119,17 @@ F['C2'] = R.add(
                  'group effective rate is an OUTPUT of the earnings mix rather than an '
                  'assumption — and it falls as shipping grows.',
     is_fs_data=False)
+F['C4'] = R.add(
+    Ring.COUNTRY, 'sovereign macro (inflation, policy rate, FX/deval risk)', FindingClass.D,
+    'The published FTSE ADX General Index, the capitalisation-weighted index of the '
+    'exchange the share is listed on, covering 3,883 sessions from 2 January 2011 to 24 '
+    'July 2026.',
+    'Daily index history, investing.com export, screened against the exchange calendar',
+    MKT, '2026-07-24',
+    model_impact='The regressor in the beta estimate, and therefore the largest single '
+                 'input to the cost of equity. Regressed against it the beta is 1.085; '
+                 'against an equal-weight composite of the same exchange it is 0.705. Both '
+                 'are published, and the index is what is adopted.')
 F['C3'] = R.add(
     Ring.COUNTRY, 'fiscal / political events with sector read-through', FindingClass.S,
     'The company is majority-owned by the national oil company. A secondary placement in '
@@ -367,9 +378,13 @@ R.add_driver('Cost of equity', DriverMode.BOTTOM_UP,
              'The normalised risk-free rate is the observed dirham government bond yield '
              'less the sovereign\'s own default spread, so country risk is charged once '
              'through the equity premium. Beta is the stock\'s own weekly regression '
-             'against an index of its home market over its full listed history. Because '
-             'that history is short and the float small, the study also publishes the whole '
-             'valuation at an asset-risk beta of 1.0.', [F['C1'], F['C3']])
+             'against the published index of its own exchange, over its full listed '
+             'history, and it passes the usability test on all three conditions. Because '
+             'that history is short, the float small and the estimate\'s own confidence '
+             'interval wide, the study publishes the whole valuation a second time on the '
+             'equal-weight composite construction, and takes its bear and bull cases from '
+             'that interval rather than from round numbers chosen by hand.',
+             [F['C1'], F['C3'], F['C4']])
 R.add_driver('Cost of debt', DriverMode.BOTTOM_UP,
              'Three constructions averaged in the workbook rather than asserted: the '
              'marginal drawdown rate on the parent facility, the weighted blend of the '

@@ -96,6 +96,21 @@
   {
    "fid": "F07",
    "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The published FTSE ADX General Index, the capitalisation-weighted index of the exchange the share is listed on, covering 3,883 sessions from 2 January 2011 to 24 July 2026.",
+   "source_name": "Daily index history, investing.com export, screened against the exchange calendar",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-07-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "The regressor in the beta estimate, and therefore the largest single input to the cost of equity. Regressed against it the beta is 1.085; against an equal-weight composite of the same exchange it is 0.705. Both are published, and the index is what is adopted.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
    "category": "fiscal / political events with sector read-through",
    "klass": "STRUCTURAL",
    "headline": "The company is majority-owned by the national oil company. A secondary placement in August 2025 raised the free float by three percentage points to 22% and preceded inclusion in a major emerging-market index.",
@@ -109,7 +124,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F08",
+   "fid": "F09",
    "ring": "INDUSTRY",
    "category": "demand drivers & capacity/supply balance",
    "klass": "DRIVER_UNLOCK",
@@ -124,7 +139,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F09",
+   "fid": "F10",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "DRIVER_UNLOCK",
@@ -139,7 +154,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F10",
+   "fid": "F11",
    "ring": "INDUSTRY",
    "category": "competitor capacity / price moves (named)",
    "klass": "COLOR",
@@ -154,7 +169,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F11",
+   "fid": "F12",
    "ring": "INDUSTRY",
    "category": "technology substitution",
    "klass": "COLOR",
@@ -169,7 +184,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F12",
+   "fid": "F13",
    "ring": "INDUSTRY",
    "category": "new entrants (named-competitor level)",
    "klass": "NEGATIVE_SEARCH",
@@ -184,7 +199,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F13",
+   "fid": "F14",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "STRUCTURAL",
@@ -199,7 +214,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F14",
+   "fid": "F15",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "STRUCTURAL",
@@ -214,7 +229,7 @@
    "fiscal_period": "FY2024"
   },
   {
-   "fid": "F15",
+   "fid": "F16",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "STRUCTURAL",
@@ -229,7 +244,7 @@
    "fiscal_period": "FY2023"
   },
   {
-   "fid": "F16",
+   "fid": "F17",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -244,7 +259,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F17",
+   "fid": "F18",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "DRIVER_UNLOCK",
@@ -259,7 +274,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F18",
+   "fid": "F19",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -274,7 +289,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F19",
+   "fid": "F20",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -289,7 +304,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F20",
+   "fid": "F21",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -304,7 +319,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F21",
+   "fid": "F22",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "STRUCTURAL",
@@ -319,7 +334,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F22",
+   "fid": "F23",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -334,7 +349,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F23",
+   "fid": "F24",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "STRUCTURAL",
@@ -349,7 +364,7 @@
    "fiscal_period": "FY2022"
   },
   {
-   "fid": "F24",
+   "fid": "F25",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "NEGATIVE_SEARCH",
@@ -364,7 +379,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F25",
+   "fid": "F26",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -385,8 +400,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Built vessel by vessel: 45 spot-exposed vessels at the time-charter equivalent disclosed for each class, eight chartered-out vessels at their own fixed rates until each expires, less a running cost per vessel per day. The running cost is solved so that the same construction reproduces reported 2025 segment earnings exactly, which is what makes it a calibration rather than an assumption.",
    "sweep_refs": [
-    "F08",
     "F09",
+    "F10",
     "F02"
    ]
   },
@@ -397,8 +412,8 @@
    "sweep_refs": [
     "F02",
     "F04",
-    "F09",
-    "F24"
+    "F10",
+    "F25"
    ]
   },
   {
@@ -406,8 +421,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Consolidated vessel-years read off the published contract table quarter by quarter to 2029, at an average revenue per vessel per day implied by reported 2025 revenue over 2025 vessel-years. Per-vessel rates are not disclosed, so the implied group average is the finest level the disclosure supports and the gap is flagged.",
    "sweep_refs": [
-    "F08",
-    "F18"
+    "F09",
+    "F19"
    ]
   },
   {
@@ -415,8 +430,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Each unit anchored on its own first-quarter 2026 revenue annualised, then grown on the fleet deployment the company has disclosed. Margins are set from the first quarter's own outcome before the one-off receivable provision.",
    "sweep_refs": [
-    "F16",
-    "F18"
+    "F17",
+    "F19"
    ]
   },
   {
@@ -424,9 +439,9 @@
    "mode": "TOP_DOWN",
    "justification": "The company's own stated range of USD 100-150 million for 2026 after the large island project completed. Beyond that no award pipeline is disclosed, so the recovery is a judgement and is named as the least visible line in the model.",
    "sweep_refs": [
-    "F17",
     "F18",
-    "F25"
+    "F19",
+    "F26"
    ]
   },
   {
@@ -434,8 +449,8 @@
    "mode": "BOTTOM_UP",
    "justification": "The company's own published path for 2026 to 2028, which totals about USD 7 billion across the programme and matches the disclosed order book and remaining committed spend. Beyond 2028 it falls toward the stated USD 100-150 million a year of maintenance spending plus continuing fleet renewal.",
    "sweep_refs": [
-    "F08",
-    "F17"
+    "F09",
+    "F18"
    ]
   },
   {
@@ -444,7 +459,7 @@
    "justification": "Each business unit is taxed at the rate its own segment disclosure shows it bore in 2025 \u2014 about 9% in logistics, well under 1% in shipping under the international transport relief. The group rate is the output of the mix.",
    "sweep_refs": [
     "F06",
-    "F13"
+    "F14"
    ]
   },
   {
@@ -452,15 +467,16 @@
    "mode": "BOTTOM_UP",
    "justification": "Days sales outstanding, days inventory and days payable computed from the 2025 statements and held, so the balance sheet and the cash flow are projected from the conversion cycle rather than plugged.",
    "sweep_refs": [
-    "F13"
+    "F14"
    ]
   },
   {
    "driver": "Cost of equity",
    "mode": "BOTTOM_UP",
-   "justification": "The normalised risk-free rate is the observed dirham government bond yield less the sovereign's own default spread, so country risk is charged once through the equity premium. Beta is the stock's own weekly regression against an index of its home market over its full listed history. Because that history is short and the float small, the study also publishes the whole valuation at an asset-risk beta of 1.0.",
+   "justification": "The normalised risk-free rate is the observed dirham government bond yield less the sovereign's own default spread, so country risk is charged once through the equity premium. Beta is the stock's own weekly regression against the published index of its own exchange, over its full listed history, and it passes the usability test on all three conditions. Because that history is short, the float small and the estimate's own confidence interval wide, the study publishes the whole valuation a second time on the equal-weight composite construction, and takes its bear and bull cases from that interval rather than from round numbers chosen by hand.",
    "sweep_refs": [
     "F05",
+    "F08",
     "F07"
    ]
   },
@@ -469,7 +485,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Three constructions averaged in the workbook rather than asserted: the marginal drawdown rate on the parent facility, the weighted blend of the instruments actually outstanding, and the midpoint of the disclosed third-party bank-loan range. The result sits above the local sovereign yield, as it must.",
    "sweep_refs": [
-    "F20",
+    "F21",
     "F05"
    ]
   },
@@ -478,7 +494,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Taken from the company's own goodwill value-in-use test, which projects cash flows beyond its plan at a rate equal to an estimated 2% inflation, and sensitised from 1.0% to 2.5%.",
    "sweep_refs": [
-    "F13"
+    "F14"
    ]
   },
   {
@@ -486,8 +502,8 @@
    "mode": "BOTTOM_UP",
    "justification": "The weight between a contracted-fleet multiple and a spot-fleet multiple is the company's own disclosed share of earnings exposed to spot rates, not a judgement about which peer looks closest.",
    "sweep_refs": [
-    "F22",
-    "F10"
+    "F23",
+    "F11"
    ]
   }
  ],
@@ -515,5 +531,5 @@
  "study_quarters_disclosed": [
   "Q1 2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [ADNOCLS, 2026-08-09]: PASS \u2014 4/4 rings, 25 findings (1 B \u00b7 8 S \u00b7 11 D \u00b7 2 C \u00b7 3 NEG), driver gate 12 rows (10 bottom-up / 2 top-down) | primary access: attempted (3) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 8"
+ "qc_line": "QC(m) \u2014 Information Sweep [ADNOCLS, 2026-08-09]: PASS \u2014 4/4 rings, 26 findings (1 B \u00b7 8 S \u00b7 12 D \u00b7 2 C \u00b7 3 NEG), driver gate 12 rows (10 bottom-up / 2 top-down) | primary access: attempted (3) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 8"
 }
