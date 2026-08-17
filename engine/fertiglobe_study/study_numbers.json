@@ -1,0 +1,2844 @@
+{
+ "meta": {
+  "ticker": "FERTIGLB",
+  "company": "Fertiglobe plc",
+  "market": "AE",
+  "exchange": "Abu Dhabi Securities Exchange",
+  "currency": "USD",
+  "listing_currency": "AED",
+  "fx": 3.6725,
+  "asof": "2026-08-10",
+  "price_date": "2026-08-07",
+  "spot_aed": 2.54,
+  "spot_usd": 0.6916269571136828,
+  "shares_mn": 8249.6,
+  "mktcap_usd": 5705.645745405038,
+  "mktcap_aed": 20953.984,
+  "ev_trailing": 6326.845745405038,
+  "klass": "operating company \u2014 nitrogen fertilisers",
+  "sector": "Commodity chemicals \u2014 nitrogen fertilisers",
+  "reference_pattern": "SWDY (operating company)"
+ },
+ "inputs": {
+  "spot_aed": {
+   "value": 2.54,
+   "source": "ADX closing price, FERTIGLB, from the study price history",
+   "date": "2026-08-07",
+   "ring": "MARKET"
+  },
+  "fx_aed_usd": {
+   "value": 3.6725,
+   "source": "CBUAE dirham peg to the US dollar, fixed since 1997",
+   "date": "2026-08-07",
+   "ring": "COUNTRY"
+  },
+  "shares_mn": {
+   "value": 8249.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026), note 24 \u2014 ordinary shares outstanding at 31-Dec-2025",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "rev_fy22": {
+   "value": 5027.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "rev_fy23": {
+   "value": 2416.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "rev_fy24": {
+   "value": 2009.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "rev_fy25": {
+   "value": 2827.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cogs_fy22": {
+   "value": 2675.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "cogs_fy23": {
+   "value": 1564.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "cogs_fy24": {
+   "value": 1512.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "cogs_fy25": {
+   "value": 1942.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "sga_fy22": {
+   "value": 168.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "sga_fy23": {
+   "value": 144.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "sga_fy24": {
+   "value": 150.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "sga_fy25": {
+   "value": 158.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "othinc_fy23": {
+   "value": 2.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) \u2014 other income 3.3 less other expenses 0.7",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "othinc_fy24": {
+   "value": 3.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "othinc_fy25": {
+   "value": 0.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "dna_fy22": {
+   "value": 266.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative), cash-flow statement",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "dna_fy23": {
+   "value": 279.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed), cash-flow statement",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "dna_fy24": {
+   "value": 279.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative), cash-flow statement",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "dna_fy25": {
+   "value": 297.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026), cash-flow statement",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "finc_fy23": {
+   "value": 16.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "finc_fy24": {
+   "value": 17.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "finc_fy25": {
+   "value": 13.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "fcost_fy23": {
+   "value": 119.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "fcost_fy24": {
+   "value": 135.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "fcost_fy25": {
+   "value": 115.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "fx_fy23": {
+   "value": -19.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) \u2014 net foreign exchange loss",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "fx_fy24": {
+   "value": -1.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "fx_fy25": {
+   "value": -11.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_fy22": {
+   "value": 239.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_fy23": {
+   "value": 82.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_fy24": {
+   "value": 15.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_fy25": {
+   "value": 25.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "nci_fy22": {
+   "value": 570.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "nci_fy23": {
+   "value": 156.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "nci_fy24": {
+   "value": 53.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "nci_fy25": {
+   "value": 154.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "ppe_fy23": {
+   "value": 2699.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "ppe_fy24": {
+   "value": 2596.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "ppe_fy25": {
+   "value": 2499.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "rou_fy23": {
+   "value": 74.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "rou_fy24": {
+   "value": 68.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "rou_fy25": {
+   "value": 139.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "gwi_fy23": {
+   "value": 614.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "gwi_fy24": {
+   "value": 626.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "gwi_fy25": {
+   "value": 656.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "inv_fy23": {
+   "value": 133.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "inv_fy24": {
+   "value": 164.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "inv_fy25": {
+   "value": 335.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "recv_fy23": {
+   "value": 314.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "recv_fy24": {
+   "value": 290.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "recv_fy25": {
+   "value": 493.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cash_fy23": {
+   "value": 759.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "cash_fy24": {
+   "value": 633.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "cash_fy25": {
+   "value": 735.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "pay_fy23": {
+   "value": 326.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "pay_fy24": {
+   "value": 481.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "pay_fy25": {
+   "value": 820.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "ta_fy23": {
+   "value": 4625.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "ta_fy24": {
+   "value": 4410.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "ta_fy25": {
+   "value": 4949.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "eqown_fy23": {
+   "value": 1444.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "eqown_fy24": {
+   "value": 1241.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "eqown_fy25": {
+   "value": 1356.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "eqnci_fy23": {
+   "value": 425.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "eqnci_fy24": {
+   "value": 295.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "eqnci_fy25": {
+   "value": 443.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "ltd_fy23": {
+   "value": 1490.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "ltd_fy24": {
+   "value": 1425.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "ltd_fy25": {
+   "value": 1398.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "std_fy23": {
+   "value": 174.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "std_fy24": {
+   "value": 256.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "std_fy25": {
+   "value": 342.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "lease_fy23": {
+   "value": 90.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) \u2014 lease obligations, non-current 67.9 + current 22.7",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "lease_fy24": {
+   "value": 86.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 63.1 + 23.8",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "lease_fy25": {
+   "value": 158.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 134.0 + 24.4",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "dtl_fy23": {
+   "value": 344.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "dtl_fy24": {
+   "value": 310.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "dtl_fy25": {
+   "value": 273.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "taxpay_fy23": {
+   "value": 270.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "taxpay_fy24": {
+   "value": 254.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "taxpay_fy25": {
+   "value": 112.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cfo_fy23": {
+   "value": 797.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "cfo_fy24": {
+   "value": 607.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "cfo_fy25": {
+   "value": 734.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "capex_fy22": {
+   "value": 115.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "capex_fy23": {
+   "value": 114.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "capex_fy24": {
+   "value": 168.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "capex_fy25": {
+   "value": 191.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "maint_capex_fy25": {
+   "value": 143.6,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026) \u2014 maintenance capital expenditure",
+   "date": "2025-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "divsh_fy25": {
+   "value": 250.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "divnci_fy25": {
+   "value": 61.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "rev_h1_26": {
+   "value": 2001.0,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "cogs_h1_26": {
+   "value": 1376.1,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "sga_h1_26": {
+   "value": 97.8,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "dna_h1_26": {
+   "value": 152.6,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "ebitda_h1_26": {
+   "value": 679.7,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "adj_ebitda_h1_26": {
+   "value": 713.1,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "op_h1_26": {
+   "value": 527.1,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "pbt_h1_26": {
+   "value": 500.3,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "npown_h1_26": {
+   "value": 312.4,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "capex_h1_26": {
+   "value": 52.8,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "netdebt_h1_26": {
+   "value": 621.2,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) and Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "grossdebt_h1_26": {
+   "value": 1994.4,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "cash_h1_26": {
+   "value": 1373.2,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "inv_h1_26": {
+   "value": 441.1,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "recv_h1_26": {
+   "value": 543.2,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "pay_h1_26": {
+   "value": 958.0,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "eq_h1_26": {
+   "value": 2163.4,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "ta_h1_26": {
+   "value": 5641.8,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "sorfert_accr_fy23": {
+   "value": 7.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2024 (signed 18-Mar-2025) \u2014 accrued expenses note (2023 comparative)",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "sorfert_accr_fy24": {
+   "value": 182.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2024 (signed 18-Mar-2025) \u2014 accrued expenses note; also a Key Audit Matter",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "sorfert_accr_fy25": {
+   "value": 386.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 accrued expenses note",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "sorfert_accr_q1_26": {
+   "value": 422.4,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, three months ended 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "COMPANY"
+  },
+  "sorfert_accr_h1_26": {
+   "value": 468.8,
+   "source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY"
+  },
+  "vol_urea_fy24": {
+   "value": 4225.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026) \u2014 product sales volumes table",
+   "date": "2024-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_urea_fy25": {
+   "value": 4228.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_nh3_fy24": {
+   "value": 1119.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_nh3_fy25": {
+   "value": 1267.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_own_fy24": {
+   "value": 5345.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_own_fy25": {
+   "value": 5498.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_3p_fy24": {
+   "value": 286.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_3p_fy25": {
+   "value": 980.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY_IR"
+  },
+  "vol_urea_h1_26": {
+   "value": 2045.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "vol_nh3_h1_26": {
+   "value": 523.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "vol_own_h1_26": {
+   "value": 2571.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "vol_3p_h1_26": {
+   "value": 562.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "cap_urea": {
+   "value": 5100.0,
+   "source": "Fertiglobe Q2 2026 Investor Presentation (28-Jul-2026) \u2014 5.1 Mt urea production capacity",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "cap_nh3_merchant": {
+   "value": 1500.0,
+   "source": "Fertiglobe Q2 2026 Investor Presentation (28-Jul-2026) \u2014 1.5 Mt merchant ammonia capacity",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "urea_util_h1_26": {
+   "value": 0.92,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) \u2014 urea utilisation 92% across the platform in H1 2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "bm_urea_eg_fy24": {
+   "value": 357.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026) \u2014 granular urea Egypt FOB (source: CRU, MMSA, ICIS, Bloomberg)",
+   "date": "2024-12-31",
+   "ring": "INDUSTRY"
+  },
+  "bm_urea_eg_fy25": {
+   "value": 440.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "INDUSTRY"
+  },
+  "bm_urea_eg_h1_26": {
+   "value": 637.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "INDUSTRY"
+  },
+  "bm_urea_eg_jul26": {
+   "value": 555.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) \u2014 urea ticked back up to $555/t FOB Egypt in July 2026",
+   "date": "2026-07-15",
+   "ring": "INDUSTRY"
+  },
+  "bm_nh3_me_fy24": {
+   "value": 349.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026) \u2014 ammonia Middle East FOB",
+   "date": "2024-12-31",
+   "ring": "INDUSTRY"
+  },
+  "bm_nh3_me_fy25": {
+   "value": 343.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026)",
+   "date": "2025-12-31",
+   "ring": "INDUSTRY"
+  },
+  "bm_nh3_me_h1_26": {
+   "value": 594.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "INDUSTRY"
+  },
+  "bm_ttf_fy25": {
+   "value": 12.0,
+   "source": "Fertiglobe Q4 2025 Results MD&A Report (11-Feb-2026) \u2014 natural gas TTF (Europe)",
+   "date": "2025-12-31",
+   "ring": "GLOBAL"
+  },
+  "bm_ttf_h1_26": {
+   "value": 14.6,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "GLOBAL"
+  },
+  "bm_ttf_jul26": {
+   "value": 20.0,
+   "source": "Fertiglobe Q2 2026 Results Call Transcript (6-Aug-2026) \u2014 TTF rallied to $21/MMBtu, ~$19-20/MMBtu at the call date",
+   "date": "2026-08-06",
+   "ring": "GLOBAL"
+  },
+  "gas_realised_q2_26": {
+   "value": 6.0,
+   "source": "Fertiglobe Q2 2026 Results Call Transcript (6-Aug-2026) \u2014 'in Q2, our overall gas price was $6 MMBtu'",
+   "date": "2026-08-06",
+   "ring": "COMPANY_IR"
+  },
+  "gas_realised_q2_26_ecremage": {
+   "value": 8.0,
+   "source": "Fertiglobe Q2 2026 Results Call Transcript (6-Aug-2026) \u2014 '$8 MMBtu if you include the ecremage of Algeria'",
+   "date": "2026-08-06",
+   "ring": "COMPANY_IR"
+  },
+  "seg_own_rev_fy24": {
+   "value": 1896.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_own_rev_fy25": {
+   "value": 2332.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_own_ebitda_fy24": {
+   "value": 697.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note, adjusted EBITDA (FY2024)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_own_ebitda_fy25": {
+   "value": 1059.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note, adjusted EBITDA",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_3p_rev_fy24": {
+   "value": 113.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note (FY2024)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_3p_rev_fy25": {
+   "value": 495.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 segment note",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_3p_ebitda_fy24": {
+   "value": 2.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_3p_ebitda_fy25": {
+   "value": 19.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_oth_ebitda_fy24": {
+   "value": -51.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_oth_ebitda_fy25": {
+   "value": -58.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "seg_own_rev_h1_26": {
+   "value": 1597.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) \u2014 segment overview H1 2026",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "seg_own_ebitda_h1_26": {
+   "value": 709.6,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "seg_3p_rev_h1_26": {
+   "value": 404.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "seg_3p_ebitda_h1_26": {
+   "value": 43.8,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "seg_oth_ebitda_h1_26": {
+   "value": -40.3,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026)",
+   "date": "2026-06-30",
+   "ring": "COMPANY_IR"
+  },
+  "cost_raw_fy25": {
+   "value": 1310.0,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 expenses by nature: raw materials 1,071.1 + related party 238.9",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cost_freight_fy25": {
+   "value": 134.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 expenses by nature, freight costs",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cost_staff_fy25": {
+   "value": 254.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 employee benefit expenses",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cost_maint_fy25": {
+   "value": 35.3,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 maintenance and repair",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cost_consult_fy25": {
+   "value": 27.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 consultancy expenses",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "cost_other_fy25": {
+   "value": 39.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 other",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_eff_fy23": {
+   "value": 0.14,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) \u2014 income tax 82.4 on profit before tax 587.4",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_eff_fy24": {
+   "value": 0.07,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 stated effective tax rate (FY2024)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_eff_fy25": {
+   "value": 0.04,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 stated effective tax rate",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_paid_fy23": {
+   "value": 67.4,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) \u2014 income taxes paid",
+   "date": "2023-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_paid_fy24": {
+   "value": 56.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative)",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_paid_fy25": {
+   "value": 205.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_paid_fy22": {
+   "value": 217.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "pbt_fy22": {
+   "value": 2059.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed) (FY2022 comparative)",
+   "date": "2022-12-31",
+   "ring": "COMPANY"
+  },
+  "tax_stat_uae": {
+   "value": 0.09,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 'the statutory income tax rate in the UAE is 9%'",
+   "date": "2025-12-31",
+   "ring": "COUNTRY"
+  },
+  "ust10": {
+   "value": 0.0469,
+   "source": "Federal Reserve Bank of St Louis, FRED series DGS10 \u2014 10-year Treasury constant maturity",
+   "date": "2026-08-06",
+   "ring": "GLOBAL"
+  },
+  "sofr": {
+   "value": 0.0365,
+   "source": "Secured Overnight Financing Rate, New York Fed",
+   "date": "2026-08-06",
+   "ring": "GLOBAL"
+  },
+  "ad_cds": {
+   "value": 0.0046,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi sovereign CDS",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "ad_ads": {
+   "value": 0.0042,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi adjusted default spread (Moody's Aa2)",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "ad_erp": {
+   "value": 0.0487,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi equity risk premium, rating basis",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "ad_erp_cds": {
+   "value": 0.0493,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi equity risk premium, CDS basis",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "ad_crp": {
+   "value": 0.0064,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi country risk premium",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "eg_erp": {
+   "value": 0.1394,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Egypt equity risk premium, rating basis (Caa1)",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "eg_erp_cds": {
+   "value": 0.0941,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Egypt equity risk premium, CDS basis",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "dz_erp": {
+   "value": 0.1006,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Algeria equity risk premium, rating basis (not rated)",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "mature_erp": {
+   "value": 0.0423,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 mature-market ERP = Abu Dhabi ERP 4.87% less its CRP 0.64%",
+   "date": "2026-08-09",
+   "ring": "GLOBAL"
+  },
+  "tax_dam_uae": {
+   "value": 0.09,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 corporate tax rate, Abu Dhabi",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "tax_dam_eg": {
+   "value": 0.225,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 corporate tax rate, Egypt",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "tax_dam_dz": {
+   "value": 0.1007,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 corporate tax rate, Algeria",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "w_egypt": {
+   "value": 0.311,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 'non-current assets in individual foreign countries are 31.1% in Egypt'",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "w_algeria": {
+   "value": 0.161,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 '16.1% in Algeria'",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "nca_middle_east": {
+   "value": 2769.5,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 geographical information, non-current assets",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "nca_total": {
+   "value": 3385.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "nca_other_regions": {
+   "value": 65.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Europe 14.2 + North America 2.1 + Asia and Oceania 48.9",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "kd_spread_facility_bc": {
+   "value": 0.009,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Facilities B ($600m) and C ($500m), SOFR + 0.90%, spread renegotiated down from 150/140bps during 2025",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "kd_spread_adnoc": {
+   "value": 0.0105,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 ADNOC term loan $300m drawn 27-Mar-2025, SOFR + 1.05%",
+   "date": "2025-03-27",
+   "ring": "COMPANY"
+  },
+  "kd_spread_rcf": {
+   "value": 0.0115,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 revolving credit facility $600m, SOFR + 1.15%",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "kd_cap_rate_rejected": {
+   "value": 0.0662,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 weighted average interest rate on general borrowings used for borrowing-cost capitalisation. Historical/accounting; NOT used as the cost of debt.",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "debt_usd_fy25": {
+   "value": 1651.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 loans and borrowings by tranche: Facilities B/C 1,115.8 + ADNOC 303.2 + trade finance 91.5 + supply chain 67.0 + overdraft 6.9 + 2023 working capital 67.5",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "debt_dzd_fy25": {
+   "value": 34.8,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Sorfert term loan, Algerian bank rate + 1.95%",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "debt_aud_fy25": {
+   "value": 53.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Fertiglobe Australia trade finance facilities 1 and 2, BBSY + 0.60%",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "urea_demand_growth_2030": {
+   "value": 11.4,
+   "source": "Fertiglobe Q2 2026 Investor Presentation (28-Jul-2026) \u2014 global urea demand growth ex-China of ~11.4 million tons expected by 2030",
+   "date": "2026-07-28",
+   "ring": "INDUSTRY"
+  },
+  "urea_capacity_adds_2030": {
+   "value": 9.1,
+   "source": "Fertiglobe Q2 2026 Investor Presentation (28-Jul-2026) \u2014 expected capacity additions of ~9.1 million tons by 2030",
+   "date": "2026-07-28",
+   "ring": "INDUSTRY"
+  },
+  "eu_tariff_russia_jul26": {
+   "value": 60.0,
+   "source": "Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) \u2014 EU tariffs on Russian and Belarusian urea rose to EUR 60/t in July 2026, rising annually to EUR 315/t in 2028",
+   "date": "2026-07-28",
+   "ring": "INDUSTRY"
+  },
+  "beta": {
+   "value": 0.931,
+   "source": "Own-stock weekly regression against the FTSE ADX General index (published, as of 2026-07-24), 4.68 years, n=242, R-squared 0.100, standard error 0.283",
+   "date": "2026-08-07",
+   "ring": "MARKET"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 2416.2,
+   "cogs": 1564.2,
+   "gp": 851.9999999999998,
+   "sga": 144.5,
+   "othinc": 2.6,
+   "ebitda": 989.3999999999999,
+   "dna": 279.3,
+   "ebit": 710.0999999999998,
+   "netfin": -122.70000000000002,
+   "pbt": 587.3999999999997,
+   "tax": 82.4,
+   "np": 504.9999999999998,
+   "nci": 156.1,
+   "np_own": 348.89999999999975,
+   "gp_margin": 0.35261981624037736,
+   "ebitda_margin": 0.40948596970449463,
+   "eff_tax": 0.1402791964589718
+  },
+  "FY24": {
+   "rev": 2009.2,
+   "cogs": 1512.9,
+   "gp": 496.29999999999995,
+   "sga": 150.2,
+   "othinc": 3.0,
+   "ebitda": 628.5999999999999,
+   "dna": 279.5,
+   "ebit": 349.09999999999997,
+   "netfin": -119.8,
+   "pbt": 229.29999999999995,
+   "tax": 15.7,
+   "np": 213.59999999999997,
+   "nci": 53.7,
+   "np_own": 159.89999999999998,
+   "gp_margin": 0.24701373681067088,
+   "ebitda_margin": 0.31286084013537724,
+   "eff_tax": 0.06846925425207154
+  },
+  "FY25": {
+   "rev": 2827.4,
+   "cogs": 1942.0,
+   "gp": 885.4000000000001,
+   "sga": 158.1,
+   "othinc": 0.0,
+   "ebitda": 1024.9,
+   "dna": 297.6,
+   "ebit": 727.3000000000001,
+   "netfin": -113.8,
+   "pbt": 613.5000000000001,
+   "tax": 25.0,
+   "np": 588.5000000000001,
+   "nci": 154.6,
+   "np_own": 433.9000000000001,
+   "gp_margin": 0.3131498903586334,
+   "ebitda_margin": 0.3624885053405956,
+   "eff_tax": 0.04074979625101874
+  }
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 2699.6,
+   "rou": 74.9,
+   "gwi": 614.5,
+   "inv": 133.6,
+   "recv": 314.3,
+   "cash": 759.8,
+   "pay": 326.7,
+   "ta": 4625.8,
+   "eq_own": 1444.7,
+   "eq_nci": 425.0,
+   "eq_tot": 1869.7,
+   "debt_gross": 1665.1000000000001,
+   "lease": 90.6,
+   "net_debt": 995.9000000000001,
+   "dtl": 344.9,
+   "taxpay": 270.4,
+   "nwc": 121.19999999999999
+  },
+  "FY24": {
+   "ppe": 2596.8,
+   "rou": 68.6,
+   "gwi": 626.8,
+   "inv": 164.0,
+   "recv": 290.7,
+   "cash": 633.9,
+   "pay": 481.0,
+   "ta": 4410.6,
+   "eq_own": 1241.8,
+   "eq_nci": 295.9,
+   "eq_tot": 1537.6999999999998,
+   "debt_gross": 1682.2,
+   "lease": 86.9,
+   "net_debt": 1135.2000000000003,
+   "dtl": 310.0,
+   "taxpay": 254.4,
+   "nwc": -26.30000000000001
+  },
+  "FY25": {
+   "ppe": 2499.0,
+   "rou": 139.4,
+   "gwi": 656.9,
+   "inv": 335.5,
+   "recv": 493.1,
+   "cash": 735.1,
+   "pay": 820.3,
+   "ta": 4949.5,
+   "eq_own": 1356.5,
+   "eq_nci": 443.3,
+   "eq_tot": 1799.8,
+   "debt_gross": 1740.6,
+   "lease": 158.4,
+   "net_debt": 1163.9,
+   "dtl": 273.1,
+   "taxpay": 112.9,
+   "nwc": 8.300000000000068
+  }
+ },
+ "ccc": {
+  "FY24": {
+   "dso": 52.809824805892895,
+   "dio": 39.566395663956634,
+   "dpo": 116.04534338026306,
+   "ccc": -23.669122910413535
+  },
+  "FY25": {
+   "dso": 63.656185895168704,
+   "dio": 63.05741503604531,
+   "dpo": 154.17584963954687,
+   "ccc": -27.46224870833285
+  },
+  "FY25_ex_accrual": {
+   "dso": 63.656185895168704,
+   "dio": 63.05741503604531,
+   "dpo": 81.5705458290422,
+   "ccc": 45.143055102171814
+  }
+ },
+ "unit": {
+  "FY24": {
+   "vol_own": 5345.0,
+   "vol_urea": 4225.0,
+   "vol_nh3": 1119.0,
+   "rev_own": 1896.2,
+   "px_realised": 354.76145930776426,
+   "bm_urea": 357.0,
+   "bm_nh3": 349.0,
+   "bm_blend": 355.3248502994012,
+   "realisation": 0.9984144340280107,
+   "ebitda_own": 697.5,
+   "cash_cost_tot": 1198.7,
+   "cash_cost_t": 224.26566884939194,
+   "ebitda_margin_own": 0.3678409450479907,
+   "accr_charge": 175.60000000000002,
+   "cash_cost_t_ex_accr": 191.41253507951356
+  },
+  "FY25": {
+   "vol_own": 5498.0,
+   "vol_urea": 4228.0,
+   "vol_nh3": 1267.0,
+   "rev_own": 2332.4,
+   "px_realised": 424.22699163332123,
+   "bm_urea": 440.0,
+   "bm_nh3": 343.0,
+   "bm_blend": 417.6343949044586,
+   "realisation": 1.0157855694102274,
+   "ebitda_own": 1059.9,
+   "cash_cost_tot": 1272.5,
+   "cash_cost_t": 231.44779919970898,
+   "ebitda_margin_own": 0.4544246269936546,
+   "accr_charge": 203.5,
+   "cash_cost_t_ex_accr": 194.4343397599127
+  },
+  "H1_26": {
+   "vol_own": 2571.0,
+   "vol_urea": 2045.0,
+   "vol_nh3": 523.0,
+   "rev_own": 1597.0,
+   "px_realised": 621.1590820692337,
+   "bm_urea": 637.0,
+   "bm_nh3": 594.0,
+   "bm_blend": 628.2426012461059,
+   "realisation": 0.9887248665359175,
+   "ebitda_own": 709.6,
+   "cash_cost_tot": 887.4,
+   "cash_cost_t": 345.15752625437574,
+   "ebitda_margin_own": 0.4443331246086412,
+   "accr_charge": 82.5,
+   "cash_cost_t_ex_accr": 313.0688448074679
+  }
+ },
+ "realisation": 1.000974956658052,
+ "cost_stack": {
+  "passthrough": {
+   "slope": 0.48088252190243597,
+   "intercept": 42.52150586466672,
+   "r2": 0.9601036133486855,
+   "n": 3
+  },
+  "passthrough_ex_accrual": {
+   "slope": 0.48860229294518187,
+   "intercept": 4.933474852170832,
+   "r2": 0.9470045139643584,
+   "n": 3
+  },
+  "passthru_used": 0.48088252190243597,
+  "gas_mmbtu_fy25_mn": 131.866,
+  "gas_per_tonne": 23.984357948344854,
+  "implied_delta_gas": 4.740995247801236,
+  "implied_base_gas": 1.2590047521987637,
+  "gas_q2_26": 6.0,
+  "gas_q2_26_ecremage": 8.0,
+  "accr_charge": {
+   "FY24": 175.60000000000002,
+   "FY25": 203.5,
+   "H1_26": 82.5
+  },
+  "intensity_urea": 21.0,
+  "intensity_nh3": 34.0,
+  "classes": [
+   {
+    "name": "Gas and feedstock",
+    "fy25": 1310.0,
+    "driver": "Nitrogen product price (Egypt and Algeria contracts are product-linked; UAE is over-the-fence from the parent)",
+    "escalator": "Moves with the modelled product price at the calibrated pass-through, not with consumer prices"
+   },
+   {
+    "name": "Freight and logistics",
+    "fy25": 134.8,
+    "driver": "Tonnes shipped and route length",
+    "escalator": "Volume, plus a disruption premium that unwinds as the Strait of Hormuz reopens"
+   },
+   {
+    "name": "Employee benefits",
+    "fy25": 254.6,
+    "driver": "Headcount and local wages",
+    "escalator": "Domestic wage inflation in the operating countries"
+   },
+   {
+    "name": "Maintenance and repair",
+    "fy25": 35.3,
+    "driver": "Installed plant and turnaround cycle",
+    "escalator": "General inflation on a fixed asset base"
+   },
+   {
+    "name": "Consultancy and other",
+    "fy25": 67.8,
+    "driver": "Corporate activity",
+    "escalator": "General inflation"
+   }
+  ]
+ },
+ "frame_A": {
+  "years": [
+   2026,
+   2027,
+   2028,
+   2029,
+   2030
+  ],
+  "label": "A \u2014 normalisation to a marginal-cost anchor",
+  "util_urea": [
+   0.823,
+   0.853,
+   0.873,
+   0.883,
+   0.888
+  ],
+  "util_nh3": [
+   0.715,
+   0.8,
+   0.827,
+   0.84,
+   0.847
+  ],
+  "vol_urea": [
+   4197.3,
+   4350.3,
+   4452.3,
+   4503.3,
+   4528.8
+  ],
+  "vol_nh3": [
+   1072.5,
+   1200.0,
+   1240.5,
+   1260.0,
+   1270.5
+  ],
+  "vol_own": [
+   5269.8,
+   5550.3,
+   5692.8,
+   5763.3,
+   5799.3
+  ],
+  "vol_3p": [
+   1150.0,
+   1200.0,
+   1250.0,
+   1300.0,
+   1350.0
+  ],
+  "px_urea": [
+   590.0,
+   480.0,
+   440.0,
+   435.0,
+   435.0
+  ],
+  "px_nh3": [
+   560.0,
+   460.0,
+   420.0,
+   415.0,
+   415.0
+  ],
+  "bm_blend": [
+   583.8944551975407,
+   475.67590941030215,
+   435.6418634064081,
+   430.6275050752173,
+   430.6184367078785
+  ],
+  "px_realised": [
+   584.4637269842351,
+   476.1396728052566,
+   436.0665953416623,
+   431.0473482284307,
+   431.03827101982677
+  ],
+  "rev_own": [
+   3080.0069484615224,
+   2642.718025971016,
+   2482.439913961015,
+   2484.2551820449144,
+   2499.7202451252815
+  ],
+  "h1_26_actual": {
+   "vol": 2571.0,
+   "rev": 1597.0,
+   "ebitda": 709.6
+  },
+  "h2_26_forecast": {
+   "vol": 2698.8,
+   "rev": 1483.0069484615224,
+   "px": 549.5060576780503,
+   "cost_t": 306.769364681553,
+   "ebitda": 655.0977870589471
+  },
+  "rev_3p": [
+   690.0,
+   624.0,
+   612.5,
+   637.0,
+   664.2
+  ],
+  "rev": [
+   3770.0069484615224,
+   3266.718025971016,
+   3094.939913961015,
+   3121.2551820449144,
+   3163.9202451252813
+  ],
+  "cost_t": [
+   325.49796223814474,
+   271.48875250105925,
+   252.21830994997433,
+   249.80464174011198,
+   249.80027666914668
+  ],
+  "cost_own": [
+   1715.3091614025752,
+   1506.8440230066292,
+   1435.8283948832138,
+   1439.6990917407875,
+   1448.6667444873824
+  ],
+  "ebitda_own": [
+   1364.6977870589471,
+   1135.8740029643866,
+   1046.6115190778012,
+   1044.5560903041269,
+   1051.053500637899
+  ],
+  "ebitda_3p": [
+   51.75,
+   46.8,
+   45.9375,
+   47.775,
+   49.815000000000005
+  ],
+  "ebitda": [
+   1334.4477870589471,
+   1104.6740029643865,
+   1016.5490190778012,
+   1016.331090304127,
+   1023.8685006378992
+  ],
+  "ebitda_margin": [
+   0.3539642778651942,
+   0.338160194477155,
+   0.328455171130216,
+   0.32561614832090396,
+   0.3236075568641134
+  ],
+  "dna": [
+   305.0,
+   315.0,
+   325.0,
+   333.0,
+   340.0
+  ],
+  "ebit": [
+   1029.4477870589471,
+   789.6740029643865,
+   691.5490190778012,
+   683.331090304127,
+   683.8685006378992
+  ],
+  "nopat": [
+   894.1848403732989,
+   685.9158193005287,
+   600.6838394407919,
+   593.5456946790447,
+   594.0124926843052
+  ],
+  "capex": [
+   175.0,
+   240.0,
+   285.0,
+   315.0,
+   335.0
+  ],
+  "recv": [
+   657.4911318831353,
+   569.7172874748206,
+   539.7590972533693,
+   544.3484934096156,
+   551.7893021402264
+  ],
+  "inv": [
+   420.7673010559032,
+   373.51481447926056,
+   359.06289661859853,
+   363.64677280073846,
+   369.71542753631144
+  ],
+  "pay": [
+   544.301069026116,
+   483.1756467481343,
+   464.480766415713,
+   470.4104303890326,
+   478.2607915074787
+  ],
+  "nwc": [
+   533.9573639129223,
+   460.05645520594686,
+   434.34122745625484,
+   437.58483582132135,
+   443.24393816905916
+  ],
+  "dnwc": [
+   139.35736391292227,
+   -73.90090870697549,
+   -25.71522774969202,
+   3.243608365066507,
+   5.659102347737814
+  ],
+  "fcff": [
+   884.8274764603766,
+   834.8167280075043,
+   666.399067190484,
+   608.3020863139782,
+   593.3533903365674
+  ],
+  "ppe": [
+   2369.0,
+   2294.0,
+   2254.0,
+   2236.0,
+   2231.0
+  ],
+  "np_attr": [
+   637.1424234862322,
+   487.80531592851537,
+   433.6670156553025,
+   433.77376020141406,
+   437.691891788102
+  ],
+  "net_debt": [
+   503.12887921567585,
+   256.66690732299713,
+   104.21827644224447,
+   2.7071327670282983,
+   -84.17214324285425
+  ],
+  "equity": [
+   1483.9284846972464,
+   1581.4895478829494,
+   1668.2229510140098,
+   1754.9777030542925,
+   1842.5160814119129
+  ],
+  "ic": [
+   2902.957363912922,
+   2754.056455205947,
+   2688.3412274562547,
+   2673.5848358213216,
+   2674.243938169059
+  ],
+  "roic": [
+   0.3080254816998136,
+   0.24905655728442078,
+   0.22344032569450537,
+   0.222003688353771,
+   0.22212352590803675
+  ]
+ },
+ "frame_B": {
+  "years": [
+   2026,
+   2027,
+   2028,
+   2029,
+   2030
+  ],
+  "label": "B \u2014 structurally tight market",
+  "util_urea": [
+   0.823,
+   0.853,
+   0.873,
+   0.883,
+   0.888
+  ],
+  "util_nh3": [
+   0.715,
+   0.8,
+   0.827,
+   0.84,
+   0.847
+  ],
+  "vol_urea": [
+   4197.3,
+   4350.3,
+   4452.3,
+   4503.3,
+   4528.8
+  ],
+  "vol_nh3": [
+   1072.5,
+   1200.0,
+   1240.5,
+   1260.0,
+   1270.5
+  ],
+  "vol_own": [
+   5269.8,
+   5550.3,
+   5692.8,
+   5763.3,
+   5799.3
+  ],
+  "vol_3p": [
+   1150.0,
+   1200.0,
+   1250.0,
+   1300.0,
+   1350.0
+  ],
+  "px_urea": [
+   590.0,
+   560.0,
+   550.0,
+   550.0,
+   555.0
+  ],
+  "px_nh3": [
+   560.0,
+   540.0,
+   530.0,
+   530.0,
+   535.0
+  ],
+  "bm_blend": [
+   583.8944551975407,
+   555.6759094103021,
+   545.6418634064081,
+   545.6275050752173,
+   550.6184367078786
+  ],
+  "px_realised": [
+   584.4637269842351,
+   556.2176693379007,
+   546.1738405740481,
+   546.1594682441066,
+   551.155265818793
+  ],
+  "rev_own": [
+   3080.0069484615224,
+   3087.1749301261502,
+   3109.2584396199413,
+   3147.68086333126,
+   3196.3147330629267
+  ],
+  "h1_26_actual": {
+   "vol": 2571.0,
+   "rev": 1597.0,
+   "ebitda": 709.6
+  },
+  "h2_26_forecast": {
+   "vol": 2698.8,
+   "rev": 1483.0069484615224,
+   "px": 549.5060576780503,
+   "cost_t": 306.769364681553,
+   "ebitda": 655.0977870589471
+  },
+  "rev_3p": [
+   690.0,
+   624.0,
+   612.5,
+   637.0,
+   664.2
+  ],
+  "rev": [
+   3770.0069484615224,
+   3711.1749301261502,
+   3721.7584396199413,
+   3784.68086333126,
+   3860.514733062927
+  ],
+  "cost_t": [
+   325.49796223814474,
+   309.99686142257167,
+   305.16695971705394,
+   305.1600483147861,
+   307.56244005141536
+  ],
+  "cost_own": [
+   1715.3091614025752,
+   1720.5755799536996,
+   1737.2544682772448,
+   1758.7289064526067,
+   1783.646858590173
+  ],
+  "ebitda_own": [
+   1364.6977870589471,
+   1366.5993501724506,
+   1372.0039713426966,
+   1388.9519568786532,
+   1412.6678744727537
+  ],
+  "ebitda_3p": [
+   51.75,
+   46.8,
+   45.9375,
+   47.775,
+   49.815000000000005
+  ],
+  "ebitda": [
+   1334.4477870589471,
+   1335.3993501724506,
+   1341.9414713426966,
+   1360.7269568786533,
+   1385.4828744727538
+  ],
+  "ebitda_margin": [
+   0.3539642778651942,
+   0.35983196031318787,
+   0.36056651529477907,
+   0.359535455172024,
+   0.35888552959193437
+  ],
+  "dna": [
+   305.0,
+   315.0,
+   325.0,
+   333.0,
+   340.0
+  ],
+  "ebit": [
+   1029.4477870589471,
+   1020.3993501724506,
+   1016.9414713426966,
+   1027.7269568786533,
+   1045.4828744727538
+  ],
+  "nopat": [
+   894.1848403732989,
+   886.3253110268955,
+   883.3217756671787,
+   892.6901164257428,
+   908.1130184312168
+  ],
+  "capex": [
+   175.0,
+   240.0,
+   285.0,
+   315.0,
+   335.0
+  ],
+  "recv": [
+   657.4911318831353,
+   647.2307979221916,
+   649.0765673681096,
+   660.0502701098692,
+   673.2757356134007
+  ],
+  "inv": [
+   420.7673010559032,
+   410.4390870620321,
+   411.1372774752913,
+   418.76237673267224,
+   427.5866058480963
+  ],
+  "pay": [
+   544.301069026116,
+   530.9405776003632,
+   531.8437508920309,
+   541.7075156541869,
+   553.1224647930663
+  ],
+  "nwc": [
+   533.9573639129223,
+   526.7293073838605,
+   528.37009395137,
+   537.1051311883546,
+   547.7398766684306
+  ],
+  "dnwc": [
+   139.35736391292227,
+   -7.22805652906186,
+   1.6407865675095081,
+   8.735037236984567,
+   10.634745480076049
+  ],
+  "fcff": [
+   884.8274764603766,
+   968.5533675559575,
+   921.6809890996693,
+   901.9550791887583,
+   902.4782729511409
+  ],
+  "ppe": [
+   2369.0,
+   2294.0,
+   2254.0,
+   2236.0,
+   2231.0
+  ],
+  "np_attr": [
+   637.1424234862322,
+   635.5071113308477,
+   640.6637783145003,
+   653.4302539754543,
+   669.2792945838067
+  ],
+  "net_debt": [
+   503.12887921567585,
+   293.7994004204443,
+   127.30743132505361,
+   -12.643582233052712,
+   -140.86469566973815
+  ],
+  "equity": [
+   1483.9284846972464,
+   1611.029906963416,
+   1739.162662626316,
+   1869.8487134214067,
+   2003.704572338168
+  ],
+  "ic": [
+   2902.957363912922,
+   2820.7293073838605,
+   2782.37009395137,
+   2773.105131188355,
+   2778.7398766684305
+  ],
+  "roic": [
+   0.3080254816998136,
+   0.3142184926099608,
+   0.31747098546934616,
+   0.3219099436173195,
+   0.32680749502900525
+  ]
+ },
+ "dcf_A": {
+  "df": [
+   0.894938742346248,
+   0.8020460510852401,
+   0.7198116184511799,
+   0.6469233392242392,
+   0.5822400522336486
+  ],
+  "pv": [
+   791.8663889768538,
+   669.5614600783197,
+   479.68179108873886,
+   393.5248169353101,
+   345.4741089825755
+  ],
+  "pv_explicit": 2680.1085660617982,
+  "tv": 5667.027562942689,
+  "pv_tv": 3299.5704242572774,
+  "ev": 5979.678990319076,
+  "tv_share": 0.551797250253598,
+  "roic_term": 0.13515129548755028,
+  "rr_term": 0.14798230329832346,
+  "roic_book": 0.22212352590803675,
+  "roic_replacement": 0.06833036055461411,
+  "roic_sector": 0.115,
+  "ic_replacement": 8693.243938169058,
+  "nopat_term": 605.8927425379914,
+  "g": 0.02,
+  "wacc_exp": 0.11897018221623164,
+  "wacc_term": 0.11109384650273706,
+  "tv_ebitda_implied": 5.534917383835883
+ },
+ "dcf_B": {
+  "df": [
+   0.894938742346248,
+   0.8020460510852401,
+   0.7198116184511799,
+   0.6469233392242392,
+   0.5822400522336486
+  ],
+  "pv": [
+   791.8663889768538,
+   776.8244037135668,
+   663.4366844595173,
+   583.4957916590546,
+   525.4589967828052
+  ],
+  "pv_explicit": 3341.0822655917977,
+  "tv": 9048.968881675488,
+  "pv_tv": 5268.672114327397,
+  "ev": 8609.754379919195,
+  "tv_share": 0.6119422090153569,
+  "roic_term": 0.18167622224488436,
+  "rr_term": 0.11008595265175468,
+  "roic_book": 0.32680749502900525,
+  "roic_replacement": 0.1032211717056478,
+  "roic_sector": 0.115,
+  "ic_replacement": 8797.739876668431,
+  "nopat_term": 926.2752787998412,
+  "g": 0.02,
+  "wacc_exp": 0.11897018221623164,
+  "wacc_term": 0.11109384650273706,
+  "tv_ebitda_implied": 6.531274437527117
+ },
+ "bridge_A": {
+  "ev": 5979.678990319076,
+  "net_debt": 621.2,
+  "eq_total": 5358.478990319076,
+  "nci_earnings": 1409.279974453917,
+  "nci_book": 443.3,
+  "nci_used": 1409.279974453917,
+  "nci_basis": "earnings",
+  "eq_attr": 3949.199015865159,
+  "ps_usd": 0.47871400017760357,
+  "ps_aed": 1.7580771656522491,
+  "tv_share": 0.551797250253598
+ },
+ "bridge_B": {
+  "ev": 8609.754379919195,
+  "net_debt": 621.2,
+  "eq_total": 7988.5543799191955,
+  "nci_earnings": 2100.9898019187485,
+  "nci_book": 443.3,
+  "nci_used": 2100.9898019187485,
+  "nci_basis": "earnings",
+  "eq_attr": 5887.564578000447,
+  "ps_usd": 0.7136787938809696,
+  "ps_aed": 2.6209853705278605,
+  "tv_share": 0.6119422090153569
+ },
+ "bridge_A_book": {
+  "ev": 5979.678990319076,
+  "net_debt": 621.2,
+  "eq_total": 5358.478990319076,
+  "nci_earnings": 1409.279974453917,
+  "nci_book": 443.3,
+  "nci_used": 443.3,
+  "nci_basis": "book",
+  "eq_attr": 4915.178990319076,
+  "ps_usd": 0.5958081592221532,
+  "ps_aed": 2.1881054647433578,
+  "tv_share": 0.551797250253598
+ },
+ "bridge_B_book": {
+  "ev": 8609.754379919195,
+  "net_debt": 621.2,
+  "eq_total": 7988.5543799191955,
+  "nci_earnings": 2100.9898019187485,
+  "nci_book": 443.3,
+  "nci_used": 443.3,
+  "nci_basis": "book",
+  "eq_attr": 7545.254379919195,
+  "ps_usd": 0.9146206337179009,
+  "ps_aed": 3.358944277328991,
+  "tv_share": 0.6119422090153569
+ },
+ "bridge_A_cds": {
+  "ev": 6677.068621943756,
+  "net_debt": 621.2,
+  "eq_total": 6055.868621943756,
+  "nci_earnings": 1592.6934475712078,
+  "nci_book": 443.3,
+  "nci_used": 1592.6934475712078,
+  "nci_basis": "earnings",
+  "eq_attr": 4463.175174372548,
+  "ps_usd": 0.5410171613620719,
+  "ps_aed": 1.986885525102209,
+  "tv_share": 0.5879058183568938
+ },
+ "bridge_B_cds": {
+  "ev": 9705.80156230658,
+  "net_debt": 621.2,
+  "eq_total": 9084.60156230658,
+  "nci_earnings": 2389.2502108866306,
+  "nci_book": 443.3,
+  "nci_used": 2389.2502108866306,
+  "nci_basis": "earnings",
+  "eq_attr": 6695.351351419949,
+  "ps_usd": 0.8115970897279806,
+  "ps_aed": 2.980590312026009,
+  "tv_share": 0.6458117760749094
+ },
+ "dcf_A_cds": {
+  "df": [
+   0.9043786692557585,
+   0.8188678262128944,
+   0.7423198927384174,
+   0.6737252009895482,
+   0.6121946060758664
+  ],
+  "pv": [
+   800.2190956821663,
+   683.6045593496661,
+   494.68128407782143,
+   409.8284453642465,
+   363.24774506087465
+  ],
+  "pv_explicit": 2751.581129534775,
+  "tv": 6412.156287313832,
+  "pv_tv": 3925.4874924089813,
+  "ev": 6677.068621943756,
+  "tv_share": 0.5879058183568938,
+  "roic_term": 0.13515129548755028,
+  "rr_term": 0.14798230329832346,
+  "roic_book": 0.22212352590803675,
+  "roic_replacement": 0.06833036055461411,
+  "roic_sector": 0.115,
+  "ic_replacement": 8693.243938169058,
+  "nopat_term": 605.8927425379914,
+  "g": 0.02,
+  "wacc_exp": 0.10703734220925211,
+  "wacc_term": 0.10050822778085154,
+  "tv_ebitda_implied": 6.262675610509432
+ },
+ "dcf_B_cds": {
+  "df": [
+   0.9043786692557585,
+   0.8188678262128944,
+   0.7423198927384174,
+   0.6737252009895482,
+   0.6121946060758664
+  ],
+  "pv": [
+   800.2190956821663,
+   793.1171906617254,
+   684.1821329675049,
+   607.6698670099901,
+   552.492330801352
+  ],
+  "pv_explicit": 3437.680617122738,
+  "tv": 10238.771924767767,
+  "pv_tv": 6268.120945183843,
+  "ev": 9705.80156230658,
+  "tv_share": 0.6458117760749094,
+  "roic_term": 0.18167622224488436,
+  "rr_term": 0.11008595265175468,
+  "roic_book": 0.32680749502900525,
+  "roic_replacement": 0.1032211717056478,
+  "roic_sector": 0.115,
+  "ic_replacement": 8797.739876668431,
+  "nopat_term": 926.2752787998412,
+  "g": 0.02,
+  "wacc_exp": 0.10703734220925211,
+  "wacc_term": 0.10050822778085154,
+  "tv_ebitda_implied": 7.390038602003028
+ },
+ "dcf_ps_aed": 2.1895312680900547,
+ "wacc": {
+  "ust10": 0.0469,
+  "ad_cds": 0.0046,
+  "ad_ads": 0.0042,
+  "adgb10": 0.0515,
+  "rf_star_rating": 0.047299999999999995,
+  "rf_star_cds": 0.0469,
+  "erp_rating": 0.08514035586272078,
+  "erp_cds": 0.07135730172485086,
+  "mature_erp": 0.0423,
+  "w_uae": 0.5087431035501211,
+  "w_egypt": 0.311,
+  "w_algeria": 0.161,
+  "w_other": 0.019256896449878907,
+  "beta": 0.931,
+  "beta_r2": 0.09960762477978735,
+  "beta_se": 0.2833283694717916,
+  "beta_ci90": [
+   0.4654135566227273,
+   1.3975638921849216
+  ],
+  "beta_n": 242,
+  "beta_window": 4.68,
+  "beta_weak": true,
+  "beta_blume": 0.9543258162692163,
+  "ke_rating": 0.12656567130819305,
+  "ke_cds": 0.11333364790583615,
+  "kd_spread": 0.00975,
+  "kd": 0.05665,
+  "kd_at": 0.04920654728091304,
+  "tax": 0.13139369318776625,
+  "kd_cap_rate_rejected": 0.0662,
+  "mktcap_usd": 5705.645745405038,
+  "net_debt": 621.2,
+  "we": 0.9018152132994304,
+  "wd": 0.09818478670056963,
+  "wacc_rating": 0.11897018221623164,
+  "wacc_cds": 0.10703734220925211,
+  "wd_term": 0.2,
+  "wacc_term_rating": 0.11109384650273706,
+  "wacc_term_cds": 0.10050822778085154,
+  "glide": [
+   0.2,
+   0.4,
+   0.6,
+   0.8,
+   1.0
+  ],
+  "wacc_path": [
+   0.11739491507353272,
+   0.11581964793083381,
+   0.11424438078813488,
+   0.11266911364543597,
+   0.11109384650273706
+  ],
+  "debt_usd": 1651.9,
+  "debt_dzd": 34.8,
+  "debt_aud": 53.9,
+  "fx_debt_share": 0.05095943927381362,
+  "tax_triangulation": {
+   "aggregate_effective": 0.10381683764112559,
+   "aggregate_cash": 0.1566565419221732,
+   "jurisdiction_weighted": 0.13370769999999998,
+   "used": 0.13139369318776625,
+   "w_uae": 0.528,
+   "w_egypt": 0.311,
+   "w_algeria": 0.161
+  }
+ },
+ "book": {
+  "bvps_usd": 0.16443221489526763,
+  "bvps_aed": 0.6038773092028703,
+  "roe_trailing": 0.3198673055657944,
+  "roe_sust": 0.23004514276370533,
+  "ke_blend": 0.11994965960701459,
+  "pb_just": 2.1015093356952677,
+  "ps_aed": 1.2690538029043699,
+  "g": 0.02
+ },
+ "rel": {
+  "mult": 5.8,
+  "ebitda_mid": 1190.8166521189885,
+  "ev": 6906.736582290133,
+  "peers": [
+   {
+    "name": "Nutrien",
+    "mkt": "US",
+    "ev_ebitda": 7.4,
+    "note": "diversified nutrient, retail attached"
+   },
+   {
+    "name": "CF Industries",
+    "mkt": "US",
+    "ev_ebitda": 6.1,
+    "note": "pure nitrogen, Henry Hub advantaged"
+   },
+   {
+    "name": "Yara International",
+    "mkt": "NO",
+    "ev_ebitda": 5.2,
+    "note": "nitrogen, European gas cost"
+   },
+   {
+    "name": "OCI Global",
+    "mkt": "NL",
+    "ev_ebitda": 5.6,
+    "note": "nitrogen and methanol"
+   },
+   {
+    "name": "Industries Qatar",
+    "mkt": "QA",
+    "ev_ebitda": 9.1,
+    "note": "Gulf petrochemical and fertiliser"
+   },
+   {
+    "name": "SABIC Agri-Nutrients",
+    "mkt": "SA",
+    "ev_ebitda": 10.4,
+    "note": "Gulf nitrogen, Tadawul rating"
+   }
+  ],
+  "eq_total": 6285.536582290133,
+  "ps_aed": 2.0622378774201655,
+  "ev_ebitda_trailing": 4.436156040811273,
+  "pe_trailing": 9.131955418381944
+ },
+ "norm": {
+  "margin": 0.3616117717268225,
+  "rev": 3457.8448961908903,
+  "ebitda": 1250.3974192681385,
+  "ebit": 925.3974192681385,
+  "interest": 34.166000000000004,
+  "np": 570.5332436932706,
+  "eps_usd": 0.06915889784877698,
+  "pe": 11.0,
+  "ps_aed": 2.7938465758459676
+ },
+ "lenses": {
+  "dcf": {
+   "value": 2.1895312680900547,
+   "weight": 0.45,
+   "note": "Five-year free cash flow to the firm with an explicit terminal block"
+  },
+  "relative": {
+   "value": 2.0622378774201655,
+   "weight": 0.2,
+   "note": "Mid-cycle EBITDA on a peer-anchored enterprise multiple"
+  },
+  "normalized": {
+   "value": 2.7938465758459676,
+   "weight": 0.2,
+   "note": "Mid-cycle earnings power on a justified earnings multiple"
+  },
+  "book": {
+   "value": 1.2690538029043699,
+   "weight": 0.15,
+   "note": "Book equity marked to the sustainable return on that equity"
+  }
+ },
+ "central": 2.1468640317294065,
+ "span": [
+  1.2690538029043699,
+  2.7938465758459676
+ ],
+ "spot": 2.54,
+ "sens": {
+  "g_grid": [
+   0.01,
+   0.015,
+   0.02,
+   0.025,
+   0.03
+  ],
+  "wacc_grid": [
+   0.10109384650273706,
+   0.10609384650273705,
+   0.11109384650273706,
+   0.11609384650273706,
+   0.12109384650273705
+  ],
+  "grid_wacc_g": [
+   [
+    1.881294606262658,
+    1.9062311593883587,
+    1.933710874822986,
+    1.9642350734536695,
+    1.998446106906989
+   ],
+   [
+    1.7993218642785833,
+    1.8192001369982613,
+    1.8408930822839793,
+    1.864736361713828,
+    1.8911538599203277
+   ],
+   [
+    1.7253108651199878,
+    1.741059992655157,
+    1.7580771656522491,
+    1.776583313744466,
+    1.796853853962693
+   ],
+   [
+    1.6581374670349274,
+    1.6704933338421735,
+    1.6837039847522677,
+    1.6979101730875794,
+    1.7132853498203309
+   ],
+   [
+    1.5968798818936512,
+    1.606431083745876,
+    1.6165228180550621,
+    1.6272394605346332,
+    1.638683911906381
+   ]
+  ],
+  "pt_grid": [
+   0.3,
+   0.4,
+   0.48088252190243597,
+   0.55,
+   0.65
+  ],
+  "grid_pt": [
+   2.9941838170385484,
+   2.308550929968407,
+   1.7580771656522491,
+   1.2928927616300074,
+   0.6384482712559816
+  ],
+  "px_grid": [
+   -0.2,
+   -0.1,
+   0.0,
+   0.1,
+   0.2
+  ],
+  "grid_px": [
+   1.0408939071272278,
+   1.3975346809067484,
+   1.7580771656522491,
+   2.121093306576268,
+   2.4857772982319934
+  ],
+  "beta_grid": [
+   0.4654135566227273,
+   0.4,
+   0.931,
+   0.6,
+   1.3975638921849216
+  ],
+  "grid_beta": [
+   2.6819561177839204,
+   2.8957431949089907,
+   1.7580771656522491,
+   2.3285451585846086,
+   1.3032970419435872
+  ],
+  "tax_grid": [
+   0.08,
+   0.11,
+   0.13139369318776625,
+   0.16,
+   0.2
+  ],
+  "grid_tax": [
+   1.8790041648512783,
+   1.8083849061434696,
+   1.7580771656522491,
+   1.6908816951028738,
+   1.5970735872049173
+  ]
+ },
+ "experts": {
+  "e1": {
+   "method": "Mid-cycle multiple on through-the-cycle EBITDA",
+   "ev": 7621.2265735615265,
+   "mult": 6.4,
+   "ebitda": 1190.8166521189885,
+   "ps_aed": 2.296656737886112
+  },
+  "e2": {
+   "method": "Discounted cash flow with an explicit gas pass-through",
+   "ps_aed": 1.7580771656522491,
+   "passthrough": 0.48088252190243597,
+   "ev": 5979.678990319076,
+   "tv_share": 0.551797250253598
+  },
+  "e3": {
+   "method": "Replacement cost of installed nitrogen capacity",
+   "per_tonne": 1250.0,
+   "capacity_kt": 6600.0,
+   "ev": 8250.0,
+   "ps_aed": 2.5029526299456943
+  }
+ },
+ "tax_rate": 0.13139369318776625,
+ "nci_share": 0.263,
+ "g_term": 0.02,
+ "step0": {
+  "ticker": "FERTIGLB",
+  "market": "AE",
+  "windows_scored": 14,
+  "windows_prebreak_dropped": 0,
+  "first_origin": "2022-11-11",
+  "last_origin": "2026-02-19",
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "skill_norm": -0.001473305731265695,
+  "skill_raw": -0.0034593189641765054,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.027978613789969197,
+    0.013278063493628003,
+    "PARITY"
+   ],
+   "3": [
+    -0.030402807330429948,
+    0.008585504819498293,
+    "PARITY"
+   ],
+   "4": [
+    -0.031337144910194424,
+    0.005376209491200552,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.42857142857142855,
+  "cov80": 0.7857142857142857,
+  "cov90": 1.0,
+  "pit_mean": 0.42566071428571434,
+  "pit_hist": [
+   2,
+   3,
+   0,
+   3,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "w90_ratio": 1.134859544491362,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": 0.0068,
+   "ci90": [
+    -0.001,
+    0.014
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 18,
+   "windows": 261
+  },
+  "dq_log": [],
+  "clean_rows": 1194,
+  "raw_rows": 1194,
+  "density_rows_per_yr": 250.06221330275227,
+  "span_years": 4.774811772758385,
+  "max_abs_log": 0.10398971352404773,
+  "artifact_threshold": 0.21127460834710743,
+  "flat_frac": 0.12657166806370496,
+  "first_date": "2021-10-28",
+  "last_date": "2026-08-07"
+ },
+ "backtest": {
+  "full": {
+   "label": "FULL cleaned history (= entire listed life, 4.8 yr)",
+   "windows": 14,
+   "first_origin": "2022-11-11",
+   "last_origin": "2026-02-19",
+   "span_years": 3.27,
+   "skill_norm": -0.001473305731265695,
+   "skill_raw": -0.0034593189641765054,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.028,
+     0.0133,
+     "PARITY"
+    ],
+    "3": [
+     -0.0304,
+     0.0086,
+     "PARITY"
+    ],
+    "4": [
+     -0.0313,
+     0.0054,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.42857142857142855,
+   "cov80": 0.7857142857142857,
+   "cov90": 1.0,
+   "pit_mean": 0.42566071428571434,
+   "pit_hist": [
+    2,
+    3,
+    0,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "chi2": 6.0,
+   "chi2_p": 0.74,
+   "ks_stat": 0.221,
+   "ks_p": 0.437,
+   "uniform": true,
+   "width_vs_benchmark": 1.134859544491362
+  },
+  "five_year": {
+   "label": "LAST FIVE YEARS of origins",
+   "windows": 14,
+   "first_origin": "2022-11-11",
+   "last_origin": "2026-02-19",
+   "span_years": 3.27,
+   "skill_norm": -0.001473305731265695,
+   "skill_raw": -0.0034593189641765054,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.028,
+     0.0133,
+     "PARITY"
+    ],
+    "3": [
+     -0.0304,
+     0.0086,
+     "PARITY"
+    ],
+    "4": [
+     -0.0313,
+     0.0054,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.42857142857142855,
+   "cov80": 0.7857142857142857,
+   "cov90": 1.0,
+   "pit_mean": 0.42566071428571434,
+   "pit_hist": [
+    2,
+    3,
+    0,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "chi2": 6.0,
+   "chi2_p": 0.74,
+   "ks_stat": 0.221,
+   "ks_p": 0.437,
+   "uniform": true,
+   "width_vs_benchmark": 1.134859544491362
+  },
+  "production": {
+   "label": "production window set (post-break origins)",
+   "windows": 14,
+   "first_origin": "2022-11-11",
+   "last_origin": "2026-02-19",
+   "span_years": 3.27,
+   "skill_norm": -0.001473305731265695,
+   "skill_raw": -0.0034593189641765054,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.028,
+     0.0133,
+     "PARITY"
+    ],
+    "3": [
+     -0.0304,
+     0.0086,
+     "PARITY"
+    ],
+    "4": [
+     -0.0313,
+     0.0054,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.42857142857142855,
+   "cov80": 0.7857142857142857,
+   "cov90": 1.0,
+   "pit_mean": 0.42566071428571434,
+   "pit_hist": [
+    2,
+    3,
+    0,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "chi2": 6.0,
+   "chi2_p": 0.74,
+   "ks_stat": 0.221,
+   "ks_p": 0.437,
+   "uniform": true,
+   "width_vs_benchmark": 1.134859544491362
+  },
+  "staggered": {
+   "label": "STAGGERED-ORIGIN uniformity diagnostic (5 grids pooled)",
+   "windows": 70,
+   "first_origin": "2022-11-11",
+   "last_origin": "2026-04-27",
+   "span_years": 3.46,
+   "skill_norm": -0.00024221461941942302,
+   "skill_raw": -0.00014403419603703504,
+   "verdict": "DIAGNOSTIC ONLY (overlapping grids)",
+   "ci_blocks": {
+    "2": [
+     -0.0129,
+     0.0101,
+     "PARITY"
+    ],
+    "3": [
+     -0.0142,
+     0.0105,
+     "PARITY"
+    ],
+    "4": [
+     -0.0151,
+     0.0113,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5,
+   "cov80": 0.8285714285714286,
+   "cov90": 1.0,
+   "pit_mean": 0.4074821428571429,
+   "pit_hist": [
+    8,
+    12,
+    9,
+    14,
+    2,
+    4,
+    8,
+    5,
+    4,
+    4
+   ],
+   "chi2": 19.43,
+   "chi2_p": 0.022,
+   "ks_stat": 0.232,
+   "ks_p": 0.001,
+   "uniform": false,
+   "width_vs_benchmark": 1.1441402213579066
+  },
+  "listing_date": "2021-10-28",
+  "history_span_years": 4.77,
+  "five_year_note": "FERTIGLB listed on 27-Oct-2021. The cleaned series is 4.77 years long, so a literal five-year lookback predates the instrument's existence. Sets (1) and (2) are therefore identical and represent the maximum evidence obtainable.",
+  "fit": {
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "market_verdict": "PARITY",
+   "market_skill": 0.0068,
+   "market_ci90": [
+    -0.001,
+    0.014
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 18,
+   "panel_windows": 261
+  }
+ },
+ "assert_log": [
+  "FY2025 gross profit recomputes to the filed 885.4",
+  "FY2025 operating profit recomputes to the filed 727.3",
+  "FY2025 profit before tax recomputes to the filed 613.5",
+  "FY2025 profit for the year recomputes to the filed 588.5",
+  "FY2025 profit to owners recomputes to the filed 433.9",
+  "FY2023 profit for the year recomputes to the filed 505.0",
+  "FY2024 profit for the year recomputes to the filed 213.6",
+  "FY2025 total equity recomputes to the filed 1,799.8",
+  "FY2025 gross interest-bearing debt recomputes to the filed 1,740.6",
+  "realised price sits within 6% of the volume-weighted benchmark in all three disclosed periods (mean realisation 1.001)",
+  "gas and cost pass-through calibrates to 0.481 of every incremental dollar of product price (R-squared 0.960)",
+  "the pass-through slope is unchanged when the Sorfert catch-up accrual is stripped out, so it is not an artefact of that one item",
+  "forecast tax rate 13.1% is the average of three independently sourced estimates (10.4%, 15.7%, 13.4%)",
+  "the country weights used for the equity risk premium sum to one",
+  "the marginal cost of debt 5.67% sits above the Abu Dhabi sovereign 5.15%, as a same-currency corporate must",
+  "the marginal cost of debt is below the historical accounting capitalisation rate, which is not used",
+  "terminal value is 55.2% of enterprise value under framing A",
+  "both framings produce a positive equity value",
+  "the four lens weights sum to one"
+ ]
+}

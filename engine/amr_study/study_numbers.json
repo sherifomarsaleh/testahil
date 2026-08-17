@@ -1613,8 +1613,8 @@
    "layer": "Company"
   },
   "beta": {
-   "value": 1.026,
-   "source": "Ordinary least squares regression of 185 complete weekly logarithmic returns of the company's own Abu Dhabi-listed shares against the FTSE ADX General Index \u2014 the index of the exchange the shares trade on \u2014 over windows labelled 23 December 2022 to 24 July 2026. That is the whole life of the listing, the company having floated in December 2022, and no observation after the 7 August 2026 price anchor enters the sample; the index history supplied ends on 24 July 2026, so the window closes there. Standard error 0.254, t-statistic 4.04, R-squared 8.2%: the regression clears the usability gate of at least 24 observations, R-squared of at least 5% and a standard error below the absolute coefficient. Stock and index are struck at the same closing auction on the same exchange in the same currency, so no timing correction applies; computed anyway as a check, the lead-lag sum is 0.934, which is close enough to confirm there is nothing to correct. The index series was screened before use: 3,884 sessions from January 2011 to July 2026, 250 a year, no duplicate dates, no non-positive levels, largest single-session move 8.8%, and a weekday pattern that shows the January 2022 trading-week change. That the index measures its market is checked rather than assumed \u2014 regressed identically, Aldar returns 1.58, Emaar 1.50, Abu Dhabi Commercial Bank 1.36 and the defensive food company Agthia 0.42, so property and banking run above the index while a consumer staple runs well below it, and this restaurant operator sits at the market average. The precision is modest and is stated as such: one standard error spans 0.77 to 1.28, so this estimate cannot be distinguished from the 0.894 the first edition used. Cross-checks, all disclosed and none adopted: the company's Saudi line against the Saudi index gives 0.894, which was the first edition's input, chosen because no Abu Dhabi index history could be obtained at the time and superseded now that it can; an equally weighted composite of eighteen covered UAE names gives 0.586; and two UAE-listed consumer peers give a median of 0.574. The composite is a diagnostic and never the regressor: it is a selection-biased subset of names whose own sector mix would stand in for the market, and this company is one of its constituents, so the shares would be regressed partly against themselves.",
+   "value": 0.93,
+   "source": "Ordinary least squares regression of 183 complete weekly logarithmic returns of the company's own Abu Dhabi-listed shares against the FTSE ADX General Index \u2014 the published index of the exchange those shares trade on \u2014 over windows labelled 30 December 2022 to 17 July 2026, which is the whole life of the listing, the company having floated in December 2022. The figure carries the Dimson lead-lag correction, and both series pass the data-quality screen first. Standard error 0.412, R-squared 8.4%: it clears the usability gate of at least 24 observations, R-squared of at least 5% and a standard error below the absolute coefficient, but only just, and the imprecision is the honest headline \u2014 a 90% confidence interval runs from 0.25 to 1.61, so this estimate cannot be told apart from most plausible alternatives. A Blume adjustment towards the market gives 0.953, close enough to confirm the level. The index is quoted in dirhams, the same currency the shares trade in, and strikes at the same closing auction on the same exchange. Cross-checks from earlier editions of this study, all disclosed and none adopted, and every one now known to be non-conforming: the company's Riyadh line against the Saudi index gave 0.894 \u2014 a different country's market cycle, and the input the first edition used before the Abu Dhabi index was available; an equally weighted composite of eighteen covered UAE names gave 0.586; and a US-listed UAE index fund, which prices hours after the Abu Dhabi close, gave 0.469. The composite and the fund understated the beta by roughly half. A composite is not a substitute and not a tier: it is a coverage artefact that changes whenever a stock is added, it mixes two exchanges inside one market code, and it shares its constituents with the company being priced.",
    "date": "2026-08-10",
    "layer": "Market"
   },
@@ -3205,18 +3205,18 @@
    0.16
   ],
   "wacc_path": [
-   0.10231466163436875,
-   0.1023365885156424,
-   0.10235851539691605,
-   0.1023804422781897,
-   0.1023804422781897
+   0.09702315396092827,
+   0.09704508084220191,
+   0.09706700772347555,
+   0.0970889346047492,
+   0.0970889346047492
   ],
   "discount_factor": [
-   0.9071819824271683,
-   0.8229627791351273,
-   0.7465473052918821,
-   0.6772138516436852,
-   0.6143195449332798
+   0.9115577883560478,
+   0.8309209933800028,
+   0.757402225689247,
+   0.6903745009169362,
+   0.6292785198545996
   ],
   "glide": [
    0.0,
@@ -3339,22 +3339,54 @@
   "rf_cds": 0.0422,
   "erp_rating": 0.062009781702719625,
   "erp_cds": 0.05927625031955178,
-  "beta": 1.026,
-  "ke_rating": 0.10792203602699033,
-  "ke_cds": 0.10301743282786013,
-  "ke_terminal": 0.10812203602699033,
+  "beta_provenance": {
+   "ticker": "AMR",
+   "market": "AE",
+   "exchange": "ADX",
+   "beta": 0.9299087790790266,
+   "r2": 0.08363934022735375,
+   "se": 0.41196340857611885,
+   "n": 183,
+   "ci90": [
+    0.2522289719713111,
+    1.607588586186742
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": true,
+   "warnings": [],
+   "window_years": 3.55,
+   "first_obs": "2022-12-30",
+   "last_obs": "2026-07-17",
+   "blume_crosscheck": 0.9532725193860176,
+   "index_file": "raw_indices/AE/FADGI.csv",
+   "index_asof": "2026-07-24",
+   "index_dq": [
+    "dropped 1 interior stale/no-trade rows"
+   ],
+   "stock_dq": [],
+   "week_rule": "W-FRI",
+   "interim_note": null,
+   "conforming": true
+  },
+  "beta": 0.93,
+  "ke_rating": 0.10196909698352925,
+  "ke_cds": 0.09732691279718317,
+  "ke_terminal": 0.10216909698352925,
   "kd": 0.06719904760103823,
   "kd_fy24": 0.05951862454685166,
   "kd_after_tax": 0.05745518569888769,
   "debt_weight": 0.11111005256254475,
   "equity_weight": 0.8888899474374552,
-  "wacc_rating": 0.10231466163436875,
-  "wacc_cds": 0.09795500915449235,
-  "wacc_terminal": 0.1023804422781897,
+  "wacc_rating": 0.09702315396092827,
+  "wacc_cds": 0.0928967631035321,
+  "wacc_terminal": 0.0970889346047492,
   "terminal_rf": 0.0445,
   "terminal_g": 0.03,
   "terminal_roic": 0.3,
-  "roll_factor": 1.0634217049211605,
+  "roll_factor": 1.0599897100784605,
   "days_to_anchor": 219,
   "div_in_window": 0.024003906064190377,
   "country_weights": {
@@ -3409,50 +3441,50 @@
  },
  "dcf": {
   "pv": [
-   287.3921141130464,
-   270.8375073405199,
-   265.1365325262966,
-   256.5660998108531,
-   249.3768886690518
+   288.7783542955117,
+   273.45656006515105,
+   268.99166124299734,
+   261.55208237281806,
+   255.44933525540006
   ],
-  "sum_pv": 1329.3091424597678,
-  "tv": 5716.94719458041,
-  "pv_tv": 3512.0323989822277,
-  "ev": 4841.341541441996,
-  "tv_share": 0.7254254567497767,
+  "sum_pv": 1348.2279932318781,
+  "tv": 6167.86015253689,
+  "pv_tv": 3881.301907458579,
+  "ev": 5229.529900690457,
+  "tv_share": 0.7421894474580075,
   "roic_term": 0.3,
   "rr_term": 0.1,
   "roic_implied_avg": 0.4935003693332367,
   "nopat_next": 459.7724071386509,
-  "equity": 4620.301541441995,
-  "fv": 0.5610114034449384,
+  "equity": 5008.489900690456,
+  "fv": 0.6081165466989831,
   "net_debt": 220.05600000000004,
   "invested_capital": 904.5200480956402,
-  "fv_unrolled": 0.5501254176042046,
+  "fv_unrolled": 0.5963458387877971,
   "framing": "Leases capitalised (IFRS 16): the lease liability is debt, right-of-use depreciation is in depreciation and amortisation, and lease payments are not an operating cost"
  },
  "dcf_alt": {
   "pv": [
-   285.92645205845224,
-   269.64141690626604,
-   263.6961231910939,
-   254.42271781872574,
-   246.11334957162427
+   287.47105321349034,
+   272.56245292760275,
+   267.992522050511,
+   259.96458009309185,
+   252.83245679459534
   ],
-  "sum_pv": 1319.8000595461622,
-  "tv": 4762.126117269223,
-  "pv_tv": 2851.147693889395,
-  "ev": 4170.947753435557,
-  "tv_share": 0.6835731019504957,
+  "sum_pv": 1340.8230650792914,
+  "tv": 5154.934780232646,
+  "pv_tv": 3170.5868263589837,
+  "ev": 4511.409891438275,
+  "tv_share": 0.70279289682281,
   "roic_term": 0.3,
   "rr_term": 0.1,
   "roic_implied_avg": 3.486926866592906,
   "nopat_next": 413.3633201093087,
-  "equity": 4587.373753435557,
-  "fv": 0.5568421387510099,
+  "equity": 4927.835891438274,
+  "fv": 0.5979372212223307,
   "net_debt": -417.40999999999997,
   "invested_capital": 115.09378518992162,
-  "fv_unrolled": 0.5462048048551564,
+  "fv_unrolled": 0.5867426083225703,
   "framing": "Leases as an operating cost: EBITDA is struck after the cash rent actually paid, right-of-use depreciation is excluded, and the lease liability is not deducted in the bridge",
   "ebitda": [
    459.7355418852131,
@@ -3482,14 +3514,14 @@
    383.4859649915739,
    411.07053567078674
   ],
-  "wacc": 0.10792203602699033,
-  "wacc_terminal": 0.10812203602699033,
+  "wacc": 0.10196909698352925,
+  "wacc_terminal": 0.10216909698352925,
   "discount_factor": [
-   0.9025905862347509,
-   0.8146207484249992,
-   0.7351805432749058,
-   0.6634472732902129,
-   0.5987131847579769
+   0.9074664641116943,
+   0.8234455668715839,
+   0.7471588340793671,
+   0.6778985512515533,
+   0.6150585723251174
   ]
  },
  "contested": {
@@ -3498,9 +3530,9 @@
   "way_a": {
    "name": "Structural \u2014 the gains hold and improve slowly",
    "detail": "The base case. Food and packaging stays near the 27.4% of revenue the company actually recorded in the first half of 2026, and the EBITDA margin runs from 25.4% to a peak of 25.4% before the growing delivery channel eases it to 24.9%.",
-   "value_usd": 0.5610114034449384,
-   "value_aed": 2.060314379151536,
-   "ev": 4841.341541441996,
+   "value_usd": 0.6081165466989831,
+   "value_aed": 2.2333080177520155,
+   "ev": 5229.529900690457,
    "margin_path": [
     0.25397518724328516,
     0.25270201407239856,
@@ -3508,14 +3540,14 @@
     0.25015986138164553,
     0.24903699035851642
    ],
-   "wacc": 0.10231466163436875,
-   "tv_share": 0.7254254567497767
+   "wacc": 0.09702315396092827,
+   "tv_share": 0.7421894474580075
   },
   "way_b": {
    "name": "Cyclical \u2014 the gains are competed away",
    "detail": "The first half of 2026 is banked, and the EBITDA margin then reverts in a straight line to the three-year audited average of 22.8% by FY2030.",
-   "value_usd": 0.48153625773983094,
-   "value_aed": 1.7684419065495292,
+   "value_usd": 0.5217068906459594,
+   "value_aed": 1.9159685558972859,
    "margin_path": [
     0.25397518724328516,
     0.24746721494181226,
@@ -3524,7 +3556,7 @@
     0.22794329803739358
    ]
   },
-  "gap_pct": -0.1416640467860074,
+  "gap_pct": -0.14209390703489,
   "margin_history_average": 0.22794329803739358,
   "resolution": "Both are published side by side, in the summary table, in the body and in the workbook, and an expert range is struck on each. Neither is averaged into the other."
  },
@@ -3533,31 +3565,31 @@
   "why": "Americana leases essentially every restaurant it operates. At 31 December 2025 the capitalised lease liability was USD 637.5 million and the right-of-use asset USD 610.8 million \u2014 35% of total assets, and larger than the entire owned property and equipment base. Determining the discount rate inside those leases is one of the two key audit matters in the filing. Whether that estate is treated as borrowed money or as next year's rent is a live question, so it is answered twice.",
   "way_a": {
    "name": "Leases capitalised, as the accounts present them",
-   "value_usd": 0.5610114034449384,
-   "value_aed": 2.060314379151536,
-   "ev": 4841.341541441996,
+   "value_usd": 0.6081165466989831,
+   "value_aed": 2.2333080177520155,
+   "ev": 5229.529900690457,
    "net_debt": 220.05600000000004,
-   "wacc": 0.10231466163436875,
-   "tv_share": 0.7254254567497767
+   "wacc": 0.09702315396092827,
+   "tv_share": 0.7421894474580075
   },
   "way_b": {
    "name": "Leases as an operating cost",
-   "value_usd": 0.5568421387510099,
-   "value_aed": 2.045002754563084,
-   "ev": 4170.947753435557,
+   "value_usd": 0.5979372212223307,
+   "value_aed": 2.1959244449390094,
+   "ev": 4511.409891438275,
    "net_debt": -417.40999999999997,
-   "wacc": 0.10792203602699033,
-   "tv_share": 0.6835731019504957
+   "wacc": 0.10196909698352925,
+   "tv_share": 0.70279289682281
   },
-  "gap_pct": -0.007431693310201548,
+  "gap_pct": -0.016739102943191364,
   "finding": "The two readings differ by under two percent once each is built consistently \u2014 charging the right-of-use additions as investment on the capitalised reading, and charging the whole rent bill as a cost on the other. That is a result worth stating: the accounting choice that dominates the balance sheet turns out not to be the thing that decides the value."
  },
  "lenses": {
   "values": {
-   "Discounted cash flow": 0.5610114034449384,
-   "Relative multiples": 0.6918986207942541,
-   "Normalised earnings power": 0.5646510966582117,
-   "Book value and sustainable return": 0.2614196927604411
+   "Discounted cash flow": 0.6081165466989831,
+   "Relative multiples": 0.6965827330398813,
+   "Normalised earnings power": 0.5627513226324196,
+   "Book value and sustainable return": 0.2828244739776756
   },
   "weights": {
    "Discounted cash flow": 0.5,
@@ -3565,36 +3597,36 @@
    "Normalised earnings power": 0.2,
    "Book value and sustainable return": 0.1
   },
-  "central": 0.5579576144890065,
+  "central": 0.5842075318817193,
   "ranges": {
    "Discounted cash flow": [
-    0.3496187059228574,
-    0.5610114034449384,
-    0.9862003483429012
+    0.3721048094782511,
+    0.6081165466989831,
+    1.1137399630850466
    ],
    "Relative multiples": [
-    0.5730971900278363,
-    0.6918986207942541,
-    0.850300528482811
+    0.5770195858028173,
+    0.6965827330398813,
+    0.8560002626892995
    ],
    "Normalised earnings power": [
-    0.4261440371941171,
-    0.5646510966582117,
-    0.7031581561223063
+    0.4246912688214525,
+    0.5627513226324196,
+    0.7008113764433866
    ],
    "Book value and sustainable return": [
-    0.1654407114019147,
-    0.2614196927604411,
-    0.3459171868450065
+    0.1760272943007826,
+    0.2828244739776756,
+    0.37882759495107615
    ]
   },
-  "low": 0.1654407114019147,
-  "high": 0.9862003483429012,
+  "low": 0.1760272943007826,
+  "high": 1.1137399630850466,
   "relative": {
    "ebitda_27": 760.0695034965261,
    "multiple": 8.5,
-   "ev": 5875.055364387104,
-   "equity": 5654.015364387104,
+   "ev": 5930.475422867685,
+   "equity": 5709.435422867684,
    "peer_median": 16.87362665986464
   },
   "normalised": {
@@ -3610,10 +3642,10 @@
   "book": {
    "bvps": 0.05180997845947099,
    "roe": 0.42,
-   "justified_pb": 4.992189397947324,
-   "ke_terminal": 0.10812203602699033
+   "justified_pb": 5.403975057204991,
+   "ke_terminal": 0.10216909698352925
   },
-  "expert_median": 0.42575833169706523
+  "expert_median": 0.4473656153580046
  },
  "sensitivity": {
   "g_grid": [
@@ -3632,39 +3664,39 @@
   ],
   "grid_growth_wacc": [
    [
-    0.6486078715628463,
-    0.6833153727859383,
-    0.723963535800324,
-    0.7722535666858623,
-    0.830604776292256
+    0.7076418951832104,
+    0.7503825750298597,
+    0.8012070651365627,
+    0.8626904323405414,
+    0.9386313747547455
    ],
    [
-    0.5764964047400518,
-    0.6027943977022064,
-    0.6330534008345586,
-    0.6682656438250071,
-    0.7097849531878293
+    0.6236551965412608,
+    0.6554569743953869,
+    0.692492994496572,
+    0.7362015269681359,
+    0.7886009189746925
    ],
    [
-    0.5175684980657825,
-    0.5379237939802453,
-    0.5610114034449384,
-    0.5874395846111556,
-    0.61801161128865
+    0.5560691140349391,
+    0.5803288392219208,
+    0.6081165466989831,
+    0.6402845579737843,
+    0.6779837888485015
    ],
    [
-    0.4685219902978673,
-    0.48455358650692965,
-    0.5025221020149562,
-    0.5228155391974734,
-    0.5459329479170819
+    0.5005191441744621,
+    0.519399843385184,
+    0.5407352794654244,
+    0.5650545746564118,
+    0.5930506941995629
    ],
    [
-    0.42707209770508814,
-    0.43988153663570945,
-    0.45409501556806,
-    0.4699681849871763,
-    0.48782277163134685
+    0.4540627048412996,
+    0.4690002089065428,
+    0.4856901324794925,
+    0.5044734621459711,
+    0.5257857861356439
    ]
   ],
   "m_grid": [
@@ -3676,80 +3708,80 @@
   ],
   "grid_margin_wacc": [
    [
-    0.6121906320686701,
-    0.668077083934497,
-    0.723963535800324,
-    0.7798499876661507,
-    0.8357364395319776
+    0.6785210917297947,
+    0.7398640784331786,
+    0.8012070651365627,
+    0.8625500518399468,
+    0.9238930385433307
    ],
    [
-    0.5341553299971993,
-    0.5836043654158788,
-    0.6330534008345586,
-    0.6825024362532381,
-    0.7319514716719177
+    0.5851947588581577,
+    0.6388438766773649,
+    0.692492994496572,
+    0.7461421123157791,
+    0.7997912301349861
    ],
    [
-    0.4723245412589194,
-    0.5166679723519287,
-    0.5610114034449384,
-    0.6053548345379477,
-    0.6496982656309571
+    0.5127706982161238,
+    0.5604436224575532,
+    0.6081165466989831,
+    0.6557894709404127,
+    0.7034623951818426
    ],
    [
-    0.42213283799758555,
-    0.4623274700062707,
-    0.5025221020149562,
-    0.5427167340236413,
-    0.5829113660323264
+    0.4549424715118671,
+    0.49783887548864564,
+    0.5407352794654244,
+    0.5836316834422028,
+    0.6265280874189816
    ],
    [
-    0.380582267505528,
-    0.417338641536794,
-    0.45409501556806,
-    0.490851389599326,
-    0.5276077636305923
+    0.40770842268458724,
+    0.44669927758203976,
+    0.4856901324794925,
+    0.524680987376945,
+    0.5636718422743977
    ]
   ],
   "single": {
    "Like-for-like sales growth (\u22121.0pp / \u22120.5pp / base / +0.5pp / +1.0pp)": [
-    0.5249072856146441,
-    0.5427813907568841,
-    0.5610114034449384,
-    0.5796026116436249,
-    0.5985603552826005
+    0.5688914981514176,
+    0.5883098571819771,
+    0.6081165466989831,
+    0.6283173493422444,
+    0.648918104649374
    ],
    "EBITDA margin (\u22122.0pp / \u22121.0pp / base / +1.0pp / +2.0pp)": [
-    0.4723245412589194,
-    0.5166679723519287,
-    0.5610114034449384,
-    0.6053548345379477,
-    0.6496982656309571
+    0.5127706982161238,
+    0.5604436224575532,
+    0.6081165466989831,
+    0.6557894709404127,
+    0.7034623951818426
    ],
    "Cost of capital (\u22121.5pp / \u22120.75pp / base / +0.75pp / +1.5pp)": [
-    0.723963535800324,
-    0.6330534008345586,
-    0.5610114034449384,
-    0.5025221020149562,
-    0.45409501556806
+    0.8012070651365627,
+    0.692492994496572,
+    0.6081165466989831,
+    0.5407352794654244,
+    0.4856901324794925
    ],
    "Terminal growth (2.0% / 2.5% / 3.0% / 3.5% / 4.0%)": [
-    0.5175684980657825,
-    0.5379237939802453,
-    0.5610114034449384,
-    0.5874395846111556,
-    0.61801161128865
+    0.5560691140349391,
+    0.5803288392219208,
+    0.6081165466989831,
+    0.6402845579737843,
+    0.6779837888485015
    ]
   },
-  "base": 0.5610114034449384
+  "base": 0.6081165466989831
  },
  "experts": [
   {
    "label": "Expert 1",
    "method": "Restaurant-level unit economics",
-   "base": 0.42575833169706523,
-   "low": 0.3773874170526452,
-   "high": 0.46622172290968794,
+   "base": 0.4473656153580046,
+   "low": 0.3937491975467748,
+   "high": 0.492805193004122,
    "worldview": "A restaurant chain is a portfolio of individual cash machines. Value it by what one restaurant earns against what one restaurant costs to build, then count the restaurants and take off what head office and the landlords cost.",
    "works": "When the operator publishes store-level economics, as this one does, and when the estate is homogeneous enough for an average to mean something.",
    "fails": "When new restaurants are systematically worse than the ones already open, so the portfolio average flatters the marginal decision \u2014 and when a large part of the estate sits in markets where the currency, not the restaurant, drives the result.",
@@ -3758,9 +3790,9 @@
   {
    "label": "Expert 2",
    "method": "Distributable cash as a perpetuity",
-   "base": 0.31254726809890426,
-   "low": 0.2413472959697521,
-   "high": 0.3965675357166055,
+   "base": 0.3391322744897223,
+   "low": 0.25757389113354273,
+   "high": 0.4388624074363498,
    "worldview": "The only thing an outside shareholder in a controlled company receives is the dividend. Capitalise what is actually paid, at the return the risk demands, and grow it at what the business can sustain.",
    "works": "When the payout is high, established and covered by cash rather than by accounting profit \u2014 as here, at roughly 92% of FY2025 earnings and with an interim already declared against 2026.",
    "fails": "When the payout is discretionary and the controlling shareholder has a reason to change it, or when the dividend is funded from a balance sheet that is quietly running down.",
@@ -3769,9 +3801,9 @@
   {
    "label": "Expert 3",
    "method": "Return on capital against the cost of capital",
-   "base": 0.4630061583520914,
-   "low": 0.30579505835319276,
-   "high": 0.55570576259188,
+   "base": 0.5019227706940296,
+   "low": 0.32235269214457707,
+   "high": 0.6016111066209624,
    "worldview": "Value is the capitalised current profit plus whatever the business earns above its cost of capital on the capital it goes on to invest. If the spread is positive, growth is worth paying for; if it is not, growth destroys value.",
    "works": "When invested capital is measurable and the spread is wide and stable, so the growth term is not doing all the work.",
    "fails": "When most of the invested capital is a right-of-use asset whose measurement depends on lease-term judgements \u2014 which is exactly the key audit matter in this filing.",
@@ -10463,10 +10495,10 @@
   "Cost stack: FY2025 cash costs 76.75% of revenue -> FY2026E 75.14%; EBITDA margin 23.7% -> 25.4% -> 24.9%",
   "Forecast: revenue 2,787 -> 3,749m; EBITDA 708 -> 934m; FCFF 317 -> 406m",
   "Statements: FY2030E profit after tax 424m, equity 760m, cash and deposits 776m, return on invested capital 41.1% -> 49.4%",
-  "Cost of capital: risk-free 4.43% (ratings basis) / 4.22% (CDS basis); blended equity premium 6.20% / 5.93%; beta 1.026; cost of equity 10.79% / 10.30%; cost of debt 6.72% (5.75% after tax); debt weight 11.1%; weighted cost 10.23% / 9.80%, terminal 10.24%",
-  "Lease treatment, both ways: capitalised USD 0.561/share (AED 2.06); as an operating cost USD 0.557/share (AED 2.05); gap -0.7%",
-  "Contested judgement \u2014 margin: structural USD 0.561/share (AED 2.06); cyclical USD 0.482/share (AED 1.77); gap -14.2%",
-  "Lenses (USD/share): cash flow 0.561, relative 0.692, normalised 0.565, book 0.261; weighted central 0.558 (AED 2.05) against a spot of AED 2.23",
+  "Cost of capital: risk-free 4.43% (ratings basis) / 4.22% (CDS basis); blended equity premium 6.20% / 5.93%; beta 0.93; cost of equity 10.20% / 9.73%; cost of debt 6.72% (5.75% after tax); debt weight 11.1%; weighted cost 9.70% / 9.29%, terminal 9.71%",
+  "Lease treatment, both ways: capitalised USD 0.608/share (AED 2.23); as an operating cost USD 0.598/share (AED 2.20); gap -1.7%",
+  "Contested judgement \u2014 margin: structural USD 0.608/share (AED 2.23); cyclical USD 0.522/share (AED 1.92); gap -14.2%",
+  "Lenses (USD/share): cash flow 0.608, relative 0.697, normalised 0.563, book 0.283; weighted central 0.584 (AED 2.15) against a spot of AED 2.23",
   "Input register: 316 inputs, every one four-field complete"
  ]
 }

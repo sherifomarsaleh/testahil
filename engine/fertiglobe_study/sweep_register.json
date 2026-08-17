@@ -1,0 +1,535 @@
+{
+ "ticker": "FERTIGLB",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "The US 10-year Treasury yield stands at 4.69% and the overnight secured financing rate at 3.65%. Because the dirham is hard-pegged to the dollar and the company both reports and borrows in dollars, the US curve is the currency-matched base for the cost of capital rather than a foreign proxy",
+   "source_name": "Federal Reserve Bank of St Louis, FRED series DGS10; New York Federal Reserve",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "model_impact": "Sets the risk-free base of the cost of capital. The Abu Dhabi dollar sovereign is built as the Treasury yield plus the emirate's own credit spread, then normalised by removing that same spread so sovereign risk is counted once, inside the equity risk premium.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "BASE_CHANGER",
+   "headline": "European gas rallied to over $20/MMBtu, lifting the marginal cost of European nitrogen production above prevailing import prices and putting a cost floor under ammonia; ammonia averaged $866/t delivered north-west Europe in the second quarter of 2026 against $452/t a year earlier",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report; Fertiglobe Q2 2026 Results Call Transcript",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the price floor argument in the mid-cycle anchor. European marginal cost is what stops the modelled price path reverting below roughly $430/t of urea, and it is the reason framing B is a live possibility rather than a courtesy.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "BASE_CHANGER",
+   "headline": "Conflict in the Middle East closed the Strait of Hormuz to normal traffic during the second quarter of 2026 \u2014 a route carrying over 21% of global ammonia trade and around 30% of global urea exports. The company exported volumes from the UAE equivalent to only 56% of quarterly production and moved the balance by alternative overland and sea routes at higher cost",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report; Fertiglobe Q2 2026 Results Call Transcript",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Explains both the 2026 price spike and the step-up in freight and logistics cost per tonne. Both are modelled as unwinding rather than permanent, which is the conservative side of the central judgement.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "Global urea demand growth outside China of about 11.4 million tonnes to 2030 is expected to outpace capacity additions of about 9.1 million tonnes, on the company's own compilation of projects that have reached a final investment decision",
+   "source_name": "Fertiglobe Q2 2026 Investor Presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "This is the evidence base for framing B \u2014 the structurally tight reading of the price path. It is the company's own view of its own market and is treated as an interested source, which is why it is carried as one of two framings and not as the base case.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "Abu Dhabi is rated Aa2 with an adjusted default spread of 0.42% and a sovereign credit default swap of 0.46%; Egypt is rated Caa1 with a 6.37% default spread; Algeria is unrated with a 3.83% assessed spread. The dirham peg at 3.6725 to the dollar has held since 1997",
+   "source_name": "A. Damodaran, country default spreads and risk premiums; UAE central bank",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "model_impact": "Each operating country is priced off its own row. The equity risk premium is weighted by where the plants actually sit \u2014 50.7% UAE, 31.1% Egypt, 16.1% Algeria \u2014 giving 8.51%, far above the 4.87% that treating the company as purely Emirati would have produced.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "The statutory UAE rate is 9%, but the group's own statutory rate ranges from 0% to 25% because certain entities hold qualified free-zone status while others are subject to emirate-level taxation. The reported effective rate was 4.0% in 2025 and 7.0% in 2024, both flattered by items that do not recur",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2025, PwC-signed 4-Mar-2026, income taxes note",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "The forecast tax rate is not taken from any single reported year. It is the average of three independently sourced estimates \u2014 the four-year aggregate effective rate, the four-year aggregate cash rate, and a jurisdiction-weighted statutory build \u2014 which the workbook computes on the sheet rather than asserting.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "European Union tariffs on Russian and Belarusian fertilisers rose to EUR 60 per tonne in July 2026 from EUR 40, on top of an existing 6.5% duty, with annual increases scheduled to reach EUR 315 per tonne by 2028. Egyptian and Algerian product remains duty free. France announced support of at least EUR 50 per tonne for farmers buying nitrogen fertiliser through September 2026",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supports the realised-price-to-benchmark ratio holding at about 1.00 rather than eroding. The company's North African plants sell into Europe duty free against a rising tariff wall on the largest competing supplier.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "No material new urea capacity is scheduled for several years, and India completed three urea tenders in the first half of 2026 seeking 5.5 million tonnes \u2014 around 60% of its full prior-year import volume \u2014 in half a year",
+   "source_name": "Fertiglobe Q2 2026 Investor Presentation; Fertiglobe Q2 2026 Results MD&A Report",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supports holding forecast utilisation at or above recent levels rather than assuming volume competition from new entrants.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "BASE_CHANGER",
+   "headline": "Granular urea free on board Egypt averaged $637/t in the first half of 2026 against $440/t for 2025 and $357/t for 2024; ammonia free on board the Middle East averaged $594/t against $343/t and $349/t. Urea then normalised and stood at $555/t in mid-July 2026",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report and Fertiglobe Q4 2025 Results MD&A Report, benchmark price tables (source: CRU, MMSA, ICIS, Bloomberg)",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "These are the price anchors for both framings. Framing A reverts toward a marginal-cost anchor of about $435/t of urea by 2028; framing B holds near $550/t. The gap between them is the study's central question.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "COLOR",
+   "headline": "New nitrogen supply is concentrated in the United States Gulf Coast, where it continues to ramp, and in Iran, whose production has been limited by the same regional disruption. Chinese exports were absent until the government issued quota guidance in May 2026 and remain minimal",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report; Fertiglobe Q2 2026 Investor Presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Chinese export policy is the single largest swing factor on the supply side and is named in the section on what would change our mind.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "STRUCTURAL",
+   "headline": "The European carbon border adjustment mechanism entered its definitive phase on 1 January 2026 alongside the phase-out of free emissions allowances, which supports demand for lower-carbon ammonia. The company is building a one-million-tonne lower-carbon ammonia plant for under $500 million of total project cost, with operations expected in 2027",
+   "source_name": "Fertiglobe Q2 2026 Results MD&A Report; Fertiglobe Q2 2026 Investor Presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Excluded from the base case. The parent is warehousing the project and the company holds only an option to move to 54% ownership after completion, so it is not a consolidated cash flow today. It is carried as an unpriced option and named as an upside catalyst.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "COLOR",
+   "headline": "The comparable set spans Nutrien, CF Industries, Yara International and OCI Global in the West, and Industries Qatar and SABIC Agri-Nutrients in the Gulf. Gulf-listed nitrogen producers carry materially higher enterprise multiples than Western peers on comparable assets",
+   "source_name": "Peer enterprise value to EBITDA multiples compiled for the relative lens",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the relative multiple. The multiple applied sits below the Gulf peers and above the European ones, because the company earns Gulf gas economics but carries Egyptian and Algerian country risk.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2025 audited consolidated statements: revenue $2,827.4m, gross profit $885.4m, operating profit $727.3m, profit for the year $588.5m of which $433.9m attributable to owners, total assets $4,949.5m, total equity $1,799.8m, gross interest-bearing debt $1,740.6m",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2025, PwC-signed 4-Mar-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-04",
+   "detail": "",
+   "url": "https://fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-plc-Consolidated-FS-4Mar26-no-nav.pdf",
+   "model_impact": "The whole historical income statement, balance sheet and cash flow are constructed from this filing and its two predecessors. Every recomputed subtotal was asserted back against the filed figure.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2024 audited consolidated statements: revenue $2,009.2m, profit for the year $213.6m, and a Key Audit Matter on the accrual for increased Sorfert gas cost",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2024, signed 18-Mar-2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-03-18",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supplies the FY2024 comparative column used for the three-year historical income statement and balance sheet, and the FY2024 segment revenue and EBITDA that form the earliest of the three observations behind the cost pass-through calibration.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023 audited consolidated statements: revenue $2,416.2m, profit for the year $505.0m, with FY2022 carried as the comparative (revenue $5,027.5m)",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2023, signed",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-04-29",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supplies the FY2023 historical year and, through its own comparative column, the FY2022 cycle peak. Both feed the four-year aggregate effective and cash tax rates that set the forecast tax rate, and the three-year average margin behind the normalised earnings power lens.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "FY2022 audited consolidated statements \u2014 the fourth complete audited year, and the cycle peak against which the current period is judged: revenue $5,027.5m and profit for the year $1,820.4m",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2022",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-02-14",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "First-quarter 2026 interim statements, with the accrual for increased Sorfert gas cost at $422.4m",
+   "source_name": "Fertiglobe plc, Interim Financial Statements, three months ended 31-Mar-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-04-29",
+   "detail": "",
+   "url": "",
+   "model_impact": "Confirms the gas accrual is still building quarter by quarter rather than having settled.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "First-half 2026 interim statements: revenue $2,001.0m, gross profit $624.9m, profit attributable to owners $312.4m, net debt down to $621.2m from $1,005.5m at the year end, and the Sorfert gas accrual at $468.8m",
+   "source_name": "Fertiglobe plc, Interim Financial Statements, six months ended 30-Jun-2026; Fertiglobe Q2 2026 Results MD&A Report",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "The 2026 forecast year is built as this reported half plus a modelled second half, rather than as a modelled full year. Half of the study year is already fact and is carried as fact.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "BASE_CHANGER",
+   "headline": "The chief executive stated on the second-quarter results call that gas pricing in Egypt and Algeria is product-linked: 'we have gas-linked \u2014 sorry, product-linked gas pricing effectively in both Egypt as well as Algeria. So, product prices are very strong. We'll see a higher gas cost.' The delivered gas price in the second quarter of 2026 was $6/MMBtu, or $8/MMBtu including the Algerian profit-share",
+   "source_name": "Fertiglobe Q2 2026 Results Call Transcript",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "This is the single most consequential finding in the sweep and it contradicts the audited segment note, which describes the gas offtake agreements as carrying 'no/limited price exposure'. It converts the cost side from an inflation-escalated stack into a function of the product price, and it is calibrated from disclosed segment economics rather than assumed \u2014 every incremental dollar of realised price carries about 48 cents of cost with it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Product sales volumes are disclosed quarterly by product: own-produced urea 4,228kt and ammonia 1,267kt in 2025; 2,045kt and 523kt in the first half of 2026. Urea utilisation ran at 92% across the platform in the first half of 2026. Installed capacity is 5.1 million tonnes of urea and 1.5 million tonnes of merchant ammonia",
+   "source_name": "Fertiglobe Q4 2025 Results MD&A Report; Fertiglobe Q2 2026 Results MD&A Report; Fertiglobe Q2 2026 Investor Presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Converts the revenue forecast from a top-down growth rate into a genuine unit build \u2014 capacity times utilisation gives volume, benchmark price times a realisation ratio gives price, and the two multiply. The realisation ratio was measured at 1.015, 0.999 and 0.989 across three independent disclosed periods.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "Sorfert operates under a 20-year gas supply contract with Sonatrach whose price was fixed for ten years; that period lapsed at the end of 2023 and the replacement price applies retrospectively from then. The accrued liability has built from $7.2m at the end of 2023 to $182.8m, $386.3m, $422.4m and $468.8m at 30 June 2026. Negotiations are unconcluded and no payment schedule exists",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2024, signed 18-Mar-2025 (Key Audit Matter); Fertiglobe plc, Consolidated Financial Statements FY2025, PwC-signed 4-Mar-2026; Fertiglobe plc, Interim Financial Statements, six months ended 30-Jun-2026; Fertiglobe Q2 2026 Results Call Transcript",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Charged through cost of sales each period, so it is inside the calibrated cost pass-through. Stripping it out changes the pass-through slope by less than a percentage point, which is what makes the calibration robust rather than an artefact of this one item. The unsettled balance is carried as a disclosed liability and named as a risk, because the final formula is not yet known.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "STRUCTURAL",
+   "headline": "Abu Dhabi National Oil Company completed its acquisition of OCI N.V.'s entire shareholding on 15 October 2024, taking 86.2%. As of the FY2025 reporting date the parent holds 87.4% and the free float is 12.6%",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2025, PwC-signed 4-Mar-2026, note 1",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "A 12.6% free float is a liquidity and governance fact that belongs in the caveats, and it is one reason the share's returns track the local index so weakly. It does not change a forecast driver.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "Dividends of $250m were paid for 2025 and a buyback programme of up to 2.5% of shares was approved in April 2025, of which 1.34% had been repurchased for $74m by 30 June 2026. First-half 2026 dividends of at least $150m were proposed",
+   "source_name": "Fertiglobe plc, Consolidated Financial Statements FY2025, PwC-signed 4-Mar-2026; Fertiglobe Q2 2026 Results MD&A Report",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the 80% distribution assumption in the balance-sheet roll-forward, measured from actual distributions against attributable profit rather than assumed.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "COLOR",
+   "headline": "The company operates a Manufacturing Improvement Plan and a Financial Improvement Plan with stated incremental targets, and describes a 'Grow 2030' strategy backed by the parent's international investment arm",
+   "source_name": "Fertiglobe Q2 2026 Investor Presentation; Fertiglobe Q2 2026 Results MD&A Report",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supports the utilisation glide from 82.3% to 88.8% over the forecast period. The company gives no numeric volume or price guidance, so no guidance figure is carried as a driver.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched the FY2025 statements and both 2026 interim filings for impairments, discontinued operations, restatements or disposals beyond the Wengfu Australia acquisition \u2014 none found)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched the FY2023, FY2024 and FY2025 audited statements, both 2026 interim filings, every MD&A report and the results-call transcript for a purchase price, cost per tonne or gross margin per tonne on third-party traded product. Volumes are disclosed by product but no purchase-side unit economics are given anywhere \u2014 only segment revenue and segment EBITDA)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched all four audited filings, both interim filings and every MD&A report for a disclosed delivered gas price per MMBtu for any period before the second quarter of 2026, and for the Sonatrach and Egyptian gas pricing formulas themselves. Only the single Q2-2026 figure on the results call was found; no formula and no historical series is published)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Own-produced sales volume (kt, by product)",
+   "mode": "BOTTOM_UP",
+   "justification": "Installed capacity by plant and product is disclosed, and quarterly sales volumes are disclosed by product. Volume is capacity times utilisation, both sourced.",
+   "sweep_refs": [
+    "F20"
+   ]
+  },
+  {
+   "driver": "Realised price per tonne ($/t, by product)",
+   "mode": "BOTTOM_UP",
+   "justification": "Published benchmark prices by product and region, multiplied by a realisation ratio measured against disclosed segment revenue over three independent periods.",
+   "sweep_refs": [
+    "F09",
+    "F20"
+   ]
+  },
+  {
+   "driver": "Cash cost per tonne ($/t)",
+   "mode": "BOTTOM_UP",
+   "justification": "Calibrated against realised price from disclosed segment revenue and EBITDA over three periods, and cross-checked physically against gas consumption intensity and the disclosed delivered gas price.",
+   "sweep_refs": [
+    "F19",
+    "F21"
+   ]
+  },
+  {
+   "driver": "Third-party trading revenue and margin",
+   "mode": "TOP_DOWN",
+   "justification": "Volumes are disclosed but purchase prices are not, so the leg is carried at a segment margin measured from disclosed segment EBITDA. The gap is flagged: this is the one leg not built from unit economics.",
+   "sweep_refs": [
+    "F13",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Forecast tax rate",
+   "mode": "BOTTOM_UP",
+   "justification": "Average of three sourced estimates computed on the workbook sheet \u2014 four-year aggregate effective, four-year aggregate cash, and a jurisdiction-weighted statutory build on disclosed asset weights.",
+   "sweep_refs": [
+    "F06"
+   ]
+  },
+  {
+   "driver": "Working capital",
+   "mode": "BOTTOM_UP",
+   "justification": "Projected from the receivable, inventory and payable days measured off the filed statements, with the gas accrual removed from payables because it is not a trade payable in the ordinary course.",
+   "sweep_refs": [
+    "F13",
+    "F21"
+   ]
+  },
+  {
+   "driver": "Equity risk premium",
+   "mode": "BOTTOM_UP",
+   "justification": "Each operating country priced off its own published sovereign row and weighted by disclosed non-current assets by country.",
+   "sweep_refs": [
+    "F05",
+    "F13"
+   ]
+  },
+  {
+   "driver": "Cost of debt",
+   "mode": "BOTTOM_UP",
+   "justification": "The company's own most recent borrowings, tranche by tranche, at their disclosed margins over the reference rate.",
+   "sweep_refs": [
+    "F13"
+   ]
+  },
+  {
+   "driver": "Beta",
+   "mode": "BOTTOM_UP",
+   "justification": "Regression of the share's own weekly returns against an equal-weight composite of the local market over the full listed history.",
+   "sweep_refs": [
+    "F22"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://fertiglobe.com/investor-relations/",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Investor relations landing page reachable; HTTP 200."
+  },
+  {
+   "url": "https://fertiglobe.com/investor-relations/results-reports/",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Full results archive reachable \u2014 annual reports, audited consolidated financial statements, quarterly statements, MD&A reports, investor presentations and results-call transcripts from FY2021 to Q2-2026."
+  },
+  {
+   "url": "https://fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-plc-Consolidated-FS-4Mar26-no-nav.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2025 audited consolidated financial statements downloaded and parsed (86 pages)."
+  },
+  {
+   "url": "https://fertiglobe.com/wp-content/uploads/2025/03/En_Fertiglobe-plc-Consolidated-Financial-Statements-2024-18-March-2025-Signed.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2024 audited consolidated financial statements downloaded and parsed (80 pages)."
+  },
+  {
+   "url": "https://fertiglobe.com/wp-content/uploads/2024/07/EN-Consolidated-FY23-Financial-Statements-signed-FINAL.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2023 audited consolidated financial statements downloaded and parsed (75 pages)."
+  },
+  {
+   "url": "https://fertiglobe.com/wp-content/uploads/2024/03/Fertiglobe-Consolidated-2022-Financial-Statements-vF.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2022 audited consolidated financial statements downloaded and parsed (74 pages) \u2014 the fourth complete audited year."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [FERTIGLB, 2026-08-09]: PASS \u2014 4/4 rings, 27 findings (7 B \u00b7 9 S \u00b7 4 D \u00b7 4 C \u00b7 3 NEG), driver gate 9 rows (8 bottom-up / 1 top-down) | primary access: attempted (6) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 11"
+}

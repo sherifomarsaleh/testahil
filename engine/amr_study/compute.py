@@ -463,36 +463,29 @@ ETR25 = inp('etr_fy25', 0.14, FS25 + ', note 28: effective tax rate of 14% (2024
 ETR_H1_26 = inp('etr_h1_26', 24.101 / 171.084, IH26 + ': income tax and zakat of USD 24,101 '
                 'thousand on profit before tax of USD 171,084 thousand', '2026-06-30', 'Company')
 
-BETA = inp('beta', 1.026, 'Ordinary least squares regression of 185 complete weekly logarithmic '
+BETA = inp('beta', 0.930, 'Ordinary least squares regression of 183 complete weekly logarithmic '
            'returns of the company\'s own Abu Dhabi-listed shares against the FTSE ADX General '
-           'Index — the index of the exchange the shares trade on — over windows labelled 23 '
-           'December 2022 to 24 July 2026. That is the whole life of the listing, the company '
-           'having floated in December 2022, and no observation after the 7 August 2026 price '
-           'anchor enters the sample; the index history supplied ends on 24 July 2026, so the '
-           'window closes there. Standard error 0.254, t-statistic 4.04, R-squared 8.2%: the '
-           'regression clears the usability gate of at least 24 observations, R-squared of at '
-           'least 5% and a standard error below the absolute coefficient. Stock and index are '
-           'struck at the same closing auction on the same exchange in the same currency, so no '
-           'timing correction applies; computed anyway as a check, the lead-lag sum is 0.934, '
-           'which is close enough to confirm there is nothing to correct. The index series was '
-           'screened before use: 3,884 sessions from January 2011 to July 2026, 250 a year, no '
-           'duplicate dates, no non-positive levels, largest single-session move 8.8%, and a '
-           'weekday pattern that shows the January 2022 trading-week change. That the index '
-           'measures its market is checked rather than assumed — regressed identically, Aldar '
-           'returns 1.58, Emaar 1.50, Abu Dhabi Commercial Bank 1.36 and the defensive food '
-           'company Agthia 0.42, so property and banking run above the index while a consumer '
-           'staple runs well below it, and this restaurant operator sits at the market average. '
-           'The precision is modest and is stated as such: one standard error spans 0.77 to '
-           '1.28, so this estimate cannot be distinguished from the 0.894 the first edition '
-           'used. Cross-checks, all disclosed and none adopted: the company\'s Saudi line '
-           'against the Saudi index gives 0.894, which was the first edition\'s input, chosen '
-           'because no Abu Dhabi index history could be obtained at the time and superseded now '
-           'that it can; an equally weighted composite of eighteen covered UAE names gives '
-           '0.586; and two UAE-listed consumer peers give a median of 0.574. The composite is a '
-           'diagnostic and never the regressor: it is a selection-biased subset of names whose '
-           'own sector mix would stand in for the market, and this company is one of its '
-           'constituents, so the shares would be regressed partly against themselves.',
-           '2026-08-10', 'Market')
+           'Index — the published index of the exchange those shares trade on — over windows '
+           'labelled 30 December 2022 to 17 July 2026, which is the whole life of the listing, '
+           'the company having floated in December 2022. The figure carries the Dimson lead-lag '
+           'correction, and both series pass the data-quality screen first. Standard error '
+           '0.412, R-squared 8.4%: it clears the usability gate of at least 24 observations, '
+           'R-squared of at least 5% and a standard error below the absolute coefficient, but '
+           'only just, and the imprecision is the honest headline — a 90% confidence interval '
+           'runs from 0.25 to 1.61, so this estimate cannot be told apart from most plausible '
+           'alternatives. A Blume adjustment towards the market gives 0.953, close enough to '
+           'confirm the level. The index is quoted in dirhams, the same currency the shares '
+           'trade in, and strikes at the same closing auction on the same exchange. Cross-checks '
+           'from earlier editions of this study, all disclosed and none adopted, and every one '
+           'now known to be non-conforming: the company\'s Riyadh line against the Saudi index '
+           'gave 0.894 — a different country\'s market cycle, and the input the first edition '
+           'used before the Abu Dhabi index was available; an equally weighted composite of '
+           'eighteen covered UAE names gave 0.586; and a US-listed UAE index fund, which prices '
+           'hours after the Abu Dhabi close, gave 0.469. The composite and the fund understated '
+           'the beta by roughly half. A composite is not a substitute and not a tier: it is a '
+           'coverage artefact that changes whenever a stock is added, it mixes two exchanges '
+           'inside one market code, and it shares its constituents with the company being '
+           'priced.', '2026-08-10', 'Market')
 
 KD = inp('cost_of_debt', 40.867 / ((578.831 + 637.466) / 2),
          'The group\'s own incremental borrowing rate, read out of its lease accounting: '
@@ -1472,6 +1465,7 @@ OUT = dict(
     wacc=dict(rf_ust=UST10, us_default_spread=US_DEFAULT_SPREAD, us_cds=US_CDS,
               rf_rating=RF_RATING, rf_cds=RF_CDS,
               erp_rating=ERP_BLEND_RATING, erp_cds=ERP_BLEND_CDS,
+              beta_provenance=json.load(open(os.path.join(HERE, 'beta_result.json'))),
               beta=BETA, ke_rating=KE_RATING, ke_cds=KE_CDS, ke_terminal=KE_TERM,
               kd=KD, kd_fy24=KD_FY24, kd_after_tax=KD_AT,
               debt_weight=WD, equity_weight=WE,

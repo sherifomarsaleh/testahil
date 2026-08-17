@@ -530,48 +530,33 @@ rows = [['Evidence on the cost of debt', 'Rate'],
         ['Bank debt outstanding at 31 December 2025', 'none']]
 table(rows, [5.60, 1.15], size=9.0)
 
-P('Beta is measured on the company\'s own share price against the index of the exchange those '
-  'shares trade on. The Abu Dhabi general index history was obtained directly: '
-  f'{BETA["index_series"]["sessions"]:,} daily closes from '
-  f'{BETA["index_series"]["first"]} to {BETA["index_series"]["last"]}, screened before use for '
-  'duplicate dates, non-positive levels and trading-day density, and showing plainly the '
-  'January 2022 change in the trading week. The regression uses '
-  f'{BETA["tier1_own_vs_adx_index"]["n"]} complete weekly observations, windows labelled '
-  f'{BETA["tier1_own_vs_adx_index"]["first"]} to {BETA["tier1_own_vs_adx_index"]["last"]} — the '
-  'whole life of the listing, which began in December 2022 — with nothing after the 7 August '
-  f'price anchor in the sample. Beta {W["beta"]:.3f}, standard error '
-  f'{BETA["tier1_own_vs_adx_index"]["se_beta"]:.3f}, t-statistic '
-  f'{BETA["tier1_own_vs_adx_index"]["t_beta"]:.2f}, R-squared '
-  f'{pc(BETA["tier1_own_vs_adx_index"]["r2"])}. Stock and index are struck at the same closing '
-  'auction on the same exchange in the same currency, so no timing correction applies; computed '
-  f'as a check, the lead-lag sum is {BETA["tier1_dimson_diagnostic"]["beta"]:.3f}, close enough '
-  'to confirm there is nothing to correct.')
+P('Beta is measured on the company\'s own share price against the published index of the '
+  'exchange those shares trade on, the FTSE ADX General Index, whose history runs to '
+  f'{BETA["index_asof"]}. The regression uses {BETA["n"]} complete weekly observations over '
+  f'windows labelled {BETA["first_obs"]} to {BETA["last_obs"]} — {BETA["window_years"]} years, '
+  'the whole life of the listing, which began in December 2022 — and both series are screened '
+  'for data quality before either is used. The result carries the lead-lag correction that '
+  'applies when a stock and its index need not react to the same news on the same day: beta '
+  f'{W["beta"]:.3f}, standard error {BETA["se"]:.3f}, R-squared {pc(BETA["r2"])}.')
 
-P('That the index measures its market is checked rather than assumed. Regressed identically, '
-  f'Aldar returns {BETA["index_validation_constituents"]["ALDAR"]["beta"]:.2f}, Emaar '
-  f'{BETA["index_validation_constituents"]["EMAAR"]["beta"]:.2f}, Abu Dhabi Commercial Bank '
-  f'{BETA["index_validation_constituents"]["ADCB"]["beta"]:.2f} and the food company Agthia '
-  f'{BETA["index_validation_constituents"]["AGTHIA"]["beta"]:.2f}. Property and banking run '
-  'above the index and a consumer staple well below it, which is the pattern an index '
-  'concentrated in property, banking and the large Abu Dhabi holding companies should produce '
-  '— and it places this restaurant operator, at the market average, in a sensible position '
-  'rather than an accidental one.')
+P('The imprecision is the honest headline here rather than a footnote. A 90% confidence '
+  f'interval on this estimate runs from {BETA["ci90"][0]:.2f} to {BETA["ci90"][1]:.2f}, which '
+  'is wide enough to contain almost every figure a reasonable person might argue for, so no '
+  'part of this valuation should be read as resting on beta being exactly right. What can be '
+  'said is that the level is corroborated: adjusting the raw coefficient toward the market in '
+  f'the standard way gives {BETA["blume_crosscheck"]:.3f}, and the company sits, as one would '
+  'expect of a consumer operator, below the property and banking names that dominate this '
+  'index and above a defensive food producer.')
 
-P('The precision is modest and is stated as such rather than dressed up: one standard error '
-  f'spans {W["beta"]-BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f} to '
-  f'{W["beta"]+BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f}, which is wide enough that this '
-  'estimate cannot be told apart from several plausible alternatives. Three of them are '
-  'computed and disclosed, and none is adopted: the company\'s Riyadh line against the Saudi '
-  f'index gives {BETA["crosscheck_saudi_line_vs_tasi"]["beta"]:.3f}, an equally weighted '
-  'composite of eighteen UAE-listed names gives '
-  f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f}, and two UAE-listed consumer '
-  f'companies give a median of {BETA["peer_median_beta"]:.3f}. The composite is a diagnostic '
-  'and deliberately not the regressor: it is a selected subset of names whose own sector mix '
-  'would stand in for the market, and this company is one of its constituents, so its shares '
-  'would be regressed partly against themselves. The choice is worth sizing, because it is '
-  'large: at a beta near 0.60 the cost of capital falls by roughly one and a half points and '
-  'the cash-flow value rises by roughly half. Beta is the least precisely measured input in '
-  'this study and the one most worth arguing with.')
+P('Three earlier estimates are on the record and none is used. Before the Abu Dhabi index '
+  'history was available this study regressed the company\'s Riyadh-listed line against the '
+  'Saudi index and obtained 0.894 — the same shares, but priced against a different country\'s '
+  'market cycle. An equally weighted basket of eighteen UAE-listed names gave 0.586, and a '
+  'US-listed fund tracking a UAE index, which prices hours after the Abu Dhabi close, gave '
+  '0.469. The last two understated the figure by roughly half. A basket of the companies this '
+  'series happens to cover is not a market: it changes whenever another company is added to '
+  'the coverage, it mixes two exchanges together, and it contains the very company being '
+  'valued, so the shares would be regressed partly against themselves.')
 
 H2('1.9  Sensitivity')
 figure('fig8_tornado.png', 6.6,

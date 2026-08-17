@@ -90,9 +90,10 @@ OUT = [
      'cross-check only'),
     ('Peer market data, retrieved 9 August 2026', 'trailing figures as published',
      'the peer multiple table', 'cross-check only — no peer figure enters the valuation'),
-    ('FTSE ADX General Index daily history, 3,884 sessions from January 2011',
-     'supplied 10 August 2026, screened before use',
-     'the regressor in the beta calculation — the index of the exchange the shares trade on',
+    ('FTSE ADX General Index daily history',
+     'screened before use; history to ' + str(BETA['index_asof']),
+     'the regressor in the beta calculation — the published index of the exchange the shares '
+     'trade on, held at ' + BETA['index_file'].replace('/', ' / '),
      'cost of capital only'),
     ('Tadawul All Share Index daily history', 'retrieved 9 August 2026',
      'a disclosed beta cross-check, and the regressor this study\'s first edition used before '
@@ -181,24 +182,17 @@ J = [
      'worth knowing.'),
     ('Beta of ' + f'{D["wacc"]["beta"]:.3f}' + ', from the company\'s own shares against the '
      'FTSE ADX General Index',
-     f'{BETA["tier1_own_vs_adx_index"]["n"]} weekly observations over the whole life of the '
-     f'listing, standard error {BETA["tier1_own_vs_adx_index"]["se_beta"]:.3f}, t-statistic '
-     f'{BETA["tier1_own_vs_adx_index"]["t_beta"]:.2f}, R-squared '
-     f'{100*BETA["tier1_own_vs_adx_index"]["r2"]:.1f}%. The index of the exchange the shares '
-     'trade on, same session and same currency, so no timing correction applies; the lead-lag '
-     f'sum is {BETA["tier1_dimson_diagnostic"]["beta"]:.3f}, confirming as much. The index '
-     'behaves as an index: Aldar '
-     f'{BETA["index_validation_constituents"]["ALDAR"]["beta"]:.2f}, Emaar '
-     f'{BETA["index_validation_constituents"]["EMAAR"]["beta"]:.2f}, Agthia '
-     f'{BETA["index_validation_constituents"]["AGTHIA"]["beta"]:.2f}.',
-     'A longer history, or a materially different estimate on one. The standard error is wide '
-     f'— one error band spans {D["wacc"]["beta"]-BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f} '
-     f'to {D["wacc"]["beta"]+BETA["tier1_own_vs_adx_index"]["se_beta"]:.2f} — and three '
-     'disclosed alternatives sit inside or below it: the Riyadh line against the Saudi index '
-     f'{BETA["crosscheck_saudi_line_vs_tasi"]["beta"]:.3f} (this study\'s FIRST edition used '
-     'that figure, when no Abu Dhabi index history could be obtained), a composite of UAE names '
-     f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f}, UAE consumer peers '
-     f'{BETA["peer_median_beta"]:.3f}.'),
+     f'{BETA["n"]} weekly observations over {BETA["window_years"]} years — the whole life of '
+     f'the listing — standard error {BETA["se"]:.3f}, R-squared {100*BETA["r2"]:.1f}%, '
+     'lead-lag corrected, both series screened for data quality first. The regressor is the '
+     f'published index of the exchange the shares trade on ({BETA["index_file"]}, history to '
+     f'{BETA["index_asof"]}), in the same currency and struck at the same closing auction.',
+     'Almost anything, and that is the point: the 90% confidence interval runs from '
+     f'{BETA["ci90"][0]:.2f} to {BETA["ci90"][1]:.2f}. Three earlier estimates are on the '
+     'record and none is used — the Riyadh line against the Saudi index 0.894 (a different '
+     'country\'s market cycle, and this study\'s first published input, before the Abu Dhabi '
+     'index was available), a basket of eighteen covered UAE names 0.586, and a US-listed UAE '
+     'index fund pricing hours after the Abu Dhabi close 0.469.'),
     ('Cost of debt of ' + f'{100*D["wacc"]["kd"]:.2f}%, the company\'s own lease borrowing rate',
      'The company has no bank debt. Its lease finance cost over its average lease liability is '
      'the only borrowing rate it actually pays, and determining that rate is a key audit matter '

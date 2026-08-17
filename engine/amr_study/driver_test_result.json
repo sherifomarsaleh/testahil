@@ -1,6 +1,6 @@
 {
  "headline_cell": "Summary!C10",
- "headline_base": 2.0490993392108745,
+ "headline_base": 2.145502160835613,
  "directional": [
   {
    "driver": "Like-for-like sales growth",
@@ -16,9 +16,9 @@
     0.01
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.2131056577579415,
-   "change_pct": 0.08003824675978241,
+   "base": 2.145502160835613,
+   "moved_to": 2.3209448327154587,
+   "change_pct": 0.0817723119008726,
    "passed": true,
    "mechanism": "higher revenue per restaurant lifts revenue, EBITDA and free cash flow"
   },
@@ -36,9 +36,9 @@
     1.2
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.1068132994101223,
-   "change_pct": 0.02816552574824114,
+   "base": 2.145502160835613,
+   "moved_to": 2.2072757860568863,
+   "change_pct": 0.028792152414898714,
    "passed": true,
    "mechanism": "more restaurants means more revenue; the capital they cost is well inside the cash they generate at a three-year payback"
   },
@@ -56,9 +56,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9254146613191696,
-   "change_pct": -0.06036050840723853,
+   "base": 2.145502160835613,
+   "moved_to": 2.0156229487645034,
+   "change_pct": -0.060535577377617326,
    "passed": true,
    "mechanism": "a costlier input basket takes a point of margin straight out of EBITDA"
   },
@@ -76,9 +76,9 @@
     1.05
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9480569301165054,
-   "change_pct": -0.04931064451627875,
+   "base": 2.145502160835613,
+   "moved_to": 2.0393475247536514,
+   "change_pct": -0.049477757710864836,
    "passed": true,
    "mechanism": "more heads per restaurant at the same wage is more cost"
   },
@@ -92,9 +92,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9692317925851415,
-   "change_pct": -0.03897690321665454,
+   "base": 2.145502160835613,
+   "moved_to": 2.060314558306904,
+   "change_pct": -0.03970520472257687,
    "passed": true,
    "mechanism": "the price side of the staff unit build"
   },
@@ -112,9 +112,9 @@
     0.02
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0141849230251796,
-   "change_pct": -0.017038908518286256,
+   "base": 2.145502160835613,
+   "moved_to": 2.108846466450932,
+   "change_pct": -0.017084902105344236,
    "passed": true,
    "mechanism": "a costlier channel taking a larger share of revenue"
   },
@@ -132,9 +132,9 @@
     0.005
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.014900786781771,
-   "change_pct": -0.01668955319768609,
+   "base": 2.145502160835613,
+   "moved_to": 2.109556580434228,
+   "change_pct": -0.016753924119743264,
    "passed": true,
    "mechanism": "the price side of the delivery unit build"
   },
@@ -148,9 +148,9 @@
     0.002
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0245309275601966,
-   "change_pct": -0.011989858754304911,
+   "base": 2.145502160835613,
+   "moved_to": 2.119732020407188,
+   "change_pct": -0.012011239559128766,
    "passed": true,
    "mechanism": "a straight charge against EBIT and the terminal cash flow"
   },
@@ -164,9 +164,9 @@
     0.1
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0717815160841244,
-   "change_pct": 0.011069339801741879,
+   "base": 2.145502160835613,
+   "moved_to": 2.170488335631314,
+   "change_pct": 0.011645839958497075,
    "passed": true,
    "mechanism": "a higher terminal return needs less reinvestment for the same growth"
   },
@@ -184,9 +184,9 @@
     0.005
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.058461713880805,
-   "change_pct": 0.004569019417836539,
+   "base": 2.145502160835613,
+   "moved_to": 2.1548343201907403,
+   "change_pct": 0.0043496387584586816,
    "passed": true,
    "mechanism": "a kinder cyclical reading lifts the normalised lens midpoint margin"
   },
@@ -204,9 +204,9 @@
     0.005
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9872570002650227,
-   "change_pct": -0.030180254203618938,
+   "base": 2.145502160835613,
+   "moved_to": 2.0805625548000584,
+   "change_pct": -0.03026778868880856,
    "passed": true,
    "mechanism": "a higher royalty is a direct transfer to the franchisor"
   },
@@ -220,9 +220,9 @@
     0.2
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.8868941159983517,
-   "change_pct": -0.07915927749749285,
+   "base": 2.145502160835613,
+   "moved_to": 1.9591573934560413,
+   "change_pct": -0.08685368431742593,
    "passed": true,
    "mechanism": "a higher beta raises the cost of equity and discounts the same cash flows harder"
   },
@@ -236,9 +236,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9118389895041474,
-   "change_pct": -0.06698569809679758,
+   "base": 2.145502160835613,
+   "moved_to": 2.0007442694966993,
+   "change_pct": -0.06747040109366959,
    "passed": true,
    "mechanism": "the same mechanism"
   },
@@ -252,9 +252,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.035662723684738,
-   "change_pct": -0.006557327538503253,
+   "base": 2.145502160835613,
+   "moved_to": 2.1310620726830187,
+   "change_pct": -0.006730400190774039,
    "passed": true,
    "mechanism": "a higher risk-free rate raises the whole cost of capital"
   },
@@ -268,9 +268,9 @@
     0.005
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.1028778766992637,
-   "change_pct": 0.02624496355999012,
+   "base": 2.145502160835613,
+   "moved_to": 2.21087169072387,
+   "change_pct": 0.0304681724779982,
    "passed": true,
    "mechanism": "faster perpetual growth raises the terminal value, and three-quarters of the enterprise value sits there"
   },
@@ -284,9 +284,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9271821017009694,
-   "change_pct": -0.059497963411015736,
+   "base": 2.145502160835613,
+   "moved_to": 2.0041474407281106,
+   "change_pct": -0.06588421241787451,
    "passed": true,
    "mechanism": "raises the terminal cost of capital, which capitalises the terminal cash flow"
   },
@@ -300,9 +300,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0250203566931777,
-   "change_pct": -0.011751007897435476,
+   "base": 2.145502160835613,
+   "moved_to": 2.1191164966702454,
+   "change_pct": -0.012298129849047086,
    "passed": true,
    "mechanism": "raises the after-tax cost of debt inside the weighted cost, and the lease interest charge on the income statement with it"
   },
@@ -320,9 +320,9 @@
     0.02
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0128567069958656,
-   "change_pct": -0.01768710355885735,
+   "base": 2.145502160835613,
+   "moved_to": 2.1075975186642046,
+   "change_pct": -0.017667025866170843,
    "passed": true,
    "mechanism": "less of every dollar of EBIT survives to NOPAT"
   },
@@ -336,9 +336,9 @@
     1.25
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0095614302947657,
-   "change_pct": -0.019295262147385757,
+   "base": 2.145502160835613,
+   "moved_to": 2.1036870959284792,
+   "change_pct": -0.019489640080738866,
    "passed": true,
    "mechanism": "each opening costs more, so free cash flow falls"
   },
@@ -352,9 +352,9 @@
     0.005
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.016178109907781,
-   "change_pct": -0.01606619487553572,
+   "base": 2.145502160835613,
+   "moved_to": 2.1106678759773705,
+   "change_pct": -0.016235958879051132,
    "passed": true,
    "mechanism": "the same, on the estate"
   },
@@ -368,9 +368,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 1.9764330677958066,
-   "change_pct": -0.03546254201763213,
+   "base": 2.145502160835613,
+   "moved_to": 2.068276510601296,
+   "change_pct": -0.035994207623747956,
    "passed": true,
    "mechanism": "taking leases is investment on the capitalised reading, so more of it is cash out"
   },
@@ -384,9 +384,9 @@
     0.01
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.039107635902895,
-   "change_pct": -0.004876143931522425,
+   "base": 2.145502160835613,
+   "moved_to": 2.1354751258294824,
+   "change_pct": -0.004673514289179368,
    "passed": true,
    "mechanism": "working capital is negative here, so making it LESS negative consumes cash"
   },
@@ -400,9 +400,9 @@
     1.0
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.1072724398094973,
-   "change_pct": 0.028389595118910024,
+   "base": 2.145502160835613,
+   "moved_to": 2.2040482485993618,
+   "change_pct": 0.02728782512199702,
    "passed": true,
    "mechanism": "lifts the relative lens, which carries a fifth of the weight"
   },
@@ -416,9 +416,9 @@
     2.0
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0999660567990635,
-   "change_pct": 0.024823939286310128,
+   "base": 2.145502160835613,
+   "moved_to": 2.1962047155976907,
+   "change_pct": 0.023632022231257335,
    "passed": true,
    "mechanism": "lifts the normalised lens"
   },
@@ -432,9 +432,9 @@
     0.05
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.061407849745012,
-   "change_pct": 0.006006790543828748,
+   "base": 2.145502160835613,
+   "moved_to": 2.1588184798187284,
+   "change_pct": 0.00620662110073534,
    "passed": true,
    "mechanism": "lifts the book lens"
   },
@@ -448,9 +448,9 @@
     0.2
    ],
    "expected": "lower",
-   "base": 2.0490993392108745,
-   "moved_to": 2.0420548667990013,
-   "change_pct": -0.003437838408842644,
+   "base": 2.145502160835613,
+   "moved_to": 2.1383218582418104,
+   "change_pct": -0.0033466769341336374,
    "passed": true,
    "mechanism": "a higher market price raises the equity weight in the cost of capital, and since equity is dearer than debt here the weighted cost rises and the value falls \u2014 the valuation does not chase the price"
   },
@@ -470,9 +470,9 @@
     1.05
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.154020446997425,
-   "change_pct": 0.05120352428933797,
+   "base": 2.145502160835613,
+   "moved_to": 2.254987851741977,
+   "change_pct": 0.05103033355311204,
    "passed": true,
    "mechanism": "a larger opening estate carries through the whole forecast"
   },
@@ -492,9 +492,9 @@
     1.05
    ],
    "expected": "higher",
-   "base": 2.0490993392108745,
-   "moved_to": 2.2770266901208407,
-   "change_pct": 0.11123294344418799,
+   "base": 2.145502160835613,
+   "moved_to": 2.384577870634651,
+   "change_pct": 0.11143112049158929,
    "passed": true,
    "mechanism": "the price side of the unit build, lifted at the base year"
   }

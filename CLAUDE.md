@@ -32,6 +32,8 @@ diff-only summary leaves that copy silently behind.
   (holdco); `REFERENCE_SET` asserts on exactly those. No other company is a template or an
   exemplar. Company names elsewhere in the protocol are evidence or coverage, not references.
 - Responding to an external critique of a delivered study → `engine/Critique_Response_Prompt.md`
+- Re-deriving a study's beta against its exchange's index and rebuilding on it →
+  `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
@@ -52,10 +54,29 @@ diff-only summary leaves that copy silently behind.
   invariants (coverage, provenance, consequence, gate linkage, primary access, FS depth,
   study-year quarter coverage, IR coverage). Import this rather than hand-rolling a
   study-local sweep script — `engine/scem_study/sweep.py` is the pattern to follow.
-- `engine/wacc_builder.py` — bottom-up cost of capital, including the beta-regression
-  usability gate (`RegressionBetaAttempt`).
+- `engine/beta_regression.py` — **THE ONLY sanctioned way to produce a regression beta.**
+  `own_stock_beta(ticker, market, exchange)` resolves the regressor itself, runs Step 0.0 on
+  both series, matches the weekly grid to the exchange's real trading week, and returns
+  provenance with the number. **Never hand-roll a study-local beta script.** Every study in
+  this repo once did, and every one of them regressed against an equal-weight composite of
+  the covered names — on FERTIGLB that understated beta by ~40% (0.492 vs 0.931 against the
+  real index) and overstated fair value by 21.6%.
+- `engine/wacc_builder.py` — bottom-up cost of capital, the beta-regression usability gate
+  (`RegressionBetaAttempt`), and `market_index_path(market, exchange)` / `EXCHANGE_INDEX` /
+  `index_interim_note()`. The regressor is the published index of the exchange the stock is
+  **listed on**, read from `engine/raw_indices/{MARKET}/{INDEX}.csv`. A constituent composite
+  is not a substitute and not a tier. **Match the exchange, not the country** — market `AE`
+  spans ADX and DFM, so `market_index_path('AE')` deliberately RAISES. If the index is not
+  held, STOP AND ASK; do not build a composite and proceed.
+- `engine/raw_indices/{MARKET}/{INDEX}.csv` — the published index series, deliberately
+  OUTSIDE `raw_ohlc/` so an index never enters a calibration panel as a covered name.
+  Registered: AE/ADX→FADGI, AE/DFM→FADGI *(labelled interim)*, EG/EGX→EGX30, IN/NSE→NIFTY50,
+  KR/KRX→KOSPI100, QA/QSE→QATAR10 *(weekly-only caveat)*, SA/TADAWUL→TASI, US/NASDAQ→NASDAQCOMP.
+  **BR and GB are unregistered — no conforming beta is possible there.**
 - `engine/research_protocol.py` — SIGCM: `SIGCMChecklist` + `assert_sigcm()`, the standing
-  hard gate. A violation must not issue, not just warn.
+  hard gate. A violation must not issue, not just warn. Also `assert_beta_provenance()`,
+  which inspects the actual beta record rather than trusting a checklist boolean — that
+  boolean was set `True` by every study while it regressed on a composite.
 - `engine/adaptive_width.py` — the EG-only, history-gated per-stock cone-width overlay.
   Overlay only; never touches the pooled (ν, width_cal) fit, drift, or tail.
 - `engine/data_quality.py` — Step 0.0, mandatory before any calibration, fit or study.
