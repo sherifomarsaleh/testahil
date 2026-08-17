@@ -138,6 +138,7 @@ BF = D['beta_framing']
 LN, LW, REL, NRM, BK = D['lenses'], D['lens_weights'], D['rel'], D['norm'], D['book']
 EXP, SN, STK, SOTP = D['experts'], D['sens'], D['strike'], D['sotp']
 PEERS, TECH, STEP0 = D['peers'], D['technicals'], D['step0']
+BE = D['beta']                      # the regression's own record, provenance included
 
 SEGS = D['segs']; SEG_GROUP = D['seg_group']; GROUPS = D['groups']
 YH = ['FY2023', 'FY2024', 'FY2025']
@@ -424,11 +425,12 @@ KE = RF_STAR + V['beta'] * V['erp_total']
 # The alternative construction is the SAME regression measured against a different market:
 # an equal-weight composite of the exchange's own names rather than its published index.
 KE_A = RF_STAR + V['beta_composite'] * V['erp_total']
-# The regression's own 90% confidence interval, and the lead-lag sum beta, priced through
-# the same cost-of-equity construction so the reader sees the span the estimate supports.
+# The regression's own 90% confidence interval, and the same slope shrunk toward the
+# market, priced through the same cost-of-equity construction so the reader sees the span
+# the estimate supports.
 KE_CI_LO = RF_STAR + V['beta_ci_lo'] * V['erp_total']
 KE_CI_HI = RF_STAR + V['beta_ci_hi'] * V['erp_total']
-KE_DIMSON = RF_STAR + V['beta_dimson'] * V['erp_total']
+KE_BLUME = RF_STAR + V['beta_blume'] * V['erp_total']
 KD1 = V['sofr'] + V['shldr_margin']
 KD_BANK = (V['bank_loan_lo'] + V['bank_loan_hi']) / 2
 KD_OTHER = (V['other_borr_lo'] + V['other_borr_hi']) / 2
@@ -811,6 +813,16 @@ for i, ln in enumerate([
  'used, the rate the company realised in 2025 and the disclosed useful lives now sit together so the choice',
  'can be judged. And the earnings multiple is shown on BOTH bases, forward and trailing, for the peers and for',
  'the company, because an earlier edition compared the company trailing against peers shown forward.', '',
+ 'AND THE BETA HAS BEEN RE-MEASURED. It is now produced by the same standard routine used for every share',
+ 'covered on this desk: the market series is resolved from the exchange the share is listed on rather than',
+ 'chosen, both series are screened for data quality before they are paired, and the weekly returns are',
+ "measured on that exchange's own trading week. The series it resolved is the one this study already used, so",
+ 'WHICH market the share is measured against has not changed — but the grid and the screening do move the',
+ f"figure: the slope is now {V['beta']:.4f} on {BE['n']} weekly observations, and its 90% confidence interval",
+ f"runs {V['beta_ci_lo']:.3f} to {V['beta_ci_hi']:.3f}, materially WIDER than the interval the previous edition",
+ 'published. The bear and bull cases take those two bounds directly, so the published range widens with it.',
+ 'A range that widens on re-measurement is information about how much a three-year price history can settle,',
+ 'not an embarrassment to be smoothed away.', '',
  'How revenue is built. Not as one growth rate, and not off the published rate either. The company gives one',
  'rate per vessel class each quarter, and its own chief financial officer said on the first-quarter call that',
  'this rate is a BLEND across the whole class, the vessels on charters out included. So the SPOT rate is not',
@@ -941,8 +953,8 @@ block('Cost of capital', [
      'bull-case beta)', V['beta_ci_lo'], BETA),
     ('beta_ci_hi', 'Beta — upper bound of the regression\'s 90% confidence interval (the '
      'bear-case beta)', V['beta_ci_hi'], BETA),
-    ('beta_dimson', 'Beta — lead-lag sum beta from the same series, one lead and two lags',
-     V['beta_dimson'], BETA),
+    ('beta_blume', 'Beta — the measured slope shrunk toward the market: two-thirds of it '
+     'plus one-third of 1.0', V['beta_blume'], BETA),
     ('erp', 'Equity risk premium (mature premium plus country risk)', V['erp_total'], PCT2),
     ('rf_term', 'Terminal risk-free rate', V['rf_terminal'], PCT2),
     ('tax_stat', 'Statutory corporate tax rate', TAXS, PCT)])
@@ -1274,7 +1286,7 @@ DF_ = dict(rev=5, ebitda=6, mgn=7, dna=8, ebit=9, tax=10, nopat=11, adddna=12,
            kh=104, wacc=105, rfterm=106, keterm=107,
            kdterm=108, kdtermat=109, khterm=110, waccterm=111,
            ab=113, betaa=114, kea=115, keta=116, wacca=117, wactermsa=118,
-           cib=120, cilo=121, cihi=122, kecilo=123, kecihi=124, dims=125, kedims=126,
+           cib=120, cilo=121, cihi=122, kecilo=123, kecihi=124, blume=125, keblume=126,
            ahdr=128, glidea=129, dfa=130, pva=131, pvexa=132, tva=133, pvtva=134,
            evopsa=135, tvsharea=136, eva=137, prencia=138, ncia=139, eqa=140, fvaeda=141)
 # Income statement
@@ -2545,10 +2557,11 @@ for rw, lab, fml, xp, fmt, gr in [
         (DF_['kecihi'], 'Cost of equity at the upper confidence bound — the bear-case '
          'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*C{DF_['erp']}", KE_CI_HI,
          PCT2, False),
-        (DF_['dims'], 'Beta — lead-lag sum beta, one lead and two lags',
-         f"={a('beta_dimson')}", V['beta_dimson'], BETA, True),
-        (DF_['kedims'], 'Cost of equity on the lead-lag sum beta',
-         f"=C{DF_['rfstar']}+C{DF_['dims']}*C{DF_['erp']}", KE_DIMSON, PCT2, False)]:
+        (DF_['blume'], 'Beta — the measured slope shrunk toward the market, two-thirds of '
+         'it plus one-third of 1.0',
+         f"={a('beta_blume')}", V['beta_blume'], BETA, True),
+        (DF_['keblume'], 'Cost of equity on the slope shrunk toward the market',
+         f"=C{DF_['rfstar']}+C{DF_['blume']}*C{DF_['erp']}", KE_BLUME, PCT2, False)]:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
 hdr(ws, DF_['ahdr'],
@@ -3173,7 +3186,9 @@ note(ws, f"A{SE['bg0']+len(SN['betas'])}",
      f"equal-weight composite of the exchange's own names, {V['beta']:.3f} is the adopted "
      f"regression against the exchange's published index, and {SN['betas'][-1]:.3f} is the "
      f"top of that regression's own 90% confidence interval (its bottom, "
-     f"{V['beta_ci_lo']:.3f}, sits just above the composite reading). The terminal growth "
+     f"{V['beta_ci_lo']:.3f}, sits {'above' if V['beta_ci_lo'] > SN['betas'][0] else 'below'} "
+     f"the composite reading, so the bull case is struck "
+     f"{'inside' if V['beta_ci_lo'] > SN['betas'][0] else 'outside'} this grid). The terminal growth "
      f"column at {V['g_terminal']:.1%} is the one the model runs on, so the cell where "
      f"that column meets the {V['beta']:.3f} row is the published cash-flow value of AED "
      f"{DC['fv_aed']:.2f} — every cell here is a complete re-run of the model discounted "
@@ -3845,8 +3860,8 @@ close(BF['alternative']['fv'], DA['fv_aed'], 1e-9)
 close(BF['alternative']['central'], CENTRAL_A, 1e-9)
 close(BF['ci90'][0], V['beta_ci_lo'], 1e-12)
 close(BF['ci90'][1], V['beta_ci_hi'], 1e-12)
-close(BF['dimson'], V['beta_dimson'], 1e-12)
-close(KE_DIMSON, WACC['ke_dimson'], 1e-12)
+close(BF['blume'], V['beta_blume'], 1e-12)
+close(KE_BLUME, WACC['ke_blume'], 1e-12)
 # the sensitivity beta grid must span the two constructions and the interval around the
 # adopted one — not round numbers chosen by hand
 close(SN['betas'][0], V['beta_composite'], 1e-12)
@@ -3894,7 +3909,7 @@ for i in range(5):
 ANCH.update(
     fv=f"DCF!C{DF_['fvaed']}", fv_beta_alt=f"DCF!C{DF_['fvaeda']}",
     ke_ci_lo=f"DCF!C{DF_['kecilo']}", ke_ci_hi=f"DCF!C{DF_['kecihi']}",
-    ke_dimson=f"DCF!C{DF_['kedims']}",
+    ke_blume=f"DCF!C{DF_['keblume']}",
     fv_usd=f"DCF!C{DF_['fvusd']}", pv_expl=f"DCF!C{DF_['pvex']}", tv=f"DCF!C{DF_['tv']}",
     ev=f"DCF!C{DF_['ev']}", tv_share=f"DCF!C{DF_['tvshare']}",
     wacc=f"DCF!C{DF_['wacc']}", wacc_term=f"DCF!C{DF_['waccterm']}",

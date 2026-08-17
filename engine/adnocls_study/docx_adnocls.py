@@ -281,6 +281,13 @@ assert abs(PRIOR_BETA - IN['beta']) > 1e-4, \
 assert CI_WIDTH > PRIOR_WIDTH, \
     ('the re-measured interval is NOT wider than the superseded one, so every sentence '
      'in this document that says it widened is false')
+# Whether the disclosed composite falls inside the adopted estimate's interval is a
+# CONSEQUENCE of that widening, not a standing fact: on the superseded interval it sat
+# below the lower bound, and the previous edition said so in three places. It is computed
+# on both intervals here so neither statement can survive its own arithmetic changing.
+ALT_IN_CI = ('inside' if IN['beta_ci_lo'] <= BFA['beta'] <= IN['beta_ci_hi']
+             else 'outside')
+ALT_IN_CI_PRIOR = 'inside' if PRIOR_CI_LO <= BFA['beta'] <= PRIOR_CI_HI else 'outside'
 
 # ---- the purchase announced on the anchor date -------------------------------
 # Eleven vessels for about USD 1.3 billion, announced on the same day as the closing price
@@ -375,6 +382,24 @@ VSALE_RATIO_IMPLIED = IN['vessel_sale_price'] / VSALE_BOOK_IMPLIED
 # ---- what the beta alone is worth, read off the published grid ----------------
 BETA_ONLY_BEAR = SN['grid_beta_g'][SN['betas'].index(BF['ci90'][1])][g_col]
 BETA_ONLY_ALT = SN['grid_beta_g'][SN['betas'].index(BFA['beta'])][g_col]
+
+
+def grid_place(b, ordinal=('first', 'second', 'third', 'fourth', 'fifth')):
+    """Where a beta falls among the published grid columns, in words.
+
+    The bull beta used to land between the first two columns and the document said so in
+    prose. It no longer does — the interval widened past the left-hand column — so the
+    sentence is computed from the grid rather than remembered against an old one.
+    """
+    bs = SN['betas']
+    if any(abs(b - x) < 5e-4 for x in bs):
+        return f"the {ordinal[min(i for i, x in enumerate(bs) if abs(b - x) < 5e-4)]} column"
+    if b < bs[0]:
+        return f"outside the grid, below its left-hand {p3(bs[0])} column"
+    if b > bs[-1]:
+        return f"outside the grid, above its right-hand {p3(bs[-1])} column"
+    i = max(i for i, x in enumerate(bs) if x < b)
+    return f"between the {ordinal[i]} and {ordinal[i + 1]} columns"
 
 # ---- the terminal risk-free basis switch, priced by read-across ----------------
 # The explicit window takes an observed bond yield net of the sovereign's own spread; the
@@ -626,8 +651,13 @@ P(f"The reason that conclusion is stronger than it looks rests on the discount r
   f"AED {p2(LN['dcf_beta_alt']['base'])}. That construction is published beside the "
   f"adopted one throughout, because a gap of AED {p2(beta_gap)} a share that turns on how "
   f"an index is weighted is something a reader is entitled to see rather than a detail to "
-  f"bury. What remains genuinely open is not the discount rate but where tanker rates "
-  f"settle after {YRL[0][:4]}, which is section 1.7.", space_after=10)
+  f"bury. The point estimate is not precise, and this edition says so more plainly than "
+  f"the last: the standard error on it is {IN['beta_se']:.3f}, which puts the 90% interval "
+  f"at [{IN['beta_ci_lo']:.3f}, {IN['beta_ci_hi']:.3f}] and carries the cash-flow lens "
+  f"from AED {p2(LN['dcf']['bear'])} to AED {p2(LN['dcf']['bull'])} once the rate anchor "
+  f"and the capital programme move with it. The largest open question is still not the "
+  f"discount rate but where tanker rates settle after {YRL[0][:4]}, which is section 1.7.",
+  space_after=10)
 
 # ============================ 3  VALUATION SUMMARY ===========================
 H2('Valuation summary — every read at a glance')
@@ -1916,9 +1946,10 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          '2% inflation objective plus a 1.25% long-run real policy rate, the same '
          'construction the terminal growth rate rests on'],
         ['Beta', p3(W['beta']), p3(W['beta']),
-         f"own-stock weekly regression against the {BE['regressor']} over the full listed "
-         f"history: n = {n0(BE['n'])}, R-squared {BE['r2']:.3f}, standard error "
-         f"{BE['se']:.3f}, 90% interval [{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}]. The "
+         f"own-stock weekly regression against the {BE['regressor']}, "
+         f"{BE['first_obs']} to {BE['last_obs']}: n = {n0(BE['n'])}, R-squared "
+         f"{IN['beta_r2']:.3f}, standard error {IN['beta_se']:.3f}, 90% interval "
+         f"[{IN['beta_ci_lo']:.3f}, {IN['beta_ci_hi']:.3f}]. The "
          f"evidence table below sets this out in full alongside the equal-weight "
          f"composite, which gives {p3(BFA['beta'])}"],
         ['Equity risk premium', pc(W['erp'], 2), pc(W['erp'], 2),
@@ -2168,10 +2199,11 @@ caption(f"Fair value in AED per share. The adopted construction is the {p3(IN['b
         f"cash-flow base of AED {p2(LN['dcf']['base'])} exactly. The bear case is struck at "
         f"{p3(SN['betas'][-1])}, the top of the regression's own 90% confidence interval "
         f"and the right-hand column here; the bull case is struck at the bottom of that "
-        f"interval, {BF['ci90'][0]:.3f}, which falls between the first and second columns. "
-        f"The equal-weight composite alternative is the {p3(SN['betas'][0])} column — and "
-        f"note where that sits: BELOW the bottom of the interval, so the composite reading "
-        f"is a lower discount rate than this study's own bull case takes. Beta moves the "
+        f"interval, {IN['beta_ci_lo']:.3f}, which falls {grid_place(IN['beta_ci_lo'])}. "
+        f"The equal-weight composite alternative is the {p3(SN['betas'][0])} column, and it "
+        f"sits {ALT_IN_CI} the interval: the bull case is struck lower still, so the "
+        f"composite reading is no longer — as an earlier edition of this study described it "
+        f"— a lower discount rate than this study's own bull case takes. Beta moves the "
         f"answer across the whole width of this table; growth moves it a fraction of that. "
         f"Read "
         f"the beta columns against the published bear and bull of AED "
@@ -2218,8 +2250,10 @@ rows.append(['Memorandum — the bear beta on its own',
 table(rows, [2.10, 1.95, 1.60, 1.35], size=8.4, left_cols=(1, 2))
 caption(f"Ranked by single-row swing, the beta is the largest by a wide margin — larger "
         f"than the operating crux, larger than the capital programme, larger than the tax "
-        f"exposure. That is worth reading precisely. The width of the beta row is the "
-        f"width of a measured statistical interval; the width of the rate-anchor row is a "
+        f"exposure. That is worth reading precisely. The beta row is bounded by the "
+        f"disclosed composite at {p3(SN['betas'][0])} and the top of the regression's own "
+        f"90% interval at {p3(SN['betas'][-1])}, so most of its width is measured "
+        f"statistical uncertainty; the width of the rate-anchor row is a "
         f"judgement about the future that no amount of data settles. The first is "
         f"uncertainty that has been quantified, "
         f"the second is uncertainty that has not. The tax row deserves its own note: at a "
@@ -2425,9 +2459,14 @@ P(f"This is a weaker claim than the study previously made, and the reason is wor
   f"Both numbers are in this document at full size and neither is hidden inside an "
   f"average, but the adopted one is the published index, and on it this share is close to "
   f"fairly priced rather than materially cheap. The composite reading should be read with "
-  f"one further fact attached to it: at {p3(BFA['beta'])} it sits below the bottom of the "
-  f"adopted estimate's own 90% interval, so it is a more aggressive discount rate than this "
-  f"study's own bull case takes.")
+  f"one further fact attached to it, and it is not the fact the previous edition attached. "
+  f"At {p3(BFA['beta'])} it now sits {ALT_IN_CI} the adopted estimate's own 90% interval of "
+  f"[{IN['beta_ci_lo']:.3f}, {IN['beta_ci_hi']:.3f}] — the interval widened when the beta "
+  f"was re-measured, and it is now wide enough to contain the composite, which the "
+  f"narrower interval of the last edition was not. So the composite is not a bolder number "
+  f"than the statistics support; it is a different definition of the market, and the "
+  f"question it raises is which market this share should be measured against rather than "
+  f"how aggressive a discount rate one is willing to take.")
 P("No recommendation and no forecast of the share price is expressed here or anywhere "
   "else in this document. The output is a range and a distribution.", space_after=10)
 
@@ -2527,22 +2566,25 @@ table(rows, [1.80, 1.70, 3.50], size=8.4, left_cols=(2,))
 # ============================= 11  §7  CAVEATS ===============================
 H1('7  Caveats and what would change our mind')
 for head, body in [
-    ("The beta still moves the answer more than anything else, even though it is now "
-     "settled. ",
+    ("The beta moves the answer more than anything else, and it is measured less "
+     "precisely than the last edition of this study implied. ",
      f"Regressed against the {BE['regressor']}, the beta is {p3(IN['beta'])}; regressed "
      f"against an equal-weight composite of the same exchange's names it is "
      f"{p3(BFA['beta'])}, worth AED {p2(beta_gap)} a share on the cash-flow lens. Across "
      f"the beta range tested in section 1.9 the swing is AED "
      f"{p2(max(beta_span)-min(beta_span))}, still the widest single sensitivity in the "
-     f"study. What has changed is that this is no longer an unresolved argument between a "
-     f"regression and an economic prior — the published index of the share's own exchange "
-     f"is the right yardstick and the two now agree. What remains is ordinary statistical "
-     f"uncertainty: {BE['window_years']:.1f} years of listed history, an R-squared of "
-     f"{BE['r2']:.3f}, and a 90% interval of [{BE['ci90'][0]:.2f}, {BE['ci90'][1]:.2f}] "
-     f"that this study's bear and bull cases carry at full width rather than narrowing. A "
-     f"longer history could still move the point estimate inside that interval, and the "
-     f"share is a constituent of the index it is measured against, which pulls the "
-     f"estimate up rather than down (section 1.8)."),
+     f"study. One part of this argument has closed: it is no longer an unresolved dispute "
+     f"between a regression and an economic prior, because the published index of the "
+     f"share's own exchange is the right yardstick and the two now agree. The other part "
+     f"has WIDENED. Re-measured on the exchange's own trading week, the same regression "
+     f"carries a standard error of {IN['beta_se']:.3f} on "
+     f"{BE['window_years']:.1f} years of history and a 90% interval of "
+     f"[{IN['beta_ci_lo']:.3f}, {IN['beta_ci_hi']:.3f}], against "
+     f"[{PRIOR_CI_LO:.3f}, {PRIOR_CI_HI:.3f}] in the previous edition. The bear and bull "
+     f"cases take those bounds at full width rather than narrowing them, so the published "
+     f"range is wider than it was and it should be. A longer history is the only thing "
+     f"that tightens this, and the share is a constituent of the index it is measured "
+     f"against, which pulls the estimate up rather than down (section 1.8)."),
     ("The terminal value is most of the answer. ",
      f"{pc(DCF['tv_share'], 0)} of the cash-flow model's enterprise value is the terminal "
      f"value on the adopted construction, {pc(DCFA['tv_share'], 0)} on the equal-weight "
@@ -2703,7 +2745,7 @@ for head, body in [
      f"five-year test of the price map, which is why the map's width setting rests on the "
      f"wider Abu Dhabi panel and why the beta is set out against three separate market "
      f"series in section 1.8 rather than accepted at face value. One further limit belongs "
-     f"here: the index series supplied ends {BE['regressor_span'][1]}, before the share's "
+     f"here: the index series supplied ends {BE['regressor_asof']}, before the share's "
      f"last session used elsewhere in this study, so {n0(BE['unused_stock_weeks'])} weekly "
      f"observations sit outside the regression. The window was stopped where the index "
      f"stops rather than pairing the share against a stale index level."),
@@ -2941,10 +2983,32 @@ P(f"One thing did not change and is worth saying so. The reversion judgement in 
   f"1.7 — that the fleet glides over four years to the average of what it earned in "
   f"{HYRS[1]} and {HYRS[2]} — is the same judgement it was, and it remains the largest "
   f"open question in the study. The corrections above changed what the fleet is reverting "
-  f"FROM, not the view about where it settles. Nor did the beta change: it is still "
-  f"{p3(IN['beta'])} against the published index of the share's own exchange, with the "
-  f"equal-weight composite reading of {p3(BFA['beta'])} published beside it at full size "
-  f"throughout.")
+  f"FROM, not the view about where it settles.")
+H2('Since the second round — the beta re-measured')
+P(f"One further change has been made since the corrections above, and it comes from method "
+  f"rather than from a reviewer. The beta is now produced by the same standard routine used "
+  f"for every share covered on this desk, which resolves the market series from the "
+  f"exchange the share is listed on, screens both series for data quality before pairing "
+  f"them, and measures the weekly returns on that exchange's own trading week. The market "
+  f"series it resolved is the one this study was already using — the "
+  f"{BE['regressor']} — so nothing about WHICH market the share is measured against has "
+  f"changed. What changed is the grid the returns are measured on and the screening applied "
+  f"before they are paired, and on {n0(BE['n'])} weekly observations that moves the "
+  f"measured slope from {PRIOR_BETA:.3f} to {p3(IN['beta'])} and widens its 90% interval "
+  f"from [{PRIOR_CI_LO:.3f}, {PRIOR_CI_HI:.3f}] to [{IN['beta_ci_lo']:.3f}, "
+  f"{IN['beta_ci_hi']:.3f}].")
+P(f"Two consequences, both of which make this document say LESS than the last one rather "
+  f"than more. The cash-flow lens falls to AED {p2(LN['dcf']['base'])} and the weighted "
+  f"central to AED {p2(D['central'])}, because a higher beta discounts harder. And the "
+  f"bear and bull cases widen, because they are taken from that interval directly rather "
+  f"than chosen: the published range on the cash-flow lens is now AED "
+  f"{p2(LN['dcf']['bear'])} to AED {p2(LN['dcf']['bull'])}. An interval that widens on "
+  f"re-measurement is information about how much a three-year price history can settle, "
+  f"and the answer is: less than the previous edition implied. The equal-weight composite "
+  f"reading of {p3(BFA['beta'])} continues to be published beside the adopted figure at "
+  f"full size throughout, and one thing said about it in the last edition is no longer "
+  f"true: it sits {ALT_IN_CI} the adopted estimate's own 90% interval, where against the "
+  f"narrower interval of the last edition it sat {ALT_IN_CI_PRIOR} it.")
 P(f"And one finding has been left open rather than acted on, which a reader should know "
   f"before weighing the field. The relative lens and the normalised lens share all three "
   f"multiples and the same weighting between the enterprise and earnings readings; what "

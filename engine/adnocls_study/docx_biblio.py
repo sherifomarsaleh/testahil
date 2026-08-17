@@ -202,7 +202,7 @@ PERDAY_PREFIX = ('tce_', 'tc_out_', 'charter_')
 COUNT_EXACT = {'spot_vessels_total', 'jub_owned', 'jub_chartered', 'osv_owned', 'gas_owned',
                'gas_lt_contracted', 'vlcc_sold_jan26'}
 COUNT_RE = re.compile(r'^tnk_[a-z0-9]+_(n|spot)$')
-RATIO3 = {'beta', 'beta_se', 'beta_r2', 'beta_dimson', 'beta_composite',
+RATIO3 = {'beta', 'beta_se', 'beta_r2', 'beta_blume', 'beta_composite',
           'beta_ci_lo', 'beta_ci_hi'}
 MULT = {'nd_ebitda_target_lo', 'nd_ebitda_target_hi', 'tnk_grossup_25', 'tnk_grossup_26'}
 DAYS = {'dso_days', 'dio_days', 'dpo_days'}
@@ -718,8 +718,24 @@ for _lbl, _doc_val, _key in (
         ('equal-weight composite', BF['alternative']['beta'], 'beta_composite'),
         ('lower bound', BF['ci90'][0], 'beta_ci_lo'),
         ('upper bound', BF['ci90'][1], 'beta_ci_hi'),
-        ('lead-lag variant', BR['dimson']['sum_beta'], 'beta_dimson')):
+        ('shrunk toward the market', BR['blume_crosscheck'], 'beta_blume')):
     assert abs(_doc_val - IV[_key]) < 5e-4, f'{_lbl} disagrees with the {_key} input'
+# ...and each of those must be the figure the SANCTIONED record holds, under the name that
+# record gives it. The check that caught the last mislabelling was exactly this one: a
+# cross-check was published under the name of a different correction, and the assertion
+# above failed because the two figures are not the same number. Naming them separately is
+# what makes that failure possible, so they are named separately.
+_SAN = BR['sanctioned']
+for _lbl, _key, _rec in (('the adopted slope', 'beta', _SAN['beta']),
+                         ('the standard error', 'beta_se', _SAN['se']),
+                         ('the R-squared', 'beta_r2', _SAN['r2']),
+                         ('the lower bound', 'beta_ci_lo', _SAN['ci90'][0]),
+                         ('the upper bound', 'beta_ci_hi', _SAN['ci90'][1]),
+                         ('the Blume cross-check', 'beta_blume',
+                          _SAN['blume_crosscheck'])):
+    assert abs(IV[_key] - _rec) < 5e-4, f'{_lbl} is not the figure the record holds'
+assert _SAN['conforming'] and _SAN['interim_note'] is None, \
+    'the regressor is not a conforming index for this exchange'
 assert abs(BC['beta'] - IV['beta_composite']) < 5e-4, 'the composite slope disagrees with itself'
 assert BF['alternative']['ke'] == W['ke_beta1'], 'the alternative cost of equity is not the one built'
 assert BF['primary']['ke'] == W['ke'], 'the adopted cost of equity is not the one built'
@@ -857,16 +873,23 @@ JUD = [
     ('Which measurement of the market the beta is regressed against',
      f"The published index of the exchange the share is listed on — the {BR['regressor']} — "
      f"because that is the market the share actually trades in and the measurement the method "
-     f"calls for. Weekly returns over the full listed history give a slope of {BR['beta']:.3f} "
+     f"calls for. It is resolved from the exchange the share is listed on rather than chosen "
+     f"here, and it is the {BR['regressor_code']} series taken as of {BR['regressor_asof']}. "
+     f"Weekly returns from {BR['first_obs']} to {BR['last_obs']}, measured on that exchange's "
+     f"own trading week, give a slope of {BR['beta']:.3f} "
      f"({BR['n']:,} paired observations, R-squared {BR['r2']:.3f}, standard error "
-     f"{BR['se']:.3f}) and a cost of equity of {W['ke'] * 100:.2f}%. The same returns over the "
-     f"same window, measured against an equal-weight composite of that exchange's own names "
-     f"instead, give {BC['beta']:.3f}, a cost of equity of "
+     f"{BR['se']:.3f}) and a cost of equity of {W['ke'] * 100:.2f}%. The slope is a lead-lag "
+     f"sum — one lag, the contemporaneous return and one lead — so the co-movement a thinly "
+     f"traded share books late is inside it rather than added to it afterwards. The same "
+     f"returns measured against an equal-weight composite of that exchange's own names "
+     f"instead, a basket assembled for this study and never adopted, "
+     f"give {BC['beta']:.3f}, a cost of equity of "
      f"{BF['alternative']['ke'] * 100:.2f}% and a central figure of AED "
      f"{BF['alternative']['central']:,.2f} against the published AED {D['central']:,.2f}. Both "
      f"constructions are computed in full and published side by side; neither is averaged into "
      f"the other.",
-     f"A longer price history — the listed record is only {BR['window_years']:.2f} years, and "
+     f"A longer price history — the paired record is only {BR['window_years']:.2f} years "
+     f"({BR['first_obs']} to {BR['last_obs']}), and "
      f"length is the one thing that cannot be manufactured. A different definition of the "
      f"index, since what the two constructions disagree about is which names are in the market "
      f"and how much say each of them gets. Or evidence that the share's own membership of the "
@@ -885,8 +908,12 @@ JUD = [
      f"{BR['se']:.3f} on a slope of {BR['beta']:.3f}, so the two bounds are "
      f"{(BF['ci90'][1] - BF['ci90'][0]) / BR['beta'] * 100:.0f}% of the estimate apart and the "
      f"cases inherit that width honestly. Round betas chosen by hand would look tidier and "
-     f"would be telling the reader less. The lead-lag variant of the same regression, at "
-     f"{BR['dimson']['sum_beta']:.3f}, sits inside these bounds."),
+     f"would be telling the reader less. This interval is WIDER than the one the previous "
+     f"edition of this study published, because the regression was re-measured on the "
+     f"exchange's own trading week; the low and high cases widened with it, which is the "
+     f"width the evidence supports rather than a loss of precision. The same slope shrunk "
+     f"toward the market on the Blume adjustment, {IV['beta_blume']:.3f}, sits inside these "
+     f"bounds."),
     ('The recovery in engineering and construction revenue after 2026',
      f"Revenue of {usdm(IV['drv_rev_offshore_projects_2026'])} in 2026 — inside the "
      f"company's own stated range — recovering to "
