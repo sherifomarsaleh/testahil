@@ -1,0 +1,3267 @@
+Air Arabia PJSC
+
+and its subsidiaries
+
+Consolidated Financial Statements
+
+For the year ended December 31, 2023
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+For the year ended December 31, 2023
+Table of contents
+
+Page(s)
+Directors’ Report 1
+Independent Auditor’s Report 2-8
+Consolidated statement of financial position 9
+Consolidated statement of profit or loss 10
+Consolidated statement of comprehensive income 11
+Consolidated statement of changes in equity 12-13
+Consolidated statement of cash flows 14
+Notes to the consolidated financial statements 15-56
+AirArabia Vp bUGiuycII
+Directors’ Report (2023)
+The year 2023 has been remarkable for Air Arabia, as we achieved significant milestones in terms
+of growth, revenue, and profitability. Our passenger numbers have consistently met our targets,
+and we have grown our fleet to 73 Airbus A320 family aircraft, and successfully added 26 new
+destinations across the group’s global network served from our operational hubs.
+Overall, Air Arabia Group has achieved record-breaking financial and operational results, with
+revenue touching AED 6 billion and net profit exceeding AED 1.54 billion.
+Despite the strong performance in 2023, the aviation industry continues to face geopolitical and
+economic challenges. The sector has experienced supply chain challenges, a shortage of technical
+labor, scarcity of spare parts, delays in specialized maintenance, and even unavailability of
+aircraft. Additionally, the fourth quarter witnessed a softening in yields, driven by these factors.
+However, thanks to Air Arabia's unique business model and operational excellence, the record
+results we have achieved stand as a testament to our product offering, commitment to cost
+control, and the strength of our management team. We take great pride in this accomplishment,
+which would not have been possible without the dedication of our entire Air Arabia family, from
+the board of directors to all employees.
+Air Arabia Group remains committed to conducting business in a sustainable manner. We follow
+a holistic approach to sustainability across all our operations, emphasizing the importance of
+understanding, anticipating, and effectively managing environmental, social, and governance
+(ESG) matters. ESG considerations play a crucial role in how we conduct our business, from our
+corporate governance systems at every level of the organization to our risk management
+strategies and customer service approach. We are also dedicated to supporting local
+communities. Sustainability and efficiency are deeply embedded in our airline's culture and
+management. We believe that our ESG approach is practiced throughout the organization,
+exemplified by our efficient operations and investment in environmentally friendly practices. As
+Air Arabia, we leverage our business expertise and presence to drive an inclusive recovery,
+expand our reach, and accelerate sustainability.
+As we look ahead, we remain optimistic about the outlook of the low-cost air travel sector and
+our ability to maintain growth momentum while further expanding our reach and operations.
+C 4 - =
+a
+‘Chairman
+@ Ss
+AirArabia
+Vip bUasychl
+Classificaiiona Extenda aajbiul 132 ogo Lg Aub Qhebll dyzall Air Arabia PJSC, P 0. Box 132 @ +971 6508 8888
+Air Arabia PJSC, PO Box 132, Sharjah, United Arab Emirates Sharjah, United Arab Emirates GQ +971 6558 0008
+www.airarabia.com & contactus@airarabia.com
+f »
+© GrantThornton
+= Grant Thornton Audit and
+Accounting Limited
+(Dubai Branch)
+The Offices 5
+Level 3
+Office 302, 303
+One Central, DWTC
+Dubai, UAE
+P.O. Box 1620
+T +971 4 388 9925
+F +971 4 388 9915
+www.grantthornton.ae
+Independent Auditor’s Report
+To the Shareholders of Air Arabia PJSC
+Report on the Audit of the Consolidated Financial Statements
+Opinion
+We have audited the consolidated financial statements of Air Arabia PJSC (the “Company”), and its
+subsidiaries (collectively referred to as the “Group”), which comprise the consolidated statement of
+financial position as at December 31, 2023, the consolidated statement of profit or loss, the consolidated
+statement of comprehensive income, the consolidated statement of changes in equity, and the consolidated
+statement of cash flows for the year then ended, and notes to the consolidated financial statements,
+including material accounting policies information.
+In our opinion, the accompanying consolidated financial statements present fairly, in all material respects,
+the consolidated financial position of the Group as at December 31, 2023, and its consolidated financial
+performance and its cash flows for the year then ended in accordance with International Financial Reporting
+Standards (IFRSs).
+Basis for Opinion
+We conducted our audit in accordance with International Standards on Auditing (ISAs). Our responsibilities
+under those standards are further described in the “Avditor’s Responsibilities for the Audit of the Consolidated
+Financial Statements’ section of our report. We are independent of the Group in accordance with International
+Exthics Standards Board for Accountants International Code of Ethics for Professional Accountants (including International
+Independence Standards) (‘IESBA code”) together with other ethical requirements that our relevant to our audit
+of the Group’s consolidated financial statements, and we have fulfilled our other ethical responsibilities in
+accordance with the requitements of the IESBA Code. We believe that the audit evidence we have obtained
+is sufficient and appropriate to provide a basis for our opinion.
+é 2
+ae nee SSS
+© 2024 Grant Thornton UAE - All rights reserved. Grant Thornton UAE represents all legal licenses under which Grant Thornton Audit and Accounting grantthornton.ae
+Limited Corporation, A British Virgin Islands ("BVI") registered Branch, operate in the UAE, These licenses include the Abu Dhabi, Dubai and Sharjah
+based branches— Grant Thornton Audit and Accounting Limited — registered with the Abu Dhabi Global Market — Grant Thornton Audit and Accounting
+Limited Corporation BVI — registered with the Dubai Financial Services Authority.
+“Grant Thornton” refers to the brand under which the Grant Thornton member firms provide assurance, tax and advisory services to their clients
+and/or refers to one or more member firms, as the context requires. GTIL and the member firms are not a worldwide partnership. GTIL and each
+member firm is a separate legal entity. Services are delivered by the member firms. GTIL does not pravide services to clients. GTIL and its member
+firms are not agents of, and do not obligate, one another and are not liable for one another's acts or omissions.
+© GrantThornton
+Independent Auditor’s Report
+To the Shareholders of Air Arabia PJSC (continued)
+Report on the Audit of the Consolidated Financial Statements (continued)
+Key Audit Matters
+Key audit matters are those matters that, in our professional judgment, wete of most significance in our
+audit of the consolidated financial statements of the Group for the year ended December 31, 2023. These
+matters were addressed in the context of our audit of the consolidated financial statements as a whole, and
+in forming out opinion thereon, and we do not provide a sepatate opinion on these matters. For each
+matter below, our description of how our audit addressed the matter is provided in that context.
+How our audit addressed the key audit
+Key audit matter matter
+i) Measurement of aircraft assets
+As disclosed in Note 5 to the consolidated financial We have performed the following audit
+statements, the Group holds, as at December 31, 2023, procedures:
+aircraft assets with a net carrying value of AED 4,137
+million. As explained in Note 4, the Group's © We have assessed management’s basis of
+accounting policy is to measure its aircraft assets at estimating the residual values and
+depreciated historical cost less impairment, if any. depreciation rates of aircraft assets and
+These aircraft assets are depreciated on a straight-line tested these to supporting information for
+basis over their estimated useful life, to an estimated reasonableness, such as any publicly or
+residual value at the end of its useful economic life. other available information on estimated
+The estimation of residual value is a key management residual values and compared the
+judgment in the application of the Group's accounting depreciation rates to the rates applied by
+policy on depreciation and, therefore, any changes to other airline companies;
+residual value will directly impact the depreciation
+charge for the current and future years. Management ° We have assessed whether there are any
+also needs to consider if there are any impairment ipnene indicators in tespect of the
+indicators such as the deterioration in current or aircraft assets; and
+forecast trade activity, the incutrence of losses or other e We have assessed the adequacy of the
+factors indicating that the assets may be impaired. Group’s disclosure in these respects.
+If there are impairment indicators, management needs
+to perform an impairment test and write down the
+value of assets where the recoverable amount is lower
+than the carrying value.
+The Group recognises revenue from various sources, We have performed the following audit
+notably sale of passenger airline seats, cargo, baggage procedutes:
+capacity and other ancillary services. Passenger tickets ,
+sold can be of different types descnding 63 the * a haere evaluated nes rou * control
+conditions of sale and type of fare purchased. Revenue selatinen "ea and © application controls
+from passenger and cargo is deferred and classified as a ree Oe Cen systen
+liability on the consolidated statement of financial associated with the Fewerioc steeury, Fi
+ition until the passenger or freight is lifted (ie. P articular, we have arene whether the
+post . ous : : Group's conttols relating to revenue ate
+service provided), at which time revenue is recognised Se desta mall dea 4
+in the consolidated statement of profit or loss. This PAPO Sree SES Sees
+recognition principle requires the Group to develop caseaa that those systems: were: aechtaety
+. ‘ : capturing the relevant data such as date of
+assumptions to determine when to recognise revenue - ;
+in respect of un-availed services relating to tickets not Bale; Gate Or the peceinien er the seedce te
+. - the customers and the sale amount;
+lifted at the anticipated date of travel.
+3
+© Grant Thornton
+
+Independent Auditor’s Report
+
+To the Shareholders of Air Arabia PJSC (continued)
+
+Report on the Audit of the Consolidated Financial Statements (continued)
+
+Key Audit Matters (continued)
+
+How our audit addressed the key audit
+
+Key audit matter matter
+
+ii) Revenue recognition (continued)
+
+The accounting for passenger revenue is susceptibleto @ We have checked the reasonableness of the
+
+management override of controls through the Group’s accounting policy with respect to
+
+recording of manual journal entries in the accounting recognition of revenue in the petiod in
+
+records, the override of IT systems to accelerate which the services wete provided to the
+
+revenue tecognition, or manipulation of inputs used to customets}
+
+calculate revenue recorded in respect of unused ;
+
+revenue documents. © We have  teviewed management’s
+judgement and assumptions underlying the
+estimates of when to recognise tevenue in
+respect of services;
+
+© We have checked the reasonableness of the
+Gtoup’s accounting policy with respect to
+recognition of revenue for expired tickets;
+
+© Fort passenger revenue, we have performed
+analytical procedutes by compating the
+
+passenger revenue for 2023 with the
+
+passenger revenue for 2022, and
+
+understood the reasons for the variance
+
+taking into consideration key performance
+indicatots for 2023 and 2022;
+
+© For cargo revenue, we have tested the
+revenue per ton catried for 2022 and
+developed an expectation for 2023 based
+on the tonnage carried, and compared the
+results with the catgo revenue recognised
+and undetstood the reasons for the
+variance;
+
+e@ We have also performed other substantive
+audit procedures to corroborate our
+findings in respect of the audit tests above;
+and
+
+e We have assessed the adequacy of the
+Group’s disclosure on revenue recognition
+in the consolidated financial statements.
+
+4
+@ GrantThornton
+Independent Auditor’s Report
+To the Shareholders of Air Arabia PJSC (continued)
+Report on the Audit of the Consolidated Financial Statements (continued)
+Key Audit Matters (continued)
+How our audit addressed the key audit
+Key audit matter matter
+iii) Accounting for fuel hedge positions
+The Group is significantly exposed to fluctuations in We have performed the following audit
+the price of jet fuel and manages this risk through procedures:
+derivative instruments to hedge its cash flows. The ;
+Group accounts for these hedge instruments in ° We have eg = design and
+accordance with IFRS 9 which requires, amongst other imiplementation e the eunp's controls
+things, that the Group establish a risk management Oye taking hedge pe SuOnS and application
+framework that outlines a policy for the Group to of its policies. This anciuded testing, the
+conclude whether its hedging positions are effective or teasonablencss of ihe ‘Group s hedge
+ineffective, at the date of their inception and at each positions af the ate of inception and at
+reporting date. The Group has established controls cach sata a ong with Group's
+around taking hedge positions and its risk management Ry an Ae Le
+framework and policies. @ We have also involved our valuation
+The effective portion of changes in the fair value of specialist for assessing the Group's hedge
+the hedge instruments ate recognised in the accounting, and for testing hedge
+consolidated statement of other comprehensive effectiveness on sample basis; and
+income until the forecasted transaction OLCOES, whilst © We have also assessed the adequacy of the
+any ineffective portion is recognised directly in the Group’s disclosure in this respect.
+consolidated statement of profit or loss. Judgment is
+exercised in arriving at this conclusion, As of
+December 31, 2023, the total fair value of the Group's
+cash flow hedge instruments, obtained from
+counterparties, is a net asset of AED 60 million as
+disclosed in Note 22 to the consolidated financial
+statements.
+Note 21 to the consolidated financial statements We have performed the following audit
+reflected maintenance liabilities of AED 1,729 million procedures:
+as at December 31, 2023. The accounting for ‘ h ad ities of
+maintenance obligations, including the end of lease We ae, < © enquiries OF management to
+hand-back requirements, is subject to management estab a df there: were any dd lease of
+assumptions. These assumptions include estimating maintenance i a ce ae
+maintenance accrual for major inspections and Yo
+overhauls based on technical evaluation of the number e For the ongoing maintenance work under
+of hours flown by each engine, airframe checks at fixed flying hour agreements, we have confirmed
+intervals and utilization cycles of landing Seats, life that the expenses were recognised at the
+limited parts and auxiliary power units, It also includes — contractual flying hour rates and checked a
+the cost of performing the required maintenance work sample of the actual flying houts to the
+at that future return date of leased aircrafts. Group’s operating system to confirm that the
+expenses recognised were complete and
+accurate;
+® We have validated the cost drivers of major
+types of maintenance acctual for
+appropriateness and reasonableness;
+5
+Independent Auditor’s Report
+To the Shareholders of Air Arabia PJSC (continued)
+Report on the Audit of the Consolidated Financial Statements (continued)
+Key Audit Matters (continued)
+How our audit addressed the key audit
+Key audit matter matter
+iv) Valuation of aircraft maintenance obligations
+(continued)
+There is a fisk of maintenance and hand-back e We have vetified the utilization of
+obligations included in lease agreements being maintenance accrual during the year for
+accounted for inappropriately. routine and non-routine expenses;
+
+@ We have validated the main reason for
+change in the maintenance accrual balance
+as at yeat end;
+
+© We have evaluated the design and
+implementation of the Group’s controls
+over the maintenance accrual made during
+the year; and
+
+© We have performed additional substantive
+audit procedures to corroborate our
+findings in respect of the audit tests above.
+
+Other Information
+
+Management is responsible for othet information. The other information comprises the information
+
+included in the Annual Report, but does not include the consolidated financial statements and out Auditor’s
+
+Report thereon. We have obtained the Directors’ Report prior to the date of our Auditor’s Report, and we
+
+expect to obtain the remaining sections of the Annual Report after the date of our Auditor’s Report.
+
+Our opinion on the consolidated financial statements does not cover the other information and
+
+accordingly, we do not express any form of assurance conclusion thereon.
+
+In connection with our audit of the consolidated financial statements, our responsibility is to read the other
+
+information identified above and, in doing so, consider whether the other information is materially
+
+inconsistent with the consolidated financial statements or our knowledge obtained in the audit, or otherwise
+
+appeats to be materially misstated. If, based on the work we have performed on the other information that
+
+we have obtained prior to the date of auditor’s report, we conclude that there is a material misstatement of
+
+this other information, we are required to report that fact. We have nothing to report in this regard.
+
+Responsibilities of the Management and Those Charged with Governance for the Consolidated
+
+Financial Statements
+
+Management is responsible for the preparation and fair presentation of the consolidated financial
+
+statements in accordance with IFRS, and their preparation in compliance with the applicable provisions of
+; the UAE Federal Decree-Law No. 32 of 2021, and for such internal control as management determines is
+
+necessary to enable the preparation of consolidated financial statements that are free from material
+
+misstatement, whether due to fraud of error.
+
+In preparing the consolidated financial statements, management is responsible for assessing the Group’s
+
+ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using
+
+the going concern basis of accounting unless management either intends to liquidate the Group or to cease
+
+operations, or has no tealistic alternative but to do so.
+
+Those charged with governance ate responsible for overseeing the Group’s financial reporting process.
+
+6
+Independent Auditor’s Report
+
+To the Shareholders of Air Arabia PJSC (continued)
+
+Report on the Audit of the Consolidated Financial Statements (continued)
+
+Auditor’s Responsibilities for the Audit of the Consolidated Financial Statements
+
+Our objectives are to obtain reasonable assurance about whether the consolidated financial statements as a
+
+whole are free from material misstatement, whether due to fraud or error, and to issue an auditor’s report
+
+that includes our opinion. Reasonable assurance is a high level of assurance but is not a guarantee that an
+audit conducted in accordance with ISAs will always detect a material misstatement when it exists.
+
+Misstatements can arise from fraud or error and are considered material if, individually or in the aggregate,
+
+they could reasonably be expected to influence the economic decisions of users taken on the basis of these
+
+consolidated financial statements.
+
+As part of an audit in accordance with ISAs, we exercise professional judgment and maintain professional
+
+skepticism throughout the audit. We also:
+
+© Identify and assess the risks of material misstatement of the consolidated financial statements, whether
+due to fraud or error, design and perform audit procedures responsive to those risks, and obtain audit
+evidence that is sufficient and appropriate to provide a basis for our opinion. The tisk of not detecting
+a material misstatement resulting from fraud is higher than for one resulting from etror, as fraud may
+involve collusion, forgery, intentional omissions, misrepresentations, or the override of internal
+control;
+
+e Obtain an understanding of internal control relevant to the audit in order to design audit procedures
+that ate appropriate in the circumstances, but not for the purpose of expressing an opinion on the
+effectiveness of the Group’s internal control;
+
+© Evaluate the appropriateness of accounting policies used and the reasonableness of accounting
+estimates and related disclosures made by management,
+
+© Conclude on the appropriateness of management’s use of the going concern basis of accounting and,
+based on the audit evidence obtained, whether a material uncertainty exists related to events ot
+conditions that may cast significant doubt on the Group’s ability to continue as a going concetn. If we
+conclude that a material uncertainty exists, we are requited to draw attention in our auditor’s report to
+the related disclosures in the consolidated financial statements or, if such disclosures are inadequate,
+to modify our opinion. Our conclusions are based on the audit evidence obtained up to the date of
+our auditor’s report. However, future events ot conditions may cause the Group to cease to continue
+as a going concern.
+
+e Evaluate the overall presentation, structure and content of the consolidated financial statements,
+including the disclosures, and whether the consolidated financial statements represent the underlying
+transactions and events in a manner that achieves fair presentation; and
+
+e Obtain sufficient appropriate audit evidence regarding the financial information of the entities within
+the Group to express an opinion on the consolidated financial statements. We ate responsible for the
+direction, supervision and performance of the Group audit. We remain solely responsible for our audit
+opinion.
+
+We communicate with those charged with governance regarding, among other matters, the planned scope
+
+, and timing of the audit and significant audit findings, including any significant deficiencies in internal
+control that we identify during our audit.
+
+We also provide those charged with governance with a statement that we have complied with relevant
+
+ethical requirements regarding independence, and communicate with them all relationships and other
+
+matters that may reasonably be thought to bear on our independence, and where applicable, related
+safeguards.
+7
+@ GrantThornton
+Independent Auditor’s Report
+To the Shareholders of Air Arabia PJSC (continued)
+Report on the Audit of the Consolidated Financial Statements (continued)
+Auditor’s Responsibilities for the Audit of the Consolidated Financial Statements (continued)
+From the matters communicated with those charged with governance, we determine those matters that
+were of most significance in the audit of the consolidated financial statements of the current year and are
+therefore the key audit matters. We describe these matters in our auditor’s report unless law or regulation
+precludes public disclosure about the matter or when, in extremely rare circumstances, we determine that
+a matter should not be communicated in our report because the adverse consequences of doing so would
+reasonably be expected to outweigh the public interest benefits of such communication.
+Report on Other Legal and Regulatoty Requirements
+Furthermore, as required by the Federal Decree-Law No. 32 of 2021, we report that for the year ended
+Deceimber 31, 2023:
+
+i) We have obtained all the information and explanations we considered necessary for the purposes of
+our audit;
+
+ii) The consolidated financial statements have been prepared and comply, in all material respects, with the
+applicable provisions of the Federal Decree-Law No. 32 of 2021;
+
+iii) The Group has maintained proper books of account;
+
+iv) The financial information included in the Directors’ Report, in so far as it relates to these consolidated
+financial statements, is consistent with the books of account of the Group;
+
+v) As disclosed in Note 1 to the consolidated financial statements, the Group has purchased new shares
+
+during the year ended December 31, 2023;
+
+vi) Note 15 to the consolidated financial statements discloses related party transactions, and the terms
+under which they were conducted;
+
+vii) Based on the information that has been made available to us, nothing has come to our attention which
+causes us to believe that the Group has contravened during the financial year ended December 31,
+2023 with any of the applicable provisions Federal Decree-Law No. 32 of 2021, or of the Company’s
+Articles of Association, which would materially affect its activities or the Group’s financial position as
+at December 31, 2023; and
+
+viii) There have been no social contributions during the year.
+
+“an Tho
+
+Crud the [fe  %
+
+thon Adp.0. Box: 1620 3 |
+~g DUBALUAE. of
+
+GRANT THORNTON NG, ef
+
+Farouk Mohamed Acco ut
+
+Registration No. 86
+
+Dubai, United Arab Emirates
+
+13 FEB 2024
+
+8
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Consolidated statement of financial position
+As at December 31, 2023
+Notes 2023 2022
+AED'000 ALED'000
+ASSETS
+Non-current assets
+Property and equipment 5 4,954,113 5,402,630
+Right-of-use assets 6 574,232 645,020
+Advance for new aircraft 7 886,886 585,135
+Investment propertics 8 165,401 149,000
+Net investment in lease 14 52,993 91,484
+Intangible assets 9 1,345,917 1,338,315
+Deferred charges 10 19,293 24,628
+Investments at fair value through other comprehensive income 11 230,332 43,166
+Investments in associates and joint ventures 12 205,858 156,200
+Trade and other receivables 14 85,847 369,637
+8,520,872 8,805,215
+Current assets
+Inventories 48,719 32,747
+Trade and other receivables 14 858,576 862,850
+Bank balances and cash 16 5,246,377 4,736,251
+6,153,672 5,631,848
+TOTAL ASSETS 14,674,544 14,437,063
+EQUITY AND LIABILITIES
+Share capital 17 4,666,700 4,666,700
+Statutory reserve 18 912,152 750,668
+General reserve 19 351,150 189,666
+Other reserves 71,537 379,773
+Retained earnings _____ 1,532,467 1,008,308
+Total equity attributable to the owners of the Company 7,534,006 6,995,115
+Non-controlling interest 1,084 520
+Total equity 7,535,090 6,995,635
+Non-current liabilities
+Provision for staff termination benefits 20 208,175 170,015
+Trade and other payables 21 1,249,607 1,407,366
+Bank borrowings 24 30,610 30,604
+Lease liabilities 23 1,567,827 2,126,498
+3,056,219 3,734,483
+Current liabilities
+Deferred income 523,402 513,670
+Trade and other payables 21 2,879,313 2,462,169
+Bank borrowings 24 95,084 108,881
+Lease liabilities 23 585,436 622,225
+4,083,235 3,706,945
+Total liabilities 7,139,454 7,441,428
+TOTAL EQUITY AND LIABILITIES 14,674,544 14,437,063
+These consolidated financial statements were approved and authorised for issue by che Board of Directors on
+and signed on their behalf b ; ;
+; if -) th Onl
+—— AA - -
+Chairman. "Chief Executive Officer Director of Finance
+‘The accompanying notes from | to 39 form an integral part of these consolidated financial statements.
+9
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Consolidated statement of profit or loss
+For the year ended December 31, 2023
+Notes 2023 2022
+AED'000 AED'000
+Revenue 26 5,999,750 5,241,830
+Direct costs 27 (4,343,184) (3,810,261)
+GROSS PROFIT 1,656,566 1,431,569
+Administrative and general expenses 28 (329,206) (286,467)
+Selling and marketing expenses 29 (88,793) (68,050)
+Finance income 209,994 88,867
+Finance costs (102,457) (115,457)
+Share of profit on investments in associates and joint ventures 12 88,121 36,231
+Other income, net 30 113,471 135,613
+PROFIT FOR THE YEAR 1,547,696 1,222,306
+2023 2022
+AED'000 AED'000
+Profit for the year attributable to:
+
+Owners of the Company 1,547,132 1,221,786
+Non-controlling interest 564 520
+1,547,696 1,222,306
+Basic and diluted earnings per share (AED) 31 0.33 0.26
+
+The accompanying notes from 1 to 39 form an integral part of these consolidated financial statements.
+
+10
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Consolidated statement of comprehensive income
+For the year ended December 31, 2023
+Note 2023 2022
+AED'000 AED'000
+Profit for the year 1,547,696 1,222,306
+Other comprehensive (loss) /income
+Items that will never be reclassified subsequently to profit or loss:
+Change in fair value of investments at fair value
+through other comprehensive income 11 5,431 (5,236)
+Items that are or may be reclassified subsequently to profit or loss:
+Cash flow hedge
+Effective portion of changes in fair value (313,667) 100,268
+Total other comprehensive (loss) /income for the year (308,236) 95,032
+TOTAL COMPREHENSIVE INCOME
+FOR THE YEAR 1,239,460 1,317,338
+2023 2022
+AED'000 AED'000
+Total comprehensive income for the year attributable to:
+Owners of the Company 1,238,896 1,316,818
+Non-controlling interest 564 520
+1,239,460 1,317,338
+The accompanying notes from 1 to 39 form an integral part of these consolidated financial statements.
+11
+apo »
+S26 ao aA 2 S ‘ &
+ezs SS 8 = S| §
+SQ wis “ a ma >
+& 4 8 & S| 8
+a sc © =; E mis
+~
+sees gage | g' ‘| 8
+[e} uO Ww wm R 8
+24020 =
+oe "
+fo]
+Vv
+Yves vv RO
+Pasgogegs = 8 Po & 3
+§ wn so _ — 9 Z 3S S
+reef BR ge gS es 3} =
+oH a & a + oh & s| &
+3 ES oe Dn wm 2 N 9S S
+ou oe) O Ss - © i) a
+HS 7
+ges esa ‘| ase gw 8
+ha =“ =
+aA oo se 3 s
+C3}
+45 Qo. wy ra a S 3
+- - = Nt —
+YU V@
+BES Ss ' ' 1 fa)
+ae) So «4 2 2 S
+a OOS 4 a) Rs} 2
+ea} cS SQ cal | y
+oO a H = pa &
+>| oS =| 2) - a
+a) © 4
+vo
+8 g
+4 ogrco [32] '
+fl egue 2 re :
+s 2258 § S| § g :
+3gPQ No} wW wy <— 5
+g A al
+Behe 3
+Ee u
+g} 9
+ges S 1 ' ’ a 1 S
+Vv (=) \o S 4 g
+b20 3 = 3 :
+g8B 8 = r; 3
+— iz) 9
+q
+6
+Pro 2 \ ' ‘ Ns ' 9
+e Fes & % zs é
+a os 2 wt “
+£89 8 S ]
+: gba s . a r
+on w 2 ~ ~ 5
+iP)
+: a
+wn . oO
+2 a ges S ' ' ' ' ' on] B
+=i ¥, agen S S cI
+Ens B09 sQ Ss &
+wg gs 2 ¥ r ‘
+AS} a ¥ +
+on v Sn .
+3 8 Gey 9 :
+nn C8 a
+2 2 3
+wn
+aS g& zg :
+—_
+BE 2 : :
+a8 26 gg 2 8 &
+O iz anes ‘g e Z a :
+S ies 2 2 &F » g& & 3
+=O 3 fe = @ re Es 5 a -
+Py S w OG 5 BP SB 2
+ro) oo ~*~ a 8 § Ey
+as ri . v g <=) a Sa o
+SS S a SS ~ GD v S 80 2 &
+BU we b 2 Bs a3 9 S38 § :
+i ne-i g S 2 ge 2 2a 8 E
+a § 94 5 3 ome) rn) 2 Sd o g
+g 5 Ss oS og g Bg 8
+q ae $2 3 g
+a8 83 g ££ € $s 3 § 22 & ;
+8 88 g ¥ € Es fs Gg 3 2
+a <4 & O =
+B BR BO 4 =
+gre ge yg
+eae 82 BS A |
+Eee SR 8 & 3]
+5a Yr A . at 3] &
+2 S ai S| S|
+9s A % 3 S| §|
+‘© — a o a
+— © SI
+apes ' 8 |
+Pee S ' oO 1 1
+o-Wa) ° & 3
+5S "
+42 in |
+|
+peeves on
+. a) = |
+eastse3 8 8 gf gl |
+78 og fa an = 8 —_ font w |
+ff°2 8B § &§& a) Ss S|
+sg GB SR A OS 3| 3
+Hs e) ew = a a) 3
+“4 6 S|
+Now
+0 BO |
+3 & fon oO |
+273 28 | &@ 8 |
+s 3 8 S| & a) Si
+o Q + = — S 8 oe
+S20 8 5 a Oo}
+mon + N 8 N : s
+8. Q| & a} S
+=| & OG SF
+-
+3 vo oN
+oPES a ‘ [=e] [oe] ‘
+gs S S No) ‘| &
+o| a 8 a] s S
+ee a 8 =| F 5
+: foo)
+Hw
+co vo :
+oO gS
+4 BOs S :
+| BOS S Be eg] | 8
+Z8kha = 8 si
+z aus iw a) SI §
+Bau ~ 7 :
+O |
+sz
+5 “868 8°
+8 .3) oO & °
+aur os : | & :
+0" é S 3 :
+: =) % 3
+: bol — a
+2 ee :
+gq
+nd ges a ' 1 1 E
+° BC x z |
+3 280 S ‘|
+a ss 3 ¢ =
+o w a 5 eI 3
+wn e j
+oN : |
+is g gzs 8 1 ' 1 1
+oo nN a 8 \s
+oe “een 8 :
+ont i—] ~ zl :
+on Vv a ~ S| :
+5} te . i
+an o 9
+Q 2 3
+2S S
+Ss a 8
+wu §9 :
+aa oO : E
+OF eA : F
+Ay ~ 7 : E
+: cE g 5 2 NAN &
+Sy ee gi t
+3) 0 oO Ss 2 2 é ge
+ak ~~ ql a 2 ve 8 ‘ s
+gg 83 Sg 2 § 226
+os ah > % Z| g sa 3 z
+oS > 2 dy By £ FB 2 :
+a 2 oy | — & a8 8 2% §
+: 2 2 3 ge > = eS. 2 g g
+“4 9 o x Sy, og ou & so 38 E
+O io) N u 2 Pa og s Sg 5 :
+O N 8 8 285 rg 2 s3 4 :
+Noe 28 88 & se
+p & 5 2 § 85 2 ,
+BR HA < fs
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Consolidated statement of cash flows
+For the year ended December 31, 2023
+Notes 2023 2022
+AED'000 AED'000
+OPERATING ACTIVITIES
+Profit for the year 1,547,132 1,221,786
+Adjustments to reconcile profit to net cash flows:
+Depreciation and amortization 5,6,9,10 647,327 633,957
+Unrealized gain on sale of investment property 8 - (43,030)
+Share of profit on investments in associates and joint ventures 12 (88,121) (36,231)
+Provision for staff terminal benefits 20 44,056 33,737
+Gain on derecognition of investment in joint venture 25 - (9,839)
+Allowance for expected credit losses for trade and other receivables 28 47,815 47,344
+Finance income (209,994) (88,867)
+Finance costs 102,457 115,457
+Operating cash flows before changes in working capital 2,090,672 1,874,314
+Changes in working capital:
+Inventories (15,972) (9,243)
+Trade and other receivables 21,131 (94,867)
+Trade and other payables 253,238 404,380
+Deferred income 9,732 21,538
+Cash from operations 2,358,801 2,196,122
+Staff terminal benefits paid 20 (5,896) (8,359)
+Net cash flows from operating activities 2,352,905 2,187,763
+INVESTING ACTIVITIES
+Additional investment in joint ventures 12 (24,620) (25,312)
+Acquisition of property and equipment 5 (76,284) (52,261)
+Additions to investment properties 8 (16,401) — -
+Payments in relation to advances for new aircrafts-net 7 (301,751) (203,768)
+Increase in deferred charges 10 (344) -
+Dividends received from investments in associates
+and joint ventures 12 63,083 81,655
+Payments in relation to purchase of investments at
+fair value through OCI 11 (181,735) (32,845)
+Acquisition of intangible assets 9 (11,346) (9,428)
+Change in fixed and margin deposits (298,005) (968,055)
+Finance income received 153,935 36,663
+Net cash flows used in investing activities (693,468) (1,173,351)
+FINANCING ACTIVITIES
+Dividends paid to Owners of the Company 17 (700,005) (396,669)
+Payments of principle portion of lease liabilities 23 (637,775) (740,042)
+Net movement on borrowings (13,791) 101,850
+Finance costs paid (95,745) (78,129)
+Net cash flows used in financing activities (1,447,316) (1,112,990)
+Net change in cash and cash equivalents 212,121 (98,578)
+Cash and cash equivalents at the beginning of the year 1,050,187 1,148,765
+Cash and cash equivalents at the end of the year 1,262,308 1,050,187
+Adjustments for:
+Bank balances and cash 16 5,246,377 4,736,251
+Fixed deposits with maturity over 3 months 16 (3,984,069) (3,686,064)
+1,262,308 1,050,187
+The accompanying notes from 1 to 39 form an integral part of these consolidated financial statements.
+14
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements
+For the year ended December 31, 2023
+1 Legal status and principal activities
+Air Arabia PJSC (the “Company”) was incorporated on June 19, 2007 as a Public Joint Stock Company.
+The Company operates in the United Arab Emirates under a trade license issued by the Economic
+Development Department of the Government of Shatjah and Air Operator’s Certificate Number AC 2
+issued by the General Civil Aviation Authority, United Arab Emirates.
+The Company’s ordinaty shares are listed on the Dubai Financial Market, United Arab Emirates. The
+registered office address is P.O. Box 132, Sharjah, United Arab Emirates.
+The consolidated financial statements for the year ended December 31, 2023 include the consolidated
+financial performance and position of the Company and its subsidiaries (collectively referred to as the
+“Group”) and the Group’s interest in associates and joint ventures.
+The licensed activities of the Group are international commercial air transportation, aircraft trading, aircraft
+rental, aircraft spare parts trading, travel and tourist agencies, commercial brokerage, hotels, hotel apartment
+rentals, airline companies’ representative office, passengers transport, cargo services, air catgo agents,
+documents transfer services, aviation training and aircraft repairs and maintenance.
+The details of the Group’s ownership in its vatious subsidiaries, joint ventures and associates and their
+principal activities are as follows:
+Beneficial Country of
+ownership interest operation and
+Name 2023 2022 Ownership Principal activities
+Subsidiaries
+International Business Company 100% 100% United Arab Dealing in International Business
+(FZE) Emirates and shares
+Air Arabia Holidays L.L.C 100% 100% United Arab Tour operations
+Emirates
+Information System Associates FZC 100% 100% United Arab IT services to aviation industry
+Emirates
+Action Hospitality 100% 100% United Arab Hospitality services, tourism,
+Emirates managing and operating
+restaurants and hotels
+COZMO Travel LLC — Sole 100% 100% United Arab Travel and touts, tourism and
+proprietorship (formerly known as Emirates cargo services
+COZMO Travel LLC) (a)
+Impact Aviation Services Limited (b) 100% 100% Ireland Management of lease contracts
+Subsidiaries of International Business Company (FZE) (sub-subsidiaries)
+Olgana Real Estate 100% 100% United Arab Real Estate Development.
+Development L.L.C (c) Emirates
+T3 Aviation Academy LLC 100% 100% United Arab Aviation training services,
+(formerly known as Alpha Emirates
+Aviation Academy UAE LLC) (d)
+15
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+1 Legal status and principal activities (continued)
+
+Beneficial Country of
+ownership interest operation and
+
+Name 2023. 2022 _ownershi Principal activities
+
+Joint ventures
+
+Alpha Flight Services UAE LLC 51% 51% United Arab Flight and retail catering and ancillary
+
+Emirates setvices to the Air Arabia PJSC.
+
+Sharjah Aviation Services LLC 50% 50% United Arab Aircraft handling, passenger and
+
+Emirates cargo services at the Sharjah
+International Airport.
+Cozmo Travel (CJSC) 75% 75% Armenia Travels and tours, tourism and cargo
+(“Cozmo Armenia”) (e) services.
+Air Arabia Abu Dhabi L.L.C. 49% 49% United Arab International commercial air
+Emirates transportation.
+Air Arabia - Egypt Company 40% 40% Egypt International commercial air
+S.A.E. transportation.
+Fly Jinnah Services (Private) 45% 45% Pakistan International commercial air
+Limited transportation.
+Armenian National Airlines 49% 49% Armenia International commercial air
+(CJSC) (“Fly Arna”) transportation.
+
+Associates
+
+Air Arabia Maroc, S.A. 44.13% 44.13% Morocco International commercial air
+
+transportation.
+
+Air Arabia Jordan LLC 49% 49% Jordan International commercial air
+
+transportation.
+
+Tune Protection Commercial 51% 51% United Arab Commercial brokers.
+
+Brokerage LLC Emirates
+
+a) In 2022, the Group has changed the name of COZMO Travel LLC to be “COZMO Travel LLC —
+Sole proprietorship”.
+
+COZMO Travel LLC — Sole proprietorship controls subsidiaries in Qatar, Kingdom of Saudi Arabia,
+Kuwait, Bahrain, United Arab Emirates, India, Oman, Jordan and Egypt.
+
+b) Impact Aviation Services Limited was incorporated on April 19, 2022. However, it started the
+operations on September 1, 2022.
+
+c) In 2022, the Group incorporated a fully owned subsidiary named “Olgana Real Estate Development
+L.L.C” through its wholly owned subsidiary, International Business Company (FZE), to manage and
+develop the investment properties of the Group.
+
+d) In 2022, the Group obtained full contro] over T3 Aviation Academy LLC (formerly known as Alpha
+Aviation Academy UAE LLC - a former joint venture of the Group), as a result of acquiring the
+remaining 49% shareholding of T3 Aviation Academy LLC (Note 25).
+
+e) In 2022, the Group entered into a joint venture agreement through its wholly owned subsidiary,
+COZMO Travel LLC — Sole proprietorship, with one of its joint ventures, Armenian National Airlines
+(CJSC) (“Fly Atna”) to provide travels and tours, tourism and cargo services in Armenia undet the
+name of Cozmo Travel (CJSC) (“Cozmo Armenia”).
+
+f) In 2022, the Group entered into a joint venture agreement, through its wholly owned subsidiary,
+International Business Company (FZE) (“IBC”) with DAL Group, one of Sudan’s leading privately
+owned conglomerates to operate low-cost carriers from Sudan, under the name of Air Arabia DAL Co.
+LTD (“Air Arabia Sudan”). As at December 31, 2023, Air Arabia Sudan was incorporated, however
+due to the political situation in Sudan, operations are on hold and related operating license is not yet
+issued.
+
+g) In 2022, the Group fully liquidated Arabian Management Investment FZE.
+
+16
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+1 Legal status and principal activities (continued)
+Implementation of UAE Corporation Tax Law and application of IAS 12 Income Taxes
+UAE On December 9, 2022, the United Arab Emirates (UAE) Ministry of Finance (“MOF”) released
+Federal Decree-Law No 47 of 2022 on the Taxation of Corporations and Businesses, Corporate Tax Law
+(“CT Law”) to enact a new CT regime in the UAE. The new CT regime has become effective for accounting
+periods beginning on or after June 1, 2023. As the Group’s accounting year ends on December 31,
+accordingly the effective implementation date for the Group will start from January 1, 2024 to December
+31, 2024, with the first return to be filed on or before September 30, 2025. The CT Law confirms the rate
+of 9% to be applied to taxable income exceeding a specified threshold.
+As per the Group’s assessment, there is no material deferred tax impact on account of the CT Law in the
+Group consolidated financial statements for the yeat ended December 31, 2023. Furthermore, based on
+the Group’s assessment, the expected effective tax rate that it will be subject to in the UAE is 9%. The
+impact of any future changes in enacted law will be accounted for when such changes are substantively
+enacted or enacted.
+2 Basis of preparation
+(a) Statement of compliance
+The consolidated financial statements of the Group have been prepared in accordance with the
+International Financial Reporting Standards (IFRSs) and applicable requirements of UAE Federal Law by
+Decree No. 32 of 2021 on Commercial Companies.
+(b) Basis of measurement
+The consolidated financial statements have been ptepated on the historical cost basis except for derivative
+financial instruments and investments measured at fair value through other comprehensive income
+(FVOCD), which are measured at their fair values.
+(c) Functional and presentation currency
+The consolidated financial statements are presented in Arab Emirates Dirham (“AED”), which is the
+Group’s functional currency. All values are rounded to the nearest thousands (‘000) except, where noted
+otherwise.
+3 New or revised Standards or Interpretations
+3.1 New Standards adopted as at January 1, 2023
+Accounting pronouncements which have become effective from January 1, 2023 and have therefore been
+adopted are as follows:
+e Amendments to IFRS 17 Insurance Contracts (Amendments to IFRS 17 and IFRS 4)
+e Deferred Tax related to Assets and Liabilities arising from a Single Transaction (Amendments to LAS
+12)
+e¢ Disclosure of Accounting Policies (Amendments to IAS 1 and IFRS Practice Statement 2)
+e Definition of Accounting Estimates (Amendments to IAS 8)
+e International Tax Reform—Pillar Two Model Rules (Amendments to IAS 12)
+These amendments do not have a significant impact on these consolidated financial statements and
+therefore the disclosures have not been made.
+17
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+3 New or revised Standards or Interpretations (continued)
+3.2 Standards, amendments and Interpretations to existing Standards that are not
+
+yet effective and have not been adopted early by the Group
+Other standards and amendments that are not yet effective and have not been adopted early by the Group
+ate as follows:
+e Classification of Liabilities as Current or Non-current (Amendments to LAS 1);
+e Lease Liability in a Sale and Leaseback (Amendments to IFRS 16);
+e Supplier Finance Arrangements (Amendments to IAS 7 and IFRS 7);
+¢ Non-current Liabilities with Covenants (Amendments to LAS 1); and
+@ Lack of Exchangeability (Amendments to LAS 21).
+These amendments ate not expected to have a significant impact on the consolidated financial statements
+in the period of initial application and therefore the disclosures have not been made.
+4 Material accounting policies
+Overall considerations
+These consolidated financial statements have been prepated using the measurement bases specified by IFRS
+for each type of asset, liability, income and expense. The material accounting policies and measurement
+bases are more fully described as follows:
+Foreign currency transactions and balances
+Foreign currency transactions are translated into the functional currency, using the exchange rates prevailing
+at the dates of the transactions (spot exchange rate). Foreign exchange gains and losses resulting from the
+settlement of such transactions and from the re-measurement of monetary items denominated in foreign
+currency at petiod-end exchange rates are recognised in the consolidated statement of comprehensive
+income.
+Non-monetaty items are not re-translated at petiod-end and are measured at historical cost (translated using
+the exchange rates at the transaction date), except for non-monetary items measured at fair value which are
+translated using the exchange rates at the date when fair value was determined.
+Foreign operations
+In the consolidated financial statements, all assets, liabilities and transactions of the Group’s entities with a
+functional cutrency other than the AED (the Group’s presentation currency) are translated into AED upon
+consolidation. The functional currency of the entities in the Group has remained unchanged during the
+reporting period.
+On consolidation, assets and liabilities of foreign operations have been translated into AED at the closing
+tate prevailing at the reporting date. Income and expenses of foreign operations have been translated into
+the Group's presentation curtency at the average rate over the reporting period. The exchange differences
+atising on translation for consolidation are recognised in other comprehensive income (OCI).
+Basis of consolidation
+The consolidated financial statements comprise the financial statements of the Company and its subsidiaties
+as at December 31, 2023. Control is achieved when the Company is exposed, or has rights, to variable
+returns from its involvement with the investee and has the ability to affect those returns through its power
+over the investee.
+
+18
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Basis of consolidation (continued)
+Specifically, the Company controls an investee if and only if the Company has:
+a. power over the investee (i.e. existing rights that give it the current ability to direct the relevant activities
+of the investee);
+b. exposure, or rights, to variable returns from its involvement with the investee; and
+c. the ability to use its power over the investee to affect its returns.
+When the Company has less than a majority of the voting or similar rights of an investee, the Company
+considers all relevant facts and circumstances in assessing whether it has power over an investee, including:
+a. The contractual arrangement with the other vote holders of the investee;
+b. Rights arising from other contractual arrangements; and
+c. The Company’s voting rights and potential voting rights.
+The Company re-assesses whether or not it controls an investee if facts and circumstances indicate that
+there are changes to one or more of the three elements of control. Consolidation of a subsidiary begins
+when the Company obtains control over the subsidiary and ceases when the Company loses control of the
+subsidiary. Income and expenses of a subsidiary acquired or disposed of during the year are included in the
+consolidated statement of comprehensive income from the date the Company gains control until the date
+the Company ceases to control the subsidiary.
+When necessaty, adjustments are made to the financial statements of subsidiaries to bring their accounting
+policies in line with the Group’s accounting policies. All intra-group assets and liabilities, equity, income,
+expenses and cash flows relating to transactions between members of the Group are eliminated in full on
+consolidation. Unrealised losses are also eliminated unless the transaction provides evidence of impairment
+of the assets transferred.
+Profit or loss and each component of other comprehensive income (OCI) are attributed to the equity
+holders of the parent of the Group and to the non-controlling interests, even if this results in the non-
+controlling interests having a deficit balance.
+The financial statements of the subsidiaries are prepared for the same reporting year as of the Company.
+If the Group loses control overt a subsidiary, it derecognises the related assets (including goodwill), liabilities,
+non-controlling interest and other components of equity, while any resultant gain or loss is recognised in
+the consolidated statement of comprehensive income. Any investment retained is recognised at fair value.
+Business combination and goodwill
+Business combinations are accounted for using the acquisition method. The cost of acquisition is measured
+as the aggregate of the consideration transferred, measured at acquisition date fair value and the amount of
+any non-controlling interests in the acquiree. For each business combination, the acquirer measures the
+non-controlling interests in the acquiree either at fair value or at the proportionate share of the acquiree’s
+identifiable net assets. Acquisition costs incurred are expensed and included in administrative and general
+expenses.
+When the Group acquires a business, it assesses the financail assets and liabilities assumed for appropriate
+classification and designation in accordance with the contractual terms, economic circumstances and
+pertinent conditions as at the acquisition date. This includes the separation of embeded derivatives in host
+contracts by the acquiree.
+If the business combination is achieved in stages, the acquisition date fair value of the acquirer’s previously
+held equity interest in the acquiteee us remeasured to fair value at the acquisition date through the
+consolidated statement of comprehensive income.
+19
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Business combination and goodwill (continued)
+Any contingent consideration to be transferred by the acquirer will be recognised at fair value at the
+acquisition date. Subsequent changes to the fair value of the contingent consideration which is deemed to
+be an asset of liability will be recognised in accordance with IFRS 9 either in the consolidated statement of
+comprehensive income of as a change to other comprehensive income. If the contingent consideration is
+classified as equity, it should not be re-measuted untill is finally settled within equity. Other contingent
+consideration that is not within the scope of IFRS 9, is measured at fair value at each reporting date wuth
+changes in fair value recognised in the consolidated statement of comprehensive income.
+Goodwill is initially measured at cost being the excess of the aggregate of the consideration transferred and
+the amount recognised for non-controlling interests over the net identifiable assets aquited and liabilities
+assumed. If this consideration is lower than the fair value of the net assets of the subsidiary acquired, the
+difference is recognised in the consolidated statement of comprehensive income.
+After initial recognition, goodwill is measured at cost less any accumulated impairment losses. For the
+purpose of impairment testing, goodwill aquired in a business combination is, from the acquistion date,
+allocated to each of the Group’s cash-generating units that are expected to benefit from the combination,
+irrespective of whether other assets ot liabilities of the acquiteee are assigned to those units.
+Where goodwill forms part of a cash-generating unit and part of the operation within that unit is disposed
+of, the goodwill associated with the operation disposed of is included in the carrying amount of the
+operation when determining the fain or loss on disposal of the operation. ‘goodwill disposed of in this
+cirmustances is measured basedon the relative values of the operation disposed of and portion of the cash-
+generating unit retained.
+Property and equipment
+Property and equipment are initially recognised at cost, including any costs directly attributable to bringing
+the assets to the location and condition necessary for it to be capable of operating in the mannet intended
+by the Group’s management.
+Land granted by the Government of Sharjah and acquired through the acquisition of Radisson Blu Hotel
+and Resort is not depreciated, as it is deemed to have an infinite life.
+Property and equipment are stated at cost less accumulated depreciation and any identified impairment
+losses.
+The following estimated useful lives are applied:
+Buildings 15 — 20 years
+Aircrafts 15 years
+Aircraft engines 20 yeats
+Aircraft rotables and equipment 3-10 years
+Airport equipment 3-15 years
+Other property and equipment including engine driven pumps (“EDP”) 3-5 years
+Depreciation is charged so as to write off the cost of assets, other than capital work in progress and land,
+over their estimated useful lives, using the straight-line method. The estimated useful lives, residual values
+and depreciation method are reviewed at each year end, with the effect of any changes in estimate accounted
+for on a prospective basis.
+An item of property and equipment is derecognised upon disposal or when no future economic benefits
+are expected to arise from the continued use of the asset. Any gain ort loss arising on the disposal or
+retirement of an item of property and equipment is determined as the difference between the sales proceeds
+and the carrying amount of the asset and is recognised in the consolidated statement of profit or loss.
+
+20
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Property and equipment (continued)
+
+Capital work in progress is stated at cost, less any recognised impairment loss. Depreciation of these assets,
+on the same basis as other property and equipment, commences when the assets are ready for their intended
+use.
+
+Government grants
+
+Land granted by the government is recognised at nominal value where there is reasonable assurance that
+the land will be received and the Group will comply with any attached conditions, where applicable.
+Leases and right-of-use assets
+
+The Group has recorded right-of-use assets representing the right to use the underlying assets under
+property and equipment, net investment in lease representing the net present value of receivables from
+intermediate lease, and the corresponding lease liabilities to make lease payments under other liabilities.
+The Group as a lessee
+
+i. Right-of-use assets
+
+The Group recognises right-of-use assets at the commencement date of the lease (i.c., the date the
+underlying asset is available for use). Right-of-use assets are measured at cost, less any accumulated
+depreciation and impairment losses, and adjusted for any re-measurement of lease liabilities. The cost of
+tight-of-use assets includes the amount of lease liabilities recognised, initial direct costs incurred, and lease
+payments made at or before the commencement date less any lease incentives received. Unless the Group
+is reasonably certain to obtain ownership of the leased asset at the end of the lease term, the recognised
+tight-of-use assets is depreciated on a straight-line basis over the shorter of its estimated useful life and the
+lease term as follows:
+
+Aircrafts 9 years
+Hanger 15 years
+Right-of-use assets are also subject to impairment.
+I. Lease liabilities
+
+At the commencement date of the lease, the Group recognises lease liabilities measured at the present value
+of lease payments to be made over the lease term. In calculating the present value of lease payments, the
+Group uses the incremental borrowing rate at the lease commencement date if the interest rate implicit in
+the lease is not readily determinable. After the commencement date, the amount of lease liabilities is
+increased to reflect the accretion of interest and reduced for the lease payments made. In addition, the
+carrying amount of lease liabilities is remeasured if there is a modification, a change in the lease term, a
+change in the in-substance fixed lease payments or a change in the assessment to purchase the underlying
+asset and is recognised under other liabilities in the consolidated statement of financial position.
+
+When measuring lease liabilities, the Group discounted lease payments using its incremental borrowing
+tates range from 2.26 % to 5 % as applicable.
+
+The Group as a lessor
+
+i. Net investments in leases
+
+Leases in which the Group transfers substantially all the risks and rewards incidental to the ownership of
+an asset to the lessees are classified as finance leases. A receivable is recognised at an amount equal to the
+present value of the minimum lease payments under the lease agreement, including guaranteed residual
+value and un-amortised initial direct cost which ate included in the consolidated financial statements as
+“Net investments in leases” within trade and other receivables.
+
+21
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Leases and right-of-use assets (continued)
+
+The Group as a lessor (continued)
+
+I. Interest income on net investments in leases
+
+The Group follows the finance lease method in accounting for recognition of finance lease. The total
+
+unearned interest income, i.e. the excess of aggregate instalment contract receivables plus residual value
+
+over the cost of the leased asset is deferred and then amortised over the term of the lease, to produce a
+
+systematic return on net investments in leases.
+
+iif, The Group as an intermedfate lessor
+
+The Group acts as an intermediate lessor in a transaction for which an underlying asset is re-leased by the
+
+Group (‘intermediate lessor’) to a third party, and the lease (‘head lease’) between the head lessor and Group
+
+remains in effect.
+
+The Group classifies the sublease as a finance lease or an operating lease as follows:
+
+e If the head lease is a short-term lease that the entity, as a lessee, has accounted for by recognising the
+lease payments as an expense on a straight-line basis over the term of the lease, the sublease must be
+classified as an operating lease;
+
+e Otherwise, the sublease must be classified by reference to the right-of-use asset arising from the head
+lease, rather than by reference to the economic useful life of the underlying asset (such as the item of
+property and equipment that is the subject of the lease).
+
+Investment properties
+
+Investment properties are measured initially at cost, including transaction costs. The carrying amount
+
+includes the cost of replacing part of an existing investment property at the time that cost is incurred if the
+
+recognition criteria are met; and excludes the costs of day-to-day servicing of an investment property.
+
+Investment properties ate derecognised when either they have been disposed of or when the investment
+
+ptoperty is permanently withdrawn from use and no future economic benefit is expected from its disposal.
+
+Any gains or losses on the retirement or disposal of an investment property are recognised in the
+
+consolidated statement of profit or loss in the year of retirement or disposal.
+
+Transfers are made to investment property when, and only when, there is a change in use. For a transfer
+
+from investment property to owner occupied property, the deemed cost for subsequent accounting is the
+
+fair value at the date of change in use. If owner occupied propetty becomes an investment property, the
+
+Group accounts for such ptoperty in accordance with the policy stated under property and equipment up
+
+to the date of change in use.
+
+Properties under construction
+
+Properties under construction ate catried at cost less any impairment in value. Costs are those expenses
+
+incurred by the Group that are directly attributable to the construction of asset.
+
+The carrying values of properties under construction are reviewed for impairment when events or changes
+
+in circumstances indicate the carrying value may not be recoverable. If any such indication exists and where
+
+the carrying values exceed the estimated recoverable amount, the assets are written down to their
+recoverable amount.
+
+Intangible assets
+
+Intangible assets acquired in a business combination are identified and recognised separately from goodwill
+
+where they satisfy the definition of an intangible asset and their fair values can be measured reliably. The
+
+cost of such intangible assets is their fair value at the acquisition date.
+22
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Intangible assets (continued)
+
+The useful lives of intangible assets arising out of the acquisition of Air Arabia LLC in 2007, have been
+estimated to be indefinite (Note 9).
+
+Subsequent to initial recognition, intangible assets acquired in a business combination are reported at cost
+less accumulated impairment losses, on the same basis as intangible assets acquired separately.
+Subsequent expenditure is capitalised only when it increases the future economic benefits embodied in the
+specific asset to which it relates. All other expenditure, including expenditure on internally generated
+goodwill and brands, is recognised in the consolidated statement of profit or loss as incurred.
+
+Intangible assets with indefinite useful lives are tested for impairment annually, or more frequently when
+there is indication of impairment. For intangible assets with definite useful lives amortisation is calculated
+to write off the cost of intangible assets less their estimated residual values using the straight-line method
+over their estimated useful lives and is generally recognised in the consolidated statement of profit or loss.
+The useful life used in the calculation of amortisation is 5 years.
+
+Deferred charges
+
+Deferred charges are amortised on the straight-line method over the estimated period of the benefits.
+Inventories
+
+Inventories are stated at the lower of cost and net realisable value. Cost comprises invoice price of materials.
+Cost is calculated using the first-in-first-out method. Net realisable value represents the estimated selling
+price for inventories less all estimated costs of completion and costs necessaty to make the sale.
+Investments in associates and joint ventures
+
+An associate is an entity over which the Group has significant influence. Significant influence is the power
+to participate in the financial and operating policy decisions of the investee but is not control of joint control
+over those policies.
+
+A joint venture is a type of joint arrangement whereby the parties have joint control of the arrangement
+have rights to the net assets of the joint venture. Joint control is the contractually agreed sharing of control
+of an arrangement, which exists only when decisions about relevant activities require unanimous consent
+of the parties sharing control. The consideration made in determining significant influence or joint control
+are similar to those necessary to determine control over subsidiaries.
+
+The Group’s investments in its associates and joint ventures are accounted for using the equity method.
+Under the equity method, the investment in an associate or joint venture is initially recognised at cost. The
+carrying amount of the investment is adjusted to recognise changes in the Group’s share of net assets of
+the associate or joint venture since the acquisition date. Goodwill relating to the associate or joint venture
+is included in the consolidated carrying amount of the investment and goodwill is neither amortised nor
+individually tested for impairment. The consolidated statement of profit or loss reflects the Group’s share
+of the results of operations of the associates and joint ventures. Any change in other comprehensive income
+of those investees is presented as part of the Group’s consolidated statement of other comprehensive
+income.
+
+In addition, when there has been a change recognised directly in the equity of the associate or joint venture,
+the Group recognises its share of any changes, when applicable, in the consolidated statement of changes
+in equity. Unrealised gains/losses resulting from transaction between the Group and the associate or joint
+venture are eliminated to the extent of the interest in the associate or joint venture.
+The aggregate of the Group’s share of profit or loss of an associate and joint venture is shown on the face
+of the consolidated statement of profit or loss outside operating profit. The financial statements of the
+associate or joint venture ate prepared for the same reporting period as the Group. When necessary,
+adjustments are made to bring the accounting policies in line with those of the Group.
+
+23
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Investments in associates and joint ventures (continued)
+After application of the equity method, the Group determines whether it is necessary to recognise an
+impairment loss on its investment in its associate or joint venture. At each reporting date, the Group
+determines whether there is objective evidence that the investment in the associate or joint venture is
+impaired. If there is such evidence, the Group calculates the amount of impairment as the difference
+between the recoverable amount of the associate or joint venture and its carrying value and then recognises
+the loss in the consolidated statement of profit or loss.
+Upon loss of significant influence over the associate or joint control over the joint venture, the Group
+measures and recognises any retained investment at its fair value. Any difference between the carrying
+amount of the associate or joint venture upon loss of significant influence or joint control and the fair value
+of the retained investment and proceeds from disposal is recognised in consolidated statement of profit or
+loss.
+If the ownership interest in a joint venture or an associate is reduced but joint control or significant
+influence is retained; only a proportionate share of the amounts previously recognised in other
+comprehensive income ate reclassified to profit or loss whete appropriate.
+Impairment of non-financial assets
+At the end of the reporting date, the Group reviews the carrying amounts of tangible assets to determine
+whether there is any indication that those assets have suffered an impairment loss. If any such indication
+exists, the recoverable amount of the asset is estimated in order to determine the extent of the impairment
+loss (if any). When it is not possible to estimate the recoverable amount of an individual asset, the Group
+estimates the recoverable amount of cash-generating unit to which the asset belongs. When a reasonable
+and consistent basis of allocation can be identified, corporate assets are also allocated to individual cash
+generating units, or otherwise they ate allocated to the smallest group of cash-generating units for which a
+reasonable and consistent allocation basis can be identified.
+Recoverable amount is the higher of fair value less cost to sell and value in use. In assessing value in use,
+the estimated future cash flows are discounted to their present value using a discount rate that reflects
+current market assessments of the time value of money and the tisks specific to the asset for which the
+estimates of future cash flows have not been adjusted.
+If the recoverable amount of an asset (or cash-generating unit) is estimated to be less than its carrying
+amount, the catrying amount of the asset (or cash-generating unit) is reduced to its recoverable amount.
+An impairment loss is recognised immediately in the consolidated statement of profit or loss, unless the
+relevant asset is carried at a revalued amount, in which case the impairment loss is treated as a revaluation
+decrease.
+When an impairment loss subsequently reverses, the carrying amount of the asset (or cash-generating unit)
+is increased to the revised estimate of its recoverable amount, but so that the increased cattying amount
+does not exceed the carrying amount that would have been determined had no impairment loss been
+recognised for the asset (or cash-generating unit) in prior years. A reversal of an impairment loss is
+recognised immediately in the consolidated statement of profit or loss, unless the relevant asset is carried
+at a revalued amount, in which case the reversal of the impairment loss is treated as a revaluation increase.
+Financial instruments
+Financial assets
+Initial recognition and measurement
+Financial assets are classified, at initial recognition, as subsequently measured at amortised cost, fair value
+through other comprehensive income (OCI) or as derivatives designated as hedging instruments in an
+effective hedge, as appropriate.
+
+24
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Financial instruments (continued)
+Financial assets (continued)
+Initial recognition and measurement (continued)
+The classification of financial assets at initial recognition depends on the financial asset’s contractual cash
+flow characteristics and the Group’s business model for managing them.
+In order for a financial asset to be classified and measured at amortised cost or fair value through OCI, it
+needs to give rise to cash flows that are ‘solely payments of principal and interest (SPPI)’ on the principal
+amount outstanding, This assessment is referred to as the SPPI test and is performed at an instrument level.
+The Group’s business model for managing financial assets refers to how it manages its financial assets in
+order to generate cash flows. The business model determines whether cash flows will result from collecting
+contractual cash flows, selling the financial assets, or both.
+Subsequent measurement .
+For purposes of subsequent measurement, financial assets are classified in two categories:
+e Financial assets at amortised cost (debt instruments);
+e Financial assets designated at fair value through OCI with no recycling of cumulative gains and losses
+upon derecognition (equity instruments); or ;
+e Financial assets designated at fair value through OCI with recycling of cumulative gains and losses upon
+derecognition (debt instruments).
+Financial assets at amortised cost (debt instruments)
+This category is the most relevant to the Group. The Group measures financial assets at amortised cost if
+both of the following conditions are met:
+© The financial asset is held within a business model with the objective to hold financial assets in order
+to collect contractual cash flows, and
+e The contractual terms of the financial asset give rise on specified dates to cash flows that are solely
+payments of principal and interest on the principal amount outstanding.
+Financial assets at amortised cost ate subsequently measured using the effective interest (EIR) method and
+are subject to impairment. Gains and losses ate recognised in the consolidated statement of profit or loss
+when the asset is derecognised, modified or impaired. The Group’s financial assets at amortised cost
+includes trade and most other receivables, bank balances and cash and other non-current financial assets.
+Financial assets designated at fair value through OCI (equity instruments)
+Upon initial recognition, the Group can elect to classify irrevocably its equity investments as equity
+instruments designated at fair value through OCI when they meet the definition of equity under LAS 32
+Financial Instruments: Presentation and are not held for trading. The classification is determined on an
+instrument-by-instrument basis.
+Gains and losses on these financial assets are never recycled to the consolidated statements of profit or
+loss. Dividends are recognised as other income in the consolidated statement of profit or loss when the
+right of payment has been established, except when the Group benefits from such proceeds as a recovery
+of part of the cost of the financial asset, in which case, such gains are recorded in OCI. Equity instruments
+designated at fair value through OCI are not subject to impairment assessment.
+Financial assets at fair value through OCT (debt instruments)
+For debt instruments at fair value through OCI, interest income, foreign exchange revaluation and
+impairment losses or reversals are recognized in the consolidated statement of profit or loss and computed
+in the same manner as for financial assets measured at amortized cost. The remaining fair value changes are
+recognized in OCI. Upon derecognition, the cumulative fair value change recognized in OCT is recycled to
+profit or loss.
+The Group’s debt instruments at fair value through OCI includes investments in unquoted debt instruments
+included undet othet “Investments at fair value through other comprehensive income”.
+25
+Ait Atabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Financial instruments (continued)
+Financial assets (continued)
+Derecognition
+A financial asset (or, where applicable, a part of a financial asset or part of a group of similar financial assets)
+is primarily derecognised (ie., removed from the Group’s consolidated statement of financial position)
+when:
+e The tights to receive cash flows from the asset have expired, or
+¢ The Group has transferred its rights to receive cash flows from the asset or has assumed an obligation
+to pay the received cash flows in full without material delay to a third party under a ‘pass-through’
+arrangement; and either (a) the Group has transferred substantially all the risks and rewards of the asset,
+ot (b) the Group has neither transferred nor retained substantially all the risks and rewards of the asset,
+but has transferred control of the asset.
+When the Group has transferred its rights to receive cash flows from an asset or has entered into a
+passthrough atrangement, it evaluates if, and to what extent, it has retained the risks and rewards of
+ownership.
+When it has neither transferred nor retained substantially all of the risks and rewards of the asset, nor
+transferred control of the asset, the Group continues to recognise the transferred asset to the extent of its
+continuing involvement. In that case, the Group also recognises an associated liability. The transferred asset
+and the associated liability are measured on a basis that reflects the rights and obligations that the Group
+has retained.
+Continuing involvement that takes the form of a guarantee over the transferred asset is measured at the
+lower of the original carrying amount of the asset and the maximum amount of consideration that the
+Group could be required to repay.
+Impairment of financial assets
+The Group recognises an allowance for expected credit losses (ECLs) for all debt instruments not held at
+fair value through profit or loss. ECLs are based on the difference between the contractual cash flows due
+in accordance with the contract and all the cash flows that the Group expects to receive, discounted at an
+apptoximation of the original effective interest rate. The expected cash flows will include cash flows from
+the sale of collateral held or other credit enhancements that are integral to the contractual terms.
+ECLs are recognised in two stages. For credit exposures for which there has not been a significant increase
+in ctedit tisk since initial recognition, ECLs are provided for credit losses that result from default events
+that ate possible within the next 12-months (a 12-month ECL).
+For trade receivables and contract assets, the Group applies a simplified approach in calculating ECLs.
+Therefore, the Group does not track changes in credit risk, but instead recognises a loss allowance based
+on lifetime ECLs at each reporting date. The Group has established a provision matrix that is based on its
+historical credit loss experience, adjusted for forward-looking factors specific to the debtors and the
+economic environment.
+The Group considers a financial asset in default when contractual payments are 60 days past due. However,
+in certain cases, the Group may also consider a financial asset to be in default when internal or external
+information indicates that the Group is unlikely to receive the outstanding contractual amounts in full
+before taking into account any credit enhancements held by the Group. A financial asset is written off when
+there is no reasonable expectation of recovering the contractual cash flows.
+Financial liabilities
+Initial recognition and measurement
+Financial liabilities are classified, at initial recognition, as payables and borrowings, as appropriate.
+26
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Financial instruments (continued)
+Financial liabilities (continued)
+Initial recognition and measurement (continued)
+All financial liabilities are recognised initially at fair value and, in the case of loans and borrowings and
+payables, net of directly attributable transaction costs.
+The Group’s financial liabilities include lease liabilities, trade and most other payables, and bank borrowings.
+Subsequent measurement
+The measurement of financial liabilities depends on their classification, as described below:
+Loans and borrowings
+This is the category most relevant to the Group. After initial recognition, interest-bearing loans and
+borrowings ate subsequently measured at amortised cost. The effective interest method is the method of
+calculating the amortised cost of a financial liability and of allocating interest expense over the relevant
+petiod. The effective interest rate is the rate that exactly discounts estimated future cash payments through
+the expected life of the financial liability, or, where appropriate, a shorter period to the net carrying amount
+on initial recognition.
+
+Derecognition
+
+A financial liability is derecognised when the obligation under the liability is discharged or cancelled ot
+
+expires. When an existing financial liability is replaced by another from the same lender on substantially
+
+different terms, or the terms of an existing liability are substantially modified, such an exchange or
+modification is treated as the derecognition of the original liability and the recognition of a new liability. The
+difference in the respective carrying amounts is recognised in the consolidated statement of profit ot loss.
+
+Offsetting of financial instruments
+
+Financial assets and financial liabilities are offset and the net amount is reported in the consolidated
+
+statement of financial position if there is a currently enforceable legal right to offset the recognised amounts
+
+and there is an intention to settle on a net basis, to realise the assets and settle the liabilities simultaneously.
+
+Fair value of financial instruments
+
+The fair value of the financial instruments that are traded in active matkets at each reporting date is
+
+determined by reference to quoted market prices or dealer price quotations (bid price for long positions and
+
+ask price for short positions), without any deduction for transaction costs.
+
+For financial instruments not traded in an active market, the fair value is determined using appropriate
+
+valuation techniques. Such techniques may include:
+
+e ~—- Using recent arm’s length market transactions;
+
+e = Reference to the current fair value of another instrument that is substantially the same; or
+
+e A discounted cash flow analysis or other valuation models.
+
+Derivative financial instruments
+
+The management has applied hedge accounting for its derivative financial instruments. The management
+
+applies hedge accounting only if all of the following conditions ate met:
+
+e There is formal designation and written documentation at the inception of the hedge;
+
+e The effectiveness of the hedging relationship can be measured reliably. This requires the fair value of
+the hedging instrument, and the fair value or cash flows of the hedged item with respect to the risk
+being hedged, to be reliably measurable;
+
+27
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Derivative financial instruments (continued)
+
+© The hedge is expected to be highly effective in achieving fair value or cash flow offsets in accordance
+with the original documented tisk management strategy; and
+
+© The hedge is assessed and determined to be highly effective on an ongoing basis throughout the hedge
+relationship. A hedge is highly effective if changes in the fair value of the hedging instrument, and
+changes in the fair value or expected cash flows of the hedged item attributable to the hedged tisk.
+
+At inception of the hedge, the management designate hedge either as a cash flow hedge or as a fair value
+
+hedge. The designation is done at inception of the hedge. At inception of the hedge, the management
+
+establishes formal documentation of the hedge relationship. The method an entity adopts depends on its
+
+risk management strategy and hedge accounting systems and practices. The method that will be used in
+
+measuring hedge effectiveness is specified in the hedge documentation.
+
+The hedge documentation prepared at inception includes a description of the followings:
+
+e Risk management objective and strategy for undertaking the hedge;
+
+e = The nature of the risk being hedged;
+
+e Clear identification of the hedged item - the asset, liability, firm commitment or cash flows arising
+from a forecast transaction - and the hedging instrument; and
+
+¢ How hedge effectiveness will be assessed both prospectively and retrospectively. The entity describes
+the method and procedures in sufficient detail to establish a firm and consistent basis for measurement
+in subsequent periods for the particular hedge.
+
+A hedging relationship meets the hedge effectiveness requirements if there is an economic relationship
+
+between the hedged item and the hedging instrument, the effect of credit risk does not dominate the value
+
+changes that result from the economic relationship and the hedge ratio of the hedging relationship is the
+
+same as that resulting from the quantities of the hedged item that the entity actually hedge and the hedging
+
+instrument uses to hedge that quantity of hedged item.
+
+Under a cash flow hedge model, the effective portion of the fair value changes of the hedging instrument
+
+is recognised in consolidated statement of other comprehensive income (OCI) and the ineffective portion
+
+is recognised in the consolidated statement of profit or loss.
+
+In a fair value hedge, any ineffectiveness is automatically recognised in the consolidated statement of
+
+comprehensive income because changes in the measurement of both the hedging instrument and the
+
+hedged item ate reported through the consolidated statement of comprehensive income except if the
+
+hedging instrument hedges an equity investment for which the management has elected to present changes
+
+in fair value in OCI.
+
+If a hedge no longer is effective, then hedge accounting is discontinued prospectively from the last date on
+
+which the hedge was proven to be effective. Hedge accounting is also discontinued when the hedged item
+
+or the hedging instrument is derecognised, the criteria are no longer met or upon voluntarily
+
+discontinuation.
+
+If the hedging instrument is a derivative, then the hedging instrument is measured at fair value, with the
+
+effective portion of changes in its fair value recognised in OCI and presented within equity normally in a
+
+hedging reserve. The ineffective portion of the gain or loss on the hedging instrument is recognised
+
+immediately in the consolidated statement of profit or loss.
+
+If hedge accounting is not applied to a derivative instrament that is entered into as an economic hedge,
+
+then derivative gains and losses are shown in the consolidated statements of other comprehensive income.
+
+28
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+4 Material accounting policies (continued)
+Provision for staff terminal benefits .
+Provision is made for the full amount of statutory gratuity due to employees for their period of service up
+to the reporting date in accordance with the applicable labour laws. The gratuity provision is shown under
+non-current liabilities in the consolidated statement of financial position.
+Defined contribution plans
+A defined contribution plan is a post-employment benefit plan under which an entity pays fixed
+contributions into a sepatate entity and has no legal or constructive obligation to pay further amounts.
+Obligations for contributions to defined contribution plans are expensed as the related service is provided.
+Prepaid contributions are recognised as an asset to the extent that a cash refund or a reduction in future
+payments is available.
+Contributions for eligible UAE National employees are made to the Pension Authority, in accordance with
+the provisions of UAE labour Law No. (7) of 1999 relating to Pension and Social Security and its
+amendments and charged to the consolidated statement of comprehensive income in the period in which
+they fall due.
+Aircraft maintenance
+For the aircraft owned by the Group, maintenance accruals are made based on the technical evaluation.
+For the aircraft under operating lease agreements, wherein the Group has an obligation to maintain the
+aircraft, accruals are made during the lease term for the obligation based on estimated future costs of major
+airframe and cettain engine maintenance checks by making appropriate charges to the consolidated
+statement of profit or loss calculated by reference to the number of hours or cycles operated and
+engineering estimates.
+Deferred income
+Deferred income mainly represents unearned revenue from flight seats sold but not yet flown and will be
+released to the consolidated statement of profit or loss when passengers ate flown or time expited.
+Provisions and contingent liabilities
+Provisions are recognised when present obligations as a result of a past event will probably lead to an
+outflow of economic resources from the Group and amounts can be estimated reliably. Timing or amount
+of the outflow may still be uncertain. A present obligation arises from the presence of a legal or constructive
+commitment that has resulted from past events, for example, legal disputes or onerous contracts. Provisions
+ate not recognised for future operating losses. Provisions are measured at the estimated expenditure
+required to settle the present obligation, based on the most reliable evidence available at the reporting date,
+including the risks and uncettainties associated with the present obligation. Where there are a number of
+similar obligations, the likelihood that an outflow will be required in settlement is determined by considering
+the class of obligations as a whole. Provisions are discounted to their present values, where the time value
+of money is material.
+Revenue recognition
+Revenue from contracts with customets
+The Group’s revenue primarily derives from transportation services for both passengers and catgo, ticket
+selling, accommodation income and dividend income. Revenue is recognized when the transportation,
+tickets or accommodation ate ptovided. The Group considers whether it is an agent or a principal in
+relation to transportation services by considering whether it has a performance obligation to provide
+services to the customer ot whether the obligation is to arrange for the services to be provided by a third
+party.
+
+29
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Revenue recognition (continued)
+
+Rendering of services
+
+Passenger tickets are generally paid for in advance of transportation and ate recognised, net of discounts as
+
+deferred revenue on ticket sales in current liabilities until the customer has flown. Unused tickets are
+
+recognised as revenue after the contracted date of departure using estimates regarding the timing of
+
+recognition based on the terms and conditions of the ticket and statistical analysis of historical
+
+trends. Other revenue including maintenance; handling; hotel and holiday and commissions is recognized
+
+as the related performance obligation is satisfied over time using an appropriate methodology which reflects
+
+the activity that has been undertaken to satisfy the related obligation.
+
+Hotel revenue
+
+Income from room hire is recognised on a pro-rata basis over the period of occupancy. Revenue from sale
+
+of goods, food and beverages is recognised upon issuance of related sales invoices on delivery to guests and
+
+customers.
+
+Dividend income
+
+Dividend from investments is recognised when the Group's right to receive payment has been established.
+
+Finance income and finance costs
+
+Finance income mainly comprises interest income on fixed deposits and investments. Interest income is
+
+recognised in the consolidated statement of profit or loss as it accrues, using the effective interest rate
+
+method.
+
+Finance costs mainly comprises interest expense on bank borrowings and lease liabilities. All borrowing
+
+costs ate recognised in the consolidated statement of comprehensive income using the effective interest
+
+rate method. However, borrowing costs that are directly attributable to the acquisition or construction of a
+
+qualifying asset are capitalised as part of the cost of that asset. A qualifying asset is an asset that necessarily
+
+takes a substantial period of time to get ready for its intended use or sale. Capitalisation of borrowing costs
+
+ceases when substantially all the activities necessary to prepare the asset for its intended use or sale are
+
+complete.
+
+Operating expenses
+
+Operating expenses ate recognised in the consolidated statement of profit or loss upon utilisation of the
+
+setvice or at the date of their origin.
+
+Segmental reporting
+
+Operating segments ate reported in a manner consistent with the internal reporting provided to the chief
+
+operating decision-maker. The chief operating decision-makers, who is responsible for resource allocation
+
+and assessing performance of the operating segments, are the Board of Directors and the Chief Executive
+
+Officer.
+
+Significant management judgment, estimates and assumptions in applying accounting
+
+policies
+
+When preparing the consolidated financial statements, management undertakes a number of judgment,
+
+estimates and assumptions about recognition and measurement of assets, liabilities, income and expenses.
+
+The actual results may differ from the judgment, estimates and assumptions made by management, and will
+
+seldom equal the estimated results.
+
+Information about significant judgment, estimates and assumptions that have the most significant effect on
+
+recognition and measurement of assets, liabilities, income and expenses is provided in the following pages:
+30
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Significant management judgment, estimates and assumptions in applying accounting
+policies (continued)
+
+Control assessment
+
+The Group reassesses whether or not it controls an investee, if facts and circumstances indicate that there
+ate changes to one ot more of the three elements of control listed in IFRS 10.
+
+Management has reviewed its control assessments in accordance with IFRS 10 and has concluded that there
+is no effect on the classification (as subsidiaries or otherwise) of any of the Group’s investees held during
+the period covered by these consolidated financial statements.
+
+Impairment of goodwill and intangible assets
+
+Goodwill and intangible assets with indefinite useful lives are tested annually for impairment and at other
+times when such indications exist. The impairment calculation requires the use of estimates.
+
+The intangible assets include trade name, landing rights, price benefits from related parties and handling
+license - Sharjah Aviation Services LLC.
+
+The recoverability of these assets is based on the Group’s projected financial performance which are
+underpinned by a number of assumptions. Such assumptions inherently involve significant judgments.
+Impairment of non-financial assets
+
+Impairment exists when the carrying value of an asset or cash generating unit exceeds its recoverable
+amount, which is the higher of its fair value less costs to sell and its value in use. The fair value less costs
+to sell calculation is based on available data from binding sales transactions in atm’s length transactions of
+similar assets or observable market prices less incremental costs for disposing of the asset. The value in
+use calculation is based on a discounted cash flow model. The cash flows ate derived from the budget for
+the next five years and do not include restructuring activities that the Group is not yet committed to or
+significant future investments that will enhance the asset’s performance of the CGU being tested. The
+recoverable amount is most sensitive to the discount rate used for the discounted cash flow model as well
+as the expected future cash-inflows and the growth rate used for extrapolation purposes.
+
+Aircraft maintenance costs
+
+The Group incurs liabilities for maintenance costs in respect of its owned aircrafts and leased aircraft. A
+charge is made in the consolidated statement of profit or loss each month based on the number of flight
+hours ot cycles used to build up an accrual to cover the cost of heavy-duty maintenance checks when they
+occur. Estimates involved in calculating the provision required include the expected date of the check,
+matket conditions for heavy-duty maintenance checks at the expected date of check, the condition of asset
+at the time of the check, the likely utilisation of the asset in terms of either flying hours or cycles, and the
+regulations in relation to extensions to lives of life-limited parts, which form a significant proportion of the
+cost of heavy-duty maintenance costs of engines. Additional maintenance costs for aircraft engines are
+considered for accrual based on the estimates made by engineering department on the basis of operational
+requirements.
+
+In case of operating lease aircraft, the Group is also requited to pay maintenance reserves to lessors on a
+monthly basis, based on usage. These maintenance reserves are then returned to the Group on production
+of evidence that qualifying maintenance expenditure has been incurred. Maintenance reserves paid are
+deducted from the accruals made. In some instances, not all of the maintenance reserves paid can be
+recovered by the Group and, therefore, are retained by the lessor at the end of the lease term.
+Assumptions made in respect of the basis of the accruals are reviewed for all aircraft once a year. In addition,
+when further information becomes available which could materially change an estimate made, such as a
+heavy-duty maintenance check taking place, utilisation assumptions changing, or return conditions being
+re-negotiated, then specific estimates are reviewed immediately, and the accrual is reset accordingly.
+
+31
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Significant management judgment, estimates and assumptions in applying accounting
+
+policies (continued)
+
+Accrual for aircraft flying costs
+
+The management accrues for the landing, parking, ground handling, and other charges applicable for each
+
+airport in which the Group operates flights on a monthly basis. These estimates are based on the rate of
+
+charges applicable to each airport based on the agreements and recent invoices received for the services
+obtained. Similarly, accruals for overflying charges are estimated based on the agreement entered with each
+
+country. Actual charges may differ from the charges accrued and the differences are accounted for, on a
+
+prospective basis.
+
+Estimated useful life and residual value of property and equipment, right-of-use assets and
+
+intangible assets
+
+The Group estimates the useful lives of property and equipment (except land), right-of-use assets and
+
+intangible assets based on the period over which the assets are expected to be available for use or the lease
+
+term. The estimated useful lives of property and equipment, right-of-use assets and intangible assets are
+reviewed periodically and are updated if expectations differ from previous estimates due to physical wear
+and tear, technical or commercial obsolescence and legal or other limits on the use of the assets.
+
+Deferred charges
+
+The period of amortisation of the deferred charges is determined based on the pattern in which the future
+
+economic benefits ate expected to be consumed by the Group.
+
+Allowance for expected credit losses for trade receivables and amounts due from related parties
+
+The expected credit losses ate based on assumption about risk of default and expected loss rates. The Group
+
+uses judgement in making these assumptions and selecting the inputs to the impairment calculation, based
+
+on the Group’s past history, existing market conditions as well as forward looking estimates at the end of
+each reporting period.
+
+Determining lease terms
+
+In determining the lease term, management considers all facts and circumstances that create an economic
+
+incentive to exercise an extension option, or not exercise a termination option.
+
+Extension options (or periods after termination options) are only included in the lease term if the lease is
+
+reasonably certain to be extended (or not terminated).
+
+The following factors are normally the most relevant:
+
+e If there are significant penalties to terminate (or not extend), the Group is typically reasonably certain
+to extend (or not extend).
+
+e If any leasehold improvements are expected to have a significant remaining value the Group is
+typically certain to extend (or not extend).
+
+e Otherwise, the Group considers other factors including historical lease durations, costs and business
+disruption required to replace the leased asset.
+
+e The lease term is reassessed if an option is actually exercised (or not exercised) or the Group becomes
+obliged to exercise (or not exercise) it. The assessment of reasonable certainty is only revised if a
+significant event or a significant change in circumstances occuts, which affects this assessment, and
+that is within the control of the lessee.
+
+32
+Air Arabia PJSC and its subsidiaries
+
+Consolidated Financial Statements
+
+Notes to the consolidated financial statements (continued)
+
+For the year ended December 31, 2023
+
+4 Material accounting policies (continued)
+
+Significant management judgment, estimates and assumptions in applying accounting
+
+policies (continued)
+
+Determination of appropriate discount rate in measuring lease liabilities
+
+The Group measures its lease liabilities at present value of the lease payments that are not paid at the
+
+commencement date of the lease contract. The lease payments were discounted using a reasonable rate
+
+deemed by management equal to the Group’s incremental borrowing rate.
+
+In determining a reasonable discount rate, management considers the term of the leases, the underlying
+
+asset and the economic environment. : Actual results, however, may vary due to changes in estimates
+
+brought about by changes in such factors.
+
+Recognition of revenue
+
+Management considers recognizing revenue over time, if one of the following criteria is met, otherwise
+
+revenue will be recognized at a point in time:
+
+e the customer simultaneously receives and consumes the benefits provided by the Group’s
+performance as the Group performs;
+
+e the Group’s performance creates or enhances an asset that the customer controls as the asset is created
+or enhanced; or
+
+e the Group’s performance does not create an asset with an alternative use to the entity and the entity
+has an enforceable right to payment for performance completed to date.
+
+Current versus non-current classification
+
+The Group presents assets and liabilities in the consolidated statement of financial position based on
+
+cutrent/non-current classification.
+
+An asset is current when it is:
+
+e Expected to be realised or intended to be sold or consumed in the normal operating cycle;
+
+e Held primarily for the purpose of trading;
+
+e Expected to be realised within twelve months after the reporting period; or
+
+e¢ Cash or cash equivalent unless restricted from being exchanged or used to settle a liability for at least
+twelve months after the reporting period.
+
+All other assets are classified as non-current.
+
+A liability is current when:
+
+e It is expected to be settled in the normal operating cycle;
+
+® = Itis held primarily for the purpose of trading;
+
+e It is due to be settled within twelve months after the reporting period; or
+
+e There is no unconditional right to defer the settlement of the liability for at least twelve months after
+the reporting period.
+
+All other liabilities are classified as non-current.
+
+33
+i =) xt [00 t [ico 2
+SS rE co] t+ Olt
+oD SAG, DCO) SS! Le!
+H OO cy xt] 0d +
+Q wW Ia Lan AS wn
+= (NY rm 10/) oy
+> Ss Ss + wo +
+B48e2 N lo roof 9
+396 ND
+B39 85 SS eS
+Oog —_ —
+Pe
+Oa SUH ARO st st] 00 aAc10 ine)
+3) 9 Y ite) fore) fo
+essedsss agile) Agia}! 4
+S ce
+ORESETQ He) RSs) &
+ged 7H
+oe
+u te)
+e38 Sais) sslel &
+Ags bel aad bats Ne gg
+i & rr jo tf lo a
+aa t+ It Comm Koa)
+oO
+~~ ww ' tral
+fas S'S Bee s
+2 HA 1) 6 CO1N ar
+ge
+a gyveeo DH or bk Alo s
+Fae 8S HH Sat) #
+2's g rw] wal Nn
+36.0lUC SQ OM IR Nome Ss
+2 § 5.4 al — =
+ot
+Oo
+&3° ee Lo co t1N .n
+_ #e8 EE} Sai) 8 .
+ty x cs [es oS Sun oo
+2§Q <4 — 6 1100 N
+3 Cm st s+ = =
+<q
+a nO wm 1 {Ln LN CO] eD NA
+5 8 4 fF SS &
+13) is) nN iN NaN Ss
+oO Ya)
+~ SR & |® St} 9
+2 = a Lo) a ba +
+=
+Py
+g &S FRIIS Ass! Ss
+o ge haa Pca Es be aN
+~ oD uy Pal
+= : ios)
+s 3B S |S} Sls} &
+. &§ a8
+YZ "a 7 oO oS "1g ' tf So
+38 Ba ss & |g =
+3 Gs [oe ie xX IN an
+om N Q co co fo‘)
+av at jaa)
+gs a, = <
+~
+nw 33 ®
+o | £
+Zs Ss €&; 2
+Oo Tal 6 q a
+Zs 23 o a) w
+= So @ ~ isa} = isa) Ss
+g a c] S NA N g
+Ot ae] = 5 XN ge NA RQ
+a 8 8 - eA - RN > BS
+i? p) Ou _ Q, = °
+a] S ry & 8) ow § 9 “I
+a oO ao 5 ~ YY VDirwy Ga
+aks rm 2 op a a ea! oe]
+SS Uo gl 8 Be £ 2bSE Py
+Qa ie. ¢ S28 3358 B28
+go no v Sggdse BEeo eI
+<2 os aogQ ESBA § 8
+¢ ~ Orsay e Pe oe [7]
+5 Oo # Qogretsa a8dS 86
+-: ° S fat a GSuoa ¥&
+O Zul w ROddcq cd Z
+=) = Ns {x Saiz o]| No A Al
+SS YF HRY [Fe n O9 a | NAS +alo
+o> m™ MN ITS NN ANS) 9) SP VAIN
+HH iw OA No} ~~ weld A om i mal
+ag “" lf gj BR Ss a 18
+> So S| + v uw a
+— —
+L wo ™~ On N ' route N
+2.488 6 3% SIS % orld
+Bah 2 Sle | ges gsis
+aire} AN =} + T Ss Re
+O862oA ron] — Ole ~_ Ss rs bees
+S ay = “aq #88
+e + it
+Ss) pou e co 9 6] t+ On I|D Ye)
+eexyesss R&R BRAS oO Rinlo oO
+ao FE 50S DH BORIS = ANIA, im
+O&A ES co OY lO Na! un] ov So
+aes 8 N N tS BR &
+33 a
+o &
+BES S&S ' PASE & ‘ols 3
+Ags a SF], 9, SIS] 8)
+ms 3 ae i S fF ai
+20 + + at real “
+ge
+vo
+Pw towoe 1 elin +]
+was So S a oon Ksa) oO |
+ae DH, S. 00 |e), oy
+Ga re) od S = ~
+#2 = = = = |
+ra |
+“a to Nn ORATA ~ wot a
+a2 GS DH BSAQ So 80+ aa)
+HO SoS KH MAVNAA HA BAS) oF
+as g oc Naa SF eal Ne}
+Zo £2 = =} Ta) N=) oe
+H
+gc | 3
+}
+v root ‘ foe) fon
+egse kg = rs | a, & ms
+“~~ 3 be rs c N NEL ES So] 2 isa)
+"a 3 9 Sal x} \O) od i} Ss
+o 2s = se] 42 “S) alge
+— = |
+5 a | =
+;
+| i 2
+= yo Ww por tpi _ a ite) o| &
+a iA
+8 a5 4 a i sje) FS] a
+: 2Q 8 Ss ff fe) Bhs
+Dp 29 vA, mB} 8 MIS) Og
+oO oo Gal + +l ¢
+~~
+i= } a
+v ' Dn anla al] ‘3
+os % 8 pl a Ba] be = NI 00] N =| oo
+oO aS ue. ar ec ber jae Se og hae = ee
+Ney Cai Ss Ae od Not
+8 qQ § “IS a 1 S| &
+~ iy mo
+a 3 |} &
+D eo ra
+2% Z I 2 Lio mn ae) eS ' Fr 8 1! 1 fy ¢ es a, Fon
+ue as) 3 ge = zi &
+So Q| ¢€ a 5. S| A.
+3 as FF =) rox a al a v
+Q Q wx se) oe) a)
+a oO fs a & faa | = va
+23 m| # <q 3
+a} + s 3 rf
+2H OR eg é :
+= o
+sis S 6) & 9 Qu
+13) cies) s ¢ uv
+zu a > n na w
+g ) a
+a Oo 8 ® 8 “ g B a & 3 s
+a a a a .g 4 N 8 & o
+& <¢ = es o 8 & S § S
+O 0 g g N 3 N 2n oO eC Ye
+omy oo] @ N 3 1 ON 8 1 2g B a 80
+— oO ray = a 88 Sm a 2» ¥
+ao of] ¢ BA y 88,85 8S 3 6 &
+2 2 wo BS g ute 88 ES 8 ae
+So of] & Sele € BREESE my 2 28
+aa fF = SS ee,$ S82 8588 £4 5 2 §
+: o ; 2
+2% $38 PSbesea gsi 20 FS & oa
+” " ‘oD . fate) oO o-
+g 3% agveseeu sees ee oS § .
+4 2 i) Qeund t& wa S29 £4 BA | ia!
+O Zul w ROd4 ahag <eq Of Z A<
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+5 Property and equipment (continued)
+Buildings include hotel apartments, simulator and staff quarters. Simulator and staff quarters are
+constructed on land in Sharjah, granted by the Government of Sharjah.
+Property and equipment include one plot of land in Sharjah, granted by the Government of Sharjah
+recognised at nominal value of AED 1.
+As at December 31, 2023, work in progress represents vatious capital projects, mainly related to business
+system, applications and building refurbishment, amounting to AED 16.7 million (2022: AED 14.8 million).
+Capital commitments related to these projects are minimal.
+All of the Group’s non-movable assets ate located in the UAE, except for property and equipment with
+carrying amount of AED 4.47 million (2022: AED 3.9 million), located outside UAE.
+At December 31, 2023, aircrafts with carrying amount of AED 3.42 billion (2022: AED 4.09 billion) are
+held under lease (Note 23).
+The Group’s management conducted an internal assessment of its aircraft assets and considered if there
+are any impairment indicators such as a deterioration in current or forecast trade activity, the incurrence of
+losses or other factors indicating that the assets may be impaired. Based on their assessment, the Group’s
+management is of the view that no indicators of impairment arose during 2023 (2022: AED Nil).
+6 Right-of-use assets
+Right-of-use assets represent Aircrafts and Hangar obtained on lease (refer to Note 23 for lease liabilities
+recognised in relation to the right-of-use assets). The carrying amounts of the right-of-use assets and the
+movements during the year are shown below:
+Aircrafts Hangar Total
+
+2023 AED '000 AED '000 AED '000
+Gross carrying amount
+As at January 1, 2023 897,726 16,650 914,376
+Additions 42,315 - 42,315
+As at December 31, 2023 940,041 16,650 956,691
+Accumulated depreciation
+As at January 1, 2023 258,880 10,475 269,355
+Charge for the year (Note 27) 112,270 834 113,104
+As at December 31, 2023 371,150 11,309 382,459
+Net carrying amounts
+
+at December 31, 2023 568,891 5,341 574,232
+
+Aircrafts Hangar Total
+
+2022 AED '000 AED '000 AED '000
+Gross carrying amount
+As at January 1, 2022 784,199 16,650 800,849
+Additions 113,526 113,526
+As at December 31, 2022 897,725 16,650 914,375
+Accumulated depreciation
+As at January 1, 2022 166,817 9,642 176,459
+Charge for the year (Note 27) 92,063 833 92,896
+As at December 31, 2022 258,880 10,475 269,355
+Net carrying amounts
+
+at December 31, 2022 638,845 6,175 645,020
+
+36
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+7 Advance for new aircraft
+These represent pre-delivery payments made to suppliers for an amount of AED 886.8 million (2022: AED
+585.1 million) in respect of new aircrafts.
+8 Investment properties
+In 2022, as a result of a court verdict following series of court orders on recoverability claims against certain
+outstanding receivables, the Group had completed the exchange of its investment property (“Pier 8”) which
+represented certain units under construction in a building located in Dubai Marina, Dubai, UAE, with a
+carrying value of AED 105.9 million as at January 1, 2022 with other investment properties under
+consttuction located in Al Safouh First, Dubai, UAE (“Olgana’).
+In 2022 and at date of exchange of these assets, the fair value of Olgana was AED 149 million based on
+valuation made by independent valuator, hence, the Group recognized a gain of AED 43 million during
+the year ended December 31, 2022, as a result of this transaction. The Olgana is approximately 63%
+complete as at December 31, 2023 (2022: 60%).
+2023 2022
+AED ‘000 AED '000
+Balance as at January 1, 149,000 105,970
+Additions during the year 16,401 149,000
+Derecognition during the year - (105,970)
+165,401 149,000
+Management estimates no impairment is required to be recognized on the basis of absence of any indicators
+of impairment for the building as at December 31, 2023 (2022: AED Nil).
+The fair value of Olgana is determined to be AED 197 million as at December 31, 2023 (2022: AED 149
+million). This has been estimated by external using a market approach that reflects observed prices for
+recent market transactions for similar properties and incorporates adjustments for factors specific to the
+property including total area size, location, conditions and percentage of completion. The significant input
+used for valuation is sales price per square ft, which is observable from market for similar properties.
+9 Intangible assets
+2023 2022
+AED '000 AED '000
+Intangible assets * 1,147,395 1,139,793
+Goodwill ** 198,522 198,522
+During the year ended December 31, 2023, intangible assets and goodwill were subject to impairment tests
+and management concluded that they are not impaired.
+* The movement in the intangible assets during the year can be reconciled as follows:
+2023 2022
+AED '000 AED '000
+As at January 1, 1,139,793 1,133,609
+Additions during the year 11,346 9,428
+Amortization during the year (3,744) (3,244)
+As at December 31, 1,147,395 1,139,793
+37
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+9 Intangible assets (continued)
+Certain intangible assets were atisen from the acquisition of Air Arabia LLC in 2007 pursuant to fair values
+determined by an independent valuer and are summarised as follows:
+2023 2022
+AED '000 AED '000
+Trade name 395,410 395,410
+Landing rights 468,273 468,273
+Price benefit from related parties 180,281 180,281
+Handling license - Sharjah Aviation Services 48,383 48,383
+1,092,347 1,092,347
+** Goodwill comprises of the following:
+2023 2022
+AED '000 AED '000
+Goodwill on acquisition of Air Arabia LLC *** 189,474 189,474
+Goodwill on step acquisition of Information Systems Associates FZC 9,048 9,048
+As at December 31, 198,522 198,522
+* Goodwill atising on of the acquisition of Air Arabia LLC in 2007, determined by an independent
+valuer, was as follows:
+AED '000
+Total fair value of Air Arabia LLC 1,400,000
+Fair value of intangible assets (1,092,347)
+Fair value of tangible assets — net (118,179)
+189,474
+The Group, with support from an independent professional services firm, performed impairment tests on
+goodwill and intangible assets with indefinite useful lives as of December 31, 2023 and 2022. The
+recovetable amount of goodwill and intangible assets for impairment test has been determined using value-
+in-use calculations. For calculation purposes the Group’s management prepated cash flow projections for
+5 years’ petiod and applied a discount rate of between 9.98% to 10.74% (2022: 10.52% to 11.54%).
+Cash flow projections during the forecast period are based on the expected gross margins. The Group
+believes that any reasonably possible change in the key assumptions on which recoverable amount is based
+would not cause the aggregate carrying amount to exceed the aggregate recoverable amount of the cash-
+generating unit. Based on these calculations the Group is of the view that goodwill and intangible assets
+are not impaired.
+10 Deferred charges
+Processing
+Landing Aircraft fee and Buyer
+permission upgtade commission ~ furnished
+chatges costs costs equipment Total
+2023 AED'000 AED'000 AED'000 AED'000 AED'000
+Gross carrying amount
+As at January 1, 2023 51,745 35,073 27,086 23,703 137,607
+Additions during the year - : - 344 344
+As at December 31, 2023 51,745 35,073 27,086 24,047 137,951
+Accumulated amortisation
+As at January 1, 2023 51,745 34,259 18,503 8,472 112,979
+Charge for the year - 587 2,196 2,896 5,679
+As at December 31, 2023 51,745 34,846 20,699 11,368 118,658
+Net carrying amounts as at
+December 31, 2023 - 227 6,387 12,679 19,293
+38
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+10 Deferred charges (continued)
+Processing
+Landing Aircraft fee and Buyer
+permission upgtade commission Furnished
+charges costs costs Equipment Total
+2022 AED'000 AED'000 AED'000 AED'000 AED'000
+Gross carrying amount
+As at January 1, 2022 51,745 35,073 27,086 23,703 137,607
+As at December 31, 2022 51,745 35,073 27,086 23,703 137,607
+Accumulated amortization
+As at January 1, 2022 51,745 33,120 16,201 5,576 106,642
+Charge for the year - 1,140 2,302 2,895 6,337
+As at December 31, 2022 51,745 34,260 18,503 8,471 112,979
+Net carrying amounts as at
+December 31, 2022 - 813 8,583 15,232 24,628
+11 Investments at fair value through other comprehensive income
+2023 2022
+AED ‘000 AED ‘000
+Quoted investments in equity instruments in UAE * 9,216 10,321
+Unquoted investments in debt instruments in UAE 150,449 14,562
+Unquoted investments in debt instruments outside UAE 70,667 18,283
+Total investments 230,332 43,166
+* Movement in quoted investments in equity instruments during the year were as follow:
+2023 2022
+AED ‘000 AED ‘000
+As at January 1, 10,321 15,557
+Change in fair value (1,105) (5,236)
+As at December 31, 9,216 10,321
+The market rate as at December 31, 2023 and December 31, 2022 are considered for the calculation of the
+fait value of the investments that are quoted on the stock exchange market.
+The movement in unquoted investments in debt instruments during the year were as follows:
+2023 2022
+AED ‘000 AED ‘000
+As at January 1, 32,845 -
+Additions during the year 181,735 32,845
+Change in fair value 6,536 -
+As at December 31, 221,116 32,845
+The fair values of these debt instruments are determined using market interest rates of similar debt
+instruments as at December 31, 2023.
+39
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+12 Investments in associates and joint ventures
+2023 2022
+AED'000 AED'000
+Investments in associates (Note 12.1) 99,609 51,751
+Investments in joint ventures (Note 12.2) 106,249 104,449
+205,858 156,200
+12.1 Investments in associates
+Investments in associates represent share in net assets of the associates at the reporting date, accounted for
+using equity method. The movements during the year are summarised as follows:
+2023 2022
+AED'000 AED'000
+As at January 1, 51,751 81,619
+Share of profit of Tune Protection Commercial Brokerage LLC 3,744 8,956
+Share of profit of Air Arabia Matoc S.A. 68,197 5,098
+Dividend received from Tune Protection Commercial
+Brokerage LLC (15,030) (13,599)
+Dividend received from Air Arabia Maroc S.A (9,053) (30,323)
+As at December 31, 99,609 51,751
+Investment in Air Arabia Jordan LLC is fully impaired in the previous years.
+12.2 Investments in joint ventures
+Investments in joint ventures represent share in net assets of the joint ventures at the reporting date as per
+equity accounting principles and the movements during the year are summarised below:
+2023 2022
+AED'000 AED'000
+As at January 1, 104,449 96,330
+Additional investments during the year
+Armenian National Airlines (CJSC) 18,118 18,206
+Fly Jinnah Services (Private) Limited 6,502 6,693
+Cozmo Travel (CJSC) - 413
+Share of profit/ (loss)
+Sharjah Aviation Services 22,206 24,516
+Alpha Flight Services UAE LLC 22,579 13,840
+T3 Aviation Academy (formerly known as
+Alpha Aviation Academy) - 175
+Air Arabia Abu Dhabi L.L.C 9,507 (1,280)
+Cozmo Travel (CJSC) (148) 68
+Fly Jinnah Services (Private) Limited (9,477) (7,306)
+Armenian National Airlines (CJSC) (28,487) (7,837)
+Dividends received during the year
+Alpha Flight Services UAE LLC (19,000) (19,000)
+Sharjah Aviation Services (20,000) (15,000)
+T3 Aviation Academy UAE LLC - (3,733)
+Disposal of investment in joint venture
+T3 Aviation Academy UAE LLC (formerly known as
+Alpha Aviation Academy UAE LLC) (Note 25) - (1,636)
+As at December 31, 106,249 104,449
+40
+w
+greg
+aS coo ' '
+Bp: Ss [oe |
+$299 a8 :
+Agee 28 5 ce
+oss aN g se a
+A 62s 4 §
+a oo 3] 2
+aogss iF
+3958 a».
+7228 ERRES |
+55289 FR RES SZ
+& gye seus a
+a Soe 5" nas
+ges QR - SS 828°
+Py — ARS 2 |S g
+Vac iS s .
+See |i} 2
+FES h
+82S RSSe
+Lo, Resseesgis
+«gta Se Pat th ago
+7) a Sao > REGS
+3 ane} 69 8 ret HSkSSals °
+6 a oC.e “ Nee ai
+Ss LALA 7
+Saou =
+i 333 14 3
+“S
+| FE RG :
+ae} c :
+oO ge? age seule
+zu ; 2 teat a S |
+5 x avs :
+g In 6) J : ag25
+° G faz) =i Seah S8 :
+: ae 2 x 2 AS
+Es 1 aye o
+A, 1 $A a E
+es ol 2
+2 9s Saga
+EI Baal BRSSSES !
+3 3 Sees shy ae
+> Zz asses : ages
+& q ae eags ;
+wv oS ™~ se ;
+g 5 ASR BSR)
+ls . | :
+| : < (sl 8
+ra
+o | ¢ = $3 388 i;
+is >] et aA eeees
+: o 3 2Q SSSReRe ,
+| n as) sf ot et ot at ea BS
+g £ 2 rs SS3aqgm le : aS
+Sars RSEERS . w
+=] 3) eA oN SSSSREe 5S
+& & g = Sse gels bs
+‘] g I ages |i
+| : gos e]s Pw
+heat . : | :
+wn” i) | |
+fc 7] or) iB | 1 |
+e| 3 3 g2 Ree88 fe
+& 5 3B < RE SEER ;
+2 fF g Q Bi SBIR : 7
+§ | #3 BI Sogeg +|g si95058 2
+e 3 68 r= ano S SEE EES x
+O ~ > 3 Co) = 6S seaedels fi
+oOo WD a Ld & Sg —_ PRRERPa -
+| . E z = a+ a Seals . o
+a Oom9 = ae) 2 9 mRES H
+on Vv a © ry 5 a . i
+= o 8 _ |
+3 $8 | 6 » & ° _ ;
+| 7 2 | ™ as
+: i i Ba
+2°38 oO Y gos i
+aa 28 [T} > LA cj 2
+£3 28 o 2 a aap
+as 0 i+ & !
+a — 9 “ '9 k
+as a 3 © o i
+g 2A = : dau: :
+0 ra © £: ae : :
+Rat os = 8 y HO De : Efe :
+: : | : ey: HO 2) ot
+ak o §| £ 2 f Sens : a H
+ie sel 3 E 3258s PERE y
+; 3 Hn ~ 2 poe: pias :
+ee o UV o o rr) gas aC Pe ifs
+° A > 5 a sect He i
+a & a 25 835 ggze
+gol = & 0 6 8EgEe a53¢
+2 23 BSRBESS BOD g
+| J 232 ao S nan a 2
+: SEITE BcQ2§O as
+7, N a aS Z & eed 7
+: ' : = S99H AGREED 38
+- & uaeade BES O25
+. cE x Da 3 a2
+Qag aus e cE F
+N Eee: E's gEla
+aeagoe Qa cae
+OR Nag Seg ge
+SGau ek 3 as
+ade gx
+Face 8s
+H Eo
+is2)
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+13 Categories of financial assets and liabilities
+Note 4 to the consolidated financial statements provide a description of each classification and
+measurement of financial assets and financial liabilities and the related accounting policies. The carrying
+amounts of financial assets and financial liabilities in each category are as follows:
+2023 2022
+AED'000 AED'000
+Financial assets at amortised cost
+Trade and other receivables 888,698 916,172
+Bank balances and cash 5,246,377 4,736,251
+Cash flow hedge assets (derivative) 59,673 373,339
+Financial assets at fair value through other comprehensive
+income
+Investments at fair value through other comprehensive income 230,332 43,166
+6,425,080 6,068,928
+2023 2022
+AED'000 AED'000
+Financial liabilities at amortised cost
+Trade and other payables 4,035,407 3,820,369
+Bank borrowings 125,694 139,485
+Lease liabilities 2,153,263 2,748,723
+6,314,364 6,708,577
+A description of the Group’s financial statements tisk, including tisk management objectives and policies
+is given in Note 35 and methods used to measure fair value are described in Note 36.
+14 Trade and other receivables
+2023 2022
+Current assets AED'000 AED'000
+Financial assets:
+Trade receivables, gross 348,316 402,256
+Allowance for expected credit losses (47,724) (48,592)
+Trade receivables, net 300,592 353,664
+Cash flow hedge asset (Note 22) 11,629 28,753
+Net investment in lease * 37,697 48,001
+Amounts due from related patties (Note 15) 62,639 146,388
+Advances and other receivables, net 396,974 250,336
+809,531 827,142
+Non-financial assets:
+Prepaid aitcraft lease rentals 18,528 12,510
+Prepaid expenses — others 30,517 23,198
+49,045 35,708
+858,576 862,850
+Non-current assets
+Financial asset:
+Cash flow hedge asset (Note 22) 48,044 344,586
+Net investment in lease * 52,993 91,484
+Lease deposit receivable 37,803 25,051
+997,416 1,323,971
+42
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+14 Trade and other receivables (continued)
+* Net investment in lease represents the present value of the minimum lease payment receivables. The
+Group subleased aircrafts to Air Arabia Maroc, S.A. (an associate), Fly Jinnah Services (Private) Limited
+(a joint venture) and Armenian National Airlines CJSC (a joint venture). The Group has classified the
+subleases as finance lease because the subleases are for the whole of the remaining term of head lease.
+The following table sets out the lease receivables related to the subleases:
+2023 2022
+AED'000 AED'000
+Not later than one year 37,697 48,001
+Later than one year but not later than five years 52,993 91,484
+At December 31, 90,690 139,485
+As at December 31, 2023, all of the Group’s trade and other receivables have been reviewed for indicators
+of impairment. Certain trade receivables and other receivables amounting to AED 47.72 million and AED
+102.8 million, respectively, were found to be impaired (2022: AED 48.59 million and AED 55 million).
+The movement in allowance for expected credit losses of trade receivables can be reconciled as follows:
+2023 2022
+AED'000 AED'000
+As at January 1, 48,592 44,277
+Reversal of expected credit losses of trade receivables (Note 30) (868) -
+Allowance for expected credit losses of trade receivables (Note 28) - 4,315
+As at December 31, 47,724 48.592
+The movement in allowance for expected credit losses of advances and other receivables can be reconciled
+as follows:
+2023 2022
+AED'000 AED'000
+As at January 1, 55,030 12,000
+Allowance for expected credit losses (Note 28) 47,815 43,030
+As at December 31, 102,845 55,030
+The ageing of trade receivables which are not impaired at the reporting date are as follows:
+Not Past due but not impaired
+past due nor <60 60-90 >90
+Total impaited Days Days Days
+AED'000 AED'000 AED'000 AED'000 AED'000
+2023 300,592 241,362 9,205 14,961 35,064
+2022 353,664 322,269 5,451 3,412 31,395
+Trade receivables are non-interest bearing and are generally settled in within normal credit terms of 45 to
+60 days after which they are considered to be past due. Unimpaired accounts receivable are expected, on
+the basis of past experience, to be recoverable. Before accepting any new customer, the Group assesses the
+potential customers’ quality and defines credit limits for customer. There are 3 customers who represent
+more than 29% (2022: more than 18%) of the total balance of trade receivables,
+Majority of the trade receivables are from sales agents which are secured mainly by bank guarantees and
+deposits.
+43
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+15 Related parties
+The Group in the normal course of business catties on transactions with other enterprises that fall within
+the definition of related party. The Group’s related parties include key management personnel, entities held
+under common conttol, associates, joint ventures and others. Transactions with related parties are carried
+out in the normal course of business and are measured at exchange amounts, being the amounts agreed by
+both the Board of Directors and the respected related party.
+Transactions with related parties included in the consolidated statement of profit or loss are as follows:
+2023 2022
+AED'000 AED'000
+Rental income from aircraft operating lease (Note 26) 112,016 198,720
+Expenses recharged by related patties (44,126) (48,780)
+Revenue from related parties 46,713 97,611
+Management fees from joint ventures and associates (Note 30) 61,673 43,073
+Income from investments in associates and joint ventures 88,121 36,231
+Compensation of key management personnel
+A number of key management personnel hold positions in the Group that result in them having control or
+significant influence over the financial or operating activities. Compensation of key management personnel
+ate as follows:
+2023 2022
+AED'000 AED'000
+Short term benefits 24,436 14,398
+Long term benefits 800 591
+Board of Directors' remuneration* 8,000 8,000
+* At the Annual General Meeting held on March 14, 2023, Board of Directors proposed, and the
+shareholders approved Board of Directors’ remuneration of AED 8 million for the year ended December
+31, 2022 (2021: AED 8 million).
+Balances with related parties included in the consolidated statement of financial position are as follows:
+2023 2022
+AED'000 AED'000
+Amounts due from related parties: (Note 14)
+Receivable from associates and joint ventures 52,045 75,726
+Other related parties 10,594 70,662
+62,639 146,388
+2023 2022
+AED'000 AED'000
+Amounts due to related parties: (Note 21)
+Payable to joint ventures 108,603 68,698
+Other related parties 2,600 44,033
+111,203 112,731
+Amounts due from/(to) related parties above are unsecured, bear no interest and have no fixed repayment
+terms. The management considers these to be current assets/current liabilities as appropriate.
+44
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+16 Bank balances and cash
+2023 2022
+AED'000 AED'000
+Bank, balances
+Fixed deposits* 3,984,069 3,686,064
+Current accounts 1,087,181 825,852
+Call deposits 166,965 212,680
+5,238,215 4,724,596
+Cash in hand 8,162 11,655
+Bank balances and cash 5,246,377 4,736,251
+* ‘These deposits catry an average interest rate of 5.45% (2022: 3.62%) per annum.
+17 Share capital
+2023 2022
+AED'000 AED'000
+Authorised, issued and fully paid-up share capital
+(4,666,700 thousand shares of AED 1 each) 4,666,700 4,666,700
+Dividends
+At the Annual General Meeting held on March 14, 2023, the Boatd of Directors proposed, and the
+shareholders approved a cash dividend approximately of AED 700 million at AED 0.15 per share for the
+year ended December 31, 2022 (2021: 397 million at AED 0.085 per share).
+18 Statutory reserve
+In accordance with the Company's Articles of Association and Article 241 of Federal Decree Law No. 32
+of 2021, a minimum of 10% of the net profit for the year has to be transferred to the statutory reserve.
+Such transfers are required to be made until the balance on the statutory reserve equals one half of the
+Company’s paid-up share capital. The reserve is not available for distribution except as provided for in the
+Federal Decree Law.
+19 General reserve
+In accordance with the Company’s Articles of Association, an amount equal to 10% of the net profit for
+the year is transferred to a general reserve. Transfers to this reserve shall stop by resolution of an Ordinary
+Genetal Assembly upon recommendation by the Board of Directors or when this reserve reaches 50% of
+the paid-up capital of the Group. This reserve shall be utilized for the purposes determined by the General
+Assembly at an ordinary meeting upon recommendation by the Board of Directors.
+20 Provision for staff terminal benefits
+2023 2022
+AED'000 AED'000
+As at January 1, 170,015 144,637
+Charge for the year 44,056 33,737
+Payments made during the year (5,896) (8,359)
+As at December 31, 208,175 170,015
+45
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+21 Trade and other payables
+2023 2022
+AED'000 AED'000
+Financial liabilities
+Maintenance liabilities 1,729,311 1,757,700
+Accrued expenses 757,297 654,897
+Other payables 1,113,581 860,502
+Trade payables 288,029 398,894
+Amounts due to related parties (Note 15) 111,203 112,731
+Lease deposit payables 34,986 35,645
+4,034,407 3,820,369
+Non-financial liability
+Advances from customers 94,513 49,166
+4,128,920 3,869,535
+Less:
+Non-current liabilities
+Maintenance liabilities 1,214,621 1,371,725
+Lease deposit payable 34,986 35,641
+1,249,607 1,407,366
+Current liabilities 2,879,313 2,462,169
+The Group has financial risk management policies in place to ensure that all payables ate paid within the
+credit period.
+22 Derivative financial instruments
+Fuel derivatives
+The Group uses derivative financial instruments for risk management purposes. Hedging instruments are
+measured at their fair value at the reporting date and the effective portion of the changes in their fair value
+is recognised in the consolidated statement of other comprehensive income, as part of the cash flow hedge
+reserve in line with provisions of IFRS 9.
+No loss was recognised in 2023 (2022: AED Nil) relating to the ineffective portion of trade deals and the
+settlement of the same in the consolidated statement of profit or loss, as part of fuel costs (Note 27).
+The Group has reassessed the hedging relationship as at reporting date and concluded that the forecast
+transactions being hedged are highly probable to occur in the future. Cash flow hedge asset is categorised
+into the following:
+2023 2022
+Term AED'000 Term AED'000
+Non-current asset
+Commodity swaps, forwards options
+and others 2025-2026 48,044 2024-2025 344586
+Current asset
+Commodity swaps, collars, forwatds
+options and others 2024 11,629 2023 28,753
+Total (Note 14) 59,673 373,339
+46
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+23 Lease liabilities
+The Group has entered into leasing arrangements with leasing companies to finance the purchase of the
+aircraft. The terms of the leases are 5 - 15 years for aircrafts and hangar. Lease liabilities in respect of right-
+of-use assets recognised (refer to Note 6) in the consolidated statement of financial position as follows:
+2023 2022
+AED'000 AED'000
+As at January 1, 2,748,723 3,236,607
+Additions to lease liabilities for the year 42,313 252,158
+Payments made during the year (637,773) (740,042)
+As at December 31, 2,153,263 2,748,723
+Lease liabilities are disclosed in the consolidated statement of financial position as follows:
+2023 2022
+AED"000 AED'000
+Non-current portion of lease liabilities 1,567,827 2,126,498
+Current portion of lease liabilities 585,436 622,225
+2,153,263 2,748,723
+The lease liabilities are secured by the associated leased aircraft (Note 5).
+The lease agreements ate subject to certain financial and operational covenants including compliance with
+various regulations, restrictions on unapproved subleasing, insurance coverage and maintenance of total
+debt to equity ratio.
+Lease liabilities are payable as follows:
+2023 2022
+AED'000 AED'000
+Not later than one year 585,436 622,225
+Later than one year but not later than five years 1,567,827 2,126,498
+As at December 31, 2,153,263 2,748,723
+The finance charges ate calculated based on average interest rate of 4% (2022: 4%).
+24 Bank borrowings
+2023 2022
+AED"'000 AED'000
+Non-curtent 30,610 30,604
+Current portion 95,084 108,881
+Total bank borrowings 125,694 139,485
+In 2022, the Group had obtained a loan of USD 25 million for partial reimbursement pre-delivery payment
+of aircrafts. The loan is repayable over a petiod 36 months from the initial drawdown date and carties an
+interest of 1.6% + 3 months SOFR (2022: 1.6% + 3 months SOFR).
+47
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+25 Business combinations
+Acquisition of remaining 49% ownership interest in T3 Aviation Academy UAE LLC
+In 2022, the Group acquired further 49% ownership interest in T3 Aviation Academy UAE LLC (“T3”)
+(formerly Alpha Aviation Academy UAE LLC - a former joint venture of the Group) for a total
+consideration of AED 11 million, thereby increasing its total ownership interest to 100% after this
+transaction. The details of the acquisition ate as follows:
+2022
+AED'000
+Consideration for acquisition of 49% ownership interest 11,025
+Fair value of pre-existing interest in the Subsidiary (51%) 11,475
+22,500
+Fair value of net assets 22,500
+Provisional goodwill arising on acquisition :
+As a result of the above transaction, in 2022 the Group had derecognized its investment in T3 Aviation
+Academy UAE LLC as a joint venture and has recognized a gain on derecognition of investment in joint
+venture as follows:
+2022
+AED'000
+Fair value of pre-existing interest (51%) 11,475
+Carrying value of investment in T3 Aviation Academy UAE LLC as joint
+venture 1,636
+Gain in derecognition of investment in joint venture (Note 30) 9,839
+During the year ended December 31, 2023, the Group has completed the measurement of fair value of
+assets and liabilities at the date of acquisition and accordingly, adjustments resulting from fair valuation of
+net assets at the date of acquisition of T3 have been recorded in the consolidated financial statements.
+26 Revenue
+2023 2022
+AED'000 AED'000
+Passenger revenue 4,996,622 4,282,527
+Other airline related services 468,992 358,152
+Service revenue 264,221 213,498
+Aircraft lease rentals - net (Note 15) 112,016 198,720
+Cargo revenue 157,360 171,516
+Revenue from hotel operations 67,846 61,563
+Baggage revenue 49,705 44,336
+Sales commissions and expenses (117,012) (88,482)
+5,999,750 5,241,830
+27 Direct costs
+2023 2022
+AED'000 AED'000
+Fuel costs (Note 22) 1,690,639 1,478,912
+Staff costs 774,751 586,204
+Depreciation of property and equipment (Note 5) 495,060 511,642
+Aircraft maintenance expenses 438,924 498,790
+Landing and overflying charges 361,209 276,198
+Passenger, ground and technical handling charges 312,891 258,359
+Depreciation of right-of-use assets (Note 6) 113,104 92,896
+Insurance 12,274 8,368
+Other operating costs 144,332 98,892
+4,343,184 3,810,261
+48
+Air Atabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+28 Administrative and general expenses
+2023 2022
+AED'000 AED'000
+Staff costs 127,236 114,838
+Allowance for expected credit losses of advances and other
+receivables (Note 14) 47,815 43,030
+Depreciation of property and equipment (Note 5) 29,741 19,839
+Legal and professional fees 10,544 11,887
+Travel and accommodation costs 12,574 8,770
+Rent expenses 8,575 7,303
+Communication costs 6,785 5,631
+Allowance for expected credit losses of trade receivables (Note 14) - 4,315
+Other administrative and general expenses 85,936 70,854
+329,206 286,467
+29 Selling and marketing expenses
+2023 2022
+AED'000 AED'000
+Staff costs 42,774 36,808
+Advertisement expenses 37,660 29,657
+Reservation management expenses 8,359 1,585
+88,793 68,050
+30 Other income, net
+2023 2022
+AED'000 AED'000
+Management fees from joint ventures and associates (Note 15) 61,673 43,073
+Reversal for expected credit losses of trade receivables (Note 14) 868 -
+Gain on disposal of investment properties (Note 8) - 43,030
+Gain on disposal of investment in joint venture (Note 25) - 9,839
+Others 50,930 39,671
+113,471 135,613
+31 Basic and diluted earnings per share
+2023 2022
+AED'000 AED'000
+Profit attributable to the Owners of the Company 1,547,132 1,221,786
+Weighted average numbet of shares (in ‘000) 4,666,700 4,666,700
+Basic and diluted earnings per share (AED) 0.33 0.26
+49
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+32 Operating lease commitments
+The Group as a lessor:
+As at December 31, 2023, the Group has leased out 22 aircrafts (2022: 23) under non-cancellable operating
+lease agreements to related parties.
+The leases have varying terms and renewal rights. The future minimum lease payments receivable under
+non-cancellable operating leases contracted for at the reporting date but not recognised as receivables, are
+shown below:
+2023 2022
+AED'000 AED'000
+Within one year 220,025 249,001
+Between 2 and 5 years 399,861 557,720
+619,886 806,721
+The carrying amount of the leased aircrafts owned by the Group under operating leases at the reporting
+date are as follows:
+2023 2022
+AED"'000 AED'000
+Net book value 1,227,641 1,370,323
+Accumulated depreciation 1,611,899 1,611,780
+Depreciation charge for the year 143,395 158,641
+33 Contingent liabilities
+The Group have letters of guarantees and credits entered into as part of the normal course of business and
+in connection with deposits against leased aircrafts amounting to AED 61 million approximately as at
+December 31, 2023 (2022: AED 41 million), which at December 31, 2023 are not expected to result in
+material losses for the Group in the foreseen future and not consider it probable that there will be an
+outflow of economic resources with regard to these contingent liabilities.
+34 Capital commitments
+2023 2022
+AED'000 AED'000
+Authorised and contracted:
+Aircraft fleet (Note 7) 22,928,778 23,230,529
+35 Financial instruments and risk management objectives and policies
+The Group is exposed to various risks in relation to financial instruments. The main types of risks are
+market risk, credit risk and liquidity risk.
+The Group's risk management is coordinated at Group level, in close cooperation with the Board of
+Directors, and focuses on actively securing the Group's short to medium-term cash flows by minimising
+the exposure to financial markets.
+The Group does not actively engage in the trading of financial assets for speculative purposes nor does it
+write options. The most significant financial risks to which the Group is exposed are described on the
+following pages:
+50
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+35 Financial instruments and risk management objectives and policies (continued)
+Market risk
+Market tisk is the risk that the fair value or future cash flows of a financial instrument will fluctuate as a
+result of changes in market prices whether those changes are caused by factors specific to the individual
+secutity or its issuer or factors affecting all securities traded in the market.
+The Group is exposed to market risk through its use of financial instruments and specifically to interest
+rate risk and price risks, which result from both its operating and investing activities.
+i. Interest rate risk
+Interest rate risk is the risk that the value of a financial instrument will fluctuate due to changes in market
+interest rates
+The Group adopts a policy of ongoing review of its exposure to changes in interest rate on its borrowings,
+taking into account market expectations, the maturity profile and cash flows of the underlying debt, and
+the extent to which debt may potentially be either prepaid prior to its maturity or refinanced at reduced
+cost.
+The Group is exposed to changes in market interest rates through fixed deposits, investments, call deposits,
+lease liabilities and bank borrowings.
+At the reporting date, the interest rate profile on the Group’s interest-bearing financial instruments is as
+follows:
+2023 2022
+AED'000 AED'000
+Fixed rate
+Financial assets
+Fixed deposits 3,984,069 3,686,064
+Call deposits 166,965 212,680
+4,151,034 3,898,744
+Variable rate
+Financial liabilities
+Lease liabilities 2,153,263 2,748,723
+Bank borrowings 125,694 139,485
+2,278,957 2,888,208
+Cash flow sensitivity analysis for variable rate instruments
+The following table illustrates the sensitivity of the Group’s profit and closing equity to a reasonably
+possible change in interest rates of +1% (2021: +1%). These changes are considered to be reasonably
+possible based on observation of current market conditions. Positive figures represent an increase in profit
+ot equity. The analysis below excludes interest capitalized and assumes that all other variables remain
+constant.
+Effect on Effect on
+Profit for the year Equity
+AED'000 AED'000 AED'000 AED'000
++1% -1% +1% -1%
+2023 (22,789) 22,789 (22,789) 22,789
+2022 (28,882) 28,882 (28,882) 28,882
+51
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+35 Financial instruments and risk management objectives and policies (continued)
+Market risk (continued)
+fi. Equity price risk
+The Group is exposed to equity price risk in respect of its listed equity securities (Note 11). For the listed
+equity securities, an average volatility of 11% has been observed during 2023 (2022: 33%). This volatility
+figure is considered to be a suitable basis for estimating how profit or loss and equity would have been
+affected by changes in market risk that were reasonably possible at the reporting date. If the quoted stock
+price for these securities increased or decreased by that amount, consolidated statements of other
+comprehensive income and equity would have changed by AED 1 million (2022: AED 3.4 million). The
+listed securities are classified as investments at fair value through other comprehensive income.
+Credit risk
+Credit risk is the risk that one party to a financial instrument will fail to discharge an obligation and cause
+the other party to incur a financial loss.
+The Group is exposed to this risk for vatious financial instruments, for example trade receivables from
+customers, placing deposits, etc. The Group's maximum exposure to credit risk is limited to the carrying
+amount of financial assets recognised at the reporting date, as summatised below:
+2023 2022
+
+AED"'000 AED'000
+Bank balances and deposits 5,238,215 4,724,596
+Trade and other teceivables 888,698 916,172
+Cash flow hedge asset 59,673 373,339
+Investments measured at fair value through OCI 230,332 43,166
+
+6,416,918 6,057,273
+The following policies and procedure ate in place to mitigate the Group’s exposute to credit tisk:
+Trade and other receivables
+The Group seeks to limit its credit risk with respect to trade receivables by continuously monitoring the
+terms of payments for the outstanding amounts. Trade and other receivables consist of a large number of
+customers, spread actoss diverse industries and geographical areas.
+Bank balances and deposits
+The Group seeks to limit its credit risk with respect to banks by only dealing with reputable banks.
+Jet fuel risk
+The Group is exposed to volatility in the price of jet fuel and closely monitors the actual cost against the
+forecast cost. To manage the price risk, the Group considers the use of commodity futures, options and
+swaps to achieve a level of control over higher jet fuel costs so that profitability is not adversely affected.
+Liquidity risk
+Prudent liquidity risk management implies maintaining sufficient cash and the availability of funding
+through an adequate amount of committed credit facilities. Liquidity requirements are monitored on a
+regular basis and management ensures that sufficient funds ate available to meet any future commitments.
+The Group’s tisk to liquidity is a result of the funds available to cover future commitments. The Group
+manages liquidity risk through an on-going review of future commitments and credit facilities. Cash flow
+forecasts are prepared and adequate utilisation of borrowing facilities are monitored, including the need for
+additional botrowings, as required. The Group has 30 to 90 days credit petiod from its vendors.
+
+52
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+35 Financial instruments and risk management objectives and policies (continued)
+Liquidity risk (continued)
+Summarised below in the table is the maturity profile of financial liabilities and net settled derivative
+financial liabilities based on the remaining period at the end of reporting period to the contractual maturity
+date. The amounts disclosed are the contractual discounted cash flows.
+Contractual cash flows
+Carrying Within More than
+amount 1 year 1 year Total
+2023 AED'000 AED'000 AED'000 AED'000
+Lease liabilities 2,153,263 585,436 1,567,827 2,153,263
+Trade and other payables 4,034,407 1,249,607 2,784,800 4,034,407
+Bank borrowings 125,694 95,084 30,610 125,694
+il
+Contractual cash flows
+Carrying Within More than
+amount 1 year 1 year Total
+2022 AED'000 AED'000 AED'000 AED'000
+Lease liabilities 2,748,723 622,225 2,126,498 2,748,723
+Trade and other payables 3,820,369 2,413,003 1,407,366 3,820,369
+Bank borrowings 139,485 108,881 30,604 139,485
+peel
+36 Fair value measurement
+Assets and liabilities measured at fair value in the consolidated statement of financial position are grouped
+into three levels of fair value hierarchy. This grouping is determined based on the lowest level of significant
+inputs used in fair value measurement, as follows:
+© level 1: quoted prices (unadjusted) in active markets for identical assets or liabilities
+¢ level 2; inputs other than quoted prices included within Level 1 that are observable for the asset or
+liability, either directly (i.e. as prices) or indirectly (i.e. derived from prices)
+© level 3: inputs for the asset or liability that are not based on observable market data (unobservable
+inputs).
+If the inputs used to measure the fair value of an asset or a liability fall into different levels of the fair value
+hierarchy, then the fair value measurement is categorised in its entirety in the same level of the fair value
+hierarchy as the lowest level input that is significant to the entire measurement.
+The Group recognises transfers between levels of the fair value hierarchy at the end of the reporting period
+during which the change has occurred.
+The following table shows the Levels within the hierarchy of financials assets and liabilities measured at fair
+value on a recurting basis at December 31, 2023 and December 31, 2022.
+Level 1 Level 2 Level 3
+At December 31, 2023 AED ‘000 AED'000 AED'000
+Financial asset
+Investments at fair value through other
+comprehensive income — equity instruments 9,216 - -
+Investments at fair value through other
+comprehensive income — debt instruments - 221,116 -
+Cash flow hedge asset - 59,673 -
+53
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+36 Fair value measurement (continued)
+Level 1 Level 2 Level 3
+AED'000 AED'000 AED'000
+At December 31, 2022
+Financial asset
+Investments at fair value through other
+comprehensive income — equity instruments 10,321 - -
+Investments at fair value through other
+comprehensive income — debt instruments - 32,845 -
+Cash flow hedge asset - 373,339 -
+37 Segment Reporting
+For management purposes, the Group is organised into two major reportable segments as follows:
+e = 6Airline
+Includes international commercial air transportation, aircraft rental, passengers transport, cargo services,
+aviation training and aircraft repairs and maintenance.
+© Other segments
+Includes travel and tourist agencies, hotels, hotel apartment rentals, airline companies, representative office
+and documents transfer services.
+The following table presents revenue and profit information for the Group’s operating segments for the
+year ended December 31, 2023 and December 31, 2022, respectively:
+Other
+December 31, 2023 Airline segments Eliminations Total
+AED'000 AED'000 AED'000 AED'000
+Revenue
+External sales 5,667,299 332,451 - 5,999,750
+Inter-segment sales - 64,184 (64,184) -
+Total revenue 5,667,299 396,635 (64,184) 5,999,750
+Result
+Segment result 1,614,841 (155,266) - 1,459,575
+Share of profit of investments in associates
+and joint ventures 88,121
+Profit for the year 1,547,696
+Other information
+Additions to property and equipment and
+deferred charges 30,678 45,950 - 76,628
+Depteciation and amottisation 626,069 21,258 - 647,327
+54
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the yeat ended December 31, 2023
+37 Segment Reporting (continued)
+Other
+December 31, 2022 Airline segments Eliminations Total
+AED'000 AED'000 AED'000 AED'000
+Revenue
+External sales 4,977,259 264,571 - 5,241,830
+Inter-segment sales - 64,569 (64,569) -
+Total revenue 4,977,259 329,140 (64,569) 5,241,830
+Result
+Segment result 1,112,332 73,743 - 1,186,075
+Share of profit of investments in associates
+and joint ventures 36,231
+Profit for the year 1,222,306
+Other information
+Additions to property and equipment and
+deferred charges 28,836 23,425 - 52,261
+Depreciation and amortisation 614,789 19,168 - 633,957
+Inter-segment sales are charged at prevailing market prices.
+The following table presents assets and liabilities information for the Group’s operating segments as at
+December 31, 2023 and December 31, 2022, respectively:
+Other
+Airline segments Eliminations Total
+AED'000 AED'000 AED'000 AED'000
+December 31, 2023
+Assets
+Segment assets 9,665,652 1,435,453 (949,284) 10,151,821
+Unallocated assets 4,522,723
+Total assets 14,674,544
+Liabilities
+Segment liabilities 7,587,448 501,290 (949,284) 7,139,454
+Other
+Airline segments Eliminations Total
+AED'000 AED'000 AED'000 AED'000
+December 31, 2022
+Assets
+Segment assets 9,871,184 1,224,059 (861,396) 10,233,847
+Unallocated assets 4,203,216
+Total assets 14,437,063
+Liabilities
+Segment liabilities 7,705,924 596,900 (861,396) 7,441,428
+55
+Air Arabia PJSC and its subsidiaries
+Consolidated Financial Statements
+Notes to the consolidated financial statements (continued)
+For the year ended December 31, 2023
+37 Segment Reporting (continued)
+The accounting policies of the reportable segments are the same as the Group’s accounting policies
+described in Note 4. Segment result represents the profit earned by each segment without considering share
+of profit/(loss) on equity accounted investments. Segment assets do not include fixed deposits,
+investments, investment properties and investment in subsidiaries, joint ventures and associate. Goodwill
+and intangible assets have been allocated to the Airline segment.
+38 Capital management policies and procedures
+The primary objective of the Group’s capital management is to ensure that it maintains healthy capital ratios
+in ordet to support its business and maximise shareholders’ value.
+The Group manages its capital structure and makes adjustment to it, in light of changes in business and
+economic conditions or to respond to any financial covenants. To maintain or adjust the capital structure,
+the Group may adjust the dividends payment to shareholders, return capital to shareholders or issue new
+shares. No changes were made in the objectives, policies or process during the years ended December 31,
+2023 and December 31, 2022. Capital includes share capital, statutory reserve, general reserve, other
+reserves and retained earnings, and is measured at AED’000 7,534,006 as at December 31, 2023 (2022:
+AED’000 6,995,115).
+39 Subsequent events
+There have been no other events subsequent to the consolidated statement of financial position date that
+would significantly affect the amounts reported in the consolidated financial statements as at and for the
+year ended December 31, 2023.
+
+56
+

@@ -1,0 +1,518 @@
+{
+ "ticker": "EMPOWER",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Fed on hold; CBUAE Base Rate held at 3.65% on 29-Jul-2026 (AED hard-pegged, so the UAE imports the Fed path); FOMC dots carry a hawkish 2026 tilt",
+   "source_name": "CBUAE press release 29-Jul-2026; Fed policy history",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-29",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the floating leg of the cost of debt (both RCFs price at EIBOR + margin; 3M EIBOR ~3.66%) and the near-term discount-rate environment. The AED peg removes the FX leg from the valuation entirely.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "District cooling is an electricity-conversion business: purchased electricity & water are the dominant cash cost (AED 1,467.7m from DEWA in FY2025 = 43% of revenue). DEWA's fuel surcharge (6 fils/kWh, Jun-2026) floats monthly with fuel",
+   "source_name": "FY2025 audited FS note 12 (related-party purchases); DEWA published tariff",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Cost-stack escalator class 1: purchased E&W escalates on the DEWA tariff + consumption volume, never on a generic CPI index.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "COLOR",
+   "headline": "Cooling demand is local by construction (chilled water does not travel); global read-through is limited to the GCC district-cooling build-out cycle and equipment supply chains",
+   "source_name": "GCC district cooling sector coverage",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "The Feb-Apr 2026 Iran conflict struck UAE logistics/energy nodes (Dubai airport, Jebel Ali, Ruwais); ceasefire from 8-Apr-2026, formalised 12/17-Jun, but declared 'over' by the US on 8-Jul with low-intensity fighting since \u2014 a fragile truce, status contested across sources as of the sweep date (both readings recorded)",
+   "source_name": "Wikipedia conflict pages + wire coverage (sweep_external.json, COUNTRY sources)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "The single live macro overhang: sets the bear-case consumption path and the catalysts section; also why the market gate's regional de-rating context matters when reading the price map.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "CBUAE cut UAE 2026 GDP growth guidance to 1.7% from 5.6% after the strikes; base rate 3.65%; AED peg intact throughout the conflict; AED sovereign curve: Jan-2031 T-Bond auctioned at 4.48% YTM on 30-Jul-2026 (spread ~4bp over comparable UST)",
+   "source_name": "CBUAE statements; UAE Ministry of Finance auction result 30-Jul-2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "rf = 4.48% (longest AED sovereign print, 4.4y tenor, tenor gap flagged); rf* = 4.48% - 0.393% (UAE's own Damodaran rating-basis default spread) = 4.09% for the rating-basis Ke build; GDP cut sets the near-term consumption driver's ceiling.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "Dubai district cooling is tariff-regulated: Executive Council Resolution 6/2021 + RSB regulation RD10 (tariff approval/adjustment) + Resolution 87/2025 (fees/fines update). No 2024-26 tariff cut found. UAE CT 9% from 2024 (Empower's FY2025 effective rate a clean 9.0%); Pillar-Two 15% DMTT applies to >=EUR 750m groups \u2014 whether DEWA-level consolidation sweeps Empower in is CONTESTED and unresolved",
+   "source_name": "Dubai Executive Council resolutions / RSB; FY2025 FS note 28; UAE MoF DMTT guidance",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Pricing power is capped by the regulator: the tariff path is held FLAT in nominal AED (no real escalation is assumed anywhere). The tax question is the study's DUAL-FRAMED contested judgement: the model is computed at 9% AND at 15% and both are published side by side \u2014 never averaged.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Dubai 2040 Urban Master Plan and the post-conflict rebuild keep the connected-capacity pipeline alive (Empower guides 100-110k RT of new connections for 2026 even in the conflict year); hospitality occupancy is the transmission channel from geopolitics to consumption revenue",
+   "source_name": "H1-2026 earnings presentation p13; CBUAE GDP guidance",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "Anchors the volume driver: connected-RT additions continue through the shock (capacity revenue is contracted), while consumption per connected RT carries the macro risk. This split is the model's central mechanism.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Empower: 1,707k RT connected / 2,018k RT contracted at 30-Jun-2026 (+51k / +74k in H1); guidance 100-110k RT of 2026 connections; FY2025 saw 163 new customer agreements (+171.7k RT contracted). The contracted>connected gap (311k RT) is a pre-sold growth backlog",
+   "source_name": "H1-2026 earnings presentation pp3-4,10,13; FY2025 FS directors' report",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "THE volume driver: connected-RT path built from the company's own guidance and backlog, not a market growth assumption.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Consumption revenue disclosed in the auditor's KAM in each audited filing: FY2022 1,463.0m / FY2023 1,719.6m / FY2024 1,895.3m / FY2025 1,923.9m; revenue mix H1-2026 per the earnings deck: demand 40% / consumption 49% / others 11%. Tariffs RSB-approved; DEWA slab tariff 23-38 fils/kWh + 6 fils fuel surcharge",
+   "source_name": "FY2022-FY2025 audited FS auditor KAM sections (mix %: H1-2026 deck p17)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Splits revenue into a contracted capacity leg (grows with connected RT) and a weather/occupancy consumption leg (RTh x tariff) \u2014 the two-leg unit build the forecast runs on.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "COLOR",
+   "headline": "Dubai DC is a three-player market with concession-like exclusivity by district: Empower (~80% Dubai share per its own deck), Tabreed, Emicool (private, Dubai Investments/Actis JV, USD 1bn 2022 valuation). No new entrant found 2024-26; Resolution 6/2021 raises the regulatory bar to entry",
+   "source_name": "H1-2026 deck; Dubai Investments/Actis disclosures; sweep_external.json",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "No substitution threat inside the horizon: district cooling IS the efficiency technology displacing standalone chillers (mandated connections under Dubai policy); the live technology question is efficiency capex (TES tanks, treated sewage effluent water), a cost line not a demand risk",
+   "source_name": "Sector coverage + company sustainability disclosures",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Tabreed (DFM: TABREED): FY2025 revenue AED 2.46bn, EBITDA 1.27bn, NP 465m, net debt 4.6x EBITDA, ~USD 2.11bn market cap, derived trailing P/E ~16.6x, yield ~4.8%; Q1-2026 NP -32% on finance costs. DEWA (parent, DFM): P/E ~16.8x, yield ~4.4-5.0%. Empower itself at 1.50: trailing P/E 14.2x, EV/EBITDA ~10.8x, yield 5.8%",
+   "source_name": "Tabreed FY2025/Q1-2026 results via DFM disclosures + market data (cross-check only, never a build source)",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-08-07",
+   "detail": "",
+   "url": "",
+   "model_impact": "Peer set for the relative-multiples lens; Tabreed's 4.6x leverage vs Empower's 1.8x is why the multiple gap is adjusted at the EV line, not read off P/E raw.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Five audited years in hand from the company's own archive (FY2021 comparative + FY2022-FY2025 filings, PwC, unqualified): revenue 2,463.9 / 2,792.5 / 3,035.2 / 3,260.5 / 3,419.3m; EBITDA margin 47.6-50.5% every year; net profit FY2025 1,003.9m (EPS 0.099); total borrowings 5,503.4m (two AED 2.75bn RCFs, EIBOR + margin, Sep-27/Feb-28); FY2025 capitalisation rate 4.92% (own disclosed borrowing cost; 2024: 5.993%)",
+   "source_name": "FY2022-FY2025 audited consolidated FS, empower.ae media archive",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "The audited historical panel every statement roll-forward starts from; the 4.92% capitalisation rate anchors the marginal Kd above the 4.48% sovereign print.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2026: revenue 630.6m, NP 208.5m. H1-2026: revenue 1,519.4m (+4.5%), NP 467.9m (+16.2%), EPS 0.0464. The growth is Q1-loaded: Q2 revenue FELL 2.7% y/y (888.8m) on consumption -42m RTh, effective full-load hours -9.0%, which note 30 ties partly to conflict impact on hospitality occupancy",
+   "source_name": "Q1-2026 and Q2/H1-2026 condensed interim FS (limited review)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "The study-year actuals the FY2026 forecast must reconcile to: capacity revenue growing, consumption revenue shocked. Sets the crux (transient vs structural consumption loss).",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2026 standalone: revenue 630,573k, gross profit (derived H1-Q1 checks exact), NP 208,485k, EPS 0.0207 \u2014 pre-shock quarter, EBITDA margin 56.8% (deck p10)",
+   "source_name": "Q1-2026 condensed interim FS + H1-2026 deck",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-05-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Reconciliation anchor for the FY2026E build's first quarter.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2026 earnings presentation: connected 1,707k RT (+51.1k in H1), contracted 2,018k RT, FY2026 guidance 100-110k RT of connections, H1 EBITDA 773m (Q1 margin 56.8% / Q2 46.7%), net debt 2,991m = 1.8x LTM EBITDA, revenue mix demand 40% / consumption 49% / others 11%, dividend AED 875m/yr committed for 2025 AND 2026 (437.5m paid Apr-2026)",
+   "source_name": "H1-2026 earnings presentation (24pp), empower.ae",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "Carries the volume guidance, the leverage anchor and the dividend commitment the equity lenses use; the ONLY source for the capacity/consumption mix percentages (flagged: not in FS notes).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "BASE_CHANGER",
+   "headline": "DEWA raised its stake 56% -> 80% on 10/11-Feb-2026, buying Dubai Holding's 24% (2.4bn shares) at AED 2.16/share = AED 5.184bn \u2014 44% above the 07-Aug-2026 close of 1.50. Free float now ~20% (Emirates Power Investment exited; retail/institutional float remains)",
+   "source_name": "DFM disclosure / DEWA announcement, named transaction",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-02-11",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER for the ownership lens: a related-party CONTROL price, reported as a disclosed reference point and priced as an expert cross-check \u2014 never presented as fair value by itself. Also framed the float/liquidity risk note.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "STRUCTURAL",
+   "headline": "FY2023: acquired 70% of DXB CoolCo (Dubai Airports' district cooling, 35-year concession) for 892.5m cash + 157.5m NCI recognised; FY2024-25: minor NCI step-ups (Logstor 3%, Palm Utilities). FY2022: IPO/listing 16-Nov-2022 (10bn shares, par 0.10)",
+   "source_name": "FY2023/FY2024 audited FS notes 1/32/39",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-02-14",
+   "detail": "",
+   "url": "",
+   "model_impact": "Explains the FY2023 borrowings step (4.49bn) and the NCI line; the airport concession is inside the connected-RT base, not a separate leg (same lens).",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "FY2022 audited FS (listing year): revenue 2,792.5m, operating profit 1,051.9m, net profit 1,000.8m, total assets 9,655.0m, borrowings 4,489.6m \u2014 the fourth complete audited year in the panel, with FY2021 as its comparative column",
+   "source_name": "FY2022 audited consolidated FS, empower.ae media archive",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-02-14",
+   "detail": "",
+   "url": "",
+   "model_impact": "Extends the margin/cycle history to five observable years (FY2021-FY2025); the FY2021-22 pre-listing comparatives are what establish that the ~48-50% EBITDA margin predates the IPO.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2026 guidance: 100-110k RT of new connections; 2026E connected potential 1,756-1,766k RT; dividend AED 875m/yr for 2025-26; net-debt discipline stated at ~2x EBITDA; no new-emirate expansion announced",
+   "source_name": "H1-2026 earnings presentation pp12-13",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "The explicit-window volume and payout drivers are the company's own published numbers, sensitised around, not replaced.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "2024 refinancing: repaid 3.75bn, drew 4.75bn (net fee); 2025: full 6.75bn refinance into the two 2.75bn+2.75bn RCFs with a REDUCED interest margin (note 19) and covenant reset assessed as not substantial; interest capitalised 10.7m; no buyback, no capital increase since IPO",
+   "source_name": "FY2024/FY2025 audited FS note 19",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Kd evidence chain: own refinance pricing (capitalisation rate 4.92% in 2025 vs 5.993% in 2024) tracks EIBOR down \u2014 the marginal Kd is built from live EIBOR + the implied margin, not a historical rate.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found ('Empower capacity charge tariff AED per RT per annum site:empower.ae', FS notes 23/24 all years, IR deck \u2014 the AED amount of capacity vs consumption vs connection revenue is NOT disclosed anywhere except consumption in the auditor KAMs and the H1-2026 percentage mix; no per-RT tariff schedule is published)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found ('Empower capex guidance 2026 AED investment plan' \u2014 the deck carries RT guidance but NO AED capex guidance; no capex budget disclosed in any filing or presentation)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found ('Empower RCF margin basis points EIBOR spread' \u2014 the exact margin over EIBOR is not disclosed in any filing (note 19 says only 'EIBOR + margin', 2025: 'reduction in interest margin'); the capitalisation rate (4.92%) is the closest disclosed all-in borrowing cost)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Connected capacity (RT) path",
+   "mode": "BOTTOM_UP",
+   "justification": "Company's own 2026 guidance (100-110k RT) and contracted backlog (311k RT gap) set additions; connected RT rolls forward from the disclosed 1,707k base.",
+   "sweep_refs": [
+    "F08",
+    "F20",
+    "F16"
+   ]
+  },
+  {
+   "driver": "Capacity (demand) revenue",
+   "mode": "BOTTOM_UP",
+   "justification": "Connected RT x implied capacity revenue per RT (solved from the disclosed H1-2026 40% mix and disclosed total revenue \u2014 the per-RT rate is NOT published, so the level is implied and flagged; growth follows connected RT at a flat regulated tariff).",
+   "sweep_refs": [
+    "F09",
+    "F08",
+    "F22",
+    "F06"
+   ]
+  },
+  {
+   "driver": "Consumption revenue",
+   "mode": "BOTTOM_UP",
+   "justification": "Disclosed KAM consumption history (1,463.0 -> 1,923.9m FY22-25) x an EFLH recovery path: 2026 carries the disclosed -9% EFLH shock; the recovery timing is the study's crux, computed both ways.",
+   "sweep_refs": [
+    "F09",
+    "F14",
+    "F07"
+   ]
+  },
+  {
+   "driver": "Purchased electricity & water cost",
+   "mode": "BOTTOM_UP",
+   "justification": "DEWA-sourced E&W (1,467.7m FY2025, disclosed related-party purchase) escalates on its own driver class \u2014 DEWA tariff (flat slabs + floating fuel surcharge) x consumption volume \u2014 never a blended CPI index.",
+   "sweep_refs": [
+    "F02",
+    "F09"
+   ]
+  },
+  {
+   "driver": "Other cost lines (staff, other opex)",
+   "mode": "BOTTOM_UP",
+   "justification": "Staff costs and other opex from the disclosed note components, escalated on a UAE wage/GDP path \u2014 a separate escalator class from energy.",
+   "sweep_refs": [
+    "F13",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Capex",
+   "mode": "TOP_DOWN",
+   "justification": "No AED capex guidance exists (negative search). Capex is modelled as cost-per-new-RT (derived from disclosed history: cash capex / RT added) x the guided RT path + maintenance on the installed base \u2014 top-down at the finest sourced level, flagged.",
+   "sweep_refs": [
+    "F23",
+    "F08"
+   ]
+  },
+  {
+   "driver": "Cost of debt & WACC glide",
+   "mode": "BOTTOM_UP",
+   "justification": "Marginal Kd = live 3M EIBOR + the implied margin off the company's own 2025 refinance (capitalisation rate 4.92%); glide follows the EIBOR forward path; checked above the AED sovereign 4.48% at every node.",
+   "sweep_refs": [
+    "F21",
+    "F05",
+    "F24"
+   ]
+  },
+  {
+   "driver": "Tax rate (9% vs 15% DMTT)",
+   "mode": "BOTTOM_UP",
+   "justification": "9% is the disclosed FY2025 effective rate; the Pillar-Two DMTT question via DEWA-level consolidation is CONTESTED \u2014 the model publishes BOTH tax framings side by side (dual-framing rule applied to the study's central contested judgement).",
+   "sweep_refs": [
+    "F06",
+    "F13"
+   ]
+  },
+  {
+   "driver": "Terminal growth",
+   "mode": "BOTTOM_UP",
+   "justification": "Bounded by the regulated flat-tariff regime and Dubai build-out saturation: set at long-run UAE nominal GDP-consistent 2.5%, cross-checked against the connected-RT saturation arithmetic; sensitised.",
+   "sweep_refs": [
+    "F06",
+    "F07",
+    "F08"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.empower.ae/investor-relations/",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "IR HTML pages return HTTP 403 to non-browser clients (bot protection)"
+  },
+  {
+   "url": "https://www.empower.ae/investor-relations/financial/financial-statements/",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Reachable with a browser user-agent; lists the full filing archive"
+  },
+  {
+   "url": "https://www.empower.ae/media/lgbpvouk/empower_fs_2025_e_09-02-2026.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2025 audited consolidated FS, 85pp (scan; OCR extraction)"
+  },
+  {
+   "url": "https://www.empower.ae/media/0nspfjmz/empower_fs_2024_e_14-02-2025.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2024 audited consolidated FS (text layer)"
+  },
+  {
+   "url": "https://www.empower.ae/media/vn1fsmte/2023_financial_statements_e.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2023 audited consolidated FS (text layer)"
+  },
+  {
+   "url": "https://www.empower.ae/media/0itbxotb/empower_en_fs_2022.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2022 audited consolidated FS (text layer)"
+  },
+  {
+   "url": "https://www.empower.ae/media/ld0h1d2a/empower_fs_q1_e_06_05_2026.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Q1-2026 condensed interim FS (scan; OCR extraction)"
+  },
+  {
+   "url": "https://www.empower.ae/media/emibya3p/empower_fs_q2_e_05_08_2026.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Q2/H1-2026 condensed interim FS (text layer)"
+  },
+  {
+   "url": "https://www.empower.ae/media/z1djkwz3/earnings-presentation-h1-2026.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "H1-2026 earnings presentation, 24pp"
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [EMPOWER, 2026-08-09]: PASS \u2014 4/4 rings, 24 findings (1 B \u00b7 7 S \u00b7 9 D \u00b7 4 C \u00b7 3 NEG), driver gate 9 rows (8 bottom-up / 1 top-down) | primary access: attempted (9) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 4"
+}

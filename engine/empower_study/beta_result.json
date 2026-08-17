@@ -1,0 +1,21 @@
+{
+ "beta": 0.8626390296739008,
+ "r2": 0.10290211091712265,
+ "n": 189,
+ "se": 0.18625848916447127,
+ "ci90": [
+  0.5562438149983455,
+  1.1690342443494561
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "index": "FADGI (FTSE ADX General Index), per instruction",
+ "window": [
+  "2022-11-25",
+  "2026-07-24"
+ ],
+ "window_years": 3.66,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": []
+}

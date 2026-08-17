@@ -1,0 +1,5367 @@
+{
+ "meta": {
+  "ticker": "AIRARABIA",
+  "company": "Air Arabia PJSC",
+  "market": "DFM",
+  "currency": "AED",
+  "asof": "2026-08-07",
+  "spot": 5.24,
+  "shares_mn": 4666.7,
+  "mktcap": 24453.508,
+  "ev_trailing": 22036.211000000003,
+  "klass": "operating company \u2014 low-cost airline"
+ },
+ "inputs": {
+  "spot": {
+   "value": 5.24,
+   "source": "Uploaded DFM daily price history, last close 07-Aug-2026",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "shares_mn": {
+   "value": 4666.7,
+   "source": "Share capital note 18, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations: 4,666,700 thousand shares of AED 1 each, authorised, issued and fully paid, unchanged since FY2022",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "tax_stat": {
+   "value": 0.15,
+   "source": "UAE Domestic Minimum Top-up Tax (DMTT) 15% effective 1-Jan-2025 for Pillar-Two-scope groups; the Group provides at 15% (Note 27, FY2025 filing). 9% UAE CT applied in FY2024",
+   "date": "2026-02-13",
+   "ring": "Country"
+  },
+  "tax_eff": {
+   "value": 0.15,
+   "source": "Forecast effective rate held AT the 15% DMTT statutory rate. Audited effective rates: FY2024 8.79%, FY2025 11.60% (Note 27a reconciliation \u2014 the sub-15% prints reflect exempt income and the 9%-era opening); Q1-2026 provides at 15%. Holding 15% is the conservative statutory anchor rather than extrapolating the lower realised prints",
+   "date": "2026-02-13",
+   "ring": "Company/House"
+  },
+  "rev_fy23": {
+   "value": 5999.75,
+   "source": "audited FY2023 consolidated financial statements, airarabia.com investor relations (confirmed by the FY2024 filing's comparative column)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 6765.852,
+   "source": "RESTATED comparative, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations Note 43 (as reported: 6,639.064 \u2014 aircraft lease rentals to JV airlines reclassified into revenue)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 7787.581,
+   "source": "audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dcost_fy23": {
+   "value": 4343.184,
+   "source": "Direct costs, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "dcost_fy24": {
+   "value": 5202.944,
+   "source": "Direct operating costs, restated comparative, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dcost_fy25": {
+   "value": 6088.132,
+   "source": "Direct operating costs Note 29, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ga_fy23": {
+   "value": 329.206,
+   "source": "Administrative and general expenses, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ga_fy24": {
+   "value": 274.965,
+   "source": "G&A, restated comparative, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ga_fy25": {
+   "value": 316.264,
+   "source": "G&A Note 30, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "sm_fy23": {
+   "value": 88.793,
+   "source": "Selling and marketing expenses, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "sm_fy24": {
+   "value": 103.843,
+   "source": "S&M, restated comparative, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "sm_fy25": {
+   "value": 113.605,
+   "source": "S&M Note 31, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fininc_fy23": {
+   "value": 209.994,
+   "source": "Finance income, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "fininc_fy24": {
+   "value": 250.698,
+   "source": "Finance income, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fininc_fy25": {
+   "value": 240.774,
+   "source": "Finance income, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fincost_fy23": {
+   "value": 102.457,
+   "source": "Finance costs, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "fincost_fy24": {
+   "value": 82.092,
+   "source": "Finance costs, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fincost_fy25": {
+   "value": 66.672,
+   "source": "Finance costs, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assoc_fy23": {
+   "value": 88.121,
+   "source": "Share of profit of associates and JVs, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "assoc_fy24": {
+   "value": 124.752,
+   "source": "Share of profit of associates and JVs, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assoc_fy25": {
+   "value": 189.975,
+   "source": "Share of profit of associates and JVs Note 12, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations: Air Arabia Abu Dhabi 54.210, Fly Jinnah 36.070, Air Arabia Maroc 20.532, other JVs/associates the balance",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "other_fy23": {
+   "value": 113.471,
+   "source": "Other income net, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "other_fy24": {
+   "value": 131.68,
+   "source": "Other income, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "other_fy25": {
+   "value": 197.132,
+   "source": "Other income Note 32, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations: management fees from JVs and associates 86.905 + others 110.227",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 0.0,
+   "source": "No income tax expense in FY2023 (UAE CT effective for the Group from FY2024), audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 141.508,
+   "source": "Income tax expense, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 202.054,
+   "source": "Income tax expense Note 27 (212.444 current less 10.390 prior-period adjustment), effective rate 11.60%",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 1547.696,
+   "source": "Profit for the year, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 1467.63,
+   "source": "Profit for the year, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 1628.735,
+   "source": "Profit for the year, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "npa_fy23": {
+   "value": 1547.132,
+   "source": "Profit attributable to owners; basic and diluted EPS AED 0.33, audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "npa_fy24": {
+   "value": 1466.986,
+   "source": "Profit attributable to owners; EPS AED 0.31, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations comparative",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "npa_fy25": {
+   "value": 1628.475,
+   "source": "Profit attributable to owners; basic and diluted EPS AED 0.35 (note 33 uses 1,629.303 attributable incl. rounding presentation), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 647.327,
+   "source": "Depreciation and amortisation, audited FY2023 consolidated statement of cash flows (FY2022: 633.957)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 648.588,
+   "source": "Depreciation and amortisation, restated FY2024 cash-flow comparative, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 621.798,
+   "source": "Depreciation and amortisation, consolidated statement of cash flows, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations (direct-cost D&A 581.717 + G&A depreciation 40.081)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rev_fy22": {
+   "value": 5241.83,
+   "source": "audited FY2023 consolidated financial statements, airarabia.com investor relations, comparative column",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "pat_fy22": {
+   "value": 1222.306,
+   "source": "Profit for the year FY2022 (owners 1,221.786; EPS AED 0.26), audited FY2023 consolidated financial statements, airarabia.com investor relations",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "dna_fy22": {
+   "value": 633.957,
+   "source": "D&A, FY2023 cash-flow comparative",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 4954.113,
+   "source": "Restated consolidated statement of financial position as at 1-Jan-2024, Note 43, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 4661.664,
+   "source": "Restated 31-Dec-2024, Note 43, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 5790.022,
+   "source": "audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rou_fy23": {
+   "value": 574.232,
+   "source": "Right-of-use assets, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rou_fy24": {
+   "value": 784.706,
+   "source": "Right-of-use assets, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 852.577,
+   "source": "Right-of-use assets, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "adv_fy23": {
+   "value": 886.886,
+   "source": "Advance for new aircraft (pre-delivery payments on the 120-aircraft A320/A321-family order), restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "adv_fy24": {
+   "value": 1262.605,
+   "source": "Advance for new aircraft, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "adv_fy25": {
+   "value": 2028.265,
+   "source": "Advance for new aircraft Note 7, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "invprop_fy25": {
+   "value": 277.09,
+   "source": "Investment property (Varazze Tower, Dubai, ~99% complete) Note 8, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations; disclosed FAIR VALUE AED 334mn",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "invprop_fv": {
+   "value": 334.0,
+   "source": "Disclosed fair value of the investment property, Note 8, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "nil_fy25": {
+   "value": 334.666,
+   "source": "Net investment in lease (aircraft subleased to JV airlines), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 1362.497,
+   "source": "Intangible assets (incl. goodwill/brands), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fvoci_fy25": {
+   "value": 457.528,
+   "source": "Investments at fair value through OCI, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assoc_bv_fy25": {
+   "value": 363.386,
+   "source": "Investments in associates and joint ventures, carrying value, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 48.719,
+   "source": "Inventories, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 53.456,
+   "source": "Inventories, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 97.042,
+   "source": "Inventories, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "recv_fy23": {
+   "value": 858.576,
+   "source": "Trade and other receivables (current), restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "recv_fy24": {
+   "value": 824.296,
+   "source": "Trade and other receivables (current), restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "recv_fy25": {
+   "value": 896.388,
+   "source": "Trade and other receivables (current), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dep_fy23": {
+   "value": 3984.069,
+   "source": "Fixed deposits, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dep_fy24": {
+   "value": 4619.288,
+   "source": "Fixed deposits, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dep_fy25": {
+   "value": 4126.04,
+   "source": "Fixed deposits Note 17 (average interest 4.41%; FY2024: 5.27%), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 1262.308,
+   "source": "Cash and cash equivalents, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 700.229,
+   "source": "Cash and cash equivalents, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 1072.692,
+   "source": "Cash and cash equivalents, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assets_fy23": {
+   "value": 14674.544,
+   "source": "Total assets, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assets_fy24": {
+   "value": 15361.444,
+   "source": "Total assets, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "assets_fy25": {
+   "value": 17698.795,
+   "source": "Total assets, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "borrow_fy23": {
+   "value": 1577.531,
+   "source": "Bank borrowings, restated 1-Jan-2024: current 505.755 + non-current 1,071.776, Note 43, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "borrow_fy24": {
+   "value": 1059.165,
+   "source": "Bank borrowings, restated 31-Dec-2024: current 375.997 + non-current 683.168, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "borrow_fy25": {
+   "value": 1515.068,
+   "source": "Bank borrowings Note 26: current 393.727 + non-current 1,121.341; AED 849.572 new loan drawn in FY2025 to finance 5 aircraft (mortgaged), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "lease_fy23": {
+   "value": 701.426,
+   "source": "Lease liabilities, restated 1-Jan-2024: current 174.765 + non-current 526.661, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "lease_fy24": {
+   "value": 1042.276,
+   "source": "Lease liabilities, restated 31-Dec-2024: current 249.226 + non-current 793.050, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "lease_fy25": {
+   "value": 1266.367,
+   "source": "Lease liabilities Note 25: current 262.667 + non-current 1,003.700; average finance charge 4% (2024: 4%); terms 5-15 years, secured on the aircraft",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pay_fy23": {
+   "value": 2298.899,
+   "source": "Trade and other payables (current), restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pay_fy24": {
+   "value": 2295.886,
+   "source": "Trade and other payables (current), restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pay_fy25": {
+   "value": 2932.708,
+   "source": "Trade and other payables (current), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "definc_fy23": {
+   "value": 523.402,
+   "source": "Deferred income (unflown ticket liability), restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "definc_fy24": {
+   "value": 835.35,
+   "source": "Deferred income, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "definc_fy25": {
+   "value": 1100.03,
+   "source": "Deferred income Note 28b, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "maint_fy23": {
+   "value": 1795.035,
+   "source": "Provision for maintenance, restated 1-Jan-2024: current 514.690 + non-current 1,280.345, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "maint_fy24": {
+   "value": 1714.335,
+   "source": "Provision for maintenance, restated 31-Dec-2024: current 346.450 + non-current 1,367.885, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "maint_fy25": {
+   "value": 1876.324,
+   "source": "Provision for maintenance: current 817.418 + non-current 1,058.906, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "staffb_fy23": {
+   "value": 208.175,
+   "source": "Provision for staff termination benefits, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "staffb_fy24": {
+   "value": 239.721,
+   "source": "Staff termination benefits, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "staffb_fy25": {
+   "value": 271.202,
+   "source": "Staff termination benefits Note 21, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "eqp_fy23": {
+   "value": 7534.006,
+   "source": "Equity attributable to owners, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "eqp_fy24": {
+   "value": 7950.33,
+   "source": "Equity attributable to owners, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "eqp_fy25": {
+   "value": 8408.904,
+   "source": "Equity attributable to owners, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "nci_fy23": {
+   "value": 1.084,
+   "source": "Non-controlling interests, restated 1-Jan-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "nci_fy24": {
+   "value": 1.728,
+   "source": "Non-controlling interests, restated 31-Dec-2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "nci_fy25": {
+   "value": 1.287,
+   "source": "Non-controlling interests, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ocf_fy23": {
+   "value": 2304.108,
+   "source": "Net cash flows from operating activities, FY2023 (FY2024 filing comparative; the FY2023 filing's own statement shows 2,352.905 before a reclassification \u2014 the later filing's figure is carried)",
+   "date": "2025-02-13",
+   "ring": "Company"
+  },
+  "ocf_fy24": {
+   "value": 2278.691,
+   "source": "Net cash flows from operating activities, restated FY2024, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "ocf_fy25": {
+   "value": 2860.401,
+   "source": "Net cash flows from operating activities, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "capex_fy23": {
+   "value": 378.035,
+   "source": "FY2023 fleet capex: acquisition of PP&E 76.284 + payments for advances for new aircraft 301.751, FY2024 filing comparative cash flows",
+   "date": "2025-02-13",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 579.654,
+   "source": "FY2024 fleet capex: PP&E 203.935 + aircraft advances 375.719, restated cash flows, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 2327.603,
+   "source": "FY2025 fleet capex: PP&E 1,387.154 + aircraft advances 940.449, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations \u2014 the step-up year: 9 aircraft added (5 loan-financed) and pre-delivery payments building for the neo ramp",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "div_fy23": {
+   "value": 700.005,
+   "source": "Dividends paid to owners during FY2023 (AED 0.15/share on FY2022), FY2023 cash flows",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "div_fy24": {
+   "value": 933.34,
+   "source": "Dividends paid during FY2024 (AED 0.20/share on FY2023), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "div_fy25": {
+   "value": 1167.376,
+   "source": "Dividends paid during FY2025 (AED 0.25/share on FY2024), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dps_fy25": {
+   "value": 0.3,
+   "source": "FY2025 dividend of AED 0.30/share (30% of capital, AED 1.4bn) approved at the AGM of 12-Mar-2026 and paid in 2026 (company press release; Gulf Today 13-Feb-2026 for the board proposal)",
+   "date": "2026-03-12",
+   "ring": "Company"
+  },
+  "q1_25_rev": {
+   "value": 1779.3,
+   "source": "Q1-2025 revenue, comparative in the Q1-2026 results presentation and interim filing",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_25_np": {
+   "value": 355.4,
+   "source": "Q1-2025 net profit, same comparative",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_26_rev": {
+   "value": 1800.4,
+   "source": "Q1-2026 revenue (+1% y/y), Q1-2026 condensed consolidated interim financial information, limited review, Grant Thornton UAE, airarabia.com investor relations",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_26_op": {
+   "value": 302.0,
+   "source": "Q1-2026 operating profit (margin 17% vs 21% Q1-2025), Q1-2026 results presentation",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_26_np": {
+   "value": 278.1,
+   "source": "Q1-2026 net profit, -22% y/y \u2014 the quarter absorbed the regional airspace closures of Feb-Mar 2026 (consolidated pax -11% y/y, group -5%, load factor RECORD 86.4%)",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_26_pax": {
+   "value": 2.68,
+   "source": "Q1-2026 consolidated passengers, millions (Q1-2025: 3.03), Q1-2026 results presentation",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "pax_hist": {
+   "value": {
+    "FY22": 8.36,
+    "FY23": 10.11,
+    "FY24": 11.22,
+    "FY25": 13.06
+   },
+   "source": "Consolidated passengers carried, millions \u2014 company results presentations Q4-2022 through Q4-2025 KEY PERFORMANCE tables (all-hub group traffic incl. JV airlines: 18.84mn FY2024, 21.82mn FY2025)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "lf_hist": {
+   "value": {
+    "FY22": 0.8,
+    "FY23": 0.804,
+    "FY24": 0.82,
+    "FY25": 0.853
+   },
+   "source": "Seat load factor, same presentations \u2014 FY2025 85.3% (+3.3pp)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "fleet": {
+   "value": {
+    "total": 90,
+    "short_lease": 5,
+    "leased_out": 17,
+    "neo_first": "2025-09-29"
+   },
+   "source": "Operating fleet 90 A320-family at YE2025 excl. 5 short-term leases (Q4-2025 results presentation); 17 aircraft leased OUT to JV/associate airlines (Note 34, FY2025 filing; 2024: 18); first A320neo of the 120-aircraft 2019 order delivered 29-Sep-2025 (company press release)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rev_lines_fy25": {
+   "value": {
+    "pax": 6165.584,
+    "baggage": 86.129,
+    "ancillary": 846.0,
+    "service": 223.323,
+    "cargo": 186.948,
+    "hotel": 59.842,
+    "leasing": 219.755
+   },
+   "source": "Revenue disaggregation Note 28a + aircraft lease rentals Note 28/15, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations \u2014 sums exactly to consolidated revenue 7,787.581",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "rev_lines_fy24": {
+   "value": {
+    "pax": 5485.261,
+    "baggage": 67.132,
+    "ancillary": 677.506,
+    "service": 281.663,
+    "cargo": 181.778,
+    "hotel": 72.512,
+    "leasing": 149.443
+   },
+   "source": "Restated FY2024 disaggregation, same notes, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations. DISCREPANCY NOTE: the filing's own restated-2024 column does not foot internally \u2014 the six contract lines sum to 6,765.852 (total revenue) while the printed contract-revenue subtotal is 6,616.409 (ex-lease); the 149.443 lease-rental line is the difference. Unit metrics use the pax+baggage lines as printed; recorded as a filing inconsistency, not repaired",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dcost_lines_fy25": {
+   "value": {
+    "fuel": 2251.363,
+    "staff": 1069.366,
+    "maint": 800.577,
+    "dep_ppe": 393.504,
+    "landing": 470.049,
+    "handling": 384.125,
+    "dep_rou": 177.181,
+    "wet_lease": 118.487,
+    "insurance": 15.099,
+    "amort": 11.032,
+    "other": 397.349
+   },
+   "source": "Direct operating costs Note 29, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations \u2014 sums exactly to 6,088.132. Fuel is 37.0% of direct costs",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dcost_lines_fy24": {
+   "value": {
+    "fuel": 1924.547,
+    "staff": 885.104,
+    "maint": 685.639,
+    "dep_ppe": 462.951,
+    "landing": 405.084,
+    "handling": 344.585,
+    "dep_rou": 142.145,
+    "wet_lease": 15.04,
+    "insurance": 17.052,
+    "amort": 10.059,
+    "other": 310.738
+   },
+   "source": "Restated FY2024 direct operating costs, audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "dcost_lines_fy23": {
+   "value": {
+    "fuel": 1690.639,
+    "staff": 774.751,
+    "maint": 438.924,
+    "dep_ppe": 495.06,
+    "landing": 361.209,
+    "handling": 312.891,
+    "dep_rou": 113.104,
+    "wet_lease": 0.0,
+    "insurance": 12.274,
+    "amort": 9.423,
+    "other": 134.909
+   },
+   "source": "Direct costs note 27, FY2024 filing comparative (as reported \u2014 no wet-lease line pre-restatement)",
+   "date": "2025-02-13",
+   "ring": "Company"
+  },
+  "jv_detail": {
+   "value": {
+    "abu_dhabi": {
+     "stake": 0.49,
+     "rev_100": 2405.159,
+     "profit_100": 221.448,
+     "share": 54.21
+    },
+    "fly_jinnah": {
+     "stake": 0.45,
+     "rev_100": 492.467,
+     "profit_100": 90.094,
+     "share": 36.07
+    },
+    "maroc": {
+     "stake": 0.4413,
+     "rev_100": 774.662,
+     "profit_100": 46.523,
+     "share": 20.532
+    },
+    "egypt": {
+     "stake": 0.49,
+     "note": "stake raised from 40% to 49% during FY2025"
+    },
+    "dmm": {
+     "stake": 0.49,
+     "note": "Air Arabia DMM LLC, Saudi JV established FY2025 \u2014 pre-operational"
+    }
+   },
+   "source": "Note 12 (investments in associates and JVs), audited FY2025 consolidated financial statements, KPMG Lower Gulf, unqualified opinion 13-Feb-2026, airarabia.com investor relations \u2014 FY2025 100%-basis revenue/profit and the Group's share, per investee",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "pax_path": {
+   "value": [
+    12.85,
+    13.95,
+    15.15,
+    16.35,
+    17.55
+   ],
+   "source": "Consolidated passengers, millions, FY26E-FY30E. FY2026 -1.6%: Q1-2026 actual -11% y/y on the Feb-Mar airspace closures, phased restoration to ~1-Jun (IATA and route-restoration coverage), H2 growth on nine-plus neo deliveries. Thereafter +8.6/+8.6/+7.9/+7.3% \u2014 fleet-led (90 -> ~115 by FY2030 out of the 120-aircraft order, Airbus delivery constraints acknowledged) at broadly held load factor ~85-86% (FY2025: 85.3%; Q1-2026 record 86.4%). Seat/ASK-level data is NOT disclosed \u2014 pax x load factor is the finest sourced level; FLAGGED",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "fare_path": {
+   "value": [
+    488.0,
+    480.0,
+    484.0,
+    489.0,
+    494.0
+   ],
+   "source": "Passenger + baggage revenue per consolidated passenger, AED. History: 499.1 (FY23, as-reported basis), 494.9 (FY24 restated), 478.7 (FY25). FY2026 +1.9%: Q1-2026 revenue held +1% on -11% pax (constrained capacity lifted yields); FY2027 -1.6% as regional capacity restores; +1%/yr thereafter \u2014 LCC yield discipline, no real fare growth assumed",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "anc_path": {
+   "value": [
+    67.4,
+    70.1,
+    72.9,
+    75.8,
+    78.8
+   ],
+   "source": "Ancillary ('other airline related services') revenue per passenger, AED, +4%/yr from FY2025's 64.8 (FY2024: 60.4, FY2023: 46.4) \u2014 the disclosed history's own trend, tapered",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "cargo_g": {
+   "value": [
+    0.05,
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "source": "Cargo revenue growth on FY2025's 186.9 \u2014 belly-capacity grows with the fleet",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "svc_g": {
+   "value": [
+    0.04,
+    0.04,
+    0.04,
+    0.04,
+    0.04
+   ],
+   "source": "Service revenue growth on FY2025's 223.3 (ground handling, training, IT services to the JV network)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "hotel_g": {
+   "value": [
+    0.03,
+    0.03,
+    0.03,
+    0.03,
+    0.03
+   ],
+   "source": "Hotel operations growth on FY2025's 59.8 (Centro Sharjah + Radisson Blu Dubai Marina)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "lease_g": {
+   "value": [
+    0.1,
+    0.1,
+    0.08,
+    0.06,
+    0.05
+   ],
+   "source": "Aircraft-lease-rental revenue growth on FY2025's 219.8 \u2014 the leased-out fleet (17 aircraft to JV airlines) grows with Abu Dhabi's ~40% capacity expansion, Fly Jinnah, Egypt at the raised 49%, and the Saudi DMM launch",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "jet_eff_base": {
+   "value": [
+    100.7,
+    85.2,
+    86.9,
+    88.6,
+    90.4
+   ],
+   "source": "EFFECTIVE (hedge-blended) jet fuel price path, USD/bbl \u2014 the study's CENTRAL CONTESTED JUDGEMENT, priced BOTH ways (see jet_eff_alt). BASE = the EIA-curve framing: 2025 market average ~USD 89/bbl (IATA); H1-2026 spiked (IATA monitor USD 158.77 early Aug-2026) but the book is partly hedged 2026-2028 (Note 24 swaps/collars; RATIOS undisclosed \u2014 flagged) and Q1-2026's realised margin shows nothing like a spot-price hit; EIA July-2026 STEO Brent 81.91 (2026) -> 64.76 (2027) then a mild crack-normalised drift. Fuel cost per passenger = intensity x this path \u2014 its own commodity escalator, never a CPI proxy",
+   "date": "2026-08-10",
+   "ring": "Industry"
+  },
+  "jet_eff_alt": {
+   "value": [
+    108.4,
+    105.8,
+    106.4,
+    107.5,
+    108.5
+   ],
+   "source": "The ALTERNATIVE fuel framing: IATA's June-2026 high-fuel view persists through the hedge blend \u2014 no EIA-style relief. Published side by side with the base everywhere the base appears",
+   "date": "2026-08-10",
+   "ring": "Industry"
+  },
+  "fuel_intensity": {
+   "value": 1.937,
+   "source": "Fuel intensity, AED per passenger per USD/bbl of effective jet price: FY2025 audited fuel cost/pax 172.4 (Note 29 / presentations) over the ~USD 89/bbl 2025 market average (IATA) = 1.937. Held flat \u2014 the neo's ~20% lower burn is an upside not credited",
+   "date": "2026-08-10",
+   "ring": "Company/Industry"
+  },
+  "fleet_cons": {
+   "value": {
+    "fy25_end": 56,
+    "ends": [
+     58,
+     61,
+     64,
+     68,
+     72
+    ],
+    "owned_adds": [
+     1,
+     1,
+     1,
+     2,
+     2
+    ],
+    "leased_adds": [
+     1,
+     2,
+     2,
+     2,
+     2
+    ],
+    "ac_cost_owned": 184.0,
+    "ac_rou": 175.0,
+    "loan_per_owned": 150.0
+   },
+   "source": "CONSOLIDATED fleet block (Sharjah + Ras Al Khaimah): YE2025 = 56 aircraft per the company's own FY2025 presentation fleet allocation (Sharjah 54, RAK 2; the 90 total is GROUP-wide incl. the JV hubs). Forward: 16 net additions to ~72 by FY2030 (within the 120-aircraft order and Airbus's constrained output), split ~7 owned / ~9 leased at ~AED 184mn owned cost (~USD 50mn A320neo family net) and ~AED 175mn right-of-use inception value per leased aircraft; owned units loan-financed ~AED 150mn each (FY2025 actual: AED 849.6mn for 5 = 170/unit). The owned/leased split remains UNDISCLOSED \u2014 flagged and sensitised",
+   "date": "2026-08-10",
+   "ring": "Company/House"
+  },
+  "staff_per_pax": {
+   "value": [
+    84.4,
+    86.9,
+    89.5,
+    92.2,
+    94.9
+   ],
+   "source": "Direct staff cost per passenger, AED, +3%/yr on FY2025's 81.9 (FY2024: 78.9, FY2023: 76.6) \u2014 UAE aviation wage drift, its own labour escalator, partly offset by scale",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "maint_per_pax": {
+   "value": [
+    63.8,
+    66.3,
+    69.0,
+    71.7,
+    74.6
+   ],
+   "source": "Maintenance cost per passenger, AED, +4%/yr on FY2025's 61.3 (FY2023: 43.4 \u2014 the step-up is the ageing ceo fleet plus sector-wide MRO inflation; neos relieve it only gradually). Its own MRO escalator",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "landing_per_pax": {
+   "value": [
+    36.7,
+    37.4,
+    38.2,
+    38.9,
+    39.7
+   ],
+   "source": "Landing and overflying charges per passenger, AED, +2%/yr on FY2025's 36.0 \u2014 airport-tariff class escalator (UAE CPI ~2%, CBUAE QER)",
+   "date": "2026-08-09",
+   "ring": "Country"
+  },
+  "handling_per_pax": {
+   "value": [
+    30.0,
+    30.6,
+    31.2,
+    31.8,
+    32.4
+   ],
+   "source": "Passenger, ground and technical handling per passenger, AED, +2%/yr on FY2025's 29.4 \u2014 same tariff-class escalator, separate line",
+   "date": "2026-08-09",
+   "ring": "Country"
+  },
+  "other_per_pax": {
+   "value": [
+    41.5,
+    41.5,
+    41.5,
+    41.5,
+    41.5
+   ],
+   "source": "Other direct costs per passenger (other operating 30.4 + wet-lease 9.1 + insurance 1.2 + amortisation 0.8, FY2025), AED, held FLAT: the FY2025 wet-lease spike (118.5 vs 15.0 in FY2024) unwinds as owned neos arrive, absorbing the other lines' inflation",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ga_g": {
+   "value": [
+    0.05,
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "source": "Cash G&A growth (FY2025 cash G&A = 316.3 less 40.1 depreciation = 276.2) \u2014 scale plus wage drift",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "sm_pct": {
+   "value": 0.0146,
+   "source": "S&M held at FY2025's 1.46% of revenue (FY2024: 1.53%)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "dna_path": {
+   "value": [
+    720.0,
+    810.0,
+    900.0,
+    980.0,
+    1060.0
+   ],
+   "source": "Depreciation and amortisation, AED mn, FY26E-FY30E \u2014 grows with the OWNED fleet: FY2025's 621.8 steps up as loan-financed neo deliveries (5 in FY2025, ~3-4/yr assumed owned henceforth) enter the depreciable base; leased deliveries enter ROU depreciation similarly. Fleet-driven, not a revenue ratio",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "capex_path": {
+   "value": [
+    2000.0,
+    1900.0,
+    1900.0,
+    1950.0,
+    2000.0
+   ],
+   "source": "Fleet capex including pre-delivery payments, AED mn. FY2025 actual: 2,327.6 (a catch-up year: 5 owned aircraft + PDP build). Forward: ~3-4 owned aircraft/yr at ~AED 185mn each plus a continuing PDP ladder on the 120-aircraft order; leased deliveries (the majority) do NOT pass through capex (additions to lease liabilities: 472.2 FY2025, 538.9 FY2024). The owned/leased delivery split is NOT disclosed \u2014 FLAGGED as the build's weakest driver and sensitised heavily",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "nwc_pct": {
+   "value": -0.64,
+   "source": "Operating working capital as a share of revenue, held at the historical band: (inventories + current receivables) less (current payables + deferred income + maintenance provisions + staff benefits) = -65.3% (FY23), -62.2% (FY24), -66.6% (FY25) of revenue. An airline sells tickets before it flies and accrues maintenance/end-of-service liabilities \u2014 growth RELEASES cash. -64% is the three-year centre, not the best year",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "assoc_g": {
+   "value": [
+    0.02,
+    0.18,
+    0.18,
+    0.15,
+    0.12
+   ],
+   "source": "Share-of-JV/associate-profit growth path on FY2025's 189.975: FY2026 held near-flat (the JV hubs absorbed the same H1 disruption; Air Arabia DMM start-up costs begin), then +18/+18/+15/+12% as Abu Dhabi (+40% capacity plan), Fly Jinnah, Egypt (49%) and DMM ramp. The 100%-basis FY2025 P&Ls (Note 12) grew 77% (Abu Dhabi) and 80% (Jinnah) y/y",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "other_g": {
+   "value": [
+    0.08,
+    0.08,
+    0.08,
+    0.07,
+    0.06
+   ],
+   "source": "Other-income growth on FY2025's 197.1 (management fees from the JV network 86.9 + misc) \u2014 fee income scales with JV activity",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "dep_rate_path": {
+   "value": [
+    0.041,
+    0.038,
+    0.037,
+    0.037,
+    0.037
+   ],
+   "source": "Yield on cash + fixed deposits: FY2025 disclosed average 4.41% (Note 17), rolled down with the CBUAE base-rate path (3.65% held 29-Jul-2026, Fed flat-to-easing bias)",
+   "date": "2026-08-09",
+   "ring": "Country"
+  },
+  "payout": {
+   "value": [
+    1.0,
+    0.9,
+    0.85,
+    0.85,
+    0.85
+   ],
+   "source": "Dividend payout on attributable profit: FY2025's AED 0.30/share = 86% of EPS 0.35, DPS raised 5 fils every year since FY2022 (0.15/0.20/0.25/0.30). FY2026 held at 0.30 (100% of a dip-year EPS, funded by net cash), then ~85-90%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf": {
+   "value": 0.0448,
+   "source": "AED sovereign anchor: UAE Ministry of Finance dirham T-Bond auction, July-2026 \u2014 January-2031 tranche YTM 4.48% (4bp over comparable UST; May-2026 auction: 4.30%). The LOCAL-currency government bond, per the standing rule, not a USD proxy",
+   "date": "2026-07-30",
+   "ring": "Country"
+  },
+  "sov_spread_obs": {
+   "value": 0.0004,
+   "source": "The OBSERVED default spread embedded in the AED sovereign yield actually used: the July-2026 MoF auction priced the January-2031 tranche 4bp over comparable US Treasuries (May-2026: 14bp). Netting THIS spread \u2014 not the 42bp rating-table spread \u2014 keeps the risk-free rate currency-consistent under the 1:1 peg (UST 5-yr 4.35% on 07-Aug-2026, US Treasury daily curve): 4.48% - 0.04% = 4.44% > 4.35%. Adopted after external critique; the rating-basis netting (4.06%) is published as the alternative construction",
+   "date": "2026-08-10",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0042,
+   "source": "Damodaran adjusted default spread, United Arab Emirates row (Moody's Aa2), original ctryprem file last updated 5-Jan-2026. Netted out of the local yield so sovereign risk is not double-counted",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.0487,
+   "source": "Damodaran total equity risk premium, UAE row, rating basis (mature 4.23% + CRP 0.64%), 5-Jan-2026 file. The CDS column for the UAE is NA in the same file, so the rating basis is the ONLY published construction \u2014 both-bases publication is therefore rating + a stated NA, not two numbers",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": null,
+   "source": "UAE sovereign CDS column: NA in Damodaran's January-2026 file \u2014 no CDS-basis ERP exists to publish; stated plainly rather than substituted",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "beta_used": {
+   "value": 0.812,
+   "source": "Tier-1 OWN-STOCK regression against the index the binding beta rule RESOLVES for this stock's exchange, not one this study picked: market_index_path('AE','DFM') -> FTSE ADX General (FADGI). 5-year weekly window to 24-Jul-2026: beta 0.812, R-squared 0.135, n=260, SE 0.128, CI90 [0.60, 1.02] \u2014 clears the usability gate. The exchange is DFM on primary evidence (FY2025 statements Note 1; FY2025 annual report; Q1-2026 interim Note 1) and the market code alone does not resolve, since AE spans ADX and DFM. FADGI applies under a REGISTERED INTERIM SUBSTITUTION (no DFM General series is registered); the note is quoted in full in the report, as an interim regressor requires. See beta_result.json",
+   "date": "2026-08-17",
+   "ring": "House"
+  },
+  "beta_alt_benchmark": {
+   "value": 1.086,
+   "source": "CROSS-CHECK, published not adopted: the same own-stock 5-year weekly regression against a DFM General series (DFMGI) held in the repo but NOT registered as a regressor \u2014 beta 1.086, R-squared 0.402, n=258, SE 0.083, CI90 [0.95, 1.22]. It has the higher explanatory power, and registering it is exactly the amendment the interim note anticipates ('replace with a DFM index when one is supplied') \u2014 but that amendment travels on its own branch with both protocol files in sync, so until it lands this is a priced cross-check, not the basis. An earlier edition of this study adopted it; corrected here",
+   "date": "2026-08-17",
+   "ring": "House"
+  },
+  "kd_booked_path": {
+   "value": [
+    0.031,
+    0.033,
+    0.035,
+    0.036,
+    0.037
+   ],
+   "source": "BOOKED blended finance-cost rate on the rolling gross debt book: FY2025 effective 2.73% (finance costs 66.7 / average gross debt), rising as new leases (~4%, Note 25) and new aircraft loans (~marginal 5.4%) replace older cheaper layers",
+   "date": "2026-08-10",
+   "ring": "Company/House"
+  },
+  "debt_amort": {
+   "value": [
+    500.0,
+    520.0,
+    540.0,
+    560.0,
+    580.0
+   ],
+   "source": "Scheduled repayments of borrowings + lease principal (FY2025 actuals: 393.7 borrowings repaid + 248.1 lease principal \u2248 642 gross; forward net of refinancing ~500-580/yr)",
+   "date": "2026-08-10",
+   "ring": "Company/House"
+  },
+  "kd": {
+   "value": 0.055,
+   "source": "Marginal AED cost of debt: the AED sovereign 4.48% (Jan-2031) plus ~100bp unsecured corporate allowance for an unrated but NET-CASH flag carrier affiliate. Evidence table: FY2025 lease book carries an average 4% finance charge (Note 25, SECURED on aircraft \u2014 a floor, not the marginal unsecured rate); the FY2025 aircraft loan was similarly secured; deposits EARN 4.41%. 5.5% sits above the sovereign, above the secured book, and above the deposit rate, as it must",
+   "date": "2026-08-09",
+   "ring": "Company/House"
+  },
+  "kd_path": {
+   "value": [
+    0.054,
+    0.052,
+    0.051,
+    0.05,
+    0.05
+   ],
+   "source": "Forward marginal Kd, easing ~50bp with the Fed/CBUAE path over five years \u2014 the discount-rate glide takes its shape from this path by construction",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "kd_term": {
+   "value": 0.05,
+   "source": "Terminal AED cost of debt: long-run UAE sovereign norm ~4.0% + 100bp corporate spread",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf_term": {
+   "value": 0.04,
+   "source": "Terminal risk-free rate, norm-built: ~2% UAE/US long-run inflation (CBUAE projects 1.8-2.0%) + ~2pp real \u2014 the mature-market neutral-rate convention for a hard-pegged currency. Never a historical average, never backed out of a price",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "erp_term": {
+   "value": 0.0475,
+   "source": "Terminal equity risk premium: between the mature-market 4.23% and today's UAE 4.87% \u2014 the Aa2 country premium is small and kept",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "wd_term": {
+   "value": 0.1,
+   "source": "Terminal debt weight D/(D+E) on a GROSS basis, ~today's 10.2% gross weight held: the airline runs structurally net-cash but carries secured aircraft debt and IFRS-16 leases permanently",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.025,
+   "source": "Terminal growth 2.5%, AED-nominal against a 4.0% terminal risk-free that embeds ~2% inflation \u2014 about 0.5pp real, for a carrier whose home market (Sharjah 19.5mn airport pax +13.9% in 2025) is still structurally growing. Sensitised 1.5-3.5%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ev_ebitda_just": {
+   "value": 6.5,
+   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA EXCLUDING the fee/other-income stream (valued separately \u2014 basis matched to how peer multiples are computed). Peer set rebuilt from PRIMARY filings after external critique: Ryanair 6.50x (FY26 EBITDA EUR 3,747.6mn = op profit 2,374.2 + dep 1,373.4; 1,039.2mn shares and EUR 2.7bn net cash per the Q1-FY27 report), Wizz ~4.75x (FY26 EBITDA 1,318.3), easyJet ~3.5x, IndiGo 11.1x, Pegasus ~6.6x (EUR-functional IFRS) -> median 6.5x. Bear 5.0x / bull 8.0x",
+   "date": "2026-08-10",
+   "ring": "Industry"
+  },
+  "pe_just": {
+   "value": 13.0,
+   "source": "Justified through-cycle P/E on normalised earnings. Peers: Ryanair 12.6x, easyJet 12.4x, Jazeera ~17.7x computed, Damodaran profitable-airlines 12.87x. 13x reflects a structurally profitable LCC with net cash and a growing equity-accounted network. Bear 10x / bull 16x",
+   "date": "2026-08-09",
+   "ring": "Industry"
+  },
+  "roe_sust": {
+   "value": 0.18,
+   "source": "Sustainable return on equity for the book lens. Trailing ROE on average attributable equity: 19.9% (FY2025), 18.9% (FY2024) \u2014 struck slightly below the record year",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "jv_pe": {
+   "value": 15.0,
+   "source": "Capitalisation multiple for the JV/associate airline network in the ALTERNATIVE bridge framing: the share of profit (189.975, growing double-digit) at 15x \u2014 a growth-LCC multiple in line with Jazeera and above the mature peers. The BASE framing carries the audited carrying value 363.386 instead. THE CONTESTED JUDGEMENT, published both ways, never averaged",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "nci_book": {
+   "value": 1.287,
+   "source": "Non-controlling interests at audited carrying value, 31-Dec-2025 \u2014 the correct deduction basis (the prior profit-share-ratio proxy deducted 2.9)",
+   "date": "2026-02-13",
+   "ring": "Company"
+  },
+  "lens_weights": {
+   "value": {
+    "dcf": 0.45,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "source": "DCF primary for an operating airline with a disclosed unit history; relative and normalised secondary; book least \u2014 an airline's book equity understates a slot/brand/JV franchise",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "anchor_days": {
+   "value": 219,
+   "source": "Days from the DCF construction date (31-Dec-2025, the audited balance-sheet date) to the anchor 7-Aug-2026. All lens values are rolled to the anchor at the cost of equity, net of the AED 0.30 FY2025 dividend paid inside the window",
+   "date": "2026-08-09",
+   "ring": "House"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 5999.75,
+   "dcost": 4343.184,
+   "gp": 1656.5659999999998,
+   "ga": 329.206,
+   "sm": 88.793,
+   "ebit": 1238.5669999999996,
+   "dna": 647.327,
+   "ebitda": 1885.8939999999996,
+   "ebitda_incl": 1999.3649999999996,
+   "fininc": 209.994,
+   "fincost": 102.457,
+   "assoc": 88.121,
+   "other": 113.471,
+   "ebt": 1547.6959999999995,
+   "tax": 0.0,
+   "pat": 1547.696,
+   "nci": 0.5639999999998508,
+   "npa": 1547.132
+  },
+  "FY24": {
+   "rev": 6765.852,
+   "dcost": 5202.944,
+   "gp": 1562.9079999999994,
+   "ga": 274.965,
+   "sm": 103.843,
+   "ebit": 1184.0999999999995,
+   "dna": 648.588,
+   "ebitda": 1832.6879999999994,
+   "ebitda_incl": 1964.3679999999995,
+   "fininc": 250.698,
+   "fincost": 82.092,
+   "assoc": 124.752,
+   "other": 131.68,
+   "ebt": 1609.1379999999995,
+   "tax": 141.508,
+   "pat": 1467.63,
+   "nci": 0.6440000000000055,
+   "npa": 1466.986
+  },
+  "FY25": {
+   "rev": 7787.581,
+   "dcost": 6088.132,
+   "gp": 1699.4490000000005,
+   "ga": 316.264,
+   "sm": 113.605,
+   "ebit": 1269.5800000000004,
+   "dna": 621.798,
+   "ebitda": 1891.3780000000004,
+   "ebitda_incl": 2088.51,
+   "fininc": 240.774,
+   "fincost": 66.672,
+   "assoc": 189.975,
+   "other": 197.132,
+   "ebt": 1830.7890000000002,
+   "tax": 202.054,
+   "pat": 1628.735,
+   "nci": 0.2599999999999909,
+   "npa": 1628.475
+  }
+ },
+ "hist_is_fy22": {
+  "rev": 5241.83,
+  "pat": 1222.306,
+  "dna": 633.957
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 4954.113,
+   "rou": 574.232,
+   "adv": 886.886,
+   "inv": 48.719,
+   "recv": 858.576,
+   "dep": 3984.069,
+   "cash": 1262.308,
+   "assets": 14674.544,
+   "borrow": 1577.531,
+   "lease": 701.426,
+   "debt": 2278.957,
+   "pay": 2298.899,
+   "definc": 523.402,
+   "maint": 1795.035,
+   "staffb": 208.175,
+   "eqp": 7534.006,
+   "nci": 1.084,
+   "nd": -2967.4200000000005,
+   "nwc": -3918.2160000000003
+  },
+  "FY24": {
+   "ppe": 4661.664,
+   "rou": 784.706,
+   "adv": 1262.605,
+   "inv": 53.456,
+   "recv": 824.296,
+   "dep": 4619.288,
+   "cash": 700.229,
+   "assets": 15361.444,
+   "borrow": 1059.165,
+   "lease": 1042.276,
+   "debt": 2101.441,
+   "pay": 2295.886,
+   "definc": 835.35,
+   "maint": 1714.335,
+   "staffb": 239.721,
+   "eqp": 7950.33,
+   "nci": 1.728,
+   "nd": -3218.076,
+   "nwc": -4207.539999999999
+  },
+  "FY25": {
+   "ppe": 5790.022,
+   "rou": 852.577,
+   "adv": 2028.265,
+   "inv": 97.042,
+   "recv": 896.388,
+   "dep": 4126.04,
+   "cash": 1072.692,
+   "assets": 17698.795,
+   "borrow": 1515.068,
+   "lease": 1266.367,
+   "debt": 2781.435,
+   "pay": 2932.708,
+   "definc": 1100.03,
+   "maint": 1876.324,
+   "staffb": 271.202,
+   "eqp": 8408.904,
+   "nci": 1.287,
+   "nd": -2417.297,
+   "nwc": -5186.834,
+   "fvoci": 457.528,
+   "invprop": 277.09,
+   "nil": 334.666,
+   "intang": 1362.497,
+   "assoc_bv": 363.386
+  }
+ },
+ "fcst": {
+  "years": [
+   "FY26E",
+   "FY27E",
+   "FY28E",
+   "FY29E",
+   "FY30E"
+  ],
+  "pax": [
+   12.85,
+   13.95,
+   15.15,
+   16.35,
+   17.55
+  ],
+  "rev": [
+   7868.80908,
+   8450.9412546,
+   9257.225484706,
+   10094.7318678679,
+   10951.944844065187
+  ],
+  "ebitda": [
+   1662.7240024319992,
+   2056.19877478284,
+   2170.8153522542916,
+   2291.4540499532786,
+   2398.0649385658962
+  ],
+  "ebitda_incl": [
+   1875.6265624319992,
+   2286.13353958284,
+   2419.1448982382917,
+   2557.1666641561587,
+   2679.720309620949
+  ],
+  "ebitda_margin": [
+   0.2113056735177516,
+   0.24331003054406675,
+   0.2344995653223234,
+   0.22699503859504241,
+   0.21896247403632585
+  ],
+  "other_inc": [
+   212.90256000000002,
+   229.93476480000004,
+   248.32954598400005,
+   265.71261420288005,
+   281.65537105505285
+  ],
+  "dna": [
+   720.0,
+   810.0,
+   900.0,
+   980.0,
+   1060.0
+  ],
+  "ebit": [
+   942.7240024319992,
+   1246.1987747828398,
+   1270.8153522542916,
+   1311.4540499532786,
+   1338.0649385658962
+  ],
+  "ebit_incl": [
+   1155.6265624319992,
+   1476.13353958284,
+   1519.1448982382917,
+   1577.1666641561587,
+   1619.7203096209491
+  ],
+  "nopat": [
+   982.2825780671993,
+   1254.713508645414,
+   1291.273163502548,
+   1340.591664532735,
+   1376.7622631778067
+  ],
+  "capex": [
+   2000.0,
+   1900.0,
+   1900.0,
+   1950.0,
+   2000.0
+  ],
+  "nwc": [
+   -5036.0378112,
+   -5408.6024029440005,
+   -5924.62431021184,
+   -6460.628395435457,
+   -7009.24470020172
+  ],
+  "dnwc": [
+   150.79618879999998,
+   -372.5645917440006,
+   -516.0219072678392,
+   -536.004085223617,
+   -548.616304766263
+  ],
+  "fcff": [
+   -623.5136107328008,
+   187.2781003894147,
+   457.29507077038716,
+   556.5957497563522,
+   635.3785679440698
+  ],
+  "df": [
+   0.9258009160951173,
+   0.8591685976236954,
+   0.7982918896784924,
+   0.7426226667136381,
+   0.6908355605854696
+  ],
+  "pv": [
+   -577.2494720142013,
+   160.90346287720305,
+   365.0549461859523,
+   413.3406199655391,
+   438.9421091696343
+  ],
+  "fwd_wacc": [
+   0.08014583115540944,
+   0.07755441557770472,
+   0.07625870778885235,
+   0.074963,
+   0.074963
+  ],
+  "ppe": [
+   10125.864,
+   11565.864,
+   12915.864,
+   14235.864,
+   15525.864
+  ],
+  "ic": [
+   6452.3231888,
+   7519.758597055999,
+   8353.73668978816,
+   9137.732604564542,
+   9879.11629979828
+  ],
+  "roic": [
+   0.1522370391756343,
+   0.1668555569239466,
+   0.1545743194277402,
+   0.14670944341959333,
+   0.1393608721061335
+  ],
+  "np_attr": [
+   1286.0423733228445,
+   1510.7624218126728,
+   1544.4091763576303,
+   1599.8213398901455,
+   1643.2081256173547
+  ],
+  "equity": [
+   8294.946373322844,
+   8405.708795135517,
+   8550.117971493148,
+   8749.939311383294,
+   8993.147437000649
+  ],
+  "net_debt": [
+   -503.9740122171993,
+   681.1116780487705,
+   1640.245630053017,
+   2534.448135611832,
+   3379.8787115327546
+  ],
+  "interest": [
+   83.511985,
+   85.682355,
+   89.825225,
+   93.29166,
+   98.84309499999999
+  ],
+  "fininc": [
+   213.148012,
+   118.19554246425356,
+   70.49696291219549,
+   33.529006688038365,
+   3.773513982362207
+  ],
+  "assoc": [
+   193.7745,
+   228.65390999999997,
+   269.8116138,
+   310.2833558699999,
+   347.51735857439996
+  ],
+  "div": [
+   1400.0,
+   1400.0,
+   1400.0,
+   1400.0,
+   1400.0
+  ],
+  "seg_rev": [
+   {
+    "pax": 6270.8,
+    "ancillary": 866.09,
+    "cargosvc": 428.55132000000003,
+    "hotel": 61.63726,
+    "leasing": 241.7305
+   },
+   {
+    "pax": 6696.0,
+    "ancillary": 977.8949999999999,
+    "cargosvc": 447.65632680000004,
+    "hotel": 63.4863778,
+    "leasing": 265.90355000000005
+   },
+   {
+    "pax": 7332.6,
+    "ancillary": 1104.4350000000002,
+    "cargosvc": 467.62368157200007,
+    "hotel": 65.390969134,
+    "leasing": 287.17583400000007
+   },
+   {
+    "pax": 7995.150000000001,
+    "ancillary": 1239.3300000000002,
+    "cargosvc": 488.4927856198801,
+    "hotel": 67.35269820802,
+    "leasing": 304.4063840400001
+   },
+   {
+    "pax": 8669.7,
+    "ancillary": 1382.94,
+    "cargosvc": 510.3048616689253,
+    "hotel": 69.3732791542606,
+    "leasing": 319.62670324200013
+   }
+  ],
+  "seg_shares": [
+   {
+    "pax": 0.7969185598794577,
+    "ancillary": 0.110066210934171,
+    "cargosvc": 0.05446203048555856,
+    "hotel": 0.007833111640319529,
+    "leasing": 0.030720087060493277
+   },
+   {
+    "pax": 0.792337776144787,
+    "ancillary": 0.11571432939114491,
+    "cargosvc": 0.052971179577935484,
+    "hotel": 0.007512343996645725,
+    "leasing": 0.031464370889486885
+   },
+   {
+    "pax": 0.7920947817587785,
+    "ancillary": 0.1193051851037499,
+    "cargosvc": 0.050514452990754966,
+    "hotel": 0.0070637762083286615,
+    "leasing": 0.031021803938388187
+   },
+   {
+    "pax": 0.7920121212381096,
+    "ancillary": 0.12276997707535525,
+    "cargosvc": 0.048390862879159786,
+    "hotel": 0.006672064111222947,
+    "leasing": 0.030154974696152432
+   },
+   {
+    "pax": 0.7916128252506746,
+    "ancillary": 0.12627346281326549,
+    "cargosvc": 0.04659490793048117,
+    "hotel": 0.006334334233965184,
+    "leasing": 0.029184469771613625
+   }
+  ],
+  "dcost_cash": [
+   5801.208315000001,
+   5966.866980000001,
+   6631.538295,
+   7320.19257,
+   8041.494240000001
+  ],
+  "ga": [
+   289.99215,
+   304.4917575,
+   319.716345375,
+   335.70216264375,
+   352.48727077593753
+  ],
+  "sm": [
+   114.884612568,
+   123.38374231716,
+   135.1554920767076,
+   147.38308527087133,
+   159.89839472335171
+  ],
+  "debt": [
+   2606.435,
+   2586.435,
+   2546.435,
+   2636.435,
+   2706.435
+  ],
+  "leased_gross": [
+   175.0,
+   350.0,
+   350.0,
+   350.0,
+   350.0
+  ],
+  "fleet_ends": [
+   56,
+   58,
+   61,
+   64,
+   68,
+   72
+  ],
+  "fleet_avg": [
+   57.0,
+   59.5,
+   62.5,
+   66.0,
+   70.0
+  ],
+  "cash_cost_pax": [
+   451.45590000000004,
+   427.73240000000004,
+   437.7253,
+   447.71819999999997,
+   458.20480000000003
+  ],
+  "payout": [
+   1.0,
+   0.9,
+   0.85,
+   0.85,
+   0.85
+  ],
+  "glide_frac": [
+   0.0,
+   0.5000000000000009,
+   0.7500000000000013,
+   1.0,
+   1.0
+  ],
+  "fleet_assets_fy25": 8670.864,
+  "eqp_fy25": 8408.904,
+  "assoc_fy25": 189.975,
+  "debt_fy25": 2781.435,
+  "nwc_fy25": -5186.834,
+  "dna_fy25": 621.798,
+  "nopat_fy25": 1246.7052000000003,
+  "ic_fy25": 4846.526999999999,
+  "roic_fy25": 0.2572368213361858
+ },
+ "bottomup": {
+  "unit_hist": {
+   "FY24": {
+    "pax": 11.22,
+    "lf": 0.82,
+    "fare": 494.86568627450976,
+    "anc": 60.3837789661319,
+    "fuel": 171.5282531194296,
+    "staff": 78.88627450980393,
+    "maint": 61.108645276292336,
+    "landing": 36.10374331550802,
+    "handling": 30.711675579322634,
+    "other": 31.451782531194294,
+    "cash_cost": 408.89385026737966
+   },
+   "FY25": {
+    "pax": 13.06,
+    "lf": 0.853,
+    "fare": 478.69165390505356,
+    "anc": 64.77794793261869,
+    "fuel": 172.38614088820825,
+    "staff": 81.88101071975497,
+    "maint": 61.29992343032159,
+    "landing": 35.991500765696784,
+    "handling": 29.412327718223583,
+    "other": 41.498238897396625,
+    "cash_cost": 421.6244257274119
+   }
+  },
+  "subs": [
+   "pax",
+   "ancillary",
+   "cargosvc",
+   "hotel",
+   "leasing"
+  ],
+  "subnames": {
+   "pax": "Passenger and baggage",
+   "ancillary": "Ancillary services",
+   "cargosvc": "Cargo and service revenue",
+   "hotel": "Hotel operations",
+   "leasing": "Aircraft leases to the JV network"
+  },
+  "rev_lines_fy25": {
+   "pax": 6165.584,
+   "baggage": 86.129,
+   "ancillary": 846.0,
+   "service": 223.323,
+   "cargo": 186.948,
+   "hotel": 59.842,
+   "leasing": 219.755
+  },
+  "rev_lines_fy24": {
+   "pax": 5485.261,
+   "baggage": 67.132,
+   "ancillary": 677.506,
+   "service": 281.663,
+   "cargo": 181.778,
+   "hotel": 72.512,
+   "leasing": 149.443
+  },
+  "dcost_lines_fy25": {
+   "fuel": 2251.363,
+   "staff": 1069.366,
+   "maint": 800.577,
+   "dep_ppe": 393.504,
+   "landing": 470.049,
+   "handling": 384.125,
+   "dep_rou": 177.181,
+   "wet_lease": 118.487,
+   "insurance": 15.099,
+   "amort": 11.032,
+   "other": 397.349
+  },
+  "dcost_lines_fy24": {
+   "fuel": 1924.547,
+   "staff": 885.104,
+   "maint": 685.639,
+   "dep_ppe": 462.951,
+   "landing": 405.084,
+   "handling": 344.585,
+   "dep_rou": 142.145,
+   "wet_lease": 15.04,
+   "insurance": 17.052,
+   "amort": 10.059,
+   "other": 310.738
+  },
+  "dcost_lines_fy23": {
+   "fuel": 1690.639,
+   "staff": 774.751,
+   "maint": 438.924,
+   "dep_ppe": 495.06,
+   "landing": 361.209,
+   "handling": 312.891,
+   "dep_rou": 113.104,
+   "wet_lease": 0.0,
+   "insurance": 12.274,
+   "amort": 9.423,
+   "other": 134.909
+  },
+  "pax_hist": {
+   "FY22": 8.36,
+   "FY23": 10.11,
+   "FY24": 11.22,
+   "FY25": 13.06
+  },
+  "lf_hist": {
+   "FY22": 0.8,
+   "FY23": 0.804,
+   "FY24": 0.82,
+   "FY25": 0.853
+  },
+  "fleet": {
+   "total": 90,
+   "short_lease": 5,
+   "leased_out": 17,
+   "neo_first": "2025-09-29"
+  },
+  "jv_detail": {
+   "abu_dhabi": {
+    "stake": 0.49,
+    "rev_100": 2405.159,
+    "profit_100": 221.448,
+    "share": 54.21
+   },
+   "fly_jinnah": {
+    "stake": 0.45,
+    "rev_100": 492.467,
+    "profit_100": 90.094,
+    "share": 36.07
+   },
+   "maroc": {
+    "stake": 0.4413,
+    "rev_100": 774.662,
+    "profit_100": 46.523,
+    "share": 20.532
+   },
+   "egypt": {
+    "stake": 0.49,
+    "note": "stake raised from 40% to 49% during FY2025"
+   },
+   "dmm": {
+    "stake": 0.49,
+    "note": "Air Arabia DMM LLC, Saudi JV established FY2025 \u2014 pre-operational"
+   }
+  },
+  "q1_26_implied_fy": 7879.930777496769
+ },
+ "wacc": {
+  "rf": 0.0448,
+  "rf_star": 0.0444,
+  "rf_star_rating_alt": 0.0406,
+  "sov_spread_obs": 0.0004,
+  "ke_exp": 0.0839444,
+  "kd": 0.055,
+  "kd_at": 0.04675,
+  "we_exp": 0.8978725602620135,
+  "wd_exp": 0.10212743973798659,
+  "wacc_exp": 0.08014583115540944,
+  "wacc_net": 0.08802449850408495,
+  "wd_net": -0.10969658077788418,
+  "ke_term": 0.07857,
+  "kd_term": 0.05,
+  "kd_term_at": 0.0425,
+  "wacc_term": 0.074963,
+  "glide_frac": [
+   0.0,
+   0.5000000000000009,
+   0.7500000000000013,
+   1.0,
+   1.0
+  ],
+  "kd_path": [
+   0.054,
+   0.052,
+   0.051,
+   0.05,
+   0.05
+  ],
+  "kd_eff_fy25": 0.027308496058470456,
+  "erp": 0.0487,
+  "erp_cds_note": "NA for UAE",
+  "sov_spread": 0.0042,
+  "beta": {
+   "beta": 0.8117205436369686,
+   "r2": 0.13467554846249852,
+   "n": 260,
+   "se": 0.12809783685749307,
+   "ci90": [
+    0.6009996020063925,
+    1.0224414852675447
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "index": "FTSE ADX General Index (FADGI)",
+   "index_file": "FADGI.csv",
+   "window_years": 5,
+   "frequency": "weekly",
+   "window_end": "2026-07-24",
+   "weak": false,
+   "warnings": [],
+   "series": [
+    [
+     "2021-08-05",
+     0.014598799421152631,
+     0.013719006411151539
+    ],
+    [
+     "2021-08-12",
+     0.01438873745209967,
+     0.023323880175127064
+    ],
+    [
+     "2021-08-19",
+     -0.007168489478612516,
+     0.003399378608739176
+    ],
+    [
+     "2021-08-26",
+     0.028370697129215566,
+     0.0006297055940958936
+    ],
+    [
+     "2021-09-02",
+     -0.014084739881738972,
+     0.0036614805021037778
+    ],
+    [
+     "2021-09-09",
+     -0.02150620522096362,
+     0.026764008425574054
+    ],
+    [
+     "2021-09-16",
+     0.007220247973487097,
+     0.0028773269494359894
+    ],
+    [
+     "2021-09-23",
+     0.0,
+     -0.007439550839745246
+    ],
+    [
+     "2021-09-30",
+     -0.02181904739463961,
+     -0.016229828642485764
+    ],
+    [
+     "2021-10-07",
+     -0.0148150857851407,
+     0.0013668075623922851
+    ],
+    [
+     "2021-10-14",
+     0.0,
+     0.013175930501190019
+    ],
+    [
+     "2021-10-21",
+     0.0,
+     0.008245902759603081
+    ],
+    [
+     "2021-10-28",
+     0.03663413317978017,
+     -0.00047368599060930005
+    ],
+    [
+     "2021-11-04",
+     0.08280590368423268,
+     0.017920284181835576
+    ],
+    [
+     "2021-11-11",
+     0.0131580845775112,
+     0.033219172738696776
+    ],
+    [
+     "2021-11-18",
+     0.006514681021193672,
+     0.007650232353376202
+    ],
+    [
+     "2021-11-25",
+     0.0,
+     0.012463256175958976
+    ],
+    [
+     "2021-12-02",
+     -0.06021885999305484,
+     0.010889211905334293
+    ],
+    [
+     "2021-12-09",
+     0.0068728792877620504,
+     0.038615155236877946
+    ],
+    [
+     "2021-12-16",
+     0.02702867238791942,
+     -0.003032850665395341
+    ],
+    [
+     "2021-12-23",
+     -0.013423020332140661,
+     -0.049148399532086814
+    ],
+    [
+     "2021-12-30",
+     -0.020478531343540676,
+     0.006737725640298293
+    ],
+    [
+     "2022-01-06",
+     -0.006920442844573795,
+     -0.011079773054811115
+    ],
+    [
+     "2022-01-13",
+     -0.006968669316093316,
+     0.003754781110337928
+    ],
+    [
+     "2022-01-20",
+     0.006968669316093436,
+     0.02983502219656863
+    ],
+    [
+     "2022-01-27",
+     -0.02105340919783238,
+     0.005998147228423292
+    ],
+    [
+     "2022-02-03",
+     0.021053409197832263,
+     -0.0006654507070442163
+    ],
+    [
+     "2022-02-10",
+     0.01379332213233577,
+     0.02254073199558827
+    ],
+    [
+     "2022-02-17",
+     0.09156719352549063,
+     0.03094126947755681
+    ],
+    [
+     "2022-02-24",
+     0.01242251999855711,
+     -0.014809055690103495
+    ],
+    [
+     "2022-03-03",
+     0.006153865574378066,
+     0.07157978851183797
+    ],
+    [
+     "2022-03-10",
+     0.012195273093818206,
+     -0.014415863326509345
+    ],
+    [
+     "2022-03-17",
+     0.02985296314968113,
+     0.0002487749926307399
+    ],
+    [
+     "2022-03-24",
+     -0.0988458346366326,
+     0.013973131076729194
+    ],
+    [
+     "2022-03-31",
+     0.044451762570833796,
+     0.020852613545993975
+    ],
+    [
+     "2022-04-07",
+     0.060259191518196746,
+     0.004767094677850691
+    ],
+    [
+     "2022-04-14",
+     0.12619460256066833,
+     -0.0030467561513882885
+    ],
+    [
+     "2022-04-21",
+     0.07924937165414069,
+     0.014069856867336885
+    ],
+    [
+     "2022-04-28",
+     -0.004773278752657771,
+     -0.00022066088519146328
+    ],
+    [
+     "2022-05-05",
+     0.03756310157564852,
+     -0.002544578540162002
+    ],
+    [
+     "2022-05-12",
+     -0.08659252881596713,
+     -0.08877560654893708
+    ],
+    [
+     "2022-05-19",
+     -0.010101095986503933,
+     0.06537717331607827
+    ],
+    [
+     "2022-05-26",
+     -0.005089069507471293,
+     -0.031177389743537343
+    ],
+    [
+     "2022-06-02",
+     0.040005334613699206,
+     0.03208393587019254
+    ],
+    [
+     "2022-06-09",
+     0.03373813963184999,
+     -0.021620079726572525
+    ],
+    [
+     "2022-06-16",
+     0.004728141195946117,
+     -0.014574402396661494
+    ],
+    [
+     "2022-06-23",
+     0.009389740349839137,
+     -0.027761900689193146
+    ],
+    [
+     "2022-06-30",
+     -0.028437935320533514,
+     0.013987954707070512
+    ],
+    [
+     "2022-07-07",
+     -0.04423325497682565,
+     -0.0163217968410327
+    ],
+    [
+     "2022-07-14",
+     0.01496287267671232,
+     0.002276508980185178
+    ],
+    [
+     "2022-07-21",
+     0.019608471388376337,
+     0.03755211911741349
+    ],
+    [
+     "2022-07-28",
+     0.06119556102691971,
+     -0.003488168096337905
+    ],
+    [
+     "2022-08-04",
+     0.05766564184980908,
+     0.026199479075165528
+    ],
+    [
+     "2022-08-11",
+     -0.07609934353864717,
+     0.047772337065812666
+    ],
+    [
+     "2022-08-18",
+     0.04989697114462304,
+     -0.019737979633540535
+    ],
+    [
+     "2022-08-25",
+     -0.008888947417245815,
+     -0.007510337736683658
+    ],
+    [
+     "2022-09-01",
+     -0.013483350337287101,
+     -0.03061535446478493
+    ],
+    [
+     "2022-09-08",
+     -0.05582844955294184,
+     0.006794042149811305
+    ],
+    [
+     "2022-09-15",
+     0.0,
+     0.02356783118947763
+    ],
+    [
+     "2022-09-22",
+     0.0,
+     0.007401279657419316
+    ],
+    [
+     "2022-09-29",
+     -0.014458083175229775,
+     -0.027868412261974486
+    ],
+    [
+     "2022-10-06",
+     -0.009756174945364685,
+     0.007688208275904283
+    ],
+    [
+     "2022-10-13",
+     -0.009852296443011594,
+     -0.01991808101983717
+    ],
+    [
+     "2022-10-20",
+     0.014742281737203431,
+     0.04373949297988372
+    ],
+    [
+     "2022-10-27",
+     0.004866189651172906,
+     0.01623498271889286
+    ],
+    [
+     "2022-11-03",
+     -0.019608471388376313,
+     0.008261991852235424
+    ],
+    [
+     "2022-11-10",
+     0.05770831762064677,
+     0.02264262770452436
+    ],
+    [
+     "2022-11-17",
+     -0.018868484304382805,
+     -0.01848528902297374
+    ],
+    [
+     "2022-11-24",
+     -0.02409755157906064,
+     0.010470720326865149
+    ],
+    [
+     "2022-12-01",
+     0.009708814126960903,
+     0.001679705882140216
+    ],
+    [
+     "2022-12-08",
+     0.03791923486229368,
+     -0.026763247546413394
+    ],
+    [
+     "2022-12-15",
+     0.04100802372737725,
+     -0.01030924357607658
+    ],
+    [
+     "2022-12-22",
+     -0.04567003683318844,
+     0.014126277562965339
+    ],
+    [
+     "2022-12-29",
+     0.013921338518608014,
+     -0.0044723193539993635
+    ],
+    [
+     "2023-01-05",
+     0.02278002833182012,
+     -0.001334291934168861
+    ],
+    [
+     "2023-01-12",
+     -0.009049835519917927,
+     -0.009829411007299116
+    ],
+    [
+     "2023-01-19",
+     0.009049835519917856,
+     0.003796589403511433
+    ],
+    [
+     "2023-01-26",
+     0.0,
+     -0.018946740341991952
+    ],
+    [
+     "2023-02-02",
+     0.03540192705091579,
+     -0.014292180083068066
+    ],
+    [
+     "2023-02-09",
+     0.0,
+     0.015322614980752552
+    ],
+    [
+     "2023-02-16",
+     0.008658062743114531,
+     -0.004796393182305951
+    ],
+    [
+     "2023-02-23",
+     -0.02178735418490718,
+     -0.011940226361324012
+    ],
+    [
+     "2023-03-02",
+     -0.013303965626362702,
+     0.002398464672142559
+    ],
+    [
+     "2023-03-09",
+     0.017699577099400638,
+     -0.0008059484497483269
+    ],
+    [
+     "2023-03-16",
+     -0.035718082602079114,
+     -0.04334931115445933
+    ],
+    [
+     "2023-03-23",
+     -0.051293294387550696,
+     0.011406983810179749
+    ],
+    [
+     "2023-03-30",
+     0.014252022707201632,
+     -0.007521250621766175
+    ],
+    [
+     "2023-04-06",
+     0.0,
+     -0.0008306327693043551
+    ],
+    [
+     "2023-04-13",
+     0.027908788117076658,
+     0.009178749250420297
+    ],
+    [
+     "2023-04-20",
+     -0.013857034661426354,
+     0.007886709616301214
+    ],
+    [
+     "2023-04-27",
+     0.013857034661426279,
+     0.01206853297087292
+    ],
+    [
+     "2023-05-04",
+     0.04922694076515067,
+     -0.007903364426567017
+    ],
+    [
+     "2023-05-11",
+     0.017316450011460958,
+     -0.0004311456806694651
+    ],
+    [
+     "2023-05-18",
+     -0.012959144642505341,
+     -0.016805681030568596
+    ],
+    [
+     "2023-05-25",
+     0.004338401598598362,
+     -0.011439007095598908
+    ],
+    [
+     "2023-06-01",
+     -0.02188271124950782,
+     -0.0036351217339330145
+    ],
+    [
+     "2023-06-08",
+     0.05592855265922498,
+     -0.0015589083962225362
+    ],
+    [
+     "2023-06-15",
+     0.024794658613216274,
+     0.0035129235472032925
+    ],
+    [
+     "2023-06-22",
+     -0.008196767204178515,
+     0.0151624765946977
+    ],
+    [
+     "2023-06-29",
+     -0.004123717183862152,
+     0.0023366615256561574
+    ],
+    [
+     "2023-07-06",
+     0.04839654086185024,
+     0.005639329561149081
+    ],
+    [
+     "2023-07-13",
+     0.04239555896768555,
+     0.0023534377745835396
+    ],
+    [
+     "2023-07-20",
+     0.007518832414027319,
+     0.000235766384648452
+    ],
+    [
+     "2023-07-27",
+     -0.0037523496185503527,
+     0.013425498872876078
+    ],
+    [
+     "2023-08-03",
+     0.011215070820140003,
+     0.002461244339083384
+    ],
+    [
+     "2023-08-10",
+     0.029306126585499487,
+     0.01226564258540198
+    ],
+    [
+     "2023-08-17",
+     0.01077209698191104,
+     -0.012842289034301292
+    ],
+    [
+     "2023-08-24",
+     0.04538300584781775,
+     -0.0006598705358653782
+    ],
+    [
+     "2023-08-31",
+     0.00680274732275262,
+     0.003961881696155337
+    ],
+    [
+     "2023-09-07",
+     -0.03800111817861387,
+     -0.015453841658813694
+    ],
+    [
+     "2023-09-14",
+     -0.04685541728150508,
+     0.014044112048503813
+    ],
+    [
+     "2023-09-21",
+     0.0326707822895487,
+     0.005050315228953898
+    ],
+    [
+     "2023-09-28",
+     0.0035650661644961446,
+     -0.006180962264303541
+    ],
+    [
+     "2023-10-05",
+     -0.003565066164496257,
+     -0.0023685916527452114
+    ],
+    [
+     "2023-10-12",
+     -0.06644509940815263,
+     -0.01759676200802678
+    ],
+    [
+     "2023-10-19",
+     -0.03891541624967361,
+     -0.017196841922693974
+    ],
+    [
+     "2023-10-26",
+     0.027398974188114347,
+     -0.019943319284609778
+    ],
+    [
+     "2023-11-02",
+     0.01532597047822677,
+     0.02608456782571505
+    ],
+    [
+     "2023-11-09",
+     0.015094626222484888,
+     0.004472176824017147
+    ],
+    [
+     "2023-11-16",
+     0.003738322110607158,
+     0.008166834340787339
+    ],
+    [
+     "2023-11-23",
+     0.014815085785140682,
+     -0.007688407098240649
+    ],
+    [
+     "2023-11-30",
+     -0.011090686694158284,
+     0.002729786517699719
+    ],
+    [
+     "2023-12-07",
+     -0.022557347424074628,
+     -0.00936737834038546
+    ],
+    [
+     "2023-12-14",
+     0.007575793808457723,
+     0.0005858623665509543
+    ],
+    [
+     "2023-12-21",
+     0.011257154524634468,
+     0.0019008957221572666
+    ],
+    [
+     "2023-12-28",
+     0.03303052567648175,
+     0.007339740516305611
+    ],
+    [
+     "2024-01-04",
+     0.024956731973867458,
+     0.0089664107546516
+    ],
+    [
+     "2024-01-11",
+     0.02434902901028655,
+     0.01996496131432051
+    ],
+    [
+     "2024-01-18",
+     -0.024349029010286613,
+     -0.012812437748861148
+    ],
+    [
+     "2024-01-25",
+     0.04138521616285428,
+     -0.009585507503884077
+    ],
+    [
+     "2024-02-01",
+     0.0067340321813441194,
+     -0.016425394427497363
+    ],
+    [
+     "2024-02-08",
+     -0.020339684237122672,
+     -0.01138686993140604
+    ],
+    [
+     "2024-02-15",
+     0.0034188067487856823,
+     0.004516306528115607
+    ],
+    [
+     "2024-02-22",
+     -0.017212128881121523,
+     -0.009565024156845214
+    ],
+    [
+     "2024-02-29",
+     -0.006968669316093316,
+     -0.006530895694260244
+    ],
+    [
+     "2024-03-07",
+     0.024180798197214828,
+     -0.0031362575921835
+    ],
+    [
+     "2024-03-14",
+     0.00680274732275262,
+     0.003163270207616749
+    ],
+    [
+     "2024-03-21",
+     0.010118130165584466,
+     0.003294384085657692
+    ],
+    [
+     "2024-03-28",
+     -0.0730759803180659,
+     -0.0023332100402501613
+    ],
+    [
+     "2024-04-04",
+     0.01433716314640725,
+     -0.0026568191968093257
+    ],
+    [
+     "2024-04-11",
+     0.0035524016043677006,
+     -0.0002294789538900888
+    ],
+    [
+     "2024-04-18",
+     -0.04719569133627449,
+     -0.00594907325910546
+    ],
+    [
+     "2024-04-25",
+     -0.011215070820139957,
+     -0.01547003576876455
+    ],
+    [
+     "2024-05-02",
+     -0.007547205635382966,
+     -0.001913013833903917
+    ],
+    [
+     "2024-05-09",
+     0.011299555253933247,
+     0.010472188677727767
+    ],
+    [
+     "2024-05-16",
+     -0.0819171224678867,
+     -0.008802526639910347
+    ],
+    [
+     "2024-05-23",
+     -0.016393809775676383,
+     -0.01668279152139395
+    ],
+    [
+     "2024-05-30",
+     -0.033616610798984974,
+     -0.015594955197890347
+    ],
+    [
+     "2024-06-06",
+     0.00851068966790861,
+     0.020975425763702253
+    ],
+    [
+     "2024-06-13",
+     -0.03010980147137034,
+     0.004589061191608166
+    ],
+    [
+     "2024-06-20",
+     -0.004376374599799,
+     -0.003233929261401082
+    ],
+    [
+     "2024-06-27",
+     0.008733679968754631,
+     0.006043263520065813
+    ],
+    [
+     "2024-07-04",
+     0.03419136474827934,
+     0.013496776685265652
+    ],
+    [
+     "2024-07-11",
+     0.04115807249350755,
+     0.002720250460925524
+    ],
+    [
+     "2024-07-18",
+     0.04339931553455543,
+     0.008181664964580749
+    ],
+    [
+     "2024-07-25",
+     0.0038535693159899723,
+     0.008303388957249887
+    ],
+    [
+     "2024-08-01",
+     0.007662872745569097,
+     0.0067670353396626776
+    ],
+    [
+     "2024-08-08",
+     -0.05491575759611477,
+     -0.011968962090294653
+    ],
+    [
+     "2024-08-15",
+     0.03564733873023749,
+     -0.001967328286510656
+    ],
+    [
+     "2024-08-22",
+     0.03065374109100252,
+     0.014376055387137633
+    ],
+    [
+     "2024-08-29",
+     0.02607224030977532,
+     -0.01485143346513468
+    ],
+    [
+     "2024-09-05",
+     -0.018553407895747834,
+     0.026167319671747527
+    ],
+    [
+     "2024-09-12",
+     -0.007518832414027339,
+     -0.018059522839300342
+    ],
+    [
+     "2024-09-19",
+     0.037041271680349076,
+     0.020470792895702174
+    ],
+    [
+     "2024-09-26",
+     0.007246408520767253,
+     0.0014389308956077353
+    ],
+    [
+     "2024-10-03",
+     -0.044287680201116356,
+     -0.03205803894234583
+    ],
+    [
+     "2024-10-10",
+     0.018692133012152546,
+     0.0040087811321678915
+    ],
+    [
+     "2024-10-17",
+     0.014706147389695487,
+     0.002846524485079523
+    ],
+    [
+     "2024-10-24",
+     0.0036429912785010087,
+     -0.008797771028991848
+    ],
+    [
+     "2024-10-31",
+     0.046189382469374506,
+     0.014258670467419167
+    ],
+    [
+     "2024-11-07",
+     0.006920442844573757,
+     0.01471656265684321
+    ],
+    [
+     "2024-11-14",
+     0.0,
+     -0.007065736229104504
+    ],
+    [
+     "2024-11-21",
+     0.0034423441909729197,
+     -0.009214024961628826
+    ],
+    [
+     "2024-11-28",
+     0.006849341845574768,
+     -0.005669214954645431
+    ],
+    [
+     "2024-12-05",
+     0.026937655731808386,
+     0.00172839629119003
+    ],
+    [
+     "2024-12-12",
+     0.016474837203505042,
+     -0.00011750532964877462
+    ],
+    [
+     "2024-12-19",
+     0.0032626456348163694,
+     -0.00027818691320766913
+    ],
+    [
+     "2024-12-26",
+     0.019355442952956072,
+     0.011114478475231376
+    ],
+    [
+     "2025-01-02",
+     -0.009630893060961189,
+     -0.005847478866463223
+    ],
+    [
+     "2025-01-09",
+     0.006430890330290332,
+     0.014972070487909326
+    ],
+    [
+     "2025-01-16",
+     0.006389798098770988,
+     0.004602270876163018
+    ],
+    [
+     "2025-01-23",
+     -0.003189795368100261,
+     0.003840594017100976
+    ],
+    [
+     "2025-01-30",
+     -0.009630893060961189,
+     0.004259025483299572
+    ],
+    [
+     "2025-02-06",
+     0.012820688429061469,
+     -0.002118357164888061
+    ],
+    [
+     "2025-02-13",
+     0.015798116876591092,
+     0.009927222492015423
+    ],
+    [
+     "2025-02-20",
+     0.06080900459560579,
+     -0.00404701137727497
+    ],
+    [
+     "2025-02-27",
+     0.04329680575332426,
+     -0.0007331382439495094
+    ],
+    [
+     "2025-03-06",
+     -0.00566573753567742,
+     -0.008328850415697654
+    ],
+    [
+     "2025-03-20",
+     -0.0057637047167501294,
+     -0.017446071051830544
+    ],
+    [
+     "2025-03-27",
+     -0.09386613623209124,
+     0.0023893116111001955
+    ],
+    [
+     "2025-04-03",
+     -0.0031796529173795727,
+     -0.0023103230067663748
+    ],
+    [
+     "2025-04-10",
+     -0.022545238321056323,
+     -0.026384626140496893
+    ],
+    [
+     "2025-04-17",
+     0.041473248206575095,
+     0.014619430875644974
+    ],
+    [
+     "2025-04-24",
+     0.036813973122716184,
+     0.017737414397866386
+    ],
+    [
+     "2025-05-01",
+     0.03840944811487126,
+     0.013807783818978622
+    ],
+    [
+     "2025-05-08",
+     0.020086758566737292,
+     0.008104392003367801
+    ],
+    [
+     "2025-05-15",
+     -0.005698021114637778,
+     -0.0008868618343854569
+    ],
+    [
+     "2025-05-22",
+     0.01980262729617973,
+     0.004361298506324451
+    ],
+    [
+     "2025-05-29",
+     -0.0028050509276086096,
+     0.008043277160845389
+    ],
+    [
+     "2025-06-05",
+     0.00839165763624838,
+     -0.0010615843036526575
+    ],
+    [
+     "2025-06-12",
+     -0.05143991120476199,
+     -0.0042411372979867905
+    ],
+    [
+     "2025-06-19",
+     -0.08887928947403448,
+     -0.02830755701502522
+    ],
+    [
+     "2025-06-26",
+     0.10054122922187746,
+     0.047964962548427685
+    ],
+    [
+     "2025-07-03",
+     -0.008733679968754666,
+     0.009514356033431861
+    ],
+    [
+     "2025-07-10",
+     0.002919710103334846,
+     0.0066914929719512324
+    ],
+    [
+     "2025-07-17",
+     0.07306619687458717,
+     0.019196025271204925
+    ],
+    [
+     "2025-07-24",
+     0.01879249934936732,
+     0.005677778805992424
+    ],
+    [
+     "2025-07-31",
+     -0.010695289116747806,
+     0.006758132426088553
+    ],
+    [
+     "2025-08-07",
+     0.016000341346441117,
+     -0.005186675954570969
+    ],
+    [
+     "2025-08-14",
+     -0.0026490081715768417,
+     -0.0064050704796019976
+    ],
+    [
+     "2025-08-21",
+     -0.010666767804195192,
+     -0.0049698265650440195
+    ],
+    [
+     "2025-08-28",
+     0.008010723746078979,
+     -0.007992388790493908
+    ],
+    [
+     "2025-09-04",
+     -0.005333345975362505,
+     -0.008472293092993391
+    ],
+    [
+     "2025-09-11",
+     -0.002677377770716403,
+     -0.007398423426769756
+    ],
+    [
+     "2025-09-18",
+     0.013315775975772156,
+     0.013886363172186599
+    ],
+    [
+     "2025-09-25",
+     -0.013315775975772062,
+     -0.015237705903976663
+    ],
+    [
+     "2025-10-02",
+     0.03425894982101534,
+     0.011811723634557163
+    ],
+    [
+     "2025-10-09",
+     0.03562717764315125,
+     0.00784927093971621
+    ],
+    [
+     "2025-10-16",
+     0.0,
+     2.168782544149463e-05
+    ],
+    [
+     "2025-10-23",
+     -0.012578782206860073,
+     0.004686336840925956
+    ],
+    [
+     "2025-10-30",
+     0.0,
+     0.0019408726293451836
+    ],
+    [
+     "2025-11-06",
+     0.01007565198874164,
+     -0.018572223607351602
+    ],
+    [
+     "2025-11-13",
+     -0.020253856904497686,
+     -0.006248781889385313
+    ],
+    [
+     "2025-11-20",
+     0.03022900196131729,
+     -0.007662934523979796
+    ],
+    [
+     "2025-11-27",
+     0.0718011660558069,
+     -0.01838628834805463
+    ],
+    [
+     "2025-12-04",
+     0.018307147444356107,
+     0.02128240940109988
+    ],
+    [
+     "2025-12-11",
+     0.0784716154414951,
+     0.009258195858609406
+    ],
+    [
+     "2025-12-18",
+     0.0020942416031149067,
+     -0.0005118239437404986
+    ],
+    [
+     "2025-12-25",
+     0.0,
+     0.0030789836929761326
+    ],
+    [
+     "2026-01-01",
+     -0.025425098365810167,
+     -0.0038952449418830437
+    ],
+    [
+     "2026-01-08",
+     0.11156440762772109,
+     0.004747178458901317
+    ],
+    [
+     "2026-01-15",
+     -0.013526776298201851,
+     0.0016191627979338238
+    ],
+    [
+     "2026-01-22",
+     0.01735819860975795,
+     0.02439828196035048
+    ],
+    [
+     "2026-01-29",
+     -0.038991293965183686,
+     0.005700408541552253
+    ],
+    [
+     "2026-02-05",
+     0.033238641475733716,
+     0.017566057291838758
+    ],
+    [
+     "2026-02-12",
+     0.011472401162236781,
+     0.013285158127187092
+    ],
+    [
+     "2026-02-19",
+     0.05186347400957396,
+     -0.0074892296698773
+    ],
+    [
+     "2026-02-26",
+     -0.03489793985127731,
+     -0.0012742826339750578
+    ],
+    [
+     "2026-03-05",
+     -0.08990425742113456,
+     -0.053349497394263895
+    ],
+    [
+     "2026-03-12",
+     -0.11701645838618796,
+     -0.041598605921529315
+    ],
+    [
+     "2026-03-19",
+     -0.016222835506887145,
+     -0.006718542116847537
+    ],
+    [
+     "2026-03-26",
+     -0.05770831762064673,
+     0.0032399486751714043
+    ],
+    [
+     "2026-04-02",
+     0.0,
+     -0.002029737857875089
+    ],
+    [
+     "2026-04-09",
+     0.12981161152199053,
+     0.026133612431961346
+    ],
+    [
+     "2026-04-16",
+     0.13976194237515882,
+     0.008278663152565004
+    ],
+    [
+     "2026-04-23",
+     -0.0190845486924107,
+     -0.017436637536198507
+    ],
+    [
+     "2026-04-30",
+     -0.04734612059719843,
+     0.003283920461961465
+    ],
+    [
+     "2026-05-07",
+     0.04541747969079262,
+     0.009928298620253306
+    ],
+    [
+     "2026-05-14",
+     -0.04541747969079266,
+     -0.017548198459234512
+    ],
+    [
+     "2026-05-21",
+     -0.03494703007723433,
+     -0.007016135839763566
+    ],
+    [
+     "2026-05-28",
+     0.0207046733616912,
+     0.00674715310302014
+    ],
+    [
+     "2026-06-04",
+     -0.03545731183672944,
+     -0.012127557464241398
+    ],
+    [
+     "2026-06-11",
+     0.027226812700213952,
+     -0.004125359736168698
+    ],
+    [
+     "2026-06-18",
+     0.1963412769349549,
+     0.05779830058821718
+    ],
+    [
+     "2026-06-25",
+     -0.05048939992239181,
+     -0.023755540655682618
+    ],
+    [
+     "2026-07-02",
+     -0.03267078228954871,
+     -0.006748071142416823
+    ],
+    [
+     "2026-07-09",
+     0.005519793223597902,
+     0.007328093782597365
+    ],
+    [
+     "2026-07-16",
+     -0.04695698308777098,
+     -0.010220247531886007
+    ],
+    [
+     "2026-07-23",
+     -0.055350095083164956,
+     0.006047327692601032
+    ],
+    [
+     "2026-07-30",
+     -0.012270092591814247,
+     -0.0012710500277987157
+    ]
+   ],
+   "exchange": "DFM",
+   "interim_note": "INTERIM: DFM-listed name regressed against FTSE ADX General, by instruction 10-Aug-2026, because no DFM General series is held. Empirically the better-supported half of the substitution: over five years of weekly returns FADGI explains the six DFM names BETTER than it explains the ADX names it actually covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six clear the R2>=5% usability gate. Replace with a DFM index when one is supplied.",
+   "adopted_reason": "Resolved by the binding beta rule: wacc_builder.market_index_path(\"AE\", \"DFM\") -> FADGI, an INTERIM substitution registered because no DFM General series is registered in the repo. The exchange is DFM on primary evidence (FY2025 statements Note 1, FY2025 annual report, Q1-2026 interim Note 1); the market code alone does not resolve.",
+   "alt_benchmark": {
+    "beta": 1.0861237145065141,
+    "r2": 0.4017311591050481,
+    "n": 258,
+    "se": 0.08283993450873985,
+    "ci90": [
+     0.949852022239637,
+     1.222395406773391
+    ],
+    "usable": true,
+    "gate_msg": "passes minimum usability gate",
+    "index": "DFM General Index (DFMGI)",
+    "index_file": "DFMGI.csv",
+    "window_years": 5,
+    "frequency": "weekly",
+    "window_end": "2026-07-16",
+    "weak": false,
+    "warnings": [],
+    "series": [
+     [
+      "2021-08-05",
+      0.014598799421152631,
+      0.019570698811929285
+     ],
+     [
+      "2021-08-12",
+      0.01438873745209967,
+      -0.0020372677853782183
+     ],
+     [
+      "2021-08-19",
+      -0.007168489478612516,
+      0.00835332752680099
+     ],
+     [
+      "2021-08-26",
+      0.028370697129215566,
+      0.02153349176187903
+     ],
+     [
+      "2021-09-02",
+      -0.014084739881738972,
+      0.004249549182134691
+     ],
+     [
+      "2021-09-09",
+      -0.02150620522096362,
+      -0.0016529412192801617
+     ],
+     [
+      "2021-09-16",
+      0.007220247973487097,
+      -0.0022380540345714652
+     ],
+     [
+      "2021-09-23",
+      0.0,
+      -0.021423555189660444
+     ],
+     [
+      "2021-09-30",
+      -0.02181904739463961,
+      0.0020826524750148174
+     ],
+     [
+      "2021-10-07",
+      -0.0148150857851407,
+      -0.026007485843920507
+     ],
+     [
+      "2021-10-14",
+      0.0,
+      0.006138154278772968
+     ],
+     [
+      "2021-10-21",
+      0.0,
+      0.024018169407896015
+     ],
+     [
+      "2021-10-28",
+      0.03663413317978017,
+      0.0013325291167234782
+     ],
+     [
+      "2021-11-04",
+      0.08280590368423268,
+      0.08265659756850166
+     ],
+     [
+      "2021-11-11",
+      0.0131580845775112,
+      0.010661603875337603
+     ],
+     [
+      "2021-11-18",
+      0.006514681021193672,
+      0.038767787691703484
+     ],
+     [
+      "2021-11-25",
+      0.0,
+      -0.02948588306531375
+     ],
+     [
+      "2021-12-02",
+      -0.06021885999305484,
+      -0.031191762385604976
+     ],
+     [
+      "2021-12-09",
+      0.0068728792877620504,
+      0.0486985762415868
+     ],
+     [
+      "2021-12-16",
+      0.02702867238791942,
+      0.014441472932469918
+     ],
+     [
+      "2021-12-23",
+      -0.013423020332140661,
+      -0.04010060912876751
+     ],
+     [
+      "2021-12-30",
+      -0.020478531343540676,
+      0.01620743188387791
+     ],
+     [
+      "2022-01-06",
+      -0.006920442844573795,
+      -6.884035299034901e-05
+     ],
+     [
+      "2022-01-13",
+      -0.006968669316093316,
+      0.005899906198622028
+     ],
+     [
+      "2022-01-20",
+      0.006968669316093436,
+      -0.014271074720687178
+     ],
+     [
+      "2022-01-27",
+      -0.02105340919783238,
+      0.006056000954175272
+     ],
+     [
+      "2022-02-03",
+      0.021053409197832263,
+      -0.011196912487734781
+     ],
+     [
+      "2022-02-10",
+      0.01379332213233577,
+      0.030465582749847002
+     ],
+     [
+      "2022-02-17",
+      0.09156719352549063,
+      0.024230789246139414
+     ],
+     [
+      "2022-02-24",
+      0.01242251999855711,
+      -0.016858780706490918
+     ],
+     [
+      "2022-03-03",
+      0.006153865574378066,
+      0.061486918858811246
+     ],
+     [
+      "2022-03-10",
+      0.012195273093818206,
+      -0.02902107095069906
+     ],
+     [
+      "2022-03-17",
+      0.02985296314968113,
+      0.008070983277230319
+     ],
+     [
+      "2022-03-24",
+      -0.0988458346366326,
+      -0.00894351786794712
+     ],
+     [
+      "2022-03-31",
+      0.044451762570833796,
+      0.04261238248613829
+     ],
+     [
+      "2022-04-07",
+      0.060259191518196746,
+      -0.003197985099684196
+     ],
+     [
+      "2022-04-14",
+      0.12619460256066833,
+      0.01961664634346233
+     ],
+     [
+      "2022-04-21",
+      0.07924937165414069,
+      0.02148044730466133
+     ],
+     [
+      "2022-04-28",
+      -0.004773278752657771,
+      0.015659666244727605
+     ],
+     [
+      "2022-05-05",
+      0.03756310157564852,
+      0.0035066903110931177
+     ],
+     [
+      "2022-05-12",
+      -0.08659252881596713,
+      -0.11545795597911097
+     ],
+     [
+      "2022-05-19",
+      -0.010101095986503933,
+      0.0189619218690824
+     ],
+     [
+      "2022-05-26",
+      -0.005089069507471293,
+      -0.028175849220885955
+     ],
+     [
+      "2022-06-02",
+      0.040005334613699206,
+      0.029870452684069237
+     ],
+     [
+      "2022-06-09",
+      0.03373813963184999,
+      -0.006603024145947452
+     ],
+     [
+      "2022-06-16",
+      0.004728141195946117,
+      -0.028023781324158534
+     ],
+     [
+      "2022-06-23",
+      0.009389740349839137,
+      -0.025151958048713858
+     ],
+     [
+      "2022-06-30",
+      -0.028437935320533514,
+      0.007583072136321621
+     ],
+     [
+      "2022-07-07",
+      -0.04423325497682565,
+      -0.03614326095235047
+     ],
+     [
+      "2022-07-14",
+      0.01496287267671232,
+      0.014370954075544583
+     ],
+     [
+      "2022-07-21",
+      0.019608471388376337,
+      0.03189067649090058
+     ],
+     [
+      "2022-07-28",
+      0.06119556102691971,
+      0.013765092055694693
+     ],
+     [
+      "2022-08-04",
+      0.05766564184980908,
+      0.0058805310605812315
+     ],
+     [
+      "2022-08-11",
+      -0.07609934353864717,
+      0.0193645734448152
+     ],
+     [
+      "2022-08-18",
+      0.04989697114462304,
+      0.013743148669717108
+     ],
+     [
+      "2022-08-25",
+      -0.008888947417245815,
+      0.008759899963250049
+     ],
+     [
+      "2022-09-01",
+      -0.013483350337287101,
+      -0.013970907423333062
+     ],
+     [
+      "2022-09-08",
+      -0.05582844955294184,
+      -0.016321735121987174
+     ],
+     [
+      "2022-09-15",
+      0.0,
+      0.021121872887545853
+     ],
+     [
+      "2022-09-22",
+      0.0,
+      0.0007749747647047506
+     ],
+     [
+      "2022-09-29",
+      -0.014458083175229775,
+      -0.03470426547397202
+     ],
+     [
+      "2022-10-06",
+      -0.009756174945364685,
+      0.010366454948319257
+     ],
+     [
+      "2022-10-13",
+      -0.009852296443011594,
+      -0.0004924910145315995
+     ],
+     [
+      "2022-10-20",
+      0.014742281737203431,
+      0.014531947294980307
+     ],
+     [
+      "2022-10-27",
+      0.004866189651172906,
+      -0.009326812606148916
+     ],
+     [
+      "2022-11-03",
+      -0.019608471388376313,
+      -0.01090279754003641
+     ],
+     [
+      "2022-11-10",
+      0.05770831762064677,
+      0.01598937945630985
+     ],
+     [
+      "2022-11-17",
+      -0.018868484304382805,
+      -0.015065009642591092
+     ],
+     [
+      "2022-11-24",
+      -0.02409755157906064,
+      -0.0024658851006661192
+     ],
+     [
+      "2022-12-01",
+      0.009708814126960903,
+      -0.0004120740768972722
+     ],
+     [
+      "2022-12-08",
+      0.03791923486229368,
+      -0.002868162968861067
+     ],
+     [
+      "2022-12-15",
+      0.04100802372737725,
+      0.00023832257223643425
+     ],
+     [
+      "2022-12-22",
+      -0.04567003683318844,
+      0.0023710793790323497
+     ],
+     [
+      "2022-12-29",
+      0.013921338518608014,
+      0.0017107923876661312
+     ],
+     [
+      "2023-01-05",
+      0.02278002833182012,
+      -0.0036687127986645123
+     ],
+     [
+      "2023-01-12",
+      -0.009049835519917927,
+      -0.0009622912321891019
+     ],
+     [
+      "2023-01-19",
+      0.009049835519917856,
+      0.011910402822291869
+     ],
+     [
+      "2023-01-26",
+      0.0,
+      0.001275613018512323
+     ],
+     [
+      "2023-02-02",
+      0.03540192705091579,
+      0.0023383681355888686
+     ],
+     [
+      "2023-02-09",
+      0.0,
+      0.023624822316029803
+     ],
+     [
+      "2023-02-16",
+      0.008658062743114531,
+      0.00690935450015102
+     ],
+     [
+      "2023-02-23",
+      -0.02178735418490718,
+      -0.016775903275301318
+     ],
+     [
+      "2023-03-02",
+      -0.013303965626362702,
+      0.007015461556873699
+     ],
+     [
+      "2023-03-09",
+      0.017699577099400638,
+      -0.007704470715701585
+     ],
+     [
+      "2023-03-16",
+      -0.035718082602079114,
+      -0.030587540460695957
+     ],
+     [
+      "2023-03-23",
+      -0.051293294387550696,
+      0.01710217287904849
+     ],
+     [
+      "2023-03-30",
+      0.014252022707201632,
+      0.01817881065608918
+     ],
+     [
+      "2023-04-06",
+      0.0,
+      -0.0032046061435626358
+     ],
+     [
+      "2023-04-13",
+      0.027908788117076658,
+      0.021107586843416928
+     ],
+     [
+      "2023-04-20",
+      -0.013857034661426354,
+      -0.004725205818763822
+     ],
+     [
+      "2023-04-27",
+      0.013857034661426279,
+      0.01285564534604106
+     ],
+     [
+      "2023-05-04",
+      0.04922694076515067,
+      0.02102650731309296
+     ],
+     [
+      "2023-05-11",
+      0.017316450011460958,
+      -0.006087078555243517
+     ],
+     [
+      "2023-05-18",
+      -0.012959144642505341,
+      -0.0037421106421041406
+     ],
+     [
+      "2023-05-25",
+      0.004338401598598362,
+      -0.008385503240203854
+     ],
+     [
+      "2023-06-01",
+      -0.02188271124950782,
+      0.015844606813668713
+     ],
+     [
+      "2023-06-08",
+      0.05592855265922498,
+      0.02902917136690988
+     ],
+     [
+      "2023-06-15",
+      0.024794658613216274,
+      0.012565697836773937
+     ],
+     [
+      "2023-06-22",
+      -0.008196767204178515,
+      0.011218853729560522
+     ],
+     [
+      "2023-06-29",
+      -0.004123717183862152,
+      0.004122420410351704
+     ],
+     [
+      "2023-07-06",
+      0.04839654086185024,
+      0.04396400246664862
+     ],
+     [
+      "2023-07-13",
+      0.04239555896768555,
+      0.010611224553449122
+     ],
+     [
+      "2023-07-20",
+      0.007518832414027319,
+      -0.004587640459872799
+     ],
+     [
+      "2023-07-27",
+      -0.0037523496185503527,
+      0.01069923874742803
+     ],
+     [
+      "2023-08-03",
+      0.011215070820140003,
+      0.00543042414048302
+     ],
+     [
+      "2023-08-10",
+      0.029306126585499487,
+      -0.0005753065270782396
+     ],
+     [
+      "2023-08-17",
+      0.01077209698191104,
+      5.927433398381081e-05
+     ],
+     [
+      "2023-08-24",
+      0.04538300584781775,
+      0.014125186725766325
+     ],
+     [
+      "2023-08-31",
+      0.00680274732275262,
+      -0.005817178742571122
+     ],
+     [
+      "2023-09-07",
+      -0.03800111817861387,
+      -0.00587585302084467
+     ],
+     [
+      "2023-09-14",
+      -0.04685541728150508,
+      -0.006165879943868428
+     ],
+     [
+      "2023-09-21",
+      0.0326707822895487,
+      0.0354762490502361
+     ],
+     [
+      "2023-09-28",
+      0.0035650661644961446,
+      -0.0038594074700190224
+     ],
+     [
+      "2023-10-05",
+      -0.003565066164496257,
+      -0.004974427882383208
+     ],
+     [
+      "2023-10-12",
+      -0.06644509940815263,
+      -0.02090777271015043
+     ],
+     [
+      "2023-10-19",
+      -0.03891541624967361,
+      -0.06332331448503009
+     ],
+     [
+      "2023-10-26",
+      0.027398974188114347,
+      -0.006906219439742103
+     ],
+     [
+      "2023-11-02",
+      0.01532597047822677,
+      0.034148125399345135
+     ],
+     [
+      "2023-11-09",
+      0.015094626222484888,
+      0.004077615390210048
+     ],
+     [
+      "2023-11-16",
+      0.003738322110607158,
+      0.013927565908951878
+     ],
+     [
+      "2023-11-23",
+      0.014815085785140682,
+      0.00011794953530256052
+     ],
+     [
+      "2023-11-30",
+      -0.011090686694158284,
+      0.0018477319151936353
+     ],
+     [
+      "2023-12-07",
+      -0.022557347424074628,
+      -0.009083400190650348
+     ],
+     [
+      "2023-12-14",
+      0.007575793808457723,
+      0.006502650040186355
+     ],
+     [
+      "2023-12-21",
+      0.011257154524634468,
+      0.005821692859850769
+     ],
+     [
+      "2023-12-28",
+      0.03303052567648175,
+      0.010977347548159634
+     ],
+     [
+      "2024-01-04",
+      0.024956731973867458,
+      0.009296013300823731
+     ],
+     [
+      "2024-01-11",
+      0.02434902901028655,
+      0.007465913564932414
+     ],
+     [
+      "2024-01-18",
+      -0.024349029010286613,
+      -0.015959686473989994
+     ],
+     [
+      "2024-01-25",
+      0.04138521616285428,
+      0.02936392719586555
+     ],
+     [
+      "2024-02-01",
+      0.0067340321813441194,
+      0.011151070408235335
+     ],
+     [
+      "2024-02-08",
+      -0.020339684237122672,
+      -0.014619358284227316
+     ],
+     [
+      "2024-02-15",
+      0.0034188067487856823,
+      0.019016892353089742
+     ],
+     [
+      "2024-02-22",
+      -0.017212128881121523,
+      -0.002300382679388411
+     ],
+     [
+      "2024-02-29",
+      -0.006968669316093316,
+      0.018637266168778747
+     ],
+     [
+      "2024-03-07",
+      0.024180798197214828,
+      -0.01680172924330145
+     ],
+     [
+      "2024-03-14",
+      0.00680274732275262,
+      0.012515232566441535
+     ],
+     [
+      "2024-03-21",
+      0.010118130165584466,
+      -0.00297154146959764
+     ],
+     [
+      "2024-03-28",
+      -0.0730759803180659,
+      -0.010497655315250452
+     ],
+     [
+      "2024-04-04",
+      0.01433716314640725,
+      0.0032383593110630053
+     ],
+     [
+      "2024-04-18",
+      -0.04719569133627449,
+      -0.009107272546030764
+     ],
+     [
+      "2024-04-25",
+      -0.011215070820139957,
+      -0.009143013594119431
+     ],
+     [
+      "2024-05-02",
+      -0.007547205635382966,
+      -0.006991024407536438
+     ],
+     [
+      "2024-05-09",
+      0.011299555253933247,
+      0.009355207787898005
+     ],
+     [
+      "2024-05-16",
+      -0.0819171224678867,
+      -0.022736391087934564
+     ],
+     [
+      "2024-05-23",
+      -0.016393809775676383,
+      -0.015325686982543277
+     ],
+     [
+      "2024-05-30",
+      -0.033616610798984974,
+      -0.013166495171379973
+     ],
+     [
+      "2024-06-06",
+      0.00851068966790861,
+      0.0019472292108559802
+     ],
+     [
+      "2024-06-13",
+      -0.03010980147137034,
+      0.0003417574912078484
+     ],
+     [
+      "2024-06-20",
+      -0.004376374599799,
+      0.0016368053822923053
+     ],
+     [
+      "2024-06-27",
+      0.008733679968754631,
+      0.005585593572416839
+     ],
+     [
+      "2024-07-04",
+      0.03419136474827934,
+      0.014083588613761234
+     ],
+     [
+      "2024-07-11",
+      0.04115807249350755,
+      0.006169105481218259
+     ],
+     [
+      "2024-07-18",
+      0.04339931553455543,
+      0.018932425077019584
+     ],
+     [
+      "2024-07-25",
+      0.0038535693159899723,
+      0.016291895078072896
+     ],
+     [
+      "2024-08-01",
+      0.007662872745569097,
+      0.009918438018696967
+     ],
+     [
+      "2024-08-08",
+      -0.05491575759611477,
+      -0.019809917229734922
+     ],
+     [
+      "2024-08-15",
+      0.03564733873023749,
+      0.005404891809335444
+     ],
+     [
+      "2024-08-22",
+      0.03065374109100252,
+      0.021202141345434224
+     ],
+     [
+      "2024-08-29",
+      0.02607224030977532,
+      0.005826467831557603
+     ],
+     [
+      "2024-09-05",
+      -0.018553407895747834,
+      0.008450074977837844
+     ],
+     [
+      "2024-09-12",
+      -0.007518832414027339,
+      -0.0014125605748985433
+     ],
+     [
+      "2024-09-19",
+      0.037041271680349076,
+      0.012895121886843325
+     ],
+     [
+      "2024-09-26",
+      0.007246408520767253,
+      0.023489786599432606
+     ],
+     [
+      "2024-10-03",
+      -0.044287680201116356,
+      -0.02876885407178307
+     ],
+     [
+      "2024-10-10",
+      0.018692133012152546,
+      0.008900214934009608
+     ],
+     [
+      "2024-10-17",
+      0.014706147389695487,
+      0.004745839444726955
+     ],
+     [
+      "2024-10-24",
+      0.0036429912785010087,
+      0.0011947097973975783
+     ],
+     [
+      "2024-10-31",
+      0.046189382469374506,
+      0.02806353100221819
+     ],
+     [
+      "2024-11-07",
+      0.006920442844573757,
+      0.011503913458235877
+     ],
+     [
+      "2024-11-14",
+      0.0,
+      0.01814972901485936
+     ],
+     [
+      "2024-11-21",
+      0.0034423441909729197,
+      7.400508101120863e-05
+     ],
+     [
+      "2024-11-28",
+      0.006849341845574768,
+      0.01963852348319242
+     ],
+     [
+      "2024-12-05",
+      0.026937655731808386,
+      -0.0006242385167063575
+     ],
+     [
+      "2024-12-12",
+      0.016474837203505042,
+      -0.001818941155450792
+     ],
+     [
+      "2024-12-19",
+      0.0032626456348163694,
+      0.047673094058255455
+     ],
+     [
+      "2024-12-26",
+      0.019355442952956072,
+      0.012881963199887683
+     ],
+     [
+      "2025-01-02",
+      -0.009630893060961189,
+      0.008056302955913522
+     ],
+     [
+      "2025-01-09",
+      0.006430890330290332,
+      0.014641967424461588
+     ],
+     [
+      "2025-01-16",
+      0.006389798098770988,
+      0.001240304903215972
+     ],
+     [
+      "2025-01-23",
+      -0.003189795368100261,
+      0.0024283732779360853
+     ],
+     [
+      "2025-01-30",
+      -0.009630893060961189,
+      -0.017992455406679528
+     ],
+     [
+      "2025-02-06",
+      0.012820688429061469,
+      0.017281531642843555
+     ],
+     [
+      "2025-02-13",
+      0.015798116876591092,
+      0.01408008660390375
+     ],
+     [
+      "2025-02-20",
+      0.06080900459560579,
+      0.011404490763048445
+     ],
+     [
+      "2025-02-27",
+      0.04329680575332426,
+      -0.0035582289613887656
+     ],
+     [
+      "2025-03-06",
+      -0.00566573753567742,
+      -0.01642749345135643
+     ],
+     [
+      "2025-03-13",
+      -0.011428695823622744,
+      -0.01700655890307309
+     ],
+     [
+      "2025-03-20",
+      -0.0057637047167501294,
+      -0.010364394292892154
+     ],
+     [
+      "2025-03-27",
+      -0.09386613623209124,
+      -0.00213231136051991
+     ],
+     [
+      "2025-04-03",
+      -0.0031796529173795727,
+      -0.018369283301966143
+     ],
+     [
+      "2025-04-10",
+      -0.022545238321056323,
+      -0.01063071813523476
+     ],
+     [
+      "2025-04-17",
+      0.041473248206575095,
+      0.017428414983944263
+     ],
+     [
+      "2025-04-24",
+      0.036813973122716184,
+      0.026187622729301772
+     ],
+     [
+      "2025-05-01",
+      0.03840944811487126,
+      0.014707074580401632
+     ],
+     [
+      "2025-05-08",
+      0.020086758566737292,
+      0.00779460744712641
+     ],
+     [
+      "2025-05-15",
+      -0.005698021114637778,
+      0.01581501164365338
+     ],
+     [
+      "2025-05-22",
+      0.01980262729617973,
+      0.00995075265799444
+     ],
+     [
+      "2025-05-29",
+      -0.0028050509276086096,
+      0.007290752979873047
+     ],
+     [
+      "2025-06-05",
+      0.00839165763624838,
+      0.007846918241734975
+     ],
+     [
+      "2025-06-12",
+      -0.05143991120476199,
+      -0.012511262413594564
+     ],
+     [
+      "2025-06-19",
+      -0.08887928947403448,
+      -0.03672364137571331
+     ],
+     [
+      "2025-06-26",
+      0.10054122922187746,
+      0.07561470625227387
+     ],
+     [
+      "2025-07-03",
+      -0.008733679968754666,
+      0.011247386132938854
+     ],
+     [
+      "2025-07-10",
+      0.002919710103334846,
+      0.014109654637509246
+     ],
+     [
+      "2025-07-17",
+      0.07306619687458717,
+      0.04579878333926813
+     ],
+     [
+      "2025-07-24",
+      0.01879249934936732,
+      0.0013704968762808347
+     ],
+     [
+      "2025-07-31",
+      -0.010695289116747806,
+      0.007773083835639073
+     ],
+     [
+      "2025-08-07",
+      0.016000341346441117,
+      -0.0042335577879858595
+     ],
+     [
+      "2025-08-14",
+      -0.0026490081715768417,
+      -0.006182319015851327
+     ],
+     [
+      "2025-08-21",
+      -0.010666767804195192,
+      0.005298203351174133
+     ],
+     [
+      "2025-08-28",
+      0.008010723746078979,
+      -0.0071324350196103874
+     ],
+     [
+      "2025-09-04",
+      -0.005333345975362505,
+      -0.015729155586974856
+     ],
+     [
+      "2025-09-11",
+      -0.002677377770716403,
+      -0.005432807853112721
+     ],
+     [
+      "2025-09-18",
+      0.013315775975772156,
+      0.003674771320469996
+     ],
+     [
+      "2025-09-25",
+      -0.013315775975772062,
+      -0.027492458716167765
+     ],
+     [
+      "2025-10-02",
+      0.03425894982101534,
+      0.01703265575655193
+     ],
+     [
+      "2025-10-09",
+      0.03562717764315125,
+      0.007025066218705959
+     ],
+     [
+      "2025-10-16",
+      0.0,
+      0.011859198372152055
+     ],
+     [
+      "2025-10-23",
+      -0.012578782206860073,
+      -0.0022016931705091153
+     ],
+     [
+      "2025-10-30",
+      0.0,
+      0.014687134680378173
+     ],
+     [
+      "2025-11-06",
+      0.01007565198874164,
+      -0.013731808164368902
+     ],
+     [
+      "2025-11-13",
+      -0.020253856904497686,
+      -0.0050945259242827345
+     ],
+     [
+      "2025-11-20",
+      0.03022900196131729,
+      -0.013476794697083828
+     ],
+     [
+      "2025-11-27",
+      0.0718011660558069,
+      -0.01632619708496678
+     ],
+     [
+      "2025-12-04",
+      0.018307147444356107,
+      0.019208204117382027
+     ],
+     [
+      "2025-12-11",
+      0.0784716154414951,
+      0.02860834538920788
+     ],
+     [
+      "2025-12-18",
+      0.0020942416031149067,
+      -0.003188653600272637
+     ],
+     [
+      "2025-12-25",
+      0.0,
+      0.013620830819332883
+     ],
+     [
+      "2026-01-01",
+      -0.025425098365810167,
+      -0.019153619821944183
+     ],
+     [
+      "2026-01-08",
+      0.11156440762772109,
+      0.03348258475793192
+     ],
+     [
+      "2026-01-15",
+      -0.013526776298201851,
+      0.0014302919034748026
+     ],
+     [
+      "2026-01-22",
+      0.01735819860975795,
+      0.03656878250502652
+     ],
+     [
+      "2026-01-29",
+      -0.038991293965183686,
+      -0.002094515956348649
+     ],
+     [
+      "2026-02-05",
+      0.033238641475733716,
+      0.029413885206293407
+     ],
+     [
+      "2026-02-12",
+      0.011472401162236781,
+      0.005906067059940013
+     ],
+     [
+      "2026-02-19",
+      0.05186347400957396,
+      -0.016050137784593747
+     ],
+     [
+      "2026-02-26",
+      -0.03489793985127731,
+      0.0026056834934233488
+     ],
+     [
+      "2026-03-05",
+      -0.08990425742113456,
+      -0.08014246213047664
+     ],
+     [
+      "2026-03-12",
+      -0.11701645838618796,
+      -0.10266736995172918
+     ],
+     [
+      "2026-03-19",
+      -0.016222835506887145,
+      0.005811196370100923
+     ],
+     [
+      "2026-03-26",
+      -0.05770831762064673,
+      -0.005852878403247648
+     ],
+     [
+      "2026-04-02",
+      0.0,
+      -0.0012948201755357042
+     ],
+     [
+      "2026-04-09",
+      0.12981161152199053,
+      0.03266858526663214
+     ],
+     [
+      "2026-04-16",
+      0.13976194237515882,
+      0.040579522149657994
+     ],
+     [
+      "2026-04-23",
+      -0.0190845486924107,
+      -0.01966589684615285
+     ],
+     [
+      "2026-04-30",
+      -0.04734612059719843,
+      -0.008288411356645476
+     ],
+     [
+      "2026-05-07",
+      0.04541747969079262,
+      0.028352238297128254
+     ],
+     [
+      "2026-05-14",
+      -0.04541747969079266,
+      -0.03368550080401552
+     ],
+     [
+      "2026-05-21",
+      -0.03494703007723433,
+      -0.013108215282337146
+     ],
+     [
+      "2026-05-28",
+      0.0207046733616912,
+      0.01695408606464415
+     ],
+     [
+      "2026-06-04",
+      -0.03545731183672944,
+      -0.006800340603386367
+     ],
+     [
+      "2026-06-11",
+      0.027226812700213952,
+      0.002692901069729804
+     ],
+     [
+      "2026-06-18",
+      0.1963412769349549,
+      0.08930576222761459
+     ],
+     [
+      "2026-06-25",
+      -0.05048939992239181,
+      -0.03984877440201461
+     ],
+     [
+      "2026-07-02",
+      -0.03267078228954871,
+      -0.005659522496070876
+     ],
+     [
+      "2026-07-09",
+      0.005519793223597902,
+      4.840808349161161e-05
+     ],
+     [
+      "2026-07-16",
+      -0.04695698308777098,
+      -0.01597603049546123
+     ]
+    ],
+    "status": "held in the repo, NOT the registered regressor. Registering it is an amendment to the beta rule, which the interim note anticipates; until that amendment lands this is a published cross-check, not the basis.",
+    "delta_vs_adopted": -0.2744031708695456,
+    "inside_adopted_ci90": false
+   }
+  },
+  "beta_alt": 1.086,
+  "ke_alt": 0.0972882,
+  "wacc_alt": 0.0921268630250337
+ },
+ "dcf": {
+  "pv_explicit": 800.9916661841276,
+  "tv": 23301.311215545396,
+  "pv_tv": 16097.374395967794,
+  "ev": 16898.366062151923,
+  "tv_share": 0.9525994606083159,
+  "ps_beta_alt": 3.512603465076654,
+  "nd": -2417.297,
+  "non_op": 1069.2839999999999,
+  "jv_book": 363.386,
+  "jv_cap": 2849.625,
+  "jv_pe": 15.0,
+  "nci_share": 0.00015963308948355068,
+  "nci_val": 1.287,
+  "eq_attr": 20747.04606215192,
+  "ps": 4.345327726159549,
+  "ps_dec": 4.445763829290916,
+  "ps_jvcap": 4.891089896736054,
+  "ps_iata_fuel": 2.2993715169934483,
+  "roll": 1.0495525873911844,
+  "anchor_days": 219,
+  "roic_term": 0.1428448939087868,
+  "rr_term": 0.17501500624841151,
+  "g": 0.025,
+  "bear": 0.61686433528253,
+  "bull": 9.684244782121505,
+  "roll_cash": 1.0244020472003612,
+  "nci_book": 1.287,
+  "scenario_vectors": {
+   "high_fuel": {
+    "use_alt_fuel": true
+   },
+   "bear": {
+    "pax_mult": 0.94,
+    "fare_mult": 0.97,
+    "use_alt_fuel": true,
+    "wacc_shift": 0.01,
+    "g": 0.015,
+    "capex_mult": 1.15
+   },
+   "bull": {
+    "pax_mult": 1.05,
+    "fare_mult": 1.03,
+    "wacc_shift": -0.01,
+    "g": 0.035,
+    "capex_mult": 0.9,
+    "jv_val": "15x profit share"
+   }
+  }
+ },
+ "lenses": {
+  "dcf": {
+   "name": "Discounted cash flow (primary)",
+   "bear": 0.61686433528253,
+   "base": 4.345327726159549,
+   "bull": 9.684244782121505,
+   "w": 0.45
+  },
+  "relative": {
+   "name": "Relative multiples",
+   "bear": 3.19366455311489,
+   "base": 3.7896409646980347,
+   "bull": 4.385617376281179,
+   "w": 0.2
+  },
+  "normalized": {
+   "name": "Normalised earnings power",
+   "bear": 2.5852157596081526,
+   "base": 3.4268500851297894,
+   "bull": 4.268484410651427,
+   "w": 0.2
+  },
+  "book": {
+   "name": "Book value and sustainable return",
+   "bear": 3.8387447070198677,
+   "base": 5.1719707439577345,
+   "bull": 5.878031485113572,
+   "w": 0.15
+  },
+  "central": {
+   "name": "Weighted central",
+   "bear": 2.009176719474727,
+   "base": 4.174491298331022,
+   "bull": 6.970435232108235,
+   "w": 1.0
+  }
+ },
+ "central": 4.174491298331022,
+ "central_jvcap": 4.420084275090449,
+ "span": [
+  2.009176719474727,
+  6.970435232108235
+ ],
+ "span_widest": [
+  0.61686433528253,
+  9.684244782121505
+ ],
+ "spot": 5.24,
+ "fuel_defer_q": 0.019071487949193208,
+ "experts": {
+  "e1": {
+   "method_short": "earnings power",
+   "base": 4.097130023488777,
+   "rng": [
+    3.0824077103759824,
+    5.111852336601572
+   ],
+   "eps": 0.3222713898293985,
+   "margin": 0.2344995653223234,
+   "rev": 9257.225484706,
+   "ebit": 1519.1448982382917,
+   "interest": 19.328262087804518,
+   "pe": 13.0
+  },
+  "e2": {
+   "method_short": "owner cash earnings",
+   "base": 2.5725316772650695,
+   "rng": [
+    1.7821959654929882,
+    3.472458286031252
+   ],
+   "fcff": 549.7564628236031,
+   "fcfe": 604.3580575572056,
+   "ke": 0.07857,
+   "int_at": 50.79825531516738
+  },
+  "e3": {
+   "method_short": "cash returns vs cost of capital",
+   "base": 4.287753837561748,
+   "rng": [
+    3.1251957370788315,
+    4.833516008138254
+   ],
+   "ic0": 4846.526999999999,
+   "pv_ep": 2779.3095132443214,
+   "pv_ep_term": 9016.53469057735,
+   "ev": 16642.37120382167,
+   "ep": [
+    593.8536434350664,
+    754.307354619558,
+    717.8260900069441,
+    714.3705010561451,
+    691.7704139418349
+   ],
+   "spread": [
+    0.07209120802022487,
+    0.08930114134624188,
+    0.07831561163888784,
+    0.07174644341959333,
+    0.06439787210613349
+   ]
+  }
+ },
+ "panel_centre": 4.097130023488777,
+ "sens_wg": {
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "wacc_grid": [
+   0.054963,
+   0.064963,
+   0.074963,
+   0.084963,
+   0.094963
+  ],
+  "table": [
+   [
+    5.905341140512895,
+    6.441330940908468,
+    7.153548771890394,
+    8.147888174250852,
+    9.619869598220205
+   ],
+   [
+    4.740158047465474,
+    5.032830501747734,
+    5.396807511432933,
+    5.862680511210436,
+    6.481460409580206
+   ],
+   [
+    3.965616670730551,
+    4.138882120605236,
+    4.345327726159549,
+    4.596022640590439,
+    4.90757571791659
+   ],
+   [
+    3.4141331465769764,
+    3.5217878540802094,
+    3.6461844245956865,
+    3.7918918944784785,
+    3.9653082680619853
+   ],
+   [
+    3.0019579044771794,
+    3.070688107460237,
+    3.1482341739983557,
+    3.2366316928624665,
+    3.3385952010985793
+   ]
+  ]
+ },
+ "rel": {
+  "ebitda_mid": 2056.19877478284,
+  "fee_value": 3911.7857230350464,
+  "fees_mid": 229.93476480000004,
+  "ev_ebitda_trailing_ex": 11.650876239440239,
+  "ev_rel": 14427.576660204679,
+  "ev_rel_fwd": 17277.077759123506,
+  "pv_interim": -416.3460091369982,
+  "ev_ebitda_trailing": 10.55116374831818,
+  "pe_trailing": 15.016201046991819,
+  "just_mult": 6.5
+ },
+ "norm": {
+  "margin": 0.2344995653223234,
+  "rev": 7868.80908,
+  "ebitda": 2058.1348688643516,
+  "ebit": 1338.1348688643516,
+  "interest": -129.636027,
+  "np": 1247.406102402352,
+  "eps": 0.2672993983762299,
+  "pe": 13.0,
+  "year": "FY26E",
+  "margin_year": "FY28E",
+  "assoc": 193.7745
+ },
+ "book": {
+  "bvps": 1.801895129320505,
+  "pb_just": 2.893410490946425,
+  "roe_sust": 0.18,
+  "roe_trailing": 0.19908939501690603,
+  "ke_blend": 0.07857
+ },
+ "sens": {
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "wt_grid": [
+   0.054963,
+   0.064963,
+   0.074963,
+   0.084963,
+   0.094963
+  ],
+  "we_grid": [
+   0.06014583115540943,
+   0.07014583115540944,
+   0.08014583115540944,
+   0.09014583115540943,
+   0.10014583115540944
+  ],
+  "grid_wacc_g": [
+   [
+    5.905341140512895,
+    6.441330940908468,
+    7.153548771890394,
+    8.147888174250852,
+    9.619869598220205
+   ],
+   [
+    4.740158047465474,
+    5.032830501747734,
+    5.396807511432933,
+    5.862680511210436,
+    6.481460409580206
+   ],
+   [
+    3.965616670730551,
+    4.138882120605236,
+    4.345327726159549,
+    4.596022640590439,
+    4.90757571791659
+   ],
+   [
+    3.4141331465769764,
+    3.5217878540802094,
+    3.6461844245956865,
+    3.7918918944784785,
+    3.9653082680619853
+   ],
+   [
+    3.0019579044771794,
+    3.070688107460237,
+    3.1482341739983557,
+    3.2366316928624665,
+    3.3385952010985793
+   ]
+  ],
+  "grid_exp_term": [
+   [
+    7.291199444745393,
+    5.497924252463902,
+    4.424589896535458,
+    3.7109250271052803,
+    3.202640094455821
+   ],
+   [
+    7.221852734350766,
+    5.446983907888723,
+    4.384660179713804,
+    3.678311435635568,
+    3.1752331996308762
+   ],
+   [
+    7.153548771890394,
+    5.396807511432933,
+    4.345327726159549,
+    3.6461844245956865,
+    3.1482341739983557
+   ],
+   [
+    7.086266699473785,
+    5.347379819429001,
+    4.306580646974706,
+    3.6145343313405682,
+    3.1216349369685403
+   ],
+   [
+    7.019986173584717,
+    5.298685963285037,
+    4.268407345143883,
+    3.5833517299349658,
+    3.095427605481774
+   ]
+  ],
+  "beta_grid": [
+   0.6,
+   0.7,
+   0.812,
+   0.95,
+   1.086
+  ],
+  "grid_beta": [
+   5.3216843794589375,
+   4.811843514618002,
+   4.345327726159549,
+   3.8816574834841813,
+   3.512603465076654
+  ],
+  "fuel_grid": [
+   0.85,
+   0.925,
+   1.0,
+   1.075,
+   1.15
+  ],
+  "grid_fuel": [
+   5.896497102667804,
+   5.120912414413675,
+   4.345327726159549,
+   3.5697430379054267,
+   2.794158349651298
+  ],
+  "paxg_grid": [
+   0.9,
+   0.95,
+   1.0,
+   1.05,
+   1.1
+  ],
+  "grid_pax": [
+   3.5394642644285486,
+   3.9423959952940493,
+   4.345327726159549,
+   4.7482594570250445,
+   5.151191187890542
+  ],
+  "fare_grid": [
+   0.94,
+   0.97,
+   1.0,
+   1.03,
+   1.06
+  ],
+  "grid_fare": [
+   2.5331141571719593,
+   3.4392209416657535,
+   4.345327726159549,
+   5.251434510653346,
+   6.15754129514714
+  ],
+  "capex_grid": [
+   0.8,
+   0.9,
+   1.0,
+   1.15,
+   1.3
+  ],
+  "grid_capex": [
+   4.929586331256607,
+   4.637457028708077,
+   4.345327726159549,
+   3.9071337723367554,
+   3.468939818513962
+  ],
+  "jv_grid": [
+   363.386,
+   1519.8,
+   2279.7,
+   2849.625,
+   3799.5
+  ],
+  "grid_jv": [
+   4.345327726159549,
+   4.599175813461317,
+   4.765983861046881,
+   4.891089896736054,
+   5.09959995621801
+  ],
+  "nwc_grid": [
+   -0.58,
+   -0.61,
+   -0.64,
+   -0.67,
+   -0.7
+  ],
+  "grid_nwc": [
+   4.164118914218613,
+   4.254723320189081,
+   4.345327726159549,
+   4.435932132130015,
+   4.526536538100481
+  ]
+ },
+ "step0": {
+  "windows_scored": 18,
+  "windows_prebreak_dropped": 40,
+  "first_origin": "2022-01-26",
+  "last_origin": "2026-04-28",
+  "nu": 8.0,
+  "width_cal": 0.979,
+  "skill_norm": 0.002750585420885021,
+  "skill_raw": -0.0042727848178132355,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.02172894896238261,
+    0.01357211396729198,
+    "PARITY"
+   ],
+   "3": [
+    -0.022401113531015593,
+    0.014260338226518383,
+    "PARITY"
+   ],
+   "4": [
+    -0.025991154118093107,
+    0.015313461850859356,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5555555555555556,
+  "cov80": 0.8333333333333334,
+  "cov90": 0.8888888888888888,
+  "pit_mean": 0.6197055555555555,
+  "pit_hist": [
+   0,
+   0,
+   1,
+   4,
+   2,
+   0,
+   3,
+   5,
+   0,
+   3
+  ],
+  "w90_ratio": 1.12710529639197,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": 0.0068,
+   "ci90": [
+    -0.0,
+    0.014
+   ],
+   "fit_date": "2026-08-09",
+   "panel_names": 19,
+   "windows": 279
+  },
+  "registry_per_name": {
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "skill": 0.0013,
+   "skill_raw_basis": -0.0067,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.026,
+    0.013
+   ]
+  },
+  "dq_log": [],
+  "clean_rows": 3908,
+  "density_rows_per_yr": 250.5963834269663,
+  "span_years": 15.594798083504449
+ },
+ "strike": {
+  "anchor_date": "2026-08-07",
+  "spot": 5.24,
+  "nu": 8.0,
+  "width_cal": 0.979,
+  "width_overlay_mult": 1.0,
+  "rf_live": 0.0365,
+  "q_annual": 0.05725190839694656,
+  "horizons": {
+   "1M": {
+    "h": 20,
+    "target_date": "2026-09-07",
+    "grade_date": "2026-09-07",
+    "anchor_vol_ann": 0.35996711864220543,
+    "sigma_h": 0.0992796531010951,
+    "drift_log_h": -0.0016680271015172467,
+    "pct": {
+     "p5": 4.465204303977625,
+     "p25": 4.925296224526616,
+     "p50": 5.2310359511906075,
+     "p75": 5.556263413369948,
+     "p95": 6.135794207271782
+    },
+    "p_above": 0.49236,
+    "p_up10": 0.14406,
+    "p_dn10": 0.1286,
+    "touch_up10": 0.24206,
+    "touch_dn10": 0.21184
+   },
+   "3M": {
+    "h": 63,
+    "target_date": "2026-11-07",
+    "grade_date": "2026-11-09",
+    "anchor_vol_ann": 0.3520346372361252,
+    "sigma_h": 0.1723209549270833,
+    "drift_log_h": -0.00500408130455174,
+    "pct": {
+     "p5": 3.9614958325741565,
+     "p25": 4.705565286510378,
+     "p50": 5.21964253805058,
+     "p75": 5.792213748856373,
+     "p95": 6.889681665852134
+    },
+    "p_above": 0.48994,
+    "p_up10": 0.25934,
+    "p_dn10": 0.25472,
+    "touch_up10": 0.48584,
+    "touch_dn10": 0.46226
+   }
+  }
+ },
+ "backtest_5y": {
+  "full": {
+   "label": "FULL cleaned history",
+   "windows": 58,
+   "first_origin": "2012-01-15",
+   "last_origin": "2026-04-28",
+   "span_years": 14.28,
+   "skill_norm": 0.0065966220981074075,
+   "skill_raw": 0.002189641700719558,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0054,
+     0.0167,
+     "PARITY"
+    ],
+    "3": [
+     -0.0052,
+     0.0164,
+     "PARITY"
+    ],
+    "4": [
+     -0.0054,
+     0.0158,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5517241379310345,
+   "cov80": 0.7931034482758621,
+   "cov90": 0.8620689655172413,
+   "pit_mean": 0.5695594827586207,
+   "pit_hist": [
+    4,
+    2,
+    6,
+    6,
+    6,
+    2,
+    10,
+    9,
+    5,
+    8
+   ],
+   "chi2": 11.31,
+   "chi2_p": 0.255,
+   "ks_stat": 0.153,
+   "ks_p": 0.118,
+   "width_vs_benchmark": 1.1213198006246807
+  },
+  "five_year": {
+   "label": "LAST FIVE YEARS of origins",
+   "windows": 19,
+   "first_origin": "2021-10-26",
+   "last_origin": "2026-04-28",
+   "span_years": 4.5,
+   "skill_norm": 0.0008687120555147532,
+   "skill_raw": -0.005181835941311608,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0186,
+     0.0156,
+     "PARITY"
+    ],
+    "3": [
+     -0.0189,
+     0.015,
+     "PARITY"
+    ],
+    "4": [
+     -0.0234,
+     0.0152,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5789473684210527,
+   "cov80": 0.8421052631578947,
+   "cov90": 0.8947368421052632,
+   "pit_mean": 0.6194078947368421,
+   "pit_hist": [
+    0,
+    0,
+    1,
+    4,
+    2,
+    0,
+    4,
+    5,
+    0,
+    3
+   ],
+   "chi2": 18.37,
+   "chi2_p": 0.031,
+   "ks_stat": 0.28,
+   "ks_p": 0.083,
+   "width_vs_benchmark": 1.1297208664090361
+  },
+  "production": {
+   "label": "production window set (post-break origins)",
+   "windows": 18,
+   "first_origin": "2022-01-26",
+   "last_origin": "2026-04-28",
+   "span_years": 4.25,
+   "skill_norm": 0.002750585420885021,
+   "skill_raw": -0.0042727848178132355,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0217,
+     0.0136,
+     "PARITY"
+    ],
+    "3": [
+     -0.0224,
+     0.0143,
+     "PARITY"
+    ],
+    "4": [
+     -0.026,
+     0.0153,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5555555555555556,
+   "cov80": 0.8333333333333334,
+   "cov90": 0.8888888888888888,
+   "pit_mean": 0.6197055555555555,
+   "pit_hist": [
+    0,
+    0,
+    1,
+    4,
+    2,
+    0,
+    3,
+    5,
+    0,
+    3
+   ],
+   "chi2": 17.56,
+   "chi2_p": 0.041,
+   "ks_stat": 0.277,
+   "ks_p": 0.103,
+   "width_vs_benchmark": 1.12710529639197
+  },
+  "fit": {
+   "nu": 8.0,
+   "width_cal": 0.979,
+   "market_verdict": "PARITY",
+   "market_skill": 0.0068,
+   "market_ci90": [
+    -0.0,
+    0.014
+   ],
+   "fit_date": "2026-08-09",
+   "panel_names": 19
+  }
+ },
+ "assert_log": [
+  "==============================================================================",
+  "AIRARABIA \u2014 ASSERT / derivation log (built on the audited FY22-25 + Q1-2026 filings)",
+  "==============================================================================",
+  "[Historical income statement] every FY2023-25 line is the audited/restated figure. Operating profit closes to the audited statement in all three years (FY25: 1,269.6 = revenue 7,787.6 - direct 6,088.1 - G&A 316.3 - S&M 113.6). House EBITDA (operating profit + D&A): FY23 1,886, FY24 1,833, FY25 1,891 (24.3% of revenue); including the recurring other-income line (management fees from the JV network) FY25 2,089. Effective tax: FY24 8.79%, FY25 11.60% \u2014 the forecast provides at the statutory 15% DMTT.",
+  "[Unit economics, disclosed] FY2025 on 13.06mn consolidated passengers: fare+baggage 478.7/pax (FY24 494.9), ancillary 64.8 (60.4), fuel 172.4 (171.5), staff 81.9, maintenance 61.3, landing 36.0, handling 29.4. Load factor 85.3% (record). Seat/ASK data is not disclosed: passengers x per-pax rates is the finest sourced level, and the gap is flagged rather than reconstructed.",
+  "[Working capital, audited] operating WC (inventories + current receivables less payables, deferred income, maintenance provisions and staff benefits): FY23 -3,918 (-65.3% of revenue), FY24 -4,208 (-62.2%), FY25 -5,187 (-66.6%) \u2014 deeply NEGATIVE: tickets are sold before they are flown and maintenance/end-of-service obligations accrue ahead of cash. Growth releases cash.",
+  "[Net debt] gross borrowings + lease liabilities: FY23 2,279, FY24 2,101, FY25 2,781; cash + fixed deposits 5,246 / 5,320 / 5,199 -> NET CASH of 2,417 at FY2025 (3,218 FY2024). The bridge quantity is interest-bearing debt less cash and deposits; deferred income and provisions live in working capital, never double-counted.",
+  "[Kd integrity] (i) the audited book is SECURED and cheap: leases at an average 4% finance charge (Note 25), the FY2025 aircraft loan mortgage-secured; effective finance cost / average gross debt = 2.73%. (ii) the adopted MARGINAL Kd 5.50% deliberately sits ABOVE the secured effective rate and ABOVE the AED sovereign 4.48% \u2014 a same-currency corporate cannot fund below its sovereign unsecured. (iii) deposits earn 4.41%: the marginal Kd also clears the opportunity yield on the asset side.",
+  "[Cost of equity] AED sovereign 4.48% (MoF T-Bond auction Jul-2026, Jan-2031 tranche) less the OBSERVED 4bp spread the auction itself priced over US Treasuries = rf* 4.44% \u2014 currency-consistent under the peg (UST 5-yr 4.35% on 07-Aug-2026); the rating-basis netting (4.06%) is published as the alternative. + beta 0.812 (own-stock weekly vs DFMGI, R2 0.40) x ERP 4.87% (Damodaran UAE row, Jan-2026; CDS column NA \u2014 stated, not substituted) -> Ke 8.39%.",
+  "[WACC explicit] GROSS-debt weights 10.2%/89.8% -> 8.01%. On the NET basis the company is net cash (weight -11.0%), which would push the rate to 8.80%; the gross basis is used because the bridge separately credits the cash pile at face value, and the gross basis is the conservative (lower-discount-rate-on-nothing) choice here: it is the LOWER of the two, matched by adding cash in the bridge rather than pretending the discount rate is higher.",
+  "[WACC terminal] Ke 7.86% (rf 4.00% + beta x ERP 4.75%); Kd after tax 4.25%; weights 90%/10% -> 7.50%",
+  "[Glide] forward WACC 8.01% -> 7.76% -> 7.63% -> 7.50% -> 7.50%; discount factors 0.9258, 0.8592, 0.7983, 0.7426, 0.6908. The glide fractions are the cost-of-debt path's own cumulative progress.",
+  "[Forecast, unit build] passengers 12.85mn -> 13.95mn -> 15.15mn -> 16.35mn -> 17.55mn; revenue 7,869 -> 8,451 -> 9,257 -> 10,095 -> 10,952 (growth +1.0%, +7.4%, +9.5%, +9.0%, +8.5%)",
+  "[Margins are OUTPUTS] EBITDA margin 21.1% -> 24.3% -> 23.4% -> 22.7% -> 21.9% (FY2025 actual 24.3%). The FY2026 compression is the fuel spike + flat traffic; FY2027 recovers on the EIA fuel path.",
+  "[FY2026 cross-check against the print] Q1-2026 revenue 1,800.4 grossed up on Q1-2025's seasonal share of FY2025 implies 7,880; the build produces 7,869 (-0.1%).",
+  "[Leased-fleet charge \u2014 adopted from external critique] the forecast leased aircraft (9 of the 16 consolidated additions) are no longer acquired for free: their gross right-of-use inception value (175, 350, 350, 350, 350) is charged inside FCFF as leased capex \u2014 the 'firm buys all capacity with capital' convention, with the financing mix left to the WACC. The NPV-0-financing alternative (strip leased assets from invested capital, charge nothing) is worth ~+0.09/share and is noted, not adopted.",
+  "[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the 15% DMTT) 982, 1,255, 1,291, 1,341, 1,377; capex 2,000, 1,900, 1,900, 1,950, 2,000; working-capital release -151, +373, +516, +536, +549 -> FCFF -624, 187, 457, 557, 635.",
+  "[Forecast net finance \u2014 rebuilt after critique] gross debt now ROLLS with the financing of the fleet (leases + aircraft loans - amortisation): 2,606 -> 2,586 -> 2,546 -> 2,636 -> 2,706; finance costs at the booked blended rate 84, 86, 90, 93, 99 (no hardcoded factor); finance income 213, 118, 70, 34, 4. BOTH financing legs are tax-effected in the net-debt roll; the JV/associate share sits BELOW the tax line (equity-method income arrives net of the ventures' own tax). Attributable profit 1,286, 1,511, 1,544, 1,600, 1,643; EPS 0.276, 0.324, 0.331, 0.343, 0.352; DPS floored at 30 fils throughout \u2014 the dividend ladder holds in the base case by construction, funded by net cash in the dip year.",
+  "[Invested capital] FY2025: fleet assets (PP&E + right-of-use + pre-delivery payments) 8,671 + intangibles 1,362 + working capital -5,187 = 4,847; ROIC 25.7%. Terminal ROIC (NOPAT(n+1)/IC(n)) 14.3%.",
+  "[Terminal value] reinvestment g/ROIC = 17.5%; terminal NOPAT 1,411; TV 23,301 at terminal WACC 7.50% minus g 2.5%, discounted at the year-5 factor 0.6908 -> PV 16,097. Terminal value is 95% of operating enterprise value \u2014 HIGH, because the explicit window carries the fleet build-out's capex while its revenue tail sits beyond FY2030; said plainly, not hidden.",
+  "[JV network \u2014 BOTH WAYS, never averaged] BASE: audited carrying value 363. ALTERNATIVE: capitalised share of FY2025 profit 190 x 15 = 2,850. The gap (+0.53/share) is the single most consequential contested judgement in this study: five airline JVs (Abu Dhabi, Egypt at a raised 49%, Fly Jinnah, Maroc, the pre-operational Saudi DMM) whose combined 100%-basis profits grew ~65% in FY2025 sit on the balance sheet at less than 2.0x their annual profit share.",
+  "[Bridge] operating EV 16,898 + NET CASH 2,417 + non-operating assets (FVOCI investments 458 + investment property 277 + net investment in lease 335) + JV network at carrying value 363 = 20,748; less minorities (0.02%) 1 -> equity 20,747 = AED 4.45/share at 31-Dec-2025; rolled 219/365 at Ke (x1.0496) less the AED 0.30 dividend paid in the window = AED 4.35 vs spot 5.24 (-17%) \u2014 the operating equity rolls at Ke, the cash/near-cash legs at the deposit yield, and minorities are deducted at their audited carrying value. ON THE ALTERNATIVE JV FRAMING: AED 4.89 (-7%).",
+  "[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): AED 4.35. ALTERNATIVE (IATA June-2026 high-fuel assumption held): AED 2.30 \u2014 -2.05/share. Both published; the workbook carries the base and the alternative side by side.",
+  "[DCF scenarios] bear 0.62 / base 4.35 / bull 9.68 (the bull adopts the JV-capitalised framing; the bear the IATA fuel path)",
+  "[Relative lens \u2014 basis-matched after critique] 6.5x FY2027E EBITDA EXCLUDING fees/other income (2,056) \u2014 the same basis peer multiples are computed on \u2014 plus the fee stream valued separately as an after-tax annuity (3,912), discounted and bridged -> AED 3.79/share. Trailing prints for context, BOTH bases: EV/EBITDA 11.7x ex-fees / 10.6x incl-fees; P/E 15.0x. Peer set rebuilt from primary filings: Ryanair 6.50x, Wizz 4.75x, easyJet 3.5x, IndiGo 11.1x, Pegasus 6.6x -> median 6.5x.",
+  "[Normalised lens \u2014 de-JV'd] mid-cycle EBITDA margin 23.4% (FY2028E) on FY2026E revenue 7,869 + fees/other + net finance income, EXCLUDING the JV share -> normalised EPS 0.267 x 13 plus the JV network at BOOK (AED 0.08/share) = AED 3.43/share. The base-framing central now genuinely carries the JV at carrying value in every lens.",
+  "[Book lens] justified P/B 2.89x = (18% - 2.5%) / (7.86% - 2.5%) on BVPS 1.80 -> AED 5.17/share. Trailing ROE 19.9%.",
+  "[Range \u2014 weighted after critique] the published bear/bull are now weighted the same way as the base: 2.01 - 6.97; the widest single-lens span (0.62 - 9.68, the DCF scenarios) is shown separately and labelled as such.",
+  "[Synthesis] weighted central AED 4.17; full span 0.62 - 9.68; spot 5.24 (-20% to the central). On the JV-capitalised framing the central becomes 4.42 (-16%) \u2014 both stated, never averaged.",
+  "[Beta \u2014 resolved by the exchange rule, both regressions priced] ADOPTED: own-stock 5-year weekly vs FTSE ADX General Index (FADGI), the index the binding rule resolves for a DFM-listed share = 0.812 (R2 0.135, n 260, SE 0.128) -> Ke 8.39%, WACC 8.01%, DCF AED 4.35. It applies under a REGISTERED INTERIM SUBSTITUTION, quoted in the report. CROSS-CHECK on the unregistered DFM General series held in the repo = 1.086 (R2 0.402, n 258) -> Ke 9.73%, WACC 9.21%, DCF AED 3.51 (-0.83/share, -19.2%). The cross-check has the HIGHER explanatory power (3.0x), which is why registering it is a live open item \u2014 but it is not the registered regressor today, so it is published beside the adopted figure rather than used.",
+  "[Expert panel] Expert 1 4.10 [3.08-5.11]; Expert 2 2.57 [1.78-3.47]; Expert 3 4.29 [3.13-4.83]; panel median 4.10 (-22% vs spot)",
+  "[Catalyst quantity, defined] one quarter's deferral of the FY2027 fuel relief = (fuel/pax FY26 - FY27) x FY27 passengers x (1-t) / 4 / shares = AED 0.019 per share per quarter."
+ ]
+}
