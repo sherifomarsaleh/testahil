@@ -134,7 +134,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-09" }
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
       study: "files/ADNOCLS_Valuation_Study_09-08-2026.pdf?v=0809a",

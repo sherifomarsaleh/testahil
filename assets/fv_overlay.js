@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 87,
+ "n": 88,
  "rows": [
   {
    "ticker": "HELI",
@@ -3728,6 +3728,98 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00292
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "ADNOCLS",
+   "name": "ADNOC Logistics & Services plc",
+   "code": "ADX:ADNOCLS",
+   "ccy": "AED",
+   "spot": 6.16,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.02,
+   "fv_base": 7.05,
+   "fv_full": 10.8,
+   "gap_base_pct": 14.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.073453,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -2.79,
+     "base": 1.84,
+     "full": 7.64
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0061,
+     "base": 0.0333,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0092,
+     "base": 0.0519,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9142,
+     "base": 4.0501,
+     "full": 842.5611
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00165
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.138387,
+    "mu_h": 0.003241,
+    "G": {
+     "bear": -1.48,
+     "base": 0.98,
+     "full": 4.06
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0605,
+     "base": 0.1519,
+     "full": 0.0008
+    },
+    "p_touch": {
+     "bear": 0.1058,
+     "base": 0.27,
+     "full": 0.0015
+    },
+    "required_cagr": {
+     "bear": -0.5589,
+     "base": 0.7157,
+     "full": 8.4487
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00133
    },
    "market": "AE"
   },
