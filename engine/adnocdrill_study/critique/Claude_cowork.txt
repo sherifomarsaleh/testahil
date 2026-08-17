@@ -1,0 +1,95 @@
+I'll audit both documents. Let me start by extracting their contents.I have both documents fully extracted. Now running independent recomputation and primary-source verification in parallel.You are verifying figures against PRIMARY SOURCES ONLY for a forensic audit. Primary = ADNOC Drilling Company PJSC's own published audited FY2025 consolidated financial statements / its own IR site / its own results releases / ADX official disclosures. Aggregators (stockanalysis.com, marketscreener, simplywall.st, wsj, investing.com, tradingview) are NOT primary — if you can only find a figure on an aggregator, say so explicitly and mark it "aggregator-only".
+Use WebSearch and WebFetch. Try adnocdrilling.ae investor relations, adx.ae, and the company's FY2025 results press release / annual report.
+Verify each of these claimed FY2025 (year ended 31 Dec 2025) figures for ADNOC Drilling (ticker ADNOCDRILL, reports in USD). For each, report: FOUND-MATCHES / FOUND-DIFFERS (give the real number) / NOT FOUND. Give the URL for anything you find.
+Revenue USD 4,902.9m (and FY2024 4,034.2m, FY2023 3,056.9m)
+EBITDA USD 2,198.0m (FY2024 2,014.8m, FY2023 1,482.9m)
+Net profit / profit after tax USD 1,449m (FY2024 1,304m, FY2023 1,033m)
+Segment revenue FY2025: Onshore 2,037.0m, Offshore 1,403.9m, Oilfield Services 1,462.0m
+Segment EBITDA FY2025: Onshore 994.5m, Offshore 952.5m, Oilfield Services 251.0m
+Depreciation & amortisation 512.3m; finance cost 109.5m; finance income 11.6m; income tax 139.1m
+Total assets 8,101.4m; total equity 4,099.3m; cash 236.0m; borrowings+lease liabilities 2,316.6m
+Property & equipment: cost 10,379m, accumulated depreciation 4,902m, net book value 5,477.2m; fully-depreciated assets still in use at cost 1,539m
+Capex 814.9m; dividends PAID in FY2025 1,143.6m (and FY2024 752.5m); operating cash flow 2,225.8m
+Investment in joint ventures 437.1m; share of JV results 29.0m; JVs named Enersol and Turnwell
+Unconventional / shale revenue FY2025 USD 692m, split 158m Onshore + 534m Oilfield Services; remaining Phase 1 contract value at end-2025 approx USD 0.86bn
+Unsatisfied performance obligations disclosed of only USD 19.4m
+Disclosure that current liabilities exceeded current assets by USD 477.7m at 31 Dec 2025, with USD 1.5bn undrawn revolving capacity
+Four counterparties = 99.9% of related-party receivables
+Sale of one rig for USD 36.0m producing a USD 21.6m disposal gain in 2025
+Income tax 9% under a fiscal arrangement with Abu Dhabi Supreme Council for Financial and Economic Affairs, effective 1 January 2024 (and NO tax in FY2023)
+Share capital: 16,000,000 thousand shares of AED 0.10 each; treasury shares held by market maker 9,279 thousand at 31 Dec 2025
+USD 2.0bn facility signed 16 October 2025, 5-year initial maturity, priced at Term SOFR + 0.75%
+Rig counts at end-2025: 92 Abu Dhabi onshore, 36 jack-up, 12 island, total 140; 60 integrated-services rigs; 836 wells drilled in 2025 (and 2024: 95/37/10, 676 wells; 2023: 84/35/10, 613 wells)
+Return on capital employed FY2025: is it 23% or 24%? Report exactly what the company disclosed.
+Auditor: Deloitte & Touche (M.E.), unqualified opinion
+Return a compact structured list. Do NOT speculate. If a source is an aggregator, label it. If you cannot reach the company site, say exactly what you tried.You are verifying figures against PRIMARY SOURCES ONLY for a forensic audit. Primary = ADNOC Drilling Company PJSC's own reviewed H1-2026 (six months to 30 June 2026) condensed interim financial statements, its own Q2/H1 2026 results press release and management commentary, its IR site (adnocdrilling.ae), or ADX official disclosures. Aggregators are NOT primary — label anything aggregator-only.
+Note: today is 17 August 2026. H1-2026 results were reportedly published around late July / early August 2026.
+Verify each claimed figure. For each report FOUND-MATCHES / FOUND-DIFFERS (give real number) / NOT FOUND, with URL.
+BALANCE SHEET AT 30 JUNE 2026:
+Investment in joint ventures USD 461.729m
+Cash and cash equivalents USD 355.423m
+Borrowings USD 2,468.779m = non-current 1,247.510m + current 1,221.269m
+Lease liabilities USD 45.183m = non-current 28.206m + current 16.977m
+Non-controlling interests USD 53.594m (arising on SLDC and MBPS acquisitions)
+A "financial liability" of USD 62.530m — a put obligation over non-controlling interests in acquired regional businesses (note 5)
+Treasury shares held by the appointed market maker: 7,349 thousand shares at 30 June 2026 (note 14)
+Total equity attributable to owners USD 4,233.719m
+H1-2026 PERFORMANCE AND GUIDANCE: 9. H1-2026 revenue growth of approximately 4% year on year (give the actual H1-2026 revenue and H1-2025 comparative) 10. H1-2026 Onshore segment revenue approximately USD 1,031m 11. Unconventional/shale revenue recognised in H1-2026 approximately USD 206m 12. Rig counts at 30 June 2026: 92 Abu Dhabi onshore, 36 jack-up, 13 island, 30 regional rigs outside the UAE, 171 total; 61 integrated-services rigs 13. Return on capital employed in H1-2026 — 23% or 24%? Quote exactly what the company disclosed. 14. Onshore segment EBITDA margin fell from ~50% to ~45% year on year in H1-2026 15. FY2026 guidance: revenue approximately USD 5 billion; EBITDA USD 2.2–2.3 billion; capex USD 0.6–0.8 billion 16. Dividend: a guided FY2026 floor of USD 1.05 billion, up 5% year on year 17. Company target of approximately 70 integrated-services rigs by end-2026 18. Company has explicitly declined/deferred giving 2027 guidance until rig and oilfield-services phasing is fixed 19. Six island rigs on order for delivery between 2026 and 2028 (four still to arrive) 20. SLDC joint venture with SLB (8 rigs, closed January 2026) and MBPS acquisition (22 rigs) — what is the ACTUAL completion status of the MBPS acquisition as of mid-2026? Was it completed or still pending regulatory approval? This matters a lot. 21. 29 regional rigs reported on a pro-forma basis at end-2025
+Return a compact structured list. Do NOT speculate. State exactly what you tried if you cannot reach the source.You are verifying market/macro data against PRIMARY SOURCES for a forensic audit. Today is 17 August 2026. Primary sources: FRED / St. Louis Fed, Federal Reserve H.15, New York Fed, US EIA, ADX (adx.ae), World Bank, UAE Central Bank, BLS. Aggregators are secondary — label them.
+Use WebSearch and WebFetch (try fred.stlouisfed.org series pages, which usually render).
+Verify each claim. Report FOUND-MATCHES / FOUND-DIFFERS (give real value) / NOT FOUND, with URL and the exact observation date you found.
+US 10-year constant-maturity Treasury yield (FRED series DGS10) on 6 August 2026 = 4.69%
+US 5-year constant-maturity Treasury yield (FRED series DGS5) on 6 August 2026 = 4.40%
+Secured Overnight Financing Rate (FRED series SOFR) on 6 August 2026 = 3.65%
+Brent crude spot (FRED series DCOILBRENTEU) closed at USD 88.90 on 3 August 2026; one-year average USD 79.69; three-year average USD 79.48
+ADNOC Drilling (ADX: ADNOCDRILL) closing share price on 7 August 2026 = AED 5.94. Also its 52-week range: claimed AED 4.51 to AED 6.67. And market capitalisation ~AED 95bn / USD 25.9bn.
+UAE consumer price inflation: 1.63% in 2023, 1.66% in 2024, 1.25% in 2025 (World Bank series FPCPITOTLZGARE via FRED)
+US producer price index for drilling oil and gas wells (FRED series PCU213111213111) = 396.978 in June 2026, down 1.63% year on year, three-year CAGR +0.29%
+AED/USD peg = 3.6725 (unchanged since 1997)
+FTSE ADX General Index — does this index exist under that name, and what is its data availability? Any value around late July 2026.
+Moody's sovereign rating of Abu Dhabi / UAE — is it Aa2? And Moody's rating of the United States — is it Aa1 (after the May 2025 downgrade)?
+Return a compact structured list with values and dates. Do NOT guess. If a series value for that exact date is unavailable, give the nearest available observation and say so.You are verifying against the ORIGINAL Damodaran dataset for a forensic audit. The ONLY acceptable source is Aswath Damodaran's own pages/files at pages.stern.nyu.edu/~adamodar/ (or people.stern.nyu.edu/adamodar/). Do not accept a third-party restatement without labelling it.
+Target file: the "Country Default Spreads and Risk Premiums" (ctryprem) dataset, the vintage last updated 5 January 2026 (i.e., the January 2026 update). Try:
+https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datacurrent.html
+https://pages.stern.nyu.edu/~adamodar/pc/datasets/ctryprem.xlsx (and .xls)
+https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html
+The archived/current "Country Risk Premium" page and his blog post announcing the January 2026 data update.
+Verify these claims made in a valuation report:
+The "adjusted default spread" for the UNITED STATES in the January 2026 ctryprem file = 0.23%
+Moody's rating used for the United States in that file = Aa1
+The Emirate of ABU DHABI appears as a separate row, rated Aa2, with: adjusted default spread 0.42%, country risk premium 0.64%, total equity risk premium 4.87% on the RATING basis
+The United Arab Emirates federal row carries the identical Aa2 / 0.42% / 0.64% / 4.87% set
+Abu Dhabi's equity risk premium on the CDS basis = 4.93%
+Abu Dhabi's sovereign CDS spread in that file = 0.46%
+The implied mature-market equity risk premium in the January 2026 vintage (this would be 4.87% − 0.64% = 4.23% if the above holds) — what does Damodaran actually report as the mature market / US implied ERP for 1 January 2026?
+The UAE statutory corporate tax rate in Damodaran's corporate tax rate file = 9%
+For each, report FOUND-MATCHES / FOUND-DIFFERS (with the actual value) / NOT FOUND, and give the exact URL. If the January 2026 vintage has been superseded on his site by a newer one, say which vintage you are actually reading and whether the January 2026 numbers are still retrievable.
+Be precise and do not guess numbers.Forensic audit verification task. Today is 17 August 2026. Two parts.
+PART A — PEER MULTIPLES. A valuation report claims the following for 13 listed drillers/oilfield-service companies, at market prices on 7 August 2026, with each company's own LATEST REPORTED period EBITDA (LTM). Verify the EBITDA and net debt figures against each company's own filings (10-Q/10-K/6-K, company results releases) where you can; label anything that comes only from an aggregator.
+Claimed (USD millions): market cap / net debt / LTM EBITDA / implied EV/EBITDA:
+ADES Holding (Saudi, 2026-03-31): 5,167 / 4,814 / 976.2 / 10.23x
+Arabian Drilling (Saudi, 2026-03-31): 1,960 / 627 / 295.6 / 8.75x
+Helmerich & Payne (2026-06-30): 3,707 / 1,658 / 794.5 / 6.75x
+Nabors Industries (2026-06-30): 1,208 / 1,619 / 1,308.2 / 2.16x
+Patterson-UTI (2026-06-30): 3,764 / 1,085 / 872.8 / 5.56x
+Precision Drilling (2026-06-30): 974 / 631 / 228.7 / 7.02x
+Valaris (2026-06-30): 5,456 / 624 / 606.3 / 10.03x
+Noble Corporation (2026-06-30): 6,509 / 1,432 / 928.6 / 8.55x
+Borr Drilling (2026-03-31): 1,188 / 2,059 / 452.0 / 7.18x
+SLB (2026-06-30): 74,994 / 10,055 / 6,663 / 12.76x
+Halliburton (2026-06-30): 26,596 / 6,151 / 3,592 / 9.12x
+Baker Hughes (2026-06-30): 61,078 / 526 / 5,080 / 12.13x
+Weatherford International (2026-06-30): 6,234 / 522 / 848 / 7.97x
+PRIORITISE these four, which look anomalous and matter most — spend most of your effort here: (a) NABORS at 2.16x. Nabors' LTM EBITDA is claimed at 1,308 — larger than Helmerich & Payne's 794 despite a far smaller market cap. Nabors' actual net debt has historically been roughly USD 2.5bn+, not 1,619. Check Nabors' actual latest reported total debt, cash, and LTM adjusted EBITDA. Note Nabors did a 1-for-20 reverse split in 2024 — check the current share count and market cap. Is 2.16x real? It sets the "global land driller" median. (b) HELMERICH & PAYNE — check its LTM EBITDA (it acquired KCA Deutag in Jan 2025, which should have raised EBITDA substantially above 794) and its net debt (post-KCA Deutag it took on ~USD 2bn+ of debt). (c) SLB — check LTM EBITDA; SLB's annual EBITDA has been well above 6,663 in recent years (closer to 7.5–8bn). Is 6,663 a quarterly-annualised or a stale figure? (d) BAKER HUGHES net debt of only 526 — check actual cash and debt.
+For each of the four, give the actual figures you find with source, and recompute EV/EBITDA.
+PART B — CORPORATE FACTS about ADNOC Drilling Company PJSC. Verify each, with source:
+Incorporated in 1972 by a resolution of the Council of Ministers of the Government of Abu Dhabi
+Listed on the Abu Dhabi Securities Exchange in October 2021
+During 2025 ADNOC's shareholding in ADNOC Drilling was transferred to XRG P.J.S.C., an international energy investment company wholly owned by ADNOC, with no change in ultimate control
+Abu Dhabi's stated objective of 5 million barrels per day of production capacity by 2027 — is that still the target, or was it revised/accelerated/deferred? This is material.
+The Baker Hughes partnership forming the Oilfield Services business in late 2018
+Enersol (JV with Alpha Dhabi) and Turnwell (unconventional JV with SLB and Patterson-UTI) — are both equity-accounted JVs of ADNOC Drilling?
+MBPS acquisition — announced November 2025; what is its completion status as of mid-2026? Completed, or still subject to regulatory approval?
+The jack-up and island rig segments were merged into one reporting segment from Q1 2025
+Fleet grew from 115 rigs at end-2022
+Return a compact structured list. Label aggregator-only data clearly. Do not guess.

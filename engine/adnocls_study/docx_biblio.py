@@ -611,10 +611,12 @@ T([['Document', 'Publisher', 'Date', 'What was taken from it'],
     'Published by FTSE Russell with the Abu Dhabi Securities Exchange; the series obtained as '
     'a dated export',
     fdate(IDX['source_date']),
-    f"The market the beta is measured against: {BR['regressor_rows']:,} daily sessions from "
+    f"The market the beta is measured against, series code {BR['regressor_code']}, taken as "
+    f"of {fdate(BR['regressor_asof'])}: {BR['regressor_rows']:,} daily sessions from "
     f"{fdate(IDX_FROM)} to {fdate(IDX_TO)}, checked session by session against the exchange's "
     f"own trading calendar before use. This is the capitalisation-weighted index of the "
-    f"exchange the share is listed on, which is the market measurement the method calls for. "
+    f"exchange the share is listed on, which is the market measurement the method calls for, "
+    f"and it is resolved from that listing rather than selected here. "
     f"Regressed on it, the stock's weekly returns give a slope of {BR['beta']:.3f}. It is "
     f"market data rather than company data, so it is not covered by the rule that admits only "
     f"the company's own filings — that rule governs the company's own reported history, which "

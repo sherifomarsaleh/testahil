@@ -24,6 +24,46 @@ const SITE = { updated: "2026-08-17", latest: "ADNOCLS" };  // latest = the LAST
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  ADNOCDRILL: {
+    name: "ADNOC Drilling Company P.J.S.C.",
+    nameAr: "\u0634\u0631\u0643\u0629 \u0623\u062f\u0646\u0648\u0643 \u0644\u0644\u062d\u0641\u0631",
+    code: "ADX:ADNOCDRILL",
+    spot: 5.94,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",
+    ccy: "AED",
+    fair: { bear: 3.46, base: 4.92, full: 6.21 },
+  // 17 Aug 2026 — five readings, one field, AED 3.46 to AED 6.21, weighted central 4.92 against a close of 5.94. ADNOC Drilling is a single-customer contract driller: every rig works for ADNOC Onshore, ADNOC Offshore and their affiliates, and the controlling shareholder is the same group. It reports in US dollars and trades in dirhams, so the valuation runs in dollars and converts at the 3.6725 peg only at the last step. Revenue is built BOTTOM-UP from five rig classes on their own counts and their own realised rates — Abu Dhabi onshore, regional onshore, jack-up, island and oilfield services — and OILFIELD SERVICES CARRIES TWO DISCLOSED RIG POPULATIONS, not one: the integrated fleet AND the rigs given at least one discrete service. The one-driver build the first edition used is refuted by the company's own numbers, which imply an integrated rate of MINUS $6.8m a rig. The unit build is reconciled to the company's FY2026 guidance BY SEGMENT (onshore -10.0%, offshore +2.5%, oilfield services +8.0%) rather than at group, where the same two errors were cancelling inside 1.9%; the rates therefore set the growth path and the guidance sets the FY2026 level. The two 2026 business combinations are consolidated on BOTH sides of the balance sheet from a note-5 entry that closes to zero against owners' equity. THE CRUX IS THE TERMINAL QUESTION: Abu Dhabi's production-capacity target is met in 2027 and the customer has not extended the programme beyond it, so the study computes BOTH futures in full — continued expansion 6.21, capacity plateau 5.40 — and publishes them as separate lines rather than averaging them into one. Terminal value is 76.0% and 72.3% of enterprise value respectively, a stated line of the bridge. Cost of capital 8.01% on a tier-1 own-stock weekly beta of 0.795 measured against the published FTSE ADX General Index; weights on GROSS debt. The minority is deducted ONCE, through the put liability the company recognised over it, because it has already charged a matching investment reserve against owners' equity. Enterprise value and the bridge are dated the same day: EV rolled from 31-Dec-2025 to 30-Jun-2026 at the cost of capital, less the free cash flow actually generated, then accreted 38 days to the price anchor.
+    dist: {
+      t20: { label:"1 month",   p5:5.26, p25:5.67, p50:5.94, p75:6.22, p95:6.69, resolve:"2026-09-07" },
+      t60: { label:"3 months",  p5:4.74, p25:5.45, p50:5.94, p75:6.47, p95:7.44, resolve:"2026-11-09" }
+    },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    touch: [
+      [7.13, 2, 15],
+      [6.83, 5, 25],
+      [6.53, 15, 42],
+      [6.24, 41, 65],
+      [5.64, 39, 64],
+      [5.35, 12, 38]
+    ],
+    levels: { res:[6, 6.31, 6.67], sup:[5.86, 5.48, 5.17] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a flat 200-day",
+      summary: "The price closed 5.94 above a rising 20-day (5.78), a falling 50-day (5.81) and a flat 200-day (5.51). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.12 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.06 / +0.02 / +0.04). Over the last year it has ranged 4.51\u20136.67; the last close sits 11% below that high and 32% above that low.",
+      bull: "A daily close back above 6.00 would clear the nearest resistance and open the 6.67 zone.",
+      bear: "A close below 5.86 would break the nearest support and open the 5.17 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
+    },
+    files: {
+      study: "files/ADNOCDRILL_Valuation_Study_09-08-2026.pdf?v=0817a",
+      model: "files/ADNOCDRILL_Valuation_Model_09082026.xlsx?v=0817a",
+      biblio: "files/ADNOCDRILL_Bibliography_09-08-2026.pdf?v=0817a"
+    }
+  },
   ADNOCDIST: {
     name: "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
     nameAr: "\u0634\u0631\u0643\u0629 \u0628\u062a\u0631\u0648\u0644 \u0623\u0628\u0648\u0638\u0628\u064a \u0627\u0644\u0648\u0637\u0646\u064a\u0629 \u0644\u0644\u062a\u0648\u0632\u064a\u0639",
@@ -3016,6 +3056,26 @@ const COMING = [
 const LEDGER = [
   {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "1 month", grade_date: "2026-09-07", grade_basis: "projected", horizon_days: 20, cycle_no: 1, anchor_vol: 0.2663, cal: "parity", note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 5.47, p25: 5.89, p50: 6.16, p75: 6.45, p95: 6.93, touch: [[7.39, 1], [7.08, 5], [6.78, 14], [6.47, 40], [5.85, 38], [5.54, 11]], realized_close: null, realized_date: null},
   {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "3 months", grade_date: "2026-11-09", grade_basis: "projected", horizon_days: 63, cycle_no: 1, anchor_vol: 0.2817, cal: "parity", note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 4.95, p25: 5.67, p50: 6.18, p75: 6.73, p95: 7.73, touch: [[7.39, 15], [7.08, 25], [6.78, 42], [6.47, 66], [5.85, 63], [5.54, 36]], realized_close: null, realized_date: null},
+  {
+    instrument:"ADNOCDRILL", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:5.94, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.2714, cal:"fail",
+    note:"First coverage, 7-Aug-2026 \u2014 struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42 (touch ladder off the stored 20,000-path subset; percentiles from the full 50,000). q_annual=0.0406. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: FAIL, robustly \u2014 skill -0.0165 over 15 three-month windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.0289,-0.0034], block-3 [-0.0291,-0.0053], block-4 [-0.0303,-0.0047]). The one-month horizon is PARITY (-0.0006 over 44 windows). The cone is TOO WIDE, not mis-centred: 100% coverage against a 90% target and 100% against 80%, PIT mean 0.551 where 0.5 is centred, width 1.10x the carry-anchored benchmark. Own annualised volatility 25.2% sits at the 28th percentile of the 18-name UAE panel, below its median of 27.1%, while width is fitted across the whole panel at once \u2014 narrowing to 0.80x would turn skill positive (+0.0085) and is deliberately NOT published, because a width chosen after seeing the outcomes it is scored on is not evidence. Market panel gate: PARITY (+0.0068, CI90 [-0.001, 0.014]). Read the bands as an OUTER bound.",
+    p5:5.26, p25:5.67, p50:5.94, p75:6.22, p95:6.69,
+    touch:[ [7.13,2], [6.83,5], [6.53,15], [6.24,41], [5.64,39], [5.35,12] ],
+    realized_close:null, realized_date:null
+  },
+  {
+    instrument:"ADNOCDRILL", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:5.94, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63,
+    cycle_no:1, anchor_vol:0.2842, cal:"fail",
+    note:"First coverage, 7-Aug-2026 \u2014 struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42 (touch ladder off the stored 20,000-path subset; percentiles from the full 50,000). q_annual=0.0406. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: FAIL, robustly \u2014 skill -0.0165 over 15 three-month windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.0289,-0.0034], block-3 [-0.0291,-0.0053], block-4 [-0.0303,-0.0047]). The one-month horizon is PARITY (-0.0006 over 44 windows). The cone is TOO WIDE, not mis-centred: 100% coverage against a 90% target and 100% against 80%, PIT mean 0.551 where 0.5 is centred, width 1.10x the carry-anchored benchmark. Own annualised volatility 25.2% sits at the 28th percentile of the 18-name UAE panel, below its median of 27.1%, while width is fitted across the whole panel at once \u2014 narrowing to 0.80x would turn skill positive (+0.0085) and is deliberately NOT published, because a width chosen after seeing the outcomes it is scored on is not evidence. Market panel gate: PARITY (+0.0068, CI90 [-0.001, 0.014]). Read the bands as an OUTER bound.",
+    p5:4.74, p25:5.45, p50:5.94, p75:6.47, p95:7.44,
+    touch:[ [7.13,15], [6.83,25], [6.53,42], [6.24,65], [5.64,64], [5.35,38] ],
+    realized_close:null, realized_date:null
+  },
   {
     instrument:"ADNOCDIST", asset_class:"equity",
     anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:4.07, ccy:"AED",

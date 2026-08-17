@@ -1,0 +1,89 @@
+{
+ "beta": 0.7952057158468349,
+ "alpha_weekly": 0.002119495706442116,
+ "r2": 0.12769307483653292,
+ "n": 247,
+ "se": 0.13278451712823341,
+ "ci90": [
+  0.5767751851708909,
+  1.0136362465227788
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "regressor": "FTSE ADX General Index",
+ "regressor_file": "engine/raw_indices/AE/ADXGENERAL.csv",
+ "regressor_span": [
+  "2011-01-02",
+  "2026-07-24"
+ ],
+ "regressor_rows": 3884,
+ "regressor_density": {
+  "2021": 249,
+  "2022": 253,
+  "2023": 251,
+  "2024": 252,
+  "2025": 238
+ },
+ "window_years": 5,
+ "frequency": "weekly",
+ "first_week": "2021-10-15",
+ "last_week": "2026-07-24",
+ "index_asof": "2026-07-24",
+ "price_asof": "2026-08-07",
+ "asof_gap_days": 14,
+ "weak": false,
+ "warnings": [],
+ "robustness": {
+  "weekly_2yr_vs_index": {
+   "beta": 0.8898089280137128,
+   "alpha": 0.0029727581303944733,
+   "r2": 0.10863624645813141,
+   "se": 0.25488065123788245,
+   "n": 102,
+   "first": "2024-08-02",
+   "last": "2026-07-24"
+  },
+  "weekly_3yr_vs_index": {
+   "beta": 1.0245736478865013,
+   "alpha": 0.0030459512588470556,
+   "r2": 0.1421792712950436,
+   "se": 0.20480230215590167,
+   "n": 153,
+   "first": "2023-08-04",
+   "last": "2026-07-24"
+  },
+  "weekly_4yr_vs_index": {
+   "beta": 0.8358415790193425,
+   "alpha": 0.002580771284693983,
+   "r2": 0.11140433132637739,
+   "se": 0.16568264162764393,
+   "n": 205,
+   "first": "2022-08-05",
+   "last": "2026-07-24"
+  },
+  "monthly_5yr_vs_index": {
+   "beta": 0.47099338076868474,
+   "alpha": 0.00972661842522116,
+   "r2": 0.05853548972550149,
+   "se": 0.25469816002028794,
+   "n": 57,
+   "first": "2021-11-30",
+   "last": "2026-07-31"
+  },
+  "weekly_5yr_vs_equal_weight_composite": {
+   "beta": 0.6636653623799534,
+   "r2": 0.15999268402733158,
+   "se": 0.09675917290198403,
+   "n": 249,
+   "names": 17
+  },
+  "weekly_5yr_vs_turnover_weighted_composite": {
+   "beta": 0.4996879905171273,
+   "r2": 0.11721177689637596,
+   "se": 0.08725555306785239,
+   "n": 249,
+   "names": 17
+  }
+ },
+ "composite_vs_index_correlation": 0.8406496473773141
+}
