@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-17", latest: "ADNOCDRILL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-17", latest: "ADNOCLS" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -101,6 +101,45 @@ const TICKERS = {
       study: "files/ADNOCDIST_Valuation_Study_09-08-2026.pdf?v=0809a",
       model: "files/ADNOCDIST_Valuation_Model_09082026.xlsx?v=0809a",
       biblio: "files/ADNOCDIST_Bibliography_09-08-2026.pdf?v=0809a"
+    }
+  },
+  ADNOCLS: {
+    name: "ADNOC Logistics & Services plc",
+    nameAr: "\u0623\u062f\u0646\u0648\u0643 \u0644\u0644\u0625\u0645\u062f\u0627\u062f \u0648\u0627\u0644\u062e\u062f\u0645\u0627\u062a",
+    code: "ADX:ADNOCLS",
+    spot: 6.16,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
+    ccy: "AED",
+    fair: { bear: 5.02, base: 7.05, full: 10.80 },   // 9 Aug 2026 - four lenses on one field, AED 3.66 to 8.91, weighted to a central of 7.05 on FCFF DCF 40% / relative 25% / normalised 20% / book 15%. Lenses: cash flow 6.40, relative multiples 8.64, normalised earnings power 8.91, book value on a RESIDUAL-INCOME construction 3.66 - the single-stage justified multiple is undefined for a company compounding book value above its own cost of equity, so the lens is built as residual income instead of forced through a formula that does not hold. Reports in USD, trades in AED at the dirham's fixed 3.6725 parity. TWO CENTRES, NEVER ONE, on the study's most consequential contested judgement - HOW THE MARKET IS MEASURED FOR BETA: against the FTSE ADX General Index, the published index of the share's own exchange and the one the engine's sanctioned routine resolves, beta is 1.1032 (159 weekly observations, R2 0.181, SE 0.315, 90% interval 0.59-1.62) and the weighted central is 7.05; against an equal-weight composite of the same exchange's names beta is 0.705 and the central is 8.24. `base` carries the PUBLISHED-INDEX reading, which is the one the rule asks for. Built BOTTOM UP: the tanker leg VESSEL BY VESSEL off the disclosed charter table, each class at its own day rate, with the SPOT RATE SOLVED out of the company's own published per-class blend rather than assumed - the CFO stated on the Q1-2026 call that the published rate is a fleet blend including vessels on long-term charter, so backing those out of a published VLCC blend of 145,000/day implies a spot of 199,838/day. About half of revenue is contracted to the parent group (roughly USD 25bn of long-term contracted revenue) and half is a merchant fleet at market rates. The USD 1.3bn, eleven-vessel purchase announced 7 Aug 2026 - the study's own anchor date - is INSIDE the model, not an upside case beside it. The perpetual capital securities are carried BOTH ways they bite: as a 12.8% weight in the cost of capital at SOFR+125bp AND as a deduction in the equity bridge. Cost of capital 8.56% gliding to 7.80% terminal; terminal value 75% of enterprise value. OPEN JUDGEMENT, stated rather than buried: the relative and normalised lenses share all three multiples, so 45% of the weighted central rests on one method presented as two. Rebuilt under four independent external reviews raising 166 findings, every one priced and adjudicated.
+    dist: {
+      t20: { label:"1 month",   p5:5.47, p25:5.89, p50:6.16, p75:6.45, p95:6.93, resolve:"2026-09-07" },
+      t60: { label:"3 months",  p5:4.95, p25:5.67, p50:6.18, p75:6.73, p95:7.73, resolve:"2026-11-09" }
+    },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
+      [7.39, 1, 15],
+      [7.08, 5, 25],
+      [6.78, 14, 42],
+      [6.47, 40, 66],
+      [5.85, 38, 63],
+      [5.54, 11, 36]
+    ],
+    levels: { res:[6.30, 6.43, 6.60], sup:[5.93, 5.56, 5.26] },
+    tech: {
+      trend: "Consolidating below the near-term moving averages, above a flat 200-day",
+      summary: "The price closed 6.16 above a rising 50-day (6.03) and a flat 200-day (5.70), but below a rising 20-day (6.19). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.11 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.05 / +0.07 / \u22120.01). Over the last year it has ranged 4.65\u20136.44; the last close sits 4% below that high and 32% above that low.",
+      bull: "A daily close back above 6.30 would clear the nearest resistance and open the 6.60 zone.",
+      bear: "A close below 5.93 would break the nearest support and open the 5.26 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
+    },
+    files: {
+      study: "files/ADNOCLS_Valuation_Study_09-08-2026.pdf?v=0809a",
+      model: "files/ADNOCLS_Valuation_Model_09082026.xlsx?v=0809a",
+      biblio: "files/ADNOCLS_Bibliography_09-08-2026.pdf?v=0809a"
     }
   },
   BOROUGE: {
@@ -3015,6 +3054,8 @@ const COMING = [
    session it lands on can, and by at most a few days.
    ========================================================================== */
 const LEDGER = [
+  {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "1 month", grade_date: "2026-09-07", grade_basis: "projected", horizon_days: 20, cycle_no: 1, anchor_vol: 0.2663, cal: "parity", note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 5.47, p25: 5.89, p50: 6.16, p75: 6.45, p95: 6.93, touch: [[7.39, 1], [7.08, 5], [6.78, 14], [6.47, 40], [5.85, 38], [5.54, 11]], realized_close: null, realized_date: null},
+  {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "3 months", grade_date: "2026-11-09", grade_basis: "projected", horizon_days: 63, cycle_no: 1, anchor_vol: 0.2817, cal: "parity", note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 4.95, p25: 5.67, p50: 6.18, p75: 6.73, p95: 7.73, touch: [[7.39, 15], [7.08, 25], [6.78, 42], [6.47, 66], [5.85, 63], [5.54, 36]], realized_close: null, realized_date: null},
   {
     instrument:"ADNOCDRILL", asset_class:"equity",
     anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:5.94, ccy:"AED",

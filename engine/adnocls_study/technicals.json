@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "ADNOCLS",
+ "close": 6.16,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 795,
+ "rows_in": 795,
+ "repairs": [],
+ "ma": {
+  "20": 6.1895,
+  "50": 6.030600000000001,
+  "200": 5.7044500000000005
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "rising",
+  "200": "flat"
+ },
+ "rsi": 51.9077592212548,
+ "atr": 0.11453512330544575,
+ "macd": {
+  "macd": 0.05124151622641904,
+  "signal": 0.06504679680071093,
+  "hist": -0.013805280574291895
+ },
+ "ma_cross": {
+  "ago": 40,
+  "kind": "golden"
+ },
+ "atr_pct": 0.018593364172961972,
+ "hi_52w": 6.44,
+ "lo_52w": 4.65,
+ "pct_off_high": 0.04347826086956525,
+ "pct_off_low": 0.32473118279569885,
+ "levels": {
+  "res": [
+   6.3,
+   6.43,
+   6.6
+  ],
+  "sup": [
+   5.93,
+   5.56,
+   5.26
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 6.300000000000001,
+    "score": 0.29615384615384593,
+    "kind": "round",
+    "touches": 0
+   },
+   {
+    "level": 6.430480980788676,
+    "score": 4.029627014296563,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
+    "level": 6.6000000000000005,
+    "score": 0.22272727272727263,
+    "kind": "round",
+    "touches": 0
+   }
+  ],
+  "sup": [
+   {
+    "level": 5.9255251742892225,
+    "score": 54.44224377228057,
+    "kind": "swing",
+    "touches": 12
+   },
+   {
+    "level": 5.560479039631394,
+    "score": 26.609552294898037,
+    "kind": "swing",
+    "touches": 11
+   },
+   {
+    "level": 5.2573872376033,
+    "score": 7.3715521602540885,
+    "kind": "swing",
+    "touches": 6
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Consolidating below the near-term moving averages, above a flat 200-day",
+  "summary": "The price closed 6.16 above a rising 50-day (6.03) and a flat 200-day (5.70), but below a rising 20-day (6.19). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.11 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.05 / +0.07 / \u22120.01). Over the last year it has ranged 4.65\u20136.44; the last close sits 4% below that high and 32% above that low.",
+  "bull": "A daily close back above 6.30 would clear the nearest resistance and open the 6.60 zone.",
+  "bear": "A close below 5.93 would break the nearest support and open the 5.26 zone."
+ }
+}

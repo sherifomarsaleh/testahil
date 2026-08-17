@@ -1,0 +1,662 @@
+[
+  {
+    "id": 1,
+    "kind": "criticism",
+    "their_label": "Executive Summary",
+    "location": "Model cash flow architecture / DCF Terminal Value",
+    "quote": "However, severe structural vulnerabilities remain deeply embedded within the model's cash flow architecture. Most notably, the audit identifies an outsized reliance on Terminal Value (representing 78.5% of operating Enterprise Value)",
+    "claimed_severity": "severe structural vulnerabilities",
+    "claimed_impact": "Terminal Value = 78.5% of operating Enterprise Value",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 2,
+    "kind": "criticism",
+    "their_label": "Executive Summary",
+    "location": "Near-term (2026-2027) cash flow forecast / merchant shipping TC-E rate assumptions",
+    "quote": "Most notably, the audit identifies an outsized reliance on Terminal Value (representing 78.5% of operating Enterprise Value) and an aggressively front-loaded near-term cash flow profile predicated on highly volatile, geopolitically driven time-charter equivalent (TC-E) spot rates.",
+    "claimed_severity": "severe structural vulnerabilities",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 3,
+    "kind": "criticism",
+    "their_label": "Executive Summary",
+    "location": "DCF baseline cash flows",
+    "quote": "While these inputs are empirically verifiable in the current macro-environment, capitalizing these transient risk premiums into the baseline of a discounted cash flow model introduces immense cyclical risk.",
+    "claimed_severity": "immense cyclical risk",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 4,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - Capitalization Dynamics and Market Pricing",
+    "location": "Valuation anchor spot price (AED 6.16 as of August 7, 2026)",
+    "quote": "It must be noted that subsequent market action has seen the asset trade up to AED 6.47 by mid-August 2026, pushing the live market capitalization to approximately AED 47.85 billion4. This indicates that the model's anchor price represents a highly specific, static snapshot rather than a forward-looking equilibrium.",
+    "claimed_severity": "none",
+    "claimed_impact": "AED 6.47 spot by mid-August 2026; live market cap approximately AED 47.85 billion",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 5,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - Macroeconomic Parameters and the Cost of Capital Framework (Statutory Tax Rate)",
+    "location": "Effective tax rate applied to the shipping business units (~1%)",
+    "quote": "The model's application of a substantially lower ~1% effective tax rate to the shipping business units represents a major assumption that is heavily scrutinized in Phase 2 of this audit.",
+    "claimed_severity": "major assumption",
+    "claimed_impact": "~1% effective tax rate vs 9.00% statutory",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 6,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - The Beta Benchmark Distortion",
+    "location": "Equity Beta input (1.085, regressed vs FTSE ADX General Index over 161 weekly observations)",
+    "quote": "The target model's most consequential and heavily contested judgement is the selection of a 1.085 Beta, regressed against the FTSE ADX General Index over 161 weekly observations1. From an adversarial risk perspective, measuring co-variance against the FTSE ADX introduces severe statistical distortions.",
+    "claimed_severity": "most consequential and heavily contested judgement; severe statistical distortions",
+    "claimed_impact": "Beta 1.085; 161 weekly observations",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 7,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - The Beta Benchmark Distortion",
+    "location": "Choice of benchmark index for the beta regression (FTSE ADX General Index)",
+    "quote": "The FTSE ADX Index Series relies on a free-float adjusted market-capitalization weighting methodology12. Due to the unique concentration of the Abu Dhabi market, the index is massively skewed by a handful of mega-cap entities. Specifically, International Holding Company (IHC) accounts for approximately 32.88% of the index weight, while First Abu Dhabi Bank (FAB) accounts for 14.61%15.",
+    "claimed_severity": "massively skewed",
+    "claimed_impact": "IHC approximately 32.88% of index weight; FAB 14.61%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 8,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - The Beta Benchmark Distortion",
+    "location": "Beta regression result / cost of equity",
+    "quote": "Consequently, regressing ADNOC Logistics against this benchmark primarily measures the asset's co-movement with IHC and FAB, rather than representing its true sensitivity to the broader macroeconomic environment.",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 9,
+    "kind": "criticism",
+    "their_label": "PHASE 1 - The Beta Benchmark Distortion",
+    "location": "Selection between the 1.085 cap-weighted Beta and the 0.705 equal-weight composite Beta",
+    "quote": "While the equal-weight composite is statistically superior for isolating idiosyncratic risk from index concentration, the target model's decision to adopt the higher, cap-weighted Beta (1.085) correctly enforces a more punitive cost of equity (9.34% vs 7.49%), satisfying conservative risk protocols1.",
+    "claimed_severity": "none",
+    "claimed_impact": "Cost of equity 9.34% (Beta 1.085) vs 7.49% (Beta 0.705)",
+    "what_they_say_is_correct": "The equal-weight composite is statistically superior for isolating idiosyncratic risk from index concentration (but the model's adoption of 1.085 is stated to be correct on conservatism grounds)"
+  },
+  {
+    "id": 10,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - Holding Company Mechanics and IAS 32 Hybrid Capital Classification",
+    "location": "Reported consolidated equity base / IAS 32 classification of the $1.979bn perpetual capital securities",
+    "quote": "Because the target company's perpetual securities have no fixed maturity date and the coupon payments can theoretically be deferred indefinitely at the discretion of the issuer, the audited balance sheet correctly classifies them as equity. This accounting artifact artificially inflates the reported consolidated equity base to $7.22 billion2.",
+    "claimed_severity": "none",
+    "claimed_impact": "reported consolidated equity base inflated to $7.22 billion",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 11,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - Regulatory and Earnings Quality: BEPS Pillar Two and the Article 3.3 Exemption",
+    "location": "Segment tax schedule (~1% effective rate on Shipping vs 9% statutory on Integrated Logistics)",
+    "quote": "The target model assigns varying effective tax rates to the distinct business units, notably applying an effective rate of just ~1% to the Shipping segment, while applying the statutory 9% to the onshore Integrated Logistics operations1. A forensic audit must aggressively question whether this extremely low tax rate is sustainable in the era of the OECD's Base Erosion and Profit Shifting (BEPS) Pillar Two framework.",
+    "claimed_severity": "question raised (aggressively question) - subsequently cleared in PHASE 4",
+    "claimed_impact": "~1% vs 9% statutory; Pillar Two 15% Global Minimum Tax threshold",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 12,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - Macro-Cyclicality: Geopolitical Risk Premiums and the Spot Rate Anomaly",
+    "location": "Merchant shipping segment near-term VLCC spot rate assumptions (Q2 2026 through 2030)",
+    "quote": "The audit must flag the highly aggressive near-term assumptions within the merchant shipping segment. The model projects Very Large Crude Carrier (VLCC) spot rates hitting $260,000 per day in Q2 2026, before reverting to a mid-cycle anchor of ~$47,900 per day by 20301.",
+    "claimed_severity": "highly aggressive",
+    "claimed_impact": "$260,000 per day in Q2 2026; ~$47,900 per day by 2030",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 13,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - Macro-Cyclicality: Geopolitical Risk Premiums and the Spot Rate Anomaly",
+    "location": "Baseline of the long-term DCF / war-risk premiums embedded in near-term cash flows",
+    "quote": "While these market anomalies validate the model's short-term inputs, capitalizing war-risk premiums into the baseline of a long-term discounted cash flow model introduces immense cyclical fragility. The model's strict enforcement of a four-year glide path down to historical averages1 is the only structural mechanism preventing the valuation from spiraling into absurdity.",
+    "claimed_severity": "immense cyclical fragility",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 14,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - DCF Disconnects: Capital Absorption, Fleet Expansion, and Terminal Value Dominance",
+    "location": "Terminal Value as a share of total operating Enterprise Value (primary cost of capital scenario)",
+    "quote": "However, a severe structural warning must be issued regarding the Terminal Value. The audit calculates that the Terminal Value constitutes 78.5% of the total operating Enterprise Value under the primary cost of capital scenario1. This outsized reliance on cash flows extending beyond the five-year explicit window is dangerous, particularly for a highly cyclical asset-heavy operator.",
+    "claimed_severity": "severe structural warning; dangerous",
+    "claimed_impact": "78.5% of total operating Enterprise Value",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 15,
+    "kind": "criticism",
+    "their_label": "PHASE 2 - DCF Disconnects: Capital Absorption, Fleet Expansion, and Terminal Value Dominance",
+    "location": "Terminal discount rate sensitivity / terminal growth funding",
+    "quote": "While the model attempts to mitigate this by explicitly funding the 2% terminal growth rate through a calculated required reinvestment rate (Terminal Growth divided by Terminal ROIC equals 17.1%)1, the overarching valuation remains extremely sensitive to minute shifts in the terminal discount rate.",
+    "claimed_severity": "extremely sensitive",
+    "claimed_impact": "2% terminal growth rate; required reinvestment rate 17.1%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 16,
+    "kind": "criticism",
+    "their_label": "PHASE 3 - Cost of Capital Rebuild and Capital Structure Triangulation",
+    "location": "Pre-tax cost of debt (Kd), reported as 5.82%",
+    "quote": "The algorithmic recalculation averaged these three distinct methodologies to yield a pre-tax Kd of 5.88% (versus the report’s stated 5.82%)5. This minute 6-basis-point variance is the result of continuous weighting mechanisms applied to the outstanding balances versus point-in-time snapshots utilized in the report.",
+    "claimed_severity": "minute variance",
+    "claimed_impact": "6 basis points (5.88% vs 5.82%)",
+    "what_they_say_is_correct": "a pre-tax Kd of 5.88%"
+  },
+  {
+    "id": 17,
+    "kind": "criticism",
+    "their_label": "PHASE 3 - Cost of Capital Rebuild and Capital Structure Triangulation",
+    "location": "After-tax cost of debt, reported as 5.30%",
+    "quote": "Applying the 9% statutory tax rate yields an after-tax Kd of 5.35% (versus the report's 5.30%)5.",
+    "claimed_severity": "none",
+    "claimed_impact": "5 basis points (5.35% vs 5.30%)",
+    "what_they_say_is_correct": "an after-tax Kd of 5.35%"
+  },
+  {
+    "id": 18,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "DCF lens / Terminal Value concentration",
+    "quote": "Terminal Value Concentration: At 78.5% of operating Enterprise Value, the DCF lens is functionally a perpetuity model.",
+    "claimed_severity": "Assumption Warning",
+    "claimed_impact": "78.5% of operating Enterprise Value",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 19,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "Explicit forecast window / $5.7bn capex cycle and terminal-period ROIC dependence",
+    "quote": "Because the explicit forecast window is severely depressed by a massive $5.7 billion capital expenditure cycle1, the valuation is almost entirely dependent on the expanded fleet generating sustained, elevated returns on invested capital well into the 2030s.",
+    "claimed_severity": "Assumption Warning; severely depressed",
+    "claimed_impact": "$5.7 billion capital expenditure cycle",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 20,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "2026 cash flow anchor / VLCC earnings assumptions",
+    "quote": "Stale Market Marks vs Cycle Reversion: The model anchors 2026 cash flows on highly distressed geopolitical spot rates, calculating VLCC earnings at $260k–$356k per day1. While empirically accurate for the immediate term due to Red Sea rerouting, capitalizing even one or two years of war-risk premiums into an equity valuation inflates the near-term cash curve.",
+    "claimed_severity": "Assumption Warning",
+    "claimed_impact": "VLCC earnings at $260k-$356k per day",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 21,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "2026E and 2027E cash flow projections",
+    "quote": "If the Strait of Hormuz or Red Sea disruptions resolve abruptly, the 2026 and 2027 cash flow projections will break to the downside.",
+    "claimed_severity": "Assumption Warning",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 22,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "Beta / cost of equity input to the DCF",
+    "quote": "Beta Benchmark Skew: The massive divergence between the 1.085 cap-weighted Beta and the 0.705 equal-weighted Beta swings the DCF valuation by AED 2.71 per share1.",
+    "claimed_severity": "Assumption Warning; massive divergence",
+    "claimed_impact": "AED 2.71 per share swing",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 23,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Assumption Warnings",
+    "location": "Cost of capital / beta benchmark selection",
+    "quote": "The model correctly adopts the more conservative 1.0852, but the Investment Committee must recognize that measuring shipping risk against a concentrated domestic index (the FTSE ADX General Index, heavily skewed by IHC and FAB) introduces severe statistical noise into the cost of capital15.",
+    "claimed_severity": "severe statistical noise",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 24,
+    "kind": "criticism",
+    "their_label": "PHASE 4 - Corrected Fair Value",
+    "location": "Central fair value per share (report: AED 6.60)",
+    "quote": "Based strictly on the independent Python deterministic recalculation and the web-verified empirical inputs, the mathematical and logical integrity of the target report is affirmed. The Re-Calculated Central Fair Value stands firmly at AED 6.59 per share5.",
+    "claimed_severity": "none",
+    "claimed_impact": "AED 6.59 per share (vs report AED 6.60)",
+    "what_they_say_is_correct": "The Re-Calculated Central Fair Value stands firmly at AED 6.59 per share"
+  },
+  {
+    "id": 25,
+    "kind": "flagged_unverifiable",
+    "their_label": "Works cited (item 5)",
+    "location": "Audit report's own source list",
+    "quote": "unknown_url",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 26,
+    "kind": "pass",
+    "their_label": "Executive Summary",
+    "location": "Overall mathematical architecture / recalculation of AED 6.60 fair value",
+    "quote": "The target model exhibits exceptional mathematical fidelity, with independent recalculations yielding negligible variances (sub-0.1%) resulting entirely from terminal rounding differentials.",
+    "claimed_severity": "none",
+    "claimed_impact": "sub-0.1% variances",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 27,
+    "kind": "pass",
+    "their_label": "Executive Summary",
+    "location": "Enterprise Value to Equity Value bridge (NCI and perpetual capital securities)",
+    "quote": "Furthermore, the accounting logic governing the bridge from Enterprise Value to Equity Value—specifically the treatment of non-controlling interests and multi-billion-dollar perpetual capital securities—is structurally sound and rigorously applied in defiance of misleading optical presentations allowed under standard accounting frameworks.",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 28,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Capitalization Dynamics and Market Pricing",
+    "location": "Share count (7,398.498 million shares)",
+    "quote": "Independent verification of the Abu Dhabi Securities Exchange (ADX) registry confirms the share count matches the company’s regulatory filings exactly3.",
+    "claimed_severity": "none",
+    "claimed_impact": "7,398.498 million shares",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 29,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Capitalization Dynamics and Market Pricing",
+    "location": "Market capitalization (USD)",
+    "quote": "Operating at the fixed United Arab Emirates Dirham to US Dollar parity of 3.67251, the deterministically calculated market capitalization is $12,409.73 million. The target model reports a market capitalization of $12,410.23 million1. The resulting variance of -0.0005% is statistically immaterial, confirming that the fundamental capitalization identity holds perfectly true.",
+    "claimed_severity": "statistically immaterial",
+    "claimed_impact": "-0.0005% variance ($12,409.73m recalculated vs $12,410.23m reported)",
+    "what_they_say_is_correct": "deterministically calculated market capitalization is $12,409.73 million"
+  },
+  {
+    "id": 30,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Core Financials and Leverage Architecture",
+    "location": "FY2025 consolidated financials (revenue $5,016m, EBITDA $1,469m)",
+    "quote": "The target model accurately captures the audited FY2025 consolidated financials, projecting from a reported revenue base of $5,016 million and an operating Earnings Before Interest, Taxes, Depreciation, and Amortization (EBITDA) of $1,469 million1.",
+    "claimed_severity": "none",
+    "claimed_impact": "$5,016m revenue; $1,469m EBITDA",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 31,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Core Financials and Leverage Architecture",
+    "location": "Net debt bridge (deferred consideration $301m, perpetuals $1,979m, cash $695m)",
+    "quote": "However, the target model correctly identifies and includes deferred consideration on acquisitions ($301 million) and perpetual capital securities ($1,979 million) in the bridge to equity1. The explicit extraction of these figures from the financial statements demonstrates a rigorous approach to defining the actual claims against enterprise cash flows. Cash and cash equivalents are verified at $695 million for the same period1.",
+    "claimed_severity": "none",
+    "claimed_impact": "net debt $420m; deferred consideration $301m; perpetuals $1,979m; cash $695m",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 32,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Macroeconomic Parameters (Risk-Free Rate)",
+    "location": "Risk-free rate input (4.48%)",
+    "quote": "Risk-Free Rate: The model utilizes 4.48%, corresponding to the observed yield of the UAE dirham-denominated sovereign bond maturing in January 20311.",
+    "claimed_severity": "none",
+    "claimed_impact": "4.48%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 33,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Macroeconomic Parameters (Sovereign Default Spread)",
+    "location": "Normalization of the risk-free rate (0.42% default spread deduction)",
+    "quote": "Sovereign Default Spread: To prevent the double-counting of country risk within the Equity Risk Premium, the model properly deducts a 0.42% default spread, triangulated against the UAE's Moody’s Aa2 sovereign rating1. This deduction yields an adjusted, normalized risk-free rate of 4.06%.",
+    "claimed_severity": "none",
+    "claimed_impact": "0.42% default spread; normalized rf 4.06%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 34,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Macroeconomic Parameters (Equity Risk Premium)",
+    "location": "Equity Risk Premium input (4.87%)",
+    "quote": "Equity Risk Premium (ERP): The model applies an ERP of 4.87%. Independent cross-referencing with institutional datasets for January 2026 confirms that the total equity risk premium for the UAE stands exactly at 4.87%, derived from a mature market premium augmented by a 0.64% country risk premium7.",
+    "claimed_severity": "none",
+    "claimed_impact": "ERP 4.87%; country risk premium 0.64%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 35,
+    "kind": "pass",
+    "their_label": "PHASE 1 - Macroeconomic Parameters (Statutory Tax Rate)",
+    "location": "Statutory corporate tax rate (9.00%)",
+    "quote": "Statutory Tax Rate: The statutory corporate tax rate is verified at 9.00% under the UAE Corporate Tax Law1.",
+    "claimed_severity": "none",
+    "claimed_impact": "9.00%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 36,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: Spot Price (Anchor)",
+    "location": "Spot price anchor",
+    "quote": "Spot Price (Anchor) | Report's Value AED 6.16 | Web-Verified Value AED 6.16 | Source Constraint: ADX Historical Record1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 37,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: Shares Outstanding",
+    "location": "Shares outstanding",
+    "quote": "Shares Outstanding | Report's Value 7,398.50 mn | Web-Verified Value 7,398.50 mn | Source Constraint: ADX Company Profile1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 38,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: Market Cap (USD)",
+    "location": "Market capitalization (USD)",
+    "quote": "Market Cap (USD) | Report's Value $12,410.23m | Web-Verified Value $12,409.73m | Source Constraint: Calculated via Parity1 | Variance % -0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.00% variance",
+    "what_they_say_is_correct": "$12,409.73m"
+  },
+  {
+    "id": 39,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: FY25 Revenue",
+    "location": "FY2025 revenue",
+    "quote": "FY25 Revenue | Report's Value $5,016m | Web-Verified Value $5,016m | Source Constraint: FY25 Audited Financials1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 40,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: Net Debt (Reported)",
+    "location": "Net debt as reported",
+    "quote": "Net Debt (Reported) | Report's Value $420m | Web-Verified Value $420m | Source Constraint: Q1 2026 Interim1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 41,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: UAE Equity Risk Premium",
+    "location": "UAE Equity Risk Premium",
+    "quote": "UAE Equity Risk Premium | Report's Value 4.87% | Web-Verified Value 4.87% | Source Constraint: Damodaran Dataset (2026)1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 42,
+    "kind": "pass",
+    "their_label": "Phase 1 Audit Ledger (table), row: Statutory Tax Rate",
+    "location": "Statutory tax rate",
+    "quote": "Statutory Tax Rate | Report's Value 9.00% | Web-Verified Value 9.00% | Source Constraint: UAE Corporate Tax Law1 | Variance % 0.00%",
+    "claimed_severity": "none",
+    "claimed_impact": "0.00% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 43,
+    "kind": "pass",
+    "their_label": "PHASE 2 - Holding Company Mechanics and IAS 32 Hybrid Capital Classification",
+    "location": "Deduction of $1.979bn perpetual capital securities in the equity bridge",
+    "quote": "The target model demonstrates high institutional rigor by actively deducting the $1.979 billion carrying value from the calculated Enterprise Value in the equity bridge1. Failing to make this adjustment—a classic trap in automated, screen-scraping valuation models—would have illegally inflated the fair value of the ordinary shares by approximately AED 0.98 per share.",
+    "claimed_severity": "none",
+    "claimed_impact": "AED 0.98 per share (the error avoided)",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 44,
+    "kind": "pass",
+    "their_label": "PHASE 2 - Holding Company Mechanics and IAS 32 Hybrid Capital Classification",
+    "location": "Non-Controlling Interests deduction ($272m)",
+    "quote": "Furthermore, the model appropriately deducts Non-Controlling Interests (NCI) at their reviewed carrying value of $272 million1. By handling both the perpetual instruments and the NCI as debt-equivalents in the bridge, the model successfully isolates the true residual claim of the ordinary equity holders.",
+    "claimed_severity": "none",
+    "claimed_impact": "$272 million",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 45,
+    "kind": "pass",
+    "their_label": "PHASE 2 - BEPS Pillar Two and the Article 3.3 Exemption",
+    "location": "~1% effective tax rate applied to the shipping segment",
+    "quote": "The target entity manages its fleet domestically and fulfills the criteria for the UAE's implementation of the minimum tax framework10. Therefore, the target model's application of the ~1% effective rate to the shipping segment is legally and empirically sound.",
+    "claimed_severity": "none",
+    "claimed_impact": "~1% effective rate",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 46,
+    "kind": "pass",
+    "their_label": "PHASE 2 - BEPS Pillar Two and the Article 3.3 Exemption",
+    "location": "Global minimum tax stress-case (uniform 15%)",
+    "quote": "The model also rigorously includes a global minimum tax stress-case (a uniform 15% rate), which demonstrates an advanced understanding of the regulatory cliff-edge should the shipping exemption be revoked, pricing the downside at AED 0.98 per share1.",
+    "claimed_severity": "none",
+    "claimed_impact": "downside priced at AED 0.98 per share",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 47,
+    "kind": "pass",
+    "their_label": "PHASE 2 - Macro-Cyclicality: Geopolitical Risk Premiums and the Spot Rate Anomaly",
+    "location": "Near-term VLCC/TC-E rate inputs",
+    "quote": "Empirical grounding via Clarksons Research intelligence confirms that these extreme rates are not hallucinated; they are a direct consequence of severe geopolitical dislocation.",
+    "claimed_severity": "none",
+    "claimed_impact": "BDTI TC-E $356,000/day Middle East-to-China early 2026; ClarkSea Index above $41,000/day",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 48,
+    "kind": "pass",
+    "their_label": "PHASE 2 - DCF Disconnects: Capital Absorption, Fleet Expansion, and Terminal Value Dominance",
+    "location": "Working capital absorption in the forecast (2026E)",
+    "quote": "A frequent flaw in high-growth modeling is the failure to penalize the firm for the working capital required to fund that growth. The target model avoids this trap. The audit verifies that working capital absorption logically matches the projected revenue spikes; in 2026E, the model forecasts a severe $137 million drag on free cash flows due to the rapid scaling of the acquired fleet1.",
+    "claimed_severity": "none",
+    "claimed_impact": "$137 million NWC drag in 2026E; $5.7 billion capex through 2029; $1.3 billion 11-tanker acquisition; $900 million order for four LNG vessels",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 49,
+    "kind": "pass",
+    "their_label": "PHASE 3 - Cost of Capital Rebuild and Capital Structure Triangulation",
+    "location": "Cost of Equity (Ke) and WACC",
+    "quote": "Utilizing the verified Primary Beta of 1.085 and an ERP of 4.87%, the Cost of Equity (Ke) precisely matches the target at 9.34%. By applying a 91.75% equity weight against an 8.25% debt weight, the resulting Explicit WACC is recalculated at 9.015%, structurally identical to the report's 9.01%1.",
+    "claimed_severity": "none",
+    "claimed_impact": "Ke 9.34%; WACC 9.015% recalculated vs 9.01% reported",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 50,
+    "kind": "pass",
+    "their_label": "PHASE 3 - DCF Waterfall Rebuild and Free Cash Flow Generation",
+    "location": "FCFF waterfall / equity value build",
+    "quote": "The recalculation generated a Present Value of Explicit Cash Flows of $2,997.65 million and a Terminal Value PV of $10,937.22 million5. Summing these core components, adding the $493 million in non-operating joint ventures, and executing the identical debt and perpetual capital subtractions yields a final Equity Value of $11,455.91 million5.",
+    "claimed_severity": "none",
+    "claimed_impact": "PV explicit CF $2,997.65m; TV PV $10,937.22m; JVs $493m; Equity Value $11,455.91m",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 51,
+    "kind": "pass",
+    "their_label": "PHASE 3 - DCF Waterfall Rebuild and Free Cash Flow Generation",
+    "location": "DCF fair value per share (report AED 5.69)",
+    "quote": "Dividing this equity block by the 7,398.5 million outstanding shares and applying the 3.6725 USD/AED fixed parity results in a deterministic Fair Value of AED 5.687 per share5. The target report stated AED 5.69. The mathematics are therefore verified as flawless; there are no structural breaks, no unlevered cash flows incorrectly discounted at the cost of equity, and no double-counting of non-operating assets.",
+    "claimed_severity": "none",
+    "claimed_impact": "AED 5.687 recalculated vs AED 5.69 reported",
+    "what_they_say_is_correct": "a deterministic Fair Value of AED 5.687 per share"
+  },
+  {
+    "id": 52,
+    "kind": "pass",
+    "their_label": "PHASE 3 - Relative and Alternative Valuation Lenses",
+    "location": "Relative multiples lens (AED 8.07)",
+    "quote": "Applying a blended enterprise multiple of 11.10x and a blended price-to-earnings multiple of 11.64x (derived from peer comparators like Qatar Gas Transport and Frontline plc, weighted by spot exposure) against the 2026E metrics yielded AED 8.07 per share, matching the report perfectly1.",
+    "claimed_severity": "none",
+    "claimed_impact": "EV multiple 11.10x; P/E 11.64x; AED 8.07 per share",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 53,
+    "kind": "pass",
+    "their_label": "PHASE 3 - Relative and Alternative Valuation Lenses",
+    "location": "Book value & sustainable ROE lens (AED 5.11)",
+    "quote": "The Book Value lens, utilizing a justified price-to-book multiple based on a sustainable 16.9% Return on Equity, recalculated flawlessly to AED 5.11 per share1.",
+    "claimed_severity": "none",
+    "claimed_impact": "sustainable ROE 16.9%; AED 5.11 per share",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 54,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: DCF (Primary Beta 1.085)",
+    "location": "Discounted Cash Flow lens, primary beta",
+    "quote": "Discounted Cash Flow (Primary Beta 1.085) | Report Output (AED) 5.69 | Python Recalculated (AED) 5.69 | Variance % -0.06%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.06% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 55,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: DCF (Composite Beta 0.705)",
+    "location": "Discounted Cash Flow lens, composite beta",
+    "quote": "Discounted Cash Flow (Composite Beta 0.705) | Report Output (AED) 8.40 | Python Recalculated (AED) 8.40 | Variance % -0.02%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.02% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 56,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: Relative Multiples (Blended)",
+    "location": "Relative multiples lens",
+    "quote": "Relative Multiples (Blended) | Report Output (AED) 8.07 | Python Recalculated (AED) 8.07 | Variance % +0.01%",
+    "claimed_severity": "none",
+    "claimed_impact": "+0.01% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 57,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: Normalised Earnings Power",
+    "location": "Normalised earnings power lens",
+    "quote": "Normalised Earnings Power | Report Output (AED) 7.69 | Python Recalculated (AED) 7.69 | Variance % -0.03%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.03% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 58,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: Book Value & Sustainable ROE",
+    "location": "Book value & sustainable ROE lens",
+    "quote": "Book Value & Sustainable ROE | Report Output (AED) 5.11 | Python Recalculated (AED) 5.11 | Variance % -0.02%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.02% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 59,
+    "kind": "pass",
+    "their_label": "Computational Variance Ledger (table), row: WEIGHTED CENTRAL (Primary)",
+    "location": "Weighted central fair value",
+    "quote": "WEIGHTED CENTRAL (Primary) | Report Output (AED) 6.60 | Python Recalculated (AED) 6.60 | Variance % -0.06%",
+    "claimed_severity": "none",
+    "claimed_impact": "-0.06% variance",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 60,
+    "kind": "pass",
+    "their_label": "PHASE 3 - Computational Variance Ledger (narrative)",
+    "location": "All valuation lenses",
+    "quote": "As demonstrated, variances are entirely negligible, functioning strictly at the limits of decimal rounding in the presentation layer of the target report.",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 61,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Critical Failures",
+    "location": "Whole model",
+    "quote": "None. The audit operated under a strict Zero-Trust Protocol, assuming broken mathematics, manipulated capitalization structures, and hallucinated data. The target model survived the stress test. There are no structural breaks in the DCF architecture, unlevered cash flows are correctly matched with the appropriate pre-financing cost of capital, and the Cap Table arithmetic scales flawlessly.",
+    "claimed_severity": "no critical failures",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 62,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Critical Failures",
+    "location": "IFRS presentation vs economic adjustments",
+    "quote": "Furthermore, the model strictly adheres to IFRS presentation standards while making the necessary, hard economic adjustments for intrinsic valuation.",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 63,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Verified Clearances",
+    "location": "Hybrid capital treatment ($1.979bn perpetual capital securities)",
+    "quote": "Hybrid Capital Treatment: The deduction of the $1.979 billion perpetual capital securities at carrying value1 is forensically cleared. Overriding the optical illusion of IAS 32 equity classification to treat these perpetuals as economic debt is mandatory for isolating true ordinary shareholder value.",
+    "claimed_severity": "forensically cleared",
+    "claimed_impact": "$1.979 billion",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 64,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Verified Clearances",
+    "location": "Shipping segment tax rate under Pillar Two",
+    "quote": "Pillar Two (GloBE) Tax Compliance: The application of a ~1% tax rate to the shipping segment1 is completely cleared. OECD BEPS Article 3.3 legally protects international shipping income from the 15% top-up tax24, validating the model's tax schedule and preventing an unwarranted value destruction scenario.",
+    "claimed_severity": "completely cleared",
+    "claimed_impact": "~1% tax rate; 15% top-up tax",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 65,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Verified Clearances",
+    "location": "Cost of debt derivation",
+    "quote": "Cost of Debt Weighting: The triangulated, three-method derivation of the 5.88% pre-tax cost of debt1 represents a gold-standard approach, properly blending parent-level SOFR facilities with third-party margins and implied lease rates.",
+    "claimed_severity": "gold-standard approach",
+    "claimed_impact": "5.88% pre-tax cost of debt",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 66,
+    "kind": "pass",
+    "their_label": "PHASE 4 - Corrected Fair Value",
+    "location": "Overall conclusion vs market anchor",
+    "quote": "The target model's conclusion that the asset is broadly fairly priced against the market anchor (AED 6.16 to AED 6.47) is quantitatively sound. The remaining variance is derived from structural asset qualities and unquantifiable geopolitical duration risks, not from fundamental modeling errors.",
+    "claimed_severity": "quantitatively sound",
+    "claimed_impact": "AED 6.16 to AED 6.47 market anchor range",
+    "what_they_say_is_correct": "none"
+  }
+]

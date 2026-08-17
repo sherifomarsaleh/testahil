@@ -1,0 +1,430 @@
+
+===== PAGE 1 =====
+ADNOC Classification: Public
+FY 2024 Earnings
+Management Discussion & Analysis Report
+12 February 2025
+
+===== PAGE 2 =====
+ADNOC Classification: Public
+ADNOC Logistics & Services
+MANAGEMENT DISCUSSION AND ANALYSIS OF FINANCIAL PERFORMANCE
+AND RESULTS OF OPERATIONS
+Table of Contents
+Financial Highlights…………………………………………………………………………………….….…3
+Segmental Results…………………………………………………………………………………….….….5
+Free Cash Flow………...…………………………………………………………………………………...12
+Outlook……………………………………………………………………………………………….……....13
+Dividend………………………………………………………………………………………………………15
+Earnings Conference Call Details………………………………………………………………………….16
+2
+
+===== PAGE 3 =====
+ADNOC Classification: Public
+MANAGEMENT DISCUSSION AND ANALYSIS OF FINANCIAL PERFORMANCE
+AND RESULTS OF OPERATIONS
+Financial Highlights
+ADNOC Logistics & Services plc (“ADNOC L&S” or the “Company”) reported strong financial results
+for the year ending December 31, 2024, showcasing significant growth in both revenue and profitability.
+This impressive performance is attributed to the company's strategic growth initiatives, increased
+demand, and improved operational efficiencies.
+Each business segment contributed robustly to the financial success of 2024:
+Integrated Logistics: Benefited from higher transported volumes and increased contributions from
+Jack Up Barges (JUBs) due to an expanded fleet, higher rates, and better utilization. The ongoing
+delivery of integrated logistics projects (G-Island and Hail & Ghasha) and fleet expansion bolstered
+GCC expansion and profitability.
+Shipping: Experienced strong charter rates for Dry Bulk and Tankers, although rates dipped slightly
+at the end of the year due to seasonal & cyclical factors. The addition of four new dual fuel Very Large
+Crude Carriers (VLCCs) in 2023 significantly boosted overall performance.
+Services: Growth was propelled by increased volumes in our petroleum ports and onshore terminal
+operations.
+Overall, ADNOC L&S's strategic decisions and operational enhancements have propelled us to new
+heights, delivering outstanding financial performance and reinforcing our position as an emerging
+international player in maritime and logistics industry.
+The company recorded outstanding revenue growth for the period increasing 29% to $3,549 million.
+EBITDA soared 31% year-on-year to $1,149 million with EBITDA margin 32%. Net profit increased
+22% against the year 2023 to $756 million.
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+Revenue 3,549 2,755 29% 881 928 -5% 828 6%
+Direct Costs (2,609) (2,003) 30% (662) (705) -6% (621) 7%
+EBITDA (1) 1,149 876 31% 282 275 2% 242 17%
+Margin 32% 32% 1% 32% 30% 2% 29% 3%
+Net Profit 756 620 22% 180 175 3% 165 9%
+EPS ($ /share) 0.10 0.08 22% 0.02 0.02 3% 0.02 9%
+EPS (AED /share) 0.38 0.31 22% 0.09 0.09 3% 0.08 9%
+Capital expenditures (811) (774) 5% (450) (136) 231% (270) 67%
+Free Cash Flow (2) 185 45 313% (162) 39 -517% (95) -70%
+3
+
+===== PAGE 4 =====
+ADNOC Classification: Public
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+Total Equity 4,895 4,406 11% 4,895 4,851 1% 4,406 11%
+Net Debt (3) 540 74 632% 540 213 153% 74 632%
+Net Debt / EBITDA 0.47 0.08 - 0.48 0.19 - 0.08 -
+(1) EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+(2) Free Cash Flow is calculated as EBITDA less working capital adjustments less income tax expense less capital expenditure
+(3) Net Debt and Cash is calculated as debt and debt-like items consisting of shareholder loan and current and non-current lease liabilities less cash and
+cash equivalents
+FY 2024 financial highlights:
+Revenue for FY 2024 was $3,549 million, up $794 million, (29%) against $2,755 million in FY 2023.
+EBITDA for FY 2024 was $1,149 million, up $273 million, (31%) against $876 million in FY 2023.
+Net Profit for FY 2024 was $756 million, up $136 million, (22%) against $620 million in FY 2023.
+Total Shareholder Returns since IPO were 180% as of 31 December 2024.
+Q4 2024 financial highlights:
+Revenue for Q4 2024 was $881 million, up $53 million (6%) against $828 million in Q4 2023; and a
+decrease of $47 million, (-5%) against $928 million for Q3 2024.
+EBITDA for Q4 2024 was $282 million, up $40 million (17%) against $242 million in Q4 2023; and an
+increase of $6 million, (2%) against $275 million for Q3 2024.
+Net Profit for Q4 2024 was $180 million, up $15 million (9%) against $165 million in Q4 2023; and an
+increase of $5 million, (3%) against $175 million for Q3 2024.
+4
+
+===== PAGE 5 =====
+ADNOC Classification: Public
+Segmental Results
+INTEGRATED LOGISTICS
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+Revenue 2,281 1,632 40% 610 609 0% 523 17%
+Offshore Contracting 1,108 975 14% 278 287 -3% 275 1%
+Offshore Services 553 501 10% 143 143 0% 142 1%
+Offshore Projects 620 157 294% 189 179 5% 106 78%
+Direct Costs (1,715) (1,177) 46% (463) (472) -2% (392) 18%
+Offshore Contracting (692) (599) 15% (174) (187) -7% (178) -2%
+Offshore Services (452) (430) 5% (119) (116) 3% (115) 4%
+Offshore Projects (572) (148) 287% (170) (169) 1% (100) 70%
+EBITDA (1) 687 528 30% 181 175 4% 160 13%
+Offshore Contracting 498 424 17% 127 128 -1% 118 7%
+Offshore Services 135 93 45% 35 35 0% 34 1%
+Offshore Projects 54 10 420% 20 12 63% 8 156%
+Margin 30% 32% -2% 30% 29% 1% 31% -1%
+Offshore Contracting 45% 44% 1% 46% 44% 1% 43% 2%
+Offshore Services 24% 19% 6% 24% 24% 0% 24% 0%
+Offshore Projects 9% 7% 2% 11% 7% 4% 7% 3%
+Net Profit 448 376 19% 116 115 1% 116 0%
+Offshore Contracting 334 321 4% 86 86 1% 87 -1%
+Offshore Services 73 47 54% 14 20 -32% 23 -40%
+Offshore Projects 41 9 388% 16 9 68% 6 159%
+(1) EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+Offshore Contracting
+Year-on-Year Performance
+Revenue from Offshore Contracting slightly increased 1% to $278 million in Q4 2024, compared to
+$275 million in Q4 2023. Revenue increased 14% to $1,108 million for FY 2024, from $975 million in
+FY 2023.
+The growth was driven by higher volumes and activity rates across business lines; increased utilization
+and average rates on Jack Up Barges (JUBs); along with growth investments in 2023 adding 25% to
+5
+
+===== PAGE 6 =====
+ADNOC Classification: Public
+the JUB fleet and accelerated Hail & Ghasha project also contributed to the substantial period-on-
+period growth.
+EBITDA increased 7% to $127 million in Q4 2024, compared to Q4 2023. EBITDA increased 17% to
+$498 million for FY 2024, from $424 million for FY 2023 due to same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue slightly decreased 3% to $278 million in Q4 2024, from $287 million in the previous quarter
+mainly driven by the lower volumes because of adverse weather.
+EBITDA of $127 million in Q4 2024 was 1% lower than the $128 million achieved in Q3 2024 due to
+the same factors impacting revenue.
+Offshore Services
+Year-on-Year Performance
+Revenue from Offshore Services slightly increased 1% to $143 million in Q4 2024, compared to $142
+million in Q4 2023. Revenue increased 10% to $553 million for FY 2024, from $501 million in FY 2023.
+The growth was mainly driven by the increased utilization and average rates as well as expansion in
+owned fleet in addition to the project volumes transported.
+EBITDA slightly increased 1% to $35 million in Q4 2024, compared to Q4 2023. EBITDA increased
+45% to $135 million for FY 2024, from $93 million for FY 2023 due to same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue is flat at $143 million in Q4 2024, in line with the previous quarter.
+EBITDA is flat at $35 million in Q4 2024 in line with the previous quarter.
+Offshore Projects
+Year-on-Year Performance
+Revenue from Offshore Projects increased 78% to $189 million in Q4 2024, compared to $106 million
+in Q4 2023. Revenue increased 294% to $620 million for FY 2024, from $157 million in FY 2023. The
+6
+
+===== PAGE 7 =====
+ADNOC Classification: Public
+increase was mainly driven by various Engineering, Procurement and Construction (EPC) project
+progress, particularly the contribution of the G-Island project (54.2% completion rate).
+EBITDA increased 156% to $20 million in Q4 2024, compared to Q4 2023. EBITDA increased 420%
+to $54 million for FY 2024, from $10 million for FY 2023 due to same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue increased 5% to $189 million in Q4 2024, from $179 million in the previous quarter due to
+realization of the variation order for one of the projects.
+EBITDA of $20 million in Q4 2024 was 63% higher than the $12 million achieved in Q3 2024 due to
+the same factors impacting revenue.
+7
+
+===== PAGE 8 =====
+ADNOC Classification: Public
+SHIPPING
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+Revenue 956 839 14% 211 226 -7% 231 -9%
+Tankers 517 407 27% 99 114 -13% 112 -11%
+Gas Carriers 153 174 -12% 42 37 14% 53 -20%
+Dry-Bulk and Containers 287 258 11% 69 75 -8% 67 4%
+Direct Costs (637) (593) 8% (151) (156) -3% (170) -11%
+Tankers (311) (279) 11% (72) (72) -1% (80) -10%
+Gas Carriers (107) (112) -5% (26) (25) 4% (37) -29%
+Dry-Bulk and Containers (220) (201) 9% (54) (59) -9% (53) 1%
+EBITDA (1) 396 321 24% 81 83 -3% 82 -1%
+Tankers 240 159 51% 36 47 -23% 41 -13%
+Gas Carriers 87 101 -14% 28 20 38% 26 9%
+Dry-Bulk and Containers 69 60 15% 17 16 5% 15 12%
+Margin 41% 38% 3% 38% 37% 2% 36% 3%
+Tankers 46% 39% 7% 36% 41% -5% 37% -1%
+Gas Carriers 57% 58% -1% 67% 55% 11% 49% 18%
+Dry-Bulk and Containers 24% 23% 1% 24% 21% 3% 22% 2%
+Net Profit 270 240 12% 51 51 -1% 58 -12%
+Tankers 172 118 46% 22 31 -29% 28 -23%
+Gas Carriers 47 73 -36% 18 9 86% 18 -1%
+Dry-Bulk and Containers 51 49 4% 11 11 2% 11 1%
+(1) EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+Tankers
+Year-on-Year Performance
+Revenue from Tankers decreased 11% to $99 million in Q4 2024, compared to $112 million in Q4 2023
+due to cyclical slowdown at the fag-end of 2024. Revenue increased 27% to $517 million for FY 2024,
+from $407 million FY 2023. This growth primarily resulted from higher charter rates for Tankers for
+most part of the year; four newbuild modern dual fuel VLCCs added to the fleet delivered in 2023;
+8
+
+===== PAGE 9 =====
+ADNOC Classification: Public
+increased tonne-miles driven by geopolitical tensions impacting shipping voyage distances (reducing
+availability) and hence also rates.
+EBITDA was down 13% to $36 million in Q4 2024, from $41 million in Q4 2023 due to cyclical slowdown
+at the fag-end of 2024. EBITDA increased 51% to $240 million for FY 2024, from $159 million in FY
+2023, due to the same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue is down by 13% to $99 million in Q4 2024, from $114 million in the previous quarter due to
+cyclical slowdown at the fag-end of 2024.
+EBITDA of $36 million in Q4 2024 was 23% lower than the $47 million achieved in Q3 2024, due to the
+same factors impacting revenue.
+Gas Carriers
+Year-on-Year Performance
+Revenue from Gas Carriers decreased 20% to $42 million in Q4 2024, compared to $53 million in Q4
+2023 due to decrease in some low margin chartering-in / out of LNG Carriers. Revenue decreased
+12% to $153 million for FY 2024, from $174 million in FY 2023. The decrease was mainly driven by the
+cessation of spot charter-in operations, and technical off-hire days in Q1 2024. These off-hire days
+were a result of the emergency dry dock of Mraweh and the planned dry dock of three other owned
+LNG carriers, as well as one chartered-in carrier, Sohar LNG, during 2024; partially offset by the
+deployment of the newly acquired VLGC from the end of Q1 2024.
+EBITDA increased 9% to $28 million in Q4 2024, compared to Q4 2023 due to deployment of the newly
+acquired VLGC & one-off insurance claim. EBITDA decreased 14% to $87 million for FY 2024, from
+$101 million for FY 2023 due to same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue increased 14% to $42 million in Q4 2024, from $37 million in the previous quarter due to
+insurance recovery on one LNG carrier in Q4 2024 and technical off hire days of dry docks in Q3 2024.
+EBITDA of $28 million in Q4 2024 was 38% higher than the $20 million achieved in Q3 2024 due to
+the same factors impacting revenue.
+Dry-Bulk and Containers
+Year-on-Year Performance
+Revenue from Dry-Bulk increased 4% to $69 million in Q4 2024, compared to $67 million in Q4 2023.
+Revenue increased 11% to $287 million for FY 2024, from $258 million in FY 2023, mainly driven by
+higher charter rates.
+9
+
+===== PAGE 10 =====
+ADNOC Classification: Public
+EBITDA was up 12% to $17 million in Q4 2024, from $15 million in Q4 2023. EBITDA increased 15%
+to $69 million for FY 2024, from $60 million in FY 2023, driven by the same factors impacting revenue.
+Quarter-on-Quarter Performance
+Revenue was down 8% to $69 million in Q4 2024 comparing to the previous quarter due to lower
+chartering activity.
+EBITDA of $17 million in Q4 2024 was 5% higher than $16 million achieved in Q3 2024 due to higher
+margins generated in chartering activity.
+10
+
+===== PAGE 11 =====
+ADNOC Classification: Public
+SERVICES
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+Revenue 312 284 10% 61 93 -35% 75 -19%
+Direct Costs (256) (233) 10% (49) (77) -37% (59) -18%
+EBITDA (1) 56 44 26% 10 19 -45% 14 -24%
+Margin 18% 16% 2% 17% 20% -3% 18% -1%
+Net Profit 26 18 3% 3 11 -72% 7 -55%
+(1) EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+Year-on-Year Performance
+Revenue from Services decreased 19% to $61 million in Q4 2024, from $75 million in Q4 2023 due to
+lower Borouge Container Terminal operation volumes. Revenue was up 10% to $312 million for FY
+2024, from $284 million in FY 2023. This was driven by increased volumes in petroleum ports and
+onshore terminal operations.
+EBITDA was down 24% to $10 million in Q4 2024, from $14 million in Q4 2023 due to lower Borouge
+Container Terminal operation volumes. EBITDA increased 26% to $56 million for FY 2024, from $44
+million in FY 2023, driven by higher activity levels in petroleum port and onshore terminal operations
+coupled with one-off other income for liquidated damages recovered on late deliveries of Tail Back
+Boats for petroleum port operations.
+Quarter-on-Quarter Performance
+Revenue decreased 35% to $61 million in Q4 2024, from $93 million in Q3 2024 due to one-off impact
+of cost-plus recovery of ancillary services booked in Q3 2024 has been reversed in Q4 2024 as a back-
+to-back credit note from sub-contractor in addition to Hose change activity conducted in Q3 2024.
+EBITDA of $10 million in Q4 2024 was 45% lower than the $19 million achieved in Q3 2024 mainly due
+to the same factors impacting revenue.
+11
+
+===== PAGE 12 =====
+ADNOC Classification: Public
+Free Cash Flow
+USD Million YE 24 YE 23 YoY % Q4 24 Q3 24 QoQ % Q4 23 YoY %
+EBITDA (1) 1149 876 31% 282 275 2% 242 17%
+Working Capital Adj. (80) (55) 45% 21 (84) -125% (64) 132%
+Income Tax (73) (2) 3091% (15) (16) -9% (4) 320%
+Operating Free
+996 819 22% 288 175 65% 174 65%
+Cash Flow
+Capital Expenditure (2) (811) (774) 5% (450) (136) 231% (270) 67%
+Free Cash Flow 185 45 313% (162) 39 -517% (95) -70%
+(1) EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization.
+(2) Refer to Note 11: Property, Plant and Equipment in Financial Statements for further details.
+For the FY 2024, Operating Free Cash Flow increased 22% ($177 million) to $996 million, driven by
+the continued growth in underlying profitability, despite the significant increase of working capital and
+income tax.
+Free cash flow reached $185 million for FY 2024, marking an increase of $140 million from $45 million.
+This continued growth and outperformance in free cash flow delivery through improved profitability
+sees the business well-positioned to save on financing costs as the delivery of value-accretive
+transformational growth investment continues usin g free cash flows after dividends ahead of debt-
+financing.
+ADNOC L&S spent $811 million in capital expenditures for FY 2024. Additionally, the acquisition of
+Navig8, announced in January 2025, was funded through a Hybrid Capital Instrument, which is equity-
+based and priced below SOFR+125bps. This strategic move enhances the company's growth capacity
+while maintaining a target leverage ratio of 2.0x-2.5x Net Debt/EBITDA. The company added $1 billion
+in property, plant and equipment in FY 2024 (refer Note 11 PPE (Additions) in Financial Statements
+for further details). During 2024 the Company has announced signing for 8 to 10 newbuild LNG Carriers
+for up to $2.5bn, contracted to ADNOC subsidiaries on 20 years’ time charters; signing for 9 newbuild
+Very Large Ethane Carriers (VLECs) for $1.4bn contracted on 20 years’ time charter contracts to
+Wanhua Chemical Group subsidiaries; and signing for 4 newbuild Very Large Ammonia Carriers
+(VLACs) for participation in the large-scale ammonia transportation market.
+12
+
+===== PAGE 13 =====
+ADNOC Classification: Public
+Outlook
+Group
+The Company’s guidance for 2025 and medium-term guidance, now including the contribution
+of Navig8 and the Integr8 joint-control activity from 8 January 2025 is as follows:
+• Group Revenues: The Company anticipates y-o-y revenue growth from 2024 to 2025 in the
+mid to high 40% range. Over the medium term (2026-2029), the Company expects to deliver
+a revenue CAGR in the low single digit range.
+• Group EBITDA: The Company expects y-o-y EBITDA growth from 2024 to 2025 in the high
+teens. In the medium term (2026-2029), the Company targets an EBITDA CAGR in the high
+single digit range.
+• Group Net Income: The Company anticipates y-o-y net income from 2024 to 2025 in the low
+double-digit range. Over the medium term (2026-2029), the Company expects a net income
+CAGR in the high single digit range.
+• Growth Investments: After delivering significant committed growth in 2024, both organic and
+inorganic, the Company maintains its capital expenditure guidance, reflecting its commitment
+to long-term growth and strategic expansion . ADNOC L&S still anticipate an additional $3
+billion+ of value-accretive organic investment spend by 2029, beyond the projects already
+announced and incorporated in guidance, applying the same investment return criteria.
+• Dividend Policy: Remains unchanged with a projected total dividend payable for 2025 of $287
+million (a 5% increase from 2024 annualized dividend), in line with the stated progressive
+dividend policy and subject to relevant approvals.
+• Capital Structure: The Company targets a 2.0-2.5x net debt / EBITDA ratio over the medium
+term, with the recently committed Hybrid Capital Instrument, debt, and free cash flows after
+dividends, the primary funding sources for committed and anticipated growth investment.
+Segmental Medium-Term Outlook
+1. Integrated Logistics
+• Revenue: We expect revenue growth in the low single-digit percentage YoY in 2025. Growth
+driven by strong Offshore contracting volumes & Offshore Services including chartering
+coupled with good progress on G-Island & JUB fleet growth, utilization & rates.
+Over the medium term, we expect low single-digit percentage reduction; lower project / EPC
+contracts offset by growth in Offshore Contracting & Offshore Services.
+• EBITDA: We expect EBITDA growth in the high single-digit percentage YoY in 2025.
+Over the medium term, we expect low single-digit percentage driven by volume growth in
+Offshore Contracting & Offshore Services & continued strength in JUBs.
+13
+
+===== PAGE 14 =====
+ADNOC Classification: Public
+2. Shipping
+• Revenue: We expect revenue growth in the mid to high 40%s range YoY in 2025.
+Over the medium term, we expect high single-digit percentage growth:
+o Tankers market is expected to have a weaker start to 2025 followed by anticipated
+market tightening
+o For Gas Carriers we expect that continued softness in LNG rates gradually abates with
+new products coming online, driven by a high number of vessel deliveries and limited
+additional liquefaction capacity
+o For Dry-Bulk and Containers, we anticipate vessel demand for Sulphur cargoes in 2025
+likely at a slower pace compared to the previous year.
+• EBITDA: We expect EBITDA percentage growth in the mid to high 20%s range YoY in 2025
+driven by strong rates on Tankers and Dry-Bulk.
+Over the medium term, we target EBITDA growth in the mid-teens.
+3. Services
+• Revenue: We expect revenue growth 5x YoY in 2025 mainly from the addition of Navig8
+commercial pool and technical management. The long-term stable nature of the Services
+contracted activity in Onshore terminals, Petroleum Ports Operations and Oil Spill Response
+Services provides strong revenue visibility. Consequently, we expect revenues to remain flat
+over the medium term.
+• EBITDA: We expect EBITDA growth slightly above 100% in 2025. We expect Services EBITDA
+to grow in the mid to high single-digit percentage range over the medium term.
+14
+
+===== PAGE 15 =====
+ADNOC Classification: Public
+Dividend
+ADNOC L&S remains committed to delivering strong profitable growth and attractive shareholder
+returns. In line with its approved dividend policy, the Board of Directors endorsed cash dividend of
+$136.5 million for H2 2024, equivalent to 6.78 fils per share (subject to AGM approval), that will be paid
+to shareholders in April 2025.This reaffirms the company’s commitment to deliver attractive returns to
+its shareholders.
+In line with the Board-approved progressive dividend policy, the Company aims to increase annual
+dividends by at least 5% over the medium term, taking the 2023 annualized dividend ($260 million) as
+a base.
+15
+
+===== PAGE 16 =====
+ADNOC Classification: Public
+Earnings Conference Call Details
+ADNOC L&S will host the earnings webcast and conference call followed by a Q&A session for
+investors and analysts on Wednesday, February 12, 2025, at 2:00 pm UAE time / 10:00 am UK time.
+The call will be hosted by Abdulkareem Al Masabi (CEO) and Nicholas Gleeson (CFO).
+16
+
+===== PAGE 17 =====
+ADNOC Classification: Public
+About ADNOC Logistics & Services
+ADNOC Logistics & Services, listed on the Abu Dhabi Securities Exchange (ADX symbol ADNOCLS /
+ISIN “AEE01268A239”) is a global energy maritime logistics company based in Abu Dhabi. Through
+its three business units; Integrated logistics, Shipping and Services, ADNOC L&S delivers energy
+products to more than 100 customers in over 50 countries.
+To find out more, visit: www.adnocls.ae
+For investors enquiries, please contact: IR@adnocls.ae
+17
+
+===== PAGE 18 =====
+ADNOC Classification: Public
+Cautionary Statement Regarding Forward-Looking Statements
+This communication includes forward-looking statements which relate to, among other things, our plans,
+objectives, goals, strategies, future operational performance, and anticipated developments in markets
+in which we operate and in which we may operate in the future. These forward-looking statements
+involve known and unknown risks and uncertainties, many of which are beyond our control and all of
+which are based on management’s current beliefs and expectations about future events. Forward-
+looking statements are sometimes identified by the use of forward-looking terminology such as
+“believes”, “expects”, “may”, “will”, “could”, “should”, “would”, “intends”, “estimates”, “plans”, “targets”,
+or “anticipates” or the negative thereof, or other comparable terminology. These forward-looking
+statements and other statements contained in this communication regarding matters that are not
+historical facts involve predictions and are based on the beliefs of our management, as well as the
+assumptions made by, and information currently available to, our management. Although we believe
+that the expectations reflected in such forward-looking statements are reasonable at this time, we
+cannot assure you that such expectations will prove to be correct. Given these uncertainties, you are
+cautioned not to place undue reliance on such forward-looking statements. Important factors that could
+cause actual results to differ materially from our expectations include, but are not limited to: our ability
+to enter into strategic alliances and third party transactions; ; failure to successfully implement our
+operating initiatives and growth plans, including our cost savings initiatives, due to general economic
+conditions, our reliance on information technology to manage our business; laws and regulations
+pertaining to environmental protection, operational safety, the extent of our related party transactions
+with other ADNOC Group companies; the introduction of new taxes in the UAE; failure to successfully
+implement new policies, practices, systems and controls that we implemented in connection with or
+following our IPO; any inadequacy of our insurance to cover losses that we may suffer; general
+economic, financial and political conditions in Abu Dhabi and elsewhere in the UAE; instability and
+unrest in regions in which we operate; the introduction of new laws and regulations in Abu Dhabi and
+the UAE; and other risks and uncertainties detailed in our International Offering Memorandum dated
+May 16th 2023 relating to our initial public offering and the listing of our shares on the Abu Dhabi
+Securities Exchange, and from time to time in our other investor communications. Except as expressly
+required by law, we disclaim any intent or obligation to update or revise these forward-looking
+statements.
+Absolute figures and percentages included in this document have been subject to rounding
+adjustments.
+18

@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "type": "criticism",
+    "their_label": "Finding 1 (Fail Table row 1) — Joint-venture profit counted twice",
+    "location": "§1.1 bridge; Segments!B58–B72, B92; Assumptions C56, C68; DCF!C49",
+    "quote": "Joint-venture profit counted twice. [Report says:] JV/associates added at book 493 with \"these earn outside the consolidated cash flow\"; App. A.1 says the study's EBITDA excludes \"the share of joint ventures\". [Actually correct:] AR2025 Note 28: segment EBITDA includes equity-accounted profit — Gas Carriers 21,313 and Services 16,079 (=37,392). Model's Gas EBITDA 129,547 = op. profit 57,708 + D&A 50,526 + JV 21,313; Services 60,273 = 13,897 + 30,297 + JV 16,079.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −4.6% (5.69→5.43); weighted central −3.3% (6.60→6.38)",
+    "what_they_say_is_correct": "Strip 37,392/yr from the unit base, or drop the 493 bridge line — not both"
+  },
+  {
+    "id": 2,
+    "type": "criticism",
+    "their_label": "Finding 1 (sub-claim: why it failed)",
+    "location": "§1.1 bridge; Segments!B58–B72, B92; Assumptions C56, C68; DCF!C49",
+    "quote": "Forecast margins (gas 70%, services 20%) are struck on a JV-inclusive base, so JV earnings sit inside FCFF and the stake is added at book.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −4.6% (5.69→5.43); weighted central −3.3% (6.60→6.38)",
+    "what_they_say_is_correct": "Strip 37,392/yr from the unit base, or drop the 493 bridge line — not both"
+  },
+  {
+    "id": 3,
+    "type": "criticism",
+    "their_label": "Finding 1 (sub-claim: the study's own text admits it)",
+    "location": "§1.6 (Services margin narrative)",
+    "quote": "§1.6 admits it: Services margin \"reflects…the growing profit share from the bunkering associate\".",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 4,
+    "type": "criticism",
+    "their_label": "Finding 1 (sub-claim: the report's text asserts the opposite)",
+    "location": "§1.1 bridge text; App. A.1",
+    "quote": "the report's own text asserts the opposite (\"these earn outside the consolidated cash flow\"), worth −3.3% on the weighted central",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "−3.3% on the weighted central",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 5,
+    "type": "criticism",
+    "their_label": "Finding 2 (Fail Table row 2) — NCI consistency claim",
+    "location": "§1.1 bridge line \"Less non-controlling interests (272)\"",
+    "quote": "NCI consistency claim. [Report says:] \"the reviewed book value of the minority stakes, consistent with the 8.8% of group profit they took\". [Actually correct:] 272,134 ÷ (272,134 + 5,073,902) = 5.09%, not 8.8%. On the profit-share basis the report itself invokes: 8.8% × 11,735,090 = 1,032,688.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −6.6% (5.69→5.31); weighted central −5.6% (6.60→6.23)",
+    "what_they_say_is_correct": "Deduct NCI at its share of equity value, or drop the false consistency claim"
+  },
+  {
+    "id": 6,
+    "type": "criticism",
+    "their_label": "Finding 2 (sub-claim: economic claim vs book carry)",
+    "location": "§1.1 bridge line \"Less non-controlling interests (272)\"",
+    "quote": "The stated consistency check is arithmetically false; the NCI's economic claim is ~3.8× its book carry.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −6.6% (5.69→5.31); weighted central −5.6% (6.60→6.23)",
+    "what_they_say_is_correct": "Deduct NCI at its share of equity value, or drop the false consistency claim"
+  },
+  {
+    "id": 7,
+    "type": "criticism",
+    "their_label": "Finding 2 (sub-claim: repeats in other bridges)",
+    "location": "Relative, normalised and SOTP bridges",
+    "quote": "Same under-deduction repeats in the relative, normalised and SOTP bridges.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "Deduct NCI at its share of equity value, or drop the false consistency claim"
+  },
+  {
+    "id": 8,
+    "type": "criticism",
+    "their_label": "Finding 3 (Fail Table row 3) — VLCC Q1 2026 TCE",
+    "location": "§Headline; §1.7 Table 18; Assumptions F42",
+    "quote": "VLCC Q1 2026 TCE. [Report says:] \"the company reported USD 145,000 a day in the first quarter of 2026\". [Actually correct:] Q1 2026 earnings call, verbatim: \"VLCCs, the TCE is up 240% year-on-year to approximately $135,000 per day\". Cited source does not contain the claimed figure.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −0.26%; weighted central −0.53% (immaterial)",
+    "what_they_say_is_correct": "Use the disclosed 135,000"
+  },
+  {
+    "id": 9,
+    "type": "criticism",
+    "their_label": "Finding 3 (sub-claim: propagation into the rate path)",
+    "location": "Assumptions F42; FY2026 VLCC rate; 2027–30 rate glide",
+    "quote": "it also sets the FY2026 VLCC rate (150,616 vs 145,617) and the whole 2027–30 glide",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "DCF −0.26%; weighted central −0.53% (immaterial)",
+    "what_they_say_is_correct": "Use the disclosed 135,000"
+  },
+  {
+    "id": 10,
+    "type": "criticism",
+    "their_label": "Finding 4 (Fail Table row 4) — Contracted-revenue share",
+    "location": "§Headline; Table 4 \"How much is contracted\"",
+    "quote": "Contracted-revenue share. [Report says:] \"About 53% of 2026E revenue is already contracted with the parent group\". [Actually correct:] Q1 2026 call: \"Approximately 56% of the rest of 2026 volumes are already contracted with $1.7 billion secured with ADNOC alone\" — i.e. ~37% of the study's own 4,589.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None (narrative only; not used in any cell)",
+    "what_they_say_is_correct": "Quote 56% total / USD 1.7bn ADNOC separately"
+  },
+  {
+    "id": 11,
+    "type": "criticism",
+    "their_label": "Finding 4 (sub-claim: counterparty attribution)",
+    "location": "§Headline; Table 4 \"How much is contracted\"",
+    "quote": "Neither the percentage nor the counterparty attribution appears in the source; total-contracted is presented as parent-contracted.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None (narrative only; not used in any cell)",
+    "what_they_say_is_correct": "Quote 56% total / USD 1.7bn ADNOC separately"
+  },
+  {
+    "id": 12,
+    "type": "criticism",
+    "their_label": "Finding 5 (Fail Table row 5) — Price-to-book memorandum",
+    "location": "§1.2 Table 8; Table 9; Rel&Norm!C30",
+    "quote": "Price-to-book memorandum. [Report says:] \"Justified price to book 2.03×\" on book of AED 2.52, directly above \"Memorandum — the price the market pays for that book today 1.76×\". [Actually correct:] 1.76× = 12,409,735 ÷ (5,073,902 + 1,978,619 perpetuals). On the same AED 2.52 ordinary book the market pays 12,409,735 ÷ 5,073,902 = 2.446×.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None on the computed 5.11; reverses the stated conclusion of the lens",
+    "what_they_say_is_correct": "Compute the market P/B on the same ordinary-equity book"
+  },
+  {
+    "id": 13,
+    "type": "criticism",
+    "their_label": "Finding 5 (sub-claim: reverses the lens's message)",
+    "location": "§1.2 Table 8; Table 9; Rel&Norm!C30",
+    "quote": "Numerator/denominator mismatch reverses the lens's message: like-for-like the market pays 2.45× against a justified 2.03× — dear, not cheap.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None on the computed 5.11; reverses the stated conclusion of the lens",
+    "what_they_say_is_correct": "Compute the market P/B on the same ordinary-equity book"
+  },
+  {
+    "id": 14,
+    "type": "criticism",
+    "their_label": "Finding 5 (sub-claim: flatters the peer read)",
+    "location": "§1.2 Table 9 (peer P/B comparison, Nakilat)",
+    "quote": "Also flatters the peer read vs Nakilat's 1.65×.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "Compute the market P/B on the same ordinary-equity book"
+  },
+  {
+    "id": 15,
+    "type": "criticism",
+    "their_label": "Finding 6 (Fail Table row 6) — Guidance reconciliation does not foot (revenue)",
+    "location": "§1.6 Table 17 \"Guided\" column",
+    "quote": "Guidance reconciliation. [Report says:] IL 1,846 / Shipping 2,475 / Services 375; Group 4,841. [Actually correct:] 1,846+2,475+375 = 4,696 (≠4,841).",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None on fair value",
+    "what_they_say_is_correct": "Rebuild the column on one vintage; foot it"
+  },
+  {
+    "id": 16,
+    "type": "criticism",
+    "their_label": "Finding 6 (sub-claim: earnings row does not foot)",
+    "location": "§1.6 Table 17 \"Guided\" column",
+    "quote": "[Report says:] Earnings 606 / 959 / 62; Group 1,613. [Actually correct:] 606+959+62 = 1,627 (≠1,613).",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None on fair value",
+    "what_they_say_is_correct": "Rebuild the column on one vintage; foot it"
+  },
+  {
+    "id": 17,
+    "type": "criticism",
+    "their_label": "Finding 6 (sub-claim: two guidance vintages mixed in one column)",
+    "location": "§1.6 Table 17 \"Guided\" column",
+    "quote": "Segment rows use the raised Q1-2026 guidance; group revenue 4,841 = 5,016×0.965 uses the superseded Q4-2025 \"mid-single-digit reduction\", narrowed at Q1 to \"low-to-mid\". A reconciliation table that does not foot, mixing two guidance vintages in one column.",
+    "claimed_severity": "TOTAL FAIL",
+    "claimed_impact": "None on fair value",
+    "what_they_say_is_correct": "Rebuild the column on one vintage; foot it"
+  },
+  {
+    "id": 18,
+    "type": "criticism",
+    "their_label": "Finding 7 (Fail Table row 7) — Terminal risk-free basis switch",
+    "location": "§1.8 Table 20 \"Adjusted risk-free rate — Terminal 3.25%\"",
+    "quote": "Terminal risk-free basis switch. [Report says:] Explicit window: observed UAE bond yield 4.48% less 0.42% = 4.06%. Terminal: \"2% inflation objective plus a 1.25% long-run real policy rate\" = 3.25%. [Actually correct:] Both are defensible individually, but the basis changes from a market bond yield to a constructed policy anchor, cutting rf 81bp.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −13.1% (5.69→4.94); weighted central −4.5% (6.60→6.30) if 4.06% is carried through",
+    "what_they_say_is_correct": "Disclose as an assumption and publish its sensitivity"
+  },
+  {
+    "id": 19,
+    "type": "criticism",
+    "their_label": "Finding 7 (sub-claim: spot-calibrated ERP added to a normalised rf)",
+    "location": "§1.8 Table 20",
+    "quote": "a spot-calibrated ERP (4.87%) is then added to a normalised rf",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 20,
+    "type": "criticism",
+    "their_label": "Finding 7 (sub-claim: undisclosed and absent from the sensitivity tables)",
+    "location": "§1.8 Table 20; Table 23 (\"contested choices\"); Table 25",
+    "quote": "Undisclosed as a methodology switch; absent from Table 23's five \"contested choices\" and from every row of Table 25 — while terminal growth (worth AED 0.52) is tabulated.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "terminal growth worth AED 0.52 is tabulated while this is not",
+    "what_they_say_is_correct": "Disclose as an assumption and publish its sensitivity"
+  },
+  {
+    "id": 21,
+    "type": "criticism",
+    "their_label": "Finding 8 (Fail Table row 8) — Depreciation rate",
+    "location": "Assumptions C72 (5.8%); Balance Sheet rows 33–36",
+    "quote": "Depreciation rate. [Report says:] Blue input cell, no source, no derivation; implies a 17.2-year average life. [Actually correct:] FY2025 realised: total D&A 524,809 less the model's own \"other D&A\" 109,836 = 414,973 PP&E depreciation on average PP&E of 5,713,757 = 7.26%.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −8.4% (5.69→5.21); weighted central −5.0% at the FY2025-implied rate",
+    "what_they_say_is_correct": "Derive from the fleet's disclosed useful lives; add a sensitivity row"
+  },
+  {
+    "id": 22,
+    "type": "criticism",
+    "their_label": "Finding 8 (sub-claim: largest untested sensitivity, in no sensitivity table)",
+    "location": "Assumptions C72 (5.8%); Balance Sheet rows 33–36",
+    "quote": "An unsourced input driving the largest untested sensitivity in the model; appears in no sensitivity table.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −8.4%; weighted central −5.0%",
+    "what_they_say_is_correct": "Derive from the fleet's disclosed useful lives; add a sensitivity row"
+  },
+  {
+    "id": 23,
+    "type": "criticism",
+    "their_label": "Finding 9 (Fail Table row 9) — Gas-carrier margin held at cycle peak",
+    "location": "Assumptions C56 (gas margin 70%)",
+    "quote": "Gas-carrier margin held at cycle peak. [Report says:] \"Margin held near the FY2025 outcome, since 15 of 20 owned vessels sit on long-term contracts\". [Actually correct:] Disclosed unit margins: FY2023 58.2%, FY2024 57.2%, FY2025 72.1%. 70% is held flat while gas revenue grows 2.5× (246→620), making this the single largest source of forecast EBITDA growth.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −5.5% (5.69→5.38) at the 3-year average of 62.5%",
+    "what_they_say_is_correct": "Anchor on an ex-JV, cycle-average contracted margin"
+  },
+  {
+    "id": 24,
+    "type": "criticism",
+    "their_label": "Finding 9 (sub-claim: FY2025 margin inflated by embedded JV profit)",
+    "location": "Assumptions C56 (gas margin 70%)",
+    "quote": "The FY2025 72% is itself inflated 11.9pp by the embedded JV profit (finding 1); ex-JV it is 60.2%.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "11.9pp inflation; ex-JV margin 60.2%",
+    "what_they_say_is_correct": "Anchor on an ex-JV, cycle-average contracted margin"
+  },
+  {
+    "id": 25,
+    "type": "criticism",
+    "their_label": "Finding 10 (Fail Table row 10) — ROE numerator/denominator mismatch",
+    "location": "§1.2 Table 8 \"Sustainable ROE 16.9%\"; Balance Sheet row 28",
+    "quote": "ROE numerator/denominator mismatch. [Report says:] Sustainable ROE 16.9% → justified P/B 2.03× → AED 5.11. [Actually correct:] Model divides profit before the perpetual coupon (IS row 28) by equity excluding the perpetuals (BS row 21). On ordinary earnings ÷ ordinary equity the five-year average is 15.44%, giving P/B 1.830× and AED 4.61. The perpetual capital's return is in the numerator but its capital is out of the denominator.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Book lens −9.9%; weighted central −1.2%",
+    "what_they_say_is_correct": "Use IS row 30 (post-coupon) over ordinary equity"
+  },
+  {
+    "id": 26,
+    "type": "criticism",
+    "their_label": "Finding 11 (Fail Table row 11) — Two ROE conventions in one series",
+    "location": "§1.2; App. A.2 ROE row",
+    "quote": "Two ROE conventions in one series. [Report says:] \"ran 14.1% in FY2023, 15.4% in FY2024 and 16.8% in FY2025, and the five forecast years average 16.9%\". [Actually correct:] History is on closing equity (620,394/4,405,982 = 14.08%; 15.45%; 16.83%); the model's forecast is on average equity. On average equity, history is 16.26% (FY2024) and 16.98% (FY2025).",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None directly",
+    "what_they_say_is_correct": "One convention across the row"
+  },
+  {
+    "id": 27,
+    "type": "criticism",
+    "their_label": "Finding 11 (sub-claim: the narrative reverses on a consistent basis)",
+    "location": "§1.2; App. A.2 ROE row",
+    "quote": "One row of Appendix A.2 and one sentence of §1.2 splice two conventions; the \"rising to 16.9%\" narrative is actually a decline on a consistent basis.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None directly",
+    "what_they_say_is_correct": "One convention across the row"
+  },
+  {
+    "id": 28,
+    "type": "criticism",
+    "their_label": "Finding 12 (Fail Table row 12) — Perpetual ROE taken from a declining path",
+    "location": "Rel&Norm!C48 = AVERAGE(BS!E28:I28)",
+    "quote": "Perpetual ROE from a declining path. [Report says:] 16.9% used as the sustainable rate in a Gordon P/B. [Actually correct:] The path is 20.5→18.2→17.3→15.2→13.4% and still falling; the same model's terminal ROIC is 11.68%. A perpetuity formula fed the mean of a decaying series.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Book lens −23.7% (5.11→3.90); weighted central −2.8%",
+    "what_they_say_is_correct": "Use the terminal-year return, consistent with the DCF's own terminal ROIC"
+  },
+  {
+    "id": 29,
+    "type": "criticism",
+    "their_label": "Finding 12 (sub-claim: two perpetual-return assumptions coexist)",
+    "location": "Rel&Norm!C48; DCF terminal ROIC",
+    "quote": "two different perpetual-return assumptions coexist in one study",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "16.9% perpetual ROE vs 11.68% terminal ROIC",
+    "what_they_say_is_correct": "Use the terminal-year return, consistent with the DCF's own terminal ROIC"
+  },
+  {
+    "id": 30,
+    "type": "criticism",
+    "their_label": "Finding 13 (Fail Table row 13) — Working-capital calibration",
+    "location": "§7 caveat \"The revenue gross-up is presentational\"; Assumptions C50, C74–C77",
+    "quote": "Working-capital calibration. [Report says:] \"The ratio moves the revenue line and never the earnings line, so it cannot affect the valuation\". [Actually correct:] DSO 108.40 days is calibrated on FY2025 revenue at the 2.72× tanker gross-up, then applied to forecast revenue at 1.60×. Re-based: 1,489,668 ÷ 4,307,906 × 365 = 126.22 days. The claim is false — the convention flows into receivables → ΔWC → FCFF.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −2.4% (5.69→5.55)",
+    "what_they_say_is_correct": "Re-base the days ratios to the forecast's own revenue convention"
+  },
+  {
+    "id": 31,
+    "type": "criticism",
+    "their_label": "Finding 14 (Fail Table row 14) — Q1 2026 revenue growth",
+    "location": "§Headline; §1.6",
+    "quote": "Q1 2026 revenue growth. [Report says:] \"revenue of USD 1,083 million (-8% year on year)\". [Actually correct:] Q1 2026 release: $1,083m vs Q1 2025 $1,204m = −10%. Transcription/derivation error against the company's own comparative.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "Use −10%"
+  },
+  {
+    "id": 32,
+    "type": "criticism",
+    "their_label": "Finding 15 (Fail Table row 15) — Cause of the Q1 revenue fall",
+    "location": "§7 caveat; §1.6; Assumptions C50",
+    "quote": "Cause of the Q1 revenue fall. [Report says:] Revenue fell \"because low-margin chartered-in trading fell away\"; gross-up cut 2.72×→1.60× \"on the evidence of the first quarter\". [Actually correct:] Company: \"The decline is entirely attributable to the wind down of the G Island EPC project\"; Offshore Projects fell $192m→$4m; Shipping revenue rose 4% to $512m.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Via finding 13",
+    "what_they_say_is_correct": "Re-derive the gross-up from tanker-level disclosure"
+  },
+  {
+    "id": 33,
+    "type": "criticism",
+    "their_label": "Finding 15 (sub-claim: stated evidence contradicted by primary disclosure)",
+    "location": "§7 caveat; §1.6; Assumptions C50",
+    "quote": "The stated evidence for the gross-up cut is contradicted by the primary disclosure — the fall was in Integrated Logistics, not Shipping.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Via finding 13",
+    "what_they_say_is_correct": "Re-derive the gross-up from tanker-level disclosure"
+  },
+  {
+    "id": 34,
+    "type": "criticism",
+    "their_label": "Finding 16 (Fail Table row 16) — Cost-of-debt construction",
+    "location": "§1.8 Table 22; DCF!C88",
+    "quote": "Cost-of-debt construction. [Report says:] \"Adopted cost of debt, pre-tax — weighted across the drawn book — 5.82%\"; \"The adopted rate sits between them, weighted by what is actually drawn\". [Actually correct:] Model: AVERAGE(4.45%, 5.6945%, 7.33%) = 5.8248% — an unweighted average of three constructions. The genuinely drawn-weighted rate is 5.69%. The prose describes a construction the model does not perform.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "+1bp on WACC; immaterial",
+    "what_they_say_is_correct": "Either weight the book, or describe the average as an average"
+  },
+  {
+    "id": 35,
+    "type": "criticism",
+    "their_label": "Finding 16 (sub-claim: two tabled instruments enter no calculation)",
+    "location": "§1.8 Table 22",
+    "quote": "Two of the six tabled instruments (perpetuals 4.90%, govt bond 4.48%) enter no calculation.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "+1bp on WACC; immaterial",
+    "what_they_say_is_correct": "Either weight the book, or describe the average as an average"
+  },
+  {
+    "id": 36,
+    "type": "criticism",
+    "their_label": "Finding 17 (Fail Table row 17) — SOFR / CBUAE base rate conflated",
+    "location": "Assumptions C24 (label) vs note H24",
+    "quote": "SOFR / CBUAE base rate conflated. [Report says:] Cell labelled \"Secured overnight financing rate\" = 3.65%; its own note reads \"The Central Bank base rate of 3.65% was maintained at the 29 July 2026 decision\". [Actually correct:] CBUAE ODF base rate 3.65% ✓ (CBUAE); SOFR is a different, US rate. Perpetuals are contractually SOFR+125bp (AR2025 Note 33).",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Small, undetermined",
+    "what_they_say_is_correct": "Separate the two rates"
+  },
+  {
+    "id": 37,
+    "type": "criticism",
+    "their_label": "Finding 17 (sub-claim: one cell serves two different rates)",
+    "location": "Assumptions C24",
+    "quote": "One cell serves as SOFR (parent facility, perpetual coupon) and as the local deposit rate (finance income, Monte Carlo drift).",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Small, undetermined",
+    "what_they_say_is_correct": "Separate the two rates"
+  },
+  {
+    "id": 38,
+    "type": "criticism",
+    "their_label": "Finding 18 (Fail Table row 18) — Tax shield rate",
+    "location": "DCF!C89–C90, C101",
+    "quote": "Tax shield rate. [Report says:] After-tax Kd at the 9% statutory rate. [Actually correct:] The same model taxes NOPAT at 3.75%–4.92% (unit rates: shipping 1%). A shield the company does not receive, inconsistent with the study's own tax treatment.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF −0.4%",
+    "what_they_say_is_correct": "Use the modelled effective rate"
+  },
+  {
+    "id": 39,
+    "type": "criticism",
+    "their_label": "Finding 19 (Fail Table row 19) — Real/nominal mismatch",
+    "location": "Segments rows 37–42 vs 49",
+    "quote": "Real/nominal mismatch. [Report says:] Running cost escalated 2%/yr; mid-cycle rate anchors held at a flat nominal FY2024–25 average; then 2% perpetual growth in the terminal. [Actually correct:] Revenue anchors are real-flat while costs are nominal; the terminal then grows both at 2%. Internal real/nominal incoherence — flagged even though the direction is conservative.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "DCF +7.8% if anchors are escalated at 2% to 2030",
+    "what_they_say_is_correct": "Express anchors and costs in the same terms"
+  },
+  {
+    "id": 40,
+    "type": "criticism",
+    "their_label": "Finding 20 (Fail Table row 20) — Attribution of the bear/bull span",
+    "location": "Summary Table 3 note; Fundamental Valuation C6–C7",
+    "quote": "Attribution of the bear/bull span. [Report says:] \"the two bounds are set by the two ends of the beta's own 90% confidence interval… so the published span is the span the estimate itself supports\". [Actually correct:] The model's bear also sets rate anchor 0.85× and capex 1.10×; the bull 1.15× and 0.95×. Beta alone at 1.412 gives 4.32 (Sensitivity!B10–E10) vs the published bear of 3.48. Three variables presented as one.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "~AED 0.84 of the bear and ~AED 1.04 of the bull are not beta",
+    "what_they_say_is_correct": "Publish beta-only and composite spans separately"
+  },
+  {
+    "id": 41,
+    "type": "criticism",
+    "their_label": "Finding 21 (Fail Table row 21) — \"The same regression\"",
+    "location": "§1.8 Table 21",
+    "quote": "\"The same regression\". [Report says:] \"They are the SAME regression of the same weekly returns; what differs is how the market itself is measured\". [Actually correct:] Published index: n = 161. Equal-weight composite: n = 163, 12 names. Two-exchange composite: 18 names, n not given. Different samples, so the 0.380 beta gap is not attributable to index weighting alone.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Undetermined",
+    "what_they_say_is_correct": "Run both on a common sample"
+  },
+  {
+    "id": 42,
+    "type": "criticism",
+    "their_label": "Finding 22 (Fail Table row 22) — Composite beta vs the study's own interval",
+    "location": "§1.9 Table 24 note; §1.5",
+    "quote": "Composite beta vs the study's own interval. [Report says:] Bull beta 0.758 \"sits just inside the left-hand column\" (the 0.705 column). [Actually correct:] 0.705 < 0.758, so the composite beta lies below the 90% interval's lower bound. The \"alternative reading\" of AED 8.40 is therefore more aggressive on the discount rate than the study's own bull case.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None on the base",
+    "what_they_say_is_correct": "State that the composite lies outside the primary CI"
+  },
+  {
+    "id": 43,
+    "type": "criticism",
+    "their_label": "Finding 22 (sub-claim: the alternative is carried at full size)",
+    "location": "§1.9 Table 24 note; §1.5",
+    "quote": "The alternative carried \"at full size\" throughout is outside the range the study says its estimate supports.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None on the base",
+    "what_they_say_is_correct": "State that the composite lies outside the primary CI"
+  },
+  {
+    "id": 44,
+    "type": "criticism",
+    "their_label": "Finding 23 (Fail Table row 23) — Relative and normalised are one lens, weighted as two",
+    "location": "§1.3, §1.4, Table 13",
+    "quote": "Relative and normalised are one lens, weighted as two. [Report says:] Two independent lenses at 25% and 20%; \"the four lenses do not agree and the disagreement is informative\". [Actually correct:] Identical construction, identical multiples; only the denominator differs (1,859.5 vs 1,948.3 EBITDA). EV routes: 9.0185 vs 9.5078 — ratio 1.0543 = 1,948.3/1,859.5 exactly. 45% of the weighted central is one method on a 4.8%-different input, presented as two independent reads.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Inflates the multiple approach's weight from 25% to 45%",
+    "what_they_say_is_correct": "Collapse to one lens, or weight for the shared input"
+  },
+  {
+    "id": 45,
+    "type": "criticism",
+    "their_label": "Finding 24 (Fail Table row 24) — Two EBITDA definitions in one table",
+    "location": "§1.6 Table 14",
+    "quote": "Two EBITDA definitions in one table. [Report says:] Seven unit margins \"all taken from the operating segments note\"; Group row 31%/32%/29%. [Actually correct:] Unit rows are the disclosed (reported-basis) segment EBITDA summing to 1,508,360; the Group row is the study's operating EBITDA of 1,468,571 (29.28%). The note's own group total is 1,514,621. The table does not foot, and the definitional gap is exactly the channel for finding 1.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Via finding 1",
+    "what_they_say_is_correct": "Show the reconciliation line"
+  },
+  {
+    "id": 46,
+    "type": "criticism",
+    "their_label": "Finding 25 (Fail Table row 25) — Peer multiples sourced from aggregators",
+    "location": "Peer & Sector rows 5–7; §1.3",
+    "quote": "Peer multiples from aggregators. [Report says:] App. B.3: \"no data vendor, broker or press report is used as the source of any reported historical figure\"; Table 9 multiples presented as peer facts. [Actually correct:] Model's own source column: \"stockanalysis.com company statistics page\" and \"valueinvesting.io enterprise-value-to-earnings page\".",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Drives 45% of the weighted central",
+    "what_they_say_is_correct": "Recompute each peer multiple from its own filings and market cap"
+  },
+  {
+    "id": 47,
+    "type": "criticism",
+    "their_label": "Finding 25 (sub-claim: multiple not reproducible from the cited page)",
+    "location": "Peer & Sector rows 5–7; §1.3; Table 9",
+    "quote": "the page's own EV 42.69bn ÷ EBITDA 2.92bn = 14.62×, not 12.26×. The cited multiple is not reproducible from the cited page's own inputs.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Drives 45% of the weighted central",
+    "what_they_say_is_correct": "Recompute each peer multiple from its own filings and market cap"
+  },
+  {
+    "id": 48,
+    "type": "criticism",
+    "their_label": "Finding 25 (sub-claim: peers' filings not used)",
+    "location": "Peer & Sector rows 5–7; §1.3",
+    "quote": "peers' filings were not used",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Drives 45% of the weighted central",
+    "what_they_say_is_correct": "Recompute each peer multiple from its own filings and market cap"
+  },
+  {
+    "id": 49,
+    "type": "criticism",
+    "their_label": "Finding 26 (Fail Table row 26) — Services EBITDA \"guidance\"",
+    "location": "§1.6 Table 17 Services row",
+    "quote": "Services EBITDA \"guidance\". [Report says:] \"Guidance is the midpoint of the ranges the company published\"; Services guided earnings 62. [Actually correct:] Q1 2026 release guides Services revenue (\"low-to-mid single-digit growth\" → 375 ✓) but publishes no Services EBITDA range; the call gives none either. A derived figure (60.3 × ~1.028) presented as published guidance.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "Mark as derived"
+  },
+  {
+    "id": 50,
+    "type": "criticism",
+    "their_label": "Finding 27 (Fail Table row 27) — Handysize rate substitution",
+    "location": "§1.7 Table 18 Handysize row; Assumptions B41–B43",
+    "quote": "Handysize rate substitution. [Report says:] Handysize carried at the MR rate throughout; \"both substitutions… are immaterial\". [Actually correct:] Q1 2026 call: MR TCE up 30% YoY, Handysize down 21% YoY — the two classes moved in opposite directions. The substitution is not merely imprecise, it is directionally wrong; the model gives handysize 30,000/day in Q1 when the disclosed direction is a fall.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "~0.3% of EBITDA (2 of 53 vessels)",
+    "what_they_say_is_correct": "Use the disclosed handysize direction or exclude"
+  },
+  {
+    "id": 51,
+    "type": "criticism",
+    "their_label": "Finding 28 (Fail Table row 28) — Spot-exposure weight",
+    "location": "§Headline; §1.3 Table 10; Assumptions C108",
+    "quote": "Spot-exposure weight. [Report says:] \"31% of 2026E earnings… the weighting is taken from the company rather than chosen\". [Actually correct:] Q1 2026 call, verbatim: \"shipping spot-rated exposure represents an average of just 29% of ADNOC L&S total EBITDA\". The freshest company statement at the anchor date is 29%, not 31%.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Weighted central +0.5% at 29%",
+    "what_they_say_is_correct": "Use 29%"
+  },
+  {
+    "id": 52,
+    "type": "criticism",
+    "their_label": "Finding 29 (Fail Table row 29) — Capex described as \"guided\"",
+    "location": "§1.9 Table 25; Assumptions B71–F71; §7",
+    "quote": "Capex described as \"guided\". [Report says:] \"90.0% – 120.0% of the guided programme\"; §7 \"capital expenditure runs USD 1,375 million in 2026E\". [Actually correct:] Only located capex guidance (Q1 call): \"remaining CapEx obligations are approximately AED 3.3 billion\" = USD 899m, vs USD 5,215m modelled 2026–30. Blue input cell, no source. An unsourced input worth AED 1.17/share across the tested range is labelled as guidance.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "Range spans AED 4.91–6.08; worth AED 1.17/share across the tested range",
+    "what_they_say_is_correct": "Source the path or label it an assumption"
+  },
+  {
+    "id": 53,
+    "type": "criticism",
+    "their_label": "Finding 30 (Fail Table row 30) — Vessel-sale carrying value",
+    "location": "Rel&Norm C56–C59",
+    "quote": "Vessel-sale carrying value. [Report says:] Sold for 111,000 against carrying value 83,000 = 1.34×. [Actually correct:] Proceeds of $111m confirmed (TradeWinds); the model's own disclosed gain of 27,000 implies a carrying value of 84,000, giving 1.32×. Internal inconsistency of 1,000 between two cells on the same transaction.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None (not extrapolated)",
+    "what_they_say_is_correct": "Reconcile proceeds, gain and carrying value"
+  },
+  {
+    "id": 54,
+    "type": "criticism",
+    "their_label": "Finding 31 (Fail Table row 31) — No cached values in the workbook",
+    "location": "Workbook, all sheets",
+    "quote": "No cached values. [Report says:] READ FIRST: \"Every blue cell is an input; every black cell is a formula… you can change a blue cell and watch the model reprice\". [Actually correct:] Every formula cell's cached value is None — the file has never been calculated by a spreadsheet engine.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "Save with values cached"
+  },
+  {
+    "id": 55,
+    "type": "criticism",
+    "their_label": "Finding 31 (sub-claim: reader impact and no self-check)",
+    "location": "Workbook, all sheets",
+    "quote": "A reader opening it in a non-calculating viewer sees an empty model; no self-check ever ran against the published figures.",
+    "claimed_severity": "PARTIAL FAIL",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "Save with values cached"
+  },
+  {
+    "id": 56,
+    "type": "criticism",
+    "their_label": "Finding 32 (Fail Table row 32) — Q1 2026 attributable profit and growth [flagged UNVERIFIABLE]",
+    "location": "§Headline; §1.6",
+    "quote": "Q1 2026 attributable profit and growth. [Report says:] \"attributable profit of USD 203 million (+12%)\". [Actually correct:] Q1 2026 net profit $222m and Q1 2025 $185m are confirmed; 222 × (1−8.8%) = 202.5 ✓. But no source discloses Q1 attributable profit. NCI arose in FY2025 (full-year 24,306 = 2.8%), so a zero-NCI Q1 2025 implies +9.7%, not +12%.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "The 31 March 2026 interim income statement would resolve it"
+  },
+  {
+    "id": 57,
+    "type": "criticism",
+    "their_label": "Finding 33 (Fail Table row 33) — Order book and broker spot print [flagged UNVERIFIABLE]",
+    "location": "§1.7 Table 19; Sensitivity C33, C29",
+    "quote": "Order book and broker spot print. [Report says:] Order book \"near 27% of the trading fleet, a seventeen-year high\"; broker spot print USD 102,897. [Actually correct:] The Frontline fixture (7 VLCCs, one-year, $76,900/day, early 2026) is confirmed; −25.3% vs 102,897 recomputes exactly. The 27% and 102,897 could not be traced to any named source.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "The rate-anchor judgment they support spans AED 1.70",
+    "what_they_say_is_correct": "Name the publication and date"
+  },
+  {
+    "id": 58,
+    "type": "criticism",
+    "their_label": "Finding 33 (sub-claim: citation quality)",
+    "location": "§1.7 Table 19; Sensitivity C33, C29",
+    "quote": "The report cites only \"trade coverage of the tanker market\"; no publication, date or page is given.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "The rate-anchor judgment they support spans AED 1.70",
+    "what_they_say_is_correct": "Name the publication and date"
+  },
+  {
+    "id": 59,
+    "type": "criticism",
+    "their_label": "Finding 34 (Fail Table row 34) — Technical indicators and Monte Carlo calibration [flagged UNVERIFIABLE]",
+    "location": "§2 Table 26; §3",
+    "quote": "Technical indicators and Monte Carlo calibration. [Report says:] RSI(14) 51.91; MACD +0.05/+0.07/−0.01; MA20/50/200 6.19/6.03/5.70; support touched 12 times; crossover 40 sessions ago; back-test coverage 38%/75%/88% on 8 windows. [Why it failed:] No price series is published in either file, so indicator levels, split/dividend adjustment, daily-limit screening and the walk-forward scores cannot be tested.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "None",
+    "what_they_say_is_correct": "Publish the cleaned series"
+  },
+  {
+    "id": 60,
+    "type": "criticism",
+    "their_label": "Finding 35 (Fail Table row 35) — Beta regression itself [flagged UNVERIFIABLE]",
+    "location": "§1.8; Table 21",
+    "quote": "Beta regression itself. [Report says:] β 1.085, SE 0.199, R² 0.158, n 161, CI [0.758, 1.412]; \"including the subject lifts the measured beta by 0.203\". [Why it failed:] Internal coherence is strong evidence of a real regression, but without the return series the point estimate and the 0.203 claim cannot be confirmed.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "Beta spans AED 4.08",
+    "what_they_say_is_correct": "Publish the paired weekly returns"
+  },
+  {
+    "id": 61,
+    "type": "criticism",
+    "their_label": "Finding 36 (Fail Table row 36) — 31 March 2026 balance-sheet inputs [flagged UNVERIFIABLE]",
+    "location": "Assumptions C92–C102",
+    "quote": "31 March 2026 balance-sheet inputs. [Report says:] Equity 5,073,902; JV 493,120; deferred consideration 301,462; NCI 272,134. [Why it failed:] ADX CDN (apigateway.adx.ae) returns HTTP 403; the reviewed interim statements are not on the company site.",
+    "claimed_severity": "UNVERIFIABLE",
+    "claimed_impact": "JV 493 is 1 of 2 legs of finding 1",
+    "what_they_say_is_correct": "The 31 March 2026 reviewed interim statements"
+  },
+  {
+    "id": 62,
+    "type": "criticism",
+    "their_label": "Section A — Audit Scope Statement (\"Could not be checked\")",
+    "location": "Assumptions C92–C102 (31 March 2026 reviewed interim balance sheet)",
+    "quote": "Could not be checked: the 31 March 2026 reviewed interim balance sheet (ADX CDN returns HTTP 403; equity 5,073,902, JV 493,120, deferred consideration 301,462, NCI 272,134 remain untraced — net debt 419,867 and cash 695,345 were confirmed via the Q1 call)",
+    "claimed_severity": "flagged as could not be checked",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 63,
+    "type": "criticism",
+    "their_label": "Section A — Audit Scope Statement (\"Could not be checked\")",
+    "location": "§1.8 beta; §2 technical indicators; §3 Monte Carlo back-test",
+    "quote": "the price/index return series (not published, so beta, all technical indicators and the Monte Carlo back-test are unauditable)",
+    "claimed_severity": "flagged as could not be checked",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 64,
+    "type": "criticism",
+    "their_label": "Section A — Audit Scope Statement (\"Could not be checked\")",
+    "location": "§1.7 Table 19; Sensitivity C33, C29",
+    "quote": "the order-book and broker-spot figures",
+    "claimed_severity": "flagged as could not be checked",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 65,
+    "type": "criticism",
+    "their_label": "Section C.5 note — \"The one reconciliation the study never shows\"",
+    "location": "§1.6 Table 14 / segment-EBITDA-to-operating-EBITDA reconciliation",
+    "quote": "The one reconciliation the study never shows: 1,508,360 (seven-unit EBITDA) − 1,468,571 (study's operating EBITDA) = 39,789 = JV share 37,392 + \"Others\" unallocated 2,594 − D&A rounding 197. Note 28's own total, including Others of 6,261, is 1,514,621 — the reported EBITDA. This is the arithmetic behind finding 1.",
+    "claimed_severity": "none",
+    "claimed_impact": "39,789 unreconciled (JV 37,392 + Others 2,594 − rounding 197)",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 66,
+    "type": "criticism",
+    "their_label": "Section C.4 note (Table 4, weighted-central row)",
+    "location": "§1.5 Table 13 (weighted contributions)",
+    "quote": "Table 13's rounded contributions sum to 6.61 — display only",
+    "claimed_severity": "display only",
+    "claimed_impact": "6.61 vs 6.5988",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 67,
+    "type": "criticism",
+    "their_label": "Section C.1 note (Table 1, Kd line)",
+    "location": "DCF!C88; §1.8 Table 22",
+    "quote": "Kd pre-tax = AVERAGE(4.45%, 5.6945%, 7.33%) … 5.82% … 0 ✓ (but see finding 16 — this is an average, not a weighting)",
+    "claimed_severity": "none",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "The genuinely drawn-weighted rate is 5.69%"
+  },
+  {
+    "id": 68,
+    "type": "criticism",
+    "their_label": "Section C.6 — Effect of the corrections, compounded on the model",
+    "location": "Whole study (DCF lens and weighted central)",
+    "quote": "+ JV double-count removed (finding 1): 5.4269, −4.6% / 6.3835, −3.3%. + VLCC 135k, DSO re-based, Kd shield, ROE numerator, spot 29% (findings 3, 13, 18, 10, 28): 5.2515, −7.7% / 6.2267, −5.6%. + NCI at its own 8.8% profit share (finding 2): 4.9125, −13.7% / 5.9073, −10.5%.",
+    "claimed_severity": "none",
+    "claimed_impact": "DCF 5.6900→4.9125 (−13.7%); weighted central 6.5988→5.9073 (−10.5%)",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 69,
+    "type": "criticism",
+    "their_label": "Section C.6 memo (not compounded) — terminal rf",
+    "location": "§1.8 Table 20",
+    "quote": "Memo, not compounded: terminal rf at 4.06% (finding 7) — DCF lens 4.9442, −13.1%; weighted central 6.3004, −4.5%",
+    "claimed_severity": "none",
+    "claimed_impact": "DCF −13.1%; weighted central −4.5%",
+    "what_they_say_is_correct": "terminal rf at 4.06%"
+  },
+  {
+    "id": 70,
+    "type": "criticism",
+    "their_label": "Section C.6 memo (not compounded) — depreciation",
+    "location": "Assumptions C72",
+    "quote": "Memo: depreciation at the FY2025 realised rate (finding 8) — DCF lens 5.2111, −8.4%; weighted central 6.2671, −5.0%",
+    "claimed_severity": "none",
+    "claimed_impact": "DCF −8.4%; weighted central −5.0%",
+    "what_they_say_is_correct": "depreciation at the FY2025 realised rate"
+  },
+  {
+    "id": 71,
+    "type": "criticism",
+    "their_label": "Section C.6 memo (not compounded) — gas margin",
+    "location": "Assumptions C56",
+    "quote": "Memo: gas margin at its 3-year average (finding 9) — DCF lens 5.3775, −5.5%; weighted central 6.3928, −3.1%",
+    "claimed_severity": "none",
+    "claimed_impact": "DCF −5.5%; weighted central −3.1%",
+    "what_they_say_is_correct": "gas margin at its 3-year average"
+  },
+  {
+    "id": 72,
+    "type": "criticism",
+    "their_label": "Section C.6 memo (opposite sign) — rate anchors",
+    "location": "Segments rows 37–42 vs 49",
+    "quote": "Memo, opposite sign: rate anchors escalated 2%/yr (finding 19) — DCF lens 6.1325, +7.8%; weighted central 6.8325, +3.5%",
+    "claimed_severity": "none",
+    "claimed_impact": "DCF +7.8%; weighted central +3.5%",
+    "what_they_say_is_correct": "rate anchors escalated 2%/yr"
+  },
+  {
+    "id": 73,
+    "type": "criticism",
+    "their_label": "Section D — Verdict Summary (counts)",
+    "location": "Whole study",
+    "quote": "Counts. 6 TOTAL FAILS · 25 PARTIAL FAILS · 5 UNVERIFIABLE · ~180 discrete checks passed.",
+    "claimed_severity": "6 TOTAL FAILS; 25 PARTIAL FAILS; 5 UNVERIFIABLE",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 74,
+    "type": "criticism",
+    "their_label": "Section D — Verdict Summary (failures by pass)",
+    "location": "Passes 1–7",
+    "quote": "By pass: Pass 1 — ~95 audited-history and disclosure checks passed …, 8 failed. Pass 2 — 14 passed …, 3 failed, 2 unverifiable. Pass 3 — 62 recomputations passed with zero arithmetic breaks between the model and the Word document; 9 failed on construction rather than execution. Pass 4 — 6 passed, 3 unverifiable, 0 failed. Pass 5 — 7 failed. Pass 6 — 16 passed …, 5 failed. Pass 7 — 3 sourcing failures.",
+    "claimed_severity": "none",
+    "claimed_impact": "8 / 3 / 9 / 0 / 7 / 5 / 3 failures by pass",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 75,
+    "type": "criticism",
+    "their_label": "Section D — \"The three most valuation-critical findings\" (1)",
+    "location": "§1.1 bridge; Segments; Assumptions C56, C68",
+    "quote": "(1) Joint-venture profit is counted twice — Note 28's segment EBITDA embeds USD 37,392k of equity-accounted profit in the Gas Carriers and Services units, the forecast margins are calibrated on that base, and the bridge separately adds the stake at USD 493,120k; the report's own text asserts the opposite (\"these earn outside the consolidated cash flow\"), worth −3.3% on the weighted central.",
+    "claimed_severity": "one of \"the three most valuation-critical findings\"",
+    "claimed_impact": "−3.3% on the weighted central",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 76,
+    "type": "criticism",
+    "their_label": "Section D — \"The three most valuation-critical findings\" (2)",
+    "location": "§1.1 bridge line \"Less non-controlling interests (272)\"",
+    "quote": "(2) The non-controlling interest is deducted at 272 on a stated consistency check that is arithmetically false — 5.09% of book against the 8.8% profit share the report invokes — worth −5.6%.",
+    "claimed_severity": "one of \"the three most valuation-critical findings\"",
+    "claimed_impact": "−5.6%",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 77,
+    "type": "criticism",
+    "their_label": "Section D — \"The three most valuation-critical findings\" (3)",
+    "location": "§1.8 Table 20 (terminal risk-free rate)",
+    "quote": "(3) The terminal risk-free rate silently switches basis from a market bond yield (4.06%) to a constructed policy anchor (3.25%), a one-directional 81bp cut that appears in no sensitivity table while smaller choices do; reversing it costs −4.5%.",
+    "claimed_severity": "one of \"the three most valuation-critical findings\"",
+    "claimed_impact": "−4.5%; 81bp",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 78,
+    "type": "criticism",
+    "their_label": "Section D — \"Does the headline range survive?\"",
+    "location": "§Headline / whole study",
+    "quote": "Does the headline range survive? It shifts materially. … the failures sit in the construction, and they run one way. Correcting only what is demonstrable from primary sources and the model's own internals takes the cash-flow lens from AED 5.69 to AED 4.91 (−13.7%) and the weighted central from AED 6.60 to AED 5.91 (−10.5%), against a market price of AED 6.16.",
+    "claimed_severity": "\"shifts materially\"",
+    "claimed_impact": "DCF AED 5.69→4.91 (−13.7%); weighted central AED 6.60→5.91 (−10.5%); market price AED 6.16",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 79,
+    "type": "criticism",
+    "their_label": "Section D — the headline claim does not survive",
+    "location": "§Headline",
+    "quote": "That inverts the report's headline: on corrected inputs the weighted central sits ~4% below the screen rather than 7% above it, and every one of the study's own four lenses and all three expert legs then land at or below the market. … the honest summary is that the range does not collapse, but the specific claim it is built to support (\"about 7% above the screen\") does not survive.",
+    "claimed_severity": "none",
+    "claimed_impact": "~4% below the screen rather than 7% above",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 80,
+    "type": "criticism",
+    "their_label": "Section D — offsetting items acknowledged",
+    "location": "Segments (rate anchors); §1.1 bridge (NCI versus fleet value)",
+    "quote": "Two items cut the other way — the real/nominal asymmetry in the rate anchors (+7.8%) and the conservative NCI-versus-fleet-value bias the report itself flags",
+    "claimed_severity": "none",
+    "claimed_impact": "+7.8% (real/nominal asymmetry)",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 81,
+    "type": "pass",
+    "their_label": "Section A — the model reproduces its own published output",
+    "location": "Whole workbook / Word document",
+    "quote": "The workbook carries no cached calculated values, so I rebuilt an independent formula evaluator and recomputed the entire dependency graph from the input cells; it reproduces every published figure (DCF AED 5.6900, weighted central AED 6.5988, panel AED 5.1680).",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 82,
+    "type": "pass",
+    "their_label": "Section A — timing / staleness",
+    "location": "Anchor date 9 August 2026; §1.7 Q2 rate caveat",
+    "quote": "Note on timing: H1/Q2 2026 results were released 11 August 2026, two days after the report's 9 August anchor. The report is therefore not stale, and its caveat that the Q2 rate was \"an indication, not a reported figure\" was honest as written.",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 83,
+    "type": "pass",
+    "their_label": "Section C.5 — audited-history transcription",
+    "location": "App. A.1/A.2; Segments; Income Statement; Balance Sheet (FY2023–FY2025)",
+    "quote": "Every FY2023–FY2025 figure in both files ties exactly to the audited accounts: seven-unit revenue (… = 5,016,112) and EBITDA (623,065 / 178,369 / 28,024 / 451,220 / 129,547 / 37,862 / 60,273); the seven-unit D&A allocation …; direct costs (3,908,236); G&A (204,983); ECL (9,590); other income (50,459); operating profit (943,762); JV share (37,392); … PP&E (6,884,178); JV carrying value (577,769); equity attributable (4,981,987); NCI (264,512); total equity (7,225,118); and the disclosed borrowing ranges 7.11–7.55% / 4.36–8.31%. Zero transcription errors in the audited record.",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 84,
+    "type": "pass",
+    "their_label": "Section C.1 — cost-of-capital recomputation",
+    "location": "§1.8 Tables 20–22; DCF WACC block",
+    "quote": "C.1 — Cost of capital (my recomputation from the stated inputs, before looking at the report's answer): observed rf 4.48% ✓ (confirmed: UAE MoF); sovereign default spread (0.42%) ✓ (confirmed: ctryprem 5 Jan 2026); adjusted rf 4.0600% ✓; ERP 4.8700% ✓ (confirmed verbatim); Ke 9.3440% ✓; parent RCF 4.45% ✓; bank midpoint 7.33% ✓ (ranges confirmed, AR2025 Note 32); other-borrowings midpoint 6.335% ✓; implied lease rate 6.4657% ✓; Kd after tax 5.3006% ✓; market cap USD 12,409.7m ✓; borrowings 1,115,212 ✓; equity weight 91.754% ✓; WACC explicit 9.0106% ✓; terminal Ke 8.5340% ✓; terminal Kd pre 5.0148% ✓; WACC terminal 8.2066% ✓; glide 8.85 · 8.69 · 8.53 · 8.37 · 8.21% ✓.",
+    "claimed_severity": "PASS (every line Δ = 0 ✓)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 85,
+    "type": "pass",
+    "their_label": "Section C.2 — DCF waterfall recomputation",
+    "location": "§1.1 DCF; DCF sheet 2026E–2030E",
+    "quote": "C.2 — DCF waterfall (USD m), my recomputation vs the report: Revenue, EBITDA, less D&A, EBIT, effective tax rate, NOPAT, add-back D&A, less capex, less ΔWC, FCFF, less Q1-2026 FCF already in net debt, FCF from 31 Mar 2026, discount factor and PV of FCF — every line Δ vs report 0 ✓.",
+    "claimed_severity": "PASS (every line Δ = 0 ✓)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 86,
+    "type": "pass",
+    "their_label": "Section C.3 — terminal value and equity bridge recomputation",
+    "location": "§1.1 bridge; DCF terminal block",
+    "quote": "C.3 — Terminal value and equity bridge (USD 000): terminal invested capital 10,145,087 ✓; terminal ROIC 11.68% ✓; reinvestment rate 17.13% ✓; terminal FCFF 1,001,247 ✓; TV 16,132,048 ✓; PV of TV 10,944,326 ✓; PV of five forecast years 2,997,593 ✓; EV of operations 13,941,918 ✓; enterprise value 14,435,038 ✓; equity to ordinary shareholders 11,462,956 ✓; fair value per share USD 1.54936 ✓ / AED 5.6895 ✓.",
+    "claimed_severity": "PASS (every line Δ = 0 ✓)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 87,
+    "type": "pass",
+    "their_label": "Section C.3 — terminal value share disclosed and stressed",
+    "location": "§1.1 / §7 (terminal value as % of EV)",
+    "quote": "TV as % of EV — 78.50% — 78.5% — 0 ✓ (disclosed and stressed — PASS)",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 88,
+    "type": "pass",
+    "their_label": "Section C.3 — net debt confirmed",
+    "location": "§1.1 bridge \"Less net debt\"",
+    "quote": "Less net debt (419,867) — (420) — 0 ✓ (confirmed on the Q1 call)",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 89,
+    "type": "pass",
+    "their_label": "Section C.3 — perpetual capital securities confirmed",
+    "location": "§1.1 bridge \"Less perpetual capital securities\"",
+    "quote": "Less perpetual capital securities (1,978,619) — (1,979) — 0 ✓ (USD 2bn at SOFR+125bp confirmed, AR2025 Note 33)",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 90,
+    "type": "pass",
+    "their_label": "Section C.4 — lenses, panel and synthesis recomputed",
+    "location": "§1.2, §1.3, §1.4, §1.5, App. C (expert panel)",
+    "quote": "C.4 — Lenses, panel and synthesis (all recomputed independently): blended EV multiple 11.1037× ✓; blended P/E 11.6357× ✓; relative 9.0185 / 5.8480 / 8.0674 ✓; normalised 9.5078 / 5.8798 / 7.6938 ✓; book — BVPS AED 2.5186, justified P/B 2.0306×, 5.1143 ✓; SOTP cross-check 9.4429 ✓; composite-beta DCF 8.3985 ✓; weighted central 6.5988 ✓; weighted central, composite beta 7.6821 ✓; Expert 1 6.0519 ✓; Expert 2 4.6600 ✓; Expert 2 sensitivity 6.230 (+33.7%) ✓; Expert 3 4.7921 ✓; panel average 5.1680 ✓.",
+    "claimed_severity": "PASS (every line Δ = 0 ✓)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 91,
+    "type": "pass",
+    "their_label": "Section D — pass-level tallies",
+    "location": "Passes 1–6",
+    "quote": "Pass 1 — ~95 audited-history and disclosure checks passed (every FY2023–25 statement line, all seven segments' revenue, EBITDA and D&A, the balance sheet, the perpetuals note, the borrowings note, share count, Q1 2026 revenue/EBITDA/net profit/net debt/cash). Pass 2 — 14 passed (rf, sovereign spread, ERP, country premium, mature-market premium, no-UAE-CDS, Saudi 5.72%/5.01%, CBUAE 3.65% and its December 2025 cut, market cap = price × shares, the regression's internal SE/R²/CI coherence, peer transcription). Pass 3 — 62 recomputations passed with zero arithmetic breaks between the model and the Word document. Pass 4 — 6 passed, 3 unverifiable, 0 failed. Pass 6 — 16 passed (the entire Monte Carlo coherence set, horizon labelling, three-object discipline).",
+    "claimed_severity": "PASS",
+    "claimed_impact": "~180 discrete checks passed",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 92,
+    "type": "pass",
+    "their_label": "Finding 25 (partial pass inside a fail) — peer transcription",
+    "location": "Peer & Sector rows 5–7; Table 9",
+    "quote": "Transcription checks out (Nakilat 12.26 / 13.97 / 14.15 / 1.65 vs the page's 12.26 / 13.98 / 14.16 / 1.66 today)",
+    "claimed_severity": "PASS (within a PARTIAL FAIL row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 93,
+    "type": "pass",
+    "their_label": "Finding 30 (partial pass inside a fail) — vessel-sale proceeds",
+    "location": "Rel&Norm C56–C59",
+    "quote": "Proceeds of $111m confirmed (TradeWinds)",
+    "claimed_severity": "PASS (within a PARTIAL FAIL row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 94,
+    "type": "pass",
+    "their_label": "Finding 32 (partial pass inside an unverifiable) — Q1 profit figures",
+    "location": "§Headline; §1.6",
+    "quote": "Q1 2026 net profit $222m and Q1 2025 $185m are confirmed; 222 × (1−8.8%) = 202.5 ✓",
+    "claimed_severity": "PASS (within an UNVERIFIABLE row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 95,
+    "type": "pass",
+    "their_label": "Finding 33 (partial pass inside an unverifiable) — Frontline fixture",
+    "location": "§1.7 Table 19",
+    "quote": "The Frontline fixture (7 VLCCs, one-year, $76,900/day, early 2026) is confirmed; −25.3% vs 102,897 recomputes exactly.",
+    "claimed_severity": "PASS (within an UNVERIFIABLE row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 96,
+    "type": "pass",
+    "their_label": "Finding 34 (partial pass inside an unverifiable) — technicals and Monte Carlo coherence",
+    "location": "§2 Table 26; §3",
+    "quote": "Price/MA relationships recompute exactly (−0.49%, +2.16%, +8.07%) and every Monte Carlo output is internally coherent (percentiles monotonic, touch ≥ finish, median vs P(above spot) consistent with a +0.90% carry drift, horizon dates correctly rolled).",
+    "claimed_severity": "PASS (within an UNVERIFIABLE row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 97,
+    "type": "pass",
+    "their_label": "Finding 35 (partial pass inside an unverifiable) — beta statistics coherence",
+    "location": "§1.8; Table 21",
+    "quote": "The published statistics are mutually consistent: 1.085 ± 1.645×0.199 = [0.7576, 1.4124] ✓, and t²/(t²+n−2) = 29.72/188.72 = 0.1575 = R² ✓. Internal coherence is strong evidence of a real regression.",
+    "claimed_severity": "PASS (within an UNVERIFIABLE row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 98,
+    "type": "pass",
+    "their_label": "Finding 36 (partial pass inside an unverifiable) — FY2025 comparatives and Q1 cash figures",
+    "location": "Assumptions C92–C102 vs AR2025 / Q1 call",
+    "quote": "Net debt 419,867 and cash 695,345 confirmed on the Q1 call. The FY2025 audited comparatives all tie exactly (JV 577,769; equity 4,981,987; NCI 264,512; total equity 7,225,118).",
+    "claimed_severity": "PASS (within an UNVERIFIABLE row)",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 99,
+    "type": "pass",
+    "their_label": "Section D — arithmetic quality",
+    "location": "Whole study",
+    "quote": "The report's arithmetic is exceptionally clean — I could not break a single calculation, and the audited history is transcribed without error — but the failures sit in the construction, and they run one way.",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  },
+  {
+    "id": 100,
+    "type": "pass",
+    "their_label": "Section D — the range does not collapse",
+    "location": "§Headline / whole study",
+    "quote": "the honest summary is that the range does not collapse",
+    "claimed_severity": "PASS",
+    "claimed_impact": "none",
+    "what_they_say_is_correct": "none"
+  }
+]
