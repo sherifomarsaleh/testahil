@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 82,
+ "n": 83,
  "rows": [
   {
    "ticker": "HELI",
@@ -4188,6 +4188,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00142
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "EMPOWER",
+   "name": "Emirates Central Cooling Systems Corporation PJSC",
+   "code": "DFM:EMPOWER",
+   "ccy": "AED",
+   "spot": 1.5,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.45,
+   "fv_base": 1.84,
+   "fv_full": 2.15,
+   "gap_base_pct": 22.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.082732,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -0.41,
+     "base": 2.47,
+     "full": 4.35
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3244,
+     "base": 0.0107,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.5616,
+     "base": 0.0152,
+     "full": 0.0009
+    },
+    "required_cagr": {
+     "bear": -0.3342,
+     "base": 10.607,
+     "full": 74.1911
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0035
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.156452,
+    "mu_h": -0.006689,
+    "G": {
+     "bear": -0.22,
+     "base": 1.31,
+     "full": 2.3
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4229,
+     "base": 0.079,
+     "full": 0.0134
+    },
+    "p_touch": {
+     "bear": 0.7644,
+     "base": 0.1436,
+     "full": 0.0225
+    },
+    "required_cagr": {
+     "bear": -0.1268,
+     "base": 1.2642,
+     "full": 3.2207
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00101
    },
    "market": "AE"
   },
