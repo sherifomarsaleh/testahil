@@ -95,7 +95,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-10" }
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
       study: "files/MODON_Valuation_Study_10-08-2026_public.docx?v=0810c",
