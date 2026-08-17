@@ -275,8 +275,12 @@ for label, needle in [('the input count', f'{n_inputs:,}'),
                        f"{IN['dso_days']:,.1f}"),
                       ('the receivable basis it was re-based from',
                        f"{IN['dso_days_reported']:,.1f}"),
+                      # short on purpose: these are substring tests against a laid-out PDF,
+                      # and a longer phrase wraps across a line and misses. The banned
+                      # pattern in the study is a regex with \s+ and does not have that
+                      # problem; this one cannot be, so it is kept inside one line.
                       ('the falsified gross-up claim, recorded',
-                       'so it cannot affect the valuation'),
+                       'so it cannot affect'),
                       ('the cost of debt, balance-weighted',
                        f"{W['kd_balance_weighted'] * 100:.2f}%")]:
     hit = needle in tb
