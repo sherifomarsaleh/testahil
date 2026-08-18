@@ -36,6 +36,8 @@ diff-only summary leaves that copy silently behind.
   `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
+- Scheduling recurring work (`/loop`, Routines, GitHub Actions) → `engine/Loop_Deployment_Protocol.md`
+  and the four standing jobs it deploys: `.claude/commands/{pulse,metronome,gate-review,disclosure-watch}.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
 - SIGCM (source-integrity & ground-up construction mandate, QC hard gate) →
   `engine/Source_Integrity_and_Ground_Up_Mandate.md`
