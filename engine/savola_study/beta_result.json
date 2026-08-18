@@ -1,0 +1,34 @@
+{
+ "ticker": "SAVOLA",
+ "market": "SA",
+ "exchange": "TADAWUL",
+ "beta": 1.087181147285664,
+ "r2": 0.15934424366702427,
+ "se": 0.2147618720596732,
+ "n": 254,
+ "ci90": [
+  0.7338978677475017,
+  1.4404644268238265
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.94,
+ "first_obs": "2021-09-02",
+ "last_obs": "2026-08-13",
+ "blume_crosscheck": 1.0581207648571094,
+ "index_file": "raw_indices/SA/TASI.csv",
+ "index_asof": "2026-08-18",
+ "index_dq": [
+  "dropped 7 interior stale/no-trade rows"
+ ],
+ "stock_dq": [
+  "dropped 2 interior stale/no-trade rows"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true
+}
