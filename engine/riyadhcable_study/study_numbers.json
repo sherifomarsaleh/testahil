@@ -6,17 +6,17 @@
   "market": "TADAWUL",
   "currency": "SAR",
   "asof": "2026-08-18",
-  "spot": 104.8,
+  "spot": 104.9,
   "shares_mn": 149.7175,
-  "mktcap": 15690.394,
-  "ev_trailing": 16075.567208,
+  "mktcap": 15705.36575,
+  "ev_trailing": 16090.538958000001,
   "klass": "operating company \u2014 electrical cable & wire manufacturer",
   "sector": "Capital Goods \u2014 Electrical Equipment (wire & cable)"
  },
  "inputs": {
   "spot": {
-   "value": 104.8,
-   "source": "Tadawul daily close, symbol 4142, uploaded price history",
+   "value": 104.9,
+   "source": "Tadawul settled close, symbol 4142, 18-Aug-2026 (-1.40 on the 106.30 previous close, exchange record via Argaam). The uploaded vendor row printed 104.80 \u2014 an unsettled intraday snapshot, revised to the settled print in engine/raw_ohlc/SA/RIYADHCABLE.csv at the critique response; the verbatim vendor export is kept unchanged alongside the study",
    "date": "2026-08-18",
    "ring": "Market"
   },
@@ -170,6 +170,12 @@
    "date": "2026-03-26",
    "ring": "Company"
   },
+  "dna_fy23": {
+   "value": 66.428122,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 statements' own notes: PP&E depreciation 59.53mn + intangibles amortisation 5.57mn + right-of-use depreciation 1.33mn = 66.43mn. ADDED at the critique response \u2014 the first edition carried FY2024's 68.64mn in the FY2023 column (a copied cell), overstating FY2023 EBITDA by ~2.2mn",
+   "date": "2024-03",
+   "ring": "Company"
+  },
   "dna_fy24": {
    "value": 68.643861,
    "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 cash-flow statement: PP&E depreciation 61.96mn + intangibles amortisation 5.60mn + right-of-use depreciation 1.08mn",
@@ -237,8 +243,8 @@
    "ring": "Company"
   },
   "pay_fy23": {
-   "value": 1220.387691,
-   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023: trade and other payables 1,195.4mn + contract liabilities 25.0mn",
+   "value": 1486.905974,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023: trade and other payables 1,195.4mn + contract liabilities 25.0mn + accrued expenses and other current liabilities 266.5mn (Note 25; includes advances from customers 153.0mn, the FY2023 analogue of later contract liabilities). The accrued leg was ADDED at the critique response so the FY2023 payables aggregate uses the same definition as FY2024-25; the first edition omitted it, overstating FY2023 NWC",
    "date": "2024-03",
    "ring": "Company"
   },
@@ -306,6 +312,12 @@
    "value": 621.216217,
    "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2025: Islamic finance facilities and borrowings (current 585.2mn + non-current 24.6mn) + lease liabilities (current 2.0mn + non-current 9.4mn). The SAR ~1.1bn supplier-finance/reverse-factoring facility is classified within trade payables, not here, consistent with the audited presentation",
    "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "eqp_fy23": {
+   "value": 2246.744341,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), equity attributable to shareholders 31 Dec 2023 (total equity 2,246.20mn less non-controlling interests -0.55mn). ADDED at the critique response so the workbook balance-sheet history carries FY2023 equity",
+   "date": "2024-03",
    "ring": "Company"
   },
   "eqp_fy24": {
@@ -458,6 +470,30 @@
    "date": "2026-07-29",
    "ring": "Company"
   },
+  "q1_26_rev": {
+   "value": 2767.67,
+   "source": "Tadawul-filed Q1-2026 results (announcement 05-May-2026): revenue SAR 2,767.7mn (+11.2%)",
+   "date": "2026-05-05",
+   "ring": "Company"
+  },
+  "q1_26_gp": {
+   "value": 430.54,
+   "source": "Tadawul-filed Q1-2026 results: gross profit SAR 430.5mn \u2014 Q1 gross margin 15.56%. With the H1 figures this pins the Q2-2026 margin at 14.99%: the intra-half path DETERIORATES (15.56% -> 14.99%), disclosed in the crux at the critique response \u2014 the first edition showed only the H1 average",
+   "date": "2026-05-05",
+   "ring": "Company"
+  },
+  "h1_25_rev": {
+   "value": 5203.894,
+   "source": "Comparative six months to 30-Jun-2025, as filed with the reviewed H1-2026 interims: revenue SAR 5,203.9mn",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_25_np": {
+   "value": 535.469,
+   "source": "Comparative H1-2025 net profit to shareholders SAR 535.5mn, as filed with the H1-2026 interims \u2014 used for the trailing-twelve-month earnings beside the FY2025 figure",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
   "vol_growth": {
    "value": [
     0.1,
@@ -570,11 +606,11 @@
    "value": [
     0.019,
     0.018,
-    0.017,
-    0.016,
-    0.016
+    0.0177,
+    0.0177,
+    0.0177
    ],
-   "source": "Capital expenditure as a share of revenue, easing from the FY2025 level (188.9mn / 10,673.6mn = 1.77%) held broadly flat \u2014 a maintenance-plus-modest-capacity level for a plant already largely built out (FY2025 assets under construction were 107.9mn of the 188.9mn spend)",
+   "source": "Capital expenditure as a share of revenue. Audited cash-flow-statement actuals: FY2024 195.0mn / 9,007.4mn = 2.17%, FY2025 188.9mn / 10,673.6mn = 1.77% (assets under construction 107.9mn of the FY2025 spend). The path starts between the two actual years and is FLOORED at the FY2025 actual 1.77% \u2014 the first edition tapered to 1.6%, below every audited year, corrected at the critique response",
    "date": "2026-08-18",
    "ring": "House"
   },
@@ -585,26 +621,38 @@
    "ring": "House"
   },
   "rf": {
-   "value": 0.0485,
-   "source": "Saudi 10-year local-currency (SAR) government sukuk yield ~4.85%: the SAMA repo rate of 4.25% (held entering 2026; SAR is pegged to the US dollar so SAMA tracks the Fed) plus a ~60bp term premium on a broadly-normal SAR curve, cross-checked against the USD-pegged curve (10-year US Treasury ~4.3% plus Saudi's ~55bp sovereign spread). Sourced live per the no-UST-shortcut rule; sensitised +/-50bp",
-   "date": "2026-08-18",
+   "value": 0.0552,
+   "source": "Saudi 10-year local-currency (SAR) government sukuk yield 5.52%: the FTSE Saudi Arabian Government Bond Index factsheet dated 31-Jul-2026, 7-10 year maturity bucket yield-to-maturity 5.52% at an 8.24-year average life (whole index 5.48% at 7.88y; the curve is upward-sloping, 1-3y 5.22% through 10y+ 5.83%). Corroborated three independent ways: 10-year UST 4.68-4.72% that week (FRED DGS10) plus the ~85bp Jan-2026 KSA USD new-issue spread = ~5.53%; the iBoxx Tadawul SAR Government Sukuk index 5.44% at 6.07y duration (31-Mar-2026); a 10y SAR curve point ~5.54% at Dec-2025. CORRECTED at the critique response from the first edition's 4.85% repo-plus-term-premium estimate, which sat below every maturity bucket of the published curve and was refuted by its own UST cross-check once the true UST print is used. Sensitised +/-50bp in the published grid",
+   "date": "2026-07-31",
    "ring": "Country"
   },
   "sov_spread": {
-   "value": 0.0051,
-   "source": "Saudi Arabia adjusted sovereign default spread 0.51% on the rating basis (Moody's Aa3), Damodaran country-risk-premium file, updated 5 January 2026. Netted out of the local-currency risk-free rate so sovereign default risk is not charged twice. The CDS-based spread is ~0.50%, essentially identical \u2014 for a high-grade sovereign the two bases converge, unlike a distressed one",
-   "date": "2026-01-05",
+   "value": 0.0048,
+   "source": "Saudi Arabia adjusted sovereign default spread 0.48% on the rating basis (Moody's Aa3), Damodaran country-risk dataset, July-2026 vintage \u2014 the dated update published ~10-Jul-2026, five weeks before the anchor (the first edition carried the January-2026 vintage's 0.51% while ctryprem.html still displayed the January table). Netted out of the local-currency risk-free rate so sovereign default risk is not charged twice",
+   "date": "2026-07-10",
    "ring": "Country"
   },
   "erp": {
-   "value": 0.0501,
-   "source": "Saudi Arabia total equity risk premium 5.01%, Damodaran country-risk-premium file, 5 January 2026: the 4.23% mature-market premium plus a 0.78% country risk premium (0.51% default spread scaled by relative equity volatility). Rating basis",
-   "date": "2026-01-05",
+   "value": 0.0494,
+   "source": "Saudi Arabia total equity risk premium 4.94%, Damodaran country-risk dataset, July-2026 vintage: the 4.20% mature-market premium plus a 0.74% country risk premium. Rating basis. Updated from the January vintage's 5.01% at the critique response",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "erp_mature": {
+   "value": 0.042,
+   "source": "Mature-market equity risk premium 4.20%, Damodaran July-2026 vintage \u2014 the base the Saudi ERP decomposes onto",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "erp_crp": {
+   "value": 0.0074,
+   "source": "Saudi country risk premium 0.74%, Damodaran July-2026 vintage (default spread scaled by relative equity volatility); erp_mature + erp_crp = erp, asserted",
+   "date": "2026-07-10",
    "ring": "Country"
   },
   "erp_cds": {
    "value": 0.05,
-   "source": "Saudi Arabia equity risk premium on the CDS basis ~5.00% (CDS spread ~0.50%). Published beside the rating basis per the dual-ERP rule; the two converge for a high-grade sovereign",
+   "source": "Saudi Arabia equity risk premium on the CDS basis ~5.00% (CDS spread ~0.50%), January-2026 vintage \u2014 the July CDS table was not sourced, so the CDS leg is FLAGGED as one vintage older than the rating leg. Published beside the rating basis per the dual-ERP rule; the two converge for a high-grade sovereign",
    "date": "2026-01-05",
    "ring": "Country"
   },
@@ -621,14 +669,14 @@
    "ring": "Company/House"
   },
   "rf_term": {
-   "value": 0.0434,
-   "source": "Terminal risk-free rate = the normalised SAR risk-free (rf 4.85% less the 0.51% sovereign default spread) held flat: Saudi rates are already at a long-run level, so no crisis-premium normalisation is needed, unlike a high-inflation market",
+   "value": 0.0504,
+   "source": "Terminal risk-free rate = the normalised SAR risk-free (rf 5.52% less the 0.48% sovereign default spread) held flat: Saudi rates are already at a long-run level, so no crisis-premium normalisation is needed, unlike a high-inflation market. Moves one-for-one with the corrected rf \u2014 the terminal block carries most of the enterprise value, so the rf correction deliberately enters twice",
    "date": "2026-08-18",
    "ring": "House"
   },
   "erp_term": {
-   "value": 0.0475,
-   "source": "Terminal equity risk premium 4.75%, a mild compression of the current 5.01% as the 0.78% country risk premium narrows with Vision-2030 diversification; never held at a crisis level, never below the mature-market base",
+   "value": 0.0468,
+   "source": "Terminal equity risk premium 4.68%, the same 26bp compression of the current 4.94% the first edition applied to the January vintage (5.01% -> 4.75%), as the country risk premium narrows with Vision-2030 diversification; never held at a crisis level, never below the mature-market base",
    "date": "2026-08-18",
    "ring": "House"
   },
@@ -645,8 +693,8 @@
    "ring": "House"
   },
   "wd_term": {
-   "value": 0.05,
-   "source": "Terminal net-debt weight 5%, normalised modestly above today's ~2.4% to acknowledge the structural working-capital leverage a cable maker carries, while staying far below a geared capital structure this equity-funded company has never run",
+   "value": 0.0,
+   "source": "Terminal net-debt weight 0% \u2014 all-equity. CORRECTED at the critique response: the first edition normalised to 5% net debt, but the model's own forecast reaches net CASH from FY2028E (net financial debt -113 -> -744 by FY2030E), so a levered terminal contradicted the build's own balance-sheet path and flattered the terminal WACC by ~20bp. The terminal discount rate is now the terminal cost of equity",
    "date": "2026-08-18",
    "ring": "House"
   },
@@ -670,27 +718,57 @@
   },
   "anchor_days": {
    "value": 230,
-   "source": "Days from the DCF construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the 18 Aug 2026 anchor. Every lens value is rolled to the anchor at the cost of equity, net of the SAR 1.9/share FY2025 final dividend paid inside the window, so one date and one price of time govern the comparison to spot",
+   "source": "Days from the DCF construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the 18 Aug 2026 anchor. Every lens value is rolled to the anchor at the cost of equity, net of the SAR 2.25/share FY2025 final dividend paid inside the window, so one date and one price of time govern the comparison to spot",
    "date": "2026-08-18",
    "ring": "House"
   },
   "div_window": {
-   "value": 1.9,
-   "source": "SAR 1.9/share FY2025 final cash dividend paid inside the 31-Dec-2025-to-anchor window, netted from the rolled-forward value (the company pays semi-annually; the FY2025 final was declared with the March-2026 results)",
+   "value": 2.25,
+   "source": "SAR 2.25/share FY2025 final cash dividend \u2014 the only distribution inside the 31-Dec-2025-to-anchor window \u2014 netted from the rolled-forward value. FY2025 audited statements Note 47: SR 336.8mn at SR 2.25/share recommended 15-Mar-2026; approved at the EGM of 10-May-2026, ex-date 10-May-2026, paid 18-May-2026 (exchange dividend record). CORRECTED at the critique response from 1.90 \u2014 the first edition read Note 22's 'SR 1.9 per share' interim label, which belongs to the payments made DURING FY2025 and contradicts its own SR 299.4mn amount (299.4/149.7175 = 2.00/share); no actual distribution was SR 1.90",
    "date": "2026-08-18",
-   "ring": "Company/House"
+   "ring": "Company"
   },
   "ev_ebitda_just": {
-   "value": 9.0,
-   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Riyadh Cables trades ~11-12x trailing EV/EBITDA and ~14x earnings; global wire-and-cable peers (Nexans, Prysmian, KEI Industries, Polycab, Ducab) trade ~7-11x forward EV/EBITDA. 9.0x is a mid-range multiple reflecting a high-return Gulf leader with a concentrated single-country base. Bear 7.5x / bull 11.0x",
+   "value": 10.0,
+   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. The developed cable majors recomputed from their OWN guidance and market EV at the anchor date span ~8.5-14.5x forward (Prysmian ~14x, Nexans ~8.5-9x \u2014 see the peer inputs); the Indian growth names ~29-32x NTM. 10.0x is a DELIBERATE DISCOUNT to that corrected developed band for a single-country, single-customer-concentrated base \u2014 not its mid-point, and stated as a judgement. CORRECTED at the critique response from 9.0x, which had been justified as 'mid-range' of a stale 7-9x band that the peers' own raised guidance refutes. Bear 8.0x / bull 12.0x",
    "date": "2026-08-18",
    "ring": "House"
   },
   "pe_just": {
    "value": 13.0,
-   "source": "Justified through-cycle P/E on normalised earnings. 13.0x for a high-return, low-leverage regional champion with a ~10% cost of equity and mid-single-digit durable growth. Bear 10.0x / bull 16.0x",
+   "source": "Justified through-cycle P/E on normalised earnings. 13.0x for a high-return, low-leverage regional champion with a ~10.6% cost of equity and mid-single-digit durable growth. Bear 10.0x / bull 16.0x",
    "date": "2026-08-18",
    "ring": "House"
+  },
+  "peer_prysmian_fwd": {
+   "value": 14.0,
+   "source": "Prysmian forward EV/EBITDA ~14x, recomputed from primary evidence at the anchor: FY2026 adjusted-EBITDA guidance RAISED to EUR 2.8-2.9bn on 30-Jul-2026 (company press release, record Q2 adj EBITDA EUR 730mn) against a mid-Aug market EV of ~EUR 40bn. Two independent recomputations put it 13.9-15x. The first edition's '~8.5x' was a stale pre-rerating figure and is retired",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "peer_nexans_fwd": {
+   "value": 8.7,
+   "source": "Nexans forward EV/EBITDA ~8.7x (span 8.4-9.0x across two independent recomputations): FY2026 guidance raised to EUR 770-840mn (press release 29-Jul-2026) against an EV of ~EUR 7.0-7.2bn. The first edition's ~7.5x was modestly stale",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "peer_polycab_fwd": {
+   "value": 29.0,
+   "source": "Polycab India forward (NTM) EV/EBITDA ~29x (trailing ~33x). Cross-check context only",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "peer_kei_fwd": {
+   "value": 31.0,
+   "source": "KEI Industries forward (NTM) EV/EBITDA ~30-32x; ~24-25x only two years out (FY-Mar-2028 basis) \u2014 the first edition's '~24x' was a two-year-forward figure shown in an NTM column, corrected and year-labelled",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "payout": {
+   "value": 0.55,
+   "source": "Forward dividend payout on attributable profit, semi-annual policy. Cash paid during FY2025 was SR 598.99mn = SR 4.00/share = 55.4% of the 7.22 EPS (Note 22 amounts; the note's 'SR 1.9 per share' labels contradict their own totals), so 55% is the actual recent payout held flat, not an aspiration. The first edition's register carried the same 55% but justified it off the mislabelled 3.8/share reading",
+   "date": "2026-08-18",
+   "ring": "Company/House"
   },
   "roe_sust": {
    "value": 0.28,
@@ -724,8 +802,8 @@
    "rev": 7825.378127,
    "cogs": -6852.614689,
    "gp": 972.763438,
-   "ebitda": 716.250643,
-   "dna": 68.643861,
+   "ebitda": 714.034904,
+   "dna": 66.428122,
    "ebit": 647.606782,
    "fin": -89.014334,
    "ebt": 558.592448,
@@ -765,8 +843,9 @@
    "cash": 150.051628,
    "assets": 4830.929068,
    "debt": 730.611837,
-   "pay": 1220.387691,
-   "nwc": 2107.644592,
+   "pay": 1486.905974,
+   "nwc": 1841.126309,
+   "eqp": 2246.744341,
    "nd": 580.560209
   },
   "FY24": {
@@ -928,9 +1007,9 @@
   "capex": [
    218.74229088213008,
    223.38723400363278,
-   227.18053997588075,
-   228.2163384678346,
-   242.2927073623535
+   236.535032798417,
+   252.464324430042,
+   268.03630751960355
   ],
   "nwc": [
    3223.570602473496,
@@ -949,86 +1028,86 @@
   "fcff": [
    730.7312853556808,
    872.953611866491,
-   963.1710700691249,
-   1088.0761500287945,
-   1176.3836070363436
+   953.8165772465886,
+   1063.828164066587,
+   1150.6400068790936
   ],
   "df": [
-   0.9100446975414558,
-   0.8300704921186318,
-   0.7588553770572246,
-   0.6953398416141339,
-   0.6386038783013025
+   0.9050517317133225,
+   0.8205499305192322,
+   0.7452399947106639,
+   0.6780288251164963,
+   0.6179628373281957
   ],
   "pv": [
-   664.9981315655898,
-   724.6130341987553,
-   730.9075455479162,
-   756.5826978251386,
-   751.2431338234844
+   661.349615228261,
+   716.302025563562,
+   710.8222609821913,
+   721.3061602079073,
+   711.0527633943393
   ],
   "fwd_wacc": [
-   0.09884712553302523,
-   0.09634628164976894,
-   0.09384543776651262,
-   0.09134459388325632,
-   0.08884375
+   0.10490921674381432,
+   0.10298191255786075,
+   0.10105460837190716,
+   0.09912730418595359,
+   0.09720000000000001
   ],
   "ppe": [
    1612.747017592756,
    1730.6458355391178,
-   1844.2361055270583,
-   1951.2125141838558,
-   2064.787220759959
+   1853.5905983495945,
+   1984.8149929685994,
+   2124.1332997019526
   ],
   "ic": [
    4836.317620066252,
    5205.558364484517,
-   5586.0332345415645,
-   5944.998437370961,
-   6304.909599601146
+   5595.387727364101,
+   5978.600916155705,
+   6364.255678543139
   ],
   "roic": [
    0.23611494325434518,
    0.2386284562209044,
-   0.2405366892229818,
-   0.24340483317235512,
-   0.24366642296722466
+   0.24013455467171754,
+   0.24203678639059448,
+   0.2413942567464866
   ],
   "np_attr": [
    1112.7647837605136,
    1216.577111642584,
    1324.7808128133256,
-   1436.2868119915793,
-   1536.3091766946218
+   1435.9495544267675,
+   1535.0921852086717
   ],
   "equity": [
    3746.881087692231,
    4294.340787931394,
    4890.49215369739,
-   5536.8212190936,
-   6228.1603486061795
+   5536.669453189435,
+   6227.460936533338
   ],
   "net_debt": [
    291.08763669351674,
    107.90842085368229,
-   -113.16950583466519,
-   -406.38943455714593,
-   -744.0812817966411
+   -103.81501301212893,
+   -372.63381479287284,
+   -684.0294537569239
   ],
   "interest": [
    27.210036443,
    22.82539737374067,
    14.877012523147293,
-   5.412679238613389,
-   -6.93733412728583
+   5.786858951514841,
+   -5.58710933671491
   ],
   "div": [
    612.0206310682826,
    669.1174114034212,
    728.6294470473291,
-   789.9577465953687,
-   844.9700471820421
+   789.7722549347221,
+   844.3007018647695
   ],
   "payout": 0.55,
   "glide_frac": [
@@ -1043,7 +1122,7 @@
   "nwc_fy25": 2933.258925,
   "nd_fy25": 385.17320800000005,
   "debt_fy25": 621.216217,
-  "nopat_fy25": 1381.0147742343636,
+  "nopat_fy25": 1152.2589137656366,
   "ic_fy25": 4425.122045,
   "dna_fy25": 85.395637
  },
@@ -1153,23 +1232,23 @@
   "fy26_implied": 11623.15704
  },
  "wacc": {
-  "rf": 0.0485,
-  "rf_star": 0.0434,
-  "sov_spread": 0.0051,
-  "ke": 0.0999629,
-  "ke_cds": 0.09985,
-  "erp": 0.0501,
+  "rf": 0.0552,
+  "rf_star": 0.0504,
+  "sov_spread": 0.0048,
+  "ke": 0.1061726,
+  "ke_cds": 0.10685,
+  "erp": 0.0494,
   "erp_cds": 0.05,
   "beta": 1.129,
   "kd": 0.059,
   "kd_at": 0.053395,
-  "we": 0.9760398371630509,
-  "wd": 0.023960162836949152,
-  "wacc": 0.09884712553302523,
-  "ke_term": 0.09090000000000001,
+  "we": 0.9760621313552399,
+  "wd": 0.02393786864476016,
+  "wacc": 0.10490921674381432,
+  "ke_term": 0.09720000000000001,
   "kd_term": 0.055,
   "kd_term_at": 0.049775,
-  "wacc_term": 0.08884375,
+  "wacc_term": 0.09720000000000001,
   "glide_frac": [
    0.0,
    0.2499999999999987,
@@ -1217,95 +1296,95 @@
    "conforming": true
   },
   "beta_term": 1.0,
-  "rf_term": 0.0434,
-  "erp_term": 0.0475,
-  "wd_term": 0.05
+  "rf_term": 0.0504,
+  "erp_term": 0.0468,
+  "wd_term": 0.0
  },
  "dcf": {
-  "pv_explicit": 3628.3445429608837,
-  "tv": 27548.052228855136,
-  "pv_tv": 17592.29299299373,
-  "ev": 21220.637535954615,
-  "tv_share": 0.8290181180083164,
+  "pv_explicit": 3520.832825376261,
+  "tv": 23482.103721948653,
+  "pv_tv": 14511.067442450374,
+  "ev": 18031.900267826633,
+  "tv_share": 0.8047442159128234,
   "nd": 385.17320800000005,
   "assoc": 31.851877,
   "nonop": 20.40064,
   "nci": 62.737156,
   "nci_share": 0.004060669885351275,
-  "eq_attr": 20824.979688954616,
-  "ps": 145.80182165757566,
-  "ps_dec": 139.0951604785988,
-  "roll": 1.061876064913855,
+  "eq_attr": 17636.242420826635,
+  "ps": 123.28011344871211,
+  "ps_dec": 117.79680011238923,
+  "roll": 1.0656496044794475,
   "anchor_days": 230,
-  "roic_term": 0.2534130798859136,
-  "rr_term": 0.1578450489533057,
+  "roic_term": 0.25105002701634604,
+  "rr_term": 0.15933079344936923,
   "g": 0.04,
-  "bear": 88.81423921232683,
-  "bull": 236.7719302390979,
-  "spread_base": 145.80182165757566,
-  "spread_bull": 159.29870619849885,
-  "spread_bear": 132.18374267036987,
+  "bear": 78.52014039378953,
+  "bull": 188.2848029277439,
+  "spread_base": 123.28011344871211,
+  "spread_bull": 134.85313724497243,
+  "spread_bear": 111.60316655076234,
   "spread_anchor": 0.1526,
   "spread_bull_v": 0.16,
   "spread_bear_v": 0.145
  },
  "terminal_recon": {
-  "roic_term": 0.2534130798859136,
-  "rr_term": 0.1578450489533057,
+  "roic_term": 0.25105002701634604,
+  "rr_term": 0.15933079344936923,
   "ceiling": 0.04865936588627853,
-  "hist_roic25": 0.3120851267356093,
-  "nopat_fy25": 1381.0147742343636
+  "hist_roic25": 0.2603903128655148,
+  "nopat_fy25": 1152.2589137656366
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 88.81423921232683,
-   "base": 145.80182165757566,
-   "bull": 236.7719302390979,
+   "bear": 78.52014039378953,
+   "base": 123.28011344871211,
+   "bull": 188.2848029277439,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 70.41385896259303,
-   "base": 83.46670173701081,
-   "bull": 100.87049210290117,
+   "bear": 73.80082772778766,
+   "base": 91.06614157282836,
+   "bull": 108.33145541786907,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 78.12715082910044,
-   "base": 102.13529607783057,
-   "bull": 126.14344132656069,
+   "bear": 78.06153959154962,
+   "base": 102.1550014690145,
+   "bull": 126.24846334647938,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 71.05231428398973,
-   "base": 106.6579317840003,
-   "bull": 120.22767325700038,
+   "bear": 64.09131865464248,
+   "base": 94.69466417680223,
+   "bull": 106.81274719890251,
    "w": 0.15
   },
   "central": {
    "name": "Weighted central",
-   "bear": 70.41385896259303,
-   "base": 118.72990907647738,
-   "bull": 236.7719302390979,
+   "bear": 64.09131865464248,
+   "base": 108.32447928680935,
+   "bull": 188.2848029277439,
    "w": 1.0
   }
  },
- "central": 118.72990907647738,
+ "central": 108.32447928680935,
  "span": [
-  70.41385896259303,
-  236.7719302390979
+  64.09131865464248,
+  188.2848029277439
  ],
- "spot": 104.8,
+ "spot": 104.9,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 119.32696177155096,
+   "base": 119.4077603852278,
    "rng": [
-    91.3515090550392,
-    147.3024144880627
+    91.3328926040214,
+    147.4826281664342
    ],
    "eps": 8.781769562025513,
    "margin": 0.11960000000000005,
@@ -1316,51 +1395,51 @@
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 150.0681914646051,
+   "base": 130.9113349335282,
    "rng": [
-    98.67379867185791,
-    189.0427306946074
+    89.20169862964697,
+    160.67515026295027
    ],
-   "fcff": 1075.8769423780875,
-   "fcfe": 1048.6628259248855,
-   "ke": 0.09090000000000001,
+   "fcff": 1056.0949160640896,
+   "fcfe": 1028.961127889412,
+   "ke": 0.09720000000000001,
    "int_at": 22.93848095176
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 143.7240895365966,
+   "base": 123.28011344871211,
    "rng": [
-    103.90363219187323,
-    165.98779863320752
+    90.46063837636697,
+    141.57217071946948
    ],
    "ic0": 4425.122045,
-   "pv_ep": 3229.5622206052867,
-   "pv_ep_term": 13273.006787138116,
-   "ev": 20927.6910527434,
+   "pv_ep": 3028.5842769708597,
+   "pv_ep_term": 10578.193945855775,
+   "ev": 18031.900267826633,
    "ep": [
-    704.5162661408605,
-    776.233136714113,
-    855.1280365919911,
-    936.7874156306189,
-    1008.1188143463514
+    677.690772685197,
+    744.1411180330524,
+    817.6002782460836,
+    892.385651569418,
+    955.1747602161931
    ],
    "spread": [
-    0.13726781772131996,
-    0.14228217457113546,
-    0.14669125145646916,
-    0.1520602392890988,
-    0.15482267296722466
+    0.13120572651053086,
+    0.13564654366304363,
+    0.13907994629981038,
+    0.1429094822046409,
+    0.1441942567464866
    ]
   }
  },
- "panel_centre": 143.7240895365966,
+ "panel_centre": 123.28011344871211,
  "rel": {
   "ebitda_mid": 1478.0788649907036,
-  "ev_rel_fwd": 13302.709784916333,
-  "pv_interim": 1389.611165764345,
-  "ev_ebitda_trailing": 11.889926783497147,
-  "pe_trailing": 14.522816994918237,
-  "just_mult": 9.0
+  "ev_rel_fwd": 14780.788649907036,
+  "pv_interim": 1377.651640791823,
+  "ev_ebitda_trailing": 11.901000297048336,
+  "pe_trailing": 14.53667464472255,
+  "just_mult": 10.0
  },
  "norm": {
   "margin": 0.11960000000000005,
@@ -1376,10 +1455,10 @@
  },
  "book": {
   "bvps": 21.681746856579892,
-  "pb_just": 4.715127701375245,
+  "pb_just": 4.195804195804196,
   "roe_sust": 0.28,
   "roe_trailing": 0.3680769183960799,
-  "ke_term": 0.09090000000000001
+  "ke_term": 0.09720000000000001
  },
  "sens": {
   "g_grid": [
@@ -1390,55 +1469,102 @@
    0.06
   ],
   "wt_grid": [
-   0.06884375,
-   0.07884375,
-   0.08884375,
-   0.09884375,
-   0.10884375
+   0.0772,
+   0.08720000000000001,
+   0.09720000000000001,
+   0.1072,
+   0.11720000000000001
   ],
   "we_grid": [
-   0.07884712553302523,
-   0.08884712553302523,
-   0.09884712553302523,
-   0.10884712553302522,
-   0.11884712553302523
+   0.08490921674381431,
+   0.09490921674381432,
+   0.10490921674381432,
+   0.11490921674381431,
+   0.12490921674381432
   ],
   "grid_wacc_g": [
    [
-    161.6870195722353,
-    191.87363712006763,
-    242.79200217769062,
-    328.60546447018095,
-    316.2898673502376
+    136.5639956911652,
+    156.39116561627128,
+    186.72660931836248,
+    239.16033463970143,
+    305.7882001420017
    ],
    [
-    134.9542534346101,
-    153.6462749347582,
-    181.81783976011903,
-    229.3284945978041,
-    309.29395188823355
+    116.80349629319285,
+    129.84094946598344,
+    148.28606124267216,
+    176.4998466264028,
+    225.25657797788318
    ],
    [
-    115.98759893937478,
-    128.40803577652565,
-    145.80182165757566,
-    172.00999848288114,
-    216.20029681201453
+    102.16305485287396,
+    111.19042874122991,
+    123.28011344871211,
+    140.37849297052793,
+    166.52483731823665
    ],
    [
-    101.83188359649014,
-    110.49856878827075,
-    122.01969367528059,
-    138.14846498011724,
-    162.4434833151007
+    90.88100527108116,
+    97.36966430899766,
+    105.71115873727112,
+    116.8772553690259,
+    132.66325221494918
    ],
    [
-    90.86244771441412,
-    97.12920999823187,
-    105.14032549572906,
-    115.7851086440444,
-    130.6811672133541
+    81.92065637634063,
+    86.71695307455919,
+    92.68916241571443,
+    100.3622454011173,
+    110.62826862740125
    ]
+  ],
+  "grid_wacc_g_nm": [
+   [
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    false,
+    false,
+    false,
+    false,
+    false
+   ]
+  ],
+  "rf_grid": [
+   0.0502,
+   0.0552,
+   0.0602
+  ],
+  "grid_rf": [
+   136.08953151259595,
+   123.28011344871211,
+   112.53949485897559
   ],
   "beta_grid": [
    0.7,
@@ -1448,11 +1574,11 @@
    1.5
   ],
   "grid_beta": [
-   209.30357847724036,
-   164.1972907373474,
-   130.90060816734413,
-   113.26626780995852,
-   97.50828418400954
+   129.24784390970572,
+   126.42067306463053,
+   123.28011344871211,
+   120.99987586492239,
+   118.40091116559176
   ],
   "metal_grid": [
    0.85,
@@ -1462,25 +1588,27 @@
    1.15
   ],
   "grid_metal": [
-   158.40025630084793,
-   152.08967889186655,
-   145.80182165757566,
-   139.53415305965478,
-   133.28458248202807
+   135.72067549249272,
+   129.50039447060246,
+   123.28011344871211,
+   117.05983242682184,
+   110.83955140493153
   ],
   "spread_grid": [
    0.14,
    0.145,
+   0.1499,
    0.1526,
    0.155,
    0.16
   ],
   "grid_spread": [
-   123.35595796125465,
-   132.18374267036987,
-   145.80182165757566,
-   150.1532450187395,
-   159.29870619849885
+   104.03369941303156,
+   111.60316655076234,
+   119.10777396416566,
+   123.28011344871211,
+   127.01128055963838,
+   134.85313724497243
   ],
   "vol_grid": [
    0.9,
@@ -1490,11 +1618,11 @@
    1.1
   ],
   "grid_vol": [
-   132.9554264400183,
-   139.38345026579495,
-   145.80182165757566,
-   152.21125463076623,
-   158.61237836451178
+   112.71695312314382,
+   118.00317688464872,
+   123.28011344871211,
+   128.54845207480932,
+   133.80879997935648
   ],
   "nwc_grid": [
    0.24,
@@ -1504,12 +1632,27 @@
    0.32
   ],
   "grid_nwc": [
-   151.77451038398658,
-   148.78816602078115,
-   145.80182165757566,
-   142.81547729437017,
-   139.8291329311647
+   128.85029745864054,
+   126.06520545367636,
+   123.28011344871211,
+   120.49502144374793,
+   117.70992943878372
   ]
+ },
+ "interim": {
+  "q1_gm": 0.15556045337775096,
+  "q2_gm": 0.14990429890414736,
+  "q2_rev": 2929.956,
+  "q2_gp": 439.213,
+  "dcf_q2_exit": 119.11439600752777,
+  "h1_26_rev": 5697.626,
+  "h1_25_rev": 5203.894,
+  "h1_g": 0.09487741295268504,
+  "h2_26_rev": 5815.126151691056,
+  "h2_25_rev": 5469.7102620000005,
+  "h2_g": 0.06315067401115959,
+  "ttm_npa": 1133.720042,
+  "pe_ttm": 13.852948848195455
  },
  "step0": {
   "windows_scored": 10,
@@ -1573,52 +1716,52 @@
  },
  "strike": {
   "anchor_date": "2026-08-18",
-  "spot": 104.8,
+  "spot": 104.9,
   "nu": 12.0,
   "width_cal": 1.07,
   "width_overlay_mult": 1.0,
   "rf_live": 0.0425,
-  "q_annual": 0.0363,
+  "q_annual": 0.0405,
   "horizons": {
    "1M": {
     "h": 22,
     "target_date": "2026-09-18",
     "grade_date": "2026-09-20",
-    "anchor_vol_ann": 0.36147039966298355,
-    "sigma_h": 0.11427930407092274,
-    "drift_log_h": 0.0002970029954372175,
+    "anchor_vol_ann": 0.3616713439785802,
+    "sigma_h": 0.11434283285935135,
+    "drift_log_h": -4.005447485589767e-05,
     "pct": {
-     "p5": 87.21321014037129,
-     "p25": 97.61126202615651,
-     "p50": 104.7866044705799,
-     "p75": 112.61608929615088,
-     "p95": 126.17671409816322
+     "p5": 87.25808430972248,
+     "p25": 97.66760169647281,
+     "p50": 104.85122007421349,
+     "p75": 112.69004691861859,
+     "p95": 126.26755792737046
     },
-    "p_above": 0.4997,
-    "p_up10": 0.18798,
-    "p_dn10": 0.16318,
-    "touch_up10": 0.32044,
-    "touch_dn10": 0.2754
+    "p_above": 0.49836,
+    "p_up10": 0.18738,
+    "p_dn10": 0.16392,
+    "touch_up10": 0.31978,
+    "touch_dn10": 0.27658
    },
    "3M": {
     "h": 62,
     "target_date": "2026-11-18",
     "grade_date": "2026-11-18",
-    "anchor_vol_ann": 0.3670575648854793,
-    "sigma_h": 0.19481102488856447,
-    "drift_log_h": 0.0008910089863116526,
+    "anchor_vol_ann": 0.3671662360524218,
+    "sigma_h": 0.19486870069593953,
+    "drift_log_h": -0.00012016342456769302,
     "pct": {
-     "p5": 76.54888951524968,
-     "p25": 92.86909864606133,
-     "p50": 105.05936961271118,
-     "p75": 118.70948463287816,
-     "p95": 144.05634306920757
+     "p5": 76.53735505038735,
+     "p25": 92.86041807876856,
+     "p50": 105.05338550970203,
+     "p75": 118.70701597046619,
+     "p95": 144.0616010928045
     },
-    "p_above": 0.50542,
-    "p_up10": 0.30292,
-    "p_dn10": 0.2779,
-    "touch_up10": 0.5561,
-    "touch_dn10": 0.51134
+    "p_above": 0.50322,
+    "p_up10": 0.30092,
+    "p_dn10": 0.27948,
+    "touch_up10": 0.55442,
+    "touch_dn10": 0.51314
    }
   }
  },
@@ -1942,29 +2085,32 @@
   "==============================================================================",
   "[Historical income statement] every FY2023-25 line is the audited figure. Revenue 7,825 -> 9,007 -> 10,674 SAR mn (+15.1%, +18.5%); gross margin 12.43% -> 14.28% -> 16.24%; net profit 518 -> 817 -> 1,085. House EBITDA (operating profit + D&A) FY24 1,037, FY25 1,352 (12.67% of revenue). Effective zakat/tax rate FY25 -9.0%.",
   "[P&L closure] operating profit + net finance = profit before zakat = profit for the year + zakat, to the SAR mn, in all three years.",
-  "[Working capital, audited] inventory + receivables (incl. contract assets and advances) less payables (incl. accruals and contract liabilities): FY23 2,108 (26.9% of revenue), FY24 2,197 (24.4%), FY25 2,933 (27.5%) \u2014 structurally heavy, a copper/aluminium inventory and receivables book part-funded by payables and reverse factoring.",
+  "[Working capital, audited] inventory + receivables (incl. contract assets and advances) less payables (incl. accruals and contract liabilities): FY23 1,841 (23.5% of revenue), FY24 2,197 (24.4%), FY25 2,933 (27.5%) \u2014 structurally heavy, a copper/aluminium inventory and receivables book part-funded by payables and reverse factoring.",
   "[Net financial debt] FY2025 gross borrowings incl. leases 621 less cash 236 = 385 SAR mn \u2014 0.28x EBITDA, a lightly geared balance sheet. The reverse-factoring facility (~SAR 1.1bn) sits in working capital, not here, so it is captured through the net-working-capital driver rather than double-counted as debt.",
-  "[Cost of equity] rf 4.85% less Saudi sovereign default spread 0.51% = rf* 4.34%; + beta 1.129 x ERP 5.01% -> Ke 10.00% (rating basis). CDS basis 9.98% \u2014 the two converge for a high-grade sovereign. Country risk enters once, via the country premium inside the ERP; the raw local yield is NOT combined with a country-loaded ERP, which would double-count.",
-  "[WACC] weights on net financial debt 2.4% / equity 97.6%; Kd after tax 5.90% x (1-0.095) = 5.34%; WACC 9.88%. The balance sheet is almost entirely equity-funded, so WACC sits close to the cost of equity.",
-  "[WACC terminal] Ke 9.09% (rf* 4.34% + beta_term 1.00 x ERP 4.75%); Kd after tax 4.98%; weights 95%/5% -> 8.88%.",
-  "[Glide] forward WACC 9.88% -> 9.63% -> 9.38% -> 9.13% -> 8.88%; discount factors 0.9100, 0.8301, 0.7589, 0.6953, 0.6386. The glide fractions are the cost-of-debt path's own cumulative progress, inherited not invented.",
+  "[Cost of equity] rf 5.52% less Saudi sovereign default spread 0.48% = rf* 5.04%; + beta 1.129 x ERP 4.94% -> Ke 10.62% (rating basis). CDS basis 10.69% \u2014 the two converge for a high-grade sovereign. Country risk enters once, via the country premium inside the ERP; the raw local yield is NOT combined with a country-loaded ERP, which would double-count.",
+  "[WACC] weights on net financial debt 2.4% / equity 97.6%; Kd after tax 5.90% x (1-0.095) = 5.34%; WACC 10.49%. The balance sheet is almost entirely equity-funded, so WACC sits close to the cost of equity.",
+  "[WACC terminal] Ke 9.72% (rf* 5.04% + beta_term 1.00 x ERP 4.68%); Kd after tax 4.98%; weights 100%/0% -> 9.72%.",
+  "[Glide] forward WACC 10.49% -> 10.30% -> 10.11% -> 9.91% -> 9.72%; discount factors 0.9051, 0.8205, 0.7452, 0.6780, 0.6180. The glide fractions are the cost-of-debt path's own cumulative progress, inherited not invented.",
   "[Ground-up unit economics, FY2025] on a cable-tonnage index of 100: metal content per unit 84.87, conversion cost per unit 4.53, selling price per unit 106.74 SAR mn/index-point; gross profit per unit 17.33 (gross margin 16.24%). Materials are 94.9% of cost of revenue.",
   "[Forecast, ground-up] revenue 11,513 -> 12,410 -> 13,364 -> 14,264 -> 15,143 (growth +7.9%, +7.8%, +7.7%, +6.7%, +6.2%)",
   "[Forecast margins are OUTPUTS] gross margin 15.26% -> 15.36% -> 15.36% -> 15.41% -> 15.41%; EBITDA margin 11.81% -> 11.91% -> 11.96% -> 12.06% -> 12.06%. The gross margin is anchored on the H1-2026 reviewed actual (15.26%) and lifts only modestly on the mix/scale glide \u2014 it does NOT return to the FY2024-25 metal-tailwind peak.",
   "[FY2026 cross-check against the reviewed print] H1-2026 revenue 5,698 at a 15.27% gross margin. Doubling H1 with a light seasonal uplift implies a full year near 11,623; the build produces 11,513 (-0.9%). The model's FY2026E gross margin 15.26% sits right on the reviewed H1 actual.",
-  "[FCFF waterfall] EBIT 1,262 -> 1,373 -> 1,485 -> 1,599 -> 1,698; NOPAT 1,142 -> 1,242 -> 1,344 -> 1,447 -> 1,536; less capex 219, 223, 227, 228, 242 and working-capital investment +290, +251, +267, +252, +246; FCFF 731 -> 873 -> 963 -> 1,088 -> 1,176; PV of explicit FCFF 3,628.",
-  "[Return on capital] FY2025 NOPAT 1,381 / invested capital 4,425 = 31.2%; forecast ROIC 23.6% -> 24.4%; terminal ROIC (next-year NOPAT over closing capital) 25.3%. A high-return, capital-light-relative-to-earnings model.",
-  "[Terminal value] terminal ROIC 25.3%; required reinvestment g/ROIC 15.8%; terminal NOPAT 1,598; TV 27,548 discounted at the year-5 factor 0.6386 -> PV 17,592. Terminal value is 83% of enterprise value.",
+  "[FCFF waterfall] EBIT 1,262 -> 1,373 -> 1,485 -> 1,599 -> 1,698; NOPAT 1,142 -> 1,242 -> 1,344 -> 1,447 -> 1,536; less capex 219, 223, 237, 252, 268 and working-capital investment +290, +251, +267, +252, +246; FCFF 731 -> 873 -> 954 -> 1,064 -> 1,151; PV of explicit FCFF 3,521.",
+  "[Return on capital] FY2025 NOPAT 1,152 / invested capital 4,425 = 26.0%; forecast ROIC 23.6% -> 24.1%; terminal ROIC (next-year NOPAT over closing capital) 25.1%. A high-return, capital-light-relative-to-earnings model.",
+  "[Terminal value] terminal ROIC 25.1%; required reinvestment g/ROIC 15.9%; terminal NOPAT 1,598; TV 23,482 discounted at the year-5 factor 0.6180 -> PV 14,511. Terminal value is 80% of enterprise value.",
   "[Terminal ceiling] 73% of revenue is domestic (Saudi nominal ~5%), 27% export (~4.5% world nominal); blended ceiling 4.9%. Adopted g 4.0% sits below it.",
-  "[Forecast profit & distribution] attributable profit 1,113, 1,217, 1,325, 1,436, 1,536; payout 55% (the FY2025 actual was 52.6%: SAR 3.8/share on EPS 7.22); net debt path 291, 108, -113, -406, -744 \u2014 the company de-gears further as free cash flow accrues.",
-  "[Bridge] EV 21,221 - net debt 385 + associates 32 + non-operating assets 20 = 20,888; less NCI at carrying value 63 = equity attributable 20,825 = SAR 139.10/share at 31-Dec-2025.",
-  "[Anchor roll] SAR 139.10/share at 31-Dec-2025 rolled 230/365 of a year at the 10.0% cost of equity (x1.0619) less the SAR 1.90 dividend paid in the window = SAR 145.80/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+39%).",
-  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 145.80/share. On the FY2025-peak framing (16.0%): SAR 159.30. On the further-compression framing (14.5%): SAR 132.18. Published side by side, never averaged into one number.",
-  "[DCF scenarios] bear 88.81 / base 145.80 / bull 236.77 SAR per share.",
-  "[Relative lens] 9.0x on FY2027E EBITDA 1,478 discounted at the year-2 factor plus interim free cash flow -> SAR 83.47/share. Trailing EV/EBITDA 11.9x, trailing P/E 14.5x.",
-  "[Normalised lens] mid-cycle EBITDA margin 11.96% (FY2028E) on FY2026E revenue 11,513 -> normalised EPS 7.54 x 13.0 = SAR 102.14/share.",
-  "[Book lens] book value per share SAR 21.68; justified P/B 4.72x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.09% - g) -> SAR 106.66. Trailing ROE 36.8%.",
-  "[Synthesis] weighted central SAR 118.73; full span 70.41 - 236.77; spot 104.80 (+13% to the central).",
-  "[Expert panel] Expert 1 119.33 [91.35-147.30]; Expert 2 150.07 [98.67-189.04]; Expert 3 143.72 [103.90-165.99]; panel median 143.72 (+37% vs spot)."
+  "[Forecast profit & distribution] attributable profit 1,113, 1,217, 1,325, 1,436, 1,535; payout 55% (the FY2025 actual: SAR 4.00/share paid = 55.4% of the 7.22 EPS); net debt path 291, 108, -104, -373, -684 \u2014 the company de-gears further as free cash flow accrues.",
+  "[Bridge] EV 18,032 - net debt 385 + associates 32 + non-operating assets 20 = 17,699; less NCI at carrying value 63 = equity attributable 17,636 = SAR 117.80/share at 31-Dec-2025.",
+  "[Anchor roll] SAR 117.80/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0656) less the SAR 2.25 dividend paid in the window = SAR 123.28/share at the 18-Aug-2026 anchor, against a spot of 104.90 (+18%).",
+  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 123.28/share. On the FY2025-peak framing (16.0%): SAR 134.85. On the further-compression framing (14.5%): SAR 111.60. Published side by side, never averaged into one number.",
+  "[Quarterly margin path \u2014 the anchor half taken apart] Q1-2026 gross margin 15.56% (430.5/2,767.7), Q2-2026 14.99% (439/2,930) \u2014 the half DETERIORATES within itself. If the Q2 exit rate held for the whole forecast the cash-flow lens is SAR 119.11/share \u2014 between the anchor (123.28) and the bear (111.60); the 14.5% falsifier stands and the Q3 print is the live test.",
+  "[H1/H2 split, stated not implied] H1-2026 actual 5,698 (+9.5%); the FY2026E build implies H2 5,815 (+6.3% vs H2-2025's 5,470) \u2014 a deliberate deceleration: H2-2025 already carried the strong-metal revenue base, and the volume anchor is grown on the full-year, not the half.",
+  "[DCF scenarios] bear 78.52 / base 123.28 / bull 188.28 SAR per share.",
+  "[Relative lens] 10.0x on FY2027E EBITDA 1,478 discounted at the year-2 factor plus interim free cash flow -> SAR 91.07/share. EV/EBITDA on FY2025 11.9x; P/E on FY2025 14.5x, on trailing-twelve-months earnings (FY2025 + H1-2026 - H1-2025 = 1,134) 13.9x \u2014 the basis is labelled wherever a multiple is quoted.",
+  "[Normalised lens] mid-cycle EBITDA margin 11.96% (FY2028E) on FY2026E revenue 11,513 -> normalised EPS 7.54 x 13.0 = SAR 102.16/share.",
+  "[Book lens] book value per share SAR 21.68; justified P/B 4.20x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.72% - g) -> SAR 94.69. Trailing ROE 36.8%.",
+  "[Synthesis] weighted central SAR 108.32; full span 64.09 - 188.28; spot 104.90 (+3% to the central).",
+  "[rf sensitivity, published this time] 10y SAR 5.02%/5.52%/6.02% -> DCF 136.09/123.28/112.54 \u2014 the +/-50bp band the register claims is now on the sheet and in the study.",
+  "[Expert panel] Expert 1 119.41 [91.33-147.48]; Expert 2 130.91 [89.20-160.68]; Expert 3 123.28 [90.46-141.57]; panel median 123.28 (+18% vs spot)."
  ]
 }

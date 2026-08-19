@@ -184,6 +184,8 @@ a_scalar('Net working capital / revenue', IN['nwc_pct'])
 a_path('Cost-of-debt path', IN['kd_path'])
 a_scalar('Forecast dividend payout ratio', PAYOUT)
 a_scalar('Yield on surplus cash', 0.04)
+a_scalar('Metal price multiplier (shock; 1.00 = base path)', 1.0, '0.00')
+a_scalar('NCI share of profit (FY2025)', NCI_SH)
 a_section('Lens inputs')
 a_scalar('Justified EV/EBITDA', IN['ev_ebitda_just'], MULT)
 a_scalar('Justified price/earnings', IN['pe_just'], MULT)
@@ -205,6 +207,10 @@ a_scalar('FY2025 equity attributable (SAR mn)', F['eqp_fy25'], NUM0)
 a_scalar('FY2025 associates carrying value (SAR mn)', DCF['assoc'], NUM0)
 a_scalar('FY2025 non-operating assets (SAR mn)', DCF['nonop'], NUM0)
 a_scalar('FY2025 NCI carrying value (SAR mn)', DCF['nci'], NUM0)
+a_scalar('FY2025 attributable profit (SAR mn)', IN['npa_fy25'], NUM0)
+a_scalar('FY2024 equity attributable (SAR mn)', IN['eqp_fy24'], NUM0)
+a_scalar('H1-2026 attributable profit (SAR mn)', IN['h1_26_np'], NUM0)
+a_scalar('H1-2025 attributable profit (SAR mn)', IN['h1_25_np'], NUM0)
 
 # =========================================================================
 # SEGMENTS — the live ground-up cost-stack build
@@ -215,38 +221,52 @@ title(wsg, 'Segments — ground-up cost-stack build', 'Materials on the metal pa
 hdr(wsg, 4, ['SAR mn / index', 'FY2025', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E'])
 r = {}
 rr = 5
-labels_seg = ['vol', 'matpu', 'convpu', 'mat', 'conv', 'cogs', 'gm', 'rev', 'gp', 'opex',
-              'dna', 'ebit', 'ebitda', 'ebmar']
-names_seg = ['Cable volume index (FY2025=100)', 'Metal content per unit',
-             'Conversion cost per unit', 'Materials (metal leg)', 'Conversion cost',
-             'Cost of revenue', 'Gross margin (target = anchor + glide)', 'Revenue',
-             'Gross profit', 'Operating expenses', 'Depreciation & amortisation', 'EBIT',
-             'EBITDA', 'EBITDA margin']
+labels_seg = ['vol', 'matpu', 'matsh', 'convpu', 'gmanchor', 'sppu', 'mat', 'conv', 'cogs',
+              'gp', 'rev', 'gm', 'opex', 'dna', 'ebit', 'ebitda', 'ebmar']
+names_seg = ['Cable volume index (FY2025=100)', 'Metal content per unit (base path)',
+             'Metal content per unit (after shock multiplier)', 'Conversion cost per unit',
+             'Margin anchor path (calibrates the spread at base metal)',
+             'Conversion spread per unit (calibrated at base metal, held under shocks)',
+             'Materials (metal leg, shocked)', 'Conversion cost', 'Cost of revenue',
+             'Gross profit = volume x spread', 'Revenue = materials + conversion + spread',
+             'Gross margin — OUTPUT (dilutes when metal rises)', 'Operating expenses',
+             'Depreciation & amortisation', 'EBIT', 'EBITDA', 'EBITDA margin']
 for k in labels_seg:
     r[k] = rr; rr += 1
 for k, nm in zip(labels_seg, names_seg):
     put(wsg, f'A{r[k]}', nm, fmt=None)
 # FY2025 base column B
+gp_pu = [gmt[i] / (1 - gmt[i]) * (matpu[i] + convpu[i]) for i in range(5)]
+GPPU0 = (HI['FY25']['gp'] / HI['FY25']['rev']) / (1 - HI['FY25']['gp'] / HI['FY25']['rev']) * (MATPU0 + CONVPU0)
+MSH = AC('Metal price multiplier (shock; 1.00 = base path)')
 put(wsg, f'B{r["vol"]}', VOL0, BLUE, NUM1)
 putf(wsg, f'B{r["matpu"]}', f'={AC("FY2025 metal content / materials (SAR mn)")}/{VOL0}', MATPU0, NUM2)
+putf(wsg, f'B{r["matsh"]}', f'=B{r["matpu"]}*{MSH}', MATPU0, NUM2)
 putf(wsg, f'B{r["convpu"]}', f'={AC("FY2025 conversion cost (SAR mn)")}/{VOL0}', CONVPU0, NUM2)
-putf(wsg, f'B{r["mat"]}', f'=B{r["vol"]}*B{r["matpu"]}', MATPU0 * VOL0, NUM0)
+put(wsg, f'B{r["gmanchor"]}', HI['FY25']['gp'] / HI['FY25']['rev'], BLACK, PCT2)  # FY25 actual margin (memo)
+putf(wsg, f'B{r["sppu"]}', f'=B{r["gmanchor"]}/(1-B{r["gmanchor"]})*(B{r["matpu"]}+B{r["convpu"]})', GPPU0, NUM2)
+putf(wsg, f'B{r["mat"]}', f'=B{r["vol"]}*B{r["matsh"]}', MATPU0 * VOL0, NUM0)
 putf(wsg, f'B{r["conv"]}', f'=B{r["vol"]}*B{r["convpu"]}', CONVPU0 * VOL0, NUM0)
 putf(wsg, f'B{r["cogs"]}', f'=B{r["mat"]}+B{r["conv"]}', MATPU0 * VOL0 + CONVPU0 * VOL0, NUM0)
-put(wsg, f'B{r["gm"]}', HI['FY25']['gp'] / HI['FY25']['rev'], BLACK, PCT2)  # disclosed FY25 gm
 put(wsg, f'B{r["rev"]}', HI['FY25']['rev'], BLUE, NUM0)
 put(wsg, f'B{r["gp"]}', HI['FY25']['gp'], BLUE, NUM0)
+putf(wsg, f'B{r["gm"]}', f'=B{r["gp"]}/B{r["rev"]}', HI['FY25']['gp'] / HI['FY25']['rev'], PCT2)
 for i in range(5):
     c = FCUR[i]; pc = 'B' if i == 0 else FCUR[i - 1]
     putf(wsg, f'{c}{r["vol"]}', f'={pc}{r["vol"]}*(1+{AP("Cable volume index growth", i)})', vol[i], NUM1)
     putf(wsg, f'{c}{r["matpu"]}', f'={pc}{r["matpu"]}*(1+{AP("Metal content price growth", i)})', matpu[i], NUM2)
+    putf(wsg, f'{c}{r["matsh"]}', f'={c}{r["matpu"]}*{MSH}', matpu[i], NUM2)
     putf(wsg, f'{c}{r["convpu"]}', f'={pc}{r["convpu"]}*(1+{AP("Conversion cost inflation", i)})', convpu[i], NUM2)
-    putf(wsg, f'{c}{r["mat"]}', f'={c}{r["vol"]}*{c}{r["matpu"]}', materials[i], NUM0)
+    putf(wsg, f'{c}{r["gmanchor"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
+    # the conversion spread per tonne is CALIBRATED at the BASE metal path (matpu, not matsh):
+    # a metal shock moves materials cost but NOT the spread, so the margin below is an OUTPUT
+    putf(wsg, f'{c}{r["sppu"]}', f'={c}{r["gmanchor"]}/(1-{c}{r["gmanchor"]})*({c}{r["matpu"]}+{c}{r["convpu"]})', gp_pu[i], NUM2)
+    putf(wsg, f'{c}{r["mat"]}', f'={c}{r["vol"]}*{c}{r["matsh"]}', materials[i], NUM0)
     putf(wsg, f'{c}{r["conv"]}', f'={c}{r["vol"]}*{c}{r["convpu"]}', conversion[i], NUM0)
     putf(wsg, f'{c}{r["cogs"]}', f'={c}{r["mat"]}+{c}{r["conv"]}', cogs[i], NUM0)
-    putf(wsg, f'{c}{r["gm"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
-    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["cogs"]}/(1-{c}{r["gm"]})', F['rev'][i], NUM0)
-    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["rev"]}-{c}{r["cogs"]}', F['gp'][i], NUM0)
+    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["vol"]}*{c}{r["sppu"]}', F['gp'][i], NUM0)
+    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["cogs"]}+{c}{r["gp"]}', F['rev'][i], NUM0)
+    putf(wsg, f'{c}{r["gm"]}', f'={c}{r["gp"]}/{c}{r["rev"]}', F['gp'][i] / F['rev'][i], PCT2)
     putf(wsg, f'{c}{r["opex"]}', f'={AP("Operating expenses / revenue", i)}*{c}{r["rev"]}', F['opex'][i], NUM0)
     putf(wsg, f'{c}{r["dna"]}', f'={AC("Depreciation and amortisation / revenue")}*{c}{r["rev"]}', F['dna'][i], NUM0)
     putf(wsg, f'{c}{r["ebit"]}', f'={c}{r["gp"]}-{c}{r["opex"]}', F['ebit'][i], NUM0)
@@ -292,7 +312,7 @@ row_waccterm = rr; putf(wsd, f'C{rr}', f'=(1-{AC("Terminal net-debt weight")})*C
 ANCH['wacc_term'] = rr; rr += 1
 # --- glide + discount factors ---
 rr += 1; put(wsd, f'A{rr}', 'Discount-rate glide & waterfall', bold=True, fmt=None); band(wsd, rr, 8); rr += 1
-hdr(wsd, rr, ['SAR mn', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']); rr += 1
+hdr(wsd, rr, ['SAR mn', '', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']); rr += 1
 row_glide = rr; put(wsd, f'A{rr}', 'Glide fraction (from Kd path)', fmt=None)
 gf = F['glide_frac']
 for i in range(5):
@@ -425,7 +445,7 @@ def anchor(expr_v):
 wsb = sheet('Balance Sheet')
 title(wsb, 'Balance sheet — audited history + forecast roll-forward', 'SAR mn; FY2023-25 audited, '
       'FY2026E-30E rolled forward from the cash flow', 10, awidth=40, cwidth=11)
-hdr(wsb, 4, ['SAR mn'] + YH + YF)
+hdr(wsb, 4, ['SAR mn', ''] + YH + YF)
 bl = {}
 rr = 5
 for key, nm in [('ppe', 'Property, plant & equipment'), ('inv', 'Inventory'),
@@ -467,7 +487,7 @@ for i in range(5):
     putf(wsb, f'{c}{rf["int"]}', f'={AP("Cost-of-debt path", i)}*{DEBT}-{YLD}*MAX({c}{rf["cash_s"]},0)', F['interest'][i], NUM0)
     putf(wsb, f'{c}{rf["ebit"]}', f"=DCF!{c}{row_ebit}", F['ebit'][i], NUM0, green=True)
     putf(wsb, f'{c}{rf["pbt"]}', f'={c}{rf["ebit"]}-{c}{rf["int"]}', F['ebit'][i] - F['interest'][i], NUM0)
-    putf(wsb, f'{c}{rf["npa"]}', f'={c}{rf["pbt"]}*(1-{AC("Effective zakat and income tax rate")})*(1-{NCI_SH})', F['np_attr'][i], NUM0)
+    putf(wsb, f'{c}{rf["npa"]}', f'={c}{rf["pbt"]}*(1-{AC("Effective zakat and income tax rate")})*(1-{AC("NCI share of profit (FY2025)")})', F['np_attr'][i], NUM0)
     putf(wsb, f'{c}{rf["div"]}', f'={AC("Forecast dividend payout ratio")}*{c}{rf["npa"]}', F['div'][i], NUM0)
     putf(wsb, f'{c}{rf["ndend"]}', f'={c}{rf["ndstart"]}-(DCF!{c}{row_fcff}-{c}{rf["int"]}*(1-{AC("Effective zakat and income tax rate")}))+{c}{rf["div"]}', F['net_debt'][i], NUM0)
     if i == 0:
@@ -489,7 +509,7 @@ ANCH['bl'], ANCH['rf'] = bl, rf
 # =========================================================================
 wsi = sheet('Income Statement')
 title(wsi, 'Income statement — 3y audited + 5y forecast', 'SAR mn', 10, awidth=38, cwidth=11)
-hdr(wsi, 4, ['SAR mn'] + YH + YF)
+hdr(wsi, 4, ['SAR mn', ''] + YH + YF)
 il = {}
 rows_is = [('rev', 'Revenue'), ('gp', 'Gross profit'), ('gm', 'Gross margin'),
            ('opex', 'Operating expenses'), ('ebitda', 'EBITDA'), ('dna', 'Depreciation & amortisation'),
@@ -539,7 +559,7 @@ ANCH['il'] = il
 wsc = sheet('Cash Flow')
 title(wsc, 'Cash flow — free cash flow to the firm', 'SAR mn; the DCF waterfall as a statement', 8,
       awidth=40, cwidth=12)
-hdr(wsc, 4, ['SAR mn'] + YF)
+hdr(wsc, 4, ['SAR mn', ''] + YF)
 cl = {}
 rows_cf = [('nopat', 'NOPAT'), ('dna', '+ Depreciation & amortisation'), ('capex', '- Capital expenditure'),
            ('dnwc', '- Change in working capital'), ('fcff', 'Free cash flow to firm'),
@@ -590,9 +610,9 @@ def rel_raw(multexpr):
 
 row_relbase = rr; putf(wsr, f'C{rr}', f'={ANC(rel_raw(f"C{row_mult}"))}', LN['relative']['base'], PX, bold=True)
 put(wsr, f'A{rr}', 'Relative lens — implied value (base)', bold=True, fmt=None); rr += 1
-row_relbounds = rr; put(wsr, f'A{rr}', 'Bear (7.5x) / Bull (11.0x)', fmt=None)
-putf(wsr, f'C{rr}', f'={ANC(rel_raw("7.5"))}', LN['relative']['bear'], PX)
-putf(wsr, f'D{rr}', f'={ANC(rel_raw("11"))}', LN['relative']['bull'], PX); rr += 1
+row_relbounds = rr; put(wsr, f'A{rr}', 'Bear (8.0x) / Bull (12.0x)', fmt=None)
+putf(wsr, f'C{rr}', f'={ANC(rel_raw("8"))}', LN['relative']['bear'], PX)
+putf(wsr, f'D{rr}', f'={ANC(rel_raw("12"))}', LN['relative']['bull'], PX); rr += 1
 rr += 1
 put(wsr, f'A{rr}', 'Normalised earnings power', bold=True, fmt=None); band(wsr, rr, 7); rr += 1
 put(wsr, f'A{rr}', 'Mid-cycle EBITDA margin (FY2028E)', fmt=None); putf(wsr, f'C{rr}', f"=Segments!E{seg['ebmar']}", F['ebitda_margin'][2], PCT2, green=True); row_nmar = rr; rr += 1
@@ -606,7 +626,7 @@ Gc = AC('Terminal growth')
 KEc = f'DCF!C{row_ke}'
 KETc = f'DCF!C{row_keterm}'
 row_neps = rr
-putf(wsr, f'C{rr}', f'=((C{row_nmar}*C{row_nrev}-{DNAP}*C{row_nrev})-C{row_nint})*(1-{TAXc})*(1-{NCI_SH})/{SHc}',
+putf(wsr, f'C{rr}', f'=((C{row_nmar}*C{row_nrev}-{DNAP}*C{row_nrev})-C{row_nint})*(1-{TAXc})*(1-{AC("NCI share of profit (FY2025)")})/{SHc}',
      NRM['eps'], PX); put(wsr, f'A{rr}', 'Normalised EPS', fmt=None); rr += 1
 row_normbase = rr
 putf(wsr, f'C{rr}', f'={ANC(f"{PEc}*C{row_neps}")}', LN['normalized']['base'], PX, bold=True)
@@ -674,14 +694,72 @@ putf(wsf, f'D{rr}', f'=MAX(D{row_lens0}:D{row_lens0+3})', max(LN[k]['bull'] for 
 putf(wsf, f'E{rr}', f'=SUM(E{row_lens0}:E{row_lens0+3})', 1.0, PCT, bold=True)
 putf(wsf, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1', D['central'] / SPOT - 1, PCT, bold=True)
 rr += 2
-put(wsf, f'A{rr}', 'Expert panel median (whole-model — pasted)', fmt=None)
-put(wsf, f'C{rr}', D['panel_centre'], BLUE, PX); rr += 1
+row_median = rr
+put(wsf, f'A{rr}', 'Expert panel median (live — see the worked panel below)', fmt=None); rr += 1
 put(wsf, f'A{rr}', 'Market price (anchor)', fmt=None); putf(wsf, f'C{rr}', f'={AC("Spot price (SAR)")}', SPOT, PX, green=True); rr += 2
 band(wsf, rr, 7); put(wsf, f'A{rr}', 'Central contested judgement — sustained gross margin, both ways', bold=True, fmt=None); rr += 1
 put(wsf, f'A{rr}', 'H1-2026 anchor (15.26%) — DCF value', fmt=None); putf(wsf, f'C{rr}', f'=DCF!C{row_ps}', DCF['spread_base'], PX, green=True); rr += 1
 put(wsf, f'A{rr}', 'FY2025-peak framing (16.0%) — DCF value (pasted re-run)', fmt=None); put(wsf, f'C{rr}', DCF['spread_bull'], BLUE, PX); rr += 1
 put(wsf, f'A{rr}', 'Further-compression framing (14.5%) — DCF value (pasted re-run)', fmt=None); put(wsf, f'C{rr}', DCF['spread_bear'], BLUE, PX); rr += 1
-ANCH['fund'] = dict(cent=row_cent, lens0=row_lens0)
+put(wsf, f'A{rr}', 'Q2-2026 exit rate (14.99%) sustained — DCF value (pasted re-run)', fmt=None); put(wsf, f'C{rr}', D['interim']['dcf_q2_exit'], BLUE, PX); rr += 2
+
+# ---- the expert panel, WORKED LIVE (no pasted panel values) ----
+E1, E2, E3 = EXPP['e1'], EXPP['e2'], EXPP['e3']
+DEBTc = AC('FY2025 gross borrowings incl. leases (SAR mn)')
+YLDc = AC('Yield on surplus cash')
+NCISHc = AC('NCI share of profit (FY2025)')
+TAXc2 = AC('Effective zakat and income tax rate')
+Gc2 = AC('Terminal growth')
+band(wsf, rr, 7); put(wsf, f'A{rr}', 'Expert panel — three methods, worked live on the same forecast base', bold=True, fmt=None); rr += 1
+# Expert 1 — earnings power
+put(wsf, f'A{rr}', 'E1 mid-cycle EBITDA margin (FY2028E)', fmt=None)
+putf(wsf, f'C{rr}', f"=Segments!E{seg['ebmar']}", E1['margin'], PCT2, green=True); r_e1m = rr; rr += 1
+put(wsf, f'A{rr}', 'E1 mid-cycle revenue (FY2028E scale)', fmt=None)
+putf(wsf, f'C{rr}', f"=Segments!E{seg['rev']}", E1['rev'], NUM0, green=True); r_e1r = rr; rr += 1
+put(wsf, f'A{rr}', 'E1 normalised EBIT (margin x revenue - D&A)', fmt=None)
+putf(wsf, f'C{rr}', f'=C{r_e1m}*C{r_e1r}-{AC("Depreciation and amortisation / revenue")}*C{r_e1r}', E1['ebit'], NUM0); r_e1e = rr; rr += 1
+put(wsf, f'A{rr}', 'E1 normalised net interest (FY2028 Kd on FY2025 debt less cash yield)', fmt=None)
+putf(wsf, f'C{rr}', f'={AP("Cost-of-debt path", 2)}*{DEBTc}-{YLDc}*({DEBTc}-{AC("Net financial debt at FY2025 (SAR mn, disclosed)")})', E1['interest'], NUM0); r_e1i = rr; rr += 1
+put(wsf, f'A{rr}', 'E1 earnings per share after tax and minorities', fmt=None)
+putf(wsf, f'C{rr}', f'=(C{r_e1e}-C{r_e1i})*(1-{TAXc2})*(1-{NCISHc})/{SHc}', E1['eps'], PX); r_e1eps = rr; rr += 1
+put(wsf, f'A{rr}', 'Expert 1 — value at anchor (13x; range 10x/16x)', bold=True, fmt=None)
+putf(wsf, f'C{rr}', f'={ANC(f"13*C{r_e1eps}")}', E1['base'], PX, bold=True)
+putf(wsf, f'B{rr}', f'={ANC(f"10*C{r_e1eps}")}', E1['rng'][0], PX)
+putf(wsf, f'D{rr}', f'={ANC(f"16*C{r_e1eps}")}', E1['rng'][1], PX); r_e1b = rr; rr += 1
+# Expert 2 — owner cash earnings
+put(wsf, f'A{rr}', 'E2 mid-cycle FCFF (average FY2028-30E)', fmt=None)
+putf(wsf, f'C{rr}', f'=AVERAGE(DCF!E{row_fcff}:G{row_fcff})', E2['fcff'], NUM0, green=True); r_e2f = rr; rr += 1
+put(wsf, f'A{rr}', 'E2 after-tax net interest (FY2029 Kd basis)', fmt=None)
+putf(wsf, f'C{rr}', f'=({AP("Cost-of-debt path", 3)}*{DEBTc}-{YLDc}*({DEBTc}-{AC("Net financial debt at FY2025 (SAR mn, disclosed)")}))*(1-{TAXc2})', E2['int_at'], NUM0); r_e2i = rr; rr += 1
+put(wsf, f'A{rr}', 'E2 owner cash (FCFF less after-tax interest, net of minorities)', fmt=None)
+putf(wsf, f'C{rr}', f'=(C{r_e2f}-C{r_e2i})*(1-{NCISHc})', E2['fcfe'], NUM0); r_e2o = rr; rr += 1
+put(wsf, f'A{rr}', 'Expert 2 — value at anchor (perpetuity at terminal Ke; range on rate/growth)', bold=True, fmt=None)
+putf(wsf, f'C{rr}', f'={ANC(f"C{r_e2o}*(1+{Gc2})/(DCF!C{row_keterm}-{Gc2})/{SHc}")}', E2['base'], PX, bold=True)
+putf(wsf, f'B{rr}', f'={ANC(f"C{r_e2o}*1.02/((DCF!C{row_ke}+DCF!C{row_keterm})/2-0.02)/{SHc}")}', E2['rng'][0], PX)
+putf(wsf, f'D{rr}', f'={ANC(f"C{r_e2o}*1.05/(DCF!C{row_keterm}-0.05)/{SHc}")}', E2['rng'][1], PX); r_e2b = rr; rr += 1
+# Expert 3 — economic profit (reconciles to the DCF EV by construction)
+put(wsf, f'A{rr}', 'E3 invested capital, 31-Dec-2025 (NWC + PP&E)', fmt=None)
+putf(wsf, f'C{rr}', f'={AC("FY2025 net working capital (SAR mn)")}+{AC("FY2025 PP&E (SAR mn)")}', E3['ic0'], NUM0); r_e3ic = rr; rr += 1
+r_ep0 = rr
+DFROW = row_df; FWDROW = row_fwd; NOPATROW = row_nopat; ICROW = row_ic
+ep_pvs = [E3['ep'][i] * F['df'][i] for i in range(5)]
+for i in range(5):
+    c = FCUR[i]
+    beg = f'C{r_e3ic}' if i == 0 else f'DCF!{FCUR[i-1]}{ICROW}'
+    put(wsf, f'A{rr}', f'E3 PV of economic profit, {YF[i]} (NOPAT - WACC x opening capital)', fmt=None)
+    putf(wsf, f'C{rr}', f'=(DCF!{c}{NOPATROW}-DCF!{c}{FWDROW}*{beg})*DCF!{c}{DFROW}', ep_pvs[i], NUM0)
+    rr += 1
+put(wsf, f'A{rr}', 'E3 PV of terminal economic profit (reconciles to the DCF terminal value)', fmt=None)
+putf(wsf, f'C{rr}', f'=(DCF!G{NOPATROW}*(1+{Gc2})-DCF!C{row_waccterm}*DCF!G{ICROW})/(DCF!C{row_waccterm}-{Gc2})*DCF!G{DFROW}', E3['pv_ep_term'], NUM0); r_e3t = rr; rr += 1
+put(wsf, f'A{rr}', 'E3 enterprise value (capital + PV of excess returns; equals the DCF EV)', fmt=None)
+putf(wsf, f'C{rr}', f'=C{r_e3ic}+SUM(C{r_ep0}:C{r_ep0+4})+C{r_e3t}', E3['ev'], NUM0); r_e3ev = rr; rr += 1
+put(wsf, f'A{rr}', 'Expert 3 — value at anchor (bridge as the DCF; range on persistence)', bold=True, fmt=None)
+putf(wsf, f'C{rr}', f'={ANC(f"(C{r_e3ev}-{NDc}+{ASSOCc}+{NONOPc}-{NCIc})/{SHc}")}', E3['base'], PX, bold=True)
+putf(wsf, f'B{rr}', f'={ANC(f"(C{r_e3ic}+SUM(C{r_ep0}:C{r_ep0+4})*0.7+C{r_e3t}*0.65-{NDc}+{ASSOCc}+{NONOPc}-{NCIc})/{SHc}")}', E3['rng'][0], PX)
+putf(wsf, f'D{rr}', f'={ANC(f"(C{r_e3ic}+SUM(C{r_ep0}:C{r_ep0+4})*1.15+C{r_e3t}*1.2-{NDc}+{ASSOCc}+{NONOPc}-{NCIc})/{SHc}")}', E3['rng'][1], PX); r_e3b = rr; rr += 1
+# panel median, LIVE, pointing at the three bases above
+putf(wsf, f'C{row_median}', f'=MEDIAN(C{r_e1b},C{r_e2b},C{r_e3b})', D['panel_centre'], PX)
+ANCH['fund'] = dict(cent=row_cent, lens0=row_lens0, median=row_median, e1=r_e1b, e2=r_e2b, e3=r_e3b)
 
 # =========================================================================
 # SOTP BRIDGE — EV to equity, with terminal-value share visible (gate p)
@@ -709,7 +787,7 @@ for nm, formula, exp in bridge:
 # =========================================================================
 wsm = sheet('Summary Financials')
 title(wsm, 'Summary financials', 'SAR mn; forecast links to the model', 8, awidth=34, cwidth=12)
-hdr(wsm, 4, ['SAR mn'] + YF)
+hdr(wsm, 4, ['SAR mn', ''] + YF)
 sfrows = [('rev', 'Revenue', 'rev', row_rev), ('ebitda', 'EBITDA', None, None),
           ('nopat', 'NOPAT', 'nopat', row_nopat), ('fcff', 'FCFF', 'fcff', row_fcff),
           ('ic', 'Invested capital', 'ic', row_ic), ('roic', 'ROIC', 'roic', row_roic)]
@@ -732,25 +810,41 @@ for key, nm, fk, drow in sfrows:
 wpr = sheet('Per-Share & Ratios')
 title(wpr, 'Per-share & ratios', '', 8, awidth=36, cwidth=12)
 hdr(wpr, 4, ['', 'FY2025'] + YF[:5])
+NPA25 = AC('FY2025 attributable profit (SAR mn)')
+EQ24 = AC('FY2024 equity attributable (SAR mn)')
+EQ25 = AC('FY2025 equity attributable (SAR mn)')
+EB25c = f"'Income Statement'!E{il['ebitda']}"
+ITM = D['interim']
 rr = 5
-put(wpr, f'A{rr}', 'EPS (SAR)', fmt=None); put(wpr, f'B{rr}', IN['npa_fy25'] / SH, BLUE, PX)
+put(wpr, f'A{rr}', 'EPS (SAR)', fmt=None)
+putf(wpr, f'B{rr}', f'={NPA25}/{SHc}', IN['npa_fy25'] / SH, PX)
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCUR[i]}{ANCH['rf']['npa']}/{SHc}", F['np_attr'][i] / SH, PX)
 rr += 1
 put(wpr, f'A{rr}', 'Book value per share (SAR)', fmt=None)
-putf(wpr, f'B{rr}', f'={AC("FY2025 equity attributable (SAR mn)")}/{SHc}', F['eqp_fy25'] / SH, PX)
+putf(wpr, f'B{rr}', f'={EQ25}/{SHc}', F['eqp_fy25'] / SH, PX)
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCOL[i]}{ANCH['bl']['eqp']}/{SHc}", F['equity'][i] / SH, PX)
 rr += 1
-put(wpr, f'A{rr}', 'ROE (%)', fmt=None); put(wpr, f'B{rr}', BKL['roe_trailing'], BLUE, PCT)
+put(wpr, f'A{rr}', 'ROE (%, on average equity)', fmt=None)
+putf(wpr, f'B{rr}', f'={NPA25}/(({EQ24}+{EQ25})/2)', BKL['roe_trailing'], PCT)
 rr += 1
 put(wpr, f'A{rr}', 'Net debt / EBITDA (x)', fmt=None)
-putf(wpr, f'B{rr}', f'={AC("Net financial debt at FY2025 (SAR mn, disclosed)")}/(Segments!B{seg["cogs"]}*0+{HI["FY25"]["ebitda"]})', DCF['nd'] / HI['FY25']['ebitda'], MULT)
+putf(wpr, f'B{rr}', f'={AC("Net financial debt at FY2025 (SAR mn, disclosed)")}/{EB25c}', DCF['nd'] / HI['FY25']['ebitda'], MULT)
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCOL[i]}{ANCH['bl']['nd']}/Segments!{FCUR[i]}{seg['ebitda']}", F['net_debt'][i] / F['ebitda'][i], MULT)
 rr += 1
-put(wpr, f'A{rr}', 'Trailing EV/EBITDA (x)', fmt=None); put(wpr, f'B{rr}', REL['ev_ebitda_trailing'], BLUE, MULT); rr += 1
-put(wpr, f'A{rr}', 'Trailing P/E (x)', fmt=None); put(wpr, f'B{rr}', REL['pe_trailing'], BLUE, MULT); rr += 1
+row_evb = rr
+put(wpr, f'A{rr}', 'EV/EBITDA (FY2025 basis, x)', fmt=None)
+putf(wpr, f'B{rr}', f'=(DCF!C{row_mktcap}+{AC("Net financial debt at FY2025 (SAR mn, disclosed)")})/{EB25c}', REL['ev_ebitda_trailing'], MULT)
+rr += 1
+put(wpr, f'A{rr}', 'P/E (FY2025 basis, x)', fmt=None)
+putf(wpr, f'B{rr}', f'=DCF!C{row_mktcap}/{NPA25}', REL['pe_trailing'], MULT)
+rr += 1
+put(wpr, f'A{rr}', 'P/E (trailing twelve months, x)', fmt=None)
+putf(wpr, f'B{rr}', f'=DCF!C{row_mktcap}/({NPA25}+{AC("H1-2026 attributable profit (SAR mn)")}-{AC("H1-2025 attributable profit (SAR mn)")})', ITM['pe_ttm'], MULT)
+rr += 1
+ANCH['ps_evb'] = row_evb
 
 # =========================================================================
 # MONTE CARLO — the calibrated forward cone (pasted engine output)
@@ -775,25 +869,35 @@ put(wmc, f'A{rr}', f"3-month calibration: {S0['verdict']} vs the random walk; co
 # =========================================================================
 wsn = sheet('Sensitivity')
 title(wsn, 'Sensitivity — whole-model re-runs (pasted)', 'Each cell is a complete revaluation and does '
-      'NOT redraw when a driver changes', 8, awidth=30, cwidth=11)
+      'NOT redraw when a driver changes; every block\'s base row REPRODUCES the base case (asserted '
+      'at build time)', 8, awidth=34, cwidth=11)
 rr = 4
 put(wsn, f'A{rr}', 'DCF value per share: terminal WACC (rows) x terminal growth (cols)', bold=True, fmt=None); rr += 1
 hdr(wsn, rr, [''] + [f'g={g:.0%}' for g in SN['g_grid']]); rr += 1
 for j, wt in enumerate(SN['wt_grid']):
     put(wsn, f'A{rr}', f'WACC_t={wt:.2%}', fmt=None)
     for i, val in enumerate(SN['grid_wacc_g'][j]):
-        put(wsn, f'{get_column_letter(2+i)}{rr}', val, BLUE, PX)
+        if SN['grid_wacc_g_nm'][j][i]:
+            put(wsn, f'{get_column_letter(2+i)}{rr}', 'n/m', BLUE, None)
+        else:
+            put(wsn, f'{get_column_letter(2+i)}{rr}', val, BLUE, PX)
     rr += 1
-rr += 1
-for label, grid, axis in [('Beta', SN['grid_beta'], SN['beta_grid']),
-                          ('Metal price x', SN['grid_metal'], SN['metal_grid']),
-                          ('Sustained gross margin', SN['grid_spread'], SN['spread_grid']),
+put(wsn, f'A{rr}', 'n/m: terminal spread (WACC_t - g) below 2% — the Gordon terminal value is not '
+    'meaningful there and no number is shown (the first edition printed clamped values).', fmt=None)
+rr += 2
+for label, grid, axis in [('Risk-free rate (10y SAR; explicit AND terminal move together)', SN['grid_rf'], [f'{x:.2%}' for x in SN['rf_grid']]),
+                          ('Beta (explicit-window Ke only; terminal beta held at 1.0 as stated)', SN['grid_beta'], SN['beta_grid']),
+                          ('Metal price x (flat multiplier; spread held — margin is the output)', SN['grid_metal'], SN['metal_grid']),
+                          ('Sustained gross margin (0.1499 = the Q2-2026 exit rate)', SN['grid_spread'], SN['spread_grid']),
                           ('Volume x', SN['grid_vol'], SN['vol_grid']),
                           ('Net working capital / revenue', SN['grid_nwc'], SN['nwc_grid'])]:
-    put(wsn, f'A{rr}', f'{label} sensitivity (DCF value/share)', bold=True, fmt=None); rr += 1
+    put(wsn, f'A{rr}', f'{label} — DCF value/share', bold=True, fmt=None); rr += 1
     for i, (a, val) in enumerate(zip(axis, grid)):
         put(wsn, f'A{rr}', str(a), fmt=None); put(wsn, f'B{rr}', val, BLUE, PX); rr += 1
     rr += 1
+put(wsn, f'A{rr}', 'The metal row matches the LIVE Segments sheet: set the metal price multiplier on '
+    'Assumptions and the whole model reprices the same direction (higher metal dilutes the margin and '
+    'lowers the value).', fmt=None)
 
 # =========================================================================
 # PEER & SECTOR — context multiples (pasted)
@@ -801,21 +905,26 @@ for label, grid, axis in [('Beta', SN['grid_beta'], SN['beta_grid']),
 wpe = sheet('Peer & Sector')
 title(wpe, 'Peer & sector context', 'Cross-check multiples only — never a source for the subject '
       'historicals', 5, awidth=40, cwidth=15)
-hdr(wpe, 4, ['Peer', 'Market', 'Fwd EV/EBITDA', 'Note'])
-peers = [('Riyadh Cables (subject)', 'Tadawul', REL['ev_ebitda_trailing'], 'trailing; ~14.5x P/E'),
-         ('Prysmian', 'Milan', 8.5, 'global cable major'),
-         ('Nexans', 'Paris', 7.5, 'global cable major'),
-         ('Polycab India', 'NSE', 26.0, 'high-growth EM premium'),
-         ('KEI Industries', 'NSE', 24.0, 'high-growth EM premium'),
+hdr(wpe, 4, ['Peer', 'Market', 'EV/EBITDA', 'Basis & note (each multiple recomputed from the peer\'s own EV and guidance)'])
+peers = [('Riyadh Cables (subject)', 'Tadawul', None, 'FY2025 basis (TTM P/E 13.9x); see Per-Share & Ratios'),
+         ('Prysmian', 'Milan', IN['peer_prysmian_fwd'], 'FY2026E on guidance RAISED 30-Jul-2026 (EUR 2.8-2.9bn) vs ~EUR 40bn EV'),
+         ('Nexans', 'Paris', IN['peer_nexans_fwd'], 'FY2026E on guidance raised 29-Jul-2026 (EUR 770-840mn) vs ~EUR 7.1bn EV'),
+         ('Polycab India', 'NSE', IN['peer_polycab_fwd'], 'NTM; high-growth EM premium'),
+         ('KEI Industries', 'NSE', IN['peer_kei_fwd'], 'NTM (~24-25x only on FY-Mar-2028, two years out)'),
          ('Ducab (private)', 'UAE', None, 'regional peer, not listed')]
 rr = 5
 for nm, mk, mult, note in peers:
     put(wpe, f'A{rr}', nm, fmt=None); put(wpe, f'B{rr}', mk, fmt=None)
-    if mult is not None:
+    if nm.startswith('Riyadh'):
+        putf(wpe, f'C{rr}', f"='Per-Share & Ratios'!B{ANCH['ps_evb']}", REL['ev_ebitda_trailing'], MULT, green=True)
+    elif mult is not None:
         put(wpe, f'C{rr}', mult, BLUE, MULT)
     put(wpe, f'D{rr}', note, fmt=None); rr += 1
-put(wpe, f'A{rr+1}', f"Justified EV/EBITDA applied in the relative lens: {IN['ev_ebitda_just']:.1f}x "
-    f"(mid-range, single-country discount).", fmt=None)
+put(wpe, f'A{rr+1}', f"Justified EV/EBITDA applied in the relative lens: {IN['ev_ebitda_just']:.1f}x — a "
+    f"deliberate DISCOUNT to the corrected developed band (~8.5-14.5x) for single-country and "
+    f"single-customer concentration, not its mid-point.", fmt=None)
+put(wpe, f'A{rr+2}', 'Quotes as of 18-Aug-2026. Cross-check multiples only — never a source for any '
+    'Riyadh Cables figure.', fmt=None)
 
 # =========================================================================
 # SUMMARY — valuation at a glance (links to Fundamental Valuation)
@@ -865,15 +974,22 @@ readfirst = [
  'cost stack is built live on the Segments sheet from the disclosed FY2025 materials and conversion figures and',
  'the driver paths. Third, whole-model engine outputs, where each figure is a complete re-run of the valuation',
  'and so cannot be one formula: the Monte Carlo price map, the sensitivity grids, the DCF scenario bear/bull',
- 'bounds, the two pasted framings of the contested gross-margin judgement, and the expert-panel median.',
- 'Everything else — every lens base value, the relative/normalised/book bear and bull bounds, and the anchor',
- 'roll — is a live formula. Changing a driver reprices the model but does NOT redraw the engine outputs.', '',
- 'How revenue is built. Not as one growth rate. A cable maker is a metal converter: materials (copper and',
- 'aluminium) are 94.9% of cost of revenue. The build prices a tonnage index as metal content — on its own',
- 'commodity path — plus a conversion spread whose cost escalates on domestic inflation; gross margin is the',
- 'OUTPUT of that stack, not an input. The central judgement is the margin the business sustains once the',
- 'FY2024-25 metal tailwind has passed, anchored on the most recent reviewed actual (H1-2026, 15.26%) rather',
- 'than the higher FY2025 full-year print (16.24%), and computed both ways.', '',
+ 'bounds, and the pasted alternate framings of the contested gross-margin judgement. Everything else — every',
+ 'lens base value and bound, the whole worked expert panel and its median, every ratio, and the anchor roll —',
+ 'is a live formula. Changing a driver reprices the model but does NOT redraw the engine outputs; every',
+ 'pasted grid\'s base row is asserted at build time to reproduce the live base case.', '',
+ 'How revenue is built, and how to test it. A cable maker is a metal converter: materials (copper and',
+ 'aluminium) are 94.9% of cost of revenue. The Segments sheet builds a tonnage index times a metal price on',
+ 'its own path, plus conversion cost on domestic inflation, plus a CONVERSION SPREAD PER TONNE calibrated to',
+ 'the margin-anchor path at the BASE metal price and held fixed under metal shocks. The gross margin row is',
+ 'therefore an OUTPUT: set the metal price multiplier on Assumptions above 1.00 and watch revenue rise while',
+ 'the margin dilutes and the value falls — the H1-2026 mechanism (flat gross profit on +9.5% revenue). The',
+ 'margin anchor is the reviewed H1-2026 actual (15.26%), not the higher FY2025 print (16.24%), and the',
+ 'contested judgement is computed both ways plus at the Q2-2026 exit rate (14.99%).', '',
+ 'Conventions. Year-end discounting, annual compounding (mid-year would raise the DCF lens ~4%). WACC weights',
+ 'use net financial debt, consistent with the net-debt bridge. Beta 1.129 is a Dimson sum-beta on 185 weekly',
+ 'observations (plain OLS 0.928; 90% CI 0.62-1.64 — the grid prices the width). The terminal is discounted',
+ 'all-equity because the model itself forecasts net cash from FY2028E.', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges.', '',
  'Sourcing. FY2022-FY2025 come from the company\'s own audited consolidated financial statements (KPMG); the',
@@ -894,12 +1010,19 @@ ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP 
 wb._sheets.sort(key=lambda ws: ORDER.index(ws.title))
 assert [ws.title for ws in wb._sheets] == ORDER, "sheet order wrong"
 
+# header-alignment gate: the label directly above each first data column must be its year
+# (the first edition wrote every header one column left of the data on five sheets)
+for _ws, _hrow, _col, _want in [(wsb, 4, 'C', 'FY2023'), (wsi, 4, 'C', 'FY2023'),
+                                (wsc, 4, 'C', YF[0]), (wsm, 4, 'C', YF[0]),
+                                (wsg, 4, 'B', 'FY2025')]:
+    _got = _ws[f'{_col}{_hrow}'].value
+    assert _got == _want, f'{_ws.title}: header {_col}{_hrow} is {_got!r}, expected {_want!r}'
+
 OUT_XLSX = os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx')
 wb.save(OUT_XLSX)
 ANCH['seg_rev_tot'] = seg['rev']; ANCH['seg_ebitda'] = seg['ebitda']
-json.dump({'expected': EXPECT, 'anchors': {k: (v if not isinstance(v, dict) else v) for k, v in ANCH.items() if k in ('summary_mktcap', 'ev', 'tv_share', 'dcf_ps')}},
+json.dump({'expected': EXPECT, 'anchors': {k: (v if not isinstance(v, dict) else v) for k, v in ANCH.items() if k in ('summary_mktcap', 'ev', 'tv_share', 'dcf_ps', 'seg', 'fund')}},
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1, default=str)
-nform = sum(1 for _ in range(0))
 from collections import Counter
 cnt = Counter()
 for ws in wb.worksheets:

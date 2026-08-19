@@ -28,5 +28,6 @@
  "stock_dq": [],
  "week_rule": "W-THU",
  "interim_note": null,
- "conforming": true
+ "conforming": true,
+ "ols_crosscheck": 0.9284924317455487
 }

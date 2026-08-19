@@ -39,12 +39,21 @@ for doc_, pub, took in [
      'H1-2026 revenue, gross profit, operating profit, net profit, equity — the near-term margin anchor'),
     ('Interim results, three months to 31 Mar 2026', 'Riyadh Cables via Tadawul, May 2026',
      'Q1-2026 revenue, gross profit, operating profit, net profit'),
-    ('Country risk premium data, January 2026', 'A. Damodaran (NYU Stern), 5 Jan 2026',
-     'Saudi Arabia rating (Aa3), sovereign default spread, country risk premium, equity risk premium'),
+    ('Country risk premium data, July 2026 vintage', 'A. Damodaran (NYU Stern), ~10 Jul 2026',
+     'Saudi Arabia rating (Aa3), sovereign default spread 0.48%, country risk premium 0.74%, equity risk '
+     'premium 4.94% (the CDS-basis figure is the January vintage and is flagged as such)'),
+    ('FTSE Saudi Arabian Government Bond Index factsheet, 31 Jul 2026', 'FTSE Russell (LSEG)',
+     'The 10-year SAR risk-free rate: 7–10-year bucket yield-to-maturity 5.52% at an 8.24-year average '
+     'life, on an upward-sloping curve (whole index 5.48%); corroborated by FRED (US 10-year 4.68–4.72%) '
+     'plus the Saudi USD new-issue spread, and by the SAR sukuk index level'),
+    ('Dividend record, symbol 4142', 'Saudi Exchange / Argaam dividend table',
+     'The FY2025 final dividend: SR 336.86mn at SR 2.25/share, announced 15-Mar-2026, ex 10-May-2026, '
+     'paid 18-May-2026 — the only distribution in the roll window (cross-checked against Note 47 of the '
+     'audited statements)'),
     ('Tadawul All Share Index (TASI) price history', 'Saudi Exchange',
      'The index against which the stock’s beta is estimated'),
     ('Policy rate and yield references', 'SAMA; sovereign yield sources, Aug 2026',
-     'The Saudi risk-free rate and the marginal cost of debt'),
+     'The SAIBOR leg of the marginal cost-of-debt estimate'),
     ('LME copper and aluminium references', 'London Metal Exchange, Aug 2026',
      'The metal-price path behind the materials cost leg (context / cross-check)')]:
     pd_rows.append([doc_, pub, took])
@@ -97,8 +106,11 @@ for j, val, ov in [
     ('Company class → lens', 'Operating manufacturer → DCF-primary',
      'Evidence the business is better read as a project contractor or a holding company (the filings do not '
      'support that)'),
-    ('Cost of equity ~10%', f'beta {D["inputs"]["beta"]["value"]:.3f} × ERP {D["inputs"]["erp"]["value"]*100:.2f}% + rf*',
-     'A materially different beta on a longer listed history, or a change in the Saudi sovereign premium'),
+    ('Risk-free rate 5.52% (10y SAR)', 'FTSE SAGBI 7–10y bucket, 31-Jul-2026',
+     'A dated, traded SAR curve observation materially different at a later anchor; priced ±50bp in the study'),
+    ('Cost of equity ~10.6%', f'beta {D["inputs"]["beta"]["value"]:.3f} × ERP {D["inputs"]["erp"]["value"]*100:.2f}% + rf*',
+     'A materially different beta on a longer listed history (the 90% CI is 0.62–1.64 and is priced in the '
+     'beta grid), or a change in the Saudi sovereign premium'),
     ('Terminal growth 4% nominal', '4.0%', 'A durable change in Saudi construction/electrification demand'),
     ('Real volume growth ~8% tapering', 'from the H1-2026 volume-led print',
      'Slower grid/construction spend, or evidence the H1-2026 volume surge was one-off'),
@@ -118,9 +130,14 @@ for it, sought, outc in [
      'directly, which are the build source'),
     ('Cable tonnage / volumes', 'A disclosed physical volume to build a literal unit model',
      'Not disclosed; a tonnage index is used and flagged'),
-    ('Full H1-2026 interim statements', 'The complete reviewed half-year balance sheet and cash flow',
-     'Only the summary reviewed results were reachable; used as the near-term anchor, with the full-year '
-     'balance sheet (31-Dec-2025) as the bridge base'),
+    ('Full H1-2026 interim statements', 'The complete reviewed half-year balance sheet and cash flow — in '
+     'particular the 30-Jun-2026 net debt and working capital, to cross-check the model’s implied intra-year '
+     'path', 'Only the summary reviewed results (P&L and equity) were reachable; the bridge is built on the '
+     'audited 31-Dec-2025 balance sheet and rolled at the cost of equity, and the unread 30-Jun balance '
+     'sheet is an open follow-up item, stated here rather than papered over'),
+    ('July-2026 CDS-basis ERP table', 'The CDS leg of the dual-basis equity risk premium at the July vintage',
+     'Not sourced; the CDS-basis figure quoted is the January vintage and is flagged as one vintage older '
+     'than the rating leg'),
     ('Order book / backlog', 'A backlog figure for the high-voltage turnkey segment',
      'Not separately disclosed; the small segment is grown on its own revenue history'),
     ('Formal revenue guidance', 'Management numeric guidance', 'None issued; drivers are built from the '
@@ -133,8 +150,13 @@ H1('Aggregator-discrepancy note')
 P('Where public aggregators (used only as cross-checks) were consulted, their headline figures were '
   'consistent with the audited statements: 2025 revenue near SAR 10.67bn and net profit near SAR 1.08bn '
   'matched the audited income statement, and the Tadawul-filed results announcements matched the underlying '
-  'statements. No material discrepancy was found; in every case the audited or exchange-filed figure was used '
-  'and the aggregator was discarded.')
+  'statements. Two discrepancies are recorded. First, the uploaded price-history export printed the '
+  '18-Aug-2026 close as SAR 104.80 — an unsettled intraday snapshot; the exchange’s settled record shows '
+  'SAR 104.90 (−1.40 on the 106.30 previous close), and the settled print is used, with the library row '
+  'revised and the raw export kept unchanged. Second, Note 22 of the FY2025 statements labels the two '
+  'dividends paid during 2025 “SR 1.9 per share” while stating each at SR 299.4mn — amounts that imply SR '
+  '2.00 per share on the 149.7mn shares outstanding; the amounts govern and the label is treated as a '
+  'filing typo. In every case the audited amount or exchange-filed figure was used.')
 
 # ---- primary-access log ------------------------------------------------------
 H1('Primary-access log')

@@ -15,9 +15,13 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
-# Trailing cash dividend SR 3.80/share (FY2024 final SR1.9 + FY2025 interim SR1.9), spot 104.80
-# -> dividend yield ~3.63%. Feeds only the carry drift (rf - q); SAR is USD-pegged so no FX leg.
-Q_ANNUAL = 0.0363
+# Dividends declared for FY2025: SR 2.00 interim (Note 22 — SR 299.4mn over 149.7175mn shares;
+# the note's own "SR 1.9 per share" label contradicts its stated amount, 299.4/1.9 would need
+# 157.6mn shares) + SR 2.25 final (Note 47 / EGM 10-May-2026, SR 336.8mn) = SR 4.25/share on the
+# settled 104.90 close -> dividend yield 4.05%. Corrected at the critique response from 3.63%,
+# which was built on the note-label 1.9+1.9=3.80. Feeds only the carry drift (rf - q); SAR is
+# USD-pegged so no FX leg.
+Q_ANNUAL = 0.0405
 
 prof = MP.PROFILES['SA']
 raw = load_ohlc(os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'RIYADHCABLE.csv'))
