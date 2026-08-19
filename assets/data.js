@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-17", latest: "ADNOCLS" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-19", latest: "RIYADHCABLE" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -140,6 +140,46 @@ const TICKERS = {
       study: "files/ADNOCLS_Valuation_Study_09-08-2026.pdf?v=0809a",
       model: "files/ADNOCLS_Valuation_Model_09082026.xlsx?v=0809a",
       biblio: "files/ADNOCLS_Bibliography_09-08-2026.pdf?v=0809a"
+    }
+  },
+  RIYADHCABLE: {
+    name: "Riyadh Cables Group Company",
+    nameAr: "شركة مجموعة أسلاك الرياض",
+    code: "TADAWUL:4142",
+    spot: 104.80,
+    spotDate: "close 18 Aug 2026",
+    fairAsof: "2026-08-18",   // the close the FAIR VALUE is struck on — not the publication date in the filename
+    ccy: "SAR",
+    fair: { bear: 64.28, base: 109.35, full: 197.76 },   // 18 Aug 2026 — four lenses on one field, SAR 64 to 198, weighted to a central of 109.35 on FCFF DCF 45% / relative 20% / normalised 20% / book 15%. Lenses: cash flow 127.91, relative multiples 86.36, normalised earnings power 101.58, book value 94.68. Built SEGMENT BY SEGMENT on the three disclosed Note 40 legs, each on its own driver: Cables & wires (98% of revenue) as a metal converter — a cable-tonnage index priced as metal content (copper/aluminium path) + conversion cost (domestic inflation) + a conversion spread, gross margin the OUTPUT; HV turnkey and Other grown on their own paths at their disclosed segment margins. The single most consequential contested judgement — the gross margin the business sustains once the FY2024-25 metal tailwind has passed — is computed BOTH ways: anchored on the reviewed H1-2026 actual of 15.26% (below the FY2025 full-year 16.24%) the cash-flow lens is 127.91; on the FY2025 peak (16.0%) it is 139.60; on a further compression to 14.5% it is 116.10 — published side by side, never averaged. Cost of capital 10.47% gliding to 9.48% terminal, on a risk-free re-derived from the published SAR sukuk curve (5.50%); terminal value 81% of enterprise value. Beta 1.129 against the published TASI index (185 weekly observations, R2 0.145, SE 0.309, 90% interval 0.62-1.64) — a noisy estimate the sensitivity carries. Two 2025 acquisitions (Qatar Cables stepped to 100%, Artikul Uzbekistan 51% for SAR 147.7mn) reshaped the perimeter and brought in the non-controlling interest now deducted in the equity bridge. Rebuilt under four independent external critiques, every finding priced and adjudicated, and the model taken genuinely segment-level bottom-up on a second pass.
+    dist: {
+      t20: { label:"1 month",   p5:87.21, p25:97.61, p50:104.79, p75:112.62, p95:126.18, resolve:"2026-09-20" },
+      t60: { label:"3 months",  p5:76.55, p25:92.87, p50:105.06, p75:118.71, p95:144.06, resolve:"2026-11-18" }
+    },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % — descending */
+      [125.76, 9, 29],
+      [120.52, 17, 40],
+      [115.28, 32, 55],
+      [110.04, 56, 74],
+      [99.56, 55, 72],
+      [94.32, 28, 51]
+    ],
+    levels: { res:[113.69, 122.47, 134.73], sup:[99.82, 95.10, 90] },
+    tech: {
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 104.80 below a falling 20-day (105.86), a falling 50-day (114.23) and a falling 200-day (122.45). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 3.06 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.70 / \u22122.30 / +0.59). Over the last year it has ranged 99.60\u2013143.80; the last close sits 27% below that high and 5% above that low.",
+      bull: "A daily close back above 113.69 would clear the nearest resistance and open the 134.73 zone.",
+      bear: "A close below 99.82 would break the nearest support and open the 90.00 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-18", computed:"2026-08-19" },
+      tech: { data:"2026-08-18", computed:"2026-08-19" }
+    },
+    files: {
+      pdf:    "files/RIYADHCABLE_Valuation_Study_18-08-2026.pdf?v=0819a",
+      study:  "files/RIYADHCABLE_Valuation_Study_18-08-2026.pdf?v=0819a",
+      model:  "files/RIYADHCABLE_Valuation_Model_18082026.xlsx?v=0819a",
+      biblio: "files/RIYADHCABLE_Bibliography_18-08-2026.pdf?v=0819a"
     }
   },
   BOROUGE: {
@@ -5429,7 +5469,9 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
-    reanchor_from:null }
+    reanchor_from:null },
+  {instrument: "RIYADHCABLE", asset_class: "equity", anchor_date: "2026-08-18", run_date: "2026-08-19", anchor_price: 104.80, ccy: "SAR", horizon_label: "1 month", grade_date: "2026-09-20", grade_basis: "projected", horizon_days: 22, cycle_no: 1, anchor_vol: 0.3615, cal: "parity", note: "First coverage, 19-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored path subset and its ±10% pair reconciles to the study's separately published figures within 0.2 percentage points. q_annual=0.0363 on the FY2025 dividend over market capitalisation at the anchor close. SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo. Horizons from horizons.resolve() on Tadawul's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill −0.42% against a carry-anchored random walk over 13 independent non-overlapping three-month windows (2023–2026), band coverage 85%/92% at the 50%/90% bands (the inner band runs wide, as the study states), PIT mean 0.516. The share listed 19-Dec-2022, so only ~3.7 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 11 Tadawul names, 392 windows, skill −0.2%, 90% interval −0.9% to +0.4%, which straddles zero. No single-name edge is claimed.", p5: 87.21, p25: 97.61, p50: 104.79, p75: 112.62, p95: 126.18, touch: [[125.76, 9], [120.52, 17], [115.28, 32], [110.04, 56], [99.56, 55], [94.32, 28]], realized_close: null, realized_date: null},
+  {instrument: "RIYADHCABLE", asset_class: "equity", anchor_date: "2026-08-18", run_date: "2026-08-19", anchor_price: 104.80, ccy: "SAR", horizon_label: "3 months", grade_date: "2026-11-18", grade_basis: "projected", horizon_days: 62, cycle_no: 1, anchor_vol: 0.3671, cal: "parity", note: "First coverage, 19-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored path subset and its ±10% pair reconciles to the study's separately published figures within 0.2 percentage points. q_annual=0.0363 on the FY2025 dividend over market capitalisation at the anchor close. SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo. Horizons from horizons.resolve() on Tadawul's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill −0.42% against a carry-anchored random walk over 13 independent non-overlapping three-month windows (2023–2026), band coverage 85%/92% at the 50%/90% bands (the inner band runs wide, as the study states), PIT mean 0.516. The share listed 19-Dec-2022, so only ~3.7 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 11 Tadawul names, 392 windows, skill −0.2%, 90% interval −0.9% to +0.4%, which straddles zero. No single-name edge is claimed.", p5: 76.55, p25: 92.87, p50: 105.06, p75: 118.71, p95: 144.06, touch: [[125.76, 29], [120.52, 40], [115.28, 55], [110.04, 74], [99.56, 72], [94.32, 51]], realized_close: null, realized_date: null},
 ];
 
 /* ==========================================================================

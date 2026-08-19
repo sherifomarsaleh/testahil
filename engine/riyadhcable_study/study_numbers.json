@@ -1,0 +1,2107 @@
+{
+ "meta": {
+  "ticker": "RIYADHCABLE",
+  "tadawul_code": "4142",
+  "company": "Riyadh Cables Group Company",
+  "market": "TADAWUL",
+  "currency": "SAR",
+  "asof": "2026-08-18",
+  "spot": 104.8,
+  "shares_mn": 149.7175,
+  "mktcap": 15690.394,
+  "ev_trailing": 16075.567208,
+  "klass": "operating company \u2014 electrical cable & wire manufacturer",
+  "sector": "Capital Goods \u2014 Electrical Equipment (wire & cable)"
+ },
+ "inputs": {
+  "spot": {
+   "value": 104.8,
+   "source": "Tadawul daily close, symbol 4142, uploaded price history",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "shares_out": {
+   "value": 149.7175,
+   "source": "150,000,000 ordinary shares issued (SAR 10 par, paid capital SAR 1,500mn) less 282,500 treasury shares; the weighted-average basic/diluted share count in EPS Note 41 of the FY2025 audited statements is 149,717,500",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "tax_eff": {
+   "value": 0.095,
+   "source": "Blended zakat-and-income-tax rate for the forecast. Audited effective charge (zakat + income tax + deferred) / profit before zakat: FY2023 7.0%, FY2024 7.3%, FY2025 9.0%. Saudi zakat is ~2.5% of the zakat base; income tax (20%) applies to any non-GCC-owned share of profits and to foreign operations. 9.5% sits just above the FY2025 print, allowing for the rising trend and the growing foreign (UAE and export) profit share rather than extrapolating one year",
+   "date": "2026-03-26",
+   "ring": "Company/House"
+  },
+  "rev_fy23": {
+   "value": 7825.378127,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 (confirmed by the FY2024 comparative column)",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 9007.360867,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 (confirmed by the FY2025 comparative column)",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 10673.604262,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "cogs_fy23": {
+   "value": -6852.614689,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "cogs_fy24": {
+   "value": -7720.838516,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "cogs_fy25": {
+   "value": -8940.274407,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "gp_fy23": {
+   "value": 972.763438,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "gp_fy24": {
+   "value": 1286.522351,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "gp_fy25": {
+   "value": 1733.329855,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "op_fy23": {
+   "value": 647.606782,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 (restated operating-profit geography per the FY2024 comparative; net profit identical to the FY2023-as-filed 661.9mn operating profit \u2014 the difference is a reclassification between gross and operating lines, not an earnings change)",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "op_fy24": {
+   "value": 968.439154,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "op_fy25": {
+   "value": 1266.636844,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "netfin_fy23": {
+   "value": -89.014334,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 net finance cost (finance costs 89.62mn less finance income 0.61mn)",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "netfin_fy24": {
+   "value": -87.666699,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 net finance cost (finance costs 89.98mn less finance income 2.32mn)",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "netfin_fy25": {
+   "value": -74.153995,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 net finance cost (finance costs 75.35mn less finance income 1.20mn)",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "zakat_fy23": {
+   "value": -39.126206,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 zakat and income tax",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "zakat_fy24": {
+   "value": -63.891298,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 total tax charge: zakat and income tax (71.88mn charge) plus the deferred-tax credit (8.0mn) = 63.89mn net",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "zakat_fy25": {
+   "value": -107.681788,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 zakat and income tax (104.53mn) plus deferred-tax charge (3.15mn)",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 518.492623,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 profit for the year",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 816.881157,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 profit for the year",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 1084.801061,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 profit for the year",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "npa_fy24": {
+   "value": 816.689852,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 profit attributable to shareholders. Basic and diluted EPS 5.45",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "npa_fy25": {
+   "value": 1080.396042,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 profit attributable to shareholders. Basic and diluted EPS 7.22",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 66.428122,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2023 cash-flow statement: PP&E depreciation 59.53mn + intangibles amortisation 5.57mn + right-of-use depreciation 1.33mn = 66.43mn (corrected from the first edition, which carried the FY2024 figure in the FY2023 row)",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 68.643861,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 cash-flow statement: PP&E depreciation 61.96mn + intangibles amortisation 5.60mn + right-of-use depreciation 1.08mn",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 85.395637,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 cash-flow statement: PP&E depreciation 76.62mn + intangibles amortisation 5.60mn + right-of-use depreciation 3.18mn",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 1206.659875,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 1336.038944,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 1491.86312,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 1909.11144,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), inventories net of NRV allowance, 31 Dec 2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 2126.036688,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), inventories net, 31 Dec 2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 2411.049305,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), inventories net, 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "recv_fy23": {
+   "value": 1418.920843,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023: trade receivables 1,305.1mn + contract assets 25.2mn + advances and other current assets 88.6mn",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "recv_fy24": {
+   "value": 2112.098567,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2024: trade receivables 2,022.9mn + contract assets 15.2mn + advances 74.0mn",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "recv_fy25": {
+   "value": 2712.677113,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2025: trade receivables 2,485.3mn + contract assets 51.9mn + advances 175.4mn",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "pay_fy23": {
+   "value": 1486.905974,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023: trade and other payables 1,195.4mn + accrued expenses and other liabilities 266.5mn + contract liabilities 25.0mn. The accrued line was omitted from the first edition's FY2023 payables, understating FY2023 working-capital funding relative to FY2024-25 (both of which included it); corrected here so the net-working-capital series is built on a consistent basis across all three years",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "pay_fy24": {
+   "value": 2040.707151,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2024: trade and other payables 1,598.4mn + accrued expenses and other liabilities 381.1mn + contract liabilities 61.2mn",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "pay_fy25": {
+   "value": 2190.467493,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2025: trade and other payables 1,584.2mn + accrued expenses and other liabilities 537.7mn + contract liabilities 68.7mn. Includes the reverse-factoring (supplier-finance) balance the company runs within trade payables",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 150.051628,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), cash and cash equivalents 31 Dec 2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 90.672725,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), cash 31 Dec 2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 236.043009,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), cash 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "assets_fy23": {
+   "value": 4830.929068,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), total assets 31 Dec 2023",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "assets_fy24": {
+   "value": 5811.584098,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), total assets 31 Dec 2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "assets_fy25": {
+   "value": 7281.581695,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), total assets 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "debt_fy23": {
+   "value": 730.611837,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2023: Islamic finance facilities and borrowings 722.1mn + lease liabilities (current 1.1mn + non-current 7.4mn)",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "debt_fy24": {
+   "value": 440.445599,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2024: Islamic finance facilities 433.1mn + lease liabilities 7.4mn",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "debt_fy25": {
+   "value": 621.216217,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), 31 Dec 2025: Islamic finance facilities and borrowings (current 585.2mn + non-current 24.6mn) + lease liabilities (current 2.0mn + non-current 9.4mn). The SAR ~1.1bn supplier-finance/reverse-factoring facility is classified within trade payables, not here, consistent with the audited presentation",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "eqp_fy23": {
+   "value": 2246.744341,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), equity attributable to shareholders 31 Dec 2023 (total equity 2,246.2mn less NCI of -0.5mn)",
+   "date": "2024-03",
+   "ring": "Company"
+  },
+  "eqp_fy24": {
+   "value": 2624.35365,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), equity attributable to shareholders 31 Dec 2024",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "eqp_fy25": {
+   "value": 3246.136935,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), equity attributable to shareholders 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "nci_fy25": {
+   "value": 62.737156,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), non-controlling interests 31 Dec 2025 \u2014 rose from -0.48mn to 62.7mn on the FY2025 acquisition of a subsidiary with NCI",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "assoc_fy25": {
+   "value": 31.851877,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), equity-accounted investees carrying value 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "nonop_fy25": {
+   "value": 20.40064,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), non-operating assets 31 Dec 2025: investments at FVOCI 10.37mn + investment property (land) 10.03mn",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "total_equity_fy25": {
+   "value": 3308.874091,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), total equity 31 Dec 2025",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 194.985837,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2024 cash-flow statement, purchase of property, plant and equipment",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 188.878083,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 cash-flow statement, purchase of property, plant and equipment (of which assets under construction 107.9mn)",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "ocf_fy25": {
+   "value": 969.016581,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 net cash from operating activities",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "div_paid_fy25": {
+   "value": 598.992147,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 dividends paid (SAR 1.9/share final for FY2024 + SAR 1.9/share interim = SAR 3.8/share)",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "materials_fy24": {
+   "value": 7310.471233,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 34 cost of revenue, FY2024: materials (copper/aluminium/lead-dominated)",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "materials_fy25": {
+   "value": 8486.925677,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 34 cost of revenue, FY2025: materials \u2014 94.9% of cost of revenue and 79.5% of sales; this is the metal-content leg",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "conv_fy24": {
+   "value": 410.367283,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 34, FY2024 conversion cost (salaries 228.7mn + depreciation 59.6mn + repairs 42.8mn + utilities 57.4mn + other 21.9mn)",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "conv_fy25": {
+   "value": 453.34873,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 34, FY2025 conversion cost (salaries 244.6mn + depreciation 76.4mn + repairs 44.8mn + utilities 68.2mn + other 19.4mn) \u2014 the non-metal leg that escalates on domestic inflation, not metal",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "seg_rev_fy25": {
+   "value": {
+    "cables": 10414.170668,
+    "hv": 230.839181,
+    "other": 28.594413
+   },
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 40 reporting segments, FY2025 revenue: Cables and wires, High-voltage cables (turnkey projects), Other (telephone cables and services). Sums exactly to consolidated revenue",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "seg_rev_fy24": {
+   "value": {
+    "cables": 8645.913121,
+    "hv": 339.347923,
+    "other": 22.099823
+   },
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 40, FY2024 segment revenue",
+   "date": "2025-03",
+   "ring": "Company"
+  },
+  "seg_cost_fy25": {
+   "value": {
+    "cables": 8716.728131,
+    "hv": 211.498936,
+    "other": 12.04734
+   },
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 40, FY2025 segment cost of revenue",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "geo_ksa_fy25": {
+   "value": 7811.724664,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 40 geographic split, FY2025 revenue inside Saudi Arabia (73.2% of sales)",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "geo_exp_fy25": {
+   "value": 2861.879598,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), Note 40, FY2025 revenue outside Saudi Arabia (26.8%), predominantly the UAE at ~SAR 2.2bn",
+   "date": "2026-03-26",
+   "ring": "Company"
+  },
+  "h1_26_rev": {
+   "value": 5697.626,
+   "source": "Tadawul-filed reviewed interim results, six months to 30 Jun 2026 (announcement 29-Jul-2026): revenue",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_26_gp": {
+   "value": 869.753,
+   "source": "Tadawul-filed reviewed H1-2026 results: gross profit \u2014 FLAT year on year (-0.06%) on +9.5% revenue, so gross margin 15.26% vs H1-2025's 16.72% and FY2025's 16.24%",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_26_op": {
+   "value": 669.739,
+   "source": "Tadawul-filed reviewed H1-2026 results: operating profit",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_26_np": {
+   "value": 588.793,
+   "source": "Tadawul-filed reviewed H1-2026 results: net profit to shareholders (+9.96% y/y)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "vol_growth": {
+   "value": [
+    0.1,
+    0.075,
+    0.065,
+    0.055,
+    0.05
+   ],
+   "source": "Real cable-volume (tonnage-index) growth FY2026E-FY2030E, tapering from ~10% toward 5%. Anchored on the reviewed H1-2026 disclosure that revenue rose 9.5% 'due to the increase in the volume of quantities sold' with metal prices roughly flat, and on the Saudi grid-expansion and construction demand behind Vision-2030 (Saudi Electricity capex, NEOM/giga-project cabling, housing); tapered because a mid-teens pace is not a perpetuity. The company does not disclose tonnage, so this is an index, not an absolute volume",
+   "date": "2026-08-18",
+   "ring": "Industry/House"
+  },
+  "metal_growth": {
+   "value": [
+    -0.01,
+    0.0,
+    0.01,
+    0.01,
+    0.01
+   ],
+   "source": "Metal-content price growth FY2026E-FY2030E for the copper/aluminium/lead blend that is 94.9% of cost of revenue. Held broadly flat with a slight near-term easing: LME copper ~USD 9,500-10,000/t and aluminium ~USD 2,500/t in mid-2026, and H1-2026 gross profit was flat, consistent with metals not repeating the FY2024-25 tailwind. A directional metals view would dominate the valuation, so the base holds them near current and the sensitivity carries +/-15% metal moves. SAR is pegged to the US dollar, so LME dollar prices pass through with no separate currency leg",
+   "date": "2026-08-18",
+   "ring": "Industry/House"
+  },
+  "conv_infl": {
+   "value": [
+    0.03,
+    0.03,
+    0.03,
+    0.03,
+    0.03
+   ],
+   "source": "Domestic-inflation escalator on the conversion cost stack (salaries, utilities, repairs, depreciation) \u2014 Saudi CPI has run ~2% and Saudi wage/utility inflation ~3%; applied ONLY to the non-metal leg, per the one-escalator-per-driver-class rule. The metal leg escalates on the metal path above, never on this",
+   "date": "2026-08-18",
+   "ring": "Country/House"
+  },
+  "spread_anchor": {
+   "value": 0.1526,
+   "source": "Gross margin the business sustains once the FY2024-25 metal tailwind has passed \u2014 the study's central contested judgement, anchored on the MOST RECENT REVIEWED ACTUAL: the H1-2026 gross margin of 15.26% (gross profit flat on +9.5% revenue), BELOW the FY2025 full-year 16.24% and H1-2025's 16.72%. Carried as the conversion-spread the model prices; the FY2025 peak is the bull framing, published beside it, never averaged in",
+   "date": "2026-07-29",
+   "ring": "Company/House"
+  },
+  "spread_bull": {
+   "value": 0.16,
+   "source": "Bull framing of the sustained gross margin: the FY2025 full-year print holds (premium high-voltage and export mix, pricing power in a tight Gulf market). Published beside the H1-2026-anchored base, per the dual-framing rule",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "spread_bear": {
+   "value": 0.145,
+   "source": "Bear framing of the sustained gross margin: the conversion spread competes down further as Gulf capacity normalises and the metal tailwind fully unwinds",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "margin_glide": {
+   "value": [
+    0.0,
+    0.001,
+    0.001,
+    0.0015,
+    0.0015
+   ],
+   "source": "Small annual drift ADDED to the spread anchor as scale and mix (rising high-voltage and export share) modestly lift the sustained margin off the H1-2026 trough; cumulative +0.5pp by FY2030E, deliberately modest",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "hv_growth": {
+   "value": [
+    0.1,
+    0.1,
+    0.09,
+    0.08,
+    0.08
+   ],
+   "source": "High-voltage turnkey-projects segment revenue growth. The segment is lumpy (FY2025 SAR 231mn, down from FY2024's 339mn as projects completed); a moderate recovery is assumed off the low base, well below the cables segment's contribution either way (2.2% of FY2025 revenue)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "other_growth": {
+   "value": [
+    0.08,
+    0.08,
+    0.07,
+    0.06,
+    0.06
+   ],
+   "source": "Other segment (telephone cables and services) revenue growth \u2014 0.3% of revenue, immaterial to the valuation",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "opex_pct": {
+   "value": [
+    0.043,
+    0.043,
+    0.0425,
+    0.042,
+    0.042
+   ],
+   "source": "Operating expenses below gross profit (selling and distribution + general and administrative + normalised receivables impairment) as a share of revenue. History: FY2023 4.0%, FY2024 3.4%, FY2025 4.3% (the FY2025 rise is a 150.8mn receivables impairment charge, up from 23.4mn). Held near the FY2025 level with a slight decline as the impairment normalises toward the through-cycle rate",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "dna_pct": {
+   "value": 0.0085,
+   "source": "Depreciation and amortisation as a share of revenue, near the FY2025 level (85.4mn / 10,673.6mn = 0.80%), lifted slightly for the larger capitalised base from the FY2024-25 capex",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "capex_pct": {
+   "value": [
+    0.019,
+    0.018,
+    0.017,
+    0.016,
+    0.016
+   ],
+   "source": "Capital expenditure as a share of revenue, easing from the FY2025 level (188.9mn / 10,673.6mn = 1.77%) held broadly flat \u2014 a maintenance-plus-modest-capacity level for a plant already largely built out (FY2025 assets under construction were 107.9mn of the 188.9mn spend)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "nwc_pct": {
+   "value": 0.28,
+   "source": "Net working capital as a share of revenue, held near the FY2025 level. History on a consistent basis (accrued expenses included in payables in every year): FY2023 23.5%, FY2024 24.4%, FY2025 27.5% \u2014 a structurally working-capital-heavy cable maker (copper/aluminium inventory + trade receivables, partly offset by trade payables and a reverse-factoring facility) whose intensity has RISEN as the receivables book grew. Held at the FY2025 level rather than assuming a reversion the disclosures do not evidence",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "rf": {
+   "value": 0.055,
+   "source": "Saudi 10-year local-currency (SAR) government sukuk yield ~5.50%. RE-DERIVED from primary index observations after external audit (the prior 4.85% policy-rate-plus-term-premium estimate sat below the entire published SAR government sukuk curve): FTSE Saudi Government Bond Index 7-10-year yield-to-maturity 5.52% (31-Jul-2026 factsheet); iBoxx Tadawul SAR Government Sukuk Index broad yield 5.44% at 6.07-year modified duration (S&P DJI, Q1-2026 commentary) on an UPWARD-sloping curve, so the 10-year point is at or above 5.5%; the 1-year Sah retail sukuk was 4.60% (Jun-2026), consistent with a steep curve. SAR sovereign yields carry a notable pickup over the USD-pegged curve. Sensitised 5.44-5.75%",
+   "date": "2026-07-31",
+   "ring": "Country"
+  },
+  "sov_spread": {
+   "value": 0.0048,
+   "source": "Saudi Arabia adjusted sovereign default spread 0.48% (Moody's Aa3), Damodaran country-risk-premium file, JULY-2026 update (posted ~10-Jul-2026, superseding the January vintage of 0.51% used in the first edition). Netted out of the local-currency risk-free rate so sovereign default risk is not charged twice",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "erp": {
+   "value": 0.0494,
+   "source": "Saudi Arabia total equity risk premium 4.94%, Damodaran country-risk-premium file, JULY-2026 update: the ~4.20% mature-market premium plus a 0.74% country risk premium (0.48% default spread scaled by relative equity volatility ~1.55). Updated from the January vintage (5.01%) after external audit noted a newer vintage existed five weeks before the report date; the July update pulled premia down modestly across the board",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.049,
+   "source": "Saudi Arabia equity risk premium on the CDS basis ~4.90% (July-2026 vintage). Published beside the rating basis; the two converge for a high-grade sovereign",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "beta": {
+   "value": 1.129,
+   "source": "Own-stock tier-1 regression: RIYADHCABLE weekly log-returns against the published Tadawul All Share Index (TASI), Dimson sum-beta over the full 3.6-year listed history (185 weekly observations to 13-Aug-2026). R-squared 0.145, standard error 0.309, 90% confidence interval [0.62, 1.64]. Clears the usability gate (n>=24, R-squared>=5%, SE<|beta|) and is not weak-instrument flagged. The regressor is the exchange's own index, not a constituent composite \u2014 attested by the beta-provenance gate. Plain-OLS cross-check 0.928; Blume-adjusted 1.086",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kd": {
+   "value": 0.059,
+   "source": "Marginal cost of debt, pre-tax, in SAR. The company's Islamic Murabaha working-capital facilities price at SAIBOR plus a variable margin; 3-month SAIBOR ~5.2% (SAMA repo 4.25% plus the ~95bp SAIBOR-repo spread) plus a ~0.70% corporate margin. Sits above the 5.50% ten-year sovereign sukuk yield, as a same-currency corporate must, and well above the short-tenor sovereign that matches these working-capital facilities. The one disclosed long-term tranche (5-year USD swap + 5.25%) is a specific project facility, not the marginal working-capital rate",
+   "date": "2026-08-18",
+   "ring": "Company/House"
+  },
+  "rf_term": {
+   "value": 0.0502,
+   "source": "Terminal risk-free rate = the normalised SAR risk-free (rf 5.50% less the 0.48% sovereign default spread = 5.02%) HELD FLAT: Saudi rates are already at a long-run level, so no crisis-premium normalisation is applied and the terminal risk-free is NOT marked below its current normalised level \u2014 the terminal cost of equity falls only through beta reverting to 1.0 and a modest country-premium compression, never by cutting the risk-free to lift value",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "erp_term": {
+   "value": 0.047,
+   "source": "Terminal equity risk premium 4.70%, a mild compression of the current 4.94% (July-2026 Damodaran) as the country risk premium narrows with Vision-2030 diversification; never held at a crisis level, never below the ~4.2% mature-market base",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "beta_term": {
+   "value": 1.0,
+   "source": "Terminal beta 1.0 \u2014 mean reversion toward the market (Blume), from the 1.129 own-stock estimate; the Blume-adjusted current beta is already 1.086",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kd_term": {
+   "value": 0.055,
+   "source": "Terminal cost of debt 5.5%, a modest easing from the 5.9% marginal rate as SAMA tracks the Fed toward a neutral setting",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "wd_term": {
+   "value": 0.05,
+   "source": "Terminal net-debt weight 5%, normalised modestly above today's ~2.4% to acknowledge the structural working-capital leverage a cable maker carries, while staying far below a geared capital structure this equity-funded company has never run",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kd_path": {
+   "value": [
+    0.059,
+    0.058,
+    0.057,
+    0.056,
+    0.055
+   ],
+   "source": "Forward cost-of-debt path FY2026E-FY2030E, easing gently from the 5.9% marginal rate to the 5.5% terminal as policy normalises. The discount-rate glide takes its shape from this path by construction",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.04,
+   "source": "Terminal growth 4.0% in nominal SAR: ~2% long-run Saudi real growth plus ~2% inflation. Struck below the terminal risk-free-plus-spread and below a blended nominal GDP ceiling; sensitised 2-6%. Saudi electrification and construction (grid capex, giga-projects, housing) support a durable but not perpetual mid-single-digit nominal pace",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "anchor_days": {
+   "value": 230,
+   "source": "Days from the DCF construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the 18 Aug 2026 anchor. Every lens value is rolled to the anchor at the cost of equity, net of the SAR 2.25/share FY2025 final dividend paid inside the window, so one date and one price of time govern the comparison to spot",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "div_window": {
+   "value": 2.25,
+   "source": "SAR 2.25/share FY2025 final cash dividend (SAR 336,864,375 total on 149,717,500 shares) paid inside the 31-Dec-2025-to-anchor window, netted from the rolled-forward value. It is the ONLY dividend paid in the window: the company distributes semi-annually (a final declared with the March results and paid ~April, an interim paid ~September), so the next FY2026 interim falls AFTER the 18-Aug-2026 anchor. The FY2025 final steps up from the SAR 1.9 finals of the prior two years on the higher FY2025 earnings; corrected from the 1.90 first-edition figure after external audit",
+   "date": "2026-08-18",
+   "ring": "Company/House"
+  },
+  "ev_ebitda_just": {
+   "value": 9.5,
+   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Riyadh Cables trades ~11.9x trailing EV/EBITDA and ~14.5x trailing earnings. The wire-and-cable peer set splits in two, and the first edition mischaracterised it as a single 7-11x band: developed-market majors (Prysmian, Nexans) trade ~7-9x forward EV/EBITDA, while the Indian high-growth names (Polycab, KEI) carry ~22-26x on far faster volume growth. 9.5x sits with the developed majors \u2014 a deliberate discount to Riyadh Cables' OWN trailing multiple for its single-country concentration and the unwinding metal tailwind, lifted modestly off a bare developed-major level for its higher ROIC (~25%) and durable mid-single-digit growth. Bear 7.5x / bull 11.0x",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "pe_just": {
+   "value": 13.0,
+   "source": "Justified through-cycle P/E on normalised earnings. 13.0x for a high-return, low-leverage regional champion with a ~10% cost of equity and mid-single-digit durable growth. Bear 10.0x / bull 16.0x",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "roe_sust": {
+   "value": 0.28,
+   "source": "Sustainable return on equity for the book lens. Trailing ROE on average equity is ~36% (FY2025 net profit 1,084.8mn / average equity ~2,966mn); struck below it because the FY2024-25 prints were lifted by the metal tailwind and a large receivables book, and because retained-earnings growth dilutes the return as equity compounds",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "lens_weights": {
+   "value": {
+    "dcf": 0.45,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "source": "DCF primary for an operating manufacturer whose cash flows are directly modelled; the relative and normalised-earnings lenses carry equal secondary weight and the book lens least, because book value understates a business earning a ~30%+ return on it",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "ownership": {
+   "value": {
+    "founder_family": 0.55,
+    "free_float": 0.45
+   },
+   "source": "Ownership is concentrated in the founding shareholder group with a substantial free float (the company listed 30% in the December 2022 IPO; a further 9mn-share transfer among major shareholders was disclosed in May 2026). Indicative split pending the FY2025 annual-report ownership table; not used as a valuation input",
+   "date": "2026-05-20",
+   "ring": "Company/House"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 7825.378127,
+   "cogs": -6852.614689,
+   "gp": 972.763438,
+   "ebitda": 714.034904,
+   "dna": 66.428122,
+   "ebit": 647.606782,
+   "fin": -89.014334,
+   "ebt": 558.592448,
+   "zakat": -39.126206,
+   "pat": 518.492623
+  },
+  "FY24": {
+   "rev": 9007.360867,
+   "cogs": -7720.838516,
+   "gp": 1286.522351,
+   "ebitda": 1037.083015,
+   "dna": 68.643861,
+   "ebit": 968.439154,
+   "fin": -87.666699,
+   "ebt": 880.772455,
+   "zakat": -63.891298,
+   "pat": 816.881157
+  },
+  "FY25": {
+   "rev": 10673.604262,
+   "cogs": -8940.274407,
+   "gp": 1733.329855,
+   "ebitda": 1352.0324810000002,
+   "dna": 85.395637,
+   "ebit": 1266.636844,
+   "fin": -74.153995,
+   "ebt": 1192.4828490000002,
+   "zakat": -107.681788,
+   "pat": 1084.801061
+  }
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 1206.659875,
+   "inv": 1909.11144,
+   "recv": 1418.920843,
+   "cash": 150.051628,
+   "assets": 4830.929068,
+   "debt": 730.611837,
+   "pay": 1486.905974,
+   "nwc": 1841.126309,
+   "eqp": 2246.744341,
+   "nd": 580.560209
+  },
+  "FY24": {
+   "ppe": 1336.038944,
+   "inv": 2126.036688,
+   "recv": 2112.098567,
+   "cash": 90.672725,
+   "assets": 5811.584098,
+   "debt": 440.445599,
+   "pay": 2040.707151,
+   "eqp": 2624.35365,
+   "nwc": 2197.428104,
+   "nd": 349.772874
+  },
+  "FY25": {
+   "ppe": 1491.86312,
+   "inv": 2411.049305,
+   "recv": 2712.677113,
+   "cash": 236.043009,
+   "assets": 7281.581695,
+   "debt": 621.216217,
+   "pay": 2190.467493,
+   "eqp": 3246.136935,
+   "nci": 62.737156,
+   "nd": 385.17320800000005,
+   "nwc": 2933.258925,
+   "assoc": 31.851877,
+   "nonop": 20.40064,
+   "total_equity": 3308.874091
+  }
+ },
+ "unit_econ": {
+  "vol0": 100.0,
+  "mat_pu0": 84.86925676999999,
+  "conv_pu0": 2.298024540000006,
+  "rev_pu0": 104.14170668000001,
+  "gp_pu0": 16.97442537000001,
+  "materials_share_cogs": 0.9736366156490833,
+  "cab_rev25": 10414.170668,
+  "cab_cost25": 8716.728131,
+  "cab_mat25": 8486.925677,
+  "cab_conv25": 229.80245400000058,
+  "cab_gp25": 1697.4425370000008,
+  "hv_rev25": 230.839181,
+  "hv_margin0": 0.08378233242821985,
+  "oth_rev25": 28.594413,
+  "oth_margin0": 0.5786820313464731
+ },
+ "seg_fcst": {
+  "cab_rev": [
+   11213.863869052399,
+   12079.0668361885,
+   13000.103188770729,
+   13868.336082908969,
+   14715.901555502947
+  ],
+  "cab_gp": [
+   1711.235626417396,
+   1855.3446660385537,
+   1996.8158497951838,
+   2137.110590376272,
+   2267.7204297030044
+  ],
+  "cab_mat": [
+   9242.262062253001,
+   9935.431716921976,
+   10687.047126307121,
+   11387.583065436555,
+   12076.531840895466
+  ],
+  "cab_conv": [
+   260.36618038200066,
+   288.29045322797026,
+   316.24021266842203,
+   343.64242709614075,
+   371.6492849044763
+  ],
+  "hv_rev": [
+   253.92309910000003,
+   279.31540901000005,
+   304.4537958209001,
+   328.81009948657214,
+   355.1149074454979
+  ],
+  "hv_gp": [
+   21.274269500000013,
+   23.401696450000017,
+   25.507849130500023,
+   27.548477060940026,
+   29.75235522581523
+  ],
+  "oth_rev": [
+   30.881966040000002,
+   33.3525233232,
+   35.687199955824006,
+   37.82843195317345,
+   40.09813787036386
+  ],
+  "oth_gp": [
+   17.870838839999998,
+   19.3005059472,
+   20.651541363504002,
+   21.890633845314245,
+   23.204071876033098
+  ],
+  "hv_margin": 0.08378233242821985,
+  "oth_margin": 0.5786820313464731,
+  "gp_pu": [
+   15.556687512885416,
+   15.690018317450768,
+   15.855767102761783,
+   16.08510053350657,
+   16.25537514593356
+  ],
+  "mat_pu": [
+   84.0205642023,
+   84.0205642023,
+   84.86076984432299,
+   85.70937754276622,
+   86.56647131819388
+  ],
+  "conv_pu": [
+   2.366965276200006,
+   2.4379742344860063,
+   2.5111134615205866,
+   2.586446865366204,
+   2.6640402713271905
+  ],
+  "vol": [
+   110.00000000000001,
+   118.25000000000001,
+   125.93625000000002,
+   132.86274375000002,
+   139.50588093750002
+  ],
+  "seg_gp": [
+   {
+    "cables": 1711.235626417396,
+    "hv": 21.274269500000013,
+    "other": 17.870838839999998
+   },
+   {
+    "cables": 1855.3446660385537,
+    "hv": 23.401696450000017,
+    "other": 19.3005059472
+   },
+   {
+    "cables": 1996.8158497951838,
+    "hv": 25.507849130500023,
+    "other": 20.651541363504002
+   },
+   {
+    "cables": 2137.110590376272,
+    "hv": 27.548477060940026,
+    "other": 21.890633845314245
+   },
+   {
+    "cables": 2267.7204297030044,
+    "hv": 29.75235522581523,
+    "other": 23.204071876033098
+   }
+  ]
+ },
+ "fcst": {
+  "years": [
+   "FY26E",
+   "FY27E",
+   "FY28E",
+   "FY29E",
+   "FY30E"
+  ],
+  "rev": [
+   11498.6689341924,
+   12391.7347685217,
+   13340.244184547453,
+   14234.974614348715,
+   15111.11460081881
+  ],
+  "seg_rev": [
+   {
+    "cables": 11213.863869052399,
+    "hv": 253.92309910000003,
+    "other": 30.881966040000002
+   },
+   {
+    "cables": 12079.0668361885,
+    "hv": 279.31540901000005,
+    "other": 33.3525233232
+   },
+   {
+    "cables": 13000.103188770729,
+    "hv": 304.4537958209001,
+    "other": 35.687199955824006
+   },
+   {
+    "cables": 13868.336082908969,
+    "hv": 328.81009948657214,
+    "other": 37.82843195317345
+   },
+   {
+    "cables": 14715.901555502947,
+    "hv": 355.1149074454979,
+    "other": 40.09813787036386
+   }
+  ],
+  "rev_cab": [
+   11498.6689341924,
+   12391.7347685217,
+   13340.244184547453,
+   14234.974614348715,
+   15111.11460081881
+  ],
+  "mat_cab": [
+   9242.262062253001,
+   9935.431716921976,
+   10687.047126307121,
+   11387.583065436555,
+   12076.531840895466
+  ],
+  "conv_cab": [
+   506.02613718200155,
+   558.2561831639705,
+   610.2218179511437,
+   660.8418476296338,
+   713.9059031184916
+  ],
+  "gp": [
+   1750.3807347573959,
+   1898.0468684357536,
+   2042.975240289188,
+   2186.5497012825263,
+   2320.676856804853
+  ],
+  "gm": [
+   0.15222463963219868,
+   0.15317039170797112,
+   0.15314376648784653,
+   0.15360404640823916,
+   0.1535741682932578
+  ],
+  "opex": [
+   494.4427641702731,
+   532.844595046433,
+   566.9603778432668,
+   597.8689338026461,
+   634.66681323439
+  ],
+  "dna": [
+   97.7386859406354,
+   105.32974553243444,
+   113.39207556865335,
+   120.9972842219641,
+   128.4444741069599
+  ],
+  "ebit": [
+   1255.937970587123,
+   1365.2022733893205,
+   1476.0148624459212,
+   1588.6807674798802,
+   1686.0100435704628
+  ],
+  "ebitda": [
+   1353.6766565277583,
+   1470.5320189217548,
+   1589.4069380145745,
+   1709.6780517018442,
+   1814.4545176774227
+  ],
+  "ebitda_margin": [
+   0.11772463963219867,
+   0.11867039170797111,
+   0.11914376648784654,
+   0.12010404640823914,
+   0.12007416829325779
+  ],
+  "nopat": [
+   1136.6238633813462,
+   1235.508057417335,
+   1335.7934505135586,
+   1437.7560945692917,
+   1525.8390894312688
+  ],
+  "capex": [
+   218.47470974965557,
+   223.05122583339056,
+   226.7841511373067,
+   227.75959382957944,
+   241.77783361310097
+  ],
+  "nwc": [
+   3219.627301573872,
+   3469.6857351860763,
+   3735.268371673287,
+   3985.7928920176405,
+   4231.112088229267
+  ],
+  "dnwc": [
+   286.36837657387196,
+   250.05843361220423,
+   265.58263648721095,
+   250.52452034435328,
+   245.3191962116266
+  ],
+  "fcff": [
+   729.519462998454,
+   867.7281435041746,
+   956.8187384576943,
+   1080.469264617323,
+   1167.1865337135011
+  ],
+  "df": [
+   0.9052126225968162,
+   0.8212468562385798,
+   0.7467436514099989,
+   0.6805283947571626,
+   0.621584329747609
+  ],
+  "pv": [
+   660.3702263362516,
+   712.6190099225427,
+   714.4983184934074,
+   735.2900142344788,
+   725.5048592487417
+  ],
+  "fwd_wacc": [
+   0.10471283214242402,
+   0.10224181160681803,
+   0.09977079107121202,
+   0.09729977053560601,
+   0.09482875
+  ],
+  "ppe": [
+   1612.5991438090202,
+   1730.3206241099763,
+   1843.7126996786296,
+   1950.475009286245,
+   2063.8083687923863
+  ],
+  "ic": [
+   4832.226445382892,
+   5200.006359296052,
+   5578.981071351916,
+   5936.267901303885,
+   6294.920457021653
+  ],
+  "roic": [
+   0.23521742538936072,
+   0.2375974127817396,
+   0.23943322865403896,
+   0.24219865384671949,
+   0.24239211596856247
+  ],
+  "np_attr": [
+   1107.483320440312,
+   1209.9790007309177,
+   1316.9658973293767,
+   1426.971094240972,
+   1525.7357942781018
+  ],
+  "equity": [
+   3744.5044291981403,
+   4288.994979527053,
+   4881.629633325272,
+   5523.76662573371,
+   6210.347733158856
+  ],
+  "net_debt": [
+   289.39465422463263,
+   107.75065978032455,
+   -111.27884976361975,
+   -401.9470960876912,
+   -736.0964176808359
+  ],
+  "interest": [
+   27.210036443,
+   22.757678074985307,
+   14.870702080212983,
+   5.488305481455207,
+   -6.759640588507651
+  ],
+  "div": [
+   609.1158262421716,
+   665.4884504020048,
+   724.3312435311573,
+   784.8341018325347,
+   839.154686852956
+  ],
+  "payout": 0.55,
+  "glide_frac": [
+   0.0,
+   0.2499999999999987,
+   0.4999999999999991,
+   0.7499999999999996,
+   1.0
+  ],
+  "ppe_fy25": 1491.86312,
+  "eqp_fy25": 3246.136935,
+  "nwc_fy25": 2933.258925,
+  "nd_fy25": 385.17320800000005,
+  "debt_fy25": 621.216217,
+  "nopat_fy25": 1381.0147742343636,
+  "ic_fy25": 4425.122045,
+  "dna_fy25": 85.395637
+ },
+ "seg_fy25": {
+  "rev": {
+   "cables": 10414.170668,
+   "hv": 230.839181,
+   "other": 28.594413
+  },
+  "cost": {
+   "cables": 8716.728131,
+   "hv": 211.498936,
+   "other": 12.04734
+  },
+  "gp": {
+   "cables": 19130.898799000002,
+   "hv": 442.338117,
+   "other": 40.641753
+  },
+  "names": {
+   "cables": "Cables and wires",
+   "hv": "High-voltage cables (turnkey projects)",
+   "other": "Other (telephone cables & services)"
+  },
+  "geo": {
+   "ksa": 7811.724664,
+   "export": 2861.879598
+  }
+ },
+ "bottomup": {
+  "materials_fy25": 8486.925677,
+  "conv_fy25": 453.34873,
+  "cost_stack_fy25": {
+   "_note": "Note 34. Materials (copper/aluminium/lead-dominated) = 94.9% of COGS in 2025. This is the crux cost driver and escalates on the metal-price path, NOT a domestic CPI proxy.",
+   "materials": {
+    "2024": 7310471233,
+    "2025": 8486925677
+   },
+   "salaries_benefits": {
+    "2024": 228705610,
+    "2025": 244608394
+   },
+   "depreciation": {
+    "2024": 59642035,
+    "2025": 76378976
+   },
+   "repairs_maintenance": {
+    "2024": 42796717,
+    "2025": 44775450
+   },
+   "utilities": {
+    "2024": 57355534,
+    "2025": 68201400
+   },
+   "other": {
+    "2024": 21867387,
+    "2025": 19384510
+   },
+   "total": {
+    "2024": 7720838516,
+    "2025": 8940274407
+   }
+  },
+  "inventory_fy25": {
+   "finished_goods": {
+    "2024": 1226136677,
+    "2025": 1502695537
+   },
+   "wip": {
+    "2024": 464126999,
+    "2025": 443992520
+   },
+   "raw_materials": {
+    "2024": 306655673,
+    "2025": 368862655
+   },
+   "spare_parts": {
+    "2024": 42940174,
+    "2025": 51853715
+   },
+   "packaging": {
+    "2024": 55635180,
+    "2025": 63481720
+   },
+   "goods_in_transit": {
+    "2024": 165597590,
+    "2025": 43732933
+   },
+   "projects_supplies": {
+    "2024": 3014595,
+    "2025": 3196949
+   },
+   "gross_total": {
+    "2024": 2264106888,
+    "2025": 2477816029
+   },
+   "nrv_allowance": {
+    "2024": -138070200,
+    "2025": -66766724
+   },
+   "net": {
+    "2024": 2126036688,
+    "2025": 2411049305
+   }
+  },
+  "h1_26_gm": 0.15265182375957986,
+  "fy26_implied": 11623.15704
+ },
+ "wacc": {
+  "rf": 0.055,
+  "rf_star": 0.0502,
+  "sov_spread": 0.0048,
+  "ke": 0.1059726,
+  "ke_cds": 0.105521,
+  "erp": 0.0494,
+  "erp_cds": 0.049,
+  "beta": 1.129,
+  "kd": 0.059,
+  "kd_at": 0.053395,
+  "we": 0.9760398371630509,
+  "wd": 0.023960162836949152,
+  "wacc": 0.10471283214242402,
+  "ke_term": 0.09720000000000001,
+  "kd_term": 0.055,
+  "kd_term_at": 0.049775,
+  "wacc_term": 0.09482875,
+  "glide_frac": [
+   0.0,
+   0.2499999999999987,
+   0.4999999999999991,
+   0.7499999999999996,
+   1.0
+  ],
+  "kd_path": [
+   0.059,
+   0.058,
+   0.057,
+   0.056,
+   0.055
+  ],
+  "beta_res": {
+   "ticker": "RIYADHCABLE",
+   "market": "SA",
+   "exchange": "TADAWUL",
+   "beta": 1.1286210012230207,
+   "r2": 0.1448150431719576,
+   "se": 0.30938835573061724,
+   "n": 185,
+   "ci90": [
+    0.6196771560461554,
+    1.637564846399886
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": [],
+   "window_years": 3.6,
+   "first_obs": "2023-01-05",
+   "last_obs": "2026-08-13",
+   "blume_crosscheck": 1.0857473341486803,
+   "index_file": "raw_indices/SA/TASI.csv",
+   "index_asof": "2026-08-18",
+   "index_dq": [
+    "dropped 7 interior stale/no-trade rows"
+   ],
+   "stock_dq": [],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  },
+  "beta_term": 1.0,
+  "rf_term": 0.0502,
+  "erp_term": 0.047,
+  "wd_term": 0.05
+ },
+ "dcf": {
+  "pv_explicit": 3548.2824282354222,
+  "tv": 24349.922891323502,
+  "pv_tv": 15135.530499809282,
+  "ev": 18683.812928044703,
+  "tv_share": 0.8100878850638997,
+  "nd": 385.17320800000005,
+  "assoc": 31.851877,
+  "nonop": 20.40064,
+  "nci": 62.737156,
+  "nci_share": 0.004060669885351275,
+  "eq_attr": 18288.155081044704,
+  "ps": 127.90542457756496,
+  "ps_dec": 122.15108508387266,
+  "roll": 1.0655281898494497,
+  "anchor_days": 230,
+  "roic_term": 0.25208780060730496,
+  "rr_term": 0.15867487400673877,
+  "g": 0.04,
+  "bear": 80.84906676286525,
+  "bull": 197.7603327814774,
+  "spread_base": 127.90542457756496,
+  "spread_bull": 139.60168534077025,
+  "spread_bear": 116.10413509016158,
+  "spread_anchor": 0.1526,
+  "spread_bull_v": 0.16,
+  "spread_bear_v": 0.145
+ },
+ "terminal_recon": {
+  "roic_term": 0.25208780060730496,
+  "rr_term": 0.15867487400673877,
+  "ceiling": 0.04865936588627853,
+  "hist_roic25": 0.3120851267356093,
+  "nopat_fy25": 1381.0147742343636
+ },
+ "lenses": {
+  "dcf": {
+   "name": "Discounted cash flow (primary)",
+   "bear": 80.84906676286525,
+   "base": 127.90542457756496,
+   "bull": 197.7603327814774,
+   "w": 0.45
+  },
+  "relative": {
+   "name": "Relative multiples",
+   "bear": 69.1673075684282,
+   "base": 86.3570978508756,
+   "bull": 99.24944056271111,
+   "w": 0.2
+  },
+  "normalized": {
+   "name": "Normalised earnings power",
+   "bear": 77.61550434834118,
+   "base": 101.57515565284353,
+   "bull": 125.5348069573459,
+   "w": 0.2
+  },
+  "book": {
+   "name": "Book value and sustainable return",
+   "bear": 64.28485494530243,
+   "base": 94.68361880083455,
+   "bull": 106.80032115093888,
+   "w": 0.15
+  },
+  "central": {
+   "name": "Weighted central",
+   "bear": 64.28485494530243,
+   "base": 109.34643458077326,
+   "bull": 197.7603327814774,
+   "w": 1.0
+  }
+ },
+ "central": 109.34643458077326,
+ "span": [
+  64.28485494530243,
+  197.7603327814774
+ ],
+ "spot": 104.8,
+ "experts": {
+  "e1": {
+   "method_short": "earnings power",
+   "base": 119.59571444736089,
+   "rng": [
+    91.47747265181607,
+    147.7139562429057
+   ],
+   "eps": 8.79633908747726,
+   "margin": 0.11914376648784654,
+   "rev": 13340.244184547453,
+   "ebit": 1476.0148624459212,
+   "interest": 14.870702080212983,
+   "pe": 13.0
+  },
+  "e2": {
+   "method_short": "owner cash earnings",
+   "base": 134.76684716087976,
+   "rng": [
+    91.9649003659359,
+    165.3924348207798
+   ],
+   "fcff": 1068.1581789295062,
+   "fcfe": 1058.8739937269138,
+   "ke": 0.09720000000000001,
+   "int_at": 4.966916460716963
+  },
+  "e3": {
+   "method_short": "cash returns vs cost of capital",
+   "base": 125.97890088776248,
+   "rng": [
+    92.21621697363723,
+    144.8088587254048
+   ],
+   "ic0": 4425.122045,
+   "pv_ep": 3035.984296327739,
+   "pv_ep_term": 10952.010500704677,
+   "ev": 18413.116842032417,
+   "ep": [
+    673.256801473521,
+    741.4524715470135,
+    816.9847024712583,
+    894.9225165042608,
+    962.910224685498
+   ],
+   "spread": [
+    0.1305045932469367,
+    0.13535560117492157,
+    0.13966243758282693,
+    0.14489888331111347,
+    0.14756336596856245
+   ]
+  }
+ },
+ "panel_centre": 125.97890088776248,
+ "rel": {
+  "ebitda_mid": 1470.5320189217548,
+  "ev_rel_fwd": 13970.054179756671,
+  "pv_interim": 1372.9892362587943,
+  "ev_ebitda_trailing": 11.889926783497147,
+  "pe_trailing": 14.522816994918237,
+  "just_mult": 9.5
+ },
+ "norm": {
+  "margin": 0.11914376648784654,
+  "rev": 11498.6689341924,
+  "ebitda": 1369.9947264164746,
+  "ebit": 1272.2560404758392,
+  "interest": 27.210036443,
+  "np": 1122.1912063126395,
+  "eps": 7.495391028521311,
+  "pe": 13.0,
+  "year": "FY26E",
+  "margin_year": "FY28E"
+ },
+ "book": {
+  "bvps": 21.681746856579892,
+  "pb_just": 4.195804195804196,
+  "roe_sust": 0.28,
+  "roe_trailing": 0.3680769183960799,
+  "ke_term": 0.09720000000000001
+ },
+ "sens": {
+  "g_grid": [
+   0.02,
+   0.03,
+   0.04,
+   0.05,
+   0.06
+  ],
+  "wt_grid": [
+   0.07482875,
+   0.08482875000000001,
+   0.09482875,
+   0.10482875,
+   0.11482875000000001
+  ],
+  "we_grid": [
+   0.08471283214242402,
+   0.09471283214242403,
+   0.10471283214242402,
+   0.11471283214242402,
+   0.12471283214242403
+  ],
+  "grid_wacc_g": [
+   [
+    141.70560577720443,
+    163.71586588598697,
+    198.2042805447696,
+    260.2479130974581,
+    null
+   ],
+   [
+    120.46238419522955,
+    134.72102929009714,
+    155.21883601257383,
+    187.32995212358327,
+    245.0864687133326
+   ],
+   [
+    104.89672966104025,
+    114.66780519714483,
+    127.90542457756496,
+    146.92944537873228,
+    176.7240270270523
+   ],
+   [
+    93.00059958544631,
+    99.97128853350969,
+    109.01171905034239,
+    121.25436720120366,
+    138.84219992184018
+   ],
+   [
+    83.61297829887353,
+    88.73699993247544,
+    95.16215451155131,
+    103.49055126023718,
+    114.76356473272784
+   ]
+  ],
+  "beta_grid": [
+   0.7,
+   0.9,
+   1.129,
+   1.3,
+   1.5
+  ],
+  "grid_beta": [
+   134.1012811749074,
+   131.16598646251867,
+   127.90542457756496,
+   125.53813036092792,
+   122.8400164516531
+  ],
+  "metal_grid": [
+   0.85,
+   0.925,
+   1.0,
+   1.075,
+   1.15
+  ],
+  "grid_metal": [
+   139.32363472990582,
+   133.60318074441707,
+   127.90542457756496,
+   122.22783571579876,
+   116.56832453276643
+  ],
+  "spread_grid": [
+   0.14,
+   0.145,
+   0.1526,
+   0.155,
+   0.16
+  ],
+  "grid_spread": [
+   108.45406462530595,
+   116.10413509016158,
+   127.90542457756496,
+   131.67632343511934,
+   139.60168534077025
+  ],
+  "vol_grid": [
+   0.9,
+   0.95,
+   1.0,
+   1.05,
+   1.1
+  ],
+  "grid_vol": [
+   117.0795645368853,
+   122.49709358342245,
+   127.90542457756496,
+   133.30523851809744,
+   138.6971354501409
+  ],
+  "nwc_grid": [
+   0.24,
+   0.26,
+   0.28,
+   0.3,
+   0.32
+  ],
+  "grid_nwc": [
+   133.55809398317376,
+   130.73175928036935,
+   127.90542457756496,
+   125.07908987476054,
+   122.25275517195618
+  ]
+ },
+ "step0": {
+  "windows_scored": 10,
+  "windows_prebreak_dropped": 0,
+  "first_origin": "2024-01-04",
+  "last_origin": "2026-04-06",
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "skill_norm": -0.02187509477131888,
+  "skill_raw": -0.02175277584652613,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.08732243015009988,
+    0.0090810202269902,
+    "PARITY"
+   ],
+   "3": [
+    -0.073506126835863,
+    0.009835269779829181,
+    "PARITY"
+   ],
+   "4": [
+    -0.05074640643548678,
+    0.01067473408114783,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.7,
+  "cov80": 0.8,
+  "cov90": 0.9,
+  "pit_mean": 0.48938499999999996,
+  "pit_hist": [
+   1,
+   0,
+   1,
+   2,
+   2,
+   1,
+   1,
+   0,
+   1,
+   1
+  ],
+  "w90_ratio": 1.1896928797404727,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": -0.002,
+   "ci90": [
+    -0.009,
+    0.004
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 11,
+   "windows": 392
+  },
+  "dq_log": [],
+  "clean_rows": 911,
+  "density_rows_per_yr": 248.8726626776365,
+  "span_years": 3.6605065023956196
+ },
+ "strike": {
+  "anchor_date": "2026-08-18",
+  "spot": 104.8,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "width_overlay_mult": 1.0,
+  "rf_live": 0.0425,
+  "q_annual": 0.0363,
+  "horizons": {
+   "1M": {
+    "h": 22,
+    "target_date": "2026-09-18",
+    "grade_date": "2026-09-20",
+    "anchor_vol_ann": 0.36147039966298355,
+    "sigma_h": 0.11427930407092274,
+    "drift_log_h": 0.0002970029954372175,
+    "pct": {
+     "p5": 87.21321014037129,
+     "p25": 97.61126202615651,
+     "p50": 104.7866044705799,
+     "p75": 112.61608929615088,
+     "p95": 126.17671409816322
+    },
+    "p_above": 0.4997,
+    "p_up10": 0.18798,
+    "p_dn10": 0.16318,
+    "touch_up10": 0.32044,
+    "touch_dn10": 0.2754
+   },
+   "3M": {
+    "h": 62,
+    "target_date": "2026-11-18",
+    "grade_date": "2026-11-18",
+    "anchor_vol_ann": 0.3670575648854793,
+    "sigma_h": 0.19481102488856447,
+    "drift_log_h": 0.0008910089863116526,
+    "pct": {
+     "p5": 76.54888951524968,
+     "p25": 92.86909864606133,
+     "p50": 105.05936961271118,
+     "p75": 118.70948463287816,
+     "p95": 144.05634306920757
+    },
+    "p_above": 0.50542,
+    "p_up10": 0.30292,
+    "p_dn10": 0.2779,
+    "touch_up10": 0.5561,
+    "touch_dn10": 0.51134
+   }
+  }
+ },
+ "backtest": {
+  "h3": {
+   "full": {
+    "label": "FULL cleaned history",
+    "horizon_months": 3,
+    "windows": 10,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-04-06",
+    "span_years": 2.25,
+    "skill_norm": -0.02187509477131888,
+    "skill_raw": -0.02175277584652613,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0873,
+      0.0091,
+      "PARITY"
+     ],
+     "3": [
+      -0.0735,
+      0.0098,
+      "PARITY"
+     ],
+     "4": [
+      -0.0507,
+      0.0107,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7,
+    "cov80": 0.8,
+    "cov90": 0.9,
+    "pit_mean": 0.48938499999999996,
+    "pit_hist": [
+     1,
+     0,
+     1,
+     2,
+     2,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "chi2": 4.0,
+    "chi2_p": 0.911,
+    "ks_stat": 0.189,
+    "ks_p": 0.803,
+    "width_vs_benchmark": 1.1896928797404727
+   },
+   "five_year": {
+    "label": "LAST FIVE YEARS of origins",
+    "horizon_months": 3,
+    "windows": 10,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-04-06",
+    "span_years": 2.25,
+    "skill_norm": -0.02187509477131888,
+    "skill_raw": -0.02175277584652613,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0873,
+      0.0091,
+      "PARITY"
+     ],
+     "3": [
+      -0.0735,
+      0.0098,
+      "PARITY"
+     ],
+     "4": [
+      -0.0507,
+      0.0107,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7,
+    "cov80": 0.8,
+    "cov90": 0.9,
+    "pit_mean": 0.48938499999999996,
+    "pit_hist": [
+     1,
+     0,
+     1,
+     2,
+     2,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "chi2": 4.0,
+    "chi2_p": 0.911,
+    "ks_stat": 0.189,
+    "ks_p": 0.803,
+    "width_vs_benchmark": 1.1896928797404727
+   },
+   "production": {
+    "label": "production window set (post-break)",
+    "horizon_months": 3,
+    "windows": 10,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-04-06",
+    "span_years": 2.25,
+    "skill_norm": -0.02187509477131888,
+    "skill_raw": -0.02175277584652613,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0873,
+      0.0091,
+      "PARITY"
+     ],
+     "3": [
+      -0.0735,
+      0.0098,
+      "PARITY"
+     ],
+     "4": [
+      -0.0507,
+      0.0107,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7,
+    "cov80": 0.8,
+    "cov90": 0.9,
+    "pit_mean": 0.48938499999999996,
+    "pit_hist": [
+     1,
+     0,
+     1,
+     2,
+     2,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "chi2": 4.0,
+    "chi2_p": 0.911,
+    "ks_stat": 0.189,
+    "ks_p": 0.803,
+    "width_vs_benchmark": 1.1896928797404727
+   }
+  },
+  "h1": {
+   "full": {
+    "label": "FULL cleaned history",
+    "horizon_months": 1,
+    "windows": 30,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-06-30",
+    "span_years": 2.49,
+    "skill_norm": -0.010401754608722502,
+    "skill_raw": -0.011937105929925362,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.0315,
+      -0.0014,
+      "FAIL"
+     ],
+     "3": [
+      -0.0329,
+      -0.0021,
+      "FAIL"
+     ],
+     "4": [
+      -0.0328,
+      -0.0036,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.6,
+    "cov80": 0.9333333333333333,
+    "cov90": 0.9666666666666667,
+    "pit_mean": 0.487505,
+    "pit_hist": [
+     1,
+     2,
+     5,
+     6,
+     2,
+     2,
+     4,
+     4,
+     3,
+     1
+    ],
+    "chi2": 8.67,
+    "chi2_p": 0.469,
+    "ks_stat": 0.115,
+    "ks_p": 0.782,
+    "width_vs_benchmark": 1.1617840692276287
+   },
+   "five_year": {
+    "label": "LAST FIVE YEARS of origins",
+    "horizon_months": 1,
+    "windows": 30,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-06-30",
+    "span_years": 2.49,
+    "skill_norm": -0.010401754608722502,
+    "skill_raw": -0.011937105929925362,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.0315,
+      -0.0014,
+      "FAIL"
+     ],
+     "3": [
+      -0.0329,
+      -0.0021,
+      "FAIL"
+     ],
+     "4": [
+      -0.0328,
+      -0.0036,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.6,
+    "cov80": 0.9333333333333333,
+    "cov90": 0.9666666666666667,
+    "pit_mean": 0.487505,
+    "pit_hist": [
+     1,
+     2,
+     5,
+     6,
+     2,
+     2,
+     4,
+     4,
+     3,
+     1
+    ],
+    "chi2": 8.67,
+    "chi2_p": 0.469,
+    "ks_stat": 0.115,
+    "ks_p": 0.782,
+    "width_vs_benchmark": 1.1617840692276287
+   },
+   "production": {
+    "label": "production window set (post-break)",
+    "horizon_months": 1,
+    "windows": 30,
+    "first_origin": "2024-01-04",
+    "last_origin": "2026-06-30",
+    "span_years": 2.49,
+    "skill_norm": -0.010401754608722502,
+    "skill_raw": -0.011937105929925362,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.0315,
+      -0.0014,
+      "FAIL"
+     ],
+     "3": [
+      -0.0329,
+      -0.0021,
+      "FAIL"
+     ],
+     "4": [
+      -0.0328,
+      -0.0036,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.6,
+    "cov80": 0.9333333333333333,
+    "cov90": 0.9666666666666667,
+    "pit_mean": 0.487505,
+    "pit_hist": [
+     1,
+     2,
+     5,
+     6,
+     2,
+     2,
+     4,
+     4,
+     3,
+     1
+    ],
+    "chi2": 8.67,
+    "chi2_p": 0.469,
+    "ks_stat": 0.115,
+    "ks_p": 0.782,
+    "width_vs_benchmark": 1.1617840692276287
+   }
+  },
+  "fit": {
+   "nu": 12.0,
+   "width_cal": 1.07,
+   "market_verdict": "PARITY",
+   "market_skill": -0.002,
+   "market_ci90": [
+    -0.009,
+    0.004
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 11,
+   "market_windows": 392
+  }
+ },
+ "assert_log": [
+  "==============================================================================",
+  "RIYADH CABLES (Tadawul 4142) \u2014 ASSERT / derivation log",
+  "built on the audited FY2022-FY2025 statements + the reviewed H1-2026 interim",
+  "==============================================================================",
+  "[Historical income statement] every FY2023-25 line is the audited figure. Revenue 7,825 -> 9,007 -> 10,674 SAR mn (+15.1%, +18.5%); gross margin 12.43% -> 14.28% -> 16.24%; net profit 518 -> 817 -> 1,085. House EBITDA (operating profit + D&A) FY24 1,037, FY25 1,352 (12.67% of revenue). Effective zakat/tax rate FY25 -9.0%.",
+  "[P&L closure] operating profit + net finance = profit before zakat = profit for the year + zakat, to the SAR mn, in all three years.",
+  "[Working capital, audited] inventory + receivables (incl. contract assets and advances) less payables (incl. accruals and contract liabilities): FY23 1,841 (23.5% of revenue), FY24 2,197 (24.4%), FY25 2,933 (27.5%) \u2014 structurally heavy, a copper/aluminium inventory and receivables book part-funded by payables and reverse factoring.",
+  "[Net financial debt] FY2025 gross borrowings incl. leases 621 less cash 236 = 385 SAR mn \u2014 0.28x EBITDA, a lightly geared balance sheet. The reverse-factoring facility (~SAR 1.1bn) sits in working capital, not here, so it is captured through the net-working-capital driver rather than double-counted as debt.",
+  "[Cost of equity] rf 5.50% less Saudi sovereign default spread 0.48% = rf* 5.02%; + beta 1.129 x ERP 4.94% -> Ke 10.60% (rating basis). CDS basis 10.55% \u2014 the two converge for a high-grade sovereign. Country risk enters once, via the country premium inside the ERP; the raw local yield is NOT combined with a country-loaded ERP, which would double-count.",
+  "[WACC] weights on net financial debt 2.4% / equity 97.6%; Kd after tax 5.90% x (1-0.095) = 5.34%; WACC 10.47%. The balance sheet is almost entirely equity-funded, so WACC sits close to the cost of equity.",
+  "[WACC terminal] Ke 9.72% (rf* 5.02% + beta_term 1.00 x ERP 4.70%); Kd after tax 4.98%; weights 95%/5% -> 9.48%.",
+  "[Glide] forward WACC 10.47% -> 10.22% -> 9.98% -> 9.73% -> 9.48%; discount factors 0.9052, 0.8212, 0.7467, 0.6805, 0.6216. The glide fractions are the cost-of-debt path's own cumulative progress, inherited not invented.",
+  "[Segment unit economics, FY2025] Cables & wires (metal converter) on a tonnage index of 100: metal per unit 84.87, conversion per unit 2.30, gross profit per unit 16.97 (segment margin 16.30%); metal is 97.4% of the cables cost of revenue. HV turnkey margin 8.38% on SAR 231mn; Other margin 57.87% on SAR 29mn. The group is the SUM of the three legs.",
+  "[Forecast, ground-up] revenue 11,499 -> 12,392 -> 13,340 -> 14,235 -> 15,111 (growth +7.7%, +7.8%, +7.7%, +6.7%, +6.2%)",
+  "[Forecast margins are OUTPUTS] gross margin 15.22% -> 15.32% -> 15.31% -> 15.36% -> 15.36%; EBITDA margin 11.77% -> 11.87% -> 11.91% -> 12.01% -> 12.01%. The gross margin is anchored on the H1-2026 reviewed actual (15.26%) and lifts only modestly on the mix/scale glide \u2014 it does NOT return to the FY2024-25 metal-tailwind peak.",
+  "[FY2026 cross-check against the reviewed print] H1-2026 revenue 5,698 at a 15.27% gross margin. Doubling H1 with a light seasonal uplift implies a full year near 11,623; the build produces 11,499 (-1.1%). The model's FY2026E gross margin 15.22% sits right on the reviewed H1 actual.",
+  "[FCFF waterfall] EBIT 1,256 -> 1,365 -> 1,476 -> 1,589 -> 1,686; NOPAT 1,137 -> 1,236 -> 1,336 -> 1,438 -> 1,526; less capex 218, 223, 227, 228, 242 and working-capital investment +286, +250, +266, +251, +245; FCFF 730 -> 868 -> 957 -> 1,080 -> 1,167; PV of explicit FCFF 3,548.",
+  "[Return on capital] FY2025 NOPAT 1,381 / invested capital 4,425 = 31.2%; forecast ROIC 23.5% -> 24.2%; terminal ROIC (next-year NOPAT over closing capital) 25.2%. A high-return, capital-light-relative-to-earnings model.",
+  "[Terminal value] terminal ROIC 25.2%; required reinvestment g/ROIC 15.9%; terminal NOPAT 1,587; TV 24,350 discounted at the year-5 factor 0.6216 -> PV 15,136. Terminal value is 81% of enterprise value.",
+  "[Terminal ceiling] 73% of revenue is domestic (Saudi nominal ~5%), 27% export (~4.5% world nominal); blended ceiling 4.9%. Adopted g 4.0% sits below it.",
+  "[Forecast profit & distribution] attributable profit 1,107, 1,210, 1,317, 1,427, 1,526; payout 55% (the FY2025 actual was 52.6%: SAR 3.8/share on EPS 7.22); net debt path 289, 108, -111, -402, -736 \u2014 the company de-gears further as free cash flow accrues.",
+  "[Bridge] EV 18,684 - net debt 385 + associates 32 + non-operating assets 20 = 18,351; less NCI at carrying value 63 = equity attributable 18,288 = SAR 122.15/share at 31-Dec-2025.",
+  "[Anchor roll] SAR 122.15/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0655) less the SAR 2.25 dividend paid in the window = SAR 127.91/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+22%).",
+  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 127.91/share. On the FY2025-peak framing (16.0%): SAR 139.60. On the further-compression framing (14.5%): SAR 116.10. Published side by side, never averaged into one number.",
+  "[DCF scenarios] bear 80.85 / base 127.91 / bull 197.76 SAR per share.",
+  "[Relative lens] 9.5x on FY2027E EBITDA 1,471 discounted at the year-2 factor plus interim free cash flow -> SAR 86.36/share. Trailing EV/EBITDA 11.9x, trailing P/E 14.5x.",
+  "[Normalised lens] mid-cycle EBITDA margin 11.91% (FY2028E) on FY2026E revenue 11,499 -> normalised EPS 7.50 x 13.0 = SAR 101.58/share.",
+  "[Book lens] book value per share SAR 21.68; justified P/B 4.20x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.72% - g) -> SAR 94.68. Trailing ROE 36.8%.",
+  "[Synthesis] weighted central SAR 109.35; full span 64.28 - 197.76; spot 104.80 (+4% to the central).",
+  "[Expert panel] Expert 1 119.60 [91.48-147.71]; Expert 2 134.77 [91.96-165.39]; Expert 3 125.98 [92.22-144.81]; panel median 125.98 (+20% vs spot)."
+ ]
+}
