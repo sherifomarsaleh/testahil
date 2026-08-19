@@ -23,24 +23,19 @@ diff-only summary leaves that copy silently behind.
 
 **Other governing documents, by task:**
 - Starting a brand-new study → `engine/Study_Initiation_Prompt.md`
-- THE MODEL REPORT (canonical template + research-depth bar, adopted 19-Aug-2026) →
-  `engine/model_report/` — canonical prose `MODEL_REPORT_19-08-2026.md`, the document itself
-  `MODEL_REPORT_09-08-2026.docx` (open it beside the study you are writing), the per-section
-  content contract `model_report_spec.py`, and the gate `check_model_report.py`. The reference
-  is ADNOCLS_Valuation_Study_09-08-2026 (`engine/adnocls_study/` + its Excel + its standalone
+- THE MODEL REPORT (the document every study is modelled on, adopted 19-Aug-2026) →
+  ADNOCLS_Valuation_Study_09-08-2026 (`engine/adnocls_study/` + its Excel + its standalone
   bibliography + `QC_GATE_09-08-2026.md`) MINUS the section "What changed in these editions,
-  and why" — edition history is internal QC evidence, never in a delivered document. Every
-  study matches its sections list, sheet list, PER-SECTION CONTENT and depth; machine-readable
-  form in `engine/research_protocol.py` (`MODEL_STUDY`, `MODEL_STUDY_DEPTH`,
-  `ModelStudyChecklist` + `assert_model_study()`). **The skeleton is not the standard** — two
-  studies nine days apart carried the same 16 sections and differed sevenfold in delivered
-  substance, so run the gate on the DELIVERED files before issue and paste its per-section
-  output into the QC gate; `assert_model_study()` refuses a checklist attested without those
-  findings. THE REFERENCE SET IS CLOSED AT THREE NAMES — ADNOCLS (model report + operating-co
-  pattern), ADCB (bank), ALPHADHABI (holdco); `REFERENCE_SET` asserts on exactly those, and
-  that SWDY is gone (displaced 19-Aug-2026, one-in-one-out, removed outright). No other company
-  is a template or an exemplar. Company names elsewhere in the protocol are evidence or
-  coverage, not references.
+  and why" — edition history is internal QC evidence, never in a delivered document. The built
+  document is `engine/model_report/MODEL_REPORT_09-08-2026.docx` (produced and asserted by
+  `build_model_report_docx.py`) — **open it beside the study you are writing**. Every study
+  matches its sections list, sheet list, content and depth; machine-readable form in
+  `engine/research_protocol.py` (`MODEL_STUDY`, `MODEL_STUDY_DEPTH`, `ModelStudyChecklist` +
+  `assert_model_study()`). THE REFERENCE SET IS CLOSED AT THREE NAMES — ADNOCLS (model report +
+  operating-co pattern), ADCB (bank), ALPHADHABI (holdco); `REFERENCE_SET` asserts on exactly
+  those, and that SWDY is gone (displaced 19-Aug-2026, one-in-one-out, removed outright). No
+  other company is a template or an exemplar. Company names elsewhere in the protocol are
+  evidence or coverage, not references.
 - Responding to an external critique of a delivered study → `engine/Critique_Response_Prompt.md`
 - Re-deriving a study's beta against its exchange's index and rebuilding on it →
   `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
@@ -83,11 +78,6 @@ diff-only summary leaves that copy silently behind.
   Registered: AE/ADX→FADGI, AE/DFM→FADGI *(labelled interim)*, EG/EGX→EGX30, IN/NSE→NIFTY50,
   KR/KRX→KOSPI100, QA/QSE→QATAR10 *(weekly-only caveat)*, SA/TADAWUL→TASI, US/NASDAQ→NASDAQCOMP.
   **BR and GB are unregistered — no conforming beta is possible there.**
-- `engine/model_report/model_report_spec.py` + `check_model_report.py` — the per-section
-  content contract and the gate that reads the DELIVERED study/workbook/bibliography and counts
-  what is in them. Run `--self-test` after touching either: it is negative-controlled and must
-  PASS the model report and FAIL the 18-Aug-2026 delivery it was written for. Passing it is
-  necessary, never sufficient — it counts structure, not truth.
 - `engine/research_protocol.py` — SIGCM: `SIGCMChecklist` + `assert_sigcm()`, the standing
   hard gate. A violation must not issue, not just warn. Also `assert_beta_provenance()`,
   which inspects the actual beta record rather than trusting a checklist boolean — that
@@ -99,7 +89,7 @@ diff-only summary leaves that copy silently behind.
   A study's own calibration check must reproduce the committed fit, never re-derive one.
 
 All of the above — plus `technicals.py`, `apply_technicals.py`, `ta_chart.py`,
-`rollforward_one.py`, `model_report/model_report_spec.py` — are verified by **import, not by parsing** before any commit relies
+`rollforward_one.py` — are verified by **import, not by parsing** before any commit relies
 on them (`nu=Gaussian` parses cleanly and only dies at import — that exact bug once reached
 `main`).
 

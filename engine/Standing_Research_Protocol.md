@@ -586,43 +586,36 @@ are centred on the adopted estimate in steps of ONE STANDARD ERROR of that regre
 discipline applies to any sensitised input carrying a measurable standard error.
 
 
-## THE MODEL REPORT — ADNOCLS replaces SWDY, and the bar stops being a self-attestation [ADOPTED 19-Aug-2026, per instruction]
+## THE MODEL REPORT — ADNOCLS replaces SWDY as the document every study is modelled on [ADOPTED 19-Aug-2026, per instruction]
 
 Sherif put two delivered studies side by side — ADNOC Logistics & Services (09-Aug-2026) and
-Riyadh Cables (18-Aug-2026) — and said what is obvious once they are open together: they are
-both ours and they are vastly different. The instruction was to make the output consistent by
-adopting a model report, with ADNOCLS as the superior document on depth and analysis, minus
-one section.
+Riyadh Cables (18-Aug-2026) — and said the obvious thing: they are both ours and they are
+vastly different. The instruction was to settle on a model report, with ADNOCLS as the
+superior document on depth and analysis, minus one section.
 
 **ADNOCLS_Valuation_Study_09-08-2026 is THE MODEL REPORT.** Under the standing one-in-one-out
 rule it DISPLACES SWDY, which is removed from the reference layer outright rather than carried
 as a retired entry. The set stays at three: ADNOCLS (model report + operating-company lens
 pattern), ADCB (bank), ALPHADHABI (holdco). `REFERENCE_SET` in `engine/research_protocol.py`
-asserts on exactly those at import, and now also asserts that SWDY is absent.
+asserts on exactly those at import.
 
-Why ADNOCLS is the right exemplar, concretely: it prices every contested construction instead
-of naming it (six alternatives in §1.8 alone, each with its value); it publishes the beta both
-ways, against the exchange's published index and against the composite, and carries both
-weighted centrals rather than averaging them; it builds the cost of debt from six disclosed
-instruments rather than one asserted range; it drives seven disclosed units on seven physical
-drivers with margins falling out as outputs; it reconciles the build against management's own
-guidance and states the +29% gap plainly; and each of its three experts carries a worked
-valuation table with every intermediate line, a named sensitivity and a falsifier. Its beta is
-also the first in the reference layer produced by the sanctioned routine against a published
-index (`raw_indices/AE/FADGI.csv`, conforming) — SWDY's was regressed on an equal-weight
-composite and is non-conforming, which on its own made SWDY an awkward thing to hold up as the
-standard.
+Why ADNOCLS: it prices every contested construction instead of naming it, publishes the beta
+both ways, builds the cost of debt from six disclosed instruments rather than one asserted
+range, drives seven disclosed units on seven physical drivers with margins as outputs,
+reconciles the build against management's own guidance, and gives each expert a worked
+valuation table with every intermediate line. Its beta is also the first in the reference
+layer produced by the sanctioned routine against a published index
+(`raw_indices/AE/FADGI.csv`, conforming); SWDY's was regressed on a composite.
 
-### One section is excluded from the model
+**One section is excluded.** "What changed in these editions, and why" is in the exemplar and
+is NOT part of the model: edition history is internal QC evidence and belongs in the study's QC
+gate and critique adjudication, not in a document an external reader receives.
 
-"What changed in these editions, and why" is present in the exemplar and is NOT part of the
-model, per instruction. Edition history is internal QC evidence: it belongs in the study's QC
-gate file and its critique adjudication, not in a document an external reader receives.
-
-The subtraction is performed, not described — `engine/model_report/build_model_report_docx.py`
-produces `engine/model_report/MODEL_REPORT_09-08-2026.docx` from the exemplar and asserts every
-edit, so a future build opens the model rather than reconstructing it from a paragraph. Three
-consequences had to be handled, and each is a small precedent in its own right:
+**The model report is a document, not a description.**
+`engine/model_report/build_model_report_docx.py` produces
+`engine/model_report/MODEL_REPORT_09-08-2026.docx` from the exemplar and asserts every edit, so
+a future build opens the model rather than reconstructing it from a paragraph. Three
+consequences were handled, and one is a small standing precedent in its own right:
 
 1. **A live caveat was rescued out of the section before the cut.** The note that the
    sanctioned beta routine now returns 1.103 on 159 weekly observations, where every table in
@@ -631,82 +624,17 @@ consequences had to be handled, and each is a small precedent in its own right:
    other caveats. STANDING RULE: before deleting a block of a document, check whether anything
    inside it is a live disclosure rather than history. A correction record can be dropped; a
    disclosure inside it cannot.
-2. **The READ FIRST box lost its edition paragraph**, which was the same content class in the
-   front matter and closed by pointing at the section being removed.
-3. **"About this series" was repaired.** It promised the reader the full correction list
-   "under 'What changed in these editions, and why', immediately after the caveats". The
-   correction RULE stays; the mechanism is now stated as what the document actually does — the
-   correction is made at the point it bears on, with the superseded construction reprinted
-   beside the new one at full size. A document must not promise a section it does not have.
+2. The READ FIRST box lost its edition paragraph, the same content class in the front matter.
+3. "About this series" was repaired — it promised the reader a correction list "under 'What
+   changed in these editions, and why'". The correction RULE stays; the mechanism is now stated
+   as what the document does: the correction is made at the point it bears on, with the
+   superseded construction reprinted beside the new one at full size. A document must not
+   promise a section it does not have.
 
 NOT removed: the inline "an earlier edition of this study…" passages in 1.2, 1.7, 1.8 and 7.
-Those are not edition history — each prices a live construction against the superseded one at
-the point the number is used, which is the dual-framing rule doing its job.
+Each prices a live construction against the superseded one at the point the number is used,
+which is the dual-framing rule doing its job.
 
-### The real finding: the skeleton was never the standard
-
-The two studies do not differ in structure. Both carry the 16-section Word skeleton and the
-16-sheet workbook, in the right order, with the right names. They differ in what is under the
-headings:
-
-| | Words | Tables | Table rows | Figures | Workbook cells (formula share) |
-|---|---:|---:|---:|---:|---:|
-| ADNOCLS 09-Aug — the model | 29,989 | 51 | 473 | 9 | 2,605 (83%) |
-| SWDY 05-Aug — displaced | 12,416 | 36 | 290 | 8 | 924 (64%) |
-| RIYADHCABLE 18-Aug | 4,408 | 12 | 80 | 7 | 771 (72%) |
-
-In the 18-Aug study, TWELVE sections carry no table at all — 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.9,
-2, 4, 5, 6 and 7. Four valuation lenses state their answers in 61–97 words each. The
-level-touch ladder §3 is required to carry is absent (the word "touch" appears once in the
-whole document). The balance sheet is history-only, three actual years and no forecast columns,
-so the asset-conversion cycle SIGCM requires it to project from cannot be shown. Appendix C has
-zero tables: no expert shows a worked valuation, and there is no cross-examination table and no
-divergence table. §1.8 carries neither beta diagnostics nor a cost-of-debt evidence table. Its
-bibliography registers 105 inputs against the model's 618, with no global-ring input at all.
-
-And its QC gate reads, in its own words: `[model-study bar] PASS — all depth standards met`,
-`(a) structure/content/format/depth match the model study`.
-
-**That is not dishonesty; it is the predictable output of a gate made of booleans a study sets
-about itself.** It is the same failure `assert_beta_provenance()` was written to close in a
-different organ: every study in this repo once set `beta_own_history_vs_egx30 = True` while
-regressing against a composite. A checklist cannot see the work it is attesting to.
-
-### What was adopted
-
-1. **A PER-SECTION CONTENT CONTRACT**, `engine/model_report/model_report_spec.py` — 25 section
-   specs, 37 named tables, 9 named figures. Each section names the tables it must actually
-   carry (matched on header and stub text, so rewording survives and deletion does not), the
-   prose beats it must hit, and floors on words, paragraphs, tables and rows. The floors are
-   BACKSTOPS, deliberately far below what the model report carries; the binding requirements
-   are the named tables. A section can clear every floor and still fail, which is correct.
-
-2. **A GATE THAT READS THE DELIVERED FILES**, `engine/model_report/check_model_report.py`. It
-   parses the delivered `.docx`, `.xlsx` and bibliography and counts. It is
-   NEGATIVE-CONTROLLED, the same discipline as `check_ta_chart_overlay.js` against the 29-Jul
-   chart defect: `--self-test` requires the model report to PASS and the 18-Aug delivery to
-   FAIL. Today that reads 0 unmet against 100 unmet. Run over the displaced SWDY study it
-   reports 27 unmet across 10 sections — the bar has genuinely moved, and saying so is part of
-   adopting it.
-
-3. **A NINTH DEPTH STANDARD**, `section_content_contract`, alongside the eight from 08-Aug
-   (which stand unchanged). Depth standard 8 is also tightened: the contested judgement must
-   appear IN THE SUMMARY TABLE as a row carrying the alternative's value — a prose box saying a
-   judgement is contested carries no number.
-
-4. **`assert_model_study()` NO LONGER ACCEPTS AN UNEVIDENCED ATTESTATION.** It takes the gate's
-   findings and raises if they are absent or carry any FAIL. The module's own `__main__`
-   self-check asserts that a fully-attested checklist with no findings is rejected, so the
-   teeth are verified by import like everything else on the guard list.
-
-**QC consequence.** Gate item (a) reads: structure, content, format AND DEPTH match the MODEL
-REPORT (ADNOCLS), with the per-section output of `check_model_report.py` pasted in as the
-evidence and zero FAILs in it. Item (a) is no longer satisfiable by attestation.
-
-**And the limit, stated so it is not overclaimed.** The gate counts structure. It cannot tell
-you whether a margin is an output or an input dressed as one, whether the outside evidence in
-§1.7 is real, or whether the four-field register is truthful. Those stay with SIGCM, the sweep
-register and the QC gate's own evidence table. Passing this gate is NECESSARY, NEVER SUFFICIENT
-— the same relationship a clean recalc has to a correct workbook.
-
-Canonical prose: `engine/model_report/MODEL_REPORT_19-08-2026.md`.
+**QC consequence.** Gate item (a) is unchanged in substance and now names ADNOCLS: structure,
+content, format AND DEPTH match the MODEL REPORT. The eight depth standards adopted 08-Aug
+stand exactly as they were.

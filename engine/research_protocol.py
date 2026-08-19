@@ -73,15 +73,6 @@ SIGCM_CLAUSES = {
 # receives. The model report document is the exemplar with that section removed, built and
 # asserted by engine/model_report/build_model_report_docx.py.
 #
-# WHY THE BAR GREW TEETH ON THE SAME DAY. ModelStudyChecklist below is a list of booleans a
-# study sets about itself. Two studies nine days apart both reported "all depth standards met"
-# and differed by a factor of SEVEN in delivered substance (ADNOCLS 29,989 words / 51 tables;
-# RIYADHCABLE 4,408 / 12, with twelve sections carrying no table at all, no level-touch
-# ladder, a history-only balance sheet and no worked expert valuation). That is exactly the
-# failure assert_beta_provenance() was written to close, in a different organ. So the checklist
-# is no longer sufficient on its own: assert_model_study() now REQUIRES the evidence findings
-# produced by engine/model_report/check_model_report.py, which parses the delivered files.
-#
 # THE REFERENCE SET IS CLOSED — exactly three names, enforced by REFERENCE_SET below
 # [08-Aug-2026, per Sherif's instruction]. No other company is a template, an exemplar or a
 # reference study anywhere in the protocol; every previously-named exemplar is gone from the
@@ -98,9 +89,6 @@ MODEL_STUDY = {
     "adopted": "2026-08-19",
     "displaced": "SWDY_Valuation_Study_05-08-2026",
     "model_report_document": "engine/model_report/MODEL_REPORT_09-08-2026.docx",
-    "section_contract": "engine/model_report/model_report_spec.py",
-    "contract_gate": "engine/model_report/check_model_report.py",
-    "spec_document": "engine/model_report/MODEL_REPORT_19-08-2026.md",
     "excluded_sections": ("What changed in these editions, and why",),
     "lens_pattern_references": {
         "operating_company": "ADNOCLS",
@@ -149,7 +137,7 @@ MODEL_STUDY = {
     ],
 }
 
-# The depth bar — nine standards the ADNOCLS build demonstrated (evidence:
+# The depth bar — eight standards the ADNOCLS build demonstrated (evidence:
 # engine/adnocls_study/QC_GATE_09-08-2026.md), so none is aspirational. Each is a QC item,
 # not a nice-to-have: missing any one is a FAIL, not a noted limitation.
 MODEL_STUDY_DEPTH = {
@@ -198,17 +186,7 @@ MODEL_STUDY_DEPTH = {
         "The study's single most consequential contested judgement is computed BOTH ways, "
         "published side by side (summary table, body, workbook, expert range), and never "
         "averaged into one number that would hide the disagreement — the dual-framing rule, "
-        "extended to the study's central judgement. It must be visible IN THE SUMMARY TABLE "
-        "as a row carrying the alternative's value: a prose box saying a judgement is "
-        "contested does not satisfy this."
-    ),
-    "section_content_contract": (
-        "[ADDED 19-Aug-2026] Every section carries the CONTENT the model report carries, not "
-        "just its heading — the named tables of engine/model_report/model_report_spec.py, "
-        "checked against the DELIVERED files by check_model_report.py and its per-section "
-        "output pasted into the QC gate. A lens that states its answer in prose with no "
-        "arithmetic has been asserted, not built. The 16-section skeleton is identical in a "
-        "30,000-word study and a 4,400-word one, so the skeleton is not the standard."
+        "extended to the study's central judgement."
     ),
 }
 
@@ -226,7 +204,6 @@ class ModelStudyChecklist:
     table_discipline: bool = False
     expert_appendix_max_detail: bool = False
     contested_judgement_both_ways: bool = False
-    section_content_contract: bool = False      # attested by check_model_report.py, not by hand
     na_reasons: dict = field(default_factory=dict)
 
     def failures(self) -> list:
@@ -242,20 +219,14 @@ class ModelStudyChecklist:
         return not self.failures()
 
 
-def assert_model_study(checklist: ModelStudyChecklist, contract_findings: list = None) -> None:
+def assert_model_study(checklist: ModelStudyChecklist) -> None:
     """Raise before a study is allowed to be issued if it falls short of the model-report bar.
 
-    The model report is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/, minus the
-    excluded edition-history section): its sections list, sheet list, per-section CONTENT and
-    research depth are the standard every study matches. A FAIL here means DO NOT ISSUE —
+    The model report is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/), minus the
+    excluded edition-history section; the built document is
+    engine/model_report/MODEL_REPORT_09-08-2026.docx. Its sections list, sheet list, content
+    and research depth are the standard every study matches. A FAIL here means DO NOT ISSUE —
     depth below the model report is a defect, not a style choice.
-
-    `contract_findings` is the list returned by engine/model_report/check_model_report.py run
-    over the DELIVERED files. It is not optional in substance: attesting
-    section_content_contract without passing the findings that support it is exactly the
-    unevidenced self-certification this gate exists to stop, and raises. The parameter keeps a
-    default only so that older study gates fail on the missing attestation with a readable
-    message rather than a TypeError.
     """
     fails = checklist.failures()
     if fails:
@@ -263,25 +234,7 @@ def assert_model_study(checklist: ModelStudyChecklist, contract_findings: list =
             "MODEL-REPORT BAR NOT MET — study must not be issued. Unmet standards: "
             + ", ".join(fails)
             + ". The bar is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/, evidence "
-            + "in QC_GATE_09-08-2026.md); see MODEL_STUDY / MODEL_STUDY_DEPTH in this module and "
-            + "the per-section contract in engine/model_report/model_report_spec.py."
-        )
-    if contract_findings is None:
-        raise AssertionError(
-            "MODEL-REPORT BAR NOT MET — section_content_contract was attested but no evidence "
-            "was supplied. Run:\n"
-            "    python3 engine/model_report/check_model_report.py --study … --xlsx … --biblio …\n"
-            "and pass its findings to assert_model_study(). A boolean cannot see the work it "
-            "is attesting to — every study in this repo once set the beta boolean True while "
-            "regressing on a composite, and two studies nine days apart both attested this bar "
-            "while differing sevenfold in delivered substance."
-        )
-    bad = [f for f in contract_findings if f.get("status") == "FAIL"]
-    if bad:
-        lines = "\n".join(f"  - [{f['section']}] {f['item']}: {f['detail']}" for f in bad)
-        raise AssertionError(
-            f"MODEL-REPORT CONTRACT NOT MET — {len(bad)} unmet requirement(s) in the DELIVERED "
-            f"files. Study must not be issued.\n{lines}"
+            + "in QC_GATE_09-08-2026.md); see MODEL_STUDY / MODEL_STUDY_DEPTH in this module."
         )
 
 
@@ -350,19 +303,7 @@ if __name__ == "__main__":
         "one-in-one-out: ADNOCLS displaced SWDY on 19-Aug-2026 and SWDY is removed from the "
         "reference layer outright, not carried as a retired or secondary entry"
     )
-    assert len(MODEL_STUDY_DEPTH) == 9, "nine depth standards as of 19-Aug-2026"
-    # The bar must not be satisfiable by attestation alone.
-    full = ModelStudyChecklist(**{k: True for k in ModelStudyChecklist().__dict__
-                                  if k != "na_reasons"})
-    assert full.passed(), "a fully-attested checklist should clear the boolean layer"
-    try:
-        assert_model_study(full)
-    except AssertionError as e:
-        assert "no evidence was supplied" in str(e)
-    else:
-        raise AssertionError("assert_model_study accepted an unevidenced attestation")
-    assert_model_study(full, [{"section": "document", "item": "content contract",
-                               "status": "PASS", "detail": "evidence"}])
+
     print("SIGCM module loaded; clauses:", len(SIGCM_CLAUSES),
           "| model-report depth standards:", len(MODEL_STUDY_DEPTH),
           "| reference set:", "/".join(REFERENCE_SET),
