@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 88,
+ "n": 89,
  "rows": [
   {
    "ticker": "HELI",
@@ -970,6 +970,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00252
    },
    "market": "QA"
+  },
+  {
+   "ticker": "RIYADHCABLE",
+   "name": "Riyadh Cables Group Company",
+   "code": "TADAWUL:4142",
+   "ccy": "SAR",
+   "spot": 104.8,
+   "anchor_date": "2026-08-18",
+   "fv_asof": "2026-08-18",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 64.28,
+   "fv_base": 109.35,
+   "fv_full": 197.76,
+   "gap_base_pct": 4.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.113519,
+    "mu_h": -9.5e-05,
+    "G": {
+     "bear": -4.31,
+     "base": 0.37,
+     "full": 5.59
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.3441,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.604,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9972,
+     "base": 0.6653,
+     "full": 2037.572
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00165
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.19431,
+    "mu_h": 0.002478,
+    "G": {
+     "bear": -2.52,
+     "base": 0.22,
+     "full": 3.27
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0085,
+     "base": 0.4126,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.0143,
+     "base": 0.7649,
+     "full": 0.0031
+    },
+    "required_cagr": {
+     "bear": -0.8585,
+     "base": 0.1853,
+     "full": 11.6797
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00238
+   },
+   "market": "SA"
   },
   {
    "ticker": "PHDC",
