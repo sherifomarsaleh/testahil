@@ -1,0 +1,32 @@
+{
+ "ticker": "RIYADHCABLE",
+ "market": "SA",
+ "exchange": "TADAWUL",
+ "beta": 1.1286210012230207,
+ "r2": 0.1448150431719576,
+ "se": 0.30938835573061724,
+ "n": 185,
+ "ci90": [
+  0.6196771560461554,
+  1.637564846399886
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 3.6,
+ "first_obs": "2023-01-05",
+ "last_obs": "2026-08-13",
+ "blume_crosscheck": 1.0857473341486803,
+ "index_file": "raw_indices/SA/TASI.csv",
+ "index_asof": "2026-08-18",
+ "index_dq": [
+  "dropped 7 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true
+}
