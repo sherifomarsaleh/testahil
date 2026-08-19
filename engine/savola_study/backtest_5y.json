@@ -1,0 +1,158 @@
+{
+ "full": {
+  "label": "FULL cleaned history",
+  "windows": 58,
+  "first_origin": "2012-01-17",
+  "last_origin": "2026-04-28",
+  "span_years": 14.28,
+  "skill_norm": 0.003952314108148669,
+  "skill_raw": 0.0026381794996781505,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0066,
+    0.0148,
+    "PARITY"
+   ],
+   "3": [
+    -0.0051,
+    0.0135,
+    "PARITY"
+   ],
+   "4": [
+    -0.0068,
+    0.0145,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5172413793103449,
+  "cov80": 0.8448275862068966,
+  "cov90": 0.9137931034482759,
+  "pit_mean": 0.5111482758620689,
+  "pit_hist": [
+   4,
+   5,
+   9,
+   4,
+   5,
+   8,
+   5,
+   6,
+   7,
+   5
+  ],
+  "chi2": 4.41,
+  "chi2_p": 0.882,
+  "ks_stat": 0.061,
+  "ks_p": 0.972,
+  "width_vs_benchmark": 1.1541994463745084
+ },
+ "five_year": {
+  "label": "LAST FIVE YEARS of origins",
+  "windows": 19,
+  "first_origin": "2021-10-26",
+  "last_origin": "2026-04-28",
+  "span_years": 4.5,
+  "skill_norm": 0.008662946267877447,
+  "skill_raw": 0.009590796959708658,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.01,
+    0.0203,
+    "PARITY"
+   ],
+   "3": [
+    -0.0076,
+    0.0205,
+    "PARITY"
+   ],
+   "4": [
+    -0.0076,
+    0.0209,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5263157894736842,
+  "cov80": 0.7894736842105263,
+  "cov90": 0.8421052631578947,
+  "pit_mean": 0.4681,
+  "pit_hist": [
+   1,
+   2,
+   4,
+   1,
+   4,
+   0,
+   3,
+   1,
+   0,
+   3
+  ],
+  "chi2": 11.0,
+  "chi2_p": 0.276,
+  "ks_stat": 0.162,
+  "ks_p": 0.642,
+  "width_vs_benchmark": 1.1484853858069213
+ },
+ "production": {
+  "label": "production window set (post-break origins)",
+  "windows": 44,
+  "first_origin": "2015-07-22",
+  "last_origin": "2026-04-28",
+  "span_years": 10.77,
+  "skill_norm": 0.0015724121515575673,
+  "skill_raw": 0.0011517496650068626,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0094,
+    0.0108,
+    "PARITY"
+   ],
+   "3": [
+    -0.0084,
+    0.0112,
+    "PARITY"
+   ],
+   "4": [
+    -0.009,
+    0.012,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5,
+  "cov80": 0.8181818181818182,
+  "cov90": 0.8863636363636364,
+  "pit_mean": 0.4667636363636363,
+  "pit_hist": [
+   4,
+   5,
+   7,
+   3,
+   5,
+   4,
+   5,
+   4,
+   3,
+   4
+  ],
+  "chi2": 2.82,
+  "chi2_p": 0.971,
+  "ks_stat": 0.103,
+  "ks_p": 0.695,
+  "width_vs_benchmark": 1.1117171001767252
+ },
+ "fit": {
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "market_verdict": "PARITY",
+  "market_skill": -0.002,
+  "market_ci90": [
+   -0.009,
+   0.004
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 11
+ }
+}

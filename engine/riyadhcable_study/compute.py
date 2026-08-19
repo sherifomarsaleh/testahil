@@ -60,7 +60,11 @@ def I(value, source, date, ring):
 AUD = "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion)"
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(104.80, "Tadawul daily close, symbol 4142, uploaded price history", "2026-08-18", "Market"),
+    spot=I(104.90, "Tadawul settled close, symbol 4142, 18-Aug-2026 (-1.40 on the 106.30 previous "
+           "close, exchange record via Argaam). The uploaded vendor row printed 104.80 — an unsettled "
+           "intraday snapshot, revised to the settled print in engine/raw_ohlc/SA/RIYADHCABLE.csv at "
+           "the critique response; the verbatim vendor export is kept unchanged alongside the study",
+           "2026-08-18", "Market"),
     shares_out=I(149.7175, "150,000,000 ordinary shares issued (SAR 10 par, paid capital SAR 1,500mn) "
                  "less 282,500 treasury shares; the weighted-average basic/diluted share count in EPS "
                  "Note 41 of the FY2025 audited statements is 149,717,500", "2026-03-26", "Company"),
@@ -109,10 +113,10 @@ INP = dict(
                "shareholders. Basic and diluted EPS 5.45", "2025-03", "Company"),
     npa_fy25=I(m(IS['profit_to_shareholders']['2025']), AUD + ", FY2025 profit attributable to "
                "shareholders. Basic and diluted EPS 7.22", "2026-03-26", "Company"),
-    dna_fy23=I(m(CF['total_da']['2023']), AUD + ", FY2023 cash-flow statement: PP&E depreciation "
-               "59.53mn + intangibles amortisation 5.57mn + right-of-use depreciation 1.33mn = 66.43mn "
-               "(corrected from the first edition, which carried the FY2024 figure in the FY2023 row)",
-               "2024-03", "Company"),
+    dna_fy23=I(m(CF['total_da']['2023']), AUD + ", FY2023 statements' own notes: PP&E depreciation "
+               "59.53mn + intangibles amortisation 5.57mn + right-of-use depreciation 1.33mn = 66.43mn. "
+               "ADDED at the critique response — the first edition carried FY2024's 68.64mn in the "
+               "FY2023 column (a copied cell), overstating FY2023 EBITDA by ~2.2mn", "2024-03", "Company"),
     dna_fy24=I(m(CF['total_da']['2024']), AUD + ", FY2024 cash-flow statement: PP&E depreciation "
                "61.96mn + intangibles amortisation 5.60mn + right-of-use depreciation 1.08mn",
                "2025-03", "Company"),
@@ -137,12 +141,13 @@ INP = dict(
     recv_fy25=I(m(BS['trade_receivables']['2025'] + BS['contract_assets']['2025'] + BS['advances_other_ca']['2025']),
                 AUD + ", 31 Dec 2025: trade receivables 2,485.3mn + contract assets 51.9mn + advances 175.4mn",
                 "2026-03-26", "Company"),
-    pay_fy23=I(m(BS['trade_payables']['2023'] + BS['contract_liab']['2023'] + BS['accrued_other_liab']['2023']),
-               AUD + ", 31 Dec 2023: trade and other payables 1,195.4mn + accrued expenses and other "
-               "liabilities 266.5mn + contract liabilities 25.0mn. The accrued line was omitted from the "
-               "first edition's FY2023 payables, understating FY2023 working-capital funding relative to "
-               "FY2024-25 (both of which included it); corrected here so the net-working-capital series is "
-               "built on a consistent basis across all three years", "2024-03", "Company"),
+    pay_fy23=I(m(BS['trade_payables']['2023'] + BS['contract_liab']['2023'] + BS['accrued_other_liab'].get('2023', 0)),
+               AUD + ", 31 Dec 2023: trade and other payables 1,195.4mn + contract liabilities 25.0mn "
+               "+ accrued expenses and other current liabilities 266.5mn (Note 25; includes advances "
+               "from customers 153.0mn, the FY2023 analogue of later contract liabilities). The "
+               "accrued leg was ADDED at the critique response so the FY2023 payables aggregate uses "
+               "the same definition as FY2024-25; the first edition omitted it, overstating FY2023 NWC",
+               "2024-03", "Company"),
     pay_fy24=I(m(BS['trade_payables']['2024'] + BS['contract_liab']['2024'] + BS['accrued_other_liab']['2024']),
                AUD + ", 31 Dec 2024: trade and other payables 1,598.4mn + accrued expenses and other "
                "liabilities 381.1mn + contract liabilities 61.2mn", "2025-03", "Company"),
@@ -170,8 +175,10 @@ INP = dict(
                 "non-current 24.6mn) + lease liabilities (current 2.0mn + non-current 9.4mn). The "
                 "SAR ~1.1bn supplier-finance/reverse-factoring facility is classified within trade "
                 "payables, not here, consistent with the audited presentation", "2026-03-26", "Company"),
-    eqp_fy23=I(m(BS['total_equity']['2023'] - BS['nci']['2023']), AUD + ", equity attributable to "
-               "shareholders 31 Dec 2023 (total equity 2,246.2mn less NCI of -0.5mn)", "2024-03", "Company"),
+    eqp_fy23=I(m(BS['equity_to_shareholders']['2023']), AUD + ", equity attributable to shareholders "
+               "31 Dec 2023 (total equity 2,246.20mn less non-controlling interests -0.55mn). ADDED at "
+               "the critique response so the workbook balance-sheet history carries FY2023 equity",
+               "2024-03", "Company"),
     eqp_fy24=I(m(BS['equity_to_shareholders']['2024']), AUD + ", equity attributable to shareholders "
                "31 Dec 2024", "2025-03", "Company"),
     eqp_fy25=I(m(BS['equity_to_shareholders']['2025']), AUD + ", equity attributable to shareholders "
@@ -237,6 +244,18 @@ INP = dict(
                "results: operating profit", "2026-07-29", "Company"),
     h1_26_np=I(H1['H1_2026_thousands']['net_profit_shareholders'] / 1000.0, "Tadawul-filed reviewed "
                "H1-2026 results: net profit to shareholders (+9.96% y/y)", "2026-07-29", "Company"),
+    q1_26_rev=I(H1['Q1_2026_thousands']['revenue'] / 1000.0, "Tadawul-filed Q1-2026 results "
+                "(announcement 05-May-2026): revenue SAR 2,767.7mn (+11.2%)", "2026-05-05", "Company"),
+    q1_26_gp=I(H1['Q1_2026_thousands']['gross_profit'] / 1000.0, "Tadawul-filed Q1-2026 results: gross "
+               "profit SAR 430.5mn — Q1 gross margin 15.56%. With the H1 figures this pins the Q2-2026 "
+               "margin at 14.99%: the intra-half path DETERIORATES (15.56% -> 14.99%), disclosed in the "
+               "crux at the critique response — the first edition showed only the H1 average",
+               "2026-05-05", "Company"),
+    h1_25_rev=I(H1['H1_2025_thousands']['revenue'] / 1000.0, "Comparative six months to 30-Jun-2025, "
+                "as filed with the reviewed H1-2026 interims: revenue SAR 5,203.9mn", "2026-07-29", "Company"),
+    h1_25_np=I(H1['H1_2025_thousands']['net_profit_shareholders'] / 1000.0, "Comparative H1-2025 net "
+               "profit to shareholders SAR 535.5mn, as filed with the H1-2026 interims — used for the "
+               "trailing-twelve-month earnings beside the FY2025 figure", "2026-07-29", "Company"),
 
     # ---- forecast drivers — cable tonnage index, metal path, spread ------
     vol_growth=I([0.10, 0.075, 0.065, 0.055, 0.050],
@@ -294,38 +313,48 @@ INP = dict(
     dna_pct=I(0.0085, "Depreciation and amortisation as a share of revenue, near the FY2025 level "
               "(85.4mn / 10,673.6mn = 0.80%), lifted slightly for the larger capitalised base from the "
               "FY2024-25 capex", "2026-08-18", "House"),
-    capex_pct=I([0.019, 0.018, 0.017, 0.016, 0.016],
-                "Capital expenditure as a share of revenue, easing from the FY2025 level (188.9mn / "
-                "10,673.6mn = 1.77%) held broadly flat — a maintenance-plus-modest-capacity level for a "
-                "plant already largely built out (FY2025 assets under construction were 107.9mn of the "
-                "188.9mn spend)", "2026-08-18", "House"),
-    nwc_pct=I(0.28, "Net working capital as a share of revenue, held near the FY2025 level. History on a "
-              "consistent basis (accrued expenses included in payables in every year): FY2023 23.5%, "
-              "FY2024 24.4%, FY2025 27.5% — a structurally working-capital-heavy cable maker "
-              "(copper/aluminium inventory + trade receivables, partly offset by trade payables and a "
-              "reverse-factoring facility) whose intensity has RISEN as the receivables book grew. Held at "
-              "the FY2025 level rather than assuming a reversion the disclosures do not evidence", "2026-08-18", "House"),
+    capex_pct=I([0.019, 0.018, 0.0177, 0.0177, 0.0177],
+                "Capital expenditure as a share of revenue. Audited cash-flow-statement actuals: FY2024 "
+                "195.0mn / 9,007.4mn = 2.17%, FY2025 188.9mn / 10,673.6mn = 1.77% (assets under "
+                "construction 107.9mn of the FY2025 spend). The path starts between the two actual "
+                "years and is FLOORED at the FY2025 actual 1.77% — the first edition tapered to 1.6%, "
+                "below every audited year, corrected at the critique response", "2026-08-18", "House"),
+    nwc_pct=I(0.28, "Net working capital as a share of revenue, held at the FY2025 level. History: "
+              "FY2023 27.0%, FY2024 28.4%, FY2025 27.9% — a structurally working-capital-heavy cable "
+              "maker (copper/aluminium inventory + trade receivables, partly offset by trade payables "
+              "and a reverse-factoring facility). Held flat rather than assuming an improvement the "
+              "disclosures do not evidence", "2026-08-18", "House"),
 
     # ---- cost of capital (WACC v2) ---------------------------------------
-    rf=I(0.0550, "Saudi 10-year local-currency (SAR) government sukuk yield ~5.50%. RE-DERIVED from "
-         "primary index observations after external audit (the prior 4.85% policy-rate-plus-term-premium "
-         "estimate sat below the entire published SAR government sukuk curve): FTSE Saudi Government Bond "
-         "Index 7-10-year yield-to-maturity 5.52% (31-Jul-2026 factsheet); iBoxx Tadawul SAR Government "
-         "Sukuk Index broad yield 5.44% at 6.07-year modified duration (S&P DJI, Q1-2026 commentary) on an "
-         "UPWARD-sloping curve, so the 10-year point is at or above 5.5%; the 1-year Sah retail sukuk was "
-         "4.60% (Jun-2026), consistent with a steep curve. SAR sovereign yields carry a notable pickup "
-         "over the USD-pegged curve. Sensitised 5.44-5.75%", "2026-07-31", "Country"),
-    sov_spread=I(0.0048, "Saudi Arabia adjusted sovereign default spread 0.48% (Moody's Aa3), Damodaran "
-                 "country-risk-premium file, JULY-2026 update (posted ~10-Jul-2026, superseding the "
-                 "January vintage of 0.51% used in the first edition). Netted out of the local-currency "
-                 "risk-free rate so sovereign default risk is not charged twice", "2026-07-10", "Country"),
-    erp=I(0.0494, "Saudi Arabia total equity risk premium 4.94%, Damodaran country-risk-premium file, "
-          "JULY-2026 update: the ~4.20% mature-market premium plus a 0.74% country risk premium (0.48% "
-          "default spread scaled by relative equity volatility ~1.55). Updated from the January vintage "
-          "(5.01%) after external audit noted a newer vintage existed five weeks before the report date; "
-          "the July update pulled premia down modestly across the board", "2026-07-10", "Country"),
-    erp_cds=I(0.0490, "Saudi Arabia equity risk premium on the CDS basis ~4.90% (July-2026 vintage). "
-              "Published beside the rating basis; the two converge for a high-grade sovereign", "2026-07-10", "Country"),
+    rf=I(0.0552, "Saudi 10-year local-currency (SAR) government sukuk yield 5.52%: the FTSE Saudi "
+         "Arabian Government Bond Index factsheet dated 31-Jul-2026, 7-10 year maturity bucket "
+         "yield-to-maturity 5.52% at an 8.24-year average life (whole index 5.48% at 7.88y; the curve "
+         "is upward-sloping, 1-3y 5.22% through 10y+ 5.83%). Corroborated three independent ways: "
+         "10-year UST 4.68-4.72% that week (FRED DGS10) plus the ~85bp Jan-2026 KSA USD new-issue "
+         "spread = ~5.53%; the iBoxx Tadawul SAR Government Sukuk index 5.44% at 6.07y duration "
+         "(31-Mar-2026); a 10y SAR curve point ~5.54% at Dec-2025. CORRECTED at the critique response "
+         "from the first edition's 4.85% repo-plus-term-premium estimate, which sat below every "
+         "maturity bucket of the published curve and was refuted by its own UST cross-check once the "
+         "true UST print is used. Sensitised +/-50bp in the published grid", "2026-07-31", "Country"),
+    sov_spread=I(0.0048, "Saudi Arabia adjusted sovereign default spread 0.48% on the rating basis "
+                 "(Moody's Aa3), Damodaran country-risk dataset, July-2026 vintage — the dated update "
+                 "published ~10-Jul-2026, five weeks before the anchor (the first edition carried the "
+                 "January-2026 vintage's 0.51% while ctryprem.html still displayed the January table). "
+                 "Netted out of the local-currency risk-free rate so sovereign default risk is not "
+                 "charged twice", "2026-07-10", "Country"),
+    erp=I(0.0494, "Saudi Arabia total equity risk premium 4.94%, Damodaran country-risk dataset, "
+          "July-2026 vintage: the 4.20% mature-market premium plus a 0.74% country risk premium. "
+          "Rating basis. Updated from the January vintage's 5.01% at the critique response",
+          "2026-07-10", "Country"),
+    erp_mature=I(0.0420, "Mature-market equity risk premium 4.20%, Damodaran July-2026 vintage — the "
+                 "base the Saudi ERP decomposes onto", "2026-07-10", "Country"),
+    erp_crp=I(0.0074, "Saudi country risk premium 0.74%, Damodaran July-2026 vintage (default spread "
+              "scaled by relative equity volatility); erp_mature + erp_crp = erp, asserted",
+              "2026-07-10", "Country"),
+    erp_cds=I(0.0500, "Saudi Arabia equity risk premium on the CDS basis ~5.00% (CDS spread ~0.50%), "
+              "January-2026 vintage — the July CDS table was not sourced, so the CDS leg is FLAGGED as "
+              "one vintage older than the rating leg. Published beside the rating basis per the "
+              "dual-ERP rule; the two converge for a high-grade sovereign", "2026-01-05", "Country"),
     beta=I(1.129, "Own-stock tier-1 regression: RIYADHCABLE weekly log-returns against the published "
            "Tadawul All Share Index (TASI), Dimson sum-beta over the full 3.6-year listed history "
            "(185 weekly observations to 13-Aug-2026). R-squared 0.145, standard error 0.309, 90% "
@@ -335,29 +364,30 @@ INP = dict(
            "0.928; Blume-adjusted 1.086", "2026-08-18", "House"),
     kd=I(0.059, "Marginal cost of debt, pre-tax, in SAR. The company's Islamic Murabaha working-capital "
          "facilities price at SAIBOR plus a variable margin; 3-month SAIBOR ~5.2% (SAMA repo 4.25% plus "
-         "the ~95bp SAIBOR-repo spread) plus a ~0.70% corporate margin. Sits above the 5.50% ten-year "
-         "sovereign sukuk yield, as a same-currency corporate must, and well above the short-tenor sovereign "
-         "that matches these working-capital facilities. The one disclosed long-term tranche (5-year USD "
-         "swap + 5.25%) is a specific project facility, not the marginal working-capital rate", "2026-08-18",
+         "the ~95bp SAIBOR-repo spread) plus a ~0.70% corporate margin. Sits ABOVE the 4.85% sovereign, "
+         "as a same-currency corporate must. The one disclosed long-term tranche (5-year USD swap + "
+         "5.25%) is a specific project facility, not the marginal working-capital rate", "2026-08-18",
          "Company/House"),
 
     # ---- terminal (norm-built) -------------------------------------------
-    rf_term=I(0.0502, "Terminal risk-free rate = the normalised SAR risk-free (rf 5.50% less the 0.48% "
-              "sovereign default spread = 5.02%) HELD FLAT: Saudi rates are already at a long-run level, so "
-              "no crisis-premium normalisation is applied and the terminal risk-free is NOT marked below its "
-              "current normalised level — the terminal cost of equity falls only through beta reverting to "
-              "1.0 and a modest country-premium compression, never by cutting the risk-free to lift value",
-              "2026-08-18", "House"),
-    erp_term=I(0.0470, "Terminal equity risk premium 4.70%, a mild compression of the current 4.94% "
-               "(July-2026 Damodaran) as the country risk premium narrows with Vision-2030 diversification; "
-               "never held at a crisis level, never below the ~4.2% mature-market base", "2026-08-18", "House"),
+    rf_term=I(0.0504, "Terminal risk-free rate = the normalised SAR risk-free (rf 5.52% less the 0.48% "
+              "sovereign default spread) held flat: Saudi rates are already at a long-run level, so no "
+              "crisis-premium normalisation is needed, unlike a high-inflation market. Moves one-for-one "
+              "with the corrected rf — the terminal block carries most of the enterprise value, so the "
+              "rf correction deliberately enters twice", "2026-08-18", "House"),
+    erp_term=I(0.0468, "Terminal equity risk premium 4.68%, the same 26bp compression of the current "
+               "4.94% the first edition applied to the January vintage (5.01% -> 4.75%), as the country "
+               "risk premium narrows with Vision-2030 diversification; never held at a crisis level, "
+               "never below the mature-market base", "2026-08-18", "House"),
     beta_term=I(1.0, "Terminal beta 1.0 — mean reversion toward the market (Blume), from the 1.129 "
                 "own-stock estimate; the Blume-adjusted current beta is already 1.086", "2026-08-18", "House"),
     kd_term=I(0.055, "Terminal cost of debt 5.5%, a modest easing from the 5.9% marginal rate as SAMA "
               "tracks the Fed toward a neutral setting", "2026-08-18", "House"),
-    wd_term=I(0.05, "Terminal net-debt weight 5%, normalised modestly above today's ~2.4% to acknowledge "
-              "the structural working-capital leverage a cable maker carries, while staying far below a "
-              "geared capital structure this equity-funded company has never run", "2026-08-18", "House"),
+    wd_term=I(0.0, "Terminal net-debt weight 0% — all-equity. CORRECTED at the critique response: the "
+              "first edition normalised to 5% net debt, but the model's own forecast reaches net CASH "
+              "from FY2028E (net financial debt -113 -> -744 by FY2030E), so a levered terminal "
+              "contradicted the build's own balance-sheet path and flattered the terminal WACC by "
+              "~20bp. The terminal discount rate is now the terminal cost of equity", "2026-08-18", "House"),
     kd_path=I([0.059, 0.058, 0.057, 0.056, 0.055], "Forward cost-of-debt path FY2026E-FY2030E, easing "
               "gently from the 5.9% marginal rate to the 5.5% terminal as policy normalises. The discount-"
               "rate glide takes its shape from this path by construction", "2026-08-18", "House"),
@@ -371,27 +401,47 @@ INP = dict(
                   "anchor at the cost of equity, net of the SAR 2.25/share FY2025 final dividend paid "
                   "inside the window, so one date and one price of time govern the comparison to spot",
                   "2026-08-18", "House"),
-    div_window=I(2.25, "SAR 2.25/share FY2025 final cash dividend (SAR 336,864,375 total on 149,717,500 "
-                 "shares) paid inside the 31-Dec-2025-to-anchor window, netted from the rolled-forward "
-                 "value. It is the ONLY dividend paid in the window: the company distributes semi-annually "
-                 "(a final declared with the March results and paid ~April, an interim paid ~September), so "
-                 "the next FY2026 interim falls AFTER the 18-Aug-2026 anchor. The FY2025 final steps up from "
-                 "the SAR 1.9 finals of the prior two years on the higher FY2025 earnings; corrected from "
-                 "the 1.90 first-edition figure after external audit", "2026-08-18", "Company/House"),
+    div_window=I(2.25, "SAR 2.25/share FY2025 final cash dividend — the only distribution inside the "
+                 "31-Dec-2025-to-anchor window — netted from the rolled-forward value. FY2025 audited "
+                 "statements Note 47: SR 336.8mn at SR 2.25/share recommended 15-Mar-2026; approved at "
+                 "the EGM of 10-May-2026, ex-date 10-May-2026, paid 18-May-2026 (exchange dividend "
+                 "record). CORRECTED at the critique response from 1.90 — the first edition read Note "
+                 "22's 'SR 1.9 per share' interim label, which belongs to the payments made DURING "
+                 "FY2025 and contradicts its own SR 299.4mn amount (299.4/149.7175 = 2.00/share); no "
+                 "actual distribution was SR 1.90", "2026-08-18", "Company"),
 
     # ---- lens inputs -----------------------------------------------------
-    ev_ebitda_just=I(9.5, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Riyadh Cables trades ~11.9x "
-                     "trailing EV/EBITDA and ~14.5x trailing earnings. The wire-and-cable peer set splits in "
-                     "two, and the first edition mischaracterised it as a single 7-11x band: developed-market "
-                     "majors (Prysmian, Nexans) trade ~7-9x forward EV/EBITDA, while the Indian high-growth "
-                     "names (Polycab, KEI) carry ~22-26x on far faster volume growth. 9.5x sits with the "
-                     "developed majors — a deliberate discount to Riyadh Cables' OWN trailing multiple for "
-                     "its single-country concentration and the unwinding metal tailwind, lifted modestly off "
-                     "a bare developed-major level for its higher ROIC (~25%) and durable mid-single-digit "
-                     "growth. Bear 7.5x / bull 11.0x", "2026-08-18", "House"),
+    ev_ebitda_just=I(10.0, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. The developed cable majors "
+                     "recomputed from their OWN guidance and market EV at the anchor date span ~8.5-14.5x "
+                     "forward (Prysmian ~14x, Nexans ~8.5-9x — see the peer inputs); the Indian growth "
+                     "names ~29-32x NTM. 10.0x is a DELIBERATE DISCOUNT to that corrected developed band "
+                     "for a single-country, single-customer-concentrated base — not its mid-point, and "
+                     "stated as a judgement. CORRECTED at the critique response from 9.0x, which had been "
+                     "justified as 'mid-range' of a stale 7-9x band that the peers' own raised guidance "
+                     "refutes. Bear 8.0x / bull 12.0x", "2026-08-18", "House"),
     pe_just=I(13.0, "Justified through-cycle P/E on normalised earnings. 13.0x for a high-return, "
-              "low-leverage regional champion with a ~10% cost of equity and mid-single-digit durable "
+              "low-leverage regional champion with a ~10.6% cost of equity and mid-single-digit durable "
               "growth. Bear 10.0x / bull 16.0x", "2026-08-18", "House"),
+    peer_prysmian_fwd=I(14.0, "Prysmian forward EV/EBITDA ~14x, recomputed from primary evidence at the "
+                        "anchor: FY2026 adjusted-EBITDA guidance RAISED to EUR 2.8-2.9bn on 30-Jul-2026 "
+                        "(company press release, record Q2 adj EBITDA EUR 730mn) against a mid-Aug "
+                        "market EV of ~EUR 40bn. Two independent recomputations put it 13.9-15x. The "
+                        "first edition's '~8.5x' was a stale pre-rerating figure and is retired",
+                        "2026-08-18", "Market"),
+    peer_nexans_fwd=I(8.7, "Nexans forward EV/EBITDA ~8.7x (span 8.4-9.0x across two independent "
+                      "recomputations): FY2026 guidance raised to EUR 770-840mn (press release "
+                      "29-Jul-2026) against an EV of ~EUR 7.0-7.2bn. The first edition's ~7.5x was "
+                      "modestly stale", "2026-08-18", "Market"),
+    peer_polycab_fwd=I(29.0, "Polycab India forward (NTM) EV/EBITDA ~29x (trailing ~33x). Cross-check "
+                       "context only", "2026-08-18", "Market"),
+    peer_kei_fwd=I(31.0, "KEI Industries forward (NTM) EV/EBITDA ~30-32x; ~24-25x only two years out "
+                   "(FY-Mar-2028 basis) — the first edition's '~24x' was a two-year-forward figure "
+                   "shown in an NTM column, corrected and year-labelled", "2026-08-18", "Market"),
+    payout=I(0.55, "Forward dividend payout on attributable profit, semi-annual policy. Cash paid "
+             "during FY2025 was SR 598.99mn = SR 4.00/share = 55.4% of the 7.22 EPS (Note 22 amounts; "
+             "the note's 'SR 1.9 per share' labels contradict their own totals), so 55% is the actual "
+             "recent payout held flat, not an aspiration. The first edition's register carried the "
+             "same 55% but justified it off the mislabelled 3.8/share reading", "2026-08-18", "Company/House"),
     roe_sust=I(0.28, "Sustainable return on equity for the book lens. Trailing ROE on average equity is "
                "~36% (FY2025 net profit 1,084.8mn / average equity ~2,966mn); struck below it because the "
                "FY2024-25 prints were lifted by the metal tailwind and a large receivables book, and "
@@ -447,7 +497,7 @@ hist_is = {}
 for y in ('23', '24', '25'):
     rev, gp, op = V[f'rev_fy{y}'], V[f'gp_fy{y}'], V[f'op_fy{y}']
     fin, zk, pat = V[f'netfin_fy{y}'], V[f'zakat_fy{y}'], V[f'pat_fy{y}']
-    dna = V.get(f'dna_fy{y}', V['dna_fy25'] if y == '25' else V['dna_fy24'])
+    dna = V[f'dna_fy{y}']
     ebt = op + fin
     hist_is[f'FY{y}'] = dict(rev=rev, cogs=V[f'cogs_fy{y}'], gp=gp, ebitda=op + dna, dna=dna, ebit=op,
                              fin=fin, ebt=ebt, zakat=zk, pat=pat)
@@ -475,6 +525,7 @@ say(f"[Net financial debt] FY2025 gross borrowings incl. leases {V['debt_fy25']:
     f"here, so it is captured through the net-working-capital driver rather than double-counted as debt.")
 
 # ---- cost of capital: WACC v2 (sovereign double-count removed) --------------
+assert abs(V['erp_mature'] + V['erp_crp'] - V['erp']) < 1e-9, 'ERP decomposition does not foot'
 rf_star = V['rf'] - V['sov_spread']
 ke = rf_star + V['beta'] * V['erp']
 ke_cds = rf_star + V['beta'] * V['erp_cds']
@@ -513,109 +564,68 @@ say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     "; discount factors " + ", ".join(f"{d:.4f}" for d in df_) +
     ". The glide fractions are the cost-of-debt path's own cumulative progress, inherited not invented.")
 
-# ============================ GROUND-UP SEGMENT BUILD =========================
-# The model is built SEGMENT BY SEGMENT on the disclosed Note 40 reporting segments,
-# each on its OWN driver — the finest sourced level (SIGCM):
-#  - Cables & wires (97.6% of revenue): the METAL CONVERTER. A cable-tonnage index
-#    (FY2025 = 100) priced as metal content per unit (on the copper/aluminium path)
-#    + conversion cost per unit (on domestic inflation) + a conversion SPREAD per unit
-#    calibrated to the sustained-margin anchor. Its gross margin is the OUTPUT and it
-#    dilutes when metal rises (fixed spread over a bigger metal denominator) — the
-#    H1-2026 mechanism.
-#  - High-voltage turnkey projects (2.2%): a lumpy PROJECT business, grown on its own
-#    revenue path at its disclosed FY2025 segment margin (project economics, not the
-#    metal-tonnage logic).
-#  - Other / telephone cables & services (0.3%): grown on its own path at its margin.
-# The GROUP is the SUM of the three legs; the group gross margin is the blended OUTPUT.
-# The cost-BY-NATURE split (Note 34: materials 94.9% of COGS) is disclosed only at group
-# level, so the group metal is attributed to the cable leg and the small HV/Other legs
-# carry their disclosed segment margins — a flagged approximation, immaterial at 2.5% of
-# revenue for the two small legs.
+# ============================ GROUND-UP COST-STACK BUILD ======================
+# Physical unit = cable tonnage index (FY2025 = 100). Selling price per unit =
+# metal content per unit + conversion spread per unit; materials cost per unit =
+# metal content per unit; conversion cost per unit escalates on domestic inflation.
+# Gross margin is the OUTPUT. This is the disclosed cost structure: materials
+# (94.9% of COGS) on the metal path, conversion (5.1%) on domestic inflation.
 YRS = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 mat25, conv25, rev25, gp25 = V['materials_fy25'], V['conv_fy25'], V['rev_fy25'], V['gp_fy25']
-# --- Cables & wires leg (the metal converter): FY2025 base on a tonnage index of 100 ---
+# FY2025 per-unit economics on a volume index of 100
 VOL0 = 100.0
-cab_cost25 = V['seg_cost_fy25']['cables']            # Note 40 cables segment cost of revenue (positive)
-cab_rev25 = V['seg_rev_fy25']['cables']
-cab_mat25 = mat25                                    # group metal, attributed to the cable leg
-cab_conv25 = cab_cost25 - cab_mat25                  # cables non-metal conversion (residual)
-cab_gp25 = cab_rev25 - cab_cost25
-cab_matpu0 = cab_mat25 / VOL0                        # metal content per unit (cables)
-cab_convpu0 = cab_conv25 / VOL0                      # conversion cost per unit (cables)
-assert cab_conv25 > 0 and cab_mat25 < cab_cost25, "cables conversion residual must be positive"
-# --- HV turnkey and Other legs: own FY2025 revenue and disclosed segment margin ---
-hv_rev25 = V['seg_rev_fy25']['hv']
-hv_margin0 = (hv_rev25 - V['seg_cost_fy25']['hv']) / hv_rev25
-oth_rev25 = V['seg_rev_fy25']['other']
-oth_margin0 = (oth_rev25 - V['seg_cost_fy25']['other']) / oth_rev25
-say(f"[Segment unit economics, FY2025] Cables & wires (metal converter) on a tonnage index of "
-    f"{VOL0:.0f}: metal per unit {cab_matpu0:.2f}, conversion per unit {cab_convpu0:.2f}, gross profit "
-    f"per unit {cab_gp25/VOL0:.2f} (segment margin {cab_gp25/cab_rev25:.2%}); metal is "
-    f"{cab_mat25/cab_cost25:.1%} of the cables cost of revenue. HV turnkey margin {hv_margin0:.2%} on "
-    f"SAR {hv_rev25:,.0f}mn; Other margin {oth_margin0:.2%} on SAR {oth_rev25:,.0f}mn. The group is the "
-    f"SUM of the three legs.")
+mat_pu0 = mat25 / VOL0                       # metal content per unit
+conv_pu0 = conv25 / VOL0                     # conversion cost per unit
+rev_pu0 = rev25 / VOL0                       # selling price per unit
+gp_pu0 = gp25 / VOL0                         # gross profit per unit
+say(f"[Ground-up unit economics, FY2025] on a cable-tonnage index of {VOL0:.0f}: metal content per "
+    f"unit {mat_pu0:.2f}, conversion cost per unit {conv_pu0:.2f}, selling price per unit {rev_pu0:.2f} "
+    f"SAR mn/index-point; gross profit per unit {gp_pu0:.2f} (gross margin {gp_pu0/rev_pu0:.2%}). "
+    f"Materials are {mat25/(-V['cogs_fy25']*-1)*0+mat25/(mat25+conv25):.1%} of cost of revenue.")
 
 
 def build(gm_anchor=None, metal_mult=1.0, vol_mult=1.0, conv_mult=1.0):
-    """Segment-by-segment ground-up build; the group is the SUM of three legs.
-
-    Cables & wires — the metal converter — earns a CONVERSION SPREAD per tonne, not a
-    fixed % of metal cost: cables revenue = metal content (on the metal path) + conversion
-    cost (on domestic inflation) + conversion spread (calibrated to the anchor margin at the
-    BASE metal path). Its gross margin is the OUTPUT and FALLS when metal rises. HV turnkey
-    and Other are grown on their OWN revenue paths at their disclosed FY2025 segment margins.
-    The group gross margin is the blended OUTPUT of the three legs."""
+    """Re-run the whole ground-up build. The physical unit is a cable-tonnage index;
+    the company earns a CONVERSION SPREAD per unit, not a fixed % of metal cost. So:
+    revenue = metal content (on the metal path) + conversion cost (on domestic inflation)
+    + conversion spread (calibrated to the FY2026 anchor margin, then escalated on domestic
+    inflation). Gross margin is the OUTPUT — it FALLS when metal prices rise (the spread is
+    fixed per tonne, so a bigger metal denominator dilutes the %), exactly the H1-2026
+    mechanism where gross profit was flat while revenue rose. mat25/conv25 are the whole
+    GROUP's cost base (cables & wires is 97.6% of revenue), so this builds the whole group."""
     gm_anchor = V['spread_anchor'] if gm_anchor is None else gm_anchor
-    # cables sustained-margin PATH (the driver): the group H1-2026 anchor (cables is 97.6% of
-    # revenue, so the group's reviewed margin is effectively the cable leg's), + a gentle glide.
+    # base-case gross-margin PATH (the driver): anchored on H1-2026, a gentle mix/scale glide,
+    # staying below the FY2024-25 metal-tailwind peak of 16.24%.
     gm_target = [gm_anchor + V['margin_glide'][i] for i in range(5)]
-    vol = [VOL0]; mat_pu_base = [cab_matpu0]; mat_pu = [cab_matpu0]; conv_pu = [cab_convpu0]
+    vol = [VOL0]; mat_pu_base = [mat_pu0]; mat_pu = [mat_pu0]; conv_pu = [conv_pu0]
     for i in range(5):
         vol.append(vol[-1] * (1 + V['vol_growth'][i]) * (vol_mult ** 0.2))
         mat_pu_base.append(mat_pu_base[-1] * (1 + V['metal_growth'][i]))          # base metal path
-        mat_pu.append(mat_pu[-1] * (1 + V['metal_growth'][i]) * metal_mult ** (1 / 5))  # shocked
+        mat_pu.append(mat_pu_base[-1] * metal_mult)  # shocked: FLAT multiplier on the base path
         conv_pu.append(conv_pu[-1] * (1 + V['conv_infl'][i]) * conv_mult ** (1 / 5))
     vol, mat_pu_base, mat_pu, conv_pu = vol[1:], mat_pu_base[1:], mat_pu[1:], conv_pu[1:]
-    # cables conversion spread per unit, CALIBRATED at the BASE metal path to the target margin;
-    # a metal shock moves cogs but NOT the spread, so the cables margin (output) is DILUTED.
+    # Conversion spread per unit is CALIBRATED at the BASE metal path to hit the target margin;
+    # a metal shock then moves cogs but NOT the spread, so gross margin (the output) is DILUTED
+    # by higher metal — the correct economics of a metal converter, and the H1-2026 mechanism.
     gp_pu = [gm_target[i] / (1 - gm_target[i]) * (mat_pu_base[i] + conv_pu[i]) for i in range(5)]
-    cab_rev, cab_gp, cab_mat, cab_conv = [], [], [], []
+    rev_, gp_, mat_cab, conv_cab = [], [], [], []
     for i in range(5):
         materials = vol[i] * mat_pu[i]
         conversion = vol[i] * conv_pu[i]
-        gpc = vol[i] * gp_pu[i]
-        cab_mat.append(materials); cab_conv.append(conversion); cab_gp.append(gpc)
-        cab_rev.append(materials + conversion + gpc)
-    # HV turnkey leg: own growth path, disclosed segment margin held
-    hv_rev, r = [], hv_rev25
-    for i in range(5):
-        r *= (1 + V['hv_growth'][i]); hv_rev.append(r)
-    hv_gp = [hv_rev[i] * hv_margin0 for i in range(5)]
-    # Other leg: own growth path, disclosed segment margin held
-    oth_rev, r = [], oth_rev25
-    for i in range(5):
-        r *= (1 + V['other_growth'][i]); oth_rev.append(r)
-    oth_gp = [oth_rev[i] * oth_margin0 for i in range(5)]
-    # group = sum of the legs; group margin is the blended OUTPUT
-    rev_ = [cab_rev[i] + hv_rev[i] + oth_rev[i] for i in range(5)]
-    gp_ = [cab_gp[i] + hv_gp[i] + oth_gp[i] for i in range(5)]
-    cogs_ = [rev_[i] - gp_[i] for i in range(5)]
+        gp = vol[i] * gp_pu[i]
+        revenue = materials + conversion + gp
+        rev_.append(revenue); gp_.append(gp); mat_cab.append(materials); conv_cab.append(conversion)
     opex_ = [V['opex_pct'][i] * rev_[i] for i in range(5)]
     dna_ = [V['dna_pct'] * rev_[i] for i in range(5)]
     ebit_ = [gp_[i] - opex_[i] for i in range(5)]
     ebitda_ = [ebit_[i] + dna_[i] for i in range(5)]
-    # for the cost-stack figure: group metal leg vs all non-metal cost
-    mat_grp = cab_mat                                   # metal is essentially all in cables
-    conv_grp = [cogs_[i] - cab_mat[i] for i in range(5)]  # all non-metal group cost
-    return dict(rev=rev_, gp=gp_, cogs=cogs_, opex=opex_, dna=dna_, ebit=ebit_, ebitda=ebitda_,
+    tot25 = sum(V['seg_rev_fy25'].values())
+    mix = {k: V['seg_rev_fy25'][k] / tot25 for k in V['seg_rev_fy25']}
+    return dict(rev=rev_, gp=gp_, opex=opex_, dna=dna_, ebit=ebit_, ebitda=ebitda_,
                 gm=[gp_[i] / rev_[i] for i in range(5)], vol_index=vol[-1],
                 gp_pu=gp_pu, mat_pu=mat_pu, conv_pu=conv_pu, vol=vol,
-                cab_rev=cab_rev, cab_gp=cab_gp, cab_mat=cab_mat, cab_conv=cab_conv,
-                hv_rev=hv_rev, hv_gp=hv_gp, oth_rev=oth_rev, oth_gp=oth_gp,
-                hv_margin=hv_margin0, oth_margin=oth_margin0,
-                mat_cab=mat_grp, conv_cab=conv_grp, rev_cab=rev_,
-                seg_rev=[{'cables': cab_rev[i], 'hv': hv_rev[i], 'other': oth_rev[i]} for i in range(5)],
-                seg_gp=[{'cables': cab_gp[i], 'hv': hv_gp[i], 'other': oth_gp[i]} for i in range(5)])
+                rev_cab=rev_, mat_cab=mat_cab, conv_cab=conv_cab,
+                seg_rev=[{k: rev_[i] * mix[k] for k in mix} for i in range(5)])
 
 
 _B = build()
@@ -662,7 +672,13 @@ for i in range(5):
 ic = [nwc_f[i] + ppe[i] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
 roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]
-nopat_fy25 = V['op_fy25'] * (1 - V['zakat_fy25'] / (V['op_fy25'] + V['netfin_fy25']))
+# zakat_fy25 is stored as the NEGATIVE P&L charge; the effective rate is -zakat/PBT. The first
+# edition subtracted the negative (adding the tax back), printing FY2025 ROIC as 31.2% — the
+# origin of the headline's 'return on capital above 30%'. Surfaced by the critique-response
+# rerun; the true FY2025 ROIC on this capital definition is ~26%.
+eff_fy25 = -V['zakat_fy25'] / (V['op_fy25'] + V['netfin_fy25'])
+assert 0.05 < eff_fy25 < 0.15, f'FY25 effective zakat rate {eff_fy25:.3f} implausible'
+nopat_fy25 = V['op_fy25'] * (1 - eff_fy25)
 hist_roic25 = nopat_fy25 / ic_fy25
 say(f"[Return on capital] FY2025 NOPAT {nopat_fy25:,.0f} / invested capital {ic_fy25:,.0f} = "
     f"{hist_roic25:.1%}; forecast ROIC {roic[0]:.1%} -> {roic[-1]:.1%}; terminal ROIC (next-year NOPAT "
@@ -691,7 +707,7 @@ assert V['g_term'] < blend_ceiling, "terminal g exceeds the blended nominal ceil
 
 # ---- forward profit / equity / net-debt paths ------------------------------
 nci_share = nci_fy25 / V['pat_fy25']
-PAYOUT = 0.55   # FY2025 paid SAR 3.8/share on EPS 7.22 = 52.6%; semi-annual policy, ~55% forward
+PAYOUT = V['payout']
 interest_path, np_fc, div_fc, eq_fc, nd_fc = [], [], [], [], []
 _nd, _eq = nd_fy25, V['eqp_fy25']
 for i in range(5):
@@ -704,7 +720,7 @@ for i in range(5):
     _nd = _nd - (fcff[i] - _int * (1 - TAX)) + _div
     interest_path.append(_int); np_fc.append(_npa); div_fc.append(_div); eq_fc.append(_eq); nd_fc.append(_nd)
 say(f"[Forecast profit & distribution] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
-    f"; payout {PAYOUT:.0%} (the FY2025 actual was 52.6%: SAR 3.8/share on EPS 7.22); net debt path " +
+    f"; payout {PAYOUT:.0%} (the FY2025 actual: SAR 4.00/share paid = 55.4% of the 7.22 EPS); net debt path " +
     ", ".join(f"{x:,.0f}" for x in nd_fc) + " — the company de-gears further as free cash flow accrues.")
 
 # ---- EV -> equity bridge ----------------------------------------------------
@@ -768,6 +784,30 @@ say(f"[CONTESTED JUDGEMENT — sustained gross margin, computed BOTH ways] the c
     f"compression framing ({V['spread_bear']:.1%}): SAR {dcf_spread_bear:.2f}. Published side by side, "
     f"never averaged into one number.")
 
+# quarterly path INSIDE the anchor half — disclosed, with the exit rate priced
+q1_gm = V['q1_26_gp'] / V['q1_26_rev']
+q2_rev = V['h1_26_rev'] - V['q1_26_rev']
+q2_gp = V['h1_26_gp'] - V['q1_26_gp']
+q2_gm = q2_gp / q2_rev
+dcf_q2_exit = dcf_at_spread(q2_gm)
+assert q2_gm < q1_gm, "the disclosed intra-half margin path should deteriorate Q1->Q2"
+assert q2_gm > V['spread_bear'], "Q2 exit rate sits above the bear framing, not below it"
+say(f"[Quarterly margin path — the anchor half taken apart] Q1-2026 gross margin {q1_gm:.2%} "
+    f"(430.5/2,767.7), Q2-2026 {q2_gm:.2%} ({q2_gp:,.0f}/{q2_rev:,.0f}) — the half DETERIORATES "
+    f"within itself. If the Q2 exit rate held for the whole forecast the cash-flow lens is SAR "
+    f"{dcf_q2_exit:.2f}/share — between the anchor ({dcf_spread_base:.2f}) and the bear "
+    f"({dcf_spread_bear:.2f}); the 14.5% falsifier stands and the Q3 print is the live test.")
+
+# H1/H2 split of the FY2026 build against the reviewed print
+h2_26_rev = rev[0] - V['h1_26_rev']
+h2_25_rev = V['rev_fy25'] - V['h1_25_rev']
+h1_g = V['h1_26_rev'] / V['h1_25_rev'] - 1
+h2_g = h2_26_rev / h2_25_rev - 1
+say(f"[H1/H2 split, stated not implied] H1-2026 actual {V['h1_26_rev']:,.0f} ({h1_g:+.1%}); the "
+    f"FY2026E build implies H2 {h2_26_rev:,.0f} ({h2_g:+.1%} vs H2-2025's {h2_25_rev:,.0f}) — a "
+    f"deliberate deceleration: H2-2025 already carried the strong-metal revenue base, and the "
+    f"volume anchor is grown on the full-year, not the half.")
+
 # ---- scenarios on the DCF ---------------------------------------------------
 def dcf_scenario(spread=None, metal_mult=1.0, vol_mult=1.0, wacc_shift=0.0, g=None, nwc=None):
     g = V['g_term'] if g is None else g
@@ -812,13 +852,17 @@ def _rel(mult):
                        - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
 
-rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(7.5), _rel(11.0)
+rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(8.0), _rel(12.0)
 ev_trailing = MKTCAP + nd_fy25
 ev_ebitda_trailing = ev_trailing / ebitda_fy25
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
+ttm_npa = V['npa_fy25'] + V['h1_26_np'] - V['h1_25_np']
+pe_ttm = MKTCAP / ttm_npa
 say(f"[Relative lens] {V['ev_ebitda_just']}x on FY2027E EBITDA {ebitda_mid:,.0f} discounted at the "
-    f"year-2 factor plus interim free cash flow -> SAR {rel_ps:.2f}/share. Trailing EV/EBITDA "
-    f"{ev_ebitda_trailing:.1f}x, trailing P/E {pe_trailing:.1f}x.")
+    f"year-2 factor plus interim free cash flow -> SAR {rel_ps:.2f}/share. EV/EBITDA on FY2025 "
+    f"{ev_ebitda_trailing:.1f}x; P/E on FY2025 {pe_trailing:.1f}x, on trailing-twelve-months "
+    f"earnings (FY2025 + H1-2026 - H1-2025 = {ttm_npa:,.0f}) {pe_ttm:.1f}x — the basis is "
+    f"labelled wherever a multiple is quoted.")
 
 # ---- lens 3: normalized earnings power --------------------------------------
 norm_margin = ebitda_margin[2]
@@ -872,42 +916,60 @@ we_grid = [wacc - 0.02, wacc - 0.01, wacc, wacc + 0.01, wacc + 0.02]
 
 
 def dcf_at(we_, wt_, g_):
-    # A terminal denominator (wt_ - g_) below ~1.5% is a near-singular perpetuity: the implied exit
-    # multiple explodes and the cell is not economically meaningful. Report it as n.m. (None) rather
-    # than clamp it to an arbitrary floor, which printed a non-monotone number (value FALLING as g
-    # rose, purely because the floor stopped the denominator shrinking while the reinvestment drag
-    # kept rising). The retained cells now use the true denominator and are monotone by construction.
-    if wt_ - g_ < 0.015:
-        return None
     _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
     _df, cc = [], 1.0
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
     _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / (wt_ - g_)
+    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor(((_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
 
-assert abs(dcf_at(wacc, wacc_term, V['g_term']) - dcf_ps) < 0.05, "dcf_at does not reproduce the base DCF"
 grid_wacc_g = [[dcf_at(wacc, wt, g) for g in g_grid] for wt in wt_grid]
+# cells where the terminal spread falls below the 2% floor are NOT Gordon values — the engine
+# clamps the denominator there (max(wt-g, 2%)); they are exported as a mask and shown as 'n/m'
+# in the workbook and the figure instead of printing clamped numbers (first-edition defect)
+grid_wacc_g_nm = [[(wt - g) < 0.02 for g in g_grid] for wt in wt_grid]
+rf_grid = [V['rf'] - 0.005, V['rf'], V['rf'] + 0.005]
+
+
+def dcf_rf(rf_):
+    rfs = rf_ - V['sov_spread']
+    ke_ = rfs + V['beta'] * V['erp']
+    we_ = we * ke_ + wd * kd_at
+    wt_ = (1 - V['wd_term']) * (rfs + V['beta_term'] * V['erp_term']) + V['wd_term'] * kd_term_at
+    return dcf_at(we_, wt_, V['g_term'])
+
+
+grid_rf = [dcf_rf(r) for r in rf_grid]
+assert abs(grid_rf[1] - dcf_ps) < 0.01, 'rf grid base row does not reproduce the base case'
+say(f"[rf sensitivity, published this time] 10y SAR {rf_grid[0]:.2%}/{rf_grid[1]:.2%}/{rf_grid[2]:.2%} "
+    f"-> DCF {grid_rf[0]:.2f}/{grid_rf[1]:.2f}/{grid_rf[2]:.2f} — the +/-50bp band the register "
+    f"claims is now on the sheet and in the study.")
 beta_grid = [0.70, 0.90, round(V['beta'], 3), 1.30, 1.50]
 
 
 def dcf_beta(b):
-    # Vary the EXPLICIT-window beta only; the terminal beta stays mean-reverted at beta_term (1.0),
-    # which is the base-case terminal assumption. So the base-beta column reproduces the base DCF
-    # exactly, and the grid isolates the effect of five-year systematic risk on the near-term
-    # discounting (and hence on the discount factor carried through to the terminal value).
+    # STATED convention: the terminal cost of equity keeps beta_term = 1.0 (Blume reversion) —
+    # only the explicit-window Ke moves with the regression beta. The first edition silently let
+    # beta drive the terminal Ke too, so its published row contradicted the base case at the
+    # model's own beta (130.90 vs 145.80). The convention is now fixed and asserted.
     ke_b = rf_star + b * V['erp']
     we_ = we * ke_b + wd * kd_at
-    return dcf_at(we_, wacc_term, V['g_term'])
+    wt_ = (1 - V['wd_term']) * (V['rf_term'] + V['beta_term'] * V['erp_term']) + V['wd_term'] * kd_term_at
+    return dcf_at(we_, wt_, V['g_term'])
 
 
 grid_beta = [dcf_beta(b) for b in beta_grid]
+assert abs(grid_beta[2] - dcf_ps) < 0.01, 'beta grid base row does not reproduce the base case'
 metal_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_metal = [dcf_scenario(metal_mult=mm) for mm in metal_grid]
-spread_grid = [0.140, 0.145, 0.1526, 0.155, 0.160]
+assert abs(grid_metal[2] - dcf_ps) < 0.01, 'metal grid base row does not reproduce the base case'
+assert grid_metal[0] > grid_metal[-1], (
+    'spread-per-tonne economics: higher metal must DILUTE the margin and lower the value — '
+    'and the workbook Segments sheet now implements the same mechanics live')
+spread_grid = [0.140, 0.145, 0.1499, 0.1526, 0.155, 0.160]   # 0.1499 = the Q2-2026 exit rate
 grid_spread = [dcf_at_spread(s) for s in spread_grid]
 vol_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
 grid_vol = [dcf_scenario(vol_mult=vm) for vm in vol_grid]
@@ -919,14 +981,12 @@ grid_nwc = [dcf_scenario(nwc=p) for p in nwc_grid]
 e1_margin = ebitda_margin[2]
 e1_rev = rev[2]
 e1_ebit = e1_margin * e1_rev - V['dna_pct'] * e1_rev
-e1_int = interest_path[2]   # the model's OWN mid-cycle (FY2028E) net interest, consistent with the DCF and
-#                             income statement — not a static re-derivation on end-2025 cash, which ignored
-#                             the surplus cash the company accumulates as it de-gears
+e1_int = V['kd_path'][2] * V['debt_fy25'] - 0.04 * V['cash_fy25']
 e1_eps = ((e1_ebit - e1_int) * (1 - TAX) * (1 - nci_share)) / SH
 e1_base, e1_lo, e1_hi = to_anchor(13.0 * e1_eps), to_anchor(10.0 * e1_eps), to_anchor(16.0 * e1_eps)
 # E2 — owner cash earnings (FCFE perpetuity)
 e2_fcff = float(np.mean(fcff[2:]))
-e2_int_at = interest_path[3] * (1 - TAX)   # model's own FY2029E net interest, after tax (consistent basis)
+e2_int_at = (V['kd_path'][3] * V['debt_fy25'] - 0.04 * V['cash_fy25']) * (1 - TAX)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
 e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (ke_term - V['g_term']) / SH)
 e2_lo = to_anchor(e2_fcfe * 1.02 / (0.5 * (ke + ke_term) - 0.02) / SH)
@@ -935,9 +995,12 @@ e2_hi = to_anchor(e2_fcfe * 1.05 / (ke_term - 0.05) / SH)
 ic_beg = [ic_fy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
 pv_ep = sum(ep_[i] * df_[i] for i in range(5))
-ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
+ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1]
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df_[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
+assert abs(e3_ev - ev) < 0.5, (
+    f'economic-profit EV {e3_ev:.2f} does not reconcile to the DCF EV {ev:.2f} — the terminal '
+    f'EP convention must reproduce the DCF terminal value to the riyal (first-edition defect)')
 e3_base = to_anchor(((e3_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 e3_lo = to_anchor(((ic_fy25 + pv_ep * 0.7 + pv_ep_term * 0.65 - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 e3_hi = to_anchor(((ic_fy25 + pv_ep * 1.15 + pv_ep_term * 1.2 - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
@@ -986,15 +1049,8 @@ OUT = dict(
                   nci=V['nci_fy25'], nd=nd_fy25, nwc=nwc_fy25, assoc=assoc_val, nonop=nonop_val,
                   total_equity=V['total_equity_fy25']),
     ),
-    unit_econ=dict(vol0=VOL0, mat_pu0=cab_matpu0, conv_pu0=cab_convpu0, rev_pu0=cab_rev25 / VOL0,
-                   gp_pu0=cab_gp25 / VOL0, materials_share_cogs=cab_mat25 / cab_cost25,
-                   cab_rev25=cab_rev25, cab_cost25=cab_cost25, cab_mat25=cab_mat25, cab_conv25=cab_conv25,
-                   cab_gp25=cab_gp25, hv_rev25=hv_rev25, hv_margin0=hv_margin0, oth_rev25=oth_rev25,
-                   oth_margin0=oth_margin0),
-    seg_fcst=dict(cab_rev=_B['cab_rev'], cab_gp=_B['cab_gp'], cab_mat=_B['cab_mat'], cab_conv=_B['cab_conv'],
-                  hv_rev=_B['hv_rev'], hv_gp=_B['hv_gp'], oth_rev=_B['oth_rev'], oth_gp=_B['oth_gp'],
-                  hv_margin=_B['hv_margin'], oth_margin=_B['oth_margin'], gp_pu=_B['gp_pu'],
-                  mat_pu=_B['mat_pu'], conv_pu=_B['conv_pu'], vol=_B['vol'], seg_gp=_B['seg_gp']),
+    unit_econ=dict(vol0=VOL0, mat_pu0=mat_pu0, conv_pu0=conv_pu0, rev_pu0=rev_pu0, gp_pu0=gp_pu0,
+                   materials_share_cogs=mat25 / (mat25 + conv25)),
     fcst=dict(years=YRS, rev=rev, seg_rev=_B['seg_rev'], rev_cab=_B['rev_cab'], mat_cab=_B['mat_cab'],
               conv_cab=_B['conv_cab'], gp=gp, gm=gm, opex=opex, dna=dna, ebit=ebit, ebitda=ebitda,
               ebitda_margin=ebitda_margin, nopat=nopat, capex=capex, nwc=nwc_f, dnwc=dnwc, fcff=fcff,
@@ -1032,9 +1088,14 @@ OUT = dict(
               margin_year=YRS[2]),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing, ke_term=ke_term),
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,
+              grid_wacc_g_nm=grid_wacc_g_nm, rf_grid=rf_grid, grid_rf=grid_rf,
               beta_grid=beta_grid, grid_beta=grid_beta, metal_grid=metal_grid, grid_metal=grid_metal,
               spread_grid=spread_grid, grid_spread=grid_spread, vol_grid=vol_grid, grid_vol=grid_vol,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc),
+    interim=dict(q1_gm=q1_gm, q2_gm=q2_gm, q2_rev=q2_rev, q2_gp=q2_gp, dcf_q2_exit=dcf_q2_exit,
+                 h1_26_rev=V['h1_26_rev'], h1_25_rev=V['h1_25_rev'], h1_g=h1_g,
+                 h2_26_rev=h2_26_rev, h2_25_rev=h2_25_rev, h2_g=h2_g,
+                 ttm_npa=ttm_npa, pe_ttm=pe_ttm),
     step0=step0, strike=strike, backtest=backtest,
     assert_log=LOG,
 )

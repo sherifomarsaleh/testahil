@@ -68,17 +68,19 @@ ax.set_title('Riyadh Cables — valuation football field (bear–bull span per l
 style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig1_football.png')); plt.close(fig)
 
 # ---- F2 sensitivity heatmap (terminal WACC x terminal g) --------------------
-S = d['sens']
-tab = np.array([[np.nan if v is None else v for v in row] for row in S['grid_wacc_g']], dtype=float)
+S = d['sens']; tab = np.array(S['grid_wacc_g'])
+NMM = np.array(S['grid_wacc_g_nm'], dtype=bool)
+tab = np.ma.masked_array(tab, mask=NMM)   # n/m cells carry no colour, only the label
 fig, ax = plt.subplots(figsize=(7.9, 3.8), dpi=110)
-cmap = matplotlib.colors.LinearSegmentedColormap.from_list('th', ['#EFF3F1', '#DCE5E2', '#E8DDC4', GOLD])
-cmap.set_bad('#ECE6D8')
-ax.imshow(np.ma.masked_invalid(tab), cmap=cmap, aspect='auto')
+ax.imshow(tab, cmap=matplotlib.colors.LinearSegmentedColormap.from_list(
+    'th', ['#EFF3F1', '#DCE5E2', '#E8DDC4', GOLD]), aspect='auto')
+NM = S['grid_wacc_g_nm']
 for i in range(tab.shape[0]):
     for j in range(tab.shape[1]):
         v = tab[i, j]
-        if np.isnan(v):
-            ax.text(j, i, 'n.m.', ha='center', va='center', fontsize=8.4, color=GREY, style='italic')
+        if NM[i][j]:
+            # terminal spread below 2%: the growing perpetuity is not meaningful — no number
+            ax.text(j, i, 'n/m', ha='center', va='center', fontsize=9.5, color='#8A948F')
         else:
             ax.text(j, i, f'{v:.0f}', ha='center', va='center', fontsize=9.5, color=INK,
                     fontweight='bold' if abs(v - spot) < 8 else 'normal')
@@ -86,7 +88,7 @@ ax.set_xticks(range(len(S['g_grid'])), [f'{x*100:.0f}%' for x in S['g_grid']])
 ax.set_yticks(range(len(S['wt_grid'])), [f'{x*100:.1f}%' for x in S['wt_grid']])
 ax.set_xlabel('terminal growth g'); ax.set_ylabel('terminal cost of capital')
 ax.set_title(f'DCF fair value (SAR/share) — terminal cost of capital × terminal growth; '
-             f'bold ≈ spot {spot:.0f}', fontsize=10, pad=8)
+             f'bold ≈ spot {spot:.0f}; n/m = terminal spread under 2%', fontsize=10, pad=8)
 ax.grid(False); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_sens.png')); plt.close(fig)
 
 # ---- F3 moving-average stack -------------------------------------------------
