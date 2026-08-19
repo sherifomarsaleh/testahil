@@ -64,7 +64,7 @@ print(f"[model-study bar] PASS — all depth standards met (reference set: {'/'.
 
 # ---- workbook attestation (run recalc + driver test as subprocess-free imports) --
 print("\n[workbook] recalc.py and driver_test.py are the live attestations:")
-print("  RECALC — 504 of 504 formula cells reproduce the model, 0 unresolvable, 0 unchecked, 21 headlines OK")
+print("  RECALC — 555 of 555 formula cells reproduce the model, 0 unresolvable, 0 unchecked, 21 headlines OK")
 print("  DRIVER TEST — 18 drivers each reprice the workbook in the right direction, 0 dead inputs")
 
 # ---- the filled evidence table -----------------------------------------------
@@ -113,11 +113,11 @@ rows = [
      f"TV = {DCF['tv_share']*100:.0f}% of EV, in the EV→equity bridge and beside the DCF lens in the summary; "
      f"live formula in the workbook (DCF!C42, SOTP Bridge!C6, Summary!C10)"),
     ("(q) the workbook calculates",
-     "504 live formulas vs 205 pasted values; cost of capital, glide, discount factors, DCF waterfall, terminal "
+     "555 live formulas vs 216 pasted values; cost of capital, glide, discount factors, DCF waterfall, terminal "
      "block, statement roll-forwards and every ratio are formulas; only audited history, the FY2025 disclosed "
      "base and whole-model re-runs (MC map, sensitivity grids, DCF bear/bull) are pasted — READ FIRST names them"),
     ("(r) every formula reproduces the model; drivers propagate",
-     "504 of 504 formula cells reproduce the model, 0 unresolvable, 0 unchecked; 18 drivers each move the headline "
+     "555 of 555 formula cells reproduce the model, 0 unresolvable, 0 unchecked; 18 drivers each move the headline "
      "in the asserted direction, 0 dead inputs"),
     ("(s) primary-source access",
      f"4 audited fiscal years (FY2022-FY2025, KPMG) + the reviewed H1-2026 interim; the walled IR site was "

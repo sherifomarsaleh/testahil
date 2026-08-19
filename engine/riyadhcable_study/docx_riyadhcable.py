@@ -202,15 +202,21 @@ P(f'The four lenses span SAR {sar(min(LN[k]["base"] for k in ["dcf","relative","
   f'{sar(LN["central"]["base"],0)}.')
 
 H2('1.6  The drivers — each segment on its own driver, margin as an output')
-P(f'Revenue is not grown at one rate. A cable maker sells metal plus a conversion spread. We model a cable-'
-  f'tonnage index, priced as metal content — on its own copper-and-aluminium path — plus a conversion spread '
-  f'whose cost escalates on domestic inflation. Volume grows {pct(IN["vol_growth"][0])} in 2026, tapering to '
-  f'{pct(IN["vol_growth"][4])}, anchored on the reviewed half-year statement that 2026 revenue rose 9.5% "due '
-  f'to the increase in the volume of quantities sold." Metal prices are held broadly flat. Gross margin is then '
-  f'an OUTPUT of the stack — {pct(F["gm"][0])} in 2026 rising gently to {pct(F["gm"][4])}, and never back to the '
-  f'2024–25 peak. Along that expected metal path the conversion spread is set to earn the target margin, so the '
-  f'reported margin holds; an unexpected metal move — the one the sensitivity prices — is not repriced in the '
-  f'spread and therefore dilutes the margin, exactly as the first half of 2026 showed.')
+P(f'Revenue is not grown at one rate, and it is not grown as one business. The model is built on the three '
+  f'disclosed reporting segments, each on its own driver, and summed. Cables and wires — {pct(SEG["rev"]["cables"]/HI["FY25"]["rev"],0)} '
+  f'of revenue — is the metal converter: a cable-tonnage index priced as metal content (on its own copper-and-'
+  f'aluminium path) plus a conversion cost (on domestic inflation) plus a conversion spread, with volume growing '
+  f'{pct(IN["vol_growth"][0])} in 2026 tapering to {pct(IN["vol_growth"][4])}, anchored on the reviewed half-year '
+  f'statement that 2026 revenue rose 9.5% "due to the increase in the volume of quantities sold." High-voltage '
+  f'turnkey projects — a lumpy project business — grow on their own path at their disclosed {pct(D["seg_fcst"]["hv_margin"],0)} '
+  f'segment margin, and the small Other leg likewise. Metal prices are held broadly flat. The group gross margin '
+  f'is then the blended OUTPUT of the three legs — {pct(F["gm"][0])} in 2026 rising gently to {pct(F["gm"][4])}, '
+  f'never back to the 2024–25 peak. Along that expected metal path the cable leg’s conversion spread is set to '
+  f'earn the target margin, so the reported margin holds; an unexpected metal move — the one the sensitivity '
+  f'prices — is not repriced in the spread and therefore dilutes the margin, exactly as the first half of 2026 '
+  f'showed. (The cost-by-nature split is disclosed only at group level, so the group metal is carried in the '
+  f'cable leg and the two small legs carry their disclosed segment margins — immaterial at {pct((SEG["rev"]["hv"]+SEG["rev"]["other"])/HI["FY25"]["rev"],1)} '
+  f'of revenue.)')
 figure(os.path.join(HERE, 'fig7_stack.png'), 6.7,
        'Figure 2. The cost stack. Materials (copper and aluminium) are about 95% of cost of sales; the gross '
        'margin, shown on the right axis, is what is left after materials and conversion cost — an output, not '

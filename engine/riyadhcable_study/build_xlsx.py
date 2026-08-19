@@ -25,34 +25,27 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 REL, NRM, BKL, EXPP = D['rel'], D['norm'], D['book'], D['experts']
 SEG, S0, STK, BT, TR = D['seg_fy25'], D['step0'], D['strike'], D['backtest'], D['terminal_recon']
-UE = D['unit_econ']
+UE = D['unit_econ']; SF = D['seg_fcst']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH, TAX = M['spot'], M['shares_mn'], IN['tax_eff']
 MKTCAP = SPOT * SH
 NCI_SH = DCF['nci_share']
 PAYOUT = F['payout']
 
-# ---- precompute the ground-up arrays exactly as compute.py builds them --------
+# ---- segment arrays exactly as compute.py builds them (read, not recomputed) --------
+# Cables & wires leg (the metal converter):
 VOL0 = UE['vol0']; MATPU0 = UE['mat_pu0']; CONVPU0 = UE['conv_pu0']
-vol = []; v = VOL0
-for i in range(5):
-    v *= (1 + IN['vol_growth'][i]); vol.append(v)
-matpu = []; mp = MATPU0
-for i in range(5):
-    mp *= (1 + IN['metal_growth'][i]); matpu.append(mp)
-convpu = []; cp = CONVPU0
-for i in range(5):
-    cp *= (1 + IN['conv_infl'][i]); convpu.append(cp)
-materials = [vol[i] * matpu[i] for i in range(5)]
-conversion = [vol[i] * convpu[i] for i in range(5)]
-cogs = [materials[i] + conversion[i] for i in range(5)]
+vol, matpu, convpu = SF['vol'], SF['mat_pu'], SF['conv_pu']
+cab_mat, cab_conv, cab_gp, cab_rev = SF['cab_mat'], SF['cab_conv'], SF['cab_gp'], SF['cab_rev']
+gppu = SF['gp_pu']
 gmt = [IN['spread_anchor'] + IN['margin_glide'][i] for i in range(5)]
-# Gross profit per unit = the CONVERSION SPREAD, calibrated to hit the target margin at the metal
-# base path; gross profit = volume x spread; revenue = materials + conversion + gross profit; and
-# gross margin is the OUTPUT (gp/revenue), never an input. This is compute.py's spread-fixed build.
-gppu = [gmt[i] / (1 - gmt[i]) * (matpu[i] + convpu[i]) for i in range(5)]
-gp_seg = [vol[i] * gppu[i] for i in range(5)]
-
+# HV turnkey and Other legs:
+hv_rev, hv_gp, oth_rev, oth_gp = SF['hv_rev'], SF['hv_gp'], SF['oth_rev'], SF['oth_gp']
+CAB_MAT25 = UE['cab_mat25']; CAB_CONV25 = UE['cab_conv25']; CAB_REV25 = UE['cab_rev25']
+CAB_GP25 = UE['cab_gp25']; HV_REV25 = UE['hv_rev25']; OTH_REV25 = UE['oth_rev25']
+# Each leg is built on its OWN driver; the group is the sum and its gross margin is the blended
+# OUTPUT. The cable leg is the metal converter: gross profit = volume x conversion-spread-per-unit,
+# revenue = materials + conversion + gross profit; HV/Other grow at their own rate and margin.
 BLUE = Font(color='0000FF'); GREEN = Font(color='1F6F3C'); BLACK = Font(color='1A1A1A')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='55625E')
 FILL_T = PatternFill('solid', start_color='14322E'); FILL_H = PatternFill('solid', start_color='E8EFEC')
@@ -176,12 +169,18 @@ a_scalar('Terminal beta', IN['beta_term'], '0.000')
 a_scalar('Terminal cost of debt', IN['kd_term'])
 a_scalar('Terminal net-debt weight', IN['wd_term'])
 a_scalar('Terminal growth', IN['g_term'])
-a_section('Forecast drivers — ground-up cost stack')
+a_section('Forecast drivers — Cables & wires leg (metal converter)')
 a_path('Cable volume index growth', IN['vol_growth'])
 a_path('Metal content price growth', IN['metal_growth'])
 a_path('Conversion cost inflation', IN['conv_infl'])
 a_scalar('Sustained gross margin (H1-2026 anchor)', IN['spread_anchor'])
 a_path('Gross-margin glide (added to anchor)', IN['margin_glide'], '0.000')
+a_section('Forecast drivers — HV turnkey & Other legs')
+a_path('HV turnkey revenue growth', IN['hv_growth'])
+a_scalar('HV turnkey segment margin', SF['hv_margin'])
+a_path('Other segment revenue growth', IN['other_growth'])
+a_scalar('Other segment margin', SF['oth_margin'])
+a_section('Forecast drivers — group')
 a_path('Operating expenses / revenue', IN['opex_pct'])
 a_scalar('Depreciation and amortisation / revenue', IN['dna_pct'])
 a_path('Capital expenditure / revenue', IN['capex_pct'])
@@ -202,8 +201,10 @@ a_section('Anchor roll')
 a_scalar('Days to the anchor', IN['anchor_days'], NUM0)
 a_scalar('FY2025 dividend per share paid in window', IN['div_window'], PX)
 a_section('FY2025 disclosed base (audited)')
-a_scalar('FY2025 metal content / materials (SAR mn)', MATPU0 * VOL0, NUM0)
-a_scalar('FY2025 conversion cost (SAR mn)', CONVPU0 * VOL0, NUM0)
+a_scalar('FY2025 cables metal content (SAR mn)', CAB_MAT25, NUM0)
+a_scalar('FY2025 cables conversion cost (SAR mn)', CAB_CONV25, NUM0)
+a_scalar('FY2025 HV turnkey revenue (SAR mn)', HV_REV25, NUM0)
+a_scalar('FY2025 Other segment revenue (SAR mn)', OTH_REV25, NUM0)
 a_scalar('FY2025 net working capital (SAR mn)', F['nwc_fy25'], NUM0)
 a_scalar('FY2025 PP&E (SAR mn)', F['ppe_fy25'], NUM0)
 a_scalar('FY2025 gross borrowings incl. leases (SAR mn)', F['debt_fy25'], NUM0)
@@ -213,65 +214,105 @@ a_scalar('FY2025 non-operating assets (SAR mn)', DCF['nonop'], NUM0)
 a_scalar('FY2025 NCI carrying value (SAR mn)', DCF['nci'], NUM0)
 
 # =========================================================================
-# SEGMENTS — the live ground-up cost-stack build
+# SEGMENTS — three disclosed legs, each on its own driver, summed to the group
 # =========================================================================
 wsg = sheet('Segments')
-title(wsg, 'Segments — ground-up cost-stack build', 'Materials on the metal path; conversion on '
-      'domestic inflation; gross margin is the OUTPUT', 8, awidth=40, cwidth=12)
+title(wsg, 'Segments — three legs, built to the group', 'Each disclosed Note 40 segment on its own '
+      'driver; the cable leg is the metal converter; group gross margin is the blended OUTPUT', 8,
+      awidth=48, cwidth=12)
 hdr(wsg, 4, ['SAR mn / index', 'FY2025', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E'])
 r = {}
-rr = 5
-labels_seg = ['vol', 'matpu', 'convpu', 'gmt', 'gppu', 'mat', 'conv', 'gp', 'rev', 'cogs', 'gm',
-              'opex', 'dna', 'ebit', 'ebitda', 'ebmar']
-names_seg = ['Cable volume index (FY2025=100)', 'Metal content per unit',
-             'Conversion cost per unit', 'Target gross margin (anchor + glide)',
-             'Gross profit per unit (conversion spread)', 'Materials (metal leg)', 'Conversion cost',
-             'Gross profit = volume x spread', 'Revenue = materials + conversion + gross profit',
-             'Cost of revenue', 'Gross margin (OUTPUT = gross profit / revenue)',
-             'Operating expenses', 'Depreciation & amortisation', 'EBIT', 'EBITDA', 'EBITDA margin']
-for k in labels_seg:
-    r[k] = rr; rr += 1
-for k, nm in zip(labels_seg, names_seg):
-    put(wsg, f'A{r[k]}', nm, fmt=None)
-# FY2025 base column B — the disclosed actuals; gross profit is the audited figure, the per-unit
-# spread is recovered from it, and revenue is built up from the components (ties to audited revenue).
-put(wsg, f'B{r["vol"]}', VOL0, BLUE, NUM1)
-putf(wsg, f'B{r["matpu"]}', f'={AC("FY2025 metal content / materials (SAR mn)")}/{VOL0}', MATPU0, NUM2)
-putf(wsg, f'B{r["convpu"]}', f'={AC("FY2025 conversion cost (SAR mn)")}/{VOL0}', CONVPU0, NUM2)
-put(wsg, f'B{r["gp"]}', HI['FY25']['gp'], BLUE, NUM0)  # disclosed FY2025 gross profit (audited)
-putf(wsg, f'B{r["gppu"]}', f'=B{r["gp"]}/B{r["vol"]}', HI['FY25']['gp'] / VOL0, NUM2)
-putf(wsg, f'B{r["mat"]}', f'=B{r["vol"]}*B{r["matpu"]}', MATPU0 * VOL0, NUM0)
-putf(wsg, f'B{r["conv"]}', f'=B{r["vol"]}*B{r["convpu"]}', CONVPU0 * VOL0, NUM0)
-putf(wsg, f'B{r["rev"]}', f'=B{r["mat"]}+B{r["conv"]}+B{r["gp"]}', HI['FY25']['rev'], NUM0)
-putf(wsg, f'B{r["cogs"]}', f'=B{r["mat"]}+B{r["conv"]}', MATPU0 * VOL0 + CONVPU0 * VOL0, NUM0)
-putf(wsg, f'B{r["gm"]}', f'=B{r["gp"]}/B{r["rev"]}', HI['FY25']['gp'] / HI['FY25']['rev'], PCT2)
+_sr = [5]
+
+
+def seg_head(name):
+    band(wsg, _sr[0], 8); put(wsg, f'A{_sr[0]}', name, bold=True, fmt=None); _sr[0] += 1
+
+
+def seg_row(key, name):
+    r[key] = _sr[0]; put(wsg, f'A{_sr[0]}', name, fmt=None); _sr[0] += 1
+
+
+seg_head('Cables & wires — the metal converter')
+for k, nm in [('cvol', 'Cable volume index (FY2025=100)'), ('cmatpu', 'Metal content per unit'),
+              ('cconvpu', 'Conversion cost per unit'), ('cgmt', 'Target gross margin (anchor + glide)'),
+              ('cgppu', 'Gross profit per unit (conversion spread)'), ('cmat', 'Materials (metal leg)'),
+              ('cconv', 'Conversion cost'), ('cgp', 'Gross profit = volume x spread'),
+              ('crev', 'Cables revenue = materials + conversion + gross profit'),
+              ('cgm', 'Cables gross margin (OUTPUT)')]:
+    seg_row(k, nm)
+seg_head('HV turnkey projects — own growth, disclosed margin')
+for k, nm in [('hvrev', 'HV revenue (own growth path)'), ('hvmar', 'HV segment margin'),
+              ('hvgp', 'HV gross profit = revenue x margin')]:
+    seg_row(k, nm)
+seg_head('Other (telephone cables & services) — own growth, disclosed margin')
+for k, nm in [('orev', 'Other revenue (own growth path)'), ('omar', 'Other segment margin'),
+              ('ogp', 'Other gross profit = revenue x margin')]:
+    seg_row(k, nm)
+seg_head('Group — the sum of the three legs')
+for k, nm in [('rev', 'Revenue (group)'), ('gp', 'Gross profit (group)'), ('cogs', 'Cost of revenue (group)'),
+              ('gm', 'Gross margin (OUTPUT = group gross profit / group revenue)'),
+              ('opex', 'Operating expenses'), ('dna', 'Depreciation & amortisation'), ('ebit', 'EBIT'),
+              ('ebitda', 'EBITDA'), ('ebmar', 'EBITDA margin')]:
+    seg_row(k, nm)
+
+# ---- Cables leg: FY2025 base (B) then the forecast ----
+put(wsg, f'B{r["cvol"]}', VOL0, BLUE, NUM1)
+putf(wsg, f'B{r["cmatpu"]}', f'={AC("FY2025 cables metal content (SAR mn)")}/{VOL0}', MATPU0, NUM2)
+putf(wsg, f'B{r["cconvpu"]}', f'={AC("FY2025 cables conversion cost (SAR mn)")}/{VOL0}', CONVPU0, NUM2)
+put(wsg, f'B{r["cgp"]}', CAB_GP25, BLUE, NUM0)  # disclosed FY2025 cables gross profit (Note 40)
+putf(wsg, f'B{r["cgppu"]}', f'=B{r["cgp"]}/B{r["cvol"]}', CAB_GP25 / VOL0, NUM2)
+putf(wsg, f'B{r["cmat"]}', f'=B{r["cvol"]}*B{r["cmatpu"]}', CAB_MAT25, NUM0)
+putf(wsg, f'B{r["cconv"]}', f'=B{r["cvol"]}*B{r["cconvpu"]}', CAB_CONV25, NUM0)
+putf(wsg, f'B{r["crev"]}', f'=B{r["cmat"]}+B{r["cconv"]}+B{r["cgp"]}', CAB_REV25, NUM0)
+putf(wsg, f'B{r["cgm"]}', f'=B{r["cgp"]}/B{r["crev"]}', CAB_GP25 / CAB_REV25, PCT2)
 for i in range(5):
     c = FCUR[i]; pc = 'B' if i == 0 else FCUR[i - 1]
-    putf(wsg, f'{c}{r["vol"]}', f'={pc}{r["vol"]}*(1+{AP("Cable volume index growth", i)})', vol[i], NUM1)
-    putf(wsg, f'{c}{r["matpu"]}', f'={pc}{r["matpu"]}*(1+{AP("Metal content price growth", i)})', matpu[i], NUM2)
-    putf(wsg, f'{c}{r["convpu"]}', f'={pc}{r["convpu"]}*(1+{AP("Conversion cost inflation", i)})', convpu[i], NUM2)
-    putf(wsg, f'{c}{r["gmt"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
-    putf(wsg, f'{c}{r["gppu"]}', f'={c}{r["gmt"]}/(1-{c}{r["gmt"]})*({c}{r["matpu"]}+{c}{r["convpu"]})', gppu[i], NUM2)
-    putf(wsg, f'{c}{r["mat"]}', f'={c}{r["vol"]}*{c}{r["matpu"]}', materials[i], NUM0)
-    putf(wsg, f'{c}{r["conv"]}', f'={c}{r["vol"]}*{c}{r["convpu"]}', conversion[i], NUM0)
-    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["vol"]}*{c}{r["gppu"]}', gp_seg[i], NUM0)
-    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["mat"]}+{c}{r["conv"]}+{c}{r["gp"]}', F['rev'][i], NUM0)
-    putf(wsg, f'{c}{r["cogs"]}', f'={c}{r["mat"]}+{c}{r["conv"]}', cogs[i], NUM0)
-    putf(wsg, f'{c}{r["gm"]}', f'={c}{r["gp"]}/{c}{r["rev"]}', F['gp'][i] / F['rev'][i], PCT2)
+    putf(wsg, f'{c}{r["cvol"]}', f'={pc}{r["cvol"]}*(1+{AP("Cable volume index growth", i)})', vol[i], NUM1)
+    putf(wsg, f'{c}{r["cmatpu"]}', f'={pc}{r["cmatpu"]}*(1+{AP("Metal content price growth", i)})', matpu[i], NUM2)
+    putf(wsg, f'{c}{r["cconvpu"]}', f'={pc}{r["cconvpu"]}*(1+{AP("Conversion cost inflation", i)})', convpu[i], NUM2)
+    putf(wsg, f'{c}{r["cgmt"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
+    putf(wsg, f'{c}{r["cgppu"]}', f'={c}{r["cgmt"]}/(1-{c}{r["cgmt"]})*({c}{r["cmatpu"]}+{c}{r["cconvpu"]})', gppu[i], NUM2)
+    putf(wsg, f'{c}{r["cmat"]}', f'={c}{r["cvol"]}*{c}{r["cmatpu"]}', cab_mat[i], NUM0)
+    putf(wsg, f'{c}{r["cconv"]}', f'={c}{r["cvol"]}*{c}{r["cconvpu"]}', cab_conv[i], NUM0)
+    putf(wsg, f'{c}{r["cgp"]}', f'={c}{r["cvol"]}*{c}{r["cgppu"]}', cab_gp[i], NUM0)
+    putf(wsg, f'{c}{r["crev"]}', f'={c}{r["cmat"]}+{c}{r["cconv"]}+{c}{r["cgp"]}', cab_rev[i], NUM0)
+    putf(wsg, f'{c}{r["cgm"]}', f'={c}{r["cgp"]}/{c}{r["crev"]}', cab_gp[i] / cab_rev[i], PCT2)
+# ---- HV leg ----
+putf(wsg, f'B{r["hvrev"]}', f'={AC("FY2025 HV turnkey revenue (SAR mn)")}', HV_REV25, NUM0)
+putf(wsg, f'B{r["hvmar"]}', f'={AC("HV turnkey segment margin")}', SF['hv_margin'], PCT2)
+putf(wsg, f'B{r["hvgp"]}', f'=B{r["hvrev"]}*B{r["hvmar"]}', HV_REV25 * SF['hv_margin'], NUM0)
+for i in range(5):
+    c = FCUR[i]; pc = 'B' if i == 0 else FCUR[i - 1]
+    putf(wsg, f'{c}{r["hvrev"]}', f'={pc}{r["hvrev"]}*(1+{AP("HV turnkey revenue growth", i)})', hv_rev[i], NUM0)
+    putf(wsg, f'{c}{r["hvmar"]}', f'={AC("HV turnkey segment margin")}', SF['hv_margin'], PCT2)
+    putf(wsg, f'{c}{r["hvgp"]}', f'={c}{r["hvrev"]}*{c}{r["hvmar"]}', hv_gp[i], NUM0)
+# ---- Other leg ----
+putf(wsg, f'B{r["orev"]}', f'={AC("FY2025 Other segment revenue (SAR mn)")}', OTH_REV25, NUM0)
+putf(wsg, f'B{r["omar"]}', f'={AC("Other segment margin")}', SF['oth_margin'], PCT2)
+putf(wsg, f'B{r["ogp"]}', f'=B{r["orev"]}*B{r["omar"]}', OTH_REV25 * SF['oth_margin'], NUM0)
+for i in range(5):
+    c = FCUR[i]; pc = 'B' if i == 0 else FCUR[i - 1]
+    putf(wsg, f'{c}{r["orev"]}', f'={pc}{r["orev"]}*(1+{AP("Other segment revenue growth", i)})', oth_rev[i], NUM0)
+    putf(wsg, f'{c}{r["omar"]}', f'={AC("Other segment margin")}', SF['oth_margin'], PCT2)
+    putf(wsg, f'{c}{r["ogp"]}', f'={c}{r["orev"]}*{c}{r["omar"]}', oth_gp[i], NUM0)
+# ---- Group = sum of the legs ----
+putf(wsg, f'B{r["rev"]}', f'=B{r["crev"]}+B{r["hvrev"]}+B{r["orev"]}', HI['FY25']['rev'], NUM0)
+putf(wsg, f'B{r["gp"]}', f'=B{r["cgp"]}+B{r["hvgp"]}+B{r["ogp"]}', HI['FY25']['gp'], NUM0)
+putf(wsg, f'B{r["cogs"]}', f'=B{r["rev"]}-B{r["gp"]}', HI['FY25']['rev'] - HI['FY25']['gp'], NUM0)
+putf(wsg, f'B{r["gm"]}', f'=B{r["gp"]}/B{r["rev"]}', HI['FY25']['gp'] / HI['FY25']['rev'], PCT2)
+for i in range(5):
+    c = FCUR[i]
+    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["crev"]}+{c}{r["hvrev"]}+{c}{r["orev"]}', F['rev'][i], NUM0)
+    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["cgp"]}+{c}{r["hvgp"]}+{c}{r["ogp"]}', F['gp'][i], NUM0)
+    putf(wsg, f'{c}{r["cogs"]}', f'={c}{r["rev"]}-{c}{r["gp"]}', F['rev'][i] - F['gp'][i], NUM0)
+    putf(wsg, f'{c}{r["gm"]}', f'={c}{r["gp"]}/{c}{r["rev"]}', F['gm'][i], PCT2)
     putf(wsg, f'{c}{r["opex"]}', f'={AP("Operating expenses / revenue", i)}*{c}{r["rev"]}', F['opex'][i], NUM0)
     putf(wsg, f'{c}{r["dna"]}', f'={AC("Depreciation and amortisation / revenue")}*{c}{r["rev"]}', F['dna'][i], NUM0)
     putf(wsg, f'{c}{r["ebit"]}', f'={c}{r["gp"]}-{c}{r["opex"]}', F['ebit'][i], NUM0)
     putf(wsg, f'{c}{r["ebitda"]}', f'={c}{r["ebit"]}+{c}{r["dna"]}', F['ebitda'][i], NUM0)
     putf(wsg, f'{c}{r["ebmar"]}', f'={c}{r["ebitda"]}/{c}{r["rev"]}', F['ebitda_margin'][i], PCT2)
 ANCH['seg'] = r
-# disclosed FY2025 segment split memo
-rr += 1
-band(wsg, rr, 8); put(wsg, f'A{rr}', 'FY2025 disclosed segment revenue (Note 40)', bold=True, fmt=None); rr += 1
-for k, nm in [('cables', 'Cables and wires'), ('hv', 'High-voltage cables (turnkey projects)'),
-              ('other', 'Other (telephone cables & services)')]:
-    put(wsg, f'A{rr}', nm, fmt=None); put(wsg, f'B{rr}', SEG['rev'][k], BLUE, NUM0)
-    putf(wsg, f'C{rr}', f'=B{rr}/B{ANCH["seg"]["rev"]}', SEG['rev'][k] / HI['FY25']['rev'], PCT)
-    rr += 1
 
 # =========================================================================
 # DCF — cost of capital, glide, FCFF waterfall, terminal, bridge

@@ -513,68 +513,109 @@ say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     "; discount factors " + ", ".join(f"{d:.4f}" for d in df_) +
     ". The glide fractions are the cost-of-debt path's own cumulative progress, inherited not invented.")
 
-# ============================ GROUND-UP COST-STACK BUILD ======================
-# Physical unit = cable tonnage index (FY2025 = 100). Selling price per unit =
-# metal content per unit + conversion spread per unit; materials cost per unit =
-# metal content per unit; conversion cost per unit escalates on domestic inflation.
-# Gross margin is the OUTPUT. This is the disclosed cost structure: materials
-# (94.9% of COGS) on the metal path, conversion (5.1%) on domestic inflation.
+# ============================ GROUND-UP SEGMENT BUILD =========================
+# The model is built SEGMENT BY SEGMENT on the disclosed Note 40 reporting segments,
+# each on its OWN driver — the finest sourced level (SIGCM):
+#  - Cables & wires (97.6% of revenue): the METAL CONVERTER. A cable-tonnage index
+#    (FY2025 = 100) priced as metal content per unit (on the copper/aluminium path)
+#    + conversion cost per unit (on domestic inflation) + a conversion SPREAD per unit
+#    calibrated to the sustained-margin anchor. Its gross margin is the OUTPUT and it
+#    dilutes when metal rises (fixed spread over a bigger metal denominator) — the
+#    H1-2026 mechanism.
+#  - High-voltage turnkey projects (2.2%): a lumpy PROJECT business, grown on its own
+#    revenue path at its disclosed FY2025 segment margin (project economics, not the
+#    metal-tonnage logic).
+#  - Other / telephone cables & services (0.3%): grown on its own path at its margin.
+# The GROUP is the SUM of the three legs; the group gross margin is the blended OUTPUT.
+# The cost-BY-NATURE split (Note 34: materials 94.9% of COGS) is disclosed only at group
+# level, so the group metal is attributed to the cable leg and the small HV/Other legs
+# carry their disclosed segment margins — a flagged approximation, immaterial at 2.5% of
+# revenue for the two small legs.
 YRS = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 mat25, conv25, rev25, gp25 = V['materials_fy25'], V['conv_fy25'], V['rev_fy25'], V['gp_fy25']
-# FY2025 per-unit economics on a volume index of 100
+# --- Cables & wires leg (the metal converter): FY2025 base on a tonnage index of 100 ---
 VOL0 = 100.0
-mat_pu0 = mat25 / VOL0                       # metal content per unit
-conv_pu0 = conv25 / VOL0                     # conversion cost per unit
-rev_pu0 = rev25 / VOL0                       # selling price per unit
-gp_pu0 = gp25 / VOL0                         # gross profit per unit
-say(f"[Ground-up unit economics, FY2025] on a cable-tonnage index of {VOL0:.0f}: metal content per "
-    f"unit {mat_pu0:.2f}, conversion cost per unit {conv_pu0:.2f}, selling price per unit {rev_pu0:.2f} "
-    f"SAR mn/index-point; gross profit per unit {gp_pu0:.2f} (gross margin {gp_pu0/rev_pu0:.2%}). "
-    f"Materials are {mat25/(-V['cogs_fy25']*-1)*0+mat25/(mat25+conv25):.1%} of cost of revenue.")
+cab_cost25 = V['seg_cost_fy25']['cables']            # Note 40 cables segment cost of revenue (positive)
+cab_rev25 = V['seg_rev_fy25']['cables']
+cab_mat25 = mat25                                    # group metal, attributed to the cable leg
+cab_conv25 = cab_cost25 - cab_mat25                  # cables non-metal conversion (residual)
+cab_gp25 = cab_rev25 - cab_cost25
+cab_matpu0 = cab_mat25 / VOL0                        # metal content per unit (cables)
+cab_convpu0 = cab_conv25 / VOL0                      # conversion cost per unit (cables)
+assert cab_conv25 > 0 and cab_mat25 < cab_cost25, "cables conversion residual must be positive"
+# --- HV turnkey and Other legs: own FY2025 revenue and disclosed segment margin ---
+hv_rev25 = V['seg_rev_fy25']['hv']
+hv_margin0 = (hv_rev25 - V['seg_cost_fy25']['hv']) / hv_rev25
+oth_rev25 = V['seg_rev_fy25']['other']
+oth_margin0 = (oth_rev25 - V['seg_cost_fy25']['other']) / oth_rev25
+say(f"[Segment unit economics, FY2025] Cables & wires (metal converter) on a tonnage index of "
+    f"{VOL0:.0f}: metal per unit {cab_matpu0:.2f}, conversion per unit {cab_convpu0:.2f}, gross profit "
+    f"per unit {cab_gp25/VOL0:.2f} (segment margin {cab_gp25/cab_rev25:.2%}); metal is "
+    f"{cab_mat25/cab_cost25:.1%} of the cables cost of revenue. HV turnkey margin {hv_margin0:.2%} on "
+    f"SAR {hv_rev25:,.0f}mn; Other margin {oth_margin0:.2%} on SAR {oth_rev25:,.0f}mn. The group is the "
+    f"SUM of the three legs.")
 
 
 def build(gm_anchor=None, metal_mult=1.0, vol_mult=1.0, conv_mult=1.0):
-    """Re-run the whole ground-up build. The physical unit is a cable-tonnage index;
-    the company earns a CONVERSION SPREAD per unit, not a fixed % of metal cost. So:
-    revenue = metal content (on the metal path) + conversion cost (on domestic inflation)
-    + conversion spread (calibrated to the FY2026 anchor margin, then escalated on domestic
-    inflation). Gross margin is the OUTPUT — it FALLS when metal prices rise (the spread is
-    fixed per tonne, so a bigger metal denominator dilutes the %), exactly the H1-2026
-    mechanism where gross profit was flat while revenue rose. mat25/conv25 are the whole
-    GROUP's cost base (cables & wires is 97.6% of revenue), so this builds the whole group."""
+    """Segment-by-segment ground-up build; the group is the SUM of three legs.
+
+    Cables & wires — the metal converter — earns a CONVERSION SPREAD per tonne, not a
+    fixed % of metal cost: cables revenue = metal content (on the metal path) + conversion
+    cost (on domestic inflation) + conversion spread (calibrated to the anchor margin at the
+    BASE metal path). Its gross margin is the OUTPUT and FALLS when metal rises. HV turnkey
+    and Other are grown on their OWN revenue paths at their disclosed FY2025 segment margins.
+    The group gross margin is the blended OUTPUT of the three legs."""
     gm_anchor = V['spread_anchor'] if gm_anchor is None else gm_anchor
-    # base-case gross-margin PATH (the driver): anchored on H1-2026, a gentle mix/scale glide,
-    # staying below the FY2024-25 metal-tailwind peak of 16.24%.
+    # cables sustained-margin PATH (the driver): the group H1-2026 anchor (cables is 97.6% of
+    # revenue, so the group's reviewed margin is effectively the cable leg's), + a gentle glide.
     gm_target = [gm_anchor + V['margin_glide'][i] for i in range(5)]
-    vol = [VOL0]; mat_pu_base = [mat_pu0]; mat_pu = [mat_pu0]; conv_pu = [conv_pu0]
+    vol = [VOL0]; mat_pu_base = [cab_matpu0]; mat_pu = [cab_matpu0]; conv_pu = [cab_convpu0]
     for i in range(5):
         vol.append(vol[-1] * (1 + V['vol_growth'][i]) * (vol_mult ** 0.2))
         mat_pu_base.append(mat_pu_base[-1] * (1 + V['metal_growth'][i]))          # base metal path
         mat_pu.append(mat_pu[-1] * (1 + V['metal_growth'][i]) * metal_mult ** (1 / 5))  # shocked
         conv_pu.append(conv_pu[-1] * (1 + V['conv_infl'][i]) * conv_mult ** (1 / 5))
     vol, mat_pu_base, mat_pu, conv_pu = vol[1:], mat_pu_base[1:], mat_pu[1:], conv_pu[1:]
-    # Conversion spread per unit is CALIBRATED at the BASE metal path to hit the target margin;
-    # a metal shock then moves cogs but NOT the spread, so gross margin (the output) is DILUTED
-    # by higher metal — the correct economics of a metal converter, and the H1-2026 mechanism.
+    # cables conversion spread per unit, CALIBRATED at the BASE metal path to the target margin;
+    # a metal shock moves cogs but NOT the spread, so the cables margin (output) is DILUTED.
     gp_pu = [gm_target[i] / (1 - gm_target[i]) * (mat_pu_base[i] + conv_pu[i]) for i in range(5)]
-    rev_, gp_, mat_cab, conv_cab = [], [], [], []
+    cab_rev, cab_gp, cab_mat, cab_conv = [], [], [], []
     for i in range(5):
         materials = vol[i] * mat_pu[i]
         conversion = vol[i] * conv_pu[i]
-        gp = vol[i] * gp_pu[i]
-        revenue = materials + conversion + gp
-        rev_.append(revenue); gp_.append(gp); mat_cab.append(materials); conv_cab.append(conversion)
+        gpc = vol[i] * gp_pu[i]
+        cab_mat.append(materials); cab_conv.append(conversion); cab_gp.append(gpc)
+        cab_rev.append(materials + conversion + gpc)
+    # HV turnkey leg: own growth path, disclosed segment margin held
+    hv_rev, r = [], hv_rev25
+    for i in range(5):
+        r *= (1 + V['hv_growth'][i]); hv_rev.append(r)
+    hv_gp = [hv_rev[i] * hv_margin0 for i in range(5)]
+    # Other leg: own growth path, disclosed segment margin held
+    oth_rev, r = [], oth_rev25
+    for i in range(5):
+        r *= (1 + V['other_growth'][i]); oth_rev.append(r)
+    oth_gp = [oth_rev[i] * oth_margin0 for i in range(5)]
+    # group = sum of the legs; group margin is the blended OUTPUT
+    rev_ = [cab_rev[i] + hv_rev[i] + oth_rev[i] for i in range(5)]
+    gp_ = [cab_gp[i] + hv_gp[i] + oth_gp[i] for i in range(5)]
+    cogs_ = [rev_[i] - gp_[i] for i in range(5)]
     opex_ = [V['opex_pct'][i] * rev_[i] for i in range(5)]
     dna_ = [V['dna_pct'] * rev_[i] for i in range(5)]
     ebit_ = [gp_[i] - opex_[i] for i in range(5)]
     ebitda_ = [ebit_[i] + dna_[i] for i in range(5)]
-    tot25 = sum(V['seg_rev_fy25'].values())
-    mix = {k: V['seg_rev_fy25'][k] / tot25 for k in V['seg_rev_fy25']}
-    return dict(rev=rev_, gp=gp_, opex=opex_, dna=dna_, ebit=ebit_, ebitda=ebitda_,
+    # for the cost-stack figure: group metal leg vs all non-metal cost
+    mat_grp = cab_mat                                   # metal is essentially all in cables
+    conv_grp = [cogs_[i] - cab_mat[i] for i in range(5)]  # all non-metal group cost
+    return dict(rev=rev_, gp=gp_, cogs=cogs_, opex=opex_, dna=dna_, ebit=ebit_, ebitda=ebitda_,
                 gm=[gp_[i] / rev_[i] for i in range(5)], vol_index=vol[-1],
                 gp_pu=gp_pu, mat_pu=mat_pu, conv_pu=conv_pu, vol=vol,
-                rev_cab=rev_, mat_cab=mat_cab, conv_cab=conv_cab,
-                seg_rev=[{k: rev_[i] * mix[k] for k in mix} for i in range(5)])
+                cab_rev=cab_rev, cab_gp=cab_gp, cab_mat=cab_mat, cab_conv=cab_conv,
+                hv_rev=hv_rev, hv_gp=hv_gp, oth_rev=oth_rev, oth_gp=oth_gp,
+                hv_margin=hv_margin0, oth_margin=oth_margin0,
+                mat_cab=mat_grp, conv_cab=conv_grp, rev_cab=rev_,
+                seg_rev=[{'cables': cab_rev[i], 'hv': hv_rev[i], 'other': oth_rev[i]} for i in range(5)],
+                seg_gp=[{'cables': cab_gp[i], 'hv': hv_gp[i], 'other': oth_gp[i]} for i in range(5)])
 
 
 _B = build()
@@ -945,8 +986,15 @@ OUT = dict(
                   nci=V['nci_fy25'], nd=nd_fy25, nwc=nwc_fy25, assoc=assoc_val, nonop=nonop_val,
                   total_equity=V['total_equity_fy25']),
     ),
-    unit_econ=dict(vol0=VOL0, mat_pu0=mat_pu0, conv_pu0=conv_pu0, rev_pu0=rev_pu0, gp_pu0=gp_pu0,
-                   materials_share_cogs=mat25 / (mat25 + conv25)),
+    unit_econ=dict(vol0=VOL0, mat_pu0=cab_matpu0, conv_pu0=cab_convpu0, rev_pu0=cab_rev25 / VOL0,
+                   gp_pu0=cab_gp25 / VOL0, materials_share_cogs=cab_mat25 / cab_cost25,
+                   cab_rev25=cab_rev25, cab_cost25=cab_cost25, cab_mat25=cab_mat25, cab_conv25=cab_conv25,
+                   cab_gp25=cab_gp25, hv_rev25=hv_rev25, hv_margin0=hv_margin0, oth_rev25=oth_rev25,
+                   oth_margin0=oth_margin0),
+    seg_fcst=dict(cab_rev=_B['cab_rev'], cab_gp=_B['cab_gp'], cab_mat=_B['cab_mat'], cab_conv=_B['cab_conv'],
+                  hv_rev=_B['hv_rev'], hv_gp=_B['hv_gp'], oth_rev=_B['oth_rev'], oth_gp=_B['oth_gp'],
+                  hv_margin=_B['hv_margin'], oth_margin=_B['oth_margin'], gp_pu=_B['gp_pu'],
+                  mat_pu=_B['mat_pu'], conv_pu=_B['conv_pu'], vol=_B['vol'], seg_gp=_B['seg_gp']),
     fcst=dict(years=YRS, rev=rev, seg_rev=_B['seg_rev'], rev_cab=_B['rev_cab'], mat_cab=_B['mat_cab'],
               conv_cab=_B['conv_cab'], gp=gp, gm=gm, opex=opex, dna=dna, ebit=ebit, ebitda=ebitda,
               ebitda_margin=ebitda_margin, nopat=nopat, capex=capex, nwc=nwc_f, dnwc=dnwc, fcff=fcff,
