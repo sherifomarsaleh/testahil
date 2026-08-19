@@ -39,7 +39,12 @@
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
   .pk-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px}
   .pk-controls label.ck{display:flex;align-items:center;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:nowrap}
-  .pk-table{width:100%;min-width:680px;border-collapse:collapse;font-size:var(--fs-small);table-layout:auto}
+  /* border-collapse MUST be separate, not collapse: position:sticky on a <th> is
+     unreliable-to-broken in every major engine when that cell participates in
+     border collapsing -- it silently fails to stick, and where it half-applies it
+     paints a stale/overlapping box (the screenshotted glitch under "Reachability").
+     border-spacing:0 keeps cells touching so this reads identically to collapse. */
+  .pk-table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;font-size:var(--fs-small);table-layout:auto}
   /* header labels are allowed to wrap onto 2 lines -- most of them (e.g. "Reachability
      (3 months)", "P(touch fair value)") are wider as one line than the data underneath
      ever needs, and were forcing the whole table wider than the card. Data cells stay
