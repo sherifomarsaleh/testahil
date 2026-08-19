@@ -1,0 +1,1576 @@
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+
+INTERIM CONDENSED CONSOLIDATED FINANCIAL
+STATEMENTS AND INDEPENDENT AUDITOR’S REVIEW REPORT
+FOR THE THREE MONTHS AND SIX MONTHS PERIODS ENDED
+JUNE 30, 2026
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS AND
+INDEPENDENT AUDITORS’ REVIEW REPORT
+FOR THE THREE MONTHS AND SIX MONTHS PERIODS ENDED JUNE 30, 2026
+
+
+
+
+INDEX                                                              PAGE
+
+Independent auditor’s review report                                  1
+
+Interim condensed consolidated statement of financial position      2-3
+
+Interim condensed consolidated statement of profit or loss and
+other comprehensive income                                          4-5
+
+Interim condensed consolidated statement of changes in equity       6-7
+
+Interim condensed consolidated statement of cash flows              8-9
+
+Notes to the interim condensed consolidated financial statements   10 – 31
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION
+AS OF JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+                                                                                 June 30,        December 31,
+                                                                                    2026                 2025
+                                                                  Note        (Unaudited)            (Audited)
+ ASSETS
+ Non-current assets
+ Property, plant and equipment                                                   5,471,408            5,486,067
+ Right-of-use assets                                                             3,271,507            3,416,863
+ Intangible assets and goodwill                                                  1,376,759            1,408,747
+ Investment property                                                               171,366              158,234
+ Equity-accounted investments                                        5             442,848              435,517
+ Investments                                                         6             960,100              676,359
+ Deferred tax asset                                                                  2,628                2,628
+ Other non-current assets                                                           22,156               21,939
+ Total non-current assets                                                      11,718,772            11,606,354
+
+ Current assets
+ Inventories                                                                     4,154,151            4,680,559
+ Trade receivables                                                               1,960,780            1,856,697
+ Prepayments and other receivables                                               1,244,284            1,346,504
+ Investments                                                         6             265,256               85,802
+ Cash and cash equivalents                                           4           1,051,382              904,137
+ Total current assets                                                            8,675,853            8,873,699
+ TOTAL ASSETS                                                                  20,394,625            20,480,053
+
+ EQUITY
+ Share capital                                                       7           3,000,000            3,000,000
+ Share premium                                                                     342,974              342,974
+ Shares held under employees’ share based payment plan                            (85,445)              (86,666)
+ General reserve                                                                     4,000                 4,000
+ Other reserves                                                                  (196,946)            (170,156)
+ Effect of transactions with non-controlling interests
+  without change in control                                                        (39,772)              (39,772)
+ Foreign currency translation reserve                                          (1,263,558)           (1,238,868)
+ Retained earnings                                                               3,599,252             3,704,515
+ Equity attributable to owners of the Company                                    5,360,505            5,516,027
+ Non-controlling interests                                                         962,954              950,039
+ TOTAL EQUITY                                                                    6,323,459            6,466,066
+
+ LIABILITIES
+ Non-current liabilities
+ Loans and borrowings                                                9              22,253                    -
+ Lease liabilities                                                               3,218,578            3,446,083
+ Employee benefits liability                                                       748,464              748,401
+ Provision against asset restoration                                               162,967              164,946
+ Deferred tax liability                                                            112,775              110,893
+ Total non-current liabilities                                                   4,265,037            4,470,323
+
+
+
+
+The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                       -2-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION (CONTINUED)
+AS OF JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+                                                                                 June 30,        December 31,
+                                                                                    2026                 2025
+                                                                   Note       (Unaudited)            (Audited)
+ Current liabilities
+ Loans and borrowings                                                9           2,642,265            1,893,924
+ Trade payables                                                                  3,282,518            3,915,807
+ Accrued and other liabilities                                                   2,967,979            2,829,405
+ Lease liabilities                                                                 498,230              506,148
+ Contract liabilities                                                              170,630              151,990
+ Accrued income tax                                                                145,608              134,125
+ Accrued zakat                                                                      98,899              112,265
+
+ Total current liabilities                                                       9,806,129            9,543,664
+
+ TOTAL LIABILITIES                                                             14,071,166            14,013,987
+
+ TOTAL EQUITY AND LIABILITIES                                                  20,394,625            20,480,053
+
+
+
+
+The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                       -3-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS
+AND OTHER COMPREHENSIVE INCOME
+FOR THE THREE MONTHS AND SIX MONTHS PERIODS ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+                                                          For the three months period            For the six months period
+                                                Note       ended June 30 (Unaudited)            ended June 30 (Unaudited)
+                                                                   2026          2025                  2026             2025
+Continuing Operations
+Revenues                                         14            6,295,437         5,799,005        13,587,592        13,080,036
+Cost of revenues                                 14          (5,072,063)       (4,608,095)      (10,962,120)      (10,511,555)
+Gross profit                                                  1,223,374         1,190,910          2,625,472         2,568,481
+Share of results in equity-accounted
+  investees, net of zakat and tax                                 23,261             7,954            34,241            18,394
+Selling and distribution expenses                              (781,979)         (795,633)       (1,586,123)       (1,604,014)
+Administrative expenses                                        (195,786)         (197,536)         (394,059)         (411,835)
+Net impairment loss on financial assets                          (5,549)           (5,623)           (9,914)          (12,776)
+Other operating income, net                                       11,006            39,064            26,420            42,242
+
+Results from operating activities                               274,327           239,136            696,037           600,492
+Finance income                                                    37,468            43,554            82,393            83,106
+Finance cost                                                   (127,209)         (126,592)         (252,238)         (251,330)
+Profit before zakat and income tax                              184,586           156,098            526,192           432,268
+Income tax expense                                              (33,152)          (23,267)          (88,520)           (83,094)
+Zakat expense                                                   (14,570)             (424)          (29,238)           (14,486)
+Profit for the period from continuing
+operations                                                      136,864           132,407            408,434           334,688
+Profit / (loss) from discontinued
+operations                                                              -         (19,524)            43,647           (18,765)
+Profit for the period                                           136,864           112,883            452,081           315,923
+Other comprehensive income / (loss)
+Items that will not be reclassified to
+  profit or loss
+Investments at fair value through other
+  comprehensive income – net change in
+  fair value                                                       5,787          (13,449)             6,313           (31,079)
+Items that may be reclassified
+  subsequently to profit or loss
+Foreign operations - foreign currency
+  translation differences                                        66,914             17,994          (26,646)            19,747
+Cash flow hedges – effective portion of
+  changes in fair value                                         (35,864)          (15,277)          (52,414)           (15,940)
+Other comprehensive income / (loss)
+ for the period                                                  36,837           (10,732)          (72,747)           (27,272)
+Total comprehensive income
+ for the period                                                 173,701           102,151            379,334           288,651
+
+
+
+
+        The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                               -4-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF PROFIT OR LOSS
+AND OTHER COMPREHENSIVE INCOME (CONTINUED)
+FOR THE THREE MONTHS AND SIX MONTHS PERIODS ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+                                                           For the three months period           For the six months period
+                                                 Note       ended June 30 (Unaudited)           ended June 30 (Unaudited)
+                                                                    2026           2025                  2026            2025
+
+ Profit for the period attributable to:
+ Owners of the Company                                            116,543           105,700           401,061           294,858
+ Non-controlling interests                                         20,321             7,183            51,020            21,065
+ Profit for the period                                            136,864           112,883           452,081           315,923
+
+ Profit / (loss) attributable to owners of
+   the Company:
+ Continuing operations                                            116,543           124,279           359,409           312,708
+ Discontinued operations                                                -           (18,579)           41,652           (17,850)
+                                                                  116,543           105,700           401,061           294,858
+
+ Total comprehensive income for the
+  period attributable to:
+ Owners of the Company                                            157,073             97,296          347,235           273,820
+ Non-controlling interests                                         16,628              4,855           32,099            14,831
+ Total comprehensive income for the
+  period                                                          173,701           102,151           379,334           288,651
+
+ Total comprehensive income / (loss)
+   attributable to owners of the Company:
+ Continuing operations                                            157,073           115,571           305,583           292,644
+ Discontinued operations                                                -           (18,275)           41,652           (18,824)
+                                                                  157,073             97,296          347,235           273,820
+ Earnings per share attributable to the
+   owners of the Company from
+   continuing operations (in Saudi Riyal):
+ Basic                                             12                 0.39              0.42              1.21                1.05
+ Diluted                                           12                 0.39              0.42              1.21                1.05
+
+ Earnings per share attributable to the
+   owners of the Company (in Saudi
+   Riyal):
+ Basic                                             12                 0.39              0.35              1.35                0.99
+ Diluted                                           12                 0.39              0.35              1.35                0.99
+
+
+
+
+         The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                                -5-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
+FOR THE SIX MONTHS PERIODS ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+                                                                  Equity attributable to the Owners of the Company
+                                                                                                      Effect of
+                                                                                                transactions
+                                                           Shares held                             with non-
+                                                                 under                            controlling
+                                                            employees’                               interests    Foreign
+                                                           share based                                without    currency                                            Non-
+                                    Share        Share        payment General             Other     change in translation          Retained                    controlling      Total
+                                   capital    premium             plan reserve         reserves        control    reserve          earnings          Total       interests     equity
+     Balance as of January
+     1, 2026 (audited)           3,000,000     342,974         (86,666)     4,000      (170,156)        (39,772)    (1,238,868)    3,704,515     5,516,027        950,039    6,466,066
+     Total comprehensive
+     income / (loss)
+     Profit for the period                -           -                -         -             -                -             -      401,061      401,061           51,020    452,081
+     Other comprehensive loss             -           -                -         -      (29,136)                -      (24,690)            -      (53,826)        (18,921)    (72,747)
+                                          -           -                -         -      (29,136)                -      (24,690)      401,061      347,235           32,099    379,334
+     Charge for equity-settled
+     employees’ share based
+     payment plan (Note 8)                -           -                -         -         3,375                -              -            -        3,375               -      3,375
+     Settlement of Treasury
+     shares                               -           -           1,221          -        (1,029)               -              -            -            192             -        192
+     Dividends (Note 7)
+                                          -           -                -         -              -               -              -   (510,000)     (510,000)        (19,184)   (529,184)
+     Dividend on Treasury
+     Shares                               -           -                -         -              -               -              -       3,676         3,676               -      3,676
+     Balance as of June 30,
+     2026 (Unaudited)            3,000,000     342,974         (85,445)     4,000      (196,946)        (39,772)    (1,263,558)    3,599,252     5,360,505        962,954    6,323,459
+
+
+
+
+                                    The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                                                           -6-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF CHANGES IN EQUITY (CONTINUED)
+FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+                                                                   Equity attributable to the Owners of the Company
+                                                                                                        Effect of
+                                                          Shares held                              transactions
+                                                               under                                  with non-
+                                                          employees’                                 controlling
+                                                               share                                   interests       Foreign
+                                                               based                                    without       currency                                          Non-
+                                    Share       Share       payment General               Other       change in     translation      Retained                     controlling        Total
+                                   capital   premium             plan reserve          reserves          control       reserve       earnings             Total     interests       equity
+     Balance as of January
+     1, 2025 (audited)           3,000,000    342,974        (37,459)     4,000        (67,894)        (39,772)     (1,388,896)     2,807,377     4,620,330        958,733      5,579,063
+     Total comprehensive
+     income / (loss)
+     Profit for the period               -            -             -          -               -                -              -      294,858       294,858         21,065       315,923
+     Other comprehensive
+     (loss) / income                     -            -             -          -       (38,121)                 -       17,083              -      (21,038)         (6,234)      (27,272)
+                                         -            -             -          -       (38,121)                 -       17,083        294,858      273,820          14,831       288,651
+     Charge for equity-settled
+     employees’ share based
+     payment plan (Note 8)               -            -             -          -          3,106                 -              -             -        3,106                -       3,106
+     Settlement of Treasury
+     shares                              -            -       14,362           -       (22,607)                 -              -        9,580         1,335                -       1,335
+     Dividends                           -            -             -          -               -                -              -             -               -     (12,760)      (12,760)
+     Balance as of June 30,
+     2025 (Unaudited)            3,000,000    342,974        (23,097)     4,000      (125,516)         (39,772)     (1,371,813)     3,111,815     4,898,591        960,804      5,859,395
+
+
+
+
+                                     The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                                                            -7-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS
+FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+                                                                                 For the six months period
+                                                                                           ended
+                                                                                   June 30,           June 30,
+                                                                                       2026              2025
+                                                                      Note      (Unaudited)       (Unaudited)
+ Cash flows from operating activities
+ Profit for the period                                                              452,081             315,923
+ Adjustments for:
+ Depreciation and amortisation                                                      607,672             592,479
+ Net finance cost                                                                   169,845             256,162
+ Share of results in equity-accounted investees, net of zakat
+  and tax                                                                          (34,241)             (18,394)
+ Share based payment expense                                            8             3,375                3,106
+ Loss on sale / write-off of property, plant and equipment
+  and intangibles                                                                      7,835              7,220
+ (Gain) / loss on FVTPL investments                                                    (788)              9,773
+ Gain on derecognition of subsidiary                                                (42,561)                  -
+ Net impairment loss on financial assets                                               9,914             12,749
+ Zakat expense                                                                        29,238             14,486
+ Income tax expense                                                                   88,520             70,255
+                                                                                  1,290,890           1,263,759
+ Changes in:
+ Inventories                                                                        528,948             452,298
+ Trade receivables                                                                (124,413)              18,303
+ Prepayments and other receivables                                                (156,411)           (211,599)
+ Trade payables                                                                   (600,826)         (1,141,536)
+ Employee benefits liability                                                            585               1,156
+ Accrued and other liabilities                                                       33,025           (233,394)
+ Cash generated from operating activities                                           971,798              148,987
+ Finance cost paid on loans and borrowings                                        (107,398)            (133,317)
+ Finance cost paid on lease liabilities                                           (116,011)             (98,489)
+ Zakat and income tax paid                                                        (118,640)            (151,993)
+ Net cash generated from / (used in) operating activities                           629,749            (234,812)
+ Cash flows from investing activities
+ Acquisition of property, plant and equipment and
+  intangibles                                                                     (384,755)           (354,864)
+ Proceeds from sale of property, plant and equipment                                  6,789               4,637
+ Dividends received                                                                   2,445               2,126
+ Finance Income from bank deposits                                                   79,584              87,989
+ Proceeds from sale of investments                                                   49,729             473,577
+ Term deposits placed                                                             (341,147)         (1,134,402)
+ Term deposits redeemed                                                             160,419           1,098,320
+ Net cash (used in) / generated from investing activities                         (426,936)             177,383
+ Cash flows from financing activities
+ Proceeds from long-term loans and borrowings                                        21,953                    -
+ Repayments of long-term loans and borrowings                                             -             (75,000)
+ Net change in short term loans and borrowings                                      815,520            (833,501)
+ Dividends paid                                                                   (505,227)              (1,761)
+ Payment of lease liabilities – principal                                         (301,409)            (276,266)
+ Dividends paid to non-controlling interests                                       (19,184)             (12,760)
+ Net cash generated from / (used) in financing activities                            11,653         (1,199,288)
+The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                       -8-
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+INTERIM CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS (CONTINUED)
+FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+                                                                                  For the six months period
+                                                                                            ended
+                                                                                    June 30,           June 30,
+                                                                                        2026              2025
+                                                                       Note     (Unaudited)       (Unaudited)
+
+Net change in cash and cash equivalents                                              214,466         (1,256,717)
+Effect of movement in exchange rates on cash and cash
+ equivalents                                                                          (5,781)             8,407
+Cash and cash equivalents at beginning of the period                     4           842,697          2,147,964
+Cash and cash equivalents at end of the period                           4        1,051,382              899,654
+
+
+
+
+The accompanying notes 1 to 20 form an integral part of these interim condensed consolidated financial statements.
+                                                       -9-
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.    GENERAL INFORMATION
+
+      Savola Group Company is a Saudi Joint Stock Company registered in the Kingdom of Saudi Arabia under
+      Commercial Registration No. 4030019708 issued in Jeddah on Rajab 21, 1399H (corresponding to June
+      16, 1979). The Company was formed under the Regulations for Companies in the Kingdom of Saudi
+      Arabia per Royal Decree number M/21 dated Rabi Al Awal 29, 1398H (March 9, 1978).
+
+      The Company’s registered office is located at the following address:
+
+      Savola Tower,
+      The Headquarter Business Park,
+      Prince Faisal Bin Fahad Street,
+      Jeddah 23511-7333,
+      Kingdom of Saudi Arabia.
+
+      These accompanying interim condensed consolidated financial statements comprise the financial
+      statements of Savola Group Company (the “Company” or the “Parent Company”) and its local and
+      foreign subsidiaries (collectively referred as the “Group”), collectively involved in the manufacturing
+      and sale of vegetable oils and to set up related industries, retail outlets, fast foods, exports and
+      imports, commercial contracting, trade agencies, development of agricultural products and real estate
+      related investment activities.
+
+      As of June 30, 2026, the Company had investments in the following subsidiaries (collectively referred
+      to as the “Group”):
+
+      (I)   Direct subsidiaries of the Company
+
+      i)     Operating subsidiaries
+
+                                                Country of  Principal business          Direct ownership
+     Subsidiary name                          incorporation      activity                  interest (%)
+                                                                                            June December
+                                                                                       30, 2026      31, 2025
+     Savola Foods Company (“SFC”)
+       (Note 1 (II))                          Saudi Arabia     Holding Company               100           100
+     Panda Retail Company (“Panda”)
+       (Note 1 (III))                         Saudi Arabia           Retail                  100           100
+     Good Food Company (“GFC”)
+      (Note 1 (IV))                           Saudi Arabia     Holding company               100           100
+     Al Matoun International for Real
+        Estate Investment Holding
+        Company                               Saudi Arabia        Real Estate                 80            80
+                                                                 Restaurant &
+     Herfy Food Services Company                                 manufacturing
+       (“Herfy”)                              Saudi Arabia      bakery products               49            49
+
+     The Group considers that it controls Herfy even though it owns less than 50% of the voting rights. This
+     is because the Group is the single largest shareholder of Herfy with a 49% equity interest. The remaining
+     51% of the equity shares in Herfy are widely held by many other shareholders. The Group has the right
+     and power to direct the relevant activities of Herfy as it has the significant majority of equity interests
+     and there is no history of the other shareholders collaborating to exercise their votes collectively or to
+     outvote the Group.
+
+
+
+
+                                                     - 10 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.   GENERAL INFORMATION (CONTINUED)
+
+     (I)    Direct subsidiaries of the Company (continued)
+
+      ii) Holding and Dormant subsidiaries
+
+                                             Country of       Principal business        Direct ownership
+     Subsidiary name                       incorporation           activity                interest (%)
+                                                                                            June December
+                                                                                        30, 2026     31, 2025
+     Adeem Arabia Company                   Saudi Arabia       Holding company               100           100
+     Al Utur Arabian Company for
+      Commercial Investment                 Saudi Arabia       Holding company               100           100
+     Al Matana Holding Company              Saudi Arabia       Holding company               100           100
+     Madarek Investment Company                Jordan          Holding company               100           100
+
+     Subsidiaries controlled through Al Matana Holding Company:
+
+     SGC Ventures Limited                 Cayman Islands       Holding company               100           100
+
+     SGC Marketplace Venture              Cayman Islands       Holding company               100           100
+
+     SGC Agritech Ventures                Cayman Islands       Holding company               100           100
+
+     (II)   Savola Foods Company
+
+            The Parent Company has a 100% (December 31, 2025: 100%) ownership interest in Savola Foods
+            Company (“SFC”), which was incorporated as a closed Saudi joint stock company pursuant to
+            Ministerial Resolution No. 236/G dated Dhul Qadah 21, 1435H (September 16, 2014). Prior to
+            its conversion to a closed joint stock company, SFC was operating as a limited liability company
+            registered in the Kingdom of Saudi Arabia under commercial registration number 4030180782
+            issued in Jeddah on Rajab 05,1429H (July 08, 2008). During the year 2025, SFC has been
+            converted to a simplified joint stock company.
+
+            The principal objective of SFC is to deal in wholesale and retail trading of food items. SFC through
+            its direct and indirect subsidiaries is engaged in the manufacturing, processing, marketing and
+            distribution of products including edible oil, pasta, sugar, spices, nuts, pulses, seafood,
+            confectionery, and agro cultivation, in the local and overseas market.
+     Subsidiaries controlled through Savola Foods Company:
+                                                Country of      Principal business          Ownership
+     Subsidiary name                          incorporation          activity              interest (%)
+                                                                                             June December
+                                                                                         30, 2026    31, 2025
+                                                                Manufacturing of
+     Afia International Company (“AIC”)        Saudi Arabia        edible oils              95.19         95.19
+     Savola Industrial Investment
+      Company (“SIIC”)                         Saudi Arabia     Holding company               100           100
+     El Maleka for Food Industries                              Manufacturing of
+       Company                                    Egypt              pasta                    100           100
+
+
+
+
+                                                    - 11 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.   GENERAL INFORMATION (CONTINUED)
+
+     (II)    Savola Foods Company (continued)
+
+                                               Country of          Principal            Ownership
+      Subsidiary name                        incorporation     business activity       interest (%)
+                                                                                        June December
+                                                                                    30, 2026     31, 2025
+      International Foods Industries                           Manufacturing of
+        Company (“IFI”)                      Saudi Arabia       specialty fats          100          100
+      Snacking and Ingredients Food
+      Holding Company Limited (“SIFCO”)          UAE           Holding Company          100          100
+      Commodities Sourcing Company for
+      Trading                                Saudi Arabia      Trading Company          100          100
+                                                               Seafood products
+                                                                  trading and
+      Seafood International Two FZCO             UAE              distribution          100          100
+      Savola Industrial Sustainable                               Renewable
+      Development Company                    Saudi Arabia           energy              100          100
+      Savola Foods Emerging Markets          British Virgin
+      Company Limited                        Islands (BVI)     Holding company         95.43       95.43
+      Seafood International Holdco          Cayman Islands Holding company              100          100
+      Al Maoun International Holding
+      Company                                Saudi Arabia      Holding company          100          100
+      Marasina International Real Estate
+      Investment Limited                     Saudi Arabia      Holding company          100          100
+      Afia Arabia for Foods                  Saudi Arabia      Holding company          100          100
+
+     a)     Subsidiaries controlled through Afia International Company:
+
+                                             Country of           Principal             Ownership
+     Subsidiary name                       incorporation      business activity        interest (%)
+                                                                                       June December
+                                                                                   30, 2026      31, 2025
+     Savola Foods Limited (“SFL”)              BVI            Holding company           100          100
+                                             Cayman
+     Aseel Food – Hold Co.                   Islands          Holding company           100          100
+     SFL
+     Afia International Company, Egypt                        Manufacturing of
+      (“AICE”)                                Egypt             edible oils           99.95        99.95
+     AICE
+                                                                Trading and
+     Savola For Export and Import             Egypt             distribution             49           49
+
+
+
+
+                                                 - 12 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.   GENERAL INFORMATION (CONTINUED)
+     (II)     Savola Foods Company (continued)
+     b)     Subsidiaries controlled through Savola Industrial Investment Company:
+                                          Country of        Principal business      Direct ownership
+      Subsidiary name                    incorporation            activity                interest (%)
+                                                                                        June December
+                                                                                    30, 2026    31, 2025
+                                                             Manufacturing of
+      United Sugar Company (“USC”)       Saudi Arabia             sugar               74.48       74.48
+      USC
+      United Sugar Company                                   Manufacturing of
+       (“USCE”)*                            Egypt                sugar                56.76       56.76
+      Alexandria Sugar Company,                              Manufacturing of
+       Egypt (“ASCE”)**                     Egypt                sugar                62.13       62.13
+      ASCE
+      Alexandria United Company for
+       Land Reclamation                     Egypt             Agro cultivation          100          100
+     c)     Subsidiaries controlled through Snacking and Ingredients Food Holding Company Limited:
+
+      Bayara Holding Limited            Cayman Islands       Holding company            100          100
+      Bayara FZE Limited                     UAE             Holding Company            100          100
+                                                             Manufacturing of
+      Savola Snacks                         Egypt                snacks                  99           99
+     d)     Subsidiaries controlled through Savola Foods Emerging Markets Company Limited:
+
+      Savola Edible Oils (Sudan)                             Manufacturing of
+       Ltd.***                              Sudan              edible oils                -          100
+      Afia International Company –                           Manufacturing of
+       Algeria                              Algeria            edible oils              100          100
+     e)    Subsidiaries controlled through Seafood International Two FZCO
+      Seafood international One                            Seafood products
+        FZCO**** (under liquidation)          UAE             distribution               80          80
+
+     f)     Subsidiaries controlled through Al Maoun and Marasina
+                                                                Trading and
+      Alofog Trading DMMC                    UAE                distribution            100          100
+     g)     Subsidiaries controlled through Bayara Holding Limited:
+                                                                 Managing
+      Kandoo Worldwide Limited               BVI                trademarks              100          100
+     h)     Subsidiaries controlled through Bayara FZE
+
+                                                            Processing of spices,
+      GYMA Food Industries LLC               UAE              nuts and pulses           100          100
+      Bayara Saudi Arabia Limited                           Processing of spices,
+       Group                             Saudi Arabia         nuts and pulses           100          100
+                                                             Trading of spices,
+      GYMA Trading LLC                       UAE              nuts and pulses           100          100
+
+
+                                                   - 13 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.   GENERAL INFORMATION (CONTINUED)
+     (II)        Savola Foods Company (continued)
+             * The Group’s effective ownership interest in USCE is 61.6% (December 31, 2025: 61.6%).
+
+             ** The Group’s effective ownership interest in ASCE is 76.9% (December 31, 2025: 76.9%).
+
+             *** During the period, the Group disposed of its operations in Sudan following the execution of a
+             binding Sale and Purchase Agreement for a total consideration of  52.5 million, resulting in gain
+             of  42.6 million. As of the reporting date, all legal formalities pertaining to the disposal had been
+             completed.
+
+             **** The Group’s effective ownership interest in Seafood International One FZCO is 100%
+             (December 31, 2025: 100%)
+
+     (III)       Panda Retail Company
+     The Parent Company has a 100% (December 31, 2025: 100%) ownership interest in Panda Retail
+     Company (“Panda”), which was incorporated as a closed Saudi joint stock company pursuant to
+     Ministerial Resolution No. 235/G dated Rajab 22, 1431H (July 3, 2010). Prior to its conversion to a
+     closed joint stock company, Panda was operating as a limited liability company registered in the
+     Kingdom of Saudi Arabia under commercial registration number 1010137417 issued in Riyadh on Rabi-
+     ul-Awal 1, 1416H (July 28, 1995).
+
+     Panda together with its subsidiaries is principally engaged in wholesale and retail trading in food
+     supplies and consumable materials. Panda Group operates through its network of hypermarkets and
+     supermarkets.
+
+     Subsidiaries controlled through Panda:
+                                              Country of          Principal business       Direct ownership
+     Subsidiary name                          incorporation            activity               interest (%)
+                                                                                               June December
+                                                                                           30, 2026     31, 2025
+     Giant Stores Trading Company               Saudi Arabia            Retail                  100          100
+     Panda for Operations,
+      Maintenance and Contracting                                    Services and
+      Services                                  Saudi Arabia         maintenance                100           100
+     Panda International for Retail
+      Trading                                      Egypt                Retail                  100           100
+
+     (IV)        Good Food Company
+
+     The Parent Company has a 100% (December 31, 2025: 100%) ownership interest in Good Food
+     Company (“GFC”), which was incorporated as a limited liability company registered in the Kingdom of
+     Saudi Arabia under commercial registration number 4030603674 issued in Jeddah on Rabi-ul-Thani
+     21, 1439H (January 8, 2018).
+
+     GFC through its direct and indirect subsidiaries is principally engaged in the processing, wholesale,
+     retail and distribution of frozen food and seafood in the local and overseas markets.
+
+
+
+
+                                                       - 14 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+1.    GENERAL INFORMATION (CONTINUED)
+      (IV)    Good Food Company (continued)
+
+      Subsidiaries controlled through GFC (collectively referred to as “Al Kabeer Group of companies”):
+                                             Country of      Principal business          Ownership
+       Subsidiary name                      incorporation          activity             interest (%)
+                                                                                         June December
+                                                                                     30, 2026     31, 2025
+                                                             Manufacturing of
+       Variety Food Factory Company         Saudi Arabia       frozen food                 51              51
+                                                               Trading and
+       Al Ahsan Trading Company             Saudi Arabia        distribution               51              51
+       Al Helal Imports and Exports                            Trading and
+        Company                                Bahrain          distribution               51              51
+       Al Kabeer Holding Limited                UAE          Holding Company               51              51
+      Subsidiaries controlled through Al Kabeer Holding Limited
+                                                                  Trading and
+       Sahar Enterprises Company                 UAE               distribution           100             100
+                                                             Manufacturing of
+       Sahar Food Industry Company               UAE           frozen food                100             100
+                                                                  Trading and
+       Best Foodstuff Trading Company            UAE               distribution           100             100
+                                                                  Investment
+       Cascade Investments Limited               UAE                company               100             100
+                                                               Manufacturing
+       Cascade Marine Foods Company              UAE            frozen food               100             100
+       Al Sabah Foodstuff Enterprises                             Trading and
+        Company                                  UAE               distribution           100             100
+                                                                  Trading and
+       Best Foods Company                       Oman               distribution           100             100
+
+2.    BASIS OF PREPARATION
+
+      2.1 Statement of compliance
+
+     The interim condensed consolidated financial statements of the Group for the six months period ended
+     June 30, 2026 have been prepared in accordance with International Accounting Standard 34 - “Interim
+     Financial Reporting” (“IAS 34”), as endorsed in the Kingdom of Saudi Arabia and other standards and
+     pronouncements endorsed by Saudi Organization for Chartered and Professional Accountants
+     (“SOCPA”).
+
+     The interim condensed consolidated financial statements do not include all the information and
+     disclosures required in the annual consolidated financial statements in accordance with International
+     Financial Reporting Standards (“IFRS” Accounting Standards) and other standards and pronouncements
+     that are endorsed by the Saudi Organization for Chartered and Professional Accountant (“IFRS endorsed
+     in the Kingdom”). Therefore, these interim condensed consolidated financial statements should be read
+     in conjunction with the Group’s annual consolidated financial statements for the year ended December
+     31,2025.
+
+     The results for the interim period of six months ended June 30, 2026 are not necessarily indicative of
+     the results that may be expected for the financial year ending December 31, 2026.
+
+                                                   - 15 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+2.   BASIS OF PREPARATION (CONTINUED)
+
+     2.2     Basis of measurement
+     The interim condensed consolidated financial statements have been prepared on the historical cost
+     basis, except for the following item which are measured as follows:
+     Items                                             Measurement basis
+     Investments designated as at fair value through
+     profit or loss and other comprehensive income Fair value (refer note 6)
+                                                       Present value of the defined benefit obligation
+     Employees benefits obligation                     using projected credit unit method
+     Derivative financial instrument                   Fair value
+     Firm commitments and inventory under fair
+     value hedging relationship                        Fair value
+
+     These interim condensed consolidated financial statements have been prepared under the going
+     concern basis.
+
+     Certain comparative amounts have been reclassified to conform to the current period’s presentation
+     and do not have a material effect on these interim condensed consolidated financial statements. The
+     significant reclassifications pertain to impact of discontinued operations.
+
+     2.3 Functional and presentation currency
+
+     The interim condensed consolidated financial statements are presented in Saudi Riyals , which is the
+     functional and presentation currency of the Group. All amounts have been rounded to the nearest
+     thousand, unless otherwise indicated.
+
+3.   SUMMARY OF MATERIAL ACCOUNTING POLICIES
+
+     The accounting policies applied in these interim condensed consolidated financial statements are the
+     same as those applied in the Group’s last annual consolidated financial statement as at and for the year
+     ended December 31, 2025.
+
+     Accounting policies adopted in preparation of these interim condensed consolidated financial
+     statements are described in note 4 of the Group’s consolidated financial statements for the year ended
+     December 31, 2025.
+
+     3.1 New Standards, Amendment to Standards and Interpretations
+
+     The new standards and amendments to standards disclosed in the Group’s annual consolidated
+     financial statements remain unchanged. As of the date of authorisation of these interim condensed
+     consolidated financial statements, the preliminary assessment of the impact of IFRS 18, Presentation
+     and Disclosure in Financial Statements, is presented below:
+
+
+
+
+                                                   - 16 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+3.   SUMMARY OF MATERIAL ACCOUNTING POLICIES (CONTINUED)
+
+     3.1 New Standards, Amendment to Standards and Interpretations (continued)
+
+     Preliminary impact assessment of IFRS 18 Presentation and Disclosure in Financial Statements
+
+     Effective 1 January 2027, IFRS 18 Presentation and Disclosure in Financial Statements will replace IAS
+     1 Presentation of Financial Statements and will be applicable to annual reporting periods beginning on
+     or after that date. The Group has not early adopted IFRS 18 in preparing these condensed consolidated
+     interim financial statements.
+
+     The Group has initiated an IFRS 18 implementation project to assess the standard’s impact on the
+     classification, presentation and disclosure of information in the consolidated financial statements, as
+     well as the related data requirements. Based on the assessment performed to date, the Group expects
+     the principal impacts of IFRS 18 to relate to the classification, presentation, aggregation,
+     disaggregation and disclosure of information in the consolidated financial statements. The adoption
+     of IFRS 18 is not expected to have an impact on the Group’s net profit or equity.
+
+     Consolidated statement of profit or loss - structure and classification
+
+     IFRS 18 requires entities to classify all income and expenses into categories in the statement of profit
+     or loss – namely operating, investing, financing, zakat income tax and discontinued operations.
+     Classification of income and expenses depends on the main business activities of an entity.
+
+     The Group will be required to present two newly defined subtotals, which are ‘operating profit’ and
+     ‘profit or loss before financing and income taxes’. However, operating profit subtotal differs from the
+     current operating profit subtotal presented by the Group. Based on the information currently
+     available, the Group expects changes to the current structure of the statement of profit or loss to
+     result from the following:
+
+         •   Interest income and expenses are generally included in finance income and finance costs
+             under the Group’s current accounting policy and are presented in the ‘net finance costs’
+             subtotal. IFRS 18 provides specific guidance on the income and expenses classified in the
+             investing and financing categories.
+
+         •   Share of results in equity-accounted investees is currently presented under results from
+             operating activities. IFRS 18 provides specific guidance on the share of results in equity-
+             accounted investees to be classified in the investing category.
+
+         •   Bank charges and other charges not related to raising finance or changes in interest rates will
+             be reclassified and presented under operating category.
+
+         •   Certain unwinding cost on long-term provisions, currently presented other than in finance
+             costs, will be reclassified and presented within finance costs.
+
+         •   Net foreign exchange losses are currently included in finance costs. Under IFRS 18, foreign
+             exchange differences are required to be presented in the same category as the income and
+             expenses from the items that gave rise to the differences.
+
+         •   Under IFRS 18, gains and losses on designated hedging instruments are required to be
+             classified in the same category as the income and expenses affected by the hedged risks.
+
+
+
+
+                                                   - 17 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+3.   SUMMARY OF MATERIAL ACCOUNTING POLICIES (CONTINUED)
+
+     3.1 New Standards, Amendment to Standards and Interpretations (continued)
+     Management-defined Performance Measures
+
+     IFRS 18 introduces new disclosure requirements for management-defined performance measures
+     ("MPMs"). An MPM is a subtotal of income and expenses that is used in public communications outside
+     the financial statements to communicate management's view of an aspect of the Group’s financial
+     performance as a whole and that is not specified by IFRS 18 or otherwise required to be presented or
+     disclosed by IFRS Accounting Standards.
+
+     Where identified, MPMs will be required to be disclosed in a single note to the financial statements.
+     The Group is in process to determine which public communications should be considered when
+     identifying MPMs. MPMs relate to the same reporting period as the financial statements.
+
+     Aggregation and Disaggregation
+
+     IFRS 18 introduces enhanced requirements relating to the aggregation and disaggregation of
+     information throughout the financial statements and accompanying notes. These requirements are
+     intended to improve transparency by ensuring that material information is presented separately and
+     dissimilar items are not obscured through aggregation. The Group is currently assessing whether
+     additional disaggregation may be required for other assets, other liabilities, other operating income,
+     other general and administrative expenses, other operating expenses. The Group also expects certain
+     line-item descriptions currently used within the financial statements to be refined to enhance clarity
+     and consistency with the objectives of IFRS 18.
+
+     Consequential Amendments
+
+     IFRS 18 introduces consequential amendments to IAS 7, which require entities to use the newly
+     defined operating profit subtotal as the starting point for the statement of cash flows when presenting
+     operating cash flows under the indirect method. The Group currently uses profit for the year/period
+     as the starting point of the reconciliation to cash flows from operating activities. Certain adjusting
+     items included in the reconciliation are expected to change as a result of the new starting point.
+
+     The consequential amendments also provide specific guidance on the classification of interest and
+     dividend cash flows. The Group will classify cash flows from interest paid as financing activities rather
+     than operating activities under this guidance.
+
+     3.2   Critical accounting estimates and judgments
+
+     The preparation of these interim condensed consolidated financial statements requires management
+     to make judgments, estimates and assumptions that affect the application of accounting policies and
+     the reported amounts of assets, liabilities, income and expenses. Actual results may differ from these
+     estimates.
+
+     Estimates and underlying assumptions are reviewed on an ongoing basis. Revisions to estimates are
+     recognised prospectively.
+
+     The significant judgements made by management in applying the Group’s accounting policies and the
+     key sources of estimation uncertainty are consistent with those used in the preparation of the annual
+     financial statements as at and for the year ended December 31, 2025.
+
+
+
+                                                   - 18 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+ 4.    CASH AND CASH EQUIVALENTS
+
+                                                                                     June 30,           December 31,
+                                                                                        2026                    2025
+                                                                                  (Unaudited)               (Audited)
+       Cash in hand                                                                      28,176                   22,642
+       Cash at bank- current account                                                    786,639                  574,813
+
+       Cash and bank balances                                                           814,815                  597,455
+       Deposits with maturity less than three months                                    236,567                  306,682
+       Cash and cash equivalents presented in statement of
+        financial position                                                          1,051,382                    904,137
+       Bank overdrafts (Note 9)                                                             -                    (61,440)
+       Cash and cash equivalents for cash flow purposes                             1,051,382                    842,697
+
+       Cash and cash equivalents include the following for the purposes of the interim condensed
+       consolidated statement of cash flows:
+
+                                                                                     June 30,                June 30,
+                                                                                        2026                    2025
+                                                                                  (Unaudited)             (unaudited)
+       Cash and bank balances                                                       1,051,382                    965,097
+       Less: bank overdrafts                                                                -                    (65,443)
+       Cash and cash equivalents for cash flow purposes                             1,051,382                    899,654
+
+5.    EQUITY ACCOUNTED INVESTEES
+
+      The details of the Group’s equity accounted investees are as follows:
+
+                                                               Principal
+                                             Country of        business           Ownership
+       Name                    Relationship incorporation       sector           interest (%)           Amount
+                                                                                  June December        June December
+                                                                              30, 2026 31, 2025    30, 2026   31, 2025
+                                                                           (Unaudited) (Audited) (Unaudited) (Audited)
+       Kinan International
+       for Real Estate
+       Development
+       Company (“Kinan”)        Associate   Saudi Arabia     Real estate         29.9        29.9      442,848      435,517
+                                             Republic of    Fund
+       Intaj Capital Limited    Associate      Tunisia   management                49             49         -              -
+                                                                                                       442,848      435,517
+
+
+
+
+                                                            - 19 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+6.   INVESTMENTS
+
+                                                                              June 30,        December 31,
+                                                                                 2026                 2025
+                                                                           (Unaudited)            (Audited)
+      Investments comprise the following:
+      Non – current Investments
+      Investments carried at FVOCI (Note 6.1)                                  432,481               151,551
+      Investments carried at amortized cost (Note 6.2)                         527,619               524,808
+                                                                               960,100               676,359
+      Current Investments
+      Investments carried at FVTPL                                              31,031                32,305
+      Investments carried at amortized cost (Note 6.3)                         234,225                53,497
+                                                                               265,256                85,802
+
+     6.1 Investments held at fair value through other comprehensive income
+           Quoted investments (Note 6.4)                                       136,692              131,599
+           Unquoted investments (Note 6.5)                                     295,789               19,952
+                                                                               432,481              151,551
+
+     6.2 This represents the Group’s investment in Sukuks issued by the Government - Saudi Ministry of
+         Finance (MOF) at market rate, with a maturity date of July 27, 2027.
+
+     6.3 This includes Investments in Treasury bills and Term deposits with commercial banks, with an
+         original maturity of more than three months and yield commission income at prevailing market
+         rates. The management expects to realize these within 12 months from the reporting date.
+
+     6.4 The Group has applied an appropriate market participant discount factor in valuing one of its
+         quoted investments due to the security-specific restrictions on disposal. Accordingly, the
+         investments have been classified as level 2 securities.
+     6.5 During 2025, the Group disposed of its entire equity interest in Kugu through a share‑swap
+         arrangement, transferring its full shareholding in exchange for a 15% equity interest in Tiryaki
+         Anadolu Holding Anonim Şirketi (“Tiryaki”). The equity instruments received have been designated
+         as investments at fair value through other comprehensive income (FVOCI).
+
+7.   SHARE CAPITAL AND DIVIDEND DECLARATION
+
+     As of June 30, 2026 and December 31, 2025, the Group’s share capital of  3 billion consists of 300
+     million fully paid shares of  10 each.
+
+      Following the completion of the capital reduction and in-kind distribution of the Group’s entire stake
+      in Almarai to eligible shareholders approved and completed during 2024, the Company, as of June 30,
+      2026, holds certain Almarai shares on behalf of certificate shareholders in a fiduciary capacity. The
+      legal formalities for transferring ownership of these shares are currently in progress.
+
+      During the period, the Company’s shareholders in the Ordinary General Assembly Meeting approved
+      dividends for the year ended December 31, 2025 amounting to  510 million representing  1.7 per
+      share.
+
+
+
+
+                                                   - 20 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+8.   SHARE BASED PAYMENT PLAN
+
+     On April 29, 2020, the shareholders of the Company approved the Employees Long Term Incentive
+     Program (“Plan”) for the benefit of certain eligible senior executives of the Group (the “Participants”).
+     The Plan entitles the Participants a conditional right to receive a number of restricted share units (each
+     unit equal to the value of one share of the Company at the Grant date), following the satisfaction of
+     service condition.
+
+     Significant features of the Plans are as follows:
+
+      Grant date /               Total number of shares         Service / vesting       Fair value per share
+      employees entitled                 granted                     period                on grant date
+      August 20, 2025                     888,008                     3 years                    24.0
+      August 20, 2024                     468,637                     3 years                    43.0
+      September 10, 2023                  700,176                     3 years                    34.8
+
+     Fair value per share on grant date is the closing price per share on Tadawul as at the grant date.
+
+     During 2024, the Group carried out capital restructuring, which included a rights issue and a capital
+     reduction through the distribution of Almarai shares. Under the granted plans, employees are entitled
+     to all corporate actions affecting the Company’s share capital. As a result of the rights issue, the
+     allocated shares increased by 1,613,727 with the Company to claim an exercise price of  10 per
+     share from employees. Meanwhile, the capital reduction led to a decrease of 2,337,416 allocated
+     shares, resulting in the grant of 967,551 Almarai shares. The liability for settling Almarai shares is
+     recorded under “Accrued and Other Liabilities.”
+
+     The number of shares under share base payment plans after rights issue, capital reduction and
+     distribution are as follows:
+                                                                  Shares
+       Grant date /         Total number                      cancelled due       Remaining     Almarai
+       employees              of shares      Rights issue       to Capital      Savola shares Shares to be
+       entitled               allocated         shares          reduction        to be vested   vested
+       August 20, 2024             468,637          470,982         (682,067)          257,552          282,335
+       September 10,
+       2023                        700,176          640,674         (924,851)          415,999          382,833
+
+     The total expense recognised for employees' services received during the period ended June 30, 2026,
+     under the Plan amounted to  3.4 million (June 30, 2025: 3.1 million) and is included in ‘salaries and
+     employee related expenses’ with a corresponding increase in the condensed consolidated statement
+     of changes in equity under the ‘Other reserves’.
+
+     As of June 30, 2026, the number of shares to be vested are 1,137,161 (December 31, 2025: 1,398,209).
+
+
+
+
+                                                    - 21 -
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+9.    LOANS AND BORROWINGS
+
+     The following information reflects the contractual terms of the Group’s interest-bearing loans and
+     borrowings, which are measured at amortized cost:
+
+                                                                            June 30,           December 31,
+                                                                               2026                    2025
+                                                                         (Unaudited)               (Audited)
+       Non-current liabilities
+       Unsecured bank loans                                                    22,253                        -
+
+       Current liabilities
+       Current portion of unsecured bank loans                                 2,745                       -
+       Unsecured bank loans                                                2,620,215               1,823,785
+       Bank overdraft (Note 4)                                                     -                  61,440
+                                                                           2,622,960               1,885,225
+       Accrued financial charges                                               19,305                   8,699
+                                                                           2,642,265               1,893,924
+
+     9.1    These represent borrowings obtained from commercial banks and other financial institutions by
+            the Parent Company and its subsidiaries. These borrowings are in Saudi Riyals, Egyptian Pounds,
+            US Dollars, Algerian Dinar and United Arab Emirates Dirhams. Certain loan agreements include
+            covenants which, amongst other things, require certain financial ratios to be maintained. Some
+            of the borrowings of subsidiaries are secured by corporate guarantees of the Parent Company.
+            The Group will also continue to provide corporate guarantee against financing facilities
+            pertaining to a financial investment, for a defined period, amounting to  0.4 billion. As of June
+            30, 2026, loans and borrowings include sharia-compliant financing facilities amounting to  1.5
+            billion (December 31, 2025:  1.3 billion).
+
+     9.2    As of June 30, 2026, the Group has unused bank financing facilities amounting to  5.7 billion
+            (December 31, 2025:  5.3 billion) to manage short term and long-term liquidity requirements.
+
+10. ZAKAT AND INCOME TAXES
+
+      (a)    Zakat status
+
+     The Company has obtained final Zakat certificates and/or finalized assessments from the Zakat, Tax
+     and Customs Authority (ZATCA) for all years through 2024, except for the years 2014 to 2018, for which
+     the Company settled the related Zakat differences and continues to pursue available legal remedies in
+     respect of the latest ruling. The matter remains under judicial review at the level of the appeal
+     committee.
+
+     For 2025, the Company filed its Zakat return, which included a reimbursable Zakat settlement of  13
+     million relating to Government Sukuk. The 2025 Zakat is currently under review by ZATCA as part of
+     the ongoing assessment process.
+
+
+
+
+                                                    - 22 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+10.   ZAKAT AND INCOME TAXES (CONTINUED)
+
+      (a)   Zakat status (continued)
+
+      Certain subsidiaries have also received final or provisional zakat certificates until the year 2025. Also,
+      the Group has pending appeals against additional claims and assessments of certain subsidiaries with
+      total Zakat differences of  32.9 million (December 31, 2025:  32.3 million).
+
+      (b)   Income tax status
+
+      The Group’s foreign subsidiaries are obliged to pay income tax as per applicable tax laws of their
+      countries of incorporation. Tax paying foreign subsidiaries determine their liabilities based on
+      applicable corporate rates to the adjusted taxable income for the year. Certain foreign subsidiaries are
+      also obliged to pay quarterly advance tax determined on prior year tax liability bases.
+
+      Certain foreign subsidiaries have received final tax assessments for certain years and provisional tax
+      assessments for other years. They have also received queries from departments of income tax after
+      their assessment or inspections for open years, for which replies have been filed.
+
+      The Group management believes that there are no significant amounts under protest with
+      departments of income tax in any foreign operation.
+
+11.   CONTINGENCIES AND COMMITMENTS
+
+                                                                                  June 30,      December 31,
+                                                                                     2026               2025
+                                                                               (Unaudited)          (Audited)
+
+                                                                                 Amounts in millions of
+                                                                                    Saudi Riyals
+
+      Letters of credits                                                                 28                  22
+      Bank guarantees                                                                    66                  70
+      Commitments to buy raw sugar                                                      706                 212
+      Commitments to sell refined sugar                                                 866               1,044
+      Capital commitments                                                               454                 425
+
+                                                                               Quantity in Metric tonnes
+      Commitments to buy raw sugar                                                 533,550            214,884
+      Commitments to sell refined sugar                                            454,695            544,259
+
+
+
+
+                                                     - 23 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+12.   EARNINGS PER SHARE
+
+      Basic earnings per share for the six months period ended June 30, 2026 and June 30, 2025 have been
+      computed by dividing the net profit attributable to shareholders of the Parent Company for such
+      periods by the weighted average number of shares outstanding amounting to 296.682 million (June
+      30, 2025: 298.721 million) during such periods.
+
+      Diluted earnings per share for the six months period ended June 30, 2026 and June 30, 2025, have
+      been computed by dividing the profit attributable to shareholders of the Parent Company for such
+      periods by the weighted average number of shares outstanding, adjusted for the effects of all dilutive
+      potential ordinary shares, amounting to 297.220 million (June 30, 2025: 299.310 million).
+
+      Weighted average number of ordinary shares for the purpose of computing earnings per share are as
+      follows:
+
+                                                                          For the six months period ended
+                                                                                 June 30,         June 30,
+                                                                                     2026            2025
+                                                                             (unaudited)       (unaudited)
+      For Basic EPS calculation
+      Issued ordinary shares                                                 300,000,000       300,000,000
+      Effect of treasury shares                                               (3,318,046)       (1,278,866)
+      Weighted average number of shares outstanding                          296,681,954       298,721,134
+
+      For Diluted EPS calculation
+      Weighted average number of ordinary shares outstanding
+      (for basic EPS)                                                        296,681,954       298,721,134
+      Effect of shares under employee share based option plan                    538,045           589,012
+      Weighted average number of shares outstanding                          297,219,999       299,310,146
+
+13.   RELATED PARTIES
+
+      Related parties include the Group’s shareholders, associates and affiliated companies, other entities
+      related to certain consolidated subsidiaries and key management personnel of the Group. Terms and
+      conditions of these transactions are approved by the Group’s management.
+
+      Key management personnel compensation
+      Compensation to the Group’s key management personnel includes salaries, non-cash benefits, and
+      post-employment benefits, in relation to which, the Group has recognized an expense of  13 million
+      for the six months period ended June 30, 2026 (June 30, 2025:  18.6 million).
+
+      Board of Directors’ remuneration for the six months period ended June 30, 2026, amounting to  2.3
+      million (June 30, 2025:  2.3 million) has been calculated in accordance with the Company’s By-laws
+      and is charged to the condensed consolidated statement of profit or loss and other comprehensive
+      income. Attendance allowances and other expenses to the directors and members of various board
+      committees amounting to  1.6 million (June 30, 2025:  1.6 million) are charged to expenses and
+      included under administrative expenses.
+
+
+
+
+                                                   - 24 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+14.   OPERATING SEGMENTS
+
+      The Group has four reportable segments, as described below, which are the Group’s strategic business
+      units. The strategic business units offer different products and services, and are managed separately
+      because they require different technology and marketing strategies. For each of the strategic business
+      units, the Group’s Chief Executive Officer (Chief Operating Decision Maker) reviews internal
+      management reports on at least quarterly basis. The following summary describes the operations in
+      each of the Group’s reportable segments:
+
+      Food processing - includes manufacturing, sale and distribution of Edible oils, Sugar, Pasta, Spices,
+      Nuts, Pulses and other food products.
+
+      Retail - includes hyper markets, supermarkets and convenience stores operations.
+
+      Food services - includes food products and fast food restaurants’ chain operated by Herfy.
+
+      Frozen Food - includes manufacturing, wholesale and retail distribution of frozen food products
+      operated by Good Food Company.
+
+      The segments which do not meet any of the quantitative thresholds for determining reportable
+      segments, are classified as “Others / Eliminations”, which mainly include investments in equity-
+      accounted investees, other investments and the eliminations.
+
+      Performance is measured based on segment profit net of income tax and zakat, as included in the
+      internal management reports. Management believes that such information is the most relevant in
+      evaluating the results of certain segments relative to other entities that operate within these
+      industries. Inter-segment pricing is determined on an arm’s length basis. Information regarding the
+      results of each reportable segment is included below:
+
+
+
+
+                                                   - 25 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+14.   OPERATING SEGMENTS (CONTINUED)
+
+                                                                                    Reportable Segments
+                                                                          Food                         Food      Frozen        Others /
+      June 30, 2026 (Unaudited)                                      Processing         Retail      Services       Food    Eliminations          Total
+
+      External revenues                                               6,797,216      5,899,020      501,054     390,302              -     13,587,592
+      Inter segment revenue                                             138,398          2,871       14,541      20,833      (176,643)              -
+      Segment revenue                                                 6,935,614      5,901,891      515,595     411,135      (176,643)     13,587,592
+      Cost of revenues                                               (5,971,953)    (4,531,502)    (367,958)   (264,094)       173,387    (10,962,120)
+      Share of results of equity- accounted investees,
+      net of zakat and tax                                                    -              -             -           -        34,241         34,241
+      Net finance cost                                                 (72,698)       (75,314)      (15,088)     (5,027)       (1,718)      (169,845)
+      Depreciation and amortisation                                   (102,353)      (400,156)      (81,271)    (11,899)      (11,993)      (607,672)
+
+      Profit / (loss) from continuing operations                        307,227         33,196         (944)     35,833         33,122        408,434
+      Profit from discontinued operation                                 43,647              -             -          -              -         43,647
+      Segment net profit / (loss) before non-controlling interests      350,874         33,196         (944)     35,833         33,122        452,081
+      Segment net profit / (loss)                                       313,262         33,196         (944)     35,833         19,714        401,061
+
+      Investment in equity-accounted Investees                                  -             -            -           -       442,848        442,848
+      Segment assets                                                 12,017,604      7,736,753    1,531,782    1,149,163    (2,040,677)    20,394,625
+      Segment liabilities                                             6,839,737      6,290,633      683,503     354,074       (96,781)     14,071,166
+
+
+
+
+                                                                       - 26 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+14.   OPERATING SEGMENTS (CONTINUED)
+
+                                                                                                    Reportable Segments
+                                                                                          Food                            Food          Frozen       Others /
+       June 30, 2025 (Unaudited)                                                     Processing            Retail      Services           Food   Eliminations            Total
+
+       External revenues                                                              6,296,811        5,849,404       541,543        392,278               -      13,080,036
+       Inter segment revenue                                                            156,139            2,311        11,567         24,877       (194,894)               -
+       Segment Revenue                                                                6,452,950        5,851,715       553,110        417,155       (194,894)      13,080,036
+       Cost of revenues                                                             (5,575,109)      (4,438,967)      (415,278)      (272,080)       189,879      (10,511,555)
+       Share of results of equity- accounted investees, net of zakat and tax                  -                -              -              -         18,394           18,394
+       Net finance cost                                                                (75,426)         (71,198)       (16,112)        (3,543)        (1,945)        (168,224)
+       Depreciation and amortisation                                                  (105,897)        (376,912)       (85,760)        (9,051)       (10,111)        (587,731)
+
+       Profit / (loss) from continuing operations                                      200,622            48,557       (17,696)         29,892         73,313         334,688
+       Loss from discontinued operation                                                (18,765)                -              -              -              -         (18,765)
+       Segment net profit / (loss) before non-controlling interests                    181,857            48,557       (17,696)         29,892         73,313         315,923
+       Segment net profit / (loss)                                                     166,527            48,557       (17,696)         29,892         67,578         294,858
+
+       December 31, 2025 (Audited)
+       Investment in equity-accounted Investees                                                -                -             -              -       435,517          435,517
+       Segment assets                                                                11,165,723       8,635,759       1,578,155      1,168,216    (2,067,800)      20,480,053
+
+       Segment liabilities                                                            5,821,838       7,222,174        728,932        404,799       (163,756)      14,013,987
+
+14.1 The Revenue of the Group is contributed by Arabia (which represents GCC and Levant), Egypt and other geographical locations amounting to  10.3 billion,  2.9 billion and
+      0.4 billion, respectively (June 30, 2025:  10 billion,  2.7 billion and  0.4 billion).
+
+
+
+
+                                                                                    - 27 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+15.   FINANCIAL RISK MANAGEMENT
+
+      a)   Accounting classification and fair values
+
+      Fair value is the price that would be received to sell an asset or paid to transfer a liability in an orderly
+      transaction between market participants at the measurement date in the principal or, in its absence,
+      the most advantageous market to which the Group has access at that date. The fair value of a liability
+      reflects its non-performance risk.
+
+      A number of the Group’s accounting policies and disclosures require the measurement of fair values,
+      for both financial and non-financial assets and liabilities.
+
+      When one is available, the Group measures the fair value of an instrument using the quoted price in
+      an active market for that instrument. A market is regarded as active if transactions for the asset or
+      liability take place with sufficient frequency and volume to provide pricing information on an ongoing
+      basis.
+
+      If there is no quoted price in an active market, then the Group uses valuation techniques that maximise
+      the use of relevant observable inputs and minimise the use of unobservable inputs. The chosen
+      valuation technique incorporates all of the factors that market participants would take into account in
+      pricing a transaction.
+
+      When measuring the fair value of an asset or liability, the Group uses observable market data as far as
+      possible. Fair values are categorized into different levels in a fair value hierarchy based on the inputs
+      used in the valuation techniques as follows:
+
+      •    Level 1: The fair value of financial instruments traded in active markets (such as publicly traded
+           derivatives, and equity securities) is based on quoted market prices at the end of the reporting
+           period. The quoted market price used for financial assets held by the group is the current bid
+           price. The quoted market price incorporates the market's assumptions with respect to changes
+           in economic climate such as rising interest rates and inflation, as well as changes due to ESG risk.
+           These instruments are included in level.
+      •    Level 2: The fair value of financial instruments that are not traded in an active market (e.g. over-
+           the counter derivatives) is determined using valuation techniques that maximize the use of
+           observable market data and rely as little as possible on entity-specific estimates. If all significant
+           inputs required to fair value an instrument are observable, the instrument is included in level 2.
+      •    Level 3: If one or more of the significant inputs is not based on observable market data, the
+           instrument is included in level 3. This is the case for unlisted equity securities and for instruments
+           where ESG risk gives rise to a significant unobservable adjustment.
+
+      If the inputs used to measure the fair value of an asset or liability falls into different levels of the fair
+      value hierarchy, then the fair value measurement is categorized in its entirety in the same level of the
+      fair value hierarchy as the lowest input level that is significant to the entire measurement.
+
+      The Group recognises transfers between levels of the fair value hierarchy at the end of the reporting
+      period during which the change has occurred.
+
+      As the Group's financial instruments are compiled under the historical cost convention, except for
+      FVOCI investments, FVTPL investments, inventory and firm commitments under fair value
+      relationships and derivative financial instruments which are carried at fair values, differences can arise
+      between the book values and fair value estimates. Management believes that the fair values of the
+      Group’s financial assets and liabilities are not materially different from their carrying values.
+
+
+                                                      - 28 -
+SAVOLA GROUP COMPANY
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+(All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+15. FINANCIAL RISK MANAGEMENT (CONTINUED)
+
+    a) Accounting classification and fair values (continued)
+
+    The following table shows the carrying amount and fair values of the financial assets and financial
+    liabilities, including their levels and fair value hierarchy. It does not include fair value information for
+    financial assets and financial liabilities not measured at fair value if the carrying value is a reasonable
+    approximation of fair value.
+
+                                                    Carrying amount                              Fair Value
+                                         Mandatorily
+     June 30, 2026                        at FVTPL -     Hedging
+     (Unaudited)                            others     instruments     FVOCI       Level 1   Level 2   Level 3       Total
+
+     Financial assets measured at
+     fair value
+     Investment at fair value
+     through profit or loss (Note 6)          31,031              -            -   28,043          -     2,988        31,031
+     Future exchange contracts and
+     options used for hedging                       -        61,329            -   61,329          -             -    61,329
+     Investment at fair value
+     through other comprehensive
+     income (Note 6)                                -             -    432,481 105,824       30,868    295,789       432,481
+
+                                              31,031         61,329    432,481 195,196       30,868    298,777       524,841
+
+     Financial liabilities measured at
+     fair value
+     Future exchange contracts and
+     options used for hedging                       -      121,765             - 121,765           -             -   121,765
+
+
+
+                                                     Carrying amount                             Fair Value
+                                         Mandatorily
+     December 31, 2025                    at FVTPL -       Hedging
+     (Audited)                              others      instruments    FVOCI       Level 1   Level 2   Level 3       Total
+     Financial assets measured at
+     fair value
+     Investment at fair value through
+     profit or loss (Note 6)                  32,305              -            -   28,738          -     3,567        32,305
+     Future exchange contracts and
+     options used for hedging                      -       187,595             - 187,595           -             -   187,595
+     Investment at fair value through
+     other comprehensive income
+     (Note 6)                                      -              -    151,551 100,637       30,962     19,952       151,551
+
+                                              32,305       187,595     151,551 316,970       30,962     23,519       371,451
+
+     Financial liabilities measured at
+     fair value
+     Future exchange contracts and
+     options used for hedging                      -         98,035            -   98,035          -             -    98,035
+
+
+
+
+                                                         - 29 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+15. FINANCIAL RISK MANAGEMENT (CONTINUED)
+
+      b)   Measurement of fair values
+
+      Valuation technique and significant unobservable inputs
+
+      The following table shows the valuation techniques used in measuring Level 2 and Level 3 fair value,
+      as well as significant unobservable input used.
+      Financial instruments measured at fair value
+
+                                                                               Inter-relationship between
+                           Valuation                  Significant           significant unobservable inputs
+       Type                technique              unobservable inputs        and fair value measurements
+
+                                                 Price Earnings
+                           Market comparison     Multiples, Discount
+                           technique, PE         factor, Price to Book
+                           multiple, Price to    value and Price to
+       Equity securities   Book value.           Tangible Book Value.      Not applicable
+
+
+16.   CAPITAL MANAGEMENT
+
+      The Group's objective when managing capital is to safeguard the Group's ability to continue as a going
+      concern so that it can continue to provide returns for shareholders and benefits for other stakeholders;
+      and to maintain a strong capital base to support the sustained development of its businesses.
+
+      The Group manages its capital structure by monitoring return on net assets and makes adjustments to
+      it in the light of changes in economic conditions. In order to maintain or adjust the capital structure,
+      the Group may adjust the amount of dividends paid to shareholders or issue new shares. The Group
+      also monitors capital using a leverage ratio, which is calculated as total liabilities (as shown in the
+      condensed consolidated statement of financial position) less Cash and cash equivalents.
+
+      Adjusted equity comprises all components of equity other than amounts accumulated in the hedging
+      reserves. The leverage ratio is as follows:
+
+                                                                             June 30,         December 31,
+                                                                                2026                  2025
+                                                                          (Unaudited)             (Audited)
+
+       Total liabilities                                                   14,071,166            14,013,987
+       Less: Cash and cash equivalents                                     (1,051,382)            (904,137)
+       Adjusted net debt                                                   13,019,784            13,109,850
+       Total equity                                                         6,323,459             6,466,066
+       Hedging reserve                                                         41,935                 6,486
+       Adjusted equity                                                      6,365,394             6,472,552
+       Adjusted net debt to adjusted equity ratio                                 2.05                  2.03
+
+
+
+
+                                                    - 30 -
+ SAVOLA GROUP COMPANY
+ (A Saudi Joint Stock Company)
+ NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (CONTINUED)
+ FOR THE SIX MONTHS PERIOD ENDED JUNE 30, 2026
+ (All amounts in thousands Saudi Riyal ( ) unless otherwise stated)
+
+17.    NON-CASH TRANSACTIONS
+
+       The statement of cash flows has been affected by the impact of non-cash transactions as follows:
+
+                                                                                     June 30,          June 30,
+                                                                                        2026              2025
+                                                                                  (Unaudited)       (Unaudited)
+        Supplemental schedule of non-cash financial information:
+        Other reserves                                                                (46,101)          (47,019)
+        Foreign currency translation reserve                                          (26,646)            19,747
+
+18. GEOPOLITICAL DEVELOPMENTS
+
+      The Group continues to monitor the regional geopolitical developments and their potential impact on
+      Saudi Arabia and the broader GCC environment. While the situation remains evolving, the Group
+      maintains a robust operational framework to manage associated risks. These developments have not
+      had a material impact on Group's financial statements for the period ended June 30, 2026, however,
+      given the evolving nature of the conflict, the potential impact on the Group’s business will continue to
+      be assessed on future reporting dates.
+
+19. SUBSEQUENT EVENT
+
+      Subsequent to June 30, 2026, the Group acquired a 100% equity interest in Al Mehbaj Al Shamiya for
+      Trading LLC, a food processing company and a related party of the Group, for total consideration of
+       11.4 million, comprising  5.4 million paid subsequent to the reporting date following the
+      completion of agreed post-completion adjustments and related legal formalities including regulatory
+      approvals, and deferred consideration of  6.0 million payable on the first anniversary of the
+      completion date.
+
+      The transaction remains subject to ratification by the shareholders at the next General Assembly in
+      accordance with the applicable regulatory requirements governing related party transactions.
+
+20. DATE OF AUTHORISATION FOR ISSUE
+
+      These interim condensed consolidated financial statements were authorized for issue by the Company's
+      Board of Directors on Safar 22, 1448H corresponding to August 5, 2026.
+
+
+
+
+                                                    - 31 -
+
