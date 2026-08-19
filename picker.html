@@ -45,6 +45,12 @@
      ever needs, and were forcing the whole table wider than the card. Data cells stay
      single-line: a wrapped NUMBER or DATE is much harder to read than a wrapped label. */
   .pk-table th{text-align:left;padding:8px 6px;border-bottom:2px solid var(--line);font-weight:600;white-space:normal;vertical-align:bottom;line-height:1.25;max-width:110px}
+  /* header stays visible while the (often long) table scrolls -- 69px clears the
+     site's own sticky top nav (min-height 52px + 8px top/bottom padding + 1px border). */
+  .pk-table thead th{position:sticky;top:69px;z-index:2;background:var(--card);box-shadow:0 1px 0 var(--line)}
+  .pk-rank-row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
+  .pk-rank-row .field{min-width:190px}
+  .pk-market-field select{font-weight:600}
   /* short-data columns (Price, Gap, P(touch), Beats cash?) would otherwise shrink to fit
      their own short values and force the header into 3+ single-word lines; a min-width
      keeps each header to a clean 2 lines without needing to shorten the label text. */
@@ -122,6 +128,9 @@
 
   <section id="sec-table" class="card anchor" data-nav="The table">
     <div class="hrow" style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end">
+      <div class="field pk-market-field" style="margin-bottom:0;min-width:210px"><label for="pk-market">Stock market</label>
+        <select id="pk-market"><option value="ALL">All markets</option></select>
+      </div>
       <div class="field" style="margin-bottom:0"><label>Horizon</label>
         <div class="hbtns">
           <button type="button" class="hbtn" data-h="1M" id="pk-h1">1 month</button>
@@ -134,11 +143,20 @@
         <label class="ck"><input type="checkbox" id="pk-up"> only undervalued (fair value above price)</label>
       </div>
     </div>
+    <div class="pk-rank-row">
+      <div class="field" style="margin-bottom:0"><label for="pk-rank1">Rank by (primary)</label>
+        <select id="pk-rank1"></select>
+      </div>
+      <div class="field" style="margin-bottom:0"><label for="pk-rank2">Then by (secondary)</label>
+        <select id="pk-rank2"></select>
+      </div>
+      <p class="muted pk-note" style="margin:0 0 8px">Sets the default order below; click any column heading to override it for a one-off sort.</p>
+    </div>
     <div class="pk-wrap" style="margin-top:14px">
       <table class="pk-table" id="pk-table"></table>
     </div>
     <p class="muted pk-note" id="pk-count"></p>
-    <p class="muted pk-note">Click any column heading to sort by it — click again to reverse. <b>Reachability</b> is the default (best-reachability first, ties broken by higher P(touch)); that default is what made the ranking earlier, nothing else is applied unless you click a heading. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. <b>"already there"</b> means spot is already within this stock's own noise of fair value, so touching it is essentially guaranteed by definition — the simulation's exact number for those rows can land below 100% for a real but uninteresting reason (it only checks daily closes, not every instant in between), so we don't show a number that would just invite "why not 100%?" for no informational gain. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
+    <p class="muted pk-note"><b>Rank by / Then by</b> set the standing order: rows sort by the primary field first (<b>Reachability</b> — best-reachability first, itself already broken by higher P(touch) — is the default), then by the secondary field wherever the primary ties (<b>Gap %</b> is the default). Click any column heading for a one-off sort instead — it becomes the new primary for that click, the secondary dropdown still applies underneath it. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. <b>"already there"</b> means spot is already within this stock's own noise of fair value, so touching it is essentially guaranteed by definition — the simulation's exact number for those rows can land below 100% for a real but uninteresting reason (it only checks daily closes, not every instant in between), so we don't show a number that would just invite "why not 100%?" for no informational gain. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
   </section>
 
   <section id="sec-bands" class="card anchor" data-nav="What the bands mean">
@@ -179,7 +197,8 @@ window.addEventListener('error', function(e){
   'use strict';
   if (typeof FV_OVERLAY === 'undefined' || !FV_OVERLAY.rows){ return; }
 
-  var state = { h: '3M', reach:false, cash:false, up:false, sortKey:'reach', sortDir:'asc' };
+  var state = { h: '3M', reach:false, cash:false, up:false, market:'ALL',
+                sortKey:'reach', sortDir:'asc', sortKey2:'gap', sortDir2:'desc' };
   var BANDCLS = { 'IN-REACH':'b0', 'STRETCH':'b1', 'OUT-OF-REACH':'b2', 'NOT-EXPRESSIBLE':'b3' };
   var BANDTXT = { 'IN-REACH':'IN-REACH', 'STRETCH':'STRETCH', 'OUT-OF-REACH':'OUT-OF-REACH', 'NOT-EXPRESSIBLE':'NOT EXPRESSIBLE' };
   var BANDORDER = { 'IN-REACH':0, 'STRETCH':1, 'OUT-OF-REACH':2, 'NOT-EXPRESSIBLE':3 };
@@ -193,6 +212,18 @@ window.addEventListener('error', function(e){
     { key:'touch', label:'P(touch fair value)', num:true, defDir:'desc' },
     { key:'cash',  label:null,          num:false, defDir:'desc' }, // label carries the live rf%
     { key:'asof',  label:'As of',       num:false, defDir:'desc' }
+  ];
+  // Same fields, offered as the two explicit ranking pickers -- static labels
+  // (no per-horizon suffix) since these selects render once, not per-render.
+  var RANK_OPTS = [
+    { key:'reach', label:'Reachability' },
+    { key:'gap',   label:'Gap %' },
+    { key:'touch', label:'P(touch fair value)' },
+    { key:'fair',  label:'Fair value' },
+    { key:'price', label:'Price' },
+    { key:'cash',  label:'Beats local cash?' },
+    { key:'asof',  label:'As of (freshest first)' },
+    { key:'stock', label:'Stock name (A–Z)' }
   ];
   // Each row is computed under its OWN market's committed fit and cash hurdle
   // (per-row markets, 10-Aug-2026); the hurdle is shown in the cell, not one
@@ -244,7 +275,7 @@ window.addEventListener('error', function(e){
     }
   }
 
-  function cmp(a, b, key, dir, h){
+  function cmpField(a, b, key, dir, h){
     var av = fieldFor(key, a, h), bv = fieldFor(key, b, h);
     // nulls (suppressed P(touch)) always sort last, whichever direction is active
     if (av === null || bv === null){
@@ -254,15 +285,27 @@ window.addEventListener('error', function(e){
     var d = (typeof av === 'string') ? av.localeCompare(bv) : (av - bv);
     return dir === 'asc' ? d : -d;
   }
+  // Primary ranking, then the secondary ranking as a tiebreaker (skipped if it's the
+  // same column as the primary -- picking one for both would be a no-op anyway).
+  function cmp(a, b, h){
+    var d = cmpField(a, b, state.sortKey, state.sortDir, h);
+    if (d !== 0) return d;
+    if (state.sortKey2 && state.sortKey2 !== state.sortKey){
+      var d2 = cmpField(a, b, state.sortKey2, state.sortDir2, h);
+      if (d2 !== 0) return d2;
+    }
+    return 0;
+  }
 
   function render(){
     var h = state.h;
     var rows = FV_OVERLAY.rows.filter(function(r){ return r[h]; });
     // stable alphabetical base so equal-value ties resolve the same way every time
     rows = rows.slice().sort(function(a,b){ return fieldFor('stock',a,h) < fieldFor('stock',b,h) ? -1 : 1; });
-    rows.sort(function(a,b){ return cmp(a, b, state.sortKey, state.sortDir, h); });
+    rows.sort(function(a,b){ return cmp(a, b, h); });
 
-    var shown = rows.filter(function(r){
+    var marketRows = state.market === 'ALL' ? rows : rows.filter(function(r){ return mktOf(r) === state.market; });
+    var shown = marketRows.filter(function(r){
       var o = r[h];
       if (state.reach && o.band !== 'IN-REACH') return false;
       if (state.cash && !o.beats_cash) return false;
@@ -334,8 +377,11 @@ window.addEventListener('error', function(e){
     }).join('');
 
     document.getElementById('pk-table').innerHTML = '<thead>'+thHtml+'</thead><tbody>'+rowsHtml+'</tbody>';
+    var scopeTxt = state.market === 'ALL'
+      ? 'of ' + rows.length + ' covered names across ' + order.length + ' market' + (order.length===1?'':'s')
+      : 'of ' + marketRows.length + ' names in ' + mktLabel(state.market);
     document.getElementById('pk-count').textContent =
-      'Showing ' + shown.length + ' of ' + rows.length + ' covered names across ' + order.length + ' market' + (order.length===1?'':'s') + ' · fair values as published, prices as of each name’s own anchor date · each name grouped under its own market and computed under that market’s engine fit and cash rate.';
+      'Showing ' + shown.length + ' ' + scopeTxt + ' · fair values as published, prices as of each name’s own anchor date · each name grouped under its own market and computed under that market’s engine fit and cash rate.';
 
     document.querySelectorAll('.pk-sortbtn').forEach(function(btn){
       btn.addEventListener('click', function(){
@@ -343,10 +389,65 @@ window.addEventListener('error', function(e){
         var col = COLS.filter(function(c){ return c.key===key; })[0];
         if (state.sortKey === key){ state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc'; }
         else { state.sortKey = key; state.sortDir = col.defDir; }
+        // a one-off column click always sets the primary ranking (the secondary
+        // dropdown stays put as the tiebreaker) -- keep the picker in sync with it.
+        syncRankSelects();
         render();
       });
     });
   }
+
+  /* ---------- market picker ----------
+     Populated once from the markets actually present in the data (registry order),
+     not the full MARKET_ORDER, so a market with zero covered names never shows up
+     as a dead option. */
+  function populateMarketSelect(){
+    var sel = document.getElementById('pk-market');
+    var present = {};
+    FV_OVERLAY.rows.forEach(function(r){ var m = mktOf(r); if (m) present[m] = true; });
+    Object.keys(present).sort(function(a,b){
+      var ra = mktRank(a), rb = mktRank(b);
+      return ra !== rb ? ra - rb : a.localeCompare(b);
+    }).forEach(function(m){
+      var opt = document.createElement('option');
+      opt.value = m; opt.textContent = mktLabel(m);
+      sel.appendChild(opt);
+    });
+  }
+
+  /* ---------- primary / secondary ranking pickers ----------
+     Same field set as the sortable columns, offered explicitly so the ranking
+     doesn't depend on knowing which column heading to click. */
+  function populateRankSelects(){
+    ['pk-rank1', 'pk-rank2'].forEach(function(id){
+      var sel = document.getElementById(id);
+      RANK_OPTS.forEach(function(o){
+        var opt = document.createElement('option');
+        opt.value = o.key; opt.textContent = o.label;
+        sel.appendChild(opt);
+      });
+    });
+  }
+  function syncRankSelects(){
+    document.getElementById('pk-rank1').value = state.sortKey;
+    document.getElementById('pk-rank2').value = state.sortKey2;
+  }
+
+  populateMarketSelect();
+  populateRankSelects();
+  syncRankSelects();
+
+  document.getElementById('pk-market').addEventListener('change', function(){ state.market=this.value; render(); });
+  document.getElementById('pk-rank1').addEventListener('change', function(){
+    state.sortKey = this.value;
+    state.sortDir = (COLS.filter(function(c){ return c.key===state.sortKey; })[0] || {}).defDir || 'asc';
+    render();
+  });
+  document.getElementById('pk-rank2').addEventListener('change', function(){
+    state.sortKey2 = this.value;
+    state.sortDir2 = (COLS.filter(function(c){ return c.key===state.sortKey2; })[0] || {}).defDir || 'asc';
+    render();
+  });
 
   document.getElementById('pk-h1').addEventListener('click', function(){ state.h='1M'; this.classList.add('on'); document.getElementById('pk-h3').classList.remove('on'); render(); });
   document.getElementById('pk-h3').addEventListener('click', function(){ state.h='3M'; this.classList.add('on'); document.getElementById('pk-h1').classList.remove('on'); render(); });
