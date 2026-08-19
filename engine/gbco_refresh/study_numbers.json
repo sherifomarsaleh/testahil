@@ -49,6 +49,7 @@
   "pay": 15492.5,
   "cogs": 34299.4,
   "nci_bs": 590.7,
+  "eq_seg": 12998.3,
   "h1_25_rev": 30672.7,
   "h1_25_gp": 4752.0,
   "h1_25_ebitda": 3074.3,
@@ -68,7 +69,15 @@
   "lm_r_h125": 928.4,
   "tr_r_h125": 2438.2,
   "pc_fx_share": 0.1459,
-  "oth_r": 669.2
+  "oth_r": 669.2,
+  "ckd_u": 15454,
+  "cbu_u": 14100,
+  "bus_u": 1002,
+  "truck_u": 1472,
+  "ce_u": 16,
+  "cv_u_h125": 1534,
+  "lm_u_h125": 14216,
+  "oth_r_h125": 567.3
  },
  "fs_margins": {
   "pc": 0.13316297043297143,
@@ -210,6 +219,7 @@
     "adv": 5818.6,
     "assoc": 15732.4,
     "cash": 9523.6,
+    "ppe": 13389.1,
     "ta": 94287.6,
     "borrow": 37921.3,
     "eq": 31671.4,
@@ -500,6 +510,48 @@
    0.215,
    0.21
   ],
+  "h2_temper": {
+   "pc": 1.0,
+   "cv": 0.91,
+   "lm": 0.95,
+   "tr": 1.17,
+   "oth": 1.01
+  },
+  "h2_step": {
+   "pc": 1.025,
+   "cv": 1.02,
+   "lm": 1.03
+  },
+  "seasonal_units": {
+   "pc": 0.45959185117068685,
+   "cv": 0.4506462984723854,
+   "lm": 0.4192768241609155,
+   "tr": 0.5746676722918826,
+   "oth": 0.503103937566513
+  },
+  "ckd_mix": 1.02,
+  "bus_mix": 1.03,
+  "ce_path": [
+   32.0,
+   34.0,
+   36.0,
+   38.0,
+   40.0
+  ],
+  "ckd_g": [
+   null,
+   0.12,
+   0.1,
+   0.07,
+   0.06
+  ],
+  "bus_g": [
+   null,
+   0.16,
+   0.12,
+   0.09,
+   0.08
+  ],
   "kd_fwd": [
    0.195,
    0.175,
@@ -542,12 +594,14 @@
    "bear": 0.85,
    "bull": 1.12
   },
+  "tr_price_g": 0.06,
+  "tr_reset": 1.04,
   "gpm_path": [
-   0.136260663100282,
-   0.13105745010721503,
-   0.1309815852798516,
-   0.13096443680947584,
-   0.1309187366592172
+   0.13625706958345873,
+   0.1310518858603867,
+   0.13097582941995292,
+   0.13095838388790054,
+   0.13091241841596518
   ],
   "cost_ratio_paths": {
    "pc": [
@@ -598,54 +652,99 @@
  },
  "lob": {
   "FY26E": {
-   "pc_u": 64300,
-   "pc_r": 67465.6718144752,
-   "pc_asp": 1.0492328431489144,
-   "cv_r": 10100,
-   "lm_r": 3350,
-   "tr_r": 4800,
-   "oth_r": 1340,
-   "auto_rev": 87055.6718144752
+   "pc_u": 64304.88252722305,
+   "pc_r": 67470.85280339759,
+   "pc_asp": 1.0492337463618606,
+   "cv_u": 5252.21186440678,
+   "cv_asp": 1.9273302673127222,
+   "cv_r": 10122.74689661017,
+   "lm_u": 49032.563273776024,
+   "lm_asp": 0.06893986540026593,
+   "lm_r": 3380.298312324142,
+   "tr_r": 4799.807144040687,
+   "oth_r": 1336.7520669839591,
+   "ckd_u": 34297.99714648505,
+   "bus_u": 2176.9468983050847,
+   "ce_u": 32.0,
+   "cbu_u": 30006.885380738,
+   "truck_u": 3043.264966101695,
+   "auto_rev": 87110.45722335656
   },
   "FY27E": {
-   "pc_u": 70087.0,
-   "pc_asp": 1.1331714706008276,
-   "pc_r": 79420.5888600002,
-   "cv_r": 12319.980000000003,
-   "lm_r": 4119.16,
-   "tr_r": 5328.000000000001,
-   "oth_r": 1474.0000000000002,
-   "auto_rev": 102661.7288600002
+   "pc_u": 70092.32195467313,
+   "pc_asp": 1.1331724460708095,
+   "cv_u": 5987.521525423729,
+   "cv_asp": 2.0622433860246128,
+   "lm_u": 56877.77339758018,
+   "lm_asp": 0.0730762573242819,
+   "tr_r": 5327.785929885163,
+   "oth_r": 1470.4272736823552,
+   "ckd_u": 38413.75680406326,
+   "bus_u": 2525.258402033898,
+   "ce_u": 34.0,
+   "pc_r": 79426.68792015965,
+   "cv_r": 12347.726664485086,
+   "lm_r": 4156.414804833765,
+   "cbu_u": 31678.565150609866,
+   "truck_u": 3428.263123389831,
+   "auto_rev": 102729.04259304603
   },
   "FY28E": {
-   "pc_u": 75693.96,
-   "pc_asp": 1.2124934735428856,
-   "pc_r": 91778.43248661625,
-   "cv_r": 14365.096680000006,
-   "lm_r": 4887.383339999999,
-   "tr_r": 5860.800000000001,
-   "oth_r": 1621.4000000000003,
-   "auto_rev": 118513.11250661625
+   "pc_u": 75699.70771104698,
+   "pc_asp": 1.2124945172957662,
+   "cv_u": 6586.273677966103,
+   "cv_asp": 2.1859779891860898,
+   "lm_u": 64271.8839392656,
+   "lm_asp": 0.07673007019049599,
+   "tr_r": 5860.564522873679,
+   "oth_r": 1617.4700010505908,
+   "ckd_u": 42255.13248446959,
+   "bus_u": 2828.289410277966,
+   "ce_u": 36.0,
+   "pc_r": 91785.4805605365,
+   "cv_r": 14397.449290789613,
+   "lm_r": 4931.586165935261,
+   "cbu_u": 33444.57522657739,
+   "truck_u": 3721.9842676881367,
+   "auto_rev": 118592.55054118564
   },
   "FY29E": {
-   "pc_u": 80235.59760000001,
-   "pc_asp": 1.2852430819554588,
-   "pc_r": 103122.24674196202,
-   "cv_r": 16445.16267926401,
-   "lm_r": 5696.24528277,
-   "tr_r": 6388.272000000002,
-   "oth_r": 1767.3260000000005,
-   "auto_rev": 133419.25270399606
+   "pc_u": 80241.69017370981,
+   "pc_asp": 1.2852441883335122,
+   "cv_u": 7113.175572203391,
+   "cv_asp": 2.3171366685372554,
+   "lm_u": 71341.79117258482,
+   "lm_asp": 0.0805665737000208,
+   "tr_r": 6388.015329932311,
+   "oth_r": 1763.0423011451442,
+   "ckd_u": 45212.991758382464,
+   "bus_u": 3082.835457202983,
+   "ce_u": 38.0,
+   "pc_r": 103130.16595781883,
+   "cv_r": 16482.199948095953,
+   "lm_r": 5747.763676397548,
+   "cbu_u": 35028.698415327344,
+   "truck_u": 3992.3401150004083,
+   "auto_rev": 133511.18721338979
   },
   "FY30E": {
-   "pc_u": 84247.37748000001,
-   "pc_asp": 1.3623576668727864,
-   "pc_r": 114775.06062380374,
-   "cv_r": 18476.140270153115,
-   "lm_r": 6519.352726130266,
-   "tr_r": 6899.333760000002,
-   "oth_r": 1908.7120800000007,
-   "auto_rev": 148578.5994600871
+   "pc_u": 84253.7746823953,
+   "pc_asp": 1.3623588396335229,
+   "cv_u": 7611.0978622576295,
+   "cv_asp": 2.4329935019641185,
+   "lm_u": 77762.55237811747,
+   "lm_asp": 0.08459490238502183,
+   "tr_r": 6899.0565563268965,
+   "oth_r": 1904.0856852367558,
+   "ckd_u": 47925.771263885414,
+   "bus_u": 3329.462293779222,
+   "ce_u": 40.0,
+   "pc_r": 114783.87471105235,
+   "cv_r": 18517.751641685805,
+   "lm_r": 6578.315527636995,
+   "cbu_u": 36328.00341850989,
+   "truck_u": 4241.635568478408,
+   "auto_rev": 148683.0841219388
   }
  },
  "ccc": {
@@ -710,131 +809,220 @@
   "rows": [
    {
     "year": "FY26E",
-    "rev": 87055.6718144752,
-    "gp": 11862.26356808092,
-    "gpm": 0.136260663100282,
-    "ebitda": 7091.61275264768,
-    "ebit": 6221.056034502928,
-    "dna": 870.5567181447519,
-    "nopat": 3857.0547413918152,
+    "rev": 87110.45722335656,
+    "gp": 11869.415631329799,
+    "gpm": 0.13625706958345873,
+    "ebitda": 7095.76257548986,
+    "ebit": 6224.658003256294,
+    "dna": 871.1045722335656,
+    "nopat": 3859.2879620189024,
     "capex": 2800,
-    "dwc": 1105.8045173292958,
-    "fcff": 821.8069422072713,
-    "wc": 20022.804517329296,
+    "dwc": 1118.4051613720076,
+    "fcff": 811.9873728804605,
+    "wc": 20035.405161372008,
     "etr": 0.38
    },
    {
     "year": "FY27E",
-    "rev": 102661.7288600002,
-    "gp": 13454.584407989914,
-    "gpm": 0.13105745010721503,
-    "ebitda": 7900.584876663903,
-    "ebit": 6853.435242291901,
-    "dna": 1047.149634372002,
-    "nopat": 4797.404669604331,
+    "rev": 102729.04259304603,
+    "gp": 13462.834764450674,
+    "gpm": 0.1310518858603867,
+    "ebitda": 7905.193560166885,
+    "ebit": 6857.357325717815,
+    "dna": 1047.8362344490697,
+    "nopat": 4800.15012800247,
     "capex": 2600,
-    "dwc": 3076.084476170752,
-    "fcff": 168.46982780558028,
-    "wc": 23098.888993500048,
+    "dwc": 3078.62942206335,
+    "fcff": 169.3569403881902,
+    "wc": 23114.034583435357,
     "etr": 0.3
    },
    {
     "year": "FY28E",
-    "rev": 118513.11250661625,
-    "gp": 15523.035352566003,
-    "gpm": 0.1309815852798516,
-    "ebitda": 9194.435144712694,
-    "ebit": 7961.898774643885,
-    "dna": 1232.536370068809,
-    "nopat": 5891.805093236475,
+    "rev": 118592.55054118564,
+    "gp": 15532.757670159477,
+    "gpm": 0.13097582941995292,
+    "ebitda": 9199.915471260163,
+    "ebit": 7966.552945631833,
+    "dna": 1233.3625256283306,
+    "nopat": 5895.249179767556,
     "capex": 2500,
-    "dwc": 2973.9957579555266,
-    "fcff": 1650.3457053497568,
-    "wc": 26072.884751455575,
+    "dwc": 2976.326535625485,
+    "fcff": 1652.285169770401,
+    "wc": 26090.361119060843,
     "etr": 0.26
    },
    {
     "year": "FY29E",
-    "rev": 133419.25270399606,
-    "gp": 17473.17728991998,
-    "gpm": 0.13096443680947584,
-    "ebitda": 10455.324597689787,
-    "ebit": 9067.764369568227,
-    "dna": 1387.560228121559,
-    "nopat": 6891.500920871853,
+    "rev": 133511.18721338979,
+    "gp": 17484.409308420458,
+    "gpm": 0.13095838388790054,
+    "ebitda": 10461.720860996156,
+    "ebit": 9073.204513976902,
+    "dna": 1388.5163470192538,
+    "nopat": 6895.635430622446,
     "capex": 2500,
-    "dwc": 2612.254579903576,
-    "fcff": 3166.8065690898366,
-    "wc": 28685.13933135915,
+    "dwc": 2614.544131817962,
+    "fcff": 3169.6076458237367,
+    "wc": 28704.905250878805,
     "etr": 0.24
    },
    {
     "year": "FY30E",
-    "rev": 148578.5994600871,
-    "gp": 19451.722535910452,
-    "gpm": 0.1309187366592172,
-    "ebitda": 11740.493223931931,
-    "ebit": 10195.275789547026,
-    "dna": 1545.2174343849058,
-    "nopat": 7901.338736898945,
+    "rev": 148683.0841219388,
+    "gp": 19464.462119947402,
+    "gpm": 0.13091241841596518,
+    "ebitda": 11747.810054018777,
+    "ebit": 10201.505979150614,
+    "dna": 1546.3040748681633,
+    "nopat": 7906.167133841725,
     "capex": 2600,
-    "dwc": 2516.366555259141,
-    "fcff": 4330.189616024711,
-    "wc": 31201.50588661829,
+    "dwc": 2518.542414728341,
+    "fcff": 4333.928793981548,
+    "wc": 31223.447665607146,
     "etr": 0.225
    }
   ],
   "h1_fcff": 2692.5792000000006,
-  "h2_fcff": -1870.7722577927293,
+  "h2_fcff": -1880.59182711954,
   "pv_rows": [
    {
     "period": "H2-26E",
-    "fcff": -1870.7722577927293,
+    "fcff": -1880.59182711954,
     "t": 0.5,
     "df": 0.9026977442632086,
-    "pv": -1688.7418971396864
+    "pv": -1697.6060002206348
    },
    {
     "period": "FY27E",
-    "fcff": 168.46982780558028,
+    "fcff": 169.3569403881902,
     "t": 1.5,
     "df": 0.7355751883184013,
-    "pv": 123.92222531405835
+    "pv": 124.57476331907127
    },
    {
     "period": "FY28E",
-    "fcff": 1650.3457053497568,
+    "fcff": 1652.285169770401,
     "t": 2.5,
     "df": 0.5993931646647453,
-    "pv": 989.2059351204621
+    "pv": 990.3684368373066
    },
    {
     "period": "FY29E",
-    "fcff": 3166.8065690898366,
+    "fcff": 3169.6076458237367,
     "t": 3.5,
     "df": 0.4884234427049541,
-    "pv": 1546.742566855522
+    "pv": 1548.1106783971743
    },
    {
     "period": "FY30E",
-    "fcff": 4330.189616024711,
+    "fcff": 4333.928793981548,
     "t": 4.5,
     "df": 0.39799829802395287,
-    "pv": 1723.4080972988288
+    "pv": 1724.8962837616587
    }
   ],
-  "pv_sum": 2694.536927449185,
-  "tv": 43031.80786263421,
-  "pv_tv": 17126.586290222167,
-  "ev": 19821.123217671353,
-  "tv_pct": 0.8640573040256925,
+  "pv_sum": 2690.344162094576,
+  "tv": 38411.28497793915,
+  "pv_tv": 15287.626046132807,
+  "ev": 17977.970208227383,
+  "tv_pct": 0.8503532862200776,
   "wacc": 0.22719982756197393,
   "tg": 0.115,
   "auto_nd": 14493.6,
   "auto_nci": 590.7,
-  "auto_eq": 4736.823217671353,
-  "auto_eq_pm1": 11786.16966437497,
-  "auto_eq_mm1": -2312.5232290322483
+  "auto_eq": 2893.6702082273832,
+  "auto_eq_pm1": 7618.4970218611115,
+  "auto_eq_mm1": -1831.1566054063326,
+  "roic_t": 0.225,
+  "reinv_t": 0.5111111111111111,
+  "tv_fcff_terminal": 4309.739550958612,
+  "tv_gordon": 43068.96641726363,
+  "roic_implied_gordon": 0.2545208728786518,
+  "auto_eq_gordon": 4747.419493816286
+ },
+ "alternatives": {
+  "margin_compounds": {
+   "label": "cost-price differential compounds every year (not held flat after FY27E)",
+   "auto_eq": -1987.2616483740378,
+   "gpm_fy30": 0.11703955860877567
+  },
+  "etr_stays_41": {
+   "label": "regional losses persist: effective tax held at the H1-26 41.0%",
+   "auto_eq": -3717.281649795307
+  },
+  "wc_at_fy25_peak": {
+   "label": "working capital at the FY25 year-end 28.5% of revenue",
+   "auto_eq": -4893.408677102862
+  },
+  "tv_gordon": {
+   "label": "terminal value as plain Gordon on year-five free cash flow (the July edition's construction)",
+   "auto_eq": 4747.419493816286,
+   "implied_roic": 0.2545208728786518
+  },
+  "tv_roic_15": {
+   "label": "terminal return on capital at the forward model's 15% marginal",
+   "auto_eq": -5097.58886134204
+  },
+  "tv_roic_20": {
+   "label": "terminal return on capital 20%",
+   "auto_eq": 895.8554408350271
+  }
+ },
+ "crux_ladder": [
+  {
+   "round_usd": 1000.0,
+   "assoc": 22766.282,
+   "sotp": 26.471265303919523,
+   "central": 30.667739009486663
+  },
+  {
+   "round_usd": 1200.0,
+   "assoc": 27120.242599999998,
+   "sotp": 30.0811819690508,
+   "central": 32.11170567553917
+  },
+  {
+   "round_usd": 1400.0,
+   "assoc": 31474.2032,
+   "sotp": 33.691098634182076,
+   "central": 33.55567234159169
+  },
+  {
+   "round_usd": 1600.0,
+   "assoc": 35828.1638,
+   "sotp": 37.301015299313356,
+   "central": 34.99963900764419
+  },
+  {
+   "round_usd": null,
+   "assoc": 16720.002,
+   "sotp": 21.458227993924133,
+   "central": 28.662524085488506,
+   "label": "the company's balance-sheet carrying"
+  }
+ ],
+ "book_decomp": {
+  "auto": 11.97448180561953,
+  "capital_oper": 5.7736849378166735,
+  "assoc_at_book": 14.952063565177339,
+  "elim": -1.8809765085214187,
+  "capital_check": 20.725748502994012,
+  "total": 30.819224320589587,
+  "marked_A": 44.41130280976508,
+  "mnt_uplift": 13.592078489175496
+ },
+ "distortions": {
+  "tax": {
+   "label": "tax above statute on unshielded regional losses",
+   "egp_mn": 403.74896050472563,
+   "per_share": 0.37194745325170486
+  },
+  "funding": {
+   "label": "funding cost above the eased-cycle rate",
+   "egp_mn": 280.8134999999999,
+   "per_share": 0.2586950713956701
+  }
  },
  "legs": {
   "cap_oper_eq": 6267.334999999999,
@@ -852,18 +1040,18 @@
   "A": {
    "label": "round mark (Jun-26 first close, USD 1.4bn x 42.93% x 50.71)",
    "assoc": 31474.2032,
-   "sotp": 35.21927708512595,
-   "sotp_bear": 17.40161312725681,
-   "sotp_bull": 54.717398508731755,
-   "central": 34.15716194473159
+   "sotp": 33.691098634182076,
+   "sotp_bear": 18.66940139698589,
+   "sotp_bull": 47.73569755760417,
+   "central": 33.55567234159169
   },
   "B": {
    "label": "company balance-sheet mark (equity-method carrying, KPMG-qualified)",
    "assoc": 16720.002,
-   "sotp": 22.986406444868006,
-   "sotp_bear": 8.966183867745064,
-   "sotp_bull": 40.452290739777354,
-   "central": 29.26401368862841
+   "sotp": 21.458227993924133,
+   "sotp_bear": 10.233972137474144,
+   "sotp_bull": 33.47058978864977,
+   "central": 28.662524085488506
   },
   "gap_ps": 12.232870640257946,
   "mult_B_on_grid": 0.5159021355013115
@@ -871,111 +1059,111 @@
  "fs_forecast": [
   {
    "year": "FY26E",
-   "auto_rev": 87055.6718144752,
+   "auto_rev": 87110.45722335656,
    "cap_rev": 18700.0,
-   "group_rev": 104380.84808088702,
-   "auto_ebit": 6221.056034502928,
+   "group_rev": 104434.92127945292,
+   "auto_ebit": 6224.658003256294,
    "fin_cost": 3619.826,
-   "auto_np": 1612.7626213918154,
+   "auto_np": 1614.9958420189025,
    "cap_np": 1450.0,
    "assoc_pickup": 850.0,
-   "group_np": 3062.7626213918156,
-   "eps": 2.8215224517658366,
+   "group_np": 3064.9958420189023,
+   "eps": 2.8235797715512687,
    "divs": 379.92499999999995,
-   "wc": 20022.804517329296,
+   "wc": 20035.405161372008,
    "assoc_carrying": 17080.465,
-   "auto_nd": 16239.02142779273,
-   "equity": 36137.105621391805,
-   "bvps": 33.29074677235542,
-   "roe": 0.08475395493707652
+   "auto_nd": 16248.84099711954,
+   "equity": 36139.33884201889,
+   "bvps": 33.29280409214085,
+   "roe": 0.08481051231781968
   },
   {
    "year": "FY27E",
-   "auto_rev": 102661.7288600002,
+   "auto_rev": 102729.04259304603,
    "cap_rev": 22440.0,
-   "group_rev": 123475.4063848202,
-   "auto_ebit": 6853.435242291901,
-   "fin_cost": 2841.8287498637274,
-   "auto_np": 2808.1245446997214,
+   "group_rev": 123541.84503933643,
+   "auto_ebit": 6857.357325717815,
+   "fin_cost": 2843.547174495919,
+   "auto_np": 2809.667105855327,
    "cap_np": 1750.0,
    "assoc_pickup": 1065.0,
-   "group_np": 4558.124544699722,
-   "eps": 4.1991013769688825,
+   "group_np": 4559.6671058553275,
+   "eps": 4.200522437453088,
    "divs": 379.92499999999995,
-   "wc": 23098.888993500048,
+   "wc": 23114.034583435357,
    "assoc_carrying": 18145.465,
-   "auto_nd": 18382.767974891758,
-   "equity": 40315.30516609152,
-   "bvps": 37.139848149324294,
-   "roe": 0.11306188867778875
+   "auto_nd": 18392.903328878492,
+   "equity": 40319.080947874216,
+   "bvps": 37.143326529593935,
+   "roe": 0.11308955954998601
   },
   {
    "year": "FY28E",
-   "auto_rev": 118513.11250661625,
+   "auto_rev": 118592.55054118564,
    "cap_rev": 26254.8,
-   "group_rev": 142885.92964403023,
-   "auto_ebit": 7961.898774643885,
-   "fin_cost": 3033.15671585714,
-   "auto_np": 3647.2691235021916,
+   "group_rev": 142964.33498415022,
+   "auto_ebit": 7966.552945631833,
+   "fin_cost": 3034.829049264951,
+   "auto_np": 3649.475683311492,
    "cap_np": 2050.0,
    "assoc_pickup": 1330.0,
-   "group_np": 5697.269123502192,
-   "eps": 5.24852061124108,
+   "group_np": 5699.475683311492,
+   "eps": 5.25055337016259,
    "divs": 379.92499999999995,
-   "wc": 26072.884751455575,
+   "wc": 26090.361119060843,
    "assoc_carrying": 19475.465,
-   "auto_nd": 19299.894489276285,
-   "equity": 45632.64928959371,
-   "bvps": 42.03836876056537,
-   "roe": 0.12485072009179675
+   "auto_nd": 19309.327905564154,
+   "equity": 45638.63163118571,
+   "bvps": 42.043879899756526,
+   "roe": 0.124882703087376
   },
   {
    "year": "FY29E",
-   "auto_rev": 133419.25270399606,
+   "auto_rev": 133511.18721338979,
    "cap_rev": 30193.019999999997,
-   "group_rev": 161485.3131588441,
-   "auto_ebit": 9067.764369568227,
-   "fin_cost": 2991.483645837824,
-   "auto_np": 4617.973350035107,
+   "group_rev": 161576.0525196157,
+   "auto_ebit": 9073.204513976902,
+   "fin_cost": 2992.945825362444,
+   "auto_np": 4620.996603346988,
    "cap_np": 2350.0,
    "assoc_pickup": 1600.0,
-   "group_np": 6967.973350035107,
-   "eps": 6.4191371257808445,
+   "group_np": 6970.996603346988,
+   "eps": 6.421922250895429,
    "divs": 379.92499999999995,
-   "wc": 28685.13933135915,
+   "wc": 28704.905250878805,
    "assoc_carrying": 21075.465,
-   "auto_nd": 18729.551741023195,
-   "equity": 52220.697639628816,
-   "bvps": 48.10750588634622,
-   "roe": 0.1334331723815828
+   "auto_nd": 18737.295337015876,
+   "equity": 52229.703234532695,
+   "bvps": 48.11580215065195,
+   "roe": 0.13346804924478256
   },
   {
    "year": "FY30E",
-   "auto_rev": 148578.5994600871,
+   "auto_rev": 148683.0841219388,
    "cap_rev": 33816.1824,
-   "group_rev": 180023.64969590597,
-   "auto_ebit": 10195.275789547026,
-   "fin_cost": 2809.432761153479,
-   "auto_np": 5724.028347004999,
+   "group_rev": 180126.7760571536,
+   "auto_ebit": 10201.505979150614,
+   "fin_cost": 2810.5943005523814,
+   "auto_np": 5727.95655091363,
    "cap_np": 2650.0,
    "assoc_pickup": 1870.0,
-   "group_np": 8374.028347004998,
-   "eps": 7.714443433445415,
+   "group_np": 8377.95655091363,
+   "eps": 7.718062230229046,
    "divs": 379.92499999999995,
-   "wc": 31201.50588661829,
+   "wc": 31223.447665607146,
    "assoc_carrying": 22945.465,
-   "auto_nd": 16899.60876489243,
-   "equity": 60214.80098663381,
-   "bvps": 55.47194931979163,
-   "roe": 0.13906926884743545
+   "auto_nd": 16904.513375962422,
+   "equity": 60227.73478544632,
+   "bvps": 55.483864380880995,
+   "roe": 0.13910462647746988
   }
  ],
  "lenses": {
   "sotp": {
-   "bear": 8.966183867745064,
-   "base_A": 35.21927708512595,
-   "base_B": 22.986406444868006,
-   "bull": 54.717398508731755
+   "bear": 10.233972137474144,
+   "base_A": 33.691098634182076,
+   "base_B": 21.458227993924133,
+   "bull": 47.73569755760417
   },
   "book": {
    "bear": 24.65537945647167,
@@ -984,28 +1172,28 @@
    "note": "base = restated accounting book (P/B 1.0); bull = book with MNT B.V. at the round mark; bear = 0.8x book (ROE below Ke)"
   },
   "relative": {
-   "bear": 22.572179614126693,
-   "base": 26.80446329177545,
-   "bull": 31.036746969424204,
+   "bear": 22.58863817241015,
+   "base": 26.824007829737052,
+   "bull": 31.059377487063955,
    "pe": {
     "bear": 8.0,
     "base": 9.5,
     "bull": 11.0
    },
-   "eps26": 2.8215224517658366,
-   "np26": 3062.7626213918156
+   "eps26": 2.8235797715512687,
+   "np26": 3064.9958420189023
   },
   "normalized": {
-   "bear": 30.257024412713037,
-   "base": 40.34269921695071,
-   "bull": 50.49956701980655,
-   "norm_pat": 5152.0
+   "bear": 30.27464302164901,
+   "base": 40.36619069553201,
+   "bull": 50.52897282358361,
+   "norm_pat": 5155.0
   },
   "central": {
-   "A": 34.15716194473159,
-   "B": 29.26401368862841,
-   "bear": 19.363472491572374,
-   "bull": 47.38089597379394
+   "A": 33.55567234159169,
+   "B": 28.662524085488506,
+   "bear": 19.878284163354692,
+   "bull": 44.60009314781512
   },
   "weights": {
    "sotp": 0.4,
@@ -1015,9 +1203,9 @@
   }
  },
  "fair": {
-  "bear": 19.4,
-  "base": 34.2,
-  "full": 47.4
+  "bear": 19.9,
+  "base": 33.6,
+  "full": 44.6
  },
  "sens": {
   "grid_mult": [
@@ -1036,56 +1224,56 @@
   ],
   "table": [
    [
-    25.093965285740538,
-    23.839267021453512,
-    22.584568757166483,
-    21.329870492879458,
-    20.075172228592432
+    23.395989229136237,
+    22.226189767679422,
+    21.056390306222614,
+    19.8865908447658,
+    18.71679138330899
    ],
    [
-    28.6036064879515,
-    27.173426163553927,
-    25.74324583915635,
-    24.313065514758776,
-    22.8828851903612
+    26.9056304313472,
+    25.560348909779837,
+    24.21506738821248,
+    22.86978586664512,
+    21.52450434507776
    ],
    [
-    32.11324769016246,
-    30.507585305654338,
-    28.901922921146216,
-    27.29626053663809,
-    25.690598152129972
+    30.41527163355816,
+    28.894508051880248,
+    27.373744470202343,
+    25.852980888524435,
+    24.332217306846527
    ],
    [
-    35.622888892373425,
-    33.841744447754756,
-    32.06060000313608,
-    30.279455558517412,
-    28.498311113898744
+    33.92491283576913,
+    32.22866719398067,
+    30.53242155219222,
+    28.836175910403757,
+    27.139930268615302
    ],
    [
-    39.13253009458439,
-    37.17590358985517,
-    35.21927708512595,
-    33.26265058039673,
-    31.306024075667516
+    37.434554037980085,
+    35.56282633608107,
+    33.691098634182076,
+    31.819370932283068,
+    29.947643230384067
    ]
   ],
   "mult_B": 0.5159021355013115
  },
  "experts": {
   "e1": {
-   "base": 36.00192768701764,
+   "base": 34.439789714941675,
    "rng": [
-    16.531532470893968,
-    55.81174647890639
+    17.735931327136594,
+    48.690411508756256
    ]
   },
   "e2": {
-   "base": 40.34269921695071,
+   "base": 40.36619069553201,
    "rng": [
-    30.257024412713037,
-    50.49956701980655
+    30.27464302164901,
+    50.52897282358361
    ]
   },
   "e3": {
@@ -1212,7 +1400,8 @@
   "cov90": 0.9411764705882353,
   "n": 17
  },
- "n_register": 173,
+ "n_register": 187,
+ "eq_elim": -2041.8,
  "slider_constants": {
   "applicable": false,
   "note": "gbco.html carries no bespoke factor-stack slider: CONT_FIXED / EV_FIXED / GEO_MEAN / LNCH_MEAN exist only on the ADCB/ALPHADHABI calculator pages (build_adh_page.py); verified by repo-wide grep 19-08-2026 \u2014 nothing to re-fit"
@@ -1545,6 +1734,15 @@
   {
    "name": "auto segment NCI 30-Jun-26",
    "value": 590.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto segment equity before NCI 30-Jun-26",
+   "value": 12998.3,
    "unit": "EGP mn",
    "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
    "date": "2026-08-13",
@@ -2445,7 +2643,7 @@
     "tr": 0.9
    },
    "unit": "shares",
-   "source": "constructed; flagged per SIGCM finest-sourced-level rule",
+   "source": "constructed from the disclosed import mix (CBU fully imported, CKD kit content USD-priced); the exact shares are not disclosed and this is flagged as an estimate carried at the finest disclosed level",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
@@ -2571,46 +2769,155 @@
    "note": ""
   },
   {
-   "name": "PC volumes FY26E (H1/seasonal-split implies 64,304; launches offset regional drag)",
-   "value": 64300,
+   "name": "CKD volumes H1-26",
+   "value": 15454,
    "unit": "units",
-   "source": "computed: H1 29,554 / FY25-H1-share 45.96%",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CBU volumes H1-26",
+   "value": 14100,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "bus volumes H1-26",
+   "value": 1002,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "truck volumes H1-26",
+   "value": 1472,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "construction-equipment volumes H1-26",
+   "value": 16,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE volumes H1-25",
+   "value": 1534,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Light-Mobility volumes H1-25",
+   "value": 14216,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "H2-26E tempering multipliers on the FY25 seasonal split, per line (pc: launches offset regional drag, no temper; cv: 2Q surge partly timing; lm: Qute supply cap; tr: H2 tires restock above the depressed seasonal; oth: neutral)",
+   "value": {
+    "pc": 1.0,
+    "cv": 0.91,
+    "lm": 0.95,
+    "tr": 1.17,
+    "oth": 1.01
+   },
+   "unit": "multipliers",
+   "source": "judgement on ER guidance + 2Q/1Q shape",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
   },
   {
-   "name": "CV&CE revenue FY26E (seasonal-implied 10,713 tempered for 2Q timing)",
-   "value": 10100,
-   "unit": "EGP mn",
-   "source": "computed from H1 4,749.1; tempering flagged",
+   "name": "H2-26E price step vs realized H1 ASP (post-devaluation price increases the company itself flags)",
+   "value": {
+    "pc": 1.025,
+    "cv": 1.02,
+    "lm": 1.03
+   },
+   "unit": "steps",
+   "source": "judgement on ER CEO note + FX path",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
   },
   {
-   "name": "LM revenue FY26E (seasonal-implied 3,406, Qute-capped)",
-   "value": 3350,
-   "unit": "EGP mn",
-   "source": "computed from H1 1,435.2",
+   "name": "CKD share drift in H2-26E (Hyundai CKD Sep + third Changan 4Q at Sadat)",
+   "value": 1.02,
+   "unit": "x",
+   "source": "judgement on ER launch calendar",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
   },
   {
-   "name": "Trading revenue FY26E (seasonal-implied 4,476; H2 tires restock)",
-   "value": 4800,
-   "unit": "EGP mn",
-   "source": "computed from H1 2,572.3",
+   "name": "bus share drift in H2-26E (tourism recovery off a weak base)",
+   "value": 1.03,
+   "unit": "x",
+   "source": "judgement on ER",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
   },
   {
-   "name": "other-auto revenue FY26E",
-   "value": 1340,
-   "unit": "EGP mn",
-   "source": "computed: 2x H1 residual 669.2",
+   "name": "construction-equipment units path (tiny, planned)",
+   "value": [
+    32.0,
+    34.0,
+    36.0,
+    38.0,
+    40.0
+   ],
+   "unit": "units path",
+   "source": "judgement; H1 16 units doubled then drifting",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CKD volume growth FY27-30 (localization drive)",
+   "value": [
+    null,
+    0.12,
+    0.1,
+    0.07,
+    0.06
+   ],
+   "unit": "path",
+   "source": "driver decision on the launch calendar",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "bus volume growth FY27-30",
+   "value": [
+    null,
+    0.16,
+    0.12,
+    0.09,
+    0.08
+   ],
+   "unit": "path",
+   "source": "driver decision",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
@@ -2620,6 +2927,24 @@
    "value": 0.182,
    "unit": "ratio",
    "source": "computed from ER auto GP 5,722.1 vs FS segment GP sum",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "trading/other price inflation (for the cost-differential year)",
+   "value": 0.06,
+   "unit": "rate",
+   "source": "judgement; tires are FX-priced goods",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "tires unit-cost reset FY27E (the favourable-historical-cost inventory one-off exhausts)",
+   "value": 1.04,
+   "unit": "x",
+   "source": "ER: margin 'benefited from inventory acquired at more favorable historical costs'",
    "date": "2026-08-19",
    "layer": "COMPANY",
    "note": ""
@@ -2736,11 +3061,29 @@
    "note": ""
   },
   {
+   "name": "terminal return on invested capital (anchor: the leg's own realized LTM ROCE 22.9% at 30-Jun-26; the forward model's ~15% marginal ROIC is transitional working-capital front-loading during the growth phase; sensitized 15%-25%)",
+   "value": 0.225,
+   "unit": "rate",
+   "source": "judgement anchored on ER table 10; sensitized in the study",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
    "name": "SOTP complexity/conglomerate discount (carried from the prior study)",
    "value": 0.1,
    "unit": "ratio",
    "source": "house decision, unchanged",
    "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "inter-segment equity eliminations 30-Jun-26",
+   "value": -2041.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
+   "date": "2026-08-13",
    "layer": "COMPANY",
    "note": ""
   },
@@ -2889,7 +3232,7 @@
   },
   {
    "name": "normalized mid-cycle group PAT: FY27E auto EBIT less normalized finance cost (ND x 17% as CBE eases) at 22.5% statutory tax + FY27E GB Capital NP (incl associates pickup)",
-   "value": 5152.0,
+   "value": 5155.0,
    "unit": "EGP mn",
    "source": "computed normalization",
    "date": "2026-08-19",

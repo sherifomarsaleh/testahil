@@ -29,7 +29,8 @@ sig = SIGCMChecklist(
     asset_conversion_cycle=True,         # DIO/DSO/DPO measured; WC projected on the cycle
     competitors=True,                    # CNFN/DOAS/AN/BAJAJ, in and out of country
     beta_own_history_vs_egx30=True,      # own_stock_beta record asserted above
-    formula_based_model=True,            # 446 formulas; recalc + driver-nudge test pass
+    formula_based_model=True,            # 638 formulas / 326 blue inputs / 0 pasted values;
+                                         # recalc (32 checks) + driver-nudge tests pass
     flags_raised_before_issue=True,      # debt split, perimeter note, MNT opacity all flagged
     stop_and_inform_honoured=True,
 )
@@ -40,7 +41,7 @@ print("SIGCM: all eight clauses attested and asserted")
 msc = ModelStudyChecklist(
     structure_matches_model=True,        # 16-section Word + 16-sheet Excel, exact names/order
     bibliography_document=True,          # standalone biblio: docs/register/judgements/negatives
-    provenance_four_field=True,          # 174 inputs, asserted in compute
+    provenance_four_field=True,          # 187 inputs, asserted in compute
     numeric_traceability=True,           # builders read study_numbers.json only; recalc PASS
     external_reader_scrub=True,          # qc_checks: 0 hits both documents
     figure_discipline=True,              # opaque light canvases; rendered-image inspection done

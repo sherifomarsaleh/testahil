@@ -28,6 +28,9 @@ BANNED = [
     r'\bcalibration ledger\b', r'\bledger cohort\b',
     r'\bdevice A-\d\b', r'\bexpert persona library\b', r'\bpersona library\b',
     r'\bscale-normalis?zed\b', r'\bbootstrap block\b', r'\bengine reconciliation\b',
+    r'\bSIGCM\b', r'\bCOMPANY_IR\b', r'\bdepth[- ]bar\b', r'\bdriver ledger\b',
+    r'\bground-up mandate\b', r'\bmodel[- ]study checklist\b', r'\btrigger \([ab]\)\b',
+    r'\broll[- ]forward workflow\b', r'\bfour[- ]field register\b',
 ]
 
 CASE_BANNED = [r'\bPARITY\b', r'\bBOUNDARY\b', r'\bFAIL\b(?! )']

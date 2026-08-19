@@ -141,60 +141,128 @@ caption("From the reviewed interim statements and the results release of 13 Augu
 # =====================================================================================
 H1("1  Fundamental valuation")
 
-H2("1.1  The cash-flow model — automotive leg, full waterfall")
-P(f"The automotive business is valued on its free cash flow to the firm, discounted at "
-  f"the group's own cost of capital of {pc(wac['wacc_cds'], 2)} (built from scratch in "
-  f"section 1.8), with terminal growth of {pc(wac['tg'], 1)} in nominal pounds. The "
-  f"valuation is dated 30 June 2026: the realized first half is already in the opening "
-  f"net debt, so the model discounts the second half and four further years, each at "
-  f"mid-period.")
+H2("1.1  The cash-flow model — the primary lens, with the full waterfall")
+P(f"The automotive business is valued on a five-year free-cash-flow-to-the-firm model "
+  f"dated 30 June 2026, the date of the reviewed balance sheet. Revenue is not a growth "
+  f"rate applied to a revenue line: each line of business is built on its own disclosed "
+  f"units and prices — locally assembled and imported cars separately, buses, trucks and "
+  f"construction equipment separately, two-, three- and four-wheelers on their own count "
+  f"— with unit costs escalated on their own physical classes. Sections 1.6 and 1.7 set "
+  f"the build out line by line. The waterfall below then runs to present value at the "
+  f"{pc(wac['wacc_cds'], 2)} cost of capital built in section 1.8. Every line is "
+  f"computed, not typed.")
 hdr = ["EGP mn"] + YRS
 rws = [hdr]
-for key, lab, d_ in [('rev', 'Revenue', 0), ('gp', 'Gross profit', 0), ('ebit', 'Operating profit', 0),
-                     ('etr', 'Effective tax rate', None), ('nopat', 'After-tax operating profit', 0),
-                     ('dna', 'Depreciation & amortisation', 0), ('capex', 'Capital expenditure', 0),
-                     ('dwc', 'Working-capital build', 0), ('fcff', 'Free cash flow to the firm', 0)]:
+for key, lab, d_ in [('rev', 'Revenue', 0), ('gp', 'Gross profit', 0),
+                     ('gpm', '  margin on revenue', None), ('ebit', 'Operating profit', 0),
+                     ('etr', '  effective tax rate', None),
+                     ('nopat', 'Net operating profit after tax', 0),
+                     ('dna', 'Add back depreciation & amortisation', 0),
+                     ('capex', 'Less capital expenditure', 0),
+                     ('dwc', 'Less the working-capital build', 0),
+                     ('fcff', 'Free cash flow to the firm', 0)]:
     row = [lab]
     for r in dcf['rows']:
         row.append(pc(r[key], 1) if d_ is None else fm(r[key], d_))
     rws.append(row)
-table(rws, [2.25, 0.95, 0.95, 0.95, 0.95, 0.95], band_rows={9})
+table(rws, [2.25, 0.95, 0.95, 0.95, 0.95, 0.95], band_rows={10})
+P(f"Two conventions are deliberate. The valuation date is 30 June 2026, so the realized "
+  f"first half — {fm(dcf['h1_fcff'], 0)} of free cash flow, computed from the disclosed "
+  f"half-year actuals — is removed rather than counted twice (it is already inside the "
+  f"net debt the bridge subtracts), and the remaining flows are discounted mid-period. "
+  f"That makes the second half of 2026 visibly cash-negative "
+  f"({fm(dcf['h2_fcff'], 0)}): the first half released EGP "
+  f"{fm(-(a1['wc']-hist['FY25']['wc'])/1000, 1)}bn of working capital as inventories "
+  f"unwound, and the year-end always rebuilds stock ahead of the selling season. And tax "
+  f"runs at each year's own modelled effective rate — {pc(dr['etr_path'][0], 0)} in the "
+  f"first year against a 22.5% statute, because Iraqi and Jordanian losses shield "
+  f"nothing — gliding to the statute only as the regional drag ends.")
+H2("The lines that price this business, and how each is set")
+P("Three constructions in that waterfall carry most of the answer, and each was "
+  "challenged in review. None is an assumption dropped in from outside; each is shown "
+  "with the evidence, the alternative a reviewer would propose, and what that "
+  "alternative costs.")
+alts = D['alternatives']
+rows = [["Line", "What the model uses", "The evidence, and what the alternative costs"],
+ ["Working capital",
+  f"{pc(dr['wc_pct'][0], 1)} of revenue gliding to {pc(dr['wc_pct'][-1], 1)}",
+  f"The measured cycle at 30 June — 122 days of inventory, 27 of receivables, 82 of "
+  f"payables — and five disclosed quarterly snapshots spanning 16.7–18.9bn. A reviewer "
+  f"would carry the FY25 year-end 28.5% instead; that was the pre-buying outlier, and "
+  f"pricing it in costs EGP {fm((dcf['auto_eq']-alts['wc_at_fy25_peak']['auto_eq'])/D['shares'], 2)} "
+  f"per share of the automotive leg ({fm(alts['wc_at_fy25_peak']['auto_eq'], 0)} vs "
+  f"{fm(dcf['auto_eq'], 0)}). Held, and stress-shown."],
+ ["The margin path",
+  f"one more year of the measured compression (to {pc(dr['gpm_path'][1], 1)} in FY27E), "
+  f"then cost moves with price",
+  f"First halves printed {pc(a1['h1_25_gp']/a1['h1_25_rev'], 1)} then "
+  f"{pc(a1['gp']/a1['rev'], 1)} — one measured year of compression. Compounding the "
+  f"cost-price differential every year instead drives the margin to "
+  f"{pc(alts['margin_compounds']['gpm_fy30'], 1)} by FY30E and the automotive leg to "
+  f"EGP {fm(alts['margin_compounds']['auto_eq'], 0)}mn "
+  f"({fm(alts['margin_compounds']['auto_eq']/D['shares'], 2)} a share) — a forecast "
+  f"story the disclosed series cannot measure, priced here and rejected. The offsetting "
+  f"force (three more locally assembled models) is real and equally unquantified."],
+ ["The terminal value",
+  f"FY30E after-tax operating profit grown {pc(wac['tg'], 1)}, less reinvestment forced "
+  f"to growth ÷ a terminal return of {pc(dcf['roic_t'], 1)}",
+  f"Growth in the perpetuity is paid for, not assumed free. The July edition used plain "
+  f"Gordon on year-five cash flow — its hidden implied terminal return was "
+  f"{pc(dcf['roic_implied_gordon'], 1)}, above even today's realized "
+  f"{pc(0.229, 1)}; that construction is worth EGP "
+  f"{fm(dcf['auto_eq_gordon']/D['shares'], 2)} a share and is shown as the labelled "
+  f"alternative. At the forward model's transitional 15% marginal return the leg would "
+  f"be worth {fm(alts['tv_roic_15']['auto_eq']/D['shares'], 2)}; the "
+  f"{pc(dcf['roic_t'], 1)} used sits on the leg's own realized returns."]]
+table(rows, [1.15, 1.85, 3.95], size=8.4)
+H2("The bridge from enterprise value to the equity")
 pvr = dcf['pv_rows']
-rows = [["Discounting (valuation date 30-Jun-2026)", "Cash flow", "Period (yrs)", "Present value"]]
-for p_ in pvr:
-    rows.append([p_['period'], fm(p_['fcff'], 0), fm(p_['t'], 1), fm(p_['pv'], 0)])
-rows += [["Terminal value (on FY30E)", fm(dcf['tv'], 0), fm(4.5, 1), fm(dcf['pv_tv'], 0)],
-         ["Enterprise value", "", "", fm(dcf['ev'], 0)],
-         ["less net debt (30-Jun-26)", "", "", fm(-dcf['auto_nd'], 0)],
-         ["less non-controlling interests", "", "", fm(-dcf['auto_nci'], 0)],
-         ["Automotive equity value", "", "", fm(dcf['auto_eq'], 0)],
-         ["Per share", "", "", fm(dcf['auto_eq']/D['shares'], 2)]]
-table(rows, [2.6, 1.3, 1.2, 1.4], band_rows={len(rows)-2, len(rows)-1})
-P(f"Two honest features of this table. First, the second half of 2026 is cash-negative: "
-  f"the first half released EGP {fm(-(a1['wc']-hist['FY25']['wc'])/1000, 1)}bn of "
-  f"working capital (inventories fell hard), and the year-end always rebuilds stock "
-  f"ahead of the selling season — the full-year build nets to roughly EGP "
-  f"{fm(dcf['rows'][0]['dwc'], 0)}mn. Second, {pc(dcf['tv_pct'], 0)} of the enterprise "
-  f"value sits in the terminal value, because near-term cash flow is consumed by a "
-  f"business growing revenue in the high teens with four months of inventory on the "
-  f"floor. At a {pc(wac['wacc_cds'], 1)} discount rate that is the honest arithmetic of "
-  f"growth in this currency, and it is why the cash-flow lens values the automotive leg "
-  f"({ps(dcf['auto_eq']/D['shares'])}) well below its accounting capital employed — the "
-  f"business currently earns roughly its cost of capital, no more.")
-
-H2("1.2  Book value and sustainable return")
-P(f"Restated book value is {ps(D['bvps'])} per share (parent equity EGP "
-  f"{fm(D['bs']['parent_eq']/1000)}bn over 1,085.5mn shares). The prior-year accounts "
-  f"were restated upward by EGP 2.88bn, mostly a write-up of the MNT-Halan carrying "
-  f"value. Forecast return on that equity runs {pc(fs[0]['roe'])} in FY26E, recovering "
-  f"toward {pc(fs[-1]['roe'])} by FY30E as regional losses fade and the tax rate "
-  f"normalises — below the {pc(wac['ke_cds'], 1)} cost of equity throughout, which is "
-  f"why we anchor this lens at plain book (price-to-book of one) rather than a premium. "
-  f"Marking the MNT-Halan stake to the funding round would lift book to "
-  f"{ps(L['book']['bull'])} — that is the lens's bull case, and the bear "
+rows = [["Line", "EGP mn", "Note"],
+        ["Present value of the discounted flows", fm(dcf['pv_sum'], 0),
+         f"H2-26E {fm(pvr[0]['fcff'], 0)} plus FY27E-FY30E, each mid-period"],
+        ["Terminal cash flow", fm(dcf['tv_fcff_terminal'], 0),
+         f"FY30E NOPAT {fm(dcf['rows'][-1]['nopat'], 0)} grown {pc(wac['tg'], 1)}, times one "
+         f"less the {pc(dcf['reinv_t'], 1)} reinvestment rate (growth ÷ terminal return "
+         f"{pc(dcf['roic_t'], 1)}) — the growth is paid for"],
+        ["Present value of the terminal value", fm(dcf['pv_tv'], 0),
+         f"capitalised at {pc(wac['wacc_cds'], 2)} − {pc(wac['tg'], 1)}; "
+         f"{pc(dcf['tv_pct'], 0)} of enterprise value — disclosed here, in the summary "
+         f"and in section 7, and stressed in 1.9"],
+        ["Enterprise value — automotive", fm(dcf['ev'], 0), "the two lines above"],
+        ["Less net debt", fm(-dcf['auto_nd'], 0),
+         "the segment's 30-Jun-26 figure from the release's own net-debt table "
+         "(debt + leasing notes − cash − inter-segment balances)"],
+        ["Less non-controlling interests", fm(-dcf['auto_nci'], 0),
+         "the automotive segment's minority book at 30-Jun-26"],
+        ["Automotive equity value", fm(dcf['auto_eq'], 0), ""],
+        ["Per share", fm(dcf['auto_eq']/D['shares'], 2),
+         "the cash-flow leg alone; the group's other legs are added in section 1.5"],
+        ["ALTERNATIVE — Gordon on year-five cash flow", fm(dcf['auto_eq_gordon'], 0),
+         f"the July construction; implied terminal return "
+         f"{pc(dcf['roic_implied_gordon'], 1)}, disclosed rather than hidden. Worth "
+         f"{fm((dcf['auto_eq_gordon']-dcf['auto_eq'])/D['shares'], 2)} a share more; both "
+         f"are shown"]]
+table(rows, [2.30, 1.05, 3.60], size=8.6, band_rows={7, 8})
+H2("1.2  Book value and sustainable return — the asset lens")
+bd = D['book_decomp']
+rows = [["What the restated book is made of (per share)", "EGP"],
+        ["Automotive segment equity", fm(bd['auto'], 2)],
+        ["GB Capital operating equity (ex-associates)", fm(bd['capital_oper'], 2)],
+        ["Associates at the balance-sheet carrying", fm(bd['assoc_at_book'], 2)],
+        ["Inter-segment eliminations", fm(bd['elim'], 2)],
+        ["Restated book value per share", fm(bd['total'], 2)],
+        ["… with MNT-Halan at the round instead", fm(bd['marked_A'], 2)]]
+table(rows, [4.4, 1.6], band_rows={5, 6})
+P(f"Restated book is {ps(bd['total'])} per share — the prior-year accounts were restated "
+  f"upward by EGP 2.88bn, mostly the MNT-Halan write-up, so the book already contains "
+  f"part of the contested mark. Forecast return on that equity runs {pc(fs[0]['roe'])} "
+  f"in FY26E, recovering toward {pc(fs[-1]['roe'])} by FY30E as regional losses fade and "
+  f"the tax rate normalises — below the {pc(wac['ke_cds'], 1)} cost of equity "
+  f"throughout, which is why this lens anchors at plain book (price-to-book of one) "
+  f"rather than a premium. The bull case is the marked book ({ps(bd['marked_A'])}, the "
+  f"round-mark uplift of {ps(bd['mnt_uplift'])} inside it); the bear "
   f"({ps(L['book']['bear'])}) is 0.8x book, the discount the market applies to "
   f"sub-hurdle returns.")
-
 H2("1.3  Relative multiples")
 P(f"On the statement-forecast for the full year 2026 the group earns "
   f"{ps(L['relative']['eps26'])} per share. Egypt's closest listed financing peer, "
@@ -217,6 +285,13 @@ rows = [["Normalisation walk (mid-cycle)", "EGP mn"],
         ["Normalised group profit", fm(L['normalized']['norm_pat'], 0)],
         ["Per share x 8.5", fm(L['normalized']['base'], 2)]]
 table(rows, [4.4, 1.6], band_rows={5, 6})
+dst = D['distortions']
+rows = [["The two distortions, priced separately", "EGP mn / year", "Per share"],
+        ["Tax above statute on unshielded regional losses", fm(dst['tax']['egp_mn'], 0),
+         fm(dst['tax']['per_share'], 2)],
+        ["Funding cost above the eased-cycle rate", fm(dst['funding']['egp_mn'], 0),
+         fm(dst['funding']['per_share'], 2)]]
+table(rows, [3.4, 1.4, 1.2])
 P(f"What normalisation removes: the {pc(D['etr_h1'], 1)} effective tax rate (statutory "
   f"is 22.5% — the excess is Iraqi and Jordanian losses that shield nothing), and a "
   f"funding bill still priced off a 19% policy corridor that the central bank has begun "
@@ -234,7 +309,8 @@ P(f"Weights: sum of the parts {pc(L['weights']['sotp'], 0)}, book "
   f"is real third-party money, led by the country's largest bank — and we let the "
   f"balance-sheet framing define the bear side of the published range, because the "
   f"auditor's inability to verify the carrying value is not a technicality. The two "
-  f"numbers are {ps(L['central']['A']-L['central']['B'])} apart; nothing in this study "
+  f"numbers are {ps(round(L['central']['A'], 2)-round(L['central']['B'], 2))} apart; "
+  f"nothing in this study "
   f"averages them.")
 
 H2("1.6  The drivers — every line on its own volumes and prices")
@@ -260,28 +336,46 @@ P("Three real errors surfaced. Commercial vehicles were under-forecast by a thir
   "and 42% higher finance costs. All three mechanisms are now modelled explicitly.")
 figure(os.path.join(HERE, 'fig4_variance.png'), 6.9,
        "The scorecard behind the driver re-set.")
-P("The re-built stack, line by line (volumes x prices, with unit costs escalated on "
-  "their own physical classes — imported content on the currency path, domestic content "
-  "on the inflation path; margins are outputs, never inputs):")
-rows = [["Line of business", "H1-26 actual", "FY26E", "FY27E", "FY30E", "How it is built"],
-        ["Passenger cars — units", fm(lob1['pc_u'], 0), fm(lob['FY26E']['pc_u'], 0),
+P("The re-built stack — every disclosed unit grown on its own driver. FY26E is never "
+  "typed: it is the disclosed first half plus a second half built on the FY25 measured "
+  "seasonal split, with one visible tempering judgement per line. Locally assembled "
+  "cars are the driver (the launch calendar) and imports the residual; buses are the "
+  "driver and trucks the residual; unit costs escalate on their own physical classes "
+  "(imported content on the currency path, domestic on the inflation path) and margins "
+  "fall out as outputs:")
+rows = [["Driver", "H1-26 actual", "FY26E", "FY27E", "FY30E", "Set by"],
+        ["Locally assembled cars (units)", fm(lob1['ckd_u'], 0), fm(lob['FY26E']['ckd_u'], 0),
+         fm(lob['FY27E']['ckd_u'], 0), fm(lob['FY30E']['ckd_u'], 0),
+         "the launch calendar: Hyundai Sep-26, third Changan 4Q26"],
+        ["Imported cars (units, residual)", fm(lob1['cbu_u'], 0), fm(lob['FY26E']['cbu_u'], 0),
+         fm(lob['FY27E']['cbu_u'], 0), fm(lob['FY30E']['cbu_u'], 0),
+         "total market path less the localization drive"],
+        ["Passenger cars — total units", fm(lob1['pc_u'], 0), fm(lob['FY26E']['pc_u'], 0),
          fm(lob['FY27E']['pc_u'], 0), fm(lob['FY30E']['pc_u'], 0),
-         "H1 actual + the launch calendar; market print +18%"],
+         "market +18% maturing; share held"],
         ["Passenger cars — price (EGP mn)", fm(lob1['pc_r']/lob1['pc_u'], 3),
          fm(lob['FY26E']['pc_asp'], 3), fm(lob['FY27E']['pc_asp'], 3), fm(lob['FY30E']['pc_asp'], 3),
          "realized +10.8%; capped below cost inflation ahead"],
-        ["Commercial vehicles & equipment", fm(lob1['cv_r'], 0), fm(lob['FY26E']['cv_r'], 0),
+        ["Buses (units)", fm(lob1['bus_u'], 0), fm(lob['FY26E']['bus_u'], 0),
+         fm(lob['FY27E']['bus_u'], 0), fm(lob['FY30E']['bus_u'], 0),
+         "tourism/fleet recovery off a weak base"],
+        ["Trucks (units, residual)", fm(lob1['truck_u'], 0), fm(lob['FY26E']['truck_u'], 0),
+         fm(lob['FY27E']['truck_u'], 0), fm(lob['FY30E']['truck_u'], 0),
+         "replacement demand net of the bus driver"],
+        ["Commercial & equipment — revenue", fm(lob1['cv_r'], 0), fm(lob['FY26E']['cv_r'], 0),
          fm(lob['FY27E']['cv_r'], 0), fm(lob['FY30E']['cv_r'], 0),
-         "units and prices separately; replacement cycle + exports"],
-        ["Two-, three- & four-wheelers", fm(lob1['lm_r'], 0), fm(lob['FY26E']['lm_r'], 0),
-         fm(lob['FY27E']['lm_r'], 0), fm(lob['FY30E']['lm_r'], 0),
-         "supply constraint (India) resolves; strong two-wheeler demand"],
-        ["Tires & parts trading", fm(lob1['tr_r'], 0), fm(lob['FY26E']['tr_r'], 0),
+         "units x price, both separately grown"],
+        ["Two/three/four-wheelers — units", fm(lob1['lm_u'], 0), fm(lob['FY26E']['lm_u'], 0),
+         fm(lob['FY27E']['lm_u'], 0), fm(lob['FY30E']['lm_u'], 0),
+         "India supply constraint resolves"],
+        ["Tires & parts trading — revenue", fm(lob1['tr_r'], 0), fm(lob['FY26E']['tr_r'], 0),
          fm(lob['FY27E']['tr_r'], 0), fm(lob['FY30E']['tr_r'], 0),
          "one-off margin benefit resets next year"],
-        ["Automotive total", fm(a1['rev'], 0), fm(lob['FY26E']['auto_rev'], 0),
+        ["Other automotive — revenue", fm(lob1['oth_r'], 0), fm(lob['FY26E']['oth_r'], 0),
+         fm(lob['FY27E']['oth_r'], 0), fm(lob['FY30E']['oth_r'], 0), "after-sales residual"],
+        ["Automotive total revenue", fm(a1['rev'], 0), fm(lob['FY26E']['auto_rev'], 0),
          fm(lob['FY27E']['auto_rev'], 0), fm(lob['FY30E']['auto_rev'], 0), ""]]
-table(rows, [1.85, 1.0, 0.95, 0.95, 0.95, 1.30], band_rows={6})
+table(rows, [1.75, 0.92, 0.85, 0.85, 0.85, 1.78], size=8.2, band_rows={3, 11})
 P(f"The margin mechanics: gross margin printed {pc(a1['gp']/a1['rev'], 1)} in the half "
   f"against {pc(a1['h1_25_gp']/a1['h1_25_rev'], 1)} a year earlier — one measured year "
   f"of compression, driven by supply normalising and the pound. The model carries "
@@ -304,21 +398,31 @@ P(f"Working capital is projected on its measured cycle — 122 days of inventory
 
 H2("1.7  The crux — one stake, two official answers")
 P(f"Strip everything else away and this valuation is a view on one number. GB Corp's "
-  f"42.93% of MNT-Halan is worth EGP {fm(legs['mnt_round_egp']/1000)}bn if the June "
-  f"funding round (USD 1.4bn, led by Al Ahly Capital of the National Bank of Egypt, "
-  f"first close, a second pending) is the truth. It is worth EGP "
-  f"{fm(mnt['carrying']/1000)}bn if the company's own accounts are — a figure produced "
-  f"by the equity method, written up 2.46bn in a restatement, and explicitly not "
-  f"verified by the reviewing auditor, who was not provided MNT-Halan's financial "
-  f"statements for the second period in a row. The gap is {ps(BW['gap_ps'])} per GB "
-  f"Corp share — roughly {pc(BW['gap_ps']/spot, 0)} of the current price. For "
-  f"perspective, the round mark alone equals {pc(legs['mnt_round_egp']/(D['spot_ir']*D['shares']), 0)} "
-  f"of GB Corp's entire market value at the August quote: the market has already "
-  f"answered which framing it believes, and it is not the round. What would settle it: "
-  f"MNT-Halan's audited numbers reaching the reviewer, the second close completing at "
-  f"or above USD 1.4bn, or any arm's-length secondary sale of stock. Until one of "
-  f"those happens, both answers are published everywhere in this study.")
-
+  f"stake in MNT-Halan has produced three official prints inside fourteen months: the "
+  f"accounts carried 44.01% before the June round; the reviewed statements now say "
+  f"42.93% after its first close; and the company's own June release described 41.61% "
+  f"as the position once the round fully closes. The statements outrank the release for "
+  f"today's number, so 42.93% is used. On that stake, the two official answers to "
+  f"'what is it worth' are EGP {fm(legs['mnt_round_egp']/1000)}bn (the round: USD 1.4bn "
+  f"led by Al Ahly Capital of the National Bank of Egypt, translated at "
+  f"{fm(D['usdegp'], 2)}) and EGP {fm(mnt['carrying']/1000)}bn (the equity-method "
+  f"carrying value — written up 2.46bn in a restatement, and explicitly not verified by "
+  f"the reviewing auditor, who was not provided MNT-Halan's statements for the second "
+  f"period in a row). The gap is {ps(BW['gap_ps'])} per GB Corp share; the round mark "
+  f"alone equals {pc(legs['mnt_round_egp']/(D['spot_ir']*D['shares']), 0)} of the "
+  f"company's entire market value at the August quote — the market has already chosen "
+  f"its framing, and it is not the round.")
+rows = [["If the second close lands at…", "Stake value (EGP mn)", "Sum of the parts / share",
+         "Weighted central / share"]]
+for step in D['crux_ladder']:
+    lab = (step.get('label') or f"USD {step['round_usd']:,.0f}mn")
+    rows.append([lab, fm(step['assoc']-D['other_assoc']-D['fvoci'], 0) if step.get('round_usd')
+                 else fm(mnt['carrying'], 0), fm(step['sotp'], 2), fm(step['central'], 2)])
+table(rows, [2.15, 1.55, 1.65, 1.60], size=8.8)
+caption("The ladder prices the crux through the whole synthesis, not just the one line. "
+        "What settles it: MNT-Halan's audited numbers reaching the reviewer, the second "
+        "close completing, or any arm's-length secondary sale. Until then, both answers "
+        "run through every table in this study.")
 H2("1.8  Macro & country — the cost of capital, built from scratch")
 P(f"Egypt's 10-year local bond yielded {pc(wac['rf_obs'], 2)} on 19 August 2026. That "
   f"yield already contains the sovereign's own default risk, so charging an "
@@ -372,6 +476,26 @@ H2("1.9  Sensitivity")
 figure(os.path.join(HERE, 'fig2_sens.png'), 6.2,
        "The two live judgements, priced: what the stake is really worth, and how much "
        "conglomerate discount the structure deserves.")
+alts = D['alternatives']
+rows = [["One driver at a time (all else the base)", "Automotive leg / share", "Central / share moves by"],
+        [f"Terminal return {pc(0.15, 0)} (the forward model's marginal)",
+         fm(alts['tv_roic_15']['auto_eq']/D['shares'], 2),
+         fm((alts['tv_roic_15']['auto_eq']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)],
+        [f"Terminal return {pc(0.20, 0)}", fm(alts['tv_roic_20']['auto_eq']/D['shares'], 2),
+         fm((alts['tv_roic_20']['auto_eq']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)],
+        [f"Gordon on year-five cash flow (July construction)",
+         fm(dcf['auto_eq_gordon']/D['shares'], 2),
+         fm((dcf['auto_eq_gordon']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)],
+        ["Margin compression compounds every year",
+         fm(alts['margin_compounds']['auto_eq']/D['shares'], 2),
+         fm((alts['margin_compounds']['auto_eq']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)],
+        ["Effective tax stays at the H1 41.0%",
+         fm(alts['etr_stays_41']['auto_eq']/D['shares'], 2),
+         fm((alts['etr_stays_41']['auto_eq']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)],
+        ["Working capital at the FY25 year-end peak",
+         fm(alts['wc_at_fy25_peak']['auto_eq']/D['shares'], 2),
+         fm((alts['wc_at_fy25_peak']['auto_eq']-dcf['auto_eq'])*L['weights']['sotp']*(1-legs['disc'])/D['shares'], 2)]]
+table(rows, [3.0, 1.9, 2.0], size=8.8)
 P(f"The grid spans the whole disagreement: at the company's own book mark "
   f"({pc(D['sens']['mult_B'], 0)} of the round) with a 10% holding discount the sum of "
   f"the parts is worth about {ps(BW['B']['sotp'])}; at the full round mark, "

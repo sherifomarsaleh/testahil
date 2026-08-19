@@ -88,6 +88,7 @@ a1 = dict(
  pay     = I(15492.5, "auto payables 30-Jun-26", ER + " table 6", "2026-08-13", CO),
  cogs    = I(34299.4, "auto total cost of sales H1-26", ER + " table 8", "2026-08-13", CO),
  nci_bs  = I(590.7,   "auto segment NCI 30-Jun-26", ER + " table 12", "2026-08-13", CO),
+ eq_seg  = I(12998.3, "auto segment equity before NCI 30-Jun-26", ER + " table 12", "2026-08-13", CO),
  h1_25_rev    = I(30672.7, "auto total revenue H1-25", ER, "2026-08-13", CO),
  h1_25_gp     = I(4752.0,  "auto gross profit H1-25 (GPM 15.5%)", ER, "2026-08-13", CO),
  h1_25_ebitda = I(3074.3,  "auto EBITDA H1-25", ER, "2026-08-13", CO),
@@ -211,7 +212,7 @@ hist = dict(
            cv_u=3404, cv_r=5956.8, lm_u=33906, lm_r=2203.8, tr_r=4242.8, oth_r=1127.6,
            auto_gp=9837.1, auto_ebitda=6363.3, auto_ebit=5830.9, np=2880.0, wc=18917.0,
            nd=15210.0, ce=28513.0, cap_rev=14743.0, cap_book=19495.2,
-           bs=dict(inv=24649.7, ar=14157.9, adv=5818.6, assoc=15732.4, cash=9523.6,
+           bs=dict(inv=24649.7, ar=14157.9, adv=5818.6, assoc=15732.4, cash=9523.6, ppe=13389.1,
                    ta=94287.6, borrow=37921.3, eq=31671.4, nd_lc=29298.8)),
 )
 
@@ -330,7 +331,9 @@ cpi_path = I([0.060, 0.12, 0.10, 0.09, 0.08], "Egypt CPI path (H2-26 then annual
              "2026-08-19", CTY, "path")
 imp_share = I(dict(pc=0.75, cv=0.70, lm=0.80, tr=0.90), "imported/FX-linked share of unit cost per LOB "
               "(CBU fully imported, CKD kit content majority-USD; NOT separately disclosed — constructed, flagged)",
-              "constructed; flagged per SIGCM finest-sourced-level rule", "2026-08-19", CO, "shares")
+              "constructed from the disclosed import mix (CBU fully imported, CKD kit content "
+              "USD-priced); the exact shares are not disclosed and this is flagged as an estimate "
+              "carried at the finest disclosed level", "2026-08-19", CO, "shares")
 
 def esc(cls, i):
     """One escalator per physical cost-driver class: FX-linked import share + domestic CPI share."""
@@ -349,31 +352,90 @@ lm_asp_g  = I([None, 0.06, 0.05, 0.05, 0.05], "LM ASP growth FY27-30", "driver d
 tr_g      = I([None, 0.11, 0.10, 0.09, 0.08], "Trading revenue growth FY27-30 (tires normalized)", "driver decision", "2026-08-19", CO, "path")
 oth_g     = I([None, 0.10, 0.10, 0.09, 0.08], "other-auto revenue growth FY27-30", "driver decision", "2026-08-19", CO, "path")
 
-# FY26E: H1 actual + H2E on the FY25 seasonal split, tempered where flagged
-pc_u_26 = I(64300, "PC volumes FY26E (H1/seasonal-split implies 64,304; launches offset regional drag)",
-            "computed: H1 29,554 / FY25-H1-share 45.96%", "2026-08-19", CO, "units")
-cv_r_26 = I(10100, "CV&CE revenue FY26E (seasonal-implied 10,713 tempered for 2Q timing)",
-            "computed from H1 4,749.1; tempering flagged", "2026-08-19", CO)
-lm_r_26 = I(3350, "LM revenue FY26E (seasonal-implied 3,406, Qute-capped)", "computed from H1 1,435.2", "2026-08-19", CO)
-tr_r_26 = I(4800, "Trading revenue FY26E (seasonal-implied 4,476; H2 tires restock)", "computed from H1 2,572.3", "2026-08-19", CO)
-oth_r_26= I(1340, "other-auto revenue FY26E", "computed: 2x H1 residual 669.2", "2026-08-19", CO)
+# FY26E — DERIVED, never typed: H1 disclosed actual + H2E built on the FY25 measured
+# seasonal split, one explicit tempering judgement per line, one H2 price step per line.
+# Subtype unit layers (CKD/CBU; bus/truck/CE) are built at the finest DISCLOSED level.
+lob1['ckd_u'] = I(15454, "CKD volumes H1-26", ER, "2026-08-13", CO, "units")
+lob1['cbu_u'] = I(14100, "CBU volumes H1-26", ER, "2026-08-13", CO, "units")
+lob1['bus_u'] = I(1002, "bus volumes H1-26", ER, "2026-08-13", CO, "units")
+lob1['truck_u'] = I(1472, "truck volumes H1-26", ER, "2026-08-13", CO, "units")
+lob1['ce_u'] = I(16, "construction-equipment volumes H1-26", ER, "2026-08-13", CO, "units")
+lob1['cv_u_h125'] = I(1534, "CV&CE volumes H1-25", ER, "2026-08-13", CO, "units")
+lob1['lm_u_h125'] = I(14216, "Light-Mobility volumes H1-25", ER, "2026-08-13", CO, "units")
+lob1['oth_r_h125'] = round(a1['h1_25_rev'] - (lob1['pc_r_h125']+lob1['cv_r_h125']
+                                              +lob1['lm_r_h125']+lob1['tr_r_h125']), 1)
+
+h2_temper = I(dict(pc=1.00, cv=0.91, lm=0.95, tr=1.17, oth=1.01),
+              "H2-26E tempering multipliers on the FY25 seasonal split, per line (pc: launches "
+              "offset regional drag, no temper; cv: 2Q surge partly timing; lm: Qute supply cap; "
+              "tr: H2 tires restock above the depressed seasonal; oth: neutral)",
+              "judgement on ER guidance + 2Q/1Q shape", "2026-08-19", CO, "multipliers")
+h2_step = I(dict(pc=1.025, cv=1.02, lm=1.03),
+            "H2-26E price step vs realized H1 ASP (post-devaluation price increases the "
+            "company itself flags)", "judgement on ER CEO note + FX path", "2026-08-19", CO, "steps")
+
+def _h2_units(h1_u, h1_share, temper):
+    return h1_u*(1-h1_share)/h1_share*temper
+
+s_pc_u = lob1['pc_u_h125']/hist['FY25']['pc_u']
+s_cv_u = lob1['cv_u_h125']/hist['FY25']['cv_u']
+s_lm_u = lob1['lm_u_h125']/hist['FY25']['lm_u']
+s_tr_r = lob1['tr_r_h125']/hist['FY25']['tr_r']
+s_oth_r = lob1['oth_r_h125']/hist['FY25']['oth_r']
+seasonal_units = dict(pc=s_pc_u, cv=s_cv_u, lm=s_lm_u, tr=s_tr_r, oth=s_oth_r)
 
 pc_asp_h1 = lob1['pc_r']/lob1['pc_u']
-pc_asp_h2 = pc_asp_h1*1.025  # post-deval price increases already flagged by the company
-pc_r_26 = lob1['pc_r'] + (pc_u_26-lob1['pc_u'])*pc_asp_h2
+cv_asp_h1 = lob1['cv_r']/lob1['cv_u']
+lm_asp_h1 = lob1['lm_r']/lob1['lm_u']
+
+pc_h2u = _h2_units(lob1['pc_u'], s_pc_u, h2_temper['pc']); pc_u_26 = lob1['pc_u'] + pc_h2u
+cv_h2u = _h2_units(lob1['cv_u'], s_cv_u, h2_temper['cv']); cv_u_26 = lob1['cv_u'] + cv_h2u
+lm_h2u = _h2_units(lob1['lm_u'], s_lm_u, h2_temper['lm']); lm_u_26 = lob1['lm_u'] + lm_h2u
+pc_r_26 = lob1['pc_r'] + pc_h2u*pc_asp_h1*h2_step['pc']
+cv_r_26 = lob1['cv_r'] + cv_h2u*cv_asp_h1*h2_step['cv']
+lm_r_26 = lob1['lm_r'] + lm_h2u*lm_asp_h1*h2_step['lm']
+tr_r_26 = lob1['tr_r']*(1 + (1-s_tr_r)/s_tr_r*h2_temper['tr'])
+oth_r_26 = lob1['oth_r']*(1 + (1-s_oth_r)/s_oth_r*h2_temper['oth'])
 pc_asp_26 = pc_r_26/pc_u_26
+
+# subtype layers — CKD is the driver (the launch calendar), CBU the residual import
+# requirement; bus is the driver (tourism/fleet recovery), CE a small planned count,
+# trucks the residual
+ckd_mix = I(1.02, "CKD share drift in H2-26E (Hyundai CKD Sep + third Changan 4Q at Sadat)",
+            "judgement on ER launch calendar", "2026-08-19", CO, "x")
+bus_mix = I(1.03, "bus share drift in H2-26E (tourism recovery off a weak base)",
+            "judgement on ER", "2026-08-19", CO, "x")
+ce_path = I([32.0, 34.0, 36.0, 38.0, 40.0], "construction-equipment units path (tiny, planned)",
+            "judgement; H1 16 units doubled then drifting", "2026-08-19", CO, "units path")
+ckd_g = I([None, 0.12, 0.10, 0.07, 0.06], "CKD volume growth FY27-30 (localization drive)",
+          "driver decision on the launch calendar", "2026-08-19", CO, "path")
+bus_g = I([None, 0.16, 0.12, 0.09, 0.08], "bus volume growth FY27-30",
+          "driver decision", "2026-08-19", CO, "path")
 
 lob = {y: {} for y in YRS}
 lob['FY26E'] = dict(pc_u=pc_u_26, pc_r=pc_r_26, pc_asp=pc_asp_26,
-                    cv_r=cv_r_26, lm_r=lm_r_26, tr_r=tr_r_26, oth_r=oth_r_26)
+                    cv_u=cv_u_26, cv_asp=cv_r_26/cv_u_26, cv_r=cv_r_26,
+                    lm_u=lm_u_26, lm_asp=lm_r_26/lm_u_26, lm_r=lm_r_26,
+                    tr_r=tr_r_26, oth_r=oth_r_26,
+                    ckd_u=lob1['ckd_u']*(pc_u_26/lob1['pc_u'])*ckd_mix,
+                    bus_u=lob1['bus_u']*(cv_u_26/lob1['cv_u'])*bus_mix, ce_u=ce_path[0])
+lob['FY26E']['cbu_u'] = lob['FY26E']['pc_u'] - lob['FY26E']['ckd_u']
+lob['FY26E']['truck_u'] = lob['FY26E']['cv_u'] - lob['FY26E']['bus_u'] - lob['FY26E']['ce_u']
 for i, y in enumerate(YRS[1:], start=1):
     pr = lob[YRS[i-1]]
-    u = pr['pc_u']*(1+pc_vol_g[i]); asp = pr['pc_asp']*(1+pc_asp_g[i])
-    lob[y] = dict(pc_u=u, pc_asp=asp, pc_r=u*asp,
-                  cv_r=pr['cv_r']*(1+cv_vol_g[i])*(1+cv_asp_g[i]),
-                  lm_r=pr['lm_r']*(1+lm_vol_g[i])*(1+lm_asp_g[i]),
-                  tr_r=pr['tr_r']*(1+tr_g[i]),
-                  oth_r=pr['oth_r']*(1+oth_g[i]))
+    d = dict(pc_u=pr['pc_u']*(1+pc_vol_g[i]), pc_asp=pr['pc_asp']*(1+pc_asp_g[i]),
+             cv_u=pr['cv_u']*(1+cv_vol_g[i]), cv_asp=pr['cv_asp']*(1+cv_asp_g[i]),
+             lm_u=pr['lm_u']*(1+lm_vol_g[i]), lm_asp=pr['lm_asp']*(1+lm_asp_g[i]),
+             tr_r=pr['tr_r']*(1+tr_g[i]), oth_r=pr['oth_r']*(1+oth_g[i]),
+             ckd_u=pr['ckd_u']*(1+ckd_g[i]), bus_u=pr['bus_u']*(1+bus_g[i]), ce_u=ce_path[i])
+    d['pc_r'] = d['pc_u']*d['pc_asp']; d['cv_r'] = d['cv_u']*d['cv_asp']
+    d['lm_r'] = d['lm_u']*d['lm_asp']
+    d['cbu_u'] = d['pc_u'] - d['ckd_u']
+    d['truck_u'] = d['cv_u'] - d['bus_u'] - d['ce_u']
+    lob[y] = d
+# residual sanity: the residual subtypes must stay positive and not shrink implausibly
+for y in YRS:
+    assert lob[y]['cbu_u'] > 0 and lob[y]['truck_u'] > 0, y
 for y in YRS:
     lob[y]['auto_rev'] = lob[y]['pc_r']+lob[y]['cv_r']+lob[y]['lm_r']+lob[y]['tr_r']+lob[y]['oth_r']
 
@@ -395,7 +457,12 @@ gpm_path = [auto_gp_26/lob['FY26E']['auto_rev']]
 cost_ratio = {k: 1-m for k, m in [('pc', m0['pc']), ('cv', m0['cv']), ('lm', m0['lm']),
                                   ('tr', m0['tr']), ('oth', m0['oth'])]}
 # normalize tires: H1-26 margin carried a favourable-historical-cost inventory one-off — reset +4% FY27
-price_g = dict(pc=pc_asp_g, cv=cv_asp_g, lm=lm_asp_g, tr=[None]+[0.06]*4, oth=[None]+[0.06]*4)
+tr_price_g = I(0.06, "trading/other price inflation (for the cost-differential year)",
+               "judgement; tires are FX-priced goods", "2026-08-19", CO, "rate")
+tr_reset = I(1.04, "tires unit-cost reset FY27E (the favourable-historical-cost inventory "
+             "one-off exhausts)", "ER: margin 'benefited from inventory acquired at more "
+             "favorable historical costs'", "2026-08-19", CO, "x")
+price_g = dict(pc=pc_asp_g, cv=cv_asp_g, lm=lm_asp_g, tr=[None]+[tr_price_g]*4, oth=[None]+[tr_price_g]*4)
 # Forward differential discipline (DU rule): ONE more year of the measured cost-vs-price
 # differential (H1-26 evidenced compression + CEO supply-pressure guidance), then unit
 # cost escalates WITH price — held flat in BOTH directions from FY28: the disclosed
@@ -405,7 +472,7 @@ price_g = dict(pc=pc_asp_g, cv=cv_asp_g, lm=lm_asp_g, tr=[None]+[0.06]*4, oth=[N
 cr = {k: [v] for k, v in cost_ratio.items()}
 for i in range(1, 5):
     for k in cr:
-        one_off = 1.04 if (k == 'tr' and i == 1) else 1.0
+        one_off = tr_reset if (k == 'tr' and i == 1) else 1.0
         diff = (1+esc(k if k != 'oth' else 'tr', i))/(1+price_g[k][i]) if i == 1 else 1.0
         cr[k].append(cr[k][-1] * diff * one_off)
 for i, y in enumerate(YRS[1:], start=1):
@@ -503,8 +570,16 @@ TG = I(0.115, "terminal growth, nominal EGP (long-run inflation 9-10% + 1.5-2% r
        "carried from the 08-07-2026 study; spread to WACC re-checked", "2026-08-19", CO, "rate")
 
 # =======================================================================================
-# DCF — valuation date 30-Jun-2026 (H1 already realized), mid-period H2 + FY27-30
+# DCF — valuation date 30-Jun-2026 (H1 already realized), mid-period H2 + FY27-30.
+# TERMINAL DISCIPLINE: the growth in the perpetuity is PAID FOR, never assumed free —
+# terminal cash flow = FY30E NOPAT grown at g, times (1 - g/ROIC_terminal), so the
+# reinvestment needed to grow at g out of a business earning ROIC_terminal is charged.
 # =======================================================================================
+roic_t = I(0.225, "terminal return on invested capital (anchor: the leg's own realized LTM "
+           "ROCE 22.9% at 30-Jun-26; the forward model's ~15% marginal ROIC is transitional "
+           "working-capital front-loading during the growth phase; sensitized 15%-25%)",
+           "judgement anchored on ER table 10; sensitized in the study", "2026-08-19", CO, "rate")
+reinv_t = TG/roic_t
 h2_fcff = rows[0]['fcff'] - h1_fcff
 pv_rows = []
 disc_t = [0.5, 1.5, 2.5, 3.5, 4.5]
@@ -513,10 +588,16 @@ for i, (t, f) in enumerate(zip(disc_t, flows)):
     df = 1/(1+WACC)**t
     pv_rows.append(dict(period=('H2-26E' if i == 0 else YRS[i]), fcff=f, t=t, df=df, pv=f*df))
 pv_sum = sum(p['pv'] for p in pv_rows)
-tv = rows[-1]['fcff']*(1+TG)/(WACC-TG)
+tv_fcff_terminal = rows[-1]['nopat']*(1+TG)*(1-reinv_t)
+tv = tv_fcff_terminal/(WACC-TG)
 pv_tv = tv/(1+WACC)**disc_t[-1]
 ev_auto = pv_sum + pv_tv
 auto_eq = ev_auto - a1['nd'] - a1['nci_bs']
+# the alternative the July edition used, priced: Gordon on year-five FCFF, whose implied
+# terminal ROIC (g / (1 - FCFF/NOPAT)) is disclosed rather than hidden
+tv_gordon = rows[-1]['fcff']*(1+TG)/(WACC-TG)
+roic_implied_gordon = TG/(1 - rows[-1]['fcff']/rows[-1]['nopat'])
+auto_eq_gordon = pv_sum + tv_gordon/(1+WACC)**disc_t[-1] - a1['nd'] - a1['nci_bs']
 
 # =======================================================================================
 # LEGS — GB Capital operating equity; associates BOTH WAYS
@@ -530,29 +611,68 @@ assoc_A = mnt_round_egp + other_assoc + fvoci          # round-mark framing
 assoc_B = assoc_total + fvoci                          # company balance-sheet framing
 DISC = I(0.10, "SOTP complexity/conglomerate discount (carried from the prior study)",
          "house decision, unchanged", "2026-08-19", CO, "ratio")
+eq_elim = I(-2041.8, "inter-segment equity eliminations 30-Jun-26", ER + " table 12",
+            "2026-08-13", CO)
 
 def sotp_ps(auto, cap, assoc, disc):
     return (auto+cap+assoc)*(1-disc)/SH
 sotp_A = sotp_ps(auto_eq, cap_val['base'], assoc_A, DISC)
 sotp_B = sotp_ps(auto_eq, cap_val['base'], assoc_B, DISC)
 
-# bear/bull around each framing (auto margin/WACC + leg multiples + discount)
-def auto_eq_case(gpm_shift, wacc, tg, etr_shift=0.0):
-    wcp = hist['FY25']['wc']; frs = []
+# bear/bull around each framing (auto margin/WACC + leg multiples + discount), and the
+# priced ALTERNATIVE constructions the study shows instead of asserting — all through one
+# case engine that mirrors the base model exactly (same disciplined terminal value)
+def auto_eq_case(gpm_shift=0.0, wacc=None, tg=None, etr_shift=0.0, roic=None,
+                 gpm_override=None, wc_override=None, etr_override=None):
+    wacc = WACC if wacc is None else wacc
+    tg = TG if tg is None else tg
+    roic = roic_t if roic is None else roic
+    wcp = hist['FY25']['wc']; frs = []; nopat_last = 0.0
     for i, y in enumerate(YRS):
         r = lob[y]['auto_rev']
-        op = r*(gpm_path[i]+gpm_shift) - r*gsa_pct[i] + r*oth_pct + r*prov_pct
+        g = (gpm_override[i] if gpm_override else gpm_path[i]) + gpm_shift
+        op = r*g - r*gsa_pct[i] + r*oth_pct + r*prov_pct
         dna = r*dna_pct[i]
-        et = min(0.45, max(0.20, etr_path[i]+etr_shift))
-        wc = r*wc_pct[i]
-        frs.append(op*(1-et)+dna-capex[i]-(wc-wcp)); wcp = wc
-    f0 = frs[0]-h1_fcff
-    fl = [f0]+frs[1:]
+        et = etr_override[i] if etr_override else min(0.45, max(0.20, etr_path[i]+etr_shift))
+        wc = r*(wc_override[i] if wc_override else wc_pct[i])
+        nopat_last = op*(1-et)
+        frs.append(nopat_last+dna-capex[i]-(wc-wcp)); wcp = wc
+    fl = [frs[0]-h1_fcff]+frs[1:]
     pv = sum(f/(1+wacc)**t for f, t in zip(fl, disc_t))
-    tv_ = frs[-1]*(1+tg)/(wacc-tg)/(1+wacc)**disc_t[-1]
+    tv_ = nopat_last*(1+tg)*(1-tg/roic)/(wacc-tg)/(1+wacc)**disc_t[-1]
     return pv+tv_-a1['nd']-a1['nci_bs']
+assert abs(auto_eq_case() - auto_eq) < 0.5, "case engine must reproduce the base model"
 auto_bear = auto_eq_case(-0.010, WACC+0.020, TG-0.010, +0.04)
 auto_bull = auto_eq_case(+0.008, WACC-0.015, TG+0.010, -0.02)
+
+# the challenged lines, each priced under the reviewer's alternative construction
+cr_alt = {k: [v[0]] for k, v in cr.items()}
+for i in range(1, 5):
+    for k in cr_alt:
+        one_off = tr_reset if (k == 'tr' and i == 1) else 1.0
+        cr_alt[k].append(cr_alt[k][-1] * (1+esc(k if k != 'oth' else 'tr', i))
+                         / (1+price_g[k][i]) * one_off)
+gpm_alt = [gpm_path[0]]
+for i, y in enumerate(YRS[1:], start=1):
+    gp_ = (lob[y]['pc_r']*(1-cr_alt['pc'][i]) + lob[y]['cv_r']*(1-cr_alt['cv'][i])
+           + lob[y]['lm_r']*(1-cr_alt['lm'][i]) + lob[y]['tr_r']*(1-cr_alt['tr'][i])
+           + lob[y]['oth_r']*(1-cr_alt['oth'][i]))
+    gpm_alt.append(gp_/lob[y]['auto_rev'])
+alternatives = dict(
+    margin_compounds=dict(label="cost-price differential compounds every year (not held "
+                          "flat after FY27E)", auto_eq=auto_eq_case(gpm_override=gpm_alt),
+                          gpm_fy30=gpm_alt[-1]),
+    etr_stays_41=dict(label="regional losses persist: effective tax held at the H1-26 41.0%",
+                      auto_eq=auto_eq_case(etr_override=[etr_h1]*5)),
+    wc_at_fy25_peak=dict(label="working capital at the FY25 year-end 28.5% of revenue",
+                         auto_eq=auto_eq_case(wc_override=[hist['FY25']['wc']/hist['FY25']['auto_rev']]*5)),
+    tv_gordon=dict(label="terminal value as plain Gordon on year-five free cash flow "
+                   "(the July edition's construction)", auto_eq=auto_eq_gordon,
+                   implied_roic=roic_implied_gordon),
+    tv_roic_15=dict(label="terminal return on capital at the forward model's 15% marginal",
+                    auto_eq=auto_eq_case(roic=0.15)),
+    tv_roic_20=dict(label="terminal return on capital 20%", auto_eq=auto_eq_case(roic=0.20)),
+)
 sotp_A_bear = sotp_ps(auto_bear, cap_val['bear'], mnt_round_egp*0.80+other_assoc+fvoci, 0.18)
 sotp_A_bull = sotp_ps(auto_bull, cap_val['bull'], mnt_round_egp*1.10+other_assoc+fvoci, 0.04)
 sotp_B_bear = sotp_ps(auto_bear, cap_val['bear'], assoc_B*0.85, 0.18)
@@ -650,6 +770,38 @@ bull_A    = W['sotp']*sotp_A_bull + W['book']*book['bull'] + W['relative']*rel['
 
 fair = dict(bear=round(bear_B, 1), base=round(central_A, 1), full=round(bull_A, 1))
 
+# the crux, priced as a ladder: what each second-close outcome does to the whole study
+def central_of_assoc(assoc_val):
+    s_ = sotp_ps(auto_eq, cap_val['base'], assoc_val, DISC)
+    return (W['sotp']*s_ + W['book']*book['base'] + W['relative']*rel['base']
+            + W['normalized']*norm['base'])
+crux_ladder = []
+for x in [1000.0, 1200.0, 1400.0, 1600.0]:
+    av = mnt['stake']*x*usdegp + other_assoc + fvoci
+    crux_ladder.append(dict(round_usd=x, assoc=av,
+                            sotp=sotp_ps(auto_eq, cap_val['base'], av, DISC),
+                            central=central_of_assoc(av)))
+crux_ladder.append(dict(round_usd=None, assoc=assoc_B,
+                        sotp=sotp_B, central=central_of_assoc(assoc_B),
+                        label="the company's balance-sheet carrying"))
+
+# what the restated book is made of, per share (ER table 12 equity columns)
+book_decomp = dict(auto=a1['eq_seg']/SH, capital_oper=cap_oper_eq/SH,
+                   assoc_at_book=assoc_total/SH, elim=eq_elim/SH,
+                   capital_check=(cap_oper_eq+assoc_total)/SH,
+                   total=bs['parent_eq']/SH, marked_A=bvps_marked_A,
+                   mnt_uplift=(mnt_round_egp-mnt['carrying'])/SH)
+assert abs(a1['eq_seg']/SH + (cap_oper_eq+assoc_total)/SH + eq_elim/SH - bs['parent_eq']/SH) < 0.02
+
+# the two normalisation distortions, priced separately (per share)
+distortions = dict(
+    tax=dict(label="tax above statute on unshielded regional losses",
+             egp_mn=(etr_path[0]-tax_statutory)*(fs_fc[0]['auto_np']/(1-etr_path[0]))),
+    funding=dict(label="funding cost above the eased-cycle rate",
+                 egp_mn=a1['nd']*(kd_fwd[0]-fin_norm_rate)*(1-tax_statutory)))
+for d_ in distortions.values():
+    d_['per_share'] = d_['egp_mn']/SH
+
 # sensitivity: MNT mark multiplier x complexity discount (the two live swing factors)
 grid_mult = [0.50, 0.625, 0.75, 0.875, 1.00]
 grid_disc = [0.0, 0.05, 0.10, 0.15, 0.20]
@@ -689,10 +841,13 @@ out = dict(
               lm_vol_g=lm_vol_g, lm_asp_g=lm_asp_g, tr_g=tr_g, oth_g=oth_g,
               gsa_pct=gsa_pct, oth_pct=oth_pct, prov_pct=prov_pct, dna_pct=dna_pct,
               etr_path=etr_path, capex=capex, wc_pct=wc_pct,
+              h2_temper=h2_temper, h2_step=h2_step, seasonal_units=seasonal_units,
+              ckd_mix=ckd_mix, bus_mix=bus_mix, ce_path=ce_path, ckd_g=ckd_g, bus_g=bus_g,
               kd_fwd=kd_fwd, cap_rev_g=cap_rev_g, cap_rev_26=cap_rev_26,
               cap_np_path=cap_np_path, assoc_pickup_path=assoc_pickup_path,
               elim_pct=elim_pct, div_ps=div_ps_path, div_auto_share=div_auto_share,
               fin_norm_rate=fin_norm_rate, norm_mult=norm_mult, norm_scal=norm_scal,
+              tr_price_g=tr_price_g, tr_reset=tr_reset,
               gpm_path=gpm_path, cost_ratio_paths=cr, seasonal_gap=seasonal_gap,
               gpm_h2_26=gpm_h2_26, lob_margins_h1=m0),
  lob=lob, ccc=ccc,
@@ -708,7 +863,12 @@ out = dict(
  dcf=dict(rows=rows, h1_fcff=h1_fcff, h2_fcff=h2_fcff, pv_rows=pv_rows, pv_sum=pv_sum,
           tv=tv, pv_tv=pv_tv, ev=ev_auto, tv_pct=pv_tv/ev_auto, wacc=WACC, tg=TG,
           auto_nd=a1['nd'], auto_nci=a1['nci_bs'], auto_eq=auto_eq,
-          auto_eq_pm1=auto_pm1, auto_eq_mm1=auto_mm1),
+          auto_eq_pm1=auto_pm1, auto_eq_mm1=auto_mm1,
+          roic_t=roic_t, reinv_t=reinv_t, tv_fcff_terminal=tv_fcff_terminal,
+          tv_gordon=tv_gordon, roic_implied_gordon=roic_implied_gordon,
+          auto_eq_gordon=auto_eq_gordon),
+ alternatives=alternatives, crux_ladder=crux_ladder, book_decomp=book_decomp,
+ distortions=distortions,
  legs=dict(cap_oper_eq=cap_oper_eq, cap_val=cap_val,
            mnt_round_egp=mnt_round_egp, assoc_A=assoc_A, assoc_B=assoc_B, disc=DISC),
  both_ways=dict(
@@ -733,7 +893,7 @@ out = dict(
                   monthly_skill=P26['step0']['monthly']['crps_skill'],
                   cov90=P26['step0']['nonoverlap']['cov90'],
                   n=P26['step0']['nonoverlap']['n']),
- n_register=len(REG),
+ n_register=len(REG), eq_elim=eq_elim,
  slider_constants=dict(applicable=False,
      note="gbco.html carries no bespoke factor-stack slider: CONT_FIXED / EV_FIXED / "
           "GEO_MEAN / LNCH_MEAN exist only on the ADCB/ALPHADHABI calculator pages "
