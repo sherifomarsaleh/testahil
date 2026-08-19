@@ -1,0 +1,2914 @@
+{
+ "build_date": "2026-08-19",
+ "refresh_of": "GBCO_Valuation_Study_08-07-2026 (amended 09-07-2026)",
+ "spot": 31.31,
+ "spot_date": "2026-07-22",
+ "spot_ir": 29.7,
+ "spot_ir_date": "2026-08-19",
+ "shares": 1085.5,
+ "mktcap": 32239.35,
+ "bvps": 30.819224320589587,
+ "h1": {
+  "rev": 48474.374,
+  "gp": 7421.893,
+  "op": 3661.278,
+  "fin_net": 2280.992,
+  "assoc": 410.14,
+  "ebt": 1790.426,
+  "tax": 734.787,
+  "np": 1262.006,
+  "ocf": 5486.148
+ },
+ "h1_25": {
+  "rev": 35849.992,
+  "np": 1672.621
+ },
+ "auto_h1": {
+  "rev": 40021.5,
+  "gp": 5722.1,
+  "gsa": 2839.8,
+  "oth": 334.2,
+  "prov": -89.4,
+  "op": 3127.0,
+  "fin": 2206.7,
+  "ebt": 890.5,
+  "tax": 529.3,
+  "ebitda": 3484.8,
+  "dna": 401.2,
+  "capex": 1376.5,
+  "nd": 14493.6,
+  "wc": 17092.8,
+  "ce": 28185.0,
+  "debt": 22733.1,
+  "notes": 2345.8,
+  "cash": 9445.0,
+  "inv": 22959.1,
+  "rec": 5873.5,
+  "adv": 1153.7,
+  "debtors": 2598.9,
+  "pay": 15492.5,
+  "cogs": 34299.4,
+  "nci_bs": 590.7,
+  "h1_25_rev": 30672.7,
+  "h1_25_gp": 4752.0,
+  "h1_25_ebitda": 3074.3,
+  "np_after_nci": 607.9
+ },
+ "lob_h1": {
+  "pc_u": 29554,
+  "pc_r": 30595.7,
+  "cv_u": 2490,
+  "cv_r": 4749.1,
+  "lm_u": 21173,
+  "lm_r": 1435.2,
+  "tr_r": 2572.3,
+  "pc_r_h125": 24098.2,
+  "pc_u_h125": 25989,
+  "cv_r_h125": 2640.6,
+  "lm_r_h125": 928.4,
+  "tr_r_h125": 2438.2,
+  "pc_fx_share": 0.1459,
+  "oth_r": 669.2
+ },
+ "fs_margins": {
+  "pc": 0.13316297043297143,
+  "bt": 0.18635296112802247,
+  "lm": 0.11457806650629965,
+  "tr": 0.2026582308808631
+ },
+ "capital_h1": {
+  "rev": 9088.2,
+  "op": 574.4,
+  "np": 649.6,
+  "assoc": 426.2,
+  "book": 23984.6,
+  "npl": 0.028,
+  "roae": 0.135,
+  "eq": 22497.8,
+  "inv_sub": 18246.0,
+  "cof": 1797.1,
+  "gp": 1762.2
+ },
+ "mnt": {
+  "stake": 0.4293,
+  "carrying": 15723.523,
+  "pickup": 409.985,
+  "round_usd": 1400.0,
+  "loanbook": 1.95
+ },
+ "other_assoc": 506.942,
+ "fvoci": 489.537,
+ "assoc_total": 16230.465,
+ "bs": {
+  "parent_eq": 33454.268,
+  "nci": 1673.633,
+  "nd_group": 32269.835,
+  "debt_total": 42475.974,
+  "cash": 10951.5,
+  "usd_liab": 7274.427,
+  "usd_net": -1853.57,
+  "var_rate": 43480.083,
+  "div_ps": 0.35,
+  "commitments": 1020.505,
+  "inv_group": 22998.432,
+  "ar_group": 16570.835,
+  "debtors_group": 5268.687,
+  "ta_group": 100921.411
+ },
+ "kd_egp": 0.2082,
+ "kd_usd": 0.0778,
+ "tax_statutory": 0.225,
+ "etr_h1": 0.4104,
+ "hist": {
+  "FY23": {
+   "group_rev": 28317.2,
+   "auto_rev": 23854.0,
+   "pc_u": 26994,
+   "pc_r": 16544.3,
+   "cv_u": 2273,
+   "cv_r": 2323.0,
+   "lm_u": 13610,
+   "lm_r": 854.2,
+   "tr_r": 2506.8,
+   "oth_r": 7625.2,
+   "auto_gp": 5813.1,
+   "auto_ebitda": 3794.6,
+   "auto_ebit": 3460.9,
+   "np": 1890.8,
+   "wc": 4466.3,
+   "nd": 2921.8,
+   "ce": 10231.2,
+   "cap_rev": 4950.9,
+   "cap_book": 8980.5,
+   "bs": {
+    "inv": 6366.1,
+    "ar": 1743.5,
+    "adv": 1039.1,
+    "assoc": 10732.4,
+    "cash": 4504.2,
+    "ta": 42585.5,
+    "borrow": 12517.7,
+    "eq": 19838.8,
+    "nd_lc": 8013.500000000001
+   }
+  },
+  "FY24": {
+   "group_rev": 53969.5,
+   "auto_rev": 47065.0,
+   "pc_u": 42043,
+   "pc_r": 36533.4,
+   "cv_u": 2096,
+   "cv_r": 3984.5,
+   "lm_u": 20189,
+   "lm_r": 1378.2,
+   "tr_r": 3815.5,
+   "oth_r": 1353.4,
+   "auto_gp": 9057.4,
+   "auto_ebitda": 5880.5,
+   "auto_ebit": 5564.9,
+   "np": 2928.1,
+   "wc": 10783.9,
+   "nd": 5292.0,
+   "ce": 18731.3,
+   "cap_rev": 7383.6,
+   "cap_book": 13183.4,
+   "bs": {
+    "inv": 21134.3,
+    "ar": 3708.7,
+    "adv": 2942.2,
+    "assoc": 11743.6,
+    "cash": 7420.9,
+    "ta": 62725.2,
+    "borrow": 22608.7,
+    "eq": 25438.5,
+    "nd_lc": 15187.800000000001
+   }
+  },
+  "FY25": {
+   "group_rev": 80229.8,
+   "auto_rev": 66358.3,
+   "pc_u": 56548,
+   "pc_r": 52827.3,
+   "cv_u": 3404,
+   "cv_r": 5956.8,
+   "lm_u": 33906,
+   "lm_r": 2203.8,
+   "tr_r": 4242.8,
+   "oth_r": 1127.6,
+   "auto_gp": 9837.1,
+   "auto_ebitda": 6363.3,
+   "auto_ebit": 5830.9,
+   "np": 2880.0,
+   "wc": 18917.0,
+   "nd": 15210.0,
+   "ce": 28513.0,
+   "cap_rev": 14743.0,
+   "cap_book": 19495.2,
+   "bs": {
+    "inv": 24649.7,
+    "ar": 14157.9,
+    "adv": 5818.6,
+    "assoc": 15732.4,
+    "cash": 9523.6,
+    "ta": 94287.6,
+    "borrow": 37921.3,
+    "eq": 31671.4,
+    "nd_lc": 29298.8
+   }
+  }
+ },
+ "rf_obs": 0.2292,
+ "ds_rating": 0.0637,
+ "ds_cds": 0.0341,
+ "erp_rating": 0.1394,
+ "erp_cds": 0.0941,
+ "usdegp": 50.71,
+ "cpi": 0.149,
+ "cbe_dep": 0.19,
+ "amic_pc": 62300,
+ "peers": {
+  "DOAS": 12.55,
+  "CNFN": 9.41,
+  "AN": 9.11,
+  "BAJAJ": 27.56
+ },
+ "variance": [
+  {
+   "line": "PC volumes (units)",
+   "forecast_fy26e": 63333.76000000001,
+   "actual_h1": 29554,
+   "h1_share_fy25": 0.45959185117068685,
+   "implied_fy26": 64304.88252722305,
+   "deviation": 0.015333410288968174,
+   "unit": "units",
+   "verdict": "on track",
+   "note": "prior +12% vol growth confirmed; H1 tracks the FY25 seasonal split almost exactly"
+  },
+  {
+   "line": "PC revenue",
+   "forecast_fy26e": 62716.57056000002,
+   "actual_h1": 30595.7,
+   "h1_share_fy25": 0.45616944269345583,
+   "implied_fy26": 67070.91079873186,
+   "deviation": 0.0694288638529128,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "volume on track \u2014 the beat is ASP: realized 1.035 vs 0.990 modelled (+4.5%); the prior +6% ASP driver under-read post-devaluation pricing"
+  },
+  {
+   "line": "CV&CE revenue",
+   "forecast_fy26e": 7818.300000000001,
+   "actual_h1": 4749.1,
+   "h1_share_fy25": 0.4432917002417405,
+   "implied_fy26": 10713.26171324699,
+   "deviation": 0.37028020327270483,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "the largest driver-stack miss: prior +25% volume growth vs realized +62% \u2014 the bus/truck replacement cycle and exports were underestimated"
+  },
+  {
+   "line": "Light-Mobility revenue",
+   "forecast_fy26e": 3008.187000000001,
+   "actual_h1": 1435.2,
+   "h1_share_fy25": 0.42127234776295486,
+   "implied_fy26": 3406.8222317966397,
+   "deviation": 0.13251677232719872,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "prior +30% vol growth vs realized +48.9%; Qute supply constraint capped it further"
+  },
+  {
+   "line": "Trading revenue",
+   "forecast_fy26e": 5006.504,
+   "actual_h1": 2572.3,
+   "h1_share_fy25": 0.5746676722918826,
+   "implied_fy26": 4476.152259863835,
+   "deviation": -0.10593255096493781,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "over-forecast: prior +18% growth vs realized +5.5% \u2014 the FY25 tires base carried a one-off dealer inventory transfer the prior model treated as run-rate"
+  },
+  {
+   "line": "Auto revenue",
+   "forecast_fy26e": 78549.56156000003,
+   "actual_h1": 40021.5,
+   "h1_share_fy25": 0.4622285381029954,
+   "implied_fy26": 86583.79286629478,
+   "deviation": 0.10228231891730943,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "net effect of the above: ~+10% ahead of the prior model's pace"
+  },
+  {
+   "line": "Auto EBITDA",
+   "forecast_fy26e": 6676.712732600003,
+   "actual_h1": 3484.8,
+   "h1_share_fy25": 0.4831298225763362,
+   "implied_fy26": 7212.968103308071,
+   "deviation": 0.0803172747106109,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "ahead on revenue; margin broadly as modelled"
+  },
+  {
+   "line": "Auto gross margin",
+   "forecast_fy26e": 0.138,
+   "actual_h1": 0.14297565058780906,
+   "h1_share_fy25": null,
+   "implied_fy26": 0.14297565058780906,
+   "deviation": 0.03605543904209463,
+   "unit": "ratio",
+   "verdict": "on track",
+   "note": "H1 14.30% vs 13.80% modelled (+3.6% rel); direction of y/y compression (15.5% -> 14.3%) as modelled"
+  },
+  {
+   "line": "Auto capex",
+   "forecast_fy26e": 3000,
+   "actual_h1": 1376.5,
+   "h1_share_fy25": null,
+   "implied_fy26": 2753.0,
+   "deviation": -0.08233333333333337,
+   "unit": "EGP mn",
+   "verdict": "on track",
+   "note": "H1 45.9% of the modelled year; commitments 1,020.5 support H2"
+  },
+  {
+   "line": "Auto net debt",
+   "forecast_fy26e": 15210.0,
+   "actual_h1": 14493.6,
+   "h1_share_fy25": null,
+   "implied_fy26": 14493.6,
+   "deviation": -0.04710059171597636,
+   "unit": "EGP mn",
+   "verdict": "on track",
+   "note": "14,493.6 vs 15,210.0 carried (-4.7%, better)"
+  },
+  {
+   "line": "Group net profit",
+   "forecast_fy26e": 3300.0,
+   "actual_h1": 1262.006,
+   "h1_share_fy25": 0.5807711805555555,
+   "implied_fy26": 2172.9831683328143,
+   "deviation": -0.3415202520203593,
+   "unit": "EGP mn",
+   "verdict": "ESCALATE",
+   "note": "the miss is BELOW the operating line: net finance cost +42% y/y and a 41.0% effective tax rate (statutory 22.5%) on unshielded regional losses \u2014 mechanisms the prior stack did not carry (flat 28% tax, no finance-cost model)"
+  },
+  {
+   "line": "MNT-Halan stake",
+   "forecast_fy26e": 0.4161,
+   "actual_h1": 0.4293,
+   "h1_share_fy25": null,
+   "implied_fy26": 0.4293,
+   "deviation": 0.03172314347512617,
+   "unit": "share",
+   "verdict": "ESCALATE",
+   "note": "41.61% (press, post-second-closing wording) superseded by the FS's 42.93% post-first-close; the press figure was not wrong but described a different completion state \u2014 the filing outranks the release"
+  },
+  {
+   "line": "EGP/USD (MNT mark translation)",
+   "forecast_fy26e": 47.5,
+   "actual_h1": 50.71,
+   "h1_share_fy25": null,
+   "implied_fy26": 50.71,
+   "deviation": 0.06757894736842096,
+   "unit": "EGP/USD",
+   "verdict": "ESCALATE",
+   "note": "47.5 -> 50.71 (-6.8% EGP)"
+  }
+ ],
+ "seasonal": {
+  "pc_u": 0.45959185117068685,
+  "pc_r": 0.45616944269345583,
+  "cv_r": 0.4432917002417405,
+  "lm_r": 0.42127234776295486,
+  "tr_r": 0.5746676722918826,
+  "auto": 0.4622285381029954,
+  "ebitda": 0.4831298225763362
+ },
+ "drivers": {
+  "fx_path": [
+   0.045,
+   0.08,
+   0.07,
+   0.06,
+   0.05
+  ],
+  "cpi_path": [
+   0.06,
+   0.12,
+   0.1,
+   0.09,
+   0.08
+  ],
+  "imp_share": {
+   "pc": 0.75,
+   "cv": 0.7,
+   "lm": 0.8,
+   "tr": 0.9
+  },
+  "pc_vol_g": [
+   null,
+   0.09,
+   0.08,
+   0.06,
+   0.05
+  ],
+  "pc_asp_g": [
+   null,
+   0.08,
+   0.07,
+   0.06,
+   0.06
+  ],
+  "cv_vol_g": [
+   null,
+   0.14,
+   0.1,
+   0.08,
+   0.07
+  ],
+  "cv_asp_g": [
+   null,
+   0.07,
+   0.06,
+   0.06,
+   0.05
+  ],
+  "lm_vol_g": [
+   null,
+   0.16,
+   0.13,
+   0.11,
+   0.09
+  ],
+  "lm_asp_g": [
+   null,
+   0.06,
+   0.05,
+   0.05,
+   0.05
+  ],
+  "tr_g": [
+   null,
+   0.11,
+   0.1,
+   0.09,
+   0.08
+  ],
+  "oth_g": [
+   null,
+   0.1,
+   0.1,
+   0.09,
+   0.08
+  ],
+  "gsa_pct": [
+   0.071,
+   0.0705,
+   0.07,
+   0.0692,
+   0.0685
+  ],
+  "oth_pct": 0.0084,
+  "prov_pct": -0.0022,
+  "dna_pct": [
+   0.01,
+   0.0102,
+   0.0104,
+   0.0104,
+   0.0104
+  ],
+  "etr_path": [
+   0.38,
+   0.3,
+   0.26,
+   0.24,
+   0.225
+  ],
+  "capex": [
+   2800,
+   2600,
+   2500,
+   2500,
+   2600
+  ],
+  "wc_pct": [
+   0.23,
+   0.225,
+   0.22,
+   0.215,
+   0.21
+  ],
+  "kd_fwd": [
+   0.195,
+   0.175,
+   0.165,
+   0.155,
+   0.15
+  ],
+  "cap_rev_g": [
+   null,
+   0.2,
+   0.17,
+   0.15,
+   0.12
+  ],
+  "cap_rev_26": 18700.0,
+  "cap_np_path": [
+   1450.0,
+   1750.0,
+   2050.0,
+   2350.0,
+   2650.0
+  ],
+  "assoc_pickup_path": [
+   850.0,
+   1065.0,
+   1330.0,
+   1600.0,
+   1870.0
+  ],
+  "elim_pct": 0.013,
+  "div_ps": 0.35,
+  "div_auto_share": 0.85,
+  "fin_norm_rate": 0.17,
+  "norm_mult": {
+   "bear": 7.5,
+   "base": 8.5,
+   "bull": 9.5
+  },
+  "norm_scal": {
+   "bear": 0.85,
+   "bull": 1.12
+  },
+  "gpm_path": [
+   0.136260663100282,
+   0.13105745010721503,
+   0.1309815852798516,
+   0.13096443680947584,
+   0.1309187366592172
+  ],
+  "cost_ratio_paths": {
+   "pc": [
+    0.8668370295670286,
+    0.8748632983593159,
+    0.8748632983593159,
+    0.8748632983593159,
+    0.8748632983593159
+   ],
+   "cv": [
+    0.8136470388719775,
+    0.8303762303254201,
+    0.8303762303254201,
+    0.8303762303254201,
+    0.8303762303254201
+   ],
+   "lm": [
+    0.8854219334937004,
+    0.9088104373973075,
+    0.9088104373973075,
+    0.9088104373973075,
+    0.9088104373973075
+   ],
+   "tr": [
+    0.7973417691191369,
+    0.8480105819190097,
+    0.8480105819190097,
+    0.8480105819190097,
+    0.8480105819190097
+   ],
+   "oth": [
+    0.8180000000000001,
+    0.8365207547169812,
+    0.8365207547169812,
+    0.8365207547169812,
+    0.8365207547169812
+   ]
+  },
+  "seasonal_gap": 0.01242878793015234,
+  "gpm_h2_26": 0.13054686265765672,
+  "lob_margins_h1": {
+   "pc": 0.13316297043297143,
+   "cv": 0.18635296112802247,
+   "lm": 0.11457806650629965,
+   "tr": 0.2026582308808631,
+   "oth": 0.182
+  }
+ },
+ "lob": {
+  "FY26E": {
+   "pc_u": 64300,
+   "pc_r": 67465.6718144752,
+   "pc_asp": 1.0492328431489144,
+   "cv_r": 10100,
+   "lm_r": 3350,
+   "tr_r": 4800,
+   "oth_r": 1340,
+   "auto_rev": 87055.6718144752
+  },
+  "FY27E": {
+   "pc_u": 70087.0,
+   "pc_asp": 1.1331714706008276,
+   "pc_r": 79420.5888600002,
+   "cv_r": 12319.980000000003,
+   "lm_r": 4119.16,
+   "tr_r": 5328.000000000001,
+   "oth_r": 1474.0000000000002,
+   "auto_rev": 102661.7288600002
+  },
+  "FY28E": {
+   "pc_u": 75693.96,
+   "pc_asp": 1.2124934735428856,
+   "pc_r": 91778.43248661625,
+   "cv_r": 14365.096680000006,
+   "lm_r": 4887.383339999999,
+   "tr_r": 5860.800000000001,
+   "oth_r": 1621.4000000000003,
+   "auto_rev": 118513.11250661625
+  },
+  "FY29E": {
+   "pc_u": 80235.59760000001,
+   "pc_asp": 1.2852430819554588,
+   "pc_r": 103122.24674196202,
+   "cv_r": 16445.16267926401,
+   "lm_r": 5696.24528277,
+   "tr_r": 6388.272000000002,
+   "oth_r": 1767.3260000000005,
+   "auto_rev": 133419.25270399606
+  },
+  "FY30E": {
+   "pc_u": 84247.37748000001,
+   "pc_asp": 1.3623576668727864,
+   "pc_r": 114775.06062380374,
+   "cv_r": 18476.140270153115,
+   "lm_r": 6519.352726130266,
+   "tr_r": 6899.333760000002,
+   "oth_r": 1908.7120800000007,
+   "auto_rev": 148578.5994600871
+  }
+ },
+ "ccc": {
+  "dio": 122.16061359673928,
+  "dso": 26.783447646889798,
+  "dpo": 82.43238219910552,
+  "ccc": 66.51167904452356
+ },
+ "beta": {
+  "ticker": "GBCO",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 0.8927482097434627,
+  "r2": 0.2440171696604082,
+  "se": 0.20235036602525674,
+  "n": 255,
+  "ci90": [
+   0.5598818576319153,
+   1.22561456185501
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 4.93,
+  "first_obs": "2021-08-12",
+  "last_obs": "2026-07-16",
+  "blume_crosscheck": 0.9284988064956416,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "index_dq": [],
+  "stock_dq": [],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "wacc": {
+  "rf_obs": 0.2292,
+  "rf_star_rating": 0.16549999999999998,
+  "rf_star_cds": 0.1951,
+  "erp_rating": 0.1394,
+  "erp_cds": 0.0941,
+  "beta": 0.8927482097434627,
+  "ke_rating": 0.2899491004382387,
+  "ke_cds": 0.27910760653685984,
+  "kd_pretax_local": 0.2082,
+  "kd_fx_local_equiv": 0.19679999999999997,
+  "pct_local": 0.9,
+  "kd_blended": 0.20706,
+  "kd_aftertax": 0.1604715,
+  "we": 0.5624622175310655,
+  "wd": 0.4375377824689345,
+  "wacc_cds": 0.22719982756197393,
+  "wacc_rating": 0.23329775826309296,
+  "tg": 0.115,
+  "warnings": [],
+  "report": "==============================================================================\nBOTTOM-UP WACC \u2014 house method (\u00a73.5-G, v2 corrected 21-Jul-2026)\n==============================================================================\n\nCOST OF EQUITY  (rf normalized: rf* = observed yield \u2212 sovereign default spread)\n  observed local yield   =  22.92%   [investing.com, Egypt 10Y local-currency govt bond yield, 19-Aug-2026]\n  sov default spread (rt)=   6.37%   [Damodaran adj. default spread, rating basis]\n  rf* (rating basis)     =  16.55%\n  sov default spread(cds)=   3.41%   [CDS-implied]\n  rf* (CDS basis)        =  19.51%\n  ERP (rating-based)     =  13.94%   [Damodaran ORIGINAL ctryprem.html, Egypt row, updated 05-Jan-2026]\n  ERP (CDS-based)        =   9.41%   [same source, CDS column]\n  beta                   =   0.89    [own_stock_beta('GBCO','EG','EGX'): weekly Dimson beta 0.893 vs EGX30 (raw_indices/EG/EGX30.csv, as-of 2026-07-22), n=255, R2=0.244, SE=0.202, window 2021-08-12->2026-07-16 \u2014 usable, conforming]\n  Ke (rating ERP)        =  28.99%   = rf*_rating + beta x ERP_rating\n  Ke (CDS ERP)           =  27.91%   = rf*_cds + beta x ERP_cds\n\nCOST OF DEBT  (MARGINAL, forward-looking, cash-flow currency)\n  Kd local, pre-tax      =  20.82%   [GB Corp H1-26 FS note 26: average rate on current EGP loans & borrowings 20.82% during H1-26 (21.91% FY25); book essentially all variable-rate (note 29), so the current average IS the marginal rate]\n  marginal-rate asserted = True\n  Kd FX (local-equiv)    =  19.68%   [coupon + expected depreciation]\n  debt mix               = 90% local / 10% FX   [note 26 discloses EGP and USD books with average rates 20.82%/7.78%; note 29 net USD exposure -1,853.6 (incl payables); USD time deposits 5,687.0 offset most USD debt]\n  tax rate               =  22.50%\n  Kd blended, pre-tax    =  20.71%\n  Kd blended, after-tax  =  16.05%\n\nWEIGHTS  (market-value equity; book-value debt proxy)\n  Market cap             = 32,239\n  Total debt (disclosed) = 25,079   [market cap = IR-page EGX quote 29.70 (19-Aug-26) x 1,085.5mn shares; debt = AUTO segment gross debt + leasing notes (GB Capital's funding is an operating liability of the finance leg, valued separately)]\n  E / (D+E)              =  56.25%\n  D / (D+E)              =  43.75%\n\nWACC\n  WACC (rating-based ERP) =  23.33%\n  WACC (CDS-based ERP)    =  22.72%\n==============================================================================\nREMINDERS: (1) nominal WACC discounts nominal cash flows only; match real-to-real.\n           (2) high-inflation EM: also run a USD (or real) valuation cross-check.\n=============================================================================="
+ },
+ "dcf": {
+  "rows": [
+   {
+    "year": "FY26E",
+    "rev": 87055.6718144752,
+    "gp": 11862.26356808092,
+    "gpm": 0.136260663100282,
+    "ebitda": 7091.61275264768,
+    "ebit": 6221.056034502928,
+    "dna": 870.5567181447519,
+    "nopat": 3857.0547413918152,
+    "capex": 2800,
+    "dwc": 1105.8045173292958,
+    "fcff": 821.8069422072713,
+    "wc": 20022.804517329296,
+    "etr": 0.38
+   },
+   {
+    "year": "FY27E",
+    "rev": 102661.7288600002,
+    "gp": 13454.584407989914,
+    "gpm": 0.13105745010721503,
+    "ebitda": 7900.584876663903,
+    "ebit": 6853.435242291901,
+    "dna": 1047.149634372002,
+    "nopat": 4797.404669604331,
+    "capex": 2600,
+    "dwc": 3076.084476170752,
+    "fcff": 168.46982780558028,
+    "wc": 23098.888993500048,
+    "etr": 0.3
+   },
+   {
+    "year": "FY28E",
+    "rev": 118513.11250661625,
+    "gp": 15523.035352566003,
+    "gpm": 0.1309815852798516,
+    "ebitda": 9194.435144712694,
+    "ebit": 7961.898774643885,
+    "dna": 1232.536370068809,
+    "nopat": 5891.805093236475,
+    "capex": 2500,
+    "dwc": 2973.9957579555266,
+    "fcff": 1650.3457053497568,
+    "wc": 26072.884751455575,
+    "etr": 0.26
+   },
+   {
+    "year": "FY29E",
+    "rev": 133419.25270399606,
+    "gp": 17473.17728991998,
+    "gpm": 0.13096443680947584,
+    "ebitda": 10455.324597689787,
+    "ebit": 9067.764369568227,
+    "dna": 1387.560228121559,
+    "nopat": 6891.500920871853,
+    "capex": 2500,
+    "dwc": 2612.254579903576,
+    "fcff": 3166.8065690898366,
+    "wc": 28685.13933135915,
+    "etr": 0.24
+   },
+   {
+    "year": "FY30E",
+    "rev": 148578.5994600871,
+    "gp": 19451.722535910452,
+    "gpm": 0.1309187366592172,
+    "ebitda": 11740.493223931931,
+    "ebit": 10195.275789547026,
+    "dna": 1545.2174343849058,
+    "nopat": 7901.338736898945,
+    "capex": 2600,
+    "dwc": 2516.366555259141,
+    "fcff": 4330.189616024711,
+    "wc": 31201.50588661829,
+    "etr": 0.225
+   }
+  ],
+  "h1_fcff": 2692.5792000000006,
+  "h2_fcff": -1870.7722577927293,
+  "pv_rows": [
+   {
+    "period": "H2-26E",
+    "fcff": -1870.7722577927293,
+    "t": 0.5,
+    "df": 0.9026977442632086,
+    "pv": -1688.7418971396864
+   },
+   {
+    "period": "FY27E",
+    "fcff": 168.46982780558028,
+    "t": 1.5,
+    "df": 0.7355751883184013,
+    "pv": 123.92222531405835
+   },
+   {
+    "period": "FY28E",
+    "fcff": 1650.3457053497568,
+    "t": 2.5,
+    "df": 0.5993931646647453,
+    "pv": 989.2059351204621
+   },
+   {
+    "period": "FY29E",
+    "fcff": 3166.8065690898366,
+    "t": 3.5,
+    "df": 0.4884234427049541,
+    "pv": 1546.742566855522
+   },
+   {
+    "period": "FY30E",
+    "fcff": 4330.189616024711,
+    "t": 4.5,
+    "df": 0.39799829802395287,
+    "pv": 1723.4080972988288
+   }
+  ],
+  "pv_sum": 2694.536927449185,
+  "tv": 43031.80786263421,
+  "pv_tv": 17126.586290222167,
+  "ev": 19821.123217671353,
+  "tv_pct": 0.8640573040256925,
+  "wacc": 0.22719982756197393,
+  "tg": 0.115,
+  "auto_nd": 14493.6,
+  "auto_nci": 590.7,
+  "auto_eq": 4736.823217671353,
+  "auto_eq_pm1": 11786.16966437497,
+  "auto_eq_mm1": -2312.5232290322483
+ },
+ "legs": {
+  "cap_oper_eq": 6267.334999999999,
+  "cap_val": {
+   "bear": 5327.234749999999,
+   "base": 6267.334999999999,
+   "bull": 7207.435249999999
+  },
+  "mnt_round_egp": 30477.7242,
+  "assoc_A": 31474.2032,
+  "assoc_B": 16720.002,
+  "disc": 0.1
+ },
+ "both_ways": {
+  "A": {
+   "label": "round mark (Jun-26 first close, USD 1.4bn x 42.93% x 50.71)",
+   "assoc": 31474.2032,
+   "sotp": 35.21927708512595,
+   "sotp_bear": 17.40161312725681,
+   "sotp_bull": 54.717398508731755,
+   "central": 34.15716194473159
+  },
+  "B": {
+   "label": "company balance-sheet mark (equity-method carrying, KPMG-qualified)",
+   "assoc": 16720.002,
+   "sotp": 22.986406444868006,
+   "sotp_bear": 8.966183867745064,
+   "sotp_bull": 40.452290739777354,
+   "central": 29.26401368862841
+  },
+  "gap_ps": 12.232870640257946,
+  "mult_B_on_grid": 0.5159021355013115
+ },
+ "fs_forecast": [
+  {
+   "year": "FY26E",
+   "auto_rev": 87055.6718144752,
+   "cap_rev": 18700.0,
+   "group_rev": 104380.84808088702,
+   "auto_ebit": 6221.056034502928,
+   "fin_cost": 3619.826,
+   "auto_np": 1612.7626213918154,
+   "cap_np": 1450.0,
+   "assoc_pickup": 850.0,
+   "group_np": 3062.7626213918156,
+   "eps": 2.8215224517658366,
+   "divs": 379.92499999999995,
+   "wc": 20022.804517329296,
+   "assoc_carrying": 17080.465,
+   "auto_nd": 16239.02142779273,
+   "equity": 36137.105621391805,
+   "bvps": 33.29074677235542,
+   "roe": 0.08475395493707652
+  },
+  {
+   "year": "FY27E",
+   "auto_rev": 102661.7288600002,
+   "cap_rev": 22440.0,
+   "group_rev": 123475.4063848202,
+   "auto_ebit": 6853.435242291901,
+   "fin_cost": 2841.8287498637274,
+   "auto_np": 2808.1245446997214,
+   "cap_np": 1750.0,
+   "assoc_pickup": 1065.0,
+   "group_np": 4558.124544699722,
+   "eps": 4.1991013769688825,
+   "divs": 379.92499999999995,
+   "wc": 23098.888993500048,
+   "assoc_carrying": 18145.465,
+   "auto_nd": 18382.767974891758,
+   "equity": 40315.30516609152,
+   "bvps": 37.139848149324294,
+   "roe": 0.11306188867778875
+  },
+  {
+   "year": "FY28E",
+   "auto_rev": 118513.11250661625,
+   "cap_rev": 26254.8,
+   "group_rev": 142885.92964403023,
+   "auto_ebit": 7961.898774643885,
+   "fin_cost": 3033.15671585714,
+   "auto_np": 3647.2691235021916,
+   "cap_np": 2050.0,
+   "assoc_pickup": 1330.0,
+   "group_np": 5697.269123502192,
+   "eps": 5.24852061124108,
+   "divs": 379.92499999999995,
+   "wc": 26072.884751455575,
+   "assoc_carrying": 19475.465,
+   "auto_nd": 19299.894489276285,
+   "equity": 45632.64928959371,
+   "bvps": 42.03836876056537,
+   "roe": 0.12485072009179675
+  },
+  {
+   "year": "FY29E",
+   "auto_rev": 133419.25270399606,
+   "cap_rev": 30193.019999999997,
+   "group_rev": 161485.3131588441,
+   "auto_ebit": 9067.764369568227,
+   "fin_cost": 2991.483645837824,
+   "auto_np": 4617.973350035107,
+   "cap_np": 2350.0,
+   "assoc_pickup": 1600.0,
+   "group_np": 6967.973350035107,
+   "eps": 6.4191371257808445,
+   "divs": 379.92499999999995,
+   "wc": 28685.13933135915,
+   "assoc_carrying": 21075.465,
+   "auto_nd": 18729.551741023195,
+   "equity": 52220.697639628816,
+   "bvps": 48.10750588634622,
+   "roe": 0.1334331723815828
+  },
+  {
+   "year": "FY30E",
+   "auto_rev": 148578.5994600871,
+   "cap_rev": 33816.1824,
+   "group_rev": 180023.64969590597,
+   "auto_ebit": 10195.275789547026,
+   "fin_cost": 2809.432761153479,
+   "auto_np": 5724.028347004999,
+   "cap_np": 2650.0,
+   "assoc_pickup": 1870.0,
+   "group_np": 8374.028347004998,
+   "eps": 7.714443433445415,
+   "divs": 379.92499999999995,
+   "wc": 31201.50588661829,
+   "assoc_carrying": 22945.465,
+   "auto_nd": 16899.60876489243,
+   "equity": 60214.80098663381,
+   "bvps": 55.47194931979163,
+   "roe": 0.13906926884743545
+  }
+ ],
+ "lenses": {
+  "sotp": {
+   "bear": 8.966183867745064,
+   "base_A": 35.21927708512595,
+   "base_B": 22.986406444868006,
+   "bull": 54.717398508731755
+  },
+  "book": {
+   "bear": 24.65537945647167,
+   "base": 30.819224320589587,
+   "bull": 44.41130280976508,
+   "note": "base = restated accounting book (P/B 1.0); bull = book with MNT B.V. at the round mark; bear = 0.8x book (ROE below Ke)"
+  },
+  "relative": {
+   "bear": 22.572179614126693,
+   "base": 26.80446329177545,
+   "bull": 31.036746969424204,
+   "pe": {
+    "bear": 8.0,
+    "base": 9.5,
+    "bull": 11.0
+   },
+   "eps26": 2.8215224517658366,
+   "np26": 3062.7626213918156
+  },
+  "normalized": {
+   "bear": 30.257024412713037,
+   "base": 40.34269921695071,
+   "bull": 50.49956701980655,
+   "norm_pat": 5152.0
+  },
+  "central": {
+   "A": 34.15716194473159,
+   "B": 29.26401368862841,
+   "bear": 19.363472491572374,
+   "bull": 47.38089597379394
+  },
+  "weights": {
+   "sotp": 0.4,
+   "book": 0.15,
+   "relative": 0.2,
+   "normalized": 0.25
+  }
+ },
+ "fair": {
+  "bear": 19.4,
+  "base": 34.2,
+  "full": 47.4
+ },
+ "sens": {
+  "grid_mult": [
+   0.5,
+   0.625,
+   0.75,
+   0.875,
+   1.0
+  ],
+  "grid_disc": [
+   0.0,
+   0.05,
+   0.1,
+   0.15,
+   0.2
+  ],
+  "table": [
+   [
+    25.093965285740538,
+    23.839267021453512,
+    22.584568757166483,
+    21.329870492879458,
+    20.075172228592432
+   ],
+   [
+    28.6036064879515,
+    27.173426163553927,
+    25.74324583915635,
+    24.313065514758776,
+    22.8828851903612
+   ],
+   [
+    32.11324769016246,
+    30.507585305654338,
+    28.901922921146216,
+    27.29626053663809,
+    25.690598152129972
+   ],
+   [
+    35.622888892373425,
+    33.841744447754756,
+    32.06060000313608,
+    30.279455558517412,
+    28.498311113898744
+   ],
+   [
+    39.13253009458439,
+    37.17590358985517,
+    35.21927708512595,
+    33.26265058039673,
+    31.306024075667516
+   ]
+  ],
+  "mult_B": 0.5159021355013115
+ },
+ "experts": {
+  "e1": {
+   "base": 36.00192768701764,
+   "rng": [
+    16.531532470893968,
+    55.81174647890639
+   ]
+  },
+  "e2": {
+   "base": 40.34269921695071,
+   "rng": [
+    30.257024412713037,
+    50.49956701980655
+   ]
+  },
+  "e3": {
+   "base": 30.563446721322993,
+   "roce": 0.229,
+   "ce": 28185.0
+  }
+ },
+ "published": {
+  "spot": 31.31,
+  "spotDate": "close 22 Jul 2026",
+  "ccy": "EGP",
+  "fair": {
+   "bear": 23.3,
+   "base": 35.7,
+   "full": 51
+  },
+  "dist": {
+   "t20": {
+    "label": "1 month",
+    "p5": 25.55,
+    "p25": 29.31,
+    "p50": 31.78,
+    "p75": 34.47,
+    "p95": 39.54,
+    "resolve": "2026-08-23"
+   },
+   "t60": {
+    "label": "3 months",
+    "p5": 22.08,
+    "p25": 28.34,
+    "p50": 32.8,
+    "p75": 37.86,
+    "p95": 48.54,
+    "resolve": "2026-10-22"
+   }
+  },
+  "hz": {
+   "h1": 20,
+   "h3": 61,
+   "l1": "1 month",
+   "l3": "3 months",
+   "cal": true
+  },
+  "touch": [
+   [
+    40,
+    7,
+    30
+   ],
+   [
+    38,
+    13,
+    40
+   ],
+   [
+    36,
+    25,
+    54
+   ],
+   [
+    34,
+    46,
+    71
+   ],
+   [
+    32,
+    78,
+    89
+   ],
+   [
+    30,
+    59,
+    73
+   ],
+   [
+    28,
+    27,
+    48
+   ],
+   [
+    26,
+    11,
+    30
+   ]
+  ],
+  "levels": {
+   "res": [
+    31.7,
+    32.3,
+    33.4
+   ],
+   "sup": [
+    29.96,
+    28.2,
+    26.73
+   ]
+  },
+  "tech": {
+   "trend": "Consolidating below the near-term moving averages, above a rising 200-day",
+   "summary": "The price closed 31.31 above a rising 50-day (29.25) and a rising 200-day (27.25), but below a rising 20-day (31.67). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 1.23 (~3.9%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.81 / +0.95 / \u22120.14). Over the last year it has ranged 19.10\u201334.20; the last close sits 8% below that high and 64% above that low.",
+   "bull": "A daily close back above 31.61 would clear the nearest resistance and open the 34.20 zone.",
+   "bear": "A close below 28.64 would break the nearest support and open the 23.99 zone."
+  },
+  "asof": {
+   "mc": {
+    "data": "2026-07-22",
+    "computed": "2026-07-28"
+   },
+   "tech": {
+    "data": "2026-07-22",
+    "computed": "2026-08-17"
+   }
+  },
+  "files": {
+   "study": "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709c",
+   "model": "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0709c",
+   "pdf": "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0709c"
+  }
+ },
+ "prior_step0": {
+  "nonoverlap_skill": 0.03180759380691456,
+  "monthly_skill": 0.09633191012334175,
+  "cov90": 0.9411764705882353,
+  "n": 17
+ },
+ "n_register": 173,
+ "slider_constants": {
+  "applicable": false,
+  "note": "gbco.html carries no bespoke factor-stack slider: CONT_FIXED / EV_FIXED / GEO_MEAN / LNCH_MEAN exist only on the ADCB/ALPHADHABI calculator pages (build_adh_page.py); verified by repo-wide grep 19-08-2026 \u2014 nothing to re-fit"
+ },
+ "register": [
+  {
+   "name": "shares outstanding",
+   "value": 1085.5,
+   "unit": "mn shares",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 (shareholder information)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group revenue H1-26",
+   "value": 48474.374,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group gross profit H1-26",
+   "value": 7421.893,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group operating profit H1-26",
+   "value": 3661.278,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group net finance cost H1-26 (incl FX loss 23.429)",
+   "value": 2280.992,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group share of associates H1-26",
+   "value": 410.14,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group EBT H1-26",
+   "value": 1790.426,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group income tax H1-26 (ETR 41.04%, note 11-C)",
+   "value": 734.787,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group net profit attributable H1-26 (EPS 1.163)",
+   "value": 1262.006,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group net operating cash flow H1-26",
+   "value": 5486.148,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group revenue H1-25",
+   "value": 35849.992,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group net profit attributable H1-25",
+   "value": 1672.621,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto total revenue H1-26 (incl inter-segment 394.5)",
+   "value": 40021.5,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto gross profit H1-26 (GPM 14.3%)",
+   "value": 5722.1,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto GS&A H1-26",
+   "value": 2839.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto other operating income H1-26",
+   "value": 334.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto net provisions H1-26",
+   "value": -89.4,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto operating profit H1-26",
+   "value": 3127.0,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto finance cost H1-26 (incl leasing 150.4 in 2Q)",
+   "value": 2206.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto EBT H1-26",
+   "value": 890.5,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto income tax H1-26 (ETR 59.4% \u2014 unshielded regional losses)",
+   "value": 529.3,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto EBITDA H1-26",
+   "value": 3484.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto D&A H1-26 (cash-flow adjustments)",
+   "value": 401.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto capex H1-26 (PP&E 257.0 + projects 1,119.5)",
+   "value": 1376.5,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto net debt 30-Jun-26",
+   "value": 14493.6,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 7",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto working capital 30-Jun-26",
+   "value": 17092.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto capital employed 30-Jun-26 (LTM ROCE 22.9%)",
+   "value": 28185.0,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 10",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto total debt 30-Jun-26",
+   "value": 22733.1,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 7",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto notes payable (leasing) 30-Jun-26",
+   "value": 2345.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 7",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto cash 30-Jun-26",
+   "value": 9445.0,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 7",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto inventory 30-Jun-26",
+   "value": 22959.1,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto receivables 30-Jun-26",
+   "value": 5873.5,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto advances 30-Jun-26",
+   "value": 1153.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto debtors & other 30-Jun-26",
+   "value": 2598.9,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto payables 30-Jun-26",
+   "value": 15492.5,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 6",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto total cost of sales H1-26",
+   "value": 34299.4,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 8",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto segment NCI 30-Jun-26",
+   "value": 590.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto total revenue H1-25",
+   "value": 30672.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto gross profit H1-25 (GPM 15.5%)",
+   "value": 4752.0,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto EBITDA H1-25",
+   "value": 3074.3,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes H1-26 (CKD 15,454 / CBU 14,100)",
+   "value": 29554,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC revenue H1-26",
+   "value": 30595.7,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE volumes H1-26 (bus 1,002 / truck 1,472 / CE 16)",
+   "value": 2490,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE revenue H1-26",
+   "value": 4749.1,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Light-Mobility volumes H1-26",
+   "value": 21173,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Light-Mobility revenue H1-26",
+   "value": 1435.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Trading revenue H1-26 (tires 1,956.3 + parts 616.0)",
+   "value": 2572.3,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC revenue H1-25",
+   "value": 24098.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes H1-25",
+   "value": 25989,
+   "unit": "units",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE revenue H1-25",
+   "value": 2640.6,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Light-Mobility revenue H1-25",
+   "value": 928.4,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Trading revenue H1-25",
+   "value": 2438.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "foreign share of PC revenue H1-26 (was 25.81% H1-25)",
+   "value": 0.1459,
+   "unit": "share",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5-A2",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment PC revenue H1-26",
+   "value": 31210.238,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment PC cost H1-26",
+   "value": 27054.19,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5-B",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment buses&trucks revenue H1-26",
+   "value": 4906.002,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment buses&trucks cost H1-26",
+   "value": 3991.754,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5-B",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment 2-3-4W revenue H1-26",
+   "value": 1566.408,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment 2-3-4W cost H1-26",
+   "value": 1386.932,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5-B",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment tires+other-trading revenue H1-26",
+   "value": 2337.344,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FS segment tires+other-trading cost H1-26",
+   "value": 1863.662,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 5-B",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital total revenue H1-26",
+   "value": 9088.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital operating profit H1-26",
+   "value": 574.4,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital net profit after tax & NCI H1-26",
+   "value": 649.6,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital associates income H1-26 (MNT-Halan, Bedaya, Kaf)",
+   "value": 426.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital net on-book portfolio 30-Jun-26 (+33.6% y/y)",
+   "value": 23984.6,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital NPL ratio 30-Jun-26",
+   "value": 0.028,
+   "unit": "ratio",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital annualized adjusted ROAE 2Q26",
+   "value": 0.135,
+   "unit": "ratio",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital segment equity before NCI 30-Jun-26",
+   "value": 22497.8,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital segment 'investments in subsidiaries' 30-Jun-26",
+   "value": 18246.0,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 12",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital cost of funds H1-26",
+   "value": 1797.1,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 13",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "MNT Investment B.V. stake after Al Ahly Capital first close (44.01% before)",
+   "value": 0.4293,
+   "unit": "share",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 34 footnote",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "MNT B.V. equity-method carrying value 30-Jun-26 (opening restated +2,460.218)",
+   "value": 15723.523,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 34",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "MNT B.V. H1-26 share of profit (KPMG could not verify \u2014 qualified conclusion)",
+   "value": 409.985,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 34 + review report",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "MNT-Halan round valuation, first close led by Al Ahly Capital (second close pending)",
+   "value": 1400.0,
+   "unit": "USD mn",
+   "source": "GB Corp press release 09-Jun-2026, corroborated by Reuters/Zawya/Enterprise coverage",
+   "date": "2026-06-09",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "MNT-Halan consolidated loan book (c.)",
+   "value": 1.95,
+   "unit": "USD bn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "other associates carrying (Mier 27.8% + Bedaia 33.33% + Kaf 37.5%)",
+   "value": 506.942,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 34",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "investments at FV through OCI (Sky reality 7.61% et al.)",
+   "value": 489.537,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 35",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "investment in associates total 30-Jun-26",
+   "value": 16230.465,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "parent equity 30-Jun-26 (FY25 restated 31,671.409)",
+   "value": 33454.268,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group NCI 30-Jun-26 (45% GB Lease, 17% Automobilk, 16.67% GK, 32% GQ, 7.5% TVD)",
+   "value": 1673.633,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 24",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group net debt 30-Jun-26 (note 25; ND/E 0.96)",
+   "value": 32269.835,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group loans, borrowings & overdrafts 30-Jun-26",
+   "value": 42475.974,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 26",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group cash & equivalents 30-Jun-26 (USD time deposits 5,687.0 inside)",
+   "value": 10951.5,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) notes 16/29",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "total USD-denominated liabilities 30-Jun-26 (incl trade payables)",
+   "value": 7274.427,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 29",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "net USD exposure 30-Jun-26 (liability)",
+   "value": -1853.57,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 29",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "variable-rate loans/advances/overdrafts 30-Jun-26 (essentially the whole book)",
+   "value": 43480.083,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 29",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY25 dividend per share (paid 29-Apr-26 + 29-Jul-26)",
+   "value": 0.35,
+   "unit": "EGP",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 10",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "capital commitments 30-Jun-26 (new production lines; FY25: 525.479)",
+   "value": 1020.505,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 31",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group inventories 30-Jun-26",
+   "value": 22998.432,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 12",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group accounts & notes receivable 30-Jun-26",
+   "value": 16570.835,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 14",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group debtors & other debit balances 30-Jun-26",
+   "value": 5268.687,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 15",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group total assets 30-Jun-26",
+   "value": 100921.411,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "average interest rate, current EGP loans & borrowings, H1-26 (FY25: 21.91%)",
+   "value": 0.2082,
+   "unit": "rate",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 26",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "average interest rate, USD loans & borrowings, H1-26 (FY25: 8.30%)",
+   "value": 0.0778,
+   "unit": "rate",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 26",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Egypt statutory corporate income tax",
+   "value": 0.225,
+   "unit": "rate",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 11-C",
+   "date": "2026-08-13",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "group effective tax rate H1-26 (unshielded regional losses)",
+   "value": 0.4104,
+   "unit": "rate",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 11-C",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group revenue FY23",
+   "value": 28317.2,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto revenue FY23",
+   "value": 23854.0,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes FY23",
+   "value": 26994,
+   "unit": "units",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC revenue FY23",
+   "value": 16544.3,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group revenue FY24",
+   "value": 53969.5,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto revenue FY24",
+   "value": 47065.0,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes FY24",
+   "value": 42043,
+   "unit": "units",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC revenue FY24",
+   "value": 36533.4,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "group revenue FY25",
+   "value": 80229.8,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2026-02-26",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto revenue FY25 (cross-checked: ND/LTM-EBITDA 2.39x x 6,363 = 15,210)",
+   "value": 66358.3,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2026-02-26",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes FY25",
+   "value": 56548,
+   "unit": "units",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2026-02-26",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC revenue FY25",
+   "value": 52827.3,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2026-02-26",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2023 balance-sheet block (total assets; components: inventories 6366.1, receivables 1743.5, advances/debtors 1039.1, associates 10732.4, cash 4504.2, borrowings 12517.7, parent equity 19838.8)",
+   "value": 42585.5,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2023 automotive operating profit",
+   "value": 3460.9,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2024-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2024 balance-sheet block (total assets; components: inventories 21134.3, receivables 3708.7, advances/debtors 2942.2, associates 11743.6, cash 7420.9, borrowings 22608.7, parent equity 25438.5)",
+   "value": 62725.2,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2024 automotive operating profit",
+   "value": 5564.9,
+   "unit": "EGP mn",
+   "source": "GB Corp FY23/FY24/FY25 issued statements & 4Q releases, as extracted in the delivered GBCO study 08-07-2026 (cell-verified workbook)",
+   "date": "2025-03-01",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2025 (restated) balance-sheet block (total assets; components: inventories 24649.7, receivables 14157.9, advances/debtors 5818.6, associates 15732.4, cash 9523.6, borrowings 37921.3, parent equity 31671.4)",
+   "value": 94287.6,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 39 (restated comparatives)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "FY2025 (restated) automotive operating profit",
+   "value": 5830.9,
+   "unit": "EGP mn",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 39 (restated comparatives)",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto net profit after NCI H1-26",
+   "value": 607.9,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 8",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital gross profit H1-26",
+   "value": 1762.2,
+   "unit": "EGP mn",
+   "source": "GB Corp 2Q/1H26 earnings release, 13-Aug-2026 table 13",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Egypt 10Y local-currency govt yield (52wk 19.79-23.05)",
+   "value": 0.2292,
+   "unit": "rate",
+   "source": "investing.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt adjusted default spread (Caa1, rating basis)",
+   "value": 0.0637,
+   "unit": "rate",
+   "source": "Damodaran ctryprem.html (original file), updated 05-Jan-2026",
+   "date": "2026-01-05",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt sovereign CDS spread",
+   "value": 0.0341,
+   "unit": "rate",
+   "source": "Damodaran ctryprem.html (original file), updated 05-Jan-2026",
+   "date": "2026-01-05",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt total ERP, rating basis (CRP 9.71%)",
+   "value": 0.1394,
+   "unit": "rate",
+   "source": "Damodaran ctryprem.html (original file), updated 05-Jan-2026",
+   "date": "2026-01-05",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt total ERP, sovereign-CDS basis",
+   "value": 0.0941,
+   "unit": "rate",
+   "source": "Damodaran ctryprem.html (original file), updated 05-Jan-2026",
+   "date": "2026-01-05",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "USD/EGP spot (52wk 46.64-54.86; prior study used 47.5)",
+   "value": 50.71,
+   "unit": "EGP/USD",
+   "source": "investing.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt urban CPI y/y, Jul-26 (CAPMAS)",
+   "value": 0.149,
+   "unit": "rate",
+   "source": "CAPMAS via Daily News Egypt/Bloomberg, 10-Aug-2026",
+   "date": "2026-08-10",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "CBE overnight deposit rate (held, 3rd consecutive MPC, Jul-26)",
+   "value": 0.19,
+   "unit": "rate",
+   "source": "SIS/Daily News Egypt on CBE MPC, 11-Jul-2026",
+   "date": "2026-07-11",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "last OHLC-library close (published page spot)",
+   "value": 31.31,
+   "unit": "EGP",
+   "source": "engine/raw_ohlc/EG/GBCO.csv via assets/data.js",
+   "date": "2026-07-22",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "EGX quote on the company's own IR page at build date",
+   "value": 29.7,
+   "unit": "EGP",
+   "source": "ir.gb-corporation.com live widget",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "AMIC Egypt PC market H1-26 (+18% y/y from 52.8k)",
+   "value": 62300,
+   "unit": "units",
+   "source": "AMIC via Zawya/Arab Finance, Jul-26 prints",
+   "date": "2026-07-20",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "Dogus Otomotiv trailing P/E (P/B 0.62, TAS-29 restated book)",
+   "value": 12.55,
+   "unit": "x",
+   "source": "investing.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "Contact Financial (EGX NBFS) trailing P/E",
+   "value": 9.41,
+   "unit": "x",
+   "source": "stockanalysis.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "AutoNation trailing P/E (fwd 8.35)",
+   "value": 9.11,
+   "unit": "x",
+   "source": "stockanalysis.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "Bajaj Auto trailing P/E (P/B 7.49)",
+   "value": 27.56,
+   "unit": "x",
+   "source": "investing.com, 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "EGP depreciation path (H2-26 then annual; anchored on realized 47.5->50.71 and the Egypt-US CPI differential ~11-12pp glide)",
+   "value": [
+    0.045,
+    0.08,
+    0.07,
+    0.06,
+    0.05
+   ],
+   "unit": "path",
+   "source": "constructed from CAPMAS CPI + investing.com FX; convergence assumption flagged",
+   "date": "2026-08-19",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "Egypt CPI path (H2-26 then annual; 14.9% Jul-26 gliding to 8%)",
+   "value": [
+    0.06,
+    0.12,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "unit": "path",
+   "source": "CAPMAS Jul-26 print + CBE inflation-target direction; convergence assumption flagged",
+   "date": "2026-08-19",
+   "layer": "COUNTRY",
+   "note": ""
+  },
+  {
+   "name": "imported/FX-linked share of unit cost per LOB (CBU fully imported, CKD kit content majority-USD; NOT separately disclosed \u2014 constructed, flagged)",
+   "value": {
+    "pc": 0.75,
+    "cv": 0.7,
+    "lm": 0.8,
+    "tr": 0.9
+   },
+   "unit": "shares",
+   "source": "constructed; flagged per SIGCM finest-sourced-level rule",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volume growth FY27-30 (market +18% maturing; launches annualize)",
+   "value": [
+    null,
+    0.09,
+    0.08,
+    0.06,
+    0.05
+   ],
+   "unit": "path",
+   "source": "driver decision on AMIC print + ER launch calendar",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC ASP growth FY27-30 (below FX+CPI per CEO supply-pressure guidance)",
+   "value": [
+    null,
+    0.08,
+    0.07,
+    0.06,
+    0.06
+   ],
+   "unit": "path",
+   "source": "driver decision on ER CEO note",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE volume growth FY27-30",
+   "value": [
+    null,
+    0.14,
+    0.1,
+    0.08,
+    0.07
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE ASP growth FY27-30",
+   "value": [
+    null,
+    0.07,
+    0.06,
+    0.06,
+    0.05
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "LM volume growth FY27-30 (Qute constraint resolves)",
+   "value": [
+    null,
+    0.16,
+    0.13,
+    0.11,
+    0.09
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "LM ASP growth FY27-30",
+   "value": [
+    null,
+    0.06,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Trading revenue growth FY27-30 (tires normalized)",
+   "value": [
+    null,
+    0.11,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "other-auto revenue growth FY27-30",
+   "value": [
+    null,
+    0.1,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "unit": "path",
+   "source": "driver decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "PC volumes FY26E (H1/seasonal-split implies 64,304; launches offset regional drag)",
+   "value": 64300,
+   "unit": "units",
+   "source": "computed: H1 29,554 / FY25-H1-share 45.96%",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "CV&CE revenue FY26E (seasonal-implied 10,713 tempered for 2Q timing)",
+   "value": 10100,
+   "unit": "EGP mn",
+   "source": "computed from H1 4,749.1; tempering flagged",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "LM revenue FY26E (seasonal-implied 3,406, Qute-capped)",
+   "value": 3350,
+   "unit": "EGP mn",
+   "source": "computed from H1 1,435.2",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "Trading revenue FY26E (seasonal-implied 4,476; H2 tires restock)",
+   "value": 4800,
+   "unit": "EGP mn",
+   "source": "computed from H1 2,572.3",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "other-auto revenue FY26E",
+   "value": 1340,
+   "unit": "EGP mn",
+   "source": "computed: 2x H1 residual 669.2",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "other-auto gross margin (residual: auto GP less mapped LOB GP)",
+   "value": 0.182,
+   "unit": "ratio",
+   "source": "computed from ER auto GP 5,722.1 vs FS segment GP sum",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto GS&A %rev (H1-26 actual 7.10% gliding on scale)",
+   "value": [
+    0.071,
+    0.0705,
+    0.07,
+    0.0692,
+    0.0685
+   ],
+   "unit": "path",
+   "source": "H1-26 ER actual + glide decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto other operating income %rev (H1-26 actual)",
+   "value": 0.0084,
+   "unit": "ratio",
+   "source": "H1-26 ER actual",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto net provisions %rev (H1-26 actual)",
+   "value": -0.0022,
+   "unit": "ratio",
+   "source": "H1-26 ER actual",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto D&A %rev (H1 actual 1.00%; Sadat ramp)",
+   "value": [
+    0.01,
+    0.0102,
+    0.0104,
+    0.0104,
+    0.0104
+   ],
+   "unit": "path",
+   "source": "H1-26 actual + PP&E note 17",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto effective tax path (41.0% H1 -> statutory 22.5% as regional losses fade per CEO guidance: Jordan subsides from 4Q26, Iraq geopolitics-dependent)",
+   "value": [
+    0.38,
+    0.3,
+    0.26,
+    0.24,
+    0.225
+   ],
+   "unit": "path",
+   "source": "note 11-C + ER CEO note; glide decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto capex path (H1 1,376.5 actual + 1,020.5 committed; Sadat complete, Ain Sokhna under consideration)",
+   "value": [
+    2800,
+    2600,
+    2500,
+    2500,
+    2600
+   ],
+   "unit": "path",
+   "source": "ER/FS + decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto WC %rev (LTM actual 23.0% at 2Q26 gliding to 21%; 5-quarter table shows 16.7-18.9bn stable band; FY25's 28.5% was the pre-buy outlier)",
+   "value": [
+    0.23,
+    0.225,
+    0.22,
+    0.215,
+    0.21
+   ],
+   "unit": "path",
+   "source": "ER table 6 computed + glide decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "EGP share of auto-leg debt (USD liabilities 7,274.4 group-wide INCLUDE trade payables; per-tranche split not disclosed \u2014 bounded <=17% of gross debt, 10% carried, flagged)",
+   "value": 0.9,
+   "unit": "share",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 29 bound + construction",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "terminal growth, nominal EGP (long-run inflation 9-10% + 1.5-2% real)",
+   "value": 0.115,
+   "unit": "rate",
+   "source": "carried from the 08-07-2026 study; spread to WACC re-checked",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "SOTP complexity/conglomerate discount (carried from the prior study)",
+   "value": 0.1,
+   "unit": "ratio",
+   "source": "house decision, unchanged",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital revenue growth FY27-30 (book +33.6% y/y now, securitization-framework drag H2-26, normalizing)",
+   "value": [
+    null,
+    0.2,
+    0.17,
+    0.15,
+    0.12
+   ],
+   "unit": "path",
+   "source": "driver decision on ER",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital revenue FY26E (H1 9,088.2 + H2 at ~run-rate less securitization deferrals)",
+   "value": 18700.0,
+   "unit": "EGP mn",
+   "source": "computed bridge",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "GB Capital net profit path (H1 649.6 doubling-plus as provisions/funding normalize; ROAE 13.5% on a compounding book)",
+   "value": [
+    1450.0,
+    1750.0,
+    2050.0,
+    2350.0,
+    2650.0
+   ],
+   "unit": "path",
+   "source": "model decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "inter-segment eliminations, % of summed revenue (H1-26 actual 1.29%)",
+   "value": 0.013,
+   "unit": "ratio",
+   "source": "computed from ER table 11",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "associates equity pickup path (H1 410.1 annualized, growing ~25%/yr with MNT-Halan's ~30% revenue growth; unverified by the auditor \u2014 flagged)",
+   "value": [
+    850.0,
+    1065.0,
+    1330.0,
+    1600.0,
+    1870.0
+   ],
+   "unit": "path",
+   "source": "model decision on note 34 + ER",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "auto average funding-cost path (20.82% H1 actual, variable-rate book repricing down the CBE path)",
+   "value": [
+    0.195,
+    0.175,
+    0.165,
+    0.155,
+    0.15
+   ],
+   "unit": "path",
+   "source": "note 26 + CBE direction",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "dividend per share held at the FY25 level",
+   "value": 0.35,
+   "unit": "EGP",
+   "source": "GB Corp consolidated interim FS 30-Jun-2026 (KPMG limited review, 13-Aug-2026) note 10",
+   "date": "2026-08-13",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "share of the group dividend funded by the auto leg in the net-debt sweep",
+   "value": 0.85,
+   "unit": "share",
+   "source": "model decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "P/E band for the relative lens (CNFN 9.41, AN 9.11, DOAS 12.55, EGX-industrial context)",
+   "value": {
+    "bear": 8.0,
+    "base": 9.5,
+    "bull": 11.0
+   },
+   "unit": "x",
+   "source": "peer set 19-Aug-2026",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "normalized auto funding cost (CBE easing path endpoint on the variable book)",
+   "value": 0.17,
+   "unit": "rate",
+   "source": "model decision on note 26 + CBE direction",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "normalized-earnings multiple band",
+   "value": {
+    "bear": 7.5,
+    "base": 8.5,
+    "bull": 9.5
+   },
+   "unit": "x",
+   "source": "house band, peer-informed",
+   "date": "2026-08-19",
+   "layer": "INDUSTRY",
+   "note": ""
+  },
+  {
+   "name": "normalized-PAT bear/bull scalars",
+   "value": {
+    "bear": 0.85,
+    "bull": 1.12
+   },
+   "unit": "x",
+   "source": "house decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "normalized mid-cycle group PAT: FY27E auto EBIT less normalized finance cost (ND x 17% as CBE eases) at 22.5% statutory tax + FY27E GB Capital NP (incl associates pickup)",
+   "value": 5152.0,
+   "unit": "EGP mn",
+   "source": "computed normalization",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  },
+  {
+   "name": "lens weights (SOTP primary; book replaces the prior 'pre-discount' lens per the model-study template)",
+   "value": {
+    "sotp": 0.4,
+    "book": 0.15,
+    "relative": 0.2,
+    "normalized": 0.25
+   },
+   "unit": "weights",
+   "source": "house decision",
+   "date": "2026-08-19",
+   "layer": "COMPANY",
+   "note": ""
+  }
+ ]
+}

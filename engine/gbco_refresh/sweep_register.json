@@ -1,0 +1,491 @@
+{
+ "ticker": "GBCO",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-19",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2026 reviewed consolidated interim FS (KPMG Hazem Hassan, limited review): group revenue EGP 48,474.4mn (+35.2%), GP 7,421.9mn (15.3%), EBT 1,790.4mn, NP attrib 1,262.0mn (EPS 1.163), BS total 100,921.4mn, parent equity 33,454.3mn",
+   "source_name": "GB Corp consolidated interim FS, 30-Jun-2026 (user-supplied; also on IR filings page)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "FY2025 comparatives RESTATED (note 39): MNT Investment B.V. carrying +2,460.2mn, Drive receivables reclass +692.8mn LT->ST, parent equity +2,882.7mn.",
+   "url": "",
+   "model_impact": "Anchors every H1-26 actual in the refresh; restates the FY25 base the prior study was built on (associates 13,689.5 -> 15,732.4)",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F02",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2026 actuals (as comparatives inside the H1-26 disclosure set): group revenue 21,570.8mn (48,474.4 less 2Q's 26,903.6), auto revenue 17,734.9mn, auto EBITDA 1,194.3mn (2Q26 rebound to 2,290.5mn), auto net debt 13,090.9mn at 1Q26",
+   "source_name": "GB Corp 2Q/1H26 earnings release quarterly tables (1Q26 columns)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Gives the intra-year shape (2Q >> 1Q) used to set the H2-26E seasonal uplift on volumes and margins",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F03",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "2Q/1H26 earnings release: PC 29,554 units / EGP 30,595.7mn (ASP 1.035mn); CV&CE 2,490 units / 4,749.1mn; Light Mobility 21,173 units / 1,435.2mn; Trading 2,572.3mn (tires 1,956.3 + parts 616.0); auto GPM 14.3%, EBITDA 3,484.8mn, ND 14,493.6mn (2.14x); GB Capital revenue 9,088.2mn, book 24.0bn, NPL 2.8%, D/E 1.08x",
+   "source_name": "GB Corp 2Q/1H26 earnings release (COMPANY_IR channel)",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Unlocks the full volume x price rebuild per line of business and the per-segment cost-per-unit anchors; supersedes every FY26E driver in the 08-07-2026 study",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F04",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "BASE_CHANGER",
+   "headline": "MNT Investment B.V.: stake 42.93% after the June-2026 Al Ahly Capital first close (44.01% before) \u2014 NOT the 41.61% in the 9-Jun-2026 press release, which described the post-second-closing position; equity-method carrying value EGP 15,723.5mn at 30-Jun-26 (restated opening +2,460.2mn); H1-26 equity pickup 409.985mn",
+   "source_name": "H1-26 FS note 34 + note 39 (restatement)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "KPMG review conclusion is QUALIFIED on exactly this line: MNT BV's own FS for the period were not provided, so the 409.9mn share of profit is unverified \u2014 second consecutive period this qualification appears (also FY2025).",
+   "url": "",
+   "model_impact": "Resets the associates leg: stake 41.61%->42.93%; adds the company's own balance-sheet mark (15,723.5mn) as the second framing of the study's most contested judgement (vs the USD 1.4bn round mark)",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F05",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "STRUCTURAL",
+   "headline": "FY25 restatement (note 39): investment in associate +2,460.2mn, Drive LT->ST receivables reclass, DTL +46.2mn, parent equity +2,882.7mn \u2014 the FY25 book the prior study cited is superseded",
+   "source_name": "H1-26 FS note 39",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Every FY25 balance-sheet base in the model moves to the restated column; book-value lens BVPS is restated 30.82 not 26.5",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F06",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "CEO letter: Egypt demand supportive but 'improving supply and greater model availability may place some pressure on pricing and margins'; Jordan rationalization impact moderates 3Q, largely subsides from 4Q; Iraq recovery dependent on geopolitics; additional Hyundai CKD model Sep-26, third Changan model 4Q26, new EV brand Aug-26; Sadat fully operational; Ain Sokhna CV capacity expansion under consideration",
+   "source_name": "GB Corp 2Q/1H26 earnings release, CEO note",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Caps the ASP escalator below realized H1 pace from FY27; sets regional drag fading into FY27; supports H2-26E volume uplift from launches",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F07",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Borrowing-cost disclosure (note 26): average interest rate on current EGP loans & borrowings 20.82% during H1-26 (21.91% FY25); USD 7.78% (8.30% FY25); essentially the whole book variable-rate (43,480.1mn of loans/advances/overdrafts at variable rates note 29); Drive bond program note 38 (2022 vintage 13.5-14.0% fixed)",
+   "source_name": "H1-26 FS notes 26/29/38",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "THE marginal Kd anchor: 20.82% EGP, dated, from the filing itself \u2014 replaces the prior study's CEIC/TradingEconomics-quoted CBE average",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F08",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "COLOR",
+   "headline": "FY25 dividend EGP 379.925mn (0.35/share) paid in two installments 29-Apr-26 and 29-Jul-26; capital commitments 1,020.5mn at 30-Jun-26 (new production lines), up from 525.5mn at FY25; Algeria arbitration ongoing (>= USD 24mn claim); assets held for sale 867.1mn (land, sale delayed)",
+   "source_name": "H1-26 FS notes 10/31/30/42",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F09",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2025 consolidated results (group revenue 80,229.8mn, auto 66,358.3mn, auto EBITDA 6,363.3mn, ND 15,210.0mn) \u2014 as extracted for the 08-07-2026 study from the company's issued 4Q25 statements/release and re-verified against the ER's own ND/LTM-EBITDA print (15,210.0/2.39x = 6,364)",
+   "source_name": "GB Corp FY2025 issued statements/4Q25 release (via the delivered 08-07-2026 study workbook, cell-verified)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "",
+   "url": "",
+   "model_impact": "FY25 base year for every driver; restated where note 39 applies",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F10",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2024 consolidated results (group revenue 53,969.5mn, auto 47,065.0mn, PC 42,043 units / 36,533.4mn)",
+   "source_name": "GB Corp FY2024 issued statements/4Q24 release (via the delivered 08-07-2026 study workbook)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-03-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Second historical year",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F11",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023 consolidated results (group revenue 28,317.2mn, auto 23,854.0mn, PC 26,994 units / 16,544.3mn)",
+   "source_name": "GB Corp FY2023 issued statements/4Q23 release (via the delivered 08-07-2026 study workbook)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-03-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Third historical year",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F12",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt 10Y local yield 22.92% (19-Aug-26, 52wk 19.79-23.05); CBE overnight deposit held at 19.00% for a third consecutive MPC (Jul-26) after the 100bp cut opening 2026; USD/EGP 50.71 (was 47.5 at the prior study, -6.8% EGP); urban CPI 14.9% y/y Jul-26 (up from 14.3% Jun)",
+   "source_name": "investing.com Egypt 10Y + USD/EGP quotes; SIS/Daily News Egypt on CBE MPC 11-Jul-26; CAPMAS via press 10-Aug-26",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-08-19",
+   "detail": "",
+   "url": "https://www.investing.com/rates-bonds/egypt-10-year-bond-yield",
+   "model_impact": "rf_observed 22.55->22.92; EGP/USD in the MNT mark 47.5->50.71; CPI and FX escalator paths for the per-class cost stack; CBE path supports PC affordability and GB Capital NIM",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "New CBE requirements governing bank participation in securitization: banks re-working approval processes; company expects delayed transactions, deferred revenue recognition and higher funding costs in H2-26, normalizing thereafter; FRA regulates all GB Capital subsidiaries; statutory corporate tax 22.5% (effective H1-26 41.0% on unshielded regional losses, note 11-C)",
+   "source_name": "GB Corp 2Q/1H26 earnings release (CEO note + GB Capital section) + H1-26 FS note 11-C",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "GB Capital H2-26E revenue haircut vs run-rate; effective-tax glide 38%->22.5% as regional losses fade",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F14",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "COLOR",
+   "headline": "Damodaran Jan-2026 Egypt row: Caa1, adjusted default spread 6.37%, CRP 9.71%, total ERP 13.94% (rating basis); sovereign CDS 3.41%, ERP on the CDS basis 9.41%; US row 4.46%/4.69% anchors the mature-market premium",
+   "source_name": "Damodaran ORIGINAL ctryprem.html, 'last updated January 5, 2026'",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-01-05",
+   "detail": "",
+   "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F15",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "AMIC: Egypt passenger-car sales 62.3k units in H1-26 (+18% y/y from 52.8k); total vehicle market 102.1k (+40.5%); demand aided by lower rates, pent-up replacement and pre-buying ahead of post-deval price increases; supply/model availability improving",
+   "source_name": "AMIC via Zawya/Arab Finance/Ahram coverage, H1-26 prints",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-20",
+   "detail": "",
+   "url": "",
+   "model_impact": "Market-size anchor for PC volume path: GB's H1 Egypt PC volumes imply a stable ~40% share of the AMIC PC market; FY26E volume set on H1 actual + launch-driven H2, not on a share gain assumption",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F16",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Realized H1-26 PC ASP 1.035mn EGP (+10.8% vs FY25 0.934mn) on pricing + mix; company itself flags supply-driven pricing pressure ahead; tires margin boosted by inventory bought at favorable historical cost (one-off)",
+   "source_name": "GB Corp 2Q/1H26 earnings release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "ASP escalator: FY26E realized-anchored (+11.9%), then decaying below the FX+CPI path (8/7/6/6%); tires unit cost resets +4% in FY27",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F17",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "NEV competition intensifying: GB holds ~17.5% of the total EV market and ~40% of REEV (Deepal ~31% of REEV alone); GB adding an A/B-class EV brand Aug-26; BYD and Chinese OEM entry risk remains the priced negative in the discrete stack",
+   "source_name": "GB Corp 2Q/1H26 earnings release (EV/REEV shares)",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Keeps the BYD/price-shock discrete factor; supports PC volume resilience via portfolio breadth",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F18",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "REEV/EV mix shift inside Egypt PC demand is being captured by GB's own portfolio (Deepal, premium EV, new A/B EV brand) rather than displacing it; four-wheeler Qute constrained by India supply (production disruptions), expected to resolve",
+   "source_name": "GB Corp 2Q/1H26 earnings release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F19",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "COLOR",
+   "headline": "Peer marks refreshed 19-Aug-26: Dogus Otomotiv (Istanbul) trailing P/E 12.55, P/B 0.62 (TAS-29 inflation-restated book); Contact Financial (EGX, NBFS) trailing P/E 9.41, mktcap ~EGP 6.0-6.6bn across aggregators; AutoNation (US) P/E 9.11 (fwd 8.35); Bajaj Auto (NSE) P/E 27.56, P/B 7.49",
+   "source_name": "investing.com ratio pages + stockanalysis.com, 19-Aug-2026",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-08-19",
+   "detail": "Aggregator discrepancy note: CNFN market cap quoted 6.64bn (stockanalysis), 6.01bn (tradingview) and 4.489bn (african-markets, 07-Jul date) \u2014 dates differ; used for multiple context only, never for the subject's numbers.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F20",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "COLOR",
+   "headline": "USD funding cost on the company's own USD tranches 7.78% average H1-26 (8.30% FY25) \u2014 the global rate cycle easing is already visible inside the filing; EGP spot path is the binding FX variable, not the USD leg",
+   "source_name": "H1-26 FS note 26 + investing.com USD/EGP",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F21",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "COLOR",
+   "headline": "CKD kit/import content is the commodity-complex exposure (steel/components priced in USD/CNY); no direct commodity disclosure in the filing set \u2014 cost side is escalated on FX + CPI classes with the import share flagged as constructed",
+   "source_name": "H1-26 disclosure set (absence noted)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F22",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "COLOR",
+   "headline": "Regional (Iraq/Jordan) auto demand still depressed by geopolitics \u2014 foreign PC revenue share fell 25.8% -> 14.6% of PC in one year; exports of Egyptian-built buses a growth channel (CV&CE 'continued export momentum')",
+   "source_name": "GB Corp 2Q/1H26 earnings release + FS note 5 foreign-revenue split",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F23",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (GB Corp H1-26 disclosure set + press sweep for sanctions/trade actions touching Egypt auto imports or Bajaj/Hyundai/Changan supply into Egypt (India Qute supply disruption is captured under technology substitution))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-19",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "cost-line granularity (SG&A per function)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (H1-26 FS searched for per-function SG&A below the by-nature note 36 and the segment note 5-B allocations \u2014 not disclosed)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-19",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "PC volumes (units, CKD/CBU)",
+   "mode": "BOTTOM_UP",
+   "justification": "units disclosed quarterly (29,554 H1 actual; CKD 15,454 / CBU 14,100) + AMIC market print; H2-26E set on launch calendar",
+   "sweep_refs": [
+    "F03",
+    "F01"
+   ]
+  },
+  {
+   "driver": "PC ASP (EGP mn/unit)",
+   "mode": "BOTTOM_UP",
+   "justification": "revenue/units disclosed; realized 1.035 H1-26; forward capped below FX+CPI per CEO supply-pressure guidance",
+   "sweep_refs": [
+    "F03"
+   ]
+  },
+  {
+   "driver": "PC unit cost (EGP mn/unit)",
+   "mode": "BOTTOM_UP",
+   "justification": "segment cost of sales disclosed (note 5-B: 27,054.2 on 29,554 units = 0.9154); escalated per class: FX-linked import share + domestic CPI share (share weights constructed, flagged)",
+   "sweep_refs": [
+    "F01",
+    "F03"
+   ]
+  },
+  {
+   "driver": "CV&CE volumes & ASP",
+   "mode": "BOTTOM_UP",
+   "justification": "bus/truck/CE units and revenue disclosed quarterly (2,490 units H1)",
+   "sweep_refs": [
+    "F03"
+   ]
+  },
+  {
+   "driver": "Light Mobility volumes & ASP",
+   "mode": "BOTTOM_UP",
+   "justification": "2-3-4W units and revenue disclosed (21,173 H1); Qute supply constraint noted",
+   "sweep_refs": [
+    "F03"
+   ]
+  },
+  {
+   "driver": "Trading (tires + parts) revenue",
+   "mode": "BOTTOM_UP",
+   "justification": "tires and ready-parts revenue disclosed separately; tires margin one-off flagged",
+   "sweep_refs": [
+    "F03"
+   ]
+  },
+  {
+   "driver": "Auto SG&A / other income / provisions (% of revenue)",
+   "mode": "TOP_DOWN",
+   "justification": "no per-line cost granularity below the by-nature note; anchored on H1-26 actual ratios (7.10% / 0.84% / -0.22%) and held",
+   "sweep_refs": [
+    "F24"
+   ]
+  },
+  {
+   "driver": "Working capital (DIO/DSO/DPO -> WC)",
+   "mode": "BOTTOM_UP",
+   "justification": "five quarterly WC snapshots disclosed (Table 6) + component days computed from the statements; projected on days, 4Q build acknowledged",
+   "sweep_refs": [
+    "F03",
+    "F01"
+   ]
+  },
+  {
+   "driver": "Auto capex",
+   "mode": "BOTTOM_UP",
+   "justification": "H1-26 actual 1,376.5 (257.0 PP&E + 1,119.5 projects) + capital commitments 1,020.5mn disclosed",
+   "sweep_refs": [
+    "F01"
+   ]
+  },
+  {
+   "driver": "Auto effective tax path",
+   "mode": "BOTTOM_UP",
+   "justification": "note 11-C reconciliation (22.5% statutory, 41.0% effective on unshielded regional losses) + CEO guidance on the regional drag fading",
+   "sweep_refs": [
+    "F01"
+   ]
+  },
+  {
+   "driver": "GB Capital leg (operating equity ex-associates)",
+   "mode": "BOTTOM_UP",
+   "justification": "segment BS discloses GB Capital parent equity 22,497.8 and the associates carrying inside it; operating equity derived 6,267.3",
+   "sweep_refs": [
+    "F01",
+    "F03"
+   ]
+  },
+  {
+   "driver": "MNT-Halan / associates leg (BOTH-WAYS mark)",
+   "mode": "BOTTOM_UP",
+   "justification": "stake 42.93% + carrying 15,723.5 from note 34; USD 1.4bn round from the June-26 first close (company release, press-corroborated); computed both ways, never averaged",
+   "sweep_refs": [
+    "F04"
+   ]
+  },
+  {
+   "driver": "Kd (marginal, EGP)",
+   "mode": "BOTTOM_UP",
+   "justification": "note 26 average EGP rate 20.82% H1-26, variable-rate book (note 29) so the average IS the marginal rate; USD tranche 7.78% + expected depreciation",
+   "sweep_refs": [
+    "F01"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://ir.gb-corporation.com/en/filings",
+   "reachable": true,
+   "attempt_date": "2026-08-19",
+   "note": "REACHABLE. Filings page lists the exact documents supplied by the user (GB Corp Consolidated 30 June 2026; GBCorpQ22026 - Release) plus the Q2-26 newsletter, standalone FS, BOD minutes 13-Aug-2026 and Form 30. The page's own EGX widget quoted the share at EGP 29.70 (range 29.42-30.50) on the sweep date."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [GBCO, 2026-08-19]: PASS \u2014 4/4 rings, 24 findings (1 B \u00b7 7 S \u00b7 7 D \u00b7 7 C \u00b7 2 NEG), driver gate 13 rows (12 bottom-up / 1 top-down) | primary access: attempted (1) | FS years: 3 ['FY2023', 'FY2024', 'FY2025'] | IR findings: 6 | warnings: 1"
+}

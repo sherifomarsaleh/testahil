@@ -1,0 +1,112 @@
+{
+ "spot": 31.31,
+ "spotDate": "close 22 Jul 2026",
+ "ccy": "EGP",
+ "fair": {
+  "bear": 23.3,
+  "base": 35.7,
+  "full": 51
+ },
+ "dist": {
+  "t20": {
+   "label": "1 month",
+   "p5": 25.55,
+   "p25": 29.31,
+   "p50": 31.78,
+   "p75": 34.47,
+   "p95": 39.54,
+   "resolve": "2026-08-23"
+  },
+  "t60": {
+   "label": "3 months",
+   "p5": 22.08,
+   "p25": 28.34,
+   "p50": 32.8,
+   "p75": 37.86,
+   "p95": 48.54,
+   "resolve": "2026-10-22"
+  }
+ },
+ "hz": {
+  "h1": 20,
+  "h3": 61,
+  "l1": "1 month",
+  "l3": "3 months",
+  "cal": true
+ },
+ "touch": [
+  [
+   40,
+   7,
+   30
+  ],
+  [
+   38,
+   13,
+   40
+  ],
+  [
+   36,
+   25,
+   54
+  ],
+  [
+   34,
+   46,
+   71
+  ],
+  [
+   32,
+   78,
+   89
+  ],
+  [
+   30,
+   59,
+   73
+  ],
+  [
+   28,
+   27,
+   48
+  ],
+  [
+   26,
+   11,
+   30
+  ]
+ ],
+ "levels": {
+  "res": [
+   31.7,
+   32.3,
+   33.4
+  ],
+  "sup": [
+   29.96,
+   28.2,
+   26.73
+  ]
+ },
+ "tech": {
+  "trend": "Consolidating below the near-term moving averages, above a rising 200-day",
+  "summary": "The price closed 31.31 above a rising 50-day (29.25) and a rising 200-day (27.25), but below a rising 20-day (31.67). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 1.23 (~3.9%) points to a lively tape. MACD (12·26·9) is above zero but rolling over (+0.81 / +0.95 / −0.14). Over the last year it has ranged 19.10–34.20; the last close sits 8% below that high and 64% above that low.",
+  "bull": "A daily close back above 31.61 would clear the nearest resistance and open the 34.20 zone.",
+  "bear": "A close below 28.64 would break the nearest support and open the 23.99 zone."
+ },
+ "asof": {
+  "mc": {
+   "data": "2026-07-22",
+   "computed": "2026-07-28"
+  },
+  "tech": {
+   "data": "2026-07-22",
+   "computed": "2026-08-17"
+  }
+ },
+ "files": {
+  "study": "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709c",
+  "model": "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0709c",
+  "pdf": "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0709c"
+ }
+}
