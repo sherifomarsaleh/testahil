@@ -61,7 +61,9 @@ P(f'Riyadh Cables is the largest Saudi manufacturer of electrical cables and wir
   f'SAR {sar(HI["FY25"]["pat"]/1000,2)}bn, as gross margin climbed from {pct(HI["FY23"]["gp"]/HI["FY23"]["rev"])} '
   f'to {pct(HI["FY25"]["gp"]/HI["FY25"]["rev"])}. The company is lightly geared — net financial debt of about '
   f'SAR {sar(DCF["nd"],0)}mn is a fraction of its SAR {sar(M["mktcap"]/1000,1)}bn market value — earns a '
-  f'return on capital above 30%, and pays out a little over half its earnings.')
+  f'return on equity near {pct(BKL["roe_trailing"],0)} and a return on invested capital of about '
+  f'{pct(TR["hist_roic25"],0)} in 2025 (normalising toward the mid-20s in the forecast), and pays out a '
+  f'little over half its earnings.')
 P(f'Our central fair-value estimate is SAR {sar(LN["central"]["base"],0)} per share, about '
   f'{pct(LN["central"]["base"]/SPOT-1,0)} above the SAR {sar(SPOT,2)} price. The intrinsic discounted-cash-flow '
   f'lens is the most positive at SAR {sar(LN["dcf"]["base"],0)}; a cautious exit-multiple reading is the least, '
@@ -88,9 +90,9 @@ rows.append(['Market price (anchor)', '', sar(SPOT, 2), '', '', '—'])
 table(rows, [1.9, 0.85, 0.85, 0.85, 0.8, 0.95], band_rows={5}, size=9.4)
 rich([('Terminal value as a share of the discounted-cash-flow enterprise value: ', {}),
       (f'{pct(DCF["tv_share"],0)}', {'bold': True, 'color': BRASS}),
-      ('.  Trailing enterprise value / EBITDA ', {}),
+      ('.  Enterprise value / EBITDA (on FY2025 EBITDA) ', {}),
       (f'{REL["ev_ebitda_trailing"]:.1f}x', {'bold': True}),
-      (f'; trailing price / earnings {REL["pe_trailing"]:.1f}x. Cost of capital {pct(W["wacc"],1)} today, '
+      (f'; price / FY2025 earnings {REL["pe_trailing"]:.1f}x. Cost of capital {pct(W["wacc"],1)} today, '
        f'easing to {pct(W["wacc_term"],1)} in perpetuity.', {})], size=9.6, space_after=8)
 box([('The contested judgement, both ways.  ', f'The sustained gross margin drives the cash-flow lens more '
       f'than any other input. Anchored on the reviewed H1-2026 actual of {pct(IN["spread_anchor"],1)}: '
@@ -104,6 +106,14 @@ P(f'Riyadh Cables Group Company is a Saudi joint-stock company founded in 1984 a
   f'Exchange (Tadawul) in December 2022. It manufactures low-, medium-, high- and extra-high-voltage power '
   f'cables, building wire, and telecommunications cable, from plants in Riyadh’s industrial cities. It is '
   f'the largest cable maker in Saudi Arabia and a significant exporter into the wider Gulf.')
+P(f'Two 2025 acquisitions reshaped the group’s perimeter and explain the balance-sheet step-ups. In April '
+  f'2025 it bought the remaining 50% of Qatar Cables, taking that subsidiary to full ownership; and with a '
+  f'control date of 28 November 2025 it acquired 51% of Artikul Aziya Kabel in Uzbekistan for SAR 147.7mn. '
+  f'The Uzbek deal added goodwill (group intangibles and goodwill rose from SAR '
+  f'{sar(SRC["balance_sheet"]["intangibles_goodwill"]["2024"]/1e6,0)}mn to SAR '
+  f'{sar(SRC["balance_sheet"]["intangibles_goodwill"]["2025"]/1e6,0)}mn) and brought in the SAR '
+  f'{sar(HB["FY25"]["nci"],0)}mn non-controlling interest now on the balance sheet — both deducted in the '
+  f'valuation bridge.')
 P(f'The business reports three segments. Cables and wire is by far the largest at SAR '
   f'{sar(SEG["rev"]["cables"]/1000,1)}bn, {pct(SEG["rev"]["cables"]/HI["FY25"]["rev"],0)} of 2025 revenue; '
   f'high-voltage turnkey projects add SAR {sar(SEG["rev"]["hv"],0)}mn ({pct(SEG["rev"]["hv"]/HI["FY25"]["rev"],1)}); '
@@ -121,10 +131,12 @@ P(f'The balance sheet is that of a metal converter: inventory of copper and alum
 # ============ 5 SECTION 1 FUNDAMENTAL VALUATION ===============================
 H1('1  Fundamental valuation')
 H2('1.1  Cash-flow model — the free-cash-flow waterfall and the value bridge')
-P('The primary lens is a five-year discounted cash flow to the firm. Operating profit is taxed at the '
-  f'group’s effective zakat-and-tax rate of {pct(IN["tax_eff"],1)}, depreciation is added back, and capital '
+P('The primary lens is a five-year discounted cash flow to the firm. Operating profit is taxed at a '
+  f'forward zakat-and-tax rate of {pct(IN["tax_eff"],1)} — just above the {pct(0.090,1)} the group actually '
+  f'paid in 2025, allowing for a rising foreign-profit share — depreciation is added back, and capital '
   f'expenditure and the investment in working capital are subtracted, to give free cash flow to the firm. Each '
-  f'year is discounted at its own cost of capital, gliding from {pct(W["wacc"],1)} to {pct(W["wacc_term"],1)}.')
+  f'year is discounted at its own cost of capital (at year-end), gliding from {pct(W["wacc"],1)} to '
+  f'{pct(W["wacc_term"],1)}.')
 wf = [['SAR mn', *[y for y in F['years']]]]
 for lbl, key, d in [('Revenue', 'rev', 0), ('EBITDA', 'ebitda', 0), ('  EBITDA margin', 'ebitda_margin', None),
                     ('Depreciation & amortisation', 'dna', 0), ('EBIT', 'ebit', 0), ('NOPAT (EBIT×(1−t))', 'nopat', 0),
@@ -166,10 +178,11 @@ P(f'Equity attributable to shareholders was SAR {sar(F["eqp_fy25"]/1000,2)}bn at
   f'{BKL["pb_just"]:.1f}x and a value of SAR {sar(LN["book"]["base"],0)} per share.')
 
 H2('1.3  Relative multiples')
-P(f'Riyadh Cables trades at about {REL["ev_ebitda_trailing"]:.1f}x trailing enterprise value to EBITDA and '
-  f'{REL["pe_trailing"]:.1f}x earnings. Global cable majors (Prysmian, Nexans) trade around 7–9x forward '
-  f'EBITDA; fast-growing emerging-market peers (Polycab, KEI in India) carry a large growth premium at '
-  f'20–30x. Applying a mid-range {IN["ev_ebitda_just"]:.1f}x to 2027 EBITDA of SAR {sar(F["ebitda"][1],0)}mn, '
+P(f'Riyadh Cables trades at about {REL["ev_ebitda_trailing"]:.1f}x enterprise value to FY2025 EBITDA and '
+  f'{REL["pe_trailing"]:.1f}x FY2025 earnings. Developed-market cable majors (Prysmian, Nexans) trade around '
+  f'7–9x forward EBITDA; fast-growing emerging-market peers (Polycab, KEI in India) carry a large growth '
+  f'premium at 20–30x. Applying a {IN["ev_ebitda_just"]:.1f}x multiple — with the developed majors, a '
+  f'deliberate discount to Riyadh Cables’ own trailing multiple — to 2027 EBITDA of SAR {sar(F["ebitda"][1],0)}mn, '
   f'discounting it, and adding the interim cash flows, gives SAR {sar(LN["relative"]["base"],0)} per share — the '
   f'most cautious lens, reflecting a single-country base and a market that already prices in quality.')
 
@@ -185,7 +198,8 @@ P(f'The four lenses span SAR {sar(min(LN[k]["base"] for k in ["dcf","relative","
   f'{sar(max(LN[k]["base"] for k in ["dcf","relative","normalized","book"]),0)}. We weight the discounted cash '
   f'flow most (45%) because the company’s cash flows are directly modelled from a disclosed cost structure; '
   f'the relative and earnings-power lenses each 20%; and book value least (15%), because book understates a '
-  f'business earning a 30%-plus return on it. The weighted central is SAR {sar(LN["central"]["base"],0)}.')
+  f'business earning a return on equity near {pct(BKL["roe_trailing"],0)}. The weighted central is SAR '
+  f'{sar(LN["central"]["base"],0)}.')
 
 H2('1.6  The drivers — each segment on its own driver, margin as an output')
 P(f'Revenue is not grown at one rate. A cable maker sells metal plus a conversion spread. We model a cable-'
@@ -194,7 +208,9 @@ P(f'Revenue is not grown at one rate. A cable maker sells metal plus a conversio
   f'{pct(IN["vol_growth"][4])}, anchored on the reviewed half-year statement that 2026 revenue rose 9.5% "due '
   f'to the increase in the volume of quantities sold." Metal prices are held broadly flat. Gross margin is then '
   f'an OUTPUT of the stack — {pct(F["gm"][0])} in 2026 rising gently to {pct(F["gm"][4])}, and never back to the '
-  f'2024–25 peak.')
+  f'2024–25 peak. Along that expected metal path the conversion spread is set to earn the target margin, so the '
+  f'reported margin holds; an unexpected metal move — the one the sensitivity prices — is not repriced in the '
+  f'spread and therefore dilutes the margin, exactly as the first half of 2026 showed.')
 figure(os.path.join(HERE, 'fig7_stack.png'), 6.7,
        'Figure 2. The cost stack. Materials (copper and aluminium) are about 95% of cost of sales; the gross '
        'margin, shown on the right axis, is what is left after materials and conversion cost — an output, not '
@@ -204,9 +220,10 @@ H2('1.7  The crux — the sustained gross margin')
 P(f'The crux is simple to state and consequential. Gross margin rose from {pct(HI["FY23"]["gp"]/HI["FY23"]["rev"])} '
   f'in 2023 to a {pct(HI["FY25"]["gp"]/HI["FY25"]["rev"])} peak in 2025 as metal prices moved the company’s '
   f'way. In the first half of 2026, on a 9.5% rise in revenue, gross profit was essentially flat — margin fell '
-  f'to {pct(SRC["interims_2026"]["H1_2026_gross_margin"],1)}. That is the metal pass-through working in reverse: '
-  f'volume-led growth at a normalising per-tonne spread. We anchor the forecast on that reviewed half-year '
-  f'({pct(IN["spread_anchor"],1)}), not the higher full-year 2025 print, and we show the value both ways.')
+  f'to {pct(SRC["interims_2026"]["H1_2026_gross_margin"],1)}, and within the half it was still easing: the '
+  f'second quarter’s 15.0% sat below the first quarter’s 15.6%. That is the metal pass-through working in '
+  f'reverse: volume-led growth at a normalising per-tonne spread. We anchor the forecast on that reviewed '
+  f'half-year ({pct(IN["spread_anchor"],1)}), not the higher full-year 2025 print, and we show the value both ways.')
 figure(os.path.join(HERE, 'fig8_margin.png'), 6.8,
        'Figure 3. The gross-margin story: the 2024–25 metal-tailwind peak, the first-half-2026 '
        'normalisation to 15.3%, and a forecast that recovers only gently and stays below the peak. The shaded '
@@ -215,14 +232,17 @@ figure(os.path.join(HERE, 'fig8_margin.png'), 6.8,
 H2('1.8  Macro and country — the cost of capital, built up')
 P(f'The cost of capital is built from sourced components. Saudi Arabia is rated Aa3; its adjusted sovereign '
   f'default spread is {pct(IN["sov_spread"],2)} and its equity risk premium {pct(IN["erp"],2)} (a '
-  f'{pct(0.0423,2)} mature-market base plus a {pct(0.0078,2)} country premium). We take the ten-year Saudi '
-  f'sukuk yield at {pct(IN["rf"],2)}, subtract the sovereign’s own default spread to avoid charging country '
-  f'risk twice, and add beta times the premium. Beta is {IN["beta"]:.3f}, from Riyadh Cables’ own weekly '
-  f'returns against the Tadawul All Share Index over its listed history. That gives a cost of equity of '
-  f'{pct(W["ke"],1)}. Debt is marginal and cheap — Islamic Murabaha at about {pct(IN["kd"],1)}, above the '
-  f'sovereign as a corporate must be — and the balance sheet is almost all equity, so the weighted cost is '
-  f'{pct(W["wacc"],1)}, easing to {pct(W["wacc_term"],1)} in perpetuity as the country premium narrows and beta '
-  f'reverts toward one.')
+  f'{pct(0.0420,2)} mature-market base plus a {pct(IN["erp"]-0.0420,2)} country premium). We take the ten-year Saudi '
+  f'sukuk yield at {pct(IN["rf"],2)} — re-derived this edition from the published SAR government-sukuk curve '
+  f'after an earlier estimate sat below it — subtract the sovereign’s own default spread to avoid charging '
+  f'country risk twice, and add beta times the premium. Beta is {IN["beta"]:.3f}, from Riyadh Cables’ own '
+  f'weekly returns against the Tadawul All Share Index over its 185-week listed history; it is a noisy '
+  f'estimate (R-squared about 0.15, standard error 0.31, a 90% confidence interval of roughly 0.6 to 1.6), '
+  f'which the sensitivity carries. That gives a cost of equity of {pct(W["ke"],1)}. Debt is marginal — Islamic '
+  f'Murabaha at about {pct(IN["kd"],1)}, above the sovereign as a same-currency corporate must be — and its '
+  f'weight is struck on NET financial debt (borrowings less cash); with an almost all-equity balance sheet the '
+  f'weighted cost is {pct(W["wacc"],1)}, easing to {pct(W["wacc_term"],1)} in perpetuity as the country premium '
+  f'narrows and beta reverts toward one.')
 cc = [['Cost of capital', 'Explicit', 'Terminal'],
       ['Risk-free rate (SAR 10-year), normalised', pct(W['rf_star'], 2), pct(IN['rf_term'], 2)],
       ['Equity risk premium', pct(IN['erp'], 2), pct(IN['erp_term'], 2)],
@@ -232,6 +252,12 @@ cc = [['Cost of capital', 'Explicit', 'Terminal'],
       ['Net-debt weight', pct(W['wd'], 1), pct(IN['wd_term'], 0)],
       ['Weighted cost of capital', pct(W['wacc'], 2), pct(W['wacc_term'], 2)]]
 table(cc, [3.2, 1.35, 1.35], band_rows={4, 7}, size=9.0, align_right_from=1)
+P(f'Two terminal conventions are worth flagging. The terminal structure carries a {pct(IN["wd_term"],0)} '
+  f'net-debt weight, modestly above today’s {pct(W["wd"],1)}, to acknowledge the structural working-capital '
+  f'leverage a cable maker runs — a small lever, not a geared structure the company has ever operated. And the '
+  f'terminal risk-free rate is held flat at its normalised current level rather than marked down, so the '
+  f'terminal cost of equity falls only as beta reverts to one and the country premium compresses, never by '
+  f'cutting the risk-free to lift value.', size=9.0, color=GREY)
 
 H2('1.9  Sensitivity')
 P('Fair value is most sensitive to the terminal growth rate and the terminal cost of capital, then to the '
@@ -243,10 +269,11 @@ figure(os.path.join(HERE, 'fig2_sens.png'), 6.2,
 
 # ============ 6 SECTION 2 TECHNICAL ==========================================
 H1('2  Technical and price structure')
-P(f'The shares last traded at SAR {sar(SPOT,2)}. Over the last year the price has ranged widely, and it '
-  f'currently sits near its longer moving averages after a strong multi-year run from the December 2022 listing '
-  f'(the stock has roughly tripled from its early lows). The moving-average stack below places the current '
-  f'price in that context. This section is descriptive; it carries no fundamental claim.')
+P(f'The shares last traded at SAR {sar(SPOT,2)}, near the low of their 52-week range (about SAR 100 to SAR '
+  f'143) and below all four of their moving averages — roughly 1% under the 20-session average, 8% under the '
+  f'50-session and 14% under the 200-session — after retracing much of the multi-year advance that followed '
+  f'the December 2022 listing. The moving-average stack below places the current price in that context. This '
+  f'section is descriptive; it carries no fundamental claim.')
 figure(os.path.join(HERE, 'fig3_ma.png'), 6.9,
        'Figure 5. Price against its 20-, 50-, 100- and 200-session moving averages, last 260 sessions.')
 
@@ -266,12 +293,13 @@ table(pm, [2.6, 1.5, 1.5], size=9.2, align_right_from=1)
 figure(os.path.join(HERE, 'fig4_fan.png'), 6.9,
        'Figure 6. The forward price cone to three months — the shaded bands are the 25–75% and 5–95% '
        'ranges; the dashed brass line marks the fundamental central estimate.')
-P(f'The cone is well-calibrated. Tested across the stock’s full trading history, its 50%, 80% and 90% '
-  f'bands contained {pct(S0["cov50"],0)}, {pct(S0["cov80"],0)} and {pct(S0["cov90"],0)} of actual outcomes — '
-  f'essentially on target — and the model’s implied ranks were close to uniform (a mean of '
-  f'{S0["pit_mean"]:.2f} against an ideal of 0.50). On scored accuracy the cone was statistically '
-  f'indistinguishable from a simple random-walk benchmark over the roughly three and a half years the shares '
-  f'have been listed; it neither reliably beat it nor lagged it, which for a liquid large-cap is the honest '
+P(f'The cone is well-calibrated in its outer bands and conservative in its inner one. Tested across the '
+  f'stock’s full trading history, its 80% and 90% bands contained {pct(S0["cov80"],0)} and {pct(S0["cov90"],0)} '
+  f'of actual outcomes — on target — while the 50% band contained {pct(S0["cov50"],0)}, wider than its label, '
+  f'so the inner band overstates the likely dispersion rather than understating it. The model’s implied ranks '
+  f'were close to uniform (a mean of {S0["pit_mean"]:.2f} against an ideal of 0.50). On scored accuracy the cone was statistically '
+  f'indistinguishable from simply assuming the price follows a random walk over the roughly three and a half '
+  f'years the shares have been listed; it neither reliably beat that nor lagged it, which for a liquid large-cap is the honest '
   f'result. Because the company only listed in December 2022, the calibration rests on that shorter own history '
   f'together with the broader Saudi-market evidence behind the same simulation model; a five-year single-name record will '
   f'exist in time. The level-touch chances above are read directly from the simulated paths.')
@@ -284,9 +312,10 @@ P(f'The lenses disagree by design, and the disagreement is informative. The intr
   f'value beyond year five). The relative lens (SAR {sar(LN["relative"]["base"],0)}) is the most cautious: it '
   f'holds the company to a mid-range exit multiple below where it trades today. Earnings power (SAR '
   f'{sar(LN["normalized"]["base"],0)}) and book value (SAR {sar(LN["book"]["base"],0)}) sit between. Read '
-  f'together, they say the market is fairly-to-attractively priced depending on how much credit one gives the '
-  f'intrinsic economics versus the exit multiple. The weighted central of SAR {sar(LN["central"]["base"],0)} '
-  f'splits that difference.')
+  f'together, the market price sits below the cash-flow lens and above the earnings-power, book and exit-'
+  f'multiple lenses; the reading depends entirely on how much weight one puts on the intrinsic economics '
+  f'versus the exit multiple. The weighted central of SAR {sar(LN["central"]["base"],0)} is '
+  f'{pct(LN["central"]["base"]/SPOT-1,0)} above the market price.')
 
 # ============ 9 SECTION 5 CATALYSTS ==========================================
 H1('5  Catalysts to watch')
@@ -298,8 +327,9 @@ bullet(' Saudi grid and construction spend (Saudi Electricity Company, giga-proj
        'volume, about three-quarters of sales.', 'Volume —')
 bullet(' the export share (about a quarter of sales, mostly the UAE) and any new-market wins, including the '
        'early-stage Syrian memorandum of understanding disclosed in 2026.', 'Exports —')
-bullet(' semi-annual dividends and any change in the payout, capital returns, or the completion of the current '
-       'capacity build.', 'Capital —')
+bullet(' semi-annual dividends (the FY2025 final was SAR 2.25/share), the small treasury holding of 282,500 '
+       'bought-back shares, and any change in payout or the completion of the current capacity build.',
+       'Capital —')
 
 # ============ 10 SECTION 6 READING THE PROBABILITY ZONES ======================
 H1('6  Reading the probability zones')
@@ -356,7 +386,7 @@ for lbl, key in [('Property, plant & equipment', 'ppe'), ('Inventory', 'inv'), (
                  ('Cash & equivalents', 'cash'), ('Total assets', 'assets'), ('Gross borrowings incl. leases', 'debt'),
                  ('Net financial debt', 'nd'), ('Equity attributable', None)]:
     if key is None:
-        bs_rows.append(['Equity attributable', sar(HB['FY23'].get('eqp', HI['FY23']['pat'] * 0 + 2246), 0),
+        bs_rows.append(['Equity attributable', sar(HB['FY23']['eqp'], 0),
                         sar(HB['FY24']['eqp'], 0), sar(HB['FY25']['eqp'], 0)])
     else:
         bs_rows.append([lbl, sar(HB['FY23'][key], 0), sar(HB['FY24'][key], 0), sar(HB['FY25'][key], 0)])
@@ -434,8 +464,9 @@ bullet(' Expert 1’s multiple is challenged as too high for a single-country na
 bullet(' Expert 2’s reinvestment is challenged as too light — rejected: capex has run at under 2% of '
        'revenue with the plant largely built, and the model still charges working-capital investment.',
        'On reinvestment:')
-bullet(' Expert 3’s durability of returns is challenged — conceded that the 30%-plus return will fade, '
-       'which is why the terminal return is struck at 25% and terminal growth at 4%.', 'On durability:')
+bullet(' Expert 3’s durability of returns is challenged — conceded that the low-30s% return on capital will '
+       'fade, which is why the terminal return on capital is struck near 25% and terminal growth at 4%.',
+       'On durability:')
 H2('C.5  The three in one room')
 P(f'The three methods land at SAR {sar(E["e1"]["base"],0)}, SAR {sar(E["e2"]["base"],0)} and SAR '
   f'{sar(E["e3"]["base"],0)}, a median of SAR {sar(D["panel_centre"],0)} — close to the discounted-cash-flow lens '

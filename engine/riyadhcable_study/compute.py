@@ -109,6 +109,10 @@ INP = dict(
                "shareholders. Basic and diluted EPS 5.45", "2025-03", "Company"),
     npa_fy25=I(m(IS['profit_to_shareholders']['2025']), AUD + ", FY2025 profit attributable to "
                "shareholders. Basic and diluted EPS 7.22", "2026-03-26", "Company"),
+    dna_fy23=I(m(CF['total_da']['2023']), AUD + ", FY2023 cash-flow statement: PP&E depreciation "
+               "59.53mn + intangibles amortisation 5.57mn + right-of-use depreciation 1.33mn = 66.43mn "
+               "(corrected from the first edition, which carried the FY2024 figure in the FY2023 row)",
+               "2024-03", "Company"),
     dna_fy24=I(m(CF['total_da']['2024']), AUD + ", FY2024 cash-flow statement: PP&E depreciation "
                "61.96mn + intangibles amortisation 5.60mn + right-of-use depreciation 1.08mn",
                "2025-03", "Company"),
@@ -133,9 +137,12 @@ INP = dict(
     recv_fy25=I(m(BS['trade_receivables']['2025'] + BS['contract_assets']['2025'] + BS['advances_other_ca']['2025']),
                 AUD + ", 31 Dec 2025: trade receivables 2,485.3mn + contract assets 51.9mn + advances 175.4mn",
                 "2026-03-26", "Company"),
-    pay_fy23=I(m(BS['trade_payables']['2023'] + BS['contract_liab']['2023'] + BS['accrued_other_liab'].get('2023', 0)),
-               AUD + ", 31 Dec 2023: trade and other payables 1,195.4mn + contract liabilities 25.0mn",
-               "2024-03", "Company"),
+    pay_fy23=I(m(BS['trade_payables']['2023'] + BS['contract_liab']['2023'] + BS['accrued_other_liab']['2023']),
+               AUD + ", 31 Dec 2023: trade and other payables 1,195.4mn + accrued expenses and other "
+               "liabilities 266.5mn + contract liabilities 25.0mn. The accrued line was omitted from the "
+               "first edition's FY2023 payables, understating FY2023 working-capital funding relative to "
+               "FY2024-25 (both of which included it); corrected here so the net-working-capital series is "
+               "built on a consistent basis across all three years", "2024-03", "Company"),
     pay_fy24=I(m(BS['trade_payables']['2024'] + BS['contract_liab']['2024'] + BS['accrued_other_liab']['2024']),
                AUD + ", 31 Dec 2024: trade and other payables 1,598.4mn + accrued expenses and other "
                "liabilities 381.1mn + contract liabilities 61.2mn", "2025-03", "Company"),
@@ -163,6 +170,8 @@ INP = dict(
                 "non-current 24.6mn) + lease liabilities (current 2.0mn + non-current 9.4mn). The "
                 "SAR ~1.1bn supplier-finance/reverse-factoring facility is classified within trade "
                 "payables, not here, consistent with the audited presentation", "2026-03-26", "Company"),
+    eqp_fy23=I(m(BS['total_equity']['2023'] - BS['nci']['2023']), AUD + ", equity attributable to "
+               "shareholders 31 Dec 2023 (total equity 2,246.2mn less NCI of -0.5mn)", "2024-03", "Company"),
     eqp_fy24=I(m(BS['equity_to_shareholders']['2024']), AUD + ", equity attributable to shareholders "
                "31 Dec 2024", "2025-03", "Company"),
     eqp_fy25=I(m(BS['equity_to_shareholders']['2025']), AUD + ", equity attributable to shareholders "
@@ -290,29 +299,33 @@ INP = dict(
                 "10,673.6mn = 1.77%) held broadly flat — a maintenance-plus-modest-capacity level for a "
                 "plant already largely built out (FY2025 assets under construction were 107.9mn of the "
                 "188.9mn spend)", "2026-08-18", "House"),
-    nwc_pct=I(0.28, "Net working capital as a share of revenue, held at the FY2025 level. History: "
-              "FY2023 27.0%, FY2024 28.4%, FY2025 27.9% — a structurally working-capital-heavy cable "
-              "maker (copper/aluminium inventory + trade receivables, partly offset by trade payables "
-              "and a reverse-factoring facility). Held flat rather than assuming an improvement the "
-              "disclosures do not evidence", "2026-08-18", "House"),
+    nwc_pct=I(0.28, "Net working capital as a share of revenue, held near the FY2025 level. History on a "
+              "consistent basis (accrued expenses included in payables in every year): FY2023 23.5%, "
+              "FY2024 24.4%, FY2025 27.5% — a structurally working-capital-heavy cable maker "
+              "(copper/aluminium inventory + trade receivables, partly offset by trade payables and a "
+              "reverse-factoring facility) whose intensity has RISEN as the receivables book grew. Held at "
+              "the FY2025 level rather than assuming a reversion the disclosures do not evidence", "2026-08-18", "House"),
 
     # ---- cost of capital (WACC v2) ---------------------------------------
-    rf=I(0.0485, "Saudi 10-year local-currency (SAR) government sukuk yield ~4.85%: the SAMA repo rate "
-         "of 4.25% (held entering 2026; SAR is pegged to the US dollar so SAMA tracks the Fed) plus a "
-         "~60bp term premium on a broadly-normal SAR curve, cross-checked against the USD-pegged curve "
-         "(10-year US Treasury ~4.3% plus Saudi's ~55bp sovereign spread). Sourced live per the "
-         "no-UST-shortcut rule; sensitised +/-50bp", "2026-08-18", "Country"),
-    sov_spread=I(0.0051, "Saudi Arabia adjusted sovereign default spread 0.51% on the rating basis "
-                 "(Moody's Aa3), Damodaran country-risk-premium file, updated 5 January 2026. Netted "
-                 "out of the local-currency risk-free rate so sovereign default risk is not charged "
-                 "twice. The CDS-based spread is ~0.50%, essentially identical — for a high-grade "
-                 "sovereign the two bases converge, unlike a distressed one", "2026-01-05", "Country"),
-    erp=I(0.0501, "Saudi Arabia total equity risk premium 5.01%, Damodaran country-risk-premium file, "
-          "5 January 2026: the 4.23% mature-market premium plus a 0.78% country risk premium (0.51% "
-          "default spread scaled by relative equity volatility). Rating basis", "2026-01-05", "Country"),
-    erp_cds=I(0.0500, "Saudi Arabia equity risk premium on the CDS basis ~5.00% (CDS spread ~0.50%). "
-              "Published beside the rating basis per the dual-ERP rule; the two converge for a high-grade "
-              "sovereign", "2026-01-05", "Country"),
+    rf=I(0.0550, "Saudi 10-year local-currency (SAR) government sukuk yield ~5.50%. RE-DERIVED from "
+         "primary index observations after external audit (the prior 4.85% policy-rate-plus-term-premium "
+         "estimate sat below the entire published SAR government sukuk curve): FTSE Saudi Government Bond "
+         "Index 7-10-year yield-to-maturity 5.52% (31-Jul-2026 factsheet); iBoxx Tadawul SAR Government "
+         "Sukuk Index broad yield 5.44% at 6.07-year modified duration (S&P DJI, Q1-2026 commentary) on an "
+         "UPWARD-sloping curve, so the 10-year point is at or above 5.5%; the 1-year Sah retail sukuk was "
+         "4.60% (Jun-2026), consistent with a steep curve. SAR sovereign yields carry a notable pickup "
+         "over the USD-pegged curve. Sensitised 5.44-5.75%", "2026-07-31", "Country"),
+    sov_spread=I(0.0048, "Saudi Arabia adjusted sovereign default spread 0.48% (Moody's Aa3), Damodaran "
+                 "country-risk-premium file, JULY-2026 update (posted ~10-Jul-2026, superseding the "
+                 "January vintage of 0.51% used in the first edition). Netted out of the local-currency "
+                 "risk-free rate so sovereign default risk is not charged twice", "2026-07-10", "Country"),
+    erp=I(0.0494, "Saudi Arabia total equity risk premium 4.94%, Damodaran country-risk-premium file, "
+          "JULY-2026 update: the ~4.20% mature-market premium plus a 0.74% country risk premium (0.48% "
+          "default spread scaled by relative equity volatility ~1.55). Updated from the January vintage "
+          "(5.01%) after external audit noted a newer vintage existed five weeks before the report date; "
+          "the July update pulled premia down modestly across the board", "2026-07-10", "Country"),
+    erp_cds=I(0.0490, "Saudi Arabia equity risk premium on the CDS basis ~4.90% (July-2026 vintage). "
+              "Published beside the rating basis; the two converge for a high-grade sovereign", "2026-07-10", "Country"),
     beta=I(1.129, "Own-stock tier-1 regression: RIYADHCABLE weekly log-returns against the published "
            "Tadawul All Share Index (TASI), Dimson sum-beta over the full 3.6-year listed history "
            "(185 weekly observations to 13-Aug-2026). R-squared 0.145, standard error 0.309, 90% "
@@ -322,18 +335,22 @@ INP = dict(
            "0.928; Blume-adjusted 1.086", "2026-08-18", "House"),
     kd=I(0.059, "Marginal cost of debt, pre-tax, in SAR. The company's Islamic Murabaha working-capital "
          "facilities price at SAIBOR plus a variable margin; 3-month SAIBOR ~5.2% (SAMA repo 4.25% plus "
-         "the ~95bp SAIBOR-repo spread) plus a ~0.70% corporate margin. Sits ABOVE the 4.85% sovereign, "
-         "as a same-currency corporate must. The one disclosed long-term tranche (5-year USD swap + "
-         "5.25%) is a specific project facility, not the marginal working-capital rate", "2026-08-18",
+         "the ~95bp SAIBOR-repo spread) plus a ~0.70% corporate margin. Sits above the 5.50% ten-year "
+         "sovereign sukuk yield, as a same-currency corporate must, and well above the short-tenor sovereign "
+         "that matches these working-capital facilities. The one disclosed long-term tranche (5-year USD "
+         "swap + 5.25%) is a specific project facility, not the marginal working-capital rate", "2026-08-18",
          "Company/House"),
 
     # ---- terminal (norm-built) -------------------------------------------
-    rf_term=I(0.0434, "Terminal risk-free rate = the normalised SAR risk-free (rf 4.85% less the 0.51% "
-              "sovereign default spread) held flat: Saudi rates are already at a long-run level, so no "
-              "crisis-premium normalisation is needed, unlike a high-inflation market", "2026-08-18", "House"),
-    erp_term=I(0.0475, "Terminal equity risk premium 4.75%, a mild compression of the current 5.01% as "
-               "the 0.78% country risk premium narrows with Vision-2030 diversification; never held at a "
-               "crisis level, never below the mature-market base", "2026-08-18", "House"),
+    rf_term=I(0.0502, "Terminal risk-free rate = the normalised SAR risk-free (rf 5.50% less the 0.48% "
+              "sovereign default spread = 5.02%) HELD FLAT: Saudi rates are already at a long-run level, so "
+              "no crisis-premium normalisation is applied and the terminal risk-free is NOT marked below its "
+              "current normalised level — the terminal cost of equity falls only through beta reverting to "
+              "1.0 and a modest country-premium compression, never by cutting the risk-free to lift value",
+              "2026-08-18", "House"),
+    erp_term=I(0.0470, "Terminal equity risk premium 4.70%, a mild compression of the current 4.94% "
+               "(July-2026 Damodaran) as the country risk premium narrows with Vision-2030 diversification; "
+               "never held at a crisis level, never below the ~4.2% mature-market base", "2026-08-18", "House"),
     beta_term=I(1.0, "Terminal beta 1.0 — mean reversion toward the market (Blume), from the 1.129 "
                 "own-stock estimate; the Blume-adjusted current beta is already 1.086", "2026-08-18", "House"),
     kd_term=I(0.055, "Terminal cost of debt 5.5%, a modest easing from the 5.9% marginal rate as SAMA "
@@ -351,19 +368,27 @@ INP = dict(
              "2026-08-18", "House"),
     anchor_days=I(230, "Days from the DCF construction date (31 Dec 2025, the audited balance-sheet date "
                   "the bridge is built on) to the 18 Aug 2026 anchor. Every lens value is rolled to the "
-                  "anchor at the cost of equity, net of the SAR 1.9/share FY2025 final dividend paid "
+                  "anchor at the cost of equity, net of the SAR 2.25/share FY2025 final dividend paid "
                   "inside the window, so one date and one price of time govern the comparison to spot",
                   "2026-08-18", "House"),
-    div_window=I(1.90, "SAR 1.9/share FY2025 final cash dividend paid inside the 31-Dec-2025-to-anchor "
-                 "window, netted from the rolled-forward value (the company pays semi-annually; the "
-                 "FY2025 final was declared with the March-2026 results)", "2026-08-18", "Company/House"),
+    div_window=I(2.25, "SAR 2.25/share FY2025 final cash dividend (SAR 336,864,375 total on 149,717,500 "
+                 "shares) paid inside the 31-Dec-2025-to-anchor window, netted from the rolled-forward "
+                 "value. It is the ONLY dividend paid in the window: the company distributes semi-annually "
+                 "(a final declared with the March results and paid ~April, an interim paid ~September), so "
+                 "the next FY2026 interim falls AFTER the 18-Aug-2026 anchor. The FY2025 final steps up from "
+                 "the SAR 1.9 finals of the prior two years on the higher FY2025 earnings; corrected from "
+                 "the 1.90 first-edition figure after external audit", "2026-08-18", "Company/House"),
 
     # ---- lens inputs -----------------------------------------------------
-    ev_ebitda_just=I(9.0, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Riyadh Cables trades ~11-12x "
-                     "trailing EV/EBITDA and ~14x earnings; global wire-and-cable peers (Nexans, Prysmian, "
-                     "KEI Industries, Polycab, Ducab) trade ~7-11x forward EV/EBITDA. 9.0x is a mid-range "
-                     "multiple reflecting a high-return Gulf leader with a concentrated single-country base. "
-                     "Bear 7.5x / bull 11.0x", "2026-08-18", "House"),
+    ev_ebitda_just=I(9.5, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Riyadh Cables trades ~11.9x "
+                     "trailing EV/EBITDA and ~14.5x trailing earnings. The wire-and-cable peer set splits in "
+                     "two, and the first edition mischaracterised it as a single 7-11x band: developed-market "
+                     "majors (Prysmian, Nexans) trade ~7-9x forward EV/EBITDA, while the Indian high-growth "
+                     "names (Polycab, KEI) carry ~22-26x on far faster volume growth. 9.5x sits with the "
+                     "developed majors — a deliberate discount to Riyadh Cables' OWN trailing multiple for "
+                     "its single-country concentration and the unwinding metal tailwind, lifted modestly off "
+                     "a bare developed-major level for its higher ROIC (~25%) and durable mid-single-digit "
+                     "growth. Bear 7.5x / bull 11.0x", "2026-08-18", "House"),
     pe_just=I(13.0, "Justified through-cycle P/E on normalised earnings. 13.0x for a high-return, "
               "low-leverage regional champion with a ~10% cost of equity and mid-single-digit durable "
               "growth. Bear 10.0x / bull 16.0x", "2026-08-18", "House"),
@@ -806,25 +831,36 @@ we_grid = [wacc - 0.02, wacc - 0.01, wacc, wacc + 0.01, wacc + 0.02]
 
 
 def dcf_at(we_, wt_, g_):
+    # A terminal denominator (wt_ - g_) below ~1.5% is a near-singular perpetuity: the implied exit
+    # multiple explodes and the cell is not economically meaningful. Report it as n.m. (None) rather
+    # than clamp it to an arbitrary floor, which printed a non-monotone number (value FALLING as g
+    # rose, purely because the floor stopped the denominator shrinking while the reinvestment drag
+    # kept rising). The retained cells now use the true denominator and are monotone by construction.
+    if wt_ - g_ < 0.015:
+        return None
     _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
     _df, cc = [], 1.0
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
     _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
+    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / (wt_ - g_)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor(((_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
 
+assert abs(dcf_at(wacc, wacc_term, V['g_term']) - dcf_ps) < 0.05, "dcf_at does not reproduce the base DCF"
 grid_wacc_g = [[dcf_at(wacc, wt, g) for g in g_grid] for wt in wt_grid]
 beta_grid = [0.70, 0.90, round(V['beta'], 3), 1.30, 1.50]
 
 
 def dcf_beta(b):
+    # Vary the EXPLICIT-window beta only; the terminal beta stays mean-reverted at beta_term (1.0),
+    # which is the base-case terminal assumption. So the base-beta column reproduces the base DCF
+    # exactly, and the grid isolates the effect of five-year systematic risk on the near-term
+    # discounting (and hence on the discount factor carried through to the terminal value).
     ke_b = rf_star + b * V['erp']
     we_ = we * ke_b + wd * kd_at
-    wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
-    return dcf_at(we_, wt_, V['g_term'])
+    return dcf_at(we_, wacc_term, V['g_term'])
 
 
 grid_beta = [dcf_beta(b) for b in beta_grid]
@@ -842,12 +878,14 @@ grid_nwc = [dcf_scenario(nwc=p) for p in nwc_grid]
 e1_margin = ebitda_margin[2]
 e1_rev = rev[2]
 e1_ebit = e1_margin * e1_rev - V['dna_pct'] * e1_rev
-e1_int = V['kd_path'][2] * V['debt_fy25'] - 0.04 * V['cash_fy25']
+e1_int = interest_path[2]   # the model's OWN mid-cycle (FY2028E) net interest, consistent with the DCF and
+#                             income statement — not a static re-derivation on end-2025 cash, which ignored
+#                             the surplus cash the company accumulates as it de-gears
 e1_eps = ((e1_ebit - e1_int) * (1 - TAX) * (1 - nci_share)) / SH
 e1_base, e1_lo, e1_hi = to_anchor(13.0 * e1_eps), to_anchor(10.0 * e1_eps), to_anchor(16.0 * e1_eps)
 # E2 — owner cash earnings (FCFE perpetuity)
 e2_fcff = float(np.mean(fcff[2:]))
-e2_int_at = (V['kd_path'][3] * V['debt_fy25'] - 0.04 * V['cash_fy25']) * (1 - TAX)
+e2_int_at = interest_path[3] * (1 - TAX)   # model's own FY2029E net interest, after tax (consistent basis)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
 e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (ke_term - V['g_term']) / SH)
 e2_lo = to_anchor(e2_fcfe * 1.02 / (0.5 * (ke + ke_term) - 0.02) / SH)
@@ -898,7 +936,7 @@ OUT = dict(
     hist_bs=dict(
         FY23=dict(ppe=V['ppe_fy23'], inv=V['inv_fy23'], recv=V['recv_fy23'], cash=V['cash_fy23'],
                   assets=V['assets_fy23'], debt=V['debt_fy23'], pay=V['pay_fy23'], nwc=nwc['23'],
-                  nd=V['debt_fy23'] - V['cash_fy23']),
+                  eqp=V['eqp_fy23'], nd=V['debt_fy23'] - V['cash_fy23']),
         FY24=dict(ppe=V['ppe_fy24'], inv=V['inv_fy24'], recv=V['recv_fy24'], cash=V['cash_fy24'],
                   assets=V['assets_fy24'], debt=V['debt_fy24'], pay=V['pay_fy24'], eqp=V['eqp_fy24'],
                   nwc=nwc['24'], nd=V['debt_fy24'] - V['cash_fy24']),

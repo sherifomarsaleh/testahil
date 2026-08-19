@@ -39,12 +39,17 @@ for doc_, pub, took in [
      'H1-2026 revenue, gross profit, operating profit, net profit, equity — the near-term margin anchor'),
     ('Interim results, three months to 31 Mar 2026', 'Riyadh Cables via Tadawul, May 2026',
      'Q1-2026 revenue, gross profit, operating profit, net profit'),
-    ('Country risk premium data, January 2026', 'A. Damodaran (NYU Stern), 5 Jan 2026',
-     'Saudi Arabia rating (Aa3), sovereign default spread, country risk premium, equity risk premium'),
+    ('Country risk premium data, July 2026 update', 'A. Damodaran (NYU Stern), Jul 2026',
+     'Saudi Arabia rating (Aa3), sovereign default spread 0.48%, country risk premium, equity risk premium '
+     '4.94% — the July vintage, superseding the January figures used in the first edition'),
+    ('SAR government sukuk yield curve', 'FTSE Russell (Saudi Government Bond Index, 31 Jul 2026); S&P DJI '
+     '(iBoxx Tadawul SAR Government Sukuk, Q1 2026)',
+     'The 10-year SAR risk-free rate (5.50%), re-derived from the published sukuk curve after an earlier '
+     'estimate sat below it'),
     ('Tadawul All Share Index (TASI) price history', 'Saudi Exchange',
      'The index against which the stock’s beta is estimated'),
-    ('Policy rate and yield references', 'SAMA; sovereign yield sources, Aug 2026',
-     'The Saudi risk-free rate and the marginal cost of debt'),
+    ('Policy rate and SAIBOR references', 'SAMA, Aug 2026',
+     'The repo/SAIBOR reference behind the marginal cost of debt'),
     ('LME copper and aluminium references', 'London Metal Exchange, Aug 2026',
      'The metal-price path behind the materials cost leg (context / cross-check)')]:
     pd_rows.append([doc_, pub, took])

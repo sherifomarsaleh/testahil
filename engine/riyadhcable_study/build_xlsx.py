@@ -47,6 +47,11 @@ materials = [vol[i] * matpu[i] for i in range(5)]
 conversion = [vol[i] * convpu[i] for i in range(5)]
 cogs = [materials[i] + conversion[i] for i in range(5)]
 gmt = [IN['spread_anchor'] + IN['margin_glide'][i] for i in range(5)]
+# Gross profit per unit = the CONVERSION SPREAD, calibrated to hit the target margin at the metal
+# base path; gross profit = volume x spread; revenue = materials + conversion + gross profit; and
+# gross margin is the OUTPUT (gp/revenue), never an input. This is compute.py's spread-fixed build.
+gppu = [gmt[i] / (1 - gmt[i]) * (matpu[i] + convpu[i]) for i in range(5)]
+gp_seg = [vol[i] * gppu[i] for i in range(5)]
 
 BLUE = Font(color='0000FF'); GREEN = Font(color='1F6F3C'); BLACK = Font(color='1A1A1A')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='55625E')
@@ -184,6 +189,7 @@ a_scalar('Net working capital / revenue', IN['nwc_pct'])
 a_path('Cost-of-debt path', IN['kd_path'])
 a_scalar('Forecast dividend payout ratio', PAYOUT)
 a_scalar('Yield on surplus cash', 0.04)
+a_scalar('NCI share of forecast profit', NCI_SH)
 a_section('Lens inputs')
 a_scalar('Justified EV/EBITDA', IN['ev_ebitda_just'], MULT)
 a_scalar('Justified price/earnings', IN['pe_just'], MULT)
@@ -215,38 +221,43 @@ title(wsg, 'Segments — ground-up cost-stack build', 'Materials on the metal pa
 hdr(wsg, 4, ['SAR mn / index', 'FY2025', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E'])
 r = {}
 rr = 5
-labels_seg = ['vol', 'matpu', 'convpu', 'mat', 'conv', 'cogs', 'gm', 'rev', 'gp', 'opex',
-              'dna', 'ebit', 'ebitda', 'ebmar']
+labels_seg = ['vol', 'matpu', 'convpu', 'gmt', 'gppu', 'mat', 'conv', 'gp', 'rev', 'cogs', 'gm',
+              'opex', 'dna', 'ebit', 'ebitda', 'ebmar']
 names_seg = ['Cable volume index (FY2025=100)', 'Metal content per unit',
-             'Conversion cost per unit', 'Materials (metal leg)', 'Conversion cost',
-             'Cost of revenue', 'Gross margin (target = anchor + glide)', 'Revenue',
-             'Gross profit', 'Operating expenses', 'Depreciation & amortisation', 'EBIT',
-             'EBITDA', 'EBITDA margin']
+             'Conversion cost per unit', 'Target gross margin (anchor + glide)',
+             'Gross profit per unit (conversion spread)', 'Materials (metal leg)', 'Conversion cost',
+             'Gross profit = volume x spread', 'Revenue = materials + conversion + gross profit',
+             'Cost of revenue', 'Gross margin (OUTPUT = gross profit / revenue)',
+             'Operating expenses', 'Depreciation & amortisation', 'EBIT', 'EBITDA', 'EBITDA margin']
 for k in labels_seg:
     r[k] = rr; rr += 1
 for k, nm in zip(labels_seg, names_seg):
     put(wsg, f'A{r[k]}', nm, fmt=None)
-# FY2025 base column B
+# FY2025 base column B — the disclosed actuals; gross profit is the audited figure, the per-unit
+# spread is recovered from it, and revenue is built up from the components (ties to audited revenue).
 put(wsg, f'B{r["vol"]}', VOL0, BLUE, NUM1)
 putf(wsg, f'B{r["matpu"]}', f'={AC("FY2025 metal content / materials (SAR mn)")}/{VOL0}', MATPU0, NUM2)
 putf(wsg, f'B{r["convpu"]}', f'={AC("FY2025 conversion cost (SAR mn)")}/{VOL0}', CONVPU0, NUM2)
+put(wsg, f'B{r["gp"]}', HI['FY25']['gp'], BLUE, NUM0)  # disclosed FY2025 gross profit (audited)
+putf(wsg, f'B{r["gppu"]}', f'=B{r["gp"]}/B{r["vol"]}', HI['FY25']['gp'] / VOL0, NUM2)
 putf(wsg, f'B{r["mat"]}', f'=B{r["vol"]}*B{r["matpu"]}', MATPU0 * VOL0, NUM0)
 putf(wsg, f'B{r["conv"]}', f'=B{r["vol"]}*B{r["convpu"]}', CONVPU0 * VOL0, NUM0)
+putf(wsg, f'B{r["rev"]}', f'=B{r["mat"]}+B{r["conv"]}+B{r["gp"]}', HI['FY25']['rev'], NUM0)
 putf(wsg, f'B{r["cogs"]}', f'=B{r["mat"]}+B{r["conv"]}', MATPU0 * VOL0 + CONVPU0 * VOL0, NUM0)
-put(wsg, f'B{r["gm"]}', HI['FY25']['gp'] / HI['FY25']['rev'], BLACK, PCT2)  # disclosed FY25 gm
-put(wsg, f'B{r["rev"]}', HI['FY25']['rev'], BLUE, NUM0)
-put(wsg, f'B{r["gp"]}', HI['FY25']['gp'], BLUE, NUM0)
+putf(wsg, f'B{r["gm"]}', f'=B{r["gp"]}/B{r["rev"]}', HI['FY25']['gp'] / HI['FY25']['rev'], PCT2)
 for i in range(5):
     c = FCUR[i]; pc = 'B' if i == 0 else FCUR[i - 1]
     putf(wsg, f'{c}{r["vol"]}', f'={pc}{r["vol"]}*(1+{AP("Cable volume index growth", i)})', vol[i], NUM1)
     putf(wsg, f'{c}{r["matpu"]}', f'={pc}{r["matpu"]}*(1+{AP("Metal content price growth", i)})', matpu[i], NUM2)
     putf(wsg, f'{c}{r["convpu"]}', f'={pc}{r["convpu"]}*(1+{AP("Conversion cost inflation", i)})', convpu[i], NUM2)
+    putf(wsg, f'{c}{r["gmt"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
+    putf(wsg, f'{c}{r["gppu"]}', f'={c}{r["gmt"]}/(1-{c}{r["gmt"]})*({c}{r["matpu"]}+{c}{r["convpu"]})', gppu[i], NUM2)
     putf(wsg, f'{c}{r["mat"]}', f'={c}{r["vol"]}*{c}{r["matpu"]}', materials[i], NUM0)
     putf(wsg, f'{c}{r["conv"]}', f'={c}{r["vol"]}*{c}{r["convpu"]}', conversion[i], NUM0)
+    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["vol"]}*{c}{r["gppu"]}', gp_seg[i], NUM0)
+    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["mat"]}+{c}{r["conv"]}+{c}{r["gp"]}', F['rev'][i], NUM0)
     putf(wsg, f'{c}{r["cogs"]}', f'={c}{r["mat"]}+{c}{r["conv"]}', cogs[i], NUM0)
-    putf(wsg, f'{c}{r["gm"]}', f'={AC("Sustained gross margin (H1-2026 anchor)")}+{AP("Gross-margin glide (added to anchor)", i)}', gmt[i], PCT2)
-    putf(wsg, f'{c}{r["rev"]}', f'={c}{r["cogs"]}/(1-{c}{r["gm"]})', F['rev'][i], NUM0)
-    putf(wsg, f'{c}{r["gp"]}', f'={c}{r["rev"]}-{c}{r["cogs"]}', F['gp'][i], NUM0)
+    putf(wsg, f'{c}{r["gm"]}', f'={c}{r["gp"]}/{c}{r["rev"]}', F['gp'][i] / F['rev'][i], PCT2)
     putf(wsg, f'{c}{r["opex"]}', f'={AP("Operating expenses / revenue", i)}*{c}{r["rev"]}', F['opex'][i], NUM0)
     putf(wsg, f'{c}{r["dna"]}', f'={AC("Depreciation and amortisation / revenue")}*{c}{r["rev"]}', F['dna'][i], NUM0)
     putf(wsg, f'{c}{r["ebit"]}', f'={c}{r["gp"]}-{c}{r["opex"]}', F['ebit'][i], NUM0)
@@ -292,7 +303,7 @@ row_waccterm = rr; putf(wsd, f'C{rr}', f'=(1-{AC("Terminal net-debt weight")})*C
 ANCH['wacc_term'] = rr; rr += 1
 # --- glide + discount factors ---
 rr += 1; put(wsd, f'A{rr}', 'Discount-rate glide & waterfall', bold=True, fmt=None); band(wsd, rr, 8); rr += 1
-hdr(wsd, rr, ['SAR mn', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']); rr += 1
+hdr(wsd, rr, ['SAR mn', '', 'FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']); rr += 1
 row_glide = rr; put(wsd, f'A{rr}', 'Glide fraction (from Kd path)', fmt=None)
 gf = F['glide_frac']
 for i in range(5):
@@ -425,7 +436,7 @@ def anchor(expr_v):
 wsb = sheet('Balance Sheet')
 title(wsb, 'Balance sheet — audited history + forecast roll-forward', 'SAR mn; FY2023-25 audited, '
       'FY2026E-30E rolled forward from the cash flow', 10, awidth=40, cwidth=11)
-hdr(wsb, 4, ['SAR mn'] + YH + YF)
+hdr(wsb, 4, ['SAR mn', ''] + YH + YF)
 bl = {}
 rr = 5
 for key, nm in [('ppe', 'Property, plant & equipment'), ('inv', 'Inventory'),
@@ -467,7 +478,7 @@ for i in range(5):
     putf(wsb, f'{c}{rf["int"]}', f'={AP("Cost-of-debt path", i)}*{DEBT}-{YLD}*MAX({c}{rf["cash_s"]},0)', F['interest'][i], NUM0)
     putf(wsb, f'{c}{rf["ebit"]}', f"=DCF!{c}{row_ebit}", F['ebit'][i], NUM0, green=True)
     putf(wsb, f'{c}{rf["pbt"]}', f'={c}{rf["ebit"]}-{c}{rf["int"]}', F['ebit'][i] - F['interest'][i], NUM0)
-    putf(wsb, f'{c}{rf["npa"]}', f'={c}{rf["pbt"]}*(1-{AC("Effective zakat and income tax rate")})*(1-{NCI_SH})', F['np_attr'][i], NUM0)
+    putf(wsb, f'{c}{rf["npa"]}', f'={c}{rf["pbt"]}*(1-{AC("Effective zakat and income tax rate")})*(1-{AC("NCI share of forecast profit")})', F['np_attr'][i], NUM0)
     putf(wsb, f'{c}{rf["div"]}', f'={AC("Forecast dividend payout ratio")}*{c}{rf["npa"]}', F['div'][i], NUM0)
     putf(wsb, f'{c}{rf["ndend"]}', f'={c}{rf["ndstart"]}-(DCF!{c}{row_fcff}-{c}{rf["int"]}*(1-{AC("Effective zakat and income tax rate")}))+{c}{rf["div"]}', F['net_debt'][i], NUM0)
     if i == 0:
@@ -489,7 +500,7 @@ ANCH['bl'], ANCH['rf'] = bl, rf
 # =========================================================================
 wsi = sheet('Income Statement')
 title(wsi, 'Income statement — 3y audited + 5y forecast', 'SAR mn', 10, awidth=38, cwidth=11)
-hdr(wsi, 4, ['SAR mn'] + YH + YF)
+hdr(wsi, 4, ['SAR mn', ''] + YH + YF)
 il = {}
 rows_is = [('rev', 'Revenue'), ('gp', 'Gross profit'), ('gm', 'Gross margin'),
            ('opex', 'Operating expenses'), ('ebitda', 'EBITDA'), ('dna', 'Depreciation & amortisation'),
@@ -514,7 +525,7 @@ for ci, y in zip(HCOL, ['FY23', 'FY24', 'FY25']):
     put(wsi, f'{ci}{il["pat"]}', h['pat'], BLUE, NUM0)   # audited (pasted); FY2023 carries a small
     #                                                     undisclosed deferred/other tax residual so
     #                                                     it is the disclosed figure, not ebt+zakat
-put(wsi, f'E{il["npa"]}', HI['FY25']['pat'] * (1 - NCI_SH), BLUE, NUM0)  # FY25 attributable (audited)
+put(wsi, f'E{il["npa"]}', IN['npa_fy25'], BLUE, NUM0)  # FY25 attributable profit (audited, disclosed)
 # forecast (formula, links to Segments + BS roll-forward)
 rf = ANCH['rf']
 for i in range(5):
@@ -539,7 +550,7 @@ ANCH['il'] = il
 wsc = sheet('Cash Flow')
 title(wsc, 'Cash flow — free cash flow to the firm', 'SAR mn; the DCF waterfall as a statement', 8,
       awidth=40, cwidth=12)
-hdr(wsc, 4, ['SAR mn'] + YF)
+hdr(wsc, 4, ['SAR mn', ''] + YF)
 cl = {}
 rows_cf = [('nopat', 'NOPAT'), ('dna', '+ Depreciation & amortisation'), ('capex', '- Capital expenditure'),
            ('dnwc', '- Change in working capital'), ('fcff', 'Free cash flow to firm'),
@@ -606,7 +617,7 @@ Gc = AC('Terminal growth')
 KEc = f'DCF!C{row_ke}'
 KETc = f'DCF!C{row_keterm}'
 row_neps = rr
-putf(wsr, f'C{rr}', f'=((C{row_nmar}*C{row_nrev}-{DNAP}*C{row_nrev})-C{row_nint})*(1-{TAXc})*(1-{NCI_SH})/{SHc}',
+putf(wsr, f'C{rr}', f'=((C{row_nmar}*C{row_nrev}-{DNAP}*C{row_nrev})-C{row_nint})*(1-{TAXc})*(1-{AC("NCI share of forecast profit")})/{SHc}',
      NRM['eps'], PX); put(wsr, f'A{rr}', 'Normalised EPS', fmt=None); rr += 1
 row_normbase = rr
 putf(wsr, f'C{rr}', f'={ANC(f"{PEc}*C{row_neps}")}', LN['normalized']['base'], PX, bold=True)
@@ -709,7 +720,7 @@ for nm, formula, exp in bridge:
 # =========================================================================
 wsm = sheet('Summary Financials')
 title(wsm, 'Summary financials', 'SAR mn; forecast links to the model', 8, awidth=34, cwidth=12)
-hdr(wsm, 4, ['SAR mn'] + YF)
+hdr(wsm, 4, ['SAR mn', ''] + YF)
 sfrows = [('rev', 'Revenue', 'rev', row_rev), ('ebitda', 'EBITDA', None, None),
           ('nopat', 'NOPAT', 'nopat', row_nopat), ('fcff', 'FCFF', 'fcff', row_fcff),
           ('ic', 'Invested capital', 'ic', row_ic), ('roic', 'ROIC', 'roic', row_roic)]
@@ -732,8 +743,11 @@ for key, nm, fk, drow in sfrows:
 wpr = sheet('Per-Share & Ratios')
 title(wpr, 'Per-share & ratios', '', 8, awidth=36, cwidth=12)
 hdr(wpr, 4, ['', 'FY2025'] + YF[:5])
+il = ANCH['il']; bl = ANCH['bl']
 rr = 5
-put(wpr, f'A{rr}', 'EPS (SAR)', fmt=None); put(wpr, f'B{rr}', IN['npa_fy25'] / SH, BLUE, PX)
+row_eps = rr
+put(wpr, f'A{rr}', 'EPS (SAR)', fmt=None)
+putf(wpr, f'B{rr}', f"='Income Statement'!E{il['npa']}/{SHc}", IN['npa_fy25'] / SH, PX, green=True)
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCUR[i]}{ANCH['rf']['npa']}/{SHc}", F['np_attr'][i] / SH, PX)
 rr += 1
@@ -742,15 +756,22 @@ putf(wpr, f'B{rr}', f'={AC("FY2025 equity attributable (SAR mn)")}/{SHc}', F['eq
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCOL[i]}{ANCH['bl']['eqp']}/{SHc}", F['equity'][i] / SH, PX)
 rr += 1
-put(wpr, f'A{rr}', 'ROE (%)', fmt=None); put(wpr, f'B{rr}', BKL['roe_trailing'], BLUE, PCT)
+put(wpr, f'A{rr}', 'ROE (%) — attributable profit / average equity', fmt=None)
+putf(wpr, f'B{rr}', f"='Income Statement'!E{il['npa']}/AVERAGE('Balance Sheet'!D{bl['eqp']},'Balance Sheet'!E{bl['eqp']})", BKL['roe_trailing'], PCT, green=True)
 rr += 1
 put(wpr, f'A{rr}', 'Net debt / EBITDA (x)', fmt=None)
-putf(wpr, f'B{rr}', f'={AC("Net financial debt at FY2025 (SAR mn, disclosed)")}/(Segments!B{seg["cogs"]}*0+{HI["FY25"]["ebitda"]})', DCF['nd'] / HI['FY25']['ebitda'], MULT)
+putf(wpr, f'B{rr}', f"={AC('Net financial debt at FY2025 (SAR mn, disclosed)')}/'Income Statement'!E{il['ebitda']}", DCF['nd'] / HI['FY25']['ebitda'], MULT, green=True)
 for i in range(5):
     putf(wpr, f'{FCUR[i]}{rr}', f"='Balance Sheet'!{FCOL[i]}{ANCH['bl']['nd']}/Segments!{FCUR[i]}{seg['ebitda']}", F['net_debt'][i] / F['ebitda'][i], MULT)
 rr += 1
-put(wpr, f'A{rr}', 'Trailing EV/EBITDA (x)', fmt=None); put(wpr, f'B{rr}', REL['ev_ebitda_trailing'], BLUE, MULT); rr += 1
-put(wpr, f'A{rr}', 'Trailing P/E (x)', fmt=None); put(wpr, f'B{rr}', REL['pe_trailing'], BLUE, MULT); rr += 1
+row_evebitda = rr
+put(wpr, f'A{rr}', 'Trailing EV/EBITDA (x)', fmt=None)
+putf(wpr, f'B{rr}', f"=({AC('Spot price (SAR)')}*{SHc}+{AC('Net financial debt at FY2025 (SAR mn, disclosed)')})/'Income Statement'!E{il['ebitda']}", REL['ev_ebitda_trailing'], MULT, green=True)
+rr += 1
+put(wpr, f'A{rr}', 'Trailing P/E (x)', fmt=None)
+putf(wpr, f'B{rr}', f"={AC('Spot price (SAR)')}/B{row_eps}", REL['pe_trailing'], MULT, green=True)
+rr += 1
+ANCH['per_share'] = dict(evebitda=row_evebitda)
 
 # =========================================================================
 # MONTE CARLO — the calibrated forward cone (pasted engine output)
@@ -782,7 +803,10 @@ hdr(wsn, rr, [''] + [f'g={g:.0%}' for g in SN['g_grid']]); rr += 1
 for j, wt in enumerate(SN['wt_grid']):
     put(wsn, f'A{rr}', f'WACC_t={wt:.2%}', fmt=None)
     for i, val in enumerate(SN['grid_wacc_g'][j]):
-        put(wsn, f'{get_column_letter(2+i)}{rr}', val, BLUE, PX)
+        if val is None:
+            put(wsn, f'{get_column_letter(2+i)}{rr}', 'n.m.', BLUE, None)
+        else:
+            put(wsn, f'{get_column_letter(2+i)}{rr}', val, BLUE, PX)
     rr += 1
 rr += 1
 for label, grid, axis in [('Beta', SN['grid_beta'], SN['beta_grid']),
@@ -802,16 +826,18 @@ wpe = sheet('Peer & Sector')
 title(wpe, 'Peer & sector context', 'Cross-check multiples only — never a source for the subject '
       'historicals', 5, awidth=40, cwidth=15)
 hdr(wpe, 4, ['Peer', 'Market', 'Fwd EV/EBITDA', 'Note'])
-peers = [('Riyadh Cables (subject)', 'Tadawul', REL['ev_ebitda_trailing'], 'trailing; ~14.5x P/E'),
-         ('Prysmian', 'Milan', 8.5, 'global cable major'),
-         ('Nexans', 'Paris', 7.5, 'global cable major'),
+peers = [('Riyadh Cables (subject)', 'Tadawul', None, 'trailing; ~14.5x trailing P/E'),
+         ('Prysmian', 'Milan', 8.5, 'developed-market major'),
+         ('Nexans', 'Paris', 7.5, 'developed-market major'),
          ('Polycab India', 'NSE', 26.0, 'high-growth EM premium'),
          ('KEI Industries', 'NSE', 24.0, 'high-growth EM premium'),
          ('Ducab (private)', 'UAE', None, 'regional peer, not listed')]
 rr = 5
 for nm, mk, mult, note in peers:
     put(wpe, f'A{rr}', nm, fmt=None); put(wpe, f'B{rr}', mk, fmt=None)
-    if mult is not None:
+    if nm.startswith('Riyadh Cables'):
+        putf(wpe, f'C{rr}', f"='Per-Share & Ratios'!B{ANCH['per_share']['evebitda']}", REL['ev_ebitda_trailing'], MULT, green=True)
+    elif mult is not None:
         put(wpe, f'C{rr}', mult, BLUE, MULT)
     put(wpe, f'D{rr}', note, fmt=None); rr += 1
 put(wpe, f'A{rr+1}', f"Justified EV/EBITDA applied in the relative lens: {IN['ev_ebitda_just']:.1f}x "
@@ -893,6 +919,16 @@ ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP 
          'Summary Financials', 'Monte Carlo', 'Sensitivity', 'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets.sort(key=lambda ws: ORDER.index(ws.title))
 assert [ws.title for ws in wb._sheets] == ORDER, "sheet order wrong"
+
+# Fit every sheet's columns onto one page width (landscape) so a printed/PDF reader never sees a
+# value column orphaned from its labels; height is left to flow across pages as needed.
+from openpyxl.worksheet.properties import PageSetupProperties
+for ws in wb.worksheets:
+    ws.page_setup.orientation = 'landscape'
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+    ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+    ws.print_options.horizontalCentered = False
 
 OUT_XLSX = os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx')
 wb.save(OUT_XLSX)
