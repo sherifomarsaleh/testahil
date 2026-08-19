@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <title>Methodology & Disclosure | testahil?</title>
-<meta name="description" content="Three lenses — fundamental, technical, Monte Carlo — and why we publish distributions, not price targets.">
+<meta name="description" content="Three lenses — fundamental, technical, Monte Carlo — how each is actually built, and how we test our own forecasts against reality in public.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -15,12 +15,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Methodology & disclosure — testahil?">
-<meta property="og:description" content="Three lenses — fundamental, technical, Monte Carlo — and why we publish distributions, not price targets.">
+<meta property="og:description" content="Three lenses — fundamental, technical, Monte Carlo — how each is actually built, and how we test our own forecasts against reality in public.">
 <meta property="og:image" content="https://testahil.com/og-image.png">
 <meta property="og:url" content="https://testahil.com/method.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Methodology & disclosure — testahil?">
-<meta name="twitter:description" content="Three lenses — fundamental, technical, Monte Carlo — and why we publish distributions, not price targets.">
+<meta name="twitter:description" content="Three lenses — fundamental, technical, Monte Carlo — how each is actually built, and how we test our own forecasts against reality in public.">
 <meta name="twitter:image" content="https://testahil.com/og-image.png">
 <link rel="canonical" href="https://testahil.com/method.html">
 <link rel="alternate" hreflang="en" href="https://testahil.com/method.html">
@@ -59,29 +59,135 @@
 <main class="wrap">
   <section id="sec-top" class="anchor" data-nav="Overview">
     <h1 style="font-size:var(--fs-h1)">Methodology</h1>
-    <p class="sub" style="max-width:740px">Every instrument passes through three independent lenses, then the results are reconciled — agreement raises confidence, divergence is published as-is.</p>
+    <p class="sub" style="max-width:740px">Every instrument passes through three independent lenses, then the results are reconciled — agreement raises confidence, divergence is published as-is. Below: exactly how each lens is built, and how we test our own forecasts against reality in public.</p>
   </section>
 
   <section id="sec-lenses" class="grid g3 anchor" data-nav="The three lenses">
     <div class="card"><span class="kicker">LENS 1</span><h3>Fundamental</h3>
-      <p class="muted">Bottom-up: each project valued from its units (area × price/m² and cost/m²), rolled into full financial statements, then DCF and sum-of-the-parts with each project weighted by its execution probability. Output: a value range (bear / base / full execution) — never one number.</p></div>
+      <p class="muted">Ground-up valuation, matched to what the business actually is: a full cash-flow model for an operating company, a dividend-discount model for a bank, sum-of-the-parts for a holding company or a developer. Revenue built from volume × price, costs line by line, margins as an output — never an assumed input. Four independent lenses reconciled into a range, never blended into one number. <a href="#sec-fundamental">Details ↓</a></p></div>
     <div class="card"><span class="kicker">LENS 2</span><h3>Technical</h3>
-      <p class="muted">Three timeframes (weekly / daily / hourly): trend and structure, levels, moving averages, momentum (RSI/MACD), and the decisive referee — whether volume confirms the move or calls its bluff.</p></div>
+      <p class="muted">A fully computed read of the price tape — moving averages and their direction, RSI and MACD momentum, true-range volatility, and support/resistance clustered from the chart's own turning points. Nothing is hand-drawn, so nothing goes stale when the price moves. <a href="#sec-technical">Details ↓</a></p></div>
     <div class="card"><span class="kicker">LENS 3</span><h3>Monte Carlo</h3>
-      <p class="muted">One model, 50,000 paths, 10 external factors: 5 continuous (policy rate, EGP/USD, inflation, market flows, oil) and 5 events with stated probabilities (geopolitics, sovereign inflows, launch execution, tourism, mortgage credit). Every assumption is a published, criticizable number — the table IS the model.</p></div>
+      <p class="muted">One engine, 50,000 simulated future paths, applied the same way to every name: centered on the neutral cost of carry, widened by a near-term volatility forecast, shaped with fat tails — then graded against reality in public. <a href="#sec-montecarlo">Details ↓</a></p></div>
   </section>
 
   <section id="sec-why" class="card anchor" data-nav="Why distributions">
     <h3>Why distributions, not price targets?</h3>
-    <p>Because a single number is a comfortable lie. The future is a probability distribution, and whoever sells you certainty sells you an illusion. We publish the median, the bands, and level-touch probabilities — then <a href="ledger.html">measure our calibration in public</a>: do the 90% bands actually contain reality 90% of the time?</p>
+    <p>Because a single number is a comfortable lie. The future is a probability distribution, and whoever sells you certainty sells you an illusion. We publish the median, the bands, and level-touch probabilities — then <a href="#sec-calibration">measure our calibration in public</a>: do the 90% bands actually contain reality 90% of the time? The full track record is on the <a href="ledger.html">ledger</a>.</p>
 
     <h3 id="horizons">The two horizons — and what a &ldquo;month&rdquo; means here</h3>
     <p>Every distribution is published at two horizons: <b>1 month</b> and <b>3 months</b> from the day it was struck. Those are literal calendar dates — a study anchored on 18 August is checked on 18 September and 18 November. If that date falls on a weekend or a public holiday for that exchange, we check on the next day it actually trades. Nothing else moves the date.</p>
     <p class="muted">This has been the rule since <b>27 July 2026</b>. Every horizon we publish is a calendar horizon — one month or three months from the day the forecast was issued. A calendar month works out at roughly 21 trading sessions and a quarter at roughly 63, but the exact count moves with each exchange’s own holidays, which is why the date is what we anchor to. Forecasts issued before the change are graded on the window they were issued for and their published numbers are never re-written; their horizons are simply named in calendar terms like every other row. See the <a href="ledger.html#hz-note">ledger</a>.</p>
-    <p class="muted">The simulation steps in trading sessions, so a calendar horizon has to be converted into a session count — roughly 21 for a month and 63 for a quarter, varying by market and by month. That conversion is made from each exchange's own realized trading calendar rather than assumed, and the five-year test that validates every cone now runs over the same calendar window that gets published instead of a fixed session count.</p>
+    <p class="muted">The simulation steps in trading sessions, so a calendar horizon has to be converted into a session count — roughly 21 for a month and 63 for a quarter, varying by market and by month. That conversion is made from each exchange's own realized trading calendar rather than assumed, and the five-year test that validates every cone runs over the same calendar window that gets published instead of a fixed session count.</p>
+  </section>
 
-    <h3>Momentum-reading rule (educational)</h3>
-    <p class="muted">Price rising while RSI stalls or falls = bearish divergence, momentum dying into strength. Price and RSI rising together = healthy trend. Price falling while RSI rises = seller exhaustion worth watching. Both falling together = healthy downtrend, don't catch the knife. Descriptive patterns for reading momentum — not signals to act on.</p>
+  <section id="sec-fundamental" class="card anchor" data-nav="Fundamental valuation">
+    <h2>Fundamental valuation, in depth</h2>
+
+    <h3>Different businesses need different methods</h3>
+    <p>A single valuation formula forced onto every company is a common shortcut, and a common source of bad answers. What a business actually <em>is</em> decides how it gets valued:</p>
+    <ul class="muted" style="padding-left:1.2em;line-height:1.9">
+      <li><b>Operating companies & industrials</b> — a full discounted cash-flow, built from free cash flow to the firm through to an enterprise-value-to-equity bridge.</li>
+      <li><b>Banks</b> — a dividend discount model as the primary method, cross-checked with free cash flow to equity and a residual/excess-return model, because a bank's economics run on net interest margin and capital adequacy, not the producible good a standard cash-flow model assumes.</li>
+      <li><b>Holding companies</b> — a disciplined sum-of-the-parts: each holding valued on its own terms, corporate-level debt and cash netted off, rather than one blended multiple hiding what's actually inside.</li>
+      <li><b>Real-estate developers</b> — sum-of-the-parts / net asset value, each project or land parcel valued on its own unit economics; a pure recurring-income landlord instead gets a long-run cash-flow model with an explicit terminal capitalization rate.</li>
+      <li><b>Contractors</b> — free-cash-flow-to-firm blended with sum-of-the-parts, where a backlog of distinct projects drives the value.</li>
+      <li><b>Aggregators & platform businesses</b> — a cash-flow model built on a driver tree specific to the business (volumes, take rate, unit economics), not a generic revenue-growth assumption.</li>
+    </ul>
+    <p class="muted">Every one of these is cross-checked against relative multiples (how similar businesses trade) and normalized earnings power (mid-cycle profitability, not a one-off spike or trough year) — four independent lenses on the same business, reconciled into a range rather than blended into a single tidy number. Where the four don't agree, we publish the disagreement rather than average it away.</p>
+
+    <h3>Built from the ground up, not assumed from the top down</h3>
+    <p>Wherever a company discloses enough detail, revenue is built as <b>volume × price</b> per product or segment — not a single top-down growth rate applied to last year's total. Costs are built the same way: each physically distinct cost line (raw materials, imported energy, local wages, transport) gets its own driver and its own escalation path — a globally-traded input like imported fuel is escalated on its own commodity price, never lumped into one domestic-inflation number that happens to be convenient. <b>Margins fall out of that construction as a result — they are never simply typed in</b> — wherever the filings disclose enough to build the cost side properly, an assumed margin is a defect, not a shortcut.</p>
+    <p class="muted">The past is built exclusively from the company's own audited financial statements and official disclosures — never from a data vendor's restated numbers, and never from a broker's summary, for what the company itself reported. Vendor and sell-side data has a role — peer comparisons, industry context, an external cross-check on our own number — just never as the source for the subject company's own historical results. Where an official source is genuinely inaccessible, we say so rather than filling the gap with an unofficial one.</p>
+    <p class="muted">Two more disciplines run underneath the forecast: debt is studied in full and split between local- and foreign-currency tranches, since they carry different real costs; and the cash-conversion cycle (how long the company takes to collect from customers, hold inventory, and pay suppliers) is used to project the balance sheet and cash flow forward, rather than plugging working-capital changes as an unexplained residual.</p>
+
+    <h3>Cost of capital</h3>
+    <p>Every discount rate is built bottom-up, per stock, per market — never a flat "emerging market" haircut applied everywhere. Country risk is sourced fresh from that specific sovereign's own credit data (rating, CDS, default spread) and enters the discount rate exactly once — a common mistake is to use a country's raw bond yield <em>and</em> a country-risk-loaded equity premium, which counts the same risk twice; we normalize the risk-free rate to strip that out. Cost of debt is the company's own marginal, forward-looking borrowing cost, always priced above its own government's borrowing cost — no company borrows more cheaply than its own sovereign — and foreign-currency debt is translated to its local-currency-equivalent cost, not left at its face coupon, before it enters the discount rate.</p>
+    <p class="muted">Beta comes from the stock's own price history, regressed against the actual published index of the exchange it trades on — never a hand-picked basket of "similar" stocks, which changes every time a new name is added and quietly distorts the number. Where a stock is too newly listed or too thinly traded for its own regression to be reliable, the fallback is a same-country peer beta — never a foreign one, and never a flat assumption of 1.0 unless truly nothing better is available.</p>
+
+    <h3>Stress-testing our own numbers</h3>
+    <p>Every study is built by three independent analytical personas — genuinely different worldviews and methods, not the same model wearing three hats — who each produce a full worked valuation, state in advance what evidence would change their mind, then cross-examine each other's assumptions. The result is published as a divergence table: not an average of the three views, but a clear account of which specific assumption explains the gap between them. Where one judgment is both genuinely contested and material enough to move the whole valuation — an ownership stake, a country-risk call, an accounting treatment — it is computed both plausible ways and shown side by side, rather than quietly picked and hidden.</p>
+  </section>
+
+  <section id="sec-technical" class="card anchor" data-nav="Technical read">
+    <h2>Technical read, in depth</h2>
+    <p>Every technical read is fully computed from the same cleaned daily price history the probability cone runs on — nothing here is hand-drawn from a chart. That matters in practice: a hand-drawn read goes stale the moment the price moves and nobody gets around to redrawing it. A computed one refreshes itself, automatically, in the same pass as every price update.</p>
+
+    <h3>What gets computed</h3>
+    <ul class="muted" style="padding-left:1.2em;line-height:1.9">
+      <li><b>Trend</b> — 20/50/200-day moving averages, each with a computed direction (rising, falling, or flat), not just where price sits relative to them.</li>
+      <li><b>Momentum</b> — RSI(14), using Wilder's original smoothing method rather than a plain average, and MACD(12,26,9), read on both the line's own sign and its histogram's sign — "below zero but turning up" is a different fact from "above zero and rolling over," and both get said when true.</li>
+      <li><b>Volatility / tape character</b> — Average True Range(14), Wilder-smoothed and gap-aware, so an overnight gap counts, not just the day's own high-low spread.</li>
+      <li><b>Regime change</b> — 50/200-day moving-average crossovers ("golden" and "death" crosses), flagged only while still recent — an old cross is stale news, not a live signal.</li>
+      <li><b>Range context</b> — the 52-week high and low, and exactly where the last close sits between them.</li>
+    </ul>
+
+    <h3>Support & resistance — computed, not drawn</h3>
+    <p>Levels come from <b>fractal pivots</b>: a high or low that stands out over roughly a month of trading on either side of it. Nearby pivots are clustered into a single level, and every level is weighted by two things — how many times price actually turned there, and how recently. A level tested five times last month counts for more than one tested once two years ago; old structure fades rather than being treated as permanent forever. Moving averages and the 52-week extremes are admitted as candidate levels too, since price genuinely reacts to them, but they only win a published slot when swing structure doesn't fill one. Levels are always published nearest-to-price first, on both sides — so the first resistance and first support listed always mean "the next thing price actually has to deal with," never inconsistently ordered from one name to the next.</p>
+
+    <h3>Reading momentum divergence (educational)</h3>
+    <p class="muted">Price rising while RSI stalls or falls = bearish divergence, momentum dying into strength. Price and RSI rising together = healthy trend. Price falling while RSI rises = seller exhaustion worth watching. Both falling together = healthy downtrend, don't catch the knife. These are descriptive patterns for reading momentum, not signals to act on.</p>
+
+    <h3>What this lens deliberately doesn't say</h3>
+    <p class="muted">A computed technical read never makes a fundamental claim — it will not tell you a stock is "cheap versus its cost of equity," because a mechanical scan of price has no way to know that. That judgment belongs to the fundamental lens above, kept separate on purpose.</p>
+  </section>
+
+  <section id="sec-montecarlo" class="card anchor" data-nav="Probability cone">
+    <h2>The probability cone, in depth</h2>
+    <p>Lens 3 is one Monte Carlo model, applied the same way to every covered name — no stock gets a bespoke, hand-tuned version of it. Each forecast simulates <b>50,000 possible future price paths</b> and reports the spread as percentiles: a median, and a range meant to contain the outcome 90% of the time.</p>
+
+    <h3>Where it's centered</h3>
+    <p>The path is centered on <b>cost of carry</b> — the risk-free interest rate minus the stock's dividend yield — the same neutral, driftless-in-expectation anchor a textbook option-pricing model uses. That's deliberate: the median is not a house view on whether the stock will rise or fall. On top of that neutral anchor, some markets carry a modest statistical tilt — a momentum or short-term reversal effect — but only where testing has actually shown, out of sample, that it helps; where it hasn't, none is applied, and it's never assumed either way.</p>
+
+    <h3>How wide it is</h3>
+    <p>Width comes from a near-term volatility forecast built from the stock's own recent trading pattern — blending how volatile it has been over the last day, the last week and the last month, since all three windows carry real information — rather than a single flat historical-volatility number frozen in time.</p>
+
+    <h3>Why the tails are fat</h3>
+    <p>Returns are modeled with a fat-tailed shape rather than a plain bell curve, because a bell curve badly understates how often real markets produce a big move. How fat the tails are is fitted per market from that market's own history — and it's a genuinely hard number to pin down precisely (a wide range of settings often fits the data almost equally well), so it should be read as "the cone allows for real fat-tail risk," never as a precise, confident dial.</p>
+
+    <h3>Nothing new goes in without proving itself first</h3>
+    <p class="muted">No new indicator, factor or statistical tweak — from us, or from the automated pipeline that keeps every forecast current as new prices arrive — enters this model without first beating the same out-of-sample test described below, on data it wasn't built on. An idea that looks better on the data used to build it, then loses once tested on fresh data, is rejected. That has happened, and it's on the record, not swept aside.</p>
+  </section>
+
+  <section id="sec-calibration" class="card anchor" data-nav="Calibration">
+    <h2>How we test ourselves</h2>
+    <p>A probability forecast that always sounds confident and is never checked against reality is worthless. So every cone is graded — and the grading is published in public, forever, on the <a href="ledger.html">ledger</a>.</p>
+
+    <h3>Before a single forecast: cleaning the price history</h3>
+    <p class="muted">Every price series is screened before it's trusted. Vendor price feeds carry real problems — flat placeholder rows from before a company was even listed, or a stock split that a raw feed reports as a fake 70% one-day crash. Each exchange enforces its own daily price-move limit (a circuit breaker), so a single-session move beyond what that exchange even allows can only be a data error or an unadjusted corporate action, never a real trade — that limit, not a guessed cutoff, is what tells the two apart, and it's set separately for every exchange rather than one global rule that would misfire on a market with a wider circuit breaker than most.</p>
+
+    <h3>The test</h3>
+    <p>We walk forward through five years of history in non-overlapping three-month windows. At each point, the model is only shown data up to that point — exactly what it would have known had the forecast actually been published live that day — then issues a forecast, and we check it against what actually happened next. This repeats across the full five years and across every covered name in a market.</p>
+
+    <h3>The benchmark: a deliberately dumb yardstick</h3>
+    <p>Every one of those forecasts is scored against a plain <b>random walk</b> that does nothing clever — it drifts only at the same neutral cost-of-carry rate described above, with no volatility forecasting, no fat tails, no view at all. If our model can't beat that simple yardstick, it has no business claiming an edge. Anchoring the benchmark to the same cost-of-carry rate is deliberate too: it stops a forecast from looking "skillful" just by drifting toward the time-value of money, which any forecast gets for free.</p>
+
+    <h3>The scoring rule: CRPS</h3>
+    <p>Forecasts are graded with the <b>Continuous Ranked Probability Score</b> (CRPS) — the probabilistic version of "how far off was your guess." Instead of comparing a single predicted number to the outcome, CRPS compares the <em>entire predicted range</em> to what actually happened, and it penalizes both a wrong center <em>and</em> a wrong width: a cone that's too narrow (overconfident) scores worse, and one that's too wide (overcautious) scores worse too, even when the median guess is fine. Lower CRPS is better. "Skill" is simply our CRPS compared with the benchmark's CRPS, on the same stock and the same windows — positive means we beat the dumb yardstick, negative means we lost to it.</p>
+    <details class="rds">
+    <summary><span class="rds-t">A worked example, in plain numbers</span><span class="rds-x" aria-hidden="true"></span></summary>
+    <div class="rds-body">
+    <p class="muted" style="margin:10px 0 0">Say a stock closes at 100 and, three months later, actually closes at 108. A forecast that said "90% chance it lands between 85 and 115, median 100" scores reasonably well — 108 is comfortably inside the range and not far from the median. A forecast that said "90% chance it lands between 99 and 101" would look precise, but 108 falls far outside it — that overconfidence is exactly what CRPS punishes, even though a simple "were they right or wrong" check might have called both forecasts fine, since 108 beat 100 either way. A forecast that instead said "90% chance between 40 and 160" is never technically wrong, but that vague a range is punished too, because it says almost nothing useful. CRPS rewards a range that is honestly as narrow as the evidence allows, and no narrower.</p>
+    </div>
+    </details>
+
+    <h3>Reading the verdict</h3>
+    <p>The comparison isn't decided by a single lucky or unlucky result — the margin is checked for statistical significance before any name is called a pass or a fail, so a difference that could plausibly be noise is called a tie, not a win or a loss. Three outcomes are possible, and every one is published as-is, never hidden:</p>
+    <div style="overflow-x:auto">
+    <table style="margin:10px 0">
+    <thead><tr><th>Ledger label</th><th>What it means</th></tr></thead>
+    <tbody>
+    <tr><td style="white-space:nowrap">No flag</td><td class="muted">Beat the random-walk benchmark by a statistically real margin — this name's cone has a demonstrated edge.</td></tr>
+    <tr><td style="white-space:nowrap"><span style="color:#8a6d1f;font-weight:700">◆ Indicative · matches benchmark</span></td><td class="muted">Statistically tied the benchmark. Not wrong — still an honest, well-calibrated probability map — just no proven edge over the naive alternative for this specific name.</td></tr>
+    <tr><td style="white-space:nowrap"><span style="color:var(--red);font-weight:700">⚠ Indicative · failed calibration test</span></td><td class="muted">Lost to the benchmark: historically, the dumb random walk would have scored better than our own model for this name. The cone is still shown, honestly, just flagged rather than hidden.</td></tr>
+    <tr><td style="white-space:nowrap">No name-level calibration</td><td class="muted">Too newly listed to run a meaningful five-year test on its own — graded instead on how the whole market-level model performs across everything it covers, until enough history accumulates.</td></tr>
+    </tbody>
+    </table>
+    </div>
+    <p class="muted">Every graded forecast — right or wrong — is on the <a href="ledger.html">public ledger</a>, permanently. Nothing is deleted, and nothing is re-written after the fact.</p>
+
+    <h3>The weakest link, said plainly</h3>
+    <p class="muted">Metals carry the least battle-tested calibration on the site. Gold's test is run only against its own history — a smaller, more self-referential check than the market-wide panel every stock is tested against — and silver doesn't yet have a calibration test of its own; it currently borrows gold's. Treat the metals cones as the least proven corner of the site until more history accumulates.</p>
   </section>
 
   <section class="card">
@@ -94,13 +200,13 @@
     <p class="qhead">Where the numbers come from</p>
     <p class="muted">We separate hard facts from our own estimates, and we label vendor data when we use it:</p>
     <ul class="muted" style="padding-left:1.2em;line-height:2">
-      <li><b>Company filings &amp; audited reports</b> — the Egyptian Exchange (EGX) disclosures, annual and quarterly financial statements, for revenue, backlog, debt, cash and segment detail.</li>
-      <li><b>Central Bank of Egypt (CBE) &amp; CAPMAS</b> — interest rates, inflation, and FX, used in the calculator and the Monte Carlo factors.</li>
-      <li><b>Price history</b> — daily closing prices from market data vendors, used for the technical read and the simulation's volatility. Flagged as vendor data.</li>
-      <li><b>Sell-side notes</b> (e.g. EFG Hermes, HSBC) — used only as an external cross-check on our own value, always cited and dated.</li>
-      <li><b>Our own estimates</b> — every assumption in the model (discount rate, sold/unsold split, execution probabilities, escalation, exit multiples) is ours, stated openly, and editable in the downloadable Excel.</li>
+      <li><b>Company filings & official disclosures</b> — audited annual and quarterly financial statements, investor-relations materials and earnings-call presentations, sought from the company's own website first, then each stock's own exchange (the Egyptian Exchange, Abu Dhabi Securities Exchange, Dubai Financial Market, Saudi Exchange, Qatar Stock Exchange, National Stock Exchange of India, Korea Exchange, Nasdaq) — for revenue, backlog, debt, cash and segment detail. This is the <em>only</em> source used for a company's own reported historicals — never a data vendor's restated summary, never a broker's numbers, for what the company itself reported.</li>
+      <li><b>Central banks & national statistics agencies</b> — policy rates, inflation and FX, sourced per country rather than assumed to share a regional number.</li>
+      <li><b>Price history</b> — daily price data from market data vendors, used for the technical read and the simulation's volatility — screened for vendor errors before use (see <a href="#sec-calibration">how we test ourselves</a>) and flagged as vendor data.</li>
+      <li><b>Sell-side notes</b> (e.g. EFG Hermes, HSBC) — used only as an external cross-check on our own value, always cited and dated, never as a source for the subject company's own historicals.</li>
+      <li><b>Our own estimates</b> — every forward-looking assumption in the model (discount rate, growth drivers, execution probabilities, exit multiples) is ours, stated openly, and editable in the downloadable Excel.</li>
     </ul>
-    <p class="muted">Audited figures are distinguished from estimates inside each model. When a number is a vendor figure or a best-effort reconstruction, we say so.</p>
+    <p class="muted">Audited figures are distinguished from estimates inside each model. When a number is a vendor figure or a best-effort reconstruction, we say so — and where an official source is genuinely inaccessible, we say that too, rather than filling the gap with an unofficial one.</p>
   </section>
 
   <section class="card anchor" id="disclaimer" style="border-color:var(--gold)" data-nav="Disclaimer">
