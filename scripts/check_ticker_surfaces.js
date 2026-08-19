@@ -74,7 +74,23 @@ const SURFACES = [
   // Case-INSENSITIVE: three names are spelled one way in TICKERS and another
   // everywhere a reader sees them (SAMSUNG/Samsung, KAKAO/Kakao), so a
   // case-sensitive test failed them on pages rendering them perfectly well.
-  const re = new RegExp('\\b' + TK + '\\b', 'i');
+  // [CHANGED 19-Aug-2026] Match the ticker OR the name a reader actually sees.
+  // These surfaces are registers: most render the DISPLAY NAME, not the symbol. A
+  // ticker-only test therefore FAILS any name whose display form is not the symbol as
+  // one word -- RIYADHCABLE renders as "Riyadh Cables", so this gate reported it
+  // missing from the Ticker Picker while all 97 rows, including its own, were on the
+  // page. A gate that cries wolf is worse than no gate: the next real miss gets waved
+  // through as "that one always fails". Case-insensitive as before (SAMSUNG/Samsung).
+  const esc = x => String(x).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const alts = [TK, t.name, t.nameAr].filter(Boolean);
+  try {
+    const cov = {}; vm.createContext(cov);
+    vm.runInContext(fs.readFileSync(path.join(ROOT, 'assets/coverage.js'), 'utf8')
+                    + ';globalThis.__S=SHORT;', cov);
+    if (cov.__S && cov.__S[TK]) alts.push(cov.__S[TK]);
+  } catch (e) { /* SHORT is a convenience, not a requirement */ }
+  const re = new RegExp('\\b' + esc(TK) + '\\b|' +
+                        alts.slice(1).map(a => esc(a)).join('|'), 'i');
 
   for (const s of targets) {
     const errs = [];
