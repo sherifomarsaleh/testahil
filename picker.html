@@ -62,8 +62,13 @@
   .pk-table th:nth-child(2){min-width:58px}
   .pk-table th:nth-child(3){min-width:76px}
   .pk-table th:nth-child(4){min-width:56px}
-  .pk-table th:nth-child(6){min-width:128px}
-  .pk-table th:nth-child(7){min-width:118px}
+  /* Tuned so the table's min-content width lands exactly inside the card at the
+     site's 880px reading width -- above these values the "As of" column was cut
+     off and needed a sideways scroll; below them "P(touch fair value)" breaks to
+     a third line. overflow-x on .pk-wrap stays as the safety net for narrower
+     viewports and for future rows with longer names. */
+  .pk-table th:nth-child(6){min-width:108px}
+  .pk-table th:nth-child(7){min-width:102px}
   .pk-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
   /* market section heading: one band per market, so the UAE reads as its own block
      rather than as rows interleaved with markets it shares no cash rate, calendar or
@@ -71,7 +76,10 @@
   .pk-table tr.pk-mkt td{background:var(--tint2);font-weight:700;font-size:var(--fs-caption);
     letter-spacing:.04em;text-transform:uppercase;padding:9px 8px;border-bottom:1px solid var(--line)}
   .pk-table tr.pk-mkt td .pk-flag{text-transform:none;letter-spacing:0;font-weight:400}
-  .pk-table td.pk-stock{white-space:normal;min-width:132px}
+  /* Capped: without a max the Stock column absorbs all slack whenever a filter
+     leaves only long company names (IN/KR), squeezing the numeric headers onto a
+     third line. Names wrap instead, which they are already allowed to do. */
+  .pk-table td.pk-stock{white-space:normal;min-width:132px;max-width:190px}
   .pk-table td.num,.pk-table th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
   /* The table scrolls INSIDE this box and the header freezes at its top edge.
      This is the only arrangement that actually works here: the wrapper needs
@@ -169,7 +177,7 @@
       <table class="pk-table" id="pk-table"></table>
     </div>
     <p class="muted pk-note" id="pk-count"></p>
-    <p class="muted pk-note"><b>Rank by / Then by</b> set the standing order: rows sort by the primary field first (<b>Reachability</b> — best-reachability first, itself already broken by higher P(touch) — is the default), then by the secondary field wherever the primary ties (<b>Gap %</b> is the default). Click any column heading for a one-off sort instead — it becomes the new primary for that click, the secondary dropdown still applies underneath it. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. <b>"already there"</b> means spot is already within this stock's own noise of fair value, so touching it is essentially guaranteed by definition — the simulation's exact number for those rows can land below 100% for a real but uninteresting reason (it only checks daily closes, not every instant in between), so we don't show a number that would just invite "why not 100%?" for no informational gain. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
+    <p class="muted pk-note"><b>Rank by / Then by</b> set the standing order: rows sort by the primary field first (<b>Reachability</b> is the default), then by the secondary field wherever the primary ties (<b>P(touch fair value)</b> is the default) — so out of the box the order is best-reachability first, ties broken by higher P(touch), and setting the secondary to <b>Gap&nbsp;%</b> instead breaks those same ties by upside. Click any column heading for a one-off sort instead — it becomes the new primary for that click, the secondary dropdown still applies underneath it. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. <b>"already there"</b> means spot is already within this stock's own noise of fair value, so touching it is essentially guaranteed by definition — the simulation's exact number for those rows can land below 100% for a real but uninteresting reason (it only checks daily closes, not every instant in between), so we don't show a number that would just invite "why not 100%?" for no informational gain. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
   </section>
 
   <section id="sec-bands" class="card anchor" data-nav="What the bands mean">
@@ -211,7 +219,7 @@ window.addEventListener('error', function(e){
   if (typeof FV_OVERLAY === 'undefined' || !FV_OVERLAY.rows){ return; }
 
   var state = { h: '3M', reach:false, cash:false, up:false, market:'ALL',
-                sortKey:'reach', sortDir:'asc', sortKey2:'gap', sortDir2:'desc' };
+                sortKey:'reach', sortDir:'asc', sortKey2:'touch', sortDir2:'desc' };
   var BANDCLS = { 'IN-REACH':'b0', 'STRETCH':'b1', 'OUT-OF-REACH':'b2', 'NOT-EXPRESSIBLE':'b3' };
   var BANDTXT = { 'IN-REACH':'IN-REACH', 'STRETCH':'STRETCH', 'OUT-OF-REACH':'OUT-OF-REACH', 'NOT-EXPRESSIBLE':'NOT EXPRESSIBLE' };
   var BANDORDER = { 'IN-REACH':0, 'STRETCH':1, 'OUT-OF-REACH':2, 'NOT-EXPRESSIBLE':3 };
@@ -281,7 +289,11 @@ window.addEventListener('error', function(e){
       case 'price': return r.spot;
       case 'fair':  return r.fv_base;
       case 'gap':   return r.gap_base_pct;
-      case 'reach': return BANDORDER[o.band] - (o.p_touch ? o.p_touch.base : 0); // composite: band first, then touch
+      // Band ONLY. This used to be a composite (BANDORDER - p_touch) which meant
+      // two rows in the same band virtually never tied, so the secondary ranking
+      // below could never break anything and was silently ignored. The p_touch
+      // tiebreak now lives where the user can see and change it: the secondary picker.
+      case 'reach': return BANDORDER[o.band];
       case 'touch': return o.p_touch ? o.p_touch.base : null;                    // null = "no meaningful probability"
       case 'cash':  return o.beats_cash ? 1 : 0;
       case 'asof':  return r.anchor_date || '';
