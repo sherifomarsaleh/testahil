@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 89,
+ "n": 90,
  "rows": [
   {
    "ticker": "HELI",
@@ -1798,6 +1798,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00481
    },
    "market": "EG"
+  },
+  {
+   "ticker": "SAVOLA",
+   "name": "Savola Group Company",
+   "code": "TADAWUL:2050",
+   "ccy": "SAR",
+   "spot": 25.4,
+   "anchor_date": "2026-08-18",
+   "fv_asof": "2026-08-18",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 10.75,
+   "fv_base": 27.24,
+   "fv_full": 39.51,
+   "gap_base_pct": 7.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.094255,
+    "mu_h": 0.002752,
+    "G": {
+     "bear": -9.12,
+     "base": 0.74,
+     "full": 4.69
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.225,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.3783,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": 1.3146,
+     "full": 199.6688
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00146
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.160848,
+    "mu_h": 0.010963,
+    "G": {
+     "bear": -5.35,
+     "base": 0.43,
+     "full": 2.75
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.3475,
+     "full": 0.0063
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.6176,
+     "full": 0.0098
+    },
+    "required_cagr": {
+     "bear": -0.9679,
+     "base": 0.3228,
+     "full": 4.8545
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00196
+   },
+   "market": "SA"
   },
   {
    "ticker": "FAB",
