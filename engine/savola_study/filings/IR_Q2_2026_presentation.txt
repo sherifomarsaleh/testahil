@@ -1,0 +1,891 @@
+Savola Group
+Earning Presentation I Q2 2026
+Aug 2026
+Disclaimer
+
+
+    This presentation might contain forward-looking statements which may be identified by the use of words like “plans,”
+    “expects,” “will,” “anticipates,” “believes,” “intends,” “projects,” “estimates” or other words of similar meaning. All
+    statements that address expectations or projections about the future, including, but not limited to, statements about the
+    strategy for growth, market position, expenditures, and financial results, are forward looking statements.
+
+    Forward-looking statements are based on certain assumptions and expectations of future events. The Savola Group (Savola
+    or Group), its subsidiaries and its affiliates (the “Companies”) referred to in this presentation cannot guarantee that these
+    assumptions and expectations are accurate or will be realized. The actual results, performance or achievements of the
+    Companies, could thus differ materially from those projected in any such forward-looking statements. The Companies
+    assume no responsibility to publicly amend, modify or revise any forward-looking statements, on the basis of any
+    subsequent developments, information or events, or otherwise.
+
+    Information contained in this presentation is subject to change without further notice, its accuracy is not guaranteed, and it
+    may not contain all material information concerning The Savola Group and its affiliates. We do not make any
+    representation regarding and assume no responsibility or liability for the accuracy or completeness of, or any errors or
+    omissions in, to any information contained herein.
+
+
+
+
+                                                                                                                                     2
+Savola Group Q2 Highlights
+    Savola Group – H1 2026 Operational Performance at a Glance – Foods Led Profitability
+Group Revenue                                                     Group Gross Profit                                                  Group EBITDA                                                        Recurring Net Income
+
+13,588                                                            2,625                                                               1,316                                                               372
++3.9% yoy                                                         Margin 19.3% +2.2% yoy                                              Margin 9.7% +11.6% yoy                                              Margin 2.7%; +40.0%
+
+Food Processing                                                    Retail                                                              Frozen Food                                                         Food Services
+
+Foods processing                                                    Panda Retail Co.                                                   Al Kabeer                                                           Herfy (controlled, 49%)
+Revenue                             GP       EBIT     EBITDA        Revenue                          GP        EBIT      EBITDA        Revenue                          GP         EBIT      EBITDA        Revenue                         GP           EBIT     EBITDA
+                                   margin   margin    margin                                        margin    margin     margin                                        margin     margin     margin                                       margin       margin    margin
+6,936mn                        14.1%        8.2%      9.5%
+                                                                    5,902mn                         23.2%      1.9%       8.9%
+                                                                                                                                       411mn                          35.8%       10.8%      13.7%
+                                                                                                                                                                                                           516mn                          28.6%        2.9%      18.7%
++7.5% yoy                                                           +0.9% yoy                                                          -1.4% yoy                                                           -6.8% yoy
+
+                      Net Income                                                       Net Income                                                            Net                                                                Net
+EBITDA                                      Ni YoY                  EBITDA                                    Ni YoY                   EBITDA                                     Ni YoY                   EBITDA                                      Ni YoY
+                      Recurring                                                        Recurring                                                             income                                                             income
+658                   419                   +27.6%                  524                  46                   -5.3%                    56                    36                   19.9%                    96                   (1)                    NM
+
+  Foods-led profitability                                                                                                               Resilient (Panda) Performance
+   ▪ Overall, Foods Processing segment reported recurring net income of SAR 419mn (+28%                                                ▪ Panda revenue increased by 2.4% in Q2 offsetting the softer Q1 results on the back of
+     YoY) with strong momentum continuing into Q2, where earnings grew by 47% YoY driven by                                              market share gains and growth in E-commerce channel
+            o Edible Oils: Continued performance supported by strong volume growth across all                                          ▪ EBITDA grew by over 4.5% in H1 2026 due to operational improvements
+              markets.
+                                                                                                                                       ▪ Recurring net income remained stable at SAR 46mn in H1 2026, as improved operating
+            o Pasta delivered strong performance, supported by higher volumes and pricing.                                               performance and cost discipline offset the impact of margin pressure, higher operating
+            o Sugar outperformed, led by growth in volumes and better margins                                                            expenses, and increased depreciation associated with new store openings
+
+   ▪ Frozen Food revenue was marginally lower YoY, as stronger Q2 performance partially offset
+     the softer Q1 results. Net income improved, supported by a stronger, higher-margin product
+     mix
+  Non-Managed Investments                                                                                                               Operating Environment
+  ▪ Herfy’s revenue declined 7% YoY to SAR 516mn, while gross margin improved to 29% in H1                                                  ▪ Despite supply-chain disruptions, timely sourcing and commercial actions supported a
+    2026 compared 25% in H1 2025.                                                                                                             stronger-than-expected Q2 performance. Some replacement-cost pressure is expected to
+                                                                                                                                              continue through Q3 and Q4, but remains manageable within the Group’s ongoing pricing,
+  ▪ Share of profit improved to SAR 34mn in H1 2026 as compared to SAR 18mn in the same
+                                                                                                                                              procurement and cost-efficiency measures.
+    period last year due to increase in profitability of Kinan
+
+Note: Food Processing net income reached SAR 419 mn, excluding the SAR 44 mn gain from the Sudan disposal (including minority share), SAR 109 mn of unallocated costs, and SAR 40 mn attributable to minority interests and eliminations; reported net income is SAR 313 mn
+                                                                                                                                                                                                                                                   4
+     Savola Group – Net Income Analysis: Recurring net income up 40% to SAR 372mn in
+     H1 and 65% to SAR 129mn in Q2 — growth driven entirely by underlying food led
+     performance
+
+
+     Details                                                                               Q2 2026                 Q2 2025                 Variance                     H1 2026                   H1 2025   Variance
+
+     Reported Net Income                                                                       117                     106                       11                         401                    295        106
+
+     Impact of discontinued operations1                                                          -                      19                      (19)                       (42)                     18        (60)
+
+     Write-off of certain Intangibles - Panda                                                   13                        -                      13                          13                      -        13
+
+     Reversal of accruals no longer required                                                     -                     (53)                      53                           -                    (53)       53
+
+     Loss on derecognition of non-current assets                                                  -                      6                       (6)                           -                    6         (6)
+
+     Recurring Net Income                                                                      129                      78                       52                         372                    266        106
+
+
+
+
+Note 1): Includes the impact of disposal of Sudan Operations: SAR 42 mn in H1 2026 ; In H1 2025 impact is from the Sudan and Turkiye operations 2) All the figures are net of minority interest
+                                                                                                                                                                                                                       5
+   Savola Group – H1 2026 Performance Highlights
+
+  SAR in mn       Q1-25           Q1-26   Q2-25            Q2-26    H1 25                H1 26
+
+                          +0.2%                    +8.6%                     +3.9%
+
+
+
+  Revenue         7,281           7,292    5,799            6,295   13,080                13,588
+
+
+
+
+                          +1.8%                    2.7%                      +2.2%
+
+
+                  1,378           1,402
+                                          1,191            1,223    2,568                 2,625
+Gross Profit
+
+
+                  18.9%           19.2%    20.5%            19.4%   19.6%                 19.3%
+
+
+
+
+                                                                              Note: numbers are rounded
+                                                                                     6
+    Savola Group – H1 2026 Performance Highlights
+
+    SAR in mn                                        Q1-25                          Q1-26                                           Q2-25                   Q2-26   H1 25                H1 26
+
+                                                                                                                                                   +12.6%                   +11.6%
+                                                                    +10.8%
+
+
+
+                                                                                                                                      528                    594                          1,316
+     EBITDA                                           651                               722                                                                         1,179
+
+
+
+                                                      8.9%                             9.9%                                          9.1%                    9.4%   9.0%                  9.7%
+
+
+
+
+                                                                    50.4%                                                                          10.3%                    36.0%
+Net Income
+                                                                                       285                                            106                    117                           401
+                                                      189                                                                                                           295
+
+                                                     2.6%                              3.9%                                           1.8%                   1.9%   2.3%                  3.0%
+                             Recurring                 188                             243                                              78                   129    266                    372
+
+
+Note :Certain comparative amounts have been reclassified to conform with current year presentation 2) Please refer to slide #5 for one-off items                              Note: numbers are rounded
+                                                                                                                                                                                     7
+   Savola Group – H1 2026 Revenue & Recurring Net Profit Bridge By Business
+SAR in millions
+
+                      Revenue Bridge by Business                                                        Net Profit Bridge by Business
+
+
+                                  +3.9%                                                                             +40.0%
+                                                               13,588                                                                       14          (35)
+                         50            (6)   (38)       18                                                                     16                                      372
+                                                                                                                      17
+ 13,080      483                                                                                  (3)           6
+
+                                                                                       91
+                                                                             266
+
+
+
+
+YTD 2025                                            Others/ElimYTD 2026      YTD                                     Herfy              Unallocated Minority/       YTD 2026
+                                                                          2025Recur.                                                      Costs       Elim.          Recur.
+
+                                                                                            Managed Portfolio
+                   Managed Portfolio
+
+
+                                                                                                                                                 Note: numbers are rounded
+                                                                                                                                                        8
+Savola Group – Revenue Mix
+
+                                Revenue by Business1,3                                                              Revenue by Geography3
+
+
+              H1 2025                                                 H1 2026                            H1 2025                           H1 2026
+
+
+          3%                                                           3%                                    3%                              3%
+            4%                                                           4%
+                                                                                                       21%                           21%
+
+                               49%                                                         50%
+ 44%                                                        43%
+
+                                                                                                                   76%                               76%
+
+
+
+
+          Savola Foods                Panda             Al Kabeer              Herfy                               Arabia    Egypt    Others
+
+
+
+
+Note 1) Revenue by business % is based on net revenue before eliminations
+     2) Numbers are adjusted for discontinued operations
+     3) Certain comparative amounts have been reclassified to conform with current year presentation                                                  Note: numbers are rounded
+                                                                                                                                                             9
+  Savola Group – Stronger Balance Sheet — Disciplined Leverage
+The Group continued to execute a disciplined, investment-led growth strategy while maintaining balance sheet strength and liquidity position—
+positioning the business for sustainable growth with enhanced financial resilience
+ CAPEX (H1 2026)                                                                                     Net Debt (H1 26)4                                                                                     Gearing Ratio (H1 267)
+
+                     SAR 385m                                                                                                   SAR 851                                                                                                        0.3
+                   CAPEX                                                            Net Debt Trend                                                         Net Debt- H1 20266                                                             Net Financing Costs6
+                                                                                                                                          Net             960                          851
+                 8.4% p.a.                                                                                                                Debt
+                                      385                          6,709         6,636
+       355                                                                                                                                Cash          1,556                         1,813
+        49                            91
+                                                                                                                                                        2,515                        2,665
+                                                                                                                                                                                                                                            56
+
+                                                                                                                                                                                                                                                                         39
+       295                            283                                                                                                               2,332                        2,634
+
+                                                                                                621                        851
+                                                                                                              411
+   5         6                    5         6                                                                                                            183                            31
+                                                                    2022         2023          2024          2025 6       YTD                                                                                                         YTD 2025                       YTD 2026
+   YTD 25                        YTD 26                                                                                                             YTD 2025                      YTD 2026
+                                                                                                                          2026
+                                                                                                                                                           ST Loans               LT Loans
+   Savola Foods                  Al Kabeer
+   Panda                         Herfy
+
+
+             Note:1) Net debt excludes lease liabilities (detailed below in #5) ; 2) Certain comparative amounts have been reclassified to conform with current year presentation
+                  3) LT loans includes current portion of LT loan ; 4) Includes Foods processing net debt of SAR 1.3 bn ; Panda net debt of SAR 39 mn; Herfy net cash of SAR 28 mn and Al Kabeer net debt SAR 58mn and investment in Government Sukuk of SAR 528mn
+                  5) Lease liabilities of Foods processing: SAR 249mn; Panda: SAR 2.9 bn; Herfy: SAR 420 mn, Al Kabeer: SAR 58mn and Others: 64 mn 6) Above numbers exclude discontinued operations
+                  7) Gearing Ratio: Debt/(Debt+Equity)                                                                                                                                                                                                               Note: numbers are rounded
+                                                                                                                                                                                                                                                                           10
+    Savola Group – H1 2026 Capital Deployment – Sources & Uses of Cash
+
+Healthy cash generation underpinned shareholder returns through dividend distribution while maintaining financial flexibility
+
+                                                                        139
+                                                                                              385
+
+
+
+
+                                        857                                                                        301
+
+
+         411
+
+                                                                                                                                           524
+                                                                                                                                                                                        851
+
+
+
+                                                                                                                                                               226
+
+  Opening Net                Operating Cash Flow                  Financial                  CAPEX            Lease Payment         Dividends Payment   Financial cost and       Ending Net
+  Debt- Dec’25                                                 Income/Sudan                                                                               Zakat payment         Debt June’26
+                                                              Disposal & others
+
+                                                                         Opening / Closing           Sources of Cash                Uses of Cash
+ OPENING CASH                             TOTAL SOURCES                                                                       TOTAL USES
+ SAR 842M                              SAR 996 mn                                                                        SAR 1,436 mn              SAR 933M
+
+Note: Operating Cash Flow includes the impact of financial charges on lease liabilities                                                                                      Note: numbers are rounded
+                                                                                                                                                                                   11
+        Net Income Bridge – H1 2026
+
+
+Net Income Reconciliation (SAR mn)
+
+                                                                                       34                 565
+                                               36
+                           33                                      (1)
+       463                                                                                                                    (64)
+                                                                                                                                                  (50)
+                                                                                                                                                                                          401
+                                                                                                                                                                      (51)                                                 13               372
+                                                                                                                                                                                                              (42)
+
+
+
+
+     Foods               Panda             Al Kabeer              Herfy            Share in         Segment Total        Unallocated         Unallocated Minority Interest/ Total Savola                Discontinued Other One-Offs   Total Savola
+Processing (Inc.                                                                  Associates                             Costs - Cash        Costs - Non   Eliminations        Group                     Operations                      Group
+ Discontinued                                                                       - Kinan                                Based             Cash Based                                                    (Sudan                     (Recurring)
+  Operations)                                                                                                                                                                                             Disposal)
+
+
+
+
+ Notes 1) Unallocated cost is comprised of Arabia: SAR 74mn and Egypt: SAR 39mn 2) Foods processing reported net income of SAR 313mn (post unallocated costs and minority interest), while Al Kabeer delivered SAR 36mn
+ after unallocated costs                                                                                                                                                                                                         Note: numbers are rounded
+                                                                                                                                                                                                                                       12
+Foods Processing
+     Foods Processing – H1 2026 Performance - Strong Delivery Across Core Categories
+Foods Processing posted solid performance on the back of record volumes , offsetting the impact of lower average selling prices linked to softer global
+sugar and edible oil benchmarks
+
+         Net Income                                                         Oil Volume                                                   Sugar Volume                                                    Pasta Volume
+
+
+            SAR 419m1      +27.6% YoY
+                                                                                  +16.1%     YoY
+                                                                                                                                                         +7.2%   YoY
+                                                                                                                                                                                                                         +3.1%
+                                                                                                                                                                                                                           YoY
+
+
+Oils (Arabia, Egypt & Algeria)                                                         Sugar (Arabia & Egypt)                                                                        Pasta and Bayara
+
+•     Arabia delivered a strong H1 2026 performance,                                    •     Arabia performance improved by better margins                                         •    Pasta continued its growth momentum, driven by
+      driven by robust B2B growth, effective B2C                                              and favorable market dynamics                                                              increase in volumes and better margins supported
+      pricing initiatives, and higher exports while                                     •     Egypt performance improved on the back of supply                                           by lower wheat and packaging costs and optimized
+      maintaining the availability of the products.                                           resilience in local market                                                                 trade spend
+•     Egypt also delivered resilient performance on the                                                                                                                             •    Bayara UAE delivered resilient performance,
+      back of volumes growth across all the channels                                                                                                                                     supported by margin improvement driven by a
+                                                                                                                                                                                         favorable mix partially offset by the decline in
+•     Algeria continued to outperform on the back of                                                                                                                                     foods services channel due to regional conflict
+      record volumes and better pricing strategies
+                                                                                                                                                                                    •    Bayara KSA continued its journey to improve its
+                                                                                                                                                                                         profitability
+
+
+
+
+Note 1) Food Processing net income reached SAR 419 mn, excluding the SAR 44 mn gain from the Sudan disposal (including minority share), SAR 109 mn of unallocated costs, and SAR 40 mn attributable to minority interests and others; reported net income
+was SAR 313 mn
+                                                                                                                                                                                                                                                 14
+    Foods Processing – H1 2026 Performance Highlights
+
+    SAR in mn                                        Q1-25                          Q1-26            Q2-25            Q2-26    H1 25                H1 26
+
+                                                                                                             +15.6%
+                                                                     +0.9%                                                             +7.5%
+
+
+
+    Revenue                                         3,575                             3,607                            3,328   6,453                 6,936
+                                                                                                     2,878
+
+
+
+
+                                                                                                                                       9.7%
+                                                                    +2.7%
+                                                                                                             19.5%
+
+
+                                                     524                              538                                      894                   980
+Gross Profit                                                                                                           443
+                                                                                                     370
+
+
+
+                                                    14.7%                            14.9%           12.9%             13.3%   13.9%                 14.1%
+
+
+
+
+Note :Certain comparative amounts have been reclassified to conform with current year presentation                                      Note: numbers are rounded
+                                                                                                                                               15
+    Foods Processing– H1 2026 Performance Highlights
+
+    SAR in mn                                        Q1-25                         Q1-26                                          Q2-25                          Q2-26                                                H1 25                     H1 26
+
+                                                                                                                                                  +35.8%                                                                           +16.7%
+                                                                     +5.4%
+
+
+     EBITDA                                                                             373                                                                           285                                                                         658
+                                                      354                                                                           210                                                                                564
+
+
+
+                                                     9.9%                            10.3%                                         7.3%                             8.6%                                               8.7%                      9.5%
+
+
+
+
+                                                                    +17.2%
+                                                                                                                                                  47.1%                                                                            27.6%
+Net Income
+                                                      214                              251                                                                          168
+Recurring2                                                                                                                                                                                                             329                       419
+                                                                                                                                    114
+
+                                                     6.0%                            7.0%                                           4.0%                            5.1%                                               5.1%                      6.0%
+                             Reported                 130                             219                                             37                              94                                               167                        313
+
+
+Note: Certain comparative amounts have been reclassified to conform with current year presentation 2) Recurring Net income excludes unallocated costs, minority interests and eliminations and impact of discontinued operations     Note: numbers are rounded
+                                                                                                                                                                                                                                           16
+   Foods Processing : Volume Growth Reaffirms Business Momentum
+
+
+Revenue bridge                                                                           Variance by major category
+(SAR Mn)                                                                                 Price vs Volume contribution to revenue change (SAR Mn)
+                                                                                            Volume            Price
+                               +757             −275                                               587
+                           (+11.7% YoY)        (-4.3%)
+                                                                                                                             169
+
+                                                                                                            92
+                                                                  6,936
+             6,453                                                                                                                                     9           7
+
+
+
+
+                                                                                                                                     -362
+
+                                                                                                     Oil & fats                  Sugar                     Pasta
+            H1 2025          Volume              Price           H1 2026
+
+
+
+Volume +757 Underlying demand strength — the                                                                          Net +483 Topline grew despite pricing pressure —
+                                                         Price −275 Driven by global commodity cycles.
+operating story is healthy.                                                                                           quality of growth matters.
+
+
+
+                                                                                                                                                      Note: numbers
+                                                                                                                                                             17     are rounded
+                                                                                                                                                            17
+     Foods Processing – Oil Segment Analysis
+                                                        SAR in millions
+
+      Volume (MT ‘000)                                              Revenue                                           Gross Profit                          EBITDA                           Net Profit
+
+                                                                                                               15.0%             13.7%              10.3%             9.3%            6.8%                 6.5%
+
+
+
+
+                                                                       +19.4%
+                                                                                     4,172
+
+                                                           3,493
+
+                                                                                     2,176        +23.4%                 +8.8%
+                                                           1,763                                                                  571                                                           +12.8%
+               +16.1%                                                                                           525
+                              749                                                                                                                                                                            270
+                                                                                                                                                             +8.4%                     239
+    645                                                                                                         277                  311   +12.4%
+                                                                                                                                                     359              389
+                              354          +22.3%                                                                                                                                                             150          +23.0%
+    290                                                                                                                                                                                122
+                                                                                     1,996        +15.4%                                             173              196    +13.3%
+                                                           1,730
+    355                       395         +11.1%                                                                248                  260   +4.8%
+                                                                                                                                                     186              193    +3.8%     117                    119          +2.1%
+
+
+
+  H125                      H1 26                         H1 25                     H1 26                      H1 25             H1 26              H1 25            H1 26            H1 25                H1 26
+                                                                                              Gross Profit /
+     Arabia          Other Markets                                                                               814                 762
+                                                                                               Ton (SAR)
+
+
+
+Note:
+1) Certain comparative amounts have been reclassified to conform with current year presentation
+2) Arabia represents GCC and Levant
+3 All % above refer to growth numbers
+4) All figures exclude discontinued operations
+5) Arabia includes oil & fats businesses                                                                                                                                                       Note: numbers are rounded
+                                                                                                                                                                                                     18
+   Foods Processing – Sugar Segment Analysis
+                                                      SAR in millions
+
+     Volume (MT ‘000)                                             Revenue                                            Gross Profit                          EBITDA                           Net Profit
+
+                                                                                                              8.9%              10.7%               6.4%             9.0%            2.6%                 4.7%
+
+
+
+
+                                                                      -8.4%
+                                                         2,306
+                                                                                   2,113
+
+
+                                                         1,267                                                         +10.1%
+                                                                                   1,193          -5.9%                          226                       +29.1%
+              +7.2%                                                                                           205                                                    190
+   968                     1,038                                                                                                                                                              +68.8%
+                                                                                                                                    117   +14.0%    147                                                     100
+                                                                                                              102                                                    77     +41.3%
+   544                       595         +9.3%                                                                                                      55
+                                                                                                                                                                                       59                   48            +151.5%
+                                                         1,039                      920           -11.5%
+                                                                                                                                    109   +6.3%                      113    +21.9%     19
+                                                                                                              103                                   92
+   424                       443         +4.4%                                                                                                                                         40                   52        +29.5%
+
+
+ H1 25                     H1 26                        H1 25                     H1 26                      H1 25              H1 26              H1 25            H1 26            H1 25                H1 26
+
+
+   KSA             Egypt                                                                    Gross Profit /
+                                                                                                               212                  218
+                                                                                             Ton (SAR)
+
+
+
+
+Note:
+1) Certain comparative amounts have been reclassified to conform with current year presentation
+2) All % above refer to growth numbers                                                                                                                                                        Note: numbers are rounded
+                                                                                                                                                                                                    19
+ Foods Processing – Pasta Segment Analysis
+
+                         SAR in mn                                                                                                         Margin
+
+  Volume (MT ‘000)              Revenue                                  Gross Profit              EBITDA                   Net Profit
+
+                                                                 23.1%             25.0%   13.7%            17.9%   8.3%                 13.9%
+
+
+                                +5.5%
+                                          292
+                         277
+
+        +3.1%
+135             139
+                                                                          +14.1%
+                                                                                    73
+                                                                  64
+                                                                                                   +38.3%
+                                                                                                             52
+                                                                                            38
+                                                                                                                            +77.2%
+                                                                                                                                          41
+                                                                                                                    23
+
+
+H1 25           H1 26   H1 25           H1 26                    H1 25             H1 26   H1 25            H1 26   H1 25                H1 26
+
+
+                                                Gross Profit /
+                                                 Ton (SAR)
+                                                                  476               527
+
+
+
+
+                                                                                                                              Note: numbers are rounded
+                                                                                                                                    20
+  Foods Processing – Nuts, Spices And Pulses Segment Analysis
+                 SAR in millions                                                                                                       Margin
+
+                        Revenues                          Gross Profit                        EBITDA                            Net Profit
+                                                    28.4%            31.3%            11.4%            13.0%             6.2%                 8.0%
+                         -2.8%
+                  286              278
+
+
+
+                                                             +7.2%
+                                                                      87                      +10.6%
+UAE                                                  81                                                 36
+                                                                                       33                                         +26.0%
+                                                                                                                         18                    22
+
+
+
+                                                    23.2%            27.2%             NM               NM               NM                   NM
+                         -21.5%
+                   76
+                                   59                        -7.9%
+KSA                                                  18               16
+
+                                                                                       -14              -16
+                                                                                               NM                         -18                  -20
+                                                                                                                                    NM
+
+                H1 25             H1 26            H1 25             H1 26           H1 25             H1 26             H1 25                H1 26
+
+In July 2026, the Group acquired Mehbaj, a leading Saudi premium nuts, coffee, spices, pulses, dried fruits, and related food products company
+
+                                                                                                                                             Note: numbers are rounded
+                                                                                                                                                    21
+Retail (Panda)
+    Panda– H1 2026 Performance – Resilient Execution Amid Market Competitive Intensity
+Resilient Performance Driven by Execution Amid Market Disruption
+
+     Revenue                                            Recurring Net Income                         E-Commerce
+
+
+         SAR 5.9b                                             SAR 46m                                       ~2.5x Growth
+               +0.9% YoY                                             -5.3% YoY
+
+                                                                                       Panda's Resilience Levers Driving Share Gains
+
+     Panda delivered stable performance in H1 2026 driven by Q2 revenue growth of
+1    2.4% offsetting the softer Q1 results.                                                        Strong Brand Equity             Core Food Categories
+
+                                                                                         A critical competitive lever     Sustained growth reinforcing
+     Panda’s online platform recorded robust growth in H1 2026, supported by the         enabling sustained market        basket strength and loyalty
+2    continued rollout of the e-commerce program and increased presence on               share
+     aggregator platforms
+
+
+
+3   Panda delivered market share gains despite a decline in market during the period               E-commerce
+                                                                                                                                   In store Experience
+                                                                                                   Momentum
+
+                                                                                         Successfully offsetting          Enhanced performance despite
+     Panda continue to focus on rolling out the CXR program and stores expansion         traditional channel decline      pressure in the market
+4
+
+
+
+                                                                                                                                            23
+    Panda – H1 2026 Performance Highlights
+
+    SAR in mn                                        Q1-25                          Q1-26            Q2-25           Q2-26    H1 25                H1 26
+
+                                                                                                                                      +0.9%
+                                                                     -0.3%
+                                                                                                             +2.4%
+
+
+    Revenue                                         3,335                            3,325                                    5,852                 5,902
+                                                                                                     2,517            2,577
+
+
+
+
+                                                                                                                                      -3.0%
+                                                                    +1.2%
+                                                                                                             -7.3%
+Gross Profit                                          715                              723                                    1,413                 1,370
+                                                                                                     698              647
+
+
+                                                    21.4%                            21.8%           27.7%            25.1%   24.1%                 23.2%
+
+
+
+
+Note :Certain comparative amounts have been reclassified to conform with current year presentation                                      Note: numbers are rounded
+                                                                                                                                              24
+    Panda – H1 2026 Performance Highlights
+
+    SAR in mn                                        Q1-25                          Q1-26                                          Q2-25                          Q2-26                           H1 25                H1 26
+
+                                                                                                                                                    +2.3%                                                 +4.5%
+                                                                      +6.6%
+
+
+     EBITDA                                                                                                                          244                              250                         501                    524
+                                                       257                              274
+
+
+
+                                                     7.7%                             8.3%                                          9.7%                             9.7%                         8.6%                  8.9%
+
+
+
+
+                                                                    +1.2%                                                                                                                                 -5.3%
+ Recurring
+Net Income                                             39                               40                                            9                                                           49                     46
+                                                                                                                                                                       6
+
+                                                     1.2%                             1.2%                                          0.4%                             0.2%                         0.8%                  0.8%
+                         Reported                     39                              40                                                9                            (6)                           49                     33
+
+
+Note: Certain comparative amounts have been reclassified to conform with current year presentation 2) Recurring Net Income excludes one-off related to write of certain intangibles of SAR 13mn             Note: numbers are rounded
+                                                                                                                                                                                                                  25
+    Store Network — Disciplined Expansion & Format Optimization
+ Disciplined Network Expansion with Focus on Format Optimization and Core Market Strength
+  Total Stores (as of June 2026)   Net Selling Area (as of June 2026)   Stores Opened/(Closed)                   CXR stores Completed
+                                                                        during H1 2026
+
+               231                            583km2                                   +4                                    149
+H1 2026 Stores network Update                                                  Store Format & Geography Split (H1 2026)
+
+                                                                               Super                                                         170 / 231
+
+       227                                                231
+                          6             (2)                                    Smaller-format stores
+
+                                                                               Hyper                                                          61 / 231
+
+                                                                               Large-format destination stores
+
+                                                                               KSA                                                           225 / 231
+
+                                                                               Core domestic market
+
+                                                                               Egypt                                                           6 / 231
+
+      Dec’25          Additions      Closures           June’26
+
+
+
+                                                                                                                                        26
+   Omnichannel Progress — Focusing on Profitable and Scalable E-commerce Growth
+
+Disciplined Network Expansion with Format Optimization
+
+            E-Com Revenue                          Average Daily Orders                           Avg. Basket Size
+
+
+               SAR +263m
+                       ~2.5x YoY
+                                                           12,300
+                                                              ~4x YoY
+                                                                                                        SAR∽208
+
+E- Commerce Growth                                                        Highlights
+SAR in mn                                                                 •   Partnership with Ocado: Integration scaled in H1 2026,
+                                                                              enabling broader SKU range and operational efficiencies
+
+                                     263                                  •   Roll out of Ecommerce with new application and website
+                           ~2.5x
+                                                                              with enhanced experience, functionality, and wider SKU
+                                                                              range across the Kingdom
+
+              100                                                         •   Loyalty program: Targeted engagement campaigns driving
+                                                                              conversion to active loyalty
+
+
+            YTD 2025               YTD 2026
+
+
+
+                                                                                                                                        27
+Frozen (Al Kabeer)
+    Al Kabeer– H1 2026 Performance
+Resilient performance despite market challenges
+
+     Revenue                               B2B Sales Growth                   E-Commerce Sales Growth              Net Income Growth
+
+
+       SAR 411m
+            -1.4% YoY
+                                                ~2.0x                               ~2.5x                                SAR 36m
+                                                                                                                             +19.9% YoY
+
+
+      Al Kabeer delivered strong profitability in H1 2026 despite lower sales in Q1, which were impacted by regional geopolitical developments and
+1     softer trading conditions in Saudi Arabia. Performance was supported by margin expansion in Q2 and continued operating cost efficiencies
+
+      Al Kabeer continued to diversify its product portfolio through innovation and expansion into higher-margin and adjacent categories,
+2     strengthening its offering beyond core poultry products and supporting margin resilience
+
+
+3     Al Kabeer Professional (B2B platform) continues to deliver growth in H1 2026 driven by gains in both poultry and non poultry categories
+
+
+      Al Kabeer is continuing to focus on channel diversification by leveraging opportunities in the discounters channel and e-commerce segment
+4     where it is witnessing growth driven by enhanced collaboration with digital marketplaces in both KSA and the UAE
+
+
+
+
+                                                                                                                                            29
+   Al Kabeer – H1 2026 Performance Highlights
+
+  SAR in mn       Q1-25           Q1-26    Q2-25            Q2-26    H1 25                H1 26
+
+                          -5.8%                    +4.2%                     -1.4%
+
+
+
+  Revenue          235             221     183                190    417                    411
+
+
+
+
+                          -7.1%
+
+                                                   +13.3%
+                                                                             +1.4%
+                   85              79
+Gross Profit
+                                            60               68      145                   147
+
+
+                  36.3%           35.8%    32.9%             35.7%   34.8%                 35.8%
+
+
+
+
+                                                                               Note: numbers are rounded
+                                                                                     30
+  Al Kabeer – H1 2026 Performance Highlights
+
+ SAR in mn       Q1-25           Q1-26    Q2-25             Q2-26   H1 25                 H1 26
+
+                                                                            +16.9%
+                         +4.8%                    +46.0%
+
+
+
+  EBITDA                          36                                                        56
+                  34                                          21     48
+                                           14
+
+
+                 14.5%           16.1%    7.7%              10.8%   11.5%                  13.7%
+
+
+
+
+                                                  +139.8%                   +19.9%
+                         -1.2%
+Net Income
+                  25              25                         11                             36
+                                                                     30
+                                           4
+
+                 10.9%           11.4%    2.4%               5.6%   7.2%                   8.7%
+
+
+
+
+                                                                              Note: numbers are rounded
+                                                                                     31
+Appendix
+              Financials Summary – H1 2026
+
+(All figures are in SAR mn)
+                                                                                                                                          Segment Wise Financials 1
+                                                                                                            YTD June 2026                                                                                                             YTD June 2025
+                                                                                                                                                                          Non Recurring   Recurring Net                                                                      Non Recurring Recurring Net
+                                                                            Revenue         Gross Profit                EBIT       Net Income               EBITDA                                          Revenue    Gross Profit            EBIT    Net Income   EBITDA
+                                                                                                                                                                            Net Income          Income                                                                         Net Income        Income
+  Oil
+         2
+  Arabia                                                                       2,176                 311                166                 150                196                 -              150         1,763           277              149           122      173              -            122
+   Overseas                                                                    2,017                 267                188                 126                200                 -              126         1,745           249              182           117      187              -            117
+ Total Oil                                                                     4,193                 578                354                 277                396                 -              277         3,508           526              331           239      360              -            239
+ Sugar
+  KSA                                                                          1,193
+                                                                                 920                 117                  63                 48                  77                -                48        1,267           102               22            19       55                  8            27
+  Egypt                                                                          920                 109                 91                  52                113                 -               52         1,039           103               74            40       92              -                40
+Total Sugar                                                                    2,113                 226                153                 100                190                 -              100         2,306           205               96            59      147                  8            67
+ Pasta                                                                           292                  73                 49                  41                 52                 -               41           277            64               36            23       38              -                23
+ Nuts, spices and pulses
+  UAE                                                                             278                 87                  28                 22                  36                -                22         286             81               23            18       33              -                 18
+  KSA                                                                              59                 16                 (18)               (20)                (16)               -               (20)         76             18              (17)          (18)     (14)             -                (18)
+
+Total Foods Processing                                                         6,936                 980                566                 419                658                 -              419         6,453           894              471           321      564                  8        329
+Al Kabeer                                                                        411                 147                 44                  36                 56                 -               36           417           145               39            30       48              -             30
+Total Foods                                                                    7,347               1,128                610                 455                715                                455         6,870         1,039              510           351      612                  8        359
+Panda
+   KSA                                                                         5,810               1,351                108                  33                519                  13              45        5,764         1,395              120            46      494              -             46
+   Egypt                                                                          92                  19                  4                   1                  5                 -                  1          87            18                 4            3        7              -              3
+Total Retail                                                                   5,902               1,370                111                  33                524                  13              46        5,852         1,413              124            49      501              -             49
+Herfy                                                                            516                 148                 15                  (1)                96                 -                 (1)        553           138                (0)         (18)      85              -            (18)
+Share of profit from associates                                                    -                   -                 34                  34                 34                 -                34            0              -              18            18       18              -             18
+Unallocated Costs4                                                                 -                 (14)               (77)               (113)               (64)                -              (113)           0           (22)            (116)         (128)    (101)             -           (128)
+Unallocated Costs -Arabia 4                                                        -                  (3)               (48)                (74)               (38)                -               (74) -         0           (13)             (92)          (93)     (81)             -            (93)
+Unallocated - Overseas4                                                            -                 (11)               (29)                (39)               (25)                -               (39)           0             (9)            (23)          (35)     (20)             -            (35)
+Eliminations/Minority Interest/Others3                                          (177)                 (6)                 3                 (51)                10                   2             (49)        (195)             1              65            41       63              (56)         (14)
+Discontinued Operations - Sudan                                                    -                   -                  -                  44                  0                 (44)            -            -             -                -             (19)     -                 19            -
+Total                                                                         13,588               2,625                696                 401              1,316                 (29)            372       13,080         2,568              602           295    1,179              (29)         266
+
+1 All the numbers are rounded for the purpose of presentation and have been represented under different categories after inter-segment elimination and reclassification
+2 Arabia includes GCC and Levant
+3 Includes Eliminations, Minority Interest/Others of Food Processing amounting to SAR 40 mn (2025: 15 mn)
+4 Includes unallocated cost related to Food Processing amounting to SAR 109 mn (2025: 126 mn) and Al Kabeer SAR 4 mn (2025: 2 mn)
+5 Certain comparative amount have been reclassified to conform with current year presentation
+
+
+
+
+                                                                                                                                                                                                                                                                            Note: numbers are rounded
+                                                                                                                                                                                                                                                                                  33
+Thank you
+

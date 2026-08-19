@@ -1,0 +1,179 @@
+{
+ "refit": {
+  "market": "SA",
+  "market_name": "Saudi Arabia (Tadawul)",
+  "fit_date": "2026-08-18",
+  "panel_names": [
+   "ACWA",
+   "ALINMA",
+   "ARAMCO",
+   "ELM",
+   "EXTRA",
+   "MAADEN",
+   "RAJHI",
+   "RIBL",
+   "RIYADHCABLE",
+   "SABIC",
+   "SNB",
+   "STC"
+  ],
+  "windows": 402,
+  "rebuilt_this_run": [
+   "RIYADHCABLE"
+  ],
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "mle_scale": 1.1,
+  "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+  "market_skill": -0.0027,
+  "market_skill_raw_basis": -0.0045,
+  "market_ci90": [
+   -0.009,
+   0.004
+  ],
+  "market_verdict": "PARITY",
+  "top_name_weight_share": 0.133,
+  "top_name": "EXTRA",
+  "signal_active": false,
+  "per_name": {
+   "ACWA": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "skill": 0.0032,
+    "skill_raw_basis": 0.0004,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.018,
+     0.022
+    ]
+   },
+   "ALINMA": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "skill": 0.0058,
+    "skill_raw_basis": 0.0039,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.011,
+     0.027
+    ]
+   },
+   "ARAMCO": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "skill": -0.0011,
+    "skill_raw_basis": -0.0027,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.022,
+     0.015
+    ]
+   },
+   "ELM": {
+    "nu": 10.0,
+    "width_cal": 1.063,
+    "skill": 0.0033,
+    "skill_raw_basis": -0.0017,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.018,
+     0.014
+    ]
+   },
+   "EXTRA": {
+    "nu": 12.0,
+    "width_cal": 1.077,
+    "skill": -0.0372,
+    "skill_raw_basis": -0.0699,
+    "verdict": "FAIL",
+    "ci_block2": [
+     -0.064,
+     -0.021
+    ]
+   },
+   "MAADEN": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "skill": 0.0073,
+    "skill_raw_basis": 0.007,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.009,
+     0.028
+    ]
+   },
+   "RAJHI": {
+    "nu": 12.0,
+    "width_cal": 1.056,
+    "skill": 0.0135,
+    "skill_raw_basis": 0.0147,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.004,
+     0.029
+    ]
+   },
+   "RIBL": {
+    "nu": 12.0,
+    "width_cal": 1.049,
+    "skill": -0.0018,
+    "skill_raw_basis": -0.0039,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.02,
+     0.018
+    ]
+   },
+   "RIYADHCABLE": {
+    "nu": 12.0,
+    "width_cal": 1.07,
+    "skill": -0.0219,
+    "skill_raw_basis": -0.0218,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.087,
+     0.009
+    ]
+   },
+   "SABIC": {
+    "nu": 12.0,
+    "width_cal": 1.077,
+    "skill": -0.0003,
+    "skill_raw_basis": -0.0037,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.024,
+     0.022
+    ]
+   },
+   "SNB": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "skill": -0.0092,
+    "skill_raw_basis": -0.0137,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.027,
+     0.005
+    ]
+   },
+   "STC": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "skill": -0.0001,
+    "skill_raw_basis": -0.0009,
+    "verdict": "PARITY",
+    "ci_block2": [
+     -0.019,
+     0.016
+    ]
+   }
+  }
+ },
+ "band_move_pct": 0.0,
+ "committed": {
+  "nu": 12.0,
+  "cal": 1.07,
+  "verdict": "PARITY"
+ }
+}

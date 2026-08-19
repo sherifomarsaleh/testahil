@@ -1,0 +1,62 @@
+{
+ "windows_scored": 44,
+ "windows_prebreak_dropped": 14,
+ "first_origin": "2015-07-22",
+ "last_origin": "2026-04-28",
+ "nu": 12.0,
+ "width_cal": 1.07,
+ "skill_norm": 0.0015724121515575673,
+ "skill_raw": 0.0011517496650068626,
+ "verdict": "PARITY",
+ "ci_blocks": {
+  "2": [
+   -0.009396250452636234,
+   0.010761164942359052,
+   "PARITY"
+  ],
+  "3": [
+   -0.008406959860904338,
+   0.011157959388095705,
+   "PARITY"
+  ],
+  "4": [
+   -0.00901340172557601,
+   0.011993661429648028,
+   "PARITY"
+  ]
+ },
+ "cov50": 0.5,
+ "cov80": 0.8181818181818182,
+ "cov90": 0.8863636363636364,
+ "pit_mean": 0.4667636363636363,
+ "pit_hist": [
+  4,
+  5,
+  7,
+  3,
+  5,
+  4,
+  5,
+  4,
+  3,
+  4
+ ],
+ "w90_ratio": 1.1117171001767252,
+ "market_gate": {
+  "verdict": "PARITY",
+  "skill": -0.002,
+  "ci90": [
+   -0.009,
+   0.004
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 11,
+  "windows": 392
+ },
+ "dq_log": [
+  "dropped 2 interior stale/no-trade rows"
+ ],
+ "clean_rows": 3896,
+ "density_rows_per_yr": 249.30168185003504,
+ "span_years": 15.627652292950033
+}

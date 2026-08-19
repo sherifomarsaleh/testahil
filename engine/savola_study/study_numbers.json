@@ -1,0 +1,2589 @@
+{
+ "meta": {
+  "ticker": "SAVOLA",
+  "exchange": "TADAWUL",
+  "code": "2050",
+  "market": "SA",
+  "currency": "SAR",
+  "spot": 25.3,
+  "spot_date": "2026-08-18",
+  "shares_mn": 300.0,
+  "shares_wavg_mn": 298.589,
+  "mktcap": 7590.0,
+  "valuation_date": "2025-12-31",
+  "anchor_date": "2026-08-18",
+  "anchor_days": 230.0,
+  "div_between": 1.7,
+  "study_date": "2026-08-18",
+  "build": "SAVOLA_Valuation_Study_18-08-2026"
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 24149.521,
+   "cogs": 19103.682,
+   "gp": 5045.839,
+   "sda": 2931.087,
+   "adm": 869.798,
+   "oth": -7.935,
+   "dna": 1064.59,
+   "ebitda": 2301.609,
+   "np_att": 899.185,
+   "basis": "continuing per FY2024 FS (ex Iran/Sudan, INCL. Turkiye)"
+  },
+  "FY24": {
+   "rev": 23045.574,
+   "cogs": 18212.904,
+   "gp": 4832.670000000002,
+   "sda": 2970.149,
+   "adm": 901.723,
+   "oth": 1.04,
+   "dna": 1099.866,
+   "ebitda": 2061.704000000002,
+   "np_att": 9974.266,
+   "recurring_np": 295.5,
+   "basis": "continuing per FY2025 FS (ex Turkiye)"
+  },
+  "FY25": {
+   "rev": 26081.053,
+   "cogs": 20992.159,
+   "gp": 5088.894,
+   "sda": 3199.605,
+   "adm": 820.208,
+   "oth": 91.832,
+   "dna": 1190.022,
+   "ebitda": 2350.935,
+   "np_att": 874.462,
+   "recurring_np": 539.1,
+   "eps": 2.93,
+   "assoc": 51.775,
+   "pbt": 861.708,
+   "basis": "continuing per FY2025 FS"
+  }
+ },
+ "hist_bs": {
+  "FY25": {
+   "ppe": 5486.067,
+   "rou": 3416.863,
+   "intang": 1408.747,
+   "invprop": 158.234,
+   "kinan": 435.517,
+   "inv_nc": 676.359,
+   "inv_c": 85.802,
+   "inventories": 4680.559,
+   "tr": 1856.697,
+   "prepay": 1346.504,
+   "cash": 904.137,
+   "loans": 1893.924,
+   "leases": 3952.231,
+   "eb": 748.401,
+   "restor": 164.946,
+   "tp": 3915.807,
+   "accrued": 2829.405,
+   "contract": 151.99,
+   "equity_att": 5516.027,
+   "nci": 950.039,
+   "nwc": 986.5580000000002,
+   "total_assets": 20480.053,
+   "total_liab": 14013.987
+  },
+  "FY24": {
+   "inventories": 4171.221,
+   "tr": 1956.952,
+   "tp": 3679.328,
+   "ppe": 5438.447,
+   "loans": 3403.577,
+   "leases": 3593.097,
+   "cash": 2235.328,
+   "equity_att": 4620.33,
+   "total_assets": 21394.242
+  },
+  "FY23": {
+   "loans": 8644.487,
+   "cash": 1213.193,
+   "term_dep": 738.395,
+   "equity_att": 8397.145,
+   "total_assets": 29937.138,
+   "note": "per FY2024 FS comparative; pre-restructuring balance sheet"
+  }
+ },
+ "segments_fy25": {
+  "fp": {
+   "rev": 13279.85,
+   "cogs": 11590.617,
+   "gp": 1689.2330000000002
+  },
+  "retail": {
+   "rev": 11327.912,
+   "cogs": 8435.273,
+   "gp": 2892.639000000001
+  },
+  "food_services": {
+   "rev": 1082.562
+  },
+  "frozen": {
+   "rev": 804.997
+  },
+  "investments": {
+   "rev": 28.978
+  },
+  "elim": -443.246,
+  "categories": {
+   "oil": {
+    "vol": 1322.0,
+    "rev": 7098.0,
+    "gp": 958.0,
+    "ebitda": 563.0
+   },
+   "sugar": {
+    "vol": 2162.0,
+    "rev": 4868.0,
+    "gp": 413.0,
+    "ebitda": 335.0
+   },
+   "pasta": {
+    "vol": 268.0,
+    "rev": 545.0,
+    "gp": 117.175
+   },
+   "nuts": {
+    "rev": 768.8500000000004,
+    "gp": 201.05800000000016,
+    "gm": 0.26150484489822473
+   }
+  }
+ },
+ "h1_2026": {
+  "rev": 13588.0,
+  "ebitda_company": 1316.0,
+  "np_att": 401.0,
+  "recurring_np": 372.0,
+  "capex": 385.0,
+  "netdebt": 851.0,
+  "oil": {
+   "vol": 749.0,
+   "rev": 4172.0,
+   "gp": 571.0,
+   "gpt": 762.3497997329773
+  },
+  "sugar": {
+   "vol": 1038.0,
+   "rev": 2113.0,
+   "gp": 226.0,
+   "gpt": 217.72639691714838
+  },
+  "pasta": {
+   "vol": 139.0,
+   "rev": 292.0,
+   "gp": 73.0,
+   "gpt": 525.1798561151079
+  },
+  "nuts_rev": 337.0,
+  "panda": {
+   "rev": 5902.0,
+   "ebitda": 524.0,
+   "sps_change": -0.07073012025896419
+  },
+  "herfy": {
+   "rev": 516.0,
+   "ebitda": 96.0
+  },
+  "frozen": {
+   "rev": 411.0,
+   "ebitda": 56.0
+  },
+  "stores": 231.0
+ },
+ "fcst": {
+  "years": [
+   2026,
+   2027,
+   2028,
+   2029,
+   2030
+  ],
+  "rev": [
+   27060.285441764674,
+   28348.64226359171,
+   29725.80434736381,
+   31029.039726722476,
+   32131.466377170083
+  ],
+  "ebitda": [
+   2391.898416267707,
+   2484.711487889531,
+   2595.8258789884103,
+   2707.123358227753,
+   2801.622562605602
+  ],
+  "ebitda_margin": [
+   0.08839147027533073,
+   0.08764834184248242,
+   0.08732567329901764,
+   0.08724483200478664,
+   0.08719249005691813
+  ],
+  "dna": [
+   1223.200154,
+   1264.647158802,
+   1312.560218662176,
+   1353.3808521117521,
+   1387.3713567827435
+  ],
+  "dna_own": [
+   614.439504,
+   630.742279552,
+   655.2991442421761,
+   674.8656400870523,
+   690.0006883973025
+  ],
+  "dna_int": [
+   50.0,
+   50.0,
+   50.0,
+   50.0,
+   50.0
+  ],
+  "dna_rou": [
+   558.76065,
+   583.90487925,
+   607.26107442,
+   628.5152120247,
+   647.3706683854409
+  ],
+  "ebit": [
+   1168.698262267707,
+   1220.064329087531,
+   1283.2656603262342,
+   1353.742506116001,
+   1414.2512058228585
+  ],
+  "nopat": [
+   940.802101125504,
+   982.1517849154624,
+   1033.0288565626183,
+   1089.7627174233808,
+   1138.472220687401
+  ],
+  "capex": [
+   810.0,
+   900.0,
+   880.0,
+   860.0,
+   850.0
+  ],
+  "dwc": [
+   37.98332464516534,
+   48.77904217570017,
+   52.14133711173872,
+   49.34236576203398,
+   41.73945848444305
+  ],
+  "nwc": [
+   1024.5413246451656,
+   1073.3203668208657,
+   1125.4617039326045,
+   1174.8040696946384,
+   1216.5435281790815
+  ],
+  "fcff": [
+   757.2582804803388,
+   714.1150222917622,
+   806.1866636930555,
+   905.2859917483989,
+   986.7334506002608
+  ],
+  "fp_rev": [
+   14078.31275,
+   14760.6980075375,
+   15337.549896442977,
+   15836.274967529538,
+   16271.585515570185
+  ],
+  "fp_gp": [
+   1927.95145,
+   2011.810067,
+   2072.94871646,
+   2127.1029454842,
+   2171.9806760467977
+  ],
+  "fp_eb": [
+   1188.9591155000003,
+   1227.4463405739,
+   1252.2736139172296,
+   1275.7143573270262,
+   1293.5695538229368
+  ],
+  "oil": {
+   "vol": [
+    1487.25,
+    1546.74,
+    1593.1422,
+    1632.9707549999998,
+    1665.6301700999998
+   ],
+   "rev": [
+    8025.176249999999,
+    8471.3760495,
+    8856.400090949774,
+    9168.588194155753,
+    9445.479557619257
+   ],
+   "gp": [
+    1100.565,
+    1152.3213,
+    1186.8909390000001,
+    1216.563212475,
+    1240.8944767244998
+   ],
+   "eb": [
+    654.3652005000001,
+    681.3127916478,
+    694.4750939431927,
+    706.7897088799402,
+    715.7258133208691
+   ],
+   "gpt": [
+    740.0,
+    745.0,
+    745.0,
+    745.0,
+    745.0
+   ]
+  },
+  "sugar": {
+   "vol": [
+    2280.91,
+    2337.9327499999995,
+    2384.6914049999996,
+    2432.3852331,
+    2468.8710115964996
+   ],
+   "rev": [
+    4750.5595,
+    4893.670104937499,
+    5016.501224571429,
+    5142.415405308172,
+    5245.649394569733
+   ],
+   "gp": [
+    490.39565,
+    495.6417429999999,
+    505.5545778599999,
+    515.6656694172,
+    523.4006544584579
+   ],
+   "eb": [
+    414.38669799999997,
+    417.3430213209999,
+    425.29055826685703,
+    433.38702293226925,
+    439.4702641453422
+   ],
+   "gpt": [
+    215.0,
+    212.0,
+    212.0,
+    212.0,
+    212.0
+   ]
+  },
+  "pasta": {
+   "vol": [
+    276.04,
+    284.32120000000003,
+    291.42923,
+    297.2578146,
+    303.202970892
+   ],
+   "rev": [
+    572.5770000000001,
+    595.6518531000002,
+    616.6485809217752,
+    635.2713680656128,
+    654.4565633811942
+   ],
+   "gp": [
+    143.54080000000002,
+    147.847024,
+    151.5431996,
+    154.57406359200002,
+    157.66554486384
+   ],
+   "eb": [
+    98.30721700000001,
+    100.79052760509998,
+    102.82796170717977,
+    104.3876255148166,
+    105.96347635672566
+   ],
+   "gpt": [
+    520.0,
+    520.0,
+    520.0,
+    520.0,
+    520.0
+   ]
+  },
+  "nuts": {
+   "rev": [
+    730.0,
+    800.0,
+    848.0,
+    890.0,
+    926.0
+   ],
+   "gp": [
+    193.45000000000002,
+    216.0,
+    228.96,
+    240.3,
+    250.02
+   ],
+   "eb": [
+    21.900000000000034,
+    28.0,
+    29.680000000000007,
+    31.150000000000034,
+    32.410000000000025
+   ],
+   "gm": [
+    0.265,
+    0.27,
+    0.27,
+    0.27,
+    0.27
+   ]
+  },
+  "panda": {
+   "rev": [
+    11576.294657614679,
+    12176.601245555963,
+    12946.04873282378,
+    13719.997298373028,
+    14353.22794291332
+   ],
+   "gp": [
+    2685.7003605666055,
+    2824.9714889689835,
+    3003.483306015117,
+    3183.0393732225425,
+    3329.9488827558903
+   ],
+   "eb": [
+    1030.2902245277066,
+    1083.717510854481,
+    1165.1443859541403,
+    1248.5197541519458,
+    1320.4969707480257
+   ],
+   "stores": [
+    247.0,
+    267.0,
+    285.0,
+    300.0,
+    312.0
+   ],
+   "sps": [
+    48.84512513761468,
+    47.379771383486236,
+    46.905973669651374,
+    46.905973669651374,
+    46.905973669651374
+   ]
+  },
+  "herfy": {
+   "rev": [
+    1033.8467099999998,
+    1033.8467099999998,
+    1054.5236441999998,
+    1075.6141170839999,
+    1097.12639942568
+   ],
+   "eb": [
+    191.26164134999996,
+    191.26164134999996,
+    195.08687417699997,
+    198.98861166054,
+    202.96838389375077
+   ]
+  },
+  "frozen": {
+   "rev": [
+    813.04697,
+    841.5036139499999,
+    870.9562404382499,
+    897.0849276513974,
+    923.9974754809393
+   ],
+   "eb": [
+    111.38743489000001,
+    115.28599511115,
+    119.32100494004024,
+    122.90063508824144,
+    126.5876541408887
+   ]
+  },
+  "elim": [
+   -470.21564585,
+   -493.00731345175245,
+   -512.2741665411954,
+   -528.9315839154866,
+   -543.4709562200442
+  ],
+  "unalloc": [
+   130.0,
+   133.0,
+   136.0,
+   139.0,
+   142.0
+  ],
+  "np": [
+   729.7675394376697,
+   767.068260169377,
+   810.7831373490995,
+   863.2732998814531,
+   911.970083833634
+  ],
+  "np_nci": [
+   49.81045995767407,
+   52.464492700920864,
+   55.59670496176019,
+   59.384677926561,
+   62.882240787907946
+  ],
+  "eps": [
+   2.4440536638579107,
+   2.568976955512015,
+   2.715381803579836,
+   2.891175829924924,
+   3.054265508219104
+  ],
+  "div": [
+   401.37214669071835,
+   421.8875430931574,
+   445.9307255420048,
+   474.80031493479925,
+   501.58354610849875
+  ],
+  "div_nci": [
+   27.39575297672074,
+   28.85547098550648,
+   30.578187728968107,
+   32.66157285960855,
+   34.585232433349375
+  ],
+  "netdebt": [
+   779.6027209172611,
+   723.0202647493269,
+   605.4871641790031,
+   421.6283045083784,
+   182.94984832386456
+  ],
+  "netfin": [
+   -284.75043693187604,
+   -289.0174311120054,
+   -296.63380652392385,
+   -299.8884169134991,
+   -298.32856539858255
+  ],
+  "kinan": [
+   68.0,
+   70.04,
+   72.1412,
+   74.305436,
+   76.53459908
+  ],
+  "kinan_div": [
+   25.116,
+   25.86948,
+   26.645564399999998,
+   27.444931332,
+   28.268279271960004
+  ],
+  "ppe": [
+   5631.627496,
+   5850.885216448,
+   6025.586072205824,
+   6160.720432118772,
+   6270.719743721469
+  ],
+  "rou": [
+   3614.47455,
+   3801.21746475,
+   3974.68088334,
+   4132.5325942569,
+   4272.569612084607
+  ],
+  "leases": [
+   4149.84255,
+   4336.58546475,
+   4510.04888334,
+   4667.9005942569,
+   4807.937612084607
+  ],
+  "cash": [
+   1028.5192790827389,
+   1085.101735250673,
+   1202.6348358209968,
+   1386.4936954916216,
+   1625.1721516761354
+  ],
+  "cfo": [
+   1921.9108287501786,
+   1991.2303494965977,
+   2081.303088261297,
+   2179.835959489732,
+   2272.2179031118026
+  ],
+  "equity_att": [
+   5844.422392746951,
+   6189.603109823171,
+   6554.455521630266,
+   6942.928506576919,
+   7353.315044302054
+  ],
+  "nci": [
+   972.4537069809534,
+   996.0627286963678,
+   1021.0812459291598,
+   1047.8043509961124,
+   1076.101359350671
+  ],
+  "kinan_bv": [
+   478.401,
+   522.5715200000001,
+   568.0671556000001,
+   614.9276602680001,
+   663.1939800760401
+  ]
+ },
+ "wacc": {
+  "rf_observed": 0.0553,
+  "rf_star_rating": 0.0502,
+  "rf_star_cds": 0.0455,
+  "erp_rating": 0.0501,
+  "erp_cds": 0.0572,
+  "sov_spread_rating": 0.0051,
+  "sov_spread_cds": 0.0098,
+  "beta": 1.087,
+  "ke_rating": 0.1046587,
+  "ke_cds": 0.1076764,
+  "kd_sar": 0.0574,
+  "kd_eg": 0.065,
+  "kd_other": 0.055,
+  "kd_loans": 0.05879489187528117,
+  "kd_lease": 0.0586,
+  "debt_w": {
+   "sa": 0.6633750879127146,
+   "eg": 0.22027916642906475,
+   "other": 0.11634574565822071
+  },
+  "we": 0.5648937512257042,
+  "wl": 0.14095729023667858,
+  "wlease": 0.2941489585376174,
+  "wacc_exp": 0.07966842721649163,
+  "wacc_exp_cds": 0.08137310708956545,
+  "tw_e": 0.65,
+  "tw_loans": 0.08,
+  "tw_lease": 0.26999999999999996,
+  "wacc_term": 0.0845512560367681,
+  "wacc_term_cds": 0.08651276103676811,
+  "ust10": 0.0468,
+  "ust1": 0.0398,
+  "sar1y": 0.047,
+  "ksa_spread": 0.0085,
+  "saibor3m": 0.0474,
+  "tax": 0.195
+ },
+ "dcf": {
+  "pv_explicit": 3293.377855657232,
+  "tv": 14929.871350572814,
+  "pv_tv": 10176.631717876291,
+  "ev": 13470.009573533524,
+  "tv_share": 0.7555029313321195,
+  "dfs": [
+   0.9262102834461077,
+   0.8578654891613192,
+   0.7945638378747393,
+   0.7359331974939894,
+   0.6816288954483084
+  ],
+  "fcff_term": 889.0925913939702,
+  "reinvest_term": 0.2380952380952381,
+  "g": 0.025,
+  "roic_term": 0.105,
+  "nonop": 1570.1259827085564,
+  "kinan_capitalized": 649.7309827085566,
+  "nci_val": 1026.7164,
+  "nci_herfy_mkt": 511.29540000000003,
+  "nci_other_book": 515.421,
+  "herfy_mktcap": 1002.5400000000001,
+  "eq_val": 7825.338156242079,
+  "ps_dec": 26.20772418355023,
+  "roll": 1.0647303544237021,
+  "ps": 26.204159458590066,
+  "ps_cds": 24.761012871433405,
+  "eq_cds": 7407.88199597031,
+  "ev_cds": 13052.553413261754,
+  "framingA": 26.204159458590066,
+  "framingB": 22.101280410250684,
+  "framing_gap": 4.102879048339382,
+  "bear": 15.01526430610723,
+  "bull": 32.289574340517525
+ },
+ "lenses": {
+  "dcf": {
+   "base": 26.204159458590066,
+   "bear": 15.01526430610723,
+   "bull": 32.289574340517525
+  },
+  "relative": {
+   "base": 30.902614525819423,
+   "bear": 27.039787710091993,
+   "bull": 34.765441341546854,
+   "eps_f": 2.4440536638579107,
+   "pe": 12.644,
+   "pe_mix": 15.805,
+   "pe_fp_leg": 12.7,
+   "pe_ret_leg": 19.6,
+   "pe_discount": 0.2,
+   "pe_ddm": 8.100602710712495
+  },
+  "normalized": {
+   "base": 36.39304315016321,
+   "bear": 31.843912756392804,
+   "bull": 40.94217354393361,
+   "eps_norm": 2.878285601879406,
+   "pe": 12.644
+  },
+  "book": {
+   "base": 20.26739697034573,
+   "bear": 17.496350314239844,
+   "bull": 23.038443626451613,
+   "bvps": 18.47364437403923,
+   "roe": 0.1123933947386407,
+   "pb": 1.0970979282694884
+  }
+ },
+ "weights": {
+  "dcf": 0.45,
+  "relative": 0.25,
+  "normalized": 0.15,
+  "book": 0.15
+ },
+ "central": 28.016591405896726,
+ "panel_centre": 28.553386992204743,
+ "experts": {
+  "e1": {
+   "base": 34.78902748197139,
+   "rng": [
+    28.55596199883811,
+    41.022092965104676
+   ],
+   "method_short": "segment sum-of-the-parts",
+   "detail": {
+    "fp_ev": 7728.234250750002,
+    "ret_ev": 7212.031571693947,
+    "frz_ev": 779.7120442300001,
+    "herfy_49": 491.24460000000005,
+    "unalloc": -845.0,
+    "ev": 14874.977866673948,
+    "eq": 10232.846449382505,
+    "ps_dec": 34.27067457067241,
+    "mults": {
+     "fp": 6.5,
+     "retail": 7.0,
+     "frozen": 7.0
+    }
+   }
+  },
+  "e2": {
+   "base": 18.22381274919042,
+   "rng": [
+    16.41255704471856,
+    21.136713207740527
+   ],
+   "method_short": "two-stage dividend model",
+   "detail": {
+    "dps": [
+     1.3442295151218508,
+     1.4129373255316082,
+     1.4934599919689098,
+     1.5901467064587083,
+     1.6798460295205073
+    ],
+    "pv_divs": 5.571811698528499,
+    "tv": 21.615243284895683,
+    "pv_tv": 13.140731497419377,
+    "ps_dec": 18.712543195947877
+   }
+  },
+  "e3": {
+   "base": 19.824044550376374,
+   "rng": [
+    19.938620969903138,
+    23.14228110429472
+   ],
+   "method_short": "residual income / economic profit",
+   "detail": {
+    "ic0": 10210.405999999999,
+    "ri": [
+     127.35511386367466,
+     154.0821501375268,
+     183.6051544702525,
+     222.26685459875682,
+     256.2793872702031
+    ],
+    "ic": [
+     10393.949820645164,
+     10661.986583268865,
+     10888.828776138427,
+     11073.30550181341,
+     11225.04427190055
+    ],
+    "pv_ri": 734.2863840711634,
+    "fade": 300.5846172626388,
+    "ev": 11245.277001333801,
+    "eq": 6036.122584042357,
+    "ps_dec": 20.21548879577733
+   }
+  }
+ },
+ "panel_median": 19.824044550376374,
+ "sens": {
+  "wacc_grid": [
+   0.06966842721649164,
+   0.07466842721649163,
+   0.07966842721649163,
+   0.08466842721649163,
+   0.08966842721649163
+  ],
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "grid": [
+   [
+    32.60066827857501,
+    34.12906335691822,
+    35.938046542254725,
+    38.122089281167895,
+    40.8234346745701
+   ],
+   [
+    28.251186697326148,
+    29.34990322322812,
+    30.625307225125947,
+    32.13088497868485,
+    33.9441338786374
+   ],
+   [
+    24.529486754342496,
+    25.312171480176318,
+    26.204159458590066,
+    27.23550588735214,
+    28.448396917176307
+   ],
+   [
+    21.30920193376321,
+    21.855951852742262,
+    22.467454814723155,
+    23.16002106586477,
+    23.955940639903282
+   ],
+   [
+    18.495737022565905,
+    18.864229167534397,
+    19.26761045893896,
+    19.713988209149257,
+    20.214192532003445
+   ]
+  ],
+  "beta_grid": {
+   "0.73": 37.11298353438931,
+   "0.9": 31.339953253690094,
+   "1.0": 28.459783717985378,
+   "1.087": 26.204159458590066,
+   "1.2": 23.56825030609248,
+   "1.44": 18.849300952502187
+  },
+  "rf_alts": {
+   "5.03%": 28.8103064409648,
+   "5.53% (base)": 26.204159458590066,
+   "6.03%": 23.860684269219192
+  }
+ },
+ "peers": {
+  "pe": {
+   "ALMARAI": 19.7,
+   "OTHAIM": 19.4,
+   "BINDAWOOD": 19.8,
+   "NADEC": 13.0,
+   "WILMAR": 12.4
+  },
+  "note": "cross-check only (market data 18-Aug-2026); the peer-mix multiple is computed from these quotes with the discount applied and disclosed"
+ },
+ "inputs": {
+  "spot": {
+   "value": 25.3,
+   "source": "Uploaded Tadawul daily price history for SAVOLA (2050), last close 18-Aug-2026",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "shares_issued_mn": {
+   "value": 300.0,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 16: share capital SAR 3bn = 300mn fully paid shares of SAR 10, after the 2024 rights issue (+600mn shares) and the capital reduction cancelling 833.98mn shares against the Almarai in-kind distribution",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "shares_wavg_mn": {
+   "value": 298.589,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 31: weighted-average shares outstanding net of 1.411mn treasury shares under the employee share plan",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "anchor_days": {
+   "value": 230.0,
+   "source": "31-Dec-2025 valuation date to the 18-Aug-2026 price anchor",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "div_between": {
+   "value": 1.7,
+   "source": "FY2025 dividend SAR 1.70/share (SAR 510mn, 17% of par), board-recommended 05-Mar-2026 (Official Saudi Exchange announcement, saudiexchange.sa anId 93503), EX-DATE 07-May-2026, paid during H1-2026 (H1 release: 524 incl. NCI). Its ex-date falls between the 31-Dec-2025 valuation date and the 18-Aug-2026 anchor, so every lens rolled to the anchor must be ex this dividend",
+   "date": "2026-05-07",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 24149.521,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 comparative (continuing, incl. T\u00fcrkiye)",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 23045.574,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative (continuing, ex-T\u00fcrkiye)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 26081.053,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "cogs_fy23": {
+   "value": 19103.682,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 comparative",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "cogs_fy24": {
+   "value": 18212.904,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "cogs_fy25": {
+   "value": 20992.159,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "sda_fy23": {
+   "value": 2931.087,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 comparative, selling & distribution",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "sda_fy24": {
+   "value": 2970.149,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "sda_fy25": {
+   "value": 3199.605,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 36",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "adm_fy23": {
+   "value": 869.798,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 comparative, administrative",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "adm_fy24": {
+   "value": 901.723,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "adm_fy25": {
+   "value": 820.208,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 37",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "oth_fy23": {
+   "value": -7.935,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 comparative, other operating (expense) net",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "oth_fy24": {
+   "value": 1.04,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "oth_fy25": {
+   "value": 91.832,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 38 (incl. a 69.5 reversal of accruals no longer required \u2014 stripped from the recurring base below)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 1064.59,
+   "source": "Audited consolidated FS FY2024, savola.com (KPMG, 10-Mar-2025), FY2023 segment note: continuing depreciation & amortisation",
+   "date": "2025-03-10",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 1099.866,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 segment note (continuing)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 1190.022,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), segment note 33 (continuing); cash-flow total incl. discontinued 1,198.4",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "dna_own_fy25": {
+   "value": 608.933,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6: depreciation for the year on owned PP&E",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "dna_int_fy25": {
+   "value": 48.936,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 8: amortisation of intangibles",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "assoc_fy25": {
+   "value": 51.775,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): share of results of equity-accounted investees (Kinan), net of zakat and tax",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "fin_income_fy25": {
+   "value": 205.247,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 41 (incl. one-off 49.7 put-settlement gain and 9.9 settlement discount)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "fin_cost_fy25": {
+   "value": 480.772,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 41: borrowings 231.9 + leases 219.4 + bank commission 14.2 + FX 9.5 + site-restoration unwind 5.8",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "pbt_fy25": {
+   "value": 861.708,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 131.049,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 29: continuing income-tax expense (foreign subsidiaries)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "zakat_rev_fy25": {
+   "value": -217.425,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 29: net zakat REVERSAL \u2014 ZATCA final assessment of 2024 released 247.3 of prior-year accruals",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "np_att_fy25": {
+   "value": 874.462,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): profit attributable to owners",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "np_att_fy24": {
+   "value": 9974.266,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), FY2024 comparative (incl. the 11,554.7 Almarai distribution gain)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "np_att_fy23": {
+   "value": 899.185,
+   "source": "Audited consolidated FS FY2023, savola.com (auditor's report 14-Mar-2024) (original basis)",
+   "date": "2024-03-14",
+   "ring": "Company"
+  },
+  "eps_fy25": {
+   "value": 2.93,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 31 (basic, total)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "recurring_np_fy25": {
+   "value": 539.1,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): reported-to-recurring bridge (874.4 less zakat/accrual reversals 300.0, T\u00fcrkiye gain 32.3, put gain 40.2, plus impairment 11.7 and other 32.7)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "recurring_np_fy24": {
+   "value": 295.5,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR), same bridge for FY2024",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 5486.067,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 5438.447,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 3416.863,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 1408.747,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026) (goodwill 956.3 gross in note 8)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "invprop_fy25": {
+   "value": 158.234,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "kinan_carry": {
+   "value": 435.517,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 10: Kinan 29.9%, equity method",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "kinan_share_na": {
+   "value": 600.925,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 10.2: Group's 29.9% share of Kinan's net assets",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "kinan_profit_share_h126": {
+   "value": 34.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL): share of results from equity-accounted investees H1-2026 (vs 18 in H1-2025), driven by Kinan",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "inv_nc_fy25": {
+   "value": 676.359,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 11: MOF sukuk at amortised cost 524.8 (matures 26-Aug-2027) + FVOCI 151.6 (incl. quoted Almarai residual 131.6)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "inv_c_fy25": {
+   "value": 85.802,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 11: FVTPL 32.3 (Almarai ESOP shares) + T-bills/term deposits 53.5",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "inventories_fy25": {
+   "value": 4680.559,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 12",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "inventories_fy24": {
+   "value": 4171.221,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "tr_fy25": {
+   "value": 1856.697,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "tr_fy24": {
+   "value": 1956.952,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "prepay_fy25": {
+   "value": 1346.504,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "tp_fy25": {
+   "value": 3915.807,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "tp_fy24": {
+   "value": 3679.328,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), comparative",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "accrued_fy25": {
+   "value": 2829.405,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "contract_fy25": {
+   "value": 151.99,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 904.137,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 15 (incl. <3-month deposits 306.7)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "loans_fy25": {
+   "value": 1893.924,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 21: all current \u2014 unsecured bank loans 1,823.8 + overdrafts 61.4 + accrued finance cost 8.7; zero long-term debt",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "loans_geo_sa": {
+   "value": 1256.382,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 21 geographical analysis: Saudi Arabia",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "loans_geo_eg": {
+   "value": 417.192,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 21: Egypt",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "loans_geo_other": {
+   "value": 220.35,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 21: Algeria 72.2 + UAE 148.2",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "leases_fy25": {
+   "value": 3952.231,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 23 (non-current 3,446.1 + current 506.1)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "lease_int_fy25": {
+   "value": 220.889,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 23: interest expense for the year",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "lease_open_fy25": {
+   "value": 3593.097,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 23: opening balance",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "eb_fy25": {
+   "value": 748.401,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): employee benefits liabilities (non-current)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "restor_fy25": {
+   "value": 164.946,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): provision against asset restoration",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "equity_att_fy25": {
+   "value": 5516.027,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "other_net_liab": {
+   "value": 332.716,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): accrued income tax 134.125 + accrued zakat 112.265 + deferred tax liability 110.893 less deferred tax asset 2.628 less other non-current assets 21.939 \u2014 the audited lines outside the working-capital day build, held flat and deducted in the bridge",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "nci_book_fy25": {
+   "value": 950.039,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 20",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "nci_herfy_book": {
+   "value": 434.618,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 20: carrying amount of the 51% Herfy NCI",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "herfy_price": {
+   "value": 15.5,
+   "source": "Herfy Food Services (Tadawul 6002) close 18-Aug-2026, market data (stockanalysis.com; cross-check quote \u2014 Herfy's own listing)",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "herfy_shares_mn": {
+   "value": 64.68,
+   "source": "Herfy shares outstanding, market data 18-Aug-2026",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "oil_vol_fy25": {
+   "value": 1322.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): oil volume FY2025 (Arabia 612 + other markets 710), k MT",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "oil_rev_fy25": {
+   "value": 7098.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): oil revenue FY2025",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "oil_gp_fy25": {
+   "value": 958.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): oil gross profit FY2025 (GP/ton 724)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "oil_ebitda_fy25": {
+   "value": 563.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): oil EBITDA FY2025",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "sug_vol_fy25": {
+   "value": 2162.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): sugar volume FY2025 (KSA 1,186 + Egypt 975; FY2024 comparative USCE-adjusted)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "sug_rev_fy25": {
+   "value": 4868.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): sugar revenue FY2025",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "sug_gp_fy25": {
+   "value": 413.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): sugar gross profit FY2025 (GP/ton 191)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "sug_ebitda_fy25": {
+   "value": 335.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): sugar EBITDA FY2025",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "pas_rev_fy25": {
+   "value": 545.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): pasta revenue FY2025 (+3.2% on 528)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "pas_gm_fy25": {
+   "value": 0.215,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): pasta gross margin FY2025 21.5%",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "pas_ebitda_mgn_fy25": {
+   "value": 0.135,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): pasta EBITDA margin FY2025 13.5%",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "fp_segrev_fy25": {
+   "value": 13279.85,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Food Processing segment revenue (incl. inter-segment 336.5)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "fp_cogs_fy25": {
+   "value": 11590.617,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Food Processing cost of revenues",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "ret_segrev_fy25": {
+   "value": 11327.912,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Retail segment revenue",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "ret_cogs_fy25": {
+   "value": 8435.273,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "fsv_segrev_fy25": {
+   "value": 1082.562,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Food Services (Herfy) segment revenue",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "frz_segrev_fy25": {
+   "value": 804.997,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Frozen Food segment revenue",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "elim_fy25": {
+   "value": -443.246,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: others / eliminations",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "invseg_rev_fy25": {
+   "value": 28.978,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 33: Investments segment revenue",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "h1_rev": {
+   "value": 13588.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_ebitda": {
+   "value": 1316.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL) (company basis: operating income before D&A, includes the 34 share of associates)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_np_att": {
+   "value": 401.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL) (incl. +41 Sudan disposal gain net; recurring 372)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_capex": {
+   "value": 385.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_netdebt": {
+   "value": 851.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL): net debt at 30-Jun-2026 (company definition: loans and overdrafts less cash; excludes leases and the 528 government sukuk)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_oil_vol": {
+   "value": 749.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): oil volume H1-2026 749k MT vs 645 (computed +16.1%)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_oil_rev": {
+   "value": 4172.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_oil_gp": {
+   "value": 571.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) (computed GP/ton 762)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_sug_vol": {
+   "value": 1038.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): sugar volume H1-2026 1,038k MT vs 968 (computed +7.2%)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_sug_rev": {
+   "value": 2113.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_sug_gp": {
+   "value": 226.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) (computed GP/ton 218)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_pas_vol": {
+   "value": 139.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): pasta volume H1-2026 139k MT vs 135 (computed +3.0%)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_pas_rev": {
+   "value": 292.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_pas_gp": {
+   "value": 73.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) (computed GP/ton 525)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_nuts_rev": {
+   "value": 337.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): Bayara UAE 278 + KSA 59",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_panda_rev": {
+   "value": 5902.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_panda_ebitda": {
+   "value": 524.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_panda_gm": {
+   "value": 0.232,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): Panda gross margin H1-2026 23.2% (presentation basis)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_herfy_rev": {
+   "value": 516.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_herfy_ebitda": {
+   "value": 96.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL) (18.7% margin)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_frz_rev": {
+   "value": 411.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_frz_ebitda": {
+   "value": 56.0,
+   "source": "Company H1-2026 earnings release, savola.com/en/news-media, 06-Aug-2026 (COMPANY_OFFICIAL) (13.7% margin)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_unalloc_cash": {
+   "value": 64.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): unallocated costs H1-2026, cash-based (Arabia 74 + Egypt 39 gross; 64 net cash per the net-income bridge)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "stores_end24": {
+   "value": 209.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR): Panda store network at Dec-2024 (227 at Dec-2025 after +20 openings and 2 closures)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "stores_end25": {
+   "value": 227.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR)",
+   "date": "2026-03-09",
+   "ring": "Company"
+  },
+  "stores_jun26": {
+   "value": 231.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): 231 stores at Jun-2026 (+6 opened, 2 closed in H1); 225 KSA + 6 Egypt; 170 super + 61 hyper; NSA 583k m2",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_panda_rev_h125": {
+   "value": 5852.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR): Panda H1-2025 revenue (restated comparative); computed sales-per-average-store change H1-26 vs H1-25 = -7.1%",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "oil_vol_g": {
+   "value": [
+    0.125,
+    0.04,
+    0.03,
+    0.025,
+    0.02
+   ],
+   "source": "FY2026E +12.5% = H1 actual +16.1% carried at a moderated +9% H2 (B2B wins annualise; Algeria record volumes); then fading to market growth. Mechanism: company-reported share gains and exports, not price",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "oil_rpt_g": {
+   "value": [
+    0.005,
+    0.015,
+    0.015,
+    0.01,
+    0.01
+   ],
+   "source": "revenue/ton: H1-2026 5,570 vs H1-2025 5,416 (+2.8% computed); FY26E +0.5% on the FY25 base then +1-1.5%/yr pass-through of the FAO veg-oil rise (Jul-2026 index highest since Jun-2022)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "oil_gpt_path": {
+   "value": [
+    740.0,
+    745.0,
+    745.0,
+    745.0,
+    745.0
+   ],
+   "source": "GP/ton: FY25 724, H1-2026 actual 762; FY26E 740 = H1 762 blended with a replacement-cost-squeezed H2 (company's own Q3/Q4 warning + FAO); held 745 after \u2014 the observed improvement is NOT projected further (no measured mechanism)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "sug_vol_g": {
+   "value": [
+    0.055,
+    0.025,
+    0.02,
+    0.02,
+    0.015
+   ],
+   "source": "FY2026E +5.5% = H1 actual +7.2% with +4% H2; then 1.5-2.5% (KSA demand + Egypt supply resilience per company disclosures)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "sug_rpt_g": {
+   "value": [
+    -0.075,
+    0.005,
+    0.005,
+    0.005,
+    0.005
+   ],
+   "source": "revenue/ton: H1-2026 2,036 vs FY25 2,252 computed (-9.6%); FY26E -7.5% on the FY25 base (soft world sugar, FAO -8% y/y; committed refined-sales book 1,044mn on 544k t = 1,918/t at Dec-25); flat-to-+0.5% after",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "sug_gpt_path": {
+   "value": [
+    215.0,
+    212.0,
+    212.0,
+    212.0,
+    212.0
+   ],
+   "source": "GP/ton: FY25 191, H1-2026 actual 218 (KSA margin recovery + Egypt); FY26E 215, then 212 \u2014 holds most of the measured gain without projecting more",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "pas_vol_fy25": {
+   "value": 268.0,
+   "source": "DERIVED (flagged): FY2025 pasta volume = disclosed revenue 545 / implied revenue-per-tonne 2,034 (H1-2026 2,101 and H1-2025 2,052 disclosed pairs; FY25 midpoint) \u2014 the presentation discloses H1 volumes but not the FY total",
+   "date": "2026-08-18",
+   "ring": "House/derived"
+  },
+  "pas_vol_g": {
+   "value": [
+    0.03,
+    0.03,
+    0.025,
+    0.02,
+    0.02
+   ],
+   "source": "H1-2026 actual +3.0% (computed) carried, wheat-cost tailwind supporting competitiveness",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "pas_rpt_g": {
+   "value": [
+    0.02,
+    0.01,
+    0.01,
+    0.01,
+    0.01
+   ],
+   "source": "revenue/ton +2% FY26E (H1-2026 2,101 vs H1-2025 2,052 = +2.4% computed), then +1%",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "pas_gpt_path": {
+   "value": [
+    520.0,
+    520.0,
+    520.0,
+    520.0,
+    520.0
+   ],
+   "source": "GP/ton: H1-2026 actual 525 (73/139); FY25 ~437 implied; held at 520 \u2014 the wheat/packaging tailwind the company names is retained, not amplified",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "nuts_rev_path": {
+   "value": [
+    730.0,
+    800.0,
+    848.0,
+    890.0,
+    926.0
+   ],
+   "source": "FY25 base 769 (residual of the four categories against the audited FP segment revenue); H1-2026 337 (-6.9% y/y computed) with the Mehbaj bolt-on from Jul-2026 (consideration undisclosed \u2014 dated negative search; modelled as a modest KSA revenue step +40 in H2-26E, +8.5% FY27E, then +5%) \u2014 flagged as the least-anchored revenue line",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "nuts_gm_path": {
+   "value": [
+    0.265,
+    0.27,
+    0.27,
+    0.27,
+    0.27
+   ],
+   "source": "FY25 residual category GM 26.1% (segment-note GP less the three disclosed categories); H1-2026 blended 29.9% disclosed; forward 26.5-27% \u2014 direction supported by the measured UAE margin and the Mehbaj/Jeddah integration, size capped",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "fp_opex_ratio": {
+   "value": {
+    "oil": 0.0556,
+    "sugar": 0.016,
+    "pasta": 0.079,
+    "nuts": 0.235
+   },
+   "source": "per-category (GP - EBITDA)/revenue measured FY2025: oil (958-563)/7,098; sugar (413-335)/4,868; pasta (21.5%-13.5%); nuts residual (201-20)/769 \u2014 held flat: opex scales with revenue, margins stay OUTPUTS",
+   "date": "2026-03-09",
+   "ring": "Company/derived"
+  },
+  "stores_path": {
+   "value": [
+    247.0,
+    267.0,
+    285.0,
+    300.0,
+    312.0
+   ],
+   "source": "company guidance 20+ stores/yr (Q2-2026 presentation 2026 target; AR2025); tapering to +12 by FY2030",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "sps_g_A": {
+   "value": [
+    -0.06,
+    -0.03,
+    -0.01,
+    0.0,
+    0.0
+   ],
+   "source": "FRAMING A sales-per-average-store path: measured H1-2026 density change -7.1% carried into FY26E, fading as CXR (149 stores done) and e-commerce (~2.5x) mature",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "sps_g_B": {
+   "value": [
+    -0.06,
+    -0.03,
+    -0.03,
+    -0.03,
+    -0.03
+   ],
+   "source": "FRAMING B: the measured erosion never fades \u2014 competition and small-format mix keep density falling 3%/yr",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "panda_gm": {
+   "value": 0.232,
+   "source": "Panda gross margin held at the H1-2026 actual 23.2% (presentation basis) \u2014 Q4 seasonality helps but promo intensity offsets; no uplift projected",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "panda_opex_ratio": {
+   "value": 0.143,
+   "source": "store opex / revenue = measured H1-2026 GM 23.2% less EBITDA margin 8.9%; held flat in Framing A until FY2028 then -10bp/yr of scale; flat forever in Framing B",
+   "date": "2026-08-06",
+   "ring": "Company/derived"
+  },
+  "herfy_rev_g": {
+   "value": [
+    -0.045,
+    0.0,
+    0.02,
+    0.02,
+    0.02
+   ],
+   "source": "H1-2026 actual -6.8%; FY26E -4.5% (softer H2 comps), stabilising then +2% \u2014 no turnaround projected beyond the company's own cost actions",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "herfy_ebitda_mgn": {
+   "value": 0.185,
+   "source": "H1-2026 actual 18.7% held at 18.5% (post-IFRS16 margin; the cost programme's gain retained, not extended)",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "frz_rev_g": {
+   "value": [
+    0.01,
+    0.035,
+    0.035,
+    0.03,
+    0.03
+   ],
+   "source": "H1-2026 -1.4% with a stronger Q2; FY26E +1% (H2 recovery per company), then 3-3.5% B2B/food-service growth",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "frz_ebitda_mgn": {
+   "value": 0.137,
+   "source": "H1-2026 actual 13.7% held",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "elim_ratio": {
+   "value": -0.0334,
+   "source": "eliminations / FP segment revenue measured FY2025 (-443.2 / 13,279.9); held proportional",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "unalloc_path": {
+   "value": [
+    130.0,
+    133.0,
+    136.0,
+    139.0,
+    142.0
+   ],
+   "source": "unallocated corporate costs: 2x the H1-2026 cash-based 64, growing ~2%/yr (Saudi CPI)",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "invseg_rev": {
+   "value": 29.0,
+   "source": "Investments segment rental/other revenue held at the FY2025 29.0",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "capex_path": {
+   "value": [
+    810.0,
+    900.0,
+    880.0,
+    860.0,
+    850.0
+   ],
+   "source": "FY26E 810 = H1 actual 385 + H2 at the FY25 H2 run-rate + Panda openings; FY27E 900 (new Jeddah nuts facility + refinery upgrades per AR2025 + 20 stores), easing to 850; FY25 actual was 858 (Panda 567, Foods 231) and capital commitments 425 stood at Dec-25",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "dep_rate_own": {
+   "value": 0.112,
+   "source": "owned-PP&E depreciation rate on opening NBV, measured FY2025: 608.9 / 5,438.4 opening",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "int_amort": {
+   "value": 50.0,
+   "source": "intangibles amortisation ~ FY2025 actual 48.9, held",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "rou_dna_fy25": {
+   "value": 532.153,
+   "source": "right-of-use depreciation FY2025 = segment D&A 1,190.0 less owned 608.9 less intangibles 48.9 (all audited components)",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "rou_growth": {
+   "value": [
+    0.05,
+    0.045,
+    0.04,
+    0.035,
+    0.03
+   ],
+   "source": "right-of-use charge grows with the Panda store network (leases are store-driven: Panda holds 2.9bn of the 3.7bn group lease book per the Q2-2026 presentation)",
+   "date": "2026-08-06",
+   "ring": "Company/House"
+  },
+  "lease_rate": {
+   "value": 0.0586,
+   "source": "effective lease interest rate = FY2025 interest 220.9 / average lease liability (3,593.1 + 3,952.2)/2",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "dio_fy25": {
+   "value": 81.4,
+   "source": "days inventory = 4,680.6 / 20,992.2 x 365 (FY2025 audited)",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "dso_fy25": {
+   "value": 26.0,
+   "source": "days sales = 1,856.7 / 26,081.1 x 365",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "dpo_fy25": {
+   "value": 68.1,
+   "source": "days payable = 3,915.8 / 20,992.2 x 365",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "prepay_ratio": {
+   "value": 0.0516,
+   "source": "prepayments & other receivables / revenue FY2025",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "accrued_ratio": {
+   "value": 0.1085,
+   "source": "accrued & other liabilities / revenue FY2025",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "contract_ratio": {
+   "value": 0.0058,
+   "source": "contract liabilities / revenue FY2025",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "tax_rate": {
+   "value": 0.195,
+   "source": "combined zakat + income tax on profit: FY2023 17.6% (228.5/1,299.0), FY2025 normalized ~18.7% (tax 131.0 + underlying zakat ~30 on PBT 861.7), Q1-2026 20.5% (70.0/341.6) -> 19.5% held flat and sensitized",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "payout": {
+   "value": 0.55,
+   "source": "stated dividend policy 'approximately 50% to 60% of net profit annually' (Official Saudi Exchange announcement, saudiexchange.sa anId 93503, 08-Mar-2026); midpoint 55% drives the forecast dividend and cash walk",
+   "date": "2026-03-08",
+   "ring": "Company"
+  },
+  "ust10": {
+   "value": 0.0468,
+   "source": "US 10Y constant maturity 4.68%, FRED DGS10, 14-Aug-2026",
+   "date": "2026-08-14",
+   "ring": "Global"
+  },
+  "ust1": {
+   "value": 0.0398,
+   "source": "US 1Y constant maturity 3.98%, FRED DGS1, 14-Aug-2026",
+   "date": "2026-08-14",
+   "ring": "Global"
+  },
+  "ksa_usd10_spread": {
+   "value": 0.0085,
+   "source": "Saudi sovereign USD 10Y new-issue spread +85bp over UST (USD 11.5bn 4-tranche jumbo, Jan-2026; Emirates NBD Research note 06-Jan-2026)",
+   "date": "2026-01-06",
+   "ring": "Country"
+  },
+  "sar_1y_obs": {
+   "value": 0.047,
+   "source": "observed 1Y SAR sovereign rate: NDMC 'Sah' savings sukuk fixed annual return 4.70%, Aug-2026 subscription (NDMC announcement via Arab News 02-Aug-2026)",
+   "date": "2026-08-02",
+   "ring": "Country"
+  },
+  "rf_observed": {
+   "value": 0.0553,
+   "source": "CONSTRUCTED 10Y SAR proxy (flagged; direct SAR 10Y quote inaccessible this session \u2014 investing.com/WGB/TradingEconomics/spglobal/cbonds all walled, NDMC publishes tranche sizes not yields): UST10Y 4.68% (FRED 14-Aug-2026) + 0.85% Saudi Jan-2026 USD 10Y new-issue spread = 5.53%, cross-checked against the observed 1Y SAR 4.70% = UST1Y + 72bp (the peg keeps the SAR curve near the sovereign USD curve); WACC sensitivity to +/-50bp is published",
+   "date": "2026-08-14",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0051,
+   "source": "Damodaran ctryprem.html (original file, 'last updated January 5, 2026'): Saudi Arabia Aa3, adjusted default spread 0.51%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.0501,
+   "source": "Damodaran same file: Saudi Arabia total ERP 5.01% (CRP 0.78%)",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "sov_spread_cds": {
+   "value": 0.0098,
+   "source": "Damodaran same file: Saudi sovereign CDS 0.98%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.0572,
+   "source": "Damodaran same file: ERP on the CDS basis 5.72%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "beta": {
+   "value": 1.087,
+   "source": "tier-1 own-stock beta: 5y weekly Dimson regression of SAVOLA vs TASI (engine registry copy of the exchange's published index, as-of 18-Aug-2026): beta 1.087, R2 0.159, n 254, SE 0.215, CI90 [0.73, 1.44]; produced by the sanctioned beta_regression.own_stock_beta() and attested by assert_beta_provenance(); Blume cross-check 1.058",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "saibor3m": {
+   "value": 0.0474,
+   "source": "3M SAIBOR 4.74% (Jun-2026, TradingEconomics market data \u2014 labelled cross-check level for the SAR marginal cost of debt)",
+   "date": "2026-06-30",
+   "ring": "Market"
+  },
+  "kd_sar": {
+   "value": 0.0574,
+   "source": "marginal SAR cost of debt = 3M SAIBOR 4.74% + ~100bp murabaha spread on Savola's sharia-compliant facilities (1.3bn of the book, note 21.1); sits above the 1Y sovereign 4.70% as it must",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kd_eg_localeq": {
+   "value": 0.065,
+   "source": "EGP tranche (417.2 of 1,893.9) at SAR-equivalent cost: under covered interest parity the 25-27% EGP nominal cost converts to the SAR rate + Egypt credit/liquidity spread; carried at 6.5% (SAR marginal + ~75bp) \u2014 NOT the raw EGP coupon, which would misstate a SAR-nominal WACC",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kd_other": {
+   "value": 0.055,
+   "source": "AED/DZD minor tranches (220.4) at ~5.5% local-equivalent",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.025,
+   "source": "terminal growth 2.5% = Saudi CPI 1.8% (GASTAT Jul-2026) + ~0.7% real staples growth; below nominal GDP",
+   "date": "2026-08-14",
+   "ring": "House"
+  },
+  "roic_term": {
+   "value": 0.105,
+   "source": "terminal ROIC 10.5%: above the 8.5% terminal WACC (brands, shelf position) but far below the current oil-cycle segment returns; drives terminal reinvestment = g / ROIC",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "tw_e": {
+   "value": 0.65,
+   "source": "terminal equity weight 65% (explicit-window market weights re-based to the model's own equity value; leases stay a structural 25-27% of capital for a leased-store retailer)",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "tw_loans": {
+   "value": 0.08,
+   "source": "terminal loans weight 8%",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "peer_pe": {
+   "value": {
+    "ALMARAI": 19.7,
+    "OTHAIM": 19.4,
+    "BINDAWOOD": 19.8,
+    "NADEC": 13.0,
+    "WILMAR": 12.4
+   },
+   "source": "TTM P/E, market data 18-Aug-2026 (stockanalysis.com): Almarai 19.7, Al Othaim 19.4, BinDawood 19.8, NADEC 13.0, Wilmar (international analogue) 12.4; cross-check only, never a build source",
+   "date": "2026-08-18",
+   "ring": "Market"
+  },
+  "pe_mix_w_fp": {
+   "value": 0.55,
+   "source": "EBITDA-mix weight of the processing/frozen leg for the peer-mix multiple: FY2025 category EBITDA (oil 563 + sugar 335 + pasta ~74 + nuts ~20 + Kabeer ~110) over the group total ex-unallocated",
+   "date": "2026-03-09",
+   "ring": "Company/derived"
+  },
+  "pe_discount": {
+   "value": 0.2,
+   "source": "conglomerate / EM-mix discount applied to the peer-mix P/E: ~21% of revenue is Egypt (Caa1 sovereign) and the group stacks a holding level over four operating legs; 20% base, published undiscounted alongside and sensitized 10-30%",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "norm_ebitda_mgn": {
+   "value": 0.092,
+   "source": "normalized mid-cycle operating EBITDA margin 9.2% (ex-associates): inside the observed FY2023-FY2025 envelope 8.9%-9.5% (computed on the model's own basis) and between FY2025's 9.0% and the H1-2026 ~9.4% restated level",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "nci_share": {
+   "value": 0.07,
+   "source": "non-controlling interests' share of group profit, measured FY2025: 66.0 / 940.5 (audited P&L); held flat \u2014 Herfy's 51% NCI absorbs its losses, SFC/GFC minorities take their profit shares",
+   "date": "2026-03-05",
+   "ring": "Company/derived"
+  },
+  "kinan_g": {
+   "value": 0.03,
+   "source": "growth on Kinan's contribution off the annualized H1-2026 actual (34 x 2): ~3%/yr with Saudi real estate; falsified by Kinan's own results",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "kinan_div": {
+   "value": 25.116,
+   "source": "cash dividend received from Kinan FY2025 (note 10.1); grows with kinan_g in the cash walk \u2014 the share of profit itself is non-cash",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "panda_scale_step": {
+   "value": 0.001,
+   "source": "Framing A store-opex scale gain: -10bp/yr from FY2028 as CXR conversions and e-commerce density mature; ZERO in Framing B",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "rec_g_fy26": {
+   "value": 0.15,
+   "source": "recurring-earnings step FY2025 -> FY2026E for the sustainable-ROE lens: H1-2026 recurring +40% y/y moderated to +15% for the full year (H2 replacement-cost squeeze); feeds roe_sust only",
+   "date": "2026-08-18",
+   "ring": "House"
+  }
+ },
+ "step0": {
+  "windows_scored": 44,
+  "windows_prebreak_dropped": 14,
+  "first_origin": "2015-07-22",
+  "last_origin": "2026-04-28",
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "skill_norm": 0.0015724121515575673,
+  "skill_raw": 0.0011517496650068626,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.009396250452636234,
+    0.010761164942359052,
+    "PARITY"
+   ],
+   "3": [
+    -0.008406959860904338,
+    0.011157959388095705,
+    "PARITY"
+   ],
+   "4": [
+    -0.00901340172557601,
+    0.011993661429648028,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5,
+  "cov80": 0.8181818181818182,
+  "cov90": 0.8863636363636364,
+  "pit_mean": 0.4667636363636363,
+  "pit_hist": [
+   4,
+   5,
+   7,
+   3,
+   5,
+   4,
+   5,
+   4,
+   3,
+   4
+  ],
+  "w90_ratio": 1.1117171001767252,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": -0.002,
+   "ci90": [
+    -0.009,
+    0.004
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 11,
+   "windows": 392
+  },
+  "dq_log": [
+   "dropped 2 interior stale/no-trade rows"
+  ],
+  "clean_rows": 3896,
+  "density_rows_per_yr": 249.30168185003504,
+  "span_years": 15.627652292950033
+ },
+ "backtest": {
+  "full": {
+   "label": "FULL cleaned history",
+   "windows": 58,
+   "first_origin": "2012-01-17",
+   "last_origin": "2026-04-28",
+   "span_years": 14.28,
+   "skill_norm": 0.003952314108148669,
+   "skill_raw": 0.0026381794996781505,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0066,
+     0.0148,
+     "PARITY"
+    ],
+    "3": [
+     -0.0051,
+     0.0135,
+     "PARITY"
+    ],
+    "4": [
+     -0.0068,
+     0.0145,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5172413793103449,
+   "cov80": 0.8448275862068966,
+   "cov90": 0.9137931034482759,
+   "pit_mean": 0.5111482758620689,
+   "pit_hist": [
+    4,
+    5,
+    9,
+    4,
+    5,
+    8,
+    5,
+    6,
+    7,
+    5
+   ],
+   "chi2": 4.41,
+   "chi2_p": 0.882,
+   "ks_stat": 0.061,
+   "ks_p": 0.972,
+   "width_vs_benchmark": 1.1541994463745084
+  },
+  "five_year": {
+   "label": "LAST FIVE YEARS of origins",
+   "windows": 19,
+   "first_origin": "2021-10-26",
+   "last_origin": "2026-04-28",
+   "span_years": 4.5,
+   "skill_norm": 0.008662946267877447,
+   "skill_raw": 0.009590796959708658,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.01,
+     0.0203,
+     "PARITY"
+    ],
+    "3": [
+     -0.0076,
+     0.0205,
+     "PARITY"
+    ],
+    "4": [
+     -0.0076,
+     0.0209,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5263157894736842,
+   "cov80": 0.7894736842105263,
+   "cov90": 0.8421052631578947,
+   "pit_mean": 0.4681,
+   "pit_hist": [
+    1,
+    2,
+    4,
+    1,
+    4,
+    0,
+    3,
+    1,
+    0,
+    3
+   ],
+   "chi2": 11.0,
+   "chi2_p": 0.276,
+   "ks_stat": 0.162,
+   "ks_p": 0.642,
+   "width_vs_benchmark": 1.1484853858069213
+  },
+  "production": {
+   "label": "production window set (post-break origins)",
+   "windows": 44,
+   "first_origin": "2015-07-22",
+   "last_origin": "2026-04-28",
+   "span_years": 10.77,
+   "skill_norm": 0.0015724121515575673,
+   "skill_raw": 0.0011517496650068626,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0094,
+     0.0108,
+     "PARITY"
+    ],
+    "3": [
+     -0.0084,
+     0.0112,
+     "PARITY"
+    ],
+    "4": [
+     -0.009,
+     0.012,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5,
+   "cov80": 0.8181818181818182,
+   "cov90": 0.8863636363636364,
+   "pit_mean": 0.4667636363636363,
+   "pit_hist": [
+    4,
+    5,
+    7,
+    3,
+    5,
+    4,
+    5,
+    4,
+    3,
+    4
+   ],
+   "chi2": 2.82,
+   "chi2_p": 0.971,
+   "ks_stat": 0.103,
+   "ks_p": 0.695,
+   "width_vs_benchmark": 1.1117171001767252
+  },
+  "fit": {
+   "nu": 12.0,
+   "width_cal": 1.07,
+   "market_verdict": "PARITY",
+   "market_skill": -0.002,
+   "market_ci90": [
+    -0.009,
+    0.004
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 11
+  }
+ },
+ "strike": {
+  "anchor_date": "2026-08-18",
+  "spot": 25.3,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "width_overlay_mult": 1.0,
+  "rf_carry": 0.04,
+  "q_annual": 0.0,
+  "horizons": {
+   "1M": {
+    "h": 22,
+    "target_date": "2026-09-18",
+    "grade_date": "2026-09-20",
+    "basis": "projected",
+    "anchor_vol_ann": 0.29525971603847584,
+    "sigma_h": 0.09334671635772851,
+    "drift_log_h": 0.003268392762773441,
+    "pct": {
+     "p5": 21.840810466856937,
+     "p25": 23.945622869683962,
+     "p50": 25.37401893320617,
+     "p75": 26.912353295370405,
+     "p95": 29.53151427244975
+    },
+    "p_above": 0.51338,
+    "p_up5": 0.29966,
+    "p_dn5": 0.26374,
+    "p_up10": 0.14782,
+    "p_dn10": 0.11082,
+    "touch_up5": 0.5127,
+    "touch_dn5": 0.46816,
+    "touch_up10": 0.24578,
+    "touch_dn10": 0.18592,
+    "touch_up15": 0.1063,
+    "touch_dn15": 0.05726,
+    "touch_up20": 0.04456,
+    "touch_dn20": 0.01508
+   },
+   "3M": {
+    "h": 62,
+    "target_date": "2026-11-18",
+    "grade_date": "2026-11-18",
+    "basis": "projected",
+    "anchor_vol_ann": 0.3009188310147858,
+    "sigma_h": 0.15970875275802887,
+    "drift_log_h": 0.009805178288320324,
+    "pct": {
+     "p5": 19.734252203024273,
+     "p25": 23.122221393983956,
+     "p50": 25.582424269898205,
+     "p75": 28.27699995429274,
+     "p95": 33.138754979775655
+    },
+    "p_above": 0.52996,
+    "p_up5": 0.3993,
+    "p_dn5": 0.34004,
+    "p_up10": 0.28378,
+    "p_dn10": 0.21882,
+    "touch_up5": 0.70976,
+    "touch_dn5": 0.657,
+    "touch_up10": 0.50386,
+    "touch_dn10": 0.414,
+    "touch_up15": 0.34024,
+    "touch_dn15": 0.2364,
+    "touch_up20": 0.2227,
+    "touch_dn20": 0.11868
+   }
+  }
+ },
+ "beta": {
+  "ticker": "SAVOLA",
+  "market": "SA",
+  "exchange": "TADAWUL",
+  "beta": 1.087181147285664,
+  "r2": 0.15934424366702427,
+  "se": 0.2147618720596732,
+  "n": 254,
+  "ci90": [
+   0.7338978677475017,
+   1.4404644268238265
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 4.94,
+  "first_obs": "2021-09-02",
+  "last_obs": "2026-08-13",
+  "blume_crosscheck": 1.0581207648571094,
+  "index_file": "raw_indices/SA/TASI.csv",
+  "index_asof": "2026-08-18",
+  "index_dq": [
+   "dropped 7 interior stale/no-trade rows"
+  ],
+  "stock_dq": [
+   "dropped 2 interior stale/no-trade rows"
+  ],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "tech": {
+  "state": {
+   "market": "SA",
+   "series": "SAVOLA",
+   "close": 25.3,
+   "data_date": "2026-08-18",
+   "computed_on": "2026-08-18",
+   "sessions": 3896,
+   "rows_in": 3898,
+   "repairs": [
+    "dropped 2 interior stale/no-trade rows"
+   ],
+   "ma": {
+    "20": 25.970999999999997,
+    "50": 27.3884,
+    "200": 25.42125
+   },
+   "ma_slope": {
+    "20": "falling",
+    "50": "falling",
+    "200": "flat"
+   },
+   "rsi": 39.004507171555815,
+   "atr": 0.6633578918945069,
+   "macd": {
+    "macd": -0.4152660079808328,
+    "signal": -0.4221529855019356,
+    "hist": 0.006886977521102788
+   },
+   "ma_cross": {
+    "ago": 82,
+    "kind": "golden"
+   },
+   "atr_pct": 0.026219679521522012,
+   "hi_52w": 30.3,
+   "lo_52w": 20.45,
+   "pct_off_high": 0.16501650165016502,
+   "pct_off_low": 0.23716381418092916,
+   "levels": {
+    "res": [
+     26.29,
+     27.19,
+     27.98
+    ],
+    "sup": [
+     24.9,
+     24.33,
+     22.59
+    ]
+   },
+   "level_detail": {
+    "res": [
+     {
+      "level": 26.285586203838278,
+      "score": 7.856466562715594,
+      "kind": "swing",
+      "touches": 4
+     },
+     {
+      "level": 27.19217617210685,
+      "score": 6.008393846196713,
+      "kind": "swing",
+      "touches": 3
+     },
+     {
+      "level": 27.979163649944834,
+      "score": 6.764602832178415,
+      "kind": "swing",
+      "touches": 5
+     }
+    ],
+    "sup": [
+     {
+      "level": 24.904682225747212,
+      "score": 13.663442270664865,
+      "kind": "swing",
+      "touches": 5
+     },
+     {
+      "level": 24.33460722837937,
+      "score": 4.711489031478444,
+      "kind": "swing",
+      "touches": 3
+     },
+     {
+      "level": 22.591856502804962,
+      "score": 1.6677565007177528,
+      "kind": "swing",
+      "touches": 2
+     }
+    ]
+   },
+   "tech": {
+    "trend": "Trading below the whole moving-average stack, under a flat 200-day",
+    "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+    "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
+    "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
+   }
+  },
+  "narrative": {
+   "trend": "Trading below the whole moving-average stack, under a flat 200-day",
+   "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+   "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
+   "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
+  }
+ }
+}
