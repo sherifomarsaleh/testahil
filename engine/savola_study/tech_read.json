@@ -2,40 +2,40 @@
  "state": {
   "market": "SA",
   "series": "SAVOLA",
-  "close": 25.3,
+  "close": 25.4,
   "data_date": "2026-08-18",
-  "computed_on": "2026-08-18",
+  "computed_on": "2026-08-19",
   "sessions": 3896,
   "rows_in": 3898,
   "repairs": [
    "dropped 2 interior stale/no-trade rows"
   ],
   "ma": {
-   "20": 25.970999999999997,
-   "50": 27.3884,
-   "200": 25.42125
+   "20": 25.976,
+   "50": 27.390400000000003,
+   "200": 25.421750000000003
   },
   "ma_slope": {
    "20": "falling",
    "50": "falling",
    "200": "flat"
   },
-  "rsi": 39.004507171555815,
-  "atr": 0.6633578918945069,
+  "rsi": 39.82672022224735,
+  "atr": 0.6662150347516497,
   "macd": {
-   "macd": -0.4152660079808328,
-   "signal": -0.4221529855019356,
-   "hist": 0.006886977521102788
+   "macd": -0.4072888000036272,
+   "signal": -0.42055754390649447,
+   "hist": 0.013268743902867253
   },
   "ma_cross": {
    "ago": 82,
    "kind": "golden"
   },
-  "atr_pct": 0.026219679521522012,
+  "atr_pct": 0.026228938376049202,
   "hi_52w": 30.3,
   "lo_52w": 20.45,
-  "pct_off_high": 0.16501650165016502,
-  "pct_off_low": 0.23716381418092916,
+  "pct_off_high": 0.16171617161716179,
+  "pct_off_low": 0.24205378973105132,
   "levels": {
    "res": [
     26.29,
@@ -52,19 +52,19 @@
    "res": [
     {
      "level": 26.285586203838278,
-     "score": 7.856466562715594,
+     "score": 8.057484900444503,
      "kind": "swing",
      "touches": 4
     },
     {
      "level": 27.19217617210685,
-     "score": 6.008393846196713,
+     "score": 6.138402503565157,
      "kind": "swing",
      "touches": 3
     },
     {
      "level": 27.979163649944834,
-     "score": 6.764602832178415,
+     "score": 6.894612096631072,
      "kind": "swing",
      "touches": 5
     }
@@ -72,19 +72,19 @@
    "sup": [
     {
      "level": 24.904682225747212,
-     "score": 13.663442270664865,
+     "score": 13.296990400171813,
      "kind": "swing",
      "touches": 5
     },
     {
      "level": 24.33460722837937,
-     "score": 4.711489031478444,
+     "score": 4.604619004596416,
      "kind": "swing",
      "touches": 3
     },
     {
      "level": 22.591856502804962,
-     "score": 1.6677565007177528,
+     "score": 1.6428659432823804,
      "kind": "swing",
      "touches": 2
     }
@@ -92,14 +92,14 @@
   },
   "tech": {
    "trend": "Trading below the whole moving-average stack, under a flat 200-day",
-   "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+   "summary": "The price closed 25.40 below a falling 20-day (25.98), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~40 and the daily ATR near 0.67 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.41 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 16% below that high and 24% above that low.",
    "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
    "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
   }
  },
  "narrative": {
   "trend": "Trading below the whole moving-average stack, under a flat 200-day",
-  "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+  "summary": "The price closed 25.40 below a falling 20-day (25.98), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~40 and the daily ATR near 0.67 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.41 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 16% below that high and 24% above that low.",
   "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
   "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
  }

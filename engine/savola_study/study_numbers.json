@@ -5,17 +5,39 @@
   "code": "2050",
   "market": "SA",
   "currency": "SAR",
-  "spot": 25.3,
+  "spot": 25.4,
   "spot_date": "2026-08-18",
   "shares_mn": 300.0,
+  "shares_val_mn": 296.682,
   "shares_wavg_mn": 298.589,
-  "mktcap": 7590.0,
+  "mktcap": 7620.0,
   "valuation_date": "2025-12-31",
   "anchor_date": "2026-08-18",
   "anchor_days": 230.0,
   "div_between": 1.7,
-  "study_date": "2026-08-18",
-  "build": "SAVOLA_Valuation_Study_18-08-2026"
+  "study_date": "2026-08-19",
+  "build": "SAVOLA_Valuation_Study_19-08-2026",
+  "edition": 2,
+  "first_edition": "SAVOLA_Valuation_Study_18-08-2026"
+ },
+ "edition1": {
+  "central": 28.016591405896726,
+  "dcf": 26.204159458590066,
+  "spot": 25.3,
+  "rel": 30.902614525819423,
+  "norm": 36.39304315016321,
+  "book": 20.26739697034573,
+  "wacc_exp": 0.07966842721649163,
+  "wacc_term": 0.0845512560367681,
+  "panel_median": 19.824044550376374,
+  "e1": 34.78902748197139,
+  "e2": 18.22381274919042,
+  "e3": 19.824044550376374,
+  "framingB": 22.101280410250684,
+  "bear": 15.01526430610723,
+  "bull": 32.289574340517525,
+  "roic_term": 0.105,
+  "shares": 298.589
  },
  "hist_is": {
   "FY23": {
@@ -69,6 +91,7 @@
    "kinan": 435.517,
    "inv_nc": 676.359,
    "inv_c": 85.802,
+   "tiryaki_recv": 274.619,
    "inventories": 4680.559,
    "tr": 1856.697,
    "prepay": 1346.504,
@@ -82,7 +105,7 @@
    "contract": 151.99,
    "equity_att": 5516.027,
    "nci": 950.039,
-   "nwc": 986.5580000000002,
+   "nwc": 711.9389999999996,
    "total_assets": 20480.053,
    "total_liab": 14013.987
   },
@@ -104,6 +127,13 @@
    "equity_att": 8397.145,
    "total_assets": 29937.138,
    "note": "per FY2024 FS comparative; pre-restructuring balance sheet"
+  },
+  "JUN26": {
+   "loans": 2664.518,
+   "leases": 3716.808,
+   "cash": 1051.382,
+   "equity_att": 5360.505,
+   "note": "Q2-2026 reviewed interims \u2014 WACC-weight debt legs and the book-lens base; the bridge stays dated 31-Dec-2025"
   }
  },
  "segments_fy25": {
@@ -124,7 +154,8 @@
    "rev": 804.997
   },
   "investments": {
-   "rev": 28.978
+   "rev": 28.978,
+   "note": "inter-segment rent; external Investments revenue is zero (segment note 33) \u2014 eliminated inside the (443.2)"
   },
   "elim": -443.246,
   "categories": {
@@ -141,9 +172,10 @@
     "ebitda": 335.0
    },
    "pasta": {
-    "vol": 268.0,
+    "vol": 263.0,
     "rev": 545.0,
-    "gp": 117.175
+    "gp": 117.175,
+    "gpt": 445.5323193916349
    },
    "nuts": {
     "rev": 768.8500000000004,
@@ -157,6 +189,8 @@
   "ebitda_company": 1316.0,
   "np_att": 401.0,
   "recurring_np": 372.0,
+  "recurring_np_h125": 266.0,
+  "ttm_recurring": 645.1,
   "capex": 385.0,
   "netdebt": 851.0,
   "oil": {
@@ -181,7 +215,9 @@
   "panda": {
    "rev": 5902.0,
    "ebitda": 524.0,
-   "sps_change": -0.07073012025896419
+   "sps_change": -0.07073012025896419,
+   "sps_change_lo": -0.05971981362696133,
+   "sps_note": "range over the undisclosed Jun-2025 store count: -7.1% on the 213 assumption, -6.0% interpolated"
   },
   "herfy": {
    "rev": 516.0,
@@ -209,18 +245,18 @@
    32131.466377170083
   ],
   "ebitda": [
-   2391.898416267707,
-   2484.711487889531,
-   2595.8258789884103,
-   2707.123358227753,
-   2801.622562605602
+   2391.2881096877068,
+   2484.020841309531,
+   2595.1076277768097,
+   2706.3907419919215,
+   2800.8752940450536
   ],
   "ebitda_margin": [
-   0.08839147027533073,
-   0.08764834184248242,
-   0.08732567329901764,
-   0.08724483200478664,
-   0.08719249005691813
+   0.08836891668544662,
+   0.08762397924431711,
+   0.08730151074976557,
+   0.08722122134063835,
+   0.08716923346004277
   ],
   "dna": [
    1223.200154,
@@ -250,19 +286,33 @@
    628.5152120247,
    647.3706683854409
   ],
+  "dlease": [
+   197.61155000000002,
+   186.74291475,
+   173.46341859,
+   157.85171091690003,
+   140.037017827707
+  ],
+  "lease_add": [
+   756.3722,
+   770.647794,
+   780.7244930100001,
+   786.3669229416,
+   787.4076862131479
+  ],
   "ebit": [
-   1168.698262267707,
-   1220.064329087531,
-   1283.2656603262342,
-   1353.742506116001,
-   1414.2512058228585
+   1168.0879556877067,
+   1219.3736825075312,
+   1282.5474091146336,
+   1353.0098898801693,
+   1413.50393726231
   ],
   "nopat": [
-   940.802101125504,
-   982.1517849154624,
-   1033.0288565626183,
-   1089.7627174233808,
-   1138.472220687401
+   940.3108043286038,
+   981.5958144185626,
+   1032.45066433728,
+   1089.1729613535363,
+   1137.8706694961595
   ],
   "capex": [
    810.0,
@@ -272,25 +322,40 @@
    850.0
   ],
   "dwc": [
-   37.98332464516534,
-   48.77904217570017,
-   52.14133711173872,
-   49.34236576203398,
-   41.73945848444305
+   28.46932750663666,
+   35.251295546515394,
+   37.681135232133784,
+   35.65839427876642,
+   30.163978654742664
   ],
   "nwc": [
-   1024.5413246451656,
-   1073.3203668208657,
-   1125.4617039326045,
-   1174.8040696946384,
-   1216.5435281790815
+   740.4083275066363,
+   775.6596230531517,
+   813.3407582852855,
+   848.9991525640519,
+   879.1631312187945
   ],
   "fcff": [
-   757.2582804803388,
-   714.1150222917622,
-   806.1866636930555,
-   905.2859917483989,
-   986.7334506002608
+   568.6694308219672,
+   540.343883674047,
+   646.6052547573222,
+   760.5284962449219,
+   857.6703614110122
+  ],
+  "ic0": 9777.552999999998,
+  "ic_path": [
+   10149.194373506634,
+   10590.44630425115,
+   10976.291713831106,
+   11304.93617893972,
+   11585.136487024867
+  ],
+  "roic_path": [
+   0.0961703612681623,
+   0.09671662383182959,
+   0.0974888720150387,
+   0.09922959317681775,
+   0.10065255137096045
   ],
   "fp_rev": [
    14078.31275,
@@ -300,18 +365,18 @@
    16271.585515570185
   ],
   "fp_gp": [
-   1927.95145,
-   2011.810067,
-   2072.94871646,
-   2127.1029454842,
-   2171.9806760467977
+   1925.27345,
+   2009.051727,
+   2070.12141796,
+   2124.2191010142,
+   2169.039154687398
   ],
   "fp_eb": [
-   1188.9591155000003,
-   1227.4463405739,
-   1252.2736139172296,
-   1275.7143573270262,
-   1293.5695538229368
+   1186.2811155000002,
+   1224.6880005739001,
+   1249.4463154172295,
+   1272.8305128570262,
+   1290.628032463537
   ],
   "oil": {
    "vol": [
@@ -389,32 +454,32 @@
   },
   "pasta": {
    "vol": [
-    276.04,
-    284.32120000000003,
-    291.42923,
-    297.2578146,
-    303.202970892
+    270.89,
+    279.0167,
+    285.9921175,
+    291.71195985,
+    297.546199047
    ],
    "rev": [
-    572.5770000000001,
-    595.6518531000002,
-    616.6485809217752,
-    635.2713680656128,
-    654.4565633811942
+    572.5769999999999,
+    595.6518530999999,
+    616.648580921775,
+    635.2713680656126,
+    654.456563381194
    ],
    "gp": [
-    143.54080000000002,
-    147.847024,
-    151.5431996,
-    154.57406359200002,
-    157.66554486384
+    140.8628,
+    145.088684,
+    148.71590110000002,
+    151.690219122,
+    154.72402350444
    ],
    "eb": [
-    98.30721700000001,
-    100.79052760509998,
-    102.82796170717977,
-    104.3876255148166,
-    105.96347635672566
+    95.62921700000001,
+    98.0321876051,
+    100.0006632071798,
+    101.5037810448166,
+    103.02195499732568
    ],
    "gpt": [
     520.0,
@@ -500,11 +565,11 @@
     1097.12639942568
    ],
    "eb": [
-    191.26164134999996,
-    191.26164134999996,
-    195.08687417699997,
-    198.98861166054,
-    202.96838389375077
+    193.32933476999997,
+    193.32933476999997,
+    197.19592146539998,
+    201.139839894708,
+    205.16263669260215
    ]
   },
   "frozen": {
@@ -538,53 +603,53 @@
    142.0
   ],
   "np": [
-   729.7675394376697,
-   767.068260169377,
-   810.7831373490995,
-   863.2732998814531,
-   911.970083833634
+   729.3106334165525,
+   766.9602518867175,
+   811.247610511073,
+   864.3734029796547,
+   913.6849725378538
   ],
   "np_nci": [
-   49.81045995767407,
-   52.464492700920864,
-   55.59670496176019,
-   59.384677926561,
-   62.882240787907946
+   49.77606918189105,
+   52.45636304523681,
+   55.63166530728508,
+   59.46748138556542,
+   63.01131843231159
   ],
   "eps": [
-   2.4440536638579107,
-   2.568976955512015,
-   2.715381803579836,
-   2.891175829924924,
-   3.054265508219104
+   2.458223395475804,
+   2.5851256627861394,
+   2.734401178740446,
+   2.9134676285708423,
+   3.079677811723845
   ],
   "div": [
-   401.37214669071835,
-   421.8875430931574,
-   445.9307255420048,
-   474.80031493479925,
-   501.58354610849875
+   401.1208483791039,
+   421.82813853769466,
+   446.1861857810902,
+   475.4053716388101,
+   502.52673489581963
   ],
   "div_nci": [
-   27.39575297672074,
-   28.85547098550648,
-   30.578187728968107,
-   32.66157285960855,
-   34.585232433349375
+   27.37683805004008,
+   28.85099967488025,
+   30.5974159190068,
+   32.70711476206098,
+   34.65622513777138
   ],
   "netdebt": [
-   779.6027209172611,
-   723.0202647493269,
-   605.4871641790031,
-   421.6283045083784,
-   182.94984832386456
+   770.3098073373372,
+   700.2518666124735,
+   568.0338190841702,
+   369.9586799795346,
+   118.87495910843985
   ],
   "netfin": [
    -284.75043693187604,
-   -289.0174311120054,
-   -296.63380652392385,
-   -299.8884169134991,
-   -298.32856539858255
+   -288.4710552628674,
+   -295.2951410172942,
+   -297.68635153828086,
+   -295.29065541117285
   ],
   "kinan": [
    68.0,
@@ -622,32 +687,32 @@
    4807.937612084607
   ],
   "cash": [
-   1028.5192790827389,
-   1085.101735250673,
-   1202.6348358209968,
-   1386.4936954916216,
-   1625.1721516761354
+   1037.8121926626627,
+   1107.8701333875265,
+   1240.0881809158298,
+   1438.1633200204653,
+   1689.2470408915601
   ],
   "cfo": [
-   1921.9108287501786,
-   1991.2303494965977,
-   2081.303088261297,
-   2179.835959489732,
-   2272.2179031118026
+   1930.933529091807,
+   2004.641958187439,
+   2096.2627236484004,
+   2194.702837530206,
+   2285.6373492901266
   ],
   "equity_att": [
-   5844.422392746951,
-   6189.603109823171,
-   6554.455521630266,
-   6942.928506576919,
-   7353.315044302054
+   5844.216785037448,
+   6189.348898386471,
+   6554.410323116454,
+   6943.378354457298,
+   7354.536592099333
   ],
   "nci": [
-   972.4537069809534,
-   996.0627286963678,
-   1021.0812459291598,
-   1047.8043509961124,
-   1076.101359350671
+   972.438231131851,
+   996.0435945022076,
+   1021.0778438904858,
+   1047.8382105139904,
+   1076.1933038085306
   ],
   "kinan_bv": [
    478.401,
@@ -658,16 +723,17 @@
   ]
  },
  "wacc": {
-  "rf_observed": 0.0553,
-  "rf_star_rating": 0.0502,
-  "rf_star_cds": 0.0455,
-  "erp_rating": 0.0501,
+  "rf_observed": 0.0552,
+  "rf_star_rating": 0.0504,
+  "rf_star_cds": 0.045399999999999996,
+  "erp_rating": 0.0494,
   "erp_cds": 0.0572,
-  "sov_spread_rating": 0.0051,
+  "sov_spread_rating": 0.0048,
   "sov_spread_cds": 0.0098,
+  "rf_source": "FTSE SAGBI factsheet 31-Jul-2026, 7-10y YTM 5.52% (iBoxx SAR sukuk 5.44% @6.07y corroborates); Damodaran July-2026 rating legs, January-2026 CDS legs (flagged)",
   "beta": 1.087,
-  "ke_rating": 0.1046587,
-  "ke_cds": 0.1076764,
+  "ke_rating": 0.10409779999999999,
+  "ke_cds": 0.10757639999999999,
   "kd_sar": 0.0574,
   "kd_eg": 0.065,
   "kd_other": 0.055,
@@ -678,16 +744,22 @@
    "eg": 0.22027916642906475,
    "other": 0.11634574565822071
   },
-  "we": 0.5648937512257042,
-  "wl": 0.14095729023667858,
-  "wlease": 0.2941489585376174,
-  "wacc_exp": 0.07966842721649163,
-  "wacc_exp_cds": 0.08137310708956545,
+  "we": 0.5442341675352749,
+  "wl": 0.19030468971296002,
+  "wlease": 0.2654611427517651,
+  "wacc_exp": 0.07818327765458363,
+  "wacc_exp_cds": 0.08007645062977184,
+  "weight_basis": {
+   "equity": "18-Aug-2026 settled close x 300mn issued",
+   "loans": 2664.518,
+   "leases": 3716.808,
+   "note": "debt legs at the 30-Jun-2026 reviewed balance sheet; kd currency blend at FY2025 shares (Jun-26 split undisclosed)"
+  },
   "tw_e": 0.65,
   "tw_loans": 0.08,
   "tw_lease": 0.26999999999999996,
-  "wacc_term": 0.0845512560367681,
-  "wacc_term_cds": 0.08651276103676811,
+  "wacc_term": 0.0841866710367681,
+  "wacc_term_cds": 0.0864477610367681,
   "ust10": 0.0468,
   "ust1": 0.0398,
   "sar1y": 0.047,
@@ -696,73 +768,100 @@
   "tax": 0.195
  },
  "dcf": {
-  "pv_explicit": 3293.377855657232,
-  "tv": 14929.871350572814,
-  "pv_tv": 10176.631717876291,
-  "ev": 13470.009573533524,
-  "tv_share": 0.7555029313321195,
+  "pv_explicit": 2659.5872029693064,
+  "tv": 14811.247723387783,
+  "pv_tv": 10165.498649149798,
+  "ev": 12825.085852119104,
+  "tv_share": 0.7926261676813758,
   "dfs": [
-   0.9262102834461077,
-   0.8578654891613192,
-   0.7945638378747393,
-   0.7359331974939894,
-   0.6816288954483084
+   0.9274860969605659,
+   0.8602304600551444,
+   0.7978517918831379,
+   0.7399964444066853,
+   0.686336413987453
   ],
-  "fcff_term": 889.0925913939702,
-  "reinvest_term": 0.2380952380952381,
+  "fcff_term": 876.6284466482331,
+  "reinvest_term": 0.248379198137374,
   "g": 0.025,
-  "roic_term": 0.105,
-  "nonop": 1570.1259827085564,
-  "kinan_capitalized": 649.7309827085566,
+  "roic_term": 0.10065255137096045,
+  "roic_term_variant": 0.105,
+  "ps_roic_variant": 25.488341585275997,
+  "nonop_dec": 1195.0140000000001,
+  "kinan_capitalized": 653.2318646503577,
+  "tiryaki_recv": 274.619,
+  "mehbaj_total": 11.4,
+  "invprop_in_bridge": 158.234,
   "nci_val": 1026.7164,
   "nci_herfy_mkt": 511.29540000000003,
   "nci_other_book": 515.421,
   "herfy_mktcap": 1002.5400000000001,
-  "eq_val": 7825.338156242079,
-  "ps_dec": 26.20772418355023,
-  "roll": 1.0647303544237021,
-  "ps": 26.204159458590066,
-  "ps_cds": 24.761012871433405,
-  "eq_cds": 7407.88199597031,
-  "ev_cds": 13052.553413261754,
-  "framingA": 26.204159458590066,
-  "framingB": 22.101280410250684,
-  "framing_gap": 4.102879048339382,
-  "bear": 15.01526430610723,
-  "bull": 32.289574340517525
+  "eq_val": 7918.24752067081,
+  "eq_dec": 7447.13431676946,
+  "ps_dec": 25.101402568303637,
+  "roll": 1.0643896539653195,
+  "ps": 24.989342530624743,
+  "deroll_note": "Kinan capitalized, Herfy NCI at market and the Mehbaj consideration are anchor-dated legs held outside the Dec-2025 roll",
+  "ps_cds": 23.26663815033465,
+  "eq_cds": 7407.152139717585,
+  "ev_cds": 12351.176973447902,
+  "framingA": 24.989342530624743,
+  "framingB": 19.63185798059476,
+  "framing_gap": 5.357484550029984,
+  "bear": 10.74774836381954,
+  "bull": 32.59035416730926,
+  "scenario_levers": {
+   "bear": "Framing B density (-6% then -3% forever) + flat store opex + oil GP/t -40 + sugar GP/t -15 + half volume growth",
+   "bull": "oil GP/t +25 + sugar GP/t +10 + volume growth x1.2 + Panda gross margin +40bp",
+   "note": "every lever value published (critique response; the first edition described the scenarios only qualitatively)"
+  },
+  "stores_runrate": 19.534785535192405,
+  "sps_open_71": 24.337681532831564,
+  "sps_open_59": 25.006358792047365
  },
  "lenses": {
   "dcf": {
-   "base": 26.204159458590066,
-   "bear": 15.01526430610723,
-   "bull": 32.289574340517525
+   "base": 24.989342530624743,
+   "bear": 10.74774836381954,
+   "bull": 32.59035416730926
   },
   "relative": {
-   "base": 30.902614525819423,
-   "bear": 27.039787710091993,
-   "bull": 34.765441341546854,
-   "eps_f": 2.4440536638579107,
-   "pe": 12.644,
-   "pe_mix": 15.805,
-   "pe_fp_leg": 12.7,
-   "pe_ret_leg": 19.6,
+   "base": 28.220968937489257,
+   "bear": 24.6933478203031,
+   "bull": 31.748590054675415,
+   "ttm_recurring": 645.1,
+   "ttm_eps": 2.174381998233799,
+   "basis": "trailing peer multiples x trailing (TTM to 30-Jun-2026) recurring EPS; anchor-dated by construction",
+   "forward_variant": 31.90490269947162,
+   "eps_f": 2.458223395475804,
+   "pe": 12.97884592514678,
+   "pe_mix": 16.223557406433475,
+   "pe_mix_w_fp": 0.5351874284746332,
+   "pe_fp_leg": 12.77,
+   "pe_ret_leg": 20.2,
    "pe_discount": 0.2,
-   "pe_ddm": 8.100602710712495
+   "ddm": {
+    "two_stage": 8.181467034063827,
+    "g_stage1": 0.05796422939006396,
+    "gordon_fwd": 6.953417162044963,
+    "e2_implied": 7.72789994071681
+   }
   },
   "normalized": {
-   "base": 36.39304315016321,
-   "bear": 31.843912756392804,
-   "bull": 40.94217354393361,
-   "eps_norm": 2.878285601879406,
-   "pe": 12.644
+   "base": 35.1229490491144,
+   "bear": 30.7325804179751,
+   "bull": 39.51331768025371,
+   "eps_norm": 2.706168888334129,
+   "pe": 12.97884592514678,
+   "basis": "FY2026E revenue at the 9.2% mid-cycle margin (second edition; FY2027E under a trailing multiple double-counted growth)"
   },
   "book": {
-   "base": 20.26739697034573,
-   "bear": 17.496350314239844,
-   "bull": 23.038443626451613,
-   "bvps": 18.47364437403923,
-   "roe": 0.1123933947386407,
-   "pb": 1.0970979282694884
+   "base": 24.491329027425806,
+   "bear": 21.781101409976824,
+   "bull": 27.201556644874792,
+   "bvps": 18.06818411632657,
+   "roe": 0.13221665401865373,
+   "pb": 1.3554947674733526,
+   "basis": "30-Jun-2026 reviewed equity x justified P/B; sustainable return = the model's own FY2026E recurring attributable earnings on opening equity"
   }
  },
  "weights": {
@@ -771,25 +870,27 @@
   "normalized": 0.15,
   "book": 0.15
  },
- "central": 28.016591405896726,
- "panel_centre": 28.553386992204743,
+ "central": 27.24258808463448,
+ "panel_centre": 26.605155734057,
  "experts": {
   "e1": {
-   "base": 34.78902748197139,
+   "base": 37.44323790900665,
    "rng": [
-    28.55596199883811,
-    41.022092965104676
+    31.17932089968306,
+    43.70715491833023
    ],
    "method_short": "segment sum-of-the-parts",
    "detail": {
-    "fp_ev": 7728.234250750002,
+    "fp_ev": 7710.827250750001,
     "ret_ev": 7212.031571693947,
     "frz_ev": 779.7120442300001,
     "herfy_49": 491.24460000000005,
     "unalloc": -845.0,
-    "ev": 14874.977866673948,
-    "eq": 10232.846449382505,
-    "ps_dec": 34.27067457067241,
+    "ev": 14857.570866673948,
+    "herfy_carveout": 496.952,
+    "carveout_note": "Herfy liabilities excluded from the group stack: NC 461.952 (note 20) + current-lease est. 80 (constructed, flagged) less cash est. 45 (constructed, flagged)",
+    "eq": 10979.111331324304,
+    "ps_dec": 37.00632775606307,
     "mults": {
      "fp": 6.5,
      "retail": 7.0,
@@ -798,65 +899,65 @@
    }
   },
   "e2": {
-   "base": 18.22381274919042,
+   "base": 18.520108534965562,
    "rng": [
-    16.41255704471856,
-    21.136713207740527
+    16.681916849968694,
+    21.487386908056173
    ],
    "method_short": "two-stage dividend model",
    "detail": {
     "dps": [
-     1.3442295151218508,
-     1.4129373255316082,
-     1.4934599919689098,
-     1.5901467064587083,
-     1.6798460295205073
+     1.3520228675116923,
+     1.4218191145323769,
+     1.5039206483072454,
+     1.6024071957139634,
+     1.6938227964481147
     ],
-    "pv_divs": 5.571811698528499,
-    "tv": 21.615243284895683,
-    "pv_tv": 13.140731497419377,
-    "ps_dec": 18.712543195947877
+    "pv_divs": 5.6189500093234965,
+    "tv": 21.949641663349897,
+    "pv_tv": 13.377954422842643,
+    "ps_dec": 18.99690443216614
    }
   },
   "e3": {
-   "base": 19.824044550376374,
+   "base": 21.95580408708595,
    "rng": [
-    19.938620969903138,
-    23.14228110429472
+    20.876708310144355,
+    24.152079484762858
    ],
    "method_short": "residual income / economic profit",
    "detail": {
-    "ic0": 10210.405999999999,
+    "ic0": 9777.552999999998,
     "ri": [
-     127.35511386367466,
-     154.0821501375268,
-     183.6051544702525,
-     222.26685459875682,
-     256.2793872702031
+     175.86966334719682,
+     188.09853274435534,
+     204.4548604460531,
+     231.01049867337326,
+     254.0137053507675
     ],
     "ic": [
-     10393.949820645164,
-     10661.986583268865,
-     10888.828776138427,
-     11073.30550181341,
-     11225.04427190055
+     10149.194373506634,
+     10590.44630425115,
+     10976.291713831106,
+     11304.93617893972,
+     11585.136487024867
     ],
-    "pv_ri": 734.2863840711634,
-    "fade": 300.5846172626388,
-    "ev": 11245.277001333801,
-    "eq": 6036.122584042357,
-    "ps_dec": 20.21548879577733
+    "pv_ri": 833.3352350291578,
+    "fade": 300.7811022043412,
+    "ev": 10911.669337233496,
+    "eq": 6562.065937233495,
+    "ps_dec": 22.11818019709148
    }
   }
  },
- "panel_median": 19.824044550376374,
+ "panel_median": 21.95580408708595,
  "sens": {
   "wacc_grid": [
-   0.06966842721649164,
-   0.07466842721649163,
-   0.07966842721649163,
-   0.08466842721649163,
-   0.08966842721649163
+   0.06818327765458364,
+   0.07318327765458363,
+   0.07818327765458363,
+   0.08318327765458364,
+   0.08818327765458363
   ],
   "g_grid": [
    0.015,
@@ -867,70 +968,70 @@
   ],
   "grid": [
    [
-    32.60066827857501,
-    34.12906335691822,
-    35.938046542254725,
-    38.122089281167895,
-    40.8234346745701
+    31.636285700589656,
+    33.07471891329561,
+    34.77594947516662,
+    36.82918890960978,
+    39.36918030525404
    ],
    [
-    28.251186697326148,
-    29.34990322322812,
-    30.625307225125947,
-    32.13088497868485,
-    33.9441338786374
+    27.246610811914785,
+    28.25773547608088,
+    29.429170696606175,
+    30.809804887662725,
+    32.47065459076267
    ],
    [
-    24.529486754342496,
-    25.312171480176318,
-    26.204159458590066,
-    27.23550588735214,
-    28.448396917176307
+    23.497428670002584,
+    24.196119210823056,
+    24.989342530624743,
+    25.903267273053554,
+    26.974702624444785
    ],
    [
-    21.30920193376321,
-    21.855951852742262,
-    22.467454814723155,
-    23.16002106586477,
-    23.955940639903282
+    20.259079230849757,
+    20.72598077562345,
+    21.244435372831866,
+    21.827508392987948,
+    22.4930875624581
    ],
    [
-    18.495737022565905,
-    18.864229167534397,
-    19.26761045893896,
-    19.713988209149257,
-    20.214192532003445
+    17.434655266353737,
+    17.727617433187028,
+    18.043713880986946,
+    18.38835093802844,
+    18.768761806164605
    ]
   ],
   "beta_grid": {
-   "0.73": 37.11298353438931,
-   "0.9": 31.339953253690094,
-   "1.0": 28.459783717985378,
-   "1.087": 26.204159458590066,
-   "1.2": 23.56825030609248,
-   "1.44": 18.849300952502187
+   "0.73": 36.15727415614913,
+   "0.9": 30.253687788788554,
+   "1.0": 27.302799867836573,
+   "1.087": 24.989342530624743,
+   "1.2": 22.28328090141987,
+   "1.44": 17.43252726011622
   },
   "rf_alts": {
-   "5.03%": 28.8103064409648,
-   "5.53% (base)": 26.204159458590066,
-   "6.03%": 23.860684269219192
+   "5.02%": 27.7021324142904,
+   "5.52% (base)": 24.989342530624743,
+   "6.02%": 22.551260936411126
   }
  },
  "peers": {
   "pe": {
-   "ALMARAI": 19.7,
-   "OTHAIM": 19.4,
-   "BINDAWOOD": 19.8,
+   "ALMARAI": 19.77,
+   "OTHAIM": null,
+   "BINDAWOOD": 20.2,
    "NADEC": 13.0,
-   "WILMAR": 12.4
+   "WILMAR": 12.54
   },
-  "note": "cross-check only (market data 18-Aug-2026); the peer-mix multiple is computed from these quotes with the discount applied and disclosed"
+  "note": "settled 18-Aug-2026 closes; Al Othaim n/m after its 11-Aug H1 loss announcement (TTM earnings ~79mn); cross-check only, never a build source"
  },
  "inputs": {
   "spot": {
-   "value": 25.3,
-   "source": "Uploaded Tadawul daily price history for SAVOLA (2050), last close 18-Aug-2026",
-   "date": "2026-08-18",
+   "value": 25.4,
+   "source": "SETTLED Tadawul close for SAVOLA (2050), 18-Aug-2026, confirmed as the prior-session close on Argaam 19-Aug-2026 (prev close 25.82, O 25.66 / H 25.78 / L 25.20, vol 859,264 across three reconciling feeds). The 25.30 in the uploaded export was an intraday print \u2014 the third occurrence of the settled-print vendor defect class in this project (TASI, RIYADHCABLE); the library row is corrected in the same edition",
+   "date": "2026-08-19",
    "ring": "Market"
   },
   "shares_issued_mn": {
@@ -941,8 +1042,14 @@
   },
   "shares_wavg_mn": {
    "value": 298.589,
-   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 31: weighted-average shares outstanding net of 1.411mn treasury shares under the employee share plan",
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 31: FY2025 weighted-average shares outstanding net of treasury shares \u2014 kept as the FY2025 EPS divisor only",
    "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "shares_val_mn": {
+   "value": 296.682,
+   "source": "Q2-2026 reviewed interim FS, EPS note: 300.000mn issued less the 3,318,046 weighted-average effect of treasury shares (the 2.605mn FY2025 buyback plus employee-plan shares) = 296.682mn \u2014 the company's own latest ex-treasury divisor, adopted for every per-share value (second edition; the first edition used the FY2025 weighted 298.589)",
+   "date": "2026-08-05",
    "ring": "Company"
   },
   "anchor_days": {
@@ -1329,6 +1436,42 @@
    "date": "2026-03-05",
    "ring": "Company"
   },
+  "equity_att_jun26": {
+   "value": 5360.505,
+   "source": "Q2-2026 reviewed interim FS, statement of changes in equity: equity attributable to owners at 30-Jun-2026 (after the 510.0 dividend) \u2014 the book-lens base (second edition)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "loans_jun26": {
+   "value": 2664.518,
+   "source": "Q2-2026 reviewed interim FS: loans and borrowings at 30-Jun-2026, current 2,642.265 + non-current 22.253 \u2014 the freshest observable debt leg for the WACC weights (the 31-Dec-2025 1,893.924 stays the bridge deduction at the valuation date)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "leases_jun26": {
+   "value": 3716.808,
+   "source": "Q2-2026 reviewed interim FS: lease liabilities at 30-Jun-2026, non-current 3,218.578 + current 498.230 \u2014 WACC-weight leg",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "cash_jun26": {
+   "value": 1051.382,
+   "source": "Q2-2026 reviewed interim FS: cash and cash equivalents at 30-Jun-2026 (context for the weight construction; weights use gross debt)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "tiryaki_recv": {
+   "value": 274.619,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), notes 14/22: 'Sales proceed receivables (Note 22) 274,619' ON the 31-Dec-2025 balance sheet inside prepayments 1,346.504 \u2014 the Kugu (Tiryaki) disposal completed at the agreed equity valuation as of the reporting date; settled in Tiryaki shares in H1-2026 (Q2-2026 interims: investments +283.7). Carried as a BRIDGE asset and carved out of operating working capital (second edition; the first edition excluded it on a wrong 'postdates the valuation date' rationale)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "mehbaj_total": {
+   "value": 11.4,
+   "source": "Q2-2026 reviewed interim FS, note 19 (subsequent events): acquisition of 100% of Al Mehbaj Al Shamiya for Trading LLC for a total consideration of SR 11.4mn (5.4 paid + 6.0 deferred), related-party, subject to GA ratification \u2014 deducted as an anchor-dated bridge leg since the forecast carries Mehbaj revenue (the first edition recorded the consideration as undisclosed; the filed interims disclose it)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
   "other_net_liab": {
    "value": 332.716,
    "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026): accrued income tax 134.125 + accrued zakat 112.265 + deferred tax liability 110.893 less deferred tax asset 2.628 less other non-current assets 21.939 \u2014 the audited lines outside the working-capital day build, held flat and deducted in the bridge",
@@ -1349,8 +1492,8 @@
   },
   "herfy_price": {
    "value": 15.5,
-   "source": "Herfy Food Services (Tadawul 6002) close 18-Aug-2026, market data (stockanalysis.com; cross-check quote \u2014 Herfy's own listing)",
-   "date": "2026-08-18",
+   "source": "Herfy Food Services (Tadawul 6002) SETTLED close 18-Aug-2026, confirmed as the prior-session close on Argaam 19-Aug-2026 (last trade 15.39 intraday 19-Aug). A 15.66 figure in one external audit is rejected against this receipt",
+   "date": "2026-08-19",
    "ring": "Market"
   },
   "herfy_shares_mn": {
@@ -1358,6 +1501,30 @@
    "source": "Herfy shares outstanding, market data 18-Aug-2026",
    "date": "2026-08-18",
    "ring": "Market"
+  },
+  "herfy_liab_total": {
+   "value": 728.932,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 20 material-NCI table: Herfy total liabilities before intra-group eliminations = non-current 461.952 + current 266.980 (segment note 33 Food Services liabilities agree at 728.932)",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "herfy_liab_nc": {
+   "value": 461.952,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 20: Herfy non-current liabilities \u2014 for a QSR chain dominated by non-current lease liabilities and end-of-service benefits, both of which sit inside the Expert-1 group deduction stack",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "herfy_cur_stack_est": {
+   "value": 80.0,
+   "source": "CONSTRUCTED (flagged): the current-portion lease liability inside Herfy's 266.980 current liabilities \u2014 Herfy's financing outflow of 128.264 in FY2025 (note 20 cash-flow rows, zero dividends) is lease principal + interest, consistent with a ~80 current lease portion; the rest of current liabilities is trade payables, which the Expert-1 stack never deducts",
+   "date": "2026-08-19",
+   "ring": "House/derived"
+  },
+  "herfy_cash_est": {
+   "value": 45.0,
+   "source": "CONSTRUCTED (flagged): Herfy cash inside group cash \u2014 note 20 FY2025 cash flows (CFO 143.7, CFI -11.7, CFF -128.3) imply a small stable balance; Expert 1 removes it alongside Herfy's liabilities",
+   "date": "2026-08-19",
+   "ring": "House/derived"
   },
   "oil_vol_fy25": {
    "value": 1322.0,
@@ -1708,10 +1875,10 @@
    "ring": "House"
   },
   "pas_vol_fy25": {
-   "value": 268.0,
-   "source": "DERIVED (flagged): FY2025 pasta volume = disclosed revenue 545 / implied revenue-per-tonne 2,034 (H1-2026 2,101 and H1-2025 2,052 disclosed pairs; FY25 midpoint) \u2014 the presentation discloses H1 volumes but not the FY total",
-   "date": "2026-08-18",
-   "ring": "House/derived"
+   "value": 263.0,
+   "source": "Company FY2025 investor presentation, savola.com, Mar-2026 (COMPANY_IR) p17 pasta segment analysis: FY2025 volume 263k MT (FY2024: 232, +13.2%) under the 'Volume (MT '000)' header; the same slide's 'Gross Profit / Ton (SAR)' figures are 440/445, and the arithmetic locks the roles (117mn / 263k t = 445; 102 / 232 = 440). Replaces the first edition's derived 268 (within 2% of the disclosed figure); one external audit read the roles swapped (volume 445) \u2014 rejected on the slide layout, the arithmetic, and the Q2-2026 deck's '+3.1%' volume growth matching 135->139k t halves",
+   "date": "2026-03-09",
+   "ring": "Company"
   },
   "pas_vol_g": {
    "value": [
@@ -1721,7 +1888,7 @@
     0.02,
     0.02
    ],
-   "source": "H1-2026 actual +3.0% (computed) carried, wheat-cost tailwind supporting competitiveness",
+   "source": "company-stated H1-2026 volume +3.1% (registered rounded pair 139/135 computes +3.0%) carried, wheat-cost tailwind supporting competitiveness",
    "date": "2026-08-18",
    "ring": "House"
   },
@@ -1745,7 +1912,7 @@
     520.0,
     520.0
    ],
-   "source": "GP/ton: H1-2026 actual 525 (73/139); FY25 ~437 implied; held at 520 \u2014 the wheat/packaging tailwind the company names is retained, not amplified",
+   "source": "GP/ton: H1-2026 actual 525 (73/139); FY2025 DISCLOSED 445 (deck p17, 440 in FY2024); held at 520 \u2014 the wheat/packaging tailwind the company names is retained, not amplified",
    "date": "2026-08-18",
    "ring": "House"
   },
@@ -1757,8 +1924,8 @@
     890.0,
     926.0
    ],
-   "source": "FY25 base 769 (residual of the four categories against the audited FP segment revenue); H1-2026 337 (-6.9% y/y computed) with the Mehbaj bolt-on from Jul-2026 (consideration undisclosed \u2014 dated negative search; modelled as a modest KSA revenue step +40 in H2-26E, +8.5% FY27E, then +5%) \u2014 flagged as the least-anchored revenue line",
-   "date": "2026-08-18",
+   "source": "FY25 base 768.9 (residual of the four categories against the audited FP segment revenue) \u2014 FY26E steps DOWN 5.1%, anchored on the H1-2026 actual 337 (Bayara UAE 278 + KSA 59; nuts is H2/festive-season weighted) with the Mehbaj bolt-on from Jul-2026 (total consideration SR 11.4mn per the Q2-2026 interims note 19; modelled as a modest KSA revenue step +40 in H2-26E, +8.5% FY27E, then +5%) \u2014 flagged as the least-anchored revenue line",
+   "date": "2026-08-19",
    "ring": "House"
   },
   "nuts_gm_path": {
@@ -1784,6 +1951,12 @@
    "date": "2026-03-09",
    "ring": "Company/derived"
   },
+  "stores_jun25_assumed": {
+   "value": 213.0,
+   "source": "ASSUMPTION (flagged): Panda store count at 30-Jun-2025 \u2014 NOT disclosed in any reachable company document (searched: FY2025 & Q2-2026 decks, H1 releases, interims). 213 = Dec-2024's 209 + 4 net, mirroring the disclosed H1-2026 cadence (+6/-2); the linear-interpolation alternative is 218, and the sales-per-store change is published as a range over both bases",
+   "date": "2026-08-19",
+   "ring": "House"
+  },
   "stores_path": {
    "value": [
     247.0,
@@ -1792,8 +1965,8 @@
     300.0,
     312.0
    ],
-   "source": "company guidance 20+ stores/yr (Q2-2026 presentation 2026 target; AR2025); tapering to +12 by FY2030",
-   "date": "2026-08-06",
+   "source": "company guidance 20+ stores/yr (Q2-2026 presentation 2026 target; AR2025); tapering to +12 by FY2030. H1-2026 delivered +4 net (231 at June); the guidance base implies +16 net in H2-2026 \u2014 an H2-weighted cadence the FY2025 full-year +18 net supports but whose half-split is undisclosed. The +8/yr run-rate alternative is priced in the sensitivity section and named a falsifier in the caveats",
+   "date": "2026-08-19",
    "ring": "Company/House"
   },
   "sps_g_A": {
@@ -1804,8 +1977,8 @@
     0.0,
     0.0
    ],
-   "source": "FRAMING A sales-per-average-store path: measured H1-2026 density change -7.1% carried into FY26E, fading as CXR (149 stores done) and e-commerce (~2.5x) mature",
-   "date": "2026-08-18",
+   "source": "FRAMING A sales-per-average-store path: measured H1-2026 density change, published as a range -7.1% (Jun-25=213 assumption) to -6.0% (interpolated 218); the FY26E opening -6% sits at the interpolation end, fading as CXR (149 stores done) and e-commerce (~2.5x) mature",
+   "date": "2026-08-19",
    "ring": "House"
   },
   "sps_g_B": {
@@ -1816,8 +1989,8 @@
     -0.03,
     -0.03
    ],
-   "source": "FRAMING B: the measured erosion never fades \u2014 competition and small-format mix keep density falling 3%/yr",
-   "date": "2026-08-18",
+   "source": "FRAMING B: -6% in FY2026E then the erosion never fades \u2014 competition and small-format mix keep density falling 3%/yr forever (the study states this exact path wherever Framing B is described)",
+   "date": "2026-08-19",
    "ring": "House"
   },
   "panda_gm": {
@@ -1845,10 +2018,10 @@
    "ring": "House"
   },
   "herfy_ebitda_mgn": {
-   "value": 0.185,
-   "source": "H1-2026 actual 18.7% held at 18.5% (post-IFRS16 margin; the cost programme's gain retained, not extended)",
-   "date": "2026-08-06",
-   "ring": "Company/House"
+   "value": 0.187,
+   "source": "H1-2026 actual 18.7% held FLAT (the first edition's 18.5% was a 20bp haircut with no measured mechanism \u2014 the reviewed actual outranks; the cost programme's gain is retained, not extended)",
+   "date": "2026-08-19",
+   "ring": "Company"
   },
   "frz_rev_g": {
    "value": [
@@ -1888,8 +2061,8 @@
   },
   "invseg_rev": {
    "value": 29.0,
-   "source": "Investments segment rental/other revenue held at the FY2025 29.0",
-   "date": "2026-03-05",
+   "source": "Investments segment revenue held at the FY2025 28.978 \u2014 INTER-SEGMENT rent charged to sister segments (segment note 33: external Investments revenue is ZERO; the 29.0 is eliminated inside the (443.2) column). In this build it nets against the elim line so group external revenue foots; the property's income stays OUTSIDE group EBITDA (the opcos carry the rent expense at segment level), which is why the investment property is a bridge asset, not a double-count",
+   "date": "2026-08-19",
    "ring": "Company"
   },
   "capex_path": {
@@ -1959,9 +2132,9 @@
    "ring": "Company/derived"
   },
   "prepay_ratio": {
-   "value": 0.0516,
-   "source": "prepayments & other receivables / revenue FY2025",
-   "date": "2026-03-05",
+   "value": 0.0411,
+   "source": "prepayments & other receivables / revenue FY2025 EX the 274.6 Tiryaki sale-proceeds receivable ((1,346.504 - 274.619) / 26,081.1) \u2014 the receivable is non-operating and is carried in the bridge instead; the first edition's 5.16% perpetuated it in forecast working capital",
+   "date": "2026-08-19",
    "ring": "Company/derived"
   },
   "accrued_ratio": {
@@ -2013,32 +2186,32 @@
    "ring": "Country"
   },
   "rf_observed": {
-   "value": 0.0553,
-   "source": "CONSTRUCTED 10Y SAR proxy (flagged; direct SAR 10Y quote inaccessible this session \u2014 investing.com/WGB/TradingEconomics/spglobal/cbonds all walled, NDMC publishes tranche sizes not yields): UST10Y 4.68% (FRED 14-Aug-2026) + 0.85% Saudi Jan-2026 USD 10Y new-issue spread = 5.53%, cross-checked against the observed 1Y SAR 4.70% = UST1Y + 72bp (the peg keeps the SAR curve near the sovereign USD curve); WACC sensitivity to +/-50bp is published",
-   "date": "2026-08-14",
+   "value": 0.0552,
+   "source": "PUBLISHED SAR sovereign curve: FTSE Saudi Government Bond Index (SAGBI) factsheet 31-Jul-2026, 7-10 year maturity bucket yield-to-maturity 5.52% at 8.24y average life (whole-index 5.48%, curve 5.22-5.83%). Replaces the first edition's synthetic UST10Y+new-issue-spread construction (which landed at 5.53% \u2014 level confirmed, source upgraded); iBoxx Tadawul SAR Government Sukuk Index 5.44% at 6.07y duration (31-Mar-2026) corroborates. WACC sensitivity to +/-50bp is published",
+   "date": "2026-07-31",
    "ring": "Country"
   },
   "sov_spread_rating": {
-   "value": 0.0051,
-   "source": "Damodaran ctryprem.html (original file, 'last updated January 5, 2026'): Saudi Arabia Aa3, adjusted default spread 0.51%",
-   "date": "2026-01-05",
+   "value": 0.0048,
+   "source": "Damodaran ctryprem, July-2026 vintage (ctrypremJuly26): Saudi Arabia Aa3, adjusted default spread 0.48% (Jan-2026 vintage 0.51% retired \u2014 a newer original file existed at the first edition's date and is adopted here)",
+   "date": "2026-07-01",
    "ring": "Country"
   },
   "erp_rating": {
-   "value": 0.0501,
-   "source": "Damodaran same file: Saudi Arabia total ERP 5.01% (CRP 0.78%)",
-   "date": "2026-01-05",
+   "value": 0.0494,
+   "source": "Damodaran July-2026 vintage: Saudi Arabia total ERP 4.94% (mature-market 4.20% + CRP 0.74%)",
+   "date": "2026-07-01",
    "ring": "Country"
   },
   "sov_spread_cds": {
    "value": 0.0098,
-   "source": "Damodaran same file: Saudi sovereign CDS 0.98%",
+   "source": "Damodaran JANUARY-2026 vintage: Saudi sovereign CDS 0.98% \u2014 the July CDS legs were not retrievable this session, so the CDS basis stays on the January vintage, FLAGGED wherever the CDS-basis value is shown",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "erp_cds": {
    "value": 0.0572,
-   "source": "Damodaran same file: ERP on the CDS basis 5.72%",
+   "source": "Damodaran JANUARY-2026 vintage: ERP on the CDS basis 5.72% (same flag as sov_spread_cds)",
    "date": "2026-01-05",
    "ring": "Country"
   },
@@ -2078,10 +2251,10 @@
    "date": "2026-08-14",
    "ring": "House"
   },
-  "roic_term": {
+  "roic_term_variant": {
    "value": 0.105,
-   "source": "terminal ROIC 10.5%: above the 8.5% terminal WACC (brands, shelf position) but far below the current oil-cycle segment returns; drives terminal reinvestment = g / ROIC",
-   "date": "2026-08-18",
+   "source": "RETIRED AS THE BASE, kept as a labelled UPSIDE VARIANT: the first edition set terminal ROIC 10.5% as an input, above every return the model itself produces (9.2% rising to ~9.7%) \u2014 an undisclosed step-up on 75% of enterprise value. The second edition's terminal ROIC is COMPUTED as the model's own year-5 NOPAT on year-5 opening invested capital; the 10.5% brand/shelf-position case is published beside it, never averaged (dual-framing rule)",
+   "date": "2026-08-19",
    "ring": "House"
   },
   "tw_e": {
@@ -2098,21 +2271,15 @@
   },
   "peer_pe": {
    "value": {
-    "ALMARAI": 19.7,
-    "OTHAIM": 19.4,
-    "BINDAWOOD": 19.8,
+    "ALMARAI": 19.77,
+    "OTHAIM": null,
+    "BINDAWOOD": 20.2,
     "NADEC": 13.0,
-    "WILMAR": 12.4
+    "WILMAR": 12.54
    },
-   "source": "TTM P/E, market data 18-Aug-2026 (stockanalysis.com): Almarai 19.7, Al Othaim 19.4, BinDawood 19.8, NADEC 13.0, Wilmar (international analogue) 12.4; cross-check only, never a build source",
-   "date": "2026-08-18",
+   "source": "TTM P/E at SETTLED 18-Aug-2026 closes (the first edition's table mixed 17-Aug quotes under an 18-Aug caption): Almarai 19.77 (48.60 close), BinDawood 20.20 (4.66), NADEC 13.0 (exact at 18-Aug), Wilmar 12.54 (3.706). AL OTHAIM IS N/M: its 11-Aug-2026 H1 announcement shows an attributable LOSS of SAR 53.5mn (Q2 -107.1 on inventory provisions), so TTM earnings to 30-Jun-2026 are ~79mn and the trailing multiple (~57x) is disqualified \u2014 same treatment as Herfy (loss-making, n/m). The first edition's 19.4x was a pre-announcement window quoted as current. Cross-check only, never a build source",
+   "date": "2026-08-19",
    "ring": "Market"
-  },
-  "pe_mix_w_fp": {
-   "value": 0.55,
-   "source": "EBITDA-mix weight of the processing/frozen leg for the peer-mix multiple: FY2025 category EBITDA (oil 563 + sugar 335 + pasta ~74 + nuts ~20 + Kabeer ~110) over the group total ex-unallocated",
-   "date": "2026-03-09",
-   "ring": "Company/derived"
   },
   "pe_discount": {
    "value": 0.2,
@@ -2150,11 +2317,17 @@
    "date": "2026-08-18",
    "ring": "House"
   },
-  "rec_g_fy26": {
-   "value": 0.15,
-   "source": "recurring-earnings step FY2025 -> FY2026E for the sustainable-ROE lens: H1-2026 recurring +40% y/y moderated to +15% for the full year (H2 replacement-cost squeeze); feeds roe_sust only",
-   "date": "2026-08-18",
-   "ring": "House"
+  "h1_recurring_h126": {
+   "value": 372.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) net-income analysis table: H1-2026 recurring net income 372 (+40% y/y)",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "h1_recurring_h125": {
+   "value": 266.0,
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) net-income analysis table, H1-2025 column: recurring net income 266",
+   "date": "2026-08-06",
+   "ring": "Company"
   }
  },
  "step0": {
@@ -2379,7 +2552,7 @@
  },
  "strike": {
   "anchor_date": "2026-08-18",
-  "spot": 25.3,
+  "spot": 25.4,
   "nu": 12.0,
   "width_cal": 1.07,
   "width_overlay_mult": 1.0,
@@ -2391,58 +2564,58 @@
     "target_date": "2026-09-18",
     "grade_date": "2026-09-20",
     "basis": "projected",
-    "anchor_vol_ann": 0.29525971603847584,
-    "sigma_h": 0.09334671635772851,
+    "anchor_vol_ann": 0.300066709845945,
+    "sigma_h": 0.09486645326427186,
     "drift_log_h": 0.003268392762773441,
     "pct": {
-     "p5": 21.840810466856937,
-     "p25": 23.945622869683962,
-     "p50": 25.37401893320617,
-     "p75": 26.912353295370405,
-     "p95": 29.53151427244975
+     "p5": 21.87355102267893,
+     "p25": 24.01746743122641,
+     "p50": 25.47416757908572,
+     "p75": 27.044477030450242,
+     "p95": 29.72140185824915
     },
-    "p_above": 0.51338,
-    "p_up5": 0.29966,
-    "p_dn5": 0.26374,
-    "p_up10": 0.14782,
-    "p_dn10": 0.11082,
-    "touch_up5": 0.5127,
-    "touch_dn5": 0.46816,
-    "touch_up10": 0.24578,
-    "touch_dn10": 0.18592,
-    "touch_up15": 0.1063,
-    "touch_dn15": 0.05726,
-    "touch_up20": 0.04456,
-    "touch_dn20": 0.01508
+    "p_above": 0.51302,
+    "p_up5": 0.30316,
+    "p_dn5": 0.26662,
+    "p_up10": 0.1518,
+    "p_dn10": 0.11458,
+    "touch_up5": 0.51792,
+    "touch_dn5": 0.47446,
+    "touch_up10": 0.25266,
+    "touch_dn10": 0.19284,
+    "touch_up15": 0.11104,
+    "touch_dn15": 0.06078,
+    "touch_up20": 0.04696,
+    "touch_dn20": 0.0163
    },
    "3M": {
     "h": 62,
     "target_date": "2026-11-18",
     "grade_date": "2026-11-18",
     "basis": "projected",
-    "anchor_vol_ann": 0.3009188310147858,
-    "sigma_h": 0.15970875275802887,
+    "anchor_vol_ann": 0.30385580425035563,
+    "sigma_h": 0.16126751307473872,
     "drift_log_h": 0.009805178288320324,
     "pct": {
-     "p5": 19.734252203024273,
-     "p25": 23.122221393983956,
-     "p50": 25.582424269898205,
-     "p75": 28.27699995429274,
-     "p95": 33.138754979775655
+     "p5": 19.76237808332625,
+     "p25": 23.191009868417947,
+     "p50": 25.683865441520133,
+     "p75": 28.416886918103685,
+     "p95": 33.354301412976376
     },
-    "p_above": 0.52996,
-    "p_up5": 0.3993,
-    "p_dn5": 0.34004,
-    "p_up10": 0.28378,
-    "p_dn10": 0.21882,
-    "touch_up5": 0.70976,
-    "touch_dn5": 0.657,
-    "touch_up10": 0.50386,
-    "touch_dn10": 0.414,
-    "touch_up15": 0.34024,
-    "touch_dn15": 0.2364,
-    "touch_up20": 0.2227,
-    "touch_dn20": 0.11868
+    "p_above": 0.52964,
+    "p_up5": 0.40018,
+    "p_dn5": 0.3416,
+    "p_up10": 0.28576,
+    "p_dn10": 0.22108,
+    "touch_up5": 0.71174,
+    "touch_dn5": 0.65962,
+    "touch_up10": 0.5072,
+    "touch_dn10": 0.41738,
+    "touch_up15": 0.34442,
+    "touch_dn15": 0.2407,
+    "touch_up20": 0.2265,
+    "touch_dn20": 0.12192
    }
   }
  },
@@ -2484,40 +2657,40 @@
   "state": {
    "market": "SA",
    "series": "SAVOLA",
-   "close": 25.3,
+   "close": 25.4,
    "data_date": "2026-08-18",
-   "computed_on": "2026-08-18",
+   "computed_on": "2026-08-19",
    "sessions": 3896,
    "rows_in": 3898,
    "repairs": [
     "dropped 2 interior stale/no-trade rows"
    ],
    "ma": {
-    "20": 25.970999999999997,
-    "50": 27.3884,
-    "200": 25.42125
+    "20": 25.976,
+    "50": 27.390400000000003,
+    "200": 25.421750000000003
    },
    "ma_slope": {
     "20": "falling",
     "50": "falling",
     "200": "flat"
    },
-   "rsi": 39.004507171555815,
-   "atr": 0.6633578918945069,
+   "rsi": 39.82672022224735,
+   "atr": 0.6662150347516497,
    "macd": {
-    "macd": -0.4152660079808328,
-    "signal": -0.4221529855019356,
-    "hist": 0.006886977521102788
+    "macd": -0.4072888000036272,
+    "signal": -0.42055754390649447,
+    "hist": 0.013268743902867253
    },
    "ma_cross": {
     "ago": 82,
     "kind": "golden"
    },
-   "atr_pct": 0.026219679521522012,
+   "atr_pct": 0.026228938376049202,
    "hi_52w": 30.3,
    "lo_52w": 20.45,
-   "pct_off_high": 0.16501650165016502,
-   "pct_off_low": 0.23716381418092916,
+   "pct_off_high": 0.16171617161716179,
+   "pct_off_low": 0.24205378973105132,
    "levels": {
     "res": [
      26.29,
@@ -2534,19 +2707,19 @@
     "res": [
      {
       "level": 26.285586203838278,
-      "score": 7.856466562715594,
+      "score": 8.057484900444503,
       "kind": "swing",
       "touches": 4
      },
      {
       "level": 27.19217617210685,
-      "score": 6.008393846196713,
+      "score": 6.138402503565157,
       "kind": "swing",
       "touches": 3
      },
      {
       "level": 27.979163649944834,
-      "score": 6.764602832178415,
+      "score": 6.894612096631072,
       "kind": "swing",
       "touches": 5
      }
@@ -2554,19 +2727,19 @@
     "sup": [
      {
       "level": 24.904682225747212,
-      "score": 13.663442270664865,
+      "score": 13.296990400171813,
       "kind": "swing",
       "touches": 5
      },
      {
       "level": 24.33460722837937,
-      "score": 4.711489031478444,
+      "score": 4.604619004596416,
       "kind": "swing",
       "touches": 3
      },
      {
       "level": 22.591856502804962,
-      "score": 1.6677565007177528,
+      "score": 1.6428659432823804,
       "kind": "swing",
       "touches": 2
      }
@@ -2574,14 +2747,14 @@
    },
    "tech": {
     "trend": "Trading below the whole moving-average stack, under a flat 200-day",
-    "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+    "summary": "The price closed 25.40 below a falling 20-day (25.98), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~40 and the daily ATR near 0.67 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.41 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 16% below that high and 24% above that low.",
     "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
     "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
    }
   },
   "narrative": {
    "trend": "Trading below the whole moving-average stack, under a flat 200-day",
-   "summary": "The price closed 25.30 below a falling 20-day (25.97), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.66 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.42 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 17% below that high and 24% above that low.",
+   "summary": "The price closed 25.40 below a falling 20-day (25.98), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~40 and the daily ATR near 0.67 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.41 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 16% below that high and 24% above that low.",
    "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
    "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
   }

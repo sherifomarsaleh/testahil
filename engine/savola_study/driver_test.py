@@ -12,7 +12,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SAVOLA_Valuation_Model_18082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx'))
 ANCH = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))['anchors']
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
@@ -55,7 +55,8 @@ CASES = [
      'a higher terminal growth rate must raise the discounted cash flow'),
     ('Beta (SAVOLA weekly vs TASI, 5y, Dimson)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
-    ('Risk-free rate, 10Y SAR construction (UST10Y + Jan-2026 sovereign spread)', 'C',
+    ('Risk-free rate: PUBLISHED SAR sovereign curve, FTSE SAGBI 7-10y YTM '
+     '(31-Jul-2026 factsheet)', 'C',
      +0.005, 'dcf', -1, 'a higher risk-free rate must lower the valuation'),
     ('Combined zakat + income tax rate on core profit', 'C', +0.05, 'dcf', -1,
      'a heavier fiscal take must lower NOPAT and the valuation'),
@@ -89,9 +90,11 @@ CASES = [
      'the nuts margin (26.5% gross vs 23.5% opex) is positive at the EBITDA line'),
     ('Nuts & spices gross margin path', 'PATH', +0.01, 'dcf', +1,
      'a richer nuts mix must raise the valuation'),
-    ('Store count, end of year (company guidance 20+/yr)', 'PATH', +10.0, 'dcf', +1,
+    ('Store count, end of year (company guidance 20+/yr; +8/yr run-rate variant priced '
+     'on Sensitivity)', 'PATH', +10.0, 'dcf', +1,
      'more stores at a positive store margin must raise the valuation'),
-    ('Sales-per-average-store growth (Framing A: measured decline fades)', 'PATH', +0.01,
+    ('Sales-per-average-store growth (Framing A; opening measured as a range -7.1% to '
+     '-6.0% over the undisclosed Jun-2025 count)', 'PATH', +0.01,
      'dcf', +1, 'better sales density must raise the valuation'),
     ('Panda gross margin (H1-2026 actual, held)', 'C', +0.005, 'dcf', +1,
      'a better Panda gross margin must raise the valuation'),
@@ -101,7 +104,8 @@ CASES = [
      +1, 'a bigger scale gain must raise the valuation'),
     ('Herfy revenue growth', 'PATH', +0.01, 'dcf', +1,
      'Herfy revenue at a positive EBITDA margin must raise the valuation'),
-    ('Herfy EBITDA margin (H1-2026 actual, held)', 'C', +0.01, 'dcf', +1,
+    ('Herfy EBITDA margin (H1-2026 actual 18.7%, held FLAT — a margin INPUT at the '
+     'finest disclosed level, flagged)', 'C', +0.01, 'dcf', +1,
      'a better Herfy margin must raise the valuation'),
     ('Al Kabeer revenue growth', 'PATH', +0.01, 'dcf', +1,
      'Al Kabeer growth must raise the valuation'),
@@ -119,7 +123,7 @@ CASES = [
      'a costlier lease book must raise the cost of capital and lower the valuation'),
     ('Marginal SAR cost of debt (SAIBOR + murabaha spread)', 'C', +0.01, 'wacc', +1,
      'a higher cost of debt must raise the explicit-window cost of capital'),
-    ('Saudi sovereign CDS spread (CDS basis)', 'C', +0.005, 'wacccds', -1,
+    ('Saudi sovereign CDS spread (CDS basis — JANUARY-2026 vintage, flagged)', 'C', +0.005, 'wacccds', -1,
      'a wider CDS strips more from rf on the CDS basis and must lower that cost of '
      'capital'),
     ('Dividend payout (stated policy 50-60% of net profit; midpoint)', 'C', -0.10,
@@ -140,8 +144,18 @@ CASES = [
      'a richer normalised margin must raise the central'),
     ('Weight — discounted cash flow', 'C', +0.05, 'central', +1,
      'more weight on a positive lens must raise the weighted central'),
-    ('Terminal return on invested capital', 'C', +0.01, 'dcf', +1,
-     'a higher terminal return needs less reinvestment for the same growth'),
+    ('Recurring net income H1-2026 (company net-income analysis)', 'C', +20.0,
+     'central', +1, 'a higher trailing recurring base must raise the relative lens'),
+    ('Tiryaki sale-proceeds receivable (on the 31-Dec-2025 balance sheet; settled in '
+     'Tiryaki shares H1-2026)', 'C', +100.0, 'dcf', +1,
+     'a larger bridge asset must raise equity value'),
+    ('Al Mehbaj consideration (Q2-2026 interims note 19: 5.4 paid + 6.0 deferred)', 'C',
+     +10.0, 'dcf', -1, 'a larger acquisition consideration is a claim on equity'),
+    ('Loans and borrowings at 30-Jun-2026 (WACC weight leg, reviewed interims)', 'C',
+     +500.0, 'wacc', -1,
+     'more of the cheaper debt in the weights must lower the blended cost of capital'),
+    ('Equity attributable to owners, 30-Jun-2026 (reviewed; book-lens base)', 'C',
+     +500.0, 'central', +1, 'a larger book base must raise the book lens'),
     ('Terminal equity weight', 'C', +0.05, 'dcf', -1,
      'more of the dearer equity in the terminal mix must raise the terminal rate and '
      'lower the valuation'),
@@ -182,7 +196,17 @@ DEAD_OK = {
     'Yield on surplus cash (observed 1Y SAR sovereign)',
     # Almarai is quoted in the peer table but deliberately excluded from both multiple
     # legs (dairy-platform premium); the exclusion is stated on the lens sheet
-    'Peer P/E — Almarai (market data)',
+    'Peer P/E — Almarai (settled 18-Aug close)',
+    # the 10.5% terminal-return VARIANT is display-only by design: the base terminal
+    # return is COMPUTED on the DCF sheet from the model's own invested capital, and
+    # the variant fair value is a whole-model engine re-run (pasted, stated)
+    'Terminal return on capital — 10.5% UPSIDE VARIANT (the base is COMPUTED as '
+    'year-5 NOPAT on year-5 opening invested capital, on the DCF sheet)',
+    # Expert 1's Herfy carve-out inputs feed the expert appendix, whose values are
+    # whole-model engine outputs on the Fundamental Valuation sheet (pasted, stated)
+    'Herfy non-current liabilities (note 20; Expert-1 carve-out)',
+    'Herfy current lease portion, CONSTRUCTED estimate (flagged)',
+    'Herfy cash, CONSTRUCTED estimate (flagged)',
     # intangibles are held flat BY CONVENTION (intangible capex = amortisation), so the
     # balance stays in total assets and the foot check but cancels out of every value
     # chain — value-neutral by construction, stated on the Balance Sheet
@@ -192,7 +216,7 @@ DEAD_OK = {
     'Right-of-use assets',
     # spot: moves the market-value WACC weights and every vs-spot cell; asserted as a
     # real driver would be circular (fair value responding to price), so it is exempted
-    'Spot price (SAR, 18-Aug-2026 close)',
+    'Spot price (SAR, SETTLED 18-Aug-2026 close)',
 }
 print('\nDEAD-INPUT SWEEP — every scalar driver not covered above is bumped and must move '
       'something')

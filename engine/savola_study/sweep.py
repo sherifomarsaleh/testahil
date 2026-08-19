@@ -24,12 +24,13 @@ reg.record_primary_access("https://www.savola.com/en/news-media", True, "2026-08
 reg.record_primary_access("https://www.saudiexchange.sa/.../?anId=94980&cs=2050", True,
                           "2026-08-18", "official Saudi Exchange announcement pages for Q1-2026 "
                           "results (anId 94980), FY2025 results (93502), FY2025 dividend (93503) read")
-reg.record_primary_access("https://www.savola.com/en/investors/financial-statements (H1-2026 "
-                          "reviewed interim FS)", False, "2026-08-18",
-                          "H1-2026 reviewed interim FS NOT YET mirrored on the company site "
-                          "(English or Arabic page; both checked). The company's own release "
-                          "(06-Aug-2026) states they will be posted 'following submission to the "
-                          "relevant authorities'. H1-2026 anchors are therefore taken from the "
+reg.record_primary_access("https://www.savola.com/en/investors/financial-statements (Q2-2026 "
+                          "reviewed interim FS)", True, "2026-08-19",
+                          "Q2-2026 reviewed interim FS RETRIEVED from the company site "
+                          "(second edition — the first edition wrongly recorded them "
+                          "unavailable and missed the Mehbaj consideration in note 19, the "
+                          "30-Jun balance sheet and the ex-treasury EPS divisor; corrected "
+                          "under the critique response). H1-2026 P&L anchors also sit in the "
                           "company's own earnings release + investor presentation; the reviewed "
                           "FS is a registered follow-up, not silently substituted.")
 
@@ -126,12 +127,13 @@ fSudan = reg.add(Ring.COMPANY, "one-off base-resetting transactions", FindingCla
 fMehbaj = reg.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)", FindingClass.S,
     "Al Mehbaj Al Shamiya for Trading LLC acquired 100% in July 2026 (subsequent to H1) — Saudi "
     "premium nuts/coffee/spices/pulses processor, to scale the Nuts-Spices-Pulses platform with "
-    "the planned new Jeddah facility; consideration NOT disclosed in the release or presentation "
-    "(dated negative search 18-Aug-2026). Related-party dimension: Al Mehbaj is an Abdulkadir "
+    "the planned new Jeddah facility; total consideration SR 11.4mn (5.4 paid + 6.0 deferred), "
+    "DISCLOSED in the Q2-2026 reviewed interims note 19, subject to GA ratification (the first "
+    "edition recorded it undisclosed — corrected). Related-party dimension: Al Mehbaj is an Abdulkadir "
     "Al-Muhaidib & Sons company (AR2025 governance disclosures) — Al-Muhaidib is a major Savola "
     "shareholder",
-    "Savola H1-2026 earnings release + Q2-2026 presentation + AR2025", SourceType.COMPANY_OFFICIAL,
-    "2026-08-06",
+    "Savola Q2-2026 reviewed interim FS note 19 + H1-2026 release + AR2025", SourceType.COMPANY_OFFICIAL,
+    "2026-08-05",
     model_impact="Nuts/Spices KSA leg gets an inorganic scale step from H2-2026; consideration "
     "undisclosed so modelled as a modest revenue bolt-on inside the FP nuts category with the "
     "gap FLAGGED — no invented purchase price enters the bridge")
@@ -220,11 +222,13 @@ fRates = reg.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
     "4-tranche jumbo, Emirates NBD note 06-Jan-2026); Damodaran Jan-2026 Saudi row: Aa3, "
     "default spread 0.51%, ERP 5.01% (CDS 0.98% / ERP 5.72%); SAIBOR-3M 4.74% (Jun-2026); "
     "SAR pegged at 3.75",
-    "FRED + Emirates NBD Research + Damodaran ctryprem (Jan-2026)", SourceType.PRIMARY_MARKET_DATA,
-    "2026-08-14",
-    model_impact="rf construction: 10Y SAR proxy 5.53% = UST10Y 4.68% + Jan-2026 sovereign "
-    "spread 0.85%, cross-checked against the observed 1Y SAR 4.70% (= UST1Y + 72bp); both "
-    "Damodaran ERP bases carried through the WACC")
+    "FTSE SAGBI factsheet 31-Jul-2026 + iBoxx SAR sukuk publications + FRED + Damodaran "
+    "ctryprem (July-2026 rating legs; Jan-2026 CDS legs, flagged)", SourceType.PRIMARY_MARKET_DATA,
+    "2026-07-31",
+    model_impact="rf OBSERVED on the published SAR sovereign curve: FTSE SAGBI 7-10y 5.52% "
+    "(iBoxx 5.44% @6.07y corroborates; the first edition's UST+spread proxy landed at 5.53% "
+    "and is retired); July-2026 Damodaran rating legs (0.48%/4.94%); both ERP bases carried "
+    "through the WACC")
 reg.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S,
     "Input complex: palm/soy (oil COGS) at 4-year highs and rising; raw sugar soft (-8% y/y) — "
     "compresses refined realizations but helps refiner spreads; wheat (pasta input) +5.8% m/m on "
@@ -252,8 +256,12 @@ reg.add_negative(Ring.INDUSTRY, "demand drivers & capacity/supply balance",
     "independent Saudi grocery market-size series for 2026 (GASTAT retail index not "
     "product-specific; no official grocery-market volume series found)", "2026-08-18")
 nMehbaj = reg.add_negative(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
-    "Al Mehbaj acquisition consideration / EV — not disclosed in the release, presentation, or "
-    "any exchange announcement found", "2026-08-18")
+    "Al Mehbaj business-combination detail beyond the note-19 consideration (asset breakdown, "
+    "earn-outs) — awaits the FY2026 statements' business-combination note", "2026-08-19")
+reg.add_negative(Ring.COMPANY, "regular disclosures",
+    "Panda store count at 30-Jun-2025 — not disclosed in any deck, release or interim; the "
+    "sales-per-store change is published as a range (-7.1%/-6.0%) over the 213-assumption and "
+    "interpolated-218 bases", "2026-08-19")
 nSplit = reg.add_negative(Ring.COMPANY, "regular disclosures",
     "Panda sales-per-store or like-for-like growth series (not disclosed; only total revenue, "
     "store count and NSA are published)", "2026-08-18")

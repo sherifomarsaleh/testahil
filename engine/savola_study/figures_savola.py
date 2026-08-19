@@ -88,7 +88,7 @@ ax.grid(False); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_sens.pn
 s = df.set_index('Date')['Price'].iloc[-260:]
 fig, ax = plt.subplots(figsize=(10.5, 4.1), dpi=110)
 ax.plot(s.index, s.values, color=INK, lw=1.7, label='SAVOLA close')
-for n, c in [(20, GOLD), (50, BRASS), (100, SAGE), (200, '#7B8D88')]:
+for n, c in [(20, GOLD), (50, BRASS), (200, '#7B8D88')]:
     ma = df.set_index('Date')['Price'].rolling(n).mean().iloc[-260:]
     ax.plot(ma.index, ma.values, color=c, lw=1.2, label=f'SMA {n}')
 ax.legend(frameon=False, fontsize=8.5, ncol=5, labelcolor=INK, loc='upper right')

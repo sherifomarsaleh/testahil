@@ -12,7 +12,14 @@ import io, json, re, sys, contextlib
 from pathlib import Path
 
 HERE = Path(__file__).parent
-SRC = (HERE / 'compute.py').read_text()
+# The harness prices critiques against the FIRST EDITION (18-Aug-2026), pinned in
+# git history — the working tree now holds the second edition, so the source is
+# read from the commit that carried the audited build.
+import subprocess
+FIRST_EDITION_COMMIT = 'c0ba9bb8'
+SRC = subprocess.run(
+    ['git', 'show', f'{FIRST_EDITION_COMMIT}:engine/savola_study/compute.py'],
+    capture_output=True, text=True, cwd=HERE, check=True).stdout
 SRC = SRC[:SRC.index('# ============================ EMIT')]
 ANCHOR = "V = {k: r['value'] for k, r in INP.items()}"
 assert ANCHOR in SRC

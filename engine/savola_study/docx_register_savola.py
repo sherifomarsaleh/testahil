@@ -1,4 +1,4 @@
-"""SAVOLA_Bibliography_18-08-2026.docx — the companion bibliography document.
+"""SAVOLA_Bibliography_19-08-2026.docx — the companion bibliography document (second edition).
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography, the judgements table and the negative results."""
@@ -103,7 +103,8 @@ def fmt(v):
 # ============================================================================
 masthead()
 H1('Savola Group Company (Saudi Exchange: 2050) — Bibliography and Source Register')
-P('Companion document to the valuation study dated 18 August 2026. It records where every '
+P('Companion document to the valuation study dated 19 August 2026 (second edition — '
+  'critique response; supersedes the 18 August first edition). It records where every '
   'number in that study came from.', size=9.5, color=GREY)
 
 H2('READ FIRST')
@@ -144,6 +145,11 @@ table([['Document', 'Publisher / auditor', 'Dated', 'What was taken'],
         'FY2022 comparatives; the pre-reset balance sheet'],
        ['Q1-2026 interim condensed statements (reviewed)', 'Savola Group', '06-May-2026',
         'first-quarter actuals and the 31-Mar-2026 balance sheet'],
+       ['Q2-2026 interim condensed statements (reviewed)', 'Savola Group', '05-Aug-2026',
+        'the Al Mehbaj consideration (note 19: SR 11.4mn); the 30-Jun-2026 balance sheet '
+        '(loans 2,664.5, leases 3,716.8, equity 5,360.5 — the WACC weights and the '
+        'book-lens base); the ex-treasury EPS divisor (296.682mn); the Tiryaki share '
+        'settlement'],
        ['H1-2026 earnings release', 'Savola Group', '06-Aug-2026',
         'half-year actuals, net debt, capital expenditure, the Sudan exit, the Mehbaj '
         'acquisition, the second-half cost warning'],
@@ -158,20 +164,32 @@ table([['Document', 'Publisher / auditor', 'Dated', 'What was taken'],
         'the official results tables and the dividend terms (SAR 1.70, ex 07-May-2026)'],
        ['US Treasury constant-maturity yields', 'Federal Reserve (FRED)', '14-Aug-2026',
         'US 10Y 4.68% and 1Y 3.98% — the risk-free construction\'s dollar leg'],
+       ['FTSE Saudi Government Bond Index (SAGBI) factsheet', 'FTSE Russell',
+        '31-Jul-2026', 'the OBSERVED SAR sovereign curve: 7-10y bucket yield 5.52% at '
+        '8.24y average life (whole index 5.48%; curve 5.22-5.83%) — the risk-free rate'],
+       ['iBoxx Tadawul SAR Government Sukuk Index publications', 'Saudi Exchange / '
+        'S&P DJI', '31-Mar-2026', 'corroboration: 5.44% annual yield at 6.07y duration'],
+       ['Sovereign risk dataset (July 2026 update)', 'NYU Stern (Damodaran)',
+        '01-Jul-2026', 'Saudi Aa3 adjusted default spread 0.48%; total equity risk '
+        'premium 4.94% (4.20% mature + 0.74% country) — the rating-basis legs'],
        ['Sovereign risk dataset (January 2026 update)', 'NYU Stern (Damodaran)',
-        '05-Jan-2026', 'Saudi Aa3 default spread 0.51%, equity risk premium 5.01%; CDS '
-        '0.98% / 5.72%'],
+        '05-Jan-2026', 'the CDS-basis legs only (CDS 0.98% / ERP 5.72%) — the July CDS '
+        'file was not retrievable; flagged wherever the CDS basis is quoted'],
        ['Saudi sovereign issuance', 'Emirates NBD Research note; NDMC announcements',
-        'Jan / Aug 2026', 'the USD 10Y new-issue spread (+85bp); the 1Y SAR savings-sukuk '
-        'rate (4.70%)'],
+        'Jan / Aug 2026', 'context for the retired proxy construction; the 1Y SAR '
+        'savings-sukuk rate (4.70%) still anchors the surplus-cash yield'],
        ['FAO Food Price Index', 'FAO', '07-Aug-2026',
         'vegetable oils at a four-year high; sugar −8% year on year; wheat firming'],
        ['Consumer price index, July 2026', 'GASTAT (via press reports of the release)',
         '14-Aug-2026', 'Saudi CPI +1.8%'],
        ['Market quotes (Savola, Herfy, Almarai, Al Othaim, BinDawood, NADEC, Wilmar; '
-        '3M SAIBOR)', 'stockanalysis.com; TradingEconomics — market data only',
-        '18-Aug-2026', 'prices and trailing multiples for the cross-checks and the '
-        'bridge\'s Herfy leg — never a source for any Savola reported figure']],
+        '3M SAIBOR) — SETTLED closes of 18-Aug-2026, each verified against the '
+        'following session\'s prior-close field',
+        'Argaam (prior-close verification); stockanalysis.com; TradingEconomics — '
+        'market data only', '19-Aug-2026',
+        'prices and trailing multiples for the cross-checks and the bridge\'s Herfy '
+        'leg — never a source for any Savola reported figure. Al Othaim\'s 11-Aug-2026 '
+        'H1 loss announcement disqualifies its trailing multiple (n/m)']],
       [2.20, 1.75, 0.80, 2.35], size=8.0)
 
 H2('The input register — every input, with value, source, date and layer')
@@ -212,12 +230,19 @@ table([['Judgement', 'What would overturn it'],
        ['Combined zakat-and-tax rate 19.5%',
         'a structural change in the Egypt mix or a new assessment cycle; the sensitivity '
         'is on the workbook\'s driver test'],
-       ['Terminal: growth 2.5%, return on capital 10.5%',
-        'evidence the group can compound above its cost of capital at scale — three years '
-        'of returns above 11% would justify raising the terminal return'],
-       ['The 10Y SAR risk-free construction (4.68% + 0.85%)',
-        'a directly quotable 10-year SAR government level; both ±50bp alternatives are '
-        'already priced in the study'],
+       ['Terminal: growth 2.5%; return on capital COMPUTED from the model\'s own year '
+        'five (the 10.5% case is a labelled variant, never the base)',
+        'evidence the group can compound above the computed return at scale — three '
+        'years of realised returns above 10.5% would justify promoting the variant'],
+       ['Risk-free: the published SAR sovereign curve (FTSE SAGBI 7-10y)',
+        'a change in the published curve itself; both ±50bp alternatives are already '
+        'priced in the study'],
+       ['The June-2025 Panda store count assumed at 213 (the derivation range −7.1% to '
+        '−6.0% is published; the build opens at −6%)',
+        'the company disclosing the count, or any half-year store series'],
+       ['Store path on company guidance (20+/yr) rather than the H1 run-rate',
+        'H2-2026 openings materially below the +16 the guidance base requires; the '
+        'run-rate variant is priced in the study'],
        ['Beta 1.087 (own stock vs the exchange index, five years weekly)',
         'a materially different reading once eighteen months of clean post-reset history '
         'exist; the 90% interval is priced in the study'],
@@ -229,41 +254,57 @@ table([['Judgement', 'What would overturn it'],
         'net-asset value; all three constructions are published in the workbook']],
       [2.60, 4.50], size=8.2)
 
-H2('Negative results — searched, not found, recorded')
+H2('Negative results — searched, not found, recorded (and two first-edition entries '
+   'corrected)')
 table([['What was sought', 'Where', 'Outcome'],
-       ['Al Mehbaj Al Shamiya acquisition consideration',
-        'H1-2026 release; Q2-2026 presentation; exchange announcements; Annual Report '
-        '2025', 'NOT DISCLOSED anywhere as of 18-Aug-2026 — the nuts leg carries a small, '
-        'flagged revenue step instead of an invented purchase price'],
        ['Panda like-for-like sales series', 'all company disclosures',
         'NOT PUBLISHED — sales per average store is derived from disclosed revenue and '
         'store counts, and the derivation is the study\'s central contested judgement'],
+       ['Panda store count at 30-Jun-2025', 'FY2025 and Q2-2026 presentations, both H1 '
+        'releases, the interim statements',
+        'NOT DISCLOSED — assumed at 213 (registered as an assumption); the density '
+        'change is published as a range over the 213 and interpolated-218 bases'],
        ['Numeric FY2026 revenue/margin guidance', 'company disclosures',
         'NONE EXISTS — only store-count and store-refresh targets are guided'],
-       ['A directly quotable 10-year SAR government bond/sukuk yield',
-        'exchange fixed-income pages, index publishers, data aggregators, official '
-        'issuance releases (which publish tranche sizes, not yields)',
-        'NOT ACCESSIBLE — constructed from the dollar curve plus the sovereign\'s own '
-        'issue spread, cross-checked on the observed 1-year rate, and priced ±50bp'],
-       ['H1-2026 reviewed interim statements on the company website',
-        'savola.com financial-statements page (English and Arabic)',
-        'FILED with the authorities but not yet mirrored on the site at the study date; '
-        'the company\'s own release and presentation carry every H1 figure used, and the '
-        'reviewed statements remain a follow-up item'],
+       ['July-2026 CDS legs of the sovereign risk dataset', 'the dataset\'s archive',
+        'NOT RETRIEVABLE this session — the CDS basis stays on the January vintage, '
+        'flagged wherever quoted'],
        ['FY2023 continuing-basis figures excluding Türkiye',
         'FY2024 and FY2025 statements',
         'NOT PUBLISHED — FY2023 is presented on its own audited basis and the Türkiye '
-        'inclusion is flagged wherever that column appears']],
+        'inclusion is flagged wherever that column appears'],
+       ['CORRECTED RECORD — Al Mehbaj consideration',
+        'first edition: recorded searched-and-not-found',
+        'IT WAS DISCLOSED: Q2-2026 reviewed interims, note 19 — SR 11.4mn (5.4 paid, '
+        '6.0 deferred). The first edition read the release and deck but not the filed '
+        'interims; external audit caught it, and the figure is now consumed in the '
+        'bridge and the nuts build'],
+       ['CORRECTED RECORD — a directly quotable 10-year SAR sovereign yield',
+        'first edition: recorded inaccessible; a proxy was constructed',
+        'IT IS PUBLISHED: the FTSE SAGBI factsheet carries the curve (7-10y 5.52%, '
+        '31-Jul-2026), and the exchange\'s iBoxx SAR sukuk index corroborates. The '
+        'proxy happened to land on the published level (5.53% vs 5.52%) — luck, not '
+        'method; the published curve is now the source']],
       [2.20, 2.30, 2.60], size=8.2)
 
-H2('Aggregator discrepancies')
-P('One found. The market-data page used for peer quotes lists Savola\'s trailing '
-  'twelve-month earnings on the reported basis (which still contains the zakat release '
-  'and the Sudan disposal gain) — a trailing multiple of about 8x that overstates '
-  'recurring earnings power. The study uses the company\'s own recurring bridge instead '
-  'and says so where the multiple appears. Market quotes themselves (prices, peer '
-  'multiples) were consistent across sources checked on 18-Aug-2026.', size=9)
+H2('Aggregator and disclosure discrepancies')
+P('Four are on record. (1) The uploaded price export\'s 18-Aug-2026 row carried 25.30 — '
+  'an intraday print; the settled close was 25.40 (verified on the following session\'s '
+  'prior-close field). The third occurrence of this vendor defect class in this '
+  'project\'s history; every quote in this edition is settled-close verified. (2) The '
+  'market-data page used for peer quotes lists Savola\'s trailing earnings on the '
+  'reported basis (still containing the zakat release and the Sudan gain); the study '
+  'uses the company\'s own recurring bridge. (3) The FY2025 zakat reversal is disclosed '
+  'three ways on three bases — 300.0 in the presentation\'s recurring bridge '
+  '(zakat-and-other accruals), 217.4 net in the audited FS note 29, 247.3 gross of '
+  'related expenses in the results announcement; the recurring base of 539.1 is the '
+  'company\'s own bridged figure and is unaffected. (4) One external audit quoted '
+  'Herfy\'s 18-Aug close at 15.66; the settled close is 15.50 (prior-close verified), '
+  'and 15.50 is used. The Almarai distribution carries two legitimate fair-value '
+  'framings, both used with their referents named: SR 21.1bn for the entire stake at '
+  'settlement (FY2025 FS note 16) and SR 12.75bn for the in-kind dividend leg alone.',
+  size=9)
 
-doc.save(os.path.join(HERE, 'SAVOLA_Bibliography_18-08-2026.docx'))
+doc.save(os.path.join(HERE, 'SAVOLA_Bibliography_19-08-2026.docx'))
 n_inputs = len(INP)
 print(f'bibliography written · {n_inputs} inputs in the register')

@@ -158,10 +158,10 @@
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "STRUCTURAL",
-   "headline": "Al Mehbaj Al Shamiya for Trading LLC acquired 100% in July 2026 (subsequent to H1) \u2014 Saudi premium nuts/coffee/spices/pulses processor, to scale the Nuts-Spices-Pulses platform with the planned new Jeddah facility; consideration NOT disclosed in the release or presentation (dated negative search 18-Aug-2026). Related-party dimension: Al Mehbaj is an Abdulkadir Al-Muhaidib & Sons company (AR2025 governance disclosures) \u2014 Al-Muhaidib is a major Savola shareholder",
-   "source_name": "Savola H1-2026 earnings release + Q2-2026 presentation + AR2025",
+   "headline": "Al Mehbaj Al Shamiya for Trading LLC acquired 100% in July 2026 (subsequent to H1) \u2014 Saudi premium nuts/coffee/spices/pulses processor, to scale the Nuts-Spices-Pulses platform with the planned new Jeddah facility; total consideration SR 11.4mn (5.4 paid + 6.0 deferred), DISCLOSED in the Q2-2026 reviewed interims note 19, subject to GA ratification (the first edition recorded it undisclosed \u2014 corrected). Related-party dimension: Al Mehbaj is an Abdulkadir Al-Muhaidib & Sons company (AR2025 governance disclosures) \u2014 Al-Muhaidib is a major Savola shareholder",
+   "source_name": "Savola Q2-2026 reviewed interim FS note 19 + H1-2026 release + AR2025",
    "source_type": "COMPANY_OFFICIAL",
-   "source_date": "2026-08-06",
+   "source_date": "2026-08-05",
    "detail": "",
    "url": "",
    "model_impact": "Nuts/Spices KSA leg gets an inorganic scale step from H2-2026; consideration undisclosed so modelled as a modest revenue bolt-on inside the FP nuts category with the gap FLAGGED \u2014 no invented purchase price enters the bridge",
@@ -339,12 +339,12 @@
    "category": "rate cycle & USD/FX regime",
    "klass": "STRUCTURAL",
    "headline": "UST 10Y 4.68% (FRED DGS10, 14-Aug-2026); UST 1Y 3.98% (DGS1) \u2014 Fed at 3.50-3.75% since Jun-2026, long end steep; Saudi sovereign USD 10Y priced Jan-2026 at UST+85bp (11.5bn 4-tranche jumbo, Emirates NBD note 06-Jan-2026); Damodaran Jan-2026 Saudi row: Aa3, default spread 0.51%, ERP 5.01% (CDS 0.98% / ERP 5.72%); SAIBOR-3M 4.74% (Jun-2026); SAR pegged at 3.75",
-   "source_name": "FRED + Emirates NBD Research + Damodaran ctryprem (Jan-2026)",
+   "source_name": "FTSE SAGBI factsheet 31-Jul-2026 + iBoxx SAR sukuk publications + FRED + Damodaran ctryprem (July-2026 rating legs; Jan-2026 CDS legs, flagged)",
    "source_type": "PRIMARY_MARKET_DATA",
-   "source_date": "2026-08-14",
+   "source_date": "2026-07-31",
    "detail": "",
    "url": "",
-   "model_impact": "rf construction: 10Y SAR proxy 5.53% = UST10Y 4.68% + Jan-2026 sovereign spread 0.85%, cross-checked against the observed 1Y SAR 4.70% (= UST1Y + 72bp); both Damodaran ERP bases carried through the WACC",
+   "model_impact": "rf OBSERVED on the published SAR sovereign curve: FTSE SAGBI 7-10y 5.52% (iBoxx 5.44% @6.07y corroborates; the first edition's UST+spread proxy landed at 5.53% and is retired); July-2026 Damodaran rating legs (0.48%/4.94%); both ERP bases carried through the WACC",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -428,10 +428,10 @@
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "NEGATIVE_SEARCH",
-   "headline": "Negative search \u2014 nothing found (Al Mehbaj acquisition consideration / EV \u2014 not disclosed in the release, presentation, or any exchange announcement found)",
+   "headline": "Negative search \u2014 nothing found (Al Mehbaj business-combination detail beyond the note-19 consideration (asset breakdown, earn-outs) \u2014 awaits the FY2026 statements' business-combination note)",
    "source_name": "negative search",
    "source_type": "SEARCH",
-   "source_date": "2026-08-18",
+   "source_date": "2026-08-19",
    "detail": "",
    "url": "",
    "model_impact": "",
@@ -440,6 +440,21 @@
   },
   {
    "fid": "F30",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Panda store count at 30-Jun-2025 \u2014 not disclosed in any deck, release or interim; the sales-per-store change is published as a range (-7.1%/-6.0%) over the 213-assumption and interpolated-218 bases)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-19",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F31",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -502,7 +517,7 @@
     "F07",
     "F08",
     "F12",
-    "F30"
+    "F31"
    ]
   },
   {
@@ -579,10 +594,10 @@
    "note": "official Saudi Exchange announcement pages for Q1-2026 results (anId 94980), FY2025 results (93502), FY2025 dividend (93503) read"
   },
   {
-   "url": "https://www.savola.com/en/investors/financial-statements (H1-2026 reviewed interim FS)",
-   "reachable": false,
-   "attempt_date": "2026-08-18",
-   "note": "H1-2026 reviewed interim FS NOT YET mirrored on the company site (English or Arabic page; both checked). The company's own release (06-Aug-2026) states they will be posted 'following submission to the relevant authorities'. H1-2026 anchors are therefore taken from the company's own earnings release + investor presentation; the reviewed FS is a registered follow-up, not silently substituted."
+   "url": "https://www.savola.com/en/investors/financial-statements (Q2-2026 reviewed interim FS)",
+   "reachable": true,
+   "attempt_date": "2026-08-19",
+   "note": "Q2-2026 reviewed interim FS RETRIEVED from the company site (second edition \u2014 the first edition wrongly recorded them unavailable and missed the Mehbaj consideration in note 19, the 30-Jun balance sheet and the ex-treasury EPS divisor; corrected under the critique response). H1-2026 P&L anchors also sit in the company's own earnings release + investor presentation; the reviewed FS is a registered follow-up, not silently substituted."
   }
  ],
  "study_year": "2026",
@@ -590,5 +605,5 @@
   "Q1-2026",
   "Q2-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [SAVOLA, 2026-08-18]: PASS \u2014 4/4 rings, 30 findings (2 B \u00b7 8 S \u00b7 6 D \u00b7 10 C \u00b7 4 NEG), driver gate 10 rows (8 bottom-up / 2 top-down) | primary access: attempted (5) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 5"
+ "qc_line": "QC(m) \u2014 Information Sweep [SAVOLA, 2026-08-18]: PASS \u2014 4/4 rings, 31 findings (2 B \u00b7 8 S \u00b7 6 D \u00b7 10 C \u00b7 5 NEG), driver gate 10 rows (8 bottom-up / 2 top-down) | primary access: attempted (5) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 5"
 }

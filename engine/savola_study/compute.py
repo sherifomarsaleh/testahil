@@ -4,22 +4,44 @@ truth for every builder). Code-first rule: INPUTS are four-field records
 block raises (no JSON emitted) unless the bridge closes, the category builds foot
 to the audited segment totals, and the terminal is ROIC-consistent.
 
-BUILT 18-Aug-2026 on the company's own issued statements read from savola.com/
-investors (COMPANY_OFFICIAL): FY2023 audited (KPMG-predecessor basis, 14-Mar-2024),
+SECOND EDITION, 19-Aug-2026 — restruck after a four-critique external audit
+worked under the critique-response procedure (82 findings enumerated, priced and
+answered; session record + CRITIQUE_RESPONSE_19-08-2026.md). Principal changes
+from the 18-Aug first edition: settled 18-Aug close 25.40 (the 25.30 print was
+intraday); FCFF now charges FULL lease additions (right-of-use depreciation +
+the lease-book growth the store programme creates — the first edition left the
+growth uncharged); terminal return on capital is COMPUTED from the model's own
+year-5 invested capital (the 10.5% input is retired to a labelled variant);
+risk-free re-anchored on the published SAR sovereign curve (FTSE SAGBI) with the
+July-2026 Damodaran vintage; capital-structure weights on the 30-Jun-2026
+reviewed balance sheet; the Tiryaki sale-proceeds receivable reclassified out of
+working capital into the bridge; per-share divisor at the Q2-2026 ex-treasury
+count; the relative lens rebuilt trailing-on-trailing with Al Othaim n/m; the
+normalized lens moved to FY2026E; the book lens on 30-Jun-2026 reviewed equity
+and the model's own FY2026E recurring earnings; the two anchor-dated bridge legs
+(Kinan capitalized, Herfy NCI at market) held outside the Dec-2025 roll; Expert
+1's Herfy carve-out corrected; Expert 3 rebuilt on the accounting identity with
+a reconciliation assert; Ke-dependent legs re-run inside every Ke sensitivity.
+
+BUILT on the company's own issued statements read from savola.com/investors
+(COMPANY_OFFICIAL): FY2023 audited (KPMG-predecessor basis, 14-Mar-2024),
 FY2024 audited (KPMG, 10-Mar-2025), FY2025 audited (Deloitte, unmodified,
-authorized 05-Mar-2026), Q1-2026 reviewed interim FS (06-May-2026), the company's
-own H1-2026 earnings release (06-Aug-2026) and the Q2-2026 / FY2025 investor
-presentations (COMPANY_IR).
+authorized 05-Mar-2026), Q1-2026 reviewed interim FS (06-May-2026), Q2-2026
+reviewed interim FS (authorized 05-Aug-2026 — retrieved for the second edition;
+the first edition wrongly recorded it unavailable), the company's own H1-2026
+earnings release (06-Aug-2026) and the Q2-2026 / FY2025 investor presentations
+(COMPANY_IR).
 
 Company class: diversified consumer-staples OPERATING COMPANY (food processing +
 grocery retail + QSR + frozen food; the Almarai-holding era ended with the 2024
 capital reduction and in-kind distribution). Lens set follows the operating-
 company reference (SWDY pattern inside the model-study skeleton): FCFF DCF
 primary, relative multiples, normalized earnings power, and a book/ROE lens.
-Leases are treated as DEBT throughout: FCFF charges a steady-state lease
-replacement equal to right-of-use depreciation, the lease liability is netted in
-the bridge at its audited balance, and lease debt carries its measured effective
-rate inside the WACC.
+Leases are treated as DEBT throughout: FCFF charges the FULL lease additions
+(right-of-use depreciation PLUS the lease-book growth the store programme
+creates — leases fund assets, so lease-funded growth is reinvestment like any
+other), the lease liability is netted in the bridge at its audited balance, and
+lease debt carries its measured effective rate inside the WACC.
 
 THE CONTESTED JUDGEMENT (computed BOTH WAYS, per the dual-framing rule extended
 to the study's central judgement): whether Panda's 20-store-per-year expansion
@@ -67,21 +89,38 @@ _PAS_GPT_H126 = 73.0 / 139.0 * 1000
 _D_OILV = _OILV_H126 / _OILV_H125 - 1            # +16.12%
 _D_SUGV = _SUGV_H126 / _SUGV_H125 - 1            # +7.23%
 _D_PASV = _PASV_H126 / _PASV_H125 - 1            # +2.96%
-_PANDA_SPS_H125 = 5852.0 / ((209.0 + 213.0) / 2)   # H1-25 revenue on avg store count
+# The June-2025 Panda store count is NOT disclosed anywhere reachable (searched:
+# FY2025 & Q2-2026 decks, both H1 releases, interims). The sales-per-store change
+# is therefore published as a RANGE over two bases: 213 stores (assumption,
+# registered below) and 218 (linear interpolation Dec-24 209 -> Dec-25 227).
+_STORES_JUN25_ASSUMED = 213.0
+_PANDA_SPS_H125 = 5852.0 / ((209.0 + _STORES_JUN25_ASSUMED) / 2)
+_PANDA_SPS_H125_INTERP = 5852.0 / ((209.0 + 218.0) / 2)
 _PANDA_SPS_H126 = 5902.0 / ((227.0 + 231.0) / 2)   # H1-26
-_D_PANDA_SPS = _PANDA_SPS_H126 / _PANDA_SPS_H125 - 1   # measured density change
+_D_PANDA_SPS = _PANDA_SPS_H126 / _PANDA_SPS_H125 - 1          # -7.1% (213 basis)
+_D_PANDA_SPS_LO = _PANDA_SPS_H126 / _PANDA_SPS_H125_INTERP - 1  # -6.0% (interpolated)
 
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(25.30, "Uploaded Tadawul daily price history for SAVOLA (2050), last close "
-           "18-Aug-2026", "2026-08-18", "Market"),
+    spot=I(25.40, "SETTLED Tadawul close for SAVOLA (2050), 18-Aug-2026, confirmed as the "
+           "prior-session close on Argaam 19-Aug-2026 (prev close 25.82, O 25.66 / H 25.78 "
+           "/ L 25.20, vol 859,264 across three reconciling feeds). The 25.30 in the "
+           "uploaded export was an intraday print — the third occurrence of the "
+           "settled-print vendor defect class in this project (TASI, RIYADHCABLE); the "
+           "library row is corrected in the same edition", "2026-08-19", "Market"),
     shares_issued_mn=I(300.0, FS25 + ", note 16: share capital SAR 3bn = 300mn fully paid "
                        "shares of SAR 10, after the 2024 rights issue (+600mn shares) and the "
                        "capital reduction cancelling 833.98mn shares against the Almarai "
                        "in-kind distribution", "2026-03-05", "Company"),
-    shares_wavg_mn=I(298.589, FS25 + ", note 31: weighted-average shares outstanding net of "
-                     "1.411mn treasury shares under the employee share plan", "2026-03-05",
-                     "Company"),
+    shares_wavg_mn=I(298.589, FS25 + ", note 31: FY2025 weighted-average shares outstanding "
+                     "net of treasury shares — kept as the FY2025 EPS divisor only",
+                     "2026-03-05", "Company"),
+    shares_val_mn=I(296.682, "Q2-2026 reviewed interim FS, EPS note: 300.000mn issued less "
+                    "the 3,318,046 weighted-average effect of treasury shares (the 2.605mn "
+                    "FY2025 buyback plus employee-plan shares) = 296.682mn — the company's "
+                    "own latest ex-treasury divisor, adopted for every per-share value "
+                    "(second edition; the first edition used the FY2025 weighted 298.589)",
+                    "2026-08-05", "Company"),
     anchor_days=I(230.0, "31-Dec-2025 valuation date to the 18-Aug-2026 price anchor",
                   "2026-08-18", "House"),
     div_between=I(1.70, "FY2025 dividend SAR 1.70/share (SAR 510mn, 17% of par), board-"
@@ -196,6 +235,36 @@ INP = dict(
     restor_fy25=I(164.946, FS25 + ": provision against asset restoration", "2026-03-05",
                   "Company"),
     equity_att_fy25=I(5516.027, FS25, "2026-03-05", "Company"),
+    equity_att_jun26=I(5360.505, "Q2-2026 reviewed interim FS, statement of changes in "
+                       "equity: equity attributable to owners at 30-Jun-2026 (after the "
+                       "510.0 dividend) — the book-lens base (second edition)", "2026-08-05",
+                       "Company"),
+    loans_jun26=I(2664.518, "Q2-2026 reviewed interim FS: loans and borrowings at "
+                  "30-Jun-2026, current 2,642.265 + non-current 22.253 — the freshest "
+                  "observable debt leg for the WACC weights (the 31-Dec-2025 1,893.924 "
+                  "stays the bridge deduction at the valuation date)", "2026-08-05",
+                  "Company"),
+    leases_jun26=I(3716.808, "Q2-2026 reviewed interim FS: lease liabilities at 30-Jun-2026, "
+                   "non-current 3,218.578 + current 498.230 — WACC-weight leg", "2026-08-05",
+                   "Company"),
+    cash_jun26=I(1051.382, "Q2-2026 reviewed interim FS: cash and cash equivalents at "
+                 "30-Jun-2026 (context for the weight construction; weights use gross debt)",
+                 "2026-08-05", "Company"),
+    tiryaki_recv=I(274.619, FS25 + ", notes 14/22: 'Sales proceed receivables (Note 22) "
+                   "274,619' ON the 31-Dec-2025 balance sheet inside prepayments 1,346.504 — "
+                   "the Kugu (Tiryaki) disposal completed at the agreed equity valuation as "
+                   "of the reporting date; settled in Tiryaki shares in H1-2026 (Q2-2026 "
+                   "interims: investments +283.7). Carried as a BRIDGE asset and carved out "
+                   "of operating working capital (second edition; the first edition excluded "
+                   "it on a wrong 'postdates the valuation date' rationale)", "2026-03-05",
+                   "Company"),
+    mehbaj_total=I(11.4, "Q2-2026 reviewed interim FS, note 19 (subsequent events): "
+                   "acquisition of 100% of Al Mehbaj Al Shamiya for Trading LLC for a total "
+                   "consideration of SR 11.4mn (5.4 paid + 6.0 deferred), related-party, "
+                   "subject to GA ratification — deducted as an anchor-dated bridge leg "
+                   "since the forecast carries Mehbaj revenue (the first edition recorded "
+                   "the consideration as undisclosed; the filed interims disclose it)",
+                   "2026-08-05", "Company"),
     other_net_liab=I(332.716, FS25 + ": accrued income tax 134.125 + accrued zakat 112.265 "
                      "+ deferred tax liability 110.893 less deferred tax asset 2.628 less "
                      "other non-current assets 21.939 — the audited lines outside the "
@@ -204,11 +273,31 @@ INP = dict(
     nci_book_fy25=I(950.039, FS25 + ", note 20", "2026-03-05", "Company"),
     nci_herfy_book=I(434.618, FS25 + ", note 20: carrying amount of the 51% Herfy NCI",
                      "2026-03-05", "Company"),
-    herfy_price=I(15.50, "Herfy Food Services (Tadawul 6002) close 18-Aug-2026, market data "
-                  "(stockanalysis.com; cross-check quote — Herfy's own listing)", "2026-08-18",
-                  "Market"),
+    herfy_price=I(15.50, "Herfy Food Services (Tadawul 6002) SETTLED close 18-Aug-2026, "
+                  "confirmed as the prior-session close on Argaam 19-Aug-2026 (last trade "
+                  "15.39 intraday 19-Aug). A 15.66 figure in one external audit is rejected "
+                  "against this receipt", "2026-08-19", "Market"),
     herfy_shares_mn=I(64.68, "Herfy shares outstanding, market data 18-Aug-2026", "2026-08-18",
                       "Market"),
+    herfy_liab_total=I(728.932, FS25 + ", note 20 material-NCI table: Herfy total "
+                       "liabilities before intra-group eliminations = non-current 461.952 + "
+                       "current 266.980 (segment note 33 Food Services liabilities agree at "
+                       "728.932)", "2026-03-05", "Company"),
+    herfy_liab_nc=I(461.952, FS25 + ", note 20: Herfy non-current liabilities — for a QSR "
+                    "chain dominated by non-current lease liabilities and end-of-service "
+                    "benefits, both of which sit inside the Expert-1 group deduction stack",
+                    "2026-03-05", "Company"),
+    herfy_cur_stack_est=I(80.0, "CONSTRUCTED (flagged): the current-portion lease liability "
+                          "inside Herfy's 266.980 current liabilities — Herfy's financing "
+                          "outflow of 128.264 in FY2025 (note 20 cash-flow rows, zero "
+                          "dividends) is lease principal + interest, consistent with a "
+                          "~80 current lease portion; the rest of current liabilities is "
+                          "trade payables, which the Expert-1 stack never deducts",
+                          "2026-08-19", "House/derived"),
+    herfy_cash_est=I(45.0, "CONSTRUCTED (flagged): Herfy cash inside group cash — note 20 "
+                     "FY2025 cash flows (CFO 143.7, CFI -11.7, CFF -128.3) imply a small "
+                     "stable balance; Expert 1 removes it alongside Herfy's liabilities",
+                     "2026-08-19", "House/derived"),
 
     # ---- FY2025 category unit data (Food Processing) -----------------------
     oil_vol_fy25=I(1322.0, IRFY + ": oil volume FY2025 (Arabia 612 + other markets 710), "
@@ -316,27 +405,34 @@ INP = dict(
                    "GP/ton: FY25 191, H1-2026 actual 218 (KSA margin recovery + Egypt); FY26E "
                    "215, then 212 — holds most of the measured gain without projecting more",
                    "2026-08-18", "House"),
-    pas_vol_fy25=I(268.0, "DERIVED (flagged): FY2025 pasta volume = disclosed revenue 545 / "
-                   "implied revenue-per-tonne 2,034 (H1-2026 2,101 and H1-2025 2,052 disclosed "
-                   "pairs; FY25 midpoint) — the presentation discloses H1 volumes but not the "
-                   "FY total", "2026-08-18", "House/derived"),
+    pas_vol_fy25=I(263.0, IRFY + " p17 pasta segment analysis: FY2025 volume 263k MT "
+                   "(FY2024: 232, +13.2%) under the 'Volume (MT '000)' header; the same "
+                   "slide's 'Gross Profit / Ton (SAR)' figures are 440/445, and the "
+                   "arithmetic locks the roles (117mn / 263k t = 445; 102 / 232 = 440). "
+                   "Replaces the first edition's derived 268 (within 2% of the disclosed "
+                   "figure); one external audit read the roles swapped (volume 445) — "
+                   "rejected on the slide layout, the arithmetic, and the Q2-2026 deck's "
+                   "'+3.1%' volume growth matching 135->139k t halves", "2026-03-09",
+                   "Company"),
     pas_vol_g=I([0.03, 0.03, 0.025, 0.02, 0.02],
-                "H1-2026 actual +3.0% (computed) carried, wheat-cost tailwind supporting "
-                "competitiveness", "2026-08-18", "House"),
+                "company-stated H1-2026 volume +3.1% (registered rounded pair 139/135 "
+                "computes +3.0%) carried, wheat-cost tailwind supporting competitiveness",
+                "2026-08-18", "House"),
     pas_rpt_g=I([0.02, 0.01, 0.01, 0.01, 0.01],
                 "revenue/ton +2% FY26E (H1-2026 2,101 vs H1-2025 2,052 = +2.4% computed), "
                 "then +1%", "2026-08-18", "House"),
     pas_gpt_path=I([520.0, 520.0, 520.0, 520.0, 520.0],
-                   "GP/ton: H1-2026 actual 525 (73/139); FY25 ~437 implied; held at 520 — "
-                   "the wheat/packaging tailwind the company names is retained, not amplified",
-                   "2026-08-18", "House"),
+                   "GP/ton: H1-2026 actual 525 (73/139); FY2025 DISCLOSED 445 (deck p17, "
+                   "440 in FY2024); held at 520 — the wheat/packaging tailwind the company "
+                   "names is retained, not amplified", "2026-08-18", "House"),
     nuts_rev_path=I([730.0, 800.0, 848.0, 890.0, 926.0],
-                    "FY25 base 769 (residual of the four categories against the audited FP "
-                    "segment revenue); H1-2026 337 (-6.9% y/y computed) with the Mehbaj "
-                    "bolt-on from Jul-2026 (consideration undisclosed — dated negative "
-                    "search; modelled as a modest KSA revenue step +40 in H2-26E, +8.5% "
-                    "FY27E, then +5%) — flagged as the least-anchored revenue line",
-                    "2026-08-18", "House"),
+                    "FY25 base 768.9 (residual of the four categories against the audited FP "
+                    "segment revenue) — FY26E steps DOWN 5.1%, anchored on the H1-2026 "
+                    "actual 337 (Bayara UAE 278 + KSA 59; nuts is H2/festive-season "
+                    "weighted) with the Mehbaj bolt-on from Jul-2026 (total consideration "
+                    "SR 11.4mn per the Q2-2026 interims note 19; modelled as a modest KSA "
+                    "revenue step +40 in H2-26E, +8.5% FY27E, then +5%) — flagged as the "
+                    "least-anchored revenue line", "2026-08-19", "House"),
     nuts_gm_path=I([0.265, 0.27, 0.27, 0.27, 0.27],
                    "FY25 residual category GM 26.1% (segment-note GP less the three "
                    "disclosed categories); H1-2026 blended 29.9% disclosed; forward 26.5-27% "
@@ -347,16 +443,31 @@ INP = dict(
                     "sugar (413-335)/4,868; pasta (21.5%-13.5%); nuts residual (201-20)/769 — "
                     "held flat: opex scales with revenue, margins stay OUTPUTS", "2026-03-09",
                     "Company/derived"),
+    stores_jun25_assumed=I(_STORES_JUN25_ASSUMED,
+                           "ASSUMPTION (flagged): Panda store count at 30-Jun-2025 — NOT "
+                           "disclosed in any reachable company document (searched: FY2025 & "
+                           "Q2-2026 decks, H1 releases, interims). 213 = Dec-2024's 209 + 4 "
+                           "net, mirroring the disclosed H1-2026 cadence (+6/-2); the "
+                           "linear-interpolation alternative is 218, and the sales-per-store "
+                           "change is published as a range over both bases", "2026-08-19",
+                           "House"),
     stores_path=I([247.0, 267.0, 285.0, 300.0, 312.0],
                   "company guidance 20+ stores/yr (Q2-2026 presentation 2026 target; AR2025); "
-                  "tapering to +12 by FY2030", "2026-08-06", "Company/House"),
+                  "tapering to +12 by FY2030. H1-2026 delivered +4 net (231 at June); the "
+                  "guidance base implies +16 net in H2-2026 — an H2-weighted cadence the "
+                  "FY2025 full-year +18 net supports but whose half-split is undisclosed. "
+                  "The +8/yr run-rate alternative is priced in the sensitivity section and "
+                  "named a falsifier in the caveats", "2026-08-19", "Company/House"),
     sps_g_A=I([-0.06, -0.03, -0.01, 0.0, 0.0],
-              "FRAMING A sales-per-average-store path: measured H1-2026 density change "
-              f"{_D_PANDA_SPS:+.1%} carried into FY26E, fading as CXR (149 stores done) and "
-              "e-commerce (~2.5x) mature", "2026-08-18", "House"),
+              "FRAMING A sales-per-average-store path: measured H1-2026 density change, "
+              f"published as a range {_D_PANDA_SPS:+.1%} (Jun-25=213 assumption) to "
+              f"{_D_PANDA_SPS_LO:+.1%} (interpolated 218); the FY26E opening -6% sits at "
+              "the interpolation end, fading as CXR (149 stores done) and e-commerce "
+              "(~2.5x) mature", "2026-08-19", "House"),
     sps_g_B=I([-0.06, -0.03, -0.03, -0.03, -0.03],
-              "FRAMING B: the measured erosion never fades — competition and small-format "
-              "mix keep density falling 3%/yr", "2026-08-18", "House"),
+              "FRAMING B: -6% in FY2026E then the erosion never fades — competition and "
+              "small-format mix keep density falling 3%/yr forever (the study states this "
+              "exact path wherever Framing B is described)", "2026-08-19", "House"),
     panda_gm=I(0.232, "Panda gross margin held at the H1-2026 actual 23.2% (presentation "
                "basis) — Q4 seasonality helps but promo intensity offsets; no uplift "
                "projected", "2026-08-06", "Company/House"),
@@ -367,9 +478,10 @@ INP = dict(
                   "H1-2026 actual -6.8%; FY26E -4.5% (softer H2 comps), stabilising then +2% "
                   "— no turnaround projected beyond the company's own cost actions",
                   "2026-08-18", "House"),
-    herfy_ebitda_mgn=I(0.185, "H1-2026 actual 18.7% held at 18.5% (post-IFRS16 margin; the "
-                       "cost programme's gain retained, not extended)", "2026-08-06",
-                       "Company/House"),
+    herfy_ebitda_mgn=I(0.187, "H1-2026 actual 18.7% held FLAT (the first edition's 18.5% "
+                       "was a 20bp haircut with no measured mechanism — the reviewed actual "
+                       "outranks; the cost programme's gain is retained, not extended)",
+                       "2026-08-19", "Company"),
     frz_rev_g=I([0.01, 0.035, 0.035, 0.03, 0.03],
                 "H1-2026 -1.4% with a stronger Q2; FY26E +1% (H2 recovery per company), then "
                 "3-3.5% B2B/food-service growth", "2026-08-18", "House"),
@@ -379,8 +491,14 @@ INP = dict(
     unalloc_path=I([130.0, 133.0, 136.0, 139.0, 142.0],
                    "unallocated corporate costs: 2x the H1-2026 cash-based 64, growing ~2%/yr "
                    "(Saudi CPI)", "2026-08-06", "Company/House"),
-    invseg_rev=I(29.0, "Investments segment rental/other revenue held at the FY2025 29.0",
-                 "2026-03-05", "Company"),
+    invseg_rev=I(29.0, "Investments segment revenue held at the FY2025 28.978 — "
+                 "INTER-SEGMENT rent charged to sister segments (segment note 33: external "
+                 "Investments revenue is ZERO; the 29.0 is eliminated inside the (443.2) "
+                 "column). In this build it nets against the elim line so group external "
+                 "revenue foots; the property's income stays OUTSIDE group EBITDA (the "
+                 "opcos carry the rent expense at segment level), which is why the "
+                 "investment property is a bridge asset, not a double-count", "2026-08-19",
+                 "Company"),
 
     # ---- capex / D&A / leases ------------------------------------------------
     capex_path=I([810.0, 900.0, 880.0, 860.0, 850.0],
@@ -408,8 +526,11 @@ INP = dict(
     dso_fy25=I(26.0, "days sales = 1,856.7 / 26,081.1 x 365", "2026-03-05", "Company/derived"),
     dpo_fy25=I(68.1, "days payable = 3,915.8 / 20,992.2 x 365", "2026-03-05",
                "Company/derived"),
-    prepay_ratio=I(0.0516, "prepayments & other receivables / revenue FY2025", "2026-03-05",
-                   "Company/derived"),
+    prepay_ratio=I(0.0411, "prepayments & other receivables / revenue FY2025 EX the 274.6 "
+                   "Tiryaki sale-proceeds receivable ((1,346.504 - 274.619) / 26,081.1) — "
+                   "the receivable is non-operating and is carried in the bridge instead; "
+                   "the first edition's 5.16% perpetuated it in forecast working capital",
+                   "2026-08-19", "Company/derived"),
     accrued_ratio=I(0.1085, "accrued & other liabilities / revenue FY2025", "2026-03-05",
                     "Company/derived"),
     contract_ratio=I(0.0058, "contract liabilities / revenue FY2025", "2026-03-05",
@@ -435,22 +556,26 @@ INP = dict(
     sar_1y_obs=I(0.0470, "observed 1Y SAR sovereign rate: NDMC 'Sah' savings sukuk fixed "
                  "annual return 4.70%, Aug-2026 subscription (NDMC announcement via Arab "
                  "News 02-Aug-2026)", "2026-08-02", "Country"),
-    rf_observed=I(0.0553, "CONSTRUCTED 10Y SAR proxy (flagged; direct SAR 10Y quote "
-                  "inaccessible this session — investing.com/WGB/TradingEconomics/spglobal/"
-                  "cbonds all walled, NDMC publishes tranche sizes not yields): UST10Y 4.68% "
-                  "(FRED 14-Aug-2026) + 0.85% Saudi Jan-2026 USD 10Y new-issue spread = "
-                  "5.53%, cross-checked against the observed 1Y SAR 4.70% = UST1Y + 72bp "
-                  "(the peg keeps the SAR curve near the sovereign USD curve); WACC "
-                  "sensitivity to +/-50bp is published", "2026-08-14", "Country"),
-    sov_spread_rating=I(0.0051, "Damodaran ctryprem.html (original file, 'last updated "
-                        "January 5, 2026'): Saudi Arabia Aa3, adjusted default spread 0.51%",
-                        "2026-01-05", "Country"),
-    erp_rating=I(0.0501, "Damodaran same file: Saudi Arabia total ERP 5.01% (CRP 0.78%)",
-                 "2026-01-05", "Country"),
-    sov_spread_cds=I(0.0098, "Damodaran same file: Saudi sovereign CDS 0.98%", "2026-01-05",
-                     "Country"),
-    erp_cds=I(0.0572, "Damodaran same file: ERP on the CDS basis 5.72%", "2026-01-05",
-              "Country"),
+    rf_observed=I(0.0552, "PUBLISHED SAR sovereign curve: FTSE Saudi Government Bond Index "
+                  "(SAGBI) factsheet 31-Jul-2026, 7-10 year maturity bucket yield-to-"
+                  "maturity 5.52% at 8.24y average life (whole-index 5.48%, curve 5.22-"
+                  "5.83%). Replaces the first edition's synthetic UST10Y+new-issue-spread "
+                  "construction (which landed at 5.53% — level confirmed, source upgraded); "
+                  "iBoxx Tadawul SAR Government Sukuk Index 5.44% at 6.07y duration "
+                  "(31-Mar-2026) corroborates. WACC sensitivity to +/-50bp is published",
+                  "2026-07-31", "Country"),
+    sov_spread_rating=I(0.0048, "Damodaran ctryprem, July-2026 vintage (ctrypremJuly26): "
+                        "Saudi Arabia Aa3, adjusted default spread 0.48% (Jan-2026 vintage "
+                        "0.51% retired — a newer original file existed at the first "
+                        "edition's date and is adopted here)", "2026-07-01", "Country"),
+    erp_rating=I(0.0494, "Damodaran July-2026 vintage: Saudi Arabia total ERP 4.94% "
+                 "(mature-market 4.20% + CRP 0.74%)", "2026-07-01", "Country"),
+    sov_spread_cds=I(0.0098, "Damodaran JANUARY-2026 vintage: Saudi sovereign CDS 0.98% — "
+                     "the July CDS legs were not retrievable this session, so the CDS basis "
+                     "stays on the January vintage, FLAGGED wherever the CDS-basis value is "
+                     "shown", "2026-01-05", "Country"),
+    erp_cds=I(0.0572, "Damodaran JANUARY-2026 vintage: ERP on the CDS basis 5.72% (same "
+              "flag as sov_spread_cds)", "2026-01-05", "Country"),
     beta=I(1.087, "tier-1 own-stock beta: 5y weekly Dimson regression of SAVOLA vs TASI "
            "(engine registry copy of the exchange's published index, as-of 18-Aug-2026): "
            "beta 1.087, R2 0.159, n 254, SE 0.215, CI90 [0.73, 1.44]; produced by the "
@@ -470,23 +595,30 @@ INP = dict(
                "2026-08-18", "House"),
     g_term=I(0.025, "terminal growth 2.5% = Saudi CPI 1.8% (GASTAT Jul-2026) + ~0.7% real "
              "staples growth; below nominal GDP", "2026-08-14", "House"),
-    roic_term=I(0.105, "terminal ROIC 10.5%: above the 8.5% terminal WACC (brands, shelf "
-                "position) but far below the current oil-cycle segment returns; drives "
-                "terminal reinvestment = g / ROIC", "2026-08-18", "House"),
+    roic_term_variant=I(0.105, "RETIRED AS THE BASE, kept as a labelled UPSIDE VARIANT: the "
+                        "first edition set terminal ROIC 10.5% as an input, above every "
+                        "return the model itself produces (9.2% rising to ~9.7%) — an "
+                        "undisclosed step-up on 75% of enterprise value. The second "
+                        "edition's terminal ROIC is COMPUTED as the model's own year-5 "
+                        "NOPAT on year-5 opening invested capital; the 10.5% brand/"
+                        "shelf-position case is published beside it, never averaged "
+                        "(dual-framing rule)", "2026-08-19", "House"),
     tw_e=I(0.65, "terminal equity weight 65% (explicit-window market weights re-based to "
            "the model's own equity value; leases stay a structural 25-27% of capital for a "
            "leased-store retailer)", "2026-08-18", "House"),
     tw_loans=I(0.08, "terminal loans weight 8%", "2026-08-18", "House"),
 
     # ---- relative / normalized lens inputs -----------------------------------
-    peer_pe=I(dict(ALMARAI=19.7, OTHAIM=19.4, BINDAWOOD=19.8, NADEC=13.0, WILMAR=12.4),
-              "TTM P/E, market data 18-Aug-2026 (stockanalysis.com): Almarai 19.7, Al Othaim "
-              "19.4, BinDawood 19.8, NADEC 13.0, Wilmar (international analogue) 12.4; "
-              "cross-check only, never a build source", "2026-08-18", "Market"),
-    pe_mix_w_fp=I(0.55, "EBITDA-mix weight of the processing/frozen leg for the peer-mix "
-                  "multiple: FY2025 category EBITDA (oil 563 + sugar 335 + pasta ~74 + nuts "
-                  "~20 + Kabeer ~110) over the group total ex-unallocated", "2026-03-09",
-                  "Company/derived"),
+    peer_pe=I(dict(ALMARAI=19.77, OTHAIM=None, BINDAWOOD=20.20, NADEC=13.0, WILMAR=12.54),
+              "TTM P/E at SETTLED 18-Aug-2026 closes (the first edition's table mixed "
+              "17-Aug quotes under an 18-Aug caption): Almarai 19.77 (48.60 close), "
+              "BinDawood 20.20 (4.66), NADEC 13.0 (exact at 18-Aug), Wilmar 12.54 (3.706). "
+              "AL OTHAIM IS N/M: its 11-Aug-2026 H1 announcement shows an attributable "
+              "LOSS of SAR 53.5mn (Q2 -107.1 on inventory provisions), so TTM earnings to "
+              "30-Jun-2026 are ~79mn and the trailing multiple (~57x) is disqualified — "
+              "same treatment as Herfy (loss-making, n/m). The first edition's 19.4x was a "
+              "pre-announcement window quoted as current. Cross-check only, never a build "
+              "source", "2026-08-19", "Market"),
     pe_discount=I(0.20, "conglomerate / EM-mix discount applied to the peer-mix P/E: ~21% of "
                   "revenue is Egypt (Caa1 sovereign) and the group stacks a holding level "
                   "over four operating legs; 20% base, published undiscounted alongside and "
@@ -508,9 +640,10 @@ INP = dict(
     panda_scale_step=I(0.001, "Framing A store-opex scale gain: -10bp/yr from FY2028 as CXR "
                        "conversions and e-commerce density mature; ZERO in Framing B",
                        "2026-08-18", "House"),
-    rec_g_fy26=I(0.15, "recurring-earnings step FY2025 -> FY2026E for the sustainable-ROE "
-                 "lens: H1-2026 recurring +40% y/y moderated to +15% for the full year "
-                 "(H2 replacement-cost squeeze); feeds roe_sust only", "2026-08-18", "House"),
+    h1_recurring_h126=I(372.0, IRQ2 + " net-income analysis table: H1-2026 recurring net "
+                        "income 372 (+40% y/y)", "2026-08-06", "Company"),
+    h1_recurring_h125=I(266.0, IRQ2 + " net-income analysis table, H1-2025 column: "
+                        "recurring net income 266", "2026-08-06", "Company"),
 )
 
 # ============================ CALC ===========================================
@@ -538,13 +671,12 @@ nuts_rev_fy25 = V['fp_segrev_fy25'] - V['oil_rev_fy25'] - V['sug_rev_fy25'] - V[
 fp_gp_fy25 = V['fp_segrev_fy25'] - V['fp_cogs_fy25']
 pas_gp_fy25 = V['pas_rev_fy25'] * V['pas_gm_fy25']
 nuts_gp_fy25 = fp_gp_fy25 - V['oil_gp_fy25'] - V['sug_gp_fy25'] - pas_gp_fy25
-assert abs(nuts_rev_fy25 - 768.85) < 1.0, nuts_rev_fy25
-assert nuts_gp_fy25 > 0, "residual nuts GP must be economically possible"
 nuts_gm_fy25 = nuts_gp_fy25 / nuts_rev_fy25
+pas_gpt_fy25 = pas_gp_fy25 / V['pas_vol_fy25'] * 1000.0   # 445 SAR/t, ties the deck's own label
 
-# ============================ SEGMENT BUILD ==================================
+# ---- the segment build (drivers -> revenue -> gross profit -> EBITDA) ---------
 def build(oil_gpt_shift=0.0, sug_gpt_shift=0.0, sps_variant='A', panda_opex_flat=False,
-          vol_mult=1.0, capex_mult=1.0, gm_panda_shift=0.0):
+          vol_mult=1.0, gm_panda_shift=0.0, sps_open=None, stores_override=None):
     """Full five-year segment build. Returns dict of paths (SAR mn)."""
     # --- Food Processing: category volume x price x GP/ton ---
     oil_v, sug_v, pas_v = [], [], []
@@ -579,21 +711,24 @@ def build(oil_gpt_shift=0.0, sug_gpt_shift=0.0, sps_variant='A', panda_opex_flat
     fp_eb = [a + b + c + d for a, b, c, d in zip(oil_eb, sug_eb, pas_eb, nuts_eb)]
 
     # --- Retail (Panda): stores x sales/store; margin as OUTPUT ---
-    sps_g = V['sps_g_A'] if sps_variant == 'A' else V['sps_g_B']
+    sps_g = list(V['sps_g_A'] if sps_variant == 'A' else V['sps_g_B'])
+    if sps_open is not None:
+        sps_g[0] = sps_open
+    stores_fc = list(stores_override if stores_override is not None else V['stores_path'])
     sps = V['ret_segrev_fy25'] / ((V['stores_end24'] + V['stores_end25']) / 2.0)
     stores_prev = V['stores_end25']
     pan_rev, pan_eb, pan_gp = [], [], []
     opex_ratio = V['panda_opex_ratio']
     for i in range(5):
         sps *= (1 + sps_g[i])
-        avg_stores = (stores_prev + V['stores_path'][i]) / 2.0
+        avg_stores = (stores_prev + stores_fc[i]) / 2.0
         rev = avg_stores * sps
         gm = V['panda_gm'] + gm_panda_shift
         if (not panda_opex_flat) and sps_variant == 'A' and i >= 2:
             opex_ratio = opex_ratio - V['panda_scale_step']
         gp = rev * gm
         pan_rev.append(rev); pan_gp.append(gp); pan_eb.append(gp - rev * opex_ratio)
-        stores_prev = V['stores_path'][i]
+        stores_prev = stores_fc[i]
 
     # --- Food Services (Herfy) and Frozen (Al Kabeer) ---
     her_rev, frz_rev = [], []
@@ -605,6 +740,10 @@ def build(oil_gpt_shift=0.0, sug_gpt_shift=0.0, sps_variant='A', panda_opex_flat
     frz_eb = [r * V['frz_ebitda_mgn'] for r in frz_rev]
 
     # --- group ---
+    # invseg_rev is INTER-SEGMENT rent (external Investments revenue is zero); it
+    # nets against the elim line so the sum reproduces the audited external total,
+    # and the property's income stays OUTSIDE group EBITDA (opcos carry the rent
+    # expense at segment level) — the investment property is a bridge asset.
     elim = [r * V['elim_ratio'] for r in fp_rev]
     rev = [a + b + c + d + e + V['invseg_rev'] for a, b, c, d, e in
            zip(fp_rev, pan_rev, her_rev, frz_rev, elim)]
@@ -616,7 +755,7 @@ def build(oil_gpt_shift=0.0, sug_gpt_shift=0.0, sps_variant='A', panda_opex_flat
                 nuts_eb=nuts_eb, fp_rev=fp_rev, fp_gp=fp_gp, fp_eb=fp_eb, pan_rev=pan_rev,
                 pan_gp=pan_gp, pan_eb=pan_eb, her_rev=her_rev, her_eb=her_eb,
                 frz_rev=frz_rev, frz_eb=frz_eb, elim=elim, rev=rev, ebitda=ebitda,
-                capex=[c * capex_mult for c in V['capex_path']])
+                capex=list(V['capex_path']))
 
 B = build()
 
@@ -640,14 +779,31 @@ def dna_paths(capex):
 OWN_D, INT_D, ROU_D, PPE_PATH = dna_paths(B['capex'])
 DNA = [a + b + c for a, b, c in zip(OWN_D, INT_D, ROU_D)]
 
-# ---- working capital (component days held at FY2025) -------------------------
+# ---- lease-book walk (single source for FCFF, the balance sheet and Expert 3) --
+# New leases recognized each year = right-of-use DEPRECIATION (renewals holding the
+# estate) + DLEASE (the book's growth on the store programme). FCFF charges BOTH:
+# leases are debt, so lease-funded growth is reinvestment like owned capex.
+# [Second edition — the first edition charged depreciation only, leaving the
+#  growth uncharged: the critique response's largest accepted finding.]
+def lease_walk():
+    bal, dl, path = V['leases_fy25'], [], []
+    for g_ in V['rou_growth']:
+        d_ = bal * g_
+        dl.append(d_)
+        bal += d_
+        path.append(bal)
+    return dl, path
+
+DLEASE, LEASE_PATH = lease_walk()
+LEASE_ADD = [r + d for r, d in zip(ROU_D, DLEASE)]   # full additions 756 -> 787
+
+# ---- working capital (component days held at FY2025; ex the Tiryaki receivable) --
 def wc_path(rev, ebitda):
     cogs_ratio = 1 - (GP_H['FY25'] / V['rev_fy25'])   # COGS/revenue held at FY2025
-    nwc, prev = [], None
-    nwc0 = (V['inventories_fy25'] + V['tr_fy25'] + V['prepay_fy25'] - V['tp_fy25']
-            - V['accrued_fy25'] - V['contract_fy25'])
+    nwc0 = (V['inventories_fy25'] + V['tr_fy25'] + (V['prepay_fy25'] - V['tiryaki_recv'])
+            - V['tp_fy25'] - V['accrued_fy25'] - V['contract_fy25'])
     prev = nwc0
-    dwc = []
+    nwc, dwc = [], []
     for i in range(5):
         cogs = rev[i] * cogs_ratio
         w = (cogs * V['dio_fy25'] / 365.0 + rev[i] * V['dso_fy25'] / 365.0
@@ -662,9 +818,9 @@ NWC0, NWC, DWC = wc_path(B['rev'], B['ebitda'])
 T = V['tax_rate']
 EBIT = [e - d for e, d in zip(B['ebitda'], DNA)]
 NOPAT = [e * (1 - T) for e in EBIT]
-FCFF = [n + d - c - r - w for n, d, c, r, w in
-        zip(NOPAT, DNA, B['capex'], ROU_D, DWC)]
-# lease replacement = right-of-use depreciation (steady state); owned capex separate
+FCFF = [n + d - c - r - dl - w for n, d, c, r, dl, w in
+        zip(NOPAT, DNA, B['capex'], ROU_D, DLEASE, DWC)]
+# lease charge = FULL additions (RoU depreciation + book growth); owned capex separate
 
 # ---- cost of capital: v2, both ERP bases --------------------------------------
 rf_star_rating = V['rf_observed'] - V['sov_spread_rating']
@@ -674,13 +830,18 @@ ke_cds = rf_star_cds + V['beta'] * V['erp_cds']
 w_sa = V['loans_geo_sa'] / V['loans_fy25']
 w_eg = V['loans_geo_eg'] / V['loans_fy25']
 w_ot = V['loans_geo_other'] / V['loans_fy25']
+# kd blend keeps the FY2025 currency shares — the 30-Jun-2026 book's split is not
+# disclosed in the interims; stated in the study.
 kd_loans = w_sa * V['kd_sar'] + w_eg * V['kd_eg_localeq'] + w_ot * V['kd_other']
 kd_lease = V['lease_rate']
 mktcap = V['spot'] * V['shares_issued_mn']
-EV_w = mktcap + V['loans_fy25'] + V['leases_fy25']
+# Weights: freshest observable per leg — equity at the 18-Aug-2026 settled close,
+# debt legs at the 30-Jun-2026 reviewed balance sheet (the first edition mixed an
+# 18-Aug numerator with 31-Dec-2025 debt). The BRIDGE stays dated 31-Dec-2025.
+EV_w = mktcap + V['loans_jun26'] + V['leases_jun26']
 we = mktcap / EV_w
-wl = V['loans_fy25'] / EV_w
-wz = V['leases_fy25'] / EV_w
+wl = V['loans_jun26'] / EV_w
+wz = V['leases_jun26'] / EV_w
 wacc_exp = we * ke_rating + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
 wacc_exp_cds = we * ke_cds + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
 tw_lease = 1 - V['tw_e'] - V['tw_loans']
@@ -688,6 +849,30 @@ wacc_term = (V['tw_e'] * ke_rating + V['tw_loans'] * kd_loans * (1 - T)
              + tw_lease * kd_lease * (1 - T))
 wacc_term_cds = (V['tw_e'] * ke_cds + V['tw_loans'] * kd_loans * (1 - T)
                  + tw_lease * kd_lease * (1 - T))
+
+# ---- invested capital path and the COMPUTED terminal return -------------------
+# Operating invested capital at 31-Dec-2025 by the accounting identity:
+#   equity + NCI + loans + leases - cash - investments - Kinan - Tiryaki - inv.property
+#   = PP&E + right-of-use + intangibles + operating NWC - employee benefits
+#     - restoration - other net liabilities
+# (the Tiryaki receivable and the investment property are carved out with the
+# non-operating pocket: their income sits outside EV).
+IC0_OP = (V['equity_att_fy25'] + V['nci_book_fy25'] + V['loans_fy25'] + V['leases_fy25']
+          - V['cash_fy25'] - V['inv_c_fy25'] - V['inv_nc_fy25'] - V['kinan_carry']
+          - V['tiryaki_recv'] - V['invprop_fy25'])
+
+def ic_walk(capex, roud, dwc, dna):
+    ic, path = IC0_OP, []
+    for i in range(5):
+        ic = ic + capex[i] + roud[i] + DLEASE[i] + dwc[i] - dna[i]
+        path.append(ic)
+    return path
+
+IC_PATH = ic_walk(B['capex'], ROU_D, DWC, DNA)
+ROIC_PATH = [NOPAT[i] / ([IC0_OP] + IC_PATH)[i] for i in range(5)]
+# Terminal return = the model's OWN year-5 return on year-5 opening capital.
+# [Second edition: the 10.5% input is retired to the labelled variant below.]
+ROIC_TERM = NOPAT[4] / IC_PATH[3]
 
 # ---- DCF and the EV -> equity bridge ------------------------------------------
 def dcf(fcff, nopat, wacc_e, wacc_t, g, roic):
@@ -700,49 +885,67 @@ def dcf(fcff, nopat, wacc_e, wacc_t, g, roic):
     return pv_exp, tv, pv_tv, dfs, fcff_t
 
 PV_EXP, TV, PV_TV, DFS, FCFF_T = dcf(FCFF, NOPAT, wacc_exp, wacc_term, V['g_term'],
-                                     V['roic_term'])
+                                     ROIC_TERM)
 EV_OP = PV_EXP + PV_TV
 TV_SHARE = PV_TV / EV_OP
 
-# non-operating assets at the 31-Dec-2025 valuation date
+# non-operating assets at the 31-Dec-2025 valuation date (Dec-dated legs)
 kinan_capitalized = (V['kinan_profit_share_h126'] * 2.0) / ke_rating
-NONOP = V['inv_nc_fy25'] + V['inv_c_fy25'] + kinan_capitalized + V['invprop_fy25']
-# NCI at value: Herfy 51% at its own market price; other NCI at book
+NONOP_DEC = (V['inv_nc_fy25'] + V['inv_c_fy25'] + V['invprop_fy25'] + V['tiryaki_recv'])
+# NCI at value: Herfy 51% at its own market price (anchor-dated); other NCI at book
 herfy_mktcap = V['herfy_price'] * V['herfy_shares_mn']
 nci_herfy_mkt = 0.51 * herfy_mktcap
 nci_other_book = V['nci_book_fy25'] - V['nci_herfy_book']
 NCI_VAL = nci_herfy_mkt + nci_other_book
+ROLLF = (1 + ke_rating) ** (V['anchor_days'] / 365.0)
 
-def bridge(ev):
-    """Enterprise value -> equity attributable, one definition used everywhere."""
-    return (ev + NONOP + V['cash_fy25'] - V['loans_fy25'] - V['leases_fy25'] - V['eb_fy25']
-            - V['restor_fy25'] - V['other_net_liab'] - NCI_VAL)
+def bridge_dec(ev):
+    """31-Dec-2025 legs of the enterprise-to-equity bridge (these roll to the
+    anchor at Ke). The anchor-dated legs — Kinan capitalized on H1-2026 run-rate
+    earnings, Herfy's 51% NCI at its 18-Aug market price, and the Jul-2026 Mehbaj
+    consideration — are held OUTSIDE the roll [second edition; the first edition
+    accreted them, over-stating equity by the net (650-511) x 6.47%]."""
+    return (ev + NONOP_DEC + V['cash_fy25'] - V['loans_fy25'] - V['leases_fy25']
+            - V['eb_fy25'] - V['restor_fy25'] - V['other_net_liab'] - nci_other_book)
 
-EQ = bridge(EV_OP)
-PS_DEC = EQ / V['shares_wavg_mn']
+def equity_anchor(ev, roll=None, kinan=None):
+    r_ = ROLLF if roll is None else roll
+    k_ = kinan_capitalized if kinan is None else kinan
+    return bridge_dec(ev) * r_ + k_ - nci_herfy_mkt - V['mehbaj_total']
+
+EQ = equity_anchor(EV_OP)                       # SAR mn at the 18-Aug-2026 anchor
+EQ_DEC = bridge_dec(EV_OP) + kinan_capitalized - nci_herfy_mkt - V['mehbaj_total']
+PS_DEC = EQ_DEC / V['shares_val_mn']
+PS = EQ / V['shares_val_mn'] - V['div_between']
+ROLL = ROLLF
 
 def to_anchor(v):
-    roll = (1 + ke_rating) ** (V['anchor_days'] / 365.0)
-    return (v * roll - V['div_between'], roll)
-
-PS, ROLL = to_anchor(PS_DEC)
+    """Roll a purely Dec-2025-dated per-share value to the anchor, ex-dividend."""
+    return (v * ROLLF - V['div_between'], ROLLF)
 
 # ---- THE CONTESTED JUDGEMENT, COMPUTED BOTH WAYS ------------------------------
-def full_value(**kw):
+def full_value(dlease_mult=1.0, **kw):
+    """Re-run the whole chain under a scenario. dlease_mult scales the lease-book
+    GROWTH charge (the renewal charge ROU_D always stands): a scenario that cuts
+    the store programme also cuts the lease debt the programme would have raised."""
     b = build(**kw)
     own, intd, roud, _ = dna_paths(b['capex'])
     dna = [a + x + c for a, x, c in zip(own, intd, roud)]
     _, _, dwc = wc_path(b['rev'], b['ebitda'])
     ebit = [e - d for e, d in zip(b['ebitda'], dna)]
     nopat = [e * (1 - T) for e in ebit]
-    fcff = [n + d - c - r - w for n, d, c, r, w in
-            zip(nopat, dna, b['capex'], roud, dwc)]
-    pv_e, tv_, pv_t, _, _ = dcf(fcff, nopat, wacc_exp, wacc_term, V['g_term'],
-                                V['roic_term'])
+    dl_s = [d * dlease_mult for d in DLEASE]
+    fcff = [n + d - c - r - dl - w for n, d, c, r, dl, w in
+            zip(nopat, dna, b['capex'], roud, dl_s, dwc)]
+    ic, ic_path = IC0_OP, []
+    for i in range(5):
+        ic = ic + b['capex'][i] + roud[i] + dl_s[i] + dwc[i] - dna[i]
+        ic_path.append(ic)
+    roic_s = nopat[4] / ic_path[3]              # scenario's own computed terminal return
+    pv_e, tv_, pv_t, _, _ = dcf(fcff, nopat, wacc_exp, wacc_term, V['g_term'], roic_s)
     ev = pv_e + pv_t
-    eq = bridge(ev)
-    ps_dec = eq / V['shares_wavg_mn']
-    return to_anchor(ps_dec)[0], b, ev
+    eq = equity_anchor(ev)
+    return eq / V['shares_val_mn'] - V['div_between'], b, ev
 
 PS_A = PS                                       # Framing A is the base build
 PS_B, B_B, EV_B = full_value(sps_variant='B', panda_opex_flat=True)
@@ -752,13 +955,23 @@ PS_BEAR, _, _ = full_value(oil_gpt_shift=-40.0, sug_gpt_shift=-15.0, sps_variant
                            panda_opex_flat=True, vol_mult=0.5)
 PS_BULL, _, _ = full_value(oil_gpt_shift=+25.0, sug_gpt_shift=+10.0, vol_mult=1.2,
                            gm_panda_shift=0.004)
+# published judgement variants (critique response: every lever value in print).
+# The run-rate scenario scales the lease-growth charge to the +8/+20 opening
+# cadence (0.4x) — fewer stores raise less lease debt.
+PS_STORES_RUNRATE, _, _ = full_value(stores_override=[235.0, 243.0, 251.0, 259.0, 267.0],
+                                     dlease_mult=0.4)
+PS_SPS_71, _, _ = full_value(sps_open=_D_PANDA_SPS)        # -7.1% opening (213 basis)
+PS_SPS_59, _, _ = full_value(sps_open=_D_PANDA_SPS_LO)     # -6.0% opening (interpolated)
+PS_ROIC_VARIANT = (equity_anchor(PV_EXP + dcf(FCFF, NOPAT, wacc_exp, wacc_term,
+                                              V['g_term'], V['roic_term_variant'])[2])
+                   / V['shares_val_mn'] - V['div_between'])
 
 # ---- forward profit / dividend / balance-sheet walk (Framing A) ---------------
 # Closed double-entry system (the balance sheet foots by construction; asserted):
 #   NP_total = (EBIT + NF) x (1-T) + KINAN   (associates are already net of tax)
 #   NP_att   = (EBIT + NF) x (1-T) x (1-s) + KINAN     s = NCI profit share
 #   cash_t   = cash_{t-1} + CFO - capex - lease principal - dividends (att + NCI)
-#   leases and the right-of-use book grow together on the store-driven path;
+#   leases and the right-of-use book grow together on DLEASE (single source);
 #   lease principal paid = right-of-use depreciation; new leases are non-cash.
 NCI_SHARE = V['nci_share']
 KINAN = [V['kinan_profit_share_h126'] * 2 * (1 + V['kinan_g']) ** i for i in range(5)]
@@ -767,13 +980,13 @@ NF, NP, NP_NCI, DIV, DIV_NCI, NDEBT, LEASEB = [], [], [], [], [], [], []
 CASH_P, EQ_ATT_P, NCI_P, KINAN_BV, ROU_P, CFO_P = [], [], [], [], [], []
 nd = V['loans_fy25'] - V['cash_fy25'] - V['inv_c_fy25']   # company-style net debt (ex sukuk)
 cash = V['cash_fy25']
-lease_bal = V['leases_fy25']
 rou_bv = V['rou_fy25']
 eq_att = V['equity_att_fy25']
 nci_bv = V['nci_book_fy25']
 kin_bv = V['kinan_carry']
+lease_prev = V['leases_fy25']
 for i in range(5):
-    fin_cost = max(nd, 0.0) * kd_loans + lease_bal * kd_lease
+    fin_cost = max(nd, 0.0) * kd_loans + lease_prev * kd_lease
     fin_inc = max(-nd, 0.0) * V['sar_1y_obs']
     nf = fin_inc - fin_cost
     core = (EBIT[i] + nf) * (1 - T)
@@ -785,10 +998,9 @@ for i in range(5):
     CFO_P.append(cfo)
     cash = cash + cfo - B['capex'][i] - ROU_D[i] - DIV[i] - DIV_NCI[i]
     CASH_P.append(cash)
-    dlease = lease_bal * V['rou_growth'][i]
-    lease_bal += dlease
-    rou_bv += dlease
-    LEASEB.append(lease_bal); ROU_P.append(rou_bv)
+    rou_bv += DLEASE[i]
+    LEASEB.append(LEASE_PATH[i]); ROU_P.append(rou_bv)
+    lease_prev = LEASE_PATH[i]
     eq_att = eq_att + npatt - DIV[i]
     nci_bv = nci_bv + npnci - DIV_NCI[i]
     kin_bv = kin_bv + KINAN[i] - KINAN_DIV[i]
@@ -797,44 +1009,62 @@ for i in range(5):
     NDEBT.append(nd)
 
 # balance-sheet foot: assets less liabilities less equity == 0 in every year
+# (the Tiryaki receivable is reclassified from working capital to investments —
+#  settled in Tiryaki shares in H1-2026 per the Q2 interims — so it stays an asset)
 for i in range(5):
     assets = (PPE_PATH[i] + ROU_P[i] + V['intang_fy25'] + V['invprop_fy25'] + KINAN_BV[i]
-              + V['inv_nc_fy25'] + V['inv_c_fy25'] + NWC[i] + CASH_P[i])
+              + V['inv_nc_fy25'] + V['inv_c_fy25'] + V['tiryaki_recv'] + NWC[i] + CASH_P[i])
     liabs = (V['loans_fy25'] + LEASEB[i] + V['eb_fy25'] + V['restor_fy25']
              + V['other_net_liab'])
     gap = assets - liabs - EQ_ATT_P[i] - NCI_P[i]
     assert abs(gap) < 1e-6, (i, gap)
 
 # ---- lens 2: relative (peer-mix multiple, computed — never typed) --------------
-eps_f = [n / V['shares_wavg_mn'] for n in NP]
-_pe = V['peer_pe']
-pe_fp_leg = float(np.median([_pe['NADEC'], _pe['WILMAR']]))        # processing analogues
-pe_ret_leg = float(np.median([_pe['OTHAIM'], _pe['BINDAWOOD']]))   # Saudi grocery pair
-pe_mix = V['pe_mix_w_fp'] * pe_fp_leg + (1 - V['pe_mix_w_fp']) * pe_ret_leg
+eps_f = [n / V['shares_val_mn'] for n in NP]
+_pe = {k: v for k, v in V['peer_pe'].items() if v is not None}   # Othaim n/m dropped
+pe_fp_leg = float(np.median([_pe['NADEC'], _pe['WILMAR']]))      # processing analogues
+pe_ret_leg = _pe['BINDAWOOD']            # Saudi grocery: BinDawood alone (Othaim n/m)
+# mix weight COMPUTED from the model's own FY2026E EBITDA (FP vs Panda), not typed
+pe_mix_w_fp = B['fp_eb'][0] / (B['fp_eb'][0] + B['pan_eb'][0])
+pe_mix = pe_mix_w_fp * pe_fp_leg + (1 - pe_mix_w_fp) * pe_ret_leg
 pe_applied = pe_mix * (1 - V['pe_discount'])
-rel_base = pe_applied * eps_f[0]
-rel_bear = pe_mix * (1 - 0.30) * eps_f[0]
-rel_bull = pe_mix * (1 - 0.10) * eps_f[0]
-# DDM-justified P/E from the study's own Ke/payout/growth — the crosswalk that
-# §4 uses to reconcile the DCF with the peer-implied value (computed, not typed)
+# trailing multiple on TRAILING earnings (like-for-like; the first edition put the
+# trailing multiple on forward EPS, importing the peers' growth twice) — TTM
+# recurring to 30-Jun-2026, all three legs company-disclosed:
+ttm_recurring = (V['recurring_np_fy25'] - V['h1_recurring_h125'] + V['h1_recurring_h126'])
+ttm_eps = ttm_recurring / V['shares_val_mn']
+rel_base = pe_applied * ttm_eps          # anchor-dated by construction (current multiples)
+rel_bear = pe_mix * (1 - 0.30) * ttm_eps
+rel_bull = pe_mix * (1 - 0.10) * ttm_eps
+rel_forward = pe_applied * eps_f[0]      # the first edition's construction, shown as variant
+# DDM-justified P/E crosswalk (computed, not typed; published in full — the first
+# edition printed the 8.1x with no derivation): two-stage on the model's own
+# earnings growth, the Gordon forward form, and the Expert-2-implied multiple.
 _g_e = (NP[-1] / NP[0]) ** 0.25 - 1
 _divs = [V['payout'] * (1 + _g_e) ** t for t in range(1, 6)]
 _pe_ddm = (sum(d / (1 + ke_rating) ** t for d, t in zip(_divs, range(1, 6)))
            + (V['payout'] * (1 + _g_e) ** 5 * (1 + V['g_term']) / (ke_rating - V['g_term']))
            / (1 + ke_rating) ** 5)
+_pe_gordon_fwd = V['payout'] / (ke_rating - V['g_term'])
 
 # ---- lens 3: normalized earnings power -----------------------------------------
-rev_mid = B['rev'][1]
-np_norm = (((rev_mid * V['norm_ebitda_mgn'] - DNA[1]) + NF[1]) * (1 - T) * (1 - NCI_SHARE)
-           + KINAN[1])
-eps_norm = np_norm / V['shares_wavg_mn']
+# FY2026E basis [second edition — FY2027E under a trailing multiple double-counted
+# a further growth year]; the margin stays the normalized mid-cycle 9.2%.
+rev_mid = B['rev'][0]
+np_norm = (((rev_mid * V['norm_ebitda_mgn'] - DNA[0]) + NF[0]) * (1 - T) * (1 - NCI_SHARE)
+           + KINAN[0])
+eps_norm = np_norm / V['shares_val_mn']
 norm_base = eps_norm * pe_applied
 norm_bear = eps_norm * pe_mix * (1 - 0.30)
 norm_bull = eps_norm * pe_mix * (1 - 0.10)
 
 # ---- lens 4: book / justified P/B ----------------------------------------------
-bvps = V['equity_att_fy25'] / V['shares_wavg_mn']
-roe_sust = (V['recurring_np_fy25'] * (1 + V['rec_g_fy26'])) / V['equity_att_fy25']
+# Base = the 30-Jun-2026 reviewed equity (49 days before the anchor, ex the 1.70
+# dividend); sustainable return = the model's OWN FY2026E recurring attributable
+# earnings on opening equity [second edition — one FY2026 base across lenses; the
+# first edition's +15% step contradicted the study's own engine at +35%].
+bvps = V['equity_att_jun26'] / V['shares_val_mn']
+roe_sust = NP[0] / V['equity_att_fy25']
 pb_just = (roe_sust - V['g_term']) / (ke_rating - V['g_term'])
 book_base = bvps * pb_just
 book_bear = bvps * max(pb_just - 0.15, 0.5)
@@ -848,27 +1078,25 @@ PANEL = float(np.median([PS_A, rel_base, norm_base, book_base]))
 
 # ---- sensitivity grids ----------------------------------------------------------
 def dcf_at(wacc_e_, wacc_t_, g_):
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, g_, V['roic_term'])
-    ev = pv_e + pv_t
-    eq = bridge(ev)
-    ps_dec = eq / V['shares_wavg_mn']
-    return ps_dec * ROLL - V['div_between']   # roll at the base Ke: the grid varies WACC/g only
+    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, g_, ROIC_TERM)
+    return equity_anchor(pv_e + pv_t) / V['shares_val_mn'] - V['div_between']
+    # roll at the base Ke: the grid varies WACC/g only
 
 WACC_GRID = [wacc_exp - 0.01, wacc_exp - 0.005, wacc_exp, wacc_exp + 0.005, wacc_exp + 0.01]
 G_GRID = [0.015, 0.02, 0.025, 0.03, 0.035]
 SENS = [[dcf_at(w, wacc_term + (w - wacc_exp), g) for g in G_GRID] for w in WACC_GRID]
 
 def dcf_beta(b_):
+    """Every Ke-dependent leg re-runs: Ke, both WACCs, the roll AND the Kinan
+    capitalization [second edition — the first edition froze Kinan at the base]."""
     ke_ = rf_star_rating + b_ * V['erp_rating']
-    we_ = we
-    wacc_e_ = we_ * ke_ + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
+    wacc_e_ = we * ke_ + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
     wacc_t_ = (V['tw_e'] * ke_ + V['tw_loans'] * kd_loans * (1 - T)
                + tw_lease * kd_lease * (1 - T))
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], V['roic_term'])
-    ev = pv_e + pv_t
-    eq = bridge(ev)
+    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], ROIC_TERM)
     roll_ = (1 + ke_) ** (V['anchor_days'] / 365.0)
-    return eq / V['shares_wavg_mn'] * roll_ - V['div_between']
+    kin_ = (V['kinan_profit_share_h126'] * 2.0) / ke_
+    return equity_anchor(pv_e + pv_t, roll=roll_, kinan=kin_) / V['shares_val_mn'] - V['div_between']
 
 BETA_GRID = {round(b_, 3): dcf_beta(b_) for b_ in
              [0.73, 0.90, 1.00, V['beta'], 1.20, 1.44]}
@@ -879,20 +1107,22 @@ def dcf_rf(rf_):
     wacc_e_ = we * ke_ + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
     wacc_t_ = (V['tw_e'] * ke_ + V['tw_loans'] * kd_loans * (1 - T)
                + tw_lease * kd_lease * (1 - T))
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], V['roic_term'])
-    ev = pv_e + pv_t
-    eq = bridge(ev)
+    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], ROIC_TERM)
     roll_ = (1 + ke_) ** (V['anchor_days'] / 365.0)
-    return eq / V['shares_wavg_mn'] * roll_ - V['div_between']
+    kin_ = (V['kinan_profit_share_h126'] * 2.0) / ke_
+    return equity_anchor(pv_e + pv_t, roll=roll_, kinan=kin_) / V['shares_val_mn'] - V['div_between']
 
-RF_ALTS = {'5.03%': dcf_rf(0.0503), '5.53% (base)': dcf_rf(0.0553), '6.03%': dcf_rf(0.0603)}
+RF_ALTS = {'5.02%': dcf_rf(0.0502), '5.52% (base)': dcf_rf(0.0552), '6.02%': dcf_rf(0.0602)}
 
-# ---- CDS-basis DCF (published beside the rating basis, never averaged) ---------
+# ---- CDS-basis DCF (published beside the rating basis, never averaged; the CDS
+#      spread/ERP legs are the JANUARY-2026 Damodaran vintage, flagged) ----------
 pv_e_cds, _, pv_t_cds, _, _ = dcf(FCFF, NOPAT, wacc_exp_cds, wacc_term_cds, V['g_term'],
-                                  V['roic_term'])
+                                  ROIC_TERM)
 ev_cds = pv_e_cds + pv_t_cds
-eq_cds = bridge(ev_cds)
-PS_CDS = eq_cds / V['shares_wavg_mn'] * (1 + ke_cds) ** (V['anchor_days'] / 365.0) - V['div_between']
+roll_cds = (1 + ke_cds) ** (V['anchor_days'] / 365.0)
+kin_cds = (V['kinan_profit_share_h126'] * 2.0) / ke_cds
+eq_cds = equity_anchor(ev_cds, roll=roll_cds, kinan=kin_cds)
+PS_CDS = eq_cds / V['shares_val_mn'] - V['div_between']
 
 # ============================ EXPERT PANEL ===================================
 # Three genuinely different methods, every intermediate line kept for App C.
@@ -900,26 +1130,33 @@ PS_CDS = eq_cds / V['shares_wavg_mn'] * (1 + ke_cds) ** (V['anchor_days'] / 365.
 # Lease-INCLUSIVE EBITDA carries lease-inclusive EV multiples: 6.5x processing
 # (Wilmar-area), 7.0x Saudi grocery (BinDawood-area), 7.0x frozen. The frame
 # deliberately imports the market's cheaper implied capital — that is its point,
-# and its falsifier.
+# and its falsifier. Herfy enters at 49% of ITS OWN market price, so Herfy's own
+# balance-sheet items are EXCLUDED from the group deduction stack [second
+# edition — the first edition deducted 100% of consolidated liabilities against
+# a 49%-of-equity Herfy leg, penalizing Herfy's leverage twice; the carve-out
+# uses the audited note-20 aggregates with the two constructed splits flagged].
 E1_MULT = dict(fp=6.5, retail=7.0, frozen=7.0)
 e1_fp_ev = B['fp_eb'][0] * E1_MULT['fp']
 e1_ret_ev = B['pan_eb'][0] * E1_MULT['retail']
 e1_frz_ev = B['frz_eb'][0] * E1_MULT['frozen']
-e1_herfy = 0.49 * herfy_mktcap                    # Savola's 49% of Herfy at ITS OWN market price
+e1_herfy = 0.49 * herfy_mktcap                    # anchor-dated leg (18-Aug price)
 e1_unalloc_cap = -V['unalloc_path'][0] * E1_MULT['fp']
 e1_ev = e1_fp_ev + e1_ret_ev + e1_frz_ev + e1_unalloc_cap
-e1_eq = (e1_ev + e1_herfy + NONOP + V['cash_fy25'] - V['loans_fy25'] - V['leases_fy25']
-         - V['eb_fy25'] - V['restor_fy25'] - V['other_net_liab']
-         - (NCI_VAL - nci_herfy_mkt))
-e1_ps_dec = e1_eq / V['shares_wavg_mn']
-e1_base = to_anchor(e1_ps_dec)[0]
-e1_lo = to_anchor((e1_eq - (B['fp_eb'][0] + B['pan_eb'][0] + B['frz_eb'][0]) * 0.75)
-                  / V['shares_wavg_mn'])[0]        # three-quarters of a turn lower
-e1_hi = to_anchor((e1_eq + (B['fp_eb'][0] + B['pan_eb'][0] + B['frz_eb'][0]) * 0.75)
-                  / V['shares_wavg_mn'])[0]
+e1_herfy_carveout = V['herfy_liab_nc'] + V['herfy_cur_stack_est'] - V['herfy_cash_est']
+e1_dec = (e1_ev + NONOP_DEC + V['cash_fy25'] - V['loans_fy25'] - V['leases_fy25']
+          - V['eb_fy25'] - V['restor_fy25'] - V['other_net_liab']
+          + e1_herfy_carveout - nci_other_book)
+e1_anchor = e1_dec * ROLLF + kinan_capitalized + e1_herfy - V['mehbaj_total']
+e1_ps_dec = (e1_dec + kinan_capitalized + e1_herfy - V['mehbaj_total']) / V['shares_val_mn']
+e1_base = e1_anchor / V['shares_val_mn'] - V['div_between']
+_e1_turn = (B['fp_eb'][0] + B['pan_eb'][0] + B['frz_eb'][0]) * 0.75
+e1_lo = ((e1_dec - _e1_turn) * ROLLF + kinan_capitalized + e1_herfy
+         - V['mehbaj_total']) / V['shares_val_mn'] - V['div_between']
+e1_hi = ((e1_dec + _e1_turn) * ROLLF + kinan_capitalized + e1_herfy
+         - V['mehbaj_total']) / V['shares_val_mn'] - V['div_between']
 
 # ---- Expert 2: two-stage dividend model on the stated 50-60% policy -----------
-e2_dps = [DIV[i] / V['shares_wavg_mn'] for i in range(5)]
+e2_dps = [DIV[i] / V['shares_val_mn'] for i in range(5)]
 e2_pv_divs = sum(d / (1 + ke_rating) ** (t + 1) for t, d in enumerate(e2_dps))
 e2_tv = e2_dps[-1] * (1 + V['g_term']) / (ke_rating - V['g_term'])
 e2_pv_tv = e2_tv / (1 + ke_rating) ** 5
@@ -934,65 +1171,85 @@ e2_hi = to_anchor(sum(d * (0.60 / V['payout']) / (1 + ke_rating) ** (t + 1)
                   / (1 + ke_rating) ** 5)[0]
 
 # ---- Expert 3: residual income / economic profit ------------------------------
-IC0 = (V['equity_att_fy25'] + V['nci_book_fy25'] + V['loans_fy25'] + V['leases_fy25']
-       - V['cash_fy25'] - V['inv_c_fy25'] - V['inv_nc_fy25'] - V['kinan_carry'])
-IC_PATH, RI_PATH = [], []
-ic = IC0
+# Rebuilt on the accounting identity [second edition — the first edition's
+# hand-built bridge double-deducted items already inside invested capital and
+# dropped Kinan, and its no-tail "low" omitted a bridge term and printed ABOVE
+# the base]. Capital charge runs on the SAME invested-capital path the terminal
+# return uses (lease additions included); Kinan at CARRYING, the expert's stated
+# conservative choice.
+RI_PATH = []
+_ic_open = IC0_OP
 for i in range(5):
-    ri = NOPAT[i] - wacc_exp * ic
-    RI_PATH.append(ri)
-    reinv = B['capex'][i] + ROU_D[i] + DWC[i] - DNA[i]
-    ic = ic + reinv
-    IC_PATH.append(ic)
-# fade the year-5 spread to zero over 5 more years (economic-profit decay)
+    RI_PATH.append(NOPAT[i] - wacc_exp * _ic_open)
+    _ic_open = IC_PATH[i]
 ri5 = RI_PATH[-1]
 e3_pv_ri = sum(r_ / (1 + wacc_exp) ** (t + 1) for t, r_ in enumerate(RI_PATH))
 e3_fade = sum(ri5 * (1 - (t + 1) / 5.0) / (1 + wacc_exp) ** (5 + t + 1) for t in range(5))
-e3_ev = IC0 + e3_pv_ri + e3_fade
-e3_eq = (e3_ev + NONOP + V['kinan_carry'] + V['cash_fy25'] + V['inv_c_fy25'] * 0.0
-         - V['loans_fy25'] - V['leases_fy25'] - V['eb_fy25'] - V['restor_fy25'] - V['other_net_liab'] - NCI_VAL)
-e3_ps_dec = e3_eq / V['shares_wavg_mn']
-e3_base = to_anchor(e3_ps_dec)[0]
-e3_lo = to_anchor((IC0 + e3_pv_ri + NONOP + V['kinan_carry'] + V['cash_fy25']
-                   - V['loans_fy25'] - V['leases_fy25'] - V['eb_fy25'] - V['restor_fy25']
-                   - NCI_VAL) / V['shares_wavg_mn'])[0]     # no fade tail at all
-e3_hi = to_anchor((IC0 + e3_pv_ri + e3_fade + ri5 * 0.4 / (wacc_exp)
-                   / (1 + wacc_exp) ** 10 + NONOP + V['kinan_carry'] + V['cash_fy25']
-                   - V['loans_fy25'] - V['leases_fy25'] - V['eb_fy25'] - V['restor_fy25']
-                   - NCI_VAL) / V['shares_wavg_mn'])[0]     # 40% of the spread persists
+e3_ev = IC0_OP + e3_pv_ri + e3_fade
+_E3_ADDS = (V['cash_fy25'] + V['inv_c_fy25'] + V['inv_nc_fy25'] + V['kinan_carry']
+            + V['tiryaki_recv'] + V['invprop_fy25'])
+e3_dec = e3_ev + _E3_ADDS - V['loans_fy25'] - V['leases_fy25'] - nci_other_book
+e3_anchor = e3_dec * ROLLF - nci_herfy_mkt - V['mehbaj_total']
+e3_ps_dec = (e3_dec - nci_herfy_mkt - V['mehbaj_total']) / V['shares_val_mn']
+e3_base = e3_anchor / V['shares_val_mn'] - V['div_between']
+e3_lo = ((e3_dec - e3_fade) * ROLLF - nci_herfy_mkt - V['mehbaj_total']) \
+    / V['shares_val_mn'] - V['div_between']       # no fade tail: BELOW base by the tail's PV
+e3_hi = ((e3_dec + ri5 * 0.4 / wacc_exp / (1 + wacc_exp) ** 10) * ROLLF
+         - nci_herfy_mkt - V['mehbaj_total']) / V['shares_val_mn'] - V['div_between']
+# reconciliation assert: with zero residual income and zero fade, Expert 3's
+# bridge must reproduce the audited total equity (owners + NCI at book) less the
+# other-NCI deduction — the identity the first edition's bridge violated
+_e3_identity = IC0_OP + _E3_ADDS - V['loans_fy25'] - V['leases_fy25']
+assert abs(_e3_identity - (V['equity_att_fy25'] + V['nci_book_fy25'])) < 1e-6, _e3_identity
+assert e3_lo < e3_base < e3_hi, (e3_lo, e3_base, e3_hi)
 
 EXPERTS = dict(
     e1=dict(base=e1_base, rng=[e1_lo, e1_hi], method_short='segment sum-of-the-parts',
             detail=dict(fp_ev=e1_fp_ev, ret_ev=e1_ret_ev, frz_ev=e1_frz_ev,
-                        herfy_49=e1_herfy, unalloc=e1_unalloc_cap, ev=e1_ev, eq=e1_eq,
+                        herfy_49=e1_herfy, unalloc=e1_unalloc_cap, ev=e1_ev,
+                        herfy_carveout=e1_herfy_carveout,
+                        carveout_note='Herfy liabilities excluded from the group stack: '
+                                      'NC 461.952 (note 20) + current-lease est. 80 '
+                                      '(constructed, flagged) less cash est. 45 '
+                                      '(constructed, flagged)',
+                        eq=e1_dec + kinan_capitalized + e1_herfy - V['mehbaj_total'],
                         ps_dec=e1_ps_dec, mults=E1_MULT)),
     e2=dict(base=e2_base, rng=[e2_lo, e2_hi], method_short='two-stage dividend model',
             detail=dict(dps=e2_dps, pv_divs=e2_pv_divs, tv=e2_tv, pv_tv=e2_pv_tv,
                         ps_dec=e2_ps_dec)),
     e3=dict(base=e3_base, rng=[e3_lo, e3_hi], method_short='residual income / economic profit',
-            detail=dict(ic0=IC0, ri=RI_PATH, ic=IC_PATH, pv_ri=e3_pv_ri, fade=e3_fade,
-                        ev=e3_ev, eq=e3_eq, ps_dec=e3_ps_dec)),
+            detail=dict(ic0=IC0_OP, ri=RI_PATH, ic=IC_PATH, pv_ri=e3_pv_ri, fade=e3_fade,
+                        ev=e3_ev, eq=e3_dec - nci_herfy_mkt - V['mehbaj_total'],
+                        ps_dec=e3_ps_dec)),
 )
 PANEL_MED = float(np.median([e1_base, e2_base, e3_base]))
 
 # ============================ ASSERTS ========================================
-# bridge closes
-_eq_chk = bridge(EV_OP)
-assert abs(_eq_chk - EQ) < 1e-6
+# the anchor bridge is the one construction used everywhere
+assert abs(equity_anchor(EV_OP) - EQ) < 1e-6
+# grid base rows must reproduce the base case exactly (a silently-divergent grid
+# row was a first-edition defect class on RIYADHCABLE — asserted here since)
+assert abs(BETA_GRID[V['beta']] - PS_A) < 5e-3, (BETA_GRID[V['beta']], PS_A)
+assert abs(RF_ALTS['5.52% (base)'] - PS_A) < 5e-3
+assert abs(SENS[2][2] - PS_A) < 5e-3
 # category revenues foot to the audited FP segment revenue in the base year
 _fp0 = V['oil_rev_fy25'] + V['sug_rev_fy25'] + V['pas_rev_fy25'] + nuts_rev_fy25
 assert abs(_fp0 - V['fp_segrev_fy25']) < 0.5, _fp0
 # category GP foots to the audited FP gross profit
 _gp0 = V['oil_gp_fy25'] + V['sug_gp_fy25'] + pas_gp_fy25 + nuts_gp_fy25
 assert abs(_gp0 - fp_gp_fy25) < 0.5, _gp0
+# the disclosed pasta GP/tonne (445) must tie to the registered volume and GP
+assert abs(pas_gpt_fy25 - 445.0) < 1.0, pas_gpt_fy25
 # FY2026E must sit ABOVE the H1-2026 actual for revenue (H2 cannot be negative)
 assert B['rev'][0] > V['h1_rev'], (B['rev'][0], V['h1_rev'])
 # implied H2-2026E revenue within a sane band of H2-2025 actual (=FY25 - H1-25 13,080)
 _h2_26 = B['rev'][0] - V['h1_rev']
 _h2_25 = V['rev_fy25'] - 13080.0
 assert 0.9 < _h2_26 / _h2_25 < 1.15, (_h2_26, _h2_25)
-# terminal must be ROIC-consistent and ordered
-assert V['roic_term'] > wacc_term > V['g_term']
+# terminal must be ROIC-consistent and ordered; the computed terminal return sits
+# below the retired 10.5% variant by construction of the critique response
+assert ROIC_TERM > wacc_term > V['g_term'], (ROIC_TERM, wacc_term)
+assert ROIC_TERM < V['roic_term_variant']
 assert wacc_term > wacc_exp - 0.02
 # EBITDA margin path stays inside the observed historical envelope +/- 150bp
 for i in range(5):
@@ -1010,11 +1267,22 @@ OUT = dict(
     meta=dict(
         ticker='SAVOLA', exchange='TADAWUL', code='2050', market='SA', currency='SAR',
         spot=V['spot'], spot_date='2026-08-18', shares_mn=V['shares_issued_mn'],
-        shares_wavg_mn=V['shares_wavg_mn'], mktcap=mktcap,
+        shares_val_mn=V['shares_val_mn'], shares_wavg_mn=V['shares_wavg_mn'],
+        mktcap=mktcap,
         valuation_date='2025-12-31', anchor_date='2026-08-18',
         anchor_days=V['anchor_days'], div_between=V['div_between'],
-        study_date='2026-08-18', build='SAVOLA_Valuation_Study_18-08-2026',
+        study_date='2026-08-19', build='SAVOLA_Valuation_Study_19-08-2026',
+        edition=2, first_edition='SAVOLA_Valuation_Study_18-08-2026',
     ),
+    # headline figures of the superseded first edition (historical record for the
+    # revision note and the before/after table; immutable — published 18-Aug-2026)
+    edition1=dict(central=28.016591405896726, dcf=26.204159458590066, spot=25.30,
+                  rel=30.902614525819423, norm=36.39304315016321, book=20.26739697034573,
+                  wacc_exp=0.07966842721649163, wacc_term=0.0845512560367681,
+                  panel_median=19.824044550376374, e1=34.78902748197139,
+                  e2=18.22381274919042, e3=19.824044550376374,
+                  framingB=22.101280410250684, bear=15.01526430610723,
+                  bull=32.289574340517525, roic_term=0.105, shares=298.589),
     hist_is=dict(
         FY23=dict(rev=V['rev_fy23'], cogs=V['cogs_fy23'], gp=GP_H['FY23'],
                   sda=V['sda_fy23'], adm=V['adm_fy23'], oth=V['oth_fy23'],
@@ -1036,6 +1304,7 @@ OUT = dict(
         FY25=dict(ppe=V['ppe_fy25'], rou=V['rou_fy25'], intang=V['intang_fy25'],
                   invprop=V['invprop_fy25'], kinan=V['kinan_carry'],
                   inv_nc=V['inv_nc_fy25'], inv_c=V['inv_c_fy25'],
+                  tiryaki_recv=V['tiryaki_recv'],
                   inventories=V['inventories_fy25'], tr=V['tr_fy25'],
                   prepay=V['prepay_fy25'], cash=V['cash_fy25'],
                   loans=V['loans_fy25'], leases=V['leases_fy25'], eb=V['eb_fy25'],
@@ -1049,6 +1318,10 @@ OUT = dict(
         FY23=dict(loans=8644.487, cash=1213.193, term_dep=738.395, equity_att=8397.145,
                   total_assets=29937.138,
                   note='per FY2024 FS comparative; pre-restructuring balance sheet'),
+        JUN26=dict(loans=V['loans_jun26'], leases=V['leases_jun26'],
+                   cash=V['cash_jun26'], equity_att=V['equity_att_jun26'],
+                   note='Q2-2026 reviewed interims — WACC-weight debt legs and the '
+                        'book-lens base; the bridge stays dated 31-Dec-2025'),
     ),
     segments_fy25=dict(
         fp=dict(rev=V['fp_segrev_fy25'], cogs=V['fp_cogs_fy25'], gp=fp_gp_fy25),
@@ -1056,18 +1329,23 @@ OUT = dict(
                     gp=V['ret_segrev_fy25'] - V['ret_cogs_fy25']),
         food_services=dict(rev=V['fsv_segrev_fy25']),
         frozen=dict(rev=V['frz_segrev_fy25']),
-        investments=dict(rev=V['invseg_rev_fy25']),
+        investments=dict(rev=V['invseg_rev_fy25'],
+                         note='inter-segment rent; external Investments revenue is zero '
+                              '(segment note 33) — eliminated inside the (443.2)'),
         elim=V['elim_fy25'],
         categories=dict(oil=dict(vol=V['oil_vol_fy25'], rev=V['oil_rev_fy25'],
                                  gp=V['oil_gp_fy25'], ebitda=V['oil_ebitda_fy25']),
                         sugar=dict(vol=V['sug_vol_fy25'], rev=V['sug_rev_fy25'],
                                    gp=V['sug_gp_fy25'], ebitda=V['sug_ebitda_fy25']),
                         pasta=dict(vol=V['pas_vol_fy25'], rev=V['pas_rev_fy25'],
-                                   gp=pas_gp_fy25),
+                                   gp=pas_gp_fy25, gpt=pas_gpt_fy25),
                         nuts=dict(rev=nuts_rev_fy25, gp=nuts_gp_fy25, gm=nuts_gm_fy25)),
     ),
     h1_2026=dict(rev=V['h1_rev'], ebitda_company=V['h1_ebitda'], np_att=V['h1_np_att'],
-                 recurring_np=372.0, capex=V['h1_capex'], netdebt=V['h1_netdebt'],
+                 recurring_np=V['h1_recurring_h126'],
+                 recurring_np_h125=V['h1_recurring_h125'],
+                 ttm_recurring=ttm_recurring,
+                 capex=V['h1_capex'], netdebt=V['h1_netdebt'],
                  oil=dict(vol=V['h1_oil_vol'], rev=V['h1_oil_rev'], gp=V['h1_oil_gp'],
                           gpt=_OIL_GPT_H126),
                  sugar=dict(vol=V['h1_sug_vol'], rev=V['h1_sug_rev'], gp=V['h1_sug_gp'],
@@ -1076,7 +1354,9 @@ OUT = dict(
                             gpt=_PAS_GPT_H126),
                  nuts_rev=V['h1_nuts_rev'],
                  panda=dict(rev=V['h1_panda_rev'], ebitda=V['h1_panda_ebitda'],
-                            sps_change=_D_PANDA_SPS),
+                            sps_change=_D_PANDA_SPS, sps_change_lo=_D_PANDA_SPS_LO,
+                            sps_note='range over the undisclosed Jun-2025 store count: '
+                                     '-7.1% on the 213 assumption, -6.0% interpolated'),
                  herfy=dict(rev=V['h1_herfy_rev'], ebitda=V['h1_herfy_ebitda']),
                  frozen=dict(rev=V['h1_frz_rev'], ebitda=V['h1_frz_ebitda']),
                  stores=V['stores_jun26']),
@@ -1084,7 +1364,9 @@ OUT = dict(
         years=Y, rev=B['rev'], ebitda=B['ebitda'],
         ebitda_margin=[e / r for e, r in zip(B['ebitda'], B['rev'])],
         dna=DNA, dna_own=OWN_D, dna_int=INT_D, dna_rou=ROU_D,
+        dlease=DLEASE, lease_add=LEASE_ADD,
         ebit=EBIT, nopat=NOPAT, capex=B['capex'], dwc=DWC, nwc=NWC, fcff=FCFF,
+        ic0=IC0_OP, ic_path=IC_PATH, roic_path=ROIC_PATH,
         fp_rev=B['fp_rev'], fp_gp=B['fp_gp'], fp_eb=B['fp_eb'],
         oil=dict(vol=B['oil_v'], rev=B['oil_rev'], gp=B['oil_gp'], eb=B['oil_eb'],
                  gpt=V['oil_gpt_path']),
@@ -1111,10 +1393,18 @@ OUT = dict(
         rf_observed=V['rf_observed'], rf_star_rating=rf_star_rating,
         rf_star_cds=rf_star_cds, erp_rating=V['erp_rating'], erp_cds=V['erp_cds'],
         sov_spread_rating=V['sov_spread_rating'], sov_spread_cds=V['sov_spread_cds'],
+        rf_source='FTSE SAGBI factsheet 31-Jul-2026, 7-10y YTM 5.52% (iBoxx SAR sukuk '
+                  '5.44% @6.07y corroborates); Damodaran July-2026 rating legs, '
+                  'January-2026 CDS legs (flagged)',
         beta=V['beta'], ke_rating=ke_rating, ke_cds=ke_cds,
         kd_sar=V['kd_sar'], kd_eg=V['kd_eg_localeq'], kd_other=V['kd_other'],
         kd_loans=kd_loans, kd_lease=kd_lease, debt_w=dict(sa=w_sa, eg=w_eg, other=w_ot),
         we=we, wl=wl, wlease=wz, wacc_exp=wacc_exp, wacc_exp_cds=wacc_exp_cds,
+        weight_basis=dict(equity='18-Aug-2026 settled close x 300mn issued',
+                          loans=V['loans_jun26'], leases=V['leases_jun26'],
+                          note='debt legs at the 30-Jun-2026 reviewed balance sheet; '
+                               'kd currency blend at FY2025 shares (Jun-26 split '
+                               'undisclosed)'),
         tw_e=V['tw_e'], tw_loans=V['tw_loans'], tw_lease=tw_lease,
         wacc_term=wacc_term, wacc_term_cds=wacc_term_cds,
         ust10=V['ust10'], ust1=V['ust1'], sar1y=V['sar_1y_obs'],
@@ -1122,34 +1412,63 @@ OUT = dict(
     ),
     dcf=dict(
         pv_explicit=PV_EXP, tv=TV, pv_tv=PV_TV, ev=EV_OP, tv_share=TV_SHARE,
-        dfs=DFS, fcff_term=FCFF_T, reinvest_term=V['g_term'] / V['roic_term'],
-        g=V['g_term'], roic_term=V['roic_term'],
-        nonop=NONOP, kinan_capitalized=kinan_capitalized,
+        dfs=DFS, fcff_term=FCFF_T,
+        reinvest_term=V['g_term'] / ROIC_TERM,
+        g=V['g_term'], roic_term=ROIC_TERM, roic_term_variant=V['roic_term_variant'],
+        ps_roic_variant=PS_ROIC_VARIANT,
+        nonop_dec=NONOP_DEC, kinan_capitalized=kinan_capitalized,
+        tiryaki_recv=V['tiryaki_recv'], mehbaj_total=V['mehbaj_total'],
+        invprop_in_bridge=V['invprop_fy25'],
         nci_val=NCI_VAL, nci_herfy_mkt=nci_herfy_mkt, nci_other_book=nci_other_book,
         herfy_mktcap=herfy_mktcap,
-        eq_val=EQ, ps_dec=PS_DEC, roll=ROLL, ps=PS,
+        eq_val=EQ, eq_dec=EQ_DEC, ps_dec=PS_DEC, roll=ROLL, ps=PS,
+        deroll_note='Kinan capitalized, Herfy NCI at market and the Mehbaj '
+                    'consideration are anchor-dated legs held outside the Dec-2025 roll',
         ps_cds=PS_CDS, eq_cds=eq_cds, ev_cds=ev_cds,
         framingA=PS_A, framingB=PS_B, framing_gap=PS_A - PS_B,
         bear=PS_BEAR, bull=PS_BULL,
+        scenario_levers=dict(
+            bear='Framing B density (-6% then -3% forever) + flat store opex + oil '
+                 'GP/t -40 + sugar GP/t -15 + half volume growth',
+            bull='oil GP/t +25 + sugar GP/t +10 + volume growth x1.2 + Panda gross '
+                 'margin +40bp',
+            note='every lever value published (critique response; the first edition '
+                 'described the scenarios only qualitatively)'),
+        stores_runrate=PS_STORES_RUNRATE,
+        sps_open_71=PS_SPS_71, sps_open_59=PS_SPS_59,
     ),
     lenses=dict(
         dcf=dict(base=PS_A, bear=PS_BEAR, bull=PS_BULL),
         relative=dict(base=rel_base, bear=rel_bear, bull=rel_bull,
-                      eps_f=eps_f[0], pe=pe_applied, pe_mix=pe_mix,
+                      ttm_recurring=ttm_recurring, ttm_eps=ttm_eps,
+                      basis='trailing peer multiples x trailing (TTM to 30-Jun-2026) '
+                            'recurring EPS; anchor-dated by construction',
+                      forward_variant=rel_forward, eps_f=eps_f[0],
+                      pe=pe_applied, pe_mix=pe_mix, pe_mix_w_fp=pe_mix_w_fp,
                       pe_fp_leg=pe_fp_leg, pe_ret_leg=pe_ret_leg,
-                      pe_discount=V['pe_discount'], pe_ddm=_pe_ddm),
+                      pe_discount=V['pe_discount'],
+                      ddm=dict(two_stage=_pe_ddm, g_stage1=_g_e,
+                               gordon_fwd=_pe_gordon_fwd,
+                               e2_implied=e2_ps_dec / eps_f[0])),
         normalized=dict(base=norm_base, bear=norm_bear, bull=norm_bull,
-                        eps_norm=eps_norm, pe=pe_applied),
+                        eps_norm=eps_norm, pe=pe_applied,
+                        basis='FY2026E revenue at the 9.2% mid-cycle margin (second '
+                              'edition; FY2027E under a trailing multiple double-'
+                              'counted growth)'),
         book=dict(base=book_base, bear=book_bear, bull=book_bull, bvps=bvps,
-                  roe=roe_sust, pb=pb_just),
+                  roe=roe_sust, pb=pb_just,
+                  basis='30-Jun-2026 reviewed equity x justified P/B; sustainable '
+                        'return = the model\'s own FY2026E recurring attributable '
+                        'earnings on opening equity'),
     ),
     weights=W_L, central=CENTRAL, panel_centre=PANEL,
     experts=EXPERTS, panel_median=PANEL_MED,
     sens=dict(wacc_grid=WACC_GRID, g_grid=G_GRID, grid=SENS, beta_grid=BETA_GRID,
               rf_alts=RF_ALTS),
     peers=dict(pe=V['peer_pe'],
-               note='cross-check only (market data 18-Aug-2026); the peer-mix multiple is '
-                    'computed from these quotes with the discount applied and disclosed'),
+               note='settled 18-Aug-2026 closes; Al Othaim n/m after its 11-Aug H1 '
+                    'loss announcement (TTM earnings ~79mn); cross-check only, never '
+                    'a build source'),
     inputs={k: INP[k] for k in INP},
 )
 
@@ -1167,13 +1486,21 @@ say(f"FY26E revenue {B['rev'][0]:,.0f} (H1 actual {V['h1_rev']:,.0f} -> implied 
     f"{B['rev'][0] - V['h1_rev']:,.0f} vs H2-25 {V['rev_fy25'] - 13080.0:,.0f})")
 say(f"EBITDA path: " + " ".join(f"{e:,.0f}" for e in B['ebitda'])
     + f" | margins " + " ".join(f"{e / r:.1%}" for e, r in zip(B['ebitda'], B['rev'])))
-say(f"FCFF path: " + " ".join(f"{x:,.0f}" for x in FCFF))
+say(f"FCFF path (full lease additions): " + " ".join(f"{x:,.0f}" for x in FCFF))
+say(f"lease additions " + " ".join(f"{x:,.0f}" for x in LEASE_ADD)
+    + f" = RoU dep + growth {' '.join(f'{x:,.0f}' for x in DLEASE)}")
 say(f"WACC exp {wacc_exp:.2%} (CDS {wacc_exp_cds:.2%}) | term {wacc_term:.2%} | "
     f"Ke {ke_rating:.2%}/{ke_cds:.2%} | Kd loans {kd_loans:.2%} lease {kd_lease:.2%}")
-say(f"EV {EV_OP:,.0f} | TV share {TV_SHARE:.1%} | nonop {NONOP:,.0f} | NCI {NCI_VAL:,.0f}")
-say(f"equity {EQ:,.0f} -> {PS_DEC:.2f}/sh (Dec-25) -> {PS:.2f} at anchor "
-    f"(roll {ROLL:.4f}, div {V['div_between']:.2f})")
-say(f"FRAMING A {PS_A:.2f} vs FRAMING B {PS_B:.2f} (gap {PS_A - PS_B:.2f}) | CDS basis {PS_CDS:.2f}")
-say(f"lenses: DCF {PS_A:.2f} [{PS_BEAR:.2f},{PS_BULL:.2f}] | rel {rel_base:.2f} | "
-    f"norm {norm_base:.2f} | book {book_base:.2f} | CENTRAL {CENTRAL:.2f} vs spot {V['spot']}")
+say(f"terminal ROIC COMPUTED {ROIC_TERM:.2%} (variant {V['roic_term_variant']:.1%} -> "
+    f"{PS_ROIC_VARIANT:.2f}) | ROIC path " + " ".join(f"{r:.2%}" for r in ROIC_PATH))
+say(f"EV {EV_OP:,.0f} | TV share {TV_SHARE:.1%} | nonop(dec) {NONOP_DEC:,.0f} | "
+    f"NCI {NCI_VAL:,.0f}")
+say(f"equity {EQ:,.0f} at anchor -> {PS:.2f}/sh (roll {ROLL:.4f} on Dec legs only, "
+    f"div {V['div_between']:.2f})")
+say(f"FRAMING A {PS_A:.2f} vs FRAMING B {PS_B:.2f} (gap {PS_A - PS_B:.2f}) | "
+    f"CDS basis {PS_CDS:.2f} | stores run-rate {PS_STORES_RUNRATE:.2f}")
+say(f"lenses: DCF {PS_A:.2f} [{PS_BEAR:.2f},{PS_BULL:.2f}] | rel {rel_base:.2f} "
+    f"(fwd {rel_forward:.2f}) | norm {norm_base:.2f} | book {book_base:.2f} | "
+    f"CENTRAL {CENTRAL:.2f} vs settled spot {V['spot']}")
+say(f"experts: E1 {e1_base:.2f} E2 {e2_base:.2f} E3 {e3_base:.2f} -> median {PANEL_MED:.2f}")
 say("study_numbers.json written")

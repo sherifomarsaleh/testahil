@@ -1,6 +1,6 @@
-"""SAVOLA_Valuation_Model_18082026_public.xlsx — 16 sheets mirroring the house canonical
-model (operating-company variant). Blue = inputs · black = formulas · green = cross-sheet
-links.
+"""SAVOLA_Valuation_Model_19082026_public.xlsx — 16 sheets mirroring the house canonical
+model (operating-company variant). SECOND EDITION (19-Aug-2026, critique response).
+Blue = inputs · black = formulas · green = cross-sheet links.
 
 The workbook is FORMULA-DRIVEN. Every quantity that is arithmetically derivable from an
 input is written as a live Excel formula, not as a pasted number. Only three classes of
@@ -37,7 +37,7 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, SEG, H1 = D['experts'], D['segments_fy25'], D['h1_2026']
 STK, S0, BT = D['strike'], D['step0'], D['backtest']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
-SPOT, SH, SHW = M['spot'], M['shares_mn'], M['shares_wavg_mn']
+SPOT, SH, SHW = M['spot'], M['shares_mn'], M['shares_val_mn']
 YF = [str(y) + 'E' for y in F['years']]
 YH = ['FY2023', 'FY2024', 'FY2025']
 T = W['tax']
@@ -97,46 +97,60 @@ for i, ln in enumerate([
  'the risk-free rate net of the sovereign spread, beta and the premium rather than pasted; the discount',
  'factors compound; and the segment build, income statement, balance sheet, cash flow, ratios and all four',
  'lenses chain off the same cells.', '',
+ 'THIS IS THE SECOND EDITION (19-Aug-2026). It restrikes the 18-Aug first edition after a four-critique',
+ 'external audit: the settled 18-Aug close (25.40) replaces an intraday print; the cash-flow waterfall now',
+ 'charges the FULL lease additions; the terminal return on capital is COMPUTED from the model\'s own year',
+ 'five rather than input; the risk-free rate is the published SAR sovereign curve; the capital-structure',
+ 'weights use the 30-Jun-2026 reviewed balance sheet; the Tiryaki receivable moved from working capital to',
+ 'the bridge; the per-share divisor is the Q2-2026 ex-treasury count; the relative lens is trailing-on-',
+ 'trailing with Al Othaim n/m; and the bridge holds its three anchor-dated legs outside the roll.', '',
  'THREE THINGS ARE PASTED VALUES, and it is worth knowing exactly which. First, audited and disclosed',
  'history — the primary record, not a calculation: the FY2023-FY2025 statements, the FY2025 category',
  'volumes, revenues and gross profits, and the H1-2026 actuals. Second, nothing else of the build: the',
  'forecast itself is LIVE — category volumes compound off growth drivers, revenue is volume x revenue per',
- 'tonne, gross profit is volume x gross profit per tonne, Panda revenue is stores x sales per store, and',
- 'every margin on the Segments sheet is an OUTPUT of those lines, never an input. Third, whole-model',
- 'engine outputs, where each figure is a complete re-run of the entire valuation and so cannot be a single',
- 'formula: the Monte Carlo price map, the sensitivity grids, the DCF scenario bear/bull bounds, the',
- 'Framing B fair value, and the CDS-basis fair value. Changing a driver reprices the model but does NOT',
- 'redraw those engine outputs.', '',
+ 'tonne, gross profit is volume x gross profit per tonne, Panda revenue is stores x sales per store. Where',
+ 'a margin IS an input it is said plainly: Herfy and Al Kabeer disclose only revenue and margin, so their',
+ 'margins are inputs at the finest disclosed level (flagged); Panda\'s margin is the identity of its two',
+ 'inputs; Food Processing — 47% of FY2026E EBITDA — is fully unit-built and its margins are outputs.',
+ 'Third, whole-model engine outputs, where each figure is a complete re-run of the entire valuation and so',
+ 'cannot be a single formula: the Monte Carlo price map, the sensitivity grids, the DCF scenario bear/bull',
+ 'bounds, Framing B, the judgement variants, and the CDS-basis fair value. Changing a driver reprices the',
+ 'model but does NOT redraw those engine outputs.', '',
  'How revenue is built. Not as one growth rate. Edible oil, sugar and pasta are volume x price: thousand',
  'tonnes compound on their own growth paths (anchored on the disclosed H1-2026 actuals: oil +16.1%, sugar',
- '+7.2%, pasta +3.0%) and carry their own revenue-per-tonne paths. Nuts & spices carries a revenue path',
- 'with the July-2026 Mehbaj acquisition folded in small and flagged (its consideration is undisclosed).',
- 'Panda is stores x sales-per-store: the store path follows the company\'s own 20-plus-per-year guidance,',
- 'and sales density carries the measured H1-2026 decline, fading in Framing A and persisting in Framing B.',
+ '+7.2%, pasta +3.1% as the company states it) and carry their own revenue-per-tonne paths. Nuts & spices',
+ 'carries a revenue path with the July-2026 Mehbaj acquisition folded in small (SR 11.4mn consideration',
+ 'per the Q2-2026 interims, note 19). Panda is stores x sales-per-store: the store path follows the',
+ 'company\'s own 20-plus-per-year guidance (the +8/yr run-rate alternative is priced as a variant), and',
+ 'sales density carries the measured H1-2026 decline — published as a range, −7.1% to −6.0%, because the',
+ 'June-2025 store count is not disclosed — fading in Framing A and persisting in Framing B.',
  'Herfy and Al Kabeer are revenue glides anchored on H1-2026 actuals.', '',
- 'How cost is built, and why no group margin is an input. Each category carries its own gross profit per',
- 'tonne — anchored on the H1-2026 actuals, with the second half held BELOW the first on the company\'s own',
- 'replacement-cost warning and the July-2026 vegetable-oil price rise — and its own operating-cost ratio',
- 'measured from FY2025. Segment EBITDA and the group margin are therefore OUTPUTS computed on the',
- 'Segments sheet.', '',
- 'Leases are debt, and charged once. The lease liability (SAR 3.95bn audited) is deducted in the bridge',
- 'and carries its measured 5.86% effective rate inside the cost of capital; the cash-flow waterfall',
- 'charges a steady-state lease replacement equal to right-of-use depreciation, and new store leases are',
- 'non-cash additions that grow the liability and the asset together on the Balance Sheet.', '',
+ 'How cost is built. Each category carries its own gross profit per tonne — anchored on the H1-2026',
+ 'actuals, with the second half held BELOW the first on the company\'s own replacement-cost warning and',
+ 'the July-2026 vegetable-oil price rise — and its own operating-cost ratio measured from FY2025. Segment',
+ 'EBITDA and the group margin are OUTPUTS computed on the Segments sheet.', '',
+ 'Leases are debt, and charged in full. The lease liability is deducted in the bridge and carries its',
+ 'measured 5.86% effective rate inside the cost of capital; the cash-flow waterfall charges the FULL lease',
+ 'additions — right-of-use depreciation (renewals) PLUS the lease-book growth the store programme creates.',
+ 'Leases fund assets, so lease-funded growth is reinvestment like owned capex; the first edition charged',
+ 'renewals only, and correcting that is this edition\'s largest single change (−2.3 on the DCF lens).', '',
  'The contested judgement — Panda\'s expansion. The model is computed BOTH WAYS and never averaged:',
  'Framing A lets sales density stabilise as the store-refresh programme and e-commerce mature; Framing B',
  'holds the measured H1-2026 density erosion forever. Both fair values sit side by side on the Fundamental',
  'Valuation sheet, in the study\'s summary table, and in an expert\'s range.', '',
  'Discount convention, stated. The five explicit years are discounted at the explicit-window cost of',
  'capital at full-year END-of-period factors; the terminal value, dated at the end of year five, is',
- 'discounted at the year-five factor and uses terminal weights re-based toward equity. The bridge is dated',
- '31-Dec-2025 and rolled to the 18-Aug-2026 anchor at the cost of equity, net of the SAR 1.70 dividend',
- 'whose ex-date (07-May-2026) falls inside that window.', '',
+ 'discounted at the year-five factor and uses terminal weights re-based toward equity. The bridge\'s',
+ 'Dec-2025-dated legs are rolled to the 18-Aug-2026 anchor at the cost of equity, net of the SAR 1.70',
+ 'dividend whose ex-date (07-May-2026) falls inside that window; the three anchor-dated legs (Kinan',
+ 'capitalized on H1-2026 earnings, Herfy\'s NCI at its 18-Aug price, the Jul-2026 Mehbaj consideration)',
+ 'sit OUTSIDE the roll at their own dates.', '',
  'Sourcing note, up front. FY2023, FY2024 and FY2025 come from the company\'s own audited consolidated',
- 'financial statements read from savola.com/investors; Q1-2026 from the reviewed interim statements; the',
- 'H1-2026 actuals from the company\'s own earnings release and investor presentation (06-Aug-2026). Every',
- 'input is listed with source and date in the companion bibliography document.', '',
- f'Currency. SAR million unless stated. Spot SAR {SPOT:.2f} (18-Aug-2026 close). Sheets: READ FIRST ·',
+ 'financial statements read from savola.com/investors; Q1-2026 AND Q2-2026 from the reviewed interim',
+ 'statements (the Q2 interims carry the Mehbaj consideration, the 30-Jun balance sheet and the ex-treasury',
+ 'share divisor used here); the H1-2026 actuals from the company\'s own earnings release and investor',
+ 'presentation (06-Aug-2026). Every input is listed with source and date in the companion bibliography.', '',
+ f'Currency. SAR million unless stated. Spot SAR {SPOT:.2f} (settled 18-Aug-2026 close). Sheets: READ FIRST ·',
  'Summary · Fundamental Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized · DCF ·',
  'Income Statement · Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity ·',
  'Per-Share & Ratios · Peer & Sector.'], start=3):
@@ -170,9 +184,10 @@ def a(key, i=None):
 
 hdr(wsA, 3, ['Input', YF[0], YF[1], YF[2], YF[3], YF[4]])
 block('Anchors', [
-    ('spot', 'Spot price (SAR, 18-Aug-2026 close)', SPOT, PX),
+    ('spot', 'Spot price (SAR, SETTLED 18-Aug-2026 close)', SPOT, PX),
     ('shares', 'Shares issued (mn)', SH, NUM0),
-    ('sharesw', 'Weighted-average shares outstanding (mn, net of treasury)', SHW, NUM1),
+    ('sharesw', 'Shares outstanding ex-treasury (mn; Q2-2026 interims EPS-note divisor)',
+     SHW, NUM1),
     ('tax', 'Combined zakat + income tax rate on core profit', IN['tax_rate'], PCT),
     ('payout', 'Dividend payout (stated policy 50-60% of net profit; midpoint)',
      IN['payout'], PCT),
@@ -187,7 +202,7 @@ block('FY2025 disclosed bases (audited statements + company presentations)', [
     ('oilr25', 'Oil revenue FY2025', IN['oil_rev_fy25'], NUM0),
     ('sugv25', 'Sugar volume FY2025 (k MT)', IN['sug_vol_fy25'], NUM0),
     ('sugr25', 'Sugar revenue FY2025', IN['sug_rev_fy25'], NUM0),
-    ('pasv25', 'Pasta volume FY2025 (k MT, derived from disclosed revenue/tonne pairs)',
+    ('pasv25', 'Pasta volume FY2025 (k MT, DISCLOSED — FY2025 presentation p17)',
      IN['pas_vol_fy25'], NUM0),
     ('pasr25', 'Pasta revenue FY2025', IN['pas_rev_fy25'], NUM0),
     ('nutsr25', 'Nuts & spices revenue FY2025 (residual to the audited segment)',
@@ -220,16 +235,18 @@ block('Unit build — Food Processing (volume x price x GP/tonne; margins are ou
     ('opx_nuts', 'Nuts operating cost / revenue (measured FY2025)',
      IN['fp_opex_ratio']['nuts'], PCT2)])
 block('Panda (Retail) build — stores x sales per store; margin is an output', [
-    ('stores', 'Store count, end of year (company guidance 20+/yr)', IN['stores_path'], NUM0),
-    ('spsg', 'Sales-per-average-store growth (Framing A: measured decline fades)',
-     IN['sps_g_A'], PCT),
+    ('stores', 'Store count, end of year (company guidance 20+/yr; +8/yr run-rate '
+     'variant priced on Sensitivity)', IN['stores_path'], NUM0),
+    ('spsg', 'Sales-per-average-store growth (Framing A; opening measured as a range '
+     '-7.1% to -6.0% over the undisclosed Jun-2025 count)', IN['sps_g_A'], PCT),
     ('pgm', 'Panda gross margin (H1-2026 actual, held)', IN['panda_gm'], PCT),
     ('popex', 'Panda store-opex / revenue (measured H1-2026)', IN['panda_opex_ratio'], PCT),
     ('pstep', 'Framing A scale gain on the opex ratio from FY2028 (per year)',
      IN['panda_scale_step'], PCT2)])
 block('Food Services and Frozen Food', [
     ('herg', 'Herfy revenue growth', IN['herfy_rev_g'], PCT),
-    ('hermg', 'Herfy EBITDA margin (H1-2026 actual, held)', IN['herfy_ebitda_mgn'], PCT),
+    ('hermg', 'Herfy EBITDA margin (H1-2026 actual 18.7%, held FLAT — a margin INPUT '
+     'at the finest disclosed level, flagged)', IN['herfy_ebitda_mgn'], PCT),
     ('frzg', 'Al Kabeer revenue growth', IN['frz_rev_g'], PCT),
     ('frzmg', 'Al Kabeer EBITDA margin (H1-2026 actual, held)', IN['frz_ebitda_mgn'], PCT)])
 block('Group items', [
@@ -250,7 +267,8 @@ block('Working capital — component days measured FY2025', [
     ('dio', 'Days inventory outstanding', IN['dio_fy25'], NUM1),
     ('dso', 'Days sales outstanding', IN['dso_fy25'], NUM1),
     ('dpo', 'Days payable outstanding', IN['dpo_fy25'], NUM1),
-    ('prepr', 'Prepayments & other receivables / revenue', IN['prepay_ratio'], PCT2),
+    ('prepr', 'Prepayments & other receivables / revenue (EX the Tiryaki receivable)',
+     IN['prepay_ratio'], PCT2),
     ('accrr', 'Accrued & other liabilities / revenue', IN['accrued_ratio'], PCT2),
     ('contr', 'Contract liabilities / revenue', IN['contr' 'act_ratio'], PCT2)])
 block('Profit walk', [
@@ -263,25 +281,36 @@ block('Profit walk', [
      NUM1),
     ('sar1y', 'Yield on surplus cash (observed 1Y SAR sovereign)', IN['sar_1y_obs'], PCT2)])
 block('Cost of capital — v2 method, rating basis primary', [
-    ('rf', 'Risk-free rate, 10Y SAR construction (UST10Y + Jan-2026 sovereign spread)',
-     IN['rf_observed'], PCT2),
-    ('sov', 'Saudi sovereign default spread (rating basis, netted out of rf)',
-     IN['sov_spread_rating'], PCT2),
-    ('erp', 'Equity risk premium (Saudi total, rating basis)', IN['erp_rating'], PCT2),
-    ('sovcds', 'Saudi sovereign CDS spread (CDS basis)', IN['sov_spread_cds'], PCT2),
-    ('erpcds', 'Equity risk premium (CDS basis)', IN['erp_cds'], PCT2),
+    ('rf', 'Risk-free rate: PUBLISHED SAR sovereign curve, FTSE SAGBI 7-10y YTM '
+     '(31-Jul-2026 factsheet)', IN['rf_observed'], PCT2),
+    ('sov', 'Saudi sovereign default spread (rating basis, July-2026 Damodaran, netted '
+     'out of rf)', IN['sov_spread_rating'], PCT2),
+    ('erp', 'Equity risk premium (Saudi total, rating basis, July-2026 Damodaran)',
+     IN['erp_rating'], PCT2),
+    ('sovcds', 'Saudi sovereign CDS spread (CDS basis — JANUARY-2026 vintage, flagged)',
+     IN['sov_spread_cds'], PCT2),
+    ('erpcds', 'Equity risk premium (CDS basis — January-2026 vintage, flagged)',
+     IN['erp_cds'], PCT2),
     ('beta', 'Beta (SAVOLA weekly vs TASI, 5y, Dimson)', IN['beta'], '0.000'),
     ('kdsar', 'Marginal SAR cost of debt (SAIBOR + murabaha spread)', IN['kd_sar'], PCT2),
     ('kdeg', 'EGP tranche cost, SAR-equivalent (parity construction)', IN['kd_eg_localeq'],
      PCT2),
     ('kdot', 'Other tranches (AED/DZD) cost', IN['kd_other'], PCT2),
-    ('lsa', 'Loans — Saudi Arabia (audited geography)', IN['loans_geo_sa'], NUM0),
-    ('leg', 'Loans — Egypt', IN['loans_geo_eg'], NUM0),
-    ('lot', 'Loans — Algeria + UAE', IN['loans_geo_other'], NUM0),
+    ('lsa', 'Loans — Saudi Riyal tranche (constructed from the audited currency note; '
+     'the note discloses currencies, not countries)', IN['loans_geo_sa'], NUM0),
+    ('leg', 'Loans — Egyptian Pound tranche (constructed)', IN['loans_geo_eg'], NUM0),
+    ('lot', 'Loans — other currencies, AED/DZD/USD (constructed)',
+     IN['loans_geo_other'], NUM0),
+    ('ljun', 'Loans and borrowings at 30-Jun-2026 (WACC weight leg, reviewed interims)',
+     IN['loans_jun26'], NUM0),
+    ('zjun', 'Lease liabilities at 30-Jun-2026 (WACC weight leg, reviewed interims)',
+     IN['leases_jun26'], NUM0),
     ('twe', 'Terminal equity weight', IN['tw_e'], PCT),
     ('twl', 'Terminal loans weight', IN['tw_loans'], PCT),
     ('g', 'Terminal growth', IN['g_term'], PCT),
-    ('roict', 'Terminal return on invested capital', IN['roic_term'], PCT)])
+    ('roictv', 'Terminal return on capital — 10.5% UPSIDE VARIANT (the base is COMPUTED '
+     'as year-5 NOPAT on year-5 opening invested capital, on the DCF sheet)',
+     IN['roic_term_variant'], PCT)])
 block('Bridge anchors (audited 31-Dec-2025)', [
     ('cash', 'Cash and cash equivalents', IN['cash_fy25'], NUM0),
     ('loans', 'Loans and borrowings (all current)', IN['loans_fy25'], NUM0),
@@ -302,24 +331,40 @@ block('Bridge anchors (audited 31-Dec-2025)', [
     ('rou25', 'Right-of-use assets', IN['rou_fy25'], NUM0),
     ('intang25', 'Intangible assets and goodwill', IN['intang_fy25'], NUM0),
     ('kinbv', 'Kinan carrying value (equity method)', IN['kinan_carry'], NUM1),
-    ('eq25', 'Equity attributable to owners', IN['equity_att_fy25'], NUM0)])
+    ('eq25', 'Equity attributable to owners', IN['equity_att_fy25'], NUM0),
+    ('eqjun', 'Equity attributable to owners, 30-Jun-2026 (reviewed; book-lens base)',
+     IN['equity_att_jun26'], NUM0),
+    ('tiryaki', 'Tiryaki sale-proceeds receivable (on the 31-Dec-2025 balance sheet; '
+     'settled in Tiryaki shares H1-2026)', IN['tiryaki_recv'], NUM1),
+    ('mehbaj', 'Al Mehbaj consideration (Q2-2026 interims note 19: 5.4 paid + 6.0 '
+     'deferred)', IN['mehbaj_total'], NUM1),
+    ('hliabnc', "Herfy non-current liabilities (note 20; Expert-1 carve-out)",
+     IN['herfy_liab_nc'], NUM1),
+    ('hcurstk', "Herfy current lease portion, CONSTRUCTED estimate (flagged)",
+     IN['herfy_cur_stack_est'], NUM1),
+    ('hcash', "Herfy cash, CONSTRUCTED estimate (flagged)", IN['herfy_cash_est'], NUM1)])
 block('Lens inputs', [
-    ('pe_alm', 'Peer P/E — Almarai (market data)', IN['peer_pe']['ALMARAI'], MULT),
-    ('pe_oth', 'Peer P/E — Al Othaim', IN['peer_pe']['OTHAIM'], MULT),
-    ('pe_bin', 'Peer P/E — BinDawood', IN['peer_pe']['BINDAWOOD'], MULT),
-    ('pe_nad', 'Peer P/E — NADEC', IN['peer_pe']['NADEC'], MULT),
-    ('pe_wil', 'Peer P/E — Wilmar (international analogue)', IN['peer_pe']['WILMAR'], MULT),
-    ('pemixw', 'Processing-leg weight in the peer-mix multiple', IN['pe_mix_w_fp'], PCT),
+    ('pe_alm', 'Peer P/E — Almarai (settled 18-Aug close)', IN['peer_pe']['ALMARAI'], MULT),
+    ('pe_bin', 'Peer P/E — BinDawood (settled 18-Aug close)', IN['peer_pe']['BINDAWOOD'],
+     MULT),
+    ('pe_nad', 'Peer P/E — NADEC (18-Aug)', IN['peer_pe']['NADEC'], MULT),
+    ('pe_wil', 'Peer P/E — Wilmar, international analogue (18-Aug)',
+     IN['peer_pe']['WILMAR'], MULT),
     ('pedisc', 'Conglomerate / EM-mix discount on the peer-mix multiple', IN['pe_discount'],
      PCT),
     ('normm', 'Normalised mid-cycle operating EBITDA margin', IN['norm_ebitda_mgn'], PCT2),
-    ('recg', 'Recurring-earnings step FY2025 -> FY2026E (sustainable-ROE lens)',
-     IN['rec_g_fy26'], PCT),
     ('rec25', 'Recurring net profit FY2025 (company bridge)', IN['recurring_np_fy25'], NUM1),
+    ('rec26h1', 'Recurring net income H1-2026 (company net-income analysis)',
+     IN['h1_recurring_h126'], NUM1),
+    ('rec25h1', 'Recurring net income H1-2025 (same table, comparative column)',
+     IN['h1_recurring_h125'], NUM1),
     ('w_dcf', 'Weight — discounted cash flow', D['weights']['dcf'], PCT),
     ('w_rel', 'Weight — relative', D['weights']['relative'], PCT),
     ('w_norm', 'Weight — normalised', D['weights']['normalized'], PCT),
     ('w_book', 'Weight — book', D['weights']['book'], PCT)])
+# Al Othaim is displayed n/m on Peer & Sector (H1-2026 loss announced 11-Aug-2026);
+# the retail leg of the mix is BinDawood alone, and the processing-leg weight is
+# COMPUTED on the Relative & Normalized sheet from the model's own segment EBITDA.
 
 # ============ 6 SEGMENTS ======================================================
 ws = sheet('Segments')
@@ -455,10 +500,42 @@ rowf('gmgn', 'Group EBITDA margin (output, never an input)',
      [f"={CD[i]}{RW['gebitda']}/{CD[i]}{RW['grev']}" for i in range(5)],
      F['ebitda_margin'], PCT)
 r += 1
+hdr(ws, r, ['FY2025 gross-profit footing (audited)', 'SAR mn']); r += 1
+FOOT25 = r
+for lab, fml, xp in [
+        ('Oil gross profit FY2025 (disclosed)', None, IN['oil_gp_fy25']),
+        ('Sugar gross profit FY2025 (disclosed)', None, IN['sug_gp_fy25']),
+        ('Pasta gross profit FY2025 = disclosed revenue x disclosed margin',
+         f"={a('pasr25')}*0.215", SEG['categories']['pasta']['gp']),
+        ('Nuts & spices gross profit FY2025 (residual)', None,
+         SEG['categories']['nuts']['gp'])]:
+    put(ws, f'A{r}', lab, fmt=None)
+    if fml:
+        putf(ws, f'B{r}', fml, xp, NUM1)
+    else:
+        put(ws, f'B{r}', xp, BLUE, NUM1)
+    r += 1
+put(ws, f'A{r}', 'Sum of the four categories', bold=True, fmt=None)
+putf(ws, f'B{r}', f"=SUM(B{FOOT25}:B{r-1})", SEG['fp']['gp'], NUM1, bold=True)
+r += 1
+put(ws, f'A{r}', 'Audited Food-Processing segment gross profit (revenue less cost of '
+    'revenues, note 33)', fmt=None)
+put(ws, f'B{r}', SEG['fp']['gp'], BLUE, NUM1)
+r += 1
+put(ws, f'A{r}', 'The pasta line ties to the deck\'s own per-tonne label: 117.2mn / 263k '
+    'tonnes = SAR 445/tonne (FY2024: 102 / 232 = 440).', fmt=None).font = SUB
+r += 1
+put(ws, f'A{r}', 'MARGIN STATUS BY SEGMENT — stated plainly: Food Processing (47% of '
+    'FY2026E EBITDA) is unit-built and its margins are OUTPUTS; Herfy and Al Kabeer '
+    'margins are INPUTS at the finest level their disclosures allow (flagged above); '
+    'Panda\'s margin is the identity of its gross-margin and opex-ratio inputs. The '
+    'GROUP margin is an output of the mix.', fmt=None, wrap=True).font = SUB
+ws.row_dimensions[r].height = 40
+r += 1
 put(ws, f'A{r}', 'FY2025 bases shown on Assumptions; H1-2026 actuals in the study text. '
     'The four category revenues foot to the audited Food-Processing segment revenue '
-    '(13,279.9) and the four gross profits to the audited segment gross profit (1,689.2).',
-    fmt=None).font = SUB
+    '(13,279.9) and the four gross profits to the audited segment gross profit (1,689.2), '
+    'as shown in the footing block above.', fmt=None).font = SUB
 
 # ============ 10 BALANCE SHEET (built before DCF so links exist) ===============
 ws = sheet('Balance Sheet')
@@ -502,6 +579,9 @@ bsrow('invnc', 'Non-current investments (held)', IN['inv_nc_fy25'],
       [f"={a('invnc')}"] * 5, [IN['inv_nc_fy25']] * 5)
 bsrow('invc', 'Current investments (held)', IN['inv_c_fy25'],
       [f"={a('invc')}"] * 5, [IN['inv_c_fy25']] * 5)
+bsrow('tiryaki', 'Tiryaki stake (the 274.6 sale-proceeds receivable reclassified from '
+      'working capital; settled in shares H1-2026)', IN['tiryaki_recv'],
+      [f"={a('tiryaki')}"] * 5, [IN['tiryaki_recv']] * 5)
 # working capital components
 _cogsr = 1 - HI['FY25']['gp'] / IN['rev_fy25']
 _revp = F['rev']
@@ -521,7 +601,9 @@ bsrow('inv', 'Inventories (days on cost of revenues)', IN['inventories_fy25'],
        for i in range(5)], _invp)
 bsrow('tr', 'Trade receivables (days on revenue)', IN['tr_fy25'],
       [f"=Segments!{CD[i]}{RW['grev']}*{a('dso')}/365" for i in range(5)], _trp)
-bsrow('prep', 'Prepayments and other receivables (% of revenue)', IN['prepay_fy25'],
+bsrow('prep', 'Prepayments and other receivables, EX the Tiryaki receivable '
+      '(audited 1,346.5 less 274.6; % of revenue in the forecast)',
+      IN['prepay_fy25'] - IN['tiryaki_recv'],
       [f"=Segments!{CD[i]}{RW['grev']}*{a('prepr')}" for i in range(5)], _prep)
 bsrow('tp', 'Trade payables (days on cost of revenues)', -IN['tp_fy25'],
       [f"=-Segments!{CD[i]}{RW['grev']}*'Balance Sheet'!$D${COGSR}*{a('dpo')}/365"
@@ -542,11 +624,11 @@ band(ws, r, 9)
 bsrow('ta', 'Total assets (condensed)', None,
       [f"={FCOL[i]}{BS['ppe']}+{FCOL[i]}{BS['rou']}+{FCOL[i]}{BS['intang']}"
        f"+{FCOL[i]}{BS['invprop']}+{FCOL[i]}{BS['kinan']}+{FCOL[i]}{BS['invnc']}"
-       f"+{FCOL[i]}{BS['invc']}+{FCOL[i]}{BS['nwc']}+{FCOL[i]}{BS['cash']}"
-       for i in range(5)],
+       f"+{FCOL[i]}{BS['invc']}+{FCOL[i]}{BS['tiryaki']}+{FCOL[i]}{BS['nwc']}"
+       f"+{FCOL[i]}{BS['cash']}" for i in range(5)],
       [F['ppe'][i] + F['rou'][i] + IN['intang_fy25'] + IN['invprop_fy25'] + F['kinan_bv'][i]
-       + IN['inv_nc_fy25'] + IN['inv_c_fy25'] + F['nwc'][i] + F['cash'][i]
-       for i in range(5)], NUM0, True)
+       + IN['inv_nc_fy25'] + IN['inv_c_fy25'] + IN['tiryaki_recv'] + F['nwc'][i]
+       + F['cash'][i] for i in range(5)], NUM0, True)
 bsrow('loans', 'Loans and borrowings (held at the FY2025 level)', IN['loans_fy25'],
       [f"={a('loans')}"] * 5, [IN['loans_fy25']] * 5)
 bsrow('leases', 'Lease liabilities (grow with the store network)', IN['leases_fy25'],
@@ -589,6 +671,7 @@ for key, akey, xp in [('ppe', 'ppe25', IN['ppe_fy25']), ('rou', 'rou25', IN['rou
                       ('kinan', 'kinbv', IN['kinan_carry']),
                       ('invnc', 'invnc', IN['inv_nc_fy25']),
                       ('invc', 'invc', IN['inv_c_fy25']),
+                      ('tiryaki', 'tiryaki', IN['tiryaki_recv']),
                       ('cash', 'cash', IN['cash_fy25']), ('loans', 'loans', IN['loans_fy25']),
                       ('leases', 'lease', IN['leases_fy25']), ('eb', 'eb', IN['eb_fy25']),
                       ('restor', 'restor', IN['restor_fy25']),
@@ -676,9 +759,12 @@ isput(IS['np'], 'Profit attributable to owners',
 isput(IS['eps'], 'Earnings per share (SAR)', [None, None, H25['eps']], None,
       [f"={FCOL[i]}{IS['np']}/{a('sharesw')}" for i in range(5)], F['eps'], PX)
 put(ws, f"A{IS['eps'] + 1}", 'FY2024 attributable profit includes the SAR 11,554.7mn '
-    'Almarai distribution gain; FY2025 includes the +217.4 zakat reversal (recurring net '
-    'profit 539.1 per the company bridge). The forecast is the recurring construction.',
-    fmt=None).font = SUB
+    'Almarai distribution gain (audited FY2024 statements, segment note). FY2025 recurring '
+    'net profit is 539.1 per the company\'s own bridge, whose items are a 300.0 zakat-and-'
+    'other-accrual reversal, a 32.3 Turkiye gain and a 40.2 put-option gain (the audited '
+    'FS note 29 zakat credit is 217.4; the announcement quotes 247.3 gross of related '
+    'expenses — three disclosed figures on three bases). The forecast is the recurring '
+    'construction.', fmt=None).font = SUB
 IS_ROWS = IS
 
 # ============ 11 CASH FLOW =====================================================
@@ -721,7 +807,7 @@ cfrow('cfi', 'Net cash used in investing activities',
       True)
 cfrow('leasep', 'Payment of lease liabilities — principal (= right-of-use depreciation)',
       [f"=-'Cash Flow'!{CD[i]}19" for i in range(5)], [-x for x in F['dna_rou']])
-cfrow('div', 'Dividends paid to owners (policy payout on prior profit)',
+cfrow('div', 'Dividends paid to owners (policy payout on the current year\'s profit)',
       [f"=-'Income Statement'!{FCOL[i]}{IS['np']}*{a('payout')}" for i in range(5)],
       [-x for x in F['div']])
 cfrow('divnci', 'Dividends paid to non-controlling interests',
@@ -783,15 +869,19 @@ dcrow('adddna', 'Add back depreciation and amortisation',
       [f"=-{CD[i]}{DC['dna']}" for i in range(5)], F['dna'])
 dcrow('capex', 'Less capital expenditure', [f"=-{a('capex',i)}" for i in range(5)],
       [-c for c in IN['capex_path']])
-dcrow('leaser', 'Less lease replacement (= right-of-use depreciation)',
+dcrow('leaser', 'Less lease renewals (= right-of-use depreciation)',
       [f"=-'Cash Flow'!{CD[i]}{CF['roud']}" for i in range(5)], [-x for x in F['dna_rou']])
+dcrow('leaseg', 'Less lease-book growth (new-store leases; full additions charged)',
+      [f"=-('Balance Sheet'!{FCOL[0]}{BS['leases']}-{a('lease')})"] +
+      [f"=-('Balance Sheet'!{FCOL[i]}{BS['leases']}-'Balance Sheet'!{FCOL[i-1]}{BS['leases']})"
+       for i in range(1, 5)], [-x for x in F['dlease']])
 dcrow('dwc', 'Less increase in net working capital',
       [f"='Cash Flow'!{CD[i]}{CF['dwc']}" for i in range(5)], [-x for x in F['dwc']])
 band(ws, r, 6)
 dcrow('fcff', 'Free cash flow to the firm',
       [f"={CD[i]}{DC['nopat']}+{CD[i]}{DC['adddna']}+{CD[i]}{DC['capex']}"
-       f"+{CD[i]}{DC['leaser']}+{CD[i]}{DC['dwc']}" for i in range(5)], F['fcff'], NUM0,
-      True)
+       f"+{CD[i]}{DC['leaser']}+{CD[i]}{DC['leaseg']}+{CD[i]}{DC['dwc']}"
+       for i in range(5)], F['fcff'], NUM0, True)
 dcrow('df', 'Discount factor (compounding at the explicit cost of capital)',
       ["=1/(1+$C$47)"] + [f"={CD[i-1]}{r}/(1+$C$47)" for i in range(1, 5)], DCF['dfs'], DF4)
 dcrow('pv', 'Present value of free cash flow',
@@ -802,8 +892,8 @@ put(ws, f'A{r}', 'TERMINAL BLOCK', bold=True, fmt=None); r += 1
 TB = {}
 for key, label, fml, xp, fmt in [
         ('g', 'Terminal growth', f"={a('g')}", IN['g_term'], PCT),
-        ('roic', 'Terminal return on invested capital', f"={a('roict')}", IN['roic_term'],
-         PCT),
+        ('roic', 'Terminal return on capital — COMPUTED (year-5 NOPAT / opening capital)',
+         "=0.1", DCF['roic_term'], PCT),
         ('reinv', 'Terminal reinvestment = g / return on capital',
          f"=C{r+2-2}/C{r+3-2}", DCF['reinvest_term'], PCT),
         ('nopatT', 'Terminal NOPAT (year five grown one year)',
@@ -820,7 +910,8 @@ for key, label, fml, xp, fmt in [
     put(ws, f'A{r}', label, fmt=None, bold=key in ('ev',))
     r += 1
 putf(ws, f"C{TB['g']}", f"={a('g')}", IN['g_term'], PCT)
-putf(ws, f"C{TB['roic']}", f"={a('roict')}", IN['roic_term'], PCT)
+putf(ws, f"C{TB['roic']}", "=0.1", DCF['roic_term'], PCT)   # repointed to the invested-
+# capital row on Summary Financials once that sheet exists (cross-sheet build order)
 putf(ws, f"C{TB['reinv']}", f"=C{TB['g']}/C{TB['roic']}", DCF['reinvest_term'], PCT)
 putf(ws, f"C{TB['nopatT']}", f"=F{DC['nopat']}*(1+C{TB['g']})", F['nopat'][4] * (1 + IN['g_term']),
      NUM0)
@@ -831,11 +922,15 @@ putf(ws, f"C{TB['pvexp']}", f"=SUM(B{DC['pv']}:F{DC['pv']})", DCF['pv_explicit']
 putf(ws, f"C{TB['tvshare']}", f"=C{TB['pvtv']}/C{TB['ev']}", DCF['tv_share'], PCT)
 putf(ws, f"C{TB['ev']}", f"=C{TB['pvexp']}+C{TB['pvtv']}", DCF['ev'], NUM0, bold=True)
 r += 1
+put(ws, f'A{r}', 'Upside variant — terminal return held at 10.5% (engine re-run, '
+    'published beside the base, never averaged)', fmt=None)
+put(ws, f'C{r}', DCF['ps_roic_variant'], BLUE, PX)
+r += 1
 put(ws, f'A{r}', 'COST OF CAPITAL — BUILT, NOT PASTED (v2: rf net of the sovereign spread; '
     'both ERP bases shown)', bold=True, fmt=None); r += 1
 CC = {}
 cc_rows = [
-    ('rfobs', 'Observed 10Y SAR construction', f"={a('rf')}", W['rf_observed'], PCT2),
+    ('rfobs', 'Observed 10Y SAR sovereign yield (FTSE SAGBI 7-10y)', f"={a('rf')}", W['rf_observed'], PCT2),
     ('sov', 'Less sovereign default spread (rating basis)', f"=-{a('sov')}",
      -W['sov_spread_rating'], PCT2),
     ('rfstar', 'Normalized risk-free rate rf*', None, W['rf_star_rating'], PCT2),
@@ -847,9 +942,10 @@ cc_rows = [
      W['kd_loans'], PCT2),
     ('kdz', 'Cost of leases (measured effective rate)', f"={a('leaserate')}", W['kd_lease'],
      PCT2),
-    ('mcap', 'Market capitalisation = spot x shares issued', None, M['mktcap'], NUM0),
-    ('vtot', 'Capital base = equity + loans + leases', None,
-     M['mktcap'] + IN['loans_fy25'] + IN['leases_fy25'], NUM0),
+    ('mcap', 'Market capitalisation = settled spot x shares issued', None, M['mktcap'],
+     NUM0),
+    ('vtot', 'Capital base = equity (anchor) + loans + leases (both at 30-Jun-2026)',
+     None, M['mktcap'] + IN['loans_jun26'] + IN['leases_jun26'], NUM0),
     ('we', 'Equity weight', None, W['we'], PCT2),
     ('wl', 'Loans weight', None, W['wl'], PCT2),
     ('wz', 'Lease weight', None, W['wlease'], PCT2),
@@ -876,11 +972,11 @@ putf(ws, f"C{CC['kdl']}",
      f"=({a('lsa')}*{a('kdsar')}+{a('leg')}*{a('kdeg')}+{a('lot')}*{a('kdot')})/{a('loans')}",
      W['kd_loans'], PCT2)
 putf(ws, f"C{CC['mcap']}", f"={a('spot')}*{a('shares')}", M['mktcap'], NUM0)
-putf(ws, f"C{CC['vtot']}", f"=C{CC['mcap']}+{a('loans')}+{a('lease')}",
-     M['mktcap'] + IN['loans_fy25'] + IN['leases_fy25'], NUM0)
+putf(ws, f"C{CC['vtot']}", f"=C{CC['mcap']}+{a('ljun')}+{a('zjun')}",
+     M['mktcap'] + IN['loans_jun26'] + IN['leases_jun26'], NUM0)
 putf(ws, f"C{CC['we']}", f"=C{CC['mcap']}/C{CC['vtot']}", W['we'], PCT2)
-putf(ws, f"C{CC['wl']}", f"={a('loans')}/C{CC['vtot']}", W['wl'], PCT2)
-putf(ws, f"C{CC['wz']}", f"={a('lease')}/C{CC['vtot']}", W['wlease'], PCT2)
+putf(ws, f"C{CC['wl']}", f"={a('ljun')}/C{CC['vtot']}", W['wl'], PCT2)
+putf(ws, f"C{CC['wz']}", f"={a('zjun')}/C{CC['vtot']}", W['wlease'], PCT2)
 putf(ws, f"C{CC['wacc']}",
      f"=C{CC['we']}*C{CC['ke']}+C{CC['wl']}*C{CC['kdl']}*(1-{a('tax')})"
      f"+C{CC['wz']}*C{CC['kdz']}*(1-{a('tax')})", W['wacc_exp'], PCT2, bold=True)
@@ -911,11 +1007,13 @@ r += 1
 put(ws, f'A{r}', 'FROM ENTERPRISE VALUE TO THE ANCHOR', bold=True, fmt=None); r += 1
 AN = {}
 for key, label, fml, xp, fmt, bold_ in [
-        ('eq', 'Equity value (from the bridge)', "='SOTP Bridge'!C18", DCF['eq_val'], NUM0,
-         False),
-        ('psdec', 'Fair value per share at 31-Dec-2025', None, DCF['ps_dec'], PX, False),
-        ('roll', 'Anchor accretion factor = (1 + cost of equity)^(days/365)', None,
-         DCF['roll'], DF4, False),
+        ('eq', 'Equity value AT THE ANCHOR (from the bridge: Dec-2025 legs rolled at the '
+         'cost of equity; the anchor-dated legs — Kinan, Herfy NCI, Mehbaj — unrolled)',
+         "='SOTP Bridge'!C18", DCF['eq_val'], NUM0, False),
+        ('psdec', 'Fair value per share on the 31-Dec-2025 basis (anchor legs at their '
+         'own dates)', None, DCF['ps_dec'], PX, False),
+        ('roll', 'Anchor accretion factor on the Dec legs = (1 + cost of equity)^(days/365)',
+         None, DCF['roll'], DF4, False),
         ('ps', 'Fair value per share at the 18-Aug-2026 anchor (ex the 1.70 dividend)',
          None, DCF['ps'], PX, True)]:
     put(ws, f'A{r}', label, fmt=None, bold=bold_)
@@ -923,18 +1021,18 @@ for key, label, fml, xp, fmt, bold_ in [
         putf(ws, f'C{r}', fml, xp, fmt, bold=bold_, green=True)
     AN[key] = r
     r += 1
-putf(ws, f"C{AN['psdec']}", f"=C{AN['eq']}/{a('sharesw')}", DCF['ps_dec'], PX)
 putf(ws, f"C{AN['roll']}", f"=(1+C{CC['ke']})^({a('anchor_days')}/365)", DCF['roll'], DF4)
-putf(ws, f"C{AN['ps']}", f"=C{AN['psdec']}*C{AN['roll']}-{a('div_between')}", DCF['ps'], PX,
+putf(ws, f"C{AN['ps']}", f"=C{AN['eq']}/{a('sharesw')}-{a('div_between')}", DCF['ps'], PX,
      bold=True)
-put(ws, f'A{r}', f"CDS-basis fair value (engine re-run at the CDS-basis cost of capital): "
-    f"SAR {DCF['ps_cds']:.2f}", fmt=None).font = SUB
+put(ws, f'A{r}', f"CDS-basis fair value (engine re-run at the CDS-basis cost of capital; "
+    f"the CDS legs are the January-2026 vintage, flagged): SAR {DCF['ps_cds']:.2f}",
+    fmt=None).font = SUB
 
 # ============ 5 SOTP BRIDGE ====================================================
 ws = sheet('SOTP Bridge')
 title(ws, 'Enterprise value to equity — the bridge',
-      'Non-operating assets in; loans, leases, benefits, restoration, other net '
-      'liabilities and minorities out; Herfy\'s 51% NCI at ITS OWN market price', 5,
+      'Dec-2025 legs roll to the anchor at the cost of equity; the three anchor-dated '
+      'legs (Kinan capitalized, Herfy NCI at market, Mehbaj) sit OUTSIDE the roll', 5,
       awidth=56, cwidth=15)
 hdr(ws, 4, ['Step', 'SAR mn', 'Per share (SAR)'])
 kin_cap = DCF['kinan_capitalized']
@@ -948,9 +1046,10 @@ brows = [
      IN['inv_nc_fy25'], True),
     ('invc', 'Current investments (T-bills, Almarai FVTPL)', f"={a('invc')}",
      IN['inv_c_fy25'], True),
-    ('kinan', 'Kinan at capitalized earnings (annualized H1-2026 share / cost of equity)',
-     f"={a('kinh1')}*2/DCF!C{CC['ke']}", kin_cap, False),
-    ('invprop', 'Investment property', f"={a('invprop')}", IN['invprop_fy25'], True),
+    ('tiryaki', 'Tiryaki sale-proceeds receivable (on the audited 31-Dec-2025 balance '
+     'sheet; carved out of working capital)', f"={a('tiryaki')}", IN['tiryaki_recv'], True),
+    ('invprop', 'Investment property (its inter-segment rent is OUTSIDE group EBITDA, '
+     'so the asset belongs here)', f"={a('invprop')}", IN['invprop_fy25'], True),
     ('cash', 'Cash and cash equivalents', f"={a('cash')}", IN['cash_fy25'], True),
     ('loans', 'Less loans and borrowings', f"=-{a('loans')}", -IN['loans_fy25'], True),
     ('lease', 'Less lease liabilities', f"=-{a('lease')}", -IN['leases_fy25'], True),
@@ -959,8 +1058,6 @@ brows = [
      True),
     ('othnl', 'Less other net liabilities (tax/zakat accruals, deferred tax, net)',
      f"=-{a('othnl')}", -IN['other_net_liab'], True),
-    ('herfy', "Less Herfy's 51% NCI at Herfy's own market price",
-     f"=-0.51*{a('herfyp')}*{a('herfysh')}", -DCF['nci_herfy_mkt'], False),
     ('onci', 'Less other non-controlling interests at book',
      f"=-({a('ncib')}-{a('nciherfy')})", -DCF['nci_other_book'], False),
 ]
@@ -971,21 +1068,60 @@ for key, lab, v, xp, grn in brows:
     putf(ws, f'C{r}', v, xp, NUM0, bold=key in ('ev',), green=grn)
     BR[key] = r
     r += 1
+_dec_sum = (DCF['ev'] + IN['inv_nc_fy25'] + IN['inv_c_fy25'] + IN['tiryaki_recv']
+            + IN['invprop_fy25'] + IN['cash_fy25'] - IN['loans_fy25'] - IN['leases_fy25']
+            - IN['eb_fy25'] - IN['restor_fy25'] - IN['other_net_liab']
+            - DCF['nci_other_book'])
 band(ws, r, 4)
-put(ws, f'A{r}', 'Equity value attributable to owners', bold=True, fmt=None)
-putf(ws, f'C{r}', f"=SUM(C{BR['ev']}:C{BR['onci']})", DCF['eq_val'], NUM0, bold=True)
-putf(ws, f'D{r}', f"=C{r}/{a('sharesw')}", DCF['ps_dec'], PX, bold=True)
+put(ws, f'A{r}', 'Dec-2025-dated legs, subtotal', bold=True, fmt=None)
+putf(ws, f'C{r}', f"=SUM(C{BR['ev']}:C{BR['onci']})", _dec_sum, NUM0, bold=True)
+BR['dec'] = r; r += 1
+put(ws, f'A{r}', 'x accretion to 18-Aug-2026 at the cost of equity (Dec legs only)',
+    fmt=None)
+putf(ws, f'C{r}', f"=(1+DCF!C{CC['ke']})^({a('anchor_days')}/365)", DCF['roll'], DF4,
+     green=True)
+BR['roll'] = r; r += 1
+put(ws, f'A{r}', 'Dec legs rolled to the anchor', fmt=None)
+putf(ws, f'C{r}', f"=C{BR['dec']}*C{BR['roll']}", _dec_sum * DCF['roll'], NUM0)
+BR['decroll'] = r; r += 1
+put(ws, f'A{r}', 'ANCHOR-DATED LEGS (held outside the roll)', bold=True, fmt=None); r += 1
+put(ws, f'A{r}', 'Kinan at capitalized earnings (annualized H1-2026 share / cost of '
+    'equity — an H1-2026 run-rate value)', fmt=None)
+putf(ws, f'C{r}', f"={a('kinh1')}*2/DCF!C{CC['ke']}", kin_cap, NUM0)
+BR['kinan'] = r; r += 1
+put(ws, f'A{r}', "Less Herfy's 51% NCI at Herfy's own settled 18-Aug-2026 price",
+    fmt=None)
+putf(ws, f'C{r}', f"=-0.51*{a('herfyp')}*{a('herfysh')}", -DCF['nci_herfy_mkt'], NUM0)
+BR['herfy'] = r; r += 1
+put(ws, f'A{r}', 'Less Al Mehbaj consideration (Jul-2026 acquisition whose revenue the '
+    'forecast carries)', fmt=None)
+putf(ws, f'C{r}', f"=-{a('mehbaj')}", -IN['mehbaj_total'], NUM1)
+BR['mehbaj'] = r; r += 1
+band(ws, r, 4)
+put(ws, f'A{r}', 'Equity value attributable to owners AT THE ANCHOR', bold=True, fmt=None)
+putf(ws, f'C{r}', f"=C{BR['decroll']}+C{BR['kinan']}+C{BR['herfy']}+C{BR['mehbaj']}",
+     DCF['eq_val'], NUM0, bold=True)
+putf(ws, f'D{r}', f"=C{r}/{a('sharesw')}-{a('div_between')}", DCF['ps'], PX, bold=True)
 BR['eq'] = r
-# point the DCF anchor block at the bridge's real equity row
+r += 1
+put(ws, f'A{r}', '31-Dec-2025-basis view (Dec legs unrolled; anchor legs at their own '
+    'dates)', fmt=None)
+putf(ws, f'C{r}', f"=C{BR['dec']}+C{BR['kinan']}+C{BR['herfy']}+C{BR['mehbaj']}",
+     DCF['eq_dec'], NUM0)
+putf(ws, f'D{r}', f"=C{r}/{a('sharesw')}", DCF['ps_dec'], PX)
+BR['eqdec'] = r
+# point the DCF anchor block at the bridge's real rows
 wb['DCF'][f"C{AN['eq']}"] = f"='SOTP Bridge'!C{BR['eq']}"
+wb['DCF'][f"C{AN['psdec']}"] = f"='SOTP Bridge'!D{BR['eqdec']}"
+EXPECT.setdefault('DCF', {})[f"C{AN['psdec']}"] = DCF['ps_dec']
 r += 2
 put(ws, f'A{r}', 'Terminal value as a share of enterprise value', fmt=None)
 putf(ws, f'C{r}', f"=DCF!C{TB['tvshare']}", DCF['tv_share'], PCT, green=True)
 r += 1
 put(ws, f'A{r}', 'Kinan alternatives: carrying value 435.5 (floor) · share of net assets '
-    '600.9 (disclosed) · capitalized earnings (used). The Tiryaki 15% stake (received '
-    'Q1-2026, carried ~272) postdates the valuation date and is left out of the bridge.',
-    fmt=None).font = SUB
+    '600.9 (disclosed) · capitalized earnings (used). First edition note superseded: the '
+    'Tiryaki receivable IS on the 31-Dec-2025 balance sheet (notes 14/22) and now sits in '
+    'the bridge; only its share settlement happened in H1-2026.', fmt=None).font = SUB
 
 # ============ 7 RELATIVE & NORMALIZED =========================================
 ws = sheet('Relative & Normalized')
@@ -999,8 +1135,10 @@ RL = {}
 for key, label, fml, xp in [
         ('fp', 'Processing-leg P/E = median (NADEC, Wilmar)',
          f"=MEDIAN({a('pe_nad')},{a('pe_wil')})", REL['pe_fp_leg']),
-        ('ret', 'Retail-leg P/E = median (Al Othaim, BinDawood)',
-         f"=MEDIAN({a('pe_oth')},{a('pe_bin')})", REL['pe_ret_leg']),
+        ('ret', 'Retail-leg P/E = BinDawood (Al Othaim n/m after its 11-Aug-2026 H1 loss)',
+         f"={a('pe_bin')}", REL['pe_ret_leg']),
+        ('mixw', 'Processing-leg weight = FP EBITDA / (FP + Panda EBITDA), FY2026E — '
+         'COMPUTED from the segment sheet', None, REL['pe_mix_w_fp']),
         ('mix', 'Mix-weighted peer P/E', None, REL['pe_mix']),
         ('appl', 'Applied multiple after the disclosed discount', None, REL['pe'])]:
     put(ws, f'A{r}', label, fmt=None)
@@ -1008,38 +1146,54 @@ for key, label, fml, xp in [
         putf(ws, f'C{r}', fml, xp, MULT)
     RL[key] = r
     r += 1
-putf(ws, f"C{RL['mix']}", f"={a('pemixw')}*C{RL['fp']}+(1-{a('pemixw')})*C{RL['ret']}",
+putf(ws, f"C{RL['mixw']}",
+     f"=Segments!B{RW['fpeb']}/(Segments!B{RW['fpeb']}+Segments!B{RW['paneb']})",
+     REL['pe_mix_w_fp'], PCT2)
+putf(ws, f"C{RL['mix']}", f"=C{RL['mixw']}*C{RL['fp']}+(1-C{RL['mixw']})*C{RL['ret']}",
      REL['pe_mix'], MULT)
 putf(ws, f"C{RL['appl']}", f"=C{RL['mix']}*(1-{a('pedisc')})", REL['pe'], MULT)
 r += 1
-put(ws, f'A{r}', 'RELATIVE LENS', bold=True, fmt=None); r += 1
-put(ws, f'A{r}', 'FY2026E earnings per share (model)', fmt=None)
-putf(ws, f'C{r}', f"='Income Statement'!{FCOL[0]}{IS['eps']}", F['eps'][0], PX, green=True)
+put(ws, f'A{r}', 'RELATIVE LENS — trailing multiple on TRAILING earnings', bold=True,
+    fmt=None); r += 1
+put(ws, f'A{r}', 'Trailing recurring net income to 30-Jun-2026 = FY2025 recurring − '
+    'H1-2025 recurring + H1-2026 recurring (all three company-disclosed)', fmt=None)
+putf(ws, f'C{r}', f"={a('rec25')}-{a('rec25h1')}+{a('rec26h1')}", REL['ttm_recurring'],
+     NUM1)
+TTM_ROW = r; r += 1
+put(ws, f'A{r}', 'Trailing recurring EPS (on the ex-treasury divisor)', fmt=None)
+putf(ws, f'C{r}', f"=C{TTM_ROW}/{a('sharesw')}", REL['ttm_eps'], PX)
 EPS_ROW = r; r += 1
-put(ws, f'A{r}', 'Relative lens value = applied multiple x FY2026E EPS', bold=True,
+put(ws, f'A{r}', 'Relative lens value = applied multiple x trailing recurring EPS '
+    '(anchor-dated by construction: the multiples are 18-Aug quotes)', bold=True,
     fmt=None)
 putf(ws, f'C{r}', f"=C{RL['appl']}*C{EPS_ROW}", REL['base'], PX, bold=True)
 REL_ROW = r; r += 1
 put(ws, f'A{r}', '  bear (30% discount) / bull (10% discount)', fmt=None)
 putf(ws, f'C{r}', f"=C{RL['mix']}*0.7*C{EPS_ROW}", REL['bear'], PX)
 putf(ws, f'D{r}', f"=C{RL['mix']}*0.9*C{EPS_ROW}", REL['bull'], PX)
-REL_BB = r
+REL_BB = r; r += 1
+put(ws, f'A{r}', '  forward variant (the first edition\'s construction: applied multiple '
+    'x FY2026E EPS — a trailing multiple on forward earnings imports the peers\' growth '
+    'twice; shown, not used)', fmt=None)
+putf(ws, f'C{r}', f"=C{RL['appl']}*'Income Statement'!{FCOL[0]}{IS['eps']}",
+     REL['forward_variant'], PX)
 r += 2
 put(ws, f'A{r}', 'NORMALISED EARNINGS POWER', bold=True, fmt=None); r += 1
 NRM = LN['normalized']
-put(ws, f'A{r}', 'Mid-cycle revenue (FY2027E)', fmt=None)
-putf(ws, f'C{r}', f"=Segments!C{RW['grev']}", F['rev'][1], NUM0, green=True)
+put(ws, f'A{r}', 'FY2026E revenue (the trailing-multiple year; FY2027E under a trailing '
+    'multiple would double-count growth)', fmt=None)
+putf(ws, f'C{r}', f"=Segments!B{RW['grev']}", F['rev'][0], NUM0, green=True)
 NR1 = r; r += 1
 put(ws, f'A{r}', 'Normalised EBITDA at the mid-cycle margin', fmt=None)
-putf(ws, f'C{r}', f"=C{NR1}*{a('normm')}", F['rev'][1] * IN['norm_ebitda_mgn'], NUM0)
+putf(ws, f'C{r}', f"=C{NR1}*{a('normm')}", F['rev'][0] * IN['norm_ebitda_mgn'], NUM0)
 NR2 = r; r += 1
 put(ws, f'A{r}', 'Normalised net profit (same D&A, finance, tax and minority frame)',
     fmt=None)
-_np_norm = ((F['rev'][1] * IN['norm_ebitda_mgn'] - F['dna'][1] + F['netfin'][1])
-            * (1 - T) * (1 - IN['nci_share']) + F['kinan'][1])
+_np_norm = ((F['rev'][0] * IN['norm_ebitda_mgn'] - F['dna'][0] + F['netfin'][0])
+            * (1 - T) * (1 - IN['nci_share']) + F['kinan'][0])
 putf(ws, f'C{r}',
-     f"=(C{NR2}-'Income Statement'!F{IS['dna']}+'Income Statement'!F{IS['nf']})"
-     f"*(1-{a('tax')})*(1-{a('ncis')})+'Income Statement'!F{IS['kinan']}",
+     f"=(C{NR2}-'Income Statement'!E{IS['dna']}+'Income Statement'!E{IS['nf']})"
+     f"*(1-{a('tax')})*(1-{a('ncis')})+'Income Statement'!E{IS['kinan']}",
      _np_norm, NUM0)
 NR3 = r; r += 1
 put(ws, f'A{r}', 'Normalised EPS', fmt=None)
@@ -1056,12 +1210,14 @@ NRM_ROW = r
 r += 2
 put(ws, f'A{r}', 'BOOK VALUE AND SUSTAINABLE RETURN', bold=True, fmt=None); r += 1
 BKL = LN['book']
-put(ws, f'A{r}', 'Book value per share (audited FY2025 equity)', fmt=None)
-putf(ws, f'C{r}', f"={a('eq25')}/{a('sharesw')}", BKL['bvps'], PX)
+put(ws, f'A{r}', 'Book value per share (30-Jun-2026 reviewed equity, ex the 1.70 '
+    'dividend paid)', fmt=None)
+putf(ws, f'C{r}', f"={a('eqjun')}/{a('sharesw')}", BKL['bvps'], PX)
 BK1 = r; r += 1
-put(ws, f'A{r}', 'Sustainable return on equity (FY2026E recurring / FY2025 equity)',
-    fmt=None)
-putf(ws, f'C{r}', f"={a('rec25')}*(1+{a('recg')})/{a('eq25')}", BKL['roe'], PCT2)
+put(ws, f'A{r}', 'Sustainable return on equity = the model\'s OWN FY2026E attributable '
+    'profit (recurring construction) / FY2025 opening equity — one FY2026 base across '
+    'lenses', fmt=None)
+putf(ws, f'C{r}', f"='Income Statement'!E{IS['np']}/{a('eq25')}", BKL['roe'], PCT2)
 BK2 = r; r += 1
 put(ws, f'A{r}', 'Justified price-to-book = (ROE − g) / (Ke − g)', fmt=None)
 putf(ws, f'C{r}', f"=(C{BK2}-{a('g')})/(DCF!C{CC['ke']}-{a('g')})", BKL['pb'], NUM2)
@@ -1075,11 +1231,24 @@ put(ws, f'F{r}', f"=(C{BK3}+0.15)*C{BK1}", GREEN, PX)
 EXPECT.setdefault(ws.title, {})[f'F{r}'] = BKL['bull']
 BOOK_ROW = r
 r += 2
-put(ws, f'A{r}', f"Crosswalk: the dividend-discount P/E implied by this study's own cost of "
-    f"equity, payout and growth is {REL['pe_ddm']:.1f}x — far below the {REL['pe_mix']:.1f}x "
-    'the market pays the peer set. That gap (the price of capital) is why the DCF sits '
-    'below the peer-anchored lenses, and it is examined in the study rather than averaged '
-    'away.', fmt=None, wrap=True).font = SUB
+put(ws, f'A{r}', 'DIVIDEND-DISCOUNT CROSSWALK — the multiple our own cost of equity '
+    'supports, computed three ways (none is typed; the study quotes the range)',
+    bold=True, fmt=None); r += 1
+DDM = REL['ddm']
+put(ws, f'A{r}', f"Two-stage (model earnings growth {DDM['g_stage1']:.1%} for five years, "
+    "then terminal growth)", fmt=None)
+put(ws, f'C{r}', DDM['two_stage'], BLUE, MULT); r += 1
+put(ws, f'A{r}', 'Gordon forward form = payout / (Ke − g)', fmt=None)
+putf(ws, f'C{r}', f"={a('payout')}/(DCF!C{CC['ke']}-{a('g')})", DDM['gordon_fwd'], MULT)
+r += 1
+put(ws, f'A{r}', "Implied by Expert 2's dividend model (its value / FY2026E EPS)",
+    fmt=None)
+put(ws, f'C{r}', DDM['e2_implied'], BLUE, MULT); r += 1
+put(ws, f'A{r}', f"The market pays the peer set {REL['pe_mix']:.1f}x against the "
+    f"{DDM['gordon_fwd']:.1f}x-{DDM['two_stage']:.1f}x this study's cost of equity "
+    'supports. That gap (the price of capital) is why the DCF sits below the '
+    'peer-anchored lenses; it is examined in the study rather than averaged away.',
+    fmt=None, wrap=True).font = SUB
 ws.row_dimensions[r].height = 40
 ANCH['rel_row'] = f'C{REL_ROW}'; ANCH['norm_row'] = f'C{NRM_ROW}'
 ANCH['book_row'] = f'C{BOOK_ROW}'
@@ -1135,7 +1304,8 @@ put(ws, f'A{r}', 'Span across lenses (min/max — NOT weighted)', fmt=None)
 putf(ws, f'B{r}', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LK), PX)
 putf(ws, f'D{r}', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LK), PX)
 r += 1
-put(ws, f'A{r}', 'Contested judgement, other way — Framing B (density persists)', fmt=None)
+put(ws, f'A{r}', 'Contested judgement, other way — Framing B (−6% then −3% forever)',
+    fmt=None)
 put(ws, f'C{r}', DCF['framingB'], BLUE, PX)
 putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', DCF['framingB'] / SPOT - 1, PCT)
 FRB_ROW = r
@@ -1150,7 +1320,7 @@ putf(ws, f'C{r}', f"='Fundamental Valuation'!C24", D['panel_median'], PX, green=
 putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', D['panel_median'] / SPOT - 1, PCT)
 r += 1
 band(ws, r, 7)
-put(ws, f'A{r}', 'Market price (18-Aug-2026 anchor)', bold=True, fmt=None)
+put(ws, f'A{r}', 'Market price (settled 18-Aug-2026 close)', bold=True, fmt=None)
 putf(ws, f'C{r}', f"={a('spot')}", SPOT, PX, bold=True)
 assert r == SPOT_ROW
 r += 2
@@ -1167,7 +1337,11 @@ KEYS = [
     ('Cost of capital — explicit window', f"=DCF!C{CC['wacc']}", W['wacc_exp'], PCT2),
     ('Cost of capital — terminal', f"=DCF!C{CC['wacct']}", W['wacc_term'], PCT2),
     ('Terminal growth', f"={a('g')}", IN['g_term'], PCT),
+    ('Terminal return on capital (computed year-5; 10.5% variant published)',
+     f"=DCF!C{TB['roic']}", DCF['roic_term'], PCT2),
     ('Net debt, 30-Jun-2026 (company definition, SAR mn)', None, H1['netdebt'], NUM0),
+    ('Weighted central — first edition, 18-Aug-2026 (superseded by this edition)',
+     None, D['edition1']['central'], PX),
 ]
 MKTCAP_ROW = r + 1
 for lab, fml, xp, fmt in KEYS:
@@ -1185,17 +1359,19 @@ title(ws, 'Fundamental valuation — four lenses, the contested judgement, the p
       6, awidth=56, cwidth=14)
 hdr(ws, 4, ['Lens / step', 'Basis', 'SAR per share'])
 rows = [
-    ('Discounted cash flow (Framing A)', 'five-year FCFF + ROIC-consistent terminal',
-     f"=DCF!C{AN['ps']}", DCF['ps']),
-    ('  bear', 'Framing B density + GP/tonne cuts + half volume growth', LN['dcf']['bear'],
-     None),
-    ('  bull', 'volume beats + GP/tonne gains + Panda margin lift', LN['dcf']['bull'], None),
-    ('Relative multiples', 'peer-mix P/E, conglomerate discount applied',
-     f"='Relative & Normalized'!C{REL_ROW}", LN['relative']['base']),
-    ('Normalised earnings power', 'mid-cycle margin on FY2027E revenue',
+    ('Discounted cash flow (Framing A)', 'five-year FCFF (full lease additions charged) '
+     '+ computed-return terminal', f"=DCF!C{AN['ps']}", DCF['ps']),
+    ('  bear', 'Framing B density (−6% then −3%) · oil GP/t −40 · sugar −15 · half '
+     'volume growth · flat store opex', LN['dcf']['bear'], None),
+    ('  bull', 'oil GP/t +25 · sugar +10 · volumes x1.2 · Panda gross margin +40bp',
+     LN['dcf']['bull'], None),
+    ('Relative multiples', 'trailing peer-mix P/E x trailing recurring EPS, '
+     'conglomerate discount applied', f"='Relative & Normalized'!C{REL_ROW}",
+     LN['relative']['base']),
+    ('Normalised earnings power', 'mid-cycle margin on FY2026E revenue',
      f"='Relative & Normalized'!C{NRM_ROW}", LN['normalized']['base']),
-    ('Book value and sustainable return', 'justified P/B on sustainable ROE',
-     f"='Relative & Normalized'!C{BOOK_ROW}", LN['book']['base']),
+    ('Book value and sustainable return', 'justified P/B on 30-Jun-2026 book; ROE = '
+     'model FY2026E', f"='Relative & Normalized'!C{BOOK_ROW}", LN['book']['base']),
 ]
 r = 5
 for a_, b_, c_, xp in rows:
@@ -1214,16 +1390,32 @@ put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — PANDA\'S EXPANSION, BOTH WAYS', bo
 F1 = r
 put(ws, f'A{r}', 'Framing A: density stabilises as CXR and e-commerce mature', fmt=None)
 putf(ws, f'C{r}', f"=DCF!C{AN['ps']}", DCF['framingA'], PX, green=True); r += 1
-put(ws, f'A{r}', 'Framing B: the measured H1-2026 density erosion persists (engine re-run)',
-    fmt=None)
+put(ws, f'A{r}', 'Framing B: the density erosion never fades — −6% in FY2026E, then −3% '
+    'every year forever (engine re-run)', fmt=None)
 put(ws, f'C{r}', DCF['framingB'], BLUE, PX); r += 1
 put(ws, f'A{r}', 'The judgement is worth (Framing A less Framing B, per share)', fmt=None)
 putf(ws, f'C{r}', f'=C{F1}-C{F1+1}', DCF['framing_gap'], PX); r += 1
-put(ws, f'A{r}', 'CDS-basis fair value (same model, CDS sovereign basis; engine re-run)',
-    fmt=None)
+put(ws, f'A{r}', 'CDS-basis fair value (same model, CDS sovereign basis, Jan-2026 '
+    'vintage flagged; engine re-run)', fmt=None)
 put(ws, f'C{r}', DCF['ps_cds'], BLUE, PX); r += 1
 ANCH['fv_framing1'] = f'C{F1}'; ANCH['fv_framing2'] = f'C{F1+1}'
 ANCH['fv_gap'] = f'C{F1+2}'
+r += 1
+put(ws, f'A{r}', 'JUDGEMENT VARIANTS — every lever value published (engine re-runs)',
+    bold=True, fmt=None); r += 1
+for lab, val in [
+        ('Store path at the H1-2026 run-rate (+8/yr instead of guidance; lease growth '
+         'scaled to the 0.4x cadence)', DCF['stores_runrate']),
+        ('Density opening at −7.1% (the June-2025 = 213 assumption end of the range)',
+         DCF['sps_open_71']),
+        ('Density opening at −6.0% (the interpolated end; the base input)',
+         DCF['sps_open_59']),
+        ('Terminal return held at 10.5% (the retired first-edition input, as a variant)',
+         DCF['ps_roic_variant'])]:
+    put(ws, f'A{r}', lab, fmt=None, wrap=True)
+    put(ws, f'C{r}', val, BLUE, PX)
+    ws.row_dimensions[r].height = 28
+    r += 1
 r += 1
 put(ws, f'A{r}', 'EXPERT PANEL', bold=True, fmt=None); r += 1
 hdr(ws, r, ['Expert', 'Method', 'Base (SAR/share)', 'Low', 'High']); r += 1
@@ -1239,12 +1431,13 @@ ANCH['fv_panel'] = f'C{r}'
 # point Summary's expert-panel row at the real panel-median row
 wb['Summary'][f'C13'] = f"='Fundamental Valuation'!C{r}"
 r += 2
-put(ws, f'A{r}', 'The risk-free construction, priced both ways', fmt=None); r += 1
-put(ws, f'A{r}', 'No direct 10-year SAR quote was accessible; the base uses UST10Y '
-    '(4.68%, FRED) + the Jan-2026 sovereign issue spread (85bp). Discounting at −50bp / '
-    '+50bp instead is an engine re-run worth the figures at right', fmt=None, wrap=True)
-put(ws, f'C{r}', SN['rf_alts']['5.03%'], BLUE, PX)
-put(ws, f'D{r}', SN['rf_alts']['6.03%'], BLUE, PX)
+put(ws, f'A{r}', 'The risk-free rate, priced both ways', fmt=None); r += 1
+put(ws, f'A{r}', 'The base is the PUBLISHED SAR sovereign curve: FTSE SAGBI 7-10y '
+    'yield 5.52% (31-Jul-2026 factsheet; iBoxx SAR sukuk 5.44% at 6.07y corroborates). '
+    'Discounting at −50bp / +50bp instead is an engine re-run worth the figures at right',
+    fmt=None, wrap=True)
+put(ws, f'C{r}', SN['rf_alts']['5.02%'], BLUE, PX)
+put(ws, f'D{r}', SN['rf_alts']['6.02%'], BLUE, PX)
 ws.row_dimensions[r].height = 40
 
 # ============ 12 SUMMARY FINANCIALS ===========================================
@@ -1290,34 +1483,33 @@ for i in range(5):
     EXPECT['Summary Financials'][f'{col}{SF["mgn"]}'] = F['ebitda_margin'][i]
 put(ws, f'B{SF["mgn"]}', HI['FY25']['ebitda'] / HI['FY25']['rev'], BLUE, PCT)
 r += 1
-put(ws, f'A{r}', 'Invested capital (equity + minorities + debt + leases − cash − '
-    'investments − Kinan)', fmt=None)
+put(ws, f'A{r}', 'Operating invested capital (equity + minorities + debt + leases − '
+    'cash − investments − Kinan − Tiryaki − investment property; the terminal return '
+    'runs on this row)', fmt=None)
 IC_ROW = r
-_icp = []
 for i in range(5):
     col = get_column_letter(3 + i)
-    ic_val = (F['equity_att'][i] + F['nci'][i] + IN['loans_fy25'] + F['leases'][i]
-              - F['cash'][i] - IN['inv_c_fy25'] - IN['inv_nc_fy25'] - F['kinan_bv'][i])
-    _icp.append(ic_val)
     putf(ws, f'{col}{r}',
          f"='Balance Sheet'!{FCOL[i]}{BS['eq']}+'Balance Sheet'!{FCOL[i]}{BS['nci']}"
          f"+{a('loans')}+'Balance Sheet'!{FCOL[i]}{BS['leases']}"
          f"-'Balance Sheet'!{FCOL[i]}{BS['cash']}-{a('invc')}-{a('invnc')}"
-         f"-'Balance Sheet'!{FCOL[i]}{BS['kinan']}", ic_val, NUM0)
+         f"-'Balance Sheet'!{FCOL[i]}{BS['kinan']}-{a('tiryaki')}-{a('invprop')}",
+         F['ic_path'][i], NUM0)
 r += 1
 put(ws, f'A{r}', 'Return on invested capital (NOPAT / opening invested capital)', fmt=None)
-_ic0 = (IN['equity_att_fy25'] + IN['nci_book_fy25'] + IN['loans_fy25'] + IN['leases_fy25']
-        - IN['cash_fy25'] - IN['inv_c_fy25'] - IN['inv_nc_fy25'] - IN['kinan_carry'])
 for i in range(5):
     col = get_column_letter(3 + i)
-    prev = _ic0 if i == 0 else _icp[i-1]
     if i == 0:
         f_ = (f"=DCF!B{DC['nopat']}/({a('eq25')}+{a('ncib')}+{a('loans')}+{a('lease')}"
-              f"-{a('cash')}-{a('invc')}-{a('invnc')}-{a('kinbv')})")
+              f"-{a('cash')}-{a('invc')}-{a('invnc')}-{a('kinbv')}-{a('tiryaki')}"
+              f"-{a('invprop')})")
     else:
         f_ = f"=DCF!{CD[i]}{DC['nopat']}/{get_column_letter(2+i)}{IC_ROW}"
-    putf(ws, f'{col}{r}', f_, F['nopat'][i] / prev, PCT2)
+    putf(ws, f'{col}{r}', f_, F['roic_path'][i], PCT2)
 r += 1
+# the DCF terminal-return cell can now point at the real invested-capital row:
+# year-5 NOPAT over year-5 OPENING capital (= the year-4 closing column F)
+wb['DCF'][f"C{TB['roic']}"] = f"=F{DC['nopat']}/'Summary Financials'!F{IC_ROW}"
 put(ws, f'A{r}', 'Return on equity (attributable profit / opening equity)', fmt=None)
 for i in range(5):
     col = get_column_letter(3 + i)
@@ -1335,8 +1527,10 @@ title(ws, 'Monte Carlo price map — engine output (pasted by construction)',
       'Each figure is a 50,000-path simulation of the whole price process; the grid does '
       'not redraw when a driver changes', 7, awidth=52, cwidth=13)
 r = 4
-put(ws, f'A{r}', f"Anchor: SAR {STK['spot']:.2f} on {STK['anchor_date']} · annualized "
-    f"volatility ~{STK['horizons']['1M']['anchor_vol_ann']:.0%}", fmt=None); r += 2
+put(ws, f'A{r}', f"Anchor: SAR {STK['spot']:.2f} (settled close) on {STK['anchor_date']} "
+    f"· annualized volatility ~{STK['horizons']['1M']['anchor_vol_ann']:.0%} · 50,000 "
+    "simulated paths on a fixed seed (42), carry-anchored heavy-tailed process",
+    fmt=None); r += 2
 hdr(ws, r, ['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95', 'P(above spot)']); r += 1
 for short, label in [('1M', 'One month (to {})'.format(STK['horizons']['1M']['grade_date'])),
                      ('3M', 'Three months (to {})'.format(STK['horizons']['3M']['grade_date']))]:
@@ -1469,13 +1663,15 @@ for lab, fmls, exps, fmt in kpi_rows:
 # ============ 16 PEER & SECTOR ================================================
 ws = sheet('Peer & Sector')
 title(ws, 'Peer frame — market data, cross-check only',
-      'Quotes of 18-Aug-2026; the peer-mix multiple used by the lenses is computed on the '
-      'Relative & Normalized sheet from these cells', 6, awidth=44, cwidth=14)
+      'Settled closes of 18-Aug-2026; the peer-mix multiple used by the lenses is computed '
+      'on the Relative & Normalized sheet from these cells', 6, awidth=44, cwidth=14)
 hdr(ws, 4, ['Company', 'Exchange', 'P/E (TTM)', 'Note'])
 r = 5
 for nm, exch, key, note in [
         ('Almarai', 'Tadawul 2280', 'pe_alm', 'GCC food & beverage leader'),
-        ('Al Othaim Markets', 'Tadawul 4001', 'pe_oth', 'Saudi grocery retail'),
+        ('Al Othaim Markets', 'Tadawul 4001', None,
+         'n/m — H1-2026 attributable loss announced 11-Aug-2026 (TTM earnings ~79mn); '
+         'excluded like Herfy'),
         ('BinDawood Holding', 'Tadawul 4161', 'pe_bin', 'Saudi grocery retail'),
         ('NADEC', 'Tadawul 6010', 'pe_nad', 'Saudi agri-food'),
         ('Wilmar International', 'SGX F34', 'pe_wil', 'international agri-food analogue'),
@@ -1483,11 +1679,11 @@ for nm, exch, key, note in [
     put(ws, f'A{r}', nm, fmt=None); put(ws, f'B{r}', exch, fmt=None)
     if key:
         putf(ws, f'C{r}', f"={a(key)}", IN['peer_pe'][{'pe_alm': 'ALMARAI',
-             'pe_oth': 'OTHAIM', 'pe_bin': 'BINDAWOOD', 'pe_nad': 'NADEC',
+             'pe_bin': 'BINDAWOOD', 'pe_nad': 'NADEC',
              'pe_wil': 'WILMAR'}[key]], MULT, green=True)
     else:
         put(ws, f'C{r}', 'n/m', fmt=None)
-    put(ws, f'D{r}', note, fmt=None)
+    put(ws, f'D{r}', note, fmt=None, wrap=True)
     r += 1
 r += 1
 put(ws, f'A{r}', 'Savola at the model fair value (Framing A)', bold=True, fmt=None); r += 1
@@ -1540,7 +1736,7 @@ for wsx in wb.worksheets:
     wsx.page_setup.fitToHeight = 0
     wsx.sheet_properties.pageSetUpPr.fitToPage = True
 
-XLSX = os.path.join(HERE, 'SAVOLA_Valuation_Model_18082026_public.xlsx')
+XLSX = os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx')
 wb.save(XLSX)
 n_form = sum(len(v) for v in EXPECT.values())
 json.dump(dict(expected=EXPECT, anchors=ANCH),
