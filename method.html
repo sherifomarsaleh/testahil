@@ -81,8 +81,9 @@
     <p class="muted">The simulation steps in trading sessions, so a calendar horizon has to be converted into a session count — roughly 21 for a month and 63 for a quarter, varying by market and by month. That conversion is made from each exchange's own realized trading calendar rather than assumed, and the five-year test that validates every cone runs over the same calendar window that gets published instead of a fixed session count.</p>
   </section>
 
-  <section id="sec-fundamental" class="card anchor" data-nav="Fundamental valuation">
-    <h2>Fundamental valuation, in depth</h2>
+  <details id="sec-fundamental" class="rds anchor" data-nav="Fundamental valuation">
+  <summary><span class="rds-t">Fundamental valuation, in depth</span><span class="rds-note">method by company class, ground up</span><span class="rds-x" aria-hidden="true"></span></summary>
+  <div class="rds-body">
 
     <h3>Different businesses need different methods</h3>
     <p>A single valuation formula forced onto every company is a common shortcut, and a common source of bad answers. What a business actually <em>is</em> decides how it gets valued:</p>
@@ -107,10 +108,12 @@
 
     <h3>Stress-testing our own numbers</h3>
     <p>Every study is built by three independent analytical personas — genuinely different worldviews and methods, not the same model wearing three hats — who each produce a full worked valuation, state in advance what evidence would change their mind, then cross-examine each other's assumptions. The result is published as a divergence table: not an average of the three views, but a clear account of which specific assumption explains the gap between them. Where one judgment is both genuinely contested and material enough to move the whole valuation — an ownership stake, a country-risk call, an accounting treatment — it is computed both plausible ways and shown side by side, rather than quietly picked and hidden.</p>
-  </section>
+  </div>
+  </details>
 
-  <section id="sec-technical" class="card anchor" data-nav="Technical read">
-    <h2>Technical read, in depth</h2>
+  <details id="sec-technical" class="rds anchor" data-nav="Technical read">
+  <summary><span class="rds-t">Technical read, in depth</span><span class="rds-note">what's actually computed, and how</span><span class="rds-x" aria-hidden="true"></span></summary>
+  <div class="rds-body">
     <p>Every technical read is fully computed from the same cleaned daily price history the probability cone runs on — nothing here is hand-drawn from a chart. That matters in practice: a hand-drawn read goes stale the moment the price moves and nobody gets around to redrawing it. A computed one refreshes itself, automatically, in the same pass as every price update.</p>
 
     <h3>What gets computed</h3>
@@ -130,10 +133,12 @@
 
     <h3>What this lens deliberately doesn't say</h3>
     <p class="muted">A computed technical read never makes a fundamental claim — it will not tell you a stock is "cheap versus its cost of equity," because a mechanical scan of price has no way to know that. That judgment belongs to the fundamental lens above, kept separate on purpose.</p>
-  </section>
+  </div>
+  </details>
 
-  <section id="sec-montecarlo" class="card anchor" data-nav="Probability cone">
-    <h2>The probability cone, in depth</h2>
+  <details id="sec-montecarlo" class="rds anchor" data-nav="Probability cone">
+  <summary><span class="rds-t">The probability cone, in depth</span><span class="rds-note">how the 50,000-path forecast is built</span><span class="rds-x" aria-hidden="true"></span></summary>
+  <div class="rds-body">
     <p>Lens 3 is one Monte Carlo model, applied the same way to every covered name — no stock gets a bespoke, hand-tuned version of it. Each forecast simulates <b>50,000 possible future price paths</b> and reports the spread as percentiles: a median, and a range meant to contain the outcome 90% of the time.</p>
 
     <h3>Where it's centered</h3>
@@ -147,10 +152,12 @@
 
     <h3>Nothing new goes in without proving itself first</h3>
     <p class="muted">No new indicator, factor or statistical tweak — from us, or from the automated pipeline that keeps every forecast current as new prices arrive — enters this model without first beating the same out-of-sample test described below, on data it wasn't built on. An idea that looks better on the data used to build it, then loses once tested on fresh data, is rejected. That has happened, and it's on the record, not swept aside.</p>
-  </section>
+  </div>
+  </details>
 
-  <section id="sec-calibration" class="card anchor" data-nav="Calibration">
-    <h2>How we test ourselves</h2>
+  <details id="sec-calibration" class="rds anchor" data-nav="Calibration">
+  <summary><span class="rds-t">How we test ourselves</span><span class="rds-note">the calibration backtest, CRPS, and the ledger labels</span><span class="rds-x" aria-hidden="true"></span></summary>
+  <div class="rds-body">
     <p>A probability forecast that always sounds confident and is never checked against reality is worthless. So every cone is graded — and the grading is published in public, forever, on the <a href="ledger.html">ledger</a>.</p>
 
     <h3>Before a single forecast: cleaning the price history</h3>
@@ -188,7 +195,8 @@
 
     <h3>The weakest link, said plainly</h3>
     <p class="muted">Metals carry the least battle-tested calibration on the site. Gold's test is run only against its own history — a smaller, more self-referential check than the market-wide panel every stock is tested against — and silver doesn't yet have a calibration test of its own; it currently borrows gold's. Treat the metals cones as the least proven corner of the site until more history accumulates.</p>
-  </section>
+  </div>
+  </details>
 
   <section class="card">
     <p class="qhead">Who writes this</p>
@@ -242,6 +250,21 @@
     secs.forEach(function(s){ io.observe(s); });
   }
   setActive(secs[0].id);
+
+  // Any in-page link to a collapsed accordion section (the "Details ↓" card
+  // links, the cross-links inside the prose, not just the sidebar) opens it
+  // on the way in — same convention as the ticker pages' accordions.
+  function openTo(hash){
+    if(!hash || hash==='#') return;
+    var el=document.getElementById(hash.replace('#',''));
+    while(el){ if(el.tagName==='DETAILS' && !el.open){ el.open=true; } el=el.parentElement; }
+  }
+  document.addEventListener('click', function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(a) openTo(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', function(){ openTo(location.hash); });
+  if(location.hash) setTimeout(function(){ openTo(location.hash); }, 60);
 })();
 </script>
 </body></html>
