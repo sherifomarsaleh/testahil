@@ -1,0 +1,3479 @@
+{
+ "meta": {
+  "ticker": "PHDC",
+  "name": "Palm Hills Developments Company S.A.E",
+  "exchange": "EGX",
+  "code": "EGX:PHDC",
+  "ccy": "EGP",
+  "units": "EGP mn unless stated",
+  "edition": "Fundamental refresh, 19-Aug-2026",
+  "supersedes": "11-Jun-2026 edition",
+  "valuation_date": "2026-06-30",
+  "publication_date": "2026-08-19",
+  "spot": 15.01,
+  "spot_date": "22-Jul-2026",
+  "shares_out": 2824.470164,
+  "shares_issued": 2859.914173,
+  "mktcap": 42395.297161639995,
+  "auditor": "Forvis Mazars Mostafa Shawki",
+  "review_date": "17-Aug-2026"
+ },
+ "inputs": {
+  "rev_h126": {
+   "value": 19528.117727,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated statement of income, revenues",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_h125": {
+   "value": 15579.129165,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 comparative column",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "rev_q226": {
+   "value": 10181.983983,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 three months 1-Apr to 30-Jun-2026",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_q225": {
+   "value": 7186.576327,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 comparative quarter",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cogs_h126": {
+   "value": 12539.272168,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cost of revenues",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cogs_h125": {
+   "value": 8859.894363,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cost of revenues, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cashdisc_h126": {
+   "value": 62.823483,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cash discount",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cashdisc_h125": {
+   "value": 54.546305,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cash discount, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "gp_h126": {
+   "value": 6926.022076,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 gross operating profit",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "gp_h125": {
+   "value": 6664.688497,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 gross operating profit, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "sga_h126": {
+   "value": 2845.851571,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 general administrative, selling and marketing expenses (note 66)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sga_h125": {
+   "value": 2206.171375,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 same line, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "ecl_h126": {
+   "value": 13.993604,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 expected credit losses (note 68)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ecl_h125": {
+   "value": 14.079079,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 expected credit losses, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "da_is_h126": {
+   "value": 245.908913,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 depreciation & amortization charged below gross profit",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fin_h126": {
+   "value": 1676.543172,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 finance costs & interests (note 67)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fin_h125": {
+   "value": 1337.781283,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 finance costs & interests, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "land_int_h126": {
+   "value": 213.067737,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 67, land installment interest",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bank_int_h126": {
+   "value": 1463.475435,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 67, financing costs and interests",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "amort_nr_h126": {
+   "value": 523.19396,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 amortization of discount on notes receivable (note 69)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "amort_nr_h125": {
+   "value": 365.909544,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 same line, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "fvtpl_h126": {
+   "value": 15.253619,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 gains on investments at fair value through profit or loss (note 69)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "tbillinc_h126": {
+   "value": 455.606067,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 credit interest and returns on investments measured at amortized cost (note d31)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "pbt_h126": {
+   "value": 3137.778462,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 net profit before income tax & non-controlling equities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "pbt_h125": {
+   "value": 3587.60631,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 same line, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "curtax_h126": {
+   "value": 844.118629,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 current income tax (note 70a)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "deftax_h126": {
+   "value": 1.133557,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 deferred tax (note 70b)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nci_h126": {
+   "value": 27.703559,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 non-controlling equities share",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "np_h126": {
+   "value": 2264.822717,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 net profit after income tax & non-controlling equities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "np_h125": {
+   "value": 2443.380942,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 same line, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "eps_h126": {
+   "value": 0.799,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 basic earnings per share (note 71)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "wavg_sh_h126": {
+   "value": 2835.542374,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 71, weighted average shares (mn)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "taxrate_stat": {
+   "value": 0.225,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 70a, tax at 22.5%; Damodaran corporate tax rate for Egypt agrees",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "rev_re_h126": {
+   "value": 17546.530343,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, net revenue from real estate development",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_re_h125": {
+   "value": 13857.5845,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "rev_com_h126": {
+   "value": 767.493219,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, commercial and service activities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_com_h125": {
+   "value": 286.777627,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "rev_hot_h126": {
+   "value": 128.142748,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, owners' share in the profits of operating the hotels",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_clb_h126": {
+   "value": 384.671093,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, revenue from Palm Hills club",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_oth_h126": {
+   "value": 701.280324,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, other activities revenues",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_oth_h125": {
+   "value": 1035.066457,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "transfer_h126": {
+   "value": 547.79026,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, transfer fees and delay penalties",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "transfer_h125": {
+   "value": 315.590928,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "util_h126": {
+   "value": 6.734456,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, retrieve the value of the utilities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "assoc_h126": {
+   "value": -146.755608,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64, gain (loss) from associates",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "oneoff_h125": {
+   "value": 661.104866,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64 comparative, non-recurring items inside other activities revenues: profits from selling investments 560.793232 + miscellaneous income 94.584186 + gain from selling fixed asset 5.727448",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cost_re_h126": {
+   "value": 12132.982745,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, cost of real estate development",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cost_re_h125": {
+   "value": 8530.838611,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cost_com_h126": {
+   "value": 250.320947,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, cost of commercial and service activity",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cost_clb_h126": {
+   "value": 121.687245,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, cost of Palm Hills club operation",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "dep_clb_h126": {
+   "value": 23.698214,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, depreciation of club assets",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "dep_mac_h126": {
+   "value": 10.583017,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65, depreciation of fixed assets Macor",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sal_h126": {
+   "value": 678.331633,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 66, salaries and wages",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sal_h125": {
+   "value": 481.601977,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 66, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "adm_h126": {
+   "value": 2167.519938,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 66, general administration and marketing expenses",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "adm_h125": {
+   "value": 1724.569398,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 66, comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "work_h126": {
+   "value": 11971.400377,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, work carried out for the six months ended 30-Jun-2026",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "work_fy25": {
+   "value": 18014.533331,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, comparative column: work carried out during FY2025",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "wip_jun26": {
+   "value": 23915.93058,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, balance of work in progress",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "wip_dec25": {
+   "value": 17570.90888,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, comparative",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cumwork_jun26": {
+   "value": 90896.730712,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, total works executed until 30-Jun-2026",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cumwork_dec25": {
+   "value": 78925.330335,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, total works executed until 1-Jan-2026",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cumrelief_jun26": {
+   "value": 66980.800132,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, cumulative cost excluded from (i.e. taken to) the income statement to 30-Jun-2026",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cumrelief_dec25": {
+   "value": 61354.421455,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, comparative",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "wip_land_jun26": {
+   "value": 6049.870482,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, land acquisition cost inside work in progress",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "wip_constr_jun26": {
+   "value": 17866.060098,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43, cost of construction and facilities inside work in progress",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "capint_h126": {
+   "value": 1191.507762,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 43 footnote, interest on loans capitalised into works under implementation",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "assoc_inv_jun26": {
+   "value": 3898.477847,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: investments in associates",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "assoc_inv_dec25": {
+   "value": 3611.619739,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: investments in associates",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "invprop_jun26": {
+   "value": 1008.419552,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: investment property",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "invprop_dec25": {
+   "value": 1032.530185,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: investment property",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "fa_jun26": {
+   "value": 5637.373917,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: fixed assets (net)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fa_dec25": {
+   "value": 4521.970936,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: fixed assets (net)",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cip_jun26": {
+   "value": 203.21536,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: projects under construction",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cip_dec25": {
+   "value": 182.616883,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: projects under construction",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "nr_lt_jun26": {
+   "value": 55707.502096,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes receivable - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nr_lt_dec25": {
+   "value": 54801.316199,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes receivable - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "nrund_lt_jun26": {
+   "value": 1033.560158,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes receivable - long term for undelivered units",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nrund_lt_dec25": {
+   "value": 1518.490219,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes receivable - long term for undelivered units",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "nca_jun26": {
+   "value": 67800.794295,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: total non-current assets",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nca_dec25": {
+   "value": 65900.163274,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: total non-current assets",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "ar_jun26": {
+   "value": 35055.008362,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: accounts receivable",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ar_dec25": {
+   "value": 28118.116247,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: accounts receivable",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "dr_jun26": {
+   "value": 14932.335834,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: debtors and other debit balances",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "dr_dec25": {
+   "value": 12921.978854,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: debtors and other debit balances",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "supadv_jun26": {
+   "value": 10490.853035,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: suppliers - advance payments",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "supadv_dec25": {
+   "value": 9056.244671,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: suppliers - advance payments",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "duefrom_jun26": {
+   "value": 346.267799,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: due from related parties",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "duefrom_dec25": {
+   "value": 335.661244,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: due from related parties",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "tbill_jun26": {
+   "value": 13016.407445,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: financial investments at amortized cost",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "tbill_dec25": {
+   "value": 9581.528351,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: financial investments at amortized cost",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "fvtplbs_jun26": {
+   "value": 179.503696,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: investments at fair value through profit and loss",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fvtplbs_dec25": {
+   "value": 152.706778,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: investments at fair value through profit and loss",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "nr_st_jun26": {
+   "value": 20530.518157,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes receivable - short term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nr_st_dec25": {
+   "value": 18137.718924,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes receivable - short term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "nrund_st_jun26": {
+   "value": 695.420618,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes receivable - short term for undelivered units",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nrund_st_dec25": {
+   "value": 935.259476,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes receivable - short term for undelivered units",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cash_jun26": {
+   "value": 7804.246906,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: cash and cash equivalents",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cash_dec25": {
+   "value": 9419.526159,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: cash and cash equivalents",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "ta_jun26": {
+   "value": 194767.286727,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: total assets",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ta_dec25": {
+   "value": 172129.812858,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: total assets",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "eqctl_jun26": {
+   "value": 18910.859404,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: net controlling equities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "eqctl_dec25": {
+   "value": 17431.419763,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: net controlling equities",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "eqnci_jun26": {
+   "value": 1723.04881,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: non-controlling equities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "eqnci_dec25": {
+   "value": 1334.33214,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: non-controlling equities",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "eqtot_jun26": {
+   "value": 20633.908214,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: total shareholders' equity",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "eqtot_dec25": {
+   "value": 18765.751903,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: total shareholders' equity",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "loan_lt_jun26": {
+   "value": 10236.280237,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: loans - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "loan_lt_dec25": {
+   "value": 10543.120329,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: loans - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "np_lt_jun26": {
+   "value": 4016.714644,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes payable - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "np_lt_dec25": {
+   "value": 4505.024909,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes payable - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "landliab_lt_jun26": {
+   "value": 47.134741,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: land purchase liabilities - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "landliab_lt_dec25": {
+   "value": 0.0,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: land purchase liabilities - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "ra_jun26": {
+   "value": 34337.384836,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: other long-term liabilities - Residents' Association",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ra_dec25": {
+   "value": 29122.769947,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: other long-term liabilities - Residents' Association",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "lease_lt_jun26": {
+   "value": 78.329645,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: lease contract liabilities - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "lease_lt_dec25": {
+   "value": 60.703816,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: lease contract liabilities - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "jsa_lt_jun26": {
+   "value": 3530.990688,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: joint shares arrangement - long term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "jsa_lt_dec25": {
+   "value": 3991.865312,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: joint shares arrangement - long term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "bank_cr_jun26": {
+   "value": 1529.842495,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: banks - credit balances",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bank_cr_dec25": {
+   "value": 938.770898,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: banks - credit balances",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cf_jun26": {
+   "value": 13922.422891,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: credit facilities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cf_dec25": {
+   "value": 11337.531976,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: credit facilities",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "loan_st_jun26": {
+   "value": 650.15165,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: current portion of short-term loans",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "loan_st_dec25": {
+   "value": 1250.040023,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: current portion of short-term loans",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "np_st_jun26": {
+   "value": 4778.461505,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: notes payable - short term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "np_st_dec25": {
+   "value": 4875.673642,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: notes payable - short term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "adv_jun26": {
+   "value": 83483.291217,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: advances from customers",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "adv_dec25": {
+   "value": 69354.084075,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: advances from customers",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "defrev_jun26": {
+   "value": 250.565351,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: deferred revenue",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "defrev_dec25": {
+   "value": 731.229939,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: deferred revenue",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "chkund_jun26": {
+   "value": 1728.980776,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: liabilities for checks for undelivered units",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "chkund_dec25": {
+   "value": 2453.749695,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: liabilities for checks for undelivered units",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "lease_st_jun26": {
+   "value": 63.263828,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: lease contract liabilities - short term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "lease_st_dec25": {
+   "value": 41.916627,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: lease contract liabilities - short term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "landliab_st_jun26": {
+   "value": 29.612533,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: current portion of land purchase liabilities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "landliab_st_dec25": {
+   "value": 0.012225,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: current portion of land purchase liabilities",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "jsa_st_jun26": {
+   "value": 1831.705748,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: joint shares arrangement - short term",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "jsa_st_dec25": {
+   "value": 2981.872912,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: joint shares arrangement - short term",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "cred_jun26": {
+   "value": 6608.427292,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: creditors & other credit balances",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cred_dec25": {
+   "value": 5121.712447,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: creditors & other credit balances",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "supcon_jun26": {
+   "value": 5740.130394,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: suppliers and contractors",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "supcon_dec25": {
+   "value": 3807.042889,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: suppliers and contractors",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "tl_jun26": {
+   "value": 174133.378513,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position: total liabilities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "tl_dec25": {
+   "value": 153364.060955,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated financial position, comparative: total liabilities",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "intdebt_jun26": {
+   "value": 26480.290746,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 34 (A/1) interest-rate risk: the company's own schedule of interest-bearing financial obligations = credit facilities 13,922.423 + loans 10,886.432 + credit banks 1,529.842 + lease obligations 141.593",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rate_sens_2pc": {
+   "value": 428.0,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 34 (A/1): a 2% move in interest rates moves profit or loss by approximately EGP 428mn, implying about EGP 21.4bn of floating-rate exposure",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fx_net_asset": {
+   "value": 2448.354068,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 34 (A/2): net foreign-currency balance is an ASSET",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "cash_fx_jun26": {
+   "value": 2569.23339,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 48: banks current accounts foreign currency 524.696277 + banks deposits foreign currency 2,044.537113",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bankcr_fx": {
+   "value": 120.879322,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 49: banks credit balances denominated in foreign currency",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "tbill_face": {
+   "value": 15475.517,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 47: face value of treasury bills and bonds held",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "tbill_wavg_yld": {
+   "value": 0.191033,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 47: face-value-weighted average return rate across the thirteen holding entities (range 18.41%-19.33%)",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sh_issued": {
+   "value": 2859.914173,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 60: 2,859,914,173 shares of EGP 2 nominal",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sh_treasury": {
+   "value": 35.444009,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 62: treasury shares at cost, 35,444,009 shares",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "sh_out": {
+   "value": 2824.470164,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 62: outstanding shares after treasury",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "treas_cost": {
+   "value": 327.006688,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 62: treasury shares at cost",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "treas_buy_h126": {
+   "value": 225.914581,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 62: 23,510,000 shares bought in H1-2026 at an average EGP 9.61",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "divs_h126": {
+   "value": 686.092048,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated statement of cash flows, paid dividends",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bk_contract": {
+   "value": 149117.77526,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 72: contractual value to customers of undelivered-unit contracts concluded between 1-Jan-2023 and 30-Jun-2026",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bk_nominal": {
+   "value": 116540.071448,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 72: nominal value of the notes receivable behind those contracts, not included in the financial statements",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bk_pv": {
+   "value": 59398.327684,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 72: present value of those checks",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bk_ladder": {
+   "value": [
+    7958.454203,
+    15904.031545,
+    16250.343221,
+    16319.819309,
+    60107.42317
+   ],
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 72 maturity ladder, nominal: due 2026 / 2027 / 2028 / 2029 / 2030 and later",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "bk_ladder_pv": {
+   "value": [
+    7484.721565,
+    12896.813973,
+    10798.764729,
+    8879.312355,
+    19338.715062
+   ],
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 72 maturity ladder, net present value",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "maint_nr": {
+   "value": 15014.0,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 41 footnote: notes receivable include about EGP 15.014bn of checks received for maintenance deposits whose collected value reverts to the Workers' Union on its establishment",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nr_gross_jun26": {
+   "value": 99653.637505,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 41: short-term notes receivable 25,282.558061 + long-term 74,371.079444, before present-value discount and partners' share",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "nr_partner": {
+   "value": 20411.319258,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 41: share of the partners deducted from notes receivable",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ocf_h126": {
+   "value": 1499.068217,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 net cash provided by operating activities",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ocf_h125": {
+   "value": 494.411464,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "d_ra_h126": {
+   "value": 5214.614889,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cash-flow statement, change in long-term liabilities Residents' Association",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "d_ra_h125": {
+   "value": 6086.710848,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "capex_h126": {
+   "value": 311.773236,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 payments for purchase of fixed assets",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "capex_cip_h126": {
+   "value": 20.598477,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 payments for projects under construction",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "da_cf_h126": {
+   "value": 279.178909,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 cash-flow statement, depreciation & amortization",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "taxpaid_h126": {
+   "value": 1834.206566,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 income taxes paid",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 27167.304497,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 consolidated statement of income, revenues",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 17462.108314,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "cogs_fy24": {
+   "value": 17739.913618,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 cost of revenues",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "cogs_fy23": {
+   "value": 11907.22449,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "gp_fy24": {
+   "value": 9330.096386,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 gross profit",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "gp_fy23": {
+   "value": 5507.635295,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "sga_fy24": {
+   "value": 3435.754971,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 general administrative, selling and marketing expenses",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "sga_fy23": {
+   "value": 2060.4617,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "ecl_fy24": {
+   "value": 23.47862,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 expected credit losses",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "ecl_fy23": {
+   "value": 14.104054,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "fin_fy24": {
+   "value": 2311.395503,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 finance costs & interests",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "pbt_fy24": {
+   "value": 4320.598449,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 net profit before income tax & non-controlling equities",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "pbt_fy23": {
+   "value": 2300.703847,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "np_fy24": {
+   "value": 3254.945443,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 net profit after income tax & non-controlling equities",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "np_fy23": {
+   "value": 1581.511689,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "da_fy24": {
+   "value": 270.108689,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 cash-flow statement, depreciation & amortization",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "ocf_fy24": {
+   "value": 3084.378488,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 net cash from operating activities",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "ocf_fy23": {
+   "value": 753.224012,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "d_ra_fy24": {
+   "value": 10047.698341,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 change in long-term liabilities Residents' Association",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "d_ra_fy23": {
+   "value": 3777.492521,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  },
+  "rev_fy22_ir": {
+   "value": 13600.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 revenue history chart, FY2022 (COMPANY_IR). The audited FY2022 statements are not published, so the only company-issued FY2022 revenue is this chart. It is used for ONE purpose \u2014 the FY2023 revenue increment behind the float ratio \u2014 and never as a statement line",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 587.649309,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 payments for purchase of fixed assets",
+   "date": "31-Dec-2024",
+   "ring": "Company"
+  },
+  "np_fy25": {
+   "value": 4216.657655,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 consolidated statement of changes in equity: net profit for the year 2025 attributable to equity holders of the parent",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "rev_fy25_ir": {
+   "value": 36196.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 revenue history chart, FY2025",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "ebitda_fy25_ir": {
+   "value": 8552.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 EBITDA history chart, FY2025",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "np_fy25_ir": {
+   "value": 4268.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 net-profit history chart, FY2025 (differs by EGP 51mn from the audited equity statement; the statement figure governs)",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "rev_9m25": {
+   "value": 25549.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 financial review table",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "gp_9m25": {
+   "value": 10423.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 financial review table",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "ebitda_9m25": {
+   "value": 6690.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 financial review table",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "constr_9m25": {
+   "value": 10500.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 construction spending, up 71% year on year",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "constr_1h25": {
+   "value": 6400.0,
+   "source": "Palm Hills Developments 1H2025 Earnings Release, 13-Aug-2025, same CDN (COMPANY_IR) \u2014 construction spending, up 55% year on year",
+   "date": "13-Aug-2025",
+   "ring": "Company"
+  },
+  "constr_1q26": {
+   "value": 4600.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 construction spending in 1Q2026, up 60% year on year",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "coll_1h25": {
+   "value": 16600.0,
+   "source": "Palm Hills Developments 1H2025 Earnings Release, 13-Aug-2025, same CDN (COMPANY_IR) \u2014 cash collection from receivables and new sales",
+   "date": "13-Aug-2025",
+   "ring": "Company"
+  },
+  "units_fy26": {
+   "value": 1200.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 contractual units ready to be handed over in FY2026",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "sales_1q26": {
+   "value": 52059.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 new sales, all regions",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "sales_1h25": {
+   "value": 143000.0,
+   "source": "Palm Hills Developments 1H2025 Earnings Release, 13-Aug-2025, same CDN (COMPANY_IR) \u2014 new sales in 1H2025",
+   "date": "13-Aug-2025",
+   "ring": "Company"
+  },
+  "sales_9m25": {
+   "value": 182000.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 new sales in 9M2025",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "sales_fy25": {
+   "value": 215384.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 new sales history chart, FY2025",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "backlog_1q26": {
+   "value": 263000.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 backlog of units sold and not yet delivered",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "backlog_9m25": {
+   "value": 225000.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 backlog",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "netdebt_1q26": {
+   "value": 3300.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 the company's own net-debt figure at 31-Mar-2026",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "netdebt_9m25": {
+   "value": 4200.0,
+   "source": "Palm Hills Developments 9M2025 Earnings Release, 13-Nov-2025, same CDN (COMPANY_IR) \u2014 the company's own net-debt figure at 30-Sep-2025",
+   "date": "13-Nov-2025",
+   "ring": "Company"
+  },
+  "landbank_sqm": {
+   "value": 46.0,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 land bank of 46 million square metres across Egypt and Abu Dhabi",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "mkt_h126": {
+   "value": 670000.0,
+   "source": "Daily News Egypt, 'Top 10 Egyptian developers' sales rise to EGP 670bn in H1 2026', 18-Aug-2026 \u2014 market survey (INDUSTRY, secondary) \u2014 combined H1-2026 sales of the ten largest Egyptian developers",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "mkt_h125": {
+   "value": 651000.0,
+   "source": "Daily News Egypt, 'Top 10 Egyptian developers' sales rise to EGP 670bn in H1 2026', 18-Aug-2026 \u2014 market survey (INDUSTRY, secondary) \u2014 same measure, H1-2025",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "mkt_units_chg": {
+   "value": -0.05,
+   "source": "Daily News Egypt, 'Top 10 Egyptian developers' sales rise to EGP 670bn in H1 2026', 18-Aug-2026 \u2014 market survey (INDUSTRY, secondary) \u2014 units sold about 39,000 in H1-2026, down 5% year on year",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "phdc_sales_h126": {
+   "value": 94000.0,
+   "source": "Daily News Egypt, 'Top 10 Egyptian developers' sales rise to EGP 670bn in H1 2026', 18-Aug-2026 \u2014 market survey (INDUSTRY, secondary) \u2014 Palm Hills ranked second with H1-2026 sales of EGP 94bn. NOT obtainable from the company's own channel: the 1H2026 earnings release was not published on palmhillsdevelopments.com or its content API as of 19-Aug-2026. Carried as SECONDARY-UNVERIFIED; it is used for narrative and cross-check only and no model driver reads it",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "reh_launch": {
+   "value": 75000.0,
+   "source": "Press reporting of the 1H2026 results release: Hacienda Ras El Hekma recorded EGP 75bn of sales in the first two weeks of launch to the close of 17-Aug-2026, to be booked in Q3-2026. SECONDARY-UNVERIFIED for the same reason; narrative and catalyst only",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "backlog_h126_press": {
+   "value": 284000.0,
+   "source": "Press reporting of the 1H2026 results release: record backlog of EGP 284bn, up 40% year on year. SECONDARY-UNVERIFIED; the study anchors on note 72 instead",
+   "date": "18-Aug-2026",
+   "ring": "Industry"
+  },
+  "rf_obs": {
+   "value": 0.23269,
+   "source": "Central Bank of Egypt, EGP Treasury Fixed Coupon Bonds auction result, auction date 17-Aug-2026, issue 18-Aug-2026 \u2014 accepted weighted-average yields (PRIMARY_MARKET_DATA) \u2014 three-year bond, accepted weighted-average yield 23.269% (22 accepted bids, EGP 18.881bn accepted of EGP 39.684bn submitted: the deepest accepted print in the auction). The two-year cleared at 22.691% on a single accepted bid and the five-year at 19.700% on a single accepted bid; neither is a usable clearing level",
+   "date": "17-Aug-2026",
+   "ring": "Country"
+  },
+  "tbill_1y": {
+   "value": 0.2495,
+   "source": "Central Bank of Egypt, EGP Treasury Bill auction results, auctions 13-Aug-2026 and 16-Aug-2026, issue 18-Aug-2026 (PRIMARY_MARKET_DATA) \u2014 364-day bill, accepted weighted-average yield",
+   "date": "13-Aug-2026",
+   "ring": "Country"
+  },
+  "tbill_91": {
+   "value": 0.24191,
+   "source": "Central Bank of Egypt, EGP Treasury Bill auction results, auctions 13-Aug-2026 and 16-Aug-2026, issue 18-Aug-2026 (PRIMARY_MARKET_DATA) \u2014 91-day bill, accepted weighted-average yield",
+   "date": "16-Aug-2026",
+   "ring": "Country"
+  },
+  "rf_arcc_xchk": {
+   "value": 0.2295,
+   "source": "Egypt ten-year local-currency government bond yield adopted in the ARCC valuation study of 06-Aug-2026 (engine/arcc_study input rf) \u2014 independent cross-check on the CBE auction print",
+   "date": "06-Aug-2026",
+   "ring": "Country"
+  },
+  "ds_rating": {
+   "value": 0.05970183,
+   "source": "Damodaran country default spreads and risk premiums, ORIGINAL file ctrypremJuly26.xlsx sheet 'ERPs by country', Egypt row \u2014 CDS spreads as of 30-Jun-2026, rating default spreads updated 30-Jun-2026 (PRIMARY_MARKET_DATA) \u2014 rating-based adjusted default spread, Moody's Caa1",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.13480623,
+   "source": "Damodaran country default spreads and risk premiums, ORIGINAL file ctrypremJuly26.xlsx sheet 'ERPs by country', Egypt row \u2014 CDS spreads as of 30-Jun-2026, rating default spreads updated 30-Jun-2026 (PRIMARY_MARKET_DATA) \u2014 total equity risk premium, rating basis",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "crp_rating": {
+   "value": 0.09280623,
+   "source": "Damodaran country default spreads and risk premiums, ORIGINAL file ctrypremJuly26.xlsx sheet 'ERPs by country', Egypt row \u2014 CDS spreads as of 30-Jun-2026, rating default spreads updated 30-Jun-2026 (PRIMARY_MARKET_DATA) \u2014 country risk premium, rating basis",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "ds_cds": {
+   "value": 0.0342,
+   "source": "Damodaran country default spreads and risk premiums, ORIGINAL file ctrypremJuly26.xlsx sheet 'ERPs by country', Egypt row \u2014 CDS spreads as of 30-Jun-2026, rating default spreads updated 30-Jun-2026 (PRIMARY_MARKET_DATA) \u2014 sovereign CDS net of Swiss CDS (gross 3.55%)",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.09516375,
+   "source": "Damodaran country default spreads and risk premiums, ORIGINAL file ctrypremJuly26.xlsx sheet 'ERPs by country', Egypt row \u2014 CDS spreads as of 30-Jun-2026, rating default spreads updated 30-Jun-2026 (PRIMARY_MARKET_DATA) \u2014 total equity risk premium, CDS basis",
+   "date": "30-Jun-2026",
+   "ring": "Country"
+  },
+  "damo_jan_ds": {
+   "value": 0.06372478,
+   "source": "Damodaran ctryprem.html, last updated 5-Jan-2026, Egypt row \u2014 prior vintage carried for comparison only",
+   "date": "05-Jan-2026",
+   "ring": "Country"
+  },
+  "damo_jan_erp": {
+   "value": 0.13937694,
+   "source": "Damodaran ctryprem.html, 5-Jan-2026, Egypt total ERP, rating basis",
+   "date": "05-Jan-2026",
+   "ring": "Country"
+  },
+  "cbe_deposit": {
+   "value": 0.19,
+   "source": "Central Bank of Egypt Monetary Policy Committee, 9-Jul-2026 \u2014 overnight deposit rate held at 19.00% after 825bp of cuts between April 2025 and February 2026 (COUNTRY)",
+   "date": "09-Jul-2026",
+   "ring": "Country"
+  },
+  "cbe_lending": {
+   "value": 0.2,
+   "source": "Central Bank of Egypt Monetary Policy Committee, 9-Jul-2026 \u2014 overnight deposit rate held at 19.00% after 825bp of cuts between April 2025 and February 2026 (COUNTRY) \u2014 overnight lending rate, one percentage point above the deposit rate",
+   "date": "09-Jul-2026",
+   "ring": "Country"
+  },
+  "cpi_urban": {
+   "value": 0.149,
+   "source": "Central Agency for Public Mobilization and Statistics urban headline inflation 14.9% for July 2026 (14.3% June); Central Bank of Egypt annual core 14.7% July 2026 (COUNTRY)",
+   "date": "10-Aug-2026",
+   "ring": "Country"
+  },
+  "cpi_core": {
+   "value": 0.147,
+   "source": "Central Agency for Public Mobilization and Statistics urban headline inflation 14.9% for July 2026 (14.3% June); Central Bank of Egypt annual core 14.7% July 2026 (COUNTRY)",
+   "date": "10-Aug-2026",
+   "ring": "Country"
+  },
+  "usdegp": {
+   "value": 50.52,
+   "source": "USD/EGP mid-market 50.52 on 19-Aug-2026; 30-day range 49.65-51.36 (COUNTRY)",
+   "date": "19-Aug-2026",
+   "ring": "Country"
+  },
+  "rf_term": {
+   "value": 0.105,
+   "source": "Terminal risk-free rate, normalised from the Central Bank of Egypt's longest published inflation target (5% for Q4-2028) plus a standard emerging-market real-rate convention. Same construction and same value as the ARCC study of 06-Aug-2026 (input rf_term) \u2014 the house prior for Egypt",
+   "date": "06-Aug-2026",
+   "ring": "Country"
+  },
+  "erp_term": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, normalised below the currently elevated Egypt level. Same value and construction as the ARCC study of 06-Aug-2026 (input erp_term)",
+   "date": "06-Aug-2026",
+   "ring": "Country"
+  },
+  "beta_val": {
+   "value": 1.0555271328180147,
+   "source": "engine/beta_regression.own_stock_beta('PHDC','EG','EGX') \u2014 Dimson-adjusted weekly own-stock regression against EGX30 read from engine/raw_indices/EG/EGX30.csv (PRIMARY_MARKET_DATA) \u2014 Dimson-adjusted weekly beta, 255 observations over 4.93 years to 16-Jul-2026, R-squared 29.8%, standard error 0.182, passes the usability gate",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "beta_r2": {
+   "value": 0.2976393808522475,
+   "source": "engine/beta_regression.own_stock_beta('PHDC','EG','EGX') \u2014 Dimson-adjusted weekly own-stock regression against EGX30 read from engine/raw_indices/EG/EGX30.csv (PRIMARY_MARKET_DATA) \u2014 regression R-squared",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "beta_se": {
+   "value": 0.18164085825269616,
+   "source": "engine/beta_regression.own_stock_beta('PHDC','EG','EGX') \u2014 Dimson-adjusted weekly own-stock regression against EGX30 read from engine/raw_indices/EG/EGX30.csv (PRIMARY_MARKET_DATA) \u2014 standard error of the beta estimate",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "beta_n": {
+   "value": 255,
+   "source": "engine/beta_regression.own_stock_beta('PHDC','EG','EGX') \u2014 Dimson-adjusted weekly own-stock regression against EGX30 read from engine/raw_indices/EG/EGX30.csv (PRIMARY_MARKET_DATA) \u2014 weekly observations on the exchange trading week (Sunday-Thursday, W-THU grid)",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "beta_blume": {
+   "value": 1.037018088545343,
+   "source": "engine/beta_regression.own_stock_beta('PHDC','EG','EGX') \u2014 Dimson-adjusted weekly own-stock regression against EGX30 read from engine/raw_indices/EG/EGX30.csv (PRIMARY_MARKET_DATA) \u2014 Blume-adjusted cross-check",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "spot": {
+   "value": 15.01,
+   "source": "assets/data.js, TICKERS.PHDC \u2014 published cone and technical read carried forward unchanged by this fundamentals-only refresh \u2014 published spot, close of 22-Jul-2026. This refresh does not touch it",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "wk52_hi": {
+   "value": 16.43,
+   "source": "assets/data.js, TICKERS.PHDC \u2014 published cone and technical read carried forward unchanged by this fundamentals-only refresh \u2014 published 52-week high inside the carried-forward technical read",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "wk52_lo": {
+   "value": 6.99,
+   "source": "assets/data.js, TICKERS.PHDC \u2014 published cone and technical read carried forward unchanged by this fundamentals-only refresh \u2014 published 52-week low inside the carried-forward technical read",
+   "date": "22-Jul-2026",
+   "ring": "Market"
+  },
+  "vol_growth": {
+   "value": [
+    0.12,
+    0.09,
+    0.06,
+    0.04,
+    0.03
+   ],
+   "source": "Real construction-volume growth for FY2027 to FY2031. Anchored on measured execution: work carried out annualises to EGP 23,943mn in 2026 against EGP 18,015mn in FY2025 (+32.9% nominal, about +18.7% real at the measured cost path), and the company reported construction spending up 60% year on year in 1Q2026 and up 71% in 9M2025. The path decelerates because the constraint is execution and working capital, not demand: the undelivered contracted book of EGP 149.1bn (note 72) covers roughly two years of build at the 2026 rate. ESTIMATED PATH, recorded as such",
+   "date": "19-Aug-2026",
+   "ring": "Company"
+  },
+  "pi_price": {
+   "value": [
+    0.09,
+    0.08,
+    0.075,
+    0.07,
+    0.065
+   ],
+   "source": "Selling-price escalation for FY2027 to FY2031. The FY2026 anchor is measured, not assumed: the ten largest Egyptian developers sold EGP 670bn in H1-2026 against EGP 651bn a year earlier (+2.9%) on about 39,000 units, down 5% \u2014 an implied average-ticket rise of 8.3%. Later years track nominal household income on the central bank disinflation path",
+   "date": "18-Aug-2026",
+   "ring": "Company"
+  },
+  "cost_w": {
+   "value": [
+    0.25,
+    0.2,
+    0.25,
+    0.3
+   ],
+   "source": "Weights of the four physically distinct construction cost classes \u2014 reinforcing steel, cement and concrete, finishing and other materials, site labour and overhead. ESTIMATED from the structure of Egyptian residential build costs; the filings do not disclose a cost-by-nature split of construction. Recorded as an estimate and carried through the sensitivity",
+   "date": "19-Aug-2026",
+   "ring": "Industry"
+  },
+  "esc_steel": {
+   "value": [
+    0.06,
+    0.06,
+    0.055,
+    0.05,
+    0.045
+   ],
+   "source": "Reinforcing-steel escalator. Near-term anchor is dated and measured: Egyptian producers left August 2026 rebar sales prices unchanged against July after earlier declines, so FY2026 carries no steel escalation at all; from FY2027 the path is global steel plus the pound's drift",
+   "date": "19-Aug-2026",
+   "ring": "Industry"
+  },
+  "esc_cement": {
+   "value": [
+    0.09,
+    0.08,
+    0.07,
+    0.065,
+    0.06
+   ],
+   "source": "Cement and concrete escalator, taken from the Egyptian local realised cement price path adopted in the ARCC study of 06-Aug-2026, which is anchored on a disclosed producer price history",
+   "date": "06-Aug-2026",
+   "ring": "Industry"
+  },
+  "esc_finish": {
+   "value": [
+    0.115,
+    0.1,
+    0.09,
+    0.08,
+    0.07
+   ],
+   "source": "Finishing and other materials escalator, on the central bank disinflation path from the measured July 2026 urban rate of 14.9% toward the 5% target for Q4-2028",
+   "date": "10-Aug-2026",
+   "ring": "Country"
+  },
+  "esc_labour": {
+   "value": [
+    0.135,
+    0.12,
+    0.11,
+    0.1,
+    0.09
+   ],
+   "source": "Site labour and overhead escalator: the consumer-price path plus two percentage points. Conservative against the measured direction \u2014 the company's own salaries and wages rose 40.9% year on year in H1-2026 against revenue growth of 25.4%",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "hcount_growth": {
+   "value": 0.02,
+   "source": "Real headcount growth carried in the salary line on top of wage escalation",
+   "date": "19-Aug-2026",
+   "ring": "Company"
+  },
+  "term_g": {
+   "value": 0.08,
+   "source": "Terminal nominal growth: the central bank's 5% long-run inflation target plus about 3% real. Held below the terminal weighted cost of capital under both cost-of-capital framings and made reinvestment-consistent through the return on capital the model itself computes",
+   "date": "19-Aug-2026",
+   "ring": "Country"
+  },
+  "maint_share": {
+   "value": 0.437,
+   "source": "Share of the Residents' Association balance represented by maintenance-deposit checks rather than collected cash: EGP 15.014bn of notes receivable (note 41 footnote) against the EGP 34.337bn liability (note 63). Disclosed as stocks, not as period movements",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "ra_target_ratio": {
+   "value": 1.0,
+   "source": "Steady-state Residents' Association balance per Egyptian pound of annual revenue. Not asserted: solved from the company's own disclosed movements. Per pound of revenue growth the balance rose 0.98x in FY2023 (EGP 3777mn on EGP 3862mn), 1.04x in FY2024 (EGP 10048mn on EGP 9705mn) and 1.32x in H1-2026 on a like-for-like basis (EGP 5215mn on EGP 3949mn). The study carries the bottom of that measured incremental range, which lets the balance keep building toward 1.0x annual revenue and then hold there \u2014 a bounded float rather than an unbounded one",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "peers": {
+   "value": [
+    {
+     "name": "Talaat Moustafa Group Holding",
+     "ticker": "EGX:TMGH",
+     "country": "Egypt",
+     "pe": 10.2,
+     "mcap": 156630.0,
+     "earnings": 15410.0
+    },
+    {
+     "name": "Emaar Misr for Development",
+     "ticker": "EGX:EMFD",
+     "country": "Egypt",
+     "pe": 6.1,
+     "mcap": 54600.0,
+     "earnings": null
+    },
+    {
+     "name": "SODIC",
+     "ticker": "EGX:OCDI",
+     "country": "Egypt",
+     "pe": 6.1,
+     "mcap": 24100.0,
+     "earnings": null
+    },
+    {
+     "name": "Heliopolis Housing",
+     "ticker": "EGX:HELI",
+     "country": "Egypt",
+     "pe": 7.5,
+     "mcap": 22670.0,
+     "earnings": null
+    },
+    {
+     "name": "Madinet Masr",
+     "ticker": "EGX:MASR",
+     "country": "Egypt",
+     "pe": null,
+     "mcap": 16500.0,
+     "earnings": null
+    },
+    {
+     "name": "Emaar Properties",
+     "ticker": "DFM:EMAAR",
+     "country": "United Arab Emirates",
+     "pe": 6.5,
+     "mcap": null,
+     "earnings": null,
+     "ev_ebitda": 3.6,
+     "ev_rev": 1.7
+    },
+    {
+     "name": "Aldar Properties",
+     "ticker": "ADX:ALDAR",
+     "country": "United Arab Emirates",
+     "pe": 7.7,
+     "mcap": null,
+     "earnings": null,
+     "ev_ebitda": 6.6,
+     "ev_rev": 2.0
+    }
+   ],
+   "source": "Market-data aggregators, quotes dated 11-Aug-2026 (Egypt) and June/August 2026 (Gulf): Simply Wall St, TradingView, stockanalysis.com (AGGREGATOR \u2014 cross-check only, never a source for the subject's own historicals)",
+   "date": "11-Aug-2026",
+   "ring": "Industry"
+  },
+  "prior_fair_base": {
+   "value": 15.894,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Valuation sheet cell D38, risk-adjusted equity value per share",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_fair_bear": {
+   "value": 7.62,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated bear case, contracted plus existing compounds only",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_fair_full": {
+   "value": 24.921,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Valuation sheet cell B38, full-execution equity value per share",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_rev_fy26": {
+   "value": 50042.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Income Statement sheet, FY2026 revenue, EGP bn 50.042",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_gm_fy26": {
+   "value": 0.4156,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Income Statement sheet, FY2026 gross margin",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_ebitda_fy26": {
+   "value": 13874.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Income Statement sheet, FY2026 EBITDA",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_ni_fy26": {
+   "value": 6373.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Income Statement sheet, FY2026 net income",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_capex_fy26": {
+   "value": 250.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Cash Flow sheet, FY2026 capex",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_netdebt": {
+   "value": 12000.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B5, net debt EGP 12bn (gross 30 less cash 18)",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_wacc": {
+   "value": 0.18,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B10, WACC nominal EGP",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_kd": {
+   "value": 0.18,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B12, cost of debt",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_shares": {
+   "value": 2859.9,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B4, shares outstanding 2.8599bn (issued, before treasury)",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_escalation": {
+   "value": 0.14,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B13, sales-price escalation per year",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_term_g": {
+   "value": 0.05,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 Assumptions sheet cell B21, terminal growth",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_backlog": {
+   "value": 263000.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated backlog EGP 263bn",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_constr_runrate": {
+   "value": 17000.0,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated construction pacing of about EGP 14-20bn per year",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_roe": {
+   "value": 0.269,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated ROE 26.9%",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_ps": {
+   "value": 0.92,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated price to sales 0.92x",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_ev_ebitda": {
+   "value": 8.1,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated EV/EBITDA about 8.1x",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_pe": {
+   "value": 10.3,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated P/E about 10.3x",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "prior_debt_equity": {
+   "value": 1.58,
+   "source": "PHDC Valuation Study of 11-Jun-2026 and its companion workbook (PHDC_Valuation_Study_11062026_public.xlsx), superseded by this edition \u2014 stated debt to equity about 158%",
+   "date": "11-Jun-2026",
+   "ring": "Prior study"
+  },
+  "ebitda_h125_pub": {
+   "value": 4458.517,
+   "source": "Palm Hills Developments 1H2025 Earnings Release, 13-Aug-2025, same CDN (COMPANY_IR) \u2014 consolidated income statement, EBITDA (EGP 4,458,517 thousand)",
+   "date": "13-Aug-2025",
+   "ring": "Company"
+  },
+  "ebitda_1q26": {
+   "value": 1915.527,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 financial review table, EBITDA",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "rev_1q26": {
+   "value": 9346.133,
+   "source": "Palm Hills Developments 1Q2026 Earnings Release, 20-May-2026, palmhillsdevelopments.com investor-relations asset library (COMPANY_IR) \u2014 consolidated income statement, revenue",
+   "date": "20-May-2026",
+   "ring": "Company"
+  },
+  "tax_payable_dec25": {
+   "value": 1976.557733,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 income tax payable, comparative",
+   "date": "31-Dec-2025",
+   "ring": "Company"
+  },
+  "tax_payable_jun26": {
+   "value": 986.469796,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 income tax payable",
+   "date": "30-Jun-2026",
+   "ring": "Company"
+  },
+  "fx_passthru": {
+   "value": {
+    "steel": 0.7,
+    "cement": 0.4,
+    "finishing": 0.5,
+    "labour": 0.0
+   },
+   "source": "Share of each construction cost class that reprices with the pound. Steel is billet and scrap linked, cement carries imported coal and energy, finishing carries imported fittings, site labour carries none. ESTIMATED, recorded as such and carried through the sensitivity",
+   "date": "19-Aug-2026",
+   "ring": "Industry"
+  },
+  "tourism_share": {
+   "value": 0.33,
+   "source": "Share of the group construction-volume driver exposed to North Coast and coastal demand. ESTIMATED from the disclosed project list; the filings do not publish a volume split by region",
+   "date": "19-Aug-2026",
+   "ring": "Company"
+  },
+  "dep_mac_h125": {
+   "value": 6.390921,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65 comparative, depreciation of fixed assets Macor",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "rev_hot_h125": {
+   "value": 92.024925,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64 comparative, owners' share hotels",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "rev_clb_h125": {
+   "value": 307.675656,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 64 comparative, Palm Hills club",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cost_com_h125": {
+   "value": 203.994948,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65 comparative, commercial and service activity",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "cost_clb_h125": {
+   "value": 101.076042,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65 comparative, Palm Hills club operation",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "dep_clb_h125": {
+   "value": 17.593841,
+   "source": "Interim consolidated financial statements as of 30 June 2026, Palm Hills Developments Company S.A.E \u2014 limited review report, Forvis Mazars Mostafa Shawki, Cairo 17-Aug-2026 (COMPANY_OFFICIAL) \u2014 note 65 comparative, depreciation of club assets",
+   "date": "30-Jun-2025",
+   "ring": "Company"
+  },
+  "fin_fy23": {
+   "value": 1503.563734,
+   "source": "Audited consolidated financial statements for the year ended 31 Dec 2024 with 31 Dec 2023 comparatives, palmhillsdevelopments.com investor-relations asset library (COMPANY_OFFICIAL) \u2014 comparative finance costs and interests",
+   "date": "31-Dec-2023",
+   "ring": "Company"
+  }
+ },
+ "hist": {
+  "rev_h126": 19528.117727,
+  "rev_h125": 15579.129165,
+  "gm_h126": 0.35466920943557867,
+  "gm_h125": 0.4277959587094803,
+  "gm_fy24": 0.3434310675551302,
+  "gm_fy23": 0.31540494400577795,
+  "ebitda_h126": 4066.1769010000003,
+  "ebitda_h125": 4444.438043,
+  "ebitda_fy24": 5870.862794999999,
+  "ebitda_fy23": 3433.0695410000003,
+  "ebitda_def_gap_h125": -0.0031577668090083666,
+  "ebitda_def_tested_periods": 1,
+  "ebitda_margin_h126": 0.2082216503323316,
+  "ebitda_margin_h125": 0.2852815453244238,
+  "ebitda_margin_fy24": 0.21610030526393592,
+  "ebitda_margin_fy23": 0.19660109073127124,
+  "rev_q425": 10647.0,
+  "ebitda_q425": 1862.0,
+  "ebitda_margin_q425": 0.17488494411571334,
+  "ebitda_margin_9m25": 0.26184977885631533,
+  "ebitda_q226": 2150.649901,
+  "ebitda_1q26": 1915.527,
+  "rev_1q26": 9346.133,
+  "ebitda_margin_q226": 0.21122110431432214,
+  "ebitda_margin_1q26": 0.2049539633129552,
+  "rev_h125_adj": 14918.024299,
+  "gp_h125_adj": 6003.583631,
+  "gm_h125_adj": 0.4024382525910243,
+  "ra_incr_fy23": 0.9780907768191608,
+  "ra_incr_fy24": 1.0352905960417307,
+  "ra_incr_h126": 1.3204937940764792,
+  "ocf_ex_ra_h126": -3715.5466720000004,
+  "ocf_ex_ra_h125": -5592.299384,
+  "ocf_ex_ra_fy24": -6963.319852999999,
+  "ocf_ex_ra_fy23": -3024.268509,
+  "constr_relief_h126": 5626.378677000001,
+  "land_partner_h126": 6506.604067999999,
+  "c1": 0.32065477145711513,
+  "c2": 0.37081998211662054,
+  "re_gm_h126": 0.3085252464262644,
+  "re_gm_h125": 0.38439209149329023,
+  "P_h126": 3.1186188044413417,
+  "rho_h126": 1.4657040772532504,
+  "wip_years": 2.1253395792364294,
+  "margin_fall_pp": 0.07586684506702585,
+  "P_h125_if_c2_flat": 4.08516880202016,
+  "c2_h125_if_P_flat": 0.29495313704959464,
+  "P_compression_bound": -0.23659976965966467,
+  "c2_rise_bound": 0.0758668450670259,
+  "interest_total_h126": 2654.983197,
+  "cap_ratio": 0.4487816583345405,
+  "intdebt_dec25": 24172.083668999996,
+  "intdebt_avg": 25326.1872075,
+  "kd_realised": 0.20966307918736093,
+  "corp_spread": 0.018630079187360926,
+  "np_total_jun26": 8795.176149,
+  "landliab_total_jun26": 76.747274,
+  "debt_narrow": 26480.290746,
+  "debt_broad": 35352.214169,
+  "liquid": 20820.654351,
+  "netdebt_company": 5659.636394999998,
+  "netdebt_broad": 14531.559817999998,
+  "ra_dedicated_assets": 19323.384835999997,
+  "liquid_free": 1497.2695150000036,
+  "netdebt_restricted": 24983.021230999995,
+  "rev_ann": 39056.235454,
+  "cogs_ann": 25078.544336,
+  "relief_ann": 11252.757354000001,
+  "recv_total_jun26": 113022.00939099999,
+  "recv_total_dec25": 103510.90106500001,
+  "dso": 1056.247048600021,
+  "dio": 348.07900110729935,
+  "dpo": 211.55083074655056,
+  "ccc_gross": 1192.7752189607695,
+  "adv_days": 1215.0386755288507,
+  "ccc_net": -22.26345656808121,
+  "mktcap": 42395.297161639995,
+  "bvps": 6.695365256476471,
+  "pb": 2.241849312922955,
+  "ni_ltm": 4038.09943,
+  "eps_ltm": 1.424101246740882,
+  "pe_ltm": 10.539980941910585,
+  "eq_avg": 18171.1395835,
+  "roe_ltm": 0.22222598706284383,
+  "rev_ltm": 40144.988562,
+  "ps_ltm": 1.056054533336449,
+  "ebitda_ltm": 8173.738858000001,
+  "ev_company": 48054.93355664,
+  "ev_broad": 56926.85697964,
+  "ev_restricted": 67378.31839264,
+  "ev_ebitda_company": 5.879186305249586,
+  "ev_ebitda_broad": 6.964604322283083,
+  "de_narrow": 1.400269029571386,
+  "de_broad": 1.869413410239957,
+  "div_yield": 0.03236642240690734,
+  "mkt_value_growth": 0.029185867895545226,
+  "mkt_ticket_growth": 0.08335354515320548,
+  "phdc_share": 0.14029850746268657,
+  "ra_ratio_0": 0.8791780476754394,
+  "ufcf_h126_actual": 3821.6797010000005,
+  "tax_payable_unwind": 990.0879370000001,
+  "jsa_unwind": 1611.0417879999995,
+  "ufcf_h126_like_for_like": 6422.809426,
+  "ufcf_h226_model_A": 2016.7375027444496,
+  "ufcf_h226_model_B": -1077.2742562817089,
+  "recon_gap": -0.686003838977294,
+  "recon_residual": 4406.07192325555,
+  "ebitda_h126_plus_capint": 4626.167683571819,
+  "ebitda_h226_expected": 5073.031302965,
+  "ebitda_recon_gap": -0.012759876062878539
+ },
+ "wacc": {
+  "beta": 1.0555271328180147,
+  "rf_obs": 0.23269,
+  "rf_star_rating": 0.17298817,
+  "rf_star_cds": 0.19849,
+  "ke_rating": 0.31527980343790585,
+  "ke_cds": 0.29893792018571036,
+  "kd_marginal": 0.25132007918736093,
+  "kd_at": 0.19477306137020473,
+  "E": 42395.297161639995,
+  "D": 26480.290746,
+  "we": 0.6155344505877868,
+  "wd": 0.38446554941221317,
+  "wacc_rating": 0.26894911264097127,
+  "wacc_cds": 0.25889012051176136,
+  "wacc_spot": 0.2639196165763663,
+  "beta_term": 1.0,
+  "ke_term": 0.175,
+  "kd_term": 0.135,
+  "kd_term_at": 0.10462500000000001,
+  "wacc_term": 0.1479432369601155,
+  "wacc_path_spot": [
+   0.25889012051176136,
+   0.25889012051176136,
+   0.25889012051176136,
+   0.25889012051176136,
+   0.25889012051176136,
+   0.25889012051176136
+  ],
+  "wacc_path_glide": [
+   0.25889012051176136,
+   0.2367007438014322,
+   0.21451136709110302,
+   0.19232199038077383,
+   0.17013261367044466,
+   0.1479432369601155
+  ],
+  "wacc_term_spot": 0.25889012051176136,
+  "wacc_term_glide": 0.1479432369601155
+ },
+ "dcf": {
+  "framing_A": {
+   "label": "Residents' Association float treated as permanent operating funding",
+   "rev": [
+    21414.43183498447,
+    47321.53374975041,
+    55706.90953020618,
+    63478.02340966994,
+    70638.34445028073,
+    77486.73194473544
+   ],
+   "ebitda": [
+    5008.300052276063,
+    10927.206527527103,
+    12756.533241915658,
+    14420.393462204967,
+    15931.56108482185,
+    17388.979307659003
+   ],
+   "ebit": [
+    5775.500913678706,
+    12622.564206659714,
+    14752.308301790568,
+    16694.579142932427,
+    18462.274910335367,
+    20165.045838556052
+   ],
+   "nopat": [
+    4219.701219196667,
+    9222.30822370419,
+    10778.343602993287,
+    12197.407119538751,
+    13488.922452384204,
+    14733.002345923493
+   ],
+   "da": [
+    306.1461324703039,
+    676.5206124395665,
+    796.4000649638577,
+    907.4978740263158,
+    1009.8636342164845,
+    1107.7699135537725
+   ],
+   "capex": [
+    364.47708332250784,
+    805.4201359327894,
+    948.1405840200798,
+    1080.406195490881,
+    1202.2760143422524,
+    1318.836673932734
+   ],
+   "d_nwc": [
+    6323.889162528882,
+    7276.83079253092,
+    13711.661574499638,
+    12711.185468265932,
+    11690.914377382927,
+    11097.059363781766
+   ],
+   "ra_cash": [
+    4179.256396928868,
+    4993.239120396589,
+    8831.720393177136,
+    8579.909757147194,
+    8294.390165721314,
+    8270.83127536434
+   ],
+   "fcff": [
+    2016.7375027444496,
+    6809.817028076637,
+    5746.661902614564,
+    7893.223086955448,
+    9899.985860596822,
+    11695.707497127107
+   ],
+   "df": [
+    0.9440674925839239,
+    0.808603055356909,
+    0.6779486998808611,
+    0.5899556142647324,
+    0.5334081704799706,
+    0.5016466670581897
+   ],
+   "pv_explicit": 27110.814443565803,
+   "pv_term": 77890.84994736247,
+   "ev": 105001.66439092827,
+   "roic": 0.11261427198098292,
+   "reinv": 0.7103895322744663,
+   "tv": 166359.92605263946,
+   "fcff_term": 11303.031876461773,
+   "gm": [
+    0.34820760978037113,
+    0.3465976237387174,
+    0.3433715175749813,
+    0.3411161514016641,
+    0.3395932907161129,
+    0.33882818016174815
+   ],
+   "re_gm": [
+    0.3067284362259709,
+    0.3049215574809895,
+    0.30131868569874054,
+    0.2988025405912771,
+    0.29710433860519625,
+    0.2962468661939146
+   ],
+   "nwc": [
+    67490.47266352887,
+    74767.30345605979,
+    88478.96503055943,
+    101190.15049882536,
+    112881.06487620829,
+    123978.12423999005
+   ],
+   "constr": [
+    6251.41058243875,
+    13891.754008660084,
+    16535.076961427927,
+    18986.319445574813,
+    21236.57802626434,
+    23355.61687317006
+   ],
+   "landp": [
+    7189.135027554388,
+    15886.524492428802,
+    18701.61663248719,
+    21310.49215271915,
+    23714.315667545874,
+    26013.418571514445
+   ],
+   "re_rev": [
+    19387.129535251017,
+    42841.60848546881,
+    50433.14150909388,
+    57468.56474961248,
+    63951.018853368776,
+    70151.07013120288
+   ],
+   "sga": [
+    3055.2226683861036,
+    6823.054246615886,
+    7977.442263722144,
+    9077.197333817912,
+    10119.794675370296,
+    11134.756437321354
+   ],
+   "ecl": [
+    15.345313008300975,
+    33.91001699314173,
+    39.918872004326445,
+    45.48755464892998,
+    50.61855081332929,
+    55.52601931468157
+   ],
+   "cap_int_back": [
+    622.1999096058394,
+    1382.6396418011227,
+    1645.7283128430406,
+    1889.6993065804572,
+    2113.666468396373,
+    2324.5733927791343
+   ],
+   "amort_nr": [
+    573.7317620430376,
+    1267.8303655233572,
+    1492.4899062940963,
+    1700.6922482221225,
+    1892.5303338215783,
+    2076.01114968558
+   ],
+   "tbill_inc": [
+    499.6152318299093,
+    1104.04792604882,
+    1299.685218544671,
+    1480.9913065316525,
+    1648.0471259084231,
+    1807.8252947652447
+   ],
+   "ra_ratio_end": 1.0,
+   "ic_end": 130827.13306899006,
+   "ic_end_ex_float": 53340.401124254626,
+   "roic_ex_float": 0.27620719071091104,
+   "bridge": {
+    "ev": 105001.66439092827,
+    "netdebt": 5659.636394999998,
+    "nci": 1723.04881,
+    "equity": 97618.97918592829,
+    "vps": 34.56187303026094
+   },
+   "bridge_spot": {
+    "ev": 40346.935538871236,
+    "netdebt": 5659.636394999998,
+    "nci": 1723.04881,
+    "equity": 32964.250333871234,
+    "vps": 11.670950096774057
+   },
+   "ev_spot": 40346.935538871236
+  },
+  "framing_B": {
+   "label": "Residents' Association float treated as restricted third-party money",
+   "rev": [
+    21414.43183498447,
+    47321.53374975041,
+    55706.90953020618,
+    63478.02340966994,
+    70638.34445028073,
+    77486.73194473544
+   ],
+   "ebitda": [
+    5008.300052276063,
+    10927.206527527103,
+    12756.533241915658,
+    14420.393462204967,
+    15931.56108482185,
+    17388.979307659003
+   ],
+   "ebit": [
+    5275.885681848797,
+    11518.516280610895,
+    13452.623083245897,
+    15213.587836400773,
+    16814.227784426945,
+    18357.22054379081
+   ],
+   "nopat": [
+    3854.6719283365846,
+    8415.667821558993,
+    9828.766521587959,
+    11115.364035277378,
+    12284.82490821815,
+    13412.16754485054
+   ],
+   "da": [
+    306.1461324703039,
+    676.5206124395665,
+    796.4000649638577,
+    907.4978740263158,
+    1009.8636342164845,
+    1107.7699135537725
+   ],
+   "capex": [
+    364.47708332250784,
+    805.4201359327894,
+    948.1405840200798,
+    1080.406195490881,
+    1202.2760143422524,
+    1318.836673932734
+   ],
+   "d_nwc": [
+    4873.61523376609,
+    5549.758334221799,
+    10488.154994710509,
+    9723.813479388773,
+    8938.3434023757,
+    8464.401898295968
+   ],
+   "ra_cash": [
+    4179.256396928868,
+    4993.239120396589,
+    8831.720393177136,
+    8579.909757147194,
+    8294.390165721314,
+    8270.83127536434
+   ],
+   "fcff": [
+    -1077.2742562817089,
+    2737.0099638439715,
+    -811.128992178772,
+    1218.64223442404,
+    3154.069125716682,
+    4736.698886175611
+   ],
+   "df": [
+    0.9440674925839239,
+    0.808603055356909,
+    0.6779486998808611,
+    0.5899556142647324,
+    0.5334081704799706,
+    0.5016466670581897
+   ],
+   "pv_explicit": 5423.731446672893,
+   "pv_term": 39660.70315922607,
+   "ev": 45084.43460589896,
+   "roic": 0.1327415881393236,
+   "reinv": 0.6026747240362469,
+   "tv": 84707.6601323947,
+   "fcff_term": 5755.312624712221,
+   "gm": [
+    0.34820760978037113,
+    0.3465976237387174,
+    0.3433715175749813,
+    0.3411161514016641,
+    0.3395932907161129,
+    0.33882818016174815
+   ],
+   "re_gm": [
+    0.3067284362259709,
+    0.3049215574809895,
+    0.30131868569874054,
+    0.2988025405912771,
+    0.29710433860519625,
+    0.2962468661939146
+   ],
+   "nwc": [
+    51026.198734766076,
+    56575.957068987875,
+    67064.11206369838,
+    76787.92554308716,
+    85726.26894546286,
+    94190.67084375882
+   ],
+   "constr": [
+    6251.41058243875,
+    13891.754008660084,
+    16535.076961427927,
+    18986.319445574813,
+    21236.57802626434,
+    23355.61687317006
+   ],
+   "landp": [
+    7189.135027554388,
+    15886.524492428802,
+    18701.61663248719,
+    21310.49215271915,
+    23714.315667545874,
+    26013.418571514445
+   ],
+   "re_rev": [
+    19387.129535251017,
+    42841.60848546881,
+    50433.14150909388,
+    57468.56474961248,
+    63951.018853368776,
+    70151.07013120288
+   ],
+   "sga": [
+    3055.2226683861036,
+    6823.054246615886,
+    7977.442263722144,
+    9077.197333817912,
+    10119.794675370296,
+    11134.756437321354
+   ],
+   "ecl": [
+    15.345313008300975,
+    33.91001699314173,
+    39.918872004326445,
+    45.48755464892998,
+    50.61855081332929,
+    55.52601931468157
+   ],
+   "cap_int_back": [
+    622.1999096058394,
+    1382.6396418011227,
+    1645.7283128430406,
+    1889.6993065804572,
+    2113.666468396373,
+    2324.5733927791343
+   ],
+   "amort_nr": [
+    573.7317620430376,
+    1267.8303655233572,
+    1492.4899062940963,
+    1700.6922482221225,
+    1892.5303338215783,
+    2076.01114968558
+   ],
+   "tbill_inc": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "ra_ratio_end": 0.0,
+   "ic_end": 101039.67967275884,
+   "ic_end_ex_float": 101039.67967275884,
+   "roic_ex_float": 0.1327415881393236,
+   "bridge": {
+    "ev": 45084.43460589896,
+    "netdebt": 24983.021230999995,
+    "nci": 1723.04881,
+    "equity": 18378.364564898966,
+    "vps": 6.50683614900418
+   },
+   "bridge_spot": {
+    "ev": 13078.806176794738,
+    "netdebt": 24983.021230999995,
+    "nci": 1723.04881,
+    "equity": -13627.263864205257,
+    "vps": -4.824715105117767
+   },
+   "ev_spot": 13078.806176794738
+  },
+  "years": [
+   "H2-2026E",
+   "FY2027E",
+   "FY2028E",
+   "FY2029E",
+   "FY2030E",
+   "FY2031E"
+  ],
+  "tmid": [
+   0.25,
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0
+  ],
+  "tterm": 5.5,
+  "pi_cost": [
+   0.10225000000000001,
+   0.092,
+   0.08325,
+   0.0755,
+   0.06775
+  ],
+  "eff_tax": 0.26937917900718894,
+  "nwc0": 61166.58350099999
+ },
+ "lenses": {
+  "dcf": {
+   "A": 34.56187303026094,
+   "B": 6.50683614900418,
+   "A_spot": 11.670950096774057,
+   "B_spot": -4.824715105117767,
+   "low": -4.824715105117767,
+   "high": 34.56187303026094,
+   "note": "The field is the contested judgement computed both ways on the primary discount path; the spot-anchored variants are carried in the sensitivity, never blended into the field.",
+   "A_low": 11.670950096774057,
+   "A_high": 34.56187303026094,
+   "B_low": -4.824715105117767,
+   "B_high": 6.50683614900418,
+   "A_mid": 23.1164115635175,
+   "B_mid": 0.8410605219432066,
+   "mid": null
+  },
+  "book": {
+   "bvps": 6.695365256476471,
+   "roe": 0.22222598706284383,
+   "ke": 0.29893792018571036,
+   "ke_term": 0.175,
+   "g": 0.08,
+   "pb_spot": 0.6496178777171313,
+   "pb_norm": 1.4971156532930932,
+   "vps_spot": 4.349428968453261,
+   "vps_norm": 10.02373612998565,
+   "low": 4.349428968453261,
+   "high": 10.02373612998565,
+   "mid": 7.186582549219455
+  },
+  "relative": {
+   "eg_pe_median": 6.8,
+   "eg_pe_min": 6.1,
+   "eg_pe_max": 10.2,
+   "gulf_pe_median": 7.1,
+   "all_pe_median": 7.0,
+   "phdc_pe": 10.539980941910585,
+   "phdc_eps": 1.424101246740882,
+   "phdc_pb": 2.241849312922955,
+   "ev_ebitda_gulf": 5.1,
+   "phdc_ev_ebitda": 5.879186305249586,
+   "vps_eg": 9.683888477837998,
+   "vps_all": 9.968708727186174,
+   "vps_gulf": 10.111118851860262,
+   "vps_evebitda": 12.145068270864556,
+   "ev_at_peer": 41686.0681758,
+   "low": 9.683888477837998,
+   "high": 12.145068270864556,
+   "mid": 10.914478374351276
+  },
+  "normalised": {
+   "margin": 0.20697434877584628,
+   "rev": 40144.988562,
+   "ebitda": 8308.982864233747,
+   "ebit": 7750.625046233747,
+   "da": 558.357818,
+   "amort_nr": 1046.38792,
+   "tbill": 911.212134,
+   "interest": 3060.3307715385267,
+   "pbt": 6647.894328695218,
+   "ni": 4857.090012304753,
+   "eps": 1.7196464222607215,
+   "pe_lo": 6.8,
+   "pe_hi": 7.1,
+   "low": 11.693595671372906,
+   "high": 12.209489598051123,
+   "mid": 11.951542634712014
+  }
+ },
+ "synthesis": {
+  "weights": {
+   "dcf": 0.45,
+   "book": 0.2,
+   "relative": 0.2,
+   "normalised": 0.15
+  },
+  "framing_A": {
+   "bear": 9.812630383512513,
+   "base": 15.815328783503823,
+   "bull": 21.818027183495133,
+   "lens_lo": {
+    "dcf": 11.670950096774057,
+    "book": 4.349428968453261,
+    "relative": 9.683888477837998,
+    "normalised": 11.693595671372906
+   },
+   "lens_mid": {
+    "dcf": 23.1164115635175,
+    "book": 7.186582549219455,
+    "relative": 10.914478374351276,
+    "normalised": 11.951542634712014
+   },
+   "lens_hi": {
+    "dcf": 34.56187303026094,
+    "book": 10.02373612998565,
+    "relative": 12.145068270864556,
+    "normalised": 12.209489598051123
+   }
+  },
+  "framing_B": {
+   "bear": 2.3895810426611925,
+   "base": 5.791420814795392,
+   "bull": 9.193260586929592,
+   "lens_lo": {
+    "dcf": -4.824715105117767,
+    "book": 4.349428968453261,
+    "relative": 9.683888477837998,
+    "normalised": 11.693595671372906
+   },
+   "lens_mid": {
+    "dcf": 0.8410605219432066,
+    "book": 7.186582549219455,
+    "relative": 10.914478374351276,
+    "normalised": 11.951542634712014
+   },
+   "lens_hi": {
+    "dcf": 6.50683614900418,
+    "book": 10.02373612998565,
+    "relative": 12.145068270864556,
+    "normalised": 12.209489598051123
+   }
+  },
+  "base_framing": "A",
+  "base_framing_note": "The base case adopts framing A \u2014 the Residents' Association balance is treated as permanent operating funding \u2014 because that is how the company has actually operated for a decade: the balance has risen in every disclosed period, no association has been constituted, and the invested proceeds earn for the company. Framing B is not a haircut on it; it is the same four lenses computed in full under the other reading, and it is what the study publishes as the downside. The two are never averaged.",
+  "bear": 5.791420814795392,
+  "base": 15.815328783503823,
+  "bull": 21.818027183495133,
+  "lens_mid": {
+   "dcf": 23.1164115635175,
+   "book": 7.186582549219455,
+   "relative": 10.914478374351276,
+   "normalised": 11.951542634712014
+  },
+  "lens_lo": {
+   "dcf": -4.824715105117767,
+   "book": 4.349428968453261,
+   "relative": 9.683888477837998,
+   "normalised": 11.693595671372906
+  },
+  "lens_hi": {
+   "dcf": 34.56187303026094,
+   "book": 10.02373612998565,
+   "relative": 12.145068270864556,
+   "normalised": 12.209489598051123
+  },
+  "field_lo": -4.824715105117767,
+  "field_hi": 34.56187303026094,
+  "upside_base": 0.05365281702224012,
+  "upside_bear": -0.6141625040109666,
+  "upside_bull": 0.4535661014986765
+ },
+ "sens": {
+  "p_mults": [
+   0.9,
+   0.95,
+   1.0,
+   1.05,
+   1.1
+  ],
+  "w_shifts": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ],
+  "grid_A": [
+   [
+    37.74176046271313,
+    44.46922449313289,
+    50.523942120510675,
+    56.00201997385255,
+    60.98209074961781
+   ],
+   [
+    30.381774654581847,
+    36.052400274957805,
+    41.1559633332962,
+    45.77347276703097,
+    49.97120861588069
+   ],
+   [
+    25.20288360386633,
+    30.12866751249506,
+    34.56187303026094,
+    38.57286849871582,
+    42.219228015492924
+   ],
+   [
+    21.364749829298223,
+    25.737508276808,
+    29.672990879566814,
+    33.23366561539625,
+    36.47064264796842
+   ],
+   [
+    18.40931150929126,
+    22.355350658388044,
+    25.90678589257516,
+    29.119989199696878,
+    32.04108311526202
+   ]
+  ],
+  "grid_B": [
+   [
+    1.7399502971326855,
+    8.467414327552465,
+    14.52213195493028,
+    20.000209808272103,
+    24.980280584037377
+   ],
+   [
+    -0.9649098859333094,
+    4.70571573444268,
+    9.809278792781079,
+    14.426788226515818,
+    18.624524075365553
+   ],
+   [
+    -2.8521532773904608,
+    2.073630631238296,
+    6.50683614900418,
+    10.517831617459029,
+    14.164191134236143
+   ],
+   [
+    -4.237497885920042,
+    0.13526056158975389,
+    4.070743164348578,
+    7.631417900177986,
+    10.868394932750155
+   ],
+   [
+    -5.293001641710862,
+    -1.3469624926140613,
+    2.204472741573064,
+    5.417676048694747,
+    8.3387699642599
+   ]
+  ],
+  "crux_P": [
+   2.8067569239972077,
+   2.962687864219274,
+   3.1186188044413417,
+   3.274549744663409,
+   3.430480684885476
+  ],
+  "vol_mults": [
+   0.0,
+   0.5,
+   1.0,
+   1.5
+  ],
+  "vol_vps": [
+   25.04538456677433,
+   29.529046882108812,
+   34.56187303026094,
+   40.19069353658928
+  ],
+  "vol_vps_B": [
+   4.014923441390372,
+   5.188461782626097,
+   6.50683614900418,
+   7.981677590383319
+  ],
+  "cost_shifts": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ],
+  "cost_vps": [
+   41.13597260935839,
+   37.906679568050386,
+   34.56187303026094,
+   31.09837716174607,
+   27.512957903362427
+  ]
+ },
+ "published_fair": {
+  "bear": 5.791420814795392,
+  "base": 15.815328783503823,
+  "full": 21.818027183495133,
+  "bear_source": "four-lens synthesis under framing B (float restricted)",
+  "base_source": "four-lens synthesis under framing A (float is operating funding)",
+  "full_source": "four-lens upper bound under framing A"
+ },
+ "variance": [
+  {
+   "item": "FY2026 revenue",
+   "forecast": 50042.0,
+   "actual": 39056.235454,
+   "unit": "EGP mn",
+   "delta": -0.21953088497661966,
+   "escalates": true,
+   "note": "Actual is H1-2026 annualised at the H1 run-rate. The prior model carried no interim actuals; it started from a project-by-project unit build with no disclosed base period."
+  },
+  {
+   "item": "FY2026 gross margin",
+   "forecast": 0.4156,
+   "actual": 0.35466920943557867,
+   "unit": "ratio",
+   "delta": -0.14660921695000328,
+   "escalates": true,
+   "note": "H1-2026 reported gross operating margin. The prior figure was an output of assumed unit prices and assumed construction costs per square metre, none of them disclosed."
+  },
+  {
+   "item": "FY2026 EBITDA",
+   "forecast": 13874.0,
+   "actual": 8132.3538020000005,
+   "unit": "EGP mn",
+   "delta": -0.41384216505694105,
+   "escalates": true,
+   "note": "On the definition the company itself publishes, recovered from the statements as gross profit less administrative and selling cost less expected credit losses. H1-2025 is the only period for which the company published an EBITDA figure AND the statements disclose its components; there the recovered definition reproduces the published EGP 4,458.5mn to within 0.32%."
+  },
+  {
+   "item": "FY2026 net income",
+   "forecast": 6373.0,
+   "actual": 4529.645434,
+   "unit": "EGP mn",
+   "delta": -0.2892444007531775,
+   "escalates": true,
+   "note": "Attributable net profit, H1-2026 annualised."
+  },
+  {
+   "item": "FY2026 capital expenditure",
+   "forecast": 250.0,
+   "actual": 664.743426,
+   "unit": "EGP mn",
+   "delta": 1.658973704,
+   "escalates": true,
+   "note": "Payments for fixed assets plus projects under construction, H1-2026 annualised."
+  },
+  {
+   "item": "Net debt at the anchor",
+   "forecast": 12000.0,
+   "actual": 5659.636394999998,
+   "unit": "EGP mn",
+   "delta": -0.5283636337500002,
+   "escalates": true,
+   "note": "Against the company's own definition (interest-bearing obligations from note 34 less cash and treasury investments). Under the broader definition that also carries notes payable and land liabilities the figure is EGP 14,532mn."
+  },
+  {
+   "item": "Construction run-rate",
+   "forecast": 17000.0,
+   "actual": 23942.800754,
+   "unit": "EGP mn",
+   "delta": 0.4084000443529412,
+   "escalates": true,
+   "note": "Work carried out per note 43, H1-2026 annualised, against the prior study's stated pacing of about EGP 14-20bn per year."
+  },
+  {
+   "item": "Shares outstanding",
+   "forecast": 2859.9,
+   "actual": 2824.470164,
+   "unit": "mn shares",
+   "delta": -0.012388487709360518,
+   "escalates": false,
+   "note": "The prior model divided by issued shares and ignored the treasury holding disclosed in note 62."
+  },
+  {
+   "item": "Return on equity",
+   "forecast": 0.269,
+   "actual": 0.22222598706284383,
+   "unit": "ratio",
+   "delta": -0.17388108898571075,
+   "escalates": true,
+   "note": "Trailing twelve months on average controlling equity."
+  },
+  {
+   "item": "Price to sales",
+   "forecast": 0.92,
+   "actual": 1.056054533336449,
+   "unit": "x",
+   "delta": 0.14788536232222715,
+   "escalates": true,
+   "note": "At the same published spot of EGP 15.01, on trailing twelve-month revenue."
+  },
+  {
+   "item": "EV to EBITDA",
+   "forecast": 8.1,
+   "actual": 5.879186305249586,
+   "unit": "x",
+   "delta": -0.2741745302161004,
+   "escalates": true,
+   "note": "On the company's net-debt definition and trailing twelve-month EBITDA."
+  },
+  {
+   "item": "Price to earnings",
+   "forecast": 10.3,
+   "actual": 10.539980941910585,
+   "unit": "x",
+   "delta": 0.02329912057384309,
+   "escalates": false,
+   "note": "On trailing twelve-month attributable earnings and the ex-treasury share count."
+  },
+  {
+   "item": "Debt to equity",
+   "forecast": 1.58,
+   "actual": 1.400269029571386,
+   "unit": "x",
+   "delta": -0.11375377875228743,
+   "escalates": true,
+   "note": "Interest-bearing obligations over controlling equity. On the broader debt definition the ratio is 1.87."
+  },
+  {
+   "item": "Weighted cost of capital",
+   "forecast": 0.18,
+   "actual": 0.25889012051176136,
+   "unit": "ratio",
+   "delta": 0.43827844728756316,
+   "escalates": true,
+   "note": "The prior study discounted at 18% while the three-year Egyptian government bond was clearing at 23.27%. A weighted cost of capital below the local risk-free rate is not available to a leveraged equity."
+  },
+  {
+   "item": "Terminal growth",
+   "forecast": 0.05,
+   "actual": 0.08,
+   "unit": "ratio",
+   "delta": 0.5999999999999999,
+   "escalates": true,
+   "note": "The prior 5% nominal terminal growth sat about nine points below the inflation embedded in its own 14% price escalator \u2014 a deeply negative real terminal."
+  },
+  {
+   "item": "Backlog",
+   "forecast": 263000.0,
+   "actual": 149117.77526,
+   "unit": "EGP mn",
+   "delta": -0.4330122613688213,
+   "escalates": true,
+   "note": "Against note 72, the only backlog figure that appears in an audited or reviewed statement: the contractual value of undelivered-unit contracts concluded between 1-Jan-2023 and 30-Jun-2026. The company's own wider definition stood at EGP 263bn at 1Q2026."
+  }
+ ],
+ "experts": {
+  "e1": {
+   "method": "Discounted cash flow on the construction-execution driver",
+   "roic": 0.11261427198098292,
+   "wacc": 0.25889012051176136,
+   "wacc_term": 0.1479432369601155,
+   "vps_A": 34.56187303026094,
+   "vps_B": 6.50683614900418,
+   "ev": 105001.66439092827,
+   "pv_explicit": 27110.814443565803,
+   "pv_term": 77890.84994736247,
+   "term_share": 0.7418058599277968
+  },
+  "e2": {
+   "method": "Contracted-book run-off, present value of the disclosed instalment ladder",
+   "pv_ladder": 59398.327684,
+   "contract_value": 149117.77526,
+   "nominal": 116540.071448,
+   "onbs_nr": 76238.020253,
+   "ar": 35055.008362,
+   "gross_margin": 0.3085252464262644,
+   "pv_book": 59398.327684,
+   "onbs": 111293.02861499999,
+   "cost_to_complete": 47815.32614618875,
+   "landp_to_come": 55295.85075518344,
+   "advances": 83483.291217,
+   "equity": 28269.791426313885,
+   "vps": 10.008883006318733
+  },
+  "e3": {
+   "method": "Return on equity against cost of equity, the book lens taken to its limit",
+   "roe": 0.22222598706284383,
+   "ke": 0.29893792018571036,
+   "ke_term": 0.175,
+   "bvps": 6.695365256476471,
+   "pb_spot": 0.6496178777171313,
+   "pb_norm": 1.4971156532930932,
+   "vps_spot": 4.349428968453261,
+   "vps_norm": 10.02373612998565
+  },
+  "divergence": {
+   "e1_vs_e3": 24.53813690027529,
+   "e1_vs_e2": 24.552990023942208,
+   "driver": "cost of capital and the treatment of the float"
+  }
+ },
+ "peers": [
+  {
+   "name": "Talaat Moustafa Group Holding",
+   "ticker": "EGX:TMGH",
+   "country": "Egypt",
+   "pe": 10.2,
+   "mcap": 156630.0,
+   "earnings": 15410.0
+  },
+  {
+   "name": "Emaar Misr for Development",
+   "ticker": "EGX:EMFD",
+   "country": "Egypt",
+   "pe": 6.1,
+   "mcap": 54600.0,
+   "earnings": null
+  },
+  {
+   "name": "SODIC",
+   "ticker": "EGX:OCDI",
+   "country": "Egypt",
+   "pe": 6.1,
+   "mcap": 24100.0,
+   "earnings": null
+  },
+  {
+   "name": "Heliopolis Housing",
+   "ticker": "EGX:HELI",
+   "country": "Egypt",
+   "pe": 7.5,
+   "mcap": 22670.0,
+   "earnings": null
+  },
+  {
+   "name": "Madinet Masr",
+   "ticker": "EGX:MASR",
+   "country": "Egypt",
+   "pe": null,
+   "mcap": 16500.0,
+   "earnings": null
+  },
+  {
+   "name": "Emaar Properties",
+   "ticker": "DFM:EMAAR",
+   "country": "United Arab Emirates",
+   "pe": 6.5,
+   "mcap": null,
+   "earnings": null,
+   "ev_ebitda": 3.6,
+   "ev_rev": 1.7
+  },
+  {
+   "name": "Aldar Properties",
+   "ticker": "ADX:ALDAR",
+   "country": "United Arab Emirates",
+   "pe": 7.7,
+   "mcap": null,
+   "earnings": null,
+   "ev_ebitda": 6.6,
+   "ev_rev": 2.0
+  }
+ ],
+ "prior": {
+  "fair_base": 15.894,
+  "fair_bear": 7.62,
+  "fair_full": 24.921,
+  "rev_fy26": 50042.0,
+  "gm_fy26": 0.4156,
+  "ebitda_fy26": 13874.0,
+  "ni_fy26": 6373.0,
+  "capex_fy26": 250.0,
+  "netdebt": 12000.0,
+  "wacc": 0.18,
+  "kd": 0.18,
+  "shares": 2859.9,
+  "escalation": 0.14,
+  "term_g": 0.05,
+  "backlog": 263000.0,
+  "constr_runrate": 17000.0,
+  "roe": 0.269,
+  "ps": 0.92,
+  "ev_ebitda": 8.1,
+  "pe": 10.3,
+  "debt_equity": 1.58
+ },
+ "gdv": {
+  "roic_A": 0.11261427198098292,
+  "roic_B": 0.1327415881393236,
+  "wacc_spot": 0.25889012051176136,
+  "wacc_term": 0.1479432369601155,
+  "spread_spot": -0.14627584853077844,
+  "spread_term": -0.03532896497913257,
+  "nwc_intensity": 1.566115699323897,
+  "nopat_margin": 0.19488608024571547,
+  "breakeven_g_no_float": 0.12443913328360678,
+  "breakeven_g_with_float": 0.21074403885756893,
+  "growth_sign_A": 15.145308969814948,
+  "growth_sign_B": 3.9667541489929468,
+  "vps_zero_growth": 25.04538456677433,
+  "vps_zero_growth_B": 4.014923441390372,
+  "roic_ex_float": 0.27620719071091104,
+  "ic_end": 130827.13306899006,
+  "ic_end_ex_float": 53340.401124254626,
+  "note": "Two measures of the same thing, and they point opposite ways, so both are published. Measured on all the capital standing in the business the return is 11.3%, below the cost of capital on both the spot and the normalised basis, and the one-year arithmetic that follows from it puts break-even nominal growth at 12.4% without the float and 21.1% with it. Measured on the capital the shareholders actually put up \u2014 that is, net of the customer money funding the work \u2014 the return is 27.6%, because 59% of the gross capital is customer-funded. The full model, which carries the terminal value the one-year arithmetic cannot, moves the same way as the second measure: more volume is worth more under both framings."
+ },
+ "hist3": {
+  "years": [
+   "FY2023",
+   "FY2024",
+   "FY2025",
+   "H1-2025",
+   "H1-2026"
+  ],
+  "revenue": [
+   17462.108314,
+   27167.304497,
+   36196.0,
+   15579.129165,
+   19528.117727
+  ],
+  "revenue_source": [
+   "audited",
+   "audited",
+   "company release only",
+   "reviewed",
+   "reviewed"
+  ],
+  "cogs": [
+   11907.22449,
+   17739.913618,
+   null,
+   8859.894363,
+   12539.272168
+  ],
+  "gross_profit": [
+   5507.635295,
+   9330.096386,
+   null,
+   6664.688497,
+   6926.022076
+  ],
+  "gross_margin": [
+   0.31540494400577795,
+   0.3434310675551302,
+   null,
+   0.4277959587094803,
+   0.35466920943557867
+  ],
+  "sga": [
+   2060.4617,
+   3435.754971,
+   null,
+   2206.171375,
+   2845.851571
+  ],
+  "ebitda": [
+   3433.0695410000003,
+   5870.862794999999,
+   8552.0,
+   4444.438043,
+   4066.1769010000003
+  ],
+  "ebitda_margin": [
+   0.19660109073127124,
+   0.21610030526393592,
+   0.2362692010166869,
+   0.2852815453244238,
+   0.2082216503323316
+  ],
+  "finance_costs": [
+   1503.563734,
+   2311.395503,
+   null,
+   1337.781283,
+   1676.543172
+  ],
+  "pbt": [
+   2300.703847,
+   4320.598449,
+   null,
+   3587.60631,
+   3137.778462
+  ],
+  "net_profit": [
+   1581.511689,
+   3254.945443,
+   4216.657655,
+   2443.380942,
+   2264.822717
+  ],
+  "gap_note": "No FY2025 annual financial statements and no FY2025 earnings release are published on the company investor-relations channel. FY2025 revenue and EBITDA are therefore carried from the company's own history charts in the 1Q2026 release; FY2025 attributable net profit comes from the audited statement of changes in equity inside the 30-Jun-2026 filing. FY2025 gross profit, cost of revenues and finance costs are NOT AVAILABLE from any obtained official document and are shown blank rather than estimated."
+ },
+ "qpath": {
+  "labels": [
+   "FY2023",
+   "FY2024",
+   "9M2025",
+   "Q4-2025",
+   "Q1-2026",
+   "Q2-2026"
+  ],
+  "ebitda_margin": [
+   0.19660109073127124,
+   0.21610030526393592,
+   0.26184977885631533,
+   0.17488494411571334,
+   0.2049539633129552,
+   0.21122110431432214
+  ]
+ },
+ "segments": {
+  "lines": [
+   "Real estate development",
+   "Commercial and service activities",
+   "Owners' share, hotels",
+   "Palm Hills club",
+   "Other activities",
+   "Depreciation of fixed assets, Macor"
+  ],
+  "rev_h126": [
+   17546.530343,
+   767.493219,
+   128.142748,
+   384.671093,
+   701.280324,
+   0.0
+  ],
+  "rev_h125": [
+   13857.5845,
+   286.777627,
+   92.024925,
+   307.675656,
+   1035.066457,
+   0.0
+  ],
+  "cost_h126": [
+   12132.982745,
+   250.320947,
+   0.0,
+   145.385459,
+   0.0,
+   10.583017
+  ],
+  "cost_h125": [
+   8530.838611,
+   203.994948,
+   0.0,
+   118.669883,
+   0.0,
+   6.390921
+  ],
+  "margin_h126": [
+   0.30852524642626433,
+   0.673846047361625,
+   1.0,
+   0.6220525491890809,
+   1.0,
+   0.0
+  ],
+  "margin_h125": [
+   0.38439209149329023,
+   0.2886650533585732,
+   1.0,
+   0.6143020070460173,
+   1.0,
+   0.0
+  ]
+ },
+ "slider": {
+  "formula": "fair = base * exp( sum_i impact_i * (v_i - def_i) / 100 )",
+  "measured_on": "published base fair value (four-lens synthesis, framing A)",
+  "fx_passthrough": 0.38,
+  "geo_hit": 0.30220268085749247,
+  "launch_hit": 0.07556719547157198,
+  "levers": [
+   {
+    "key": "fx",
+    "min": -5,
+    "max": 1,
+    "step": 0.5,
+    "default": -2.5,
+    "impact": 10.235,
+    "note": "One unit is a percentage point per quarter of pound strength. It reaches fair value through the construction cost stack: 38% of the build cost reprices with the currency."
+   },
+   {
+    "key": "rate",
+    "min": -2,
+    "max": 2,
+    "step": 0.5,
+    "default": 0,
+    "impact": 9.143,
+    "note": "One unit is a percentage point of easing across the whole discount-rate path."
+   },
+   {
+    "key": "geo",
+    "min": 0,
+    "max": 60,
+    "step": 5,
+    "default": 30,
+    "impact": 0.3598,
+    "note": "Probability of a regional security shock, specified as three points off the selling-price path and one point onto the cost path. Measured cost in this model: 30.2% of fair value."
+   },
+   {
+    "key": "launch",
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "default": 85,
+    "impact": 0.0728,
+    "note": "The default rises from 55 to 85 because the launch in question has now happened: Hacienda Ras El Hekma opened in August 2026. The evidence for it is secondary, so the default stops short of certainty. Measured gain if it lands: 7.6% of fair value."
+   },
+   {
+    "key": "tourism",
+    "min": -10,
+    "max": 10,
+    "step": 1,
+    "default": 0,
+    "impact": 2.3962,
+    "note": "One unit is a percentage point of year-on-year coastal absorption, applied to the 33% of the volume driver that is coastal."
+   }
+  ],
+  "geo_implied_hit": 0.302184124709298,
+  "launch_implied_hit": 0.07551541232049708,
+  "span": {
+   "fx": {
+    "lo": 12.244840270933402,
+    "hi": 22.628374913006027
+   },
+   "rate": {
+    "lo": 13.172346182796831,
+    "hi": 18.98861607941863
+   },
+   "geo": {
+    "lo": 14.197127364781178,
+    "hi": 17.617974263639333
+   },
+   "launch": {
+    "lo": 14.866340726443575,
+    "hi": 15.988978576097958
+   },
+   "tourism": {
+    "lo": 12.445506647106036,
+    "hi": 20.097584744650486
+   }
+  }
+ },
+ "beta_record": {
+  "ticker": "PHDC",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 1.0555271328180147,
+  "r2": 0.2976393808522475,
+  "se": 0.18164085825269616,
+  "n": 255,
+  "ci90": [
+   0.7567279209923294,
+   1.3543263446437
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 4.93,
+  "first_obs": "2021-08-12",
+  "last_obs": "2026-07-16",
+  "blume_crosscheck": 1.037018088545343,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "index_dq": [],
+  "stock_dq": [],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "assert_log": [
+  "OK  H1-2026 income statement foots: revenue less cost of revenues less cash discount equals gross operating profit",
+  "OK  H1-2025 comparative income statement foots to the reported gross operating profit",
+  "OK  FY2024 audited income statement foots to the reported gross profit",
+  "OK  Note 64 revenue by activity foots exactly to the face of the income statement",
+  "OK  Note 65 cost of sales by activity foots exactly to the face of the income statement",
+  "OK  Note 66 foots exactly to general administrative, selling and marketing expenses",
+  "OK  Note 67 foots exactly to finance costs and interests",
+  "OK  Note 43 foots: total works executed less the cumulative charge to the income statement equals work in progress",
+  "OK  Note 43 comparative column foots on the same identity",
+  "OK  Work carried out in H1-2026 reconciles the two cumulative works-executed balances",
+  "OK  Work in progress splits exactly into land acquisition cost and cost of construction and facilities",
+  "OK  Equity splits exactly into controlling and non-controlling interests",
+  "OK  The 30-Jun-2026 balance sheet balances: total liabilities plus equity equals total assets",
+  "OK  The 31-Dec-2025 comparative balance sheet balances on the same identity",
+  "OK  Note 62 foots: issued shares less treasury shares equals outstanding shares",
+  "OK  Note 34's interest-bearing obligations rebuild exactly from the four balance-sheet debt lines",
+  "OK  Notes payable rebuild from their short and long-term halves",
+  "OK  The note 72 maturity ladder foots to the nominal value of the off-balance-sheet notes receivable",
+  "OK  The note 72 present-value ladder foots to the disclosed present value",
+  "OK  Attributable profit plus the non-controlling share equals profit after tax",
+  "OK  Reported earnings per share reproduce from attributable profit and the weighted average share count",
+  "OK  Both cost blocks inside the cost of real estate development are economically possible (each strictly positive)",
+  "OK  The two cost blocks foot exactly to the disclosed cost of real estate development",
+  "OK  The real-estate gross margin is an output of the two cost rates, not an input",
+  "OK  The recovered EBITDA definition reproduces the company's own published FY2023 figure to within 1.2%",
+  "OK  The recovered EBITDA definition reproduces the company's own published FY2024 figure to within 1.2%",
+  "OK  The recovered EBITDA definition reproduces the company's own published H1-2025 figure to within 1.2%",
+  "OK  The recovered EBITDA definition reproduces the company's own published H1-2026 figure to within 1.2%",
+  "OK  The marginal cost of debt sits above the local sovereign yield, as the cost-of-capital rule requires",
+  "OK  The risk-free rate is normalised downward by the sovereign default spread on both bases",
+  "OK  The two equity risk premium bases imply the same mature-market premium to within two decimal points",
+  "OK  The capital-structure weights sum to one",
+  "OK  The framing that treats the float as enterprise funding values the firm above the framing that does not",
+  "OK  Every discount factor is positive",
+  "OK  Terminal growth sits below the terminal cost of capital under both cost-of-capital framings",
+  "OK  The terminal reinvestment rate implied by the model's own return on capital is inside its bounds",
+  "OK  Market capitalisation is the published spot times the ex-treasury share count",
+  "OK  The beta in the register is the value the sanctioned resolver returns, not a transcription",
+  "OK  The regressor is the published exchange index read from raw_indices, not a constituent composite",
+  "OK  No interim-index disclosure applies to the Egyptian Exchange",
+  "OK  The own-stock regression clears the usability gate, so tier 1 stands and no fallback is needed",
+  "OK  beta provenance asserted on the resolver record: raw_indices/EG/EGX30.csv, as of 2026-07-22",
+  "OK  The EBITDA definition recovered from the statements (gross profit less administrative and selling cost less expected credit losses) reproduces the only published figure whose components the statements disclose \u2014 H1-2025 \u2014 to within half a percentage point",
+  "OK  The model's first forecast period reproduces the last reported half-year at the income-statement level to within 5%%, once the disclosed capitalised interest is added back and the modelled sequential growth is applied",
+  "OK  Both bridging items are cash outflows in the reported half-year, so the like-for-like figure is the higher one",
+  "OK  Unlevered cash flow is positive both in the reported half-year and in the first forecast period under the base framing",
+  "OK  The terminal value is under four-fifths of enterprise value in the base framing",
+  "OK  Measured on all the capital standing in the business, the return sits below the spot cost of capital \u2014 the study publishes that figure rather than only the flattering one",
+  "OK  Measured net of the customer money funding the work, the return sits above the normalised cost of capital \u2014 the other half of the same fact, published beside it",
+  "OK  The full model, which carries the terminal value the one-year break-even arithmetic cannot, values more volume higher under BOTH framings \u2014 the direction the prose states",
+  "OK  Over half the capital in the business is customer money, which is why the two return measures differ so widely",
+  "OK  Reading the security lever back through the page's own formula recovers the conditional event size the model measured, so the lever is not merely plausible but arithmetically right",
+  "OK  The launch lever recovers its measured conditional gain on the same round trip",
+  "OK  The segment revenue table foots exactly to the face of the income statement",
+  "OK  The segment cost table foots exactly to the face of the income statement, including the depreciation line note 65 carries separately from the five activities",
+  "OK  The comparative segment cost table foots on the same identity",
+  "OK  Every one of the 296 register entries is four-field complete (value, source, date, layer)"
+ ],
+ "carry_forward": {
+  "note": "Sections 2 and 3 reproduce the last published technical read and probabilistic map unchanged. This refresh touches fundamentals only.",
+  "asof_mc_data": "2026-07-22",
+  "asof_mc_computed": "2026-07-28",
+  "asof_tech_data": "2026-07-22",
+  "asof_tech_computed": "2026-08-17",
+  "spot": 15.01,
+  "spot_date": "close 22 Jul 2026",
+  "dist": {
+   "t20": {
+    "label": "1 month",
+    "p5": 12.89,
+    "p25": 14.32,
+    "p50": 15.23,
+    "p75": 16.22,
+    "p95": 18.01,
+    "resolve": "2026-08-23"
+   },
+   "t60": {
+    "label": "3 months",
+    "p5": 11.52,
+    "p25": 14.01,
+    "p50": 15.72,
+    "p75": 17.59,
+    "p95": 21.39,
+    "resolve": "2026-10-22"
+   }
+  },
+  "touch": [
+   [
+    20.0,
+    1,
+    15
+   ],
+   [
+    18.5,
+    5,
+    28
+   ],
+   [
+    17.5,
+    12,
+    42
+   ],
+   [
+    16.5,
+    31,
+    62
+   ],
+   [
+    15.55,
+    66,
+    83
+   ]
+  ],
+  "levels": {
+   "res": [
+    16.08,
+    16.43,
+    17.0
+   ],
+   "sup": [
+    14.85,
+    14.34,
+    13.01
+   ]
+  },
+  "tech": {
+   "trend": "Trading above the whole moving-average stack, on a rising 200-day"
+  }
+ }
+}

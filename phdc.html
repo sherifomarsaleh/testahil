@@ -55,7 +55,7 @@
     {
       "@type": "Article",
       "headline": "Palm Hills Developments (PHDC) — Independent Valuation Study",
-      "description": "Where could Palm Hills Developments (PHDC) trade in 1–3 months? A probability distribution, fair-value range, and the open model. Educational analysis, not investment advice.",
+      "description": "Where could Palm Hills Developments (PHDC) trade in 1–3 months? A probability distribution, a fair-value range rebuilt on the 30 June 2026 statements, and the open model. Educational analysis, not investment advice.",
       "datePublished": "2026-06-11",
       "dateModified": "2026-06-11",
       "image": "https://testahil.com/og/phdc.png",
@@ -122,7 +122,7 @@
           "name": "How is the PHDC valuation calculated?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The study uses an instrument-appropriate lens — a sum-of-the-parts / RNAV build for a real-estate developer — combined with a 50,000-path Monte Carlo simulation that expresses the result as a probability distribution. Every assumption is visible and editable in the free Excel model."
+            "text": "The study uses an instrument-appropriate lens \u2014 for a developer selling on instalments, a cash-flow model driven by construction executed and by selling price per unit of build cost, cross-checked against book value, peer multiples and normalised earnings \u2014 combined with a 50,000-path Monte Carlo simulation that expresses the price question as a probability distribution. Every assumption is visible and editable in the free Excel model."
           }
         },
         {
@@ -344,8 +344,8 @@
       <details class="attack">
         <summary>Found a flaw? Attack the model</summary>
         <form class="attack-form" action="https://formsubmit.co/info@testahil.com" method="POST">
-          <input type="hidden" name="_subject" value="Attack on the model — Palm Hills (PHDC), 11 Jun 2026 edition">
-          <input type="hidden" name="study" value="Palm Hills (PHDC) — 11 Jun 2026 edition">
+          <input type="hidden" name="_subject" value="Attack on the model — Palm Hills (PHDC), 19 Aug 2026 edition">
+          <input type="hidden" name="study" value="Palm Hills (PHDC) — 19 Aug 2026 edition">
           <input type="hidden" name="stock" value="PHDC">
           <input type="hidden" name="_template" value="table">
           <input type="text" name="name" placeholder="Your name (optional)" aria-label="Your name">
@@ -431,21 +431,26 @@ renderPeers("peers", "PHDC");
 renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
+/* Factor stack REFITTED 19-Aug-2026 to the fundamental driver stack of the same date.
+   Each impact is 100 x d(ln published fair value)/d(lever unit), measured on the four-lens
+   synthesis by re-running the model, not carried over from the retired 10-factor macro
+   simulation the previous constants were fitted to. Derivation and units: engine/phdc_study
+   compute.py, SLIDER block. */
 renderFairLevers("fl-lever-card", T, [
-  { name:"EGP/USD \u2014 impact on fair value", min:-6, max:2, step:0.5, def:-2.5, impact:1.8,
+  { name:"EGP/USD \u2014 impact on fair value", min:-5, max:1, step:0.5, def:-2.5, impact:10.235,
     lo:"sharp depreciation", hi:"EGP firm / tailwind",
     fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% / quarter" },
-  { name:"Mortgage / financing rate", min:-3, max:3, step:0.5, def:0, impact:1.2,
+  { name:"Policy & financing rates", min:-2, max:2, step:0.5, def:0, impact:9.143,
     lo:"rates rising", hi:"rates easing",
-    fmt:v=>(-v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"pp this cycle" },
-  { name:"Geopolitical risk", min:0, max:60, step:5, def:30, impact:0.12,
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"pp of easing" },
+  { name:"Geopolitical risk", min:0, max:60, step:5, def:30, impact:0.3598,
     lo:"high tension", hi:"calm",
-    fmt:v=>Math.round(60-v)+"% risk \u00b7 \u221212% if it hits" },
-  { name:"New launch lands", min:0, max:100, step:5, def:55, impact:0.08,
+    fmt:v=>Math.round(60-v)+"% risk \u00b7 \u221230% if it hits" },
+  { name:"Ras El Hekma launch delivers", min:0, max:100, step:5, def:85, impact:0.0728,
     lo:"unlikely", hi:"likely",
     fmt:v=>Math.round(v)+"% \u00b7 +8% if it lands" },
-  { name:"Tourism / foreign demand", min:-15, max:15, step:1, def:0, impact:0.15,
-    lo:"demand softening", hi:"demand accelerating",
+  { name:"Coastal / foreign demand", min:-10, max:10, step:1, def:0, impact:2.3962,
+    lo:"absorption softening", hi:"absorption accelerating",
     fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% YoY" }
 ]);
 if (T.levels) {

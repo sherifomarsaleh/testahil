@@ -1907,7 +1907,7 @@ const TICKERS = {
     spot: 15.01,
     spotDate: "close 22 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — UNCHANGED: fundamental fair value is a separate clock from the MC price refresh (two-clocks rule); needs its own study cycle, not touched by a raw-OHLC roll-forward
+    fair: { bear: 5.79, base: 15.82, full: 21.82 },           // 19 Aug 2026 fundamental refresh on the 30-Jun-2026 reviewed statements. base = four-lens synthesis under framing A (Residents' Association float treated as permanent operating funding); bear = the SAME four lenses under framing B (float restricted) — the alternative reading computed in full, not a haircut; full = the framing-A upper bound. The two framings are never averaged. Supersedes the 11-Jun-2026 edition (7.62 / 15.89 / 24.92), which discounted at a flat 18% against a 23.27% sovereign and divided by issued rather than ex-treasury shares.
     dist: {
       t20: { label:"1 month",   p5:12.89, p25:14.32, p50:15.23, p75:16.22, p95:18.01, resolve:"2026-08-23" },
       t60: { label:"3 months",  p5:11.52, p25:14.01, p50:15.72, p75:17.59, p95:21.39, resolve:"2026-10-22" }
@@ -1928,9 +1928,10 @@ const TICKERS = {
       tech: { data:"2026-07-22", computed:"2026-08-17" }
     },
     files: {
-      study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
-      model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
-      pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
+      study:  "files/PHDC_Valuation_Study_19-08-2026_public.docx?v=1908",
+      model:  "files/PHDC_Valuation_Model_19082026_public.xlsx?v=1908",
+      pdf:    "files/PHDC_Valuation_Study_19-08-2026_public.pdf?v=1908",
+      biblio: "files/PHDC_Bibliography_19-08-2026.pdf?v=1908"
     }
   },
   TMGH: {
