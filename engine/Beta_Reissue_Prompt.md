@@ -3,8 +3,10 @@
 Paste this into a fresh session, replacing `{TICKER}`. It re-derives one study's beta
 against the published index of its own exchange and rebuilds the study and workbook on it.
 
-Adopted 10-Aug-2026, after the discovery that every study in the repo — SWDY, the model
-study, included — had regressed against an equal-weight composite of the covered names.
+Adopted 10-Aug-2026, after the discovery that every study in the repo — SWDY, then the
+model study, included — had regressed against an equal-weight composite of the covered names.
+(SWDY was displaced as the model on 19-Aug-2026; ADNOCLS, the model report, carries a
+conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI.csv`.)
 
 ---
 
@@ -78,5 +80,6 @@ priced. A beta correction is not cosmetic; say so when it moves the answer.
 `PENDING_REVIEW/BETA_REDERIVATION_2026-08-10.md` holds every re-derived number.
 AMOC, ARCC, EGCH, ELEC, PHAR, SCEM, SWDY and STC each need their own rebuild.
 **ARCC and SCEM fail the gate outright** against the real index and must go to tier 2 or 3.
-**SWDY is the model study and moves +19.8%**, so its rebuild changes the reference every
-other study is matched against.
+**SWDY moves +19.8%.** It was the model study when this was written; ADNOCLS displaced it on
+19-Aug-2026, so the rebuild no longer moves the reference — but SWDY's own beta is still
+non-conforming and the rebuild still stands.
