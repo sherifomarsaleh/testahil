@@ -400,7 +400,7 @@ Single-name roll-forwards use engine/rollforward_one.py. apply_rollforward.py is
 
 
 UNCHANGED AND STILL BINDING
-Template [CHANGED 08-Aug — see THE MODEL STUDY entry below]: match the MODEL STUDY — SWDY_Valuation_Study_05-08-2026 + its Excel + its standalone bibliography document — exactly, in structure AND research depth. THE REFERENCE SET IS CLOSED AT THREE NAMES: SWDY (the model study, and the operating-co lens pattern), ADCB (bank), ALPHADHABI (holdco). No other company is a template, an exemplar or a reference study anywhere in this protocol.
+Template [CHANGED 19-Aug — see THE MODEL REPORT entry below]: match the MODEL REPORT — ADNOCLS_Valuation_Study_09-08-2026 + its Excel + its standalone bibliography document, minus the excluded edition-history section — exactly, in structure, PER-SECTION CONTENT AND research depth. THE REFERENCE SET IS CLOSED AT THREE NAMES: ADNOCLS (the model report, and the operating-co lens pattern), ADCB (bank), ALPHADHABI (holdco). No other company is a template, an exemplar or a reference study anywhere in this protocol.
 Step 2A Information Sweep — four mandatory rings (Global/Country/Industry/Company), classified B/S/D/C — runs BEFORE any forecast driver is set, on every study and every update.
 WACC bottom-up, market-adapted; local govt bond rf even for pegged currencies; ERP from Damodaran's original file only; genuine beta regression with a real usability gate.
 Lens by instrument class; never blend legs that need different methods.
@@ -492,7 +492,7 @@ Adopted from the same ARCC exchange, from a direct instruction: the company's ow
 
 5. QC consequence. A Sweep Register showing no attempt at the company's own site, fewer than two audited fiscal years, a gap in the study-year's disclosed quarters, or zero investor-relations sources in the Company ring is a QC FAIL going forward.
 
-[NEW 08-Aug, per instruction — SWDY study] THE MODEL STUDY — SWDY sets the structural template AND the research-depth bar
+[NEW 08-Aug, per instruction — SWDY study] [SUPERSEDED 19-Aug-2026 — see THE MODEL REPORT below; ADNOCLS displaced SWDY under the one-in-one-out rule and SWDY is removed from the reference layer outright. The eight depth standards below stand unchanged and a ninth was added; only the exemplar changed.] THE MODEL STUDY — SWDY sets the structural template AND the research-depth bar
 
 Adopted at Sherif's instruction, 08-Aug-2026, because the level of recent valuation reports had slipped below par. The fix is not a new checklist item — it is a new exemplar: SWDY_Valuation_Study_05-08-2026 (engine/swdy_study/ — the study, its Excel model, its standalone bibliography document, and its filled QC evidence table QC_GATE_05-08-2026.md) is THE MODEL STUDY. Every future study matches its sections list, its sheet list, and its depth of research. Machine-readable form: MODEL_STUDY + MODEL_STUDY_DEPTH + ModelStudyChecklist + assert_model_study() in engine/research_protocol.py — verified by IMPORT, not parse, same as the rest of the guard list.
 
@@ -584,3 +584,57 @@ revision 2 sensitised beta 0.8–1.2. The true value, 1.278, sat OUTSIDE that ba
 own disclosed range did not bracket the answer while presenting itself as if it did. Beta strips
 are centred on the adopted estimate in steps of ONE STANDARD ERROR of that regression. The same
 discipline applies to any sensitised input carrying a measurable standard error.
+
+
+## THE MODEL REPORT — ADNOCLS replaces SWDY as the document every study is modelled on [ADOPTED 19-Aug-2026, per instruction]
+
+Sherif put two delivered studies side by side — ADNOC Logistics & Services (09-Aug-2026) and
+Riyadh Cables (18-Aug-2026) — and said the obvious thing: they are both ours and they are
+vastly different. The instruction was to settle on a model report, with ADNOCLS as the
+superior document on depth and analysis, minus one section.
+
+**ADNOCLS_Valuation_Study_09-08-2026 is THE MODEL REPORT.** Under the standing one-in-one-out
+rule it DISPLACES SWDY, which is removed from the reference layer outright rather than carried
+as a retired entry. The set stays at three: ADNOCLS (model report + operating-company lens
+pattern), ADCB (bank), ALPHADHABI (holdco). `REFERENCE_SET` in `engine/research_protocol.py`
+asserts on exactly those at import.
+
+Why ADNOCLS: it prices every contested construction instead of naming it, publishes the beta
+both ways, builds the cost of debt from six disclosed instruments rather than one asserted
+range, drives seven disclosed units on seven physical drivers with margins as outputs,
+reconciles the build against management's own guidance, and gives each expert a worked
+valuation table with every intermediate line. Its beta is also the first in the reference
+layer produced by the sanctioned routine against a published index
+(`raw_indices/AE/FADGI.csv`, conforming); SWDY's was regressed on a composite.
+
+**One section is excluded.** "What changed in these editions, and why" is in the exemplar and
+is NOT part of the model: edition history is internal QC evidence and belongs in the study's QC
+gate and critique adjudication, not in a document an external reader receives.
+
+**The model report is a document, not a description.**
+`engine/model_report/build_model_report_docx.py` produces
+`engine/model_report/MODEL_REPORT_09-08-2026.docx` from the exemplar and asserts every edit, so
+a future build opens the model rather than reconstructing it from a paragraph. Three
+consequences were handled, and one is a small standing precedent in its own right:
+
+1. **A live caveat was rescued out of the section before the cut.** The note that the
+   sanctioned beta routine now returns 1.103 on 159 weekly observations, where every table in
+   the study carries the adopted 1.085, is not edition history — it is a live discrepancy
+   between an adopted number and the routine meant to produce it. It moved into §7 with the
+   other caveats. STANDING RULE: before deleting a block of a document, check whether anything
+   inside it is a live disclosure rather than history. A correction record can be dropped; a
+   disclosure inside it cannot.
+2. The READ FIRST box lost its edition paragraph, the same content class in the front matter.
+3. "About this series" was repaired — it promised the reader a correction list "under 'What
+   changed in these editions, and why'". The correction RULE stays; the mechanism is now stated
+   as what the document does: the correction is made at the point it bears on, with the
+   superseded construction reprinted beside the new one at full size. A document must not
+   promise a section it does not have.
+
+NOT removed: the inline "an earlier edition of this study…" passages in 1.2, 1.7, 1.8 and 7.
+Each prices a live construction against the superseded one at the point the number is used,
+which is the dual-framing rule doing its job.
+
+**QC consequence.** Gate item (a) is unchanged in substance and now names ADNOCLS: structure,
+content, format AND DEPTH match the MODEL REPORT. The eight depth standards adopted 08-Aug
+stand exactly as they were.

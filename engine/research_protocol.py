@@ -56,28 +56,42 @@ SIGCM_CLAUSES = {
 }
 
 
-# --- THE MODEL STUDY (adopted 08 Aug 2026, per Sherif's instruction — SWDY) -------------------
-# SWDY_Valuation_Study_05-08-2026 (engine/swdy_study/) is the canonical exemplar EVERY study
-# matches for structure AND research depth, adopted because the level of recent valuation
-# reports had slipped below par. ADCB (bank) and ALPHADHABI (holdco) remain LENS-PATTERN
-# references only: class adapts the lens and the indicator set, never the structure or the
-# depth. This spec holds RULES and structure, never numbers.
+# --- THE MODEL REPORT (adopted 19 Aug 2026, per Sherif's instruction — ADNOCLS) ---------------
+# ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/) is the canonical exemplar EVERY
+# study matches for structure AND research depth. It DISPLACES SWDY under the standing
+# one-in-one-out rule, chosen on depth and analysis: it prices every contested construction
+# instead of naming it, shows the beta both ways, builds the cost of debt from six disclosed
+# instruments rather than one asserted range, drives seven disclosed units on seven drivers
+# with margins falling out as outputs, and gives each expert a worked table with every
+# intermediate line. ADCB (bank) and ALPHADHABI (holdco) remain LENS-PATTERN references only:
+# class adapts the lens and the indicator set, never the structure or the depth. This spec
+# holds RULES and structure, never numbers.
+#
+# ONE SECTION OF THE EXEMPLAR IS NOT PART OF THE MODEL: "What changed in these editions, and
+# why" [excluded 19-Aug-2026, per instruction] — edition history is internal QC evidence and
+# belongs in the QC gate and the critique adjudication, not in a document an external reader
+# receives. The model report document is the exemplar with that section removed, built and
+# asserted by engine/model_report/build_model_report_docx.py.
 #
 # THE REFERENCE SET IS CLOSED — exactly three names, enforced by REFERENCE_SET below
 # [08-Aug-2026, per Sherif's instruction]. No other company is a template, an exemplar or a
 # reference study anywhere in the protocol; every previously-named exemplar is gone from the
-# reference layer entirely rather than carried as a retired entry. A secondary exemplar of a
-# class whose primary already covers it is redundant by construction and is not admitted.
-# Adding a fourth name is a protocol change, not a documentation edit: it must displace one
-# of these three, and this assertion is what forces that decision to be made explicitly.
-REFERENCE_SET = ("SWDY", "ADCB", "ALPHADHABI")
+# reference layer entirely rather than carried as a retired entry — SWDY included, as of
+# 19-Aug-2026. A secondary exemplar of a class whose primary already covers it is redundant by
+# construction and is not admitted. Adding a fourth name is a protocol change, not a
+# documentation edit: it must displace one of these three, and this assertion is what forces
+# that decision to be made explicitly.
+REFERENCE_SET = ("ADNOCLS", "ADCB", "ALPHADHABI")
 
 MODEL_STUDY = {
-    "reference": "SWDY_Valuation_Study_05-08-2026",
-    "path": "engine/swdy_study/",
-    "adopted": "2026-08-08",
+    "reference": "ADNOCLS_Valuation_Study_09-08-2026",
+    "path": "engine/adnocls_study/",
+    "adopted": "2026-08-19",
+    "displaced": "SWDY_Valuation_Study_05-08-2026",
+    "model_report_document": "engine/model_report/MODEL_REPORT_09-08-2026.docx",
+    "excluded_sections": ("What changed in these editions, and why",),
     "lens_pattern_references": {
-        "operating_company": "SWDY",
+        "operating_company": "ADNOCLS",
         "bank": "ADCB",
         "holdco": "ALPHADHABI",
     },
@@ -123,8 +137,8 @@ MODEL_STUDY = {
     ],
 }
 
-# The depth bar — eight standards the SWDY build demonstrated (evidence:
-# engine/swdy_study/QC_GATE_05-08-2026.md), so none is aspirational. Each is a QC item,
+# The depth bar — eight standards the ADNOCLS build demonstrated (evidence:
+# engine/adnocls_study/QC_GATE_09-08-2026.md), so none is aspirational. Each is a QC item,
 # not a nice-to-have: missing any one is a FAIL, not a noted limitation.
 MODEL_STUDY_DEPTH = {
     "bibliography_document": (
@@ -206,19 +220,21 @@ class ModelStudyChecklist:
 
 
 def assert_model_study(checklist: ModelStudyChecklist) -> None:
-    """Raise before a study is allowed to be issued if it falls short of the model-study bar.
+    """Raise before a study is allowed to be issued if it falls short of the model-report bar.
 
-    The model study is SWDY_Valuation_Study_05-08-2026 (engine/swdy_study/): its sections list,
-    sheet list and research depth are the standard every study matches. A FAIL here means DO NOT
-    ISSUE — depth below the model study is a defect, not a style choice.
+    The model report is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/), minus the
+    excluded edition-history section; the built document is
+    engine/model_report/MODEL_REPORT_09-08-2026.docx. Its sections list, sheet list, content
+    and research depth are the standard every study matches. A FAIL here means DO NOT ISSUE —
+    depth below the model report is a defect, not a style choice.
     """
     fails = checklist.failures()
     if fails:
         raise AssertionError(
-            "MODEL-STUDY BAR NOT MET — study must not be issued. Unmet standards: "
+            "MODEL-REPORT BAR NOT MET — study must not be issued. Unmet standards: "
             + ", ".join(fails)
-            + ". The bar is SWDY_Valuation_Study_05-08-2026 (engine/swdy_study/, evidence in "
-            + "QC_GATE_05-08-2026.md); see MODEL_STUDY / MODEL_STUDY_DEPTH in this module."
+            + ". The bar is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/, evidence "
+            + "in QC_GATE_09-08-2026.md); see MODEL_STUDY / MODEL_STUDY_DEPTH in this module."
         )
 
 
@@ -277,15 +293,21 @@ if __name__ == "__main__":
     # The reference set is CLOSED at exactly three names. This assertion is the enforcement:
     # a fourth exemplar cannot be added without displacing one of these and failing here first.
     assert set(MODEL_STUDY["lens_pattern_references"].values()) == set(REFERENCE_SET), (
-        "the reference set is closed — exactly SWDY / ADCB / ALPHADHABI, no other company "
+        "the reference set is closed — exactly ADNOCLS / ADCB / ALPHADHABI, no other company "
         "is a template, exemplar or reference study anywhere in the protocol"
     )
-    assert MODEL_STUDY["lens_pattern_references"]["operating_company"] == "SWDY", (
-        "SWDY is the model study and therefore also the operating-company lens pattern"
+    assert MODEL_STUDY["lens_pattern_references"]["operating_company"] == "ADNOCLS", (
+        "ADNOCLS is the model report and therefore also the operating-company lens pattern"
     )
+    assert "SWDY" not in REFERENCE_SET, (
+        "one-in-one-out: ADNOCLS displaced SWDY on 19-Aug-2026 and SWDY is removed from the "
+        "reference layer outright, not carried as a retired or secondary entry"
+    )
+
     print("SIGCM module loaded; clauses:", len(SIGCM_CLAUSES),
-          "| model-study depth standards:", len(MODEL_STUDY_DEPTH),
-          "| reference set:", "/".join(REFERENCE_SET))
+          "| model-report depth standards:", len(MODEL_STUDY_DEPTH),
+          "| reference set:", "/".join(REFERENCE_SET),
+          "| model report:", MODEL_STUDY["reference"])
 
 
 # ---------------------------------------------------------------------------
