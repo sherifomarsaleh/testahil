@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-08-23f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-23g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 23 August 2026 (rev. 6) — ENFORCEMENT: the rules that make the other rules bind
+Updated 23 August 2026 (rev. 7) — THREE-LENS INDEPENDENCE · COMMITTED DRIFT · per-name discipline · negative control (investor-critique session)
+(rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
 (rev. 4, 29 July 2026 — computed technical read · regenerated charts · as-of stamps)
 (rev. 3, 13 July 2026 — value-driver TV · NCI at fair value · one-clock lenses · cross-sheet integrity · the Kd capitalised-interest trap)
@@ -824,3 +825,143 @@ Nor does rev. 6 touch the thing this protocol does best: **almost every rule her
 failure it came from.** That is why the rules are obeyed when they are met at all, and it is the
 most unusual property of this document. Every amendment above arrives with its own failure
 attached, in the same voice, and every future one should.
+
+---
+
+## [R-LENS-01] THREE-LENS INDEPENDENCE — the fundamental study, the MC engine, and the technical read never feed each other (23-Aug-2026, per instruction)
+
+**The rule.** The fundamental study, the MC price engine, and the technical read are three
+INDEPENDENT lenses on the same stock. No lens's output is ever an input to another. They are
+published side by side, so agreement between them is information; a blended lens is just one
+opinion wearing three names. Stated by Sherif on 23-Aug-2026, while reviewing the view-layer
+prototype: "the direction should be based on the MC alone and not the fundamental study. The
+reason is that we want the fundamental, MC and technical studies to be independent from each
+other."
+
+**Where it came from.** An investor told Sherif the published MC "looks nice but is not
+useful," then sharpened it to two findings: the cone is very wide, and it has no direction.
+Both were verified true on the live library (the 3-month 90% band averaged ~57% of spot across
+the 90 covered names that day; the center of every cone was the interest-rate carry alone).
+Two responses were built the same day on the feature branch, neither published:
+
+1. **A view-layer prototype** (`engine/view_layer_prototype/`) — the typical (middle-half)
+   band leading, the 9-in-10 band demoted to a whisker, and a direction object. The FIRST CUT
+   drew that direction as a fan from spot to the study's fair values. That is the construction
+   this rule retires: it made the MC card's direction a consumer of the fundamental lens.
+2. **A direction tournament** (`engine/direction_tournament/`) — six price-only candidates on
+   the full cleaned library under the Phase B direction-aware referee (`direction_score.py`),
+   both calendar horizons, cross-sectional and pooled framings, block-bootstrap {2,3,4}, LONO,
+   split-half, MIN_N=100. Momentum-family candidates survived all four tests at once in AE and
+   (more weakly) EG and SA; several technical-family constructions (200-day trend, 52-week-high
+   proximity) also tested well. Read the RESULTS file for numbers; they are not repeated here.
+
+**Consequences, each binding:**
+
+1. **MC direction comes from price-native signals only**, fitted through the engine's existing
+   per-market signal socket (`signal_type`/`ic`/`signal_active` in `market_profiles.py`),
+   promotion-gated exactly as before. A fair value never enters drift. The
+   `Fundamental_MC_Integration_Protocol.md` §8 engine hook — value-gap IC into `profile.ic` —
+   is **permanently retired as a drift source** (its header now says so). Phases A–C continue
+   as a *measurement and comparison* layer: the value-gap IC may be measured forever as a
+   diagnostic of the fair values themselves, and `fv_overlay` remains a downstream comparison
+   surface. Comparison reads both lenses' outputs and feeds nothing back; that is the one
+   sanctioned way the lenses may meet.
+2. **Technical-family constructions are ineligible as MC drift signals** even where they test
+   well — moving-average distances, 52-week-high proximity, RSI and kin belong to the
+   technical lens, and wiring them into the MC would make two of the three lenses agree by
+   construction. The eligible pool for an MC lean is the momentum family (12-1, 6-1) and other
+   constructions the technical read does not use. The tournament's technical-family survivors
+   stand recorded as evidence, excluded from promotion on this ground alone.
+3. **Nothing is adopted as of 23-Aug-2026.** Tournament survivors are candidates for the
+   standing promotion rule (the honest next step is a pre-registered forward shadow cohort,
+   as `lab_round8_fvpull.py` already prescribes for a different candidate). Until a lean
+   passes, any product surface showing one labels it ILLUSTRATIVE and leaves every published
+   cone number untouched — the prototype demonstrates the labelling.
+
+**Why the rule is right, recorded so it survives staff turnover of one:** the site's product
+is three independently-computed answers to the same question. The moment one lens borrows
+another's output, their agreement stops being evidence and the reader has no way to see that
+it stopped. Independence is also what makes the grading honest — each lens can be scored on
+its own record, and a lens that fails can be fixed or retired without contaminating the others.
+
+### [R-DRIFT-01] Addendum, same day — COMMITTED DRIFT ADOPTED (23-Aug-2026, per instruction)
+
+Hours after the rule above was recorded, Sherif closed the loop on the investor's second
+finding: "we have to find a way to commit to a drift up or down. The investor is adamant."
+Adopted, by explicit instruction, in lieu of the shadow-cohort step consequence 3 had
+prescribed:
+
+- **The momentum lean is ACTIVE in the engine.** `signal_type="mom_12_1"`,
+  `signal_sign=+1`, `signal_active=True` in AE, SA and EG — the three markets where the
+  tournament's momentum cells survived all four tests. Each market's `ic` is the SMALLER of
+  its two tournament horizon readings (conservative; read `market_profiles.py` live for
+  values). SA's 3M ic is disclosed as carried from its 1M measurement — the 3M pooled read
+  was underpowered, while its cross-sectional read agreed in sign. The old rev_1m priors
+  (EG, AE) and SA's contrarian momentum sign are refuted by measurement and replaced.
+- **Every covered name's forecast states a direction call** — the sign of its own momentum
+  z — even inside the engine's dead zone (|z| < 0.5 → call printed as WEAK, tilt 0). The
+  strike path already records `signal_z`/`signal_alpha` per horizon, so every call is
+  graded at its maturity; a sustained failed-direction record triggers the standing
+  out-of-cycle review. Markets with no surviving cell (QA/IN/US/KR/metals) stay
+  carry-centered and call-only on product surfaces.
+- **[R-NEG-01] The document-techniques backtest is the negative control** (`engine/doc_techniques_backtest/`,
+  same day): GBM-historical-drift, ARIMA-family, pooled neural nets, Markov/fuzzy chains,
+  Kalman drift, seasonality and their ensemble all failed to beat the carry center on 15
+  walk-forward years — most robustly worse. None may return as a drift source without new
+  evidence. AE month-of-year seasonality stands flagged as a rank-signal candidate only.
+- **Width floors are measured facts:** the middle half of real 3-month moves spans ~13%
+  (AE), ~19% (SA), ~26% (EG) of price. An honest 50% band cannot average narrower at these
+  horizons, whatever the technique — the tested alternatives narrowed nothing at honest
+  coverage. Horizons stay 1M/3M by instruction; a shorter-horizon product was offered and
+  declined.
+- **Mechanics:** the adoption changes future strikes only (next roll-forward onward);
+  nothing retroactive, nothing published until the standing publish flow runs. Panel
+  refits under signal-ON route through the materiality gate; an engine-change PR carries
+  this to main per GIT/PUBLISH MECHANICS. A subset ON-vs-OFF ablation record accompanies
+  the adoption commit (`engine/PENDING_REVIEW/signal_on_ablation_20260823.*`).
+
+**Same-day upgrade — "the tilt is still very conservative" (client, relayed; per
+instruction).** The first cut carried three conservatism choices that were mine, not the
+evidence's: ic shrunk to the smaller horizon reading, the tested-but-cautious socket knobs
+(dead zone 0.5, z clip 2.0, alpha cap 0.5σ), and a single signal per market. All three
+revised to track the measurement exactly:
+
+1. **mom_combo** (equal-weight 12-1 + 6-1 momentum z) measured on the tournament rig —
+   `engine/direction_tournament/COMBO_MOMENTUM_23-08-2026.json`. It passes all four tests
+   in AE (1M +0.108, 3M +0.185 — the strongest direction result in the system) and EG
+   (+0.062 / +0.068) and is adopted there; in SA the combo measured WEAKER than mom_12_1
+   (+0.082 vs +0.093 at 1M, PARITY at 3M) and was NOT adopted — SA keeps mom_12_1. A
+   candidate that tests worse does not ship because it is newer.
+2. **Per-horizon ic** via `profile.ic_by_h`, at each horizon's own measured value; the
+   min-horizon shrink is retired. SA's 3M value remains carried from its 1M measurement,
+   disclosed as before.
+3. **Socket knobs** softened to dead zone 0.25, z clip 2.5, alpha cap 0.75σ: the ICs were
+   measured on raw z with no dead zone, so the knobs now follow the evidence rather than a
+   caution preference. Typical strong-trend tilts roughly double (UAE ±2–3% becomes
+   ±3–6.5% at 3M); Egypt's stay ~±1–3% because Egypt's measured IC is genuinely small —
+   the honest ceiling, stated to the client as such rather than inflated.
+
+The hard line that remains: the tilt never exceeds IC × σ × z. Beyond that point a bigger
+number is not more commitment, it is a worse forecast on purpose, and the public grading
+would document it within a few cycles.
+
+### [R-DRIFT-02] Per-name discipline on the tilt (same day, per instruction — "Do it per stock. This is a delicate exercise and needs to be done carefully")
+
+The per-stock record for every covered name is maintained under the exact production
+construction: the careful dossier (`engine/direction_tournament/PER_STOCK_CAREFUL_23-08-2026`
+— house robust bootstrap across blocks {2,3,4}, Wilson intervals on hit rates, split-half
+consistency, conditional call records) and the full seed-paired ON-vs-OFF production
+backtest of all 93 tickers (`TILT_BACKTEST_ALL93_23-08-2026`). Read those files for
+numbers, never any digest.
+
+The ONLY sanctioned per-name exception to a market's tilt is the PRE-REGISTERED
+suppression bar, fixed before the numbers were computed: a name's tilt is suppressed iff,
+at either horizon, its own-history IC is a robust FAIL across all bootstrap blocks AND
+split-half both-halves-negative AND n ≥ 40. Anything weaker — a contrary point estimate, a
+single-block excursion, an inconsistent split — is a WATCH FLAG: recorded, graded live,
+revisited at every refit, never acted on. Per-name tilt exceptions outside this bar are
+curve-fitting and PROHIBITED. A suppressed name still prints its direction call, flagged
+low-confidence. Rationale: with ~186 stock-horizon tests at 90% CIs, a handful of false
+single-test excursions arise by chance alone; the joint bar keeps the expected
+false-suppression count well under one, and the first full sweep (23-Aug-2026) suppressed
+zero names while flagging thirty.

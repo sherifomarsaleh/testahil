@@ -1,0 +1,56 @@
+{
+ "AE": {
+  "1M": {
+   "n": 2283,
+   "ic": 0.108,
+   "verdict": "PASS",
+   "hit": 0.548,
+   "lono_stable": true,
+   "split_same": true
+  },
+  "3M": {
+   "n": 492,
+   "ic": 0.185,
+   "verdict": "PASS",
+   "hit": 0.571,
+   "lono_stable": true,
+   "split_same": true
+  }
+ },
+ "EG": {
+  "1M": {
+   "n": 4763,
+   "ic": 0.062,
+   "verdict": "PASS",
+   "hit": 0.524,
+   "lono_stable": true,
+   "split_same": true
+  },
+  "3M": {
+   "n": 1134,
+   "ic": 0.068,
+   "verdict": "PASS",
+   "hit": 0.533,
+   "lono_stable": true,
+   "split_same": true
+  }
+ },
+ "SA": {
+  "1M": {
+   "n": 1437,
+   "ic": 0.082,
+   "verdict": "PASS",
+   "hit": 0.537,
+   "lono_stable": true,
+   "split_same": true
+  },
+  "3M": {
+   "n": 318,
+   "ic": 0.023,
+   "verdict": "PARITY",
+   "hit": 0.531,
+   "lono_stable": false,
+   "split_same": false
+  }
+ }
+}

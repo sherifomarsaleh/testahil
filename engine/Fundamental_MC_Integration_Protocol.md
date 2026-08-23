@@ -3,6 +3,16 @@
 **Status: PROPOSED — not adopted.** Awaiting Sherif's decision. Nothing in this document changes
 a published cone, a `LEDGER` row, or an engine config until it is adopted. Written 6-Aug-2026.
 
+> **AMENDED 23-Aug-2026 — THREE-LENS INDEPENDENCE (per instruction, see
+> `Standing_Research_Protocol.md`).** The §8 engine hook — promoting a measured value-gap IC
+> into `profile.ic` / engine drift — is **permanently retired as a drift source**: the
+> fundamental, MC and technical lenses are independent, and a fair value never enters the
+> cone's drift, whatever IC Phase C eventually measures. Phases A–C otherwise stand as a
+> *measurement and comparison* layer: the value-gap IC remains worth measuring as a diagnostic
+> of the fair values themselves, and the overlay remains a downstream comparison surface. MC
+> direction, if ever adopted, comes from price-native signals through the engine's existing
+> per-market signal socket, promotion-gated as ever.
+
 > ## ⚠️ STANDING DATA-ADEQUACY NOTICE
 >
 > **This system cannot yet tell you whether the fair values predict returns. We do not have

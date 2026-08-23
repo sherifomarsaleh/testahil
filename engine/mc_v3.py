@@ -99,20 +99,37 @@ def signal_z(close, idx, kind):
             return 0.0
         r = np.log(close[idx - 21] / close[idx - 252])
         return float(r / (sd * np.sqrt(231)))
+    if kind == "mom_6_1":
+        if idx < 252:
+            return 0.0
+        r = np.log(close[idx - 21] / close[idx - 126])
+        return float(r / (sd * np.sqrt(105)))
+    if kind == "mom_combo":
+        # equal-weight momentum family (12-1 + 6-1) — measured jointly on the
+        # 23-Aug-2026 tournament rig (COMBO_MOMENTUM_23-08-2026.json)
+        z12 = signal_z(close, idx, "mom_12_1")
+        z6 = signal_z(close, idx, "mom_6_1")
+        return float((z12 + z6) / 2.0)
     if kind == "rev_1m":
         r = np.log(close[idx] / close[idx - 21])
         return float(r / (sd * np.sqrt(21)))
     return 0.0
 
 
-def signal_alpha(profile, close, idx, sigma_h, dead=0.5, clipz=2.0):
+def signal_alpha(profile, close, idx, sigma_h, dead=0.25, clipz=2.5, ic=None):
+    """Committed-drift config 23-Aug-2026 (per instruction): dead zone
+    0.5 -> 0.25, z clip 2.0 -> 2.5, alpha cap 0.5 -> 0.75 sigma — the ICs
+    were measured on raw z with no dead zone, so the softer knobs track the
+    evidence rather than a conservatism choice. `ic` overrides profile.ic for
+    per-horizon strengths (profile.ic_by_h, wired by each caller)."""
     if not profile.signal_active or profile.signal_type is None:
         return 0.0, 0.0
     z = signal_z(close, idx, profile.signal_type)
     if abs(z) < dead:
         return 0.0, z
-    a = profile.ic * sigma_h * profile.signal_sign * float(np.clip(z, -clipz, clipz))
-    a = float(np.clip(a, -0.5 * sigma_h, 0.5 * sigma_h))
+    use_ic = profile.ic if ic is None else ic
+    a = use_ic * sigma_h * profile.signal_sign * float(np.clip(z, -clipz, clipz))
+    a = float(np.clip(a, -0.75 * sigma_h, 0.75 * sigma_h))
     return a, z
 
 
