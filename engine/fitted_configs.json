@@ -55,7 +55,7 @@
       "SWDY",
       "TMGH"
     ],
-    "windows": 611,
+    "windows": 612,
     "rebuilt_this_run": [],
     "nu": 5.0,
     "width_cal": 0.951,
@@ -75,12 +75,12 @@
       "ABUK": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0409,
-        "skill_raw_basis": 0.0365,
+        "skill": 0.0389,
+        "skill_raw_basis": 0.0231,
         "verdict": "PASS",
         "ci_block2": [
-          0.009,
-          0.071
+          0.005,
+          0.088
         ]
       },
       "ADIB": {
@@ -217,13 +217,13 @@
       },
       "ELEC": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.088,
-        "skill_raw_basis": 0.1188,
+        "width_cal": 0.958,
+        "skill": 0.0881,
+        "skill_raw_basis": 0.1181,
         "verdict": "PASS",
         "ci_block2": [
           0.063,
-          0.136
+          0.134
         ]
       },
       "EMFD": {
