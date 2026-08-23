@@ -1,0 +1,294 @@
+# -*- coding: utf-8 -*-
+"""Render the re-issue decision memo. Every figure derives from the repo, none typed."""
+import importlib.util, os, json, collections, html
+HERE = os.path.dirname(os.path.abspath(__file__))
+spec = importlib.util.spec_from_file_location('classification', os.path.join(HERE, 'classification.py'))
+C = importlib.util.module_from_spec(spec); spec.loader.exec_module(C)
+S = json.load(open(os.path.join(HERE, 'coc_state.json')))
+ROWS = C.ROWS
+def esc(s): return html.escape(str(s), quote=False)
+
+c = collections.Counter(v['cls'] for v in S.values())
+sub = collections.Counter(v['d'] for v in S.values() if v['cls'] == 'no-record')
+need = [t for t, v in S.items() if v['cls'] != 'attestable']
+both = [t for t in need if not S[t]['bu']]
+current = sorted(t for t, v in S.items() if v['cls'] == 'attestable' and v['bu'])
+dfm = sorted(t for t, v in S.items() if v['x'] == 'DFM')
+N = len(ROWS)
+
+CLS = [
+ ('attestable', 'Attestable', 'The beta record names a regressor file that resolves to a registered index. <code>assert_beta_provenance()</code> passes.', c['attestable'], sorted(t for t,v in S.items() if v['cls']=='attestable')),
+ ('unregistered-file', 'Right number, wrong path', 'Regressed against <code>raw_indices/AE/ADXGENERAL.csv</code> — a byte-identical duplicate of <code>FADGI.csv</code> under a filename <code>EXCHANGE_INDEX</code> does not register. The valuation is sound; the provenance will not resolve.', c['unregistered-file'], sorted(t for t,v in S.items() if v['cls']=='unregistered-file')),
+ ('named-only', 'Index named, no file recorded', 'The record names the index in prose but stores no path, so the gate inspects a string rather than a file. Almost certainly conforming; not provable.', c['named-only'], sorted(t for t,v in S.items() if v['cls']=='named-only')),
+ ('composite-cohort', 'Composite cohort', 'No regressor recorded at all — the equal-weight composite of covered names. Already tracked in <code>PENDING_REVIEW/BETA_REDERIVATION_2026-08-10.md</code>, with every replacement number computed and none yet applied.', c['composite-cohort'], sorted(t for t,v in S.items() if v['cls']=='composite-cohort')),
+ ('no-record', 'No beta record at all', 'The June–July book. No committed beta artefact exists, so there is nothing for the gate to inspect.', c['no-record'], []),
+]
+
+clsrows = ''.join(
+    f'<tr><td class="cl"><span class="dot d{i}"></span>{esc(lbl)}</td>'
+    f'<td class="num">{n}</td><td class="dsc">{d}'
+    + (f'<div class="tks">{" ".join(f"<span class=tkc>{t}</span>" for t in names)}</div>' if names else '')
+    + '</td></tr>'
+    for i, (k, lbl, d, n, names) in enumerate(CLS))
+
+subrows = ''.join(f'<tr><td>{esc(k)}</td><td class="num">{v}</td></tr>'
+                  for k, v in sorted(sub.items(), key=lambda x: -x[1]))
+
+FERTI = [('regressor','17-name equal-weight ADX/DFM composite','FTSE ADX General'),
+         ('beta','0.492','0.931'), ('R²','0.062','0.100'), ('WACC','8.53%','11.90%'),
+         ('weighted centre','AED 2.74','AED 2.15'), ('terminal share','66.2%','55.2%'),
+         ('the call','7.8% discount to spot','fully priced')]
+frows = ''.join(f'<tr><td class="cl">{esc(a)}</td><td class="was">{esc(b)}</td>'
+                f'<td class="now">{esc(cc)}</td></tr>' for a, b, cc in FERTI)
+
+EMP = [('regressor','FADGI (interim — an Abu Dhabi index)','DFMGI (the real Dubai index)'),
+       ('beta','0.863','0.652'), ('R²','0.103','0.157'), ('n','189','190')]
+erows = ''.join(f'<tr><td class="cl">{esc(a)}</td><td class="was">{esc(b)}</td>'
+                f'<td class="now">{esc(cc)}</td></tr>' for a, b, cc in EMP)
+
+HTML = f"""<title>The Re-Issue Decision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{{
+  --ground:#F2F4F7; --surface:#FFFFFF; --sunk:#E8EBF0;
+  --ink:#141C26; --ink2:#3D4855; --muted:#697687; --line:#D8DDE5; --line2:#EBEEF3;
+  --a:#0E6B5E; --a2:#12897A; --warn:#9A5A2B; --on-accent:#FFFFFF;
+  --d0:#0E6B5E; --d1:#2E8A72; --d2:#5E9A6B; --d3:#A96A32; --d4:#8E5B57;
+  --shadow:0 1px 2px rgba(20,28,38,.05),0 8px 24px -14px rgba(20,28,38,.18);
+}}
+@media (prefers-color-scheme:dark){{ :root:not([data-theme="light"]){{
+  --ground:#0F141A; --surface:#161D25; --sunk:#1E262F;
+  --ink:#E9EDF2; --ink2:#C2CAD4; --muted:#8D99A8; --line:#2A343F; --line2:#212A34;
+  --a:#5CC9B4; --a2:#7FD8C6; --warn:#D9A16A; --on-accent:#0F141A;
+  --d0:#5CC9B4; --d1:#79C9AE; --d2:#93C79A; --d3:#D9975C; --d4:#C08D88;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -16px rgba(0,0,0,.7);
+}} }}
+:root[data-theme="dark"]{{
+  --ground:#0F141A; --surface:#161D25; --sunk:#1E262F;
+  --ink:#E9EDF2; --ink2:#C2CAD4; --muted:#8D99A8; --line:#2A343F; --line2:#212A34;
+  --a:#5CC9B4; --a2:#7FD8C6; --warn:#D9A16A; --on-accent:#0F141A;
+  --d0:#5CC9B4; --d1:#79C9AE; --d2:#93C79A; --d3:#D9975C; --d4:#C08D88;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px -16px rgba(0,0,0,.7);
+}}
+*{{box-sizing:border-box}}
+body{{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;font-size:15.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}}
+.wrap{{max-width:860px;margin:0 auto;padding:clamp(22px,4vw,54px) clamp(15px,3vw,30px) 80px}}
+h1,h2{{font-family:Newsreader,ui-serif,Georgia,serif;font-weight:600;text-wrap:balance;margin:0}}
+h1{{font-size:clamp(31px,5vw,50px);line-height:1.05;letter-spacing:-.015em}}
+h2{{font-size:clamp(21px,2.6vw,28px);letter-spacing:-.01em}}
+h3{{font-family:"IBM Plex Sans",sans-serif;font-size:15px;font-weight:600;margin:0}}
+p{{margin:0}}
+.eyebrow{{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}}
+header{{display:flex;flex-direction:column;gap:15px;padding-bottom:28px;border-bottom:1px solid var(--line)}}
+.lede{{font-size:18px;color:var(--ink2);max-width:64ch}}
+.verdict{{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--a);
+  border-radius:3px;padding:22px 24px;margin-top:30px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:12px}}
+.verdict p{{max-width:64ch;color:var(--ink2)}}
+.verdict strong{{color:var(--ink)}}
+.sec{{margin-top:52px;display:flex;flex-direction:column;gap:14px}}
+.sec>p{{max-width:66ch;color:var(--ink2)}}
+
+.steps{{display:flex;flex-direction:column;gap:14px;margin-top:6px;counter-reset:s}}
+.step{{background:var(--surface);border:1px solid var(--line2);border-radius:3px;padding:18px 20px;
+  display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:baseline}}
+.step::before{{counter-increment:s;content:counter(s);font-family:Newsreader,serif;font-size:30px;
+  line-height:1;color:var(--a);grid-row:1/span 3}}
+.step .when{{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted)}}
+.step p{{color:var(--ink2);font-size:14.5px;max-width:60ch}}
+.step ul{{margin:4px 0 0;padding-left:18px;color:var(--ink2);font-size:14.5px}}
+.step li{{margin:3px 0}}
+.step.urgent{{border-left:3px solid var(--warn)}}
+.step.urgent::before{{color:var(--warn)}}
+
+table{{border-collapse:collapse;width:100%;background:var(--surface);
+  border:1px solid var(--line);border-radius:3px;font-size:14px}}
+th{{background:var(--sunk);text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  padding:9px 13px;border-bottom:1px solid var(--line)}}
+td{{padding:11px 13px;border-bottom:1px solid var(--line2);vertical-align:top}}
+tr:last-child td{{border-bottom:0}}
+.num{{font-family:"IBM Plex Mono",monospace;text-align:right;font-variant-numeric:tabular-nums;
+  width:58px;font-weight:600}}
+.cl{{font-weight:600;white-space:nowrap}}
+.dsc{{color:var(--ink2);font-size:13.5px}}
+td.was{{color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12.5px}}
+td.now{{color:var(--a);font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600}}
+.dot{{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:8px}}
+.d0{{background:var(--d0)}} .d1{{background:var(--d1)}} .d2{{background:var(--d2)}}
+.d3{{background:var(--d3)}} .d4{{background:var(--d4)}}
+.tks{{margin-top:7px;display:flex;flex-wrap:wrap;gap:4px}}
+.tkc{{font-family:"IBM Plex Mono",monospace;font-size:10.5px;padding:1px 6px;border:1px solid var(--line);
+  border-radius:3px;color:var(--muted)}}
+.tw{{overflow-x:auto}}
+.cap{{font-size:12.5px;color:var(--muted);max-width:70ch}}
+.flag{{background:var(--surface);border:1px solid var(--line2);border-left:3px solid var(--warn);
+  border-radius:3px;padding:16px 18px;display:flex;flex-direction:column;gap:7px}}
+.flag h3{{color:var(--warn)}}
+.flag p{{color:var(--ink2);font-size:14.5px;max-width:64ch}}
+code{{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--sunk);
+  padding:1px 5px;border-radius:3px}}
+footer{{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;
+  color:var(--muted);max-width:74ch}}
+@media (prefers-reduced-motion:reduce){{*{{transition:none!important;animation:none!important}}}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">TESTAHIL &middot; standing research protocol &middot; decision memo &middot; 23 Aug 2026</p>
+  <h1>Re-issue the book, or wait?</h1>
+  <p class="lede">You are right that the cost of capital is not sound across the book. Of {N} covered
+  stocks, <b>{c['attestable']}</b> carry a beta whose provenance the gate can actually attest, and the
+  same {c['attestable']} are the only ones that are also built bottom-up. The question is not whether to
+  fix it. It is what to fix first, and what a re-issue has to be worth.</p>
+</header>
+
+<div class="verdict">
+  <p class="eyebrow">the recommendation</p>
+  <p><strong>Don't re-issue all {N} now, and don't wait either.</strong> Neither is the real choice.
+  The gating event in this protocol was never a date — it is <em>re-publication</em>. Your own rule
+  already says no study may be re-issued or rolled forward on a composite beta; it simply isn't enforced
+  in code for the {c['no-record']} studies that carry no beta artefact at all.</p>
+  <p>So: <strong>close the gate this week</strong> so nothing new ships on a known-bad input,
+  <strong>measure before you rebuild</strong> — the beta re-derivation is cheap and doesn't need the
+  study rebuilt — then <strong>re-issue in materiality order</strong>, folding the cost-of-capital fix
+  and the bottom-up rebuild into <em>one</em> pass per name. {len(both)} of the {len(need)} names that need a
+  cost-of-capital pass also need a driver rebuild. Doing those as two waves wastes the expensive half twice.</p>
+</div>
+
+<section class="sec">
+  <h2>Where the book actually stands</h2>
+  <p>Read off the committed beta artefacts, not the prose. Only the first row passes
+  <code>assert_beta_provenance()</code> as written.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Provenance class</th><th class="num">n</th><th>What it means</th></tr></thead>
+    <tbody>{clsrows}</tbody>
+  </table></div>
+  <p class="cap">The {c['no-record']}-study cohort has no artefact to inspect, so the read below is a
+  text scan of the delivered documents — indicative, and each name needs confirming in its own pass.</p>
+  <div class="tw"><table>
+    <thead><tr><th>What the document says about beta</th><th class="num">n</th></tr></thead>
+    <tbody>{subrows}</tbody>
+  </table></div>
+  <p>The pattern matters more than the counts. Roughly a third of that cohort <em>asserts</em> a beta
+  inside the house 0.8–1.3 band, and roughly a quarter publishes no beta at all — the cost of equity is
+  simply a house number. That is a harder problem than a composite beta, because there is nothing to
+  re-derive: the input was never sourced. The same scan finds the v2 normalisation (risk-free less the
+  sovereign's own default spread) stated in about a tenth of the book, and a terminal growth rate
+  reconciled against anything in about a sixth.</p>
+</section>
+
+<section class="sec">
+  <h2>Two things worth doing this week, before any of that</h2>
+  <div class="flag">
+    <h3>The real Dubai index is already on disk, and unregistered</h3>
+    <p><code>engine/raw_indices/AE/DFMGI.csv</code> exists — DFM General, 2015 to Jul-2026 — but
+    <code>wacc_builder.EXCHANGE_INDEX</code> still maps AE/DFM to FADGI as a labelled interim. That
+    affects {len(dfm)} covered names: {", ".join(dfm)}. EMPOWER has already been run both ways, and the
+    real index fits materially better:</p>
+    <div class="tw"><table><thead><tr><th>EMPOWER</th><th>interim</th><th>real index</th></tr></thead>
+    <tbody>{erows}</tbody></table></div>
+    <p>R&sup2; up by half, beta down a quarter. Registering it is a config change; the nine betas that
+    depend on it are a batch run.</p>
+  </div>
+  <div class="flag">
+    <h3>A duplicate index file is quietly breaking provenance</h3>
+    <p><code>ADXGENERAL.csv</code> is byte-identical to <code>FADGI.csv</code> — the same series under
+    a filename the resolver does not register. ADNOCDIST and ADNOCDRILL regressed against it, so their
+    numbers are right and their provenance will not resolve. Delete the duplicate, repoint both records.</p>
+  </div>
+  <div class="flag">
+    <h3>{N - 16} of {N} published fair values carry no date</h3>
+    <p><code>fairAsof</code> is set on 16 ticker entries. Every other published fair value sits on the
+    live site with no statement of when the fundamental work was done or which method vintage produced
+    it. Stamping all {N} is a data edit, not a rebuild, and it is the cheapest honest thing available
+    while the queue runs.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>The sequence, and the dates</h2>
+  <p>Three dates, not one — because the three jobs have different costs and only the first is urgent.</p>
+  <div class="steps">
+    <div class="step urgent">
+      <div><p class="when">now &middot; this week &middot; hours, not days</p>
+      <h3>Close the gate and stamp the pages</h3>
+      <p>Register DFMGI, delete the ADXGENERAL duplicate, extend
+      <code>assert_beta_provenance()</code> to the roll-forward path so a study with no beta artefact
+      cannot be re-published, and stamp <code>fairAsof</code> plus a method-vintage note on all {N}
+      entries. Nothing here touches a delivered document.</p></div>
+    </div>
+    <div class="step">
+      <div><p class="when">by the next metronome &middot; 1 Sep 2026</p>
+      <h3>Measure the damage before rebuilding anything</h3>
+      <p><code>own_stock_beta()</code> is cheap and needs no study rebuild. Run it for all {N} against
+      their registered index, recompute Ke and WACC under v2, and re-run <em>only the discounting step</em>
+      to get each study's implied move. That yields a materiality-ranked queue instead of an assumption
+      about one. Publish it the way the beta tracker was published.</p></div>
+    </div>
+    <div class="step">
+      <div><p class="when">before the wave starts</p>
+      <h3>Freeze the standard you are re-issuing to</h3>
+      <p>This is the step your own question implies. If the method is still improving, a name re-issued
+      in September gets re-issued again in November, and you will have paid twice for one study. Write the
+      target down as a versioned standard — v2 WACC, <code>own_stock_beta()</code> against the registered
+      index, ground-up to the finest sourced level, terminal growth reconciled — and re-issue <em>to it</em>,
+      so a finished study is finished.</p></div>
+    </div>
+    <div class="step">
+      <div><p class="when">1 Oct &ndash; 31 Dec 2026</p>
+      <h3>Re-issue in materiality order, one pass per name</h3>
+      <p>Every name whose centre moves more than 5% — the threshold the pipeline already uses for the
+      cone — re-issued by year end. Everything below that folds into its own next scheduled roll-forward
+      rather than earning a special pass. And each name gets one rebuild covering both the cost of capital
+      and the driver build, never two.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Why not simply do it all now</h2>
+  <p>{c['no-record']} of the {N} studies have no build directory. Re-issuing them is not an update — it is
+  reconstructing the model first, then re-issuing. That is rewriting the book, and compressing it into a
+  single wave is precisely how the composite-beta defect propagated in the first place: each study copied
+  the last, including the mistake, and the CLHO precedent that established the procedure carried it for
+  every name after it. A queue that runs slowly and is enforced beats a wave that runs fast and is copied.</p>
+  <h2 style="margin-top:22px">Why not wait, either</h2>
+  <p>Because a beta correction is not cosmetic, and you already have the proof inside the house. FERTIGLB,
+  re-derived on 10 Aug 2026:</p>
+  <div class="tw"><table><thead><tr><th>FERTIGLB</th><th>on the composite</th><th>on the real index</th></tr></thead>
+  <tbody>{frows}</tbody></table></div>
+  <p class="cap">The conclusion inverted. Not every correction will — AMOC moved &minus;3.4%, EGCH
+  &minus;2.2% — but you cannot know which is which until step 2 runs, and until then the live site is
+  publishing numbers you have reason to doubt. That is a different thing from publishing numbers you
+  have not yet improved.</p>
+</section>
+
+<section class="sec">
+  <h2>One thing to decide that this memo cannot</h2>
+  <p>ARCC and SCEM lose their tier-1 beta outright against the real EGX30 — R&sup2; of 0.047 and 0.025,
+  both below the 5% floor, and the Dimson correction rescues neither. Under the hierarchy they fall to a
+  same-country peer beta or to &beta;&nbsp;=&nbsp;1.0 with the failed diagnostics shown. Which tier they
+  land on changes their published range, and it is a judgement call about the EGX peer set, not an
+  arithmetic one. Worth settling before the wave rather than inside it, because whatever you decide there
+  becomes the precedent for every thin EGX name behind them.</p>
+</section>
+
+<footer>
+  Provenance classes read from <code>engine/&lt;name&gt;_study/beta_*.json</code>; the no-record cohort
+  from a text scan of the delivered studies in <code>files/</code>, which is indicative only. Build depth
+  from the 23-Aug-2026 build-depth audit. FERTIGLB figures from
+  <code>engine/Beta_Reissue_Prompt.md</code>; EMPOWER from its two committed beta records. Coverage from
+  <code>assets/data.js</code>. Every count here is computed, not typed.
+</footer>
+</div>
+"""
+p = os.path.join(HERE, 'reissue_memo.html')
+open(p, 'w', encoding='utf-8').write(HTML)
+print('wrote', p, len(HTML), 'chars')
