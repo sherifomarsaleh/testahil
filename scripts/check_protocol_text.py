@@ -59,6 +59,30 @@ COUNT = re.compile(
 DATED = re.compile(r'\b(?:on \d{1,2}-[A-Za-z]{3}-\d{4}|at that date|then-covered|at the time|'
                    r'\d{1,2} [A-Z][a-z]{2} \d{4}|the test was run against|the measurement is)\b')
 
+# [R-DOC-02] Claims about the STATE of the repository, as opposed to its contents. These are
+# what rotted: "not yet merged to main" outlived the merge by weeks while check_paths happily
+# confirmed the file it named existed. A branch state cannot be read out of prose, so the test
+# is not "is this true" but "does the claim say how to re-check it" — the same exemption shape
+# COUNT/DATED already uses for volatile counts.
+STATUS = re.compile(r'(?:\bnot yet merged\b|\b(?:an|the) open PR\b|\bpending review\b|'
+                    r'\bawaiting (?:merge|review)\b|\bon a (?:feature )?branch\b|'
+                    r'\bcommitted (?:and pushed )?to branch\b|\bproposed-not-built\b)', re.I)
+# The two branch-state alternatives above were widened after the negative control MISSED the
+# digest's own wording: it read "Committed on a feature branch with an open PR", which matches
+# neither "committed to branch" nor "is on a branch". Written narrowly from the full protocol's
+# phrasing, the first cut would have passed the very sentence in the OTHER document that this
+# rule was written about. A check tested only against the example that inspired it is a check
+# fitted to one sentence.
+RECHECK = re.compile(r'(?:re-verified|verify live|read live|check (?:it )?again|'
+                     r'against main|at the moment it is relied on|as of \d)', re.I)
+# A RULE is not a status claim. "Engine changes go on a feature branch with an open PR, never
+# a direct push to main" says what SHOULD happen and never goes stale; "the change is on a
+# feature branch" says what IS true and rots the moment it merges. Same words, opposite kind.
+# Prescriptive markers separate them, and getting this wrong in the permissive direction is
+# cheaper than in the strict one: a missed status claim is one stale sentence, while a check
+# that flags the repo's own standing rules is the permanently-red check [R-ENF-02] forbids.
+PRESCRIPTIVE = re.compile(r'\b(?:never|must|always|should|are required to|is required to)\b', re.I)
+
 
 def check_paths(text, label, fails):
     named = {p.rstrip('.,;:)') for p in PATH.findall(text) if '{' not in p}
@@ -130,6 +154,55 @@ def check_dfm_contradiction(text, label, fails):
         print('  DFM clause coherent')
 
 
+def _is_quoted(text, i):
+    """Is the match inside a quotation? Counts quote marks from the start of its sentence:
+    an odd count before the match means it opened and has not closed."""
+    s = max(text.rfind('. ', 0, i), text.rfind('\n', 0, i), 0)
+    before = text[s:i]
+    for pair in (('"', '"'), ('“', '”'), ("'", "'")):
+        if pair[0] == pair[1]:
+            if before.count(pair[0]) % 2 == 1:
+                return True
+        elif before.count(pair[0]) > before.count(pair[1]):
+            return True
+    return False
+
+
+def check_status_claims(text, label, fails):
+    """[R-DOC-02] A status sentence is a claim about the world, and it rots.
+
+    Found 23-Aug-2026: the adaptive-width entry had read "committed and pushed to branch
+    feat/adaptive-width-overlay-eg (open PR, not yet merged to main)" for weeks after the
+    merge — adaptive_width.py was on main and width_overlay_active=True the whole time.
+    The same sentence carried two more frozen facts: that engine changes open a PR "per
+    the materiality-gate convention" (R-CAL-01 has since separated those) and that a site
+    push needs "a fresh token at the moment of the write" (retired 07-Aug-2026).
+
+    Nothing was looking. check_paths only asks whether a named file EXISTS, which
+    adaptive_width.py did; no check asked whether a claim about its STATE was still true.
+
+    A branch state cannot be verified from the text, so this does not try. It requires the
+    claim to carry its own re-verification instruction — the same shape as the dated-count
+    exemption in check_live_counts: say when you checked, or say to check again.
+    """
+    bad = []
+    for m in STATUS.finditer(text):
+        s = _sentence_around(text, m.start())
+        if RECHECK.search(s) or PRESCRIPTIVE.search(s):
+            continue
+        if _is_quoted(text, m.start()):
+            # A document recording a past defect must be able to QUOTE it. "The sentence
+            # that stood here still said 'open PR, not yet merged'" is a citation, not a
+            # claim, and flagging it would make the correction itself unwritable — the
+            # check would forbid exactly the honesty it exists to produce.
+            continue
+        bad.append(re.sub(r'\s+', ' ', text[max(0, m.start() - 70): m.end() + 70]).strip())
+    print(f'  unverified status claims {len(bad)}')
+    for b in bad:
+        print(f'      STATUS CLAIM  …{b}…')
+        fails.append(f'{label}: states a repository status as a frozen fact')
+
+
 def main():
     fails = []
     check_symbols(fails)
@@ -139,6 +212,7 @@ def main():
         check_paths(text, label, fails)
         check_live_counts(text, label, fails)
         check_dfm_contradiction(text, label, fails)
+        check_status_claims(text, label, fails)
     print()
     if fails:
         print(f'FAIL ({len(fails)}):')
