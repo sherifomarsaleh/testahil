@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-23d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-23e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -85,7 +85,7 @@ The materiality gate — automation, not unsupervised drift
 
 Auto-commits, no approval: cleaning, panel rebuild, refit, LONO verdicts — provided nothing about the conclusion changed.
 
-STOPS and opens a PR (never auto-merged):
+MATERIAL — applied, but never silently:
 
 any existing name's verdict category changes
 a new name arrives already FAILING (the signal that a file is misfiled or bad)
@@ -96,6 +96,24 @@ a panel carries a name with no raw data behind it
 A new name is NOT material by itself. Adding coverage is the most common event; blocking on it would mean a review request on every post. Placing the file is the human decision.
 
 Why the gate exists (empirical, not theoretical): on 11-Jul, data cleaning alone flipped Korea's tail from ν=6 to Gaussian and changed two names' robust verdicts. A bare cron job would have shipped both silently.
+
+[R-CAL-01] MATERIAL NO LONGER MEANS BLOCKED — AMENDED 23-Aug-2026, per instruction
+
+Until this amendment each of the conditions above stopped the pipeline and opened a PR that was never auto-merged. The reason above survives intact and is not in dispute: data cleaning alone really did flip a tail and two verdicts, and shipping that with nobody looking would have been indefensible. What was wrong was the remedy. The defect is SILENCE, and blocking turned out to be its own form of silence.
+
+The measurement that forced the change, taken on 23-Aug-2026. Between 6-Aug and 23-Aug the gate produced 66 unmerged review PRs — one per trigger, every one re-reporting the same standing finding, 61 of them fired by a human posting data and 18 by the nightly cron. In the same window 18 covered names across EG, AE and SA had never entered a production fit at all: ADNOCLS — the model report's own company — DU, MODON, FERTIGLB and SAVOLA among them, all with live pages carrying cones struck from a fit that had never seen them. Production ran a 29-Jul EG fit for twenty-five days and announced that nowhere. A reader of the site could not tell, and neither could we without going and counting.
+
+Two structural faults sat underneath it, and both are worth stating because each is a general shape, not an incident.
+
+A gate with no release is a stall. The review PR's own closing line read "either merge this PR to accept" — but merging accepted nothing: the workflow staged only PENDING_REVIEW and panels, and market_profiles.py is deliberately never written for a material market. The instruction was not executable. Adopting meant hand-editing production, which the protocol forbids elsewhere, so nobody did it, and the queue grew until it was ignored on sight. STANDING RULE: whenever a rule can say STOP, the same commit must define what saying GO looks like — a command, a script, a documented path. A rule that can only refuse will be worked around or ignored, never obeyed. scripts/adopt_calibration.py is the release built for this one.
+
+One blocked market froze every other market. The runner returns nonzero if ANY market is material, and the job committed only on exit 0 — so every healthy market's applied fit was written to disk and then discarded. SA was non-material, "safe to auto-apply" by its own verdict, and still sat at 11 of its 13 names for weeks because EG and AE were material. STANDING RULE: a per-item gate must fail per item. A single process-wide exit code cannot carry a per-market decision, and using it as though it can silently converts one item's caution into every item's paralysis.
+
+What replaces it. A material change APPLIES, and is announced in three places at once: the evidence file under engine/PENDING_REVIEW/, the reasons repeated verbatim in the commit message — the announcement that reaches anyone reading git log without knowing an evidence file exists — and the config it replaced, stored under `superseded` in fitted_configs.json. Reverting that one commit restores market_profiles.py and fitted_configs.json together, in step; hand-editing either one alone cannot, which is why the revert is defined as a commit and not as a value. auto_refresh.py --halt-on-material restores the pre-amendment behaviour for anyone who wants it on a particular run.
+
+What still stops the run: a market that RAISES. Its production config is left untouched, a PENDING_REVIEW/{MARKET}_{date}-ERROR.md carries the traceback, the healthy markets still apply, and the run ends RED — an exception is not evidence, and a crashed market that looked green is how EG sat unprocessed from 19-Jul until someone noticed.
+
+What this amendment does NOT do: no lens, driver rule, cost-of-capital construction or calibration procedure changes, and the materiality thresholds themselves are untouched. The same conditions are material as before. Only the consequence of being material changes.
 
 Guard: market_profiles.py is verified by IMPORT, not ast.parse, before any commit — nu=Gaussian is a bare identifier that parses perfectly and only dies at import. That exact bug reached main on 11-Jul and left the engine unloadable while a digit-only regex check reported it "intact". The workflow now carries an engine import smoke-test.
 

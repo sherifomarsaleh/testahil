@@ -34,18 +34,35 @@ WHAT RUNS UNATTENDED (auto-committed to main, no approval):
   - LONO per-name and market-panel verdicts
   ...PROVIDED the materiality gate below finds nothing that needs a human.
 
-WHAT STOPS AND OPENS A PR INSTEAD (never auto-merged):
+WHAT IS MATERIAL — APPLIED, BUT NEVER SILENTLY [R-CAL-01, 23-Aug-2026]:
   - any EXISTING name's verdict category changes (PASS/PARITY/FAIL/BOUNDARY)
   - a NEW name arrives already FAILING, or its arrival flips someone else's verdict
-  - width_cal moves >5% relative, or nu crosses into a different regime
-    (specifically: the Gaussian/fat-tail boundary, since that is the parameter
-    that most changes the published cone shape)
+  - the published 90% cone moves >5% (measured on width_cal x q95(t(nu)), never on
+    the two coordinates separately — they trade off)
   - the market-level verdict itself changes
   - a panel carries a name with NO raw CSV in the library (a genuine inconsistency
     now that the library is authoritative — it means a file was deleted or never
     added, and the panel is running on stale residuals)
-  - a signal_active flip would be implied (not auto-applied even if supported —
-    Egypt's ablation this session was exactly this kind of call)
+
+Until 23-Aug-2026 each of those STOPPED the pipeline and opened a PR for a human. That
+gate was adopted for a good reason — data cleaning ALONE once flipped Korea's tail from
+nu=6 to Gaussian and two names' verdicts, and the note said a bare cron "would have
+shipped both silently". The reason survives; the mechanism did not. Between 6-Aug and
+23-Aug-2026 the gate produced 66 unmerged review PRs, and 18 names across EG, AE and SA
+sat outside any applied fit — ADNOCLS, DU, MODON, FERTIGLB and SAVOLA among them, all
+with live pages. Worse, the PRs could not be accepted even in principle: they staged
+only PENDING_REVIEW and panels, so merging one applied nothing.
+
+A gate nobody can clear is not caution, it is a stall, and a stall is its own silence —
+production kept publishing a 29-Jul fit and said nothing about it. So the defect being
+guarded against, SILENCE, is now attacked directly: a material change APPLIES, and is
+announced in three places at once — the evidence file under PENDING_REVIEW/, the reasons
+repeated verbatim in the commit message, and the config it replaced stored under
+`superseded` in fitted_configs.json. Reverting that one commit undoes all of it in step.
+Pass --halt-on-material for the old behaviour.
+
+WHAT STILL STOPS THE RUN: a market that raises. A crashed market is reported, exits
+nonzero and never touches production, exactly as before — an exception is not evidence.
 
 A NEW NAME IS NOT, BY ITSELF, MATERIAL. Adding a stock is the single most common
 thing that happens here, and blocking on it would mean a PR on literally every
@@ -326,7 +343,11 @@ def write_production(market, result):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--apply', action='store_true')
+    ap.add_argument('--halt-on-material', action='store_true',
+                    help='pre-23-Aug-2026 behaviour: stop on a material change and write '
+                         'a PENDING_REVIEW report instead of applying it')
     args = ap.parse_args()
+    applied_material = []
 
     touched = discover_touched_markets()
     if not touched:
@@ -378,7 +399,7 @@ def main():
             if args.apply:
                 write_production(market, result)
                 print(f"  -> written to market_profiles.py + fitted_configs.json")
-        else:
+        elif args.halt_on_material:
             print(f"  MATERIAL — stopping, human review required:")
             for r in reasons:
                 print(f"    - {r}")
@@ -387,6 +408,31 @@ def main():
                                         applied=False)
                 print(f"  -> wrote {p}")
             exit_code = 1
+
+        else:
+            # [R-CAL-01] MATERIAL CHANGES APPLY. The gate used to stop here. It is now
+            # loud instead of blocking — see the module docstring for why, and for what
+            # still stops.
+            print(f"  MATERIAL — applying, and recording why:")
+            for r in reasons:
+                print(f"    - {r}")
+            if args.apply:
+                write_production(market, result)
+                p = write_change_record(market, result, reasons, incumbent_profile,
+                                        applied=True)
+                print(f"  -> applied to market_profiles.py + fitted_configs.json")
+                print(f"  -> recorded at {p}")
+            applied_material.append((market, reasons))
+
+    if args.apply and applied_material:
+        # The commit message is the loudest of the three announcements, because it is the
+        # one that reaches anyone reading `git log` without knowing to look. The workflow
+        # reads this file to build it.
+        os.makedirs(PENDING_DIR, exist_ok=True)
+        with open(os.path.join(PENDING_DIR, 'LAST_RUN_MATERIAL.txt'), 'w') as f:
+            for market, reasons in applied_material:
+                for r in reasons:
+                    f.write(f"{market}: {r}\n")
 
     return exit_code
 
