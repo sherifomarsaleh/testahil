@@ -24,6 +24,7 @@ on:
       - 'engine/build_depth_audit/outstanding.json'
       - 'scripts/check_study_provenance.py'
       - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_protocol_text.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
       - '.github/workflows/study-provenance.yml'
@@ -37,6 +38,7 @@ on:
       - 'engine/build_depth_audit/outstanding.json'
       - 'scripts/check_study_provenance.py'
       - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_protocol_text.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
       - '.github/workflows/study-provenance.yml'
@@ -78,9 +80,15 @@ jobs:
           print('index registry OK — DFM interim intact, ambiguous market still refuses')
           "
 
-      # [R-DOC-01] the two governing documents must carry the same standing rules
+      # [R-DOC-01] the two governing documents must carry the same standing rules,
+      # and the same revision stamp
       - name: Protocol sync gate
         run: python3 scripts/check_protocol_sync.py
+
+      # [R-ENF-01] the four defects that reached a reader on 23-Aug-2026, checked
+      # mechanically before delivery instead of by the reader pasting the block back
+      - name: Protocol text gate
+        run: python3 scripts/check_protocol_text.py
 
       # [R-ENF-02] the check a study cannot skip by not calling it
       - name: Study provenance gate
