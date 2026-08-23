@@ -1,3 +1,6 @@
+PROTOCOL REVISION 2026-08-23d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+on the repository's default branch; nothing else is authoritative. Bump on every edit.
+
 TESTAHIL — Standing Research Protocol
 Updated 23 August 2026 (rev. 6) — ENFORCEMENT: the rules that make the other rules bind
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
@@ -782,7 +785,12 @@ an identifier the next time it is amended, so the tagged set grows from the bott
 check binds only what has been tagged.
 
 Written because the digest is kept in sync with this document by an instruction to remember, and
-on 23 Aug 2026 the copy held outside the repository was found to be one amendment behind. The
+on 23 Aug 2026 the copy held outside the repository was found to be one amendment behind. Three further
+rounds of "is this the version to adopt?" that same day each pasted back a copy one edit stale, because
+every revision of a 54,000-character block looks identical to every other. **Both documents therefore
+carry a REVISION STAMP as their first line** — a copy that does not carry the current stamp is stale on
+its face, without reading a word of it. Bump the stamp on every edit, however small: an unbumped stamp
+is worse than none, because it certifies a copy that has moved. The
 identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
 is testing rather than paraphrasing it.
 

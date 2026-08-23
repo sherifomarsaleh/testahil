@@ -55,8 +55,35 @@ def ids_in_code():
     return found
 
 
+REV = re.compile(r'^(?:DIGEST|PROTOCOL) REVISION (\d{4}-\d{2}-\d{2}[a-z]?)\b')
+
+
+def revision(path):
+    """The revision stamp both documents must carry as their first line.  [R-DOC-01]
+
+    Added after three rounds in one day of pasting back a copy one edit stale: every
+    revision of a 54,000-character block looks identical to every other, so a copy has to
+    be able to declare its own age. An UNBUMPED stamp is worse than none -- it certifies a
+    copy that has moved -- so the gate also fails when the two documents disagree.
+    """
+    first = open(path, encoding='utf-8').readline()
+    m = REV.match(first)
+    return m.group(1) if m else None
+
+
 def main():
     full, digest = ids_in(FULL), ids_in(DIGEST)
+    rf, rd = revision(FULL), revision(DIGEST)
+    if rf is None or rd is None:
+        missing = [p for p, r in ((FULL, rf), (DIGEST, rd)) if r is None]
+        print('FAIL — no revision stamp on: ' + ', '.join(os.path.basename(m) for m in missing))
+        print('Both governing documents must open with "<DIGEST|PROTOCOL> REVISION YYYY-MM-DD[x]".')
+        return 1
+    if rf != rd:
+        print(f'FAIL — revision stamps disagree: full protocol {rf}, digest {rd}. '
+              f'Amend both in the same commit and bump both.')
+        return 1
+    print(f'revision stamp: {rf} (both documents agree)')
     code = ids_in_code()
 
     only_full = sorted(full - digest)
