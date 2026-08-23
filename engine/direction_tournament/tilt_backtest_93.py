@@ -54,6 +54,14 @@ sys.path.insert(0, ENG)
 COMMITTED = ("AE", "EG", "SA")
 NOT_COMMITTED = ("IN", "KR", "QA", "US", "XAU", "XPT")
 N_PATHS = 6000
+# Non-committed markets carry no adopted tilt, so their production backtest is
+# trivially ON==OFF. Per instruction (23-Aug-2026, "there are 93 and not 78
+# tickers"), the technique is nevertheless run on every one of them
+# HYPOTHETICALLY — mom_combo at the most conservative adopted strength
+# (EG's ic) — labelled as such. This shows what the tilt WOULD have done on
+# those 15 tickers; it is evidence about extending the commitment, not a
+# record of production behavior.
+HYPO_IC = 0.062
 
 
 def _load(mkt, tk):
@@ -69,14 +77,20 @@ def _load(mkt, tk):
 
 def run_one(job):
     mkt, tk, n_paths = job
+    import dataclasses
     from market_profiles import PROFILES
     from mc_v3 import backtest_v3
     prof = PROFILES[mkt]
+    hypo = mkt not in COMMITTED
+    if hypo:
+        prof = dataclasses.replace(prof, signal_type="mom_combo",
+                                   signal_sign=1, ic=HYPO_IC, ic_by_h=None,
+                                   signal_active=True)
     try:
         df = _load(mkt, tk)
     except Exception as e:
         return {"market": mkt, "ticker": tk, "error": str(e)}
-    out = {"market": mkt, "ticker": tk, "horizons": {}}
+    out = {"market": mkt, "ticker": tk, "hypothetical": hypo, "horizons": {}}
     for hm in (1, 3):
         try:
             r_on = backtest_v3(df, prof, horizon_months=hm, use_signal=True,
@@ -120,14 +134,17 @@ def main():
     ap.add_argument("--md", required=True)
     ap.add_argument("--n-paths", type=int, default=N_PATHS)
     ap.add_argument("--workers", type=int, default=max(2, cpu_count() - 2))
+    ap.add_argument("--markets", default=",".join(COMMITTED),
+                    help="comma-separated market codes to run")
     args = ap.parse_args()
 
     jobs = []
-    for mkt in COMMITTED:
+    for mkt in args.markets.split(","):
+        mkt = mkt.strip()
         for f in sorted(os.listdir(os.path.join(ENG, "raw_ohlc", mkt))):
             if f.endswith(".csv"):
                 jobs.append((mkt, f[:-4], args.n_paths))
-    print(f"{len(jobs)} committed-market tickers, {args.workers} workers, "
+    print(f"{len(jobs)} tickers ({args.markets}), {args.workers} workers, "
           f"{args.n_paths} paths", flush=True)
 
     results = []
