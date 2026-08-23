@@ -1,0 +1,2254 @@
+{
+ "generated": "2026-08-23",
+ "n_paths": 3000,
+ "status": "production-fidelity backtest of the adopted tilt",
+ "committed": [
+  {
+   "market": "AE",
+   "ticker": "ADNOCDIST",
+   "horizons": {
+    "1M": {
+     "n": 88,
+     "tilted_share": 0.761,
+     "crps_gain_per_spot": 3e-05,
+     "pin50_gain_per_spot": 2e-05,
+     "cov50_on": 0.682,
+     "cov80_on": 0.898,
+     "cov90_on": 0.955,
+     "cov90_off": 0.966,
+     "call_hit_tilted": 0.567
+    },
+    "3M": {
+     "n": 30,
+     "tilted_share": 0.7,
+     "crps_gain_per_spot": 0.00019,
+     "pin50_gain_per_spot": 0.0002,
+     "cov50_on": 0.7,
+     "cov80_on": 0.933,
+     "cov90_on": 0.967,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.619
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ADNOCDRILL",
+   "horizons": {
+    "1M": {
+     "n": 44,
+     "tilted_share": 0.727,
+     "crps_gain_per_spot": -0.00058,
+     "pin50_gain_per_spot": -0.0005,
+     "cov50_on": 0.477,
+     "cov80_on": 0.886,
+     "cov90_on": 0.977,
+     "cov90_off": 0.977,
+     "call_hit_tilted": 0.438
+    },
+    "3M": {
+     "n": 15,
+     "tilted_share": 0.8,
+     "crps_gain_per_spot": -0.00089,
+     "pin50_gain_per_spot": -0.00102,
+     "cov50_on": 0.6,
+     "cov80_on": 1.0,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.417
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ADNOCGAS",
+   "horizons": {
+    "1M": {
+     "n": 27,
+     "tilted_share": 0.593,
+     "crps_gain_per_spot": -0.00025,
+     "pin50_gain_per_spot": -0.00037,
+     "cov50_on": 0.519,
+     "cov80_on": 0.815,
+     "cov90_on": 0.889,
+     "cov90_off": 0.889,
+     "call_hit_tilted": 0.375
+    },
+    "3M": {
+     "n": 9,
+     "tilted_share": 0.667,
+     "crps_gain_per_spot": -0.00034,
+     "pin50_gain_per_spot": 2e-05,
+     "cov50_on": 0.444,
+     "cov80_on": 1.0,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.667
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ADNOCLS",
+   "horizons": {
+    "1M": {
+     "n": 24,
+     "tilted_share": 0.792,
+     "crps_gain_per_spot": -0.00069,
+     "pin50_gain_per_spot": -0.00108,
+     "cov50_on": 0.5,
+     "cov80_on": 0.875,
+     "cov90_on": 0.958,
+     "cov90_off": 0.917,
+     "call_hit_tilted": 0.368
+    },
+    "3M": {
+     "n": 8,
+     "tilted_share": 0.75,
+     "crps_gain_per_spot": -0.0019,
+     "pin50_gain_per_spot": -0.00314,
+     "cov50_on": 0.375,
+     "cov80_on": 0.75,
+     "cov90_on": 0.875,
+     "cov90_off": 0.875,
+     "call_hit_tilted": 0.167
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ADCB",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.71,
+     "crps_gain_per_spot": 8e-05,
+     "pin50_gain_per_spot": 0.00018,
+     "cov50_on": 0.509,
+     "cov80_on": 0.834,
+     "cov90_on": 0.888,
+     "cov90_off": 0.893,
+     "call_hit_tilted": 0.575
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.754,
+     "crps_gain_per_spot": 0.00013,
+     "pin50_gain_per_spot": -0.00029,
+     "cov50_on": 0.474,
+     "cov80_on": 0.807,
+     "cov90_on": 0.86,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.535
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ADIB",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.828,
+     "crps_gain_per_spot": 0.00015,
+     "pin50_gain_per_spot": 2e-05,
+     "cov50_on": 0.503,
+     "cov80_on": 0.822,
+     "cov90_on": 0.899,
+     "cov90_off": 0.893,
+     "call_hit_tilted": 0.6
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.754,
+     "crps_gain_per_spot": 0.00144,
+     "pin50_gain_per_spot": 0.0008,
+     "cov50_on": 0.544,
+     "cov80_on": 0.754,
+     "cov90_on": 0.86,
+     "cov90_off": 0.825,
+     "call_hit_tilted": 0.674
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "AGTHIA",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.834,
+     "crps_gain_per_spot": 0.00011,
+     "pin50_gain_per_spot": 0.00045,
+     "cov50_on": 0.716,
+     "cov80_on": 0.923,
+     "cov90_on": 0.947,
+     "cov90_off": 0.953,
+     "call_hit_tilted": 0.574
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": 0.00177,
+     "pin50_gain_per_spot": 0.00268,
+     "cov50_on": 0.754,
+     "cov80_on": 0.912,
+     "cov90_on": 0.965,
+     "cov90_off": 0.982,
+     "call_hit_tilted": 0.638
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ALPHADHABI",
+   "horizons": {
+    "1M": {
+     "n": 46,
+     "tilted_share": 0.848,
+     "crps_gain_per_spot": 0.00086,
+     "pin50_gain_per_spot": 0.00062,
+     "cov50_on": 0.522,
+     "cov80_on": 0.87,
+     "cov90_on": 0.935,
+     "cov90_off": 0.935,
+     "call_hit_tilted": 0.59
+    },
+    "3M": {
+     "n": 15,
+     "tilted_share": 0.8,
+     "crps_gain_per_spot": 0.00318,
+     "pin50_gain_per_spot": 0.00304,
+     "cov50_on": 0.6,
+     "cov80_on": 0.8,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.75
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "AMR",
+   "horizons": {
+    "1M": {
+     "n": 30,
+     "tilted_share": 0.867,
+     "crps_gain_per_spot": 0.00099,
+     "pin50_gain_per_spot": 0.0008,
+     "cov50_on": 0.4,
+     "cov80_on": 0.667,
+     "cov90_on": 0.933,
+     "cov90_off": 0.933,
+     "call_hit_tilted": 0.692
+    },
+    "3M": {
+     "n": 10,
+     "tilted_share": 0.8,
+     "crps_gain_per_spot": 0.00249,
+     "pin50_gain_per_spot": 0.00167,
+     "cov50_on": 0.3,
+     "cov80_on": 0.9,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.625
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "BOROUGE",
+   "horizons": {
+    "1M": {
+     "n": 36,
+     "tilted_share": 0.528,
+     "crps_gain_per_spot": 4e-05,
+     "pin50_gain_per_spot": 4e-05,
+     "cov50_on": 0.722,
+     "cov80_on": 0.944,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.579
+    },
+    "3M": {
+     "n": 12,
+     "tilted_share": 0.583,
+     "crps_gain_per_spot": 4e-05,
+     "pin50_gain_per_spot": 4e-05,
+     "cov50_on": 0.917,
+     "cov80_on": 1.0,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.571
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "BURJEEL",
+   "horizons": {
+    "1M": {
+     "n": 32,
+     "tilted_share": 0.875,
+     "crps_gain_per_spot": 0.00083,
+     "pin50_gain_per_spot": 0.0001,
+     "cov50_on": 0.531,
+     "cov80_on": 0.75,
+     "cov90_on": 0.875,
+     "cov90_off": 0.875,
+     "call_hit_tilted": 0.571
+    },
+    "3M": {
+     "n": 10,
+     "tilted_share": 1.0,
+     "crps_gain_per_spot": 0.00647,
+     "pin50_gain_per_spot": 0.00696,
+     "cov50_on": 0.6,
+     "cov80_on": 0.9,
+     "cov90_on": 0.9,
+     "cov90_off": 0.9,
+     "call_hit_tilted": 0.8
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "DEWA",
+   "horizons": {
+    "1M": {
+     "n": 37,
+     "tilted_share": 0.622,
+     "crps_gain_per_spot": -0.00049,
+     "pin50_gain_per_spot": -0.00033,
+     "cov50_on": 0.541,
+     "cov80_on": 0.838,
+     "cov90_on": 0.892,
+     "cov90_off": 0.892,
+     "call_hit_tilted": 0.435
+    },
+    "3M": {
+     "n": 12,
+     "tilted_share": 0.833,
+     "crps_gain_per_spot": -0.00041,
+     "pin50_gain_per_spot": -0.00015,
+     "cov50_on": 0.583,
+     "cov80_on": 0.833,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ALDAR",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.799,
+     "crps_gain_per_spot": -0.00028,
+     "pin50_gain_per_spot": -0.00026,
+     "cov50_on": 0.521,
+     "cov80_on": 0.799,
+     "cov90_on": 0.899,
+     "cov90_off": 0.888,
+     "call_hit_tilted": 0.526
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.86,
+     "crps_gain_per_spot": -0.00096,
+     "pin50_gain_per_spot": -0.00012,
+     "cov50_on": 0.474,
+     "cov80_on": 0.754,
+     "cov90_on": 0.877,
+     "cov90_off": 0.877,
+     "call_hit_tilted": 0.51
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "AIRARABIA",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.852,
+     "crps_gain_per_spot": 0.00013,
+     "pin50_gain_per_spot": -2e-05,
+     "cov50_on": 0.538,
+     "cov80_on": 0.799,
+     "cov90_on": 0.905,
+     "cov90_off": 0.905,
+     "call_hit_tilted": 0.5
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.724,
+     "crps_gain_per_spot": -0.00045,
+     "pin50_gain_per_spot": -0.00103,
+     "cov50_on": 0.569,
+     "cov80_on": 0.793,
+     "cov90_on": 0.862,
+     "cov90_off": 0.862,
+     "call_hit_tilted": 0.452
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "DIB",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.728,
+     "crps_gain_per_spot": 0.00027,
+     "pin50_gain_per_spot": 3e-05,
+     "cov50_on": 0.509,
+     "cov80_on": 0.817,
+     "cov90_on": 0.893,
+     "cov90_off": 0.893,
+     "call_hit_tilted": 0.496
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.719,
+     "crps_gain_per_spot": 0.00092,
+     "pin50_gain_per_spot": -2e-05,
+     "cov50_on": 0.596,
+     "cov80_on": 0.772,
+     "cov90_on": 0.86,
+     "cov90_off": 0.842,
+     "call_hit_tilted": 0.463
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "EAND",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.716,
+     "crps_gain_per_spot": 0.00029,
+     "pin50_gain_per_spot": 9e-05,
+     "cov50_on": 0.568,
+     "cov80_on": 0.793,
+     "cov90_on": 0.888,
+     "cov90_off": 0.882,
+     "call_hit_tilted": 0.537
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.737,
+     "crps_gain_per_spot": 0.00119,
+     "pin50_gain_per_spot": 0.00084,
+     "cov50_on": 0.684,
+     "cov80_on": 0.842,
+     "cov90_on": 0.912,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.619
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "DU",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.751,
+     "crps_gain_per_spot": 0.00021,
+     "pin50_gain_per_spot": 0.00024,
+     "cov50_on": 0.698,
+     "cov80_on": 0.893,
+     "cov90_on": 0.964,
+     "cov90_off": 0.959,
+     "call_hit_tilted": 0.575
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.793,
+     "crps_gain_per_spot": 0.00056,
+     "pin50_gain_per_spot": 0.00095,
+     "cov50_on": 0.69,
+     "cov80_on": 0.914,
+     "cov90_on": 0.948,
+     "cov90_off": 0.948,
+     "call_hit_tilted": 0.63
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "EMPOWER",
+   "horizons": {
+    "1M": {
+     "n": 31,
+     "tilted_share": 0.548,
+     "crps_gain_per_spot": -0.00029,
+     "pin50_gain_per_spot": -0.0,
+     "cov50_on": 0.774,
+     "cov80_on": 0.935,
+     "cov90_on": 0.968,
+     "cov90_off": 0.968,
+     "call_hit_tilted": 0.412
+    },
+    "3M": {
+     "n": 10,
+     "tilted_share": 0.4,
+     "crps_gain_per_spot": -0.00132,
+     "pin50_gain_per_spot": -0.00169,
+     "cov50_on": 0.6,
+     "cov80_on": 1.0,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": null
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "EMAARDEV",
+   "horizons": {
+    "1M": {
+     "n": 88,
+     "tilted_share": 0.818,
+     "crps_gain_per_spot": 0.00031,
+     "pin50_gain_per_spot": 0.00022,
+     "cov50_on": 0.477,
+     "cov80_on": 0.75,
+     "cov90_on": 0.83,
+     "cov90_off": 0.841,
+     "call_hit_tilted": 0.569
+    },
+    "3M": {
+     "n": 30,
+     "tilted_share": 0.8,
+     "crps_gain_per_spot": 0.00041,
+     "pin50_gain_per_spot": -0.00074,
+     "cov50_on": 0.467,
+     "cov80_on": 0.8,
+     "cov90_on": 0.9,
+     "cov90_off": 0.9,
+     "call_hit_tilted": 0.542
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "EMAAR",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.876,
+     "crps_gain_per_spot": 0.00035,
+     "pin50_gain_per_spot": 6e-05,
+     "cov50_on": 0.432,
+     "cov80_on": 0.746,
+     "cov90_on": 0.846,
+     "cov90_off": 0.84,
+     "call_hit_tilted": 0.52
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.895,
+     "crps_gain_per_spot": 0.00181,
+     "pin50_gain_per_spot": 0.00122,
+     "cov50_on": 0.491,
+     "cov80_on": 0.702,
+     "cov90_on": 0.789,
+     "cov90_off": 0.789,
+     "call_hit_tilted": 0.608
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "FERTIGLB",
+   "horizons": {
+    "1M": {
+     "n": 43,
+     "tilted_share": 0.744,
+     "crps_gain_per_spot": 9e-05,
+     "pin50_gain_per_spot": 0.00035,
+     "cov50_on": 0.488,
+     "cov80_on": 0.767,
+     "cov90_on": 0.953,
+     "cov90_off": 0.953,
+     "call_hit_tilted": 0.625
+    },
+    "3M": {
+     "n": 14,
+     "tilted_share": 0.714,
+     "crps_gain_per_spot": 0.00151,
+     "pin50_gain_per_spot": 0.00134,
+     "cov50_on": 0.429,
+     "cov80_on": 0.786,
+     "cov90_on": 0.929,
+     "cov90_off": 0.929,
+     "call_hit_tilted": 0.6
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "ENBD",
+   "horizons": {
+    "1M": {
+     "n": 168,
+     "tilted_share": 0.774,
+     "crps_gain_per_spot": -4e-05,
+     "pin50_gain_per_spot": -6e-05,
+     "cov50_on": 0.565,
+     "cov80_on": 0.833,
+     "cov90_on": 0.935,
+     "cov90_off": 0.911,
+     "call_hit_tilted": 0.546
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.737,
+     "crps_gain_per_spot": -0.00015,
+     "pin50_gain_per_spot": -0.0003,
+     "cov50_on": 0.649,
+     "cov80_on": 0.842,
+     "cov90_on": 0.93,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.524
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "LULU",
+   "horizons": {
+    "1M": {
+     "n": 7,
+     "note": "insufficient"
+    },
+    "3M": {
+     "n": 2,
+     "note": "insufficient"
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "MODON",
+   "horizons": {
+    "1M": {
+     "n": 67,
+     "tilted_share": 0.627,
+     "crps_gain_per_spot": -0.00049,
+     "pin50_gain_per_spot": -0.0007,
+     "cov50_on": 0.612,
+     "cov80_on": 0.821,
+     "cov90_on": 0.851,
+     "cov90_off": 0.866,
+     "call_hit_tilted": 0.357
+    },
+    "3M": {
+     "n": 23,
+     "tilted_share": 0.609,
+     "crps_gain_per_spot": -0.00347,
+     "pin50_gain_per_spot": -0.00255,
+     "cov50_on": 0.565,
+     "cov80_on": 0.826,
+     "cov90_on": 0.826,
+     "cov90_off": 0.87,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "SALIK",
+   "horizons": {
+    "1M": {
+     "n": 32,
+     "tilted_share": 0.844,
+     "crps_gain_per_spot": -8e-05,
+     "pin50_gain_per_spot": 0.00035,
+     "cov50_on": 0.531,
+     "cov80_on": 0.781,
+     "cov90_on": 0.875,
+     "cov90_off": 0.906,
+     "call_hit_tilted": 0.593
+    },
+    "3M": {
+     "n": 11,
+     "tilted_share": 1.0,
+     "crps_gain_per_spot": 0.00194,
+     "pin50_gain_per_spot": 0.00119,
+     "cov50_on": 0.455,
+     "cov80_on": 0.818,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.636
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "FAB",
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.781,
+     "crps_gain_per_spot": 0.00033,
+     "pin50_gain_per_spot": 0.00021,
+     "cov50_on": 0.544,
+     "cov80_on": 0.834,
+     "cov90_on": 0.911,
+     "cov90_off": 0.911,
+     "call_hit_tilted": 0.545
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.789,
+     "crps_gain_per_spot": 0.00149,
+     "pin50_gain_per_spot": 0.00107,
+     "cov50_on": 0.561,
+     "cov80_on": 0.807,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.622
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "TWOPOINTZERO",
+   "horizons": {
+    "1M": {
+     "n": 42,
+     "tilted_share": 0.833,
+     "crps_gain_per_spot": -0.00177,
+     "pin50_gain_per_spot": -0.00116,
+     "cov50_on": 0.381,
+     "cov80_on": 0.667,
+     "cov90_on": 0.786,
+     "cov90_off": 0.81,
+     "call_hit_tilted": 0.486
+    },
+    "3M": {
+     "n": 14,
+     "tilted_share": 0.857,
+     "crps_gain_per_spot": -0.00579,
+     "pin50_gain_per_spot": -0.00466,
+     "cov50_on": 0.286,
+     "cov80_on": 0.714,
+     "cov90_on": 0.786,
+     "cov90_off": 0.786,
+     "call_hit_tilted": 0.333
+    }
+   }
+  },
+  {
+   "market": "AE",
+   "ticker": "IHC",
+   "horizons": {
+    "1M": {
+     "n": 135,
+     "tilted_share": 0.763,
+     "crps_gain_per_spot": 0.00306,
+     "pin50_gain_per_spot": 0.00243,
+     "cov50_on": 0.785,
+     "cov80_on": 0.889,
+     "cov90_on": 0.896,
+     "cov90_off": 0.896,
+     "call_hit_tilted": 0.66
+    },
+    "3M": {
+     "n": 47,
+     "tilted_share": 0.809,
+     "crps_gain_per_spot": 0.00974,
+     "pin50_gain_per_spot": 0.00795,
+     "cov50_on": 0.638,
+     "cov80_on": 0.787,
+     "cov90_on": 0.851,
+     "cov90_off": 0.809,
+     "call_hit_tilted": 0.684
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ABUK",
+   "horizons": {
+    "1M": {
+     "n": 165,
+     "tilted_share": 0.836,
+     "crps_gain_per_spot": 7e-05,
+     "pin50_gain_per_spot": 0.00016,
+     "cov50_on": 0.6,
+     "cov80_on": 0.873,
+     "cov90_on": 0.915,
+     "cov90_off": 0.921,
+     "call_hit_tilted": 0.551
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.786,
+     "crps_gain_per_spot": 0.00073,
+     "pin50_gain_per_spot": 0.00017,
+     "cov50_on": 0.571,
+     "cov80_on": 0.839,
+     "cov90_on": 0.911,
+     "cov90_off": 0.893,
+     "call_hit_tilted": 0.523
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ADIB",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.813,
+     "crps_gain_per_spot": 0.00036,
+     "pin50_gain_per_spot": 0.00053,
+     "cov50_on": 0.542,
+     "cov80_on": 0.861,
+     "cov90_on": 0.934,
+     "cov90_off": 0.934,
+     "call_hit_tilted": 0.6
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": 0.00101,
+     "pin50_gain_per_spot": 0.00066,
+     "cov50_on": 0.579,
+     "cov80_on": 0.86,
+     "cov90_on": 0.947,
+     "cov90_off": 0.947,
+     "call_hit_tilted": 0.543
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "AMOC",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.849,
+     "crps_gain_per_spot": 0.00064,
+     "pin50_gain_per_spot": 0.00043,
+     "cov50_on": 0.542,
+     "cov80_on": 0.807,
+     "cov90_on": 0.886,
+     "cov90_off": 0.892,
+     "call_hit_tilted": 0.574
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.789,
+     "crps_gain_per_spot": 0.00148,
+     "pin50_gain_per_spot": 0.00044,
+     "cov50_on": 0.491,
+     "cov80_on": 0.789,
+     "cov90_on": 0.86,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.511
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ARCC",
+   "horizons": {
+    "1M": {
+     "n": 129,
+     "tilted_share": 0.783,
+     "crps_gain_per_spot": 0.00011,
+     "pin50_gain_per_spot": 0.00022,
+     "cov50_on": 0.496,
+     "cov80_on": 0.814,
+     "cov90_on": 0.907,
+     "cov90_off": 0.899,
+     "call_hit_tilted": 0.525
+    },
+    "3M": {
+     "n": 44,
+     "tilted_share": 0.75,
+     "crps_gain_per_spot": 0.00094,
+     "pin50_gain_per_spot": 0.00153,
+     "cov50_on": 0.568,
+     "cov80_on": 0.886,
+     "cov90_on": 0.932,
+     "cov90_off": 0.932,
+     "call_hit_tilted": 0.606
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "BTFH",
+   "horizons": {
+    "1M": {
+     "n": 161,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": -0.0012,
+     "pin50_gain_per_spot": -0.0011,
+     "cov50_on": 0.491,
+     "cov80_on": 0.783,
+     "cov90_on": 0.882,
+     "cov90_off": 0.876,
+     "call_hit_tilted": 0.438
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.804,
+     "crps_gain_per_spot": -0.00382,
+     "pin50_gain_per_spot": -0.00214,
+     "cov50_on": 0.554,
+     "cov80_on": 0.768,
+     "cov90_on": 0.804,
+     "cov90_off": 0.821,
+     "call_hit_tilted": 0.444
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "CLHO",
+   "horizons": {
+    "1M": {
+     "n": 105,
+     "tilted_share": 0.771,
+     "crps_gain_per_spot": -0.00028,
+     "pin50_gain_per_spot": -0.00035,
+     "cov50_on": 0.6,
+     "cov80_on": 0.943,
+     "cov90_on": 0.99,
+     "cov90_off": 0.99,
+     "call_hit_tilted": 0.494
+    },
+    "3M": {
+     "n": 36,
+     "tilted_share": 0.722,
+     "crps_gain_per_spot": -0.00092,
+     "pin50_gain_per_spot": -0.00197,
+     "cov50_on": 0.694,
+     "cov80_on": 0.944,
+     "cov90_on": 0.972,
+     "cov90_off": 0.972,
+     "call_hit_tilted": 0.423
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "CCAP",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.795,
+     "crps_gain_per_spot": 0.00016,
+     "pin50_gain_per_spot": 0.00043,
+     "cov50_on": 0.494,
+     "cov80_on": 0.783,
+     "cov90_on": 0.867,
+     "cov90_off": 0.88,
+     "call_hit_tilted": 0.553
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.86,
+     "crps_gain_per_spot": 0.0013,
+     "pin50_gain_per_spot": 0.00048,
+     "cov50_on": 0.526,
+     "cov80_on": 0.737,
+     "cov90_on": 0.842,
+     "cov90_off": 0.825,
+     "call_hit_tilted": 0.51
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "DSCW",
+   "horizons": {
+    "1M": {
+     "n": 85,
+     "tilted_share": 0.871,
+     "crps_gain_per_spot": 0.00101,
+     "pin50_gain_per_spot": 0.00095,
+     "cov50_on": 0.588,
+     "cov80_on": 0.835,
+     "cov90_on": 0.894,
+     "cov90_off": 0.882,
+     "call_hit_tilted": 0.608
+    },
+    "3M": {
+     "n": 29,
+     "tilted_share": 0.862,
+     "crps_gain_per_spot": 0.0018,
+     "pin50_gain_per_spot": 0.00023,
+     "cov50_on": 0.517,
+     "cov80_on": 0.793,
+     "cov90_on": 0.931,
+     "cov90_off": 0.931,
+     "call_hit_tilted": 0.6
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "EFIH",
+   "horizons": {
+    "1M": {
+     "n": 43,
+     "tilted_share": 0.698,
+     "crps_gain_per_spot": -0.00032,
+     "pin50_gain_per_spot": 5e-05,
+     "cov50_on": 0.465,
+     "cov80_on": 0.791,
+     "cov90_on": 0.86,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.5
+    },
+    "3M": {
+     "n": 14,
+     "tilted_share": 0.571,
+     "crps_gain_per_spot": -0.00248,
+     "pin50_gain_per_spot": -0.00278,
+     "cov50_on": 0.5,
+     "cov80_on": 0.929,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.125
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "EFID",
+   "horizons": {
+    "1M": {
+     "n": 117,
+     "tilted_share": 0.846,
+     "crps_gain_per_spot": 4e-05,
+     "pin50_gain_per_spot": 0.00023,
+     "cov50_on": 0.709,
+     "cov80_on": 0.897,
+     "cov90_on": 0.94,
+     "cov90_off": 0.932,
+     "call_hit_tilted": 0.485
+    },
+    "3M": {
+     "n": 40,
+     "tilted_share": 0.875,
+     "crps_gain_per_spot": 0.00017,
+     "pin50_gain_per_spot": 0.00092,
+     "cov50_on": 0.6,
+     "cov80_on": 0.875,
+     "cov90_on": 0.95,
+     "cov90_off": 0.95,
+     "call_hit_tilted": 0.543
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "COMI",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.886,
+     "crps_gain_per_spot": 7e-05,
+     "pin50_gain_per_spot": -4e-05,
+     "cov50_on": 0.488,
+     "cov80_on": 0.795,
+     "cov90_on": 0.88,
+     "cov90_off": 0.88,
+     "call_hit_tilted": 0.524
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": 5e-05,
+     "pin50_gain_per_spot": -0.00017,
+     "cov50_on": 0.439,
+     "cov80_on": 0.825,
+     "cov90_on": 0.895,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "EGAL",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.88,
+     "crps_gain_per_spot": 0.00063,
+     "pin50_gain_per_spot": 0.00023,
+     "cov50_on": 0.62,
+     "cov80_on": 0.825,
+     "cov90_on": 0.892,
+     "cov90_off": 0.886,
+     "call_hit_tilted": 0.527
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.93,
+     "crps_gain_per_spot": 0.00152,
+     "pin50_gain_per_spot": 0.00023,
+     "cov50_on": 0.561,
+     "cov80_on": 0.772,
+     "cov90_on": 0.895,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.604
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "EGCH",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.771,
+     "crps_gain_per_spot": -6e-05,
+     "pin50_gain_per_spot": 1e-05,
+     "cov50_on": 0.512,
+     "cov80_on": 0.825,
+     "cov90_on": 0.916,
+     "cov90_off": 0.916,
+     "call_hit_tilted": 0.477
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.737,
+     "crps_gain_per_spot": 0.00022,
+     "pin50_gain_per_spot": -0.00025,
+     "cov50_on": 0.544,
+     "cov80_on": 0.86,
+     "cov90_on": 0.947,
+     "cov90_off": 0.947,
+     "call_hit_tilted": 0.476
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "EMFD",
+   "horizons": {
+    "1M": {
+     "n": 116,
+     "tilted_share": 0.759,
+     "crps_gain_per_spot": -0.0002,
+     "pin50_gain_per_spot": -0.00026,
+     "cov50_on": 0.595,
+     "cov80_on": 0.905,
+     "cov90_on": 0.94,
+     "cov90_off": 0.957,
+     "call_hit_tilted": 0.489
+    },
+    "3M": {
+     "n": 39,
+     "tilted_share": 0.846,
+     "crps_gain_per_spot": -8e-05,
+     "pin50_gain_per_spot": 2e-05,
+     "cov50_on": 0.59,
+     "cov80_on": 0.872,
+     "cov90_on": 0.949,
+     "cov90_off": 0.949,
+     "call_hit_tilted": 0.545
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ELEC",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.783,
+     "crps_gain_per_spot": 0.0003,
+     "pin50_gain_per_spot": -3e-05,
+     "cov50_on": 0.524,
+     "cov80_on": 0.831,
+     "cov90_on": 0.904,
+     "cov90_off": 0.898,
+     "call_hit_tilted": 0.523
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": 0.00118,
+     "pin50_gain_per_spot": 0.00056,
+     "cov50_on": 0.526,
+     "cov80_on": 0.877,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "FWRY",
+   "horizons": {
+    "1M": {
+     "n": 68,
+     "tilted_share": 0.853,
+     "crps_gain_per_spot": 0.00042,
+     "pin50_gain_per_spot": -0.00023,
+     "cov50_on": 0.5,
+     "cov80_on": 0.779,
+     "cov90_on": 0.882,
+     "cov90_off": 0.853,
+     "call_hit_tilted": 0.483
+    },
+    "3M": {
+     "n": 23,
+     "tilted_share": 0.913,
+     "crps_gain_per_spot": 0.00165,
+     "pin50_gain_per_spot": 0.00138,
+     "cov50_on": 0.478,
+     "cov80_on": 0.87,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.571
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ETEL",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.759,
+     "crps_gain_per_spot": -5e-05,
+     "pin50_gain_per_spot": -2e-05,
+     "cov50_on": 0.524,
+     "cov80_on": 0.807,
+     "cov90_on": 0.922,
+     "cov90_off": 0.916,
+     "call_hit_tilted": 0.508
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.684,
+     "crps_gain_per_spot": 0.00033,
+     "pin50_gain_per_spot": -0.00048,
+     "cov50_on": 0.404,
+     "cov80_on": 0.772,
+     "cov90_on": 0.965,
+     "cov90_off": 0.982,
+     "call_hit_tilted": 0.513
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "GBCO",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.898,
+     "crps_gain_per_spot": -0.00045,
+     "pin50_gain_per_spot": -0.0005,
+     "cov50_on": 0.542,
+     "cov80_on": 0.867,
+     "cov90_on": 0.922,
+     "cov90_off": 0.928,
+     "call_hit_tilted": 0.456
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.857,
+     "crps_gain_per_spot": -0.00136,
+     "pin50_gain_per_spot": -0.00056,
+     "cov50_on": 0.571,
+     "cov80_on": 0.875,
+     "cov90_on": 0.929,
+     "cov90_off": 0.929,
+     "call_hit_tilted": 0.521
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "HELI",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.795,
+     "crps_gain_per_spot": -0.00047,
+     "pin50_gain_per_spot": -0.00061,
+     "cov50_on": 0.446,
+     "cov80_on": 0.741,
+     "cov90_on": 0.867,
+     "cov90_off": 0.867,
+     "call_hit_tilted": 0.447
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": -0.00105,
+     "pin50_gain_per_spot": -0.00136,
+     "cov50_on": 0.544,
+     "cov80_on": 0.754,
+     "cov90_on": 0.912,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.457
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ISPH",
+   "horizons": {
+    "1M": {
+     "n": 87,
+     "tilted_share": 0.828,
+     "crps_gain_per_spot": -0.0004,
+     "pin50_gain_per_spot": -0.00015,
+     "cov50_on": 0.494,
+     "cov80_on": 0.77,
+     "cov90_on": 0.874,
+     "cov90_off": 0.862,
+     "call_hit_tilted": 0.542
+    },
+    "3M": {
+     "n": 30,
+     "tilted_share": 0.9,
+     "crps_gain_per_spot": -0.00048,
+     "pin50_gain_per_spot": 0.00039,
+     "cov50_on": 0.433,
+     "cov80_on": 0.733,
+     "cov90_on": 0.767,
+     "cov90_off": 0.767,
+     "call_hit_tilted": 0.481
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "HRHO",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.759,
+     "crps_gain_per_spot": -0.0003,
+     "pin50_gain_per_spot": -8e-05,
+     "cov50_on": 0.506,
+     "cov80_on": 0.831,
+     "cov90_on": 0.922,
+     "cov90_off": 0.922,
+     "call_hit_tilted": 0.492
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.754,
+     "crps_gain_per_spot": -0.0006,
+     "pin50_gain_per_spot": -0.00027,
+     "cov50_on": 0.526,
+     "cov80_on": 0.842,
+     "cov90_on": 0.877,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.488
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "JUFO",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.867,
+     "crps_gain_per_spot": -0.00011,
+     "pin50_gain_per_spot": -0.00022,
+     "cov50_on": 0.542,
+     "cov80_on": 0.861,
+     "cov90_on": 0.916,
+     "cov90_off": 0.91,
+     "call_hit_tilted": 0.493
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": 0.00015,
+     "pin50_gain_per_spot": 0.00074,
+     "cov50_on": 0.649,
+     "cov80_on": 0.877,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.596
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "KABO",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.819,
+     "crps_gain_per_spot": -0.00053,
+     "pin50_gain_per_spot": -0.00049,
+     "cov50_on": 0.488,
+     "cov80_on": 0.819,
+     "cov90_on": 0.934,
+     "cov90_off": 0.922,
+     "call_hit_tilted": 0.485
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.821,
+     "crps_gain_per_spot": -0.00108,
+     "pin50_gain_per_spot": 4e-05,
+     "cov50_on": 0.411,
+     "cov80_on": 0.804,
+     "cov90_on": 0.911,
+     "cov90_off": 0.911,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "LCSW",
+   "horizons": {
+    "1M": {
+     "n": 165,
+     "tilted_share": 0.836,
+     "crps_gain_per_spot": -0.00023,
+     "pin50_gain_per_spot": 0.0001,
+     "cov50_on": 0.594,
+     "cov80_on": 0.873,
+     "cov90_on": 0.915,
+     "cov90_off": 0.921,
+     "call_hit_tilted": 0.543
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.929,
+     "crps_gain_per_spot": -0.00087,
+     "pin50_gain_per_spot": 1e-05,
+     "cov50_on": 0.518,
+     "cov80_on": 0.786,
+     "cov90_on": 0.893,
+     "cov90_off": 0.893,
+     "call_hit_tilted": 0.519
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "OCDI",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.837,
+     "crps_gain_per_spot": -6e-05,
+     "pin50_gain_per_spot": -0.00014,
+     "cov50_on": 0.572,
+     "cov80_on": 0.837,
+     "cov90_on": 0.934,
+     "cov90_off": 0.934,
+     "call_hit_tilted": 0.518
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": -0.00023,
+     "pin50_gain_per_spot": -0.00055,
+     "cov50_on": 0.421,
+     "cov80_on": 0.877,
+     "cov90_on": 0.947,
+     "cov90_off": 0.947,
+     "call_hit_tilted": 0.489
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "OIH",
+   "horizons": {
+    "1M": {
+     "n": 156,
+     "tilted_share": 0.769,
+     "crps_gain_per_spot": -0.00027,
+     "pin50_gain_per_spot": 0.0,
+     "cov50_on": 0.622,
+     "cov80_on": 0.846,
+     "cov90_on": 0.897,
+     "cov90_off": 0.891,
+     "call_hit_tilted": 0.492
+    },
+    "3M": {
+     "n": 53,
+     "tilted_share": 0.792,
+     "crps_gain_per_spot": -0.0003,
+     "pin50_gain_per_spot": 0.00123,
+     "cov50_on": 0.566,
+     "cov80_on": 0.849,
+     "cov90_on": 0.962,
+     "cov90_off": 0.962,
+     "call_hit_tilted": 0.548
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ORAS",
+   "horizons": {
+    "1M": {
+     "n": 119,
+     "tilted_share": 0.891,
+     "crps_gain_per_spot": -4e-05,
+     "pin50_gain_per_spot": 0.00012,
+     "cov50_on": 0.513,
+     "cov80_on": 0.832,
+     "cov90_on": 0.916,
+     "cov90_off": 0.933,
+     "call_hit_tilted": 0.538
+    },
+    "3M": {
+     "n": 41,
+     "tilted_share": 0.902,
+     "crps_gain_per_spot": -0.00015,
+     "pin50_gain_per_spot": -0.00028,
+     "cov50_on": 0.439,
+     "cov80_on": 0.829,
+     "cov90_on": 0.878,
+     "cov90_off": 0.878,
+     "call_hit_tilted": 0.486
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ORHD",
+   "horizons": {
+    "1M": {
+     "n": 119,
+     "tilted_share": 0.815,
+     "crps_gain_per_spot": -0.00014,
+     "pin50_gain_per_spot": -0.00035,
+     "cov50_on": 0.521,
+     "cov80_on": 0.824,
+     "cov90_on": 0.933,
+     "cov90_off": 0.933,
+     "call_hit_tilted": 0.495
+    },
+    "3M": {
+     "n": 41,
+     "tilted_share": 0.829,
+     "crps_gain_per_spot": 0.00103,
+     "pin50_gain_per_spot": 0.00087,
+     "cov50_on": 0.512,
+     "cov80_on": 0.854,
+     "cov90_on": 0.927,
+     "cov90_off": 0.927,
+     "call_hit_tilted": 0.559
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "PHAR",
+   "horizons": {
+    "1M": {
+     "n": 164,
+     "tilted_share": 0.848,
+     "crps_gain_per_spot": 7e-05,
+     "pin50_gain_per_spot": -5e-05,
+     "cov50_on": 0.695,
+     "cov80_on": 0.939,
+     "cov90_on": 0.963,
+     "cov90_off": 0.957,
+     "call_hit_tilted": 0.547
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.839,
+     "crps_gain_per_spot": 0.00087,
+     "pin50_gain_per_spot": 0.00053,
+     "cov50_on": 0.536,
+     "cov80_on": 0.946,
+     "cov90_on": 0.982,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.617
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "PRDC",
+   "horizons": {
+    "1M": {
+     "n": 43,
+     "tilted_share": 0.698,
+     "crps_gain_per_spot": 8e-05,
+     "pin50_gain_per_spot": -0.00013,
+     "cov50_on": 0.535,
+     "cov80_on": 0.814,
+     "cov90_on": 0.884,
+     "cov90_off": 0.884,
+     "call_hit_tilted": 0.467
+    },
+    "3M": {
+     "n": 14,
+     "tilted_share": 0.643,
+     "crps_gain_per_spot": 0.0001,
+     "pin50_gain_per_spot": 0.0,
+     "cov50_on": 0.714,
+     "cov80_on": 0.857,
+     "cov90_on": 1.0,
+     "cov90_off": 1.0,
+     "call_hit_tilted": 0.444
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "ORWE",
+   "horizons": {
+    "1M": {
+     "n": 165,
+     "tilted_share": 0.776,
+     "crps_gain_per_spot": -0.00038,
+     "pin50_gain_per_spot": -0.00037,
+     "cov50_on": 0.594,
+     "cov80_on": 0.861,
+     "cov90_on": 0.927,
+     "cov90_off": 0.921,
+     "call_hit_tilted": 0.492
+    },
+    "3M": {
+     "n": 56,
+     "tilted_share": 0.768,
+     "crps_gain_per_spot": -0.00111,
+     "pin50_gain_per_spot": -0.00139,
+     "cov50_on": 0.518,
+     "cov80_on": 0.804,
+     "cov90_on": 0.875,
+     "cov90_off": 0.875,
+     "call_hit_tilted": 0.442
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "RMDA",
+   "horizons": {
+    "1M": {
+     "n": 64,
+     "tilted_share": 0.812,
+     "crps_gain_per_spot": -0.00021,
+     "pin50_gain_per_spot": -0.00036,
+     "cov50_on": 0.562,
+     "cov80_on": 0.875,
+     "cov90_on": 0.922,
+     "cov90_off": 0.922,
+     "call_hit_tilted": 0.5
+    },
+    "3M": {
+     "n": 22,
+     "tilted_share": 0.682,
+     "crps_gain_per_spot": -8e-05,
+     "pin50_gain_per_spot": 7e-05,
+     "cov50_on": 0.5,
+     "cov80_on": 0.909,
+     "cov90_on": 0.955,
+     "cov90_off": 0.955,
+     "call_hit_tilted": 0.467
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "PHDC",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.88,
+     "crps_gain_per_spot": -0.00042,
+     "pin50_gain_per_spot": -0.00025,
+     "cov50_on": 0.524,
+     "cov80_on": 0.825,
+     "cov90_on": 0.898,
+     "cov90_off": 0.892,
+     "call_hit_tilted": 0.507
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": -0.00048,
+     "pin50_gain_per_spot": 0.00019,
+     "cov50_on": 0.474,
+     "cov80_on": 0.842,
+     "cov90_on": 0.895,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.574
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "RAYA",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.687,
+     "crps_gain_per_spot": -0.00042,
+     "pin50_gain_per_spot": -0.00081,
+     "cov50_on": 0.693,
+     "cov80_on": 0.91,
+     "cov90_on": 0.958,
+     "cov90_off": 0.958,
+     "call_hit_tilted": 0.491
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.667,
+     "crps_gain_per_spot": -0.00014,
+     "pin50_gain_per_spot": -0.0011,
+     "cov50_on": 0.702,
+     "cov80_on": 0.877,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.526
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "SCEM",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.855,
+     "crps_gain_per_spot": 4e-05,
+     "pin50_gain_per_spot": -0.00078,
+     "cov50_on": 0.729,
+     "cov80_on": 0.922,
+     "cov90_on": 0.952,
+     "cov90_off": 0.952,
+     "call_hit_tilted": 0.528
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.895,
+     "crps_gain_per_spot": 0.00053,
+     "pin50_gain_per_spot": -0.0007,
+     "cov50_on": 0.702,
+     "cov80_on": 0.842,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.588
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "SWDY",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.813,
+     "crps_gain_per_spot": 0.00042,
+     "pin50_gain_per_spot": 0.0001,
+     "cov50_on": 0.53,
+     "cov80_on": 0.825,
+     "cov90_on": 0.904,
+     "cov90_off": 0.91,
+     "call_hit_tilted": 0.519
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.86,
+     "crps_gain_per_spot": 0.00226,
+     "pin50_gain_per_spot": 0.0016,
+     "cov50_on": 0.474,
+     "cov80_on": 0.789,
+     "cov90_on": 0.947,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.592
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "ACWA",
+   "horizons": {
+    "1M": {
+     "n": 43,
+     "tilted_share": 0.86,
+     "crps_gain_per_spot": 0.00075,
+     "pin50_gain_per_spot": 0.00092,
+     "cov50_on": 0.512,
+     "cov80_on": 0.86,
+     "cov90_on": 0.93,
+     "cov90_off": 0.907,
+     "call_hit_tilted": 0.649
+    },
+    "3M": {
+     "n": 14,
+     "tilted_share": 0.857,
+     "crps_gain_per_spot": 0.00172,
+     "pin50_gain_per_spot": -0.00148,
+     "cov50_on": 0.5,
+     "cov80_on": 0.786,
+     "cov90_on": 0.857,
+     "cov90_off": 0.857,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "ARAMCO",
+   "horizons": {
+    "1M": {
+     "n": 64,
+     "tilted_share": 0.859,
+     "crps_gain_per_spot": -0.00016,
+     "pin50_gain_per_spot": -1e-05,
+     "cov50_on": 0.531,
+     "cov80_on": 0.797,
+     "cov90_on": 0.891,
+     "cov90_off": 0.906,
+     "call_hit_tilted": 0.491
+    },
+    "3M": {
+     "n": 22,
+     "tilted_share": 0.864,
+     "crps_gain_per_spot": -0.00097,
+     "pin50_gain_per_spot": -0.00016,
+     "cov50_on": 0.409,
+     "cov80_on": 0.773,
+     "cov90_on": 0.909,
+     "cov90_off": 0.909,
+     "call_hit_tilted": 0.526
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "ELM",
+   "horizons": {
+    "1M": {
+     "n": 39,
+     "tilted_share": 0.949,
+     "crps_gain_per_spot": 0.00207,
+     "pin50_gain_per_spot": 0.00198,
+     "cov50_on": 0.462,
+     "cov80_on": 0.897,
+     "cov90_on": 0.923,
+     "cov90_off": 0.923,
+     "call_hit_tilted": 0.649
+    },
+    "3M": {
+     "n": 13,
+     "tilted_share": 0.923,
+     "crps_gain_per_spot": 0.00446,
+     "pin50_gain_per_spot": 0.00121,
+     "cov50_on": 0.308,
+     "cov80_on": 0.538,
+     "cov90_on": 0.846,
+     "cov90_off": 0.769,
+     "call_hit_tilted": 0.583
+    }
+   }
+  },
+  {
+   "market": "EG",
+   "ticker": "TMGH",
+   "horizons": {
+    "1M": {
+     "n": 166,
+     "tilted_share": 0.771,
+     "crps_gain_per_spot": -0.00015,
+     "pin50_gain_per_spot": -0.00015,
+     "cov50_on": 0.572,
+     "cov80_on": 0.855,
+     "cov90_on": 0.94,
+     "cov90_off": 0.952,
+     "call_hit_tilted": 0.477
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.772,
+     "crps_gain_per_spot": 0.0005,
+     "pin50_gain_per_spot": -0.00102,
+     "cov50_on": 0.474,
+     "cov80_on": 0.825,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.386
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "ALINMA",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.874,
+     "crps_gain_per_spot": 8e-05,
+     "pin50_gain_per_spot": 0.00027,
+     "cov50_on": 0.557,
+     "cov80_on": 0.82,
+     "cov90_on": 0.886,
+     "cov90_off": 0.892,
+     "call_hit_tilted": 0.534
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.947,
+     "crps_gain_per_spot": -0.00016,
+     "pin50_gain_per_spot": -7e-05,
+     "cov50_on": 0.404,
+     "cov80_on": 0.737,
+     "cov90_on": 0.86,
+     "cov90_off": 0.842,
+     "call_hit_tilted": 0.481
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "EXTRA",
+   "horizons": {
+    "1M": {
+     "n": 156,
+     "tilted_share": 0.885,
+     "crps_gain_per_spot": 5e-05,
+     "pin50_gain_per_spot": -0.00035,
+     "cov50_on": 0.641,
+     "cov80_on": 0.853,
+     "cov90_on": 0.917,
+     "cov90_off": 0.917,
+     "call_hit_tilted": 0.536
+    },
+    "3M": {
+     "n": 53,
+     "tilted_share": 0.925,
+     "crps_gain_per_spot": 0.00193,
+     "pin50_gain_per_spot": 0.00231,
+     "cov50_on": 0.585,
+     "cov80_on": 0.811,
+     "cov90_on": 0.849,
+     "cov90_off": 0.868,
+     "call_hit_tilted": 0.633
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "MAADEN",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.832,
+     "crps_gain_per_spot": -0.00015,
+     "pin50_gain_per_spot": 0.00012,
+     "cov50_on": 0.551,
+     "cov80_on": 0.802,
+     "cov90_on": 0.892,
+     "cov90_off": 0.886,
+     "call_hit_tilted": 0.489
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": 0.00028,
+     "pin50_gain_per_spot": 0.00038,
+     "cov50_on": 0.526,
+     "cov80_on": 0.825,
+     "cov90_on": 0.895,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.511
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "RIYADHCABLE",
+   "horizons": {
+    "1M": {
+     "n": 30,
+     "tilted_share": 0.9,
+     "crps_gain_per_spot": 0.00052,
+     "pin50_gain_per_spot": 0.00062,
+     "cov50_on": 0.567,
+     "cov80_on": 0.933,
+     "cov90_on": 0.967,
+     "cov90_off": 0.967,
+     "call_hit_tilted": 0.519
+    },
+    "3M": {
+     "n": 10,
+     "tilted_share": 1.0,
+     "crps_gain_per_spot": 0.001,
+     "pin50_gain_per_spot": 0.00254,
+     "cov50_on": 0.7,
+     "cov80_on": 0.8,
+     "cov90_on": 0.9,
+     "cov90_off": 0.9,
+     "call_hit_tilted": 0.6
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "RAJHI",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.844,
+     "crps_gain_per_spot": 6e-05,
+     "pin50_gain_per_spot": 0.00016,
+     "cov50_on": 0.521,
+     "cov80_on": 0.814,
+     "cov90_on": 0.904,
+     "cov90_off": 0.904,
+     "call_hit_tilted": 0.525
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.825,
+     "crps_gain_per_spot": 0.00067,
+     "pin50_gain_per_spot": 0.0006,
+     "cov50_on": 0.491,
+     "cov80_on": 0.754,
+     "cov90_on": 0.877,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.553
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "RIBL",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.814,
+     "crps_gain_per_spot": 0.00026,
+     "pin50_gain_per_spot": 0.00017,
+     "cov50_on": 0.557,
+     "cov80_on": 0.814,
+     "cov90_on": 0.892,
+     "cov90_off": 0.886,
+     "call_hit_tilted": 0.551
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": 0.00088,
+     "pin50_gain_per_spot": 0.00049,
+     "cov50_on": 0.386,
+     "cov80_on": 0.737,
+     "cov90_on": 0.772,
+     "cov90_off": 0.825,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "SABIC",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.85,
+     "crps_gain_per_spot": 9e-05,
+     "pin50_gain_per_spot": 0.00017,
+     "cov50_on": 0.593,
+     "cov80_on": 0.856,
+     "cov90_on": 0.898,
+     "cov90_off": 0.892,
+     "call_hit_tilted": 0.592
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.842,
+     "crps_gain_per_spot": -3e-05,
+     "pin50_gain_per_spot": -0.0007,
+     "cov50_on": 0.491,
+     "cov80_on": 0.825,
+     "cov90_on": 0.93,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.542
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "SNB",
+   "horizons": {
+    "1M": {
+     "n": 124,
+     "tilted_share": 0.831,
+     "crps_gain_per_spot": 0.0002,
+     "pin50_gain_per_spot": 0.00052,
+     "cov50_on": 0.573,
+     "cov80_on": 0.815,
+     "cov90_on": 0.919,
+     "cov90_off": 0.911,
+     "call_hit_tilted": 0.583
+    },
+    "3M": {
+     "n": 42,
+     "tilted_share": 0.857,
+     "crps_gain_per_spot": 0.00016,
+     "pin50_gain_per_spot": 5e-05,
+     "cov50_on": 0.643,
+     "cov80_on": 0.857,
+     "cov90_on": 0.929,
+     "cov90_off": 0.929,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "SAVOLA",
+   "horizons": {
+    "1M": {
+     "n": 168,
+     "tilted_share": 0.833,
+     "crps_gain_per_spot": -4e-05,
+     "pin50_gain_per_spot": 0.00016,
+     "cov50_on": 0.571,
+     "cov80_on": 0.839,
+     "cov90_on": 0.935,
+     "cov90_off": 0.94,
+     "call_hit_tilted": 0.6
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.828,
+     "crps_gain_per_spot": 0.00034,
+     "pin50_gain_per_spot": 0.00111,
+     "cov50_on": 0.517,
+     "cov80_on": 0.828,
+     "cov90_on": 0.914,
+     "cov90_off": 0.914,
+     "call_hit_tilted": 0.667
+    }
+   }
+  },
+  {
+   "market": "SA",
+   "ticker": "STC",
+   "horizons": {
+    "1M": {
+     "n": 167,
+     "tilted_share": 0.725,
+     "crps_gain_per_spot": -0.00033,
+     "pin50_gain_per_spot": -0.00027,
+     "cov50_on": 0.551,
+     "cov80_on": 0.796,
+     "cov90_on": 0.928,
+     "cov90_off": 0.928,
+     "call_hit_tilted": 0.438
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.772,
+     "crps_gain_per_spot": -0.00116,
+     "pin50_gain_per_spot": -0.00112,
+     "cov50_on": 0.474,
+     "cov80_on": 0.825,
+     "cov90_on": 0.912,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.455
+    }
+   }
+  }
+ ],
+ "not_committed": [
+  {
+   "market": "IN",
+   "ticker": "INFY",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "IN",
+   "ticker": "RELIANCE",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "IN",
+   "ticker": "TMPV",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "KAKAO",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "LGES",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "SAMSUNG",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "IQCD",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "QGTS",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "QNB",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "AAPL",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "NVDA",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "TSLA",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XAU",
+   "ticker": "GOLD",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XAU",
+   "ticker": "SILVER",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XPT",
+   "ticker": "PLATINUM",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  }
+ ]
+}
