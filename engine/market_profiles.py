@@ -255,7 +255,7 @@ SAUDI = MarketProfile(
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=12.0, width_cal=1.07,
+    nu=12.0, width_cal=1.063,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 11-name SA panel "
         "(ACWA/ALINMA/ARAMCO/ELM/EXTRA/MAADEN/RAJHI/RIBL/SABIC/SNB/STC, 190 windows) "
