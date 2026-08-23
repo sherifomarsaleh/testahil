@@ -1588,26 +1588,28 @@ const TICKERS = {
     name: "Beltone Financial Holding",
     nameAr: "بلتون المالية القابضة",
     code: "EGX:BTFH",
-    spot: 3.09,
-    spotDate: "close 22 Jul 2026",
+    spot: 3.01,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 1.89, base: 2.88, full: 4.13 },
     dist: {
-      t20: { label:"1 month",   p5:2.70, p25:2.97, p50:3.14, p75:3.31, p95:3.64, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:2.43, p25:2.91, p50:3.24, p75:3.59, p95:4.29, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:2.64, p25:2.90, p50:3.05, p75:3.22, p95:3.53, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:2.42, p25:2.86, p50:3.15, p75:3.47, p95:4.10, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ [3.56, 9, 27], [3.27, 30, 51], [3.12, 53, 70], [2.82, 55, 75], [2.67, 30, 57], [2.38, 7, 27] ],
-    levels: { res:[3.17, 3.34, 3.65], sup:[2.98, 2.93, 2.38] },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low */
+      [3.56, 7, 31], [3.27, 31, 62], [3.12, 62, 82], [2.82, 29, 49], [2.67, 11, 28], [2.38, 1, 8]
+    ],
+    levels: { res:[3.18, 3.34, 3.65], sup:[2.94, 2.38, 2.28] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a flat 200-day",
-      summary: "The price closed 3.09 above a rising 20-day (3.05), a rising 50-day (3.08) and a flat 200-day (3.08). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 0.07 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.01 / +0.01 / +0.01). Over the last year it has ranged 2.65\u20133.67; the last close sits 16% below that high and 17% above that low.",
-      bull: "A daily close back above 3.17 would clear the nearest resistance and open the 3.65 zone.",
-      bear: "A close below 2.98 would break the nearest support and open the 2.38 zone."
+      trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
+      summary: "The price closed 3.01 below a flat 20-day (3.10), a flat 50-day (3.07) and a flat 200-day (3.08). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.06 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / +0.00 / \u22120.02). The 50-day crossed beneath the 200-day 17 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.65\u20133.66; the last close sits 18% below that high and 14% above that low.",
+      bull: "A daily close back above 3.18 would clear the nearest resistance and open the 3.65 zone.",
+      bear: "A close below 2.94 would break the nearest support and open the 2.28 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-23" },
+      tech: { data:"2026-08-23", computed:"2026-08-23" }
     },
     files: {
       study: "files/BTFH_Valuation_Study_03-07-2026_public.docx?v=0703",
@@ -4028,9 +4030,10 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:2.7, p25:2.97, p50:3.14, p75:3.31, p95:3.64,
     touch:{ "+5":53, "+10":26, "+15":12, "+20":5, "-5":39, "-10":15 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:3.01, realized_high:3.26, realized_low:2.98,
+    in_90:true, in_50:true, realized_quantile:0.309, median_err:-0.0414,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false },
+    grade_note:"GRADED 2026-08-23 on the 2026-08-23 close of 3.01 — the stored calendar grade date, a real EGX session in the library (Sunday), no date gap, so grade_basis is left as struck. Window 2026-07-26..2026-08-23 = 21 sessions on the CLEANED series against the 20 projected at strike; the calendar date governs and sessions were only ever projected to size the cone, never to grade it. Realized high 3.26 (2026-08-06) / low 2.98 (2026-08-20), intraday extremes with the anchor bar excluded per the house convention. INSIDE the 90% band (2.70–3.64) and INSIDE the 50% band (2.97–3.31): realized_quantile 0.309, median_err −4.14%. Touch: +5% (3.2445) reached on 2026-08-06 at a window high of 3.26; +10/+15/+20% not reached, and no downside level was approached — the window low of 2.98 sat 1.5% above the −5% level (2.9355). Frozen p5–p95 and touch probabilities exactly as published; nothing re-simulated."
   },
   {
     instrument:"BTFH", asset_class:"equity",
@@ -5560,6 +5563,20 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  // ---- 23-Aug-2026 single-name roll-forward: BTFH, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"BTFH", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-23", anchor_price:3.01, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.3325,
+    note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:2.64, p25:2.9, p50:3.05, p75:3.22, p95:3.53,
+    touch:{ "+5":52, "+10":25, "+15":11, "+20":5, "-5":38, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   {
     instrument:"ABUK", asset_class:"equity",
     anchor_date:"2026-08-23", run_date:"2026-08-23", anchor_price:76.59, ccy:"EGP",
@@ -5569,6 +5586,18 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.513 (outside the 0.25 dead zone); tilt +0.35% at 1M and +0.69% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:59.52, p25:72.35, p50:80.73, p75:90.09, p95:109.34,
     touch:{ "+5":79, "+10":62, "+15":46, "+20":34, "-5":60, "-10":37 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"BTFH", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-23", anchor_price:3.01, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.3607,
+    note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:2.42, p25:2.86, p50:3.15, p75:3.47, p95:4.1,
+    touch:{ "+5":77, "+10":57, "+15":40, "+20":27, "-5":56, "-10":32 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
