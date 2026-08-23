@@ -105,7 +105,8 @@ def strike(market: str, ticker: str, q_annual: float = 0.0,
         # exact calendar year fraction — "3 months" IS 0.25 of a year
         yearfrac = months / 12.0
         drift = carry_log_h(prof, anchor_date, q_annual, h, yearfrac=yearfrac)
-        alpha, z = signal_alpha(prof, close, i, sigma_h)
+        alpha, z = signal_alpha(prof, close, i, sigma_h,
+                                ic=(getattr(prof, 'ic_by_h', None) or {}).get(short))
         paths = simulate_paths_v3(spot, dvar, h, drift + alpha,
                                   nu=eff_nu, n_paths=n_paths, seed=seed,
                                   width_cal=cal_eff)

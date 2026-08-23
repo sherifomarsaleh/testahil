@@ -17,7 +17,7 @@ from mc_v3 import backtest_v3, pooled_scores  # noqa: E402
 
 NAMES = {"AE": ["EMAAR", "ADCB", "ALDAR", "DIB", "FAB"],
          "EG": ["COMI", "HRHO", "ETEL", "ABUK"],
-         "SA": ["SABIC", "ALRAJHI", "RIBL"]}
+         "SA": ["SABIC", "RAJHI", "RIBL"]}
 
 
 def load(mkt, tk):

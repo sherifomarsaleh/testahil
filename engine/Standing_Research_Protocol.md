@@ -732,3 +732,28 @@ prescribed:
   refits under signal-ON route through the materiality gate; an engine-change PR carries
   this to main per GIT/PUBLISH MECHANICS. A subset ON-vs-OFF ablation record accompanies
   the adoption commit (`engine/PENDING_REVIEW/signal_on_ablation_20260823.*`).
+
+**Same-day upgrade — "the tilt is still very conservative" (client, relayed; per
+instruction).** The first cut carried three conservatism choices that were mine, not the
+evidence's: ic shrunk to the smaller horizon reading, the tested-but-cautious socket knobs
+(dead zone 0.5, z clip 2.0, alpha cap 0.5σ), and a single signal per market. All three
+revised to track the measurement exactly:
+
+1. **mom_combo** (equal-weight 12-1 + 6-1 momentum z) measured on the tournament rig —
+   `engine/direction_tournament/COMBO_MOMENTUM_23-08-2026.json`. It passes all four tests
+   in AE (1M +0.108, 3M +0.185 — the strongest direction result in the system) and EG
+   (+0.062 / +0.068) and is adopted there; in SA the combo measured WEAKER than mom_12_1
+   (+0.082 vs +0.093 at 1M, PARITY at 3M) and was NOT adopted — SA keeps mom_12_1. A
+   candidate that tests worse does not ship because it is newer.
+2. **Per-horizon ic** via `profile.ic_by_h`, at each horizon's own measured value; the
+   min-horizon shrink is retired. SA's 3M value remains carried from its 1M measurement,
+   disclosed as before.
+3. **Socket knobs** softened to dead zone 0.25, z clip 2.5, alpha cap 0.75σ: the ICs were
+   measured on raw z with no dead zone, so the knobs now follow the evidence rather than a
+   caution preference. Typical strong-trend tilts roughly double (UAE ±2–3% becomes
+   ±3–6.5% at 3M); Egypt's stay ~±1–3% because Egypt's measured IC is genuinely small —
+   the honest ceiling, stated to the client as such rather than inflated.
+
+The hard line that remains: the tilt never exceeds IC × σ × z. Beyond that point a bigger
+number is not more commitment, it is a worse forecast on purpose, and the public grading
+would document it within a few cycles.

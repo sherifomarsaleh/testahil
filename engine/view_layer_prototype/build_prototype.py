@@ -147,7 +147,8 @@ def engine_signal(market: str, ticker: str, sigma3: float):
     df, _ = clean_ohlc(df, ticker=ticker, verbose=False, market=market)
     close = df["Price"].values
     prof = PROFILES[market]
-    a3, z = signal_alpha(prof, close, len(close) - 1, sigma3)
+    a3, z = signal_alpha(prof, close, len(close) - 1, sigma3,
+                         ic=(getattr(prof, "ic_by_h", None) or {}).get("3M"))
     return float(z), float(a3)
 
 
