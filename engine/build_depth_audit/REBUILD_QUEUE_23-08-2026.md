@@ -17,8 +17,11 @@ which means a full model rebuild, not an edit.
 - [ ] Duplicate index file — NOT a path fix. Re-deriving ADNOCDIST and ADNOCDRILL through the
       sanctioned resolver MOVES their betas (0.795→0.756 and 0.649→0.609), so this is a small
       re-issue of two delivered studies, not a deletion. Needs a decision.
-- [ ] ARCC / SCEM fallback — the hierarchy already answers it: tier 2, because a same-country
-      peer set exists and clears the gate. What needs deciding is the peer-set rule.
+- [ ] ARCC / SCEM fallback — DEFERRED to their turn in the queue (they are Wave 1, #2 and #7).
+      The hierarchy already answers the TIER: tier 2, because eight same-country peers clear the
+      gate. Only the peer-set definition is open, and it sets the precedent for every thin EGX
+      name behind them. The peer regressions are computed and saved at
+      `arcc_scem_peer_input.json` — including the unlevering step still owed at build time.
 
 ## Wave 1 — Studies that already have a working model (17 studies)
 
