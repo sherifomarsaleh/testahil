@@ -26,6 +26,7 @@ Run:  python3 rollforward_one.py AE TWOPOINTZERO 2POINTZERO
 from __future__ import annotations
 
 import argparse
+import math
 import os
 import re
 import sys
@@ -371,6 +372,31 @@ def run(market: str, series: str, key: str, today: str,
              if aclass == 'metal' and q_annual == 0 else
              '(FLAGGED \u2014 house convention; the drift is a GROSS-OF-DIVIDEND '
              'price carry and overstates the centre by roughly the yield.)')
+    # THE DIRECTION CALL IS STATED ON EVERY NAME [R-DRIFT-01], including inside the
+    # dead zone, where it prints WEAK against a tilt of exactly zero. It is DERIVED
+    # from the strike's own z and alpha, never asserted — a call typed into a
+    # published note could disagree with the cone beneath it and nothing here would
+    # see it. The ceiling clause is stated because the rule is that the tilt never
+    # exceeds ic x sigma x z: past that a bigger number is a deliberately worse
+    # forecast, not more conviction, and the reader is told so plainly.
+    z1 = h1['signal_z']
+    if not prof.signal_active:
+        call = ('No direction call: this market carries no surviving momentum cell, '
+                'so the cone is carry-centered.')
+    else:
+        side = 'UP' if z1 > 0 else ('DOWN' if z1 < 0 else 'FLAT')
+        if abs(z1) < 0.25:
+            call = (f'Direction call {side} but WEAK — this name\u2019s own '
+                    f'{prof.signal_type} z is {z1:+.3f}, inside the 0.25 dead zone, '
+                    f'so the tilt applied is exactly 0 and the cone is carry-centered.')
+        else:
+            a1 = (math.exp(h1['signal_alpha']) - 1) * 100
+            a3 = (math.exp(h3['signal_alpha']) - 1) * 100
+            call = (f'Direction call {side}, from this name\u2019s own '
+                    f'{prof.signal_type} z of {z1:+.3f} (outside the 0.25 dead zone); '
+                    f'tilt {a1:+.2f}% at 1M and {a3:+.2f}% at 3M, applied through the '
+                    f'engine\u2019s per-market signal socket at the horizon\u2019s own '
+                    f'measured ic and capped at ic x sigma x z.')
     note = (
         f'Cycle {cyc} roll-forward, {today} — struck on the {d.day:02d}-'
         f'{MONTHS[d.month - 1]}-{d.year} close, the latest session in this '
@@ -384,7 +410,7 @@ def run(market: str, series: str, key: str, today: str,
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
         f'{qnote} '
         f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}; rf_live '
-        f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. Horizons '
+        f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. {call} Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
         f'a calendar commitment, not a session count; the session counts '
         f'(h={h1["h"]} / {h3["h"]}) size the cone only.')
@@ -398,7 +424,9 @@ def run(market: str, series: str, key: str, today: str,
             grade_date=h['grade_date'], grade_basis=h['basis'],
             horizon_days=h['h'], cycle_no=cyc,
             reanchor_from=(prior[0] if prior else None),
-            anchor_vol=round(h['anchor_vol_ann'], 4), note=note,
+            anchor_vol=round(h['anchor_vol_ann'], 4),
+            signal_z=round(h['signal_z'], 4),
+            signal_alpha=round(h['signal_alpha'], 6), note=note,
             p5=round(h['pct']['p5'], 2), p25=round(h['pct']['p25'], 2),
             p50=round(h['pct']['p50'], 2), p75=round(h['pct']['p75'], 2),
             p95=round(h['pct']['p95'], 2),

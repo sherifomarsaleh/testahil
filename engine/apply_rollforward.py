@@ -304,6 +304,15 @@ def js_row(d: dict) -> str:
             return repr(x)
         return json.dumps(x, ensure_ascii=False)
     t = ', '.join(f'"{k}":{n}' for k, n in d['touch'].items())
+    # THE DIRECTION CALL IS PART OF THE RECORD [R-DRIFT-01, 23-Aug-2026]. The rule
+    # says every strike records signal_z/signal_alpha and every call is graded at its
+    # maturity — and a call that is not stored cannot be graded later. strike_cohorts
+    # has always computed both; nothing persisted them, so the engine's own lean was
+    # invisible the moment the run ended. Emitted only when the caller supplies them,
+    # so every pre-tilt caller still produces byte-identical rows.
+    sig = ''
+    if 'signal_z' in d and 'signal_alpha' in d:
+        sig = f'    signal_z:{d["signal_z"]}, signal_alpha:{d["signal_alpha"]},\n'
     # run_date is a FIELD, never prose. scripts/check_data_freshness.py hard-fails a
     # row without one ("the strike date must be a field, never scraped out of the note"),
     # and this emitter silently omitted it — caught on the 05-Aug-2026 QNB strike, the
@@ -320,6 +329,7 @@ def js_row(d: dict) -> str:
         f'grade_basis:{v(d["grade_basis"])}, horizon_days:{d["horizon_days"]},\n'
         f'    cycle_no:{d["cycle_no"]}, reanchor_from:{v(d["reanchor_from"])}, '
         f'anchor_vol:{d["anchor_vol"]},\n'
+        + sig +
         f'    note:{v(d["note"])},\n'
         f'    p5:{d["p5"]}, p25:{d["p25"]}, p50:{d["p50"]}, p75:{d["p75"]}, p95:{d["p95"]},\n'
         f'    touch:{{ {t} }},\n'
