@@ -26,8 +26,10 @@ What the card draws:
     own history (strictly prior, min 18 monthly points);
   * the actual price line behind it.
 
-The lean is labelled illustrative: it goes live only through the standing
-promotion gate. The cone's published numbers are untouched.
+COMMITTED DRIFT ADOPTED 23-Aug-2026 (per instruction): the profiles now run
+signal_active=True in AE/EG/SA with tournament-measured ICs; this card shows
+the production signal_alpha. Live-site numbers change at the next
+roll-forward + publish, not before.
 
 Usage
 -----
@@ -55,7 +57,8 @@ sys.path.insert(0, ENG)
 sys.path.insert(0, os.path.join(ENG, "direction_tournament"))
 from fv_overlay import load_tickers                     # noqa: E402
 from data_quality import clean_ohlc                     # noqa: E402
-from tournament import build_name_rows, expanding_z     # noqa: E402
+from market_profiles import PROFILES                    # noqa: E402
+from mc_v3 import signal_alpha                          # noqa: E402
 
 MAX_BAND_DEV = 0.025          # drawn band must reproduce published quantiles
 HIST_MONTHS = 9               # actual price shown behind the cone
@@ -131,33 +134,21 @@ def price_history(market: str, ticker: str, anchor: pd.Timestamp):
             for d, p in zip(df["Date"], df["Price"])]
 
 
-def momentum_z(market: str, ticker: str) -> float | None:
-    """The name's own 12-month momentum vs its OWN prior history (z, clipped).
-
-    Same construction the tournament scored — expanding z, strictly prior,
-    min 18 monthly points — evaluated at the latest available origin.
-    """
-    rows = build_name_rows(market, ticker)
-    if rows is None or LEAN_FEATURE not in rows:
-        return None
-    g = rows.sort_values("date")[["name", LEAN_FEATURE]].dropna()
-    if g.empty:
-        return None
-    z = expanding_z(g, LEAN_FEATURE)
-    z = z.dropna()
-    if z.empty:
-        return None
-    return float(np.clip(z.iloc[-1], -Z_CLIP, Z_CLIP))
-
-
-def surviving_ic(tournament: dict, market: str, horizon: str) -> float:
-    """IC of the momentum lean for this market/horizon — ONLY if that exact
-    cell survived all four tournament tests; otherwise 0 (no lean)."""
-    for s in tournament.get("survivors", []):
-        if (s["market"] == market and s["feature"] == LEAN_FEATURE
-                and s["horizon"] == horizon):
-            return float(s["pooled_ic"])
-    return 0.0
+def engine_signal(market: str, ticker: str, sigma3: float):
+    """The PRODUCTION signal: mc_v3.signal_alpha on the cleaned daily series
+    at the latest session, with the market profile as adopted 23-Aug-2026
+    (committed drift). Returns (z, alpha3)."""
+    path = os.path.join(ENG, "raw_ohlc", market, f"{ticker}.csv")
+    df = pd.read_csv(path)
+    df["Date"] = pd.to_datetime(df["Date"], format="%m/%d/%Y")
+    for c in ("Price", "Open", "High", "Low"):
+        df[c] = df[c].astype(str).str.replace(",", "", regex=False).astype(float)
+    df = df.sort_values("Date").reset_index(drop=True)
+    df, _ = clean_ohlc(df, ticker=ticker, verbose=False, market=market)
+    close = df["Price"].values
+    prof = PROFILES[market]
+    a3, z = signal_alpha(prof, close, len(close) - 1, sigma3)
+    return float(z), float(a3)
 
 
 def fmt(x: float, ref: float) -> str:
@@ -177,34 +168,30 @@ def build_card(tick: dict, row: dict, hist, tournament: dict) -> tuple[str, dict
     curves = month_curves(row, spot)
     dev = check_band(curves, tick)
 
-    # ---- the MC's own lean (price-native; never the fundamental) ----------
-    z = momentum_z(market, tick["_ticker"])
-    ic3 = surviving_ic(tournament, market, "3M")
-    ic1 = surviving_ic(tournament, market, "1M")
+    # ---- the MC's own COMMITTED drift (price-native; never the fundamental)
     s3, m3 = row["3M"]["sigma_h"], row["3M"]["mu_h"]
-    alpha3 = (ic3 * s3 * z) if (z is not None and ic3) else 0.0
+    z, alpha3 = engine_signal(market, tick["_ticker"], s3)
     leaned = month_curves(row, spot, alpha3=alpha3) if alpha3 else None
     p_up_neutral = 1 - t_cdf_std(-m3 / s3, nu)
     p_up_lean = 1 - t_cdf_std(-(m3 + alpha3) / s3, nu)
 
-    if z is None or not ic3:
-        lean_word, lean_clause = "no lean", \
-            "momentum carries no reliable signal in this market, so the engine stays neutral"
-    elif abs(z) < 0.25:
-        lean_word, lean_clause = "neutral", \
-            "this stock's own trend is close to its normal state, so the lean is negligible"
-    else:
-        lean_word = "leans up" if alpha3 > 0 else "leans down"
+    call = "UP" if z > 0 else "DOWN"
+    if alpha3:
         strength = "strong" if abs(z) > 1.2 else "moderate"
-        lean_clause = (f"its last 12 months rank {strength} versus its own "
-                       f"history, tilting the 3-month center by "
+        lean_word = f"commits {call}"
+        lean_clause = (f"its last 12 months run {strength} versus its own "
+                       f"normal, tilting the 3-month center by "
                        f"{alpha3 * 100:+.1f}%")
+    else:
+        lean_word = f"calls {call}, weak conviction"
+        lean_clause = ("the trend is near flat, so the call carries no tilt "
+                       "on the center")
     verdict = (f"The price engine {lean_word}: {lean_clause}. "
                f"Odds of finishing higher in 3 months: "
-               f"{p_up_lean * 100:.0f}% with the lean "
-               f"({p_up_neutral * 100:.0f}% neutral). "
-               f"The lean is illustrative until it passes the standard "
-               f"out-of-sample safety test.")
+               f"{p_up_lean * 100:.0f}%"
+               + (f" ({p_up_neutral * 100:.0f}% before the tilt)" if alpha3 else "")
+               + ". Committed drift adopted 23-Aug-2026 — every call is "
+               "graded on its date, publicly.")
 
     # ---- three independent lenses, side by side ---------------------------
     fv_base = float(tick["fair"]["base"])
@@ -217,7 +204,7 @@ def build_card(tick: dict, row: dict, hist, tournament: dict) -> tuple[str, dict
   <div class="lens"><div class="ll">Fundamental study <span>separate lens</span></div>
     <div class="lv">{fund_word} — {fmt(fv_base, spot)} {ccy} base vs {fmt(spot, spot)}</div></div>
   <div class="lens on"><div class="ll">Price engine <span>this card</span></div>
-    <div class="lv">{lean_word}{f", {alpha3 * 100:+.1f}% on the 3-month center" if alpha3 else ""}</div></div>
+    <div class="lv">{call}{f" — {alpha3 * 100:+.1f}% tilt on the 3-month center" if alpha3 else " (weak, no tilt)"}</div></div>
   <div class="lens"><div class="ll">Technical read <span>separate lens</span></div>
     <div class="lv">{html.escape(tech_trend)}</div></div>
 </div>
@@ -305,18 +292,17 @@ another, so agreement between them is information, not an echo.</p>"""
         opacity="0" stroke-width="1"/>
 </svg>"""
 
-    lean_tile = (f"{alpha3 * 100:+.1f}% on the center" if alpha3 else "none")
     tiles = f"""
 <div class="tiles">
   <div class="tile"><div class="tl">Typical range, next 3 months</div>
     <div class="tv num">{fmt(p25, spot)}–{fmt(p75, spot)}</div>
     <div class="ts">1-in-10 above {fmt(p95, spot)}, 1-in-10 below {fmt(p5, spot)} — graded when the date arrives</div></div>
-  <div class="tile"><div class="tl">Trend lean (3M, illustrative)</div>
-    <div class="tv num">{lean_tile}</div>
-    <div class="ts">from this stock's own price history only</div></div>
+  <div class="tile"><div class="tl">Committed call (3M)</div>
+    <div class="tv num">{call}{f" · {alpha3 * 100:+.1f}%" if alpha3 else " · weak"}</div>
+    <div class="ts">from this stock's own price history only — graded on its date</div></div>
   <div class="tile"><div class="tl">Odds of finishing higher in 3M</div>
-    <div class="tv num">{p_up_lean * 100:.0f}%<span class="dim"> with lean · {p_up_neutral * 100:.0f}% neutral</span></div>
-    <div class="ts">becomes a graded number once the lean passes the gate</div></div>
+    <div class="tv num">{p_up_lean * 100:.0f}%</div>
+    <div class="ts">under the committed drift; graded like every forecast</div></div>
 </div>"""
 
     hover = {"x0": x0, "x1": x1, "L": L, "R": R, "W": W, "spot": spot,
@@ -335,17 +321,18 @@ another, so agreement between them is information, not an echo.</p>"""
   <p class="verdict">{verdict}</p>
   <div class="legend">
     <span><i style="background:{TEAL};opacity:.35"></i> likely range with the lean (next 3M)</span>
-    <span><i style="background:{ORANGE}"></i> engine's leaned center (illustrative)</span>
+    <span><i style="background:{ORANGE}"></i> engine's committed center</span>
     <span><i style="background:{INK}"></i> actual price (last {HIST_MONTHS}M)</span>
   </div>
   <div class="chartwrap">{svg}<div class="tip" hidden></div></div>
   {tiles}
   {lenses}
-  <p class="foot">Band and dashed center are today's PUBLISHED forecast (drawn
-  band reproduces it within {dev:.2%}). The orange lean is illustrative — engine's
-  own momentum signal at the tournament-measured strength — and goes live only
-  through the standing safety test. The fundamental and technical verdicts are
-  displayed for comparison only; they are never inputs to this cone.</p>
+  <p class="foot">The band is today's published forecast tilted by the engine's
+  committed drift (the untilted cone is reproduced within {dev:.2%} before the
+  tilt). Committed drift is adopted engine behavior as of 23-Aug-2026 and
+  reaches the live site at the next roll-forward + publish. The fundamental and
+  technical verdicts are displayed for comparison only; they are never inputs
+  to this cone.</p>
 </section>"""
     return card, hover, dev
 
@@ -544,14 +531,15 @@ def main():
 <style>{CSS}</style></head><body>
 <div class="wrap">
   <div class="mast"><span class="brand">تستاهل TESTAHIL</span>
-    <span class="badge">PROTOTYPE · NOT LIVE · NOT PUBLISHED</span></div>
+    <span class="badge">COMMITTED DRIFT · ADOPTED 23-AUG-2026 · NOT YET PUBLISHED</span></div>
   <p class="lede">Proposed ticker card. The <b style="color:{TEAL}">teal band</b>
   is today's published forecast with the typical range leading (the faint band
   is the 9-in-10 range — the crash guard, demoted from headline to whisker).
-  The <b style="color:{ORANGE}">orange line</b> is the engine's own lean,
-  computed from that stock's price history alone — never from the fundamental
-  study or the technical read: the three lenses stay independent and appear
-  side by side below each chart. Hover any chart for the numbers at that date.</p>
+  The <b style="color:{ORANGE}">orange line</b> is the engine's committed
+  direction — every stock gets a call, UP or DOWN, from its own price history
+  alone, never from the fundamental study or the technical read: the three
+  lenses stay independent and appear side by side below each chart. Hover any
+  chart for the numbers at that date.</p>
   {''.join(cards)}
   {tournament_section(tournament)}
   <p class="foot">Built {pd.Timestamp.now().date()} from assets/data.js +

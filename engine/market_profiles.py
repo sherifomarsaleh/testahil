@@ -99,7 +99,7 @@ EGYPT = MarketProfile(
                     "(investing.com 3-Jul-2026). FLAG: source a fresh 3M T-bill auction "
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
-    signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
+    signal_type="mom_12_1", signal_sign=+1, ic=0.061, signal_active=True,
     nu=6.0, width_cal=0.951,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
@@ -192,7 +192,21 @@ EGYPT = MarketProfile(
         "Adopted on EXPLICIT user override of the standing 'no worsening' rule "
         "(instruction: 'switch all to one month and 3 months') -- the five PASS "
         "losses above are real and were surfaced before this shipped, not missed. "
-        "Source: engine/PENDING_REVIEW/reverify_post_merge.json (EG.3m)."),
+        "Source: engine/PENDING_REVIEW/reverify_post_merge.json (EG.3m). "
+        "SIGNAL ADOPTED 23-Aug-2026 (per instruction — committed drift): "
+        "mom_12_1/sign +1/ic 0.061 ACTIVE, replacing the refuted rev_1m prior. "
+        "Evidence: engine/direction_tournament/RESULTS_23-08-2026 — pooled "
+        "direction IC +0.061 (1M, n=4763) and +0.068 (3M, n=1134), robust "
+        "blocks {2,3,4}, LONO sign-stable, split-half consistent; ic set to "
+        "the SMALLER of the two horizons' readings (conservative). Cross-name "
+        "ranking power in EG is weak (XS IC ~+0.02 at 1M) — this is a "
+        "which-way-is-this-one signal here, not a stock picker, and the "
+        "document-techniques backtest (engine/doc_techniques_backtest/) found "
+        "no alternative that beat carry. Every strike now records "
+        "signal_z/signal_alpha (strike_cohorts already logs both); a sustained "
+        "failed-direction grade record triggers the standing out-of-cycle "
+        "review, and the next panel refit under signal-ON routes through the "
+        "materiality gate as usual."),
     # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
     # Egypt, even sharp ones") -- and he is right, which changes the answer.
     #
@@ -254,7 +268,7 @@ SAUDI = MarketProfile(
                     "tools this session (investing.com/WGB tables JS-walled) — replace "
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
-    signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
+    signal_type="mom_12_1", signal_sign=+1, ic=0.093, signal_active=True,
     nu=12.0, width_cal=1.07,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 11-name SA panel "
@@ -295,7 +309,17 @@ SAUDI = MarketProfile(
         "Adopted on EXPLICIT user override of the standing 'no worsening' rule "
         "(instruction: 'switch all to one month and 3 months') -- MAADEN's PASS "
         "loss is real and was surfaced before this shipped, not missed. Source: "
-        "engine/PENDING_REVIEW/reverify_post_merge.json (SA.3m)."),
+        "engine/PENDING_REVIEW/reverify_post_merge.json (SA.3m). "
+        "SIGNAL ADOPTED 23-Aug-2026 (per instruction — committed drift): "
+        "mom_12_1 ic 0.093 ACTIVE, sign corrected -1 -> +1 (the old "
+        "contrarian prior is refuted by measurement). Evidence: "
+        "engine/direction_tournament/RESULTS_23-08-2026 — 1M pooled IC "
+        "+0.093 (n=1437) robust/LONO-stable/split-half-consistent with "
+        "cross-name IC +0.089; the 3M pooled read is PARITY on n=318 "
+        "(underpowered) while the cross-name 3M read is strongly positive — "
+        "the 1M-measured ic is carried to 3M through the socket's sigma "
+        "scaling and DISCLOSED as unproven at 3M. Grading discipline as per "
+        "the EG adoption note."),
     breaks=["2015-06-15"],
     notes=("Signal OFF (fallback rule): 1-name panel cannot establish IC; literature "
            "sign-unstable (contrarian post-2015 opening). Runs carry-only until the "
@@ -330,11 +354,15 @@ USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
     notes="Mature-market momentum prior (JT 12-1) - ablated OFF on the first panel; "
           "re-estimate as the panel grows.")
 UK = MarketProfile("GB", "United Kingdom", [("2020-01-01", 0.0400)], 0.0400,
-    "PLACEHOLDER — source gilt/3M at first UK study.", "mom_12_1", +1, 0.05, True,
-    notes="Strong UK momentum literature.")
+    "PLACEHOLDER — source gilt/3M at first UK study.", "mom_12_1", +1, 0.05, False,
+    notes="Strong UK momentum literature. signal_active corrected to False "
+          "23-Aug-2026: a placeholder stub may not run a live signal — only "
+          "AE/EG/SA are adopted (committed drift), each on measured evidence.")
 BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
-    "PLACEHOLDER — source Selic/DI at first BR study.", "mom_12_1", +1, 0.07, True,
-    notes="EM momentum prior (Rouwenhorst).")
+    "PLACEHOLDER — source Selic/DI at first BR study.", "mom_12_1", +1, 0.07, False,
+    notes="EM momentum prior (Rouwenhorst). signal_active corrected to False "
+          "23-Aug-2026: a placeholder stub may not run a live signal — only "
+          "AE/EG/SA are adopted (committed drift), each on measured evidence.")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
     nu=8.0, width_cal=1.07,
@@ -398,7 +426,7 @@ KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
 UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
-    "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
+    "the MC carry correctly tracks the Fed for a pegged currency.", "mom_12_1", +1, 0.109, True,
     nu=8.0, width_cal=0.979,
     fit_meta=(
         "UPDATE 09-Aug-2026: AIRARABIA added (18 -> 19 names, 261 -> 279 pooled "
@@ -475,7 +503,16 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
         "the standing 'no worsening' rule (instruction: 'switch all to one month and "
         "3 months') -- the market-level widening and the AGTHIA/ENBD flags above are "
         "real and were surfaced before this shipped. Source: "
-        "engine/PENDING_REVIEW/reverify_post_merge.json (AE.3m)."),
+        "engine/PENDING_REVIEW/reverify_post_merge.json (AE.3m). "
+        "SIGNAL ADOPTED 23-Aug-2026 (per instruction — committed drift): "
+        "mom_12_1/sign +1/ic 0.109 ACTIVE, replacing the never-confirmed "
+        "rev_1m prior. Evidence: engine/direction_tournament/"
+        "RESULTS_23-08-2026 — the strongest direction result in the system: "
+        "pooled IC +0.109 (1M, n=2283) and +0.142 (3M, n=492), hit rates "
+        "55%, top-vs-bottom-third spread ~+3%/quarter, robust blocks {2,3,4}, "
+        "LONO sign-stable, split-half consistent, cross-sectional framing "
+        "agrees; ic set to the smaller horizon reading (conservative). "
+        "Grading discipline as per the EG adoption note."),
     breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
     "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
     "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "

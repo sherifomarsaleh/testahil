@@ -696,3 +696,39 @@ is three independently-computed answers to the same question. The moment one len
 another's output, their agreement stops being evidence and the reader has no way to see that
 it stopped. Independence is also what makes the grading honest — each lens can be scored on
 its own record, and a lens that fails can be fixed or retired without contaminating the others.
+
+### Addendum, same day — COMMITTED DRIFT ADOPTED (23-Aug-2026, per instruction)
+
+Hours after the rule above was recorded, Sherif closed the loop on the investor's second
+finding: "we have to find a way to commit to a drift up or down. The investor is adamant."
+Adopted, by explicit instruction, in lieu of the shadow-cohort step consequence 3 had
+prescribed:
+
+- **The momentum lean is ACTIVE in the engine.** `signal_type="mom_12_1"`,
+  `signal_sign=+1`, `signal_active=True` in AE, SA and EG — the three markets where the
+  tournament's momentum cells survived all four tests. Each market's `ic` is the SMALLER of
+  its two tournament horizon readings (conservative; read `market_profiles.py` live for
+  values). SA's 3M ic is disclosed as carried from its 1M measurement — the 3M pooled read
+  was underpowered, while its cross-sectional read agreed in sign. The old rev_1m priors
+  (EG, AE) and SA's contrarian momentum sign are refuted by measurement and replaced.
+- **Every covered name's forecast states a direction call** — the sign of its own momentum
+  z — even inside the engine's dead zone (|z| < 0.5 → call printed as WEAK, tilt 0). The
+  strike path already records `signal_z`/`signal_alpha` per horizon, so every call is
+  graded at its maturity; a sustained failed-direction record triggers the standing
+  out-of-cycle review. Markets with no surviving cell (QA/IN/US/KR/metals) stay
+  carry-centered and call-only on product surfaces.
+- **The document-techniques backtest is the negative control** (`engine/doc_techniques_backtest/`,
+  same day): GBM-historical-drift, ARIMA-family, pooled neural nets, Markov/fuzzy chains,
+  Kalman drift, seasonality and their ensemble all failed to beat the carry center on 15
+  walk-forward years — most robustly worse. None may return as a drift source without new
+  evidence. AE month-of-year seasonality stands flagged as a rank-signal candidate only.
+- **Width floors are measured facts:** the middle half of real 3-month moves spans ~13%
+  (AE), ~19% (SA), ~26% (EG) of price. An honest 50% band cannot average narrower at these
+  horizons, whatever the technique — the tested alternatives narrowed nothing at honest
+  coverage. Horizons stay 1M/3M by instruction; a shorter-horizon product was offered and
+  declined.
+- **Mechanics:** the adoption changes future strikes only (next roll-forward onward);
+  nothing retroactive, nothing published until the standing publish flow runs. Panel
+  refits under signal-ON route through the materiality gate; an engine-change PR carries
+  this to main per GIT/PUBLISH MECHANICS. A subset ON-vs-OFF ablation record accompanies
+  the adoption commit (`engine/PENDING_REVIEW/signal_on_ablation_20260823.*`).
