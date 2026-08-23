@@ -106,17 +106,40 @@ def sync_main(ticker: str) -> None:
     print("  merged origin/main cleanly")
 
 
+def ledger_instrument(key: str) -> str:
+    """The LEDGER's name for a published key -- NOT always the key itself.
+
+    Imported from engine/apply_technicals rather than copied: that map is the one
+    place these aliases live (metal_backtest and rollforward_one both read it).
+    Platinum publishes as METALS.PLATINUM on platinum.html but grades under
+    instrument:"Platinum"; gold, silver, Samsung and Kakao differ in case."""
+    sys.path.insert(0, os.path.join(ROOT, "engine"))
+    from apply_technicals import LEDGER_ALIAS
+    return LEDGER_ALIAS.get(key, key)
+
+
 def market_of(ticker: str) -> str | None:
-    """Market prefix from the ticker's own TICKERS entry ("EGX:PHAR" -> "EG").
+    """Market prefix from the published entry's own `code` ("EGX:PHAR" -> "EG").
 
     Parsed by LOADING data.js, not by regex: the entry is the authority on the
-    market, and a regex over a file this size has already mis-parsed it once."""
+    market, and a regex over a file this size has already mis-parsed it once.
+
+    READS BOTH PUBLISHED OBJECTS (fixed 23-Aug-2026). It used to read TICKERS
+    alone, but the three metals are entries of `const METALS = {...}`, so every
+    one of them resolved to None and step 2 silently SKIPPED the Ticker Picker
+    overlay -- printing "no market resolved" and carrying on. That is the same
+    failure the 9-Aug-2026 comment below records for SWDY/SCEM/EGCH, which
+    shipped live and invisible on the picker; it was fixed for equities and left
+    in place for metals. Metals codes are not exchange-prefixed either
+    ("XPT/USD", not "ADX:x"), so the bare code is accepted as its own key."""
     js = ("const fs=require('fs'),vm=require('vm');const c={};vm.createContext(c);"
-          "vm.runInContext(fs.readFileSync('assets/data.js','utf8')+';globalThis.__T=TICKERS;',c);"
+          "vm.runInContext(fs.readFileSync('assets/data.js','utf8')"
+          "+';globalThis.__T=Object.assign({},typeof METALS!==\"undefined\"?METALS:{},TICKERS);',c);"
           f"process.stdout.write(String((c.__T[{json.dumps(ticker)}]||{{}}).code||''));")
     code = run(["node", "-e", js]).strip()
     return {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA",
-            "QE": "QA"}.get(code.split(":")[0])
+            "QE": "QA", "NASDAQ": "US", "NSE": "IN", "KRX": "KR",
+            "XPT/USD": "XPT", "XAU/USD": "XAU"}.get(code.split(":")[0])
 
 
 def surfaces(ticker: str) -> None:
@@ -179,20 +202,21 @@ def render_verify(ticker: str) -> None:
     js = r"""
 const { chromium } = require('playwright');
 (async () => {
-  const TK = process.argv[2];
+  const TK   = process.argv[2];   // page key      -> {tk}.html
+  const INST = process.argv[3];   // LEDGER name   -> listed in ledger.html
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
                                     args: ['--no-sandbox'] });
   const p = await b.newPage();
   const errs = [];
   p.on('pageerror', e => errs.push(String(e)));
-  const base = 'file://' + process.argv[3] + '/';
+  const base = 'file://' + process.argv[4] + '/';
   await p.goto(base + TK.toLowerCase() + '.html');
   await p.waitForTimeout(1500);
   const pageOK = (await p.content()).includes('id="gauge"');
   await p.goto(base + 'ledger.html');
   await p.waitForTimeout(1800);
   const body = await p.innerText('body');
-  const listed = new RegExp('\\b' + TK + '\\b').test(body);
+  const listed = new RegExp('\\b' + INST + '\\b').test(body);
   console.log(JSON.stringify({ pageOK, listed, errors: errs }));
   await b.close();
 })();
@@ -202,21 +226,29 @@ const { chromium } = require('playwright');
     try:
         env = dict(os.environ, NODE_PATH=os.environ.get(
             "NODE_PATH", "/opt/node22/lib/node_modules"))
-        p = subprocess.run(["node", path, ticker, ROOT], cwd=ROOT, text=True,
+        # TWO names, not one. The page is {ticker}.html; the ledger lists the
+        # LEDGER instrument. For every equity they are the same string, which is
+        # why one argument survived this long -- but platinum's page is
+        # platinum.html while its rows say Platinum, so the single-arg version
+        # failed on a correctly published metal and blamed the market registry.
+        p = subprocess.run(["node", path, ticker, ledger_instrument(ticker), ROOT],
+                           cwd=ROOT, text=True,
                            capture_output=True, timeout=300, env=env)
         if p.returncode != 0:
             die(f"render check could not run:\n{(p.stdout + p.stderr)[:1500]}")
         res = json.loads(p.stdout.strip().splitlines()[-1])
     finally:
         os.path.exists(path) and os.remove(path)
+    inst = ledger_instrument(ticker)
     if not res["pageOK"]:
         die(f"{ticker.lower()}.html did not render its valuation gauge")
     if not res["listed"]:
-        die(f"{ticker} does not appear in ledger.html's rendered DOM — check the "
+        die(f"{inst} does not appear in ledger.html's rendered DOM — check the "
             f"market registry (MARKET_OF) and the LEDGER rows")
     if res["errors"]:
         die(f"page errors on render: {res['errors'][:3]}")
-    print(f"  {ticker.lower()}.html renders · {ticker} listed in ledger.html · 0 page errors")
+    label = ticker if inst == ticker else f"{ticker} (as {inst})"
+    print(f"  {ticker.lower()}.html renders · {label} listed in ledger.html · 0 page errors")
 
     # The ticker's own page and the ledger were the only two surfaces ever verified here.
     # Everything else was taken on trust and drifted: three publishes in a row went out
@@ -224,6 +256,21 @@ const { chromium } = require('playwright');
     # every covered name, by rendering it and reading the DOM a reader would see.
     env = dict(os.environ, NODE_PATH=os.environ.get(
         "NODE_PATH", "/opt/node22/lib/node_modules"))
+    # NON-EQUITY NAMES ARE EXEMPT, LOUDLY (23-Aug-2026). check_ticker_surfaces.js
+    # drives the EQUITY registers -- stocks, Trade, Portfolio and the Ticker Picker.
+    # No metal has ever appeared on any of them: gold, silver and platinum are all
+    # absent today and fv_overlay emits no metals rows. That script's own header
+    # lists metals.html among the surfaces deliberately excluded as "prose and
+    # non-equity". So on a metal this gate demanded something that has never been
+    # true, failed with "not in TICKERS -- nothing to check", and blocked the
+    # publish. Skipping is right; skipping SILENTLY is not, because the day metals
+    # do join those registers this line is what has to change.
+    if market_of(ticker) in ("XAU", "XPT"):
+        print(f"  SKIP — {ticker} is a non-equity name. The register surfaces this "
+              f"gate checks (stocks/Trade/Portfolio/Picker) carry equities only; "
+              f"metals are published on metals.html and ledger.html, both of which "
+              f"step 4 already verified by render.")
+        return
     p = subprocess.run(["node", "scripts/check_ticker_surfaces.js", ticker, ROOT],
                        cwd=ROOT, text=True, capture_output=True, timeout=300, env=env)
     print((p.stdout + p.stderr).strip())
