@@ -53,7 +53,7 @@ def ledger_instrument(key: str) -> str:
     """The LEDGER's name for a site key -- NOT always the site key itself.
 
     Platinum publishes under TICKERS.PLATINUM but grades under
-    instrument:"XPTUSD"; gold/silver/Samsung/Kakao differ in case. This tool
+    instrument:"Platinum"; gold/silver/Samsung/Kakao differ in case. This tool
     used `key` directly for the ledger row AND for both history lookups
     (prior_anchor, _prior_1m_matured), so on any aliased name it would write an
     orphan instrument, find no prior cycle, set reanchor_from=null, and publish

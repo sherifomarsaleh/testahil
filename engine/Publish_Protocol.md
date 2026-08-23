@@ -200,7 +200,7 @@ undefined and the ledger rendered ELEC OUTSIDE the "EGX — Egypt" group. Nothin
 That is the same failure class the registry was introduced to close (29-Jul-2026: 34
 international names under the EGX heading). Now gated by `check_data_freshness.py`
 check 9 — which compares on the LEDGER INSTRUMENT name, not the `TICKERS` key, because
-`ledger.html` feeds `marketOf()` the instrument ("Gold", "Samsung", "XPTUSD").
+`ledger.html` feeds `marketOf()` the instrument ("Gold", "Samsung", "Platinum").
 
 ---
 

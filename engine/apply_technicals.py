@@ -51,7 +51,7 @@ SERIES_OVERRIDE = {'ALRAJHI': 'RAJHI', 'ADIBUAE': 'ADIB',
 METAL_MARKET = {'GOLD': ('XAU', 'GOLD'), 'SILVER': ('XAU', 'SILVER'),
                 'PLATINUM': ('XPT', 'PLATINUM')}
 # LEDGER instrument names differ in case from the METALS keys
-LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'XPTUSD',
+LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'Platinum',
                 'SAMSUNG': 'Samsung', 'KAKAO': 'Kakao'}
 
 

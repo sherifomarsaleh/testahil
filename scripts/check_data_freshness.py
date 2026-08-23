@@ -67,7 +67,7 @@ SERIES_OVERRIDE = {'ALRAJHI': 'RAJHI', 'ADIBUAE': 'ADIB',
                    '2POINTZERO': 'TWOPOINTZERO'}
 METAL_MARKET = {'GOLD': ('XAU', 'GOLD'), 'SILVER': ('XAU', 'SILVER'),
                 'PLATINUM': ('XPT', 'PLATINUM')}
-LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'XPTUSD',
+LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'Platinum',
                 'SAMSUNG': 'Samsung', 'KAKAO': 'Kakao'}
 
 MONTHS = {m: i + 1 for i, m in enumerate(
@@ -436,7 +436,7 @@ def main() -> int:
     #    a missing section looks exactly like a section that was never meant
     #    to be there:
     #      * PLATINUM: image committed as calibration_Platinum.png while the
-    #        instrument key is XPTUSD, and the key was never added to the set.
+    #        instrument key is Platinum, and the key was never added to the set.
     #        The image was an orphan from the day it landed and the panel
     #        silently omitted the whole block.
     #      * ADIBUAE and LULU: images present and correctly named, keys simply
@@ -474,7 +474,7 @@ def main() -> int:
     #    (29-Jul-2026: 34 international names rendered under the EGX heading), so
     #    the rebuild is checked here rather than trusted to a checklist.
     #    Compare on the LEDGER INSTRUMENT name, not the data.js key: ledger.html
-    #    calls marketOf() with the instrument ("Gold", "Samsung", "XPTUSD"), which
+    #    calls marketOf() with the instrument ("Gold", "Samsung", "Platinum"), which
     #    is what build_market_registry.py keys on. Comparing TICKERS keys instead
     #    reports five phantom failures on exactly those differently-cased names.
     markets_js = os.path.join(ROOT, 'assets', 'markets.js')

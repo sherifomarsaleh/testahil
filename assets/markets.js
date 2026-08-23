@@ -76,6 +76,7 @@ const MARKET_OF = {
  "PHAR": "EG",
  "PHDC": "EG",
  "PRDC": "EG",
+ "Platinum": "XPT",
  "QGTS": "QA",
  "QNB": "QA",
  "RAYA": "EG",
@@ -94,8 +95,7 @@ const MARKET_OF = {
  "Silver": "XAU",
  "TMGH": "EG",
  "TMPV": "IN",
- "TSLA": "US",
- "XPTUSD": "XPT"
+ "TSLA": "US"
 };
 
 const MARKET_META = {
@@ -218,6 +218,7 @@ const MARKET_OF_CI = {
  "PHAR": "EG",
  "PHDC": "EG",
  "PRDC": "EG",
+ "PLATINUM": "XPT",
  "QGTS": "QA",
  "QNB": "QA",
  "RAYA": "EG",
@@ -236,8 +237,7 @@ const MARKET_OF_CI = {
  "SILVER": "XAU",
  "TMGH": "EG",
  "TMPV": "IN",
- "TSLA": "US",
- "XPTUSD": "XPT"
+ "TSLA": "US"
 };
 function marketOf(tk){
   if (!tk) return null;
