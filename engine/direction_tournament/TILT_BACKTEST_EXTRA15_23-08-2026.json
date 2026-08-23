@@ -1,0 +1,519 @@
+{
+ "generated": "2026-08-23",
+ "n_paths": 3000,
+ "status": "production-fidelity backtest of the adopted tilt",
+ "committed": [
+  {
+   "market": "IN",
+   "ticker": "INFY",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.812,
+     "crps_gain_per_spot": 6e-05,
+     "pin50_gain_per_spot": 0.00014,
+     "cov50_on": 0.512,
+     "cov80_on": 0.812,
+     "cov90_on": 0.906,
+     "cov90_off": 0.906,
+     "call_hit_tilted": 0.507
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.807,
+     "crps_gain_per_spot": 0.0004,
+     "pin50_gain_per_spot": 0.00041,
+     "cov50_on": 0.509,
+     "cov80_on": 0.807,
+     "cov90_on": 0.895,
+     "cov90_off": 0.895,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "IN",
+   "ticker": "RELIANCE",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.741,
+     "crps_gain_per_spot": -0.0002,
+     "pin50_gain_per_spot": -0.00017,
+     "cov50_on": 0.524,
+     "cov80_on": 0.806,
+     "cov90_on": 0.906,
+     "cov90_off": 0.912,
+     "call_hit_tilted": 0.468
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.789,
+     "crps_gain_per_spot": -0.00053,
+     "pin50_gain_per_spot": -0.00019,
+     "cov50_on": 0.509,
+     "cov80_on": 0.912,
+     "cov90_on": 0.93,
+     "cov90_off": 0.93,
+     "call_hit_tilted": 0.444
+    }
+   }
+  },
+  {
+   "market": "IN",
+   "ticker": "TMPV",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.847,
+     "crps_gain_per_spot": -0.00013,
+     "pin50_gain_per_spot": 0.00015,
+     "cov50_on": 0.406,
+     "cov80_on": 0.771,
+     "cov90_on": 0.882,
+     "cov90_off": 0.882,
+     "call_hit_tilted": 0.562
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.879,
+     "crps_gain_per_spot": -4e-05,
+     "pin50_gain_per_spot": -0.00026,
+     "cov50_on": 0.448,
+     "cov80_on": 0.707,
+     "cov90_on": 0.828,
+     "cov90_off": 0.81,
+     "call_hit_tilted": 0.529
+    }
+   }
+  },
+  {
+   "market": "KR",
+   "ticker": "KAKAO",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.787,
+     "crps_gain_per_spot": 0.00024,
+     "pin50_gain_per_spot": 0.00018,
+     "cov50_on": 0.456,
+     "cov80_on": 0.793,
+     "cov90_on": 0.905,
+     "cov90_off": 0.905,
+     "call_hit_tilted": 0.556
+    },
+    "3M": {
+     "n": 57,
+     "tilted_share": 0.772,
+     "crps_gain_per_spot": 0.00044,
+     "pin50_gain_per_spot": 0.00037,
+     "cov50_on": 0.456,
+     "cov80_on": 0.789,
+     "cov90_on": 0.877,
+     "cov90_off": 0.86,
+     "call_hit_tilted": 0.545
+    }
+   }
+  },
+  {
+   "market": "KR",
+   "ticker": "LGES",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 40,
+     "tilted_share": 0.725,
+     "crps_gain_per_spot": -0.0002,
+     "pin50_gain_per_spot": 0.00015,
+     "cov50_on": 0.55,
+     "cov80_on": 0.85,
+     "cov90_on": 0.925,
+     "cov90_off": 0.925,
+     "call_hit_tilted": 0.552
+    },
+    "3M": {
+     "n": 13,
+     "tilted_share": 0.692,
+     "crps_gain_per_spot": -0.00094,
+     "pin50_gain_per_spot": -0.00076,
+     "cov50_on": 0.615,
+     "cov80_on": 0.846,
+     "cov90_on": 0.923,
+     "cov90_off": 0.923,
+     "call_hit_tilted": 0.333
+    }
+   }
+  },
+  {
+   "market": "KR",
+   "ticker": "SAMSUNG",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 162,
+     "tilted_share": 0.753,
+     "crps_gain_per_spot": 0.0004,
+     "pin50_gain_per_spot": 0.00031,
+     "cov50_on": 0.519,
+     "cov80_on": 0.821,
+     "cov90_on": 0.932,
+     "cov90_off": 0.926,
+     "call_hit_tilted": 0.516
+    },
+    "3M": {
+     "n": 55,
+     "tilted_share": 0.782,
+     "crps_gain_per_spot": 0.00142,
+     "pin50_gain_per_spot": 0.00045,
+     "cov50_on": 0.382,
+     "cov80_on": 0.836,
+     "cov90_on": 0.909,
+     "cov90_off": 0.909,
+     "call_hit_tilted": 0.488
+    }
+   }
+  },
+  {
+   "market": "QA",
+   "ticker": "IQCD",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.787,
+     "crps_gain_per_spot": 0.00015,
+     "pin50_gain_per_spot": 0.00016,
+     "cov50_on": 0.485,
+     "cov80_on": 0.781,
+     "cov90_on": 0.899,
+     "cov90_off": 0.911,
+     "call_hit_tilted": 0.571
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.81,
+     "crps_gain_per_spot": 0.00019,
+     "pin50_gain_per_spot": 0.00029,
+     "cov50_on": 0.466,
+     "cov80_on": 0.759,
+     "cov90_on": 0.862,
+     "cov90_off": 0.879,
+     "call_hit_tilted": 0.66
+    }
+   }
+  },
+  {
+   "market": "QA",
+   "ticker": "QGTS",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 169,
+     "tilted_share": 0.763,
+     "crps_gain_per_spot": -9e-05,
+     "pin50_gain_per_spot": -1e-05,
+     "cov50_on": 0.509,
+     "cov80_on": 0.817,
+     "cov90_on": 0.941,
+     "cov90_off": 0.935,
+     "call_hit_tilted": 0.496
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.759,
+     "crps_gain_per_spot": 0.00021,
+     "pin50_gain_per_spot": 0.00015,
+     "cov50_on": 0.534,
+     "cov80_on": 0.828,
+     "cov90_on": 0.914,
+     "cov90_off": 0.914,
+     "call_hit_tilted": 0.5
+    }
+   }
+  },
+  {
+   "market": "QA",
+   "ticker": "QNB",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.718,
+     "crps_gain_per_spot": 2e-05,
+     "pin50_gain_per_spot": -3e-05,
+     "cov50_on": 0.535,
+     "cov80_on": 0.835,
+     "cov90_on": 0.918,
+     "cov90_off": 0.924,
+     "call_hit_tilted": 0.484
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.724,
+     "crps_gain_per_spot": -0.00022,
+     "pin50_gain_per_spot": -0.00018,
+     "cov50_on": 0.517,
+     "cov80_on": 0.81,
+     "cov90_on": 0.931,
+     "cov90_off": 0.931,
+     "call_hit_tilted": 0.476
+    }
+   }
+  },
+  {
+   "market": "US",
+   "ticker": "AAPL",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.865,
+     "crps_gain_per_spot": 2e-05,
+     "pin50_gain_per_spot": 0.00015,
+     "cov50_on": 0.447,
+     "cov80_on": 0.812,
+     "cov90_on": 0.947,
+     "cov90_off": 0.947,
+     "call_hit_tilted": 0.531
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.879,
+     "crps_gain_per_spot": -0.00028,
+     "pin50_gain_per_spot": 0.00013,
+     "cov50_on": 0.448,
+     "cov80_on": 0.828,
+     "cov90_on": 0.879,
+     "cov90_off": 0.862,
+     "call_hit_tilted": 0.569
+    }
+   }
+  },
+  {
+   "market": "US",
+   "ticker": "NVDA",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.906,
+     "crps_gain_per_spot": 0.00091,
+     "pin50_gain_per_spot": 0.00061,
+     "cov50_on": 0.559,
+     "cov80_on": 0.876,
+     "cov90_on": 0.929,
+     "cov90_off": 0.935,
+     "call_hit_tilted": 0.584
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.897,
+     "crps_gain_per_spot": 0.00353,
+     "pin50_gain_per_spot": 0.00216,
+     "cov50_on": 0.552,
+     "cov80_on": 0.828,
+     "cov90_on": 0.879,
+     "cov90_off": 0.879,
+     "call_hit_tilted": 0.635
+    }
+   }
+  },
+  {
+   "market": "US",
+   "ticker": "TSLA",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.741,
+     "crps_gain_per_spot": 0.00051,
+     "pin50_gain_per_spot": 0.00018,
+     "cov50_on": 0.506,
+     "cov80_on": 0.829,
+     "cov90_on": 0.9,
+     "cov90_off": 0.894,
+     "call_hit_tilted": 0.508
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.724,
+     "crps_gain_per_spot": 0.00041,
+     "pin50_gain_per_spot": -0.00018,
+     "cov50_on": 0.448,
+     "cov80_on": 0.793,
+     "cov90_on": 0.862,
+     "cov90_off": 0.862,
+     "call_hit_tilted": 0.429
+    }
+   }
+  },
+  {
+   "market": "XAU",
+   "ticker": "GOLD",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 182,
+     "tilted_share": 0.852,
+     "crps_gain_per_spot": 0.00013,
+     "pin50_gain_per_spot": 2e-05,
+     "cov50_on": 0.533,
+     "cov80_on": 0.797,
+     "cov90_on": 0.89,
+     "cov90_off": 0.89,
+     "call_hit_tilted": 0.51
+    },
+    "3M": {
+     "n": 62,
+     "tilted_share": 0.806,
+     "crps_gain_per_spot": 0.00039,
+     "pin50_gain_per_spot": 0.0004,
+     "cov50_on": 0.435,
+     "cov80_on": 0.79,
+     "cov90_on": 0.935,
+     "cov90_off": 0.935,
+     "call_hit_tilted": 0.58
+    }
+   }
+  },
+  {
+   "market": "XAU",
+   "ticker": "SILVER",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.765,
+     "crps_gain_per_spot": -0.00016,
+     "pin50_gain_per_spot": -5e-05,
+     "cov50_on": 0.547,
+     "cov80_on": 0.859,
+     "cov90_on": 0.929,
+     "cov90_off": 0.935,
+     "call_hit_tilted": 0.515
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.724,
+     "crps_gain_per_spot": -0.00067,
+     "pin50_gain_per_spot": -0.00084,
+     "cov50_on": 0.534,
+     "cov80_on": 0.828,
+     "cov90_on": 0.897,
+     "cov90_off": 0.897,
+     "call_hit_tilted": 0.452
+    }
+   }
+  },
+  {
+   "market": "XPT",
+   "ticker": "PLATINUM",
+   "hypothetical": true,
+   "horizons": {
+    "1M": {
+     "n": 170,
+     "tilted_share": 0.688,
+     "crps_gain_per_spot": -6e-05,
+     "pin50_gain_per_spot": 9e-05,
+     "cov50_on": 0.494,
+     "cov80_on": 0.841,
+     "cov90_on": 0.894,
+     "cov90_off": 0.9,
+     "call_hit_tilted": 0.547
+    },
+    "3M": {
+     "n": 58,
+     "tilted_share": 0.759,
+     "crps_gain_per_spot": -0.00019,
+     "pin50_gain_per_spot": -0.00043,
+     "cov50_on": 0.517,
+     "cov80_on": 0.845,
+     "cov90_on": 0.931,
+     "cov90_off": 0.931,
+     "call_hit_tilted": 0.455
+    }
+   }
+  }
+ ],
+ "not_committed": [
+  {
+   "market": "IN",
+   "ticker": "INFY",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "IN",
+   "ticker": "RELIANCE",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "IN",
+   "ticker": "TMPV",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "KAKAO",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "LGES",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "KR",
+   "ticker": "SAMSUNG",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "IQCD",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "QGTS",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "QA",
+   "ticker": "QNB",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "AAPL",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "NVDA",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "US",
+   "ticker": "TSLA",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XAU",
+   "ticker": "GOLD",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XAU",
+   "ticker": "SILVER",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  },
+  {
+   "market": "XPT",
+   "ticker": "PLATINUM",
+   "note": "carry-only in production \u2014 no tilt adopted (no robust market-level evidence); ON==OFF by construction"
+  }
+ ]
+}
