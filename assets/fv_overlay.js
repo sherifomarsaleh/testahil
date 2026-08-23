@@ -4008,98 +4008,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ABUK",
-   "name": "Abu Kir Fertilizers",
-   "code": "EGX:ABUK",
-   "ccy": "EGP",
-   "spot": 72.3,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 50,
-   "fv_base": 60,
-   "fv_full": 72,
-   "gap_base_pct": -17.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.10313,
-    "mu_h": 0.014827,
-    "G": {
-     "bear": -3.58,
-     "base": -1.81,
-     "full": -0.04
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0024,
-     "base": 0.0266,
-     "full": 0.4108
-    },
-    "p_touch": {
-     "bear": 0.0033,
-     "base": 0.0428,
-     "full": 0.8126
-    },
-    "required_cagr": {
-     "bear": -0.988,
-     "base": -0.8933,
-     "full": -0.0487
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0015
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.190356,
-    "mu_h": 0.045954,
-    "G": {
-     "bear": -1.94,
-     "base": -0.98,
-     "full": -0.02
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0187,
-     "base": 0.0879,
-     "full": 0.3739
-    },
-    "p_touch": {
-     "bear": 0.0359,
-     "base": 0.1728,
-     "full": 0.8787
-    },
-    "required_cagr": {
-     "bear": -0.7713,
-     "base": -0.5257,
-     "full": -0.0165
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00214
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "COMI",
    "name": "Commercial International Bank",
    "code": "EGX:COMI",
@@ -4558,6 +4466,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00095
    },
    "market": "AE"
+  },
+  {
+   "ticker": "ABUK",
+   "name": "Abu Kir Fertilizers",
+   "code": "EGX:ABUK",
+   "ccy": "EGP",
+   "spot": 76.59,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 50,
+   "fv_base": 60,
+   "fv_full": 72,
+   "gap_base_pct": -21.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.109555,
+    "mu_h": 0.017986,
+    "G": {
+     "bear": -3.89,
+     "base": -2.23,
+     "full": -0.56
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0017,
+     "base": 0.0136,
+     "full": 0.1951
+    },
+    "p_touch": {
+     "bear": 0.0026,
+     "base": 0.0215,
+     "full": 0.3664
+    },
+    "required_cagr": {
+     "bear": -0.994,
+     "base": -0.9466,
+     "full": -0.5237
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00133
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.194814,
+    "mu_h": 0.052644,
+    "G": {
+     "bear": -2.19,
+     "base": -1.25,
+     "full": -0.32
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0123,
+     "base": 0.0532,
+     "full": 0.2412
+    },
+    "p_touch": {
+     "bear": 0.0234,
+     "base": 0.1028,
+     "full": 0.5441
+    },
+    "required_cagr": {
+     "bear": -0.8184,
+     "base": -0.6234,
+     "full": -0.219
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00305
+   },
+   "market": "EG"
   },
   {
    "ticker": "ADNOCGAS",
