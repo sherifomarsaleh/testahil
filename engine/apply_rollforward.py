@@ -320,6 +320,17 @@ def js_row(d: dict) -> str:
         f'grade_basis:{v(d["grade_basis"])}, horizon_days:{d["horizon_days"]},\n'
         f'    cycle_no:{d["cycle_no"]}, reanchor_from:{v(d["reanchor_from"])}, '
         f'anchor_vol:{d["anchor_vol"]},\n'
+        # [R-DRIFT-01] the direction commitment is part of the frozen record: a
+        # tilted cone cannot be graded for DIRECTION unless the z it leaned on and
+        # the alpha it applied are stored beside the percentiles. strike_cohorts
+        # has always returned both and this emitter dropped them, so the first
+        # cohort struck after the 23-Aug-2026 adoption would have shipped a tilt
+        # with no audit trail. `.get` keeps rows from callers that never had a
+        # signal emitting an explicit null rather than a fabricated 0.0 — which is
+        # the honest record, since signal_alpha() returns (0.0, 0.0) for an
+        # INACTIVE socket and a stored 0.0 would misread as a measured z of zero.
+        f'    signal_z:{v(d.get("signal_z"))}, '
+        f'signal_alpha:{v(d.get("signal_alpha"))},\n'
         f'    note:{v(d["note"])},\n'
         f'    p5:{d["p5"]}, p25:{d["p25"]}, p50:{d["p50"]}, p75:{d["p75"]}, p95:{d["p95"]},\n'
         f'    touch:{{ {t} }},\n'

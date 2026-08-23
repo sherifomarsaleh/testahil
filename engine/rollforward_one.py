@@ -38,6 +38,7 @@ import pandas as pd                                        # noqa: E402
 
 from strike_cohorts import strike, touch_probs, rel_touch   # noqa: E402
 import market_profiles as MP                                # noqa: E402
+import adaptive_width as AW                                # noqa: E402
 from apply_rollforward import (ticker_blocks, fmt_price,  # noqa: E402
                                prior_anchor, js_row,
                                bump_site_updated, MONTHS, RF_SRC)
@@ -371,6 +372,22 @@ def run(market: str, series: str, key: str, today: str,
              if aclass == 'metal' and q_annual == 0 else
              '(FLAGGED \u2014 house convention; the drift is a GROSS-OF-DIVIDEND '
              'price carry and overstates the centre by roughly the yield.)')
+    # The published note quoted the POOLED width_cal as though it were the width the
+    # cone was built on. For any name past the adaptive overlay's history gate that is
+    # simply false: strike() multiplies width_cal by live_width_mult() before
+    # simulating, and ADIB (58 resolved windows against MIN_WINDOWS=28) has been
+    # clearing that gate silently. A note that states a number the run did not use is
+    # the "number stated in prose must be computed, not typed" defect, so the clause is
+    # DERIVED from the value strike() actually applied and disappears when it is 1.0.
+    wmult = r.get('width_overlay_mult', 1.0)
+    wnote = '' if abs(wmult - 1.0) < 1e-9 else (
+        f' PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has '
+        f'cleared the {AW.MIN_WINDOWS}-window history gate, so live_width_mult() returns '
+        f'{wmult:.4f} on its OWN resolved 3-month residuals and the cone was simulated at '
+        f'an effective width_cal of {prof.width_cal * wmult:.4f}, not the pooled '
+        f'{prof.width_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
+        f'carry drift and the tail nu are untouched by it.'
+    )
     note = (
         f'Cycle {cyc} roll-forward, {today} — struck on the {d.day:02d}-'
         f'{MONTHS[d.month - 1]}-{d.year} close, the latest session in this '
@@ -383,7 +400,7 @@ def run(market: str, series: str, key: str, today: str,
         f'→ simulate_paths_v3, 50,000 paths, seed 42, signal '
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
         f'{qnote} '
-        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}; rf_live '
+        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{wnote} rf_live '
         f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
         f'a calendar commitment, not a session count; the session counts '
@@ -399,6 +416,12 @@ def run(market: str, series: str, key: str, today: str,
             horizon_days=h['h'], cycle_no=cyc,
             reanchor_from=(prior[0] if prior else None),
             anchor_vol=round(h['anchor_vol_ann'], 4), note=note,
+            # Recorded per [R-DRIFT-01]; null (not 0.0) when the socket is OFF,
+            # because signal_alpha() returns a placeholder 0.0 z in that case and
+            # storing it would assert a measurement that was never made.
+            signal_z=(round(h['signal_z'], 4) if prof.signal_active else None),
+            signal_alpha=(round(h['signal_alpha'], 5)
+                          if prof.signal_active else None),
             p5=round(h['pct']['p5'], 2), p25=round(h['pct']['p25'], 2),
             p50=round(h['pct']['p50'], 2), p75=round(h['pct']['p75'], 2),
             p95=round(h['pct']['p95'], 2),
