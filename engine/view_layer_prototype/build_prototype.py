@@ -361,7 +361,7 @@ def tournament_section(path: str | None) -> str:
 FEAT_WORDS = {"mom_12_1": "12-month momentum", "mom_6_1": "6-month momentum",
               "rev_1m": "1-month reversal", "near52h": "near 52-week high",
               "trend200": "above/below 200-day avg", "rsi14": "RSI(14)"}
-VERDICT_WORDS = {"PASS": "predicts UP-side", "FAIL": "predicts DOWN-side",
+VERDICT_WORDS = {"PASS": "reliable", "FAIL": "reliable (inverse)",
                  "PARITY": "no reliable signal",
                  "BOUNDARY(PARITY-flagged)": "borderline",
                  "INSUFFICIENT-POWER": "too little data to judge"}

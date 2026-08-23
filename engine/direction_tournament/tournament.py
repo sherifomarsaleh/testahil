@@ -411,9 +411,11 @@ def to_md(payload: dict) -> str:
                  "split-half consistency + cross-framing agreement in any "
                  "market at pooled n>=100.")
     L += ["", "A survivor here is a CANDIDATE for the standing promotion gate, "
-          "never an adoption. A empty list is itself a publishable finding: "
-          "short-horizon direction is not recoverable from price history in "
-          "these markets by these six constructions.", ""]
+          "never an adoption."
+          + ("" if payload["survivors"] else
+             " An empty list is itself a publishable finding: short-horizon "
+             "direction is not recoverable from price history in these "
+             "markets by these six constructions."), ""]
     return "\n".join(L)
 
 
