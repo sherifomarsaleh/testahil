@@ -196,7 +196,7 @@ THE RULE, from now on:
 | US / NASDAQ | NASDAQCOMP | registered, tech-weighted |
 | BR, GB | — | not supplied |
 
-**The DFM interim [instruction, 10-Aug-2026].** No DFM General series is held, so the six DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — stand on FTSE ADX General until one is supplied. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
+**The DFM interim [instruction, 10-Aug-2026; HELD OPEN by instruction, 23-Aug-2026].** The DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK, and since then AIRARABIA, DU and EMPOWER, nine in total — stand on FTSE ADX General. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
 
 It is also the better-evidenced half of the substitution, which is worth stating because the intuition runs the other way. Over five years of weekly returns, FADGI explains the DFM names **better** than it explains the ADX names it actually covers:
 
@@ -205,7 +205,24 @@ It is also the better-evidenced half of the substitution, which is worth stating
 | ADX names (15) | 0.127 | 1.037 | AGTHIA 0.037 → FAB 0.606 |
 | DFM names (6) | **0.240** | 1.067 | DEWA 0.101 → ENBD 0.304 |
 
-All six DFM names clear the R²≥5% usability gate; several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and a real DFM index replaces it.
+All six DFM names clear the R²≥5% usability gate; several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and it is NOT a conforming clause-(a) regressor however long it stands.
+
+**A DFM series is now held, and the interim stands anyway [instruction, 23-Aug-2026].** `engine/raw_indices/AE/DFMGI.csv` (DFM General, 2015-01-05 → 2026-07-16, 2,306 rows) is in the repository. The 10-Aug clause said "a real DFM index replaces it"; that replacement condition is now met and has been **explicitly declined for the time being**. The nine DFM names continue on FTSE ADX General. DFMGI is therefore HELD BUT NOT REGISTERED — `EXCHANGE_INDEX` must keep mapping `("AE","DFM")` to FADGI, and a later session must not "helpfully" register it on the reasoning that the file exists. Registration now needs its own instruction.
+
+Three things follow, and none of them is optional:
+
+1. **The disclosure obligation gets stronger, not weaker.** A stopgap that persists by choice is a standing methodological position, so every DFM beta must carry `index_interim_note()` verbatim wherever the beta is quoted — study body, bibliography, cost-of-capital table and workbook alike — and must not be described as conforming.
+2. **The cost is measured, and it is not nil.** Where both regressions have been run, DFMGI has the materially higher explanatory power, so the interim is knowingly the weaker fit on the names tested:
+
+| name | on FADGI (adopted) | on DFMGI (declined) |
+|---|---|---|
+| AIRARABIA | β 0.812, R² 0.135 | β 1.086, R² 0.402 |
+| EMPOWER | β 0.863, R² 0.103 | β 0.652, R² 0.157 |
+
+   Both move beta by roughly a quarter to a third, in opposite directions — so this is not a uniform bias that a reader can mentally correct for, and it must not be presented as one.
+3. **It is a dual-framing case.** Under the standing dual-framing rule, a DFM study that has both numbers publishes the declined one as a labelled cross-check beside the adopted one, exactly as AIRARABIA already does, rather than suppressing it. `airarabia_study/beta_reg.py` is the worked precedent: it runs both, adopts the registered regressor, prints the difference, and says in the study why the other was not used.
+
+Revisit only on a further instruction.
 
 **Where the exchange comes from.** `assets/data.js` records it per ticker as the `code` prefix (`ADX:`, `DFM:`, `EGX:`, `TADAWUL:`, `QSE:`, `KRX:`, `NSE:`, `NASDAQ:`). Read it. Never infer the exchange from the `raw_ohlc/{MARKET}/` folder — that groups by market code and is exactly what mixed ADX with DFM.
 

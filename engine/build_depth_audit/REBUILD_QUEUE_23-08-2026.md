@@ -6,7 +6,10 @@ which means a full model rebuild, not an edit.
 
 ## Before study 1
 
-- [ ] Register the DFM General index in `wacc_builder.EXCHANGE_INDEX` (blocks 8 names in Wave 3)
+- [x] **Dubai index — decided 23-Aug-2026.** The eight Dubai-listed names stay on the Abu Dhabi
+      index. Recorded in `Standing_Research_Protocol.md`, `PROJECT_INSTRUCTIONS_11-07-2026.md`,
+      `wacc_builder.INTERIM_INDEX` and `raw_indices/README.md`. Condition: every DFM study must
+      quote `index_interim_note()` and none may be called conforming. Wave 3 unblocked.
 - [ ] Delete the duplicate `raw_indices/AE/ADXGENERAL.csv`, repoint ADNOCDIST and ADNOCDRILL
 - [ ] Decide the ARCC / SCEM fallback tier — it sets the precedent for every thin EGX name
 - [ ] Wire `assert_sigcm` / `assert_beta_provenance` / `assert_model_study` into CI so the rule
@@ -95,7 +98,7 @@ The largest single block, and it holds every one of the seven studies whose beta
 
 ## Wave 3 — United Arab Emirates (18 studies)
 
-Run only after the Dubai index is registered - eight of these are Dubai-listed and are standing on an Abu Dhabi index today.
+No longer blocked. The eight Dubai-listed names stay on the Abu Dhabi index by instruction of 23-Aug-2026, so each must quote the interim disclosure and none may be called conforming.
 
 ### ADX · Operating company (5)
 

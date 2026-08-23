@@ -115,6 +115,8 @@ header{{display:flex;flex-direction:column;gap:15px;padding-bottom:26px;border-b
 .prei{{background:var(--surface);border:1px solid var(--line2);border-left:3px solid var(--warn);
   border-radius:3px;padding:14px 17px}}
 .prei h3{{margin-bottom:3px}}
+.prei.done{{border-left-color:var(--a)}}
+.prei.done h3{{color:var(--a)}}
 .prei p{{color:var(--ink2);font-size:14.5px;max-width:64ch}}
 .wave{{margin-top:44px;display:flex;flex-direction:column;gap:13px}}
 .wh{{display:flex;flex-direction:column;gap:5px;padding-bottom:4px;border-bottom:1px solid var(--line)}}
@@ -192,14 +194,16 @@ code{{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--sun
 </div>
 
 <section class="sec">
-  <h2>Three things to fix before study number 1</h2>
-  <p>None of these is a study rebuild. All three are quick, and two of them change answers in the
-  queue below, so doing them first avoids redoing work.</p>
+  <h2>Before study number 1</h2>
+  <p>None of these is a study rebuild. The first is already settled; the other two are quick and both
+  change answers in the queue below, so doing them first avoids redoing work.</p>
   <div class="pre">
-    <div class="prei"><h3>Turn on the Dubai index</h3>
-    <p>The real Dubai stock market index is already saved in your repository but the system is not set
-    to use it &mdash; eight Dubai-listed companies in this queue are being compared against an Abu Dhabi
-    index instead. Switching it over changes their risk numbers, so it has to happen before Wave&nbsp;3.</p></div>
+    <div class="prei done"><h3>Dubai index &mdash; decided, nothing to do</h3>
+    <p>The eight Dubai-listed companies stay on the Abu Dhabi index, by your instruction of
+    23&nbsp;Aug&nbsp;2026. That decision is now written into both protocol files and into the code note, so
+    a later session will not switch it back on its own. Two conditions come with it: every Dubai company's
+    write-up must say plainly that its risk number rests on another exchange's index, and none of them may
+    be described as fully conforming. Wave&nbsp;3 is unblocked.</p></div>
     <div class="prei"><h3>Remove the duplicate index file</h3>
     <p>The same index is saved twice under two different names. Two studies point at the copy the system
     doesn't recognise, so their work can't be verified even though the numbers are right.</p></div>

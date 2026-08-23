@@ -26,12 +26,28 @@ Nothing in this directory is part of any MC panel.
 |---|---|---|---|
 | AE | `AE/FADGI.csv` (FTSE ADX General) | 2011-01-02 → 2026-07-24 | investing.com daily export |
 | AE | `AE/ADXGENERAL.csv` | 2011-01-02 → 2026-07-24 | investing.com daily export |
+| AE | `AE/DFMGI.csv` (DFM General) — **HELD, NOT REGISTERED** | 2015-01-05 → 2026-07-16 | investing.com daily export |
 | EG | `EG/EGX30.csv` | 2011-01-02 → 2026-07-22 | investing.com daily export |
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |
 | QA | `QA/QATAR10.csv` | — | investing.com daily export |
 | SA | `SA/TASI.csv` (Tadawul All Share) | 2011-01-01 → 2026-07-27 | investing.com daily export |
 | US | `US/NASDAQCOMP.csv` | — | investing.com daily export |
+
+## Held but deliberately NOT registered
+
+**`AE/DFMGI.csv` (DFM General).** The file is here; the resolver does not use it. The nine
+DFM-listed names stay on FTSE ADX General under the interim, **held open by instruction on
+23-Aug-2026** after the 10-Aug clause's own replacement condition ("replace with a DFM index
+when one is supplied") was met. Do not add it to `wacc_builder.EXCHANGE_INDEX` on the
+reasoning that the file exists — registering it needs its own instruction. It may be run as a
+LABELLED cross-check (see `airarabia_study/beta_reg.py`, the worked precedent) and published
+beside the adopted number under the dual-framing rule, never as the basis.
+
+**`AE/ADXGENERAL.csv`.** Byte-identical to `AE/FADGI.csv` (same md5). One series, two
+filenames, and only `FADGI` is registered — a beta regressed against the `ADXGENERAL` copy
+carries the right number but will not resolve through `market_index_path()`, so
+`assert_beta_provenance()` cannot attest it.
 
 ## Missing — no conforming beta is possible in these markets
 

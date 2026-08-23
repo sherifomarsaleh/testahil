@@ -36,7 +36,7 @@ by_x = collections.defaultdict(list)
 for r in rest: by_x[r['x']].append(r)
 
 GROUPS = [('Wave 2', ['EGX'],  'Egypt', 'The largest single block, and it holds every one of the seven studies whose beta is known wrong. One Egyptian cost-of-capital sourcing serves all of them.'),
-          ('Wave 3', ['ADX', 'DFM'], 'United Arab Emirates', 'Run only after the Dubai index is registered - eight of these are Dubai-listed and are standing on an Abu Dhabi index today.'),
+          ('Wave 3', ['ADX', 'DFM'], 'United Arab Emirates', 'No longer blocked. The eight Dubai-listed names stay on the Abu Dhabi index by instruction of 23-Aug-2026, so each must quote the interim disclosure and none may be called conforming.'),
           ('Wave 4', ['TADAWUL'], 'Saudi Arabia', 'One sovereign, one index, one tax regime across the whole batch.'),
           ('Wave 5', ['QSE', 'KRX', 'NSE', 'NASDAQ'], 'The international tail', 'Four small country batches. Each needs its own sovereign row, so they are cheapest done last, together.')]
 
