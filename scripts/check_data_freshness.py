@@ -163,7 +163,12 @@ def ledger_rows(src: str) -> list[dict]:
     return [{'raw': r, 'instrument': g(r, 'instrument'),
              'horizon': g(r, 'horizon_label'), 'anchor': g(r, 'anchor_date'),
              'grade': g(r, 'grade_date'), 'run': g(r, 'run_date'),
-             'realized': g(r, 'realized_close')}
+             'realized': g(r, 'realized_close'),
+             # the STRIKE-TIME horizon record, for check 5b: what resolve()
+             # returned on the day the cone was struck, and whether that session
+             # count was a projection or a realized count.
+             'horizon_days': g(r, 'horizon_days'),
+             'grade_basis': g(r, 'grade_basis')}
             for r in rows if g(r, 'instrument')]
 
 
@@ -336,14 +341,56 @@ def main() -> int:
             body = hz.group(1)
             if 'cal:true' not in body.replace(' ', ''):
                 fail(key, 'hz.cal is not true -- renders the retired session naming')
-            for field, months in (('h1', 1), ('h3', 3)):
+            #     A PUBLISHED SESSION COUNT IS A STRIKE-TIME PROJECTION, AND A
+            #     PROJECTION THAT LATER RESOLVES ONE SESSION AWAY IS NOT A DEFECT
+            #     (23-Aug-2026). This compared the published h against resolve()
+            #     re-run TODAY, which is the same error the grading rule forbids one
+            #     field over: "grade against the stored calendar grade_date ...
+            #     never re-derive the target by counting rows." resolve() returns a
+            #     PROJECTED h while the library is short of the target and a REALIZED
+            #     h once it covers it, and markets share one realized calendar — so
+            #     the moment ANY name's library runs ahead of its peers, every
+            #     still-stale name in that market re-resolves onto the realized
+            #     branch and fails a check about a number nobody got wrong.
+            #
+            #     That is not hypothetical: merging one month of ABUK extended EG's
+            #     calendar to 2026-08-23, and 24 EG names struck 2026-07-22 with a
+            #     projected h1 of 20 were suddenly measured against a realized 21.
+            #     Every one of them had committed to the CORRECT grade date
+            #     (2026-08-23) and every published percentile was untouched. It
+            #     would fire the same way in any market, on any roll-forward.
+            #
+            #     So the published h is held to what was knowable AT STRIKE, whose
+            #     durable record is the LEDGER row's own horizon_days/grade_basis.
+            #     The guard is the GRADE DATE: a resolved projection is forgiven only
+            #     while the commitment it was made for still resolves to the same
+            #     date. If that moved, the entry is genuinely wrong and still fails.
+            inst_l = LEDGER_ALIAS.get(key, key)
+            for field, months, hlabel in (('h1', 1, '1 month'),
+                                          ('h3', 3, '3 months')):
                 m = re.search(field + r'\s*:\s*(\d+)', body)
-                want = horizons.resolve(mkt, anchor, months)['h']
+                res = horizons.resolve(mkt, anchor, months)
+                want = res['h']
                 if not m:
                     fail(key, f'hz.{field} missing')
-                elif int(m.group(1)) != want:
-                    fail(key, f'hz.{field} is {m.group(1)} but this name\'s own '
-                              f'{months}-month span projects to {want} sessions')
+                    continue
+                got_h = int(m.group(1))
+                if got_h == want:
+                    continue
+                struck = next((r for r in by_inst.get(inst_l, [])
+                               if r['horizon'] == hlabel and r['anchor'] == anchor),
+                              None)
+                if (struck and struck['grade_basis'] == 'projected'
+                        and struck['horizon_days'] is not None
+                        and int(float(struck['horizon_days'])) == got_h
+                        and struck['grade'] == res['grade_date']):
+                    warn(key, f'hz.{field} is {got_h}, the projection made at strike; '
+                              f'the span has since resolved to {want} sessions. Grade '
+                              f'date {struck["grade"]} is unchanged, so the commitment '
+                              f'stands and the cone is not re-sized.')
+                    continue
+                fail(key, f'hz.{field} is {got_h} but this name\'s own '
+                          f'{months}-month span projects to {want} sessions')
 
         # 6. published spot must be a real close in the library on the date
         #    the page claims. Gold published the 27-Jul close as "28 Jul".

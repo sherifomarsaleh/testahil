@@ -1683,26 +1683,28 @@ const TICKERS = {
     name: "Abu Kir Fertilizers",
     nameAr: "أبو قير للأسمدة",
     code: "EGX:ABUK",
-    spot: 72.30,
-    spotDate: "close 22 Jul 2026",
+    spot: 76.59,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 50, base: 60, full: 72 },
     dist: {
-      t20: { label:"1 month",   p5:62.48, p25:69.13, p50:73.38, p75:77.92, p95:86.21, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:56.17, p25:67.80, p50:75.70, p75:84.36, p95:101.76, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:65.75, p25:73.36, p50:77.98, p75:82.96, p95:92.56, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:59.52, p25:72.35, p50:80.73, p75:90.09, p95:109.34, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ [81.56, 20, 45], [74.77, 46, 66], [71.37, 66, 79], [64.57, 66, 80], [61.17, 44, 67], [54.38, 14, 40] ],
-    levels: { res:[78, 79.75, 91.65], sup:[53.91, 51.34, 48.54] },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low */
+      [81.56, 49, 74], [74.77, 64, 76], [71.37, 32, 51], [64.57, 7, 20], [61.17, 3, 13], [54.38, 1, 5]
+    ],
+    levels: { res:[78, 79.75, 91.65], sup:[75.59, 53.91, 51.34] },
     tech: {
-      trend: "Mixed against the moving-average stack, above a rising 200-day",
-      summary: "The price closed 72.30 above a falling 20-day (70.50) and a rising 200-day (66.12), but below a falling 50-day (76.82). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 2.09 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.67 / \u22121.50 / +0.83). Over the last year it has ranged 45.18\u201395.00; the last close sits 24% below that high and 60% above that low.",
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 76.59 above a rising 20-day (74.70), a falling 50-day (72.52) and a rising 200-day (68.40). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 1.86 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+1.09 / +0.92 / +0.18). Over the last year it has ranged 45.18\u201395.00; the last close sits 19% below that high and 70% above that low.",
       bull: "A daily close back above 78.00 would clear the nearest resistance and open the 91.65 zone.",
-      bear: "A close below 53.91 would break the nearest support and open the 48.54 zone."
+      bear: "A close below 75.59 would break the nearest support and open the 51.34 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-23" },
+      tech: { data:"2026-08-23", computed:"2026-08-23" }
     },
     files: {
       study: "files/ABUK_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -3740,9 +3742,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:62.48, p25:69.13, p50:73.38, p75:77.92, p95:86.21,
     touch:{ "+5":55, "+10":29, "+15":14, "+20":7, "-5":43, "-10":18 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:76.59, realized_high:80.36, realized_low:70.6,
+    in_90:true, in_50:true, realized_quantile:0.677, median_err:0.0437,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"ABUK", asset_class:"equity",
@@ -5546,6 +5548,21 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
+  // ---- 23-Aug-2026 single-name roll-forward: ABUK, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ABUK", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-23", anchor_price:76.59, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.3723,
+    signal_z:0.5125, signal_alpha:0.0035,
+    note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.513 (outside the 0.25 dead zone); tilt +0.35% at 1M and +0.69% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:65.75, p25:73.36, p50:77.98, p75:82.96, p95:92.56,
+    touch:{ "+5":58, "+10":32, "+15":16, "+20":9, "-5":43, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- 23-Aug-2026 single-name roll-forward: BTFH, struck on its own
   //      latest library close. Append-only.
   {
@@ -5556,6 +5573,19 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:2.64, p25:2.9, p50:3.05, p75:3.22, p95:3.53,
     touch:{ "+5":52, "+10":25, "+15":11, "+20":5, "-5":38, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ABUK", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-23", anchor_price:76.59, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.3945,
+    signal_z:0.5125, signal_alpha:0.00683,
+    note:"Cycle 3 roll-forward, 23-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.513 (outside the 0.25 dead zone); tilt +0.35% at 1M and +0.69% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:59.52, p25:72.35, p50:80.73, p75:90.09, p95:109.34,
+    touch:{ "+5":79, "+10":62, "+15":46, "+20":34, "-5":60, "-10":37 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
