@@ -100,7 +100,7 @@ EGYPT = MarketProfile(
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
-    nu=6.0, width_cal=0.951,
+    nu=5.0, width_cal=0.951,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
         "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit "
@@ -399,7 +399,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=8.0, width_cal=0.979,
+    nu=10.0, width_cal=0.923,
     fit_meta=(
         "UPDATE 09-Aug-2026: AIRARABIA added (18 -> 19 names, 261 -> 279 pooled "
         "windows; DFM low-cost carrier, new coverage for the Air Arabia study). "
