@@ -4,10 +4,16 @@ Restores the three status claims EXACTLY as they shipped and asserts each is cau
 A check that has never failed on the defect it was written for is not a check.
 """
 import importlib.util
+import os
 import sys
 
-spec = importlib.util.spec_from_file_location(
-    'cpt', '/home/user/testahil/scripts/check_protocol_text.py')
+# Resolved from THIS file, never hardcoded. The first version carried the absolute path it
+# was drafted at (/home/user/...), passed locally, and died on the CI runner where that path
+# does not exist — the check meant to stop a stale claim about the repo shipped with one.
+HERE = os.path.dirname(os.path.abspath(__file__))
+TARGET = os.path.join(HERE, 'check_protocol_text.py')
+
+spec = importlib.util.spec_from_file_location('cpt', TARGET)
 cpt = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(cpt)
 
