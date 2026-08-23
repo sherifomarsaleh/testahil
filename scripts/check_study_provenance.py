@@ -14,12 +14,12 @@ WHY THIS EXISTS
 
 WHAT IT CHECKS, per study directory under engine/*_study/
     1. a beta artefact exists at all
-    2. the artefact records a regressor FILE, not just a name in prose
-    3. that file resolves to an index registered in wacc_builder.EXCHANGE_INDEX
+    2. the artefact records a regressor FILE, not just a name in prose  [R-BETA-04]
+    3. that file resolves to an index registered in wacc_builder.EXCHANGE_INDEX  [R-IDX-01]
        (a byte-identical copy under an unregistered filename FAILS — the number may be
        right but assert_beta_provenance() cannot attest it)
-    4. the study calls at least one of the three gates in its own code
-    5. no study-local beta script survives — hand-rolling one is what the standing rule
+    4. the study calls at least one of the three gates in its own code  [R-ENF-02]
+    5. no study-local beta script survives  [R-ENF-02] — hand-rolling one is what the standing rule
        forbids, and it is how the composite spread
 
 THE RATCHET
@@ -109,6 +109,56 @@ def audit(sdir, stems):
     return (not bad), bad
 
 
+def check_index_registry():
+    """Every .csv under raw_indices/ is registered, or documented as deliberately held.
+
+    [R-IDX-01, 23-Aug-2026] ADXGENERAL.csv sat beside FADGI.csv, byte-identical, under a
+    filename the resolver does not register. Two studies regressed against it: the right
+    number with provenance that cannot resolve. Nothing objected, because no rule said a
+    file in this directory must be either registered or gone.
+    """
+    from wacc_builder import EXCHANGE_INDEX
+    root = os.path.join(ENGINE, 'raw_indices')
+    registered = set(EXCHANGE_INDEX.values())
+    held = json.load(open(OUTSTANDING_FILE, encoding='utf-8')).get('held_unregistered', {})
+    bad = []
+    for mkt in sorted(os.listdir(root)):
+        d = os.path.join(root, mkt)
+        if not os.path.isdir(d):
+            continue
+        for f in sorted(os.listdir(d)):
+            if not f.endswith('.csv'):
+                continue
+            stem = f[:-4]
+            if stem in registered or stem in held:
+                continue
+            bad.append(f'{mkt}/{f} is neither registered in EXCHANGE_INDEX nor listed as '
+                       f'deliberately held')
+    return bad
+
+
+def check_standard_version():
+    """Report the standard each study was built to.  [R-STD-01, 23-Aug-2026]"""
+    from research_protocol import STANDARD_VERSION
+    stamped, unstamped = {}, []
+    for d in sorted(os.listdir(ENGINE)):
+        if not d.endswith('_study'):
+            continue
+        v = None
+        for f in os.listdir(os.path.join(ENGINE, d)):
+            if f.endswith('.json'):
+                try:
+                    j = json.load(open(os.path.join(ENGINE, d, f), encoding='utf-8'))
+                except Exception:
+                    continue
+                if isinstance(j, dict) and 'standard_version' in j:
+                    v = j['standard_version']
+                    break
+        (stamped.setdefault(v, []).append(d[:-6].upper()) if v
+         else unstamped.append(d[:-6].upper()))
+    return STANDARD_VERSION, stamped, unstamped
+
+
 def main():
     prune = '--prune' in sys.argv
     stems = registered_stems()
@@ -134,7 +184,12 @@ def main():
         else:
             (hard if tk in {x[:-6].upper() for x in dirs} else unknown).append((tk, why))
 
+    idx_bad = check_index_registry()
+    cur, stamped, unstamped = check_standard_version()
+
     print(f'study directories: {len(dirs)}   registered indices: {len(stems)}')
+    print(f'current study standard: {cur}   stamped: {sum(len(v) for v in stamped.values())}'
+          f'   unstamped: {len(unstamped)}')
     print(f'known outstanding: {len(known)}   exempt: {len(outstanding.get("exempt", {}))}')
     print()
     if fixed:
@@ -161,7 +216,13 @@ def main():
               f'{len(outstanding["outstanding"])} remain')
         return 0
 
-    if hard:
+    if idx_bad:
+        print(f'FAIL — index registry ({len(idx_bad)}):')
+        for b in idx_bad:
+            print(f'   {b}')
+        print()
+
+    if hard or idx_bad:
         print('The gate fails. Either fix the study or, if this is knowingly deferred '
               'work, add it to engine/build_depth_audit/outstanding.json WITH A REASON.')
         return 1

@@ -23,6 +23,9 @@ on:
       - 'engine/raw_indices/**'
       - 'engine/build_depth_audit/outstanding.json'
       - 'scripts/check_study_provenance.py'
+      - 'scripts/check_protocol_sync.py'
+      - 'engine/Standing_Research_Protocol.md'
+      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
       - '.github/workflows/study-provenance.yml'
   pull_request:
     paths:
@@ -33,6 +36,9 @@ on:
       - 'engine/raw_indices/**'
       - 'engine/build_depth_audit/outstanding.json'
       - 'scripts/check_study_provenance.py'
+      - 'scripts/check_protocol_sync.py'
+      - 'engine/Standing_Research_Protocol.md'
+      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
       - '.github/workflows/study-provenance.yml'
   workflow_dispatch: {}
 
@@ -72,5 +78,10 @@ jobs:
           print('index registry OK — DFM interim intact, ambiguous market still refuses')
           "
 
+      # [R-DOC-01] the two governing documents must carry the same standing rules
+      - name: Protocol sync gate
+        run: python3 scripts/check_protocol_sync.py
+
+      # [R-ENF-02] the check a study cannot skip by not calling it
       - name: Study provenance gate
         run: python3 scripts/check_study_provenance.py
