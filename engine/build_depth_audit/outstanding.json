@@ -1,0 +1,29 @@
+{
+ "_": "Studies knowingly outstanding against the repo-level provenance gate. Seeded 23-Aug-2026 from the rebuild queue, which is the same list. It may only ever get SHORTER: run scripts/check_study_provenance.py --prune once a study is fixed. Adding a name here is a deliberate deferral and needs a reason, not a convenience.",
+ "seeded": "2026-08-23",
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "SCEM",
+  "STC",
+  "SWDY"
+ ],
+ "aliases": {
+  "FERTIGLOBE": "FERTIGLB"
+ },
+ "exempt": {
+  "XPT": "metals study - no equity beta, no exchange index applies"
+ }
+}

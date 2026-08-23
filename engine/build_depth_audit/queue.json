@@ -143,6 +143,32 @@
       "tier": "A",
       "bu": true,
       "seq": 10
+     },
+     {
+      "tk": "ADNOCLS",
+      "nm": "ADNOC Logistics & Services plc",
+      "x": "ADX",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 11
+     },
+     {
+      "tk": "BOROUGE",
+      "nm": "Borouge plc",
+      "x": "ADX",
+      "ed": "17-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 12
      }
     ]
    },
@@ -161,7 +187,7 @@
       "betacls": "named-only",
       "tier": "C",
       "bu": false,
-      "seq": 11
+      "seq": 13
      }
     ]
    },
@@ -169,6 +195,19 @@
     "exchange": "DFM",
     "cls": "Operating company",
     "items": [
+     {
+      "tk": "AIRARABIA",
+      "nm": "Air Arabia PJSC",
+      "x": "DFM",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 14
+     },
      {
       "tk": "DU",
       "nm": "Emirates Integrated Telecommunications Company PJSC",
@@ -180,7 +219,7 @@
       "betacls": "named-only",
       "tier": "A-",
       "bu": true,
-      "seq": 12
+      "seq": 15
      },
      {
       "tk": "EMPOWER",
@@ -193,7 +232,7 @@
       "betacls": "named-only",
       "tier": "A",
       "bu": true,
-      "seq": 13
+      "seq": 16
      }
     ]
    },
@@ -212,12 +251,12 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 14
+      "seq": 17
      }
     ]
    }
   ],
-  "count": 14
+  "count": 17
  },
  {
   "wave": "Wave 2",
@@ -239,7 +278,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 15
+      "seq": 18
      },
      {
       "tk": "CLHO",
@@ -252,7 +291,7 @@
       "betacls": "no-record",
       "tier": "A-",
       "bu": true,
-      "seq": 16
+      "seq": 19
      },
      {
       "tk": "DSCW",
@@ -265,7 +304,7 @@
       "betacls": "no-record",
       "tier": "A-",
       "bu": true,
-      "seq": 17
+      "seq": 20
      },
      {
       "tk": "EFID",
@@ -278,7 +317,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 18
+      "seq": 21
      },
      {
       "tk": "EFIH",
@@ -291,7 +330,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 19
+      "seq": 22
      },
      {
       "tk": "EGAL",
@@ -304,7 +343,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 20
+      "seq": 23
      },
      {
       "tk": "ETEL",
@@ -317,7 +356,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 21
+      "seq": 24
      },
      {
       "tk": "FWRY",
@@ -330,7 +369,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 22
+      "seq": 25
      },
      {
       "tk": "ISPH",
@@ -343,7 +382,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 23
+      "seq": 26
      },
      {
       "tk": "JUFO",
@@ -356,7 +395,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 24
+      "seq": 27
      },
      {
       "tk": "KABO",
@@ -369,7 +408,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 25
+      "seq": 28
      },
      {
       "tk": "LCSW",
@@ -382,7 +421,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 26
+      "seq": 29
      },
      {
       "tk": "ORWE",
@@ -395,7 +434,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 27
+      "seq": 30
      },
      {
       "tk": "RMDA",
@@ -408,7 +447,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 28
+      "seq": 31
      }
     ]
    },
@@ -427,7 +466,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 29
+      "seq": 32
      }
     ]
    },
@@ -446,7 +485,7 @@
       "betacls": "no-record",
       "tier": "B",
       "bu": true,
-      "seq": 30
+      "seq": 33
      },
      {
       "tk": "HELI",
@@ -459,7 +498,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 31
+      "seq": 34
      },
      {
       "tk": "OCDI",
@@ -472,7 +511,7 @@
       "betacls": "no-record",
       "tier": "B",
       "bu": true,
-      "seq": 32
+      "seq": 35
      },
      {
       "tk": "ORHD",
@@ -485,7 +524,7 @@
       "betacls": "no-record",
       "tier": "B",
       "bu": true,
-      "seq": 33
+      "seq": 36
      },
      {
       "tk": "PHDC",
@@ -498,7 +537,7 @@
       "betacls": "no-record",
       "tier": "B",
       "bu": true,
-      "seq": 34
+      "seq": 37
      },
      {
       "tk": "PRDC",
@@ -511,7 +550,7 @@
       "betacls": "no-record",
       "tier": "C",
       "bu": false,
-      "seq": 35
+      "seq": 38
      },
      {
       "tk": "TMGH",
@@ -524,7 +563,7 @@
       "betacls": "no-record",
       "tier": "B",
       "bu": true,
-      "seq": 36
+      "seq": 39
      }
     ]
    },
@@ -543,7 +582,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 37
+      "seq": 40
      },
      {
       "tk": "OIH",
@@ -556,7 +595,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 38
+      "seq": 41
      },
      {
       "tk": "RAYA",
@@ -569,7 +608,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 39
+      "seq": 42
      }
     ]
    },
@@ -588,7 +627,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 40
+      "seq": 43
      },
      {
       "tk": "BTFH",
@@ -601,7 +640,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 41
+      "seq": 44
      },
      {
       "tk": "COMI",
@@ -614,7 +653,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 42
+      "seq": 45
      },
      {
       "tk": "HRHO",
@@ -627,7 +666,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 43
+      "seq": 46
      }
     ]
    }
@@ -654,7 +693,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 44
+      "seq": 47
      },
      {
       "tk": "AGTHIA",
@@ -667,7 +706,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 45
+      "seq": 48
      },
      {
       "tk": "BURJEEL",
@@ -680,7 +719,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 46
+      "seq": 49
      },
      {
       "tk": "EAND",
@@ -693,7 +732,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 47
+      "seq": 50
      },
      {
       "tk": "LULU",
@@ -706,7 +745,7 @@
       "betacls": "no-record",
       "tier": "A",
       "bu": true,
-      "seq": 48
+      "seq": 51
      }
     ]
    },
@@ -725,7 +764,7 @@
       "betacls": "no-record",
       "tier": "C",
       "bu": false,
-      "seq": 49
+      "seq": 52
      }
     ]
    },
@@ -744,7 +783,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 50
+      "seq": 53
      },
      {
       "tk": "ALPHADHABI",
@@ -757,7 +796,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 51
+      "seq": 54
      },
      {
       "tk": "IHC",
@@ -770,7 +809,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 52
+      "seq": 55
      }
     ]
    },
@@ -789,7 +828,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 53
+      "seq": 56
      },
      {
       "tk": "ADIBUAE",
@@ -802,7 +841,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 54
+      "seq": 57
      },
      {
       "tk": "FAB",
@@ -815,7 +854,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 55
+      "seq": 58
      }
     ]
    },
@@ -834,7 +873,7 @@
       "betacls": "no-record",
       "tier": "C",
       "bu": false,
-      "seq": 56
+      "seq": 59
      },
      {
       "tk": "SALIK",
@@ -847,7 +886,7 @@
       "betacls": "no-record",
       "tier": "A",
       "bu": true,
-      "seq": 57
+      "seq": 60
      }
     ]
    },
@@ -866,7 +905,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 58
+      "seq": 61
      },
      {
       "tk": "EMAARDEV",
@@ -879,7 +918,7 @@
       "betacls": "no-record",
       "tier": "C",
       "bu": false,
-      "seq": 59
+      "seq": 62
      }
     ]
    },
@@ -898,7 +937,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 60
+      "seq": 63
      },
      {
       "tk": "ENBD",
@@ -911,7 +950,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 61
+      "seq": 64
      }
     ]
    }
@@ -938,7 +977,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 62
+      "seq": 65
      },
      {
       "tk": "ARAMCO",
@@ -951,7 +990,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 63
+      "seq": 66
      },
      {
       "tk": "ELM",
@@ -964,7 +1003,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 64
+      "seq": 67
      },
      {
       "tk": "EXTRA",
@@ -977,7 +1016,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 65
+      "seq": 68
      },
      {
       "tk": "MAADEN",
@@ -990,7 +1029,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 66
+      "seq": 69
      },
      {
       "tk": "SABIC",
@@ -1003,7 +1042,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 67
+      "seq": 70
      }
     ]
    },
@@ -1022,7 +1061,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 68
+      "seq": 71
      },
      {
       "tk": "ALRAJHI",
@@ -1035,7 +1074,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 69
+      "seq": 72
      },
      {
       "tk": "RIBL",
@@ -1048,7 +1087,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 70
+      "seq": 73
      },
      {
       "tk": "SNB",
@@ -1061,7 +1100,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 71
+      "seq": 74
      }
     ]
    }
@@ -1088,7 +1127,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 72
+      "seq": 75
      }
     ]
    },
@@ -1107,7 +1146,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 73
+      "seq": 76
      }
     ]
    },
@@ -1126,7 +1165,7 @@
       "betacls": "no-record",
       "tier": "F",
       "bu": false,
-      "seq": 74
+      "seq": 77
      }
     ]
    },
@@ -1145,7 +1184,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 75
+      "seq": 78
      },
      {
       "tk": "SAMSUNG",
@@ -1158,7 +1197,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 76
+      "seq": 79
      }
     ]
    },
@@ -1177,7 +1216,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 77
+      "seq": 80
      }
     ]
    },
@@ -1196,7 +1235,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 78
+      "seq": 81
      }
     ]
    },
@@ -1215,7 +1254,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 79
+      "seq": 82
      },
      {
       "tk": "TMPV",
@@ -1228,7 +1267,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 80
+      "seq": 83
      }
     ]
    },
@@ -1247,7 +1286,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 81
+      "seq": 84
      },
      {
       "tk": "NVDA",
@@ -1260,7 +1299,7 @@
       "betacls": "no-record",
       "tier": "D",
       "bu": false,
-      "seq": 82
+      "seq": 85
      },
      {
       "tk": "TSLA",
@@ -1273,7 +1312,7 @@
       "betacls": "no-record",
       "tier": "E",
       "bu": false,
-      "seq": 83
+      "seq": 86
      }
     ]
    }

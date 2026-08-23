@@ -178,19 +178,21 @@ code{{font-family:"IBM Plex Mono",monospace;font-size:.88em;background:var(--sun
   measured against the exchange's own published index, forbid the shortcut that caused the original
   problem, require the ground-up build, and require the cost of capital to be sourced rather than
   assumed. Nothing is missing from the text.</p>
-  <p><strong>What is missing is the enforcement.</strong> The checking code exists, but each study has
-  to choose to call it. A study that simply doesn't call the check passes anyway &mdash; and no
-  automated check runs on the repository at all.</p>
+  <p><strong>What was missing is the enforcement.</strong> The checking code existed, but each study
+  chose whether to call it, and most did not &mdash; a study passed by simply not checking itself.
+  That is now closed: <code>scripts/check_study_provenance.py</code> runs over every study from
+  outside it, in CI, and cannot be opted out of. It found three studies this audit had wrongly read
+  as clean, which is why the queue below is 86 and not 83.</p>
   <div class="mini">
     <div><span class="k">Studies with code</span><span class="v">{NDIRS}</span></div>
     <div><span class="k">Calling the check</span><span class="v good">{GATED}</span></div>
     <div><span class="k">Not calling it</span><span class="v bad">{NDIRS-GATED}</span></div>
-    <div><span class="k">Automated checks</span><span class="v bad">{ci}</span></div>
+    <div><span class="k">Repo-level gate</span><span class="v good">1</span></div>
   </div>
-  <p>This matters because a rule that isn't enforced is exactly what you had before: the original
-  shortcut spread through the whole book <em>while the rule against it was already written down</em>.
-  Making the check run automatically, and fail the build when it doesn't pass, is a day's work and it
-  is the one thing that stops this recurring.</p>
+  <p>The gate is a ratchet, not a cliff. The {N} studies in the queue are listed as knowingly
+  outstanding and are allowed to fail; the build breaks only on a <em>new</em> violation &mdash; a study
+  that was conforming and stopped being so, or a new study added with no check at all. The list may
+  only ever get shorter, and its length is the honest measure of progress through the queue.</p>
 </div>
 
 <section class="sec">

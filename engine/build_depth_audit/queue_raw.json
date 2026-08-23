@@ -1,5 +1,17 @@
 [
  {
+  "tk": "ADNOCLS",
+  "nm": "ADNOC Logistics & Services plc",
+  "x": "ADX",
+  "ed": "09-08-2026",
+  "cls": "Operating company",
+  "code": true,
+  "needs": "cost of capital",
+  "betacls": "gate-fails",
+  "tier": "A",
+  "bu": true
+ },
+ {
   "tk": "ADNOCDIST",
   "nm": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
   "x": "ADX",
@@ -20,6 +32,30 @@
   "code": true,
   "needs": "cost of capital",
   "betacls": "unregistered-file",
+  "tier": "A",
+  "bu": true
+ },
+ {
+  "tk": "AIRARABIA",
+  "nm": "Air Arabia PJSC",
+  "x": "DFM",
+  "ed": "09-08-2026",
+  "cls": "Operating company",
+  "code": true,
+  "needs": "cost of capital",
+  "betacls": "gate-fails",
+  "tier": "A",
+  "bu": true
+ },
+ {
+  "tk": "BOROUGE",
+  "nm": "Borouge plc",
+  "x": "ADX",
+  "ed": "17-08-2026",
+  "cls": "Operating company",
+  "code": true,
+  "needs": "cost of capital",
+  "betacls": "gate-fails",
   "tier": "A",
   "bu": true
  },

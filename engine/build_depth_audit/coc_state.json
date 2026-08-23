@@ -1,7 +1,7 @@
 {
  "ADNOCLS": {
-  "cls": "attestable",
-  "d": "FADGI",
+  "cls": "gate-fails",
+  "d": "attested-by-nothing \u2014 conforming record, but no code in the study calls a gate",
   "bu": true,
   "ed": "09-08-2026",
   "x": "ADX",
@@ -24,8 +24,8 @@
   "tier": "A"
  },
  "AIRARABIA": {
-  "cls": "attestable",
-  "d": "FADGI",
+  "cls": "gate-fails",
+  "d": "hand-rolled regression (lstsq, not own_stock_beta); record names FADGI.csv with no raw_indices/ path",
   "bu": true,
   "ed": "09-08-2026",
   "x": "DFM",
@@ -40,8 +40,8 @@
   "tier": "A"
  },
  "BOROUGE": {
-  "cls": "attestable",
-  "d": "FADGI",
+  "cls": "gate-fails",
+  "d": "hand-rolled regression retaining a composite corroboration; no gate call",
   "bu": true,
   "ed": "17-08-2026",
   "x": "ADX",
