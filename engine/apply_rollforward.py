@@ -43,22 +43,81 @@ MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 
 RF_SRC = {'EG': '19.50% CBE main operation rate',
           'AE': '3.65% CBUAE base rate (AED peg -> Fed path)',
-          'SA': '4.25% SAMA repo-anchored estimate'}
+          'SA': '4.25% SAMA repo-anchored estimate',
+          # Metals are USD carry-only: rf IS the whole drift, so naming its source
+          # matters more here than anywhere else. Without an entry the note fell
+          # back to the placeholder "3.63% profile rf_live", which names no source
+          # at all -- on a carry-only instrument that is the one number a reader
+          # needs to be able to check.
+          'XAU': '3.63% Fed funds midpoint schedule (USD cost-of-carry anchor)',
+          'XPT': '3.63% Fed funds midpoint schedule (USD cost-of-carry anchor)'}
 
 
 # ------------------------------------------------------------------ parsing
+
+def _match_brace(src: str, i: int) -> int:
+    """Index just past the '}' matching the '{' at i. String- and comment-aware."""
+    assert src[i] == '{', f'expected {{ at {i}, found {src[i]!r}'
+    depth, j, n = 0, i, len(src)
+    while j < n:
+        c = src[j]
+        if c == '/' and j + 1 < n and src[j + 1] == '/':
+            j = src.find('\n', j)
+            if j < 0:
+                break
+            continue
+        if c == '/' and j + 1 < n and src[j + 1] == '*':
+            j = src.find('*/', j) + 2
+            continue
+        if c in '"\'':
+            q, j = c, j + 1
+            while j < n:
+                if src[j] == '\\':
+                    j += 2
+                    continue
+                if src[j] == q:
+                    break
+                j += 1
+        elif c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                return j + 1
+        j += 1
+    raise ValueError('unbalanced braces')
+
 def ticker_blocks(src: str):
+    """{key: (start, end)} for every entry of `const TICKERS = {...}`.
+
+    Keys may be QUOTED — "2POINTZERO" must be, since a JS identifier cannot
+    start with a digit. The unquoted-only pattern silently dropped it, which is
+    why the 28-Jul-2026 market-wide pass re-struck 58 cones instead of 59 and
+    left 2POINTZERO's cone anchored 03-Jul against a library already at 24-Jul.
+
+    THE SCAN IS BOUNDED TO THE TICKERS OBJECT (fixed 23-Aug-2026). It used to
+    run from `const TICKERS = {` to the FIRST `\n};` after the last key match,
+    which is not the same thing: the regex kept matching past the end of the
+    object, so the three entries of `const METALS = {...}` — GOLD, SILVER,
+    PLATINUM — were returned as if they were ticker entries. It reported 93
+    blocks against a TICKERS object holding 90, and nothing counted. Same
+    family as the 2POINTZERO defect that this function's own comment records:
+    a pattern standing in for a parser. Metals are a DIFFERENT object with a
+    different shape (a t252 twelve-month cone, compact one-space indent), so a
+    caller handed one as a ticker either crashes or, worse, rewrites it to the
+    ticker shape. The end of the object is now found by brace matching.
+    """
     st = src.find('const TICKERS = {')
-    # Keys may be QUOTED — "2POINTZERO" must be, since a JS identifier cannot
-    # start with a digit. The unquoted-only pattern silently dropped it, which is
-    # why the 28-Jul-2026 market-wide pass re-struck 58 cones instead of 59 and
-    # left 2POINTZERO's cone anchored 03-Jul against a library already at 24-Jul.
-    idx = [(m.start() + st, m.group(1))
-           for m in re.finditer(r'\n  "?([A-Z0-9]+)"?: \{', src[st:])]
+    if st < 0:
+        return {}
+    o = src.index('{', st)
+    stop = _match_brace(src, o)
+    idx = [(m.start() + o, m.group(1))
+           for m in re.finditer(r'\n  "?([A-Z0-9]+)"?: \{', src[o:stop])]
     out = {}
-    for i, (p, k) in enumerate(idx):
-        end = idx[i + 1][0] if i + 1 < len(idx) else src.find('\n};', p)
-        out[k] = (p, end)
+    for i, (q, k) in enumerate(idx):
+        end = idx[i + 1][0] if i + 1 < len(idx) else src.rfind('\n};', q, stop + 3)
+        out[k] = (q, end)
     return out
 
 

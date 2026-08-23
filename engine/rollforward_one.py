@@ -41,6 +41,29 @@ import market_profiles as MP                                # noqa: E402
 from apply_rollforward import (ticker_blocks, fmt_price,  # noqa: E402
                                prior_anchor, js_row,
                                bump_site_updated, MONTHS, RF_SRC)
+from apply_technicals import (LEDGER_ALIAS,               # noqa: E402
+                              top_level_blocks, match_brace)
+
+# Market codes whose covered names are not equities. asset_class was hardcoded
+# 'equity' below, so a metals roll-forward mislabelled its own ledger rows.
+METAL_MARKETS = {'XAU', 'XPT'}
+
+
+def ledger_instrument(key: str) -> str:
+    """The LEDGER's name for a site key -- NOT always the site key itself.
+
+    Platinum publishes under TICKERS.PLATINUM but grades under
+    instrument:"XPTUSD"; gold/silver/Samsung/Kakao differ in case. This tool
+    used `key` directly for the ledger row AND for both history lookups
+    (prior_anchor, _prior_1m_matured), so on any aliased name it would write an
+    orphan instrument, find no prior cycle, set reanchor_from=null, and publish
+    a note asserting the prior 1-month had NOT matured -- the exact "stamps
+    today's cohort with last week's story" defect this module's own docstring
+    says apply_rollforward.py has. A tool written to fix that bug must not carry
+    it. The map already existed in apply_technicals and metal_backtest; it is
+    imported here rather than copied a third time.
+    """
+    return LEDGER_ALIAS.get(key, key)
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
 
@@ -62,6 +85,24 @@ def insert_rows(src: str, rows, header: str) -> str:
     return src[:j] + sep + header + body + src[j:]
 
 
+def entry_blocks(src: str):
+    """{key: (start, end)} across BOTH published objects, TICKERS and METALS.
+
+    Metals are covered names with ledger cohorts, but they do not live in
+    TICKERS — gold, silver and platinum are entries of `const METALS = {...}`,
+    written in the compact one-space style and carrying a t252 twelve-month
+    cone that no ticker entry has. ticker_blocks() used to sweep past the end
+    of TICKERS and return them anyway, which is how this tool came to locate
+    PLATINUM at all; with that scan correctly bounded it would find nothing.
+    Both objects are enumerated here, explicitly, so a metals roll-forward is
+    a supported path rather than an accident of an over-broad regex.
+    """
+    out = dict(top_level_blocks(src, 'const TICKERS = {'))
+    for k, v in top_level_blocks(src, 'const METALS = {').items():
+        out[k] = v
+    return out
+
+
 def _span_of_key(blk: str, key: str):
     """(start, end) of `\\n    {key}: {...},` by BRACE MATCHING, not indentation.
 
@@ -76,7 +117,12 @@ def _span_of_key(blk: str, key: str):
     as the unquoted-key regex that dropped 2POINTZERO from the 28-Jul pass —
     a hand-rolled pattern standing in for a parser.
     """
-    m = re.search(r'\n    ' + key + r':\s*\{', blk)
+    # ANY indent, not four spaces. TICKERS writes fields at four, METALS at
+    # one; hardcoding four raised 'no dist block on this entry' on every
+    # metal. The brace-matched span below already made the CLOSER robust —
+    # leaving the OPENER indent-sensitive left the layout still deciding
+    # whether a field gets refreshed, which is the rule this file records.
+    m = re.search(r'\n[ \t]*' + key + r':\s*\{', blk)
     if not m:
         return None
     i = blk.index('{', m.start())
@@ -120,7 +166,7 @@ def _touch_ladder(blk: str):
     form; the LEVELS themselves are never re-picked (STEP 5 — comparability
     across cycles beats re-centring on the new spot).
     """
-    m = re.search(r'\n    touch:\s*\[', blk)
+    m = re.search(r'\n[ \t]*touch:\s*\[', blk)
     if not m:
         return None, None, None
     i = blk.index('[', m.start())
@@ -158,25 +204,59 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     h1, h3 = r['horizons']['1M'], r['horizons']['3M']
 
     new = blk
-    new = re.sub(r'\n    spot: [\d.,]+,', f'\n    spot: {fmt_price(spot, spot)},',
-                 new, count=1)
-    new = re.sub(r'\n    spotDate: "[^"]*",', f'\n    spotDate: "{sd}",',
-                 new, count=1)
+    # Rewrite at WHATEVER indent and spacing the field was found on, rather than
+    # assuming the TICKERS layout. METALS writes `\n spot:1608.37,` — no space
+    # after the colon and one space of indent — so the four-space patterns below
+    # matched nothing and a metals roll-forward silently left spot and spotDate
+    # at their old values while moving the cone. Failing to match must not be
+    # silent either: both fields are asserted to have been rewritten.
+    # Matched on a FIELD BOUNDARY, not a line start: METALS packs several fields
+    # onto one line (`name:"Platinum", code:"XPT/USD", spot:1608.37, ...`), so a
+    # \n-anchored pattern finds neither. The lookbehind stops `spot:` matching
+    # inside a longer identifier, and requiring the colon immediately after keeps
+    # it off `spotDate:`. Spacing after the colon is captured and replayed so the
+    # entry keeps its own house style.
+    new, n1 = re.subn(r'(?<![\w.$])spot:([ \t]*)[\d.,]+,',
+                      lambda m: f'spot:{m.group(1)}{fmt_price(spot, spot)},',
+                      new, count=1)
+    new, n2 = re.subn(r'(?<![\w.$])spotDate:([ \t]*)"[^"]*",',
+                      lambda m: f'spotDate:{m.group(1)}"{sd}",', new, count=1)
+    if not (n1 and n2):
+        raise ValueError(f'spot/spotDate not rewritten (spot={n1}, spotDate={n2})')
 
-    def row(tag, h, pad):
-        p, f = h['pct'], lambda v: fmt_price(v, spot)      # noqa: E731
-        return (f'      {tag}: {{ label:"{h["label"]}",{pad}'
-                f'p5:{f(p["p5"])}, p25:{f(p["p25"])}, p50:{f(p["p50"])}, '
-                f'p75:{f(p["p75"])}, p95:{f(p["p95"])}, '
-                f'resolve:"{h["grade_date"]}" }}')
-    dist = ('    dist: {\n' + row('t20', h1, '   ') + ',\n'
-            + row('t60', h3, '  ') + '\n    },\n'
-            + f'    hz: {{ h1:{h1["h"]}, h3:{h3["h"]}, '
-              f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},')
     span = _span_of_key(new, 'dist')
     if not span:
         raise ValueError('no dist block on this entry')
     s0, e0 = span
+    ind = re.match(r'\n([ \t]*)', new[s0:]).group(1)
+
+    # HORIZONS THIS TOOL DOES NOT STRIKE MUST SURVIVE IT. The metals pages carry a
+    # t252 twelve-month cone on its own annual clock (STEP 0 decision (b) of the
+    # Roll-Forward & Grading Protocol: one open 12M per metal, graded at maturity
+    # then re-struck, never part of the monthly strike). This function rebuilt the
+    # dist object from t20 + t60 alone, so running it on a metal would have DELETED
+    # that cone from the page — silently, leaving valid JavaScript and a page that
+    # still renders, which is exactly how the nine-entry `dist` defect of
+    # 03-Aug-2026 went unnoticed. Any key other than t20/t60 is carried through
+    # verbatim; only the two horizons actually re-simulated here are rewritten.
+    old_dist = new[s0:e0]
+    carried = [ln for ln in old_dist.splitlines()
+               if re.match(r'\s*t(?!20\b|60\b)\w+\s*:', ln)]
+
+    def row(tag, h, pad):
+        p, f = h['pct'], lambda v: fmt_price(v, spot)      # noqa: E731
+        return (f'{ind}  {tag}: {{ label:"{h["label"]}",{pad}'
+                f'p5:{f(p["p5"])}, p25:{f(p["p25"])}, p50:{f(p["p50"])}, '
+                f'p75:{f(p["p75"])}, p95:{f(p["p95"])}, '
+                f'resolve:"{h["grade_date"]}" }}')
+    lines = [row('t20', h1, '   '), row('t60', h3, '  ')]
+    for ln in carried:
+        lines.append(f'{ind}  ' + ln.strip().rstrip(','))
+        if verbose:
+            print(f'  carried through untouched: {ln.strip()[:40]}...')
+    dist = (f'{ind}dist: {{\n' + ',\n'.join(lines) + f'\n{ind}}},\n'
+            + f'{ind}hz: {{ h1:{h1["h"]}, h3:{h3["h"]}, '
+              f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},')
     # `dist` and `hz` are emitted as one unit, so hz must be the field that
     # immediately follows. That holds on all 71 ticker entries; if a future
     # entry breaks it, say so rather than silently leaving a stale hz behind
@@ -184,7 +264,7 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     hz_span = _span_of_key(new, 'hz')
     if not hz_span or new[e0:hz_span[0]].strip() != '':
         raise ValueError('hz does not immediately follow dist on this entry')
-    new = new[:s0] + '\n' + dist + new[hz_span[1]:]
+    new = new[:s0] + '\n' + dist.lstrip('\n') + new[hz_span[1]:]
 
     span, levels, comment = _touch_ladder(new)
     if levels:
@@ -192,7 +272,8 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
         t3 = touch_probs(h3['_paths'], spot, levels)
         cells = ', '.join(f'[{fmt_price(lv, spot)}, {t1[float(lv)]}, {t3[float(lv)]}]'
                           for lv in levels)
-        new = (new[:span[0]] + f'\n    touch: [ {comment}\n      {cells}\n    ]'
+        ti = re.match(r'\n([ \t]*)', new[span[0]:]).group(1)
+        new = (new[:span[0]] + f'\n{ti}touch: [ {comment}\n{ti}  {cells}\n{ti}]'
                + new[span[1]:])
         if verbose:
             print(f'  touch recomputed at the SAME {len(levels)} absolute '
@@ -239,9 +320,9 @@ def report_strike(key: str, market: str, series: str, r: dict) -> None:
 def run(market: str, series: str, key: str, today: str,
         q_annual: float = 0.0, write: bool = False):
     src = open(DATA_JS, encoding='utf-8').read()
-    blocks = ticker_blocks(src)
+    blocks = entry_blocks(src)
     if key not in blocks:
-        raise SystemExit(f'{key} not found in TICKERS')
+        raise SystemExit(f'{key} not found in TICKERS or METALS')
     a, b = blocks[key]
     blk = src[a:b]
 
@@ -251,7 +332,9 @@ def run(market: str, series: str, key: str, today: str,
     anchor = pd.Timestamp(r['anchor_date'])
     h1, h3 = r['horizons']['1M'], r['horizons']['3M']
     ccy = (re.search(r'ccy:\s*"([^"]+)"', blk) or [None, '?'])[1]
-    prior = prior_anchor(src, key)
+    inst = ledger_instrument(key)
+    aclass = 'metal' if market in METAL_MARKETS else 'equity'
+    prior = prior_anchor(src, inst)
     cyc = prior[1] + 1 if prior else 2
 
     report_strike(key, market, series, r)
@@ -273,11 +356,21 @@ def run(market: str, series: str, key: str, today: str,
     # today's cohort with last week's story". A tool written to fix that bug must
     # not carry it. Whether this strike sits on the monthly metronome is now READ
     # from the ledger, not assumed.
-    metro = _prior_1m_matured(src, key, prior[1] if prior else None, r['anchor_date'])
+    metro = _prior_1m_matured(src, inst, prior[1] if prior else None, r['anchor_date'])
     event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
              f'{metro} and is graded in this same pass' if metro else
              'off the monthly metronome — the prior cycle’s 1-month has not yet '
              'matured, so no cohort of that horizon is graded here')
+    # The q_annual disclosure is CLASS-DEPENDENT. The retired text asserted a
+    # gross-of-dividend overstatement unconditionally. On a zero-yield spot metal
+    # that is not a flag on a defaulted input -- it is the sourced value -- and the
+    # sentence was simply false.
+    qnote = ('(q=0 is SOURCED, not defaulted: a spot metal pays no holder yield '
+             '\u2014 the lease rate is a borrower\u2019s cost, not a return to the '
+             'holder \u2014 so the carry is rf alone.)'
+             if aclass == 'metal' and q_annual == 0 else
+             '(FLAGGED \u2014 house convention; the drift is a GROSS-OF-DIVIDEND '
+             'price carry and overstates the centre by roughly the yield.)')
     note = (
         f'Cycle {cyc} roll-forward, {today} — struck on the {d.day:02d}-'
         f'{MONTHS[d.month - 1]}-{d.year} close, the latest session in this '
@@ -289,8 +382,7 @@ def run(market: str, series: str, key: str, today: str,
         f'→ har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) '
         f'→ simulate_paths_v3, 50,000 paths, seed 42, signal '
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
-        f'(FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND '
-        f'price carry and overstates the centre by roughly the yield). '
+        f'{qnote} '
         f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}; rf_live '
         f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
@@ -300,7 +392,7 @@ def run(market: str, series: str, key: str, today: str,
     rows = []
     for tag, h in (('1M', h1), ('3M', h3)):
         rows.append(dict(
-            instrument=key, asset_class='equity', anchor_date=r['anchor_date'],
+            instrument=inst, asset_class=aclass, anchor_date=r['anchor_date'],
             run_date=pd.Timestamp(today.replace('-', ' ')).date().isoformat(),
             anchor_price=round(spot, 4), ccy=ccy, horizon_label=h['label'],
             grade_date=h['grade_date'], grade_basis=h['basis'],
