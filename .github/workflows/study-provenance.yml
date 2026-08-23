@@ -90,6 +90,16 @@ jobs:
       - name: Protocol text gate
         run: python3 scripts/check_protocol_text.py
 
+      # [R-DOC-02] The text gate's own negative control: it restores the status claims
+      # EXACTLY as they shipped and asserts each is caught, plus four clean sentences that
+      # must NOT be. Written the same day the check was, because the first cut of the
+      # status regex was drafted from the full protocol's phrasing and MISSED the digest's
+      # own — "Committed on a feature branch with an open PR", the very sentence the rule
+      # exists for. A check tested only against the example that inspired it is fitted to
+      # one sentence. This runs in CI so the check cannot rot into a formality either.
+      - name: Protocol text gate — negative control
+        run: python3 scripts/check_protocol_text_negative_control.py
+
       # [R-ENF-02] the check a study cannot skip by not calling it
       - name: Study provenance gate
         run: python3 scripts/check_study_provenance.py
