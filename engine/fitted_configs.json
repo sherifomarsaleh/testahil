@@ -482,9 +482,9 @@
     },
     "auto_refreshed": "2026-08-23",
     "superseded": {
-      "nu": 6.0,
+      "nu": 5.0,
       "width_cal": 0.951,
-      "market_verdict": "PASS",
+      "market_verdict": "PARITY",
       "replaced_on": "2026-08-23"
     }
   },
@@ -1196,8 +1196,8 @@
       }
     },
     "superseded": {
-      "nu": 8.0,
-      "width_cal": 0.979,
+      "nu": 10.0,
+      "width_cal": 0.923,
       "market_verdict": "PARITY",
       "replaced_on": "2026-08-23"
     },
