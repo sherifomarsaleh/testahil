@@ -256,6 +256,21 @@ const { chromium } = require('playwright');
     # every covered name, by rendering it and reading the DOM a reader would see.
     env = dict(os.environ, NODE_PATH=os.environ.get(
         "NODE_PATH", "/opt/node22/lib/node_modules"))
+    # NON-EQUITY NAMES ARE EXEMPT, LOUDLY (23-Aug-2026). check_ticker_surfaces.js
+    # drives the EQUITY registers -- stocks, Trade, Portfolio and the Ticker Picker.
+    # No metal has ever appeared on any of them: gold, silver and platinum are all
+    # absent today and fv_overlay emits no metals rows. That script's own header
+    # lists metals.html among the surfaces deliberately excluded as "prose and
+    # non-equity". So on a metal this gate demanded something that has never been
+    # true, failed with "not in TICKERS -- nothing to check", and blocked the
+    # publish. Skipping is right; skipping SILENTLY is not, because the day metals
+    # do join those registers this line is what has to change.
+    if market_of(ticker) in ("XAU", "XPT"):
+        print(f"  SKIP — {ticker} is a non-equity name. The register surfaces this "
+              f"gate checks (stocks/Trade/Portfolio/Picker) carry equities only; "
+              f"metals are published on metals.html and ledger.html, both of which "
+              f"step 4 already verified by render.")
+        return
     p = subprocess.run(["node", "scripts/check_ticker_surfaces.js", ticker, ROOT],
                        cwd=ROOT, text=True, capture_output=True, timeout=300, env=env)
     print((p.stdout + p.stderr).strip())
