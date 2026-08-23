@@ -641,7 +641,7 @@ stand exactly as they were.
 
 ---
 
-## THREE-LENS INDEPENDENCE — the fundamental study, the MC engine, and the technical read never feed each other (23-Aug-2026, per instruction)
+## [R-LENS-01] THREE-LENS INDEPENDENCE — the fundamental study, the MC engine, and the technical read never feed each other (23-Aug-2026, per instruction)
 
 **The rule.** The fundamental study, the MC price engine, and the technical read are three
 INDEPENDENT lenses on the same stock. No lens's output is ever an input to another. They are
@@ -697,7 +697,7 @@ another's output, their agreement stops being evidence and the reader has no way
 it stopped. Independence is also what makes the grading honest — each lens can be scored on
 its own record, and a lens that fails can be fixed or retired without contaminating the others.
 
-### Addendum, same day — COMMITTED DRIFT ADOPTED (23-Aug-2026, per instruction)
+### [R-DRIFT-01] Addendum, same day — COMMITTED DRIFT ADOPTED (23-Aug-2026, per instruction)
 
 Hours after the rule above was recorded, Sherif closed the loop on the investor's second
 finding: "we have to find a way to commit to a drift up or down. The investor is adamant."
@@ -717,7 +717,7 @@ prescribed:
   graded at its maturity; a sustained failed-direction record triggers the standing
   out-of-cycle review. Markets with no surviving cell (QA/IN/US/KR/metals) stay
   carry-centered and call-only on product surfaces.
-- **The document-techniques backtest is the negative control** (`engine/doc_techniques_backtest/`,
+- **[R-NEG-01] The document-techniques backtest is the negative control** (`engine/doc_techniques_backtest/`,
   same day): GBM-historical-drift, ARIMA-family, pooled neural nets, Markov/fuzzy chains,
   Kalman drift, seasonality and their ensemble all failed to beat the carry center on 15
   walk-forward years — most robustly worse. None may return as a drift source without new
@@ -757,3 +757,24 @@ revised to track the measurement exactly:
 The hard line that remains: the tilt never exceeds IC × σ × z. Beyond that point a bigger
 number is not more commitment, it is a worse forecast on purpose, and the public grading
 would document it within a few cycles.
+
+### [R-DRIFT-02] Per-name discipline on the tilt (same day, per instruction — "Do it per stock. This is a delicate exercise and needs to be done carefully")
+
+The per-stock record for every covered name is maintained under the exact production
+construction: the careful dossier (`engine/direction_tournament/PER_STOCK_CAREFUL_23-08-2026`
+— house robust bootstrap across blocks {2,3,4}, Wilson intervals on hit rates, split-half
+consistency, conditional call records) and the full seed-paired ON-vs-OFF production
+backtest of all 93 tickers (`TILT_BACKTEST_ALL93_23-08-2026`). Read those files for
+numbers, never any digest.
+
+The ONLY sanctioned per-name exception to a market's tilt is the PRE-REGISTERED
+suppression bar, fixed before the numbers were computed: a name's tilt is suppressed iff,
+at either horizon, its own-history IC is a robust FAIL across all bootstrap blocks AND
+split-half both-halves-negative AND n ≥ 40. Anything weaker — a contrary point estimate, a
+single-block excursion, an inconsistent split — is a WATCH FLAG: recorded, graded live,
+revisited at every refit, never acted on. Per-name tilt exceptions outside this bar are
+curve-fitting and PROHIBITED. A suppressed name still prints its direction call, flagged
+low-confidence. Rationale: with ~186 stock-horizon tests at 90% CIs, a handful of false
+single-test excursions arise by chance alone; the joint bar keeps the expected
+false-suppression count well under one, and the first full sweep (23-Aug-2026) suppressed
+zero names while flagging thirty.
