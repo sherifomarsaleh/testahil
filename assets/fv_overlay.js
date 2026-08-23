@@ -52,6 +52,98 @@ const FV_OVERLAY = {
  "n": 90,
  "rows": [
   {
+   "ticker": "ADIB",
+   "name": "ADIB-Egypt",
+   "code": "EGX:ADIB",
+   "ccy": "EGP",
+   "spot": 54.4,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 31.6,
+   "fv_base": 54.3,
+   "fv_full": 95.3,
+   "gap_base_pct": -0.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.109232,
+    "mu_h": 0.024513,
+    "G": {
+     "bear": -4.97,
+     "base": -0.02,
+     "full": 5.13
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.384,
+     "full": 0.0007
+    },
+    "p_touch": {
+     "bear": 0.0009,
+     "base": 0.8213,
+     "full": 0.0008
+    },
+    "required_cagr": {
+     "bear": -0.9985,
+     "base": -0.0218,
+     "full": 834.4645
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00132
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.200245,
+    "mu_h": 0.066146,
+    "G": {
+     "bear": -2.71,
+     "base": -0.01,
+     "full": 2.8
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0055,
+     "base": 0.3397,
+     "full": 0.0122
+    },
+    "p_touch": {
+     "bear": 0.0104,
+     "base": 0.8807,
+     "full": 0.0193
+    },
+    "required_cagr": {
+     "bear": -0.8861,
+     "base": -0.0073,
+     "full": 8.4184
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00308
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "HELI",
    "name": "Heliopolis Housing",
    "code": "EGX:HELI",
@@ -1982,98 +2074,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00088
    },
    "market": "AE"
-  },
-  {
-   "ticker": "ADIB",
-   "name": "ADIB-Egypt",
-   "code": "EGX:ADIB",
-   "ccy": "EGP",
-   "spot": 49.3,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 31.6,
-   "fv_base": 54.3,
-   "fv_full": 95.3,
-   "gap_base_pct": 10.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.105718,
-    "mu_h": 0.014699,
-    "G": {
-     "bear": -4.21,
-     "base": 0.91,
-     "full": 6.23
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0012,
-     "base": 0.1816,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0018,
-     "base": 0.2826,
-     "full": 0.0007
-    },
-    "required_cagr": {
-     "bear": -0.9952,
-     "base": 2.1874,
-     "full": 2721.399
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00161
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.203591,
-    "mu_h": 0.045985,
-    "G": {
-     "bear": -2.18,
-     "base": 0.47,
-     "full": 3.24
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0132,
-     "base": 0.3806,
-     "full": 0.0058
-    },
-    "p_touch": {
-     "bear": 0.025,
-     "base": 0.6108,
-     "full": 0.0093
-    },
-    "required_cagr": {
-     "bear": -0.8312,
-     "base": 0.4717,
-     "full": 12.9632
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00218
-   },
-   "market": "EG"
   },
   {
    "ticker": "JUFO",
