@@ -199,17 +199,40 @@ def assess_materiality(market, result, incumbent_profile, incumbent_registry):
     return (len(reasons) > 0), reasons, added
 
 
-def write_pending_review(market, result, reasons, incumbent_profile):
+def write_change_record(market, result, reasons, incumbent_profile, applied=True):
+    """Write the evidence file for a material calibration change.
+
+    Two modes, because the same evidence serves two paths. applied=False is the gate's
+    original behaviour: the pipeline stopped, nothing was written to production, a human
+    is being asked. applied=True is scripts/adopt_calibration.py recording a change that
+    HAS been made, so the reasons sit beside the config that now carries them.
+
+    The distinction is not cosmetic. 66 review PRs accumulated between 6-Aug and
+    23-Aug-2026 saying "PENDING REVIEW ... nothing has been touched" — and after the
+    adoption script ran, the same file would have kept asserting production was untouched
+    when it no longer was. An evidence file that describes the wrong state is worse than
+    none, because it is the thing a reader trusts when reconstructing what happened.
+    """
     os.makedirs(PENDING_DIR, exist_ok=True)
     d = datetime.date.today().isoformat()
     path = os.path.join(PENDING_DIR, f"{market}_{d}.md")
-    lines = [
-        f"# PENDING REVIEW — {market} ({result['market_name']}) — {d}\n\n",
-        "auto_refresh.py found material changes and stopped rather than auto-committing.\n"
-        "Nothing in market_profiles.py has been touched. Panel files (raw residual "
-        "rebuilds) WERE updated — they carry no verdict of their own.\n\n",
-        "## Why this needs a human\n\n",
-    ]
+    if applied:
+        lines = [
+            f"# CALIBRATION CHANGE APPLIED — {market} ({result['market_name']}) — {d}\n\n",
+            "auto_refresh.py found MATERIAL changes and APPLIED them. market_profiles.py "
+            "and fitted_configs.json now carry the config below; the config it replaced is "
+            "recorded under `superseded` in fitted_configs.json, and reverting the commit "
+            "that carried this file restores both together.\n\n",
+            "## What made this material\n\n",
+        ]
+    else:
+        lines = [
+            f"# PENDING REVIEW — {market} ({result['market_name']}) — {d}\n\n",
+            "auto_refresh.py found material changes and stopped rather than auto-committing.\n"
+            "Nothing in market_profiles.py has been touched. Panel files (raw residual "
+            "rebuilds) WERE updated — they carry no verdict of their own.\n\n",
+            "## Why this needs a human\n\n",
+        ]
     for r in reasons:
         lines.append(f"- {r}\n")
     lines.append(f"\n## Proposed config\n\n")
@@ -282,7 +305,16 @@ def write_production(market, result):
         open(path, 'w').write(src)
 
     reg = json.load(open(REGISTRY_PATH)) if os.path.exists(REGISTRY_PATH) else {}
+    # Every apply records what it replaced (23-Aug-2026). Before this, undoing a config
+    # change meant reading it back out of a diff: the registry carried only the new pair,
+    # so the old one existed nowhere in machine-readable form. This pair, plus the commit
+    # that carried it, IS the revert — reverting that commit restores market_profiles.py
+    # and this file together, in step, which hand-editing either one cannot.
+    superseded = dict(nu=prof.nu, width_cal=prof.width_cal,
+                      market_verdict=reg.get(market, {}).get('market_verdict'),
+                      replaced_on=datetime.date.today().isoformat())
     reg[market] = dict(reg.get(market, {}), nu=nu_out, width_cal=result['width_cal'],
+                        superseded=superseded,
                         panel_names=result['panel_names'], windows=result['windows'],
                         market_skill=result['market_skill'], market_ci90=result['market_ci90'],
                         market_verdict=result['market_verdict'], per_name=result['per_name'],
@@ -351,7 +383,8 @@ def main():
             for r in reasons:
                 print(f"    - {r}")
             if args.apply:
-                p = write_pending_review(market, result, reasons, incumbent_profile)
+                p = write_change_record(market, result, reasons, incumbent_profile,
+                                        applied=False)
                 print(f"  -> wrote {p}")
             exit_code = 1
 
