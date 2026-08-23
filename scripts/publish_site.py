@@ -137,8 +137,17 @@ def market_of(ticker: str) -> str | None:
           "+';globalThis.__T=Object.assign({},typeof METALS!==\"undefined\"?METALS:{},TICKERS);',c);"
           f"process.stdout.write(String((c.__T[{json.dumps(ticker)}]||{{}}).code||''));")
     code = run(["node", "-e", js]).strip()
-    return {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA",
-            "QE": "QA", "NASDAQ": "US", "NSE": "IN", "KRX": "KR",
+    # "QSE" ADDED 23-Aug-2026. Every Qatari name in TICKERS carries the prefix
+    # QSE: (IQCD, QNB, QGTS) and this map only held "QE:", so market_of returned
+    # None for all three and step 2 printed "no market resolved" and SKIPPED the
+    # fair-value overlay -- the identical silent-skip the metals comment above
+    # records, and the one the SWDY/SCEM/EGCH note records before that. Fixed for
+    # equities, then for metals, and left open for Qatar: the third instance of
+    # one class of defect, so the map is now sourced from the sibling that already
+    # had it right rather than hand-listed a fourth time.
+    sys.path.insert(0, os.path.join(ROOT, "engine"))
+    from apply_technicals import EXCHANGE_MARKET
+    return {**EXCHANGE_MARKET,
             "XPT/USD": "XPT", "XAU/USD": "XAU"}.get(code.split(":")[0])
 
 
