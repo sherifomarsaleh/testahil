@@ -9,6 +9,7 @@
 body{margin:0;background:var(--paper);color:var(--ink);
   font:16px/1.55 'IBM Plex Sans',system-ui,sans-serif}
 .num{font-family:'IBM Plex Mono',monospace;font-feature-settings:'tnum'}
+.dim{color:var(--muted);font-weight:400;font-size:.8em}
 .wrap{max-width:960px;margin:0 auto;padding:28px 20px 60px}
 .mast{display:flex;justify-content:space-between;align-items:baseline;
   border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px}
@@ -36,6 +37,14 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .tl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .tv{font-size:1.15rem;font-weight:700;margin:2px 0}
 .ts{font-size:.75rem;color:var(--muted)}
+.lenses{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;margin-top:14px}
+.lens{border:1px dashed var(--line);border-radius:10px;padding:9px 13px}
+.lens.on{border:1.5px solid #12796B;background:#F2FAF8}
+.ll{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.ll span{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;margin-left:6px}
+.lv{font-size:.86rem;margin-top:2px}
+.lenscap{color:var(--muted);font-size:.75rem;margin:6px 0 0}
 .foot{color:var(--muted);font-size:.75rem;border-top:1px dashed var(--line);
   padding-top:8px;margin:12px 0 0}
 h2{font-size:1.2rem;margin:.2em 0 .5em}
@@ -48,13 +57,13 @@ td.num,th.num{font-family:'IBM Plex Mono',monospace}
 <div class="wrap">
   <div class="mast"><span class="brand">تستاهل TESTAHIL</span>
     <span class="badge">PROTOTYPE · NOT LIVE · NOT PUBLISHED</span></div>
-  <p class="lede">Proposed ticker card, drawn entirely from numbers already
-  published today. Two objects, one picture: the <b style="color:#12796B">teal
-  band</b> is what the market could plausibly do (the middle-half range leads;
-  the faint band is the 9-in-10 range — the crash guard, demoted from headline
-  to whisker). The <b style="color:#D06A2C">orange path</b> is what <i>we</i>
-  think it is worth and the road there over 12 months — the direction the
-  current pages never show. Hover any chart for the numbers at that date.</p>
+  <p class="lede">Proposed ticker card. The <b style="color:#12796B">teal band</b>
+  is today's published forecast with the typical range leading (the faint band
+  is the 9-in-10 range — the crash guard, demoted from headline to whisker).
+  The <b style="color:#D06A2C">orange line</b> is the engine's own lean,
+  computed from that stock's price history alone — never from the fundamental
+  study or the technical read: the three lenses stay independent and appear
+  side by side below each chart. Hover any chart for the numbers at that date.</p>
   
 <section class="card">
   <div class="head">
@@ -63,47 +72,60 @@ td.num,th.num{font-family:'IBM Plex Mono',monospace}
     <div class="px num">103.3 EGP
       <span class="pxd">close 22 Jul 2026</span></div>
   </div>
-  <p class="verdict">Our view: worth more than today's price. We value it at 118.0 EGP (range 82.0–160.0), +14% vs the market. Odds the price reaches our value within 3 months: about 47%.</p>
+  <p class="verdict">The price engine leans up: its last 12 months rank strong versus its own history, tilting the 3-month center by +2.6%. Odds of finishing higher in 3 months: 67% with the lean (61% neutral). The lean is illustrative until it passes the standard out-of-sample safety test.</p>
   <div class="legend">
-    <span><i style="background:#12796B;opacity:.35"></i> market's likely range (next 3M)</span>
-    <span><i style="background:#D06A2C"></i> our valuation path (12M)</span>
+    <span><i style="background:#12796B;opacity:.35"></i> likely range with the lean (next 3M)</span>
+    <span><i style="background:#D06A2C"></i> engine's leaned center (illustrative)</span>
     <span><i style="background:#0E2726"></i> actual price (last 9M)</span>
   </div>
   <div class="chartwrap">
 <svg viewBox="0 0 860 380" role="img" data-chart="ETEL"
-     aria-label="Telecom Egypt — market range and valuation path">
+     aria-label="Telecom Egypt — published range and the engine's own lean">
   <style>.ax{font:11px 'IBM Plex Mono',monospace;fill:#5B7270}
          .fl{font:600 11px 'IBM Plex Sans',sans-serif}</style>
-  <line x1="64" x2="742" y1="295.5" y2="295.5" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="299.5" text-anchor="end" class="ax">60.0</text><line x1="64" x2="742" y1="218.2" y2="218.2" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="222.2" text-anchor="end" class="ax">90.0</text><line x1="64" x2="742" y1="140.9" y2="140.9" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="144.9" text-anchor="end" class="ax">120.0</text><line x1="64" x2="742" y1="63.5" y2="63.5" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="67.5" text-anchor="end" class="ax">150.0</text><line x1="160.9" x2="160.9" y1="340" y2="345" stroke="#5B7270"/><text x="160.9" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="257.7" x2="257.7" y1="340" y2="345" stroke="#5B7270"/><text x="257.7" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="354.6" x2="354.6" y1="340" y2="345" stroke="#5B7270"/><text x="354.6" y="358" text-anchor="middle" class="ax">today</text><line x1="451.4" x2="451.4" y1="340" y2="345" stroke="#5B7270"/><text x="451.4" y="358" text-anchor="middle" class="ax">+3 months</text><line x1="548.3" x2="548.3" y1="340" y2="345" stroke="#5B7270"/><text x="548.3" y="358" text-anchor="middle" class="ax">+6 months</text><line x1="742.0" x2="742.0" y1="340" y2="345" stroke="#5B7270"/><text x="742.0" y="358" text-anchor="middle" class="ax">+12 months</text>
-  <line x1="354.6" x2="354.6" y1="18" y2="340" stroke="#5B7270"
+  <line x1="64" x2="710" y1="292.9" y2="292.9" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="296.9" text-anchor="end" class="ax">60.0</text><line x1="64" x2="710" y1="207.5" y2="207.5" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="211.5" text-anchor="end" class="ax">90.0</text><line x1="64" x2="710" y1="122.0" y2="122.0" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="126.0" text-anchor="end" class="ax">120.0</text><line x1="64" x2="710" y1="36.6" y2="36.6" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="40.6" text-anchor="end" class="ax">150.0</text><line x1="213.1" x2="213.1" y1="340" y2="345" stroke="#5B7270"/><text x="213.1" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="362.2" x2="362.2" y1="340" y2="345" stroke="#5B7270"/><text x="362.2" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="511.2" x2="511.2" y1="340" y2="345" stroke="#5B7270"/><text x="511.2" y="358" text-anchor="middle" class="ax">today</text><line x1="560.9" x2="560.9" y1="340" y2="345" stroke="#5B7270"/><text x="560.9" y="358" text-anchor="middle" class="ax">+1m</text><line x1="660.3" x2="660.3" y1="340" y2="345" stroke="#5B7270"/><text x="660.3" y="358" text-anchor="middle" class="ax">+3 months</text>
+  <line x1="511.2" x2="511.2" y1="18" y2="340" stroke="#5B7270"
         stroke-dasharray="3 4" opacity=".7"/>
-  <path d="M354.6,183.9 L362.6,159.4 L370.7,147.9 L378.8,138.5 L386.9,130.2 L394.9,122.1 L403.0,114.5 L411.1,107.3 L419.1,100.4 L427.2,93.6 L435.3,87.1 L443.4,80.7 L451.4,74.4 L451.4,243.4 L443.4,241.5 L435.3,239.5 L427.2,237.3 L419.1,234.9 L411.1,232.2 L403.0,229.3 L394.9,225.9 L386.9,222.0 L378.8,217.7 L370.7,212.2 L362.6,204.6 L354.6,183.9 Z" fill="#12796B" opacity="0.10"/>
-  <path d="M354.6,183.9 L362.6,174.5 L370.7,169.9 L378.8,166.0 L386.9,162.6 L394.9,159.2 L403.0,156.0 L411.1,153.0 L419.1,150.0 L427.2,147.1 L435.3,144.4 L443.4,141.6 L451.4,138.9 L451.4,200.5 L443.4,200.3 L435.3,200.0 L427.2,199.7 L419.1,199.3 L411.1,198.7 L403.0,198.1 L394.9,197.3 L386.9,196.3 L378.8,195.2 L370.7,193.6 L362.6,191.2 L354.6,183.9 Z" fill="#12796B" opacity="0.28"/>
-  <path d="M354.6,183.9 L362.6,183.0 L370.7,182.0 L378.8,181.0 L386.9,180.0 L394.9,178.9 L403.0,177.9 L411.1,176.8 L419.1,175.7 L427.2,174.7 L435.3,173.6 L443.4,172.5 L451.4,171.4" fill="none" stroke="#12796B" stroke-width="1.5"
-        stroke-dasharray="5 4" opacity=".8"/>
-  <path d="M354.6,183.9 L370.7,179.0 L386.9,174.1 L403.0,169.0 L419.1,163.8 L435.3,158.5 L451.4,153.2 L467.6,147.7 L483.7,142.1 L499.9,136.5 L516.0,130.7 L532.1,124.8 L548.3,118.8 L564.4,112.7 L580.6,106.5 L596.7,100.2 L612.9,93.8 L629.0,87.2 L645.1,80.5 L661.3,73.7 L677.4,66.8 L693.6,59.7 L709.7,52.5 L725.9,45.2 L742.0,37.8 L742.0,238.8 L725.9,236.7 L709.7,234.7 L693.6,232.6 L677.4,230.5 L661.3,228.4 L645.1,226.2 L629.0,224.1 L612.9,221.9 L596.7,219.7 L580.6,217.5 L564.4,215.2 L548.3,212.9 L532.1,210.7 L516.0,208.3 L499.9,206.0 L483.7,203.7 L467.6,201.3 L451.4,198.9 L435.3,196.4 L419.1,194.0 L403.0,191.5 L386.9,189.0 L370.7,186.5 L354.6,183.9 Z" fill="#D06A2C" opacity="0.13"/>
-  <path d="M354.6,183.9 L370.7,182.5 L386.9,181.0 L403.0,179.5 L419.1,178.0 L435.3,176.5 L451.4,174.9 L467.6,173.4 L483.7,171.9 L499.9,170.3 L516.0,168.8 L532.1,167.2 L548.3,165.6 L564.4,164.0 L580.6,162.4 L596.7,160.8 L612.9,159.2 L629.0,157.6 L645.1,156.0 L661.3,154.3 L677.4,152.7 L693.6,151.0 L709.7,149.4 L725.9,147.7 L742.0,146.0" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
-  <path d="M65.0,319.5 L72.4,320.2 L79.8,311.5 L87.2,314.5 L94.7,295.5 L102.1,285.2 L109.5,290.5 L116.9,286.1 L124.4,287.8 L131.8,287.8 L139.2,280.6 L150.8,267.1 L158.3,275.0 L165.7,249.1 L174.4,248.1 L181.8,215.9 L189.3,195.0 L196.7,211.7 L204.1,221.2 L211.5,238.5 L219.0,241.4 L229.3,237.1 L236.7,232.6 L244.2,208.1 L254.8,202.1 L262.2,202.9 L269.7,209.2 L278.1,195.3 L285.5,209.6 L292.9,198.5 L306.8,206.8 L314.2,216.4 L322.6,204.9 L330.0,218.2 L338.8,196.3 L346.2,199.5 L353.6,183.1" fill="none" stroke="#0E2726" stroke-width="2"/>
-  <circle cx="354.6" cy="183.9" r="5" fill="#fff"
+  <path d="M511.2,169.6 L523.7,141.8 L536.1,128.4 L548.5,117.2 L560.9,107.2 L573.3,97.4 L585.8,88.1 L598.2,79.2 L610.6,70.6 L623.0,62.2 L635.5,53.9 L647.9,45.8 L660.3,37.8 L660.3,229.3 L647.9,227.7 L635.5,225.9 L623.0,224.0 L610.6,221.8 L598.2,219.3 L585.8,216.5 L573.3,213.3 L560.9,209.5 L548.5,205.2 L536.1,199.7 L523.7,191.9 L511.2,169.6 Z" fill="#12796B" opacity="0.10"/>
+  <path d="M511.2,169.6 L523.7,158.5 L536.1,152.7 L548.5,147.8 L560.9,143.3 L573.3,138.8 L585.8,134.5 L598.2,130.4 L610.6,126.4 L623.0,122.4 L635.5,118.6 L647.9,114.7 L660.3,110.9 L660.3,180.8 L647.9,181.1 L635.5,181.4 L623.0,181.6 L610.6,181.7 L598.2,181.8 L585.8,181.7 L573.3,181.4 L560.9,180.9 L548.5,180.2 L536.1,179.0 L523.7,177.0 L511.2,169.6 Z" fill="#12796B" opacity="0.28"/>
+  <path d="M511.2,169.6 L523.7,167.9 L536.1,166.2 L548.5,164.4 L560.9,162.7 L573.3,160.9 L585.8,159.0 L598.2,157.2 L610.6,155.3 L623.0,153.4 L635.5,151.6 L647.9,149.7 L660.3,147.8" fill="none" stroke="#12796B" stroke-width="1.5"
+        stroke-dasharray="5 4" opacity=".85"/>
+  <path d="M511.2,169.6 L523.7,167.9 L536.1,166.2 L548.5,164.4 L560.9,162.7 L573.3,160.9 L585.8,159.0 L598.2,157.2 L610.6,155.3 L623.0,153.4 L635.5,151.6 L647.9,149.7 L660.3,147.8" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
+  <path d="M65.5,319.5 L76.9,320.2 L88.3,310.5 L99.8,313.8 L111.2,292.9 L122.6,281.5 L134.1,287.3 L145.5,282.5 L156.9,284.3 L168.4,284.3 L179.8,276.5 L197.7,261.6 L209.1,270.3 L220.5,241.7 L233.9,240.5 L245.4,204.9 L256.8,181.8 L268.2,200.3 L279.7,210.8 L291.1,229.9 L302.5,233.1 L318.4,228.4 L329.9,223.4 L341.3,196.4 L357.7,189.7 L369.1,190.5 L380.5,197.5 L393.5,182.1 L404.9,198.0 L416.3,185.7 L437.7,194.9 L449.1,205.5 L462.0,192.8 L473.5,207.5 L486.9,183.3 L498.3,186.8 L509.7,168.7" fill="none" stroke="#0E2726" stroke-width="2"/>
+  <circle cx="511.2" cy="169.6" r="5" fill="#fff"
           stroke="#0E2726" stroke-width="2.5"/>
-  <text x="748.0" y="41.8" class="fl" fill="#D06A2C">high 160.0</text><text x="748.0" y="150.0" class="fl" fill="#D06A2C">base 118.0</text><text x="748.0" y="242.8" class="fl" fill="#D06A2C">low 82.0</text><text x="457.4" y="132.4" class="fl" fill="#12796B">typical 96.8–120.6</text><text x="457.4" y="253.7" class="fl" fill="#5B7270">9-in-10 80.1–145.6</text>
+  <text x="668.3" y="103.9" class="fl" fill="#12796B">typical 99.4–123.9</text><text x="668.3" y="239.3" class="fl" fill="#5B7270">9-in-10 82.3–149.6</text><text x="668.3" y="151.8" class="fl" fill="#D06A2C">center 111.0</text>
   <line class="cx" x1="0" x2="0" y1="18" y2="340" stroke="#0E2726"
         opacity="0" stroke-width="1"/>
 </svg><div class="tip" hidden></div></div>
   
 <div class="tiles">
-  <div class="tile"><div class="tl">Our value (base)</div>
-    <div class="tv num">118.0 EGP</div>
-    <div class="ts">full range 82.0–160.0</div></div>
   <div class="tile"><div class="tl">Typical range, next 3 months</div>
-    <div class="tv num">96.8–120.6</div>
-    <div class="ts">1-in-10 above 145.6, 1-in-10 below 80.1</div></div>
-  <div class="tile"><div class="tl">Odds of reaching our value in 3M</div>
-    <div class="tv num">about 47%</div>
-    <div class="ts">graded publicly when the date arrives</div></div>
+    <div class="tv num">99.4–123.9</div>
+    <div class="ts">1-in-10 above 149.6, 1-in-10 below 82.3 — graded when the date arrives</div></div>
+  <div class="tile"><div class="tl">Trend lean (3M, illustrative)</div>
+    <div class="tv num">+2.6% on the center</div>
+    <div class="ts">from this stock's own price history only</div></div>
+  <div class="tile"><div class="tl">Odds of finishing higher in 3M</div>
+    <div class="tv num">67%<span class="dim"> with lean · 61% neutral</span></div>
+    <div class="ts">becomes a graded number once the lean passes the gate</div></div>
 </div>
-  <p class="foot">Valuation dated 2026-07-03 · market range struck 2026-07-22 ·
-  every number above is already published on the live page today — this card only re-arranges them.</p>
+  
+<div class="lenses">
+  <div class="lens"><div class="ll">Fundamental study <span>separate lens</span></div>
+    <div class="lv">sees it worth more — 118.0 EGP base vs 103.3</div></div>
+  <div class="lens on"><div class="ll">Price engine <span>this card</span></div>
+    <div class="lv">leans up, +2.6% on the 3-month center</div></div>
+  <div class="lens"><div class="ll">Technical read <span>separate lens</span></div>
+    <div class="lv">Trading above the whole moving-average stack, on a rising 200-day</div></div>
+</div>
+<p class="lenscap">Three lenses, computed independently on purpose — none feeds
+another, so agreement between them is information, not an echo.</p>
+  <p class="foot">Band and dashed center are today's PUBLISHED forecast (drawn
+  band reproduces it within 0.15%). The orange lean is illustrative — engine's
+  own momentum signal at the tournament-measured strength — and goes live only
+  through the standing safety test. The fundamental and technical verdicts are
+  displayed for comparison only; they are never inputs to this cone.</p>
 </section>
 <section class="card">
   <div class="head">
@@ -112,47 +134,60 @@ td.num,th.num{font-family:'IBM Plex Mono',monospace}
     <div class="px num">5.94 AED
       <span class="pxd">close 7 Aug 2026</span></div>
   </div>
-  <p class="verdict">Our view: worth less than today's price. We value it at 4.92 AED (range 3.46–6.21), −17% vs the market. Odds the price falls to our value within 3 months: about 14%.</p>
+  <p class="verdict">The price engine leans down: its last 12 months rank moderate versus its own history, tilting the 3-month center by -2.0%. Odds of finishing higher in 3 months: 44% with the lean (50% neutral). The lean is illustrative until it passes the standard out-of-sample safety test.</p>
   <div class="legend">
-    <span><i style="background:#12796B;opacity:.35"></i> market's likely range (next 3M)</span>
-    <span><i style="background:#D06A2C"></i> our valuation path (12M)</span>
+    <span><i style="background:#12796B;opacity:.35"></i> likely range with the lean (next 3M)</span>
+    <span><i style="background:#D06A2C"></i> engine's leaned center (illustrative)</span>
     <span><i style="background:#0E2726"></i> actual price (last 9M)</span>
   </div>
   <div class="chartwrap">
 <svg viewBox="0 0 860 380" role="img" data-chart="ADNOCDRILL"
-     aria-label="ADNOC Drilling Company P.J.S.C. — market range and valuation path">
+     aria-label="ADNOC Drilling Company P.J.S.C. — published range and the engine's own lean">
   <style>.ax{font:11px 'IBM Plex Mono',monospace;fill:#5B7270}
          .fl{font:600 11px 'IBM Plex Sans',sans-serif}</style>
-  <line x1="64" x2="742" y1="281.9" y2="281.9" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="285.9" text-anchor="end" class="ax">4.00</text><line x1="64" x2="742" y1="211.0" y2="211.0" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="215.0" text-anchor="end" class="ax">5.00</text><line x1="64" x2="742" y1="140.1" y2="140.1" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="144.1" text-anchor="end" class="ax">6.00</text><line x1="64" x2="742" y1="69.1" y2="69.1" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="73.1" text-anchor="end" class="ax">7.00</text><line x1="160.9" x2="160.9" y1="340" y2="345" stroke="#5B7270"/><text x="160.9" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="257.7" x2="257.7" y1="340" y2="345" stroke="#5B7270"/><text x="257.7" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="354.6" x2="354.6" y1="340" y2="345" stroke="#5B7270"/><text x="354.6" y="358" text-anchor="middle" class="ax">today</text><line x1="451.4" x2="451.4" y1="340" y2="345" stroke="#5B7270"/><text x="451.4" y="358" text-anchor="middle" class="ax">+3 months</text><line x1="548.3" x2="548.3" y1="340" y2="345" stroke="#5B7270"/><text x="548.3" y="358" text-anchor="middle" class="ax">+6 months</text><line x1="742.0" x2="742.0" y1="340" y2="345" stroke="#5B7270"/><text x="742.0" y="358" text-anchor="middle" class="ax">+12 months</text>
-  <line x1="354.6" x2="354.6" y1="18" y2="340" stroke="#5B7270"
+  <line x1="64" x2="710" y1="294.8" y2="294.8" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="298.8" text-anchor="end" class="ax">4.90</text><line x1="64" x2="710" y1="224.1" y2="224.1" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="228.1" text-anchor="end" class="ax">5.60</text><line x1="64" x2="710" y1="153.3" y2="153.3" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="157.3" text-anchor="end" class="ax">6.30</text><line x1="64" x2="710" y1="82.5" y2="82.5" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="86.5" text-anchor="end" class="ax">7.00</text><line x1="213.1" x2="213.1" y1="340" y2="345" stroke="#5B7270"/><text x="213.1" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="362.2" x2="362.2" y1="340" y2="345" stroke="#5B7270"/><text x="362.2" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="511.2" x2="511.2" y1="340" y2="345" stroke="#5B7270"/><text x="511.2" y="358" text-anchor="middle" class="ax">today</text><line x1="560.9" x2="560.9" y1="340" y2="345" stroke="#5B7270"/><text x="560.9" y="358" text-anchor="middle" class="ax">+1m</text><line x1="660.3" x2="660.3" y1="340" y2="345" stroke="#5B7270"/><text x="660.3" y="358" text-anchor="middle" class="ax">+3 months</text>
+  <line x1="511.2" x2="511.2" y1="18" y2="340" stroke="#5B7270"
         stroke-dasharray="3 4" opacity=".7"/>
-  <path d="M354.6,144.3 L362.6,118.2 L370.7,106.9 L378.8,98.1 L386.9,90.5 L394.9,82.0 L403.0,74.4 L411.1,67.4 L419.1,60.9 L427.2,54.7 L435.3,48.8 L443.4,43.2 L451.4,37.8 L451.4,229.3 L443.4,225.9 L435.3,222.2 L427.2,218.2 L419.1,213.9 L411.1,209.3 L403.0,204.2 L394.9,198.6 L386.9,192.0 L378.8,186.0 L370.7,178.7 L362.6,168.9 L354.6,144.3 Z" fill="#12796B" opacity="0.10"/>
-  <path d="M354.6,144.3 L362.6,134.6 L370.7,130.5 L378.8,127.3 L386.9,124.6 L394.9,121.7 L403.0,119.0 L411.1,116.6 L419.1,114.4 L427.2,112.3 L435.3,110.3 L443.4,108.4 L451.4,106.6 L451.4,178.9 L443.4,177.4 L435.3,175.8 L427.2,174.1 L419.1,172.3 L411.1,170.3 L403.0,168.2 L394.9,165.8 L386.9,163.1 L378.8,160.7 L370.7,157.7 L362.6,153.8 L354.6,144.3 Z" fill="#12796B" opacity="0.28"/>
-  <path d="M354.6,144.3 L362.6,144.3 L370.7,144.3 L378.8,144.3 L386.9,144.3 L394.9,144.3 L403.0,144.3 L411.1,144.3 L419.1,144.3 L427.2,144.3 L435.3,144.3 L443.4,144.3 L451.4,144.3" fill="none" stroke="#12796B" stroke-width="1.5"
-        stroke-dasharray="5 4" opacity=".8"/>
-  <path d="M354.6,144.3 L370.7,143.5 L386.9,142.7 L403.0,142.0 L419.1,141.2 L435.3,140.4 L451.4,139.6 L467.6,138.8 L483.7,138.0 L499.9,137.2 L516.0,136.4 L532.1,135.6 L548.3,134.8 L564.4,134.0 L580.6,133.2 L596.7,132.4 L612.9,131.6 L629.0,130.8 L645.1,130.0 L661.3,129.2 L677.4,128.4 L693.6,127.6 L709.7,126.8 L725.9,126.0 L742.0,125.2 L742.0,320.2 L725.9,314.6 L709.7,308.9 L693.6,303.1 L677.4,297.1 L661.3,291.0 L645.1,284.7 L629.0,278.3 L612.9,271.8 L596.7,265.1 L580.6,258.2 L564.4,251.2 L548.3,244.1 L532.1,236.8 L516.0,229.3 L499.9,221.6 L483.7,213.8 L467.6,205.8 L451.4,197.6 L435.3,189.2 L419.1,180.6 L403.0,171.8 L386.9,162.9 L370.7,153.7 L354.6,144.3 Z" fill="#D06A2C" opacity="0.13"/>
-  <path d="M354.6,144.3 L370.7,147.6 L386.9,150.9 L403.0,154.1 L419.1,157.3 L435.3,160.5 L451.4,163.7 L467.6,166.8 L483.7,170.0 L499.9,173.1 L516.0,176.1 L532.1,179.2 L548.3,182.2 L564.4,185.2 L580.6,188.2 L596.7,191.1 L612.9,194.0 L629.0,196.9 L645.1,199.8 L661.3,202.7 L677.4,205.5 L693.6,208.3 L709.7,211.1 L725.9,213.9 L742.0,216.7" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
-  <path d="M65.0,164.9 L72.4,181.9 L79.8,196.8 L87.2,194.7 L98.9,177.6 L106.3,182.6 L113.7,176.9 L121.1,186.2 L129.9,187.6 L137.3,196.1 L144.7,198.2 L152.1,181.2 L159.6,181.9 L167.0,176.2 L174.4,193.3 L181.8,194.7 L191.2,201.1 L198.6,225.2 L210.3,207.4 L217.7,202.5 L225.1,203.9 L232.5,191.1 L240.0,195.4 L247.4,205.3 L254.8,126.6 L262.2,129.4 L269.7,146.4 L283.5,144.3 L291.0,168.4 L299.4,130.8 L306.8,144.3 L314.2,159.2 L321.6,160.6 L329.1,159.2 L336.5,163.5 L343.9,154.9 L351.3,134.4" fill="none" stroke="#0E2726" stroke-width="2"/>
-  <circle cx="354.6" cy="144.3" r="5" fill="#fff"
+  <path d="M511.2,189.7 L523.7,153.5 L536.1,138.5 L548.5,127.0 L560.9,117.3 L573.3,106.5 L585.8,96.9 L598.2,88.1 L610.6,80.1 L623.0,72.6 L635.5,65.5 L647.9,58.8 L660.3,52.4 L660.3,320.2 L647.9,314.6 L635.5,308.6 L623.0,302.3 L610.6,295.5 L598.2,288.2 L585.8,280.2 L573.3,271.3 L560.9,261.2 L548.5,251.7 L536.1,240.4 L523.7,225.6 L511.2,189.7 Z" fill="#12796B" opacity="0.10"/>
+  <path d="M511.2,189.7 L523.7,176.8 L536.1,172.0 L548.5,168.5 L560.9,165.7 L573.3,162.5 L585.8,159.8 L598.2,157.5 L610.6,155.4 L623.0,153.5 L635.5,151.7 L647.9,150.1 L660.3,148.7 L660.3,249.7 L647.9,246.7 L635.5,243.5 L623.0,240.3 L610.6,236.8 L598.2,233.1 L585.8,229.2 L573.3,225.0 L560.9,220.2 L548.5,215.8 L536.1,210.7 L523.7,204.2 L511.2,189.7 Z" fill="#12796B" opacity="0.28"/>
+  <path d="M511.2,189.7 L523.7,190.6 L536.1,191.6 L548.5,192.6 L560.9,193.6 L573.3,194.6 L585.8,195.5 L598.2,196.5 L610.6,197.5 L623.0,198.4 L635.5,199.4 L647.9,200.4 L660.3,201.3" fill="none" stroke="#12796B" stroke-width="1.5"
+        stroke-dasharray="5 4" opacity=".85"/>
+  <path d="M511.2,189.7 L523.7,190.6 L536.1,191.6 L548.5,192.6 L560.9,193.6 L573.3,194.6 L585.8,195.5 L598.2,196.5 L610.6,197.5 L623.0,198.4 L635.5,199.4 L647.9,200.4 L660.3,201.3" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
+  <path d="M65.5,219.0 L76.9,243.3 L88.3,264.5 L99.8,261.5 L117.7,237.2 L129.1,244.3 L140.5,236.2 L152.0,249.3 L165.4,251.4 L176.8,263.5 L188.2,266.5 L199.7,242.3 L211.1,243.3 L222.5,235.2 L233.9,259.4 L245.4,261.5 L259.8,270.6 L271.2,305.0 L289.1,279.7 L300.5,272.6 L312.0,274.6 L323.4,256.4 L334.8,262.5 L346.3,276.6 L357.7,164.4 L369.1,168.4 L380.5,192.7 L401.9,189.7 L413.3,224.1 L426.3,170.5 L437.7,189.7 L449.1,210.9 L460.5,212.9 L472.0,210.9 L483.4,217.0 L494.8,204.8 L506.3,175.5" fill="none" stroke="#0E2726" stroke-width="2"/>
+  <circle cx="511.2" cy="189.7" r="5" fill="#fff"
           stroke="#0E2726" stroke-width="2.5"/>
-  <text x="748.0" y="129.2" class="fl" fill="#D06A2C">high 6.21</text><text x="748.0" y="220.7" class="fl" fill="#D06A2C">base 4.92</text><text x="748.0" y="324.2" class="fl" fill="#D06A2C">low 3.46</text><text x="457.4" y="99.7" class="fl" fill="#12796B">typical 5.45–6.47</text><text x="457.4" y="239.4" class="fl" fill="#5B7270">9-in-10 4.74–7.44</text>
+  <text x="668.3" y="141.7" class="fl" fill="#12796B">typical 5.35–6.35</text><text x="668.3" y="330.2" class="fl" fill="#5B7270">9-in-10 4.65–7.30</text><text x="668.3" y="205.3" class="fl" fill="#D06A2C">center 5.82</text>
   <line class="cx" x1="0" x2="0" y1="18" y2="340" stroke="#0E2726"
         opacity="0" stroke-width="1"/>
 </svg><div class="tip" hidden></div></div>
   
 <div class="tiles">
-  <div class="tile"><div class="tl">Our value (base)</div>
-    <div class="tv num">4.92 AED</div>
-    <div class="ts">full range 3.46–6.21</div></div>
   <div class="tile"><div class="tl">Typical range, next 3 months</div>
-    <div class="tv num">5.45–6.47</div>
-    <div class="ts">1-in-10 above 7.44, 1-in-10 below 4.74</div></div>
-  <div class="tile"><div class="tl">Odds of falling to our value in 3M</div>
-    <div class="tv num">about 14%</div>
-    <div class="ts">graded publicly when the date arrives</div></div>
+    <div class="tv num">5.35–6.35</div>
+    <div class="ts">1-in-10 above 7.30, 1-in-10 below 4.65 — graded when the date arrives</div></div>
+  <div class="tile"><div class="tl">Trend lean (3M, illustrative)</div>
+    <div class="tv num">-2.0% on the center</div>
+    <div class="ts">from this stock's own price history only</div></div>
+  <div class="tile"><div class="tl">Odds of finishing higher in 3M</div>
+    <div class="tv num">44%<span class="dim"> with lean · 50% neutral</span></div>
+    <div class="ts">becomes a graded number once the lean passes the gate</div></div>
 </div>
-  <p class="foot">Valuation dated 2026-08-07 · market range struck 2026-08-07 ·
-  every number above is already published on the live page today — this card only re-arranges them.</p>
+  
+<div class="lenses">
+  <div class="lens"><div class="ll">Fundamental study <span>separate lens</span></div>
+    <div class="lv">sees it worth less — 4.92 AED base vs 5.94</div></div>
+  <div class="lens on"><div class="ll">Price engine <span>this card</span></div>
+    <div class="lv">leans down, -2.0% on the 3-month center</div></div>
+  <div class="lens"><div class="ll">Technical read <span>separate lens</span></div>
+    <div class="lv">Trading above the whole moving-average stack, on a flat 200-day</div></div>
+</div>
+<p class="lenscap">Three lenses, computed independently on purpose — none feeds
+another, so agreement between them is information, not an echo.</p>
+  <p class="foot">Band and dashed center are today's PUBLISHED forecast (drawn
+  band reproduces it within 0.13%). The orange lean is illustrative — engine's
+  own momentum signal at the tournament-measured strength — and goes live only
+  through the standing safety test. The fundamental and technical verdicts are
+  displayed for comparison only; they are never inputs to this cone.</p>
 </section>
 <section class="card">
   <div class="head">
@@ -161,82 +196,92 @@ td.num,th.num{font-family:'IBM Plex Mono',monospace}
     <div class="px num">11.53 EGP
       <span class="pxd">close 28 Jul 2026</span></div>
   </div>
-  <p class="verdict">Our view: worth more than today's price. We value it at 19.84 EGP (range 13.71–23.43), +72% vs the market. Odds the price reaches our value within 3 months: under 1 in 100. A move that size almost never happens in three months in this stock — this is a 12-month story, not a quarter trade.</p>
+  <p class="verdict">The price engine leans up: its last 12 months rank moderate versus its own history, tilting the 3-month center by +0.8%. Odds of finishing higher in 3 months: 64% with the lean (62% neutral). The lean is illustrative until it passes the standard out-of-sample safety test.</p>
   <div class="legend">
-    <span><i style="background:#12796B;opacity:.35"></i> market's likely range (next 3M)</span>
-    <span><i style="background:#D06A2C"></i> our valuation path (12M)</span>
+    <span><i style="background:#12796B;opacity:.35"></i> likely range with the lean (next 3M)</span>
+    <span><i style="background:#D06A2C"></i> engine's leaned center (illustrative)</span>
     <span><i style="background:#0E2726"></i> actual price (last 9M)</span>
   </div>
   <div class="chartwrap">
 <svg viewBox="0 0 860 380" role="img" data-chart="EMFD"
-     aria-label="Emaar Misr for Development — market range and valuation path">
+     aria-label="Emaar Misr for Development — published range and the engine's own lean">
   <style>.ax{font:11px 'IBM Plex Mono',monospace;fill:#5B7270}
          .fl{font:600 11px 'IBM Plex Sans',sans-serif}</style>
-  <line x1="64" x2="742" y1="334.7" y2="334.7" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="338.7" text-anchor="end" class="ax">8.00</text><line x1="64" x2="742" y1="257.7" y2="257.7" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="261.7" text-anchor="end" class="ax">12.00</text><line x1="64" x2="742" y1="180.7" y2="180.7" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="184.7" text-anchor="end" class="ax">16.00</text><line x1="64" x2="742" y1="103.8" y2="103.8" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="107.8" text-anchor="end" class="ax">20.00</text><line x1="64" x2="742" y1="26.8" y2="26.8" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="30.8" text-anchor="end" class="ax">24.00</text><line x1="160.9" x2="160.9" y1="340" y2="345" stroke="#5B7270"/><text x="160.9" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="257.7" x2="257.7" y1="340" y2="345" stroke="#5B7270"/><text x="257.7" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="354.6" x2="354.6" y1="340" y2="345" stroke="#5B7270"/><text x="354.6" y="358" text-anchor="middle" class="ax">today</text><line x1="451.4" x2="451.4" y1="340" y2="345" stroke="#5B7270"/><text x="451.4" y="358" text-anchor="middle" class="ax">+3 months</text><line x1="548.3" x2="548.3" y1="340" y2="345" stroke="#5B7270"/><text x="548.3" y="358" text-anchor="middle" class="ax">+6 months</text><line x1="742.0" x2="742.0" y1="340" y2="345" stroke="#5B7270"/><text x="742.0" y="358" text-anchor="middle" class="ax">+12 months</text>
-  <line x1="354.6" x2="354.6" y1="18" y2="340" stroke="#5B7270"
+  <line x1="64" x2="710" y1="271.3" y2="271.3" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="275.3" text-anchor="end" class="ax">10.00</text><line x1="64" x2="710" y1="193.1" y2="193.1" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="197.1" text-anchor="end" class="ax">12.00</text><line x1="64" x2="710" y1="114.9" y2="114.9" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="118.9" text-anchor="end" class="ax">14.00</text><line x1="64" x2="710" y1="36.7" y2="36.7" stroke="#D9E4E2" stroke-width="1" opacity=".6"/><text x="56" y="40.7" text-anchor="end" class="ax">16.00</text><line x1="213.1" x2="213.1" y1="340" y2="345" stroke="#5B7270"/><text x="213.1" y="358" text-anchor="middle" class="ax">6m ago</text><line x1="362.2" x2="362.2" y1="340" y2="345" stroke="#5B7270"/><text x="362.2" y="358" text-anchor="middle" class="ax">3m ago</text><line x1="511.2" x2="511.2" y1="340" y2="345" stroke="#5B7270"/><text x="511.2" y="358" text-anchor="middle" class="ax">today</text><line x1="560.9" x2="560.9" y1="340" y2="345" stroke="#5B7270"/><text x="560.9" y="358" text-anchor="middle" class="ax">+1m</text><line x1="660.3" x2="660.3" y1="340" y2="345" stroke="#5B7270"/><text x="660.3" y="358" text-anchor="middle" class="ax">+3 months</text>
+  <line x1="511.2" x2="511.2" y1="18" y2="340" stroke="#5B7270"
         stroke-dasharray="3 4" opacity=".7"/>
-  <path d="M354.6,266.7 L362.6,249.1 L370.7,240.9 L378.8,234.2 L386.9,228.2 L394.9,221.6 L403.0,215.4 L411.1,209.6 L419.1,204.1 L427.2,198.8 L435.3,193.6 L443.4,188.5 L451.4,183.6 L451.4,311.7 L443.4,310.2 L435.3,308.6 L427.2,306.8 L419.1,304.8 L411.1,302.6 L403.0,300.1 L394.9,297.3 L386.9,294.0 L378.8,290.9 L370.7,287.0 L362.6,281.6 L354.6,266.7 Z" fill="#12796B" opacity="0.10"/>
-  <path d="M354.6,266.7 L362.6,259.9 L370.7,256.5 L378.8,253.6 L386.9,251.0 L394.9,248.2 L403.0,245.6 L411.1,243.1 L419.1,240.7 L427.2,238.4 L435.3,236.1 L443.4,233.9 L451.4,231.8 L451.4,278.6 L443.4,278.4 L435.3,278.2 L427.2,278.0 L419.1,277.7 L411.1,277.3 L403.0,276.7 L394.9,276.1 L386.9,275.2 L378.8,274.5 L370.7,273.4 L362.6,271.8 L354.6,266.7 Z" fill="#12796B" opacity="0.28"/>
-  <path d="M354.6,266.7 L362.6,265.9 L370.7,265.1 L378.8,264.3 L386.9,263.5 L394.9,262.6 L403.0,261.7 L411.1,260.8 L419.1,259.9 L427.2,259.0 L435.3,258.1 L443.4,257.3 L451.4,256.3" fill="none" stroke="#12796B" stroke-width="1.5"
-        stroke-dasharray="5 4" opacity=".8"/>
-  <path d="M354.6,266.7 L370.7,260.1 L386.9,253.2 L403.0,246.2 L419.1,238.9 L435.3,231.4 L451.4,223.7 L467.6,215.8 L483.7,207.6 L499.9,199.2 L516.0,190.5 L532.1,181.5 L548.3,172.3 L564.4,162.9 L580.6,153.1 L596.7,143.0 L612.9,132.7 L629.0,122.0 L645.1,111.0 L661.3,99.7 L677.4,88.0 L693.6,76.0 L709.7,63.6 L725.9,50.9 L742.0,37.8 L742.0,224.8 L725.9,226.7 L709.7,228.6 L693.6,230.4 L677.4,232.3 L661.3,234.1 L645.1,236.0 L629.0,237.8 L612.9,239.6 L596.7,241.4 L580.6,243.2 L564.4,244.9 L548.3,246.7 L532.1,248.4 L516.0,250.1 L499.9,251.9 L483.7,253.6 L467.6,255.2 L451.4,256.9 L435.3,258.6 L419.1,260.2 L403.0,261.9 L386.9,263.5 L370.7,265.1 L354.6,266.7 Z" fill="#D06A2C" opacity="0.13"/>
-  <path d="M354.6,266.7 L370.7,261.7 L386.9,256.5 L403.0,251.2 L419.1,245.7 L435.3,240.2 L451.4,234.5 L467.6,228.7 L483.7,222.7 L499.9,216.7 L516.0,210.4 L532.1,204.1 L548.3,197.6 L564.4,190.9 L580.6,184.1 L596.7,177.1 L612.9,170.0 L629.0,162.7 L645.1,155.3 L661.3,147.7 L677.4,139.9 L693.6,131.9 L709.7,123.7 L725.9,115.4 L742.0,106.8" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
-  <path d="M65.0,305.8 L72.4,294.1 L79.8,295.2 L87.2,308.7 L94.7,314.5 L102.1,315.8 L109.5,298.1 L116.9,301.0 L124.4,303.9 L131.8,304.6 L141.5,306.0 L148.9,316.0 L156.3,310.6 L167.0,314.1 L174.4,305.2 L181.8,302.3 L189.3,308.9 L196.7,320.2 L204.1,313.3 L211.5,312.9 L221.9,311.4 L229.3,309.6 L236.7,308.9 L245.4,304.5 L252.9,289.6 L260.3,286.6 L270.6,273.1 L278.1,280.4 L285.5,287.7 L297.4,252.9 L304.9,272.9 L315.2,254.6 L322.6,270.8 L331.3,255.8 L338.8,263.5 L346.2,263.5 L354.6,266.7" fill="none" stroke="#0E2726" stroke-width="2"/>
-  <circle cx="354.6" cy="266.7" r="5" fill="#fff"
+  <path d="M511.2,211.5 L523.7,175.4 L536.1,158.3 L548.5,144.3 L560.9,131.8 L573.3,118.0 L585.8,105.1 L598.2,92.9 L610.6,81.2 L623.0,70.0 L635.5,59.0 L647.9,48.3 L660.3,37.8 L660.3,300.3 L647.9,297.4 L635.5,294.2 L623.0,290.8 L610.6,287.0 L598.2,282.8 L585.8,278.0 L573.3,272.4 L560.9,265.8 L548.5,259.8 L536.1,252.1 L523.7,241.3 L511.2,211.5 Z" fill="#12796B" opacity="0.10"/>
+  <path d="M511.2,211.5 L523.7,197.2 L536.1,190.0 L548.5,183.9 L560.9,178.4 L573.3,172.3 L585.8,166.7 L598.2,161.3 L610.6,156.1 L623.0,151.0 L635.5,146.1 L647.9,141.2 L660.3,136.4 L660.3,232.3 L647.9,232.3 L635.5,232.2 L623.0,231.9 L610.6,231.5 L598.2,231.0 L585.8,230.2 L573.3,229.1 L560.9,227.7 L548.5,226.4 L536.1,224.6 L523.7,221.6 L511.2,211.5 Z" fill="#12796B" opacity="0.28"/>
+  <path d="M511.2,211.5 L523.7,209.6 L536.1,207.6 L548.5,205.7 L560.9,203.7 L573.3,201.6 L585.8,199.5 L598.2,197.4 L610.6,195.3 L623.0,193.2 L635.5,191.1 L647.9,188.9 L660.3,186.8" fill="none" stroke="#12796B" stroke-width="1.5"
+        stroke-dasharray="5 4" opacity=".85"/>
+  <path d="M511.2,211.5 L523.7,209.6 L536.1,207.6 L548.5,205.7 L560.9,203.7 L573.3,201.6 L585.8,199.5 L598.2,197.4 L610.6,195.3 L623.0,193.2 L635.5,191.1 L647.9,188.9 L660.3,186.8" fill="none" stroke="#D06A2C" stroke-width="2.5"/>
+  <path d="M65.5,290.9 L76.9,267.0 L88.3,269.4 L99.8,296.8 L111.2,308.5 L122.6,311.2 L134.1,275.2 L145.5,281.1 L156.9,287.0 L168.4,288.5 L183.3,291.3 L194.7,311.6 L206.1,300.7 L222.5,307.7 L233.9,289.7 L245.4,283.9 L256.8,297.2 L268.2,320.2 L279.7,306.1 L291.1,305.4 L307.0,302.2 L318.4,298.7 L329.9,297.2 L343.3,288.2 L354.7,258.0 L366.1,251.8 L382.0,224.4 L393.5,239.3 L404.9,254.1 L423.3,183.3 L434.7,224.0 L450.6,186.8 L462.0,219.7 L475.5,189.2 L486.9,204.8 L498.3,204.8 L511.2,211.5" fill="none" stroke="#0E2726" stroke-width="2"/>
+  <circle cx="511.2" cy="211.5" r="5" fill="#fff"
           stroke="#0E2726" stroke-width="2.5"/>
-  <text x="748.0" y="41.8" class="fl" fill="#D06A2C">high 23.43</text><text x="748.0" y="110.8" class="fl" fill="#D06A2C">base 19.84</text><text x="748.0" y="228.8" class="fl" fill="#D06A2C">low 13.71</text><text x="457.4" y="224.9" class="fl" fill="#12796B">typical 10.91–13.34</text><text x="457.4" y="321.8" class="fl" fill="#5B7270">9-in-10 9.19–15.85</text>
+  <text x="668.3" y="129.4" class="fl" fill="#12796B">typical 11.00–13.45</text><text x="668.3" y="310.3" class="fl" fill="#5B7270">9-in-10 9.26–15.97</text><text x="668.3" y="190.8" class="fl" fill="#D06A2C">center 12.16</text>
   <line class="cx" x1="0" x2="0" y1="18" y2="340" stroke="#0E2726"
         opacity="0" stroke-width="1"/>
 </svg><div class="tip" hidden></div></div>
   
 <div class="tiles">
-  <div class="tile"><div class="tl">Our value (base)</div>
-    <div class="tv num">19.84 EGP</div>
-    <div class="ts">full range 13.71–23.43</div></div>
   <div class="tile"><div class="tl">Typical range, next 3 months</div>
-    <div class="tv num">10.91–13.34</div>
-    <div class="ts">1-in-10 above 15.85, 1-in-10 below 9.19</div></div>
-  <div class="tile"><div class="tl">Odds of reaching our value in 3M</div>
-    <div class="tv num">under 1 in 100</div>
-    <div class="ts">graded publicly when the date arrives</div></div>
+    <div class="tv num">11.00–13.45</div>
+    <div class="ts">1-in-10 above 15.97, 1-in-10 below 9.26 — graded when the date arrives</div></div>
+  <div class="tile"><div class="tl">Trend lean (3M, illustrative)</div>
+    <div class="tv num">+0.8% on the center</div>
+    <div class="ts">from this stock's own price history only</div></div>
+  <div class="tile"><div class="tl">Odds of finishing higher in 3M</div>
+    <div class="tv num">64%<span class="dim"> with lean · 62% neutral</span></div>
+    <div class="ts">becomes a graded number once the lean passes the gate</div></div>
 </div>
-  <p class="foot">Valuation dated 2026-06-17 · market range struck 2026-07-28 ·
-  every number above is already published on the live page today — this card only re-arranges them.</p>
+  
+<div class="lenses">
+  <div class="lens"><div class="ll">Fundamental study <span>separate lens</span></div>
+    <div class="lv">sees it worth more — 19.84 EGP base vs 11.53</div></div>
+  <div class="lens on"><div class="ll">Price engine <span>this card</span></div>
+    <div class="lv">leans up, +0.8% on the 3-month center</div></div>
+  <div class="lens"><div class="ll">Technical read <span>separate lens</span></div>
+    <div class="lv">Consolidating below the near-term moving averages, above a rising 200-day</div></div>
+</div>
+<p class="lenscap">Three lenses, computed independently on purpose — none feeds
+another, so agreement between them is information, not an echo.</p>
+  <p class="foot">Band and dashed center are today's PUBLISHED forecast (drawn
+  band reproduces it within 0.11%). The orange lean is illustrative — engine's
+  own momentum signal at the tournament-measured strength — and goes live only
+  through the standing safety test. The fundamental and technical verdicts are
+  displayed for comparison only; they are never inputs to this cone.</p>
 </section>
   
 <section class="card">
-  <h2>Part 2 — Can price history give the cone a lean? We tested it.</h2>
-  <p>Six standard direction indicators (momentum over 12 and 6 months,
-  last-month reversal, distance from the 52-week high, distance from the
-  200-day average, and RSI), tested on our own cleaned price library —
-  93 names — at the same
-  1-month and 3-month clocks the site publishes, judged by a test that
-  rewards <em>getting direction right</em>, with the sample split in half to
-  catch flukes. Strongest eight readings in the three core markets:</p>
+  <h2>Part 2 — Where the lean comes from: we tested the engine's own data.</h2>
+  <p>Six standard direction indicators, tested on our cleaned price library —
+  93 names, 15 years — at the
+  site's own 1-month and 3-month clocks, judged by a test that rewards
+  <em>getting direction right</em>, with the sample split in half to catch
+  flukes. Strongest eight readings in the three core markets:</p>
   <div class="tblwrap"><table>
     <thead><tr><th>market</th><th>indicator</th><th>clock</th><th>obs</th>
     <th>rank skill</th><th>verdict</th><th>direction hit rate</th>
     <th>cross-name skill</th><th>top-vs-bottom third, per period</th></tr></thead>
     <tbody><tr><td>AE</td><td>6-month momentum</td><td>3M</td><td class='num'>522</td><td class='num'>+0.183</td><td>reliable</td><td class='num'>57%</td><td class='num'>+0.078</td><td class='num'>+1.91%</td></tr><tr><td>AE</td><td>12-month momentum</td><td>3M</td><td class='num'>492</td><td class='num'>+0.142</td><td>reliable</td><td class='num'>55%</td><td class='num'>+0.110</td><td class='num'>+2.98%</td></tr><tr><td>AE</td><td>above/below 200-day avg</td><td>3M</td><td class='num'>499</td><td class='num'>+0.111</td><td>reliable</td><td class='num'>55%</td><td class='num'>+0.079</td><td class='num'>+2.77%</td></tr><tr><td>AE</td><td>12-month momentum</td><td>1M</td><td class='num'>2283</td><td class='num'>+0.109</td><td>reliable</td><td class='num'>55%</td><td class='num'>+0.078</td><td class='num'>+1.17%</td></tr><tr><td>AE</td><td>6-month momentum</td><td>1M</td><td class='num'>2445</td><td class='num'>+0.099</td><td>reliable</td><td class='num'>54%</td><td class='num'>+0.048</td><td class='num'>+0.87%</td></tr><tr><td>SA</td><td>12-month momentum</td><td>1M</td><td class='num'>1437</td><td class='num'>+0.093</td><td>reliable</td><td class='num'>54%</td><td class='num'>+0.089</td><td class='num'>+1.46%</td></tr><tr><td>SA</td><td>6-month momentum</td><td>3M</td><td class='num'>338</td><td class='num'>+0.086</td><td>no reliable signal</td><td class='num'>54%</td><td class='num'>+0.161</td><td class='num'>+4.71%</td></tr><tr><td>SA</td><td>near 52-week high</td><td>1M</td><td class='num'>1472</td><td class='num'>+0.070</td><td>reliable</td><td class='num'>53%</td><td class='num'>+0.059</td><td class='num'>+0.70%</td></tr></tbody>
   </table></div>
-  <p><b>Survivors:</b> mom_12_1 at 1M in AE (IC +0.109, n=2283); mom_6_1 at 1M in AE (IC +0.099, n=2445); trend200 at 1M in AE (IC +0.055, n=2338); mom_12_1 at 3M in AE (IC +0.142, n=492); mom_6_1 at 3M in AE (IC +0.183, n=522); trend200 at 3M in AE (IC +0.111, n=499); mom_12_1 at 1M in EG (IC +0.061, n=4763); near52h at 1M in EG (IC +0.055, n=4824); trend200 at 1M in EG (IC +0.058, n=4824); mom_12_1 at 3M in EG (IC +0.068, n=1134); mom_6_1 at 3M in EG (IC +0.057, n=1204); trend200 at 3M in EG (IC +0.054, n=1158); mom_6_1 at 1M in KR (IC +0.100, n=347); mom_12_1 at 1M in SA (IC +0.093, n=1437); near52h at 1M in SA (IC +0.070, n=1472); trend200 at 1M in SA (IC +0.054, n=1472); near52h at 3M in US (IC -0.166, n=120). A survivor is a candidate for the standing out-of-sample promotion gate — not an adoption.</p>
+  <p><b>Eligible for the MC lean (momentum family only):</b> 12-month momentum at 1M in AE (rank skill +0.109, n=2283); 6-month momentum at 1M in AE (rank skill +0.099, n=2445); 12-month momentum at 3M in AE (rank skill +0.142, n=492); 6-month momentum at 3M in AE (rank skill +0.183, n=522); 12-month momentum at 1M in EG (rank skill +0.061, n=4763); 12-month momentum at 3M in EG (rank skill +0.068, n=1134); 6-month momentum at 3M in EG (rank skill +0.057, n=1204); 6-month momentum at 1M in KR (rank skill +0.100, n=347); 12-month momentum at 1M in SA (rank skill +0.093, n=1437). The other survivors (200-day trend, 52-week-high distance) also tested well but belong to the TECHNICAL lens, so they are excluded from the engine's lean — the three lenses stay independent. All of this is a candidate for the standing out-of-sample safety test, not an adoption.</p>
   <p class="foot">Full tables: engine/direction_tournament/RESULTS_23-08-2026.md ·
   research only — nothing adopted, nothing published.</p>
 </section>
   <p class="foot">Built 2026-08-23 from assets/data.js +
-  engine/fv_overlay.py output + the cleaned price library. The drawn market
-  band is asserted to reproduce the published cone at both struck horizons
-  (worst deviation this build:
-  0.15%). Reproduce: engine/view_layer_prototype/build_prototype.py.</p>
+  engine/fv_overlay.py output (used for the published cone's shape parameters
+  only) + the cleaned price library + the 23-Aug tournament results. Worst
+  band deviation this build: 0.15%. Reproduce:
+  engine/view_layer_prototype/build_prototype.py.</p>
 </div>
 <script>
-const D = {"ETEL": {"x0": -9, "x1": 12, "L": 64, "R": 118, "W": 860, "spot": 103.28, "hist": [[-8.97, 50.67], [-8.74, 50.4], [-8.51, 53.8], [-8.28, 52.64], [-8.05, 60.0], [-7.82, 63.99], [-7.59, 61.95], [-7.36, 63.65], [-7.13, 63.0], [-6.9, 63.0], [-6.67, 65.77], [-6.31, 71.0], [-6.08, 67.95], [-5.85, 77.99], [-5.58, 78.4], [-5.35, 90.89], [-5.12, 99.01], [-4.89, 92.5], [-4.66, 88.83], [-4.43, 82.13], [-4.2, 81.0], [-3.88, 82.65], [-3.65, 84.41], [-3.42, 93.9], [-3.09, 96.25], [-2.86, 95.94], [-2.63, 93.5], [-2.37, 98.89], [-2.14, 93.31], [-1.91, 97.63], [-1.48, 94.41], [-1.25, 90.69], [-0.99, 95.14], [-0.76, 90.0], [-0.49, 98.5], [-0.26, 97.25], [-0.03, 103.61]], "band": {"0.0": [103.28, 103.28, 103.28, 103.28, 103.28], "0.25": [95.25508335100979, 100.47501259619789, 103.66286974002828, 106.951870769357, 112.81277790855192], "0.5": [92.31642906131326, 99.55113021938884, 104.04715881814553, 108.74624159736499, 117.2685227126613], "0.75": [90.20076543470776, 98.9331143677242, 104.4328724959862, 110.23836586429088, 120.91055774529353], "1.0": [88.50628050518732, 98.47226007051898, 104.82001605469017, 111.5769634802452, 124.14074688249435], "1.25": [86.99945450241466, 98.0906774587783, 105.2293755444785, 112.88760322951491, 127.27920583885441], "1.5": [85.69903198527359, 97.78678400129174, 105.64033372885004, 114.12462557512262, 130.22177557688758], "1.75": [84.55159645261361, 97.54075207922232, 106.05289685127646, 115.30787584467797, 133.0219345633635], "2.0": [83.5231103522148, 97.33993565223724, 106.46707117961238, 116.45001786380492, 135.71378266163993], "2.25": [82.59033429845228, 97.17569291192783, 106.88286300619065, 117.55971130305042, 138.3206219158529], "2.5": [81.73658392545973, 97.04181435666149, 107.30027864791789, 118.64318360336269, 140.85919969961685], "2.75": [80.94941345236872, 96.93366423953313, 107.71932444637054, 119.70508852847148, 143.34202515265915], "3.0": [80.21925437555605, 96.84767578715255, 108.14000676789111, 120.74901094643356, 145.77873049045616]}, "view": {"0.0": [103.28, 103.28, 103.28], "0.5": [102.29187287200364, 103.85497447839349, 105.18098146434964], "1.0": [101.31319960943216, 104.43314992164758, 107.11695257362373], "1.5": [100.34388976281915, 105.01454414998986, 109.08855735054162], "2.0": [99.38385374806974, 105.59917508285558, 111.09645167176568], "2.5": [98.43300283818117, 106.18706073944008, 113.14130348608637], "3.0": [97.49124915504262, 106.77821923925417, 115.22379303662284], "3.5": [96.55850566131343, 107.37266880268248, 117.34461308711352], "4.0": [95.63468615237912, 107.97042775154517, 119.50446915237185], "4.5": [94.71970524838432, 108.5715145096626, 121.7040797329838], "5.0": [93.81347838634181, 109.17594760342311, 123.94417655432511], "5.5": [92.91592181231736, 109.7837456623541, 126.22550480997818], "6.0": [92.02695257368899, 110.39492741969624, 128.54882340962908], "6.5": [91.14648851148044, 111.00951171298078, 130.9149052315274], "7.0": [90.27444825276818, 111.62751748461022, 133.32453737959307], "7.5": [89.41075120316066, 112.24896378244208, 135.77852144525528], "8.0": [88.55531753934987, 112.87386976037602, 138.27767377411112], "8.5": [87.70806820173404, 113.50225467894428, 140.82282573749194], "9.0": [86.8689248871108, 114.13413790590506, 143.41482400902862], "9.5": [86.03781004144045, 114.76953891683979, 146.05453084630716], "10.0": [85.21464685267838, 115.40847729575314, 148.74282437770833], "10.5": [84.39935924367605, 116.05097273567678, 151.48059889452702], "11.0": [83.59187186514984, 116.69704503927626, 154.2687651484685], "11.5": [82.79211008871731, 117.3467141194614, 157.10825065462018], "12.0": [82.0, 118.0, 160.0]}}, "ADNOCDRILL": {"x0": -9, "x1": 12, "L": 64, "R": 118, "W": 860, "spot": 5.94, "hist": [[-8.97, 5.65], [-8.74, 5.41], [-8.51, 5.2], [-8.28, 5.23], [-7.92, 5.47], [-7.69, 5.4], [-7.46, 5.48], [-7.23, 5.35], [-6.96, 5.33], [-6.73, 5.21], [-6.5, 5.18], [-6.27, 5.42], [-6.04, 5.41], [-5.81, 5.49], [-5.58, 5.25], [-5.35, 5.23], [-5.06, 5.14], [-4.83, 4.8], [-4.47, 5.05], [-4.24, 5.12], [-4.01, 5.1], [-3.78, 5.28], [-3.55, 5.22], [-3.32, 5.08], [-3.09, 6.19], [-2.86, 6.15], [-2.63, 5.91], [-2.2, 5.94], [-1.97, 5.6], [-1.71, 6.13], [-1.48, 5.94], [-1.25, 5.73], [-1.02, 5.71], [-0.79, 5.73], [-0.56, 5.67], [-0.33, 5.79], [-0.1, 6.08]], "band": {"0.0": [5.94, 5.94, 5.94, 5.94, 5.94], "0.25": [5.5934053292513655, 5.805878989757434, 5.94, 6.077219325832716, 6.308071366736165], "0.5": [5.455833552542126, 5.75121517981633, 5.94, 6.1349817207025135, 6.467132778191104], "0.75": [5.352569723329687, 5.709619397685182, 5.94, 6.179676357114948, 6.591899185584274], "1.0": [5.2670342049322505, 5.674786337324377, 5.94, 6.217608541123678, 6.698950230275533], "1.25": [5.175107100336344, 5.636957044864268, 5.94, 6.259334552166983, 6.817945854242673], "1.5": [5.095000944635343, 5.603650983621279, 5.94, 6.296537757817045, 6.925141012417478], "1.75": [5.023392309943282, 5.573601972724818, 5.94, 6.330484338972376, 7.02385914199052], "2.0": [4.958269113975653, 5.546042930464979, 5.94, 6.361941377370808, 7.116112334553944], "2.25": [4.898303865277314, 5.520467436197377, 5.94, 6.391415293684649, 7.203228090873543], "2.5": [4.842566314867219, 5.496520381515274, 5.94, 6.419261196348564, 7.286136669244035], "2.75": [4.790374737994228, 5.4739413600005395, 5.94, 6.445739491808609, 7.3655198037332585], "3.0": [4.741211940039244, 5.452532685361834, 5.94, 6.471047866384053, 7.441894698280025]}, "view": {"0.0": [5.94, 5.94, 5.94], "0.5": [5.807735741078923, 5.893553392820418, 5.951012006069056], "1.0": [5.678416572088476, 5.847469965324083, 5.962044426999671], "1.5": [5.551976915564495, 5.801746877702229, 5.973097300638408], "2.0": [5.428352654237211, 5.756381312351386, 5.984170664901991], "2.5": [5.307481098517523, 5.711370473699757, 5.995264557777439], "3.0": [5.189300954707246, 5.666711588034942, 6.006379017322193], "3.5": [5.073752293917213, 5.622401903333015, 6.017514081664246], "4.0": [4.96077652167747, 5.578438689088933, 6.0286697890022785], "4.5": [4.850316348224145, 5.534819236148276, 6.039846177605785], "5.0": [4.742315759447941, 5.4915408565403, 6.051043285815205], "5.5": [4.636719988489502, 5.448600883312294, 6.0622611520420575], "6.0": [4.533475487967261, 5.4059966703652345, 6.073499814769075], "6.5": [4.432529902823683, 5.3637255922907245, 6.08475931255033], "7.0": [4.333832043776126, 5.321785044209209, 6.096039684011364], "7.5": [4.237331861358875, 5.280172441609451, 6.107340967849332], "8.0": [4.142980420543168, 5.238885220189267, 6.118663202833129], "8.5": [4.050729875922347, 5.1979208356975075, 6.130006427803516], "9.0": [3.9605334474495635, 5.157276763777269, 6.1413706816732665], "9.5": [3.872345396715716, 5.116950499810342, 6.1527560034272915], "10.0": [3.7861210037556066, 5.076939558762857, 6.164162432122772], "10.5": [3.7018165443705455, 5.03724147503216, 6.1755900068893], "11.0": [3.6193892679559068, 4.997853802294866, 6.187038766929008], "11.5": [3.5387973758223907, 4.9587741133561165, 6.198508751516701], "12.0": [3.4599999999999995, 4.92, 6.21]}}, "EMFD": {"x0": -9, "x1": 12, "L": 64, "R": 118, "W": 860, "spot": 11.53, "hist": [[-8.97, 9.5], [-8.74, 10.11], [-8.51, 10.05], [-8.28, 9.35], [-8.05, 9.05], [-7.82, 8.98], [-7.59, 9.9], [-7.36, 9.75], [-7.13, 9.6], [-6.9, 9.56], [-6.6, 9.49], [-6.37, 8.97], [-6.14, 9.25], [-5.81, 9.07], [-5.58, 9.53], [-5.35, 9.68], [-5.12, 9.34], [-4.89, 8.75], [-4.66, 9.11], [-4.43, 9.13], [-4.11, 9.21], [-3.88, 9.3], [-3.65, 9.34], [-3.38, 9.57], [-3.15, 10.34], [-2.92, 10.5], [-2.6, 11.2], [-2.37, 10.82], [-2.14, 10.44], [-1.77, 12.25], [-1.54, 11.21], [-1.22, 12.16], [-0.99, 11.32], [-0.72, 12.1], [-0.49, 11.7], [-0.26, 11.7], [-0.0, 11.53]], "band": {"0.0": [11.53, 11.53, 11.53, 11.53, 11.53], "0.25": [10.759917563830422, 11.26538500272172, 11.572268440730959, 11.887511774518423, 12.445950079998983], "0.5": [10.478642640278263, 11.181506978583396, 11.614691835588701, 12.064658788307767, 12.873906579956476], "0.75": [10.276554450155157, 11.127038442985395, 11.65727075262781, 12.21277001031119, 13.223494514547143], "1.0": [10.115025103436166, 11.087692020239178, 11.700005761985327, 12.346134306455683, 13.533346030351131], "1.25": [9.941051356189494, 11.043961218245817, 11.745627976955337, 12.491874414146931, 13.877785319672395], "1.5": [9.793690672526532, 11.010216275290164, 11.791428088119682, 12.628069502080107, 14.196668141391218], "1.75": [9.665325842783226, 10.983633020813869, 11.837406789154807, 12.75754563416262, 14.497617749385489], "2.0": [9.55135802936726, 10.962504985126724, 11.883564776442041, 12.882011181522076, 14.785239058329925], "2.25": [9.44876250332064, 10.94570892273337, 11.92990274907812, 13.002591299213977, 15.062562907306047], "2.5": [9.355426590103983, 10.9324597035571, 11.976421408885805, 13.12007303503244, 15.331708114191297], "2.75": [9.269807238637814, 10.922183484220001, 12.023121460424488, 13.235032158264751, 15.594223906792058], "3.0": [9.190737799482992, 10.91444611389989, 12.070003611000875, 13.347904753869258, 15.851283144838428]}, "view": {"0.0": [11.53, 11.53, 11.53], "0.5": [11.61349614491463, 11.793715732859827, 11.87572862430082], "1.0": [11.69759693911075, 12.063463207936287, 12.231823968606923], "1.5": [11.78230676124266, 12.339380384060181, 12.598596880433139], "2.0": [11.867630021673303, 12.621608375475496, 12.976367528099464], "2.5": [11.953571162703907, 12.910291524010471, 13.365465680216692], "3.0": [12.040134658805249, 13.205577472899323, 13.766230993552435], "3.5": [12.127325016850628, 13.50761724229246, 14.179013309528862], "4.0": [12.215146776350524, 13.816565306493775, 14.604172959610946], "4.5": [12.303604509688913, 14.132579672964518, 15.04208107985184], "5.0": [12.392702822361356, 14.45582196313414, 15.493119934869929], "5.5": [12.482446353214767, 14.786457495059475, 15.957683251540367], "6.0": [12.57283977468893, 15.124655367974505, 16.43617656269243], "6.5": [12.663887793059777, 15.470588548773959, 16.92901756111264], "7.0": [12.7555951486844, 15.82443396047498, 17.43663646416276], "7.5": [12.847966616247879, 16.18637257270209, 17.959476389330888], "8.0": [12.941007005011846, 16.556589494241756, 18.497993741043498], "8.5": [13.034721159064901, 16.935274067713852, 19.052658609076122], "9.0": [13.129113957574793, 17.322619966408492, 19.623955178910382], "9.5": [13.224190315042474, 17.718825293337694, 20.21238215439569], "10.0": [13.319955181557948, 18.124092682552593, 20.818453193084473], "10.5": [13.416413543058011, 18.538629402777985, 21.442697354620996], "11.0": [13.513570421585833, 18.962647463417216, 22.085659562575195], "11.5": [13.611430875552422, 19.396363722981626, 22.747901080124663], "12.0": [13.71, 19.84, 23.43]}}};
+const D = {"ETEL": {"x0": -9, "x1": 4.0, "L": 64, "R": 150, "W": 860, "spot": 103.28, "hist": [[-8.97, 50.67], [-8.74, 50.4], [-8.51, 53.8], [-8.28, 52.64], [-8.05, 60.0], [-7.82, 63.99], [-7.59, 61.95], [-7.36, 63.65], [-7.13, 63.0], [-6.9, 63.0], [-6.67, 65.77], [-6.31, 71.0], [-6.08, 67.95], [-5.85, 77.99], [-5.58, 78.4], [-5.35, 90.89], [-5.12, 99.01], [-4.89, 92.5], [-4.66, 88.83], [-4.43, 82.13], [-4.2, 81.0], [-3.88, 82.65], [-3.65, 84.41], [-3.42, 93.9], [-3.09, 96.25], [-2.86, 95.94], [-2.63, 93.5], [-2.37, 98.89], [-2.14, 93.31], [-1.91, 97.63], [-1.48, 94.41], [-1.25, 90.69], [-0.99, 95.14], [-0.76, 90.0], [-0.49, 98.5], [-0.26, 97.25], [-0.03, 103.61]], "band": {"0.0": [103.28, 103.28, 103.28, 103.28, 103.28], "0.25": [95.25508335100979, 100.47501259619789, 103.66286974002828, 106.951870769357, 112.81277790855192], "0.5": [92.31642906131326, 99.55113021938884, 104.04715881814553, 108.74624159736499, 117.2685227126613], "0.75": [90.20076543470776, 98.9331143677242, 104.4328724959862, 110.23836586429088, 120.91055774529353], "1.0": [88.50628050518732, 98.47226007051898, 104.82001605469017, 111.5769634802452, 124.14074688249435], "1.25": [86.99945450241466, 98.0906774587783, 105.2293755444785, 112.88760322951491, 127.27920583885441], "1.5": [85.69903198527359, 97.78678400129174, 105.64033372885004, 114.12462557512262, 130.22177557688758], "1.75": [84.55159645261361, 97.54075207922232, 106.05289685127646, 115.30787584467797, 133.0219345633635], "2.0": [83.5231103522148, 97.33993565223724, 106.46707117961238, 116.45001786380492, 135.71378266163993], "2.25": [82.59033429845228, 97.17569291192783, 106.88286300619065, 117.55971130305042, 138.3206219158529], "2.5": [81.73658392545973, 97.04181435666149, 107.30027864791789, 118.64318360336269, 140.85919969961685], "2.75": [80.94941345236872, 96.93366423953313, 107.71932444637054, 119.70508852847148, 143.34202515265915], "3.0": [80.21925437555605, 96.84767578715255, 108.14000676789111, 120.74901094643356, 145.77873049045616]}, "lean": {"0.0": 103.28, "0.25": 103.88581470492356, "0.5": 104.49518296771603, "0.75": 105.108125632661, "1.0": 105.72466366630954, "1.25": 106.36582333397614, "1.5": 107.01087126862976, "1.75": 107.65983105038761, "2.0": 108.31272640236696, "2.25": 108.96958119155214, "2.5": 109.63041942966716, "2.75": 110.2952652740534, "3.0": 110.96414302855271}}, "ADNOCDRILL": {"x0": -9, "x1": 4.0, "L": 64, "R": 150, "W": 860, "spot": 5.94, "hist": [[-8.97, 5.65], [-8.74, 5.41], [-8.51, 5.2], [-8.28, 5.23], [-7.92, 5.47], [-7.69, 5.4], [-7.46, 5.48], [-7.23, 5.35], [-6.96, 5.33], [-6.73, 5.21], [-6.5, 5.18], [-6.27, 5.42], [-6.04, 5.41], [-5.81, 5.49], [-5.58, 5.25], [-5.35, 5.23], [-5.06, 5.14], [-4.83, 4.8], [-4.47, 5.05], [-4.24, 5.12], [-4.01, 5.1], [-3.78, 5.28], [-3.55, 5.22], [-3.32, 5.08], [-3.09, 6.19], [-2.86, 6.15], [-2.63, 5.91], [-2.2, 5.94], [-1.97, 5.6], [-1.71, 6.13], [-1.48, 5.94], [-1.25, 5.73], [-1.02, 5.71], [-0.79, 5.73], [-0.56, 5.67], [-0.33, 5.79], [-0.1, 6.08]], "band": {"0.0": [5.94, 5.94, 5.94, 5.94, 5.94], "0.25": [5.5934053292513655, 5.805878989757434, 5.94, 6.077219325832716, 6.308071366736165], "0.5": [5.455833552542126, 5.75121517981633, 5.94, 6.1349817207025135, 6.467132778191104], "0.75": [5.352569723329687, 5.709619397685182, 5.94, 6.179676357114948, 6.591899185584274], "1.0": [5.2670342049322505, 5.674786337324377, 5.94, 6.217608541123678, 6.698950230275533], "1.25": [5.175107100336344, 5.636957044864268, 5.94, 6.259334552166983, 6.817945854242673], "1.5": [5.095000944635343, 5.603650983621279, 5.94, 6.296537757817045, 6.925141012417478], "1.75": [5.023392309943282, 5.573601972724818, 5.94, 6.330484338972376, 7.02385914199052], "2.0": [4.958269113975653, 5.546042930464979, 5.94, 6.361941377370808, 7.116112334553944], "2.25": [4.898303865277314, 5.520467436197377, 5.94, 6.391415293684649, 7.203228090873543], "2.5": [4.842566314867219, 5.496520381515274, 5.94, 6.419261196348564, 7.286136669244035], "2.75": [4.790374737994228, 5.4739413600005395, 5.94, 6.445739491808609, 7.3655198037332585], "3.0": [4.741211940039244, 5.452532685361834, 5.94, 6.471047866384053, 7.441894698280025]}, "lean": {"0.0": 5.94, "0.25": 5.930289207297873, "0.5": 5.920594289931588, "0.75": 5.910915221947931, "1.0": 5.901251977436116, "1.25": 5.891604530527716, "1.5": 5.881972855396594, "1.75": 5.872356926258834, "2.0": 5.862756717372672, "2.25": 5.853172203038428, "2.5": 5.843603357598435, "2.75": 5.834050155436972, "3.0": 5.824512570980194}}, "EMFD": {"x0": -9, "x1": 4.0, "L": 64, "R": 150, "W": 860, "spot": 11.53, "hist": [[-8.97, 9.5], [-8.74, 10.11], [-8.51, 10.05], [-8.28, 9.35], [-8.05, 9.05], [-7.82, 8.98], [-7.59, 9.9], [-7.36, 9.75], [-7.13, 9.6], [-6.9, 9.56], [-6.6, 9.49], [-6.37, 8.97], [-6.14, 9.25], [-5.81, 9.07], [-5.58, 9.53], [-5.35, 9.68], [-5.12, 9.34], [-4.89, 8.75], [-4.66, 9.11], [-4.43, 9.13], [-4.11, 9.21], [-3.88, 9.3], [-3.65, 9.34], [-3.38, 9.57], [-3.15, 10.34], [-2.92, 10.5], [-2.6, 11.2], [-2.37, 10.82], [-2.14, 10.44], [-1.77, 12.25], [-1.54, 11.21], [-1.22, 12.16], [-0.99, 11.32], [-0.72, 12.1], [-0.49, 11.7], [-0.26, 11.7], [-0.0, 11.53]], "band": {"0.0": [11.53, 11.53, 11.53, 11.53, 11.53], "0.25": [10.759917563830422, 11.26538500272172, 11.572268440730959, 11.887511774518423, 12.445950079998983], "0.5": [10.478642640278263, 11.181506978583396, 11.614691835588701, 12.064658788307767, 12.873906579956476], "0.75": [10.276554450155157, 11.127038442985395, 11.65727075262781, 12.21277001031119, 13.223494514547143], "1.0": [10.115025103436166, 11.087692020239178, 11.700005761985327, 12.346134306455683, 13.533346030351131], "1.25": [9.941051356189494, 11.043961218245817, 11.745627976955337, 12.491874414146931, 13.877785319672395], "1.5": [9.793690672526532, 11.010216275290164, 11.791428088119682, 12.628069502080107, 14.196668141391218], "1.75": [9.665325842783226, 10.983633020813869, 11.837406789154807, 12.75754563416262, 14.497617749385489], "2.0": [9.55135802936726, 10.962504985126724, 11.883564776442041, 12.882011181522076, 14.785239058329925], "2.25": [9.44876250332064, 10.94570892273337, 11.92990274907812, 13.002591299213977, 15.062562907306047], "2.5": [9.355426590103983, 10.9324597035571, 11.976421408885805, 13.12007303503244, 15.331708114191297], "2.75": [9.269807238637814, 10.922183484220001, 12.023121460424488, 13.235032158264751, 15.594223906792058], "3.0": [9.190737799482992, 10.91444611389989, 12.070003611000875, 13.347904753869258, 15.851283144838428]}, "lean": {"0.0": 11.53, "0.25": 11.579547084030681, "0.5": 11.629307083372371, "0.75": 11.679280912971546, "1.0": 11.729469491706405, "1.25": 11.78261288146148, "1.5": 11.835997051063984, "1.75": 11.889623091429183, "2.0": 11.943492098415005, "2.25": 11.99760517284446, "2.5": 12.051963420528109, "2.75": 12.106567952286674, "3.0": 12.161419883973746}}};
 document.querySelectorAll('[data-chart]').forEach(svg => {
   const d = D[svg.dataset.chart]; if (!d) return;
   const wrap = svg.parentElement, tip = wrap.querySelector('.tip'),
         cx = svg.querySelector('.cx');
   const bt = Object.keys(d.band).map(Number).sort((a,b)=>a-b);
-  const vt = Object.keys(d.view).map(Number).sort((a,b)=>a-b);
   const nearest = (arr, m) => arr.reduce((p,c)=>Math.abs(c-m)<Math.abs(p-m)?c:p);
   const fmt = x => d.spot>=1000 ? Math.round(x).toLocaleString('en')
              : d.spot>=100 ? x.toFixed(1) : x.toFixed(2);
@@ -244,7 +289,7 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
     const r = svg.getBoundingClientRect();
     const px = (ev.clientX - r.left) / r.width * d.W;
     const m = d.x0 + (px - d.L) / (d.W - d.L - d.R) * (d.x1 - d.x0);
-    if (m < d.x0 || m > d.x1) { tip.hidden = true; cx.setAttribute('opacity',0); return; }
+    if (m < d.x0 || m > 3) { tip.hidden = true; cx.setAttribute('opacity',0); return; }
     cx.setAttribute('x1', px.toFixed(1)); cx.setAttribute('x2', px.toFixed(1));
     cx.setAttribute('opacity', .35);
     let lines = [];
@@ -252,14 +297,12 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
       let best = d.hist.length ? d.hist.reduce((p,c)=>Math.abs(c[0]-m)<Math.abs(p[0]-m)?c:p) : null;
       if (best) lines.push(Math.abs(best[0]).toFixed(1)+'m ago  price '+fmt(best[1]));
     } else {
+      const k = String(nearest(bt, m));
+      const b = d.band[k];
       lines.push('+'+m.toFixed(1)+' months');
-      if (m <= 3) {
-        const b = d.band[String(nearest(bt, m))];
-        lines.push('typical '+fmt(b[1])+'\u2013'+fmt(b[3]));
-        lines.push('9-in-10 '+fmt(b[0])+'\u2013'+fmt(b[4]));
-      }
-      const v = d.view[String(nearest(vt, m))];
-      lines.push('our path '+fmt(v[1])+'  (low '+fmt(v[0])+' / high '+fmt(v[2])+')');
+      lines.push('typical '+fmt(b[1])+'\u2013'+fmt(b[3]));
+      lines.push('9-in-10 '+fmt(b[0])+'\u2013'+fmt(b[4]));
+      if (d.lean) lines.push('leaned center '+fmt(d.lean[k]));
     }
     tip.textContent = lines.join('\n');
     tip.hidden = false;

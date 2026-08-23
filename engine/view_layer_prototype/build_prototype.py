@@ -2,25 +2,32 @@
 
 STATUS: PROTOTYPE. NOT LIVE, NOT PUBLISHED. Generates a standalone HTML page
 showing what a redesigned ticker card would look like, for three real covered
-names, built ONLY from numbers already published on the site:
+names.
 
-  * assets/data.js            spot, spotDate, dist (published cone), fair values
-  * fv_overlay output         P(touch fair value), reachability band, sigma/mu
-  * engine/raw_ohlc           the actual price line behind the fan (cleaned)
+THREE-LENS INDEPENDENCE (design rule, Sherif, 23-Aug-2026): the fundamental
+study, the MC price engine, and the technical read are INDEPENDENT lenses —
+no lens's output is an input to another. Therefore the direction shown on
+this card comes from the MC engine's own price data (the momentum lean the
+23-Aug tournament validated, through the engine's existing per-market signal
+socket), NEVER from the fundamental fair value. The first cut of this
+prototype drew a fan toward the fair value; that is retired. The fundamental
+and technical verdicts appear only as a separate side-by-side strip, for
+comparison — agreement between independent lenses is information; a blended
+lens is just one opinion.
 
-Nothing is refit and nothing published is modified. The intermediate months of
-the cone are drawn by interpolating the published anchors with the same
-standardized-t quantile math fv_overlay uses; the drawn band is asserted to
-reproduce the PUBLISHED p5/p25/p50/p75/p95 at 1M and 3M within 2.5%.
+What the card draws:
+  * the PUBLISHED cone, typical (middle-half) band leading, 9-in-10 band as
+    a faint whisker — asserted to reproduce the live quantiles within 2.5%;
+  * the engine's own center, and the ILLUSTRATIVE trend-leaned center:
+    alpha = IC x sigma_h x clip(z, +/-2) — the exact Grinold form of the
+    engine's existing signal socket — with IC from the tournament's
+    surviving 12-month-momentum cell for that market/horizon (zero lean
+    where that cell did not survive), and z the name's own momentum vs its
+    own history (strictly prior, min 18 monthly points);
+  * the actual price line behind it.
 
-Design decisions the prototype demonstrates (client critique, 23-Aug-2026):
-  1. The TYPICAL range (middle-half band) leads; the 9-in-10 band becomes a
-     thin whisker — same information, honest hierarchy.
-  2. A second object carries DIRECTION: the valuation path from today's price
-     to the study's bear/base/full values over 12 months (teal = market's
-     odds, orange = our view; palette validated for color-vision safety).
-  3. A plain-English verdict line whose every number is computed from the
-     data, never typed.
+The lean is labelled illustrative: it goes live only through the standing
+promotion gate. The cone's published numbers are untouched.
 
 Usage
 -----
@@ -45,16 +52,21 @@ from scipy import stats
 
 ENG = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ENG)
+sys.path.insert(0, os.path.join(ENG, "direction_tournament"))
 from fv_overlay import load_tickers                     # noqa: E402
 from data_quality import clean_ohlc                     # noqa: E402
+from tournament import build_name_rows, expanding_z     # noqa: E402
 
 MAX_BAND_DEV = 0.025          # drawn band must reproduce published quantiles
-HIST_MONTHS = 9               # actual price shown behind the fan
-VIEW_MONTHS = 12              # valuation path horizon
+HIST_MONTHS = 9               # actual price shown behind the cone
+LEAN_FEATURE = "mom_12_1"     # the only family eligible for the MC lean —
+                              # trend200/near52h/rsi belong to the TECHNICAL
+                              # lens and are excluded (three-lens independence)
+Z_CLIP = 2.0                  # engine's own clip in the signal socket
 PCTS = (0.05, 0.25, 0.50, 0.75, 0.95)
 
 TEAL, TEAL2 = "#12796B", "#178A76"
-ORANGE = "#D06A2C"            # site hue (gauge gradient); validated vs teal
+ORANGE = "#D06A2C"            # reserved for the ILLUSTRATIVE leaned center
 INK, MUTED, LINE, PAPER = "#0E2726", "#5B7270", "#D9E4E2", "#F6F8F7"
 
 
@@ -64,38 +76,43 @@ def tq(p: float, nu: float) -> float:
     return float(np.sqrt((nu - 2) / nu) * stats.t.ppf(p, nu))
 
 
-def month_curves(row: dict, spot: float):
-    """Cone quantiles at fractional months 0..3, through the published anchors.
+def t_cdf_std(x: float, nu: float) -> float:
+    """CDF of the unit-variance Student-t at x."""
+    return float(stats.t.cdf(x / np.sqrt((nu - 2) / nu), nu))
 
-    Variance and drift are interpolated linearly BETWEEN the two published
-    anchors (sqrt-time below 1M), then mapped through the same standardized-t
-    the engine simulates with. The result is checked against the published
-    quantiles at both anchors by the caller.
-    """
-    nu = row["engine"]["nu"]
+
+def interp_mu_var(row: dict, t: float):
     s1, m1 = row["1M"]["sigma_h"], row["1M"]["mu_h"]
     s3, m3 = row["3M"]["sigma_h"], row["3M"]["mu_h"]
     v1, v3 = s1 * s1, s3 * s3
+    if t <= 1:
+        return m1 * t, v1 * t
+    f = (t - 1) / 2
+    return m1 + (m3 - m1) * f, v1 + (v3 - v1) * f
+
+
+def month_curves(row: dict, spot: float, alpha3: float = 0.0):
+    """Cone quantiles at fractional months 0..3 through the published anchors.
+
+    alpha3 shifts the drift linearly in time (the leaned variant); alpha3=0
+    reproduces the published cone.
+    """
+    nu = row["engine"]["nu"]
     out = {}
-    for t in [i / 4 for i in range(0, 13)]:             # 0, .25 … 3.0 months
-        if t <= 1:
-            v, m = v1 * t, m1 * t
-        else:
-            f = (t - 1) / 2
-            v, m = v1 + (v3 - v1) * f, m1 + (m3 - m1) * f
+    for t in [i / 4 for i in range(0, 13)]:
+        m, v = interp_mu_var(row, t)
+        m += alpha3 * (t / 3)
         s = float(np.sqrt(max(v, 0.0)))
         out[t] = {p: spot * float(np.exp(m + s * tq(p, nu))) for p in PCTS}
     return out
 
 
 def check_band(curves: dict, tick: dict) -> float:
-    """Max relative deviation of the drawn band vs the PUBLISHED quantiles."""
     worst = 0.0
     for t, key in ((1.0, "t20"), (3.0, "t60")):
         pub = tick["dist"][key]
         for p, name in zip(PCTS, ("p5", "p25", "p50", "p75", "p95")):
-            dev = abs(curves[t][p] / pub[name] - 1)
-            worst = max(worst, dev)
+            worst = max(worst, abs(curves[t][p] / pub[name] - 1))
     return worst
 
 
@@ -108,11 +125,39 @@ def price_history(market: str, ticker: str, anchor: pd.Timestamp):
     df = df.sort_values("Date").reset_index(drop=True)
     df, _ = clean_ohlc(df, ticker=ticker, verbose=False, market=market)
     df = df[df["Date"] <= anchor]
-    start = anchor - pd.DateOffset(months=HIST_MONTHS)
-    df = df[df["Date"] >= start]
-    df = df.iloc[::5]                                   # weekly-ish sampling
+    df = df[df["Date"] >= anchor - pd.DateOffset(months=HIST_MONTHS)]
+    df = df.iloc[::5]
     return [(-round((anchor - d).days / 30.44, 2), float(p))
             for d, p in zip(df["Date"], df["Price"])]
+
+
+def momentum_z(market: str, ticker: str) -> float | None:
+    """The name's own 12-month momentum vs its OWN prior history (z, clipped).
+
+    Same construction the tournament scored — expanding z, strictly prior,
+    min 18 monthly points — evaluated at the latest available origin.
+    """
+    rows = build_name_rows(market, ticker)
+    if rows is None or LEAN_FEATURE not in rows:
+        return None
+    g = rows.sort_values("date")[["name", LEAN_FEATURE]].dropna()
+    if g.empty:
+        return None
+    z = expanding_z(g, LEAN_FEATURE)
+    z = z.dropna()
+    if z.empty:
+        return None
+    return float(np.clip(z.iloc[-1], -Z_CLIP, Z_CLIP))
+
+
+def surviving_ic(tournament: dict, market: str, horizon: str) -> float:
+    """IC of the momentum lean for this market/horizon — ONLY if that exact
+    cell survived all four tournament tests; otherwise 0 (no lean)."""
+    for s in tournament.get("survivors", []):
+        if (s["market"] == market and s["feature"] == LEAN_FEATURE
+                and s["horizon"] == horizon):
+            return float(s["pooled_ic"])
+    return 0.0
 
 
 def fmt(x: float, ref: float) -> str:
@@ -123,53 +168,74 @@ def fmt(x: float, ref: float) -> str:
     return f"{x:,.2f}"
 
 
-def odds_words(p: float | None, band: str) -> str:
-    if p is None:
-        return "not measurable on a 3-month clock"
-    if p < 0.01:
-        return "under 1 in 100"
-    if p < 0.05:
-        return f"about 1 in {round(1 / p)}"
-    return f"about {round(p * 100)}%"
-
-
 # ---------------------------------------------------------------- card build
-def build_card(tick: dict, row: dict, hist) -> tuple[str, dict, float]:
+def build_card(tick: dict, row: dict, hist, tournament: dict) -> tuple[str, dict, float]:
     spot = float(tick["spot"])
     ccy = tick.get("ccy", "")
-    fv = {k: float(tick["fair"][k]) for k in ("bear", "base", "full")}
+    market = row["market"]
+    nu = row["engine"]["nu"]
     curves = month_curves(row, spot)
     dev = check_band(curves, tick)
 
-    gap = fv["base"] / spot - 1
-    p_touch = (row["3M"].get("p_touch") or {}).get("base")
-    band3 = row["3M"]["band"]
-    dir_word = "worth more than today's price" if gap > 0.02 else (
-        "worth less than today's price" if gap < -0.02 else
-        "roughly fairly priced today")
-    story = ""
-    if band3 in ("OUT-OF-REACH", "NOT-EXPRESSIBLE") and abs(gap) > 0.2:
-        story = (" A move that size almost never happens in three months in "
-                 "this stock — this is a 12-month story, not a quarter trade.")
-    verdict = (f"Our view: {dir_word}. We value it at "
-               f"{fmt(fv['base'], spot)} {ccy} "
-               f"(range {fmt(fv['bear'], spot)}–{fmt(fv['full'], spot)}), "
-               f"{'+' if gap >= 0 else '−'}{abs(gap) * 100:.0f}% vs the market. "
-               f"Odds the price {'reaches' if gap >= 0 else 'falls to'} our "
-               f"value within 3 months: {odds_words(p_touch, band3)}.{story}")
+    # ---- the MC's own lean (price-native; never the fundamental) ----------
+    z = momentum_z(market, tick["_ticker"])
+    ic3 = surviving_ic(tournament, market, "3M")
+    ic1 = surviving_ic(tournament, market, "1M")
+    s3, m3 = row["3M"]["sigma_h"], row["3M"]["mu_h"]
+    alpha3 = (ic3 * s3 * z) if (z is not None and ic3) else 0.0
+    leaned = month_curves(row, spot, alpha3=alpha3) if alpha3 else None
+    p_up_neutral = 1 - t_cdf_std(-m3 / s3, nu)
+    p_up_lean = 1 - t_cdf_std(-(m3 + alpha3) / s3, nu)
 
-    # ---- chart geometry -----------------------------------------------------
-    W, H, L, R, T, B = 860, 380, 64, 118, 18, 40
-    view = {t: {k: spot * (fv[k] / spot) ** (t / VIEW_MONTHS)
-                for k in ("bear", "base", "full")}
-            for t in [i / 2 for i in range(0, VIEW_MONTHS * 2 + 1)]}
-    ys = ([p for _, p in hist]
-          + [v for c in curves.values() for v in c.values()]
-          + [v for c in view.values() for v in c.values()])
+    if z is None or not ic3:
+        lean_word, lean_clause = "no lean", \
+            "momentum carries no reliable signal in this market, so the engine stays neutral"
+    elif abs(z) < 0.25:
+        lean_word, lean_clause = "neutral", \
+            "this stock's own trend is close to its normal state, so the lean is negligible"
+    else:
+        lean_word = "leans up" if alpha3 > 0 else "leans down"
+        strength = "strong" if abs(z) > 1.2 else "moderate"
+        lean_clause = (f"its last 12 months rank {strength} versus its own "
+                       f"history, tilting the 3-month center by "
+                       f"{alpha3 * 100:+.1f}%")
+    verdict = (f"The price engine {lean_word}: {lean_clause}. "
+               f"Odds of finishing higher in 3 months: "
+               f"{p_up_lean * 100:.0f}% with the lean "
+               f"({p_up_neutral * 100:.0f}% neutral). "
+               f"The lean is illustrative until it passes the standard "
+               f"out-of-sample safety test.")
+
+    # ---- three independent lenses, side by side ---------------------------
+    fv_base = float(tick["fair"]["base"])
+    gap = fv_base / spot - 1
+    fund_word = ("sees it worth more" if gap > 0.02 else
+                 "sees it worth less" if gap < -0.02 else "sees it fairly priced")
+    tech_trend = (tick.get("tech") or {}).get("trend", "—")
+    lenses = f"""
+<div class="lenses">
+  <div class="lens"><div class="ll">Fundamental study <span>separate lens</span></div>
+    <div class="lv">{fund_word} — {fmt(fv_base, spot)} {ccy} base vs {fmt(spot, spot)}</div></div>
+  <div class="lens on"><div class="ll">Price engine <span>this card</span></div>
+    <div class="lv">{lean_word}{f", {alpha3 * 100:+.1f}% on the 3-month center" if alpha3 else ""}</div></div>
+  <div class="lens"><div class="ll">Technical read <span>separate lens</span></div>
+    <div class="lv">{html.escape(tech_trend)}</div></div>
+</div>
+<p class="lenscap">Three lenses, computed independently on purpose — none feeds
+another, so agreement between them is information, not an echo.</p>"""
+
+    # ---- chart geometry ---------------------------------------------------
+    # The SYSTEM cone: with a lean, the whole distribution (bands included)
+    # shifts — that is what an engine with drift does. `curves` (alpha=0)
+    # stays as the published-fidelity check; `draw` is what the card shows.
+    draw = leaned if leaned else curves
+    W, H, L, R, T, B = 860, 380, 64, 150, 18, 40
+    ys = ([p for _, p in hist] + [v for c in curves.values() for v in c.values()]
+          + ([v for c in leaned.values() for v in c.values()] if leaned else []))
     ylo, yhi = min(ys), max(ys)
     pad = (yhi - ylo) * 0.07
     ylo, yhi = ylo - pad, yhi + pad
-    x0, x1 = -HIST_MONTHS, VIEW_MONTHS
+    x0, x1 = -HIST_MONTHS, 4.0
 
     def X(m): return L + (m - x0) / (x1 - x0) * (W - L - R)
     def Y(p): return T + (yhi - p) / (yhi - ylo) * (H - T - B)
@@ -178,23 +244,18 @@ def build_card(tick: dict, row: dict, hist) -> tuple[str, dict, float]:
         d = "M" + " L".join(f"{X(m):.1f},{Y(p):.1f}" for m, p in pts)
         if close_to is not None:
             d += " L" + " L".join(f"{X(m):.1f},{Y(p):.1f}"
-                                  for m, p in reversed(close_to))
-            d += " Z"
+                                  for m, p in reversed(close_to)) + " Z"
         return d
 
-    tgrid = sorted(curves)
-    band90 = path([(t, curves[t][0.95]) for t in tgrid],
-                  close_to=[(t, curves[t][0.05]) for t in tgrid])
-    band50 = path([(t, curves[t][0.75]) for t in tgrid],
-                  close_to=[(t, curves[t][0.25]) for t in tgrid])
-    median = path([(t, curves[t][0.50]) for t in tgrid])
-    vgrid = sorted(view)
-    wedge = path([(t, view[t]["full"]) for t in vgrid],
-                 close_to=[(t, view[t]["bear"]) for t in vgrid])
-    vbase = path([(t, view[t]["base"]) for t in vgrid])
+    tg = sorted(draw)
+    band90 = path([(t, draw[t][0.95]) for t in tg],
+                  close_to=[(t, draw[t][0.05]) for t in tg])
+    band50 = path([(t, draw[t][0.75]) for t in tg],
+                  close_to=[(t, draw[t][0.25]) for t in tg])
+    median = path([(t, draw[t][0.50]) for t in tg])
+    leanp = path([(t, leaned[t][0.50]) for t in tg]) if leaned else None
     histp = path(hist)
 
-    # y gridlines: 5 round steps
     step = (yhi - ylo) / 5
     mag = 10 ** np.floor(np.log10(step))
     step = float(np.ceil(step / mag) * mag)
@@ -207,28 +268,25 @@ def build_card(tick: dict, row: dict, hist) -> tuple[str, dict, float]:
     xt = "".join(
         f'<line x1="{X(m):.1f}" x2="{X(m):.1f}" y1="{H-B}" y2="{H-B+5}" '
         f'stroke="{MUTED}"/>'
-        f'<text x="{X(m):.1f}" y="{H-B+18}" text-anchor="middle" class="ax">'
-        f'{lab}</text>'
+        f'<text x="{X(m):.1f}" y="{H-B+18}" text-anchor="middle" class="ax">{lab}</text>'
         for m, lab in [(-6, "6m ago"), (-3, "3m ago"), (0, "today"),
-                       (3, "+3 months"), (6, "+6 months"), (12, "+12 months")])
+                       (1, "+1m"), (3, "+3 months")])
 
-    # right-edge direct labels for the view fan
-    fanlab = "".join(
-        f'<text x="{X(12)+6:.1f}" y="{Y(view[12][k])+4:.1f}" class="fl" '
-        f'fill="{ORANGE}">{lab} {fmt(fv[k], spot)}</text>'
-        for k, lab in (("full", "high"), ("base", "base"), ("bear", "low")))
-
-    p25, p75 = tick["dist"]["t60"]["p25"], tick["dist"]["t60"]["p75"]
-    p5, p95 = tick["dist"]["t60"]["p5"], tick["dist"]["t60"]["p95"]
-    bandlab = (f'<text x="{X(3)+6:.1f}" y="{Y(p75)-7:.1f}" class="fl" '
-               f'fill="{TEAL}">typical {fmt(p25, spot)}–{fmt(p75, spot)}</text>'
-               f'<text x="{X(3)+6:.1f}" y="{Y(p5)+10:.1f}" class="fl" '
-               f'fill="{MUTED}">9-in-10 {fmt(p5, spot)}–{fmt(p95, spot)}</text>')
+    p25, p75 = draw[3.0][0.25], draw[3.0][0.75]
+    p5, p95 = draw[3.0][0.05], draw[3.0][0.95]
+    rlab = (f'<text x="{X(3)+8:.1f}" y="{Y(p75)-7:.1f}" class="fl" fill="{TEAL}">'
+            f'typical {fmt(p25, spot)}–{fmt(p75, spot)}</text>'
+            f'<text x="{X(3)+8:.1f}" y="{Y(p5)+10:.1f}" class="fl" fill="{MUTED}">'
+            f'9-in-10 {fmt(p5, spot)}–{fmt(p95, spot)}</text>')
+    if leaned:
+        lv = leaned[3.0][0.50]
+        rlab += (f'<text x="{X(3)+8:.1f}" y="{Y(lv)+4:.1f}" class="fl" '
+                 f'fill="{ORANGE}">center {fmt(lv, spot)}</text>')
 
     tid = tick["_ticker"]
     svg = f"""
 <svg viewBox="0 0 {W} {H}" role="img" data-chart="{tid}"
-     aria-label="{html.escape(tick['name'])} — market range and valuation path">
+     aria-label="{html.escape(tick['name'])} — published range and the engine's own lean">
   <style>.ax{{font:11px 'IBM Plex Mono',monospace;fill:{MUTED}}}
          .fl{{font:600 11px 'IBM Plex Sans',sans-serif}}</style>
   {grid}{xt}
@@ -237,35 +295,34 @@ def build_card(tick: dict, row: dict, hist) -> tuple[str, dict, float]:
   <path d="{band90}" fill="{TEAL}" opacity="0.10"/>
   <path d="{band50}" fill="{TEAL}" opacity="0.28"/>
   <path d="{median}" fill="none" stroke="{TEAL}" stroke-width="1.5"
-        stroke-dasharray="5 4" opacity=".8"/>
-  <path d="{wedge}" fill="{ORANGE}" opacity="0.13"/>
-  <path d="{vbase}" fill="none" stroke="{ORANGE}" stroke-width="2.5"/>
+        stroke-dasharray="5 4" opacity=".85"/>
+  {f'<path d="{leanp}" fill="none" stroke="{ORANGE}" stroke-width="2.5"/>' if leanp else ''}
   <path d="{histp}" fill="none" stroke="{INK}" stroke-width="2"/>
   <circle cx="{X(0):.1f}" cy="{Y(spot):.1f}" r="5" fill="#fff"
           stroke="{INK}" stroke-width="2.5"/>
-  {fanlab}{bandlab}
+  {rlab}
   <line class="cx" x1="0" x2="0" y1="{T}" y2="{H-B}" stroke="{INK}"
         opacity="0" stroke-width="1"/>
 </svg>"""
 
+    lean_tile = (f"{alpha3 * 100:+.1f}% on the center" if alpha3 else "none")
     tiles = f"""
 <div class="tiles">
-  <div class="tile"><div class="tl">Our value (base)</div>
-    <div class="tv num">{fmt(fv['base'], spot)} {ccy}</div>
-    <div class="ts">full range {fmt(fv['bear'], spot)}–{fmt(fv['full'], spot)}</div></div>
   <div class="tile"><div class="tl">Typical range, next 3 months</div>
     <div class="tv num">{fmt(p25, spot)}–{fmt(p75, spot)}</div>
-    <div class="ts">1-in-10 above {fmt(p95, spot)}, 1-in-10 below {fmt(p5, spot)}</div></div>
-  <div class="tile"><div class="tl">Odds of {'reaching' if gap >= 0 else 'falling to'} our value in 3M</div>
-    <div class="tv num">{odds_words(p_touch, band3)}</div>
-    <div class="ts">graded publicly when the date arrives</div></div>
+    <div class="ts">1-in-10 above {fmt(p95, spot)}, 1-in-10 below {fmt(p5, spot)} — graded when the date arrives</div></div>
+  <div class="tile"><div class="tl">Trend lean (3M, illustrative)</div>
+    <div class="tv num">{lean_tile}</div>
+    <div class="ts">from this stock's own price history only</div></div>
+  <div class="tile"><div class="tl">Odds of finishing higher in 3M</div>
+    <div class="tv num">{p_up_lean * 100:.0f}%<span class="dim"> with lean · {p_up_neutral * 100:.0f}% neutral</span></div>
+    <div class="ts">becomes a graded number once the lean passes the gate</div></div>
 </div>"""
 
     hover = {"x0": x0, "x1": x1, "L": L, "R": R, "W": W, "spot": spot,
              "hist": hist,
-             "band": {str(t): [curves[t][p] for p in PCTS] for t in tgrid},
-             "view": {str(t): [view[t][k] for k in ("bear", "base", "full")]
-                      for t in vgrid}}
+             "band": {str(t): [curves[t][p] for p in PCTS] for t in tg},
+             "lean": ({str(t): leaned[t][0.50] for t in tg} if leaned else None)}
 
     card = f"""
 <section class="card">
@@ -277,24 +334,24 @@ def build_card(tick: dict, row: dict, hist) -> tuple[str, dict, float]:
   </div>
   <p class="verdict">{verdict}</p>
   <div class="legend">
-    <span><i style="background:{TEAL};opacity:.35"></i> market's likely range (next 3M)</span>
-    <span><i style="background:{ORANGE}"></i> our valuation path (12M)</span>
+    <span><i style="background:{TEAL};opacity:.35"></i> likely range with the lean (next 3M)</span>
+    <span><i style="background:{ORANGE}"></i> engine's leaned center (illustrative)</span>
     <span><i style="background:{INK}"></i> actual price (last {HIST_MONTHS}M)</span>
   </div>
   <div class="chartwrap">{svg}<div class="tip" hidden></div></div>
   {tiles}
-  <p class="foot">Valuation dated {row['fv_asof']} · market range struck {row['anchor_date']} ·
-  every number above is already published on the live page today — this card only re-arranges them.</p>
+  {lenses}
+  <p class="foot">Band and dashed center are today's PUBLISHED forecast (drawn
+  band reproduces it within {dev:.2%}). The orange lean is illustrative — engine's
+  own momentum signal at the tournament-measured strength — and goes live only
+  through the standing safety test. The fundamental and technical verdicts are
+  displayed for comparison only; they are never inputs to this cone.</p>
 </section>"""
     return card, hover, dev
 
 
 # -------------------------------------------------------------- tournament §
-def tournament_section(path: str | None) -> str:
-    if not path or not os.path.exists(path):
-        return ""
-    with open(path) as f:
-        tr = json.load(f)
+def tournament_section(tr: dict) -> str:
     rows = []
     for mk in tr["markets"]:
         for key, cell in (mk.get("results") or {}).items():
@@ -302,14 +359,11 @@ def tournament_section(path: str | None) -> str:
             if "ic_spearman" not in ts and not xs:
                 continue
             feat, hz = key.split("|")
-            rows.append({
-                "mkt": mk["market"], "feat": feat, "hz": hz,
-                "n": ts.get("n"), "ic": ts.get("ic_spearman"),
-                "v": ts.get("verdict", "—"), "hit": ts.get("hit_rate"),
-                "xsic": xs.get("mean_ic"), "xsv": xs.get("verdict", "—"),
-                "sp": xs.get("tercile_spread_mean_pct")})
-    if not rows:
-        return ""
+            rows.append({"mkt": mk["market"], "feat": feat, "hz": hz,
+                         "n": ts.get("n"), "ic": ts.get("ic_spearman"),
+                         "v": ts.get("verdict", "—"), "hit": ts.get("hit_rate"),
+                         "xsic": xs.get("mean_ic"),
+                         "sp": xs.get("tercile_spread_mean_pct")})
     core = [r for r in rows if r["mkt"] in ("EG", "AE", "SA")]
     strongest = sorted((r for r in core if r["ic"] is not None),
                        key=lambda r: -abs(r["ic"]))[:8]
@@ -321,31 +375,25 @@ def tournament_section(path: str | None) -> str:
         f"<td class='num'>{('%+.3f' % r['xsic']) if r['xsic'] is not None else '—'}</td>"
         f"<td class='num'>{('%+.2f%%' % r['sp']) if r['sp'] is not None else '—'}</td></tr>"
         for r in strongest if r["ic"] is not None and r["hit"] is not None)
-    surv = tr.get("survivors") or []
-    if surv:
-        sv = ("<p><b>Survivors:</b> " + "; ".join(
-            f"{s['feature']} at {s['horizon']} in {s['market']} "
-            f"(IC {s['pooled_ic']:+.3f}, n={s['n']})" for s in surv) +
-            ". A survivor is a candidate for the standing out-of-sample "
-            "promotion gate — not an adoption.</p>")
-    else:
-        sv = ("<p><b>Result: no survivor.</b> None of the six indicators "
-              "predicts 1- or 3-month direction reliably enough to tilt a "
-              "cone, in any market, once we demand the same evidence in both "
-              "halves of history and from every angle at once. That is a "
-              "finding, not a failure: it is why the honest direction on "
-              "these pages comes from the valuation work (the orange path), "
-              "not from chart patterns.</p>")
+    mom = [s for s in tr.get("survivors", [])
+           if s["feature"] in ("mom_12_1", "mom_6_1")]
+    sv = ("<p><b>Eligible for the MC lean (momentum family only):</b> " +
+          "; ".join(f"{FEAT_WORDS[s['feature']]} at {s['horizon']} in "
+                    f"{s['market']} (rank skill {s['pooled_ic']:+.3f}, "
+                    f"n={s['n']})" for s in mom) +
+          ". The other survivors (200-day trend, 52-week-high distance) also "
+          "tested well but belong to the TECHNICAL lens, so they are excluded "
+          "from the engine's lean — the three lenses stay independent. All of "
+          "this is a candidate for the standing out-of-sample safety test, "
+          "not an adoption.</p>") if mom else ""
     return f"""
 <section class="card">
-  <h2>Part 2 — Can price history give the cone a lean? We tested it.</h2>
-  <p>Six standard direction indicators (momentum over 12 and 6 months,
-  last-month reversal, distance from the 52-week high, distance from the
-  200-day average, and RSI), tested on our own cleaned price library —
-  {sum(mk.get('names') or 0 for mk in tr['markets'])} names — at the same
-  1-month and 3-month clocks the site publishes, judged by a test that
-  rewards <em>getting direction right</em>, with the sample split in half to
-  catch flukes. Strongest eight readings in the three core markets:</p>
+  <h2>Part 2 — Where the lean comes from: we tested the engine's own data.</h2>
+  <p>Six standard direction indicators, tested on our cleaned price library —
+  {sum(mk.get('names') or 0 for mk in tr['markets'])} names, 15 years — at the
+  site's own 1-month and 3-month clocks, judged by a test that rewards
+  <em>getting direction right</em>, with the sample split in half to catch
+  flukes. Strongest eight readings in the three core markets:</p>
   <div class="tblwrap"><table>
     <thead><tr><th>market</th><th>indicator</th><th>clock</th><th>obs</th>
     <th>rank skill</th><th>verdict</th><th>direction hit rate</th>
@@ -374,6 +422,7 @@ CSS = f"""
 body{{margin:0;background:var(--paper);color:var(--ink);
   font:16px/1.55 'IBM Plex Sans',system-ui,sans-serif}}
 .num{{font-family:'IBM Plex Mono',monospace;font-feature-settings:'tnum'}}
+.dim{{color:var(--muted);font-weight:400;font-size:.8em}}
 .wrap{{max-width:960px;margin:0 auto;padding:28px 20px 60px}}
 .mast{{display:flex;justify-content:space-between;align-items:baseline;
   border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px}}
@@ -401,6 +450,14 @@ body{{margin:0;background:var(--paper);color:var(--ink);
 .tl{{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}}
 .tv{{font-size:1.15rem;font-weight:700;margin:2px 0}}
 .ts{{font-size:.75rem;color:var(--muted)}}
+.lenses{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;margin-top:14px}}
+.lens{{border:1px dashed var(--line);border-radius:10px;padding:9px 13px}}
+.lens.on{{border:1.5px solid {TEAL};background:#F2FAF8}}
+.ll{{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}}
+.ll span{{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;margin-left:6px}}
+.lv{{font-size:.86rem;margin-top:2px}}
+.lenscap{{color:var(--muted);font-size:.75rem;margin:6px 0 0}}
 .foot{{color:var(--muted);font-size:.75rem;border-top:1px dashed var(--line);
   padding-top:8px;margin:12px 0 0}}
 h2{{font-size:1.2rem;margin:.2em 0 .5em}}
@@ -418,7 +475,6 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
   const wrap = svg.parentElement, tip = wrap.querySelector('.tip'),
         cx = svg.querySelector('.cx');
   const bt = Object.keys(d.band).map(Number).sort((a,b)=>a-b);
-  const vt = Object.keys(d.view).map(Number).sort((a,b)=>a-b);
   const nearest = (arr, m) => arr.reduce((p,c)=>Math.abs(c-m)<Math.abs(p-m)?c:p);
   const fmt = x => d.spot>=1000 ? Math.round(x).toLocaleString('en')
              : d.spot>=100 ? x.toFixed(1) : x.toFixed(2);
@@ -426,7 +482,7 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
     const r = svg.getBoundingClientRect();
     const px = (ev.clientX - r.left) / r.width * d.W;
     const m = d.x0 + (px - d.L) / (d.W - d.L - d.R) * (d.x1 - d.x0);
-    if (m < d.x0 || m > d.x1) { tip.hidden = true; cx.setAttribute('opacity',0); return; }
+    if (m < d.x0 || m > 3) { tip.hidden = true; cx.setAttribute('opacity',0); return; }
     cx.setAttribute('x1', px.toFixed(1)); cx.setAttribute('x2', px.toFixed(1));
     cx.setAttribute('opacity', .35);
     let lines = [];
@@ -434,14 +490,12 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
       let best = d.hist.length ? d.hist.reduce((p,c)=>Math.abs(c[0]-m)<Math.abs(p[0]-m)?c:p) : null;
       if (best) lines.push(Math.abs(best[0]).toFixed(1)+'m ago  price '+fmt(best[1]));
     } else {
+      const k = String(nearest(bt, m));
+      const b = d.band[k];
       lines.push('+'+m.toFixed(1)+' months');
-      if (m <= 3) {
-        const b = d.band[String(nearest(bt, m))];
-        lines.push('typical '+fmt(b[1])+'\\u2013'+fmt(b[3]));
-        lines.push('9-in-10 '+fmt(b[0])+'\\u2013'+fmt(b[4]));
-      }
-      const v = d.view[String(nearest(vt, m))];
-      lines.push('our path '+fmt(v[1])+'  (low '+fmt(v[0])+' / high '+fmt(v[2])+')');
+      lines.push('typical '+fmt(b[1])+'\\u2013'+fmt(b[3]));
+      lines.push('9-in-10 '+fmt(b[0])+'\\u2013'+fmt(b[4]));
+      if (d.lean) lines.push('leaned center '+fmt(d.lean[k]));
     }
     tip.textContent = lines.join('\\n');
     tip.hidden = false;
@@ -457,13 +511,15 @@ document.querySelectorAll('[data-chart]').forEach(svg => {
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--overlay", required=True)
-    ap.add_argument("--tournament", default=None)
+    ap.add_argument("--tournament", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--tickers", default="ETEL,ADNOCDRILL,EMFD")
     args = ap.parse_args()
 
     with open(args.overlay) as f:
         overlay = {r["ticker"]: r for r in json.load(f)["rows"]}
+    with open(args.tournament) as f:
+        tournament = json.load(f)
     ticks = load_tickers()
 
     cards, hovers, devs = [], {}, {}
@@ -471,18 +527,14 @@ def main():
         tk = tk.strip()
         tick = dict(ticks[tk]); tick["_ticker"] = tk
         row = overlay[tk]
-        anchor = pd.Timestamp(row["anchor_date"])
-        hist = price_history(row["market"], tk, anchor)
-        card, hover, dev = build_card(tick, row, hist)
+        hist = price_history(row["market"], tk, pd.Timestamp(row["anchor_date"]))
+        card, hover, dev = build_card(tick, row, hist, tournament)
         cards.append(card)
         hovers[tk] = hover
         devs[tk] = dev
         assert dev <= MAX_BAND_DEV, (
-            f"{tk}: drawn band deviates {dev:.2%} from the published cone "
-            f"(limit {MAX_BAND_DEV:.1%}) — do not show")
+            f"{tk}: drawn band deviates {dev:.2%} from the published cone")
         print(f"[{tk}] band reproduces published quantiles within {dev:.2%}")
-
-    tsec = tournament_section(args.tournament)
 
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -493,20 +545,20 @@ def main():
 <div class="wrap">
   <div class="mast"><span class="brand">تستاهل TESTAHIL</span>
     <span class="badge">PROTOTYPE · NOT LIVE · NOT PUBLISHED</span></div>
-  <p class="lede">Proposed ticker card, drawn entirely from numbers already
-  published today. Two objects, one picture: the <b style="color:{TEAL}">teal
-  band</b> is what the market could plausibly do (the middle-half range leads;
-  the faint band is the 9-in-10 range — the crash guard, demoted from headline
-  to whisker). The <b style="color:{ORANGE}">orange path</b> is what <i>we</i>
-  think it is worth and the road there over 12 months — the direction the
-  current pages never show. Hover any chart for the numbers at that date.</p>
+  <p class="lede">Proposed ticker card. The <b style="color:{TEAL}">teal band</b>
+  is today's published forecast with the typical range leading (the faint band
+  is the 9-in-10 range — the crash guard, demoted from headline to whisker).
+  The <b style="color:{ORANGE}">orange line</b> is the engine's own lean,
+  computed from that stock's price history alone — never from the fundamental
+  study or the technical read: the three lenses stay independent and appear
+  side by side below each chart. Hover any chart for the numbers at that date.</p>
   {''.join(cards)}
-  {tsec}
+  {tournament_section(tournament)}
   <p class="foot">Built {pd.Timestamp.now().date()} from assets/data.js +
-  engine/fv_overlay.py output + the cleaned price library. The drawn market
-  band is asserted to reproduce the published cone at both struck horizons
-  (worst deviation this build:
-  {max(devs.values()):.2%}). Reproduce: engine/view_layer_prototype/build_prototype.py.</p>
+  engine/fv_overlay.py output (used for the published cone's shape parameters
+  only) + the cleaned price library + the 23-Aug tournament results. Worst
+  band deviation this build: {max(devs.values()):.2%}. Reproduce:
+  engine/view_layer_prototype/build_prototype.py.</p>
 </div>
 <script>{JS.replace("__DATA__", json.dumps(hovers))}</script>
 </body></html>"""

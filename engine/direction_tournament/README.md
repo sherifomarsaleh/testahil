@@ -61,3 +61,18 @@ Seed 42 throughout; deterministic.
   were tried). The standing promotion gate — not this tournament — decides
   adoption; the honest next step for any survivor is a pre-registered forward
   shadow cohort, as `lab_round8_fvpull.py` already prescribes for FV-pull.
+
+## Eligibility under THREE-LENS INDEPENDENCE (Sherif, 23-Aug-2026)
+
+The fundamental study, the MC engine, and the technical read are independent
+lenses — no lens's output feeds another (`Standing_Research_Protocol.md`,
+23-Aug-2026 section). Consequences for this tournament's survivors:
+
+- **Eligible for the MC lean: the momentum family only** (mom_12_1, mom_6_1).
+- **Ineligible however well they test:** trend200, near52h, rsi14 — they are
+  technical-lens constructions, and wiring them into the MC would make two of
+  the three lenses agree by construction. Their results stand recorded as
+  evidence only.
+- Fair values were never candidates here and never can be: the
+  `Fundamental_MC_Integration_Protocol.md` engine hook is permanently retired
+  as a drift source (its header carries the amendment).
