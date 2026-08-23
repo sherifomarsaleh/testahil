@@ -10,13 +10,21 @@ name: Testahil continuous calibration
 #     PENDING_REVIEW/*.md report and does NOT touch market_profiles.py.
 #     Nothing merges without a human clicking merge.
 
+# NO NIGHTLY SCHEDULE (removed 23-Aug-2026, user instruction). There is no live
+# market feed here: engine/raw_ohlc/ changes only when a human posts a CSV, and
+# posting already fires the push trigger below. A nightly cron therefore re-ran an
+# identical fit on identical data and re-reported the same standing finding every
+# night. Measured over 6-Aug..23-Aug-2026: 79 runs, of which 61 were push (correct
+# — new data had arrived) and 18 were the cron (nothing had changed). Removing the
+# cron is NOT what fixes a backlog of review PRs, and must not be sold as such: a
+# material finding that is never adopted re-fires on EVERY trigger, which is how 66
+# review PRs accumulated. Clearing the finding is the fix; this only stops the
+# engine asking a question about data nobody touched.
 on:
   push:
     paths:
       - 'engine/raw_ohlc/**.csv'
   workflow_dispatch: {}   # manual "run it now" button in the Actions tab
-  schedule:
-    - cron: '0 3 * * *'   # 03:00 UTC daily — catches anything pushed without triggering the path filter
 
 permissions:
   contents: write
@@ -85,6 +93,22 @@ jobs:
         run: |
           git config user.name "testahil-bot"
           git config user.email "info@testahil.com"
+          # A MATERIAL MARKET MUST NEVER FREEZE THE OTHERS (fixed 23-Aug-2026).
+          # main() returns 1 if ANY market is material, and this job only auto-commits
+          # on exit 0 — so one blocked market discarded every OTHER market's applied
+          # fit, silently, for as long as the block stood. Measured on 23-Aug-2026: SA
+          # was NON-material ("safe to auto-apply") and still sat at 11 of its 13 names,
+          # RIYADHCABLE and SAVOLA never having entered a fit, because EG and AE were
+          # material. write_production() is called ONLY for non-material markets, so any
+          # change to these three files is safe by construction: commit it to main
+          # first, then take the material evidence to a review branch.
+          if ! git diff --quiet -- engine/market_profiles.py engine/fitted_configs.json engine/panel_hashes.json; then
+            git add engine/market_profiles.py engine/fitted_configs.json engine/panel_hashes.json
+            git commit -m "Auto-refresh: non-material markets ($(date -u +%Y-%m-%d)); a material market is under review"
+            git push origin HEAD:main
+            echo "Committed the non-material markets to main."
+          fi
+
           BRANCH="calibration-review-$(date -u +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH"
           git add engine/PENDING_REVIEW engine/panels

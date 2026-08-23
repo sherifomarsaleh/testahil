@@ -152,8 +152,13 @@ def assess_materiality(market, result, incumbent_profile, incumbent_registry):
     old_bw = band_halfwidth(incumbent_profile.nu, incumbent_profile.width_cal)
     new_bw = band_halfwidth(result['nu'], result['width_cal'])
     if old_bw and new_bw:
-        rel = abs(new_bw - old_bw) / old_bw
-        if rel > BAND_TOL:
+        # SIGNED, not absolute (fixed 23-Aug-2026). The threshold test is on the
+        # magnitude, but the number REPORTED must carry its sign: taking abs() and then
+        # formatting with '+' made every move print as a widening. On 23-Aug-2026 the AE
+        # refit narrowed the cone by 5.1% and the report announced "+5.1%", which reads
+        # as the opposite and was repeated into a summary before anyone recomputed it.
+        rel = (new_bw - old_bw) / old_bw
+        if abs(rel) > BAND_TOL:
             reasons.append(
                 f"the PUBLISHED 90% cone moves {rel:+.1%} (> {BAND_TOL:.0%} tolerance): "
                 f"(nu={incumbent_profile.nu}, cal={incumbent_profile.width_cal}) -> "
