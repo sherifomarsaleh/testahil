@@ -1,0 +1,1111 @@
+{
+ "generated": "2026-08-23",
+ "status": "per-ticker record of the adopted signal",
+ "markets": {
+  "AE": {
+   "signal": "mom_combo",
+   "names": {
+    "ADCB": {
+     "1M": {
+      "n": 174,
+      "ic": 0.049,
+      "hit": 0.5,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.073,
+      "hit": 0.552,
+      "verdict": "supports"
+     }
+    },
+    "ADIB": {
+     "1M": {
+      "n": 174,
+      "ic": 0.097,
+      "hit": 0.569,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.23,
+      "hit": 0.603,
+      "verdict": "supports"
+     }
+    },
+    "ADNOCDIST": {
+     "1M": {
+      "n": 91,
+      "ic": 0.029,
+      "hit": 0.56,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 30,
+      "ic": 0.184,
+      "hit": 0.6,
+      "verdict": "supports"
+     }
+    },
+    "ADNOCDRILL": {
+     "1M": {
+      "n": 45,
+      "ic": -0.193,
+      "hit": 0.533,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 15,
+      "ic": -0.343,
+      "hit": 0.4,
+      "verdict": "short history"
+     }
+    },
+    "ADNOCGAS": {
+     "1M": {
+      "n": 28,
+      "ic": -0.305,
+      "hit": 0.393,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 9,
+      "ic": -0.2,
+      "hit": 0.444,
+      "verdict": "short history"
+     }
+    },
+    "ADNOCLS": {
+     "1M": {
+      "n": 25,
+      "ic": -0.388,
+      "hit": 0.36,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 8,
+      "ic": -0.357,
+      "hit": 0.5,
+      "verdict": "short history"
+     }
+    },
+    "AGTHIA": {
+     "1M": {
+      "n": 174,
+      "ic": 0.13,
+      "hit": 0.546,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.165,
+      "hit": 0.603,
+      "verdict": "supports"
+     }
+    },
+    "AIRARABIA": {
+     "1M": {
+      "n": 174,
+      "ic": 0.057,
+      "hit": 0.5,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.062,
+      "hit": 0.534,
+      "verdict": "supports"
+     }
+    },
+    "ALDAR": {
+     "1M": {
+      "n": 174,
+      "ic": 0.07,
+      "hit": 0.557,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.04,
+      "hit": 0.552,
+      "verdict": "supports"
+     }
+    },
+    "ALPHADHABI": {
+     "1M": {
+      "n": 48,
+      "ic": -0.113,
+      "hit": 0.5,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 15,
+      "ic": -0.107,
+      "hit": 0.6,
+      "verdict": "short history"
+     }
+    },
+    "AMR": {
+     "1M": {
+      "n": 31,
+      "ic": 0.046,
+      "hit": 0.613,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 10,
+      "ic": 0.055,
+      "hit": 0.7,
+      "verdict": "short history"
+     }
+    },
+    "BOROUGE": {
+     "1M": {
+      "n": 37,
+      "ic": 0.099,
+      "hit": 0.649,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 12,
+      "ic": 0.238,
+      "hit": 0.667,
+      "verdict": "short history"
+     }
+    },
+    "BURJEEL": {
+     "1M": {
+      "n": 33,
+      "ic": 0.027,
+      "hit": 0.485,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 11,
+      "ic": -0.018,
+      "hit": 0.727,
+      "verdict": "short history"
+     }
+    },
+    "DEWA": {
+     "1M": {
+      "n": 39,
+      "ic": -0.111,
+      "hit": 0.59,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 13,
+      "ic": -0.159,
+      "hit": 0.538,
+      "verdict": "short history"
+     }
+    },
+    "DIB": {
+     "1M": {
+      "n": 174,
+      "ic": 0.046,
+      "hit": 0.5,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.093,
+      "hit": 0.414,
+      "verdict": "supports"
+     }
+    },
+    "DU": {
+     "1M": {
+      "n": 174,
+      "ic": 0.128,
+      "hit": 0.54,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.165,
+      "hit": 0.517,
+      "verdict": "supports"
+     }
+    },
+    "EAND": {
+     "1M": {
+      "n": 174,
+      "ic": 0.151,
+      "hit": 0.586,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.279,
+      "hit": 0.586,
+      "verdict": "supports"
+     }
+    },
+    "EMAAR": {
+     "1M": {
+      "n": 174,
+      "ic": 0.155,
+      "hit": 0.586,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.178,
+      "hit": 0.621,
+      "verdict": "supports"
+     }
+    },
+    "EMAARDEV": {
+     "1M": {
+      "n": 91,
+      "ic": 0.055,
+      "hit": 0.538,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 29,
+      "ic": 0.029,
+      "hit": 0.552,
+      "verdict": "flat"
+     }
+    },
+    "EMPOWER": {
+     "1M": {
+      "n": 32,
+      "ic": -0.301,
+      "hit": 0.469,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 10,
+      "ic": -0.794,
+      "hit": 0.0,
+      "verdict": "short history"
+     }
+    },
+    "ENBD": {
+     "1M": {
+      "n": 173,
+      "ic": 0.013,
+      "hit": 0.555,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 57,
+      "ic": -0.068,
+      "hit": 0.474,
+      "verdict": "contrary"
+     }
+    },
+    "FAB": {
+     "1M": {
+      "n": 174,
+      "ic": 0.064,
+      "hit": 0.511,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 58,
+      "ic": 0.258,
+      "hit": 0.603,
+      "verdict": "supports"
+     }
+    },
+    "FERTIGLB": {
+     "1M": {
+      "n": 44,
+      "ic": -0.059,
+      "hit": 0.545,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 14,
+      "ic": -0.191,
+      "hit": 0.714,
+      "verdict": "short history"
+     }
+    },
+    "IHC": {
+     "1M": {
+      "n": 140,
+      "ic": 0.366,
+      "hit": 0.686,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 46,
+      "ic": 0.34,
+      "hit": 0.652,
+      "verdict": "supports"
+     }
+    },
+    "LULU": {
+     "1M": {
+      "n": 8,
+      "ic": 0.19,
+      "hit": 0.625,
+      "verdict": "short history"
+     },
+     "3M": {
+      "n": 2,
+      "verdict": "short history"
+     }
+    },
+    "MODON": {
+     "1M": {
+      "n": 68,
+      "ic": -0.142,
+      "hit": 0.426,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 22,
+      "ic": -0.012,
+      "hit": 0.545,
+      "verdict": "short history"
+     }
+    },
+    "SALIK": {
+     "1M": {
+      "n": 33,
+      "ic": -0.162,
+      "hit": 0.606,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 10,
+      "ic": -0.139,
+      "hit": 0.6,
+      "verdict": "short history"
+     }
+    },
+    "TWOPOINTZERO": {
+     "1M": {
+      "n": 43,
+      "ic": -0.167,
+      "hit": 0.535,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 14,
+      "ic": -0.367,
+      "hit": 0.429,
+      "verdict": "short history"
+     }
+    }
+   }
+  },
+  "EG": {
+   "signal": "mom_combo",
+   "names": {
+    "ABUK": {
+     "1M": {
+      "n": 170,
+      "ic": 0.08,
+      "hit": 0.553,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.158,
+      "hit": 0.607,
+      "verdict": "supports"
+     }
+    },
+    "ADIB": {
+     "1M": {
+      "n": 171,
+      "ic": 0.07,
+      "hit": 0.544,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.187,
+      "hit": 0.554,
+      "verdict": "supports"
+     }
+    },
+    "AMOC": {
+     "1M": {
+      "n": 172,
+      "ic": 0.191,
+      "hit": 0.552,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.255,
+      "hit": 0.554,
+      "verdict": "supports"
+     }
+    },
+    "ARCC": {
+     "1M": {
+      "n": 133,
+      "ic": 0.114,
+      "hit": 0.541,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 43,
+      "ic": 0.188,
+      "hit": 0.581,
+      "verdict": "supports"
+     }
+    },
+    "BTFH": {
+     "1M": {
+      "n": 163,
+      "ic": -0.016,
+      "hit": 0.503,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 54,
+      "ic": -0.164,
+      "hit": 0.407,
+      "verdict": "contrary"
+     }
+    },
+    "CCAP": {
+     "1M": {
+      "n": 171,
+      "ic": 0.082,
+      "hit": 0.515,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.293,
+      "hit": 0.536,
+      "verdict": "supports"
+     }
+    },
+    "CLHO": {
+     "1M": {
+      "n": 107,
+      "ic": -0.063,
+      "hit": 0.523,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 35,
+      "ic": -0.041,
+      "hit": 0.4,
+      "verdict": "contrary"
+     }
+    },
+    "COMI": {
+     "1M": {
+      "n": 172,
+      "ic": 0.003,
+      "hit": 0.541,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": -0.009,
+      "hit": 0.607,
+      "verdict": "flat"
+     }
+    },
+    "DSCW": {
+     "1M": {
+      "n": 87,
+      "ic": 0.204,
+      "hit": 0.644,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 29,
+      "ic": 0.333,
+      "hit": 0.69,
+      "verdict": "supports"
+     }
+    },
+    "EFID": {
+     "1M": {
+      "n": 120,
+      "ic": 0.051,
+      "hit": 0.483,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 39,
+      "ic": 0.085,
+      "hit": 0.513,
+      "verdict": "supports"
+     }
+    },
+    "EFIH": {
+     "1M": {
+      "n": 43,
+      "ic": -0.132,
+      "hit": 0.442,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 13,
+      "ic": -0.297,
+      "hit": 0.308,
+      "verdict": "short history"
+     }
+    },
+    "EGAL": {
+     "1M": {
+      "n": 170,
+      "ic": 0.11,
+      "hit": 0.524,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.206,
+      "hit": 0.571,
+      "verdict": "supports"
+     }
+    },
+    "EGCH": {
+     "1M": {
+      "n": 172,
+      "ic": 0.011,
+      "hit": 0.448,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.095,
+      "hit": 0.5,
+      "verdict": "supports"
+     }
+    },
+    "ELEC": {
+     "1M": {
+      "n": 172,
+      "ic": 0.04,
+      "hit": 0.494,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.133,
+      "hit": 0.607,
+      "verdict": "supports"
+     }
+    },
+    "EMFD": {
+     "1M": {
+      "n": 120,
+      "ic": -0.047,
+      "hit": 0.525,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 40,
+      "ic": 0.041,
+      "hit": 0.55,
+      "verdict": "supports"
+     }
+    },
+    "ETEL": {
+     "1M": {
+      "n": 171,
+      "ic": 0.001,
+      "hit": 0.474,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.029,
+      "hit": 0.536,
+      "verdict": "flat"
+     }
+    },
+    "FWRY": {
+     "1M": {
+      "n": 69,
+      "ic": 0.173,
+      "hit": 0.609,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 22,
+      "ic": 0.155,
+      "hit": 0.591,
+      "verdict": "short history"
+     }
+    },
+    "GBCO": {
+     "1M": {
+      "n": 171,
+      "ic": 0.015,
+      "hit": 0.515,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.033,
+      "hit": 0.554,
+      "verdict": "supports"
+     }
+    },
+    "HELI": {
+     "1M": {
+      "n": 171,
+      "ic": -0.005,
+      "hit": 0.491,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.062,
+      "hit": 0.607,
+      "verdict": "supports"
+     }
+    },
+    "HRHO": {
+     "1M": {
+      "n": 171,
+      "ic": -0.041,
+      "hit": 0.497,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 56,
+      "ic": -0.011,
+      "hit": 0.5,
+      "verdict": "flat"
+     }
+    },
+    "ISPH": {
+     "1M": {
+      "n": 89,
+      "ic": 0.105,
+      "hit": 0.517,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 29,
+      "ic": 0.103,
+      "hit": 0.552,
+      "verdict": "supports"
+     }
+    },
+    "JUFO": {
+     "1M": {
+      "n": 171,
+      "ic": 0.025,
+      "hit": 0.532,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.048,
+      "hit": 0.518,
+      "verdict": "supports"
+     }
+    },
+    "KABO": {
+     "1M": {
+      "n": 170,
+      "ic": -0.018,
+      "hit": 0.482,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": -0.04,
+      "hit": 0.464,
+      "verdict": "contrary"
+     }
+    },
+    "LCSW": {
+     "1M": {
+      "n": 170,
+      "ic": -0.002,
+      "hit": 0.471,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.022,
+      "hit": 0.464,
+      "verdict": "flat"
+     }
+    },
+    "OCDI": {
+     "1M": {
+      "n": 172,
+      "ic": 0.04,
+      "hit": 0.523,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.053,
+      "hit": 0.536,
+      "verdict": "supports"
+     }
+    },
+    "OIH": {
+     "1M": {
+      "n": 160,
+      "ic": 0.048,
+      "hit": 0.5,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 52,
+      "ic": 0.058,
+      "hit": 0.558,
+      "verdict": "supports"
+     }
+    },
+    "ORAS": {
+     "1M": {
+      "n": 123,
+      "ic": -0.001,
+      "hit": 0.504,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 40,
+      "ic": -0.031,
+      "hit": 0.45,
+      "verdict": "contrary"
+     }
+    },
+    "ORHD": {
+     "1M": {
+      "n": 123,
+      "ic": 0.023,
+      "hit": 0.537,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 41,
+      "ic": 0.045,
+      "hit": 0.512,
+      "verdict": "supports"
+     }
+    },
+    "ORWE": {
+     "1M": {
+      "n": 170,
+      "ic": 0.018,
+      "hit": 0.5,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.057,
+      "hit": 0.518,
+      "verdict": "supports"
+     }
+    },
+    "PHAR": {
+     "1M": {
+      "n": 170,
+      "ic": 0.065,
+      "hit": 0.553,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.152,
+      "hit": 0.571,
+      "verdict": "supports"
+     }
+    },
+    "PHDC": {
+     "1M": {
+      "n": 171,
+      "ic": -0.003,
+      "hit": 0.503,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.112,
+      "hit": 0.518,
+      "verdict": "supports"
+     }
+    },
+    "PRDC": {
+     "1M": {
+      "n": 43,
+      "ic": 0.016,
+      "hit": 0.442,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 13,
+      "ic": 0.346,
+      "hit": 0.308,
+      "verdict": "short history"
+     }
+    },
+    "RAYA": {
+     "1M": {
+      "n": 171,
+      "ic": -0.014,
+      "hit": 0.485,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 56,
+      "ic": -0.04,
+      "hit": 0.481,
+      "verdict": "contrary"
+     }
+    },
+    "RMDA": {
+     "1M": {
+      "n": 65,
+      "ic": -0.009,
+      "hit": 0.446,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 21,
+      "ic": -0.113,
+      "hit": 0.524,
+      "verdict": "short history"
+     }
+    },
+    "SCEM": {
+     "1M": {
+      "n": 171,
+      "ic": 0.076,
+      "hit": 0.556,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.09,
+      "hit": 0.571,
+      "verdict": "supports"
+     }
+    },
+    "SWDY": {
+     "1M": {
+      "n": 172,
+      "ic": 0.106,
+      "hit": 0.512,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.194,
+      "hit": 0.5,
+      "verdict": "supports"
+     }
+    },
+    "TMGH": {
+     "1M": {
+      "n": 171,
+      "ic": 0.037,
+      "hit": 0.52,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 56,
+      "ic": 0.065,
+      "hit": 0.518,
+      "verdict": "supports"
+     }
+    }
+   }
+  },
+  "SA": {
+   "signal": "mom_12_1",
+   "names": {
+    "ACWA": {
+     "1M": {
+      "n": 44,
+      "ic": 0.118,
+      "hit": 0.614,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 14,
+      "ic": 0.051,
+      "hit": 0.714,
+      "verdict": "short history"
+     }
+    },
+    "ALINMA": {
+     "1M": {
+      "n": 172,
+      "ic": 0.055,
+      "hit": 0.529,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 57,
+      "ic": -0.065,
+      "hit": 0.421,
+      "verdict": "contrary"
+     }
+    },
+    "ARAMCO": {
+     "1M": {
+      "n": 66,
+      "ic": -0.061,
+      "hit": 0.47,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 22,
+      "ic": -0.285,
+      "hit": 0.364,
+      "verdict": "short history"
+     }
+    },
+    "ELM": {
+     "1M": {
+      "n": 39,
+      "ic": 0.141,
+      "hit": 0.538,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 12,
+      "ic": 0.378,
+      "hit": 0.583,
+      "verdict": "short history"
+     }
+    },
+    "EXTRA": {
+     "1M": {
+      "n": 160,
+      "ic": 0.173,
+      "hit": 0.575,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 52,
+      "ic": 0.14,
+      "hit": 0.538,
+      "verdict": "supports"
+     }
+    },
+    "MAADEN": {
+     "1M": {
+      "n": 172,
+      "ic": -0.019,
+      "hit": 0.512,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 57,
+      "ic": -0.079,
+      "hit": 0.439,
+      "verdict": "contrary"
+     }
+    },
+    "RAJHI": {
+     "1M": {
+      "n": 172,
+      "ic": 0.03,
+      "hit": 0.494,
+      "verdict": "flat"
+     },
+     "3M": {
+      "n": 57,
+      "ic": 0.004,
+      "hit": 0.474,
+      "verdict": "flat"
+     }
+    },
+    "RIBL": {
+     "1M": {
+      "n": 172,
+      "ic": 0.072,
+      "hit": 0.57,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 57,
+      "ic": 0.136,
+      "hit": 0.509,
+      "verdict": "supports"
+     }
+    },
+    "RIYADHCABLE": {
+     "1M": {
+      "n": 30,
+      "ic": 0.165,
+      "hit": 0.567,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 10,
+      "ic": 0.309,
+      "hit": 0.6,
+      "verdict": "short history"
+     }
+    },
+    "SABIC": {
+     "1M": {
+      "n": 172,
+      "ic": 0.102,
+      "hit": 0.564,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 57,
+      "ic": 0.09,
+      "hit": 0.561,
+      "verdict": "supports"
+     }
+    },
+    "SAVOLA": {
+     "1M": {
+      "n": 172,
+      "ic": 0.113,
+      "hit": 0.61,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 57,
+      "ic": 0.188,
+      "hit": 0.579,
+      "verdict": "supports"
+     }
+    },
+    "SNB": {
+     "1M": {
+      "n": 126,
+      "ic": 0.081,
+      "hit": 0.52,
+      "verdict": "supports"
+     },
+     "3M": {
+      "n": 42,
+      "ic": 0.048,
+      "hit": 0.548,
+      "verdict": "supports"
+     }
+    },
+    "STC": {
+     "1M": {
+      "n": 172,
+      "ic": -0.095,
+      "hit": 0.506,
+      "verdict": "contrary"
+     },
+     "3M": {
+      "n": 57,
+      "ic": -0.211,
+      "hit": 0.491,
+      "verdict": "contrary"
+     }
+    }
+   }
+  }
+ }
+}
