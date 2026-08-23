@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-23g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-23h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -918,7 +918,7 @@ prescribed:
   nothing retroactive, nothing published until the standing publish flow runs. Panel
   refits under signal-ON route through the materiality gate; an engine-change PR carries
   this to main per GIT/PUBLISH MECHANICS. A subset ON-vs-OFF ablation record accompanies
-  the adoption commit (`engine/PENDING_REVIEW/signal_on_ablation_20260823.*`).
+  the adoption commit (`engine/PENDING_REVIEW/signal_on_ablation_20260823.py`).
 
 **Same-day upgrade — "the tilt is still very conservative" (client, relayed; per
 instruction).** The first cut carried three conservatism choices that were mine, not the
@@ -948,7 +948,7 @@ would document it within a few cycles.
 ### [R-DRIFT-02] Per-name discipline on the tilt (same day, per instruction — "Do it per stock. This is a delicate exercise and needs to be done carefully")
 
 The per-stock record for every covered name is maintained under the exact production
-construction: the careful dossier (`engine/direction_tournament/PER_STOCK_CAREFUL_23-08-2026`
+construction: the careful dossier (`engine/direction_tournament/PER_STOCK_CAREFUL_23-08-2026.md`
 — house robust bootstrap across blocks {2,3,4}, Wilson intervals on hit rates, split-half
 consistency, conditional call records) and the full seed-paired ON-vs-OFF production
 backtest of all 93 tickers (`TILT_BACKTEST_ALL93_23-08-2026`). Read those files for
