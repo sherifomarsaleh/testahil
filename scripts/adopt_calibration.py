@@ -120,7 +120,8 @@ def main():
         # printed. A config that moved for a reason nobody can read later is a config
         # nobody can audit.
         if material:
-            path = ar.write_pending_review(market, result, reasons, PROFILES[market])
+            path = ar.write_change_record(market, result, reasons, PROFILES[market],
+                                          applied=True)
             adopted_note = (
                 f"\n---\n\n## ADOPTED {datetime.date.today().isoformat()}\n\n"
                 f"Reviewed and accepted by a human via scripts/adopt_calibration.py. "
