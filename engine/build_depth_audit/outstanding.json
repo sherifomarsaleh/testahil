@@ -1,0 +1,33 @@
+{
+ "_": "Studies knowingly outstanding against the repo-level provenance gate. Seeded 23-Aug-2026 from the rebuild queue, which is the same list. It may only ever get SHORTER: run scripts/check_study_provenance.py --prune once a study is fixed. Adding a name here is a deliberate deferral and needs a reason, not a convenience.",
+ "seeded": "2026-08-23",
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "SCEM",
+  "STC",
+  "SWDY"
+ ],
+ "aliases": {
+  "FERTIGLOBE": "FERTIGLB"
+ },
+ "exempt": {
+  "XPT": "metals study - no equity beta, no exchange index applies"
+ },
+ "held_unregistered": {
+  "DFMGI": "DFM General. Held but deliberately NOT registered by instruction 23-Aug-2026 \u2014 the nine DFM names stay on FTSE ADX General. Registering it needs its own instruction; see Standing_Research_Protocol.md and wacc_builder.INTERIM_INDEX.",
+  "ADXGENERAL": "Byte-identical duplicate of FADGI.csv. ADNOCDIST and ADNOCDRILL regressed against this copy; re-deriving them through the sanctioned resolver MOVES their betas (0.795->0.756, 0.649->0.609), so the deletion is a small re-issue and is queued, not a file removal. Remove once both are re-issued."
+ }
+}

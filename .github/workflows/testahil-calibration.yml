@@ -10,13 +10,21 @@ name: Testahil continuous calibration
 #     PENDING_REVIEW/*.md report and does NOT touch market_profiles.py.
 #     Nothing merges without a human clicking merge.
 
+# NO NIGHTLY SCHEDULE (removed 23-Aug-2026, user instruction). There is no live
+# market feed here: engine/raw_ohlc/ changes only when a human posts a CSV, and
+# posting already fires the push trigger below. A nightly cron therefore re-ran an
+# identical fit on identical data and re-reported the same standing finding every
+# night. Measured over 6-Aug..23-Aug-2026: 79 runs, of which 61 were push (correct
+# — new data had arrived) and 18 were the cron (nothing had changed). Removing the
+# cron is NOT what fixes a backlog of review PRs, and must not be sold as such: a
+# material finding that is never adopted re-fires on EVERY trigger, which is how 66
+# review PRs accumulated. Clearing the finding is the fix; this only stops the
+# engine asking a question about data nobody touched.
 on:
   push:
     paths:
       - 'engine/raw_ohlc/**.csv'
   workflow_dispatch: {}   # manual "run it now" button in the Actions tab
-  schedule:
-    - cron: '0 3 * * *'   # 03:00 UTC daily — catches anything pushed without triggering the path filter
 
 permissions:
   contents: write
@@ -51,8 +59,9 @@ jobs:
           python3 auto_refresh.py --apply
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
           set -e
-        # exit 0 = every touched market was NON-material  -> safe to auto-commit
-        # exit 1 = at least one MATERIAL change            -> must go to a PR
+        # exit 0 = every touched market refit and applied (material or not)
+        # exit 1 = at least one market RAISED — that market's production is untouched,
+        #          the healthy ones still applied, and the run must end red
 
       - name: Smoke-test — the engine must actually IMPORT before anything is committed
         working-directory: engine
@@ -66,59 +75,58 @@ jobs:
           print('engine imports cleanly;', len(PROFILES), 'market profiles OK')
           "
 
-      - name: Auto-commit (only when nothing was material)
-        if: steps.refresh.outputs.exit_code == '0'
+      - name: Commit the refit, with the material reasons in the message
         run: |
           git config user.name "testahil-bot"
           git config user.email "info@testahil.com"
-          if ! git diff --quiet -- engine/; then
-            git add engine/
-            git commit -m "Auto-refresh: non-material calibration update ($(date -u +%Y-%m-%d))"
-            git push
-            echo "Committed a non-material calibration refresh."
-          else
+
+          # [R-CAL-01] ONE COMMIT PATH, MATERIAL OR NOT (23-Aug-2026). A material change
+          # used to divert to a review branch and a PR. That gate produced 66 unmerged
+          # PRs in 17 days which could not be accepted even in principle — they staged
+          # only PENDING_REVIEW and panels, so merging one applied nothing — while 18
+          # names across three markets sat outside any applied fit.
+          #
+          # The thing the gate existed to prevent was a change shipping SILENTLY. That is
+          # answered here rather than by blocking: the reasons go in the commit message,
+          # which is the announcement that reaches anyone reading `git log` without
+          # knowing to look for an evidence file. auto_refresh writes them to
+          # LAST_RUN_MATERIAL.txt; this reads them back.
+          MATERIAL_FILE=engine/PENDING_REVIEW/LAST_RUN_MATERIAL.txt
+
+          if git diff --quiet -- engine/ && [ -z "$(git status --porcelain engine/)" ]; then
             echo "Nothing changed."
+            exit 0
           fi
 
-      - name: Open a review PR (only when something WAS material)
-        if: steps.refresh.outputs.exit_code != '0'
-        run: |
-          git config user.name "testahil-bot"
-          git config user.email "info@testahil.com"
-          BRANCH="calibration-review-$(date -u +%Y%m%d-%H%M%S)"
-          git checkout -b "$BRANCH"
-          git add engine/PENDING_REVIEW engine/panels
-          git commit -m "Material calibration change pending review ($(date -u +%Y-%m-%d))"
-          git push origin "$BRANCH"
-
-          # Newest report first — `ls` alphabetical once picked a STALE report (the
-          # 13-Jul EG breaks note) as the PR body for an unrelated AE failure.
-          TITLE="Calibration review needed: $(ls -t engine/PENDING_REVIEW | head -3 | tr '\n' ' ')"
-          BODY_FILE="$(ls -t engine/PENDING_REVIEW/*.md | head -1)"
-
-          # gh pr create with GITHUB_TOKEN silently fails if the repo/account setting
-          # "Allow GitHub Actions to create and approve pull requests" is off. Fall back
-          # to the REST API and, if that also fails, FAIL LOUDLY with the branch name so
-          # the analysis is never lost — a silent no-PR is the one outcome we cannot have.
-          if gh pr create --title "$TITLE" --body-file "$BODY_FILE" --base main --head "$BRANCH"; then
-            echo "PR opened via gh."
+          if [ -s "$MATERIAL_FILE" ]; then
+            SUBJECT="Auto-refresh: MATERIAL calibration change applied ($(date -u +%Y-%m-%d))"
+            BODY="$(printf 'Applied automatically and recorded, per R-CAL-01. What made it material:\n\n%s\n\nThe config each market replaced is under `superseded` in engine/fitted_configs.json.\nReverting THIS commit restores market_profiles.py and fitted_configs.json together.\nPer-market evidence is in engine/PENDING_REVIEW/.' "$(cat "$MATERIAL_FILE")")"
           else
-            echo "::warning::gh pr create failed — falling back to the REST API."
-            BODY=$(python3 -c "import json,sys; print(json.dumps(open(sys.argv[1]).read()))" "$BODY_FILE")
-            HTTP=$(curl -s -o /tmp/pr.json -w '%{http_code}' -X POST \
-              -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls" \
-              -d "{\"title\":\"$TITLE\",\"head\":\"$BRANCH\",\"base\":\"main\",\"body\":$BODY}")
-            cat /tmp/pr.json
-            if [ "$HTTP" != "201" ]; then
-              echo "::error::Could not open a PR (HTTP $HTTP). The review report IS SAFE on branch '$BRANCH' — open the PR manually. Enable Settings > Actions > General > Workflow permissions > 'Allow GitHub Actions to create and approve pull requests'."
-            fi
+            SUBJECT="Auto-refresh: non-material calibration update ($(date -u +%Y-%m-%d))"
+            BODY="No market crossed a materiality threshold."
           fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fail the run so a material change is never mistaken for a clean one
+          rm -f "$MATERIAL_FILE"
+          git add engine/
+          git commit -m "$SUBJECT" -m "$BODY"
+
+          # Retry against a moving main: the SEO and feed jobs also push here.
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main && git push origin HEAD:main && break
+            echo "push rejected (attempt $i) — retrying after rebase"
+            sleep $((i * 5))
+          done
+          echo "$SUBJECT"
+
+      - name: Fail the run if a market could not be refit
         if: steps.refresh.outputs.exit_code != '0'
         run: |
-          echo "::error::Material calibration change detected — production was NOT modified. Review the PR."
+          # A nonzero exit no longer means "material" — material changes apply and are
+          # announced. It now means a market RAISED. That market's production is
+          # untouched and a PENDING_REVIEW/{MARKET}_{date}-ERROR.md carries the
+          # traceback; the healthy markets were still applied and committed above.
+          # This stays red because an exception is not evidence, and a crashed market
+          # that looked green is how EG sat unprocessed for weeks in July.
+          echo "::error::A market could not be refit — see engine/PENDING_REVIEW/*-ERROR.md. Its production config is unchanged; other markets were applied."
           exit 1

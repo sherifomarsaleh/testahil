@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-09",
+    "last_updated": "2026-08-23",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -19,6 +19,8 @@
     "panel_names": [
       "ABUK",
       "ADIB",
+      "AMOC",
+      "ARCC",
       "BTFH",
       "CCAP",
       "CLHO",
@@ -27,6 +29,8 @@
       "EFID",
       "EFIH",
       "EGAL",
+      "EGCH",
+      "ELEC",
       "EMFD",
       "ETEL",
       "FWRY",
@@ -42,361 +46,447 @@
       "ORAS",
       "ORHD",
       "ORWE",
+      "PHAR",
       "PHDC",
       "PRDC",
       "RAYA",
       "RMDA",
+      "SCEM",
+      "SWDY",
       "TMGH"
     ],
-    "windows": 494,
+    "windows": 611,
     "rebuilt_this_run": [],
-    "nu": 6.0,
+    "nu": 5.0,
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0158,
+    "market_skill": 0.0092,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
-      0.009,
-      0.022
+      -0.004,
+      0.02
     ],
-    "market_verdict": "PASS",
+    "market_verdict": "PARITY",
     "top_name_weight_share": 0.067,
     "top_name": "BTFH",
     "signal_active": false,
     "per_name": {
       "ABUK": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.0446,
-        "skill_raw_basis": 0.0397,
+        "skill": 0.0401,
+        "skill_raw_basis": 0.0358,
         "verdict": "PASS",
         "ci_block2": [
-          0.011,
-          0.076
-        ]
-      },
-      "ADIB": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0218,
-        "skill_raw_basis": 0.0304,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          -0.0,
-          0.044
-        ]
-      },
-      "BTFH": {
-        "nu": 6.0,
-        "width_cal": 0.944,
-        "skill": 0.0245,
-        "skill_raw_basis": 0.0367,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.005,
+          0.009,
           0.071
         ]
       },
-      "CCAP": {
-        "nu": 6.0,
-        "width_cal": 0.944,
-        "skill": 0.0219,
-        "skill_raw_basis": 0.0198,
+      "ADIB": {
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.024,
+        "skill_raw_basis": 0.0349,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.002,
+          0.049
+        ]
+      },
+      "AMOC": {
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.0081,
+        "skill_raw_basis": 0.0138,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.009,
-          0.072
+          -0.02,
+          0.065
+        ]
+      },
+      "ARCC": {
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": -0.019,
+        "skill_raw_basis": -0.0123,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.073,
+          0.007
+        ]
+      },
+      "BTFH": {
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.0235,
+        "skill_raw_basis": 0.0372,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.073
+        ]
+      },
+      "CCAP": {
+        "nu": 5.0,
+        "width_cal": 0.944,
+        "skill": 0.0178,
+        "skill_raw_basis": 0.0164,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.073
         ]
       },
       "CLHO": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": -0.0117,
-        "skill_raw_basis": -0.0194,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": -0.0112,
+        "skill_raw_basis": -0.0186,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.047,
-          0.008
+          -0.041,
+          0.006
         ]
       },
       "COMI": {
-        "nu": 6.0,
-        "width_cal": 0.944,
-        "skill": 0.0207,
-        "skill_raw_basis": 0.031,
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.02,
+        "skill_raw_basis": 0.0318,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.002,
-          0.057
+          -0.004,
+          0.059
         ]
       },
       "DSCW": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.958,
-        "skill": -0.0046,
-        "skill_raw_basis": -0.0151,
+        "skill": -0.0007,
+        "skill_raw_basis": -0.0068,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.036,
+          -0.023,
           0.021
         ]
       },
       "EFID": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.025,
-        "skill_raw_basis": -0.0084,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0279,
+        "skill_raw_basis": -0.0028,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.051,
+          -0.043,
           0.07
         ]
       },
       "EFIH": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0215,
-        "skill_raw_basis": 0.0219,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0216,
+        "skill_raw_basis": 0.0211,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.011,
-          0.064
+          -0.013,
+          0.066
         ]
       },
       "EGAL": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0322,
-        "skill_raw_basis": 0.0437,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0343,
+        "skill_raw_basis": 0.0515,
         "verdict": "PASS",
         "ci_block2": [
           0.016,
-          0.063
+          0.071
+        ]
+      },
+      "EGCH": {
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0266,
+        "skill_raw_basis": 0.0257,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.008,
+          0.047
+        ]
+      },
+      "ELEC": {
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.088,
+        "skill_raw_basis": 0.1188,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.063,
+          0.136
         ]
       },
       "EMFD": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": -0.008,
-        "skill_raw_basis": -0.0086,
+        "skill": -0.01,
+        "skill_raw_basis": -0.0106,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.036,
-          0.016
+          -0.037,
+          0.014
         ]
       },
       "ETEL": {
-        "nu": 6.0,
-        "width_cal": 0.944,
-        "skill": 0.0565,
-        "skill_raw_basis": 0.0591,
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.0541,
+        "skill_raw_basis": 0.0567,
         "verdict": "PASS",
         "ci_block2": [
-          0.034,
-          0.072
+          0.033,
+          0.069
         ]
       },
       "FWRY": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.958,
-        "skill": 0.0092,
-        "skill_raw_basis": -0.0045,
+        "skill": 0.0128,
+        "skill_raw_basis": 0.0007,
         "verdict": "PARITY",
         "ci_block2": [
           -0.018,
-          0.05
+          0.059
         ]
       },
       "GBCO": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0086,
-        "skill_raw_basis": 0.0062,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0096,
+        "skill_raw_basis": 0.0096,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.01,
-          0.036
+          -0.013,
+          0.043
         ]
       },
       "HELI": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0067,
-        "skill_raw_basis": 0.0139,
+        "skill": 0.0057,
+        "skill_raw_basis": 0.013,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.024,
-          0.039
+          -0.026,
+          0.043
         ]
       },
       "HRHO": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0016,
-        "skill_raw_basis": -0.0039,
+        "skill": 0.0022,
+        "skill_raw_basis": -0.001,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.025,
-          0.016
+          -0.023,
+          0.02
         ]
       },
       "ISPH": {
-        "nu": 6.0,
-        "width_cal": 0.937,
-        "skill": -0.0186,
-        "skill_raw_basis": -0.0133,
+        "nu": 5.0,
+        "width_cal": 0.944,
+        "skill": -0.0201,
+        "skill_raw_basis": -0.01,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.042,
+          -0.044,
           0.003
         ]
       },
       "JUFO": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.958,
-        "skill": -0.0163,
-        "skill_raw_basis": -0.0018,
+        "skill": -0.0107,
+        "skill_raw_basis": 0.0056,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.063,
-          0.024
+          -0.054,
+          0.028
         ]
       },
       "KABO": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0117,
-        "skill_raw_basis": 0.0069,
+        "skill": 0.0105,
+        "skill_raw_basis": 0.0073,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.003,
+          -0.002,
           0.032
         ]
       },
       "LCSW": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0406,
-        "skill_raw_basis": 0.0313,
+        "skill": 0.0388,
+        "skill_raw_basis": 0.0353,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.03,
-          0.078
+          -0.031,
+          0.079
         ]
       },
       "OCDI": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0321,
-        "skill_raw_basis": 0.0541,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0329,
+        "skill_raw_basis": 0.0562,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.008,
-          0.069
+          -0.005,
+          0.072
         ]
       },
       "OIH": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": -0.0185,
-        "skill_raw_basis": -0.0163,
+        "skill": -0.0166,
+        "skill_raw_basis": -0.0156,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.044,
-          0.019
+          -0.045,
+          0.026
         ]
       },
       "ORAS": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.039,
-        "skill_raw_basis": 0.0396,
-        "verdict": "PASS",
+        "skill": 0.0361,
+        "skill_raw_basis": 0.037,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          0.005,
-          0.073
+          0.002,
+          0.072
         ]
       },
       "ORHD": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": 0.0147,
-        "skill_raw_basis": 0.0072,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": 0.0132,
+        "skill_raw_basis": 0.0065,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.01,
-          0.037
+          -0.011,
+          0.035
         ]
       },
       "ORWE": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0283,
-        "skill_raw_basis": 0.0292,
+        "skill": 0.0273,
+        "skill_raw_basis": 0.03,
         "verdict": "PASS",
         "ci_block2": [
-          0.005,
-          0.054
+          0.004,
+          0.056
+        ]
+      },
+      "PHAR": {
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": -0.0094,
+        "skill_raw_basis": -0.0086,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.033,
+          0.02
         ]
       },
       "PHDC": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.0094,
-        "skill_raw_basis": 0.0127,
+        "skill": 0.0055,
+        "skill_raw_basis": 0.0091,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.014,
-          0.024
+          -0.02,
+          0.022
         ]
       },
       "PRDC": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.958,
-        "skill": 0.0172,
-        "skill_raw_basis": 0.0202,
-        "verdict": "PARITY",
+        "skill": 0.022,
+        "skill_raw_basis": 0.0244,
+        "verdict": "PASS",
         "ci_block2": [
-          -0.008,
-          0.036
+          0.003,
+          0.046
         ]
       },
       "RAYA": {
-        "nu": 6.0,
-        "width_cal": 0.944,
-        "skill": -0.0232,
-        "skill_raw_basis": -0.0263,
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": -0.025,
+        "skill_raw_basis": -0.0292,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.069,
-          0.013
+          -0.07,
+          0.012
         ]
       },
       "RMDA": {
-        "nu": 6.0,
-        "width_cal": 0.951,
-        "skill": -0.0067,
-        "skill_raw_basis": -0.0044,
+        "nu": 5.0,
+        "width_cal": 0.958,
+        "skill": -0.0044,
+        "skill_raw_basis": -0.0015,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.028,
-          0.016
+          -0.024,
+          0.017
+        ]
+      },
+      "SCEM": {
+        "nu": 6.0,
+        "width_cal": 0.944,
+        "skill": -0.1256,
+        "skill_raw_basis": -0.065,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.638,
+          0.044
+        ]
+      },
+      "SWDY": {
+        "nu": 5.0,
+        "width_cal": 0.951,
+        "skill": 0.0112,
+        "skill_raw_basis": 0.0218,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.032,
+          0.071
         ]
       },
       "TMGH": {
-        "nu": 6.0,
+        "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.039,
-        "skill_raw_basis": 0.0526,
+        "skill": 0.0368,
+        "skill_raw_basis": 0.0529,
         "verdict": "PASS",
         "ci_block2": [
-          0.016,
-          0.091
+          0.014,
+          0.09
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 6.0,
+      "width_cal": 0.951,
+      "market_verdict": "PASS",
+      "replaced_on": "2026-08-23"
+    }
   },
   "SA": {
     "market": "SA",
@@ -411,21 +501,23 @@
       "MAADEN",
       "RAJHI",
       "RIBL",
+      "RIYADHCABLE",
       "SABIC",
+      "SAVOLA",
       "SNB",
       "STC"
     ],
-    "windows": 392,
+    "windows": 446,
     "rebuilt_this_run": [],
     "nu": 12.0,
-    "width_cal": 1.07,
+    "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": -0.002,
+    "market_skill": -0.0023,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
-      -0.009,
-      0.004
+      -0.008,
+      0.003
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -434,24 +526,24 @@
     "per_name": {
       "ACWA": {
         "nu": 12.0,
-        "width_cal": 1.07,
-        "skill": 0.0032,
-        "skill_raw_basis": 0.0004,
+        "width_cal": 1.063,
+        "skill": 0.0031,
+        "skill_raw_basis": 0.0003,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.018,
-          0.022
+          -0.017,
+          0.021
         ]
       },
       "ALINMA": {
-        "nu": 15.0,
-        "width_cal": 1.063,
-        "skill": 0.0061,
-        "skill_raw_basis": 0.0041,
+        "nu": 12.0,
+        "width_cal": 1.056,
+        "skill": 0.0056,
+        "skill_raw_basis": 0.0036,
         "verdict": "PARITY",
         "ci_block2": [
           -0.011,
-          0.027
+          0.026
         ]
       },
       "ARAMCO": {
@@ -466,32 +558,32 @@
         ]
       },
       "ELM": {
-        "nu": 12.0,
+        "nu": 10.0,
         "width_cal": 1.063,
-        "skill": 0.0056,
-        "skill_raw_basis": 0.0001,
+        "skill": 0.0033,
+        "skill_raw_basis": -0.0017,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.017,
-          0.017
+          -0.018,
+          0.014
         ]
       },
       "EXTRA": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.07,
         "skill": -0.0372,
-        "skill_raw_basis": -0.0704,
+        "skill_raw_basis": -0.0687,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.065,
-          -0.021
+          -0.063,
+          -0.022
         ]
       },
       "MAADEN": {
         "nu": 12.0,
-        "width_cal": 1.077,
+        "width_cal": 1.07,
         "skill": 0.0073,
-        "skill_raw_basis": 0.0072,
+        "skill_raw_basis": 0.007,
         "verdict": "PARITY",
         "ci_block2": [
           -0.009,
@@ -510,51 +602,79 @@
         ]
       },
       "RIBL": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.049,
-        "skill": -0.0011,
-        "skill_raw_basis": -0.0034,
+        "skill": -0.0018,
+        "skill_raw_basis": -0.0039,
         "verdict": "PARITY",
         "ci_block2": [
           -0.02,
-          0.019
+          0.018
+        ]
+      },
+      "RIYADHCABLE": {
+        "nu": 12.0,
+        "width_cal": 1.07,
+        "skill": -0.0219,
+        "skill_raw_basis": -0.0218,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.087,
+          0.009
         ]
       },
       "SABIC": {
-        "nu": 12.0,
+        "nu": 10.0,
         "width_cal": 1.077,
-        "skill": -0.0003,
-        "skill_raw_basis": -0.0037,
+        "skill": -0.0002,
+        "skill_raw_basis": -0.0035,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.024,
+          -0.023,
           0.022
         ]
       },
-      "SNB": {
-        "nu": 15.0,
-        "width_cal": 1.084,
-        "skill": -0.0103,
-        "skill_raw_basis": -0.015,
+      "SAVOLA": {
+        "nu": 12.0,
+        "width_cal": 1.07,
+        "skill": 0.0016,
+        "skill_raw_basis": 0.0012,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.029,
+          -0.009,
+          0.011
+        ]
+      },
+      "SNB": {
+        "nu": 12.0,
+        "width_cal": 1.077,
+        "skill": -0.0086,
+        "skill_raw_basis": -0.0129,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.025,
           0.005
         ]
       },
       "STC": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.084,
-        "skill": -0.0011,
-        "skill_raw_basis": -0.0019,
+        "skill": -0.0001,
+        "skill_raw_basis": -0.0009,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.022,
-          0.017
+          -0.019,
+          0.016
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 12.0,
+      "width_cal": 1.063,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "US": {
     "market": "US",
@@ -616,7 +736,13 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 12.0,
+      "width_cal": 1.084,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "GB": {
     "code": "GB",
@@ -701,7 +827,13 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 8.0,
+      "width_cal": 1.07,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "AE": {
     "market": "AE",
@@ -710,35 +842,44 @@
     "panel_names": [
       "ADCB",
       "ADIB",
+      "ADNOCDIST",
+      "ADNOCDRILL",
       "ADNOCGAS",
+      "ADNOCLS",
       "AGTHIA",
       "AIRARABIA",
       "ALDAR",
       "ALPHADHABI",
+      "AMR",
+      "BOROUGE",
       "BURJEEL",
       "DEWA",
       "DIB",
+      "DU",
       "EAND",
       "EMAAR",
       "EMAARDEV",
+      "EMPOWER",
       "ENBD",
       "FAB",
+      "FERTIGLB",
       "IHC",
       "LULU",
+      "MODON",
       "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 279,
+    "windows": 400,
     "rebuilt_this_run": [],
-    "nu": 8.0,
-    "width_cal": 0.979,
+    "nu": 10.0,
+    "width_cal": 0.923,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0068,
+    "market_skill": 0.0061,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
       -0.0,
-      0.014
+      0.013
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.084,
@@ -746,215 +887,321 @@
     "signal_active": false,
     "per_name": {
       "ADCB": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": 0.0347,
-        "skill_raw_basis": 0.0311,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": 0.0336,
+        "skill_raw_basis": 0.0294,
         "verdict": "PASS",
         "ci_block2": [
-          0.014,
-          0.059
+          0.016,
+          0.063
         ]
       },
       "ADIB": {
-        "nu": 8.0,
-        "width_cal": 0.965,
-        "skill": 0.0171,
-        "skill_raw_basis": 0.0111,
-        "verdict": "PASS",
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0135,
+        "skill_raw_basis": 0.0056,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          0.002,
+          -0.002,
           0.032
         ]
       },
+      "ADNOCDIST": {
+        "nu": 10.0,
+        "width_cal": 0.937,
+        "skill": -0.024,
+        "skill_raw_basis": -0.0255,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.055,
+          0.003
+        ]
+      },
+      "ADNOCDRILL": {
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0078,
+        "skill_raw_basis": -0.0058,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.016,
+          0.004
+        ]
+      },
       "ADNOCGAS": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": 0.0015,
-        "skill_raw_basis": 0.0021,
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": 0.0053,
+        "skill_raw_basis": 0.0062,
         "verdict": "PARITY",
         "ci_block2": [
           -0.012,
-          0.032
+          0.043
+        ]
+      },
+      "ADNOCLS": {
+        "nu": 8.0,
+        "width_cal": 0.93,
+        "skill": 0.0215,
+        "skill_raw_basis": 0.0177,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.037
         ]
       },
       "AGTHIA": {
         "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": -0.0353,
-        "skill_raw_basis": -0.0391,
+        "width_cal": 0.93,
+        "skill": -0.0325,
+        "skill_raw_basis": -0.0366,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.107,
-          0.014
+          -0.095,
+          0.012
         ]
       },
       "AIRARABIA": {
         "nu": 10.0,
-        "width_cal": 0.979,
-        "skill": 0.0013,
-        "skill_raw_basis": -0.0067,
+        "width_cal": 0.923,
+        "skill": 0.0038,
+        "skill_raw_basis": -0.0012,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.026,
-          0.013
+          -0.014,
+          0.015
         ]
       },
       "ALDAR": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": 0.0277,
-        "skill_raw_basis": 0.0225,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": 0.0256,
+        "skill_raw_basis": 0.0206,
         "verdict": "PASS",
         "ci_block2": [
-          0.006,
+          0.007,
           0.045
         ]
       },
       "ALPHADHABI": {
         "nu": 8.0,
-        "width_cal": 0.986,
-        "skill": 0.0005,
-        "skill_raw_basis": -0.0017,
+        "width_cal": 0.93,
+        "skill": 0.0042,
+        "skill_raw_basis": 0.0033,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.008,
-          0.009
+          -0.009,
+          0.018
+        ]
+      },
+      "AMR": {
+        "nu": 8.0,
+        "width_cal": 0.93,
+        "skill": -0.0116,
+        "skill_raw_basis": -0.0169,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.035,
+          0.008
+        ]
+      },
+      "BOROUGE": {
+        "nu": 10.0,
+        "width_cal": 0.937,
+        "skill": -0.0622,
+        "skill_raw_basis": -0.0599,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.106,
+          -0.026
         ]
       },
       "BURJEEL": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": 0.015,
-        "skill_raw_basis": 0.008,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": 0.018,
+        "skill_raw_basis": 0.0115,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.007,
-          0.041
+          -0.0,
+          0.045
         ]
       },
       "DEWA": {
-        "nu": 8.0,
-        "width_cal": 0.986,
-        "skill": 0.0066,
-        "skill_raw_basis": 0.007,
-        "verdict": "PARITY",
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": 0.0136,
+        "skill_raw_basis": 0.0134,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.008,
-          0.022
+          -0.001,
+          0.038
         ]
       },
       "DIB": {
         "nu": 10.0,
-        "width_cal": 0.965,
-        "skill": 0.0267,
-        "skill_raw_basis": 0.0266,
+        "width_cal": 0.916,
+        "skill": 0.0231,
+        "skill_raw_basis": 0.023,
         "verdict": "PASS",
         "ci_block2": [
-          0.006,
-          0.04
+          0.009,
+          0.035
+        ]
+      },
+      "DU": {
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0008,
+        "skill_raw_basis": 0.0062,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.056,
+          0.047
         ]
       },
       "EAND": {
         "nu": 10.0,
-        "width_cal": 0.979,
-        "skill": 0.0221,
-        "skill_raw_basis": 0.0187,
+        "width_cal": 0.923,
+        "skill": 0.027,
+        "skill_raw_basis": 0.0209,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.003,
-          0.06
+          -0.004,
+          0.072
         ]
       },
       "EMAAR": {
         "nu": 10.0,
-        "width_cal": 0.965,
-        "skill": 0.0175,
-        "skill_raw_basis": 0.0231,
+        "width_cal": 0.923,
+        "skill": 0.0156,
+        "skill_raw_basis": 0.0222,
         "verdict": "PASS",
         "ci_block2": [
-          0.01,
-          0.041
+          0.006,
+          0.047
         ]
       },
       "EMAARDEV": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": -0.0112,
-        "skill_raw_basis": -0.0083,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0129,
+        "skill_raw_basis": -0.0085,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.021,
-          0.003
+          -0.027,
+          0.007
+        ]
+      },
+      "EMPOWER": {
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0271,
+        "skill_raw_basis": -0.0274,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.038,
+          -0.008
         ]
       },
       "ENBD": {
-        "nu": 8.0,
-        "width_cal": 0.986,
-        "skill": -0.0116,
-        "skill_raw_basis": -0.0089,
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0101,
+        "skill_raw_basis": -0.0091,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.053,
-          0.009
+          -0.041,
+          0.01
         ]
       },
       "FAB": {
-        "nu": 8.0,
-        "width_cal": 0.986,
-        "skill": -0.0114,
-        "skill_raw_basis": -0.0134,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0082,
+        "skill_raw_basis": -0.0116,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.03,
-          0.02
+          -0.029,
+          0.029
+        ]
+      },
+      "FERTIGLB": {
+        "nu": 8.0,
+        "width_cal": 0.93,
+        "skill": -0.003,
+        "skill_raw_basis": -0.0073,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.023,
+          0.011
         ]
       },
       "IHC": {
-        "nu": 10.0,
-        "width_cal": 0.972,
-        "skill": 0.0236,
-        "skill_raw_basis": 0.0096,
+        "nu": 12.0,
+        "width_cal": 0.916,
+        "skill": 0.0201,
+        "skill_raw_basis": 0.0121,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.175,
-          0.073
+          -0.143,
+          0.07
         ]
       },
       "LULU": {
-        "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": -0.0808,
-        "skill_raw_basis": -0.0821,
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0674,
+        "skill_raw_basis": -0.0685,
         "verdict": "PROVISIONAL(insufficient-windows)",
         "ci_block2": [
-          -0.081,
-          -0.081
+          -0.067,
+          -0.067
+        ]
+      },
+      "MODON": {
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": 0.0453,
+        "skill_raw_basis": 0.0465,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.022,
+          0.071
         ]
       },
       "SALIK": {
         "nu": 8.0,
-        "width_cal": 0.979,
-        "skill": 0.0068,
-        "skill_raw_basis": 0.0065,
+        "width_cal": 0.93,
+        "skill": 0.0047,
+        "skill_raw_basis": 0.0051,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.008,
-          0.022
+          -0.006,
+          0.015
         ]
       },
       "TWOPOINTZERO": {
         "nu": 8.0,
-        "width_cal": 0.965,
-        "skill": -0.0076,
-        "skill_raw_basis": -0.0081,
+        "width_cal": 0.923,
+        "skill": -0.0128,
+        "skill_raw_basis": -0.0143,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.016,
-          0.003
+          -0.023,
+          0.002
         ]
       }
-    }
+    },
+    "superseded": {
+      "nu": 8.0,
+      "width_cal": 0.979,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    },
+    "auto_refreshed": "2026-08-23"
   },
   "IN": {
     "market": "IN",
@@ -1016,7 +1263,13 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 6.0,
+      "width_cal": 1.021,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "QA": {
     "market": "QA",
@@ -1078,7 +1331,13 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 6.0,
+      "width_cal": 0.951,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "XAU": {
     "code": "XAU",
@@ -1125,7 +1384,13 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 12.0,
+      "width_cal": 0.958,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   },
   "XPT": {
     "market": "XPT",
@@ -1165,6 +1430,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-05"
+    "auto_refreshed": "2026-08-23",
+    "superseded": {
+      "nu": 8.0,
+      "width_cal": 0.86,
+      "market_verdict": "PARITY",
+      "replaced_on": "2026-08-23"
+    }
   }
 }

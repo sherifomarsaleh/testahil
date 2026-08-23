@@ -54,7 +54,7 @@ ALIAS = {
     "KR/SAMSUNG":      "Samsung",
     "XAU/GOLD":        "Gold",
     "XAU/SILVER":      "Silver",
-    "XPT/PLATINUM":    "XPTUSD",
+    "XPT/PLATINUM":    "Platinum",
 }
 
 # Display order and labels for the tab groups. `group` collapses the two metal

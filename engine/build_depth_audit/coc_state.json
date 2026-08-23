@@ -1,0 +1,722 @@
+{
+ "ADNOCLS": {
+  "cls": "gate-fails",
+  "d": "attested-by-nothing \u2014 conforming record, but no code in the study calls a gate",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "ADNOCDIST": {
+  "cls": "unregistered-file",
+  "d": "ADXGENERAL",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "ADNOCDRILL": {
+  "cls": "unregistered-file",
+  "d": "ADXGENERAL",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "AIRARABIA": {
+  "cls": "gate-fails",
+  "d": "hand-rolled regression (lstsq, not own_stock_beta); record names FADGI.csv with no raw_indices/ path",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "DFM",
+  "tier": "A"
+ },
+ "AMR": {
+  "cls": "attestable",
+  "d": "FADGI",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "BOROUGE": {
+  "cls": "gate-fails",
+  "d": "hand-rolled regression retaining a composite corroboration; no gate call",
+  "bu": true,
+  "ed": "17-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "EMPOWER": {
+  "cls": "named-only",
+  "d": "FADGI (FTSE ADX General Index), pe",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "DFM",
+  "tier": "A"
+ },
+ "FERTIGLB": {
+  "cls": "attestable",
+  "d": "FADGI",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "SALIK": {
+  "cls": "no-record",
+  "d": "regression (regressor unclear)",
+  "bu": true,
+  "ed": "11-07-2026",
+  "x": "DFM",
+  "tier": "A"
+ },
+ "LULU": {
+  "cls": "no-record",
+  "d": "regression (regressor unclear)",
+  "bu": true,
+  "ed": "13-07-2026",
+  "x": "ADX",
+  "tier": "A"
+ },
+ "AMOC": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "08-08-2026",
+  "x": "EGX",
+  "tier": "A"
+ },
+ "ARCC": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "08-08-2026",
+  "x": "EGX",
+  "tier": "A"
+ },
+ "SCEM": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "06-08-2026",
+  "x": "EGX",
+  "tier": "A"
+ },
+ "EGCH": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "08-08-2026",
+  "x": "EGX",
+  "tier": "A"
+ },
+ "PHAR": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "09-08-2026",
+  "x": "EGX",
+  "tier": "A"
+ },
+ "SAVOLA": {
+  "cls": "attestable",
+  "d": "TASI",
+  "bu": true,
+  "ed": "19-08-2026",
+  "x": "TADAWUL",
+  "tier": "A-"
+ },
+ "DU": {
+  "cls": "named-only",
+  "d": "FTSE ADX General (user-supplied ex",
+  "bu": true,
+  "ed": "17-08-2026",
+  "x": "DFM",
+  "tier": "A-"
+ },
+ "CLHO": {
+  "cls": "no-record",
+  "d": "composite",
+  "bu": true,
+  "ed": "13-07-2026",
+  "x": "EGX",
+  "tier": "A-"
+ },
+ "DSCW": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": true,
+  "ed": "19-07-2026",
+  "x": "EGX",
+  "tier": "A-"
+ },
+ "GBCO": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": true,
+  "ed": "08-07-2026",
+  "x": "EGX",
+  "tier": "A-"
+ },
+ "ELEC": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": true,
+  "ed": "05-08-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "RIYADHCABLE": {
+  "cls": "attestable",
+  "d": "TASI",
+  "bu": true,
+  "ed": "18-08-2026",
+  "x": "TADAWUL",
+  "tier": "B"
+ },
+ "PHDC": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": true,
+  "ed": "11-06-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "TMGH": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": true,
+  "ed": "17-06-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "OCDI": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": true,
+  "ed": "24-06-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "ORHD": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": true,
+  "ed": "25-06-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "EMFD": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": true,
+  "ed": "17-06-2026",
+  "x": "EGX",
+  "tier": "B"
+ },
+ "MODON": {
+  "cls": "named-only",
+  "d": "FTSE ADX General Index",
+  "bu": false,
+  "ed": "10-08-2026",
+  "x": "ADX",
+  "tier": "C"
+ },
+ "SWDY": {
+  "cls": "composite-cohort",
+  "d": "no regressor recorded",
+  "bu": false,
+  "ed": "05-08-2026",
+  "x": "EGX",
+  "tier": "C"
+ },
+ "ALDAR": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "08-07-2026",
+  "x": "ADX",
+  "tier": "C"
+ },
+ "EMAARDEV": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "08-07-2026",
+  "x": "DFM",
+  "tier": "C"
+ },
+ "DEWA": {
+  "cls": "no-record",
+  "d": "regression (regressor unclear)",
+  "bu": false,
+  "ed": "11-07-2026",
+  "x": "DFM",
+  "tier": "C"
+ },
+ "PRDC": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "EGX",
+  "tier": "C"
+ },
+ "STC": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "09-07-2026",
+  "x": "TADAWUL",
+  "tier": "D"
+ },
+ "ADNOCGAS": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "04-07-2026",
+  "x": "ADX",
+  "tier": "D"
+ },
+ "AGTHIA": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "ADX",
+  "tier": "D"
+ },
+ "RMDA": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "13-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "SABIC": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "07-07-2026",
+  "x": "TADAWUL",
+  "tier": "D"
+ },
+ "EAND": {
+  "cls": "no-record",
+  "d": "regression (regressor unclear)",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "ADX",
+  "tier": "D"
+ },
+ "BURJEEL": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "11-07-2026",
+  "x": "ADX",
+  "tier": "D"
+ },
+ "ARAMCO": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "TADAWUL",
+  "tier": "D"
+ },
+ "ACWA": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "05-07-2026",
+  "x": "TADAWUL",
+  "tier": "E"
+ },
+ "MAADEN": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "05-07-2026",
+  "x": "TADAWUL",
+  "tier": "E"
+ },
+ "ELM": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "TADAWUL",
+  "tier": "D"
+ },
+ "EXTRA": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "TADAWUL",
+  "tier": "D"
+ },
+ "AAPL": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "NASDAQ",
+  "tier": "D"
+ },
+ "NVDA": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "NASDAQ",
+  "tier": "D"
+ },
+ "TSLA": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "30-06-2026",
+  "x": "NASDAQ",
+  "tier": "E"
+ },
+ "INFY": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "NSE",
+  "tier": "D"
+ },
+ "RELIANCE": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "NSE",
+  "tier": "E"
+ },
+ "TMPV": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "30-06-2026",
+  "x": "NSE",
+  "tier": "E"
+ },
+ "SAMSUNG": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "27-06-2026",
+  "x": "KRX",
+  "tier": "E"
+ },
+ "KAKAO": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "28-06-2026",
+  "x": "KRX",
+  "tier": "E"
+ },
+ "LGES": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "28-06-2026",
+  "x": "KRX",
+  "tier": "D"
+ },
+ "QGTS": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "05-07-2026",
+  "x": "QSE",
+  "tier": "D"
+ },
+ "IQCD": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "05-07-2026",
+  "x": "QSE",
+  "tier": "E"
+ },
+ "EGAL": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "EFID": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "EFIH": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "JUFO": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "LCSW": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "ORWE": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "ISPH": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "07-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "FWRY": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "ORAS": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "30-06-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "ABUK": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "D"
+ },
+ "ETEL": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "HELI": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "KABO": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "06-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "OIH": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "CCAP": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "30-06-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "HRHO": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "RAYA": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ },
+ "EMAAR": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "01-07-2026",
+  "x": "DFM",
+  "tier": "E"
+ },
+ "IHC": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "04-07-2026",
+  "x": "ADX",
+  "tier": "E"
+ },
+ "ALPHADHABI": {
+  "cls": "no-record",
+  "d": "composite",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "ADX",
+  "tier": "E"
+ },
+ "2POINTZERO": {
+  "cls": "no-record",
+  "d": "composite",
+  "bu": false,
+  "ed": "11-07-2026",
+  "x": "ADX",
+  "tier": "E"
+ },
+ "ADCB": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "ADX",
+  "tier": "F"
+ },
+ "ADIBUAE": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "11-07-2026",
+  "x": "ADX",
+  "tier": "F"
+ },
+ "DIB": {
+  "cls": "no-record",
+  "d": "regression (regressor unclear)",
+  "bu": false,
+  "ed": "11-07-2026",
+  "x": "DFM",
+  "tier": "F"
+ },
+ "ADIB": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "F"
+ },
+ "ALRAJHI": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "02-07-2026",
+  "x": "TADAWUL",
+  "tier": "F"
+ },
+ "ALINMA": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "10-07-2026",
+  "x": "TADAWUL",
+  "tier": "F"
+ },
+ "RIBL": {
+  "cls": "no-record",
+  "d": "index-regression",
+  "bu": false,
+  "ed": "09-07-2026",
+  "x": "TADAWUL",
+  "tier": "F"
+ },
+ "SNB": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "04-07-2026",
+  "x": "TADAWUL",
+  "tier": "F"
+ },
+ "COMI": {
+  "cls": "no-record",
+  "d": "not stated",
+  "bu": false,
+  "ed": "29-06-2026",
+  "x": "EGX",
+  "tier": "F"
+ },
+ "ENBD": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "DFM",
+  "tier": "F"
+ },
+ "FAB": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "ADX",
+  "tier": "F"
+ },
+ "QNB": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "05-07-2026",
+  "x": "QSE",
+  "tier": "F"
+ },
+ "BTFH": {
+  "cls": "no-record",
+  "d": "asserted",
+  "bu": false,
+  "ed": "03-07-2026",
+  "x": "EGX",
+  "tier": "E"
+ }
+}

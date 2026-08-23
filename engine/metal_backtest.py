@@ -135,7 +135,7 @@ GREY = '#9aa8a5'
 PANELS = {
     'GOLD': ('XAU', 'GOLD', 'Gold', 'Gold'),
     'SILVER': ('XAU', 'SILVER', 'Silver', 'Silver'),
-    'PLATINUM': ('XPT', 'PLATINUM', 'Platinum', 'XPTUSD'),
+    'PLATINUM': ('XPT', 'PLATINUM', 'Platinum', 'Platinum'),
 }
 
 
@@ -464,7 +464,7 @@ EX = {'EGX': 'EG', 'ADX': 'AE', 'DFM': 'AE', 'TADAWUL': 'SA', 'KRX': 'KR',
       'QSE': 'QA', 'QE': 'QA'}
 SERIES_OVERRIDE = {'ALRAJHI': 'RAJHI', 'ADIBUAE': 'ADIB',
                    '2POINTZERO': 'TWOPOINTZERO'}
-LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'XPTUSD',
+LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'Platinum',
                 'SAMSUNG': 'Samsung', 'KAKAO': 'Kakao'}
 
 

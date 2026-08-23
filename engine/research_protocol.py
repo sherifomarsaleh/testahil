@@ -351,3 +351,125 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
             "BETA PROVENANCE FAIL — an interim index substitution is in force but its "
             "disclosure note is absent. Any beta on an interim regressor must quote it."
         )
+
+
+# ---------------------------------------------------------------------------
+# THE STUDY STANDARD, VERSIONED  [R-STD-01, ADDED 23-Aug-2026, per instruction]
+#
+# Until now nothing stamped a study with the standard it was built against, so
+# "is this study finished, or finished-for-now?" had no answer in the repository
+# and a name re-issued in September could silently need re-issuing in November.
+# A study records the version it was built to; the repo-level gate reports any
+# study built to an older one. Bump this ONLY when a change would alter a
+# delivered number or a required artefact — not for prose.
+# ---------------------------------------------------------------------------
+STANDARD_VERSION = "2026.08.23"
+STANDARD_VERSION_NOTE = (
+    "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
+    "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
+    "attested by assert_beta_provenance(); forecast built ground-up to the finest sourced "
+    "level and attested by assert_ground_up() on a driver record; margins as outputs; "
+    "terminal growth reconciled; the three gates called in the study's own code."
+)
+
+
+# ---------------------------------------------------------------------------
+# GROUND-UP CONSTRUCTION GATE  [R-SIGCM-02, ADDED 23-Aug-2026, per instruction]
+#
+# The protocol already diagnosed this failure mode exactly, for beta:
+# "SIGCMChecklist.beta_own_history_vs_egx30 is a flag a study sets itself, and every
+# study set it True while regressing on a composite. A self-attestation cannot catch
+# that." That diagnosis was acted on for beta ONLY. The other eight clauses stayed
+# self-attested booleans -- forecast_ground_up among them -- and the 23-Aug-2026
+# build-depth audit found 63 of 90 delivered studies were NOT built ground-up while
+# the flag was available to be set True. Same hole, one clause over.
+#
+# This gate does for the ground-up clause what assert_beta_provenance() did for beta:
+# it inspects a RECORD of how each revenue line was actually built, and fails on the
+# evidence rather than on the study's opinion of itself.
+# ---------------------------------------------------------------------------
+GROUND_UP_LEVELS = {
+    "unit":     "volume x price on a DISCLOSED physical unit, cost per unit; margin an output",
+    "derived":  "unit economics on a volume that is indexed, estimated or back-solved rather "
+                "than disclosed -- permitted, but the gap must be stated in the study",
+    "segment":  "the disclosed segment on its own driver; no unit economics available",
+    "topdown":  "a growth path plus a margin assumption -- the floor of last resort",
+}
+
+
+@dataclass
+class DriverLine:
+    """One revenue line, and how it was actually built."""
+    name: str
+    level: str                      # one of GROUND_UP_LEVELS
+    share_of_revenue: float         # 0..1, of the forecast base year
+    unit: Optional[str] = None      # e.g. "litres", "vessel-days", "packs", "connected RT"
+    unit_source: Optional[str] = None   # the disclosure the unit came from
+    price_basis: Optional[str] = None   # the rate applied to the unit
+    cost_basis: Optional[str] = None    # cost per unit, or why not
+    gap_note: Optional[str] = None      # REQUIRED for any level below "unit"
+
+
+def assert_ground_up(lines, ticker: str = "?", tolerance: float = 0.01) -> dict:
+    """Raise unless the forecast was built to the finest sourced level, with gaps stated.
+
+    Returns a summary dict so the QC gate can print the evidence rather than a boolean.
+    """
+    if not lines:
+        raise AssertionError(
+            f"GROUND-UP FAIL — {ticker} supplied no driver record. The ground-up clause is "
+            f"no longer attestable by a flag; build a DriverLine per revenue line."
+        )
+    bad = [l.name for l in lines if l.level not in GROUND_UP_LEVELS]
+    if bad:
+        raise AssertionError(f"GROUND-UP FAIL — {ticker}: unknown build level on {bad}")
+
+    total = sum(l.share_of_revenue for l in lines)
+    if abs(total - 1.0) > tolerance:
+        raise AssertionError(
+            f"GROUND-UP FAIL — {ticker}: the driver lines cover {total:.1%} of revenue, not "
+            f"100%. A line omitted from the record is a line nobody checked."
+        )
+    for l in lines:
+        if l.level == "unit" and not (l.unit and l.unit_source and l.price_basis):
+            raise AssertionError(
+                f"GROUND-UP FAIL — {ticker}/{l.name} claims a disclosed-unit build but does "
+                f"not name the unit, its source and the price basis. Claiming the level is "
+                f"not the same as having built it."
+            )
+        if l.level != "unit" and not l.gap_note:
+            raise AssertionError(
+                f"GROUND-UP FAIL — {ticker}/{l.name} is built at '{l.level}' with no gap "
+                f"stated. The rule permits a coarser level where the disclosure stops; it "
+                f"has never permitted going quiet about it."
+            )
+    by = {k: sum(l.share_of_revenue for l in lines if l.level == k) for k in GROUND_UP_LEVELS}
+    return {"ticker": ticker, "lines": len(lines), "share_by_level": by,
+            "unit_share": by["unit"], "standard_version": STANDARD_VERSION}
+
+
+def assert_gates_called(study_dir: str) -> None:
+    """Raise unless the study's own code calls the three gates.  [R-ENF-02]
+
+    Written because 13 of the 21 study directories called none of them, and a study
+    that does not check itself passes by default. The repo-level job
+    scripts/check_study_provenance.py runs this over every study so it cannot be skipped.
+    """
+    import os
+    wanted = ('assert_beta_provenance', 'assert_sigcm', 'assert_model_study')
+    seen = set()
+    for f in os.listdir(study_dir):
+        if not f.endswith('.py'):
+            continue
+        try:
+            src = open(os.path.join(study_dir, f), encoding='utf-8', errors='ignore').read()
+        except OSError:
+            continue
+        seen.update(g for g in wanted if g in src)
+    missing = [g for g in wanted if g not in seen]
+    if missing:
+        raise AssertionError(
+            f"GATE FAIL — {os.path.basename(study_dir)} never calls {missing}. Writing a "
+            f"rule down does not execute it: the composite beta spread through every study "
+            f"in this repo while the rule against it was already written."
+        )

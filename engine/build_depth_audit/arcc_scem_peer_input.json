@@ -1,0 +1,110 @@
+{
+ "_": "Tier-2 peer input for the ARCC / SCEM beta fallback. Produced 23-Aug-2026 by beta_regression.own_stock_beta(ticker, market='EG', exchange='EGX') \u2014 the sanctioned path, against the registered EGX30 regressor. NOT a decision: the peer-set definition is the open judgement, and whichever set is adopted becomes the precedent for every thinly-traded EGX name behind these two. Saved so the work is not recomputed when ARCC (queue #2) and SCEM (queue #7) come up in Wave 1.",
+ "computed": "2026-08-23",
+ "standard_version": "2026.08.23",
+ "why_tier_2": "The hierarchy decides the TIER, not the analyst: tier 3 (beta = 1.0) applies only 'if neither the own-stock history nor a same-country peer set is available'. Eight same-country peers clear the usability gate, so tier 2 is the first available tier and tier 3 is not reachable.",
+ "subjects": {
+  "ARCC": {
+   "beta": 0.6980904117648513,
+   "r2": 0.046837594206086464,
+   "n": 253,
+   "se": 0.2283633031992361,
+   "usable": false
+  },
+  "SCEM": {
+   "beta": 0.6072378805075793,
+   "r2": 0.02453166482055802,
+   "n": 252,
+   "se": 0.27544045212883156,
+   "usable": false
+  }
+ },
+ "subject_note": "Both FAIL the own-stock usability gate against the real EGX30 \u2014 ARCC R2 0.047, SCEM R2 0.025, both under the 5% floor. Neither may keep its composite number.",
+ "peers": {
+  "LCSW": {
+   "beta": 0.8209652874611199,
+   "r2": 0.08794231832435895,
+   "n": 255,
+   "se": 0.2827404360870089,
+   "usable": true
+  },
+  "EGAL": {
+   "beta": 0.914312734604037,
+   "r2": 0.15072827638612263,
+   "n": 255,
+   "se": 0.2394546199509564,
+   "usable": true
+  },
+  "ELEC": {
+   "beta": 1.0334031795739789,
+   "r2": 0.19301622562515164,
+   "n": 254,
+   "se": 0.20866203019272797,
+   "usable": true
+  },
+  "SWDY": {
+   "beta": 1.2083950982971998,
+   "r2": 0.37556243110767573,
+   "n": 254,
+   "se": 0.1669594198701297,
+   "usable": true
+  },
+  "ORAS": {
+   "beta": 0.9401774684993596,
+   "r2": 0.14313405144729796,
+   "n": 255,
+   "se": 0.16452981579839687,
+   "usable": true
+  },
+  "EGCH": {
+   "beta": 1.0302103069881783,
+   "r2": 0.25041984255357363,
+   "n": 253,
+   "se": 0.19069136883839916,
+   "usable": true
+  },
+  "AMOC": {
+   "beta": 0.9079854792123889,
+   "r2": 0.2589419143627705,
+   "n": 253,
+   "se": 0.16494576521273835,
+   "usable": true
+  },
+  "ABUK": {
+   "beta": 0.6415216529850101,
+   "r2": 0.19382797286699782,
+   "n": 255,
+   "se": 0.17732937294434814,
+   "usable": true
+  }
+ },
+ "candidate_sets": {
+  "construction_value_chain": {
+   "members": [
+    "EGAL",
+    "ELEC",
+    "LCSW",
+    "ORAS",
+    "SWDY"
+   ],
+   "median_equity_beta": 0.9402,
+   "note": "Nearest by sector \u2014 building materials, cables and a contractor."
+  },
+  "all_gate_clearing_egx_industrials": {
+   "members": [
+    "ABUK",
+    "AMOC",
+    "EGAL",
+    "EGCH",
+    "ELEC",
+    "LCSW",
+    "ORAS",
+    "SWDY"
+   ],
+   "median_equity_beta": 0.9272,
+   "note": "Every covered EGX industrial clearing the gate. Broader, more stable."
+  }
+ },
+ "finding": "The two candidate sets differ by roughly one point of beta, so the peer-set choice barely moves the answer \u2014 which is itself the useful result. Both raise beta above the failed own-stock and the retired composite numbers for ARCC and SCEM, so both fair values come DOWN either way.",
+ "still_to_do": "These are EQUITY betas. Tier 2 as written requires the median UNLEVERED peer beta re-levered to the subject's target structure \u2014 unlevering needs D/E and the tax rate per peer, available in-repo only for the peers that carry a compute.py. Do that step at build time; do not shortcut it with the equity medians above."
+}

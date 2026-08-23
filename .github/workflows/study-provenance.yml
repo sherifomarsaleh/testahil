@@ -1,0 +1,105 @@
+name: Study provenance gate
+
+# Added 23-Aug-2026. engine/research_protocol.py has held assert_beta_provenance(),
+# assert_sigcm() and assert_model_study() since the composite-beta correction, and they
+# work — but each study decided whether to CALL them, and most did not. A study passed by
+# not checking itself. That is the same shape as the failure they were written to prevent:
+# every study in the repo regressed against a composite of the covered names WHILE THE
+# RULE AGAINST IT WAS ALREADY WRITTEN DOWN. A rule that does not execute is a wish.
+#
+# This job runs the check from OUTSIDE the studies, over all of them, so no study can opt
+# out. It is a RATCHET, not a cliff: the 86 knowingly-outstanding studies in the rebuild
+# queue are listed in engine/build_depth_audit/outstanding.json and are allowed to fail.
+# The job fails only on a NEW violation — a study that was conforming and stopped being
+# so, or a new study directory added with no gate at all. The list may only shrink.
+
+on:
+  push:
+    paths:
+      - 'engine/**_study/**'
+      - 'engine/research_protocol.py'
+      - 'engine/wacc_builder.py'
+      - 'engine/beta_regression.py'
+      - 'engine/raw_indices/**'
+      - 'engine/build_depth_audit/outstanding.json'
+      - 'scripts/check_study_provenance.py'
+      - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_protocol_text.py'
+      - 'engine/Standing_Research_Protocol.md'
+      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
+      - '.github/workflows/study-provenance.yml'
+  pull_request:
+    paths:
+      - 'engine/**_study/**'
+      - 'engine/research_protocol.py'
+      - 'engine/wacc_builder.py'
+      - 'engine/beta_regression.py'
+      - 'engine/raw_indices/**'
+      - 'engine/build_depth_audit/outstanding.json'
+      - 'scripts/check_study_provenance.py'
+      - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_protocol_text.py'
+      - 'engine/Standing_Research_Protocol.md'
+      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
+      - '.github/workflows/study-provenance.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: study-provenance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install engine deps
+        run: pip install numpy pandas
+
+      # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
+      # import, and that bug reached main while a regex check reported the file intact.
+      - name: Import the modules the gate depends on
+        run: |
+          cd engine
+          python3 -c "import wacc_builder, research_protocol, beta_regression; print('imports OK')"
+          python3 -c "
+          import wacc_builder as w
+          assert w.EXCHANGE_INDEX[('AE','DFM')] == 'FADGI', 'the DFM interim was changed without instruction'
+          n = w.index_interim_note('AE','DFM')
+          assert n and 'HELD OPEN BY INSTRUCTION, 23-Aug-2026' in n, 'the DFM hold note is missing'
+          try:
+              w.market_index_path('AE'); raise SystemExit('market_index_path(\"AE\") must refuse an ambiguous market')
+          except ValueError:
+              pass
+          print('index registry OK — DFM interim intact, ambiguous market still refuses')
+          "
+
+      # [R-DOC-01] the two governing documents must carry the same standing rules,
+      # and the same revision stamp
+      - name: Protocol sync gate
+        run: python3 scripts/check_protocol_sync.py
+
+      # [R-ENF-01] the four defects that reached a reader on 23-Aug-2026, checked
+      # mechanically before delivery instead of by the reader pasting the block back
+      - name: Protocol text gate
+        run: python3 scripts/check_protocol_text.py
+
+      # [R-DOC-02] The text gate's own negative control: it restores the status claims
+      # EXACTLY as they shipped and asserts each is caught, plus four clean sentences that
+      # must NOT be. Written the same day the check was, because the first cut of the
+      # status regex was drafted from the full protocol's phrasing and MISSED the digest's
+      # own — "Committed on a feature branch with an open PR", the very sentence the rule
+      # exists for. A check tested only against the example that inspired it is fitted to
+      # one sentence. This runs in CI so the check cannot rot into a formality either.
+      - name: Protocol text gate — negative control
+        run: python3 scripts/check_protocol_text_negative_control.py
+
+      # [R-ENF-02] the check a study cannot skip by not calling it
+      - name: Study provenance gate
+        run: python3 scripts/check_study_provenance.py
