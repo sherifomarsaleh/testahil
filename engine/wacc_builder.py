@@ -124,7 +124,18 @@ INTERIM_INDEX = {
         "supported half of the substitution: over five years of weekly returns FADGI "
         "explains the six DFM names BETTER than it explains the ADX names it actually "
         "covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six "
-        "clear the R2>=5% usability gate. Replace with a DFM index when one is supplied."
+        "clear the R2>=5% usability gate.\n\n"
+        "HELD OPEN BY INSTRUCTION, 23-Aug-2026. A DFM General series IS now held at "
+        "raw_indices/AE/DFMGI.csv (2015-01-05 to 2026-07-16), so the 10-Aug clause's "
+        "replacement condition ('replace with a DFM index when one is supplied') is met "
+        "and has been explicitly DECLINED for now: the nine DFM names stay on FTSE ADX "
+        "General. DFMGI is HELD BUT NOT REGISTERED -- do not map (\"AE\",\"DFM\") to it "
+        "without a further instruction. The cost is measured, not nil: on the two names "
+        "run both ways DFMGI has the higher explanatory power (AIRARABIA beta 0.812/R2 "
+        "0.135 on FADGI vs 1.086/0.402 on DFMGI; EMPOWER 0.863/0.103 vs 0.652/0.157), "
+        "moving beta by a quarter to a third in OPPOSITE directions -- so this is not a "
+        "uniform bias a reader can correct for. Quote this note wherever the beta is "
+        "quoted, and never call such a beta conforming."
     ),
 }
 

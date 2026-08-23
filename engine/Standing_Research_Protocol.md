@@ -1,9 +1,23 @@
+PROTOCOL REVISION 2026-08-23d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+on the repository's default branch; nothing else is authoritative. Bump on every edit.
+
 TESTAHIL — Standing Research Protocol
-Updated 07 August 2026 (rev. 5) — cost-stack escalation · primary-source financial research
+Updated 23 August 2026 (rev. 6) — ENFORCEMENT: the rules that make the other rules bind
+(rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
 (rev. 4, 29 July 2026 — computed technical read · regenerated charts · as-of stamps)
 (rev. 3, 13 July 2026 — value-driver TV · NCI at fair value · one-clock lenses · cross-sheet integrity · the Kd capitalised-interest trap)
 
 This supersedes the 12-July text and both earlier 13-July revisions. Changes new in rev. 5 are marked [NEW 07-Aug]; the [NEW 29-Jul], [NEW 23-Jul], [NEW 21-Jul], [NEW 13-Jul r3], [NEW 13-Jul r2], [NEW 13-Jul] and [NEW 11-Jul] markers are retained for provenance. Everything not marked is unchanged and still binding.
+
+Rev. 6 comes from a different kind of review: not of a study, but of this document. A
+build-depth audit of all 90 covered stocks on 23 Aug 2026 found 63 were not built ground-up
+and only 4 carried a beta whose provenance the gate could attest — while every rule requiring
+both was already written here, correctly, and had been for weeks. That is the same shape as
+the composite-beta failure this protocol records: *"Writing the rule down did not stop it."*
+The rules were never the problem. Rev. 6 therefore adds no new research method at all. It adds
+the machinery that makes the existing rules bind, and one general rule from which the other six
+follow — because this protocol has now learned the same lesson three separate times in
+particular (beta, the technical read, the digest drift) and never once in general.
 
 Rev. 5 comes from a line-by-line reconciliation of the Testahil DCF for ARCC (Arabian Cement Company, EGX) against a published EFG Hermes sell-side report on the same company, plus a direct instruction given during that exchange. The reconciliation surfaced a cost-side defect of the same species rev. 3's five procedures closed on the CLHO audit: a number that looked like a forecast disagreement was actually a mechanical artifact of one input choice, invisible until priced out line by line. The instruction added a second procedure strengthening how company-level source material is gathered in the first place, so the next such defect is caught at the sweep stage rather than three revisions later.
 
@@ -180,7 +194,7 @@ THE RULE, from now on:
 
 (c) **Match the exchange, not the country — and key the resolver on the exchange.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
 
-[RE-KEYED 10-Aug-2026, the same day, per instruction] The first implementation of this rule mapped **one index per market code** and therefore contradicted the clause it existed to enforce. Market `AE` holds **14 ADX names and 6 DFM names** — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — every one of which resolved to `FADGI`, an ADX index. The counter-example was written into the rule and the code did the forbidden thing anyway, in the same commit.
+[RE-KEYED 10-Aug-2026, the same day, per instruction] The first implementation of this rule mapped **one index per market code** and therefore contradicted the clause it existed to enforce. Market `AE` spans **both ADX and DFM**, so every DFM-listed name resolved to `FADGI`, an ADX index — six of them at the time (DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK), nine today. The live count belongs in `assets/data.js`; a standing rule must not carry one, because it goes stale the moment a stock is posted and the rule then reads as false. The counter-example was written into the rule and the code did the forbidden thing anyway, in the same commit.
 
 `wacc_builder.EXCHANGE_INDEX` is now keyed `(market, exchange)`, and `market_index_path(market, exchange)` **refuses to resolve a market that spans more than one exchange** unless told which. Unknown market, ambiguous market, unregistered exchange and missing file all raise.
 
@@ -196,7 +210,7 @@ THE RULE, from now on:
 | US / NASDAQ | NASDAQCOMP | registered, tech-weighted |
 | BR, GB | — | not supplied |
 
-**The DFM interim [instruction, 10-Aug-2026].** No DFM General series is held, so the six DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — stand on FTSE ADX General until one is supplied. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
+**The DFM interim [instruction, 10-Aug-2026; HELD OPEN by instruction, 23-Aug-2026].** The DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK, and since then AIRARABIA, DU and EMPOWER, nine in total — stand on FTSE ADX General. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
 
 It is also the better-evidenced half of the substitution, which is worth stating because the intuition runs the other way. Over five years of weekly returns, FADGI explains the DFM names **better** than it explains the ADX names it actually covers:
 
@@ -205,13 +219,30 @@ It is also the better-evidenced half of the substitution, which is worth stating
 | ADX names (15) | 0.127 | 1.037 | AGTHIA 0.037 → FAB 0.606 |
 | DFM names (6) | **0.240** | 1.067 | DEWA 0.101 → ENBD 0.304 |
 
-All six DFM names clear the R²≥5% usability gate; several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and a real DFM index replaces it.
+All six DFM names clear the R²≥5% usability gate — the measurement is the 10-Aug one, taken on the six DFM names covered at that date; AIRARABIA, DU and EMPOWER were added after and are not in it. Several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and it is NOT a conforming clause-(a) regressor however long it stands.
+
+**A DFM series is now held, and the interim stands anyway [instruction, 23-Aug-2026].** `engine/raw_indices/AE/DFMGI.csv` (DFM General, 2015-01-05 → 2026-07-16, 2,306 rows) is in the repository. The 10-Aug clause said "a real DFM index replaces it"; that replacement condition is now met and has been **explicitly declined for the time being**. The nine DFM names continue on FTSE ADX General. DFMGI is therefore HELD BUT NOT REGISTERED — `EXCHANGE_INDEX` must keep mapping `("AE","DFM")` to FADGI, and a later session must not "helpfully" register it on the reasoning that the file exists. Registration now needs its own instruction.
+
+Three things follow, and none of them is optional:
+
+1. **The disclosure obligation gets stronger, not weaker.** A stopgap that persists by choice is a standing methodological position, so every DFM beta must carry `index_interim_note()` verbatim wherever the beta is quoted — study body, bibliography, cost-of-capital table and workbook alike — and must not be described as conforming.
+2. **The cost is measured, and it is not nil.** Where both regressions have been run, DFMGI has the materially higher explanatory power, so the interim is knowingly the weaker fit on the names tested:
+
+| name | on FADGI (adopted) | on DFMGI (declined) |
+|---|---|---|
+| AIRARABIA | β 0.812, R² 0.135 | β 1.086, R² 0.402 |
+| EMPOWER | β 0.863, R² 0.103 | β 0.652, R² 0.157 |
+
+   Both move beta by roughly a quarter to a third, in opposite directions — so this is not a uniform bias that a reader can mentally correct for, and it must not be presented as one.
+3. **It is a dual-framing case.** Under the standing dual-framing rule, a DFM study that has both numbers publishes the declined one as a labelled cross-check beside the adopted one, exactly as AIRARABIA already does, rather than suppressing it. `airarabia_study/beta_reg.py` is the worked precedent: it runs both, adopts the registered regressor, prints the difference, and says in the study why the other was not used.
+
+Revisit only on a further instruction.
 
 **Where the exchange comes from.** `assets/data.js` records it per ticker as the `code` prefix (`ADX:`, `DFM:`, `EGX:`, `TADAWUL:`, `QSE:`, `KRX:`, `NSE:`, `NASDAQ:`). Read it. Never infer the exchange from the `raw_ohlc/{MARKET}/` folder — that groups by market code and is exactly what mixed ADX with DFM.
 
 **Dual-listed names.** Orascom Construction trades on both ADX and EGX. The same issuer therefore has two legitimate regressors, and only the *series* tells you which: an EGP-denominated series filed under `EG` regresses on the EGX index; a dirham series of the same company would regress on the ADX index. Verify the series' currency and price magnitude against the exchange it is filed under before regressing, and flag dual listings explicitly in the Sweep Register. Nothing in the file name carries this.
 
-**Broad versus subset — SETTLED 10-Aug-2026, per instruction.** Clause (a) prefers the broad all-share, and only TASI actually is one: EGX30 is 30 names against a 37-name covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. **The user supplied all seven series explicitly as "the indices to use", so these ARE the regressors** and the subset question is closed by decision, not left as a drifting compromise. All seven uploads were byte-identical to the copies already in `raw_indices/`, so the registrations were already correct. The documented "why" required by clause (a) is this instruction. Revisit only on a further instruction.
+**Broad versus subset — SETTLED 10-Aug-2026, per instruction.** Clause (a) prefers the broad all-share, and only TASI actually is one: EGX30 is a 30-name blue-chip index against a broader covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. **The user supplied all seven series explicitly as "the indices to use", so these ARE the regressors** and the subset question is closed by decision, not left as a drifting compromise. All seven uploads were byte-identical to the copies already in `raw_indices/`, so the registrations were already correct. The documented "why" required by clause (a) is this instruction. Revisit only on a further instruction.
 
 **All seven passed Step 0.0 on 10-Aug-2026** — density screened against each exchange's real calendar, max one-day move against that exchange's own price limit:
 
@@ -638,3 +669,138 @@ which is the dual-framing rule doing its job.
 **QC consequence.** Gate item (a) is unchanged in substance and now names ADNOCLS: structure,
 content, format AND DEPTH match the MODEL REPORT. The eight depth standards adopted 08-Aug
 stand exactly as they were.
+
+
+## ENFORCEMENT — the rules that make the other rules bind [ADOPTED 23-Aug-2026, per instruction]
+
+Everything in this section exists because of one measured fact: on 23 Aug 2026 an audit of
+all 90 covered stocks found 63 not built ground-up and only 4 with an attestable beta, at a
+moment when every rule requiring both was already written in this document and in the digest.
+No one disagreed with a rule. No one read one and declined. The rules simply were not present
+at the moment they bound, and nothing outside the study was looking.
+
+### [R-ENF-01] A rule that can be checked must be checked from outside the thing it governs
+
+**A self-attested boolean is never a check.** Where a standing rule can be expressed as a test,
+that test must exist in code, must run over the work rather than inside it, and must fail the
+build rather than warn. Where a rule genuinely cannot be tested — a judgement about a peer set,
+the choice of a lens — it stays prose, and the QC gate carries the evidence a reader can weigh.
+
+This is the generalisation of three lessons already recorded here separately:
+
+- **beta** — `SIGCMChecklist.beta_own_history_vs_egx30` was a flag every study set `True` while
+  regressing against a composite. Fixed by `assert_beta_provenance()`, which inspects the record.
+- **the technical read** — the carve-out saying "leave the levels alone" protected staleness
+  rather than judgement, until COMI published a 142.00 spot beside a narrative reading 129.25.
+  Fixed by computing the read and gating the chart with `check_ta_chart_overlay.js`.
+- **the digest** — kept in sync with this document by an instruction to remember, which
+  CLAUDE.md itself records has failed three times in one session.
+
+Each was fixed in its own place. None was generalised, so the identical hole stayed open in
+eight of the nine SIGCM clauses for another two weeks. **When a defect of this species is found
+again, close the class, not the instance.**
+
+### [R-ENF-02] Every study calls the three gates, and a job outside the study verifies it
+
+A study must call `assert_sigcm()`, `assert_beta_provenance()` and `assert_model_study()` in its
+own committed code. `scripts/check_study_provenance.py` runs over every `engine/*_study/` from
+outside, in CI (`.github/workflows/study-provenance.yml`), and fails on a study that calls none.
+
+Written because 13 of the 21 study directories called none of them and no automated job ran any:
+**a study passed by not checking itself.** The job also refuses a surviving study-local
+regression script — the standing ban on hand-rolling one had produced two post-rule studies that
+still did, one of them still building a composite alongside as a "corroboration".
+
+The job is a RATCHET, not a cliff. Studies knowingly outstanding are listed in
+`engine/build_depth_audit/outstanding.json` and are allowed to fail; the build breaks only on a
+NEW violation or a study directory added with no gate at all. The list may only ever shorten —
+`--prune` rewrites it — and its length is the honest measure of progress. A permanently red
+check is one everybody learns to ignore, which is worse than no check.
+
+### [R-SIGCM-02] The ground-up clause is attested on a record, not a flag
+
+`forecast_ground_up` is no longer a boolean a study sets on itself. A study records, for **every**
+revenue line, how that line was actually built — the physical unit, the disclosure the unit came
+from, the price basis, the cost-per-unit basis — and `research_protocol.assert_ground_up()`
+inspects it. Four levels are recognised, and only the first is the standard:
+
+| level | meaning |
+|---|---|
+| `unit` | volume × price on a **disclosed** physical unit, cost per unit, margin an output |
+| `derived` | real unit economics on a volume that is indexed, estimated or back-solved rather than disclosed |
+| `segment` | the disclosed segment on its own driver; no unit economics available |
+| `topdown` | a growth path plus a margin assumption — the floor of last resort |
+
+Two refusals are built in and both matter. The lines must cover **100% of revenue**, because a
+line left out of the record is a line nobody checked. And any line below `unit` must carry a
+`gap_note`: the rule has always permitted a coarser level where the disclosure stops, and has
+never permitted going quiet about it. Claiming `unit` without naming the unit, its source and the
+price basis also fails — claiming the level is not the same as having built it.
+
+Adopted because the audit found 63 of 90 studies not built ground-up while the flag sat available
+to be set `True`. The delivered studies already write all of this in prose in §1.6; the record
+only asks for it once more in a form a machine can refuse.
+
+### [R-BETA-04] The beta record has a required shape, and the shape is checked even when the study is silent
+
+`assert_beta_provenance()` already demands `beta, r2, se, n, usable, index_file, index_asof,
+market, exchange, conforming` and a `raw_indices/` path. The hole was that a study which never
+called it could record whatever it liked. Across the 21 directories the regressor was recorded
+four different ways — a full path, a bare filename, a prose name with no file, and nothing — and
+the weakest shape silently defeated the gate. The repo-level job now applies the same test from
+outside, so the record's shape is enforced whether or not the study checks itself.
+
+### [R-STD-01] Every study is stamped with the standard it was built to
+
+`research_protocol.STANDARD_VERSION` names the current standard; a study records the version it
+was built against; the repo-level job reports any study built to an older one. Bump the version
+only when a change would alter a delivered number or a required artefact — never for prose.
+
+Written because the question *"is this study finished, or finished-for-now?"* had no answer in
+the repository. Without a version, a book-wide re-issue is an open-ended obligation: a name
+re-issued in September can silently need re-issuing in November, and nobody can tell which names
+are current. With one, the rebuild queue is finite and its remainder is countable.
+
+### [R-IDX-01] One index, one filename, registered — or documented as deliberately held
+
+Every `.csv` under `engine/raw_indices/` is either registered in `wacc_builder.EXCHANGE_INDEX` or
+listed, with a reason, under `held_unregistered` in `outstanding.json`. Nothing else may sit there.
+
+Written because `ADXGENERAL.csv` was a byte-identical duplicate of `FADGI.csv` under a filename
+the resolver does not register. ADNOCDIST and ADNOCDRILL regressed against that copy: the right
+number, with provenance that cannot resolve. No rule said a file in this directory must be either
+registered or gone, so nothing objected. The Dubai series `DFMGI.csv` is the documented case of a
+file held deliberately — see the DFM interim above.
+
+### [R-DOC-01] Standing rules carry an identifier, and both documents are checked against each other
+
+Every rule adopted from 23 Aug 2026 carries a stable identifier of the form `[R-AREA-NN]`. The
+identifier appears in this document, in the condensed digest, and in the code that enforces the
+rule. `scripts/check_protocol_sync.py` compares the identifier sets and fails on any rule present
+in one document and not the other.
+
+Rules adopted before 23 Aug 2026 are **not** retro-tagged in bulk — a large mechanical edit across
+a hundred kilobytes of prose carries real transcription risk and no reader benefit. Each acquires
+an identifier the next time it is amended, so the tagged set grows from the bottom up and the
+check binds only what has been tagged.
+
+Written because the digest is kept in sync with this document by an instruction to remember, and
+on 23 Aug 2026 the copy held outside the repository was found to be one amendment behind. Three further
+rounds of "is this the version to adopt?" that same day each pasted back a copy one edit stale, because
+every revision of a 54,000-character block looks identical to every other. **Both documents therefore
+carry a REVISION STAMP as their first line** — a copy that does not carry the current stamp is stale on
+its face, without reading a word of it. Bump the stamp on every edit, however small: an unbumped stamp
+is worse than none, because it certifies a copy that has moved. The
+identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
+is testing rather than paraphrasing it.
+
+### What rev. 6 deliberately does NOT change
+
+No research method changes. No lens, no driver rule, no cost-of-capital construction, no
+calibration procedure is altered by this revision, and no delivered number moves because of it.
+Every rule above is about whether the existing rules execute.
+
+Nor does rev. 6 touch the thing this protocol does best: **almost every rule here names the
+failure it came from.** That is why the rules are obeyed when they are met at all, and it is the
+most unusual property of this document. Every amendment above arrives with its own failure
+attached, in the same voice, and every future one should.

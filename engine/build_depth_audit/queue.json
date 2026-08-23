@@ -1,0 +1,1322 @@
+[
+ {
+  "wave": "Wave 1",
+  "label": "Studies that already have a working model",
+  "why": "Re-runs, not rebuilds. Cheapest work in the book and it locks the standard before the expensive reconstruction starts.",
+  "batches": [
+   {
+    "exchange": "EGX",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "AMOC",
+      "nm": "Alexandria Mineral Oils",
+      "x": "EGX",
+      "ed": "08-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "A",
+      "bu": true,
+      "seq": 1
+     },
+     {
+      "tk": "ARCC",
+      "nm": "Arabian Cement",
+      "x": "EGX",
+      "ed": "08-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "A",
+      "bu": true,
+      "seq": 2
+     },
+     {
+      "tk": "EGCH",
+      "nm": "Egyptian Chemical Industries (KIMA)",
+      "x": "EGX",
+      "ed": "08-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "A",
+      "bu": true,
+      "seq": 3
+     },
+     {
+      "tk": "ELEC",
+      "nm": "Electro Cable Egypt",
+      "x": "EGX",
+      "ed": "05-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "B",
+      "bu": true,
+      "seq": 4
+     },
+     {
+      "tk": "GBCO",
+      "nm": "GB Corp (Ghabbour)",
+      "x": "EGX",
+      "ed": "08-07-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "A-",
+      "bu": true,
+      "seq": 5
+     },
+     {
+      "tk": "PHAR",
+      "nm": "Egyptian International Pharmaceutical Industries (EIPICO)",
+      "x": "EGX",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "A",
+      "bu": true,
+      "seq": 6
+     },
+     {
+      "tk": "SCEM",
+      "nm": "Sinai Cement Company S.A.E.",
+      "x": "EGX",
+      "ed": "06-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "composite-cohort",
+      "tier": "A",
+      "bu": true,
+      "seq": 7
+     },
+     {
+      "tk": "SWDY",
+      "nm": "Elsewedy Electric",
+      "x": "EGX",
+      "ed": "05-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "composite-cohort",
+      "tier": "C",
+      "bu": false,
+      "seq": 8
+     }
+    ]
+   },
+   {
+    "exchange": "ADX",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "ADNOCDIST",
+      "nm": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
+      "x": "ADX",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "unregistered-file",
+      "tier": "A",
+      "bu": true,
+      "seq": 9
+     },
+     {
+      "tk": "ADNOCDRILL",
+      "nm": "ADNOC Drilling Company P.J.S.C.",
+      "x": "ADX",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "unregistered-file",
+      "tier": "A",
+      "bu": true,
+      "seq": 10
+     },
+     {
+      "tk": "ADNOCLS",
+      "nm": "ADNOC Logistics & Services plc",
+      "x": "ADX",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 11
+     },
+     {
+      "tk": "BOROUGE",
+      "nm": "Borouge plc",
+      "x": "ADX",
+      "ed": "17-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 12
+     }
+    ]
+   },
+   {
+    "exchange": "ADX",
+    "cls": "Real-estate developer",
+    "items": [
+     {
+      "tk": "MODON",
+      "nm": "Modon Holding PSC",
+      "x": "ADX",
+      "ed": "10-08-2026",
+      "cls": "Real-estate developer",
+      "code": true,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "named-only",
+      "tier": "C",
+      "bu": false,
+      "seq": 13
+     }
+    ]
+   },
+   {
+    "exchange": "DFM",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "AIRARABIA",
+      "nm": "Air Arabia PJSC",
+      "x": "DFM",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "gate-fails",
+      "tier": "A",
+      "bu": true,
+      "seq": 14
+     },
+     {
+      "tk": "DU",
+      "nm": "Emirates Integrated Telecommunications Company PJSC",
+      "x": "DFM",
+      "ed": "17-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "named-only",
+      "tier": "A-",
+      "bu": true,
+      "seq": 15
+     },
+     {
+      "tk": "EMPOWER",
+      "nm": "Emirates Central Cooling Systems Corporation PJSC",
+      "x": "DFM",
+      "ed": "09-08-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital",
+      "betacls": "named-only",
+      "tier": "A",
+      "bu": true,
+      "seq": 16
+     }
+    ]
+   },
+   {
+    "exchange": "TADAWUL",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "STC",
+      "nm": "stc Group (Saudi Telecom)",
+      "x": "TADAWUL",
+      "ed": "09-07-2026",
+      "cls": "Operating company",
+      "code": true,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 17
+     }
+    ]
+   }
+  ],
+  "count": 17
+ },
+ {
+  "wave": "Wave 2",
+  "label": "Egypt",
+  "why": "The largest single block, and it holds every one of the seven studies whose beta is known wrong. One Egyptian cost-of-capital sourcing serves all of them.",
+  "batches": [
+   {
+    "exchange": "EGX",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "ABUK",
+      "nm": "Abu Kir Fertilizers",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 18
+     },
+     {
+      "tk": "CLHO",
+      "nm": "Cleopatra Hospitals Group",
+      "x": "EGX",
+      "ed": "13-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "A-",
+      "bu": true,
+      "seq": 19
+     },
+     {
+      "tk": "DSCW",
+      "nm": "Dice For Ready-Made Garments",
+      "x": "EGX",
+      "ed": "19-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "A-",
+      "bu": true,
+      "seq": 20
+     },
+     {
+      "tk": "EFID",
+      "nm": "Edita Food Industries",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 21
+     },
+     {
+      "tk": "EFIH",
+      "nm": "e-finance for Digital & Financial Investments",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 22
+     },
+     {
+      "tk": "EGAL",
+      "nm": "Egypt Aluminum",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 23
+     },
+     {
+      "tk": "ETEL",
+      "nm": "Telecom Egypt",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 24
+     },
+     {
+      "tk": "FWRY",
+      "nm": "Fawry",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 25
+     },
+     {
+      "tk": "ISPH",
+      "nm": "Ibnsina Pharma",
+      "x": "EGX",
+      "ed": "07-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 26
+     },
+     {
+      "tk": "JUFO",
+      "nm": "Juhayna Food Industries",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 27
+     },
+     {
+      "tk": "KABO",
+      "nm": "El Nasr Clothing & Textiles (Kabo)",
+      "x": "EGX",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 28
+     },
+     {
+      "tk": "LCSW",
+      "nm": "Lecico Egypt (S.A.E.)",
+      "x": "EGX",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 29
+     },
+     {
+      "tk": "ORWE",
+      "nm": "Oriental Weavers",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 30
+     },
+     {
+      "tk": "RMDA",
+      "nm": "Rameda Pharmaceuticals",
+      "x": "EGX",
+      "ed": "13-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 31
+     }
+    ]
+   },
+   {
+    "exchange": "EGX",
+    "cls": "Contractor",
+    "items": [
+     {
+      "tk": "ORAS",
+      "nm": "Orascom Construction",
+      "x": "EGX",
+      "ed": "30-06-2026",
+      "cls": "Contractor",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 32
+     }
+    ]
+   },
+   {
+    "exchange": "EGX",
+    "cls": "Real-estate developer",
+    "items": [
+     {
+      "tk": "EMFD",
+      "nm": "Emaar Misr for Development",
+      "x": "EGX",
+      "ed": "17-06-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "B",
+      "bu": true,
+      "seq": 33
+     },
+     {
+      "tk": "HELI",
+      "nm": "Heliopolis Housing",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 34
+     },
+     {
+      "tk": "OCDI",
+      "nm": "Sixth of October Development & Investment",
+      "x": "EGX",
+      "ed": "24-06-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "B",
+      "bu": true,
+      "seq": 35
+     },
+     {
+      "tk": "ORHD",
+      "nm": "Orascom Development Egypt",
+      "x": "EGX",
+      "ed": "25-06-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "B",
+      "bu": true,
+      "seq": 36
+     },
+     {
+      "tk": "PHDC",
+      "nm": "Palm Hills Developments",
+      "x": "EGX",
+      "ed": "11-06-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "B",
+      "bu": true,
+      "seq": 37
+     },
+     {
+      "tk": "PRDC",
+      "nm": "Pioneers Properties for Urban Development",
+      "x": "EGX",
+      "ed": "06-07-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "C",
+      "bu": false,
+      "seq": 38
+     },
+     {
+      "tk": "TMGH",
+      "nm": "Talaat Moustafa Group Holding",
+      "x": "EGX",
+      "ed": "17-06-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "B",
+      "bu": true,
+      "seq": 39
+     }
+    ]
+   },
+   {
+    "exchange": "EGX",
+    "cls": "Holding company",
+    "items": [
+     {
+      "tk": "CCAP",
+      "nm": "Qalaa Holdings",
+      "x": "EGX",
+      "ed": "30-06-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 40
+     },
+     {
+      "tk": "OIH",
+      "nm": "Orascom Investment Holding",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 41
+     },
+     {
+      "tk": "RAYA",
+      "nm": "Raya Holding",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 42
+     }
+    ]
+   },
+   {
+    "exchange": "EGX",
+    "cls": "Bank or financial",
+    "items": [
+     {
+      "tk": "ADIB",
+      "nm": "ADIB-Egypt",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 43
+     },
+     {
+      "tk": "BTFH",
+      "nm": "Beltone Financial Holding",
+      "x": "EGX",
+      "ed": "03-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 44
+     },
+     {
+      "tk": "COMI",
+      "nm": "Commercial International Bank",
+      "x": "EGX",
+      "ed": "29-06-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 45
+     },
+     {
+      "tk": "HRHO",
+      "nm": "EFG Holding",
+      "x": "EGX",
+      "ed": "01-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 46
+     }
+    ]
+   }
+  ],
+  "count": 29
+ },
+ {
+  "wave": "Wave 3",
+  "label": "United Arab Emirates",
+  "why": "No longer blocked. The eight Dubai-listed names stay on the Abu Dhabi index by instruction of 23-Aug-2026, so each must quote the interim disclosure and none may be called conforming.",
+  "batches": [
+   {
+    "exchange": "ADX",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "ADNOCGAS",
+      "nm": "ADNOC Gas",
+      "x": "ADX",
+      "ed": "04-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 47
+     },
+     {
+      "tk": "AGTHIA",
+      "nm": "Agthia Group PJSC",
+      "x": "ADX",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 48
+     },
+     {
+      "tk": "BURJEEL",
+      "nm": "Burjeel Holdings PLC",
+      "x": "ADX",
+      "ed": "11-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 49
+     },
+     {
+      "tk": "EAND",
+      "nm": "e& (Emirates Telecommunications Group)",
+      "x": "ADX",
+      "ed": "10-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 50
+     },
+     {
+      "tk": "LULU",
+      "nm": "Lulu Retail Holdings",
+      "x": "ADX",
+      "ed": "13-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "A",
+      "bu": true,
+      "seq": 51
+     }
+    ]
+   },
+   {
+    "exchange": "ADX",
+    "cls": "Real-estate developer",
+    "items": [
+     {
+      "tk": "ALDAR",
+      "nm": "Aldar Properties PJSC",
+      "x": "ADX",
+      "ed": "08-07-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "C",
+      "bu": false,
+      "seq": 52
+     }
+    ]
+   },
+   {
+    "exchange": "ADX",
+    "cls": "Holding company",
+    "items": [
+     {
+      "tk": "2POINTZERO",
+      "nm": "Two Point Zero Group",
+      "x": "ADX",
+      "ed": "11-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 53
+     },
+     {
+      "tk": "ALPHADHABI",
+      "nm": "Alpha Dhabi Holding",
+      "x": "ADX",
+      "ed": "10-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 54
+     },
+     {
+      "tk": "IHC",
+      "nm": "International Holding Company",
+      "x": "ADX",
+      "ed": "04-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 55
+     }
+    ]
+   },
+   {
+    "exchange": "ADX",
+    "cls": "Bank or financial",
+    "items": [
+     {
+      "tk": "ADCB",
+      "nm": "Abu Dhabi Commercial Bank",
+      "x": "ADX",
+      "ed": "10-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 56
+     },
+     {
+      "tk": "ADIBUAE",
+      "nm": "Abu Dhabi Islamic Bank",
+      "x": "ADX",
+      "ed": "11-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 57
+     },
+     {
+      "tk": "FAB",
+      "nm": "First Abu Dhabi Bank",
+      "x": "ADX",
+      "ed": "03-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 58
+     }
+    ]
+   },
+   {
+    "exchange": "DFM",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "DEWA",
+      "nm": "DEWA (Dubai Electricity and Water Authority)",
+      "x": "DFM",
+      "ed": "11-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "C",
+      "bu": false,
+      "seq": 59
+     },
+     {
+      "tk": "SALIK",
+      "nm": "Salik Company",
+      "x": "DFM",
+      "ed": "11-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital",
+      "betacls": "no-record",
+      "tier": "A",
+      "bu": true,
+      "seq": 60
+     }
+    ]
+   },
+   {
+    "exchange": "DFM",
+    "cls": "Real-estate developer",
+    "items": [
+     {
+      "tk": "EMAAR",
+      "nm": "Emaar Properties PJSC",
+      "x": "DFM",
+      "ed": "01-07-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 61
+     },
+     {
+      "tk": "EMAARDEV",
+      "nm": "Emaar Development PJSC",
+      "x": "DFM",
+      "ed": "08-07-2026",
+      "cls": "Real-estate developer",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "C",
+      "bu": false,
+      "seq": 62
+     }
+    ]
+   },
+   {
+    "exchange": "DFM",
+    "cls": "Bank or financial",
+    "items": [
+     {
+      "tk": "DIB",
+      "nm": "Dubai Islamic Bank",
+      "x": "DFM",
+      "ed": "11-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 63
+     },
+     {
+      "tk": "ENBD",
+      "nm": "Emirates NBD Bank",
+      "x": "DFM",
+      "ed": "03-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 64
+     }
+    ]
+   }
+  ],
+  "count": 18
+ },
+ {
+  "wave": "Wave 4",
+  "label": "Saudi Arabia",
+  "why": "One sovereign, one index, one tax regime across the whole batch.",
+  "batches": [
+   {
+    "exchange": "TADAWUL",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "ACWA",
+      "nm": "ACWA Power Company",
+      "x": "TADAWUL",
+      "ed": "05-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 65
+     },
+     {
+      "tk": "ARAMCO",
+      "nm": "Saudi Aramco",
+      "x": "TADAWUL",
+      "ed": "01-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 66
+     },
+     {
+      "tk": "ELM",
+      "nm": "Elm Company",
+      "x": "TADAWUL",
+      "ed": "10-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 67
+     },
+     {
+      "tk": "EXTRA",
+      "nm": "United Electronics Company (eXtra)",
+      "x": "TADAWUL",
+      "ed": "10-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 68
+     },
+     {
+      "tk": "MAADEN",
+      "nm": "Saudi Arabian Mining Company (Ma'aden)",
+      "x": "TADAWUL",
+      "ed": "05-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 69
+     },
+     {
+      "tk": "SABIC",
+      "nm": "Saudi Basic Industries Corp",
+      "x": "TADAWUL",
+      "ed": "07-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 70
+     }
+    ]
+   },
+   {
+    "exchange": "TADAWUL",
+    "cls": "Bank or financial",
+    "items": [
+     {
+      "tk": "ALINMA",
+      "nm": "Alinma Bank",
+      "x": "TADAWUL",
+      "ed": "10-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 71
+     },
+     {
+      "tk": "ALRAJHI",
+      "nm": "Al Rajhi Bank",
+      "x": "TADAWUL",
+      "ed": "02-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 72
+     },
+     {
+      "tk": "RIBL",
+      "nm": "Riyad Bank",
+      "x": "TADAWUL",
+      "ed": "09-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 73
+     },
+     {
+      "tk": "SNB",
+      "nm": "The Saudi National Bank",
+      "x": "TADAWUL",
+      "ed": "04-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 74
+     }
+    ]
+   }
+  ],
+  "count": 10
+ },
+ {
+  "wave": "Wave 5",
+  "label": "The international tail",
+  "why": "Four small country batches. Each needs its own sovereign row, so they are cheapest done last, together.",
+  "batches": [
+   {
+    "exchange": "QSE",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "QGTS",
+      "nm": "Nakilat",
+      "x": "QSE",
+      "ed": "05-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 75
+     }
+    ]
+   },
+   {
+    "exchange": "QSE",
+    "cls": "Holding company",
+    "items": [
+     {
+      "tk": "IQCD",
+      "nm": "Industries Qatar",
+      "x": "QSE",
+      "ed": "05-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 76
+     }
+    ]
+   },
+   {
+    "exchange": "QSE",
+    "cls": "Bank or financial",
+    "items": [
+     {
+      "tk": "QNB",
+      "nm": "QNB Group",
+      "x": "QSE",
+      "ed": "05-07-2026",
+      "cls": "Bank or financial",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "F",
+      "bu": false,
+      "seq": 77
+     }
+    ]
+   },
+   {
+    "exchange": "KRX",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "LGES",
+      "nm": "LG Energy Solution, Ltd.",
+      "x": "KRX",
+      "ed": "28-06-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 78
+     },
+     {
+      "tk": "SAMSUNG",
+      "nm": "Samsung Electronics Co., Ltd.",
+      "x": "KRX",
+      "ed": "27-06-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 79
+     }
+    ]
+   },
+   {
+    "exchange": "KRX",
+    "cls": "Holding company",
+    "items": [
+     {
+      "tk": "KAKAO",
+      "nm": "Kakao Corp.",
+      "x": "KRX",
+      "ed": "28-06-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 80
+     }
+    ]
+   },
+   {
+    "exchange": "NSE",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "INFY",
+      "nm": "Infosys Limited",
+      "x": "NSE",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 81
+     }
+    ]
+   },
+   {
+    "exchange": "NSE",
+    "cls": "Holding company",
+    "items": [
+     {
+      "tk": "RELIANCE",
+      "nm": "Reliance Industries Limited",
+      "x": "NSE",
+      "ed": "06-07-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 82
+     },
+     {
+      "tk": "TMPV",
+      "nm": "Tata Motors Passenger Vehicles Ltd.",
+      "x": "NSE",
+      "ed": "30-06-2026",
+      "cls": "Holding company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 83
+     }
+    ]
+   },
+   {
+    "exchange": "NASDAQ",
+    "cls": "Operating company",
+    "items": [
+     {
+      "tk": "AAPL",
+      "nm": "Apple Inc.",
+      "x": "NASDAQ",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 84
+     },
+     {
+      "tk": "NVDA",
+      "nm": "NVIDIA Corporation",
+      "x": "NASDAQ",
+      "ed": "06-07-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "D",
+      "bu": false,
+      "seq": 85
+     },
+     {
+      "tk": "TSLA",
+      "nm": "Tesla, Inc.",
+      "x": "NASDAQ",
+      "ed": "30-06-2026",
+      "cls": "Operating company",
+      "code": false,
+      "needs": "cost of capital + ground-up rebuild",
+      "betacls": "no-record",
+      "tier": "E",
+      "bu": false,
+      "seq": 86
+     }
+    ]
+   }
+  ],
+  "count": 12
+ }
+]
