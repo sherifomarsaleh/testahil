@@ -8,7 +8,7 @@ const FV_OVERLAY = {
  "engine_configs": {
   "AE": {
    "nu": 10.0,
-   "width_cal": 0.923,
+   "width_cal": 0.916,
    "rf_live": 0.0365,
    "width_overlay_active": false
   },
@@ -437,7 +437,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -989,7 +989,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1725,7 +1725,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1909,7 +1909,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2093,7 +2093,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2185,7 +2185,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2553,7 +2553,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2645,7 +2645,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2724,16 +2724,16 @@ const FV_OVERLAY = {
    "name": "Pioneers Properties for Urban Development",
    "code": "EGX:PRDC",
    "ccy": "EGP",
-   "spot": 9.8,
-   "anchor_date": "2026-07-22",
+   "spot": 9.69,
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-06",
-   "fv_lag_days": 16,
+   "fv_lag_days": 48,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 5.92,
    "fv_base": 8.23,
    "fv_full": 11.51,
-   "gap_base_pct": -16.0,
+   "gap_base_pct": -15.1,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -2746,68 +2746,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.152495,
-    "mu_h": 0.01519,
+    "h_sessions": 22,
+    "sigma_h": 0.1377,
+    "mu_h": 0.035483,
     "G": {
-     "bear": -3.31,
-     "base": -1.14,
-     "full": 1.05
+     "bear": -3.58,
+     "base": -1.19,
+     "full": 1.25
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0035,
-     "base": 0.0845,
-     "full": 0.1362
+     "bear": 0.0021,
+     "base": 0.0607,
+     "full": 0.1282
     },
     "p_touch": {
-     "bear": 0.005,
-     "base": 0.1422,
-     "full": 0.2129
+     "bear": 0.0036,
+     "base": 0.1106,
+     "full": 0.1898
     },
     "required_cagr": {
-     "bear": -0.9976,
-     "base": -0.8769,
-     "full": 5.8896
+     "bear": -0.9973,
+     "base": -0.8591,
+     "full": 6.8889
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00184
+    "selftest_max_dev": 0.00137
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.242159,
-    "mu_h": 0.04587,
+    "h_sessions": 62,
+    "sigma_h": 0.227422,
+    "mu_h": 0.083134,
     "G": {
-     "bear": -2.08,
+     "bear": -2.17,
      "base": -0.72,
-     "full": 0.66
+     "full": 0.76
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0163,
-     "base": 0.1464,
-     "full": 0.2834
+     "bear": 0.0111,
+     "base": 0.1103,
+     "full": 0.3175
     },
     "p_touch": {
-     "bear": 0.0304,
-     "base": 0.2918,
-     "full": 0.466
+     "bear": 0.0219,
+     "base": 0.2403,
+     "full": 0.4811
     },
     "required_cagr": {
-     "bear": -0.8668,
-     "base": -0.5026,
-     "full": 0.9028
+     "bear": -0.8607,
+     "base": -0.4796,
+     "full": 0.9907
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00261
+    "selftest_max_dev": 0.0032
    },
    "market": "EG"
   },
@@ -3657,7 +3657,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3933,7 +3933,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4025,7 +4025,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4393,7 +4393,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4485,7 +4485,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4853,7 +4853,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5037,7 +5037,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5313,7 +5313,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5681,7 +5681,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5773,7 +5773,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5865,7 +5865,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5957,7 +5957,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6049,7 +6049,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6233,7 +6233,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6325,7 +6325,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6417,7 +6417,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6777,7 +6777,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7012,90 +7012,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DIB",
-   "name": "Dubai Islamic Bank",
-   "code": "DFM:DIB",
-   "ccy": "AED",
-   "spot": 7.35,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 8.14,
-   "fv_base": 10.18,
-   "fv_full": 11.2,
-   "gap_base_pct": 38.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.063113,
-    "mu_h": 0.002717,
-    "G": {
-     "bear": 1.62,
-     "base": 5.16,
-     "full": 6.67
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": 2.4044,
-     "base": 48.8339,
-     "full": 155.7358
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00147
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.118103,
-    "mu_h": 0.009479,
-    "G": {
-     "bear": 0.86,
-     "base": 2.76,
-     "full": 3.57
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.2006,
-     "base": 0.0067,
-     "full": 0.0015
-    },
-    "p_touch": {
-     "bear": 0.349,
-     "base": 0.0109,
-     "full": 0.0027
-    },
-    "required_cagr": {
-     "bear": 0.5043,
-     "base": 2.6799,
-     "full": 4.3917
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00102
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "CLHO",
    "name": "Cleopatra Hospitals Group",
    "code": "EGX:CLHO",
@@ -7178,6 +7094,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00345
    },
    "market": "EG"
+  },
+  {
+   "ticker": "DIB",
+   "name": "Dubai Islamic Bank",
+   "code": "DFM:DIB",
+   "ccy": "AED",
+   "spot": 7.4,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 8.14,
+   "fv_base": 10.18,
+   "fv_full": 11.2,
+   "gap_base_pct": 37.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.916,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.055089,
+    "mu_h": -0.004062,
+    "G": {
+     "bear": 1.73,
+     "base": 5.79,
+     "full": 7.52
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": 2.1384,
+     "base": 44.9402,
+     "full": 143.4893
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0014
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.103208,
+    "mu_h": -0.01087,
+    "G": {
+     "bear": 0.92,
+     "base": 3.09,
+     "full": 4.02
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1384,
+     "base": 0.0025,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.2629,
+     "base": 0.0048,
+     "full": 0.001
+    },
+    "required_cagr": {
+     "bear": 0.4641,
+     "base": 2.5815,
+     "full": 4.2474
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00083
+   },
+   "market": "AE"
   },
   {
    "ticker": "EMFD",
@@ -7769,7 +7769,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7997,7 +7997,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42

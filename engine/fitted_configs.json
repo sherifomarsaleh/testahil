@@ -55,13 +55,13 @@
       "SWDY",
       "TMGH"
     ],
-    "windows": 617,
+    "windows": 618,
     "rebuilt_this_run": [],
     "nu": 5.0,
-    "width_cal": 0.951,
+    "width_cal": 0.958,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.009,
+    "market_skill": 0.0091,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.005,
@@ -217,13 +217,13 @@
       },
       "ELEC": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.088,
-        "skill_raw_basis": 0.1188,
+        "width_cal": 0.958,
+        "skill": 0.0881,
+        "skill_raw_basis": 0.1181,
         "verdict": "PASS",
         "ci_block2": [
           0.063,
-          0.136
+          0.134
         ]
       },
       "EMFD": {
@@ -272,9 +272,9 @@
       },
       "HELI": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0178,
-        "skill_raw_basis": 0.0323,
+        "width_cal": 0.958,
+        "skill": 0.0179,
+        "skill_raw_basis": 0.0324,
         "verdict": "PARITY",
         "ci_block2": [
           -0.027,
@@ -282,14 +282,14 @@
         ]
       },
       "HRHO": {
-        "nu": 5.0,
-        "width_cal": 0.951,
+        "nu": 6.0,
+        "width_cal": 0.937,
         "skill": -0.0133,
-        "skill_raw_basis": -0.0183,
+        "skill_raw_basis": -0.0194,
         "verdict": "PARITY",
         "ci_block2": [
           -0.04,
-          0.014
+          0.011
         ]
       },
       "ISPH": {
@@ -305,13 +305,13 @@
       },
       "JUFO": {
         "nu": 5.0,
-        "width_cal": 0.958,
-        "skill": -0.0082,
-        "skill_raw_basis": -0.0049,
+        "width_cal": 0.965,
+        "skill": -0.0099,
+        "skill_raw_basis": -0.0071,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.061,
-          0.033
+          -0.064,
+          0.032
         ]
       },
       "KABO": {
@@ -349,13 +349,13 @@
       },
       "OIH": {
         "nu": 6.0,
-        "width_cal": 0.937,
-        "skill": -0.0195,
-        "skill_raw_basis": -0.0139,
+        "width_cal": 0.944,
+        "skill": -0.0198,
+        "skill_raw_basis": -0.0141,
         "verdict": "PARITY",
         "ci_block2": [
           -0.049,
-          0.014
+          0.013
         ]
       },
       "ORAS": {
@@ -416,12 +416,12 @@
       "PRDC": {
         "nu": 5.0,
         "width_cal": 0.958,
-        "skill": 0.022,
-        "skill_raw_basis": 0.0244,
-        "verdict": "PASS",
+        "skill": 0.0295,
+        "skill_raw_basis": 0.0377,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          0.003,
-          0.046
+          0.002,
+          0.047
         ]
       },
       "RAYA": {
@@ -470,13 +470,13 @@
       },
       "TMGH": {
         "nu": 5.0,
-        "width_cal": 0.944,
-        "skill": 0.0355,
+        "width_cal": 0.951,
+        "skill": 0.0363,
         "skill_raw_basis": 0.035,
         "verdict": "PASS",
         "ci_block2": [
           0.009,
-          0.061
+          0.062
         ]
       }
     },
@@ -869,16 +869,16 @@
       "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 406,
+    "windows": 407,
     "rebuilt_this_run": [],
     "nu": 10.0,
     "width_cal": 0.916,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0124,
+    "market_skill": 0.0118,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.005,
+      0.004,
       0.021
     ],
     "market_verdict": "PASS",
@@ -953,14 +953,14 @@
         ]
       },
       "AGTHIA": {
-        "nu": 8.0,
+        "nu": 10.0,
         "width_cal": 0.923,
-        "skill": -0.0322,
-        "skill_raw_basis": -0.0364,
-        "verdict": "BOUNDARY(PARITY-flagged)",
+        "skill": -0.0142,
+        "skill_raw_basis": -0.0218,
+        "verdict": "PARITY",
         "ci_block2": [
-          -0.093,
-          0.012
+          -0.121,
+          0.064
         ]
       },
       "AIRARABIA": {
@@ -987,13 +987,13 @@
       },
       "ALPHADHABI": {
         "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": 0.0569,
-        "skill_raw_basis": 0.0484,
-        "verdict": "PASS",
+        "width_cal": 0.923,
+        "skill": 0.0045,
+        "skill_raw_basis": 0.0038,
+        "verdict": "PARITY",
         "ci_block2": [
-          0.018,
-          0.092
+          -0.009,
+          0.02
         ]
       },
       "AMR": {
@@ -1043,34 +1043,34 @@
       "DIB": {
         "nu": 10.0,
         "width_cal": 0.909,
-        "skill": 0.0225,
-        "skill_raw_basis": 0.0224,
-        "verdict": "PASS",
+        "skill": 0.0344,
+        "skill_raw_basis": 0.0303,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          0.01,
-          0.035
+          -0.003,
+          0.058
         ]
       },
       "DU": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": 0.0002,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0,
         "skill_raw_basis": 0.0068,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.052,
-          0.046
+          -0.054,
+          0.047
         ]
       },
       "EAND": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": 0.0404,
-        "skill_raw_basis": 0.0264,
+        "width_cal": 0.916,
+        "skill": 0.0408,
+        "skill_raw_basis": 0.0266,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.027,
-          0.109
+          0.11
         ]
       },
       "EMAAR": {
@@ -1118,14 +1118,14 @@
         ]
       },
       "FAB": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": -0.008,
-        "skill_raw_basis": -0.0118,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": -0.0079,
+        "skill_raw_basis": -0.0114,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.03,
-          0.032
+          -0.029,
+          0.031
         ]
       },
       "FERTIGLB": {
@@ -1162,14 +1162,14 @@
         ]
       },
       "MODON": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": 0.0462,
-        "skill_raw_basis": 0.0482,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": 0.0456,
+        "skill_raw_basis": 0.0471,
         "verdict": "PASS",
         "ci_block2": [
           0.022,
-          0.075
+          0.072
         ]
       },
       "SALIK": {
@@ -1197,7 +1197,7 @@
     },
     "superseded": {
       "nu": 10.0,
-      "width_cal": 0.923,
+      "width_cal": 0.916,
       "market_verdict": "PASS",
       "replaced_on": "2026-08-24"
     },
