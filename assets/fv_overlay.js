@@ -236,6 +236,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "CCAP",
+   "name": "Qalaa Holdings",
+   "code": "EGX:CCAP",
+   "ccy": "EGP",
+   "spot": 5.78,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 54,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.296,
+   "fv_base": 5.89,
+   "fv_full": 8.601,
+   "gap_base_pct": 1.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.127681,
+    "mu_h": 0.025621,
+    "G": {
+     "bear": -4.4,
+     "base": 0.15,
+     "full": 3.11
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.526,
+     "full": 0.0066
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.8183,
+     "full": 0.0086
+    },
+    "required_cagr": {
+     "bear": -0.9988,
+     "base": 0.2539,
+     "full": 116.8836
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00138
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.218012,
+    "mu_h": 0.068531,
+    "G": {
+     "bear": -2.58,
+     "base": 0.09,
+     "full": 1.82
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0068,
+     "base": 0.6098,
+     "full": 0.0545
+    },
+    "p_touch": {
+     "bear": 0.0129,
+     "base": 0.9121,
+     "full": 0.086
+    },
+    "required_cagr": {
+     "bear": -0.8943,
+     "base": 0.0783,
+     "full": 3.9033
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00365
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "ACWA",
    "name": "ACWA Power Company",
    "code": "TADAWUL:2082",
@@ -1244,98 +1336,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00204
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "CCAP",
-   "name": "Qalaa Holdings",
-   "code": "EGX:CCAP",
-   "ccy": "EGP",
-   "spot": 5.51,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 22,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.296,
-   "fv_base": 5.89,
-   "fv_full": 8.601,
-   "gap_base_pct": 6.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.131288,
-    "mu_h": 0.014415,
-    "G": {
-     "bear": -3.91,
-     "base": 0.51,
-     "full": 3.39
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0017,
-     "base": 0.3146,
-     "full": 0.0041
-    },
-    "p_touch": {
-     "bear": 0.0023,
-     "base": 0.5086,
-     "full": 0.0066
-    },
-    "required_cagr": {
-     "bear": -0.9979,
-     "base": 1.2262,
-     "full": 208.2995
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00296
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.235792,
-    "mu_h": 0.046107,
-    "G": {
-     "bear": -2.18,
-     "base": 0.28,
-     "full": 1.89
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.014,
-     "base": 0.4573,
-     "full": 0.0403
-    },
-    "p_touch": {
-     "bear": 0.0262,
-     "base": 0.744,
-     "full": 0.0658
-    },
-    "required_cagr": {
-     "bear": -0.872,
-     "base": 0.3057,
-     "full": 4.9373
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00191
    },
    "market": "EG"
   },
