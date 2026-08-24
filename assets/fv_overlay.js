@@ -420,98 +420,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "ALPHADHABI",
-   "name": "Alpha Dhabi Holding",
-   "code": "ADX:ALPHADHABI",
-   "ccy": "AED",
-   "spot": 7.3,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.95,
-   "fv_base": 7.13,
-   "fv_full": 8.63,
-   "gap_base_pct": -2.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.916,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.087025,
-    "mu_h": 0.002736,
-    "G": {
-     "bear": -2.35,
-     "base": -0.27,
-     "full": 1.92
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0119,
-     "base": 0.3712,
-     "full": 0.0303
-    },
-    "p_touch": {
-     "bear": 0.0172,
-     "base": 0.6649,
-     "full": 0.0446
-    },
-    "required_cagr": {
-     "bear": -0.914,
-     "base": -0.2463,
-     "full": 6.4517
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00162
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.16036,
-    "mu_h": 0.009543,
-    "G": {
-     "bear": -1.28,
-     "base": -0.15,
-     "full": 1.04
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0833,
-     "base": 0.4111,
-     "full": 0.1485
-    },
-    "p_touch": {
-     "bear": 0.1475,
-     "base": 0.8026,
-     "full": 0.2581
-    },
-    "required_cagr": {
-     "bear": -0.5587,
-     "base": -0.0899,
-     "full": 0.9532
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.001
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "NVDA",
    "name": "NVIDIA Corporation",
    "code": "NASDAQ:NVDA",
@@ -1432,6 +1340,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ALPHADHABI",
+   "name": "Alpha Dhabi Holding",
+   "code": "ADX:ALPHADHABI",
+   "ccy": "AED",
+   "spot": 7.47,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.95,
+   "fv_base": 7.13,
+   "fv_full": 8.63,
+   "gap_base_pct": -4.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.916,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.083328,
+    "mu_h": -0.008065,
+    "G": {
+     "bear": -2.73,
+     "base": -0.56,
+     "full": 1.73
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0073,
+     "base": 0.3083,
+     "full": 0.034
+    },
+    "p_touch": {
+     "bear": 0.0109,
+     "base": 0.5074,
+     "full": 0.0555
+    },
+    "required_cagr": {
+     "bear": -0.9348,
+     "base": -0.4282,
+     "full": 4.653
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00093
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.151323,
+    "mu_h": -0.024391,
+    "G": {
+     "bear": -1.5,
+     "base": -0.31,
+     "full": 0.95
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0822,
+     "base": 0.4365,
+     "full": 0.1205
+    },
+    "p_touch": {
+     "bear": 0.1345,
+     "base": 0.7339,
+     "full": 0.2342
+    },
+    "required_cagr": {
+     "bear": -0.5975,
+     "base": -0.17,
+     "full": 0.7814
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00121
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "HELI",
    "name": "Heliopolis Housing",
    "code": "EGX:HELI",
@@ -2195,24 +2195,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.059643,
+    "sigma_h": 0.0592,
     "mu_h": 0.002779,
     "G": {
-     "bear": -3.39,
-     "base": 0.88,
-     "full": 4.83
+     "bear": -3.42,
+     "base": 0.89,
+     "full": 4.86
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0016,
-     "base": 0.1871,
+     "bear": 0.0015,
+     "base": 0.1854,
      "full": 0.0002
     },
     "p_touch": {
-     "bear": 0.0023,
-     "base": 0.3035,
+     "bear": 0.0022,
+     "base": 0.3007,
      "full": 0.0002
     },
     "required_cagr": {
@@ -2223,29 +2223,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0006
+    "selftest_max_dev": 0.0009
    },
    "3M": {
     "h_sessions": 64,
-    "sigma_h": 0.104113,
+    "sigma_h": 0.103299,
     "mu_h": 0.009693,
     "G": {
-     "bear": -1.94,
-     "base": 0.5,
-     "full": 2.76
+     "bear": -1.96,
+     "base": 0.51,
+     "full": 2.79
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.023,
-     "base": 0.3281,
-     "full": 0.0068
+     "bear": 0.0223,
+     "base": 0.3269,
+     "full": 0.0066
     },
     "p_touch": {
-     "bear": 0.0421,
-     "base": 0.5721,
-     "full": 0.0114
+     "bear": 0.0408,
+     "base": 0.5697,
+     "full": 0.0108
     },
     "required_cagr": {
      "bear": -0.5549,
@@ -2255,7 +2255,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00083
+    "selftest_max_dev": 0.00091
    },
    "market": "AE"
   },
@@ -6151,24 +6151,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.071253,
+    "sigma_h": 0.070623,
     "mu_h": 0.000653,
     "G": {
-     "bear": -0.97,
-     "base": 3.53,
-     "full": 5.88
+     "bear": -0.98,
+     "base": 3.56,
+     "full": 5.94
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1504,
-     "base": 0.0014,
+     "bear": 0.1483,
+     "base": 0.0013,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.2505,
-     "base": 0.0022,
+     "bear": 0.2474,
+     "base": 0.0021,
      "full": 0.0
     },
     "required_cagr": {
@@ -6179,29 +6179,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00119
+    "selftest_max_dev": 0.00074
    },
    "3M": {
     "h_sessions": 64,
-    "sigma_h": 0.132118,
+    "sigma_h": 0.131133,
     "mu_h": 0.001956,
     "G": {
-     "bear": -0.52,
-     "base": 1.9,
-     "full": 3.17
+     "bear": -0.53,
+     "base": 1.92,
+     "full": 3.2
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.2811,
-     "base": 0.0304,
-     "full": 0.0027
+     "bear": 0.2796,
+     "base": 0.0296,
+     "full": 0.0026
     },
     "p_touch": {
-     "bear": 0.5196,
-     "base": 0.0523,
-     "full": 0.005
+     "bear": 0.5168,
+     "base": 0.051,
+     "full": 0.0048
     },
     "required_cagr": {
      "bear": -0.2409,
@@ -6211,7 +6211,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
+    "selftest_max_dev": 0.00108
    },
    "market": "AE"
   },

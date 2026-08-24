@@ -60,7 +60,16 @@ correction. A calendar target cannot drift.
   fields (`realized_close`, `in_90`, `in_50`, `realized_quantile`, `median_err`, `touch_hit`) stay
   `null` until `grade_date`.
 
-## the calibration back-test status (pass/fail gate, separate from the ledger's own grading)
+## the calibration back-test status — SNAPSHOT AS OF 2026-07-09, SUPERSEDED
+
+> **STALE — DO NOT CITE. Superseded by the 2026-08-24 snapshot below.** This table carried no date
+> and no expiry banner, so it read as current for 46 days while the fits underneath it were refit
+> repeatedly. Every verdict in it has since moved. Two examples of how wrong it had become:
+> **AGTHIA is listed FAILED here and is PARITY today** (skill −0.0142 on the 28-name AE panel), and
+> the ALPHADHABI row describes the AE fit as "1-name PROVISIONAL (Gaussian, cone width 1.042)" when
+> AE is a 28-name panel at ν=10.0 / width_cal 0.916 that now PASSES its market gate. Kept, not
+> deleted, as the dated record it is — [R-DOC-02]: a status sentence is a claim about the world and
+> it rots, so it carries the date it was true.
 
 This is the *pre-publication* CRPS-skill test (the calibration back-test), not the ledger's post-hoc grading — but it's
 tracked alongside the ledger because a the calibration back-test failure changes how a row's eventual grade should be
@@ -81,6 +90,86 @@ read (an indicative-only forecast failing calibration later is expected, not a s
 MAADEN as confirmed failures. Pulling the live `coverage.js` text directly for this file surfaced two
 more — **AGTHIA and ISPH** — also carrying explicit the calibration back-test-failure notes. Treat this ledger file as
 the more current source on failure status; worth reconciling into standing memory.
+
+---
+
+## Snapshot as of 2026-08-24
+
+Read live from `assets/data.js` (LEDGER) and `engine/market_profiles.py` + `engine/fitted_configs.json`
+at the moment of writing — never from memory or from the sections above. Regenerate the same way.
+
+**Ledger size.** **271 rows** across **93 covered instruments** — 246 equity, 13 metal, 12 other.
+**41 graded, 230 open** (99 × 1-month, 129 × 3-month, 2 × metals 12-month).
+
+**How the cone has actually scored.** All 41 graded rows are 1-month windows; **no 3-month cohort has
+matured yet**, which is exactly what the 29-Jul-2026 forecast-lifecycle adoption predicted — before it,
+no 3-month forecast ever survived to grading at all, and the first ones are still running to their dates.
+
+| | result | target | read |
+|---|---|---|---|
+| inside the 90% band | **38 / 41 = 93%** | 90% | slightly over-covered — the band is honest, marginally wide |
+| inside the 50% band | **23 / 41 = 56%** | 50% | same direction, same size |
+| mean PIT | **0.572** *(38 of 41 rows)* | 0.500 | outcomes land a little above centre |
+| mean median error | **+3.28%** *(41 of 41 rows)* | 0% | the centre has run modestly low against realised prices |
+
+The PIT denominator is 38, not 41: **Samsung (2026-06-26), OIH and RMDA (both 2026-07-22) carry a
+`realized_close` but no `realized_quantile`**, so they score coverage but not centring. The denominator
+is printed because averaging three missing values into 41 silently reports 0.530 instead of 0.572 —
+a difference that reads as "better centred than it is" and is invisible unless the basis is stated.
+Worth closing at source in `grade_ledger.compute()`; not repaired here, since a graded row is permanent.
+
+Over-coverage on both bands with a PIT above 0.5 is one coherent story, not two: the cones are a touch
+wide and the centre a touch low. It is the same signature the per-name width overlay was built for, and
+it is a small sample — 41 windows, one horizon, no 3-month evidence yet. It is not a licence to narrow
+anything by hand.
+
+**Live fits** (the pooled (ν, width_cal) pair is the fitted object; ν alone is weakly identified and must
+never be quoted as precise):
+
+| market | ν | width_cal | signal | panel verdict | names | windows |
+|---|---|---|---|---|---|---|
+| AE | 10.0 | 0.916 | mom_combo (active) | **PASS** | 28 | 407 |
+| EG | 5.0 | 0.958 | mom_combo (active) | PARITY | 37 | 618 |
+| SA | 12.0 | 1.063 | mom_12_1 (active) | PARITY | 13 | 446 |
+| IN | 6.0 | 1.021 | — | PARITY | 3 | 172 |
+| KR | 8.0 | 1.070 | — | PARITY | 3 | 125 |
+| QA | 6.0 | 0.951 | — | PARITY | 3 | 174 |
+| US | 12.0 | 1.084 | — | PARITY | 3 | 174 |
+| XAU | 12.0 | 0.958 | — | PARITY | 2 | 120 |
+| XPT | 8.0 | 0.860 | — | PARITY | 1 | 58 |
+
+BR and GB carry no fit and no registered index — no conforming beta is possible there.
+
+**Names not at PASS or PARITY.** Everything not listed is PASS or PARITY; absent means unremarkable,
+which is the common case and deliberately not enumerated.
+
+| market | name | verdict | skill |
+|---|---|---|---|
+| AE | BOROUGE | **FAIL** | −0.0582 |
+| AE | EMPOWER | **FAIL** | −0.0252 |
+| EG | CLHO | **FAIL** | −0.0201 |
+| SA | EXTRA | **FAIL** | −0.0372 |
+| AE | LULU | PROVISIONAL (insufficient windows) | −0.0646 |
+| AE | AMR | BOUNDARY (PARITY-flagged) | −0.0123 |
+| AE | BURJEEL | BOUNDARY (PARITY-flagged) | +0.0701 |
+| AE | DIB | BOUNDARY (PARITY-flagged) | +0.0344 |
+| AE | EAND | BOUNDARY (PARITY-flagged) | +0.0408 |
+| EG | ARCC | BOUNDARY (PARITY-flagged) | −0.0190 |
+| EG | FWRY | BOUNDARY (PARITY-flagged) | +0.0184 |
+| EG | OCDI | BOUNDARY (PARITY-flagged) | +0.0329 |
+| EG | PRDC | BOUNDARY (PARITY-flagged) | +0.0295 |
+| EG | RAYA | BOUNDARY (PARITY-flagged) | −0.0304 |
+| IN | INFY | BOUNDARY (PARITY-flagged) | −0.0114 |
+| QA | QNB | BOUNDARY (PARITY-flagged) | +0.0190 |
+| US | NVDA | BOUNDARY (PARITY-flagged) | −0.0234 |
+
+**Metals remain the weakest calibration in the system** and the table above should not be read as
+softening that: gold is a single-name self-fit and therefore circular, and silver is published on gold's
+fit with none of its own. Silver, copper and platinum history is what fixes it.
+
+**Nothing gradable today.** 19 open rows reached their calendar grade date of 2026-08-24 and none could
+be graded: no library holds that session's close yet. They stay open and grade on the first session that
+covers the date — the horizon is a calendar commitment, so they have matured; they are simply unsettled.
 
 ---
 
