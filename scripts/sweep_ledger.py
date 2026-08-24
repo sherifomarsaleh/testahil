@@ -55,9 +55,20 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--today', required=True, help='ISO date the sweep is run as of')
     ap.add_argument('--write', action='store_true')
+    ap.add_argument('--allow-early', nargs='*', metavar='INSTRUMENT', default=None,
+                    help='grade a matured row whose library stops just short of its stored '
+                         'grade date on the last session inside the window, annotated. '
+                         f'Bounded: the gap may not exceed {GL.EARLY_MAX_DAYS} calendar days, '
+                         'so a library weeks behind stays BLOCKED either way. Name the '
+                         'instruments (--allow-early EAND); passing none applies it to every '
+                         'matured row inside the bound, which is rarely what you want.')
     args = ap.parse_args()
 
-    s = GL.sweep(args.today)
+    early = False if args.allow_early is None else (args.allow_early or True)
+    if isinstance(early, set) or isinstance(early, list):
+        print(f'  early grading permitted for: {", ".join(sorted(early))} '
+              f'(bound {GL.EARLY_MAX_DAYS} calendar days)')
+    s = GL.sweep(args.today, allow_early=early)
     ledger, open_rows, matured = s['ledger'], s['open'], s['matured']
     gradable, blocked = s['gradable'], s['blocked']
 
@@ -72,7 +83,9 @@ def main() -> int:
               f"| in90={got['in_90']} in50={got['in_50']} "
               f"q={got['realized_quantile']} err={got['median_err']:+.4f} "
               f"({got['_sessions']} sessions)"
-              + ('  [ROLLED from stored grade_date]' if got['_rolled'] else ''))
+              + ('  [ROLLED from stored grade_date]' if got['_rolled'] else '')
+              + (f"  [EARLY — stored grade_date {r['grade_date']} not yet in the library]"
+                 if got.get('_early') else ''))
     for r, why in blocked:
         print(f"  BLOCKED {r['instrument']:<12} {r['horizon_label']:<9} "
               f"grade_date {r['grade_date']} — {why}")

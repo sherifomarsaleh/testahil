@@ -80,8 +80,23 @@ Never let a partial upload replace the library.
 Run the existing pipeline unchanged: `data_quality.clean_ohlc` (per-market price-limit gate),
 then `auto_refresh.py` dry-run against the FULL market panel (never just the touched name).
 Report the materiality verdict. If material (verdict flip, new-name-arrives-FAILING, cone
-moves >5%, breaks change) — stop, do not proceed to Step 3/4 without flagging it explicitly;
-this is a PR-gated event, not an auto-apply one.
+moves >5%, breaks change) — **APPLY IT AND ANNOUNCE IT, then carry on to Step 3/4.** Announce
+in all three places [R-CAL-01]: the evidence file under `engine/PENDING_REVIEW/`, the reasons
+repeated verbatim in the commit message, and the config it replaced stored under `superseded`
+in `fitted_configs.json`. `scripts/adopt_calibration.py --markets {MKT} --yes` applies one
+market deliberately; the unattended `auto_refresh.py --apply` does the same on its own
+schedule. The only thing that still stops a run is a market that RAISES — an exception is not
+evidence.
+
+**This paragraph used to read "stop … this is a PR-gated event, not an auto-apply one", and
+that was retired on 23-Aug-2026 by [R-CAL-01]** — blocking produced 66 unmerged review PRs in
+seventeen days while production went on publishing a month-old fit and said nothing, so the
+gate became its own form of silence. It is corrected here on 24-Aug-2026 because the stale
+sentence was still being obeyed: an AGTHIA roll-forward stopped on a material verdict whose
+own ν and width_cal had not moved at all, while the unattended pipeline applied a material AE
+change on `main` that same day, exactly as [R-CAL-01] specifies. A gate with no release is a
+stall. See `PROJECT_INSTRUCTIONS_11-07-2026.md` and `Standing_Research_Protocol.md`, both of
+which have carried the amended rule since 23-Aug-2026 — this file was the odd one out.
 
 ## STEP 3 — GRADE EVERY NOW-MATURED COHORT
 Under the lifecycle this means: the matured current 1M, PLUS any aging 3M tail (and any
@@ -106,6 +121,16 @@ to size the cone. Never re-derive the target by counting rows. For every open LE
    original stored value) and a one-line `grade_note` stating the gap and likely cause
    (closure/suspension). This is an append/annotate, never a silent retro-edit of the
    frozen percentiles themselves — those stay exactly as published.
+3b. **[R-GRADE-01] The window can also close BEFORE the library reaches it** — the month
+   is up but the exchange has not yet exported that last session. The default is still to
+   BLOCK. `python3 scripts/sweep_ledger.py --today YYYY-MM-DD --allow-early EAND [...]`
+   grades such a row on the LAST session inside its window, annotated identically to a
+   rolled one. It is OFF by default, BOUNDED at `EARLY_MAX_DAYS` = 7 calendar days, and
+   SCOPED to the instruments you name — a row inside the bound that you did not name stays
+   blocked and says so. Naming is the point: an early grade is a decision about one name's
+   permanent record, and a blanket flag makes it a decision about every name whose export
+   is lagging that week. A window graded a session short is marginally narrower than the
+   one committed to, which slightly favours the cone — state it, don't bury it.
 4. The ledger page's existing JS needs NO template change for this — once `realized_close`
    is non-null it already renders the real close + "we got it right ✓ / we were off ✗" from
    `in_90`. Grading is a DATA fix, not a code fix.

@@ -69,6 +69,31 @@ PCTS = [('p5', 0.05), ('p25', 0.25), ('p50', 0.50), ('p75', 0.75), ('p95', 0.95)
 CA_TOL = 0.02
 REL = [('+5', 0.05), ('+10', 0.10), ('+15', 0.15), ('+20', 0.20), ('-5', -0.05), ('-10', -0.10)]
 
+# [R-GRADE-01] EARLY GRADING — OPT-IN, BOUNDED AND SCOPED SO IT CANNOT SWEEP
+# (24-Aug-2026, per instruction). Full account in Standing_Research_Protocol.md.
+#
+# The horizon is a CALENDAR commitment: a row matures when its calendar grade date
+# arrives, not when some number of sessions have printed. So a row can be genuinely due
+# while the library stops a session short of the grade date — the month is up, the
+# exchange simply has not exported that last session yet. The default is unchanged:
+# grade ON the stored grade_date, or on the next real session if a closure pushed past
+# it, else BLOCK.
+#
+# `allow_early` grades such a row on the last session inside its window instead. It is
+# deliberately hard to misuse:
+#   * OFF by default, so every existing caller behaves byte-identically;
+#   * BOUNDED by EARLY_MAX_DAYS — the last available session must be within that many
+#     calendar days of the stored grade date.
+#
+# The bound is the part that matters. On 24-Aug-2026 nineteen rows were matured and
+# blocked: EAND's library reached 21-Aug against a 24-Aug grade date (ONE session short,
+# a real export lag), while eighteen AE names stopped at 24-Jul — a full month short,
+# where "grade it early" would score a cone against a window that mostly never ran. An
+# unbounded flag would have graded all nineteen alike. A row outside the bound stays
+# BLOCKED even with the flag on, so the safety is structural rather than a matter of
+# naming rows carefully.
+EARLY_MAX_DAYS = 7
+
 
 # ---------------------------------------------------------------- library access
 
@@ -113,12 +138,28 @@ process.stdout.write(JSON.stringify(s.__L));
 
 # ---------------------------------------------------------------- the grade itself
 
-def grade_session(lib: dict, stored_grade_date: str):
-    """The session actually graded: the stored date, or the next real one after it."""
+def _days_between(a: str, b: str) -> int:
+    fmt = '%Y-%m-%d'
+    return abs((datetime.strptime(b, fmt) - datetime.strptime(a, fmt)).days)
+
+
+def grade_session(lib: dict, stored_grade_date: str, allow_early: bool = False):
+    """The session actually graded, and how it was reached.
+
+    Returns (session, how). `how` is 'exact', 'rolled' (a closure or suspension pushed
+    the first real session past the stored date), or 'early' (opt-in and bounded — see
+    EARLY_MAX_DAYS). (None, 'blocked') when the library cannot cover the row.
+    """
     if stored_grade_date in lib:
-        return stored_grade_date, False
+        return stored_grade_date, 'exact'
     later = [d for d in sorted(lib) if d > stored_grade_date]
-    return (later[0], True) if later else (None, False)
+    if later:
+        return later[0], 'rolled'
+    if allow_early:
+        earlier = [d for d in sorted(lib) if d < stored_grade_date]
+        if earlier and _days_between(earlier[-1], stored_grade_date) <= EARLY_MAX_DAYS:
+            return earlier[-1], 'early'
+    return None, 'blocked'
 
 
 def ca_factor(row: dict, lib: dict) -> float:
@@ -159,11 +200,12 @@ def ca_factor(row: dict, lib: dict) -> float:
     return ratio if abs(ratio - 1.0) > CA_TOL else 1.0
 
 
-def compute(row: dict, lib: dict) -> dict | None:
+def compute(row: dict, lib: dict, allow_early: bool = False) -> dict | None:
     """Outcome fields for one open row, or None if its library cannot cover it."""
-    gd, rolled = grade_session(lib, row['grade_date'])
+    gd, how = grade_session(lib, row['grade_date'], allow_early=allow_early)
     if gd is None:
         return None
+    rolled = (how == 'rolled')
     window = [d for d in sorted(lib) if row['anchor_date'] < d <= gd]
     if not window:
         return None
@@ -191,6 +233,8 @@ def compute(row: dict, lib: dict) -> dict | None:
         '_sessions': len(window),
         '_graded_on': gd,
         '_rolled': rolled,
+        '_early': how == 'early',
+        '_how': how,
         '_ca': ca,
     }
     return out
@@ -283,7 +327,13 @@ def replay(ledger: list, rawmap: dict, verbose: bool = True) -> tuple:
 
 # ---------------------------------------------------------------- the sweep
 
-def sweep(today: str, verbose: bool = True) -> dict:
+def sweep(today: str, verbose: bool = True, allow_early=False) -> dict:
+    """allow_early: False (default), True (every matured row, still bounded), or a
+    collection of instrument names the early path is permitted for. Naming the
+    instruments is the auditable form — an early grade is a decision about ONE name's
+    record, and a blanket flag silently makes it about every name whose export happens
+    to be lagging that week."""
+    early_names = None if isinstance(allow_early, bool) else set(allow_early)
     ledger = read_ledger()
     rawmap = raw_csv_map()
 
@@ -306,9 +356,17 @@ def sweep(today: str, verbose: bool = True) -> dict:
         if not lib:
             blocked.append((r, 'no library file'))
             continue
-        got = compute(r, lib)
+        early_ok = bool(allow_early) if early_names is None \
+            else (r['instrument'] in early_names)
+        got = compute(r, lib, allow_early=early_ok)
         if got is None:
-            blocked.append((r, f"library ends {max(lib)}, grade date {r['grade_date']} not covered"))
+            why = f"library ends {max(lib)}, grade date {r['grade_date']} not covered"
+            if early_ok:
+                why += f" and the gap exceeds the {EARLY_MAX_DAYS}-day early-grade bound"
+            elif _days_between(max(lib), r['grade_date']) <= EARLY_MAX_DAYS:
+                why += (f" — within the {EARLY_MAX_DAYS}-day early-grade bound, but "
+                        f"{r['instrument']} was not named for early grading")
+            blocked.append((r, why))
         else:
             gradable.append((r, got))
     return {'ledger': ledger, 'open': open_rows, 'matured': matured,
@@ -454,6 +512,20 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
                         f"grade_note:\"Stored grade date {row['grade_date']} was not a traded "
                         f"session in the library; graded on the next actual session "
                         f"{got['_graded_on']}.\"")
+
+    # An EARLY grade is annotated on exactly the same terms, and for the same reason:
+    # the stored commitment is never overwritten in silence. The horizon elapsed as a
+    # calendar month; the last session of that window is what the library holds.
+    if got.get('_early'):
+        gap = _days_between(got['_graded_on'], row['grade_date'])
+        t2 = t2.replace(f"grade_date:\"{row['grade_date']}\"",
+                        f"grade_date:\"{got['_graded_on']}\", "
+                        f"grade_date_projected:\"{row['grade_date']}\", "
+                        f"grade_note:\"The {row['horizon_label']} calendar window closed on "
+                        f"{row['grade_date']}, which the library does not yet reach; graded on "
+                        f"{got['_graded_on']}, the last session inside the window and "
+                        f"{gap} calendar day(s) short. The published percentiles are "
+                        f"untouched.\"")
 
     # A corporate action inside the window is likewise ANNOTATED, never silent: the
     # frozen percentiles stay exactly as published and the realized window is the
