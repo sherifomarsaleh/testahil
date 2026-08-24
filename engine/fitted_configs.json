@@ -61,7 +61,7 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0087,
+    "market_skill": 0.0086,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.006,
@@ -306,12 +306,12 @@
       "JUFO": {
         "nu": 5.0,
         "width_cal": 0.958,
-        "skill": -0.0107,
-        "skill_raw_basis": 0.0056,
+        "skill": -0.0082,
+        "skill_raw_basis": -0.0049,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.054,
-          0.028
+          -0.061,
+          0.033
         ]
       },
       "KABO": {
@@ -382,13 +382,13 @@
       },
       "ORWE": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0504,
-        "skill_raw_basis": 0.0473,
+        "width_cal": 0.958,
+        "skill": 0.0501,
+        "skill_raw_basis": 0.0462,
         "verdict": "PASS",
         "ci_block2": [
           0.014,
-          0.088
+          0.086
         ]
       },
       "PHAR": {
@@ -438,12 +438,12 @@
       "RMDA": {
         "nu": 5.0,
         "width_cal": 0.958,
-        "skill": -0.0044,
-        "skill_raw_basis": -0.0015,
+        "skill": -0.0077,
+        "skill_raw_basis": -0.005,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.024,
-          0.017
+          -0.032,
+          0.018
         ]
       },
       "SCEM": {
@@ -459,24 +459,24 @@
       },
       "SWDY": {
         "nu": 5.0,
-        "width_cal": 0.944,
-        "skill": 0.0106,
-        "skill_raw_basis": 0.0222,
+        "width_cal": 0.951,
+        "skill": 0.0112,
+        "skill_raw_basis": 0.0218,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.034,
+          -0.032,
           0.071
         ]
       },
       "TMGH": {
         "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.0368,
-        "skill_raw_basis": 0.0529,
+        "skill": 0.0355,
+        "skill_raw_basis": 0.035,
         "verdict": "PASS",
         "ci_block2": [
-          0.014,
-          0.09
+          0.009,
+          0.061
         ]
       }
     },
