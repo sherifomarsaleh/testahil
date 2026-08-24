@@ -2628,98 +2628,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ORWE",
-   "name": "Oriental Weavers",
-   "code": "EGX:ORWE",
-   "ccy": "EGP",
-   "spot": 23.12,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 16.7,
-   "fv_base": 20.9,
-   "fv_full": 29.7,
-   "gap_base_pct": -9.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.07084,
-    "mu_h": 0.014599,
-    "G": {
-     "bear": -4.59,
-     "base": -1.43,
-     "full": 3.54
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0008,
-     "base": 0.0446,
-     "full": 0.0039
-    },
-    "p_touch": {
-     "bear": 0.0013,
-     "base": 0.0749,
-     "full": 0.0061
-    },
-    "required_cagr": {
-     "bear": -0.9798,
-     "base": -0.7022,
-     "full": 19.1941
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00119
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.140757,
-    "mu_h": 0.045655,
-    "G": {
-     "bear": -2.31,
-     "base": -0.72,
-     "full": 1.78
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0096,
-     "base": 0.1183,
-     "full": 0.0596
-    },
-    "p_touch": {
-     "bear": 0.0183,
-     "base": 0.2538,
-     "full": 0.0936
-    },
-    "required_cagr": {
-     "bear": -0.7278,
-     "base": -0.3322,
-     "full": 1.7232
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0015
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "PRDC",
    "name": "Pioneers Properties for Urban Development",
    "code": "EGX:PRDC",
@@ -5386,6 +5294,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00202
    },
    "market": "AE"
+  },
+  {
+   "ticker": "ORWE",
+   "name": "Oriental Weavers",
+   "code": "EGX:ORWE",
+   "ccy": "EGP",
+   "spot": 26,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 16.7,
+   "fv_base": 20.9,
+   "fv_full": 29.7,
+   "gap_base_pct": -19.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.088336,
+    "mu_h": 0.01451,
+    "G": {
+     "bear": -5.01,
+     "base": -2.47,
+     "full": 1.51
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.0096,
+     "full": 0.0719
+    },
+    "p_touch": {
+     "bear": 0.0009,
+     "base": 0.0154,
+     "full": 0.1089
+    },
+    "required_cagr": {
+     "bear": -0.9951,
+     "base": -0.9272,
+     "full": 3.9363
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00108
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.155123,
+    "mu_h": 0.045488,
+    "G": {
+     "bear": -2.85,
+     "base": -1.41,
+     "full": 0.86
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0049,
+     "base": 0.0398,
+     "full": 0.2494
+    },
+    "p_touch": {
+     "bear": 0.0088,
+     "base": 0.0766,
+     "full": 0.3941
+    },
+    "required_cagr": {
+     "bear": -0.8298,
+     "base": -0.5825,
+     "full": 0.7027
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00226
+   },
+   "market": "EG"
   },
   {
    "ticker": "ORAS",
