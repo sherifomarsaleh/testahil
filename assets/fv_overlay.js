@@ -6151,24 +6151,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.071253,
+    "sigma_h": 0.070623,
     "mu_h": 0.000653,
     "G": {
-     "bear": -0.97,
-     "base": 3.53,
-     "full": 5.88
+     "bear": -0.98,
+     "base": 3.56,
+     "full": 5.94
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1504,
-     "base": 0.0014,
+     "bear": 0.1483,
+     "base": 0.0013,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.2505,
-     "base": 0.0022,
+     "bear": 0.2474,
+     "base": 0.0021,
      "full": 0.0
     },
     "required_cagr": {
@@ -6179,29 +6179,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00119
+    "selftest_max_dev": 0.00074
    },
    "3M": {
     "h_sessions": 64,
-    "sigma_h": 0.132118,
+    "sigma_h": 0.131133,
     "mu_h": 0.001956,
     "G": {
-     "bear": -0.52,
-     "base": 1.9,
-     "full": 3.17
+     "bear": -0.53,
+     "base": 1.92,
+     "full": 3.2
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.2811,
-     "base": 0.0304,
-     "full": 0.0027
+     "bear": 0.2796,
+     "base": 0.0296,
+     "full": 0.0026
     },
     "p_touch": {
-     "bear": 0.5196,
-     "base": 0.0523,
-     "full": 0.005
+     "bear": 0.5168,
+     "base": 0.051,
+     "full": 0.0048
     },
     "required_cagr": {
      "bear": -0.2409,
@@ -6211,7 +6211,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
+    "selftest_max_dev": 0.00108
    },
    "market": "AE"
   },
