@@ -1001,28 +1001,28 @@ const TICKERS = {
     name: "e& (Emirates Telecommunications Group)",
     nameAr: "إي آند (مجموعة الإمارات للاتصالات)",
     code: "ADX:EAND",
-    spot: 20.08,
-    spotDate: "close 24 Jul 2026",
+    spot: 21.56,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 17.61, base: 22.72, full: 28.75 },      // 11 Jul 2026 — four-lens weighted central 22.72 (+15.5% vs spot 19.66). Lenses: FCFF DCF + sourced stakes-and-claims bridge (primary, 35%) 28.38 (TV 79% of EV, disclosed; core EV under the production UAE Monte-Carlo panel fit does not feed this lens), dividend discount (policy lens, 25%) 17.03, relative EV/EBITDA through the same bridge (20%) 23.72, normalized earnings (20%) 18.90. bear/full = weighted bear/bull. The crux is the 2027 UAE federal royalty reset (current 38%+9% regime expires 31-Dec-2026, undecided): each 4pp of royalty ≈ AED 1.1/share. Same-day event: 10-Jul-2026 e& agreed to sell its entire Vodafone stake for AED 21.8bn gross (~4.7bn net cash), pending regulatory approvals — carried at deal value, dual-framed against the undisturbed mark. Beta assumed 1.0 (regression inaccessible; no downloadable ADX General Index series found after two independent attempts), sensitised 0.8–1.3.
     dist: {
-      t20: { label:"1 month",   p5:18.20, p25:19.37, p50:20.14, p75:20.94, p95:22.25, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:16.98, p25:18.94, p50:20.27, p75:21.70, p95:24.23, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:19.64, p25:20.82, p50:21.62, p75:22.45, p95:23.83, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.38, p25:20.40, p50:21.77, p75:23.22, p95:25.76, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [22.00, 11, 37], [21.00, 39, 64], [20.00, 82, 89], [19.00, 27, 51], [18.00, 6, 23], [17.00, 1, 9]
+      [22.00, 64, 80], [21.00, 54, 71], [20.00, 15, 37], [19.00, 3, 16], [18.00, 0, 6], [17.00, 0, 2]
     ],
-    levels: { res:[20.52, 20.91, 21.53], sup:[19.32, 18.88, 17.32] },
+    levels: { res:[22, 23, 24], sup:[20.98, 18.88, 17.59] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
-      summary: "The price closed 20.08 above a rising 20-day (19.93), a rising 50-day (19.26) and a rising 200-day (19.19). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.40 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.24 / +0.28 / \u22120.05). The 50-day crossed above the 200-day 7 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 17.40\u201321.60; the last close sits 7% below that high and 15% above that low.",
-      bull: "A daily close back above 20.52 would clear the nearest resistance and open the 21.53 zone.",
-      bear: "A close below 19.32 would break the nearest support and open the 17.32 zone."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 21.56 above a rising 20-day (20.79), a rising 50-day (20.18) and a rising 200-day (19.37). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.42 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.45 / +0.37 / +0.08). Over the last year it has ranged 17.40\u201322.00; the last close sits 2% below that high and 24% above that low.",
+      bull: "A daily close back above 22.00 would clear the nearest resistance and open the 24.00 zone.",
+      bear: "A close below 20.98 would break the nearest support and open the 17.59 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/EAND_Valuation_Study_10-07-2026_public.docx?v=0711a",
@@ -1758,28 +1758,28 @@ const TICKERS = {
     name: "Abu Dhabi Islamic Bank",
     nameAr: "مصرف أبوظبي الإسلامي",
     code: "ADX:ADIB",
-    spot: 21.24,
-    spotDate: "close 24 Jul 2026",
+    spot: 23.34,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. Backtest PARITY (CRPS skill +0.009, 14 UAE windows). UAE's largest listed Islamic bank; 3,632.0mn shares.
     dist: {
-      t20: { label:"1 month",   p5:18.50, p25:20.18, p50:21.30, p75:22.49, p95:24.47, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:16.73, p25:19.50, p50:21.45, p75:23.59, p95:27.53, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:20.70, p25:22.23, p50:23.29, p75:24.39, p95:26.24, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.64, p25:21.33, p50:23.19, p75:25.20, p95:28.80, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [24.63, 7, 29], [23.30, 22, 49], [22.10, 55, 74], [20.75, 67, 80], [20.00, 38, 60], [18.80, 11, 34]
+      [24.63, 35, 60], [23.30, 87, 93], [22.10, 37, 63], [20.75, 8, 33], [20.00, 3, 21], [18.80, 1, 9]
     ],
-    levels: { res:[21.45, 21.99, 23.23], sup:[20.35, 18.70, 16.57] },
+    levels: { res:[23.78, 24.72, 25.74], sup:[21.99, 21.45, 20.20] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 21.24 below a falling 20-day (21.27) and a falling 200-day (21.77), but above a falling 50-day (20.59). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.56 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.10 / \u22120.09). Over the last year it has ranged 18.28\u201327.96; the last close sits 24% below that high and 16% above that low.",
-      bull: "A daily close back above 21.45 would clear the nearest resistance and open the 23.23 zone.",
-      bear: "A close below 20.35 would break the nearest support and open the 16.57 zone."
+      trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh golden-cross",
+      summary: "The price closed 23.34 above a rising 20-day (22.78), a rising 50-day (21.89) and a flat 200-day (21.83). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.49 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.49 / +0.52 / \u22120.03). The 50-day crossed above the 200-day 1 session ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 18.28\u201327.96; the last close sits 17% below that high and 28% above that low.",
+      bull: "A daily close back above 23.78 would clear the nearest resistance and open the 25.74 zone.",
+      bear: "A close below 21.99 would break the nearest support and open the 20.20 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",

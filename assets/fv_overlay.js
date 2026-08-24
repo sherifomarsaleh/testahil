@@ -2168,6 +2168,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "EAND",
+   "name": "e& (Emirates Telecommunications Group)",
+   "code": "ADX:EAND",
+   "ccy": "AED",
+   "spot": 21.56,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.61,
+   "fv_base": 22.72,
+   "fv_full": 28.75,
+   "gap_base_pct": 5.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.059643,
+    "mu_h": 0.002779,
+    "G": {
+     "bear": -3.39,
+     "base": 0.88,
+     "full": 4.83
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0016,
+     "base": 0.1871,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.3035,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.9118,
+     "base": 0.8755,
+     "full": 30.6132
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0006
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.104113,
+    "mu_h": 0.009693,
+    "G": {
+     "bear": -1.94,
+     "base": 0.5,
+     "full": 2.76
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.023,
+     "base": 0.3281,
+     "full": 0.0068
+    },
+    "p_touch": {
+     "bear": 0.0421,
+     "base": 0.5721,
+     "full": 0.0114
+    },
+    "required_cagr": {
+     "bear": -0.5549,
+     "base": 0.2332,
+     "full": 2.162
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00083
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -2442,6 +2534,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00249
    },
    "market": "US"
+  },
+  {
+   "ticker": "ADIBUAE",
+   "name": "Abu Dhabi Islamic Bank",
+   "code": "ADX:ADIB",
+   "ccy": "AED",
+   "spot": 23.34,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.73,
+   "fv_base": 21.23,
+   "fv_full": 24.63,
+   "gap_base_pct": -9.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.073145,
+    "mu_h": -0.002145,
+    "G": {
+     "bear": -3.76,
+     "base": -1.3,
+     "full": 0.74
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.0936,
+     "full": 0.2063
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.1501,
+     "full": 0.3512
+    },
+    "required_cagr": {
+     "bear": -0.9631,
+     "base": -0.6792,
+     "full": 0.9071
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00071
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.134187,
+    "mu_h": -0.006447,
+    "G": {
+     "bear": -2.05,
+     "base": -0.71,
+     "full": 0.4
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0246,
+     "base": 0.2394,
+     "full": 0.3133
+    },
+    "p_touch": {
+     "bear": 0.043,
+     "base": 0.4216,
+     "full": 0.5979
+    },
+    "required_cagr": {
+     "bear": -0.667,
+     "base": -0.3155,
+     "full": 0.2401
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00112
+   },
+   "market": "AE"
   },
   {
    "ticker": "ADNOCDIST",
@@ -4190,98 +4374,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00093
    },
    "market": "SA"
-  },
-  {
-   "ticker": "EAND",
-   "name": "e& (Emirates Telecommunications Group)",
-   "code": "ADX:EAND",
-   "ccy": "AED",
-   "spot": 20.08,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.61,
-   "fv_base": 22.72,
-   "fv_full": 28.75,
-   "gap_base_pct": 13.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.06197,
-    "mu_h": 0.002984,
-    "G": {
-     "bear": -2.12,
-     "base": 1.99,
-     "full": 5.79
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.018,
-     "base": 0.0274,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0271,
-     "base": 0.0397,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.793,
-     "base": 3.4029,
-     "full": 73.2147
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0011
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.109664,
-    "mu_h": 0.009418,
-    "G": {
-     "bear": -1.2,
-     "base": 1.13,
-     "full": 3.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.091,
-     "base": 0.1359,
-     "full": 0.0026
-    },
-    "p_touch": {
-     "bear": 0.1641,
-     "base": 0.2329,
-     "full": 0.0045
-    },
-    "required_cagr": {
-     "bear": -0.4085,
-     "base": 0.639,
-     "full": 3.2024
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00072
-   },
-   "market": "AE"
   },
   {
    "ticker": "SALIK",
@@ -7970,98 +8062,6 @@ const FV_OVERLAY = {
    "fv_base": 26,
    "fv_full": 33,
    "market": "EG"
-  },
-  {
-   "ticker": "ADIBUAE",
-   "name": "Abu Dhabi Islamic Bank",
-   "code": "ADX:ADIB",
-   "ccy": "AED",
-   "spot": 21.24,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.73,
-   "fv_base": 21.23,
-   "fv_full": 24.63,
-   "gap_base_pct": -0.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086261,
-    "mu_h": 0.002821,
-    "G": {
-     "bear": -2.09,
-     "base": -0.01,
-     "full": 1.72
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0194,
-     "base": 0.4834,
-     "full": 0.0446
-    },
-    "p_touch": {
-     "bear": 0.0296,
-     "base": 0.866,
-     "full": 0.0672
-    },
-    "required_cagr": {
-     "bear": -0.8855,
-     "base": -0.0056,
-     "full": 4.9118
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00158
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.15362,
-    "mu_h": 0.009838,
-    "G": {
-     "bear": -1.18,
-     "base": -0.0,
-     "full": 0.96
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0979,
-     "base": 0.4708,
-     "full": 0.169
-    },
-    "p_touch": {
-     "bear": 0.1753,
-     "base": 0.9204,
-     "full": 0.294
-    },
-    "required_cagr": {
-     "bear": -0.5145,
-     "base": -0.0019,
-     "full": 0.8082
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
-   },
-   "market": "AE"
   }
  ]
 };
