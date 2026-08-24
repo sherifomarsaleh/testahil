@@ -1,8 +1,8 @@
-PROTOCOL REVISION 2026-08-24b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 24 August 2026 (rev. 8) — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · bounded early grading [R-GRADE-01] (investor sessions)
+Updated 24 August 2026 (rev. 8) — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01] (investor sessions)
 (rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
@@ -77,7 +77,7 @@ Precedent, and the reason this is a rule and not a slogan: selecting (ν, width_
 
 [NEW 11-Jul] THE UNATTENDED LOOP
 
-engine/raw_ohlc/{MARKET}/{TICKER}.csv is a persistent library of every covered stock, not an inbox — 65 stocks across 8 fitted markets (27 EG · 11 SA · 14 AE · 3 QA · 3 US · 3 KR · 3 IN · 1 XAU). To add or refresh ONE stock, add or overwrite ONE file. The pipeline then refits that stock's whole market against the full library.
+engine/raw_ohlc/{MARKET}/{TICKER}.csv is a persistent library of every covered stock, not an inbox — 65 stocks across 8 fitted markets ON 11-JUL-2026, WHEN THIS ENTRY WAS WRITTEN (27 EG · 11 SA · 14 AE · 3 QA · 3 US · 3 KR · 3 IN · 1 XAU). That roster is dated evidence for the library model, NOT a current count: it grows whenever a file is posted, and by 24-Aug-2026 it had reached 93 across 9 markets. Read it from engine/raw_ohlc/ or assets/markets.js, never from this document [R-DOC-02]. To add or refresh ONE stock, add or overwrite ONE file. The pipeline then refits that stock's whole market against the full library.
 
 One-stock post ≈ 12 seconds, even on Egypt (the largest panel — check its current size live): panels are content-hashed (only the changed file rebuilds) and re-scoring uses fast_rescore, a closed-form re-simulation that is bit-for-bit identical to re-running the engine (verified) but skips the O(n²) HAR refit.
 
@@ -464,7 +464,7 @@ OPEN ITEMS (honestly ranked)
 Break-aware volatility estimation inside the engine (currently only the calibration sample is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
 Metals is the weakest calibration in the system — say so plainly. Gold is a single-name self-fit: it is calibrated on its own data, so its PARITY verdict is circular in exactly the way Qatar's was until IQCD and QNB de-circularised it. Worse, silver is a PUBLISHED instrument with no fit of its own — it borrows gold's. Every other market has been pulled onto a real panel; metals has not. Until silver/copper/platinum history arrives, the metals cone is the least-evidenced thing Testahil publishes, and it should not be presented with the same confidence as an EGX or GCC name.
 UK and Brazil have no covered names; their profiles are stubs.
-[NEW 29-Jul] Eleven libraries are STALE, and now self-report it on every page via the tech as-of stamp — TMPV/RELIANCE/INFY (IN), TSLA/AAPL/NVDA (US), IQCD/QNB/QGTS (QA), SILVER, PLATINUM. The stamp made latent staleness legible; it did not create it. A fresh vendor export placed at engine/raw_ohlc/{MARKET}/{TICKER}.csv is the only fix — nothing else unblocks them.
+[NEW 29-Jul] Libraries go stale, and now self-report it on every page via the tech as-of stamp. The stamp made latent staleness legible; it did not create it. A fresh vendor export placed at engine/raw_ohlc/{MARKET}/{TICKER}.csv is the only fix — nothing else unblocks them. WHICH libraries are stale is a LIVE READING, never a roster recorded here: compare each library's last session against the newest session held anywhere, or read the tech stamp on the page. [R-DOC-02, amended 24-Aug-2026] Eleven were stale on 29-Jul-2026 and all eleven were named here. By 24-Aug-2026 four of them — TMPV, QNB, SILVER, PLATINUM — had been refreshed while this sentence still listed them as stale, and other names had gone stale in their place. The count and the roster are removed for exactly the reason the width-overlay dormancy claim was: a document cannot track a set that changes whenever a file is posted, and a roster that is wrong in both directions is worse than none, because a reader treats absence from it as evidence of freshness.
 [DONE 13-Jul r2 — sweep executed; 4 contradictions found and corrected] Every covered name's published calibration claim was run against the live production fit (65 names carry a fitted verdict). Four contradicted the site, and they did not all fail in the same direction:
 ALPHADHABI was OVER-CLAIMING — the site described a 9-name UAE panel at ν=4 / width 1.07, a fit that no longer exists, and called the name PARITY, "a calibrated distribution". Under the live 14-name fit (ν=10, width 1.049) it is a robust FAIL: skill −1.2%, CI entirely below zero at every block size. It had no calibration disclosure on its coverage page at all. Now carries the FAIL and the illustrative-only framing. Diagnosis: over-coverage, not mis-centring (50/80/90 = 0.69/0.81/0.94) — i.e. open item 1, the name-level width_cal problem, in the wild.
 DIB, ISPH, KABO were UNDER-claiming — all three publish "FAILED its calibration"; all three are PARITY under the current fits. Labels corrected, but the caution was deliberately retained: all three still carry negative point estimates (−0.15% / −4.2% / −0.02%), so the cone is not demonstrably better than a random walk, merely not provably worse. A classification technicality is never used to upgrade a weak name. Append-only was respected: no registered forecast was retro-edited — every percentile and touch probability is frozen as published and will be graded against exactly those numbers. Original note text is preserved with a dated correction appended after it, so the record shows both what was said and what was wrong with it. Standing lesson: a verdict is not a fact you publish once — it is a function of a fit that keeps moving, so the site must be re-reconciled against the engine on every publish, not only when a study is built.
@@ -489,11 +489,13 @@ QC consequence — new gate item (r): SIGCM attested, with evidence per clause. 
 
 [NEW 23-Jul] ADAPTIVE PER-STOCK WIDTH OVERLAY — adopted, EG-only, going-forward
 
-Closes open item 1 above, for Egypt only. engine/adaptive_width.py. An OVERLAY, not a refit: the pooled per-market (ν, width_cal) fit is untouched; drift stays pure carry; tail ν is untouched. What it adds is a per-name online multiplier on cone width, learned from that name's own resolved 3-month-window residuals: m_raw = clip(sqrt(EWMA_0.85(u²)), 0.7, 1.5), then gentled and dead-zoned so small deviations don't move the cone at all — mult = 1 + 0.5·sign(m_raw−1)·max(0, |m_raw−1| − 0.10). A name whose own volatility has consistently sat below the panel average narrows toward its own history; a name running hotter than the panel widens toward its own history. Flag off (or insufficient history) reproduces the prior engine bit-for-bit.
+Closes open item 1 above, for Egypt only. It is a WIDTH-CORRECTION, not a narrowing device — see the both-directions sentence below and [R-WIDTH-01]. engine/adaptive_width.py. An OVERLAY, not a refit: the pooled per-market (ν, width_cal) fit is untouched; drift stays pure carry; tail ν is untouched. What it adds is a per-name online multiplier on cone width, learned from that name's own resolved 3-month-window residuals: m_raw = clip(sqrt(EWMA_0.85(u²)), 0.7, 1.5), then gentled and dead-zoned so small deviations don't move the cone at all — mult = 1 + 0.5·sign(m_raw−1)·max(0, |m_raw−1| − 0.10). A name whose own volatility has consistently sat below the panel average narrows toward its own history; a name running hotter than the panel widens toward its own history. Flag off (or insufficient history) reproduces the prior engine bit-for-bit.
 
 Promotion evidence (30-name EG panel, strict LONO/held-out FINAL split, block bootstrap {2,3,4} — the same gate that killed the CRPS-selection idea in "THE PROMOTION RULE" above): proper score held at PARITY (log-CRPS 0.0154 → 0.0152, effectively zero cost) while calibration improved (pooled |std_u−1| 0.096 → 0.069; cov90 0.903 → 0.893, both still in-band; 24 of 30 names moved closer to std_u=1). This targets exactly the over-coverage failure mode described in open item 1 (LGES/Korea, ALPHADHABI/UAE: cov90≈1.00, PIT well-centred) — a market-level cone was too wide for names whose own volatility sits below their panel's average, and the overlay corrects that without touching the pooled fit every other name's cone depends on.
 
-History gate — the reason it does nothing today. The 30-name validation ran on 15-year histories (~30 resolved 3-month windows/name). Production's raw_ohlc/EG currently holds ~5-year histories (~17 windows/name) — short enough that the estimator itself gets noisy, which is exactly the regime the validation flagged as prone to over-correcting. So the overlay carries a hard floor, MIN_WINDOWS=28: below that many resolved windows, the multiplier is forced to exactly 1.0. Verified by import against both the long lab histories (reproduces the validated multipliers, e.g. ISPH m_raw 0.924→mult 1.000, ORHD 0.753→mult 0.926) and current production data (every EG name currently returns mult=1.000 [insufficient_history]). The overlay is real, adopted, and dormant simultaneously — it starts doing something, name by name, only as each name's own library crosses 28 windows.
+History gate — why it starts as a no-op and switches on name by name. The 30-name validation ran on 15-year histories (~30 resolved 3-month windows/name). At adoption (23-Jul-2026) production's raw_ohlc/EG held ~5-year histories (~17 windows/name) — short enough that the estimator itself gets noisy, which is exactly the regime the validation flagged as prone to over-correcting, and the reason the floor exists at all. Libraries lengthen, so that count is dated evidence for the floor, not a description of production today. So the overlay carries a hard floor, MIN_WINDOWS=28: below that many resolved windows, the multiplier is forced to exactly 1.0. Verified by import against both the long lab histories (reproduces the validated multipliers, e.g. ISPH m_raw 0.924→mult 1.000, ORHD 0.753→mult 0.926) and, AT ADOPTION (23-Jul-2026), production data, where every EG name then returned mult=1.000 [insufficient_history]. The overlay starts doing something name by name, only as each name's own library crosses 28 windows — so WHICH names carry it is a live reading, never a fact recorded in a document. [R-DOC-02] Everything this paragraph once said in the present tense — that the overlay was 'dormant', that every EG name returned 1.000 — went false silently the first time a name crossed the gate. Dated measurements are kept as evidence for the floor; present-tense claims about which names are active are not written here at all, because that set moves without anyone editing this document.
+
+How to read whether a published cone actually carries it — recompute, never read prose. [R-WIDTH-01, adopted 24-Aug-2026] The multiplier a cone was struck under is recovered by recomputing it: adaptive_width.live_width_mult() on that name's own library, or by re-striking the name and comparing the percentiles against the published row. THE LEDGER NOTE IS NOT AN INDICATOR. The "PER-NAME WIDTH OVERLAY APPLIED … live_width_mult() returns X" clause is emitted by engine/rollforward_one.py and by nothing else, so a cone struck through any other path carries the overlay silently — the clause's presence is evidence, its ABSENCE is not. This was found the only way it could have been. Asked how many live cones carried the overlay, a session COUNTED THE LEDGER NOTES, reported a number, and was wrong twice over: recomputing the multiplier name by name showed an order of magnitude more names past the gate than the notes disclosed, and among the silent ones was a cone the overlay was WIDENING — so the count was wrong AND the direction of the correction was misread, from the same single mistake of reading a disclosure as an indicator (24-Aug-2026; the per-name figures are a live reading, not recorded here). The general rule is the one this protocol already applies to numbers typed into prose: a disclosure emitted by one code path is a property of that code path, not a fact about the world, and it may only ever be read in the direction that one path can support.
 
 Scope and status. EG-only. Every other market runs mult=1.0 unconditionally until it clears this same LONO gate on its own panel — this is not assumed to generalize. Going-forward only, per the standing append-only rule: applies to cohorts anchored on or after adoption; nothing already published or graded is retro-touched. STATUS, RE-VERIFIED 23-Aug-2026 AGAINST main RATHER THAN AGAINST THIS PARAGRAPH: MERGED AND LIVE. engine/adaptive_width.py is on main and market_profiles.py carries width_overlay_active=True for EG. The sentence that stood here until today still said "open PR, not yet merged to main", and it had been wrong for some time — nobody re-read it after the merge. It also carried two further claims that had gone stale underneath it: that engine changes open a PR "per the materiality-gate convention", which R-CAL-01 has now separated (the materiality gate no longer opens PRs at all; engine changes still go through a PR, but under GIT/PUBLISH MECHANICS, which is a different rule with a different reason), and that a push to the live site needs "a fresh token supplied at the moment of the write", which the 07-Aug-2026 amendment retired along with the token gate itself.
 
@@ -913,10 +915,11 @@ prescribed:
 - **Width floors are measured facts:** the middle half of real 3-month moves spans ~13%
   (AE), ~19% (SA), ~26% (EG) of price. An honest 50% band cannot average narrower at these
   horizons, whatever the technique — the tested alternatives narrowed nothing at honest
-  coverage. The sanctioned levers on band width are the per-name width overlay, the
+  coverage. The sanctioned levers are the per-name width overlay (both directions — it
+  answers "is this name's cone the right width", never "make the bands smaller"), the
   guarded mid-band shape selection ([R-SHAPE-01], which calibrates the 25–75 band at a
-  FIXED 90% edge), and the horizon. Horizons stay 1M/3M by instruction; a shorter-horizon
-  product was offered and declined.
+  FIXED 90% edge), and the horizon. Horizons stay 1M/3M by instruction; a
+  shorter-horizon product was offered and declined.
 - **Mechanics:** the adoption changes future strikes only (next roll-forward onward);
   nothing retroactive, nothing published until the standing publish flow runs. Panel
   refits under signal-ON route through the materiality gate; an engine-change PR carries
@@ -968,49 +971,6 @@ low-confidence. Rationale: with ~186 stock-horizon tests at 90% CIs, a handful o
 single-test excursions arise by chance alone; the joint bar keeps the expected
 false-suppression count well under one, and the first full sweep (23-Aug-2026) suppressed
 zero names while flagging thirty.
-
-### [R-GRADE-01] Early grading — opt-in, bounded, annotated (24-Aug-2026, per instruction — "We deal based on calendar days as per the project instructions and research protocol")
-
-A horizon is a CALENDAR commitment, so a row matures when its calendar grade date
-arrives — not when some number of sessions have printed. The two can separate: the month
-is up while the exchange has not yet exported that last session. Until today the grader
-treated that case as BLOCKED, identically to a library weeks behind, and a name whose data
-ran right up to the calendar boundary sat ungraded beside one that was nowhere near it.
-
-`grade_ledger.grade_session()` now returns HOW the session was reached — `exact`, `rolled`
-(a closure pushed the first real session past the stored date, the pre-existing case) or
-`early` — and `allow_early` grades a matured row on the LAST session inside its window.
-Two properties make it safe, and both are structural rather than remembered:
-
-1. **It is OFF by default**, so every existing caller is byte-identical. The negative
-   control proves it: the replay of all already-graded rows reproduces them exactly, and
-   the default sweep on the day of adoption returned the same 0 gradable / 19 blocked it
-   returned before the change.
-2. **It is BOUNDED by `EARLY_MAX_DAYS` (7 calendar days)**, and it is scoped to NAMED
-   instruments. On 24-Aug-2026 nineteen rows were matured and blocked. EAND's library
-   reached 21-Aug against a 24-Aug grade date — ONE session short, a real export lag.
-   Eighteen AE names stopped at 24-Jul, a full month short, where "grade it early" would
-   score a cone against a window that mostly never ran. An unbounded flag would have
-   graded all nineteen alike. A row outside the bound stays BLOCKED with the flag on.
-
-Scoping to named instruments is the second half of the lesson and was added after the
-bound was already in place. With the bound alone, `--allow-early` would have graded
-ADIBUAE and ADNOCGAS too — both had libraries at 21-Aug that week — turning a decision
-about ONE name's permanent record into a decision about every name whose export happened
-to be lagging. A blocked row inside the bound but not named now says so explicitly
-("within the 7-day early-grade bound, but X was not named for early grading"), so the
-un-taken decision is visible rather than absent.
-
-An early grade is ANNOTATED on exactly the same terms as a rolled one, because the reason
-is the same: the stored commitment is never overwritten in silence. `grade_date` becomes
-the session actually graded, `grade_date_projected` keeps the original calendar date, and
-`grade_note` states the gap in calendar days. The frozen percentiles are untouched — a
-grade appends an outcome, it never revises the claim.
-
-The cost is real and is not hidden: a window graded a session short is marginally narrower
-than the one committed to, which very slightly favours the cone. That is why this is opt-in
-per name and bounded at a week, rather than a new default. The alternative on the table —
-grading against a close that does not exist — is not available at any bound.
 
 ### [R-SHAPE-01] Guarded mid-band shape selection (24-Aug-2026, per instruction — "Reshape UAE and Egypt to make it less conservative")
 
