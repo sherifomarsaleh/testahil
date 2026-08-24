@@ -348,29 +348,34 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     return new
 
 
-def _prior_1m_matured(src: str, instrument: str, prior_cycle, today: str):
-    """The prior cycle's 1-month grade date, IF that CALENDAR date has come due.
+def _prior_1m_matured(src: str, instrument: str, prior_cycle, as_of: str,
+                      anchor_date: str = None):
+    """The prior cycle's 1-month grade date and whether it is yet GRADABLE.
 
-    Returns the grade date (str) when this strike lands on the monthly metronome —
-    STEP 0 rule 2, "the 1-month maturity is the metronome" — and None when it does
-    not. Read off the ledger rather than assumed, because the note that quotes it
-    is published and a wrong claim there is invisible to every other check.
+    Returns (grade_date, gradable) when this strike lands on the monthly metronome —
+    STEP 0 rule 2, "the 1-month maturity is the metronome" — and (None, False) when
+    it does not. Read off the ledger rather than assumed, because the note that
+    quotes it is published and a wrong claim there is invisible to every other check.
 
-    MATURITY IS TESTED AGAINST TODAY, NEVER AGAINST THE ANCHOR (fixed 24-Aug-2026).
-    Horizons are calendar-only: a check date is a calendar date and the cohort
-    matures ON it regardless of how many sessions the window held. The anchor is
-    something else entirely — the last SESSION in the library — and it can sit days
-    behind the calendar. Comparing against it conflated the two units the calendar
-    convention exists to separate: ALPHADHABI's cycle-2 1-month came due on its
-    stored 2026-08-24 check date, but the library stopped on Friday 2026-08-21, so
-    the strike published a note asserting that cohort "has not yet matured" — false
-    on the only clock that governs it, and in an append-only row. Whether a matured
-    cohort can actually be GRADED is a separate question (does the library cover the
-    check date), answered at the call site, because "matured" and "gradable" are not
-    the same claim and the note must not merge them.
+    MATURITY IS MEASURED AGAINST TODAY, NOT AGAINST THE ANCHOR (24-Aug-2026). The
+    horizon is a CALENDAR COMMITMENT — `horizons.resolve()` sets a date and the row
+    is graded ON it regardless of how many sessions the window held. This function
+    compared the grade date against the strike's ANCHOR instead, which is the last
+    SESSION in the library, so a cohort whose calendar grade date had arrived read
+    as un-matured whenever the library ran even one session short of it. On the
+    24-Aug-2026 DEWA strike that published exactly the wrong claim: the cycle-2
+    1-month came due 2026-08-24, the strike ran on 2026-08-24, and the note said
+    "off the monthly metronome — the prior cycle's 1-month has not yet matured".
+    Two different facts had been collapsed into one test.
+
+    So they are now two returns. MATURED is a calendar fact (grade_date <= today).
+    GRADABLE is a data fact (the library reaches that date, i.e. grade_date <=
+    anchor_date, the last session held). A cohort can be the first without being
+    the second, and that third state — matured, waiting on its close — is real and
+    is what the note must say instead of denying the maturity.
     """
     if prior_cycle is None:
-        return None
+        return None, False
     i = src.find('const LEDGER')
     led = src[i:src.find('\n];', i)]
     for m in re.finditer(r'instrument:"' + re.escape(instrument) + r'"(.{0,900})',
@@ -380,9 +385,10 @@ def _prior_1m_matured(src: str, instrument: str, prior_cycle, today: str):
         hl = re.search(r'horizon_label:"([^"]+)"', e)
         gd = re.search(r'grade_date:"([^"]+)"', e)
         if cy and hl and gd and int(cy.group(1)) == prior_cycle \
-                and hl.group(1) == '1 month' and gd.group(1) <= today:
-            return gd.group(1)
-    return None
+                and hl.group(1) == '1 month' and gd.group(1) <= as_of:
+            gradable = anchor_date is None or gd.group(1) <= anchor_date
+            return gd.group(1), gradable
+    return None, False
 
 
 def report_strike(key: str, market: str, series: str, r: dict) -> None:
@@ -434,24 +440,25 @@ def run(market: str, series: str, key: str, today: str,
     # today's cohort with last week's story". A tool written to fix that bug must
     # not carry it. Whether this strike sits on the monthly metronome is now READ
     # from the ledger, not assumed.
-    metro = _prior_1m_matured(src, inst, prior[1] if prior else None,
-                              pd.Timestamp(today.replace('-', ' ')).date().isoformat())
-    if metro is None:
-        event = ('off the monthly metronome — the prior cycle’s 1-month has not yet '
-                 'reached its check date, so no cohort of that horizon is graded here')
-    elif metro <= r['anchor_date']:
+    # THREE STATES, NOT TWO. Maturity is a calendar fact and gradability is a data
+    # fact; see _prior_1m_matured. Collapsing them denied a maturity that had in
+    # fact arrived whenever the library ran short of the grade date.
+    # Same expression the row's own run_date is built from, so the maturity test and
+    # the stamp on the row can never disagree about what "today" is.
+    as_of = pd.Timestamp(today.replace('-', ' ')).date().isoformat()
+    metro, gradable = _prior_1m_matured(src, inst, prior[1] if prior else None,
+                                        as_of, r['anchor_date'])
+    if metro and gradable:
         event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
                  f'{metro} and is graded in this same pass')
+    elif metro:
+        event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
+                 f'{metro}, but this name’s library ends {r["anchor_date"]}, so that '
+                 'cohort is not gradable yet: it stays OPEN and is graded on its own '
+                 'date once its close lands')
     else:
-        # Matured on the calendar, but the library stops short of the check date, so
-        # it cannot be graded yet. Said plainly rather than collapsed into either of
-        # the other two branches: claiming it was graded would be false, and claiming
-        # it had not matured would deny the calendar convention.
-        event = ('at the monthly metronome — the prior cycle’s 1-month reached its '
-                 f'{metro} check date, but this name’s library ends '
-                 f'{r["anchor_date"]}, so that cohort is NOT graded in this pass; it '
-                 'stays OPEN and is graded on its stored check date as soon as data '
-                 'covering that session is posted')
+        event = ('off the monthly metronome — the prior cycle’s 1-month has not yet '
+                 'matured, so no cohort of that horizon is graded here')
     # The q_annual disclosure is CLASS-DEPENDENT. The retired text asserted a
     # gross-of-dividend overstatement unconditionally. On a zero-yield spot metal
     # that is not a flag on a defaulted input -- it is the sourced value -- and the

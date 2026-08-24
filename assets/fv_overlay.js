@@ -1156,6 +1156,98 @@ const FV_OVERLAY = {
    "market": "QA"
   },
   {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments",
+   "code": "EGX:PHDC",
+   "ccy": "EGP",
+   "spot": 15.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-11",
+   "fv_lag_days": 73,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 7.62,
+   "fv_base": 15.89,
+   "fv_full": 24.92,
+   "gap_base_pct": 4.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.114673,
+    "mu_h": 0.028536,
+    "G": {
+     "bear": -6.02,
+     "base": 0.39,
+     "full": 4.31
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.4327,
+     "full": 0.0017
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.6583,
+     "full": 0.0021
+    },
+    "required_cagr": {
+     "bear": -0.9997,
+     "base": 0.7036,
+     "full": 376.0973
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0012
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.198466,
+    "mu_h": 0.072321,
+    "G": {
+     "bear": -3.48,
+     "base": 0.22,
+     "full": 2.49
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0021,
+     "base": 0.5685,
+     "full": 0.0203
+    },
+    "p_touch": {
+     "bear": 0.0037,
+     "base": 0.8375,
+     "full": 0.0309
+    },
+    "required_cagr": {
+     "bear": -0.9368,
+     "base": 0.1943,
+     "full": 6.2247
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00297
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "LCSW",
    "name": "Lecico Egypt (S.A.E.)",
    "code": "EGX:LCSW",
@@ -1336,98 +1428,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00204
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "PHDC",
-   "name": "Palm Hills Developments",
-   "code": "EGX:PHDC",
-   "ccy": "EGP",
-   "spot": 15.01,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-11",
-   "fv_lag_days": 41,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 7.62,
-   "fv_base": 15.89,
-   "fv_full": 24.92,
-   "gap_base_pct": 5.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.107145,
-    "mu_h": 0.014551,
-    "G": {
-     "bear": -6.33,
-     "base": 0.53,
-     "full": 4.73
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.3155,
-     "full": 0.001
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.5026,
-     "full": 0.0018
-    },
-    "required_cagr": {
-     "bear": -0.9997,
-     "base": 0.9812,
-     "full": 437.5389
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00181
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.198238,
-    "mu_h": 0.046217,
-    "G": {
-     "bear": -3.42,
-     "base": 0.29,
-     "full": 2.56
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0026,
-     "base": 0.4734,
-     "full": 0.015
-    },
-    "p_touch": {
-     "bear": 0.0044,
-     "base": 0.7528,
-     "full": 0.0237
-    },
-    "required_cagr": {
-     "bear": -0.9336,
-     "base": 0.256,
-     "full": 6.5975
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00233
    },
    "market": "EG"
   },
@@ -2168,6 +2168,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "EAND",
+   "name": "e& (Emirates Telecommunications Group)",
+   "code": "ADX:EAND",
+   "ccy": "AED",
+   "spot": 21.56,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.61,
+   "fv_base": 22.72,
+   "fv_full": 28.75,
+   "gap_base_pct": 5.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.059643,
+    "mu_h": 0.002779,
+    "G": {
+     "bear": -3.39,
+     "base": 0.88,
+     "full": 4.83
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0016,
+     "base": 0.1871,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.3035,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.9118,
+     "base": 0.8755,
+     "full": 30.6132
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0006
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.104113,
+    "mu_h": 0.009693,
+    "G": {
+     "bear": -1.94,
+     "base": 0.5,
+     "full": 2.76
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.023,
+     "base": 0.3281,
+     "full": 0.0068
+    },
+    "p_touch": {
+     "bear": 0.0421,
+     "base": 0.5721,
+     "full": 0.0114
+    },
+    "required_cagr": {
+     "bear": -0.5549,
+     "base": 0.2332,
+     "full": 2.162
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00083
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -2442,6 +2534,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00249
    },
    "market": "US"
+  },
+  {
+   "ticker": "ADIBUAE",
+   "name": "Abu Dhabi Islamic Bank",
+   "code": "ADX:ADIB",
+   "ccy": "AED",
+   "spot": 23.34,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.73,
+   "fv_base": 21.23,
+   "fv_full": 24.63,
+   "gap_base_pct": -9.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.073145,
+    "mu_h": -0.002145,
+    "G": {
+     "bear": -3.76,
+     "base": -1.3,
+     "full": 0.74
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.0936,
+     "full": 0.2063
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.1501,
+     "full": 0.3512
+    },
+    "required_cagr": {
+     "bear": -0.9631,
+     "base": -0.6792,
+     "full": 0.9071
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00071
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.134187,
+    "mu_h": -0.006447,
+    "G": {
+     "bear": -2.05,
+     "base": -0.71,
+     "full": 0.4
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0246,
+     "base": 0.2394,
+     "full": 0.3133
+    },
+    "p_touch": {
+     "bear": 0.043,
+     "base": 0.4216,
+     "full": 0.5979
+    },
+    "required_cagr": {
+     "bear": -0.667,
+     "base": -0.3155,
+     "full": 0.2401
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00112
+   },
+   "market": "AE"
   },
   {
    "ticker": "ADNOCDIST",
@@ -4192,98 +4376,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "EAND",
-   "name": "e& (Emirates Telecommunications Group)",
-   "code": "ADX:EAND",
-   "ccy": "AED",
-   "spot": 20.08,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.61,
-   "fv_base": 22.72,
-   "fv_full": 28.75,
-   "gap_base_pct": 13.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.06197,
-    "mu_h": 0.002984,
-    "G": {
-     "bear": -2.12,
-     "base": 1.99,
-     "full": 5.79
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.018,
-     "base": 0.0274,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0271,
-     "base": 0.0397,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.793,
-     "base": 3.4029,
-     "full": 73.2147
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0011
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.109664,
-    "mu_h": 0.009418,
-    "G": {
-     "bear": -1.2,
-     "base": 1.13,
-     "full": 3.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.091,
-     "base": 0.1359,
-     "full": 0.0026
-    },
-    "p_touch": {
-     "bear": 0.1641,
-     "base": 0.2329,
-     "full": 0.0045
-    },
-    "required_cagr": {
-     "bear": -0.4085,
-     "base": 0.639,
-     "full": 3.2024
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00072
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "SALIK",
    "name": "Salik Company",
    "code": "DFM:SALIK",
@@ -4742,98 +4834,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00239
    },
    "market": "EG"
-  },
-  {
-   "ticker": "ADNOCGAS",
-   "name": "ADNOC Gas",
-   "code": "ADX:ADNOCGAS",
-   "ccy": "AED",
-   "spot": 3.34,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-04",
-   "fv_lag_days": 20,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.3,
-   "fv_base": 3.79,
-   "fv_full": 4.6,
-   "gap_base_pct": 13.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.051524,
-    "mu_h": 0.00299,
-    "G": {
-     "bear": -0.23,
-     "base": 2.45,
-     "full": 6.21
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3755,
-     "base": 0.0116,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.6864,
-     "base": 0.0162,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.1346,
-     "base": 3.5574,
-     "full": 45.5732
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.098221,
-    "mu_h": 0.008942,
-    "G": {
-     "bear": -0.12,
-     "base": 1.29,
-     "full": 3.26
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.408,
-     "base": 0.1054,
-     "full": 0.0027
-    },
-    "p_touch": {
-     "bear": 0.8176,
-     "base": 0.1803,
-     "full": 0.0046
-    },
-    "required_cagr": {
-     "bear": -0.0471,
-     "base": 0.6579,
-     "full": 2.5979
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0013
-   },
-   "market": "AE"
   },
   {
    "ticker": "EMPOWER",
@@ -5664,6 +5664,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ADNOCGAS",
+   "name": "ADNOC Gas",
+   "code": "ADX:ADNOCGAS",
+   "ccy": "AED",
+   "spot": 3.3,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 48,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.3,
+   "fv_base": 3.79,
+   "fv_full": 4.6,
+   "gap_base_pct": 14.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.043803,
+    "mu_h": 0.003026,
+    "G": {
+     "bear": 0.0,
+     "base": 3.16,
+     "full": 7.58
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.53,
+     "base": 0.0031,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.0046,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 4.2663,
+     "full": 52.8179
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00185
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.087119,
+    "mu_h": 0.006042,
+    "G": {
+     "bear": 0.0,
+     "base": 1.59,
+     "full": 3.81
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.5301,
+     "base": 0.0601,
+     "full": 0.0009
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.1033,
+     "full": 0.0017
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 0.7398,
+     "full": 2.7755
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0011
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "EMAARDEV",
    "name": "Emaar Development PJSC",
    "code": "DFM:EMAARDEV",
@@ -6032,20 +6124,20 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DEWA",
-   "name": "DEWA (Dubai Electricity and Water Authority)",
-   "code": "DFM:DEWA",
+   "ticker": "ADCB",
+   "name": "Abu Dhabi Commercial Bank",
+   "code": "ADX:ADCB",
    "ccy": "AED",
-   "spot": 2.67,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
+   "spot": 15.32,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 2.18,
-   "fv_base": 3.32,
-   "fv_full": 4.92,
-   "gap_base_pct": 24.3,
+   "fv_bear": 14.3,
+   "fv_base": 19.7,
+   "fv_full": 23.3,
+   "gap_base_pct": 28.6,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6058,68 +6150,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.064442,
-    "mu_h": 0.003738,
+    "h_sessions": 21,
+    "sigma_h": 0.071253,
+    "mu_h": 0.000653,
     "G": {
-     "bear": -3.15,
-     "base": 3.38,
-     "full": 9.48
+     "bear": -0.97,
+     "base": 3.53,
+     "full": 5.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0025,
-     "base": 0.002,
+     "bear": 0.1504,
+     "base": 0.0014,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0036,
-     "base": 0.0026,
+     "bear": 0.2505,
+     "base": 0.0022,
      "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.9122,
-     "base": 12.6622,
-     "full": 1531.661
+     "bear": -0.5626,
+     "base": 19.4404,
+     "full": 152.1672
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00199
+    "selftest_max_dev": 0.00119
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.114791,
-    "mu_h": 0.011173,
+    "h_sessions": 64,
+    "sigma_h": 0.132118,
+    "mu_h": 0.001956,
     "G": {
-     "bear": -1.77,
+     "bear": -0.52,
      "base": 1.9,
-     "full": 5.32
+     "full": 3.17
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0319,
-     "base": 0.0359,
-     "full": 0.0001
+     "bear": 0.2811,
+     "base": 0.0304,
+     "full": 0.0027
     },
     "p_touch": {
-     "bear": 0.056,
-     "base": 0.0607,
-     "full": 0.0001
+     "bear": 0.5196,
+     "base": 0.0523,
+     "full": 0.005
     },
     "required_cagr": {
-     "bear": -0.5556,
-     "base": 1.3906,
-     "full": 10.5296
+     "bear": -0.2409,
+     "base": 1.7342,
+     "full": 4.3504
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00214
+    "selftest_max_dev": 0.00109
    },
    "market": "AE"
   },
@@ -6216,20 +6308,20 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ADCB",
-   "name": "Abu Dhabi Commercial Bank",
-   "code": "ADX:ADCB",
+   "ticker": "DEWA",
+   "name": "DEWA (Dubai Electricity and Water Authority)",
+   "code": "DFM:DEWA",
    "ccy": "AED",
-   "spot": 14.42,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
+   "spot": 2.7,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 14.3,
-   "fv_base": 19.7,
-   "fv_full": 23.3,
-   "gap_base_pct": 36.6,
+   "fv_bear": 2.18,
+   "fv_base": 3.32,
+   "fv_full": 4.92,
+   "gap_base_pct": 23.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6242,68 +6334,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086819,
-    "mu_h": 0.00277,
+    "h_sessions": 21,
+    "sigma_h": 0.057068,
+    "mu_h": 0.0,
     "G": {
-     "bear": -0.1,
-     "base": 3.59,
-     "full": 5.53
+     "bear": -3.75,
+     "base": 3.62,
+     "full": 10.51
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4445,
-     "base": 0.0013,
-     "full": 0.0001
+     "bear": 0.0009,
+     "base": 0.0012,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.8012,
+     "bear": 0.0014,
      "base": 0.0018,
-     "full": 0.0001
+     "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.0954,
-     "base": 41.268,
-     "full": 315.7291
+     "bear": -0.9232,
+     "base": 10.9479,
+     "full": 1339.3433
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00177
+    "selftest_max_dev": 0.00167
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.153564,
-    "mu_h": 0.009662,
+    "h_sessions": 64,
+    "sigma_h": 0.103585,
+    "mu_h": 0.0,
     "G": {
-     "bear": -0.05,
-     "base": 2.03,
-     "full": 3.12
+     "bear": -2.07,
+     "base": 2.0,
+     "full": 5.79
     },
-    "band": "OUT-OF-REACH",
+    "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4491,
-     "base": 0.0262,
-     "full": 0.0033
+     "bear": 0.0218,
+     "base": 0.0249,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.8823,
-     "base": 0.0443,
-     "full": 0.0055
+     "bear": 0.0386,
+     "base": 0.0429,
+     "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.0329,
-     "base": 2.4834,
-     "full": 5.8165
+     "bear": -0.575,
+     "base": 1.2861,
+     "full": 10.0257
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00118
+    "selftest_max_dev": 0.00134
    },
    "market": "AE"
   },
@@ -6664,16 +6756,16 @@ const FV_OVERLAY = {
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
    "ccy": "AED",
-   "spot": 1.2,
-   "anchor_date": "2026-07-24",
+   "spot": 1.25,
+   "anchor_date": "2026-08-21",
    "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
+   "fv_lag_days": 41,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.14,
    "fv_base": 1.85,
    "fv_full": 2.35,
-   "gap_base_pct": 54.2,
+   "gap_base_pct": 48.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6686,13 +6778,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.096856,
+    "h_sessions": 21,
+    "sigma_h": 0.093733,
     "mu_h": 0.0,
     "G": {
-     "bear": -0.53,
-     "base": 4.47,
-     "full": 6.94
+     "bear": -0.98,
+     "base": 4.18,
+     "full": 6.73
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6700,46 +6792,46 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.4596,
-     "base": 179.2544,
-     "full": 3180.5547
+     "bear": -0.6689,
+     "base": 109.4436,
+     "full": 1948.3696
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00723
+    "selftest_max_dev": 0.00533
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.175973,
-    "mu_h": 0.008299,
+    "h_sessions": 64,
+    "sigma_h": 0.162705,
+    "mu_h": -0.008032,
     "G": {
-     "bear": -0.29,
-     "base": 2.46,
-     "full": 3.82
+     "bear": -0.57,
+     "base": 2.41,
+     "full": 3.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3564,
-     "base": 0.0112,
-     "full": 0.0009
+     "bear": 0.2881,
+     "base": 0.0103,
+     "full": 0.0007
     },
     "p_touch": {
-     "bear": 0.6819,
-     "base": 0.0188,
-     "full": 0.0016
+     "bear": 0.5118,
+     "base": 0.0179,
+     "full": 0.0014
     },
     "required_cagr": {
-     "bear": -0.1855,
-     "base": 4.6489,
-     "full": 13.7078
+     "bear": -0.3082,
+     "base": 3.7979,
+     "full": 11.492
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00189
+    "selftest_max_dev": 0.00294
    },
    "market": "AE"
   },
@@ -7970,98 +8062,6 @@ const FV_OVERLAY = {
    "fv_base": 26,
    "fv_full": 33,
    "market": "EG"
-  },
-  {
-   "ticker": "ADIBUAE",
-   "name": "Abu Dhabi Islamic Bank",
-   "code": "ADX:ADIB",
-   "ccy": "AED",
-   "spot": 21.24,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.73,
-   "fv_base": 21.23,
-   "fv_full": 24.63,
-   "gap_base_pct": -0.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086261,
-    "mu_h": 0.002821,
-    "G": {
-     "bear": -2.09,
-     "base": -0.01,
-     "full": 1.72
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0194,
-     "base": 0.4834,
-     "full": 0.0446
-    },
-    "p_touch": {
-     "bear": 0.0296,
-     "base": 0.866,
-     "full": 0.0672
-    },
-    "required_cagr": {
-     "bear": -0.8855,
-     "base": -0.0056,
-     "full": 4.9118
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00158
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.15362,
-    "mu_h": 0.009838,
-    "G": {
-     "bear": -1.18,
-     "base": -0.0,
-     "full": 0.96
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0979,
-     "base": 0.4708,
-     "full": 0.169
-    },
-    "p_touch": {
-     "bear": 0.1753,
-     "base": 0.9204,
-     "full": 0.294
-    },
-    "required_cagr": {
-     "bear": -0.5145,
-     "base": -0.0019,
-     "full": 0.8082
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
-   },
-   "market": "AE"
   }
  ]
 };
