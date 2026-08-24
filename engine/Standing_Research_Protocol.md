@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-08-23h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 23 August 2026 (rev. 7) — THREE-LENS INDEPENDENCE · COMMITTED DRIFT · per-name discipline · negative control (investor-critique session)
+Updated 24 August 2026 (rev. 8) — [R-RF-01] THE ROLL-FORWARD IS ONE COMMAND (execution-consistency session)
+(rev. 7, 23 August 2026 — THREE-LENS INDEPENDENCE · COMMITTED DRIFT · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
 (rev. 4, 29 July 2026 — computed technical read · regenerated charts · as-of stamps)
@@ -965,3 +966,81 @@ low-confidence. Rationale: with ~186 stock-horizon tests at 90% CIs, a handful o
 single-test excursions arise by chance alone; the joint bar keeps the expected
 false-suppression count well under one, and the first full sweep (23-Aug-2026) suppressed
 zero names while flagging thirty.
+
+---
+
+## [R-RF-01] The roll-forward is ONE COMMAND, and every fork it used to ask about is decided from the data (ADOPTED 24-Aug-2026, per instruction — execution-consistency session)
+
+**The report.** *"There is a problem of inconsistency when asking Claude to execute a task.
+I can update the prices for 2 stocks and ask to publish to ledger the calibration and roll
+forward the prediction to the stock page. One runs smoothly and the other stumbles into many
+problems and Claude keeps asking me complicated questions."*
+
+Both halves of that are true, and the second half is the useful one. The variance is not in
+the agent. It is in the pipeline, and it is reproducible.
+
+**What was measured (24-Aug-2026).** The publish TAIL has had a driver since 07-Aug-2026 —
+`scripts/publish_site.py`, which owns surfaces → gates → render-verify → commit → push → PR
+→ merge → deploy and runs the same way every time. Its own docstring records why it was
+written: *"'Publish' used to mean 'build everything, then stop and ask for a token' — so a
+publish reliably ended one step short of being published."* The roll-forward FRONT half —
+STEPs 1 through 6 — never got the same treatment. It was re-assembled out of a 329-line
+prose protocol on every pass, across six tools, and it contains four forks whose correct
+answer is **different for different names on the same day**:
+
+1. **METRONOME vs MID-CYCLE** (STEP 0 decision (a)). A name whose current 1-month has
+   matured must be struck with `rollforward_one.py`; a name whose 1-month has not must be
+   refreshed with `refresh_cone_one.py`. The wrong tool either strikes a cohort the
+   metronome never called for and breaks the lifecycle invariant, or silently skips a strike
+   the ledger was owed. On 24-Aug-2026, 2POINTZERO and ADIBUAE were AT their metronome (1M
+   grade date 2026-08-24) while DEWA, PHDC and TMGH were three to four weeks off it. The
+   decision is a date comparison the repository can make; nothing made it.
+2. **THE MATERIALITY FORK, answered three different ways by three documents.** R-CAL-01 was
+   amended on 23-Aug-2026 so that a material refit APPLIES and ANNOUNCES rather than blocks.
+   `auto_refresh.py` and the calibration workflow's body implement the amendment. But STEP 2
+   of `Rollforward_and_Grading_Protocol.md` still read *"stop, do not proceed to Step 3/4 …
+   this is a PR-gated event, not an auto-apply one"*, and the workflow's own header comment
+   still described the PR its body no longer opens. An agent reaching the fork through the
+   protocol stopped and asked. One reaching it through the digest carried on. **Same request,
+   same day, opposite behaviour, and whichever document was read first decided which.**
+3. **SITE KEY vs SERIES STEM.** Three of the 93 published names do not sit at
+   `raw_ohlc/{MARKET}/{KEY}.csv` — 2POINTZERO is TWOPOINTZERO, ADIBUAE is AE/ADIB (EG/ADIB
+   is a different company entirely), ALRAJHI is SA/RAJHI. The obvious command fails on
+   exactly those three, and the map that resolves them existed only inside a check script,
+   where the roll-forward tools never looked.
+4. **WHAT IS DELIBERATELY NOT TOUCHED** — `fair{}`, the slider's factor-stack constants, the
+   backtest PNG. Re-derived every pass, and STEP 6 pointed at `ledger_scorer.py` + `viz.py`,
+   which have lived under `engine/lab/legacy_tooling/` since the PNG regeneration moved to
+   `metal_backtest.py`. Following a dead pointer turns a no-op step into a question.
+
+**The rule.** `python3 scripts/rollforward.py {SITE_KEY} [--write] [--ship]` is the default
+route for a roll-forward. It adds no rule and computes no number of its own: every step is
+the existing tool, called in the protocol's order with the protocol's arguments. What is new
+is that the sequence and the four forks are executable instead of remembered.
+
+**This is the third time this exact move has been made in this repository, and the first
+time it has been generalised.** `grade_ledger.py`: *"the convention lived in whoever's head
+was doing it that day."* `sweep_ledger.py`: *"could only be run by hand-rolling a driver each
+time — which is how a convention drifts."* `refresh_cone_one.py`: *"that rule existed only
+as prose."* Each closed the instance in front of it. The thing left over was the
+orchestration itself, which is the largest piece of prose-only procedure in the system.
+Under [R-ENF-01] — close the class, not the instance — **a multi-step procedure that is
+performed repeatedly is a rule that can be checked, so it gets a driver, not a checklist.**
+
+**What still stops the run, because these are decisions and not lookups:** a partial-vs-full
+OHLC export that does not splice cleanly; a market that RAISES in the refit (a raise in some
+other market is reported and passed — one blocked market must never freeze the others); a
+name with no 1-month cohort on record, which is a first publish and not a roll-forward; and
+a metals 12-month whose annual clock has come round. Each stops with one line naming the
+number that forced it, rather than with an open question.
+
+**Corollary, and the part that generalises past this pipeline: when the same request behaves
+two different ways, look for a fork in the procedure before concluding anything about the
+agent.** Three of these four forks were lookups the repository could already answer, and the
+fourth was a contradiction between two of its own documents. None of them was judgement.
+
+**Enforcement [R-ENF-01].** `scripts/rollforward.py --check-resolver` asserts every published
+key resolves to a library that exists, and runs in `.github/workflows/page-integrity.yml`, so
+a name added with a mismatched stem fails on the commit that adds it rather than on the first
+person who tries to roll it forward. It is negative-controlled: clearing `SERIES_OVERRIDE`
+makes it name exactly 2POINTZERO, ADIBUAE and ALRAJHI and exit 1.

@@ -40,7 +40,13 @@ diff-only summary leaves that copy silently behind.
 - Re-deriving a study's beta against its exchange's index and rebuilding on it →
   `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
-- Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
+- Rolling forward / grading a matured ledger cohort → **run `python3 scripts/rollforward.py
+  {SITE_KEY} [--write] [--ship]`** — ONE command for STEPs 1-7, which decides metronome-vs-
+  mid-cycle, materiality, and the site-key↔series mapping from the data instead of asking
+  [R-RF-01]. `engine/Rollforward_and_Grading_Protocol.md` says what it does and covers the
+  genuine exceptions; read it to understand a step or handle a stop, not to re-assemble the
+  sequence by hand. **When the same request behaves two different ways on two names, look for
+  a fork in the procedure before concluding anything about the model.**
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
 - SIGCM (source-integrity & ground-up construction mandate, QC hard gate) →
   `engine/Source_Integrity_and_Ground_Up_Mandate.md`

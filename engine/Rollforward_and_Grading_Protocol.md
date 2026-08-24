@@ -1,9 +1,55 @@
-# TESTAHIL — Roll-Forward & Grading Protocol (v3, 29-Jul-2026)
+# TESTAHIL — Roll-Forward & Grading Protocol (v3.1, 24-Aug-2026)
 
-Paste this + a ticker + fresh OHLC to trigger the full cycle below, end-to-end, unattended
-(all local until a PAT is supplied for push — same discipline as every other write).
+Paste this + a ticker + fresh OHLC to trigger the full cycle below, end-to-end.
 
 Trigger phrase: "Roll forward {TICKER} with this data" / "recalibrate and forecast {TICKER}"
+
+---
+
+## RUN IT WITH ONE COMMAND [R-RF-01, adopted 24-Aug-2026]
+
+```
+python3 scripts/rollforward.py {SITE_KEY}                  # dry run: decides, reports, writes nothing
+python3 scripts/rollforward.py {SITE_KEY} --write          # ...and writes locally
+python3 scripts/rollforward.py {SITE_KEY} --write --ship   # ...and publishes it live
+```
+
+**This is the default route. Read the steps below to understand what it does or to handle a
+genuine exception — do not hand-assemble the sequence because the steps are written out.**
+
+Every step under it is the existing tool, called in this protocol's order with this
+protocol's arguments. It adds no rule and computes no number of its own. What is new is that
+the SEQUENCE and its four forks are executable instead of remembered.
+
+**Why it was adopted.** Reported symptom: *"I update the prices for 2 stocks and ask for the
+calibration published to the ledger and the prediction rolled forward to the stock page. One
+runs smoothly and the other stumbles into many problems and keeps asking complicated
+questions."* Both halves are real and neither is randomness. The tail of this pipeline has
+had a driver since 07-Aug-2026 (`publish_site.py`) and runs the same way every time; STEPs
+1–6 had none, and they contain four forks whose answer is **different for different names on
+the same day** — so two stocks posted in one sitting genuinely take two different routes,
+and only one of them is the route the last roll-forward took.
+
+| # | Fork | Was decided by | Now decided by |
+|---|------|----------------|----------------|
+| 1 | Metronome or mid-cycle (STEP 0 (a)) | reading the ledger by hand | `decide()` — the current 1M's `grade_date` vs the new anchor, reason printed |
+| 2 | Material calibration (STEP 2) | three documents that disagreed | R-CAL-01 as amended: applies and announces |
+| 3 | Site key vs series stem | a map inside a check script | `resolve()`, proven against file placement, CI-gated |
+| 4 | What is deliberately NOT touched | re-derived each pass | printed in the STEP 7 report, every time |
+
+Fork 1 is the consequential one: the wrong tool either strikes a cohort the metronome never
+called for and breaks the lifecycle invariant, or silently skips a strike the ledger was
+owed. Measured on 24-Aug-2026, 2POINTZERO and ADIBUAE were AT their metronome (1M grade date
+2026-08-24) while DEWA, PHDC and TMGH were three to four weeks off it.
+
+**What still stops the run, because these are decisions and not lookups:** a partial-vs-full
+OHLC export that does not splice cleanly (STEP 1); a market that RAISES in the refit; a name
+with no 1-month cohort on record (that is a first publish, not a roll-forward); and a metals
+12-month whose annual clock has come round. Each stops with one line naming the number that
+forced it.
+
+`--check-resolver` is the CI form of fork 3 — it asserts all 93 published keys resolve to a
+real library, and runs in `page-integrity.yml` [R-ENF-01].
 
 **v3 change (29-Jul-2026): THE FORECAST LIFECYCLE (STEP 0) is adopted.** One current
 forecast per name per horizon; the 1-month maturity is the metronome for both horizons'
@@ -78,10 +124,32 @@ Never let a partial upload replace the library.
 
 ## STEP 2 — CALIBRATION (Step 0.0 gate + refit)
 Run the existing pipeline unchanged: `data_quality.clean_ohlc` (per-market price-limit gate),
-then `auto_refresh.py` dry-run against the FULL market panel (never just the touched name).
-Report the materiality verdict. If material (verdict flip, new-name-arrives-FAILING, cone
-moves >5%, breaks change) — stop, do not proceed to Step 3/4 without flagging it explicitly;
-this is a PR-gated event, not an auto-apply one.
+then `auto_refresh.py` against the FULL market panel (never just the touched name).
+Report the materiality verdict.
+
+**MATERIAL APPLIES AND ANNOUNCES — IT DOES NOT BLOCK [R-CAL-01, amended 23-Aug-2026].**
+If material (verdict flip, new-name-arrives-FAILING, market verdict change, a panel name with
+no raw data, or the published 90% cone moving >5% on `width_cal × q95(t(ν))`) the refit is
+still APPLIED, and announced in three places at once: the evidence file under
+`engine/PENDING_REVIEW/`, the reasons repeated verbatim in the commit message, and the config
+it replaced stored under `superseded` in `fitted_configs.json`. Reverting that one commit
+restores `market_profiles.py` and `fitted_configs.json` together. Carry on to Steps 3/4 with
+the reasons quoted in the report. `auto_refresh.py --halt-on-material` gives the
+pre-amendment behaviour if a specific pass genuinely wants it.
+
+**This paragraph used to say the opposite** — "stop, do not proceed to Step 3/4 … this is a
+PR-gated event, not an auto-apply one" — and stayed that way for a day after the amendment
+landed in the digest, in `auto_refresh.py` and in the workflow body. That is not a
+documentation nit: it is one of the four forks that made the same request behave differently
+on two names in one sitting (see `scripts/rollforward.py`, [R-RF-01]). An agent reaching this
+fork through the protocol stopped and asked; one reaching it through the digest carried on.
+**A gate with no release is a stall, and a rule that two governing documents answer two ways
+is worse than either answer.**
+
+**WHAT STILL STOPS THE RUN:** a market that RAISES. Its production config is left untouched,
+`PENDING_REVIEW/{MARKET}_{date}-ERROR.md` carries the traceback, the healthy markets still
+apply — and one blocked market must never freeze the others, so a raise in some OTHER market
+is reported and passed, never a reason to abandon this name.
 
 ## STEP 3 — GRADE EVERY NOW-MATURED COHORT
 Under the lifecycle this means: the matured current 1M, PLUS any aging 3M tail (and any
@@ -316,8 +384,11 @@ State plainly whether a regeneration pass is actually warranted this cycle, rath
 regenerating by default. **Regenerate with `python3 engine/metal_backtest.py {SITE_KEY}`** —
 one command per name, since 04-Aug-2026. Its window rule is every non-overlapping quarter
 back to the market's last structural break (NOT a fixed five years — see that module's
-docstring), so a panel only moves when its own library or fit moves — and if it is warranted, that's its own step (via `ledger_scorer.py`
-+ `viz.py`), reported separately, not bundled silently into a data-only roll-forward.
+docstring), so a panel only moves when its own library or fit moves — and if it is warranted, that's its own step —
+`python3 engine/metal_backtest.py {SITE_KEY}`, the one command since 04-Aug-2026 — reported
+separately, not bundled silently into a data-only roll-forward. (This sentence used to point
+at `ledger_scorer.py` + `viz.py`; both have lived under `engine/lab/legacy_tooling/` since
+that move, so following the pointer found nothing and turned a no-op step into a question.)
 
 ## STEP 7 — PUBLISH
 Everything above stays local. Report a clean summary: what was graded (with any
@@ -325,5 +396,14 @@ projected-vs-actual date gap called out), the new cohort's numbers, any 3M demot
 tail, the refreshed technical read, the regenerated chart, both as-of stamps, exactly which
 ticker-page fields changed vs. were deliberately left alone, and the ledger/backtest-PNG
 status. Bump the cache-buster in the same change — and check the token is unused first; two
-sessions independently picked `20260728a` once. Push only on request, with a fresh PAT
-(never stored), tokenless URL restored immediately after.
+sessions independently picked `20260728a` once.
+
+**PUBLISHING NO LONGER STOPS FOR A TOKEN [changed 07-Aug-2026].** "Publish" is the
+authorisation to go all the way to merged-and-deployed:
+`python3 scripts/publish_site.py --ticker {SITE_KEY} --ship --republish` owns
+surfaces → gates → render-verify → commit → push → PR → merge → deploy check and fails loudly
+at every step. `scripts/rollforward.py --ship` calls it for you at the end of a clean pass.
+The retired text here ("Push only on request, with a fresh PAT (never stored), tokenless URL
+restored immediately after") described the PAT-in-memory rule that was retired along with the
+token gate it protected; it survived in this file for two weeks and is the reason a
+roll-forward could end one step short of being published while reporting success.

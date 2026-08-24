@@ -55,3 +55,13 @@ jobs:
       # against the library, sourced run_date, lifecycle invariant.
       - name: Run data freshness / provenance gate
         run: python3 scripts/check_data_freshness.py
+      # Added 24-Aug-2026 [R-RF-01 / R-ENF-01]. Three of the 93 published names
+      # do not sit at raw_ohlc/{MARKET}/{KEY}.csv -- 2POINTZERO is TWOPOINTZERO,
+      # ADIBUAE is AE/ADIB (EG/ADIB is a different company), ALRAJHI is SA/RAJHI.
+      # The map that resolves them lived only inside a check script, so the
+      # obvious roll-forward command failed on exactly those three and the
+      # failure surfaced as a question to the user rather than as a red build.
+      # This asserts every published key resolves to a library that exists, so a
+      # name added with a mismatched stem fails on the commit that adds it.
+      - name: Roll-forward resolver gate
+        run: python3 scripts/rollforward.py --check-resolver

@@ -3,12 +3,21 @@ name: Testahil continuous calibration
 # Unattended by design, gated by design (11-Jul-2026):
 #   - Drop OHLC into engine/raw_ohlc/{MARKET}/{TICKER}.csv and push (or run manually).
 #   - Mechanical work (cleaning, panel rebuild, refit, LONO verdicts) always runs.
-#   - If auto_refresh.py's materiality gate finds nothing that needs a human
-#     (no verdict flips, no new names, nu/width_cal within tolerance), the
-#     result is committed straight to main. No PR, no approval step.
-#   - If it DOES find something material, this workflow opens a PR with a
-#     PENDING_REVIEW/*.md report and does NOT touch market_profiles.py.
-#     Nothing merges without a human clicking merge.
+#   - The refit is committed straight to main whether or not it is material.
+#     No PR, no approval step.
+#   - A MATERIAL change [R-CAL-01, amended 23-Aug-2026] applies like any other
+#     and is ANNOUNCED in three places: engine/PENDING_REVIEW/, the reasons
+#     verbatim in the commit message, and the replaced config under `superseded`
+#     in fitted_configs.json. See the commit step below, which implements this.
+#   - The only red run is a market that RAISED: its production config is left
+#     untouched, the healthy markets still apply, and the run ends red because
+#     an exception is not evidence.
+#
+# THIS COMMENT USED TO SAY THE OPPOSITE -- "opens a PR ... nothing merges without
+# a human clicking merge" -- for a day after the amendment landed in the body 20
+# lines below it. A file that contradicts itself is read by whoever gets to the
+# top of it first, which on 24-Aug-2026 was one of four forks making the same
+# roll-forward request behave differently on two names in one sitting [R-RF-01].
 
 # NO NIGHTLY SCHEDULE (removed 23-Aug-2026, user instruction). There is no live
 # market feed here: engine/raw_ohlc/ changes only when a human posts a CSV, and
