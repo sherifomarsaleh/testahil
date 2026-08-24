@@ -7424,90 +7424,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "OIH",
-   "name": "Orascom Investment Holding",
-   "code": "EGX:OIH",
-   "ccy": "EGP",
-   "spot": 1.47,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 0.53,
-   "fv_base": 0.78,
-   "fv_full": 1.7,
-   "gap_base_pct": -46.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.098352,
-    "mu_h": 0.013514,
-    "G": {
-     "bear": -10.37,
-     "base": -6.44,
-     "full": 1.48
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9995,
-     "full": 4.7224
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00287
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.186739,
-    "mu_h": 0.04652,
-    "G": {
-     "bear": -5.46,
-     "base": -3.39,
-     "full": 0.78
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0004,
-     "base": 0.0027,
-     "full": 0.2624
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.0045,
-     "full": 0.4205
-    },
-    "required_cagr": {
-     "bear": -0.9831,
-     "base": -0.9207,
-     "full": 0.7887
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00139
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RMDA",
    "name": "Rameda Pharmaceuticals",
    "code": "EGX:RMDA",
@@ -7588,6 +7504,90 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.0036
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "OIH",
+   "name": "Orascom Investment Holding",
+   "code": "EGX:OIH",
+   "ccy": "EGP",
+   "spot": 1.88,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 0.53,
+   "fv_base": 0.78,
+   "fv_full": 1.7,
+   "gap_base_pct": -58.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.127839,
+    "mu_h": 0.021053,
+    "G": {
+     "bear": -9.9,
+     "base": -6.88,
+     "full": -0.79
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": -0.7011
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00279
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.228882,
+    "mu_h": 0.056863,
+    "G": {
+     "bear": -5.53,
+     "base": -3.84,
+     "full": -0.44
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.0016,
+     "full": 0.2075
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.0028,
+     "full": 0.4464
+    },
+    "required_cagr": {
+     "bear": -0.9937,
+     "base": -0.9704,
+     "full": -0.3314
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00432
    },
    "market": "EG"
   },
