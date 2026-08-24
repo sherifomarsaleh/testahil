@@ -97,12 +97,31 @@ def sync_main(ticker: str) -> None:
     p = subprocess.run(["git", "merge", "origin/main", "--no-edit"],
                        cwd=ROOT, text=True, capture_output=True)
     if p.returncode != 0:
+        # A FAILED MERGE IS NOT ALWAYS A CONFLICT, AND SAYING SO SENDS THE READER
+        # TO THE WRONG FILE (24-Aug-2026). This branch used to assume every non-zero
+        # exit meant conflicted content and printed `--diff-filter=U`. When git
+        # REFUSES TO START the merge -- "Your local changes to the following files
+        # would be overwritten" -- there are no unmerged paths, so that list is
+        # EMPTY: the script printed "hit conflicts -- resolve by hand" followed by
+        # nothing at all, and the actual cause (uncommitted edits overlapping main's)
+        # never appeared. The remedies are opposites, which is what makes the
+        # misdiagnosis expensive: a real conflict is resolved in the file, a refused
+        # merge is resolved by committing first. Distinguish them on the unmerged
+        # set, and when there is none, relay git's own words rather than a guess.
         conflicts = run(["git", "diff", "--name-only", "--diff-filter=U"]).split()
-        die("merge of origin/main hit conflicts — resolve by hand, then re-run:\n    "
-            + "\n    ".join(conflicts)
-            + "\n\n  Resolve ADDITIVELY: keep main's new ticker rows AND this ticker's"
-              "\n  row. Keep SITE.latest as main has it unless this is a first publish"
-              "\n  (a republish must not hijack the homepage hero).")
+        if conflicts:
+            die("merge of origin/main hit conflicts — resolve by hand, then re-run:\n    "
+                + "\n    ".join(conflicts)
+                + "\n\n  Resolve ADDITIVELY: keep main's new ticker rows AND this ticker's"
+                  "\n  row. Keep SITE.latest as main has it unless this is a first publish"
+                  "\n  (a republish must not hijack the homepage hero).")
+        die("git REFUSED to start the merge of origin/main — this is NOT a content "
+            "conflict, so there is nothing to resolve in a file. git said:\n\n    "
+            + "\n    ".join(((p.stderr or "") + (p.stdout or "")).strip().splitlines()[:12])
+            + "\n\n  Almost always: this ticker's edits are still uncommitted and touch "
+              "files\n  main also moved. Commit them on this branch first, then re-run — "
+              "the\n  merge can then resolve normally, and any real conflict will be "
+              "reported\n  by the branch above with the files actually named.")
     print("  merged origin/main cleanly")
 
 

@@ -3272,6 +3272,98 @@ const FV_OVERLAY = {
    "market": "IN"
   },
   {
+   "ticker": "EFID",
+   "name": "Edita Food Industries",
+   "code": "EGX:EFID",
+   "ccy": "EGP",
+   "spot": 33.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 16.41,
+   "fv_base": 27.68,
+   "fv_full": 42.78,
+   "gap_base_pct": -16.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.135687,
+    "mu_h": 0.017911,
+    "G": {
+     "bear": -5.19,
+     "base": -1.34,
+     "full": 1.87
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.0579,
+     "full": 0.0375
+    },
+    "p_touch": {
+     "bear": 0.0008,
+     "base": 0.0993,
+     "full": 0.0571
+    },
+    "required_cagr": {
+     "bear": -0.9998,
+     "base": -0.8872,
+     "full": 19.9523
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00155
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.233833,
+    "mu_h": 0.052512,
+    "G": {
+     "bear": -3.01,
+     "base": -0.78,
+     "full": 1.08
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0043,
+     "base": 0.1261,
+     "full": 0.1588
+    },
+    "p_touch": {
+     "bear": 0.0077,
+     "base": 0.252,
+     "full": 0.256
+    },
+    "required_cagr": {
+     "bear": -0.9403,
+     "base": -0.5168,
+     "full": 1.7568
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00364
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "LGES",
    "name": "LG Energy Solution, Ltd.",
    "code": "KRX:373220",
@@ -7954,98 +8046,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00049
    },
    "market": "AE"
-  },
-  {
-   "ticker": "EFID",
-   "name": "Edita Food Industries",
-   "code": "EGX:EFID",
-   "ccy": "EGP",
-   "spot": 27.7,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 16.41,
-   "fv_base": 27.68,
-   "fv_full": 42.78,
-   "gap_base_pct": -0.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.10896,
-    "mu_h": 0.014693,
-    "G": {
-     "bear": -4.8,
-     "base": -0.01,
-     "full": 3.99
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0007,
-     "base": 0.4311,
-     "full": 0.0021
-    },
-    "p_touch": {
-     "bear": 0.001,
-     "base": 0.844,
-     "full": 0.0033
-    },
-    "required_cagr": {
-     "bear": -0.9981,
-     "base": -0.0086,
-     "full": 183.1332
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00167
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.211876,
-    "mu_h": 0.046208,
-    "G": {
-     "bear": -2.47,
-     "base": -0.0,
-     "full": 2.05
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0089,
-     "base": 0.3932,
-     "full": 0.0321
-    },
-    "p_touch": {
-     "bear": 0.0162,
-     "base": 0.9008,
-     "full": 0.0523
-    },
-    "required_cagr": {
-     "bear": -0.8768,
-     "base": -0.0029,
-     "full": 4.6891
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00246
-   },
-   "market": "EG"
   },
   {
    "ticker": "ADIBUAE",
