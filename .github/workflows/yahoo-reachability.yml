@@ -1,0 +1,48 @@
+name: Yahoo reachability (Step 1a diagnostic)
+
+# The Step 1 probe aborted with 64/64 requests returning HTTP 429. That is not a
+# coverage answer and must never be filed as one. This job establishes which of
+# the two it actually is, using symbols whose existence is not in question as a
+# control. Fast (~1 min) and read-only.
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - 'claude/daily-price-feed-probe-**'
+    paths:
+      - 'claude/ops/yahoo_reachability.py'
+      - '.github/workflows/yahoo-reachability.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: claude/ops
+          sparse-checkout-cone-mode: false
+        # The probe job spent 1m43s checking out 2449 files it did not need.
+        # This diagnostic reads no library data at all.
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Where is this runner
+        run: |
+          echo "runner egress IP: $(curl -s --max-time 10 https://api.ipify.org || echo unavailable)"
+
+      - name: Diagnose
+        run: |
+          set +e
+          python3 claude/ops/yahoo_reachability.py
+          echo "diagnostic exit code: $?"
+          # Exit code is the finding, not a failure: 3 = runner throttled,
+          # 0 = transport fine. Neither should paint the job red, because the
+          # job's purpose is to REPORT which one holds.
+          exit 0
