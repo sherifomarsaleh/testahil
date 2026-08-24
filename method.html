@@ -178,19 +178,28 @@
     </div>
     </details>
 
-    <h3>Reading the verdict</h3>
-    <p>The comparison isn't decided by a single lucky or unlucky result — the margin is checked for statistical significance before any name is called a pass or a fail, so a difference that could plausibly be noise is called a tie, not a win or a loss. Three outcomes are possible, and every one is published as-is, never hidden:</p>
+    <h3>Reading the record</h3>
+    <p>The question that actually matters to you is simpler than any score: <b>when we say there is a 90% chance the price lands inside a range, does it?</b> That is what we publish for every name — the share of its resolved three-month forecasts that finished inside the 90% band, and how many forecasts that is. Both numbers are on the <a href="ledger.html">ledger</a> and you can recount them yourself.</p>
+    <p class="muted">Two things follow from that, and nothing else needs explaining. The first is how long the record is: a name with sixty resolved forecasts behind it is telling you something; a name with eight is not, and we say so rather than dressing up a number that cannot bear the weight. The second is whether the record sits where it should. A band aiming at 90% that holds 90% of the time gets no flag at all — that is the ordinary case, and silence is the honest response to it. We flag only the two ways it can go wrong:</p>
     <div style="overflow-x:auto">
     <table style="margin:10px 0">
     <thead><tr><th>Ledger label</th><th>What it means</th></tr></thead>
     <tbody>
-    <tr><td style="white-space:nowrap">No flag</td><td class="muted">Beat the random-walk benchmark by a statistically real margin — this name's cone has a demonstrated edge.</td></tr>
-    <tr><td style="white-space:nowrap"><span style="color:#8a6d1f;font-weight:700">◆ Indicative · matches benchmark</span></td><td class="muted">Statistically tied the benchmark. Not wrong — still an honest, well-calibrated probability map — just no proven edge over the naive alternative for this specific name.</td></tr>
-    <tr><td style="white-space:nowrap"><span style="color:var(--red);font-weight:700">⚠ Indicative · failed calibration test</span></td><td class="muted">Lost to the benchmark: historically, the dumb random walk would have scored better than our own model for this name. The cone is still shown, honestly, just flagged rather than hidden.</td></tr>
-    <tr><td style="white-space:nowrap">No name-level calibration</td><td class="muted">Too newly listed to run a meaningful five-year test on its own — graded instead on how the whole market-level model performs across everything it covers, until enough history accumulates.</td></tr>
+    <tr><td style="white-space:nowrap">No flag</td><td class="muted">The bands held about as often as they promised. Nothing more is claimed, and nothing more needs to be.</td></tr>
+    <tr><td style="white-space:nowrap"><span style="color:var(--red);font-weight:700">⚠ Bands ran narrow</span></td><td class="muted">Price left the range more often than the 90% implies — this name's cone has been tighter than the evidence supports. Read the range as a floor on how far price can travel, not a ceiling.</td></tr>
+    <tr><td style="white-space:nowrap"><span style="color:#8a6d1f;font-weight:700">◆ Bands ran wide</span></td><td class="muted">Price stayed inside the range more often than the 90% implies — the real spread of outcomes has been tighter than the cone shows. The safer direction to be wrong in, but still a miss, and still published.</td></tr>
+    <tr><td style="white-space:nowrap">◇ Market record only</td><td class="muted">Too newly listed for its own record to mean anything yet, so no claim is made about this name specifically — the bands shown are its market's bands, judged across every name in that panel. Each cohort it matures adds a window to a record of its own.</td></tr>
     </tbody>
     </table>
     </div>
+    <p class="muted">A flag is only raised when the gap is bigger than chance would comfortably explain, so a name is never marked on one unlucky quarter. And a short record is never quietly upgraded into a long one: the count is printed beside the percentage every time, because the percentage without the count is exactly the kind of number that misleads.</p>
+    <details class="rds">
+    <summary><span class="rds-t">What we test internally, and why you don't see it</span><span class="rds-x" aria-hidden="true"></span></summary>
+    <div class="rds-body">
+    <p class="muted" style="margin:10px 0 0">Behind this, every cone is still scored against the plain random-walk benchmark described above, and a name only enters the book if its market panel clears that bar. That test does real work — it is what stops a badly specified model shipping — but it answers a modelling question ("is our score better than a naive alternative's?") rather than yours ("can I trust these bands?"), and the two come apart. A cone can contain every single outcome it ever forecast and still fail to beat the benchmark, because bands that are too wide score badly even though nothing went wrong for the reader. Publishing that as a failure told you the opposite of what had happened, so it no longer sits on the page. The internal gate is unchanged; only what we put in front of you has.</p>
+    </div>
+    </details>
+
     <p class="muted">Every graded forecast — right or wrong — is on the <a href="ledger.html">public ledger</a>, permanently. Nothing is deleted, and nothing is re-written after the fact.</p>
 
     <h3>The weakest link, said plainly</h3>

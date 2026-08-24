@@ -1,0 +1,104 @@
+name: Band record gate
+
+# [R-CAL-02], added 24-Aug-2026. Until today every public surface carried the engine's
+# three-way SKILL verdict — PASS / PARITY / FAIL — and its negative label read "FAILED
+# CALIBRATION TEST". That is not what the verdict tests. Measured across the whole book
+# on the day this was written, every name carrying that label had 90%-band coverage at or
+# above 97% against a 90% target: their bands were too WIDE, the opposite failure. The five
+# names whose bands genuinely ran NARROW carried no flag at all. The label pointed at the
+# wrong names, and the protocol had already recorded the reason without anyone reconciling
+# the page with it.
+#
+# So the reader now gets the band record instead — how often the price finished inside the
+# 90% band, over how many resolved forecasts — and this job is what stops the old
+# vocabulary drifting back in, and what catches a published record that no longer agrees
+# with the panel it was generated from. It fails; it does not warn.
+
+on:
+  push:
+    paths:
+      - 'assets/data.js'
+      - 'assets/app.js'
+      - 'assets/coverage.js'
+      - '*.html'
+      - 'engine/panels/**'
+      - 'engine/band_record.py'
+      - 'scripts/build_band_records.py'
+      - 'scripts/build_band_prose.py'
+      - 'scripts/build_band_theses.py'
+      - 'scripts/check_band_vocabulary.py'
+      - 'scripts/check_band_vocabulary_negative_control.py'
+      - '.github/workflows/band-record.yml'
+  pull_request:
+    paths:
+      - 'assets/data.js'
+      - 'assets/app.js'
+      - 'assets/coverage.js'
+      - '*.html'
+      - 'engine/panels/**'
+      - 'engine/band_record.py'
+      - 'scripts/build_band_records.py'
+      - 'scripts/build_band_prose.py'
+      - 'scripts/build_band_theses.py'
+      - 'scripts/check_band_vocabulary.py'
+      - 'scripts/check_band_vocabulary_negative_control.py'
+      - '.github/workflows/band-record.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: band-record-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install numpy pandas scipy
+
+      # VERIFY BY IMPORT, NOT BY PARSE — the standing rule, for the same reason as ever.
+      - name: Import the record module and check its thresholds
+        run: |
+          python3 -c "
+          from engine import band_record as br
+          assert br.STRENGTH_LONG_MIN == 40 and br.STRENGTH_SHORT_MIN == 22, 'strength cuts moved without an instruction'
+          assert br.TARGET_COVERAGE == 0.90, 'the published band target moved'
+          recs = br.all_records()
+          assert recs, 'no panels found'
+          print(f'band_record OK — {len(recs)} records')
+          "
+
+      # The record on the page must still agree with the panel it came from, and no
+      # verdict vocabulary may reach a reader.
+      - name: Band record gate
+        run: python3 scripts/check_band_vocabulary.py
+
+      # A check nobody has seen fail is not evidence: reinject the 24-Aug text and the
+      # gate must go red on every case.
+      - name: Band record gate — negative control
+        run: python3 scripts/check_band_vocabulary_negative_control.py
+
+      # The site's JS must LOAD, not merely parse: an appended block can be valid-looking
+      # text and invalid JavaScript, and a regex check reports it intact.
+      - name: Load data.js and assert on the parsed objects
+        run: |
+          node --check assets/data.js
+          node --check assets/app.js
+          node --check assets/coverage.js
+          node -e "
+          const fs=require('fs'),vm=require('vm'),ctx={};vm.createContext(ctx);
+          vm.runInContext(fs.readFileSync('assets/data.js','utf8')+';globalThis.__X={LEDGER,BANDS,TICKERS};',ctx);
+          const {LEDGER,BANDS,TICKERS}=ctx.__X;
+          const names=[...new Set(LEDGER.map(r=>r.instrument))];
+          const missing=names.filter(n=>!(n in BANDS));
+          if(missing.length) throw new Error('ledger names with no band record: '+missing.join(','));
+          if(LEDGER.some(r=>typeof r.cal==='string')) throw new Error('a ledger row still carries the retired cal verdict field');
+          console.log('data.js loads — '+names.length+' instruments, '+Object.keys(BANDS).length+' records, no retired verdict fields');
+          "

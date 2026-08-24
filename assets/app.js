@@ -922,6 +922,53 @@ function renderStaticFan(elId, T){
   // technical read is written by each page's own inline script, and on some
   // pages that runs after this call.
   stampAsOfWhenReady(T);
+  refreshBandRecordsWhenReady();
+}
+
+/* ============ [R-CAL-02] band records, refreshed at render time ============ */
+/* A page's calibration sentence used to be typed once and left. It went stale
+   silently: on 24-Aug-2026 riyadhcable.html claimed 13 resolved windows at 85%
+   coverage while its committed panel held 10 at 70%. So the volatile clause is
+   marked <span data-band-record="TK"> and rewritten here from BANDS, which is
+   regenerated from the panels on every refit. Same reasoning as the as-of
+   stamps above: the page states a fact that moves, so the page must not be the
+   thing that remembers it. Static text stays correct at build time and is the
+   fallback when data.js has not loaded. */
+function bandRecordSentence(tk){
+  const b = (typeof BANDS !== 'undefined' && BANDS[tk]) || null;
+  if (!b) return null;
+  const P = v => Math.round(v * 100) + '%';
+  if (b.strength === 'market-only') {
+    const m = (typeof BAND_MARKETS !== 'undefined' && BAND_MARKETS[b.mkt]) || null;
+    const own = 'Only ' + b.n + ' three-month forecast' + (b.n === 1 ? '' : 's') +
+                ' of its own ha' + (b.n === 1 ? 's' : 've') + ' resolved so far — too few to ' +
+                'say anything reliable about this name specifically, so no name-level claim is made.';
+    return m ? own + ' The bands are the market\u2019s: across the ' + m.names + ' names in that panel, ' +
+               m.n + ' resolved forecasts finished inside their 90% bands ' + P(m.c90) + ' of the time.'
+             : own;
+  }
+  let s = 'Over ' + b.n + ' resolved three-month forecasts, the price finished inside the 90% band ' +
+          P(b.c90) + ' of the time, against the 90% that band aims at — and inside the 80% and 50% ' +
+          'bands ' + P(b.c80) + ' and ' + P(b.c50) + ' of the time.';
+  if (b.flag === 'narrow') s += ' That is short of what the bands promise: read the range as a floor on ' +
+                               'how far price can travel, not a ceiling.';
+  else if (b.flag === 'wide') s += ' That is more than the bands promise: the real spread of outcomes has ' +
+                                   'been tighter than the cone shows.';
+  return s;
+}
+function refreshBandRecords(){
+  const nodes = document.querySelectorAll('[data-band-record]');
+  for (let i = 0; i < nodes.length; i++){
+    const s = bandRecordSentence(nodes[i].getAttribute('data-band-record'));
+    if (s) nodes[i].textContent = s;   // no record -> leave the built-in fallback
+  }
+}
+function refreshBandRecordsWhenReady(){
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', refreshBandRecords, {once:true});
+  } else {
+    refreshBandRecords();
+  }
 }
 
 /* ============ as-of stamps: data vintage vs. computation date ============ */
