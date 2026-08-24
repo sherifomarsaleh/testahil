@@ -875,7 +875,7 @@
     "width_cal": 0.923,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0061,
+    "market_skill": 0.006,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
       -0.0,
@@ -933,12 +933,12 @@
       "ADNOCGAS": {
         "nu": 10.0,
         "width_cal": 0.93,
-        "skill": 0.0053,
-        "skill_raw_basis": 0.0062,
+        "skill": -0.0024,
+        "skill_raw_basis": -0.0022,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.012,
-          0.043
+          -0.053,
+          0.046
         ]
       },
       "ADNOCLS": {
@@ -953,13 +953,13 @@
         ]
       },
       "AGTHIA": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": -0.0325,
-        "skill_raw_basis": -0.0366,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0331,
+        "skill_raw_basis": -0.0376,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.095,
+          -0.097,
           0.012
         ]
       },
