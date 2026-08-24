@@ -7672,16 +7672,16 @@ const FV_OVERLAY = {
    "name": "El Nasr Clothing & Textiles (Kabo)",
    "code": "EGX:KABO",
    "ccy": "EGP",
-   "spot": 8.8,
-   "anchor_date": "2026-07-22",
+   "spot": 9.12,
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-06",
-   "fv_lag_days": 16,
+   "fv_lag_days": 48,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.42,
    "fv_base": 2.39,
    "fv_full": 3.52,
-   "gap_base_pct": -72.8,
+   "gap_base_pct": -73.8,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7694,13 +7694,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.130325,
-    "mu_h": 0.014665,
+    "h_sessions": 22,
+    "sigma_h": 0.147319,
+    "mu_h": 0.027043,
     "G": {
-     "bear": -14.0,
-     "base": -10.0,
-     "full": -7.03
+     "bear": -12.62,
+     "base": -9.09,
+     "full": -6.46
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7715,16 +7715,16 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00219
+    "selftest_max_dev": 0.00188
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.243701,
-    "mu_h": 0.046623,
+    "h_sessions": 62,
+    "sigma_h": 0.254694,
+    "mu_h": 0.070892,
     "G": {
-     "bear": -7.48,
-     "base": -5.35,
-     "full": -3.76
+     "bear": -7.3,
+     "base": -5.26,
+     "full": -3.74
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7732,14 +7732,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9993,
-     "base": -0.9946,
-     "full": -0.9744
+     "bear": -0.9994,
+     "base": -0.9953,
+     "full": -0.9778
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00314
+    "selftest_max_dev": 0.00436
    },
    "market": "EG"
   },
