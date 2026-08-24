@@ -6124,20 +6124,20 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DEWA",
-   "name": "DEWA (Dubai Electricity and Water Authority)",
-   "code": "DFM:DEWA",
+   "ticker": "ADCB",
+   "name": "Abu Dhabi Commercial Bank",
+   "code": "ADX:ADCB",
    "ccy": "AED",
-   "spot": 2.67,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
+   "spot": 15.32,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 2.18,
-   "fv_base": 3.32,
-   "fv_full": 4.92,
-   "gap_base_pct": 24.3,
+   "fv_bear": 14.3,
+   "fv_base": 19.7,
+   "fv_full": 23.3,
+   "gap_base_pct": 28.6,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6150,68 +6150,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.064442,
-    "mu_h": 0.003738,
+    "h_sessions": 21,
+    "sigma_h": 0.071253,
+    "mu_h": 0.000653,
     "G": {
-     "bear": -3.15,
-     "base": 3.38,
-     "full": 9.48
+     "bear": -0.97,
+     "base": 3.53,
+     "full": 5.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0025,
-     "base": 0.002,
+     "bear": 0.1504,
+     "base": 0.0014,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0036,
-     "base": 0.0026,
+     "bear": 0.2505,
+     "base": 0.0022,
      "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.9122,
-     "base": 12.6622,
-     "full": 1531.661
+     "bear": -0.5626,
+     "base": 19.4404,
+     "full": 152.1672
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00199
+    "selftest_max_dev": 0.00119
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.114791,
-    "mu_h": 0.011173,
+    "h_sessions": 64,
+    "sigma_h": 0.132118,
+    "mu_h": 0.001956,
     "G": {
-     "bear": -1.77,
+     "bear": -0.52,
      "base": 1.9,
-     "full": 5.32
+     "full": 3.17
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0319,
-     "base": 0.0359,
-     "full": 0.0001
+     "bear": 0.2811,
+     "base": 0.0304,
+     "full": 0.0027
     },
     "p_touch": {
-     "bear": 0.056,
-     "base": 0.0607,
-     "full": 0.0001
+     "bear": 0.5196,
+     "base": 0.0523,
+     "full": 0.005
     },
     "required_cagr": {
-     "bear": -0.5556,
-     "base": 1.3906,
-     "full": 10.5296
+     "bear": -0.2409,
+     "base": 1.7342,
+     "full": 4.3504
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00214
+    "selftest_max_dev": 0.00109
    },
    "market": "AE"
   },
@@ -6308,20 +6308,20 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ADCB",
-   "name": "Abu Dhabi Commercial Bank",
-   "code": "ADX:ADCB",
+   "ticker": "DEWA",
+   "name": "DEWA (Dubai Electricity and Water Authority)",
+   "code": "DFM:DEWA",
    "ccy": "AED",
-   "spot": 14.42,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
+   "spot": 2.7,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 14.3,
-   "fv_base": 19.7,
-   "fv_full": 23.3,
-   "gap_base_pct": 36.6,
+   "fv_bear": 2.18,
+   "fv_base": 3.32,
+   "fv_full": 4.92,
+   "gap_base_pct": 23.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6334,68 +6334,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086819,
-    "mu_h": 0.00277,
+    "h_sessions": 21,
+    "sigma_h": 0.057068,
+    "mu_h": 0.0,
     "G": {
-     "bear": -0.1,
-     "base": 3.59,
-     "full": 5.53
+     "bear": -3.75,
+     "base": 3.62,
+     "full": 10.51
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4445,
-     "base": 0.0013,
-     "full": 0.0001
+     "bear": 0.0009,
+     "base": 0.0012,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.8012,
+     "bear": 0.0014,
      "base": 0.0018,
-     "full": 0.0001
+     "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.0954,
-     "base": 41.268,
-     "full": 315.7291
+     "bear": -0.9232,
+     "base": 10.9479,
+     "full": 1339.3433
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00177
+    "selftest_max_dev": 0.00167
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.153564,
-    "mu_h": 0.009662,
+    "h_sessions": 64,
+    "sigma_h": 0.103585,
+    "mu_h": 0.0,
     "G": {
-     "bear": -0.05,
-     "base": 2.03,
-     "full": 3.12
+     "bear": -2.07,
+     "base": 2.0,
+     "full": 5.79
     },
-    "band": "OUT-OF-REACH",
+    "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4491,
-     "base": 0.0262,
-     "full": 0.0033
+     "bear": 0.0218,
+     "base": 0.0249,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.8823,
-     "base": 0.0443,
-     "full": 0.0055
+     "bear": 0.0386,
+     "base": 0.0429,
+     "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.0329,
-     "base": 2.4834,
-     "full": 5.8165
+     "bear": -0.575,
+     "base": 1.2861,
+     "full": 10.0257
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00118
+    "selftest_max_dev": 0.00134
    },
    "market": "AE"
   },
@@ -6756,16 +6756,16 @@ const FV_OVERLAY = {
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
    "ccy": "AED",
-   "spot": 1.2,
-   "anchor_date": "2026-07-24",
+   "spot": 1.25,
+   "anchor_date": "2026-08-21",
    "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
+   "fv_lag_days": 41,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.14,
    "fv_base": 1.85,
    "fv_full": 2.35,
-   "gap_base_pct": 54.2,
+   "gap_base_pct": 48.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6778,13 +6778,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.096856,
+    "h_sessions": 21,
+    "sigma_h": 0.093733,
     "mu_h": 0.0,
     "G": {
-     "bear": -0.53,
-     "base": 4.47,
-     "full": 6.94
+     "bear": -0.98,
+     "base": 4.18,
+     "full": 6.73
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6792,46 +6792,46 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.4596,
-     "base": 179.2544,
-     "full": 3180.5547
+     "bear": -0.6689,
+     "base": 109.4436,
+     "full": 1948.3696
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00723
+    "selftest_max_dev": 0.00533
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.175973,
-    "mu_h": 0.008299,
+    "h_sessions": 64,
+    "sigma_h": 0.162705,
+    "mu_h": -0.008032,
     "G": {
-     "bear": -0.29,
-     "base": 2.46,
-     "full": 3.82
+     "bear": -0.57,
+     "base": 2.41,
+     "full": 3.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3564,
-     "base": 0.0112,
-     "full": 0.0009
+     "bear": 0.2881,
+     "base": 0.0103,
+     "full": 0.0007
     },
     "p_touch": {
-     "bear": 0.6819,
-     "base": 0.0188,
-     "full": 0.0016
+     "bear": 0.5118,
+     "base": 0.0179,
+     "full": 0.0014
     },
     "required_cagr": {
-     "bear": -0.1855,
-     "base": 4.6489,
-     "full": 13.7078
+     "bear": -0.3082,
+     "base": 3.7979,
+     "full": 11.492
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00189
+    "selftest_max_dev": 0.00294
    },
    "market": "AE"
   },
