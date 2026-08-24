@@ -350,12 +350,12 @@
       "OIH": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": -0.0166,
-        "skill_raw_basis": -0.0156,
+        "skill": -0.0183,
+        "skill_raw_basis": -0.0137,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.045,
-          0.026
+          -0.048,
+          0.018
         ]
       },
       "ORAS": {
