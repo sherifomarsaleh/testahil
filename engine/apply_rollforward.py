@@ -313,6 +313,14 @@ def js_row(d: dict) -> str:
     sig = ''
     if 'signal_z' in d and 'signal_alpha' in d:
         sig = f'    signal_z:{d["signal_z"]}, signal_alpha:{d["signal_alpha"]},\n'
+    # THE NAME-LEVEL CALIBRATION VERDICT IS PART OF THE RECORD. Publish_Protocol.md:
+    # "Set the row's `cal` field ONLY for matches / untested / fail -- absent means
+    # PASS." Until now only first-publish rows carried it, so a roll-forward struck
+    # for a name whose own verdict had since turned FAIL emitted a row that asserted
+    # PASS by omission -- the exact silence R-CAL-01 exists to prevent. Emitted only
+    # when the caller supplies it, so every PASS name still produces a byte-identical
+    # row. Placed after anchor_vol, matching the existing first-publish rows.
+    cal = f', cal:{v(d["cal"])}' if d.get('cal') else ''
     # run_date is a FIELD, never prose. scripts/check_data_freshness.py hard-fails a
     # row without one ("the strike date must be a field, never scraped out of the note"),
     # and this emitter silently omitted it — caught on the 05-Aug-2026 QNB strike, the
@@ -328,7 +336,7 @@ def js_row(d: dict) -> str:
         f'    horizon_label:{v(d["horizon_label"])}, grade_date:{v(d["grade_date"])}, '
         f'grade_basis:{v(d["grade_basis"])}, horizon_days:{d["horizon_days"]},\n'
         f'    cycle_no:{d["cycle_no"]}, reanchor_from:{v(d["reanchor_from"])}, '
-        f'anchor_vol:{d["anchor_vol"]},\n'
+        f'anchor_vol:{d["anchor_vol"]}{cal},\n'
         + sig +
         f'    note:{v(d["note"])},\n'
         f'    p5:{d["p5"]}, p25:{d["p25"]}, p50:{d["p50"]}, p75:{d["p75"]}, p95:{d["p95"]},\n'
