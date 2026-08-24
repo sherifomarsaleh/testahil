@@ -6836,90 +6836,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "CLHO",
-   "name": "Cleopatra Hospitals Group",
-   "code": "EGX:CLHO",
-   "ccy": "EGP",
-   "spot": 16.9,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 9,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 6.51,
-   "fv_base": 9.21,
-   "fv_full": 11.05,
-   "gap_base_pct": -45.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.141852,
-    "mu_h": 0.014685,
-    "G": {
-     "bear": -6.73,
-     "base": -4.28,
-     "full": -3.0
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9993,
-     "full": -0.9939
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00229
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.251767,
-    "mu_h": 0.046251,
-    "G": {
-     "bear": -3.79,
-     "base": -2.41,
-     "full": -1.69
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0018,
-     "base": 0.0102,
-     "full": 0.0302
-    },
-    "p_touch": {
-     "bear": 0.0031,
-     "base": 0.0187,
-     "full": 0.0567
-    },
-    "required_cagr": {
-     "bear": -0.978,
-     "base": -0.9118,
-     "full": -0.8172
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00268
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "BURJEEL",
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
@@ -7170,6 +7086,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00102
    },
    "market": "AE"
+  },
+  {
+   "ticker": "CLHO",
+   "name": "Cleopatra Hospitals Group",
+   "code": "EGX:CLHO",
+   "ccy": "EGP",
+   "spot": 17.71,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-13",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 6.51,
+   "fv_base": 9.21,
+   "fv_full": 11.05,
+   "gap_base_pct": -48.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.122639,
+    "mu_h": 0.02839,
+    "G": {
+     "bear": -8.16,
+     "base": -5.33,
+     "full": -3.85
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9996,
+     "full": -0.9965
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00131
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.213111,
+    "mu_h": 0.072413,
+    "G": {
+     "bear": -4.7,
+     "base": -3.07,
+     "full": -2.21
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.0035,
+     "full": 0.0108
+    },
+    "p_touch": {
+     "bear": 0.001,
+     "base": 0.0062,
+     "full": 0.0211
+    },
+    "required_cagr": {
+     "bear": -0.9817,
+     "base": -0.9269,
+     "full": -0.8484
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00345
+   },
+   "market": "EG"
   },
   {
    "ticker": "EMFD",
