@@ -233,6 +233,171 @@ def robust_verdict(crps, crps_b):
     return verds[0], detail
 
 
+# ------------------------------------------------- [R-SHAPE-01] mid-band reshape
+# Guarded mid-band shape selection (adopted 24-Aug-2026, per instruction —
+# investor session, "reshape UAE and Egypt to make it less conservative").
+#
+# WHY. nu is weakly identified: on these panels several tail-shapes sit inside
+# the 95% likelihood region, and MLE breaks that tie blindly. The tie is not
+# innocuous — shapes on the SAME iso-90% ridge (cal * T95(nu) held constant, the
+# very quantity R-CAL-01's materiality metric watches) differ visibly in how
+# wide the 25-75 band is. Measured 24-Aug-2026: AE's production shape caught
+# 53.8% in its 50% band while a ridge-mate caught 50.1% with the SAME 90% edge.
+# Picking the ridge point whose 50% band actually catches half is calibration,
+# not narrowing; every guard below exists so this can never become the
+# CRPS-selection mistake (in-sample coverage chasing) the promotion rule
+# already rejected once.
+#
+# THE GUARDS ARE THE RELEASE (a gate with no release is a stall): a market
+# reshapes at any refit where ALL guards pass, and silently keeps its MLE shape
+# otherwise. On adoption day that meant: AE reshaped; EG declined (split-half —
+# its mid-band over-coverage lives only in the late half while the early half
+# already under-covers, so no single shape helps both); SA declined (0.4pt from
+# target — nothing to fix). The declines are the rule working, not exceptions.
+RESHAPE_GRID = (3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0,
+                30.0, 1e9)
+RESHAPE_MIN_IMPROVE = 0.01      # candidate must close >= 1pt of |cov50 - 50%|
+RESHAPE_MAX_DLL = 3.0           # must stay inside the 95% joint likelihood region
+RESHAPE_CAL_CLIP = (0.85, 1.30)  # same legality clip shrink_cal enforces
+
+
+def _tq(p, nu):
+    """Quantile of the engine's UNIT-VARIANCE t (mc_v3: x = t_nu/sqrt(nu/(nu-2)))."""
+    from scipy import stats as _st
+    if nu >= 200:
+        return float(_st.norm.ppf(p))
+    return float(_st.t.ppf(p, nu) / np.sqrt(nu / (nu - 2)))
+
+
+def _pool_frame(panel, names):
+    frames = []
+    for n in names:
+        r = panel[n]
+        frames.append(pd.DataFrame({
+            'u': r['u'].values,
+            'a': np.where(r['sigma_h'].values > 0,
+                          r['alpha'].values / r['sigma_h'].values, 0.0),
+            'origin': pd.to_datetime(r['origin']),
+            'name': n,
+        }))
+    big = pd.concat(frames, ignore_index=True)
+    return big[np.isfinite(big['u'])].reset_index(drop=True)
+
+
+def _cov50(big, nu, cal):
+    """Exact fast_rescore algebra: drift_new = carry + alpha*cal, sigma_new =
+    sigma_h*cal, so a window is inside the 25-75 band iff
+    cal*T25 <= u - a*(cal-1) <= cal*T75 with a = alpha/sigma_h at baseline."""
+    u_adj = big['u'].values - big['a'].values * (cal - 1)
+    return float(np.mean((cal * _tq(.25, nu) <= u_adj) & (u_adj <= cal * _tq(.75, nu))))
+
+
+def _loglik(u, nu, s):
+    from scipy import stats as _st
+    if nu >= 200:
+        return float(_st.norm.logpdf(u / s).sum() - len(u) * np.log(s))
+    k = np.sqrt(nu / (nu - 2))
+    return float(_st.t.logpdf(u * k / s, nu).sum() + len(u) * (np.log(k) - np.log(s)))
+
+
+def _ridge_candidate(big, w90, ll_max):
+    """Admissible ridge point closest to 50% mid-band coverage. Admissible =
+    same 90% edge (by construction), cal inside the legality clip, and inside
+    the 95% joint likelihood region — 'shapes the data cannot tell apart'."""
+    u = big['u'].values
+    best = None
+    for nu in RESHAPE_GRID:
+        cal = w90 / _tq(.95, nu)
+        if not (RESHAPE_CAL_CLIP[0] <= cal <= RESHAPE_CAL_CLIP[1]):
+            continue
+        if ll_max - _loglik(u, nu, cal) > RESHAPE_MAX_DLL:
+            continue
+        c50 = _cov50(big, nu, cal)
+        if best is None or abs(c50 - .5) < abs(best[2] - .5):
+            best = (nu, cal, c50)
+    return best
+
+
+def reshape_mid_band(panel, names, nu_mle, cal_mle):
+    """Returns (nu, cal, note). Keeps (nu_mle, cal_mle) unless EVERY guard passes:
+      G-flat     candidate inside the 95% joint likelihood region (and legal cal);
+      G-improve  closes >= RESHAPE_MIN_IMPROVE of the mid-band coverage error;
+      G-split    BOTH calendar halves move strictly toward 50% (kills a
+                 regime artifact — the exact EG failure mode of 24-Aug-2026);
+      G-lono     leave-one-name-out: each name scored under a shape selected
+                 WITHOUT it; pooled held-out coverage must improve too;
+      G-crps     proper-score parity: the reshaped cone's pooled crps/spot must
+                 not be ROBUSTLY worse than the MLE shape's across bootstrap
+                 blocks {2,3,4} (the house robustness bar, mirrored).
+    The verdict machinery (per-name LONO fits, robust_verdict) is untouched —
+    this selects the PRODUCTION shape only."""
+    big = _pool_frame(panel, names)
+    u = big['u'].values
+    nu_raw, s_raw = fit_nu_scale(u)
+    ll_max = _loglik(u, nu_raw, s_raw)
+    w90 = cal_mle * _tq(.95, nu_mle)
+    base = dict(applied=False, mle_shape=[nu_mle, round(cal_mle, 3)],
+                w90_sigma=round(w90, 4))
+
+    cand = _ridge_candidate(big, w90, ll_max)
+    c50_mle = _cov50(big, nu_mle, cal_mle)
+    if cand is None or (cand[0] == nu_mle):
+        return nu_mle, cal_mle, dict(base, reason="MLE shape already closest "
+                                     "admissible point", cov50=round(c50_mle, 4))
+    nu_c, cal_c, c50_c = cand
+
+    if abs(c50_mle - .5) - abs(c50_c - .5) < RESHAPE_MIN_IMPROVE:
+        return nu_mle, cal_mle, dict(base, reason=f"G-improve: gain "
+                                     f"{abs(c50_mle-.5)-abs(c50_c-.5):.3f} < "
+                                     f"{RESHAPE_MIN_IMPROVE}")
+
+    med = big['origin'].median()
+    for tag, half in (("early", big[big['origin'] <= med]),
+                      ("late", big[big['origin'] > med])):
+        if abs(_cov50(half, nu_c, cal_c) - .5) >= abs(_cov50(half, nu_mle, cal_mle) - .5):
+            return nu_mle, cal_mle, dict(base, reason=f"G-split: {tag} half does "
+                                         "not move toward 50%")
+
+    held_in, held_n = 0.0, 0
+    for n in names:
+        others = big[big['name'] != n]
+        mine = big[big['name'] == n]
+        if not len(mine) or not len(others):
+            continue
+        nur, sr = fit_nu_scale(others['u'].values)
+        cand_n = _ridge_candidate(others, w90, _loglik(others['u'].values, nur, sr))
+        nu_h, cal_h = (cand_n[0], cand_n[1]) if cand_n else (nu_mle, cal_mle)
+        held_in += _cov50(mine, nu_h, cal_h) * len(mine)
+        held_n += len(mine)
+    lono50 = held_in / max(held_n, 1)
+    if abs(lono50 - .5) >= abs(c50_mle - .5):
+        return nu_mle, cal_mle, dict(base, reason=f"G-lono: held-out cov50 "
+                                     f"{lono50:.3f} no better than MLE shape")
+
+    c_new, c_mle, spots = [], [], []
+    for n in names:
+        r = panel[n]
+        if 'origin_idx' not in r.columns or not len(r):
+            continue
+        c_new.append(fast_rescore(r, nu_c, cal_c) / r['spot'].values)
+        c_mle.append(fast_rescore(r, nu_mle, cal_mle) / r['spot'].values)
+    cn, cm = np.concatenate(c_new), np.concatenate(c_mle)
+    cis = {b: verdict_ci(cn, cm, b) for b in (2, 3, 4)}
+    if all(ci[2] == "FAIL" for ci in cis.values()):
+        return nu_mle, cal_mle, dict(base, reason="G-crps: reshaped cone robustly "
+                                     "worse on proper score across blocks {2,3,4}")
+
+    return nu_c, cal_c, dict(
+        base, applied=True, to=[nu_c, round(cal_c, 3)],
+        cov50=dict(mle=round(c50_mle, 4), reshaped=round(c50_c, 4),
+                   lono_heldout=round(lono50, 4)),
+        delta_ll=round(ll_max - _loglik(u, nu_c, cal_c), 2),
+        crps_parity_ci={b: [round(float(ci[0]), 4), round(float(ci[1]), 4)]
+                        for b, ci in cis.items()},
+        note="90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped "
+             "to catch half; adopted under R-SHAPE-01's five guards")
+
+
 def rescore(raw_csv_path, profile, nu, cal):
     """Returns (skill_norm, skill_raw, r). SCALE-NORMALIZED skill is primary.
 
@@ -314,6 +479,9 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True,
     pooled_u = np.concatenate([panel[n]['u'].values for n in names])
     nu_pool, s_pool = fit_nu_scale(pooled_u)
     cal_pool = shrink_cal(s_pool)
+    # [R-SHAPE-01] guarded mid-band reshape: production shape is the ridge point
+    # whose 50% band catches half, IF every guard passes; MLE shape otherwise.
+    nu_pool, cal_pool, reshape_note = reshape_mid_band(panel, names, nu_pool, cal_pool)
 
     # 3. LONO per-name verdicts + pooled market verdict — all via fast_rescore,
     #    which is bit-for-bit identical to re-running the engine (verified) but
@@ -379,6 +547,7 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True,
         market_verdict=market_verdict,
         top_name_weight_share=top_share, top_name=top_name,
         signal_active=profile.signal_active,
+        mid_band_reshape=reshape_note,
         per_name=per_name,
     )
 
@@ -406,6 +575,12 @@ def _append_log(result):
              f"{result['windows']} pooled windows.\n",
              f"Production fit: nu={result['nu']}, width_cal={result['width_cal']} "
              f"(mle_scale={result['mle_scale']}).\n",
+             (f"Mid-band reshape [R-SHAPE-01]: applied from "
+              f"{result['mid_band_reshape']['mle_shape']} — "
+              f"{result['mid_band_reshape']['note']}\n"
+              if result.get('mid_band_reshape', {}).get('applied') else
+              f"Mid-band reshape [R-SHAPE-01]: not applied "
+              f"({result.get('mid_band_reshape', {}).get('reason', 'n/a')}).\n"),
              f"Market panel verdict: skill={result['market_skill']:+.4f} "
              f"CI90={result['market_ci90']} **{result['market_verdict']}**\n",
              "\n| Name | nu | width_cal | skill | verdict |\n|---|---|---|---|---|\n"]

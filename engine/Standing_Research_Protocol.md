@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-08-24a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 23 August 2026 (rev. 7) — THREE-LENS INDEPENDENCE · COMMITTED DRIFT · per-name discipline · negative control (investor-critique session)
+Updated 24 August 2026 (rev. 8) — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · bounded early grading [R-GRADE-01] (investor sessions)
+(rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
 (rev. 4, 29 July 2026 — computed technical read · regenerated charts · as-of stamps)
@@ -912,8 +913,10 @@ prescribed:
 - **Width floors are measured facts:** the middle half of real 3-month moves spans ~13%
   (AE), ~19% (SA), ~26% (EG) of price. An honest 50% band cannot average narrower at these
   horizons, whatever the technique — the tested alternatives narrowed nothing at honest
-  coverage. Horizons stay 1M/3M by instruction; a shorter-horizon product was offered and
-  declined.
+  coverage. The sanctioned levers on band width are the per-name width overlay, the
+  guarded mid-band shape selection ([R-SHAPE-01], which calibrates the 25–75 band at a
+  FIXED 90% edge), and the horizon. Horizons stay 1M/3M by instruction; a shorter-horizon
+  product was offered and declined.
 - **Mechanics:** the adoption changes future strikes only (next roll-forward onward);
   nothing retroactive, nothing published until the standing publish flow runs. Panel
   refits under signal-ON route through the materiality gate; an engine-change PR carries
@@ -1008,3 +1011,63 @@ The cost is real and is not hidden: a window graded a session short is marginall
 than the one committed to, which very slightly favours the cone. That is why this is opt-in
 per name and bounded at a week, rather than a new default. The alternative on the table —
 grading against a close that does not exist — is not available at any bound.
+
+### [R-SHAPE-01] Guarded mid-band shape selection (24-Aug-2026, per instruction — "Reshape UAE and Egypt to make it less conservative")
+
+**What was found.** The investor read the live record as "slightly cautious in Egypt and
+extremely cautious in the UAE." Measured under the actual production cones, half of that
+held: the 90% edges were on target everywhere, but the 25–75 band was catching materially
+more than half in exactly two markets — a mid-band-only distortion the pooled MLE cannot
+see, because ν is weakly identified. The standing protocol has said since the (ν,
+width_cal) fit was adopted that several tail-shapes sit inside the 95% likelihood region
+and that the honest object is the cone the PAIR jointly produces. The MLE breaks that tie
+blindly, and the tie is not innocuous: shapes on the same **iso-90% ridge** — width_cal ×
+T95(ν) held exactly constant, which is also R-CAL-01's materiality metric, so every ridge
+point publishes the identical 90% edge — differ visibly in how wide the middle band is.
+On adoption day, AE's MLE shape caught 53.8% in its 50% band while a ridge-mate about two
+log-likelihood units away caught 50.9%, with a 25–75 band roughly a tenth narrower.
+Choosing the ridge point whose 50% band catches half is **calibration, not narrowing.**
+
+**Why this is not the retired CRPS-selection mistake.** That precedent chased an
+in-sample score across the whole parameter space and lost under LONO. This rule confines
+the choice to likelihood-equivalent shapes on one ridge and releases it only through five
+pre-registered guards, three of them out-of-sample in character:
+
+1. **G-flat** — the candidate sits inside the 95% joint likelihood region (ΔLL ≤ 3.0
+   against the unconstrained MLE) with width_cal inside the shrink legality clip: only
+   shapes the data cannot tell apart are eligible at all.
+2. **G-improve** — it must close at least one full point of |cov50 − 50%|. SA's
+   adoption-day decline: 0.4 points from target, nothing to fix, noise-chasing refused.
+3. **G-split** — BOTH calendar halves must move strictly toward 50%. EG's adoption-day
+   decline: its mid-band over-coverage lives entirely in the late half while the early
+   half already under-covers, so no single shape helps both — a regime artifact, not a
+   shape property.
+4. **G-lono** — pooled leave-one-name-out coverage must improve, every name scored under
+   a shape selected without it.
+5. **G-crps** — the reshaped cone's pooled crps/spot must not be robustly worse than the
+   MLE shape's across bootstrap blocks {2,3,4} (the house robustness bar, mirrored).
+
+**The guards are the release** — the R-CAL-01 lesson applied at birth rather than
+retrofitted: a market reshapes automatically at any refit where all five pass, and
+reverts to the MLE shape the refit they stop passing. There is no per-market flag to
+remember and nothing for a later session to forget; live state is
+`fitted_configs.json`'s `mid_band_reshape` field, never a status sentence here
+([R-DOC-02]).
+
+**The promotion rule binds instructions too.** The adoption instruction named Egypt.
+Egypt's candidate failed G-split and the decline stood. A reshape that fails its guards
+does not ship on anyone's say-so — the same clause that stops the pipeline from
+promoting an unearned signal stops a human from promoting an unearned shape, and the
+client is told plainly why, with the numbers.
+
+**Mechanics.** `panel_refresh.reshape_mid_band()`, called inside `refresh_market()`
+immediately after `fit_nu_scale` + `shrink_cal`; every future refit — unattended or via
+`scripts/adopt_calibration.py` — reproduces the selection under the same guards, so an
+adopted reshape survives refits without any hand-carried number.
+`auto_refresh.write_production()` records the full reshape note (applied or declined,
+with the failing guard) in `fitted_configs.json`. The 90% edge never moves by
+construction, so a reshape can never fire R-CAL-01's cone-move reason by itself; the
+verdict machinery (per-name LONO fits, `robust_verdict`) is untouched. R-NEG-01's width
+floors stand — the objective pins the 50% band to catching half, which IS the floor.
+Adoption-day numbers of record live in the dated evidence file under
+`engine/PENDING_REVIEW/` and in `fitted_configs.json` — never in this document.
