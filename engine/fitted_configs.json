@@ -61,11 +61,11 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0089,
+    "market_skill": 0.0087,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.005,
-      0.021
+      0.02
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.067,
@@ -348,14 +348,14 @@
         ]
       },
       "OIH": {
-        "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": -0.0183,
-        "skill_raw_basis": -0.0137,
+        "nu": 6.0,
+        "width_cal": 0.937,
+        "skill": -0.0195,
+        "skill_raw_basis": -0.0139,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.048,
-          0.018
+          -0.049,
+          0.014
         ]
       },
       "ORAS": {
@@ -427,12 +427,12 @@
       "RAYA": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": -0.025,
-        "skill_raw_basis": -0.0292,
+        "skill": -0.0304,
+        "skill_raw_basis": -0.0193,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.07,
-          0.012
+          -0.091,
+          0.003
         ]
       },
       "RMDA": {
