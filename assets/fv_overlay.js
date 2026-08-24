@@ -6124,98 +6124,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DEWA",
-   "name": "DEWA (Dubai Electricity and Water Authority)",
-   "code": "DFM:DEWA",
-   "ccy": "AED",
-   "spot": 2.67,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.18,
-   "fv_base": 3.32,
-   "fv_full": 4.92,
-   "gap_base_pct": 24.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.064442,
-    "mu_h": 0.003738,
-    "G": {
-     "bear": -3.15,
-     "base": 3.38,
-     "full": 9.48
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0025,
-     "base": 0.002,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0036,
-     "base": 0.0026,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.9122,
-     "base": 12.6622,
-     "full": 1531.661
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00199
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.114791,
-    "mu_h": 0.011173,
-    "G": {
-     "bear": -1.77,
-     "base": 1.9,
-     "full": 5.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0319,
-     "base": 0.0359,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.056,
-     "base": 0.0607,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.5556,
-     "base": 1.3906,
-     "full": 10.5296
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00214
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "EMAAR",
    "name": "Emaar Properties PJSC",
    "code": "DFM:EMAAR",
@@ -6304,6 +6212,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base above p95",
     "selftest_max_dev": 0.00109
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "DEWA",
+   "name": "DEWA (Dubai Electricity and Water Authority)",
+   "code": "DFM:DEWA",
+   "ccy": "AED",
+   "spot": 2.7,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.18,
+   "fv_base": 3.32,
+   "fv_full": 4.92,
+   "gap_base_pct": 23.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.057068,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -3.75,
+     "base": 3.62,
+     "full": 10.51
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0009,
+     "base": 0.0012,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0014,
+     "base": 0.0018,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9232,
+     "base": 10.9479,
+     "full": 1339.3433
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00167
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.103585,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -2.07,
+     "base": 2.0,
+     "full": 5.79
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0218,
+     "base": 0.0249,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0386,
+     "base": 0.0429,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.575,
+     "base": 1.2861,
+     "full": 10.0257
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00134
    },
    "market": "AE"
   },
