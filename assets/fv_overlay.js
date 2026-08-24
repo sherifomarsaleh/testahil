@@ -2444,6 +2444,98 @@ const FV_OVERLAY = {
    "market": "US"
   },
   {
+   "ticker": "ADIBUAE",
+   "name": "Abu Dhabi Islamic Bank",
+   "code": "ADX:ADIB",
+   "ccy": "AED",
+   "spot": 23.34,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.73,
+   "fv_base": 21.23,
+   "fv_full": 24.63,
+   "gap_base_pct": -9.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.073145,
+    "mu_h": -0.002145,
+    "G": {
+     "bear": -3.76,
+     "base": -1.3,
+     "full": 0.74
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.0936,
+     "full": 0.2063
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.1501,
+     "full": 0.3512
+    },
+    "required_cagr": {
+     "bear": -0.9631,
+     "base": -0.6792,
+     "full": 0.9071
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00071
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.134187,
+    "mu_h": -0.006447,
+    "G": {
+     "bear": -2.05,
+     "base": -0.71,
+     "full": 0.4
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0246,
+     "base": 0.2394,
+     "full": 0.3133
+    },
+    "p_touch": {
+     "bear": 0.043,
+     "base": 0.4216,
+     "full": 0.5979
+    },
+    "required_cagr": {
+     "bear": -0.667,
+     "base": -0.3155,
+     "full": 0.2401
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00112
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ADNOCDIST",
    "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
    "code": "ADX:ADNOCDIST",
@@ -7970,98 +8062,6 @@ const FV_OVERLAY = {
    "fv_base": 26,
    "fv_full": 33,
    "market": "EG"
-  },
-  {
-   "ticker": "ADIBUAE",
-   "name": "Abu Dhabi Islamic Bank",
-   "code": "ADX:ADIB",
-   "ccy": "AED",
-   "spot": 21.24,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.73,
-   "fv_base": 21.23,
-   "fv_full": 24.63,
-   "gap_base_pct": -0.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086261,
-    "mu_h": 0.002821,
-    "G": {
-     "bear": -2.09,
-     "base": -0.01,
-     "full": 1.72
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0194,
-     "base": 0.4834,
-     "full": 0.0446
-    },
-    "p_touch": {
-     "bear": 0.0296,
-     "base": 0.866,
-     "full": 0.0672
-    },
-    "required_cagr": {
-     "bear": -0.8855,
-     "base": -0.0056,
-     "full": 4.9118
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00158
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.15362,
-    "mu_h": 0.009838,
-    "G": {
-     "bear": -1.18,
-     "base": -0.0,
-     "full": 0.96
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0979,
-     "base": 0.4708,
-     "full": 0.169
-    },
-    "p_touch": {
-     "bear": 0.1753,
-     "base": 0.9204,
-     "full": 0.294
-    },
-    "required_cagr": {
-     "bear": -0.5145,
-     "base": -0.0019,
-     "full": 0.8082
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
-   },
-   "market": "AE"
   }
  ]
 };
