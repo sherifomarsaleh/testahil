@@ -6584,90 +6584,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "TMGH",
-   "name": "Talaat Moustafa Group Holding",
-   "code": "EGX:TMGH",
-   "ccy": "EGP",
-   "spot": 100.5,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-17",
-   "fv_lag_days": 35,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 83.6,
-   "fv_base": 147.12,
-   "fv_full": 189.6,
-   "gap_base_pct": 46.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.092808,
-    "mu_h": 0.014815,
-    "G": {
-     "bear": -1.98,
-     "base": 4.11,
-     "full": 6.84
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.8902,
-     "base": 95.8429,
-     "full": 2031.6718
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00138
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.169508,
-    "mu_h": 0.045801,
-    "G": {
-     "bear": -1.09,
-     "base": 2.25,
-     "full": 3.74
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0702,
-     "base": 0.0255,
-     "full": 0.0032
-    },
-    "p_touch": {
-     "bear": 0.1383,
-     "base": 0.0411,
-     "full": 0.0058
-    },
-    "required_cagr": {
-     "bear": -0.5212,
-     "base": 3.5922,
-     "full": 11.6674
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00191
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RIBL",
    "name": "Riyad Bank",
    "code": "TADAWUL:1010",
@@ -6918,6 +6834,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00189
    },
    "market": "AE"
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding",
+   "code": "EGX:TMGH",
+   "ccy": "EGP",
+   "spot": 97.8,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-17",
+   "fv_lag_days": 67,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 83.6,
+   "fv_base": 147.12,
+   "fv_full": 189.6,
+   "gap_base_pct": 50.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.091073,
+    "mu_h": 0.021745,
+    "G": {
+     "bear": -1.72,
+     "base": 4.48,
+     "full": 7.27
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.8478,
+     "base": 133.2747,
+     "full": 2817.3423
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00105
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.162545,
+    "mu_h": 0.059734,
+    "G": {
+     "bear": -0.97,
+     "base": 2.51,
+     "full": 4.07
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.073,
+     "base": 0.0197,
+     "full": 0.0025
+    },
+    "p_touch": {
+     "bear": 0.153,
+     "base": 0.0301,
+     "full": 0.0041
+    },
+    "required_cagr": {
+     "bear": -0.4661,
+     "base": 4.1207,
+     "full": 13.1253
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00264
+   },
+   "market": "EG"
   },
   {
    "ticker": "EFIH",
