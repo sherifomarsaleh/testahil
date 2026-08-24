@@ -118,13 +118,13 @@
       },
       "BTFH": {
         "nu": 5.0,
-        "width_cal": 0.944,
-        "skill": 0.0045,
-        "skill_raw_basis": 0.0134,
+        "width_cal": 0.951,
+        "skill": 0.005,
+        "skill_raw_basis": 0.0133,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.019,
-          0.05
+          -0.018,
+          0.049
         ]
       },
       "CCAP": {
@@ -140,12 +140,12 @@
       },
       "CLHO": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": -0.0197,
-        "skill_raw_basis": -0.0266,
+        "width_cal": 0.958,
+        "skill": -0.0201,
+        "skill_raw_basis": -0.0272,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.058,
+          -0.06,
           -0.003
         ]
       },
@@ -371,9 +371,9 @@
       },
       "ORHD": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0131,
-        "skill_raw_basis": 0.0068,
+        "width_cal": 0.958,
+        "skill": 0.0132,
+        "skill_raw_basis": 0.0065,
         "verdict": "PARITY",
         "ci_block2": [
           -0.011,
@@ -459,24 +459,24 @@
       },
       "SWDY": {
         "nu": 5.0,
-        "width_cal": 0.944,
-        "skill": 0.0106,
-        "skill_raw_basis": 0.0222,
+        "width_cal": 0.951,
+        "skill": 0.0112,
+        "skill_raw_basis": 0.0218,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.034,
+          -0.032,
           0.071
         ]
       },
       "TMGH": {
         "nu": 5.0,
         "width_cal": 0.944,
-        "skill": 0.0368,
-        "skill_raw_basis": 0.0529,
+        "skill": 0.0355,
+        "skill_raw_basis": 0.035,
         "verdict": "PASS",
         "ci_block2": [
-          0.014,
-          0.09
+          0.009,
+          0.061
         ]
       }
     },
