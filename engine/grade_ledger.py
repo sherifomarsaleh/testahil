@@ -56,6 +56,17 @@ LEDGER_HTML = os.path.join(ROOT, 'ledger.html')
 RAW = os.path.join(ROOT, 'engine', 'raw_ohlc')
 
 PCTS = [('p5', 0.05), ('p25', 0.25), ('p50', 0.50), ('p75', 0.75), ('p95', 0.95)]
+# Below this, a difference between the frozen anchor_price and the library's close on
+# the same session is vendor noise, not a corporate action. See ca_factor().
+#
+# Set at 2%, not at rounding width, and the negative control is why: at 0.5% the
+# detector fired on Platinum, whose row froze 1608.37 against a library close 0.65%
+# away — a vendor revision of one print, not a share-count change — and the replay
+# refused to reproduce a published grade. The smallest corporate action anyone
+# actually issues is a 5% stock dividend, so 2% separates the two classes with room
+# on both sides. A false NEGATIVE here only reverts to the old behaviour; a false
+# POSITIVE silently rewrites a grade, so the threshold leans to the safe side.
+CA_TOL = 0.02
 REL = [('+5', 0.05), ('+10', 0.10), ('+15', 0.15), ('+20', 0.20), ('-5', -0.05), ('-10', -0.10)]
 
 
@@ -110,6 +121,44 @@ def grade_session(lib: dict, stored_grade_date: str):
     return (later[0], True) if later else (None, False)
 
 
+def ca_factor(row: dict, lib: dict) -> float:
+    """The cumulative corporate-action factor between the strike and today's library.
+
+    A ledger row freezes `anchor_price` on the basis that traded the day it was
+    struck. When a bonus issue or split goes ex inside the window, the vendor
+    restates the WHOLE series onto the new share basis — so the library's close for
+    that same anchor_date is no longer the number the cone was built on, and the
+    frozen percentiles are denominated in the old basis while the realized close is
+    denominated in the new one. Grading one against the other is a unit error.
+
+    Their RATIO is the adjustment, and it needs no new field anyone has to remember
+    to set: anchor_price / library-close-on-anchor_date IS the cumulative factor,
+    self-checking and correct for any future split or bonus.
+
+    Found 24-Aug-2026 on Juhayna, which went ex a second 25% bonus (1,176.8m ->
+    1,470.9m shares) inside its 1-month window. Its row froze anchor 28.90; the
+    restated library holds 23.12 for that same 22-Jul-2026 session. 28.90/23.12 =
+    1.25 exactly. Graded raw, the 23-Aug close of 26.88 scores median_err -8.4%
+    against a cone centred at 29.33; restated to the anchor's basis it is 33.60 and
+    scores +14.6%. THE ERROR FLIPS SIGN — the grade would have recorded the engine
+    missing low when it actually missed high.
+
+    Inert where nothing happened: with no corporate action the ratio is 1.0 to
+    within vendor rounding, so every other row grades exactly as before. The
+    replay negative control over the already-graded rows is what proves that.
+    """
+    # Equities only. A spot metal has no share count, so nothing can rescale its
+    # series and any gap is a vendor revision by construction — which is exactly
+    # what the Platinum row turned out to be.
+    if row.get('asset_class') != 'equity':
+        return 1.0
+    base = lib.get(row['anchor_date'])
+    if not base or not base['c']:
+        return 1.0
+    ratio = row['anchor_price'] / base['c']
+    return ratio if abs(ratio - 1.0) > CA_TOL else 1.0
+
+
 def compute(row: dict, lib: dict) -> dict | None:
     """Outcome fields for one open row, or None if its library cannot cover it."""
     gd, rolled = grade_session(lib, row['grade_date'])
@@ -119,9 +168,14 @@ def compute(row: dict, lib: dict) -> dict | None:
     if not window:
         return None
 
-    rc = lib[gd]['c']
-    hi = max(lib[d]['h'] for d in window)
-    lo = min(lib[d]['l'] for d in window)
+    # Restate the realized window onto the basis the cone was struck on, so the
+    # frozen percentiles are never compared across a share-count change.
+    ca = ca_factor(row, lib)
+    rc = lib[gd]['c'] * ca
+    hi = max(lib[d]['h'] for d in window) * ca
+    lo = min(lib[d]['l'] for d in window) * ca
+    if ca != 1.0:
+        rc, hi, lo = round(rc, 2), round(hi, 2), round(lo, 2)
     p = {k: row[k] for k, _ in PCTS}
 
     out = {
@@ -137,6 +191,7 @@ def compute(row: dict, lib: dict) -> dict | None:
         '_sessions': len(window),
         '_graded_on': gd,
         '_rolled': rolled,
+        '_ca': ca,
     }
     return out
 
@@ -399,4 +454,25 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
                         f"grade_note:\"Stored grade date {row['grade_date']} was not a traded "
                         f"session in the library; graded on the next actual session "
                         f"{got['_graded_on']}.\"")
+
+    # A corporate action inside the window is likewise ANNOTATED, never silent: the
+    # frozen percentiles stay exactly as published and the realized window is the
+    # thing restated onto their basis. Recording the factor is what lets a reader
+    # recompute the grade from the library without knowing the action happened.
+    if got.get('_ca', 1.0) != 1.0:
+        ca = got['_ca']
+        t2 = t2.replace(f"anchor_price:{_field(t2, 'anchor_price')},",
+                        f"anchor_price:{_field(t2, 'anchor_price')}, "
+                        f"ca_factor:{ca:.6f},", 1)
+        note = (f"A corporate action went ex inside this window: the library has since "
+                f"been restated onto a new share basis, so its close for the anchor "
+                f"session {row['anchor_date']} is {row['anchor_price'] / ca:.2f} against "
+                f"the {row['anchor_price']} this cone was struck on. The realized close, "
+                f"high and low are restated by x{ca:.6f} onto the anchor's basis; the "
+                f"published percentiles are untouched.")
+        if 'grade_note:' in t2:
+            t2 = re.sub(r'grade_note:"([^"]*)"', lambda m: f'grade_note:"{m.group(1)} {note}"', t2, count=1)
+        else:
+            t2 = t2.replace(f"grade_date:\"{row['grade_date']}\"",
+                            f"grade_date:\"{row['grade_date']}\", grade_note:\"{note}\"", 1)
     return src[:a] + t2 + src[b:]
