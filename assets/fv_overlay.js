@@ -3272,6 +3272,98 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
+   "ticker": "ORAS",
+   "name": "Orascom Construction",
+   "code": "EGX:ORAS",
+   "ccy": "EGP",
+   "spot": 782.25,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 54,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 740,
+   "fv_base": 928,
+   "fv_full": 1272,
+   "gap_base_pct": 18.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.116109,
+    "mu_h": 0.028345,
+    "G": {
+     "bear": -0.48,
+     "base": 1.47,
+     "full": 4.19
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1969,
+     "base": 0.087,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.3943,
+     "base": 0.1281,
+     "full": 0.0025
+    },
+    "required_cagr": {
+     "bear": -0.4864,
+     "base": 6.7701,
+     "full": 340.7421
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00138
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.19874,
+    "mu_h": 0.072001,
+    "G": {
+     "bear": -0.28,
+     "base": 0.86,
+     "full": 2.45
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2226,
+     "base": 0.2745,
+     "full": 0.0216
+    },
+    "p_touch": {
+     "bear": 0.5471,
+     "base": 0.4195,
+     "full": 0.0333
+    },
+    "required_cagr": {
+     "bear": -0.1992,
+     "base": 0.9807,
+     "full": 5.9914
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00315
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "SNB",
    "name": "The Saudi National Bank",
    "code": "TADAWUL:1180",
@@ -5384,98 +5476,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00226
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "ORAS",
-   "name": "Orascom Construction",
-   "code": "EGX:ORAS",
-   "ccy": "EGP",
-   "spot": 717.9,
-   "anchor_date": "2026-07-29",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 29,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 740,
-   "fv_base": 928,
-   "fv_full": 1272,
-   "gap_base_pct": 29.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.089247,
-    "mu_h": 0.014795,
-    "G": {
-     "bear": 0.34,
-     "base": 2.88,
-     "full": 6.41
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4156,
-     "base": 0.0086,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.6539,
-     "base": 0.0132,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": 0.4388,
-     "base": 20.7675,
-     "full": 956.3658
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00132
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.18181,
-    "mu_h": 0.045874,
-    "G": {
-     "bear": 0.17,
-     "base": 1.41,
-     "full": 3.15
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.5418,
-     "base": 0.0973,
-     "full": 0.0067
-    },
-    "p_touch": {
-     "bear": 0.8487,
-     "base": 0.1542,
-     "full": 0.0111
-    },
-    "required_cagr": {
-     "bear": 0.1289,
-     "base": 1.7921,
-     "full": 8.8558
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00241
    },
    "market": "EG"
   },
