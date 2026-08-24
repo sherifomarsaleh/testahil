@@ -2168,6 +2168,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "EAND",
+   "name": "e& (Emirates Telecommunications Group)",
+   "code": "ADX:EAND",
+   "ccy": "AED",
+   "spot": 21.56,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.61,
+   "fv_base": 22.72,
+   "fv_full": 28.75,
+   "gap_base_pct": 5.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.059643,
+    "mu_h": 0.002779,
+    "G": {
+     "bear": -3.39,
+     "base": 0.88,
+     "full": 4.83
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0016,
+     "base": 0.1871,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.3035,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.9118,
+     "base": 0.8755,
+     "full": 30.6132
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0006
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.104113,
+    "mu_h": 0.009693,
+    "G": {
+     "bear": -1.94,
+     "base": 0.5,
+     "full": 2.76
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.023,
+     "base": 0.3281,
+     "full": 0.0068
+    },
+    "p_touch": {
+     "bear": 0.0421,
+     "base": 0.5721,
+     "full": 0.0114
+    },
+    "required_cagr": {
+     "bear": -0.5549,
+     "base": 0.2332,
+     "full": 2.162
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00083
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -4282,98 +4374,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00093
    },
    "market": "SA"
-  },
-  {
-   "ticker": "EAND",
-   "name": "e& (Emirates Telecommunications Group)",
-   "code": "ADX:EAND",
-   "ccy": "AED",
-   "spot": 20.08,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.61,
-   "fv_base": 22.72,
-   "fv_full": 28.75,
-   "gap_base_pct": 13.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.06197,
-    "mu_h": 0.002984,
-    "G": {
-     "bear": -2.12,
-     "base": 1.99,
-     "full": 5.79
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.018,
-     "base": 0.0274,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0271,
-     "base": 0.0397,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.793,
-     "base": 3.4029,
-     "full": 73.2147
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0011
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.109664,
-    "mu_h": 0.009418,
-    "G": {
-     "bear": -1.2,
-     "base": 1.13,
-     "full": 3.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.091,
-     "base": 0.1359,
-     "full": 0.0026
-    },
-    "p_touch": {
-     "bear": 0.1641,
-     "base": 0.2329,
-     "full": 0.0045
-    },
-    "required_cagr": {
-     "bear": -0.4085,
-     "base": 0.639,
-     "full": 3.2024
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00072
-   },
-   "market": "AE"
   },
   {
    "ticker": "SALIK",
