@@ -144,6 +144,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ETEL",
+   "name": "Telecom Egypt",
+   "code": "EGX:ETEL",
+   "ccy": "EGP",
+   "spot": 118.49,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 82,
+   "fv_base": 118,
+   "fv_full": 160,
+   "gap_base_pct": -0.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.117826,
+    "mu_h": 0.023356,
+    "G": {
+     "bear": -3.12,
+     "base": -0.04,
+     "full": 2.55
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0039,
+     "base": 0.3877,
+     "full": 0.0145
+    },
+    "p_touch": {
+     "bear": 0.0064,
+     "base": 0.8088,
+     "full": 0.0207
+    },
+    "required_cagr": {
+     "bear": -0.9879,
+     "base": -0.0485,
+     "full": 35.7502
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00134
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.193655,
+    "mu_h": 0.06185,
+    "G": {
+     "bear": -1.9,
+     "base": -0.02,
+     "full": 1.55
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0176,
+     "base": 0.3392,
+     "full": 0.0864
+    },
+    "p_touch": {
+     "bear": 0.0332,
+     "base": 0.8678,
+     "full": 0.134
+    },
+    "required_cagr": {
+     "bear": -0.7706,
+     "base": -0.0164,
+     "full": 2.3247
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00305
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "HELI",
    "name": "Heliopolis Housing",
    "code": "EGX:HELI",
@@ -2534,98 +2626,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00249
    },
    "market": "US"
-  },
-  {
-   "ticker": "ETEL",
-   "name": "Telecom Egypt",
-   "code": "EGX:ETEL",
-   "ccy": "EGP",
-   "spot": 103.28,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 82,
-   "fv_base": 118,
-   "fv_full": 160,
-   "gap_base_pct": 14.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.108384,
-    "mu_h": 0.014801,
-    "G": {
-     "bear": -2.13,
-     "base": 1.23,
-     "full": 4.04
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0164,
-     "base": 0.1087,
-     "full": 0.002
-    },
-    "p_touch": {
-     "bear": 0.0257,
-     "base": 0.1688,
-     "full": 0.0032
-    },
-    "required_cagr": {
-     "bear": -0.9373,
-     "base": 3.9475,
-     "full": 190.0931
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00156
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.191346,
-    "mu_h": 0.045983,
-    "G": {
-     "bear": -1.21,
-     "base": 0.7,
-     "full": 2.29
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0604,
-     "base": 0.2908,
-     "full": 0.0229
-    },
-    "p_touch": {
-     "bear": 0.1163,
-     "base": 0.4666,
-     "full": 0.037
-    },
-    "required_cagr": {
-     "bear": -0.6026,
-     "base": 0.704,
-     "full": 4.7599
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00223
-   },
-   "market": "EG"
   },
   {
    "ticker": "ADNOCDIST",
