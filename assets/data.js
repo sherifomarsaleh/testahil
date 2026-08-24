@@ -1788,26 +1788,28 @@ const TICKERS = {
     name: "EFG Holding",
     nameAr: "المجموعة المالية هيرميس القابضة",
     code: "EGX:HRHO",
-    spot: 26.95,
-    spotDate: "close 22 Jul 2026",
+    spot: 26.32,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 23, base: 27.7, full: 33.6 },
     dist: {
-      t20: { label:"1 month",   p5:24.01, p25:26.06, p50:27.35, p75:28.72, p95:31.16, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:22.22, p25:25.83, p50:28.21, p75:30.76, p95:35.74, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:23.67, p25:25.58, p50:26.71, p75:27.90, p95:30.14, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:22.29, p25:25.52, p50:27.54, p75:29.73, p95:34.01, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ [32.2, 11, 33], [29.51, 36, 58], [28.17, 58, 74], [25.49, 60, 78], [24.15, 35, 62], [21.46, 9, 33] ],
-    levels: { res:[27.25, 28.94, 30.04], sup:[26.01, 25.29, 24.61] },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low */
+      [32.20, 2, 15], [29.51, 12, 42], [28.17, 32, 64], [25.49, 46, 61], [24.15, 14, 29], [21.46, 1, 6]
+    ],
+    levels: { res:[27.58, 30.04, 31.63], sup:[26, 25.29, 24.61] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a flat 200-day",
-      summary: "The price closed 26.95 below a falling 50-day (27.19) and a flat 200-day (27.18), but above a falling 20-day (26.76). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.49 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.11 / +0.05). Over the last year it has ranged 23.05\u201331.50; the last close sits 14% below that high and 17% above that low.",
-      bull: "A daily close back above 27.25 would clear the nearest resistance and open the 30.04 zone.",
-      bear: "A close below 26.01 would break the nearest support and open the 24.61 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
+      summary: "The price closed 26.32 below a flat 20-day (26.78), a flat 50-day (26.82) and a falling 200-day (27.06). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.49 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.15 / \u22120.05 / \u22120.09). The 50-day crossed beneath the 200-day 21 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 23.90\u201331.50; the last close sits 16% below that high and 10% above that low.",
+      bull: "A daily close back above 27.58 would clear the nearest resistance and open the 31.63 zone.",
+      bear: "A close below 26.00 would break the nearest support and open the 24.61 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-24" },
+      tech: { data:"2026-08-23", computed:"2026-08-24" }
     },
     files: {
       study: "files/HRHO_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -4544,9 +4546,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:24.01, p25:26.06, p50:27.35, p75:28.72, p95:31.16,
     touch:{ "+5":49, "+10":21, "+15":9, "+20":3, "-5":34, "-10":11 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:26.32, realized_high:28.1, realized_low:25.95,
+    in_90:true, in_50:true, realized_quantile:0.300, median_err:-0.0377,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"HRHO", asset_class:"equity",
@@ -5925,6 +5927,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 1.1118 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 1.0574, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +2.898 (outside the 0.25 dead zone); tilt +2.17% at 1M and +4.12% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:5.84, p25:7.4, p50:8.45, p75:9.65, p95:12.2,
     touch:{ "+5":85, "+10":72, "+15":59, "+20":47, "-5":62, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: HRHO, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"HRHO", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:26.32, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2944,
+    signal_z:-0.1447, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9402 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8941, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call DOWN but WEAK — this name’s own mom_combo z is -0.145, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:23.67, p25:25.58, p50:26.71, p75:27.9, p95:30.14,
+    touch:{ "+5":46, "+10":18, "+15":7, "+20":3, "-5":30, "-10":9 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"HRHO", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:26.32, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.307,
+    signal_z:-0.1447, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9402 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8941, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call DOWN but WEAK — this name’s own mom_combo z is -0.145, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:22.29, p25:25.52, p50:27.54, p75:29.73, p95:34.01,
+    touch:{ "+5":73, "+10":50, "+15":32, "+20":19, "-5":47, "-10":23 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
