@@ -26,6 +26,7 @@ Run:  python3 rollforward_one.py AE TWOPOINTZERO 2POINTZERO
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import os
 import re
@@ -49,6 +50,68 @@ from apply_technicals import (LEDGER_ALIAS,               # noqa: E402
 # Market codes whose covered names are not equities. asset_class was hardcoded
 # 'equity' below, so a metals roll-forward mislabelled its own ledger rows.
 METAL_MARKETS = {'XAU', 'XPT'}
+
+
+def name_calibration(market: str, series: str, profile, wmult: float = 1.0):
+    """(cal flag, prose) for the name being struck — DERIVED, never typed.
+
+    Publish_Protocol.md fixes the semantics: the row's `cal` field is set ONLY for
+    matches / untested / fail, and ABSENT MEANS PASS. Until now only first-publish
+    rows carried it, so once a covered name's own verdict turned FAIL every later
+    roll-forward emitted a row asserting PASS by omission. That is the silence
+    R-CAL-01 exists to prevent, arriving through the one surface a reader actually
+    sees. Real case: CLHO turned FAIL on 24-Aug-2026 when its panel was rebuilt
+    under the committed tilt, three cycles after it was published as PARITY.
+
+    PARITY and BOUNDARY(PARITY-flagged) deliberately return no flag — level with
+    the benchmark is the unremarkable case, 30 of EG's 37 names sit there, and
+    labelling them all would be noise rather than disclosure. Only a verdict that
+    contradicts the absent-means-PASS default is announced.
+
+    The name being rolled forward always has a FRESH panel: its raw CSV changed,
+    so panel_refresh rebuilt it and its market was refit in the same pass. Other
+    names' registry records may lag; none is read here.
+    """
+    try:
+        rec = json.load(open(os.path.join(HERE, 'fitted_configs.json'),
+                             encoding='utf-8'))[market]['per_name'][series]
+    except (OSError, ValueError, KeyError):
+        return None, ''
+    verdict = str(rec.get('verdict', ''))
+    head = verdict.split('(')[0].strip().upper()
+    if head == 'PROVISIONAL':
+        return 'untested', (f' NAME-LEVEL CALIBRATION: {verdict} — this name has too few '
+                            f'resolved windows for the robust bar to be evaluated at all, '
+                            f'so its cone is published untested at the name level.')
+    if head != 'FAIL':
+        return None, ''
+
+    from panel_refresh import panel_path, apply_breaks                   # noqa: E402
+    sc = apply_breaks(pd.read_csv(panel_path(market, series, '3m')), profile)
+    cov90, cov50 = 100 * sc['in90'].mean(), 100 * sc['in50'].mean()
+    pit = float(sc['pit'].mean())
+    wr = float((sc['w90'] / sc['w90_b']).mean())
+    ci = rec.get('ci_block2') or [float('nan'), float('nan')]
+    if abs(pit - 0.5) > 0.05:
+        shape = (f'The cone is MIS-CENTRED: PIT mean {pit:.3f} where 0.5 is centred, '
+                 f'with {cov90:.0f}% coverage against a 90% target and {cov50:.0f}% '
+                 f'against 50%')
+    elif cov90 >= 90:
+        shape = (f'The cone is TOO WIDE, not mis-centred: {cov90:.0f}% coverage against '
+                 f'a 90% target and {cov50:.0f}% against 50%, PIT mean {pit:.3f} where '
+                 f'0.5 is centred, width {wr:.2f}x the carry-anchored benchmark')
+    else:
+        shape = (f'The cone is TOO NARROW: only {cov90:.0f}% coverage against a 90% '
+                 f'target and {cov50:.0f}% against 50%, PIT mean {pit:.3f}')
+    over = ''
+    if abs(wmult - 1.0) > 1e-9:
+        over = (f' The verdict is measured on the POOLED width; the cone published here '
+                f'is narrower than the one scored, at the overlay\u2019s effective width.')
+    return 'fail', (f' NAME-LEVEL CALIBRATION: FAIL, robustly — skill '
+                    f'{rec.get("skill"):+.4f} over {len(sc)} scored windows, negative '
+                    f'under every bootstrap block size {{2,3,4}} (block-2 CI '
+                    f'[{ci[0]:+.3f},{ci[1]:+.3f}]). {shape}. Read the bands as an OUTER '
+                    f'bound.{over}')
 
 
 def ledger_instrument(key: str) -> str:
@@ -414,6 +477,7 @@ def run(market: str, series: str, key: str, today: str,
         f'{prof.width_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
         f'carry drift and the tail nu are untouched by it.'
     )
+    calflag, calnote = name_calibration(market, series, prof, wmult)
     note = (
         f'Cycle {cyc} roll-forward, {today} — struck on the {d.day:02d}-'
         f'{MONTHS[d.month - 1]}-{d.year} close, the latest session in this '
@@ -426,7 +490,7 @@ def run(market: str, series: str, key: str, today: str,
         f'→ simulate_paths_v3, 50,000 paths, seed 42, signal '
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
         f'{qnote} '
-        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{wnote} rf_live '
+        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{wnote}{calnote} rf_live '
         f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. {call} Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
         f'a calendar commitment, not a session count; the session counts '
@@ -442,6 +506,7 @@ def run(market: str, series: str, key: str, today: str,
             horizon_days=h['h'], cycle_no=cyc,
             reanchor_from=(prior[0] if prior else None),
             anchor_vol=round(h['anchor_vol_ann'], 4),
+            cal=calflag,
             signal_z=round(h['signal_z'], 4),
             signal_alpha=round(h['signal_alpha'], 6), note=note,
             p5=round(h['pct']['p5'], 2), p25=round(h['pct']['p25'], 2),

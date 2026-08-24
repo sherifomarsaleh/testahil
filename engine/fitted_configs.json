@@ -61,7 +61,7 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0094,
+    "market_skill": 0.0093,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.005,
@@ -141,12 +141,12 @@
       "CLHO": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": -0.0108,
-        "skill_raw_basis": -0.0181,
-        "verdict": "PARITY",
+        "skill": -0.0197,
+        "skill_raw_basis": -0.0266,
+        "verdict": "FAIL",
         "ci_block2": [
-          -0.04,
-          0.006
+          -0.058,
+          -0.003
         ]
       },
       "COMI": {
@@ -184,13 +184,13 @@
       },
       "EFIH": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0005,
-        "skill_raw_basis": -0.0049,
+        "width_cal": 0.958,
+        "skill": -0.0,
+        "skill_raw_basis": -0.0053,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.035,
-          0.041
+          -0.036,
+          0.04
         ]
       },
       "EGAL": {
