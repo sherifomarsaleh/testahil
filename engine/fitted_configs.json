@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-23",
+    "last_updated": "2026-08-24",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -130,12 +130,12 @@
       "CCAP": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0187,
-        "skill_raw_basis": 0.0171,
+        "skill": 0.0166,
+        "skill_raw_basis": 0.0146,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.014,
-          0.073
+          -0.016,
+          0.068
         ]
       },
       "CLHO": {
@@ -349,13 +349,13 @@
       },
       "OIH": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": -0.0166,
-        "skill_raw_basis": -0.0156,
+        "width_cal": 0.958,
+        "skill": -0.0168,
+        "skill_raw_basis": -0.0158,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.045,
-          0.026
+          -0.044,
+          0.025
         ]
       },
       "ORAS": {
@@ -470,22 +470,22 @@
       },
       "TMGH": {
         "nu": 5.0,
-        "width_cal": 0.944,
-        "skill": 0.0368,
+        "width_cal": 0.951,
+        "skill": 0.0375,
         "skill_raw_basis": 0.0529,
         "verdict": "PASS",
         "ci_block2": [
-          0.014,
+          0.015,
           0.09
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "SA": {
@@ -668,12 +668,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "US": {
@@ -736,12 +736,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "GB": {
@@ -827,12 +827,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.07,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "AE": {
@@ -1199,9 +1199,9 @@
       "nu": 10.0,
       "width_cal": 0.923,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     },
-    "auto_refreshed": "2026-08-23"
+    "auto_refreshed": "2026-08-24"
   },
   "IN": {
     "market": "IN",
@@ -1263,12 +1263,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.021,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "QA": {
@@ -1331,12 +1331,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "XAU": {
@@ -1384,12 +1384,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   },
   "XPT": {
@@ -1430,12 +1430,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-23",
+    "auto_refreshed": "2026-08-24",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-23"
+      "replaced_on": "2026-08-24"
     }
   }
 }
