@@ -1039,12 +1039,12 @@ const TICKERS = {
     ccy: "AED",
     fair: { bear: 14.3, base: 19.7, full: 23.3 },      // 10 Jul 2026 — five-lens weighted central 19.7 (+31% vs spot 15.10). Lenses: DDM (primary, 30%) 21.2, residual income (multi-period, 20%) 22.7, FCFE equity DCF (15%) 23.3, relative multiples (20%) 15.9, normalized through-cycle (15%) 14.3. bear/full = normalized floor / FCFE ceiling. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt war adder). Swing factors: the NIM path through the CBUAE/Fed easing cycle, whether the ~16% ROE persists, and Gulf de-escalation. Third-largest UAE bank; AED 6.1bn rights issue closed Dec-2025.
     dist: {
-      t20: { label:"1 month",   p5:13.66, p25:14.65, p50:15.33, p75:16.03, p95:17.21, resolve:"2026-09-21" },
-      t60: { label:"3 months",  p5:12.38, p25:14.13, p50:15.35, p75:16.65, p95:19.00, resolve:"2026-11-23" }
+      t20: { label:"1 month",   p5:13.68, p25:14.66, p50:15.33, p75:16.02, p95:17.20, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:12.40, p25:14.14, p50:15.35, p75:16.65, p95:18.97, resolve:"2026-11-23" }
     },
     hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [17.20, 8, 32], [16.40, 26, 53], [15.80, 55, 75], [14.40, 30, 56], [13.90, 13, 39], [13.30, 4, 23]
+      [17.20, 8, 31], [16.40, 26, 53], [15.80, 55, 74], [14.40, 30, 56], [13.90, 12, 38], [13.30, 4, 22]
     ],
     levels: { res:[15.77, 16, 16.56], sup:[15.07, 14.08, 13.42] },
     tech: {
