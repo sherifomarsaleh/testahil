@@ -1758,28 +1758,28 @@ const TICKERS = {
     name: "Abu Dhabi Islamic Bank",
     nameAr: "مصرف أبوظبي الإسلامي",
     code: "ADX:ADIB",
-    spot: 21.24,
-    spotDate: "close 24 Jul 2026",
+    spot: 23.34,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. Backtest PARITY (CRPS skill +0.009, 14 UAE windows). UAE's largest listed Islamic bank; 3,632.0mn shares.
     dist: {
-      t20: { label:"1 month",   p5:18.50, p25:20.18, p50:21.30, p75:22.49, p95:24.47, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:16.73, p25:19.50, p50:21.45, p75:23.59, p95:27.53, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:20.70, p25:22.23, p50:23.29, p75:24.39, p95:26.24, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.64, p25:21.33, p50:23.19, p75:25.20, p95:28.80, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [24.63, 7, 29], [23.30, 22, 49], [22.10, 55, 74], [20.75, 67, 80], [20.00, 38, 60], [18.80, 11, 34]
+      [24.63, 35, 60], [23.30, 87, 93], [22.10, 37, 63], [20.75, 8, 33], [20.00, 3, 21], [18.80, 1, 9]
     ],
-    levels: { res:[21.45, 21.99, 23.23], sup:[20.35, 18.70, 16.57] },
+    levels: { res:[23.78, 24.72, 25.74], sup:[21.99, 21.45, 20.20] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 21.24 below a falling 20-day (21.27) and a falling 200-day (21.77), but above a falling 50-day (20.59). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.56 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.10 / \u22120.09). Over the last year it has ranged 18.28\u201327.96; the last close sits 24% below that high and 16% above that low.",
-      bull: "A daily close back above 21.45 would clear the nearest resistance and open the 23.23 zone.",
-      bear: "A close below 20.35 would break the nearest support and open the 16.57 zone."
+      trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh golden-cross",
+      summary: "The price closed 23.34 above a rising 20-day (22.78), a rising 50-day (21.89) and a flat 200-day (21.83). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.49 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.49 / +0.52 / \u22120.03). The 50-day crossed above the 200-day 1 session ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 18.28\u201327.96; the last close sits 17% below that high and 28% above that low.",
+      bull: "A daily close back above 23.78 would clear the nearest resistance and open the 25.74 zone.",
+      bear: "A close below 21.99 would break the nearest support and open the 20.20 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",
