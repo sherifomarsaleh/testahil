@@ -1006,12 +1006,12 @@ const TICKERS = {
     ccy: "AED",
     fair: { bear: 17.61, base: 22.72, full: 28.75 },      // 11 Jul 2026 — four-lens weighted central 22.72 (+15.5% vs spot 19.66). Lenses: FCFF DCF + sourced stakes-and-claims bridge (primary, 35%) 28.38 (TV 79% of EV, disclosed; core EV under the production UAE Monte-Carlo panel fit does not feed this lens), dividend discount (policy lens, 25%) 17.03, relative EV/EBITDA through the same bridge (20%) 23.72, normalized earnings (20%) 18.90. bear/full = weighted bear/bull. The crux is the 2027 UAE federal royalty reset (current 38%+9% regime expires 31-Dec-2026, undecided): each 4pp of royalty ≈ AED 1.1/share. Same-day event: 10-Jul-2026 e& agreed to sell its entire Vodafone stake for AED 21.8bn gross (~4.7bn net cash), pending regulatory approvals — carried at deal value, dual-framed against the undisturbed mark. Beta assumed 1.0 (regression inaccessible; no downloadable ADX General Index series found after two independent attempts), sensitised 0.8–1.3.
     dist: {
-      t20: { label:"1 month",   p5:19.64, p25:20.82, p50:21.62, p75:22.45, p95:23.83, resolve:"2026-09-21" },
-      t60: { label:"3 months",  p5:18.38, p25:20.40, p50:21.77, p75:23.22, p95:25.76, resolve:"2026-11-23" }
+      t20: { label:"1 month",   p5:19.66, p25:20.83, p50:21.62, p75:22.45, p95:23.82, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.40, p25:20.41, p50:21.77, p75:23.21, p95:25.72, resolve:"2026-11-23" }
     },
     hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [22.00, 64, 80], [21.00, 54, 71], [20.00, 15, 37], [19.00, 3, 16], [18.00, 0, 6], [17.00, 0, 2]
+      [22.00, 64, 80], [21.00, 53, 70], [20.00, 14, 36], [19.00, 3, 16], [18.00, 0, 6], [17.00, 0, 2]
     ],
     levels: { res:[22, 23, 24], sup:[20.98, 18.88, 17.59] },
     tech: {
