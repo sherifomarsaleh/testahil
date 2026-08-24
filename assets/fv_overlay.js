@@ -1156,6 +1156,98 @@ const FV_OVERLAY = {
    "market": "QA"
   },
   {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments",
+   "code": "EGX:PHDC",
+   "ccy": "EGP",
+   "spot": 15.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-11",
+   "fv_lag_days": 73,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 7.62,
+   "fv_base": 15.89,
+   "fv_full": 24.92,
+   "gap_base_pct": 4.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.114673,
+    "mu_h": 0.028536,
+    "G": {
+     "bear": -6.02,
+     "base": 0.39,
+     "full": 4.31
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.4327,
+     "full": 0.0017
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.6583,
+     "full": 0.0021
+    },
+    "required_cagr": {
+     "bear": -0.9997,
+     "base": 0.7036,
+     "full": 376.0973
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0012
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.198466,
+    "mu_h": 0.072321,
+    "G": {
+     "bear": -3.48,
+     "base": 0.22,
+     "full": 2.49
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0021,
+     "base": 0.5685,
+     "full": 0.0203
+    },
+    "p_touch": {
+     "bear": 0.0037,
+     "base": 0.8375,
+     "full": 0.0309
+    },
+    "required_cagr": {
+     "bear": -0.9368,
+     "base": 0.1943,
+     "full": 6.2247
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00297
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "LCSW",
    "name": "Lecico Egypt (S.A.E.)",
    "code": "EGX:LCSW",
@@ -1336,98 +1428,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00204
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "PHDC",
-   "name": "Palm Hills Developments",
-   "code": "EGX:PHDC",
-   "ccy": "EGP",
-   "spot": 15.01,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-11",
-   "fv_lag_days": 41,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 7.62,
-   "fv_base": 15.89,
-   "fv_full": 24.92,
-   "gap_base_pct": 5.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.107145,
-    "mu_h": 0.014551,
-    "G": {
-     "bear": -6.33,
-     "base": 0.53,
-     "full": 4.73
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.3155,
-     "full": 0.001
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.5026,
-     "full": 0.0018
-    },
-    "required_cagr": {
-     "bear": -0.9997,
-     "base": 0.9812,
-     "full": 437.5389
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00181
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.198238,
-    "mu_h": 0.046217,
-    "G": {
-     "bear": -3.42,
-     "base": 0.29,
-     "full": 2.56
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0026,
-     "base": 0.4734,
-     "full": 0.015
-    },
-    "p_touch": {
-     "bear": 0.0044,
-     "base": 0.7528,
-     "full": 0.0237
-    },
-    "required_cagr": {
-     "bear": -0.9336,
-     "base": 0.256,
-     "full": 6.5975
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00233
    },
    "market": "EG"
   },
