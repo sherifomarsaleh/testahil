@@ -4652,6 +4652,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "RAYA",
+   "name": "Raya Holding",
+   "code": "EGX:RAYA",
+   "ccy": "EGP",
+   "spot": 7.07,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.77,
+   "fv_base": 5.56,
+   "fv_full": 8.22,
+   "gap_base_pct": -21.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.104879,
+    "mu_h": 0.026519,
+    "G": {
+     "bear": -3.75,
+     "base": -2.29,
+     "full": 1.44
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0018,
+     "base": 0.0109,
+     "full": 0.0934
+    },
+    "p_touch": {
+     "bear": 0.0029,
+     "base": 0.0179,
+     "full": 0.1373
+    },
+    "required_cagr": {
+     "bear": -0.9911,
+     "base": -0.944,
+     "full": 5.1014
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0019
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.185896,
+    "mu_h": 0.069653,
+    "G": {
+     "bear": -2.12,
+     "base": -1.29,
+     "full": 0.81
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0118,
+     "base": 0.042,
+     "full": 0.2989
+    },
+    "p_touch": {
+     "bear": 0.0232,
+     "base": 0.0841,
+     "full": 0.4526
+    },
+    "required_cagr": {
+     "bear": -0.7928,
+     "base": -0.6175,
+     "full": 0.8273
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00239
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "ADNOCGAS",
    "name": "ADNOC Gas",
    "code": "ADX:ADNOCGAS",
@@ -5384,98 +5476,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00226
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "RAYA",
-   "name": "Raya Holding",
-   "code": "EGX:RAYA",
-   "ccy": "EGP",
-   "spot": 7.76,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 4.77,
-   "fv_base": 5.56,
-   "fv_full": 8.22,
-   "gap_base_pct": -28.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.120427,
-    "mu_h": 0.015346,
-    "G": {
-     "bear": -4.04,
-     "base": -2.77,
-     "full": 0.48
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0015,
-     "base": 0.0067,
-     "full": 0.3348
-    },
-    "p_touch": {
-     "bear": 0.0019,
-     "base": 0.0099,
-     "full": 0.5372
-    },
-    "required_cagr": {
-     "bear": -0.9971,
-     "base": -0.9817,
-     "full": 0.9958
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00161
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.222879,
-    "mu_h": 0.046579,
-    "G": {
-     "bear": -2.18,
-     "base": -1.5,
-     "full": 0.26
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0136,
-     "base": 0.0395,
-     "full": 0.4758
-    },
-    "p_touch": {
-     "bear": 0.0254,
-     "base": 0.0743,
-     "full": 0.7665
-    },
-    "required_cagr": {
-     "bear": -0.8572,
-     "base": -0.7365,
-     "full": 0.259
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00297
    },
    "market": "EG"
   },
