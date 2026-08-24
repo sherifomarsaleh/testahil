@@ -61,7 +61,7 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0092,
+    "market_skill": 0.0088,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.005,
@@ -140,12 +140,12 @@
       },
       "CLHO": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": -0.0197,
-        "skill_raw_basis": -0.0266,
+        "width_cal": 0.958,
+        "skill": -0.0201,
+        "skill_raw_basis": -0.0272,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.058,
+          -0.06,
           -0.003
         ]
       },
