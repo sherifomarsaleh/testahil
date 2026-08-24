@@ -107,6 +107,56 @@ def load_tickers(data_js: str = DATA_JS) -> dict:
     return json.loads(out.stdout)
 
 
+def load_ledger(data_js: str = DATA_JS) -> list:
+    """Evaluate data.js and return LEDGER as a list. Same node-eval reason as above."""
+    script = (
+        "const fs=require('fs'),vm=require('vm');const s={};vm.createContext(s);"
+        f"vm.runInContext(fs.readFileSync({json.dumps(data_js)},'utf8')"
+        "+';globalThis.__L=LEDGER;',s);"
+        "process.stdout.write(JSON.stringify(s.__L));"
+    )
+    out = subprocess.run(["node", "-e", script], capture_output=True, text=True,
+                         check=True)
+    return json.loads(out.stdout)
+
+
+def ca_since(ledger: list, tkr: str, since) -> float:
+    """Cumulative corporate-action factor recorded for `tkr` on or after `since`.
+
+    A fair value is a PER-SHARE number, struck against the share count that existed on
+    fv_asof. A bonus issue or split after that date changes the denominator, so the
+    published `fair` and today's `spot` stop being the same unit and their ratio stops
+    meaning anything. Nothing in the fair value goes stale in the usual sense — the
+    equity value is unchanged — but the gap computed from it is simply wrong.
+
+    grade_ledger already records each such event as ca_factor on the rows struck before
+    it, so the ledger is the register: multiply the factors for every STRIKE dated on or
+    after fv_asof. Per strike, not per row — the 1M and 3M siblings of one anchor carry
+    the same factor and must not be counted twice.
+
+    Found 24-Aug-2026 on Juhayna. A second 25% bonus took it to 1,470.9m shares, so the
+    overlay compared fv_base 26 (priced on 1,176.8m) against spot 26.88 and published
+    gap_base_pct -3.3% — "essentially at fair" — where the same-basis comparison is about
+    -23%. The Ticker Picker sorts and colours on that number, so the error was not
+    internal: it put a materially rich name in front of a reader as fairly priced.
+    """
+    seen, factor = set(), 1.0
+    for r in ledger:
+        if str(r.get("instrument", "")).upper() != str(tkr).upper():
+            continue
+        ca, anchor = r.get("ca_factor"), r.get("anchor_date")
+        if not ca or not anchor or anchor in seen:
+            continue
+        try:
+            if _dt.date.fromisoformat(anchor) < since:
+                continue
+        except (TypeError, ValueError):
+            continue
+        seen.add(anchor)
+        factor *= float(ca)
+    return factor
+
+
 _FILE_DATE = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
 
 
@@ -317,7 +367,8 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     }
 
 
-def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED):
+def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED,
+                       ledger=None):
     """Full overlay for one name, or a BLOCKED row explaining why not."""
     spot = t.get("spot")
     fair_raw = t.get("fair") or {}
@@ -329,10 +380,18 @@ def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED)
     dist, hz = t.get("dist") or {}, t.get("hz") or {}
     anchor, fv_asof = parse_anchor(t), parse_fv_asof(t)
 
-    def blocked(reason):
-        return {"ticker": tkr, "overlay_status": f"BLOCKED — {reason}",
-                "fv_asof": fv_asof.isoformat() if fv_asof else None,
-                "anchor_date": anchor.isoformat() if anchor else None}
+    def blocked(reason, reason_code=None, **extra):
+        # `code` is the MACHINE-READABLE reason. A consumer that needs to treat one
+        # kind of block differently (the Ticker Picker still lists a name whose fair
+        # value is merely in the wrong unit, rather than dropping it) must not have to
+        # pattern-match English out of overlay_status.
+        row = {"ticker": tkr, "overlay_status": f"BLOCKED — {reason}",
+               "fv_asof": fv_asof.isoformat() if fv_asof else None,
+               "anchor_date": anchor.isoformat() if anchor else None}
+        if reason_code:
+            row["blocked_reason"] = reason_code
+        row.update(extra)
+        return row
 
     # --- protocol Step 0 preconditions
     if not spot or len(fair) != 3:
@@ -361,6 +420,25 @@ def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED)
                            f"across {len(traded)} trading session(s), "
                            f"last {traded[-1]}")
         gap_only = True
+
+    # THE FAIR VALUE AND THE SPOT MUST BE THE SAME UNIT (24-Aug-2026). A corporate
+    # action after fv_asof changes the share count under the fair value while spot
+    # moves to the new basis, so their ratio stops being a value gap. This is NOT the
+    # staleness above — a fair value can be a day old and still be in the wrong unit.
+    # Blocked rather than restated: dividing `fair` by the factor here would silently
+    # re-publish the study's number on a basis the study never asserted, which is a
+    # research decision and belongs to a study refresh, not to this overlay.
+    ca = ca_since(ledger or [], tkr, fv_asof)
+    if abs(ca - 1.0) > 1e-9:
+        return blocked(f"share basis changed since the fair value was struck: a "
+                       f"corporate action of x{ca:.6g} went ex after {fv_asof}, so "
+                       f"fair (per-share on the old count) and spot (new count) are "
+                       f"different units — the fair value needs re-basing in a study "
+                       f"refresh before a gap means anything",
+                       reason_code="share_basis_changed",
+                       name=t.get("name"), code=t.get("code"), ccy=t.get("ccy"),
+                       spot=spot, ca_factor=ca,
+                       fv_bear=fair["bear"], fv_base=fair["base"], fv_full=fair["full"])
 
     h1 = hz.get("h1") or 21
     h3 = hz.get("h3") or 63
@@ -421,6 +499,7 @@ def run_market(market="ALL", only=None, n_paths=N_PATHS, seed=SEED):
     never silently dropped."""
     market_of = load_market_of()
     tickers = load_tickers()
+    ledger = load_ledger()          # carries ca_factor — see ca_since()
     rows, configs = [], {}
     for tkr, t in tickers.items():
         if only and tkr != only:
@@ -436,7 +515,7 @@ def run_market(market="ALL", only=None, n_paths=N_PATHS, seed=SEED):
             "rf_live": profile.rf_live,
             "width_overlay_active": profile.width_overlay_active})
         row = overlay_for_ticker(tkr, t, profile, market=mkt,
-                                 n_paths=n_paths, seed=seed)
+                                 n_paths=n_paths, seed=seed, ledger=ledger)
         row["market"] = mkt
         rows.append(row)
     # 1e9 for a blocked row (no "3M") and for a base G that is None (a zero fair value):
