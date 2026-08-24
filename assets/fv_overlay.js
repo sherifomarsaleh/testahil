@@ -236,98 +236,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "HELI",
-   "name": "Heliopolis Housing",
-   "code": "EGX:HELI",
-   "ccy": "EGP",
-   "spot": 8.27,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.2,
-   "fv_base": 8.4,
-   "fv_full": 11.82,
-   "gap_base_pct": 1.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.105268,
-    "mu_h": 0.014406,
-    "G": {
-     "bear": -4.41,
-     "base": 0.15,
-     "full": 3.39
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.001,
-     "base": 0.4945,
-     "full": 0.0042
-    },
-    "p_touch": {
-     "bear": 0.0015,
-     "base": 0.7933,
-     "full": 0.0067
-    },
-    "required_cagr": {
-     "bear": -0.9962,
-     "base": 0.2058,
-     "full": 71.6681
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00154
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.195856,
-    "mu_h": 0.04608,
-    "G": {
-     "bear": -2.37,
-     "base": 0.08,
-     "full": 1.82
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.01,
-     "base": 0.5757,
-     "full": 0.0478
-    },
-    "p_touch": {
-     "bear": 0.0188,
-     "base": 0.902,
-     "full": 0.0769
-    },
-    "required_cagr": {
-     "bear": -0.8437,
-     "base": 0.0644,
-     "full": 3.173
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0023
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "CCAP",
    "name": "Qalaa Holdings",
    "code": "EGX:CCAP",
@@ -1612,6 +1520,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00298
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "HELI",
+   "name": "Heliopolis Housing",
+   "code": "EGX:HELI",
+   "ccy": "EGP",
+   "spot": 7.75,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.2,
+   "fv_base": 8.4,
+   "fv_full": 11.82,
+   "gap_base_pct": 8.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.138021,
+    "mu_h": 0.035492,
+    "G": {
+     "bear": -2.89,
+     "base": 0.58,
+     "full": 3.06
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0048,
+     "base": 0.3455,
+     "full": 0.0076
+    },
+    "p_touch": {
+     "bear": 0.0076,
+     "base": 0.5227,
+     "full": 0.0101
+    },
+    "required_cagr": {
+     "bear": -0.9917,
+     "base": 1.6286,
+     "full": 157.4124
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00213
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.235995,
+    "mu_h": 0.086474,
+    "G": {
+     "bear": -1.69,
+     "base": 0.34,
+     "full": 1.79
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0226,
+     "base": 0.5123,
+     "full": 0.0629
+    },
+    "p_touch": {
+     "bear": 0.0444,
+     "base": 0.761,
+     "full": 0.097
+    },
+    "required_cagr": {
+     "bear": -0.7973,
+     "base": 0.3801,
+     "full": 4.4108
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00391
    },
    "market": "EG"
   },
