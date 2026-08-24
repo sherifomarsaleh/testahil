@@ -7256,90 +7256,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "RMDA",
-   "name": "Rameda Pharmaceuticals",
-   "code": "EGX:RMDA",
-   "ccy": "EGP",
-   "spot": 4.98,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 9,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.11,
-   "fv_base": 2.77,
-   "fv_full": 3.48,
-   "gap_base_pct": -44.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.090326,
-    "mu_h": 0.013958,
-    "G": {
-     "bear": -9.51,
-     "base": -6.49,
-     "full": -3.97
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9991,
-     "full": -0.9864
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0021
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.187283,
-    "mu_h": 0.04515,
-    "G": {
-     "bear": -4.59,
-     "base": -3.13,
-     "full": -1.91
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0008,
-     "base": 0.0037,
-     "full": 0.0194
-    },
-    "p_touch": {
-     "bear": 0.0013,
-     "base": 0.0067,
-     "full": 0.0369
-    },
-    "required_cagr": {
-     "bear": -0.9678,
-     "base": -0.9043,
-     "full": -0.7615
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00138
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "AAPL",
    "name": "Apple Inc.",
    "code": "NASDAQ:AAPL",
@@ -7588,6 +7504,90 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00139
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "RMDA",
+   "name": "Rameda Pharmaceuticals",
+   "code": "EGX:RMDA",
+   "ccy": "EGP",
+   "spot": 6.35,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-13",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.11,
+   "fv_base": 2.77,
+   "fv_full": 3.48,
+   "gap_base_pct": -56.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.145349,
+    "mu_h": 0.024885,
+    "G": {
+     "bear": -7.58,
+     "base": -5.71,
+     "full": -4.14
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": -0.9993
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00148
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.239759,
+    "mu_h": 0.065522,
+    "G": {
+     "bear": -4.6,
+     "base": -3.46,
+     "full": -2.51
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0007,
+     "base": 0.0024,
+     "full": 0.0078
+    },
+    "p_touch": {
+     "bear": 0.0012,
+     "base": 0.0041,
+     "full": 0.0152
+    },
+    "required_cagr": {
+     "bear": -0.9878,
+     "base": -0.9638,
+     "full": -0.9098
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0036
    },
    "market": "EG"
   },
