@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-24g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1074,3 +1074,43 @@ verdict machinery (per-name LONO fits, `robust_verdict`) is untouched. R-NEG-01'
 floors stand — the objective pins the 50% band to catching half, which IS the floor.
 Adoption-day numbers of record live in the dated evidence file under
 `engine/PENDING_REVIEW/` and in `fitted_configs.json` — never in this document.
+
+### [R-REC-01] Every stock's page carries its own calibration record (24-Aug-2026, per instruction — "we need to stop looking at stocks in a country as a bulk; look at each stock individually")
+
+**Why.** The market aggregate hid a per-name spread the investor could see with his own
+eyes: on the same Egyptian panel whose pooled 50% band catches ~52%, RAYA and SCEM caught
+70% in their middle band while ISPH's wide band caught only 77% — one market number, names
+wrong in both directions. The judgement unit is the stock, so the published record must be
+per stock.
+
+**What.** `engine/build_name_calibration.py` computes, for every covered stock, its own
+backtest record under the LIVE production cone — resolved three-month tests in its history,
+and how often its middle (25–75) and wide (5–95) bands actually caught the close — and
+writes one generated `CALIB` block into `assets/data.js`, keyed by the entry's exchange
+code (ticker keys are not unique across markets: EG ADIB vs UAE ADIBUAE). `app.js` renders
+it in plain language under the fan on every page through the same universal
+`renderStaticFan` hook the as-of stamps use, so no page template is edited and a new page
+inherits the record.
+
+**Discipline.** Regenerate in the same pass as any refit, reshape, panel rebuild or
+roll-forward — the record rots the moment the fit moves, the same defect class as the
+stale technical read closed on 29-Jul-2026. The builder is self-verifying: `node --check`
+on the result plus a load-assert that counts records against the full TICKERS total and
+fails loudly on any unresolved name (the count is not decoration: on adoption day it
+caught ALRAJHI, whose Tadawul code is the numeric 1120 and whose raw file is RAJHI.csv —
+a silent skip would have shipped 89 of 90 and reported success). Numbers are computed by
+the exact fast_rescore band algebra on the panels' invariant residuals — verified against
+the stored panel flags at 99.4–100% agreement — never typed.
+
+**Companion executors, same day, same instruction.** `engine/direction_record.py` is the
+computing executor of [R-DRIFT-01]'s promise that every direction call is graded at its
+maturity: it joins each ledger row's frozen `signal_z` with its graded outcome and prints
+the per-name and pooled hit record (first run: 68 calls recorded and open, 0 graded — all
+graded rows predate the adoption; the scoreboard accrues from the September maturities).
+`engine/lab/width_overlay_ae_sa/validate.py` is the standing, re-runnable promotion gate
+for extending the per-name width overlay beyond Egypt: on its first run (24-Aug-2026) AE
+DECLINED on breadth (7 of 14 moved names closer; pooled |std_u−1| improved 0.036→0.022,
+CRPS parity, cov90 in-band) and SA DECLINED on the pooled measure (0.051→0.053 despite
+7-of-9 breadth) — the GCC's histories are still mostly below the 28-window gate, so the
+evidence is thin exactly where the mechanism would act. Re-run at any roll-forward; adopt
+per market only when all four gate rows pass. Egypt's overlay is untouched.
