@@ -867,28 +867,28 @@ const TICKERS = {
     name: "Burjeel Holdings PLC",
     nameAr: "\u0628\u0631\u062c\u064a\u0644 \u0627\u0644\u0642\u0627\u0628\u0636\u0629",
     code: "ADX:BURJEEL",
-    spot: 1.20,
-    spotDate: "close 24 Jul 2026",
+    spot: 1.25,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high. Calibration: PARITY on the production UAE panel (11 non-overlapping 60-day windows, CRPS skill +0.85%, 90% CI [-1.7%, +2.5%], robust across bootstrap block sizes) — a calibrated, market-panel-validated distribution with no single-name edge claimed.
     dist: {
-      t20: { label:"1 month",   p5:1.03, p25:1.13, p50:1.20, p75:1.28, p95:1.41, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:0.91, p25:1.09, p50:1.21, p75:1.35, p95:1.61, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:1.07, p25:1.17, p50:1.25, p75:1.32, p95:1.45, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:0.95, p25:1.12, p50:1.24, p75:1.37, p95:1.61, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month %. */
-      [1.30, 33, 59], [1.25, 58, 76], [1.20, 100, 100], [1.15, 54, 72], [1.05, 12, 35], [1.00, 5, 22], [0.95, 2, 13], [0.90, 1, 7]
+      [1.30, 55, 72], [1.25, 100, 100], [1.20, 57, 75], [1.15, 31, 56], [1.05, 5, 25], [1.00, 2, 15], [0.95, 1, 9], [0.90, 0, 5]
     ],
-    levels: { res:[1.29, 1.35, 1.43], sup:[1.09, 1.03, 1] },
+    levels: { res:[1.29, 1.35, 1.43], sup:[1.19, 1.09, 1.03] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 1.20 above a falling 20-day (1.12) and a flat 50-day (1.09), but below a falling 200-day (1.22). Momentum is firm: RSI(14) is ~66 and the daily ATR near 0.04 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.02 / +0.00 / +0.01). Over the last year it has ranged 1.00\u20131.57; the last close sits 24% below that high and 20% above that low.",
+      trend: "Trading above the whole moving-average stack, on a falling 200-day",
+      summary: "The price closed 1.25 above a rising 20-day (1.25), a rising 50-day (1.17) and a falling 200-day (1.21). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.04 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.03 / +0.03 / \u22120.00). Over the last year it has ranged 1.00\u20131.51; the last close sits 17% below that high and 25% above that low.",
       bull: "A daily close back above 1.29 would clear the nearest resistance and open the 1.43 zone.",
-      bear: "A close below 1.09 would break the nearest support and open the 1.00 zone."
+      bear: "A close below 1.19 would break the nearest support and open the 1.03 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-24" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260713b",
@@ -6341,6 +6341,34 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
+  // ---- 24-Aug-2026 single-name roll-forward: BURJEEL, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"BURJEEL", asset_class:"equity",
+    anchor_date:"2026-08-21", run_date:"2026-08-24", anchor_price:1.25, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-21", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.3561,
+    signal_z:-0.642, signal_alpha:-0.006578,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 21-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24, but this name’s library ends 2026-08-21, so that cohort is not gradable yet: it stays OPEN and is graded on its own date once its close lands. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=10.0, width_cal=0.923. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.642 (outside the 0.25 dead zone); tilt -0.66% at 1M and -1.93% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 64) size the cone only.",
+    p5:1.07, p25:1.17, p50:1.25, p75:1.32, p95:1.45,
+    touch:{ "+5":48, "+10":23, "+15":10, "+20":4, "-5":50, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"BURJEEL", asset_class:"equity",
+    anchor_date:"2026-08-21", run_date:"2026-08-24", anchor_price:1.25, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.3521,
+    signal_z:-0.642, signal_alpha:-0.019453,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 21-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24, but this name’s library ends 2026-08-21, so that cohort is not gradable yet: it stays OPEN and is graded on its own date once its close lands. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=10.0, width_cal=0.923. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.642 (outside the 0.25 dead zone); tilt -0.66% at 1M and -1.93% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 64) size the cone only.",
+    p5:0.95, p25:1.12, p50:1.24, p75:1.37, p95:1.61,
+    touch:{ "+5":67, "+10":46, "+15":31, "+20":20, "-5":70, "-10":47 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- 24-Aug-2026 single-name roll-forward: ADNOCGAS, struck on its own
   //      latest library close. Append-only.
   {
