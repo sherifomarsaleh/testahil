@@ -154,7 +154,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260824ab"></script><script src="assets/app.js?v=20260805b"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260824agthia"></script><script src="assets/app.js?v=20260805b"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -771,11 +771,11 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
   ${cohortChartBlock(t, LEDGER.filter(r=>r.instrument===t))}
   ${CAL_UNTESTED.has(t) ? CALIB_UNTESTED_BANNER + `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">What this forecast IS validated on</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">There is no name-level backtest for this stock — it has not been listed long enough to have one. So instead of a backtest it does not have, here is the evidence it actually rests on: why the test cannot be run, what the market panel behind the cone scored, and where this stock sits relative to that panel. Methodology transparency; it does not count toward the live score above.</p>
-  <div class="card bt-fig"><img alt="${t} — why there is no name-level calibration, what the cone is validated on, and how the UAE market panel scored" src="assets/calibration_${t}.png?v=20260824aa"></div>` : ``}
+  <div class="card bt-fig"><img alt="${t} — why there is no name-level calibration, what the cone is validated on, and how the UAE market panel scored" src="assets/calibration_${t}.png?v=20260824agthia"></div>` : ``}
   ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed across ${t}’s full usable history — every non-overlapping quarter back to its market’s last structural break. Each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Where the most recent stretch diverges from the long-run record, the panel says so in red. Methodology validation; it does not count toward the live score above.</p>
   ${CAL_FAIL.has(t) && !BANNER_BAKED.has(t) ? CALIB_FAIL_BANNER : (CAL_MATCH.has(t) ? CALIB_MATCH_BANNER : ``)}
-  <div class="card bt-fig"><img alt="${t} calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260824aa"></div>
+  <div class="card bt-fig"><img alt="${t} calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260824agthia"></div>
   <div style="margin:20px 0 8px;padding-top:20px;border-top:1px solid var(--line,#dce4e2)">
     <p class="muted" style="font-size:var(--fs-small);margin:0 0 10px"><b style="color:var(--ink)">Reading this panel:</b></p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
