@@ -61,7 +61,7 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0082,
+    "market_skill": 0.0085,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.006,
@@ -217,13 +217,13 @@
       },
       "ELEC": {
         "nu": 5.0,
-        "width_cal": 0.958,
-        "skill": 0.0881,
-        "skill_raw_basis": 0.1181,
+        "width_cal": 0.951,
+        "skill": 0.088,
+        "skill_raw_basis": 0.1188,
         "verdict": "PASS",
         "ci_block2": [
           0.063,
-          0.134
+          0.136
         ]
       },
       "EMFD": {
@@ -282,14 +282,14 @@
         ]
       },
       "HRHO": {
-        "nu": 5.0,
-        "width_cal": 0.951,
+        "nu": 6.0,
+        "width_cal": 0.937,
         "skill": -0.0133,
-        "skill_raw_basis": -0.0183,
+        "skill_raw_basis": -0.0194,
         "verdict": "PARITY",
         "ci_block2": [
           -0.04,
-          0.014
+          0.011
         ]
       },
       "ISPH": {
@@ -361,12 +361,12 @@
       "ORAS": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.037,
-        "skill_raw_basis": 0.0377,
-        "verdict": "BOUNDARY(PARITY-flagged)",
+        "skill": 0.0489,
+        "skill_raw_basis": 0.0458,
+        "verdict": "PASS",
         "ci_block2": [
-          0.004,
-          0.072
+          0.014,
+          0.078
         ]
       },
       "ORHD": {
