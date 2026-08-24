@@ -122,6 +122,61 @@ def field_span(block: str, field: str):
     return m.start(0), match_brace(block, obj_open), m.group(1)
 
 
+def field_spans(block: str, field: str):
+    """EVERY TOP-LEVEL `field: {...}` span in an entry, in source order.
+
+    field_span() returns the FIRST, which is silently wrong wherever an entry
+    carries the same key TWICE. JavaScript object literals take the LAST key,
+    so this module rewrote the first `levels` while the page went on rendering
+    a superseded one -- a freshly computed narrative sitting over a level
+    ladder from the retired hand-authored era, with valid markup, no console
+    error and nothing to see. Found 24-Aug-2026 on CLHO, RMDA and GBCO (RMDA's
+    stale ladder put all three of its resistances BELOW its own close).
+
+    Same species as the unquoted-key regex that dropped 2POINTZERO from three
+    tools at once, and the indentation-keyed `dist` match that deleted `touch`
+    on nine entries: a pattern standing in for a parser is silently correct on
+    the entries that happen to be shaped the way its author's were. Closing the
+    class rather than the instance ([R-ENF-01]).
+
+    TOP-LEVEL IS ENFORCED BY INDENT, and that is not a nicety: `asof` carries a
+    NESTED `tech: {...}` sub-object, so a depth-blind version of this function
+    reported a duplicate `tech` on all 93 entries and would have deleted every
+    as-of stamp on the site. A candidate is accepted only if its indent matches
+    the first match's AND it does not fall inside an already-accepted span.
+    """
+    pat = re.compile(r'\n([ \t]*)' + re.escape(field) + r'\s*:\s*\{')
+    out, pos, ind0 = [], 0, None
+    while True:
+        m = pat.search(block, pos)
+        if not m:
+            return out
+        obj_open = block.index('{', m.end(0) - 1)
+        end = match_brace(block, obj_open)
+        if ind0 is None:
+            ind0 = m.group(1)
+        if m.group(1) == ind0 and not any(s0 <= m.start(0) < s1 for s0, s1, _ in out):
+            out.append((m.start(0), end, m.group(1)))
+        pos = end
+
+
+def drop_superseded(block: str, fields=('levels', 'tech', 'asof')):
+    """Delete every duplicate of a field this module owns, keeping the FIRST.
+
+    The first is the one field_span() rewrites, so keeping it is what makes the
+    recomputed read the published one. Returns (block, dropped_field_names).
+    A block with no duplicates comes back BYTE-IDENTICAL -- verified across all
+    90 entries when this landed.
+    """
+    dropped = []
+    for field in fields:
+        for s0, s1, _ in reversed(field_spans(block, field)[1:]):
+            trail = 1 if block[s1:s1 + 1] == ',' else 0
+            block = block[:s0] + block[s1 + trail:]
+            dropped.append(field)
+    return block, dropped
+
+
 # ------------------------------------------------------------------ emitting
 def js_str(s: str) -> str:
     """A JS double-quoted literal, non-ASCII escaped to match the file."""
@@ -247,6 +302,12 @@ def run(write=False, only=None, computed_on=None):
         decl = f'const {container} = {{'
         a, b = top_level_blocks(src, decl)[key]
         block = src[a:b]
+        # A DUPLICATE KEY IS A SILENT OVERRIDE, NOT A FORMATTING QUIRK.
+        block, dropped = drop_superseded(block)
+        if dropped:
+            print(f'  {key}: dropped superseded duplicate key(s) '
+                  f'{sorted(set(dropped))} — JavaScript was rendering the LAST '
+                  f'one, so the recomputed read was written and never seen')
         try:
             st = TA.compute(mkt, series, computed_on=computed_on)
         except Exception as e:                                # noqa: BLE001

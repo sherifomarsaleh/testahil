@@ -163,13 +163,45 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
         flat_row = (df['High'].values == df['Low'].values)[1:-1]
         drop = np.zeros(len(df), dtype=bool)
         drop[1:-1] = spike & round_trip & (True if has_limit else flat_row)
+
+        # SECOND SIGNATURE — THE UNREACHABLE FLAT BAR (24-Aug-2026, JUFO ingest).
+        # The test above asks whether a move beats jump_threshold(), which carries a
+        # 1.30 safety margin AND applies the DOWN-limit magnitude |ln(1-lim)| to moves
+        # in BOTH directions. On EGX that means an UP move goes unquestioned until
+        # +25.0%, while the exchange's own up-limit is +20% — a blind spot exactly one
+        # bonus-issue ratio wide. Juhayna's 2026-04-12 row sat in it: a single bar the
+        # vendor's 5:4 adjustment pass skipped, +25.00% into it and -19.67% straight
+        # back out. Neither leg cleared 0.290, so step 1c passed it, step 2 passed it,
+        # and it carried JUFO's 250-day realized vol from 31.9% to 44.7% — a 40%
+        # overstatement of the volatility that sizes the published cone.
+        #
+        # The distinguishing fact is not the SIZE of the move, it is that the bar is
+        # UNREACHABLE: it has no intraday range at all (H == L) and the move INTO it
+        # exceeds the exchange's daily limit IN THE DIRECTION TRAVELLED. No sequence of
+        # trades reaches that price, and the next session goes straight back. A real
+        # corporate action moves to a new level and STAYS; a real limit session has a
+        # RANGE. Same class as the 10-Jul KAKAO, 27-Jul SAMSUNG and 28-Jul IQCD
+        # findings — closed as a class, per the standing enforcement rule, rather than
+        # by editing one more raw CSV by hand.
+        #
+        # Deliberately additive and deliberately narrow: it can only ever drop MORE
+        # rows, and only zero-range ones that are both unreachable and immediately
+        # reversed. Negative-controlled 24-Aug-2026 across every covered series in
+        # every market: it drops exactly one row anywhere in the repo — this one.
+        lim = DAILY_LIMIT.get(market)
+        if lim is not None:
+            up_lim, dn_lim = np.log(1.0 + lim), abs(np.log(1.0 - lim))
+            unreachable = np.where(into > 0, into > up_lim, -into > dn_lim)
+            reverses = np.sign(into) != np.sign(outof)
+            drop[1:-1] |= unreachable & reverses & round_trip & flat_row
+
         if drop.any():
             dts = df['Date'][drop]
             log.append(f"dropped {int(drop.sum())} isolated one-row price spikes "
                        f"({dts.iloc[0].date()}"
                        f"{'..' + str(dts.iloc[-1].date()) if drop.sum() > 1 else ''}) "
-                       f"— excursions beyond the {market or '?'} artifact threshold "
-                       f"{thr0:.3f} that reverse on the very next session: vendor "
+                       f"— excursions beyond what {market or '?'} trading can reach "
+                       f"that reverse on the very next session: vendor "
                        f"phantom prints, not corporate actions (dropped, not rescaled)")
             df = df[~drop].reset_index(drop=True)
 
