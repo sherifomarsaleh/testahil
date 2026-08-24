@@ -1363,28 +1363,28 @@ const TICKERS = {
     name: "El Nasr Clothing & Textiles (Kabo)",
     nameAr: "النصر للملابس والمنسوجات (كابو)",
     code: "EGX:KABO",
-    spot: 8.80,
-    spotDate: "close 22 Jul 2026",
+    spot: 9.12,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 1.42, base: 2.39, full: 3.52 },      // 6 Jul 2026 — weighted central 2.39 (\u221266% vs spot 7.00). Four lenses: revalued NAV (primary) 3.28, going-concern DCF 0.54 (floor), relative price-to-book 2.65, normalized earnings 1.24. bear/full = weighted bear/bull of the football field. Swing: the realizable value of the legacy Alexandria land against a ~95%-collapsed earnings base — at 7.00 the market prices a ~EGP 2.8bn land re-mark that has not been disclosed or monetised. Note: \u00a73 Monte Carlo FAILED its calibration back-test on this name (CRPS skill \u22120.010 vs a random-walk cone; study Appendix B) — no probabilistic price forecast is published; the distribution is an illustrative volatility map only.
     dist: {
-      t20: { label:"1 month",   p5:7.29, p25:8.28, p50:8.93, p75:9.64, p95:10.95, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:6.29, p25:8.00, p50:9.22, p75:10.59, p95:13.46, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:7.45, p25:8.63, p50:9.37, p75:10.18, p95:11.80, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:6.57, p25:8.48, p50:9.79, p75:11.29, p95:14.55, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; illustrative only */
-      [9.00, 77, 89], [8.30, 47, 66], [7.70, 18, 40], [7.13, 6, 24], [6.65, 3, 14], [6.30, 1, 10], [5.60, 0, 4], [4.80, 0, 2]
+      [9.00, 76, 84], [8.30, 31, 50], [7.70, 13, 30], [7.13, 5, 17], [6.65, 2, 11], [6.30, 1, 7], [5.60, 1, 4], [4.80, 0, 2]
     ],
-    levels: { res:[8.90, 9.10, 9.30], sup:[7.11, 6.26, 5.95] },
+    levels: { res:[9.20, 9.40, 9.85], sup:[7.11, 6.26, 5.95] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 8.80 above a rising 20-day (7.24), a rising 50-day (6.61) and a rising 200-day (6.31). Momentum is stretched: RSI(14) is ~91 and the daily ATR near 0.27 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.56 / +0.41 / +0.15). Over the last year it has ranged 4.63\u20138.80; the last close sits 0% below that high and 90% above that low.",
-      bull: "A daily close back above 8.90 would clear the nearest resistance and open the 9.30 zone.",
+      summary: "The price closed 9.12 above a rising 20-day (8.59), a rising 50-day (7.62) and a rising 200-day (6.62). Momentum is firm: RSI(14) is ~65 and the daily ATR near 0.37 (~4.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.42 / +0.42 / +0.01). Over the last year it has ranged 4.63\u20139.85; the last close sits 7% below that high and 97% above that low.",
+      bull: "A daily close back above 9.20 would clear the nearest resistance and open the 9.85 zone.",
       bear: "A close below 7.11 would break the nearest support and open the 5.95 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-24" },
+      tech: { data:"2026-08-23", computed:"2026-08-24" }
     },
     files: {
       study: "files/KABO_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -4645,9 +4645,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:7.29, p25:8.28, p50:8.93, p75:9.64, p95:10.95,
     touch:{ "+5":61, "+10":38, "+15":22, "+20":13, "-5":51, "-10":26 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:9.12, realized_high:9.85, realized_low:7.75,
+    in_90:true, in_50:true, realized_quantile:0.567, median_err:0.0213,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":true, "-10":true }
   },
   {
     instrument:"KABO", asset_class:"equity",
@@ -6131,6 +6131,35 @@ const LEDGER = [
     note:"Cycle 4 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 3 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 1.0160 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9662, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.263 (outside the 0.25 dead zone); tilt +0.72% at 1M and +1.41% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:80.5, p25:94.74, p50:103.82, p75:113.76, p95:133.71,
     touch:{ "+5":79, "+10":59, "+15":42, "+20":29, "-5":52, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: KABO, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"KABO", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:9.12, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.5267,
+    signal_z:1.3874, signal_alpha:0.01273,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.387 (outside the 0.25 dead zone); tilt +1.28% at 1M and +2.45% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:7.45, p25:8.63, p50:9.37, p75:10.18, p95:11.8,
+    touch:{ "+5":68, "+10":45, "+15":29, "+20":18, "-5":52, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"KABO", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:9.12, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.5431,
+    signal_z:1.3874, signal_alpha:0.02417,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.387 (outside the 0.25 dead zone); tilt +1.28% at 1M and +2.45% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:6.57, p25:8.48, p50:9.79, p75:11.29, p95:14.55,
+    touch:{ "+5":84, "+10":70, "+15":58, "+20":47, "-5":67, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
