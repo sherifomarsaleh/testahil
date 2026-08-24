@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-23h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -965,3 +965,46 @@ low-confidence. Rationale: with ~186 stock-horizon tests at 90% CIs, a handful o
 single-test excursions arise by chance alone; the joint bar keeps the expected
 false-suppression count well under one, and the first full sweep (23-Aug-2026) suppressed
 zero names while flagging thirty.
+
+### [R-GRADE-01] Early grading — opt-in, bounded, annotated (24-Aug-2026, per instruction — "We deal based on calendar days as per the project instructions and research protocol")
+
+A horizon is a CALENDAR commitment, so a row matures when its calendar grade date
+arrives — not when some number of sessions have printed. The two can separate: the month
+is up while the exchange has not yet exported that last session. Until today the grader
+treated that case as BLOCKED, identically to a library weeks behind, and a name whose data
+ran right up to the calendar boundary sat ungraded beside one that was nowhere near it.
+
+`grade_ledger.grade_session()` now returns HOW the session was reached — `exact`, `rolled`
+(a closure pushed the first real session past the stored date, the pre-existing case) or
+`early` — and `allow_early` grades a matured row on the LAST session inside its window.
+Two properties make it safe, and both are structural rather than remembered:
+
+1. **It is OFF by default**, so every existing caller is byte-identical. The negative
+   control proves it: the replay of all already-graded rows reproduces them exactly, and
+   the default sweep on the day of adoption returned the same 0 gradable / 19 blocked it
+   returned before the change.
+2. **It is BOUNDED by `EARLY_MAX_DAYS` (7 calendar days)**, and it is scoped to NAMED
+   instruments. On 24-Aug-2026 nineteen rows were matured and blocked. EAND's library
+   reached 21-Aug against a 24-Aug grade date — ONE session short, a real export lag.
+   Eighteen AE names stopped at 24-Jul, a full month short, where "grade it early" would
+   score a cone against a window that mostly never ran. An unbounded flag would have
+   graded all nineteen alike. A row outside the bound stays BLOCKED with the flag on.
+
+Scoping to named instruments is the second half of the lesson and was added after the
+bound was already in place. With the bound alone, `--allow-early` would have graded
+ADIBUAE and ADNOCGAS too — both had libraries at 21-Aug that week — turning a decision
+about ONE name's permanent record into a decision about every name whose export happened
+to be lagging. A blocked row inside the bound but not named now says so explicitly
+("within the 7-day early-grade bound, but X was not named for early grading"), so the
+un-taken decision is visible rather than absent.
+
+An early grade is ANNOTATED on exactly the same terms as a rolled one, because the reason
+is the same: the stored commitment is never overwritten in silence. `grade_date` becomes
+the session actually graded, `grade_date_projected` keeps the original calendar date, and
+`grade_note` states the gap in calendar days. The frozen percentiles are untouched — a
+grade appends an outcome, it never revises the claim.
+
+The cost is real and is not hidden: a window graded a session short is marginally narrower
+than the one committed to, which very slightly favours the cone. That is why this is opt-in
+per name and bounded at a week, rather than a new default. The alternative on the table —
+grading against a close that does not exist — is not available at any bound.

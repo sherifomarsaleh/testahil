@@ -6216,6 +6216,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ADCB",
+   "name": "Abu Dhabi Commercial Bank",
+   "code": "ADX:ADCB",
+   "ccy": "AED",
+   "spot": 15.32,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 42,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 14.3,
+   "fv_base": 19.7,
+   "fv_full": 23.3,
+   "gap_base_pct": 28.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.071253,
+    "mu_h": 0.000653,
+    "G": {
+     "bear": -0.97,
+     "base": 3.53,
+     "full": 5.88
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1504,
+     "base": 0.0014,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.2505,
+     "base": 0.0022,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.5626,
+     "base": 19.4404,
+     "full": 152.1672
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00119
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.132118,
+    "mu_h": 0.001956,
+    "G": {
+     "bear": -0.52,
+     "base": 1.9,
+     "full": 3.17
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2811,
+     "base": 0.0304,
+     "full": 0.0027
+    },
+    "p_touch": {
+     "bear": 0.5196,
+     "base": 0.0523,
+     "full": 0.005
+    },
+    "required_cagr": {
+     "bear": -0.2409,
+     "base": 1.7342,
+     "full": 4.3504
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00109
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "EMAAR",
    "name": "Emaar Properties PJSC",
    "code": "DFM:EMAAR",
@@ -6396,98 +6488,6 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base above p95",
     "selftest_max_dev": 0.00134
-   },
-   "market": "AE"
-  },
-  {
-   "ticker": "ADCB",
-   "name": "Abu Dhabi Commercial Bank",
-   "code": "ADX:ADCB",
-   "ccy": "AED",
-   "spot": 14.42,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 14.3,
-   "fv_base": 19.7,
-   "fv_full": 23.3,
-   "gap_base_pct": 36.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.086819,
-    "mu_h": 0.00277,
-    "G": {
-     "bear": -0.1,
-     "base": 3.59,
-     "full": 5.53
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4445,
-     "base": 0.0013,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.8012,
-     "base": 0.0018,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.0954,
-     "base": 41.268,
-     "full": 315.7291
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00177
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.153564,
-    "mu_h": 0.009662,
-    "G": {
-     "bear": -0.05,
-     "base": 2.03,
-     "full": 3.12
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4491,
-     "base": 0.0262,
-     "full": 0.0033
-    },
-    "p_touch": {
-     "bear": 0.8823,
-     "base": 0.0443,
-     "full": 0.0055
-    },
-    "required_cagr": {
-     "bear": -0.0329,
-     "base": 2.4834,
-     "full": 5.8165
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00118
    },
    "market": "AE"
   },

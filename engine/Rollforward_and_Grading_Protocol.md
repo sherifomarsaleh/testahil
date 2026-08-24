@@ -121,6 +121,16 @@ to size the cone. Never re-derive the target by counting rows. For every open LE
    original stored value) and a one-line `grade_note` stating the gap and likely cause
    (closure/suspension). This is an append/annotate, never a silent retro-edit of the
    frozen percentiles themselves — those stay exactly as published.
+3b. **[R-GRADE-01] The window can also close BEFORE the library reaches it** — the month
+   is up but the exchange has not yet exported that last session. The default is still to
+   BLOCK. `python3 scripts/sweep_ledger.py --today YYYY-MM-DD --allow-early EAND [...]`
+   grades such a row on the LAST session inside its window, annotated identically to a
+   rolled one. It is OFF by default, BOUNDED at `EARLY_MAX_DAYS` = 7 calendar days, and
+   SCOPED to the instruments you name — a row inside the bound that you did not name stays
+   blocked and says so. Naming is the point: an early grade is a decision about one name's
+   permanent record, and a blanket flag makes it a decision about every name whose export
+   is lagging that week. A window graded a session short is marginally narrower than the
+   one committed to, which slightly favours the cone — state it, don't bury it.
 4. The ledger page's existing JS needs NO template change for this — once `realized_close`
    is non-null it already renders the real close + "we got it right ✓ / we were off ✗" from
    `in_90`. Grading is a DATA fix, not a code fix.
