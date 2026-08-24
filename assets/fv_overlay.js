@@ -7008,16 +7008,16 @@ const FV_OVERLAY = {
    "name": "e-finance for Digital & Financial Investments",
    "code": "EGX:EFIH",
    "ccy": "EGP",
-   "spot": 23.39,
-   "anchor_date": "2026-07-22",
+   "spot": 24.65,
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
+   "fv_lag_days": 51,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 10.2,
    "fv_base": 14.16,
    "fv_full": 23.6,
-   "gap_base_pct": -39.5,
+   "gap_base_pct": -42.6,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7030,13 +7030,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.107967,
-    "mu_h": 0.014853,
+    "h_sessions": 22,
+    "sigma_h": 0.125055,
+    "mu_h": 0.020479,
     "G": {
-     "bear": -7.69,
-     "base": -4.65,
-     "full": 0.08
+     "bear": -7.06,
+     "base": -4.43,
+     "full": -0.35
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7045,45 +7045,45 @@ const FV_OVERLAY = {
     "p_touch": null,
     "required_cagr": {
      "bear": -1.0,
-     "base": -0.9976,
-     "full": 0.1132
+     "base": -0.9987,
+     "full": -0.4069
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00149
+    "selftest_max_dev": 0.0016
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.202874,
-    "mu_h": 0.045956,
+    "h_sessions": 62,
+    "sigma_h": 0.21449,
+    "mu_h": 0.057924,
     "G": {
-     "bear": -4.09,
-     "base": -2.47,
-     "full": 0.04
+     "bear": -4.11,
+     "base": -2.58,
+     "full": -0.2
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0013,
-     "base": 0.0088,
-     "full": 0.5884
+     "bear": 0.0012,
+     "base": 0.0071,
+     "full": 0.2841
     },
     "p_touch": {
      "bear": 0.0021,
-     "base": 0.016,
-     "full": 0.9237
+     "base": 0.0136,
+     "full": 0.6615
     },
     "required_cagr": {
-     "bear": -0.9638,
-     "base": -0.8657,
-     "full": 0.0364
+     "bear": -0.9707,
+     "base": -0.8911,
+     "full": -0.1598
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00221
+    "selftest_max_dev": 0.00356
    },
    "market": "EG"
   },
