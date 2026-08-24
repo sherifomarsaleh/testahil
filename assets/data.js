@@ -3800,14 +3800,14 @@ const LEDGER = [
   {
     instrument:"ADCB", asset_class:"equity",
     anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:14.42, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-21", grade_date_projected:"2026-08-24", grade_note:"The 1 month calendar window closed on 2026-08-24, which the library does not yet reach; graded on 2026-08-21, the last session inside the window and 3 calendar day(s) short. The published percentiles are untouched.", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3177,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
     p5:12.55, p25:13.7, p50:14.46, p75:15.27, p95:16.63,
     touch:{ "+5":48, "+10":21, "+15":8, "+20":3, "-5":44, "-10":16 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:15.32, realized_high:15.8, realized_low:14.48,
+    in_90:true, in_50:false, realized_quantile:0.757, median_err:0.0595,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"ADCB", asset_class:"equity",
