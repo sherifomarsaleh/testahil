@@ -94,24 +94,17 @@ def sync_main(ticker: str, republish: bool = False) -> None:
         print("  branch is current with origin/main")
         return
     print(f"  origin/main is {behind} commit(s) ahead — merging before regenerating")
-
-    # A DIRTY TREE IS NOT A CONFLICT, AND MUST NOT BE REPORTED AS ONE (24-Aug-2026).
-    # `git merge` REFUSES outright when local changes would be overwritten — it never
-    # starts the merge, so `--diff-filter=U` is EMPTY. The handler below printed that
-    # empty list under a "hit conflicts" headline, so the operator was told to resolve
-    # conflicts by hand and handed nothing to resolve. It is also self-inflicted and
-    # guaranteed on any re-run: step 2 regenerates the surfaces into the working tree,
-    # so the SECOND invocation always arrives here dirty — which is precisely the run
-    # where origin/main has moved and the merge matters most.
-    #
-    # The local work is committed first rather than stashed. Step 5 commits it anyway,
-    # and a stash+pop would collide in assets/data.js for exactly the same reason the
-    # merge does, just one step later and with the stash still to unwind. This is the
-    # step a human did by hand on the ADIB republish ("Regenerate the derived surfaces
-    # for the ADIB republish") — folding it in makes the re-run path work unattended.
+    # ...AND THE REFUSAL IS ALSO PREVENTABLE, NOT ONLY DIAGNOSABLE. Step 2 of this
+    # very script regenerates the derived surfaces INTO the working tree, so the
+    # second invocation always arrives here dirty -- which is exactly the run where
+    # origin/main has moved and the merge matters most. Committing first is what a
+    # human does by hand at this point ("Regenerate the derived surfaces for the ADIB
+    # republish"); doing it here is what lets an interrupted publish be re-run without
+    # a human in the loop. Stash+pop would collide in assets/data.js for the same
+    # reason the merge does, one step later and with a stash still to unwind.
     if run(["git", "status", "--porcelain"]).strip():
         print("  working tree is dirty — committing it before the merge "
-              "(a dirty tree makes git refuse the merge outright)")
+              "(git refuses to start a merge over uncommitted overlapping edits)")
         run(["git", "add", "-A"])
         run(["git", "commit", "-q", "-m",
              f"Regenerate the derived surfaces for the {ticker} "
@@ -121,20 +114,31 @@ def sync_main(ticker: str, republish: bool = False) -> None:
     p = subprocess.run(["git", "merge", "origin/main", "--no-edit"],
                        cwd=ROOT, text=True, capture_output=True)
     if p.returncode != 0:
+        # A FAILED MERGE IS NOT ALWAYS A CONFLICT, AND SAYING SO SENDS THE READER
+        # TO THE WRONG FILE (24-Aug-2026). This branch used to assume every non-zero
+        # exit meant conflicted content and printed `--diff-filter=U`. When git
+        # REFUSES TO START the merge -- "Your local changes to the following files
+        # would be overwritten" -- there are no unmerged paths, so that list is
+        # EMPTY: the script printed "hit conflicts -- resolve by hand" followed by
+        # nothing at all, and the actual cause (uncommitted edits overlapping main's)
+        # never appeared. The remedies are opposites, which is what makes the
+        # misdiagnosis expensive: a real conflict is resolved in the file, a refused
+        # merge is resolved by committing first. Distinguish them on the unmerged
+        # set, and when there is none, relay git's own words rather than a guess.
         conflicts = run(["git", "diff", "--name-only", "--diff-filter=U"]).split()
-        if not conflicts:
-            # Still not a conflict. Report what git ACTUALLY said instead of inventing
-            # a diagnosis — the empty-list bug above was one guess standing in for the
-            # real error text, and it cost a publish run.
-            run(["git", "merge", "--abort"], check=False)
-            die("merge of origin/main FAILED, but no file is in conflict — so this is "
-                "not a resolve-by-hand situation. git said:\n\n"
-                + ((p.stdout or "") + (p.stderr or "")).strip()[:2000])
-        die("merge of origin/main hit conflicts — resolve by hand, then re-run:\n    "
-            + "\n    ".join(conflicts)
-            + "\n\n  Resolve ADDITIVELY: keep main's new ticker rows AND this ticker's"
-              "\n  row. Keep SITE.latest as main has it unless this is a first publish"
-              "\n  (a republish must not hijack the homepage hero).")
+        if conflicts:
+            die("merge of origin/main hit conflicts — resolve by hand, then re-run:\n    "
+                + "\n    ".join(conflicts)
+                + "\n\n  Resolve ADDITIVELY: keep main's new ticker rows AND this ticker's"
+                  "\n  row. Keep SITE.latest as main has it unless this is a first publish"
+                  "\n  (a republish must not hijack the homepage hero).")
+        die("git REFUSED to start the merge of origin/main — this is NOT a content "
+            "conflict, so there is nothing to resolve in a file. git said:\n\n    "
+            + "\n    ".join(((p.stderr or "") + (p.stdout or "")).strip().splitlines()[:12])
+            + "\n\n  Almost always: this ticker's edits are still uncommitted and touch "
+              "files\n  main also moved. Commit them on this branch first, then re-run — "
+              "the\n  merge can then resolve normally, and any real conflict will be "
+              "reported\n  by the branch above with the files actually named.")
     print("  merged origin/main cleanly")
 
 
