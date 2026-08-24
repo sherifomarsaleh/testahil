@@ -6756,16 +6756,16 @@ const FV_OVERLAY = {
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
    "ccy": "AED",
-   "spot": 1.2,
-   "anchor_date": "2026-07-24",
+   "spot": 1.25,
+   "anchor_date": "2026-08-21",
    "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
+   "fv_lag_days": 41,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.14,
    "fv_base": 1.85,
    "fv_full": 2.35,
-   "gap_base_pct": 54.2,
+   "gap_base_pct": 48.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
@@ -6778,13 +6778,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.096856,
+    "h_sessions": 21,
+    "sigma_h": 0.093733,
     "mu_h": 0.0,
     "G": {
-     "bear": -0.53,
-     "base": 4.47,
-     "full": 6.94
+     "bear": -0.98,
+     "base": 4.18,
+     "full": 6.73
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6792,46 +6792,46 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.4596,
-     "base": 179.2544,
-     "full": 3180.5547
+     "bear": -0.6689,
+     "base": 109.4436,
+     "full": 1948.3696
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00723
+    "selftest_max_dev": 0.00533
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.175973,
-    "mu_h": 0.008299,
+    "h_sessions": 64,
+    "sigma_h": 0.162705,
+    "mu_h": -0.008032,
     "G": {
-     "bear": -0.29,
-     "base": 2.46,
-     "full": 3.82
+     "bear": -0.57,
+     "base": 2.41,
+     "full": 3.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3564,
-     "base": 0.0112,
-     "full": 0.0009
+     "bear": 0.2881,
+     "base": 0.0103,
+     "full": 0.0007
     },
     "p_touch": {
-     "bear": 0.6819,
-     "base": 0.0188,
-     "full": 0.0016
+     "bear": 0.5118,
+     "base": 0.0179,
+     "full": 0.0014
     },
     "required_cagr": {
-     "bear": -0.1855,
-     "base": 4.6489,
-     "full": 13.7078
+     "bear": -0.3082,
+     "base": 3.7979,
+     "full": 11.492
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00189
+    "selftest_max_dev": 0.00294
    },
    "market": "AE"
   },
