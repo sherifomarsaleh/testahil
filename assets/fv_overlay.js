@@ -696,6 +696,98 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
+   "ticker": "JUFO",
+   "name": "Juhayna Food Industries",
+   "code": "EGX:JUFO",
+   "ccy": "EGP",
+   "spot": 26.88,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 22,
+   "fv_base": 26,
+   "fv_full": 33,
+   "gap_base_pct": -3.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.111707,
+    "mu_h": 0.016237,
+    "G": {
+     "bear": -1.79,
+     "base": -0.3,
+     "full": 1.84
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0271,
+     "base": 0.2959,
+     "full": 0.0404
+    },
+    "p_touch": {
+     "bear": 0.0449,
+     "base": 0.5724,
+     "full": 0.0613
+    },
+    "required_cagr": {
+     "bear": -0.9097,
+     "base": -0.3293,
+     "full": 10.7224
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00143
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.199409,
+    "mu_h": 0.049357,
+    "G": {
+     "bear": -1.0,
+     "base": -0.17,
+     "full": 1.03
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0834,
+     "base": 0.3078,
+     "full": 0.1798
+    },
+    "p_touch": {
+     "bear": 0.1629,
+     "base": 0.7093,
+     "full": 0.2876
+    },
+    "required_cagr": {
+     "bear": -0.5513,
+     "base": -0.1247,
+     "full": 1.2716
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00319
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "OCDI",
    "name": "Sixth of October Development & Investment",
    "code": "EGX:OCDI",
@@ -2166,98 +2258,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00088
    },
    "market": "AE"
-  },
-  {
-   "ticker": "JUFO",
-   "name": "Juhayna Food Industries",
-   "code": "EGX:JUFO",
-   "ccy": "EGP",
-   "spot": 28.9,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 22,
-   "fv_base": 26,
-   "fv_full": 33,
-   "gap_base_pct": -10.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.11072,
-    "mu_h": 0.014769,
-    "G": {
-     "bear": -2.46,
-     "base": -0.96,
-     "full": 1.2
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0101,
-     "base": 0.1095,
-     "full": 0.1138
-    },
-    "p_touch": {
-     "bear": 0.0156,
-     "base": 0.1914,
-     "full": 0.1766
-    },
-    "required_cagr": {
-     "bear": -0.9621,
-     "base": -0.7189,
-     "full": 3.9135
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00163
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.205703,
-    "mu_h": 0.045985,
-    "G": {
-     "bear": -1.33,
-     "base": -0.51,
-     "full": 0.64
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0509,
-     "base": 0.1923,
-     "full": 0.3049
-    },
-    "p_touch": {
-     "bear": 0.0967,
-     "base": 0.4033,
-     "full": 0.4933
-    },
-    "required_cagr": {
-     "bear": -0.6642,
-     "base": -0.3449,
-     "full": 0.7001
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00229
-   },
-   "market": "EG"
   },
   {
    "ticker": "TMPV",
