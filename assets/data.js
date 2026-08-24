@@ -4786,9 +4786,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:626.04, p25:686.07, p50:724.14, p75:764.62, p95:837.88,
     touch:{ "+5":53, "+10":25, "+15":11, "+20":5, "-5":38, "-10":14 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:782.25, realized_high:799.99, realized_low:685,
+    in_90:true, in_50:false, realized_quantile:0.798, median_err:0.0802,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"ORAS", asset_class:"equity",
