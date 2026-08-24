@@ -3180,6 +3180,98 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
+   "ticker": "ORAS",
+   "name": "Orascom Construction",
+   "code": "EGX:ORAS",
+   "ccy": "EGP",
+   "spot": 782.25,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 54,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 740,
+   "fv_base": 928,
+   "fv_full": 1272,
+   "gap_base_pct": 18.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.116109,
+    "mu_h": 0.028345,
+    "G": {
+     "bear": -0.48,
+     "base": 1.47,
+     "full": 4.19
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1969,
+     "base": 0.087,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.3943,
+     "base": 0.1281,
+     "full": 0.0025
+    },
+    "required_cagr": {
+     "bear": -0.4864,
+     "base": 6.7701,
+     "full": 340.7421
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00138
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.19874,
+    "mu_h": 0.072001,
+    "G": {
+     "bear": -0.28,
+     "base": 0.86,
+     "full": 2.45
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2226,
+     "base": 0.2745,
+     "full": 0.0216
+    },
+    "p_touch": {
+     "bear": 0.5471,
+     "base": 0.4195,
+     "full": 0.0333
+    },
+    "required_cagr": {
+     "bear": -0.1992,
+     "base": 0.9807,
+     "full": 5.9914
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00315
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "SNB",
    "name": "The Saudi National Bank",
    "code": "TADAWUL:1180",
@@ -5296,98 +5388,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "ORAS",
-   "name": "Orascom Construction",
-   "code": "EGX:ORAS",
-   "ccy": "EGP",
-   "spot": 717.9,
-   "anchor_date": "2026-07-29",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 29,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 740,
-   "fv_base": 928,
-   "fv_full": 1272,
-   "gap_base_pct": 29.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.089247,
-    "mu_h": 0.014795,
-    "G": {
-     "bear": 0.34,
-     "base": 2.88,
-     "full": 6.41
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4156,
-     "base": 0.0086,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.6539,
-     "base": 0.0132,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": 0.4388,
-     "base": 20.7675,
-     "full": 956.3658
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00132
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.18181,
-    "mu_h": 0.045874,
-    "G": {
-     "bear": 0.17,
-     "base": 1.41,
-     "full": 3.15
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.5418,
-     "base": 0.0973,
-     "full": 0.0067
-    },
-    "p_touch": {
-     "bear": 0.8487,
-     "base": 0.1542,
-     "full": 0.0111
-    },
-    "required_cagr": {
-     "bear": 0.1289,
-     "base": 1.7921,
-     "full": 8.8558
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00241
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RAYA",
    "name": "Raya Holding",
    "code": "EGX:RAYA",
@@ -6492,90 +6492,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "TMGH",
-   "name": "Talaat Moustafa Group Holding",
-   "code": "EGX:TMGH",
-   "ccy": "EGP",
-   "spot": 100.5,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-17",
-   "fv_lag_days": 35,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 83.6,
-   "fv_base": 147.12,
-   "fv_full": 189.6,
-   "gap_base_pct": 46.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.092808,
-    "mu_h": 0.014815,
-    "G": {
-     "bear": -1.98,
-     "base": 4.11,
-     "full": 6.84
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.8902,
-     "base": 95.8429,
-     "full": 2031.6718
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00138
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.169508,
-    "mu_h": 0.045801,
-    "G": {
-     "bear": -1.09,
-     "base": 2.25,
-     "full": 3.74
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0702,
-     "base": 0.0255,
-     "full": 0.0032
-    },
-    "p_touch": {
-     "bear": 0.1383,
-     "base": 0.0411,
-     "full": 0.0058
-    },
-    "required_cagr": {
-     "bear": -0.5212,
-     "base": 3.5922,
-     "full": 11.6674
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00191
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RIBL",
    "name": "Riyad Bank",
    "code": "TADAWUL:1010",
@@ -6826,6 +6742,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00189
    },
    "market": "AE"
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding",
+   "code": "EGX:TMGH",
+   "ccy": "EGP",
+   "spot": 97.8,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-17",
+   "fv_lag_days": 67,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 83.6,
+   "fv_base": 147.12,
+   "fv_full": 189.6,
+   "gap_base_pct": 50.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.091073,
+    "mu_h": 0.021745,
+    "G": {
+     "bear": -1.72,
+     "base": 4.48,
+     "full": 7.27
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.8478,
+     "base": 133.2747,
+     "full": 2817.3423
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00105
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.162545,
+    "mu_h": 0.059734,
+    "G": {
+     "bear": -0.97,
+     "base": 2.51,
+     "full": 4.07
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.073,
+     "base": 0.0197,
+     "full": 0.0025
+    },
+    "p_touch": {
+     "bear": 0.153,
+     "base": 0.0301,
+     "full": 0.0041
+    },
+    "required_cagr": {
+     "bear": -0.4661,
+     "base": 4.1207,
+     "full": 13.1253
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00264
+   },
+   "market": "EG"
   },
   {
    "ticker": "EFIH",
@@ -7164,90 +7164,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "RMDA",
-   "name": "Rameda Pharmaceuticals",
-   "code": "EGX:RMDA",
-   "ccy": "EGP",
-   "spot": 4.98,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 9,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.11,
-   "fv_base": 2.77,
-   "fv_full": 3.48,
-   "gap_base_pct": -44.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.090326,
-    "mu_h": 0.013958,
-    "G": {
-     "bear": -9.51,
-     "base": -6.49,
-     "full": -3.97
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9991,
-     "full": -0.9864
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0021
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.187283,
-    "mu_h": 0.04515,
-    "G": {
-     "bear": -4.59,
-     "base": -3.13,
-     "full": -1.91
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0008,
-     "base": 0.0037,
-     "full": 0.0194
-    },
-    "p_touch": {
-     "bear": 0.0013,
-     "base": 0.0067,
-     "full": 0.0369
-    },
-    "required_cagr": {
-     "bear": -0.9678,
-     "base": -0.9043,
-     "full": -0.7615
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00138
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "AAPL",
    "name": "Apple Inc.",
    "code": "NASDAQ:AAPL",
@@ -7500,6 +7416,90 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "RMDA",
+   "name": "Rameda Pharmaceuticals",
+   "code": "EGX:RMDA",
+   "ccy": "EGP",
+   "spot": 6.35,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-13",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.11,
+   "fv_base": 2.77,
+   "fv_full": 3.48,
+   "gap_base_pct": -56.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.145349,
+    "mu_h": 0.024885,
+    "G": {
+     "bear": -7.58,
+     "base": -5.71,
+     "full": -4.14
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": -0.9993
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00148
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.239759,
+    "mu_h": 0.065522,
+    "G": {
+     "bear": -4.6,
+     "base": -3.46,
+     "full": -2.51
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0007,
+     "base": 0.0024,
+     "full": 0.0078
+    },
+    "p_touch": {
+     "bear": 0.0012,
+     "base": 0.0041,
+     "full": 0.0152
+    },
+    "required_cagr": {
+     "bear": -0.9878,
+     "base": -0.9638,
+     "full": -0.9098
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0036
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "DSCW",
    "name": "Dice For Ready-Made Garments",
    "code": "EGX:DSCW",
@@ -7580,16 +7580,16 @@ const FV_OVERLAY = {
    "name": "El Nasr Clothing & Textiles (Kabo)",
    "code": "EGX:KABO",
    "ccy": "EGP",
-   "spot": 8.8,
-   "anchor_date": "2026-07-22",
+   "spot": 9.12,
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-06",
-   "fv_lag_days": 16,
+   "fv_lag_days": 48,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.42,
    "fv_base": 2.39,
    "fv_full": 3.52,
-   "gap_base_pct": -72.8,
+   "gap_base_pct": -73.8,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7602,13 +7602,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.130325,
-    "mu_h": 0.014665,
+    "h_sessions": 22,
+    "sigma_h": 0.147319,
+    "mu_h": 0.027043,
     "G": {
-     "bear": -14.0,
-     "base": -10.0,
-     "full": -7.03
+     "bear": -12.62,
+     "base": -9.09,
+     "full": -6.46
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7623,16 +7623,16 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00219
+    "selftest_max_dev": 0.00188
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.243701,
-    "mu_h": 0.046623,
+    "h_sessions": 62,
+    "sigma_h": 0.254694,
+    "mu_h": 0.070892,
     "G": {
-     "bear": -7.48,
-     "base": -5.35,
-     "full": -3.76
+     "bear": -7.3,
+     "base": -5.26,
+     "full": -3.74
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7640,14 +7640,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9993,
-     "base": -0.9946,
-     "full": -0.9744
+     "bear": -0.9994,
+     "base": -0.9953,
+     "full": -0.9778
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00314
+    "selftest_max_dev": 0.00436
    },
    "market": "EG"
   },
