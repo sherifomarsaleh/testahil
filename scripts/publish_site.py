@@ -155,36 +155,61 @@ def ledger_instrument(key: str) -> str:
 
 
 def market_of(ticker: str) -> str | None:
-    """Market prefix from the published entry's own `code` ("EGX:PHAR" -> "EG").
+    """Market for a published key, from the SAME authority the site itself uses.
 
-    Parsed by LOADING data.js, not by regex: the entry is the authority on the
-    market, and a regex over a file this size has already mis-parsed it once.
+    RESOLVED THROUGH THE GENERATED REGISTRY (assets/markets.js), not from the
+    entry's `code` prefix. Market is decided by FILE PLACEMENT --
+    engine/raw_ohlc/{MARKET}/{TICKER}.csv -- which is what
+    build_market_registry.py reads and what ledger.html, the picker and every
+    other surface group by. Step 2 regenerates that registry immediately before
+    this is called, so it is never stale here.
 
-    READS BOTH PUBLISHED OBJECTS (fixed 23-Aug-2026). It used to read TICKERS
-    alone, but the three metals are entries of `const METALS = {...}`, so every
-    one of them resolved to None and step 2 silently SKIPPED the Ticker Picker
-    overlay -- printing "no market resolved" and carrying on. That is the same
-    failure the 9-Aug-2026 comment below records for SWDY/SCEM/EGCH, which
-    shipped live and invisible on the picker; it was fixed for equities and left
-    in place for metals. Metals codes are not exchange-prefixed either
-    ("XPT/USD", not "ADX:x"), so the bare code is accepted as its own key."""
+    WHY THIS STOPPED BEING A HAND-LISTED MAP (24-Aug-2026). The map was patched
+    once per defect and each patch closed only the instance in front of it:
+
+      - 9-Aug   SWDY/SCEM/EGCH shipped live and invisible on the Ticker Picker.
+      - 23-Aug  the three metals live in `const METALS = {...}`, so all three
+                resolved to None; fixed by reading both objects and adding
+                "XAU/USD"/"XPT/USD".
+      - 23-Aug  every Qatari name carries QSE: while the map held only QE:;
+                fixed by sourcing the equity half from apply_technicals.
+      - 24-Aug  SILVER's code is "XAG/USD", which that metals patch did not
+                list -- so SILVER alone of the 93 published keys resolved to
+                None. Two things follow silently from that one None: step 2
+                SKIPS the fair-value overlay ("no market resolved"), and step 4
+                misses the non-equity exemption and instead demands SILVER
+                appear on the EQUITY registers, where no metal has ever been --
+                i.e. a silver republish is blocked outright by a gate asserting
+                something that was never true.
+
+    Four instances, one class: a hand-maintained table standing in for a fact
+    the repo already computes from file placement. So the table stops being the
+    decision. The `code` prefix survives only as a fallback for a key the
+    registry has no row for, which today is none of the 93.
+
+    Loaded in node rather than regexed: markets.js exports marketOf(), which
+    already handles the LEDGER-vs-TICKERS spelling split (Gold/Samsung/Kakao),
+    and re-implementing that lookup here is how the two would drift apart."""
+    js = ("const fs=require('fs'),vm=require('vm');const c={};vm.createContext(c);"
+          "vm.runInContext(fs.readFileSync('assets/markets.js','utf8'),c);"
+          f"process.stdout.write(String(c.marketOf({json.dumps(ticker)}) || ''));")
+    mkt = run(["node", "-e", js]).strip()
+    if mkt:
+        return mkt
+
+    # Fallback: the published entry's own `code` prefix, read by LOADING data.js
+    # (both objects -- the metals are entries of `const METALS = {...}`), never by
+    # regex: a regex over a file this size has already mis-parsed it once.
     js = ("const fs=require('fs'),vm=require('vm');const c={};vm.createContext(c);"
           "vm.runInContext(fs.readFileSync('assets/data.js','utf8')"
           "+';globalThis.__T=Object.assign({},typeof METALS!==\"undefined\"?METALS:{},TICKERS);',c);"
           f"process.stdout.write(String((c.__T[{json.dumps(ticker)}]||{{}}).code||''));")
     code = run(["node", "-e", js]).strip()
-    # "QSE" ADDED 23-Aug-2026. Every Qatari name in TICKERS carries the prefix
-    # QSE: (IQCD, QNB, QGTS) and this map only held "QE:", so market_of returned
-    # None for all three and step 2 printed "no market resolved" and SKIPPED the
-    # fair-value overlay -- the identical silent-skip the metals comment above
-    # records, and the one the SWDY/SCEM/EGCH note records before that. Fixed for
-    # equities, then for metals, and left open for Qatar: the third instance of
-    # one class of defect, so the map is now sourced from the sibling that already
-    # had it right rather than hand-listed a fourth time.
     sys.path.insert(0, os.path.join(ROOT, "engine"))
     from apply_technicals import EXCHANGE_MARKET
     return {**EXCHANGE_MARKET,
             "XPT/USD": "XPT", "XAU/USD": "XAU"}.get(code.split(":")[0])
+
 
 
 def surfaces(ticker: str) -> None:
@@ -213,11 +238,32 @@ def surfaces(ticker: str) -> None:
         out = run(["python3", "engine/fv_overlay.py",
                    "--js", "assets/fv_overlay.js"])
         blocked = [l for l in out.splitlines() if "BLOCKED" in l]
+        # BLOCKED USED TO MEAN "ABSENT FROM THE PICKER". It no longer always does
+        # (24-Aug-2026). picker.html now LISTS a name whose fair value is merely in the
+        # wrong unit — a corporate action changed the share count after the study was
+        # priced, so no honest gap exists — showing its price and dashing every
+        # fair-value-derived cell. That name reaches the reader; it just does not claim
+        # a gap it cannot compute. Failing the publish on it would be enforcing a
+        # premise that is no longer true, and the only way past would be to re-base the
+        # study's number from a publish script, which is a research decision.
+        #
+        # The check stays for every OTHER block reason, because those really do drop
+        # the row. And it is no longer the last word either way: check_ticker_surfaces
+        # renders the picker in a browser and asserts the ticker is in the DOM, which
+        # is the claim this guard was always a proxy for.
+        SOFT_BLOCKS = ("share basis changed since the fair value was struck",)
         if blocked:
-            print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
-            for l in blocked:
-                print("   ", l.strip()[:150])
-            if any(ticker in l for l in blocked):
+            hard = [l for l in blocked if not any(s in l for s in SOFT_BLOCKS)]
+            soft = [l for l in blocked if l not in hard]
+            if hard:
+                print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
+                for l in hard:
+                    print("   ", l.strip()[:150])
+            if soft:
+                print("  fv_overlay blocked WITHOUT a gap, still listed on the picker:")
+                for l in soft:
+                    print("   ", l.strip()[:150])
+            if any(ticker in l for l in hard):
                 die(f"{ticker} is BLOCKED from the fair-value overlay — it would publish "
                     f"without reaching the Ticker Picker. Most often the entry is missing "
                     f"`fairAsof` (the close the FAIR VALUE is struck on); without it the "

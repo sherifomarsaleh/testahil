@@ -211,7 +211,7 @@ window.addEventListener('error', function(e){
   }catch(_){}
 });
 </script>
-<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260824q"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260824u"></script>
 <script src="assets/fv_overlay.js?v=20260806"></script>
 <script>
 (function(){
@@ -287,15 +287,17 @@ window.addEventListener('error', function(e){
     switch(key){
       case 'stock': return ((typeof TICKERS !== 'undefined' && TICKERS[r.ticker] && TICKERS[r.ticker].name) || r.name || r.ticker).toLowerCase();
       case 'price': return r.spot;
-      case 'fair':  return r.fv_base;
-      case 'gap':   return r.gap_base_pct;
+      case 'fair':  return r.fv_base == null ? null : r.fv_base;
+      case 'gap':   return r.gap_base_pct == null ? null : r.gap_base_pct;
       // Band ONLY. This used to be a composite (BANDORDER - p_touch) which meant
       // two rows in the same band virtually never tied, so the secondary ranking
       // below could never break anything and was silently ignored. The p_touch
       // tiebreak now lives where the user can see and change it: the secondary picker.
-      case 'reach': return BANDORDER[o.band];
-      case 'touch': return o.p_touch ? o.p_touch.base : null;                    // null = "no meaningful probability"
-      case 'cash':  return o.beats_cash ? 1 : 0;
+      // `o` is absent on a basis-blocked row (listed, but with no fair-value-derived
+      // fields). null here, and cmpField already sorts nulls last in either direction.
+      case 'reach': return o ? BANDORDER[o.band] : null;
+      case 'touch': return (o && o.p_touch) ? o.p_touch.base : null;             // null = "no meaningful probability"
+      case 'cash':  return o ? (o.beats_cash ? 1 : 0) : null;
       case 'asof':  return r.anchor_date || '';
     }
   }
@@ -324,7 +326,17 @@ window.addEventListener('error', function(e){
 
   function render(){
     var h = state.h;
-    var rows = FV_OVERLAY.rows.filter(function(r){ return r[h]; });
+    // A name whose fair value is merely in the WRONG UNIT still belongs on this page.
+    // fv_overlay blocks it (a corporate action after the study changed the share count,
+    // so fair-per-share and spot are no longer comparable and no honest gap exists), and
+    // a blocked row carries no horizon block — so the plain `r[h]` filter would drop it
+    // silently. That is the exact defect scripts/check_ticker_surfaces.js was written
+    // for: SWDY, SCEM and EGCH each shipped green while absent from this table, and a
+    // reader had to ask. Keep the name, show the fair-value columns as unavailable, and
+    // say why. Every other block reason still filters out, as before.
+    var rows = FV_OVERLAY.rows.filter(function(r){
+      return r[h] || r.blocked_reason === 'share_basis_changed';
+    });
     // stable alphabetical base so equal-value ties resolve the same way every time
     rows = rows.slice().sort(function(a,b){ return fieldFor('stock',a,h) < fieldFor('stock',b,h) ? -1 : 1; });
     rows.sort(function(a,b){ return cmp(a, b, h); });
@@ -332,6 +344,12 @@ window.addEventListener('error', function(e){
     var marketRows = state.market === 'ALL' ? rows : rows.filter(function(r){ return mktOf(r) === state.market; });
     var shown = marketRows.filter(function(r){
       var o = r[h];
+      // A basis-blocked row has no reachability, no cash comparison and no direction —
+      // that is the whole point of blocking it. It is listed unfiltered, but the moment
+      // the reader asks for one of those properties it cannot answer, so it drops out
+      // rather than pretending. `undefined <= 0` is false, so the up-filter would
+      // otherwise have kept it in a list of undervalued names.
+      if (!o) return !(state.reach || state.cash || state.up);
       if (state.reach && o.band !== 'IN-REACH') return false;
       if (state.cash && !o.beats_cash) return false;
       if (state.up && r.gap_base_pct <= 0) return false;
@@ -369,6 +387,25 @@ window.addEventListener('error', function(e){
       var o = r[h];
       var t = (typeof TICKERS !== 'undefined') && TICKERS[r.ticker];
       var nm = (t && t.name) || r.name || r.ticker;
+      if (!o){
+        // Basis-blocked: listed, but every fair-value-derived cell is unavailable
+        // rather than wrong. Spot is still spot, so it is shown.
+        var why = 'A corporate action'
+                + (r.ca_factor ? ' (×' + r.ca_factor + ')' : '')
+                + ' went ex after this study was priced, so its per-share fair value and '
+                + 'today’s price are on different share counts. A gap between them '
+                + 'would be arithmetic, not information. Pending a study refresh.';
+        return '<tr>'
+          + '<td class="pk-stock"><a href="'+pageFor(r.ticker)+'"><b>'+nm+'</b></a> <span class="pk-flag">'+(r.code||'')+'</span> <span class="pk-flag" title="'+why+'">(fair value pending re-basing)</span></td>'
+          + '<td class="num">'+(r.spot != null ? r.spot : '—')+'</td>'
+          + '<td class="num">—</td>'
+          + '<td class="num">—</td>'
+          + '<td>—</td>'
+          + '<td class="num">—</td>'
+          + '<td>—</td>'
+          + '<td class="pk-flag">'+(r.anchor_date||'')+'</td>'
+          + '</tr>';
+      }
       // already-converged rows: a bare "90%†" reads as a normal, notable number and
       // invites "why not 100%?" -- the true answer is a real but unhelpful modelling
       // detail (daily-close monitoring vs. a continuous barrier), not a signal about
