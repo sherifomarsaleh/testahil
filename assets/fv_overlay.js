@@ -2168,98 +2168,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "GBCO",
-   "name": "GB Corp (Ghabbour)",
-   "code": "EGX:GBCO",
-   "ccy": "EGP",
-   "spot": 31.31,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-08",
-   "fv_lag_days": 14,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 23.3,
-   "fv_base": 35.7,
-   "fv_full": 51,
-   "gap_base_pct": 14.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.139884,
-    "mu_h": 0.0149,
-    "G": {
-     "bear": -2.11,
-     "base": 0.94,
-     "full": 3.49
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0176,
-     "base": 0.1661,
-     "full": 0.0036
-    },
-    "p_touch": {
-     "bear": 0.0275,
-     "base": 0.2611,
-     "full": 0.0059
-    },
-    "required_cagr": {
-     "bear": -0.9712,
-     "base": 3.8286,
-     "full": 347.8553
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00195
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.252336,
-    "mu_h": 0.046491,
-    "G": {
-     "bear": -1.17,
-     "base": 0.52,
-     "full": 1.93
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0703,
-     "base": 0.3414,
-     "full": 0.0368
-    },
-    "p_touch": {
-     "bear": 0.1323,
-     "base": 0.5613,
-     "full": 0.0603
-    },
-    "required_cagr": {
-     "bear": -0.6933,
-     "base": 0.6902,
-     "full": 6.0396
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00304
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -3822,6 +3730,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00601
    },
    "market": "KR"
+  },
+  {
+   "ticker": "GBCO",
+   "name": "GB Corp (Ghabbour)",
+   "code": "EGX:GBCO",
+   "ccy": "EGP",
+   "spot": 29.51,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-08",
+   "fv_lag_days": 46,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 23.3,
+   "fv_base": 35.7,
+   "fv_full": 51,
+   "gap_base_pct": 21.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.121613,
+    "mu_h": 0.017135,
+    "G": {
+     "bear": -1.94,
+     "base": 1.57,
+     "full": 4.5
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0216,
+     "base": 0.0626,
+     "full": 0.0012
+    },
+    "p_touch": {
+     "bear": 0.0351,
+     "base": 0.0957,
+     "full": 0.0015
+    },
+    "required_cagr": {
+     "bear": -0.9413,
+     "base": 8.8263,
+     "full": 708.9236
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00143
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.212697,
+    "mu_h": 0.05087,
+    "G": {
+     "bear": -1.11,
+     "base": 0.9,
+     "full": 2.57
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0709,
+     "base": 0.2178,
+     "full": 0.0148
+    },
+    "p_touch": {
+     "bear": 0.1386,
+     "base": 0.3522,
+     "full": 0.0235
+    },
+    "required_cagr": {
+     "bear": -0.6114,
+     "base": 1.1419,
+     "full": 7.9208
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00336
+   },
+   "market": "EG"
   },
   {
    "ticker": "MODON",
