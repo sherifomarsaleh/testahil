@@ -5940,98 +5940,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ALDAR",
-   "name": "Aldar Properties PJSC",
-   "code": "ADX:ALDAR",
-   "ccy": "AED",
-   "spot": 7.61,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-08",
-   "fv_lag_days": 16,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 7.95,
-   "fv_base": 10.18,
-   "fv_full": 11.77,
-   "gap_base_pct": 33.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.085109,
-    "mu_h": 0.002625,
-    "G": {
-     "bear": 0.51,
-     "base": 3.42,
-     "full": 5.12
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3006,
-     "base": 0.0018,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.5057,
-     "base": 0.0023,
-     "full": 0.0002
-    },
-    "required_cagr": {
-     "bear": 0.6896,
-     "base": 31.8365,
-     "full": 186.3707
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00163
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.158589,
-    "mu_h": 0.010458,
-    "G": {
-     "bear": 0.28,
-     "base": 1.83,
-     "full": 2.75
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4097,
-     "base": 0.0381,
-     "full": 0.0067
-    },
-    "p_touch": {
-     "bear": 0.7296,
-     "base": 0.065,
-     "full": 0.0108
-    },
-    "required_cagr": {
-     "bear": 0.191,
-     "base": 2.2022,
-     "full": 4.7223
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00145
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "SWDY",
    "name": "Elsewedy Electric",
    "code": "EGX:SWDY",
@@ -6396,6 +6304,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base above p95",
     "selftest_max_dev": 0.00118
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "ALDAR",
+   "name": "Aldar Properties PJSC",
+   "code": "ADX:ALDAR",
+   "ccy": "AED",
+   "spot": 7.7,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-08",
+   "fv_lag_days": 44,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 7.95,
+   "fv_base": 10.18,
+   "fv_full": 11.77,
+   "gap_base_pct": 32.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.071978,
+    "mu_h": -0.006515,
+    "G": {
+     "bear": 0.44,
+     "base": 3.88,
+     "full": 5.9
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2817,
+     "base": 0.0006,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.5115,
+     "base": 0.0009,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": 0.4673,
+     "base": 27.5157,
+     "full": 161.7155
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.001
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.134415,
+    "mu_h": -0.020998,
+    "G": {
+     "bear": 0.24,
+     "base": 2.08,
+     "full": 3.16
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3345,
+     "base": 0.0158,
+     "full": 0.002
+    },
+    "p_touch": {
+     "bear": 0.6985,
+     "base": 0.0284,
+     "full": 0.0038
+    },
+    "required_cagr": {
+     "bear": 0.1363,
+     "base": 2.0551,
+     "full": 4.4594
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00108
    },
    "market": "AE"
   },
