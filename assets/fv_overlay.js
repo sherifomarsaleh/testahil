@@ -5296,98 +5296,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "FWRY",
-   "name": "Fawry",
-   "code": "EGX:FWRY",
-   "ccy": "EGP",
-   "spot": 19.3,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 11.5,
-   "fv_base": 14.7,
-   "fv_full": 20.3,
-   "gap_base_pct": -23.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.092533,
-    "mu_h": 0.014914,
-    "G": {
-     "bear": -5.6,
-     "base": -2.94,
-     "full": 0.55
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.0051,
-     "full": 0.3202
-    },
-    "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0073,
-     "full": 0.503
-    },
-    "required_cagr": {
-     "bear": -0.998,
-     "base": -0.9619,
-     "full": 0.8334
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00147
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.185925,
-    "mu_h": 0.046072,
-    "G": {
-     "bear": -2.78,
-     "base": -1.46,
-     "full": 0.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0056,
-     "base": 0.039,
-     "full": 0.4883
-    },
-    "p_touch": {
-     "bear": 0.0104,
-     "base": 0.0745,
-     "full": 0.7691
-    },
-    "required_cagr": {
-     "bear": -0.8739,
-     "base": -0.6635,
-     "full": 0.2239
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00212
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RAYA",
    "name": "Raya Holding",
    "code": "EGX:RAYA",
@@ -5568,6 +5476,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00262
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "FWRY",
+   "name": "Fawry",
+   "code": "EGX:FWRY",
+   "ccy": "EGP",
+   "spot": 19.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 11.5,
+   "fv_base": 14.7,
+   "fv_full": 20.3,
+   "gap_base_pct": -23.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.085009,
+    "mu_h": 0.017553,
+    "G": {
+     "bear": -6.03,
+     "base": -3.14,
+     "full": 0.66
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.0038,
+     "full": 0.2937
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.006,
+     "full": 0.4536
+    },
+    "required_cagr": {
+     "bear": -0.9979,
+     "base": -0.9594,
+     "full": 0.9514
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00083
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.169531,
+    "mu_h": 0.051762,
+    "G": {
+     "bear": -3.02,
+     "base": -1.58,
+     "full": 0.33
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0039,
+     "base": 0.0298,
+     "full": 0.4886
+    },
+    "p_touch": {
+     "bear": 0.0068,
+     "base": 0.0574,
+     "full": 0.7488
+    },
+    "required_cagr": {
+     "bear": -0.8713,
+     "base": -0.6564,
+     "full": 0.2496
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0026
    },
    "market": "EG"
   },
