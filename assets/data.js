@@ -799,28 +799,28 @@ const TICKERS = {
     name: "DEWA (Dubai Electricity and Water Authority)",
     nameAr: "هيئة كهرباء ومياه دبي",
     code: "DFM:DEWA",
-    spot: 2.67,
-    spotDate: "close 24 Jul 2026",
+    spot: 2.70,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 2.18, base: 3.32, full: 4.92 },      // 12 Jul 2026 -- four-lens weighted central 3.32 (+19.1% vs spot 2.79). Lenses: dividend discount (policy lens, primary, 35%) 3.83 off the AED 6.2bn/yr floor to Oct-2027, FCFF DCF (20%, ceiling -- 87% of EV is terminal value, disclosed) 3.36, relative EV/EBITDA vs GCC utility peers (25%) 2.93, justified P/B off the regulated return spread (20%) 2.91. bear/full = weighted bear/bull. The crux is the post-Oct-2027 dividend-policy signal (undecided): market-implied perpetual growth is just 1.3-2.3%, well below the DCF's 2.5% terminal assumption. Beta 0.50 used vs 0.42 regressed (equal-weight 14-name UAE proxy, DFM General Index not programmatically retrievable), sensitised 0.40-0.70. WACC 6.24%/6.27% (rating/CDS ERP basis).
     dist: {
-      t20: { label:"1 month",   p5:2.41, p25:2.57, p50:2.68, p75:2.79, p95:2.97, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:2.24, p25:2.51, p50:2.70, p75:2.89, p95:3.25, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:2.46, p25:2.60, p50:2.70, p75:2.80, p95:2.96, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:2.28, p25:2.53, p50:2.70, p75:2.88, p95:3.19, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [3.30, 0, 7], [3.20, 1, 11], [3.10, 2, 17], [3.00, 6, 28], [2.90, 15, 43], [2.80, 37, 63], [2.70, 76, 87], [2.60, 55, 73], [2.50, 22, 46], [2.40, 7, 27]
+      [3.30, 0, 5], [3.20, 1, 8], [3.10, 2, 14], [3.00, 5, 25], [2.90, 16, 41], [2.80, 42, 65], [2.70, 100, 100], [2.60, 41, 64], [2.50, 13, 39], [2.40, 3, 21]
     ],
     levels: { res:[2.73, 2.82, 3.14], sup:[2.61, 2.55, 2.46] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 2.67 below a falling 20-day (2.74), a flat 50-day (2.71) and a flat 200-day (2.79). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.05 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 2.47\u20133.15; the last close sits 15% below that high and 8% above that low.",
+      summary: "The price closed 2.70 below a rising 20-day (2.74), a rising 50-day (2.75) and a flat 200-day (2.79). Momentum is neutral: RSI(14) is ~45 and the daily ATR near 0.05 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / \u22120.00 / \u22120.01). Over the last year it has ranged 2.47\u20133.15; the last close sits 14% below that high and 9% above that low.",
       bull: "A daily close back above 2.73 would clear the nearest resistance and open the 3.14 zone.",
       bear: "A close below 2.61 would break the nearest support and open the 2.46 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-24" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260713b",
@@ -6278,6 +6278,35 @@ const LEDGER = [
     note:"Cycle 5 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 4 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 1.0264 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9761, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.940 (outside the 0.25 dead zone); tilt +1.40% at 1M and +2.67% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:11.98, p25:14.61, p50:16.34, p75:18.27, p95:22.26,
     touch:{ "+5":82, "+10":66, "+15":51, "+20":39, "-5":57, "-10":35 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: DEWA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"DEWA", asset_class:"equity",
+    anchor_date:"2026-08-21", run_date:"2026-08-24", anchor_price:2.7, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-21", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.2154,
+    signal_z:-0.5544, signal_alpha:-0.003437,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 21-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24, but this name’s library ends 2026-08-21, so that cohort is not gradable yet: it stays OPEN and is graded on its own date once its close lands. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=10.0, width_cal=0.923. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.554 (outside the 0.25 dead zone); tilt -0.34% at 1M and -1.05% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 64) size the cone only.",
+    p5:2.46, p25:2.6, p50:2.7, p75:2.8, p95:2.96,
+    touch:{ "+5":30, "+10":7, "+15":2, "+20":0, "-5":29, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"DEWA", asset_class:"equity",
+    anchor_date:"2026-08-21", run_date:"2026-08-24", anchor_price:2.7, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.2213,
+    signal_z:-0.5544, signal_alpha:-0.010558,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 21-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24, but this name’s library ends 2026-08-21, so that cohort is not gradable yet: it stays OPEN and is graded on its own date once its close lands. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=10.0, width_cal=0.923. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.554 (outside the 0.25 dead zone); tilt -0.34% at 1M and -1.05% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 64) size the cone only.",
+    p5:2.28, p25:2.53, p50:2.7, p75:2.88, p95:3.19,
+    touch:{ "+5":55, "+10":29, "+15":14, "+20":6, "-5":55, "-10":25 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
