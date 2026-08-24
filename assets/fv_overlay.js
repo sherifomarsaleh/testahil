@@ -4744,98 +4744,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "ADNOCGAS",
-   "name": "ADNOC Gas",
-   "code": "ADX:ADNOCGAS",
-   "ccy": "AED",
-   "spot": 3.34,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-04",
-   "fv_lag_days": 20,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.3,
-   "fv_base": 3.79,
-   "fv_full": 4.6,
-   "gap_base_pct": 13.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.051524,
-    "mu_h": 0.00299,
-    "G": {
-     "bear": -0.23,
-     "base": 2.45,
-     "full": 6.21
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3755,
-     "base": 0.0116,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.6864,
-     "base": 0.0162,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.1346,
-     "base": 3.5574,
-     "full": 45.5732
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00109
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.098221,
-    "mu_h": 0.008942,
-    "G": {
-     "bear": -0.12,
-     "base": 1.29,
-     "full": 3.26
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.408,
-     "base": 0.1054,
-     "full": 0.0027
-    },
-    "p_touch": {
-     "bear": 0.8176,
-     "base": 0.1803,
-     "full": 0.0046
-    },
-    "required_cagr": {
-     "bear": -0.0471,
-     "base": 0.6579,
-     "full": 2.5979
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0013
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "EMPOWER",
    "name": "Emirates Central Cooling Systems Corporation PJSC",
    "code": "DFM:EMPOWER",
@@ -5662,6 +5570,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0026
    },
    "market": "EG"
+  },
+  {
+   "ticker": "ADNOCGAS",
+   "name": "ADNOC Gas",
+   "code": "ADX:ADNOCGAS",
+   "ccy": "AED",
+   "spot": 3.3,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 48,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.3,
+   "fv_base": 3.79,
+   "fv_full": 4.6,
+   "gap_base_pct": 14.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.043803,
+    "mu_h": 0.003026,
+    "G": {
+     "bear": 0.0,
+     "base": 3.16,
+     "full": 7.58
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.53,
+     "base": 0.0031,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.0046,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 4.2663,
+     "full": 52.8179
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00185
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.087119,
+    "mu_h": 0.006042,
+    "G": {
+     "bear": 0.0,
+     "base": 1.59,
+     "full": 3.81
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.5301,
+     "base": 0.0601,
+     "full": 0.0009
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.1033,
+     "full": 0.0017
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 0.7398,
+     "full": 2.7755
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0011
+   },
+   "market": "AE"
   },
   {
    "ticker": "EMAARDEV",
