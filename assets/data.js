@@ -2873,28 +2873,28 @@ const TICKERS = {
     name: "Agthia Group PJSC",
     nameAr: "مجموعة أغذية",
     code: "ADX:AGTHIA",
-    spot: 3.20,
-    spotDate: "close 24 Jul 2026",
+    spot: 3.35,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp. §3 Monte Carlo TIES its calibration back-test benchmark (PARITY — calibrated, honest, no single-name edge; the earlier FAILED banner used the superseded skill<0 rule, now corrected under the fitted 9-name UAE market profile).
     dist: {
-      t20: { label:"1 month",   p5:2.86, p25:3.07, p50:3.21, p75:3.36, p95:3.59, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:2.60, p25:2.97, p50:3.23, p75:3.51, p95:4.02, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:2.89, p25:3.14, p50:3.32, p75:3.51, p95:3.83, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:2.53, p25:2.96, p50:3.26, p75:3.60, p95:4.21, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [4.40, 0, 2], [4.20, 0, 5], [4.00, 0, 9], [3.70, 4, 24], [3.40, 32, 60], [3.20, 100, 100], [3.00, 26, 53]
+      [4.40, 0, 5], [4.20, 1, 10], [4.00, 3, 17], [3.70, 17, 39], [3.40, 73, 83], [3.20, 53, 75], [3.00, 18, 47]
     ],
-    levels: { res:[3.64, 3.79, 4.03], sup:[3.17, 3.10, 3] },
+    levels: { res:[3.64, 3.79, 4.03], sup:[3.32, 3.18, 3.10] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 3.20 below a falling 20-day (3.39), a falling 50-day (3.50) and a falling 200-day (3.69). Momentum is washed out: RSI(14) is ~24 and the daily ATR near 0.06 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.09 / \u22120.07 / \u22120.02). Over the last year it has ranged 3.17\u20134.41; the last close sits 27% below that high and 1% above that low.",
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 3.35 below a falling 50-day (3.39) and a falling 200-day (3.62), but above a flat 20-day (3.28). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.07 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.01 / \u22120.03 / +0.02). Over the last year it has ranged 3.17\u20134.12; the last close sits 19% below that high and 6% above that low.",
       bull: "A daily close back above 3.64 would clear the nearest resistance and open the 4.03 zone.",
-      bear: "A close below 3.17 would break the nearest support and open the 3.00 zone."
+      bear: "A close below 3.32 would break the nearest support and open the 3.10 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/Agthia_Valuation_Study_06-07-2026_public.docx?v=0607a",
