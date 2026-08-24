@@ -869,19 +869,19 @@
       "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 400,
+    "windows": 402,
     "rebuilt_this_run": [],
     "nu": 10.0,
     "width_cal": 0.923,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0061,
+    "market_skill": 0.0082,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      -0.0,
-      0.013
+      0.001,
+      0.015
     ],
-    "market_verdict": "PARITY",
+    "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
     "top_name": "TWOPOINTZERO",
     "signal_active": false,
@@ -900,12 +900,12 @@
       "ADIB": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": 0.0135,
-        "skill_raw_basis": 0.0056,
-        "verdict": "BOUNDARY(PARITY-flagged)",
+        "skill": 0.0424,
+        "skill_raw_basis": 0.0243,
+        "verdict": "PASS",
         "ci_block2": [
-          -0.002,
-          0.032
+          0.006,
+          0.075
         ]
       },
       "ADNOCDIST": {
@@ -932,20 +932,20 @@
       },
       "ADNOCGAS": {
         "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": 0.0053,
-        "skill_raw_basis": 0.0062,
+        "width_cal": 0.923,
+        "skill": -0.002,
+        "skill_raw_basis": -0.0017,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.012,
-          0.043
+          -0.053,
+          0.048
         ]
       },
       "ADNOCLS": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": 0.0215,
-        "skill_raw_basis": 0.0177,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": 0.022,
+        "skill_raw_basis": 0.018,
         "verdict": "PARITY",
         "ci_block2": [
           -0.004,
@@ -953,13 +953,13 @@
         ]
       },
       "AGTHIA": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": -0.0325,
-        "skill_raw_basis": -0.0366,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0331,
+        "skill_raw_basis": -0.0376,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.095,
+          -0.097,
           0.012
         ]
       },
@@ -1009,13 +1009,13 @@
       },
       "BOROUGE": {
         "nu": 10.0,
-        "width_cal": 0.937,
-        "skill": -0.0622,
-        "skill_raw_basis": -0.0599,
+        "width_cal": 0.93,
+        "skill": -0.0582,
+        "skill_raw_basis": -0.056,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.106,
-          -0.026
+          -0.1,
+          -0.023
         ]
       },
       "BURJEEL": {
@@ -1065,23 +1065,23 @@
       "EAND": {
         "nu": 10.0,
         "width_cal": 0.923,
-        "skill": 0.027,
-        "skill_raw_basis": 0.0209,
+        "skill": 0.0404,
+        "skill_raw_basis": 0.0264,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.004,
-          0.072
+          -0.027,
+          0.109
         ]
       },
       "EMAAR": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": 0.0156,
-        "skill_raw_basis": 0.0222,
+        "width_cal": 0.916,
+        "skill": 0.0152,
+        "skill_raw_basis": 0.022,
         "verdict": "PASS",
         "ci_block2": [
-          0.006,
-          0.047
+          0.005,
+          0.048
         ]
       },
       "EMAARDEV": {
@@ -1108,12 +1108,12 @@
       },
       "ENBD": {
         "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": -0.0101,
-        "skill_raw_basis": -0.0091,
+        "width_cal": 0.923,
+        "skill": -0.0098,
+        "skill_raw_basis": -0.0092,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.041,
+          -0.039,
           0.01
         ]
       },
@@ -1152,24 +1152,24 @@
       },
       "LULU": {
         "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": -0.0674,
-        "skill_raw_basis": -0.0685,
+        "width_cal": 0.923,
+        "skill": -0.0646,
+        "skill_raw_basis": -0.0657,
         "verdict": "PROVISIONAL(insufficient-windows)",
         "ci_block2": [
-          -0.067,
-          -0.067
+          -0.065,
+          -0.065
         ]
       },
       "MODON": {
         "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": 0.0453,
-        "skill_raw_basis": 0.0465,
+        "width_cal": 0.923,
+        "skill": 0.0456,
+        "skill_raw_basis": 0.0471,
         "verdict": "PASS",
         "ci_block2": [
           0.022,
-          0.071
+          0.072
         ]
       },
       "SALIK": {
