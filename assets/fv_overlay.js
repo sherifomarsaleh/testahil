@@ -3272,6 +3272,98 @@ const FV_OVERLAY = {
    "market": "IN"
   },
   {
+   "ticker": "EFID",
+   "name": "Edita Food Industries",
+   "code": "EGX:EFID",
+   "ccy": "EGP",
+   "spot": 33.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 16.41,
+   "fv_base": 27.68,
+   "fv_full": 42.78,
+   "gap_base_pct": -16.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.135687,
+    "mu_h": 0.017911,
+    "G": {
+     "bear": -5.19,
+     "base": -1.34,
+     "full": 1.87
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.0579,
+     "full": 0.0375
+    },
+    "p_touch": {
+     "bear": 0.0008,
+     "base": 0.0993,
+     "full": 0.0571
+    },
+    "required_cagr": {
+     "bear": -0.9998,
+     "base": -0.8872,
+     "full": 19.9523
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00155
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.233833,
+    "mu_h": 0.052512,
+    "G": {
+     "bear": -3.01,
+     "base": -0.78,
+     "full": 1.08
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0043,
+     "base": 0.1261,
+     "full": 0.1588
+    },
+    "p_touch": {
+     "bear": 0.0077,
+     "base": 0.252,
+     "full": 0.256
+    },
+    "required_cagr": {
+     "bear": -0.9403,
+     "base": -0.5168,
+     "full": 1.7568
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00364
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "LGES",
    "name": "LG Energy Solution, Ltd.",
    "code": "KRX:373220",
@@ -3732,98 +3824,6 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
-   "ticker": "EGAL",
-   "name": "Egypt Aluminum",
-   "code": "EGX:EGAL",
-   "ccy": "EGP",
-   "spot": 301.12,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 183,
-   "fv_base": 250,
-   "fv_full": 358,
-   "gap_base_pct": -17.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.095913,
-    "mu_h": 0.014801,
-    "G": {
-     "bear": -5.19,
-     "base": -1.94,
-     "full": 1.8
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.0213,
-     "full": 0.0432
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.0334,
-     "full": 0.0647
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.8927,
-     "full": 6.9748
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0014
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.199034,
-    "mu_h": 0.046016,
-    "G": {
-     "bear": -2.5,
-     "base": -0.93,
-     "full": 0.87
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0084,
-     "base": 0.0963,
-     "full": 0.2238
-    },
-    "p_touch": {
-     "bear": 0.0152,
-     "base": 0.189,
-     "full": 0.3607
-    },
-    "required_cagr": {
-     "bear": -0.8636,
-     "base": -0.5249,
-     "full": 0.9979
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00226
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "MODON",
    "name": "Modon Holding PSC",
    "code": "ADX:MODON",
@@ -4096,6 +4096,98 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00183
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "EGAL",
+   "name": "Egypt Aluminum",
+   "code": "EGX:EGAL",
+   "ccy": "EGP",
+   "spot": 330,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 183,
+   "fv_base": 250,
+   "fv_full": 358,
+   "gap_base_pct": -24.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.14561,
+    "mu_h": 0.024308,
+    "G": {
+     "bear": -4.05,
+     "base": -1.91,
+     "full": 0.56
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0014,
+     "base": 0.022,
+     "full": 0.317
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.0358,
+     "full": 0.5008
+    },
+    "required_cagr": {
+     "bear": -0.9992,
+     "base": -0.9643,
+     "full": 1.6572
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00174
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.252066,
+    "mu_h": 0.06522,
+    "G": {
+     "bear": -2.34,
+     "base": -1.1,
+     "full": 0.32
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0101,
+     "base": 0.0697,
+     "full": 0.4685
+    },
+    "p_touch": {
+     "bear": 0.0195,
+     "base": 0.1375,
+     "full": 0.7368
+    },
+    "required_cagr": {
+     "bear": -0.9054,
+     "base": -0.6706,
+     "full": 0.3851
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00402
    },
    "market": "EG"
   },
@@ -5296,98 +5388,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "FWRY",
-   "name": "Fawry",
-   "code": "EGX:FWRY",
-   "ccy": "EGP",
-   "spot": 19.3,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 11.5,
-   "fv_base": 14.7,
-   "fv_full": 20.3,
-   "gap_base_pct": -23.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.092533,
-    "mu_h": 0.014914,
-    "G": {
-     "bear": -5.6,
-     "base": -2.94,
-     "full": 0.55
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.0051,
-     "full": 0.3202
-    },
-    "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0073,
-     "full": 0.503
-    },
-    "required_cagr": {
-     "bear": -0.998,
-     "base": -0.9619,
-     "full": 0.8334
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00147
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.185925,
-    "mu_h": 0.046072,
-    "G": {
-     "bear": -2.78,
-     "base": -1.46,
-     "full": 0.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0056,
-     "base": 0.039,
-     "full": 0.4883
-    },
-    "p_touch": {
-     "bear": 0.0104,
-     "base": 0.0745,
-     "full": 0.7691
-    },
-    "required_cagr": {
-     "bear": -0.8739,
-     "base": -0.6635,
-     "full": 0.2239
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00212
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RAYA",
    "name": "Raya Holding",
    "code": "EGX:RAYA",
@@ -5568,6 +5568,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00262
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "FWRY",
+   "name": "Fawry",
+   "code": "EGX:FWRY",
+   "ccy": "EGP",
+   "spot": 19.2,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 11.5,
+   "fv_base": 14.7,
+   "fv_full": 20.3,
+   "gap_base_pct": -23.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.085009,
+    "mu_h": 0.017553,
+    "G": {
+     "bear": -6.03,
+     "base": -3.14,
+     "full": 0.66
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.0038,
+     "full": 0.2937
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.006,
+     "full": 0.4536
+    },
+    "required_cagr": {
+     "bear": -0.9979,
+     "base": -0.9594,
+     "full": 0.9514
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00083
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.169531,
+    "mu_h": 0.051762,
+    "G": {
+     "bear": -3.02,
+     "base": -1.58,
+     "full": 0.33
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0039,
+     "base": 0.0298,
+     "full": 0.4886
+    },
+    "p_touch": {
+     "bear": 0.0068,
+     "base": 0.0574,
+     "full": 0.7488
+    },
+    "required_cagr": {
+     "bear": -0.8713,
+     "base": -0.6564,
+     "full": 0.2496
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0026
    },
    "market": "EG"
   },
@@ -7505,9 +7597,9 @@ const FV_OVERLAY = {
    "code": "EGX:DSCW",
    "ccy": "EGP",
    "spot": 1.96,
-   "anchor_date": "2026-07-22",
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-19",
-   "fv_lag_days": 3,
+   "fv_lag_days": 35,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0.59,
@@ -7526,13 +7618,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.100983,
+    "h_sessions": 22,
+    "sigma_h": 0.11214,
     "mu_h": 0.01519,
     "G": {
-     "bear": -11.89,
-     "base": -7.93,
-     "full": -4.86
+     "bear": -10.71,
+     "base": -7.14,
+     "full": -4.38
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7547,15 +7639,15 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.00122
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.198794,
-    "mu_h": 0.044895,
+    "h_sessions": 62,
+    "sigma_h": 0.198954,
+    "mu_h": 0.049762,
     "G": {
-     "bear": -6.04,
-     "base": -4.03,
+     "bear": -6.03,
+     "base": -4.02,
      "full": -2.47
     },
     "band": "NOT-EXPRESSIBLE",
@@ -7571,7 +7663,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00299
+    "selftest_max_dev": 0.00244
    },
    "market": "EG"
   },
@@ -7954,98 +8046,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00049
    },
    "market": "AE"
-  },
-  {
-   "ticker": "EFID",
-   "name": "Edita Food Industries",
-   "code": "EGX:EFID",
-   "ccy": "EGP",
-   "spot": 27.7,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 16.41,
-   "fv_base": 27.68,
-   "fv_full": 42.78,
-   "gap_base_pct": -0.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.10896,
-    "mu_h": 0.014693,
-    "G": {
-     "bear": -4.8,
-     "base": -0.01,
-     "full": 3.99
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0007,
-     "base": 0.4311,
-     "full": 0.0021
-    },
-    "p_touch": {
-     "bear": 0.001,
-     "base": 0.844,
-     "full": 0.0033
-    },
-    "required_cagr": {
-     "bear": -0.9981,
-     "base": -0.0086,
-     "full": 183.1332
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00167
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.211876,
-    "mu_h": 0.046208,
-    "G": {
-     "bear": -2.47,
-     "base": -0.0,
-     "full": 2.05
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0089,
-     "base": 0.3932,
-     "full": 0.0321
-    },
-    "p_touch": {
-     "bear": 0.0162,
-     "base": 0.9008,
-     "full": 0.0523
-    },
-    "required_cagr": {
-     "bear": -0.8768,
-     "base": -0.0029,
-     "full": 4.6891
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00246
-   },
-   "market": "EG"
   },
   {
    "ticker": "ADIBUAE",
