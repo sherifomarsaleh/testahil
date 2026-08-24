@@ -1034,28 +1034,28 @@ const TICKERS = {
     name: "Abu Dhabi Commercial Bank",
     nameAr: "بنك أبوظبي التجاري",
     code: "ADX:ADCB",
-    spot: 14.42,
-    spotDate: "close 24 Jul 2026",
+    spot: 15.32,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 14.3, base: 19.7, full: 23.3 },      // 10 Jul 2026 — five-lens weighted central 19.7 (+31% vs spot 15.10). Lenses: DDM (primary, 30%) 21.2, residual income (multi-period, 20%) 22.7, FCFE equity DCF (15%) 23.3, relative multiples (20%) 15.9, normalized through-cycle (15%) 14.3. bear/full = normalized floor / FCFE ceiling. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt war adder). Swing factors: the NIM path through the CBUAE/Fed easing cycle, whether the ~16% ROE persists, and Gulf de-escalation. Third-largest UAE bank; AED 6.1bn rights issue closed Dec-2025.
     dist: {
-      t20: { label:"1 month",   p5:12.55, p25:13.70, p50:14.46, p75:15.27, p95:16.63, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:11.36, p25:13.24, p50:14.56, p75:16.01, p95:18.69, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:13.66, p25:14.65, p50:15.33, p75:16.03, p95:17.21, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:12.38, p25:14.13, p50:15.35, p75:16.65, p95:19.00, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [17.20, 4, 22], [16.40, 11, 36], [15.80, 23, 50], [14.40, 86, 92], [13.90, 55, 72], [13.30, 26, 50]
+      [17.20, 8, 32], [16.40, 26, 53], [15.80, 55, 75], [14.40, 30, 56], [13.90, 13, 39], [13.30, 4, 23]
     ],
-    levels: { res:[15.07, 15.29, 15.77], sup:[14.13, 13.42, 12.85] },
+    levels: { res:[15.77, 16, 16.56], sup:[15.07, 14.08, 13.42] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a flat 200-day",
-      summary: "The price closed 14.42 above a rising 50-day (14.17) and a flat 200-day (14.28), but below a falling 20-day (14.55). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 0.38 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.00 / +0.07 / \u22120.07). Over the last year it has ranged 11.58\u201316.60; the last close sits 13% below that high and 25% above that low.",
-      bull: "A daily close back above 15.07 would clear the nearest resistance and open the 15.77 zone.",
-      bear: "A close below 14.13 would break the nearest support and open the 12.85 zone."
+      trend: "Consolidating below the near-term moving averages, above a flat 200-day; fresh golden-cross",
+      summary: "The price closed 15.32 above a rising 50-day (14.95) and a flat 200-day (14.33), but below a rising 20-day (15.35). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 0.31 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.21 / +0.26 / \u22120.05). The 50-day crossed above the 200-day 15 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 11.58\u201316.54; the last close sits 7% below that high and 32% above that low.",
+      bull: "A daily close back above 15.77 would clear the nearest resistance and open the 16.56 zone.",
+      bear: "A close below 15.07 would break the nearest support and open the 13.42 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0711a",
