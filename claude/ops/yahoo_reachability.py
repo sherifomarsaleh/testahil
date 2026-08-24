@@ -49,7 +49,15 @@ HOSTS = ["query1.finance.yahoo.com", "query2.finance.yahoo.com"]
 
 ctx = ssl.create_default_context()
 jar = http.cookiejar.CookieJar()
-opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+# The SSL context goes on the HTTPSHandler. OpenerDirector.open() takes only
+# (fullurl, data, timeout) -- passing context= to it raises TypeError, which the
+# broad except below would then report as "HTTP 0" for every single row,
+# including the unrelated-vendor control. That is the same silent-failure class
+# this diagnostic exists to catch, so it is worth naming here.
+opener = urllib.request.build_opener(
+    urllib.request.HTTPCookieProcessor(jar),
+    urllib.request.HTTPSHandler(context=ctx),
+)
 
 
 def get(url: str, timeout: int = 20) -> tuple:
@@ -57,12 +65,12 @@ def get(url: str, timeout: int = 20) -> tuple:
     req = urllib.request.Request(url, headers={"User-Agent": UA,
                                                "Accept": "application/json,text/plain,*/*"})
     try:
-        with opener.open(req, timeout=timeout, context=ctx) as r:
+        with opener.open(req, timeout=timeout) as r:
             return r.status, r.read(400000)
     except urllib.error.HTTPError as e:
         return e.code, (e.read(400) or b"")
-    except Exception as e:                       # timeout, DNS, TLS
-        return 0, str(e).encode()[:200]
+    except Exception as e:                       # timeout, DNS, TLS, or a bug here
+        return 0, f"{type(e).__name__}: {e}".encode()[:200]
 
 
 def n_points(body: bytes) -> str:
@@ -101,7 +109,7 @@ def main() -> int:
             if crumb:
                 url += "&crumb=" + urllib.parse.quote(crumb)
             s, b = get(url)
-            detail = n_points(b) if s == 200 else ""
+            detail = n_points(b) if s == 200 else (b.decode(errors="replace")[:60] if s == 0 else "")
             print(f"  {sym:<12} {host[:6]:<8} {s:<8} {detail:<14} {note if host==HOSTS[0] else ''}")
             verdicts.setdefault(sym, []).append(s)
             time.sleep(1.2)
@@ -114,7 +122,8 @@ def main() -> int:
     print("=" * 78)
     for s_sym in ["aapl.us", "cib.eg"]:
         s, b = get(f"https://stooq.com/q/d/l/?s={s_sym}&i=d")
-        head = b.decode(errors="replace").splitlines()[:2] if s == 200 else []
+        head = (b.decode(errors="replace").splitlines()[:2] if s == 200
+                else [b.decode(errors="replace")[:80]])
         print(f"  stooq {s_sym:<10} -> HTTP {s}   {head}")
         time.sleep(1.0)
 
@@ -134,6 +143,11 @@ def main() -> int:
         print("  Non-200s on the covered-name suffixes are therefore real evidence")
         print("  about those symbols, and the full probe is worth re-running.")
         return 0
+    if ctrl and all(c == 0 for c in ctrl):
+        print("  Every control raised a client-side exception (status 0) — see the")
+        print("  reason column. NO REQUEST LEFT THIS RUNNER. This is a fault in the")
+        print("  diagnostic or the runner's egress, NOT a finding about Yahoo.")
+        return 4
     print("  Mixed/!200 controls — inconclusive, see the matrix above.")
     return 1
 
