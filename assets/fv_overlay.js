@@ -8,7 +8,7 @@ const FV_OVERLAY = {
  "engine_configs": {
   "AE": {
    "nu": 10.0,
-   "width_cal": 0.923,
+   "width_cal": 0.916,
    "rf_live": 0.0365,
    "width_overlay_active": false
   },
@@ -437,7 +437,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -989,7 +989,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1725,7 +1725,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1909,7 +1909,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2093,7 +2093,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2185,7 +2185,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2553,7 +2553,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2645,7 +2645,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3657,7 +3657,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3933,7 +3933,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4025,7 +4025,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4393,7 +4393,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4485,7 +4485,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4853,7 +4853,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5037,7 +5037,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5313,7 +5313,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5681,7 +5681,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5773,7 +5773,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5865,7 +5865,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5957,7 +5957,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6049,7 +6049,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6233,7 +6233,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6325,7 +6325,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6417,7 +6417,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6777,7 +6777,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7113,7 +7113,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7769,7 +7769,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7997,7 +7997,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 10.0,
-    "width_cal": 0.923,
+    "width_cal": 0.916,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
