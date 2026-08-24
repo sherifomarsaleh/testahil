@@ -1001,28 +1001,28 @@ const TICKERS = {
     name: "e& (Emirates Telecommunications Group)",
     nameAr: "إي آند (مجموعة الإمارات للاتصالات)",
     code: "ADX:EAND",
-    spot: 20.08,
-    spotDate: "close 24 Jul 2026",
+    spot: 21.56,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 17.61, base: 22.72, full: 28.75 },      // 11 Jul 2026 — four-lens weighted central 22.72 (+15.5% vs spot 19.66). Lenses: FCFF DCF + sourced stakes-and-claims bridge (primary, 35%) 28.38 (TV 79% of EV, disclosed; core EV under the production UAE Monte-Carlo panel fit does not feed this lens), dividend discount (policy lens, 25%) 17.03, relative EV/EBITDA through the same bridge (20%) 23.72, normalized earnings (20%) 18.90. bear/full = weighted bear/bull. The crux is the 2027 UAE federal royalty reset (current 38%+9% regime expires 31-Dec-2026, undecided): each 4pp of royalty ≈ AED 1.1/share. Same-day event: 10-Jul-2026 e& agreed to sell its entire Vodafone stake for AED 21.8bn gross (~4.7bn net cash), pending regulatory approvals — carried at deal value, dual-framed against the undisturbed mark. Beta assumed 1.0 (regression inaccessible; no downloadable ADX General Index series found after two independent attempts), sensitised 0.8–1.3.
     dist: {
-      t20: { label:"1 month",   p5:18.20, p25:19.37, p50:20.14, p75:20.94, p95:22.25, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:16.98, p25:18.94, p50:20.27, p75:21.70, p95:24.23, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:19.64, p25:20.82, p50:21.62, p75:22.45, p95:23.83, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.38, p25:20.40, p50:21.77, p75:23.22, p95:25.76, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [22.00, 11, 37], [21.00, 39, 64], [20.00, 82, 89], [19.00, 27, 51], [18.00, 6, 23], [17.00, 1, 9]
+      [22.00, 64, 80], [21.00, 54, 71], [20.00, 15, 37], [19.00, 3, 16], [18.00, 0, 6], [17.00, 0, 2]
     ],
-    levels: { res:[20.52, 20.91, 21.53], sup:[19.32, 18.88, 17.32] },
+    levels: { res:[22, 23, 24], sup:[20.98, 18.88, 17.59] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
-      summary: "The price closed 20.08 above a rising 20-day (19.93), a rising 50-day (19.26) and a rising 200-day (19.19). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.40 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.24 / +0.28 / \u22120.05). The 50-day crossed above the 200-day 7 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 17.40\u201321.60; the last close sits 7% below that high and 15% above that low.",
-      bull: "A daily close back above 20.52 would clear the nearest resistance and open the 21.53 zone.",
-      bear: "A close below 19.32 would break the nearest support and open the 17.32 zone."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 21.56 above a rising 20-day (20.79), a rising 50-day (20.18) and a rising 200-day (19.37). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.42 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.45 / +0.37 / +0.08). Over the last year it has ranged 17.40\u201322.00; the last close sits 2% below that high and 24% above that low.",
+      bull: "A daily close back above 22.00 would clear the nearest resistance and open the 24.00 zone.",
+      bear: "A close below 20.98 would break the nearest support and open the 17.59 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/EAND_Valuation_Study_10-07-2026_public.docx?v=0711a",
@@ -1758,28 +1758,28 @@ const TICKERS = {
     name: "Abu Dhabi Islamic Bank",
     nameAr: "مصرف أبوظبي الإسلامي",
     code: "ADX:ADIB",
-    spot: 21.24,
-    spotDate: "close 24 Jul 2026",
+    spot: 23.34,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. Backtest PARITY (CRPS skill +0.009, 14 UAE windows). UAE's largest listed Islamic bank; 3,632.0mn shares.
     dist: {
-      t20: { label:"1 month",   p5:18.50, p25:20.18, p50:21.30, p75:22.49, p95:24.47, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:16.73, p25:19.50, p50:21.45, p75:23.59, p95:27.53, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:20.70, p25:22.23, p50:23.29, p75:24.39, p95:26.24, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:18.64, p25:21.33, p50:23.19, p75:25.20, p95:28.80, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [24.63, 7, 29], [23.30, 22, 49], [22.10, 55, 74], [20.75, 67, 80], [20.00, 38, 60], [18.80, 11, 34]
+      [24.63, 35, 60], [23.30, 87, 93], [22.10, 37, 63], [20.75, 8, 33], [20.00, 3, 21], [18.80, 1, 9]
     ],
-    levels: { res:[21.45, 21.99, 23.23], sup:[20.35, 18.70, 16.57] },
+    levels: { res:[23.78, 24.72, 25.74], sup:[21.99, 21.45, 20.20] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 21.24 below a falling 20-day (21.27) and a falling 200-day (21.77), but above a falling 50-day (20.59). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.56 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.10 / \u22120.09). Over the last year it has ranged 18.28\u201327.96; the last close sits 24% below that high and 16% above that low.",
-      bull: "A daily close back above 21.45 would clear the nearest resistance and open the 23.23 zone.",
-      bear: "A close below 20.35 would break the nearest support and open the 16.57 zone."
+      trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh golden-cross",
+      summary: "The price closed 23.34 above a rising 20-day (22.78), a rising 50-day (21.89) and a flat 200-day (21.83). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.49 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.49 / +0.52 / \u22120.03). The 50-day crossed above the 200-day 1 session ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 18.28\u201327.96; the last close sits 17% below that high and 28% above that low.",
+      bull: "A daily close back above 23.78 would clear the nearest resistance and open the 25.74 zone.",
+      bear: "A close below 21.99 would break the nearest support and open the 20.20 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",
@@ -1923,28 +1923,28 @@ const TICKERS = {
     name: "Palm Hills Developments",
     nameAr: "بالم هيلز للتعمير",
     code: "EGX:PHDC",
-    spot: 15.01,
-    spotDate: "close 22 Jul 2026",
+    spot: 15.20,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — UNCHANGED: fundamental fair value is a separate clock from the MC price refresh (two-clocks rule); needs its own study cycle, not touched by a raw-OHLC roll-forward
     dist: {
-      t20: { label:"1 month",   p5:12.89, p25:14.32, p50:15.23, p75:16.22, p95:18.01, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:11.52, p25:14.01, p50:15.72, p75:17.59, p95:21.39, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:13.08, p25:14.67, p50:15.64, p75:16.68, p95:18.71, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:11.98, p25:14.61, p50:16.34, p75:18.27, p95:22.26, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* level, P(touch) 1-month %, 3-month % — descending */
-      [20.00, 1, 15], [18.50, 5, 28], [17.50, 12, 42], [16.50, 31, 62], [15.55, 66, 83]
+      [20.00, 3, 19], [18.50, 9, 35], [17.50, 20, 51], [16.50, 43, 71], [15.55, 80, 90]
     ],
-    levels: { res:[16.08, 16.43, 17], sup:[14.85, 14.34, 13.01] },
+    levels: { res:[15.38, 15.73, 16.08], sup:[14.99, 14.40, 13.01] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 15.01 above a falling 20-day (14.85), a rising 50-day (14.77) and a rising 200-day (10.16). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.46 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.08 / +0.12 / \u22120.04). Over the last year it has ranged 6.99\u201316.43; the last close sits 9% below that high and 115% above that low.",
-      bull: "A daily close back above 16.08 would clear the nearest resistance and open the 17.00 zone.",
-      bear: "A close below 14.85 would break the nearest support and open the 13.01 zone."
+      summary: "The price closed 15.20 above a rising 20-day (15.15), a rising 50-day (15.10) and a rising 200-day (10.95). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.42 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.12 / +0.14 / \u22120.02). Over the last year it has ranged 6.99\u201316.43; the last close sits 7% below that high and 117% above that low.",
+      bull: "A daily close back above 15.38 would clear the nearest resistance and open the 16.08 zone.",
+      bear: "A close below 14.99 would break the nearest support and open the 13.01 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-24" },
+      tech: { data:"2026-08-23", computed:"2026-08-24" }
     },
     files: {
       study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
@@ -2545,28 +2545,28 @@ const TICKERS = {
     name: "ADNOC Gas",
     nameAr: "أدنوك للغاز",
     code: "ADX:ADNOCGAS",
-    spot: 3.34,
-    spotDate: "close 24 Jul 2026",
+    spot: 3.30,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 3.30, base: 3.79, full: 4.60 },      // 4 Jul 2026 — weighted five-lens central 3.79 (+10% vs spot 3.44). Lenses: DCF (5-yr FCFF) 4.50 (ceiling), DDM (committed dividend, split-Ke 8.25%) 3.41, relative EV/EBITDA 3.83, justified P/E 3.62, dividend yield 3.83. bear/full = weighted bear/bull of the football field. Swing: Brent-linked export pricing and the gap between enterprise cash flow and the distributed dividend.
     dist: {
-      t20: { label:"1 month",   p5:3.08, p25:3.24, p50:3.35, p75:3.46, p95:3.64, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:2.88, p25:3.17, p50:3.37, p75:3.58, p95:3.96, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:3.08, p25:3.21, p50:3.31, p75:3.40, p95:3.55, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:2.88, p25:3.14, p50:3.32, p75:3.50, p95:3.82, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [3.90, 1, 11], [3.75, 3, 22], [3.65, 7, 33], [3.55, 20, 49], [3.35, 85, 92], [3.25, 47, 68], [3.15, 18, 44]
+      [3.90, 0, 6], [3.75, 1, 13], [3.65, 2, 22], [3.55, 8, 36], [3.35, 64, 81], [3.25, 61, 78], [3.15, 22, 50]
     ],
-    levels: { res:[3.42, 3.49, 3.72], sup:[3.29, 3.20, 3.11] },
+    levels: { res:[3.43, 3.49, 3.72], sup:[3.20, 3.12, 2.71] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 3.34 below a falling 20-day (3.39), a flat 50-day (3.37) and a flat 200-day (3.41). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.05 (~1.5%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / \u22120.01 / \u22120.01). Over the last year it has ranged 3.12\u20133.76; the last close sits 11% below that high and 7% above that low.",
-      bull: "A daily close back above 3.42 would clear the nearest resistance and open the 3.72 zone.",
-      bear: "A close below 3.29 would break the nearest support and open the 3.11 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 3.30 below a flat 20-day (3.35), a flat 50-day (3.39) and a falling 200-day (3.39). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.04 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 3.12\u20133.76; the last close sits 12% below that high and 6% above that low.",
+      bull: "A daily close back above 3.43 would clear the nearest resistance and open the 3.72 zone.",
+      bear: "A close below 3.20 would break the nearest support and open the 2.71 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.docx?v=0704",
@@ -4863,9 +4863,9 @@ const LEDGER = [
     note:"Cycle 4 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:12.89, p25:14.32, p50:15.23, p75:16.22, p95:18.01,
     touch:{ "+5":57, "+10":31, "+15":15, "+20":8, "-5":44, "-10":19 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:15.2, realized_high:16.2, realized_low:14.32,
+    in_90:true, in_50:true, realized_quantile:0.492, median_err:-0.0020,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"PHDC", asset_class:"equity",
@@ -6249,6 +6249,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.886 (outside the 0.25 dead zone); tilt +1.24% at 1M and +2.43% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:5.67, p25:6.83, p50:7.58, p75:8.42, p95:10.13,
     touch:{ "+5":82, "+10":64, "+15":49, "+20":36, "-5":55, "-10":32 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: PHDC, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:15.2, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:5, reanchor_from:"2026-07-22", anchor_vol:0.3998,
+    signal_z:1.94, signal_alpha:0.01387,
+    note:"Cycle 5 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 4 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 1.0264 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9761, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.940 (outside the 0.25 dead zone); tilt +1.40% at 1M and +2.67% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:13.08, p25:14.67, p50:15.64, p75:16.68, p95:18.71,
+    touch:{ "+5":63, "+10":37, "+15":20, "+20":11, "-5":42, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:15.2, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:5, reanchor_from:"2026-07-22", anchor_vol:0.4124,
+    signal_z:1.94, signal_alpha:0.026341,
+    note:"Cycle 5 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 4 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 1.0264 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9761, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.940 (outside the 0.25 dead zone); tilt +1.40% at 1M and +2.67% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:11.98, p25:14.61, p50:16.34, p75:18.27, p95:22.26,
+    touch:{ "+5":82, "+10":66, "+15":51, "+20":39, "-5":57, "-10":35 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
