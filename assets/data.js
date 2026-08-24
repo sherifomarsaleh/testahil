@@ -870,7 +870,7 @@ const TICKERS = {
     spot: 1.25,
     spotDate: "close 21 Aug 2026",
     ccy: "AED",
-    fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high. Calibration: PARITY on the production UAE panel (11 non-overlapping 60-day windows, CRPS skill +0.85%, 90% CI [-1.7%, +2.5%], robust across bootstrap block sizes) — a calibrated, market-panel-validated distribution with no single-name edge claimed.
+    fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high. Calibration: BOUNDARY (PARITY-flagged) on the production UAE panel — CRPS skill +7.07% scale-normalized (+5.46% on the raw basis), 90% CI [-0.3%, +16.5%] at block 2, which straddles zero, so it is recorded at parity and no single-name edge is claimed. The AE market panel itself PASSES (28 names, 409 non-overlapping calendar 3-month windows; production fit nu=10.0, width_cal=0.916). Calibration of record: the 24-Aug-2026 refit.
     dist: {
       t20: { label:"1 month",   p5:1.07, p25:1.17, p50:1.25, p75:1.32, p95:1.45, resolve:"2026-09-21" },
       t60: { label:"3 months",  p5:0.95, p25:1.12, p50:1.24, p75:1.37, p95:1.61, resolve:"2026-11-23" }
@@ -1039,12 +1039,12 @@ const TICKERS = {
     ccy: "AED",
     fair: { bear: 14.3, base: 19.7, full: 23.3 },      // 10 Jul 2026 — five-lens weighted central 19.7 (+31% vs spot 15.10). Lenses: DDM (primary, 30%) 21.2, residual income (multi-period, 20%) 22.7, FCFE equity DCF (15%) 23.3, relative multiples (20%) 15.9, normalized through-cycle (15%) 14.3. bear/full = normalized floor / FCFE ceiling. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt war adder). Swing factors: the NIM path through the CBUAE/Fed easing cycle, whether the ~16% ROE persists, and Gulf de-escalation. Third-largest UAE bank; AED 6.1bn rights issue closed Dec-2025.
     dist: {
-      t20: { label:"1 month",   p5:13.66, p25:14.65, p50:15.33, p75:16.03, p95:17.21, resolve:"2026-09-21" },
-      t60: { label:"3 months",  p5:12.38, p25:14.13, p50:15.35, p75:16.65, p95:19.00, resolve:"2026-11-23" }
+      t20: { label:"1 month",   p5:13.68, p25:14.66, p50:15.33, p75:16.02, p95:17.20, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:12.40, p25:14.14, p50:15.35, p75:16.65, p95:18.97, resolve:"2026-11-23" }
     },
     hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [17.20, 8, 32], [16.40, 26, 53], [15.80, 55, 75], [14.40, 30, 56], [13.90, 13, 39], [13.30, 4, 23]
+      [17.20, 8, 31], [16.40, 26, 53], [15.80, 55, 74], [14.40, 30, 56], [13.90, 12, 38], [13.30, 4, 22]
     ],
     levels: { res:[15.77, 16, 16.56], sup:[15.07, 14.08, 13.42] },
     tech: {
@@ -6343,6 +6343,12 @@ const LEDGER = [
 
   // ---- 24-Aug-2026 single-name roll-forward: BURJEEL, struck on its own
   //      latest library close. Append-only.
+  //      Calibration of record (24-Aug-2026 refit): BURJEEL BOUNDARY(PARITY-flagged), CRPS skill
+  //      +7.07% scale-normalized (+5.46% raw basis), 90% CI [-0.003, +0.165] at block 2 —
+  //      straddles zero, recorded at parity, no single-name edge claimed. AE market
+  //      panel PASS (28 names, 409 non-overlapping calendar 3-month windows).
+  //      The cone below was struck under the then-live fit nu=10.0/width_cal=0.923;
+  //      the panel has since moved to width_cal=0.916.
   {
     instrument:"BURJEEL", asset_class:"equity",
     anchor_date:"2026-08-21", run_date:"2026-08-24", anchor_price:1.25, ccy:"AED",
