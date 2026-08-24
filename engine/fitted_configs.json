@@ -65,7 +65,7 @@
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.005,
-      0.021
+      0.02
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.067,
@@ -284,12 +284,12 @@
       "HRHO": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.0022,
-        "skill_raw_basis": -0.001,
+        "skill": -0.0133,
+        "skill_raw_basis": -0.0183,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
-          0.02
+          -0.04,
+          0.014
         ]
       },
       "ISPH": {
