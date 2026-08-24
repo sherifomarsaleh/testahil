@@ -1429,26 +1429,28 @@ const TICKERS = {
     name: "Raya Holding",
     nameAr: "راية القابضة",
     code: "EGX:RAYA",
-    spot: 7.76,
-    spotDate: "close 22 Jul 2026",
+    spot: 7.07,
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 4.77, base: 5.56, full: 8.22 },
     dist: {
-      t20: { label:"1 month",   p5:6.53, p25:7.35, p50:7.88, p75:8.45, p95:9.51, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:5.73, p25:7.14, p50:8.13, p75:9.23, p95:11.49, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:6.17, p25:6.85, p50:7.26, p75:7.71, p95:8.56, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:5.67, p25:6.83, p50:7.58, p75:8.42, p95:10.13, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ [10.01, 12, 38], [8.85, 38, 62], [8.09, 70, 83], [7.31, 68, 81], [6.54, 30, 55], [5.39, 4, 22] ],
-    levels: { res:[8, 8.20, 8.49], sup:[7.67, 6.94, 6.02] },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low */
+      [10.01, 1, 9], [8.85, 4, 25], [8.09, 18, 51], [7.31, 71, 87], [6.54, 24, 42], [5.39, 1, 7]
+    ],
+    levels: { res:[7.30, 7.66, 7.81], sup:[6.94, 6.02, 5.03] },
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 7.76 above a rising 50-day (7.48) and a rising 200-day (4.94), but below a rising 20-day (7.80). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.31 (~4.0%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.13 / +0.19 / \u22120.06). Over the last year it has ranged 2.58\u20138.49; the last close sits 9% below that high and 201% above that low.",
-      bull: "A daily close back above 8.00 would clear the nearest resistance and open the 8.49 zone.",
-      bear: "A close below 7.67 would break the nearest support and open the 6.02 zone."
+      summary: "The price closed 7.07 below a falling 20-day (7.32) and a falling 50-day (7.49), but above a rising 200-day (5.41). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.22 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.14 / \u22120.11 / \u22120.04). Over the last year it has ranged 2.58\u20138.49; the last close sits 17% below that high and 174% above that low.",
+      bull: "A daily close back above 7.30 would clear the nearest resistance and open the 7.81 zone.",
+      bear: "A close below 6.94 would break the nearest support and open the 5.03 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-24" },
+      tech: { data:"2026-08-23", computed:"2026-08-24" }
     },
     files: {
       study: "files/RAYA_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -4906,9 +4908,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:6.53, p25:7.35, p50:7.88, p75:8.45, p95:9.51,
     touch:{ "+5":60, "+10":35, "+15":19, "+20":10, "-5":49, "-10":23 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:7.07, realized_high:7.79, realized_low:6.95,
+    in_90:true, in_50:false, realized_quantile:0.182, median_err:-0.1028,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":true }
   },
   {
     instrument:"RAYA", asset_class:"equity",
@@ -6014,6 +6016,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-21; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9207 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8755, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.894 (outside the 0.25 dead zone); tilt +0.89% at 1M and +1.71% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:23.92, p25:31.59, p50:36.93, p75:43.17, p95:56.88,
     touch:{ "+5":84, "+10":71, "+15":59, "+20":49, "-5":70, "-10":51 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: RAYA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"RAYA", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:7.07, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.3754,
+    signal_z:1.8859, signal_alpha:0.012332,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.886 (outside the 0.25 dead zone); tilt +1.24% at 1M and +2.43% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:6.17, p25:6.85, p50:7.26, p75:7.71, p95:8.56,
+    touch:{ "+5":61, "+10":33, "+15":17, "+20":9, "-5":38, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RAYA", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:7.07, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.397,
+    signal_z:1.8859, signal_alpha:0.024017,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.886 (outside the 0.25 dead zone); tilt +1.24% at 1M and +2.43% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:5.67, p25:6.83, p50:7.58, p75:8.42, p95:10.13,
+    touch:{ "+5":82, "+10":64, "+15":49, "+20":36, "-5":55, "-10":32 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
