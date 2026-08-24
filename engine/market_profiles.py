@@ -442,7 +442,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "mom_combo", +1, 0.108, True,
     ic_by_h={"1M": 0.108, "3M": 0.185},
-    nu=10.0, width_cal=0.923,
+    nu=10.0, width_cal=0.916,
     fit_meta=(
         "UPDATE 09-Aug-2026: AIRARABIA added (18 -> 19 names, 261 -> 279 pooled "
         "windows; DFM low-cost carrier, new coverage for the Air Arabia study). "
