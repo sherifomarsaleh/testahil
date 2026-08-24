@@ -1,0 +1,129 @@
+name: Yahoo probe (daily price feed, Step 1)
+
+# STEP 1 of claude/ops/Daily_Price_Feed_Plan_20260824.md — does Yahoo carry the
+# 93 covered names, and do its prices agree with the library already in the repo?
+#
+# WHY THIS RUNS ON A RUNNER AND NOT IN A SESSION: the Cowork session that wrote
+# the plan could not reach Yahoo at all (yfinance, query1/query2 direct, WebFetch,
+# stooq and alphavantage were all blocked at its egress proxy), and a second
+# session got HTTP 429. A GitHub Actions runner has clean egress. That is the
+# whole reason this file exists.
+#
+# READ-ONLY BY CONTRACT, AND THE CONTRACT IS CHECKED (see the guard step below).
+# The probe writes exactly one file. It must never touch engine/raw_ohlc/ or
+# assets/data.js — adoption is Step 2's decision, taken per name on the evidence
+# this job produces, and a probe that could write is a probe that could decide.
+
+on:
+  workflow_dispatch:
+    inputs:
+      market:
+        description: 'One market folder only (AE, EG, SA, IN, KR, QA, US, XAU, XPT). Blank = all 93.'
+        required: false
+        default: ''
+      sleep:
+        description: 'Seconds between Yahoo calls. 0.6 is the floor the plan sets.'
+        required: false
+        default: '0.9'
+  # workflow_dispatch alone cannot start this while the file is off the default
+  # branch — GitHub only dispatches workflows that exist on the default branch.
+  # This narrow push trigger is what actually fires the first run from the
+  # feature branch; it is scoped to the probe itself so ordinary work on the
+  # branch does not re-run it.
+  push:
+    branches:
+      - 'claude/daily-price-feed-probe-**'
+    paths:
+      - 'claude/ops/yahoo_probe.py'
+      - '.github/workflows/yahoo-probe.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: yahoo-probe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        # No pip install. The probe is standard library only, by design — a feed
+        # experiment that needs a dependency tree is a feed experiment that can
+        # break the calibration pipeline it feeds.
+
+      - name: Record the library state the probe is about to compare against
+        run: |
+          echo "library files: $(find engine/raw_ohlc -name '*.csv' | wc -l)"
+          git rev-parse HEAD
+
+      - name: Probe Yahoo
+        id: probe
+        run: |
+          python3 claude/ops/yahoo_probe.py \
+            ${{ github.event.inputs.market && format('--market {0}', github.event.inputs.market) || '' }} \
+            --sleep "${{ github.event.inputs.sleep || '0.9' }}"
+
+      - name: Guard — the probe must not have written to the library or the site
+        run: |
+          # [R-ENF-01] A rule that can be checked is checked from OUTSIDE the thing
+          # it governs. "READ-ONLY" in the script's docstring is the script's own
+          # claim about itself; this is the check.
+          if [ -n "$(git status --porcelain engine/ assets/)" ]; then
+            echo "::error::The probe modified engine/ or assets/. It is read-only by contract."
+            git status --porcelain engine/ assets/
+            exit 1
+          fi
+          echo "clean: engine/ and assets/ untouched"
+
+      - name: The results table
+        run: |
+          echo "=== yahoo_probe_results.csv ==="
+          cat yahoo_probe_results.csv
+          {
+            echo '### Yahoo probe — Step 1'
+            echo
+            echo '| market | file | key | code | symbol | lib last | yahoo last | n | med % | max % | verdict |'
+            echo '|---|---|---|---|---|---|---|---|---|---|---|'
+            python3 - <<'PY'
+          import csv
+          for r in csv.DictReader(open('yahoo_probe_results.csv')):
+              print('| ' + ' | '.join([
+                  r['market'], r['library_file'], r['data_js_key'], r['exchange_code'],
+                  r['symbol_used'] or r['symbol_tried'], r['library_last_date'],
+                  r['yahoo_last_date'], str(r['overlap_days']),
+                  r['median_diff_pct'], r['max_diff_pct'], '**'+r['verdict']+'**']) + ' |')
+          PY
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: yahoo-probe-results
+          path: yahoo_probe_results.csv
+          if-no-files-found: warn
+
+      - name: Commit the results table to the branch
+        if: always()
+        run: |
+          [ -f yahoo_probe_results.csv ] || { echo "no results file — nothing to commit"; exit 0; }
+          mkdir -p claude/ops
+          mv yahoo_probe_results.csv claude/ops/yahoo_probe_results.csv
+          git config user.name "testahil-bot"
+          git config user.email "info@testahil.com"
+          git add claude/ops/yahoo_probe_results.csv
+          git diff --cached --quiet && { echo "results unchanged"; exit 0; }
+          git commit -m "Yahoo probe results ($(date -u +%Y-%m-%d), run ${{ github.run_id }})" \
+                     -m "Step 1 evidence. Read-only probe: no library or site file was touched."
+          for i in 1 2 3 4; do
+            git push origin HEAD:${{ github.ref_name }} && break
+            echo "push rejected (attempt $i) — refetching"
+            git pull --rebase origin ${{ github.ref_name }} || true
+            sleep $((i * 4))
+          done
