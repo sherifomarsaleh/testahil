@@ -98,17 +98,39 @@ L.forEach(r => {
 });
 
 console.log('\n[5] published anchor_price agrees with the close on that date (cone apex vs start of path)');
+// ca_factor is a property of the (instrument, anchor_date) STRIKE, not of one horizon:
+// a corporate action restates the tape for every cone struck that day. It is written
+// only when a row is graded, though, so at any moment the 1M sibling can carry it while
+// the still-open 3M does not. This check dedupes by instrument|anchor_date and would
+// otherwise test whichever row it met first — passing or failing on LEDGER ordering
+// rather than on the data. Collect it per strike first so both siblings agree.
+const CA_BY_STRIKE = {};
+L.forEach(r => {
+  if (typeof r.ca_factor === 'number' && isFinite(r.ca_factor) && r.ca_factor > 0)
+    CA_BY_STRIKE[r.instrument + '|' + r.anchor_date] = r.ca_factor;
+});
 const seen2 = new Set();
 L.forEach(r => {
   const k = r.instrument + '|' + r.anchor_date;
   if (seen2.has(k) || !r.anchor_price || !r.anchor_date) return; seen2.add(k);
   const s = series(r.instrument); if (!s) return;
   const lib = s[r.anchor_date]; if (lib === undefined) return;
-  const rel = lib / r.anchor_price - 1;
+  // A corporate action inside or after the window restates the whole library onto a
+  // new share basis while this row's anchor stays frozen on the basis it was struck
+  // on, so the two are legitimately in different units. grade_ledger records exactly
+  // that gap as ca_factor (anchor_price / the library close for this same session),
+  // and the chart now scales the drawn path by it — so this check has to measure the
+  // SAME restated quantity, or it reports a 20% break on a name whose chart is
+  // correct. Juhayna, 24-Aug-2026: anchor 28.90 against a tape restated to 23.12 by a
+  // 5:4 bonus. Absent or 1 this is a no-op, which is every other row.
+  // Note this still catches a WRONG ca_factor: the residual after scaling must vanish.
+  const ca = CA_BY_STRIKE[k] || 1;
+  const rel = (lib * ca) / r.anchor_price - 1;
+  const note = ca !== 1 ? ` [ca_factor ${ca}, tape restated to ${(lib*ca).toFixed(2)}]` : '';
   if (Math.abs(rel) > 0.01)
-    fail(`${r.instrument} ${r.anchor_date}: published anchor ${r.anchor_price} vs tape ${lib} (${(rel*100).toFixed(2)}%) — cone apex will not meet the price path`);
+    fail(`${r.instrument} ${r.anchor_date}: published anchor ${r.anchor_price} vs tape ${lib} (${(rel*100).toFixed(2)}%)${note} — cone apex will not meet the price path`);
   else if (Math.abs(rel) > 0.001)
-    warn(`${r.instrument} ${r.anchor_date}: published anchor ${r.anchor_price} vs tape ${lib} (${(rel*100).toFixed(2)}%)`);
+    warn(`${r.instrument} ${r.anchor_date}: published anchor ${r.anchor_price} vs tape ${lib} (${(rel*100).toFixed(2)}%)${note}`);
 });
 
 console.log('\n[6] every graded cohort has a full path available, not just endpoints');

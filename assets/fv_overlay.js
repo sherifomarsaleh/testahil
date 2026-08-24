@@ -696,98 +696,6 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
-   "ticker": "JUFO",
-   "name": "Juhayna Food Industries",
-   "code": "EGX:JUFO",
-   "ccy": "EGP",
-   "spot": 26.88,
-   "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 53,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 22,
-   "fv_base": 26,
-   "fv_full": 33,
-   "gap_base_pct": -3.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.111707,
-    "mu_h": 0.016237,
-    "G": {
-     "bear": -1.79,
-     "base": -0.3,
-     "full": 1.84
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0271,
-     "base": 0.2959,
-     "full": 0.0404
-    },
-    "p_touch": {
-     "bear": 0.0449,
-     "base": 0.5724,
-     "full": 0.0613
-    },
-    "required_cagr": {
-     "bear": -0.9097,
-     "base": -0.3293,
-     "full": 10.7224
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.199409,
-    "mu_h": 0.049357,
-    "G": {
-     "bear": -1.0,
-     "base": -0.17,
-     "full": 1.03
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0834,
-     "base": 0.3078,
-     "full": 0.1798
-    },
-    "p_touch": {
-     "bear": 0.1629,
-     "base": 0.7093,
-     "full": 0.2876
-    },
-    "required_cagr": {
-     "bear": -0.5513,
-     "base": -0.1247,
-     "full": 1.2716
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00319
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "OCDI",
    "name": "Sixth of October Development & Investment",
    "code": "EGX:OCDI",
@@ -3272,6 +3180,98 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
+   "ticker": "ORAS",
+   "name": "Orascom Construction",
+   "code": "EGX:ORAS",
+   "ccy": "EGP",
+   "spot": 782.25,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 54,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 740,
+   "fv_base": 928,
+   "fv_full": 1272,
+   "gap_base_pct": 18.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.116109,
+    "mu_h": 0.028345,
+    "G": {
+     "bear": -0.48,
+     "base": 1.47,
+     "full": 4.19
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1969,
+     "base": 0.087,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.3943,
+     "base": 0.1281,
+     "full": 0.0025
+    },
+    "required_cagr": {
+     "bear": -0.4864,
+     "base": 6.7701,
+     "full": 340.7421
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00138
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.19874,
+    "mu_h": 0.072001,
+    "G": {
+     "bear": -0.28,
+     "base": 0.86,
+     "full": 2.45
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2226,
+     "base": 0.2745,
+     "full": 0.0216
+    },
+    "p_touch": {
+     "bear": 0.5471,
+     "base": 0.4195,
+     "full": 0.0333
+    },
+    "required_cagr": {
+     "bear": -0.1992,
+     "base": 0.9807,
+     "full": 5.9914
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00315
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "SNB",
    "name": "The Saudi National Bank",
    "code": "TADAWUL:1180",
@@ -4652,6 +4652,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "RAYA",
+   "name": "Raya Holding",
+   "code": "EGX:RAYA",
+   "ccy": "EGP",
+   "spot": 7.07,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.77,
+   "fv_base": 5.56,
+   "fv_full": 8.22,
+   "gap_base_pct": -21.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.104879,
+    "mu_h": 0.026519,
+    "G": {
+     "bear": -3.75,
+     "base": -2.29,
+     "full": 1.44
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0018,
+     "base": 0.0109,
+     "full": 0.0934
+    },
+    "p_touch": {
+     "bear": 0.0029,
+     "base": 0.0179,
+     "full": 0.1373
+    },
+    "required_cagr": {
+     "bear": -0.9911,
+     "base": -0.944,
+     "full": 5.1014
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0019
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.185896,
+    "mu_h": 0.069653,
+    "G": {
+     "bear": -2.12,
+     "base": -1.29,
+     "full": 0.81
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0118,
+     "base": 0.042,
+     "full": 0.2989
+    },
+    "p_touch": {
+     "bear": 0.0232,
+     "base": 0.0841,
+     "full": 0.4526
+    },
+    "required_cagr": {
+     "bear": -0.7928,
+     "base": -0.6175,
+     "full": 0.8273
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00239
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "ADNOCGAS",
    "name": "ADNOC Gas",
    "code": "ADX:ADNOCGAS",
@@ -5384,190 +5476,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00226
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "ORAS",
-   "name": "Orascom Construction",
-   "code": "EGX:ORAS",
-   "ccy": "EGP",
-   "spot": 717.9,
-   "anchor_date": "2026-07-29",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 29,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 740,
-   "fv_base": 928,
-   "fv_full": 1272,
-   "gap_base_pct": 29.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.089247,
-    "mu_h": 0.014795,
-    "G": {
-     "bear": 0.34,
-     "base": 2.88,
-     "full": 6.41
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4156,
-     "base": 0.0086,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.6539,
-     "base": 0.0132,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": 0.4388,
-     "base": 20.7675,
-     "full": 956.3658
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00132
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.18181,
-    "mu_h": 0.045874,
-    "G": {
-     "bear": 0.17,
-     "base": 1.41,
-     "full": 3.15
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.5418,
-     "base": 0.0973,
-     "full": 0.0067
-    },
-    "p_touch": {
-     "bear": 0.8487,
-     "base": 0.1542,
-     "full": 0.0111
-    },
-    "required_cagr": {
-     "bear": 0.1289,
-     "base": 1.7921,
-     "full": 8.8558
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00241
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "RAYA",
-   "name": "Raya Holding",
-   "code": "EGX:RAYA",
-   "ccy": "EGP",
-   "spot": 7.76,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 4.77,
-   "fv_base": 5.56,
-   "fv_full": 8.22,
-   "gap_base_pct": -28.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.120427,
-    "mu_h": 0.015346,
-    "G": {
-     "bear": -4.04,
-     "base": -2.77,
-     "full": 0.48
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0015,
-     "base": 0.0067,
-     "full": 0.3348
-    },
-    "p_touch": {
-     "bear": 0.0019,
-     "base": 0.0099,
-     "full": 0.5372
-    },
-    "required_cagr": {
-     "bear": -0.9971,
-     "base": -0.9817,
-     "full": 0.9958
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00161
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.222879,
-    "mu_h": 0.046579,
-    "G": {
-     "bear": -2.18,
-     "base": -1.5,
-     "full": 0.26
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0136,
-     "base": 0.0395,
-     "full": 0.4758
-    },
-    "p_touch": {
-     "bear": 0.0254,
-     "base": 0.0743,
-     "full": 0.7665
-    },
-    "required_cagr": {
-     "bear": -0.8572,
-     "base": -0.7365,
-     "full": 0.259
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00297
    },
    "market": "EG"
   },
@@ -7424,90 +7332,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "OIH",
-   "name": "Orascom Investment Holding",
-   "code": "EGX:OIH",
-   "ccy": "EGP",
-   "spot": 1.47,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 0.53,
-   "fv_base": 0.78,
-   "fv_full": 1.7,
-   "gap_base_pct": -46.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.098352,
-    "mu_h": 0.013514,
-    "G": {
-     "bear": -10.37,
-     "base": -6.44,
-     "full": 1.48
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9995,
-     "full": 4.7224
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00287
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.186739,
-    "mu_h": 0.04652,
-    "G": {
-     "bear": -5.46,
-     "base": -3.39,
-     "full": 0.78
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0004,
-     "base": 0.0027,
-     "full": 0.2624
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.0045,
-     "full": 0.4205
-    },
-    "required_cagr": {
-     "bear": -0.9831,
-     "base": -0.9207,
-     "full": 0.7887
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00139
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "RMDA",
    "name": "Rameda Pharmaceuticals",
    "code": "EGX:RMDA",
@@ -7588,6 +7412,90 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.0036
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "OIH",
+   "name": "Orascom Investment Holding",
+   "code": "EGX:OIH",
+   "ccy": "EGP",
+   "spot": 1.88,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 0.53,
+   "fv_base": 0.78,
+   "fv_full": 1.7,
+   "gap_base_pct": -58.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.127839,
+    "mu_h": 0.021053,
+    "G": {
+     "bear": -9.9,
+     "base": -6.88,
+     "full": -0.79
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": -0.7011
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00279
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.228882,
+    "mu_h": 0.056863,
+    "G": {
+     "bear": -5.53,
+     "base": -3.84,
+     "full": -0.44
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.0016,
+     "full": 0.2075
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.0028,
+     "full": 0.4464
+    },
+    "required_cagr": {
+     "bear": -0.9937,
+     "base": -0.9704,
+     "full": -0.3314
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00432
    },
    "market": "EG"
   },
@@ -8046,6 +7954,22 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00049
    },
    "market": "AE"
+  },
+  {
+   "ticker": "JUFO",
+   "overlay_status": "BLOCKED \u2014 share basis changed since the fair value was struck: a corporate action of x1.25 went ex after 2026-07-01, so fair (per-share on the old count) and spot (new count) are different units \u2014 the fair value needs re-basing in a study refresh before a gap means anything",
+   "fv_asof": "2026-07-01",
+   "anchor_date": "2026-08-23",
+   "blocked_reason": "share_basis_changed",
+   "name": "Juhayna Food Industries",
+   "code": "EGX:JUFO",
+   "ccy": "EGP",
+   "spot": 26.88,
+   "ca_factor": 1.25,
+   "fv_bear": 22,
+   "fv_base": 26,
+   "fv_full": 33,
+   "market": "EG"
   },
   {
    "ticker": "ADIBUAE",
