@@ -83,7 +83,7 @@ def api(method: str, path: str, token: str, body: dict | None = None) -> dict:
 
 
 # ---------------------------------------------------------------- steps
-def sync_main(ticker: str) -> None:
+def sync_main(ticker: str, republish: bool = False) -> None:
     """Merge origin/main first. Other publishes land while a branch is open, and they
     always collide in the same two shared files. Resolving AFTER the surfaces are
     regenerated would ship a feed and a market registry built against the wrong set of
@@ -94,6 +94,23 @@ def sync_main(ticker: str) -> None:
         print("  branch is current with origin/main")
         return
     print(f"  origin/main is {behind} commit(s) ahead — merging before regenerating")
+    # ...AND THE REFUSAL IS ALSO PREVENTABLE, NOT ONLY DIAGNOSABLE. Step 2 of this
+    # very script regenerates the derived surfaces INTO the working tree, so the
+    # second invocation always arrives here dirty -- which is exactly the run where
+    # origin/main has moved and the merge matters most. Committing first is what a
+    # human does by hand at this point ("Regenerate the derived surfaces for the ADIB
+    # republish"); doing it here is what lets an interrupted publish be re-run without
+    # a human in the loop. Stash+pop would collide in assets/data.js for the same
+    # reason the merge does, one step later and with a stash still to unwind.
+    if run(["git", "status", "--porcelain"]).strip():
+        print("  working tree is dirty — committing it before the merge "
+              "(git refuses to start a merge over uncommitted overlapping edits)")
+        run(["git", "add", "-A"])
+        run(["git", "commit", "-q", "-m",
+             f"Regenerate the derived surfaces for the {ticker} "
+             f"{'republish' if republish else 'publish'}\n\n"
+             f"Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"])
+
     p = subprocess.run(["git", "merge", "origin/main", "--no-edit"],
                        cwd=ROOT, text=True, capture_output=True)
     if p.returncode != 0:
@@ -398,7 +415,7 @@ def main() -> None:
 
     print(f"publishing {tk}" + (" (republish)" if a.republish else ""))
     step("1/6", "syncing with origin/main")
-    sync_main(tk)
+    sync_main(tk, a.republish)
     surfaces(tk)
     gates()
     render_verify(tk)

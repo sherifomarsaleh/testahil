@@ -7597,9 +7597,9 @@ const FV_OVERLAY = {
    "code": "EGX:DSCW",
    "ccy": "EGP",
    "spot": 1.96,
-   "anchor_date": "2026-07-22",
+   "anchor_date": "2026-08-23",
    "fv_asof": "2026-07-19",
-   "fv_lag_days": 3,
+   "fv_lag_days": 35,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0.59,
@@ -7618,13 +7618,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.100983,
+    "h_sessions": 22,
+    "sigma_h": 0.11214,
     "mu_h": 0.01519,
     "G": {
-     "bear": -11.89,
-     "base": -7.93,
-     "full": -4.86
+     "bear": -10.71,
+     "base": -7.14,
+     "full": -4.38
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7639,15 +7639,15 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.00122
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.198794,
-    "mu_h": 0.044895,
+    "h_sessions": 62,
+    "sigma_h": 0.198954,
+    "mu_h": 0.049762,
     "G": {
-     "bear": -6.04,
-     "base": -4.03,
+     "bear": -6.03,
+     "base": -4.02,
      "full": -2.47
     },
     "band": "NOT-EXPRESSIBLE",
@@ -7663,7 +7663,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00299
+    "selftest_max_dev": 0.00244
    },
    "market": "EG"
   },

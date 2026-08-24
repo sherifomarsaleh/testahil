@@ -1884,27 +1884,27 @@ const TICKERS = {
     nameAr: "دايس للملابس الجاهزة (دايس سبورت آند كاجوال وير)",
     code: "EGX:DSCW",
     spot: 1.96,
-    spotDate: "close 22 Jul 2026",
+    spotDate: "close 23 Aug 2026",
     ccy: "EGP",
     fair: { bear: 0.59, base: 0.88, full: 1.20 },          // 20 Jul 2026 revision — terminal g set to 5% (explicit conservative override, below all reconciliation anchors, disclosed §1.7). weighted central: 35% FCFF DCF (floored at 0; raw −0.51 at sourced WACC 23.53%, TV 94% of EV) / 35% normalized earnings power (7.5% through-cycle margin) / 30% relative EV/EBITDA. full = weighted bull central.
     dist: {
-      t20: { label:"1 month",   p5:1.70, p25:1.88, p50:1.99, p75:2.11, p95:2.33, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:1.50, p25:1.83, p50:2.05, p75:2.30, p95:2.79, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:1.67, p25:1.87, p50:1.99, p75:2.12, p95:2.37, resolve:"2026-09-23" },
+      t60: { label:"3 months",  p5:1.51, p25:1.84, p50:2.06, p75:2.30, p95:2.81, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* level, P(touch) 1-month %, 3-month % — descending */
-      [2.40, 5, 29], [2.20, 21, 54], [2.00, 76, 89], [1.80, 24, 48], [1.60, 3, 17]
+      [2.40, 6, 30], [2.20, 24, 55], [2.00, 78, 89], [1.80, 27, 46], [1.60, 4, 16]
     ],
-    levels: { res:[2.01, 2.07, 2.14], sup:[1.88, 1.78, 1.68] },
+    levels: { res:[1.99, 2.07, 2.21], sup:[1.89, 1.78, 1.68] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 1.96 above a rising 20-day (1.82), a falling 50-day (1.83) and a rising 200-day (1.80). Momentum is firm: RSI(14) is ~68 and the daily ATR near 0.05 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.02 / +0.02). Over the last year it has ranged 1.45\u20132.23; the last close sits 12% below that high and 35% above that low.",
-      bull: "A daily close back above 2.01 would clear the nearest resistance and open the 2.14 zone.",
-      bear: "A close below 1.88 would break the nearest support and open the 1.68 zone."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 1.96 above a rising 50-day (1.91) and a rising 200-day (1.83), but below a rising 20-day (2.03). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 0.07 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.02 / +0.04 / \u22120.03). Over the last year it has ranged 1.45\u20132.21; the last close sits 11% below that high and 35% above that low.",
+      bull: "A daily close back above 1.99 would clear the nearest resistance and open the 2.21 zone.",
+      bear: "A close below 1.89 would break the nearest support and open the 1.68 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-08-19" }
+      mc:   { data:"2026-08-23", computed:"2026-08-24" },
+      tech: { data:"2026-08-23", computed:"2026-08-24" }
     },
     files: {
       study: "files/DSCW_Valuation_Study_19-07-2026_public.docx?v=1907",
@@ -4184,9 +4184,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:1.7, p25:1.88, p50:1.99, p75:2.11, p95:2.33,
     touch:{ "+5":55, "+10":29, "+15":14, "+20":7, "-5":42, "-10":17 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:1.96, realized_high:2.21, realized_low:1.89,
+    in_90:true, in_50:true, realized_quantile:0.432, median_err:-0.0151,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"DSCW", asset_class:"equity",
@@ -5752,6 +5752,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.407 (outside the 0.25 dead zone); tilt +0.34% at 1M and +0.65% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:24.27, p25:30.68, p50:34.99, p75:39.92, p95:50.36,
     touch:{ "+5":81, "+10":66, "+15":52, "+20":41, "-5":66, "-10":45 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 24-Aug-2026 single-name roll-forward: DSCW, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"DSCW", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:1.96, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.4435,
+    signal_z:0.2689, signal_alpha:0.00187,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.269 (outside the 0.25 dead zone); tilt +0.19% at 1M and +0.37% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:1.67, p25:1.87, p50:1.99, p75:2.12, p95:2.37,
+    touch:{ "+5":58, "+10":32, "+15":17, "+20":9, "-5":44, "-10":19 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"DSCW", asset_class:"equity",
+    anchor_date:"2026-08-23", run_date:"2026-08-24", anchor_price:1.96, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-23", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.4737,
+    signal_z:0.2689, signal_alpha:0.003678,
+    note:"Cycle 3 roll-forward, 24-Aug-2026 — struck on the 23-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-23 and is graded in this same pass. The previous cone was anchored 2026-07-22; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.269 (outside the 0.25 dead zone); tilt +0.19% at 1M and +0.37% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:1.51, p25:1.84, p50:2.06, p75:2.3, p95:2.81,
+    touch:{ "+5":79, "+10":62, "+15":47, "+20":35, "-5":62, "-10":39 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
