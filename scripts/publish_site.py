@@ -238,11 +238,32 @@ def surfaces(ticker: str) -> None:
         out = run(["python3", "engine/fv_overlay.py",
                    "--js", "assets/fv_overlay.js"])
         blocked = [l for l in out.splitlines() if "BLOCKED" in l]
+        # BLOCKED USED TO MEAN "ABSENT FROM THE PICKER". It no longer always does
+        # (24-Aug-2026). picker.html now LISTS a name whose fair value is merely in the
+        # wrong unit — a corporate action changed the share count after the study was
+        # priced, so no honest gap exists — showing its price and dashing every
+        # fair-value-derived cell. That name reaches the reader; it just does not claim
+        # a gap it cannot compute. Failing the publish on it would be enforcing a
+        # premise that is no longer true, and the only way past would be to re-base the
+        # study's number from a publish script, which is a research decision.
+        #
+        # The check stays for every OTHER block reason, because those really do drop
+        # the row. And it is no longer the last word either way: check_ticker_surfaces
+        # renders the picker in a browser and asserts the ticker is in the DOM, which
+        # is the claim this guard was always a proxy for.
+        SOFT_BLOCKS = ("share basis changed since the fair value was struck",)
         if blocked:
-            print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
-            for l in blocked:
-                print("   ", l.strip()[:150])
-            if any(ticker in l for l in blocked):
+            hard = [l for l in blocked if not any(s in l for s in SOFT_BLOCKS)]
+            soft = [l for l in blocked if l not in hard]
+            if hard:
+                print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
+                for l in hard:
+                    print("   ", l.strip()[:150])
+            if soft:
+                print("  fv_overlay blocked WITHOUT a gap, still listed on the picker:")
+                for l in soft:
+                    print("   ", l.strip()[:150])
+            if any(ticker in l for l in hard):
                 die(f"{ticker} is BLOCKED from the fair-value overlay — it would publish "
                     f"without reaching the Ticker Picker. Most often the entry is missing "
                     f"`fairAsof` (the close the FAIR VALUE is struck on); without it the "
