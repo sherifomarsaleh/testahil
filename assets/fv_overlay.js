@@ -5848,6 +5848,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "AGTHIA",
+   "name": "Agthia Group PJSC",
+   "code": "ADX:AGTHIA",
+   "ccy": "AED",
+   "spot": 3.35,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 46,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.05,
+   "fv_base": 4.37,
+   "fv_full": 6.09,
+   "gap_base_pct": 30.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.086856,
+    "mu_h": -0.008996,
+    "G": {
+     "bear": -1.08,
+     "base": 3.06,
+     "full": 6.88
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1503,
+     "base": 0.0027,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.2382,
+     "base": 0.004,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.6756,
+     "base": 23.2795,
+     "full": 1301.7762
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00204
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.157066,
+    "mu_h": -0.027233,
+    "G": {
+     "bear": -0.6,
+     "base": 1.69,
+     "full": 3.81
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3228,
+     "base": 0.0318,
+     "full": 0.0006
+    },
+    "p_touch": {
+     "bear": 0.537,
+     "base": 0.0591,
+     "full": 0.0013
+    },
+    "required_cagr": {
+     "bear": -0.3129,
+     "base": 1.8957,
+     "full": 9.9217
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00126
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "LULU",
    "name": "Lulu Retail Holdings",
    "code": "ADX:LULU",
@@ -6666,90 +6758,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00125
    },
    "market": "SA"
-  },
-  {
-   "ticker": "AGTHIA",
-   "name": "Agthia Group PJSC",
-   "code": "ADX:AGTHIA",
-   "ccy": "AED",
-   "spot": 3.2,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 18,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.05,
-   "fv_base": 4.37,
-   "fv_full": 6.09,
-   "gap_base_pct": 36.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.070116,
-    "mu_h": 0.00312,
-    "G": {
-     "bear": -0.68,
-     "base": 4.44,
-     "full": 9.18
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.4379,
-     "base": 41.0705,
-     "full": 2256.3961
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00207
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.134405,
-    "mu_h": 0.009331,
-    "G": {
-     "bear": -0.36,
-     "base": 2.32,
-     "full": 4.79
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3218,
-     "base": 0.0153,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.6193,
-     "base": 0.0257,
-     "full": 0.0005
-    },
-    "required_cagr": {
-     "bear": -0.1747,
-     "base": 2.478,
-     "full": 12.118
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00084
-   },
-   "market": "AE"
   },
   {
    "ticker": "BURJEEL",
