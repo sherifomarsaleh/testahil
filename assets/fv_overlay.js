@@ -4560,6 +4560,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "ISPH",
+   "name": "Ibnsina Pharma",
+   "code": "EGX:ISPH",
+   "ccy": "EGP",
+   "spot": 13.22,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-07",
+   "fv_lag_days": 47,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 12.85,
+   "fv_base": 17.78,
+   "fv_full": 22.68,
+   "gap_base_pct": 34.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.146747,
+    "mu_h": 0.01427,
+    "G": {
+     "bear": -0.19,
+     "base": 2.02,
+     "full": 3.68
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3614,
+     "base": 0.0279,
+     "full": 0.0029
+    },
+    "p_touch": {
+     "bear": 0.6835,
+     "base": 0.0421,
+     "full": 0.0039
+    },
+    "required_cagr": {
+     "bear": -0.2887,
+     "base": 34.0271,
+     "full": 649.0386
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00172
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.246109,
+    "mu_h": 0.046554,
+    "G": {
+     "bear": -0.12,
+     "base": 1.2,
+     "full": 2.19
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3552,
+     "base": 0.1235,
+     "full": 0.0245
+    },
+    "p_touch": {
+     "bear": 0.7844,
+     "base": 0.2008,
+     "full": 0.0395
+    },
+    "required_cagr": {
+     "bear": -0.1073,
+     "base": 2.2719,
+     "full": 7.6626
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00426
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "ABUK",
    "name": "Abu Kir Fertilizers",
    "code": "EGX:ABUK",
@@ -6214,98 +6306,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00109
    },
    "market": "AE"
-  },
-  {
-   "ticker": "ISPH",
-   "name": "Ibnsina Pharma",
-   "code": "EGX:ISPH",
-   "ccy": "EGP",
-   "spot": 11.73,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-07",
-   "fv_lag_days": 15,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 12.85,
-   "fv_base": 17.78,
-   "fv_full": 22.68,
-   "gap_base_pct": 51.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111105,
-    "mu_h": 0.014389,
-    "G": {
-     "bear": 0.82,
-     "base": 3.74,
-     "full": 5.93
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.2065,
-     "base": 0.0028,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.3245,
-     "base": 0.0043,
-     "full": 0.0008
-    },
-    "required_cagr": {
-     "bear": 1.9872,
-     "base": 146.0974,
-     "full": 2728.8605
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0019
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.20616,
-    "mu_h": 0.045822,
-    "G": {
-     "bear": 0.44,
-     "base": 2.02,
-     "full": 3.2
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3939,
-     "base": 0.0341,
-     "full": 0.0061
-    },
-    "p_touch": {
-     "bear": 0.6328,
-     "base": 0.0555,
-     "full": 0.0098
-    },
-    "required_cagr": {
-     "bear": 0.4402,
-     "base": 4.2788,
-     "full": 12.9759
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00219
-   },
-   "market": "EG"
   },
   {
    "ticker": "ADCB",
