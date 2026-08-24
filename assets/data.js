@@ -2545,28 +2545,28 @@ const TICKERS = {
     name: "ADNOC Gas",
     nameAr: "أدنوك للغاز",
     code: "ADX:ADNOCGAS",
-    spot: 3.34,
-    spotDate: "close 24 Jul 2026",
+    spot: 3.30,
+    spotDate: "close 21 Aug 2026",
     ccy: "AED",
     fair: { bear: 3.30, base: 3.79, full: 4.60 },      // 4 Jul 2026 — weighted five-lens central 3.79 (+10% vs spot 3.44). Lenses: DCF (5-yr FCFF) 4.50 (ceiling), DDM (committed dividend, split-Ke 8.25%) 3.41, relative EV/EBITDA 3.83, justified P/E 3.62, dividend yield 3.83. bear/full = weighted bear/bull of the football field. Swing: Brent-linked export pricing and the gap between enterprise cash flow and the distributed dividend.
     dist: {
-      t20: { label:"1 month",   p5:3.08, p25:3.24, p50:3.35, p75:3.46, p95:3.64, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:2.88, p25:3.17, p50:3.37, p75:3.58, p95:3.96, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:3.08, p25:3.21, p50:3.31, p75:3.40, p95:3.55, resolve:"2026-09-21" },
+      t60: { label:"3 months",  p5:2.88, p25:3.14, p50:3.32, p75:3.50, p95:3.82, resolve:"2026-11-23" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [3.90, 1, 11], [3.75, 3, 22], [3.65, 7, 33], [3.55, 20, 49], [3.35, 85, 92], [3.25, 47, 68], [3.15, 18, 44]
+      [3.90, 0, 6], [3.75, 1, 13], [3.65, 2, 22], [3.55, 8, 36], [3.35, 64, 81], [3.25, 61, 78], [3.15, 22, 50]
     ],
-    levels: { res:[3.42, 3.49, 3.72], sup:[3.29, 3.20, 3.11] },
+    levels: { res:[3.43, 3.49, 3.72], sup:[3.20, 3.12, 2.71] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 3.34 below a falling 20-day (3.39), a flat 50-day (3.37) and a flat 200-day (3.41). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.05 (~1.5%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / \u22120.01 / \u22120.01). Over the last year it has ranged 3.12\u20133.76; the last close sits 11% below that high and 7% above that low.",
-      bull: "A daily close back above 3.42 would clear the nearest resistance and open the 3.72 zone.",
-      bear: "A close below 3.29 would break the nearest support and open the 3.11 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 3.30 below a flat 20-day (3.35), a flat 50-day (3.39) and a falling 200-day (3.39). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.04 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 3.12\u20133.76; the last close sits 12% below that high and 6% above that low.",
+      bull: "A daily close back above 3.43 would clear the nearest resistance and open the 3.72 zone.",
+      bear: "A close below 3.20 would break the nearest support and open the 2.71 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
-      tech: { data:"2026-07-24", computed:"2026-08-19" }
+      mc:   { data:"2026-08-21", computed:"2026-08-21" },
+      tech: { data:"2026-08-21", computed:"2026-08-24" }
     },
     files: {
       study: "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.docx?v=0704",
