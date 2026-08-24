@@ -348,13 +348,28 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     return new
 
 
-def _prior_1m_matured(src: str, instrument: str, prior_cycle, anchor_date: str):
-    """The prior cycle's 1-month grade date, IF it has come due by this anchor.
+def _prior_1m_matured(src: str, instrument: str, prior_cycle, as_of: str):
+    """The prior cycle's 1-month grade date, IF it has come due by `as_of`.
 
     Returns the grade date (str) when this strike lands on the monthly metronome —
     STEP 0 rule 2, "the 1-month maturity is the metronome" — and None when it does
     not. Read off the ledger rather than assumed, because the note that quotes it
     is published and a wrong claim there is invisible to every other check.
+
+    `as_of` IS THE CALENDAR RUN DATE, NOT THE ANCHOR (24-Aug-2026). This compared
+    the grade date against the anchor — the last SESSION in the library — which
+    silently reintroduced session-counting into the one convention the calendar
+    amendment exists to remove: "the forecast is a DATE, not a session count", and
+    maturity is therefore a fact about today, not about which closes happen to have
+    been exported yet. Real case: ADNOCGAS cycle 2 committed to 2026-08-24, which
+    arrived, against a library running to 2026-08-21 — matured on the calendar, and
+    this function called it un-matured, so a cohort struck BECAUSE its predecessor
+    came due would have published a note asserting the predecessor had not.
+
+    Maturity and gradability are now two different questions and the caller asks
+    both: this one is calendar (has the commitment come due), and coverage — does
+    the library hold the grade session yet — stays the anchor comparison it always
+    was. Conflating them is what let one date answer both.
     """
     if prior_cycle is None:
         return None
@@ -367,7 +382,7 @@ def _prior_1m_matured(src: str, instrument: str, prior_cycle, anchor_date: str):
         hl = re.search(r'horizon_label:"([^"]+)"', e)
         gd = re.search(r'grade_date:"([^"]+)"', e)
         if cy and hl and gd and int(cy.group(1)) == prior_cycle \
-                and hl.group(1) == '1 month' and gd.group(1) <= anchor_date:
+                and hl.group(1) == '1 month' and gd.group(1) <= as_of:
             return gd.group(1)
     return None
 
@@ -421,11 +436,23 @@ def run(market: str, series: str, key: str, today: str,
     # today's cohort with last week's story". A tool written to fix that bug must
     # not carry it. Whether this strike sits on the monthly metronome is now READ
     # from the ledger, not assumed.
-    metro = _prior_1m_matured(src, inst, prior[1] if prior else None, r['anchor_date'])
-    event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
-             f'{metro} and is graded in this same pass' if metro else
-             'off the monthly metronome — the prior cycle’s 1-month has not yet '
-             'matured, so no cohort of that horizon is graded here')
+    run_date = pd.Timestamp(today.replace('-', ' ')).date().isoformat()
+    metro = _prior_1m_matured(src, inst, prior[1] if prior else None, run_date)
+    # MATURED and GRADED HERE are separate facts, and the note states each on its
+    # own evidence: the calendar decides the first, the library the second. A
+    # commitment can come due days before its close is exported, and saying "graded
+    # in this same pass" then would be false on a row a reader can check.
+    if metro and metro <= r['anchor_date']:
+        event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
+                 f'{metro} and is graded in this same pass')
+    elif metro:
+        event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
+                 f'{metro}, a calendar date now reached, but the library runs only to '
+                 f'{r["anchor_date"]}, so that cohort stays OPEN and is graded on its '
+                 f'own stored date the moment that close lands')
+    else:
+        event = ('off the monthly metronome — the prior cycle’s 1-month has not yet '
+                 'matured, so no cohort of that horizon is graded here')
     # The q_annual disclosure is CLASS-DEPENDENT. The retired text asserted a
     # gross-of-dividend overstatement unconditionally. On a zero-yield spot metal
     # that is not a flag on a defaulted input -- it is the sourced value -- and the
