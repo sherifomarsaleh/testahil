@@ -7012,90 +7012,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DIB",
-   "name": "Dubai Islamic Bank",
-   "code": "DFM:DIB",
-   "ccy": "AED",
-   "spot": 7.35,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 8.14,
-   "fv_base": 10.18,
-   "fv_full": 11.2,
-   "gap_base_pct": 38.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.923,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.063113,
-    "mu_h": 0.002717,
-    "G": {
-     "bear": 1.62,
-     "base": 5.16,
-     "full": 6.67
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": 2.4044,
-     "base": 48.8339,
-     "full": 155.7358
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00147
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.118103,
-    "mu_h": 0.009479,
-    "G": {
-     "bear": 0.86,
-     "base": 2.76,
-     "full": 3.57
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.2006,
-     "base": 0.0067,
-     "full": 0.0015
-    },
-    "p_touch": {
-     "bear": 0.349,
-     "base": 0.0109,
-     "full": 0.0027
-    },
-    "required_cagr": {
-     "bear": 0.5043,
-     "base": 2.6799,
-     "full": 4.3917
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00102
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "CLHO",
    "name": "Cleopatra Hospitals Group",
    "code": "EGX:CLHO",
@@ -7178,6 +7094,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00345
    },
    "market": "EG"
+  },
+  {
+   "ticker": "DIB",
+   "name": "Dubai Islamic Bank",
+   "code": "DFM:DIB",
+   "ccy": "AED",
+   "spot": 7.4,
+   "anchor_date": "2026-08-21",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 8.14,
+   "fv_base": 10.18,
+   "fv_full": 11.2,
+   "gap_base_pct": 37.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.923,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.055089,
+    "mu_h": -0.004062,
+    "G": {
+     "bear": 1.73,
+     "base": 5.79,
+     "full": 7.52
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": 2.1384,
+     "base": 44.9402,
+     "full": 143.4893
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0014
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.103208,
+    "mu_h": -0.01087,
+    "G": {
+     "bear": 0.92,
+     "base": 3.09,
+     "full": 4.02
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1384,
+     "base": 0.0025,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.2629,
+     "base": 0.0048,
+     "full": 0.001
+    },
+    "required_cagr": {
+     "bear": 0.4641,
+     "base": 2.5815,
+     "full": 4.2474
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00083
+   },
+   "market": "AE"
   },
   {
    "ticker": "EMFD",
