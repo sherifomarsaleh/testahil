@@ -3732,98 +3732,6 @@ const FV_OVERLAY = {
    "market": "KR"
   },
   {
-   "ticker": "EGAL",
-   "name": "Egypt Aluminum",
-   "code": "EGX:EGAL",
-   "ccy": "EGP",
-   "spot": 301.12,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 183,
-   "fv_base": 250,
-   "fv_full": 358,
-   "gap_base_pct": -17.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.095913,
-    "mu_h": 0.014801,
-    "G": {
-     "bear": -5.19,
-     "base": -1.94,
-     "full": 1.8
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.0213,
-     "full": 0.0432
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.0334,
-     "full": 0.0647
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.8927,
-     "full": 6.9748
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0014
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.199034,
-    "mu_h": 0.046016,
-    "G": {
-     "bear": -2.5,
-     "base": -0.93,
-     "full": 0.87
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0084,
-     "base": 0.0963,
-     "full": 0.2238
-    },
-    "p_touch": {
-     "bear": 0.0152,
-     "base": 0.189,
-     "full": 0.3607
-    },
-    "required_cagr": {
-     "bear": -0.8636,
-     "base": -0.5249,
-     "full": 0.9979
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00226
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "MODON",
    "name": "Modon Holding PSC",
    "code": "ADX:MODON",
@@ -4096,6 +4004,98 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00183
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "EGAL",
+   "name": "Egypt Aluminum",
+   "code": "EGX:EGAL",
+   "ccy": "EGP",
+   "spot": 330,
+   "anchor_date": "2026-08-23",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 183,
+   "fv_base": 250,
+   "fv_full": 358,
+   "gap_base_pct": -24.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.14561,
+    "mu_h": 0.024308,
+    "G": {
+     "bear": -4.05,
+     "base": -1.91,
+     "full": 0.56
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0014,
+     "base": 0.022,
+     "full": 0.317
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.0358,
+     "full": 0.5008
+    },
+    "required_cagr": {
+     "bear": -0.9992,
+     "base": -0.9643,
+     "full": 1.6572
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00174
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.252066,
+    "mu_h": 0.06522,
+    "G": {
+     "bear": -2.34,
+     "base": -1.1,
+     "full": 0.32
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0101,
+     "base": 0.0697,
+     "full": 0.4685
+    },
+    "p_touch": {
+     "bear": 0.0195,
+     "base": 0.1375,
+     "full": 0.7368
+    },
+    "required_cagr": {
+     "bear": -0.9054,
+     "base": -0.6706,
+     "full": 0.3851
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00402
    },
    "market": "EG"
   },
