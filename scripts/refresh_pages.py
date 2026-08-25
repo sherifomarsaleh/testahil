@@ -18,8 +18,9 @@ prices, and a red X sits in the Actions tab saying so.
 Every per-name tool needed to fix that already existed. What did not exist was
 the thing that decides WHICH names need it and runs them in the right order with
 the gates attached. That is all this is: an orchestrator over
-`refresh_cone_one` -> `apply_technicals` -> `ta_chart` -> the overlay gate ->
-`check_data_freshness`. No new cone mathematics, no new technical construction.
+`refresh_cone_one` -> `apply_technicals` -> `ta_chart` ->
+`build_name_calibration` -> the overlay gate -> `check_data_freshness`. No new
+cone mathematics, no new technical construction.
 
 WHAT IT WILL NOT DO
 -------------------
@@ -148,7 +149,15 @@ def stale_names(data: dict, only: list[str] | None, today_iso: str) -> tuple[lis
 
 
 # ---------------------------------------------------------------- dividend yield
-_Q = re.compile(r'q[_ ]?annual\s*[=:]\s*([0-9.]+)', re.I)
+# The value is bounded so a SENTENCE-ENDING PERIOD is not swallowed into it:
+# the notes read 'q_annual=0.0511.' and a greedy [0-9.]+ captures '0.0511.',
+# which float() rejects — so the whole pass died on the SIXTH name rather
+# than on the first, i.e. after it had already looked correct.
+#
+# Same defect class as the fit-drift regex in this file, which was written
+# bounded for exactly this reason; this one was not, and nothing compared
+# them. Now \d+(?:\.\d+)? in both.
+_Q = re.compile(r'q[_ ]?annual\s*[=:]\s*(\d+(?:\.\d+)?)', re.I)
 
 
 def recover_q(data: dict, key: str) -> float | None:
@@ -233,6 +242,37 @@ def sh(cmd: list[str], cwd: str = ROOT, check: bool = True) -> int:
     if check and p.returncode != 0:
         raise SystemExit(f'FAILED ({p.returncode}): {" ".join(cmd)}')
     return p.returncode
+
+
+def rebuild_name_calibration(check_only: bool = False) -> bool:
+    """[R-REC-01] The per-name calibration record, regenerated in THIS pass.
+
+    Every stock's page carries its own record — how many resolved three-month
+    tests its history holds and how often the middle and wide bands caught the
+    close — and `engine/build_name_calibration.py` computes it from the
+    committed panels under the LIVE (nu, width_cal). R-REC-01 requires it
+    regenerated "in the same pass as any refit, reshape, panel rebuild or
+    roll-forward", for the same reason the technical read is: a page that states
+    a fact which moves must not be the thing that remembers it.
+
+    Nothing called it. Not this orchestrator, not testahil-calibration.yml — so
+    the record was regenerated only when a human happened to remember, while its
+    sibling BANDS record is rebuilt-and-compared from outside by
+    check_band_vocabulary.py on every push. The asymmetry is the whole defect.
+
+    IT IS NOT ENOUGH TO RUN THIS ONLY WHEN A PAGE IS STALE. The record is a
+    function of the FIT, and the fit is re-estimated on a different trigger than
+    the prices: auto_refresh.py refits a whole market and commits, and every
+    page can still stand on its own library afterwards. That is exactly the run
+    this orchestrator used to end with "Nothing to do" — the one case where the
+    record moves and nothing else does.
+
+    The builder self-verifies (node --check on data.js, then LOAD it and assert
+    CALIB covers every TICKERS entry, counted against the known total), so a
+    clean exit here is that assertion having passed, not this function's opinion.
+    """
+    cmd = [sys.executable, 'build_name_calibration.py'] + (['--check'] if check_only else [])
+    return sh(cmd, cwd=ENGINE, check=not check_only) == 0
 
 
 def _free_port() -> int:
@@ -357,7 +397,31 @@ def main() -> int:
     print()
 
     if not due:
-        print('Every page already stands on the current library. Nothing to do.')
+        print('Every page already stands on the current library — no cone and no '
+              'technical read needs refreshing.')
+        # [R-REC-01] But the per-name record is a function of the FIT, not of the
+        # library, so this is precisely the run in which it can be stale while
+        # nothing else is. Report it in a dry run; regenerate it under --write.
+        if not args.write:
+            print('\n--- per-name calibration record [R-REC-01] ---')
+            fresh = rebuild_name_calibration(check_only=True)
+            print('\nDRY RUN — nothing written.' if fresh else
+                  '\nDRY RUN — nothing written. The record above is STALE; '
+                  're-run with --write to regenerate it.')
+            return 0
+        print('\n--- per-name calibration record [R-REC-01] ---')
+        ledger_before = json.dumps(data['l'], sort_keys=True)
+        rebuild_name_calibration()
+        after_data = read_data_js()
+        after = counts(after_data)
+        if after != before:
+            raise SystemExit(f'entry count moved {before} -> {after} — aborting.')
+        if json.dumps(after_data['l'], sort_keys=True) != ledger_before:
+            raise SystemExit('LEDGER CHANGED while regenerating the per-name '
+                             'record — it may only ever rewrite the CALIB block.')
+        print(f'    counts unchanged: {after[0]} tickers, {after[1]} metals, '
+              f'{after[2]} ledger rows')
+        print('    LEDGER byte-identical — no cohort struck')
         return 0
 
     n_price = sum(1 for d in due if d.get('reason') != 'fit drift')
@@ -404,6 +468,10 @@ def main() -> int:
 
     print('\n--- chart SVGs, from the same library ---')
     sh([sys.executable, 'ta_chart.py', '--write'], cwd=ENGINE)
+
+    # [R-REC-01] In the SAME pass, never a step someone remembers separately.
+    print('\n--- per-name calibration record [R-REC-01] ---')
+    rebuild_name_calibration()
 
     print('\n--- gates ---')
     after_data = read_data_js()

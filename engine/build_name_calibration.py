@@ -22,6 +22,7 @@ Verification (the JS rules): node --check on data.js, then load it and assert
 CALIB covers every TICKERS entry — COUNT AGAINST THE KNOWN TOTAL, never trust
 "0 skipped".
 """
+import argparse
 import json
 import os
 import re
@@ -91,7 +92,17 @@ def record_for(code, key):
                 through=str(pd.to_datetime(r["grade_date"]).max().date()))
 
 
-def main():
+def build_block():
+    """The generated CALIB block for the CURRENT panels and CURRENT live fit.
+
+    Split out of main() so the same computation can answer two questions: WRITE
+    it (the pass) and IS THE COMMITTED ONE STILL IT (--check). Comparing the
+    block the generator PRODUCES against the block in the file is the same
+    method check_band_vocabulary.py uses for the sibling BANDS record, and it is
+    chosen for the same reason: a regex that mirrors the emitter's formatting
+    checks a few fields and degrades to a silent no-op the moment the format
+    moves.
+    """
     idx = tickers_index()
     total = len(idx)
     recs, missing = {}, []
@@ -113,9 +124,24 @@ def main():
                      f'in90: {r["in90"]}, through: "{r["through"]}"}},')
     lines.append("};")
     lines.append(MARK_B)
-    block = "\n".join(lines)
+    return "\n".join(lines), total
+
+
+def main(check: bool = False):
+    block, total = build_block()
 
     src = open(DATA_JS).read()
+    if check:
+        # [R-REC-01] Report, do not write. The record is a function of the LIVE
+        # (nu, width_cal) and the committed panels, so a refit moves it while
+        # every page still stands on its own library — which is precisely the
+        # case a staleness check keyed on library dates cannot see.
+        if block in src:
+            print(f"CALIB is current — {total} records agree with the live fit "
+                  "and the committed panels")
+            return 0
+        sys.exit("FAIL — the committed CALIB block no longer matches the live fit "
+                 "and panels. Re-run: python3 engine/build_name_calibration.py")
     if MARK_A in src:
         pat = re.escape(MARK_A) + r".*?" + re.escape(MARK_B)
         new = re.sub(pat, block, src, count=1, flags=re.S)
@@ -144,4 +170,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--check", action="store_true",
+                    help="report whether the committed block is still current; write nothing")
+    sys.exit(main(check=ap.parse_args().check) or 0)
