@@ -1,0 +1,47 @@
+{
+ "ticker": "STC",
+ "market": "SA",
+ "exchange": "TADAWUL",
+ "beta": 0.7107002146600568,
+ "r2": 0.3024841659166959,
+ "se": 0.1032217317310491,
+ "n": 254,
+ "ci90": [
+  0.5409004659624811,
+  0.8804999633576326
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.94,
+ "first_obs": "2021-08-12",
+ "last_obs": "2026-07-23",
+ "blume_crosscheck": 0.8071334764400379,
+ "index_file": "raw_indices/SA/TASI.csv",
+ "index_asof": "2026-08-18",
+ "index_dq": [
+  "dropped 7 interior stale/no-trade rows"
+ ],
+ "stock_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "superseded_beta": 0.48,
+ "superseded_beta_raw": 0.4753,
+ "superseded_beta_source": "Genuine daily STC-vs-TASI regression, n=40 paired sessions (5-May->7-Jul-2026, investing.com TASI closes); flagged as a 9-week window, longer TASI history not programmatically accessible at the time",
+ "superseded_tier": "none \u2014 a daily short-window stopgap, which the rule states is not a tier",
+ "tier": 1,
+ "delta_beta": 0.2307,
+ "ke_delta_at_study_erp": {
+  "rating_basis_pp": 1.156,
+  "cds_basis_pp": 1.32
+ },
+ "study_erp_rating": 0.0501,
+ "study_erp_cds": 0.0572,
+ "wacc_reissue_blocked_on": "Saudi Arabia's own sovereign default spread, rating basis and CDS basis, read fresh from Damodaran's original ctryprem.html. Not reconstructed from memory: stop and inform. The study additionally imports mc_v2, which is not in the repo."
+}
