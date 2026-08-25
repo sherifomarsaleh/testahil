@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1171,23 +1171,35 @@ The challenge was made on legibility. It is upheld on legibility and on a second
 that turned out to be worse: **the label was factually wrong about the names it flagged.**
 
 
-**Render held, 25-Aug-2026, pending an instruction.** [R-REC-01] and [R-CAL-02] were adopted on
-the SAME DAY on two branches that never saw each other, and were merged for the first time on
-25-Aug-2026. They do not measure the same thing. `BANDS` (band_record.py) scores the bands as they
-were actually PUBLISHED; `CALIB` (build_name_calibration.py) re-scores the same windows under
-TODAY's fit — `cal * tq(.25, nu) <= u <= cal * tq(.75, nu)`. The window counts agree on every
-name, and 70 of 88 names disagree on cov50 or cov90 (DU 71% vs 66%, AIRARABIA 57% vs 47%), so
-every one of those pages would state its own record twice, in two numbers, with nothing on the
-page saying which sample each came from. That is precisely the defect a reader reported on a
-ticker page the same week — two numbers about one thing, three lines apart — reproduced at book
-scale, and regenerating both from the merged fits does not converge them because the difference is
-definitional, not staleness (both blocks came back byte-identical).
+**Render settled, 25-Aug-2026, under the R-CAL-03 precedent: CALIB is an internal diagnostic and
+does not reach a reader.** [R-REC-01] and [R-CAL-02] were adopted on the SAME DAY on two branches
+that never saw each other, and were merged for the first time on 25-Aug-2026. They do not measure
+the same thing. `BANDS` (band_record.py) scores the bands as they were actually PUBLISHED; `CALIB`
+(build_name_calibration.py) re-scores the same windows under TODAY's fit — `cal * tq(.25, nu) <= u
+<= cal * tq(.75, nu)`. Window counts agree on every name; 70 of 88 disagree on cov50 or cov90 (DU
+71% vs 66%, AIRARABIA 57% vs 47%), and regenerating both from the merged fits does NOT converge
+them — both blocks came back byte-identical — so the difference is definitional, not staleness.
 
-Both records stay generated and committed, and both generators stay in the regeneration pass. Only
-the SECOND RENDER is held: one commented call in `assets/app.js`. Re-enabling is a one-line change
-once it is decided which record the reader is shown, or how the two are labelled apart. This is a
-presentation decision of the same kind R-CAL-02 and R-CAL-03 were, so it is not taken here. No
-research method changes and no delivered number moves.
+**The protocol already decided this, and it was not read closely enough the first time.** R-CAL-02
+enumerates what a reader is shown on every public surface — the band record, record strength, and a
+flag only when earned — and that list is exhaustive. It is also already PER-NAME, which is
+R-REC-01's own stated purpose: "stop looking at stocks in a country as a bulk; look at each stock
+individually." R-REC-01's requirement is therefore already met by what is published; what it
+additionally proposed was a SECOND rendering of the same fact on a different sample.
+
+R-CAL-03 then set the disposition for exactly this shape of thing — a second measure that is real
+and worth keeping but must not reach a reader: CRPS "stays in the codebase as an internal
+DIAGNOSTIC ... but the diagnostic may never again gate, trigger, block, or reach a reader." CALIB
+takes the same disposition. It stays generated, committed and regenerated in every pass, because it
+answers a question the band record genuinely cannot — how would today's cone have done on this
+name's own history — and that is a fair thing to consult when investigating a fit change. It
+renders nowhere.
+
+Publishing both would state one page's record twice, in two numbers, with nothing on the page
+saying which sample each came from. That is the defect R-CAL-02 exists to close, in its own words:
+"the original defect was not the sample but that nothing said which sample it was." It is also the
+defect a reader reported on a ticker page the same week. Reversible on an instruction — one
+commented call in `assets/app.js`. No research method changes and no delivered number moves.
 
 ### What the verdict actually was
 

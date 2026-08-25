@@ -1,0 +1,42 @@
+{
+ "ticker": "GBCO",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 0.8906822450333004,
+ "r2": 0.24301638425722683,
+ "se": 0.20405704188114288,
+ "n": 251,
+ "ci90": [
+  0.5550084111388204,
+  1.2263560789277803
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.85,
+ "first_obs": "2021-09-09",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 0.9271214966888668,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "superseded_beta": 1.0,
+ "superseded_beta_source": "assumed_1.0 -- n=5 annual GBCO-vs-EGX30 regression gave beta=-0.15, R2=0.008 (unusable); higher-frequency EGX30 data inaccessible via available tools; house rule default applied",
+ "superseded_tier": 3,
+ "tier": 1,
+ "delta_beta": -0.109318,
+ "ke_delta_at_study_erp": {
+  "rating_basis_pp": -1.524,
+  "cds_basis_pp": -1.029
+ },
+ "study_erp_rating": 0.1394,
+ "study_erp_cds": 0.0941,
+ "wacc_reissue_blocked_on": "Egypt's own sovereign default spread, rating basis and CDS basis, read fresh from Damodaran's original ctryprem.html. The v2 method normalises rf* = local govt-bond yield - that sovereign's OWN default spread, so country risk enters once via the CRP inside the ERP; the delivered study passes the raw local yield to a field the current WaccInputs does not accept. Not reconstructed from memory: stop and inform."
+}

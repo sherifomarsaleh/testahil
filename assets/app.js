@@ -922,7 +922,7 @@ function renderStaticFan(elId, T){
   // technical read is written by each page's own inline script, and on some
   // pages that runs after this call.
   stampAsOfWhenReady(T);
-  /* [R-REC-01 x R-CAL-02] SUPPRESSED 25-Aug-2026, pending an instruction.
+  /* [R-REC-01 x R-CAL-02] NOT RENDERED — settled 25-Aug-2026 under the R-CAL-03 precedent.
      R-REC-01 (per-name record under the fan) and R-CAL-02 (the band record in
      the page text) were adopted on the SAME DAY on two branches that never saw
      each other, and they were merged for the first time on 25-Aug. They do not
@@ -934,8 +934,10 @@ function renderStaticFan(elId, T){
      would state its own record twice, in two numbers, with nothing saying which
      sample each came from. That is the defect a reader reported on gbco.html
      this same week, at book scale. Both records stay generated and committed;
-     only the SECOND render is held until it is decided which one the reader is
-     shown, or how the two are labelled apart. Re-enable by restoring this call.
+     CALIB takes R-CAL-03's disposition for a real second measure: it stays an
+     INTERNAL DIAGNOSTIC and never reaches a reader. R-CAL-02's published list is
+     exhaustive and already per-name, which is R-REC-01's own stated purpose.
+     Reversible on an instruction by restoring this call.
   stampOwnRecordWhenReady(T);  */
   whenReady(refreshBandRecords);
 }
