@@ -2,10 +2,11 @@
 
 DESIGN PRINCIPLE (11-Jul-2026, user instruction: "automatic but not at the expense
 of quality"): mechanical work runs unattended. Anything that would change a
-published verdict, imply a signal ablation, or move a config beyond a small
-tolerance STOPS and asks a human. Today's session is the reason this gate exists:
-data cleaning alone flipped Korea's tail shape from nu=6 to Gaussian and changed
-two names' robust verdicts (SA/RAJHI PARITY->PASS, AE/ALPHADHABI PARITY->FAIL).
+name's PUBLISHED COVERAGE FLAG, imply a signal ablation, or move a config beyond a
+small tolerance STOPS and asks a human. The 11-Jul session is the reason this gate
+exists: data cleaning alone flipped Korea's tail shape from nu=6 to Gaussian and
+moved two names across a scoring boundary (at the time, SA/RAJHI and
+AE/ALPHADHABI, under the skill verdict R-CAL-03 has since retired).
 "Just run the pipeline on a cron" would have silently pushed those to production
 with no one looking. This script is the difference between automation and
 unsupervised drift.
@@ -31,23 +32,34 @@ like "ADNOC_Stock_Price_History.csv".
 WHAT RUNS UNATTENDED (auto-committed to main, no approval):
   - the data-quality gate (clean_ohlc) on every touched file
   - the panel rebuild + pooled (nu, width_cal) refit for every touched market
-  - LONO per-name and market-panel verdicts
+  - the per-name LONO fits and the pooled panel scores
   ...PROVIDED the materiality gate below finds nothing that needs a human.
 
-WHAT IS MATERIAL — APPLIED, BUT NEVER SILENTLY [R-CAL-01, 23-Aug-2026]:
-  - any EXISTING name's verdict category changes (PASS/PARITY/FAIL/BOUNDARY)
-  - a NEW name arrives already FAILING, or its arrival flips someone else's verdict
+WHAT IS MATERIAL — APPLIED, BUT NEVER SILENTLY [R-CAL-01, 23-Aug-2026;
+CONDITIONS REPLACED 25-Aug-2026 BY R-CAL-03]:
+  - any EXISTING name's COVERAGE FLAG changes (narrow / wide / none)
+  - a NEW name arrives ALREADY FLAGGED
   - the published 90% cone moves >5% (measured on width_cal x q95(t(nu)), never on
     the two coordinates separately — they trade off)
-  - the market-level verdict itself changes
   - a panel carries a name with NO raw CSV in the library (a genuine inconsistency
     now that the library is authoritative — it means a file was deleted or never
     added, and the panel is running on stale residuals)
 
+The first two conditions used to read "an existing name's verdict category changes"
+and "a new name arrives already FAILING". [R-CAL-03] retired the PASS/PARITY/FAIL
+skill verdict outright — it had never once excluded a market, and it disagreed with
+the band record on 40% of the book — and named these replacements explicitly. The
+two surviving numeric conditions watch DIFFERENT things and both are needed: mc_v3
+writes the in-band flags when a window is scored and a refit never rewrites them, so
+a coverage flag moves when a name's RECORD moves, while the cone-width condition
+moves when the FIT does. robust_verdict itself stays in panel_refresh as an internal
+diagnostic under R-CAL-03, and as the G-crps guard R-SHAPE-01 builds on; what is
+retired is its standing to gate, trigger or block anything here.
+
 Until 23-Aug-2026 each of those STOPPED the pipeline and opened a PR for a human. That
 gate was adopted for a good reason — data cleaning ALONE once flipped Korea's tail from
-nu=6 to Gaussian and two names' verdicts, and the note said a bare cron "would have
-shipped both silently". The reason survives; the mechanism did not. Between 6-Aug and
+nu=6 to Gaussian and moved two names' scores, and the note said a bare cron "would
+have shipped both silently". The reason survives; the mechanism did not. Between 6-Aug and
 23-Aug-2026 the gate produced 66 unmerged review PRs, and 18 names across EG, AE and SA
 sat outside any applied fit — ADNOCLS, DU, MODON, FERTIGLB and SAVOLA among them, all
 with live pages. Worse, the PRs could not be accepted even in principle: they staged
@@ -68,8 +80,8 @@ A NEW NAME IS NOT, BY ITSELF, MATERIAL. Adding a stock is the single most common
 thing that happens here, and blocking on it would mean a PR on literally every
 post. You placing the file at raw_ohlc/{MKT}/{TICKER}.csv IS the human decision
 about what the series is. The pipeline still guards the things that actually
-matter: if the new name arrives FAILING, or its arrival destabilises the market fit
-or flips another name's verdict, that still stops. New names are always named
+matter: if the new name arrives already FLAGGED, or its arrival destabilises the
+market fit or moves another name's coverage flag, that still stops. New names are always named
 explicitly in the commit message and the log so an arrival is never invisible.
 
 Usage: python3 auto_refresh.py [--apply]
@@ -83,6 +95,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 
 from panel_refresh import refresh_market, apply_breaks
+from band_record import by_key as _band_records, FLAG_LABEL
 from market_profiles import PROFILES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -157,9 +170,54 @@ def _nu_bucket(nu):
     return 'Gaussian' if nu >= NU_GAUSSIAN_CUTOFF else round(float(nu))
 
 
-def _verdict_key(v):
-    """Normalize e.g. 'BOUNDARY(PARITY-flagged)' -> 'BOUNDARY' for comparison."""
-    return str(v).split('(')[0]
+def _coverage_flags(market, names):
+    """Each name's published coverage flag -- 'narrow' | 'wide' | None -- keyed by name.
+
+    [R-CAL-03] retired the PASS/PARITY/FAIL skill verdict outright and REPLACED the
+    materiality conditions that stood on it with "a name's coverage flag changes, or the
+    published 90% cone moves >5%". This is the first half.
+
+    THE TWO HALVES WATCH DIFFERENT THINGS, WHICH IS WHY BOTH ARE NEEDED. mc_v3 writes
+    in50/in80/in90 into a panel when a window is SCORED, and a refit never rewrites them,
+    so a coverage flag moves when a name's RECORD moves -- a panel rebuild, a newly
+    resolved window -- and not when (nu, width_cal) wobble. The cone-width condition above
+    watches the fit; this watches the record. A gate that tested only one of them would
+    miss half of what the retired verdict used to catch, and the retired verdict's own
+    epitaph is that a test which never changes an outcome is decorative.
+
+    The flag is computed by band_record.from_panel and NOWHERE ELSE. The binomial test,
+    the readable-strength cut and the rounding rule have one owner, for the same reason
+    the panel's public name does: two implementations of a published threshold disagree
+    eventually, and the disagreement surfaces as a number on a page.
+
+    MEASURED BEFORE IT SHIPPED, because a replacement gate can be decorative too: every
+    name this is asked about resolves to a record, and 6 of 74 carried a flag on the day
+    it landed (AE EMAAR/IHC narrow, EG ETEL wide / ISPH narrow, IN TMPV narrow, SA RIBL
+    narrow) -- live signal to compare against. That measurement also exposed an
+    asymmetry worth knowing, and worth stating precisely because the first draft of this
+    note got it wrong: 93 calendar _3m panels exist on disk but only 74 _60d, and
+    panel_refresh.DEFAULT_TAG is still the retired session-counted 60d. That does NOT
+    narrow this gate -- refresh_market builds names as existing_panel_names(tag) UNION the
+    raw CSVs, so with the library present it covers all 93, which the dry run confirms
+    (AE 28, EG 37, SA 13 ...). The divergence is a housekeeping inconsistency in the panel
+    filenames, not a hole in the materiality check, and it is recorded as such.
+
+    ENUMERATED THROUGH band_record, NEVER THROUGH panel_path. The first cut of this
+    helper called panel_refresh.panel_path(market, name), whose DEFAULT_TAG is the retired
+    session-counted "60d" -- so it resolved EG_GBCO_60d.csv while band_record reads the
+    calendar "_3m" panels, from_panel mis-parsed the name, and a blanket `except: continue`
+    swallowed every failure. The gate returned an empty dict for all nine markets and
+    would have reported "nothing material" forever, silently. That is precisely the
+    decorative-gate failure R-CAL-03 retired the verdict for, reproduced inside its own
+    replacement, and it was caught only because the replacement was measured before it
+    shipped rather than after. There is no broad except here for the same reason.
+    """
+    recs = _band_records()
+    return {n: recs[(market, n)].flag for n in names if (market, n) in recs}
+
+
+def _flag_text(f):
+    return FLAG_LABEL[f] if f else "no flag"
 
 
 def assess_materiality(market, result, incumbent_profile, incumbent_registry):
@@ -184,34 +242,39 @@ def assess_materiality(market, result, incumbent_profile, incumbent_registry):
     old_names = set(incumbent_registry.get('panel_names', []))
     new_names = set(result['panel_names'])
     added = sorted(new_names - old_names)
-    # A new name is NOT material by itself (see module docstring) — but a new name
-    # that arrives already FAILING is: that is either a genuinely uncalibratable
-    # series or, more likely, a misfiled/bad file, and it should not silently enter
-    # a production panel.
+    # A new name is NOT material by itself (see module docstring) — but a new name that
+    # arrives ALREADY FLAGGED is: that is either a genuinely uncalibratable series or,
+    # more likely, a misfiled/bad file, and it should not silently enter a production
+    # panel. [R-CAL-03] this used to read "arrives with a robust FAIL"; the verdict it
+    # tested is retired, and the amended R-CAL-01 condition is "a NEW name arrives
+    # already flagged".
+    new_flags = _coverage_flags(market, result['panel_names'])
     for n in added:
-        d = result['per_name'].get(n, {})
-        v = _verdict_key(d.get('verdict', ''))
-        if v == 'FAIL':
-            reasons.append(f"NEW name {n} arrives with a robust FAIL "
-                            f"(skill {d.get('skill'):+.4f}) — check the file is the right "
-                            f"instrument, in the right market folder, with clean history")
+        f = new_flags.get(n)
+        if f:
+            reasons.append(f"NEW name {n} arrives already flagged '{_flag_text(f)}' — check "
+                            f"the file is the right instrument, in the right market folder, "
+                            f"with clean history")
 
-    old_pn = incumbent_registry.get('per_name', {})
+    # A panel carrying a name with no raw data is material on its own. Keyed on the
+    # absence marker panel_refresh writes, NOT on the retired verdict field's absence.
     for n, d in result['per_name'].items():
-        if 'verdict' not in d:
-            reasons.append(f"{n}: no raw CSV supplied this run, verdict could not be scored "
-                            f"('{d.get('note', 'unknown reason')}') — needs a human to confirm "
-                            f"this name's absence is intentional")
-            continue
-        old_v = _verdict_key(old_pn.get(n, {}).get('verdict', 'UNKNOWN'))
-        new_v = _verdict_key(d['verdict'])
-        if old_v != 'UNKNOWN' and old_v != new_v:
-            reasons.append(f"{n}: verdict changed {old_v} -> {new_v}")
+        if 'note' in d and 'nu' not in d:
+            reasons.append(f"{n}: no raw CSV supplied this run ('{d['note']}') — needs a "
+                            f"human to confirm this name's absence is intentional")
 
-    old_mv = _verdict_key(incumbent_registry.get('market_verdict', 'UNKNOWN'))
-    new_mv = _verdict_key(result['market_verdict'])
-    if old_mv != 'UNKNOWN' and old_mv != new_mv:
-        reasons.append(f"MARKET panel verdict changed {old_mv} -> {new_mv}")
+    # An EXISTING name's coverage flag changing is the replacement for the retired
+    # "verdict changed" condition. UNKNOWN-on-both-sides is not a change: a name with no
+    # stored flag from the previous run is skipped, exactly as the verdict comparison
+    # skipped 'UNKNOWN', so the first run after this lands does not fire on all of them.
+    old_flags = incumbent_registry.get('coverage_flags')
+    if isinstance(old_flags, dict):
+        for n, f in sorted(new_flags.items()):
+            if n in added or n not in old_flags:
+                continue
+            if old_flags[n] != f:
+                reasons.append(f"{n}: coverage flag {_flag_text(old_flags[n])} -> "
+                                f"{_flag_text(f)}")
 
     return (len(reasons) > 0), reasons, added
 
@@ -256,16 +319,27 @@ def write_change_record(market, result, reasons, incumbent_profile, applied=True
     lines.append(f"- nu: {incumbent_profile.nu}  ->  **{result['nu']}**\n")
     lines.append(f"- width_cal: {incumbent_profile.width_cal}  ->  **{result['width_cal']}**\n")
     lines.append(f"- panel: {len(result['panel_names'])} names, {result['windows']} windows\n")
-    lines.append(f"- market verdict: **{result['market_verdict']}** "
-                  f"(skill {result['market_skill']:+.4f}, CI{result['market_ci90']})\n\n")
-    lines.append("## Per-name verdicts\n\n| Name | nu | width_cal | skill | verdict |\n|---|---|---|---|---|\n")
+    # [R-CAL-03] the market verdict used to headline this file. RETIRED MEANS no
+    # PENDING_REVIEW field with standing, so the coverage picture leads and the skill
+    # figures below are labelled for what they now are: an internal diagnostic, kept
+    # because CRPS is a proper scoring rule and is worth consulting when investigating a
+    # model change — never a gate, a trigger, or something a reader is shown.
+    _fl = _coverage_flags(market, result['panel_names'])
+    _flagged = sorted(n for n, v in _fl.items() if v)
+    lines.append(f"- coverage flags: **{len(_flagged)} of {len(_fl)}** name(s) flagged"
+                  + (f" ({', '.join(f'{n}={_flag_text(_fl[n])}' for n in _flagged)})"
+                     if _flagged else "") + "\n\n")
+    lines.append("## Per-name fits (skill columns are an INTERNAL DIAGNOSTIC under "
+                  "[R-CAL-03] — not a gate, not a verdict)\n\n"
+                  "| Name | nu | width_cal | skill |\n|---|---|---|---|\n")
     for n, d2 in sorted(result['per_name'].items()):
-        if 'verdict' not in d2:
-            lines.append(f"| {n} | — | — | — | {d2.get('note', 'not scored this run')} |\n")
+        if 'nu' not in d2:
+            lines.append(f"| {n} | — | — | {d2.get('note', 'not scored this run')} |\n")
         else:
-            lines.append(f"| {n} | {d2['nu']} | {d2['width_cal']} | {d2['skill']:+.4f} | {d2['verdict']} |\n")
-    lines.append("\n## To apply\n\nReview against the LONO/robust-verdict evidence above, then "
-                  "either merge this PR to accept, or re-run with a corrected raw_ohlc/ input.\n")
+            lines.append(f"| {n} | {d2['nu']} | {d2['width_cal']} | {d2['skill']:+.4f} |\n")
+    lines.append("\n## To apply\n\nReview against the coverage flags and the per-name fits "
+                  "above — the skill column is a diagnostic, not a verdict — then either merge "
+                  "this PR to accept, or re-run with a corrected raw_ohlc/ input.\n")
     with open(path, 'w') as f:
         f.writelines(lines)
     return path
@@ -334,6 +408,7 @@ def write_production(market, result):
                         superseded=superseded,
                         mid_band_reshape=result.get('mid_band_reshape'),
                         panel_names=result['panel_names'], windows=result['windows'],
+                        coverage_flags=_coverage_flags(market, result['panel_names']),
                         market_skill=result['market_skill'], market_ci90=result['market_ci90'],
                         market_verdict=result['market_verdict'], per_name=result['per_name'],
                         auto_refreshed=datetime.date.today().isoformat())
@@ -393,9 +468,15 @@ def main():
             print(f"  NEW name(s) in this market: {added}")
 
         if not material:
+            # [R-CAL-03] this line used to end 'verdict=PARITY'. The verdict is retired;
+            # printing it here kept a dead test in front of the one person who reads this
+            # output and decides. What matters operationally is how many names carry a
+            # coverage flag, which is what the gate above actually tests.
+            _flags = _coverage_flags(market, result['panel_names'])
+            _n_flagged = sum(1 for v in _flags.values() if v)
             print(f"  NOT MATERIAL — safe to auto-apply. "
                   f"nu={result['nu']} width_cal={result['width_cal']} "
-                  f"verdict={result['market_verdict']}"
+                  f"flagged={_n_flagged}/{len(_flags)}"
                   + (f"  [+{len(added)} new name(s): {','.join(added)}]" if added else ""))
             if args.apply:
                 write_production(market, result)

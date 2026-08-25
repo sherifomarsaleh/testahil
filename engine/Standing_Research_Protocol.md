@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -461,6 +461,24 @@ Ledgers are append-only. No published forecast is ever retro-edited.
 Never a rating or a price target. Fair-value ranges and distributions only.
 OPEN ITEMS (honestly ranked)
 [ADOPTED 23-Jul — EG only, history-gated; see "ADAPTIVE PER-STOCK WIDTH OVERLAY" below] Name-level width_cal, shrunk toward the market fit. This was the real answer to the "bands are too broad" complaint. Both robust FAILs at the time this item was written failed for the SAME reason and it was not mis-centring — they were over-covered: LGES had cov80 = 1.00 and cov90 = 1.00 (every single outcome inside the 80% band), a cone 1.11× the benchmark, and a PIT of 0.471 (perfectly centred). ALPHADHABI was the same shape. A market-level cone over-widens any name whose own volatility sits below the panel average. The overlay cleared a strict LONO/held-out gate on the 30-name EG panel (block bootstrap {2,3,4}) — proper-score parity, improved calibration — and now lives in the engine, EG-only, forced to exact baseline (mult=1.0) on any name with fewer than 28 resolved 3-month windows of history. Other markets have not been tested and remain on the market-level cone until each clears the same gate on its own panel.
+Panel filenames still carry the retired session-counted tag. 93 calendar `_3m` panels exist on
+disk but only 74 `_60d`, and `panel_refresh.DEFAULT_TAG` is still `60d` — a contradiction of the
+calendar-only rule at the filename level. It does NOT narrow the materiality gate: `refresh_market`
+builds its name list as `existing_panel_names(tag)` UNION the raw CSVs, so with the library present
+the [R-CAL-03] coverage-flag condition covers all 93, which a dry run confirms (AE 28, EG 37, SA
+13, …). That distinction is recorded because the first draft of this entry asserted the opposite
+and was corrected by measuring rather than by re-reading — the same discipline the entries above
+were written under. Deliberately NOT fixed in passing: DEFAULT_TAG selects which panels the refit
+itself runs on, so changing it is a calibration decision, not a rename.
+
+GBCO and STC now carry conforming tier-1 betas — 0.8907 against EGX30 and 0.7107 against TASI,
+both produced by `own_stock_beta` and attested by `assert_beta_provenance` in the studies' own
+committed code, replacing an assumed 1.0 and a daily 9-week stopgap respectively. Their WACCs are
+still NOT re-issued: that needs each sovereign's own default spread read fresh from Damodaran's
+original file, which this protocol forbids reconstructing from memory. Both studies also pass
+`rf=` to a v2 `WaccInputs` that rejects it outright, and `stc_compute.py` imports the retired
+`mc_v2`, so the re-issue is a rebuild rather than a patch.
+
 Break-aware volatility estimation inside the engine (currently only the calibration sample is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
 Metals is the weakest calibration in the system — say so plainly. Gold is a single-name self-fit: it is calibrated on its own data, so its PARITY verdict is circular in exactly the way Qatar's was until IQCD and QNB de-circularised it. Worse, silver is a PUBLISHED instrument with no fit of its own — it borrows gold's. Every other market has been pulled onto a real panel; metals has not. Until silver/copper/platinum history arrives, the metals cone is the least-evidenced thing Testahil publishes, and it should not be presented with the same confidence as an EGX or GCC name.
 UK and Brazil have no covered names; their profiles are stubs.
