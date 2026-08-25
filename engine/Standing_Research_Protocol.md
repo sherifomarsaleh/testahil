@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1169,6 +1169,25 @@ per market only when all four gate rows pass. Egypt's overlay is untouched.
 
 The challenge was made on legibility. It is upheld on legibility and on a second ground
 that turned out to be worse: **the label was factually wrong about the names it flagged.**
+
+
+**Render held, 25-Aug-2026, pending an instruction.** [R-REC-01] and [R-CAL-02] were adopted on
+the SAME DAY on two branches that never saw each other, and were merged for the first time on
+25-Aug-2026. They do not measure the same thing. `BANDS` (band_record.py) scores the bands as they
+were actually PUBLISHED; `CALIB` (build_name_calibration.py) re-scores the same windows under
+TODAY's fit — `cal * tq(.25, nu) <= u <= cal * tq(.75, nu)`. The window counts agree on every
+name, and 70 of 88 names disagree on cov50 or cov90 (DU 71% vs 66%, AIRARABIA 57% vs 47%), so
+every one of those pages would state its own record twice, in two numbers, with nothing on the
+page saying which sample each came from. That is precisely the defect a reader reported on a
+ticker page the same week — two numbers about one thing, three lines apart — reproduced at book
+scale, and regenerating both from the merged fits does not converge them because the difference is
+definitional, not staleness (both blocks came back byte-identical).
+
+Both records stay generated and committed, and both generators stay in the regeneration pass. Only
+the SECOND RENDER is held: one commented call in `assets/app.js`. Re-enabling is a one-line change
+once it is decided which record the reader is shown, or how the two are labelled apart. This is a
+presentation decision of the same kind R-CAL-02 and R-CAL-03 were, so it is not taken here. No
+research method changes and no delivered number moves.
 
 ### What the verdict actually was
 
