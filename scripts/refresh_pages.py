@@ -18,8 +18,9 @@ prices, and a red X sits in the Actions tab saying so.
 Every per-name tool needed to fix that already existed. What did not exist was
 the thing that decides WHICH names need it and runs them in the right order with
 the gates attached. That is all this is: an orchestrator over
-`refresh_cone_one` -> `apply_technicals` -> `ta_chart` -> the overlay gate ->
-`check_data_freshness`. No new cone mathematics, no new technical construction.
+`refresh_cone_one` -> `apply_technicals` -> `ta_chart` ->
+`build_name_calibration` -> the overlay gate -> `check_data_freshness`. No new
+cone mathematics, no new technical construction.
 
 WHAT IT WILL NOT DO
 -------------------
@@ -148,7 +149,15 @@ def stale_names(data: dict, only: list[str] | None, today_iso: str) -> tuple[lis
 
 
 # ---------------------------------------------------------------- dividend yield
-_Q = re.compile(r'q[_ ]?annual\s*[=:]\s*([0-9.]+)', re.I)
+# The value is bounded so a SENTENCE-ENDING PERIOD is not swallowed into it:
+# the notes read 'q_annual=0.0511.' and a greedy [0-9.]+ captures '0.0511.',
+# which float() rejects — so the whole pass died on the SIXTH name rather
+# than on the first, i.e. after it had already looked correct.
+#
+# Same defect class as the fit-drift regex in this file, which was written
+# bounded for exactly this reason; this one was not, and nothing compared
+# them. Now \d+(?:\.\d+)? in both.
+_Q = re.compile(r'q[_ ]?annual\s*[=:]\s*(\d+(?:\.\d+)?)', re.I)
 
 
 def recover_q(data: dict, key: str) -> float | None:
@@ -189,8 +198,7 @@ def fit_drift(data: dict) -> tuple[list, list]:
     re-struck when PRICES arrive; the market fit is re-estimated whenever any
     name in that market is posted. The two are not the same event, so a refit
     silently leaves every already-published cone standing on the fit it was
-    struck under. Measured 25-Aug-2026 on the live site: 76 of 92 published cones
-    sat on a superseded fit and only 5 matched the live one.
+    struck under.
 
     This is NOT automatically a defect. The materiality gate exists exactly so
     that a refit which moves the published 90% cone by less than 5% does not
@@ -200,8 +208,29 @@ def fit_drift(data: dict) -> tuple[list, list]:
     re-striking a cone whose prices have NOT moved republishes a different
     forecast on the same data, which is a decision, not a refresh.
 
-    Read off the newest LEDGER note, which is where strike_cohorts records the
-    fit each cohort was struck under.
+    WHAT THIS COUNT IS, AND THE TWO THINGS IT GETS WRONG. It reads (nu,
+    width_cal) off the newest LEDGER note. Re-measured against main on
+    25-Aug-2026 by re-striking all 90 names through the production chain and
+    comparing the published percentiles — engine/fit_drift_audit/, which is the
+    number of record, 21 of 90 material at 3M — this method:
+
+      * MISSES the per-name width overlay entirely. The note carries the POOLED
+        width_cal, never the effective one, so a name whose own multiplier has
+        moved reads as unchanged. Three EG names are material for exactly this
+        reason and are invisible here. This is [R-WIDTH-01] in its own habitat:
+        the note is not a record of the width a cone was built on.
+      * FALSE-ALARMS on a cone refreshed mid-cycle. refresh_cone_one updates a
+        displayed cone and deliberately writes NO ledger row, so the newest note
+        can describe a strike the page no longer shows — 4 of 90 names were in
+        that state on 25-Aug-2026, and one of them (ADCB) is counted here as
+        drifted while its published cone is current.
+
+    So treat the printed count as a cheap upper-bound flag, not a measurement,
+    and do not quote it as one. The durable fix is to record the EFFECTIVE fit
+    (nu, width_cal * overlay_mult) on the entry when the cone is struck —
+    strike() already computes it — which turns this into a dictionary comparison
+    with no note parsing and no blind spot. Proposed, not implemented, in
+    engine/fit_drift_audit/RESULTS_25-08-2026.md.
     """
     newest: dict[str, dict] = {}
     for r in data['l']:
@@ -233,6 +262,37 @@ def sh(cmd: list[str], cwd: str = ROOT, check: bool = True) -> int:
     if check and p.returncode != 0:
         raise SystemExit(f'FAILED ({p.returncode}): {" ".join(cmd)}')
     return p.returncode
+
+
+def rebuild_name_calibration(check_only: bool = False) -> bool:
+    """[R-REC-01] The per-name calibration record, regenerated in THIS pass.
+
+    Every stock's page carries its own record — how many resolved three-month
+    tests its history holds and how often the middle and wide bands caught the
+    close — and `engine/build_name_calibration.py` computes it from the
+    committed panels under the LIVE (nu, width_cal). R-REC-01 requires it
+    regenerated "in the same pass as any refit, reshape, panel rebuild or
+    roll-forward", for the same reason the technical read is: a page that states
+    a fact which moves must not be the thing that remembers it.
+
+    Nothing called it. Not this orchestrator, not testahil-calibration.yml — so
+    the record was regenerated only when a human happened to remember, while its
+    sibling BANDS record is rebuilt-and-compared from outside by
+    check_band_vocabulary.py on every push. The asymmetry is the whole defect.
+
+    IT IS NOT ENOUGH TO RUN THIS ONLY WHEN A PAGE IS STALE. The record is a
+    function of the FIT, and the fit is re-estimated on a different trigger than
+    the prices: auto_refresh.py refits a whole market and commits, and every
+    page can still stand on its own library afterwards. That is exactly the run
+    this orchestrator used to end with "Nothing to do" — the one case where the
+    record moves and nothing else does.
+
+    The builder self-verifies (node --check on data.js, then LOAD it and assert
+    CALIB covers every TICKERS entry, counted against the known total), so a
+    clean exit here is that assertion having passed, not this function's opinion.
+    """
+    cmd = [sys.executable, 'build_name_calibration.py'] + (['--check'] if check_only else [])
+    return sh(cmd, cwd=ENGINE, check=not check_only) == 0
 
 
 def _free_port() -> int:
@@ -357,7 +417,31 @@ def main() -> int:
     print()
 
     if not due:
-        print('Every page already stands on the current library. Nothing to do.')
+        print('Every page already stands on the current library — no cone and no '
+              'technical read needs refreshing.')
+        # [R-REC-01] But the per-name record is a function of the FIT, not of the
+        # library, so this is precisely the run in which it can be stale while
+        # nothing else is. Report it in a dry run; regenerate it under --write.
+        if not args.write:
+            print('\n--- per-name calibration record [R-REC-01] ---')
+            fresh = rebuild_name_calibration(check_only=True)
+            print('\nDRY RUN — nothing written.' if fresh else
+                  '\nDRY RUN — nothing written. The record above is STALE; '
+                  're-run with --write to regenerate it.')
+            return 0
+        print('\n--- per-name calibration record [R-REC-01] ---')
+        ledger_before = json.dumps(data['l'], sort_keys=True)
+        rebuild_name_calibration()
+        after_data = read_data_js()
+        after = counts(after_data)
+        if after != before:
+            raise SystemExit(f'entry count moved {before} -> {after} — aborting.')
+        if json.dumps(after_data['l'], sort_keys=True) != ledger_before:
+            raise SystemExit('LEDGER CHANGED while regenerating the per-name '
+                             'record — it may only ever rewrite the CALIB block.')
+        print(f'    counts unchanged: {after[0]} tickers, {after[1]} metals, '
+              f'{after[2]} ledger rows')
+        print('    LEDGER byte-identical — no cohort struck')
         return 0
 
     n_price = sum(1 for d in due if d.get('reason') != 'fit drift')
@@ -404,6 +488,10 @@ def main() -> int:
 
     print('\n--- chart SVGs, from the same library ---')
     sh([sys.executable, 'ta_chart.py', '--write'], cwd=ENGINE)
+
+    # [R-REC-01] In the SAME pass, never a step someone remembers separately.
+    print('\n--- per-name calibration record [R-REC-01] ---')
+    rebuild_name_calibration()
 
     print('\n--- gates ---')
     after_data = read_data_js()

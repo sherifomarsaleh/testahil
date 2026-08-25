@@ -130,7 +130,11 @@ jobs:
       # prices, and a red X sits in the Actions tab saying so.
       #
       # This runs the mid-cycle refresh (Roll-Forward & Grading Protocol STEP 0
-      # decision (a)): displayed cone + technical read + chart, NO ledger rows.
+      # decision (a)): displayed cone + technical read + chart + the per-name
+      # calibration record [R-REC-01], NO ledger rows. The record is regenerated
+      # even on a run where no page is stale, because it is a function of the FIT
+      # the step above just re-estimated, not of any name's library — that case
+      # is the whole reason it is wired into the pass rather than remembered.
       # It commits SEPARATELY from the calibration above on purpose — [R-CAL-01]
       # promises that reverting THAT one commit restores market_profiles.py and
       # fitted_configs.json together, and folding assets/ into it would break
@@ -168,7 +172,7 @@ jobs:
 
           git add assets/ ./*.html
           git commit -m "Refresh published pages onto the current library ($(date -u +%Y-%m-%d))" \
-                     -m "Mid-cycle pass: spot/spotDate/dist/hz/touch, the computed technical read, the as-of stamps and the chart SVGs. No LEDGER row struck — ledger strikes stay on the 1-month maturity metronome. fair{}, the slider factor-stack constants and files untouched."
+                     -m "Mid-cycle pass: spot/spotDate/dist/hz/touch, the computed technical read, the as-of stamps, the chart SVGs and the per-name calibration record [R-REC-01]. No LEDGER row struck — ledger strikes stay on the 1-month maturity metronome. fair{}, the slider factor-stack constants and files untouched."
 
           for i in 1 2 3 4 5; do
             git fetch origin main
