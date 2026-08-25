@@ -198,8 +198,7 @@ def fit_drift(data: dict) -> tuple[list, list]:
     re-struck when PRICES arrive; the market fit is re-estimated whenever any
     name in that market is posted. The two are not the same event, so a refit
     silently leaves every already-published cone standing on the fit it was
-    struck under. Measured 25-Aug-2026 on the live site: 76 of 92 published cones
-    sat on a superseded fit and only 5 matched the live one.
+    struck under.
 
     This is NOT automatically a defect. The materiality gate exists exactly so
     that a refit which moves the published 90% cone by less than 5% does not
@@ -209,8 +208,29 @@ def fit_drift(data: dict) -> tuple[list, list]:
     re-striking a cone whose prices have NOT moved republishes a different
     forecast on the same data, which is a decision, not a refresh.
 
-    Read off the newest LEDGER note, which is where strike_cohorts records the
-    fit each cohort was struck under.
+    WHAT THIS COUNT IS, AND THE TWO THINGS IT GETS WRONG. It reads (nu,
+    width_cal) off the newest LEDGER note. Re-measured against main on
+    25-Aug-2026 by re-striking all 90 names through the production chain and
+    comparing the published percentiles — engine/fit_drift_audit/, which is the
+    number of record, 21 of 90 material at 3M — this method:
+
+      * MISSES the per-name width overlay entirely. The note carries the POOLED
+        width_cal, never the effective one, so a name whose own multiplier has
+        moved reads as unchanged. Three EG names are material for exactly this
+        reason and are invisible here. This is [R-WIDTH-01] in its own habitat:
+        the note is not a record of the width a cone was built on.
+      * FALSE-ALARMS on a cone refreshed mid-cycle. refresh_cone_one updates a
+        displayed cone and deliberately writes NO ledger row, so the newest note
+        can describe a strike the page no longer shows — 4 of 90 names were in
+        that state on 25-Aug-2026, and one of them (ADCB) is counted here as
+        drifted while its published cone is current.
+
+    So treat the printed count as a cheap upper-bound flag, not a measurement,
+    and do not quote it as one. The durable fix is to record the EFFECTIVE fit
+    (nu, width_cal * overlay_mult) on the entry when the cone is struck —
+    strike() already computes it — which turns this into a dictionary comparison
+    with no note parsing and no blind spot. Proposed, not implemented, in
+    engine/fit_drift_audit/RESULTS_25-08-2026.md.
     """
     newest: dict[str, dict] = {}
     for r in data['l']:
