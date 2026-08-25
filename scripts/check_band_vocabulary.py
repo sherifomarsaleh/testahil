@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+"""[R-CAL-02] / [R-ENF-01] Gate: no skill-verdict vocabulary on a public surface,
+and no published band record that disagrees with the live panels.
+
+Checked from OUTSIDE the pages it governs, and it FAILS rather than warns. The
+rule this enforces was written down before today; what was missing was anything
+looking at the pages from outside, which is how riyadhcable.html sat for weeks
+claiming 13 resolved windows against a panel holding 10.
+
+The vocabulary table itself lives in engine/band_record.py and is shared with
+assert_no_verdict_tokens(), so the gate and the generators cannot reach opposite
+conclusions about the same string.
+
+Run:  python3 scripts/check_band_vocabulary.py [--root DIR]
+"""
+import argparse
+import glob
+import json
+import os
+import re
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from engine import band_record as br  # noqa: E402
+
+DEFAULT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Surfaces whose verdict text is BAKED INTO AN IMAGE and so cannot be read here.
+# engine/metal_backtest.py renders every assets/calibration_*.png with the skill
+# verdict in its subtitle. That is a real public surface this gate is blind to,
+# so the SOURCE of the caption is scanned instead, and the already-rendered
+# figures are carried as a ratchet: listed, reported, allowed to fail, and the
+# list may only ever shrink ([R-ENF-02] — a permanently red check is one everyone
+# learns to ignore, and a gate with no release is a stall).
+FIGURE_CAPTION_SOURCE = os.path.join("engine", "metal_backtest.py")
+OUTSTANDING = os.path.join("engine", "build_depth_audit", "band_outstanding.json")
+
+
+def surfaces(root):
+    for f in sorted(glob.glob(os.path.join(root, "*.html"))):
+        yield f
+    # Every reader-facing asset script, not a hand-listed two: markets.js and
+    # fv_overlay.js are equally rendered and were going unscanned.
+    for f in sorted(glob.glob(os.path.join(root, "assets", "*.js"))):
+        yield f
+
+
+# Fields that exist to record the INTERNAL verdict and are rendered by nothing.
+# The verdict is still the Step 0 gate and the ledger note is its audit trail —
+# scanning them would fail this gate on the very record the protocol says to keep.
+# Verified: no reader of LEDGER `.note` exists in any .html or .js on the site.
+INTERNAL_FIELDS = {"note"}
+
+
+def js_reader_text(path):
+    """Every string a .js file can put in front of a reader, comments excluded.
+
+    By LOADING the file rather than regex-stripping comments: `//` also opens
+    every https:// URL in the file, and a hand-rolled stripper on a 6,700-line
+    data file is the kind of parser-substitute this repo has been bitten by
+    before. Loading removes comments by construction.
+    """
+    import subprocess
+    # Top-level `const` in a vm script creates a LEXICAL binding, not an own
+    # property of the context object — so walking Object.keys(ctx) reaches
+    # nothing a data file declares. The names are collected and re-exported
+    # explicitly. (Caught by the negative control: without this the coverage.js
+    # scan passed while seeing an empty object.)
+    names = re.findall(r"^(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=",
+                       open(path, encoding="utf-8").read(), re.M)
+    if not names:
+        raise RuntimeError("no top-level declarations found")
+    export = ",".join(dict.fromkeys(names))
+    js = """
+      const fs=require('fs'), vm=require('vm'), ctx={window:{}};
+      vm.createContext(ctx);
+      vm.runInContext(fs.readFileSync(process.argv[1],'utf8')
+                      + ';globalThis.__ALL={%s};', ctx);
+      const drop = new Set(%s);
+      const out = [];
+      const seen = new Set();
+      (function walk(v){
+        if (v === null || typeof v !== 'object') { if (typeof v === 'string') out.push(v); return; }
+        if (seen.has(v)) return; seen.add(v);
+        for (const k of Object.keys(v)) { if (!drop.has(k)) walk(v[k]); }
+      })(ctx.__ALL);
+      console.log(JSON.stringify(out));
+    """ % (export, json.dumps(sorted(INTERNAL_FIELDS)))
+    r = subprocess.run(["node", "-e", js, path], capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(r.stderr.strip()[:300])
+    return "\n".join(json.loads(r.stdout))
+
+
+def strip_html_comments(src):
+    src = re.sub(r"^\s*//.*$", "", src, flags=re.M)
+    src = re.sub(r"/\*.*?\*/", "", src, flags=re.S)
+    src = re.sub(r"<!--.*?-->", "", src, flags=re.S)
+    return src
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=DEFAULT_ROOT,
+                    help="repository root to check (the negative control passes a copy)")
+    a = ap.parse_args()
+    root, fails = a.root, []
+    panels = os.path.join(root, "engine", "panels")
+    records = br.by_key(panels)
+
+    # ---- 1. vocabulary a reader can see ------------------------------------
+    for path in surfaces(root):
+        rel = os.path.relpath(path, root)
+        raw = open(path, encoding="utf-8").read()
+        if path.endswith(".js"):
+            # DATA files (data.js, coverage.js, markets.js) are walked after
+            # loading, so comments and internal fields drop out by construction.
+            # BEHAVIOUR files (app.js) need a DOM and cannot be loaded here —
+            # their reader-facing strings live inside function bodies, which an
+            # object walk would not reach anyway, so those fall back to stripping
+            # comments. Both paths are covered; neither guesses.
+            try:
+                text = js_reader_text(path)
+            except RuntimeError:
+                text = strip_html_comments(raw)
+        else:
+            text = strip_html_comments(raw)
+        fails += br.scan_text(text, rel)
+
+    # ---- 2. the published record still matches its panel --------------------
+    # Compare the block the generator PRODUCES against the block in the file,
+    # rather than re-parsing data.js with a regex that mirrors the emitter's
+    # exact formatting: that regex checked three of ten fields and would have
+    # degraded to a silent no-op the moment the format moved.
+    sys.path.insert(0, os.path.join(root, "scripts"))
+    import build_band_records as bbr
+    data_js = os.path.join(root, "assets", "data.js")
+    src = open(data_js, encoding="utf-8").read()
+    try:
+        block, _ = bbr.build(src)
+    except Exception as e:                                   # noqa: BLE001
+        fails.append(f"assets/data.js: band records cannot be rebuilt — {e}")
+    else:
+        if block not in src:
+            fails.append("assets/data.js: the BANDS block is stale or hand-edited — "
+                         "re-run scripts/build_band_records.py --write")
+
+    # ---- 3. every data-band-record span names a real record -----------------
+    for path in sorted(glob.glob(os.path.join(root, "*.html"))):
+        rel = os.path.relpath(path, root)
+        for m in re.finditer(r'data-band-record="([^"]+)"',
+                             open(path, encoding="utf-8").read()):
+            try:
+                br.resolve(m.group(1), records)
+            except KeyError:
+                fails.append(f'{rel}: data-band-record="{m.group(1)}" has no panel')
+
+    # ---- 4. the caption behind the figures this gate cannot read ------------
+    # The figures are images, so their text is unreadable here. What IS readable
+    # is the caption TEMPLATE that produces it, so that is what gets scanned —
+    # and ONLY that. Scanning the whole module would flag the CRPS diagnostic
+    # [R-CAL-03] deliberately keeps in the codebase, which is not a public
+    # surface and never reaches a reader.
+    cap = os.path.join(root, FIGURE_CAPTION_SOURCE)
+    baked = []
+    if os.path.exists(cap):
+        src_cap = open(cap, encoding="utf-8").read()
+        # the header templates assigned in build(): h2 = (...) / h3 = (...)
+        for m in re.finditer(r'^\s{4}(h[23]) = \((.*?)\)\n', src_cap, re.S | re.M):
+            baked += br.scan_text(m.group(2),
+                                  f"{FIGURE_CAPTION_SOURCE} ({m.group(1)} caption)")
+    out_path = os.path.join(root, OUTSTANDING)
+    known = json.load(open(out_path)) if os.path.exists(out_path) else {"figures": []}
+    if baked and not known.get("figures"):
+        fails += baked
+
+    if fails:
+        print(f"[R-CAL-02] FAIL — {len(fails)} problem(s):")
+        for f in fails[:60]:
+            print("  " + f)
+        if len(fails) > 60:
+            print(f"  ... and {len(fails) - 60} more")
+        return 1
+    print("[R-CAL-02] OK — no verdict vocabulary in any page text; every published "
+          "band record agrees with its panel.")
+    if baked:
+        n = len(known.get("figures", []))
+        print(f"  OUTSTANDING (reported, not failing): the skill verdict is still baked into "
+              f"{n} calibration figure(s) this gate cannot read — see {OUTSTANDING}.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

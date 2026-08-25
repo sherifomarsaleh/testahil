@@ -50,8 +50,9 @@ without stopping to ask.
 	– register the ticker in BOTH ledger.html sets: HAS_BACKTEST and the raw-CSV map
 	– append cycle-1 LEDGER rows for 1M and 3M — frozen p5–p95 plus the touch ladder at
 	  ±5/10/15/20% and −5/−10%, read off the study's existing path arrays; don't re-simulate
-	– record the verdict in the ledger comment header (skill, CI, block-robustness). Set the row's
-	  `cal` field ONLY for matches / untested / fail — absent means PASS.
+	– the row carries NO calibration field. [R-CAL-03] retired the PASS/PARITY/FAIL
+	  verdict; what a reader is shown is the BAND RECORD, generated into data.js by
+	  scripts/build_band_records.py from the panels. Run it after the ledger write.
 •	Update the LEDGER ITSELF, not just the new name's registration — publishing rewrites data.js, so
 	it is the moment to bring the ledger's existing state current:
 	– sweep EVERY open row (realized_close:null) and grade any whose grade_date has arrived and whose
@@ -155,7 +156,7 @@ why `check_page_integrity.py` diffs numeric tables across pages.
 - `SITE.latest` = the new key, `SITE.updated` = the publish date. `SITE.updated` only
   ever moves FORWARD (`bump_site_updated` clamps it — a single-name refresh once rolled
   the whole site's date back a week).
-- LEDGER: a dated comment header carrying the calibration verdict, then the cycle-1
+- LEDGER: a dated comment header identifying the cohort, then the cycle-1
   rows (below).
 
 ### 3. `assets/coverage.js`
@@ -188,7 +189,7 @@ pages of unusable grid; the point of the model is that it recalculates.
   Quarterly replay with 90%/50% cone boxes and realized dots, PIT histogram, band
   coverage vs target, honesty footer. Windows = every non-overlapping 3-month window
   from the market's last structural break to today, walked BACK from the last session.
-- The LEDGER comment header records the verdict, the scale-normalized CRPS skill, the
+- The LEDGER comment header records the cohort and its provenance, the
   bootstrap CI and whether it is robust across block sizes {2,3,4}.
 
 ### 6. `assets/markets.js` — the market registry
@@ -220,10 +221,10 @@ re-simulating at publish time would publish a cone the study never claimed.
 - `realized_*`, `in_90`, `in_50`, `realized_quantile`, `median_err`, `touch_hit` — all
   `null` until the cohort matures. Grading is a later, separate event.
 - `anchor_vol` — the horizon's own annualized anchor vol, not one value for both.
-- **`cal`** — OMIT for a PASS. Set `"matches"`, `"untested"` or `"fail"` only when that
-  is the verdict; `ledger.html` derives its banner from this field, so a wrong value
-  either stamps a healthy name "⚠ INDICATIVE ONLY · CALIBRATION FAILED" or suppresses a
-  warning that should be showing.
+- **no calibration field.** [R-CAL-03] retired the verdict, and the `cal` field with it.
+  `ledger.html` reads the generated `BANDS` record instead, so nothing is typed per row:
+  run `scripts/build_band_records.py --write` after the ledger write and the name's
+  coverage, window count and band width follow from its panel.
 
 A new name does NOT appear in the "Were we right?" headline score. It joins that
 denominator when its first cohort grades — open rows are shown with their check date
@@ -295,9 +296,8 @@ python3 scripts/check_data_freshness.py     # ledger<->published pairing, as-of 
 ## THE CALIBRATION WORKFLOW WILL GO RED — THAT IS CORRECT
 
 Placing the CSV triggers `testahil-calibration.yml`, which refits the whole market.
-If the materiality gate finds anything that needs a human (a verdict flip, a new name
-arriving already FAILING, the market verdict changing, a panel name with no raw data,
-the published 90% cone moving >5%) it writes a `PENDING_REVIEW/*.md` report, opens a
+If the materiality gate finds anything that needs a human (a name's coverage flag
+changing, a panel name with no raw data, the published 90% cone moving >5%) it writes a `PENDING_REVIEW/*.md` report, opens a
 review PR, leaves `market_profiles.py` untouched, and then **deliberately fails the
 run** — the step is named "Fail the run so a material change is never mistaken for a
 clean one".

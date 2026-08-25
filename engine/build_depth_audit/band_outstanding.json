@@ -1,0 +1,6 @@
+{
+ "_why": "[R-CAL-02] engine/metal_backtest.py renders each of these with the skill verdict in its subtitle (e.g. 'PARITY  \u00b7  market-gate skill +0.73% ... vs a carry-anchored random walk'). That is verdict vocabulary on a public surface that a text gate cannot read. Fixing it means rewriting the caption and regenerating every figure \u2014 real work, not a relabel. Carried as a RATCHET per [R-ENF-02]: reported on every run, allowed to fail, and this list may only ever SHORTEN.",
+ "caption_source": "engine/metal_backtest.py",
+ "figures": [],
+ "_resolved": "25-Aug-2026: all 93 figures regenerated onto the band-record caption by engine/regen_calibration_figs.py. The list is empty and, per [R-ENF-02], may only ever stay that way or shorten \u2014 never grow."
+}

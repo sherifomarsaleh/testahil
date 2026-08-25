@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1051,3 +1051,232 @@ The cost is real and is not hidden: a window graded a session short is marginall
 than the one committed to, which very slightly favours the cone. That is why this is opt-in
 per name and bounded at a week, rather than a new default. The alternative on the table —
 grading against a close that does not exist — is not available at any bound.
+
+
+## [R-CAL-02] The band record replaces PASS / PARITY / FAIL on every public surface (24-Aug-2026, per instruction — "I want to challenge the concept of pass, parity or fail for the MC. Too complicated and the investor would not necessarily understand it")
+
+The challenge was made on legibility. It is upheld on legibility and on a second ground
+that turned out to be worse: **the label was factually wrong about the names it flagged.**
+
+### What the verdict actually was
+
+PASS / PARITY / FAIL is the outcome of a SKILL test. A name's cone is scored against a
+carry-anchored random walk on a scale-normalised proper score, the difference is
+bootstrapped, and the verdict reports whether that interval clears zero. It answers a
+modelling question — *is our score better than a naive alternative's?* — and it answers it
+well. It is not, and never was, a test of whether the published bands hold.
+
+The site nonetheless labelled the negative outcome **"⚠ INDICATIVE ONLY · FAILED
+CALIBRATION TEST"**.
+
+### The measurement that settles it
+
+Taken on the live panels on 24-Aug-2026, across the whole 93-name book. Every name then
+carrying the FAIL label, with its own 90%-band coverage against a 90% target:
+
+| Name | resolved 3-month windows | inside the 90% band |
+|---|---|---|
+| ADNOCDRILL | 15 | 100.0% |
+| ADNOCDIST | 30 | 100.0% |
+| BOROUGE | 12 | 100.0% |
+| EMPOWER | 10 | 100.0% |
+| CLHO | 36 | 97.2% |
+
+Not one of them was mis-calibrated in the direction the label implies. Every one contained
+*more* outcomes than it advertised: their bands were too WIDE, the opposite failure and a
+far more benign one. And the five names whose bands genuinely ran NARROW — ISPH 76.7%,
+EMAAR 78.9%, RIBL 78.9%, IHC 80.9%, TMPV 81.0%, each significant at p < 0.05 — carried no
+flag at all. The scheme warned about cones that contained everything and stayed silent on
+cones that missed more often than they promised. It was pointing at the wrong names.
+
+This was not unknown. The adaptive-width entry above already records that both robust FAILs
+at the time it was written failed for exactly this reason (LGES: cov80 = cov90 = 1.00,
+PIT 0.471, perfectly centred). The fact was in the protocol; the label on the page was
+never reconciled with it. That is the [R-ENF-01] species of defect — a rule known and
+written down, with nothing looking at the surface it governed.
+
+### What is published instead
+
+Two facts a reader can check on the ledger, and a flag only when it is earned.
+
+1. **THE BAND RECORD.** "Over N resolved three-month forecasts, the price finished inside
+   the 90% band X% of the time." No benchmark, no significance test, no vocabulary to
+   learn. The count is printed beside the percentage every time — a percentage without its
+   count is precisely the number that misleads.
+2. **RECORD STRENGTH** — long / short / market-only, from the resolved-window count.
+3. **A FLAG ONLY WHEN EARNED** — *bands ran narrow* or *bands ran wide*, when the name's own
+   coverage sits outside a two-sided binomial test against the 90% target at the 5% level.
+   Otherwise nothing is said. The ordinary case is a cone whose bands held about as often as
+   promised, and **silence is the honest response to it.** A verdict token on every name
+   made the ordinary case look like a judgement.
+
+The strength thresholds are DERIVED, not chosen round, and two independent readings agree
+on them. By POWER: a name's own coverage figure is worth printing only if it could catch a
+badly miscalibrated cone, and testing a claimed 90% against a true 75% at the 5% level,
+power reaches the conventional 90% bar at n = 40 (n = 30: 80%; n = 22: 68%; n = 16: 60%);
+below about 22 the interval on the estimate is wider than ±10pp and cannot separate an
+honest cone from a broken one. By THE BOOK'S OWN SHAPE: the window counts are not uniform —
+there is an EMPTY BAND at 17–21 windows and a second gap at 31–35 — so cuts at 22 and 40
+fall in real gaps and no name sits one resolved window from a boundary. MIN_WINDOWS = 28 in
+adaptive_width.py is a different gate for a different job (how much own-history before a
+per-name width multiplier may move off 1.0) and is deliberately NOT reused.
+
+### What does not change
+
+**No research method changes here.** The skill test still runs, unaltered, as the Step 0
+gate; the market-panel CI is still the standing gate a name enters the book under; the
+materiality rule still triggers on a verdict change; PENDING_REVIEW still records verdicts.
+Not one fitted parameter, cone, drift or delivered number moves. The verdict simply stops
+being something a reader is handed. Where a curious reader wants it, the methodology page
+carries an expandable note explaining what is tested internally and why a wide cone can
+fail a skill test without anything having gone wrong for them.
+
+### The generator, and why the prose could not stay hand-written
+
+A coverage figure moves the moment a forecast is graded. The old calibration prose was typed
+once per page and never revisited, and it had drifted: on 24-Aug-2026 riyadhcable.html
+claimed "13 non-overlapping three-month windows have resolved" with "coverage 85% / 92%"
+while its own committed panel held 10 windows at 70% / 90%, and both egch.html and
+scem.html carried the *same* liquidity paragraph — the 29.3% unchanged-close figure is
+SCEM's; EGCH's is 5.0%, below the Egyptian median of 8.9%, so egch.html asserted a
+mechanism that was not true of it. Hand-written volatile numbers rot, and a copied
+paragraph rots silently in two places at once.
+
+So the record is GENERATED and refreshed twice over: `scripts/build_band_records.py` writes
+a `BANDS` block into `assets/data.js` from the committed panels, and every page's volatile
+clause is marked `<span data-band-record="TK">` and rewritten in the browser by
+`refreshBandRecords()` in `assets/app.js`. Static text is correct at build time; the span is
+correct at render time even if a refit lands between the two. Same reasoning as the as-of
+stamps: **a page that states a fact which moves must not be the thing that remembers it.**
+
+Ledger instrument names are NOT panel filenames, and the difference bites: ADIB is a
+different bank in each market — ledger `ADIB` is the Egyptian one, `ADIBUAE` the UAE one,
+against panels `EG_ADIB` and `AE_ADIB`. Records are therefore keyed `(market, instrument)`
+and every non-identical name is resolved through an explicit asserted `LEDGER_ALIAS`, never
+inferred from a filename. The generator asserts the map is a bijection in BOTH directions —
+every ledger name resolves, and no panel goes unclaimed — because a tool reporting "0
+skipped" is not evidence.
+
+### Enforcement, per [R-ENF-01]
+
+`scripts/check_band_vocabulary.py` runs over every delivered surface FROM OUTSIDE and FAILS
+rather than warns: no verdict vocabulary on any page, every published band record agreeing
+with its panel, every `data-band-record` naming a real one. `PARITY` is matched
+case-sensitively in caps, because lowercase "parity" is an ordinary word this book uses for
+a currency peg and an export price basis — a case-insensitive ban flagged five such lines,
+and a check that cries wolf is one everyone learns to ignore ([R-ENF-02]). `CRPS` is
+permitted on the methodology page, where the scoring rule is being taught, and nowhere else:
+naming it beside a company is the verdict wearing a different hat.
+`scripts/check_band_vocabulary_negative_control.py` reinjects the 24-Aug text into throwaway
+copies and asserts the gate goes red on each — a check nobody has seen fail is not evidence.
+
+### The sample: every resolved forecast, deliberately not break-filtered
+
+The engine's own calibration reads a panel through `panel_refresh.apply_breaks()`, which
+drops windows whose origin precedes the market's last structural break (EG 2016-11 and
+2022-03, SA 2015-06, AE 2022-01). That is correct for FITTING — a volatility regime that
+no longer exists should not shape today's cone — and it stays exactly as it is for the
+Step 0 gate, the skill verdict and every fitted parameter.
+
+It is NOT correct for a track record. The band record answers "how often have the
+published bands actually held", and every dropped window is a real forecast that really
+resolved. Applying the filter would cut 58 of the 93 panels — most AE names from 58
+windows to 18, most EG names from 57 to 17 — and push 69 of 93 names below the readable
+threshold, so three quarters of the book would report "market record only" because of a
+workweek change in January 2022. A reader asking how often our bands held is owed the
+whole record, not the post-break slice of it.
+
+So the two samples are held apart ON PURPOSE, and the choice is written down rather than
+left implicit — which is the part that was genuinely wrong when this was first built: not
+the sample, but that nothing said which sample it was. THE HEADLINE EVIDENCE IS UNCHANGED
+EITHER WAY: all five names the site had flagged FAIL sit at 94–100% 90%-band coverage on
+BOTH samples, so the defect this rule was adopted to fix does not turn on this choice.
+
+One consequence to carry: the strength thresholds are derived from the FULL-sample window
+counts. The empty band at 17–21 windows is a property of those counts and not of the
+filtered ones, so anyone switching the record to the filtered sample must re-derive both
+cuts rather than carrying 22 and 40 across.
+
+### The general lesson, which is not about this label
+
+A label is a claim, and it is checkable against the thing it claims to describe. "Failed
+calibration test" was checkable against the actual calibration and had never been checked;
+it survived because it *sounded* like a conservative disclosure, and conservative-sounding
+language is not audited the way a flattering claim would be. **A cautious label is still a
+claim about the world, and understating in the wrong direction is not a safe error — it is
+the same error.** Where a rule can name what a surface asserts, the assertion is tested from
+outside; where it cannot, the QC gate carries the evidence.
+
+
+## [R-CAL-03] The skill verdict is RETIRED — the gate is calibration, and sharpness is disclosed (25-Aug-2026, per instruction — "whether this test is useful in the first place. Afterall, we have the test in the bands and whether or not the prediction falls into them. So why complicate matters with a test that the users and investors will not be interested in?")
+
+[R-CAL-02] stopped PUBLISHING the PASS/PARITY/FAIL verdict. This retires it. The
+challenge that produced it was sharper than the one before: not "is this the right way
+to show the test" but "is the test doing any work at all, given we already measure
+whether the price lands in the band". Measured against the book, it is not.
+
+### What the evidence said
+
+**The gate has never gated.** On the live fits, nine of the ten fitted markets print
+PARITY and the tenth prints PASS; the skills span −0.8% to +1.4%. Across every verdict
+ever recorded under `engine/PENDING_REVIEW/`: 213 PARITY, 94 PASS, 12 FAIL. No market has
+ever been excluded by it. A test whose answer is "proceed" for everything is a ceremony,
+not a gate — and the protocol was calling it "the standing gate" in both documents.
+
+**Where it disagrees with the band record, the band record is the one that matters.**
+Across the 90 names with a readable history, 36 — forty percent of the book — carry a
+NEGATIVE skill number alongside coverage of 88% or better. In every one of those the
+skill test says "worse than a coin-flip model" while the bands did exactly what they
+promised. Only 10% of the skill number is explained by coverage and width together, so it
+is measuring something independent; the question this rule answers is whether that
+something is worth a reader's attention, and it is not.
+
+**The one real job it did is done better by a number already in every panel.** Coverage
+alone cannot tell an honest cone from a uselessly wide one: a band twice as wide as it
+needs to be scores perfect coverage and says nothing. That is the genuine gap, and the
+skill test was the only thing watching it. But `w90 / w90_b` — our 90% band over a naive
+random walk's — measures exactly that, directly and legibly. RAYA's band is 2.01x a naive
+one at 93% coverage; its skill number is −0.030. "Twice as wide as a simple rule" is a
+sentence a reader can act on. "−3% CRPS skill" is not, and it is the same finding.
+
+### What replaces it
+
+**THE GATE IS CALIBRATION.** A market or name enters and stays in the book on whether its
+bands hold: the realized coverage against the stated target, tested two-sided on the
+binomial at the 5% level, which is the same test [R-CAL-02] already publishes as the
+narrow/wide flag. There is now ONE test, it is the test the reader is shown, and the thing
+that gates is the thing that is published.
+
+**SHARPNESS IS DISCLOSED, NOT GATED.** The width ratio is published beside the record and
+carries NO threshold. A band wider than a naive one is not automatically wrong — the
+Egyptian panel runs a median 1.40x because EGX tail risk is real and a close-to-close
+estimator genuinely understates it, against 1.11x for AE and 1.00x for US and QA. Setting
+a cutoff would be a free parameter with no out-of-sample evidence behind it, which the
+standing PROMOTION RULE forbids in terms. So the number is shown and the reader judges.
+This is the standard *calibration and sharpness* decomposition, not a weakened substitute
+for a proper score: it is the same information, split into the two questions people
+actually ask, and each half is separately checkable on the public ledger.
+
+### What is retired, and what merely stops being a gate
+
+RETIRED: the three-way verdict as an object with authority — as the Step 0 gate, as the
+materiality trigger, as a PENDING_REVIEW field with standing, and everywhere on every
+public surface. No document, page, figure or deliverable states it. The materiality gate's
+"an existing name's verdict changes / the market verdict changes" conditions are replaced
+by "a name's coverage flag changes, or the published 90% cone moves >5%" — the cone-width
+condition already carried most of that weight.
+
+NOT retired: `mc_v3.crps_skill()` and the bootstrap remain in the codebase as an internal
+DIAGNOSTIC, because CRPS is a proper scoring rule and is a reasonable thing to look at
+when investigating a model change. What is forbidden is the diagnostic acquiring authority
+again — it may not gate, trigger, block, or appear in front of a reader.
+
+### The general lesson
+
+A test that never changes an outcome is not conservative, it is decorative, and it costs
+something real: it occupied the place a working check should have held, it had to be
+explained on the methodology page, and its label was actively wrong about the names it
+flagged ([R-CAL-02]). **BEFORE ADDING OR KEEPING A GATE, ASK WHAT IT HAS EVER REJECTED.**
+If the answer is nothing, either the bar is in the wrong place or the thing it measures is
+not the thing that matters — and the honest move is to find the check that would have
+caught something, not to keep the one that reads as rigour.

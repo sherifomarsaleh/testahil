@@ -59,16 +59,21 @@ ALIAS = {
 
 # Display order and labels for the tab groups. `group` collapses the two metal
 # directories into one visual block.
+# `label` heads a tab group; `short` is the same market named INSIDE a sentence
+# ("across the 28 names in the UAE panel"), where the exchange half of a label
+# reads as a stray ("...in the UAE — ADX & DFM panel"). Both live here so a
+# market still has ONE owner for its public name — the band-record generators
+# briefly carried their own dicts and had already disagreed on AE.
 MARKET_META = [
-    ("EG",  {"label": "EGX — Egypt",              "group": "EG"}),
-    ("AE",  {"label": "UAE — ADX & DFM",          "group": "AE"}),
-    ("SA",  {"label": "Saudi Arabia — Tadawul",   "group": "SA"}),
-    ("QA",  {"label": "Qatar — QSE",              "group": "QA"}),
-    ("IN",  {"label": "India — NSE",              "group": "IN"}),
-    ("KR",  {"label": "South Korea — KOSPI",      "group": "KR"}),
-    ("US",  {"label": "United States",            "group": "US"}),
-    ("XAU", {"label": "Metals",                   "group": "METALS"}),
-    ("XPT", {"label": "Metals",                   "group": "METALS"}),
+    ("EG",  {"label": "EGX — Egypt",            "short": "Egyptian",     "group": "EG"}),
+    ("AE",  {"label": "UAE — ADX & DFM",        "short": "UAE",          "group": "AE"}),
+    ("SA",  {"label": "Saudi Arabia — Tadawul", "short": "Saudi",        "group": "SA"}),
+    ("QA",  {"label": "Qatar — QSE",            "short": "Qatari",       "group": "QA"}),
+    ("IN",  {"label": "India — NSE",            "short": "Indian",       "group": "IN"}),
+    ("KR",  {"label": "South Korea — KOSPI",    "short": "Korean",       "group": "KR"}),
+    ("US",  {"label": "United States",          "short": "US",           "group": "US"}),
+    ("XAU", {"label": "Metals",                 "short": "precious-metals", "group": "METALS"}),
+    ("XPT", {"label": "Metals",                 "short": "precious-metals", "group": "METALS"}),
 ]
 ORDER = [m for m, _ in MARKET_META]
 
