@@ -260,6 +260,10 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
             'crps': crps_e, 'crps_b': crps_b,
             'in90': p[5] <= realized <= p[95],
             'in50': p[25] <= realized <= p[75],
+            # [R-CAL-03] the sharpness half of the published record: this cone's
+            # 90% band against a simple no-forecast rule's over the same window.
+            'w90': float(p[95] - p[5]),
+            'w90_b': float(np.percentile(bench, 95) - np.percentile(bench, 5)),
         })
     return df, out
 
@@ -284,6 +288,9 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     ce = np.array([w['crps'] for w in wins])
     cb = np.array([w['crps_b'] for w in wins])
     chart_skill = float(1 - ce.sum() / cb.sum()) if cb.sum() > 0 else float('nan')
+    _wr = [w['w90'] / w['w90_b'] for w in wins
+           if w.get('w90_b') and w['w90_b'] > 0]
+    width_ratio = float(np.median(_wr)) if _wr else float('nan')
 
     rec = wins[-RECENT_N:] if len(wins) > RECENT_N else []
     rec_cov90 = (100.0 * sum(w['in90'] for w in rec) / len(rec)) if rec else None
@@ -300,8 +307,10 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     fig.text(0.062, 0.965, f'{disp} — calibration backtest  ({span_lbl})',
              fontsize=27, fontweight='bold', color=TEAL_DARK, ha='left')
     fig.text(0.062, 0.928,
-             header2.replace('{n}', str(n)).replace('{chart_skill}',
-                                                    f'{chart_skill*100:+.2f}%'),
+             header2.replace('{n}', str(n))
+                    .replace('{cov90}', f'{cov90:.1f}%')
+                    .replace('{width}', f'{width_ratio:.2f}x')
+                    .replace('{chart_skill}', f'{chart_skill*100:+.2f}%'),
              fontsize=15.5, color=INK, ha='left')
     fig.text(0.062, 0.899, header3, fontsize=12.5, color=TEAL_MID, ha='left')
     if rec_cov90 is not None and (cov90 - rec_cov90) >= DIVERGE_PP:
@@ -508,11 +517,14 @@ def build(site_key):
     ov = _fit_override_pair(mkt, ser)
     nu, wc = ov if ov else (prof.nu, prof.width_cal)
     # ONE rule for every market now -- see windows(spacing='postbreak').
-    verdict = pn.get('verdict', fc.get(mkt, {}).get('market_verdict', 'PARITY'))
-    skill = pn.get('skill', fc.get(mkt, {}).get('market_skill', 0.0))
-    h2 = (f"{verdict}  \u00b7  market-gate skill {skill*100:+.2f}% (LONO, pooled panel)"
-          f"  \u00b7  these {{n}} windows: {{chart_skill}}"
-          f"  \u00b7  vs a carry-anchored random walk")
+    # [R-CAL-03] The caption states the BAND RECORD. It used to lead with the
+    # three-way skill verdict — "PARITY · market-gate skill +0.73% ... vs a
+    # carry-anchored random walk" — which put a retired, and for the names it
+    # flagged actively wrong, label on 93 public figures where no text check
+    # could see it. The two numbers here are the two the whole site now reports:
+    # did the band hold, and was it worth having.
+    h2 = ("{cov90} of {n} windows finished inside the 90% band"
+          "  \u00b7  band {width} the width of a simple no-forecast rule's")
     h3 = (f"{prof.name} panel fit: \u03bd={nu:g}, cone width {wc:.3f}  \u00b7  "
           f"carry = {prof.rf_live*100:.2f}% live anchor")
     if ov:

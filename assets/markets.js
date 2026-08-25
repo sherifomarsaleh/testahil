@@ -101,38 +101,47 @@ const MARKET_OF = {
 const MARKET_META = {
  "EG": {
   "label": "EGX \u2014 Egypt",
+  "short": "Egyptian",
   "group": "EG"
  },
  "AE": {
   "label": "UAE \u2014 ADX & DFM",
+  "short": "UAE",
   "group": "AE"
  },
  "SA": {
   "label": "Saudi Arabia \u2014 Tadawul",
+  "short": "Saudi",
   "group": "SA"
  },
  "QA": {
   "label": "Qatar \u2014 QSE",
+  "short": "Qatari",
   "group": "QA"
  },
  "IN": {
   "label": "India \u2014 NSE",
+  "short": "Indian",
   "group": "IN"
  },
  "KR": {
   "label": "South Korea \u2014 KOSPI",
+  "short": "Korean",
   "group": "KR"
  },
  "US": {
   "label": "United States",
+  "short": "US",
   "group": "US"
  },
  "XAU": {
   "label": "Metals",
+  "short": "precious-metals",
   "group": "METALS"
  },
  "XPT": {
   "label": "Metals",
+  "short": "precious-metals",
   "group": "METALS"
  }
 };

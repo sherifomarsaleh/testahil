@@ -79,7 +79,7 @@ Never let a partial upload replace the library.
 ## STEP 2 — CALIBRATION (Step 0.0 gate + refit)
 Run the existing pipeline unchanged: `data_quality.clean_ohlc` (per-market price-limit gate),
 then `auto_refresh.py` dry-run against the FULL market panel (never just the touched name).
-Report the materiality verdict. If material (verdict flip, new-name-arrives-FAILING, cone
+Report the materiality outcome. If material (a name's coverage flag changing, cone
 moves >5%, breaks change) — **APPLY IT AND ANNOUNCE IT, then carry on to Step 3/4.** Announce
 in all three places [R-CAL-01]: the evidence file under `engine/PENDING_REVIEW/`, the reasons
 repeated verbatim in the commit message, and the config it replaced stored under `superseded`

@@ -163,7 +163,11 @@ MODEL_STUDY_DEPTH = {
         "internal-procedure vocabulary (step names, gate names, sweep/ring vocabulary, engine "
         "module names, verdict tokens, register jargon) returns zero hits. Calibration evidence "
         "lives in the price-map section as plain-language sentences with the statistics inline; "
-        "there is no calibration appendix."
+        "there is no calibration appendix. [R-CAL-02] The verdict tokens are named and testable: "
+        "band_record.assert_no_verdict_tokens() is the scrub for that class, and what the price-map "
+        "section states instead is the BAND RECORD \u2014 how often the price finished inside the "
+        "90% band, over how many resolved forecasts \u2014 never PASS/PARITY/FAIL, which is the "
+        "internal Step 0 gate and is never shown to a reader."
     ),
     "figure_discipline": (
         "Figures render on a solid light canvas with ink text — zero transparency, verified "
