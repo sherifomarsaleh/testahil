@@ -40,6 +40,31 @@ THE REPLACEMENT is two plain facts plus a flag that is only raised when earned:
     own coverage sits outside a two-sided binomial test at the 5% level.
     Otherwise no flag -- the ordinary case is silence, not a verdict token.
 
+THE SAMPLE IS EVERY RESOLVED FORECAST, DELIBERATELY NOT BREAK-FILTERED.
+
+The engine's own calibration reads a panel through panel_refresh.apply_breaks(),
+which drops windows whose origin precedes the market's last structural break
+(EG 2016-11/2022-03, SA 2015-06, AE 2022-01). That is right for FITTING: a
+volatility regime that no longer exists should not shape today's cone.
+
+It is not right for a track record. This module answers "how often have the
+published bands actually held", and every dropped window is a real forecast that
+really resolved. Filtering would cut 58 of the 93 panels — most AE names from 58
+windows to 18, most EG names from 57 to 17 — and push 69 of 93 names below the
+readable threshold, so three quarters of the book would show "market record only"
+because of a workweek change in January 2022.
+
+The two samples are held apart on purpose, and the difference is not hidden: the
+skill verdict, the Step 0 gate and every fitted parameter continue to use the
+break-filtered sample; only the published coverage figure uses the full one. The
+headline evidence for [R-CAL-02] is unchanged either way — all five names the site
+had flagged FAIL sit at 94-100% coverage on BOTH samples.
+
+Consequence for the thresholds below: they are derived from the FULL-sample window
+counts. Anyone switching this to the filtered sample must re-derive them, because
+the empty band at 17-21 is a property of the full counts and not of the filtered
+ones.
+
 WHERE THE STRENGTH THRESHOLDS COME FROM (derived 24-Aug-2026 on the live
 93-panel book, not chosen round). Two independent readings agree:
 

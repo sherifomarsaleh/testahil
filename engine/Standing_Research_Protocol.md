@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-24b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-24c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1126,6 +1126,33 @@ permitted on the methodology page, where the scoring rule is being taught, and n
 naming it beside a company is the verdict wearing a different hat.
 `scripts/check_band_vocabulary_negative_control.py` reinjects the 24-Aug text into throwaway
 copies and asserts the gate goes red on each — a check nobody has seen fail is not evidence.
+
+### The sample: every resolved forecast, deliberately not break-filtered
+
+The engine's own calibration reads a panel through `panel_refresh.apply_breaks()`, which
+drops windows whose origin precedes the market's last structural break (EG 2016-11 and
+2022-03, SA 2015-06, AE 2022-01). That is correct for FITTING — a volatility regime that
+no longer exists should not shape today's cone — and it stays exactly as it is for the
+Step 0 gate, the skill verdict and every fitted parameter.
+
+It is NOT correct for a track record. The band record answers "how often have the
+published bands actually held", and every dropped window is a real forecast that really
+resolved. Applying the filter would cut 58 of the 93 panels — most AE names from 58
+windows to 18, most EG names from 57 to 17 — and push 69 of 93 names below the readable
+threshold, so three quarters of the book would report "market record only" because of a
+workweek change in January 2022. A reader asking how often our bands held is owed the
+whole record, not the post-break slice of it.
+
+So the two samples are held apart ON PURPOSE, and the choice is written down rather than
+left implicit — which is the part that was genuinely wrong when this was first built: not
+the sample, but that nothing said which sample it was. THE HEADLINE EVIDENCE IS UNCHANGED
+EITHER WAY: all five names the site had flagged FAIL sit at 94–100% 90%-band coverage on
+BOTH samples, so the defect this rule was adopted to fix does not turn on this choice.
+
+One consequence to carry: the strength thresholds are derived from the FULL-sample window
+counts. The empty band at 17–21 windows is a property of those counts and not of the
+filtered ones, so anyone switching the record to the filtered sample must re-derive both
+cuts rather than carrying 22 and 40 across.
 
 ### The general lesson, which is not about this label
 
