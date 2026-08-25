@@ -22,6 +22,7 @@ on:
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
       - 'scripts/check_data_freshness.py'
+      - 'scripts/check_technical_read.py'
       - 'engine/raw_ohlc/**'
   pull_request:
     paths:
@@ -29,6 +30,7 @@ on:
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
       - 'scripts/check_data_freshness.py'
+      - 'scripts/check_technical_read.py'
       - 'engine/raw_ohlc/**'
   workflow_dispatch: {}
 
@@ -55,3 +57,14 @@ jobs:
       # against the library, sourced run_date, lifecycle invariant.
       - name: Run data freshness / provenance gate
         run: python3 scripts/check_data_freshness.py
+      # Added 25-Aug-2026. A reader found gbco.html publishing a "Key levels"
+      # table whose support sat ABOVE its own close, three lines under a
+      # narrative quoting a different, correct ladder -- and clho.html with all
+      # three resistances BELOW its close. Both steps above passed clean on
+      # those pages that same day: they read data.js with regexes, `re.search`
+      # takes the FIRST match, and a JavaScript object literal takes the LAST.
+      # Both entries declared `levels` twice. This step hands data.js to node
+      # and checks the object the BROWSER renders, then asserts the invariants
+      # that were true of every correct page and false of those two.
+      - name: Run technical-read coherence gate
+        run: python3 scripts/check_technical_read.py
