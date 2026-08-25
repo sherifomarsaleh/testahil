@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-24a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -463,7 +463,7 @@ OPEN ITEMS (honestly ranked)
 Break-aware volatility estimation inside the engine (currently only the calibration sample is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
 Metals is the weakest calibration in the system — say so plainly. Gold is a single-name self-fit: it is calibrated on its own data, so its PARITY verdict is circular in exactly the way Qatar's was until IQCD and QNB de-circularised it. Worse, silver is a PUBLISHED instrument with no fit of its own — it borrows gold's. Every other market has been pulled onto a real panel; metals has not. Until silver/copper/platinum history arrives, the metals cone is the least-evidenced thing Testahil publishes, and it should not be presented with the same confidence as an EGX or GCC name.
 UK and Brazil have no covered names; their profiles are stubs.
-[NEW 29-Jul] Eleven libraries are STALE, and now self-report it on every page via the tech as-of stamp — TMPV/RELIANCE/INFY (IN), TSLA/AAPL/NVDA (US), IQCD/QNB/QGTS (QA), SILVER, PLATINUM. The stamp made latent staleness legible; it did not create it. A fresh vendor export placed at engine/raw_ohlc/{MARKET}/{TICKER}.csv is the only fix — nothing else unblocks them.
+[NEW 29-Jul; RESTATED AS A RULE 25-Aug-2026 under R-DOC-02] **Library staleness is a standing condition, not a list.** This entry used to name eleven stale libraries — TMPV/RELIANCE/INFY, TSLA/AAPL/NVDA, IQCD/QNB/QGTS, SILVER, PLATINUM. On 25-Aug-2026 that list was measured against the repository for the first time since it was written, and it was wrong in both directions at once: it named PLATINUM, whose library was four days old, and it omitted forty-three names that were stale. Book-wide the median library age was eighteen days, 26 of 93 instruments were within three days, 54 were past ten and 34 past twenty-five — and the composition had moved wholesale, the AE and SA books having gone stale in their entirety while the list still pointed at IN/US/QA. Neither number is the point, and neither belongs in a standing document. A library goes stale BY THE CALENDAR, on its own, every day nobody posts an export; a written list moves only when a person edits it. The list was therefore guaranteed to drift out of true, and equally guaranteed to look authoritative while it did — the R-DOC-02 species exactly, and it gets the R-DOC-02 remedy: do not carry the fact, carry the instruction to measure it. **Never quote a stale-library list from this document, from the digest, or from memory** — the same read-live discipline that governs a calibration figure, adopted for the same reason. **Read it live:** `scripts/check_technical_read.py` prints the current library-age distribution and names every instrument past ten days. It reports staleness as an ADVISORY and never as a failure, deliberately. Staleness is a data-supply fact rather than a defect in the read: a month-old library still yields a technical read that is internally coherent and exactly reproducible, and only a fresh vendor export placed at engine/raw_ohlc/{MARKET}/{TICKER}.csv fixes it. Failing on it would make the gate permanently red for reasons no one in the room can clear, which is the R-ENF-02 ratchet lesson applied one document over. The two-part tech as-of stamp still makes each page self-report its own age — the stamp made latent staleness legible and did not create it — but a stamp shows one page at a time and cannot say how much of the book is affected. Only a sweep can, which is why the sweep is now a job rather than a sentence.
 [DONE 13-Jul r2 — sweep executed; 4 contradictions found and corrected] Every covered name's published calibration claim was run against the live production fit (65 names carry a fitted verdict). Four contradicted the site, and they did not all fail in the same direction:
 ALPHADHABI was OVER-CLAIMING — the site described a 9-name UAE panel at ν=4 / width 1.07, a fit that no longer exists, and called the name PARITY, "a calibrated distribution". Under the live 14-name fit (ν=10, width 1.049) it is a robust FAIL: skill −1.2%, CI entirely below zero at every block size. It had no calibration disclosure on its coverage page at all. Now carries the FAIL and the illustrative-only framing. Diagnosis: over-coverage, not mis-centring (50/80/90 = 0.69/0.81/0.94) — i.e. open item 1, the name-level width_cal problem, in the wild.
 DIB, ISPH, KABO were UNDER-claiming — all three publish "FAILED its calibration"; all three are PARITY under the current fits. Labels corrected, but the caution was deliberately retained: all three still carry negative point estimates (−0.15% / −4.2% / −0.02%), so the cone is not demonstrably better than a random walk, merely not provably worse. A classification technicality is never used to upgrade a weak name. Append-only was respected: no registered forecast was retro-edited — every percentile and touch probability is frozen as published and will be graded against exactly those numbers. Original note text is preserved with a dated correction appended after it, so the record shows both what was said and what was wrong with it. Standing lesson: a verdict is not a fact you publish once — it is a function of a fit that keeps moving, so the site must be re-reconciled against the engine on every publish, not only when a study is built.
@@ -737,6 +737,43 @@ The job is a RATCHET, not a cliff. Studies knowingly outstanding are listed in
 NEW violation or a study directory added with no gate at all. The list may only ever shorten —
 `--prune` rewrites it — and its length is the honest measure of progress. A permanently red
 check is one everybody learns to ignore, which is worse than no check.
+
+### [R-ENF-03] The published technical read is checked from outside, through a real JS parse
+
+`scripts/check_technical_read.py` hands `assets/data.js` to node and asserts on **the object the
+page renders**, not on a model of it. Six invariants: no entry declares `levels`/`tech`/`asof`
+twice; three resistances ascending and three supports descending; R1 above and S1 below the close
+the narrative itself states; `bull`/`bear` naming the levels the table publishes; the whole read
+reproducing from the raw library; a coherent two-part stamp whose `tech.data` IS the library's
+last session. It runs in CI beside the two gates it backstops
+(`.github/workflows/page-integrity.yml`).
+
+Written because a READER, not a check, found it. On 25-Aug-2026 gbco.html published a key-levels
+table whose nearest support sat ABOVE its own close, three lines beneath a narrative quoting a
+different and correct ladder; clho.html had all three published resistances BELOW its close. Both
+existing gates reported both pages clean that same day. They parse data.js with regexes,
+`re.search` returns the FIRST match, a JavaScript object literal takes the LAST — and both entries
+declared `levels` twice, so `apply_technicals.py` rewrote the first while the browser rendered the
+second. Valid markup, no console error, a freshly computed narrative sitting over a superseded
+ladder, and every automated check looking at the half the reader never saw.
+
+**A checker that models the parser is checking a different file from the one that ships.** This is
+the JS analogue of VERIFY BY IMPORT, NOT BY PARSE, a rule this protocol already carried before
+either older gate was written — which is the uncomfortable part: the principle was present, the
+gates were built without it, and nothing compared them. Same family as the unquoted-key regex that
+silently dropped 2POINTZERO from three tools at once and the indentation-keyed `dist` match that
+deleted `touch` on nine entries: a pattern standing in for a parser is silently correct on exactly
+the entries shaped the way its author's were.
+
+Two design points that are load-bearing rather than stylistic. The bracket test anchors on the
+close the NARRATIVE states, never on `spot`: those are two clocks, since a mid-cycle library
+arrival refreshes the technical read without re-striking the cone, so anchoring on spot would fire
+on a legitimate divergence and still miss an impossible ladder struck the same day. And library
+age is reported as an advisory, never a failure — see the staleness rule above for why.
+
+Negative-controlled, not merely observed green: against the pre-fix data.js the gate returns 14
+failures across the two entries, from four independent checks, and exits 1; against the corrected
+file, zero.
 
 ### [R-SIGCM-02] The ground-up clause is attested on a record, not a flag
 
