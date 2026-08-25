@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -808,6 +808,64 @@ age is reported as an advisory, never a failure — see the staleness rule above
 Negative-controlled, not merely observed green: against the pre-fix data.js the gate returns 14
 failures across the two entries, from four independent checks, and exits 1; against the corrected
 file, zero.
+
+### [R-ENF-04] An empty result is not a clean result
+
+**Adopted 25-Aug-2026.** The same failure shape appeared four times in a single session,
+and every one of them nearly shipped as a pass:
+
+* a local `origin/main` ref, 24 commits stale, read as current — and produced a confident,
+  wrong "this was never merged";
+* an Actions query keyed on a TRUNCATED commit SHA returned `0 runs`, which read as "no
+  failures" when it meant "the query matched nothing";
+* a negative control searched for `"EMFD"` while `data.js` writes object keys UNQUOTED, so
+  it modified nothing, the gate went green, and that green was evidence only that the file
+  was untouched;
+* a `gh` route was declared impossible on the strength of `command -v gh` — the binary
+  installs from apt in one line, and the route then failed for a completely different and
+  far more informative reason.
+
+None of these were wrong ANSWERS. They were absent answers wearing the costume of a clean
+one, which is strictly worse: a failure announces itself, an empty result does not.
+
+This protocol already carried two rules of exactly this species — COUNT AGAINST A KNOWN
+TOTAL, never trust a tool's own "0 skipped", and VERIFY BY IMPORT, NOT BY PARSE — each
+adopted after its own incident and neither generalised. [R-ENF-01] says that when a defect
+of this species is found again, the CLASS gets closed rather than the instance. This is that.
+
+**Measured, not assumed.** `assets/data.js` was emptied to a valid, loadable file holding
+zero entries and every gate re-run. `check_page_integrity`, `check_data_freshness` and
+`check_technical_read` ALL EXITED 0 AND REPORTED CLEAN. They were not broken; they
+faithfully checked every one of nothing.
+
+**The rule.** Every gate declares what it examined and is held against a population counted
+somewhere else. `scripts/coverage_floor.py` anchors on the persistent OHLC libraries on
+disk, chosen because it is independent of `data.js`: defeating the check would mean emptying
+the libraries too, which is a far louder failure than an empty page file. The comparison is
+EXACT, never a threshold — a threshold would be a free parameter with no evidence behind it,
+which the promotion rule forbids elsewhere for the same reason. A library staged but not yet
+published therefore FAILS the gate and is named, which is the intended behaviour: "counting
+one side alone is what let 9 names rot unnoticed" is already written into
+`check_data_freshness`'s own first check.
+
+**A gate's SECOND population is guarded too.** `check_page_integrity` builds its scope from
+the HTML files on disk, so an empty `data.js` leaves its page count untouched and merely
+makes its data.js cross-checks VACUOUS. The negative control caught precisely that against
+the first draft of this fix — 93 pages walked, "Clean" printed, nothing actually compared.
+A cross-check that would compare against nothing now refuses instead. Zero is the only
+value that makes a comparison vacuous, so zero is what is refused; a 92-of-93 coverage is a
+real property of the book, not a floor violation.
+
+**Negative-controlled**, because a check nobody has seen fail is not evidence:
+`scripts/check_coverage_floor_negative_control.py` reinjects the measured condition, asserts
+every gate goes red, and restores `data.js` verified byte-for-byte. It runs in CI beside the
+gates it backstops.
+
+**The general lesson, which is not about these gates.** WHEN A PROBE COMES BACK EMPTY, THE
+FIRST HYPOTHESIS IS THAT THE PROBE DID NOT RUN. Re-run the exact operation before believing
+the absence, name the specific path that failed rather than the category, and never
+generalise one failed probe into "impossible" — the four incidents above were each caught
+only by re-running the exact operation, and three of them had already been reported as clean.
 
 ### [R-SIGCM-02] The ground-up clause is attested on a record, not a flag
 

@@ -58,6 +58,10 @@ import hashlib
 import html
 import re
 import sys
+import os as _os
+_sys_dir = _os.path.dirname(_os.path.abspath(__file__))
+sys.path.insert(0, _sys_dir)
+from coverage_floor import assert_examined  # noqa: E402  [R-ENF-04]
 from collections import defaultdict
 from html.parser import HTMLParser
 from pathlib import Path
@@ -304,6 +308,19 @@ def main() -> int:
         print(f"FATAL: {data_js_path} not found — run this from the repo root.")
         return 2
     fair_base = load_fair_base(data_js_path.read_text(encoding="utf-8"))
+    # [R-ENF-04] The page-count floor below cannot see THIS gate's other blind
+    # spot: its scope is the HTML files on disk, so emptying data.js leaves the
+    # page count untouched and only makes the data.js cross-checks VACUOUS. The
+    # negative control found exactly that, against the first version of this very
+    # fix — with data.js emptied, 93 pages were still walked and the gate still
+    # printed "Clean". Zero is the only value that makes the comparison vacuous,
+    # so zero is what is refused; 92-of-93 is a real property of the book (one
+    # page carries no fair block) and not a floor violation.
+    if not fair_base:
+        print("FATAL: assets/data.js yielded NO fair.base values, so the "
+              "stale-fair-value check would compare against nothing and pass "
+              "vacuously. Refusing to report clean. [R-ENF-04]")
+        return 2
 
     findings: list[tuple[str, list[str]]] = [
         ("accordion-nesting", check_accordion_nesting(ticker_pages)),
@@ -331,10 +348,19 @@ def main() -> int:
         print(f"    - {it}")
 
     print()
+    # [R-ENF-04] A gate must never report clean having examined nothing. Measured
+    # on adoption day: with data.js emptied to a valid file holding zero entries,
+    # this script exited 0 and printed "Clean — no hard findings." It was not
+    # broken; it faithfully checked every one of nothing. The count is now
+    # PRINTED (it never was) and held against the OHLC libraries on disk, a
+    # population counted somewhere data.js cannot reach.
+    pop = assert_examined(len(ticker_pages), 'check_page_integrity', 'ticker pages')
     if total:
-        print(f"{total} finding(s) — see above. Fix before publishing.")
+        print(f"{total} finding(s) across {len(ticker_pages)} ticker pages "
+              f"— see above. Fix before publishing.")
         return 1
-    print("Clean — no hard findings.")
+    print(f"Clean — no hard findings across {len(ticker_pages)} ticker pages "
+          f"({pop} libraries on disk).")
     return 0
 
 

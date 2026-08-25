@@ -49,6 +49,10 @@ Exit 0 = clean, exit 1 = at least one FAIL.
 """
 from __future__ import annotations
 
+import os as _os, sys as _sys                                   # noqa: E402
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))  # noqa: E402
+from coverage_floor import assert_examined                      # noqa: E402  [R-ENF-04]
+
 import argparse
 import json
 import os
@@ -224,7 +228,10 @@ def main() -> int:
         print()
         for key, check, msg in sorted(FAILURES):
             print(f'  FAIL  {key:12} {check:24} {msg}')
-    print(f'\n{len(rendered)} entries checked -- {len(FAILURES)} failure(s)')
+    # [R-ENF-04] A gate must never report clean having examined nothing.
+    pop = assert_examined(len(rendered), 'check_technical_read')
+    print(f'\n{len(rendered)} entries checked against {pop} libraries -- '
+          f'{len(FAILURES)} failure(s)')
     return 1 if FAILURES else 0
 
 
