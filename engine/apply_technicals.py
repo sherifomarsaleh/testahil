@@ -160,6 +160,22 @@ def field_spans(block: str, field: str):
         pos = end
 
 
+def trailing_len(block: str, i: int) -> int:
+    """Chars after a field's closing brace that belong to that field's LINE.
+
+    A replacement span stops at `}`, so the trailing `,` and any `// ...` note
+    on the same line SURVIVE a rewrite. That is how CLHO, RMDA and GBCO each
+    ended up carrying a machine-recomputed ladder under a hand-written
+    `// 19 Jul 2026 - computed from own OHLC` note: the numbers moved on every
+    pass, the date never did, and the comment then dated its own line wrongly.
+    A comment on a field this module OWNS is consumed with the field; the
+    as-of stamp is the date of record. Same class as the duplicate key one line
+    to its left ([R-ENF-01]) -- a survivor of a rewrite that nothing renders
+    and nothing checks.
+    """
+    return re.match(r',?[ \t]*(//[^\n]*)?', block[i:]).end()
+
+
 def drop_superseded(block: str, fields=('levels', 'tech', 'asof')):
     """Delete every duplicate of a field this module owns, keeping the FIRST.
 
@@ -362,15 +378,14 @@ def run(write=False, only=None, computed_on=None):
                  (lv_span, emit_levels(st['levels'], lv_span[2]))],
                 key=lambda p: -p[0][0]):
             s0, s1, _ = span
-            trail = ',' if new[s1:s1 + 1] == ',' else ''
-            new = new[:s0] + text.rstrip(',') + (trail or ',') + new[s1 + len(trail):]
+            new = (new[:s0] + text.rstrip(',') + ','
+                   + new[s1 + trailing_len(new, s1):])
 
         # asof: replace if present, else insert immediately after tech
         ao = field_span(new, 'asof')
         if ao:
             s0, s1, ind = ao
-            trail = ',' if new[s1:s1 + 1] == ',' else ''
-            new = new[:s0] + emit_asof(asof, ind) + new[s1 + len(trail):]
+            new = new[:s0] + emit_asof(asof, ind) + new[s1 + trailing_len(new, s1):]
         else:
             tk2 = field_span(new, 'tech')
             ins = tk2[1] + (1 if new[tk2[1]:tk2[1] + 1] == ',' else 0)
