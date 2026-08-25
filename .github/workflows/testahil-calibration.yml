@@ -119,6 +119,70 @@ jobs:
           done
           echo "$SUBJECT"
 
+      # ------------------------------------------------------------------
+      # Added 25-Aug-2026. Until now this workflow refit the MODEL and stopped:
+      # auto_refresh.py writes only under engine/ and never touches
+      # assets/data.js, so an upload left every price a visitor sees exactly
+      # where it was. The site still deployed — deploy-pages.yml fires on any
+      # push to main — and the page-integrity job that DOES catch it is
+      # deliberately non-blocking. So the observable behaviour was: post a CSV,
+      # the calibration commits, that commit deploys, the pages show the old
+      # prices, and a red X sits in the Actions tab saying so.
+      #
+      # This runs the mid-cycle refresh (Roll-Forward & Grading Protocol STEP 0
+      # decision (a)): displayed cone + technical read + chart, NO ledger rows.
+      # It commits SEPARATELY from the calibration above on purpose — [R-CAL-01]
+      # promises that reverting THAT one commit restores market_profiles.py and
+      # fitted_configs.json together, and folding assets/ into it would break
+      # that property.
+      - name: Set up node for the chart-overlay gate
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install browser for the chart-overlay gate
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Refresh every page onto the current library
+        id: pages
+        run: |
+          set +e
+          python3 scripts/refresh_pages.py --write
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+        # Refuses any name whose dividend yield it cannot source rather than
+        # defaulting it to zero, and asserts the LEDGER is byte-identical across
+        # the pass. A nonzero exit means a gate refused, not that nothing ran.
+
+      - name: Commit the refreshed pages
+        run: |
+          git config user.name "testahil-bot"
+          git config user.email "info@testahil.com"
+
+          if [ -z "$(git status --porcelain assets/ ./*.html)" ]; then
+            echo "Pages already stood on the current library — nothing to commit."
+            exit 0
+          fi
+
+          git add assets/ ./*.html
+          git commit -m "Refresh published pages onto the current library ($(date -u +%Y-%m-%d))" \
+                     -m "Mid-cycle pass: spot/spotDate/dist/hz/touch, the computed technical read, the as-of stamps and the chart SVGs. No LEDGER row struck — ledger strikes stay on the 1-month maturity metronome. fair{}, the slider factor-stack constants and files untouched."
+
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main && git push origin HEAD:main && break
+            echo "push rejected (attempt $i) — retrying after rebase"
+            sleep $((i * 5))
+          done
+
+      - name: Fail the run if the page refresh refused a name
+        if: steps.pages.outputs.exit_code != '0'
+        run: |
+          echo "::error::scripts/refresh_pages.py exited nonzero — a gate refused. The pages that DID refresh were committed above; see the step log for which names were refused and why."
+          exit 1
+
       - name: Fail the run if a market could not be refit
         if: steps.refresh.outputs.exit_code != '0'
         run: |
