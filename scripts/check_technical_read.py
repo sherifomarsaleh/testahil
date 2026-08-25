@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Coherence gate for the published technical read, read the way a BROWSER reads it.
+"""Coherence gate for the published technical read, read the way a BROWSER reads it.  [R-ENF-03]
 
 WHY THIS EXISTS
 ---------------
