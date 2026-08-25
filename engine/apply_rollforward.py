@@ -380,5 +380,38 @@ def bump_site_updated(src: str, date: str) -> str:
                   src, count=1)
 
 
+
+
+# ---------------------------------------------------------------- replay guard
+REPLAY_FLAG = '--i-am-replaying-28-jul-2026'
+_REFUSE = f"""apply_rollforward.py is the RECORD of the 28-Jul-2026 market-wide re-strike,
+not a live tool, and running it today publishes a cone under a date a month old.
+
+Its per-row note AND its run_date are HARDCODED to that pass — run_date='2026-07-28'.
+apply_technicals stamps asof.mc.computed from the newest LEDGER row's run_date, so a
+run today writes a fresh cone and then tells every page it was computed on
+2026-07-28. It also writes NO `fit` stamp, so check_data_freshness's 2b cannot
+catch it: an entry with no stamp is deliberately not failed.
+
+That is the SAME defect closed on 25-Aug-2026 (PR #277), reached by a second route.
+[R-ENF-01]: when a defect of this species is found again, close the CLASS, not the
+instance — and a warning that lives only in another module's docstring is not a
+check, which is exactly why this one had gone unenforced.
+
+Use instead:
+  engine/rollforward_one.py   — the monthly metronome strike (writes a LEDGER row)
+  engine/refresh_cone_one.py  — the mid-cycle displayed-cone refresh (writes none)
+Both stamp the entry with the day the strike actually ran.
+
+If you genuinely mean to replay the historical 28-Jul-2026 pass, pass {REPLAY_FLAG}."""
+
+
+def _refuse_unless_replaying(argv) -> None:
+    """Refuse to re-run the frozen replay tool. Raises; never warns."""
+    if REPLAY_FLAG not in argv:
+        raise SystemExit(_REFUSE)
+
+
 if __name__ == '__main__':
+    _refuse_unless_replaying(sys.argv)
     build(write='--write' in sys.argv)
