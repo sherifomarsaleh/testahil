@@ -870,7 +870,7 @@ const TICKERS = {
     spot: 1.25,
     spotDate: "close 21 Aug 2026",
     ccy: "AED",
-    fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high. Calibration: BOUNDARY (PARITY-flagged) on the production UAE panel — CRPS skill +7.07% scale-normalized (+5.46% on the raw basis), 90% CI [-0.3%, +16.5%] at block 2, which straddles zero, so it is recorded at parity and no single-name edge is claimed. The AE market panel itself PASSES (28 names, 409 non-overlapping calendar 3-month windows; production fit nu=10.0, width_cal=0.916). Calibration of record: the 24-Aug-2026 refit.
+    fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high.07% scale-normalized (+5.46% on the raw basis), 90% CI [-0.3%, +16.5%] at block 2, which straddles zero, so it is recorded at parity and no single-name edge is claimed. The AE market panel itself PASSES (28 names, 409 non-overlapping calendar 3-month windows; production fit nu=10.0, width_cal=0.916). Calibration of record: the 24-Aug-2026 refit.
     dist: {
       t20: { label:"1 month",   p5:1.07, p25:1.17, p50:1.25, p75:1.32, p95:1.45, resolve:"2026-09-21" },
       t60: { label:"3 months",  p5:0.95, p25:1.12, p50:1.24, p75:1.37, p95:1.61, resolve:"2026-11-23" }
@@ -937,7 +937,7 @@ const TICKERS = {
     spot: 7.40,
     spotDate: "close 21 Aug 2026",
     ccy: "AED",
-    fair: { bear: 8.14, base: 10.18, full: 11.20 },      // 11 Jul 2026 — five-lens weighted central 10.18 (+32% vs spot 7.72). Lenses: DDM (primary, 30%) 10.90, residual income (20%) 11.20, FCFE equity DCF (15%) 10.44, relative multiples same-day-anchored on ADCB (20%) 8.14, normalized through-cycle (15%) 9.86. bear/full = relative lens / residual-income lens. Ke 10.57% (rf 4.70% + β1.00×ERP4.87% + 1.0pt war adder). MONTE CARLO FAILED calibration on this name (skill score −0.025 vs random walk, robust across every resampling scheme; study §3.1) — §3 is an illustrative volatility map only, no forecast published. Swing factors: the net profit margin path, the pace of cost-of-risk normalization off a tripled Q1-26 print, and whether the Iran-war ceasefire holds. UAE's largest Islamic bank; dividend cut 45→35 fils Feb-2026.
+    fair: { bear: 8.14, base: 10.18, full: 11.20 },      // 11 Jul 2026 — five-lens weighted central 10.18 (+32% vs spot 7.72). Lenses: DDM (primary, 30%) 10.90, residual income (20%) 11.20, FCFE equity DCF (15%) 10.44, relative multiples same-day-anchored on ADCB (20%) 8.14, normalized through-cycle (15%) 9.86. bear/full = relative lens / residual-income lens. Ke 10.57% (rf 4.70% + β1.00×ERP4.87% + 1.0pt war adder). Swing factors: the net profit margin path, the pace of cost-of-risk normalization off a tripled Q1-26 print, and whether the Iran-war ceasefire holds. UAE's largest Islamic bank; dividend cut 45→35 fils Feb-2026.
     dist: {
       t20: { label:"1 month",   p5:6.75, p25:7.12, p50:7.37, p75:7.63, p95:8.07, resolve:"2026-09-21" },
       t60: { label:"3 months",  p5:6.19, p25:6.86, p50:7.32, p75:7.80, p95:8.65, resolve:"2026-11-23" }
@@ -1202,7 +1202,7 @@ const TICKERS = {
     spot: 29.51,
     spotDate: "close 23 Aug 2026",
     ccy: "EGP",
-    fair: { bear: 23.3, base: 35.7, full: 51.0 },      // AMENDED 09 Jul 2026 (replaces the prior 08-Jul draft; same study cycle, corrected leg build) — weighted central 35.7 (+14% vs spot 31.25). GB Corp's own 9-June-2026 press release ("MNT-Halan ... Closes Capital Increase Round Led by Al Ahly Capital Holding") confirms the current stake directly: "GB Corp's ownership stake in MNT-Halan will be adjusted to 41.61%, compared to 42.58% prior to the transaction" — a dated, current, company-confirmed figure, replacing both the original unsourced ~20% placeholder and the interim 42.58% correction. Four lenses: split-the-legs SOTP (primary) 38.4 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at the confirmed 41.61% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 42.6, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. THE REAL OPEN QUESTION: with the stake now confirmed, applying it to the round's valuation implies MNT-Halan alone is worth ~73% of GB Corp's entire market cap — a genuine puzzle, not a sourcing gap. Either the market applies a far steeper discount to this private mark than this study's 10%, or GB Corp is meaningfully mispriced. Treat 35.7 as the read if the round's valuation holds at face value; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative anchor if you believe the market's skepticism is warranted. Swing factors, in order: the discount applied to the MNT-Halan mark (the stake itself is no longer in question), Auto working-capital release, the CBE rate path. MC PASSES the calibration back-test with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — entirely unaffected by any of this, since the engine prices the stock's own path, not the SOTP.
+    fair: { bear: 23.3, base: 35.7, full: 51.0 },      // AMENDED 09 Jul 2026 (replaces the prior 08-Jul draft; same study cycle, corrected leg build) — weighted central 35.7 (+14% vs spot 31.25). GB Corp's own 9-June-2026 press release ("MNT-Halan ... Closes Capital Increase Round Led by Al Ahly Capital Holding") confirms the current stake directly: "GB Corp's ownership stake in MNT-Halan will be adjusted to 41.61%, compared to 42.58% prior to the transaction" — a dated, current, company-confirmed figure, replacing both the original unsourced ~20% placeholder and the interim 42.58% correction. Four lenses: split-the-legs SOTP (primary) 38.4 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at the confirmed 41.61% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 42.6, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. THE REAL OPEN QUESTION: with the stake now confirmed, applying it to the round's valuation implies MNT-Halan alone is worth ~73% of GB Corp's entire market cap — a genuine puzzle, not a sourcing gap. Either the market applies a far steeper discount to this private mark than this study's 10%, or GB Corp is meaningfully mispriced. Treat 35.7 as the read if the round's valuation holds at face value; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative anchor if you believe the market's skepticism is warranted. Swing factors, in order: the discount applied to the MNT-Halan mark (the stake itself is no longer in question), Auto working-capital release, the CBE rate path.
     levels: { res:[30.12, 32.47, 33.16], sup:[28.64, 25.36, 23.99] },   // 19 Jul 2026 — computed from own OHLC (SMA20/50/200, 52w range, swing points); technical-only
     dist: {
       t20: { label:"1 month",   p5:24.84, p25:28.05, p50:30.02, p75:32.15, p95:36.31, resolve:"2026-09-23" },
@@ -1236,7 +1236,7 @@ const TICKERS = {
     spot: 13.16,
     spotDate: "close 24 Jul 2026",
     ccy: "AED",
-    fair: { bear: 12.88, base: 17.29, full: 22.76 },      // 08 Jul 2026 — weighted central 17.29 (+21% vs spot 14.26). Four lenses: RNAV / split-NAV (primary) 17.56, going-concern DCF (exit-multiple terminal, not Gordon) 18.43, relative multiples 15.75 (floor), property-cycle earnings 16.88; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Development legs carry no terminal value; swing factors are the Dubai property cycle, the sustainable development margin and the net-cash mark. A naive Gordon-perpetuity DCF would imply ~27 (disclosed, not used). MC INDICATIVE: the §3 engine (run drift-on for this name) MATCHES — ties — its zero-drift random-walk benchmark in the calibration back-test (CRPS skill ≈ 0, CI spans zero) with a well-calibrated PIT; no demonstrated edge, but not a failed calibration.
+    fair: { bear: 12.88, base: 17.29, full: 22.76 },      // 08 Jul 2026 — weighted central 17.29 (+21% vs spot 14.26). Four lenses: RNAV / split-NAV (primary) 17.56, going-concern DCF (exit-multiple terminal, not Gordon) 18.43, relative multiples 15.75 (floor), property-cycle earnings 16.88; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Development legs carry no terminal value; swing factors are the Dubai property cycle, the sustainable development margin and the net-cash mark. A naive Gordon-perpetuity DCF would imply ~27 (disclosed, not used).
     dist: {
       t20: { label:"1 month",   p5:11.46, p25:12.50, p50:13.20, p75:13.94, p95:15.16, resolve:"2026-08-24" },
       t60: { label:"3 months",  p5:10.16, p25:11.99, p50:13.29, p75:14.73, p95:17.41, resolve:"2026-10-26" }
@@ -1269,7 +1269,7 @@ const TICKERS = {
     spot: 13.22,
     spotDate: "close 23 Aug 2026",
     ccy: "EGP",
-    fair: { bear: 12.85, base: 17.78, full: 22.68 },      // 7 Jul 2026 \u2014 weighted central 17.78 (+52% vs spot 11.67). Four lenses: DCF (primary) 19.79, relative EV/EBITDA 16.71, normalized earnings 17.98, dividend-yield floor 11.00; blend 45/25/20/10. bear/full = weighted bear/bull of the football field. Swing: the thin net margin normalising as the CBE rate path eases finance costs and the drug-re-pricing cycle feeds through \u2014 on ~EGP 76.6bn FY25 revenue at an ~8% gross / ~5% EBITDA / ~1.2% net margin with a near-zero cash-conversion cycle. INDICATIVE: the \u00a73 Monte-Carlo engine did NOT beat its zero-drift random-walk benchmark in the calibration back-test (CRPS skill < 0 on every scheme) \u2014 the price map is illustrative only, not a skill-validated forecast.
+    fair: { bear: 12.85, base: 17.78, full: 22.68 },      // 7 Jul 2026 \u2014 weighted central 17.78 (+52% vs spot 11.67). Four lenses: DCF (primary) 19.79, relative EV/EBITDA 16.71, normalized earnings 17.98, dividend-yield floor 11.00; blend 45/25/20/10. bear/full = weighted bear/bull of the football field. Swing: the thin net margin normalising as the CBE rate path eases finance costs and the drug-re-pricing cycle feeds through \u2014 on ~EGP 76.6bn FY25 revenue at an ~8% gross / ~5% EBITDA / ~1.2% net margin with a near-zero cash-conversion cycle.
     dist: {
       t20: { label:"1 month",   p5:10.67, p25:12.36, p50:13.41, p75:14.57, p95:16.87, resolve:"2026-09-23" },
       t60: { label:"3 months",  p5:9.42, p25:12.05, p50:13.85, p75:15.90, p95:20.31, resolve:"2026-11-23" }
@@ -1333,7 +1333,7 @@ const TICKERS = {
     spot: 196.51,
     spotDate: "close 27 Jul 2026",
     ccy: "USD",
-    fair: { bear: 147, base: 204, full: 287 },      // 6 Jul 2026 \u2014 weighted central 204 (+3.9% vs spot 196.44). Lenses: DCF 5-yr FCFF 189 (primary, TV ~79% of EV), relative multiples 200, forward-earnings power 230. bear/full = weighted bear/bull of the football field. Swing: how many years AI data-center capex sustains super-normal growth; China export controls; customer concentration. \u00a73 Monte Carlo PASSED its calibration back-test (CRPS skill +2.7% vs a random-walk cone) \u2014 an honest, skill-validated probability map. International name: zero secular drift, DCF-primary lens.
+    fair: { bear: 147, base: 204, full: 287 },      // 6 Jul 2026 \u2014 weighted central 204 (+3.9% vs spot 196.44). Lenses: DCF 5-yr FCFF 189 (primary, TV ~79% of EV), relative multiples 200, forward-earnings power 230. bear/full = weighted bear/bull of the football field. Swing: how many years AI data-center capex sustains super-normal growth; China export controls; customer concentration. International name: zero secular drift, DCF-primary lens.
     dist: {
       t20: { label:"1 month",   p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97, resolve:"2026-08-27" },
       t60: { label:"3 months",  p5:132.59, p25:168.27, p50:198.69, p75:234.29, p95:298.15, resolve:"2026-10-27" }
@@ -1366,7 +1366,7 @@ const TICKERS = {
     spot: 9.12,
     spotDate: "close 23 Aug 2026",
     ccy: "EGP",
-    fair: { bear: 1.42, base: 2.39, full: 3.52 },      // 6 Jul 2026 — weighted central 2.39 (\u221266% vs spot 7.00). Four lenses: revalued NAV (primary) 3.28, going-concern DCF 0.54 (floor), relative price-to-book 2.65, normalized earnings 1.24. bear/full = weighted bear/bull of the football field. Swing: the realizable value of the legacy Alexandria land against a ~95%-collapsed earnings base — at 7.00 the market prices a ~EGP 2.8bn land re-mark that has not been disclosed or monetised. Note: \u00a73 Monte Carlo FAILED its calibration back-test on this name (CRPS skill \u22120.010 vs a random-walk cone; study Appendix B) — no probabilistic price forecast is published; the distribution is an illustrative volatility map only.
+    fair: { bear: 1.42, base: 2.39, full: 3.52 },      // 6 Jul 2026 — weighted central 2.39 (\u221266% vs spot 7.00). Four lenses: revalued NAV (primary) 3.28, going-concern DCF 0.54 (floor), relative price-to-book 2.65, normalized earnings 1.24. bear/full = weighted bear/bull of the football field. Swing: the realizable value of the legacy Alexandria land against a ~95%-collapsed earnings base — at 7.00 the market prices a ~EGP 2.8bn land re-mark that has not been disclosed or monetised.
     dist: {
       t20: { label:"1 month",   p5:7.45, p25:8.63, p50:9.37, p75:10.18, p95:11.80, resolve:"2026-09-23" },
       t60: { label:"3 months",  p5:6.57, p25:8.48, p50:9.79, p75:11.29, p95:14.55, resolve:"2026-11-23" }
@@ -1761,7 +1761,7 @@ const TICKERS = {
     spot: 23.34,
     spotDate: "close 21 Aug 2026",
     ccy: "AED",
-    fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. Backtest PARITY (CRPS skill +0.009, 14 UAE windows). UAE's largest listed Islamic bank; 3,632.0mn shares.
+    fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. UAE's largest listed Islamic bank; 3,632.0mn shares.
     dist: {
       t20: { label:"1 month",   p5:20.70, p25:22.23, p50:23.29, p75:24.39, p95:26.24, resolve:"2026-09-21" },
       t60: { label:"3 months",  p5:18.64, p25:21.33, p50:23.19, p75:25.20, p95:28.80, resolve:"2026-11-23" }
@@ -2515,7 +2515,7 @@ const TICKERS = {
     spot: 58.20,
     spotDate: "close 26 Jul 2026",
     ccy: "SAR",
-    fair: { bear: 27, base: 42, full: 57 },      // 5 Jul 2026 — weighted central 42 (−29% vs spot 58.80). Lenses: SOTP 44 (primary), consolidated DCF (5-yr FCFF) 47, relative 26 (floor), mid-cycle earnings 42. bear/full = weighted bear/bull of the football field. Swing: the commodity deck (DAP/aluminium/gold) and whether the growth capex earns its cost of capital. Note: §3 Monte Carlo showed no CRPS skill vs a random-walk cone (see study Appendix B) — the distribution is an honest probability map, not a skill-validated forecast.
+    fair: { bear: 27, base: 42, full: 57 },      // 5 Jul 2026 — weighted central 42 (−29% vs spot 58.80). Lenses: SOTP 44 (primary), consolidated DCF (5-yr FCFF) 47, relative 26 (floor), mid-cycle earnings 42. bear/full = weighted bear/bull of the football field. Swing: the commodity deck (DAP/aluminium/gold) and whether the growth capex earns its cost of capital. Note:
     dist: {
       t20: { label:"1 month",   p5:50.75, p25:55.30, p50:58.37, p75:61.67, p95:67.25, resolve:"2026-08-26" },
       t60: { label:"3 months",  p5:45.87, p25:53.40, p50:58.85, p75:64.79, p95:75.44, resolve:"2026-10-26" }
@@ -2779,7 +2779,7 @@ const TICKERS = {
     spot: 4.165,
     spotDate: "close 28 Jul 2026",
     ccy: "QAR",
-    fair: { bear: 2.71, base: 4.29, full: 6.40 },      // 5 Jul 2026 \u2014 weighted central 4.29 (\u22120.7% vs spot 4.319). Four lenses: DCF on the contracted fleet (primary) 4.90, two-stage dividend-discount 3.56, relative EV/EBITDA & P/E 4.00, fleet-replacement NAV 4.06; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing factor: the discount rate on a bond-like ~20-year QatarEnergy charter stream (\u22487.5% base) and how much credit the newbuild programme (69\u2192112 vessels, first delivery end-2026) earns above its cost of capital. Note: the \u00a73 Monte-Carlo engine ties \u2014 does not beat \u2014 its random-walk benchmark for this unusually stable name (Appendix B), so the price map is illustrative only.
+    fair: { bear: 2.71, base: 4.29, full: 6.40 },      // 5 Jul 2026 \u2014 weighted central 4.29 (\u22120.7% vs spot 4.319). Four lenses: DCF on the contracted fleet (primary) 4.90, two-stage dividend-discount 3.56, relative EV/EBITDA & P/E 4.00, fleet-replacement NAV 4.06; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing factor: the discount rate on a bond-like ~20-year QatarEnergy charter stream (\u22487.5% base) and how much credit the newbuild programme (69\u2192112 vessels, first delivery end-2026) earns above its cost of capital.
     dist: {
     t20: { label: "1 month", p5: 3.6712, p25: 3.9842, p50: 4.1774, p75: 4.3814, p95: 4.7543, resolve: "2026-08-30" },
     t60: { label: "3 months", p5: 3.3721, p25: 3.881, p50: 4.2096, p75: 4.5655, p95: 5.2533, resolve: "2026-10-28" }
@@ -2876,7 +2876,7 @@ const TICKERS = {
     spot: 3.35,
     spotDate: "close 21 Aug 2026",
     ccy: "AED",
-    fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp. §3 Monte Carlo TIES its calibration back-test benchmark (PARITY — calibrated, honest, no single-name edge; the earlier FAILED banner used the superseded skill<0 rule, now corrected under the fitted 9-name UAE market profile).
+    fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp.
     dist: {
       t20: { label:"1 month",   p5:2.89, p25:3.14, p50:3.32, p75:3.51, p95:3.83, resolve:"2026-09-21" },
       t60: { label:"3 months",  p5:2.53, p25:2.96, p50:3.26, p75:3.60, p95:4.21, resolve:"2026-11-23" }
@@ -3155,103 +3155,104 @@ const COMING = [
 // ---- BANDS ---- [R-CAL-02] GENERATED by scripts/build_band_records.py
 // One record per covered name: n = resolved non-overlapping 3-month
 // windows, c90 = share of them that finished inside the 90% band,
-// strength = long (>=40) / short (>=22) / market-only, flag = narrow |
-// wide | null (two-sided binomial vs the 90% target, 5% level).
+// width = our 90% band / a simple no-forecast rule's (median) — the
+// sharpness half of the record. strength = long (>=40) / short (>=22) /
+// market-only. flag = narrow | wide | null (two-sided binomial, 5%).
 // Derivation of the thresholds: engine/band_record.py. NEVER hand-edit.
 const BANDS = {
-  "2POINTZERO": {mkt:"AE", n:14, hits:11, c50:0.2857, c80:0.7143, c90:0.7857, strength:"market-only", flag:null},
-  AAPL: {mkt:"US", n:58, hits:50, c50:0.4310, c80:0.7414, c90:0.8621, strength:"long", flag:null},
-  ABUK: {mkt:"EG", n:57, hits:52, c50:0.6140, c80:0.8772, c90:0.9123, strength:"long", flag:null},
-  ACWA: {mkt:"SA", n:14, hits:12, c50:0.3571, c80:0.7143, c90:0.8571, strength:"market-only", flag:null},
-  ADCB: {mkt:"AE", n:58, hits:50, c50:0.5000, c80:0.8103, c90:0.8621, strength:"long", flag:null},
-  ADIB: {mkt:"EG", n:57, hits:54, c50:0.6140, c80:0.8772, c90:0.9474, strength:"long", flag:null},
-  ADIBUAE: {mkt:"AE", n:58, hits:50, c50:0.5345, c80:0.7586, c90:0.8621, strength:"long", flag:null},
-  ADNOCDIST: {mkt:"AE", n:30, hits:30, c50:0.6667, c80:0.9333, c90:1.0000, strength:"short", flag:null},
-  ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, strength:"market-only", flag:null},
-  ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, strength:"market-only", flag:null},
-  ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.7500, c90:0.8750, strength:"market-only", flag:null},
-  AGTHIA: {mkt:"AE", n:58, hits:56, c50:0.7586, c80:0.9138, c90:0.9655, strength:"long", flag:null},
-  AIRARABIA: {mkt:"AE", n:58, hits:50, c50:0.5690, c80:0.7931, c90:0.8621, strength:"long", flag:null},
-  ALDAR: {mkt:"AE", n:58, hits:52, c50:0.5172, c80:0.7586, c90:0.8966, strength:"long", flag:null},
-  ALINMA: {mkt:"SA", n:57, hits:48, c50:0.4035, c80:0.6491, c90:0.8421, strength:"long", flag:null},
-  ALPHADHABI: {mkt:"AE", n:16, hits:16, c50:0.6875, c80:0.8750, c90:1.0000, strength:"market-only", flag:null},
-  ALRAJHI: {mkt:"SA", n:57, hits:48, c50:0.4035, c80:0.6842, c90:0.8421, strength:"long", flag:null},
-  AMOC: {mkt:"EG", n:57, hits:49, c50:0.5614, c80:0.8070, c90:0.8596, strength:"long", flag:null},
-  AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, strength:"market-only", flag:null},
-  ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7273, c90:0.9091, strength:"short", flag:null},
-  ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, strength:"long", flag:null},
-  BOROUGE: {mkt:"AE", n:12, hits:12, c50:0.9167, c80:1.0000, c90:1.0000, strength:"market-only", flag:null},
-  BTFH: {mkt:"EG", n:56, hits:47, c50:0.5893, c80:0.8036, c90:0.8393, strength:"long", flag:null},
-  BURJEEL: {mkt:"AE", n:11, hits:10, c50:0.5455, c80:0.9091, c90:0.9091, strength:"market-only", flag:null},
-  CCAP: {mkt:"EG", n:57, hits:48, c50:0.5263, c80:0.7719, c90:0.8421, strength:"long", flag:null},
-  CLHO: {mkt:"EG", n:36, hits:35, c50:0.7500, c80:0.9722, c90:0.9722, strength:"short", flag:null},
-  COMI: {mkt:"EG", n:57, hits:52, c50:0.4912, c80:0.8772, c90:0.9123, strength:"long", flag:null},
-  DEWA: {mkt:"AE", n:13, hits:13, c50:0.6154, c80:0.8462, c90:1.0000, strength:"market-only", flag:null},
-  DIB: {mkt:"AE", n:58, hits:50, c50:0.6034, c80:0.8103, c90:0.8621, strength:"long", flag:null},
-  DSCW: {mkt:"EG", n:29, hits:27, c50:0.5862, c80:0.8621, c90:0.9310, strength:"short", flag:null},
-  DU: {mkt:"AE", n:58, hits:55, c50:0.7069, c80:0.9138, c90:0.9483, strength:"long", flag:null},
-  EAND: {mkt:"AE", n:58, hits:53, c50:0.6897, c80:0.8448, c90:0.9138, strength:"long", flag:null},
-  EFID: {mkt:"EG", n:40, hits:38, c50:0.6000, c80:0.9250, c90:0.9500, strength:"long", flag:null},
-  EFIH: {mkt:"EG", n:15, hits:15, c50:0.5333, c80:0.9333, c90:1.0000, strength:"market-only", flag:null},
-  EGAL: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8070, c90:0.9123, strength:"long", flag:null},
-  EGCH: {mkt:"EG", n:57, hits:54, c50:0.5614, c80:0.8772, c90:0.9474, strength:"long", flag:null},
-  ELEC: {mkt:"EG", n:57, hits:53, c50:0.5789, c80:0.8772, c90:0.9298, strength:"long", flag:null},
-  ELM: {mkt:"SA", n:13, hits:10, c50:0.3077, c80:0.5385, c90:0.7692, strength:"market-only", flag:null},
-  EMAAR: {mkt:"AE", n:57, hits:45, c50:0.4737, c80:0.7193, c90:0.7895, strength:"long", flag:"narrow"},
-  EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.7333, c90:0.9333, strength:"short", flag:null},
-  EMFD: {mkt:"EG", n:39, hits:38, c50:0.6154, c80:0.8974, c90:0.9744, strength:"short", flag:null},
-  EMPOWER: {mkt:"AE", n:10, hits:10, c50:0.6000, c80:1.0000, c90:1.0000, strength:"market-only", flag:null},
-  ENBD: {mkt:"AE", n:57, hits:53, c50:0.6667, c80:0.8421, c90:0.9298, strength:"long", flag:null},
-  ETEL: {mkt:"EG", n:57, hits:56, c50:0.4211, c80:0.8421, c90:0.9825, strength:"long", flag:"wide"},
-  EXTRA: {mkt:"SA", n:53, hits:45, c50:0.4717, c80:0.7358, c90:0.8491, strength:"long", flag:null},
-  FAB: {mkt:"AE", n:57, hits:53, c50:0.5789, c80:0.8070, c90:0.9298, strength:"long", flag:null},
-  FERTIGLB: {mkt:"AE", n:14, hits:14, c50:0.4286, c80:0.7857, c90:1.0000, strength:"market-only", flag:null},
-  FWRY: {mkt:"EG", n:23, hits:23, c50:0.6087, c80:0.9565, c90:1.0000, strength:"short", flag:null},
-  GBCO: {mkt:"EG", n:57, hits:54, c50:0.5965, c80:0.9123, c90:0.9474, strength:"long", flag:null},
-  Gold: {mkt:"XAU", n:62, hits:59, c50:0.4194, c80:0.8387, c90:0.9516, strength:"long", flag:null},
-  HELI: {mkt:"EG", n:57, hits:52, c50:0.5614, c80:0.7895, c90:0.9123, strength:"long", flag:null},
-  HRHO: {mkt:"EG", n:57, hits:53, c50:0.5439, c80:0.8421, c90:0.9298, strength:"long", flag:null},
-  IHC: {mkt:"AE", n:47, hits:38, c50:0.6383, c80:0.7872, c90:0.8085, strength:"long", flag:"narrow"},
-  INFY: {mkt:"IN", n:57, hits:51, c50:0.5088, c80:0.8246, c90:0.8947, strength:"long", flag:null},
-  IQCD: {mkt:"QA", n:58, hits:52, c50:0.4828, c80:0.8103, c90:0.8966, strength:"long", flag:null},
-  ISPH: {mkt:"EG", n:30, hits:23, c50:0.4667, c80:0.7333, c90:0.7667, strength:"short", flag:"narrow"},
-  JUFO: {mkt:"EG", n:57, hits:54, c50:0.6667, c80:0.9123, c90:0.9474, strength:"long", flag:null},
-  KABO: {mkt:"EG", n:57, hits:54, c50:0.4561, c80:0.8246, c90:0.9474, strength:"long", flag:null},
-  Kakao: {mkt:"KR", n:57, hits:49, c50:0.4561, c80:0.7719, c90:0.8596, strength:"long", flag:null},
-  LCSW: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8421, c90:0.9123, strength:"long", flag:null},
-  LGES: {mkt:"KR", n:13, hits:11, c50:0.6154, c80:0.8462, c90:0.8462, strength:"market-only", flag:null},
-  LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, strength:"market-only", flag:null},
-  MAADEN: {mkt:"SA", n:57, hits:50, c50:0.5088, c80:0.7719, c90:0.8772, strength:"long", flag:null},
-  MODON: {mkt:"AE", n:23, hits:20, c50:0.5652, c80:0.8261, c90:0.8696, strength:"short", flag:null},
-  NVDA: {mkt:"US", n:58, hits:50, c50:0.5000, c80:0.7586, c90:0.8621, strength:"long", flag:null},
-  OCDI: {mkt:"EG", n:57, hits:54, c50:0.5263, c80:0.8772, c90:0.9474, strength:"long", flag:null},
-  OIH: {mkt:"EG", n:53, hits:51, c50:0.5660, c80:0.8868, c90:0.9623, strength:"long", flag:null},
-  ORAS: {mkt:"EG", n:41, hits:36, c50:0.4390, c80:0.8293, c90:0.8780, strength:"long", flag:null},
-  ORHD: {mkt:"EG", n:41, hits:39, c50:0.5366, c80:0.8537, c90:0.9512, strength:"long", flag:null},
-  ORWE: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.7719, c90:0.9123, strength:"long", flag:null},
-  PHAR: {mkt:"EG", n:56, hits:56, c50:0.5536, c80:0.9464, c90:1.0000, strength:"long", flag:"wide"},
-  PHDC: {mkt:"EG", n:57, hits:52, c50:0.5088, c80:0.8596, c90:0.9123, strength:"long", flag:null},
-  PRDC: {mkt:"EG", n:15, hits:15, c50:0.7333, c80:0.8000, c90:1.0000, strength:"market-only", flag:null},
-  Platinum: {mkt:"XPT", n:58, hits:55, c50:0.5690, c80:0.8966, c90:0.9483, strength:"long", flag:null},
-  QGTS: {mkt:"QA", n:58, hits:55, c50:0.6034, c80:0.8276, c90:0.9483, strength:"long", flag:null},
-  QNB: {mkt:"QA", n:58, hits:55, c50:0.5690, c80:0.8621, c90:0.9483, strength:"long", flag:null},
-  RAYA: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.9123, c90:0.9298, strength:"long", flag:null},
-  RELIANCE: {mkt:"IN", n:57, hits:53, c50:0.5614, c80:0.9123, c90:0.9298, strength:"long", flag:null},
-  RIBL: {mkt:"SA", n:57, hits:45, c50:0.3860, c80:0.7018, c90:0.7895, strength:"long", flag:"narrow"},
-  RIYADHCABLE: {mkt:"SA", n:10, hits:9, c50:0.7000, c80:0.8000, c90:0.9000, strength:"market-only", flag:null},
-  RMDA: {mkt:"EG", n:22, hits:21, c50:0.5909, c80:0.9091, c90:0.9545, strength:"short", flag:null},
-  SABIC: {mkt:"SA", n:57, hits:52, c50:0.4561, c80:0.7895, c90:0.9123, strength:"long", flag:null},
-  SALIK: {mkt:"AE", n:11, hits:11, c50:0.4545, c80:0.8182, c90:1.0000, strength:"market-only", flag:null},
-  SAVOLA: {mkt:"SA", n:58, hits:53, c50:0.4483, c80:0.7931, c90:0.9138, strength:"long", flag:null},
-  SCEM: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.8596, c90:0.9298, strength:"long", flag:null},
-  SNB: {mkt:"SA", n:42, hits:39, c50:0.5476, c80:0.8095, c90:0.9286, strength:"long", flag:null},
-  STC: {mkt:"SA", n:57, hits:51, c50:0.4912, c80:0.7544, c90:0.8947, strength:"long", flag:null},
-  SWDY: {mkt:"EG", n:57, hits:54, c50:0.5439, c80:0.8070, c90:0.9474, strength:"long", flag:null},
-  Samsung: {mkt:"KR", n:55, hits:50, c50:0.3636, c80:0.7636, c90:0.9091, strength:"long", flag:null},
-  Silver: {mkt:"XAU", n:58, hits:53, c50:0.5517, c80:0.8276, c90:0.9138, strength:"long", flag:null},
-  TMGH: {mkt:"EG", n:57, hits:53, c50:0.4912, c80:0.8246, c90:0.9298, strength:"long", flag:null},
-  TMPV: {mkt:"IN", n:58, hits:47, c50:0.4310, c80:0.7241, c90:0.8103, strength:"long", flag:"narrow"},
-  TSLA: {mkt:"US", n:58, hits:49, c50:0.4138, c80:0.7586, c90:0.8448, strength:"long", flag:null},
+  "2POINTZERO": {mkt:"AE", n:14, hits:11, c50:0.2857, c80:0.7143, c90:0.7857, width:1.026, strength:"market-only", flag:null},
+  AAPL: {mkt:"US", n:58, hits:50, c50:0.4310, c80:0.7414, c90:0.8621, width:1.016, strength:"long", flag:null},
+  ABUK: {mkt:"EG", n:57, hits:52, c50:0.6140, c80:0.8772, c90:0.9123, width:1.325, strength:"long", flag:null},
+  ACWA: {mkt:"SA", n:14, hits:12, c50:0.3571, c80:0.7143, c90:0.8571, width:0.949, strength:"market-only", flag:null},
+  ADCB: {mkt:"AE", n:58, hits:50, c50:0.5000, c80:0.8103, c90:0.8621, width:1.054, strength:"long", flag:null},
+  ADIB: {mkt:"EG", n:57, hits:54, c50:0.6140, c80:0.8772, c90:0.9474, width:1.388, strength:"long", flag:null},
+  ADIBUAE: {mkt:"AE", n:58, hits:50, c50:0.5345, c80:0.7586, c90:0.8621, width:1.140, strength:"long", flag:null},
+  ADNOCDIST: {mkt:"AE", n:30, hits:30, c50:0.6667, c80:0.9333, c90:1.0000, width:1.100, strength:"short", flag:null},
+  ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, width:1.114, strength:"market-only", flag:null},
+  ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, width:1.072, strength:"market-only", flag:null},
+  ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.7500, c90:0.8750, width:1.177, strength:"market-only", flag:null},
+  AGTHIA: {mkt:"AE", n:58, hits:56, c50:0.7586, c80:0.9138, c90:0.9655, width:1.555, strength:"long", flag:null},
+  AIRARABIA: {mkt:"AE", n:58, hits:50, c50:0.5690, c80:0.7931, c90:0.8621, width:1.142, strength:"long", flag:null},
+  ALDAR: {mkt:"AE", n:58, hits:52, c50:0.5172, c80:0.7586, c90:0.8966, width:1.099, strength:"long", flag:null},
+  ALINMA: {mkt:"SA", n:57, hits:48, c50:0.4035, c80:0.6491, c90:0.8421, width:1.069, strength:"long", flag:null},
+  ALPHADHABI: {mkt:"AE", n:16, hits:16, c50:0.6875, c80:0.8750, c90:1.0000, width:1.012, strength:"market-only", flag:null},
+  ALRAJHI: {mkt:"SA", n:57, hits:48, c50:0.4035, c80:0.6842, c90:0.8421, width:1.065, strength:"long", flag:null},
+  AMOC: {mkt:"EG", n:57, hits:49, c50:0.5614, c80:0.8070, c90:0.8596, width:1.225, strength:"long", flag:null},
+  AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, width:0.899, strength:"market-only", flag:null},
+  ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7273, c90:0.9091, width:1.012, strength:"short", flag:null},
+  ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.432, strength:"long", flag:null},
+  BOROUGE: {mkt:"AE", n:12, hits:12, c50:0.9167, c80:1.0000, c90:1.0000, width:1.249, strength:"market-only", flag:null},
+  BTFH: {mkt:"EG", n:56, hits:47, c50:0.5893, c80:0.8036, c90:0.8393, width:1.370, strength:"long", flag:null},
+  BURJEEL: {mkt:"AE", n:11, hits:10, c50:0.5455, c80:0.9091, c90:0.9091, width:1.071, strength:"market-only", flag:null},
+  CCAP: {mkt:"EG", n:57, hits:48, c50:0.5263, c80:0.7719, c90:0.8421, width:1.438, strength:"long", flag:null},
+  CLHO: {mkt:"EG", n:36, hits:35, c50:0.7500, c80:0.9722, c90:0.9722, width:1.561, strength:"short", flag:null},
+  COMI: {mkt:"EG", n:57, hits:52, c50:0.4912, c80:0.8772, c90:0.9123, width:1.264, strength:"long", flag:null},
+  DEWA: {mkt:"AE", n:13, hits:13, c50:0.6154, c80:0.8462, c90:1.0000, width:1.079, strength:"market-only", flag:null},
+  DIB: {mkt:"AE", n:58, hits:50, c50:0.6034, c80:0.8103, c90:0.8621, width:1.103, strength:"long", flag:null},
+  DSCW: {mkt:"EG", n:29, hits:27, c50:0.5862, c80:0.8621, c90:0.9310, width:1.259, strength:"short", flag:null},
+  DU: {mkt:"AE", n:58, hits:55, c50:0.7069, c80:0.9138, c90:0.9483, width:1.443, strength:"long", flag:null},
+  EAND: {mkt:"AE", n:58, hits:53, c50:0.6897, c80:0.8448, c90:0.9138, width:1.037, strength:"long", flag:null},
+  EFID: {mkt:"EG", n:40, hits:38, c50:0.6000, c80:0.9250, c90:0.9500, width:1.713, strength:"long", flag:null},
+  EFIH: {mkt:"EG", n:15, hits:15, c50:0.5333, c80:0.9333, c90:1.0000, width:1.124, strength:"market-only", flag:null},
+  EGAL: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8070, c90:0.9123, width:1.270, strength:"long", flag:null},
+  EGCH: {mkt:"EG", n:57, hits:54, c50:0.5614, c80:0.8772, c90:0.9474, width:1.446, strength:"long", flag:null},
+  ELEC: {mkt:"EG", n:57, hits:53, c50:0.5789, c80:0.8772, c90:0.9298, width:1.471, strength:"long", flag:null},
+  ELM: {mkt:"SA", n:13, hits:10, c50:0.3077, c80:0.5385, c90:0.7692, width:1.018, strength:"market-only", flag:null},
+  EMAAR: {mkt:"AE", n:57, hits:45, c50:0.4737, c80:0.7193, c90:0.7895, width:0.932, strength:"long", flag:"narrow"},
+  EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.7333, c90:0.9333, width:1.024, strength:"short", flag:null},
+  EMFD: {mkt:"EG", n:39, hits:38, c50:0.6154, c80:0.8974, c90:0.9744, width:1.400, strength:"short", flag:null},
+  EMPOWER: {mkt:"AE", n:10, hits:10, c50:0.6000, c80:1.0000, c90:1.0000, width:1.278, strength:"market-only", flag:null},
+  ENBD: {mkt:"AE", n:57, hits:53, c50:0.6667, c80:0.8421, c90:0.9298, width:1.211, strength:"long", flag:null},
+  ETEL: {mkt:"EG", n:57, hits:56, c50:0.4211, c80:0.8421, c90:0.9825, width:1.342, strength:"long", flag:"wide"},
+  EXTRA: {mkt:"SA", n:53, hits:45, c50:0.4717, c80:0.7358, c90:0.8491, width:1.164, strength:"long", flag:null},
+  FAB: {mkt:"AE", n:57, hits:53, c50:0.5789, c80:0.8070, c90:0.9298, width:1.022, strength:"long", flag:null},
+  FERTIGLB: {mkt:"AE", n:14, hits:14, c50:0.4286, c80:0.7857, c90:1.0000, width:1.143, strength:"market-only", flag:null},
+  FWRY: {mkt:"EG", n:23, hits:23, c50:0.6087, c80:0.9565, c90:1.0000, width:1.247, strength:"short", flag:null},
+  GBCO: {mkt:"EG", n:57, hits:54, c50:0.5965, c80:0.9123, c90:0.9474, width:1.423, strength:"long", flag:null},
+  Gold: {mkt:"XAU", n:62, hits:59, c50:0.4194, c80:0.8387, c90:0.9516, width:1.024, strength:"long", flag:null},
+  HELI: {mkt:"EG", n:57, hits:52, c50:0.5614, c80:0.7895, c90:0.9123, width:1.372, strength:"long", flag:null},
+  HRHO: {mkt:"EG", n:57, hits:53, c50:0.5439, c80:0.8421, c90:0.9298, width:1.500, strength:"long", flag:null},
+  IHC: {mkt:"AE", n:47, hits:38, c50:0.6383, c80:0.7872, c90:0.8085, width:1.225, strength:"long", flag:"narrow"},
+  INFY: {mkt:"IN", n:57, hits:51, c50:0.5088, c80:0.8246, c90:0.8947, width:1.126, strength:"long", flag:null},
+  IQCD: {mkt:"QA", n:58, hits:52, c50:0.4828, c80:0.8103, c90:0.8966, width:1.003, strength:"long", flag:null},
+  ISPH: {mkt:"EG", n:30, hits:23, c50:0.4667, c80:0.7333, c90:0.7667, width:1.316, strength:"short", flag:"narrow"},
+  JUFO: {mkt:"EG", n:57, hits:54, c50:0.6667, c80:0.9123, c90:0.9474, width:1.516, strength:"long", flag:null},
+  KABO: {mkt:"EG", n:57, hits:54, c50:0.4561, c80:0.8246, c90:0.9474, width:1.383, strength:"long", flag:null},
+  Kakao: {mkt:"KR", n:57, hits:49, c50:0.4561, c80:0.7719, c90:0.8596, width:0.988, strength:"long", flag:null},
+  LCSW: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8421, c90:0.9123, width:1.422, strength:"long", flag:null},
+  LGES: {mkt:"KR", n:13, hits:11, c50:0.6154, c80:0.8462, c90:0.8462, width:0.863, strength:"market-only", flag:null},
+  LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, width:1.454, strength:"market-only", flag:null},
+  MAADEN: {mkt:"SA", n:57, hits:50, c50:0.5088, c80:0.7719, c90:0.8772, width:1.034, strength:"long", flag:null},
+  MODON: {mkt:"AE", n:23, hits:20, c50:0.5652, c80:0.8261, c90:0.8696, width:1.116, strength:"short", flag:null},
+  NVDA: {mkt:"US", n:58, hits:50, c50:0.5000, c80:0.7586, c90:0.8621, width:1.000, strength:"long", flag:null},
+  OCDI: {mkt:"EG", n:57, hits:54, c50:0.5263, c80:0.8772, c90:0.9474, width:1.438, strength:"long", flag:null},
+  OIH: {mkt:"EG", n:53, hits:51, c50:0.5660, c80:0.8868, c90:0.9623, width:1.558, strength:"long", flag:null},
+  ORAS: {mkt:"EG", n:41, hits:36, c50:0.4390, c80:0.8293, c90:0.8780, width:1.366, strength:"long", flag:null},
+  ORHD: {mkt:"EG", n:41, hits:39, c50:0.5366, c80:0.8537, c90:0.9512, width:1.511, strength:"long", flag:null},
+  ORWE: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.7719, c90:0.9123, width:1.355, strength:"long", flag:null},
+  PHAR: {mkt:"EG", n:56, hits:56, c50:0.5536, c80:0.9464, c90:1.0000, width:1.454, strength:"long", flag:"wide"},
+  PHDC: {mkt:"EG", n:57, hits:52, c50:0.5088, c80:0.8596, c90:0.9123, width:1.469, strength:"long", flag:null},
+  PRDC: {mkt:"EG", n:15, hits:15, c50:0.7333, c80:0.8000, c90:1.0000, width:1.218, strength:"market-only", flag:null},
+  Platinum: {mkt:"XPT", n:58, hits:55, c50:0.5690, c80:0.8966, c90:0.9483, width:1.193, strength:"long", flag:null},
+  QGTS: {mkt:"QA", n:58, hits:55, c50:0.6034, c80:0.8276, c90:0.9483, width:1.132, strength:"long", flag:null},
+  QNB: {mkt:"QA", n:58, hits:55, c50:0.5690, c80:0.8621, c90:0.9483, width:0.992, strength:"long", flag:null},
+  RAYA: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.9123, c90:0.9298, width:2.011, strength:"long", flag:null},
+  RELIANCE: {mkt:"IN", n:57, hits:53, c50:0.5614, c80:0.9123, c90:0.9298, width:1.085, strength:"long", flag:null},
+  RIBL: {mkt:"SA", n:57, hits:45, c50:0.3860, c80:0.7018, c90:0.7895, width:0.946, strength:"long", flag:"narrow"},
+  RIYADHCABLE: {mkt:"SA", n:10, hits:9, c50:0.7000, c80:0.8000, c90:0.9000, width:1.083, strength:"market-only", flag:null},
+  RMDA: {mkt:"EG", n:22, hits:21, c50:0.5909, c80:0.9091, c90:0.9545, width:1.369, strength:"short", flag:null},
+  SABIC: {mkt:"SA", n:57, hits:52, c50:0.4561, c80:0.7895, c90:0.9123, width:1.052, strength:"long", flag:null},
+  SALIK: {mkt:"AE", n:11, hits:11, c50:0.4545, c80:0.8182, c90:1.0000, width:1.128, strength:"market-only", flag:null},
+  SAVOLA: {mkt:"SA", n:58, hits:53, c50:0.4483, c80:0.7931, c90:0.9138, width:1.022, strength:"long", flag:null},
+  SCEM: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.8596, c90:0.9298, width:1.395, strength:"long", flag:null},
+  SNB: {mkt:"SA", n:42, hits:39, c50:0.5476, c80:0.8095, c90:0.9286, width:1.079, strength:"long", flag:null},
+  STC: {mkt:"SA", n:57, hits:51, c50:0.4912, c80:0.7544, c90:0.8947, width:1.044, strength:"long", flag:null},
+  SWDY: {mkt:"EG", n:57, hits:54, c50:0.5439, c80:0.8070, c90:0.9474, width:1.359, strength:"long", flag:null},
+  Samsung: {mkt:"KR", n:55, hits:50, c50:0.3636, c80:0.7636, c90:0.9091, width:0.979, strength:"long", flag:null},
+  Silver: {mkt:"XAU", n:58, hits:53, c50:0.5517, c80:0.8276, c90:0.9138, width:1.227, strength:"long", flag:null},
+  TMGH: {mkt:"EG", n:57, hits:53, c50:0.4912, c80:0.8246, c90:0.9298, width:1.437, strength:"long", flag:null},
+  TMPV: {mkt:"IN", n:58, hits:47, c50:0.4310, c80:0.7241, c90:0.8103, width:1.046, strength:"long", flag:"narrow"},
+  TSLA: {mkt:"US", n:58, hits:49, c50:0.4138, c80:0.7586, c90:0.8448, width:0.992, strength:"long", flag:null},
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
@@ -3378,7 +3379,7 @@ const LEDGER = [
     touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
     reanchor_from:null
   },
-  // ---- MODON · equity (ADX Abu Dhabi) · cycle 1 (9 Aug 2026 published study; MC PASS — own fitted verdict, scale-normalized skill +0.0424, CI90 EXCLUDES zero at every bootstrap block {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — robust PASS; 18-name AE panel PARITY +0.0068, CI90 [−0.001,+0.014], 261 windows) ----
+  // ---- MODON · equity (ADX Abu Dhabi) · cycle 1 (9 Aug 2026 published study) — robust PASS) ----
   {
     instrument:"MODON", asset_class:"equity",
     anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:2.83, ccy:"AED",
@@ -3403,7 +3404,7 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
     reanchor_from:null
   },
-  // ---- ARCC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study; MC BOUNDARY(PARITY-flagged) — own fitted verdict, scale-normalized skill −0.0178, CI90 straddles zero at bootstrap blocks {2,3} ([−7.6%,+0.9%] / [−8.3%,+0.4%]) but EXCLUDES zero at block 4 ([−8.5%,−0.3%]), so not block-robust; 5-year gate-(d) back-test FAILS on the skill limb (−0.0205) with the shape limb passing, on OVER-COVERAGE (cov80/90 = 1.00/1.00, cone 1.234x benchmark width); full cleaned history PARITY (−0.0063, 44 windows); EG panel PASS +0.0158, CI90 [0.009, 0.022] — cone published ILLUSTRATIVE ONLY) ----
+  // ---- ARCC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study)) but EXCLUDES zero at block 4 ([−8.5%,−0.3%]), so not block-robust; 5-year gate-(d) back-test FAILS on the skill limb (−0.0205) with the shape limb passing, on OVER-COVERAGE (cov80/90 = 1.00/1.00, cone 1.234x benchmark width))) ----
   {
     instrument:"ARCC", asset_class:"equity",
     anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:59.00, ccy:"EGP",
@@ -3428,7 +3429,7 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
     reanchor_from:null
   },
-  // ---- SCEM · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill −0.1276, CI90 straddles zero across bootstrap blocks {2,3,4} ([−64.6%,+4.4%] / [−56.0%,+3.5%] / [−60.6%,+3.1%]); 5-year gate-(d) back-test FAILS (−0.1482, non-uniform PIT) on OVER-COVERAGE driven by a 29.3% flat-close frequency; EG panel PASS +0.0158, CI90 [0.009, 0.022] — cone published ILLUSTRATIVE ONLY) ----
+  // ---- SCEM · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study); 5-year gate-(d) back-test FAILS (−0.1482, non-uniform PIT) on OVER-COVERAGE driven by a 29.3% flat-close frequency) ----
   {
     instrument:"SCEM", asset_class:"equity",
     anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:79.0, ccy:"EGP",
@@ -3453,7 +3454,7 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
     reanchor_from:null
   },
-  // ---- Platinum · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study; PARITY — own provisional self-fit, first metals name with a de-circularized cross-check) ----
+  // ---- Platinum · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study) ----
   { instrument:"Platinum", asset_class:"metal", anchor_date:"2026-07-20", run_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-20", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.3356, horizon_days:23,
@@ -3479,7 +3480,7 @@ const LEDGER = [
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-12) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
-  // ---- AMOC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill +0.0068, CI90 straddles zero across bootstrap blocks {2,3,4}; EG panel PASS +0.0158, CI90 [0.009, 0.022]) ----
+  // ---- AMOC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study) ----
   {
     instrument:"AMOC", asset_class:"equity",
     anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:9.10, ccy:"EGP",
@@ -3504,7 +3505,7 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
     reanchor_from:null
   },
-  // ---- SWDY · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill +0.0132, CI90 straddles zero across bootstrap blocks {2,3,4}; EG panel PASS +0.0158, CI90 [0.009, 0.022]) ----
+  // ---- SWDY · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study) ----
   {
     instrument:"SWDY", asset_class:"equity",
     anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:105.2, ccy:"EGP",
@@ -3529,7 +3530,7 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
     reanchor_from:null
   },
-  // ---- ELEC · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC robust PASS — own fitted verdict, scale-normalized skill +0.0875, CI90 positive across bootstrap blocks {2,3,4}) ----
+  // ---- ELEC · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study) ----
   {
     instrument:"ELEC", asset_class:"equity",
     anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:2.19, ccy:"EGP",
@@ -3554,27 +3555,27 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
-  // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study; BOUNDARY(PARITY-flagged) — own fitted verdict, first-coverage name) ----
-  // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; PARITY \u2014 own fitted verdict, 29-name EG panel) ----
-  // ---- RMDA \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; MC PASS \u2014 own fitted verdict, 28-name EG panel) ----
-  // ---- DEWA · other (DFM UAE) · cycle 1 (12 Jul 2026 published study; MC BOUNDARY, PARITY-flagged -- calibrated, no single-name edge) ----
+  // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study)) ----
+  // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study) ----
+  // ---- RMDA \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study) ----
+  // ---- DEWA · other (DFM UAE) · cycle 1 (12 Jul 2026 published study) ----
   // ---- LULU · other (ADX UAE) · cycle 1 (12 Jul 2026 published study v3; NO NAME-LEVEL CALIBRATION — market-panel validated only) ----
 
-  // ---- BURJEEL \u00b7 other (ADX UAE) \u00b7 cycle 1 (11 Jul 2026 published study, v4 reissued 12 Jul 2026; MC PARITY -- calibrated, no single-name edge) ----
+  // ---- BURJEEL \u00b7 other (ADX UAE) \u00b7 cycle 1 (11 Jul 2026 published study, v4 reissued 12 Jul 2026) ----
 
-  // ---- SALIK · other (DFM UAE) · cycle 1 (12 Jul 2026 published study v3; MC PARITY -- calibrated, no single-name edge) ----
-  // ---- DIB · other (DFM UAE) · cycle 1 (11 Jul 2026 published study; MC FAILED calibration — indicative only) ----
+  // ---- SALIK · other (DFM UAE) · cycle 1 (12 Jul 2026 published study v3) ----
+  // ---- DIB · other (DFM UAE) · cycle 1 (11 Jul 2026 published study) ----
 
-  // ---- 2POINTZERO · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel constituent, PARITY / matches benchmark) ----
-  // ---- EAND · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel fit, PARITY) ----
-  // ---- ADCB · other (ADX UAE) · cycle 1 (10 Jul 2026 published study; MC PASSES benchmark robustly, carry drift) ----
-  // ---- AGTHIA · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC FAILS the calibration back-test — indicative only) ----
-  // ---- GBCO · equity (EGX Egypt) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark, secular drift ON) ----
-  // ---- RIBL · other (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark marginally, zero drift) ----
-  // ---- STC · equity (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark, zero drift) ----
-  // ---- ALDAR · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark) ----
+  // ---- 2POINTZERO · other (ADX UAE) · cycle 1 (11 Jul 2026 published study) ----
+  // ---- EAND · other (ADX UAE) · cycle 1 (11 Jul 2026 published study) ----
+  // ---- ADCB · other (ADX UAE) · cycle 1 (10 Jul 2026 published study) ----
+  // ---- AGTHIA · other (ADX UAE) · cycle 1 (8 Jul 2026 published study) ----
+  // ---- GBCO · equity (EGX Egypt) · cycle 1 (8 Jul 2026 published study) ----
+  // ---- RIBL · other (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study) ----
+  // ---- STC · equity (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study) ----
+  // ---- ALDAR · other (ADX UAE) · cycle 1 (8 Jul 2026 published study) ----
   // ---- EMAARDEV · other (DFM UAE) · cycle 1 (8 Jul 2026 published study; MC matches benchmark, indicative) ----
-  // ---- ISPH \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (7 Jul 2026 published study; MC FAILED benchmark, indicative) ----
+  // ---- ISPH \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (7 Jul 2026 published study) ----
 
 
   // ---- INFY · other (NSE India) · cycle 1 (6 Jul 2026 published study) ----
@@ -5606,7 +5607,7 @@ const LEDGER = [
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
     reanchor_from:null },
-  // ---- AMR · equity (ADX UAE) · cycle 1 (9 Aug 2026 published study; MC BOUNDARY(PARITY-flagged) — own fitted verdict, scale-normalized skill −0.0054 on 10 windows (listed Dec-2022, only 2.25 years scoreable), CI90 straddles zero at bootstrap blocks {2,3} ([−0.0222,+0.0087] / [−0.0204,+0.0032]) but EXCLUDES zero at block 4 ([−0.0193,−0.0028]), so not block-robust — weakest block reported; shape passes (PIT KS 0.378 < 0.429 crit); AE panel PARITY +0.0065, CI90 straddles zero at every block, 19 names, 271 windows over 4.25 years — cone published INDICATIVE, matches-benchmark) ----
+  // ---- AMR · equity (ADX UAE) · cycle 1 (9 Aug 2026 published study)), CI90 straddles zero at bootstrap blocks {2,3} ([−0.0222,+0.0087] / [−0.0204,+0.0032]) but EXCLUDES zero at block 4 ([−0.0193,−0.0028]), so not block-robust — weakest block reported; shape passes (PIT KS 0.378 < 0.429 crit)) ----
   { instrument:"AMR", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-08", anchor_price:2.23, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1,
     anchor_vol:0.3567,
@@ -6458,10 +6459,10 @@ const LEDGER = [
 
   // ---- 24-Aug-2026 single-name roll-forward: BURJEEL, struck on its own
   //      latest library close. Append-only.
-  //      Calibration of record (24-Aug-2026 refit): BURJEEL BOUNDARY(PARITY-flagged), CRPS skill
-  //      +7.07% scale-normalized (+5.46% raw basis), 90% CI [-0.003, +0.165] at block 2 —
-  //      straddles zero, recorded at parity, no single-name edge claimed. AE market
-  //      panel PASS (28 names, 409 non-overlapping calendar 3-month windows).
+  //      Band record of the day (24-Aug-2026 refit): BURJEEL's own history was
+  //      still too short to read on its own, so the cone stands on the AE panel
+  //      (28 names, 409 non-overlapping calendar 3-month windows). The live
+  //      record is generated into BANDS, never restated here.
   //      The cone below was struck under the then-live fit nu=10.0/width_cal=0.923;
   //      the panel has since moved to width_cal=0.916.
   {

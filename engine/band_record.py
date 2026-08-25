@@ -175,6 +175,7 @@ class BandRecord:
     cov50: Optional[float]
     cov80: Optional[float]
     cov90: Optional[float]
+    width: Optional[float]      # our 90% band / a naive random walk's, median
     strength: str               # 'long' | 'short' | 'market-only'
     flag: Optional[str]         # 'narrow' | 'wide' | None
     p_value: Optional[float]    # why the flag fired (or did not)
@@ -229,6 +230,26 @@ class BandRecord:
                  "but still a miss.")
         return s
 
+    def width_clause(self):
+        """Sharpness, in the one form a reader can act on.
+
+        NOT a gate. A band wider than a naive one is not automatically wrong —
+        the Egyptian panel runs a median 1.40x because EGX tail risk is real, and
+        a naive close-to-close estimator genuinely understates it. Inventing a
+        cutoff would be a free parameter with no out-of-sample evidence behind
+        it, which the standing promotion rule forbids. So the number is SHOWN and
+        the reader judges. It exists because coverage alone cannot tell an honest
+        cone from a uselessly wide one: a band twice as wide as it needs to be
+        scores perfect coverage and says nothing.
+        """
+        if self.width is None:
+            return ""
+        if self.width < 1.03:
+            return (f"The band is about as tight as a simple no-forecast rule would give "
+                    f"({self.width:.2f}x its width).")
+        return (f"The band is {self.width:.2f} times the width of a simple no-forecast rule&rsquo;s "
+                f"— the price of covering this name honestly.")
+
     def chip(self):
         """The one-line label for a table cell or a page chip."""
         if self.strength == "market-only":
@@ -259,24 +280,28 @@ def from_panel(path: str) -> BandRecord:
     market, instrument = base[:-7].split("_", 1)
     # Three columns of twenty-five. Coverage is the mean of the in-band flags,
     # the same definition mc_v3.pooled_scores uses (asserted in __main__).
-    d = pd.read_csv(path, usecols=["in50", "in80", "in90"])
+    # in50/80/90 answer "did the band hold" (calibration); w90/w90_b answer
+    # "was the band worth having" (sharpness). Those are the two questions, and
+    # together they are what replaced the retired skill verdict.
+    d = pd.read_csv(path, usecols=["in50", "in80", "in90", "w90", "w90_b"])
     n = len(d)
     if n == 0:
         raise ValueError(f"empty panel: {base}")
     hits = int(d["in90"].sum())
+    width = float((d["w90"] / d["w90_b"]).median())
     strength = strength_for(n)
     if strength == "market-only":
         # The name's own number is not readable; do not compute a flag from it.
         return BandRecord(instrument, market, n, hits,
                           float(d["in50"].mean()), float(d["in80"].mean()),
-                          float(d["in90"].mean()), strength, None, None)
+                          float(d["in90"].mean()), width, strength, None, None)
     p = _binom_test(hits, n, TARGET_COVERAGE)
     flag = None
     if p < FLAG_ALPHA:
         flag = "narrow" if hits / n < TARGET_COVERAGE else "wide"
     return BandRecord(instrument, market, n, hits,
                       float(d["in50"].mean()), float(d["in80"].mean()),
-                      float(d["in90"].mean()), strength, flag, p)
+                      float(d["in90"].mean()), width, strength, flag, p)
 
 
 # Ledger instrument names are not panel filenames, and the difference is not

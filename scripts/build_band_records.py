@@ -52,8 +52,9 @@ def build(src: str):
     lines = [START,
              "// One record per covered name: n = resolved non-overlapping 3-month",
              "// windows, c90 = share of them that finished inside the 90% band,",
-             "// strength = long (>=40) / short (>=22) / market-only, flag = narrow |",
-             "// wide | null (two-sided binomial vs the 90% target, 5% level).",
+             "// width = our 90% band / a simple no-forecast rule's (median) — the",
+             "// sharpness half of the record. strength = long (>=40) / short (>=22) /",
+             "// market-only. flag = narrow | wide | null (two-sided binomial, 5%).",
              "// Derivation of the thresholds: engine/band_record.py. NEVER hand-edit.",
              "const BANDS = {"]
     for n in names:
@@ -63,7 +64,7 @@ def build(src: str):
         flag = "null" if r.flag is None else f'"{r.flag}"'
         lines.append(f'  {key}: {{mkt:"{r.market}", n:{r.n}, hits:{r.hits}, '
                      f'c50:{r.cov50:.4f}, c80:{r.cov80:.4f}, c90:{cov}, '
-                     f'strength:"{r.strength}", flag:{flag}}},')
+                     f'width:{r.width:.3f}, strength:"{r.strength}", flag:{flag}}},')
     lines.append("};")
     # Pooled market fallback, for the names whose own record is too short to read.
     lines.append("// Pooled per-market record: what a market-only name is judged on.")

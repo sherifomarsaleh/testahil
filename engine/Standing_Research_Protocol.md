@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-24c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-25a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1163,3 +1163,77 @@ language is not audited the way a flattering claim would be. **A cautious label 
 claim about the world, and understating in the wrong direction is not a safe error — it is
 the same error.** Where a rule can name what a surface asserts, the assertion is tested from
 outside; where it cannot, the QC gate carries the evidence.
+
+
+## [R-CAL-03] The skill verdict is RETIRED — the gate is calibration, and sharpness is disclosed (25-Aug-2026, per instruction — "whether this test is useful in the first place. Afterall, we have the test in the bands and whether or not the prediction falls into them. So why complicate matters with a test that the users and investors will not be interested in?")
+
+[R-CAL-02] stopped PUBLISHING the PASS/PARITY/FAIL verdict. This retires it. The
+challenge that produced it was sharper than the one before: not "is this the right way
+to show the test" but "is the test doing any work at all, given we already measure
+whether the price lands in the band". Measured against the book, it is not.
+
+### What the evidence said
+
+**The gate has never gated.** On the live fits, nine of the ten fitted markets print
+PARITY and the tenth prints PASS; the skills span −0.8% to +1.4%. Across every verdict
+ever recorded under `engine/PENDING_REVIEW/`: 213 PARITY, 94 PASS, 12 FAIL. No market has
+ever been excluded by it. A test whose answer is "proceed" for everything is a ceremony,
+not a gate — and the protocol was calling it "the standing gate" in both documents.
+
+**Where it disagrees with the band record, the band record is the one that matters.**
+Across the 90 names with a readable history, 36 — forty percent of the book — carry a
+NEGATIVE skill number alongside coverage of 88% or better. In every one of those the
+skill test says "worse than a coin-flip model" while the bands did exactly what they
+promised. Only 10% of the skill number is explained by coverage and width together, so it
+is measuring something independent; the question this rule answers is whether that
+something is worth a reader's attention, and it is not.
+
+**The one real job it did is done better by a number already in every panel.** Coverage
+alone cannot tell an honest cone from a uselessly wide one: a band twice as wide as it
+needs to be scores perfect coverage and says nothing. That is the genuine gap, and the
+skill test was the only thing watching it. But `w90 / w90_b` — our 90% band over a naive
+random walk's — measures exactly that, directly and legibly. RAYA's band is 2.01x a naive
+one at 93% coverage; its skill number is −0.030. "Twice as wide as a simple rule" is a
+sentence a reader can act on. "−3% CRPS skill" is not, and it is the same finding.
+
+### What replaces it
+
+**THE GATE IS CALIBRATION.** A market or name enters and stays in the book on whether its
+bands hold: the realized coverage against the stated target, tested two-sided on the
+binomial at the 5% level, which is the same test [R-CAL-02] already publishes as the
+narrow/wide flag. There is now ONE test, it is the test the reader is shown, and the thing
+that gates is the thing that is published.
+
+**SHARPNESS IS DISCLOSED, NOT GATED.** The width ratio is published beside the record and
+carries NO threshold. A band wider than a naive one is not automatically wrong — the
+Egyptian panel runs a median 1.40x because EGX tail risk is real and a close-to-close
+estimator genuinely understates it, against 1.11x for AE and 1.00x for US and QA. Setting
+a cutoff would be a free parameter with no out-of-sample evidence behind it, which the
+standing PROMOTION RULE forbids in terms. So the number is shown and the reader judges.
+This is the standard *calibration and sharpness* decomposition, not a weakened substitute
+for a proper score: it is the same information, split into the two questions people
+actually ask, and each half is separately checkable on the public ledger.
+
+### What is retired, and what merely stops being a gate
+
+RETIRED: the three-way verdict as an object with authority — as the Step 0 gate, as the
+materiality trigger, as a PENDING_REVIEW field with standing, and everywhere on every
+public surface. No document, page, figure or deliverable states it. The materiality gate's
+"an existing name's verdict changes / the market verdict changes" conditions are replaced
+by "a name's coverage flag changes, or the published 90% cone moves >5%" — the cone-width
+condition already carried most of that weight.
+
+NOT retired: `mc_v3.crps_skill()` and the bootstrap remain in the codebase as an internal
+DIAGNOSTIC, because CRPS is a proper scoring rule and is a reasonable thing to look at
+when investigating a model change. What is forbidden is the diagnostic acquiring authority
+again — it may not gate, trigger, block, or appear in front of a reader.
+
+### The general lesson
+
+A test that never changes an outcome is not conservative, it is decorative, and it costs
+something real: it occupied the place a working check should have held, it had to be
+explained on the methodology page, and its label was actively wrong about the names it
+flagged ([R-CAL-02]). **BEFORE ADDING OR KEEPING A GATE, ASK WHAT IT HAS EVER REJECTED.**
+If the answer is nothing, either the bar is in the wrong place or the thing it measures is
+not the thing that matters — and the honest move is to find the check that would have
+caught something, not to keep the one that reads as rigour.

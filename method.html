@@ -156,7 +156,7 @@
   </details>
 
   <details id="sec-calibration" class="rds anchor" data-nav="Calibration">
-  <summary><span class="rds-t">How we test ourselves</span><span class="rds-note">the calibration backtest, CRPS, and the ledger labels</span><span class="rds-x" aria-hidden="true"></span></summary>
+  <summary><span class="rds-t">How we test ourselves</span><span class="rds-note">how the bands are graded, and what the record means</span><span class="rds-x" aria-hidden="true"></span></summary>
   <div class="rds-body">
     <p>A probability forecast that always sounds confident and is never checked against reality is worthless. So every cone is graded — and the grading is published in public, forever, on the <a href="ledger.html">ledger</a>.</p>
 
@@ -166,17 +166,18 @@
     <h3>The test</h3>
     <p>We walk forward through five years of history in non-overlapping three-month windows. At each point, the model is only shown data up to that point — exactly what it would have known had the forecast actually been published live that day — then issues a forecast, and we check it against what actually happened next. This repeats across the full five years and across every covered name in a market.</p>
 
-    <h3>The benchmark: a deliberately dumb yardstick</h3>
-    <p>Every one of those forecasts is scored against a plain <b>random walk</b> that does nothing clever — it drifts only at the same neutral cost-of-carry rate described above, with no volatility forecasting, no fat tails, no view at all. If our model can't beat that simple yardstick, it has no business claiming an edge. Anchoring the benchmark to the same cost-of-carry rate is deliberate too: it stops a forecast from looking "skillful" just by drifting toward the time-value of money, which any forecast gets for free.</p>
-
-    <h3>The scoring rule: CRPS</h3>
-    <p>Forecasts are graded with the <b>Continuous Ranked Probability Score</b> (CRPS) — the probabilistic version of "how far off was your guess." Instead of comparing a single predicted number to the outcome, CRPS compares the <em>entire predicted range</em> to what actually happened, and it penalizes both a wrong center <em>and</em> a wrong width: a cone that's too narrow (overconfident) scores worse, and one that's too wide (overcautious) scores worse too, even when the median guess is fine. Lower CRPS is better. "Skill" is simply our CRPS compared with the benchmark's CRPS, on the same stock and the same windows — positive means we beat the dumb yardstick, negative means we lost to it.</p>
-    <details class="rds">
-    <summary><span class="rds-t">A worked example, in plain numbers</span><span class="rds-x" aria-hidden="true"></span></summary>
-    <div class="rds-body">
-    <p class="muted" style="margin:10px 0 0">Say a stock closes at 100 and, three months later, actually closes at 108. A forecast that said "90% chance it lands between 85 and 115, median 100" scores reasonably well — 108 is comfortably inside the range and not far from the median. A forecast that said "90% chance it lands between 99 and 101" would look precise, but 108 falls far outside it — that overconfidence is exactly what CRPS punishes, even though a simple "were they right or wrong" check might have called both forecasts fine, since 108 beat 100 either way. A forecast that instead said "90% chance between 40 and 160" is never technically wrong, but that vague a range is punished too, because it says almost nothing useful. CRPS rewards a range that is honestly as narrow as the evidence allows, and no narrower.</p>
-    </div>
-    </details>
+    <h3>The second half of the test: was the band worth having?</h3>
+    <p>Coverage on its own can be gamed, and the way to game it is to be vague. A band running from
+    zero to infinity contains the price every single time and tells you nothing. So the width is
+    published beside the record: <b>how wide our 90% band is compared with a simple no-forecast
+    rule&rsquo;s</b> — one that just carries the price forward at the cash rate and assumes ordinary
+    volatility. A ratio near 1.0 means we are as tight as that simple rule while staying honest;
+    above it means we are paying for coverage with width.</p>
+    <p class="muted">Both halves are published, for every name, because they trade against each other and
+    either one alone can be made to look good at the other&rsquo;s expense. Neither is a hurdle we set
+    ourselves and then clear: a wider band is not automatically wrong — Egyptian names run wider than
+    American ones because Egyptian tail risk is genuinely larger, and pretending otherwise would be the
+    dishonest choice. We show you the number and let you judge it.</p>
 
     <h3>Reading the record</h3>
     <p>The question that actually matters to you is simpler than any score: <b>when we say there is a 90% chance the price lands inside a range, does it?</b> That is what we publish for every name — the share of its resolved three-month forecasts that finished inside the 90% band, and how many forecasts that is. Both numbers are on the <a href="ledger.html">ledger</a> and you can recount them yourself.</p>
@@ -193,12 +194,6 @@
     </table>
     </div>
     <p class="muted">A flag is only raised when the gap is bigger than chance would comfortably explain, so a name is never marked on one unlucky quarter. And a short record is never quietly upgraded into a long one: the count is printed beside the percentage every time, because the percentage without the count is exactly the kind of number that misleads.</p>
-    <details class="rds">
-    <summary><span class="rds-t">What we test internally, and why you don't see it</span><span class="rds-x" aria-hidden="true"></span></summary>
-    <div class="rds-body">
-    <p class="muted" style="margin:10px 0 0">Behind this, every cone is still scored against the plain random-walk benchmark described above, and a name only enters the book if its market panel clears that bar. That test does real work — it is what stops a badly specified model shipping — but it answers a modelling question ("is our score better than a naive alternative's?") rather than yours ("can I trust these bands?"), and the two come apart. A cone can contain every single outcome it ever forecast and still fail to beat the benchmark, because bands that are too wide score badly even though nothing went wrong for the reader. Publishing that as a failure told you the opposite of what had happened, so it no longer sits on the page. The internal gate is unchanged; only what we put in front of you has.</p>
-    </div>
-    </details>
 
     <p class="muted">Every graded forecast — right or wrong — is on the <a href="ledger.html">public ledger</a>, permanently. Nothing is deleted, and nothing is re-written after the fact.</p>
 
