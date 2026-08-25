@@ -248,6 +248,22 @@ SPOTDATE_RE = re.compile(r'spotDate\s*:\s*"[^"]*?(\d{1,2})\s+([A-Za-z]{3})\s+(\d
 # (the calibration SAMPLE START) was stamped as the day the cone was run.
 # Every LEDGER row now carries run_date:"YYYY-MM-DD"; no fallback to prose.
 RUN_DATE_RE = re.compile(r'run_date\s*:\s*"(\d{4}-\d{2}-\d{2})"')
+
+# The `on` inside an entry's own `fit` stamp — the day THAT cone was struck.
+# Anchored on `fit:` and brace-bounded so it cannot pick up a `run_date:` from a
+# LEDGER row or an `on:` from anywhere else in the block.
+FIT_ON_RE = re.compile(r'fit:\s*\{[^{}]*?\bon:\s*"(\d{4}-\d{2}-\d{2})"[^{}]*?\}')
+
+
+def strike_run_date(block: str):
+    """The day this entry's cone was struck, from its own `fit` stamp, or None.
+
+    None means the entry predates the stamp; every entry acquires one at its next
+    strike. Not guessed at from the ledger in that case — the caller keeps its
+    existing behaviour, which is the honest answer when nothing recorded it.
+    """
+    m = FIT_ON_RE.search(block)
+    return m.group(1) if m else None
 MONTHS = {m: i + 1 for i, m in enumerate(
     ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])}
@@ -367,6 +383,20 @@ def run(write=False, only=None, computed_on=None):
         else:
             mc_data = anchor or page_anchor or st['data_date']
             mc_run = runday or mc_data
+
+        # THE ENTRY'S OWN STRIKE DATE OUTRANKS ANYTHING INFERRED. `fit.on` is
+        # written by rollforward_one.restrike_entry at the moment the cone is
+        # struck, so it is the only record that survives a MID-CYCLE re-strike —
+        # which mints no LEDGER row and, when it does not move the anchor, is
+        # invisible to both branches above. That is not hypothetical: on
+        # 25-Aug-2026 all 21 re-struck cones inherited their ledger row's
+        # run_date and published compute dates up to four weeks older than the
+        # strike that produced them. Reading a recorded fact beats inferring it
+        # from a proxy that cannot see the event — the same rule that put the
+        # effective fit on the entry rather than leaving it in the note.
+        stamped_on = strike_run_date(block)
+        if stamped_on:
+            mc_run = stamped_on
         asof = {'mc': {'data': mc_data, 'computed': mc_run},
                 'tech': {'data': st['data_date'], 'computed': computed_on}}
 

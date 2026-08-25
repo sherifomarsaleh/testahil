@@ -64,7 +64,10 @@ def run(market: str, series: str, key: str, today: str,
     r = strike(market, series, q_annual=q_annual)
     report_strike(key, market, series, r)
 
-    out = src[:a] + restrike_entry(src[a:b], r) + src[b:]
+    out = src[:a] + restrike_entry(
+        src[a:b], r,
+        run_date=pd.Timestamp(today.replace('-', ' ')).date().isoformat()
+    ) + src[b:]
     out = bump_site_updated(out, pd.Timestamp(today.replace('-', ' '))
                             .date().isoformat())
 
