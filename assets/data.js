@@ -39,7 +39,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:4.81, p25:5.51, p50:5.94, p75:6.39, p95:7.34, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [7.13, 2, 12], [6.83, 4, 21], [6.53, 12, 36], [6.24, 35, 60], [5.64, 33, 58], [5.35, 10, 32]
     ],
@@ -51,7 +51,7 @@ const TICKERS = {
       bear: "A close below 5.86 would break the nearest support and open the 5.17 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -74,7 +74,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:3.43, p25:3.82, p50:4.06, p75:4.30, p95:4.81, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [4.88, 1, 7], [4.68, 2, 13], [4.48, 7, 26], [4.27, 26, 53], [3.87, 26, 53], [3.66, 5, 23]
     ],
@@ -86,7 +86,7 @@ const TICKERS = {
       bear: "A close below 4.00 would break the nearest support and open the 3.65 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -109,7 +109,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:5.10, p25:5.85, p50:6.29, p75:6.77, p95:7.76, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
       [7.39, 2, 15], [7.08, 5, 25], [6.78, 13, 41], [6.47, 38, 66], [5.85, 29, 52], [5.54, 8, 26]
     ],
@@ -121,7 +121,7 @@ const TICKERS = {
       bear: "A close below 5.93 would break the nearest support and open the 5.26 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -224,7 +224,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:2.07, p25:2.26, p50:2.36, p75:2.47, p95:2.69, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [2.88, 0, 3], [2.76, 1, 6], [2.64, 3, 14], [2.52, 15, 36], [2.28, 19, 49], [2.16, 3, 18]
     ],
@@ -236,7 +236,7 @@ const TICKERS = {
       bear: "A close below 2.38 would break the nearest support and open the 2.20 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-17" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -259,7 +259,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:10.24, p25:11.72, p50:12.61, p75:13.56, p95:15.55, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [14.76, 2, 15], [14.14, 6, 25], [13.53, 15, 43], [12.92, 40, 67], [11.69, 31, 52], [11.07, 9, 26]
     ],
@@ -271,7 +271,7 @@ const TICKERS = {
       bear: "A close below 11.85 would break the nearest support and open the 9.85 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-17" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -294,7 +294,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:1.17, p25:1.36, p50:1.48, p75:1.61, p95:1.87, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
       [1.80, 3, 14], [1.73, 5, 22], [1.65, 14, 37], [1.58, 35, 58], [1.43, 43, 67], [1.35, 13, 40]
     ],
@@ -306,7 +306,7 @@ const TICKERS = {
       bear: "A close below 1.47 would break the nearest support and open the 1.30 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-17" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -329,7 +329,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:4.13, p25:4.89, p50:5.36, p75:5.87, p95:6.96, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
       [6.29, 5, 22], [6.03, 11, 33], [5.76, 23, 50], [5.50, 49, 71], [4.98, 41, 60], [4.72, 16, 36]
     ],
@@ -341,7 +341,7 @@ const TICKERS = {
       bear: "A close below 3.80 would break the nearest support and open the 3.60 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-17" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -364,7 +364,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:2.04, p25:2.35, p50:2.53, p75:2.73, p95:3.14, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [3.05, 2, 12], [2.92, 5, 21], [2.79, 13, 36], [2.67, 35, 59], [2.41, 35, 60], [2.29, 11, 34]
     ],
@@ -376,7 +376,7 @@ const TICKERS = {
       bear: "A close below 2.45 would break the nearest support and open the 2.25 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-10" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -399,7 +399,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:1.74, p25:2.07, p50:2.27, p75:2.49, p95:2.96, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
       [2.68, 5, 21], [2.56, 10, 33], [2.45, 22, 49], [2.34, 48, 70], [2.12, 42, 62], [2.01, 16, 38]
     ],
@@ -411,7 +411,7 @@ const TICKERS = {
       bear: "A close below 2.16 would break the nearest support and open the 1.82 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-08" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -435,7 +435,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:2.30, p25:2.62, p50:2.80, p75:3.00, p95:3.41, resolve:"2026-11-09" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
       [3.40, 1, 9], [3.25, 3, 17], [3.11, 10, 30], [2.97, 31, 55], [2.69, 33, 60], [2.55, 9, 32]
     ],
@@ -447,7 +447,7 @@ const TICKERS = {
       bear: "A close below 2.76 would break the nearest support and open the 2.40 zone."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
       tech: { data:"2026-08-07", computed:"2026-08-25" }
     },
     files: {
@@ -821,7 +821,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:0.74, p25:0.86, p50:0.94, p75:1.02, p95:1.20, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month %. The UAE market cone is OVER-COVERED, so read these as UPPER BOUNDS. */
       [1.30, 0, 4], [1.20, 1, 9], [1.10, 6, 23], [1.05, 16, 39], [1.00, 44, 64], [0.90, 32, 61], [0.85, 10, 36], [0.80, 3, 19], [0.75, 1, 10]
     ],
@@ -833,7 +833,7 @@ const TICKERS = {
       bear: "A close below 0.95 would break the nearest support and open the 0.91 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -890,7 +890,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:4.36, p25:5.05, p50:5.46, p75:5.91, p95:6.85, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month %. NOTE: the calibration back-test cone is OVER-COVERED, so read these as UPPER BOUNDS. */
       [7.00, 1, 7], [6.50, 3, 16], [6.25, 6, 25], [6.00, 15, 40], [5.50, 82, 90], [5.25, 44, 67], [5.00, 15, 41], [4.50, 2, 13]
     ],
@@ -902,7 +902,7 @@ const TICKERS = {
       bear: "A close below 5.34 would break the nearest support and open the 4.98 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -958,7 +958,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:1.53, p25:1.85, p50:2.05, p75:2.26, p95:2.73, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [2.60, 2, 14], [2.40, 8, 28], [2.20, 35, 59], [2.00, 63, 80], [1.90, 28, 56], [1.80, 11, 36]
     ],
@@ -970,7 +970,7 @@ const TICKERS = {
       bear: "A close below 1.95 would break the nearest support and open the 1.87 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-29" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -1224,7 +1224,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:10.23, p25:12.04, p50:13.15, p75:14.37, p95:16.94, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [18.00, 0, 5], [17.00, 1, 8], [16.00, 3, 16], [15.00, 8, 30], [14.00, 32, 58], [13.00, 76, 87], [12.00, 18, 45]
     ],
@@ -1236,7 +1236,7 @@ const TICKERS = {
       bear: "A close below 13.01 would break the nearest support and open the 11.00 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -1981,7 +1981,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:9.53, p25:11.17, p50:12.21, p75:13.35, p95:15.62, resolve:"2026-10-28" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:5, cal:0.958, mult:0.917431, eff:0.878899 },
+    fit: { nu:5, cal:0.958, mult:0.917431, eff:0.878899, on:"2026-08-25" },
     touch: [ /* descending high → low — same absolute levels, reprobabilised on the 28-Jul cycle-4 paths; ladder still sits entirely above spot and wants a human re-pick */
       [17.00, 0, 3], [16.00, 0, 6], [15.00, 1, 12], [14.00, 3, 24], [13.00, 15, 48]
     ],
@@ -1993,7 +1993,7 @@ const TICKERS = {
       bear: "A close below 11.25 would break the nearest support and open the 8.92 zone."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
+      mc:   { data:"2026-07-28", computed:"2026-08-25" },
       tech: { data:"2026-07-28", computed:"2026-08-25" }
     },
     files: {
@@ -2015,7 +2015,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:20.88, p25:25.93, p50:29.29, p75:33.08, p95:41.02, resolve:"2026-10-27" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:5, cal:0.958, mult:0.954892, eff:0.914787 },
+    fit: { nu:5, cal:0.958, mult:0.954892, eff:0.914787, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [30.00, 41, 69], [28.00, 81, 91], [27.00, 70, 80], [25.00, 25, 44], [24.00, 14, 31], [19.50, 1, 6]
     ],
@@ -2027,7 +2027,7 @@ const TICKERS = {
       bear: "A close below 26.20 would break the nearest support and open the 18.79 zone."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-27" },
+      mc:   { data:"2026-07-27", computed:"2026-08-25" },
       tech: { data:"2026-07-27", computed:"2026-08-25" }
     },
     files: {
@@ -2049,7 +2049,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:32.67, p25:39.04, p50:43.15, p75:47.69, p95:56.91, resolve:"2026-10-27" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:5, cal:0.958, mult:0.931931, eff:0.89279 },
+    fit: { nu:5, cal:0.958, mult:0.931931, eff:0.89279, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [50.00, 3, 25], [48.00, 7, 36], [46.00, 15, 49], [44.00, 31, 65], [42.00, 60, 83], [33.60, 3, 14]
     ],
@@ -2061,7 +2061,7 @@ const TICKERS = {
       bear: "A close below 39.66 would break the nearest support and open the 26.13 zone."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-27" },
+      mc:   { data:"2026-07-27", computed:"2026-08-25" },
       tech: { data:"2026-07-27", computed:"2026-08-25" }
     },
     files: {
@@ -2309,7 +2309,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:8.81, p25:10.17, p50:10.99, p75:11.87, p95:13.71, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
       [15.50, 0, 3], [14.00, 1, 7], [13.00, 3, 16], [11.50, 45, 67], [10.50, 34, 61], [9.50, 4, 21], [8.50, 1, 6]
     ],
@@ -2321,7 +2321,7 @@ const TICKERS = {
       bear: "A close below 10.91 would break the nearest support and open the 8.71 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -2706,7 +2706,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:23.47, p25:27.83, p50:30.52, p75:33.46, p95:39.73, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [37.00, 3, 17], [35.00, 8, 29], [33.00, 23, 50], [31.00, 65, 81], [30.00, 81, 89], [29.00, 49, 69], [27.00, 14, 36]
     ],
@@ -2718,7 +2718,7 @@ const TICKERS = {
       bear: "A close below 27.80 would break the nearest support and open the 20.28 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -2804,7 +2804,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:15.27, p25:17.50, p50:18.84, p75:20.28, p95:23.28, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [20.00, 25, 51], [19.00, 69, 83], [18.50, 77, 86], [18.00, 47, 66], [17.00, 13, 34], [16.00, 4, 16], [15.00, 1, 7]
     ],
@@ -2816,7 +2816,7 @@ const TICKERS = {
       bear: "A close below 18.18 would break the nearest support and open the 13.18 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {
@@ -2966,7 +2966,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:347.87, p25:368.48, p50:380.17, p75:392.17, p95:415.62, resolve:"2026-10-26" }
     },
     hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965 },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [459.00, 0, 1], [440.00, 0, 2], [421.00, 0, 6], [405.00, 2, 18], [394.00, 11, 40], [371.00, 22, 55], [359.00, 3, 22], [344.00, 0, 7], [325.00, 0, 2]
     ],
@@ -2978,7 +2978,7 @@ const TICKERS = {
       bear: "A close below 370.00 would break the nearest support and open the 350.00 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-07-28" },
+      mc:   { data:"2026-07-24", computed:"2026-08-25" },
       tech: { data:"2026-07-24", computed:"2026-08-25" }
     },
     files: {

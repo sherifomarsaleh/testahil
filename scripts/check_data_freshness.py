@@ -285,6 +285,29 @@ def main() -> int:
             elif c > today:
                 fail(key, f'asof.{kind}.computed {c} is in the future')
 
+        # 2b. WHERE THE ENTRY RECORDS ITS OWN STRIKE DATE, THE STAMP MUST AGREE.
+        #     `fit.on` is written by rollforward_one.restrike_entry at the moment
+        #     the cone is struck; asof.mc.computed is written later by
+        #     apply_technicals. Before this check the latter was INFERRED from the
+        #     newest LEDGER row's run_date, and a mid-cycle re-strike mints no
+        #     ledger row -- so a re-strike that did not move the anchor was
+        #     invisible and the page kept publishing the old compute date. On
+        #     25-Aug-2026 all 21 re-struck cones were stale this way, by up to
+        #     four weeks, and NOTHING failed: every other check here compares a
+        #     stamp against the LIBRARY, and the library had not moved. This is
+        #     the [R-ENF-01] move -- the rule checked from outside the tool that
+        #     implements it, failing rather than warning.
+        #
+        #     An entry with no `fit` stamp yet is NOT failed: it predates the
+        #     field and acquires one at its next strike. Silence there is the
+        #     honest answer, not a pass.
+        fo = re.search(r'fit:\s*\{[^{}]*?\bon:\s*"([\d-]+)"[^{}]*?\}', blk)
+        if fo and 'mc' in stamp and fo.group(1) != stamp['mc'][1]:
+            fail(key, f'asof.mc.computed {stamp["mc"][1]} disagrees with the '
+                      f'strike date the entry itself records, fit.on '
+                      f'{fo.group(1)} -- the cone was struck on a day the page '
+                      'does not admit to')
+
         # 3. the technical read must stand on the CURRENT library. "When the
         #    library moves, the technical read moves with it, in the same pass."
         #    Compared against the CLEANED series (the same Step 0.0 gate the

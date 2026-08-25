@@ -36,6 +36,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+import datetime as _dt
 import pandas as pd                                        # noqa: E402
 
 from strike_cohorts import strike, touch_probs, rel_touch   # noqa: E402
@@ -256,7 +257,8 @@ def _nice(v) -> str:
     return str(int(f)) if f == int(f) else f'{f:.6g}'
 
 
-def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
+def restrike_entry(blk: str, r: dict, verbose: bool = True,
+                   run_date: str = None) -> str:
     """Rewrite ONLY spot / spotDate / dist+hz / touch on one TICKERS entry.
 
     Shared by the monthly roll-forward below and by the mid-cycle cone refresh
@@ -334,9 +336,22 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     # describe a strike the page no longer shows. Measured 25-Aug-2026 across the
     # book, reading the note MISSED 4 drifted cones and FALSE-ALARMED on 1.
     # `eff` is what actually scaled the cone: width_cal * overlay multiplier.
+    #
+    # `on` IS THE DAY THIS STRIKE RAN, and it exists because nothing else records
+    # it. apply_technicals stamps asof.mc.computed by reading the newest LEDGER
+    # row's run_date, and a mid-cycle re-strike mints no LEDGER row — so a
+    # re-strike that does NOT move the anchor is invisible to every existing
+    # signal and the page keeps publishing the OLD compute date under a cone
+    # computed today. Measured 25-Aug-2026: all 21 re-struck cones claimed
+    # compute dates from 27-Jul to 17-Aug, up to four weeks stale, and every one
+    # matched its ledger row's run_date exactly. The mid-cycle branch in
+    # apply_technicals only fires when the ANCHOR moved, which is precisely what
+    # a fit-drift re-strike does not do. Recorded here, where it is known,
+    # rather than inferred downstream from a proxy that cannot see it.
     _cal = float(r['width_cal']); _mult = float(r['width_overlay_mult'])
+    _on = run_date or _dt.date.today().isoformat()
     fit = (f'{ind}fit: {{ nu:{_nice(r["nu"])}, cal:{_nice(_cal)}, '
-           f'mult:{_nice(_mult)}, eff:{_nice(_cal * _mult)} }},')
+           f'mult:{_nice(_mult)}, eff:{_nice(_cal * _mult)}, on:"{_on}" }},')
     dist = (f'{ind}dist: {{\n' + ',\n'.join(lines) + f'\n{ind}}},\n'
             + f'{ind}hz: {{ h1:{h1["h"]}, h3:{h3["h"]}, '
               f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},\n'
@@ -452,7 +467,8 @@ def run(market: str, series: str, key: str, today: str,
     print(f'  prior cycle {prior} -> new cycle {cyc}')
 
     # ---- ticker entry: spot / spotDate / dist+hz / touch, nothing else
-    new = restrike_entry(blk, r)
+    new = restrike_entry(blk, r, run_date=pd.Timestamp(
+        today.replace('-', ' ')).date().isoformat())
 
     d = anchor
     # EVERY CLAUSE BELOW IS DERIVED. The retired text hardcoded two claims about a
