@@ -1,0 +1,488 @@
+{
+ "AE": {
+  "gate": {
+   "market": "AE",
+   "names": 28,
+   "names_that_moved": 14,
+   "moved_closer": 7,
+   "pooled_abs_stdu_base": 0.0361,
+   "pooled_abs_stdu_overlay": 0.0215,
+   "cov90_base": 0.9121,
+   "cov90_overlay": 0.91,
+   "crps_parity_ci": {
+    "2": [
+     -0.0015,
+     0.0002,
+     "PARITY"
+    ],
+    "3": [
+     -0.0016,
+     0.0003,
+     "PARITY"
+    ],
+    "4": [
+     -0.0016,
+     0.0003,
+     "PARITY"
+    ]
+   },
+   "gate": {
+    "crps_parity": true,
+    "stdu_improves": true,
+    "breadth": false,
+    "cov90_in_band": true
+   },
+   "PASS": false
+  },
+  "per_name": [
+   {
+    "name": "ADCB",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.091,
+    "std_u_overlay": 1.112,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ADIB",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.93,
+    "std_u_overlay": 0.958,
+    "closer": true,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ADNOCDIST",
+    "windows": 31,
+    "gated_windows": 3,
+    "std_u_base": 0.76,
+    "std_u_overlay": 0.765,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "ADNOCDRILL",
+    "windows": 15,
+    "gated_windows": 0,
+    "std_u_base": 0.779,
+    "std_u_overlay": 0.779,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ADNOCGAS",
+    "windows": 9,
+    "gated_windows": 0,
+    "std_u_base": 0.605,
+    "std_u_overlay": 0.605,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ADNOCLS",
+    "windows": 8,
+    "gated_windows": 0,
+    "std_u_base": 0.752,
+    "std_u_overlay": 0.752,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "AGTHIA",
+    "windows": 59,
+    "gated_windows": 31,
+    "std_u_base": 0.746,
+    "std_u_overlay": 0.784,
+    "closer": true,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "AIRARABIA",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.008,
+    "std_u_overlay": 1.026,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ALDAR",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.936,
+    "std_u_overlay": 0.951,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.952
+   },
+   {
+    "name": "ALPHADHABI",
+    "windows": 17,
+    "gated_windows": 0,
+    "std_u_base": 0.709,
+    "std_u_overlay": 0.709,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "AMR",
+    "windows": 10,
+    "gated_windows": 0,
+    "std_u_base": 0.771,
+    "std_u_overlay": 0.771,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "BOROUGE",
+    "windows": 13,
+    "gated_windows": 0,
+    "std_u_base": 0.493,
+    "std_u_overlay": 0.493,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "BURJEEL",
+    "windows": 11,
+    "gated_windows": 0,
+    "std_u_base": 0.8,
+    "std_u_overlay": 0.8,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "DEWA",
+    "windows": 13,
+    "gated_windows": 0,
+    "std_u_base": 0.829,
+    "std_u_overlay": 0.829,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "DIB",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.987,
+    "std_u_overlay": 1.019,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.029
+   },
+   {
+    "name": "DU",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.708,
+    "std_u_overlay": 0.746,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "EAND",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.927,
+    "std_u_overlay": 0.915,
+    "closer": false,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "EMAAR",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.183,
+    "std_u_overlay": 1.186,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "EMAARDEV",
+    "windows": 31,
+    "gated_windows": 3,
+    "std_u_base": 1.384,
+    "std_u_overlay": 1.385,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "EMPOWER",
+    "windows": 11,
+    "gated_windows": 0,
+    "std_u_base": 0.553,
+    "std_u_overlay": 0.553,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ENBD",
+    "windows": 58,
+    "gated_windows": 30,
+    "std_u_base": 0.822,
+    "std_u_overlay": 0.861,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "FAB",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.901,
+    "std_u_overlay": 0.915,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.92
+   },
+   {
+    "name": "FERTIGLB",
+    "windows": 15,
+    "gated_windows": 0,
+    "std_u_base": 0.817,
+    "std_u_overlay": 0.817,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "IHC",
+    "windows": 43,
+    "gated_windows": 15,
+    "std_u_base": 1.255,
+    "std_u_overlay": 1.269,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "LULU",
+    "windows": 2,
+    "gated_windows": 0,
+    "std_u_base": 0.194,
+    "std_u_overlay": 0.194,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "MODON",
+    "windows": 21,
+    "gated_windows": 0,
+    "std_u_base": 0.984,
+    "std_u_overlay": 0.984,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "SALIK",
+    "windows": 11,
+    "gated_windows": 0,
+    "std_u_base": 0.692,
+    "std_u_overlay": 0.692,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "TWOPOINTZERO",
+    "windows": 15,
+    "gated_windows": 0,
+    "std_u_base": 0.97,
+    "std_u_overlay": 0.97,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   }
+  ]
+ },
+ "SA": {
+  "gate": {
+   "market": "SA",
+   "names": 13,
+   "names_that_moved": 9,
+   "moved_closer": 7,
+   "pooled_abs_stdu_base": 0.0514,
+   "pooled_abs_stdu_overlay": 0.0533,
+   "cov90_base": 0.9088,
+   "cov90_overlay": 0.9053,
+   "crps_parity_ci": {
+    "2": [
+     -0.0007,
+     0.0015,
+     "PARITY"
+    ],
+    "3": [
+     -0.0006,
+     0.0015,
+     "PARITY"
+    ],
+    "4": [
+     -0.0007,
+     0.0015,
+     "PARITY"
+    ]
+   },
+   "gate": {
+    "crps_parity": true,
+    "stdu_improves": false,
+    "breadth": true,
+    "cov90_in_band": true
+   },
+   "PASS": false
+  },
+  "per_name": [
+   {
+    "name": "ACWA",
+    "windows": 15,
+    "gated_windows": 0,
+    "std_u_base": 0.979,
+    "std_u_overlay": 0.979,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ALINMA",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.201,
+    "std_u_overlay": 1.21,
+    "closer": false,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ARAMCO",
+    "windows": 23,
+    "gated_windows": 0,
+    "std_u_base": 1.015,
+    "std_u_overlay": 1.015,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "ELM",
+    "windows": 13,
+    "gated_windows": 0,
+    "std_u_base": 1.263,
+    "std_u_overlay": 1.263,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "EXTRA",
+    "windows": 56,
+    "gated_windows": 28,
+    "std_u_base": 1.115,
+    "std_u_overlay": 1.121,
+    "closer": false,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "MAADEN",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.987,
+    "std_u_overlay": 0.995,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.945
+   },
+   {
+    "name": "RAJHI",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.937,
+    "std_u_overlay": 0.949,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.934
+   },
+   {
+    "name": "RIBL",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.155,
+    "std_u_overlay": 1.114,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.911
+   },
+   {
+    "name": "RIYADHCABLE",
+    "windows": 10,
+    "gated_windows": 0,
+    "std_u_base": 0.614,
+    "std_u_overlay": 0.614,
+    "closer": false,
+    "moved": false,
+    "final_mult": 1.0
+   },
+   {
+    "name": "SABIC",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 1.266,
+    "std_u_overlay": 1.257,
+    "closer": true,
+    "moved": true,
+    "final_mult": 1.011
+   },
+   {
+    "name": "SAVOLA",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.844,
+    "std_u_overlay": 0.866,
+    "closer": true,
+    "moved": true,
+    "final_mult": 1.0
+   },
+   {
+    "name": "SNB",
+    "windows": 44,
+    "gated_windows": 16,
+    "std_u_base": 0.961,
+    "std_u_overlay": 0.964,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.9
+   },
+   {
+    "name": "STC",
+    "windows": 60,
+    "gated_windows": 32,
+    "std_u_base": 0.867,
+    "std_u_overlay": 0.889,
+    "closer": true,
+    "moved": true,
+    "final_mult": 0.9
+   }
+  ]
+ }
+}

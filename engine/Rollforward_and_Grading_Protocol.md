@@ -224,8 +224,16 @@ AND the chart underneath them, in the same pass.**
 python3 engine/apply_technicals.py --write            # levels, tech, asof (all names)
 python3 engine/apply_technicals.py --only COMI        # one name
 python3 engine/ta_chart.py        --write             # the chart underneath them
+python3 engine/build_name_calibration.py              # each stock's OWN record [R-REC-01]
 node scripts/check_ta_chart_overlay.js                # MANDATORY gate — see below
 ```
+
+`engine/build_name_calibration.py` regenerates the CALIB block in `assets/data.js` — every
+stock's own calibration record (resolved three-month tests on its history, % caught by the
+middle and wide bands under the LIVE fit), rendered under the fan on every page. It is part
+of this pass, never a separate chore: the record rots the moment a fit, panel or reshape
+moves. Self-verifying — `node --check` plus a load-assert that counts records against the
+full TICKERS total and fails on any unresolved name.
 
 `engine/technicals.py` computes the read from the same cleaned series the MC engine runs on,
 through the same Step 0.0 gate — SMA 20/50/200 with slope state, Wilder RSI(14), Wilder

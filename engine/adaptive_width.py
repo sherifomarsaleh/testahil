@@ -1,4 +1,4 @@
-"""adaptive_width.py — Testahil per-stock ONLINE width overlay.
+"""adaptive_width.py — Testahil per-stock ONLINE width overlay.  [R-WIDTH-01]
 
 ADOPTED 23-Jul-2026, EG ONLY, GOING FORWARD. Holds a MECHANISM (and a small set of
 fixed a-priori constants); it holds no per-market fit and never goes stale.
