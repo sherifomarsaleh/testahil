@@ -42,6 +42,10 @@ Exit 0 = clean, exit 1 = at least one FAIL.
 """
 from __future__ import annotations
 
+import os as _os, sys as _sys                                   # noqa: E402
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))  # noqa: E402
+from coverage_floor import assert_examined                      # noqa: E402  [R-ENF-04]
+
 import csv
 import os
 import re
@@ -563,7 +567,9 @@ def main() -> int:
         print(f'WARN  {w}')
     for f in fails:
         print(f'FAIL  {f}')
-    print(f'\n{len(entries)} entries checked -- '
+    # [R-ENF-04] A gate must never report clean having examined nothing.
+    pop = assert_examined(len(entries), 'check_data_freshness')
+    print(f'\n{len(entries)} entries checked against {pop} libraries -- '
           f'{len(fails)} failure(s), {len(warns)} warning(s)')
     return 1 if fails else 0
 
