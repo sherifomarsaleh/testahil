@@ -922,7 +922,21 @@ function renderStaticFan(elId, T){
   // technical read is written by each page's own inline script, and on some
   // pages that runs after this call.
   stampAsOfWhenReady(T);
-  stampOwnRecordWhenReady(T);
+  /* [R-REC-01 x R-CAL-02] SUPPRESSED 25-Aug-2026, pending an instruction.
+     R-REC-01 (per-name record under the fan) and R-CAL-02 (the band record in
+     the page text) were adopted on the SAME DAY on two branches that never saw
+     each other, and they were merged for the first time on 25-Aug. They do not
+     measure the same thing: BANDS scores the bands as they were actually
+     PUBLISHED, CALIB re-scores the same windows under TODAY's fit
+     (build_name_calibration.py: `cal * tq(.25, nu) <= u <= cal * tq(.75, nu)`).
+     Same window counts everywhere, but 70 of 88 names disagree on cov50 or
+     cov90 -- DU 71% vs 66%, AIRARABIA 57% vs 47% -- so every one of those pages
+     would state its own record twice, in two numbers, with nothing saying which
+     sample each came from. That is the defect a reader reported on gbco.html
+     this same week, at book scale. Both records stay generated and committed;
+     only the SECOND render is held until it is decided which one the reader is
+     shown, or how the two are labelled apart. Re-enable by restoring this call.
+  stampOwnRecordWhenReady(T);  */
   whenReady(refreshBandRecords);
 }
 
