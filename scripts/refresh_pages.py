@@ -67,6 +67,9 @@ from apply_technicals import (EXCHANGE_MARKET, SERIES_OVERRIDE,  # noqa: E402
                               METAL_MARKET)
 import refresh_cone_one                                          # noqa: E402
 from market_profiles import PROFILES                              # noqa: E402
+from auto_refresh import BAND_TOL, band_halfwidth                 # noqa: E402
+from strike_cohorts import load_clean                             # noqa: E402
+import adaptive_width as AW                                       # noqa: E402
 
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -192,67 +195,94 @@ _FIT = re.compile(r'([A-Z]{2,3})\s+live fit\s+nu=(\d+(?:\.\d+)?),\s*'
 
 
 def fit_drift(data: dict) -> tuple[list, list]:
-    """Names whose published cone was struck on a (nu, width_cal) that has moved.
+    """Names whose published cone stands on a fit that has since moved.
 
-    A SECOND axis of staleness, and the one nobody was looking at. A cone is
-    re-struck when PRICES arrive; the market fit is re-estimated whenever any
-    name in that market is posted. The two are not the same event, so a refit
-    silently leaves every already-published cone standing on the fit it was
-    struck under.
+    A SECOND axis of staleness. A cone is re-struck when PRICES arrive; the
+    market fit is re-estimated whenever any name in that market is posted. The
+    two are not the same event, so a refit silently leaves every already-
+    published cone standing on the fit it was struck under.
 
-    This is NOT automatically a defect. The materiality gate exists exactly so
-    that a refit which moves the published 90% cone by less than 5% does not
-    force a re-strike, and most of this drift is that. But it does mean "the
-    analyses are current" is false in a way no existing check reported, so it is
-    reported on every run and acted on only when asked (--restrike-fit-drift):
-    re-striking a cone whose prices have NOT moved republishes a different
-    forecast on the same data, which is a decision, not a refresh.
+    READ OFF THE ENTRY'S OWN `fit` STAMP, not the ledger note. The note was the
+    only record available before restrike_entry stamped the entry, and it was
+    wrong twice over: it carries the POOLED width_cal and never the per-name
+    overlay multiplier, and a mid-cycle refresh writes no ledger row at all, so
+    the newest note can describe a strike the page no longer shows. Measured
+    against a full re-strike of all 90 names on 25-Aug-2026
+    (engine/fit_drift_audit/), the note MISSED 4 and FALSE-ALARMED on 1. The
+    stamp has neither defect: it records `eff` = width_cal * overlay multiplier,
+    which is what actually scaled the published cone.
 
-    WHAT THIS COUNT IS, AND THE TWO THINGS IT GETS WRONG. It reads (nu,
-    width_cal) off the newest LEDGER note. Re-measured against main on
-    25-Aug-2026 by re-striking all 90 names through the production chain and
-    comparing the published percentiles — engine/fit_drift_audit/, which is the
-    number of record, 21 of 90 material at 3M — this method:
+    MATERIALITY IS THE ENGINE'S OWN METRIC, imported rather than reimplemented —
+    auto_refresh.band_halfwidth on cal * q95(t(nu)), thresholded at BAND_TOL.
+    nu and width_cal TRADE OFF against each other, so comparing them separately
+    both misses real changes and fires on noise; the published 90% cone is the
+    thing a reader sees and the thing measured here.
 
-      * MISSES the per-name width overlay entirely. The note carries the POOLED
-        width_cal, never the effective one, so a name whose own multiplier has
-        moved reads as unchanged. Three EG names are material for exactly this
-        reason and are invisible here. This is [R-WIDTH-01] in its own habitat:
-        the note is not a record of the width a cone was built on.
-      * FALSE-ALARMS on a cone refreshed mid-cycle. refresh_cone_one updates a
-        displayed cone and deliberately writes NO ledger row, so the newest note
-        can describe a strike the page no longer shows — 4 of 90 names were in
-        that state on 25-Aug-2026, and one of them (ADCB) is counted here as
-        drifted while its published cone is current.
-
-    So treat the printed count as a cheap upper-bound flag, not a measurement,
-    and do not quote it as one. The durable fix is to record the EFFECTIVE fit
-    (nu, width_cal * overlay_mult) on the entry when the cone is struck —
-    strike() already computes it — which turns this into a dictionary comparison
-    with no note parsing and no blind spot. Proposed, not implemented, in
-    engine/fit_drift_audit/RESULTS_25-08-2026.md.
+    Returns (material, sub_threshold, unstamped). A name with no stamp yet is
+    NOT guessed at from its note — it is reported as unstamped and left alone,
+    because the note cannot answer the question and pretending otherwise is how
+    the previous version got it wrong. Every entry acquires a stamp at its next
+    strike.
     """
-    newest: dict[str, dict] = {}
-    for r in data['l']:
-        k = r.get('instrument')
-        if k and (k not in newest or
-                  (r.get('anchor_date') or '') > (newest[k].get('anchor_date') or '')):
-            newest[k] = r
-    drift, unrecorded = [], []
-    for key, r in sorted(newest.items()):
-        m = _FIT.search(r.get('note') or '')
-        if not m:
-            unrecorded.append(key)
-            continue
-        mkt, nu, wc = m.group(1).upper(), float(m.group(2)), float(m.group(3))
+    material, sub, unstamped = [], [], []
+    for key, e in sorted(list(data['t'].items()) + list(data['m'].items())):
+        code = str(e.get('code') or '')
+        mkt = EXCHANGE_MARKET.get(code.split(':')[0]) or (
+            METAL_MARKET.get(key, (None, None))[0])
         p = PROFILES.get(mkt)
         if not p:
             continue
-        if abs((p.nu or 0.0) - nu) > 1e-9 or abs(p.width_cal - wc) > 1e-9:
-            drift.append({'ledger_key': key, 'market': mkt,
-                          'struck': f'nu={nu}/width_cal={wc}',
-                          'live': f'nu={p.nu}/width_cal={p.width_cal}'})
-    return drift, unrecorded
+        f = e.get('fit')
+        if not isinstance(f, dict) or f.get('eff') is None or f.get('nu') is None:
+            unstamped.append(key)
+            continue
+        struck = band_halfwidth(float(f['nu']), float(f['eff']))
+        live_eff = p.width_cal * _live_mult(key, e, mkt, p)
+        live = band_halfwidth(p.nu, live_eff)
+        if not struck or not live:
+            continue
+        rel = (live - struck) / struck
+        row = {'ledger_key': key, 'market': mkt, 'rel': rel,
+               'struck': f"nu={f['nu']}/eff={f['eff']}",
+               'live': f"nu={p.nu}/eff={_fmt(live_eff)}"}
+        if abs(rel) > BAND_TOL:
+            material.append(row)
+        elif abs(rel) > 1e-4:          # a cone standing on today's fit has NOT drifted
+            sub.append(row)
+    return material, sub, unstamped
+
+
+def _fmt(v) -> str:
+    return f'{float(v):.6g}'
+
+
+def _live_mult(key: str, entry: dict, mkt: str, profile) -> float:
+    """TODAY's per-name width multiplier — RECOMPUTED, never read off a record.
+
+    [R-WIDTH-01]: overlay state is read live by recomputing, never inferred. The
+    multiplier is a function of BOTH the name's own library and the market fit,
+    so a refit alone can move it with no new prices — which is precisely the case
+    the library-staleness check cannot see, and precisely why three EG names were
+    material on 25-Aug-2026 while their market fit had moved less than 1%.
+
+    Free where it is free: the overlay is per-market, and where it is off the
+    multiplier is EXACTLY 1.0 by construction (adaptive_width.live_width_mult
+    returns the exact baseline on flag_off), so no library is touched at all.
+    Only overlay-active markets pay the load, and this pass already loads every
+    library once in stale_names().
+    """
+    if not getattr(profile, 'width_overlay_active', False):
+        return 1.0
+    ms = market_series(key, entry)
+    if not ms:
+        return 1.0
+    try:
+        df, _ = load_clean(ms[0], ms[1])
+        return float(AW.live_width_mult(df, profile))
+    except Exception as exc:                                   # noqa: BLE001
+        raise SystemExit(f'{key}: cannot recompute the live width overlay '
+                         f'({type(exc).__name__}: {exc}). Refusing to report '
+                         'drift from a stale or assumed multiplier.')
 
 
 # --------------------------------------------------------------- shell helpers
@@ -389,15 +419,26 @@ def main() -> int:
     if notes:
         print()
 
-    drift, unrecorded = fit_drift(data)
-    print(f'fit drift: {len(drift)} published cone(s) stand on a superseded market '
-          f'fit; {len(unrecorded)} record no fit in their note')
+    material, sub, unstamped = fit_drift(data)
+    n_sync = len(data['t']) + len(data['m']) - len(material) - len(sub) - len(unstamped)
+    print(f'fit drift: {len(material)} MATERIAL by the [R-CAL-01] gate (90% cone '
+          f'moves >{BAND_TOL:.0%}); {len(sub)} drifted sub-threshold; {n_sync} on '
+          f'today\'s fit; {len(unstamped)} carry no fit stamp yet')
+    if sub:
+        print(f'  sub-threshold, reported only: '
+              f'{max(abs(d["rel"]) for d in sub):.2%} worst — not acted on, which '
+              'is what the materiality gate is for.')
+    if unstamped:
+        print(f'  unstamped (no `fit` on the entry — each acquires one at its next '
+              f'strike; the ledger note cannot answer this and is NOT guessed from): '
+              f'{len(unstamped)}')
+    drift = material            # only MATERIAL drift is ever acted on
     if drift and not args.restrike_fit_drift:
         by_market: dict[str, int] = {}
         for d in drift:
             by_market[d['market']] = by_market.get(d['market'], 0) + 1
         print('  by market: ' + ', '.join(f'{k} {v}' for k, v in sorted(by_market.items())))
-        print('  not acted on — pass --restrike-fit-drift to re-strike them too.')
+        print('  not acted on — pass --restrike-fit-drift to re-strike them.')
     if args.restrike_fit_drift:
         keyed = {k.upper(): k for k in list(data['t']) + list(data['m'])}
         for d in drift:

@@ -250,6 +250,12 @@ def _touch_ladder(blk: str):
     raise ValueError('unbalanced brackets in touch')
 
 
+def _nice(v) -> str:
+    """Shortest exact-enough literal for the fit stamp (0.965, 1, 4.5)."""
+    f = float(v)
+    return str(int(f)) if f == int(f) else f'{f:.6g}'
+
+
 def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     """Rewrite ONLY spot / spotDate / dist+hz / touch on one TICKERS entry.
 
@@ -319,9 +325,22 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
         lines.append(f'{ind}  ' + ln.strip().rstrip(','))
         if verbose:
             print(f'  carried through untouched: {ln.strip()[:40]}...')
+    # THE EFFECTIVE FIT THIS CONE WAS BUILT ON, stamped on the entry itself.
+    # Without it the only record of the fit behind a published cone was the
+    # newest LEDGER note, and that is not the same thing twice over: the note
+    # carries the POOLED width_cal and never the per-name overlay multiplier
+    # ([R-WIDTH-01] — the pooled figure is not the width the cone was built on),
+    # and a mid-cycle refresh writes NO ledger row at all, so the newest note can
+    # describe a strike the page no longer shows. Measured 25-Aug-2026 across the
+    # book, reading the note MISSED 4 drifted cones and FALSE-ALARMED on 1.
+    # `eff` is what actually scaled the cone: width_cal * overlay multiplier.
+    _cal = float(r['width_cal']); _mult = float(r['width_overlay_mult'])
+    fit = (f'{ind}fit: {{ nu:{_nice(r["nu"])}, cal:{_nice(_cal)}, '
+           f'mult:{_nice(_mult)}, eff:{_nice(_cal * _mult)} }},')
     dist = (f'{ind}dist: {{\n' + ',\n'.join(lines) + f'\n{ind}}},\n'
             + f'{ind}hz: {{ h1:{h1["h"]}, h3:{h3["h"]}, '
-              f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},')
+              f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},\n'
+            + fit)
     # `dist` and `hz` are emitted as one unit, so hz must be the field that
     # immediately follows. That holds on all 71 ticker entries; if a future
     # entry breaks it, say so rather than silently leaving a stale hz behind
@@ -329,7 +348,15 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     hz_span = _span_of_key(new, 'hz')
     if not hz_span or new[e0:hz_span[0]].strip() != '':
         raise ValueError('hz does not immediately follow dist on this entry')
-    new = new[:s0] + '\n' + dist.lstrip('\n') + new[hz_span[1]:]
+    # dist + hz + fit are emitted as ONE unit, so an existing `fit` stamp
+    # immediately after hz is CONSUMED rather than left behind — otherwise a
+    # second strike would append a duplicate key, and a JS object literal takes
+    # the LAST one while every regex-based tool reads the FIRST ([R-ENF-03]).
+    tail = hz_span[1]
+    fit_span = _span_of_key(new, 'fit')
+    if fit_span and new[hz_span[1]:fit_span[0]].strip() == '':
+        tail = fit_span[1]
+    new = new[:s0] + '\n' + dist.lstrip('\n') + new[tail:]
 
     span, levels, comment = _touch_ladder(new)
     if levels:
