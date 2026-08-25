@@ -25,8 +25,33 @@ const PAD = 2;                       // px tolerance at the plot edges
     .filter(f => f.endsWith('.html'))
     .filter(f => fs.readFileSync(path.join(ROOT, f), 'utf8').includes('id="ta-chart-svg"'));
 
-  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+  /* PORTABLE BROWSER RESOLUTION (25-Aug-2026). The path below is where this
+   * project's dev sandbox pre-installs Chromium; a GitHub runner installing via
+   * `npx playwright install chromium` puts it under ~/.cache/ms-playwright and
+   * the hardcoded path does not exist there. Passing a non-existent
+   * executablePath fails the launch outright, so the gate would have died in CI
+   * on its first run — pass it only when it is actually there and let playwright
+   * resolve its own browser otherwise. */
+  const PINNED = '/opt/pw-browsers/chromium';
+  const browser = await chromium.launch(
+    fs.existsSync(PINNED) ? { executablePath: PINNED } : {});
   const ctx = await browser.newContext({ viewport: { width: 1180, height: 1000 } });
+
+  /* HERMETIC BY CONSTRUCTION (25-Aug-2026). Every page links Google Fonts and
+   * loads gtag. Neither has anything to do with what this gate measures — the y
+   * position of SVG lines that injectLevels() computes from data already inline
+   * on the page — but the browser still tries to fetch them, and on any runner
+   * that cannot reach those hosts each navigation hangs instead of failing fast.
+   * Measured here: >30 minutes without finishing 93 pages, against ~200ms PER
+   * PAGE once external requests are aborted. A correctness gate that needs
+   * fonts.googleapis.com to be reachable is flaky by construction, and a gate
+   * slow enough to be skipped is a gate nobody runs. Only the origin under test
+   * is allowed through; everything else is aborted, which is also a stronger
+   * check, since a level line's position must not depend on a webfont loading. */
+  await ctx.route('**/*', route => {
+    const url = route.request().url();
+    return url.startsWith(BASE) ? route.continue() : route.abort();
+  });
   const bad = [];
   let checked = 0, noLevels = 0;
 

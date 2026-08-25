@@ -357,7 +357,57 @@ would reproduce the `rev_1m` false negative exactly.
 |---|---|---|---|
 | **A** | The overlay above. Ships on validated machinery; changes no cone. Output labelled PROVISIONAL. | — | **implemented** — `engine/fv_overlay.py` |
 | **B** | Direction-scoring axis added to the gate (§7 test 2). | — | **implemented** — `engine/direction_score.py` |
-| **C** | Backtest `value_gap` as an alpha signal, measure IC on the EG panel under LONO. | **B** | **implemented, returns INSUFFICIENT-POWER** — `engine/value_gap_backtest.py` |
+| **C** | Backtest `value_gap` as an alpha signal, measure IC on the EG panel under LONO. | **B** | **implemented, returns INSUFFICIENT-POWER** (re-read 24-Aug-2026: n=32, IC −0.140, PARITY — two of three blockers cleared, n still binding) — `engine/value_gap_backtest.py` |
+
+### Phase C — second read, 24-Aug-2026
+
+Run: `value_gap_backtest_EG_20260824.{json,md}`. **Verdict: INSUFFICIENT-POWER at both horizons —
+unchanged — but two of the three blockers named on 6-Aug have cleared.**
+
+| | 6-Aug-2026 | 24-Aug-2026 |
+|---|---|---|
+| observations with a realized outcome (1M) | 5 | **32** |
+| IC (Spearman, 1M) | −0.600 *(descriptive)* | **−0.140** *(descriptive, p=0.446)* |
+| bootstrap verdict, blocks {2,3,4} | — | **PARITY** |
+| LONO IC range | — | [−0.219, −0.044], sign stable |
+| hit rate | — | 56.2% (95% CI 39.3–71.8, null 50) |
+| sign balance | 5 pos / 0 neg — **one-sided** | **18 pos / 14 neg — two-sided** |
+| distinct origin dates | — | 15 (2026-06-11 → 2026-07-19) |
+| distinct fair-value vintages | 31 (one per name) | **42 across 37 names** |
+| 3M observations | 0 | 0 |
+
+Against the three blockers of the first read: **(2) one-sidedness is resolved** — the panel now
+carries both signs, so the IC is a rank correlation rather than a magnitude ordering inside one
+sign; **(3) the vintage problem is resolving** — 42 vintages across 37 names, where the first read
+found effectively one cross-section; **(1) n remains the binding constraint** — 32 against the
+n≈783 needed to resolve IC 0.10 at 80% power. The verdict does not move and the engine hook stays
+unwired.
+
+**Direction of travel, stated as such.** The point estimate is NEGATIVE at both the Spearman
+(−0.140) and Pearson (−0.177) reading, sign-stable under LONO, and the CI spans zero (PARITY). An
+independent rough check on the 25 EG names whose study predated the 22-Jul-2026 strike agrees in
+sign (Spearman −0.05; cheapest half +4.5% mean 1M return against the dearest half's +7.5%). This is
+not evidence that the fair values are wrong — it is 32 observations over a single strongly-rising
+two-month window, which is exactly the regime in which a value signal is expected to lag. It is,
+however, the *opposite* of the sign the overlay's users would assume, so it is stated on the surface
+rather than left to be inferred: **no measured evidence supports ranking EGX names by discount to
+fair value at 1–3 months, and what evidence exists leans mildly against it.** Read as
+direction-of-travel, not verdict, per the power warning below.
+
+**A defect found in the harness itself, and closed.** The 24-Aug re-measurement first returned
+`INSUFFICIENT-POWER — no observation has a realized outcome yet` at BOTH horizons, i.e. n=0, a
+result that reads as "the sample has not grown since 6-Aug." It had in fact grown six-fold. The
+cause was the checkout, not the data: the session ran on a SHALLOW clone whose entire local history
+began that morning, so every fair value appeared to become visible at the shallow boundary and no
+origin had a matured forward window. Shallow returned 27 commits touching `data.js` and n=0; the
+same commit unshallowed returned 241 and n=32. The two states emitted a character-for-character
+identical message. `value_gap_backtest.assert_full_history()` now RAISES on a shallow clone rather
+than reporting a false negative (negative-controlled against a real `--depth 5` clone), and
+`_commits_parsed` has been added to the point-in-time cache key, because the HEAD sha of `data.js`
+is identical on a shallow and a full clone of the same commit and therefore cannot distinguish them
+on its own. Per [R-ENF-01] the check fails rather than warns. CI that runs Phase C must set
+`fetch-depth: 0`; `generate-seo.yml` already does so for the same underlying reason on a different
+git-derived date, which is the instance-not-class pattern that rule exists to catch.
 
 ### Phase C — first read, 6-Aug-2026
 
