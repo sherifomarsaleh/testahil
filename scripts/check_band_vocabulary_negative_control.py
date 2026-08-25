@@ -43,6 +43,12 @@ CASES = [
      lambda s: re.sub(r'(  SAVOLA: \{mkt:"SA", n:\d+, hits:)\d+', r'\g<1>58', s, count=1)),
     ("a span naming no record", "savola.html",
      lambda s: s.replace('data-band-record="SAVOLA"', 'data-band-record="NOSUCHNAME"', 1)),
+    # The figures are images; only their caption TEMPLATE is readable, and this
+    # arm is live only because the ratchet is now empty. It is the one that would
+    # catch the verdict creeping back into 93 pictures no text check can read.
+    ("the verdict back in the figure caption", "engine/metal_backtest.py",
+     lambda s: s.replace('    h2 = ("{cov90} of {n} windows',
+                         '    h2 = ("PARITY  \u00b7  {cov90} of {n} windows', 1)),
 ]
 
 # Text that must NOT trip the gate. A check that flags everything is not a check:
@@ -62,6 +68,7 @@ COPY = ["*.html", "assets/*.js", "engine/band_record.py", "engine/panels/*_3m.cs
         "engine/panel_refresh.py", "engine/mc_v3.py", "engine/primitives.py",
         "engine/market_profiles.py", "engine/fv_overlay.py", "engine/__init__.py",
         "engine/build_depth_audit/band_outstanding.json", "engine/metal_backtest.py",
+        "engine/primitives.py",
         "scripts/build_market_registry.py", "scripts/build_band_records.py",
         "scripts/check_band_vocabulary.py"]
 

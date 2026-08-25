@@ -155,12 +155,20 @@ def main():
             except KeyError:
                 fails.append(f'{rel}: data-band-record="{m.group(1)}" has no panel')
 
-    # ---- 4. the caption source behind the figures this gate cannot read -----
+    # ---- 4. the caption behind the figures this gate cannot read ------------
+    # The figures are images, so their text is unreadable here. What IS readable
+    # is the caption TEMPLATE that produces it, so that is what gets scanned —
+    # and ONLY that. Scanning the whole module would flag the CRPS diagnostic
+    # [R-CAL-03] deliberately keeps in the codebase, which is not a public
+    # surface and never reaches a reader.
     cap = os.path.join(root, FIGURE_CAPTION_SOURCE)
     baked = []
     if os.path.exists(cap):
-        for hit in br.scan_text(open(cap, encoding="utf-8").read(), FIGURE_CAPTION_SOURCE):
-            baked.append(hit)
+        src_cap = open(cap, encoding="utf-8").read()
+        # the header templates assigned in build(): h2 = (...) / h3 = (...)
+        for m in re.finditer(r'^\s{4}(h[23]) = \((.*?)\)\n', src_cap, re.S | re.M):
+            baked += br.scan_text(m.group(2),
+                                  f"{FIGURE_CAPTION_SOURCE} ({m.group(1)} caption)")
     out_path = os.path.join(root, OUTSTANDING)
     known = json.load(open(out_path)) if os.path.exists(out_path) else {"figures": []}
     if baked and not known.get("figures"):
