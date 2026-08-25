@@ -922,6 +922,7 @@ function renderStaticFan(elId, T){
   // technical read is written by each page's own inline script, and on some
   // pages that runs after this call.
   stampAsOfWhenReady(T);
+  stampOwnRecordWhenReady(T);
   whenReady(refreshBandRecords);
 }
 
@@ -1022,6 +1023,36 @@ function whenReady(fn){
   }
 }
 function stampAsOfWhenReady(T){ whenReady(function(){ stampAsOf(T); }); }
+
+/* ============ per-stock track record: its own numbers, not its market's ============ */
+/* Every stock is judged on its own history (24-Aug-2026): the generated CALIB
+   block in data.js holds, per name, how many resolved three-month tests its
+   history contains and how often the middle and wide bands actually caught the
+   close. Keyed by the entry's exchange code — ticker keys are not unique
+   across markets (EG ADIB vs UAE ADIBUAE). Same universal hook as the as-of
+   stamps: renderStaticFan reaches every page, no template edits. */
+function stampOwnRecord(T){
+  if (typeof CALIB === 'undefined' || !T || !T.code) return;
+  const c = CALIB[T.code]; if (!c || !c.w) return;
+  const mc = document.getElementById('mc-fan-static');
+  if (!mc || (mc.nextElementSibling &&
+      mc.nextElementSibling.classList &&
+      mc.nextElementSibling.classList.contains('own-record'))) return;
+  mc.insertAdjacentHTML('afterend',
+    '<p class="own-record" style="margin:10px 0 0;font-family:\'IBM Plex Mono\',monospace;' +
+    'font-size:11px;letter-spacing:.2px;color:var(--muted,#6b7c78)">' +
+    'this stock’s own record · ' + c.w + ' three-month tests on its history: ' +
+    'middle band caught <b style="color:var(--ink,#12211e)">' + c.in50 + '%</b> (aim 50%), ' +
+    'wide band <b style="color:var(--ink,#12211e)">' + c.in90 + '%</b> (aim 90%)' +
+    (c.through ? ' · through ' + _asOfFmt(c.through) : '') + '</p>');
+}
+function stampOwnRecordWhenReady(T){
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ stampOwnRecord(T); }, {once:true});
+  } else {
+    stampOwnRecord(T);
+  }
+}
 
 /* ============ fair-value sensitivity (Lens 2) ============ */
 function renderFairLevers(elId, T, levers){

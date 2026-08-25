@@ -442,8 +442,17 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "mom_combo", +1, 0.108, True,
     ic_by_h={"1M": 0.108, "3M": 0.185},
-    nu=10.0, width_cal=0.916,
+    nu=4.5, width_cal=0.965,
     fit_meta=(
+        "UPDATE 24-Aug-2026 [R-SHAPE-01]: mid-band reshape ADOPTED per instruction "
+        "(investor session) via scripts/adopt_calibration.py -- (nu 10, cal 0.916) -> "
+        "(nu 4.5, cal 0.965) along the iso-90% ridge: 90% halfwidth 1.4849 -> 1.4857 "
+        "sigma (+0.05%, rounding only), 25-75 band ~8% narrower, pooled cov50 53.8% -> "
+        "50.6% on 409 post-break windows (LONO held-out 50.6%), dlogL 2.21 inside the "
+        "95% likelihood region, CRPS parity CIs straddle 0 on blocks {2,3,4}. All five "
+        "R-SHAPE-01 guards passed; EG and SA were checked the same day and DECLINED "
+        "(G-split / G-improve) -- the guards are the release. Reshape provenance lives "
+        "in fitted_configs.json mid_band_reshape; superseded pair recorded there too. "
         "UPDATE 09-Aug-2026: AIRARABIA added (18 -> 19 names, 261 -> 279 pooled "
         "windows; DFM low-cost carrier, new coverage for the Air Arabia study). "
         "Pooled MLE moves nu 10 -> 8 with cal unchanged at 0.979 -- the published "

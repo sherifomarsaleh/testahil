@@ -332,6 +332,7 @@ def write_production(market, result):
                       replaced_on=datetime.date.today().isoformat())
     reg[market] = dict(reg.get(market, {}), nu=nu_out, width_cal=result['width_cal'],
                         superseded=superseded,
+                        mid_band_reshape=result.get('mid_band_reshape'),
                         panel_names=result['panel_names'], windows=result['windows'],
                         market_skill=result['market_skill'], market_ci90=result['market_ci90'],
                         market_verdict=result['market_verdict'], per_name=result['per_name'],
