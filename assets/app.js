@@ -922,7 +922,7 @@ function renderStaticFan(elId, T){
   // technical read is written by each page's own inline script, and on some
   // pages that runs after this call.
   stampAsOfWhenReady(T);
-  refreshBandRecordsWhenReady();
+  whenReady(refreshBandRecords);
 }
 
 /* ============ [R-CAL-02] band records, refreshed at render time ============ */
@@ -931,44 +931,51 @@ function renderStaticFan(elId, T){
    coverage while its committed panel held 10 at 70%. So the volatile clause is
    marked <span data-band-record="TK"> and rewritten here from BANDS, which is
    regenerated from the panels on every refit. Same reasoning as the as-of
-   stamps above: the page states a fact that moves, so the page must not be the
-   thing that remembers it. Static text stays correct at build time and is the
-   fallback when data.js has not loaded. */
+   stamps: the page states a fact that moves, so the page must not be the thing
+   that remembers it. Static text stays correct at build time and is the
+   fallback when data.js has not loaded.
+
+   THIS IS A TRANSLITERATION of BandRecord.record_clause() in
+   engine/band_record.py, which every build-time surface renders through. The two
+   must say the same thing: they briefly did not, and a page's static text read
+   "across the 28 names in the Abu Dhabi and Dubai panel" while the same page
+   rendered "across the 28 names in that panel" a moment later. */
+function band(tk){
+  return (typeof BANDS !== 'undefined' && BANDS[tk]) || null;
+}
+/* Half-up, matching band_record.pct(). Python's format rounds half-even, so at
+   37/40 the static text would say 92% and this would say 93% on the same page. */
+function bandPct(v){ return Math.floor(v * 100 + 0.5) + '%'; }
+
 function bandRecordSentence(tk){
-  const b = (typeof BANDS !== 'undefined' && BANDS[tk]) || null;
+  const b = band(tk);
   if (!b) return null;
-  const P = v => Math.round(v * 100) + '%';
   if (b.strength === 'market-only') {
     const m = (typeof BAND_MARKETS !== 'undefined' && BAND_MARKETS[b.mkt]) || null;
-    const own = 'Only ' + b.n + ' three-month forecast' + (b.n === 1 ? '' : 's') +
-                ' of its own ha' + (b.n === 1 ? 's' : 've') + ' resolved so far — too few to ' +
-                'say anything reliable about this name specifically, so no name-level claim is made.';
-    return m ? own + ' The bands are the market\u2019s: across the ' + m.names + ' names in that panel, ' +
-               m.n + ' resolved forecasts finished inside their 90% bands ' + P(m.c90) + ' of the time.'
-             : own;
+    const head = 'Only ' + b.n + ' three-month forecast' + (b.n === 1 ? '' : 's') +
+                 ' of its own ha' + (b.n === 1 ? 's' : 've') + ' resolved so far \u2014 too few to ' +
+                 'say anything reliable about this name specifically, so no name-level claim is made.';
+    return m ? head + ' The bands are the market\u2019s: across the ' + m.names + ' names in the ' +
+               (m.label || b.mkt) + ' panel, ' + m.n + ' resolved forecasts finished inside their ' +
+               '90% bands ' + bandPct(m.c90) + ' of the time.'
+             : head;
   }
   let s = 'Over ' + b.n + ' resolved three-month forecasts, the price finished inside the 90% band ' +
-          P(b.c90) + ' of the time, against the 90% that band aims at — and inside the 80% and 50% ' +
-          'bands ' + P(b.c80) + ' and ' + P(b.c50) + ' of the time.';
-  if (b.flag === 'narrow') s += ' That is short of what the bands promise: read the range as a floor on ' +
-                               'how far price can travel, not a ceiling.';
-  else if (b.flag === 'wide') s += ' That is more than the bands promise: the real spread of outcomes has ' +
-                                   'been tighter than the cone shows.';
+          bandPct(b.c90) + ' of the time, against the 90% that band aims at \u2014 and inside the ' +
+          '80% and 50% bands ' + bandPct(b.c80) + ' and ' + bandPct(b.c50) + ' of the time.';
+  if (b.flag === 'narrow') s += ' That is short of what the bands promise: they have been running ' +
+                               'narrower than the evidence supports, so read the range as a floor ' +
+                               'on how far price can travel, not a ceiling.';
+  else if (b.flag === 'wide') s += ' That is more than the bands promise: the real spread of ' +
+                                   'outcomes has been tighter than the cone shows \u2014 the safer ' +
+                                   'direction to be wrong in, but still a miss.';
   return s;
 }
 function refreshBandRecords(){
-  const nodes = document.querySelectorAll('[data-band-record]');
-  for (let i = 0; i < nodes.length; i++){
-    const s = bandRecordSentence(nodes[i].getAttribute('data-band-record'));
-    if (s) nodes[i].textContent = s;   // no record -> leave the built-in fallback
-  }
-}
-function refreshBandRecordsWhenReady(){
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', refreshBandRecords, {once:true});
-  } else {
-    refreshBandRecords();
-  }
+  document.querySelectorAll('[data-band-record]').forEach(function(el){
+    const s = bandRecordSentence(el.getAttribute('data-band-record'));
+    if (s) el.textContent = s;   // no record -> leave the built-in fallback
+  });
 }
 
 /* ============ as-of stamps: data vintage vs. computation date ============ */
@@ -1005,13 +1012,16 @@ function stampAsOf(T){
     tr.insertAdjacentHTML('afterbegin', asOfStampHTML(A.tech, 'read'));
   }
 }
-function stampAsOfWhenReady(T){
+/* Run now, or once the DOM is ready. Was written out longhand at three separate
+   call sites in this file. */
+function whenReady(fn){
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){ stampAsOf(T); }, {once:true});
+    document.addEventListener('DOMContentLoaded', fn, {once:true});
   } else {
-    stampAsOf(T);
+    fn();
   }
 }
+function stampAsOfWhenReady(T){ whenReady(function(){ stampAsOf(T); }); }
 
 /* ============ fair-value sensitivity (Lens 2) ============ */
 function renderFairLevers(elId, T, levers){

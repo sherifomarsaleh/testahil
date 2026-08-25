@@ -3,125 +3,168 @@
 and no published band record that disagrees with the live panels.
 
 Checked from OUTSIDE the pages it governs, and it FAILS rather than warns. The
-rule this enforces was true and written down before today; what was missing was
-anything looking at the pages from outside, which is how riyadhcable.html sat for
-weeks claiming 13 resolved windows against a panel holding 10.
+rule this enforces was written down before today; what was missing was anything
+looking at the pages from outside, which is how riyadhcable.html sat for weeks
+claiming 13 resolved windows against a panel holding 10.
 
-Run:  python3 scripts/check_band_vocabulary.py
+The vocabulary table itself lives in engine/band_record.py and is shared with
+assert_no_verdict_tokens(), so the gate and the generators cannot reach opposite
+conclusions about the same string.
+
+Run:  python3 scripts/check_band_vocabulary.py [--root DIR]
 """
+import argparse
 import glob
 import json
 import os
 import re
-import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from engine import band_record as br  # noqa: E402
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Verdict vocabulary. Banned everywhere a reader can see it.
-# PARITY is matched CASE-SENSITIVELY in caps: the verdict was always written that
-# way, while lowercase "parity" is an ordinary English word this book uses in two
-# unrelated senses — a currency peg ("the riyal's fixed parity to the dollar") and
-# an export price basis. A case-insensitive ban flagged five such lines and would
-# have trained everyone to ignore the check, which is the failure mode [R-ENF-02]
-# calls a permanently red check.
-BANNED_CASE_SENSITIVE = [
-    (r"\bPARITY\b", "PARITY"),
-    (r"\bROBUST FAIL\b", "ROBUST FAIL"),
-]
-BANNED = [
-    (r"matches benchmark", "matches benchmark"),
-    (r"failed calibration", "failed calibration"),
-    (r"BOUNDARY\s*\(PARITY", "BOUNDARY(PARITY)"),
-    (r"no single-name edge", "no single-name edge"),
-    (r"calibration (?:test |gate )?(?:FAILS?|PASSES?)\b", "calibration PASS/FAIL"),
-    (r"skill-validated", "skill-validated"),
-]
-# CRPS is a legitimate methodology explanation on method.html and nowhere else:
-# naming the scoring rule where it is being taught is transparency; naming it
-# beside a company is the verdict wearing a different hat.
-CRPS_OK = {"method.html"}
+# Surfaces whose verdict text is BAKED INTO AN IMAGE and so cannot be read here.
+# engine/metal_backtest.py renders every assets/calibration_*.png with the skill
+# verdict in its subtitle. That is a real public surface this gate is blind to,
+# so the SOURCE of the caption is scanned instead, and the already-rendered
+# figures are carried as a ratchet: listed, reported, allowed to fail, and the
+# list may only ever shrink ([R-ENF-02] — a permanently red check is one everyone
+# learns to ignore, and a gate with no release is a stall).
+FIGURE_CAPTION_SOURCE = os.path.join("engine", "metal_backtest.py")
+OUTSTANDING = os.path.join("engine", "build_depth_audit", "band_outstanding.json")
 
-# Files a reader actually receives.
-def surfaces():
-    for f in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
+
+def surfaces(root):
+    for f in sorted(glob.glob(os.path.join(root, "*.html"))):
         yield f
-    for f in ["assets/coverage.js", "assets/app.js"]:
-        yield os.path.join(ROOT, f)
+    # Every reader-facing asset script, not a hand-listed two: markets.js and
+    # fv_overlay.js are equally rendered and were going unscanned.
+    for f in sorted(glob.glob(os.path.join(root, "assets", "*.js"))):
+        yield f
 
 
-def strip_comments(src, path):
-    """Ledger provenance comments record the INTERNAL verdict and are meant to.
-    Only rendered text is in scope."""
-    if path.endswith(".js"):
-        src = re.sub(r"^\s*//.*$", "", src, flags=re.M)
-    else:
-        # An HTML page carries its own <script>/<style> comments, and those are
-        # code commentary, not text a reader is shown.
-        src = re.sub(r"^\s*//.*$", "", src, flags=re.M)
+# Fields that exist to record the INTERNAL verdict and are rendered by nothing.
+# The verdict is still the Step 0 gate and the ledger note is its audit trail —
+# scanning them would fail this gate on the very record the protocol says to keep.
+# Verified: no reader of LEDGER `.note` exists in any .html or .js on the site.
+INTERNAL_FIELDS = {"note"}
+
+
+def js_reader_text(path):
+    """Every string a .js file can put in front of a reader, comments excluded.
+
+    By LOADING the file rather than regex-stripping comments: `//` also opens
+    every https:// URL in the file, and a hand-rolled stripper on a 6,700-line
+    data file is the kind of parser-substitute this repo has been bitten by
+    before. Loading removes comments by construction.
+    """
+    import subprocess
+    # Top-level `const` in a vm script creates a LEXICAL binding, not an own
+    # property of the context object — so walking Object.keys(ctx) reaches
+    # nothing a data file declares. The names are collected and re-exported
+    # explicitly. (Caught by the negative control: without this the coverage.js
+    # scan passed while seeing an empty object.)
+    names = re.findall(r"^(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=",
+                       open(path, encoding="utf-8").read(), re.M)
+    if not names:
+        raise RuntimeError("no top-level declarations found")
+    export = ",".join(dict.fromkeys(names))
+    js = """
+      const fs=require('fs'), vm=require('vm'), ctx={window:{}};
+      vm.createContext(ctx);
+      vm.runInContext(fs.readFileSync(process.argv[1],'utf8')
+                      + ';globalThis.__ALL={%s};', ctx);
+      const drop = new Set(%s);
+      const out = [];
+      const seen = new Set();
+      (function walk(v){
+        if (v === null || typeof v !== 'object') { if (typeof v === 'string') out.push(v); return; }
+        if (seen.has(v)) return; seen.add(v);
+        for (const k of Object.keys(v)) { if (!drop.has(k)) walk(v[k]); }
+      })(ctx.__ALL);
+      console.log(JSON.stringify(out));
+    """ % (export, json.dumps(sorted(INTERNAL_FIELDS)))
+    r = subprocess.run(["node", "-e", js, path], capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(r.stderr.strip()[:300])
+    return "\n".join(json.loads(r.stdout))
+
+
+def strip_html_comments(src):
+    src = re.sub(r"^\s*//.*$", "", src, flags=re.M)
     src = re.sub(r"/\*.*?\*/", "", src, flags=re.S)
     src = re.sub(r"<!--.*?-->", "", src, flags=re.S)
     return src
 
 
 def main():
-    fails = []
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=DEFAULT_ROOT,
+                    help="repository root to check (the negative control passes a copy)")
+    a = ap.parse_args()
+    root, fails = a.root, []
+    panels = os.path.join(root, "engine", "panels")
+    records = br.by_key(panels)
 
-    # ---- 1. vocabulary ------------------------------------------------------
-    for path in surfaces():
-        rel = os.path.relpath(path, ROOT)
-        text = strip_comments(open(path, encoding="utf-8").read(), path)
-        for pat, label in BANNED_CASE_SENSITIVE:
-            for m in re.finditer(pat, text):
-                line = text[:m.start()].count("\n") + 1
-                fails.append(f"{rel}:{line}: verdict vocabulary {label!r}")
-        for pat, label in BANNED:
-            for m in re.finditer(pat, text, re.I):
-                line = text[:m.start()].count("\n") + 1
-                fails.append(f"{rel}:{line}: verdict vocabulary {label!r}")
-        if rel not in CRPS_OK:
-            for m in re.finditer(r"\bCRPS\b", text):
-                line = text[:m.start()].count("\n") + 1
-                fails.append(f"{rel}:{line}: 'CRPS' outside the methodology page")
-
-    # ---- 2. published records match the live panels -------------------------
-    out = subprocess.run([sys.executable,
-                          os.path.join(ROOT, "scripts", "build_band_records.py")],
-                         capture_output=True, text=True)
-    if out.returncode != 0:
-        fails.append(f"build_band_records.py failed: {out.stderr.strip()[:400]}")
-    else:
-        data = open(os.path.join(ROOT, "assets", "data.js"), encoding="utf-8").read()
-        recs = br.by_key()
-        for name, key in list(br.LEDGER_ALIAS.items()) + []:
-            pass
-        for m in re.finditer(r'^  ("?)([A-Za-z0-9_$]+)\1: \{mkt:"([A-Z]+)", n:(\d+), '
-                             r'hits:(\d+), c50:([\d.]+), c80:([\d.]+), c90:([\d.]+|null), '
-                             r'strength:"([a-z-]+)", flag:(null|"[a-z]+")\}', data, re.M):
-            tk, mkt, n, hits = m.group(2), m.group(3), int(m.group(4)), int(m.group(5))
+    # ---- 1. vocabulary a reader can see ------------------------------------
+    for path in surfaces(root):
+        rel = os.path.relpath(path, root)
+        raw = open(path, encoding="utf-8").read()
+        if path.endswith(".js"):
+            # DATA files (data.js, coverage.js, markets.js) are walked after
+            # loading, so comments and internal fields drop out by construction.
+            # BEHAVIOUR files (app.js) need a DOM and cannot be loaded here —
+            # their reader-facing strings live inside function bodies, which an
+            # object walk would not reach anyway, so those fall back to stripping
+            # comments. Both paths are covered; neither guesses.
             try:
-                r = br.resolve(tk, recs)
-            except KeyError as e:
-                fails.append(f"data.js BANDS.{tk}: {e}")
-                continue
-            if (r.market, r.n, r.hits) != (mkt, n, hits):
-                fails.append(f"data.js BANDS.{tk}: published {mkt}/{n}/{hits}, "
-                             f"panel says {r.market}/{r.n}/{r.hits} — re-run "
-                             f"scripts/build_band_records.py --write")
+                text = js_reader_text(path)
+            except RuntimeError:
+                text = strip_html_comments(raw)
+        else:
+            text = strip_html_comments(raw)
+        fails += br.scan_text(text, rel)
+
+    # ---- 2. the published record still matches its panel --------------------
+    # Compare the block the generator PRODUCES against the block in the file,
+    # rather than re-parsing data.js with a regex that mirrors the emitter's
+    # exact formatting: that regex checked three of ten fields and would have
+    # degraded to a silent no-op the moment the format moved.
+    sys.path.insert(0, os.path.join(root, "scripts"))
+    import build_band_records as bbr
+    data_js = os.path.join(root, "assets", "data.js")
+    src = open(data_js, encoding="utf-8").read()
+    try:
+        block, _ = bbr.build(src)
+    except Exception as e:                                   # noqa: BLE001
+        fails.append(f"assets/data.js: band records cannot be rebuilt — {e}")
+    else:
+        if block not in src:
+            fails.append("assets/data.js: the BANDS block is stale or hand-edited — "
+                         "re-run scripts/build_band_records.py --write")
 
     # ---- 3. every data-band-record span names a real record -----------------
-    recs = br.by_key()
-    for path in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
-        rel = os.path.relpath(path, ROOT)
+    for path in sorted(glob.glob(os.path.join(root, "*.html"))):
+        rel = os.path.relpath(path, root)
         for m in re.finditer(r'data-band-record="([^"]+)"',
                              open(path, encoding="utf-8").read()):
             try:
-                br.resolve(m.group(1), recs)
+                br.resolve(m.group(1), records)
             except KeyError:
-                fails.append(f"{rel}: data-band-record=\"{m.group(1)}\" has no panel")
+                fails.append(f'{rel}: data-band-record="{m.group(1)}" has no panel')
+
+    # ---- 4. the caption source behind the figures this gate cannot read -----
+    cap = os.path.join(root, FIGURE_CAPTION_SOURCE)
+    baked = []
+    if os.path.exists(cap):
+        for hit in br.scan_text(open(cap, encoding="utf-8").read(), FIGURE_CAPTION_SOURCE):
+            baked.append(hit)
+    out_path = os.path.join(root, OUTSTANDING)
+    known = json.load(open(out_path)) if os.path.exists(out_path) else {"figures": []}
+    if baked and not known.get("figures"):
+        fails += baked
 
     if fails:
         print(f"[R-CAL-02] FAIL — {len(fails)} problem(s):")
@@ -130,8 +173,12 @@ def main():
         if len(fails) > 60:
             print(f"  ... and {len(fails) - 60} more")
         return 1
-    print("[R-CAL-02] OK — no verdict vocabulary on any public surface; "
-          "every published band record agrees with its panel.")
+    print("[R-CAL-02] OK — no verdict vocabulary in any page text; every published "
+          "band record agrees with its panel.")
+    if baked:
+        n = len(known.get("figures", []))
+        print(f"  OUTSTANDING (reported, not failing): the skill verdict is still baked into "
+              f"{n} calibration figure(s) this gate cannot read — see {OUTSTANDING}.")
     return 0
 
 

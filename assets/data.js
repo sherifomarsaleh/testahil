@@ -3255,15 +3255,15 @@ const BANDS = {
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
-  AE: {names:28, n:910, c90:0.9044},
-  EG: {names:37, n:1794, c90:0.9281},
-  IN: {names:3, n:172, c90:0.8779},
-  KR: {names:3, n:125, c90:0.8800},
-  QA: {names:3, n:174, c90:0.9310},
-  SA: {names:13, n:554, c90:0.8700},
-  US: {names:3, n:174, c90:0.8563},
-  XAU: {names:2, n:120, c90:0.9333},
-  XPT: {names:1, n:58, c90:0.9483},
+  AE: {names:28, n:910, c90:0.9044, label:"UAE"},
+  EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
+  IN: {names:3, n:172, c90:0.8779, label:"Indian"},
+  KR: {names:3, n:125, c90:0.8800, label:"Korean"},
+  QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
+  SA: {names:13, n:554, c90:0.8700, label:"Saudi"},
+  US: {names:3, n:174, c90:0.8563, label:"US"},
+  XAU: {names:2, n:120, c90:0.9333, label:"precious-metals"},
+  XPT: {names:1, n:58, c90:0.9483, label:"precious-metals"},
 };
 // ---- end BANDS ----
 

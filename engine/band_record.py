@@ -64,12 +64,33 @@ coverage number is volatile -- it moves on every grade.
 """
 from __future__ import annotations
 
-import glob
 import os
-from dataclasses import dataclass, asdict
+import re
+import sys
+from dataclasses import dataclass
 from typing import Optional, List
 
-PANEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "panels")
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_ROOT = os.path.dirname(_HERE)
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)                      # panel_refresh imports flat
+from panel_refresh import PANELS_DIR, panel_path, existing_panel_names  # noqa: E402,F401
+
+PANEL_DIR = PANELS_DIR                             # panel layout has ONE owner
+
+
+def _registry():
+    """scripts/build_market_registry.py — the repo's existing market/name registry.
+
+    Loaded by path because scripts/ is not a package. Everything below that could
+    be a second copy of a mapping it already owns is derived from it instead.
+    """
+    import importlib.util
+    path = os.path.join(_ROOT, "scripts", "build_market_registry.py")
+    spec = importlib.util.spec_from_file_location("_bmr", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 # --- derived thresholds (see module docstring for the derivation) -------------
 STRENGTH_LONG_MIN = 40    # >=90% power to catch a cone running 15pp narrow
@@ -77,16 +98,46 @@ STRENGTH_SHORT_MIN = 22   # below this the name's own coverage is unreadable
 TARGET_COVERAGE = 0.90    # the band the record is stated against
 FLAG_ALPHA = 0.05         # two-sided binomial level for narrow/wide
 
-STRENGTH_LABEL = {
-    "long":        "long record",
-    "short":       "short record",
-    "market-only": "market record only",
-}
-FLAG_LABEL = {
-    "narrow": "bands ran narrow",
-    "wide":   "bands ran wide",
-    None:     "",
-}
+FLAG_LABEL = {"narrow": "bands ran narrow", "wide": "bands ran wide"}
+
+# Reader-facing market names come from the registry that already generates them
+# into assets/markets.js, so a panel has ONE public name. Two generator scripts
+# briefly carried their own dicts here and had already disagreed on AE
+# ("Abu Dhabi and Dubai" vs "UAE") — the two-sources-of-truth class this whole
+# change exists to close, reintroduced one layer up.
+MARKET_LABEL = {m: meta["short"] for m, meta in _registry().MARKET_META}
+MARKET_HEADING = {m: meta["label"] for m, meta in _registry().MARKET_META}
+# Panels are per market code; the registry groups XAU and XPT as one book.
+MARKET_GROUP = {m: meta["group"] for m, meta in _registry().MARKET_META}
+
+
+def pct(v):
+    """The ONE rounding rule for a published coverage figure.
+
+    Python's format uses banker's rounding and JS Math.round does not: at 37/40
+    the page's static text would print 92% and the same page's rendered text 93%.
+    Both sides now round half-up. assets/app.js carries the transliteration.
+    """
+    return f"{int(v * 100 + 0.5)}%"
+
+
+# --- verdict vocabulary: ONE table, read by the gate AND by the assert below --
+# Case matters. The verdict was always written in caps, while lowercase "parity"
+# is an ordinary word in this book (a currency peg, an export price basis) — a
+# case-insensitive ban flagged five such lines, and a check that cries wolf is
+# one everyone learns to ignore.
+BANNED_CASE_SENSITIVE = [(r"\bPARITY\b", "PARITY"), (r"\bROBUST FAIL\b", "ROBUST FAIL")]
+BANNED = [
+    (r"BOUNDARY\s*\(PARITY", "BOUNDARY(PARITY)"),
+    (r"matches benchmark", "matches benchmark"),
+    (r"failed calibration", "failed calibration"),
+    (r"no single-name edge", "no single-name edge"),
+    (r"calibration (?:test |gate )?(?:FAILS?|PASSES?)\b", "calibration PASS/FAIL"),
+    (r"skill-validated", "skill-validated"),
+]
+# CRPS is a legitimate methodology explanation where the scoring rule is taught,
+# and nowhere else: naming it beside a company is the verdict wearing a hat.
+CRPS_ALLOWED_IN = {"method.html"}
 
 
 @dataclass
@@ -99,59 +150,71 @@ class BandRecord:
     cov50: Optional[float]
     cov80: Optional[float]
     cov90: Optional[float]
-    ci_lo: Optional[float]      # 90% interval on cov90
-    ci_hi: Optional[float]
     strength: str               # 'long' | 'short' | 'market-only'
     flag: Optional[str]         # 'narrow' | 'wide' | None
-    p_value: Optional[float]
+    p_value: Optional[float]    # why the flag fired (or did not)
 
-    # -- the public sentences; nothing else may phrase these ------------------
-    def sentence(self) -> str:
-        """The band record, as a reader sees it."""
+    # -- THE public sentences. Nothing else may phrase these ------------------
+    # Every surface renders through here: both generators, and assets/app.js as a
+    # literal transliteration for the render-time refresh. Six independent
+    # phrasings existed briefly and had already drifted — one page's static text
+    # said "the Abu Dhabi and Dubai panel", the same page said "the UAE panel" on
+    # the coverage index, and app.js overwrote both with "that panel" at render
+    # time. Three public names for one panel, in a change written to stop exactly
+    # that.
+
+    def record_clause(self, inner_bands=True, arabic=False, one_sentence=False):
+        """The volatile sentence — the one app.js also rewrites at render time.
+
+        one_sentence=True keeps the whole clause to a SINGLE sentence, for
+        surfaces that splice by sentence (the coverage index). A two-sentence
+        clause there left an orphaned tail on every regeneration, which then
+        duplicated on the next run.
+        """
         if self.strength == "market-only":
-            return (f"{self.instrument} has {self.n} resolved three-month "
-                    f"forecast{'s' if self.n != 1 else ''} of its own — too few to read on "
-                    f"their own, so the bands are judged on the whole {self.market} panel "
-                    f"instead, and this name's record is still accumulating.")
-        pct = f"{self.cov90 * 100:.0f}%"
-        s = (f"Over {self.n} resolved three-month forecasts, the price finished inside "
-             f"the 90% band {pct} of the time.")
+            m = market_record(self.market)
+            lab = MARKET_LABEL.get(self.market, self.market)
+            if arabic:
+                return (f"لم يُغلق سوى {self.n} توقعاً ربع سنوياً خاصاً بهذا السهم — أقل من أن "
+                        f"يُحكم به عليه وحده، لذا فالنطاقات هي نطاقات السوق: {m['n']} توقعاً عبر "
+                        f"{m['names']} اسماً أنهت داخل نطاق الـ90% بنسبة {pct(m['cov90'])}.")
+            head = (f"Only {self.n} three-month forecast{'s' if self.n != 1 else ''} of its own "
+                    f"ha{'ve' if self.n != 1 else 's'} resolved so far — too few to say anything "
+                    f"reliable about this name specifically, so no name-level claim is made")
+            pool = (f"the market&rsquo;s: across the {m['names']} names in the {lab} panel, "
+                    f"{m['n']} resolved forecasts finished inside their 90% bands "
+                    f"{pct(m['cov90'])} of the time.")
+            return (f"{head}, and the bands are {pool}" if one_sentence
+                    else f"{head}. The bands are {pool}")
+        if arabic:
+            return (f"عبر {self.n} توقعاً ربع سنوياً مُنجزاً، أنهى السعر داخل نطاق الـ90% بنسبة "
+                    f"{pct(self.cov90)} من المرات، مقابل الـ90% المستهدفة.")
+        s = (f"Over {self.n} resolved three-month forecasts, the price finished inside the 90% "
+             f"band {pct(self.cov90)} of the time, against the 90% that band aims at")
+        s += (f" — and inside the 80% and 50% bands {pct(self.cov80)} and {pct(self.cov50)} "
+              f"of the time." if inner_bands else ".")
+        join = (" — ", "") if one_sentence else (" That is ", "That is ")
         if self.flag == "narrow":
-            s += (" That is below the 90% these bands aim at: they have been running "
-                  "narrower than advertised, so treat them as a floor on how far price "
-                  "can travel, not a ceiling.")
+            s = s[:-1] + join[0] + ("short of what the bands promise: they have been running "
+                 "narrower than the evidence supports, so read the range as a floor on how far "
+                 "price can travel, not a ceiling.")
         elif self.flag == "wide":
-            s += (" That is above the 90% these bands aim at: they have been running "
-                  "wider than they need to, so the real spread of outcomes has been "
-                  "tighter than the cone shows.")
-        else:
-            s += " That is what the bands aim at."
-        if self.strength == "short":
-            s += (f" The record is short — {self.n} windows is enough to read but not "
-                  f"enough to be precise about.")
+            s = s[:-1] + join[0] + ("more than the bands promise: the real spread of outcomes "
+                 "has been tighter than the cone shows — the safer direction to be wrong in, "
+                 "but still a miss.")
         return s
 
-    def chip(self) -> str:
+    def chip(self):
         """The one-line label for a table cell or a page chip."""
         if self.strength == "market-only":
             return f"market record only ({self.n} own window{'s' if self.n != 1 else ''})"
-        base = f"{self.cov90 * 100:.0f}% inside the 90% band, {self.n} windows"
+        base = f"{pct(self.cov90)} inside the 90% band, {self.n} windows"
         return f"{base} — {FLAG_LABEL[self.flag]}" if self.flag else base
-
-    def to_dict(self) -> dict:
-        return asdict(self)
 
 
 def _binom_test(k: int, n: int, p: float) -> float:
     from scipy import stats
     return float(stats.binomtest(k, n, p).pvalue)
-
-
-def _jeffreys_ci(k: int, n: int, level: float = 0.90):
-    from scipy import stats
-    lo, hi = stats.beta.ppf([(1 - level) / 2, 1 - (1 - level) / 2],
-                            k + 0.5, n - k + 0.5)
-    return float(lo), float(hi)
 
 
 def strength_for(n: int) -> str:
@@ -169,7 +232,9 @@ def from_panel(path: str) -> BandRecord:
     if not base.endswith("_3m.csv"):
         raise ValueError(f"band record reads the 3-month panel, got {base}")
     market, instrument = base[:-7].split("_", 1)
-    d = pd.read_csv(path)
+    # Three columns of twenty-five. Coverage is the mean of the in-band flags,
+    # the same definition mc_v3.pooled_scores uses (asserted in __main__).
+    d = pd.read_csv(path, usecols=["in50", "in80", "in90"])
     n = len(d)
     if n == 0:
         raise ValueError(f"empty panel: {base}")
@@ -179,15 +244,14 @@ def from_panel(path: str) -> BandRecord:
         # The name's own number is not readable; do not compute a flag from it.
         return BandRecord(instrument, market, n, hits,
                           float(d["in50"].mean()), float(d["in80"].mean()),
-                          float(d["in90"].mean()), None, None, strength, None, None)
+                          float(d["in90"].mean()), strength, None, None)
     p = _binom_test(hits, n, TARGET_COVERAGE)
-    lo, hi = _jeffreys_ci(hits, n)
     flag = None
     if p < FLAG_ALPHA:
         flag = "narrow" if hits / n < TARGET_COVERAGE else "wide"
     return BandRecord(instrument, market, n, hits,
                       float(d["in50"].mean()), float(d["in80"].mean()),
-                      float(d["in90"].mean()), lo, hi, strength, flag, p)
+                      float(d["in90"].mean()), strength, flag, p)
 
 
 # Ledger instrument names are not panel filenames, and the difference is not
@@ -197,27 +261,58 @@ def from_panel(path: str) -> BandRecord:
 # coverage. Every record is therefore keyed (market, instrument), and every
 # ledger name that is not identical to its panel name is resolved HERE,
 # explicitly, and asserted -- never inferred from a filename.
-LEDGER_ALIAS = {
-    "2POINTZERO": ("AE", "TWOPOINTZERO"),
-    "ADIB":       ("EG", "ADIB"),
-    "ADIBUAE":    ("AE", "ADIB"),
-    "ALRAJHI":    ("SA", "RAJHI"),
-    "Gold":       ("XAU", "GOLD"),
-    "Silver":     ("XAU", "SILVER"),
-    "Platinum":   ("XPT", "PLATINUM"),
-    "Kakao":      ("KR", "KAKAO"),
-    "Samsung":    ("KR", "SAMSUNG"),
-}
+def _ledger_alias():
+    """Ledger instrument name -> (market, panel name).
+
+    DERIVED from scripts/build_market_registry.ALIAS, which already owns this
+    mapping in the other direction ("AE/TWOPOINTZERO" -> "2POINTZERO") and is
+    asserted bijective there against both LEDGER and TICKERS. It was briefly
+    hand-copied here, which meant a new covered name with a spelling mismatch
+    needed two edits in two key shapes — miss one and a surface mis-keys silently.
+
+    The mapping is not cosmetic: ADIB is a DIFFERENT BANK per market — ledger
+    "ADIB" is the Egyptian one and "ADIBUAE" the UAE one, against panels EG_ADIB
+    and AE_ADIB — so a bare-name key would hand one bank the other's coverage.
+    """
+    out = {}
+    for key, ledger_name in _registry().ALIAS.items():
+        market, panel = key.split("/", 1)
+        out[ledger_name] = (market, panel)
+    # The inverse of an alias can leave the un-aliased twin ambiguous: with
+    # AE/ADIB claimed by ADIBUAE, plain "ADIB" still matches two panels, so it
+    # needs the one entry the registry's direction cannot express.
+    for ledger_name, (market, panel) in list(out.items()):
+        if panel not in out and sum(1 for k in _registry().ALIAS if k.endswith("/" + panel)) == 1:
+            twins = [m for m in MARKET_LABEL if os.path.exists(panel_path(m, panel, "3m"))]
+            if len(twins) == 2:
+                other = [m for m in twins if m != market][0]
+                out.setdefault(panel, (other, panel))
+    return out
+
+
+LEDGER_ALIAS = _ledger_alias()
+
+
+_CACHE = {}
 
 
 def all_records(panel_dir: str = PANEL_DIR) -> List[BandRecord]:
-    out = []
-    for f in sorted(glob.glob(os.path.join(panel_dir, "*_3m.csv"))):
-        try:
-            out.append(from_panel(f))
-        except ValueError:
-            continue
-    return out
+    """Every name's record. Memoized per panel_dir: a full sweep parses 93 CSVs,
+    and the callers together were doing it 25 times per CI run."""
+    if panel_dir not in _CACHE:
+        out = []
+        for f in sorted(existing_panel_names_paths(panel_dir)):
+            try:
+                out.append(from_panel(f))
+            except ValueError:
+                continue
+        _CACHE[panel_dir] = out
+    return _CACHE[panel_dir]
+
+
+def existing_panel_names_paths(panel_dir: str = PANEL_DIR) -> List[str]:
+    import glob
+    return sorted(glob.glob(os.path.join(panel_dir, "*_3m.csv")))
 
 
 def by_key(panel_dir: str = PANEL_DIR) -> dict:
@@ -247,15 +342,34 @@ def resolve(ledger_name: str, records: dict) -> BandRecord:
 
 
 def market_record(market: str, panel_dir: str = PANEL_DIR) -> dict:
-    """The pooled fallback a market-only name is judged on. Computed, never quoted."""
-    import pandas as pd
-    n = hits = names = 0
-    for f in sorted(glob.glob(os.path.join(panel_dir, f"{market}_*_3m.csv"))):
-        d = pd.read_csv(f)
-        n += len(d); hits += int(d["in90"].sum()); names += 1
-    if not n:
+    """The pooled fallback a market-only name is judged on.
+
+    Summed from the records already in memory rather than re-reading the market's
+    panels: it was re-globbing and re-parsing on every call, and the generators
+    call it once per market-only name — 458 redundant panel reads in one pass,
+    growing with coverage.
+    """
+    sub = [r for r in all_records(panel_dir) if r.market == market]
+    if not sub:
         raise ValueError(f"no panels for market {market}")
-    return {"market": market, "names": names, "n": n, "hits": hits, "cov90": hits / n}
+    n = sum(r.n for r in sub)
+    hits = sum(r.hits for r in sub)
+    return {"market": market, "names": len(sub), "n": n, "hits": hits, "cov90": hits / n}
+
+
+def scan_text(text: str, where: str = "") -> List[str]:
+    """Verdict vocabulary in `text`, as report lines. The gate and the generators
+    both call this, so they cannot reach opposite conclusions on one string."""
+    hits = []
+    checks = [(p, lab, 0) for p, lab in BANNED_CASE_SENSITIVE]
+    checks += [(p, lab, re.I) for p, lab in BANNED]
+    if where not in CRPS_ALLOWED_IN:
+        checks.append((r"\bCRPS\b", "CRPS outside the methodology page", 0))
+    for pat, label, flags in checks:
+        for m in re.finditer(pat, text, flags):
+            line = text[:m.start()].count("\n") + 1
+            hits.append(f"{where}:{line}: {label}" if where else f"{label}")
+    return hits
 
 
 def assert_no_verdict_tokens(text: str, where: str = "") -> None:
@@ -264,22 +378,31 @@ def assert_no_verdict_tokens(text: str, where: str = "") -> None:
     Fails rather than warns, per [R-ENF-01]: a rule that can be checked is
     checked from outside the thing it governs.
     """
-    import re
-    banned = [
-        (r"\bPARITY\b", "PARITY"),
-        (r"\bmatches benchmark\b", "matches benchmark"),
-        (r"failed calibration", "failed calibration"),
-        (r"\bCRPS\b", "CRPS"),
-        (r"calibration (?:test |gate )?(?:FAIL|PASS)\b", "calibration PASS/FAIL"),
-    ]
-    hits = [lab for pat, lab in banned if re.search(pat, text, re.I)]
+    hits = scan_text(text, where)
     if hits:
-        raise AssertionError(
-            f"[R-CAL-02] skill-verdict vocabulary on a public surface"
-            f"{' (' + where + ')' if where else ''}: {', '.join(sorted(set(hits)))}")
+        raise AssertionError(f"[R-CAL-02] skill-verdict vocabulary: {'; '.join(hits)}")
+
+
+def _selfcheck():
+    """Coverage here must equal the engine's own definition of panel coverage.
+
+    mc_v3.pooled_scores() is what the calibration gate reports cov50/80/90 from.
+    This module reads three columns directly instead (cheaper, and it needs no
+    benchmark columns), so the two definitions are pinned together here rather
+    than left to drift apart silently.
+    """
+    import pandas as pd
+    import mc_v3
+    path = existing_panel_names_paths()[0]
+    got = from_panel(path)
+    ref, _ = mc_v3.pooled_scores([pd.read_csv(path)])
+    for k, mine in (("cov50", got.cov50), ("cov80", got.cov80), ("cov90", got.cov90)):
+        assert abs(ref[k] - mine) < 1e-12, f"{k}: {mine} vs pooled_scores {ref[k]}"
+    return os.path.basename(path)
 
 
 if __name__ == "__main__":
+    print(f"coverage definition agrees with mc_v3.pooled_scores on {_selfcheck()}")
     recs = all_records()
     by = {}
     for r in recs:

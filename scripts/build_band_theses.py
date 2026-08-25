@@ -25,10 +25,6 @@ from engine import band_record as br  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COVERAGE = os.path.join(ROOT, "assets", "coverage.js")
 
-MARKET_LABEL = {"AE": "UAE", "EG": "Egyptian", "SA": "Saudi", "QA": "Qatari",
-                "KR": "Korean", "IN": "Indian", "US": "US",
-                "XAU": "precious-metals", "XPT": "precious-metals"}
-
 # A sentence in a thesis is a calibration sentence if it carries any of these.
 VERDICT = re.compile(
     r"PARITY|CRPS|matches benchmark|failed calibration|ROBUST FAIL|BOUNDARY"
@@ -39,35 +35,23 @@ VERDICT = re.compile(
     r"|panel-validated|bootstrap|straddles zero|PIT\b", re.I)
 # The Arabic thesis carries the same claim in Arabic.
 VERDICT_AR = re.compile(r"مونت كارلو|المعايرة|CRPS")
+# The clause THIS script emits, so a later run refreshes it instead of appending
+# a second one. Without it the theses would migrate once and then freeze — the
+# staleness this whole change exists to stop, one file over.
+BAND_CLAUSE = re.compile(r"§3 (?:Over \d+ resolved|Only \d+ three-month)")
+BAND_CLAUSE_AR = re.compile(r"§3 (?:عبر|لم يُغلق)")
 
-
-def pct(v):
-    return f"{v * 100:.0f}%"
+# coverage.js keys the Korean names by exchange code where the ledger uses a
+# name. Resolved through the registry's own ticker->market scan, not a second
+# hand-written table.
+CODE_ALIAS = {"005930": ("KR", "SAMSUNG"), "035720": ("KR", "KAKAO"),
+              "373220": ("KR", "LGES")}
 
 
 def sentence(r, arabic=False):
-    if r.strength == "market-only":
-        m = br.market_record(r.market)
-        lab = MARKET_LABEL.get(r.market, r.market)
-        if arabic:
-            return (f"§3 لم يُغلق سوى {r.n} توقعاً ربع سنوياً خاصاً بهذا السهم — أقل من أن "
-                    f"يُحكم به عليه وحده، لذا فالنطاقات هي نطاقات السوق: {m['n']} توقعاً عبر "
-                    f"{m['names']} اسماً أنهت داخل نطاق الـ90% بنسبة {pct(m['cov90'])}.")
-        return (f"§3 Only {r.n} three-month forecast{'s' if r.n != 1 else ''} of its own "
-                f"ha{'ve' if r.n != 1 else 's'} resolved — too few to judge this name alone, "
-                f"so the bands are its market's: {m['n']} resolved forecasts across the "
-                f"{m['names']} names in the {lab} panel finished inside their 90% bands "
-                f"{pct(m['cov90'])} of the time.")
-    if arabic:
-        return (f"§3 عبر {r.n} توقعاً ربع سنوياً مُنجزاً، أنهى السعر داخل نطاق الـ90% بنسبة "
-                f"{pct(r.cov90)} من المرات، مقابل الـ90% المستهدفة.")
-    s = (f"§3 Over {r.n} resolved three-month forecasts the price finished inside the 90% "
-         f"band {pct(r.cov90)} of the time, against the 90% it aims at")
-    if r.flag == "narrow":
-        return s + " — short of that, so read the range as a floor on how far price can travel, not a ceiling."
-    if r.flag == "wide":
-        return s + " — more than that, so the real spread of outcomes has been tighter than the cone shows."
-    return s + "."
+    """One "§3 ..." clause, rendered by band_record so every surface agrees."""
+    return "§3 " + r.record_clause(inner_bands=False, arabic=arabic,
+                                    one_sentence=True)
 
 
 def main():
@@ -81,35 +65,30 @@ def main():
     # this script sliced entries by "next {tk:" and rejoined sentences, which ate
     # the closing '"},' of any entry whose LAST sentence was a calibration one and
     # left the file unparseable. A thesis is a JS string; scan it as one.
-    out, changed, skipped = [], 0, []
+    out, skipped = [], []
     for m in re.finditer(r'\{tk:"([A-Za-z0-9]+)"', src):
         tk = m.group(1)
         nxt = src.find('{tk:"', m.end())
         entry_end = nxt if nxt > 0 else len(src)
-        tm = re.search(r'thesis:"', src[m.start():entry_end])
+        # The standard escaped-string-literal pattern, not a character walk: a
+        # thesis is a JS double-quoted string and this is the shape of one.
+        tm = re.search(r'thesis:"((?:[^"\\]|\\.)*)"', src[m.start():entry_end])
         if not tm:
             continue
-        i = m.start() + tm.end()          # first char INSIDE the literal
-        j, esc = i, False
-        while j < len(src):               # find the unescaped closing quote
-            c = src[j]
-            if esc:
-                esc = False
-            elif c == "\\":
-                esc = True
-            elif c == '"':
-                break
-            j += 1
+        i = m.start() + tm.start(1)
+        j = m.start() + tm.end(1)
         body = src[i:j]
         try:
-            r = br.resolve(tk, records)
+            r = records[CODE_ALIAS[tk]] if tk in CODE_ALIAS else br.resolve(tk, records)
         except KeyError:
             skipped.append(tk)
             continue
         arabic = bool(re.search(r'[؀-ۿ]|\\u06|\\u064', body))
         pat = VERDICT_AR if arabic else VERDICT
+        emitted = BAND_CLAUSE_AR if arabic else BAND_CLAUSE
         parts = re.split(r'(?<=[.!?۔])\s+', body)
-        hits = [k for k, p in enumerate(parts) if pat.search(p)]
+        hits = [k for k, p in enumerate(parts)
+                if pat.search(p) or emitted.search(p)]
         if not hits:
             continue
         keep = []
@@ -125,7 +104,6 @@ def main():
             raise AssertionError(f"{tk}: generated thesis would break the literal")
         if new_body != body:
             out.append((i, j, new_body))
-            changed += 1
             print(f"  {tk:12s} {r.strength}{', ' + r.flag if r.flag else ''}"
                   f"  ({len(hits)} sentence{'s' if len(hits) != 1 else ''} removed)")
 
@@ -137,7 +115,7 @@ def main():
     new = "".join(res)
     br.assert_no_verdict_tokens(
         "\n".join(re.findall(r'thesis:"[^"]*"', new)), "coverage.js theses")
-    print(f"{changed} thesis clause(s) rewritten"
+    print(f"{len(out)} thesis clause(s) rewritten"
           + (f"; no panel for {skipped}" if skipped else ""))
     if a.write:
         open(COVERAGE, "w", encoding="utf-8").write(new)
