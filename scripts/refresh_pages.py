@@ -1,0 +1,436 @@
+#!/usr/bin/env python3
+"""refresh_pages.py — bring EVERY published page back onto the current library.
+
+WHY THIS EXISTS
+---------------
+Posting an OHLC file already fires `testahil-calibration.yml`, which refits that
+stock's whole market and commits. Measured on 25-Aug-2026, that workflow writes
+ONLY under `engine/` — `market_profiles.py`, `fitted_configs.json`, the panels,
+`PENDING_REVIEW`. It never touches `assets/data.js`. So an upload updated the
+MODEL and left every price a visitor sees exactly where it was.
+
+The site still deployed: `deploy-pages.yml` fires on any push to main, and the
+`page-integrity` job that DOES catch this ("technical read is on X but the
+cleaned library now ends Y") is deliberately non-blocking. Net effect — upload a
+CSV, the calibration commits, that commit deploys, the pages show last month's
+prices, and a red X sits in the Actions tab saying so.
+
+Every per-name tool needed to fix that already existed. What did not exist was
+the thing that decides WHICH names need it and runs them in the right order with
+the gates attached. That is all this is: an orchestrator over
+`refresh_cone_one` -> `apply_technicals` -> `ta_chart` -> the overlay gate ->
+`check_data_freshness`. No new cone mathematics, no new technical construction.
+
+WHAT IT WILL NOT DO
+-------------------
+* It never strikes a LEDGER row. Ledger strikes belong to the 1-month maturity
+  metronome (Roll-Forward & Grading Protocol STEP 0); a mid-cycle data arrival
+  refreshes the displayed cone and the technical read and nothing else.
+  `refresh_cone_one` asserts this per name; this module asserts it again across
+  the whole pass, because a per-name check cannot see a row appearing elsewhere.
+* It never touches `fair{}`, the slider's factor-stack constants, or `files`.
+  Fair value runs on its own clock and moves only in a study refresh.
+* It REFUSES a name whose dividend yield it cannot source rather than defaulting
+  it to zero. See `recover_q()` — this is the one input that would silently move
+  a published cone, and a bulk tool guessing it 90 times is precisely the kind of
+  quiet wrongness the rest of this repo is built to prevent.
+* It does not refresh METALS cones. `refresh_cone_one` is bounded to the TICKERS
+  object by construction (metals carry a different, t252 twelve-month shape on
+  their own annual clock). Metals still get their technical read and chart from
+  `apply_technicals`/`ta_chart` below, and are reported as cone-skipped rather
+  than passed over in silence.
+
+Run:  python3 scripts/refresh_pages.py                 # plan only, writes nothing
+      python3 scripts/refresh_pages.py --write         # apply, with every gate
+      python3 scripts/refresh_pages.py --only COMI ABUK
+      python3 scripts/refresh_pages.py --write --q TSLA=0.0 --q NVDA=0.0003
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+from datetime import date
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+ENGINE = os.path.join(ROOT, 'engine')
+DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+sys.path.insert(0, ENGINE)
+
+import technicals as TA                                          # noqa: E402
+from apply_technicals import (EXCHANGE_MARKET, SERIES_OVERRIDE,  # noqa: E402
+                              METAL_MARKET)
+import refresh_cone_one                                          # noqa: E402
+from market_profiles import PROFILES                              # noqa: E402
+
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+# ------------------------------------------------------------------ data.js IO
+_NODE_READ = (
+    "const fs=require('fs'),vm=require('vm');const s={};vm.createContext(s);"
+    "vm.runInContext(fs.readFileSync(process.argv[1],'utf8')"
+    "+';globalThis.__T=TICKERS;globalThis.__L=LEDGER;"
+    "globalThis.__M=(typeof METALS!==\"undefined\")?METALS:{};',s);"
+    "process.stdout.write(JSON.stringify({t:s.__T,l:s.__L,m:s.__M}));"
+)
+
+
+def read_data_js() -> dict:
+    """Load data.js by EVALUATING it, never by regex.
+
+    data.js is JavaScript with comments; and per the standing rule a string
+    replacement that asserts its old text existed still cannot see whether the
+    surrounding structure survived. Loading it in node and asserting on the
+    parsed objects is the only check that can.
+    """
+    out = subprocess.run(['node', '-e', _NODE_READ, DATA_JS],
+                         capture_output=True, text=True)
+    if out.returncode != 0:
+        raise SystemExit(f'data.js will not evaluate in node:\n{out.stderr}')
+    return json.loads(out.stdout)
+
+
+def counts(d: dict) -> tuple[int, int, int]:
+    return len(d['t']), len(d['m']), len(d['l'])
+
+
+# ------------------------------------------------------------------- discovery
+def market_series(key: str, entry: dict) -> tuple[str, str] | None:
+    """(market folder, library series name) for a site key, or None."""
+    if key in METAL_MARKET:
+        return METAL_MARKET[key]
+    code = str(entry.get('code') or '')
+    mkt = EXCHANGE_MARKET.get(code.split(':')[0])
+    if not mkt:
+        return None
+    return mkt, SERIES_OVERRIDE.get(key, key)
+
+
+def stale_names(data: dict, only: list[str] | None, today_iso: str) -> tuple[list, list]:
+    """Names whose CLEANED library now ends past their published cone anchor.
+
+    Compared against the CLEANED series — the same Step 0.0 gate the engine runs
+    — and not the raw tail. A raw comparison cries wolf: LCSW's raw file once
+    ended on a stale no-trade print the gate drops, so the raw last row and the
+    correct read date legitimately differ. This mirrors check 3 of
+    check_data_freshness.py rather than inventing a second definition of "stale".
+    """
+    due, notes = [], []
+    entries = list(data['t'].items()) + list(data['m'].items())
+    for key, e in sorted(entries):
+        if only and key not in only:
+            continue
+        ms = market_series(key, e)
+        if not ms:
+            notes.append((key, 'no market resolved from its code: prefix'))
+            continue
+        mkt, series = ms
+        published = (((e.get('asof') or {}).get('mc') or {}).get('data')) or ''
+        try:
+            clean_last = TA.compute(mkt, series, computed_on=today_iso)['data_date']
+        except Exception as exc:                                  # noqa: BLE001
+            notes.append((key, f'technicals.compute failed: {type(exc).__name__}: {exc}'))
+            continue
+        if not published:
+            notes.append((key, 'no asof.mc.data stamp — cannot tell if it is stale'))
+            continue
+        if clean_last > published:
+            due.append({'key': key, 'market': mkt, 'series': series,
+                        'published': published, 'library': clean_last,
+                        'is_metal': key in METAL_MARKET})
+    return due, notes
+
+
+# ---------------------------------------------------------------- dividend yield
+_Q = re.compile(r'q[_ ]?annual\s*[=:]\s*([0-9.]+)', re.I)
+
+
+def recover_q(data: dict, key: str) -> float | None:
+    """The dividend yield this name's own last published strike was built on.
+
+    The carry drift is ln(1+rf) - ln(1+q), so q is not decoration: getting it
+    wrong moves the centre of the published cone. The protocol permits defaulting
+    it to 0 WITH A FLAG when it is genuinely unsourceable — that is a considered,
+    per-name decision, and a bulk tool applying it silently to ninety names is not
+    the same act. So this returns None and the caller REFUSES the name.
+
+    Source of record is the newest LEDGER note that states one, which is where
+    strike_cohorts writes it. Measured 25-Aug-2026: recoverable for 85 of 93
+    instruments; the 8 without carry an EMPTY note (TMPV, INFY, RELIANCE, AAPL,
+    NVDA, TSLA, QGTS, IQCD) and are exactly the long-stale IN/US/QA names, so no
+    older row helps either. Pass --q KEY=VALUE to supply one deliberately.
+    """
+    alias = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'Platinum'}
+    want = {key, alias.get(key, key)}
+    rows = [r for r in data['l'] if r.get('instrument') in want]
+    rows.sort(key=lambda r: r.get('anchor_date') or '', reverse=True)
+    for r in rows:
+        m = _Q.search(r.get('note') or '')
+        if m:
+            return float(m.group(1))
+    return None
+
+
+# ------------------------------------------------------------------ fit drift
+_FIT = re.compile(r'([A-Z]{2,3})\s+live fit\s+nu=(\d+(?:\.\d+)?),\s*'
+                  r'width_cal=(\d+(?:\.\d+)?)', re.I)
+
+
+def fit_drift(data: dict) -> tuple[list, list]:
+    """Names whose published cone was struck on a (nu, width_cal) that has moved.
+
+    A SECOND axis of staleness, and the one nobody was looking at. A cone is
+    re-struck when PRICES arrive; the market fit is re-estimated whenever any
+    name in that market is posted. The two are not the same event, so a refit
+    silently leaves every already-published cone standing on the fit it was
+    struck under. Measured 25-Aug-2026 on the live site: 76 of 92 published cones
+    sat on a superseded fit and only 5 matched the live one.
+
+    This is NOT automatically a defect. The materiality gate exists exactly so
+    that a refit which moves the published 90% cone by less than 5% does not
+    force a re-strike, and most of this drift is that. But it does mean "the
+    analyses are current" is false in a way no existing check reported, so it is
+    reported on every run and acted on only when asked (--restrike-fit-drift):
+    re-striking a cone whose prices have NOT moved republishes a different
+    forecast on the same data, which is a decision, not a refresh.
+
+    Read off the newest LEDGER note, which is where strike_cohorts records the
+    fit each cohort was struck under.
+    """
+    newest: dict[str, dict] = {}
+    for r in data['l']:
+        k = r.get('instrument')
+        if k and (k not in newest or
+                  (r.get('anchor_date') or '') > (newest[k].get('anchor_date') or '')):
+            newest[k] = r
+    drift, unrecorded = [], []
+    for key, r in sorted(newest.items()):
+        m = _FIT.search(r.get('note') or '')
+        if not m:
+            unrecorded.append(key)
+            continue
+        mkt, nu, wc = m.group(1).upper(), float(m.group(2)), float(m.group(3))
+        p = PROFILES.get(mkt)
+        if not p:
+            continue
+        if abs((p.nu or 0.0) - nu) > 1e-9 or abs(p.width_cal - wc) > 1e-9:
+            drift.append({'ledger_key': key, 'market': mkt,
+                          'struck': f'nu={nu}/width_cal={wc}',
+                          'live': f'nu={p.nu}/width_cal={p.width_cal}'})
+    return drift, unrecorded
+
+
+# --------------------------------------------------------------- shell helpers
+def sh(cmd: list[str], cwd: str = ROOT, check: bool = True) -> int:
+    print(f'    $ {" ".join(cmd)}')
+    p = subprocess.run(cmd, cwd=cwd)
+    if check and p.returncode != 0:
+        raise SystemExit(f'FAILED ({p.returncode}): {" ".join(cmd)}')
+    return p.returncode
+
+
+def _free_port() -> int:
+    import socket as _s
+    with _s.socket() as sk:
+        sk.bind(('127.0.0.1', 0))
+        return sk.getsockname()[1]
+
+
+def overlay_gate(timeout_s: int = 600) -> None:
+    """Render every charted page and fail if an S/R line escapes the viewBox.
+
+    Nothing else catches this: injectLevels() draws outside the 0..320 viewBox
+    without throwing, and the page looks fine. Served over HTTP rather than
+    file:// because the check drives real pages in a real browser.
+
+    Readiness is probed with a RAW SOCKET, never urllib: urlopen honours
+    HTTP(S)_PROXY, so on a proxied runner a probe of 127.0.0.1 is dispatched to
+    the proxy and hangs there — which is exactly how this step hung for 15
+    minutes against a server that was already up and answering in 1.5ms. The
+    port is chosen from the ephemeral range for the same reason a fixed one bit:
+    a previous run's socket in TIME_WAIT makes the bind fail, and the gate then
+    tests nothing while looking like it ran.
+    """
+    import socket as _s
+    gate = os.path.join(ROOT, 'scripts', 'check_ta_chart_overlay.js')
+    if not os.path.exists(gate):
+        print('    ! overlay gate script missing — SKIPPED')
+        return
+    port = _free_port()
+    base = f'http://127.0.0.1:{port}'
+    srv = subprocess.Popen([sys.executable, '-m', 'http.server', str(port)],
+                           cwd=ROOT, stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL)
+    try:
+        deadline = __import__('time').monotonic() + 30
+        while True:
+            if srv.poll() is not None:
+                raise SystemExit(f'the page server died before it served anything '
+                                 f'(exit {srv.returncode}) — overlay gate not run')
+            try:
+                with _s.create_connection(('127.0.0.1', port), timeout=1):
+                    break
+            except OSError:
+                if __import__('time').monotonic() > deadline:
+                    raise SystemExit('page server never came up — overlay gate not run')
+                __import__('time').sleep(0.2)
+        print(f'    $ node {gate} {base}')
+        p = subprocess.run(['node', gate, base], cwd=ROOT, timeout=timeout_s)
+        if p.returncode != 0:
+            raise SystemExit(f'FAILED ({p.returncode}): chart-overlay gate')
+    finally:
+        srv.terminate()
+        try:
+            srv.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            srv.kill()
+
+
+# --------------------------------------------------------------------- the pass
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--write', action='store_true',
+                    help='apply; without it the pass plans and writes nothing')
+    ap.add_argument('--only', nargs='*', help='limit to these site keys')
+    ap.add_argument('--q', action='append', default=[], metavar='KEY=VALUE',
+                    help='supply a dividend yield the ledger cannot source')
+    ap.add_argument('--today', help='DD-Mon-YYYY; defaults to today')
+    ap.add_argument('--skip-overlay', action='store_true',
+                    help='skip the browser chart-overlay gate (needs playwright)')
+    ap.add_argument('--restrike-fit-drift', action='store_true',
+                    help='also re-strike cones standing on a superseded market fit, '
+                         'even where no new prices arrived (republishes a different '
+                         'forecast on the same data — a decision, not a refresh)')
+    args = ap.parse_args()
+
+    today = (args.today or
+             f'{date.today().day:02d}-{MONTHS[date.today().month - 1]}-{date.today().year}')
+    today_iso = date.today().isoformat()
+    q_override = {}
+    for item in args.q:
+        k, _, v = item.partition('=')
+        q_override[k.strip()] = float(v)
+
+    data = read_data_js()
+    before = counts(data)
+    print(f'data.js loaded — {before[0]} tickers, {before[1]} metals, '
+          f'{before[2]} ledger rows\n')
+
+    due, notes = stale_names(data, args.only, today_iso)
+    for key, why in notes:
+        print(f'  note  {key}: {why}')
+    if notes:
+        print()
+
+    drift, unrecorded = fit_drift(data)
+    print(f'fit drift: {len(drift)} published cone(s) stand on a superseded market '
+          f'fit; {len(unrecorded)} record no fit in their note')
+    if drift and not args.restrike_fit_drift:
+        by_market: dict[str, int] = {}
+        for d in drift:
+            by_market[d['market']] = by_market.get(d['market'], 0) + 1
+        print('  by market: ' + ', '.join(f'{k} {v}' for k, v in sorted(by_market.items())))
+        print('  not acted on — pass --restrike-fit-drift to re-strike them too.')
+    if args.restrike_fit_drift:
+        keyed = {k.upper(): k for k in list(data['t']) + list(data['m'])}
+        for d in drift:
+            key = keyed.get(d['ledger_key'].upper())
+            if not key or (args.only and key not in args.only):
+                continue
+            if any(x['key'] == key for x in due):
+                continue
+            e = data['t'].get(key) or data['m'].get(key)
+            ms = market_series(key, e)
+            if not ms:
+                continue
+            published = (((e.get('asof') or {}).get('mc') or {}).get('data')) or ''
+            due.append({'key': key, 'market': ms[0], 'series': ms[1],
+                        'published': published, 'library': published,
+                        'is_metal': key in METAL_MARKET, 'reason': 'fit drift'})
+    print()
+
+    if not due:
+        print('Every page already stands on the current library. Nothing to do.')
+        return 0
+
+    n_price = sum(1 for d in due if d.get('reason') != 'fit drift')
+    n_fit = len(due) - n_price
+    parts = ([f'{n_price} behind their library'] if n_price else []) + \
+            ([f'{n_fit} on a superseded fit'] if n_fit else [])
+    print(f'{len(due)} name(s) to act on — ' + ', '.join(parts) + ':\n')
+    plan, refused, metals = [], [], []
+    for d in due:
+        q = q_override.get(d['key'], recover_q(data, d['key']))
+        if d['is_metal']:
+            metals.append(d)
+            print(f"  SKIP-CONE {d['key']:12s} {d['published']} -> {d['library']}"
+                  '  (metals run their own annual clock; technicals still refresh)')
+            continue
+        if q is None:
+            refused.append(d)
+            print(f"  REFUSE    {d['key']:12s} {d['published']} -> {d['library']}"
+                  '  (no sourced q_annual — pass --q ' f"{d['key']}=VALUE)")
+            continue
+        d['q'] = q
+        plan.append(d)
+        why = '  [fit drift]' if d.get('reason') == 'fit drift' else ''
+        print(f"  REFRESH   {d['key']:12s} {d['published']} -> {d['library']}"
+              f"  q={q:.4f}{why}")
+
+    print(f'\n{len(plan)} to refresh, {len(refused)} refused, '
+          f'{len(metals)} metals cone-skipped')
+
+    if not args.write:
+        print('\nDRY RUN — nothing written. Re-run with --write to apply.')
+        return 0
+
+    ledger_before = json.dumps(data['l'], sort_keys=True)
+
+    print('\n--- cone refresh (mid-cycle; no LEDGER rows) ---')
+    for d in plan:
+        print(f"  {d['key']}")
+        refresh_cone_one.run(d['market'], d['series'], d['key'], today,
+                             q_annual=d['q'], write=True)
+
+    print('\n--- technical read + as-of stamps (all names, idempotent) ---')
+    sh([sys.executable, 'apply_technicals.py', '--write'], cwd=ENGINE)
+
+    print('\n--- chart SVGs, from the same library ---')
+    sh([sys.executable, 'ta_chart.py', '--write'], cwd=ENGINE)
+
+    print('\n--- gates ---')
+    after_data = read_data_js()
+    after = counts(after_data)
+    if after != before:
+        raise SystemExit(f'entry count moved {before} -> {after} — aborting. '
+                         'Counting against a known total is the only thing that '
+                         'catches a silently dropped entry.')
+    print(f'    counts unchanged: {after[0]} tickers, {after[1]} metals, '
+          f'{after[2]} ledger rows')
+
+    if json.dumps(after_data['l'], sort_keys=True) != ledger_before:
+        raise SystemExit('LEDGER CHANGED during a mid-cycle refresh — no cohort '
+                         'may be struck outside the monthly metronome.')
+    print('    LEDGER byte-identical — no cohort struck')
+
+    sh(['node', '--check', DATA_JS])
+    if not args.skip_overlay:
+        overlay_gate()
+    sh([sys.executable, os.path.join(ROOT, 'scripts', 'check_data_freshness.py')])
+
+    print(f'\nRefreshed {len(plan)} name(s). '
+          f'{len(refused)} refused for an unsourced dividend yield.')
+    if refused:
+        print('Refused: ' + ' '.join(d['key'] for d in refused))
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

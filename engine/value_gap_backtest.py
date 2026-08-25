@@ -76,11 +76,61 @@ _NODE = (
 )
 
 
+def _commits_touching_data_js() -> int:
+    """How many commits in THIS clone touch data.js. Part of the cache key below."""
+    out = subprocess.run(
+        ["git", "-C", REPO, "log", "--format=%H", "--", DATA_JS_REL],
+        capture_output=True, text=True)
+    return len([x for x in out.stdout.split("\n") if x.strip()])
+
+
+def assert_full_history() -> None:
+    """RAISE if this clone cannot see the history the point-in-time signal is built from.
+
+    The docstring above names the git history of `assets/data.js` as the source of
+    truth for what was publicly visible when. A SHALLOW clone truncates exactly that
+    source, and it does so without any error: every fair value then appears to have
+    become visible at the shallow boundary, every origin lands after it, no origin has
+    a matured forward window, and the harness reports
+
+        INSUFFICIENT-POWER — no observation has a realized outcome yet
+
+    which is CHARACTER-FOR-CHARACTER what it reports when the evidence genuinely has
+    not accrued yet. Two different states, one message, no way to tell them apart.
+
+    Measured on 24-Aug-2026 in a fresh remote session: the shallow clone carried 27
+    commits touching data.js and returned n=0 at both horizons; the same commit
+    unshallowed carried 241 and returned n=32, IC -0.140, PARITY. A caller reading the
+    first result would have concluded the sample had not grown since 6-Aug, when it had
+    in fact grown six-fold — and would have concluded it again on every future run,
+    because nothing about a shallow clone gets better with time.
+
+    So this FAILS rather than warns, per [R-ENF-01]: a check that cannot distinguish
+    "no evidence" from "no history to look in" is not a check. `git fetch --unshallow`
+    is the whole remedy, and CI must set `fetch-depth: 0` (generate-seo.yml already
+    does, for the same underlying reason, on a different derived date).
+    """
+    shallow = subprocess.run(
+        ["git", "-C", REPO, "rev-parse", "--is-shallow-repository"],
+        capture_output=True, text=True).stdout.strip()
+    if shallow == "true":
+        raise RuntimeError(
+            "SHALLOW CLONE — Phase C cannot run. The point-in-time signal is "
+            "reconstructed from the git history of assets/data.js, and this clone "
+            f"holds only {_commits_touching_data_js()} commits touching it. Every "
+            "fair value would appear to become visible at the shallow boundary and "
+            "the run would report INSUFFICIENT-POWER for a reason that is an "
+            "artefact of the checkout. Run `git fetch --unshallow` (CI: "
+            "fetch-depth: 0) and re-run."
+        )
+
+
 def pit_fair_values(market="EG", cache=None, verbose=True):
     """Earliest commit date at which each distinct fair value became visible.
 
     Returns {ticker: [(iso_date, fair_base), ...]} sorted by date.
     """
+    assert_full_history()
     # The cache is keyed to the LAST COMMIT touching data.js. Without that key a
     # stale cache silently omits every fair value published since it was written
     # — a wrong answer that looks exactly like a right one, which is the worst
@@ -88,13 +138,21 @@ def pit_fair_values(market="EG", cache=None, verbose=True):
     head = subprocess.run(
         ["git", "-C", REPO, "log", "-1", "--format=%H", "--", DATA_JS_REL],
         capture_output=True, text=True).stdout.strip()
+    depth = _commits_touching_data_js()
     if cache and os.path.exists(cache):
         with open(cache) as fh:
             blob = json.load(fh)
-        if blob.get("_data_js_head") == head and blob.get("_market") == market:
+        # The HEAD sha alone is NOT a sufficient key: it is identical on a shallow
+        # and a full clone of the same commit, so a cache built on truncated history
+        # would be accepted here and silently reused. The commit COUNT is what differs
+        # (27 vs 241 on 24-Aug-2026), so it is part of the key.
+        if (blob.get("_data_js_head") == head and blob.get("_market") == market
+                and blob.get("_commits_parsed") == depth):
             return {k: [tuple(x) for x in v] for k, v in blob["values"].items()}
         if verbose:
-            print("[pit] cache stale (data.js moved) — rebuilding", file=sys.stderr)
+            why = ("history depth changed" if blob.get("_data_js_head") == head
+                   else "data.js moved")
+            print(f"[pit] cache stale ({why}) — rebuilding", file=sys.stderr)
 
     prefix = MARKET_PREFIX.get(market)
     shas = subprocess.run(
