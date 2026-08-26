@@ -56,8 +56,9 @@ Checks:
                             and widened the same day when the first cut was
                             found globbing the repo root only while 149 pages
                             under ar/, embed/, go/, test/ and engine/ had no
-                            icon at all. Exempt: the Google verification token
-                            and the saved primary sources under engine/*_study/.
+                            icon at all. Exempt: only the Google
+                            verification token, which is 53 bytes of plain
+                            text with no markup and no tab to put an icon on.
 
 Exit code is non-zero (and prints every finding) if anything in 1-6 fires.
 Run from the repo root: python3 scripts/check_page_integrity.py
@@ -89,22 +90,23 @@ NON_TICKER_PAGES = {
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
-# Check 6 exemptions — TWO families, neither of them a page we authored.
-# Everything else the site serves must carry the icon, redirect stubs included
-# (a stub still flashes a tab).
+# Check 6 exemption — ONE file, and it is not a page.
 #
-#   * googlef90107a488de289e.html — a Google Search Console verification token,
-#     fetched by a verifier rather than read by a person, whose CONTENTS are
-#     what the verification tests. Editing it risks un-verifying the domain.
-#   * engine/*_study/ — SAVED PRIMARY SOURCES: the ADNOC L&S investor-relations
-#     captures and Damodaran's ctryprem.html, which the cost-of-capital rule
-#     names as the file to read fresh. SIGCM makes these EVIDENCE, not site
-#     furniture; adding site chrome to a source document corrupts the record
-#     the study rests on. This is the one exemption that must never be relaxed
-#     for tidiness.
+# googlef90107a488de289e.html is 53 bytes of PLAIN TEXT under an .html
+# extension: "google-site-verification: googlef90107a488de289e.html". It has no
+# <head>, no <title>, no markup at all, and nothing navigates to it — a
+# verifier fetches it and tests its CONTENTS, which are the whole point of the
+# file. There is no browser tab here to put an icon on, and editing it risks
+# un-verifying the domain. Excluded because it is not a page, not because it is
+# inconvenient.
+#
+# The saved primary sources under engine/*_study/ WERE exempt on SIGCM grounds
+# and are NOT any more [26-Aug-2026, per instruction: "EVERYTHING"]. The icon
+# was added to all seven by a BYTE-LEVEL edit that re-encodes nothing, and
+# their pre-edit blob SHAs are recorded in that commit message, so the captured
+# bytes stay recoverable and the provenance chain stays auditable. Nothing a
+# study reads from those documents moved.
 TAB_CHROME_EXEMPT = {"googlef90107a488de289e.html"}
-PRIMARY_SOURCE_DIRS = ("engine/adnocls_study/", "engine/airarabia_study/",
-                       "engine/amr_study/", "engine/savola_study/")
 
 # Three-lenses landing pages (<ticker>-3lenses.html, added 26-Aug-2026) are a
 # SECOND page type, not a five-lens study page: one chart carrying the technical
@@ -389,7 +391,7 @@ def check_tab_chrome(pages: dict[str, Path]) -> list[str]:
     """
     findings = []
     for name, path in sorted(pages.items()):
-        if name in TAB_CHROME_EXEMPT or name.startswith(PRIMARY_SOURCE_DIRS):
+        if name in TAB_CHROME_EXEMPT:
             continue
         src = path.read_text(encoding="utf-8", errors="replace")
         head = src.split("</head>", 1)[0] if "</head>" in src else src[:4000]
