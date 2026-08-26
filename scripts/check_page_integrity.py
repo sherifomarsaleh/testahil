@@ -48,8 +48,15 @@ Checks:
                             the rendered page, but returning visitors get a
                             stale cached copy on the un-bumped pages and see
                             no change at all.
+  6. tab-chrome          — every published page carries a <title> and the
+                            site favicon link in its REAL <head>. Added
+                            26-Aug-2026 after all 90 three-lenses pages
+                            shipped with neither: the tab showed the bare URL
+                            and no icon beside a study page one click away
+                            that showed both. Redirect stubs (meta refresh)
+                            and the Google verification file are exempt.
 
-Exit code is non-zero (and prints every finding) if anything in 1-5 fires.
+Exit code is non-zero (and prints every finding) if anything in 1-6 fires.
 Run from the repo root: python3 scripts/check_page_integrity.py
 """
 from __future__ import annotations
@@ -79,6 +86,11 @@ NON_TICKER_PAGES = {
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
+# Check 6 exemptions: the Google site-verification file is not a page. The
+# redirect stubs (egypt.html, other-markets.html) are exempt by detection —
+# a <meta http-equiv="refresh"> in <head> — not by name, so a new one needs no
+# edit here and a real page cannot hide behind the list.
+TAB_CHROME_EXEMPT = {"googlef90107a488de289e.html"}
 
 # Three-lenses landing pages (<ticker>-3lenses.html, added 26-Aug-2026) are a
 # SECOND page type, not a five-lens study page: one chart carrying the technical
@@ -309,6 +321,34 @@ def check_cache_buster_drift(all_html: dict[str, Path]) -> list[str]:
     return findings
 
 
+def check_tab_chrome(all_html: dict[str, Path]) -> list[str]:
+    """Check 6: a page that a reader can land on names itself and carries the
+    site icon, in the real <head> — not in a block a runtime hoists later.
+
+    Written 26-Aug-2026, when every <ticker>-3lenses.html (built that day from
+    a different template than the study pages) was found with no <title> and
+    no rel="icon" at all. Nothing else looked: checks 1-4 skip that page type
+    by design and check 5 only compares versions between pages that DO
+    reference an asset. Measured on the pre-fix tree, this check fires 180
+    findings (90 pages x 2); on the fixed tree, none. Only the <head> before
+    </head> is inspected, because the three-lenses pages carry a <helmet>
+    block inside <body> whose <link>/<meta> children the DC runtime clones
+    into <head> at load time — an icon there would work in a browser and
+    still be a different fact from the one this check states.
+    """
+    findings = []
+    for name, path in sorted(all_html.items()):
+        src = path.read_text(encoding="utf-8", errors="replace")
+        head = src.split("</head>", 1)[0]
+        if name in TAB_CHROME_EXEMPT or 'http-equiv="refresh"' in head:
+            continue
+        if not re.search(r'<link\s+rel="icon"[^>]*\bhref="favicon\.png(\?[^"]*)?"', head):
+            findings.append(f"{name}: no site favicon link (rel=\"icon\" -> favicon.png) in <head>")
+        if not re.search(r"<title>\s*[^<\s]", head):
+            findings.append(f"{name}: no <title> in <head> — the browser tab shows the bare URL")
+    return findings
+
+
 def main() -> int:
     all_html = {p.name: p for p in REPO.glob("*.html")}
     ticker_pages = {
@@ -341,6 +381,7 @@ def main() -> int:
         ("duplicate-tables", check_duplicate_tables(ticker_pages)),
         ("stale-fair-value", check_stale_fair_value(ticker_pages, fair_base)),
         ("cache-buster-drift", check_cache_buster_drift(all_html)),
+        ("tab-chrome", check_tab_chrome(all_html)),
     ]
 
     total = sum(len(f) for _, f in findings)
