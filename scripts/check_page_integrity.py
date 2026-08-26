@@ -48,13 +48,16 @@ Checks:
                             the rendered page, but returning visitors get a
                             stale cached copy on the un-bumped pages and see
                             no change at all.
-  6. tab-chrome          — every published page carries a <title> and the
-                            site favicon link in its REAL <head>. Added
-                            26-Aug-2026 after all 90 three-lenses pages
-                            shipped with neither: the tab showed the bare URL
-                            and no icon beside a study page one click away
-                            that showed both. Redirect stubs (meta refresh)
-                            and the Google verification file are exempt.
+  6. tab-chrome          — EVERY page the site serves, at any depth, carries
+                            a <title> and a site favicon link in its REAL
+                            <head>, with a path that actually resolves from
+                            that page's own folder. Added 26-Aug-2026 after
+                            all 90 three-lenses pages shipped with neither,
+                            and widened the same day when the first cut was
+                            found globbing the repo root only while 149 pages
+                            under ar/, embed/, go/, test/ and engine/ had no
+                            icon at all. Exempt: the Google verification token
+                            and the saved primary sources under engine/*_study/.
 
 Exit code is non-zero (and prints every finding) if anything in 1-6 fires.
 Run from the repo root: python3 scripts/check_page_integrity.py
@@ -86,11 +89,22 @@ NON_TICKER_PAGES = {
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
-# Check 6 exemptions: the Google site-verification file is not a page. The
-# redirect stubs (egypt.html, other-markets.html) are exempt by detection —
-# a <meta http-equiv="refresh"> in <head> — not by name, so a new one needs no
-# edit here and a real page cannot hide behind the list.
+# Check 6 exemptions — TWO families, neither of them a page we authored.
+# Everything else the site serves must carry the icon, redirect stubs included
+# (a stub still flashes a tab).
+#
+#   * googlef90107a488de289e.html — a Google Search Console verification token,
+#     fetched by a verifier rather than read by a person, whose CONTENTS are
+#     what the verification tests. Editing it risks un-verifying the domain.
+#   * engine/*_study/ — SAVED PRIMARY SOURCES: the ADNOC L&S investor-relations
+#     captures and Damodaran's ctryprem.html, which the cost-of-capital rule
+#     names as the file to read fresh. SIGCM makes these EVIDENCE, not site
+#     furniture; adding site chrome to a source document corrupts the record
+#     the study rests on. This is the one exemption that must never be relaxed
+#     for tidiness.
 TAB_CHROME_EXEMPT = {"googlef90107a488de289e.html"}
+PRIMARY_SOURCE_DIRS = ("engine/adnocls_study/", "engine/airarabia_study/",
+                       "engine/amr_study/", "engine/savola_study/")
 
 # Three-lenses landing pages (<ticker>-3lenses.html, added 26-Aug-2026) are a
 # SECOND page type, not a five-lens study page: one chart carrying the technical
@@ -321,7 +335,24 @@ def check_cache_buster_drift(all_html: dict[str, Path]) -> list[str]:
     return findings
 
 
-def check_tab_chrome(all_html: dict[str, Path]) -> list[str]:
+def served_pages() -> dict[str, Path]:
+    """EVERY page the site serves, at any depth — the population check 6 owns.
+
+    GitHub Pages publishes the whole repository (there is a .nojekyll), so a
+    page is anything ending .html anywhere in the tree, not just the root.
+    Build directories that are never deployed are skipped by name.
+    """
+    skip = {".git", "node_modules", "__pycache__", ".github"}
+    out = {}
+    for p in sorted(REPO.rglob("*.html")):
+        rel = p.relative_to(REPO)
+        if any(part in skip for part in rel.parts):
+            continue
+        out[rel.as_posix()] = p
+    return out
+
+
+def check_tab_chrome(pages: dict[str, Path]) -> list[str]:
     """Check 6: a page that a reader can land on names itself and carries the
     site icon, in the real <head> — not in a block a runtime hoists later.
 
@@ -329,21 +360,56 @@ def check_tab_chrome(all_html: dict[str, Path]) -> list[str]:
     a different template than the study pages) was found with no <title> and
     no rel="icon" at all. Nothing else looked: checks 1-4 skip that page type
     by design and check 5 only compares versions between pages that DO
-    reference an asset. Measured on the pre-fix tree, this check fires 180
-    findings (90 pages x 2); on the fixed tree, none. Only the <head> before
-    </head> is inspected, because the three-lenses pages carry a <helmet>
-    block inside <body> whose <link>/<meta> children the DC runtime clones
-    into <head> at load time — an icon there would work in a browser and
-    still be a different fact from the one this check states.
+    reference an asset.
+
+    WIDENED THE SAME DAY, per instruction — "any page and I mean any page with
+    testahil.com/ should have the favicon" — after the first cut of this very
+    check globbed the REPO ROOT ONLY and so reported the site clean while 149
+    pages under ar/, embed/, go/, test/ and engine/ had no icon at all. That is
+    the [R-ENF-01] species twice over: the check was narrower than the rule it
+    enforced, and its own scope was the thing nobody audited. THE POPULATION A
+    CHECK WALKS IS PART OF THE CHECK; a gate that reports clean having examined
+    a third of the book is worse than none, because it certifies the rest.
+
+    PATH DEPTH IS CHECKED, NOT JUST PRESENCE: href="favicon.png?v=2" is
+    relative and correct at the root, but from ar/aapl.html it resolves to
+    /ar/favicon.png — a 404 that looks perfect in a diff. Subdirectory pages
+    must therefore use the root-absolute "/favicon.png".
+
+    Only the <head> before </head> is inspected, because the three-lenses pages
+    carry a <helmet> block inside <body> whose <link>/<meta> children the DC
+    runtime clones into <head> at load time — an icon there would work in a
+    browser and still be a different fact from the one this check states. The
+    engine/build_depth_audit reports are headless fragments (they open on
+    <title> with no wrapper), so for those the leading run of head-only
+    elements is what a browser builds a head from, and what is inspected.
+
+    Measured: 180 findings on the pre-fix root-only tree, 149 more once the
+    scope widened to every served page, 0 on the fixed tree.
     """
     findings = []
-    for name, path in sorted(all_html.items()):
-        src = path.read_text(encoding="utf-8", errors="replace")
-        head = src.split("</head>", 1)[0]
-        if name in TAB_CHROME_EXEMPT or 'http-equiv="refresh"' in head:
+    for name, path in sorted(pages.items()):
+        if name in TAB_CHROME_EXEMPT or name.startswith(PRIMARY_SOURCE_DIRS):
             continue
-        if not re.search(r'<link\s+rel="icon"[^>]*\bhref="favicon\.png(\?[^"]*)?"', head):
-            findings.append(f"{name}: no site favicon link (rel=\"icon\" -> favicon.png) in <head>")
+        src = path.read_text(encoding="utf-8", errors="replace")
+        head = src.split("</head>", 1)[0] if "</head>" in src else src[:4000]
+        if 'http-equiv="refresh"' in head and "<title>" in head:
+            # A redirect stub still flashes a tab; it is NOT exempt from the
+            # icon. It is exempt from nothing here — this branch only exists to
+            # document that the earlier blanket refresh exemption was dropped
+            # when the rule became "any page".
+            pass
+        at_root = "/" not in name
+        want = r'href="favicon\.png(\?[^"]*)?"' if at_root else r'href="/favicon\.png(\?[^"]*)?"'
+        if not re.search(r'<link[^>]*rel="icon"[^>]*' + want, head):
+            if re.search(r'<link[^>]*rel="icon"', head):
+                findings.append(
+                    f"{name}: favicon link has the wrong path for its depth — a "
+                    f"page in a subdirectory needs the root-absolute "
+                    f"/favicon.png, or the browser resolves it against its own "
+                    f"folder and gets a 404 while the markup looks right")
+            else:
+                findings.append(f'{name}: no site favicon link (rel="icon" -> favicon.png) in <head>')
         if not re.search(r"<title>\s*[^<\s]", head):
             findings.append(f"{name}: no <title> in <head> — the browser tab shows the bare URL")
     return findings
@@ -351,6 +417,7 @@ def check_tab_chrome(all_html: dict[str, Path]) -> list[str]:
 
 def main() -> int:
     all_html = {p.name: p for p in REPO.glob("*.html")}
+    served = served_pages()
     ticker_pages = {
         n: p for n, p in all_html.items()
         if n not in NON_TICKER_PAGES and n not in STUB_PAGES
@@ -381,11 +448,15 @@ def main() -> int:
         ("duplicate-tables", check_duplicate_tables(ticker_pages)),
         ("stale-fair-value", check_stale_fair_value(ticker_pages, fair_base)),
         ("cache-buster-drift", check_cache_buster_drift(all_html)),
-        ("tab-chrome", check_tab_chrome(all_html)),
+        ("tab-chrome", check_tab_chrome(served)),
     ]
 
     total = sum(len(f) for _, f in findings)
-    print(f"Checked {len(ticker_pages)} ticker pages, {len(all_html)} HTML files total.\n")
+    # Both populations are PRINTED, per [R-ENF-04]: checks 1-5 walk the root
+    # ticker pages, check 6 walks every page the site serves at any depth, and
+    # the day those two silently disagreed is the day 149 pages went unchecked.
+    print(f"Checked {len(ticker_pages)} ticker pages, {len(all_html)} root HTML files, "
+          f"{len(served)} served pages at all depths (check 6).\n")
     for check_name, items in findings:
         status = "FAIL" if items else "ok"
         print(f"[{status}] {check_name} ({len(items)} finding{'s' if len(items) != 1 else ''})")
