@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';if(dark){document.documentElement.removeAttribute('data-theme');}else{document.documentElement.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e2){}});})();</script>
+<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -21,10 +21,6 @@ svg [fill="#E4B44C"]{fill:var(--tl-gold)}
 svg [fill="#0B1416"]{fill:var(--tl-card)}
 svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
 svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
-:root[data-theme="dark"] .tt-light{display:inline}
-:root:not([data-theme="dark"]) .tt-dark{display:inline}
-:root:not([data-theme="dark"]) .tt-light{display:none}
-:root[data-theme="dark"] .tt-dark{display:none}
 </style>
 </head>
 <body>
@@ -32,6 +28,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css?v=20260806a">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>window.__TL = {"ticker":"RIBL","edition":"09 Jul 2026","histStart":"25 Jul 2024 – 26 Jul 2026","hist":[20.33,20.66,20.63,20.4,20.59,20.44,19.61,18.57,18.94,19.05,18.98,19.31,18.7,18.54,18.63,18.66,18.79,18.98,19.13,19.46,19.76,20.02,20.21,19.84,19.58,19.35,19.73,19.46,19.42,19.24,19.46,19.42,19.01,18.9,18.45,18.38,18.32,18.3,18.43,18.7,19.16,19.05,19.27,19.2,19.35,18.79,18.69,18.72,18.33,18.18,18.32,18.25,18.36,18.32,18.33,18.42,18.32,18.45,18.45,18.3,18.23,18.63,19.01,18.9,19.09,19.5,19.35,19.46,19.31,19.31,19.2,19.16,19.16,19.39,19.73,19.8,20.1,20.02,19.58,19.65,19.5,19.65,19.88,19.95,19.95,19.95,19.95,19.91,19.54,19.69,19.69,19.76,20.06,20.02,20.74,20.55,21.15,21.6,21.56,21.52,21.08,21.38,21.15,21.23,21.3,20.92,21.15,21,20.85,20.81,20.96,21.34,21.45,21.34,21,20.7,20.89,20.89,20.7,20.89,20.96,21,21.38,21.38,21.64,22.13,21.79,22.24,22.2,22.2,22.05,21.98,21.83,21.75,21.98,22.13,22.2,22.24,22.01,21.9,21.79,22.16,21.79,21.86,22.09,22.2,21.9,21.83,21.79,22.2,22.27,22.35,22.39,22.13,21.38,22.42,22.5,22.5,22.01,21.83,22.8,22.09,22.31,22.31,22.42,22.76,22.95,23.21,23.33,22.8,23.29,23.17,24.38,24.71,24.45,22.05,22.01,22.42,21.75,23.21,24.11,22.84,23.1,22.88,22.73,22.8,22.61,23.21,23.66,23.48,23.51,23.44,23.06,23.06,22.73,22.2,21.9,21.79,21.83,21.83,22.05,22.31,22.27,21.56,21.67,21.71,21.52,21.49,21.26,21.26,21.19,21,21,21.08,21.79,21.38,20.63,20.44,20.89,21.04,20.81,20.33,20.51,20.29,19.76,19.95,20.21,20.25,20.85,20.92,21.04,21.74,21.56,21.34,21.27,21.81,21.78,21.67,21.66,21.42,21.38,21.36,21.03,21,21.1,21.03,20.92,20.92,20.63,20.92,20.88,21.01,20.67,20.81,21.12,21.15,21,21,20.57,20.48,20.4,20.35,20.24,19.88,19.8,20.13,20.39,20.25,20.1,20.22,20.19,20.28,20.28,20.11,19.51,19.47,19.77,19.68,19.71,19.49,19.56,19.64,19.42,19.36,19.51,19.51,19.47,19.27,19.4,19.53,19.26,19.23,19.55,20.88,20.26,20.3,20.33,20.4,21.01,20.88,20.94,20.82,20.64,20.55,20.52,20.25,20.43,20.44,20.64,20.76,20.75,20.7,20.59,20.49,20.42,20.46,20.15,20.35,20.61,20.39,20.17,19.93,19.78,19.55,19.83,19.95,19.67,19.88,19.71,19.55,19.44,19.4,19.59,19.51,19.47,19.41,19.25,19.14,19.27,19.35,19.32,19.18,19.23,19.29,19.38,19.88,19.8,20.1,19.93,20.06,19.71,19.5,19.36,19.26,19.29,19.62,19.95,20.1,19.95,19.78,19.98,20.28,20.39,20.35,20.7,20.4,20.35,19.65,20,20.13,20.35,20.44,20.5,20.7,20.07,20.1,20.1,20.04,20.31,20.63,20.83,20.76,21,21.23,21.08,20.91,21.21,21.66,21.93,21.57,21.48,21.38,21.32,21.06,21.18,21.06,21,20.77,21.09,20.86,21.01,20.99,20.92,20.83,20.22,20.01,20.13,20.43,20.81,21,21.06,21.58,21.65,21.39,21.18,21.5,21.75,21.78,21.69,21.72,21.84,22.11,22.14,21.92,21.83,21.44,21.2,21.49,21.6,21.6,22.1,22.08,22.35,22.25,21.9,21.71,21.66,21.77,21.45,21.33,21.15,21.2,21.25,20.75,20.77,20.74,20.9,20.85,20.84,20.88,20.85,20.7,20.35,20.42,20.5,20.25,20.26,20.34,20.14,20.41,20.31,20.31,20.04,20.01,20.01,20.19,20.76,20.21,20.24,20.59,20.79,21.14,21.02,20.9,20.95,21.02,20.97,20.74,20.51,20.22,20.07,19.91,20.06,20.02,20.06,20.19,20.34,20.55,20.6,20.58,20.48,20.08,20.57,20.7,20.7,21.07,20.9,21.16,21.08,20.92]};</script>
 <script src="assets/data.js"></script>
@@ -43,6 +40,7 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
 </style>
 </helmet>
 <div data-screen-label="Three lenses" style="min-height:100vh;background:var(--tl-bg);padding:26px 30px 40px">
+  <div style="max-width:1500px;margin:0 auto 8px;display:flex;justify-content:flex-end"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button></div>
   <div style="max-width:1500px;margin:0 auto">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">
@@ -52,7 +50,6 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
         <div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px">
-        <button id="theme-toggle" type="button" style="cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--tl-line);background:var(--tl-chipbg);color:var(--tl-muted)"><span class="tt-dark">🌙 Dark mode</span><span class="tt-light">☀️ Light mode</span></button>
         <a href="{{studyUrl}}" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--tl-faint)">{{asOfLine}}</div>
       </div>
@@ -62,9 +59,9 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">{{code}}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">{{spot}} <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">{{ccy}}</span></div>
       <div style="font-size:13px;color:var(--tl-faint)">{{spotDate}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipRes}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipSup}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipFair}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipRes}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipSup}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipFair}}</div>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start">

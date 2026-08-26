@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';if(dark){document.documentElement.removeAttribute('data-theme');}else{document.documentElement.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e2){}});})();</script>
+<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -21,10 +21,6 @@ svg [fill="#E4B44C"]{fill:var(--tl-gold)}
 svg [fill="#0B1416"]{fill:var(--tl-card)}
 svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
 svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
-:root[data-theme="dark"] .tt-light{display:inline}
-:root:not([data-theme="dark"]) .tt-dark{display:inline}
-:root:not([data-theme="dark"]) .tt-light{display:none}
-:root[data-theme="dark"] .tt-dark{display:none}
 </style>
 </head>
 <body>
@@ -32,6 +28,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css?v=20260806a">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>window.__TL = {"ticker":"ETEL","edition":"03 Jul 2026","histStart":"04 Aug 2024 – 23 Aug 2026","hist":[32.91,33.32,33.5,33.48,33.84,33.9,33.8,33.61,34,33,32.58,32.21,31.99,31.63,31.03,31.24,31,31.51,32.26,32.28,31.91,32.07,32.6,33.5,33.88,32.53,32.64,33.42,35,34.9,34.17,34.09,33.97,34.9,34.91,34.74,34.45,34.4,34.2,33.91,33.77,34.24,34.08,34.1,34.27,33.51,34.71,34.99,33.51,33.5,33.8,33.94,32.63,31.78,32.01,32.4,32.9,33.49,33.31,32.61,33.01,33.3,33.58,33.77,33.7,33.99,33.45,33.9,33.74,36,36.15,35.42,34.4,33.51,33,33.4,33.28,33.02,32.5,32.4,33.11,32.78,33,32.96,32.93,32.9,33,32.8,34.41,34.4,34.04,34.2,34.22,34.26,34.22,34.09,34.02,33.4,33.46,33,32.99,32.47,32.9,33.2,33.14,33.1,34.59,35.5,35.18,35.2,35.21,34.9,34.56,34,33.63,33.91,34,33.65,33.45,33.7,34.04,33.61,33.5,33.81,33.72,34.16,33.74,33.25,33.3,33.24,34.04,33.87,34,34.26,34.45,35.03,34.99,35.02,36.5,37.04,37.32,38.15,38,38,38.06,38,37.84,37.8,37.6,38.02,37.8,37.85,36.61,36.61,36.72,36.7,36.63,36.75,37.01,37.1,36.97,36.94,36.32,36.34,36,35.3,35.05,33.95,33.68,33.89,33.77,33.99,34,34.65,35.2,34.8,34.79,33.7,34.3,34.58,34.6,34.16,34.6,35.11,35.55,35.72,35.2,35.29,35,34.96,35.4,35.1,35.25,35.03,34.91,35.91,37.01,37,36.31,36.26,37.9,36.99,36.13,37,37.55,37.77,37.5,37.15,37.5,37.37,36.79,36.38,35.88,36.04,36,36.34,37.49,37.4,37.93,38.3,38,37.88,37.16,38.2,39.25,38.35,38.7,37.25,38.44,39.35,38.25,38.37,38.32,37.63,37.61,38.93,39.77,38.99,40.19,40.14,41,41.9,42.55,42.22,44.26,44.5,45,45.15,44.8,44.8,45,46.07,46.4,46.8,46.19,46,46.2,46.23,46,46.79,46.33,45.5,45.9,46.19,45.05,45,45.73,44.1,44.8,46.02,46.96,47.71,46.9,46.5,47.25,46.83,46.5,46.69,46.94,47,48.5,49.99,51,51,49.8,49,49,47.82,48.03,50,48.9,49.55,50,50.33,50.4,50.02,50.5,50.67,50.8,50.53,50.51,50.41,50.4,50.1,49.7,51.83,53.5,53.8,52.86,52.48,52.49,53.43,52.64,56,62.68,61.1,60.66,60,62.9,65.27,65.8,63.53,63.99,63.5,65,63.62,61.96,61.95,61,62.01,64,64.01,63.65,64.65,66,66.15,64.01,63,63.13,64,62.8,63,63,62.83,64.22,64.8,64.79,65.77,65.31,63.98,65.25,68.72,71,69.15,69.01,68.5,68.25,67.95,73.88,80.11,80.11,78.51,77.99,81.23,79.66,78.5,79.28,78.4,83.25,83.3,84.89,88.75,90.89,92.89,93.15,94.94,112.98,99.01,97.34,97.7,94.1,91.89,92.5,93.9,89.78,92.79,90.3,88.83,86.6,88,88,86,82.13,84.01,84.8,84.65,82.55,81,82.3,84.39,82.6,83.5,82.65,81.5,79.01,78.59,84.5,84.41,88.9,88.44,87.9,91,93.9,93.9,94,93.82,95.69,96.25,94,94,94.51,95.01,95.94,95.65,95,94.2,93.5,93.5,93,92.5,96.71,99.5,98.89,98.49,96.6,96.6,94.25,93.31,95.75,95.49,95.49,95.5,97.63,97.97,97.99,96.1,96.9,94.41,94.05,94.28,92.56,90.16,90.69,93,93,92.5,93.01,95.14,95.36,94.66,93.65,91,90,92.3,92.61,92.77,96.5,98.5,96.69,97.85,98.68,97,97.25,98.2,98.3,98.81,99.84,103.61,103.28,103.01,103.5,105.25,106.8,103.6,113.11,107.3,108.12,111,109.01,109.9,109.93,110.99,108.49,114,118.1,116,118.97,115.5,114.89,118.49]};</script>
 <script src="assets/data.js"></script>
@@ -43,6 +40,7 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
 </style>
 </helmet>
 <div data-screen-label="Three lenses" style="min-height:100vh;background:var(--tl-bg);padding:26px 30px 40px">
+  <div style="max-width:1500px;margin:0 auto 8px;display:flex;justify-content:flex-end"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button></div>
   <div style="max-width:1500px;margin:0 auto">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">
@@ -52,7 +50,6 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
         <div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px">
-        <button id="theme-toggle" type="button" style="cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--tl-line);background:var(--tl-chipbg);color:var(--tl-muted)"><span class="tt-dark">🌙 Dark mode</span><span class="tt-light">☀️ Light mode</span></button>
         <a href="{{studyUrl}}" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--tl-faint)">{{asOfLine}}</div>
       </div>
@@ -62,9 +59,9 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">{{code}}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">{{spot}} <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">{{ccy}}</span></div>
       <div style="font-size:13px;color:var(--tl-faint)">{{spotDate}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipRes}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipSup}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipFair}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipRes}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipSup}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipFair}}</div>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start">

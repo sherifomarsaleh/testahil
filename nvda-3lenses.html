@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';if(dark){document.documentElement.removeAttribute('data-theme');}else{document.documentElement.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e2){}});})();</script>
+<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -21,10 +21,6 @@ svg [fill="#E4B44C"]{fill:var(--tl-gold)}
 svg [fill="#0B1416"]{fill:var(--tl-card)}
 svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
 svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
-:root[data-theme="dark"] .tt-light{display:inline}
-:root:not([data-theme="dark"]) .tt-dark{display:inline}
-:root:not([data-theme="dark"]) .tt-light{display:none}
-:root[data-theme="dark"] .tt-dark{display:none}
 </style>
 </head>
 <body>
@@ -32,6 +28,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css?v=20260806a">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>window.__TL = {"ticker":"NVDA","edition":"06 Jul 2026","histStart":"29 Jul 2024 – 27 Jul 2026","hist":[111.59,103.73,117.02,109.21,107.27,100.45,104.25,98.91,104.97,104.75,109.02,116.14,118.08,122.86,124.58,130,127.25,128.5,123.74,129.37,126.46,128.3,125.61,117.59,119.37,108,106.21,107.21,102.83,106.47,108.1,116.91,119.14,119.1,116.78,115.59,113.37,117.87,116,116.26,120.87,123.51,124.04,121.4,121.44,117,118.85,122.85,124.92,127.72,132.89,132.65,134.81,134.8,138.07,131.6,135.72,136.93,138,143.71,143.59,139.56,140.41,141.54,140.52,141.25,139.34,132.76,135.4,136.05,139.91,145.61,148.88,147.63,145.26,148.29,146.27,146.76,141.98,140.15,147.01,145.89,146.67,141.95,136.02,136.92,135.34,138.25,138.63,140.26,145.14,145.06,142.44,138.81,135.07,139.31,137.34,134.25,132,130.39,128.91,130.68,134.7,139.67,140.22,139.93,137.01,137.49,134.29,138.31,144.47,149.43,140.14,140.11,135.91,133.23,131.76,136.24,133.57,137.71,140.83,147.07,147.22,142.62,118.42,128.99,123.7,124.65,120.07,116.66,118.65,124.83,128.68,129.84,133.57,132.8,131.14,135.29,138.85,139.4,139.23,140.11,134.43,130.28,126.63,131.28,120.15,124.92,114.06,115.99,117.3,110.57,112.69,106.98,108.76,115.74,115.58,121.67,119.53,115.43,117.52,118.53,117.7,121.41,120.69,113.76,111.43,109.67,108.38,110.15,110.42,101.8,94.31,97.64,96.3,114.33,107.57,110.93,110.71,112.2,104.49,101.49,96.91,98.89,102.71,106.43,111.01,108.73,109.02,108.92,111.61,114.5,113.82,113.54,117.06,117.37,116.65,123,129.93,135.34,134.83,135.4,135.57,134.38,131.8,132.83,131.29,135.5,134.81,139.19,135.13,137.38,141.22,141.92,139.99,141.72,142.63,143.96,142.83,145,141.97,144.69,144.12,145.48,143.85,144.17,147.9,154.31,155.02,157.75,157.99,153.3,157.25,159.34,158.24,160,162.88,164.1,164.92,164.07,170.7,171.37,173,172.41,171.38,167.03,170.78,173.74,173.5,176.75,175.51,179.27,177.87,173.72,180,178.26,179.42,180.77,182.7,182.06,183.16,181.59,182.02,180.45,182.01,175.64,175.4,174.98,177.99,179.81,181.77,181.6,180.17,174.18,170.78,170.62,171.66,167.02,168.31,170.76,177.33,177.17,177.82,177.75,174.88,170.29,176.24,176.67,183.61,178.43,176.97,177.69,178.19,181.85,186.58,187.24,188.89,187.62,185.54,185.04,189.11,192.57,183.16,188.32,180.03,179.83,181.81,183.22,182.64,181.16,180.28,182.16,186.26,191.49,201.03,207.04,202.89,202.49,206.88,198.69,195.21,188.08,188.15,199.05,193.16,193.8,186.86,190.17,186.6,181.36,186.52,180.64,178.88,182.55,177.82,180.26,177,179.92,181.46,179.59,183.38,182.41,185.55,184.97,183.78,180.93,175.02,176.29,177.72,170.94,174.14,180.99,183.69,189.21,188.61,190.53,188.22,187.54,186.5,188.85,188.12,187.24,189.11,185.04,184.86,184.94,185.81,183.14,187.05,186.23,178.07,183.32,184.84,187.67,186.47,188.52,191.52,192.51,191.13,185.61,180.34,174.19,171.88,185.41,190.04,188.54,190.05,186.94,182.81,184.97,187.98,187.9,189.82,191.55,192.85,195.56,184.89,177.19,182.48,180.05,183.04,183.34,177.82,182.65,184.77,186.03,183.14,180.25,183.22,181.93,180.4,178.56,172.7,175.64,175.2,178.68,171.24,167.52,165.17,174.4,175.75,177.39,177.64,178.1,182.08,183.91,188.63,189.31,196.51,198.87,198.35,201.68,202.06,199.88,202.5,199.64,208.27,216.61,213.17,209.25,199.57,198.45,198.48,196.5,207.83,211.5,215.2,219.44,220.78,225.83,235.74,225.32,222.32,220.61,223.47,219.51,215.33,214.86,212.6,214.25,211.14,224.36,222.82,214.75,218.66,205.1,208.64,208.19,200.42,204.87,205.19,212.45,207.41,204.65,210.69,208.65,200.04,199,195.74,192.53,194.97,200.09,197.58,194.83,196.44,196.93,204.12,202.78,210.96,203.53,211.8,212.5,207.4,202.81,203.28,207.29,212.06,208.76,206.84,196.51]};</script>
 <script src="assets/data.js"></script>
@@ -43,6 +40,7 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
 </style>
 </helmet>
 <div data-screen-label="Three lenses" style="min-height:100vh;background:var(--tl-bg);padding:26px 30px 40px">
+  <div style="max-width:1500px;margin:0 auto 8px;display:flex;justify-content:flex-end"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button></div>
   <div style="max-width:1500px;margin:0 auto">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">
@@ -52,7 +50,6 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
         <div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px">
-        <button id="theme-toggle" type="button" style="cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--tl-line);background:var(--tl-chipbg);color:var(--tl-muted)"><span class="tt-dark">🌙 Dark mode</span><span class="tt-light">☀️ Light mode</span></button>
         <a href="{{studyUrl}}" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--tl-faint)">{{asOfLine}}</div>
       </div>
@@ -62,9 +59,9 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">{{code}}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">{{spot}} <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">{{ccy}}</span></div>
       <div style="font-size:13px;color:var(--tl-faint)">{{spotDate}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipRes}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipSup}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipFair}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipRes}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipSup}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipFair}}</div>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start">

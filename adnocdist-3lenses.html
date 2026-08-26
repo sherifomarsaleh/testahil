@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';if(dark){document.documentElement.removeAttribute('data-theme');}else{document.documentElement.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e2){}});})();</script>
+<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -21,10 +21,6 @@ svg [fill="#E4B44C"]{fill:var(--tl-gold)}
 svg [fill="#0B1416"]{fill:var(--tl-card)}
 svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
 svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
-:root[data-theme="dark"] .tt-light{display:inline}
-:root:not([data-theme="dark"]) .tt-dark{display:inline}
-:root:not([data-theme="dark"]) .tt-light{display:none}
-:root[data-theme="dark"] .tt-dark{display:none}
 </style>
 </head>
 <body>
@@ -32,6 +28,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css?v=20260806a">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>window.__TL = {"ticker":"ADNOCDIST","edition":"","histStart":"09 Aug 2024 – 07 Aug 2026","hist":[3.44,3.42,3.38,3.39,3.47,3.56,3.6,3.64,3.61,3.64,3.59,3.64,3.61,3.59,3.59,3.65,3.64,3.64,3.63,3.65,3.66,3.6,3.62,3.56,3.6,3.63,3.6,3.6,3.6,3.59,3.67,3.68,3.72,3.78,3.79,3.67,3.61,3.62,3.57,3.59,3.55,3.63,3.66,3.63,3.67,3.64,3.66,3.63,3.56,3.54,3.57,3.57,3.6,3.58,3.59,3.6,3.61,3.6,3.58,3.61,3.63,3.56,3.56,3.56,3.58,3.6,3.58,3.56,3.59,3.58,3.55,3.57,3.55,3.55,3.49,3.43,3.41,3.48,3.47,3.48,3.45,3.48,3.46,3.45,3.46,3.43,3.47,3.45,3.41,3.44,3.42,3.42,3.44,3.38,3.4,3.41,3.44,3.46,3.45,3.45,3.52,3.49,3.47,3.47,3.48,3.52,3.46,3.45,3.4,3.41,3.44,3.44,3.43,3.39,3.46,3.56,3.52,3.54,3.53,3.6,3.53,3.59,3.6,3.6,3.53,3.56,3.58,3.59,3.64,3.6,3.59,3.52,3.51,3.48,3.52,3.5,3.47,3.47,3.43,3.47,3.49,3.5,3.49,3.52,3.5,3.5,3.47,3.41,3.38,3.42,3.36,3.5,3.52,3.46,3.39,3.44,3.4,3.38,3.36,3.39,3.4,3.41,3.4,3.4,3.25,3.23,3.31,3.24,3.16,3.21,3.27,3.25,3.27,3.25,3.24,3.27,3.26,3.29,3.28,3.35,3.36,3.33,3.34,3.37,3.38,3.38,3.4,3.42,3.42,3.44,3.44,3.51,3.52,3.53,3.53,3.53,3.52,3.52,3.57,3.55,3.56,3.59,3.61,3.65,3.67,3.63,3.66,3.67,3.7,3.67,3.69,3.72,3.64,3.54,3.54,3.55,3.53,3.47,3.52,3.53,3.56,3.6,3.68,3.67,3.68,3.7,3.72,3.71,3.73,3.73,3.69,3.68,3.68,3.68,3.71,3.68,3.68,3.69,3.67,3.66,3.7,3.71,3.69,3.72,3.7,3.71,3.71,3.72,3.72,3.72,3.7,3.7,3.73,3.74,3.76,3.79,3.82,3.79,3.77,3.8,3.79,3.81,3.8,3.79,3.77,3.79,3.76,3.76,3.69,3.69,3.68,3.68,3.66,3.67,3.69,3.69,3.69,3.69,3.74,3.77,3.82,3.82,3.81,3.82,3.78,3.79,3.81,3.82,3.8,3.7,3.66,3.68,3.71,3.73,3.76,3.76,3.77,3.73,3.72,3.68,3.62,3.62,3.6,3.61,3.6,3.62,3.6,3.6,3.63,3.62,3.63,3.59,3.61,3.62,3.63,3.63,3.66,3.65,3.76,3.78,3.81,3.8,3.81,3.83,3.83,3.83,3.76,3.83,3.86,3.89,3.87,3.85,3.91,3.91,3.95,3.96,4.02,3.99,4.01,3.97,4.01,3.96,3.99,3.93,3.94,3.93,3.99,3.95,3.95,3.92,3.93,3.89,3.9,3.93,3.9,3.93,3.9,3.9,3.87,3.87,3.88,3.89,3.9,3.9,3.99,3.97,3.99,4.01,4.01,4.02,4.12,4.13,4.09,4.1,4.08,4.1,4.1,4.08,4.04,4.1,4.1,4.05,4.08,4.09,4.1,4.08,4.11,4.09,4.07,4.03,4.05,4.06,4.05,4,3.8,3.95,3.91,3.84,3.76,3.69,3.7,3.65,3.55,3.7,3.61,3.69,3.79,3.83,3.78,3.84,3.74,3.79,3.8,3.73,3.77,3.77,3.74,3.88,3.75,3.79,3.78,3.76,3.78,3.75,3.78,3.76,3.75,3.68,3.67,3.66,3.7,3.69,3.71,3.67,3.7,3.8,3.77,3.84,3.87,3.88,3.88,3.8,3.85,3.88,3.88,3.87,3.88,3.88,3.86,3.85,3.93,3.87,3.8,3.77,3.75,3.76,3.67,3.75,3.7,3.8,3.87,3.9,3.96,4.01,3.98,3.98,4,3.99,3.95,3.97,3.94,3.92,3.94,3.95,3.95,3.92,3.97,3.94,3.98,4,4,3.98,3.97,3.97,3.94,3.9,3.93,3.97,3.99,3.99,3.98,4.01,4,4.03,4,4.03,4.1,4.07,4.08,4.07]};</script>
 <script src="assets/data.js"></script>
@@ -43,6 +40,7 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
 </style>
 </helmet>
 <div data-screen-label="Three lenses" style="min-height:100vh;background:var(--tl-bg);padding:26px 30px 40px">
+  <div style="max-width:1500px;margin:0 auto 8px;display:flex;justify-content:flex-end"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button></div>
   <div style="max-width:1500px;margin:0 auto">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">
@@ -52,7 +50,6 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
         <div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px">
-        <button id="theme-toggle" type="button" style="cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--tl-line);background:var(--tl-chipbg);color:var(--tl-muted)"><span class="tt-dark">🌙 Dark mode</span><span class="tt-light">☀️ Light mode</span></button>
         <a href="{{studyUrl}}" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--tl-faint)">{{asOfLine}}</div>
       </div>
@@ -62,9 +59,9 @@ a:hover { color: var(--tl-linkh); text-decoration: underline; }
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">{{code}}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">{{spot}} <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">{{ccy}}</span></div>
       <div style="font-size:13px;color:var(--tl-faint)">{{spotDate}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipRes}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipSup}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipFair}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipRes}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipSup}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">{{chipFair}}</div>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start">
