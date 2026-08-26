@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<script>window.__TICKER_DATA = {
+        name: 'Talaat Moustafa Group', exch: 'EGX:TMGH', price: 96.80, asOf: 'close 17 Jun 2026',
+        url: 'https://testahil.com/tmgh.html', edition: '17 Jun 2026',
+        yMin: 28, yMax: 196, grid: [180, 150, 120, 90, 60], dpMed: 1,
+        hist: [32.0,33.5,35.2,34.6,36.8,38.5,37.9,40.2,42.6,41.8,44.3,46.9,48.5,47.2,50.1,52.8,55.4,53.9,56.7,59.3,62.1,60.4,63.8,66.5,69.2,67.1,70.4,73.6,76.9,74.8,78.2,81.5,84.3,82.1,85.6,88.9,92.4,90.1,93.7,97.2,100.5,98.3,101.8,104.0,101.2,98.6,95.4,92.8,94.6,97.1,95.3,96.2,96.80],
+        sigma3m: 0.194, drift3m: 0.0813,
+        rA: { v: 101.40, lab: '101.40 · ceiling' }, rB: { v: 97.39, lab: '97.39 · first ceiling' },
+        shelf: { hi: 92.75, lo: 92.16, lab: 'entry shelf 92.16 – 92.75' },
+        sB: { v: 86.56, lab: '86.56 · deeper support' }, bk: { v: 83.6, lab: '83.6 · case breaks' },
+        keyRes: 126, keyResTxt: '126 (consensus)', keySup: 92, keySupTxt: '92 (support)', brk: 83.6, brkTxt: '83.6',
+        fv: 147.12, fvBig: '147.12', fvBad: 83.6, fvBest: 189.6,
+        fvLab: 'fair 147.12', fvBestLab: '189.6 · all goes right', fvBadLab: '83.6 · bad case',
+        fvBadLab2: '83.6 bad case', fvBestLab2: '189.6 all goes right',
+        floor: { hi: 85, lo: 83, lab: 'cash + backlog + hotels + malls ≈ EGP 84' },
+        fvNote: 'Three businesses valued separately: property and sold backlog 89.05, hotels 23.59, malls, schools and clubs 15.16, plus 31.40 net cash, less 12.06 for other owners. Cash, sold backlog, hotels and malls give a ~EGP 84 floor; consensus sits at 126.',
+        breakNote: 'The study is rebuilt below 83.6.',
+        atr: '2.49', entry: '92.16 – 92.75', entryDeep: '86.56', trim: '97.39', stretch: '101.40', stop: '< 86.00 close',
+        trend1: 'testing the 96–97 ceiling', trend2: 'above the 200-day', trend3: 'more cash than debt',
+        chipMonth: 'typical move 2.6% a day', chipFv: 'fair value 52% above',
+        prov: false,
+        plain: 'Cash, sold backlog, hotels and malls give a ~EGP 84 floor. Upside is new launches (SouthMED, The Spine, Noor) and the Gulf projects. More cash than debt — unusually safe for a developer.',
+        vNow: 'at the 96–97 ceiling', vNowTone: 'warn', vMc: '66% end higher', vMcTone: 'ok', vFv: '52% below fair', vFvTone: 'ok',
+        verdict: 'All three lenses lean up, but the chart is at a ceiling. Patient buyers wait for the 92.16–92.75 shelf, deeper at 86.56; trims run 97.39 to 101.40. The fair-value case only breaks below 83.6 — roughly a one-in-eight chance over three months.'
+      };</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #0B1416; font-family: 'IBM Plex Sans', sans-serif; color: #E9EFEC; }
+a { color: #5FD6C8; text-decoration: none; }
+a:hover { color: #93EADF; text-decoration: underline; }
+::selection { background: rgba(47,200,182,0.3); }
+</style>
+</helmet>
+<div data-screen-label="Three lenses, one picture" style="min-height:100vh;background:#0B1416;padding:26px 30px 40px">
+  <div style="max-width:1500px;margin:0 auto">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px">
+      <div>
+        <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#9DB1AC;margin-bottom:6px"><span style="font-style:italic;font-weight:600;color:#E9EFEC">testahil</span><span style="color:#2FC8B6;font-weight:600">?</span><span style="margin-left:10px;font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370">concept trial</span></div>
+        <h1 style="font-family:'Source Serif 4',serif;font-weight:600;font-size:40px;line-height:1.05;margin:0 0 8px">Three lenses, one picture</h1>
+        <div style="font-size:14.5px;color:#9DB1AC;max-width:640px;line-height:1.5">Entry &amp; exit from the chart <span style="color:#5E7370">(today)</span> · the odds from 50,000 simulations <span style="color:#5E7370">(1–3 months)</span> · what it&#8217;s worth from the fundamentals <span style="color:#5E7370">(12 months)</span> — on one axis.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;padding-bottom:4px">
+        
+        <a href="{{stockUrl}}" target="_blank" rel="noopener" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid #1D2F32;padding-top:18px">
+      <div style="font-family:'Source Serif 4',serif;font-size:26px;font-weight:600">{{stockName}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;border:1px solid #1D2F32;border-radius:6px;padding:3px 9px">{{exch}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:#E4B44C">{{priceBig}} <span style="font-size:13px;font-weight:400;color:#9DB1AC">EGP</span></div>
+      <div style="font-size:13px;color:#5E7370">{{asOf}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;background:#101C1F;border:1px solid #1D2F32;border-radius:999px;padding:4px 12px">{{chipMonth}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;background:#101C1F;border:1px solid #1D2F32;border-radius:999px;padding:4px 12px">{{chipFv}}</div>
+      <div style="{{provStyle}}">{{provText}}</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) 402px;gap:20px;align-items:start">
+
+      <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:16px;padding:20px 22px 16px">
+        <div style="display:flex;font-size:11.5px;letter-spacing:0.13em;text-transform:uppercase;color:#5E7370;margin-bottom:10px">
+          <div style="width:42.6%">Now — <span style="color:#9DB1AC">what is the chart doing?</span></div>
+          <div style="width:12.7%;color:#2FC8B6">1–3 mo — <span style="color:#7FCFC4">the odds</span></div>
+          <div style="width:44.7%;color:#B98D45">12 mo — <span style="color:#D3B071">what is it worth?</span></div>
+        </div>
+        <div style="position:relative;container-type:inline-size">
+        <svg viewBox="0 0 960 520" style="width:100%;display:block" role="img" aria-label="Unified horizon chart">
+          <rect x="408.7" y="14" width="121.8" height="472" fill="rgba(47,200,182,0.05)"></rect>
+          <rect x="530.5" y="14" width="365.5" height="472" fill="rgba(228,180,76,0.035)"></rect>
+          <path d="{{gridD}}" stroke="rgba(255,255,255,0.055)" stroke-width="1" fill="none"></path>
+          <rect x="530.5" y="{{floorY}}" width="341" height="{{floorH}}" fill="#E4B44C" opacity="{{floorO}}"></rect>
+          <polygon points="{{handoffPts}}" fill="#E4B44C" opacity="0.05"></polygon>
+          <path d="{{bridgeD}}" stroke="#E4B44C" stroke-width="1.3" stroke-dasharray="2 5" fill="none" opacity="0.75"></path>
+          <polygon points="{{cone95Pts}}" fill="#2FC8B6" opacity="0.10"></polygon>
+          <polygon points="{{cone50Pts}}" fill="#2FC8B6" opacity="0.26"></polygon>
+          <path d="{{medD}}" stroke="#2FC8B6" stroke-width="2" fill="none"></path>
+          <line x1="10" y1="{{rAy}}" x2="530.5" y2="{{rAy}}" stroke="#B98D45" stroke-width="1" stroke-dasharray="4 5" opacity="{{rAo}}"></line>
+          <line x1="10" y1="{{rBy}}" x2="530.5" y2="{{rBy}}" stroke="#B98D45" stroke-width="1" stroke-dasharray="4 5" opacity="{{rBo}}"></line>
+          <rect x="10" y="{{shelfY}}" width="520.5" height="{{shelfH}}" fill="#5FB8AC" opacity="{{shelfO}}"></rect>
+          <line x1="10" y1="{{sBy}}" x2="530.5" y2="{{sBy}}" stroke="#5FB8AC" stroke-width="1" stroke-dasharray="4 5" opacity="{{sBo}}"></line>
+          <line x1="10" y1="{{bky}}" x2="530.5" y2="{{bky}}" stroke="#E2685C" stroke-width="1.1" stroke-dasharray="5 4" opacity="0.85"></line>
+          <path d="{{ma40D}}" stroke="#34565B" stroke-width="1.3" fill="none"></path>
+          <path d="{{ma10D}}" stroke="#4E8F86" stroke-width="1.3" fill="none"></path>
+          <path d="{{histD}}" stroke="#E9EFEC" stroke-width="1.8" fill="none"></path>
+          <line x1="408.7" y1="14" x2="408.7" y2="486" stroke="#E4B44C" stroke-width="1" opacity="0.5"></line>
+          <line x1="530.5" y1="14" x2="530.5" y2="486" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3 4"></line>
+          <line x1="878" y1="{{fvBestY}}" x2="878" y2="{{fvBadY}}" stroke="#E4B44C" stroke-width="1.2" opacity="0.85"></line>
+          <line x1="871" y1="{{fvBestY}}" x2="885" y2="{{fvBestY}}" stroke="#E4B44C" stroke-width="1.2"></line>
+          <line x1="871" y1="{{fvBadY}}" x2="885" y2="{{fvBadY}}" stroke="#E4B44C" stroke-width="1.2"></line>
+          <path d="{{diamondD}}" fill="#0B1416" stroke="#E4B44C" stroke-width="1.8"></path>
+          <circle cx="{{h1x}}" cy="{{h1y}}" r="3" fill="#E9EFEC" stroke="#0B1416" stroke-width="1.2"></circle>
+          <circle cx="{{h2x}}" cy="{{h2y}}" r="3" fill="#E9EFEC" stroke="#0B1416" stroke-width="1.2"></circle>
+          <circle cx="{{h3x}}" cy="{{h3y}}" r="3" fill="#E9EFEC" stroke="#0B1416" stroke-width="1.2"></circle>
+          <circle cx="{{h4x}}" cy="{{h4y}}" r="3" fill="#E9EFEC" stroke="#0B1416" stroke-width="1.2"></circle>
+          <circle cx="{{pkx}}" cy="{{pky}}" r="3" fill="#D3B071" stroke="#0B1416" stroke-width="1.2"></circle>
+          <circle cx="408.7" cy="{{dotY}}" r="10" fill="#E4B44C" opacity="0.16"></circle>
+          <circle cx="408.7" cy="{{dotY}}" r="4.6" fill="#E4B44C" stroke="#0B1416" stroke-width="1.4"></circle>
+          <g font-family="IBM Plex Mono, monospace" font-size="12">
+            <text x="10" y="506" fill="#5E7370">Aug ’25</text>
+            <text x="209" y="506" fill="#5E7370" text-anchor="middle">Feb ’26</text>
+            <text x="408.7" y="506" fill="#E4B44C" text-anchor="middle" font-weight="600">TODAY</text>
+            <text x="530.5" y="506" fill="#5E7370" text-anchor="middle">+3 mo</text>
+            <text x="896" y="506" fill="#5E7370" text-anchor="end">+12 mo</text>
+          </g>
+          <text x="700" y="{{bridgeLabY}}" fill="#D3B071" opacity="0.6" font-size="10.5" font-style="italic" font-family="Source Serif 4, serif" text-anchor="middle">the fundamental case takes over</text>
+        </svg>
+        <div style="position:absolute;inset:0;pointer-events:none;font-family:'IBM Plex Mono',monospace;font-size:1.25cqw;line-height:1">
+          <div style="position:absolute;left:94%;top:{{gp1}}%;transform:translateY(-50%);color:#5E7370">{{g1t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp2}}%;transform:translateY(-50%);color:#5E7370">{{g2t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp3}}%;transform:translateY(-50%);color:#5E7370">{{g3t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp4}}%;transform:translateY(-50%);color:#5E7370">{{g4t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp5}}%;transform:translateY(-50%);color:#5E7370">{{g5t}}</div>
+          <div style="position:absolute;left:1.5%;top:{{rAtop}}%;transform:translateY(calc(-100% - 3px));color:#B98D45;white-space:nowrap">{{rAt}}</div>
+          <div style="position:absolute;left:1.5%;top:{{rBtop}}%;transform:translateY(calc(-100% - 3px));color:#B98D45;white-space:nowrap">{{rBt}}</div>
+          <div style="position:absolute;left:54.6%;top:{{shTop}}%;transform:translate(-100%, 4px);color:#5FB8AC;white-space:nowrap">{{shelfT}}</div>
+          <div style="position:absolute;left:1.5%;top:{{sBtop}}%;transform:translateY(calc(-100% - 3px));color:#5FB8AC;white-space:nowrap;opacity:{{sBo}}">{{sBt}}</div>
+          <div style="position:absolute;left:1.5%;top:{{bkTop}}%;transform:translateY(5px);color:#E2685C;white-space:nowrap">{{bkT}}</div>
+          <div style="position:absolute;left:55.9%;top:{{u95Top}}%;transform:translateY(-50%);color:#6FA39B;white-space:nowrap">{{u95t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{u50Top}}%;transform:translateY(-50%);color:#7FCFC4;white-space:nowrap">{{u50t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{medTop}}%;transform:translateY(calc(-100% - 4px));color:#2FC8B6;font-weight:600;white-space:nowrap">{{medt}}</div>
+          <div style="position:absolute;left:55.9%;top:{{l50Top}}%;transform:translateY(-50%);color:#7FCFC4;white-space:nowrap">{{l50t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{l95Top}}%;transform:translateY(-50%);color:#6FA39B;white-space:nowrap">{{l95t}}</div>
+          <div style="position:absolute;left:89.8%;top:{{fvTop}}%;transform:translate(-100%, calc(-100% - 5px));color:#E4B44C;font-weight:600;white-space:nowrap">{{fvLab}}</div>
+          <div style="position:absolute;left:89.8%;top:{{fvBestTop}}%;transform:translate(-100%, -50%);color:#D3B071;white-space:nowrap">{{fvBestLab}}</div>
+          <div style="position:absolute;left:89.8%;top:{{fvBadTop}}%;transform:translate(-100%, -50%);color:#D3B071;white-space:nowrap">{{fvBadLab}}</div>
+          <div style="position:absolute;left:56.3%;top:{{flTop}}%;transform:translateY(-50%);color:#D3B071;opacity:{{floorO2}};white-space:nowrap">{{floorLab}}</div>
+          <div style="position:absolute;left:43.4%;top:{{prTop}}%;transform:translateY(calc(-100% - 5px));color:#E4B44C;font-weight:600;font-size:1.4cqw">{{priceTag}}</div>
+          <div style="position:absolute;left:{{h1left}}%;top:{{h1top}}%;transform:translateY(7px);color:#9DB1AC;font-size:1.15cqw;">{{h1v}}</div>
+          <div style="position:absolute;left:{{h2left}}%;top:{{h2top}}%;transform:translate(-50%, 7px);color:#9DB1AC;font-size:1.15cqw;">{{h2v}}</div>
+          <div style="position:absolute;left:{{h3left}}%;top:{{h3top}}%;transform:translate(-50%, calc(-100% - 7px));color:#9DB1AC;font-size:1.15cqw;">{{h3v}}</div>
+          <div style="position:absolute;left:{{h4left}}%;top:{{h4top}}%;transform:translate(-50%, 7px);color:#9DB1AC;font-size:1.15cqw;">{{h4v}}</div>
+          <div style="position:absolute;left:{{pkleft}}%;top:{{pktop}}%;transform:translate(-50%, calc(-100% - 6px));color:#D3B071;font-weight:600;font-size:1.15cqw">{{pkv}}</div>
+        </div>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid #17262A;font-size:11.5px;color:#9DB1AC">
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:rgba(47,200,182,0.4);border-radius:2px"></span>middle half of 50,000 paths</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:rgba(47,200,182,0.13);border-radius:2px"></span>5–95% of paths</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:2px;background:#2FC8B6"></span>median path</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:#E4B44C;border-radius:50%"></span>latest price</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid #E4B44C;transform:rotate(45deg)"></span>fair value (12 mo)</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed #B98D45"></span>trader levels</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed #E2685C"></span>case breaks</span>
+        </div>
+        <sc-if value="{{plainOn}}" hint-placeholder-val="{{true}}">
+          <div style="margin-top:12px;font-family:'Source Serif 4',serif;font-size:15.5px;line-height:1.55;color:#C6D2CE;border-left:2px solid #2FC8B6;padding-left:14px"><span style="color:#5E7370;font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;display:block;margin-bottom:4px">In plain terms</span>{{plain}}</div>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
+          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 1 · Technical — today</div>
+          <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:10px">What is the chart doing?</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+            <span style="font-size:11.5px;color:#7FCFC4;border:1px solid #1E4640;border-radius:999px;padding:3px 10px">{{trend1}}</span>
+            <span style="font-size:11.5px;color:#7FCFC4;border:1px solid #1E4640;border-radius:999px;padding:3px 10px">{{trend2}}</span>
+            <span style="font-size:11.5px;color:#D3B071;border:1px solid #4A3A1C;border-radius:999px;padding:3px 10px">{{trend3}}</span>
+          </div>
+          <sc-if value="{{hasLevels}}" hint-placeholder-val="{{true}}">
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Entry zone (first pullback)</span><span style="font-family:'IBM Plex Mono',monospace;color:#7FE7DA">{{entry}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Add deeper</span><span style="font-family:'IBM Plex Mono',monospace">{{entryDeep}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">First trim / exit</span><span style="font-family:'IBM Plex Mono',monospace;color:#D3B071">{{trim}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Stretch target</span><span style="font-family:'IBM Plex Mono',monospace">{{stretch}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Stop</span><span style="font-family:'IBM Plex Mono',monospace;color:#E2685C">{{stop}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Typical daily move (ATR)</span><span style="font-family:'IBM Plex Mono',monospace">{{atr}}</span></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{noLevels}}" hint-placeholder-val="{{false}}">
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Recent high</span><span style="font-family:'IBM Plex Mono',monospace;color:#D3B071">{{recentHigh}}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Bear-case floor</span><span style="font-family:'IBM Plex Mono',monospace;color:#E2685C">{{brkTxt}}</span></div>
+              <div style="color:#5E7370;line-height:1.5;border-top:1px solid #17262A;padding-top:10px">This edition publishes no entry, exit or ATR levels. Rather than invent them, the two anchors above are the only ones the study states. <a href="{{stockUrl}}" target="_blank" rel="noopener">Read the chart section →</a></div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+            <div>
+              <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 2 · Monte Carlo — the odds</div>
+              <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:10px">Where could the price go?</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button onClick="{{pickH1}}" style="{{hz1}}">1 mo</button>
+              <button onClick="{{pickH3}}" style="{{hz3}}">3 mo</button>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Chance higher than today</span><span style="font-family:'IBM Plex Mono',monospace;color:#7FE7DA;font-weight:600">{{mcHigher}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">+10% or better vs −10% or worse</span><span style="font-family:'IBM Plex Mono',monospace">{{mcTen}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Middle outcome (median)</span><span style="font-family:'IBM Plex Mono',monospace">{{mcMedian}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Most likely zone (50% band)</span><span style="font-family:'IBM Plex Mono',monospace;color:#7FCFC4">{{mcBand}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Finishes ≥ {{keyResTxt}}</span><span style="font-family:'IBM Plex Mono',monospace">{{mcAbove}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Finishes &lt; {{keySupTxt}}</span><span style="font-family:'IBM Plex Mono',monospace">{{mcBelow}}</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#9DB1AC">Case-break (&lt; {{brkTxt}})</span><span style="font-family:'IBM Plex Mono',monospace;color:#E2685C">{{mcBreak}}</span></div>
+          </div>
+          <div style="font-size:11px;color:#5E7370;margin-top:10px;line-height:1.5">Lognormal read of the 50,000-path engine, re-anchored at the latest close. Drift and skew baked in — not a coin flip.</div>
+        </div>
+
+        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
+          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 3 · Fundamental — 12 months</div>
+          <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:10px">What is it worth?</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:#E4B44C">{{fvBig}}</div>
+            <div style="font-size:12.5px;color:#9DB1AC">{{fvGapChip}}</div>
+          </div>
+          <div style="position:relative;height:34px;margin:2px 2px 2px">
+            <div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:linear-gradient(90deg,#3A2A26,#1E4640 55%,#4A3A1C)"></div>
+            <div style="position:absolute;top:9px;width:11px;height:11px;border:1.6px solid #E4B44C;background:#0F1A1D;transform:rotate(45deg) translateX(-50%);left:{{fvPos}}%"></div>
+            <div style="position:absolute;top:11px;width:9px;height:9px;border-radius:50%;background:#E4B44C;margin-left:-4px;left:{{pricePos}}%"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9DB1AC;margin-bottom:12px"><span>{{fvBadLab2}}</span><span>{{fvBestLab2}}</span></div>
+          <div style="font-size:13px;line-height:1.55;color:#C6D2CE">{{fvNote}}</div>
+          <div style="font-size:12px;color:#E2685C;margin-top:8px">{{breakNote}}</div>
+          <div style="font-size:11.5px;color:#5E7370;margin-top:10px">Edition {{edition}} · <a href="{{stockUrl}}" target="_blank" rel="noopener">full study on testahil.com →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;background:#0F1A1D;border:1px solid #1D2F32;border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+      <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:19px;white-space:nowrap">Do the lenses agree?</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="{{vNowSty}}">NOW · {{vNow}}</span>
+        <span style="{{vMcSty}}">1–3 MO · {{vMc}}</span>
+        <span style="{{vFvSty}}">12 MO · {{vFv}}</span>
+      </div>
+      <div style="font-size:13.5px;line-height:1.55;color:#C6D2CE;flex:1;min-width:320px">{{verdict}}</div>
+    </div>
+
+    <div style="margin-top:18px;font-size:11.5px;line-height:1.6;color:#5E7370;max-width:1100px">
+      Levels, fair value and scenarios as published in the <a href="https://testahil.com/tmgh.html" target="_blank" rel="noopener">TMGH study, edition 17 Jun 2026</a> (close 96.80, 17 Jun 2026). The 1–3 month band is a closed-form read of the study&#8217;s 50,000-path calibration and reproduces its own stated probabilities — 25% of paths below support at 92, 17% at or above consensus 126. Educational and illustrative — the odds, not advice. We never tell you to buy or sell.
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;defaultTicker&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;PHDC&quot;, &quot;GBCO&quot;], &quot;default&quot;: &quot;PHDC&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;View&quot; },
+  &quot;horizon&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;1 month&quot;, &quot;3 months&quot;], &quot;default&quot;: &quot;3 months&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;View&quot; },
+  &quot;plainWords&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;View&quot; }
+}">
+class Component extends DCLogic {
+  state = { ticker: 'T', horizon: null };
+
+  DATA() { return { T: window.__TICKER_DATA }; }
+  DATA_LIB() {
+    return {
+      PHDC: {
+        name: 'Palm Hills Developments', exch: 'EGX:PHDC', price: 15.15, asOf: 'close 21 Aug 2026',
+        url: 'https://testahil.com/phdc.html', edition: '11 Jun 2026',
+        yMin: 6, yMax: 26, grid: [24, 20, 16, 12, 8], dpMed: 2,
+        hist: [7.8,7.6,7.9,8.1,8.0,8.3,8.6,8.4,8.8,9.1,9.4,9.2,9.6,10.0,10.4,10.1,10.6,11.0,11.4,11.2,11.8,12.3,12.0,12.6,13.1,13.6,13.2,13.9,14.5,15.1,14.6,15.3,15.9,16.4,15.8,16.1,16.43,16.0,16.19,15.9,15.6,15.2,14.9,15.4,15.7,15.3,15.0,14.7,15.0,15.3,15.5,15.4,15.15],
+        sigma3m: 0.266, drift3m: 0.0293,
+        rA: { v: 17.50, lab: '17.50 · HSBC resistance' }, rB: { v: 16.08, lab: '16.08 · ceiling' },
+        shelf: { hi: 15.00, lo: 14.43, lab: 'entry shelf 14.43 – 15.00' },
+        sB: null, bk: { v: 13.40, lab: '13.40 · case breaks' },
+        keyRes: 17.50, keyResTxt: '17.50', keySup: 14.43, keySupTxt: '14.43', brk: 13.40, brkTxt: '13.40',
+        fv: 15.89, fvBig: '15.89', fvBad: 7.62, fvBest: 24.92,
+        fvLab: 'fair 15.89', fvBestLab: '24.92 · all goes right', fvBadLab: '7.62 · bad case',
+        fvBadLab2: '7.62 bad case', fvBestLab2: '24.92 all goes right',
+        floor: { hi: 12, lo: 11, lab: 'sold business alone ≈ EGP 11–12' },
+        fvNote: 'Built up from projects, cash and earnings. The sold business alone is worth ≈ 11–12 a share; everything above is the launch bet — Saadiyat, Ras El-Hekma, Jirian.',
+        breakNote: 'The study is rebuilt below 13.40.',
+        atr: '0.56', entry: '14.85 – 15.00', entryDeep: '14.43 – 14.49', trim: '16.08', stretch: '17.50', stop: '< 13.90 close',
+        trend1: 'sitting on the 50-day', trend2: 'well above the 200-day', trend3: '+1% past month',
+        chipMonth: '+1% past month', chipFv: 'fair value 4.9% above',
+        prov: false,
+        plain: 'Resting mid-range above the 14.43–15.00 shelf after the June high. The simulation leans gently up. The study values it at 15.89 — everything above the ~11–12 sold-business floor is the launch bet.',
+        vNow: 'mid-range · constructive', vNowTone: 'ok', vMc: '54% end higher', vMcTone: 'ok', vFv: '4.9% below fair', vFvTone: 'ok',
+        verdict: 'The lenses roughly agree — not stretched, gently favourable. Buying interest lives at the 14.43–15.00 shelf, the exit debate starts at 16.08 and then 17.50, and below 13.40 the whole case is wrong.'
+      },
+      GBCO: {
+        name: 'GB Corp (Ghabbour)', exch: 'EGX:GBCO', price: 30.70, asOf: 'close 16 Aug 2026',
+        url: 'https://testahil.com/gbco.html', edition: '8 Jul 2026',
+        yMin: 18, yMax: 56, grid: [52, 44, 36, 28, 20], dpMed: 1,
+        hist: [24.3,23.8,23.2,22.6,22.9,23.5,24.1,24.8,25.6,26.3,27.2,28.0,29.1,30.2,31.4,32.5,33.4,32.8,31.9,30.8,29.6,28.4,27.2,26.1,25.4,25.9,26.5,27.1,26.6,27.3,27.9,27.4,28.1,27.6,26.9,26.2,25.7,26.4,25.9,25.4,25.8,26.3,25.8,26.7,27.5,28.6,29.8,30.7,31.2,30.4,30.9,30.5,30.70],
+        sigma3m: 0.205, drift3m: 0.0383,
+        rA: { v: 33.40, lab: '33.40 · February high' }, rB: { v: 31.50, lab: '31.50 · supply shelf' },
+        shelf: { hi: 29.60, lo: 29.30, lab: 'entry shelf 29.30 – 29.60' },
+        sB: { v: 28.00, lab: '28.00 · support' }, bk: { v: 24.30, lab: '24.30 · case breaks' },
+        keyRes: 33.40, keyResTxt: '33.40', keySup: 28.00, keySupTxt: '28.00', brk: 24.30, brkTxt: '24.30',
+        fv: 33.0, fvBig: '≈ 33', fvBad: 24.3, fvBest: 53.0,
+        fvLab: 'fair ≈ 33 · Halan + lender', fvBestLab: '≈ 53 · if the Halan mark holds', fvBadLab: '24.3 · case breaks',
+        fvBadLab2: '24.3 case breaks', fvBestLab2: '≈53 full sum-of-parts',
+        floor: null,
+        fvNote: 'The MNT-Halan stake (41.61%) is worth ≈ 23 a share at the last funding round — ≈ 33 with the lending arm. At today\u2019s price the car business is in for free, if you trust the mark. Full sum-of-parts ≈ 53.',
+        breakNote: 'The study is rebuilt below 24.30.',
+        atr: '1.28', entry: '29.30 – 29.60', entryDeep: '28.00', trim: '31.50', stretch: '33.40', stop: '< 26.50 close',
+        trend1: 'above the 50-day', trend2: 'above the 200-day', trend3: '+19% month · extended',
+        chipMonth: '+19% past month', chipFv: 'Halan + lender mark 7.5% above',
+        prov: true,
+        plain: 'Up 19% in a month and pressing the February high — the easy entry is gone. The odds still lean up. At 30.7 the Halan stake plus the lender are worth ≈ 33, so the car business comes free.',
+        vNow: '+19% month · extended', vNowTone: 'warn', vMc: '57% end higher', vMcTone: 'ok', vFv: 'cars priced at zero', vFvTone: 'ok',
+        verdict: 'Value and odds say cheap; the chart says late. The patient entry is the 29.30–29.60 shelf (deeper at 28.00), the trim zone runs 31.50–33.40, and below 24.30 the study itself gets rebuilt.'
+      }
+    };
+  }
+
+  phi(z) {
+    const t = 1 / (1 + 0.2316419 * Math.abs(z));
+    const d = 0.3989423 * Math.exp(-z * z / 2);
+    const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+    return z > 0 ? 1 - p : p;
+  }
+
+  renderVals() {
+    const T = this.state.ticker || (this.props.defaultTicker === 'GBCO' ? 'GBCO' : 'PHDC');
+    const H = this.state.horizon || (String(this.props.horizon || '').indexOf('1') === 0 ? 1 : 3);
+    const D = this.DATA()[T];
+    const yTop = 14, yBot = 486, x0 = 10, xNow = 408.7, x3 = 530.5, xFv = 878, futW = 487.3;
+    const y = v => yTop + (D.yMax - v) / (D.yMax - D.yMin) * (yBot - yTop);
+    const f1 = v => v.toFixed(1), fM = v => v.toFixed(D.dpMed);
+    const pct = p => Math.round(p * 100) + '%';
+    const n = D.hist.length, hx = i => x0 + (i / (n - 1)) * (xNow - x0);
+    const path = arr => arr.map((v, i) => (i === 0 ? 'M' : 'L') + hx(i).toFixed(1) + ',' + y(v).toFixed(1)).join(' ');
+    const ma = w => D.hist.map((_, i) => { const s = D.hist.slice(Math.max(0, i - w + 1), i + 1); return s.reduce((a, b) => a + b, 0) / s.length; });
+    const S0 = D.price, sig3 = D.sigma3m;
+    const med = m => S0 * Math.exp(D.drift3m * m / 3), sg = m => m === 0 ? 0 : sig3 * Math.sqrt(m / 3);
+    const xm = m => xNow + (m / 12) * futW;
+    let up95 = [], lo95 = [], up50 = [], lo50 = [], medPts = [];
+    for (let i = 0; i <= 12; i++) {
+      const m = i * 0.25, mm = med(m), s = sg(m), X = xm(m).toFixed(1);
+      up95.push(X + ',' + y(mm * Math.exp(1.645 * s)).toFixed(1));
+      lo95.push(X + ',' + y(mm * Math.exp(-1.645 * s)).toFixed(1));
+      up50.push(X + ',' + y(mm * Math.exp(0.6745 * s)).toFixed(1));
+      lo50.push(X + ',' + y(mm * Math.exp(-0.6745 * s)).toFixed(1));
+      medPts.push((i === 0 ? 'M' : 'L') + X + ',' + y(mm).toFixed(1));
+    }
+    const med3 = med(3), s3 = sg(3);
+    const u50_3 = med3 * Math.exp(0.6745 * s3), l50_3 = med3 * Math.exp(-0.6745 * s3);
+    const u95_3 = med3 * Math.exp(1.645 * s3), l95_3 = med3 * Math.exp(-1.645 * s3);
+    const medH = med(H), sH = sg(H);
+    const P = this.phi.bind(this);
+    const probAbove3 = L => 1 - P(Math.log(L / med3) / s3), probBelow3 = L => P(Math.log(L / med3) / s3);
+    const tone = t => 'font-family:IBM Plex Mono,monospace;font-size:12px;border-radius:999px;padding:5px 13px;border:1px solid ' + (t === 'ok' ? '#1E4640;color:#7FE7DA;background:rgba(47,200,182,0.07)' : t === 'warn' ? '#4A3A1C;color:#E8C87E;background:rgba(228,180,76,0.07)' : '#4A211D;color:#F0968C;background:rgba(226,104,92,0.07)');
+    const tab = a => 'padding:9px 22px;border-radius:999px;font-family:IBM Plex Sans,sans-serif;font-weight:600;font-size:14px;cursor:pointer;border:1px solid ' + (a ? '#2FC8B6;background:rgba(47,200,182,0.13);color:#7FE7DA' : '#1D2F32;background:transparent;color:#9DB1AC');
+    const hz = a => 'padding:4px 12px;border-radius:999px;font-family:IBM Plex Mono,monospace;font-size:11.5px;cursor:pointer;border:1px solid ' + (a ? '#2FC8B6;background:rgba(47,200,182,0.13);color:#7FE7DA' : '#1D2F32;background:transparent;color:#9DB1AC');
+    const g = D.grid;
+    const sB = D.sB || { v: D.yMin, lab: '' }, fl = D.floor || { hi: D.yMin, lo: D.yMin, lab: '' };
+    const clamp = v => Math.max(2, Math.min(98, v));
+    const L = D.hasLevels !== false;
+    const pctX = v => (v / 960 * 100).toFixed(2), pctY = v => (v / 520 * 100).toFixed(2);
+    const hpts = {};
+    [0, 13, 26, 39].forEach((ix, k) => {
+      const K = 'h' + (k + 1);
+      hpts[K + 'x'] = hx(ix).toFixed(1); hpts[K + 'y'] = y(D.hist[ix]).toFixed(1);
+      hpts[K + 'left'] = pctX(hx(ix)); hpts[K + 'top'] = pctY(y(D.hist[ix]));
+      const nearLevel = [D.rA.v, D.rB.v, D.bk.v, sB.v].some(L => Math.abs(D.hist[ix] - L) / (D.yMax - D.yMin) < 0.03);
+      hpts[K + 'v'] = nearLevel ? '' : fM(D.hist[ix]);
+    });
+    const pk = D.hist.reduce((b, v, i) => v > D.hist[b] ? i : b, 0);
+    hpts.pkx = hx(pk).toFixed(1); hpts.pky = y(D.hist[pk]).toFixed(1);
+    hpts.pkleft = pctX(hx(pk)); hpts.pktop = pctY(y(D.hist[pk]));
+    hpts.pkv = fM(D.hist[pk]);
+    return Object.assign(hpts, {
+      true: true, plainOn: this.props.plainWords !== false,
+      pickPHDC: () => this.setState({ ticker: 'PHDC' }), pickGBCO: () => this.setState({ ticker: 'GBCO' }),
+      pickH1: () => this.setState({ horizon: 1 }), pickH3: () => this.setState({ horizon: 3 }),
+      tabP: tab(T === 'PHDC'), tabG: tab(T === 'GBCO'), hz1: hz(H === 1), hz3: hz(H === 3),
+      stockName: D.name, exch: D.exch, priceBig: fM(S0), asOf: D.asOf, chipMonth: D.chipMonth, chipFv: D.chipFv,
+      provStyle: (D.prov ? 'display:inline-flex' : 'display:none') + ';font-size:11.5px;color:#E8C87E;border:1px dashed #4A3A1C;border-radius:999px;padding:4px 12px',
+      provText: 'levels & bands provisional — pending study data',
+      gridD: g.map(v => 'M10,' + y(v).toFixed(1) + ' H896').join(' '),
+      gp1: pctY(y(g[0])), gp2: pctY(y(g[1])), gp3: pctY(y(g[2])), gp4: pctY(y(g[3])), gp5: pctY(y(g[4])),
+      g1t: String(g[0]), g2t: String(g[1]), g3t: String(g[2]), g4t: String(g[3]), g5t: String(g[4]),
+      histD: path(D.hist), ma10D: path(ma(10)), ma40D: path(ma(40)),
+      cone95Pts: up95.concat(lo95.slice().reverse()).join(' '), cone50Pts: up50.concat(lo50.slice().reverse()).join(' '),
+      medD: medPts.join(' '),
+      bridgeD: 'M' + x3 + ',' + y(med3).toFixed(1) + ' Q690,' + y(D.fv).toFixed(1) + ' ' + xFv + ',' + y(D.fv).toFixed(1),
+      bridgeLabY: (y(D.fv) + 18).toFixed(1),
+      handoffPts: x3 + ',' + y(u95_3).toFixed(1) + ' ' + xFv + ',' + y(D.fvBest).toFixed(1) + ' ' + xFv + ',' + y(D.fvBad).toFixed(1) + ' ' + x3 + ',' + y(l95_3).toFixed(1),
+      hasLevels: L, noLevels: !L,
+      recentHigh: D.recentHigh || fM(Math.max.apply(null, D.hist)),
+      rAy: y(D.rA.v).toFixed(1), rAtop: pctY(y(D.rA.v)), rAo: 0.8,
+      rAt: D.rA.lab + ' · ' + pct(probAbove3(D.rA.v)) + (L ? ' of paths end above' : ' end above'),
+      rBy: y(D.rB.v).toFixed(1), rBtop: pctY(y(D.rB.v)), rBo: L ? 0.65 : 0,
+      rBt: L ? D.rB.lab + ' · ' + pct(probAbove3(D.rB.v)) + ' end above' : '',
+      shelfY: y(D.shelf.hi).toFixed(1), shelfH: (y(D.shelf.lo) - y(D.shelf.hi)).toFixed(1), shelfO: L ? 0.13 : 0,
+      shTop: pctY(y(D.shelf.lo)), shelfT: L ? D.shelf.lab + ' · ' + pct(probBelow3(D.shelf.lo)) + ' end below' : '',
+      sBy: y(sB.v).toFixed(1), sBtop: pctY(y(sB.v)), sBo: (L && D.sB) ? 0.8 : 0,
+      sBt: (L && D.sB) ? sB.lab + ' · ' + pct(probBelow3(sB.v)) + ' end below' : '',
+      bky: y(D.bk.v).toFixed(1), bkTop: pctY(y(D.bk.v)), bkT: D.bk.lab + ' · ' + pct(probBelow3(D.bk.v)) + ' end below',
+      floorY: y(fl.hi).toFixed(1), floorH: Math.max(0, y(fl.lo) - y(fl.hi)).toFixed(1),
+      floorO: D.floor ? 0.06 : 0, floorO2: D.floor ? 0.8 : 0,
+      floorLab: fl.lab, flTop: pctY((y(fl.hi) + y(fl.lo)) / 2),
+      u95Top: pctY(y(u95_3)), u95t: f1(u95_3) + ' p95',
+      u50Top: pctY(y(u50_3)), u50t: f1(u50_3) + ' p75',
+      medTop: pctY(y(med3)), medt: fM(med3) + ' · median',
+      l50Top: pctY(y(l50_3)), l50t: f1(l50_3) + ' p25',
+      l95Top: pctY(y(l95_3)), l95t: f1(l95_3) + ' p5',
+      fvBestY: y(D.fvBest).toFixed(1), fvBadY: y(D.fvBad).toFixed(1),
+      diamondD: 'M878,' + (y(D.fv) - 7).toFixed(1) + ' L885,' + y(D.fv).toFixed(1) + ' L878,' + (y(D.fv) + 7).toFixed(1) + ' L871,' + y(D.fv).toFixed(1) + ' Z',
+      fvLab: D.fvLab, fvTop: pctY(y(D.fv)),
+      fvBestLab: D.fvBestLab, fvBestTop: pctY(y(D.fvBest)),
+      fvBadLab: D.fvBadLab, fvBadTop: pctY(y(D.fvBad)),
+      dotY: y(S0).toFixed(1), prTop: pctY(y(S0)), priceTag: fM(S0),
+      trend1: D.trend1, trend2: D.trend2, trend3: D.trend3,
+      entry: D.entry, entryDeep: D.entryDeep, trim: D.trim, stretch: D.stretch, stop: D.stop + ' · case ' + D.brkTxt, atr: D.atr + ' /day',
+      mcHigher: pct(1 - P(Math.log(S0 / medH) / sH)),
+      mcTen: pct(1 - P(Math.log(1.1 * S0 / medH) / sH)) + ' vs ' + pct(P(Math.log(0.9 * S0 / medH) / sH)),
+      mcMedian: fM(medH) + ' EGP', mcBand: f1(medH * Math.exp(-0.6745 * sH)) + ' – ' + f1(medH * Math.exp(0.6745 * sH)),
+      keyResTxt: D.keyResTxt, keySupTxt: D.keySupTxt, brkTxt: D.brkTxt,
+      mcAbove: pct(1 - P(Math.log(D.keyRes / medH) / sH)),
+      mcBelow: pct(P(Math.log(D.keySup / medH) / sH)),
+      mcBreak: pct(P(Math.log(D.brk / medH) / sH)),
+      fvBig: D.fvBig, fvGapChip: 'price ' + Math.abs((D.fv / S0 - 1) * 100).toFixed(1) + '% ' + (D.fv > S0 ? 'below' : 'above') + ' this mark',
+      fvPos: clamp((D.fv - D.fvBad) / (D.fvBest - D.fvBad) * 100).toFixed(1),
+      pricePos: clamp((S0 - D.fvBad) / (D.fvBest - D.fvBad) * 100).toFixed(1),
+      fvBadLab2: D.fvBadLab2, fvBestLab2: D.fvBestLab2,
+      fvNote: D.fvNote, breakNote: D.breakNote, edition: D.edition, stockUrl: D.url,
+      plain: D.plain,
+      vNow: D.vNow, vMc: D.vMc, vFv: D.vFv,
+      vNowSty: tone(D.vNowTone), vMcSty: tone(D.vMcTone), vFvSty: tone(D.vFvTone),
+      verdict: D.verdict
+    });
+  }
+}
+</script>
+</body>
+</html>
