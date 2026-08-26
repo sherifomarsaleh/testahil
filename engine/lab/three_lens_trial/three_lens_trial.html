@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Three Clocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}else if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+<style>
+:root{
+  --paper:#F6F8F7; --card:#FFFFFF; --ink:#0E2726; --muted:#5B7270;
+  --line:#D9E4E2; --tint:#E6F2EE; --brand:#12796B; --brand2:#178A76;
+  --lens-mc:#0B8A71; --lens-ta:#B8860B; --lens-fv:#5B6FC0;
+  --wash-mc:rgba(11,138,113,.10); --wash-mc2:rgba(11,138,113,.16);
+  --wash-fv:rgba(91,111,192,.12); --halo:#FFFFFF;
+  --up:#2E7D5B; --dn:#B5483A;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1F1D; --card:#15302D; --ink:#E7EFEC; --muted:#9DB3AF;
+    --line:#26433F; --tint:#1B3B37; --brand:#4FB3A4; --brand2:#63C7B8;
+    --lens-mc:#3AA491; --lens-ta:#B28A28; --lens-fv:#6F84D8;
+    --wash-mc:rgba(58,164,145,.14); --wash-mc2:rgba(58,164,145,.22);
+    --wash-fv:rgba(111,132,216,.16); --halo:#15302D;
+    --up:#54B583; --dn:#E07767;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1F1D; --card:#15302D; --ink:#E7EFEC; --muted:#9DB3AF;
+  --line:#26433F; --tint:#1B3B37; --brand:#4FB3A4; --brand2:#63C7B8;
+  --lens-mc:#3AA491; --lens-ta:#B28A28; --lens-fv:#6F84D8;
+  --wash-mc:rgba(58,164,145,.14); --wash-mc2:rgba(58,164,145,.22);
+  --wash-fv:rgba(111,132,216,.16); --halo:#15302D;
+  --up:#54B583; --dn:#E07767;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;font-size:.95rem;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 64px}
+h1,h2,h3{font-family:"Alexandria","IBM Plex Sans",sans-serif;margin:0}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-feature-settings:"tnum"}
+.masthead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.masthead h1{font-weight:800;font-size:1.9rem;color:var(--brand)}
+.trialtag{font-size:.7rem;letter-spacing:.12em;font-weight:600;color:var(--lens-ta);
+  border:1px solid currentColor;border-radius:999px;padding:2px 10px;text-transform:uppercase}
+.lede{max-width:70ch;color:var(--ink);margin:.6em 0 0}
+.lede b{color:var(--brand)}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px}
+@media(max-width:760px){.howto{grid-template-columns:1fr}}
+.howto div{background:var(--tint);border-radius:10px;padding:10px 14px;font-size:.85rem}
+.howto b{display:block;font-family:"Alexandria",sans-serif}
+.howto .mc b{color:var(--lens-mc)}.howto .ta b{color:var(--lens-ta)}.howto .fv b{color:var(--lens-fv)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0 4px;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.key{display:inline-block;width:20px;height:0;border-top:2.5px solid}
+.key.ink{border-color:var(--ink)}.key.ta{border-color:var(--lens-ta)}
+.key.fv{border-color:var(--lens-fv)}
+.key.mcband{width:20px;height:12px;border:0;background:var(--wash-mc2);border-radius:3px}
+.key.mcline{border-color:var(--lens-mc)}
+.ticker{margin-top:40px}
+.thead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.thead h2{font-size:1.35rem;font-weight:700}
+.thead .code{font-size:.8rem;color:var(--muted);font-weight:400}
+.spotchip{margin-inline-start:auto;background:var(--tint);border-radius:999px;padding:3px 14px;font-size:.82rem}
+.canvas-wrap{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 6px 6px}
+.canvas-scroll{overflow-x:auto}
+.canvas-scroll svg{display:block;min-width:880px;width:100%;height:auto}
+svg text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink)}
+svg .num,svg .endlab{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.grid{stroke:var(--line);stroke-width:1;opacity:.55}
+.axis{stroke:var(--line);stroke-width:1.2}
+.axisbreak{stroke:var(--muted);stroke-width:1.4}
+.zoneline{stroke:var(--line);stroke-width:1.2}
+.tick{font-size:10.5px;fill:var(--muted)}
+.cap{font-size:9.5px;fill:var(--muted);letter-spacing:.09em}
+.hist{fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linejoin:round;opacity:.82}
+.nowline{stroke:var(--muted);stroke-width:1;opacity:.55}
+.checkline{stroke:var(--line);stroke-width:1;opacity:.8}
+.cone90{fill:var(--wash-mc)}.cone50{fill:var(--wash-mc2)}
+.median{fill:none;stroke:var(--lens-mc);stroke-width:2.2;stroke-linecap:round}
+.talvl{stroke:var(--lens-ta);stroke-width:2;stroke-linecap:round}
+.lvllab{font-size:10.5px}.lvlkey{fill:var(--lens-ta);font-weight:600}
+.leader{stroke-width:1;opacity:.5}.leader.mc{stroke:var(--lens-mc)}
+.endlab{font-size:11px}.endlab.strong{font-weight:600}
+.qtag{fill:var(--muted);font-size:9px;letter-spacing:.04em}
+.fvwash{fill:var(--wash-fv)}
+.fvspine{stroke:var(--lens-fv);stroke-width:2.4;stroke-linecap:round}
+.fvtick{stroke:var(--lens-fv);stroke-width:2}
+.spotref{stroke:var(--muted);stroke-width:1;opacity:.5}
+.dot{stroke:var(--card);stroke-width:2}
+.dot.mc{fill:var(--lens-mc)}.dot.fv{fill:var(--lens-fv)}.dot.inkdot{fill:var(--ink)}
+.halo{paint-order:stroke fill;stroke:var(--halo);stroke-width:3px;stroke-linejoin:round}
+.crosshair{stroke:var(--muted);stroke-width:1;opacity:.65;pointer-events:none}
+.hit{fill:transparent;outline:none}
+.hit:focus-visible{fill:var(--tint);opacity:.25}
+.tip{position:absolute;pointer-events:none;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;box-shadow:0 6px 18px rgba(0,0,0,.14);padding:8px 11px;min-width:150px;z-index:5}
+.tiptitle{font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.tiprows div{display:flex;justify-content:space-between;gap:16px;font-size:.8rem}
+.tiprows .tl{color:var(--muted)}
+.tiprows .tv{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:600}
+.align{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin:16px 2px 0}
+.al-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 14px;
+  display:flex;flex-direction:column;gap:1px}
+.al-item .k{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.al-item .k.mc{color:var(--lens-mc)}.al-item .k.fv{color:var(--lens-fv)}.al-item .k.ink{color:var(--muted)}
+.al-item .v{font-size:1.05rem;font-weight:600}
+.al-item .v em{font-style:normal;font-size:.72rem;color:var(--muted);margin-inline-start:7px}
+.al-arrow{align-self:center;color:var(--muted)}
+.alignnote{font-size:.8rem;color:var(--muted);margin:8px 2px 0;max-width:80ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+@media(max-width:920px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 12px;
+  border-top:3px solid var(--line)}
+.card.lens-ta{border-top-color:var(--lens-ta)}
+.card.lens-mc{border-top-color:var(--lens-mc)}
+.card.lens-fv{border-top-color:var(--lens-fv)}
+.card header{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.card h3{font-size:1rem;font-weight:700}
+.htag{margin-inline-start:auto;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.lensdot{width:9px;height:9px;border-radius:50%;align-self:center}
+.lensdot.ta{background:var(--lens-ta)}.lensdot.mc{background:var(--lens-mc)}.lensdot.fv{background:var(--lens-fv)}
+.trend{font-weight:600;margin:.1em 0 .4em}
+.body{font-size:.85rem;margin:.4em 0}
+.lvlgrid{display:grid;gap:8px;margin:10px 0}
+.lvlhead{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lvlrow{font-size:.88rem}
+.trigger{font-size:.83rem;margin:.35em 0}
+.fine{font-size:.74rem;color:var(--muted);margin:.6em 0 0}
+.fineul{font-size:.74rem;color:var(--muted);padding-inline-start:18px;margin:.6em 0 0}
+.fineul li{margin:.25em 0}
+.stamp{font-size:.7rem;color:var(--muted);border-top:1px solid var(--line);margin:.9em -16px 0;padding:8px 16px 0}
+.card .stamp{margin-bottom:0}
+.dirchip{font-size:.82rem;margin:.2em 0 .7em}
+.dirsign{font-weight:700;color:var(--lens-mc);letter-spacing:.04em}
+.chip{display:inline-block;background:var(--tint);border-radius:999px;padding:0 10px;font-size:.72rem;color:var(--brand)}
+table.mini{width:100%;border-collapse:collapse;font-size:.8rem;margin:.4em 0}
+table.mini th{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;text-align:right;padding:3px 6px;border-bottom:1px solid var(--line)}
+table.mini th:first-child,table.mini td:first-child{text-align:left}
+table.mini td{padding:4px 6px;text-align:right;border-bottom:1px solid var(--line)}
+table.mini td .sub{display:block;font-size:.68rem;color:var(--muted);font-family:"IBM Plex Sans",sans-serif}
+.tarr.up{color:var(--up)}.tarr.dn{color:var(--dn)}
+details.touch{margin:.5em 0}
+details.touch summary{cursor:pointer;font-size:.78rem;color:var(--brand);font-weight:600}
+.fvhero{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:.2em 0 .8em}
+.fvcell{background:var(--tint);border-radius:10px;padding:8px 10px;text-align:center}
+.fvcell.base{outline:2px solid var(--lens-fv);outline-offset:-2px}
+.fvcell .k{display:block;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fvcell .v{display:block;font-size:1.05rem;font-weight:600}
+.fvcell .d{display:block;font-size:.7rem;color:var(--muted)}
+.crux,.caveat{font-size:.8rem;margin:.5em 0}
+.caveat{color:var(--muted)}
+.foot{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;font-size:.74rem;color:var(--muted);max-width:90ch}
+.foot p{margin:.35em 0}
+@media (prefers-reduced-motion: no-preference){.tip{transition:opacity .1s linear}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>Three clocks, one tape</h1>
+    <span class="trialtag">trial · PHDC + GBCO</span>
+  </header>
+  <p class="lede">One canvas per name, three <b>independent</b> reads of the same stock on one price axis.
+  Each is computed on its own clock, by its own method, and none feeds another — so where they agree,
+  that agreement is evidence, not an echo.</p>
+  <div class="howto">
+    <div class="ta"><b>Technical · days–weeks</b>The computed support / resistance ladder over the near-term
+      window: exit and trim references above the price, entry and stop references below, with the bull and bear
+      triggers spelled out.</div>
+    <div class="mc"><b>Monte Carlo · 1–3 months</b>The published probability cone of the current strike:
+      the 90% band, the central 50%, and the median path to the two calendar check dates — plus this
+      name’s own track record of how often those bands held.</div>
+    <div class="fv"><b>Fundamental · ≈ 12 months</b>The study’s fair-value range — bear, base,
+      full — drawn as a floating bracket on its own shelf. A value anchor on the study’s clock, deliberately
+      not connected to the cone.</div>
+  </div>
+  <div class="legend">
+    <span><span class="key ink"></span>price history</span>
+    <span><span class="key ta"></span>technical ladder</span>
+    <span><span class="key mcband"></span>MC 90% / central 50% band</span>
+    <span><span class="key mcline"></span>MC median</span>
+    <span><span class="key fv"></span>fair-value range</span>
+  </div>
+  
+  <section class="ticker" id="PHDC">
+    <div class="thead">
+      <h2>Palm Hills Developments <span class="code num">EGX:PHDC</span></h2>
+      <span class="spotchip num">15.20 EGP · close 23 Aug 2026</span>
+    </div>
+    <div class="canvas-wrap" data-tk="PHDC">
+      <div class="canvas-scroll"><svg viewBox="0 0 1120 520" role="img" preserveAspectRatio="xMidYMid meet" aria-label="Three-lens canvas for Palm Hills Developments: price history, technical ladder, Monte Carlo cone and fundamental fair-value range on one price axis"><line x1="56" y1="382.4" x2="1112" y2="382.4" class="grid"/><text x="50" y="385.9" class="tick num" text-anchor="end">10</text><line x1="56" y1="275.2" x2="1112" y2="275.2" class="grid"/><text x="50" y="278.7" class="tick num" text-anchor="end">15</text><line x1="56" y1="168.0" x2="1112" y2="168.0" class="grid"/><text x="50" y="171.5" class="tick num" text-anchor="end">20</text><line x1="56" y1="60.8" x2="1112" y2="60.8" class="grid"/><text x="50" y="64.3" class="tick num" text-anchor="end">25</text><text x="50" y="32" class="cap" text-anchor="end">EGP</text><text x="196" y="32" class="cap" text-anchor="middle">PRICE HISTORY · 6 MONTHS</text><text x="556" y="32" class="cap" text-anchor="middle">FORECAST WINDOW · NOW → 3 MONTHS</text><text x="1004" y="32" class="cap" text-anchor="middle">≈ 12 MONTHS</text><line x1="56" y1="452" x2="867" y2="452" class="axis"/><line x1="881" y1="452" x2="1112" y2="452" class="axis"/><line x1="867" y1="458" x2="875" y2="446" class="axisbreak"/><line x1="873" y1="458" x2="881" y2="446" class="axisbreak"/><line x1="874" y1="44" x2="874" y2="438" class="zoneline"/><line x1="67.9" y1="452" x2="67.9" y2="457" class="axis"/><text x="67.9" y="470" class="tick" text-anchor="middle">Mar</text><line x1="115.3" y1="452" x2="115.3" y2="457" class="axis"/><text x="115.3" y="470" class="tick" text-anchor="middle">Apr</text><line x1="165.2" y1="452" x2="165.2" y2="457" class="axis"/><text x="165.2" y="470" class="tick" text-anchor="middle">May</text><line x1="203.1" y1="452" x2="203.1" y2="457" class="axis"/><text x="203.1" y="470" class="tick" text-anchor="middle">Jun</text><line x1="252.9" y1="452" x2="252.9" y2="457" class="axis"/><text x="252.9" y="470" class="tick" text-anchor="middle">Jul</text><line x1="300.4" y1="452" x2="300.4" y2="457" class="axis"/><polyline points="56.0,398.3 58.4,394.4 60.7,398.5 63.1,404.1 65.5,402.8 67.9,406.0 70.2,407.1 72.6,409.9 75.0,410.9 77.4,398.7 79.7,409.2 82.1,410.9 84.5,406.0 86.8,408.2 89.2,410.7 91.6,412.4 94.0,421.0 96.3,414.8 98.7,414.4 101.1,411.2 103.5,410.3 105.8,411.8 108.2,415.4 110.6,419.3 112.9,416.9 115.3,417.8 117.7,415.4 120.1,416.3 122.4,415.4 124.8,419.9 127.2,411.8 129.6,416.1 131.9,416.1 134.3,413.5 136.7,406.4 139.1,397.4 141.4,389.7 143.8,387.6 146.2,361.6 148.5,350.3 150.9,356.7 153.3,361.6 155.7,359.9 158.0,358.2 160.4,357.6 162.8,353.3 165.2,331.0 167.5,328.0 169.9,324.1 172.3,311.7 174.6,287.9 177.0,289.2 179.4,296.7 181.8,290.2 184.1,298.8 186.5,306.5 188.9,308.0 191.3,303.3 193.6,309.5 196.0,301.6 198.4,289.8 200.7,271.6 203.1,254.6 205.5,263.4 207.9,269.9 210.2,273.1 212.6,279.5 215.0,275.2 217.4,273.7 219.7,281.7 222.1,285.9 224.5,260.0 226.8,253.6 229.2,258.1 231.6,249.7 234.0,256.8 236.3,257.2 238.7,264.5 241.1,267.7 243.5,272.4 245.8,282.7 248.2,282.7 250.6,283.8 252.9,284.9 255.3,281.7 257.7,278.9 260.1,277.6 262.4,279.9 264.8,276.9 267.2,277.4 269.6,278.4 271.9,281.7 274.3,270.9 276.7,277.2 279.1,281.7 281.4,282.7 283.8,273.1 286.2,275.0 288.5,281.0 290.9,281.2 293.3,283.8 295.7,283.6 298.0,285.9 300.4,286.4 302.8,276.3 305.2,269.2 307.5,265.6 309.9,265.8 312.3,263.4 314.6,264.5 317.0,264.9 319.4,271.6 321.8,269.0 324.1,269.4 326.5,260.6 328.9,266.7 331.3,268.8 333.6,272.0 336.0,270.9" class="hist"/><line x1="336" y1="44" x2="336" y2="452" class="nowline"/><polygon points="336.0,270.9 484.3,316.4 776.0,340.0 776.0,119.6 484.3,195.7" class="cone90"/><polygon points="336.0,270.9 484.3,282.3 776.0,283.6 776.0,205.1 484.3,239.2" class="cone50"/><path d="M 336.0 270.9 L 484.3 261.5 L 776.0 246.5" class="median"/><line x1="484.3" y1="44" x2="484.3" y2="452" class="checkline"/><text x="484.3" y="470" class="tick" text-anchor="middle">23 Sep</text><text x="484.3" y="484" class="cap" text-anchor="middle">1M check</text><line x1="776.0" y1="44" x2="776.0" y2="452" class="checkline"/><text x="776.0" y="470" class="tick" text-anchor="middle">23 Nov</text><text x="776.0" y="484" class="cap" text-anchor="middle">3M check</text><text x="336.0" y="470" class="tick" text-anchor="middle">23 Aug</text><text x="336.0" y="484" class="cap" text-anchor="middle">close</text><line x1="779.0" y1="119.6" x2="785" y2="119.6" class="leader mc"/><text x="788" y="123.1" class="endlab num halo">22.26<tspan class="qtag"> p95</tspan></text><line x1="779.0" y1="205.1" x2="785" y2="205.1" class="leader mc"/><text x="788" y="208.6" class="endlab num halo">18.27<tspan class="qtag"> p75</tspan></text><line x1="779.0" y1="246.5" x2="785" y2="246.5" class="leader mc"/><text x="788" y="250.0" class="endlab num strong halo">16.34<tspan class="qtag"> median</tspan></text><line x1="779.0" y1="283.6" x2="785" y2="283.6" class="leader mc"/><text x="788" y="287.1" class="endlab num halo">14.61<tspan class="qtag"> p25</tspan></text><line x1="779.0" y1="340.0" x2="785" y2="340.0" class="leader mc"/><text x="788" y="343.5" class="endlab num halo">11.98<tspan class="qtag"> p5</tspan></text><circle cx="776.0" cy="246.5" r="4.5" class="dot mc"/><circle cx="336.0" cy="270.9" r="4.5" class="dot inkdot"/><line x1="338.0" y1="267.1" x2="484.3" y2="267.1" class="talvl"/><text x="344.0" y="262.1" class="lvllab halo"><tspan class="lvlkey">R1</tspan> <tspan class="num">15.38</tspan></text><line x1="338.0" y1="259.6" x2="484.3" y2="259.6" class="talvl" style="opacity:.62"/><text x="410.0" y="254.6" class="lvllab halo"><tspan class="lvlkey">R2</tspan> <tspan class="num">15.73</tspan></text><line x1="338.0" y1="252.1" x2="484.3" y2="252.1" class="talvl" style="opacity:.62"/><text x="476.0" y="247.1" class="lvllab halo"><tspan class="lvlkey">R3</tspan> <tspan class="num">16.08</tspan></text><line x1="338.0" y1="275.4" x2="484.3" y2="275.4" class="talvl"/><text x="344.0" y="287.9" class="lvllab halo"><tspan class="lvlkey">S1</tspan> <tspan class="num">14.99</tspan></text><line x1="338.0" y1="288.1" x2="484.3" y2="288.1" class="talvl" style="opacity:.62"/><text x="410.0" y="300.6" class="lvllab halo"><tspan class="lvlkey">S2</tspan> <tspan class="num">14.40</tspan></text><line x1="338.0" y1="317.9" x2="484.3" y2="317.9" class="talvl" style="opacity:.62"/><text x="476.0" y="330.4" class="lvllab halo"><tspan class="lvlkey">S3</tspan> <tspan class="num">13.01</tspan></text><line x1="888" y1="270.9" x2="1112" y2="270.9" class="spotref"/><text x="890" y="265.9" class="cap halo" text-anchor="start">spot 15.20</text><rect x="951" y="62.5" width="34" height="370.9" rx="8" class="fvwash"/><line x1="968" y1="62.5" x2="968" y2="433.5" class="fvspine"/><line x1="959" y1="62.5" x2="977" y2="62.5" class="fvtick"/><text x="992" y="66.0" class="endlab num halo">24.92<tspan class="qtag"> full</tspan></text><line x1="959" y1="256.1" x2="977" y2="256.1" class="fvtick"/><text x="992" y="259.6" class="endlab num strong halo">15.89<tspan class="qtag"> base</tspan></text><line x1="959" y1="433.5" x2="977" y2="433.5" class="fvtick"/><text x="992" y="437.0" class="endlab num halo">7.62<tspan class="qtag"> bear</tspan></text><circle cx="968" cy="256.1" r="5" class="dot fv"/><text x="968" y="470" class="tick" text-anchor="middle">no date</text><text x="968" y="484" class="cap" text-anchor="middle">value anchor · study clock</text><line id="xh-PHDC" x1="0" y1="44" x2="0" y2="452" class="crosshair" style="display:none"/><rect data-zone="hist" x="56" y="44" width="280" height="408" class="hit" tabindex="0"/><rect data-zone="cone" x="335" y="44" width="513" height="408" class="hit" tabindex="0"/><rect data-zone="shelf" x="874" y="44" width="246" height="408" class="hit" tabindex="0"/></svg></div>
+      <div class="tip" id="tip-PHDC" hidden><div class="tiptitle"></div><div class="tiprows"></div></div>
+    </div>
+    <div class="align"><span class="al-item"><span class="k ink">Spot</span><span class="v num">15.20</span></span><span class="al-arrow">→</span><span class="al-item"><span class="k mc">MC median · 3M</span><span class="v num">16.34<em>+7.5%</em></span></span><span class="al-arrow">→</span><span class="al-item"><span class="k fv">Fair base · study</span><span class="v num">15.89<em>+4.5%</em></span></span><span class="al-item wide"><span class="k fv">Fair range</span><span class="v num">7.62 – 24.92<em>-49.9% … +63.9%</em></span></span></div>
+    <p class="alignnote">Three independent computations — nothing above feeds anything else. Agreement between
+    the lenses is information; disagreement is a question worth asking.</p>
+    <div class="cards">
+      <article class="card lens-ta">
+        <header><span class="lensdot ta"></span><h3>Technical</h3><span class="htag">days – weeks</span></header>
+        <p class="trend">Trading above the whole moving-average stack, on a rising 200-day.</p>
+        <p class="body">The price closed 15.20 above a rising 20-day (15.15), a rising 50-day (15.10) and a rising 200-day (10.95). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.42 (~2.8%) points to a normal tape. MACD (12·26·9) is above zero but rolling over (+0.12 / +0.14 / −0.02). Over the last year it has ranged 6.99–16.43; the last close sits 7% below that high and 117% above that low.</p>
+        <div class="lvlgrid">
+          <div><span class="lvlhead">Exit / trim references (resistance)</span>
+            <span class="num lvlrow">R1 15.38 · R2 15.73 · R3 16.08</span></div>
+          <div><span class="lvlhead">Entry / stop references (support)</span>
+            <span class="num lvlrow">S1 14.99 · S2 14.40 · S3 13.01</span></div>
+        </div>
+        <p class="trigger"><b>Bull trigger:</b> A daily close back above 15.38 would clear the nearest resistance and open the 16.08 zone.</p>
+        <p class="trigger"><b>Bear trigger:</b> A close below 14.99 would break the nearest support and open the 13.01 zone.</p>
+        <p class="fine">Computed reference levels from the published ladder — not advice. Levels move with the library.</p>
+        <p class="stamp">data 23 Aug 2026 · computed 25 Aug 2026</p>
+      </article>
+      <article class="card lens-mc">
+        <header><span class="lensdot mc"></span><h3>Monte Carlo</h3><span class="htag">1 – 3 months</span></header>
+        <p class="dirchip"><span class="dirsign">▲ UP</span> —
+           upward direction call from this name’s own momentum (z +1.94);
+           tilt +1.40% at 1M, +2.67% at 3M. Cycle 5,
+           struck 24 Aug 2026 on the 23 Aug 2026 close.</p>
+        <table class="mini"><thead><tr><th>Horizon</th><th>p5</th><th>p25</th><th>median</th><th>p75</th><th>p95</th></tr></thead><tbody><tr><td>1 month<span class="sub">checks 23 Sep</span></td><td class="num">13.08</td><td class="num">14.67</td><td class="num">15.64</td><td class="num">16.68</td><td class="num">18.71</td></tr><tr><td>3 months<span class="sub">checks 23 Nov</span></td><td class="num">11.98</td><td class="num">14.61</td><td class="num">16.34</td><td class="num">18.27</td><td class="num">22.26</td></tr></tbody></table>
+        <details class="touch"><summary>Probability of touching a level</summary><table class="mini"><thead><tr><th>Level</th><th>P(touch) ≤ 1M</th><th>≤ 3M</th></tr></thead><tbody><tr><td class="num"><span class="tarr up">▲</span> 20.00</td><td class="num">3%</td><td class="num">19%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 18.50</td><td class="num">9%</td><td class="num">35%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 17.50</td><td class="num">20%</td><td class="num">51%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 16.50</td><td class="num">43%</td><td class="num">71%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 15.55</td><td class="num">80%</td><td class="num">90%</td></tr></tbody></table></details>
+        <p class="body">Over 57 resolved three-month forecasts, the price finished inside the 90% band 91% of the time, against the 90% that band aims at — and inside the 80% and 50% bands 86% and 51% of the time. The band is 1.47 times the width of a simple no-forecast rule&rsquo;s — the price of covering this name honestly. <span class="chip">long record</span></p>
+        <ul class="fineul">
+          <li>Carry-anchored drift at rf 19.50%; dividend yield held at zero (house convention — the centre is gross of dividend, overstated by roughly the yield).</li>
+          <li>Per-name width overlay applied: this name’s own resolved history sets the cone wider than the pooled market fit (multiplier 1.0264, effective width 0.9761).</li>
+          <li>Check dates are calendar commitments — the forecast grades on the stated date, however many sessions the window held.</li>
+        </ul>
+        <p class="stamp">data 23 Aug 2026 · computed 24 Aug 2026</p>
+      </article>
+      <article class="card lens-fv">
+        <header><span class="lensdot fv"></span><h3>Fundamental</h3><span class="htag">≈ 12 months</span></header>
+        <div class="fvhero">
+          <div class="fvcell"><span class="k">bear</span><span class="v num">7.62</span><span class="d num">-49.9%</span></div>
+          <div class="fvcell base"><span class="k">base</span><span class="v num">15.89</span><span class="d num">+4.5%</span></div>
+          <div class="fvcell"><span class="k">full</span><span class="v num">24.92</span><span class="d num">+63.9%</span></div>
+        </div>
+        <p>A sum-of-the-parts / RNAV build for a land-bank developer: the projects and land priced leg by leg, netted to an equity value per share, bracketed by a risk-adjusted bear case and a full-execution case. The spread between them is wide because execution, not the asset base, is the question.</p>
+        <p class="fine">Fair value is a value anchor, not a dated price forecast: it is where the study says value
+        sits if the thesis holds, shown on the 12-month shelf for horizon context. It moves on its own study
+        clock — a cone re-strike never touches it.</p>
+        <p class="stamp">study 11 Jun 2026 · <a href="https://testahil.com/phdc.html">full study &amp; open model</a></p>
+      </article></div>
+  </section>
+  <section class="ticker" id="GBCO">
+    <div class="thead">
+      <h2>GB Corp (Ghabbour) <span class="code num">EGX:GBCO</span></h2>
+      <span class="spotchip num">29.51 EGP · close 23 Aug 2026</span>
+    </div>
+    <div class="canvas-wrap" data-tk="GBCO">
+      <div class="canvas-scroll"><svg viewBox="0 0 1120 520" role="img" preserveAspectRatio="xMidYMid meet" aria-label="Three-lens canvas for GB Corp (Ghabbour): price history, technical ladder, Monte Carlo cone and fundamental fair-value range on one price axis"><line x1="56" y1="398.1" x2="1112" y2="398.1" class="grid"/><text x="50" y="401.6" class="tick num" text-anchor="end">25</text><line x1="56" y1="333.6" x2="1112" y2="333.6" class="grid"/><text x="50" y="337.1" class="tick num" text-anchor="end">30</text><line x1="56" y1="269.0" x2="1112" y2="269.0" class="grid"/><text x="50" y="272.5" class="tick num" text-anchor="end">35</text><line x1="56" y1="204.5" x2="1112" y2="204.5" class="grid"/><text x="50" y="208.0" class="tick num" text-anchor="end">40</text><line x1="56" y1="140.0" x2="1112" y2="140.0" class="grid"/><text x="50" y="143.5" class="tick num" text-anchor="end">45</text><line x1="56" y1="75.5" x2="1112" y2="75.5" class="grid"/><text x="50" y="79.0" class="tick num" text-anchor="end">50</text><text x="50" y="32" class="cap" text-anchor="end">EGP</text><text x="196" y="32" class="cap" text-anchor="middle">PRICE HISTORY · 6 MONTHS</text><text x="556" y="32" class="cap" text-anchor="middle">FORECAST WINDOW · NOW → 3 MONTHS</text><text x="1004" y="32" class="cap" text-anchor="middle">≈ 12 MONTHS</text><line x1="56" y1="452" x2="867" y2="452" class="axis"/><line x1="881" y1="452" x2="1112" y2="452" class="axis"/><line x1="867" y1="458" x2="875" y2="446" class="axisbreak"/><line x1="873" y1="458" x2="881" y2="446" class="axisbreak"/><line x1="874" y1="44" x2="874" y2="438" class="zoneline"/><line x1="67.9" y1="452" x2="67.9" y2="457" class="axis"/><text x="67.9" y="470" class="tick" text-anchor="middle">Mar</text><line x1="115.3" y1="452" x2="115.3" y2="457" class="axis"/><text x="115.3" y="470" class="tick" text-anchor="middle">Apr</text><line x1="165.2" y1="452" x2="165.2" y2="457" class="axis"/><text x="165.2" y="470" class="tick" text-anchor="middle">May</text><line x1="203.1" y1="452" x2="203.1" y2="457" class="axis"/><text x="203.1" y="470" class="tick" text-anchor="middle">Jun</text><line x1="252.9" y1="452" x2="252.9" y2="457" class="axis"/><text x="252.9" y="470" class="tick" text-anchor="middle">Jul</text><line x1="300.4" y1="452" x2="300.4" y2="457" class="axis"/><polyline points="56.0,344.5 58.4,331.0 60.7,333.4 63.1,347.5 65.5,352.3 67.9,362.0 70.2,357.2 72.6,361.7 75.0,374.3 77.4,372.3 79.7,389.2 82.1,402.7 84.5,386.5 86.8,385.3 89.2,394.7 91.6,403.3 94.0,410.4 96.3,405.6 98.7,399.1 101.1,400.5 103.5,401.2 105.8,400.7 108.2,407.9 110.6,405.2 112.9,409.7 115.3,398.1 117.7,403.3 120.1,403.9 122.4,404.4 124.8,406.7 127.2,384.5 129.6,389.7 131.9,389.7 134.3,383.1 136.7,372.4 139.1,363.2 141.4,361.3 143.8,369.4 146.2,362.0 148.5,369.1 150.9,362.0 153.3,371.0 155.7,371.6 158.0,379.8 160.4,372.4 162.8,379.4 165.2,377.4 167.5,373.8 169.9,377.4 172.3,364.7 174.6,352.9 177.0,350.3 179.4,342.6 181.8,349.1 184.1,344.0 186.5,365.8 188.9,378.7 191.3,383.3 193.6,391.6 196.0,391.4 198.4,386.7 200.7,377.4 203.1,376.3 205.5,380.9 207.9,385.4 210.2,380.9 212.6,389.1 215.0,378.7 217.4,360.7 219.7,363.4 222.1,359.5 224.5,354.2 226.8,352.9 229.2,355.1 231.6,349.1 234.0,346.3 236.3,316.8 238.7,317.4 241.1,314.6 243.5,314.2 245.8,320.7 248.2,314.9 250.6,301.9 252.9,308.9 255.3,318.5 257.7,317.7 260.1,317.4 262.4,328.8 264.8,324.3 267.2,317.9 269.6,310.2 271.9,309.0 274.3,291.2 276.7,296.8 279.1,302.1 281.4,311.0 283.8,304.5 286.2,316.7 288.5,321.9 290.9,329.7 293.3,327.2 295.7,329.8 298.0,338.0 300.4,332.0 302.8,314.6 305.2,307.6 307.5,314.2 309.9,325.6 312.3,311.8 314.6,310.2 317.0,307.8 319.4,305.2 321.8,314.2 324.1,324.5 326.5,327.8 328.9,328.4 331.3,333.7 333.6,342.3 336.0,339.9" class="hist"/><line x1="336" y1="44" x2="336" y2="452" class="nowline"/><polygon points="336.0,339.9 484.3,400.2 776.0,433.5 776.0,162.7 484.3,252.1" class="cone90"/><polygon points="336.0,339.9 484.3,358.7 776.0,365.2 776.0,269.0 484.3,305.8" class="cone50"/><path d="M 336.0 339.9 L 484.3 333.3 L 776.0 320.0" class="median"/><line x1="484.3" y1="44" x2="484.3" y2="452" class="checkline"/><text x="484.3" y="470" class="tick" text-anchor="middle">23 Sep</text><text x="484.3" y="484" class="cap" text-anchor="middle">1M check</text><line x1="776.0" y1="44" x2="776.0" y2="452" class="checkline"/><text x="776.0" y="470" class="tick" text-anchor="middle">23 Nov</text><text x="776.0" y="484" class="cap" text-anchor="middle">3M check</text><text x="336.0" y="470" class="tick" text-anchor="middle">23 Aug</text><text x="336.0" y="484" class="cap" text-anchor="middle">close</text><line x1="779.0" y1="162.7" x2="785" y2="162.7" class="leader mc"/><text x="788" y="166.2" class="endlab num halo">43.24<tspan class="qtag"> p95</tspan></text><line x1="779.0" y1="269.0" x2="785" y2="269.0" class="leader mc"/><text x="788" y="272.5" class="endlab num halo">35.00<tspan class="qtag"> p75</tspan></text><line x1="779.0" y1="320.0" x2="785" y2="320.0" class="leader mc"/><text x="788" y="323.5" class="endlab num strong halo">31.05<tspan class="qtag"> median</tspan></text><line x1="779.0" y1="365.2" x2="785" y2="365.2" class="leader mc"/><text x="788" y="368.7" class="endlab num halo">27.55<tspan class="qtag"> p25</tspan></text><line x1="779.0" y1="433.5" x2="785" y2="433.5" class="leader mc"/><text x="788" y="437.0" class="endlab num halo">22.26<tspan class="qtag"> p5</tspan></text><circle cx="776.0" cy="320.0" r="4.5" class="dot mc"/><circle cx="336.0" cy="339.9" r="4.5" class="dot inkdot"/><line x1="338.0" y1="332.0" x2="484.3" y2="332.0" class="talvl"/><text x="344.0" y="327.0" class="lvllab halo"><tspan class="lvlkey">R1</tspan> <tspan class="num">30.12</tspan></text><line x1="338.0" y1="301.7" x2="484.3" y2="301.7" class="talvl" style="opacity:.62"/><text x="410.0" y="296.7" class="lvllab halo"><tspan class="lvlkey">R2</tspan> <tspan class="num">32.47</tspan></text><line x1="338.0" y1="292.8" x2="484.3" y2="292.8" class="talvl" style="opacity:.62"/><text x="476.0" y="287.8" class="lvllab halo"><tspan class="lvlkey">R3</tspan> <tspan class="num">33.16</tspan></text><line x1="338.0" y1="351.1" x2="484.3" y2="351.1" class="talvl"/><text x="344.0" y="363.6" class="lvllab halo"><tspan class="lvlkey">S1</tspan> <tspan class="num">28.64</tspan></text><line x1="338.0" y1="393.4" x2="484.3" y2="393.4" class="talvl" style="opacity:.62"/><text x="410.0" y="405.9" class="lvllab halo"><tspan class="lvlkey">S2</tspan> <tspan class="num">25.36</tspan></text><line x1="338.0" y1="411.1" x2="484.3" y2="411.1" class="talvl" style="opacity:.62"/><text x="476.0" y="423.6" class="lvllab halo"><tspan class="lvlkey">S3</tspan> <tspan class="num">23.99</tspan></text><line x1="888" y1="339.9" x2="1112" y2="339.9" class="spotref"/><text x="890" y="334.9" class="cap halo" text-anchor="start">spot 29.51</text><rect x="951" y="62.5" width="34" height="357.5" rx="8" class="fvwash"/><line x1="968" y1="62.5" x2="968" y2="420.0" class="fvspine"/><line x1="959" y1="62.5" x2="977" y2="62.5" class="fvtick"/><text x="992" y="66.0" class="endlab num halo">51.00<tspan class="qtag"> full</tspan></text><line x1="959" y1="260.0" x2="977" y2="260.0" class="fvtick"/><text x="992" y="263.5" class="endlab num strong halo">35.70<tspan class="qtag"> base</tspan></text><line x1="959" y1="420.0" x2="977" y2="420.0" class="fvtick"/><text x="992" y="423.5" class="endlab num halo">23.30<tspan class="qtag"> bear</tspan></text><circle cx="968" cy="260.0" r="5" class="dot fv"/><text x="968" y="470" class="tick" text-anchor="middle">no date</text><text x="968" y="484" class="cap" text-anchor="middle">value anchor · study clock</text><line id="xh-GBCO" x1="0" y1="44" x2="0" y2="452" class="crosshair" style="display:none"/><rect data-zone="hist" x="56" y="44" width="280" height="408" class="hit" tabindex="0"/><rect data-zone="cone" x="335" y="44" width="513" height="408" class="hit" tabindex="0"/><rect data-zone="shelf" x="874" y="44" width="246" height="408" class="hit" tabindex="0"/></svg></div>
+      <div class="tip" id="tip-GBCO" hidden><div class="tiptitle"></div><div class="tiprows"></div></div>
+    </div>
+    <div class="align"><span class="al-item"><span class="k ink">Spot</span><span class="v num">29.51</span></span><span class="al-arrow">→</span><span class="al-item"><span class="k mc">MC median · 3M</span><span class="v num">31.05<em>+5.2%</em></span></span><span class="al-arrow">→</span><span class="al-item"><span class="k fv">Fair base · study</span><span class="v num">35.70<em>+21.0%</em></span></span><span class="al-item wide"><span class="k fv">Fair range</span><span class="v num">23.30 – 51.00<em>-21.0% … +72.8%</em></span></span></div>
+    <p class="alignnote">Three independent computations — nothing above feeds anything else. Agreement between
+    the lenses is information; disagreement is a question worth asking.</p>
+    <div class="cards">
+      <article class="card lens-ta">
+        <header><span class="lensdot ta"></span><h3>Technical</h3><span class="htag">days – weeks</span></header>
+        <p class="trend">Consolidating below the near-term moving averages, above a rising 200-day.</p>
+        <p class="body">The price closed 29.51 below a falling 20-day (30.80) and a rising 50-day (30.83), but above a rising 200-day (28.04). Momentum is neutral: RSI(14) is ~40 and the daily ATR near 1.05 (~3.6%) points to a lively tape. MACD (12·26·9) is negative and still falling (−0.24 / +0.03 / −0.27). Over the last year it has ranged 19.10–34.20; the last close sits 14% below that high and 55% above that low.</p>
+        <div class="lvlgrid">
+          <div><span class="lvlhead">Exit / trim references (resistance)</span>
+            <span class="num lvlrow">R1 30.12 · R2 32.47 · R3 33.16</span></div>
+          <div><span class="lvlhead">Entry / stop references (support)</span>
+            <span class="num lvlrow">S1 28.64 · S2 25.36 · S3 23.99</span></div>
+        </div>
+        <p class="trigger"><b>Bull trigger:</b> A daily close back above 30.12 would clear the nearest resistance and open the 33.16 zone.</p>
+        <p class="trigger"><b>Bear trigger:</b> A close below 28.64 would break the nearest support and open the 23.99 zone.</p>
+        <p class="fine">Computed reference levels from the published ladder — not advice. Levels move with the library.</p>
+        <p class="stamp">data 23 Aug 2026 · computed 25 Aug 2026</p>
+      </article>
+      <article class="card lens-mc">
+        <header><span class="lensdot mc"></span><h3>Monte Carlo</h3><span class="htag">1 – 3 months</span></header>
+        <p class="dirchip"><span class="dirsign">▲ UP</span> —
+           upward direction call from this name’s own momentum (z +0.34);
+           tilt +0.26% at 1M, +0.50% at 3M. Cycle 3,
+           struck 24 Aug 2026 on the 23 Aug 2026 close.</p>
+        <table class="mini"><thead><tr><th>Horizon</th><th>p5</th><th>p25</th><th>median</th><th>p75</th><th>p95</th></tr></thead><tbody><tr><td>1 month<span class="sub">checks 23 Sep</span></td><td class="num">24.84</td><td class="num">28.05</td><td class="num">30.02</td><td class="num">32.15</td><td class="num">36.31</td></tr><tr><td>3 months<span class="sub">checks 23 Nov</span></td><td class="num">22.26</td><td class="num">27.55</td><td class="num">31.05</td><td class="num">35.00</td><td class="num">43.24</td></tr></tbody></table>
+        <details class="touch"><summary>Probability of touching a level</summary><table class="mini"><thead><tr><th>Level</th><th>P(touch) ≤ 1M</th><th>≤ 3M</th></tr></thead><tbody><tr><td class="num"><span class="tarr up">▲</span> 40.00</td><td class="num">2%</td><td class="num">15%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 38.00</td><td class="num">4%</td><td class="num">22%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 36.00</td><td class="num">9%</td><td class="num">33%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 34.00</td><td class="num">19%</td><td class="num">48%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 32.00</td><td class="num">42%</td><td class="num">69%</td></tr><tr><td class="num"><span class="tarr up">▲</span> 30.00</td><td class="num">81%</td><td class="num">91%</td></tr><tr><td class="num"><span class="tarr dn">▼</span> 28.00</td><td class="num">47%</td><td class="num">63%</td></tr><tr><td class="num"><span class="tarr dn">▼</span> 26.00</td><td class="num">17%</td><td class="num">35%</td></tr></tbody></table></details>
+        <p class="body">Over 57 resolved three-month forecasts, the price finished inside the 90% band 95% of the time, against the 90% that band aims at — and inside the 80% and 50% bands 91% and 60% of the time. The band is 1.42 times the width of a simple no-forecast rule&rsquo;s — the price of covering this name honestly. <span class="chip">long record</span></p>
+        <ul class="fineul">
+          <li>Carry-anchored drift at rf 19.50%; dividend yield held at zero (house convention — the centre is gross of dividend, overstated by roughly the yield).</li>
+          <li>Per-name width overlay applied: this name’s own resolved history sets the cone narrower than the pooled market fit (multiplier 0.9000, effective width 0.8559).</li>
+          <li>Check dates are calendar commitments — the forecast grades on the stated date, however many sessions the window held.</li>
+        </ul>
+        <p class="stamp">data 23 Aug 2026 · computed 24 Aug 2026</p>
+      </article>
+      <article class="card lens-fv">
+        <header><span class="lensdot fv"></span><h3>Fundamental</h3><span class="htag">≈ 12 months</span></header>
+        <div class="fvhero">
+          <div class="fvcell"><span class="k">bear</span><span class="v num">23.30</span><span class="d num">-21.0%</span></div>
+          <div class="fvcell base"><span class="k">base</span><span class="v num">35.70</span><span class="d num">+21.0%</span></div>
+          <div class="fvcell"><span class="k">full</span><span class="v num">51.00</span><span class="d num">+72.8%</span></div>
+        </div>
+        <p>A split-the-legs build: the Auto business on discounted cash flow, GB Capital on adjusted book, and the confirmed MNT-Halan stake marked off its June-2026 funding round, less a complexity discount — cross-checked against pre-discount NAV, relative multiples and normalised earnings.</p><p class="crux"><b>The crux:</b> taken at the round&rsquo;s face value, the MNT-Halan stake alone accounts for most of GB Corp&rsquo;s entire market capitalisation. Either the market applies a far steeper discount to that private mark than the study does, or the name is meaningfully mispriced. The stake-blind lenses are the conservative anchor if you side with the market&rsquo;s scepticism.</p><p class="caveat">Caveat: the study&rsquo;s cost of capital predates the house&rsquo;s current method and is queued for re-issue. The retired construction double-counted sovereign risk — a discount rate set too high — so the error, if any, runs conservative.</p>
+        <p class="fine">Fair value is a value anchor, not a dated price forecast: it is where the study says value
+        sits if the thesis holds, shown on the 12-month shelf for horizon context. It moves on its own study
+        clock — a cone re-strike never touches it.</p>
+        <p class="stamp">study 8 Jul 2026 · <a href="https://testahil.com/gbco.html">full study &amp; open model</a></p>
+      </article></div>
+  </section>
+  <footer class="foot">
+    <p><b>Provenance.</b> Generated by <span class="num">engine/lab/three_lens_trial/build_three_lens_trial.py</span>
+    on 26 Aug 2026 from <span class="num">assets/data.js</span> and the raw price libraries at commit
+    <span class="num">226d25c</span>; the calibration sentences render through the house
+    <span class="num">band_record</span> phrasing. Every number is machine-read and cross-asserted
+    (62 checks passed); nothing is typed. Regenerate rather than edit.</p>
+    <p><b>Standing caveats.</b> Fundamental ranges are shown as published, on their own study clocks; studies
+    predating the current build standard are queued for re-issue under it. Probability bands and fair-value
+    ranges only — never a rating, never a price target. Trial surface: Palm Hills Developments and GB Corp (Ghabbour); not linked from the live site.
+    Educational analysis, not investment advice.</p>
+  </footer>
+</div>
+<script>var TL_DATA = {"PHDC": {"sessions": [{"x": 56.0, "d": "22 Feb 2026", "c": "9.26"}, {"x": 58.4, "d": "23 Feb 2026", "c": "9.44"}, {"x": 60.7, "d": "24 Feb 2026", "c": "9.25"}, {"x": 63.1, "d": "25 Feb 2026", "c": "8.99"}, {"x": 65.5, "d": "26 Feb 2026", "c": "9.05"}, {"x": 67.9, "d": "1 Mar 2026", "c": "8.90"}, {"x": 70.2, "d": "2 Mar 2026", "c": "8.85"}, {"x": 72.6, "d": "3 Mar 2026", "c": "8.72"}, {"x": 75.0, "d": "4 Mar 2026", "c": "8.67"}, {"x": 77.4, "d": "5 Mar 2026", "c": "9.24"}, {"x": 79.7, "d": "8 Mar 2026", "c": "8.75"}, {"x": 82.1, "d": "9 Mar 2026", "c": "8.67"}, {"x": 84.5, "d": "10 Mar 2026", "c": "8.90"}, {"x": 86.8, "d": "11 Mar 2026", "c": "8.80"}, {"x": 89.2, "d": "12 Mar 2026", "c": "8.68"}, {"x": 91.6, "d": "15 Mar 2026", "c": "8.60"}, {"x": 94.0, "d": "16 Mar 2026", "c": "8.20"}, {"x": 96.3, "d": "17 Mar 2026", "c": "8.49"}, {"x": 98.7, "d": "18 Mar 2026", "c": "8.51"}, {"x": 101.1, "d": "24 Mar 2026", "c": "8.66"}, {"x": 103.5, "d": "25 Mar 2026", "c": "8.70"}, {"x": 105.8, "d": "26 Mar 2026", "c": "8.63"}, {"x": 108.2, "d": "29 Mar 2026", "c": "8.46"}, {"x": 110.6, "d": "30 Mar 2026", "c": "8.28"}, {"x": 112.9, "d": "31 Mar 2026", "c": "8.39"}, {"x": 115.3, "d": "1 Apr 2026", "c": "8.35"}, {"x": 117.7, "d": "2 Apr 2026", "c": "8.46"}, {"x": 120.1, "d": "5 Apr 2026", "c": "8.42"}, {"x": 122.4, "d": "6 Apr 2026", "c": "8.46"}, {"x": 124.8, "d": "7 Apr 2026", "c": "8.25"}, {"x": 127.2, "d": "8 Apr 2026", "c": "8.63"}, {"x": 129.6, "d": "9 Apr 2026", "c": "8.43"}, {"x": 131.9, "d": "12 Apr 2026", "c": "8.43"}, {"x": 134.3, "d": "14 Apr 2026", "c": "8.55"}, {"x": 136.7, "d": "15 Apr 2026", "c": "8.88"}, {"x": 139.1, "d": "16 Apr 2026", "c": "9.30"}, {"x": 141.4, "d": "19 Apr 2026", "c": "9.66"}, {"x": 143.8, "d": "20 Apr 2026", "c": "9.76"}, {"x": 146.2, "d": "21 Apr 2026", "c": "10.97"}, {"x": 148.5, "d": "22 Apr 2026", "c": "11.50"}, {"x": 150.9, "d": "23 Apr 2026", "c": "11.20"}, {"x": 153.3, "d": "26 Apr 2026", "c": "10.97"}, {"x": 155.7, "d": "27 Apr 2026", "c": "11.05"}, {"x": 158.0, "d": "28 Apr 2026", "c": "11.13"}, {"x": 160.4, "d": "29 Apr 2026", "c": "11.16"}, {"x": 162.8, "d": "30 Apr 2026", "c": "11.36"}, {"x": 165.2, "d": "3 May 2026", "c": "12.40"}, {"x": 167.5, "d": "4 May 2026", "c": "12.54"}, {"x": 169.9, "d": "5 May 2026", "c": "12.72"}, {"x": 172.3, "d": "6 May 2026", "c": "13.30"}, {"x": 174.6, "d": "10 May 2026", "c": "14.41"}, {"x": 177.0, "d": "11 May 2026", "c": "14.35"}, {"x": 179.4, "d": "12 May 2026", "c": "14.00"}, {"x": 181.8, "d": "13 May 2026", "c": "14.30"}, {"x": 184.1, "d": "14 May 2026", "c": "13.90"}, {"x": 186.5, "d": "17 May 2026", "c": "13.54"}, {"x": 188.9, "d": "18 May 2026", "c": "13.47"}, {"x": 191.3, "d": "19 May 2026", "c": "13.69"}, {"x": 193.6, "d": "20 May 2026", "c": "13.40"}, {"x": 196.0, "d": "21 May 2026", "c": "13.77"}, {"x": 198.4, "d": "24 May 2026", "c": "14.32"}, {"x": 200.7, "d": "25 May 2026", "c": "15.17"}, {"x": 203.1, "d": "1 Jun 2026", "c": "15.96"}, {"x": 205.5, "d": "2 Jun 2026", "c": "15.55"}, {"x": 207.9, "d": "3 Jun 2026", "c": "15.25"}, {"x": 210.2, "d": "4 Jun 2026", "c": "15.10"}, {"x": 212.6, "d": "7 Jun 2026", "c": "14.80"}, {"x": 215.0, "d": "8 Jun 2026", "c": "15.00"}, {"x": 217.4, "d": "9 Jun 2026", "c": "15.07"}, {"x": 219.7, "d": "10 Jun 2026", "c": "14.70"}, {"x": 222.1, "d": "11 Jun 2026", "c": "14.50"}, {"x": 224.5, "d": "14 Jun 2026", "c": "15.71"}, {"x": 226.8, "d": "15 Jun 2026", "c": "16.01"}, {"x": 229.2, "d": "16 Jun 2026", "c": "15.80"}, {"x": 231.6, "d": "17 Jun 2026", "c": "16.19"}, {"x": 234.0, "d": "21 Jun 2026", "c": "15.86"}, {"x": 236.3, "d": "22 Jun 2026", "c": "15.84"}, {"x": 238.7, "d": "23 Jun 2026", "c": "15.50"}, {"x": 241.1, "d": "24 Jun 2026", "c": "15.35"}, {"x": 243.5, "d": "25 Jun 2026", "c": "15.13"}, {"x": 245.8, "d": "28 Jun 2026", "c": "14.65"}, {"x": 248.2, "d": "29 Jun 2026", "c": "14.65"}, {"x": 250.6, "d": "30 Jun 2026", "c": "14.60"}, {"x": 252.9, "d": "1 Jul 2026", "c": "14.55"}, {"x": 255.3, "d": "5 Jul 2026", "c": "14.70"}, {"x": 257.7, "d": "6 Jul 2026", "c": "14.83"}, {"x": 260.1, "d": "7 Jul 2026", "c": "14.89"}, {"x": 262.4, "d": "8 Jul 2026", "c": "14.78"}, {"x": 264.8, "d": "9 Jul 2026", "c": "14.92"}, {"x": 267.2, "d": "12 Jul 2026", "c": "14.90"}, {"x": 269.6, "d": "13 Jul 2026", "c": "14.85"}, {"x": 271.9, "d": "14 Jul 2026", "c": "14.70"}, {"x": 274.3, "d": "15 Jul 2026", "c": "15.20"}, {"x": 276.7, "d": "16 Jul 2026", "c": "14.91"}, {"x": 279.1, "d": "19 Jul 2026", "c": "14.70"}, {"x": 281.4, "d": "20 Jul 2026", "c": "14.65"}, {"x": 283.8, "d": "21 Jul 2026", "c": "15.10"}, {"x": 286.2, "d": "22 Jul 2026", "c": "15.01"}, {"x": 288.5, "d": "26 Jul 2026", "c": "14.73"}, {"x": 290.9, "d": "27 Jul 2026", "c": "14.72"}, {"x": 293.3, "d": "28 Jul 2026", "c": "14.60"}, {"x": 295.7, "d": "29 Jul 2026", "c": "14.61"}, {"x": 298.0, "d": "30 Jul 2026", "c": "14.50"}, {"x": 300.4, "d": "2 Aug 2026", "c": "14.48"}, {"x": 302.8, "d": "3 Aug 2026", "c": "14.95"}, {"x": 305.2, "d": "4 Aug 2026", "c": "15.28"}, {"x": 307.5, "d": "5 Aug 2026", "c": "15.45"}, {"x": 309.9, "d": "6 Aug 2026", "c": "15.44"}, {"x": 312.3, "d": "9 Aug 2026", "c": "15.55"}, {"x": 314.6, "d": "10 Aug 2026", "c": "15.50"}, {"x": 317.0, "d": "11 Aug 2026", "c": "15.48"}, {"x": 319.4, "d": "12 Aug 2026", "c": "15.17"}, {"x": 321.8, "d": "13 Aug 2026", "c": "15.29"}, {"x": 324.1, "d": "16 Aug 2026", "c": "15.27"}, {"x": 326.5, "d": "17 Aug 2026", "c": "15.68"}, {"x": 328.9, "d": "18 Aug 2026", "c": "15.40"}, {"x": 331.3, "d": "19 Aug 2026", "c": "15.30"}, {"x": 333.6, "d": "20 Aug 2026", "c": "15.15"}, {"x": 336.0, "d": "23 Aug 2026", "c": "15.20"}], "cols": [{"x": 336, "title": "anchor \u00b7 close 23 Aug", "rows": [["close", "15.20"]]}, {"x": 484.3, "title": "1-month check \u00b7 23 Sep", "rows": [["p95", "18.71"], ["p75", "16.68"], ["median", "15.64"], ["p25", "14.67"], ["p5", "13.08"]]}, {"x": 776.0, "title": "3-month check \u00b7 23 Nov", "rows": [["p95", "22.26"], ["p75", "18.27"], ["median", "16.34"], ["p25", "14.61"], ["p5", "11.98"]]}], "shelf": {"x": 968, "title": "fair value \u00b7 study 11 Jun 2026", "rows": [["full", "24.92"], ["base", "15.89"], ["bear", "7.62"]]}, "plotTop": 44, "plotBot": 452, "vbw": 1120}, "GBCO": {"sessions": [{"x": 56.0, "d": "22 Feb 2026", "c": "29.15"}, {"x": 58.4, "d": "23 Feb 2026", "c": "30.20"}, {"x": 60.7, "d": "24 Feb 2026", "c": "30.01"}, {"x": 63.1, "d": "25 Feb 2026", "c": "28.92"}, {"x": 65.5, "d": "26 Feb 2026", "c": "28.55"}, {"x": 67.9, "d": "1 Mar 2026", "c": "27.80"}, {"x": 70.2, "d": "2 Mar 2026", "c": "28.17"}, {"x": 72.6, "d": "3 Mar 2026", "c": "27.82"}, {"x": 75.0, "d": "4 Mar 2026", "c": "26.84"}, {"x": 77.4, "d": "5 Mar 2026", "c": "27.00"}, {"x": 79.7, "d": "8 Mar 2026", "c": "25.69"}, {"x": 82.1, "d": "9 Mar 2026", "c": "24.64"}, {"x": 84.5, "d": "10 Mar 2026", "c": "25.90"}, {"x": 86.8, "d": "11 Mar 2026", "c": "25.99"}, {"x": 89.2, "d": "12 Mar 2026", "c": "25.26"}, {"x": 91.6, "d": "15 Mar 2026", "c": "24.60"}, {"x": 94.0, "d": "16 Mar 2026", "c": "24.05"}, {"x": 96.3, "d": "17 Mar 2026", "c": "24.42"}, {"x": 98.7, "d": "18 Mar 2026", "c": "24.92"}, {"x": 101.1, "d": "24 Mar 2026", "c": "24.81"}, {"x": 103.5, "d": "25 Mar 2026", "c": "24.76"}, {"x": 105.8, "d": "26 Mar 2026", "c": "24.80"}, {"x": 108.2, "d": "29 Mar 2026", "c": "24.24"}, {"x": 110.6, "d": "30 Mar 2026", "c": "24.45"}, {"x": 112.9, "d": "31 Mar 2026", "c": "24.10"}, {"x": 115.3, "d": "1 Apr 2026", "c": "25.00"}, {"x": 117.7, "d": "2 Apr 2026", "c": "24.60"}, {"x": 120.1, "d": "5 Apr 2026", "c": "24.55"}, {"x": 122.4, "d": "6 Apr 2026", "c": "24.51"}, {"x": 124.8, "d": "7 Apr 2026", "c": "24.33"}, {"x": 127.2, "d": "8 Apr 2026", "c": "26.05"}, {"x": 129.6, "d": "9 Apr 2026", "c": "25.65"}, {"x": 131.9, "d": "12 Apr 2026", "c": "25.65"}, {"x": 134.3, "d": "14 Apr 2026", "c": "26.16"}, {"x": 136.7, "d": "15 Apr 2026", "c": "26.99"}, {"x": 139.1, "d": "16 Apr 2026", "c": "27.70"}, {"x": 141.4, "d": "19 Apr 2026", "c": "27.85"}, {"x": 143.8, "d": "20 Apr 2026", "c": "27.22"}, {"x": 146.2, "d": "21 Apr 2026", "c": "27.80"}, {"x": 148.5, "d": "22 Apr 2026", "c": "27.25"}, {"x": 150.9, "d": "23 Apr 2026", "c": "27.80"}, {"x": 153.3, "d": "26 Apr 2026", "c": "27.10"}, {"x": 155.7, "d": "27 Apr 2026", "c": "27.05"}, {"x": 158.0, "d": "28 Apr 2026", "c": "26.42"}, {"x": 160.4, "d": "29 Apr 2026", "c": "26.99"}, {"x": 162.8, "d": "30 Apr 2026", "c": "26.45"}, {"x": 165.2, "d": "3 May 2026", "c": "26.60"}, {"x": 167.5, "d": "4 May 2026", "c": "26.88"}, {"x": 169.9, "d": "5 May 2026", "c": "26.60"}, {"x": 172.3, "d": "6 May 2026", "c": "27.59"}, {"x": 174.6, "d": "10 May 2026", "c": "28.50"}, {"x": 177.0, "d": "11 May 2026", "c": "28.70"}, {"x": 179.4, "d": "12 May 2026", "c": "29.30"}, {"x": 181.8, "d": "13 May 2026", "c": "28.80"}, {"x": 184.1, "d": "14 May 2026", "c": "29.19"}, {"x": 186.5, "d": "17 May 2026", "c": "27.50"}, {"x": 188.9, "d": "18 May 2026", "c": "26.50"}, {"x": 191.3, "d": "19 May 2026", "c": "26.15"}, {"x": 193.6, "d": "20 May 2026", "c": "25.50"}, {"x": 196.0, "d": "21 May 2026", "c": "25.52"}, {"x": 198.4, "d": "24 May 2026", "c": "25.88"}, {"x": 200.7, "d": "25 May 2026", "c": "26.60"}, {"x": 203.1, "d": "1 Jun 2026", "c": "26.69"}, {"x": 205.5, "d": "2 Jun 2026", "c": "26.33"}, {"x": 207.9, "d": "3 Jun 2026", "c": "25.98"}, {"x": 210.2, "d": "4 Jun 2026", "c": "26.33"}, {"x": 212.6, "d": "7 Jun 2026", "c": "25.70"}, {"x": 215.0, "d": "8 Jun 2026", "c": "26.50"}, {"x": 217.4, "d": "9 Jun 2026", "c": "27.90"}, {"x": 219.7, "d": "10 Jun 2026", "c": "27.69"}, {"x": 222.1, "d": "11 Jun 2026", "c": "27.99"}, {"x": 224.5, "d": "14 Jun 2026", "c": "28.40"}, {"x": 226.8, "d": "15 Jun 2026", "c": "28.50"}, {"x": 229.2, "d": "16 Jun 2026", "c": "28.33"}, {"x": 231.6, "d": "17 Jun 2026", "c": "28.80"}, {"x": 234.0, "d": "21 Jun 2026", "c": "29.01"}, {"x": 236.3, "d": "22 Jun 2026", "c": "31.30"}, {"x": 238.7, "d": "23 Jun 2026", "c": "31.25"}, {"x": 241.1, "d": "24 Jun 2026", "c": "31.47"}, {"x": 243.5, "d": "25 Jun 2026", "c": "31.50"}, {"x": 245.8, "d": "28 Jun 2026", "c": "31.00"}, {"x": 248.2, "d": "29 Jun 2026", "c": "31.45"}, {"x": 250.6, "d": "30 Jun 2026", "c": "32.45"}, {"x": 252.9, "d": "1 Jul 2026", "c": "31.91"}, {"x": 255.3, "d": "5 Jul 2026", "c": "31.17"}, {"x": 257.7, "d": "6 Jul 2026", "c": "31.23"}, {"x": 260.1, "d": "7 Jul 2026", "c": "31.25"}, {"x": 262.4, "d": "8 Jul 2026", "c": "30.37"}, {"x": 264.8, "d": "9 Jul 2026", "c": "30.72"}, {"x": 267.2, "d": "12 Jul 2026", "c": "31.21"}, {"x": 269.6, "d": "13 Jul 2026", "c": "31.81"}, {"x": 271.9, "d": "14 Jul 2026", "c": "31.90"}, {"x": 274.3, "d": "15 Jul 2026", "c": "33.28"}, {"x": 276.7, "d": "16 Jul 2026", "c": "32.85"}, {"x": 279.1, "d": "19 Jul 2026", "c": "32.44"}, {"x": 281.4, "d": "20 Jul 2026", "c": "31.75"}, {"x": 283.8, "d": "21 Jul 2026", "c": "32.25"}, {"x": 286.2, "d": "22 Jul 2026", "c": "31.31"}, {"x": 288.5, "d": "26 Jul 2026", "c": "30.90"}, {"x": 290.9, "d": "27 Jul 2026", "c": "30.30"}, {"x": 293.3, "d": "28 Jul 2026", "c": "30.49"}, {"x": 295.7, "d": "29 Jul 2026", "c": "30.29"}, {"x": 298.0, "d": "30 Jul 2026", "c": "29.66"}, {"x": 300.4, "d": "2 Aug 2026", "c": "30.12"}, {"x": 302.8, "d": "3 Aug 2026", "c": "31.47"}, {"x": 305.2, "d": "4 Aug 2026", "c": "32.01"}, {"x": 307.5, "d": "5 Aug 2026", "c": "31.50"}, {"x": 309.9, "d": "6 Aug 2026", "c": "30.62"}, {"x": 312.3, "d": "9 Aug 2026", "c": "31.69"}, {"x": 314.6, "d": "10 Aug 2026", "c": "31.81"}, {"x": 317.0, "d": "11 Aug 2026", "c": "32.00"}, {"x": 319.4, "d": "12 Aug 2026", "c": "32.20"}, {"x": 321.8, "d": "13 Aug 2026", "c": "31.50"}, {"x": 324.1, "d": "16 Aug 2026", "c": "30.70"}, {"x": 326.5, "d": "17 Aug 2026", "c": "30.45"}, {"x": 328.9, "d": "18 Aug 2026", "c": "30.40"}, {"x": 331.3, "d": "19 Aug 2026", "c": "29.99"}, {"x": 333.6, "d": "20 Aug 2026", "c": "29.32"}, {"x": 336.0, "d": "23 Aug 2026", "c": "29.51"}], "cols": [{"x": 336, "title": "anchor \u00b7 close 23 Aug", "rows": [["close", "29.51"]]}, {"x": 484.3, "title": "1-month check \u00b7 23 Sep", "rows": [["p95", "36.31"], ["p75", "32.15"], ["median", "30.02"], ["p25", "28.05"], ["p5", "24.84"]]}, {"x": 776.0, "title": "3-month check \u00b7 23 Nov", "rows": [["p95", "43.24"], ["p75", "35.00"], ["median", "31.05"], ["p25", "27.55"], ["p5", "22.26"]]}], "shelf": {"x": 968, "title": "fair value \u00b7 study 8 Jul 2026", "rows": [["full", "51.00"], ["base", "35.70"], ["bear", "23.30"]]}, "plotTop": 44, "plotBot": 452, "vbw": 1120}};</script>
+<script>
+(function(){
+  function wire(wrap){
+    var tk = wrap.getAttribute('data-tk');
+    var D = TL_DATA[tk];
+    var svg = wrap.querySelector('svg');
+    var tip = document.getElementById('tip-'+tk);
+    var xh = document.getElementById('xh-'+tk);
+    var title = tip.querySelector('.tiptitle');
+    var rowsEl = tip.querySelector('.tiprows');
+    function setRows(t, rows){
+      title.textContent = t;
+      rowsEl.textContent = '';
+      rows.forEach(function(r){
+        var d=document.createElement('div'), a=document.createElement('span'), b=document.createElement('span');
+        a.className='tl'; a.textContent=r[0]; b.className='tv'; b.textContent=r[1];
+        d.appendChild(a); d.appendChild(b); rowsEl.appendChild(d);
+      });
+    }
+    function place(svgX, clientY){
+      var r = svg.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+      var px = r.left - wr.left + svgX / D.vbw * r.width;
+      tip.hidden = false;
+      var w = tip.offsetWidth;
+      tip.style.left = Math.max(4, Math.min(px + 14, wr.width - w - 8)) + 'px';
+      tip.style.top = (clientY - wr.top - tip.offsetHeight - 14) + 'px';
+      xh.setAttribute('x1', svgX); xh.setAttribute('x2', svgX); xh.style.display = '';
+    }
+    function nearest(arr, x, key){
+      var best = null, bd = 1e9;
+      arr.forEach(function(o){ var d = Math.abs(o[key] - x); if (d < bd){ bd = d; best = o; } });
+      return best;
+    }
+    function show(zone, svgX, clientY){
+      if (zone === 'hist'){
+        var s = nearest(D.sessions, svgX, 'x');
+        if (!s) return;
+        setRows(s.d, [['close', s.c]]);
+        place(s.x, clientY);
+      } else if (zone === 'cone'){
+        var c = nearest(D.cols, svgX, 'x');
+        setRows(c.title, c.rows);
+        place(c.x, clientY);
+      } else {
+        setRows(D.shelf.title, D.shelf.rows);
+        place(D.shelf.x, clientY);
+      }
+    }
+    function svgXof(ev){
+      var r = svg.getBoundingClientRect();
+      return (ev.clientX - r.left) / r.width * D.vbw;
+    }
+    wrap.querySelectorAll('.hit').forEach(function(h){
+      var zone = h.getAttribute('data-zone');
+      h.addEventListener('pointermove', function(ev){ show(zone, svgXof(ev), ev.clientY); });
+      h.addEventListener('pointerleave', function(){ tip.hidden = true; xh.style.display = 'none'; });
+      h.addEventListener('focus', function(){
+        var mid = zone==='hist' ? D.sessions[D.sessions.length-1] : zone==='cone' ? D.cols[2] : D.shelf;
+        show(zone, mid.x, wrap.getBoundingClientRect().top + 170);
+      });
+      h.addEventListener('blur', function(){ tip.hidden = true; xh.style.display = 'none'; });
+    });
+  }
+  document.querySelectorAll('.canvas-wrap').forEach(wire);
+})();
+</script>
+</body>
+</html>
