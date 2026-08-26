@@ -10,5 +10,7 @@ rather than merely asserted.
 - `ta_ablation/`    — technical-signal ablation on the EG panel
 - `fv_integration/` — fair-value convergence probe
 - `istethmar/`      — external-MC comparison numbers
+- `three_lens_trial/` — generated three-clocks canvas (technical / MC / fundamental side by
+  side, PHDC + GBCO trial, 26-Aug-2026) — display layer only, nothing feeds anything
 
 Lab code is NOT production. Nothing here is imported by the engine.
