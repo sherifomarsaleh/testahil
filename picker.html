@@ -109,8 +109,6 @@
   .pk-dir{font-weight:700}
   .pk-dir.up{color:var(--teal,#178A76)} .pk-dir.dn{color:#B5483A}
   .pk-flag{opacity:.75;font-size:11px}
-  .warncard{border:1px solid #B5483A;border-radius:var(--rad,12px);padding:16px 18px;background:rgba(181,72,58,.06)}
-  .warncard b.wt{color:#B5483A}
   .pk-note{font-size:var(--fs-small);margin-top:10px}
 </style>
 </head>
@@ -137,14 +135,6 @@
     <h1 style="font-size:var(--fs-h1)">Ticker Picker — can it get there in time?</h1>
     <p class="muted">Every covered stock has two published objects: a <b>fair value</b> from its ground-up study, and a <b>simulated price range</b> from its calibrated Monte Carlo. This page reads them together and asks one question the two cannot answer alone: <b>is the fair value even reachable within 1 or 3 months, given how much this stock actually moves?</b></p>
     <p class="muted">The answer is often no — and that is the point. A stock 70% below our fair value cannot close that gap in a month no matter how right the study is; a stock 6% below can. This page sorts the coverage by <b>reachability</b>, not by headline upside — because at short horizons, the two rankings are nearly opposite.</p>
-  </section>
-
-  <section id="sec-disclosure" class="anchor" data-nav="Read this first">
-    <div class="warncard">
-      <p style="margin-top:0"><b class="wt">Read this before using the table — this tool is provisional, and here is exactly why.</b></p>
-      <p class="pk-note">The <b>probabilities</b> below come from the same published simulations graded on the <a href="ledger.html">Ledger</a> — of the 13 forecasts graded so far, 12 landed inside their predicted 90% band, so the "how far can it move" machinery holds up. The <b>fair-value targets</b> are a different matter: whether our valuations actually <i>predict</i> returns has not yet been established, because the track record is too young to test. Resolving it needs roughly <b>783 graded observations; we have 5</b>. On the platform's committed cadence — prices refreshed at least monthly, every fair value re-struck at least every six months, coverage growing from 72 toward 100 tickers — that verdict is expected around <b>2027</b>, and this page will say so when it changes.</p>
-      <p class="pk-note">Until then, every number here answers "<b>if</b> the fair value is right, what are the odds the price reaches it in time" — never "the fair value is right." Same standing rule as the whole site: educational analysis read off published studies, not investment advice, not a recommendation to buy or sell anything.</p>
-    </div>
   </section>
 
   <section id="sec-table" class="card anchor" data-nav="The table">
