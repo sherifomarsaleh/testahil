@@ -80,6 +80,18 @@ NON_TICKER_PAGES = {
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
 
+# Three-lenses landing pages (<ticker>-3lenses.html, added 26-Aug-2026) are a
+# SECOND page type, not a five-lens study page: one chart carrying the technical
+# levels, the published t20/t60 percentiles and the fair-value range on a single
+# axis, with the study page one click away. They deliberately carry no
+# sec-value/sec-chart/sec-odds/sec-peers/sec-study accordions, so checks 1/2/4
+# do not describe them and would fail all 90 on structure alone. They are NOT
+# exempt from the clone-detection checks that motivated this script: every
+# number they show is read at runtime from assets/data.js under the page's own
+# ticker key, so a cross-ticker clone is impossible by construction — there is
+# no static valuation table on the page to copy wrong in the first place.
+THREE_LENS_SUFFIX = "-3lenses.html"
+
 EXPECTED_SECTIONS = ["sec-value", "sec-chart", "sec-odds", "sec-peers", "sec-study"]
 
 
@@ -302,6 +314,7 @@ def main() -> int:
     ticker_pages = {
         n: p for n, p in all_html.items()
         if n not in NON_TICKER_PAGES and n not in STUB_PAGES
+        and not n.endswith(THREE_LENS_SUFFIX)
     }
     data_js_path = REPO / "assets" / "data.js"
     if not data_js_path.exists():
