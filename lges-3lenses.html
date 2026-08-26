@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';if(dark){document.documentElement.removeAttribute('data-theme');}else{document.documentElement.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e2){}});})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<style>
+:root{--tl-bg:#F6F8F7;--tl-card:#FFFFFF;--tl-chipbg:#EFF5F4;--tl-line:#D9E4E2;--tl-line2:#E4ECEA;--tl-ink:#0E2726;--tl-body:#2E4644;--tl-muted:#5B7270;--tl-faint:#7E918E;--tl-teal:#12796B;--tl-teal2:#178A76;--tl-tealbright:#0E6E60;--tl-tealdim:#4E7A73;--tl-tealsoft:#2B8A7C;--tl-link:#12796B;--tl-linkh:#0E5F54;--tl-gold:#8A6A2E;--tl-gold2:#9A7B37;--tl-gold3:#8A6A2E;--tl-goldpale:#8A6A2E;--tl-red:#B5483A;--tl-red2:#B5483A;--tl-okbd:#BFE0D8;--tl-warnbd:#E2D6B6;--tl-badbd:#E5C7C2;--tl-fvlo:#EADFD8;--tl-sel:rgba(18,121,107,0.22);--tl-zone1:rgba(18,121,107,0.06);--tl-zone2:rgba(138,106,46,0.05);--tl-grid:rgba(14,39,38,0.09);--tl-vline1:rgba(14,39,38,0.14);--tl-vline2:rgba(14,39,38,0.18);--tl-leg50:rgba(18,121,107,0.35);--tl-leg95:rgba(18,121,107,0.14);--tl-okbg:rgba(18,121,107,0.08);--tl-warnbg:rgba(138,106,46,0.09);--tl-badbg:rgba(181,72,58,0.08)}
+:root[data-theme="dark"]{--tl-bg:#0B1416;--tl-card:#0F1A1D;--tl-chipbg:#101C1F;--tl-line:#1D2F32;--tl-line2:#17262A;--tl-ink:#E9EFEC;--tl-body:#C6D2CE;--tl-muted:#9DB1AC;--tl-faint:#5E7370;--tl-teal:#2FC8B6;--tl-teal2:#7FCFC4;--tl-tealbright:#7FE7DA;--tl-tealdim:#6FA39B;--tl-tealsoft:#5FB8AC;--tl-link:#5FD6C8;--tl-linkh:#93EADF;--tl-gold:#E4B44C;--tl-gold2:#D3B071;--tl-gold3:#B98D45;--tl-goldpale:#E8C87E;--tl-red:#E2685C;--tl-red2:#F0968C;--tl-okbd:#1E4640;--tl-warnbd:#4A3A1C;--tl-badbd:#4A211D;--tl-fvlo:#3A2A26;--tl-sel:rgba(47,200,182,0.3);--tl-zone1:rgba(47,200,182,0.05);--tl-zone2:rgba(228,180,76,0.035);--tl-grid:rgba(255,255,255,0.055);--tl-vline1:rgba(255,255,255,0.10);--tl-vline2:rgba(255,255,255,0.14);--tl-leg50:rgba(47,200,182,0.4);--tl-leg95:rgba(47,200,182,0.14);--tl-okbg:rgba(47,200,182,0.07);--tl-warnbg:rgba(228,180,76,0.07);--tl-badbg:rgba(226,104,92,0.07)}
+svg [stroke="#E9EFEC"]{stroke:var(--tl-ink)}
+svg [stroke="#2FC8B6"]{stroke:var(--tl-teal)}
+svg [stroke="#B98D45"]{stroke:var(--tl-gold3)}
+svg [stroke="#5FB8AC"]{stroke:var(--tl-tealsoft)}
+svg [stroke="#E4B44C"]{stroke:var(--tl-gold)}
+svg [stroke="#0B1416"]{stroke:var(--tl-bg)}
+svg [stroke="rgba(255,255,255,0.055)"]{stroke:var(--tl-grid)}
+svg [stroke="rgba(255,255,255,0.10)"]{stroke:var(--tl-vline1)}
+svg [stroke="rgba(255,255,255,0.14)"]{stroke:var(--tl-vline2)}
+svg [fill="#2FC8B6"]{fill:var(--tl-teal)}
+svg [fill="#E4B44C"]{fill:var(--tl-gold)}
+svg [fill="#0B1416"]{fill:var(--tl-card)}
+svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
+svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
+:root[data-theme="dark"] .tt-light{display:inline}
+:root:not([data-theme="dark"]) .tt-dark{display:inline}
+:root:not([data-theme="dark"]) .tt-light{display:none}
+:root[data-theme="dark"] .tt-dark{display:none}
+</style>
 </head>
 <body>
 <x-dc>
@@ -14,43 +36,44 @@
 <script>window.__TL = {"ticker":"LGES","edition":"28 Jun 2026","histStart":"08 Jul 2024 – 28 Jul 2026","hist":[358500,363000,362000,375000,373000,358500,346500,336500,335000,345500,328500,326000,321500,332500,325000,329500,333000,324000,333500,336000,322000,337000,324500,321000,322000,328500,329500,337000,336500,329500,330000,350000,363000,359000,378000,376500,368500,391000,388000,412000,411000,399500,410000,395000,399500,379500,399000,414000,399500,391500,393500,397000,413000,413500,413500,414500,414500,408500,403500,420000,436500,427000,411000,406000,403500,404500,397000,388500,389500,381500,403000,406500,407000,416500,409000,411500,407500,412500,426000,420000,390500,386000,398500,416000,427000,412000,422000,371000,383500,393500,400500,400500,405000,419500,406000,400500,402500,381500,391500,397000,389000,382000,390500,387500,385000,378000,404500,400000,398000,382500,381500,372000,357500,359000,350000,344500,348000,348000,346000,356000,361500,365500,373500,358500,348500,347500,358000,351500,352000,350500,370500,354500,360000,353500,353500,352000,336500,333000,345000,342000,336000,346500,343000,338500,358000,353000,353500,350500,366000,376500,378500,385500,373500,374000,370500,352000,332000,334000,334000,339000,349500,341000,348500,340500,326500,325000,325000,330500,334500,329000,331500,335500,360000,356500,356000,334500,328000,329000,315000,329000,323000,318000,314000,349500,335500,343000,345000,343000,342500,338000,332500,332000,349000,341500,343500,346000,350000,324500,320500,322500,327500,318000,321500,312000,313500,307000,290500,291500,279500,277500,274500,268000,278000,272500,289000,288000,286000,284500,288500,291000,285000,288500,292500,304000,296000,293000,294000,292000,291000,305000,294000,300500,298000,297000,288000,297000,297500,302500,318500,310500,315000,307000,305000,318000,321500,315000,316500,311000,317000,322500,331000,333500,336500,368000,363500,380500,392000,393000,382500,373000,375500,386500,384000,386500,378500,389000,388500,389500,394000,383000,384000,377500,372500,367500,380000,381000,373500,364000,352000,349000,350000,348500,351000,343000,343500,347000,340500,350000,355500,355500,349500,350000,354500,349500,349000,357000,348000,361500,349000,351500,347500,347500,399000,399000,359500,360000,385000,386500,420500,434000,432500,437000,454500,447500,492000,495000,510000,514000,486500,473000,475500,473000,464000,470000,463500,465500,473000,475500,484500,463000,463000,443000,437500,441000,425500,412000,413500,435500,438000,408000,413000,415000,418000,410000,426000,451500,443500,441500,446000,445500,442500,418000,415500,378500,379000,389500,388000,390500,383500,380000,368500,361000,371500,378000,370500,366000,363000,379000,394000,389500,392000,391000,398500,403000,394500,417000,412000,416000,408500,431000,416500,398000,380000,391000,402500,395000,385000,394500,390500,392000,410000,395000,403500,401500,396000,412500,426000,427000,427000,393000,347500,371500,377500,359500,367000,369500,384000,369000,366000,380500,383500,371000,375500,356000,392500,394000,384500,394500,410000,394500,407000,404500,398500,412500,408500,406000,421000,412000,401500,400000,408000,416000,418000,429000,478000,484500,466500,481000,464000,472000,473000,460500,472000,482000,483000,476500,468000,443000,430000,442000,417000,408000,400000,384500,401000,398500,399500,383500,442000,458000,455000,442500,422000,414000,388500,396500,385500,384500,400000,420500,410500,416000,400000,404500,385500,362000,365500,352000,331500,400500,362000,348000,354000,362500,354500,332000,315500,313500,326000,328500,322000,335000,334000,317500,317000,321000,348000,329500,333000,314000]};</script>
 <script src="assets/data.js"></script>
 <style>
-body { margin: 0; background: #0B1416; font-family: 'IBM Plex Sans', sans-serif; color: #E9EFEC; }
-a { color: #5FD6C8; text-decoration: none; }
-a:hover { color: #93EADF; text-decoration: underline; }
-::selection { background: rgba(47,200,182,0.3); }
+body { margin: 0; background: var(--tl-bg); font-family: 'IBM Plex Sans', sans-serif; color: var(--tl-ink); }
+a { color: var(--tl-link); text-decoration: none; }
+a:hover { color: var(--tl-linkh); text-decoration: underline; }
+::selection { background: var(--tl-sel); }
 </style>
 </helmet>
-<div data-screen-label="Three lenses" style="min-height:100vh;background:#0B1416;padding:26px 30px 40px">
+<div data-screen-label="Three lenses" style="min-height:100vh;background:var(--tl-bg);padding:26px 30px 40px">
   <div style="max-width:1500px;margin:0 auto">
 
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">
       <div>
-        <div style="font-family:'Source Serif 4',serif;font-size:17px;color:#9DB1AC;margin-bottom:6px"><span style="font-style:italic;font-weight:600;color:#E9EFEC">testahil</span><span style="color:#2FC8B6;font-weight:600">?</span><span style="margin-left:10px;font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370">three lenses</span></div>
+        <div style="font-family:'Source Serif 4',serif;font-size:17px;color:var(--tl-muted);margin-bottom:6px"><span style="font-style:italic;font-weight:600;color:var(--tl-ink)">testahil</span><span style="color:var(--tl-teal);font-weight:600">?</span><span style="margin-left:10px;font-size:12.5px;font-family:'IBM Plex Sans',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint)">three lenses</span></div>
         <h1 style="font-family:'Source Serif 4',serif;font-weight:600;font-size:38px;line-height:1.05;margin:0 0 6px">{{stockName}}</h1>
-        <div style="font-size:14px;color:#9DB1AC;line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
+        <div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px">
+        <button id="theme-toggle" type="button" style="cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--tl-line);background:var(--tl-chipbg);color:var(--tl-muted)"><span class="tt-dark">🌙 Dark mode</span><span class="tt-light">☀️ Light mode</span></button>
         <a href="{{studyUrl}}" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5E7370">{{asOfLine}}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--tl-faint)">{{asOfLine}}</div>
       </div>
     </div>
 
-    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid #1D2F32;padding-top:16px">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;border:1px solid #1D2F32;border-radius:6px;padding:3px 9px">{{code}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:#E4B44C">{{spot}} <span style="font-size:13px;font-weight:400;color:#9DB1AC">{{ccy}}</span></div>
-      <div style="font-size:13px;color:#5E7370">{{spotDate}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;background:#101C1F;border:1px solid #1D2F32;border-radius:999px;padding:4px 12px">{{chipRes}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;background:#101C1F;border:1px solid #1D2F32;border-radius:999px;padding:4px 12px">{{chipSup}}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9DB1AC;background:#101C1F;border:1px solid #1D2F32;border-radius:999px;padding:4px 12px">{{chipFair}}</div>
+    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid var(--tl-line);padding-top:16px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">{{code}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">{{spot}} <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">{{ccy}}</span></div>
+      <div style="font-size:13px;color:var(--tl-faint)">{{spotDate}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipRes}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipSup}}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px">{{chipFair}}</div>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start">
 
-      <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:16px;padding:20px 22px 16px">
-        <div style="display:flex;font-size:11.5px;letter-spacing:0.13em;text-transform:uppercase;color:#5E7370;margin-bottom:10px">
-          <div style="width:42.6%">Now — <span style="color:#9DB1AC">the chart</span></div>
-          <div style="width:12.7%;color:#2FC8B6">1–3 mo — <span style="color:#7FCFC4">published odds</span></div>
-          <div style="width:44.7%;color:#B98D45">the study — <span style="color:#D3B071">what it is worth</span></div>
+      <div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:20px 22px 16px">
+        <div style="display:flex;font-size:11.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:10px">
+          <div style="width:42.6%">Now — <span style="color:var(--tl-muted)">the chart</span></div>
+          <div style="width:12.7%;color:var(--tl-teal)">1–3 mo — <span style="color:var(--tl-teal2)">published odds</span></div>
+          <div style="width:44.7%;color:var(--tl-gold3)">the study — <span style="color:var(--tl-gold2)">what it is worth</span></div>
         </div>
         <div style="position:relative;container-type:inline-size">
         <svg viewBox="0 0 960 520" style="width:100%;display:block" role="img" aria-label="Three lenses chart">
@@ -83,117 +106,117 @@ a:hover { color: #93EADF; text-decoration: underline; }
           </g>
         </svg>
         <div style="position:absolute;inset:0;pointer-events:none;font-family:'IBM Plex Mono',monospace;font-size:1.25cqw;line-height:1">
-          <div style="position:absolute;left:94%;top:{{gp1}}%;transform:translateY(-50%);color:#5E7370">{{g1t}}</div>
-          <div style="position:absolute;left:94%;top:{{gp2}}%;transform:translateY(-50%);color:#5E7370">{{g2t}}</div>
-          <div style="position:absolute;left:94%;top:{{gp3}}%;transform:translateY(-50%);color:#5E7370">{{g3t}}</div>
-          <div style="position:absolute;left:94%;top:{{gp4}}%;transform:translateY(-50%);color:#5E7370">{{g4t}}</div>
-          <div style="position:absolute;left:94%;top:{{gp5}}%;transform:translateY(-50%);color:#5E7370">{{g5t}}</div>
-          <div style="position:absolute;left:1.5%;top:{{resTop}}%;transform:translateY(calc(-100% - 4px));color:#B98D45;white-space:nowrap">{{resLab}}</div>
-          <div style="position:absolute;left:1.5%;top:{{supTop}}%;transform:translateY(5px);color:#5FB8AC;white-space:nowrap">{{supLab}}</div>
-          <div style="position:absolute;left:55.9%;top:{{p95top}}%;transform:translateY(-50%);color:#6FA39B;white-space:nowrap">{{p95t}}</div>
-          <div style="position:absolute;left:55.9%;top:{{p75top}}%;transform:translateY(-50%);color:#7FCFC4;white-space:nowrap">{{p75t}}</div>
-          <div style="position:absolute;left:55.9%;top:{{p50top}}%;transform:translateY(calc(-100% - 4px));color:#2FC8B6;font-weight:600;white-space:nowrap">{{p50t}}</div>
-          <div style="position:absolute;left:55.9%;top:{{p25top}}%;transform:translateY(-50%);color:#7FCFC4;white-space:nowrap">{{p25t}}</div>
-          <div style="position:absolute;left:55.9%;top:{{p5top}}%;transform:translateY(-50%);color:#6FA39B;white-space:nowrap">{{p5t}}</div>
-          <div style="position:absolute;left:89.8%;top:{{baseTop}}%;transform:translate(-100%, calc(-100% - 5px));color:#E4B44C;font-weight:600;white-space:nowrap">{{baseLab}}</div>
-          <div style="position:absolute;left:89.8%;top:{{fullTop}}%;transform:translate(-100%, -50%);color:#D3B071;white-space:nowrap">{{fullLab}}</div>
-          <div style="position:absolute;left:89.8%;top:{{bearTop}}%;transform:translate(-100%, -50%);color:#D3B071;white-space:nowrap">{{bearLab}}</div>
-          <div style="position:absolute;left:43.4%;top:{{spotTop}}%;transform:translateY(calc(-100% - 5px));color:#E4B44C;font-weight:600;font-size:1.4cqw">{{spot}}</div>
+          <div style="position:absolute;left:94%;top:{{gp1}}%;transform:translateY(-50%);color:var(--tl-faint)">{{g1t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp2}}%;transform:translateY(-50%);color:var(--tl-faint)">{{g2t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp3}}%;transform:translateY(-50%);color:var(--tl-faint)">{{g3t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp4}}%;transform:translateY(-50%);color:var(--tl-faint)">{{g4t}}</div>
+          <div style="position:absolute;left:94%;top:{{gp5}}%;transform:translateY(-50%);color:var(--tl-faint)">{{g5t}}</div>
+          <div style="position:absolute;left:1.5%;top:{{resTop}}%;transform:translateY(calc(-100% - 4px));color:var(--tl-gold3);white-space:nowrap">{{resLab}}</div>
+          <div style="position:absolute;left:1.5%;top:{{supTop}}%;transform:translateY(5px);color:var(--tl-tealsoft);white-space:nowrap">{{supLab}}</div>
+          <div style="position:absolute;left:55.9%;top:{{p95top}}%;transform:translateY(-50%);color:var(--tl-tealdim);white-space:nowrap">{{p95t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{p75top}}%;transform:translateY(-50%);color:var(--tl-teal2);white-space:nowrap">{{p75t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{p50top}}%;transform:translateY(calc(-100% - 4px));color:var(--tl-teal);font-weight:600;white-space:nowrap">{{p50t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{p25top}}%;transform:translateY(-50%);color:var(--tl-teal2);white-space:nowrap">{{p25t}}</div>
+          <div style="position:absolute;left:55.9%;top:{{p5top}}%;transform:translateY(-50%);color:var(--tl-tealdim);white-space:nowrap">{{p5t}}</div>
+          <div style="position:absolute;left:89.8%;top:{{baseTop}}%;transform:translate(-100%, calc(-100% - 5px));color:var(--tl-gold);font-weight:600;white-space:nowrap">{{baseLab}}</div>
+          <div style="position:absolute;left:89.8%;top:{{fullTop}}%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">{{fullLab}}</div>
+          <div style="position:absolute;left:89.8%;top:{{bearTop}}%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">{{bearLab}}</div>
+          <div style="position:absolute;left:43.4%;top:{{spotTop}}%;transform:translateY(calc(-100% - 5px));color:var(--tl-gold);font-weight:600;font-size:1.4cqw">{{spot}}</div>
         </div>
         </div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid #17262A;font-size:11.5px;color:#9DB1AC">
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:rgba(47,200,182,0.4);border-radius:2px"></span>25th–75th percentile</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:rgba(47,200,182,0.14);border-radius:2px"></span>5th–95th percentile</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:2px;background:#2FC8B6"></span>median path</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:#E4B44C;border-radius:50%"></span>latest close</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid #E4B44C;transform:rotate(45deg)"></span>fair value</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed #B98D45"></span>resistance</span>
-          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed #5FB8AC"></span>support</span>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--tl-line2);font-size:11.5px;color:var(--tl-muted)">
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg50);border-radius:2px"></span>25th–75th percentile</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg95);border-radius:2px"></span>5th–95th percentile</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:2px;background:var(--tl-teal)"></span>median path</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:var(--tl-gold);border-radius:50%"></span>latest close</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid var(--tl-gold);transform:rotate(45deg)"></span>fair value</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-gold3)"></span>resistance</span>
+          <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-tealsoft)"></span>support</span>
         </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px">
 
-        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
-          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 1 · Technical — now</div>
+        <div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">
+          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Technical — now</div>
           <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:8px">What is the chart doing?</div>
-          <div style="font-size:13.5px;line-height:1.5;color:#C6D2CE;margin-bottom:12px">{{trend}}</div>
+          <div style="font-size:13.5px;line-height:1.5;color:var(--tl-body);margin-bottom:12px">{{trend}}</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
             <div>
-              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#B98D45;margin-bottom:6px">Resistance</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E9EFEC;display:flex;flex-direction:column;gap:4px">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-gold3);margin-bottom:6px">Resistance</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--tl-ink);display:flex;flex-direction:column;gap:4px">
                 <div>{{res1}}</div><div>{{res2}}</div><div>{{res3}}</div>
               </div>
             </div>
             <div>
-              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5FB8AC;margin-bottom:6px">Support</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E9EFEC;display:flex;flex-direction:column;gap:4px">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-tealsoft);margin-bottom:6px">Support</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--tl-ink);display:flex;flex-direction:column;gap:4px">
                 <div>{{sup1}}</div><div>{{sup2}}</div><div>{{sup3}}</div>
               </div>
             </div>
           </div>
-          <div style="font-size:12.5px;line-height:1.55;color:#9DB1AC;border-top:1px solid #17262A;padding-top:10px">{{summary}}</div>
-          <div style="font-size:12.5px;line-height:1.5;color:#7FE7DA;margin-top:8px">{{bull}}</div>
-          <div style="font-size:12.5px;line-height:1.5;color:#F0968C;margin-top:6px">{{bear}}</div>
+          <div style="font-size:12.5px;line-height:1.55;color:var(--tl-muted);border-top:1px solid var(--tl-line2);padding-top:10px">{{summary}}</div>
+          <div style="font-size:12.5px;line-height:1.5;color:var(--tl-tealbright);margin-top:8px">{{bull}}</div>
+          <div style="font-size:12.5px;line-height:1.5;color:var(--tl-red2);margin-top:6px">{{bear}}</div>
         </div>
 
-        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
-          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 2 · Monte Carlo — the odds</div>
+        <div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">
+          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 2 · Monte Carlo — the odds</div>
           <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:10px">Where could the price go?</div>
           <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;align-items:baseline">
-            <div style="color:#5E7370;font-size:11px;letter-spacing:0.08em;text-transform:uppercase">pctile</div>
-            <div style="color:#7FCFC4;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">{{lab1}}</div>
-            <div style="color:#7FCFC4;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">{{lab3}}</div>
-            <div style="color:#9DB1AC">95th</div><div style="text-align:right">{{a95}}</div><div style="text-align:right">{{b95}}</div>
-            <div style="color:#9DB1AC">75th</div><div style="text-align:right">{{a75}}</div><div style="text-align:right">{{b75}}</div>
-            <div style="color:#2FC8B6;font-weight:600">median</div><div style="text-align:right;color:#2FC8B6;font-weight:600">{{a50}}</div><div style="text-align:right;color:#2FC8B6;font-weight:600">{{b50}}</div>
-            <div style="color:#9DB1AC">25th</div><div style="text-align:right">{{a25}}</div><div style="text-align:right">{{b25}}</div>
-            <div style="color:#9DB1AC">5th</div><div style="text-align:right">{{a5}}</div><div style="text-align:right">{{b5}}</div>
+            <div style="color:var(--tl-faint);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">pctile</div>
+            <div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">{{lab1}}</div>
+            <div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">{{lab3}}</div>
+            <div style="color:var(--tl-muted)">95th</div><div style="text-align:right">{{a95}}</div><div style="text-align:right">{{b95}}</div>
+            <div style="color:var(--tl-muted)">75th</div><div style="text-align:right">{{a75}}</div><div style="text-align:right">{{b75}}</div>
+            <div style="color:var(--tl-teal);font-weight:600">median</div><div style="text-align:right;color:var(--tl-teal);font-weight:600">{{a50}}</div><div style="text-align:right;color:var(--tl-teal);font-weight:600">{{b50}}</div>
+            <div style="color:var(--tl-muted)">25th</div><div style="text-align:right">{{a25}}</div><div style="text-align:right">{{b25}}</div>
+            <div style="color:var(--tl-muted)">5th</div><div style="text-align:right">{{a5}}</div><div style="text-align:right">{{b5}}</div>
           </div>
-          <div style="font-size:11.5px;color:#5E7370;margin-top:10px;line-height:1.5">Resolves {{resolve1}} and {{resolve3}}. The published percentiles from the 50,000-path engine — not re-derived here.</div>
-          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5E7370;margin:14px 0 6px;border-top:1px solid #17262A;padding-top:12px">Chance of touching a level</div>
+          <div style="font-size:11.5px;color:var(--tl-faint);margin-top:10px;line-height:1.5">Resolves {{resolve1}} and {{resolve3}}. The published percentiles from the 50,000-path engine — not re-derived here.</div>
+          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-faint);margin:14px 0 6px;border-top:1px solid var(--tl-line2);padding-top:12px">Chance of touching a level</div>
           <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:5px 10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px">
-            <div style="color:#5E7370;font-size:11px">level</div>
-            <div style="color:#5E7370;font-size:11px;text-align:right">{{lab1}}</div>
-            <div style="color:#5E7370;font-size:11px;text-align:right">{{lab3}}</div>
+            <div style="color:var(--tl-faint);font-size:11px">level</div>
+            <div style="color:var(--tl-faint);font-size:11px;text-align:right">{{lab1}}</div>
+            <div style="color:var(--tl-faint);font-size:11px;text-align:right">{{lab3}}</div>
             <sc-for list="{{touchRows}}" as="row" hint-placeholder-count="5">
-              <div style="color:#E9EFEC">{{row.lvl}}</div>
-              <div style="text-align:right;color:#9DB1AC">{{row.p1}}</div>
-              <div style="text-align:right;color:#7FCFC4">{{row.p3}}</div>
+              <div style="color:var(--tl-ink)">{{row.lvl}}</div>
+              <div style="text-align:right;color:var(--tl-muted)">{{row.p1}}</div>
+              <div style="text-align:right;color:var(--tl-teal2)">{{row.p3}}</div>
             </sc-for>
           </div>
         </div>
 
-        <div style="background:#0F1A1D;border:1px solid #1D2F32;border-radius:14px;padding:16px 20px 18px">
-          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5E7370;margin-bottom:3px">Lens 3 · Fundamental — the study</div>
+        <div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">
+          <div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 3 · Fundamental — the study</div>
           <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:18px;margin-bottom:10px">What is it worth?</div>
           <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:#E4B44C">{{fairBase}}</div>
-            <div style="font-size:12.5px;color:#9DB1AC">{{fairGap}}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:var(--tl-gold)">{{fairBase}}</div>
+            <div style="font-size:12.5px;color:var(--tl-muted)">{{fairGap}}</div>
           </div>
           <div style="position:relative;height:34px;margin:2px">
-            <div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:linear-gradient(90deg,#3A2A26,#1E4640 55%,#4A3A1C)"></div>
-            <div style="position:absolute;top:9px;width:11px;height:11px;border:1.6px solid #E4B44C;background:#0F1A1D;transform:rotate(45deg) translateX(-50%);left:{{basePos}}%"></div>
-            <div style="position:absolute;top:11px;width:9px;height:9px;border-radius:50%;background:#E4B44C;margin-left:-4px;left:{{spotPos}}%"></div>
+            <div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--tl-fvlo),var(--tl-okbd) 55%,var(--tl-warnbd))"></div>
+            <div style="position:absolute;top:9px;width:11px;height:11px;border:1.6px solid var(--tl-gold);background:var(--tl-card);transform:rotate(45deg) translateX(-50%);left:{{basePos}}%"></div>
+            <div style="position:absolute;top:11px;width:9px;height:9px;border-radius:50%;background:var(--tl-gold);margin-left:-4px;left:{{spotPos}}%"></div>
           </div>
-          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9DB1AC;margin-bottom:12px"><span>{{bearLab2}}</span><span>{{fullLab2}}</span></div>
-          <div style="font-size:12.5px;line-height:1.55;color:#9DB1AC">The study values the business between {{bearPlain}} and {{fullPlain}}, centring on {{basePlain}}. Valuation runs on its own clock — it changes only when a new edition is published, not when the price moves.</div>
-          <div style="font-size:11.5px;color:#5E7370;margin-top:10px"><a href="{{studyUrl}}">Full study and the open model →</a></div>
+          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--tl-muted);margin-bottom:12px"><span>{{bearLab2}}</span><span>{{fullLab2}}</span></div>
+          <div style="font-size:12.5px;line-height:1.55;color:var(--tl-muted)">The study values the business between {{bearPlain}} and {{fullPlain}}, centring on {{basePlain}}. Valuation runs on its own clock — it changes only when a new edition is published, not when the price moves.</div>
+          <div style="font-size:11.5px;color:var(--tl-faint);margin-top:10px"><a href="{{studyUrl}}">Full study and the open model →</a></div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px;background:#0F1A1D;border:1px solid #1D2F32;border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+    <div style="margin-top:20px;background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
       <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:19px;white-space:nowrap">Do the lenses agree?</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <span style="{{vNowSty}}">NOW · {{vNow}}</span>
         <span style="{{vMcSty}}">{{lab3}} · {{vMc}}</span>
         <span style="{{vFvSty}}">STUDY · {{vFv}}</span>
       </div>
-      <div style="font-size:13.5px;line-height:1.55;color:#C6D2CE;flex:1;min-width:320px">{{verdict}}</div>
+      <div style="font-size:13.5px;line-height:1.55;color:var(--tl-body);flex:1;min-width:320px">{{verdict}}</div>
     </div>
 
-    <div style="margin-top:18px;font-size:11.5px;line-height:1.6;color:#5E7370;max-width:1100px">
+    <div style="margin-top:18px;font-size:11.5px;line-height:1.6;color:var(--tl-faint);max-width:1100px">
       Every number on this page is read live from the site&#8217;s own data file — the same source the full study page renders from. Percentiles and touch probabilities are the published output of the 50,000-path engine; resistance, support and the technical read are the published levels; fair value is the current study edition. Nothing here is re-estimated. Price history is the real daily close series. {{asOfLine}}. Educational and illustrative — the odds, not advice. We never tell you to buy or sell.
     </div>
   </div>
@@ -262,7 +285,7 @@ class Component extends DCLogic {
     const nearSup = Math.max(...sup.filter(v => v < D.spot).concat([-Infinity]));
     const gapPct = (D.fair.base / D.spot - 1) * 100;
     const clamp = v => Math.max(2, Math.min(98, v));
-    const tone = t => 'font-family:IBM Plex Mono,monospace;font-size:12px;border-radius:999px;padding:5px 13px;border:1px solid ' + (t === 'ok' ? '#1E4640;color:#7FE7DA;background:rgba(47,200,182,0.07)' : t === 'warn' ? '#4A3A1C;color:#E8C87E;background:rgba(228,180,76,0.07)' : '#4A211D;color:#F0968C;background:rgba(226,104,92,0.07)');
+    const tone = t => 'font-family:IBM Plex Mono,monospace;font-size:12px;border-radius:999px;padding:5px 13px;border:1px solid ' + (t === 'ok' ? 'var(--tl-okbd);color:var(--tl-tealbright);background:var(--tl-okbg)' : t === 'warn' ? 'var(--tl-warnbd);color:var(--tl-goldpale);background:var(--tl-warnbg)' : 'var(--tl-badbd);color:var(--tl-red2);background:var(--tl-badbg)');
     const d2 = s => { const p = String(s).split('-'); return p.length === 3 ? p[2] + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+p[1] - 1] + ' ' + p[0] : s; };
 
     const medUp = t3.p50 > D.spot;
