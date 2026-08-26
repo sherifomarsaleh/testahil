@@ -1,0 +1,44 @@
+name: Deploy Pages on dispatch
+
+# Added 26-Aug-2026. deploy-pages.yml triggers only on push to main, and a push
+# authenticated with a fine-grained PAT that lacks the Actions permission does not
+# create workflow runs - so files committed through the API sat on main, correct but
+# never deployed. repository_dispatch needs only Contents: write, so this job gives
+# an API-callable deploy that does exactly what deploy-pages.yml does: upload the
+# repo root as the Pages artifact and deploy it. Same concurrency group, so it can
+# never race the push-triggered deploy.
+
+on:
+  repository_dispatch:
+    types: [publish-site]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
