@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>Calibration — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
@@ -62,7 +60,7 @@
   document.getElementById("s-name").textContent=t.name;
   var OHLC_BASE="https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/";
   var OHLC_PATH={DU:"AE/DU.csv",BOROUGE:"AE/BOROUGE.csv",EMPOWER:"AE/EMPOWER.csv","2POINTZERO":"AE/TWOPOINTZERO.csv",AAPL:"US/AAPL.csv",ABUK:"EG/ABUK.csv",ACWA:"SA/ACWA.csv",ADCB:"AE/ADCB.csv",ADNOCDRILL:"AE/ADNOCDRILL.csv",ADNOCDIST:"AE/ADNOCDIST.csv",ADIB:"EG/ADIB.csv",ADIBUAE:"AE/ADIB.csv",ADNOCGAS:"AE/ADNOCGAS.csv",ADNOCLS:"AE/ADNOCLS.csv",AGTHIA:"AE/AGTHIA.csv",ALDAR:"AE/ALDAR.csv",ALINMA:"SA/ALINMA.csv",AMOC:"EG/AMOC.csv",ARCC:"EG/ARCC.csv",ALPHADHABI:"AE/ALPHADHABI.csv",ALRAJHI:"SA/RAJHI.csv",ARAMCO:"SA/ARAMCO.csv",BTFH:"EG/BTFH.csv",BURJEEL:"AE/BURJEEL.csv",CCAP:"EG/CCAP.csv",CLHO:"EG/CLHO.csv",COMI:"EG/COMI.csv",DEWA:"AE/DEWA.csv",DIB:"AE/DIB.csv",DSCW:"EG/DSCW.csv",EAND:"AE/EAND.csv",ELEC:"EG/ELEC.csv",EFID:"EG/EFID.csv",EFIH:"EG/EFIH.csv",EGAL:"EG/EGAL.csv",ELM:"SA/ELM.csv",EMAAR:"AE/EMAAR.csv",EMAARDEV:"AE/EMAARDEV.csv",EMFD:"EG/EMFD.csv",ENBD:"AE/ENBD.csv",ETEL:"EG/ETEL.csv",EXTRA:"SA/EXTRA.csv",FAB:"AE/FAB.csv",FERTIGLB:"AE/FERTIGLB.csv",FWRY:"EG/FWRY.csv",GBCO:"EG/GBCO.csv",Gold:"XAU/GOLD.csv",HELI:"EG/HELI.csv",HRHO:"EG/HRHO.csv",IHC:"AE/IHC.csv",INFY:"IN/INFY.csv",IQCD:"QA/IQCD.csv",ISPH:"EG/ISPH.csv",JUFO:"EG/JUFO.csv",KABO:"EG/KABO.csv",Kakao:"KR/KAKAO.csv",LCSW:"EG/LCSW.csv",LGES:"KR/LGES.csv",LULU:"AE/LULU.csv",MAADEN:"SA/MAADEN.csv",MODON:"AE/MODON.csv",NVDA:"US/NVDA.csv",OCDI:"EG/OCDI.csv",OIH:"EG/OIH.csv",ORAS:"EG/ORAS.csv",ORHD:"EG/ORHD.csv",ORWE:"EG/ORWE.csv",AIRARABIA:"AE/AIRARABIA.csv",AMR:"AE/AMR.csv",PHAR:"EG/PHAR.csv",PHDC:"EG/PHDC.csv",PRDC:"EG/PRDC.csv",QGTS:"QA/QGTS.csv",QNB:"QA/QNB.csv",RAYA:"EG/RAYA.csv",RELIANCE:"IN/RELIANCE.csv",RIBL:"SA/RIBL.csv",RIYADHCABLE:"SA/RIYADHCABLE.csv",SAVOLA:"SA/SAVOLA.csv",RMDA:"EG/RMDA.csv",SABIC:"SA/SABIC.csv",SALIK:"AE/SALIK.csv",SCEM:"EG/SCEM.csv",EGCH:"EG/EGCH.csv",SNB:"SA/SNB.csv",STC:"SA/STC.csv",SWDY:"EG/SWDY.csv",Samsung:"KR/SAMSUNG.csv",Silver:"XAU/SILVER.csv",TMGH:"EG/TMGH.csv",TMPV:"IN/TMPV.csv",TSLA:"US/TSLA.csv",Platinum:"XPT/PLATINUM.csv"};
-  function ohlcUrlFor(instr){ return OHLC_PATH[instr] ? OHLC_BASE+OHLC_PATH[instr] : null; }
+  function ohlcUrlFor(instr){ var p=OHLC_PATH[instr]||OHLC_PATH[instr.charAt(0)+instr.slice(1).toLowerCase()]; return p ? OHLC_BASE+p : null; }
   async function drawActualLine(r,geom){
     var url=ohlcUrlFor(r.instrument); if(!url) return;
     var text; try{ var resp=await fetch(url); if(!resp.ok) return; text=await resp.text(); }catch(e){ return; }
@@ -118,7 +116,8 @@
     drawActualLine(r,{px:px,py:py,steps:steps});
   }
   
-  var band=BANDS[k];
+  var kT=k.charAt(0)+k.slice(1).toLowerCase();
+  var band=BANDS[k]||BANDS[kT];
   document.getElementById("c-line").textContent = band ?
     ("Across "+band.n+" resolved, non-overlapping 3-month windows on this name, "+band.hits+" finished inside the published 90% band ("+Math.round(band.hits/band.n*100)+"% against the 90% target). Band-width ratio vs a no-forecast rule: "+band.width.toFixed(2)+(band.strength==="long"?" — long history.":" — "+band.strength+".")) :
     "No backtest bands published for this name yet.";
@@ -141,6 +140,8 @@
   var img=document.getElementById("c-bt");
   img.onload=function(){document.getElementById("c-btwrap").style.display=""};
   img.onerror=function(){document.getElementById("c-btwrap").style.display="none"};
+  var btTried=false;
+  img.onerror=function(){ if(!btTried){ btTried=true; img.src="/assets/calibration_"+kT+".png?v=2"; document.getElementById("c-btlink").href="/assets/calibration_"+kT+".png?v=2"; } else { document.getElementById("c-btwrap").style.display="none"; } };
   img.src="/assets/calibration_"+k+".png?v=2";
   document.getElementById("c-btlink").href="/assets/calibration_"+k+".png?v=2";
   document.getElementById("c-all").href="/test/record.html?t="+k;
