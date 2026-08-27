@@ -65,6 +65,14 @@
     <div class="t-lens" id="lens-cal" style="display:none">
       <h3>Own record on this name</h3>
       <p class="muted" id="c-line" style="font-size:var(--fs-small);margin:0"></p>
+      <div id="c-funnelwrap" style="display:none;margin-top:14px">
+        <p style="font-weight:600;margin:0 0 6px;font-size:var(--fs-body)">Latest graded forecast — predicted vs actual</p>
+        <div id="c-funnel" style="background:var(--tint2);border-radius:8px;padding:10px"></div>
+      </div>
+      <div id="c-btwrap" style="display:none;margin-top:14px">
+        <p style="font-weight:600;margin:0 0 6px;font-size:var(--fs-body)">Calibration backtest — the model replayed over this name's full history</p>
+        <a id="c-btlink" href="#" target="_blank"><img id="c-bt" alt="calibration backtest panel" style="width:100%;border-radius:8px;border:1px solid var(--line)"></a>
+      </div>
       <div id="c-rows" style="display:none;margin-top:12px" class="t-tablewrap"><table style="min-width:520px">
         <thead><tr><th class="num">Anchored</th><th>Horizon</th><th class="num">Said (p5–p95)</th><th class="num">Grades on</th><th>Result</th></tr></thead>
         <tbody id="c-body"></tbody>
@@ -192,6 +200,11 @@ renderChrome("coverage");
         return '<tr><td class="num">'+r.anchor_date+' at '+fmtPx(r.anchor_price)+'</td><td>'+r.horizon_label+'</td>'+
           '<td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+(r.grade_date||"—")+'</td><td>'+res+'</td></tr>';
       }).join("");
+      var g=myRows.filter(function(r){return r.realized_close!=null});
+      if(g.length){
+        g.sort(function(a,b){return (b.grade_date||"").localeCompare(a.grade_date||"")});
+        drawFunnel(g[0]);
+      }
     }
   }
 
@@ -207,6 +220,40 @@ renderChrome("coverage");
   document.getElementById("s-editions").innerHTML = "<b>Editions:</b> latest "+(edDate?edDate.replace(/-/g," / "):"current")+
     " (above). Superseded editions are preserved, never deleted — <a href='../archive.html'>the archive ↗</a>. One page per name: the old summary dashboard now lives here, at the top.";
 
+  /* funnel: sqrt-time cone from anchor to the frozen percentiles, realized close dot */
+  function drawFunnel(r){
+    var W=720,H=240,ml=70,mr=96,mt=16,mb=30,steps=40;
+    var lo=Math.min(r.p5,r.anchor_price,r.realized_close)*0.985, hi=Math.max(r.p95,r.anchor_price,r.realized_close)*1.015;
+    function px(i){return ml+(W-ml-mr)*i/steps}
+    function py(v){return mt+(H-mt-mb)*(1-(v-lo)/(hi-lo))}
+    function edge(P){var d='M'+px(0)+' '+py(r.anchor_price);for(var i=1;i<=steps;i++){var f=Math.sqrt(i/steps);d+=' L'+px(i)+' '+py(r.anchor_price+(P-r.anchor_price)*f)}return d}
+    function band(Pt,Pb){var d=edge(Pt);for(var i=steps;i>=0;i--){var f=Math.sqrt(i/steps);d+=' L'+px(i)+' '+py(r.anchor_price+(Pb-r.anchor_price)*f)}return d+' Z'}
+    var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="forecast cone vs realized close">';
+    for(var gi=0;gi<=4;gi++){var v=lo+(hi-lo)*gi/4;
+      s+='<line x1="'+ml+'" y1="'+py(v)+'" x2="'+(W-mr)+'" y2="'+py(v)+'" stroke="var(--line)" stroke-width="1"></line>'+
+         '<text x="'+(ml-8)+'" y="'+(py(v)+4)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+(r.ccy?r.ccy+' ':'')+(Math.round(v*10)/10)+'</text>';}
+    s+='<path d="'+band(r.p95,r.p5)+'" fill="var(--gold)" fill-opacity="0.32"></path>';
+    s+='<path d="'+band(r.p75,r.p25)+'" fill="var(--teal)" fill-opacity="0.5"></path>';
+    s+='<path d="'+edge(r.p50)+'" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 3"></path>';
+    s+='<circle cx="'+px(0)+'" cy="'+py(r.anchor_price)+'" r="4" fill="var(--ink)"></circle>';
+    s+='<circle cx="'+px(steps)+'" cy="'+py(r.realized_close)+'" r="7" fill="#2a78d6" stroke="var(--paper)" stroke-width="2"></circle>';
+    var lbl=[[r.p95,'var(--muted)','p95 '+fmtPx(r.p95)],[r.p50,'var(--ink)','median '+fmtPx(r.p50)],[r.realized_close,'#2a78d6','closed '+fmtPx(r.realized_close)],[r.p5,'var(--muted)','p5 '+fmtPx(r.p5)]];
+    lbl.sort(function(a,b){return py(a[0])-py(b[0])});var used=[];
+    lbl.forEach(function(l){var y=py(l[0]);while(used.some(function(u){return Math.abs(u-y)<14}))y+=14;used.push(y);
+      s+='<text x="'+(W-mr+8)+'" y="'+(y+4)+'" font-size="11.5" fill="'+l[1]+'" font-family="IBM Plex Mono,monospace">'+l[2]+'</text>';});
+    s+='<text x="'+px(0)+'" y="'+(H-8)+'" font-size="11" fill="var(--muted)">published '+r.anchor_date+'</text>';
+    s+='<text x="'+px(steps)+'" y="'+(H-8)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+r.horizon_label+' · '+r.grade_date+'</text></svg>';
+    document.getElementById("c-funnel").innerHTML=s;
+    document.getElementById("c-funnelwrap").style.display="";
+  }
+  /* 15-year calibration backtest panel — shown whenever the site publishes one for this name */
+  (function(){
+    var img=document.getElementById("c-bt");
+    img.onload=function(){document.getElementById("c-btwrap").style.display=""};
+    img.onerror=function(){document.getElementById("c-btwrap").style.display="none"};
+    img.src="../assets/calibration_"+k+".png?v=2";
+    document.getElementById("c-btlink").href="../assets/calibration_"+k+".png?v=2";
+  })();
   document.getElementById("c-all").href = "record.html?t="+k;
   document.getElementById("go-odds").href = "tools.html?t="+k+"#odds";
   document.getElementById("go-cmp").href = "tools.html?a="+k+"#compare";
