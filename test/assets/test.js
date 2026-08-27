@@ -100,40 +100,24 @@ window.bandTotals = function(){
 function el(html){ var d=document.createElement("div"); d.innerHTML=html; return d.firstElementChild; }
 window.tNum = function(x){ return x.toLocaleString("en-US"); };
 window.renderChrome = function(active){
-  var bt = bandTotals();
-  var nav = el('<div>'+
-    '<header class="nav t-nav"><div class="wrap">'+
-      '<a class="brand" href="/test/">testahil?</a>'+
-      '<nav>'+
-        '<a href="/test/coverage.html" data-p="coverage">Coverage</a>'+
-        '<a href="/test/tools.html" data-p="tools">Tools</a>'+
-        '<a href="/test/savings.html" data-p="savings">Savings check</a>'+
-        '<a href="/test/record.html" data-p="record">Track record</a>'+
-        '<a href="/test/method.html" data-p="method">Method</a>'+
-      '</nav>'+
-      '<div class="t-right">'+
-        '<div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off"><div class="t-dd" id="t-qq"></div></div>'+
-        '<button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button>'+
-      '</div>'+
-    '</div></header>'+
-    '<a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num">'+tNum(bt.n)+'</span>&nbsp;3-month windows checked ·&nbsp;<span class="num">'+tNum(bt.hits)+'</span>&nbsp;inside the 90% band ('+Math.round(bt.pct*100)+'%) → every one dated, right or wrong</span></a>'+
-  '</div>');
-  document.body.insertBefore(nav, document.body.firstChild);
-  var on = nav.querySelector('[data-p="'+active+'"]'); if(on) on.classList.add("on");
+  var nav=document.querySelector(".t-nav");
+  if(nav&&active){ var on=nav.querySelector('[data-p="'+active+'"]'); if(on) on.classList.add("on"); }
+  try{ var bt=bandTotals();
+    var n=document.getElementById("ts-n"); if(n) n.textContent=tNum(bt.n);
+    var h=document.getElementById("ts-h"); if(h) h.textContent=tNum(bt.hits);
+    var p=document.getElementById("ts-p"); if(p) p.textContent=Math.round(bt.pct*100)+"%";
+  }catch(e){}
+  try{ var u=document.getElementById("tf-upd"); if(u) u.textContent=SITE.updated; }catch(e){}
   initSearch(document.getElementById("t-q"), document.getElementById("t-qq"));
-  var big = document.getElementById("t-bigq");
+  var big=document.getElementById("t-bigq");
   if(big) initSearch(big, document.getElementById("t-bigqq"));
-  document.body.appendChild(el('<footer class="t-footer"><div class="wrap">'+
-    '<span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span>'+
-    '<span>Data: <span class="num">'+SITE.updated+'</span> · <a href="/index.html">current site ↗</a></span>'+
-  '</div></footer>'));
-  document.body.appendChild(el('<div class="t-testflag">TEST PREVIEW — new structure, live data</div>'));
 };
 /* search across stocks + metals + coming */
+var AKA={OCDI:"SODIC",COMI:"CIB Commercial International Bank",HRHO:"EFG Hermes",EAND:"Etisalat e& eand",TMGH:"TMG Talaat Mostafa",SWDY:"Elsewedy El Sewedy",ADIBUAE:"ADIB Abu Dhabi",ADIB:"ADIB Egypt",LGES:"LG Energy Solution",ALRAJHI:"Al Rajhi",GOLD:"XAU dahab",SILVER:"XAG fadda",PLATINUM:"XPT",ARAMCO:"Saudi Aramco",PHDC:"Palm Hills"};
 function searchIndex(){
   var ix = [];
   Object.keys(ALL).forEach(function(k){ var t=ALL[k];
-    ix.push({k:k, name:t.name, ar:t.nameAr||"", code:t.code, sub:mktOf(t), href:pageFor(k)}); });
+    ix.push({k:k, name:t.name, ar:t.nameAr||"", code:t.code, sub:mktOf(t), aka:AKA[k]||"", href:pageFor(k)}); });
   (window.COMING||[]).forEach(function(c){
     if(c.status==="covered") return; /* covered ones already have TICKERS entries */
     ix.push({k:c.code, name:c.name, ar:c.nameAr||"", code:c.code, sub:"coming soon", href:null});
@@ -145,17 +129,21 @@ window.initSearch = function(input, dd){
   var ix = searchIndex(), sel = -1, rows = [];
   function paint(q){
     q = q.trim().toLowerCase();
+    var qs=q.replace(/\s+/g,"");
     var hits = !q ? [] : ix.filter(function(r){
-      return r.name.toLowerCase().indexOf(q)>-1 || r.code.toLowerCase().indexOf(q)>-1 ||
-             (r.k+"").toLowerCase().indexOf(q)>-1 || (r.ar && r.ar.indexOf(q)>-1);
+      var hay=(r.name+" "+r.code+" "+r.k+" "+(r.aka||"")).toLowerCase();
+      return hay.indexOf(q)>-1 || hay.replace(/\s+/g,"").indexOf(qs)>-1 || (r.ar && r.ar.indexOf(q)>-1);
     }).slice(0,9);
     rows = hits; sel = -1;
-    dd.innerHTML = hits.map(function(r,i){
-      var inner = '<span class="t-code num">'+r.code+'</span><span class="t-nm">'+r.name+'</span><span class="t-sub">'+r.sub+'</span>';
+    var rowsHtml = hits.map(function(r,i){
+      var inner = '<span class="t-code num">'+r.code+'</span><span class="t-nm">'+r.name+(r.ar?' <span style="color:var(--muted);font-size:var(--fs-caption)">'+r.ar+'</span>':'')+'</span><span class="t-sub">'+r.sub+'</span>';
       return r.href ? '<a href="'+r.href+'" data-i="'+i+'">'+inner+'</a>'
                     : '<a data-i="'+i+'" style="opacity:.55;cursor:default">'+inner+'</a>';
-    }).join("") || (q ? '<a style="cursor:default"><span class="t-nm" style="color:var(--muted)">No covered name matches “'+q.replace(/</g,"&lt;")+'”</span></a>' : "");
-    dd.classList.toggle("open", !!dd.innerHTML);
+    }).join("");
+    if(!rowsHtml && q) rowsHtml='<a style="cursor:default"><span class="t-nm" style="color:var(--muted)">No covered name matches “'+q.replace(/</g,"&lt;")+'”</span></a>';
+    rowsHtml+='<a href="/test/coverage.html"><span class="t-nm" style="font-weight:600;color:var(--teal)">Browse all '+Object.keys(ALL).length+' names →</span></a>';
+    dd.innerHTML=rowsHtml;
+    dd.classList.add("open");
   }
   input.addEventListener("input", function(){ paint(input.value); });
   input.addEventListener("focus", function(){ paint(input.value); });

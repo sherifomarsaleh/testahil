@@ -10,7 +10,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/test/assets/test.css?v=0827d">
+<link rel="stylesheet" href="/test/assets/test.css?v=0827e">
 <style>
 :root,[data-theme="dark"]{--tl-bg:var(--paper);--tl-card:var(--card);--tl-chipbg:var(--tint2);--tl-line:var(--line);--tl-line2:var(--tint2);--tl-ink:var(--ink);--tl-body:var(--ink);--tl-muted:var(--muted);--tl-faint:var(--sage);--tl-teal:var(--teal);--tl-teal2:var(--teal2);--tl-tealbright:var(--teal);--tl-tealdim:var(--sage);--tl-tealsoft:var(--teal2);--tl-gold:var(--brass);--tl-gold2:var(--brass);--tl-gold3:var(--brass);--tl-goldpale:var(--amber-text);--tl-red2:var(--red);--tl-okbd:color-mix(in srgb,var(--green) 30%,var(--line));--tl-warnbd:color-mix(in srgb,var(--gold) 40%,var(--line));--tl-badbd:color-mix(in srgb,var(--red) 30%,var(--line));--tl-fvlo:color-mix(in srgb,var(--red) 14%,var(--tint2));--tl-zone1:color-mix(in srgb,var(--teal) 6%,transparent);--tl-zone2:color-mix(in srgb,var(--gold) 6%,transparent);--tl-grid:color-mix(in srgb,var(--ink) 9%,transparent);--tl-vline1:color-mix(in srgb,var(--ink) 14%,transparent);--tl-vline2:color-mix(in srgb,var(--ink) 18%,transparent);--tl-leg50:color-mix(in srgb,var(--teal) 35%,transparent);--tl-leg95:color-mix(in srgb,var(--teal) 14%,transparent);--tl-okbg:color-mix(in srgb,var(--green) 9%,transparent);--tl-warnbg:color-mix(in srgb,var(--gold) 12%,transparent);--tl-badbg:color-mix(in srgb,var(--red) 9%,transparent)}
 [data-theme="dark"]{--tl-gold:var(--gold);--tl-gold2:var(--gold);--tl-gold3:var(--gold);--tl-goldpale:var(--gold)}
@@ -31,7 +31,11 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 </style>
 </head>
 <body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/test/">testahil?</a><nav><a href="/test/coverage.html" data-p="coverage" class="on">Coverage</a><a href="/test/tools.html" data-p="tools">Tools</a><a href="/test/savings.html" data-p="savings">Savings check</a><a href="/test/record.html" data-p="record">Track record</a><a href="/test/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
 <main class="wrap"><div id="tl-root" style="padding:26px 0 10px"></div></main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/index.html">current site ↗</a></span></div></footer><div class="t-testflag">TEST PREVIEW — new structure, live data</div>
+
 <script src="/assets/data.js"></script>
 <script src="/test/assets/test.js"></script>
 <script>
@@ -167,7 +171,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-tealsoft)"></span>support</span></div></div>'+
       '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-items:start">'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
-          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Technical — now</div>'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 2 · Technical — now</div>'+
           '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:8px">What is the chart doing?</div>'+
           '<div style="font-size:13.5px;line-height:1.5;color:var(--tl-body);margin-bottom:12px">'+((D.tech&&D.tech.trend)||'—')+'</div>'+
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">'+
@@ -177,7 +181,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           (res.length?'<div style="font-size:12.5px;line-height:1.5;color:var(--tl-tealbright);margin-top:8px">Above '+f(res[0])+(res[1]!=null?' the next resistance is '+f(res[1])+(res[2]!=null?', then '+f(res[2]):'')+'.':' there is no further published resistance.')+'</div>':'')+
           (sup.length?'<div style="font-size:12.5px;line-height:1.5;color:var(--tl-red2);margin-top:6px">Below '+f(sup[0])+(sup[1]!=null?' the next support is '+f(sup[1])+(sup[2]!=null?', then '+f(sup[2]):'')+'.':' there is no further published support.')+'</div>':'')+'</div>'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
-          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 2 · Monte Carlo — the odds</div>'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 3 · Monte Carlo — the odds</div>'+
           '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">Where could the price go?</div>'+
           '<div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;align-items:baseline">'+
             '<div style="color:var(--tl-faint);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">pctile</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t1.label+'</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t3.label+'</div>'+
@@ -191,7 +195,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           '<div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:5px 10px;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px">'+
             '<div style="color:var(--tl-faint);font-size:11px">level</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t1.label+'</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t3.label+'</div>'+touch+'</div>':'')+'</div>'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
-          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 3 · Fundamental — the study</div>'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Fundamental — the study</div>'+
           '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">What is it worth?</div>'+
           '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px"><div style="font-family:\'IBM Plex Mono\',monospace;font-size:26px;font-weight:600;color:var(--tl-gold)">'+f(fair.base)+'</div><div style="font-size:12.5px;color:var(--tl-muted)">price '+Math.abs(gapPct).toFixed(1)+'% '+(gapPct>=0?'below':'above')+' this mark</div></div>'+
           '<div style="position:relative;height:34px;margin:2px">'+

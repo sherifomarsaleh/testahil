@@ -117,3 +117,9 @@ a.t-card:hover{text-decoration:none;border-color:var(--teal);box-shadow:0 4px 16
 .t-contrib{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .t-contrib .row{display:grid;grid-template-columns:110px 1fr 64px;gap:10px;align-items:center;font-size:var(--fs-small)}
 @media (max-width:720px){.t-search input{width:140px}.t-hero{padding-top:32px}}
+
+.t-tablewrap th.sorted[data-dir="1"]::after{content:" ▲";font-size:.75em}
+.t-tablewrap th.sorted[data-dir="-1"]::after{content:" ▼";font-size:.75em}
+tr.t-month td{background:var(--tint2);font-weight:700;font-size:var(--fs-caption);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+a.t-chip{color:var(--ink);display:inline-block}
+a.t-chip:hover{text-decoration:none;border-color:var(--teal);color:var(--teal)}

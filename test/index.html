@@ -4,20 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>testahil? — Is the stock worth it? (test)</title>
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
-<link rel="stylesheet" href="assets/test.css">
+<link rel="stylesheet" href="assets/test.css?v=0827e">
 </head>
 <body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/test/">testahil?</a><nav><a href="/test/coverage.html" data-p="coverage">Coverage</a><a href="/test/tools.html" data-p="tools">Tools</a><a href="/test/savings.html" data-p="savings">Savings check</a><a href="/test/record.html" data-p="record">Track record</a><a href="/test/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
 <main class="wrap">
   <section class="t-hero">
     <h1>Is the stock worth it?</h1>
     <p class="lead">We won’t tell you what to buy — we’ll tell you the odds. 50,000 simulations per stock, the math open, every forecast graded in public.</p>
     <div class="t-search t-bigsearch"><input id="t-bigq" type="search" placeholder="🔍 Type a name — try &quot;Palm Hills&quot; or PHDC…" autocomplete="off"><div class="t-dd" id="t-bigqq"></div></div>
+    <div class="t-filters" style="margin-top:12px"><span class="muted" style="font-size:var(--fs-small)">Try:</span><a class="t-chip" href="/test/PHDC/study/">Palm Hills</a><a class="t-chip" href="/test/ARAMCO/study/">Aramco</a><a class="t-chip" href="/test/GOLD/study/">Gold</a><a class="t-chip" href="/test/COMI/study/">CIB</a><a class="t-chip" href="coverage.html"><b>Browse all 93 →</b></a></div>
   </section>
   <div class="t-cards">
     <a class="t-card" id="latest-card" href="#">
@@ -26,6 +29,11 @@
       <p id="latest-line">—</p>
       <div class="t-bar" title="Odds the price is higher in 3 months"><i id="latest-bar" style="width:0%"></i></div>
       <p id="latest-odds" class="num" style="margin-top:6px">—</p>
+    </a>
+    <a class="t-card" href="coverage.html">
+      <div class="t-kicker">Coverage</div>
+      <h3>Browse all 93 names</h3>
+      <p>Egypt · Gulf · global · metals — the full list, filterable and sortable.</p>
     </a>
     <a class="t-card" href="tools.html">
       <div class="t-kicker">Tools</div>
@@ -43,8 +51,10 @@
       <p id="record-line">Every forecast dated and scored — nothing deleted.</p>
     </a>
   </div>
-  <p class="muted" style="font-size:var(--fs-small);max-width:70ch">New here? Pick a stock → read its odds → go deeper if you want. We never tell you to buy or sell. <a href="method.html">How we build these →</a></p>
+  <p class="muted" style="font-size:var(--fs-small);max-width:70ch">New here? <a href="coverage.html">Pick a stock</a> → read its odds → go deeper if you want. We never tell you to buy or sell. <a href="method.html">How we build these →</a></p>
 </main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/index.html">current site ↗</a></span></div></footer><div class="t-testflag">TEST PREVIEW — new structure, live data</div>
+
 <script src="../assets/data.js"></script>
 <script src="assets/test.js"></script>
 <script>

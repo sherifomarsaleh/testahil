@@ -10,9 +10,11 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/test/assets/test.css?v=0827d">
+<link rel="stylesheet" href="/test/assets/test.css?v=0827e">
 </head>
 <body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/test/">testahil?</a><nav><a href="/test/coverage.html" data-p="coverage">Coverage</a><a href="/test/tools.html" data-p="tools">Tools</a><a href="/test/savings.html" data-p="savings">Savings check</a><a href="/test/record.html" data-p="record" class="on">Track record</a><a href="/test/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
 <main class="wrap" id="c-main" style="display:none">
   <section class="t-sec" style="margin-top:26px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
@@ -46,6 +48,8 @@
 <main class="wrap" id="c-missing" style="display:none">
   <section class="t-hero"><h1>No record found</h1><p class="lead">Browse <a href="/test/coverage.html">Coverage</a> or search above.</p></section>
 </main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/index.html">current site ↗</a></span></div></footer><div class="t-testflag">TEST PREVIEW — new structure, live data</div>
+
 <script src="/assets/data.js"></script>
 <script src="/test/assets/test.js"></script>
 <script>

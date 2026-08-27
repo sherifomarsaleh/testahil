@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tools — testahil? (test)</title>
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
-<link rel="stylesheet" href="assets/test.css">
+<link rel="stylesheet" href="assets/test.css?v=0827e">
 </head>
 <body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/test/">testahil?</a><nav><a href="/test/coverage.html" data-p="coverage">Coverage</a><a href="/test/tools.html" data-p="tools" class="on">Tools</a><a href="/test/savings.html" data-p="savings">Savings check</a><a href="/test/record.html" data-p="record">Track record</a><a href="/test/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
 <main class="wrap">
   <section class="t-sec" style="margin-top:26px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
@@ -52,6 +54,7 @@
           <tbody id="sc-body"></tbody>
         </table>
       </div>
+      <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The full list with prices → <a href="coverage.html">Coverage</a></p>
       <div class="t-accordion" id="sc-caveat"><button>Read this before ranking ▾</button><div class="muted" style="font-size:var(--fs-small)">
         A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). Rankings refresh whenever the studies do.
       </div></div>
@@ -86,8 +89,8 @@
         <button>Size this position — step 2, after you’ve weighed the odds ▾</button>
         <div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
-            <label class="t-field">Money set aside for this idea<input type="number" id="sz-cap" value="100000" min="0" step="1000"></label>
-            <label class="t-field">Most you’ll accept losing<input type="number" id="sz-risk" value="5" min="0.5" max="100" step="0.5"> </label>
+            <label class="t-field">Money set aside for this idea (<span id="sz-ccy">EGP</span>)<input type="number" id="sz-cap" value="100000" min="0" step="1000"></label>
+            <label class="t-field">Most you’ll accept losing (%)<input type="number" id="sz-risk" value="5" min="0.5" max="100" step="0.5"></label>
             <label class="t-field">Exit level (published supports)<select id="sz-exit"></select></label>
           </div>
           <p id="sz-out" style="font-weight:600;margin:12px 0 0"></p>
@@ -122,6 +125,8 @@
     <div class="t-note">Educational odds read off published studies — never advice. <a href="method.html#disclaimer">Full disclaimer</a></div>
   </section>
 </main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/index.html">current site ↗</a></span></div></footer><div class="t-testflag">TEST PREVIEW — new structure, live data</div>
+
 <script src="../assets/data.js"></script>
 <script src="assets/test.js"></script>
 <script>
@@ -167,7 +172,7 @@ renderChrome("tools");
     th.addEventListener("click", function(){
       var s=th.dataset.s;
       if(scState.s===s) scState.dir*=-1; else { scState.s=s; scState.dir=(s==="code")?1:(s==="reach"?1:-1); }
-      document.querySelectorAll("#pane-screener th").forEach(function(h){h.classList.toggle("sorted",h===th)});
+      document.querySelectorAll("#pane-screener th").forEach(function(h){ h.classList.toggle("sorted",h===th); if(h===th){h.dataset.dir=scState.dir;h.setAttribute("aria-sort",scState.dir===1?"ascending":"descending");} else {delete h.dataset.dir;h.removeAttribute("aria-sort");} });
       paintSc();
     });
   });
@@ -234,7 +239,8 @@ renderChrome("tools");
       row("Big win / big loss odds", A.bw, B.bw, true) +
       row("", '<a href="'+pageFor(cpA.value)+'">study →</a>', '<a href="'+pageFor(cpB.value)+'">study →</a>');
   }
-  cpA.addEventListener("change", cpPaint); cpB.addEventListener("change", cpPaint);
+  function cpUrl(){ history.replaceState(null,"","?a="+cpA.value+"&b="+cpB.value+"#compare"); }
+  cpA.addEventListener("change", function(){cpUrl();cpPaint();}); cpB.addEventListener("change", function(){cpUrl();cpPaint();});
   cpPaint();
 
   /* ---------- odds + sizer ---------- */
@@ -251,8 +257,8 @@ renderChrome("tools");
     var d=t.dist[odHz], b=computeBuckets(d,t.spot);
     document.getElementById("od-buckets").innerHTML =
       '<div class="t-bucket bw"><div class="lb">BIG WIN ≥ +10%</div><div class="pc">'+Math.round(b.bigGain*100)+'%</div></div>'+
-      '<div class="t-bucket sw"><div class="lb">SMALL WIN</div><div class="pc">'+Math.round(b.smallGain*100)+'%</div></div>'+
-      '<div class="t-bucket sl"><div class="lb">SMALL LOSS</div><div class="pc">'+Math.round(b.smallLoss*100)+'%</div></div>'+
+      '<div class="t-bucket sw"><div class="lb">SMALL WIN 0…+10%</div><div class="pc">'+Math.round(b.smallGain*100)+'%</div></div>'+
+      '<div class="t-bucket sl"><div class="lb">SMALL LOSS 0…−10%</div><div class="pc">'+Math.round(b.smallLoss*100)+'%</div></div>'+
       '<div class="t-bucket bl"><div class="lb">BIG LOSS ≥ −10%</div><div class="pc">'+Math.round(b.bigLoss*100)+'%</div></div>';
     document.getElementById("od-line").textContent = t.name+" at "+fmtPx(t.spot,t.ccy)+" — "+d.label+" cone "+fmtPx(d.p5)+" to "+fmtPx(d.p95)+", resolves "+(d.resolve||"—")+". The buckets add to 100%.";
     var tw=document.getElementById("od-touchwrap");
@@ -260,6 +266,7 @@ renderChrome("tools");
       document.getElementById("od-touch").innerHTML = t.touch.map(function(r){
         return '<tr><td class="num"><b>'+fmtPx(r[0])+'</b></td><td class="num">'+r[1]+'%</td><td class="num">'+r[2]+'%</td></tr>'; }).join("");
     } else tw.style.display="none";
+    var cy=document.getElementById("sz-ccy"); if(cy) cy.textContent=t.ccy||"EGP";
     var ex=document.getElementById("sz-exit");
     var sups=(t.levels&&t.levels.sup)||[];
     ex.innerHTML = sups.map(function(s){ return '<option value="'+s+'">'+fmtPx(s)+' (support)</option>'; }).join("") ||
@@ -269,7 +276,7 @@ renderChrome("tools");
   document.getElementById("od-hz").addEventListener("click", function(e){
     var b=e.target.closest(".t-chip"); if(!b) return; odHz=b.dataset.h; odPaint();
   });
-  odT.addEventListener("change", odPaint);
+  odT.addEventListener("change", function(){ history.replaceState(null,"","?t="+odT.value+"#odds"); odPaint(); });
   function szPaint(){
     var t=ALL[odT.value];
     var cap=+document.getElementById("sz-cap").value||0;
