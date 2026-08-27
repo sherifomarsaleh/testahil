@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>3 lenses — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
@@ -99,21 +97,20 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
       '<span class="muted" style="font-size:var(--fs-small)"><a href="../study/">Detailed explanation of each analysis →</a></span></div>'+
     '<p class="muted" style="margin:0 0 4px;max-width:70ch">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</p>'+
     '<p class="num" style="margin:0;font-size:var(--fs-caption);color:var(--tl-faint)">'+asOfLine+'</p>'+
-      '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px"><a href="../study/" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>'+
-      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:11.5px;color:var(--tl-faint)">'+asOfLine+'</div></div></div>'+
-    '<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid var(--tl-line);padding-top:16px">'+
+          '<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid var(--tl-line);padding-top:16px">'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">'+f(D.spot)+' <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">'+D.ccy+'</span></div>'+
       '<div style="font-size:13px;color:var(--tl-faint)">'+(D.spotDate||'')+'</div>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">'+(isFinite(nearRes)?'next resistance '+f(nearRes):'above all published resistance')+'</div>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">'+(isFinite(nearSup)?'nearest support '+f(nearSup):'below all published support')+'</div>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">fair value '+(gapPct>=0?'+':'−')+Math.abs(gapPct).toFixed(1)+'% vs price</div></div>'+
-    '<div style="display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:20px;align-items:start" id="tl-grid">'+
+    '<div style="display:flex;flex-direction:column;gap:20px" id="tl-grid">'+
       '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:20px 22px 16px">'+
         '<div style="display:flex;font-size:11.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:10px">'+
           '<div style="width:42.6%">Now — <span style="color:var(--tl-muted)">the chart</span></div>'+
           '<div style="width:12.7%;color:var(--tl-teal)">1–3 mo — <span style="color:var(--tl-teal2)">published odds</span></div>'+
-          '<div style="width:44.7%;color:var(--tl-gold3)">the study — <span style="color:var(--tl-gold2)">what it is worth</span></div></div>'+
-        '<div style="position:relative;container-type:inline-size">'+
+          '<div style="width:44.7%;color:var(--tl-gold3);display:flex;justify-content:space-between;align-items:center;gap:8px">the study — <span style="color:var(--tl-gold2)">what it is worth</span>'+
+          '<button id="tl-zoom" title="Full-page view" style="pointer-events:auto;background:var(--card);border:1.5px solid var(--line);border-radius:8px;width:34px;height:34px;cursor:pointer;color:var(--muted);font-size:15px;line-height:1;letter-spacing:0;text-transform:none">🔍</button></div></div>'+
+        '<div style="position:relative;container-type:inline-size" id="tl-chartbox">'+
         '<svg viewBox="0 0 960 520" style="width:100%;display:block" role="img" aria-label="Three lenses chart">'+
           '<rect x="408.7" y="14" width="121.8" height="472" fill="rgba(47,200,182,0.05)"></rect>'+
           '<rect x="530.5" y="14" width="365.5" height="472" fill="rgba(228,180,76,0.035)"></rect>'+
@@ -141,7 +138,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
             '<text x="472" y="506" fill="#5E7370" text-anchor="middle">'+t1.label+'</text>'+
             '<text x="530.5" y="506" fill="#5E7370" text-anchor="middle">'+t3.label+'</text>'+
             '<text x="896" y="506" fill="#5E7370" text-anchor="end">the study</text></g></svg>'+
-        '<div style="position:absolute;inset:0;pointer-events:none;font-family:\'IBM Plex Mono\',monospace;font-size:1.25cqw;line-height:1">'+
+        '<div style="position:absolute;inset:0;pointer-events:none;font-family:\'IBM Plex Mono\',monospace;font-size:clamp(10px,1.15cqw,15px);line-height:1">'+
           '<div style="position:absolute;left:94%;top:'+gp(0)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(0)+'</div>'+
           '<div style="position:absolute;left:94%;top:'+gp(1)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(1)+'</div>'+
           '<div style="position:absolute;left:94%;top:'+gp(2)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(2)+'</div>'+
@@ -157,7 +154,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.base))+'%;transform:translate(-100%, calc(-100% - 5px));color:var(--tl-gold);font-weight:600;white-space:nowrap">fair '+f(fair.base)+'</div>'+
           '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.full))+'%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">'+f(fair.full)+' · all goes right</div>'+
           '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.bear))+'%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">'+f(fair.bear)+' · bad case</div>'+
-          '<div style="position:absolute;left:43.4%;top:'+pctY(y(D.spot))+'%;transform:translateY(calc(-100% - 5px));color:var(--tl-gold);font-weight:600;font-size:1.4cqw">'+f(D.spot)+'</div></div></div>'+
+          '<div style="position:absolute;left:43.4%;top:'+pctY(y(D.spot))+'%;transform:translateY(calc(-100% - 5px));color:var(--tl-gold);font-weight:600;font-size:clamp(12px,1.4cqw,18px)">'+f(D.spot)+'</div></div></div>'+
         '<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--tl-line2);font-size:11.5px;color:var(--tl-muted)">'+
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg50);border-radius:2px"></span>25th–75th percentile</span>'+
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg95);border-radius:2px"></span>5th–95th percentile</span>'+
@@ -166,7 +163,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid var(--tl-gold);transform:rotate(45deg)"></span>fair value</span>'+
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-gold3)"></span>resistance</span>'+
           '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-tealsoft)"></span>support</span></div></div>'+
-      '<div style="display:flex;flex-direction:column;gap:14px">'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-items:start">'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
           '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Technical — now</div>'+
           '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:8px">What is the chart doing?</div>'+
@@ -215,9 +212,23 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
       '<a class="t-btn ghost" href="../archive/">All editions (archive) →</a>'+
       '<a class="t-btn ghost" href="/test/tools.html?t='+k+'#odds">Weigh the odds →</a></div>'+
     '<div style="margin-top:18px;font-size:11.5px;line-height:1.6;color:var(--tl-faint);max-width:1100px">Every number on this page is read live from the site\u2019s own data file — the same source the full study page renders from. Percentiles and touch probabilities are the published output of the 50,000-path engine; resistance, support and the technical read are the published levels; fair value is the current study edition. Nothing here is re-estimated. Price history is the real daily close series. '+asOfLine+'. Educational and illustrative — the odds, not advice. We never tell you to buy or sell.</div></div>';
-    if(window.matchMedia&&window.matchMedia('(max-width: 900px)').matches){var gr=document.getElementById('tl-grid');if(gr)gr.style.gridTemplateColumns='1fr';}
   }
   render([],'');
+  document.addEventListener("click",function(e){
+    if(e.target&&e.target.id==="tl-zoom"){
+      var box=document.getElementById("tl-chartbox"); if(!box) return;
+      var ov=document.createElement("div");
+      ov.id="tl-ov";
+      ov.style.cssText="position:fixed;inset:0;z-index:300;background:var(--paper);padding:3vh 3vw;display:flex;flex-direction:column;gap:10px;overflow:auto";
+      ov.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-family:Alexandria,sans-serif;font-size:1.1rem">'+D.name+' — three lenses</b><button id="tl-ovx" style="background:var(--card);border:1.5px solid var(--line);border-radius:8px;width:38px;height:38px;cursor:pointer;color:var(--ink);font-size:16px">✕</button></div>'+
+        '<div style="flex:1;min-height:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;align-items:center">'+box.outerHTML.replace(/id="tl-chartbox"/,'').replace(/id="tl-zoom"[^>]*>🔍<\/button>/,'hidden></button>')+'</div>';
+      document.body.appendChild(ov);
+      document.body.style.overflow="hidden";
+      var close=function(){var o=document.getElementById("tl-ov");if(o)o.remove();document.body.style.overflow=""};
+      ov.addEventListener("click",function(ev){ if(ev.target.id==="tl-ovx"||ev.target===ov) close(); });
+      document.addEventListener("keydown",function esc(ev){ if(ev.key==="Escape"){close();document.removeEventListener("keydown",esc);} });
+    }
+  });
   if(window.fetchOHLC){
     fetchOHLC(k).then(function(series){
       if(!series||series.length<10) return;
