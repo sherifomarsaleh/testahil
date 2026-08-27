@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>Study — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
@@ -94,12 +92,15 @@
   if(t.fair){
     document.getElementById("lens-fair").style.display="";
     var f=t.fair, lo=Math.min(f.bear,t.spot)*0.94, hi=Math.max(f.full,t.spot)*1.06, W=hi-lo;
-    function pinAt(val,label,cls){ return '<span class="pin '+(cls||"")+'" style="inset-inline-start:'+(((val-lo)/W)*100).toFixed(1)+'%">'+label+' <span class="num">'+fmtPx(val)+'</span></span>'; }
-    document.getElementById("f-bar").innerHTML =
-      '<div class="seg" style="flex:'+(f.bear-lo)+'"></div>'+
-      '<div class="seg mid" style="flex:'+(f.full-f.bear)+';position:relative">'+pinAt(f.bear,"bear")+pinAt(f.base,"base")+pinAt(f.full,"good case")+'</div>'+
-      '<div class="seg" style="flex:'+(hi-f.full)+';position:relative">'+ (t.spot>f.full||t.spot<f.bear ? pinAt(t.spot,"price now","spot") : "") +'</div>';
-    if(t.spot>=f.bear&&t.spot<=f.full){ document.getElementById("f-bar").children[1].innerHTML += pinAt(t.spot,"price now","spot"); }
+    var pins=[{v:f.bear,l:"bear"},{v:f.base,l:"base"},{v:f.full,l:"good case"},{v:t.spot,l:"price now",cls:"spot"}].sort(function(a,b){return a.v-b.v});
+    var lastPos=-99, anyLo=false;
+    var pinHtml=pins.map(function(p){
+      var pos=((p.v-lo)/W)*100, drop=(pos-lastPos)<10; lastPos=pos; if(drop)anyLo=true;
+      return '<span class="pin '+(p.cls||"")+(drop?" lo":"")+'" style="inset-inline-start:'+pos.toFixed(1)+'%">'+p.l+' <span class="num">'+fmtPx(p.v)+'</span></span>';
+    }).join("");
+    var bar=document.getElementById("f-bar");
+    bar.style.position="relative"; if(anyLo) bar.style.height="72px";
+    bar.innerHTML='<div class="seg" style="flex:'+(f.bear-lo)+'"></div><div class="seg mid" style="flex:'+(f.full-f.bear)+'"></div><div class="seg" style="flex:'+(hi-f.full)+'"></div>'+pinHtml;
     var g=gapOf(t);
     document.getElementById("f-line").textContent = "Published range "+fmtPx(f.bear)+" – "+fmtPx(f.full)+" "+t.ccy+", weighted central "+fmtPx(f.base)+". The central reading sits "+fmtSPct(g)+" from the last close."+(t.fairAsof?" Valuation as of "+t.fairAsof+".":"");
   }
