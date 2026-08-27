@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>Archive — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
@@ -47,7 +45,7 @@
   function paint(eds){
     var dates=Object.keys(eds).sort().reverse();
     var list=document.getElementById("a-list");
-    if(!dates.length){ list.innerHTML='<p class="muted">No published editions found for this name yet — documents publish with the first edition.</p>'; return; }
+    if(!dates.length){ list.innerHTML='<div class="t-card"><b>No previous studies available.</b><p class="muted" style="margin:6px 0 0;font-size:var(--fs-small)">Editions will be preserved here from the first publication onward.</p></div>'; return; }
     list.innerHTML=dates.map(function(dt,i){
       var e=eds[dt], links=[];
       if(e.study) links.push('<a class="t-btn'+(i?' ghost':'')+'" href="/'+e.study+'">Study (PDF)</a>');
@@ -57,6 +55,7 @@
         '<span><b class="num">'+dt+'</b>'+(i===0?' <span class="t-badge good">Latest</span>':' <span class="t-badge mut">Superseded — preserved</span>')+'</span></div>'+
         '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">'+(links.join("")||'<span class="muted" style="font-size:var(--fs-small)">files pending</span>')+'</div></div>';
     }).join("");
+    if(dates.length===1) list.innerHTML+='<p class="muted" style="font-size:var(--fs-small)">No previous studies available — this is the first edition. Superseded editions will be preserved here when new ones publish.</p>';
   }
   fetch("/test/assets/editions.json").then(function(r){return r.json()}).then(function(man){
     if(man[k]) return paint(man[k]);
