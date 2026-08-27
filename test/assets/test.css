@@ -1,5 +1,7 @@
+/* shared column */
+.t-nav .wrap,.t-strip .wrap,.t-footer .wrap,main.wrap{max-width:1180px}
 /* testahil /test/ — new-IA components. Base tokens, nav, cards come from ../assets/style.css */
-.t-nav .wrap{max-width:880px;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;min-height:56px;padding-top:8px;padding-bottom:8px}
+.t-nav .wrap{display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;min-height:56px;padding-top:8px;padding-bottom:8px}
 .t-nav .brand{font-size:1.5rem}
 .t-nav nav{display:flex;gap:2px 14px;flex-wrap:wrap;font-size:var(--fs-body)}
 .t-nav nav a{color:var(--ink);font-weight:600;padding:6px 2px;border-bottom:2px solid transparent}
@@ -19,7 +21,7 @@
 .t-theme{background:none;border:1.5px solid var(--line);border-radius:8px;width:38px;height:38px;cursor:pointer;color:var(--muted);font-size:1rem;line-height:1}
 .t-theme:hover{border-color:var(--teal);color:var(--teal)}
 .t-strip{display:block;background:var(--teal-dark);color:#D8EEE9;font-size:var(--fs-small);padding:7px 0}
-.t-strip .wrap{max-width:880px;display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+.t-strip .wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
 .t-strip a{color:#fff;font-weight:600}
 .t-strip .num{color:#fff}
 [data-theme="dark"] .t-strip{background:var(--tint)}
