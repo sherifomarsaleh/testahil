@@ -99,16 +99,17 @@ a.t-card:hover{text-decoration:none;border-color:var(--teal);box-shadow:0 4px 16
 .t-lens{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 20px;margin-top:12px}
 .t-lens h3{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .t-lens .asof{font-size:var(--fs-caption);color:var(--muted);font-weight:400}
-.t-fair{display:flex;align-items:center;gap:0;margin:14px 0 4px;height:34px}
-.t-fair .seg{height:8px;background:var(--tint);position:relative;flex:1}
-.t-fair .seg.mid{background:color-mix(in srgb,var(--teal) 30%,var(--tint))}
-.t-fair .pin{position:absolute;top:-13px;transform:translateX(-50%);font-size:var(--fs-caption);color:var(--muted);white-space:nowrap}
-.t-fair .pin::after{content:"";display:block;width:2px;height:12px;background:var(--muted);margin:2px auto 0}
+.t-fair{position:relative;margin:16px 0 6px;height:36px}
+.t-fairbar{position:absolute;left:0;right:0;top:24px;height:8px;display:flex;border-radius:4px;overflow:hidden}
+.t-fairbar .seg{height:100%;background:var(--tint)}
+.t-fairbar .seg.mid{background:color-mix(in srgb,var(--teal) 30%,var(--tint))}
+.t-fair .pin{position:absolute;top:0;transform:translateX(-50%);font-size:var(--fs-caption);color:var(--muted);white-space:nowrap;text-align:center}
+.t-fair .pin::after{content:"";display:block;width:2px;height:9px;background:var(--muted);margin:1px auto 0}
 .t-fair .pin.spot{color:var(--teal);font-weight:700}
 .t-fair .pin.spot::after{background:var(--teal)}
-.t-fair .pin.lo{top:22px}
+.t-fair .pin.lo{top:36px}
 .t-fair .pin.lo::after{display:none}
-.t-fair .pin.lo::before{content:"";display:block;width:2px;height:12px;background:var(--muted);margin:0 auto 2px}
+.t-fair .pin.lo::before{content:"";display:block;width:2px;height:9px;background:var(--muted);margin:0 auto 1px}
 .t-fair .pin.spot.lo::before{background:var(--teal)}
 .t-mixrow{display:grid;grid-template-columns:1fr 110px 40px;gap:8px;margin-top:8px;align-items:center}
 .t-contrib{display:flex;flex-direction:column;gap:6px;margin-top:8px}
