@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Track record — testahil? (test)</title>
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -31,6 +29,7 @@
     </div>
 
     <h2 style="margin-top:34px">The live ledger — forecasts awaiting their date</h2>
+    <div id="r-filter" style="display:none;margin:10px 0" class="t-note">Showing <b id="r-fname"></b> only — <a id="r-showall" href="record.html">show every name</a></div>
     <p class="muted" style="font-size:var(--fs-small);max-width:68ch">Published cones whose check date hasn’t arrived yet. Each will be graded on the real close of its date — projected dates use the exchange’s own calendar.</p>
     <div class="t-tablewrap">
       <table style="min-width:640px">
@@ -66,7 +65,11 @@ renderChrome("record");
   document.getElementById("r-hits").textContent=tNum(bt.hits);
   document.getElementById("r-hitsd").textContent="inside the 90% band — "+(bt.pct*100).toFixed(1)+"% against the 90% target";
   document.getElementById("r-names").textContent=Object.keys(BANDS).length;
-  var mk=Object.keys(BAND_MARKETS).map(function(k){var m=BAND_MARKETS[k];return {k:k,m:m}})
+  var mkAgg={};
+  Object.keys(BAND_MARKETS).forEach(function(k){var m=BAND_MARKETS[k];
+    var lbl=m.label; if(!mkAgg[lbl])mkAgg[lbl]={label:lbl,names:0,n:0,hits:0};
+    mkAgg[lbl].names+=m.names; mkAgg[lbl].n+=m.n; mkAgg[lbl].hits+=Math.round(m.c90*m.n);});
+  var mk=Object.keys(mkAgg).map(function(k){var m=mkAgg[k];return {k:k,m:{label:m.label,names:m.names,n:m.n,c90:m.hits/m.n}}})
     .sort(function(a,b){return b.m.n-a.m.n});
   document.getElementById("r-mkts").innerHTML = mk.map(function(r){
     return '<tr><td>'+r.m.label+'</td><td class="num">'+r.m.names+'</td><td class="num">'+tNum(r.m.n)+'</td><td class="num">'+(r.m.c90*100).toFixed(1)+'%</td>'+
@@ -77,8 +80,17 @@ renderChrome("record");
     var up=(ins||"").toUpperCase();
     return ALL[up]?up:null;
   }
+  var only=(new URLSearchParams(location.search).get("t")||"").toUpperCase();
+  if(only && !ALL[only]) only="";
+  if(only){
+    document.getElementById("r-filter").style.display="";
+    document.getElementById("r-fname").textContent=ALL[only].name+" ("+only+")";
+  }
   var pending=[], graded=[];
-  LEDGER.forEach(function(r){ (r.realized_close==null?pending:graded).push(r); });
+  LEDGER.forEach(function(r){
+    if(only && (r.instrument||"").toUpperCase()!==only) return;
+    (r.realized_close==null?pending:graded).push(r);
+  });
   pending.sort(function(a,b){ return (a.grade_date||"").localeCompare(b.grade_date||""); });
   graded.sort(function(a,b){ return (b.grade_date||"").localeCompare(a.grade_date||""); });
   document.getElementById("r-ledger").innerHTML = pending.map(function(r){
@@ -88,7 +100,7 @@ renderChrome("record");
       '<td class="num">'+r.anchor_date+'</td><td class="num">'+fmtPx(r.anchor_price,r.ccy)+'</td><td>'+r.horizon_label+'</td>'+
       '<td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+r.grade_date+(r.grade_basis==="projected"?'<span class="muted" style="font-size:var(--fs-caption)"> (projected)</span>':'')+'</td>'+
       '<td>'+link+'</td></tr>';
-  }).join("") || '<tr><td colspan="7" class="muted">Nothing pending right now.</td></tr>';
+  }).join("") || '<tr><td colspan="7" class="muted">'+(only?'No live forecasts on this name yet — its record so far is the backtest on <a href="'+pageFor(only)+'">its study page</a>.':'Nothing pending right now.')+'</td></tr>';
   document.getElementById("r-graded").innerHTML = graded.map(function(r){
     var k=keyByInstrument(r.instrument), nm=k?ALL[k].name:r.instrument;
     var inBand = r.realized_close>=r.p5 && r.realized_close<=r.p95;
