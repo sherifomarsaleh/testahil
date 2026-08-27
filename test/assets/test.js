@@ -11,7 +11,7 @@ window.mktOf = function(t){
     NASDAQ:"US", NYSE:"US", XAU:"Metals", XAG:"Metals", XPT:"Metals"})[ex] || (t.unitEn ? "Metals" : "Other");
 };
 window.keyOf = function(t){ for(var k in ALL){ if(ALL[k]===t) return k; } return null; };
-window.pageFor = function(k){ return "study.html?t=" + encodeURIComponent(k); };
+window.pageFor = function(k){ return "/test/" + encodeURIComponent(k) + "/study/"; };
 
 /* ---------- math (ported verbatim in spirit from trade.html / portfolio.html) ---------- */
 window.invCDF = function(d){
@@ -89,20 +89,20 @@ window.renderChrome = function(active){
   var bt = bandTotals();
   var nav = el('<div>'+
     '<header class="nav t-nav"><div class="wrap">'+
-      '<a class="brand" href="index.html">testahil?</a>'+
+      '<a class="brand" href="/test/">testahil?</a>'+
       '<nav>'+
-        '<a href="coverage.html" data-p="coverage">Coverage</a>'+
-        '<a href="tools.html" data-p="tools">Tools</a>'+
-        '<a href="savings.html" data-p="savings">Savings check</a>'+
-        '<a href="record.html" data-p="record">Track record</a>'+
-        '<a href="method.html" data-p="method">Method</a>'+
+        '<a href="/test/coverage.html" data-p="coverage">Coverage</a>'+
+        '<a href="/test/tools.html" data-p="tools">Tools</a>'+
+        '<a href="/test/savings.html" data-p="savings">Savings check</a>'+
+        '<a href="/test/record.html" data-p="record">Track record</a>'+
+        '<a href="/test/method.html" data-p="method">Method</a>'+
       '</nav>'+
       '<div class="t-right">'+
         '<div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off"><div class="t-dd" id="t-qq"></div></div>'+
         '<button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button>'+
       '</div>'+
     '</div></header>'+
-    '<a class="t-strip" href="record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num">'+tNum(bt.n)+'</span>&nbsp;3-month windows checked ·&nbsp;<span class="num">'+tNum(bt.hits)+'</span>&nbsp;inside the 90% band ('+Math.round(bt.pct*100)+'%) → every one dated, right or wrong</span></a>'+
+    '<a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num">'+tNum(bt.n)+'</span>&nbsp;3-month windows checked ·&nbsp;<span class="num">'+tNum(bt.hits)+'</span>&nbsp;inside the 90% band ('+Math.round(bt.pct*100)+'%) → every one dated, right or wrong</span></a>'+
   '</div>');
   document.body.insertBefore(nav, document.body.firstChild);
   var on = nav.querySelector('[data-p="'+active+'"]'); if(on) on.classList.add("on");
@@ -110,8 +110,8 @@ window.renderChrome = function(active){
   var big = document.getElementById("t-bigq");
   if(big) initSearch(big, document.getElementById("t-bigqq"));
   document.body.appendChild(el('<footer class="t-footer"><div class="wrap">'+
-    '<span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="method.html#disclaimer">Full disclaimer</a></span>'+
-    '<span>Data: <span class="num">'+SITE.updated+'</span> · <a href="../index.html">current site ↗</a></span>'+
+    '<span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/test/method.html#disclaimer">Full disclaimer</a></span>'+
+    '<span>Data: <span class="num">'+SITE.updated+'</span> · <a href="/index.html">current site ↗</a></span>'+
   '</div></footer>'));
   document.body.appendChild(el('<div class="t-testflag">TEST PREVIEW — new structure, live data</div>'));
 };

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3-lens summary — testahil? (test)</title>
+<meta name="robots" content="noindex">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/test/assets/test.css">
+</head>
+<body>
+<main class="wrap" id="g-main" style="display:none">
+  <section class="t-sec" style="margin-top:26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h1 style="margin:0"><span class="num" id="s-code" style="font-size:var(--fs-body);color:var(--muted);font-weight:500;margin-inline-end:10px"></span><span id="s-name"></span></h1>
+      <span class="muted" style="font-size:var(--fs-small)"><span class="num" id="s-spot"></span> · <span id="s-spotdate"></span></span>
+    </div>
+    <p class="muted" style="max-width:66ch">Three lenses, three clocks, one question — do they agree right now?</p>
+    <div class="t-glance" style="margin-top:8px">
+      <span class="t-kicker">At a glance</span>
+      <div class="g3">
+        <div class="cell"><div class="k">NOW · technical</div><div class="v" id="g-tech">—</div><div class="k" id="g-tech2" style="margin-top:8px"></div></div>
+        <div class="cell"><div class="k">1–3 MONTHS · the odds</div><div class="v" id="g-odds">—</div><div class="k" id="g-odds2" style="margin-top:8px"></div></div>
+        <div class="cell"><div class="k">THE STUDY · fair value</div><div class="v" id="g-fair">—</div><div class="k" id="g-fair2" style="margin-top:8px"></div></div>
+      </div>
+    </div>
+    <div id="g-verdict" style="margin-top:14px"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+      <a class="t-btn" href="../study/">Read the full study →</a>
+      <a class="t-btn ghost" href="../calibration/">Calibration &amp; ledger record →</a>
+      <a class="t-btn ghost" id="go-odds" href="#">Weigh the odds →</a>
+    </div>
+  </section>
+</main>
+<main class="wrap" id="g-missing" style="display:none">
+  <section class="t-hero"><h1>No study found</h1><p class="lead">Browse <a href="/test/coverage.html">Coverage</a> or search above.</p></section>
+</main>
+<script src="/assets/data.js"></script>
+<script src="/test/assets/test.js"></script>
+<script>
+(function(){
+  var parts=location.pathname.split('/').filter(Boolean);
+  var k=decodeURIComponent(parts[parts.indexOf('test')+1]||"");
+  k = ALL[k] ? k : (ALL[k.toUpperCase()] ? k.toUpperCase() : null);
+  renderChrome("coverage");
+  if(!k){ document.getElementById("g-missing").style.display=""; return; }
+  var t=ALL[k];
+  document.getElementById("g-main").style.display="";
+  document.title = t.name+" — 3-lens summary (test)";
+  document.getElementById("s-code").textContent=t.code;
+  document.getElementById("s-name").textContent=t.name;
+  document.getElementById("s-spot").textContent=fmtPx(t.spot,t.ccy)+(t.unitEn?" ("+t.unitEn+")":"");
+  document.getElementById("s-spotdate").textContent=t.spotDate||"";
+  var techUp=null;
+  if(t.tech&&t.tech.trend){ document.getElementById("g-tech").textContent=t.tech.trend;
+    document.getElementById("g-tech2").textContent=t.tech.summary||"";
+    techUp=/above|rising|uptrend/i.test(t.tech.trend)?true:(/below|falling|downtrend/i.test(t.tech.trend)?false:null); }
+  var oddsUp=null;
+  if(t.dist&&t.dist.t60){ var up=probAbove(t.dist.t60,t.spot);
+    oddsUp = up>=0.55?true:(up<=0.45?false:null);
+    var lean=up>=0.60?"leans up":(up<=0.40?"leans down":"could go either way");
+    var width=(t.dist.t60.p95-t.dist.t60.p5)/t.spot;
+    document.getElementById("g-odds").textContent=lean+" — "+Math.round(up*100)+"% odds higher";
+    document.getElementById("g-odds2").textContent="3-month band "+fmtPx(t.dist.t60.p5)+" – "+fmtPx(t.dist.t60.p95)+" ("+(width>=0.35?"wide":"moderate")+")"; }
+  var v=verdictOf(t), g=gapOf(t), fairUp = g==null?null:(g>=0.15?true:(g<=-0.15?false:null));
+  document.getElementById("g-fair").textContent = t.fair ? v.label : "—";
+  if(t.fair) document.getElementById("g-fair2").textContent="central "+fmtPx(t.fair.base)+" vs "+fmtPx(t.spot)+" now ("+fmtSPct(g)+")";
+  var votes=[techUp,oddsUp,fairUp].filter(function(x){return x!==null});
+  var pos=votes.filter(Boolean).length, msg, cls;
+  if(votes.length<2){ msg="Not enough published signals to score agreement."; cls="mut"; }
+  else if(pos===votes.length){ msg="The lenses agree — all point the same way. That's when the study is most worth reading."; cls="good"; }
+  else if(pos===0){ msg="The lenses agree — all lean against this name right now."; cls="bad"; }
+  else { msg="The lenses disagree — different clocks, different answers. The full study says which to trust for your horizon."; cls="warn"; }
+  document.getElementById("g-verdict").innerHTML='<span class="t-badge '+cls+'" style="font-size:var(--fs-small);padding:8px 14px">'+msg+'</span>';
+  document.getElementById("go-odds").href="/test/tools.html?t="+k+"#odds";
+})();
+</script>
+</body>
+</html>
