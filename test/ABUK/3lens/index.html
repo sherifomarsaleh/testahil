@@ -3,17 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>3 lenses — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="/test/assets/test.css">
 <style>
-:root{--tl-bg:#F6F8F7;--tl-card:#FFFFFF;--tl-chipbg:#EFF5F4;--tl-line:#D9E4E2;--tl-line2:#E4ECEA;--tl-ink:#0E2726;--tl-body:#2E4644;--tl-muted:#5B7270;--tl-faint:#7E918E;--tl-teal:#12796B;--tl-teal2:#178A76;--tl-tealbright:#0E6E60;--tl-tealdim:#4E7A73;--tl-tealsoft:#2B8A7C;--tl-gold:#8A6A2E;--tl-gold2:#9A7B37;--tl-gold3:#8A6A2E;--tl-goldpale:#8A6A2E;--tl-red2:#B5483A;--tl-okbd:#BFE0D8;--tl-warnbd:#E2D6B6;--tl-badbd:#E5C7C2;--tl-fvlo:#EADFD8;--tl-zone1:rgba(18,121,107,0.06);--tl-zone2:rgba(138,106,46,0.05);--tl-grid:rgba(14,39,38,0.09);--tl-vline1:rgba(14,39,38,0.14);--tl-vline2:rgba(14,39,38,0.18);--tl-leg50:rgba(18,121,107,0.35);--tl-leg95:rgba(18,121,107,0.14);--tl-okbg:rgba(18,121,107,0.08);--tl-warnbg:rgba(138,106,46,0.09);--tl-badbg:rgba(181,72,58,0.08)}
-[data-theme="dark"]{--tl-bg:#0B1416;--tl-card:#0F1A1D;--tl-chipbg:#101C1F;--tl-line:#1D2F32;--tl-line2:#17262A;--tl-ink:#E9EFEC;--tl-body:#C6D2CE;--tl-muted:#9DB1AC;--tl-faint:#5E7370;--tl-teal:#2FC8B6;--tl-teal2:#7FCFC4;--tl-tealbright:#7FE7DA;--tl-tealdim:#6FA39B;--tl-tealsoft:#5FB8AC;--tl-gold:#E4B44C;--tl-gold2:#D3B071;--tl-gold3:#B98D45;--tl-goldpale:#E8C87E;--tl-red2:#F0968C;--tl-okbd:#1E4640;--tl-warnbd:#4A3A1C;--tl-badbd:#4A211D;--tl-fvlo:#3A2A26;--tl-zone1:rgba(47,200,182,0.05);--tl-zone2:rgba(228,180,76,0.035);--tl-grid:rgba(255,255,255,0.055);--tl-vline1:rgba(255,255,255,0.10);--tl-vline2:rgba(255,255,255,0.14);--tl-leg50:rgba(47,200,182,0.4);--tl-leg95:rgba(47,200,182,0.14);--tl-okbg:rgba(47,200,182,0.07);--tl-warnbg:rgba(228,180,76,0.07);--tl-badbg:rgba(226,104,92,0.07)}
+:root,[data-theme="dark"]{--tl-bg:var(--paper);--tl-card:var(--card);--tl-chipbg:var(--tint2);--tl-line:var(--line);--tl-line2:var(--tint2);--tl-ink:var(--ink);--tl-body:var(--ink);--tl-muted:var(--muted);--tl-faint:var(--sage);--tl-teal:var(--teal);--tl-teal2:var(--teal2);--tl-tealbright:var(--teal);--tl-tealdim:var(--sage);--tl-tealsoft:var(--teal2);--tl-gold:var(--brass);--tl-gold2:var(--brass);--tl-gold3:var(--brass);--tl-goldpale:var(--amber-text);--tl-red2:var(--red);--tl-okbd:color-mix(in srgb,var(--green) 30%,var(--line));--tl-warnbd:color-mix(in srgb,var(--gold) 40%,var(--line));--tl-badbd:color-mix(in srgb,var(--red) 30%,var(--line));--tl-fvlo:color-mix(in srgb,var(--red) 14%,var(--tint2));--tl-zone1:color-mix(in srgb,var(--teal) 6%,transparent);--tl-zone2:color-mix(in srgb,var(--gold) 6%,transparent);--tl-grid:color-mix(in srgb,var(--ink) 9%,transparent);--tl-vline1:color-mix(in srgb,var(--ink) 14%,transparent);--tl-vline2:color-mix(in srgb,var(--ink) 18%,transparent);--tl-leg50:color-mix(in srgb,var(--teal) 35%,transparent);--tl-leg95:color-mix(in srgb,var(--teal) 14%,transparent);--tl-okbg:color-mix(in srgb,var(--green) 9%,transparent);--tl-warnbg:color-mix(in srgb,var(--gold) 12%,transparent);--tl-badbg:color-mix(in srgb,var(--red) 9%,transparent)}
+[data-theme="dark"]{--tl-gold:var(--gold);--tl-gold2:var(--gold);--tl-gold3:var(--gold);--tl-goldpale:var(--gold)}
 svg [stroke="#E9EFEC"]{stroke:var(--tl-ink)}
 svg [stroke="#2FC8B6"]{stroke:var(--tl-teal)}
 svg [stroke="#B98D45"]{stroke:var(--tl-gold3)}
@@ -31,7 +29,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
 </style>
 </head>
 <body>
-<div id="tl-root" style="min-height:60vh;background:var(--tl-bg);padding:26px 30px 40px"></div>
+<main class="wrap"><div id="tl-root" style="padding:26px 0 10px"></div></main>
 <script src="/assets/data.js"></script>
 <script src="/test/assets/test.js"></script>
 <script>
@@ -93,15 +91,15 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
     var gl=function(gi){return grid[gi]!=null?f(grid[gi]):''};
     var gp=function(gi){return grid[gi]!=null?pctY(y(grid[gi])):'-100'};
     root.innerHTML=
-    '<div style="max-width:1500px;margin:0 auto">'+
-    '<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:20px">'+
-      '<div><div style="font-family:\'Source Serif 4\',serif;font-size:17px;color:var(--tl-muted);margin-bottom:6px"><span style="font-style:italic;font-weight:600;color:var(--tl-ink)">testahil</span><span style="color:var(--tl-teal);font-weight:600">?</span><span style="margin-left:10px;font-size:12.5px;font-family:\'IBM Plex Sans\',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint)">three lenses</span></div>'+
-      '<h1 style="font-family:\'Source Serif 4\',serif;font-weight:600;font-size:38px;line-height:1.05;margin:0 0 6px">'+D.name+'</h1>'+
-      '<div style="font-size:14px;color:var(--tl-muted);line-height:1.5">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</div></div>'+
+    '<div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px">'+
+      '<h1 style="margin:0"><span class="num" style="font-size:var(--fs-body);color:var(--muted);font-weight:500;margin-inline-end:10px">'+D.code+'</span>'+D.name+'</h1>'+
+      '<span class="muted" style="font-size:var(--fs-small)"><a href="../study/">Detailed explanation of each analysis →</a></span></div>'+
+    '<p class="muted" style="margin:0 0 4px;max-width:70ch">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</p>'+
+    '<p class="num" style="margin:0;font-size:var(--fs-caption);color:var(--tl-faint)">'+asOfLine+'</p>'+
       '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px;padding-bottom:4px"><a href="../study/" style="font-size:16px;font-weight:600">Detailed explanation of each analysis →</a>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:11.5px;color:var(--tl-faint)">'+asOfLine+'</div></div></div>'+
     '<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid var(--tl-line);padding-top:16px">'+
-      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);border:1px solid var(--tl-line);border-radius:6px;padding:3px 9px">'+D.code+'</div>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">'+f(D.spot)+' <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">'+D.ccy+'</span></div>'+
       '<div style="font-size:13px;color:var(--tl-faint)">'+(D.spotDate||'')+'</div>'+
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">'+(isFinite(nearRes)?'next resistance '+f(nearRes):'above all published resistance')+'</div>'+
@@ -169,7 +167,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
       '<div style="display:flex;flex-direction:column;gap:14px">'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
           '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Technical — now</div>'+
-          '<div style="font-family:\'Source Serif 4\',serif;font-style:italic;font-size:18px;margin-bottom:8px">What is the chart doing?</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:8px">What is the chart doing?</div>'+
           '<div style="font-size:13.5px;line-height:1.5;color:var(--tl-body);margin-bottom:12px">'+((D.tech&&D.tech.trend)||'—')+'</div>'+
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">'+
             '<div><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-gold3);margin-bottom:6px">Resistance</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:13px;color:var(--tl-ink);display:flex;flex-direction:column;gap:4px"><div>'+(res[0]!=null?f(res[0]):'—')+'</div><div>'+(res[1]!=null?f(res[1]):'—')+'</div><div>'+(res[2]!=null?f(res[2]):'—')+'</div></div></div>'+
@@ -179,7 +177,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           (sup.length?'<div style="font-size:12.5px;line-height:1.5;color:var(--tl-red2);margin-top:6px">Below '+f(sup[0])+(sup[1]!=null?' the next support is '+f(sup[1])+(sup[2]!=null?', then '+f(sup[2]):'')+'.':' there is no further published support.')+'</div>':'')+'</div>'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
           '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 2 · Monte Carlo — the odds</div>'+
-          '<div style="font-family:\'Source Serif 4\',serif;font-style:italic;font-size:18px;margin-bottom:10px">Where could the price go?</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">Where could the price go?</div>'+
           '<div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;align-items:baseline">'+
             '<div style="color:var(--tl-faint);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">pctile</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t1.label+'</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t3.label+'</div>'+
             '<div style="color:var(--tl-muted)">95th</div><div style="text-align:right">'+f(t1.p95)+'</div><div style="text-align:right">'+f(t3.p95)+'</div>'+
@@ -193,7 +191,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
             '<div style="color:var(--tl-faint);font-size:11px">level</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t1.label+'</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t3.label+'</div>'+touch+'</div>':'')+'</div>'+
         '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
           '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 3 · Fundamental — the study</div>'+
-          '<div style="font-family:\'Source Serif 4\',serif;font-style:italic;font-size:18px;margin-bottom:10px">What is it worth?</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">What is it worth?</div>'+
           '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px"><div style="font-family:\'IBM Plex Mono\',monospace;font-size:26px;font-weight:600;color:var(--tl-gold)">'+f(fair.base)+'</div><div style="font-size:12.5px;color:var(--tl-muted)">price '+Math.abs(gapPct).toFixed(1)+'% '+(gapPct>=0?'below':'above')+' this mark</div></div>'+
           '<div style="position:relative;height:34px;margin:2px">'+
             '<div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--tl-fvlo),var(--tl-okbd) 55%,var(--tl-warnbd))"></div>'+
@@ -203,7 +201,7 @@ svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
           '<div style="font-size:12.5px;line-height:1.55;color:var(--tl-muted)">The study values the business between '+f(fair.bear)+' and '+f(fair.full)+', centring on '+f(fair.base)+'. Valuation runs on its own clock — it changes only when a new edition is published, not when the price moves.</div>'+
           '<div style="font-size:11.5px;color:var(--tl-faint);margin-top:10px"><a href="../study/">Full study and the open model →</a></div></div></div></div>'+
     '<div style="margin-top:20px;background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">'+
-      '<div style="font-family:\'Source Serif 4\',serif;font-style:italic;font-size:19px;white-space:nowrap">Do the lenses agree?</div>'+
+      '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.1rem;white-space:nowrap">Do the lenses agree?</div>'+
       '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
         '<span style="'+tone('warn')+'">NOW · '+(isFinite(nearRes)&&isFinite(nearSup)?f(nearSup)+' – '+f(nearRes):'outside published levels')+'</span>'+
         '<span style="'+tone(medUp?'ok':'bad')+'">'+t3.label+' · median '+f(t3.p50)+'</span>'+
