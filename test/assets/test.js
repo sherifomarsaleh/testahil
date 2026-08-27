@@ -110,6 +110,14 @@ window.renderChrome = function(active){
   initSearch(document.getElementById("t-q"), document.getElementById("t-qq"));
   var big=document.getElementById("t-bigq");
   if(big) initSearch(big, document.getElementById("t-bigqq"));
+  document.querySelectorAll(".t-accordion>button").forEach(function(b){ b.setAttribute("aria-expanded", b.parentElement.classList.contains("open")?"true":"false"); });
+  if(!window.__accWired){ window.__accWired=true;
+    document.addEventListener("click", function(e){
+      var b=e.target.closest&&e.target.closest(".t-accordion>button"); if(!b) return;
+      var open=b.parentElement.classList.toggle("open");
+      b.setAttribute("aria-expanded", open?"true":"false");
+    });
+  }
   var tf=document.querySelector(".t-testflag");
   if(tf){ var lastY=0;
     window.addEventListener("scroll",function(){ var y=window.scrollY||0; tf.classList.toggle("hid", y>160&&y>lastY); lastY=y; },{passive:true});

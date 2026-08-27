@@ -149,9 +149,6 @@ renderChrome("tools");
   document.getElementById("howto-btn").addEventListener("click", function(){
     var h=document.getElementById("howto"); h.style.display = h.style.display==="none"?"":"none";
   });
-  document.querySelectorAll(".t-accordion>button").forEach(function(b){
-    b.addEventListener("click", function(){ b.parentElement.classList.toggle("open"); });
-  });
   var KEYS = Object.keys(ALL).sort(function(a,b){ return ALL[a].name.localeCompare(ALL[b].name); });
   function optList(sel, chosen){
     sel.innerHTML = KEYS.map(function(k){ return '<option value="'+k+'"'+(k===chosen?" selected":"")+'>'+ALL[k].name+' ('+ALL[k].code+')</option>'; }).join("");
@@ -204,6 +201,7 @@ renderChrome("tools");
     if(e.target.closest("a")) return;
     var tr=e.target.closest("tr.rowlink"); if(tr) location.href=tr.dataset.href;
   });
+  (function(){ var th=document.querySelector('#pane-screener th[data-s="reach"]'); if(th){ th.classList.add("sorted"); th.dataset.dir=1; th.setAttribute("aria-sort","ascending"); } })();
   paintSc();
 
   /* ---------- head-to-head ---------- */

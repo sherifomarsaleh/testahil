@@ -111,6 +111,7 @@ renderChrome("coverage");
     document.getElementById("coming-wrap").style.display="";
     document.getElementById("coming-list").textContent = coming.map(function(c){ return c.name+" ("+c.code+")"; }).join(" · ");
   }
+  (function(){ var th=document.querySelector('#cov-table th[data-s="name"]'); if(th){ th.classList.add("sorted"); th.dataset.dir=1; th.setAttribute("aria-sort","ascending"); } })();
   paint();
 })();
 </script>
