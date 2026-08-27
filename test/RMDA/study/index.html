@@ -148,7 +148,7 @@
   var ed = files.study||files.pdf||"";
   var edDate = (ed.match(/(\d{2})-(\d{2})-(\d{4})/)||[])[0];
   document.getElementById("s-editions").innerHTML = "<b>Editions:</b> latest "+(edDate?edDate.replace(/-/g," / "):"current")+
-    " (above). Superseded editions are preserved, never deleted — <a href='/archive.html'>the archive ↗</a>.";
+    " (above). Superseded editions are preserved, never deleted — <a href='../archive/'>all editions of this study →</a>";
   document.getElementById("go-odds").href = "/test/tools.html?t="+STUDY_KEY+"#odds";
   document.getElementById("go-cmp").href = "/test/tools.html?a="+STUDY_KEY+"#compare";
   document.getElementById("go-full").href = "/"+(t.slug || STUDY_KEY.toLowerCase())+".html";

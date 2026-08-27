@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive — testahil? (test)</title>
+<meta name="robots" content="noindex">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/test/assets/test.css">
+</head>
+<body>
+<main class="wrap" id="a-main" style="display:none">
+  <section class="t-sec" style="margin-top:26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h1 style="margin:0"><span class="num" id="s-code" style="font-size:var(--fs-body);color:var(--muted);font-weight:500;margin-inline-end:10px"></span><span id="s-name"></span> — archive</h1>
+      <span class="muted" style="font-size:var(--fs-small)"><a href="../study/">← the study</a></span>
+    </div>
+    <p class="muted" style="max-width:70ch">Every edition of this study, newest first. Superseded editions are preserved exactly as published — nothing is deleted or rewritten.</p>
+    <div id="a-list" style="display:flex;flex-direction:column;gap:12px;margin-top:14px"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+      <a class="t-btn" href="../study/">Current study →</a>
+      <a class="t-btn ghost" href="../calibration/">Calibration record →</a>
+    </div>
+  </section>
+</main>
+<main class="wrap" id="a-missing" style="display:none">
+  <section class="t-hero"><h1>No archive found</h1><p class="lead">Browse <a href="/test/coverage.html">Coverage</a> or search above.</p></section>
+</main>
+<script src="/assets/data.js"></script>
+<script src="/test/assets/test.js"></script>
+<script>
+(function(){
+  var parts=location.pathname.split('/').filter(Boolean);
+  var k=decodeURIComponent(parts[parts.indexOf('test')+1]||"");
+  k = ALL[k] ? k : (ALL[k.toUpperCase()] ? k.toUpperCase() : null);
+  renderChrome("coverage");
+  if(!k){ document.getElementById("a-missing").style.display=""; return; }
+  var t=ALL[k];
+  document.getElementById("a-main").style.display="";
+  document.title=t.name+" — archive (test)";
+  document.getElementById("s-code").textContent=t.code;
+  document.getElementById("s-name").textContent=t.name;
+  function paint(eds){
+    var dates=Object.keys(eds).sort().reverse();
+    var list=document.getElementById("a-list");
+    if(!dates.length){ list.innerHTML='<p class="muted">No published editions found for this name yet — documents publish with the first edition.</p>'; return; }
+    list.innerHTML=dates.map(function(dt,i){
+      var e=eds[dt], links=[];
+      if(e.study) links.push('<a class="t-btn'+(i?' ghost':'')+'" href="/'+e.study+'">Study (PDF)</a>');
+      if(e.model) links.push('<a class="t-btn ghost" href="/'+e.model+'">Model (Excel)</a>');
+      if(e.biblio) links.push('<a class="t-btn ghost" href="/'+e.biblio+'">Bibliography</a>');
+      return '<div class="t-card"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline">'+
+        '<span><b class="num">'+dt+'</b>'+(i===0?' <span class="t-badge good">Latest</span>':' <span class="t-badge mut">Superseded — preserved</span>')+'</span></div>'+
+        '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">'+(links.join("")||'<span class="muted" style="font-size:var(--fs-small)">files pending</span>')+'</div></div>';
+    }).join("");
+  }
+  fetch("/test/assets/editions.json").then(function(r){return r.json()}).then(function(man){
+    if(man[k]) return paint(man[k]);
+    // fallback: query the repo listing live (new editions before the manifest regenerates)
+    return fetch("https://api.github.com/repos/sherifomarsaleh/testahil/contents/files?per_page=100").then(function(r){return r.ok?r.json():[]}).then(function(js){
+      var eds={}, re=new RegExp("^"+k+"_(Valuation_Study|Valuation_Model|Bibliography)_([\\d-]+)(_public)?\\.(pdf|xlsx|docx)$","i");
+      (js||[]).forEach(function(f){ var m=re.exec(f.name); if(!m) return;
+        var dt=m[2].replace(/-/g,""); if(dt.length!==8) return; dt=dt.slice(4)+"-"+dt.slice(2,4)+"-"+dt.slice(0,2);
+        var slot=/Study/i.test(m[1])?"study":(/Model/i.test(m[1])?"model":"biblio");
+        eds[dt]=eds[dt]||{}; if(!eds[dt][slot]||/\.(pdf|xlsx)$/i.test(f.name)) eds[dt][slot]="files/"+f.name; });
+      paint(eds);
+    });
+  }).catch(function(){ paint({}); });
+})();
+</script>
+</body>
+</html>
