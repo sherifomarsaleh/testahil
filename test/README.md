@@ -40,3 +40,13 @@ So the test site tracks live data automatically: publish a study, and /test/ upd
 - The 93 hand-written narrative studies stay on their current pages (linked from each study.html);
   merging the at-a-glance strip into them is a build-pipeline change, listed above.
 - Arabic (`ar/`) mirror.
+
+## SEO at go-live (prepared, not active — /test/ is noindex)
+When this structure becomes the main site:
+1. Remove <meta name="robots" content="noindex"> from all shells + flat pages.
+2. Per-study <head>: canonical URL, meta description from the name's verdict line,
+   OG/Twitter cards (og-image.png), and FAQPage JSON-LD — regenerate from the
+   per-ticker Q&A in test/assets/prose/{KEY}.json (FAQ panel).
+3. Point the "Generate SEO surfaces" workflow at the new URLs (sitemap entries for
+   /{T}/study|3lens|calibration|archive/), 301 map per this README.
+4. One canonical per name: the study page; 3lens/calibration/archive reference it.

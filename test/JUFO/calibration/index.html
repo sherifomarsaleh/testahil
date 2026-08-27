@@ -87,6 +87,44 @@
       c.setAttribute("cx",geom.px(geom.steps*i/n));c.setAttribute("cy",geom.py(o.price));c.setAttribute("r","2.2");c.setAttribute("fill","#2a78d6");
       svg.insertBefore(c,marker); });
     var leg=document.getElementById("c-leg"); if(leg) leg.style.display="";
+    wireHover(r,geom,win);
+  }
+  function wireHover(r,geom,win){
+    var svg=document.querySelector("#c-funnel svg"); if(!svg) return;
+    var NS="http://www.w3.org/2000/svg";
+    var n=win.length-1;
+    var cur=document.createElementNS(NS,"g"); cur.setAttribute("opacity","0"); cur.setAttribute("style","pointer-events:none");
+    var vline=document.createElementNS(NS,"line");
+    vline.setAttribute("y1","14"); vline.setAttribute("y2","210"); vline.setAttribute("stroke","var(--muted)"); vline.setAttribute("stroke-width","1"); vline.setAttribute("stroke-dasharray","3 3");
+    var dot=document.createElementNS(NS,"circle"); dot.setAttribute("r","4"); dot.setAttribute("fill","#2a78d6"); dot.setAttribute("stroke","var(--paper)"); dot.setAttribute("stroke-width","1.5");
+    var txt=document.createElementNS(NS,"text"); txt.setAttribute("font-size","11"); txt.setAttribute("font-family","IBM Plex Mono,monospace"); txt.setAttribute("fill","var(--ink)");
+    var bg=document.createElementNS(NS,"rect"); bg.setAttribute("rx","5"); bg.setAttribute("fill","var(--card)"); bg.setAttribute("stroke","var(--line)");
+    cur.appendChild(vline); cur.appendChild(bg); cur.appendChild(dot); cur.appendChild(txt); svg.appendChild(cur);
+    var ov=document.createElementNS(NS,"rect");
+    ov.setAttribute("x","70"); ov.setAttribute("y","14"); ov.setAttribute("width","554"); ov.setAttribute("height","196"); ov.setAttribute("fill","transparent"); ov.setAttribute("style","cursor:crosshair");
+    svg.appendChild(ov);
+    function coneAt(f,P){ return r.anchor_price+(P-r.anchor_price)*Math.sqrt(f); }
+    function show(e){
+      var rect=svg.getBoundingClientRect(); if(!rect.width) return;
+      var src=(e.touches&&e.touches[0])?e.touches[0]:e;
+      var vbX=(src.clientX-rect.left)/rect.width*720;
+      var f=Math.max(0,Math.min(1,(vbX-geom.px(0))/(geom.px(geom.steps)-geom.px(0))));
+      var i=Math.round(f*n); f=i/n;
+      var o=win[i]; if(!o) return;
+      var x=geom.px(geom.steps*f);
+      vline.setAttribute("x1",x); vline.setAttribute("x2",x);
+      dot.setAttribute("cx",x); dot.setAttribute("cy",geom.py(o.price));
+      var label=o.iso+"  close "+fmtPx(o.price)+"  ·  cone p5 "+fmtPx(coneAt(f,r.p5))+" / p50 "+fmtPx(coneAt(f,r.p50))+" / p95 "+fmtPx(coneAt(f,r.p95));
+      txt.textContent=label;
+      var tw=label.length*6.4, tx=Math.max(74,Math.min(x-tw/2,720-96-tw));
+      txt.setAttribute("x",tx); txt.setAttribute("y","30");
+      bg.setAttribute("x",tx-6); bg.setAttribute("y","18"); bg.setAttribute("width",tw+12); bg.setAttribute("height","17");
+      cur.setAttribute("opacity","1");
+    }
+    ov.addEventListener("mousemove",show);
+    ov.addEventListener("touchstart",show,{passive:true});
+    ov.addEventListener("touchmove",show,{passive:true});
+    ov.addEventListener("mouseleave",function(){cur.setAttribute("opacity","0")});
   }
   
   function drawFunnel(r){
