@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Study — testahil? (test)</title>
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -67,6 +65,11 @@
     <div class="t-lens" id="lens-cal" style="display:none">
       <h3>Own record on this name</h3>
       <p class="muted" id="c-line" style="font-size:var(--fs-small);margin:0"></p>
+      <div id="c-rows" style="display:none;margin-top:12px" class="t-tablewrap"><table style="min-width:520px">
+        <thead><tr><th class="num">Anchored</th><th>Horizon</th><th class="num">Said (p5–p95)</th><th class="num">Grades on</th><th>Result</th></tr></thead>
+        <tbody id="c-body"></tbody>
+      </table></div>
+      <p style="margin:10px 0 0;font-size:var(--fs-small)"><a id="c-all" href="record.html">The full public record →</a></p>
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center" id="s-files"></div>
@@ -172,11 +175,24 @@ renderChrome("coverage");
 
   /* own record */
   var band = BANDS[k];
-  if(band){
+  var myRows = (window.LEDGER||[]).filter(function(r){ return (r.instrument||"").toUpperCase()===k; });
+  if(band || myRows.length){
     document.getElementById("lens-cal").style.display="";
-    document.getElementById("c-line").textContent = "Across "+band.n+" resolved, non-overlapping 3-month windows on this name, "+band.hits+
+    if(band) document.getElementById("c-line").textContent = "Across "+band.n+" resolved, non-overlapping 3-month windows on this name, "+band.hits+
       " finished inside the published 90% band ("+Math.round(band.hits/band.n*100)+"% against the 90% target). Band-width ratio vs a no-forecast rule: "+band.width.toFixed(2)+
       (band.strength==="long"?" — long history.":" — "+band.strength+".");
+    if(myRows.length){
+      myRows.sort(function(a,b){ return (b.anchor_date||"").localeCompare(a.anchor_date||""); });
+      document.getElementById("c-rows").style.display="";
+      document.getElementById("c-body").innerHTML = myRows.map(function(r){
+        var res;
+        if(r.realized_close==null){ res='<span class="t-badge mut">awaiting its date</span>'; }
+        else { var inB = r.realized_close>=r.p5 && r.realized_close<=r.p95;
+          res='<span class="t-badge '+(inB?'good':'bad')+'">'+(inB?'inside the band':'outside the band')+' · closed '+fmtPx(r.realized_close)+'</span>'; }
+        return '<tr><td class="num">'+r.anchor_date+' at '+fmtPx(r.anchor_price)+'</td><td>'+r.horizon_label+'</td>'+
+          '<td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+(r.grade_date||"—")+'</td><td>'+res+'</td></tr>';
+      }).join("");
+    }
   }
 
   /* files + editions */
