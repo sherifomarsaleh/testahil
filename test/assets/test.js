@@ -97,7 +97,6 @@ window.bandTotals = function(){
 };
 
 /* ---------- shared chrome ---------- */
-function el(html){ var d=document.createElement("div"); d.innerHTML=html; return d.firstElementChild; }
 window.tNum = function(x){ return x.toLocaleString("en-US"); };
 window.renderChrome = function(active){
   var nav=document.querySelector(".t-nav");
@@ -111,6 +110,10 @@ window.renderChrome = function(active){
   initSearch(document.getElementById("t-q"), document.getElementById("t-qq"));
   var big=document.getElementById("t-bigq");
   if(big) initSearch(big, document.getElementById("t-bigqq"));
+  var tf=document.querySelector(".t-testflag");
+  if(tf){ var lastY=0;
+    window.addEventListener("scroll",function(){ var y=window.scrollY||0; tf.classList.toggle("hid", y>160&&y>lastY); lastY=y; },{passive:true});
+  }
 };
 /* search across stocks + metals + coming */
 var AKA={OCDI:"SODIC",COMI:"CIB Commercial International Bank",HRHO:"EFG Hermes",EAND:"Etisalat e& eand",TMGH:"TMG Talaat Mostafa",SWDY:"Elsewedy El Sewedy",ADIBUAE:"ADIB Abu Dhabi",ADIB:"ADIB Egypt",LGES:"LG Energy Solution",ALRAJHI:"Al Rajhi",GOLD:"XAU dahab",SILVER:"XAG fadda",PLATINUM:"XPT",ARAMCO:"Saudi Aramco",PHDC:"Palm Hills"};
@@ -126,6 +129,8 @@ function searchIndex(){
 }
 window.initSearch = function(input, dd){
   if(!input || !dd) return;
+  input.setAttribute("role","combobox"); input.setAttribute("aria-autocomplete","list"); input.setAttribute("aria-expanded","false");
+  dd.setAttribute("role","listbox");
   var ix = searchIndex(), sel = -1, rows = [];
   function paint(q){
     q = q.trim().toLowerCase();
@@ -143,7 +148,9 @@ window.initSearch = function(input, dd){
     if(!rowsHtml && q) rowsHtml='<a style="cursor:default"><span class="t-nm" style="color:var(--muted)">No covered name matches “'+q.replace(/</g,"&lt;")+'”</span></a>';
     rowsHtml+='<a href="/test/coverage.html"><span class="t-nm" style="font-weight:600;color:var(--teal)">Browse all '+Object.keys(ALL).length+' names →</span></a>';
     dd.innerHTML=rowsHtml;
+    dd.querySelectorAll("a").forEach(function(a){ a.setAttribute("role","option"); });
     dd.classList.add("open");
+    input.setAttribute("aria-expanded","true");
   }
   input.addEventListener("input", function(){ paint(input.value); });
   input.addEventListener("focus", function(){ paint(input.value); });
@@ -152,9 +159,9 @@ window.initSearch = function(input, dd){
     if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault();
       sel = e.key==="ArrowDown" ? Math.min(sel+1, as.length-1) : Math.max(sel-1, 0);
       as.forEach(function(a,i){ a.classList.toggle("sel", i===sel); });
-    } else if(e.key==="Enter"){ var r = rows[sel>-1?sel:0]; if(r && r.href) location.href = r.href; }
-    else if(e.key==="Escape"){ dd.classList.remove("open"); input.blur(); }
+    } else if(e.key==="Enter"){ var r = sel>-1 ? rows[sel] : rows.filter(function(x){return x.href})[0]; if(r && r.href) location.href = r.href; }
+    else if(e.key==="Escape"){ dd.classList.remove("open"); input.setAttribute("aria-expanded","false"); input.blur(); }
   });
-  document.addEventListener("click", function(e){ if(!input.parentElement.contains(e.target)) dd.classList.remove("open"); });
+  document.addEventListener("click", function(e){ if(!input.parentElement.contains(e.target)){ dd.classList.remove("open"); input.setAttribute("aria-expanded","false"); } });
 };
 })();

@@ -10,7 +10,7 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/test/assets/test.css?v=0827e">
+<link rel="stylesheet" href="/test/assets/test.css?v=0827f">
 </head>
 <body>
 <header class="nav t-nav"><div class="wrap"><a class="brand" href="/test/">testahil?</a><nav><a href="/test/coverage.html" data-p="coverage" class="on">Coverage</a><a href="/test/tools.html" data-p="tools">Tools</a><a href="/test/savings.html" data-p="savings">Savings check</a><a href="/test/record.html" data-p="record">Track record</a><a href="/test/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/test/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
@@ -65,6 +65,11 @@
     <div class="t-lens" id="lens-prose" style="display:none">
       <h3>From the written study</h3>
       <div id="prose-body" style="display:flex;flex-direction:column;gap:14px"></div>
+    </div>
+
+    <div class="t-lens" id="lens-more" style="display:none">
+      <h3>More in this market</h3>
+      <div id="more-body" style="display:flex;gap:8px;flex-wrap:wrap"></div>
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center" id="s-files"></div>
@@ -167,6 +172,23 @@
   document.getElementById("go-odds").href = "/test/tools.html?t="+STUDY_KEY+"#odds";
   document.getElementById("go-cmp").href = "/test/tools.html?a="+STUDY_KEY+"#compare";
   document.getElementById("go-full").href = "/"+(t.slug || STUDY_KEY.toLowerCase())+".html";
+  (function(){
+    var mkt=mktOf(t), peers=[];
+    Object.keys(ALL).forEach(function(kk){
+      if(kk===STUDY_KEY) return;
+      if(mktOf(ALL[kk])!==mkt) return;
+      peers.push(kk);
+    });
+    peers.sort(function(a,b){ var ga=Math.abs(gapOf(ALL[a])||0), gb=Math.abs(gapOf(ALL[b])||0); return gb-ga; });
+    peers=peers.slice(0,8);
+    if(peers.length){
+      document.getElementById("more-body").innerHTML=peers.map(function(kk){
+        var v=verdictOf(ALL[kk]);
+        return '<a class="t-chip" href="/test/'+encodeURIComponent(kk)+'/study/">'+(ALL[kk].code.split(":").pop()||kk)+' <span class="t-badge '+v.cls+'" style="margin-inline-start:4px">'+v.label+'</span></a>';
+      }).join("");
+      document.getElementById("lens-more").style.display="";
+    }
+  })();
   fetch("/test/assets/prose/"+STUDY_KEY+".json").then(function(r){return r.ok?r.json():null}).then(function(g){
     if(!g) return;
     var order=Object.keys(g); if(!order.length) return;
