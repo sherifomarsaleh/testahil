@@ -53,6 +53,20 @@ window.normCdf = function(x){
 window.RHO_SAME = 0.55; window.RHO_CROSS = 0.25;
 window.mulberry32 = function(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; };
 
+
+/* ---------- shared OHLC library access ---------- */
+window.OHLC_BASE="https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/";
+window.OHLC_PATH={DU:"AE/DU.csv",BOROUGE:"AE/BOROUGE.csv",EMPOWER:"AE/EMPOWER.csv","2POINTZERO":"AE/TWOPOINTZERO.csv",AAPL:"US/AAPL.csv",ABUK:"EG/ABUK.csv",ACWA:"SA/ACWA.csv",ADCB:"AE/ADCB.csv",ADNOCDRILL:"AE/ADNOCDRILL.csv",ADNOCDIST:"AE/ADNOCDIST.csv",ADIB:"EG/ADIB.csv",ADIBUAE:"AE/ADIB.csv",ADNOCGAS:"AE/ADNOCGAS.csv",ADNOCLS:"AE/ADNOCLS.csv",AGTHIA:"AE/AGTHIA.csv",ALDAR:"AE/ALDAR.csv",ALINMA:"SA/ALINMA.csv",AMOC:"EG/AMOC.csv",ARCC:"EG/ARCC.csv",ALPHADHABI:"AE/ALPHADHABI.csv",ALRAJHI:"SA/RAJHI.csv",ARAMCO:"SA/ARAMCO.csv",BTFH:"EG/BTFH.csv",BURJEEL:"AE/BURJEEL.csv",CCAP:"EG/CCAP.csv",CLHO:"EG/CLHO.csv",COMI:"EG/COMI.csv",DEWA:"AE/DEWA.csv",DIB:"AE/DIB.csv",DSCW:"EG/DSCW.csv",EAND:"AE/EAND.csv",ELEC:"EG/ELEC.csv",EFID:"EG/EFID.csv",EFIH:"EG/EFIH.csv",EGAL:"EG/EGAL.csv",ELM:"SA/ELM.csv",EMAAR:"AE/EMAAR.csv",EMAARDEV:"AE/EMAARDEV.csv",EMFD:"EG/EMFD.csv",ENBD:"AE/ENBD.csv",ETEL:"EG/ETEL.csv",EXTRA:"SA/EXTRA.csv",FAB:"AE/FAB.csv",FERTIGLB:"AE/FERTIGLB.csv",FWRY:"EG/FWRY.csv",GBCO:"EG/GBCO.csv",Gold:"XAU/GOLD.csv",HELI:"EG/HELI.csv",HRHO:"EG/HRHO.csv",IHC:"AE/IHC.csv",INFY:"IN/INFY.csv",IQCD:"QA/IQCD.csv",ISPH:"EG/ISPH.csv",JUFO:"EG/JUFO.csv",KABO:"EG/KABO.csv",Kakao:"KR/KAKAO.csv",LCSW:"EG/LCSW.csv",LGES:"KR/LGES.csv",LULU:"AE/LULU.csv",MAADEN:"SA/MAADEN.csv",MODON:"AE/MODON.csv",NVDA:"US/NVDA.csv",OCDI:"EG/OCDI.csv",OIH:"EG/OIH.csv",ORAS:"EG/ORAS.csv",ORHD:"EG/ORHD.csv",ORWE:"EG/ORWE.csv",AIRARABIA:"AE/AIRARABIA.csv",AMR:"AE/AMR.csv",PHAR:"EG/PHAR.csv",PHDC:"EG/PHDC.csv",PRDC:"EG/PRDC.csv",QGTS:"QA/QGTS.csv",QNB:"QA/QNB.csv",RAYA:"EG/RAYA.csv",RELIANCE:"IN/RELIANCE.csv",RIBL:"SA/RIBL.csv",RIYADHCABLE:"SA/RIYADHCABLE.csv",SAVOLA:"SA/SAVOLA.csv",RMDA:"EG/RMDA.csv",SABIC:"SA/SABIC.csv",SALIK:"AE/SALIK.csv",SCEM:"EG/SCEM.csv",EGCH:"EG/EGCH.csv",SNB:"SA/SNB.csv",STC:"SA/STC.csv",SWDY:"EG/SWDY.csv",Samsung:"KR/SAMSUNG.csv",Silver:"XAU/SILVER.csv",TMGH:"EG/TMGH.csv",TMPV:"IN/TMPV.csv",TSLA:"US/TSLA.csv",Platinum:"XPT/PLATINUM.csv"};
+window.fetchOHLC=async function(instr){
+  var p=OHLC_PATH[instr]; if(!p) return null;
+  try{ var r=await fetch(OHLC_BASE+p); if(!r.ok) return null; var text=await r.text();
+    var splitRow=function(l){ if(l.indexOf('"')!==-1){ var out=[],re=/"([^"]*)"/g,mm; while((mm=re.exec(l))) out.push(mm[1]); return out; } return l.split(","); };
+    var toISO=function(d){ var mm=/(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(d); return mm?mm[3]+"-"+("0"+mm[1]).slice(-2)+"-"+("0"+mm[2]).slice(-2):null; };
+    return text.split(/\r?\n/).slice(1).map(splitRow).filter(function(c){return c[0]&&c[1]})
+      .map(function(c){return {iso:toISO(c[0]),price:parseFloat(String(c[1]).replace(/,/g,""))}})
+      .filter(function(o){return o.iso&&isFinite(o.price)}).sort(function(a,b){return a.iso.localeCompare(b.iso)});
+  }catch(e){ return null; }
+};
 /* ---------- formatting ---------- */
 window.fmtPct = function(x,dp){ return (x*100).toFixed(dp==null?0:dp)+"%"; };
 window.fmtSPct = function(x,dp){ var v=(x*100).toFixed(dp==null?0:dp); return (x>=0?"+":"")+v+"%"; };

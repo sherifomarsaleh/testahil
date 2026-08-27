@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="/favicon.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>Calibration — testahil? (test)</title>
 <meta name="robots" content="noindex">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
@@ -21,7 +19,7 @@
     </div>
     <p class="muted" id="c-line" style="max-width:70ch"></p>
     <div id="c-funnelwrap" style="display:none;margin-top:14px">
-      <h2 style="font-size:var(--fs-h3)">Latest graded forecast — predicted vs actual</h2>
+      <h2 style="font-size:var(--fs-h3)" id="c-funtitle">Latest forecast — predicted vs actual</h2>
       <p id="c-leg" class="muted" style="display:none;margin:0 0 8px;font-size:var(--fs-caption)"><span style="display:inline-block;width:16px;height:3px;background:#2a78d6;vertical-align:middle"></span> actual daily price · dashed = our best guess · teal band 25–75% · gold band 5–95% · blue dot = where it closed</p>
       <div id="c-funnel" style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px"></div>
     </div>
@@ -91,7 +89,8 @@
   
   function drawFunnel(r){
     var W=720,H=240,ml=70,mr=96,mt=16,mb=30,steps=40;
-    var lo=Math.min(r.p5,r.anchor_price,r.realized_close)*0.985, hi=Math.max(r.p95,r.anchor_price,r.realized_close)*1.015;
+    var rc=(r.realized_close==null)?r.anchor_price:r.realized_close;
+    var lo=Math.min(r.p5,r.anchor_price,rc)*0.985, hi=Math.max(r.p95,r.anchor_price,rc)*1.015;
     function px(i){return ml+(W-ml-mr)*i/steps}
     function py(v){return mt+(H-mt-mb)*(1-(v-lo)/(hi-lo))}
     function edge(P){var d='M'+px(0)+' '+py(r.anchor_price);for(var i=1;i<=steps;i++){var f=Math.sqrt(i/steps);d+=' L'+px(i)+' '+py(r.anchor_price+(P-r.anchor_price)*f)}return d}
@@ -104,13 +103,14 @@
     s+='<path d="'+band(r.p75,r.p25)+'" fill="var(--teal)" fill-opacity="0.5"></path>';
     s+='<path d="'+edge(r.p50)+'" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="6 3"></path>';
     s+='<circle cx="'+px(0)+'" cy="'+py(r.anchor_price)+'" r="4" fill="var(--ink)"></circle>';
-    s+='<circle cx="'+px(steps)+'" cy="'+py(r.realized_close)+'" r="7" fill="#2a78d6" stroke="var(--paper)" stroke-width="2"></circle>';
-    var lbl=[[r.p95,'var(--muted)','p95 '+fmtPx(r.p95)],[r.p50,'var(--ink)','median '+fmtPx(r.p50)],[r.realized_close,'#2a78d6','closed '+fmtPx(r.realized_close)],[r.p5,'var(--muted)','p5 '+fmtPx(r.p5)]];
+    if(r.realized_close!=null) s+='<circle cx="'+px(steps)+'" cy="'+py(r.realized_close)+'" r="7" fill="#2a78d6" stroke="var(--paper)" stroke-width="2"></circle>';
+    var lbl=[[r.p95,'var(--muted)','p95 '+fmtPx(r.p95)],[r.p50,'var(--ink)','median '+fmtPx(r.p50)],[r.p5,'var(--muted)','p5 '+fmtPx(r.p5)]];
+    if(r.realized_close!=null) lbl.push([r.realized_close,'#2a78d6','closed '+fmtPx(r.realized_close)]);
     lbl.sort(function(a,b){return py(a[0])-py(b[0])});var used=[];
     lbl.forEach(function(l){var y=py(l[0]);while(used.some(function(u){return Math.abs(u-y)<14}))y+=14;used.push(y);
       s+='<text x="'+(W-mr+8)+'" y="'+(y+4)+'" font-size="11.5" fill="'+l[1]+'" font-family="IBM Plex Mono,monospace">'+l[2]+'</text>';});
     s+='<text x="'+px(0)+'" y="'+(H-8)+'" font-size="11" fill="var(--muted)">published '+r.anchor_date+'</text>';
-    s+='<text x="'+px(steps)+'" y="'+(H-8)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+r.horizon_label+' · '+r.grade_date+'</text></svg>';
+    s+='<text x="'+px(steps)+'" y="'+(H-8)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+r.horizon_label+' · '+(r.realized_close==null?'grades on ':'')+r.grade_date+'</text></svg>';
     document.getElementById("c-funnel").innerHTML=s;
     document.getElementById("c-funnelwrap").style.display="";
     drawActualLine(r,{px:px,py:py,steps:steps});
@@ -120,7 +120,7 @@
   document.getElementById("c-line").textContent = band ?
     ("Across "+band.n+" resolved, non-overlapping 3-month windows on this name, "+band.hits+" finished inside the published 90% band ("+Math.round(band.hits/band.n*100)+"% against the 90% target). Band-width ratio vs a no-forecast rule: "+band.width.toFixed(2)+(band.strength==="long"?" — long history.":" — "+band.strength+".")) :
     "No backtest bands published for this name yet.";
-  var myRows=(window.LEDGER||[]).filter(function(r){return (r.instrument||"").toUpperCase()===k.toUpperCase()});
+  var myRows=(typeof LEDGER!=="undefined"?LEDGER:[]).filter(function(r){return (r.instrument||"").toUpperCase()===k.toUpperCase()});
   if(myRows.length){
     myRows.sort(function(a,b){return (b.anchor_date||"").localeCompare(a.anchor_date||"")});
     document.getElementById("c-rowswrap").style.display="";
@@ -134,6 +134,7 @@
     }).join("");
     var g=myRows.filter(function(r){return r.realized_close!=null});
     if(g.length){ g.sort(function(a,b){return (b.grade_date||"").localeCompare(a.grade_date||"")}); drawFunnel(g[0]); }
+    else { var p=myRows.slice().sort(function(a,b){return (a.grade_date||"").localeCompare(b.grade_date||"")}); drawFunnel(p[0]); var ft=document.getElementById('c-funtitle'); if(ft) ft.textContent='Live forecast — the cone and the price so far (not yet graded)'; }
   }
   var img=document.getElementById("c-bt");
   img.onload=function(){document.getElementById("c-btwrap").style.display=""};
