@@ -5,8 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch: {}
 
+# contents: write, not read — the chrome injector below commits its own fix
+# back to main, so the deployed artifact and the repository stay one tree.
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,6 +25,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # Site chrome is made true IN the deploy path, not detected after it
+      # ([R-ENF-01], 27-Aug-2026: test/record + test/study shipped live
+      # without the favicon the day after check 6 was added, and 372 more
+      # per-ticker clean-URL shells shipped the same way before the first
+      # fix even landed). Order matters: self-test proves the injector still
+      # works, --write fixes what is mechanical, the push-back keeps
+      # repo == deployed tree, and --check BLOCKS the deploy on what cannot
+      # be injected (a missing <title> is authored, not chrome).
+      - name: Chrome injector self-test (negative control)
+        run: python3 scripts/inject_site_chrome.py --self-test
+      - name: Inject site chrome on any page missing it
+        run: python3 scripts/inject_site_chrome.py --write
+      - name: Commit injected chrome back to main, if anything changed
+        run: |
+          if [ -n "$(git status --porcelain '*.html')" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add '*.html'
+            git commit -m "Auto-inject site favicon on new page(s) [skip ci]"
+            for i in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main && git push origin HEAD:main && break
+              echo "push rejected (attempt $i) — retrying after rebase"
+              sleep $((i * 5))
+            done
+          else
+            echo "all served pages already carry the site chrome."
+          fi
+      - name: Tab-chrome gate (blocks the deploy)
+        run: python3 scripts/inject_site_chrome.py --check
       - name: Configure Pages (switch source to GitHub Actions)
         uses: actions/configure-pages@v5
         with:
