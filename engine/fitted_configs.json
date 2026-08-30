@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-08-30",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -480,12 +480,60 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        5.0,
+        0.958
+      ],
+      "w90_sigma": 1.4953,
+      "reason": "G-split: early half does not move toward 50%"
+    },
+    "coverage_flags": {
+      "ABUK": null,
+      "ADIB": null,
+      "AMOC": null,
+      "ARCC": null,
+      "BTFH": null,
+      "CCAP": null,
+      "CLHO": null,
+      "COMI": null,
+      "DSCW": null,
+      "EFID": null,
+      "EFIH": null,
+      "EGAL": null,
+      "EGCH": null,
+      "ELEC": null,
+      "EMFD": null,
+      "ETEL": "wide",
+      "FWRY": null,
+      "GBCO": null,
+      "HELI": null,
+      "HRHO": null,
+      "ISPH": "narrow",
+      "JUFO": null,
+      "KABO": null,
+      "LCSW": null,
+      "OCDI": null,
+      "OIH": null,
+      "ORAS": null,
+      "ORHD": null,
+      "ORWE": null,
+      "PHAR": "wide",
+      "PHDC": null,
+      "PRDC": null,
+      "RAYA": null,
+      "RMDA": null,
+      "SCEM": null,
+      "SWDY": null,
+      "TMGH": null
     }
   },
   "SA": {
@@ -668,12 +716,36 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        12.0,
+        1.063
+      ],
+      "w90_sigma": 1.7295,
+      "reason": "G-improve: gain 0.002 < 0.01"
+    },
+    "coverage_flags": {
+      "ACWA": null,
+      "ALINMA": null,
+      "ARAMCO": null,
+      "ELM": null,
+      "EXTRA": null,
+      "MAADEN": null,
+      "RAJHI": null,
+      "RIBL": "narrow",
+      "RIYADHCABLE": null,
+      "SABIC": null,
+      "SAVOLA": null,
+      "SNB": null,
+      "STC": null
     }
   },
   "US": {
@@ -736,12 +808,26 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        12.0,
+        1.084
+      ],
+      "w90_sigma": 1.7637,
+      "reason": "G-split: early half does not move toward 50%"
+    },
+    "coverage_flags": {
+      "AAPL": null,
+      "NVDA": null,
+      "TSLA": null
     }
   },
   "GB": {
@@ -827,12 +913,26 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.07,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        8.0,
+        1.07
+      ],
+      "w90_sigma": 1.7231,
+      "reason": "G-lono: held-out cov50 0.456 no better than MLE shape"
+    },
+    "coverage_flags": {
+      "KAKAO": null,
+      "LGES": null,
+      "SAMSUNG": null
     }
   },
   "AE": {
@@ -869,17 +969,17 @@
       "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 409,
+    "windows": 410,
     "rebuilt_this_run": [],
     "nu": 4.5,
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0135,
+    "market_skill": 0.0149,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
       0.006,
-      0.023
+      0.025
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -899,24 +999,24 @@
       },
       "ADIB": {
         "nu": 8.0,
-        "width_cal": 0.916,
-        "skill": 0.0414,
-        "skill_raw_basis": 0.0222,
+        "width_cal": 0.909,
+        "skill": 0.0405,
+        "skill_raw_basis": 0.0209,
         "verdict": "PASS",
         "ci_block2": [
-          0.005,
+          0.004,
           0.074
         ]
       },
       "ADNOCDIST": {
         "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": -0.0213,
-        "skill_raw_basis": -0.0226,
+        "width_cal": 0.923,
+        "skill": -0.0185,
+        "skill_raw_basis": -0.0197,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.052,
-          0.005
+          -0.048,
+          0.008
         ]
       },
       "ADNOCDRILL": {
@@ -953,14 +1053,14 @@
         ]
       },
       "AGTHIA": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": -0.0132,
-        "skill_raw_basis": -0.0203,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": -0.0138,
+        "skill_raw_basis": -0.0214,
         "verdict": "PARITY",
         "ci_block2": [
           -0.119,
-          0.065
+          0.064
         ]
       },
       "AIRARABIA": {
@@ -976,9 +1076,9 @@
       },
       "ALDAR": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": 0.0214,
-        "skill_raw_basis": 0.0182,
+        "width_cal": 0.909,
+        "skill": 0.0213,
+        "skill_raw_basis": 0.0181,
         "verdict": "PARITY",
         "ci_block2": [
           -0.014,
@@ -1019,14 +1119,14 @@
         ]
       },
       "BURJEEL": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": 0.0707,
-        "skill_raw_basis": 0.0546,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0703,
+        "skill_raw_basis": 0.054,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.003,
-          0.165
+          -0.002,
+          0.163
         ]
       },
       "DEWA": {
@@ -1052,14 +1152,14 @@
         ]
       },
       "DU": {
-        "nu": 8.0,
-        "width_cal": 0.93,
-        "skill": 0.0002,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0,
         "skill_raw_basis": 0.0068,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.052,
-          0.046
+          -0.054,
+          0.047
         ]
       },
       "EAND": {
@@ -1076,12 +1176,12 @@
       "EMAAR": {
         "nu": 10.0,
         "width_cal": 0.909,
-        "skill": 0.0148,
-        "skill_raw_basis": 0.0217,
-        "verdict": "PASS",
+        "skill": 0.0386,
+        "skill_raw_basis": 0.0496,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          0.005,
-          0.05
+          -0.002,
+          0.087
         ]
       },
       "EMAARDEV": {
@@ -1118,14 +1218,14 @@
         ]
       },
       "FAB": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": -0.008,
-        "skill_raw_basis": -0.0118,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": -0.0079,
+        "skill_raw_basis": -0.0114,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.03,
-          0.032
+          -0.029,
+          0.031
         ]
       },
       "FERTIGLB": {
@@ -1196,12 +1296,12 @@
       }
     },
     "superseded": {
-      "nu": 10.0,
-      "width_cal": 0.916,
+      "nu": 4.5,
+      "width_cal": 0.965,
       "market_verdict": "PASS",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "mid_band_reshape": {
       "applied": true,
       "mle_shape": [
@@ -1214,26 +1314,56 @@
         0.965
       ],
       "cov50": {
-        "mle": 0.5379,
-        "reshaped": 0.5061,
-        "lono_heldout": 0.5061
+        "mle": 0.5366,
+        "reshaped": 0.5049,
+        "lono_heldout": 0.5049
       },
-      "delta_ll": 2.21,
+      "delta_ll": 2.3,
       "crps_parity_ci": {
         "2": [
-          -0.0017,
-          0.002
-        ],
-        "3": [
           -0.0016,
           0.0021
         ],
-        "4": [
-          -0.0017,
+        "3": [
+          -0.0016,
           0.0022
+        ],
+        "4": [
+          -0.0016,
+          0.0023
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
+    },
+    "coverage_flags": {
+      "ADCB": null,
+      "ADIB": null,
+      "ADNOCDIST": null,
+      "ADNOCDRILL": null,
+      "ADNOCGAS": null,
+      "ADNOCLS": null,
+      "AGTHIA": null,
+      "AIRARABIA": null,
+      "ALDAR": null,
+      "ALPHADHABI": null,
+      "AMR": null,
+      "BOROUGE": null,
+      "BURJEEL": null,
+      "DEWA": null,
+      "DIB": null,
+      "DU": null,
+      "EAND": null,
+      "EMAAR": "narrow",
+      "EMAARDEV": null,
+      "EMPOWER": null,
+      "ENBD": null,
+      "FAB": null,
+      "FERTIGLB": null,
+      "IHC": "narrow",
+      "LULU": null,
+      "MODON": null,
+      "SALIK": null,
+      "TWOPOINTZERO": null
     }
   },
   "IN": {
@@ -1296,12 +1426,27 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.021,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        6.0,
+        1.021
+      ],
+      "w90_sigma": 1.6199,
+      "reason": "MLE shape already closest admissible point",
+      "cov50": 0.5
+    },
+    "coverage_flags": {
+      "INFY": null,
+      "RELIANCE": null,
+      "TMPV": "narrow"
     }
   },
   "QA": {
@@ -1364,12 +1509,26 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        6.0,
+        0.951
+      ],
+      "w90_sigma": 1.5089,
+      "reason": "G-improve: gain 0.006 < 0.01"
+    },
+    "coverage_flags": {
+      "IQCD": null,
+      "QGTS": null,
+      "QNB": null
     }
   },
   "XAU": {
@@ -1417,12 +1576,25 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        12.0,
+        0.958
+      ],
+      "w90_sigma": 1.5587,
+      "reason": "G-split: early half does not move toward 50%"
+    },
+    "coverage_flags": {
+      "GOLD": null,
+      "SILVER": null
     }
   },
   "XPT": {
@@ -1463,12 +1635,24 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-24",
+    "auto_refreshed": "2026-08-30",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-24"
+      "replaced_on": "2026-08-30"
+    },
+    "mid_band_reshape": {
+      "applied": false,
+      "mle_shape": [
+        8.0,
+        0.86
+      ],
+      "w90_sigma": 1.385,
+      "reason": "G-split: early half does not move toward 50%"
+    },
+    "coverage_flags": {
+      "PLATINUM": null
     }
   }
 }
