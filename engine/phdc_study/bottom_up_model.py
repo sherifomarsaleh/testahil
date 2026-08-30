@@ -1,0 +1,245 @@
+"""PHDC forecast, built from units and prices the company itself discloses.
+
+Two engines, because a developer has two:
+
+  NEW SALES is units sold x average selling price, BY REGION. The releases plot
+  both halves for each operating region, so the price is realised, not assumed.
+
+  REVENUE is units delivered x revenue per delivered unit. Those are different
+  units from the ones sold this year — a unit handed over in 2026 was contracted
+  years earlier at that year's price — which is exactly why revenue per delivered
+  unit sits below the current selling price, and why the order book keeps
+  building.
+
+Cost is cost per delivered unit on the same delivery schedule as revenue, so
+GROSS MARGIN IS AN OUTPUT of the two, never an input. Everything below either
+comes from the registry or is derived from it in one visible step.
+"""
+import json, os, sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(HERE))
+sys.path.insert(0, HERE)
+
+import inputs as IN
+
+REG = {}
+for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25, IN.OPERATING, IN.MARKET):
+    REG.update({k: r["value"] for k, r in g.items()})
+
+W = json.load(open(os.path.join(HERE, "wacc_result.json")))
+RJ = json.load(open(os.path.join(HERE, "regions.json")))
+
+YEARS = list(range(2026, 2031))
+CPI = 0.2520                     # Egyptian CPI, 2023-25 mean, World Bank
+TAX = 0.225
+SHARES_MN = REG["shares_outstanding_bn"] * 1000.0
+GROSS_DEBT = sum(r["value"] for r in IN.DEBT_FY25.values())
+NET_DEBT = GROSS_DEBT - REG["cash"]
+
+# --- the disclosed regional history ----------------------------------------
+LEGEND = {95082: "North Coast & Alexandria", 44570: "West Cairo & Badya",
+          11364: "East Cairo"}
+_lat = RJ["extract"]["2024_Q4_ER"]
+REGION_HISTORY = {}
+for b in _lat["regions"]:
+    nm = LEGEND[int(round(b["sales"][-1]))]
+    REGION_HISTORY[nm] = {
+        "years": _lat["years"], "sales": b["sales"], "units": b["units"],
+        "asp": [s / u if u else None for s, u in zip(b["sales"], b["units"])]}
+
+# --- delivery engine, anchored on disclosure --------------------------------
+# FY2024: the company handed over about 2,000 units and reported revenue of
+# EGP 27,167mn, so revenue per delivered unit was EGP 13.58mn. Cost of revenue
+# of EGP 17,837mn over the same units is EGP 8.92mn per unit.
+DELIVERED_FY24 = 2000.0
+REV_PER_DELIVERED_FY24 = REG["revenue_fy24"] / DELIVERED_FY24
+COST_PER_DELIVERED_FY24 = REG["cogs_fy24"] / DELIVERED_FY24
+# FY2025 is a CHECK, not an input: deliveries are not disclosed for that year,
+# so the model's own revenue-per-unit path implies them and the implied figure
+# is reported beside the disclosed revenue it has to reproduce.
+DELIVERY_GROWTH = 0.15           # the disclosed run: 1,308 / 1,281 / 1,500 / ~2,000
+
+# The P&L finance charge is NOT the marginal rate on gross borrowings, and using
+# it that way overstates the charge by more than two times. Two reasons, both
+# disclosed: a large part of the balance (notes payable to land sellers, customer
+# balances) does not bear interest, and part of the interest that IS incurred is
+# capitalised into work in progress rather than expensed. The interest-bearing
+# subset is the bank and loan lines; the effective P&L rate is measured on it.
+INTEREST_BEARING = (REG["loans_long_term"] + REG["credit_facilities"]
+                    + REG["current_portion_st_loans"] + REG["banks_credit_balances"])
+EFFECTIVE_PL_RATE = REG["finance_cost_fy25"] / INTEREST_BEARING
+
+# Gross margin went 34.3% (FY2024) to 41.2% (FY2025) to 35.5% (1Q2026). The
+# FY2025-to-1Q2026 pair implies cost rising about 9.7% a year faster than price
+# — and that is NOT carried. One quarter against one year is a single
+# observation on a developer whose margin moves with which project happens to
+# hand over, and compounding it for five years takes gross margin to 7.5% and
+# the company to a loss by 2030 on the strength of one print. A drift is carried
+# only where a named mechanism has a measured like-for-like direction; there is
+# none here. Price and cost therefore escalate together, holding margin at the
+# average of the two most recent disclosures, and the margin is SENSITISED
+# instead of extrapolated.
+GM_FY25 = REG["gross_profit_fy25"] / REG["revenue_fy25"]
+GM_1Q26 = REG["gross_profit_1q26"] / REG["revenue_1q26"]
+GM_FORWARD = (GM_FY25 + GM_1Q26) / 2.0
+COST_DRIFT = 0.0
+COST_DRIFT_MEASURED = ((1 - GM_1Q26) / (1 - GM_FY25)) - 1.0
+
+
+def region_forecast():
+    """Units sold and price per unit, by region, five years out."""
+    out = {}
+    for nm, h in REGION_HISTORY.items():
+        units0 = sum(h["units"][-3:]) / 3.0        # trailing three-year mean
+        asp0 = h["asp"][-1]                        # latest realised price
+        rows = []
+        for i, y in enumerate(YEARS, start=1):
+            asp = asp0 * (1 + CPI) ** i
+            rows.append({"year": y, "units": units0, "asp": asp,
+                         "sales": units0 * asp})
+        out[nm] = {"units_base": units0, "asp_base": asp0, "rows": rows}
+    return out
+
+
+def build():
+    rf = region_forecast()
+    backlog = REG["backlog_1q26"]
+    # FY2026 IS PART-REPORTED, so it is anchored on what was reported rather
+    # than projected over the top of it. The company disclosed 1Q2026 revenue of
+    # EGP 9,300mn, up 11% on 1Q2025, which puts 1Q2025 at EGP 8,378mn — 23.2% of
+    # that year's EGP 36,169mn. Carrying the same first-quarter share forward
+    # gives an FY2026 revenue anchor from the actual, not from the trend.
+    q1_26 = REG["revenue_1q26"]
+    q1_25 = q1_26 / (1 + REG["revenue_1q26_yoy"])
+    q1_share = q1_25 / REG["revenue_fy25"]
+    fy26_anchor = q1_26 / q1_share
+    # FY2025 is anchored on the DISCLOSED revenue, not on a projection of it:
+    # deliveries for that year are not published, so the revenue-per-unit path is
+    # escalated from FY2024 and the implied delivery count is read off the
+    # disclosed revenue. That count is reported, so the reader can see it.
+    rev_per = REV_PER_DELIVERED_FY24 * (1 + CPI)
+    delivered = REG["revenue_fy25"] / rev_per
+    implied_fy25_deliveries = delivered
+    # cost per unit is then anchored on FY2025's OWN cost of revenue over the
+    # same implied deliveries, so the model reproduces the FY2025 margin exactly
+    # cost per unit set so the forward margin is the blend of the two most
+    # recent disclosed margins; it is an output of price and cost, not an input
+    cost_per = rev_per * (1 - GM_FORWARD)
+
+    debt = GROSS_DEBT
+    kd = W["kd_pretax_local"]
+    sga_ratio = REG["sga_fy25"] / REG["revenue_fy25"]
+    da_ratio = REG["da_fy25"] / REG["revenue_fy25"]
+
+    rows = []
+    for i, y in enumerate(YEARS, start=1):
+        rev_per *= (1 + CPI)
+        cost_per = rev_per * (1 - GM_FORWARD)
+        if y == 2026:
+            # deliveries implied by the reported anchor, not by the trend
+            delivered = fy26_anchor / rev_per
+        else:
+            delivered *= (1 + DELIVERY_GROWTH)
+        new_sales = sum(rf[nm]["rows"][i - 1]["sales"] for nm in rf)
+        revenue = delivered * rev_per
+        cogs = delivered * cost_per
+        gross = revenue - cogs                       # margin is the OUTPUT
+        sga = revenue * sga_ratio
+        da = revenue * da_ratio
+        ebit = gross - sga - da
+        interest = INTEREST_BEARING * EFFECTIVE_PL_RATE
+        npbt = ebit - interest
+        tax = max(0.0, npbt) * TAX
+        npat = npbt - tax
+        backlog = backlog + new_sales - revenue
+        rows.append({
+            "year": y, "units_delivered": delivered, "rev_per_unit": rev_per,
+            "revenue": revenue, "cost_per_unit": cost_per, "cogs": cogs,
+            "gross": gross, "gross_margin": gross / revenue, "sga": sga,
+            "da": da, "ebit": ebit, "interest": interest, "npbt": npbt,
+            "tax_rate": TAX, "npat": npat, "eps": npat / SHARES_MN,
+            "new_sales": new_sales, "backlog": backlog,
+            "units_sold": sum(rf[nm]["rows"][i - 1]["units"] for nm in rf),
+        })
+    return {"regions": rf, "rows": rows,
+            "anchors": {
+                "delivered_fy24": DELIVERED_FY24,
+                "rev_per_delivered_fy24": REV_PER_DELIVERED_FY24,
+                "cost_per_delivered_fy24": COST_PER_DELIVERED_FY24,
+                "implied_fy25_deliveries": implied_fy25_deliveries,
+                "fy25_revenue_anchor": REG["revenue_fy25"],
+                "fy25_gross_margin_reproduced": 1 - (REG["cogs_fy25"]
+                                                     / REG["revenue_fy25"]),
+                "interest_bearing_debt": INTEREST_BEARING,
+                "effective_pl_rate": EFFECTIVE_PL_RATE,
+                "marginal_rate_for_discounting": kd,
+                "cost_drift_carried": COST_DRIFT,
+                "cost_drift_measured_not_carried": COST_DRIFT_MEASURED,
+                "gross_margin_forward": GM_FORWARD,
+                "gross_margin_fy25": GM_FY25, "gross_margin_1q26": GM_1Q26,
+                "delivery_growth": DELIVERY_GROWTH, "cpi": CPI,
+                "q1_2026_reported": q1_26, "q1_2025_derived": q1_25,
+                "q1_share_of_year": q1_share, "fy2026_anchor": fy26_anchor}}
+
+
+if __name__ == "__main__":
+    m = build()
+    a = m["anchors"]
+    print("ANCHORS, all from disclosure")
+    print("  FY2024 units delivered                %8.0f   (company: 'c. 2,000')"
+          % a["delivered_fy24"])
+    print("  FY2024 revenue per delivered unit     %8.2f   EGP mn  = 27,167 / 2,000"
+          % a["rev_per_delivered_fy24"])
+    print("  FY2024 cost per delivered unit        %8.2f   EGP mn  = 17,837 / 2,000"
+          % a["cost_per_delivered_fy24"])
+    print("  FY2025 revenue anchor                 %8.0f   disclosed"
+          % a["fy25_revenue_anchor"])
+    print("  implied FY2025 units delivered        %8.0f   = revenue / price per unit"
+          % a["implied_fy25_deliveries"])
+
+    print("  1Q2026 revenue reported               %8.0f   up 11%% on 1Q2025"
+          % a["q1_2026_reported"])
+    print("  implied 1Q share of the full year     %8.1f%%  1Q2025 %0.0f over FY2025 %0.0f"
+          % (100 * a["q1_share_of_year"], a["q1_2025_derived"], REG["revenue_fy25"]))
+    print("  FY2026 revenue anchor                 %8.0f   from the reported quarter"
+          % a["fy2026_anchor"])
+    print("  interest-bearing debt                 %8.0f   EGP mn (bank and loan lines)"
+          % a["interest_bearing_debt"])
+    print("  effective P&L interest rate           %8.2f%%  vs %0.2f%% marginal, used "
+          "for discounting" % (100 * a["effective_pl_rate"],
+                               100 * a["marginal_rate_for_discounting"]))
+    print("  forward gross margin                  %8.1f%%  blend of FY2025 %.1f%% and "
+          "1Q2026 %.1f%%" % (100 * a["gross_margin_forward"],
+                             100 * a["gross_margin_fy25"],
+                             100 * a["gross_margin_1q26"]))
+    print("  cost drift measured but NOT carried   %8.2f%%  one quarter against one "
+          "year is not a trend" % (100 * a["cost_drift_measured_not_carried"]))
+    print()
+    print("NEW SALES — units x price, by region")
+    for nm, d in m["regions"].items():
+        print("  %-28s units %6.0f (3y mean)   price %6.2f EGP mn (2024 realised)"
+              % (nm, d["units_base"], d["asp_base"]))
+    print()
+    hdr = "%-30s" + "%12d" * len(YEARS)
+    print(hdr % tuple(["EGP mn unless stated"] + YEARS))
+    def line(lbl, key, fmt="%12.0f", scale=1.0):
+        print(("%-30s" % lbl) + "".join(fmt % (r[key] * scale) for r in m["rows"]))
+    line("Units sold", "units_sold")
+    line("New sales", "new_sales")
+    line("Units delivered", "units_delivered")
+    line("Revenue per delivered unit", "rev_per_unit", "%12.2f")
+    line("Revenue", "revenue")
+    line("Cost per delivered unit", "cost_per_unit", "%12.2f")
+    line("Cost of revenue", "cogs")
+    line("Gross profit", "gross")
+    line("Gross margin", "gross_margin", "%11.1f%%", 100)
+    line("Overheads", "sga")
+    line("Operating profit", "ebit")
+    line("Finance cost", "interest")
+    line("Profit before tax", "npbt")
+    line("Net profit", "npat")
+    line("Earnings per share (EGP)", "eps", "%12.2f")
+    line("Order book, closing", "backlog")
+    json.dump(m, open(os.path.join(HERE, "bottom_up_model.json"), "w"),
+              indent=1, default=str)

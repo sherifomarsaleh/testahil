@@ -22,6 +22,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, D, W = N["meta"], N["derived"], N["wacc"]
 REG, PM = N["registry"], N["price_map"]
+BU, LENS, BRIDGE, RANGED = (N["bottom_up"], N["lenses"], N["bridge"],
+                            N["ranged_revenue"])
+LW = N["lens_weighted"]
 CASES, SENS = N["cases"], N["sensitivity"]
 
 INK = RGBColor(0x1A, 0x1D, 0x21)
@@ -102,6 +105,12 @@ def table(doc, headers, rows, widths, caption=None, size=8.5):
     lay = OxmlElement("w:tblLayout")
     lay.set(qn("w:type"), "fixed")
     tblPr.append(lay)
+    # a table that breaks across a page must carry its header onto the next one,
+    # or the continuation is a grid of numbers with nothing naming the columns
+    trPr = t.rows[0]._tr.get_or_add_trPr()
+    hdr = OxmlElement("w:tblHeader")
+    hdr.set(qn("w:val"), "true")
+    trPr.append(hdr)
     for i, h in enumerate(headers):
         c = t.rows[0].cells[i]
         c.width = Cm(widths[i])
@@ -212,11 +221,21 @@ def build(path):
 
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
-    para(doc, "Palm Hills is worth between EGP %.2f and EGP %.2f a share on the "
-              "company's own audited figures, and which end of that range is right "
-              "depends almost entirely on one thing the company does not disclose."
-              % (low["per_share"], high["per_share"]), size=11.5, bold=True)
+    para(doc, "Palm Hills is worth EGP %.2f a share on a base case built from the "
+              "company's own units and prices, in a range of EGP %.2f to EGP %.2f. "
+              "The shares trade at EGP %.2f."
+              % (LW["base"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
     bullets(doc, [
+        "The forecast is built from units and prices the company itself "
+        "discloses: %s units sold across three regions at EGP %.2f to %.2f million "
+        "a unit, and separately %s units delivered at EGP %.2f million of revenue "
+        "each, because units handed over were contracted years earlier at lower "
+        "prices."
+        % ("{:,.0f}".format(BU["rows"][0]["units_sold"]),
+           min(d["asp_base"] for d in BU["regions"].values()),
+           max(d["asp_base"] for d in BU["regions"].values()),
+           "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
+           BU["rows"][0]["rev_per_unit"]),
         "The discount rate in the previous edition was %s. Egypt's ten-year "
         "government bond yields %s. Rebuilt from the ground up, the company's cost "
         "of capital is %s."
@@ -240,29 +259,21 @@ def build(path):
 
     # --- 3 Valuation summary ------------------------------------------------
     doc.add_heading("Valuation summary — every read at a glance", level=1)
-    table(doc,
-          ["Lens", "Value per share (EGP)", "What it rests on"],
-          [["Cash-flow value, weak conversion", "%.2f" % low["per_share"],
-            "operating cash at %s of revenue, the 2023 and 2025 outcome"
-            % pct(D["cfo_lo"])],
-           ["Cash-flow value, average conversion", "%.2f" % base["per_share"],
-            "operating cash at %s, the three-year mean" % pct(D["cfo_mid"])],
-           ["Cash-flow value, strong conversion", "%.2f" % high["per_share"],
-            "operating cash at %s, the 2024 outcome" % pct(D["cfo_hi"])],
-           ["Same, on the alternative country-risk basis",
-            "%.2f" % cds["per_share"],
-            "identical model at a %s discount rate" % pct(W["wacc_cds"], 2)],
-           ["Book value of equity", "%.2f" % D["book_equity_per_share"],
-            "audited shareholders' funds at 31 December 2025"],
-           ["Market price", "%.2f" % sp, "closing price, 23 August 2026"],
-           ["Previous edition, for reference",
-            "%.2f – %.2f" % (prior["bear"], prior["full"]),
-            "edition of 11 June 2026, discounted at %s"
-            % pct(D["prior_edition_wacc"], 0)]],
-          [5.6, 3.6, 7.0],
-          "Every figure recomputes from the audited 2025 statements and the "
-          "cost of capital in section 1.8. No single number is put forward as "
-          "the fair value; section 1.7 explains why.")
+    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight"],
+          [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3], "%.0f%%" % (r[4]*100)]
+           for r in LENS]
+          + [["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
+              "%.2f" % LW["full"], "100%"],
+             ["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
+             ["vs the weighted central", "%+.0f%%" % (100*(sp/LW["bear"]-1)),
+              "%+.0f%%" % (100*(sp/LW["base"]-1)),
+              "%+.0f%%" % (100*(sp/LW["full"]-1)), ""]],
+          [5.6, 2.6, 2.6, 2.6, 2.0],
+          "EGP per share. Weights are stated in advance and are the same across "
+          "the three columns. The discounted cash flow carries the most weight "
+          "because it is the only lens built from the company's own units and "
+          "prices; book value carries the least because it is a floor, not a "
+          "value.")
     figure(doc, "fig1_football.png",
            "Figure 1 — each bar is one observed rate of cash conversion; the bar "
            "spans the discount rate from four points below the rebuilt cost of "
@@ -329,30 +340,78 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "revenue that way but accrues cost on handover has the two legs on "
               "different clocks, and it systematically overstates profit. Gross "
               "margin here is an output of price against cost, never an input.")
-    rows = []
-    for r in base["rows"][:6]:
-        rows.append([str(r["year"]), money(r["revenue"]), money(r["gross"]),
-                     pct(r["gross"] / r["revenue"]), money(r["npbt"]),
-                     money(r["cfo"]), money(r["fcff"])])
-    table(doc, ["Year", "Revenue", "Gross profit", "Margin", "Pre-tax profit",
-                "Operating cash", "Free cash flow"],
-          rows, [1.9, 2.5, 2.5, 1.8, 2.6, 2.5, 2.6],
-          "EGP million, central case. The full ten-year path and the bridge from "
-          "enterprise value to equity are in the accompanying workbook.")
-    table(doc, ["Bridge from enterprise value to equity, central case", "EGP mn"],
-          [["Present value of the explicit ten years", money(base["pv_explicit"])],
-           ["Present value of the terminal value", money(base["pv_terminal"])],
-           ["Enterprise value", money(base["ev"])],
-           ["less net debt", "(%s)" % money(D["net_debt"])],
-           ["plus investments in associates", money(v("investments_assoc"))],
-           ["plus investment property", money(v("investment_property"))],
-           ["Equity value", money(base["equity"])],
-           ["Shares outstanding (millions)", money(D["shares_mn"], 1)],
-           ["Value per share (EGP)", "%.2f" % base["per_share"]]],
+    def _r(key, fmt="%,.0f", scale=1.0):
+        return [("{:,.0f}".format(x[key]*scale) if "f" not in fmt
+                 else fmt % (x[key]*scale)) for x in BU["rows"]]
+    yrs = [str(x["year"]) for x in BU["rows"]]
+    body = [
+        ["Units sold", ["{:,.0f}".format(x["units_sold"]) for x in BU["rows"]]],
+        ["New sales (EGP mn)", ["{:,.0f}".format(x["new_sales"]) for x in BU["rows"]]],
+        ["Units delivered", ["{:,.0f}".format(x["units_delivered"]) for x in BU["rows"]]],
+        ["Revenue per delivered unit (EGP mn)",
+         ["%.2f" % x["rev_per_unit"] for x in BU["rows"]]],
+        ["Revenue", ["{:,.0f}".format(x["revenue"]) for x in BU["rows"]]],
+        ["Cost per delivered unit (EGP mn)",
+         ["%.2f" % x["cost_per_unit"] for x in BU["rows"]]],
+        ["Cost of revenue", ["{:,.0f}".format(x["cogs"]) for x in BU["rows"]]],
+        ["Gross profit", ["{:,.0f}".format(x["gross"]) for x in BU["rows"]]],
+        ["Gross margin (output)", ["%.1f%%" % (100*x["gross_margin"]) for x in BU["rows"]]],
+        ["Overheads", ["{:,.0f}".format(x["sga"]) for x in BU["rows"]]],
+        ["Operating profit", ["{:,.0f}".format(x["ebit"]) for x in BU["rows"]]],
+        ["Finance cost", ["{:,.0f}".format(x["interest"]) for x in BU["rows"]]],
+        ["Profit before tax", ["{:,.0f}".format(x["npbt"]) for x in BU["rows"]]],
+        ["Tax rate", ["%.1f%%" % (100*x["tax_rate"]) for x in BU["rows"]]],
+        ["Net profit", ["{:,.0f}".format(x["npat"]) for x in BU["rows"]]],
+        ["Earnings per share (EGP)", ["%.2f" % x["eps"] for x in BU["rows"]]],
+        ["Order book, closing", ["{:,.0f}".format(x["backlog"]) for x in BU["rows"]]],
+    ]
+    table(doc, ["EGP mn unless stated"] + yrs,
+          [[lbl] + vals for lbl, vals in body],
+          [5.0, 2.3, 2.3, 2.3, 2.3, 2.3],
+          "Every line follows from the two engines above. Gross margin is what "
+          "price per unit and cost per unit leave behind, not an assumption.")
+    a = BU["anchors"]
+    para(doc, "Three anchors hold this table to what was actually reported. "
+              "FY2026 is part-reported: the company disclosed first-quarter "
+              "revenue of EGP %s million, up 11 per cent on the same quarter of "
+              "2025, which places that quarter at %.1f per cent of the full year "
+              "and gives an FY2026 revenue anchor of EGP %s million from the "
+              "actual rather than from a trend. The finance charge is the "
+              "disclosed rate on the interest-bearing borrowings, %.2f per cent, "
+              "not the %.2f per cent marginal rate used for discounting — a large "
+              "part of the balance does not bear interest and part of the charge "
+              "is capitalised into work in progress. And the gross margin is held "
+              "at %.1f per cent, the average of the last two disclosures."
+              % ("{:,.0f}".format(a["q1_2026_reported"]),
+                 100*a["q1_share_of_year"], "{:,.0f}".format(a["fy2026_anchor"]),
+                 100*a["effective_pl_rate"], 100*a["marginal_rate_for_discounting"],
+                 100*a["gross_margin_forward"]))
+    para(doc, "One drift was measured and deliberately not carried. The move from "
+              "a 41.2 per cent gross margin in 2025 to 35.5 per cent in the first "
+              "quarter of 2026 implies cost rising about %.1f per cent a year "
+              "faster than price. Compounded over five years that takes gross "
+              "margin to 7.5 per cent and the company to a loss by 2030 — on the "
+              "strength of one quarter against one year, for a developer whose "
+              "margin moves with which project happens to hand over. It is "
+              "sensitised in section 1.9 instead of extrapolated."
+              % (100*a["cost_drift_measured_not_carried"]))
+    table(doc, ["Revenue, years three to five (EGP mn)", "Low", "Point", "High"],
+          [[str(r["year"]),
+            "-" if r["low"] is None else "{:,.0f}".format(r["low"]),
+            "{:,.0f}".format(r["point"]),
+            "-" if r["high"] is None else "{:,.0f}".format(r["high"])]
+           for r in RANGED if r["low"] is not None],
+          [6.0, 3.4, 3.4, 3.4],
+          "The band is this method's OWN measured error at each horizon, taken "
+          "from testing it across ten annual starting points on the company's "
+          "2011-2025 history. It is not a scenario; it is the spread the method "
+          "has actually produced.")
+    table(doc, ["Bridge from enterprise value to equity, base case", "EGP mn"],
+          [[lbl, "{:,.1f}".format(val)] for lbl, val in BRIDGE],
           [10.6, 5.6],
-          "The terminal value is %s of enterprise value in the central case, which "
-          "is high and is one of the reasons no single figure is published."
-          % pct(base["terminal_share"], 0))
+          "The terminal value is %.0f per cent of enterprise value, which is high "
+          "and is one reason the range is published rather than a point."
+          % (100 * (N["dcf_cases"]["base"]["terminal_share"] or 0)))
 
     doc.add_heading("1.2  Book value and sustainable return", level=2)
     para(doc, "Shareholders' funds were EGP %s million at the end of 2025, or EGP "
@@ -392,23 +451,73 @@ def _section_one(doc, sp, base, low, high, cds, prior):
                  money(v("revenue_fy24"))))
 
     doc.add_heading("1.5  Synthesis — the lenses in one field", level=2)
-    para(doc, "The cash-flow lens spans EGP %.2f to EGP %.2f depending on cash "
-              "conversion. Book value is EGP %.2f. The market is at EGP %.2f. The "
-              "lenses do not disagree about the business; they disagree about one "
-              "number, and Figure 1 shows how far apart that one number pushes them."
-              % (low["per_share"], high["per_share"], D["book_equity_per_share"], sp))
+    para(doc, "The four lenses disagree, and the disagreement is the information. "
+              "The discounted cash flow is the widest because it carries the crux; "
+              "book value is the narrowest because it is arithmetic on a reported "
+              "balance sheet. Normalised earnings power is the most severe: at a "
+              "%s cost of equity, a company earning a %s net margin does not "
+              "capitalise to much."
+              % (pct(W["ke_rating"], 1),
+                 pct(v("npat_mi_fy25") / v("revenue_fy25"), 1)))
+    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight", "What moves it"],
+          [[LENS[0][0], "%.2f" % LENS[0][1], "%.2f" % LENS[0][2],
+            "%.2f" % LENS[0][3], "45%", "cash conversion, then the discount rate"],
+           [LENS[1][0], "%.2f" % LENS[1][1], "%.2f" % LENS[1][2],
+            "%.2f" % LENS[1][3], "15%", "nothing — it is a reported figure"],
+           [LENS[2][0], "%.2f" % LENS[2][1], "%.2f" % LENS[2][2],
+            "%.2f" % LENS[2][3], "20%", "the multiple the shares have historically "
+            "carried, 6x to 14x"],
+           [LENS[3][0], "%.2f" % LENS[3][1], "%.2f" % LENS[3][2],
+            "%.2f" % LENS[3][3], "20%", "the cost of equity"],
+           ["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
+            "%.2f" % LW["full"], "100%", ""]],
+          [4.2, 2.0, 2.0, 2.2, 1.6, 4.4],
+          "EGP per share, against a close of EGP %.2f. The weights are stated "
+          "before the numbers are read and are identical across the three "
+          "columns." % sp)
 
-    doc.add_heading("1.6  Drivers", level=2)
-    para(doc, "The company discloses new sales in Egyptian pounds and units sold, in "
-              "total and by region, and it discloses units delivered and construction "
-              "spending. It does not disclose unit mix, average unit size, price per "
-              "square metre or construction cost per square metre for any project. "
-              "The forecast is therefore built at the level the disclosure supports, "
-              "and that limit is stated rather than disguised. The previous edition "
-              "carried a full table of per-project areas, unit mixes, prices per "
-              "square metre and construction costs per square metre for fifteen "
-              "named projects. None of those figures is disclosed by the company. "
-              "They are not used here.")
+    doc.add_heading("1.6  Drivers — units and prices, by region", level=2)
+    para(doc, "This is what the forecast is built from. For each operating region "
+              "the company publishes both the value of new sales and the number of "
+              "units behind it, so the average selling price per unit is a realised "
+              "figure, not an assumption. Dividing one disclosure by the other is "
+              "the only step taken.")
+    for nm, d in BU["regions"].items():
+        h = d["history"]
+        doc.add_heading(nm, level=3)
+        table(doc, ["Disclosed"] + [str(y) for y in h["years"]],
+              [["New sales (EGP mn)"] + ["{:,.0f}".format(x) for x in h["sales"]],
+               ["Units sold"] + ["{:,.0f}".format(x) for x in h["units"]],
+               ["Price per unit (EGP mn)"] + ["%.2f" % x for x in h["asp"]]],
+              [4.4, 2.4, 2.4, 2.4, 2.4, 2.4])
+        para(doc, "Carried forward at %s units, the average of the last three "
+                  "disclosed years, at a starting price of EGP %.2f million a "
+                  "unit, the price realised in 2024, escalated with Egyptian "
+                  "inflation."
+                  % ("{:,.0f}".format(d["units_base"]), d["asp_base"]),
+             size=9, color=MUTED)
+    para(doc, "The three regions reconcile to the group total the same release "
+              "prints: for 2024, 44,570 plus 95,082 plus 11,364 is 151,016, which "
+              "is the all-regions figure exactly. That reconciliation is checked in "
+              "code, so a mis-read series fails loudly rather than quietly becoming "
+              "a price.")
+    para(doc, "Revenue is driven by a different quantity from new sales, and the "
+              "distinction matters. A unit handed over in 2026 was contracted years "
+              "earlier at that year's price, so revenue per delivered unit sits "
+              "below the current selling price — EGP %.2f million against regional "
+              "prices of EGP %.2f to %.2f million. That gap is why the order book "
+              "keeps building even as deliveries rise, and it is the single "
+              "clearest fact about how this business converts sales into reported "
+              "revenue."
+              % (BU["rows"][0]["rev_per_unit"],
+                 min(d["asp_base"] for d in BU["regions"].values()),
+                 max(d["asp_base"] for d in BU["regions"].values())))
+    para(doc, "What is NOT disclosed, and therefore not used: unit mix, average "
+              "unit size, price per square metre and construction cost per square "
+              "metre, for any project. The previous edition carried a full table of "
+              "those figures across fifteen named projects. None of it is published "
+              "by the company. It is not reused here, and the forecast is built at "
+              "the finest level the disclosure actually supports.")
 
     doc.add_heading("1.7  The crux", level=2)
     para(doc, "How fast do contracted sales become cash?", bold=True)

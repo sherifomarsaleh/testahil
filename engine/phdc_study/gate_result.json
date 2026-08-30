@@ -26,7 +26,7 @@
   "assert_model_study": {
    "result": "PASS",
    "evidence": {
-    "sections": 37,
+    "sections": 40,
     "sheets": [
      "READ FIRST",
      "Summary",
@@ -45,9 +45,9 @@
      "Per-Share & Ratios",
      "Peer & Sector"
     ],
-    "formula_cells": 99,
+    "formula_cells": 89,
     "scrub_hits": [],
-    "document_chars": 48924,
+    "document_chars": 53961,
     "column_audit": [],
     "figures": [
      "fig1_football.png",
@@ -68,7 +68,7 @@
   }
  },
  "evidence": {
-  "sections": 37,
+  "sections": 40,
   "sheets": [
    "READ FIRST",
    "Summary",
@@ -87,9 +87,9 @@
    "Per-Share & Ratios",
    "Peer & Sector"
   ],
-  "formula_cells": 99,
+  "formula_cells": 89,
   "scrub_hits": [],
-  "document_chars": 48924,
+  "document_chars": 53961,
   "column_audit": [],
   "figures": [
    "fig1_football.png",
