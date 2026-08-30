@@ -33,20 +33,17 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const MONS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
 
 // ---- static hub / utility pages: [file, priority, changefreq] ------------
+// New-IA URL space since the 30-Aug-2026 cutover. Old root slugs and /test/
+// are redirect stubs (never listed); /legacy/ is a preserved archive (not
+// listed — its pages canonicalize nowhere and the studies' canonical home is
+// /{TICKER}/study/).
 const STATIC = [
-  ['',                '1.0', 'weekly'],
-  ['stocks.html',     '0.9', 'weekly'],
-  ['metals.html',     '0.9', 'weekly'],
-  ['ledger.html',     '0.9', 'weekly'],
-  ['method.html',     '0.6', 'monthly'],
-  ['compare.html',    '0.8', 'weekly'],
-  ['picker.html',     '0.8', 'weekly'],
-  ['calculator.html', '0.6', 'monthly'],
-  ['archive.html',    '0.5', 'monthly'],
-  ['ar/',             '0.9', 'weekly'],
-  ['ar/stocks.html',  '0.7', 'monthly'],
-  ['ar/metals.html',  '0.7', 'monthly'],
-  ['ar/method.html',  '0.7', 'monthly'],
+  ['',              '1.0', 'weekly'],
+  ['coverage.html', '0.9', 'weekly'],
+  ['tools.html',    '0.8', 'weekly'],
+  ['savings.html',  '0.6', 'monthly'],
+  ['record.html',   '0.9', 'weekly'],
+  ['method.html',   '0.6', 'monthly'],
 ];
 
 function loadGlobals(path, names) {
@@ -67,6 +64,7 @@ function esc(s) {
 function fileFor(rel) {
   if (rel === '')    return 'index.html';
   if (rel === 'ar/') return 'ar/index.html';
+  if (rel.endsWith('/')) return rel + 'index.html';   // /{TICKER}/study/
   return rel;
 }
 
@@ -101,18 +99,9 @@ function buildSitemap() {
 
   STATIC.forEach(([rel, pr, cf]) => add(rel, pr, cf));
 
-  Object.keys(TICKERS).forEach(code => {
-    const slug = String(TICKERS[code].slug || code).toLowerCase();
-    add(`${slug}.html`,    '0.9', 'weekly');
-    add(`ar/${slug}.html`, '0.8', 'weekly');
-  });
-
+  Object.keys(TICKERS).forEach(code => add(`${code}/study/`, '0.9', 'weekly'));
   const M = (METALS && typeof METALS === 'object') ? METALS : {};
-  Object.keys(M).forEach(code => {
-    const slug = String(M[code].slug || code).toLowerCase();
-    add(`${slug}.html`,    '0.9', 'weekly');
-    add(`ar/${slug}.html`, '0.8', 'weekly');
-  });
+  Object.keys(M).forEach(code => { if (M[code] && M[code].dist) add(`${code}/study/`, '0.9', 'weekly'); });
 
   if (rows.length === 0) throw new Error('No URLs generated — refusing to write an empty sitemap.');
 
