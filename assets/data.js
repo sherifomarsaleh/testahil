@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-25", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-30", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -2300,29 +2300,29 @@ const TICKERS = {
     name: "Emaar Properties PJSC",
     nameAr: "إعمار العقارية",
     code: "DFM:EMAAR",
-    spot: 11.08,
-    spotDate: "close 24 Jul 2026",
+    spot: 11.00,
+    spotDate: "close 27 Aug 2026",
     ccy: "AED",
     fair: { bear: 11.08, base: 14.80, full: 18.75 },      // 01 Jul 2026 — weighted central 14.80 (+22% vs spot 12.14). Lenses: RNAV/SOTP 14.12 (primary), going-concern DCF 14.74, relative 15.53, normalized earnings 15.27. bear/full = weighted bear/bull of the football field. Swing factors: the recurring EV/EBITDA multiple and the NAV/conglomerate discount. Gross NAV ~17.6/share; the market prices a ~31% discount at spot.
     dist: {
-      t20: { label:"1 month",   p5:9.85, p25:10.61, p50:11.05, p75:11.52, p95:12.42, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:8.81, p25:10.17, p50:10.99, p75:11.87, p95:13.71, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:9.66, p25:10.45, p50:10.91, p75:11.40, p95:12.35, resolve:"2026-09-28" },
+      t60: { label:"3 months",  p5:8.59, p25:9.92, p50:10.73, p75:11.61, p95:13.44, resolve:"2026-11-27" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-30" },
     touch: [ /* descending high -> low */
-      [15.50, 0, 3], [14.00, 1, 7], [13.00, 3, 16], [11.50, 45, 67], [10.50, 34, 61], [9.50, 4, 21], [8.50, 1, 6]
+      [15.50, 0, 2], [14.00, 1, 6], [13.00, 3, 14], [11.50, 39, 58], [10.50, 45, 70], [9.50, 6, 26], [8.50, 1, 8]
     ],
-    levels: { res:[12.75, 13.04, 13.81], sup:[10.91, 10.15, 8.71] },
+    levels: { res:[12.75, 13.04, 13.81], sup:[10.15, 8.92, 8.71] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 11.08 below a falling 20-day (11.65), a falling 50-day (11.74) and a falling 200-day (13.31). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.27 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.24 / \u22120.17 / \u22120.08). Over the last year it has ranged 10.15\u201317.25; the last close sits 36% below that high and 9% above that low.",
+      summary: "The price closed 11.00 below a falling 20-day (11.20), a falling 50-day (11.54) and a falling 200-day (12.98). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.23 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.13 / \u22120.13 / \u22120.00). Over the last year it has ranged 10.15\u201317.25; the last close sits 36% below that high and 8% above that low.",
       bull: "A daily close back above 12.75 would clear the nearest resistance and open the 13.81 zone.",
-      bear: "A close below 10.91 would break the nearest support and open the 8.71 zone."
+      bear: "A close below 10.15 would break the nearest support and open the 8.71 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-08-25" },
-      tech: { data:"2026-07-24", computed:"2026-08-25" }
+      mc:   { data:"2026-08-27", computed:"2026-08-30" },
+      tech: { data:"2026-08-27", computed:"2026-08-30" }
     },
     files: {
       study: "files/Emaar_Valuation_Study_01-07-2026_public.docx?v=0107b",
@@ -3188,7 +3188,7 @@ const BANDS = {
   EGCH: {mkt:"EG", n:57, hits:54, c50:0.5614, c80:0.8772, c90:0.9474, width:1.446, strength:"long", flag:null},
   ELEC: {mkt:"EG", n:57, hits:53, c50:0.5789, c80:0.8772, c90:0.9298, width:1.471, strength:"long", flag:null},
   ELM: {mkt:"SA", n:13, hits:10, c50:0.3077, c80:0.5385, c90:0.7692, width:1.018, strength:"market-only", flag:null},
-  EMAAR: {mkt:"AE", n:57, hits:45, c50:0.4737, c80:0.7193, c90:0.7895, width:0.932, strength:"long", flag:"narrow"},
+  EMAAR: {mkt:"AE", n:58, hits:46, c50:0.4828, c80:0.7241, c90:0.7931, width:0.957, strength:"long", flag:"narrow"},
   EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.7333, c90:0.9333, width:1.024, strength:"short", flag:null},
   EMFD: {mkt:"EG", n:39, hits:38, c50:0.6154, c80:0.8974, c90:0.9744, width:1.400, strength:"short", flag:null},
   EMPOWER: {mkt:"AE", n:10, hits:10, c50:0.6000, c80:1.0000, c90:1.0000, width:1.278, strength:"market-only", flag:null},
@@ -3246,7 +3246,7 @@ const BANDS = {
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
-  AE: {names:28, n:910, c90:0.9044, label:"UAE"},
+  AE: {names:28, n:911, c90:0.9045, label:"UAE"},
   EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
@@ -4441,9 +4441,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
     p5:9.82, p25:10.6, p50:11.11, p75:11.66, p95:12.56,
     touch:{ "+5":43, "+10":16, "+15":6, "+20":2, "-5":39, "-10":12 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:11.1, realized_high:12.08, realized_low:10.9,
+    in_90:true, in_50:true, realized_quantile:0.495, median_err:-0.0009,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"EMAAR", asset_class:"equity",
@@ -6681,6 +6681,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 30-Aug-2026 single-name roll-forward: EMAAR, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"EMAAR", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-30", anchor_price:11.0, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.2825,
+    signal_z:-1.2866, signal_alpha:-0.011191,
+    note:"Cycle 3 roll-forward, 30-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -1.287 (outside the 0.25 dead zone); tilt -1.11% at 1M and -3.38% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:9.66, p25:10.45, p50:10.91, p75:11.4, p95:12.35,
+    touch:{ "+5":35, "+10":13, "+15":5, "+20":2, "-5":41, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMAAR", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-30", anchor_price:11.0, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-27", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.2975,
+    signal_z:-1.2866, signal_alpha:-0.034432,
+    note:"Cycle 3 roll-forward, 30-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -1.287 (outside the 0.25 dead zone); tilt -1.11% at 1M and -3.38% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:8.59, p25:9.92, p50:10.73, p75:11.61, p95:13.44,
+    touch:{ "+5":55, "+10":32, "+15":19, "+20":11, "-5":68, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -6926,7 +6955,7 @@ const CALIB = {
   "DFM:DEWA": {w: 13, in50: 54, in90: 100, through: "2026-07-28"},
   "DFM:DIB": {w: 58, in50: 53, in90: 84, through: "2026-07-28"},
   "DFM:DU": {w: 58, in50: 66, in90: 93, through: "2026-07-29"},
-  "DFM:EMAAR": {w: 57, in50: 44, in90: 79, through: "2026-04-28"},
+  "DFM:EMAAR": {w: 58, in50: 45, in90: 79, through: "2026-07-28"},
   "DFM:EMAARDEV": {w: 30, in50: 47, in90: 90, through: "2026-06-17"},
   "DFM:EMIRATESNBD": {w: 57, in50: 58, in90: 89, through: "2026-06-01"},
   "DFM:EMPOWER": {w: 10, in50: 60, in90: 100, through: "2026-06-04"},
