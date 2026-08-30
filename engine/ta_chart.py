@@ -177,14 +177,26 @@ PAGE_KEY = re.compile(r'(?:TICKERS|METALS)\.([A-Z0-9_]+)|'
                       r'''(?:TICKERS|METALS)\[\s*["']([A-Z0-9_]+)["']\s*\]''')
 
 
-def page_for(key: str, files):
-    """The html page whose inline script binds this ticker key."""
+def pages_for(key: str, files):
+    """EVERY html page whose inline script binds this ticker key.
+
+    Returns a LIST, not the first hit. The 30-Aug-2026 cutover left the same key
+    bound by TWO served pages — the preserved legacy/{ticker}.html and the new
+    IA's {TICKER}/study/index.html — and a first-match resolver regenerated one
+    and froze the other. On ENBD that shipped a chart captioned "to 24 Jul 2026"
+    under a technical read computed on 27 Aug, with the fresh S/R ladder injected
+    over it: precisely the frozen-chart defect the 29-Jul rule exists to stop,
+    on the page a reader actually gets. Same family as [R-ENF-03]'s first-vs-last
+    match — when two copies bind one key, resolving to either ONE is a bug.
+    """
+    out = []
     for f in files:
         src = open(f, encoding='utf-8').read()
         for m in PAGE_KEY.finditer(src):
             if (m.group(1) or m.group(2)) == key:
-                return f
-    return None
+                out.append(f)
+                break
+    return out
 
 
 def apply(write: bool = False, only=None):
@@ -207,6 +219,18 @@ def apply(write: bool = False, only=None):
     if os.path.isdir(legacy):
         files += [os.path.join(legacy, f) for f in sorted(os.listdir(legacy))
                   if f.endswith('.html')]
+    # ...AND THE NEW IA ITSELF, which the same-day cutover fix above missed. It
+    # rescued legacy/ and stopped there, so the population went 0 -> 93 and read
+    # as repaired — while the 93 pages the cutover PROMOTED to root, at
+    # {TICKER}/study/index.html, stayed outside it. A flat listdir cannot see a
+    # nested page, so the count looked healthy at exactly half the truth.
+    # [R-ENF-04] COUNT AGAINST A KNOWN TOTAL: the total is every served page
+    # carrying the chart element, wherever the IA puts it.
+    files += [os.path.join(ROOT, d, sub, 'index.html')
+              for d in sorted(os.listdir(ROOT))
+              if os.path.isdir(os.path.join(ROOT, d)) and d not in ('legacy', 'node_modules')
+              for sub in sorted(os.listdir(os.path.join(ROOT, d)))
+              if os.path.isfile(os.path.join(ROOT, d, sub, 'index.html'))]
     files = [f for f in files if 'id="ta-chart-svg"' in open(f, encoding='utf-8').read()]
     # [R-ENF-04] AN EMPTY POPULATION IS NOT A CLEAN ONE. Finding no chart page at
     # all means the layout moved again, not that there is no work: fail loudly
@@ -219,8 +243,8 @@ def apply(write: bool = False, only=None):
 
     done, skipped = [], []
     for key, _container, market, series in todo:
-        page = page_for(key, files)
-        if not page:
+        key_pages = pages_for(key, files)
+        if not key_pages:
             skipped.append((key, 'no page binds this key'))
             continue
         a, b = blocks[key]
@@ -237,36 +261,43 @@ def apply(write: bool = False, only=None):
             skipped.append((key, f'{type(e).__name__}: {e}'))
             continue
 
-        src = open(page, encoding='utf-8').read()
-        new = re.sub(r'<svg id="ta-chart-svg".*?</svg>', lambda _: svg, src,
-                     count=1, flags=re.S)
-        # The caption sits in the <figcaption>, OUTSIDE the <svg> block above,
-        # so it is a SEPARATE substitution -- and it used to require the HTML
-        # entity "&middot;". 8 pages write that separator as a literal U+00B7,
-        # so on those the pattern never matched and the caption froze while the
-        # chart above it kept being regenerated: phdc.html labelled a 22-Jul
-        # chart "last 500 sessions to 17 Jun 2026", 35 days out. Nothing caught
-        # it -- check_ta_chart_overlay only tests that level lines land inside
-        # the viewBox, and the page reported "chart block not replaced".
-        # Accept either separator, and keep whichever the page already uses.
+        # EVERY page bound to this key, not the first one found. Two served
+        # copies bind each key since the cutover; regenerating one and leaving
+        # the other is the frozen-chart defect, not a partial success.
         _c = re.match(r'.*?last (\d+) sessions to (.+)$', cap)
-        new, ncap = re.subn(
-            r'(Daily close\s*(?:&middot;|\u00b7)\s*last )\d+( sessions to )[^<]*',
-            lambda mm: mm.group(1) + _c.group(1) + mm.group(2) + _c.group(2),
-            new, count=1)
-        if not ncap and 'sessions to' in src:
-            # a caption is present but the pattern could not reach it -- that is
-            # a defect in this tool, not a page that happens to be current.
-            skipped.append((key, 'CAPTION PATTERN DID NOT MATCH -- caption left '
-                                 'stale next to a regenerated chart'))
-            continue
-        if new == src:
-            skipped.append((key, 'already current (chart and caption both match)'))
-            continue
-        if write:
-            open(page, 'w', encoding='utf-8').write(new)
-        done.append({'key': key, 'page': os.path.basename(page), **meta,
-                     'caption_updated': bool(ncap), 'levels': levels})
+        for page in key_pages:
+            rel = os.path.relpath(page, ROOT)
+            src = open(page, encoding='utf-8').read()
+            new = re.sub(r'<svg id="ta-chart-svg".*?</svg>', lambda _: svg, src,
+                         count=1, flags=re.S)
+            # The caption sits in the <figcaption>, OUTSIDE the <svg> block above,
+            # so it is a SEPARATE substitution -- and it used to require the HTML
+            # entity "&middot;". 8 pages write that separator as a literal U+00B7,
+            # so on those the pattern never matched and the caption froze while the
+            # chart above it kept being regenerated: phdc.html labelled a 22-Jul
+            # chart "last 500 sessions to 17 Jun 2026", 35 days out. Nothing caught
+            # it -- check_ta_chart_overlay only tests that level lines land inside
+            # the viewBox, and the page reported "chart block not replaced".
+            # Accept either separator, and keep whichever the page already uses.
+            new, ncap = re.subn(
+                r'(Daily close\s*(?:&middot;|\u00b7)\s*last )\d+( sessions to )[^<]*',
+                lambda mm: mm.group(1) + _c.group(1) + mm.group(2) + _c.group(2),
+                new, count=1)
+            if not ncap and 'sessions to' in src:
+                # a caption is present but the pattern could not reach it -- that is
+                # a defect in this tool, not a page that happens to be current.
+                skipped.append((f'{key} [{rel}]',
+                                'CAPTION PATTERN DID NOT MATCH -- caption left '
+                                'stale next to a regenerated chart'))
+                continue
+            if new == src:
+                skipped.append((f'{key} [{rel}]',
+                                'already current (chart and caption both match)'))
+                continue
+            if write:
+                open(page, 'w', encoding='utf-8').write(new)
+            done.append({'key': key, 'page': rel, **meta,
+                         'caption_updated': bool(ncap), 'levels': levels})
 
     print(f'regenerated: {len(done)}   skipped: {len(skipped)}')
     for k, why in skipped:
