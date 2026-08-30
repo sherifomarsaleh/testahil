@@ -1,0 +1,128 @@
+[
+ {
+  "check": "enterprise value",
+  "workbook": 74697.0,
+  "study": 74697.0128,
+  "ok": true
+ },
+ {
+  "check": "equity value",
+  "workbook": 55207.9,
+  "study": 55207.9128,
+  "ok": true
+ },
+ {
+  "check": "value per share",
+  "workbook": 19.304,
+  "study": 19.304,
+  "ok": true
+ },
+ {
+  "check": "terminal share of enterprise value",
+  "workbook": 0.3379,
+  "study": 0.3379,
+  "ok": true
+ },
+ {
+  "check": "bridge sheet agrees with the valuation sheet on value per share",
+  "workbook": 19.304,
+  "study": 19.304,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2026",
+  "workbook": 45283.9636,
+  "study": 45283.9636,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2027",
+  "workbook": 56695.5224,
+  "study": 56695.5224,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2028",
+  "workbook": 70982.7941,
+  "study": 70982.7941,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2029",
+  "workbook": 88870.4582,
+  "study": 88870.4582,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2030",
+  "workbook": 111265.8136,
+  "study": 111265.8136,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2031",
+  "workbook": 139304.7987,
+  "study": 139304.7987,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2032",
+  "workbook": 174409.608,
+  "study": 174409.608,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2033",
+  "workbook": 218360.8292,
+  "study": 218360.8292,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2034",
+  "workbook": 273387.7581,
+  "study": 273387.7581,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2035",
+  "workbook": 342281.4732,
+  "study": 342281.4732,
+  "ok": true
+ },
+ {
+  "check": "balance sheet balances, 2025",
+  "workbook": -0.1,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "balance sheet balances, 2024",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "assumption B5",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "assumption B12",
+  "workbook": 0.2625,
+  "study": 0.2625,
+  "ok": true
+ },
+ {
+  "check": "assumption B13",
+  "workbook": 24133.2,
+  "study": 24133.2,
+  "ok": true
+ },
+ {
+  "check": "assumption B16",
+  "workbook": 2859.92,
+  "study": 2859.92,
+  "ok": true
+ }
+]
