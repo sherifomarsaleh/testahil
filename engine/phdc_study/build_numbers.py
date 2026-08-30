@@ -13,6 +13,8 @@ sys.path.insert(0, HERE)
 
 import inputs as IN
 import valuation as VAL
+import bottom_up_model as BU
+import valuation_v2 as V2
 
 IN.assert_balance_sheet_foots()
 
@@ -89,6 +91,20 @@ def main():
             "levels": {"res": [15.38, 15.73, 16.08], "sup": [14.99, 14.40, 13.01]},
             "close": 15.20, "sma20": 15.15, "sma50": 15.10, "sma200": 10.95,
         },
+        "bottom_up": {
+            "regions": {nm: {"units_base": d["units_base"],
+                             "asp_base": d["asp_base"],
+                             "history": BU.REGION_HISTORY[nm]}
+                        for nm, d in BU.build()["regions"].items()},
+            "rows": BU.build()["rows"],
+            "anchors": BU.build()["anchors"],
+        },
+        "lenses": V2.lenses()["rows"],
+        "lens_weighted": V2.lenses()["weighted"],
+        "bridge": [list(x) for x in V2.bridge(V2.lenses()["dcf"]["base"])],
+        "ranged_revenue": V2.ranged_revenue(),
+        "dcf_cases": {k: {kk: vv for kk, vv in v.items()}
+                      for k, v in V2.lenses()["dcf"].items()},
         "walkforward": {
             "origins": 10, "horizons": "1-5y",
             "revenue_bias": 0.105, "revenue_mae": 0.425,
@@ -112,6 +128,11 @@ def main():
              max(c["per_share"] for c in out["cases"].values()),
              out["price_map"]["spot"]))
     print("  implied conversion at spot : %.2f%%" % (implied * 100))
+    lw = out["lens_weighted"]
+    print("  weighted lenses  : bear %.2f / base %.2f / full %.2f"
+          % (lw["bear"], lw["base"], lw["full"]))
+    print("  bottom-up FY2026 revenue   : %.0f (anchored on the reported quarter)"
+          % out["bottom_up"]["rows"][0]["revenue"])
 
 
 if __name__ == "__main__":

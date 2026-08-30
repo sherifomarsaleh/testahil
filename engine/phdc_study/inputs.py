@@ -126,6 +126,8 @@ OPERATING = {
     "revenue_1q26":     I(9300.0,   ER26Q1, "2026-03-31", "A"),
     "gross_profit_1q26": I(3300.0,  ER26Q1 + " — margin 35% versus 44% in 1Q2025",
                            "2026-03-31", "A"),
+    "revenue_1q26_yoy": I(0.11,    ER26Q1 + " — \"Revenue reached EGP 9.3 billion in "
+                          "1Q2026, up 11% YoY\"", "2026-03-31", "A", unit="YoY"),
     "npat_1q26":        I(1200.0,   ER26Q1, "2026-03-31", "A"),
     "construction_fy24": I(8500.0,  "PHD FY2024 earnings release — \"The Company spent "
                            "EGP8.5 billion on construction activities during FY2024\"",

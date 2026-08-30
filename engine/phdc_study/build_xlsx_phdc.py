@@ -14,6 +14,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, D, W, REG = N["meta"], N["derived"], N["wacc"], N["registry"]
 CASES, SENS, PM = N["cases"], N["sensitivity"], N["price_map"]
+BU, LENS, LW, BRIDGE = (N["bottom_up"], N["lenses"], N["lens_weighted"],
+                        N["bridge"])
 
 INPUT = Font(color="1D6FA3", bold=True)          # blue = input
 FORM = Font(color="1A1D21")                       # black = formula
@@ -87,6 +89,17 @@ def build(path):
     head(ws, "Summary", "Every figure recomputes from Assumptions.",
          [46, 16, 16, 16, 16])
     r = 4
+    r = row(ws, r, "Lens", ["Bear", "Base", "Full value", "Weight"],
+            font=HEAD, bold=True)
+    for c in "BCDE":
+        ws["%s%d" % (c, r - 1)].fill = FILL
+    for nm, b_, ba, f_, wt in LENS:
+        r = row(ws, r, nm, [round(b_, 2), round(ba, 2), round(f_, 2), wt],
+                fmt="#,##0.00")
+    r = row(ws, r, "Weighted central",
+            [round(LW["bear"], 2), round(LW["base"], 2), round(LW["full"], 2), 1.0],
+            fmt="#,##0.00", bold=True)
+    r += 1
     r = row(ws, r, "Valuation", ["Per share (EGP)", "Equity (EGP mn)",
                                  "Enterprise value"], font=HEAD, bold=True)
     for c in "BCD":
@@ -228,10 +241,31 @@ def _remaining(wb):
 
     # 6 Segments -------------------------------------------------------------
     ws = wb.create_sheet("Segments")
-    head(ws, "Segments and operating drivers",
-         "What the company discloses, and at what level the forecast is built.",
-         [40, 18, 62])
+    head(ws, "Units and prices by region — the forecast's drivers",
+         "New sales value and unit counts are both disclosed per region; the price "
+         "per unit is one divided by the other.", [34, 14, 14, 14, 14, 14])
     r = 4
+    for nm, d in BU["regions"].items():
+        h = d["history"]
+        ws.cell(r, 1, nm).font = SUB
+        r += 1
+        ws.cell(r, 1, "Year").font = HEAD
+        ws.cell(r, 1).fill = FILL
+        for j, y in enumerate(h["years"], start=2):
+            c = ws.cell(r, j, y); c.font = HEAD; c.fill = FILL
+        r += 1
+        for lbl, key, fmt in (("New sales (EGP mn)", "sales", "#,##0"),
+                              ("Units sold", "units", "#,##0"),
+                              ("Price per unit (EGP mn)", "asp", "#,##0.00")):
+            ws.cell(r, 1, lbl).font = FORM
+            for j, x in enumerate(h[key], start=2):
+                c = ws.cell(r, j, x); c.number_format = fmt; c.font = INPUT
+            r += 1
+        ws.cell(r, 1, "carried forward at %.0f units, price %.2f, escalated"
+                % (d["units_base"], d["asp_base"])).font = MUT
+        r += 2
+    ws.cell(r, 1, "Disclosed group drivers").font = SUB
+    r += 1
     ws.cell(r, 1, "Disclosed driver").font = HEAD
     ws.cell(r, 2, "Value").font = HEAD
     ws.cell(r, 3, "Note").font = HEAD
@@ -345,28 +379,48 @@ def _remaining(wb):
     ws.cell(r, 2, "=B%d+B%d" % (r - 2, r - 1)).number_format = "#,##0"
 
     # 9-11 statements --------------------------------------------------------
-    for name, spec in (
-        ("Income Statement",
-         [("Revenue", "revenue"), ("Gross profit", "gross"),
-          ("Overheads", "sga"), ("Pre-tax profit", "npbt"), ("Tax", "tax")]),
-        ("Cash Flow",
-         [("Operating cash flow", "cfo"),
-          ("Free cash flow to the firm", "fcff")]),
-    ):
-        ws = wb.create_sheet(name)
-        head(ws, name + " — forecast", "Central case. EGP million.")
-        rr = _yearhead(ws)
-        for lbl, key in spec:
-            ws.cell(rr, 1, lbl).font = FORM
-            for j, row_ in enumerate(rows, start=2):
-                c = ws.cell(rr, j, round(row_.get(key, 0), 1))
-                c.number_format = "#,##0"
-            rr += 1
-        if name == "Income Statement":
-            ws.cell(rr, 1, "Gross margin").font = FORM
-            for j in range(2, 12):
-                col = get_column_letter(j)
-                ws.cell(rr, j, "=%s6/%s5" % (col, col)).number_format = "0.0%"
+    ws = wb.create_sheet("Income Statement")
+    head(ws, "Income statement — built from units and prices",
+         "Gross margin is an OUTPUT of price per unit against cost per unit.",
+         [34, 14, 14, 14, 14, 14])
+    rr = 4
+    ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
+    ws.cell(rr, 1).fill = FILL
+    for j, x in enumerate(BU["rows"], start=2):
+        c = ws.cell(rr, j, x["year"]); c.font = HEAD; c.fill = FILL
+    rr += 1
+    for lbl, key, fmt in (
+            ("Units sold", "units_sold", "#,##0"),
+            ("New sales", "new_sales", "#,##0"),
+            ("Units delivered", "units_delivered", "#,##0"),
+            ("Revenue per delivered unit", "rev_per_unit", "#,##0.00"),
+            ("Revenue", "revenue", "#,##0"),
+            ("Cost per delivered unit", "cost_per_unit", "#,##0.00"),
+            ("Cost of revenue", "cogs", "#,##0"),
+            ("Gross profit", "gross", "#,##0"),
+            ("Gross margin", "gross_margin", "0.0%"),
+            ("Overheads", "sga", "#,##0"),
+            ("Operating profit", "ebit", "#,##0"),
+            ("Finance cost", "interest", "#,##0"),
+            ("Profit before tax", "npbt", "#,##0"),
+            ("Net profit", "npat", "#,##0"),
+            ("Earnings per share (EGP)", "eps", "#,##0.00"),
+            ("Order book, closing", "backlog", "#,##0")):
+        ws.cell(rr, 1, lbl).font = SUB if key in ("revenue", "gross", "npat") else FORM
+        for j, x in enumerate(BU["rows"], start=2):
+            c = ws.cell(rr, j, round(x[key], 4)); c.number_format = fmt
+        rr += 1
+
+    ws = wb.create_sheet("Cash Flow")
+    head(ws, "Cash flow — forecast", "Central case. EGP million.")
+    rr = _yearhead(ws)
+    for lbl, key in (("Operating cash flow", "cfo"),
+                     ("Free cash flow to the firm", "fcff")):
+        ws.cell(rr, 1, lbl).font = FORM
+        for j, row_ in enumerate(rows, start=2):
+            c = ws.cell(rr, j, round(row_.get(key, 0), 1))
+            c.number_format = "#,##0"
+        rr += 1
 
     ws = wb.create_sheet("Balance Sheet")
     head(ws, "Balance sheet — as reported", "EGP million.", [46, 16, 16])
