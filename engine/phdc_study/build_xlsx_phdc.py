@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
+ST = N["statements"]
 M, D, W, REG = N["meta"], N["derived"], N["wacc"], N["registry"]
 CASES, SENS, PM = N["cases"], N["sensitivity"], N["price_map"]
 BU, LENS, LW, BRIDGE = (N["bottom_up"], N["lenses"], N["lens_weighted"],
@@ -24,7 +25,19 @@ FILL = PatternFill("solid", fgColor="1D6FA3")
 SUB = Font(bold=True, color="1A1D21")
 MUT = Font(color="5B6570", size=9, italic=True)
 THIN = Border(bottom=Side(style="thin", color="DCE1E5"))
-YEARS = list(range(2026, 2036))
+YEARS = [r["year"] for r in N["cases"]["base"]["rows"]]
+
+# Assumption cells are resolved by LABEL as the sheet is written, never by a
+# remembered row number: the row moves the moment a driver is added, and a
+# stale address produces a workbook that still computes and is simply wrong.
+ASSUMPTION_AT = {}
+
+
+def AT(label):
+    if label not in ASSUMPTION_AT:
+        raise KeyError("no assumption row named %r; have %s"
+                       % (label, sorted(ASSUMPTION_AT)))
+    return ASSUMPTION_AT[label]
 
 
 def v(k):
@@ -169,7 +182,7 @@ def build(path):
          "0.00%", "average of FY2025 and 1Q2026 as reported"),
         ("Overheads as a share of revenue", D["sga_ratio_fy25"], "0.00%",
          "FY2025 as reported"),
-        ("Delivery capacity growth", D["cpi_trailing3"], "0.00%",
+        ("Price escalation", D["cpi_trailing3"], "0.00%",
          "Egyptian consumer price inflation, three-year mean"),
         ("Terminal growth", 0.12, "0.00%", "below nominal growth, stated"),
         ("Cost of capital", W["wacc_rating"], "0.00%",
@@ -184,15 +197,25 @@ def build(path):
         ("Opening revenue (EGP mn)", v("revenue_fy25"), "#,##0.0", "FY2025 audited"),
         ("Opening order book (EGP mn)", v("backlog_1q26"), "#,##0.0",
          "as at 31 March 2026"),
-        ("Order book target multiple of revenue", D["target_backlog_multiple"],
-         "0.00", "the 2024 level, to which the model converges"),
+        ("Units delivered, 2026", BU["rows"][0]["units_delivered"], "#,##0",
+         "implied by the reported first quarter of 2026"),
+        ("Units delivered, annual growth", BU["anchors"]["delivery_growth"],
+         "0.00%", "the disclosed run of handovers, 1,308 / 1,281 / 1,500 / 2,000"),
+        ("Revenue per delivered unit, 2026 (EGP mn)",
+         BU["rows"][0]["rev_per_unit"], "#,##0.00",
+         "FY2024 revenue over c. 2,000 units delivered, escalated"),
+        ("Maintenance capital expenditure, share of revenue",
+         N["statements"]["capex_ratio"], "0.00%",
+         "the building itself is inventory and sits in operating cash"),
     ]
+    ASSUMPTION_AT.clear()
     for lbl, val, fmt, src in rows:
         ws.cell(r, 1, lbl).font = FORM
         c = ws.cell(r, 2, val)
         c.font = INPUT
         c.number_format = fmt
         ws.cell(r, 3, src).font = MUT
+        ASSUMPTION_AT[lbl] = "$B$%d" % r
         r += 1
     r += 1
     ws.cell(r, 1, "NOT DISCLOSED — absent by design, never estimated").font = SUB
@@ -319,58 +342,96 @@ def _remaining(wb):
             [round(D["book_equity_per_share"], 2)], fmt="#,##0.00")
     r = row(ws, r, "Return on equity, 2025",
             ["=%.1f/((%.1f+%.1f)/2)" % (v("npat_mi_fy25"), v("total_equity"),
-                                        14624.7)], fmt="0.0%")
+                                        N["balance_sheet_subtotals"]["2024"]["total_equity"]["value"])],
+            fmt="0.0%")
 
     # 8 DCF ------------------------------------------------------------------
     ws = wb.create_sheet("DCF")
     head(ws, "Discounted cash flow — central case",
-         "Every row a formula off Assumptions; change a blue cell there.")
+         "Units delivered times revenue per delivered unit, then every row a "
+         "formula. Change a blue cell on Assumptions and this recomputes.")
     r = _yearhead(ws)
-    first = r
-    ws.cell(r, 1, "Delivery capacity").font = FORM
-    ws.cell(r, 2, "=Assumptions!B17*(1+Assumptions!B10)").font = FORM
-    for j in range(3, 12):
-        ws.cell(r, j, "=%s%d*(1+Assumptions!$B$10)"
-                % (get_column_letter(j - 1), r)).font = FORM
-    r += 1
-    ws.cell(r, 1, "Revenue").font = SUB
-    for j in range(2, 12):
-        ws.cell(r, j, "=%s%d" % (get_column_letter(j), first)).font = FORM
-        ws.cell(r, j).number_format = "#,##0"
+    LAST = get_column_letter(1 + len(YEARS))
+    A_UNITS = AT("Units delivered, 2026")
+    A_UGROW = AT("Units delivered, annual growth")
+    A_PRICE = AT("Revenue per delivered unit, 2026 (EGP mn)")
+    A_CPI = AT("Price escalation")
+    A_GM = AT("Gross margin")
+    A_SGA = AT("Overheads as a share of revenue")
+    A_CFO = AT("Cash conversion — central")
+    A_CAPEX = AT("Maintenance capital expenditure, share of revenue")
+    A_WACC = AT("Cost of capital")
+
+    def _driver(label, base_cell, growth_cell, fmt):
+        """One driver row: an input in the first year, then a growth formula."""
+        nonlocal r
+        ws.cell(r, 1, label).font = FORM
+        c = ws.cell(r, 2, "=Assumptions!" + base_cell)
+        c.font = FORM
+        c.number_format = fmt
+        for j in range(3, 2 + len(YEARS)):
+            c = ws.cell(r, j, "=%s%d*(1+Assumptions!%s)"
+                        % (get_column_letter(j - 1), r, growth_cell))
+            c.font = FORM
+            c.number_format = fmt
+        r += 1
+        return r - 1
+
+    u_row = _driver("Units delivered", A_UNITS, A_UGROW, "#,##0")
+    p_row = _driver("Revenue per delivered unit", A_PRICE, A_CPI, "#,##0.00")
     rev_row = r
+    ws.cell(r, 1, "Revenue").font = SUB
+    for j in range(2, 2 + len(YEARS)):
+        col = get_column_letter(j)
+        c = ws.cell(r, j, "=%s%d*%s%d" % (col, u_row, col, p_row))
+        c.font = SUB
+        c.number_format = "#,##0"
     r += 1
     for lbl, expr, fmt in (
-        ("Gross profit", "=%s{c}*Assumptions!$B$8", "#,##0"),
-        ("Overheads", "=-%s{c}*Assumptions!$B$9", "#,##0"),
-        ("Operating cash flow", "=%s{c}*Assumptions!$B$5", "#,##0"),
+        ("Gross profit", "=%s{c}*Assumptions!" + A_GM, "#,##0"),
+        ("Overheads", "=-%s{c}*Assumptions!" + A_SGA, "#,##0"),
+        ("Operating cash flow", "=%s{c}*Assumptions!" + A_CFO, "#,##0"),
+        ("Maintenance capital expenditure",
+         "=-%s{c}*Assumptions!" + A_CAPEX, "#,##0"),
     ):
         ws.cell(r, 1, lbl).font = FORM
-        for j in range(2, 12):
+        for j in range(2, 2 + len(YEARS)):
             col = get_column_letter(j)
             ws.cell(r, j, expr.replace("{c}", str(rev_row)) % col).font = FORM
             ws.cell(r, j).number_format = fmt
         r += 1
+    cfo_row, capex_row = r - 2, r - 1
+    ws.cell(r, 1, "plus finance cost, after tax").font = FORM
+    for j, rr in enumerate(BU["rows"], start=2):
+        c = ws.cell(r, j, round(rr["interest"] * (1 - rr["tax_rate"]), 1))
+        c.font = FORM
+        c.number_format = "#,##0"
+    int_row = r
+    r += 1
     fcff_row = r
     ws.cell(r, 1, "Free cash flow to the firm").font = SUB
-    for j, rr in enumerate(rows, start=2):
-        ws.cell(r, j, round(rr["fcff"], 1)).font = FORM
-        ws.cell(r, j).number_format = "#,##0"
+    for j in range(2, 2 + len(YEARS)):
+        col = get_column_letter(j)
+        c = ws.cell(r, j, "=%s%d+%s%d+%s%d"
+                    % (col, cfo_row, col, int_row, col, capex_row))
+        c.font = SUB
+        c.number_format = "#,##0"
     r += 1
     ws.cell(r, 1, "Discount factor").font = FORM
-    for j in range(2, 12):
-        ws.cell(r, j, "=1/(1+Assumptions!$B$12)^%d" % (j - 1)).font = FORM
+    for j in range(2, 2 + len(YEARS)):
+        ws.cell(r, j, "=1/(1+Assumptions!%s)^%d" % (A_WACC, j - 1)).font = FORM
         ws.cell(r, j).number_format = "0.000"
     df_row = r
     r += 1
     ws.cell(r, 1, "Present value").font = SUB
-    for j in range(2, 12):
+    for j in range(2, 2 + len(YEARS)):
         col = get_column_letter(j)
         ws.cell(r, j, "=%s%d*%s%d" % (col, fcff_row, col, df_row)).font = FORM
         ws.cell(r, j).number_format = "#,##0"
     pv_row = r
     r += 2
     ws.cell(r, 1, "Sum of the explicit years").font = SUB
-    ws.cell(r, 2, "=SUM(B%d:K%d)" % (pv_row, pv_row)).number_format = "#,##0"
+    ws.cell(r, 2, "=SUM(B%d:%s%d)" % (pv_row, LAST, pv_row)).number_format = "#,##0"
     r += 1
     ws.cell(r, 1, "Terminal value, discounted").font = SUB
     ws.cell(r, 2, round(b["pv_terminal"], 1)).number_format = "#,##0"
@@ -411,47 +472,164 @@ def _remaining(wb):
             c = ws.cell(rr, j, round(x[key], 4)); c.number_format = fmt
         rr += 1
 
+    FA, FB = ST["framing_a"], ST["framing_b"]
+    FY = [x["year"] for x in FB]
+
+    def _proj(ws, rr, rows, spec):
+        ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
+        ws.cell(rr, 1).fill = FILL
+        for j, y in enumerate(FY, start=2):
+            c = ws.cell(rr, j, y); c.font = HEAD; c.fill = FILL
+            c.alignment = Alignment(horizontal="center")
+            ws.column_dimensions[get_column_letter(j)].width = 13
+        ws.column_dimensions["A"].width = 42
+        rr += 1
+        for lbl, key, fmt, strong in spec:
+            ws.cell(rr, 1, lbl).font = SUB if strong else FORM
+            sign = -1 if key == "d_wc" else 1
+            for j, x in enumerate(rows, start=2):
+                c = ws.cell(rr, j, round(sign * x[key], 4)); c.number_format = fmt
+                c.font = SUB if strong else FORM
+            rr += 1
+        return rr + 1
+
     ws = wb.create_sheet("Cash Flow")
-    head(ws, "Cash flow — forecast", "Central case. EGP million.")
-    rr = _yearhead(ws)
-    for lbl, key in (("Operating cash flow", "cfo"),
-                     ("Free cash flow to the firm", "fcff")):
-        ws.cell(rr, 1, lbl).font = FORM
-        for j, row_ in enumerate(rows, start=2):
-            c = ws.cell(rr, j, round(row_.get(key, 0), 1))
-            c.number_format = "#,##0"
+    head(ws, "Cash flow — forecast, both readings",
+         "The audited balance sheet and the audited cash-flow statement "
+         "disagree about 2025 by EGP %s million, and that difference cannot be "
+         "split from what is disclosed. So the forecast is published two ways "
+         "and neither is averaged into the other."
+         % "{:,.0f}".format(ST["wedge"]["wedge_fy25"]))
+    CF = [("Net profit", "npat", "#,##0", False),
+          ("Depreciation and amortisation", "da", "#,##0", False),
+          ("Change in working capital, cash effect", "d_wc", "#,##0", False),
+          ("Cash from operations", "cfo", "#,##0", True),
+          ("  as a share of revenue", "cash_conversion", "0.0%", False),
+          ("Capital expenditure", "cfi", "#,##0", False),
+          ("New borrowing drawn", "drawn", "#,##0", False),
+          ("Cash from financing", "cff", "#,##0", False),
+          ("Closing cash", "cash", "#,##0", True),
+          ("Cumulative new borrowing", "drawn_cum", "#,##0", False)]
+    rr = 4
+    ws.cell(rr, 1, "IF CASH CONVERSION HOLDS — the basis of the valuation").font = SUB
+    rr = _proj(ws, rr + 1, FB, CF)
+    ws.cell(rr, 1, "IF THE COLLECTION CYCLE HOLDS").font = SUB
+    rr = _proj(ws, rr + 1, FA, CF)
+    ws.cell(rr, 1, "Cash conversion, the three published years").font = SUB
+    rr += 1
+    for k in ("FY2023", "FY2024", "FY2025", "mean"):
+        ws.cell(rr, 1, k if k != "mean" else "  mean, carried above").font = FORM
+        c = ws.cell(rr, 2, round(ST["cash_conversion"][k], 6))
+        c.number_format = "0.00%"
         rr += 1
 
     ws = wb.create_sheet("Balance Sheet")
-    head(ws, "Balance sheet — as reported", "EGP million.", [46, 16, 16])
+    head(ws, "Balance sheet — as reported, then forecast both ways",
+         "EGP million. Assets equal liabilities plus shareholders' funds in "
+         "every reported and every forecast year.")
+    SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
+    ws.column_dimensions["A"].width = 46
+    for col in ("B", "C"):
+        ws.column_dimensions[col].width = 16
     r = 4
-    r = row(ws, r, "", ["2025", "2024"], font=HEAD, bold=True)
-    for lbl, a, bq in (
-        ("Non-current assets", v("total_noncurrent_assets"), 54166.4),
-        ("Current assets", v("total_current_assets"), 69270.9),
-        ("Total assets", v("total_assets"), 123437.3),
-        ("Current liabilities", 105099.0, 74496.9),
-        ("Non-current liabilities", 48265.1, 34315.7),
-        ("Total liabilities", v("total_liabilities"), 108812.6),
-        ("Shareholders' funds", v("total_equity"), 14624.7),
-    ):
-        r = row(ws, r, lbl, [a, bq], fmt="#,##0.0")
+    r = row(ws, r, "AS REPORTED", ["2025", "2024"], font=HEAD, bold=True)
+    top = r
+    for lbl, key in (("Non-current assets", "total_noncurrent_assets"),
+                     ("Current assets", "total_current_assets"),
+                     ("Total assets", "total_assets"),
+                     ("Current liabilities", "total_current_liabs"),
+                     ("Non-current liabilities", "total_noncurrent_liabs"),
+                     ("Total liabilities", "total_liabilities"),
+                     ("Shareholders' funds", "total_equity")):
+        r = row(ws, r, lbl, [SB["2025"][key]["value"], SB["2024"][key]["value"]],
+                fmt="#,##0.0")
     r = row(ws, r, "Check: assets less liabilities and equity",
-            ["=B7-B10-B11", "=C7-C10-C11"], fmt="#,##0.00", bold=True)
+            ["=B%d-B%d-B%d" % (top + 2, top + 5, top + 6),
+             "=C%d-C%d-C%d" % (top + 2, top + 5, top + 6)],
+            fmt="#,##0.00", bold=True)
+    r += 1
+    BSSPEC = [("Trade and notes receivable", "receivables", "#,##0", False),
+              ("Work in progress", "wip", "#,##0", False),
+              ("Other receivables and prepayments", "bs_debtors_other",
+               "#,##0", False),
+              ("Advances to suppliers", "bs_suppliers_advances", "#,##0", False),
+              ("Cash and equivalents", "cash", "#,##0", False),
+              ("Property and equipment", "ppe", "#,##0", False),
+              ("Other assets, held at the 2025 level", "other_assets",
+               "#,##0", False),
+              ("TOTAL ASSETS", "total_assets", "#,##0", True),
+              ("Customer advances", "advances", "#,##0", False),
+              ("Suppliers", "suppliers", "#,##0", False),
+              ("Other creditors", "bs_creditors_other", "#,##0", False),
+              ("Cheques under collection", "bs_checks_undelivered",
+               "#,##0", False),
+              ("Borrowings", "debt", "#,##0", False),
+              ("Other liabilities, held at the 2025 level", "other_liabs",
+               "#,##0", False),
+              ("TOTAL LIABILITIES", "total_liabilities", "#,##0", True),
+              ("Shareholders' funds", "equity", "#,##0", False),
+              ("TOTAL LIABILITIES AND EQUITY", "total_liabs_and_equity",
+               "#,##0", True),
+              ("Check: assets less liabilities and equity", "balance_check",
+               "#,##0.000", True),
+              ("Collection period, days", "dso", "#,##0", False),
+              ("Work in progress, days of cost", "dio", "#,##0", False),
+              ("Suppliers, days of cost", "dpo", "#,##0", False),
+              ("Customer advances, share of the order book",
+               "adv_of_backlog", "0.0%", False),
+              ("Net working capital", "net_wc", "#,##0", False),
+              ("  as a multiple of revenue", "nwc_over_revenue",
+               "#,##0.00", False)]
+    ws.cell(r, 1, "FORECAST — IF CASH CONVERSION HOLDS").font = SUB
+    r = _proj(ws, r + 1, FB, BSSPEC)
+    ws.cell(r, 1, "FORECAST — IF THE COLLECTION CYCLE HOLDS").font = SUB
+    r = _proj(ws, r + 1, FA, BSSPEC)
+    ws.cell(r, 1, "The cycle as reported, both audited years").font = SUB
+    r += 1
+    cy = ST["cycle_measured"]
+    r = row(ws, r, "", ["2025", "2024"], font=HEAD, bold=True)
+    for lbl, a, bq, fmt in (
+            ("Collection period, days", cy["dso_fy25"], cy["dso_fy24"], "#,##0"),
+            ("Work in progress, days of cost", cy["dio_fy25"], cy["dio_fy24"],
+             "#,##0"),
+            ("Suppliers, days of cost", cy["dpo_fy25"], cy["dpo_fy24"], "#,##0"),
+            ("Customer advances, share of the order book",
+             cy["adv_of_backlog_fy25"], cy["adv_of_backlog_fy24"], "0.0%"),
+            ("Net working capital", cy["nwc_fy25"], cy["nwc_fy24"], "#,##0"),
+            ("  as a multiple of revenue", cy["nwc_over_revenue_fy25"],
+             cy["nwc_over_revenue_fy24"], "#,##0.00")):
+        r = row(ws, r, lbl, [round(a, 4), round(bq, 4)], fmt=fmt)
 
     # 12 Summary Financials --------------------------------------------------
     ws = wb.create_sheet("Summary Financials")
     head(ws, "Summary financials, as reported", None, [40, 15, 15, 15])
     r = 4
     r = row(ws, r, "EGP million", ["2023", "2024", "2025"], font=HEAD, bold=True)
-    for lbl, a, bq, c in (
-        ("Revenue", v("revenue_fy23"), v("revenue_fy24"), v("revenue_fy25")),
-        ("Gross profit", 5507.6, 9330.1, v("gross_profit_fy25")),
-        ("Pre-tax profit", 2300.7, 4320.6, v("npbt_fy25")),
-        ("Profit after tax and minority", 1581.5, 3254.9, v("npat_mi_fy25")),
-        ("Cash from operations", v("cfo_fy23"), v("cfo_fy24"), v("cfo_fy25")),
+    H = N["historical_is"]
+    HY = ("2023", "2024", "2025")
+
+    def _hy(key):
+        return [H[y][key]["value"] if key in H[y] else None for y in HY]
+
+    for lbl, vals in (
+        ("Revenue", _hy("revenue")),
+        ("Cost of revenue", [-x if x is not None else None
+                             for x in _hy("cogs")]),
+        ("Gross profit", _hy("gross_profit")),
+        ("Overheads", [-x if x is not None else None for x in _hy("sga")]),
+        ("Finance cost", [-x if x is not None else None
+                          for x in _hy("finance_cost")]),
+        ("Pre-tax profit", _hy("npbt")),
+        ("Tax", [-x if x is not None else None for x in _hy("tax_total")]),
+        ("Profit after tax and minority", _hy("npat_mi")),
+        ("Cash from operations",
+         [v("cfo_fy23"), v("cfo_fy24"), v("cfo_fy25")]),
     ):
-        r = row(ws, r, lbl, [a, bq, c], fmt="#,##0.0")
+        r = row(ws, r, lbl, ["" if x is None else x for x in vals],
+                fmt="#,##0.0")
+    r = row(ws, r, "Cash from operations, share of revenue",
+            ["=B%d/B5" % r, "=C%d/C5" % r, "=D%d/D5" % r], fmt="0.0%",
+            bold=True)
 
     # 13 Monte Carlo ---------------------------------------------------------
     ws = wb.create_sheet("Monte Carlo")

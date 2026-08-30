@@ -87,6 +87,7 @@ BALANCE_SHEET_FY24 = {
     "notes_recv_st_undel": I(1718.6,  FS25 + " (comparative)", "2024-12-31", "A"),
     "debtors_other":       I(7541.5,  FS25 + " (comparative)", "2024-12-31", "A"),
     "suppliers_advances":  I(4791.0,  FS25 + " (comparative)", "2024-12-31", "A"),
+    "cash":                I(6372.4,  FS25 + " (comparative)", "2024-12-31", "A"),
     "advances_customers":  I(47403.8, FS25 + " (comparative)", "2024-12-31", "A"),
     "suppliers":           I(3426.7,  FS25 + " (comparative)", "2024-12-31", "A"),
     "creditors_other":     I(4677.3,  FS25 + " (comparative)", "2024-12-31", "A"),
@@ -156,6 +157,16 @@ MARKET = {
 # ---------------------------------------------------------------------------
 # GAPS — disclosed nowhere, and therefore NOT filled. Each names what closes it.
 GAPS = {
+    "cash_flow_statement_detail": (
+        "The FY2025 cash-flow statement is published in its three totals only "
+        "(operating EGP 1,424.2mn, investing EGP -4,031.7mn, financing "
+        "EGP 5,628.8mn); no line-by-line statement is posted. Working capital "
+        "on the two audited balance sheets rose EGP 20,084.7mn in 2025 while "
+        "net profit plus depreciation less operating cash implies a rise of "
+        "EGP 3,146.2mn — a wedge of EGP 16,938.5mn, 46.8% of revenue, which "
+        "CANNOT be decomposed from what is disclosed and is therefore not "
+        "decomposed. It is why the projection is published in two framings "
+        "rather than one. Closed by: the full FY2025 cash-flow statement."),
     "fy2025_results_release": "PHD has published FY2025 consolidated statements but NO "
         "FY2025 full-year results release. The release is where units sold, new sales, "
         "deliveries and construction spend are disclosed, so FY2025 has audited "
@@ -208,3 +219,117 @@ def assert_balance_sheet_foots():
     assert abs(b["total_assets"]["value"]
                - (b["total_liabilities"]["value"] + b["total_equity"]["value"])) < 1.0
     return {"non_current_assets": round(nc, 1), "current_assets": round(ca, 1)}
+
+# ---------------------------------------------------------------------------
+# The reported income statement, three years, so Appendix A carries no numeral
+# typed into a builder. FY2023 and FY2024 are read from the FY2024 statements;
+# FY2025 from the FY2024 comparative in the FY2025 statements. Cost of revenue
+# is shown on its own line and the cash discount separately, because the
+# company reports gross profit after both: revenue less cost of revenue less
+# cash discount foots to reported gross profit in all three years.
+FS23 = "PHD consolidated financial statements FY2023 (31 Dec 2023), via " + IR
+FS24 = "PHD consolidated financial statements FY2024 (31 Dec 2024), via " + IR
+
+HISTORICAL_IS = {
+    "2023": {
+        "revenue":        I(17462.1, FS23, "2023-12-31", "A"),
+        "cogs":           I(11907.2, FS23, "2023-12-31", "A"),
+        "cash_discount":  I(47.2,    FS23, "2023-12-31", "A"),
+        "gross_profit":   I(5507.6,  FS23, "2023-12-31", "A"),
+        "sga":            I(2060.5,  FS23, "2023-12-31", "A"),
+        "da":             I(178.6,   FS23, "2023-12-31", "A"),
+        "npbt":           I(2300.7,  FS23, "2023-12-31", "A"),
+        "tax_total":      I(567.3,   FS23, "2023-12-31", "A"),
+        "npat_pre_nci":   I(1733.4,  FS23, "2023-12-31", "A"),
+        "nci":            I(151.9,   FS23, "2023-12-31", "A"),
+        "npat_mi":        I(1581.5,  FS23, "2023-12-31", "A"),
+    },
+    "2024": {
+        "revenue":        I(27167.3, FS24, "2024-12-31", "A"),
+        "cogs":           I(17739.9, FS24, "2024-12-31", "A"),
+        "cash_discount":  I(97.3,    FS24, "2024-12-31", "A"),
+        "gross_profit":   I(9330.1,  FS24, "2024-12-31", "A"),
+        "sga":            I(3435.8,  FS24, "2024-12-31", "A"),
+        "da":             I(239.9,   FS24, "2024-12-31", "A"),
+        "finance_cost":   I(2311.4,  FS24, "2024-12-31", "A"),
+        "npbt":           I(4320.6,  FS24, "2024-12-31", "A"),
+        "tax_total":      I(917.1,   FS24, "2024-12-31", "A"),
+        "npat_pre_nci":   I(3403.5,  FS24, "2024-12-31", "A"),
+        "nci":            I(148.5,   FS24, "2024-12-31", "A"),
+        "npat_mi":        I(3254.9,  FS24, "2024-12-31", "A"),
+    },
+    "2025": {
+        "revenue":        I(36169.3, FS25, "2025-12-31", "A"),
+        "cogs":           I(21118.9, FS25, "2025-12-31", "A"),
+        "cash_discount":  I(162.8,   FS25, "2025-12-31", "A"),
+        "gross_profit":   I(14887.6, FS25, "2025-12-31", "A"),
+        "sga":            I(6365.6,  FS25, "2025-12-31", "A"),
+        "da":             I(353.7,   FS25, "2025-12-31", "A"),
+        "finance_cost":   I(3347.5,  FS25, "2025-12-31", "A"),
+        "npbt":           I(6251.1,  FS25, "2025-12-31", "A"),
+        "tax_total":      I(1827.2,  FS25, "2025-12-31", "A"),
+        "npat_pre_nci":   I(4423.8,  FS25, "2025-12-31", "A"),
+        "nci":            I(207.2,   FS25, "2025-12-31", "A"),
+        "npat_mi":        I(4216.7,  FS25, "2025-12-31", "A"),
+    },
+}
+
+# FY2024 cost of revenue is EGP 17,739.9mn as the company reported it for that
+# year and EGP 17,837.2mn in the FY2025 comparative column — a restatement of
+# EGP 97.3mn, equal to that year's cash discount, which the FY2025 presentation
+# folds into cost. The forecast model is built on the FY2025-comparative basis
+# throughout; the appendix shows each year as that year's statements reported
+# it. Both figures are correct on their own basis and neither is an error.
+FY24_COGS_AS_REPORTED = 17739.9
+FY24_COGS_FY25_BASIS = 17837.2
+
+# The reported balance-sheet subtotals, both years, on the FY2025 presentation.
+BALANCE_SHEET_SUBTOTALS = {
+    "2025": {
+        "total_noncurrent_assets": I(65900.2, FS25, "2025-12-31", "A"),
+        "total_current_assets":    I(106229.6, FS25, "2025-12-31", "A"),
+        "total_assets":            I(172129.8, FS25, "2025-12-31", "A"),
+        "total_current_liabs":     I(105099.0, FS25, "2025-12-31", "A"),
+        "total_noncurrent_liabs":  I(48265.1, FS25, "2025-12-31", "A"),
+        "total_liabilities":       I(153364.1, FS25, "2025-12-31", "A"),
+        "total_equity":            I(18765.8, FS25, "2025-12-31", "A"),
+    },
+    "2024": {
+        "total_noncurrent_assets": I(54166.4, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_current_assets":    I(69270.9, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_assets":            I(123437.3, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_current_liabs":     I(74496.9, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_noncurrent_liabs":  I(34315.7, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_liabilities":       I(108812.6, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+        "total_equity":            I(14624.7, FS25 + " (comparative)",
+                                     "2024-12-31", "A"),
+    },
+}
+
+
+def assert_historicals_foot():
+    """Each reported year must foot on its own lines, or it is not usable."""
+    out = []
+    for y, d in HISTORICAL_IS.items():
+        g = d["revenue"]["value"] - d["cogs"]["value"] - d["cash_discount"]["value"]
+        assert abs(g - d["gross_profit"]["value"]) < 0.2, (y, g)
+        n = d["npbt"]["value"] - d["tax_total"]["value"]
+        assert abs(n - d["npat_pre_nci"]["value"]) < 0.2, (y, n)
+        m = d["npat_pre_nci"]["value"] - d["nci"]["value"]
+        assert abs(m - d["npat_mi"]["value"]) < 0.2, (y, m)
+        out.append((y, "gross profit, profit after tax and minority all foot"))
+    for y, d in BALANCE_SHEET_SUBTOTALS.items():
+        a = d["total_noncurrent_assets"]["value"] + d["total_current_assets"]["value"]
+        assert abs(a - d["total_assets"]["value"]) < 0.2, (y, a)
+        l = d["total_current_liabs"]["value"] + d["total_noncurrent_liabs"]["value"]
+        assert abs(l - d["total_liabilities"]["value"]) < 0.2, (y, l)
+        e = d["total_liabilities"]["value"] + d["total_equity"]["value"]
+        assert abs(e - d["total_assets"]["value"]) < 0.2, (y, e)
+        out.append((y, "assets, liabilities and equity all foot"))
+    return out

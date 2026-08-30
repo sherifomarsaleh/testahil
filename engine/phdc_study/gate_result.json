@@ -26,7 +26,7 @@
   "assert_model_study": {
    "result": "PASS",
    "evidence": {
-    "sections": 40,
+    "sections": 44,
     "sheets": [
      "READ FIRST",
      "Summary",
@@ -45,10 +45,17 @@
      "Per-Share & Ratios",
      "Peer & Sector"
     ],
-    "formula_cells": 89,
+    "formula_cells": 72,
     "scrub_hits": [],
-    "document_chars": 53961,
+    "document_chars": 65556,
     "column_audit": [],
+    "figures_rebuilt": [
+     "fig1_football.png",
+     "fig2_sensitivity.png",
+     "fig3_cone.png",
+     "fig4_peers.png"
+    ],
+    "figures_not_rebuilt": [],
     "figures": [
      "fig1_football.png",
      "fig2_sensitivity.png",
@@ -56,7 +63,7 @@
      "fig4_peers.png"
     ],
     "figures_with_transparency": [],
-    "recalc_checks": 21,
+    "recalc_checks": 85,
     "recalc_mismatches": 0,
     "bibliography_present": true,
     "pdfs": [
@@ -68,7 +75,7 @@
   }
  },
  "evidence": {
-  "sections": 40,
+  "sections": 44,
   "sheets": [
    "READ FIRST",
    "Summary",
@@ -87,10 +94,17 @@
    "Per-Share & Ratios",
    "Peer & Sector"
   ],
-  "formula_cells": 89,
+  "formula_cells": 72,
   "scrub_hits": [],
-  "document_chars": 53961,
+  "document_chars": 65556,
   "column_audit": [],
+  "figures_rebuilt": [
+   "fig1_football.png",
+   "fig2_sensitivity.png",
+   "fig3_cone.png",
+   "fig4_peers.png"
+  ],
+  "figures_not_rebuilt": [],
   "figures": [
    "fig1_football.png",
    "fig2_sensitivity.png",
@@ -98,7 +112,7 @@
    "fig4_peers.png"
   ],
   "figures_with_transparency": [],
-  "recalc_checks": 21,
+  "recalc_checks": 85,
   "recalc_mismatches": 0,
   "bibliography_present": true,
   "pdfs": [
