@@ -158,7 +158,7 @@ def sensitivity():
     That is the finding, and this grid is the evidence for it.
     """
     wr = W["wacc_rating"]
-    grid, cfos = [], [0.039, 0.060, 0.087, 0.120, 0.179]
+    grid, cfos = [], [CFO_LO, 0.060, CFO_MID, 0.120, CFO_HI]
     waccs = [wr - 0.04, wr - 0.02, wr, wr + 0.02, wr + 0.04]
     for c in cfos:
         row = []
@@ -177,11 +177,11 @@ def print_sensitivity():
     print("%-22s" % "cash conversion \\ WACC" + "".join("%10.2f%%" % (w * 100) for w in waccs))
     for c, row in grid:
         tag = ""
-        if abs(c - 0.039) < 1e-9:
+        if abs(c - CFO_LO) < 1e-9:
             tag = "  <- FY2023 and FY2025 actual"
-        if abs(c - 0.179) < 1e-9:
+        if abs(c - CFO_HI) < 1e-9:
             tag = "  <- FY2024 actual"
-        if abs(c - 0.087) < 1e-9:
+        if abs(c - CFO_MID) < 1e-9:
             tag = "  <- three-year mean"
         print("%-22s" % ("CFO/revenue %5.1f%%" % (c * 100))
               + "".join("%11.2f" % v for v in row) + tag)

@@ -147,7 +147,7 @@ MARKET = {
     "shares_outstanding_bn": I(2.85992, "Share capital per FY2025 balance sheet and the "
                                "share count carried on the covered-name record",
                                "2025-12-31", "A", unit="bn shares"),
-    "spot":                  I(15.20, "EGX close 23 Aug 2026, engine/raw_ohlc/EG/PHDC.csv",
+    "spot":                  I(15.20, "Egyptian Exchange closing price for PHDC, 23 August 2026",
                                "2026-08-23", "B", unit="EGP/share"),
 }
 

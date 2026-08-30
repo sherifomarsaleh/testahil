@@ -21,13 +21,91 @@
    }
   },
   "assert_sigcm": {
-   "result": "FAIL",
-   "detail": "SIGCM HARD FAIL \u2014 study must not be issued. Unmet clauses: competitors. See Source_Integrity_and_Ground_Up_Mandate.md. If a clause was blocked by inaccessible official data, STOP and inform Sherif rather than proceeding."
+   "result": "PASS"
   },
   "assert_model_study": {
-   "result": "FAIL \u2014 EXPECTED AT THIS BUILD DATE",
-   "detail": "MODEL-REPORT BAR NOT MET \u2014 study must not be issued. Unmet standards: structure_matches_model, bibliography_document, external_reader_scrub, figure_discipline, table_discipline, expert_appendix_max_detail. The bar is ADNOCLS_Valuation_Study_09-08-2026 (engine/adnocls_study/, evidence in QC_GATE_09-08-2026.md); see MODEL_STUDY / MODEL_STUDY_DEPTH in this module."
+   "result": "PASS",
+   "evidence": {
+    "sections": 37,
+    "sheets": [
+     "READ FIRST",
+     "Summary",
+     "Fundamental Valuation",
+     "Assumptions",
+     "SOTP Bridge",
+     "Segments",
+     "Relative & Normalized",
+     "DCF",
+     "Income Statement",
+     "Balance Sheet",
+     "Cash Flow",
+     "Summary Financials",
+     "Monte Carlo",
+     "Sensitivity",
+     "Per-Share & Ratios",
+     "Peer & Sector"
+    ],
+    "formula_cells": 99,
+    "scrub_hits": [],
+    "document_chars": 48924,
+    "column_audit": [],
+    "figures": [
+     "fig1_football.png",
+     "fig2_sensitivity.png",
+     "fig3_cone.png",
+     "fig4_peers.png"
+    ],
+    "figures_with_transparency": [],
+    "recalc_checks": 21,
+    "recalc_mismatches": 0,
+    "bibliography_present": true,
+    "pdfs": [
+     "PHDC_Bibliography_30-08-2026.pdf",
+     "PHDC_Valuation_Model_30082026.pdf",
+     "PHDC_Valuation_Study_30-08-2026.pdf"
+    ]
+   }
   }
  },
- "issuable": false
+ "evidence": {
+  "sections": 37,
+  "sheets": [
+   "READ FIRST",
+   "Summary",
+   "Fundamental Valuation",
+   "Assumptions",
+   "SOTP Bridge",
+   "Segments",
+   "Relative & Normalized",
+   "DCF",
+   "Income Statement",
+   "Balance Sheet",
+   "Cash Flow",
+   "Summary Financials",
+   "Monte Carlo",
+   "Sensitivity",
+   "Per-Share & Ratios",
+   "Peer & Sector"
+  ],
+  "formula_cells": 99,
+  "scrub_hits": [],
+  "document_chars": 48924,
+  "column_audit": [],
+  "figures": [
+   "fig1_football.png",
+   "fig2_sensitivity.png",
+   "fig3_cone.png",
+   "fig4_peers.png"
+  ],
+  "figures_with_transparency": [],
+  "recalc_checks": 21,
+  "recalc_mismatches": 0,
+  "bibliography_present": true,
+  "pdfs": [
+   "PHDC_Bibliography_30-08-2026.pdf",
+   "PHDC_Valuation_Model_30082026.pdf",
+   "PHDC_Valuation_Study_30-08-2026.pdf"
+  ]
+ },
+ "issuable": true
 }

@@ -1,0 +1,1464 @@
+{
+ "meta": {
+  "ticker": "PHDC",
+  "name": "Palm Hills Developments",
+  "exchange": "EGX",
+  "market": "EG",
+  "currency": "EGP",
+  "edition": "2026-08-30",
+  "prior_edition": "2026-06-11",
+  "base_year": 2025,
+  "information_set_ends": "1Q2026"
+ },
+ "registry": {
+  "revenue_fy25": {
+   "value": 36169.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cogs_fy25": {
+   "value": 21118.9,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "gross_profit_fy25": {
+   "value": 14887.6,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "sga_fy25": {
+   "value": 6365.6,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "da_fy25": {
+   "value": 353.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "finance_cost_fy25": {
+   "value": 3347.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "npbt_fy25": {
+   "value": 6251.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "tax_fy25": {
+   "value": 1827.2,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "npat_mi_fy25": {
+   "value": 4216.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "revenue_fy24": {
+   "value": 27167.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative column)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cfo_fy25": {
+   "value": 1424.2,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows)",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cfi_fy25": {
+   "value": -4031.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows)",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cff_fy25": {
+   "value": 5628.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows)",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cfo_fy24": {
+   "value": 4854.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows, comparative) \u2014 NOTE this RESTATES the EGP 3,131.9mn the FY2024 results release reported for the same year; the filing is used",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cfo_fy23": {
+   "value": 756.7,
+   "source": "PHD FY2024 earnings release (comparative)",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "revenue_fy23": {
+   "value": 17462.1,
+   "source": "PHD FY2023 consolidated financial statements",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cogs_fy24": {
+   "value": 17837.2,
+   "source": "PHD FY2024 earnings release",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_assets": {
+   "value": 172129.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_liabilities": {
+   "value": 153364.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_equity": {
+   "value": 18765.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "equity_parent": {
+   "value": 17431.4,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "nci_equity": {
+   "value": 1334.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cash": {
+   "value": 9419.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "work_in_progress": {
+   "value": 17570.9,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "accounts_receivable": {
+   "value": 28118.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st": {
+   "value": 18137.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt": {
+   "value": 54801.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st_undel": {
+   "value": 935.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt_undel": {
+   "value": 1518.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "advances_customers": {
+   "value": 69354.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers": {
+   "value": 3807.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "investments_assoc": {
+   "value": 3611.6,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "investment_property": {
+   "value": 1032.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "fixed_assets": {
+   "value": 4522.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "fin_inv_amortised": {
+   "value": 9581.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "debtors_other": {
+   "value": 12922.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "due_from_related": {
+   "value": 335.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "inv_fair_value": {
+   "value": 152.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers_advances": {
+   "value": 9056.2,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_noncurrent_assets": {
+   "value": 65900.2,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_current_assets": {
+   "value": 106229.6,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "deferred_revenue": {
+   "value": 731.2,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "checks_undelivered": {
+   "value": 2453.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "creditors_other": {
+   "value": 5121.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "loans_long_term": {
+   "value": 10543.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_payable_long_term": {
+   "value": 4505.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "credit_facilities": {
+   "value": 11337.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "banks_credit_balances": {
+   "value": 938.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "current_portion_st_loans": {
+   "value": 1250.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_payable_short_term": {
+   "value": 4875.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "lease_liabilities_lt": {
+   "value": 60.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "lease_liabilities_st": {
+   "value": 41.9,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "backlog_1q26": {
+   "value": 263000.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"the company's backlog of units sold and not yet delivered reached EGP263 billion up from EGP190 billion in 1Q2025\"",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "backlog_fy24": {
+   "value": 147000.0,
+   "source": "PHD FY2024 earnings release",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "backlog_fy23": {
+   "value": 60000.0,
+   "source": "PHD FY2024 earnings release (comparative)",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "new_sales_1q26": {
+   "value": 52000.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"New sales recorded EGP 52 billion in 1Q2026\"",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "new_sales_fy24": {
+   "value": 151016.0,
+   "source": "PHD FY2024 earnings release, chart series",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "vdlc_launch_1q26": {
+   "value": 24000.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"the company launched its strategic land plot Village de La Capitale in New administrative Capital with total sales of EGP24 billion\"",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "revenue_1q26": {
+   "value": 9300.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "gross_profit_1q26": {
+   "value": 3300.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 margin 35% versus 44% in 1Q2025",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "npat_1q26": {
+   "value": 1200.0,
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2026-03-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "construction_fy24": {
+   "value": 8500.0,
+   "source": "PHD FY2024 earnings release \u2014 \"The Company spent EGP8.5 billion on construction activities during FY2024\"",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "construction_fy23": {
+   "value": 7500.0,
+   "source": "PHD FY2023 earnings release",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "collections_fy24": {
+   "value": 25400.0,
+   "source": "PHD FY2024 earnings release",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "land_bank_sqm_mn": {
+   "value": 33.0,
+   "source": "PHD FY2024 earnings release \u2014 land bank \"spreading over 33 million square meters\"",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "mn sqm"
+  },
+  "units_delivered_fy23": {
+   "value": 1500.0,
+   "source": "PHD FY2023 earnings release",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "units"
+  },
+  "units_sold_fy23": {
+   "value": 5300.0,
+   "source": "PHD FY2023 earnings release, chart series",
+   "date": "2023-12-31",
+   "tier": "A",
+   "unit": "units"
+  },
+  "shares_outstanding_bn": {
+   "value": 2.85992,
+   "source": "Share capital per FY2025 balance sheet and the share count carried on the covered-name record",
+   "date": "2025-12-31",
+   "tier": "A",
+   "unit": "bn shares"
+  },
+  "spot": {
+   "value": 15.2,
+   "source": "Egyptian Exchange closing price for PHDC, 23 August 2026",
+   "date": "2026-08-23",
+   "tier": "B",
+   "unit": "EGP/share"
+  }
+ },
+ "balance_sheet_fy24": {
+  "work_in_progress": {
+   "value": 13209.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "accounts_receivable": {
+   "value": 15561.1,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt": {
+   "value": 43213.4,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt_undel": {
+   "value": 3095.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st": {
+   "value": 13429.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st_undel": {
+   "value": 1718.6,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "debtors_other": {
+   "value": 7541.5,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers_advances": {
+   "value": 4791.0,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "advances_customers": {
+   "value": 47403.8,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers": {
+   "value": 3426.7,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "creditors_other": {
+   "value": 4677.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "checks_undelivered": {
+   "value": 4814.3,
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (comparative)",
+   "date": "2024-12-31",
+   "tier": "A",
+   "unit": "EGP mn"
+  }
+ },
+ "gaps": {
+  "fy2025_results_release": "PHD has published FY2025 consolidated statements but NO FY2025 full-year results release. The release is where units sold, new sales, deliveries and construction spend are disclosed, so FY2025 has audited financials and NO operating drivers. Closed by: the FY2025 release, or the company confirming the figures directly.",
+  "h1_2026_results": "As at this build date (30-Aug-2026) no 2Q/H1-2026 statements or release are posted to the result centre; the newest disclosure of any kind is 1Q2026 (posted 25-Jun-2026). The study's information set therefore ends at 1Q2026. Closed by: the H1-2026 filing.",
+  "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, so the company's own marginal cost of debt cannot be read. Closed by: the offering circular or a disclosed coupon.",
+  "per_project_pricing": "The company does not disclose per-project unit mix, average unit area, price per square metre or construction cost per square metre. The 11-Jun-2026 edition carried a full per-project table of those figures; they are NOT sourced to any company document. This study does not reuse them. Closed by: an investor presentation or project-level disclosure carrying unit economics.",
+  "backlog_cost_to_complete": "Remaining construction cost against the EGP 263bn backlog is not disclosed as a single figure. It is inferred in the model from the realised gross margin and flagged where used."
+ },
+ "wacc": {
+  "beta_record": {
+   "ticker": "PHDC",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 1.0493083523382887,
+   "r2": 0.2987994630165052,
+   "se": 0.1822867868951778,
+   "n": 251,
+   "ci90": [
+    0.7494465878957213,
+    1.349170116780856
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": [],
+   "window_years": 4.85,
+   "first_obs": "2021-09-09",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 1.0328722348921924,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  },
+  "damodaran_egypt": {
+   "moodys_rating": "Caa1",
+   "adj_default_spread": 0.0637,
+   "country_risk_premium": 0.0971,
+   "total_erp_rating": 0.1394,
+   "corporate_tax_rate": 0.225,
+   "sovereign_cds": 0.0341,
+   "total_erp_cds": 0.0941,
+   "source": "Damodaran country-premium file ctryprem.html, EGYPT row, read fresh 30-Aug-2026 from pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html. Egypt is looked up on its own row; no regional or borrowed figure is used."
+  },
+  "rf_observed": 0.23,
+  "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026 (investing.com), the same sourced quote this repository's EGCH edition carries. Cross-checks recorded there: an EGP 120.9bn treasury bond maturing May-2029 listed at a 23.098% coupon, and secondary T-bill yields of 24.86% (3M) to 25.52% (12M). FLAGGED: the quote is 24 days old at this build date. It must be refreshed before the study is issued externally, and section 1.9 prices the sensitivity of fair value to it.",
+  "kd_pretax_local": 0.255,
+  "kd_source": "MARGINAL, forward-looking, in the cash-flow currency. The company's own latest issue \u2014 the EGP 2.015bn securitisation closed 4-Feb-2026 under its EGP 30bn programme, tranches of 13/36/60/84 months rated AA+/AA/A+/A- (national scale) \u2014 is the correct anchor, but NO COUPON IS DISCLOSED for any tranche, so it cannot be used. Kd is therefore built as the sovereign 10-year (23.00%) plus a 250bp corporate credit spread, which places it above the sovereign as the method requires. THE 250bp SPREAD IS THIS BUILD'S ONE UNSOURCED COST-OF-CAPITAL INPUT and is flagged as such; it is sensitised in section 1.9. The FY2025 accounting rate is deliberately NOT used: finance cost of EGP 3,347.5mn on mean gross debt of EGP 26,740.6mn implies 12.5%, far below the sovereign, because much of the balance (notes payable to land sellers, customer-facing balances) is non-interest-bearing and part of the charge is capitalised into work in progress. A historical or capitalisation rate is not a marginal rate.",
+  "gross_debt": 33552.7,
+  "cash": 9419.5,
+  "net_debt": 24133.199999999997,
+  "market_cap": 43470.78399999999,
+  "shares_bn": 2.85992,
+  "spot": 15.2,
+  "ke_rating": 0.31257358431595744,
+  "ke_cds": 0.29463991595503297,
+  "rf_star_rating": 0.1663,
+  "rf_star_cds": 0.19590000000000002,
+  "kd_aftertax": 0.19762500000000002,
+  "we": 0.5643835067237415,
+  "wd": 0.4356164932762585,
+  "wacc_rating": 0.2625000851091698,
+  "wacc_cds": 0.25237861847121057,
+  "warnings": []
+ },
+ "derived": {
+  "gross_debt": 33552.7,
+  "net_debt": 24133.199999999997,
+  "shares_mn": 2859.9199999999996,
+  "book_equity_per_share": 6.561652074183894,
+  "gross_margin_fy25": 0.41160874000879194,
+  "gross_margin_1q26": 0.3548387096774194,
+  "sga_ratio_fy25": 0.1759945589215163,
+  "cfo_margins": {
+   "2023": 0.043333848735260944,
+   "2024": 0.17870012846326283,
+   "2025": 0.039375934839767424
+  },
+  "cfo_lo": 0.039375934839767424,
+  "cfo_mid": 0.08713663734609707,
+  "cfo_hi": 0.17870012846326283,
+  "cpi_trailing3": 0.252,
+  "target_backlog_multiple": 5.410916800712622,
+  "market_implied_cash_conversion": 0.06780207819717765,
+  "prior_edition_wacc": 0.18,
+  "prior_edition_fair": {
+   "bear": 7.62,
+   "base": 15.89,
+   "full": 24.92
+  }
+ },
+ "cases": {
+  "low_conversion": {
+   "ev": 45703.66913652191,
+   "equity": 26214.56913652191,
+   "per_share": 9.166189661431758,
+   "pv_explicit": 32955.93714543944,
+   "pv_terminal": 12747.731991082468,
+   "terminal_share": 0.27892141335531695,
+   "rows": [
+    {
+     "year": 2026,
+     "revenue": 45283.9636,
+     "new_sales": 27311.723046098865,
+     "backlog": 245027.75944609885,
+     "gross": 17353.88920645161,
+     "npbt": 828.2195064516109,
+     "tax": 186.34938895161244,
+     "cfo": 1783.0983999999999,
+     "fcff": 7961.1111015
+    },
+    {
+     "year": 2027,
+     "revenue": 56695.522427200005,
+     "new_sales": 118442.51780761691,
+     "backlog": 306774.75482651574,
+     "gross": 21727.069286477417,
+     "npbt": 3193.027324077417,
+     "tax": 718.4311479174188,
+     "cfo": 2232.4391968,
+     "fcff": 8296.336310028
+    },
+    {
+     "year": 2028,
+     "revenue": 70982.79407885441,
+     "new_sales": 148290.0322951364,
+     "backlog": 384081.9930427977,
+     "gross": 27202.29074666973,
+     "npbt": 6153.766711744927,
+     "tax": 1384.5975101426086,
+     "cfo": 2795.0138743936,
+     "fcff": 8716.038271105057
+    },
+    {
+     "year": 2029,
+     "revenue": 88870.45818672572,
+     "new_sales": 185659.1204335108,
+     "backlog": 480870.6552895828,
+     "gross": 34057.2680148305,
+     "npbt": 9860.61242510465,
+     "tax": 2218.637795648546,
+     "cfo": 3499.3573707407872,
+     "fcff": 9241.50512637353
+    },
+    {
+     "year": 2030,
+     "revenue": 111265.8136497806,
+     "new_sales": 232445.21878275543,
+     "backlog": 602050.0604225576,
+     "gross": 42639.699554567786,
+     "npbt": 14501.583258231021,
+     "tax": 3262.85623310198,
+     "cfo": 4381.195428167465,
+     "fcff": 9899.38962916966
+    },
+    {
+     "year": 2031,
+     "revenue": 139304.7986895253,
+     "new_sales": 291021.4139160098,
+     "backlog": 753766.6756490421,
+     "gross": 53384.90384231887,
+     "npbt": 20312.07874130524,
+     "tax": 4570.217716793679,
+     "cfo": 5485.256676065667,
+     "fcff": 10723.061026670413
+    },
+    {
+     "year": 2032,
+     "revenue": 174409.6079592857,
+     "new_sales": 364358.81022284436,
+     "backlog": 943715.8779126008,
+     "gross": 66837.89961058323,
+     "npbt": 27586.819086114167,
+     "tax": 6207.034294375688,
+     "cfo": 6867.541358434216,
+     "fcff": 11754.29761634136
+    },
+    {
+     "year": 2033,
+     "revenue": 218360.8291650257,
+     "new_sales": 456177.2303990013,
+     "backlog": 1181532.2791465763,
+     "gross": 83681.0503124502,
+     "npbt": 36694.79399781492,
+     "tax": 8256.328649508358,
+     "cfo": 8598.161780759638,
+     "fcff": 13045.405826609382
+    },
+    {
+     "year": 2034,
+     "revenue": 273387.7581146122,
+     "new_sales": 571133.8924595495,
+     "backlog": 1479278.4134915136,
+     "gross": 104768.67499118767,
+     "npbt": 48097.97858726431,
+     "tax": 10822.04518213447,
+     "cfo": 10764.898549511068,
+     "fcff": 14661.873305864947
+    },
+    {
+     "year": 2035,
+     "revenue": 342281.47315949446,
+     "new_sales": 715059.6333593556,
+     "backlog": 1852056.5736913749,
+     "gross": 131170.38108896694,
+     "npbt": 62374.765693254885,
+     "tax": 14034.32228098235,
+     "cfo": 13477.652983987857,
+     "fcff": 16685.69058989291
+    }
+   ],
+   "inputs": {
+    "cfo_margin": 0.039375934839767424,
+    "capacity_growth": 0.252,
+    "wacc": 0.2625000851091698,
+    "terminal_growth": 0.12
+   }
+  },
+  "base": {
+   "ev": 74697.01283838684,
+   "equity": 55207.912838386845,
+   "per_share": 19.304005999603785,
+   "pv_explicit": 49459.8445586324,
+   "pv_terminal": 25237.16827975444,
+   "terminal_share": 0.3378604755501688,
+   "rows": [
+    {
+     "year": 2026,
+     "revenue": 45283.9636,
+     "new_sales": 27311.723046098865,
+     "backlog": 245027.75944609885,
+     "gross": 17353.88920645161,
+     "npbt": 828.2195064516109,
+     "tax": 186.34938895161244,
+     "cfo": 3945.8923138070604,
+     "fcff": 10123.90501530706
+    },
+    {
+     "year": 2027,
+     "revenue": 56695.522427200005,
+     "new_sales": 118442.51780761691,
+     "backlog": 306774.75482651574,
+     "gross": 21727.069286477417,
+     "npbt": 3193.027324077417,
+     "tax": 718.4311479174188,
+     "cfo": 4940.25717688644,
+     "fcff": 11004.15429011444
+    },
+    {
+     "year": 2028,
+     "revenue": 70982.79407885441,
+     "new_sales": 148290.0322951364,
+     "backlog": 384081.9930427977,
+     "gross": 27202.29074666973,
+     "npbt": 6153.766711744927,
+     "tax": 1384.5975101426086,
+     "cfo": 6185.201985461823,
+     "fcff": 12106.22638217328
+    },
+    {
+     "year": 2029,
+     "revenue": 88870.45818672572,
+     "new_sales": 185659.1204335108,
+     "backlog": 480870.6552895828,
+     "gross": 34057.2680148305,
+     "npbt": 9860.61242510465,
+     "tax": 2218.637795648546,
+     "cfo": 7743.872885798202,
+     "fcff": 13486.020641430945
+    },
+    {
+     "year": 2030,
+     "revenue": 111265.8136497806,
+     "new_sales": 232445.21878275543,
+     "backlog": 602050.0604225576,
+     "gross": 42639.699554567786,
+     "npbt": 14501.583258231021,
+     "tax": 3262.85623310198,
+     "cfo": 9695.32885301935,
+     "fcff": 15213.523054021543
+    },
+    {
+     "year": 2031,
+     "revenue": 139304.7986895253,
+     "new_sales": 291021.4139160098,
+     "backlog": 753766.6756490421,
+     "gross": 53384.90384231887,
+     "npbt": 20312.07874130524,
+     "tax": 4570.217716793679,
+     "cfo": 12138.551723980225,
+     "fcff": 17376.35607458497
+    },
+    {
+     "year": 2032,
+     "revenue": 174409.6079592857,
+     "new_sales": 364358.81022284436,
+     "backlog": 943715.8779126008,
+     "gross": 66837.89961058323,
+     "npbt": 27586.819086114167,
+     "tax": 6207.034294375688,
+     "cfo": 15197.466758423243,
+     "fcff": 20084.223016330387
+    },
+    {
+     "year": 2033,
+     "revenue": 218360.8291650257,
+     "new_sales": 456177.2303990013,
+     "backlog": 1181532.2791465763,
+     "gross": 83681.0503124502,
+     "npbt": 36694.79399781492,
+     "tax": 8256.328649508358,
+     "cfo": 19027.2283815459,
+     "fcff": 23474.472427395645
+    },
+    {
+     "year": 2034,
+     "revenue": 273387.7581146122,
+     "new_sales": 571133.8924595495,
+     "backlog": 1479278.4134915136,
+     "gross": 104768.67499118767,
+     "npbt": 48097.97858726431,
+     "tax": 10822.04518213447,
+     "cfo": 23822.089933695468,
+     "fcff": 27719.064690049345
+    },
+    {
+     "year": 2035,
+     "revenue": 342281.47315949446,
+     "new_sales": 715059.6333593556,
+     "backlog": 1852056.5736913749,
+     "gross": 131170.38108896694,
+     "npbt": 62374.765693254885,
+     "tax": 14034.32228098235,
+     "cfo": 29825.25659698673,
+     "fcff": 33033.29420289178
+    }
+   ],
+   "inputs": {
+    "cfo_margin": 0.08713663734609707,
+    "capacity_growth": 0.252,
+    "wacc": 0.2625000851091698,
+    "terminal_growth": 0.12
+   }
+  },
+  "base_cds_erp": {
+   "ev": 80802.82060949272,
+   "equity": 61313.72060949272,
+   "per_share": 21.438963540760835,
+   "pv_explicit": 51358.90126154464,
+   "pv_terminal": 29443.919347948082,
+   "terminal_share": 0.3643922220270738,
+   "rows": [
+    {
+     "year": 2026,
+     "revenue": 45283.9636,
+     "new_sales": 27311.723046098865,
+     "backlog": 245027.75944609885,
+     "gross": 17353.88920645161,
+     "npbt": 828.2195064516109,
+     "tax": 186.34938895161244,
+     "cfo": 3945.8923138070604,
+     "fcff": 10123.90501530706
+    },
+    {
+     "year": 2027,
+     "revenue": 56695.522427200005,
+     "new_sales": 118442.51780761691,
+     "backlog": 306774.75482651574,
+     "gross": 21727.069286477417,
+     "npbt": 3193.027324077417,
+     "tax": 718.4311479174188,
+     "cfo": 4940.25717688644,
+     "fcff": 11004.15429011444
+    },
+    {
+     "year": 2028,
+     "revenue": 70982.79407885441,
+     "new_sales": 148290.0322951364,
+     "backlog": 384081.9930427977,
+     "gross": 27202.29074666973,
+     "npbt": 6153.766711744927,
+     "tax": 1384.5975101426086,
+     "cfo": 6185.201985461823,
+     "fcff": 12106.22638217328
+    },
+    {
+     "year": 2029,
+     "revenue": 88870.45818672572,
+     "new_sales": 185659.1204335108,
+     "backlog": 480870.6552895828,
+     "gross": 34057.2680148305,
+     "npbt": 9860.61242510465,
+     "tax": 2218.637795648546,
+     "cfo": 7743.872885798202,
+     "fcff": 13486.020641430945
+    },
+    {
+     "year": 2030,
+     "revenue": 111265.8136497806,
+     "new_sales": 232445.21878275543,
+     "backlog": 602050.0604225576,
+     "gross": 42639.699554567786,
+     "npbt": 14501.583258231021,
+     "tax": 3262.85623310198,
+     "cfo": 9695.32885301935,
+     "fcff": 15213.523054021543
+    },
+    {
+     "year": 2031,
+     "revenue": 139304.7986895253,
+     "new_sales": 291021.4139160098,
+     "backlog": 753766.6756490421,
+     "gross": 53384.90384231887,
+     "npbt": 20312.07874130524,
+     "tax": 4570.217716793679,
+     "cfo": 12138.551723980225,
+     "fcff": 17376.35607458497
+    },
+    {
+     "year": 2032,
+     "revenue": 174409.6079592857,
+     "new_sales": 364358.81022284436,
+     "backlog": 943715.8779126008,
+     "gross": 66837.89961058323,
+     "npbt": 27586.819086114167,
+     "tax": 6207.034294375688,
+     "cfo": 15197.466758423243,
+     "fcff": 20084.223016330387
+    },
+    {
+     "year": 2033,
+     "revenue": 218360.8291650257,
+     "new_sales": 456177.2303990013,
+     "backlog": 1181532.2791465763,
+     "gross": 83681.0503124502,
+     "npbt": 36694.79399781492,
+     "tax": 8256.328649508358,
+     "cfo": 19027.2283815459,
+     "fcff": 23474.472427395645
+    },
+    {
+     "year": 2034,
+     "revenue": 273387.7581146122,
+     "new_sales": 571133.8924595495,
+     "backlog": 1479278.4134915136,
+     "gross": 104768.67499118767,
+     "npbt": 48097.97858726431,
+     "tax": 10822.04518213447,
+     "cfo": 23822.089933695468,
+     "fcff": 27719.064690049345
+    },
+    {
+     "year": 2035,
+     "revenue": 342281.47315949446,
+     "new_sales": 715059.6333593556,
+     "backlog": 1852056.5736913749,
+     "gross": 131170.38108896694,
+     "npbt": 62374.765693254885,
+     "tax": 14034.32228098235,
+     "cfo": 29825.25659698673,
+     "fcff": 33033.29420289178
+    }
+   ],
+   "inputs": {
+    "cfo_margin": 0.08713663734609707,
+    "capacity_growth": 0.252,
+    "wacc": 0.25237861847121057,
+    "terminal_growth": 0.12
+   }
+  },
+  "high_conversion": {
+   "ev": 130281.03127175928,
+   "equity": 110791.93127175928,
+   "per_share": 38.73952113057683,
+   "pv_explicit": 81099.98594110367,
+   "pv_terminal": 49181.04533065561,
+   "terminal_share": 0.37749966246480327,
+   "rows": [
+    {
+     "year": 2026,
+     "revenue": 45283.9636,
+     "new_sales": 27311.723046098865,
+     "backlog": 245027.75944609885,
+     "gross": 17353.88920645161,
+     "npbt": 828.2195064516109,
+     "tax": 186.34938895161244,
+     "cfo": 8092.250112645718,
+     "fcff": 14270.262814145717
+    },
+    {
+     "year": 2027,
+     "revenue": 56695.522427200005,
+     "new_sales": 118442.51780761691,
+     "backlog": 306774.75482651574,
+     "gross": 21727.069286477417,
+     "npbt": 3193.027324077417,
+     "tax": 718.4311479174188,
+     "cfo": 10131.49714103244,
+     "fcff": 16195.39425426044
+    },
+    {
+     "year": 2028,
+     "revenue": 70982.79407885441,
+     "new_sales": 148290.0322951364,
+     "backlog": 384081.9930427977,
+     "gross": 27202.29074666973,
+     "npbt": 6153.766711744927,
+     "tax": 1384.5975101426086,
+     "cfo": 12684.634420572615,
+     "fcff": 18605.658817284067
+    },
+    {
+     "year": 2029,
+     "revenue": 88870.45818672572,
+     "new_sales": 185659.1204335108,
+     "backlog": 480870.6552895828,
+     "gross": 34057.2680148305,
+     "npbt": 9860.61242510465,
+     "tax": 2218.637795648546,
+     "cfo": 15881.162294556914,
+     "fcff": 21623.31005018966
+    },
+    {
+     "year": 2030,
+     "revenue": 111265.8136497806,
+     "new_sales": 232445.21878275543,
+     "backlog": 602050.0604225576,
+     "gross": 42639.699554567786,
+     "npbt": 14501.583258231021,
+     "tax": 3262.85623310198,
+     "cfo": 19883.215192785257,
+     "fcff": 25401.409393787453
+    },
+    {
+     "year": 2031,
+     "revenue": 139304.7986895253,
+     "new_sales": 291021.4139160098,
+     "backlog": 753766.6756490421,
+     "gross": 53384.90384231887,
+     "npbt": 20312.07874130524,
+     "tax": 4570.217716793679,
+     "cfo": 24893.78542136714,
+     "fcff": 30131.58977197189
+    },
+    {
+     "year": 2032,
+     "revenue": 174409.6079592857,
+     "new_sales": 364358.81022284436,
+     "backlog": 943715.8779126008,
+     "gross": 66837.89961058323,
+     "npbt": 27586.819086114167,
+     "tax": 6207.034294375688,
+     "cfo": 31167.01934755166,
+     "fcff": 36053.77560545881
+    },
+    {
+     "year": 2033,
+     "revenue": 218360.8291650257,
+     "new_sales": 456177.2303990013,
+     "backlog": 1181532.2791465763,
+     "gross": 83681.0503124502,
+     "npbt": 36694.79399781492,
+     "tax": 8256.328649508358,
+     "cfo": 39021.10822313468,
+     "fcff": 43468.352268984425
+    },
+    {
+     "year": 2034,
+     "revenue": 273387.7581146122,
+     "new_sales": 571133.8924595495,
+     "backlog": 1479278.4134915136,
+     "gross": 104768.67499118767,
+     "npbt": 48097.97858726431,
+     "tax": 10822.04518213447,
+     "cfo": 48854.42749536462,
+     "fcff": 52751.4022517185
+    },
+    {
+     "year": 2035,
+     "revenue": 342281.47315949446,
+     "new_sales": 715059.6333593556,
+     "backlog": 1852056.5736913749,
+     "gross": 131170.38108896694,
+     "npbt": 62374.765693254885,
+     "tax": 14034.32228098235,
+     "cfo": 61165.74322419651,
+     "fcff": 64373.78083010156
+    }
+   ],
+   "inputs": {
+    "cfo_margin": 0.17870012846326283,
+    "capacity_growth": 0.252,
+    "wacc": 0.2625000851091698,
+    "terminal_growth": 0.12
+   }
+  }
+ },
+ "sensitivity": {
+  "waccs": [
+   0.22250008510916977,
+   0.2425000851091698,
+   0.2625000851091698,
+   0.2825000851091698,
+   0.30250008510916976
+  ],
+  "cfos": [
+   0.039375934839767424,
+   0.06,
+   0.08713663734609707,
+   0.12,
+   0.17870012846326283
+  ],
+  "grid": [
+   [
+    15.00450311916782,
+    11.61405111165776,
+    9.166189661431758,
+    7.3134868434480875,
+    5.86076755759342
+   ],
+   [
+    21.602807509104,
+    16.90809043779655,
+    13.543909706760255,
+    11.017027516588891,
+    9.05072418526936
+   ],
+   [
+    30.284694030395382,
+    23.873857088224664,
+    19.304005999603785,
+    15.890055184157076,
+    13.24799060595229
+   ],
+   [
+    40.7987448919796,
+    32.309630197320146,
+    26.279672548810346,
+    21.791452377160013,
+    18.33101864582072
+   ],
+   [
+    59.57881139777206,
+    47.377502904254875,
+    38.73952113057683,
+    32.33245443438164,
+    27.4102599293419
+   ]
+  ]
+ },
+ "peers": [
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments",
+   "obs": 3766,
+   "first": "2011-01-02",
+   "last": "2026-08-23",
+   "ann_vol_5y": 0.43906878596070203,
+   "return_5y": 7.4538375973303665,
+   "max_drawdown_5y": -0.48659003831417624,
+   "last_close": 15.2,
+   "beta": 1.0493083523382887,
+   "r2": 0.2987994630165052,
+   "se": 0.1822867868951778,
+   "n_weekly": 251,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding",
+   "obs": 3766,
+   "first": "2011-01-02",
+   "last": "2026-08-23",
+   "ann_vol_5y": 0.43941844579077854,
+   "return_5y": 13.17391304347826,
+   "max_drawdown_5y": -0.44186600023801026,
+   "last_close": 97.8,
+   "beta": 1.4717523730674444,
+   "r2": 0.3260974007269647,
+   "se": 0.18481225647980962,
+   "n_weekly": 251,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "ORHD",
+   "name": "Orascom Development Egypt",
+   "obs": 2759,
+   "first": "2015-01-06",
+   "last": "2026-07-27",
+   "ann_vol_5y": 0.46356282899639867,
+   "return_5y": 6.355311355311355,
+   "max_drawdown_5y": -0.42928452579034937,
+   "last_close": 40.16,
+   "beta": 0.883674759967215,
+   "r2": 0.3210256612283895,
+   "se": 0.17304189072402854,
+   "n_weekly": 255,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "EMFD",
+   "name": "Emaar Misr for Development",
+   "obs": 2686,
+   "first": "2015-07-05",
+   "last": "2026-07-28",
+   "ann_vol_5y": 0.4105636213162364,
+   "return_5y": 3.8649789029535864,
+   "max_drawdown_5y": -0.47124999999999995,
+   "last_close": 11.53,
+   "beta": 0.7388152497222708,
+   "r2": 0.24414193840361398,
+   "se": 0.16921388117289457,
+   "n_weekly": 255,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "OCDI",
+   "name": "Sixth of October Development & Investment (SODIC)",
+   "obs": 3744,
+   "first": "2011-01-02",
+   "last": "2026-07-27",
+   "ann_vol_5y": 0.47133217513315706,
+   "return_5y": 5.214120007384522,
+   "max_drawdown_5y": -0.4658227848101265,
+   "last_close": 27.48,
+   "beta": 0.4938056592922786,
+   "r2": 0.10326397650382602,
+   "se": 0.22373902521408967,
+   "n_weekly": 255,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "HELI",
+   "name": "Heliopolis Housing and Development",
+   "obs": 3763,
+   "first": "2011-01-02",
+   "last": "2026-08-23",
+   "ann_vol_5y": 0.44396864908461803,
+   "return_5y": 3.6969696969696972,
+   "max_drawdown_5y": -0.39583333333333337,
+   "last_close": 7.75,
+   "beta": 0.7652885882238548,
+   "r2": 0.2883823889902578,
+   "se": 0.1814608561135609,
+   "n_weekly": 251,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  },
+  {
+   "ticker": "PRDC",
+   "name": "Pioneers Properties for Urban Development",
+   "obs": 1180,
+   "first": "2021-10-11",
+   "last": "2026-08-23",
+   "ann_vol_5y": 0.4217014521767442,
+   "return_5y": 1.9633027522935778,
+   "max_drawdown_5y": -0.5198776758409787,
+   "last_close": 9.69,
+   "beta": 0.7066912172966417,
+   "r2": 0.25762632492352044,
+   "se": 0.1864090001811494,
+   "n_weekly": 244,
+   "usable": true,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22"
+  }
+ ],
+ "price_map": {
+  "spot": 15.2,
+  "spot_date": "close 23 Aug 2026",
+  "dist": {
+   "m1": {
+    "p5": 13.08,
+    "p25": 14.67,
+    "p50": 15.64,
+    "p75": 16.68,
+    "p95": 18.71,
+    "resolve": "2026-09-23"
+   },
+   "m3": {
+    "p5": 11.98,
+    "p25": 14.61,
+    "p50": 16.34,
+    "p75": 18.27,
+    "p95": 22.26,
+    "resolve": "2026-11-23"
+   }
+  },
+  "touch": [
+   [
+    20.0,
+    3,
+    19
+   ],
+   [
+    18.5,
+    9,
+    35
+   ],
+   [
+    17.5,
+    20,
+    51
+   ],
+   [
+    16.5,
+    43,
+    71
+   ],
+   [
+    15.55,
+    80,
+    90
+   ]
+  ],
+  "band_record": {
+   "n": 57,
+   "hits": 52,
+   "c50": 0.5088,
+   "c80": 0.8596,
+   "c90": 0.9123,
+   "width": 1.469,
+   "strength": "long",
+   "flag": null
+  },
+  "asof": {
+   "mc_data": "2026-08-23",
+   "mc_computed": "2026-08-24",
+   "tech_data": "2026-08-23",
+   "tech_computed": "2026-08-25"
+  }
+ },
+ "technical": {
+  "levels": {
+   "res": [
+    15.38,
+    15.73,
+    16.08
+   ],
+   "sup": [
+    14.99,
+    14.4,
+    13.01
+   ]
+  },
+  "close": 15.2,
+  "sma20": 15.15,
+  "sma50": 15.1,
+  "sma200": 10.95
+ },
+ "walkforward": {
+  "origins": 10,
+  "horizons": "1-5y",
+  "revenue_bias": 0.105,
+  "revenue_mae": 0.425,
+  "net_profit_bias": 1.116,
+  "net_profit_mae": 1.117,
+  "net_profit_share_over": 0.97,
+  "gross_profit_bias": 0.54,
+  "gross_profit_share_over": 0.86,
+  "units_sold_bias": -0.215,
+  "macro_share_revenue": 0.215,
+  "macro_share_net_profit": 0.039,
+  "bridge_residual_all_drivers_correct": 0.13
+ }
+}
