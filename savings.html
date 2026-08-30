@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savings check — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/test.css?v=0827f">
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings" class="on">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap">
+  <section class="t-sec" style="margin-top:26px">
+    <h1>CDs, gold, dollars — what kept its value?</h1>
+    <p class="muted" style="max-width:66ch">Put an amount in a year. See what each choice is worth today — and what it’s really worth after Egyptian inflation.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin:18px 0">
+      <label class="t-field">Amount (EGP)<input type="number" id="c-amt" value="100000" min="100" step="1000"></label>
+      <label class="t-field">From year<select id="c-from"></select></label>
+      <label class="t-field">To year<select id="c-to"></select></label>
+      <span class="muted" id="c-adj" style="font-size:var(--fs-caption)"></span>
+    </div>
+    <div id="c-out" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px"></div>
+    <p class="muted" id="c-note" style="font-size:var(--fs-small);max-width:70ch;margin-top:16px"></p>
+    <div class="t-note">Weighing a single stock instead? <a href="tools.html#odds">The odds tool →</a> · Historical series (rates, gold, EGX30, USD/EGP, inflation) as published in the current calculator’s dataset<span id="c-verified"></span>.</div>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="assets/test.js"></script>
+<script>
+renderChrome("savings");
+(function(){
+  var Y=CALC.years;
+  var selF=document.getElementById("c-from"), selT=document.getElementById("c-to");
+  selF.innerHTML=Y.map(function(y,i){return '<option value="'+i+'"'+(i===0?" selected":"")+'>'+y+'</option>'}).join("");
+  selT.innerHTML=Y.map(function(y,i){return '<option value="'+i+'"'+(i===Y.length-1?" selected":"")+'>'+y+'</option>'}).join("");
+  function paint(){
+    var amt=+document.getElementById("c-amt").value||0;
+    var f=+selF.value, t=+selT.value;
+    var adj="";
+    if(t<=f){ t=Math.min(f+1,Y.length-1); selT.value=t; adj="to-year moved to "+Y[t]+" — it must come after the from-year"; }
+    document.getElementById("c-adj").textContent=adj;
+    /* deflator: cumulative inflation f→t */
+    var defl=1; for(var i=f+1;i<=t;i++) defl*=1+CALC.inflation[i]/100;
+    function card(name,nom,how){
+      var real=nom/defl;
+      var keep=real/amt;
+      var cls = keep>=1 ? "good" : (keep>=0.75 ? "warn" : "bad");
+      return '<div class="t-card"><div class="t-kicker">'+name+'</div>'+
+        '<p style="margin:8px 0 0;font-size:1.25rem" class="num">'+fmtPx(nom,"EGP")+'</p>'+
+        '<p class="muted" style="margin:2px 0 8px;font-size:var(--fs-small)">≈ <span class="num">'+fmtPx(real,"EGP")+'</span> in '+Y[f]+' money</p>'+
+        '<span class="t-badge '+cls+'">'+(keep>=1?"grew in real terms":"kept "+Math.round(keep*100)+"% of its real value")+'</span>'+
+        '<p class="muted" style="font-size:var(--fs-caption);margin:8px 0 0">'+how+'</p></div>';
+    }
+    /* EGP CD: compound best annual CD rate */
+    var cd=amt; for(i=f+1;i<=t;i++) cd*=1+CALC.cdRate[i]/100;
+    /* USD deposit: convert at from-year, compound usdRate, back at to-year */
+    var usd=amt/CALC.usdEgp[f]; for(i=f+1;i<=t;i++) usd*=1+CALC.usdRate[i]/100; usd*=CALC.usdEgp[t];
+    /* gold: grams at from-year price, valued at to-year */
+    var gold=amt/CALC.gold21g[f]*CALC.gold21g[t];
+    /* EGX30 index ratio */
+    var egx=amt*CALC.egx30[t]/CALC.egx30[f];
+    document.getElementById("c-out").innerHTML =
+      card("EGP certificates of deposit", cd, "Best annual EGP CD rate, compounded year by year.")+
+      card("US-dollar deposit", usd, "Converted at "+CALC.usdEgp[f]+" EGP/$ in "+Y[f]+", dollar CD rates, back at "+CALC.usdEgp[t]+" in "+Y[t]+".")+
+      card("Gold (21 karat)", gold, "Grams bought at "+fmtPx(CALC.gold21g[f])+" EGP/g, valued at "+fmtPx(CALC.gold21g[t])+".")+
+      card("EGX30 index", egx, "The index level moved "+CALC.egx30[f].toLocaleString()+" → "+CALC.egx30[t].toLocaleString()+". No fees or dividends counted.");
+    document.getElementById("c-note").textContent = "Prices in "+Y[t]+" money look bigger everywhere — Egyptian inflation compounded to "+
+      Math.round((defl-1)*100)+"% over this stretch, so the honest comparison is the second line on each card: what the money is worth in "+Y[f]+" terms.";
+  }
+  ["c-amt"].forEach(function(id){document.getElementById(id).addEventListener("input",paint)});
+  selF.addEventListener("change",paint); selT.addEventListener("change",paint);
+  document.getElementById("c-verified").textContent = CALC.verified ? " — series verified" : "";
+  paint();
+})();
+</script>
+</body>
+</html>

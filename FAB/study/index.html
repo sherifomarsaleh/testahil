@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/test.css?v=0827f">
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage" class="on">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap" id="study-main" style="display:none">
+  <section class="t-sec" style="margin-top:26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h1 style="margin:0"><span class="num" id="s-code" style="font-size:var(--fs-body);color:var(--muted);font-weight:500;margin-inline-end:10px"></span><span id="s-name"></span></h1>
+      <span class="muted" style="font-size:var(--fs-small)"><span class="num" id="s-spot"></span> · <span id="s-spotdate"></span></span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px">
+      <a class="t-btn ghost" href="../3lens/">At a glance — the 3-lens summary →</a>
+      <a class="t-btn ghost" href="../calibration/">Calibration &amp; ledger record →</a>
+    </div>
+
+    <div class="t-lens" id="lens-fair" style="display:none">
+      <h3>Lens 1 · Fundamental — what is it worth? <span class="asof" id="f-asof"></span></h3>
+      <div class="t-fair" id="f-bar"></div>
+      <p class="muted" id="f-line" style="font-size:var(--fs-small);margin:10px 0 0"></p>
+    </div>
+
+    <div class="t-lens" id="lens-tech" style="display:none">
+      <h3>Lens 2 · Technical — what is the chart doing? <span class="asof" id="t-asof"></span></h3>
+      <p id="t-trend" style="font-weight:600;margin:0 0 6px"></p>
+      <p class="muted" id="t-summary" style="font-size:var(--fs-small);margin:0"></p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:12px">
+        <div style="background:var(--tint2);border-radius:8px;padding:10px 14px;font-size:var(--fs-small)"><b style="color:var(--green)">Bull case:</b> <span id="t-bull"></span></div>
+        <div style="background:var(--tint2);border-radius:8px;padding:10px 14px;font-size:var(--fs-small)"><b style="color:var(--red)">Bear case:</b> <span id="t-bear"></span></div>
+      </div>
+      <p class="muted" id="t-levels" style="font-size:var(--fs-caption);margin:10px 0 0"></p>
+    </div>
+
+    <div class="t-lens">
+      <h3>Lens 3 · Monte Carlo — where could the price go? <span class="asof" id="m-asof"></span></h3>
+      <div class="t-filters" id="m-hz" style="margin:6px 0 4px"></div>
+      <div class="t-buckets" id="m-buckets"></div>
+      <div class="t-tablewrap" style="margin-top:8px"><table style="min-width:420px">
+        <thead><tr><th>Percentile</th><th class="num">p5</th><th class="num">p25</th><th class="num">p50</th><th class="num">p75</th><th class="num">p95</th></tr></thead>
+        <tbody><tr id="m-prow"></tr></tbody>
+      </table></div>
+      <p class="muted" id="m-resolve" style="font-size:var(--fs-caption);margin:8px 0 0"></p>
+      <div id="m-touchwrap" style="display:none;margin-top:14px">
+        <p style="font-weight:600;margin:0 0 6px;font-size:var(--fs-body)">Touch ladder — odds of trading through each level</p>
+        <div class="t-tablewrap"><table style="min-width:380px">
+          <thead><tr><th class="num">Level</th><th class="num">1 month</th><th class="num">3 months</th></tr></thead>
+          <tbody id="m-touch"></tbody>
+        </table></div>
+      </div>
+      <p class="muted" style="font-size:var(--fs-small);margin:12px 0 0">Was this cone honest historically? <a href="../calibration/">This name's calibration record →</a></p>
+    </div>
+
+    <div class="t-lens" id="lens-prose" style="display:none">
+      <h3>From the written study</h3>
+      <div id="prose-body" style="display:flex;flex-direction:column;gap:14px"></div>
+    </div>
+
+    <div class="t-lens" id="lens-more" style="display:none">
+      <h3>More in this market</h3>
+      <div id="more-body" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center" id="s-files"></div>
+    <div class="t-note" id="s-editions"></div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:16px">
+      <a class="t-btn" id="go-odds" href="#">Weigh the odds →</a>
+      <a class="t-btn ghost" id="go-cmp" href="#">Compare against another name →</a>
+      <a class="t-btn ghost" id="go-full" href="#" target="_blank">Full narrative study (current site) ↗</a>
+      <a class="t-btn ghost" href="../archive/">All editions (archive) →</a>
+    </div>
+  </section>
+</main>
+<main class="wrap" id="study-missing" style="display:none">
+  <section class="t-hero">
+    <h1>No study found</h1>
+    <p class="lead">That name isn't in the covered set. Browse <a href="/coverage.html">Coverage</a> or search above.</p>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="/assets/data.js"></script>
+<script src="/assets/test.js"></script>
+<script>
+(function(){
+  var parts=location.pathname.split('/').filter(Boolean);
+  var k=decodeURIComponent(parts[parts.indexOf('test')+1]||"");
+  window.STUDY_KEY = ALL[k] ? k : (ALL[k.toUpperCase()] ? k.toUpperCase() : null);
+  renderChrome("coverage");
+  if(!STUDY_KEY){ document.getElementById("study-missing").style.display=""; return; }
+  var t = ALL[STUDY_KEY];
+  document.getElementById("study-main").style.display="";
+  document.title = t.name + " — testahil? (test)";
+  document.getElementById("s-code").textContent = t.code;
+  document.getElementById("s-name").textContent = t.name;
+  document.getElementById("s-spot").textContent = fmtPx(t.spot, t.ccy) + (t.unitEn ? " ("+t.unitEn+")" : "");
+  document.getElementById("s-spotdate").textContent = t.spotDate || "";
+  if(t.fair){
+    document.getElementById("lens-fair").style.display="";
+    var f=t.fair, lo=Math.min(f.bear,t.spot)*0.94, hi=Math.max(f.full,t.spot)*1.06, W=hi-lo;
+    var pins=[{v:f.bear,l:"bear"},{v:f.base,l:"base"},{v:f.full,l:"good case"},{v:t.spot,l:"price now",cls:"spot"}].sort(function(a,b){return a.v-b.v});
+    var lastPos=-99, anyLo=false;
+    var pinHtml=pins.map(function(p){
+      var pos=((p.v-lo)/W)*100, drop=(pos-lastPos)<10; lastPos=pos; if(drop)anyLo=true;
+      return '<span class="pin '+(p.cls||"")+(drop?" lo":"")+'" style="inset-inline-start:'+pos.toFixed(1)+'%">'+p.l+' <span class="num">'+fmtPx(p.v)+'</span></span>';
+    }).join("");
+    var bar=document.getElementById("f-bar");
+    if(anyLo) bar.style.height="64px";
+    bar.innerHTML='<div class="t-fairbar"><div class="seg" style="flex:'+(f.bear-lo)+'"></div><div class="seg mid" style="flex:'+(f.full-f.bear)+'"></div><div class="seg" style="flex:'+(hi-f.full)+'"></div></div>'+pinHtml;
+    var g=gapOf(t);
+    document.getElementById("f-line").textContent = "Published range "+fmtPx(f.bear)+" – "+fmtPx(f.full)+" "+t.ccy+", weighted central "+fmtPx(f.base)+". The central reading sits "+fmtSPct(g)+" from the last close."+(t.fairAsof?" Valuation as of "+t.fairAsof+".":"");
+  }
+  if(t.tech){
+    document.getElementById("lens-tech").style.display="";
+    document.getElementById("t-trend").textContent = t.tech.trend||"";
+    document.getElementById("t-summary").textContent = t.tech.summary||"";
+    document.getElementById("t-bull").textContent = t.tech.bull||"—";
+    document.getElementById("t-bear").textContent = t.tech.bear||"—";
+    if(t.levels) document.getElementById("t-levels").textContent =
+      "Resistance "+(t.levels.res||[]).map(function(x){return fmtPx(x)}).join(" · ")+"  ·  Support "+(t.levels.sup||[]).map(function(x){return fmtPx(x)}).join(" · ");
+    if(t.asof && t.asof.tech) document.getElementById("t-asof").textContent = "data "+t.asof.tech.data;
+  }
+  var hzs = Object.keys(t.dist||{});
+  var cur = hzs.indexOf("t60")>-1 ? "t60" : hzs[0];
+  var hzBar = document.getElementById("m-hz");
+  hzBar.innerHTML = hzs.map(function(h){ return '<button class="t-chip'+(h===cur?" on":"")+'" data-h="'+h+'">'+t.dist[h].label+'</button>'; }).join("");
+  hzBar.addEventListener("click", function(e){
+    var b=e.target.closest(".t-chip"); if(!b) return; cur=b.dataset.h;
+    hzBar.querySelectorAll(".t-chip").forEach(function(c){c.classList.toggle("on",c===b)});
+    paintMC();
+  });
+  function paintMC(){
+    var d = t.dist[cur], b = computeBuckets(d, t.spot);
+    document.getElementById("m-buckets").innerHTML =
+      '<div class="t-bucket bw"><div class="lb">BIG WIN ≥ +10%</div><div class="pc">'+Math.round(b.bigGain*100)+'%</div></div>'+
+      '<div class="t-bucket sw"><div class="lb">SMALL WIN 0…+10%</div><div class="pc">'+Math.round(b.smallGain*100)+'%</div></div>'+
+      '<div class="t-bucket sl"><div class="lb">SMALL LOSS 0…−10%</div><div class="pc">'+Math.round(b.smallLoss*100)+'%</div></div>'+
+      '<div class="t-bucket bl"><div class="lb">BIG LOSS ≥ −10%</div><div class="pc">'+Math.round(b.bigLoss*100)+'%</div></div>';
+    document.getElementById("m-prow").innerHTML = '<td class="muted">'+d.label+' price</td>'+
+      ["p5","p25","p50","p75","p95"].map(function(p){ return '<td class="num">'+fmtPx(d[p])+'</td>'; }).join("");
+    document.getElementById("m-resolve").textContent = "The four buckets always add to 100%. Resolves "+ (d.resolve||"—") +" — that date goes straight into the public ledger.";
+  }
+  paintMC();
+  if(t.touch && t.touch.length){
+    document.getElementById("m-touchwrap").style.display="";
+    document.getElementById("m-touch").innerHTML = t.touch.map(function(r){
+      return '<tr><td class="num"><b>'+fmtPx(r[0])+'</b></td><td class="num">'+r[1]+'%</td><td class="num">'+r[2]+'%</td></tr>';
+    }).join("");
+  }
+  if(t.asof && t.asof.mc) document.getElementById("m-asof").textContent = "data "+t.asof.mc.data+", computed "+t.asof.mc.computed;
+  var files = t.files||{};
+  var fl = [];
+  if(files.pdf) fl.push('<a class="t-btn" href="/'+files.pdf+'">Open the study (PDF)</a>');
+  if(files.study && !files.pdf) fl.push('<a class="t-btn" href="/'+files.study+'">Open the study</a>');
+  if(files.model) fl.push('<a class="t-btn ghost" href="/'+files.model+'">Open the model (Excel)</a>');
+  document.getElementById("s-files").innerHTML = fl.join("") || '<span class="muted" style="font-size:var(--fs-small)">Study documents publish with the next edition.</span>';
+  var ed = files.study||files.pdf||"";
+  var edDate = (ed.match(/(\d{2})-(\d{2})-(\d{4})/)||[])[0];
+  document.getElementById("s-editions").innerHTML = "<b>Editions:</b> latest "+(edDate?edDate.replace(/-/g," / "):"current")+
+    " (above). Superseded editions are preserved, never deleted — <a href='../archive/'>all editions of this study →</a>";
+  document.getElementById("go-odds").href = "/tools.html?t="+STUDY_KEY+"#odds";
+  document.getElementById("go-cmp").href = "/tools.html?a="+STUDY_KEY+"#compare";
+  document.getElementById("go-full").href = "/legacy/"+(t.slug || STUDY_KEY.toLowerCase())+".html";
+  (function(){
+    var mkt=mktOf(t), peers=[];
+    Object.keys(ALL).forEach(function(kk){
+      if(kk===STUDY_KEY) return;
+      if(mktOf(ALL[kk])!==mkt) return;
+      peers.push(kk);
+    });
+    peers.sort(function(a,b){ var ga=Math.abs(gapOf(ALL[a])||0), gb=Math.abs(gapOf(ALL[b])||0); return gb-ga; });
+    peers=peers.slice(0,8);
+    if(peers.length){
+      document.getElementById("more-body").innerHTML=peers.map(function(kk){
+        var v=verdictOf(ALL[kk]);
+        return '<a class="t-chip" href="/'+encodeURIComponent(kk)+'/study/">'+(ALL[kk].code.split(":").pop()||kk)+' <span class="t-badge '+v.cls+'" style="margin-inline-start:4px">'+v.label+'</span></a>';
+      }).join("");
+      document.getElementById("lens-more").style.display="";
+    }
+  })();
+  fetch("/assets/prose/"+STUDY_KEY+".json").then(function(r){return r.ok?r.json():null}).then(function(g){
+    if(!g) return;
+    var order=Object.keys(g); if(!order.length) return;
+    document.getElementById("prose-body").innerHTML=order.map(function(panel){
+      return '<div><div class="t-kicker" style="margin-bottom:6px">'+panel+'</div>'+
+        g[panel].map(function(p){return '<p style="margin:0 0 8px;font-size:var(--fs-body);color:var(--muted);max-width:78ch">'+p.replace(/</g,"&lt;")+'</p>'}).join("")+'</div>';
+    }).join("");
+    document.getElementById("lens-prose").style.display="";
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

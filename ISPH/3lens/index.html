@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 lenses — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/test.css?v=0827f">
+<style>
+:root,[data-theme="dark"]{--tl-bg:var(--paper);--tl-card:var(--card);--tl-chipbg:var(--tint2);--tl-line:var(--line);--tl-line2:var(--tint2);--tl-ink:var(--ink);--tl-body:var(--ink);--tl-muted:var(--muted);--tl-faint:var(--sage);--tl-teal:var(--teal);--tl-teal2:var(--teal2);--tl-tealbright:var(--teal);--tl-tealdim:var(--sage);--tl-tealsoft:var(--teal2);--tl-gold:var(--brass);--tl-gold2:var(--brass);--tl-gold3:var(--brass);--tl-goldpale:var(--amber-text);--tl-red2:var(--red);--tl-okbd:color-mix(in srgb,var(--green) 30%,var(--line));--tl-warnbd:color-mix(in srgb,var(--gold) 40%,var(--line));--tl-badbd:color-mix(in srgb,var(--red) 30%,var(--line));--tl-fvlo:color-mix(in srgb,var(--red) 14%,var(--tint2));--tl-zone1:color-mix(in srgb,var(--teal) 6%,transparent);--tl-zone2:color-mix(in srgb,var(--gold) 6%,transparent);--tl-grid:color-mix(in srgb,var(--ink) 9%,transparent);--tl-vline1:color-mix(in srgb,var(--ink) 14%,transparent);--tl-vline2:color-mix(in srgb,var(--ink) 18%,transparent);--tl-leg50:color-mix(in srgb,var(--teal) 35%,transparent);--tl-leg95:color-mix(in srgb,var(--teal) 14%,transparent);--tl-okbg:color-mix(in srgb,var(--green) 9%,transparent);--tl-warnbg:color-mix(in srgb,var(--gold) 12%,transparent);--tl-badbg:color-mix(in srgb,var(--red) 9%,transparent)}
+[data-theme="dark"]{--tl-gold:var(--gold);--tl-gold2:var(--gold);--tl-gold3:var(--gold);--tl-goldpale:var(--gold)}
+svg [stroke="#E9EFEC"]{stroke:var(--tl-ink)}
+svg [stroke="#2FC8B6"]{stroke:var(--tl-teal)}
+svg [stroke="#B98D45"]{stroke:var(--tl-gold3)}
+svg [stroke="#5FB8AC"]{stroke:var(--tl-tealsoft)}
+svg [stroke="#E4B44C"]{stroke:var(--tl-gold)}
+svg [stroke="#0B1416"]{stroke:var(--tl-bg)}
+svg [stroke="rgba(255,255,255,0.055)"]{stroke:var(--tl-grid)}
+svg [stroke="rgba(255,255,255,0.10)"]{stroke:var(--tl-vline1)}
+svg [stroke="rgba(255,255,255,0.14)"]{stroke:var(--tl-vline2)}
+svg [fill="#2FC8B6"]{fill:var(--tl-teal)}
+svg [fill="#E4B44C"]{fill:var(--tl-gold)}
+svg [fill="#0B1416"]{fill:var(--tl-card)}
+svg [fill="rgba(47,200,182,0.05)"]{fill:var(--tl-zone1)}
+svg [fill="rgba(228,180,76,0.035)"]{fill:var(--tl-zone2)}
+</style>
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage" class="on">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap"><div id="tl-root" style="padding:26px 0 10px"></div></main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="/assets/data.js"></script>
+<script src="/assets/test.js"></script>
+<script>
+(function(){
+  var parts=location.pathname.split('/').filter(Boolean);
+  var k=decodeURIComponent(parts[parts.indexOf('test')+1]||"");
+  k = ALL[k] ? k : (ALL[k.toUpperCase()] ? k.toUpperCase() : null);
+  renderChrome("coverage");
+  var root=document.getElementById("tl-root");
+  if(!k){ root.innerHTML='<div class="wrap" style="padding:60px 0"><h1>No study found</h1><p class="muted">Browse <a href="/coverage.html">Coverage</a>.</p></div>'; return; }
+  var D=ALL[k];
+  document.title=D.name+" — 3 lenses (test)";
+  function render(H,histStart){
+    var dp=D.spot>=1000?0:D.spot>=100?1:2;
+    var f=function(v){return Number(v).toLocaleString('en-US',{minimumFractionDigits:dp,maximumFractionDigits:dp})};
+    var hzs=Object.keys(D.dist||{});
+    var k1=hzs.indexOf('t20')>-1?'t20':hzs[0], k3=hzs.indexOf('t60')>-1?'t60':hzs[hzs.length-1];
+    var t1=D.dist[k1], t3=D.dist[k3];
+    var fair=D.fair||{bear:t3.p5,base:t3.p50,full:t3.p95};
+    var levels=D.levels||{res:[],sup:[]};
+    var lo=Math.min(t3.p5,fair.bear,H.length?Math.min.apply(null,H):t3.p5);
+    var hi=Math.max(t3.p95,fair.full,H.length?Math.max.apply(null,H):t3.p95);
+    var pad=(hi-lo)*0.06, yMin=lo-pad, yMax=hi+pad;
+    var yTop=14,yBot=486,x0=10,xNow=408.7,x1=472,x3=530.5,xFv=878;
+    var y=function(v){return yTop+(yMax-v)/(yMax-yMin)*(yBot-yTop)};
+    var pctY=function(v){return (v/520*100).toFixed(2)};
+    var nice,grid=[];
+    var divs=[5,6,7,4,8];
+    for(var di=0;di<divs.length;di++){var step=(yMax-yMin)/divs[di];
+      var mag=Math.pow(10,Math.floor(Math.log10(step)));
+      nice=[1,2,2.5,5,10].map(function(kk){return kk*mag}).filter(function(kk){return kk>=step})[0]||mag*10;
+      grid=[];
+      for(var v=Math.ceil(yMin/nice)*nice;v<yMax;v+=nice) if(v>yMin) grid.push(+v.toFixed(6));
+      if(grid.length>=5) break;}
+    if(grid.length>5){var keep=[],gap=(grid.length-1)/4;for(var i=0;i<5;i++)keep.push(grid[Math.round(i*gap)]);grid=keep;}
+    while(grid.length&&grid.length<5)grid.push(grid[grid.length-1]+nice);
+    grid.sort(function(a,b){return b-a});
+    var n=H.length;
+    var hx=function(i){return x0+(n<2?0:(i/(n-1))*(xNow-x0))};
+    var histD=n?H.map(function(v,i){return (i?'L':'M')+hx(i).toFixed(1)+','+y(v).toFixed(1)}).join(' '):'';
+    var P=function(xa,ka){return xa+','+y(ka).toFixed(1)};
+    var band=function(a,b){return [P(xNow,D.spot),P(x1,t1[a]),P(x3,t3[a]),P(x3,t3[b]),P(x1,t1[b]),P(xNow,D.spot)].join(' ')};
+    var lines=function(arr){return arr.map(function(v){return 'M10,'+y(v).toFixed(1)+' H530.5'}).join(' ')};
+    var res=(levels.res||[]).slice(0,3), sup=(levels.sup||[]).slice(0,3);
+    var R=res.slice().sort(function(a,b){return b-a}), S=sup.slice().sort(function(a,b){return b-a});
+    var above=res.filter(function(v){return v>D.spot}), below=sup.filter(function(v){return v<D.spot});
+    var nearRes=above.length?Math.min.apply(null,above):Infinity;
+    var nearSup=below.length?Math.max.apply(null,below):-Infinity;
+    var gapPct=(fair.base/D.spot-1)*100;
+    var clamp=function(v){return Math.max(2,Math.min(98,v))};
+    var tone=function(t){return 'font-family:IBM Plex Mono,monospace;font-size:12px;border-radius:999px;padding:5px 13px;border:1px solid '+(t==='ok'?'var(--tl-okbd);color:var(--tl-tealbright);background:var(--tl-okbg)':t==='warn'?'var(--tl-warnbd);color:var(--tl-goldpale);background:var(--tl-warnbg)':'var(--tl-badbd);color:var(--tl-red2);background:var(--tl-badbg)')};
+    var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var d2=function(s){var p=String(s).split('-');return p.length===3?p[2]+' '+MO[+p[1]-1]+' '+p[0]:s};
+    var medUp=t3.p50>D.spot;
+    var bandPos=D.spot<t3.p25?'below the 25th percentile':D.spot>t3.p75?'above the 75th percentile':'inside the 25th–75th band';
+    var verdict='The chart puts the next resistance at '+(isFinite(nearRes)?f(nearRes):'none of the published levels')+' and support at '+(isFinite(nearSup)?f(nearSup):'none of the published levels')+'. The engine\u2019s median at '+t3.label+' is '+f(t3.p50)+', '+(medUp?'above':'below')+' today, with the middle half between '+f(t3.p25)+' and '+f(t3.p75)+'. The study values it at '+f(fair.base)+' — '+Math.abs(gapPct).toFixed(1)+'% '+(gapPct>=0?'above':'below')+' the price.';
+    var asOfLine=(D.asof&&D.asof.mc?'Odds as of '+d2(D.asof.mc.data):'')+(D.asof&&D.asof.tech?' · chart as of '+d2(D.asof.tech.data):'');
+    var touch=(D.touch||[]).map(function(r){return '<div style="color:var(--tl-ink)">'+f(r[0])+'</div><div style="text-align:right;color:var(--tl-muted)">'+r[1]+'%</div><div style="text-align:right;color:var(--tl-teal2)">'+r[2]+'%</div>'}).join('');
+    var gl=function(gi){return grid[gi]!=null?f(grid[gi]):''};
+    var gp=function(gi){return grid[gi]!=null?pctY(y(grid[gi])):'-100'};
+    root.innerHTML=
+    '<div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px">'+
+      '<h1 style="margin:0"><span class="num" style="font-size:var(--fs-body);color:var(--muted);font-weight:500;margin-inline-end:10px">'+D.code+'</span>'+D.name+'</h1>'+
+      '<span class="muted" style="font-size:var(--fs-small)"><a href="../study/">Detailed explanation of each analysis →</a></span></div>'+
+    '<p class="muted" style="margin:0 0 4px;max-width:70ch">Where the chart is now, the published odds to three months, and what the study says it is worth — on one axis.</p>'+
+    '<p class="num" style="margin:0;font-size:var(--fs-caption);color:var(--tl-faint)">'+asOfLine+'</p>'+
+          '<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px;border-top:1px solid var(--tl-line);padding-top:16px">'+
+      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:25px;font-weight:600;color:var(--tl-gold)">'+f(D.spot)+' <span style="font-size:13px;font-weight:400;color:var(--tl-muted)">'+D.ccy+'</span></div>'+
+      '<div style="font-size:13px;color:var(--tl-faint)">'+(D.spotDate||'')+'</div>'+
+      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">'+(isFinite(nearRes)?'next resistance '+f(nearRes):'above all published resistance')+'</div>'+
+      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">'+(isFinite(nearSup)?'nearest support '+f(nearSup):'below all published support')+'</div>'+
+      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--tl-muted);background:var(--tl-chipbg);border:1px solid var(--tl-line);border-radius:999px;padding:4px 12px;white-space:nowrap">fair value '+(gapPct>=0?'+':'−')+Math.abs(gapPct).toFixed(1)+'% vs price</div></div>'+
+    '<div style="display:flex;flex-direction:column;gap:20px" id="tl-grid">'+
+      '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:20px 22px 16px">'+
+        '<div style="display:flex;font-size:11.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:10px">'+
+          '<div style="width:42.6%">Now — <span style="color:var(--tl-muted)">the chart</span></div>'+
+          '<div style="width:12.7%;color:var(--tl-teal)">1–3 mo — <span style="color:var(--tl-teal2)">published odds</span></div>'+
+          '<div style="width:44.7%;color:var(--tl-gold3);display:flex;justify-content:space-between;align-items:center;gap:8px">the study — <span style="color:var(--tl-gold2)">what it is worth</span>'+
+          '<button id="tl-zoom" title="Full-page view" style="pointer-events:auto;background:var(--card);border:1.5px solid var(--line);border-radius:8px;width:34px;height:34px;cursor:pointer;color:var(--muted);font-size:15px;line-height:1;letter-spacing:0;text-transform:none">🔍</button></div></div>'+
+        '<div style="position:relative;container-type:inline-size" id="tl-chartbox">'+
+        '<svg viewBox="0 0 960 520" style="width:100%;display:block" role="img" aria-label="Three lenses chart">'+
+          '<rect x="408.7" y="14" width="121.8" height="472" fill="rgba(47,200,182,0.05)"></rect>'+
+          '<rect x="530.5" y="14" width="365.5" height="472" fill="rgba(228,180,76,0.035)"></rect>'+
+          '<path d="'+grid.map(function(v){return 'M10,'+y(v).toFixed(1)+' H896'}).join(' ')+'" stroke="rgba(255,255,255,0.055)" stroke-width="1" fill="none"></path>'+
+          '<polygon points="'+[P(x3,t3.p95),P(xFv,fair.full),P(xFv,fair.bear),P(x3,t3.p5)].join(' ')+'" fill="#E4B44C" opacity="0.05"></polygon>'+
+          '<path d="M'+x3+','+y(t3.p50).toFixed(1)+' Q690,'+y(fair.base).toFixed(1)+' '+xFv+','+y(fair.base).toFixed(1)+'" stroke="#E4B44C" stroke-width="1.3" stroke-dasharray="2 5" fill="none" opacity="0.7"></path>'+
+          '<polygon points="'+band('p95','p5')+'" fill="#2FC8B6" opacity="0.11"></polygon>'+
+          '<polygon points="'+band('p75','p25')+'" fill="#2FC8B6" opacity="0.26"></polygon>'+
+          '<path d="M'+P(xNow,D.spot)+' L'+P(x1,t1.p50)+' L'+P(x3,t3.p50)+'" stroke="#2FC8B6" stroke-width="2" fill="none"></path>'+
+          '<path d="'+lines(res)+'" stroke="#B98D45" stroke-width="1" stroke-dasharray="4 5" fill="none" opacity="0.75"></path>'+
+          '<path d="'+lines(sup)+'" stroke="#5FB8AC" stroke-width="1" stroke-dasharray="4 5" fill="none" opacity="0.75"></path>'+
+          '<path d="'+histD+'" stroke="#E9EFEC" stroke-width="1.6" fill="none"></path>'+
+          '<line x1="408.7" y1="14" x2="408.7" y2="486" stroke="#E4B44C" stroke-width="1" opacity="0.5"></line>'+
+          '<line x1="472" y1="14" x2="472" y2="486" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="3 4"></line>'+
+          '<line x1="530.5" y1="14" x2="530.5" y2="486" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3 4"></line>'+
+          '<line x1="878" y1="'+y(fair.full).toFixed(1)+'" x2="878" y2="'+y(fair.bear).toFixed(1)+'" stroke="#E4B44C" stroke-width="1.2" opacity="0.85"></line>'+
+          '<line x1="871" y1="'+y(fair.full).toFixed(1)+'" x2="885" y1="'+y(fair.full).toFixed(1)+'" y2="'+y(fair.full).toFixed(1)+'" stroke="#E4B44C" stroke-width="1.2"></line>'+
+          '<line x1="871" y1="'+y(fair.bear).toFixed(1)+'" x2="885" y2="'+y(fair.bear).toFixed(1)+'" stroke="#E4B44C" stroke-width="1.2"></line>'+
+          '<path d="M878,'+(y(fair.base)-7).toFixed(1)+' L885,'+y(fair.base).toFixed(1)+' L878,'+(y(fair.base)+7).toFixed(1)+' L871,'+y(fair.base).toFixed(1)+' Z" fill="#0B1416" stroke="#E4B44C" stroke-width="1.8"></path>'+
+          '<circle cx="408.7" cy="'+y(D.spot).toFixed(1)+'" r="10" fill="#E4B44C" opacity="0.16"></circle>'+
+          '<circle cx="408.7" cy="'+y(D.spot).toFixed(1)+'" r="4.6" fill="#E4B44C" stroke="#0B1416" stroke-width="1.4"></circle>'+
+          '<g font-family="IBM Plex Mono, monospace" font-size="12">'+
+            '<text x="10" y="506" fill="#5E7370">'+histStart+'</text>'+
+            '<text x="408.7" y="506" fill="#E4B44C" text-anchor="middle" font-weight="600">TODAY</text>'+
+            '<text x="472" y="506" fill="#5E7370" text-anchor="middle">'+t1.label+'</text>'+
+            '<text x="530.5" y="506" fill="#5E7370" text-anchor="middle">'+t3.label+'</text>'+
+            '<text x="896" y="506" fill="#5E7370" text-anchor="end">the study</text></g></svg>'+
+        '<div style="position:absolute;inset:0;pointer-events:none;font-family:\'IBM Plex Mono\',monospace;font-size:clamp(10px,1.15cqw,15px);line-height:1">'+
+          '<div style="position:absolute;left:94%;top:'+gp(0)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(0)+'</div>'+
+          '<div style="position:absolute;left:94%;top:'+gp(1)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(1)+'</div>'+
+          '<div style="position:absolute;left:94%;top:'+gp(2)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(2)+'</div>'+
+          '<div style="position:absolute;left:94%;top:'+gp(3)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(3)+'</div>'+
+          '<div style="position:absolute;left:94%;top:'+gp(4)+'%;transform:translateY(-50%);color:var(--tl-faint)">'+gl(4)+'</div>'+
+          (R.length?'<div style="position:absolute;left:1.5%;top:'+pctY(y(R[0]))+'%;transform:translateY(calc(-100% - 4px));color:var(--tl-gold3);white-space:nowrap">resistance '+R.map(f).join(' · ')+'</div>':'')+
+          (S.length?'<div style="position:absolute;left:1.5%;top:'+pctY(y(S[S.length-1]))+'%;transform:translateY(5px);color:var(--tl-tealsoft);white-space:nowrap">support '+S.map(f).join(' · ')+'</div>':'')+
+          '<div style="position:absolute;left:55.9%;top:'+pctY(y(t3.p95))+'%;transform:translateY(-50%);color:var(--tl-tealdim);white-space:nowrap">'+f(t3.p95)+' p95</div>'+
+          '<div style="position:absolute;left:55.9%;top:'+pctY(y(t3.p75))+'%;transform:translateY(-50%);color:var(--tl-teal2);white-space:nowrap">'+f(t3.p75)+' p75</div>'+
+          '<div style="position:absolute;left:55.9%;top:'+pctY(y(t3.p50))+'%;transform:translateY(calc(-100% - 4px));color:var(--tl-teal);font-weight:600;white-space:nowrap">'+f(t3.p50)+' · median</div>'+
+          '<div style="position:absolute;left:55.9%;top:'+pctY(y(t3.p25))+'%;transform:translateY(-50%);color:var(--tl-teal2);white-space:nowrap">'+f(t3.p25)+' p25</div>'+
+          '<div style="position:absolute;left:55.9%;top:'+pctY(y(t3.p5))+'%;transform:translateY(-50%);color:var(--tl-tealdim);white-space:nowrap">'+f(t3.p5)+' p5</div>'+
+          '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.base))+'%;transform:translate(-100%, calc(-100% - 5px));color:var(--tl-gold);font-weight:600;white-space:nowrap">fair '+f(fair.base)+'</div>'+
+          '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.full))+'%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">'+f(fair.full)+' · all goes right</div>'+
+          '<div style="position:absolute;left:89.8%;top:'+pctY(y(fair.bear))+'%;transform:translate(-100%, -50%);color:var(--tl-gold2);white-space:nowrap">'+f(fair.bear)+' · bad case</div>'+
+          '<div style="position:absolute;left:43.4%;top:'+pctY(y(D.spot))+'%;transform:translateY(calc(-100% - 5px));color:var(--tl-gold);font-weight:600;font-size:clamp(12px,1.4cqw,18px)">'+f(D.spot)+'</div></div></div>'+
+        '<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--tl-line2);font-size:11.5px;color:var(--tl-muted)">'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg50);border-radius:2px"></span>25th–75th percentile</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:9px;background:var(--tl-leg95);border-radius:2px"></span>5th–95th percentile</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:2px;background:var(--tl-teal)"></span>median path</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:var(--tl-gold);border-radius:50%"></span>latest close</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid var(--tl-gold);transform:rotate(45deg)"></span>fair value</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-gold3)"></span>resistance</span>'+
+          '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:16px;height:0;border-top:2px dashed var(--tl-tealsoft)"></span>support</span></div></div>'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-items:start">'+
+        '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 2 · Technical — now</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:8px">What is the chart doing?</div>'+
+          '<div style="font-size:13.5px;line-height:1.5;color:var(--tl-body);margin-bottom:12px">'+((D.tech&&D.tech.trend)||'—')+'</div>'+
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">'+
+            '<div><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-gold3);margin-bottom:6px">Resistance</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:13px;color:var(--tl-ink);display:flex;flex-direction:column;gap:4px"><div>'+(res[0]!=null?f(res[0]):'—')+'</div><div>'+(res[1]!=null?f(res[1]):'—')+'</div><div>'+(res[2]!=null?f(res[2]):'—')+'</div></div></div>'+
+            '<div><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-tealsoft);margin-bottom:6px">Support</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:13px;color:var(--tl-ink);display:flex;flex-direction:column;gap:4px"><div>'+(sup[0]!=null?f(sup[0]):'—')+'</div><div>'+(sup[1]!=null?f(sup[1]):'—')+'</div><div>'+(sup[2]!=null?f(sup[2]):'—')+'</div></div></div></div>'+
+          '<div style="font-size:12.5px;line-height:1.55;color:var(--tl-muted);border-top:1px solid var(--tl-line2);padding-top:10px">'+((D.tech&&D.tech.summary)||'')+'</div>'+
+          (res.length?'<div style="font-size:12.5px;line-height:1.5;color:var(--tl-tealbright);margin-top:8px">Above '+f(res[0])+(res[1]!=null?' the next resistance is '+f(res[1])+(res[2]!=null?', then '+f(res[2]):'')+'.':' there is no further published resistance.')+'</div>':'')+
+          (sup.length?'<div style="font-size:12.5px;line-height:1.5;color:var(--tl-red2);margin-top:6px">Below '+f(sup[0])+(sup[1]!=null?' the next support is '+f(sup[1])+(sup[2]!=null?', then '+f(sup[2]):'')+'.':' there is no further published support.')+'</div>':'')+'</div>'+
+        '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 3 · Monte Carlo — the odds</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">Where could the price go?</div>'+
+          '<div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;align-items:baseline">'+
+            '<div style="color:var(--tl-faint);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">pctile</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t1.label+'</div><div style="color:var(--tl-teal2);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:right">'+t3.label+'</div>'+
+            '<div style="color:var(--tl-muted)">95th</div><div style="text-align:right">'+f(t1.p95)+'</div><div style="text-align:right">'+f(t3.p95)+'</div>'+
+            '<div style="color:var(--tl-muted)">75th</div><div style="text-align:right">'+f(t1.p75)+'</div><div style="text-align:right">'+f(t3.p75)+'</div>'+
+            '<div style="color:var(--tl-teal);font-weight:600">median</div><div style="text-align:right;color:var(--tl-teal);font-weight:600">'+f(t1.p50)+'</div><div style="text-align:right;color:var(--tl-teal);font-weight:600">'+f(t3.p50)+'</div>'+
+            '<div style="color:var(--tl-muted)">25th</div><div style="text-align:right">'+f(t1.p25)+'</div><div style="text-align:right">'+f(t3.p25)+'</div>'+
+            '<div style="color:var(--tl-muted)">5th</div><div style="text-align:right">'+f(t1.p5)+'</div><div style="text-align:right">'+f(t3.p5)+'</div></div>'+
+          '<div style="font-size:11.5px;color:var(--tl-faint);margin-top:10px;line-height:1.5">Resolves '+d2(t1.resolve||'—')+' and '+d2(t3.resolve||'—')+'. The published percentiles from the 50,000-path engine — not re-derived here.</div>'+
+          (touch?'<div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tl-faint);margin:14px 0 6px;border-top:1px solid var(--tl-line2);padding-top:12px">Chance of touching a level</div>'+
+          '<div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:5px 10px;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px">'+
+            '<div style="color:var(--tl-faint);font-size:11px">level</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t1.label+'</div><div style="color:var(--tl-faint);font-size:11px;text-align:right">'+t3.label+'</div>'+touch+'</div>':'')+'</div>'+
+        '<div style="background:var(--tl-card);border:1px solid var(--tl-line);border-radius:14px;padding:16px 20px 18px">'+
+          '<div style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tl-faint);margin-bottom:3px">Lens 1 · Fundamental — the study</div>'+
+          '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.02rem;margin-bottom:10px">What is it worth?</div>'+
+          '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px"><div style="font-family:\'IBM Plex Mono\',monospace;font-size:26px;font-weight:600;color:var(--tl-gold)">'+f(fair.base)+'</div><div style="font-size:12.5px;color:var(--tl-muted)">price '+Math.abs(gapPct).toFixed(1)+'% '+(gapPct>=0?'below':'above')+' this mark</div></div>'+
+          '<div style="position:relative;height:34px;margin:2px">'+
+            '<div style="position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--tl-fvlo),var(--tl-okbd) 55%,var(--tl-warnbd))"></div>'+
+            '<div style="position:absolute;top:9px;width:11px;height:11px;border:1.6px solid var(--tl-gold);background:var(--tl-card);transform:rotate(45deg) translateX(-50%);left:'+clamp((fair.base-fair.bear)/(fair.full-fair.bear)*100).toFixed(1)+'%"></div>'+
+            '<div style="position:absolute;top:11px;width:9px;height:9px;border-radius:50%;background:var(--tl-gold);margin-left:-4px;left:'+clamp((D.spot-fair.bear)/(fair.full-fair.bear)*100).toFixed(1)+'%"></div></div>'+
+          '<div style="display:flex;justify-content:space-between;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--tl-muted);margin-bottom:12px"><span>'+f(fair.bear)+' bad case</span><span>'+f(fair.full)+' all goes right</span></div>'+
+          '<div style="font-size:12.5px;line-height:1.55;color:var(--tl-muted)">The study values the business between '+f(fair.bear)+' and '+f(fair.full)+', centring on '+f(fair.base)+'. Valuation runs on its own clock — it changes only when a new edition is published, not when the price moves.</div>'+
+          '<div style="font-size:11.5px;color:var(--tl-faint);margin-top:10px"><a href="../study/">Full study and the open model →</a></div></div></div></div>'+
+    '<div style="margin-top:20px;background:var(--tl-card);border:1px solid var(--tl-line);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">'+
+      '<div style="font-family:Alexandria,sans-serif;font-weight:700;font-size:1.1rem;white-space:nowrap">Do the lenses agree?</div>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+        '<span style="'+tone('warn')+'">NOW · '+(isFinite(nearRes)&&isFinite(nearSup)?f(nearSup)+' – '+f(nearRes):'outside published levels')+'</span>'+
+        '<span style="'+tone(medUp?'ok':'bad')+'">'+t3.label+' · median '+f(t3.p50)+'</span>'+
+        '<span style="'+tone(gapPct>=5?'ok':gapPct<=-5?'bad':'warn')+'">STUDY · '+(gapPct>=0?'+':'−')+Math.abs(gapPct).toFixed(1)+'% to fair</span></div>'+
+      '<div style="font-size:13.5px;line-height:1.55;color:var(--tl-body);flex:1;min-width:320px">'+verdict+' Today\u2019s close sits '+bandPos+' at '+t3.label+'.</div></div>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">'+
+      '<a class="t-btn" href="../study/">Read the full study →</a>'+
+      '<a class="t-btn ghost" href="../calibration/">Calibration &amp; ledger record →</a>'+
+      '<a class="t-btn ghost" href="../archive/">All editions (archive) →</a>'+
+      '<a class="t-btn ghost" href="/tools.html?t='+k+'#odds">Weigh the odds →</a></div>'+
+    '<div style="margin-top:18px;font-size:11.5px;line-height:1.6;color:var(--tl-faint);max-width:1100px">Every number on this page is read live from the site\u2019s own data file — the same source the full study page renders from. Percentiles and touch probabilities are the published output of the 50,000-path engine; resistance, support and the technical read are the published levels; fair value is the current study edition. Nothing here is re-estimated. Price history is the real daily close series. '+asOfLine+'. Educational and illustrative — the odds, not advice. We never tell you to buy or sell.</div></div>';
+  }
+  render([],'');
+  document.addEventListener("click",function(e){
+    if(e.target&&e.target.id==="tl-zoom"){
+      var box=document.getElementById("tl-chartbox"); if(!box) return;
+      var ov=document.createElement("div");
+      ov.id="tl-ov";
+      ov.style.cssText="position:fixed;inset:0;z-index:300;background:var(--paper);padding:3vh 3vw;display:flex;flex-direction:column;gap:10px;overflow:auto";
+      ov.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-family:Alexandria,sans-serif;font-size:1.1rem">'+D.name+' — three lenses</b><button id="tl-ovx" style="background:var(--card);border:1.5px solid var(--line);border-radius:8px;width:38px;height:38px;cursor:pointer;color:var(--ink);font-size:16px">✕</button></div>'+
+        '<div style="flex:1;min-height:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;align-items:center;justify-content:center">'+box.outerHTML.replace('style="position:relative;container-type:inline-size" id="tl-chartbox"','style="position:relative;container-type:inline-size;width:100%;max-width:1500px;margin:0 auto"')+'</div>';
+      document.body.appendChild(ov);
+      document.body.style.overflow="hidden";
+      var close=function(){var o=document.getElementById("tl-ov");if(o)o.remove();document.body.style.overflow=""};
+      ov.addEventListener("click",function(ev){ if(ev.target.id==="tl-ovx"||ev.target===ov) close(); });
+      document.addEventListener("keydown",function esc(ev){ if(ev.key==="Escape"){close();document.removeEventListener("keydown",esc);} });
+    }
+  });
+  if(window.fetchOHLC){
+    fetchOHLC(k).then(function(series){
+      if(!series||series.length<10) return;
+      var H=series.slice(-500);
+      var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var fd=function(iso){var p=iso.split('-');return (+p[2])+' '+MO[+p[1]-1]+' '+p[0]};
+      render(H.map(function(o){return o.price}), fd(H[0].iso)+' – '+fd(H[H.length-1].iso));
+    });
+  }
+})();
+</script>
+</body>
+</html>

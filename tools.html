@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/test.css?v=0827f">
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage">Coverage</a><a href="/tools.html" data-p="tools" class="on">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap">
+  <section class="t-sec" style="margin-top:26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <h1 style="margin:0">Tools</h1>
+      <button class="t-chip" id="howto-btn">How to read these numbers ▾</button>
+    </div>
+    <div id="howto" class="card" style="display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 20px;margin-top:12px;font-size:var(--fs-small);color:var(--muted)">
+      Every figure on this page is read off the <b>published studies</b> — the same 50,000-path simulation each study froze on its run date; nothing is re-simulated here.
+      "Odds" are the share of those paths on each side of a level. The four buckets split the paths at ±10%, and always add to 100%.
+      The screener asks one question per name: can the study’s central fair value be reached inside the 3-month cone?
+      None of this is advice — it’s the same math, arranged for a decision you’ve already framed. <a href="method.html">Full method →</a>
+    </div>
+    <div class="t-tabs">
+      <button class="t-tab" data-t="screener">Screener</button>
+      <button class="t-tab" data-t="compare">Head-to-head</button>
+      <button class="t-tab" data-t="odds">Odds</button>
+      <button class="t-tab" data-t="portfolio">Portfolio</button>
+    </div>
+
+    <div class="t-pane" id="pane-screener">
+      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves?</p>
+      <div class="t-filters">
+        <select id="sc-mkt" class="t-chip"></select>
+        <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="sc-reach"> only in reach</label>
+        <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="sc-cheap"> only looks cheap</label>
+      </div>
+      <div class="t-tablewrap">
+        <table>
+          <thead><tr>
+            <th class="sortable" data-s="code">Ticker</th>
+            <th class="sortable" data-s="reach">Reachability</th>
+            <th class="sortable num" data-s="gap">Gap to fair value</th>
+            <th class="sortable num" data-s="up">Odds up · 3 mo</th>
+            <th class="sortable num" data-s="big">Big-win odds</th>
+            <th></th>
+          </tr></thead>
+          <tbody id="sc-body"></tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The full list with prices → <a href="coverage.html">Coverage</a></p>
+      <div class="t-accordion" id="sc-caveat"><button>Read this before ranking ▾</button><div class="muted" style="font-size:var(--fs-small)">
+        A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). Rankings refresh whenever the studies do.
+      </div></div>
+    </div>
+
+    <div class="t-pane" id="pane-compare">
+      <p class="muted" style="max-width:66ch">Any two covered names, line by line.</p>
+      <div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center;max-width:640px;margin:8px 0 16px">
+        <select id="cp-a" class="t-chip" style="width:100%"></select>
+        <div style="text-align:center;font-weight:700;color:var(--muted)">vs</div>
+        <select id="cp-b" class="t-chip" style="width:100%"></select>
+      </div>
+      <div class="t-tablewrap"><table style="min-width:560px"><tbody id="cp-body"></tbody></table></div>
+    </div>
+
+    <div class="t-pane" id="pane-odds">
+      <p class="muted" style="max-width:66ch">One stock, four plain buckets. Then — if you’ve already decided — size the position as a second step.</p>
+      <div class="t-filters">
+        <select id="od-t" class="t-chip"></select>
+        <span id="od-hz"></span>
+      </div>
+      <div class="t-buckets" id="od-buckets"></div>
+      <p class="muted" id="od-line" style="font-size:var(--fs-small)"></p>
+      <div id="od-touchwrap" style="display:none">
+        <p style="font-weight:600;margin:14px 0 6px;font-size:var(--fs-body)">Touch ladder — odds of trading through each level</p>
+        <div class="t-tablewrap"><table style="min-width:380px">
+          <thead><tr><th class="num">Level</th><th class="num">1 month</th><th class="num">3 months</th></tr></thead>
+          <tbody id="od-touch"></tbody>
+        </table></div>
+      </div>
+      <div class="t-accordion" id="sizer">
+        <button>Size this position — step 2, after you’ve weighed the odds ▾</button>
+        <div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+            <label class="t-field">Money set aside for this idea (<span id="sz-ccy">EGP</span>)<input type="number" id="sz-cap" value="100000" min="0" step="1000"></label>
+            <label class="t-field">Most you’ll accept losing (%)<input type="number" id="sz-risk" value="5" min="0.5" max="100" step="0.5"></label>
+            <label class="t-field">Exit level (published supports)<select id="sz-exit"></select></label>
+          </div>
+          <p id="sz-out" style="font-weight:600;margin:12px 0 0"></p>
+          <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">Same arithmetic as the current sizer: position = (money × max-loss%) ÷ distance to your exit. It sizes a decision you’ve already made — it never makes one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-pane" id="pane-portfolio">
+      <p class="muted" style="max-width:70ch">A mix of covered names and the odds of the whole mix — combined under one stated co-movement assumption (same-exchange pairs ρ≈0.55, cross-exchange ρ≈0.25, the same figures the current page publishes), on seeded draws mapped through each study’s own percentiles.</p>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:8px">
+        <div class="t-card">
+          <div class="t-kicker">The mix</div>
+          <div id="pf-rows"></div>
+          <p class="muted" id="pf-sum" style="font-size:var(--fs-caption);margin:8px 0 0"></p>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <select id="pf-add" class="t-chip" style="flex:1"></select>
+            <button class="t-btn ghost" id="pf-addbtn">Add</button>
+          </div>
+        </div>
+        <div class="t-card">
+          <div class="t-kicker">The odds of this mix · 3 months</div>
+          <div id="pf-out" style="margin-top:8px"><p class="muted" style="font-size:var(--fs-small)">Add at least one name.</p></div>
+          <label class="t-field" style="margin-top:10px">Target return %<input type="number" id="pf-target" value="10" step="1"></label>
+        </div>
+        <div class="t-card">
+          <div class="t-kicker">Who moves the result</div>
+          <div class="t-contrib" id="pf-contrib"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-note">Educational odds read off published studies — never advice. <a href="method.html#disclaimer">Full disclaimer</a></div>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="assets/test.js"></script>
+<script>
+renderChrome("tools");
+(function(){
+  var qs = new URLSearchParams(location.search);
+  /* tabs */
+  var tabs = document.querySelectorAll(".t-tab");
+  function setTab(name, push){
+    var ok = document.getElementById("pane-"+name); if(!ok) name = "screener";
+    tabs.forEach(function(b){ b.classList.toggle("on", b.dataset.t===name); });
+    document.querySelectorAll(".t-pane").forEach(function(p){ p.classList.toggle("on", p.id==="pane-"+name); });
+    if(push) history.replaceState(null,"","#"+name);
+  }
+  tabs.forEach(function(b){ b.addEventListener("click", function(){ setTab(b.dataset.t, true); }); });
+  function hashName(){ var h=(location.hash||"#screener").slice(1); return h==="head-to-head"?"compare":h; }
+  setTab(hashName());
+  window.addEventListener("hashchange", function(){ setTab(hashName()); });
+  document.getElementById("howto-btn").addEventListener("click", function(){
+    var h=document.getElementById("howto"); h.style.display = h.style.display==="none"?"":"none";
+  });
+  var KEYS = Object.keys(ALL).sort(function(a,b){ return ALL[a].name.localeCompare(ALL[b].name); });
+  function optList(sel, chosen){
+    sel.innerHTML = KEYS.map(function(k){ return '<option value="'+k+'"'+(k===chosen?" selected":"")+'>'+ALL[k].name+' ('+ALL[k].code+')</option>'; }).join("");
+  }
+
+  /* ---------- screener ---------- */
+  var scRows = KEYS.map(function(k){
+    var t=ALL[k], g=gapOf(t), r=reachOf(t);
+    var d=t.dist&&t.dist.t60, b=d?computeBuckets(d,t.spot):null;
+    return {k:k, code:t.code, name:t.name, mkt:mktOf(t), gap:g, reach:r?r.rank:9, reachO:r, up:b?b.up:null, big:b?b.bigGain:null, v:verdictOf(t)};
+  }).filter(function(r){ return r.gap!=null && r.reachO; });
+  var scState = {mkt:"All", s:"reach", dir:1, reach:false, cheap:false};
+  var scMkts = ["All"].concat([...new Set(scRows.map(function(r){return r.mkt}))].sort());
+  var scSel = document.getElementById("sc-mkt");
+  scSel.innerHTML = scMkts.map(function(m){ return '<option>'+m+'</option>'; }).join("");
+  scSel.addEventListener("change", function(){ scState.mkt=scSel.value; paintSc(); });
+  document.getElementById("sc-reach").addEventListener("change", function(e){ scState.reach=e.target.checked; paintSc(); });
+  document.getElementById("sc-cheap").addEventListener("change", function(e){ scState.cheap=e.target.checked; paintSc(); });
+  document.querySelectorAll("#pane-screener th.sortable").forEach(function(th){
+    th.addEventListener("click", function(){
+      var s=th.dataset.s;
+      if(scState.s===s) scState.dir*=-1; else { scState.s=s; scState.dir=(s==="code")?1:(s==="reach"?1:-1); }
+      document.querySelectorAll("#pane-screener th").forEach(function(h){ h.classList.toggle("sorted",h===th); if(h===th){h.dataset.dir=scState.dir;h.setAttribute("aria-sort",scState.dir===1?"ascending":"descending");} else {delete h.dataset.dir;h.removeAttribute("aria-sort");} });
+      paintSc();
+    });
+  });
+  function paintSc(){
+    var list = scRows.filter(function(r){
+      if(scState.mkt!=="All" && r.mkt!==scState.mkt) return false;
+      if(scState.reach && r.reach!==0) return false;
+      if(scState.cheap && r.gap < 0.15) return false;
+      return true;
+    }).sort(function(a,b){
+      var x=a[scState.s], y=b[scState.s];
+      if(x==null) return 1; if(y==null) return -1;
+      var c = typeof x==="string" ? x.localeCompare(y) : x-y;
+      return c*scState.dir || (b.gap||0)-(a.gap||0);
+    });
+    document.getElementById("sc-body").innerHTML = list.map(function(r){
+      return '<tr class="rowlink" data-href="'+pageFor(r.k)+'">'+
+        '<td class="num"><b>'+r.code+'</b></td>'+
+        '<td><span class="t-badge '+r.reachO.cls+'">'+r.reachO.label+'</span></td>'+
+        '<td class="num">'+fmtSPct(r.gap)+'</td>'+
+        '<td class="num">'+(r.up!=null?Math.round(r.up*100)+"%":"—")+'</td>'+
+        '<td class="num">'+(r.big!=null?Math.round(r.big*100)+"%":"—")+'</td>'+
+        '<td><a href="'+pageFor(r.k)+'">study →</a></td></tr>';
+    }).join("") || '<tr><td colspan="6" class="muted">Nothing matches those filters.</td></tr>';
+  }
+  document.getElementById("sc-body").addEventListener("click", function(e){
+    if(e.target.closest("a")) return;
+    var tr=e.target.closest("tr.rowlink"); if(tr) location.href=tr.dataset.href;
+  });
+  (function(){ var th=document.querySelector('#pane-screener th[data-s="reach"]'); if(th){ th.classList.add("sorted"); th.dataset.dir=1; th.setAttribute("aria-sort","ascending"); } })();
+  paintSc();
+
+  /* ---------- head-to-head ---------- */
+  var cpA=document.getElementById("cp-a"), cpB=document.getElementById("cp-b");
+  optList(cpA, qs.get("a") && ALL[qs.get("a")] ? qs.get("a") : "PHDC");
+  optList(cpB, qs.get("b") && ALL[qs.get("b")] ? qs.get("b") : "TMGH");
+  function cpPaint(){
+    var a=ALL[cpA.value], b=ALL[cpB.value];
+    function row(label, fa, fb, num){
+      return '<tr><td class="muted" style="width:34%">'+label+'</td><td class="'+(num?'num':'')+'">'+fa+'</td><td class="'+(num?'num':'')+'">'+fb+'</td></tr>';
+    }
+    function cells(t){
+      var g=gapOf(t), v=verdictOf(t), d=t.dist&&t.dist.t60, bk=d?computeBuckets(d,t.spot):null;
+      return {
+        name:'<b>'+t.name+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+t.code+'</span>',
+        px:fmtPx(t.spot,t.ccy)+' <span style="color:var(--muted);font-size:var(--fs-caption)">'+t.spotDate+'</span>',
+        fair:t.fair?fmtPx(t.fair.bear)+' – <b>'+fmtPx(t.fair.base)+'</b> – '+fmtPx(t.fair.full):'—',
+        gap:g!=null?fmtSPct(g):'—',
+        verdict:'<span class="t-badge '+v.cls+'">'+v.label+'</span>',
+        up:bk?Math.round(bk.up*100)+'%':'—',
+        rng:d?fmtPx(d.p5)+' – '+fmtPx(d.p95):'—',
+        bw:bk?Math.round(bk.bigGain*100)+'% / '+Math.round(bk.bigLoss*100)+'%':'—',
+        link:'<a href="'+pageFor(cpA.value)+'">study →</a>'
+      };
+    }
+    var A=cells(a), B=cells(b);
+    document.getElementById("cp-body").innerHTML =
+      row("", A.name, B.name) +
+      row("Price now", A.px, B.px) +
+      row("Fair value (bear – base – good case)", A.fair, B.fair, true) +
+      row("Gap to central fair value", A.gap, B.gap, true) +
+      row("The study’s read", A.verdict, B.verdict) +
+      row("Odds higher in 3 months", A.up, B.up, true) +
+      row("3-month range (p5 – p95)", A.rng, B.rng, true) +
+      row("Big win / big loss odds", A.bw, B.bw, true) +
+      row("", '<a href="'+pageFor(cpA.value)+'">study →</a>', '<a href="'+pageFor(cpB.value)+'">study →</a>');
+  }
+  function cpUrl(){ history.replaceState(null,"","?a="+cpA.value+"&b="+cpB.value+"#compare"); }
+  cpA.addEventListener("change", function(){cpUrl();cpPaint();}); cpB.addEventListener("change", function(){cpUrl();cpPaint();});
+  cpPaint();
+
+  /* ---------- odds + sizer ---------- */
+  var odT=document.getElementById("od-t");
+  optList(odT, qs.get("t") && ALL[qs.get("t")] ? qs.get("t") : (qs.get("a")&&ALL[qs.get("a")]?qs.get("a"):"PHDC"));
+  var odHz="t60";
+  function odPaint(){
+    var t=ALL[odT.value];
+    var hzs=Object.keys(t.dist||{});
+    if(hzs.indexOf(odHz)<0) odHz=hzs[0];
+    document.getElementById("od-hz").innerHTML = hzs.map(function(h){
+      return '<button class="t-chip'+(h===odHz?" on":"")+'" data-h="'+h+'">'+t.dist[h].label+'</button>';
+    }).join("");
+    var d=t.dist[odHz], b=computeBuckets(d,t.spot);
+    document.getElementById("od-buckets").innerHTML =
+      '<div class="t-bucket bw"><div class="lb">BIG WIN ≥ +10%</div><div class="pc">'+Math.round(b.bigGain*100)+'%</div></div>'+
+      '<div class="t-bucket sw"><div class="lb">SMALL WIN 0…+10%</div><div class="pc">'+Math.round(b.smallGain*100)+'%</div></div>'+
+      '<div class="t-bucket sl"><div class="lb">SMALL LOSS 0…−10%</div><div class="pc">'+Math.round(b.smallLoss*100)+'%</div></div>'+
+      '<div class="t-bucket bl"><div class="lb">BIG LOSS ≥ −10%</div><div class="pc">'+Math.round(b.bigLoss*100)+'%</div></div>';
+    document.getElementById("od-line").textContent = t.name+" at "+fmtPx(t.spot,t.ccy)+" — "+d.label+" cone "+fmtPx(d.p5)+" to "+fmtPx(d.p95)+", resolves "+(d.resolve||"—")+". The buckets add to 100%.";
+    var tw=document.getElementById("od-touchwrap");
+    if(t.touch&&t.touch.length){ tw.style.display="";
+      document.getElementById("od-touch").innerHTML = t.touch.map(function(r){
+        return '<tr><td class="num"><b>'+fmtPx(r[0])+'</b></td><td class="num">'+r[1]+'%</td><td class="num">'+r[2]+'%</td></tr>'; }).join("");
+    } else tw.style.display="none";
+    var cy=document.getElementById("sz-ccy"); if(cy) cy.textContent=t.ccy||"EGP";
+    var ex=document.getElementById("sz-exit");
+    var sups=(t.levels&&t.levels.sup)||[];
+    ex.innerHTML = sups.map(function(s){ return '<option value="'+s+'">'+fmtPx(s)+' (support)</option>'; }).join("") ||
+      '<option value="'+(t.spot*0.9).toFixed(2)+'">'+fmtPx(t.spot*0.9)+' (−10%)</option>';
+    szPaint();
+  }
+  document.getElementById("od-hz").addEventListener("click", function(e){
+    var b=e.target.closest(".t-chip"); if(!b) return; odHz=b.dataset.h; odPaint();
+  });
+  odT.addEventListener("change", function(){ history.replaceState(null,"","?t="+odT.value+"#odds"); odPaint(); });
+  function szPaint(){
+    var t=ALL[odT.value];
+    var cap=+document.getElementById("sz-cap").value||0;
+    var risk=(+document.getElementById("sz-risk").value||0)/100;
+    var exit=+document.getElementById("sz-exit").value||0;
+    var dist=t.spot-exit;
+    var out=document.getElementById("sz-out");
+    if(cap<=0||risk<=0||dist<=0){ out.textContent="Enter your numbers above — the exit must sit below the current price."; return; }
+    var shares=Math.floor((cap*risk)/dist);
+    var pos=shares*t.spot;
+    out.innerHTML = "≈ <span class='num'>"+tNum(shares)+"</span> shares — a position of <span class='num'>"+fmtPx(pos,t.ccy)+"</span> ("+Math.round(pos/cap*100)+"% of the money set aside). If it exits at "+fmtPx(exit)+", the loss is ≈ <span class='num'>"+fmtPx(cap*risk,t.ccy)+"</span>.";
+  }
+  ["sz-cap","sz-risk","sz-exit"].forEach(function(id){ document.getElementById(id).addEventListener("input", szPaint); });
+  odPaint();
+
+  /* ---------- portfolio ---------- */
+  var mix=[{k:"PHDC",w:50},{k:"COMI",w:50}];
+  var pfAdd=document.getElementById("pf-add");
+  optList(pfAdd,"TMGH");
+  document.getElementById("pf-addbtn").addEventListener("click", function(){
+    var k=pfAdd.value;
+    if(!mix.some(function(m){return m.k===k})) mix.push({k:k,w:20});
+    pfPaint();
+  });
+  function exOf(k){ return (ALL[k].code||"").split(":")[0].split("/")[0]; }
+  function pfSim(sel){
+    var N=4000, rnd=mulberry32(42);
+    function gauss(){ var u=Math.max(rnd(),1e-9), v=rnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+    var CF_A=Math.sqrt(RHO_CROSS), CF_B=Math.sqrt(RHO_SAME-RHO_CROSS), CF_C=Math.sqrt(1-RHO_SAME);
+    var exs=[...new Set(sel.map(function(m){return exOf(m.k)}))];
+    var rets=new Array(N), per=sel.map(function(){return {sum:0,bad:0}});
+    for(var i=0;i<N;i++){
+      var zg=gauss(), zm={}; exs.forEach(function(e){ zm[e]=gauss(); });
+      var r=0;
+      for(var j=0;j<sel.length;j++){
+        var m=sel[j], z=CF_A*zg+CF_B*zm[exOf(m.k)]+CF_C*gauss();
+        var q=Math.min(0.999,Math.max(0.001,normCdf(z)));
+        var rr=retQ(ALL[m.k],"t60",q);
+        r+=m.w*rr; per[j].sum+=rr;
+        if(rr<0) per[j].bad+=m.w*rr;
+      }
+      rets[i]=r;
+    }
+    rets.sort(function(a,b){return a-b});
+    return { rets:rets, per:per,
+      q:function(p){ return rets[Math.min(N-1,Math.max(0,Math.round(p*(N-1))))]; },
+      pAbove:function(x){ var c=0; for(var i2=0;i2<N;i2++) if(rets[i2]>x) c++; return c/N; } };
+  }
+  function pfPaint(){
+    var rowsEl=document.getElementById("pf-rows");
+    rowsEl.innerHTML = mix.map(function(m,i){
+      return '<div class="t-mixrow"><span>'+ALL[m.k].name+' <span class="num" style="color:var(--muted);font-size:var(--fs-caption)">'+ALL[m.k].code+'</span></span>'+
+        '<input type="number" min="0" max="100" step="5" value="'+m.w+'" data-i="'+i+'" style="background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;color:var(--ink)">'+
+        '<button class="t-chip" data-x="'+i+'" title="Remove">✕</button></div>';
+    }).join("") || '<p class="muted" style="font-size:var(--fs-small)">Empty — add names below.</p>';
+    var live=mix.filter(function(m){return m.w>0&&ALL[m.k]});
+    var sum=live.reduce(function(a,m){return a+m.w},0);
+    var sumEl=document.getElementById("pf-sum");
+    if(sumEl) sumEl.textContent = sum ? "Weights entered sum to "+sum+"% — each name is computed as its share of that total." : "";
+    var out=document.getElementById("pf-out");
+    if(!sum){ out.innerHTML='<p class="muted" style="font-size:var(--fs-small)">Add at least one name with weight.</p>'; document.getElementById("pf-contrib").innerHTML=""; return; }
+    var sel=live.map(function(m){return {k:m.k,w:m.w/sum}});
+    var sim=pfSim(sel);
+    var target=(+document.getElementById("pf-target").value||0)/100;
+    out.innerHTML =
+      '<p style="margin:0"><b>Typical outcome:</b> <span class="num">'+fmtSPct(sim.q(0.5),1)+'</span></p>'+
+      '<p style="margin:6px 0 0"><b>Plausible bad case (p5):</b> <span class="num" style="color:var(--red)">'+fmtSPct(sim.q(0.05),1)+'</span></p>'+
+      '<p style="margin:6px 0 0"><b>Chance of any loss:</b> <span class="num">'+Math.round((1-sim.pAbove(0))*100)+'%</span></p>'+
+      '<p style="margin:6px 0 0"><b>Chance of ≥ '+Math.round(target*100)+'%:</b> <span class="num">'+Math.round(sim.pAbove(target)*100)+'%</span></p>'+
+      '<p class="muted" style="font-size:var(--fs-caption);margin:10px 0 0">Seeded simulation, 4,000 draws mapped through each study’s published percentiles — refreshes as you edit. The bad case is the correlated figure, softer than "every name’s worst day at once."</p>';
+    var per=sel.map(function(m,i){ return {k:m.k, w:m.w, med:sim.per[i].sum/4000}; });
+    document.getElementById("pf-contrib").innerHTML = per.map(function(p){
+      var w=Math.round(p.w*100);
+      return '<div class="row"><span class="num">'+ALL[p.k].code.split(":").pop()+'</span><span class="t-bar"><i style="width:'+w+'%"></i></span><span class="num">'+w+'% wt</span></div>';
+    }).join("");
+  }
+  document.getElementById("pf-rows").addEventListener("input", function(e){
+    var i=e.target.dataset.i; if(i==null) return; mix[+i].w=+e.target.value||0; pfPaint();
+  });
+  document.getElementById("pf-rows").addEventListener("click", function(e){
+    var x=e.target.dataset.x; if(x==null) return; mix.splice(+x,1); pfPaint();
+  });
+  document.getElementById("pf-target").addEventListener("input", pfPaint);
+  pfPaint();
+})();
+</script>
+</body>
+</html>

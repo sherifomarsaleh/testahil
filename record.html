@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track record — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/test.css?v=0827f">
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record" class="on">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap">
+  <section class="t-sec" style="margin-top:26px">
+    <h1>Were we right?</h1>
+    <p class="muted" style="max-width:68ch">Every forecast is saved with its date. When the date arrives, the real price goes next to what we said — right or wrong, nothing deleted. The tally first; the rules below it.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0">
+      <div class="t-stat"><div class="n" id="r-n">—</div><div class="d">resolved 3-month windows checked</div></div>
+      <div class="t-stat"><div class="n hl" id="r-hits">—</div><div class="d" id="r-hitsd">inside the 90% band</div></div>
+      <div class="t-stat"><div class="n" id="r-names">—</div><div class="d">covered names, each with its own public record</div></div>
+      <div class="t-stat"><div class="n">0</div><div class="d">forecasts deleted or rewritten. Ever.</div></div>
+    </div>
+    <div class="t-tablewrap" style="margin-top:6px">
+      <table style="min-width:520px">
+        <thead><tr><th>Market</th><th class="num">Names</th><th class="num">Windows</th><th class="num">Inside the 90% band</th><th></th></tr></thead>
+        <tbody id="r-mkts"></tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:34px">Graded so far</h2>
+    <div class="t-tablewrap">
+      <table style="min-width:640px">
+        <thead><tr><th>Name</th><th>Horizon</th><th class="num">Said (p5–p95)</th><th class="num">Real close</th><th>Result</th></tr></thead>
+        <tbody id="r-graded"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="r-gnote" style="font-size:var(--fs-small)"></p>
+
+    <h2 style="margin-top:34px">The live ledger — forecasts awaiting their date</h2>
+    <div id="r-filter" style="display:none;margin:10px 0" class="t-note">Showing <b id="r-fname"></b> only — <a id="r-showall" href="record.html">show every name</a></div>
+    <div class="t-filters" id="p-controls"><button class="t-chip on" data-w="30" type="button">Next 30 days</button><button class="t-chip" data-w="all" type="button">All pending</button><span id="p-mkts" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="muted" style="font-size:var(--fs-caption)">showing <span id="p-count" class="num">…</span></span></div>
+    <p class="muted" style="font-size:var(--fs-small);max-width:68ch">Published cones whose check date hasn’t arrived yet. Each will be graded on the real close of its date — projected dates use the exchange’s own calendar.</p>
+    <div class="t-tablewrap">
+      <table style="min-width:640px">
+        <thead><tr><th>Name</th><th class="num">Anchored</th><th class="num">At price</th><th>Horizon</th><th class="num">90% band (p5–p95)</th><th class="num">Grades on</th><th></th></tr></thead>
+        <tbody id="r-ledger"></tbody>
+      </table>
+    </div>
+
+    <div class="t-accordion"><button>How we pick the check dates ▾</button><div class="muted" style="font-size:var(--fs-small)">
+      From 27 July 2026 every new forecast is checked at 1 month and 3 months from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it. The engine’s backtest measures the same calendar window we publish, instead of a fixed session count.
+    </div></div>
+    <div class="t-accordion"><button>How the 90% claim is tested ▾</button><div class="muted" style="font-size:var(--fs-small)">
+      Each forecast gives a likely range. When its date comes, we see whether the real price landed inside that range, and keep a running tally. If our "9 times out of 10" ranges are honest, the price should land inside them about 90% of the time. The big tally above is the backtest record across every covered name’s resolved, non-overlapping 3-month windows; each study page carries its own name-level record.
+    </div></div>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="assets/test.js"></script>
+<script>
+renderChrome("record");
+(function(){
+  var bt=bandTotals();
+  document.getElementById("r-n").textContent=tNum(bt.n);
+  document.getElementById("r-hits").textContent=tNum(bt.hits);
+  document.getElementById("r-hitsd").textContent="inside the 90% band — "+(bt.pct*100).toFixed(1)+"% against the 90% target";
+  document.getElementById("r-names").textContent=Object.keys(BANDS).length;
+  var mkAgg={};
+  Object.keys(BAND_MARKETS).forEach(function(k){var m=BAND_MARKETS[k];
+    var lbl=m.label; if(!mkAgg[lbl])mkAgg[lbl]={label:lbl,names:0,n:0,hits:0};
+    mkAgg[lbl].names+=m.names; mkAgg[lbl].n+=m.n; mkAgg[lbl].hits+=Math.round(m.c90*m.n);});
+  var mk=Object.keys(mkAgg).map(function(k){var m=mkAgg[k];return {k:k,m:{label:m.label,names:m.names,n:m.n,c90:m.hits/m.n}}})
+    .sort(function(a,b){return b.m.n-a.m.n});
+  document.getElementById("r-mkts").innerHTML = mk.map(function(r){
+    return '<tr><td>'+r.m.label+'</td><td class="num">'+r.m.names+'</td><td class="num">'+tNum(r.m.n)+'</td><td class="num">'+(r.m.c90*100).toFixed(1)+'%</td>'+
+    '<td><span class="t-bar" style="display:block;min-width:80px"><i style="width:'+(r.m.c90*100).toFixed(1)+'%"></i></span></td></tr>';
+  }).join("");
+  function keyByInstrument(ins){
+    if(ALL[ins]) return ins;
+    var up=(ins||"").toUpperCase();
+    return ALL[up]?up:null;
+  }
+  var only=(new URLSearchParams(location.search).get("t")||"").toUpperCase();
+  if(only && !ALL[only]) only="";
+  if(only){
+    document.getElementById("r-filter").style.display="";
+    document.getElementById("r-fname").textContent=ALL[only].name+" ("+only+")";
+  }
+  var pending=[], graded=[];
+  LEDGER.forEach(function(r){
+    if(only && (r.instrument||"").toUpperCase()!==only) return;
+    (r.realized_close==null?pending:graded).push(r);
+  });
+  pending.sort(function(a,b){ return (a.grade_date||"").localeCompare(b.grade_date||""); });
+  graded.sort(function(a,b){ return (b.grade_date||"").localeCompare(a.grade_date||""); });
+  function pendRow(r){
+    var k=keyByInstrument(r.instrument), nm=k?ALL[k].name:r.instrument;
+    var link=k?'<a href="'+pageFor(k)+'">study →</a>':'';
+    return '<tr><td><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+'</span></td>'+
+      '<td class="num">'+r.anchor_date+'</td><td class="num">'+fmtPx(r.anchor_price,r.ccy)+'</td><td>'+r.horizon_label+'</td>'+
+      '<td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+r.grade_date+(r.grade_basis==="projected"?'<span class="muted" style="font-size:var(--fs-caption)"> (projected)</span>':'')+'</td>'+
+      '<td>'+link+'</td></tr>';
+  }
+  var pState={win: only?"all":"30", mkt:"All"};
+  var MO=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function paintPending(){
+    var lim=null;
+    if(pState.win==="30"){ var dd=new Date(); dd.setDate(dd.getDate()+30); lim=dd.toISOString().slice(0,10); }
+    var list=pending.filter(function(r){
+      if(lim && (r.grade_date||"")>lim) return false;
+      if(pState.mkt!=="All"){ var k2=keyByInstrument(r.instrument); if(!k2||mktOf(ALL[k2])!==pState.mkt) return false; }
+      return true;
+    });
+    var out="",last="";
+    list.forEach(function(r){ var m=(r.grade_date||"").slice(0,7);
+      if(m&&m!==last){ var p=m.split("-"); out+='<tr class="t-month"><td colspan="7">grades in '+MO[+p[1]-1]+' '+p[0]+'</td></tr>'; last=m; }
+      out+=pendRow(r); });
+    document.getElementById("r-ledger").innerHTML = out || '<tr><td colspan="7" class="muted">'+(pState.win==="30"?'Nothing grades in the next 30 days — switch to “All pending”.':(only?'No live forecasts on this name yet — its record so far is the backtest on <a href="'+pageFor(only)+'">its study page</a>.':'Nothing pending right now.'))+'</td></tr>';
+    document.getElementById("p-count").textContent=list.length+" of "+pending.length;
+  }
+  (function(){
+    var pc=document.getElementById("p-controls");
+    var mkts=[]; pending.forEach(function(r){ var k2=keyByInstrument(r.instrument); if(k2){ var m=mktOf(ALL[k2]); if(mkts.indexOf(m)<0) mkts.push(m); } });
+    mkts.sort();
+    document.getElementById("p-mkts").innerHTML=['All'].concat(mkts).map(function(m,i){return '<button class="t-chip'+(i===0?' on':'')+'" data-m="'+m+'" type="button">'+m+'</button>'}).join("");
+    if(pState.win==="all"){ pc.querySelector('[data-w="30"]').classList.remove("on"); pc.querySelector('[data-w="all"]').classList.add("on"); }
+    pc.addEventListener("click",function(e){
+      var b=e.target.closest(".t-chip"); if(!b) return;
+      if(b.dataset.w){ pState.win=b.dataset.w; pc.querySelectorAll("[data-w]").forEach(function(c){c.classList.toggle("on",c===b)}); }
+      if(b.dataset.m){ pState.mkt=b.dataset.m; pc.querySelectorAll("[data-m]").forEach(function(c){c.classList.toggle("on",c===b)}); }
+      paintPending();
+    });
+  })();
+  paintPending();
+  document.getElementById("r-graded").innerHTML = graded.map(function(r){
+    var k=keyByInstrument(r.instrument), nm=k?ALL[k].name:r.instrument;
+    var inBand = r.realized_close>=r.p5 && r.realized_close<=r.p95;
+    return '<tr><td><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+' · '+r.anchor_date+'</span></td>'+
+      '<td>'+r.horizon_label+'</td><td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+fmtPx(r.realized_close,r.ccy)+'</td>'+
+      '<td><span class="t-badge '+(inBand?'good':'bad')+'">'+(inBand?'inside the band':'outside the band')+'</span></td></tr>';
+  }).join("") || '<tr><td colspan="5" class="muted">The first live forecasts are still running toward their check dates — the backtest tally above is the record so far.</td></tr>';
+  if(graded.length) document.getElementById("r-gnote").textContent = graded.length+" live forecast"+(graded.length>1?"s":"")+" graded so far, on top of the backtest record above.";
+})();
+</script>
+</body>
+</html>

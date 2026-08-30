@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coverage — testahil? (test)</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/test.css?v=0827f">
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage" class="on">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+<main class="wrap">
+  <section class="t-sec">
+    <h1>Coverage</h1>
+    <p class="muted" id="cov-count" style="max-width:66ch">— instruments. Each gets one page: the odds, whether it looks cheap or expensive, and the open model.</p>
+    <div class="t-filters">
+      <input id="cov-q" type="search" placeholder="🔍 Filter by name or ticker…" autocomplete="off"
+        style="background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:10px 13px;font:inherit;font-size:var(--fs-body);color:var(--ink);flex:1;min-width:200px">
+      <span id="cov-chips" style="display:flex;gap:6px;flex-wrap:wrap"></span>
+    </div>
+    <div class="t-tablewrap">
+      <table id="cov-table">
+        <thead><tr>
+          <th class="sortable" data-s="code">Ticker</th>
+          <th class="sortable" data-s="name">Name</th>
+          <th class="sortable num" data-s="spot">Price</th>
+          <th class="sortable" data-s="gap">Vs fair value</th>
+          <th class="sortable num" data-s="up">Odds up · 3 mo</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="cov-body"></tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:var(--fs-small);margin-top:10px">Rank these by reachability instead → <a href="tools.html#screener">the Screener</a></p>
+    <div id="coming-wrap" class="t-sec" style="display:none">
+      <h2>Coming soon</h2>
+      <p class="muted" id="coming-list" style="font-size:var(--fs-small)"></p>
+    </div>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="assets/test.js"></script>
+<script>
+renderChrome("coverage");
+(function(){
+  var rows = Object.keys(ALL).map(function(k){
+    var t = ALL[k], g = gapOf(t), v = verdictOf(t);
+    var up = (t.dist && t.dist.t60) ? probAbove(t.dist.t60, t.spot) : null;
+    return {k:k, code:t.code, name:t.name, spot:t.spot, ccy:t.ccy, gap:g, v:v, up:up, mkt:mktOf(t)};
+  });
+  var mkts = ["All"].concat([...new Set(rows.map(function(r){ return r.mkt; }))].sort());
+  var state = {mkt:"All", q:"", s:"name", dir:1};
+  var chips = document.getElementById("cov-chips");
+  chips.innerHTML = mkts.map(function(m){
+    var n = m==="All" ? rows.length : rows.filter(function(r){ return r.mkt===m; }).length;
+    return '<button class="t-chip'+(m==="All"?" on":"")+'" data-m="'+m+'">'+m+' · '+n+'</button>';
+  }).join("");
+  chips.addEventListener("click", function(e){
+    var b = e.target.closest(".t-chip"); if(!b) return;
+    state.mkt = b.dataset.m;
+    chips.querySelectorAll(".t-chip").forEach(function(c){ c.classList.toggle("on", c===b); });
+    paint();
+  });
+  document.getElementById("cov-q").addEventListener("input", function(e){ state.q = e.target.value.trim().toLowerCase(); paint(); });
+  document.querySelectorAll("#cov-table th.sortable").forEach(function(th){
+    th.addEventListener("click", function(){
+      var s = th.dataset.s;
+      if(state.s===s) state.dir*=-1; else { state.s=s; state.dir = (s==="name"||s==="code")?1:-1; }
+      document.querySelectorAll("#cov-table th").forEach(function(h){ h.classList.toggle("sorted", h===th); if(h===th){h.dataset.dir=state.dir;h.setAttribute("aria-sort",state.dir===1?"ascending":"descending");} else {delete h.dataset.dir;h.removeAttribute("aria-sort");} });
+      paint();
+    });
+  });
+  function paint(){
+    var list = rows.filter(function(r){
+      if(state.mkt!=="All" && r.mkt!==state.mkt) return false;
+      if(state.q && r.name.toLowerCase().indexOf(state.q)<0 && r.code.toLowerCase().indexOf(state.q)<0 && r.k.toLowerCase().indexOf(state.q)<0) return false;
+      return true;
+    }).sort(function(a,b){
+      var x=a[state.s], y=b[state.s];
+      if(x==null) return 1; if(y==null) return -1;
+      return (typeof x==="string" ? x.localeCompare(y) : x-y) * state.dir;
+    });
+    document.getElementById("cov-body").innerHTML = list.map(function(r){
+      return '<tr class="rowlink" data-href="'+pageFor(r.k)+'">'+
+        '<td class="num"><b>'+r.code+'</b></td>'+
+        '<td>'+r.name+'</td>'+
+        '<td class="num">'+fmtPx(r.spot, r.ccy)+'</td>'+
+        '<td><span class="t-badge '+r.v.cls+'">'+r.v.label+'</span>'+(r.gap!=null?' <span class="num" style="color:var(--muted);font-size:var(--fs-caption)">'+fmtSPct(r.gap)+'</span>':'')+'</td>'+
+        '<td class="num">'+(r.up!=null?Math.round(r.up*100)+"%":"—")+'</td>'+
+        '<td><a href="'+pageFor(r.k)+'">study →</a></td>'+
+      '</tr>';
+    }).join("");
+    document.getElementById("cov-count").textContent = list.length+" of "+rows.length+" instruments — "+
+      rows.filter(function(r){return r.mkt!=="Metals"}).length+" stocks and "+
+      rows.filter(function(r){return r.mkt==="Metals"}).length+" metals. Each gets one page: the odds, the valuation read, and the open model.";
+  }
+  document.getElementById("cov-body").addEventListener("click", function(e){
+    if(e.target.closest("a")) return;
+    var tr = e.target.closest("tr.rowlink"); if(tr) location.href = tr.dataset.href;
+  });
+  var coming = (window.COMING||[]).filter(function(c){ return c.status!=="covered"; });
+  if(coming.length){
+    document.getElementById("coming-wrap").style.display="";
+    document.getElementById("coming-list").textContent = coming.map(function(c){ return c.name+" ("+c.code+")"; }).join(" · ");
+  }
+  (function(){ var th=document.querySelector('#cov-table th[data-s="name"]'); if(th){ th.classList.add("sorted"); th.dataset.dir=1; th.setAttribute("aria-sort","ascending"); } })();
+  paint();
+})();
+</script>
+</body>
+</html>

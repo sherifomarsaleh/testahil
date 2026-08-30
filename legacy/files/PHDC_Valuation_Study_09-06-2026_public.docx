@@ -1,0 +1,169 @@
+PHDC Valuation Study — Educational Analysis
+
+**Independent Valuation Study — Educational Analysis**
+
+**Palm Hills Developments (EGX:PHDC)**
+
+**Fundamental analysis · Technical analysis · Monte Carlo simulation — one integrated read**
+
+Anchor: EGP 15.00 (8 Jun 2026 close) · 2.86bn shares · mkt cap ~EGP 42.9bn · valuation refreshed 9 Jun 2026 to independent bottom-up
+
+**READ FIRST — what this document is, and is not. **This study is a valuation exercise and an expression of personal analytical opinion, published free of charge for educational purposes: it shows how one analyst applies fundamental, technical and probabilistic methods to a listed company, and invites scrutiny of that methodology. It is NOT investment advice, NOT a recommendation or solicitation to buy, sell or hold any security, and NOT directed at the circumstances of any reader. The preparer is not licensed by the Egyptian Financial Regulatory Authority (FRA) or any other regulator, provides no financial consultancy, manages no money, and accepts no fees, funds or clients. The preparer holds a position in PHDC — see the Disclosure & Disclaimer at the end. All values are model outputs presented as ranges and distributions because no single number should be relied on. Consult a licensed financial advisor before any investment decision.
+
+# Headline
+
+**The model’s read: the three-month distribution skews constructive; the near-term picture is weaker. **An independent, clean-sheet bottom-up build — every project valued from units × price/m² and m² × construction-cost/m², rolled into consolidated income, balance-sheet and cash-flow statements with no external price target embedded — puts risk-adjusted fair value at EGP 15.89, essentially level with the EGP 15.00 market; full execution of the disclosed pipeline is worth EGP 24.92 (+66%). The contracted and existing business alone is ~EGP 11–12/share; Saadiyat, the two Ras El-Hekma JVs and the new Jirian Nile city carry the execution-weighted upside. Technically the stock is in a mature-trend consolidation — a low-volume bounce into resistance with daily MACD bear-crossed. A single 10-factor Monte Carlo (rates, FX, inflation, flows, oil, geopolitics, sovereign inflows, launch execution, tourism, credit) puts the T+20 median at ~15.4 and the T+60 median at ~16.4 with a right tail driven by the launch and sovereign-inflow events. **Net: the stock trades essentially at the model’s risk-adjusted value; the right tail of the distribution belongs to launch execution, the left tail to leverage and launch failure. This study estimates values and probabilities — it does not recommend actions.**
+
+# 1.  Fundamental analysis
+
+**Method in plain terms. **A **DCF (discounted cash flow)** values a project by the cash it generates in future years, discounted to today at a rate (the WACC) reflecting risk and the time value of money. PHDC is not one cash stream but a portfolio of developments, so each is valued as its own DCF and summed — a **sum-of-the-parts (SOTP)**. The backlog and mature sites are the *existing business*; the un-launched land and the Ras El-Hekma JVs are **pipeline option value** — worth a great deal if they execute, little if they don't, so each is weighted by an execution probability.
+
+This build is bottom-up: each project starts from its unit mix (apartments, town/twin houses, villas, chalets) priced per square metre, with construction and land costed per square metre, and only the unsold remainder is valued — already-sold units sit in the contracted backlog, so nothing is double-counted. Each cohort carries an EGP price escalator (~14%/yr) and is collected over a down-payment-plus-instalment schedule; a 5% perpetual-growth (Gordon) terminal value captures development beyond the disclosed pipeline. Construction is paced to PHDC's actual ~EGP 14–20bn annual run-rate, so consolidated free cash flow is positive throughout. Full mechanics and every input are in the companion Excel model.
+
+| **Project (bottom-up build)** | **Risk-adj EGP/sh** | **What it is** |
+| --- | --- | --- |
+| Contracted backlog | 7.25 | already sold; collected over ~7 yrs |
+| Badya — West Cairo (unsold remainder) | 0.83 | flagship; mostly pre-sold, remainder here |
+| Saadiyat Shores — Abu Dhabi (45% JV) | 3.55 | first cross-border project; risk-weighted |
+| Ras El-Hekma — Miran (45% JV) | 2.32 | mega-launch; risk-weighted |
+| Ras El-Hekma — Modon (30% JV) | 1.18 | master-dev JV; heavily risk-weighted |
+| Hacienda series — North Coast (unsold) | 0.86 | established coastal portfolio; remainder |
+| Jirian + other active compounds | 2.42 | Sheikh Zayed Nile city; PH New Cairo, 97 Hills, Crown, Alamein, Laguna, legacy |
+| Landbank + terminal value (5% g) | 1.69 | undeveloped land + going-concern terminal value |
+| **Sum of parts (gross of debt)** | **20.09** |  |
+| Less: net debt (~EGP 12bn) | (4.20) | gross 30 − cash 18 |
+| **Base-case equity value** | **15.89** | **+6% vs 15.00; full execution EGP 24.92 (+66%)** |
+
+**Scenarios (by execution probability): **Bear EGP 7.6 (−49%; contracted + existing compounds only, all announced pipeline ≈ 0)  ·  Base, risk-adjusted EGP 15.89 (+6%)  ·  Full execution of disclosed pipeline EGP 24.92 (+66%).
+
+*Figure 1. Valuation football field, grouped by source. THIS STUDY: base 15.89 (risk-adjusted, dark) inside its bear-to-full-execution range of 7.62–24.92. STREET: HSBC 17.50 and a thin vendor consensus ~16.98. The market's 52-week range completes the picture. At spot 15.00 (dashed) the market pays for the contracted business plus only modest pipeline execution. Every bar is defined, with its source, in the table below.*
+
+**Key fundamentals: **Q1-2026 revenue EGP 9.35bn, net profit EGP 1.21bn (−21.7% YoY on margin/timing, not demand); new contracted sales EGP 52bn; backlog EGP 263bn (~7x annual revenue). ROE 26.9% (peers 7.5%), P/S 0.92x (peers 7.45x), EV/EBITDA ~8.1x, P/E ~10.3x. **Risk: debt/equity ~158% (gross debt ~EGP 30bn, cash ~EGP 18bn → net debt ~EGP 12bn) **— the genuine balance-sheet vulnerability into any rate surprise. No dividend (pure capital-appreciation play).
+
+**Reading the football field — where every number comes from. **Three kinds of bars sit on one axis: what THIS STUDY computes, what the STREET publishes, and what the MARKET has actually paid. They are deliberately not blended — each answers a different question.
+
+| **Bar on the chart** | **EGP/sh** | **How it is computed — and where it comes from** |
+| --- | --- | --- |
+| **Base case (risk-adjusted)** | 15.89 | THIS STUDY. Each project’s DCF × its execution probability, + 60% of the terminal value, − net debt EGP 12bn (4.20/sh), ÷ 2.86bn shares. The number this study stands on; every input is in the companion Excel. |
+| **Full execution (gross)** | 24.92 | THIS STUDY. The identical build with every execution probability set to 100% — the ceiling if all 15 disclosed projects, the backlog and the terminal value deliver exactly as modelled. |
+| **Bear case (range floor)** | 7.62 | THIS STUDY. Backlog at full value (7.63/sh) + the open-and-selling compounds (4.18) − net debt (4.20) = 7.62, with all unlaunched pipeline and the terminal value at ZERO — the floor if no new launch ever executes. Not the same construction as the 7.25 backlog row in the SOTP: that is a single asset line, risk-weighted (7.63 × 95%) and BEFORE debt. Here the compounds (+4.18) and the debt (−4.20) almost exactly cancel, so the two numbers land close purely by coincidence. |
+| **HSBC target price** | 17.50 | STREET. HSBC Global Research 12-month TP (S. Bramley-Jackson, Buy, 8 May 2026) — the only current bulge-bracket coverage. |
+| **Consensus target** | ~16.98 | STREET (vendor). Investing.com aggregate of just 3 analyst targets (high 23.3 / low 11.7), last refreshed late April — stale and thin; indicative only, flagged per source-transparency policy. |
+| **52-week trading range** | 6.6–16.1 | MARKET. The EGX trading range of the last 12 months — the one bar that is pure market fact, no model. Spot 15.00 (dashed) is the 8 Jun close all bars are judged against. |
+
+# 2.  Technical analysis
+
+| **Timeframe** | **Trend** | **Read** |
+| --- | --- | --- |
+| **Weekly / long** | Strong up | Secular bull; price far above SMA200 (9.04); +130% off 2025 lows — intact |
+| **Daily** | Up, maturing | Pulled back 16.08→15.00; SMA20 14.30 rising support; RSI 65 under MA; MACD bear-crossed (hist −0.074, deepening); ADX 54 rolling over → consolidation/topping |
+| **Hourly** | Bounce | Reflex rally into resistance on FADING volume; 1H RSI 54>MA, MFI recovering — short-term only |
+
+| **Resistance** | **Pivot** | **Support** |
+| --- | --- | --- |
+| R3  16.08 (swing high) | — | S1  14.85–15.00 |
+| R2  15.90 | spot 15.00 | S2  14.30 (SMA20, rising) |
+| R1  15.55–15.70 (cluster) | ATR(14) 0.60 | S3  14.06 / 13.90 / 13.40 |
+
+*Daily ATR(14) EGP 0.60; realized vol ~57% annualized. Volume the decisive tell: the bounce is on ~20m vs 24–41m on recent swings.*
+
+# 3.  Monte Carlo simulation — one model, ten external factors
+
+**Method. **One simulation, not a model zoo: 50,000 daily paths to T+60 are driven by ten external factors. Five are continuous (compounding daily with drift and volatility): the CBE policy-rate path, the EGP/USD rate, inflation, EGX30/foreign-flow beta, and Brent/Gulf liquidity. Five are discrete events (each occurring with a stated probability on a random session, with a stated impact): a geopolitical/regional-security shock, Ras El-Hekma sovereign inflows, project-launch execution, tourism/North-Coast demand, and mortgage-credit conditions. Idiosyncratic company noise tops the paths up to PHDC’s realized volatility. Every drift, probability and impact below is an explicit, editable judgment — the table IS the model.
+
+## 3.1  The ten external factors — calibration
+
+| **Factor (10 external drivers)** | **Type** | **3M drift / event prob.** | **3M vol / impact** | **Channel** |
+| --- | --- | --- | --- | --- |
+| **1 CBE policy rate path** | continuous | +2.0% | 5% | discounting, mortgage cost |
+| **2 EGP/USD exchange rate** | continuous | −2.5% | 7% | FX translation, USD investors |
+| **3 Inflation (CPI)** | continuous | +1.5% | 4% | real-asset hedge bid, costs |
+| 4 EGX30 & foreign portfolio flows | continuous | +1.5% | 8% | market beta, liquidity |
+| **5 Brent oil / Gulf liquidity** | continuous | +0.5% | 4% | GCC buyer purchasing power |
+| **6 Geopolitical / regional security** | event | p = 30% | −12% (±5%) | risk-premium shock |
+| **7 Ras El-Hekma sovereign inflows** | event | p = 35% | +10% (±4%) | funding & sentiment |
+| **8 Project launch ****&**** sales execution** | event | p = 55% | +8% (±4%) | the summer catalyst |
+| **9 Tourism ****&**** North Coast demand** | event | p = 40% | +2% (±6%) | coastal absorption |
+| **10 Mortgage finance ****&**** credit** | event | p = 35% | +2% (±5%) | affordability, velocity |
+
+## 3.2  Percentile estimates (anchor 15.00, 50,000 paths)
+
+| **Horizon — 10-factor model** | **5%** | **25%** | **Median** | **75%** | **95%** |
+| --- | --- | --- | --- | --- | --- |
+| T+20  (~1 month) | 11.93 | 13.88 | **15.44** | 17.13 | 19.99 |
+| T+60  (~3 months) | 10.53 | 13.68 | **16.37** | 19.60 | 25.35 |
+
+*The five continuous factors compound daily; the five event factors arrive as discrete jumps on a random session within the window. Net expected 3M factor contribution is ~+8% before idiosyncratic noise (annualized path vol ~56%, in line with realized ~57%). The T+60 distribution is right-skewed: median 16.37, with the launch and sovereign-inflow events carrying the upside shoulder and the geopolitical jump the left tail.*
+
+## 3.3  Fan chart — percentile cone to T+60
+
+*Figure 2. Forward cone (median, 25–75%, 10–90%) from the 10-factor macro model. The median drifts to ~15.4 by T+20 and ~16.4 by T+60; the 10–90% band spans ~11.9–20.0 at one month and ~10.5–24.1 at three. Dashed reference levels: 15.55 (R1 resistance, green), 17.50 (HSBC TP, teal), 13.40 (bear-construction boundary, red); dotted: anchor 15.00; vertical mark at T+20.*
+
+## 3.4  Probability bell curves at T+20 and T+60
+
+*Figure 3. T+20 distribution (10-factor model): 28% below 14.11, 24% in 14.11–15.55, 27% in 15.55–17.50, 21% ≥ 17.50. The body sits just above spot; the right shoulder is the launch/sovereign-inflow optionality.*
+
+*Figure 4. T+60 distribution (10-factor model). The three-month view fans out materially and skews right — median 16.37, 40% of paths at or above the HSBC 17.50 TP, while 29% still finish below 14.11. This is where the catalyst factors pay; the geopolitical jump keeps the left tail honest.*
+
+*Figure 5. Level-touch probabilities (10-factor model) — probability of the price touching each upside level within each horizon: 15.55 = 76%/88%, 16.50 = 52%/76%, 17.50 = 32%/63%, 18.50 = 18%/51%, 20.00 = 7%/35% (T+20/T+60). A descriptive output of the simulation: how often paths reach each level, nothing more.*
+
+# 4.  Comparison — fundamental vs technical vs Monte Carlo
+
+| **Lens** | **Core output** | **What it says** | **Analytical implication** |
+| --- | --- | --- | --- |
+| Fundamental | Base EGP 15.89 risk-adjusted; 24.92 full execution; 7.62 bear | Fair value ≈ market. Contracted + existing business is ~EGP 11–12/sh; everything above is execution of Saadiyat, Ras El-Hekma and Jirian | Modelled value sits at/above price; below ~13.40 the market would pay less than the no-pipeline construction |
+| Technical | Consolidation under R1 15.55–15.70; daily MACD bear-crossed; bounce on fading volume | A mature trend digesting the +45% April–June rally; the near-term bounce is low-quality | The bounce lacks volume confirmation; rallies meet the first dense resistance at 15.55–15.70 |
+| Monte Carlo (10-factor) | T+20 median 15.44 (28% below 14.11); T+60 median 16.37 (40% ≥ 17.50) | One month is a coin-toss; three months skew right as the launch and sovereign-inflow events pay | Time favors the right tail; the launch window is where the distribution widens |
+
+**Verdict: **the three lenses tell one story on different clocks — near-term strength is statistically fragile, the three-month distribution skews right on launch execution, and below ~13.40 the market would be pricing less than even the contracted business. The fundamental upside and the technical caution are not in conflict; they operate on different clocks. What, if anything, follows for any individual depends on circumstances this study does not know and does not address.
+
+# 5.  Catalyst calendar
+
+| **Catalyst** | **Date** | **In window** | **Read** |
+| --- | --- | --- | --- |
+| May CPI | ~10 Jun | T+? near | Minor; ≥15.5% bearish, ≤14.5% supportive |
+| Ras El-Hekma sales launch | Summer 2026 | partial | The pivotal event variable — the largest single factor in the simulation (p = 55%) |
+| CBE MPC | 9 Jul | just out | Hold expected; the policy-rate path is factor 1 in the simulation |
+| Q2 results (backlog→rev) | ~mid-Aug | out | Revenue visibility story; 3-month, not near-term |
+
+# 6.  Reading the probabilities — significant zones (analysis, not guidance)
+
+This section translates the simulation into the price zones where the three lenses say something analytically distinct. It is a map of the distribution — not a plan, not guidance, and not calibrated to any reader’s circumstances.
+
+- **15.20–15.70 — the first test. **The daily resistance cluster, the low-volume bounce and the T+20 median (15.44) all converge here; 76% of simulated paths touch 15.55 within one month (88% within three).
+
+- **15.90–17.00 — the launch-window zone. **The discrete event factors (launch p = 55%, sovereign inflows p = 35%) place most of the right tail here; 52%/76% of paths touch 16.50 and 32%/63% touch 17.50 (T+20/T+60).
+
+- **17.50–20.00 — the execution-priced zone. **Sustained prices here would imply the market paying for substantial pipeline delivery — 18%/51% of paths touch 18.50 and 7%/35% touch 20.00 (T+20/T+60).
+
+- **13.90 / 13.40 — the structural-floor zone. **Below 13.90 the rising daily SMA structure is broken (touch odds 47% by T+20); below ~13.40 the market would price the company beneath even the bear (no-pipeline) construction — the level at which this study’s base framing would itself need rebuilding (33% by T+20).
+
+# 7.  Caveats
+
+- **Bottom-up valuation is assumption-driven **(WACC 18%, each project's sold/unsold split, the JV partner-land charge, ~14% escalation, and the normalized terminal FCFF) — illustrative ranges, not precision; NAV and multiples remain useful external cross-checks.
+
+- **Monte Carlo factors are independent **(no cross-correlation matrix or GARCH clustering yet — rate cuts and FX moves are in reality linked); each factor's drift, probability and impact is judgment, not estimation; event timing within the window is uniform-random.
+
+- **No exact launch date **(“summer 2026”); an EGX sales-start disclosure sharpens the catalyst-window timing.
+
+**Momentum-reading note (educational). **A standard divergence read: price rising while RSI stalls or falls under its moving average is the classic bearish-divergence configuration — momentum fading into strength (the current daily condition: price up, RSI 65 below its MA ≈ 70). Price and RSI rising together marks a healthy trend. On the downside, price falling while RSI rises flags seller exhaustion; both falling together marks an intact downtrend. These are descriptive patterns for reading momentum, not signals to act on.
+
+# Appendix — About this series: the standing format
+
+Every instrument (equity or metal) analysed in this educational series follows the same standing format, in order:
+
+- **Headline **— the analytical read, timeframe and key numbers, one paragraph.
+
+- **1. Fundamental analysis **— DCF (or cost-curve/real-rate model for metals) + multiples + NAV/SOTP → football field → fair-value range. For metals: real US 10Y, DXY, central-bank buying, inventories, COT.
+
+- **2. Technical analysis **— weekly/daily/hourly trend, levels table, ATR/vol, the volume tell.
+
+- **3. Monte Carlo simulation **— ONE model: ten external macro factors (policy rate, FX, inflation, market/flows, oil/Gulf liquidity, geopolitics, sovereign inflows, launch execution, tourism/demand, credit), 50,000 paths; factor table + percentile table + fan chart + bell curves (T+20/T+60) + level-touch probabilities.
+
+- **4. Comparison — fundamental vs technical vs Monte Carlo **— one table reconciling the three lenses + a verdict: where they agree, where they differ, and on what clock.
+
+- **5. Catalyst calendar · 6. Probability map · 7. Caveats + momentum note · closing Disclosure ****&**** Disclaimer.**
+
+**Disclosure ****&**** Disclaimer — read in full. ** **Nature of this document. **This study is an educational valuation exercise and an expression of the preparer’s personal analytical opinion, based exclusively on publicly available information and on assumptions stated in the text and the accompanying model. It is published free of charge, on a standing periodic schedule, to demonstrate methodology and to invite scrutiny and critique of that methodology. **No advice, no recommendation, no solicitation. **Nothing in this document constitutes investment advice, financial consultancy, securities analysis services, a research recommendation, a rating, a price target, an offer, or a solicitation or invitation to buy, sell, hold, subscribe for or otherwise deal in any security or financial instrument. No statement herein is directed at, or calibrated to, the investment objectives, financial situation, risk tolerance or particular needs of any person, and nothing herein should be acted on without independent verification and professional advice. **No licensed activity. **The preparer is not licensed or registered with the Egyptian Financial Regulatory Authority (FRA) or any other securities regulator; does not carry on financial consultancy, securities evaluation or analysis services, portfolio management, brokerage, promotion or any other regulated activity; does not manage money; does not accept clients, fees, subscriptions or funds of any kind; and does not provide personalized advice to anyone. **Position disclosure. **The preparer holds a long position in PHDC, may hold positions in other instruments mentioned, and may increase, decrease or close any position at any time without notice. This document was prepared and published independently of any trading activity, on a pre-set schedule, and is not intended to — and must not be used to — influence the market price of any security. **Estimates and uncertainty. **All valuations, scenarios, probabilities and levels are model outputs resting on explicit, subjective assumptions; they are illustrative, highly uncertain, and likely to prove wrong in material respects. They are deliberately presented as ranges and distributions because no single number should be relied on. Public and vendor-sourced data are believed reliable but are not guaranteed; vendor-derived figures are flagged as such where used. **No liability. **To the maximum extent permitted by applicable law, the preparer accepts no liability or responsibility whatsoever for any decision made or action taken or not taken, or for any loss or damage of any kind incurred, by any person in reliance on, or in connection with, any part of this document or the accompanying model. **Reader’s responsibility. **Any person considering an investment decision should conduct their own independent assessment and consult a financial advisor licensed in their jurisdiction. If the publication of material of this kind is restricted where you are reading it, do not rely on it. 
+
+9 June 2026  ·  page

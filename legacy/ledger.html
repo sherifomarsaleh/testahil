@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<title>Public Ledger — every forecast stays, right or wrong | testahil?</title>
+<meta name="description" content="Every forecast published with a date and scored against reality, right or wrong.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
+<link rel="stylesheet" href="assets/style.css?v=20260806a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="Public ledger — testahil?">
+<meta property="og:description" content="Every forecast published with a date and scored against reality, right or wrong.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/ledger.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Public ledger — testahil?">
+<meta name="twitter:description" content="Every forecast published with a date and scored against reality, right or wrong.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/ledger.html">
+
+<style>
+/* [R-CAL-02] Band-record markers. Named for what they say — the class names
+   were named for a retired verdict, so .chip.fail was rendering the words
+   "bands ran narrow". */
+.chip.narrow{background:#F7E4E1;color:var(--red);border-color:#E8C4BD;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-caption)}
+.band-flag{font-weight:700;font-size:var(--fs-caption);letter-spacing:.03em;line-height:1.3;margin-top:6px;text-transform:uppercase}
+.band-narrow{color:var(--red)}
+.row-band-narrow td{background:rgba(181,72,58,.05)}
+[data-theme="dark"] .chip.narrow{background:#33201D;border-color:#5A322B}
+[data-theme="dark"] .row-band-narrow td{background:rgba(224,119,103,.07)}
+.band-banner-narrow{border:2px solid var(--red);background:#FBEDEA;border-radius:10px;padding:14px 18px;margin:0 0 12px;max-width:760px}
+.bb-title{color:var(--red);font-weight:800;font-size:var(--fs-h3);margin:0 0 4px;letter-spacing:.01em}
+.bb-sub{color:#5A4340;font-size:var(--fs-small);margin:0;line-height:1.45}
+[data-theme="dark"] .band-banner-narrow{background:#2A1512;border-color:#E07767}
+[data-theme="dark"] .bb-sub{color:#D9B8B2}
+/* [R-CAL-02] Band-record markers: raised only when a name's own coverage sits off the 90% target. */
+.chip.wide{background:#F3EAD3;color:#8a6d1f;border-color:#E3D2A5;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-caption)}
+.band-market{color:var(--muted,#6b7280)}
+.band-wide{color:#8a6d1f}
+.row-band-wide td{background:rgba(192,164,95,.07)}
+[data-theme="dark"] .chip.wide{background:#2A2413;border-color:#5A4E22;color:#D8C071}
+[data-theme="dark"] .row-band-wide td{background:rgba(192,164,95,.08)}
+.band-banner-wide{border:2px solid var(--gold);background:#FBF6E9;border-radius:10px;padding:14px 18px;margin:0 0 12px;max-width:760px}
+.bb-title{color:#8a6d1f;font-weight:800;font-size:var(--fs-h3);margin:0 0 4px;letter-spacing:.01em}
+.bb-sub{color:#5A4E30;font-size:var(--fs-small);margin:0;line-height:1.45}
+[data-theme="dark"] .band-banner-wide{background:#221E10;border-color:#C0A45F}
+[data-theme="dark"] .bb-sub{color:#D8C9A6}
+.tab-bar{display:flex;flex-direction:column;gap:18px;margin-bottom:24px}
+.tab-row{display:flex;gap:8px;flex-wrap:wrap}
+.tab-group-title{font-size:var(--fs-caption);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 9px}
+.tab-btn{padding:8px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;
+  color:var(--muted);font-size:var(--fs-body);font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.tab-btn:hover{border-color:var(--teal);color:var(--teal)}
+.tab-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+.bt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.bt-card .bt-head{display:flex;align-items:center;justify-content:space-between}
+.bt-card h3{margin:0}
+.bt-name{color:var(--muted);font-size:var(--fs-small);margin:2px 0 12px}
+.bt-rl{font-size:var(--fs-body);margin-bottom:6px}.bt-mut{color:var(--muted);font-size:var(--fs-small)}
+.bt-track{position:relative;height:10px;background:#EEF4F2;border-radius:999px;margin:4px 0}
+.bt-tick{position:absolute;top:-3px;left:50%;width:2px;height:16px;background:var(--ink);transform:translateX(-1px)}
+.bt-dot{position:absolute;top:-2px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;transform:translateX(-7px);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.bt-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:var(--fs-caption);margin-bottom:11px}
+.bt-cov{display:flex;gap:26px;font-size:var(--fs-small);font-family:'IBM Plex Mono',monospace;border-top:1px solid var(--line);padding-top:9px;margin-bottom:7px}
+.bt-cov span{white-space:nowrap}.bt-cov b{color:var(--teal)}
+.bt-verdict{color:var(--muted);font-size:var(--fs-small);line-height:1.4}
+.bt-fig{padding:10px;margin-top:4px}.bt-fig img{width:100%;height:auto;border-radius:8px;display:block}
+@media(max-width:760px){.bt-grid{grid-template-columns:1fr}}
+.pager{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:22px 0 8px}.pg-btn{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer;min-width:38px}.pg-btn:hover:not([disabled]){border-color:var(--teal);color:var(--teal)}.pg-btn.on{background:var(--teal);color:#fff;border-color:var(--teal)}.pg-btn[disabled]{opacity:.4;cursor:default}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H9NV0ZK9RN');
+</script>
+<style id="lr-mobile-fix">
+/* Mobile: wide ledger tables scroll inside their card instead of spilling out of bounds; cells stay single-line so the pending pill can't wrap into an ellipse */
+@media(max-width:760px){
+  .card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .card>table{min-width:600px}
+  .card th,.card td{white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a href="index.html" style="text-decoration:none" aria-label="testahil — home"><span class="brand">testahil?<small>is it worth it?</small></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="stocks.html">Stocks</a>
+    <a href="metals.html">Metals</a>
+    <a href="compare.html">Compare</a>
+    <a href="trade.html">Trade</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="picker.html">Ticker Picker</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="ledger.html" class="on">Ledger</a>
+    <a href="method.html">Methodology</a>
+  </nav>  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
+</div></header>
+
+
+
+
+<main class="wrap">
+  <section id="sec-top" class="anchor" data-nav="Track record">
+    <h1 style="font-size:var(--fs-h1)">Were we right?</h1>
+    <p class="sub" style="max-width:720px">Most people who talk about stocks quietly forget their bad calls. We don't. Every forecast we make is saved here with its date — and when that date arrives, we put the real price next to what we said, <b>right or wrong, nothing deleted.</b> So you can judge for yourself how good our forecasts actually are.</p>
+    <div class="card" style="background:var(--tint2)"><b id="lg-sum-all"></b></div>
+    <div class="card" id="lg-countdown" style="display:none;background:var(--teal);color:#fff;border:0;text-align:center;margin-top:14px">
+      <div style="font-family:'Alexandria','IBM Plex Sans',sans-serif;font-size:var(--fs-caption);letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-bottom:6px">Next forecast resolves in</div>
+      <div id="lg-cd-num" class="num" style="font-size:var(--fs-display);font-weight:700;line-height:1.05"></div>
+      <div id="lg-cd-sub" style="font-size:var(--fs-small);opacity:.9;margin-top:5px"></div>
+    </div>
+  </section>
+
+  <section id="sec-bystock" class="anchor" data-nav="By stock">
+    <details class="rds" id="hz-note">
+      <summary><span class="rds-t">How we pick the check date</span><span class="rds-x" aria-hidden="true"></span></summary>
+      <div class="rds-body">
+      <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
+      <p class="muted" style="margin:10px 0 0">Every forecast on this page is checked at <b>1 month</b> or <b>3 months</b>. A calendar month is about 21 trading sessions and a calendar quarter about 63, but the count varies with each exchange’s own holidays — which is exactly why we anchor to the date rather than to a session count.</p>
+      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the backtest that validates each cone now measures the same calendar window we publish, instead of a fixed session count. <a href="method.html">Full methodology →</a></p>
+      </div>
+    </details>
+
+    <div class="tab-bar" id="tab-bar"></div>
+
+    <div id="tab-panels"></div>
+
+    <div class="card" style="margin-top:24px">
+      <p class="muted">How we check: each forecast gives a likely range. When its date comes, we see whether the real price landed inside that range, and keep a running tally. If our "9 times out of 10" ranges are honest, the price should land inside them about 9 times out of 10 — more often means we're being too cautious, less often means we're too confident.</p>
+    </div>
+  </section>
+
+
+  <section class="card anchor" id="sec-notify" data-nav="Get notified" style="background:var(--teal);color:#fff;border:0">
+    <p class="qhead" style="margin-top:0;color:#fff">Get told when it matters</p>
+    <p style="color:#D9E4E2;max-width:560px;margin-top:0">One short email when we publish a new study, or when a forecast resolves — right or wrong. No spam, and we never sell your address.</p>
+    <a class="btn" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="background:var(--gold);border-color:var(--gold);color:#1C3A36;text-decoration:none;display:inline-block">Subscribe by email &rarr;</a>
+    <p style="color:#9FB0AC;font-size:var(--fs-small);margin:6px 0 0">Free, via Substack — unsubscribe any time.</p>
+  </section>
+
+
+
+</main>
+
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc-3lenses.html">Palm Hills</a> &middot; <a href="tmgh-3lenses.html">Talaat Moustafa</a> &middot; <a href="ocdi-3lenses.html">SODIC</a> &middot; <a href="orhd-3lenses.html">Orascom Dev</a> &middot; <a href="oras-3lenses.html">Orascom Const</a> &middot; <a href="comi-3lenses.html">CIB</a> &middot; <a href="emfd-3lenses.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260830emaarrf"></script><script src="assets/app.js?v=20260830bandcopy"></script>
+<script>
+const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+
+// Grade dates are PLAIN CALENDAR DATES, not instants. new Date("2026-08-17")
+// parses as UTC midnight, so toLocaleDateString rendered it a day early for
+// every reader west of UTC — a ledger whose whole subject is "on what date" was
+// showing the wrong date to part of its audience. Build the Date from parts so
+// it is local midnight and cannot shift.
+function isoDate(s){
+  if(!s) return null;
+  const p = String(s).slice(0,10).split("-");
+  return new Date(+p[0], +p[1]-1, +p[2]);
+}
+const fmtDate  = (s,o) => { const d=isoDate(s); return d ? d.toLocaleDateString('en-GB', o||{day:'numeric',month:'short',year:'numeric'}) : String(s); };
+const fmtDateL = s => fmtDate(s,{day:'numeric',month:'long',year:'numeric'});
+
+// ---- horizon convention -------------------------------------------------------
+// Every horizon on the site is a CALENDAR horizon: "1 month", "3 months",
+// "12 months". Session-counted labels are retired everywhere, including on
+// rows struck before the 27-Jul-2026 changeover — the forecast numbers on
+// those rows are untouched and append-only; only the horizon NAME is now
+// stated in calendar terms. Sorting must put a near horizon before a far one,
+// which a raw string compare does not do ("12 months" would sort before
+// "3 months"). Rank by the horizon's actual length instead.
+// ---- horizon DISPLAY -----------------------------------------------------------
+// Labels are already calendar-named in the data, so a rendered cell is the
+// stored label verbatim. hzDisplay is kept as the single seam a future
+// horizon (e.g. "6 months") would pass through.
+function hzDisplay(label){ return label; }
+const HZ_MONTHS = {"1 month":1, "3 months":3, "12 months":12};
+function hzRank(label){
+  if(label in HZ_MONTHS) return HZ_MONTHS[label];
+  const mM = /^(\d+)\s*month/i.exec(label||"");        // "6 months"
+  if(mM) return +mM[1];
+  return 99;
+}
+const byHorizon = (a,b) => hzRank(a.horizon_label) - hzRank(b.horizon_label)
+                        || String(a.horizon_label).localeCompare(String(b.horizon_label));
+
+// open until graded (realized_close filled)
+const isOpen = r => r.realized_close == null;
+const isInBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
+
+// [R-CAL-02]/[R-CAL-03] What a reader is shown is the BAND RECORD: how often the
+// price finished inside the 90% band, over how many resolved forecasts, and how
+// wide that band was. The three-way skill verdict this replaced is retired
+// outright — it never excluded a market in its whole life, and its negative
+// label was wrong about the names it flagged. Records come from BANDS in
+// data.js, generated by scripts/build_band_records.py from the live panels.
+const bandState = tk => { const b = band(tk); return !b ? null
+  : (b.flag || (b.strength === "market-only" ? "market" : null)); };
+const BAND_UI = {
+  narrow: {row:"row-band-narrow", chip:"chip narrow",  line:"band-flag band-narrow", icon:"\u26a0",
+           chipText:"bands ran narrow (too tight)"},
+  wide:   {row:"row-band-wide",   chip:"chip wide", line:"band-flag band-wide",   icon:"\u25c6",
+           chipText:"bands ran wide (over-cautious)"},
+  market: {row:"",                chip:"chip",       line:"band-flag band-market", icon:"\u25c7",
+           chipText:"market record only"},
+};
+
+function renderRow(r){
+  const b = band(r.instrument), state = bandState(r.instrument), ui = BAND_UI[state];
+  let res;
+  if(isOpen(r)){
+    const d = fmtDate(r.grade_date);
+    const due = isoDate(r.grade_date) <= new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    res = `<span class="chip lr-check">${due ? "due — grading" : "check on"} ${d}</span>`;
+  } else {
+    const inBand = isInBand(r);
+    // The realized close is a traded price, and it is NOT from the anchor date in the
+    // first column — it is the close on the grade date. Say so in the cell. The one
+    // exception is a corporate action inside the window, handled just below.
+    // When a corporate action went ex inside the window, realized_close is NOT the
+    // printed close — it is that close restated onto the basis the cone was struck on
+    // (grade_ledger's ca_factor), because the frozen percentiles are denominated in the
+    // old share count. Saying "close of <date>" alone would put a number on the page
+    // that no tape ever showed: Juhayna's 23-Aug-2026 close printed 26.88; the cell
+    // reads 33.60. Both are right, and the difference has to be visible.
+    const ca = (typeof r.ca_factor === 'number' && isFinite(r.ca_factor) && r.ca_factor > 0)
+               ? r.ca_factor : 1;
+    const caNote = ca === 1 ? '' :
+      ` <span class="chip" title="A corporate action (×${ca}) went ex during this window, so the whole price history was restated onto a new share count. This forecast was made on the old one. The printed close on ${fmtDate(r.grade_date)} was ${F2(r.realized_close / ca)}; shown here restated to ×${ca} so it is compared like for like against the range we actually published. The published range is unchanged.">adjusted for a ×${ca} corporate action</span>`;
+    res = `<span class="num">${F2(r.realized_close)}</span> <span class="muted">close of ${fmtDate(r.grade_date)}</span>${caNote} ${inBand
+      ? '<span class="ok">we got it right ✓</span>'
+      : '<span class="bad">we were off ✗</span>'}`;
+  }
+  // A flag is raised only when it is earned. The ordinary case — a cone whose
+  // bands held about as often as they promised — says nothing at all here.
+  if(ui){
+    const detail = state === "market"
+      ? `${b.n} OWN FORECAST${b.n===1?'':'S'} SO FAR`
+      : `${bandPct(b.c90)} INSIDE THE 90% BAND OVER ${b.n} FORECASTS`;
+    res += `<div class="${ui.line}">${ui.icon} ${ui.chipText.toUpperCase()} · ${detail}</div>`;
+  }
+  return `<tr${ui && ui.row ? ` class="${ui.row}"` : ''}>
+    <td class="num">${r.anchor_date}</td>
+    <td><b>${r.instrument}</b>${ui ? ` <span class="${ui.chip}">${ui.chipText}</span>` : ``}</td>
+    <td class="num">${hzDisplay(r.horizon_label)}</td>
+    <td class="num">${F2(r.p50)}</td>
+    <td class="num">${F2(r.p5)} – ${F2(r.p95)} <span class="muted">(90%)</span></td>
+    <td>${res}</td>
+  </tr>`;
+}
+
+const ledgerPage = {};
+function buildPanel(rows, tbodyId, summaryId){
+  // soonest calibration first: nearest check (grade) date at the top, overdue ahead of upcoming
+  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || byHorizon(a,b));
+  const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
+  let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
+  document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
+  (function(){var pel=document.getElementById("pager-"+tbodyId);if(!pel)return;if(pages<=1){pel.innerHTML="";return;}var h='<button class="pg-btn" data-pg="'+(__pg-1)+'"'+(__pg===0?" disabled":"")+'>‹ Prev</button>';for(var i=0;i<pages;i++)h+='<button class="pg-btn pg-num'+(i===__pg?" on":"")+'" data-pg="'+i+'">'+(i+1)+'</button>';h+='<button class="pg-btn" data-pg="'+(__pg+1)+'"'+(__pg===pages-1?" disabled":"")+'>Next ›</button>';pel.innerHTML=h;pel.querySelectorAll(".pg-btn").forEach(function(b){b.addEventListener("click",function(){if(b.hasAttribute("disabled"))return;ledgerPage[tbodyId]=+b.dataset.pg;buildPanel(rows,tbodyId,summaryId);});});})();
+  let hit=0, scored=0;
+  rows.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
+  const sm = document.getElementById(summaryId);
+  if(!sm) return;
+  sm.textContent = scored
+    ? `Right ${hit} out of ${scored} times so far.`
+    : `Nothing to check yet — first one on ${fmtDateL([...rows].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date)}.`;
+}
+
+// Order instruments by soonest pending calibration: nearest ungraded grade_date first
+// (overdue names sort ahead of upcoming ones). Fully-scored names fall to the end;
+// ties break to the most-recent anchor so active studies stay near the front.
+const nextGrade = {}, lastAnchor = {};
+LEDGER.forEach(r=>{
+  if(r.realized_close==null && r.grade_date && (!(r.instrument in nextGrade) || r.grade_date < nextGrade[r.instrument]))
+    nextGrade[r.instrument] = r.grade_date;
+  if(!(r.instrument in lastAnchor) || r.anchor_date > lastAnchor[r.instrument])
+    lastAnchor[r.instrument] = r.anchor_date;
+});
+const tickerOrder = [...new Set(LEDGER.map(r=>r.instrument))].sort((a,b)=>{
+  const ga = nextGrade[a] || "9999-99-99", gb = nextGrade[b] || "9999-99-99";
+  return ga.localeCompare(gb) || lastAnchor[b].localeCompare(lastAnchor[a]);
+});
+
+const tabBar    = document.getElementById("tab-bar");
+const tabPanels = document.getElementById("tab-panels");
+
+// Instruments with a published 5-year calibration backtest image in assets/.
+// Panels for instruments not listed here omit the backtest block (no broken image).
+const HAS_BACKTEST = new Set(["ADNOCLS", "ADNOCDRILL", "DU", "BOROUGE", "EMPOWER", "AIRARABIA", "AMR", "MODON", "PHAR", "ARCC", "AMOC", "RMDA", "DEWA", "BURJEEL", "SALIK", "2POINTZERO", "EAND", "ALPHADHABI", "ADCB", "DIB", "AGTHIA", "GBCO", "ALDAR", "AAPL", "RELIANCE", "NVDA", "LCSW", "KABO", "PRDC", "IQCD", "EGAL", "EFID", "PHDC", "TMGH", "EMFD", "OCDI", "ORHD", "COMI", "CCAP", "ORAS", "Gold", "Samsung", "Kakao", "LGES", "TMPV", "INFY", "ARAMCO", "SABIC", "EMAAR", "TSLA", "ABUK", "FWRY", "HRHO", "ORWE", "BTFH", "ADIB", "ETEL", "JUFO", "EFIH", "OIH", "HELI", "RAYA", "IHC", "ADNOCGAS", "ALRAJHI", "RIBL", "STC", "SNB", "MAADEN", "ALINMA", "EXTRA", "ELM", "ACWA", "FAB", "ENBD", "Silver", "QNB", "QGTS", "ISPH", "EMAARDEV", "CLHO", "DSCW", "ELEC", "SWDY", "Platinum", "ADIBUAE", "LULU", "SCEM", "EGCH", "FERTIGLB", "ADNOCDIST", "RIYADHCABLE", "SAVOLA"]);
+
+// Instruments whose own band record sits off the 90% target, in either direction.
+// No Set built by scanning LEDGER: BANDS is already keyed by instrument, so
+// bandState(t) is the same answer without three passes over ~1,500 rows. The
+// Sets were a leftover of the old shape, where the verdict was a per-ROW field.
+// (The MAADEN banner exception that stood here is gone with them: MAADEN's
+// record carries no flag, so the guard could never fire. What it was written to
+// suppress — a verdict banner baked into assets/calibration_MAADEN.png — is
+// still there, and is now tracked where a check can see it,
+// engine/build_depth_audit/band_outstanding.json.)
+
+// Every figure in these banners is READ FROM BANDS, never written into the prose.
+// A coverage number moves the moment a forecast is graded, and the sentence it
+// used to sit in did not — which is how the old wording went stale and stayed
+// stale. Same discipline as every other volatile number in this repo.
+// The sentence itself comes from app.js, the transliteration of
+// engine/band_record.py. Nothing here composes its own wording.
+const bandLine = t => bandRecordSentence(t) || '';
+// One banner, keyed by the same derived state the rows use.
+const BAND_BANNER_COPY = {
+  narrow: ["\u26a0 THESE BANDS HAVE RUN NARROW \u2014 TOO TIGHT FOR THIS STOCK", "band-banner-narrow",
+    "In plain terms: a 90% range is built to contain the close <b>nine times in ten</b>, and this one has not managed that \u2014 the model has been too sure of itself on this name, so the range understates how far the price can really move. The range is published exactly as the model produced it \u2014 nothing is widened after the fact to flatter the record."],
+  wide: ["\u25c6 THESE BANDS HAVE RUN WIDE \u2014 ROOMIER THAN THIS STOCK NEEDED", "band-banner-wide",
+    "In plain terms: a 90% range is built to contain the close <b>nine times in ten</b>, and this one has contained nearly everything \u2014 over-caution rather than over-confidence, so the realistic spread of outcomes is tighter than the picture shows. The safer direction to be wrong in, and it is published rather than quietly trimmed."],
+  market: ["\u25c7 MARKET RECORD ONLY \u2014 THIS NAME'S OWN RECORD IS STILL SHORT", "band-banner-wide",
+    "A handful of windows cannot tell an honest cone from a broken one, so <b>no name-level claim is made</b>. The bands you are shown are that market's bands. Every cohort this name matures adds a window to its own record, which is how a newly listed stock earns one."],
+};
+const bandBanner = t => {
+  const c = BAND_BANNER_COPY[bandState(t)];
+  return c ? `<div class="${c[1]}"><p class="bb-title">${c[0]}</p><p class="bb-sub">${bandLine(t)} ${c[2]}</p></div>` : ``;
+};
+
+// ---- Latest-cohort "predicted vs actual" chart ---------------------------------
+// Draws the most recently GRADED cohort for an instrument: the frozen forecast cone
+// (5-95 and 25-75 bands + median) it published at the anchor, with the single realized
+// close plotted where it actually landed. Pure SVG, no library. Reads only what the
+// LEDGER row already carries — the daily path is deliberately NOT drawn (it isn't
+// logged; only the anchor, the 5 frozen percentiles, and realized_close are). The cone
+// SHAPE between anchor and horizon is reconstructed with a sqrt-time spread, which is
+// how the engine actually distributes forward variance — an illustration of the funnel,
+// with the two real endpoints (anchor, horizon percentiles) exact. Every future graded
+// cohort renders itself automatically; nothing to maintain per roll-forward.
+const CH_NS = "http://www.w3.org/2000/svg";
+function chEl(t,a){const e=document.createElementNS(CH_NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+
+// Per-instrument raw OHLC path in the repo, for overlaying the ACTUAL daily price line
+// on the cohort chart. Keyed by instrument -> raw.githubusercontent path (market folder
+// is EG/AE/... which is not stored in data.js, so it lives here). Only instruments with
+// an entry get the real daily line; the rest render the anchor+realized dots only, no
+// broken fetch. raw.githubusercontent serves Access-Control-Allow-Origin:* so the browser
+// can fetch it cross-origin. Add a name here when its cohort chart should show the path.
+// Every ledger instrument that has an OHLC library, so the "predicted vs actual"
+// chart can draw the REAL daily close path inside the cone instead of just the two
+// endpoints. Paths are relative to OHLC_BASE and are MARKET-QUALIFIED: the market
+// directory is part of the value, never inferred from the instrument name. That is
+// what keeps ADIB (EGX, EGP) and ADIBUAE (ADX, AED) apart — they share a filename
+// and differ only by directory. Each entry below was verified by matching its
+// market directory's currency against the ccy on that instrument's ledger rows.
+const OHLC_BASE = "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/";
+const COHORT_OHLC_PATH = {
+  DU: "AE/DU.csv",
+  BOROUGE: "AE/BOROUGE.csv",
+  EMPOWER: "AE/EMPOWER.csv",
+  "2POINTZERO": "AE/TWOPOINTZERO.csv",
+  AAPL: "US/AAPL.csv",
+  ABUK: "EG/ABUK.csv",
+  ACWA: "SA/ACWA.csv",
+  ADCB: "AE/ADCB.csv",
+  ADNOCDRILL: "AE/ADNOCDRILL.csv",
+  ADNOCDIST: "AE/ADNOCDIST.csv",
+  ADIB: "EG/ADIB.csv",
+  ADIBUAE: "AE/ADIB.csv",
+  ADNOCGAS: "AE/ADNOCGAS.csv",
+  ADNOCLS: "AE/ADNOCLS.csv",
+  AGTHIA: "AE/AGTHIA.csv",
+  ALDAR: "AE/ALDAR.csv",
+  ALINMA: "SA/ALINMA.csv",
+  AMOC: "EG/AMOC.csv",
+  ARCC: "EG/ARCC.csv",
+  ALPHADHABI: "AE/ALPHADHABI.csv",
+  ALRAJHI: "SA/RAJHI.csv",
+  ARAMCO: "SA/ARAMCO.csv",
+  BTFH: "EG/BTFH.csv",
+  BURJEEL: "AE/BURJEEL.csv",
+  CCAP: "EG/CCAP.csv",
+  CLHO: "EG/CLHO.csv",
+  COMI: "EG/COMI.csv",
+  DEWA: "AE/DEWA.csv",
+  DIB: "AE/DIB.csv",
+  DSCW: "EG/DSCW.csv",
+  EAND: "AE/EAND.csv",
+  ELEC: "EG/ELEC.csv",
+  EFID: "EG/EFID.csv",
+  EFIH: "EG/EFIH.csv",
+  EGAL: "EG/EGAL.csv",
+  ELM: "SA/ELM.csv",
+  EMAAR: "AE/EMAAR.csv",
+  EMAARDEV: "AE/EMAARDEV.csv",
+  EMFD: "EG/EMFD.csv",
+  ENBD: "AE/ENBD.csv",
+  ETEL: "EG/ETEL.csv",
+  EXTRA: "SA/EXTRA.csv",
+  FAB: "AE/FAB.csv",
+  FERTIGLB: "AE/FERTIGLB.csv",
+  FWRY: "EG/FWRY.csv",
+  GBCO: "EG/GBCO.csv",
+  Gold: "XAU/GOLD.csv",
+  HELI: "EG/HELI.csv",
+  HRHO: "EG/HRHO.csv",
+  IHC: "AE/IHC.csv",
+  INFY: "IN/INFY.csv",
+  IQCD: "QA/IQCD.csv",
+  ISPH: "EG/ISPH.csv",
+  JUFO: "EG/JUFO.csv",
+  KABO: "EG/KABO.csv",
+  Kakao: "KR/KAKAO.csv",
+  LCSW: "EG/LCSW.csv",
+  LGES: "KR/LGES.csv",
+  LULU: "AE/LULU.csv",
+  MAADEN: "SA/MAADEN.csv",
+  MODON: "AE/MODON.csv",
+  NVDA: "US/NVDA.csv",
+  OCDI: "EG/OCDI.csv",
+  OIH: "EG/OIH.csv",
+  ORAS: "EG/ORAS.csv",
+  ORHD: "EG/ORHD.csv",
+  ORWE: "EG/ORWE.csv",
+  AIRARABIA: "AE/AIRARABIA.csv",
+  AMR: "AE/AMR.csv",
+  PHAR: "EG/PHAR.csv",
+  PHDC: "EG/PHDC.csv",
+  PRDC: "EG/PRDC.csv",
+  QGTS: "QA/QGTS.csv",
+  QNB: "QA/QNB.csv",
+  RAYA: "EG/RAYA.csv",
+  RELIANCE: "IN/RELIANCE.csv",
+  RIBL: "SA/RIBL.csv",
+  RIYADHCABLE: "SA/RIYADHCABLE.csv",
+  SAVOLA: "SA/SAVOLA.csv",
+  RMDA: "EG/RMDA.csv",
+  SABIC: "SA/SABIC.csv",
+  SALIK: "AE/SALIK.csv",
+  SCEM: "EG/SCEM.csv",
+  EGCH: "EG/EGCH.csv",
+  SNB: "SA/SNB.csv",
+  STC: "SA/STC.csv",
+  SWDY: "EG/SWDY.csv",
+  Samsung: "KR/SAMSUNG.csv",
+  Silver: "XAU/SILVER.csv",
+  TMGH: "EG/TMGH.csv",
+  TMPV: "IN/TMPV.csv",
+  TSLA: "US/TSLA.csv",
+  Platinum: "XPT/PLATINUM.csv"
+};
+const COHORT_OHLC = Object.fromEntries(
+  Object.entries(COHORT_OHLC_PATH).map(([k, v]) => [k, OHLC_BASE + v]));
+
+function latestGradedCohort(rows){
+  // graded = realized_close present; take the most recent by grade_date, and on a
+  // tie the NEAREST horizon first (1 month before 3 months)
+  const graded = rows.filter(r=>r.realized_close!=null && r.p25!=null && r.anchor_price!=null && r.grade_date);
+  if(!graded.length) return null;
+  graded.sort((a,b)=> (b.grade_date||"").localeCompare(a.grade_date||"") || byHorizon(a,b));
+  return graded[0];
+}
+
+// Measures rendered text width via canvas so axis/label margins can be sized to
+// what will ACTUALLY be drawn, rather than a constant. Matches the font stack
+// the SVG <text> elements inherit from body (assets/style.css) resp. the
+// explicit monospace used for the right-edge value labels.
+function measureTextWidth(text, fontSize, fontWeight, fontFamily){
+  if(!measureTextWidth._ctx) measureTextWidth._ctx = document.createElement("canvas").getContext("2d");
+  measureTextWidth._ctx.font = `${fontWeight||400} ${fontSize}px ${fontFamily||'"IBM Plex Sans",system-ui,sans-serif'}`;
+  return measureTextWidth._ctx.measureText(text).width;
+}
+
+function cohortGeom(r){
+  const A = r.anchor_price;
+  const P = {5:r.p5,25:r.p25,50:r.p50,75:r.p75,95:r.p95};
+  const rc = r.realized_close;
+  const off = {}; for(const k in P) off[k] = Math.log(P[k]/P[50]);
+  const driftTot = Math.log(P[50]/A);
+  const steps = 40;
+  const path = {5:[],25:[],50:[],75:[],95:[]};
+  for(let s=0;s<=steps;s++){
+    const f = s/steps;
+    const medT = A*Math.exp(driftTot*f);
+    for(const k of [5,25,50,75,95]) path[k].push(medT*Math.exp(off[k]*Math.sqrt(f)));
+  }
+  const allV = [A, rc].concat(path[5], path[95]);
+  let lo = Math.min(...allV), hi = Math.max(...allV);
+  const pad = (hi-lo)*0.10; lo-=pad; hi+=pad;
+  // Left/right margins must fit the widest label THIS cohort will draw. A fixed
+  // pixel margin (the old ml=54/mr=88) was sized for ~2-3 digit EGX prices and
+  // silently clipped larger-magnitude currencies off the SVG viewBox -- e.g.
+  // Samsung's 6-digit KRW y-axis labels lost their leading "KRW 4" / "KRW 3" off
+  // the left edge (viewBox x<0 is cropped, not wrapped or scrolled). Sizing both
+  // margins from the actual formatted strings fixes it for every instrument,
+  // present and future, not just Samsung.
+  const gsteps = 5;
+  let maxLeftW = 0;
+  for(let gi=0; gi<=gsteps; gi++){
+    const v = lo + (hi-lo)*gi/gsteps;
+    const txt = (r.ccy?r.ccy+" ":"") + (Math.round(v*10)/10);
+    maxLeftW = Math.max(maxLeftW, measureTextWidth(txt, 11, 400));
+  }
+  const fmt2 = v => v.toFixed(2);
+  const rightTexts = [fmt2(P[95]), fmt2(P[75]), fmt2(P[50])+" ", fmt2(P[25]), fmt2(P[5]), fmt2(rc)+" ●"];
+  let maxRightW = 0;
+  for(const t of rightTexts) maxRightW = Math.max(maxRightW, measureTextWidth(t, 11.5, 600, "'IBM Plex Mono',monospace"));
+  const W=680, HT=300, ml=Math.max(54, Math.ceil(maxLeftW)+18), mr=Math.max(88, Math.ceil(maxRightW)+20), mt=14, mb=34;
+  const px=i=> ml + i*(W-ml-mr)/steps;      // i in [0..steps]
+  const pxFrac=f=> ml + f*(W-ml-mr);          // f in [0..1] of the horizon
+  const py=v=> mt + (hi-v)*(HT-mt-mb)/(hi-lo);
+  return {A,P,rc,off,driftTot,steps,path,lo,hi,W,HT,ml,mr,mt,mb,px,pxFrac,py};
+}
+
+function cohortChartSVG(r, chartId){
+  const g = cohortGeom(r);
+  const {A,P,rc,steps,path,lo,hi,W,HT,ml,mr,mb,px,py} = g;
+  const fmt=v=> v.toFixed(2);
+
+  function bandPath(kHi,kLo){
+    let d="M"+px(0)+" "+py(path[kHi][0]);
+    for(let i=1;i<=steps;i++) d+=" L"+px(i)+" "+py(path[kHi][i]);
+    for(let i=steps;i>=0;i--) d+=" L"+px(i)+" "+py(path[kLo][i]);
+    return d+" Z";
+  }
+  function linePath(k){
+    let d="M"+px(0)+" "+py(path[k][0]);
+    for(let i=1;i<=steps;i++) d+=" L"+px(i)+" "+py(path[k][i]);
+    return d;
+  }
+  const svg = chEl("svg",{id:chartId, viewBox:`0 0 ${W} ${HT}`, width:"100%", role:"img",
+    "aria-label":`${r.instrument} ${hzDisplay(r.horizon_label)} forecast published ${r.anchor_date}: predicted 90% range ${fmt(P[5])} to ${fmt(P[95])} ${r.ccy||""}, middle estimate ${fmt(P[50])}; actual close ${fmt(rc)}, which landed ${r.in_90?"inside":"outside"} the range.`});
+  const gsteps=5;
+  for(let gi=0;gi<=gsteps;gi++){
+    const v = lo + (hi-lo)*gi/gsteps;
+    svg.appendChild(chEl("line",{x1:ml,y1:py(v),x2:W-mr,y2:py(v),stroke:"var(--line)","stroke-width":1}));
+    const tx=chEl("text",{x:ml-8,y:py(v)+4,"text-anchor":"end","font-size":11,fill:"var(--muted)"});
+    tx.textContent=(r.ccy?r.ccy+" ":"")+ (Math.round(v*10)/10); svg.appendChild(tx);
+  }
+  const xa=chEl("text",{x:px(0),y:HT-12,"text-anchor":"start","font-size":11,fill:"var(--muted)"});
+  xa.textContent="published "+r.anchor_date; svg.appendChild(xa);
+  const xh=chEl("text",{x:px(steps),y:HT-12,"text-anchor":"end","font-size":11,fill:"var(--muted)"});
+  xh.textContent=hzDisplay(r.horizon_label)+" · "+r.grade_date; svg.appendChild(xh);
+  svg.appendChild(chEl("path",{d:bandPath(95,5),fill:"var(--brass)","fill-opacity":0.34,stroke:"none"}));
+  svg.appendChild(chEl("path",{d:bandPath(75,25),fill:"var(--teal)","fill-opacity":0.55,stroke:"none"}));
+  svg.appendChild(chEl("path",{d:linePath(50),fill:"none",stroke:"var(--ink)","stroke-width":1.5,"stroke-dasharray":"6 3","stroke-linecap":"round"}));
+  // group the actual line is drawn into later (async); placed BELOW the dots
+  svg.appendChild(chEl("g",{id:chartId+"-actual"}));
+  // anchor + realized dots (always present, even before/without the actual line)
+  svg.appendChild(chEl("circle",{cx:px(0),cy:py(A),r:4,fill:"var(--ink)"}));
+  const rcColor = "#2a78d6";
+  svg.appendChild(chEl("circle",{cx:px(steps),cy:py(rc),r:7,fill:rcColor,stroke:"var(--paper)","stroke-width":2}));
+  // ---- right-edge endpoint value labels (final forecast percentiles + actual close) ----
+  // stack them at their true y, then push apart so text doesn't overlap
+  const xLab = px(steps) + 12;
+  const labels = [
+    {v:P[95], txt:fmt(P[95]), color:"#8A6A2E", w:400},
+    {v:P[75], txt:fmt(P[75]), color:"#0F6E56", w:400},
+    {v:P[50], txt:fmt(P[50]), color:"var(--ink)", w:600},
+    {v:P[25], txt:fmt(P[25]), color:"#0F6E56", w:400},
+    {v:P[5],  txt:fmt(P[5]),  color:"#8A6A2E", w:400},
+    {v:rc,    txt:fmt(rc)+" ●", color:rcColor, w:600}
+  ];
+  // desired y for each, then de-collide (min 13px apart), preserving order by value desc
+  labels.sort((a,b)=> b.v - a.v);
+  const minGap = 13;
+  let ys = labels.map(l=> py(l.v));
+  for(let i=1;i<ys.length;i++){ if(ys[i] - ys[i-1] < minGap) ys[i] = ys[i-1] + minGap; }
+  // clamp within chart, then re-spread upward if pushed past bottom
+  const bottom = HT - mb + 4;
+  if(ys[ys.length-1] > bottom){
+    ys[ys.length-1] = bottom;
+    for(let i=ys.length-2;i>=0;i--){ if(ys[i+1] - ys[i] < minGap) ys[i] = ys[i+1] - minGap; }
+  }
+  labels.forEach((l,i)=>{
+    // tiny connector tick from the funnel edge to the label row
+    svg.appendChild(chEl("line",{x1:px(steps)+2, y1:py(l.v), x2:xLab-3, y2:ys[i], stroke:l.color,"stroke-width":0.8,"stroke-opacity":0.5}));
+    const tx=chEl("text",{x:xLab, y:ys[i]+3.5, "font-size":11.5, "font-weight":l.w, fill:l.color, "font-family":"'IBM Plex Mono',monospace"});
+    tx.textContent=l.txt; svg.appendChild(tx);
+  });
+  return svg.outerHTML;
+}
+
+// Fetch the real OHLC CSV and draw the actual daily close line from anchor to grade date
+// into the chart's -actual group. Runs after render; failure leaves the dot-only chart intact.
+async function drawActualLine(r, chartId){
+  const url = COHORT_OHLC[r.instrument];
+  if(!url) return;
+  let text;
+  try { const resp = await fetch(url); if(!resp.ok) return; text = await resp.text(); }
+  catch(e){ return; }
+  // parse: Date,Price,... with m/d/Y dates, quoted. Every field is wrapped in "..." in
+  // this export, and a THOUSANDS COMMA can sit INSIDE a quoted price (Gold "4,090.87",
+  // Samsung "254,000"). A naive line.split(",") breaks those fields apart mid-number
+  // ("4,090.87" -> "4" + "090.87"), so it was never safe for any 4+-digit instrument -
+  // just never exercised before, since every prior COHORT_OHLC name (PHDC/TMGH/EMFD) is
+  // EGP-denominated and under 200. Extracting each "..." group directly sidesteps the
+  // internal comma; parseFloat still needs it stripped afterward.
+  // The library is NOT uniformly quoted. EG/AE/KR/US/IN/QA/XAU/XPT exports wrap every
+  // field in "..." ; the 11 Saudi exports do not. The old quoted-group-only parser
+  // returned ZERO rows for an unquoted file and drawActualLine then bailed on
+  // `if(!series.length) return`, so every Tadawul chart silently drew no actual line
+  // at all — a blank failure, not a visible one. Handle both shapes: extract quoted
+  // groups when the row is quoted (that is what protects a thousands comma sitting
+  // INSIDE a field, e.g. Gold "4,090.87", Samsung "254,000"), else plain-split.
+  // Verified safe: every row of all 11 unquoted files splits to exactly 7 fields,
+  // i.e. those exports carry no embedded commas — which is why the vendor omitted
+  // the quotes in the first place.
+  const splitRow = l => {
+    if (l.indexOf('"') !== -1) { const out = []; const re = /"([^"]*)"/g; let m; while((m = re.exec(l))) out.push(m[1]); return out; }
+    return l.split(",");
+  };
+  const rowsCsv = text.split(/\r?\n/).slice(1).map(splitRow);
+  const toISO = d => { const m = /(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(d); return m ? `${m[3]}-${m[1].padStart(2,"0")}-${m[2].padStart(2,"0")}` : null; };
+  // THE LIBRARY AND THE FROZEN CONE CAN BE DENOMINATED DIFFERENTLY (24-Aug-2026).
+  // A bonus issue or split inside the window makes the vendor restate the WHOLE
+  // series onto the new share basis, while this cone's percentiles stay frozen on
+  // the basis it was struck on. grade_ledger records that gap as ca_factor on the
+  // row and restates the realized close by it — so the daily line has to travel the
+  // same way, or the chart draws two currencies at once. Juhayna's panel did exactly
+  // that: a cone opening at 28.90 with a price line starting at 23.12 and a closing
+  // dot at 33.60, showing a 20% gap at publication and a leap at the end that the
+  // stock never made — and the low end of the line clipped out of the plot besides.
+  // Absent, 1, or non-finite, this is a no-op, which is every other name.
+  const ca = (typeof r.ca_factor === "number" && isFinite(r.ca_factor) && r.ca_factor > 0)
+             ? r.ca_factor : 1;
+  const series = rowsCsv.filter(c=>c[0] && c[1]).map(c=>({iso:toISO(c[0]), price:parseFloat(String(c[1]).replace(/,/g,"")) * ca}))
+                        .filter(o=>o.iso && isFinite(o.price)).sort((a,b)=>a.iso.localeCompare(b.iso));
+  if(!series.length) return;
+  const a0 = r.anchor_date, gd = r.grade_date;
+  // window = anchor close through grade close (inclusive)
+  const win = series.filter(o=> o.iso >= a0 && o.iso <= gd);
+  if(win.length < 2) return;
+  const g = cohortGeom(r);
+  const n = win.length - 1;             // sessions from anchor
+  const grp = document.getElementById(chartId+"-actual");
+  if(!grp) return;
+  // map each session onto the horizon fraction (session i of n -> f=i/n), y via same scale
+  let d = "";
+  win.forEach((o,i)=>{ const x=g.pxFrac(i/n), y=g.py(o.price); d += (i===0?"M":" L")+x+" "+y; });
+  const pathEl = chEl("path",{d:d,fill:"none",stroke:"#2a78d6","stroke-width":2.4,"stroke-linejoin":"round","stroke-linecap":"round"});
+  grp.appendChild(pathEl);
+  // small dots along the actual path (skip the final one; the big realized dot already marks it)
+  win.forEach((o,i)=>{ if(i===win.length-1) return; grp.appendChild(chEl("circle",{cx:g.pxFrac(i/n),cy:g.py(o.price),r:2.2,fill:"#2a78d6"})); });
+  // wire the hover readout now that we have the actual series + dates
+  wireCohortHover(chartId, r, win);
+}
+
+// Hover readout: track the pointer across the chart, snap to the nearest trading session,
+// and show that session's date, actual close, and all five forecast percentiles (5/25/50/
+// 75/95) computed analytically at that point on the cone. Pure SVG + pointer math; scales
+// with the responsive viewBox via getBoundingClientRect (no library, no createSVGPoint).
+function wireCohortHover(chartId, r, win){
+  const svg = document.getElementById(chartId);
+  if(!svg || !svg.getBoundingClientRect) return;
+  const g = cohortGeom(r);
+  const {W,HT,ml,mr,mt,mb,px,pxFrac,py,steps} = g;
+  const n = win.length - 1;
+  const P = {5:r.p5,25:r.p25,50:r.p50,75:r.p75,95:r.p95};
+  const off={}; for(const k in P) off[k]=Math.log(P[k]/P[50]);
+  const driftTot = Math.log(P[50]/r.anchor_price);
+  const coneAt = f => { const md=r.anchor_price*Math.exp(driftTot*f); const o={}; for(const k of [5,25,50,75,95]) o[k]=md*Math.exp(off[k]*Math.sqrt(Math.max(f,0))); return o; };
+  const plotL=px(0), plotR=px(steps), plotT=mt, plotB=HT-mb;
+  const fmt = v => (r.ccy?r.ccy+" ":"")+v.toFixed(2);
+  const bandCol = {95:"#8A6A2E",75:"#12796B",50:"var(--ink)",25:"#12796B",5:"#8A6A2E"};
+  const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const pretty = iso => { const p=iso.split("-"); return parseInt(p[2])+" "+MON[parseInt(p[1])-1]+" "+p[0]; };
+
+  const cur = chEl("g",{id:chartId+"-cursor"}); cur.setAttribute("opacity","0"); cur.setAttribute("style","pointer-events:none");
+  svg.appendChild(cur);
+  const ov = chEl("rect",{x:plotL,y:plotT,width:(plotR-plotL),height:(plotB-plotT),fill:"transparent"}); ov.setAttribute("style","cursor:crosshair");
+  svg.appendChild(ov);
+
+  function draw(i){
+    while(cur.firstChild) cur.removeChild(cur.firstChild);
+    const f=i/n, x=pxFrac(f), vals=coneAt(f), actual=win[i].price;
+    cur.appendChild(chEl("line",{x1:x,y1:plotT,x2:x,y2:plotB,stroke:"var(--muted)","stroke-width":1,"stroke-dasharray":"3 3","stroke-opacity":0.7}));
+    for(const k of [95,75,50,25,5]) cur.appendChild(chEl("circle",{cx:x,cy:py(vals[k]),r:2.6,fill:bandCol[k]}));
+    cur.appendChild(chEl("circle",{cx:x,cy:py(actual),r:4,fill:"#2a78d6",stroke:"var(--paper)","stroke-width":1.5}));
+    // tooltip
+    const rows=[["actual",actual,"#2a78d6"],["95%",vals[95],"#8A6A2E"],["75%",vals[75],"#12796B"],["50% (mid)",vals[50],"var(--ink)"],["25%",vals[25],"#12796B"],["5%",vals[5],"#8A6A2E"]];
+    const bw=142, lh=14.5, hh=17, py0=7, bh=hh+rows.length*lh+py0;
+    let bx = x+14; if(bx+bw > W-2) bx = x-14-bw;
+    let by = plotT+4;
+    cur.appendChild(chEl("rect",{x:bx,y:by,width:bw,height:bh,rx:6,fill:"var(--card)",stroke:"var(--line)","stroke-width":1,"fill-opacity":0.98}));
+    const th=chEl("text",{x:bx+9,y:by+13,"font-size":11,"font-weight":600,fill:"var(--ink)","font-family":"'IBM Plex Mono',monospace"}); th.textContent=pretty(win[i].iso); cur.appendChild(th);
+    rows.forEach((rw,ri)=>{
+      const yy=by+hh+ri*lh+3;
+      cur.appendChild(chEl("circle",{cx:bx+13,cy:yy-3.5,r:3,fill:rw[2]}));
+      const lb=chEl("text",{x:bx+21,y:yy,"font-size":10.5,fill:"var(--muted)","font-family":"'IBM Plex Mono',monospace"}); lb.textContent=rw[0]; cur.appendChild(lb);
+      const vv=chEl("text",{x:bx+bw-9,y:yy,"font-size":10.5,"font-weight":600,"text-anchor":"end",fill:"var(--ink)","font-family":"'IBM Plex Mono',monospace"}); vv.textContent=rw[1].toFixed(2); cur.appendChild(vv);
+    });
+    cur.setAttribute("opacity","1");
+  }
+  function move(e){
+    const src=(e.touches&&e.touches[0])?e.touches[0]:e;
+    const rect=svg.getBoundingClientRect(); if(!rect.width) return;
+    const vbX=(src.clientX-rect.left)/rect.width*W;
+    let f=(vbX-ml)/(W-ml-mr); let i=Math.round(f*n); i=Math.max(0,Math.min(n,i));
+    draw(i);
+  }
+  ov.addEventListener("mousemove",move);
+  ov.addEventListener("touchstart",move,{passive:true});
+  ov.addEventListener("touchmove",move,{passive:true});
+  ov.addEventListener("mouseleave",()=>cur.setAttribute("opacity","0"));
+  ov.addEventListener("touchend",()=>cur.setAttribute("opacity","0"));
+}
+
+function cohortChartBlock(t, rows){
+  const r = latestGradedCohort(rows);
+  if(!r) return "";
+  const chartId = "cohort-"+t;
+  const hasActual = !!COHORT_OHLC[r.instrument];
+  const verdict = r.in_90
+    ? `<span style="color:#1F8A4C;font-weight:600">landed inside the predicted range ✓</span>`
+    : `<span style="color:var(--red);font-weight:600">landed outside the predicted range ✗</span>`;
+  const actualLeg = hasActual
+    ? `<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:3px;background:#2a78d6;display:inline-block"></span>actual daily price</span>` : ``;
+  const leg = `<div style="display:flex;flex-wrap:wrap;gap:16px;margin:2px 0 8px;font-size:var(--fs-caption);color:var(--muted)">
+    ${actualLeg}
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:0;border-top:2px dashed var(--ink);display:inline-block"></span>our best guess (middle)</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:var(--teal);opacity:.55;display:inline-block;border-radius:2px"></span>25%–75% band</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:var(--brass);opacity:.34;display:inline-block;border-radius:2px"></span>5%–95% band</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:50%;background:#2a78d6;display:inline-block"></span>where it closed</span>
+  </div>`;
+  const pathNote = hasActual
+    ? `the blue line is where the price actually traded, day by day, against the range we published on ${r.anchor_date} (the funnel). Hover any point to read that day's actual price and the full 5/25/50/75/95% range`
+    : `where the price actually closed on ${r.grade_date} (the dot), against the range we published on ${r.anchor_date} (the funnel)`;
+  // schedule the async actual-line draw after this HTML is in the DOM
+  if(hasActual) setTimeout(()=>drawActualLine(r, chartId), 0);
+  return `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Latest forecast — predicted vs actual</h3>
+  <p class="muted" style="margin:0 0 10px;max-width:760px">The most recent forecast for ${t} that has reached its date: ${pathNote}. It ${verdict}. This is the single most-recent call — the calibration record below is the full track.</p>
+  ${leg}
+  <div class="card bt-fig">${cohortChartSVG(r, chartId)}</div>`;
+}
+
+// ---- tab groups: MARKET comes from the library registry, never from asset_class ----
+// A stock's market is decided by FILE PLACEMENT — engine/raw_ohlc/{MARKET}/{TICKER}.csv —
+// and baked into assets/markets.js by scripts/build_market_registry.py.
+//
+// The retired code read `asset_class` off the first LEDGER row per name and treated
+// equity->EGX, other->International. That overloaded a real asset-class field to also
+// carry a market flag, and it only ever worked while every non-Egyptian equity sat
+// mislabelled as "other". When the 28-Jul re-strike wrote the correct value (Aramco
+// IS an equity) and the 29-Jul cleanup removed the older "other"-tagged rows, 34
+// international names — all 18 UAE, all 11 Tadawul, AAPL/NVDA/TSLA, INFY/RELIANCE,
+// QGTS — silently rendered under the EGX heading. Nothing threw; the page just lied.
+// asset_class now means asset class and nothing else.
+// marketOf() now comes FROM assets/markets.js, which this page already loads — the same
+// resolver trade.html, portfolio.html and picker.html use, so every surface answers
+// "which market is this name in?" identically. The local copy this replaces indexed
+// MARKET_OF directly, which returns nothing for the three names LEDGER and TICKERS
+// spell differently (Samsung/SAMSUNG, Kakao/KAKAO); the resolver falls back to a
+// case-insensitive match. Redeclaring it here is a SyntaxError that takes the whole
+// page down, so it is deleted, not shadowed.
+const mkBtns = arr => arr.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
+
+let _tb = `<div class="tab-row"><button class="tab-btn active" data-tab="all">All</button></div>`;
+const _seen = new Set();
+(typeof MARKET_ORDER !== "undefined" ? MARKET_ORDER : []).forEach(code=>{
+  const meta = MARKET_META[code]; if(!meta) return;
+  // XAU and XPT share the group "METALS" — render the block once, on first sight.
+  if(_seen.has(meta.group)) return;
+  _seen.add(meta.group);
+  const codes = MARKET_ORDER.filter(c => MARKET_META[c] && MARKET_META[c].group === meta.group);
+  const names = tickerOrder.filter(t => codes.includes(marketOf(t)));
+  if(!names.length) return;
+  _tb += `<div class="tab-group"><div class="tab-group-title">${meta.label}</div><div class="tab-row">${mkBtns(names)}</div></div>`;
+});
+// FAIL LOUD, NOT INTO EGX: a name with no library placement gets its own visible
+// block instead of defaulting into someone else's market. This is the check that
+// would have caught the 29-Jul mislabelling on the page itself.
+const _unplaced = tickerOrder.filter(t=>!marketOf(t));
+if(_unplaced.length){
+  _tb += `<div class="tab-group"><div class="tab-group-title">⚠ Unplaced — no market library</div><div class="tab-row">${mkBtns(_unplaced)}</div></div>`;
+  console.warn("[ledger] no market registry entry for:", _unplaced.join(", "));
+}
+tabBar.innerHTML = _tb;
+
+// All panel
+tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
+  <div class="card">
+    <table>
+      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said <span class="tagk">Simulation</span></th><th class="num">Likely range <span class="tagk">Simulation</span></th><th>What happened</th></tr></thead>
+      <tbody id="tbody-all"></tbody>
+    </table>
+  </div>
+  <div class="pager" id="pager-tbody-all"></div>
+  <p class="muted" style="margin-top:8px"><b id="sum-all"></b></p>
+</div>`
++ tickerOrder.map(t=>`<div class="tab-panel" id="panel-${t}">
+  <div class="card">
+    <table>
+      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said <span class="tagk">Simulation</span></th><th class="num">Likely range <span class="tagk">Simulation</span></th><th>What happened</th></tr></thead>
+      <tbody id="tbody-${t}"></tbody>
+    </table>
+  </div>
+  <div class="pager" id="pager-tbody-${t}"></div>
+  <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
+  ${cohortChartBlock(t, LEDGER.filter(r=>r.instrument===t))}
+  ${bandState(t) === "market" ? bandBanner(t) + `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">What this forecast IS validated on</h3>
+  <p class="muted" style="margin:0 0 12px;max-width:760px">This stock has not been listed long enough to build a band record of its own worth reading. So instead of a record it does not have, here is the evidence the cone actually rests on: how often the bands held across the whole market panel it is drawn from, and where this stock sits relative to that panel. Methodology transparency; it does not count toward the live score above.</p>
+  <div class="card bt-fig"><img alt="${t} — why this name has no readable band record of its own, what the cone is validated on, and how its market panel scored" src="assets/calibration_${t}.png?v=20260824agthiapub2"></div>` : ``}
+  ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Calibration backtest</h3>
+  <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed across ${t}’s full usable history — every non-overlapping quarter back to its market’s last structural break. Each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Where the most recent stretch diverges from the long-run record, the panel says so in red. Methodology validation; it does not count toward the live score above.</p>
+  ${bandState(t) === "market" ? `` : bandBanner(t)}
+  <div class="card bt-fig"><img alt="${t} calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260824agthiapub2"></div>
+  <div style="margin:20px 0 8px;padding-top:20px;border-top:1px solid var(--line,#dce4e2)">
+    <p class="muted" style="font-size:var(--fs-small);margin:0 0 10px"><b style="color:var(--ink)">Reading this panel:</b></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div><p style="margin:0 0 3px;font-weight:600;font-size:var(--fs-small)">Quarterly replay</p><p class="muted" style="margin:0;font-size:var(--fs-caption)">Each band is what the engine forecast 3 months out from that date &mdash; light = 90% range, dark = 50%. The dot is where price actually closed: gold if inside the 90% band, red &times; if not.</p></div>
+      <div><p style="margin:0 0 3px;font-weight:600;font-size:var(--fs-small)">PIT histogram</p><p class="muted" style="margin:0;font-size:var(--fs-caption)">Where each real outcome fell inside its forecast distribution. Flat across 0&ndash;1 = honestly calibrated. Piled in the middle = bands too wide; piled at the edges = too narrow.</p></div>
+      <div><p style="margin:0 0 3px;font-weight:600;font-size:var(--fs-small)">Band coverage</p><p class="muted" style="margin:0;font-size:var(--fs-caption)">Dashed = target (e.g. a 90% band should hold 90% of the time). Solid bar = what actually happened. Close to the line = well-calibrated.</p></div>
+    </div>
+  </div>` : ``}
+</div>`).join("");
+
+// Build all panel
+buildPanel(LEDGER, "tbody-all", "sum-all");
+
+// Build per-ticker panels
+tickerOrder.forEach(t=>{
+  buildPanel(LEDGER.filter(r=>r.instrument===t), `tbody-${t}`, `sum-${t}`);
+});
+
+// Overall summary
+let hit=0, scored=0;
+LEDGER.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
+const firstDate = fmtDateL([...LEDGER].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date);
+document.getElementById("lg-sum-all").textContent = scored
+  ? `So far, the real price landed inside our forecast range ${hit} times out of ${scored}.`
+  : `Nothing to score yet — the first forecast can be checked on ${firstDate}. Every forecast stays here, right or wrong.`;
+
+// Tab switching
+document.getElementById("tab-bar").addEventListener("click", e=>{
+  const btn = e.target.closest(".tab-btn"); if(!btn) return;
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+});
+</script>
+<script>
+/* Backtest panel — isolated from the forward ledger; never affects the live score. */
+(function(){
+  if (typeof BACKTEST === "undefined") return;
+  const tbl = document.getElementById("backtest-table");
+  if (!tbl) return;
+  const f2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+  if (!BACKTEST.length){
+    return;
+  }
+  const inBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
+  const rows = [...BACKTEST].sort((a,b)=> b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
+  const body = rows.map(r=>`<tr>
+    <td class="num">${r.anchor_date}</td>
+    <td><b>${r.instrument}</b></td>
+    <td class="num">${hzDisplay(r.horizon_label)}</td>
+    <td class="num">${f2(r.p50)}</td>
+    <td class="num">${f2(r.p5)} – ${f2(r.p95)} <span class="muted">(90%)</span></td>
+    <td><span class="num">${f2(r.realized_close)}</span> ${inBand(r) ? '<span class="ok">inside ✓</span>' : '<span class="bad">outside ✗</span>'}</td>
+    <td><span class="muted">${r.evidence || ""}</span></td>
+  </tr>`).join("");
+  let hit=0; rows.forEach(r=>{ if(inBand(r)) hit++; });
+  const cov = rows.length ? Math.round(100*hit/rows.length) : 0;
+  tbl.innerHTML = `<div class="card">
+    <table>
+      <thead><tr><th class="num">Anchor</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Said (mid)</th><th class="num">90% range</th><th>Real close <span class="muted" style="font-weight:400">(at horizon end)</span></th><th>Tier</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:8px"><b>Historical coverage: ${hit} of ${rows.length} inside the 90% range (${cov}%).</b> Separate from the live score — replays only, not a forward record. Each "real close" is the price at the end of that row's horizon counted from its anchor date; these replays store the anchor and the horizon, not a separate resolve date.</p>`;
+})();
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  nav.addEventListener('click', function(e){ var a=e.target.closest('a'); if(!a) return; var t=document.getElementById(a.getAttribute('href').slice(1)); if(t&&t.tagName==='DETAILS') t.open=true; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
+</script>
+<script>
+/* Next-resolution countdown \u2014 DATA-DRIVEN.
+   Was hard-coded to "9 July 2026, PHDC 1 month" and went stale the moment that
+   cohort graded. It now reads the register: the soonest grade_date among rows
+   that are still open. Nothing to maintain per roll-forward, and it cannot
+   contradict the table underneath it. */
+(function(){
+  var el=document.getElementById("lg-countdown"); if(!el) return;
+  if(typeof LEDGER==="undefined") return;
+  var open=LEDGER.filter(function(r){ return r.realized_close==null && r.grade_date; });
+  if(!open.length) return;
+  open.sort(function(a,b){ return a.grade_date.localeCompare(b.grade_date) || byHorizon(a,b); });
+
+  var now=new Date(), today=new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var matured=open.filter(function(r){ return isoDate(r.grade_date) <= today; });
+  var upcoming=open.filter(function(r){ return isoDate(r.grade_date) > today; });
+
+  function whoOf(rows){
+    if(rows.length===1) return rows[0].instrument+" "+hzDisplay(rows[0].horizon_label);
+    var names=[...new Set(rows.map(function(r){return r.instrument;}))];
+    return rows.length+" cohorts ("+names.slice(0,3).join(", ")+(names.length>3?" and others":"")+")";
+  }
+
+  // Cohorts whose date has already passed are AWAITING GRADING, not "here".
+  // Saying "it's here" about a horizon that matured a week ago reads as a live
+  // countdown when it is actually a backlog \u2014 name it for what it is.
+  if(matured.length){
+    var head=document.querySelector("#lg-countdown div");
+    if(head) head.textContent = matured.length===1 ? "Awaiting grading" : "Awaiting grading";
+    document.getElementById("lg-cd-num").textContent =
+      matured.length + (matured.length===1 ? " forecast" : " forecasts");
+    document.getElementById("lg-cd-sub").textContent =
+      "reached "+(matured.length===1?"its date":"their dates")+" \u2014 "+whoOf(matured)+
+      ", earliest "+fmtDateL(matured[0].grade_date)+
+      ". Each is graded against the close on its own date, right or wrong.";
+    el.style.display="block";
+    return;
+  }
+  if(!upcoming.length) return;
+
+  var next=upcoming[0];
+  var sameDay=upcoming.filter(function(r){ return r.grade_date===next.grade_date; });
+  var who=whoOf(sameDay);
+  var verb=sameDay.length===1 ? "is" : "are";
+  var prettyStr=fmtDateL(next.grade_date);
+  var target=isoDate(next.grade_date).getTime();
+  function tick(){
+    var d=target-Date.now();
+    var num=document.getElementById("lg-cd-num"), sub=document.getElementById("lg-cd-sub");
+    if(d<=0){
+      num.textContent="It's here";
+      sub.textContent=prettyStr+" \u2014 "+who+" "+verb+" checked against the real price. The result goes here, right or wrong.";
+      el.style.display="block"; return;
+    }
+    var day=Math.floor(d/864e5), hr=Math.floor(d%864e5/36e5), mi=Math.floor(d%36e5/6e4);
+    num.textContent = day+(day===1?" day":" days");
+    sub.textContent = hr+" h "+mi+" m \u2014 until "+prettyStr+", when "+who+" "+verb+" checked against the real price";
+    el.style.display="block";
+  }
+  tick(); setInterval(tick,60000);
+})();
+</script>
+</body></html>
