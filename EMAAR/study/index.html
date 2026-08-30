@@ -148,6 +148,7 @@
   ]
 }
 </script>
+<style>/* align to the new-site 1180px column */ .wrap{max-width:1180px} .study-wrap{padding:0 20px}</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -365,6 +366,67 @@
 
   <!-- FOLLOW BY EMAIL -->
   </div>
+
+<!-- NEW-IA FEATURES (added post-cutover, legacy design language) -->
+<section style="padding-top:8px">
+  <div class="card">
+    <p class="qhead">This name, four ways</p>
+    <p class="muted" style="display:flex;gap:14px;flex-wrap:wrap;margin:0">
+      <a href="/EMAAR/3lens/">3 lenses on one chart →</a>
+      <a href="/EMAAR/calibration/">Calibration &amp; backtest →</a>
+      <a href="/EMAAR/archive/">Past editions →</a>
+      <a href="/record.html?t=EMAAR">Its rows in the public record →</a>
+    </p>
+  </div>
+</section>
+<section style="padding-top:8px">
+  <div class="card" id="own-record-card" style="display:none">
+    <p class="qhead">Own record on this name</p>
+    <p class="muted">Every dated forecast on this name — pending and graded.</p>
+    <div style="overflow-x:auto"><table style="min-width:520px"><thead><tr><th class="num">Anchored</th><th>Horizon</th><th class="num">Said (p5–p95)</th><th class="num">Grades on</th><th>Result</th></tr></thead><tbody id="own-record-body"></tbody></table></div>
+  </div>
+</section>
+<section style="padding-top:8px">
+  <div class="card" id="more-market-card" style="display:none">
+    <p class="qhead">More in this market</p>
+    <p id="more-market-body" style="display:flex;gap:8px;flex-wrap:wrap;margin:0"></p>
+  </div>
+</section>
+<script>
+(function(){
+  function px(v){ return (v==null||isNaN(v))?"—":Number(v).toFixed(2); }
+  try{
+    var rows=(window.LEDGER||[]).filter(function(r){return (r.instrument||"").toUpperCase()==="EMAAR"});
+    if(rows.length){
+      rows.sort(function(a,b){return (b.anchor_date||"").localeCompare(a.anchor_date||"")});
+      document.getElementById("own-record-body").innerHTML=rows.map(function(r){
+        var res=r.realized_close==null?'<span class="chip">awaiting its date</span>'
+          :(r.realized_close>=r.p5&&r.realized_close<=r.p95?'<span class="chip" style="color:var(--teal)">inside the band · closed '+px(r.realized_close)+'</span>'
+            :'<span class="chip" style="color:#b3261e">outside the band · closed '+px(r.realized_close)+'</span>');
+        return '<tr><td class="num">'+r.anchor_date+' at '+px(r.anchor_price)+'</td><td>'+r.horizon_label+'</td><td class="num">'+px(r.p5)+' – '+px(r.p95)+'</td><td class="num">'+(r.grade_date||"—")+'</td><td>'+res+'</td></tr>';
+      }).join("");
+      document.getElementById("own-record-card").style.display="";
+    }
+    var T=window.TICKERS||{}, me=T["EMAAR"];
+    function mkt(x){ return (x.code||"").split(":")[0]; }
+    if(me){
+      var peers=Object.keys(T).filter(function(k){return k!=="EMAAR"&&mkt(T[k])===mkt(me)&&T[k].fair&&T[k].spot});
+      peers.sort(function(a,b){
+        var ga=Math.abs(T[a].fair.base/T[a].spot-1), gb=Math.abs(T[b].fair.base/T[b].spot-1);
+        return gb-ga;
+      });
+      peers=peers.slice(0,8);
+      if(peers.length){
+        document.getElementById("more-market-body").innerHTML=peers.map(function(k){
+          var g=Math.round((T[k].fair.base/T[k].spot-1)*100);
+          return '<a class="chip" href="/'+k+'/study/">'+(T[k].code.split(":").pop()||k)+' <span class="num" style="color:'+(g>=0?'var(--teal)':'#b3261e')+'">'+(g>=0?'+':'')+g+'%</span></a>';
+        }).join("");
+        document.getElementById("more-market-card").style.display="";
+      }
+    }
+  }catch(e){}
+})();
+</script>
 <aside class="study-side"><div class="ss-card ss-3lens"><p class="ss-h">Three lenses, one picture</p><p class="ss-sub">The chart’s levels, the published 1–3 month odds and the fair-value range on a single axis.</p><a class="btn" href="/EMAAR/3lens/" style="display:block;text-align:center;box-sizing:border-box">See the three lenses →</a></div><div class="ss-card ss-get"><p class="ss-h">Get the study</p><a class="btn dlfile" id="dl-pdf-side" href="#" rel="noopener" download style="display:block;text-align:center;box-sizing:border-box;margin-bottom:8px">Open the study (PDF)</a><a class="btn ghost dlfile" id="dl-model-side" href="#" rel="noopener" style="display:block;text-align:center;box-sizing:border-box">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio-side" href="#" rel="noopener" style="display:none;text-align:center;box-sizing:border-box;margin-top:8px">Open the source register</a></div><div class="ss-card ss-notify"><p class="ss-h">Get the next Emaar Properties update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div></aside>
 </main>
 <div class="wrap"><div id="related" data-ticker="EMAAR"></div><div class="ctx-row"><a class="ctx-btn" href="/tools.html?a=EMAAR#compare">Compare EMAAR vs peers &rarr;</a><a class="ctx-btn ghost" href="/savings.html">What kept its value? &rarr;</a></div></div>
@@ -469,7 +531,7 @@ initHowto();
 })();
 </script>
 <style id="tst-2col">
-.study-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:140px minmax(0,1fr) 288px;gap:28px;align-items:start}
+.study-wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:140px minmax(0,1fr) 288px;gap:28px;align-items:start}
 .study-main{min-width:0}
 .study-main :where(p){max-width:none;margin:0 0 1em;padding:0}
 .study-main,.study-main p,.study-main li{font-size:var(--fs-h3);line-height:1.72}
