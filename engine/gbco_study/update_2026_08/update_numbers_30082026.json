@@ -1,0 +1,509 @@
+{
+ "edition": "GBCO fundamental update 30-08-2026",
+ "standard_version_built_to": "2026.08.23",
+ "spot": 29.51,
+ "spot_date": "2026-08-23",
+ "shares_mn": 1085.5,
+ "mktcap_egp_mn": 32033.105000000003,
+ "beta": {
+  "beta": 0.8906822450333004,
+  "r2": 0.24301638425722683,
+  "se": 0.20405704188114288,
+  "n": 251,
+  "ci90": [
+   0.5550084111388204,
+   1.2263560789277803
+  ],
+  "window_years": 4.85,
+  "first_obs": "2021-09-09",
+  "last_obs": "2026-07-16",
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "conforming": true,
+  "tier": 1
+ },
+ "wacc": {
+  "rf_observed": 0.2287,
+  "rf_star_rating": 0.16499999999999998,
+  "rf_star_cds": 0.1946,
+  "ke_rating": 0.289161104957642,
+  "ke_cds": 0.2784131992576336,
+  "kd_pretax": 0.2437,
+  "kd_aftertax": 0.1888675,
+  "we": 0.5985325322656334,
+  "wd": 0.4014674677343666,
+  "wacc_rating": 0.24889648534534656,
+  "wacc_cds": 0.24246351413016828,
+  "primary_basis": "cds",
+  "kd_sensitivity_short_tenor": 0.22,
+  "warnings": [],
+  "sources": {
+   "rf_observed": "investing.com Egypt 10Y EGP govt yield (15.387% cpn, May-2032) [2026-08-27, tier C]",
+   "erp_rating": "Damodaran ctryprem.html, Egypt total ERP rating basis [2026-01-05, tier C]",
+   "erp_cds": "Damodaran ctryprem.html, Egypt total ERP CDS basis [2026-01-05, tier C]",
+   "kd_pretax": "sovereign 10Y 22.87% + 150bp corporate spread (marginal, EGP; rule: above sovereign). Short-tenor alternative (CBE o/n lending 20.0% + 200bp = 22.0%) reported as sensitivity [2026-08-30, tier C]"
+  }
+ },
+ "forecast": {
+  "2026": {
+   "rev": 102812.16598035628,
+   "auto_rev": 85324.86844323183,
+   "cap_rev": 18630.81,
+   "pc_units": 62619,
+   "lm_units": 46770,
+   "cv_units": 5202,
+   "gp": 15704.04846738215,
+   "gpm": 0.15274504060523958,
+   "sga": 8224.973278428502,
+   "op": 8147.354267825964,
+   "assoc": 850.0,
+   "fin_net": -4700.0,
+   "pbt": 4297.354267825964,
+   "etr": 0.4,
+   "np_total": 2578.412560695578,
+   "np_parent": 2828.412560695578,
+   "eps": 2.6056311015159634
+  },
+  "2027": {
+   "rev": 126820.26931399886,
+   "auto_rev": 105501.22000424557,
+   "cap_rev": 22729.588200000002,
+   "pc_units": 68254.71,
+   "lm_units": 53785.49999999999,
+   "cv_units": 5826.240000000001,
+   "gp": 19887.343142228343,
+   "gpm": 0.1568151782818609,
+   "sga": 10145.621545119908,
+   "op": 10566.053347649427,
+   "assoc": 1062.5,
+   "fin_net": -4300.0,
+   "pbt": 7328.553347649427,
+   "etr": 0.3,
+   "np_total": 5129.987343354599,
+   "np_parent": 5179.987343354599,
+   "eps": 4.771982812855457
+  },
+  "2028": {
+   "rev": 152480.66088932354,
+   "auto_rev": 126901.097688133,
+   "cap_rev": 27275.50584,
+   "pc_units": 73715.0868,
+   "lm_units": 60239.759999999995,
+   "cv_units": 6408.864000000001,
+   "gp": 24416.761946516213,
+   "gpm": 0.16013022113170705,
+   "sga": 12198.452871145882,
+   "op": 13209.433371150933,
+   "assoc": 1328.125,
+   "fin_net": -3900.0,
+   "pbt": 10637.558371150933,
+   "etr": 0.27,
+   "np_total": 7765.4176109401815,
+   "np_parent": 7665.4176109401815,
+   "eps": 7.061646808788744
+  },
+  "2029": {
+   "rev": 179303.91225529718,
+   "auto_rev": 149113.09548018238,
+   "cap_rev": 32185.0968912,
+   "pc_units": 78875.14287600001,
+   "lm_units": 66263.736,
+   "cv_units": 6921.573120000002,
+   "gp": 29163.32801497387,
+   "gpm": 0.16264747181562011,
+   "sga": 14344.312980423774,
+   "op": 15984.49046420953,
+   "assoc": 1660.15625,
+   "fin_net": -3600.0,
+   "pbt": 14044.64671420953,
+   "etr": 0.25,
+   "np_total": 10533.485035657148,
+   "np_parent": 10333.485035657148,
+   "eps": 9.519562446482864
+  },
+  "2030": {
+   "rev": 207677.3825991322,
+   "auto_rev": 172652.52987024462,
+   "cap_rev": 37334.712393792,
+   "pc_units": 83607.65144856002,
+   "lm_units": 71564.83488000001,
+   "cv_units": 7336.867507200002,
+   "gp": 33780.06805992081,
+   "gpm": 0.16265646088733962,
+   "sga": 16614.190607930577,
+   "op": 18515.780438884598,
+   "assoc": 2075.1953125,
+   "fin_net": -3400.0,
+   "pbt": 17190.975751384598,
+   "etr": 0.24,
+   "np_total": 13065.141571052294,
+   "np_parent": 12785.141571052294,
+   "eps": 11.778112916676458
+  }
+ },
+ "rev_ranges_h3_h5": {
+  "2028": {
+   "low": 93013.20314248736,
+   "point": 152480.66088932354,
+   "high": 213472.92524505293
+  },
+  "2029": {
+   "low": 68135.48665701292,
+   "point": 179303.91225529718,
+   "high": 233095.08593188634
+  },
+  "2030": {
+   "low": 85147.72686564419,
+   "point": 207677.3825991322,
+   "high": 232598.66851102808
+  }
+ },
+ "auto_dcf": {
+  "ebit": {
+   "2026": 5972.740791026228,
+   "2027": 8440.097600339646,
+   "2028": 11167.296596555703,
+   "2029": 13867.517879656962,
+   "2030": 16401.99033767324
+  },
+  "fcff": {
+   "2026": -497.1923932757454,
+   "2027": 2013.4607187895162,
+   "2028": 3621.1805644987144,
+   "2029": 5030.95594288022,
+   "2030": 5871.49531002816
+  },
+  "wacc_used": 0.24246351413016828,
+  "tg": 0.1,
+  "pv_explicit": 6886.286821002237,
+  "tv": 45335.43118366252,
+  "pv_tv": 15311.563140100136,
+  "ev": 22197.849961102373,
+  "net_debt": 15210.0,
+  "nci": 800.4,
+  "equity": 6187.449961102373,
+  "tv_pct_of_ev": 0.6897768552779129
+ },
+ "gb_capital_leg": {
+  "book_exmnt_parent": 5459.279000000002,
+  "np_exmnt_fy25": 379.5000000000001,
+  "values": {
+   "bear": 4367.423200000002,
+   "base": 5459.279000000002,
+   "bull": 7642.990600000003
+  }
+ },
+ "mnt_leg_dual": {
+  "framing_A_carrying": 12853.321,
+  "framing_B_round_mark_current_stake": 30201.255,
+  "framing_B_post_second_closing": 29272.635000000002,
+  "stake_current": 0.4293,
+  "stake_post": 0.4161,
+  "round_usd_bn": 1.4,
+  "egp_usd": 50.25,
+  "note": "published side by side; base fair value uses framing B (the market's own June-2026 price of the asset, press-reported, tier C); framing A anchors the bear leg; the audit qualification on MNT-BV information is restated wherever this leg is quoted"
+ },
+ "sotp": {
+  "auto_eq": 6187.449961102373,
+  "cap_base": 5459.279000000002,
+  "other_assoc": 836.1,
+  "holdco_discount": 0.1,
+  "total_book_framing": 25336.149961102376,
+  "total_round_framing": 42684.08396110238,
+  "ps": {
+   "bear": 18.04917803684503,
+   "base_book": 21.006480852134626,
+   "base_round": 35.38984391063302,
+   "bull": 44.550053308142786,
+   "prediscount_base_round": 39.32204878959224
+  }
+ },
+ "lenses": {
+  "sotp": {
+   "bear": 18.04917803684503,
+   "base": 35.38984391063302,
+   "bull": 44.550053308142786
+  },
+  "prediscount": {
+   "bear": 23.340534280149587,
+   "base": 39.32204878959224,
+   "full": 49.500059231269766
+  },
+  "relative": {
+   "bear": 18.44403478592855,
+   "base": 25.82164870029997,
+   "bull": 33.19926261467139
+  },
+  "normalized": {
+   "base": 7.432509034399913,
+   "bear": 5.574381775799934,
+   "bull": 9.662261744719887
+  },
+  "weights": {
+   "sotp": 0.4,
+   "prediscount": 0.15,
+   "relative": 0.2,
+   "normalized": 0.25
+  }
+ },
+ "params": {
+  "pe_band": [
+   5.0,
+   7.0,
+   9.0
+  ],
+  "cap_pb_band": [
+   0.8,
+   1.0,
+   1.4
+  ],
+  "holdco_disc": 0.1,
+  "tg": 0.1,
+  "range_mult": {
+   "2028": [
+    0.61,
+    1.4
+   ],
+   "2029": [
+    0.38,
+    1.3
+   ],
+   "2030": [
+    0.41,
+    1.12
+   ]
+  },
+  "corp_spread_bp": 150,
+  "kd_short_tenor_alt": 0.22,
+  "norm_roe": 0.15
+ },
+ "prior_edition": {
+  "date": "2026-07-08 (amended 09-Jul-2026)",
+  "rf_observed": 0.2255,
+  "ke_cds": 0.3196,
+  "wacc_cds": 0.2294381614233093,
+  "wacc_rating": 0.25079156616343545,
+  "beta": 1.0,
+  "fair": {
+   "bear": 23.276260177459903,
+   "base": 35.74687012834619,
+   "full": 50.98459562225473
+  },
+  "cap_val": 9500.0,
+  "mnt_stake": 0.4161,
+  "mnt_round_usd_bn": 1.4,
+  "spot": 31.25
+ },
+ "fair": {
+  "bear": 15.803153757896144,
+  "base": 27.076701881352015,
+  "full": 34.30044816706183
+ },
+ "usd_cross_check": {
+  "mktcap_usd_mn": 637.4747263681593,
+  "mnt_stake_usd_mn": 601.02,
+  "note": "at the June-2026 round mark the MNT stake alone is ~USD 601mn against a ~USD 637mn market cap; the USD lens sits closer to the SOTP round-mark framing than to the blended central value",
+  "fair_base_usd_mn": 584.910644621047
+ },
+ "ground_up": {
+  "ticker": "GBCO",
+  "lines": 6,
+  "share_by_level": {
+   "unit": 0.7645220312484647,
+   "derived": 0.1792187813018211,
+   "segment": 0.056259187449714275,
+   "topdown": 0
+  },
+  "unit_share": 0.7645220312484647,
+  "standard_version": "2026.08.23"
+ },
+ "training_carry_ins": [
+  "years 3-5 revenue as ranges (rev x[0.61..1.40]/[0.38..1.30]/[0.41..1.12])",
+  "associates modelled explicitly (frozen-assoc failure mode)",
+  "capex anchored on FS note 31 committed programme, not a revenue ratio",
+  "SGA_UP_5PCT watch flag applied as range widener, not point bump",
+  "PC volumes market-anchored with stated share, never frozen off a truncated window"
+ ],
+ "inputs_register": {
+  "rf_observed": {
+   "value": 0.2287,
+   "source": "investing.com Egypt 10Y EGP govt yield (15.387% cpn, May-2032)",
+   "date": "2026-08-27",
+   "tier": "C"
+  },
+  "sov_spread_rating": {
+   "value": 0.0637,
+   "source": "Damodaran ctryprem.html ORIGINAL file, Egypt row, Caa1 adjusted default spread",
+   "date": "2026-01-05",
+   "tier": "C"
+  },
+  "sov_spread_cds": {
+   "value": 0.0341,
+   "source": "Damodaran ctryprem.html, Egypt sovereign CDS default spread",
+   "date": "2026-01-05",
+   "tier": "C"
+  },
+  "erp_rating": {
+   "value": 0.1394,
+   "source": "Damodaran ctryprem.html, Egypt total ERP rating basis",
+   "date": "2026-01-05",
+   "tier": "C"
+  },
+  "erp_cds": {
+   "value": 0.0941,
+   "source": "Damodaran ctryprem.html, Egypt total ERP CDS basis",
+   "date": "2026-01-05",
+   "tier": "C"
+  },
+  "cbe_lending": {
+   "value": 0.2,
+   "source": "CBE MPC 20-Aug-2026: o/n lending 20.0% (4th consecutive hold); core CPI 14.7% Jul-26",
+   "date": "2026-08-20",
+   "tier": "B"
+  },
+  "kd_pretax": {
+   "value": 0.2437,
+   "source": "sovereign 10Y 22.87% + 150bp corporate spread (marginal, EGP; rule: above sovereign). Short-tenor alternative (CBE o/n lending 20.0% + 200bp = 22.0%) reported as sensitivity",
+   "date": "2026-08-30",
+   "tier": "C"
+  },
+  "egp_usd": {
+   "value": 50.25,
+   "source": "investing.com USD/EGP close",
+   "date": "2026-08-28",
+   "tier": "C"
+  },
+  "tax_statutory": {
+   "value": 0.225,
+   "source": "Egypt corporate rate (Law 96/2015; also Damodaran Egypt row)",
+   "date": "2026-01-05",
+   "tier": "B"
+  },
+  "spot": {
+   "value": 29.51,
+   "source": "EGX close, engine/raw_ohlc/EG/GBCO.csv last row (as rendered on the live page)",
+   "date": "2026-08-23",
+   "tier": "A"
+  },
+  "shares_mn": {
+   "value": 1085.5,
+   "source": "ER 4Q25: shares outstanding 1,085,500,000",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "auto_rev_fy25": {
+   "value": 66358.3,
+   "source": "ER 4Q25 Table 11, GB Auto total revenue before eliminations",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "auto_rev_h1_26": {
+   "value": 40021.5,
+   "source": "ER 2Q26: GB Auto revenues before intercompany eliminations, 1H26",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "cap_rev_fy25": {
+   "value": 14743.0,
+   "source": "ER 4Q25 Table 13, GB Capital total revenue before eliminations",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "cap_rev_h1_26": {
+   "value": 9088.2,
+   "source": "ER 2Q26: GB Capital revenues before eliminations 1H26 (+62.9% y-o-y)",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "cap_np_h1_26": {
+   "value": 649.6,
+   "source": "ER 2Q26: GB Capital net profit after tax & NCI 1H26",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "cap_portfolio_h1_26": {
+   "value": 24000.0,
+   "source": "ER 2Q26: net on-book portfolio EGP 24.0bn, +33.6% y-o-y; NPL 2.8%",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "auto_nd_fy25": {
+   "value": 15210.0,
+   "source": "ER 4Q25 Table 7: GB Auto net debt",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "auto_nci_eq_fy25": {
+   "value": 800.4,
+   "source": "ER 4Q25 Table 12: GB Auto segment NCI equity",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "auto_ebitda_h1_26": {
+   "value": 3484.8,
+   "source": "ER 2Q26: GB Auto EBITDA 1H26 (+13.4% y-o-y); GPM 14.3%",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "cap_equity_fy25": {
+   "value": 19314.4,
+   "source": "ER 4Q25 Table 12: GB Capital segment total equity (incl. NCI 1,001.8)",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "cap_nci_eq_fy25": {
+   "value": 1001.8,
+   "source": "ER 4Q25 Table 12",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "mnt_carrying_fy25": {
+   "value": 12853.321,
+   "source": "FY25 FS note 34: MNT Investment B.V. Group carrying value, 44.01%",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "mnt_stake_current": {
+   "value": 0.4293,
+   "source": "H1-26 limited review report: group owns approximately 42.93% of MNT-BV",
+   "date": "2026-08-13",
+   "tier": "A"
+  },
+  "mnt_stake_post2nd": {
+   "value": 0.4161,
+   "source": "GB Corp PR 9-Jun-2026: stake will be adjusted to 41.61% (vs 42.58% prior) on completion",
+   "date": "2026-06-09",
+   "tier": "A"
+  },
+  "mnt_round_usd_bn": {
+   "value": 1.4,
+   "source": "press (Wamda/EnterpriseAM/Reuters via TradingView, Jun-2026): USD 1.4bn post-round valuation, Al Ahly Capital-led, first closing; NOT stated in the company PR",
+   "date": "2026-06-09",
+   "tier": "C"
+  },
+  "other_assoc_book": {
+   "value": 836.1,
+   "source": "FY25 FS notes 34/35-A: Bedaya 152.98 + Kaf 140.20 + Mice 125.70 + FVOCI investments 417.20",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "capex_committed": {
+   "value": 525.479,
+   "source": "FY25 FS note 31: contractual capital commitments (new production lines + branches)",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "fx_net_exposure": {
+   "value": -2192.075,
+   "source": "FY25 FS note 29: net USD exposure EGP (2,192,075)k; EUR +135,364k \u2014 debt book effectively EGP",
+   "date": "2026-02-26",
+   "tier": "A"
+  },
+  "group_np_parent_h1_26": {
+   "value": 1262.006,
+   "source": "H1-26 interim FS: NP attributable to parent, 6M",
+   "date": "2026-08-13",
+   "tier": "A"
+  }
+ }
+}
