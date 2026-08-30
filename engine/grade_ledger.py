@@ -52,7 +52,14 @@ from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+# Since the 30-Aug-2026 cutover root ledger.html is a redirect stub; the
+# hand-maintained instrument -> raw-CSV map lives on the preserved page at
+# legacy/ledger.html (still served, still the page that renders the panel).
+# Root is preferred if it ever carries the map again — same resolution order
+# scripts/check_data_freshness.py already uses for HAS_BACKTEST, which was
+# updated at the cutover while this module was not.
 LEDGER_HTML = os.path.join(ROOT, 'ledger.html')
+LEDGER_HTML_LEGACY = os.path.join(ROOT, 'legacy', 'ledger.html')
 RAW = os.path.join(ROOT, 'engine', 'raw_ohlc')
 
 PCTS = [('p5', 0.05), ('p25', 0.25), ('p50', 0.50), ('p75', 0.75), ('p95', 0.95)]
@@ -103,10 +110,28 @@ def raw_csv_map() -> dict:
     Read from the page rather than re-derived, so the sweep and the ledger's realized
     price overlay can never disagree about which series a name is.
     """
-    src = open(LEDGER_HTML, encoding='utf-8').read()
-    out = {}
-    for m in re.finditer(r'"?([A-Za-z0-9]+)"?\s*:\s*"([A-Z]{2,3}/[A-Za-z0-9]+\.csv)"', src):
-        out[m.group(1)] = m.group(2)
+    pat = r'"?([A-Za-z0-9]+)"?\s*:\s*"([A-Z]{2,3}/[A-Za-z0-9]+\.csv)"'
+    out, read_from = {}, None
+    for cand in (LEDGER_HTML, LEDGER_HTML_LEGACY):
+        if not os.path.exists(cand):
+            continue
+        found = dict((m.group(1), m.group(2))
+                     for m in re.finditer(pat, open(cand, encoding='utf-8').read()))
+        if found:
+            out, read_from = found, cand
+            break
+
+    # [R-ENF-04] AN EMPTY RESULT IS NOT A CLEAN RESULT. This returned {} when the
+    # page it reads became a redirect stub at the 30-Aug-2026 cutover, and every
+    # caller then looked up '' — os.path.join(RAW, '') is the raw_ohlc DIRECTORY,
+    # so the sweep died in load_library with IsADirectoryError instead of saying
+    # the map was empty. A grader whose map is empty must refuse, loudly, naming
+    # what it examined — never grade nothing and report a clean sweep.
+    if not out:
+        raise SystemExit(
+            'raw_csv_map: no instrument -> raw-CSV mappings found in any of '
+            + ', '.join(os.path.relpath(c, ROOT) for c in (LEDGER_HTML, LEDGER_HTML_LEGACY))
+            + ' -- the page carrying the map has moved or its format changed.')
     return out
 
 

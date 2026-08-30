@@ -328,6 +328,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "FAB",
+   "name": "First Abu Dhabi Bank",
+   "code": "ADX:FAB",
+   "ccy": "AED",
+   "spot": 19.64,
+   "anchor_date": "2026-08-27",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 55,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.1,
+   "fv_base": 19.9,
+   "fv_full": 22.4,
+   "gap_base_pct": 1.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.071327,
+    "mu_h": 0.002543,
+    "G": {
+     "bear": -1.94,
+     "base": 0.18,
+     "full": 1.84
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0252,
+     "base": 0.4253,
+     "full": 0.0326
+    },
+    "p_touch": {
+     "bear": 0.0381,
+     "base": 0.7355,
+     "full": 0.0526
+    },
+    "required_cagr": {
+     "bear": -0.8102,
+     "base": 0.171,
+     "full": 3.8448
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00194
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.128541,
+    "mu_h": 0.009628,
+    "G": {
+     "bear": -1.08,
+     "base": 0.1,
+     "full": 1.02
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0946,
+     "base": 0.4861,
+     "full": 0.1326
+    },
+    "p_touch": {
+     "bear": 0.1752,
+     "base": 0.8546,
+     "full": 0.2297
+    },
+    "required_cagr": {
+     "bear": -0.4253,
+     "base": 0.054,
+     "full": 0.6921
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00149
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ACWA",
    "name": "ACWA Power Company",
    "code": "TADAWUL:2082",
@@ -2074,98 +2166,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00196
    },
    "market": "SA"
-  },
-  {
-   "ticker": "FAB",
-   "name": "First Abu Dhabi Bank",
-   "code": "ADX:FAB",
-   "ccy": "AED",
-   "spot": 18.66,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 17.1,
-   "fv_base": 19.9,
-   "fv_full": 22.4,
-   "gap_base_pct": 6.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.077119,
-    "mu_h": 0.00321,
-    "G": {
-     "bear": -1.13,
-     "base": 0.83,
-     "full": 2.37
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0913,
-     "base": 0.1706,
-     "full": 0.0151
-    },
-    "p_touch": {
-     "bear": 0.1497,
-     "base": 0.2748,
-     "full": 0.0236
-    },
-    "required_cagr": {
-     "bear": -0.6492,
-     "base": 1.1642,
-     "full": 7.9544
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00049
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.136954,
-    "mu_h": 0.0096,
-    "G": {
-     "bear": -0.64,
-     "base": 0.47,
-     "full": 1.33
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1953,
-     "base": 0.3086,
-     "full": 0.0786
-    },
-    "p_touch": {
-     "bear": 0.3666,
-     "base": 0.5428,
-     "full": 0.1348
-    },
-    "required_cagr": {
-     "bear": -0.2948,
-     "base": 0.2935,
-     "full": 1.0766
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00074
-   },
-   "market": "AE"
   },
   {
    "ticker": "EAND",
