@@ -1,0 +1,234 @@
+[
+ {
+  "year": 2015,
+  "field": "is.cogs",
+  "statement": 2312.796,
+  "release": -2362.355,
+  "abs_diff": 49.559,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2015,
+  "field": "is.gross_profit",
+  "statement": 1198.2301,
+  "release": 1.198,
+  "abs_diff": 1197.032,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2015,
+  "field": "is.nci",
+  "statement": 32.9422,
+  "release": 3.657,
+  "abs_diff": 29.285,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2016,
+  "field": "is.cogs",
+  "statement": 3886.8834,
+  "release": -3951.476,
+  "abs_diff": 64.593,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2016,
+  "field": "is.gross_profit",
+  "statement": 1679.1622,
+  "release": 1.679,
+  "abs_diff": 1677.483,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2016,
+  "field": "is.nci",
+  "statement": 145.4602,
+  "release": -25.354,
+  "abs_diff": 120.106,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2017,
+  "field": "is.nci",
+  "statement": 130.8331,
+  "release": 4808.0,
+  "abs_diff": 4677.167,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2017,
+  "field": "is.npat_mi",
+  "statement": 1103.3605,
+  "release": 806.0,
+  "abs_diff": 297.361,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2018,
+  "field": "is.cogs",
+  "statement": 4743.4166,
+  "release": -4835433.0,
+  "abs_diff": 4830689.583,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2018,
+  "field": "is.nci",
+  "statement": 95.1245,
+  "release": -24191.0,
+  "abs_diff": 24095.875,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2019,
+  "field": "is.cogs",
+  "statement": 3864.92,
+  "release": -1720298.0,
+  "abs_diff": 1716433.08,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2019,
+  "field": "is.npbt",
+  "statement": 1004.7444,
+  "release": 1004744.0,
+  "abs_diff": 1003739.256,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2019,
+  "field": "is.nci",
+  "statement": 59.441,
+  "release": -59441.0,
+  "abs_diff": 59381.559,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2020,
+  "field": "is.cogs",
+  "statement": 3175.7191,
+  "release": -959288.0,
+  "abs_diff": 956112.281,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2020,
+  "field": "is.npbt",
+  "statement": 792.7941,
+  "release": 792794.0,
+  "abs_diff": 792001.206,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2020,
+  "field": "is.nci",
+  "statement": 37.3537,
+  "release": -37354.0,
+  "abs_diff": 37316.646,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2020,
+  "field": "is.npat_mi",
+  "statement": 717.7677,
+  "release": 717767.0,
+  "abs_diff": 717049.232,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2021,
+  "field": "is.cogs",
+  "statement": 5015.9192,
+  "release": -5085590.0,
+  "abs_diff": 5080574.081,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2021,
+  "field": "is.npbt",
+  "statement": 1024.2534,
+  "release": 1024254.0,
+  "abs_diff": 1023229.747,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2021,
+  "field": "is.nci",
+  "statement": 31.701,
+  "release": -31701.0,
+  "abs_diff": 31669.299,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2022,
+  "field": "is.cogs",
+  "statement": 9038.3769,
+  "release": -9113438.0,
+  "abs_diff": 9104399.623,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2022,
+  "field": "is.npbt",
+  "statement": 1703.4907,
+  "release": 1703491.0,
+  "abs_diff": 1701787.509,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2022,
+  "field": "is.nci",
+  "statement": 34.8241,
+  "release": -34824.0,
+  "abs_diff": 34789.176,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2023,
+  "field": "is.cogs",
+  "statement": 11907.2245,
+  "release": -11954473.0,
+  "abs_diff": 11942565.775,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2023,
+  "field": "is.npbt",
+  "statement": 2300.7038,
+  "release": 2300705.0,
+  "abs_diff": 2298404.296,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2023,
+  "field": "is.nci",
+  "statement": 151.8926,
+  "release": -151893.0,
+  "abs_diff": 151741.107,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2024,
+  "field": "is.cogs",
+  "statement": 17739.9136,
+  "release": -17837208.0,
+  "abs_diff": 17819468.086,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2024,
+  "field": "is.npbt",
+  "statement": 4320.5984,
+  "release": 4320598.0,
+  "abs_diff": 4316277.402,
+  "status": "filing and release disagree"
+ },
+ {
+  "year": 2024,
+  "field": "is.nci",
+  "statement": 148.5319,
+  "release": -148532.0,
+  "abs_diff": 148383.468,
+  "status": "filing and release disagree"
+ }
+]

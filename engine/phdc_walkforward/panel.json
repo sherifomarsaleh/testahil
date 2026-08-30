@@ -1,0 +1,3897 @@
+{
+ "2015": {
+  "is.revenue": {
+   "value": 3560.5846,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 2312.796,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 49.5586,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 1198.2301,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 479.8664,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 9.1155,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 38.5042,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 1102.1788,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": -8.0265,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 45.7703,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 32.9422,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 1064.4349,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 1031.4927,
+   "source": "PHD FY2015 consolidated statements and full-year earnings release, reconciled",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "bs.investments_associates": {
+   "value": 78.5065,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 854.6648,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 4546.2816,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 858.6543,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 334.6226,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 6540.6161,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 965.6695,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 2371.0346,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 704.0293,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 11993.5314,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 31.0351,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 6169.7918,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 473.6928,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_current": {
+   "value": 80.814,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 8458.8068,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 10405.1289,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 148.532,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_lt": {
+   "value": 2918.2873,
+   "source": "PHD consolidated financial statements FY2015 (2015_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 6332.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 2140.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1573.0,
+   "source": "PHD 2015 full-year earnings release, quoted: \"\uf0a7 The Company delivered 1,573 units, another record for the Company, compared to 981 units handed over during FY2014, supported by accelerated construction works worth EGP1.9 billion.\"",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 1900.0,
+   "source": "PHD 2015 full-year earnings release, quoted: \"By end of FY2015, total construction spending reached EGP1.9 billion, an increase of 89% YoY.\"",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "backlog": {
+   "value": 8400.0,
+   "source": "PHD 2015 full-year earnings release, quoted: \"Today, PHD has 13 projects under development, 5 projects in West Cairo, 6 projects in East Cairo and 2 projects in North Coast, translating into a sales backlog exceeding EGP8.4 billion.\"",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "collections": {
+   "value": 2100.0,
+   "source": "PHD 2015 full-year earnings release, quoted: \"Moreover, the Company spent EGP1.9 billion on construction, and collected EGP2.1 billion from receivables and new sales, a growth of 48% YoY.\"",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 0.77,
+   "source": "PHD FY2015 full-year earnings release (2015_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 760.641,
+   "source": "PHD FY2015 full-year earnings release (2015_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 1064.435,
+   "source": "PHD FY2015 full-year earnings release (2015_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 37.7439,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2015 filing",
+   "date": "2015-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 10.370490343517,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 7.69125833333333,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 42434076,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 99597342,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2016": {
+  "is.revenue": {
+   "value": 5630.6386,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 3886.8834,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 64.593,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 1679.1622,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 664.1161,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 13.9912,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 57.5816,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 913.1701,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": 126.3112,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 1.6033,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 145.4602,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 785.2556,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 639.7954,
+   "source": "PHD FY2016 consolidated statements and full-year earnings release, reconciled",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 79.2257,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 888.5063,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 7300.0397,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 877.7667,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 351.6084,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 6410.746,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 808.5166,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 3295.5282,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 757.0567,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 12475.3124,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 42.1765,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 7744.7551,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 974.3019,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_current": {
+   "value": 541.0146,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 11140.145,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 11109.6295,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 612.7006,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_lt": {
+   "value": 2957.4697,
+   "source": "PHD consolidated financial statements FY2016 (2016_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 8194.0,
+   "source": "PHD earnings release 2016_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "new_sales_restated": {
+   "value": 8467.0,
+   "source": "PHD earnings release 2019_Q4_ER, same chart series restated",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "later reading of the same year; the origin uses the as-first-reported figure above"
+  },
+  "units_sold": {
+   "value": 1838.0,
+   "source": "PHD earnings release 2016_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_sold_restated": {
+   "value": 1894.0,
+   "source": "PHD earnings release 2019_Q4_ER, same chart series restated",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "later reading of the same year; the origin uses the as-first-reported figure above"
+  },
+  "units_delivered": {
+   "value": 2049.0,
+   "source": "PHD 2016 full-year earnings release, quoted: \"\uf0a7 The Company delivered 2,049 units, translating into 555k sqm of developed area, surpassing FY2016 handovers target of 1,800 units.\"",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 2000.0,
+   "source": "PHD 2016 full-year earnings release, quoted: \"The growth was driven by the increase in selling prices of land by 28% YoY, and Built up Area of standalone units and apartments by 56% and 43% YoY respectively, the handing over of 2,049 units and accelerated construction spend of EGP2.0 billion.\"",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "backlog": {
+   "value": 9600.0,
+   "source": "PHD 2016 full-year earnings release, quoted: \"Today, PHD has 14 projects under development, 6 projects in West Cairo, 6 projects in East Cairo and 2 projects in North Coast, translating into a sales backlog exceeding EGP9.6 billion.\"",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1.015,
+   "source": "PHD FY2016 full-year earnings release (2016_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1001.055,
+   "source": "PHD FY2016 full-year earnings release (2016_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 785.256,
+   "source": "PHD FY2016 full-year earnings release (2016_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2016-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 127.9145,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2016 filing",
+   "date": "2016-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 13.813606214829,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 10.0254007885465,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 43220369,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 101644589,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2017": {
+  "is.revenue": {
+   "value": 6603.539,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 4385.9058,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 114.3425,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 2103.2907,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 756.2839,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 20.4756,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 207.7382,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 1103.3605,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": 162.1003,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 4.7895,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 130.8331,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 936.4706,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 805.6375,
+   "source": "PHD FY2017 consolidated statements and full-year earnings release, reconciled",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 83.6152,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 758.6898,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 11356.555,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 882.4725,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 347.2778,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 13703.2355,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 9193.7614,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 562.0304,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 3012.4526,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 883.3436,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 15547.6521,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 50.5606,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 10132.1681,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1239.6245,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_current": {
+   "value": 979.574,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 14714.5424,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 14536.3452,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 1912.9291,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_lt": {
+   "value": 3228.8055,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 7296.3596,
+   "source": "PHD consolidated financial statements FY2017 (2017_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 10539.0,
+   "source": "PHD earnings release 2017_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 2136.0,
+   "source": "PHD earnings release 2017_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1781.0,
+   "source": "PHD 2017 full-year earnings release, quoted: \"\u25aa The Company handed over 1,781 units, exceeding FY2017 target of 1,600 units.\"",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 2100.0,
+   "source": "PHD 2017 full-year earnings release, quoted: \"We handed over 1,781 units, spent EGP2.1 billion on construction and generated cash flows from operations of EGP4.6 billion.\"",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "backlog": {
+   "value": 11800.0,
+   "source": "PHD 2017 full-year earnings release, quoted: \"Today, PHD has 11 projects under development, 5 projects in West Cairo, 4 projects in East Cairo and 2 projects in the North Coast, in addition to 5 new projects including 4 co-developments, translating into a sales backlog exceeding EGP11.8 billion.\"",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1347.0,
+   "source": "PHD FY2017 full-year earnings release (2017_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1326531.0,
+   "source": "PHD FY2017 full-year earnings release (2017_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 936471.0,
+   "source": "PHD FY2017 full-year earnings release (2017_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2017-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 166.8899,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2017 filing",
+   "date": "2017-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 29.5066083940039,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 17.7825335150636,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 44017525,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 103696057,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2018": {
+  "is.revenue": {
+   "value": 7422.7557,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 4743.4166,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 92.0164,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 2587.3227,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 963.4801,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 66.8072,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 200.064,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 1159.2571,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": 251.5174,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 0.8736,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 95.1245,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 906.8661,
+   "source": "DERIVED = net profit after minority interest plus the minority share, both from the FY2018 filing",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; the filed line itself did not resolve separately from profit before tax on this scan",
+   "derived": "is.npat_mi + is.nci"
+  },
+  "is.npat_mi": {
+   "value": 811.7416,
+   "source": "PHD FY2018 consolidated statements and full-year earnings release, reconciled",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0003,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 97.4475,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 769.6121,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 13087.4291,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 106.0299,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 1427.7913,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 15688.7681,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 9091.5295,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 955.7376,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 4235.3904,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 1061.7051,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 19009.5046,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 57.7358,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 11484.8094,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1586.9178,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_current": {
+   "value": 1101.1303,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 17985.2716,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 16713.0012,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 1660.4567,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 7497.4601,
+   "source": "PHD consolidated financial statements FY2018 (2018_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 12463.0,
+   "source": "PHD earnings release 2018_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 3102.0,
+   "source": "PHD earnings release 2018_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1541.0,
+   "source": "PHD 2018 full-year earnings release, quoted: \"\u25aa The Company handed over 1,541 units, surpassing its previously announced target of 1,500 units in FY2018.\"",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 1500.0,
+   "source": "PHD 2018 full-year earnings release, quoted: \"PHD continued to lead the market with 1,541 units handed over to clients, as we spent EGP1.5 billion on construction.\"",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "backlog": {
+   "value": 14800.0,
+   "source": "PHD 2018 full-year earnings release, quoted: \"Today, PHD has 11 projects under development, 5 projects in West Cairo, 4 projects in East Cairo and 2 projects in the North Coast, in addition to 5 new projects including 4 co- developments, translating into a sales backlog of EGP14.8 billion (Residential segment by EGP13.8 billion and commercial s\"",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1624.0,
+   "source": "PHD FY2018 full-year earnings release (2018_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1557035.0,
+   "source": "PHD FY2018 full-year earnings release (2018_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 906866.0,
+   "source": "PHD FY2018 full-year earnings release (2018_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2018-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 252.391,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2018 filing",
+   "date": "2018-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 14.4014657807422,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 17.7672904218107,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 44870205,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 105682094,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2019": {
+  "is.revenue": {
+   "value": 6224.4244,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 3864.92,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 30.4822,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 2329.0223,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 936.4345,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 80.3403,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 244.6474,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 1004.7444,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": 97.6016,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 0.9164,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 59.441,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 906.2264,
+   "source": "DERIVED = net profit after minority interest plus the minority share, both from the FY2019 filing",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; the filed line itself did not resolve separately from profit before tax on this scan",
+   "derived": "is.npat_mi + is.nci"
+  },
+  "is.npat_mi": {
+   "value": 846.7854,
+   "source": "PHD FY2019 consolidated statements and full-year earnings release, reconciled",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 143.3698,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 393.4825,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 15318.6765,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 1739.4371,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 1353.8689,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 19216.8549,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 8115.2503,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 1375.1784,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 4691.813,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 1272.2794,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 18254.2664,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 87.2377,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 14212.6097,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1750.9019,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.loans_current": {
+   "value": 295.1329,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 20399.0682,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 17072.0531,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 1438.1424,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 7534.4722,
+   "source": "PHD consolidated financial statements FY2019 (2019_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 14905.0,
+   "source": "PHD earnings release 2019_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 2470.0,
+   "source": "PHD earnings release 2019_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 964.0,
+   "source": "PHD 2019 full-year earnings release, quoted: \"\u25aa Regarding handovers, PHD delivered 964 residential and commercial units during FY2019 mainly in the following projects: Woodville, Golf Extension, Golf Views, Palm Parks, Hacienda Bay, and Hacienda White 2.\"",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 1900.0,
+   "source": "PHD 2019 full-year earnings release, quoted: \"\u25aa The Company spent EGP1.9 billion on construction activities during the year, mainly on Badya, Palm Hills New Cairo, Palm Hills Katameya, Hacienda Bay, Golf Extension, Capital Gardens, Golf Views, Palm Valley, Woodville and The Crown.\"",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1393.0,
+   "source": "PHD FY2019 full-year earnings release (2019_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1312247.0,
+   "source": "PHD FY2019 full-year earnings release (2019_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 906226.0,
+   "source": "PHD FY2019 full-year earnings release (2019_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2019-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 98.518,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2019 filing",
+   "date": "2019-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 9.15279959324804,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 16.7705818428763,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 45689875,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 107553158,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2020": {
+  "is.revenue": {
+   "value": 5207.5301,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 3175.7191,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 17.7041,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 2014.107,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 886.0867,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 105.2514,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 256.0478,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 792.7941,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 0.5004,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 37.3537,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 755.1215,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 717.7677,
+   "source": "PHD FY2020 consolidated statements and full-year earnings release, reconciled",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 150.4819,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 386.524,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 15338.1843,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 297.3283,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 2762.3051,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 19305.8086,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 7287.9429,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 1579.2503,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 5025.5634,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 1480.1507,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 18997.5396,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 90.967,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.overdraft": {
+   "value": 1034.5065,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 15629.0291,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1030.2333,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.suppliers": {
+   "value": 834.287,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 21175.2436,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 17128.1045,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 2151.0863,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 7671.2095,
+   "source": "PHD consolidated financial statements FY2020 (2020_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route text/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 12779.0,
+   "source": "PHD earnings release 2020_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 1840.0,
+   "source": "PHD earnings release 2020_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 633.0,
+   "source": "PHD 2020 full-year earnings release, quoted: \"\u25aa Concerning handovers, the Company delivered 633 residential and commercial units during FY2020 mainly in the following projects: Capital Gardens, Woodville, Golf Extension, Hacienda Bay, Golf Views, Palm Parks, Palm Valley and PK2 Extension.\"",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 1500.0,
+   "source": "PHD 2020 full-year earnings release, quoted: \"\u25aa The Company spent EGP1.5 billion on construction activities during FY2020.\"",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1128.0,
+   "source": "PHD FY2020 full-year earnings release (2020_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1022769.0,
+   "source": "PHD FY2020 full-year earnings release (2020_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 755121.0,
+   "source": "PHD FY2020 full-year earnings release (2020_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2020-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 37.6726,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2020 filing",
+   "date": "2020-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 5.04493288977539,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 15.7591729166667,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 46478772,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 109315124,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2021": {
+  "is.revenue": {
+   "value": 7717.1212,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 5015.9192,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 70.0307,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 2631.1713,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 1167.8649,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 174.7991,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 333.2442,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 1024.2534,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.income_tax": {
+   "value": 166.7185,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 1.4735,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 31.701,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 856.0613,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 824.3603,
+   "source": "PHD FY2021 consolidated statements and full-year earnings release, reconciled",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0003,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 213.6738,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 170.8289,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 4815.038,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 7.6405,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 2718.6352,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 13535.7502,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 8698.4351,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 1017.8689,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 1787.0536,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 1885.1164,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 22364.5076,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 99.7961,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.overdraft": {
+   "value": 1661.6911,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 8374.3725,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1340.8286,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.suppliers": {
+   "value": 1130.8519,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 17699.6664,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 2212.8348,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 5108.0431,
+   "source": "PHD consolidated financial statements FY2021 (2021_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 17289.0,
+   "source": "PHD earnings release 2021_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 3350.0,
+   "source": "PHD earnings release 2021_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1308.0,
+   "source": "PHD 2021 full-year earnings release, quoted: \"The Company handed over 1,308 units (Residential & Commercial) during FY2021, a growth of 107% YoY, up from 633 units delivered last year.\"",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 2500.0,
+   "source": "PHD 2021 full-year earnings release, quoted: \"\u25aa The Company spent EGP2.5 billion on construction activities in FY2021, compared to EGP1.5 billion spent last year, an increase of 67% YoY.\"",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 1463.0,
+   "source": "PHD FY2021 full-year earnings release (2021_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 1288507.0,
+   "source": "PHD FY2021 full-year earnings release (2021_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 856061.0,
+   "source": "PHD FY2021 full-year earnings release (2021_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2021-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 168.1921,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2021 filing",
+   "date": "2021-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 5.21404940513043,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 15.6445272777113,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 47232852,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 110957008,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2023": {
+  "is.revenue": {
+   "value": 17462.1083,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 11907.2245,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 47.2485,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 5507.6353,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 2060.4617,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 178.56,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 2300.7038,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 3.3353,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 151.8926,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 1733.4043,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 1581.5117,
+   "source": "PHD FY2023 consolidated statements and full-year earnings release, reconciled",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0005,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 45.83,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 4546.6303,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 1002.1016,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 2529.5497,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 31824.0338,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 8788.3796,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 3189.2416,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 2052.2274,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 8087.0418,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 42474.4268,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 234.0537,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.overdraft": {
+   "value": 3362.2182,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 20983.5878,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1858.4676,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.suppliers": {
+   "value": 2504.0064,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 41069.114,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 74298.4606,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 2576.2028,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 21507.4987,
+   "source": "PHD consolidated financial statements FY2023 (2023_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/perrow, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 59500.0,
+   "source": "PHD earnings release 2023_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 5300.0,
+   "source": "PHD earnings release 2023_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1500.0,
+   "source": "PHD 2023 full-year earnings release, quoted: \"\u25aa The Company delivered 1,500 units during FY2023, up from 1,281 units in FY2022.\"",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 7500.0,
+   "source": "PHD 2023 full-year earnings release, quoted: \"The Company spent EGP7.5 billion on construction activities during FY2023, a growth of 89% YoY, mainly in Badya, PHNC, Palm Hills Alexandria, Palm Hills New Cairo, Hacienda West, and Alamein.\"",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 3447.0,
+   "source": "PHD FY2023 full-year earnings release (2023_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 3268614.0,
+   "source": "PHD FY2023 full-year earnings release (2023_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 1733404.0,
+   "source": "PHD FY2023 full-year earnings release (2023_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2023-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 567.2995,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2023 filing",
+   "date": "2023-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 33.8847763115546,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 30.6264136980311,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 48918012,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 114535772,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2024": {
+  "is.revenue": {
+   "value": 27167.3045,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 17739.9136,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 97.2945,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 9330.0964,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 3435.755,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 239.9155,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 2311.3955,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 4320.5984,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": -94.3674,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 148.5319,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 3403.4774,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 3254.9454,
+   "source": "PHD FY2024 consolidated statements and full-year earnings release, reconciled",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0001,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 3379.2385,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 3095.7279,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 237.6221,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 54166.4094,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.wip": {
+   "value": 13209.7889,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 6372.3847,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 1718.5599,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 15561.0602,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 65270.9148,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 47403.7755,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 1697.081,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.suppliers": {
+   "value": 3426.6768,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 74496.9412,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 123437.3242,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 34315.7008,
+   "source": "PHD consolidated financial statements FY2024 (2024_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "new_sales": {
+   "value": 151016.0,
+   "source": "PHD earnings release 2024_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "construction_spend": {
+   "value": 8500.0,
+   "source": "PHD 2024 full-year earnings release, quoted: \"The Company spent EGP8.5 billion on construction activities during FY2024, a growth of 12% YoY, mainly in Badya, Palm Hills Alexandria, Palm Hills New Cairo, Hacienda West, and Alamein.\"",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "backlog": {
+   "value": 147000.0,
+   "source": "PHD 2024 full-year earnings release, quoted: \"\u2022 As of December 31, 2024, company\u2019s backlog of units sold and not yet delivered reached EGP147 billion compared to EGP60 billion in FY2023.\"",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "collections": {
+   "value": 25400.0,
+   "source": "PHD 2024 full-year earnings release, quoted: \"\u2022 Cash collection in FY2024 totalled EGP25.4 billion, showing an increase of 97% YoY, as a result of higher sales performance and a healthy launches calendar throughout the year.\"",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 5894.0,
+   "source": "PHD FY2024 full-year earnings release (2024_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 5654426.0,
+   "source": "PHD FY2024 full-year earnings release (2024_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 3403477.0,
+   "source": "PHD FY2024 full-year earnings release (2024_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2024-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 917.121,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2024 filing",
+   "date": "2024-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 28.2705899322083,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 45.29926,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 49878883,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 116538258,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2025": {
+  "is.revenue": {
+   "value": 36169.2701,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cogs": {
+   "value": 21118.9383,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.cash_discount": {
+   "value": 162.7549,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.gross_profit": {
+   "value": 14887.5769,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.sga": {
+   "value": 6365.5897,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.admin_depr": {
+   "value": 353.6571,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.finance_cost": {
+   "value": 3347.4893,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npbt": {
+   "value": 6251.0523,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.deferred_tax": {
+   "value": 25.1759,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.nci": {
+   "value": 207.1545,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_pre_nci": {
+   "value": 4423.8121,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.npat_mi": {
+   "value": 4216.6577,
+   "source": "PHD FY2025 consolidated statements and full-year earnings release, reconciled",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0001,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investments_associates": {
+   "value": 3611.6197,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.investment_property": {
+   "value": 1032.5302,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_long": {
+   "value": 1518.4902,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.projects_under_constr": {
+   "value": 182.6169,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.fixed_assets": {
+   "value": 4521.9709,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 65900.1633,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.cash": {
+   "value": 9419.5262,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.nr_short": {
+   "value": 935.2595,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.ar": {
+   "value": 28118.1162,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_assets": {
+   "value": 106229.6496,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.banks_credit": {
+   "value": 938.7709,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.advances_customers": {
+   "value": 69354.0841,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_short": {
+   "value": 4875.6736,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.suppliers": {
+   "value": 3807.0429,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_current_liabs": {
+   "value": 105098.9696,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_equity": {
+   "value": 172129.8129,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.np_long": {
+   "value": 4505.0249,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 48265.0913,
+   "source": "PHD consolidated financial statements FY2025 (2025_Q4_FS), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2025-12-31",
+   "tier": "A",
+   "note": "EGP million; parse route ocr/pooled, checked against the statement's own footing"
+  },
+  "is.tax_total": {
+   "value": 1827.2402,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2025 filing",
+   "date": "2025-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 14.0735136645934,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 49.2277558333333,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 50784126,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 118365995,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2022": {
+  "is.revenue": {
+   "value": 13600.1227,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.cogs": {
+   "value": 9038.3769,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.cash_discount": {
+   "value": 75.0613,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.gross_profit": {
+   "value": 4486.6845,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.sga": {
+   "value": 2092.4589,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.admin_depr": {
+   "value": 173.6693,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.finance_cost": {
+   "value": 660.4401,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npbt": {
+   "value": 1703.4907,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.deferred_tax": {
+   "value": 1.0659,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.nci": {
+   "value": 34.8241,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npat_pre_nci": {
+   "value": 1290.6724,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npat_mi": {
+   "value": 1255.8483,
+   "source": "PHD FY2022 consolidated statements and full-year earnings release, reconciled",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "is.eps": {
+   "value": 0.0,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.investment_property": {
+   "value": 167.2621,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.nr_long": {
+   "value": 6608.4055,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.projects_under_constr": {
+   "value": 212.1332,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.fixed_assets": {
+   "value": 2592.2791,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_noncurrent_assets": {
+   "value": 23488.367,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.wip": {
+   "value": 6286.2909,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.cash": {
+   "value": 1165.1678,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.nr_short": {
+   "value": 2548.9278,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.ar": {
+   "value": 2707.5134,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_current_assets": {
+   "value": 26017.6302,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.banks_credit": {
+   "value": 180.1677,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.overdraft": {
+   "value": 2403.9223,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.advances_customers": {
+   "value": 10214.4504,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.np_short": {
+   "value": 1572.1117,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.suppliers": {
+   "value": 1268.4637,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_current_liabs": {
+   "value": 27266.5417,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_equity": {
+   "value": 49505.9972,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.np_long": {
+   "value": 1329.708,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_lt_liabs": {
+   "value": 12067.8688,
+   "source": "PHD consolidated financial statements FY2023, comparative column (31 Dec 2022), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the FY2022 statement itself is published in Arabic only",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "new_sales": {
+   "value": 26010.0,
+   "source": "PHD earnings release 2022_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 4033.0,
+   "source": "PHD earnings release 2022_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "units_delivered": {
+   "value": 1281.0,
+   "source": "PHD 2022 full-year earnings release, quoted: \"By end of FY2022, we had 1,787 completed units that were released from construction and ready for delivery within livable zones across various projects, including 1,281 units that were handed over to clients.\"",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "construction_spend": {
+   "value": 3700.0,
+   "source": "PHD 2022 full-year earnings release, quoted: \"\u25aa The Company spent EGP3.7 billion on construction activities during FY2022, an increase of 47% YoY, surpassing the full year target of EGP3.4 billion.\"",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "is.ebitda": {
+   "value": 2394.0,
+   "source": "PHD FY2022 full-year earnings release (2022_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.operating_profit": {
+   "value": 2220556.0,
+   "source": "PHD FY2022 full-year earnings release (2022_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.npat": {
+   "value": 1290673.0,
+   "source": "PHD FY2022 full-year earnings release (2022_Q4_ER), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2022-12-31",
+   "tier": "A",
+   "note": "EGP million; from the company's own results release because the filed statement's line did not resolve"
+  },
+  "is.tax_total": {
+   "value": 412.8183,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2022 filing",
+   "date": "2022-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 13.8956609775178,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 19.1604397412204,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 48011990,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 112618250,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2014": {
+  "is.revenue": {
+   "value": 2106.065,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.cogs": {
+   "value": 1359.1711,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.cash_discount": {
+   "value": 41.4751,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.gross_profit": {
+   "value": 705.4188,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.sga": {
+   "value": 280.3364,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.admin_depr": {
+   "value": 7.4922,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.finance_cost": {
+   "value": 76.0863,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npbt": {
+   "value": 382.0974,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.income_tax": {
+   "value": -9.835,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.deferred_tax": {
+   "value": 18.6554,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.nci": {
+   "value": 19.9865,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npat_pre_nci": {
+   "value": 373.277,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "is.npat_mi": {
+   "value": 353.2905,
+   "source": "PHD FY2014 consolidated statements and full-year earnings release, reconciled",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; net profit after tax and minority interest, agreed by at least two of {filed line, filed line less minority share, results release}"
+  },
+  "bs.investments_associates": {
+   "value": 77.1635,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.investment_property": {
+   "value": 1085.9769,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.nr_long": {
+   "value": 2665.2042,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.projects_under_constr": {
+   "value": 857.3793,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.fixed_assets": {
+   "value": 317.7776,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.wip": {
+   "value": 6101.9702,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.cash": {
+   "value": 202.3841,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.nr_short": {
+   "value": 1607.1955,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.ar": {
+   "value": 1121.9834,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_current_assets": {
+   "value": 9692.4317,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.banks_credit": {
+   "value": 39.1976,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.advances_customers": {
+   "value": 5008.1313,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.np_short": {
+   "value": 816.0183,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.loans_current": {
+   "value": 174.41,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_current_liabs": {
+   "value": 8009.1858,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.total_equity": {
+   "value": 6880.5954,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.np_long": {
+   "value": 536.511,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "bs.loans_lt": {
+   "value": 1461.9432,
+   "source": "PHD consolidated financial statements FY2015, comparative column (31 Dec 2014), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 the IR result centre's earliest filing is 1Q2015",
+   "date": "2014-12-31",
+   "tier": "A",
+   "note": "EGP million; comparative column of the following year's filing"
+  },
+  "new_sales": {
+   "value": 3936.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 1584.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "is.tax_total": {
+   "value": 8.8204,
+   "source": "DERIVED = net profit before income tax and minority interest less net profit before minority interest, both from the FY2014 filing",
+   "date": "2014-12-31",
+   "tier": "A",
+   "derived": "is.npbt - is.npat_pre_nci"
+  },
+  "macro.cpi_pct": {
+   "value": 10.0702154687481,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 7.07760856060606,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 41627719,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 97528654,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2011": {
+  "new_sales": {
+   "value": 1017.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 583.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "macro.cpi_pct": {
+   "value": 10.0649259874818,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 5.93282765151515,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 39045598,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 91093059,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2012": {
+  "new_sales": {
+   "value": 797.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 426.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "macro.cpi_pct": {
+   "value": 7.11172943343083,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 6.05605833333333,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 39883949,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 93161001,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2013": {
+  "new_sales": {
+   "value": 1479.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "EGP million"
+  },
+  "units_sold": {
+   "value": 832.0,
+   "source": "PHD earnings release 2015_Q4_ER, embedded chart series, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter",
+   "date": "2015-12-31",
+   "tier": "A",
+   "note": "units"
+  },
+  "macro.cpi_pct": {
+   "value": 9.46971981064921,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 6.870325,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 40756455,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 95333553,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2010": {
+  "macro.cpi_pct": {
+   "value": 11.2651882653185,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 5.6219429176105,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 38270215,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 89196072,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2009": {
+  "macro.cpi_pct": {
+   "value": 11.7634954386443,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 5.54455330862977,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 37571756,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 87501636,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ },
+ "2008": {
+  "macro.cpi_pct": {
+   "value": 18.3168316831684,
+   "source": "World Bank WDI indicator FP.CPI.TOTL.ZG (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.egp_usd": {
+   "value": 5.4325,
+   "source": "World Bank WDI indicator PA.NUS.FCRF (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.urban_pop": {
+   "value": 36888285,
+   "source": "World Bank WDI indicator SP.URB.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  },
+  "macro.population": {
+   "value": 85864789,
+   "source": "World Bank WDI indicator SP.POP.TOTL (api.worldbank.org, Egypt, Arab Rep.)",
+   "date": "2026-08-30",
+   "tier": "C",
+   "note": "exogenous; forecast input only, never a source for the company's own reported figures"
+  }
+ }
+}

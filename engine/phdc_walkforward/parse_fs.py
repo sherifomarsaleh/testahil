@@ -299,13 +299,64 @@ def parse_page(doc, pno, route, dpi=200, gutter='pooled'):
                       if re.fullmatch(r"\(?-?[\d,.]{1,15}\)?", t)]
                      or [split + 60])
     left_bound = "perrow" if gutter == "perrow" else note_gutter(rows, split, gutter)
-    out = []
+    raw = []
     for y, items in rows:
         label = " ".join(t for x, t in items
                          if x < split - 90 and not re.fullmatch(r"[\d,()،.\-]+", t))
         vals = numeric_cells(items, col_x, split, right_edge, left_bound)
-        if any(v is not None for v in vals):
-            out.append({"y": round(y, 1), "label": label.strip(), "v": vals})
+        raw.append({"y": round(y, 1), "label": label.strip(), "v": vals})
+
+    # A long line item wraps: "Net profit for the year before income tax &
+    # non-" sits on one line, "controlling interest" on the next, and the
+    # FIGURES land between them on a line of their own. Clustering by y alone
+    # therefore yields a valued row with no label and two labelled rows with no
+    # values, and the profit lines simply vanish from the parse. Stitch the
+    # value row back onto the wrapped label it belongs to.
+    for i, r in enumerate(raw):
+        if r["label"] or not any(v is not None for v in r["v"]):
+            continue
+        parts, j = [], i - 1
+        while j >= 0 and raw[j]["label"] and not any(v is not None for v in raw[j]["v"]) \
+                and abs(raw[j]["y"] - raw[j + 1]["y"]) < 18:
+            parts.insert(0, raw[j]["label"])
+            j -= 1
+        k = i + 1
+        while k < len(raw) and raw[k]["label"] and not any(v is not None for v in raw[k]["v"]) \
+                and abs(raw[k]["y"] - raw[k - 1]["y"]) < 18:
+            parts.append(raw[k]["label"])
+            k += 1
+        if parts:
+            r["label"] = " ".join(parts).strip()
+            r["wrapped"] = True
+
+    # A second wrap shape: the label breaks mid-word ("... income tax & non-" /
+    # "controlling interest") and the FIGURES sit on the continuation line —
+    # sometimes split across both lines, one period on each. Left alone, the
+    # first fragment keeps a label that reads like the whole line item and
+    # carries the WRONG row's figures, so a regex for "before income tax"
+    # matches it and takes them. Merge the fragments, move the label to
+    # whichever line holds the figures, and blank the donor.
+    for i in range(len(raw) - 1):
+        a, b = raw[i], raw[i + 1]
+        if not a["label"] or not b["label"]:
+            continue
+        if abs(b["y"] - a["y"]) > 30:
+            continue
+        if not re.search(r"[-&]$|\bnon-$", a["label"]):
+            continue
+        if not b["label"][:1].islower():
+            continue
+        merged = (a["label"].rstrip() + b["label"]) if a["label"].endswith("-") \
+            else (a["label"] + " " + b["label"])
+        va, vb = a["v"], b["v"]
+        if all(x is None or y is None for x, y in zip(va, vb)):
+            b["v"] = [x if x is not None else y for x, y in zip(vb, va)]
+            a["v"] = [None, None]
+        b["label"] = merged
+        a["label"] = ""
+        a["wrapped_donor"] = True
+
+    out = [r for r in raw if any(v is not None for v in r["v"])]
     return {"page": pno, "header": hdr, "split": split, "rows": out}
 
 

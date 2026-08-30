@@ -63,6 +63,11 @@
    382.097397
   ],
   "is.npbt._src": "Net profit for the period before income tax & non-controlling interest",
+  "is.income_tax": [
+   -8.026478,
+   -9.835039
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
   "is.deferred_tax": [
    45.770332,
    18.65544
@@ -73,6 +78,16 @@
    19.986521
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1064.434943,
+   373.276996
+  ],
+  "is.npat_pre_nci._src": "Net profit for the period before & non-controlling interest",
+  "is.npat_mi": [
+   1031.492706,
+   353.290475
+  ],
+  "is.npat_mi._src": "Net profit for the period after income tax & non-controlling interest",
   "_scale_bs": 1000000.0,
   "bs.investments_associates": [
    78.50649,
@@ -150,10 +165,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   6584.473051,
-   4136.345076
+   10405.128859,
+   6880.595397
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    148.532031,
    536.510993
@@ -255,6 +270,11 @@
    986.249372
   ],
   "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   126.311226,
+   45.770332
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
   "is.deferred_tax": [
    1.603256,
    -8.026478
@@ -265,6 +285,16 @@
    32.942238
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   785.25558,
+   948.505518
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   639.79538,
+   915.56328
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
   "is.eps": [
    2.37e-07,
    3.39e-07
@@ -347,10 +377,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   6633.215295,
-   6427.903389
+   11109.629462,
+   10248.559197
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    612.700591,
    148.532031
@@ -454,10 +484,15 @@
   ],
   "is.finance_cost._src": "Finance costs & interests",
   "is.npbt": [
-   936.470596,
-   785.25558
+   1103.360475,
+   913.170062
   ],
-  "is.npbt._src": "Net profit for the year before & non-controlling interest",
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   162.100333,
+   126.311226
+  ],
+  "is.income_tax._src": "Income tax expense (22b)",
   "is.deferred_tax": [
    4.789546,
    1.603256
@@ -468,6 +503,16 @@
    145.4602
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   936.470596,
+   785.25558
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   1103.360475,
+   913.170062
+  ],
+  "is.npat_mi._src": "Net profit for the year before income tax & non-controlling interest",
   "is.eps": [
    3.4899999999999996e-07,
    2.77e-07
@@ -555,10 +600,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   7239.985654,
-   6633.215295
+   14536.345224,
+   11109.629462
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    1912.929075,
    612.700591
@@ -648,6 +693,16 @@
    207.738198
   ],
   "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1159.257086,
+   1103.360475
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   251.517389,
+   162.100333
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
   "is.deferred_tax": [
    0.873609,
    4.789546
@@ -658,6 +713,16 @@
    130.833059
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1159.257086,
+   1103.360475
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.npat_mi": [
+   811.741618,
+   805.637537
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
   "is.eps": [
    0.000342,
    0.000349
@@ -745,10 +810,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   9215.541095,
-   7239.985654
+   16713.001162,
+   14536.345224
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    1660.45666,
    1912.929075
@@ -833,6 +898,11 @@
    200.063965
   ],
   "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1004.744358,
+   1159.257086
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
   "is.income_tax": [
    97.601625,
    251.517389
@@ -848,6 +918,16 @@
    95.12447
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1004.744358,
+   1159.257086
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.npat_mi": [
+   846.785352,
+   811.741618
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
   "is.eps": [
    2.72e-07,
    2.6e-07
@@ -935,10 +1015,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   9537.580851,
-   9215.541095
+   17072.053094,
+   16616.938061
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    1438.142381,
    1660.45666
@@ -1024,15 +1104,10 @@
   ],
   "is.finance_cost._src": "Finance costs & interests",
   "is.npbt": [
-   755.121461,
-   906.226312
+   792.794097,
+   1004.744358
   ],
-  "is.npbt._src": "Net profit for the year before & non-controlling interest",
-  "is.income_tax": [
-   37.172195,
-   97.601625
-  ],
-  "is.income_tax._src": "Income tax b",
+  "is.npbt._src": "Net profit for the year before income tax & non- controlling interest Deduct:",
   "is.deferred_tax": [
    0.500441,
    0.916421
@@ -1043,6 +1118,16 @@
    59.44096
   ],
   "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   755.121461,
+   906.226312
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   717.767741,
+   846.785352
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
   "is.eps": [
    2.33e-07,
    2.75e-07
@@ -1135,10 +1220,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   9456.895048,
-   9537.580851
+   17128.104535,
+   17072.053094
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and non-current liabilities",
   "bs.np_long": [
    2151.086266,
    1438.142381
@@ -1243,6 +1328,16 @@
    37.35372
   ],
   "is.nci._src": "Non-controlling cquites share- subsitiaries",
+  "is.npat_pre_nci": [
+   856.061339,
+   0.749355
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controiling interest",
+  "is.npat_mi": [
+   824.360337,
+   711.817635
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equites",
   "is.eps": [
    0.000271,
    0.000231
@@ -1260,10 +1355,10 @@
   ],
   "bs.investment_property._src": "Investment property cll)",
   "bs.nr_long": [
-   10319.458233,
-   11973.347014
+   4815.037989,
+   3364.8373
   ],
-  "bs.nr_long._src": "Notes receivable long term +16)",
+  "bs.nr_long._src": "Notes receivable long term for undclivercd units",
   "bs.projects_under_constr": [
    7.640536,
    97.871372
@@ -1290,10 +1385,10 @@
   ],
   "bs.cash._src": "Cash and cash equivalents +32)",
   "bs.nr_short": [
-   4040.523707,
-   3521.425905
+   1787.05358,
+   1504.137465
   ],
-  "bs.nr_short._src": "Notes receivable short term +16)",
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
   "bs.ar": [
    1885.116352,
    1475.741903
@@ -1487,11 +1582,6 @@
    1703.490721
   ],
   "is.npbt._src": "Net profit for the Year before income tax & non-controlling equities",
-  "is.income_tax": [
-   563.964185,
-   411.752428
-  ],
-  "is.income_tax._src": "Income tax +a",
   "is.deferred_tax": [
    3.335332,
    1.065874
@@ -1502,6 +1592,16 @@
    34.824109
   ],
   "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   1733.40433,
+   1290.672419
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controlling equities",
+  "is.npat_mi": [
+   1581.511689,
+   1255.84831
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equities",
   "is.eps": [
    0.000535,
    4.2e-07
@@ -1514,10 +1614,10 @@
   ],
   "bs.investment_property._src": "Investment property cll)",
   "bs.nr_long": [
-   23096.144962,
-   13457.192909
+   4546.6303,
+   6608.405535
   ],
-  "bs.nr_long._src": "Notes receivable long term +16)",
+  "bs.nr_long._src": "Notes receivable long term for undelivered units \u00ab16)",
   "bs.projects_under_constr": [
    1002.101616,
    212.133152
@@ -1544,10 +1644,10 @@
   ],
   "bs.cash._src": "Cash and cash equivalents",
   "bs.nr_short": [
-   8391.624362,
-   5897.552535
+   2052.227415,
+   2548.927764
   ],
-  "bs.nr_short._src": "Notes receivable short term +16)",
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
   "bs.ar": [
    8087.041825,
    2707.513377
@@ -1589,10 +1689,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   11721.847899,
-   10171.586728
+   74298.460597,
+   49505.997212
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and liabilities",
   "bs.np_long": [
    2576.202779,
    1329.707969
@@ -1716,6 +1816,16 @@
    151.892641
   ],
   "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   3403.47739,
+   1733.40433
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controlling equities",
+  "is.npat_mi": [
+   3254.945443,
+   1581.511689
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equities",
   "is.eps": [
    0.000112,
    0.000534
@@ -1884,6 +1994,11 @@
    3435.754971
   ],
   "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   353.657121,
+   239.915475
+  ],
+  "is.admin_depr._src": "Depreciation & amortization (39:37:36)",
   "is.finance_cost": [
    3347.489307,
    2311.395503
@@ -1904,6 +2019,16 @@
    148.531947
   ],
   "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   4423.812106,
+   3403.47739
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Period before non-controlling equities",
+  "is.npat_mi": [
+   4216.657655,
+   3254.945443
+  ],
+  "is.npat_mi._src": "Net profit for the Period after income tax & non-controlling equities",
   "is.eps": [
    0.000146,
    0.000112
@@ -1921,10 +2046,10 @@
   ],
   "bs.investment_property._src": "Investment property cl1)",
   "bs.nr_long": [
-   54801.316199,
-   43213.421382
+   1518.490219,
+   3095.727858
   ],
-  "bs.nr_long._src": "Notes receivable long term +16)",
+  "bs.nr_long._src": "Notes receivable long term for undelivered units +16)",
   "bs.projects_under_constr": [
    182.616883,
    237.622133
@@ -1946,10 +2071,10 @@
   ],
   "bs.cash._src": "Cash and cash equivalents",
   "bs.nr_short": [
-   18137.718924,
-   13429.823887
+   935.259476,
+   1718.559879
   ],
-  "bs.nr_short._src": "Notes receivable short term +16)",
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
   "bs.ar": [
    28118.116247,
    15561.060204
@@ -1986,10 +2111,10 @@
   ],
   "bs.total_current_liabs._src": "Total current liabilities",
   "bs.total_equity": [
-   18765.751903,
-   14624.682123
+   172129.812858,
+   123437.324201
   ],
-  "bs.total_equity._src": "Total shareholders' equity",
+  "bs.total_equity._src": "Total equity and liabilities",
   "bs.np_long": [
    4505.024909,
    2895.314633

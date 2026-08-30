@@ -1,0 +1,110 @@
+[
+ {
+  "year": 2014,
+  "candidates": {
+   "parsed": 353.2905,
+   "derived": 353.2905,
+   "release": null
+  },
+  "adopted": 353.2905
+ },
+ {
+  "year": 2015,
+  "candidates": {
+   "parsed": 1031.4927,
+   "derived": 1031.4927,
+   "release": 1031.493
+  },
+  "adopted": 1031.4927
+ },
+ {
+  "year": 2016,
+  "candidates": {
+   "parsed": 639.7954,
+   "derived": 639.7954,
+   "release": 639.795
+  },
+  "adopted": 639.7954
+ },
+ {
+  "year": 2017,
+  "candidates": {
+   "parsed": 1103.3605,
+   "derived": 805.6375,
+   "release": 806.0
+  },
+  "adopted": 805.6375
+ },
+ {
+  "year": 2018,
+  "candidates": {
+   "parsed": 811.7416,
+   "derived": 811.7416,
+   "release": 812.0
+  },
+  "adopted": 811.7416
+ },
+ {
+  "year": 2019,
+  "candidates": {
+   "parsed": 846.7854,
+   "derived": 846.7854,
+   "release": 847.0
+  },
+  "adopted": 846.7854
+ },
+ {
+  "year": 2020,
+  "candidates": {
+   "parsed": 717.7677,
+   "derived": 717.7678,
+   "release": 717.767
+  },
+  "adopted": 717.7677
+ },
+ {
+  "year": 2021,
+  "candidates": {
+   "parsed": 824.3603,
+   "derived": 824.3603,
+   "release": 824.0
+  },
+  "adopted": 824.3603
+ },
+ {
+  "year": 2022,
+  "candidates": {
+   "parsed": 1255.8483,
+   "derived": 1255.8483,
+   "release": 1256.0
+  },
+  "adopted": 1255.8483
+ },
+ {
+  "year": 2023,
+  "candidates": {
+   "parsed": 1581.5117,
+   "derived": 1581.5117,
+   "release": 1581.0
+  },
+  "adopted": 1581.5117
+ },
+ {
+  "year": 2024,
+  "candidates": {
+   "parsed": 3254.9454,
+   "derived": 3254.9455,
+   "release": 3254.0
+  },
+  "adopted": 3254.9454
+ },
+ {
+  "year": 2025,
+  "candidates": {
+   "parsed": 4216.6577,
+   "derived": 4216.6576,
+   "release": null
+  },
+  "adopted": 4216.6577
+ }
+]

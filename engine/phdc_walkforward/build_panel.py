@@ -22,14 +22,19 @@ IS_MAP = [
     ("gross_profit",   r"^gross (operating )?profit",   "gross profit"),
     ("sga",            r"^general administrative|^general, administrative|^administrative, selling",
                        "general administrative selling and marketing expenses"),
-    ("admin_depr",     r"^administrative depreciation|^depreciation and amortization",
+    ("admin_depr",     r"^administrative depreciation|^depreciation (and|&) amortization|^depreciation amortization",
                        "administrative depreciation"),
     ("finance_cost",   r"^finance cost",                "finance costs & interests"),
     ("npbt",           r"before income tax|before tax.*non-controlling|year before income",
                        "net profit for the year before income tax & non-controlling interest"),
-    ("income_tax",     r"^income\s*tax$",               "income tax"),
+    ("income_tax",     r"^income tax( expense)?$",       "income tax expense"),
     ("deferred_tax",   r"^deferred tax$",               "deferred tax"),
     ("nci",            r"^non-controlling interest share", "non-controlling interest share- subsidiaries"),
+    ("npat_pre_nci",   r"before .{0,4}non-controlling interest$|before & non-controlling",
+                       "net profit for the year before & non-controlling interest"),
+    ("npat_mi",        r"after income tax & non-controlling|after tax & non-controlling|"
+                       r"after income tax and non-controlling",
+                       "net profit for the year after income tax & non-controlling interest"),
     ("eps",            r"^earnings per share",          "earnings per share"),
 ]
 BS_MAP = [
@@ -77,9 +82,14 @@ def pick(rows, pat, canon=None, cutoff=0.78):
     and is still subject to the statement's footing check downstream.
     """
     rx = re.compile(pat, re.I)
-    for r in rows:
-        if rx.search(norm(r["label"])):
-            return r
+    hits = [r for r in rows if rx.search(norm(r["label"]))]
+    if hits:
+        # A wrapped line item leaves a TRUNCATED fragment behind that still
+        # matches — "net profit for the year before income tax & non-" carries
+        # a different row's figures than the completed line does. The complete
+        # label is the longer one, so prefer it; a first-match rule silently
+        # took the fragment and its wrong figures.
+        return max(hits, key=lambda r: len(norm(r["label"])))
     if not canon:
         return None
     best, best_r = 0.0, None

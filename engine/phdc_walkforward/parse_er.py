@@ -35,6 +35,64 @@ def page_text(stem):
     return open(p, encoding="utf-8").read()
 
 
+def table_unit(txt, near):
+    """EGP Thousand or EGP Million, read from the table's own unit line."""
+    lines = [l.strip() for l in txt.split("\n")]
+    idx = 0
+    if near:
+        for i, l in enumerate(lines):
+            if near.lower() in (l or "").lower():
+                idx = i
+                break
+        else:
+            return None
+    best = None
+    for i in range(len(lines)):
+        m = re.fullmatch(r"EGP\s*(Million|Thousand|mn|Mn|thousand|million)", lines[i] or "")
+        if m:
+            u = 1.0 if m.group(1).lower() in ("million", "mn") else 0.001
+            if best is None or abs(i - idx) < best[0]:
+                best = (abs(i - idx), u)
+    return best[1] if best else None
+
+
+def column_order(txt, fy):
+    """Which of a release's value columns is the FULL YEAR.
+
+    The Financial Review table is laid out two ways across the archive —
+    quarter-first ("4Q2016 4Q2015 Change FY2016 FY2015 Change") and
+    full-year-first ("FY2024 FY2023 Change 4Q2024 4Q2023 Change") — and a rule
+    that just takes the first figure under a label reads the QUARTER as the
+    year in every release that uses the first layout. The header is therefore
+    read, and the percentage "Change" cells are skipped on both sides so the
+    positions line up with the figures actually collected.
+    """
+    lines = [l.strip() for l in txt.split("\n")]
+    for i, l in enumerate(lines):
+        if not re.fullmatch(r"EGP\s*(Million|Thousand|mn|Mn)", l or ""):
+            continue
+        hdr = []
+        for j in range(i + 1, min(i + 12, len(lines))):
+            s2 = lines[j]
+            if not s2:
+                continue
+            m = re.fullmatch(r"(FY|[1-4]Q)\s?(20\d\d)", s2)
+            if m:
+                hdr.append(("FY" if m.group(1) == "FY" else "Q", int(m.group(2))))
+            elif s2.lower() == "change":
+                continue
+            else:
+                break
+        if len(hdr) >= 2:
+            for idx, (kind, yy) in enumerate(hdr):
+                if kind == "FY" and yy == fy:
+                    return idx, hdr
+            for idx, (kind, yy) in enumerate(hdr):
+                if kind == "FY":
+                    return idx, hdr
+    return None, None
+
+
 def label_row(txt, label, n=2, anywhere=False):
     """Return the first n numbers that follow `label` on its own line-run.
 
@@ -129,15 +187,31 @@ def parse_release(stem, year, quarter):
     txt = page_text(stem)
     if txt is None:
         return None
-    out = {"_stem": stem, "_year": year, "_quarter": quarter}
+    fy_idx, hdr = column_order(txt, year)
+    # The releases switch between "EGP Million" and "EGP Thousand" across the
+    # archive and sometimes between the tables inside ONE release, so the unit
+    # is read per table rather than assumed. Everything leaves here in EGP mn.
+    # Units are NOT resolved here. A single release prints its income
+    # statement in EGP million and its balance sheet in EGP thousand, so no
+    # document-level unit exists; the scale is fixed downstream, per table,
+    # against the filed statement, which is a figure the footing check already
+    # verified.
+    out = {"_stem": stem, "_year": year, "_quarter": quarter,
+           "_fy_col": fy_idx, "_header": hdr}
     for group, labels in (("is", IS_LABELS), ("bs", BS_LABELS), ("cf", CF_LABELS)):
         for field, variants in labels.items():
             for lab in variants:
-                v = label_row(txt, lab, n=2)
-                if v:
-                    out["%s.%s" % (group, field)] = v
-                    out["%s.%s._label" % (group, field)] = lab
-                    break
+                take = 6 if (group == "is" and fy_idx is not None) else 2
+                v = label_row(txt, lab, n=take)
+                if not v:
+                    continue
+                if group == "is" and fy_idx is not None and len(v) > fy_idx + 1:
+                    v = [v[fy_idx], v[fy_idx + 1]]
+                elif group == "is" and fy_idx is not None:
+                    v = v[:2]
+                out["%s.%s" % (group, field)] = v[:2]
+                out["%s.%s._label" % (group, field)] = lab
+                break
     return out
 
 
@@ -154,6 +228,6 @@ if __name__ == "__main__":
             res.append(p)
     for p in res:
         got = [k for k in p if not k.startswith("_") and not k.endswith("_label")]
-        print("FY%s  fields=%2d  rev=%s  ta=%s" % (
-            p["_year"], len(got),
-            p.get("is.revenue"), p.get("bs.total_assets")))
+        print("FY%s fycol=%-4s fields=%2d rev=%-22s np=%-20s ta=%s" % (
+            p["_year"], p.get("_fy_col"), len(got),
+            p.get("is.revenue"), p.get("is.npat_mi"), p.get("bs.total_assets")))
