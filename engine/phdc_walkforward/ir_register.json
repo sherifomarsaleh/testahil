@@ -1,0 +1,1242 @@
+[
+ {
+  "year": 2015,
+  "quarter": "Q1",
+  "item": "untitled_content_item_dfbbfb8",
+  "last_modified": "2022-11-29T13:58:23.4634182Z",
+  "financial_statement": [
+   {
+    "name": "1Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/806d2631-8e77-47da-b84d-1d146a54be9d/1Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 543282,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "9e6ec203c24352636930932d3cfd333c76ff48216ec3ae678acff8e7be92415f"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2015 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6616849a-851c-40f6-9468-0807da77db3a/Palm%20Hills%20Developments%20-%201Q2015%20Earnings%20Release%20-%20English.pdf",
+    "size": 438350,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "a10afb8d54d59d48998a24c280f869d57c995bbc1f1dbd12b24efed2deb140a3"
+   }
+  ]
+ },
+ {
+  "year": 2015,
+  "quarter": "Q2",
+  "item": "untitled_content_item_905da22",
+  "last_modified": "2022-11-29T13:56:29.2386584Z",
+  "financial_statement": [
+   {
+    "name": "2Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f66d8379-86f9-456e-a81b-4ede16a9946f/2Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 3491920,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "b8b9e501a8c0f16c2f34b22f4b6f42c946543e71f6f0623ba73e233f8a519e37"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2015 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/93475523-f4a3-4bda-9839-2ab0438a13c5/Palm%20Hills%20Developments%20-%202Q2015%20Earnings%20Release%20-%20English.pdf",
+    "size": 708266,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "9fadf33cdd6732ccec081d61a6fd576cbbd21d8526b2da53a7935b1e37e56a73"
+   }
+  ]
+ },
+ {
+  "year": 2015,
+  "quarter": "Q3",
+  "item": "record",
+  "last_modified": "2022-11-29T13:56:58.3476741Z",
+  "financial_statement": [
+   {
+    "name": "3Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/75ed5eed-7881-41a3-a1ae-413e997d5ce7/3Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 705169,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "83dd266ad239466b93f27b1567b291285410d3f0a4a1b195064674b3fb1c346e"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2015 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/977d60c3-1bb8-4d2a-b1bf-e05bea7e64a0/Palm%20Hills%20Developments%20-%203Q2015%20Earnings%20Release%20-%20English.pdf",
+    "size": 469673,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "46a292f32488e168ab4fca0063793fb035b1e1d8da5939e236203de111a40141"
+   }
+  ]
+ },
+ {
+  "year": 2015,
+  "quarter": "Q4",
+  "item": "record_27e74b8",
+  "last_modified": "2022-11-29T13:54:36.5181169Z",
+  "financial_statement": [
+   {
+    "name": "4Q15 - Consolidated - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b365fa6-9f15-47ae-a922-e70924d73fd7/4Q15%20-%20Consolidated%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 831052,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "10a170cc4047fad5a9751df218d84b99ffb1f3b8c698f435184ef1d9919bfde8"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2015 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/84fd4a0b-901a-4ba4-975d-d55ef6a5557c/Palm%20Hills%20Developments%20-%204Q2015%20Earnings%20Release%20-%20English.pdf",
+    "size": 470409,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2015_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "312e94b2fdf625869e263bcbca24140cfaeb1bd50262d40e5729b7f56f3a8199"
+   }
+  ]
+ },
+ {
+  "year": 2016,
+  "quarter": "Q1",
+  "item": "record_3453bf5",
+  "last_modified": "2022-11-29T13:54:53.5856824Z",
+  "financial_statement": [
+   {
+    "name": "1Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b72dfc33-8a11-4a6e-909d-0384016e5690/1Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 861152,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "043866380b3f220d3f7ea0e88b3fa8d07049d60c72302006903a634040b86927"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2016 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f04868b9-bfcb-4ae1-b949-8f84fa8bfd0d/Palm%20Hills%20Developments%20-%201Q2016%20Earnings%20Release%20-%20English.pdf",
+    "size": 440757,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "ce2e2e440d893e0695b25360dea43c4c625c2a576e5ce8820a0d74ba5acfdeaf"
+   }
+  ]
+ },
+ {
+  "year": 2016,
+  "quarter": "Q2",
+  "item": "record_74923ad",
+  "last_modified": "2022-11-29T13:55:39.8672898Z",
+  "financial_statement": [],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2016 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/eb80e918-b95c-4556-b64d-79636048404d/Palm%20Hills%20Developments%20-%202Q2016%20Earnings%20Release%20-%20English.pdf",
+    "size": 638369,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "6594eb2561198ba2ac0510196a4f702b6b8c7548087153213cc888cdabbe9d8e"
+   }
+  ]
+ },
+ {
+  "year": 2016,
+  "quarter": "Q3",
+  "item": "record_6c68fb5",
+  "last_modified": "2022-11-29T13:55:29.7412192Z",
+  "financial_statement": [
+   {
+    "name": "3Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/92f1fa22-b0b3-4e0b-9a46-d2ff400da938/3Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 721028,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "a54a7fbdafeb8ec66d8cc33489612e1796104b592cf105a2c0fa6c221a65a38d"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2016 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8532abfd-592b-4573-b6e0-a2e94aedecdc/Palm%20Hills%20Developments%20-%203Q2016%20Earnings%20Release%20-%20English.pdf",
+    "size": 616248,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "3ff76a8a8a997d9735e14d2249349c71731ea1d33bb6393bcd0ad8482962f8c8"
+   }
+  ]
+ },
+ {
+  "year": 2016,
+  "quarter": "Q4",
+  "item": "record_e338cc5",
+  "last_modified": "2022-11-29T13:58:30.2104078Z",
+  "financial_statement": [
+   {
+    "name": "4Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7b329ef5-34f6-4749-aef1-1520541c3874/4Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 636787,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "3ed5fe400e0b764bc710dca94ef8e3573fa350ee3ef90be5eacad631bb6c9957"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2016 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ec0e644-4214-4bc0-b993-71d8761c4177/Palm%20Hills%20Developments%20-%204Q2016%20Earnings%20Release%20-%20English.pdf",
+    "size": 620410,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2016_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "0da01bd9f5d0e88f8a04cc144bd99f7c1425babb2044d0b9d9625fbed85b2d09"
+   }
+  ]
+ },
+ {
+  "year": 2017,
+  "quarter": "Q1",
+  "item": "record_8613818",
+  "last_modified": "2022-11-29T13:55:50.4624475Z",
+  "financial_statement": [
+   {
+    "name": "1Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/87558c0b-a0b1-4e34-8ea8-a8b5f6e2d6ae/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1039491,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2017 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ce04ad2d-e27e-4c33-86b1-2a9852afd7a2/Palm%20Hills%20Developments%20-%201Q2017%20Earnings%20Release%20-%20English.pdf",
+    "size": 507728,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "d1496003550f0d283e7be96d1d4c21a057cff363e344826f205e67f13a1cb08e"
+   }
+  ]
+ },
+ {
+  "year": 2017,
+  "quarter": "Q2",
+  "item": "record_0dc22cd",
+  "last_modified": "2022-11-29T13:53:50.9615489Z",
+  "financial_statement": [
+   {
+    "name": "1Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8e2a04aa-992d-4a3f-99da-7bea988b2505/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1039491,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2017 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8f337963-e685-490f-a5f4-5301719909e1/Palm%20Hills%20Developments%20-%202Q2017%20Earnings%20Release%20-%20English.pdf",
+    "size": 787726,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "26a6a1425f10f5ecca45598f555ed8c0298058b315f11af5d39b3a49ae2dbf5b"
+   }
+  ]
+ },
+ {
+  "year": 2017,
+  "quarter": "Q3",
+  "item": "record_f89f031",
+  "last_modified": "2022-11-29T13:58:52.2613616Z",
+  "financial_statement": [
+   {
+    "name": "3Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2f15ad36-4aae-48bf-b94f-e01505271022/3Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 796828,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "7b8013939e1c52beb9263a7c9bee6477369b08eeb82549f6ea4fd840d2e2f4df"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2017 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/94ccdef8-ea3d-4544-a3f0-567e6662b6e5/Palm%20Hills%20Developments%20-%203Q2017%20Earnings%20Release%20-%20English.pdf",
+    "size": 555224,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "8bee8a9744b50aedbf89ec7f8340d05cb33be11c7614dbd1db0c5d368ae44b0f"
+   }
+  ]
+ },
+ {
+  "year": 2017,
+  "quarter": "Q4",
+  "item": "record_d8ce880",
+  "last_modified": "2022-11-29T13:58:10.0659496Z",
+  "financial_statement": [
+   {
+    "name": "4Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b2dfea9e-0604-48ab-bee2-021392f0f228/4Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1300666,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "1f3e557b15fe86e0e336585cc91c947c14da3199b40dd7ffe1263cd575f4d786"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2017 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/21ddb93a-f764-4872-98c8-a0a7ed5b8e3a/Palm%20Hills%20Developments%20-%204Q2017%20Earnings%20Release%20-%20English.pdf",
+    "size": 482396,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2017_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "1b14f3fb73206237f789f77281a219dcbc0b639af77fa75492cc049d10d9baf6"
+   }
+  ]
+ },
+ {
+  "year": 2018,
+  "quarter": "Q1",
+  "item": "record_d8e5fa2",
+  "last_modified": "2022-11-29T13:58:17.8774622Z",
+  "financial_statement": [
+   {
+    "name": "1Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/199a0763-9eff-40a8-ad76-5dbef2ad2ab7/1Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 995781,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "01e731c11a1fe6d6b914ccd81064b07ca3e870456453b7dc6b60c9e864422468"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2018 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/101d8a90-f4ac-4846-b1bb-d688323964eb/Palm%20Hills%20Developments%20-%201Q2018%20Earnings%20Release%20-%20English.pdf",
+    "size": 458814,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "01dc4b0018634166d75a22bcfd00afedf5b4fe7a0f3a5d6680af31e40491783a"
+   }
+  ]
+ },
+ {
+  "year": 2018,
+  "quarter": "Q2",
+  "item": "record_56358ad",
+  "last_modified": "2022-11-29T13:55:11.6970137Z",
+  "financial_statement": [
+   {
+    "name": "2Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/182a5c56-7e82-4768-8ae1-f838068995a6/2Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1486597,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "1038f6ec83d67d55ed2dd40ef98e66afaecc3398fe24c4e8478da3ad094ae331"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2018 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/62fb5ca2-bacd-41b8-81ab-9a5824d221c5/Palm%20Hills%20Developments%20-%202Q2018%20Earnings%20Release%20-%20English.pdf",
+    "size": 345292,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "c1dd162fac1b787c61d6d6db66c2416cd76fa7292973a32a467d639319da5f68"
+   }
+  ]
+ },
+ {
+  "year": 2018,
+  "quarter": "Q3",
+  "item": "record_ce1f133",
+  "last_modified": "2022-11-29T13:57:58.7956167Z",
+  "financial_statement": [
+   {
+    "name": "3Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/50d6ea7b-f3b9-4180-828f-a16e2a1decc9/3Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1107257,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "029d85a62ecf4fa3c9310ad33afb84d1fc5f445393550a740878c556e703c241"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2018 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4b9ad586-58e8-4e35-a471-c1483ca4a1d9/Palm%20Hills%20Developments%20-%203Q2018%20Earnings%20Release%20-%20English.pdf",
+    "size": 346041,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "4af4abede3a560d8f9fff839649e33c6fc8ce48edf4d49dff7d91f2eca2a3466"
+   }
+  ]
+ },
+ {
+  "year": 2018,
+  "quarter": "Q4",
+  "item": "record_a296985",
+  "last_modified": "2022-11-29T13:57:07.5374152Z",
+  "financial_statement": [
+   {
+    "name": "4Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9e8e44b6-3e77-4a88-bde8-af6c13018179/4Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1357478,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "c463458a87b3c01d48ea8417dcd0efabd80f864f518eabf466c93feceef3357c"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2018 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d5952553-5b65-426c-b913-4654274abd89/Palm%20Hills%20Developments%20-%204Q2018%20Earnings%20Release%20-%20English.pdf",
+    "size": 479191,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2018_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "1fe676b696a1272aff8908bdb10450340e2ddd00ee57cc37a51bbeece1f2e689"
+   }
+  ]
+ },
+ {
+  "year": 2019,
+  "quarter": "Q1",
+  "item": "record_9917588",
+  "last_modified": "2022-11-29T13:56:43.4534694Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 1Q 2019.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6977f19c-b6e3-47d3-922e-d1b336434421/PHD%20-%20Consolidated%20Financial%20Statements%20-%201Q%202019.pdf",
+    "size": 1092353,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "236ab7eb6a71e4cd3f0c8b364b755fee34e1b0e009d4446e77e8298f449902f4"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2019 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/23e463da-d461-4950-b63e-00ca9d9336fc/Palm%20Hills%20Developments%20-%201Q2019%20Earnings%20Release%20-%20English.pdf",
+    "size": 444085,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "e4b367143a13fda37c33ce5b094444355485f4bfabe8ceb109477b3f0188efa0"
+   }
+  ]
+ },
+ {
+  "year": 2019,
+  "quarter": "Q2",
+  "item": "record_0b27b5f",
+  "last_modified": "2022-11-29T13:53:39.7313282Z",
+  "financial_statement": [
+   {
+    "name": "2Q19 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5c62ca21-e064-4d1b-ab25-85e0b98e042a/2Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1030908,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "e2ca388709b4dea169be032974ace86a7a48c3906ceccd441a40e083949d22f3"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2019 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a3da59e2-163d-4409-9b30-9fdc644be23d/Palm%20Hills%20Developments%20-%202Q2019%20Earnings%20Release%20-%20English.pdf",
+    "size": 472291,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "129d74c423fd88982c2179f0364619e3676a14ef2103c8856d6aa543328c50ca"
+   }
+  ]
+ },
+ {
+  "year": 2019,
+  "quarter": "Q3",
+  "item": "record_e7eead2",
+  "last_modified": "2022-11-29T13:58:35.3848504Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 3Q 2019.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9d7c190d-997b-4570-bef8-d1afc00acea1/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202019.pdf",
+    "size": 708757,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "9ad67e71ed4d29871e1fefce67cc081af5445ed6dfe6e35df809da7413edc2ef"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2019 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7f1782b3-ff0c-47c4-9268-23c6da7783db/Palm%20Hills%20Developments%20-%203Q2019%20Earnings%20Release%20-%20English.pdf",
+    "size": 465476,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "c5312799f5cfe2edf82819aba4a714f83992acff9c94930e29f48589ac1c10df"
+   }
+  ]
+ },
+ {
+  "year": 2019,
+  "quarter": "Q4",
+  "item": "record_605df01",
+  "last_modified": "2022-11-29T13:55:20.3039908Z",
+  "financial_statement": [
+   {
+    "name": "4Q19 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20e0a73f-71f4-429c-b17a-1929d3a14ed8/4Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1286741,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "0efd92571c164b52f0f3f0a6aacd8637961f16d1e99d49bcb029abaf4e197e98"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2019 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3c2483ba-5b01-440c-906a-8b3526403212/Palm%20Hills%20Developments%20-%204Q2019%20Earnings%20Release%20-%20English.pdf",
+    "size": 340610,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2019_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "2221d1680107fad8d833b40e6b7008ef8daa98185f0020a879cae7e53b96ad72"
+   }
+  ]
+ },
+ {
+  "year": 2020,
+  "quarter": "Q1",
+  "item": "record_1d9f341",
+  "last_modified": "2022-11-29T13:54:17.5338314Z",
+  "financial_statement": [
+   {
+    "name": "1Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2562bf89-51ef-476b-ae47-9d1293da8288/1Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1145562,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "66ef2939bc7b945de1f4726285e2253569f47a25f10cfe19f62e2c6733d7ea06"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2020 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f8694b1e-9db2-446c-9dfc-48de962144c3/Palm%20Hills%20Developments%20-%201Q2020%20Earnings%20Release%20-%20English.pdf",
+    "size": 314817,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "cf4362902ba5f7cd792c293a70bd1f6aeb95e3a253f88f271e03b59816817eee"
+   }
+  ]
+ },
+ {
+  "year": 2020,
+  "quarter": "Q2",
+  "item": "record_c98f528",
+  "last_modified": "2022-11-29T13:57:52.9486637Z",
+  "financial_statement": [
+   {
+    "name": "2Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0f2e0e47-57db-45eb-9ee4-a849409ba56d/2Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 1167423,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "d74487e0c63412c89b6a6da512672aa9d0dabde410be0468f9930fbc0f9b74f4"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2020 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0bf690e3-7adf-48cf-93fc-50c26c02b26f/Palm%20Hills%20Developments%20-%202Q2020%20Earnings%20Release%20-%20English.pdf",
+    "size": 343296,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "b9272ee63961e9e926eef1c1928aacdb4f677d7ce46a70e6820d4178b1bab8b9"
+   }
+  ]
+ },
+ {
+  "year": 2020,
+  "quarter": "Q3",
+  "item": "record_c76e09b",
+  "last_modified": "2022-11-29T13:57:38.3565929Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statementa - 3Q 2020 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/99a080e7-bb5a-49d7-a793-0709f1077295/PHD%20-%20Consolidated%20Financial%20Statementa%20-%203Q%202020%20-%20English.pdf",
+    "size": 1139220,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "4aba4bf341844cfd221e863149d114192820387306d15a745960024fac2705c5"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2020 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d335ca28-f335-479e-ae55-2acd74b3aef3/Palm%20Hills%20Developments%20-%203Q2020%20Earnings%20Release%20-%20English.pdf",
+    "size": 338257,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "0834c8a85279b1ceeb47b96997d58f1665fb4b2dc70e81ce7075ea83b7318015"
+   }
+  ]
+ },
+ {
+  "year": 2020,
+  "quarter": "Q4",
+  "item": "record_c861b44",
+  "last_modified": "2022-11-29T13:57:47.1657755Z",
+  "financial_statement": [
+   {
+    "name": "4Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ca62f887-454e-427c-8454-50f7b8bf6dab/4Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+    "size": 2084997,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "31dc49c95d91cb627fadca62b5e9b798524d9e39d014b79414806c467355f2ef"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2020 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/aaf71146-4a3e-4760-bddc-01ce4f89acd6/Palm%20Hills%20Developments%20-%204Q2020%20Earnings%20Release%20-%20English.pdf",
+    "size": 322134,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2020_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "af3c14b625f6d8e98975e7e894d185312e003d62ee6910734867b5f54636faa5"
+   }
+  ]
+ },
+ {
+  "year": 2021,
+  "quarter": "Q1",
+  "item": "untitled_content_item_46bbc17",
+  "last_modified": "2022-11-29T13:55:02.8139744Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Stataements - 1Q 2021 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/105d0a18-743b-4ebf-9792-97680ae2bb10/PHD%20-%20Consolidated%20Financial%20Stataements%20-%201Q%202021%20-%20English.pdf",
+    "size": 1016495,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "00b63ff1dcd5c60a9aa8421a2ab46a44e63a749325143c369b4f91e07861fcee"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments -1Q2021 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/72f8e2c8-d7b6-49bb-8a0a-7655961d7319/Palm%20Hills%20Developments%20-1Q2021%20Earnings%20Release%20-%20English.pdf",
+    "size": 308907,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "b997ce9c3703149c45e6cef8efe813d58132b552634f46a6be2748f4ea44a1a1"
+   }
+  ]
+ },
+ {
+  "year": 2021,
+  "quarter": "Q2",
+  "item": "record_aaeaf5a",
+  "last_modified": "2022-11-29T13:57:16.2759202Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 2Q 2021 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b494d8d0-c039-4720-8817-a9b48dedf2cb/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q%202021%20-%20English.pdf",
+    "size": 1068538,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "cdce8987fff6e509ea0d2fc0faa47eb58416d12d6b5529641b74e4a20d228a92"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2021 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6673c8c1-1b95-4275-9e11-2277d46f9ff6/Palm%20Hills%20Developments%20-%202Q2021%20Earnings%20Release%20-%20English.pdf",
+    "size": 324239,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "5c89cb75dad65cf2f5786f668a3d8f2f9ec953637ee0be0faf8a97729b3fb923"
+   }
+  ]
+ },
+ {
+  "year": 2021,
+  "quarter": "Q3",
+  "item": "record_cfeb686",
+  "last_modified": "2022-11-29T13:58:04.2311711Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 3Q 2021 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/c6f66132-fd72-4198-bdaf-bb3c0ab1a135/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202021%20-%20English.pdf",
+    "size": 1545364,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "13b231d28b269fb157d9a8b2c29e2f5b855ba98b3db2875536a9c895a8ca7b3f"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 3Q2021 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/be473736-6977-4772-9570-be636c439ad4/Palm%20Hills%20Developments%20-%203Q2021%20Earnings%20Release%20-%20English.pdf",
+    "size": 327120,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "93d22097c6abcf33d9adcfb10fa99a7f358505d328011483f1a3b3931350c476"
+   }
+  ]
+ },
+ {
+  "year": 2021,
+  "quarter": "Q4",
+  "item": "record_8c11f06",
+  "last_modified": "2022-11-29T13:56:20.487818Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 4Q  2021 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/805b040f-6d33-4fbf-bb55-da34a2f9b26c/PHD%20-%20Consolidated%20Financial%20Statements%20-%204Q%20%202021%20-%20English.pdf",
+    "size": 2250087,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "a3780a02e39cf83012483d51eb4baa4fdcefe637e19b067f7b428b0b1372d5c3"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 4Q2021 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e7d5bb4c-94e7-403e-a285-63e2d9eed706/Palm%20Hills%20Developments%20-%204Q2021%20Earnings%20Release%20-%20English.pdf",
+    "size": 286381,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2021_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "c88b2a21b22cfea5d692cec802f18819976a192783d2d8bdd5ae119f0301bb85"
+   }
+  ]
+ },
+ {
+  "year": 2022,
+  "quarter": "Q1",
+  "item": "record_c47c5bf",
+  "last_modified": "2022-11-29T13:57:29.9786576Z",
+  "financial_statement": [
+   {
+    "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+    "size": 1471289,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 1Q2022 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e213d1af-0813-4165-883f-fd30e04959bf/Palm%20Hills%20Developments%20-%201Q2022%20Earnings%20Release%20-%20English.pdf",
+    "size": 291000,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "643972a014138fefbfeeab829c8c93dba608398ceb28630c476bd200b59a94a5"
+   }
+  ]
+ },
+ {
+  "year": 2022,
+  "quarter": "Q2",
+  "item": "record_f281425",
+  "last_modified": "2022-11-29T13:58:40.7998964Z",
+  "financial_statement": [
+   {
+    "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+    "size": 1471289,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills Developments - 2Q2022 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5b1c9c1f-8f71-4525-99dc-613fa8ba4fe7/Palm%20Hills%20Developments%20-%202Q2022%20Earnings%20Release%20-%20English.pdf",
+    "size": 292464,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "223147e7639172fba79431ff4cd45e73ad7c5c54b253a55d76fcd21da721ef59"
+   }
+  ]
+ },
+ {
+  "year": 2022,
+  "quarter": "Q3",
+  "item": "record_f5590a6",
+  "last_modified": "2022-11-29T13:58:46.4435183Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financial Statements - 2Q2022.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f1671c5a-da1f-42a7-bf87-fca06e911644/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q2022.pdf",
+    "size": 2245560,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "792a1457164b82ad44b889817d1672b3a8016d2bf86a3791dab2d9db5ca8b89e"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+    "size": 1471289,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+   }
+  ]
+ },
+ {
+  "year": 2022,
+  "quarter": "Q4",
+  "item": "financial_result_record__copy__d2ba3ed",
+  "last_modified": "2023-06-01T07:50:55.0238422Z",
+  "financial_statement": [
+   {
+    "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631 - \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 - 31 \u062f\u064a\u0633\u0645\u0628\u0631 2022.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86ddbea0-c98e-4248-90ee-87235153551a/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-%2031%20%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1%202022.pdf",
+    "size": 3162098,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "a24a0ced84775bed585bbc60e80687c9a40c30d16c36e0968e384dbcaa7002f6"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "4Q2022 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/692c503e-2096-43a2-a81f-e81c62c03726/4Q2022%20Earnings%20Release%20-%20English.pdf",
+    "size": 283376,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2022_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "55f8622012006da89810fad954e9ce4ddbd9c43c6b458d141c5d76d4d558bf95"
+   }
+  ]
+ },
+ {
+  "year": 2023,
+  "quarter": "Q1",
+  "item": "financial_result_record__copy___copy_",
+  "last_modified": "2023-06-01T07:53:09.5856926Z",
+  "financial_statement": [
+   {
+    "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631 - \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 -31 \u0645\u0627\u0631\u0633 2023.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/69da8473-f776-4f19-bf81-72dcb3879f3f/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-31%20%D9%85%D8%A7%D8%B1%D8%B3%202023.pdf",
+    "size": 4127612,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "e6609773cd9720198886ba5422cfbc3d6f2223110efaccf341198d9cf79831c8"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "1Q2023 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e21455a9-c6e7-48bf-9ac4-793fae80e97a/1Q2023%20Earnings%20Release%20-%20English.pdf",
+    "size": 276674,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "b9b5c0cebb95442b35c7023ff2fee8961f9ad25f5215ada3a3141288d9b5cde5"
+   }
+  ]
+ },
+ {
+  "year": 2023,
+  "quarter": "Q2",
+  "item": "financial_result_record__copy___copy__86056b0",
+  "last_modified": "2023-09-06T13:31:32.2541002Z",
+  "financial_statement": [
+   {
+    "name": "PHD - Consolidated Financials - 30.6.2023 - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6d4a39a8-185d-4a38-94ce-1b7181063779/PHD%20-%20Consolidated%20Financials%20-%2030.6.2023%20-%20English.pdf",
+    "size": 2465531,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "ed0c2190d6f5e7eccd1df31780866fa3121f0185b53e3df0488360487b63ed1f"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "2Q2023 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86b27c6d-7d91-4166-9803-68f2251d7a26/2Q2023%20Earnings%20Release%20-%20English.pdf",
+    "size": 298743,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "f132cf49751c52944c4555b7c752cf007dfaa7d6a0b6e3097af04ec7c0c082e4"
+   }
+  ]
+ },
+ {
+  "year": 2023,
+  "quarter": "Q3",
+  "item": "untitled_content_item_302193c",
+  "last_modified": "2023-11-16T10:28:56.210522Z",
+  "financial_statement": [
+   {
+    "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631-\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ff38ef0d-8a7e-4c9d-978a-75def5757410/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9.pdf",
+    "size": 3384675,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "33a7e133b50cf8a5f40f9d4465c743b4cd40bb130ceee076be019b48bb774bed"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "9M2023 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6e971eda-881a-4ec4-93eb-bc11e4aaab0e/9M2023%20Earnings%20Release%20-%20English.pdf",
+    "size": 458751,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "268c6c40322cf7d5a89920421fbcd5c6c39373238cebca19c117d62b47f55375"
+   }
+  ]
+ },
+ {
+  "year": 2023,
+  "quarter": "Q4",
+  "item": "untitled_content_item_0b94ffc",
+  "last_modified": "2024-03-04T12:39:02.7054318Z",
+  "financial_statement": [
+   {
+    "name": "Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/138a39c9-3d65-41e1-bb46-aaa9aa8f7952/Palm%20Hills%20Developments-Consolidated%20Financials%20-%2031%20December%202023.pdf",
+    "size": 2526788,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "1112a14f12c1b89fde52dcb4336f4a965ad89eb0e64bf1ea50d4a224fbe57158"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "FY2023 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ddb024c6-94a9-4926-b2de-4a99e57a0486/FY2023%20Earnings%20Release%20-%20English.pdf",
+    "size": 279759,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2023_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "7ea8a9c64877fbe11557f04c9dd667e434c4b8f8f5e9350f566f25ce4ebe00d0"
+   }
+  ]
+ },
+ {
+  "year": 2024,
+  "quarter": "Q1",
+  "item": "financial_result_record__copy__da3b9ad",
+  "last_modified": "2024-06-06T10:06:19.6368296Z",
+  "financial_statement": [
+   {
+    "name": "PHD Consolidated FS Q1, 2024 English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ad1a106c-1051-49c1-90b7-0d33328bcd52/PHD%20Consolidated%20FS%20Q1%2C%202024%20English.pdf",
+    "size": 3053344,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "9427c6766fc971b5aac7a3d0051bb415e295f02c9a82997ff2a0a67635be8e0f"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "1Q2024 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/96c0604a-7afe-43b1-8bff-d542b4f0e382/1Q2024%20Earnings%20Release%20-%20English.pdf",
+    "size": 247680,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "117edf8c56202d1b99c43a772e890cfa4a9887ed70c19a5dfdb174fcd22ba234"
+   }
+  ]
+ },
+ {
+  "year": 2024,
+  "quarter": "Q2",
+  "item": "untitled_content_item_2ce5ad1",
+  "last_modified": "2024-11-19T10:23:26.1326532Z",
+  "financial_statement": [
+   {
+    "name": "PHD Consolidated FS Q2, 2024 English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e6dcf0ea-eb54-4672-bc4b-667e303ca613/PHD%20Consolidated%20FS%20Q2%2C%202024%20English.pdf",
+    "size": 4681064,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "febb394307efa8b2b23802649aea172262d5cd50a8543da9969657b9c3562126"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "PHD - 2Q2024 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ef1123d-813e-43d8-8e44-79910e2b6cbe/PHD%20-%202Q2024%20Earnings%20Release%20-%20English.pdf",
+    "size": 245277,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "c36dcfc2c2464c4701c9eb215b0dcabcca1e4910517df86ec86046a2b6585ba6"
+   }
+  ]
+ },
+ {
+  "year": 2024,
+  "quarter": "Q3",
+  "item": "untitled_content_item_3f7b07f",
+  "last_modified": "2024-11-19T13:32:16.7638838Z",
+  "financial_statement": [
+   {
+    "name": "PHD Consolidated FS Q3, 2024 English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4bea2274-189e-4b1d-a459-a0f8456f67e1/PHD%20Consolidated%20FS%20Q3%2C%202024%20English.pdf",
+    "size": 2626643,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "af0dae92dcc554b06f3e4708ac437202a1af2387a5b9402f21cdc380ff413c7d"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "3Q2024 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3023304b-0298-4a24-8f2e-27ffa9dd3c4f/3Q2024%20Earnings%20Release%20-%20English.pdf",
+    "size": 265711,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "c56f13349a5a44a5996bf8edd3902878ca0c737fb2700ae64b6dca7ed6c8b231"
+   }
+  ]
+ },
+ {
+  "year": 2024,
+  "quarter": "Q4",
+  "item": "untitled_content_item__copy_",
+  "last_modified": "2025-03-16T10:07:19.6939203Z",
+  "financial_statement": [
+   {
+    "name": "Palm Hills FS Cons 31Dec 2024.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ea8b27c3-ac05-4d8a-b98c-49cc146d7dd6/Palm%20Hills%20FS%20Cons%2031Dec%202024.pdf",
+    "size": 2679883,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "db2e28a574fa0ff8af1efb8f5ebb9087532840f700ece7af980147a23b224335"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "4Q2024 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/bc32848a-9f38-4661-8e05-a5ef94377210/4Q2024%20Earnings%20Release%20-%20English.pdf",
+    "size": 269055,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2024_Q4_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "248b168da03290f8f58c75efe45a8524759222a2b5478c5f55f126aa83c2173d"
+   }
+  ]
+ },
+ {
+  "year": 2025,
+  "quarter": "Q1",
+  "item": "untitled_content_item_1d6169a",
+  "last_modified": "2025-06-17T12:32:47.1662421Z",
+  "financial_statement": [
+   {
+    "name": "PHD Consolidated FS Q1 2025 (English).pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/07b0fb36-4542-4c20-bc1d-2eace10ea388/PHD%20Consolidated%20FS%20Q1%202025%20%28English%29.pdf",
+    "size": 4115404,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "5b521f2432daf03ecb94cf47272aa4b58489a439208ec033ca02f757c3cbb001"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "Palm Hills - 1Q2025 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a4aefd41-c1cb-49c5-9c90-fc6ddecdd04d/Palm%20Hills%20-%201Q2025%20Earnings%20Release%20-%20English.pdf",
+    "size": 255335,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "ec1e5cf4bb56fa1915a50dffbb9c434533a39c02b730c0243293a52313628ca0"
+   }
+  ]
+ },
+ {
+  "year": 2025,
+  "quarter": "Q2",
+  "item": "q2_2025",
+  "last_modified": "2025-08-21T11:55:04.0861723Z",
+  "financial_statement": [
+   {
+    "name": "PHD - 1H2025 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20c6df1c-1f94-4a2b-87a0-b7bb54c6b6a0/PHD%20-%201H2025%20Earnings%20Release%20-%20English.pdf",
+    "size": 331942,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q2_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "b4bc5062ab57fa77fc8a67437a16053850811b63c6d875c732de35ff6420fa13"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "PHD Consolidated FS Q2 2025 (English).pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/687aa550-5e1f-46e2-b896-da0d9341e4cc/PHD%20Consolidated%20FS%20Q2%202025%20%28English%29.pdf",
+    "size": 3838699,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q2_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "554e97352bfc43c0af7125169eb90c7637794756b92536c63a99b2b524d8ffc8"
+   }
+  ]
+ },
+ {
+  "year": 2025,
+  "quarter": "Q3",
+  "item": "untitled_content_item_c9ba7aa",
+  "last_modified": "2025-11-25T10:15:58.4456614Z",
+  "financial_statement": [
+   {
+    "name": "BoD 13Nov.25_ENG Financials Consolidated.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/89509bb2-ce31-4d76-bd07-975b494ca0e3/BoD%2013Nov.25_ENG%20Financials%20Consolidated.pdf",
+    "size": 2440230,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q3_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "3b3f59a0b0537a8bc5c7af39bf16d733431357f9e80db5e2bb46302680320e09"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "3Q2025 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/02dca288-cffa-4e5a-9310-c99e9c354206/3Q2025%20Earnings%20Release%20-%20English.pdf",
+    "size": 320535,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q3_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "9ec3cd062d3706eac97b4b76399964c31143c926e7fb796d028ee5a43829e5b8"
+   }
+  ]
+ },
+ {
+  "year": 2025,
+  "quarter": "Q4",
+  "item": "q4_2025",
+  "last_modified": "2026-04-23T10:31:00.0186179Z",
+  "financial_statement": [
+   {
+    "name": "ConsolidatedFinancials-Eng.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/192727da-8dfc-4aab-ad51-a5da89d260e1/ConsolidatedFinancials-Eng.pdf",
+    "size": 2555712,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2025_Q4_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "72fc0ed5d947f7ccd1304211a1cd693e40e47cf7175ba94087fa84b1336fdd3b"
+   }
+  ],
+  "earning_release": []
+ },
+ {
+  "year": 2026,
+  "quarter": "Q1",
+  "item": "q1_2026",
+  "last_modified": "2026-06-25T13:30:45.5673175Z",
+  "financial_statement": [
+   {
+    "name": "PHD Consolidated FS Q1 2026 (English).pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/324b2511-f38d-4e6a-9a5c-9faecfdcaca9/PHD%20Consolidated%20FS%20Q1%202026%20%28English%29.pdf",
+    "size": 4290530,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2026_Q1_FS.pdf",
+    "kind": "financial_statement",
+    "fetched": "ok",
+    "sha256": "bdd9c4b3ea0feaebff20f2367476593baeb6b0e58ff86a8b29481b02c08b56bc"
+   }
+  ],
+  "earning_release": [
+   {
+    "name": "PHD - 1Q2026 Earnings Release - English.pdf",
+    "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b1990606-ca86-47bc-ac75-552741415edf/PHD%20-%201Q2026%20Earnings%20Release%20-%20English.pdf",
+    "size": 317632,
+    "local": "/tmp/claude-0/-home-user-testahil/2283e95e-66db-5f22-bba6-0db833f32495/scratchpad/phdc_src/2026_Q1_ER.pdf",
+    "kind": "earning_release",
+    "fetched": "ok",
+    "sha256": "4d3ec78d03d259a83c5e1bac35d8710f046a928d830619aa8ff1741a693c4e1d"
+   }
+  ]
+ }
+]
