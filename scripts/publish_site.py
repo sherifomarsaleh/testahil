@@ -35,6 +35,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -291,6 +292,46 @@ def surfaces(ticker: str) -> None:
         print("  fv_overlay regenerated for every fitted market")
     else:
         print(f"  no market resolved for {ticker} — fv_overlay not regenerated")
+
+    mirror_legacy_assets()
+
+
+def mirror_legacy_assets() -> None:
+    """Keep legacy/assets/ in step with assets/ — SIX SURFACES DEPEND ON IT.
+
+    The 30-Aug-2026 cutover snapshotted assets/ into legacy/assets/ and left the
+    legacy pages loading it RELATIVELY, so /legacy/ledger.html reads
+    /legacy/assets/data.js, not the copy this publish just rewrote. Nothing synced
+    the two, and the snapshot had never been updated — this is simply the first
+    publish since the cutover, so the divergence had not had a chance to show yet.
+
+    It matters because root ledger.html, picker.html, trade.html and portfolio.html
+    are all redirect stubs: the only WORKING copies are the legacy ones. A frozen
+    snapshot therefore does not age gracefully, it silently stops the public
+    forecast ledger from ever showing another grade, while /EMAARDEV/study/ (new
+    IA, absolute /assets/) shows the fresh cone — the same site quoting two prices
+    for one stock on the same day.
+
+    Copy only files legacy ALREADY has: legacy/assets is a snapshot of the surfaces
+    the old site reads, not a mirror of everything in assets/, and adding test.js or
+    editions.json to it would be inventing content the archive never had.
+    """
+    src = os.path.join(ROOT, "assets")
+    dst = os.path.join(ROOT, "legacy", "assets")
+    if not os.path.isdir(dst):
+        print("  no legacy/assets — nothing to mirror")
+        return
+    copied = []
+    for name in sorted(os.listdir(dst)):
+        a, b = os.path.join(src, name), os.path.join(dst, name)
+        if not os.path.isfile(a) or not os.path.isfile(b):
+            continue
+        if open(a, "rb").read() != open(b, "rb").read():
+            shutil.copyfile(a, b)
+            copied.append(name)
+    # [R-ENF-04] Report what was examined, not just what changed.
+    print(f"  legacy/assets mirrored — {len(os.listdir(dst))} file(s) checked, "
+          + (f"{len(copied)} updated: {', '.join(copied)}" if copied else "0 updated"))
 
 
 def gates() -> None:
