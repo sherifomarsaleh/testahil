@@ -53,7 +53,8 @@
 <div class="detail-block">
   <div class="card"><p class="qhead">Is it cheap or expensive right now?</p><p class="muted" style="margin:0 0 10px;font-size:var(--fs-small)">Latest price vs our fair value. A comparison, not a recommendation.</p><div id="gauge"></div></div>
   <div id="fl-lever-card"></div>
-  <div class="card">
+  <section style="padding-top:8px">
+    <div class="card">
       <p class="qhead" style="margin-top:26px">What it's worth — five lenses</p>
       <p class="muted">Five independent valuation methods, blended into one weighted central fair value.</p>
       <table><thead><tr><th>Valuation lens</th><th class="num">Per share (AED)</th><th class="num">Weight</th></tr></thead>
@@ -66,6 +67,7 @@
       </tbody></table>
       <p class="muted" style="margin-top:8px">The RNAV alone spans a wide range — a pre-discount NAV near AED 17.6, an RNAV base of AED 14.12 at a 20% discount, up to ~AED 17.27 if the discount compresses to 10%. The recurring EV/EBITDA multiple and the NAV/conglomerate discount are the swing factors. Full detail and the four lenses are in the study and the open model.</p>
     </div>
+  </section>
 </div>
 </div>
 
@@ -258,7 +260,8 @@
 <script>
 (function(){
   try{
-    var T=TICKERS.EMAAR;
+    var T=(typeof TICKERS!=="undefined"&&TICKERS["EMAAR"])||(typeof METALS!=="undefined"&&METALS["EMAAR"])||null;
+    if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
     renderFairLevers("fl-lever-card", T, [
   { name:'Dubai residential & off-plan absorption', min:-8, max:10, step:0.5, def:1, impact:1,
