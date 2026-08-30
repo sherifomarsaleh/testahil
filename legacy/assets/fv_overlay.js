@@ -1432,6 +1432,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ENBD",
+   "name": "Emirates NBD Bank",
+   "code": "DFM:EMIRATESNBD",
+   "ccy": "AED",
+   "spot": 31,
+   "anchor_date": "2026-08-27",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 55,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 25,
+   "fv_base": 32.3,
+   "fv_full": 43.2,
+   "gap_base_pct": 4.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.089634,
+    "mu_h": 0.002577,
+    "G": {
+     "bear": -2.4,
+     "base": 0.46,
+     "full": 3.7
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0131,
+     "base": 0.296,
+     "full": 0.0029
+    },
+    "p_touch": {
+     "bear": 0.0187,
+     "base": 0.5033,
+     "full": 0.005
+    },
+    "required_cagr": {
+     "bear": -0.9243,
+     "base": 0.6372,
+     "full": 52.637
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00217
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.158193,
+    "mu_h": 0.00995,
+    "G": {
+     "bear": -1.36,
+     "base": 0.26,
+     "full": 2.1
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0605,
+     "base": 0.4017,
+     "full": 0.0231
+    },
+    "p_touch": {
+     "bear": 0.1106,
+     "base": 0.7119,
+     "full": 0.0407
+    },
+    "required_cagr": {
+     "bear": -0.577,
+     "base": 0.1786,
+     "full": 2.7713
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00224
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ALPHADHABI",
    "name": "Alpha Dhabi Holding",
    "code": "ADX:ALPHADHABI",
@@ -1890,98 +1982,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00225
    },
    "market": "SA"
-  },
-  {
-   "ticker": "ENBD",
-   "name": "Emirates NBD Bank",
-   "code": "DFM:EMIRATESNBD",
-   "ccy": "AED",
-   "spot": 30.22,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 25,
-   "fv_base": 32.3,
-   "fv_full": 43.2,
-   "gap_base_pct": 6.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.094695,
-    "mu_h": 0.002974,
-    "G": {
-     "bear": -2.0,
-     "base": 0.7,
-     "full": 3.77
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0231,
-     "base": 0.2066,
-     "full": 0.0027
-    },
-    "p_touch": {
-     "bear": 0.0355,
-     "base": 0.3401,
-     "full": 0.0043
-    },
-    "required_cagr": {
-     "bear": -0.8973,
-     "base": 1.2228,
-     "full": 71.8235
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00055
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.170949,
-    "mu_h": 0.009878,
-    "G": {
-     "bear": -1.11,
-     "base": 0.39,
-     "full": 2.09
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0923,
-     "base": 0.3385,
-     "full": 0.0232
-    },
-    "p_touch": {
-     "bear": 0.1661,
-     "base": 0.6019,
-     "full": 0.0415
-    },
-    "required_cagr": {
-     "bear": -0.5316,
-     "base": 0.3051,
-     "full": 3.176
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00108
-   },
-   "market": "AE"
   },
   {
    "ticker": "2POINTZERO",
