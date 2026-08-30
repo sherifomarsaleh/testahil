@@ -1,0 +1,2155 @@
+{
+ "2015": {
+  "_stem": "2015_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 3,
+   "is": 4,
+   "cf": 5
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 1198.23,
+    "computed": 1198.23,
+    "diff": 0.0,
+    "ok": true
+   },
+   "gp_pri": {
+    "stated": 705.419,
+    "computed": 705.419,
+    "diff": 0.0,
+    "ok": true
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   3560.584644,
+   2106.065002
+  ],
+  "is.revenue._src": "Revenues (27a,",
+  "is.cogs": [
+   2312.796013,
+   1359.171054
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   49.558559,
+   41.475145
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   1198.230072,
+   705.418803
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   479.866405,
+   280.336442
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   9.115472,
+   7.492182
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   38.504185,
+   76.086336
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1102.178797,
+   382.097397
+  ],
+  "is.npbt._src": "Net profit for the period before income tax & non-controlling interest",
+  "is.income_tax": [
+   -8.026478,
+   -9.835039
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
+  "is.deferred_tax": [
+   45.770332,
+   18.65544
+  ],
+  "is.deferred_tax._src": "Deferred tax (22b)",
+  "is.nci": [
+   32.942237,
+   19.986521
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1064.434943,
+   373.276996
+  ],
+  "is.npat_pre_nci._src": "Net profit for the period before & non-controlling interest",
+  "is.npat_mi": [
+   1031.492706,
+   353.290475
+  ],
+  "is.npat_mi._src": "Net profit for the period after income tax & non-controlling interest",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   78.50649,
+   77.163454
+  ],
+  "bs.investments_associates._src": "Investments in associates (8c,11b,29)",
+  "bs.investment_property": [
+   854.664787,
+   1085.976898
+  ],
+  "bs.investment_property._src": "Investment property (11f,",
+  "bs.nr_long": [
+   4546.281603,
+   2665.204247
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   858.654273,
+   857.379279
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   334.622621,
+   317.777618
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.wip": [
+   6540.61609,
+   6101.970193
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   965.669547,
+   202.384112
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   2371.034595,
+   1607.19555
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   704.029344,
+   1121.983423
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   11993.531427,
+   9692.431724
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   31.035055,
+   39.19756
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   6169.791784,
+   5008.131347
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   473.692756,
+   816.018291
+  ],
+  "bs.np_short._src": "Notes payable short term (46a)",
+  "bs.loans_current": [
+   80.814,
+   174.41
+  ],
+  "bs.loans_current._src": "Current portion of term loans",
+  "bs.total_current_liabs": [
+   8458.806802,
+   8009.185805
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   10405.128859,
+   6880.595397
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   148.532031,
+   536.510993
+  ],
+  "bs.np_long._src": "Notes payable long term (46b)",
+  "bs.loans_lt": [
+   2918.287288,
+   1461.943221
+  ],
+  "bs.loans_lt._src": "Loans",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": false,
+    "revenue": 1654.6705
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": false,
+    "revenue": 1654.6705
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": false,
+    "revenue": 1654.6705
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 3560.584644
+   }
+  ]
+ },
+ "2016": {
+  "_stem": "2016_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 1,
+   "is": 2,
+   "cf": 4
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 1679.162,
+    "computed": 1679.162,
+    "diff": 0.0,
+    "ok": true
+   },
+   "gp_pri": {
+    "stated": 1149.969,
+    "computed": 1149.969,
+    "diff": 0.0,
+    "ok": true
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   5630.638584,
+   3641.651579
+  ],
+  "is.revenue._src": "Revenues (27a,",
+  "is.cogs": [
+   3886.883392,
+   2442.124439
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   64.593041,
+   49.558559
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   1679.162151,
+   1149.968581
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   664.116093,
+   496.141823
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   13.991204,
+   9.115472
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   57.581565,
+   38.504185
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   913.170062,
+   986.249372
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   126.311226,
+   45.770332
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
+  "is.deferred_tax": [
+   1.603256,
+   -8.026478
+  ],
+  "is.deferred_tax._src": "Deferred tax (22b)",
+  "is.nci": [
+   145.4602,
+   32.942238
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   785.25558,
+   948.505518
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   639.79538,
+   915.56328
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
+  "is.eps": [
+   2.37e-07,
+   3.39e-07
+  ],
+  "is.eps._src": "Earnings per share",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   79.225699,
+   78.50649
+  ],
+  "bs.investments_associates._src": "Investments in associates (8c,11b,29)",
+  "bs.investment_property": [
+   888.506292,
+   854.664787
+  ],
+  "bs.investment_property._src": "Investment property (11f,",
+  "bs.nr_long": [
+   7300.039694,
+   4546.281603
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   877.766742,
+   858.654273
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   351.608405,
+   334.622621
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.wip": [
+   6410.745955,
+   6463.686823
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   808.51657,
+   965.669547
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   3295.528203,
+   2371.034595
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   757.056711,
+   704.029344
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   12475.312407,
+   11916.60216
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   42.176487,
+   31.035055
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   7744.75512,
+   6249.432179
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   974.30186,
+   473.692756
+  ],
+  "bs.np_short._src": "Notes payable short term (48a)",
+  "bs.loans_current": [
+   541.014619,
+   80.814
+  ],
+  "bs.loans_current._src": "Current portion of term loans",
+  "bs.total_current_liabs": [
+   11140.14503,
+   8538.447197
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   11109.629462,
+   10248.559197
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   612.700591,
+   148.532031
+  ],
+  "bs.np_long._src": "Notes payable long term (48b)",
+  "bs.loans_lt": [
+   2957.469695,
+   2918.287288
+  ],
+  "bs.loans_lt._src": "Loans",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": false,
+    "revenue": 5630.638584
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": false,
+    "revenue": 5630.638584
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": false,
+    "revenue": 5630.638584
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 5630.638584
+   }
+  ]
+ },
+ "2017": {
+  "_stem": "2017_Q4_FS",
+  "_route": "text",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 1,
+   "is": 2,
+   "cf": 4
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 2103.291,
+    "computed": 2103.291,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 29250.888
+   },
+   "gp_pri": {
+    "stated": 1679.162,
+    "computed": 1679.162,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 22249.774
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   6603.539043,
+   5630.638584
+  ],
+  "is.revenue._src": "Revenues (27a,",
+  "is.cogs": [
+   4385.905845,
+   3886.883392
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   114.342545,
+   64.593041
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   2103.290653,
+   1679.162151
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   756.283947,
+   664.116093
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   20.475587,
+   13.991204
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   207.738198,
+   57.581565
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1103.360475,
+   913.170062
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   162.100333,
+   126.311226
+  ],
+  "is.income_tax._src": "Income tax expense (22b)",
+  "is.deferred_tax": [
+   4.789546,
+   1.603256
+  ],
+  "is.deferred_tax._src": "Deferred tax (22a)",
+  "is.nci": [
+   130.833059,
+   145.4602
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   936.470596,
+   785.25558
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   1103.360475,
+   913.170062
+  ],
+  "is.npat_mi._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.eps": [
+   3.4899999999999996e-07,
+   2.77e-07
+  ],
+  "is.eps._src": "Earnings per share",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   83.615199,
+   79.225699
+  ],
+  "bs.investments_associates._src": "Investments in associates (8d,11b,31)",
+  "bs.investment_property": [
+   758.689762,
+   888.506292
+  ],
+  "bs.investment_property._src": "Investment property (11f,",
+  "bs.nr_long": [
+   11356.555019,
+   7300.039694
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   882.472515,
+   877.766742
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   347.27777,
+   351.608405
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.total_noncurrent_assets": [
+   13703.235518,
+   9774.462085
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   9193.761444,
+   6410.745955
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   562.030358,
+   808.51657
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   3012.452628,
+   3295.528203
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   883.343556,
+   757.056711
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   15547.652068,
+   12475.312407
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   50.560568,
+   42.176487
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   10132.168063,
+   7744.75512
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1239.62451,
+   974.30186
+  ],
+  "bs.np_short._src": "Notes payable short term (50a)",
+  "bs.loans_current": [
+   979.573992,
+   541.014619
+  ],
+  "bs.loans_current._src": "Current portion of term loans",
+  "bs.total_current_liabs": [
+   14714.542362,
+   11140.14503
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   14536.345224,
+   11109.629462
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   1912.929075,
+   612.700591
+  ],
+  "bs.np_long._src": "Notes payable long term (50b)",
+  "bs.loans_lt": [
+   3228.805475,
+   2957.469695
+  ],
+  "bs.loans_lt._src": "Loans",
+  "bs.total_lt_liabs": [
+   7296.35957,
+   4476.414167
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 6603.539043
+   }
+  ]
+ },
+ "2018": {
+  "_stem": "2018_Q4_FS",
+  "_route": "text",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 1,
+   "is": 2,
+   "cf": 4
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 2587.323,
+    "computed": 2587.323,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 34698.273
+   },
+   "gp_pri": {
+    "stated": 2103.291,
+    "computed": 2103.291,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 29250.888
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   7422.755711,
+   6603.539043
+  ],
+  "is.revenue._src": "Revenues (27a,",
+  "is.cogs": [
+   4743.416578,
+   4385.905845
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   92.016436,
+   114.342544
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   2587.322697,
+   2103.290654
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   963.480133,
+   756.283948
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   66.807195,
+   20.475587
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   200.063965,
+   207.738198
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1159.257086,
+   1103.360475
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   251.517389,
+   162.100333
+  ],
+  "is.income_tax._src": "Income tax expense (22a)",
+  "is.deferred_tax": [
+   0.873609,
+   4.789546
+  ],
+  "is.deferred_tax._src": "Deferred tax (22b)",
+  "is.nci": [
+   95.12447,
+   130.833059
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1159.257086,
+   1103.360475
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.npat_mi": [
+   811.741618,
+   805.637537
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
+  "is.eps": [
+   0.000342,
+   0.000349
+  ],
+  "is.eps._src": "Earnings per share",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   97.447485,
+   83.615199
+  ],
+  "bs.investments_associates._src": "Investments in associates (8d-11b-31)",
+  "bs.investment_property": [
+   769.612116,
+   758.689762
+  ],
+  "bs.investment_property._src": "Investment property (11f-32)",
+  "bs.nr_long": [
+   13087.429109,
+   11356.555019
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   106.02994,
+   882.472515
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   1427.791288,
+   347.27777
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.total_noncurrent_assets": [
+   15688.768117,
+   13703.235518
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   9091.529513,
+   9193.761444
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   955.73763,
+   562.030358
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   4235.390443,
+   3012.452628
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   1061.7051,
+   883.343556
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   19009.504612,
+   15547.652068
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   57.735773,
+   50.560568
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   11484.809418,
+   10132.168063
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1586.917804,
+   1239.62451
+  ],
+  "bs.np_short._src": "Notes payable short term (49a)",
+  "bs.loans_current": [
+   1101.130295,
+   979.573992
+  ],
+  "bs.loans_current._src": "Current portion of term loans",
+  "bs.total_current_liabs": [
+   17985.271568,
+   14714.542362
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   16713.001162,
+   14536.345224
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   1660.45666,
+   1912.929075
+  ],
+  "bs.np_long._src": "Notes payable long term (49b)",
+  "bs.total_lt_liabs": [
+   7497.460067,
+   7296.35957
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 7422.755711
+   }
+  ]
+ },
+ "2019": {
+  "_stem": "2019_Q4_FS",
+  "_route": "text",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 1,
+   "is": 3,
+   "cf": 6
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 2329.022,
+    "computed": 2329.022,
+    "diff": -0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 37471.121
+   },
+   "gp_pri": {
+    "stated": 2587.323,
+    "computed": 2587.323,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 34602.21
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   6224.42442,
+   7422.755711
+  ],
+  "is.revenue._src": "Revenues (27a,",
+  "is.cogs": [
+   3864.919977,
+   4743.416578
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   30.482154,
+   92.016436
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   2329.022289,
+   2587.322697
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   936.434469,
+   963.480133
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   80.34033,
+   66.807195
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   244.647449,
+   200.063965
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1004.744358,
+   1159.257086
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.income_tax": [
+   97.601625,
+   251.517389
+  ],
+  "is.income_tax._src": "Income tax (22b)",
+  "is.deferred_tax": [
+   0.916421,
+   0.873609
+  ],
+  "is.deferred_tax._src": "Deferred tax (22a)",
+  "is.nci": [
+   59.44096,
+   95.12447
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   1004.744358,
+   1159.257086
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before income tax & non-controlling interest",
+  "is.npat_mi": [
+   846.785352,
+   811.741618
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
+  "is.eps": [
+   2.72e-07,
+   2.6e-07
+  ],
+  "is.eps._src": "Earnings per share",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   143.369813,
+   97.447485
+  ],
+  "bs.investments_associates._src": "Investments in associates (8d-11b-31)",
+  "bs.investment_property": [
+   393.482537,
+   769.612116
+  ],
+  "bs.investment_property._src": "Investment property (11f-32)",
+  "bs.nr_long": [
+   15318.676533,
+   12991.366008
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   1739.437098,
+   106.02994
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   1353.868932,
+   1427.791288
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.total_noncurrent_assets": [
+   19216.854909,
+   15592.705016
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   8115.250279,
+   9091.529513
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   1375.17839,
+   955.73763
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   4691.813019,
+   4235.390443
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   1272.279369,
+   1061.7051
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   18254.266355,
+   19009.504612
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   87.237713,
+   57.735773
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   14212.609702,
+   11484.809418
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1750.901906,
+   1586.917804
+  ],
+  "bs.np_short._src": "Notes payable short term (49a)",
+  "bs.loans_current": [
+   295.132857,
+   1101.130295
+  ],
+  "bs.loans_current._src": "Current portion of term loans",
+  "bs.total_current_liabs": [
+   20399.06817,
+   17985.271568
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   17072.053094,
+   16616.938061
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   1438.142381,
+   1660.45666
+  ],
+  "bs.np_long._src": "Notes payable long term (49b)",
+  "bs.total_lt_liabs": [
+   7534.472243,
+   7401.396967
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 6224.42442
+   }
+  ]
+ },
+ "2020": {
+  "_stem": "2020_Q4_FS",
+  "_route": "text",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 1,
+   "is": 2,
+   "cf": 4
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 2014.107,
+    "computed": 2014.107,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 38303.348
+   },
+   "gp_pri": {
+    "stated": 2329.022,
+    "computed": 2329.022,
+    "diff": -0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 37471.121
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   5207.530113,
+   6224.42442
+  ],
+  "is.revenue._src": "Revenues",
+  "is.cogs": [
+   3175.71907,
+   3864.919977
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   17.704052,
+   30.482154
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   2014.106991,
+   2329.022289
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   886.086693,
+   936.434469
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   105.251413,
+   80.34033
+  ],
+  "is.admin_depr._src": "Administrative depreciation",
+  "is.finance_cost": [
+   256.047836,
+   244.647449
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   792.794097,
+   1004.744358
+  ],
+  "is.npbt._src": "Net profit for the year before income tax & non- controlling interest Deduct:",
+  "is.deferred_tax": [
+   0.500441,
+   0.916421
+  ],
+  "is.deferred_tax._src": "Deferred tax a)",
+  "is.nci": [
+   37.35372,
+   59.44096
+  ],
+  "is.nci._src": "Non-controlling interest share- subsidiaries",
+  "is.npat_pre_nci": [
+   755.121461,
+   906.226312
+  ],
+  "is.npat_pre_nci._src": "Net profit for the year before & non-controlling interest",
+  "is.npat_mi": [
+   717.767741,
+   846.785352
+  ],
+  "is.npat_mi._src": "Net profit for the year after income tax & non-controlling interest",
+  "is.eps": [
+   2.33e-07,
+   2.75e-07
+  ],
+  "is.eps._src": "Earnings per share",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   150.481921,
+   143.369813
+  ],
+  "bs.investments_associates._src": "Investments in associates b11 d8",
+  "bs.investment_property": [
+   386.524021,
+   393.482537
+  ],
+  "bs.investment_property._src": "Investment property f11",
+  "bs.nr_long": [
+   15338.184314,
+   15318.676533
+  ],
+  "bs.nr_long._src": "Notes receivable long term",
+  "bs.projects_under_constr": [
+   297.328271,
+   1739.437098
+  ],
+  "bs.projects_under_constr._src": "Projects under construction",
+  "bs.fixed_assets": [
+   2762.30509,
+   1353.868932
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.total_noncurrent_assets": [
+   19305.808593,
+   19216.854909
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   7287.942937,
+   8115.25028
+  ],
+  "bs.wip._src": "Works in process",
+  "bs.cash": [
+   1579.250273,
+   1375.17839
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   5025.56337,
+   4691.813019
+  ],
+  "bs.nr_short._src": "Notes receivable short term",
+  "bs.ar": [
+   1480.150676,
+   1272.279369
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   18997.539588,
+   18254.266355
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   90.966967,
+   87.237713
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.overdraft": [
+   1034.506489,
+   963.312645
+  ],
+  "bs.overdraft._src": "Bank- overdraft",
+  "bs.advances_customers": [
+   15629.029118,
+   14212.609702
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1030.233337,
+   1750.901906
+  ],
+  "bs.np_short._src": "Notes payable short term a",
+  "bs.suppliers": [
+   834.286954,
+   762.160712
+  ],
+  "bs.suppliers._src": "Suppliers & Contractors",
+  "bs.total_current_liabs": [
+   21175.243644,
+   20399.06817
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   17128.104535,
+   17072.053094
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   2151.086266,
+   1438.142381
+  ],
+  "bs.np_long._src": "Notes payable long term b",
+  "bs.total_lt_liabs": [
+   7671.209487,
+   7534.472243
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 5207.530113
+   }
+  ]
+ },
+ "2021": {
+  "_stem": "2021_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 3,
+   "is": 4,
+   "cf": 6
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 2631.171,
+    "computed": 2631.171,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 35900.258
+   },
+   "gp_pri": {
+    "stated": 2014.107,
+    "computed": 2014.107,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 122253.398
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   7717.121214,
+   5207.530113
+  ],
+  "is.revenue._src": "Revenues (64s",
+  "is.cogs": [
+   5015.919243,
+   3175.71907
+  ],
+  "is.cogs._src": "Cast of revenucs",
+  "is.cash_discount": [
+   70.030716,
+   17.704052
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   2631.171255,
+   2014.106991
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   1167.864886,
+   886.086693
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   174.799135,
+   105.251413
+  ],
+  "is.admin_depr._src": "Depreciation and amortization (40:36",
+  "is.finance_cost": [
+   333.244231,
+   293.53637
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   1024.253371,
+   786.843991
+  ],
+  "is.npbt._src": "Net profit for the Year before income tax & non-controlling cquites",
+  "is.income_tax": [
+   166.718526,
+   37.172195
+  ],
+  "is.income_tax._src": "Income tax",
+  "is.deferred_tax": [
+   1.473506,
+   0.500441
+  ],
+  "is.deferred_tax._src": "Deferred tax (b",
+  "is.nci": [
+   31.701002,
+   37.35372
+  ],
+  "is.nci._src": "Non-controlling cquites share- subsitiaries",
+  "is.npat_pre_nci": [
+   856.061339,
+   0.749355
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controiling interest",
+  "is.npat_mi": [
+   824.360337,
+   711.817635
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equites",
+  "is.eps": [
+   0.000271,
+   0.000231
+  ],
+  "is.eps._src": "Earnings per share for profits",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   213.673757,
+   150.48192
+  ],
+  "bs.investments_associates._src": "Investments in associates +b11+d8)",
+  "bs.investment_property": [
+   170.828879,
+   174.011283
+  ],
+  "bs.investment_property._src": "Investment property cll)",
+  "bs.nr_long": [
+   4815.037989,
+   3364.8373
+  ],
+  "bs.nr_long._src": "Notes receivable long term for undclivercd units",
+  "bs.projects_under_constr": [
+   7.640536,
+   97.871372
+  ],
+  "bs.projects_under_constr._src": "Projects under construction My \u00ab12 \u20183",
+  "bs.fixed_assets": [
+   2718.635212,
+   2762.30509
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net)",
+  "bs.total_noncurrent_assets": [
+   13535.750159,
+   18893.838956
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   8698.435064,
+   7699.912574
+  ],
+  "bs.wip._src": "Works in process \u00ab14)",
+  "bs.cash": [
+   1017.868885,
+   1579.149924
+  ],
+  "bs.cash._src": "Cash and cash equivalents +32)",
+  "bs.nr_short": [
+   1787.05358,
+   1504.137465
+  ],
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
+  "bs.ar": [
+   1885.116352,
+   1475.741903
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   22364.507586,
+   103359.559119
+  ],
+  "bs.total_current_assets._src": "Total current assets",
+  "bs.banks_credit": [
+   99.79614,
+   90.966967
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.overdraft": [
+   1661.691055,
+   1334.506443
+  ],
+  "bs.overdraft._src": "Bank- overdraft {3}",
+  "bs.advances_customers": [
+   8374.372531,
+   10760.054353
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1340.828591,
+   1030.233337
+  ],
+  "bs.np_short._src": "Notes payable short term (a",
+  "bs.suppliers": [
+   1130.851889,
+   834.286957
+  ],
+  "bs.suppliers._src": "Suppliers And contractors",
+  "bs.total_equity": [
+   17699.66638,
+   16822.154474
+  ],
+  "bs.total_equity._src": "Total equity and non-current liabilities",
+  "bs.np_long": [
+   2212.83484,
+   2151.086266
+  ],
+  "bs.np_long._src": "Notes payable long term (b",
+  "bs.total_lt_liabs": [
+   5108.043119,
+   73.209533
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 7717.121214
+   }
+  ]
+ },
+ "2022": {
+  "_stem": "2022_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "fixed",
+  "_pages": {},
+  "checks": {},
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   }
+  ],
+  "_unresolved": true
+ },
+ "2023": {
+  "_stem": "2023_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "perrow",
+  "_pages": {
+   "bs": 3,
+   "is": 4,
+   "cf": 6
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 5507.635,
+    "computed": 5507.635,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 74298.461
+   },
+   "gp_pri": {
+    "stated": 4486.685,
+    "computed": 4486.685,
+    "diff": -0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 49505.997
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   17462.108314,
+   13600.122707
+  ],
+  "is.revenue._src": "Revenues (65+",
+  "is.cogs": [
+   11907.22449,
+   9038.376877
+  ],
+  "is.cogs._src": "Cost of revenues",
+  "is.cash_discount": [
+   47.248529,
+   75.061296
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   5507.635295,
+   4486.684533
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   2060.4617,
+   2092.458884
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses (67}",
+  "is.admin_depr": [
+   178.559975,
+   173.669334
+  ],
+  "is.admin_depr._src": "Depreciation and amortization",
+  "is.finance_cost": [
+   0.000734,
+   660.440112
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   2300.703847,
+   1703.490721
+  ],
+  "is.npbt._src": "Net profit for the Year before income tax & non-controlling equities",
+  "is.deferred_tax": [
+   3.335332,
+   1.065874
+  ],
+  "is.deferred_tax._src": "Deferred tax (b",
+  "is.nci": [
+   151.892641,
+   34.824109
+  ],
+  "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   1733.40433,
+   1290.672419
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controlling equities",
+  "is.npat_mi": [
+   1581.511689,
+   1255.84831
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equities",
+  "is.eps": [
+   0.000535,
+   4.2e-07
+  ],
+  "is.eps._src": "Earnings per share for profits (72:26)",
+  "_scale_bs": 1000000.0,
+  "bs.investment_property": [
+   45.830027,
+   167.262054
+  ],
+  "bs.investment_property._src": "Investment property cll)",
+  "bs.nr_long": [
+   4546.6303,
+   6608.405535
+  ],
+  "bs.nr_long._src": "Notes receivable long term for undelivered units \u00ab16)",
+  "bs.projects_under_constr": [
+   1002.101616,
+   212.133152
+  ],
+  "bs.projects_under_constr._src": "Projects under construction \u00ab12)",
+  "bs.fixed_assets": [
+   2529.549685,
+   2592.279116
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net) +13)",
+  "bs.total_noncurrent_assets": [
+   31824.033811,
+   23488.367003
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   8788.379627,
+   6286.290907
+  ],
+  "bs.wip._src": "Works in process {44 \u00ab14)",
+  "bs.cash": [
+   3189.241596,
+   1165.167798
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   2052.227415,
+   2548.927764
+  ],
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
+  "bs.ar": [
+   8087.041825,
+   2707.513377
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   42474.426786,
+   26017.630209
+  ],
+  "bs.total_current_assets._src": "Total Current Assets",
+  "bs.banks_credit": [
+   234.053719,
+   180.167719
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.overdraft": [
+   3362.218151,
+   2403.922276
+  ],
+  "bs.overdraft._src": "Bank- overdraft",
+  "bs.advances_customers": [
+   20983.587846,
+   10214.450435
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   1858.467641,
+   1572.111652
+  ],
+  "bs.np_short._src": "Notes payable short term (a",
+  "bs.suppliers": [
+   2504.006437,
+   1268.46374
+  ],
+  "bs.suppliers._src": "Suppliers And contractors",
+  "bs.total_current_liabs": [
+   41069.114014,
+   27266.541709
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   74298.460597,
+   49505.997212
+  ],
+  "bs.total_equity._src": "Total equity and liabilities",
+  "bs.np_long": [
+   2576.202779,
+   1329.707969
+  ],
+  "bs.np_long._src": "Notes payable long term (b",
+  "bs.total_lt_liabs": [
+   21507.498684,
+   12067.868775
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": false,
+    "revenue": -2917462.108314
+   },
+   {
+    "route": "ocr",
+    "gutter": "perrow",
+    "gp_ok": true,
+    "revenue": 17462.108314
+   }
+  ]
+ },
+ "2024": {
+  "_stem": "2024_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 2,
+   "is": 3,
+   "cf": 5
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 9330.096,
+    "computed": 9330.096,
+    "diff": -0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 119437.324
+   },
+   "gp_pri": {
+    "stated": 5507.635,
+    "computed": 5507.635,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 74298.461
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   27167.304497,
+   17462.108314
+  ],
+  "is.revenue._src": "Revenues (63+",
+  "is.cogs": [
+   17739.913618,
+   11907.22449
+  ],
+  "is.cogs._src": "Cost of revenues :30)",
+  "is.cash_discount": [
+   97.294493,
+   47.248529
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   9330.096386,
+   5507.635295
+  ],
+  "is.gross_profit._src": "Gross profit",
+  "is.sga": [
+   3435.754971,
+   2060.4617
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   239.915475,
+   178.559975
+  ],
+  "is.admin_depr._src": "Administrative Fixed Assets Depreciation (37:41",
+  "is.finance_cost": [
+   2311.395503,
+   1503.563734
+  ],
+  "is.finance_cost._src": "Finance costs & interests +25)",
+  "is.npbt": [
+   4320.598449,
+   2300.703847
+  ],
+  "is.npbt._src": "Net profit for the Year before income tax & non-controlling equities",
+  "is.deferred_tax": [
+   -94.367392,
+   3.335332
+  ],
+  "is.deferred_tax._src": "Deferred tax (b69 \u00ab b",
+  "is.nci": [
+   148.531947,
+   151.892641
+  ],
+  "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   3403.47739,
+   1733.40433
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Year before & non-controlling equities",
+  "is.npat_mi": [
+   3254.945443,
+   1581.511689
+  ],
+  "is.npat_mi._src": "Net profit for the Year after income tax & non-controlling equities",
+  "is.eps": [
+   0.000112,
+   0.000534
+  ],
+  "is.eps._src": "Earnings per share for profits +26)",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   3379.238461,
+   499.485857
+  ],
+  "bs.investments_associates._src": "Investments in associates \u00abbl 1\u00abd8)",
+  "bs.nr_long": [
+   3095.727858,
+   4546.6303
+  ],
+  "bs.nr_long._src": "Notes receivable long term for undelivered units ia",
+  "bs.projects_under_constr": [
+   237.622133,
+   1002.101616
+  ],
+  "bs.projects_under_constr._src": "Projects under construction oo.",
+  "bs.total_noncurrent_assets": [
+   54166.409408,
+   31824.033811
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.wip": [
+   13209.788867,
+   8788.379627
+  ],
+  "bs.wip._src": "Works in process +14)",
+  "bs.cash": [
+   6372.384745,
+   3189.241596
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   1718.559879,
+   2052.227415
+  ],
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
+  "bs.ar": [
+   15561.060204,
+   8087.041825
+  ],
+  "bs.ar._src": "Accounts receivable \u201c3",
+  "bs.total_current_assets": [
+   65270.914793,
+   42474.426786
+  ],
+  "bs.total_current_assets._src": "Total Current Assets",
+  "bs.overdraft": [
+   null,
+   2e-06
+  ],
+  "bs.overdraft._src": "Bank- overdraft (RG",
+  "bs.advances_customers": [
+   47403.775488,
+   20983.587846
+  ],
+  "bs.advances_customers._src": "Advances from customers G3",
+  "bs.np_short": [
+   1697.081032,
+   1858.467641
+  ],
+  "bs.np_short._src": "Notes payable short term (a",
+  "bs.suppliers": [
+   3426.676835,
+   2504.006437
+  ],
+  "bs.suppliers._src": "Suppliers And contractors",
+  "bs.total_current_liabs": [
+   74496.94123,
+   41069.114014
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   123437.324201,
+   74298.460597
+  ],
+  "bs.total_equity._src": "Total equity and liabilities",
+  "bs.total_lt_liabs": [
+   34315.700846,
+   21507.498684
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 27167.304497
+   }
+  ]
+ },
+ "2025": {
+  "_stem": "2025_Q4_FS",
+  "_route": "ocr",
+  "_gutter": "pooled",
+  "_pages": {
+   "bs": 3,
+   "is": 4,
+   "cf": 6
+  },
+  "checks": {
+   "gp_cur": {
+    "stated": 14887.577,
+    "computed": 14887.577,
+    "diff": 0.0,
+    "ok": true
+   },
+   "ta_cur": {
+    "total_assets": 172129.813
+   },
+   "gp_pri": {
+    "stated": 9330.096,
+    "computed": 9330.096,
+    "diff": -0.0,
+    "ok": true
+   },
+   "ta_pri": {
+    "total_assets": 123437.324
+   }
+  },
+  "_scale_is": 1000000.0,
+  "is.revenue": [
+   36169.270135,
+   27167.304497
+  ],
+  "is.revenue._src": "Revenues (63:",
+  "is.cogs": [
+   21118.93834,
+   17739.913618
+  ],
+  "is.cogs._src": "Cost of revenues \u00ab30)",
+  "is.cash_discount": [
+   162.754881,
+   97.294493
+  ],
+  "is.cash_discount._src": "Cash discount",
+  "is.gross_profit": [
+   14887.576914,
+   9330.096386
+  ],
+  "is.gross_profit._src": "Gross operating profit",
+  "is.sga": [
+   6365.589713,
+   3435.754971
+  ],
+  "is.sga._src": "General administrative, selling and marketing expenses",
+  "is.admin_depr": [
+   353.657121,
+   239.915475
+  ],
+  "is.admin_depr._src": "Depreciation & amortization (39:37:36)",
+  "is.finance_cost": [
+   3347.489307,
+   2311.395503
+  ],
+  "is.finance_cost._src": "Finance costs & interests",
+  "is.npbt": [
+   6251.052283,
+   4320.598449
+  ],
+  "is.npbt._src": "Net profit for the Period before income tax & non-controlling equities",
+  "is.deferred_tax": [
+   25.17586,
+   -94.367392
+  ],
+  "is.deferred_tax._src": "Deferred tax (b \u00ab",
+  "is.nci": [
+   207.154451,
+   148.531947
+  ],
+  "is.nci._src": "Non-controlling equities share- subsidiaries",
+  "is.npat_pre_nci": [
+   4423.812106,
+   3403.47739
+  ],
+  "is.npat_pre_nci._src": "Net profit for the Period before non-controlling equities",
+  "is.npat_mi": [
+   4216.657655,
+   3254.945443
+  ],
+  "is.npat_mi._src": "Net profit for the Period after income tax & non-controlling equities",
+  "is.eps": [
+   0.000146,
+   0.000112
+  ],
+  "is.eps._src": "Earnings per share for profits",
+  "_scale_bs": 1000000.0,
+  "bs.investments_associates": [
+   3611.619739,
+   3379.238461
+  ],
+  "bs.investments_associates._src": "Investments in associates sb11+d8)",
+  "bs.investment_property": [
+   1032.530185,
+   1057.472496
+  ],
+  "bs.investment_property._src": "Investment property cl1)",
+  "bs.nr_long": [
+   1518.490219,
+   3095.727858
+  ],
+  "bs.nr_long._src": "Notes receivable long term for undelivered units +16)",
+  "bs.projects_under_constr": [
+   182.616883,
+   237.622133
+  ],
+  "bs.projects_under_constr._src": "Projects under construction \u00ab12)",
+  "bs.fixed_assets": [
+   4521.970936,
+   2847.087324
+  ],
+  "bs.fixed_assets._src": "Fixed assets (net) \u00ab13)",
+  "bs.total_noncurrent_assets": [
+   65900.163274,
+   54166.409408
+  ],
+  "bs.total_noncurrent_assets._src": "Total non-current assets",
+  "bs.cash": [
+   9419.526159,
+   6372.384745
+  ],
+  "bs.cash._src": "Cash and cash equivalents",
+  "bs.nr_short": [
+   935.259476,
+   1718.559879
+  ],
+  "bs.nr_short._src": "Notes receivable short term for undelivered units",
+  "bs.ar": [
+   28118.116247,
+   15561.060204
+  ],
+  "bs.ar._src": "Accounts receivable",
+  "bs.total_current_assets": [
+   106229.649584,
+   69270.914793
+  ],
+  "bs.total_current_assets._src": "Total Current Assets",
+  "bs.banks_credit": [
+   938.770898,
+   992.413988
+  ],
+  "bs.banks_credit._src": "Banks credit balances",
+  "bs.advances_customers": [
+   69354.084075,
+   47403.775488
+  ],
+  "bs.advances_customers._src": "Advances from customers",
+  "bs.np_short": [
+   4875.673642,
+   1697.081032
+  ],
+  "bs.np_short._src": "Notes payable short term (a",
+  "bs.suppliers": [
+   3807.042889,
+   3426.676837
+  ],
+  "bs.suppliers._src": "Suppliers And contractors",
+  "bs.total_current_liabs": [
+   105098.969636,
+   74496.941232
+  ],
+  "bs.total_current_liabs._src": "Total current liabilities",
+  "bs.total_equity": [
+   172129.812858,
+   123437.324201
+  ],
+  "bs.total_equity._src": "Total equity and liabilities",
+  "bs.np_long": [
+   4505.024909,
+   2895.314633
+  ],
+  "bs.np_long._src": "Notes payable long term (b",
+  "bs.total_lt_liabs": [
+   48265.091319,
+   34315.700846
+  ],
+  "bs.total_lt_liabs._src": "Total non-current liabilities",
+  "_attempts": [
+   {
+    "route": "text",
+    "gutter": "pooled",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "perrow",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "text",
+    "gutter": "fixed",
+    "gp_ok": null,
+    "revenue": null
+   },
+   {
+    "route": "ocr",
+    "gutter": "pooled",
+    "gp_ok": true,
+    "revenue": 36169.270135
+   }
+  ]
+ }
+}

@@ -1,0 +1,124 @@
+{
+ "decomposition": {
+  "is.gross_profit": {
+   "n": 29,
+   "mean_error_removed": 0.4539
+  },
+  "is.sga": {
+   "n": 31,
+   "mean_error_removed": -0.0848
+  },
+  "is.admin_depr": {
+   "n": 31,
+   "mean_error_removed": -0.0629
+  },
+  "is.finance_cost": {
+   "n": 27,
+   "mean_error_removed": 0.0339
+  },
+  "_residual_with_every_driver_correct": {
+   "n": 27,
+   "mean_abs_log_error": 0.1297
+  }
+ },
+ "one_offs": [
+  {
+   "year": 2013,
+   "item": "Village Mall disposal",
+   "amount_revenue": 240.0,
+   "amount_profit": 52.0,
+   "source": "FY2015 earnings release footnote \u2014 the company excludes it from its own 2013 revenue and profit chart",
+   "treatment": "scored on the company's ex-disposal basis"
+  },
+  {
+   "year": 2020,
+   "item": "COVID-19",
+   "evidence": "handovers fell to 633 units from 964; construction spend EGP 1.5bn, the lowest of the window",
+   "treatment": "retained in the sample, flagged; record reported with and without"
+  },
+  {
+   "year": 2024,
+   "item": "Taaleem 32.6%, Macor +10% to 69.5%, Novotel October 20%",
+   "source": "FY2024 earnings release",
+   "treatment": "perimeter change; no restated pre-acquisition series is published, so no chain factor exists and FY2024-25 aggregate errors carry the flag"
+  }
+ ],
+ "guidance": [
+  {
+   "fy": 2016,
+   "sentence": "\uf0a7 The Company delivered 2,049 units, translating into 555k sqm of developed area, surpassing FY2016 handovers target of 1,800 units."
+  },
+  {
+   "fy": 2016,
+   "sentence": "3 billion and FY2016 target of EGP7 billion, positioning the Company as the highest selling Egyptian property developer."
+  },
+  {
+   "fy": 2017,
+   "sentence": "\u25aa The Company handed over 1,781 units, exceeding FY2017 target of 1,600 units."
+  },
+  {
+   "fy": 2017,
+   "sentence": "6 billion, driven by the increased pace of construction with 1,781 handed over units, exceeding the previously announced target of 1,600 units."
+  },
+  {
+   "fy": 2017,
+   "sentence": "In 2017, the Company handed over 1,781 units, surpassing the full year target of 1,600 units."
+  },
+  {
+   "fy": 2018,
+   "sentence": "\u25aa The Company handed over 1,541 units, surpassing its previously announced target of 1,500 units in FY2018."
+  },
+  {
+   "fy": 2018,
+   "sentence": "The Company handed over 1,541 units, surpassing its previously announced target of 1,500 units in FY2018."
+  },
+  {
+   "fy": 2018,
+   "sentence": "2 billion on construction during FY2019 with further acceleration in the pace of handovers and deliveries target of 1,350 units."
+  },
+  {
+   "fy": 2018,
+   "sentence": "4 billion, surpassing the previously announced target of EGP6.8 billion."
+  },
+  {
+   "fy": 2019,
+   "sentence": "9 billion in FY2019, which is 6% higher than our previously announced target of EGP14 billion."
+  },
+  {
+   "fy": 2020,
+   "sentence": "5 billion on construction during FY2021 with further acceleration in the pace of handovers and deliveries target of 1,450 units."
+  },
+  {
+   "fy": 2020,
+   "sentence": "8 billion, translating into 1,840 units sold, surpassing the previously announced full year target of EGP12.0 billion."
+  },
+  {
+   "fy": 2020,
+   "sentence": "8 billion in FY2020, exceeding the previously announced target of EGP12 billion."
+  },
+  {
+   "fy": 2020,
+   "sentence": "8 billion in FY2020, translating into 1,840 units sold, surpassing the previously announced full year target of EGP12.0 billion."
+  },
+  {
+   "fy": 2022,
+   "sentence": "7 billion on construction activities during FY2022, an increase of 47% YoY, surpassing the full year target of EGP3.4 billion."
+  },
+  {
+   "fy": 2022,
+   "sentence": "0 billion mark in FY2022, the highest in the Company\u2019s history, exceeding the previously announced target of EGP20 billion for the year."
+  },
+  {
+   "fy": 2022,
+   "sentence": "0 billion in FY2022, a growth of 50% YoY, surpassing FY2022 target of EGP20 billion and 2021 sales level of EGP17."
+  },
+  {
+   "fy": 2022,
+   "sentence": "7 billion mark during FY2022, surpassing the full year target of EGP3.4 billion."
+  },
+  {
+   "fy": 2022,
+   "sentence": "7 billion on construction activities, an increase of 47% YoY, surpassing the full year target of EGP3.4 billion."
+  }
+ ]
+}

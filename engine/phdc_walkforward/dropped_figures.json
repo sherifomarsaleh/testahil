@@ -1,0 +1,9 @@
+[
+ {
+  "year": 2023,
+  "field": "is.finance_cost",
+  "value": 0.0007,
+  "prior_year": 660.4401,
+  "reason": "under 2% of the prior year \u2014 reads as a truncated scan, not a reported figure"
+ }
+]

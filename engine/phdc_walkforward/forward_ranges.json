@@ -1,0 +1,234 @@
+{
+ "origin": 2025,
+ "anchors": {
+  "units_sold": {
+   "year": 2023,
+   "value": 5300.0
+  },
+  "new_sales": {
+   "year": 2024,
+   "value": 151016.0
+  },
+  "is.revenue": {
+   "year": 2025,
+   "value": 36169.2701
+  },
+  "is.npat_mi": {
+   "year": 2025,
+   "value": 4216.6577
+  }
+ },
+ "note": "years 3-5 are ranges built from this record's own driver-error distribution; a point would overstate what ten origins support",
+ "years": {
+  "units_sold": {
+   "1": {
+    "year": 2026,
+    "raw_projection": 5606.1,
+    "central_after_record_median": 6510.6,
+    "p10": 4295.0,
+    "p90": 8553.4,
+    "n_resolved_errors": 8
+   },
+   "2": {
+    "year": 2027,
+    "raw_projection": 5712.0,
+    "central_after_record_median": 7465.3,
+    "p10": 4449.8,
+    "p90": 10303.7,
+    "n_resolved_errors": 7
+   },
+   "3": {
+    "year": 2028,
+    "raw_projection": 5819.9,
+    "central_after_record_median": 7647.1,
+    "p10": 5308.6,
+    "p90": 11946.1,
+    "n_resolved_errors": 6
+   },
+   "4": {
+    "year": 2029,
+    "raw_projection": 5929.8,
+    "central_after_record_median": 7156.5,
+    "p10": 5800.8,
+    "p90": 10421.5,
+    "n_resolved_errors": 5
+   },
+   "5": {
+    "year": 2030,
+    "raw_projection": 6041.8,
+    "central_after_record_median": 9691.4,
+    "p10": 5774.5,
+    "p90": 10269.9,
+    "n_resolved_errors": 4
+   }
+  },
+  "new_sales": {
+   "1": {
+    "year": 2026,
+    "raw_projection": 124135.2,
+    "central_after_record_median": 143087.9,
+    "p10": 114640.2,
+    "p90": 259442.4,
+    "n_resolved_errors": 9
+   },
+   "2": {
+    "year": 2027,
+    "raw_projection": 158617.8,
+    "central_after_record_median": 197853.8,
+    "p10": 122387.4,
+    "p90": 539800.5,
+    "n_resolved_errors": 8
+   },
+   "3": {
+    "year": 2028,
+    "raw_projection": 202679.0,
+    "central_after_record_median": 251353.8,
+    "p10": 150649.2,
+    "p90": 906093.8,
+    "n_resolved_errors": 7
+   },
+   "4": {
+    "year": 2029,
+    "raw_projection": 258979.7,
+    "central_after_record_median": 308614.3,
+    "p10": 222422.4,
+    "p90": 994795.5,
+    "n_resolved_errors": 6
+   },
+   "5": {
+    "year": 2030,
+    "raw_projection": 330919.8,
+    "central_after_record_median": 374493.1,
+    "p10": 342910.2,
+    "p90": 975816.9,
+    "n_resolved_errors": 5
+   }
+  },
+  "is.revenue": {
+   "1": {
+    "year": 2026,
+    "raw_projection": 36002.5,
+    "central_after_record_median": 34005.6,
+    "p10": 21479.2,
+    "p90": 46082.6,
+    "n_resolved_errors": 9
+   },
+   "2": {
+    "year": 2027,
+    "raw_projection": 52283.9,
+    "central_after_record_median": 49326.0,
+    "p10": 25990.0,
+    "p90": 79130.7,
+    "n_resolved_errors": 8
+   },
+   "3": {
+    "year": 2028,
+    "raw_projection": 72254.1,
+    "central_after_record_median": 55970.6,
+    "p10": 32613.8,
+    "p90": 136914.3,
+    "n_resolved_errors": 7
+   },
+   "4": {
+    "year": 2029,
+    "raw_projection": 97048.3,
+    "central_after_record_median": 73575.5,
+    "p10": 46855.6,
+    "p90": 205806.0,
+    "n_resolved_errors": 6
+   },
+   "5": {
+    "year": 2030,
+    "raw_projection": 128102.8,
+    "central_after_record_median": 93927.4,
+    "p10": 83620.4,
+    "p90": 214089.7,
+    "n_resolved_errors": 5
+   }
+  },
+  "is.gross_profit": {
+   "1": {
+    "year": 2026,
+    "raw_projection": 21649.9,
+    "central_after_record_median": 12938.2,
+    "p10": 9964.1,
+    "p90": 16072.5,
+    "n_resolved_errors": 9
+   },
+   "2": {
+    "year": 2027,
+    "raw_projection": 33944.4,
+    "central_after_record_median": 20831.2,
+    "p10": 11423.0,
+    "p90": 28169.2,
+    "n_resolved_errors": 8
+   },
+   "3": {
+    "year": 2028,
+    "raw_projection": 48820.1,
+    "central_after_record_median": 23796.9,
+    "p10": 15480.4,
+    "p90": 56560.9,
+    "n_resolved_errors": 7
+   },
+   "4": {
+    "year": 2029,
+    "raw_projection": 67104.9,
+    "central_after_record_median": 30987.6,
+    "p10": 21930.9,
+    "p90": 91787.3,
+    "n_resolved_errors": 6
+   },
+   "5": {
+    "year": 2030,
+    "raw_projection": 89841.6,
+    "central_after_record_median": 40986.2,
+    "p10": 36535.9,
+    "p90": 104415.8,
+    "n_resolved_errors": 5
+   }
+  },
+  "is.npat_mi": {
+   "1": {
+    "year": 2026,
+    "raw_projection": 9599.7,
+    "central_after_record_median": 3188.9,
+    "p10": 2583.0,
+    "p90": 4278.3,
+    "n_resolved_errors": 8
+   },
+   "2": {
+    "year": 2027,
+    "raw_projection": 16247.4,
+    "central_after_record_median": 4462.2,
+    "p10": 3617.2,
+    "p90": 7999.4,
+    "n_resolved_errors": 7
+   },
+   "3": {
+    "year": 2028,
+    "raw_projection": 24117.2,
+    "central_after_record_median": 6876.7,
+    "p10": 4766.0,
+    "p90": 13575.4,
+    "n_resolved_errors": 6
+   },
+   "4": {
+    "year": 2029,
+    "raw_projection": 33645.7,
+    "central_after_record_median": 8897.6,
+    "p10": 6481.1,
+    "p90": 18145.4,
+    "n_resolved_errors": 5
+   },
+   "5": {
+    "year": 2030,
+    "raw_projection": 45376.0,
+    "central_after_record_median": 12393.2,
+    "p10": 10027.6,
+    "p90": 33473.6,
+    "n_resolved_errors": 5
+   }
+  }
+ }
+}

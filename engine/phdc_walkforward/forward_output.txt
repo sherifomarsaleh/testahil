@@ -1,0 +1,35 @@
+FORWARD PATH FROM ORIGIN FY2025 — ranges from the measured error spread
+(a range, never a point; no rating, target or recommendation)
+
+driver            h      central   10th-90th of the record            n
+units_sold        1         6511         4295  to       8553      8
+units_sold        2         7465         4450  to      10304      7
+units_sold        3         7647         5309  to      11946      6
+units_sold        4         7157         5801  to      10421      5
+units_sold        5         9691         5774  to      10270      4
+new_sales         1       143088       114640  to     259442      9
+new_sales         2       197854       122387  to     539801      8
+new_sales         3       251354       150649  to     906094      7
+new_sales         4       308614       222422  to     994795      6
+new_sales         5       374493       342910  to     975817      5
+is.revenue        1        34006        21479  to      46083      9
+is.revenue        2        49326        25990  to      79131      8
+is.revenue        3        55971        32614  to     136914      7
+is.revenue        4        73575        46856  to     205806      6
+is.revenue        5        93927        83620  to     214090      5
+is.gross_profit   1        12938         9964  to      16072      9
+is.gross_profit   2        20831        11423  to      28169      8
+is.gross_profit   3        23797        15480  to      56561      7
+is.gross_profit   4        30988        21931  to      91787      6
+is.gross_profit   5        40986        36536  to     104416      5
+is.npat_mi        1         3189         2583  to       4278      8
+is.npat_mi        2         4462         3617  to       7999      7
+is.npat_mi        3         6877         4766  to      13575      6
+is.npat_mi        4         8898         6481  to      18145      5
+is.npat_mi        5        12393        10028  to      33474      5
+
+anchors used (latest disclosed at or before the origin):
+   units_sold     FY2023 = 5300.0
+   new_sales      FY2024 = 151016.0
+   is.revenue     FY2025 = 36169.3
+   is.npat_mi     FY2025 = 4216.7

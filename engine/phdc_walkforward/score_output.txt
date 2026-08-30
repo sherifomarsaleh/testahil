@@ -1,0 +1,74 @@
+==============================================================================
+PER-DRIVER RECORD, all horizons pooled (as-known macro)
+driver                  n     bias      MAE    over block CIs {2,3,4}     
+asp                    30    0.041    0.271    0.57 -0.12/0.21 -0.04/0.19 0.01/0.19 
+is.admin_depr          39    0.586    1.112    0.77 0.11/1.18 0.24/1.20 0.33/1.19 ROBUST
+is.cogs                40   -0.241    0.476    0.33 -0.70/0.09 -0.76/0.15 -0.74/0.14 
+is.finance_cost        32   -1.074    1.076    0.03 -1.34/-0.86 -1.34/-0.89 -1.29/-0.93 ROBUST
+is.gross_profit        35    0.540    0.624    0.86 0.19/0.82 0.11/0.78 0.14/0.77 ROBUST
+is.npat_mi             31    1.116    1.117    0.97 0.78/1.35 0.77/1.35 0.76/1.31 ROBUST
+is.npbt                31    1.098    1.108    0.97 0.71/1.35 0.68/1.37 0.68/1.33 ROBUST
+is.revenue             35    0.105    0.425    0.63 -0.32/0.42 -0.39/0.38 -0.36/0.38 
+is.sga                 35   -0.079    0.366    0.54 -0.47/0.22 -0.51/0.19 -0.52/0.17 
+new_sales              35   -0.369    0.480    0.34 -0.85/-0.07 -0.93/-0.03 -0.85/-0.05 ROBUST
+units_delivered        30    0.294    0.427    0.73 -0.05/0.50 -0.06/0.51 -0.05/0.48 
+units_sold             30   -0.215    0.340    0.27 -0.45/-0.11 -0.48/-0.14 -0.43/-0.11 ROBUST
+
+==============================================================================
+BY HORIZON — revenue and net profit (as-known macro)
+driver            h    n     bias      MAE   skill vs freeze skill vs trend
+is.revenue        1    9    0.128    0.252   +0.118         -0.063        
+is.revenue        2    8    0.136    0.400   +0.221         +0.208        
+is.revenue        3    7    0.096    0.557   +0.153         +0.377        
+is.revenue        4    6    0.084    0.586   +0.307         +0.543        
+is.revenue        5    5    0.053    0.403   +0.620         +0.703        
+is.npat_mi        1    8    1.083    1.083   -3.827         -4.034        
+is.npat_mi        2    7    1.132    1.132   -1.705         -1.747        
+is.npat_mi        3    6    1.150    1.150   -1.459         -0.904        
+is.npat_mi        4    5    1.206    1.206   -1.225         -0.221        
+is.npat_mi        5    5    1.013    1.020   -0.138         +0.246        
+new_sales         1    9   -0.212    0.293   +0.241         +0.093        
+new_sales         2    8   -0.373    0.522   +0.189         +0.249        
+new_sales         3    7   -0.440    0.616   +0.288         +0.373        
+new_sales         4    6   -0.456    0.572   +0.463         +0.544        
+new_sales         5    5   -0.444    0.449   +0.640         +0.695        
+units_sold        1    8   -0.095    0.278   +0.014         +0.189        
+units_sold        2    7   -0.204    0.377   +0.038         +0.203        
+units_sold        3    6   -0.300    0.368   +0.095         +0.431        
+units_sold        4    5   -0.247    0.278   +0.142         +0.626        
+units_sold        5    4   -0.308    0.435   +0.094         +0.539        
+
+==============================================================================
+MACRO vs COMPANY split — perfect foresight isolates the company error
+driver                as-known   perfect macro share
+asp                      0.271     0.215    +20.4%
+is.admin_depr            1.112     1.107     +0.4%
+is.cogs                  0.476     0.379    +20.4%
+is.finance_cost          1.076     1.076     +0.0%
+is.gross_profit          0.624     0.578     +7.4%
+is.npat_mi               1.117     1.074     +3.9%
+is.npbt                  1.108     1.067     +3.7%
+is.revenue               0.425     0.334    +21.5%
+is.sga                   0.366     0.298    +18.6%
+new_sales                0.480     0.401    +16.4%
+units_delivered          0.427     0.427     +0.0%
+units_sold               0.340     0.340     +0.0%
+
+==============================================================================
+BY ERA — revenue bias (sign stability is what gates a correction)
+driver           era                 n     bias      MAE
+is.revenue       E2 post-float      15    0.507    0.511
+is.revenue       E3 devaluation     20   -0.196    0.362
+new_sales        E1 pre-float        1   -0.142    0.142
+new_sales        E2 post-float      19   -0.002    0.201
+new_sales        E3 devaluation     15   -0.849    0.857
+units_sold       E1 pre-float        1    0.173    0.173
+units_sold       E2 post-float      19   -0.091    0.270
+units_sold       E3 devaluation     10   -0.490    0.490
+asp              E1 pre-float        1   -0.315    0.315
+asp              E2 post-float      19    0.089    0.246
+asp              E3 devaluation     10   -0.015    0.314
+is.npat_mi       E2 post-float      15    1.319    1.319
+is.npat_mi       E3 devaluation     16    0.926    0.928
+
+sign cases (log undefined, scored and reported separately): 0

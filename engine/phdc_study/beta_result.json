@@ -1,0 +1,33 @@
+{
+ "ticker": "PHDC",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 1.0493083523382887,
+ "r2": 0.2987994630165052,
+ "se": 0.1822867868951778,
+ "n": 251,
+ "ci90": [
+  0.7494465878957213,
+  1.349170116780856
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.85,
+ "first_obs": "2021-09-09",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 1.0328722348921924,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "attested_by": "research_protocol.assert_beta_provenance",
+ "tier": "1 \u2014 own-stock weekly regression against the published index of the listing exchange",
+ "note": "No constituent composite is used. The regressor is the published EGX30 series held at engine/raw_indices/EG/EGX30.csv, resolved by beta_regression.own_stock_beta() via wacc_builder.market_index_path()."
+}

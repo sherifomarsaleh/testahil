@@ -1,0 +1,803 @@
+[
+ {
+  "url": "https://deliver.kontent.ai/9d7970fc-dc69-001d-cf10-ddbde8cd2225/items?system.type=financial_result_report_item_model&limit=200&depth=2",
+  "ts": "2026-08-30T15:45:22Z",
+  "status": 200,
+  "bytes": 114561,
+  "ok": true,
+  "secs": 0.5,
+  "sha256": "9d952b27d50d6361cfcb4af264e0bef9066d6e0ca00574626de8d370cdbadd1f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/806d2631-8e77-47da-b84d-1d146a54be9d/1Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:23Z",
+  "status": 200,
+  "bytes": 543282,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "9e6ec203c24352636930932d3cfd333c76ff48216ec3ae678acff8e7be92415f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6616849a-851c-40f6-9468-0807da77db3a/Palm%20Hills%20Developments%20-%201Q2015%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:23Z",
+  "status": 200,
+  "bytes": 438350,
+  "ok": true,
+  "secs": 0.32,
+  "sha256": "a10afb8d54d59d48998a24c280f869d57c995bbc1f1dbd12b24efed2deb140a3"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f66d8379-86f9-456e-a81b-4ede16a9946f/2Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:23Z",
+  "status": 200,
+  "bytes": 3491920,
+  "ok": true,
+  "secs": 0.43,
+  "sha256": "b8b9e501a8c0f16c2f34b22f4b6f42c946543e71f6f0623ba73e233f8a519e37"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/93475523-f4a3-4bda-9839-2ab0438a13c5/Palm%20Hills%20Developments%20-%202Q2015%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:24Z",
+  "status": 200,
+  "bytes": 708266,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "9fadf33cdd6732ccec081d61a6fd576cbbd21d8526b2da53a7935b1e37e56a73"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/75ed5eed-7881-41a3-a1ae-413e997d5ce7/3Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:24Z",
+  "status": 200,
+  "bytes": 705169,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "83dd266ad239466b93f27b1567b291285410d3f0a4a1b195064674b3fb1c346e"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/977d60c3-1bb8-4d2a-b1bf-e05bea7e64a0/Palm%20Hills%20Developments%20-%203Q2015%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:24Z",
+  "status": 200,
+  "bytes": 469673,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "46a292f32488e168ab4fca0063793fb035b1e1d8da5939e236203de111a40141"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b365fa6-9f15-47ae-a922-e70924d73fd7/4Q15%20-%20Consolidated%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:25Z",
+  "status": 200,
+  "bytes": 831052,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "10a170cc4047fad5a9751df218d84b99ffb1f3b8c698f435184ef1d9919bfde8"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/84fd4a0b-901a-4ba4-975d-d55ef6a5557c/Palm%20Hills%20Developments%20-%204Q2015%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:25Z",
+  "status": 200,
+  "bytes": 470409,
+  "ok": true,
+  "secs": 0.32,
+  "sha256": "312e94b2fdf625869e263bcbca24140cfaeb1bd50262d40e5729b7f56f3a8199"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b72dfc33-8a11-4a6e-909d-0384016e5690/1Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:25Z",
+  "status": 200,
+  "bytes": 861152,
+  "ok": true,
+  "secs": 0.36,
+  "sha256": "043866380b3f220d3f7ea0e88b3fa8d07049d60c72302006903a634040b86927"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f04868b9-bfcb-4ae1-b949-8f84fa8bfd0d/Palm%20Hills%20Developments%20-%201Q2016%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:26Z",
+  "status": 200,
+  "bytes": 440757,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "ce2e2e440d893e0695b25360dea43c4c625c2a576e5ce8820a0d74ba5acfdeaf"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/eb80e918-b95c-4556-b64d-79636048404d/Palm%20Hills%20Developments%20-%202Q2016%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:26Z",
+  "status": 200,
+  "bytes": 638369,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "6594eb2561198ba2ac0510196a4f702b6b8c7548087153213cc888cdabbe9d8e"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/92f1fa22-b0b3-4e0b-9a46-d2ff400da938/3Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:26Z",
+  "status": 200,
+  "bytes": 721028,
+  "ok": true,
+  "secs": 0.25,
+  "sha256": "a54a7fbdafeb8ec66d8cc33489612e1796104b592cf105a2c0fa6c221a65a38d"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8532abfd-592b-4573-b6e0-a2e94aedecdc/Palm%20Hills%20Developments%20-%203Q2016%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:27Z",
+  "status": 200,
+  "bytes": 616248,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "3ff76a8a8a997d9735e14d2249349c71731ea1d33bb6393bcd0ad8482962f8c8"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7b329ef5-34f6-4749-aef1-1520541c3874/4Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:27Z",
+  "status": 200,
+  "bytes": 636787,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "3ed5fe400e0b764bc710dca94ef8e3573fa350ee3ef90be5eacad631bb6c9957"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ec0e644-4214-4bc0-b993-71d8761c4177/Palm%20Hills%20Developments%20-%204Q2016%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:27Z",
+  "status": 200,
+  "bytes": 620410,
+  "ok": true,
+  "secs": 0.36,
+  "sha256": "0da01bd9f5d0e88f8a04cc144bd99f7c1425babb2044d0b9d9625fbed85b2d09"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/87558c0b-a0b1-4e34-8ea8-a8b5f6e2d6ae/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:27Z",
+  "status": 200,
+  "bytes": 1039491,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ce04ad2d-e27e-4c33-86b1-2a9852afd7a2/Palm%20Hills%20Developments%20-%201Q2017%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:28Z",
+  "status": 200,
+  "bytes": 507728,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "d1496003550f0d283e7be96d1d4c21a057cff363e344826f205e67f13a1cb08e"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8e2a04aa-992d-4a3f-99da-7bea988b2505/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:28Z",
+  "status": 200,
+  "bytes": 1039491,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8f337963-e685-490f-a5f4-5301719909e1/Palm%20Hills%20Developments%20-%202Q2017%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:28Z",
+  "status": 200,
+  "bytes": 787726,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "26a6a1425f10f5ecca45598f555ed8c0298058b315f11af5d39b3a49ae2dbf5b"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2f15ad36-4aae-48bf-b94f-e01505271022/3Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:29Z",
+  "status": 200,
+  "bytes": 796828,
+  "ok": true,
+  "secs": 0.29,
+  "sha256": "7b8013939e1c52beb9263a7c9bee6477369b08eeb82549f6ea4fd840d2e2f4df"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/94ccdef8-ea3d-4544-a3f0-567e6662b6e5/Palm%20Hills%20Developments%20-%203Q2017%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:29Z",
+  "status": 200,
+  "bytes": 555224,
+  "ok": true,
+  "secs": 0.36,
+  "sha256": "8bee8a9744b50aedbf89ec7f8340d05cb33be11c7614dbd1db0c5d368ae44b0f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b2dfea9e-0604-48ab-bee2-021392f0f228/4Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:29Z",
+  "status": 200,
+  "bytes": 1300666,
+  "ok": true,
+  "secs": 0.38,
+  "sha256": "1f3e557b15fe86e0e336585cc91c947c14da3199b40dd7ffe1263cd575f4d786"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/21ddb93a-f764-4872-98c8-a0a7ed5b8e3a/Palm%20Hills%20Developments%20-%204Q2017%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:30Z",
+  "status": 200,
+  "bytes": 482396,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "1b14f3fb73206237f789f77281a219dcbc0b639af77fa75492cc049d10d9baf6"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/199a0763-9eff-40a8-ad76-5dbef2ad2ab7/1Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:30Z",
+  "status": 200,
+  "bytes": 995781,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "01e731c11a1fe6d6b914ccd81064b07ca3e870456453b7dc6b60c9e864422468"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/101d8a90-f4ac-4846-b1bb-d688323964eb/Palm%20Hills%20Developments%20-%201Q2018%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:30Z",
+  "status": 200,
+  "bytes": 458814,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "01dc4b0018634166d75a22bcfd00afedf5b4fe7a0f3a5d6680af31e40491783a"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/182a5c56-7e82-4768-8ae1-f838068995a6/2Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:31Z",
+  "status": 200,
+  "bytes": 1486597,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "1038f6ec83d67d55ed2dd40ef98e66afaecc3398fe24c4e8478da3ad094ae331"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/62fb5ca2-bacd-41b8-81ab-9a5824d221c5/Palm%20Hills%20Developments%20-%202Q2018%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:31Z",
+  "status": 200,
+  "bytes": 345292,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "c1dd162fac1b787c61d6d6db66c2416cd76fa7292973a32a467d639319da5f68"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/50d6ea7b-f3b9-4180-828f-a16e2a1decc9/3Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:31Z",
+  "status": 200,
+  "bytes": 1107257,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "029d85a62ecf4fa3c9310ad33afb84d1fc5f445393550a740878c556e703c241"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4b9ad586-58e8-4e35-a471-c1483ca4a1d9/Palm%20Hills%20Developments%20-%203Q2018%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:32Z",
+  "status": 200,
+  "bytes": 346041,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "4af4abede3a560d8f9fff839649e33c6fc8ce48edf4d49dff7d91f2eca2a3466"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9e8e44b6-3e77-4a88-bde8-af6c13018179/4Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:32Z",
+  "status": 200,
+  "bytes": 1357478,
+  "ok": true,
+  "secs": 0.32,
+  "sha256": "c463458a87b3c01d48ea8417dcd0efabd80f864f518eabf466c93feceef3357c"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d5952553-5b65-426c-b913-4654274abd89/Palm%20Hills%20Developments%20-%204Q2018%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:32Z",
+  "status": 200,
+  "bytes": 479191,
+  "ok": true,
+  "secs": 0.29,
+  "sha256": "1fe676b696a1272aff8908bdb10450340e2ddd00ee57cc37a51bbeece1f2e689"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6977f19c-b6e3-47d3-922e-d1b336434421/PHD%20-%20Consolidated%20Financial%20Statements%20-%201Q%202019.pdf",
+  "ts": "2026-08-30T15:45:33Z",
+  "status": 200,
+  "bytes": 1092353,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "236ab7eb6a71e4cd3f0c8b364b755fee34e1b0e009d4446e77e8298f449902f4"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/23e463da-d461-4950-b63e-00ca9d9336fc/Palm%20Hills%20Developments%20-%201Q2019%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:33Z",
+  "status": 200,
+  "bytes": 444085,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "e4b367143a13fda37c33ce5b094444355485f4bfabe8ceb109477b3f0188efa0"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5c62ca21-e064-4d1b-ab25-85e0b98e042a/2Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:33Z",
+  "status": 200,
+  "bytes": 1030908,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "e2ca388709b4dea169be032974ace86a7a48c3906ceccd441a40e083949d22f3"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a3da59e2-163d-4409-9b30-9fdc644be23d/Palm%20Hills%20Developments%20-%202Q2019%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:33Z",
+  "status": 200,
+  "bytes": 472291,
+  "ok": true,
+  "secs": 0.24,
+  "sha256": "129d74c423fd88982c2179f0364619e3676a14ef2103c8856d6aa543328c50ca"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9d7c190d-997b-4570-bef8-d1afc00acea1/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202019.pdf",
+  "ts": "2026-08-30T15:45:34Z",
+  "status": 200,
+  "bytes": 708757,
+  "ok": true,
+  "secs": 0.31,
+  "sha256": "9ad67e71ed4d29871e1fefce67cc081af5445ed6dfe6e35df809da7413edc2ef"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7f1782b3-ff0c-47c4-9268-23c6da7783db/Palm%20Hills%20Developments%20-%203Q2019%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:34Z",
+  "status": 200,
+  "bytes": 465476,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "c5312799f5cfe2edf82819aba4a714f83992acff9c94930e29f48589ac1c10df"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20e0a73f-71f4-429c-b17a-1929d3a14ed8/4Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:34Z",
+  "status": 200,
+  "bytes": 1286741,
+  "ok": true,
+  "secs": 0.32,
+  "sha256": "0efd92571c164b52f0f3f0a6aacd8637961f16d1e99d49bcb029abaf4e197e98"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3c2483ba-5b01-440c-906a-8b3526403212/Palm%20Hills%20Developments%20-%204Q2019%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:35Z",
+  "status": 200,
+  "bytes": 340610,
+  "ok": true,
+  "secs": 0.23,
+  "sha256": "2221d1680107fad8d833b40e6b7008ef8daa98185f0020a879cae7e53b96ad72"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2562bf89-51ef-476b-ae47-9d1293da8288/1Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:35Z",
+  "status": 200,
+  "bytes": 1145562,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "66ef2939bc7b945de1f4726285e2253569f47a25f10cfe19f62e2c6733d7ea06"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f8694b1e-9db2-446c-9dfc-48de962144c3/Palm%20Hills%20Developments%20-%201Q2020%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:35Z",
+  "status": 200,
+  "bytes": 314817,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "cf4362902ba5f7cd792c293a70bd1f6aeb95e3a253f88f271e03b59816817eee"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0f2e0e47-57db-45eb-9ee4-a849409ba56d/2Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:35Z",
+  "status": 200,
+  "bytes": 1167423,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "d74487e0c63412c89b6a6da512672aa9d0dabde410be0468f9930fbc0f9b74f4"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0bf690e3-7adf-48cf-93fc-50c26c02b26f/Palm%20Hills%20Developments%20-%202Q2020%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:36Z",
+  "status": 200,
+  "bytes": 343296,
+  "ok": true,
+  "secs": 0.24,
+  "sha256": "b9272ee63961e9e926eef1c1928aacdb4f677d7ce46a70e6820d4178b1bab8b9"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/99a080e7-bb5a-49d7-a793-0709f1077295/PHD%20-%20Consolidated%20Financial%20Statementa%20-%203Q%202020%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:36Z",
+  "status": 200,
+  "bytes": 1139220,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "4aba4bf341844cfd221e863149d114192820387306d15a745960024fac2705c5"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d335ca28-f335-479e-ae55-2acd74b3aef3/Palm%20Hills%20Developments%20-%203Q2020%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:36Z",
+  "status": 200,
+  "bytes": 338257,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "0834c8a85279b1ceeb47b96997d58f1665fb4b2dc70e81ce7075ea83b7318015"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ca62f887-454e-427c-8454-50f7b8bf6dab/4Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:37Z",
+  "status": 200,
+  "bytes": 2084997,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "31dc49c95d91cb627fadca62b5e9b798524d9e39d014b79414806c467355f2ef"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/aaf71146-4a3e-4760-bddc-01ce4f89acd6/Palm%20Hills%20Developments%20-%204Q2020%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:37Z",
+  "status": 200,
+  "bytes": 322134,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "af3c14b625f6d8e98975e7e894d185312e003d62ee6910734867b5f54636faa5"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/105d0a18-743b-4ebf-9792-97680ae2bb10/PHD%20-%20Consolidated%20Financial%20Stataements%20-%201Q%202021%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:37Z",
+  "status": 200,
+  "bytes": 1016495,
+  "ok": true,
+  "secs": 0.38,
+  "sha256": "00b63ff1dcd5c60a9aa8421a2ab46a44e63a749325143c369b4f91e07861fcee"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/72f8e2c8-d7b6-49bb-8a0a-7655961d7319/Palm%20Hills%20Developments%20-1Q2021%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:38Z",
+  "status": 200,
+  "bytes": 308907,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "b997ce9c3703149c45e6cef8efe813d58132b552634f46a6be2748f4ea44a1a1"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b494d8d0-c039-4720-8817-a9b48dedf2cb/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q%202021%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:38Z",
+  "status": 200,
+  "bytes": 1068538,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "cdce8987fff6e509ea0d2fc0faa47eb58416d12d6b5529641b74e4a20d228a92"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6673c8c1-1b95-4275-9e11-2277d46f9ff6/Palm%20Hills%20Developments%20-%202Q2021%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:38Z",
+  "status": 200,
+  "bytes": 324239,
+  "ok": true,
+  "secs": 0.25,
+  "sha256": "5c89cb75dad65cf2f5786f668a3d8f2f9ec953637ee0be0faf8a97729b3fb923"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/c6f66132-fd72-4198-bdaf-bb3c0ab1a135/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202021%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:39Z",
+  "status": 200,
+  "bytes": 1545364,
+  "ok": true,
+  "secs": 0.27,
+  "sha256": "13b231d28b269fb157d9a8b2c29e2f5b855ba98b3db2875536a9c895a8ca7b3f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/be473736-6977-4772-9570-be636c439ad4/Palm%20Hills%20Developments%20-%203Q2021%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:39Z",
+  "status": 200,
+  "bytes": 327120,
+  "ok": true,
+  "secs": 0.22,
+  "sha256": "93d22097c6abcf33d9adcfb10fa99a7f358505d328011483f1a3b3931350c476"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/805b040f-6d33-4fbf-bb55-da34a2f9b26c/PHD%20-%20Consolidated%20Financial%20Statements%20-%204Q%20%202021%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:39Z",
+  "status": 200,
+  "bytes": 2250087,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "a3780a02e39cf83012483d51eb4baa4fdcefe637e19b067f7b428b0b1372d5c3"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e7d5bb4c-94e7-403e-a285-63e2d9eed706/Palm%20Hills%20Developments%20-%204Q2021%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:39Z",
+  "status": 200,
+  "bytes": 286381,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "c88b2a21b22cfea5d692cec802f18819976a192783d2d8bdd5ae119f0301bb85"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+  "ts": "2026-08-30T15:45:40Z",
+  "status": 200,
+  "bytes": 1471289,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e213d1af-0813-4165-883f-fd30e04959bf/Palm%20Hills%20Developments%20-%201Q2022%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:40Z",
+  "status": 200,
+  "bytes": 291000,
+  "ok": true,
+  "secs": 0.29,
+  "sha256": "643972a014138fefbfeeab829c8c93dba608398ceb28630c476bd200b59a94a5"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+  "ts": "2026-08-30T15:45:40Z",
+  "status": 200,
+  "bytes": 1471289,
+  "ok": true,
+  "secs": 0.23,
+  "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5b1c9c1f-8f71-4525-99dc-613fa8ba4fe7/Palm%20Hills%20Developments%20-%202Q2022%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:41Z",
+  "status": 200,
+  "bytes": 292464,
+  "ok": true,
+  "secs": 0.25,
+  "sha256": "223147e7639172fba79431ff4cd45e73ad7c5c54b253a55d76fcd21da721ef59"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f1671c5a-da1f-42a7-bf87-fca06e911644/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q2022.pdf",
+  "ts": "2026-08-30T15:45:41Z",
+  "status": 200,
+  "bytes": 2245560,
+  "ok": true,
+  "secs": 0.3,
+  "sha256": "792a1457164b82ad44b889817d1672b3a8016d2bf86a3791dab2d9db5ca8b89e"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+  "ts": "2026-08-30T15:45:41Z",
+  "status": 200,
+  "bytes": 1471289,
+  "ok": true,
+  "secs": 0.23,
+  "sha256": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86ddbea0-c98e-4248-90ee-87235153551a/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-%2031%20%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1%202022.pdf",
+  "ts": "2026-08-30T15:45:41Z",
+  "status": 200,
+  "bytes": 3162098,
+  "ok": true,
+  "secs": 0.35,
+  "sha256": "a24a0ced84775bed585bbc60e80687c9a40c30d16c36e0968e384dbcaa7002f6"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/692c503e-2096-43a2-a81f-e81c62c03726/4Q2022%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:42Z",
+  "status": 200,
+  "bytes": 283376,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "55f8622012006da89810fad954e9ce4ddbd9c43c6b458d141c5d76d4d558bf95"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/69da8473-f776-4f19-bf81-72dcb3879f3f/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-31%20%D9%85%D8%A7%D8%B1%D8%B3%202023.pdf",
+  "ts": "2026-08-30T15:45:42Z",
+  "status": 200,
+  "bytes": 4127612,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "e6609773cd9720198886ba5422cfbc3d6f2223110efaccf341198d9cf79831c8"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e21455a9-c6e7-48bf-9ac4-793fae80e97a/1Q2023%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:42Z",
+  "status": 200,
+  "bytes": 276674,
+  "ok": true,
+  "secs": 0.25,
+  "sha256": "b9b5c0cebb95442b35c7023ff2fee8961f9ad25f5215ada3a3141288d9b5cde5"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6d4a39a8-185d-4a38-94ce-1b7181063779/PHD%20-%20Consolidated%20Financials%20-%2030.6.2023%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:43Z",
+  "status": 200,
+  "bytes": 2465531,
+  "ok": true,
+  "secs": 0.31,
+  "sha256": "ed0c2190d6f5e7eccd1df31780866fa3121f0185b53e3df0488360487b63ed1f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86b27c6d-7d91-4166-9803-68f2251d7a26/2Q2023%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:43Z",
+  "status": 200,
+  "bytes": 298743,
+  "ok": true,
+  "secs": 0.24,
+  "sha256": "f132cf49751c52944c4555b7c752cf007dfaa7d6a0b6e3097af04ec7c0c082e4"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ff38ef0d-8a7e-4c9d-978a-75def5757410/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9.pdf",
+  "ts": "2026-08-30T15:45:43Z",
+  "status": 200,
+  "bytes": 3384675,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "33a7e133b50cf8a5f40f9d4465c743b4cd40bb130ceee076be019b48bb774bed"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6e971eda-881a-4ec4-93eb-bc11e4aaab0e/9M2023%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:44Z",
+  "status": 200,
+  "bytes": 458751,
+  "ok": true,
+  "secs": 0.23,
+  "sha256": "268c6c40322cf7d5a89920421fbcd5c6c39373238cebca19c117d62b47f55375"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/138a39c9-3d65-41e1-bb46-aaa9aa8f7952/Palm%20Hills%20Developments-Consolidated%20Financials%20-%2031%20December%202023.pdf",
+  "ts": "2026-08-30T15:45:44Z",
+  "status": 200,
+  "bytes": 2526788,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "1112a14f12c1b89fde52dcb4336f4a965ad89eb0e64bf1ea50d4a224fbe57158"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ddb024c6-94a9-4926-b2de-4a99e57a0486/FY2023%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:44Z",
+  "status": 200,
+  "bytes": 279759,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "7ea8a9c64877fbe11557f04c9dd667e434c4b8f8f5e9350f566f25ce4ebe00d0"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ad1a106c-1051-49c1-90b7-0d33328bcd52/PHD%20Consolidated%20FS%20Q1%2C%202024%20English.pdf",
+  "ts": "2026-08-30T15:45:44Z",
+  "status": 200,
+  "bytes": 3053344,
+  "ok": true,
+  "secs": 0.34,
+  "sha256": "9427c6766fc971b5aac7a3d0051bb415e295f02c9a82997ff2a0a67635be8e0f"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/96c0604a-7afe-43b1-8bff-d542b4f0e382/1Q2024%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:45Z",
+  "status": 200,
+  "bytes": 247680,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "117edf8c56202d1b99c43a772e890cfa4a9887ed70c19a5dfdb174fcd22ba234"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e6dcf0ea-eb54-4672-bc4b-667e303ca613/PHD%20Consolidated%20FS%20Q2%2C%202024%20English.pdf",
+  "ts": "2026-08-30T15:45:45Z",
+  "status": 200,
+  "bytes": 4681064,
+  "ok": true,
+  "secs": 0.29,
+  "sha256": "febb394307efa8b2b23802649aea172262d5cd50a8543da9969657b9c3562126"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ef1123d-813e-43d8-8e44-79910e2b6cbe/PHD%20-%202Q2024%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:45Z",
+  "status": 200,
+  "bytes": 245277,
+  "ok": true,
+  "secs": 0.22,
+  "sha256": "c36dcfc2c2464c4701c9eb215b0dcabcca1e4910517df86ec86046a2b6585ba6"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4bea2274-189e-4b1d-a459-a0f8456f67e1/PHD%20Consolidated%20FS%20Q3%2C%202024%20English.pdf",
+  "ts": "2026-08-30T15:45:46Z",
+  "status": 200,
+  "bytes": 2626643,
+  "ok": true,
+  "secs": 0.28,
+  "sha256": "af0dae92dcc554b06f3e4708ac437202a1af2387a5b9402f21cdc380ff413c7d"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3023304b-0298-4a24-8f2e-27ffa9dd3c4f/3Q2024%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:46Z",
+  "status": 200,
+  "bytes": 265711,
+  "ok": true,
+  "secs": 0.24,
+  "sha256": "c56f13349a5a44a5996bf8edd3902878ca0c737fb2700ae64b6dca7ed6c8b231"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ea8b27c3-ac05-4d8a-b98c-49cc146d7dd6/Palm%20Hills%20FS%20Cons%2031Dec%202024.pdf",
+  "ts": "2026-08-30T15:45:46Z",
+  "status": 200,
+  "bytes": 2679883,
+  "ok": true,
+  "secs": 0.32,
+  "sha256": "db2e28a574fa0ff8af1efb8f5ebb9087532840f700ece7af980147a23b224335"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/bc32848a-9f38-4661-8e05-a5ef94377210/4Q2024%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:46Z",
+  "status": 200,
+  "bytes": 269055,
+  "ok": true,
+  "secs": 0.23,
+  "sha256": "248b168da03290f8f58c75efe45a8524759222a2b5478c5f55f126aa83c2173d"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/07b0fb36-4542-4c20-bc1d-2eace10ea388/PHD%20Consolidated%20FS%20Q1%202025%20%28English%29.pdf",
+  "ts": "2026-08-30T15:45:47Z",
+  "status": 200,
+  "bytes": 4115404,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "5b521f2432daf03ecb94cf47272aa4b58489a439208ec033ca02f757c3cbb001"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a4aefd41-c1cb-49c5-9c90-fc6ddecdd04d/Palm%20Hills%20-%201Q2025%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:47Z",
+  "status": 200,
+  "bytes": 255335,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "ec1e5cf4bb56fa1915a50dffbb9c434533a39c02b730c0243293a52313628ca0"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20c6df1c-1f94-4a2b-87a0-b7bb54c6b6a0/PHD%20-%201H2025%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:47Z",
+  "status": 200,
+  "bytes": 331942,
+  "ok": true,
+  "secs": 0.24,
+  "sha256": "b4bc5062ab57fa77fc8a67437a16053850811b63c6d875c732de35ff6420fa13"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/687aa550-5e1f-46e2-b896-da0d9341e4cc/PHD%20Consolidated%20FS%20Q2%202025%20%28English%29.pdf",
+  "ts": "2026-08-30T15:45:48Z",
+  "status": 200,
+  "bytes": 3838699,
+  "ok": true,
+  "secs": 0.29,
+  "sha256": "554e97352bfc43c0af7125169eb90c7637794756b92536c63a99b2b524d8ffc8"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/89509bb2-ce31-4d76-bd07-975b494ca0e3/BoD%2013Nov.25_ENG%20Financials%20Consolidated.pdf",
+  "ts": "2026-08-30T15:45:48Z",
+  "status": 200,
+  "bytes": 2440230,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "3b3f59a0b0537a8bc5c7af39bf16d733431357f9e80db5e2bb46302680320e09"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/02dca288-cffa-4e5a-9310-c99e9c354206/3Q2025%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:48Z",
+  "status": 200,
+  "bytes": 320535,
+  "ok": true,
+  "secs": 0.26,
+  "sha256": "9ec3cd062d3706eac97b4b76399964c31143c926e7fb796d028ee5a43829e5b8"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/192727da-8dfc-4aab-ad51-a5da89d260e1/ConsolidatedFinancials-Eng.pdf",
+  "ts": "2026-08-30T15:45:49Z",
+  "status": 200,
+  "bytes": 2555712,
+  "ok": true,
+  "secs": 0.33,
+  "sha256": "72fc0ed5d947f7ccd1304211a1cd693e40e47cf7175ba94087fa84b1336fdd3b"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/324b2511-f38d-4e6a-9a5c-9faecfdcaca9/PHD%20Consolidated%20FS%20Q1%202026%20%28English%29.pdf",
+  "ts": "2026-08-30T15:45:49Z",
+  "status": 200,
+  "bytes": 4290530,
+  "ok": true,
+  "secs": 0.37,
+  "sha256": "bdd9c4b3ea0feaebff20f2367476593baeb6b0e58ff86a8b29481b02c08b56bc"
+ },
+ {
+  "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b1990606-ca86-47bc-ac75-552741415edf/PHD%20-%201Q2026%20Earnings%20Release%20-%20English.pdf",
+  "ts": "2026-08-30T15:45:49Z",
+  "status": 200,
+  "bytes": 317632,
+  "ok": true,
+  "secs": 0.25,
+  "sha256": "4d3ec78d03d259a83c5e1bac35d8710f046a928d830619aa8ff1741a693c4e1d"
+ }
+]
