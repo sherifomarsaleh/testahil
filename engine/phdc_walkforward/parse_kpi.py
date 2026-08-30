@@ -200,6 +200,22 @@ def build():
             series["new_sales"][y][stem] = v
             if b["units"]:
                 series["units_sold"][y][stem] = b["units"][b["years"].index(y)]
+            else:
+                # The later releases plot the company total WITHOUT a units row
+                # while still plotting units for each region. Summing the
+                # regions recovers the total; it is a DERIVED figure and is
+                # labelled as one, not passed off as a disclosed total.
+                tot, seen = 0.0, 0
+                for ob in blocks:
+                    if ob is b or not ob["units"] or y not in ob["years"]:
+                        continue
+                    if ob["sales"][ob["years"].index(y)] >= v:
+                        continue                      # not a region of this total
+                    tot += ob["units"][ob["years"].index(y)]
+                    seen += 1
+                if seen >= 2:
+                    series["units_sold_derived"][y][stem] = tot
+                    series["units_sold_derived_n"][y][stem] = seen
         narr[fy] = parse_narrative(txt, fy)
     return series, narr
 

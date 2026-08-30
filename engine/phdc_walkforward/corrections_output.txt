@@ -1,0 +1,53 @@
+WHAT EACH DRIVER EARNED, ORIGIN BY ORIGIN (expanding window)
+origin driver                 n     bias   applied  reason
+2018   units_sold             3   0.0284    0.0000  only one era has two or more resolved errors
+2018   asp                    3  -0.2098    0.0000  only one era has two or more resolved errors
+2018   units_delivered        3  -0.0968    0.0000  only one era has two or more resolved errors
+2018   is.finance_cost        3  -0.7627    0.0000  only one era has two or more resolved errors
+2019   units_sold             6  -0.1771    0.0000  only one era has two or more resolved errors
+2019   asp                    6   0.0067    0.0000  only one era has two or more resolved errors
+2019   units_delivered        6   0.0279    0.0000  only one era has two or more resolved errors
+2019   is.sga                 3  -0.0151    0.0000  only one era has two or more resolved errors
+2019   is.finance_cost        6  -0.8450    0.0000  only one era has two or more resolved errors
+2020   units_sold            10  -0.1222    0.0000  only one era has two or more resolved errors
+2020   asp                   10  -0.0374    0.0000  only one era has two or more resolved errors
+2020   units_delivered       10   0.2729    0.0000  only one era has two or more resolved errors
+2020   is.sga                 6   0.0981    0.0000  only one era has two or more resolved errors
+2020   is.finance_cost       10  -0.8749    0.0000  only one era has two or more resolved errors
+2021   units_sold            15   0.0125    0.0000  only one era has two or more resolved errors
+2021   asp                   15  -0.0522    0.0000  only one era has two or more resolved errors
+2021   units_delivered       15   0.5255    0.0000  only one era has two or more resolved errors
+2021   is.sga                10   0.2511    0.0000  only one era has two or more resolved errors
+2021   is.finance_cost       15  -0.8415    0.0000  only one era has two or more resolved errors
+2022   units_sold            20  -0.0780    0.0000  only one era has two or more resolved errors
+2022   asp                   20   0.0686    0.0000  only one era has two or more resolved errors
+2022   units_delivered       20   0.4495    0.0000  only one era has two or more resolved errors
+2022   is.sga                15   0.2698    0.0000  only one era has two or more resolved errors
+2022   is.finance_cost       20  -0.8191    0.0000  only one era has two or more resolved errors
+2023   units_sold            25  -0.1457   -0.0729  sign stable across eras; half strength
+2023   asp                   25   0.1070    0.0535  sign stable across eras; half strength
+2023   units_delivered       25   0.3827    0.1914  sign stable across eras; half strength
+2023   is.sga                20   0.1623    0.0000  bias does not hold its sign across eras
+2023   is.finance_cost       24  -0.8890   -0.4445  sign stable across eras; half strength
+2024   units_sold            30  -0.2153   -0.1077  sign stable across eras; half strength
+2024   asp                   30   0.0408    0.0000  bias does not hold its sign across eras
+2024   units_delivered       30   0.2945    0.0000  bias does not hold its sign across eras
+2024   is.sga                25   0.1239    0.0000  bias does not hold its sign across eras
+2024   is.finance_cost       24  -0.8890   -0.4445  sign stable across eras; half strength
+
+ADJUSTED vs RAW, on the origins that carried a correction
+driver                   n    raw MAE    adj MAE    change
+is.admin_depr            2     0.5925     0.5925   +0.0000
+is.cogs                  3     0.5188     0.6464   +0.1276
+is.finance_cost          3     0.8477     0.4032   -0.4445
+is.gross_profit          3     0.5896     0.6782   +0.0887
+is.npat_mi               3     1.2292     1.3063   +0.0771
+is.npbt                  3     1.1272     1.2043   +0.0771
+is.revenue               3     0.0584     0.0801   +0.0217
+is.sga                   3     0.2121     0.2121   +0.0000
+new_sales                1     0.7517     0.7323   -0.0194
+
+BY ORIGIN — mean absolute log error across all drivers
+origin       n        raw   adjusted    change
+2023        17     0.6823     0.6879   +0.0056
+2024         7     0.5837     0.5450   -0.0387

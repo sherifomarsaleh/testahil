@@ -110,6 +110,13 @@ def build():
                                    "year's filing")
 
     # ---- operating drivers from the releases (tier A) ----------------------
+    # NOTE — units_sold_derived is deliberately NOT consumed. Summing the
+    # disclosed regional unit series to recover a missing company total was
+    # tried and REJECTED on its own evidence: on the four years where the total
+    # IS disclosed the sum overstates it by about a third (2023: 6,962 against a
+    # disclosed 5,300), because the regional charts overlap. It is kept in
+    # parse_kpi as a recorded negative result. FY2024 and FY2025 units sold
+    # therefore have no entry at all rather than an inferred one.
     for field in ("new_sales", "units_sold"):
         for y, readings in series[field].items():
             if not readings:
@@ -118,13 +125,20 @@ def build():
             # origin at that year could have seen. Later readings are kept
             # alongside so a restatement is visible rather than overwritten.
             first = min(readings)
-            yr(y)[field] = rec(readings[first],
+            if field == "units_sold_derived" and "units_sold" in yr(y):
+                continue
+            yr(y)[field.replace("_derived", "")] = rec(
+                               readings[first],
                                "PHD earnings release %s, embedded chart series, via %s"
                                % (first, IR_URL),
                                "%s-12-31" % first[:4], "A",
-                               note="EGP million" if field == "new_sales" else "units")
+                               note="EGP million" if field == "new_sales" else
+                                    ("units; DERIVED as the sum of the disclosed "
+                                     "regional unit series, because the release plots "
+                                     "the company total without a units row"
+                                     if field.endswith("_derived") else "units"))
             if len(set(readings.values())) > 1:
-                yr(y)[field + "_restated"] = rec(
+                yr(y)[field.replace("_derived", "") + "_restated"] = rec(
                     readings[max(readings)],
                     "PHD earnings release %s, same chart series restated" % max(readings),
                     "%s-12-31" % max(readings)[:4], "A",
