@@ -5848,98 +5848,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "EMAARDEV",
-   "name": "Emaar Development PJSC",
-   "code": "DFM:EMAARDEV",
-   "ccy": "AED",
-   "spot": 13.16,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-08",
-   "fv_lag_days": 16,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 12.88,
-   "fv_base": 17.29,
-   "fv_full": 22.76,
-   "gap_base_pct": 31.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.08553,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -0.25,
-     "base": 3.19,
-     "full": 6.41
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3755,
-     "base": 0.005,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.6563,
-     "base": 0.0082,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.2275,
-     "base": 25.4527,
-     "full": 715.1375
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00056
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.163795,
-    "mu_h": -0.00076,
-    "G": {
-     "bear": -0.13,
-     "base": 1.67,
-     "full": 3.34
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4362,
-     "base": 0.0405,
-     "full": 0.0041
-    },
-    "p_touch": {
-     "bear": 0.8119,
-     "base": 0.0724,
-     "full": 0.0076
-    },
-    "required_cagr": {
-     "bear": -0.0824,
-     "base": 1.9796,
-     "full": 7.9468
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00088
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "ADCB",
    "name": "Abu Dhabi Commercial Bank",
    "code": "ADX:ADCB",
@@ -6120,6 +6028,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base above p95",
     "selftest_max_dev": 0.0012
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "EMAARDEV",
+   "name": "Emaar Development PJSC",
+   "code": "DFM:EMAARDEV",
+   "ccy": "AED",
+   "spot": 12.76,
+   "anchor_date": "2026-08-27",
+   "fv_asof": "2026-07-08",
+   "fv_lag_days": 50,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 12.88,
+   "fv_base": 17.29,
+   "fv_full": 22.76,
+   "gap_base_pct": 35.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.088481,
+    "mu_h": -0.006289,
+    "G": {
+     "bear": 0.11,
+     "base": 3.43,
+     "full": 6.54
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4114,
+     "base": 0.0035,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.7753,
+     "base": 0.006,
+     "full": 0.0005
+    },
+    "required_cagr": {
+     "bear": 0.1189,
+     "base": 37.3117,
+     "full": 1036.1916
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0018
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.164559,
+    "mu_h": -0.018988,
+    "G": {
+     "bear": 0.06,
+     "base": 1.85,
+     "full": 3.52
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4137,
+     "base": 0.0258,
+     "full": 0.003
+    },
+    "p_touch": {
+     "bear": 0.8606,
+     "base": 0.0487,
+     "full": 0.0056
+    },
+    "required_cagr": {
+     "bear": 0.0382,
+     "base": 2.3711,
+     "full": 9.1225
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00228
    },
    "market": "AE"
   },

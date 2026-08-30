@@ -35,6 +35,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -102,6 +103,25 @@ def sync_main(ticker: str, republish: bool = False) -> None:
     # republish"); doing it here is what lets an interrupted publish be re-run without
     # a human in the loop. Stash+pop would collide in assets/data.js for the same
     # reason the merge does, one step later and with a stash still to unwind.
+    # A CONFLICTED TREE IS NOT A DIRTY TREE, AND `git add -A` TURNS AN HONEST
+    # FAILURE INTO A COMMITTED CORRUPTION (30-Aug-2026). When the merge below
+    # hits conflicts this script dies correctly — but it leaves the tree in an
+    # unmerged state, and on the NEXT run `git status --porcelain` is non-empty,
+    # so this branch used to `git add -A` the conflict markers and commit them.
+    # Measured: 106 pages shipped with literal <<<<<<< HEAD in them, the merge
+    # concluded itself, and the re-run then printed "branch is current with
+    # origin/main" — the failure the previous run reported had been erased by
+    # obeying its own instruction to re-run. Refuse instead: unmerged paths are
+    # resolved by a human, never swept into a commit.
+    unmerged = run(["git", "diff", "--name-only", "--diff-filter=U"]).split()
+    if unmerged:
+        die("the working tree has UNRESOLVED merge conflicts from an earlier run — "
+            "resolve these files, `git add` them, commit, then re-run:\n    "
+            + "\n    ".join(unmerged)
+            + "\n\n  Resolve ADDITIVELY: keep main's new ticker rows AND this ticker's"
+              "\n  row. Keep SITE.latest as main has it unless this is a first publish."
+              "\n  This script will NOT `git add -A` over a conflicted tree.")
+
     if run(["git", "status", "--porcelain"]).strip():
         print("  working tree is dirty — committing it before the merge "
               "(git refuses to start a merge over uncommitted overlapping edits)")
@@ -273,6 +293,46 @@ def surfaces(ticker: str) -> None:
     else:
         print(f"  no market resolved for {ticker} — fv_overlay not regenerated")
 
+    mirror_legacy_assets()
+
+
+def mirror_legacy_assets() -> None:
+    """Keep legacy/assets/ in step with assets/ — SIX SURFACES DEPEND ON IT.
+
+    The 30-Aug-2026 cutover snapshotted assets/ into legacy/assets/ and left the
+    legacy pages loading it RELATIVELY, so /legacy/ledger.html reads
+    /legacy/assets/data.js, not the copy this publish just rewrote. Nothing synced
+    the two, and the snapshot had never been updated — this is simply the first
+    publish since the cutover, so the divergence had not had a chance to show yet.
+
+    It matters because root ledger.html, picker.html, trade.html and portfolio.html
+    are all redirect stubs: the only WORKING copies are the legacy ones. A frozen
+    snapshot therefore does not age gracefully, it silently stops the public
+    forecast ledger from ever showing another grade, while /EMAARDEV/study/ (new
+    IA, absolute /assets/) shows the fresh cone — the same site quoting two prices
+    for one stock on the same day.
+
+    Copy only files legacy ALREADY has: legacy/assets is a snapshot of the surfaces
+    the old site reads, not a mirror of everything in assets/, and adding test.js or
+    editions.json to it would be inventing content the archive never had.
+    """
+    src = os.path.join(ROOT, "assets")
+    dst = os.path.join(ROOT, "legacy", "assets")
+    if not os.path.isdir(dst):
+        print("  no legacy/assets — nothing to mirror")
+        return
+    copied = []
+    for name in sorted(os.listdir(dst)):
+        a, b = os.path.join(src, name), os.path.join(dst, name)
+        if not os.path.isfile(a) or not os.path.isfile(b):
+            continue
+        if open(a, "rb").read() != open(b, "rb").read():
+            shutil.copyfile(a, b)
+            copied.append(name)
+    # [R-ENF-04] Report what was examined, not just what changed.
+    print(f"  legacy/assets mirrored — {len(os.listdir(dst))} file(s) checked, "
+          + (f"{len(copied)} updated: {', '.join(copied)}" if copied else "0 updated"))
+
 
 def gates() -> None:
     step("3/6", "running the two gates")
@@ -286,6 +346,29 @@ def gates() -> None:
         die("check_page_integrity reported hard findings — see above")
 
 
+def served_page(name: str, marker: str) -> str:
+    """Repo-relative path of the page a READER actually gets for `name`.
+
+    Since the 30-Aug-2026 cutover the root slugs are redirect stubs and the
+    preserved study pages live under legacy/ (still served). A file:// render of
+    the stub executes its location.replace() against a file URL and lands
+    nowhere, so the check reported "did not render its valuation gauge" for a
+    page that was fine — pointing the reader at the data when the fault was the
+    path. Resolve on the MARKER the check is about to look for, exactly as
+    check_data_freshness.py resolves HAS_BACKTEST: root wins if it ever carries
+    the set again, legacy/ otherwise.
+    """
+    root_p = os.path.join(ROOT, name)
+    if os.path.exists(root_p) and marker in open(root_p, encoding='utf-8').read():
+        return name
+    legacy_p = os.path.join(ROOT, 'legacy', name)
+    if os.path.exists(legacy_p) and marker in open(legacy_p, encoding='utf-8').read():
+        return f'legacy/{name}'
+    # [R-ENF-04] Neither copy carries the marker: that is a finding, not a default.
+    die(f"no served copy of {name} carries {marker!r} — checked {root_p} and "
+        f"{legacy_p}. The page layout moved, or the page was never written.")
+
+
 def render_verify(ticker: str) -> None:
     """Verify by RENDER, not by grep: the markup looks correct either way. Loads the
     ticker page and ledger.html in headless Chromium and reads the DOM."""
@@ -293,18 +376,19 @@ def render_verify(ticker: str) -> None:
     js = r"""
 const { chromium } = require('playwright');
 (async () => {
-  const TK   = process.argv[2];   // page key      -> {tk}.html
-  const INST = process.argv[3];   // LEDGER name   -> listed in ledger.html
+  const TKP  = process.argv[2];   // ticker page   -> repo-relative served path
+  const INST = process.argv[3];   // LEDGER name   -> listed in the ledger page
+  const LEDP = process.argv[5];   // ledger page   -> repo-relative served path
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
                                     args: ['--no-sandbox'] });
   const p = await b.newPage();
   const errs = [];
   p.on('pageerror', e => errs.push(String(e)));
   const base = 'file://' + process.argv[4] + '/';
-  await p.goto(base + TK.toLowerCase() + '.html');
+  await p.goto(base + TKP);
   await p.waitForTimeout(1500);
   const pageOK = (await p.content()).includes('id="gauge"');
-  await p.goto(base + 'ledger.html');
+  await p.goto(base + LEDP);
   await p.waitForTimeout(1800);
   const body = await p.innerText('body');
   const listed = new RegExp('\\b' + INST + '\\b').test(body);
@@ -322,7 +406,10 @@ const { chromium } = require('playwright');
         # why one argument survived this long -- but platinum's page is
         # platinum.html while its rows say Platinum, so the single-arg version
         # failed on a correctly published metal and blamed the market registry.
-        p = subprocess.run(["node", path, ticker, ledger_instrument(ticker), ROOT],
+        tk_page = served_page(f"{ticker.lower()}.html", 'id="gauge"')
+        led_page = served_page("ledger.html", "HAS_BACKTEST")
+        p = subprocess.run(["node", path, tk_page, ledger_instrument(ticker),
+                            ROOT, led_page],
                            cwd=ROOT, text=True,
                            capture_output=True, timeout=300, env=env)
         if p.returncode != 0:
@@ -332,14 +419,14 @@ const { chromium } = require('playwright');
         os.path.exists(path) and os.remove(path)
     inst = ledger_instrument(ticker)
     if not res["pageOK"]:
-        die(f"{ticker.lower()}.html did not render its valuation gauge")
+        die(f"{tk_page} did not render its valuation gauge")
     if not res["listed"]:
-        die(f"{inst} does not appear in ledger.html's rendered DOM — check the "
+        die(f"{inst} does not appear in {led_page}'s rendered DOM — check the "
             f"market registry (MARKET_OF) and the LEDGER rows")
     if res["errors"]:
         die(f"page errors on render: {res['errors'][:3]}")
     label = ticker if inst == ticker else f"{ticker} (as {inst})"
-    print(f"  {ticker.lower()}.html renders · {label} listed in ledger.html · 0 page errors")
+    print(f"  {tk_page} renders · {label} listed in {led_page} · 0 page errors")
 
     # The ticker's own page and the ledger were the only two surfaces ever verified here.
     # Everything else was taken on trust and drifted: three publishes in a row went out
