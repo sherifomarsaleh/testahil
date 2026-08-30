@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0157,
+    "market_skill": 0.0155,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
       0.007,
-      0.026
+      0.025
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -1141,13 +1141,13 @@
         ]
       },
       "DIB": {
-        "nu": 10.0,
+        "nu": 12.0,
         "width_cal": 0.909,
-        "skill": 0.0344,
-        "skill_raw_basis": 0.0303,
+        "skill": 0.0347,
+        "skill_raw_basis": 0.0306,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.003,
+          -0.004,
           0.058
         ]
       },
@@ -1209,12 +1209,12 @@
       "ENBD": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": -0.0096,
-        "skill_raw_basis": -0.0092,
+        "skill": -0.0133,
+        "skill_raw_basis": -0.0195,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.037,
-          0.011
+          -0.043,
+          0.024
         ]
       },
       "FAB": {
@@ -1229,13 +1229,13 @@
         ]
       },
       "FERTIGLB": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": -0.0031,
-        "skill_raw_basis": -0.0077,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": -0.0015,
+        "skill_raw_basis": -0.0055,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
+          -0.021,
           0.011
         ]
       },
@@ -1273,10 +1273,10 @@
         ]
       },
       "SALIK": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": 0.0043,
-        "skill_raw_basis": 0.0048,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0039,
+        "skill_raw_basis": 0.0043,
         "verdict": "PARITY",
         "ci_block2": [
           -0.007,
@@ -1315,10 +1315,10 @@
       ],
       "cov50": {
         "mle": 0.5304,
-        "reshaped": 0.5012,
-        "lono_heldout": 0.5012
+        "reshaped": 0.5036,
+        "lono_heldout": 0.5036
       },
-      "delta_ll": 2.46,
+      "delta_ll": 2.47,
       "crps_parity_ci": {
         "2": [
           -0.0017,
