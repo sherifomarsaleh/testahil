@@ -87,6 +87,12 @@ NON_TICKER_PAGES = {
     "news.html", "calculator.html", "compare.html", "egypt.html", "index.html",
     "ledger.html", "metals.html", "method.html", "other-markets.html",
     "stocks.html", "trade.html", "portfolio.html", "picker.html",
+    # New-IA pages at root since the 30-Aug-2026 cutover — app pages, not
+    # five-lens ticker templates. Ticker studies now live at /{TICKER}/study/,
+    # rendered at runtime from assets/data.js: like the -3lenses pages, there
+    # is no static valuation table to clone wrong, so checks 1/2/4 do not
+    # describe them.
+    "coverage.html", "tools.html", "savings.html", "record.html", "study.html",
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
@@ -119,6 +125,19 @@ TAB_CHROME_EXEMPT = {"googlef90107a488de289e.html"}
 # ticker key, so a cross-ticker clone is impossible by construction — there is
 # no static valuation table on the page to copy wrong in the first place.
 THREE_LENS_SUFFIX = "-3lenses.html"
+
+
+def is_redirect_stub(path: Path) -> bool:
+    """Since the 30-Aug-2026 cutover, the old root URLs ({slug}.html and
+    friends) are redirect stubs pointing at /legacy/ — a stub's entire body is
+    the redirect. It carries no study content by design, so the five-anchor
+    rule does not describe it. Detection is by the stub's own <title>, which
+    the cutover stamped on every one; a real study page could never carry it."""
+    try:
+        head = path.read_text(encoding="utf-8", errors="ignore")[:600]
+    except OSError:
+        return False
+    return "testahil? — archived</title>" in head or "testahil? — moved</title>" in head
 
 EXPECTED_SECTIONS = ["sec-value", "sec-chart", "sec-odds", "sec-peers", "sec-study"]
 
@@ -423,7 +442,7 @@ def main() -> int:
     ticker_pages = {
         n: p for n, p in all_html.items()
         if n not in NON_TICKER_PAGES and n not in STUB_PAGES
-        and not n.endswith(THREE_LENS_SUFFIX)
+        and not n.endswith(THREE_LENS_SUFFIX) and not is_redirect_stub(p)
     }
     data_js_path = REPO / "assets" / "data.js"
     if not data_js_path.exists():
