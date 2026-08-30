@@ -299,6 +299,20 @@ norm["bear"], norm["bull"] = norm["base"] * 0.75, norm["base"] * 1.30
 
 prediscount = {"bear": ps(sotp_book_total), "base": ps(sotp_round_total), "full": ps(sotp_bull_total)}
 
+# full SOTP reconciliation by scenario column (presentation block for the report:
+# legs -> sum -> per share -> minus holding discount -> total; same formulas as above)
+def recon(auto, capv, mntv):
+    tot = auto + capv + mntv + V["other_assoc_book"]
+    return {"auto": auto, "cap": capv, "mnt": mntv, "other": V["other_assoc_book"],
+            "sum": tot, "sum_ps": ps(tot), "discount": -HOLDCO_DISC * tot,
+            "total": tot * (1 - HOLDCO_DISC), "total_ps": ps(tot * (1 - HOLDCO_DISC))}
+sotp_recon = {
+    "bear": recon(max(auto_eq * 0.6, 0.0), cap_val["bear"], mnt_book),
+    "base_book": recon(auto_eq, cap_val["base"], mnt_book),
+    "base_round": recon(auto_eq, cap_val["base"], mnt_round_now),
+    "full": recon(auto_eq * 1.4, cap_val["bull"], mnt_round_post * 1.25),
+}
+
 # prior-edition comparatives — READ from the delivered study's committed numbers
 # file (numeric traceability: the report builder types no numeral)
 with open(os.path.join(HERE, "..", "study_numbers.json")) as _f:
@@ -408,6 +422,7 @@ out = {
     "params": {"pe_band": PE_BAND, "cap_pb_band": (0.8, 1.0, 1.4), "holdco_disc": HOLDCO_DISC,
                "tg": TG, "range_mult": RANGE_MULT, "corp_spread_bp": 150,
                "kd_short_tenor_alt": 0.22, "norm_roe": NORM_ROE},
+    "sotp_recon": sotp_recon,
     "prior_edition": prior_edition,
     "fair": {"bear": central["bear"], "base": central["base"], "full": central["full"]},
     "usd_cross_check": usd_check,
