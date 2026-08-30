@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0149,
+    "market_skill": 0.0158,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.006,
-      0.025
+      0.007,
+      0.026
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -1131,13 +1131,13 @@
       },
       "DEWA": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": 0.0076,
-        "skill_raw_basis": 0.0073,
+        "width_cal": 0.916,
+        "skill": 0.0089,
+        "skill_raw_basis": 0.0086,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.029,
-          0.047
+          -0.028,
+          0.05
         ]
       },
       "DIB": {
@@ -1187,12 +1187,12 @@
       "EMAARDEV": {
         "nu": 10.0,
         "width_cal": 0.909,
-        "skill": -0.0137,
-        "skill_raw_basis": -0.0086,
+        "skill": 0.0019,
+        "skill_raw_basis": -0.0045,
         "verdict": "PARITY",
         "ci_block2": [
           -0.029,
-          0.008
+          0.039
         ]
       },
       "EMPOWER": {
@@ -1262,14 +1262,14 @@
         ]
       },
       "MODON": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": 0.0465,
-        "skill_raw_basis": 0.0487,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0459,
+        "skill_raw_basis": 0.0477,
         "verdict": "PASS",
         "ci_block2": [
           0.022,
-          0.076
+          0.074
         ]
       },
       "SALIK": {
@@ -1314,23 +1314,23 @@
         0.965
       ],
       "cov50": {
-        "mle": 0.5366,
-        "reshaped": 0.5049,
-        "lono_heldout": 0.5049
+        "mle": 0.5341,
+        "reshaped": 0.5024,
+        "lono_heldout": 0.5024
       },
-      "delta_ll": 2.3,
+      "delta_ll": 2.32,
       "crps_parity_ci": {
         "2": [
-          -0.0016,
-          0.0021
+          -0.0015,
+          0.0022
         ],
         "3": [
-          -0.0016,
-          0.0022
+          -0.0015,
+          0.0023
         ],
         "4": [
           -0.0016,
-          0.0023
+          0.0024
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
