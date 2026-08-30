@@ -29,11 +29,30 @@ const PAD = 2;                       // px tolerance at the plot edges
    * content (same conclusion check_page_integrity.py and check_band_vocabulary.py
    * reached the same day), so walk it, and refuse to pass on an empty population. */
   const roots = [ROOT, path.join(ROOT, 'legacy')].filter(d => fs.existsSync(d));
-  const pages = roots.flatMap(dir =>
+  const flat = roots.flatMap(dir =>
     fs.readdirSync(dir)
       .filter(f => f.endsWith('.html'))
-      .filter(f => fs.readFileSync(path.join(dir, f), 'utf8').includes('id="ta-chart-svg"'))
-      .map(f => path.relative(ROOT, path.join(dir, f))));
+      .map(f => path.join(dir, f)));
+
+  /* ...AND THE NEW IA'S OWN PAGES, which the same-day fix above did not reach.
+   * It rescued legacy/ and stopped, so the count went 0 -> 93 and read as
+   * repaired — while the 93 pages the cutover PROMOTED TO ROOT, nested at
+   * {TICKER}/study/index.html, stayed outside the scan. A flat readdir cannot
+   * see a nested page, so this gate reported a healthy population at exactly
+   * HALF the truth, and the half it skipped is the half a reader is served.
+   * [R-ENF-04] COUNT AGAINST A KNOWN TOTAL: the total is every served page
+   * carrying the chart element, wherever the IA puts it. Measured 30-Aug-2026:
+   * 93 flat + 93 nested = 186. */
+  const nested = fs.readdirSync(ROOT, { withFileTypes: true })
+    .filter(d => d.isDirectory() && !['legacy', 'node_modules', '.git'].includes(d.name))
+    .flatMap(d => fs.readdirSync(path.join(ROOT, d.name), { withFileTypes: true })
+      .filter(sub => sub.isDirectory())
+      .map(sub => path.join(ROOT, d.name, sub.name, 'index.html'))
+      .filter(f => fs.existsSync(f)));
+
+  const pages = [...flat, ...nested]
+    .filter(f => fs.readFileSync(f, 'utf8').includes('id="ta-chart-svg"'))
+    .map(f => path.relative(ROOT, f));
 
   if (pages.length === 0) {
     console.error('FAIL — no page carries id="ta-chart-svg" under ' + ROOT +
