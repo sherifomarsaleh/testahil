@@ -1,0 +1,182 @@
+{
+  "fy": 2016,
+  "source_doc": "GB_Annual_Report_2016.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2016.pdf",
+  "units_note": "consolidated FS in EGP 000s unless stated ('All amounts in thousand Egyptian Pound'); MD&A quotes LE mn/bn",
+  "is": {
+    "revenue": {"v": 15285672, "q": "Revenue 15 285 672 12 264 689 [Continuing operations]"},
+    "cogs": {"v": -13083613, "q": "Cost of revenue (13 083 613) (10 660 759)"},
+    "gross_profit": {"v": 2202059, "q": "Gross profit 2 202 059 1 603 930"},
+    "distribution_exp": {"v": -449848, "q": "Selling and marketing expenses ( 449 848) ( 364 486)"},
+    "admin_exp": {"v": -749706, "q": "General and administrative expenses ( 749 706) ( 531 124)"},
+    "other_income": {"v": 40734, "q": "Other income 40 734 126 302"},
+    "other_expense": {"v": -184856, "q": "Provisions and Impairment of Current and Non-Current assets (Net) (7) ( 184 856) (58 460) [further one-off face lines: 'Reverse impairment / (Impairment) of Non-Current assets held for sale 21 229 ( 18 719)', 'Impairment on fixed assets ( 2 788) ( 1 591)', 'Investment Losses ( 10 862) ( 5 688)']"},
+    "op_profit": {"v": 865962, "q": "Operating results 865 962 750 164"},
+    "finance_income": {"v": 15965, "q": "Total Finance Income 15 965 46 034 [Note 6 Finance Costs: Interest income 12 605 + Interest income on installment sales 3 360; the IS face shows only the net line]"},
+    "finance_cost": {"v": -1853352, "q": "Finance costs (Net) (6) (1 853 352) (513 265) [Note 6: Interest expense and bank charges (657 296), Foreign exchange differences (1 212 021), Total Finance Cost (1 869 317), Net Finance Cost (1 853 352)]"},
+    "associates_income": null,
+    "pbt": {"v": -987390, "q": "Net (Loss) / profit for the year before income tax ( 987 390) 236 899"},
+    "income_tax": {"v": -2420, "q": "Income tax expense ( 9-C ) ( 2 420) (45 385)"},
+    "np_total": {"v": -989810, "q": "Net (Loss) / Profit for the year ( 989 810) 191 514 [(Loss)/Profit from continuing operations ( 989 810) 191 514; Discontinued operations - -]"},
+    "np_parent": {"v": -865656, "q": "Owners of the company ( 865 656) 233 095"},
+    "np_nci": {"v": -124154, "q": "Non-controlling interests ( 124 154) ( 41 581)"}
+  },
+  "bs": {
+    "ppe_net": {"v": 4898939, "q": "Property, plant, equipment and projects under construction (Net) (16) 4 898 939 3 175 486"},
+    "investments_associates": null,
+    "inventory": {"v": 5820482, "q": "Inventories (Net) (10) 5 820 482 2 950 981"},
+    "trade_notes_receivable": {"v": 2363801, "q": "Accounts and notes receivables (Net) (12) 2 363 801 1 649 624"},
+    "debtors_other": {"v": 1208354, "q": "Debtors and other debit balances (Net) (13) 1 208 354 1 069 509"},
+    "cash": {"v": 1225300, "q": "Cash on hand and at banks (14) 1 225 300 1 188 704"},
+    "total_current_assets": {"v": 10723453, "q": "Total current assets 10 723 453 7 274 196"},
+    "total_assets": {"v": 17096828, "q": "Total assets 17 096 828 11 313 352"},
+    "borrowings_current": {"v": 7068619, "q": "Loans, borrowings and overdrafts (25) 7 068 619 4 334 801"},
+    "borrowings_noncurrent": {"v": 1663490, "q": "Loans (25) 1 663 490 898 473"},
+    "trade_notes_payable": {"v": 2807950, "q": "Trade payables and other credit balances (26) 2 807 950 1 786 876"},
+    "total_liabilities": {"v": 12105480, "q": "Total liabilities 12 105 480 7 370 246"},
+    "equity_parent": {"v": 3821710, "q": "Equity attributable to owners of the company 3 821 710 3 334 446"},
+    "nci_equity": {"v": 1169638, "q": "Non-controlling interests (23) 1 169 638 608 660"},
+    "total_equity": {"v": 4991348, "q": "Total equity 4 991 348 3 943 106"},
+    "provisions": {"v": 161891, "q": "Provisions (27) 161 891 88 470 [current liabilities; separate non-current 'Warranty provisions (27) 49 174 54 741']"}
+  },
+  "cf": {
+    "cfo": {"v": -2318822, "q": "Net cash (used in) / generated from operating activities (2 318 822) 2 507"},
+    "capex_ppe": {"v": -1385345, "q": "Acquisition of property, plant, equipment and projects under constructions (1 385 345) (1 259 383)"},
+    "dep_amort_addback": {"v": 320759, "q": "Depreciation and amortization for the year (16،17) 320 759 254 724 [rendered across wrapped lines: labels then values 596 228 / 320 759 / 102 666 vs 360 888 / 254 724 / 43 045 for Interest expense / Depreciation and amortization / Provisions movements (net)]"},
+    "interest_paid": {"v": -561130, "q": "Interest paid ( 561 130) ( 349 101) [presented within financing activities]"},
+    "cfi": {"v": -1190820, "q": "Net cash used in investing activities (1190 820) (1199 045)"},
+    "cff": {"v": 2951725, "q": "Net cash generated from financing activities 2 951 725 1 102 869"}
+  },
+  "segments": [
+    {
+      "name": "Egypt Passenger Cars",
+      "revenue": {"v": 8016.1, "q": "Egypt Passenger Cars Revenue 8,016.1 5,713.1 40.3% [LE million, 'Summary Overview of Performance by Line of Business' — all figures net after elimination of inter-company accounts]"},
+      "gross_profit": {"v": 942.3, "q": "Total Gross Profit 942.3 647.9 45.4% / Gross Profit Margin 11.8% 11.3% 0.4 [LE million]"},
+      "volume_units": {"v": null, "q": "FY16 saw GB Auto’s Egypt Passenger Cars division grow its sales revenues by 40.3% y-o-y to LE 8,016.1 million despite a 1.2% y-o-y drop in sales volume during the year. [no absolute Egypt FY16 unit total printed; chart 'GB Auto Sales Volume Across All Brands and Markets (Vehicle Units)' final-year bars: 23,838 (CBU) and 28,868 (CKD) by legend order — see oddities]"}
+    },
+    {
+      "name": "Regional (Iraq / Algeria / Jordan: PC, M3W, tires, after-sales)",
+      "revenue": {"v": 1201.4, "q": "Regional Revenue 1,201.4 1,544.6 -22.2% [LE million, LOB summary; Total Regional Revenue by Year chart: 2013: 2,889.3; 2014: 2,821.1; 2015: 1,544.6; 2016: 1,201.4]"},
+      "gross_profit": {"v": 19.6, "q": "Gross Profit 19.6 25.0 -21.4% / Gross Profit Margin 1.6% 1.6% - [LE million]"},
+      "volume_units": {"v": null, "q": "Iraq PC: 'causing revenue to drop 27.0% y-o-y to LE 897.8 million. The After-Sales division, however, delivered promising results, with revenues up 66.7% y-o-y to LE 107.1 million during the year versus LE 64.3 million in FY15. GB Auto reduced losses by almost 40% during the year'; Iraq M3W: 'showing considerable growth y-o-y in terms of sales volumes, up 118.2% y-o-y, and revenues, up 223.7% y-o-y'; Algeria: 'Algerian operations were impacted by low volumes, with revenue down 65.3% y-o-y in FY16 on total sales volumes of LE 25.7 million'; Regional Tires: 'a 15.2% y-o-y decrease in revenues'"}
+    },
+    {
+      "name": "Egypt Motorcycles & Three-Wheelers",
+      "revenue": {"v": 1708.2, "q": "Egypt Motorcycles and Three-Wheelers Revenue 1,708.2 1,892.5 -9.7% [LE million, LOB summary; 'In FY16, revenues from the line of business declined 9.7% y-o-y on the back of lower sales volumes, which came in 26.8% y-o-y below levels reported in FY15']"},
+      "gross_profit": {"v": 241.2, "q": "Gross Profit 241.2 328.7 -26.6% / Gross Profit Margin 14.1% 17.4% -3.3 [LE million]"},
+      "volume_units": {"v": 65988, "q": "Three-Wheeler Sales Volumes (Vehicle Units) chart: 2016 = 65,988 (2015: 85,183; 2014: 61,068; 2013: 60,801); Motorcycle Sales Volumes (Vehicle Units) chart: 2016 = 28,997 (2015: 50,840; 2014: 36,801; 2013: 33,235) [v holds three-wheelers only; this report's 2015 chart values differ from the FY2015 report's own charts (85,808 / 51,065) — perimeter appears Egypt-only here]"}
+    },
+    {
+      "name": "Commercial Vehicles & Construction Equipment",
+      "revenue": {"v": 1113.3, "q": "Commercial Vehicles and Construction Equipment Revenue 1,113.3 1,216.9 -8.5% [LE million, LOB summary; 'overall sales volume drop 15.6% y-o-y in FY16. Revenues also fell, dropping 8.5% y-o-y to LE 1,113.3 million']"},
+      "gross_profit": {"v": 201.3, "q": "Gross Profit 201.3 167.7 20.0% / Gross Profit Margin 18.1% 13.8% 4.3 [LE million; 'gross profit gained 20.0% y-o-y to LE 201.3 million ... gross profit margin of 18.1%, 4.3 percentage points higher than last year']"},
+      "volume_units": {"v": null, "q": "Bus Sales Volume by Year (Vehicle Units) chart: 2016 = 735 (2015: 1,172; 2014: 1,055; 2013: 495; 2012: 470; 2011: 482; 2010: 927); Truck Sales Volume by Year (Vehicle Units) chart: 2016 = 1,556 (2015: 1,415; 2014: 2,292; 2013: 1,090; 2012: 1,063; 2011: 542; 2010: 1,297); 'Trucks were the top contributors ... a 28.0% y-o-y increase in sales revenues, which climbed to LE 504.7 million during the year thanks to a 10.0% y-o-y boost in sales volumes'; 'Trailer revenues slowed down in FY16 as sales volumes decreased 54.5% y-oy'"}
+    },
+    {
+      "name": "Egypt Tires",
+      "revenue": {"v": 462.5, "q": "Egypt Tires Revenue 462.5 203.2 - [LE million, LOB summary; 'posting revenues of LE 462.5 million compared to LE 203.2 million last year, up 127.6%']"},
+      "gross_profit": {"v": 101.3, "q": "Gross Profit 101.3 27.5 - / Gross Profit Margin 21.9% 13.6% 8.4 [LE million; 'Gross profit came in 267.9% higher y-o-y at LE 101.3 million ... gross profit margin stood at 21.9% compared to 13.6% in FY15']"},
+      "volume_units": null
+    },
+    {
+      "name": "Financing Businesses",
+      "revenue": {"v": 1739.6, "q": "Financing Businesses Revenue 1,739.6 1,046.2 66.3% [LE million, LOB summary; 'overall revenues for FY16 increased 66.3% y-o-y to LE 1,739.6 million compared to LE 1,046.2 million last year'; Financing Business Revenues by Year chart: 55.7 / 156.5 / 249.0 / 476.3 / 722.7 / 1,046.2 / 1,739.6 (2010-2016)]"},
+      "gross_profit": {"v": 404.9, "q": "Gross Profit 404.9 233.8 73.2% / Gross Profit Margin 23.3% 22.3% 1.0 [LE million; 'Total gross profit rose 73.2% y-o-y to LE 404.9 million versus LE 233.8 million in FY15']"},
+      "volume_units": null
+    },
+    {
+      "name": "Egypt After-Sales",
+      "revenue": {"v": 826.2, "q": "Egypt After-Sales Revenue 826.2 569.1 45.2% [LE million, LOB summary; 'Revenues from After-Sales operations in Egypt reached LE 826.2 million, reflecting a 45.2% y-o-y increase over FY15'; Egypt After-Sales Revenue Progression chart: 2013: 384.8; 2014: 451.6; 2015: 569.1; 2016: 826.2]"},
+      "gross_profit": {"v": 262.0, "q": "Gross Profit 262.0 164.4 59.4% / Gross Profit Margin 31.7% 28.9% 2.8 [LE million; M3W After-Sales within it: 'revenues climbing 58.1% y-o-y to LE 150.4 million, while gross profit stood at LE 40.5 million compared to LE 16.7 million in FY15'; CV&CE After-Sales: 'revenues standing at LE 160.8 million and gross profit LE 31.1 million']"},
+      "volume_units": null
+    },
+    {
+      "name": "Others (PAL lubricants, Fabrika pre-owned, GB for Heavy Trucks & CE Trading, 360 retail)",
+      "revenue": {"v": 218.5, "q": "Others Revenue 218.5 79.0 - [LE million, LOB summary; components: PAL 'revenues jumped 84.6% y-o-y in FY16 to LE 62.7 million compared to LE 33.9 million in FY15'; Fabrika 'sales revenue increases of 184.1% y-o-y for FY16, with its top line coming in at LE 1,19.3 million compared to LE 42.0 million last year' [sic — 119.3]; GB for Heavy Trucks 'revenues of LE 33.3 million and gross profit of LE 4.0 million' in first six months; Other Sales Revenues by Year chart: 32.6 / 10.9 / 2.6 / 4.4 / 27.4 / 79.0 / 218.5 (2010-2016)]"},
+      "gross_profit": {"v": 29.6, "q": "Gross Profit 29.6 9.0 - / Gross Profit Margin 13.5% 11.3% 2.2 [LE million; 'Gross profit from the division in FY16 was up an impressive 229.5% at LE 29.6 million'; Other Gross Profit by Year chart: -11.0 / -8.7 / -9.4 / -6.7 / -5.2 / 9.0 / 29.6 (2010-2016)]"},
+      "volume_units": null
+    },
+    {
+      "name": "Group (per LOB summary)",
+      "revenue": {"v": 15285.7, "q": "Group Revenue 15,285.7 12,264.7 24.6% [LE million]"},
+      "gross_profit": {"v": 2202.1, "q": "Group Gross Profit 2,202.1 1,603.9 37.3% / Gross Profit Margin 14.4% 13.1% 1.3 [LE million]"},
+      "volume_units": null
+    },
+    {
+      "name": "Operating segments note (Note 5, reportable segments before elimination)",
+      "revenue": {"v": 17557695, "q": "Total revenues for reportable segments 17 557 695 13 802 134 / Elimination of inter-segment revenue (2 272 023) (1 537 445) / Consolidated Revenue 15 285 672 12 264 689 [EGP 000s; revenue split: Passenger car 62.8% / Buses and trucks 8.3% / 2 & 3 Wheels 12.4% / Other Operations 16.5% (Dec 31, 2016)]"},
+      "gross_profit": {"v": 2174733, "q": "Gross profit for reportable segment 2 174 733 1 609 006 / Elimination of inter-segment gross profit 27 326 (5 076) / Consolidated Gross Profit 2 202 059 1 603 390 [EGP 000s; segments results split: Passenger car 51.84% / Buses and trucks 10.55% / 2 & 3 Wheels 13.08% / Other Operations 24.53%]"},
+      "volume_units": null
+    }
+  ],
+  "kpis": {
+    "amic_egypt_pc_market_units_fy16": {"v": 141983, "q": "According to the Egyptian Automotive Marketing Information Council (AMIC)’s full-year report on the Egyptian passenger car market, the total automotive market fell 27.4% y-o-y in FY16. [Egyptian PC Market Annual Sales chart, FY16 = 141,983; full series FY05-FY16: 94,332 / 133,591 / 179,178 / 198,800 / 158,926 / 192,848 / 133,165 / 144,204 / 133,760 / 207,973 / 195,559 / 141,983 — chart caption misprints '(LE million)', values are units]"},
+    "amic_engine_size_mix_fy16": {"v": null, "q": "More specifically, vehicles within the 1.0-1.3 liter range witnessed a 54% y-o-y decline in volumes, while those within the 1.3-1.5 liter range fell 27%. Meanwhile, vehicles within the 1.5-1.6 liter range saw sales volumes decrease 28%, while SUVs with an engine capacity larger than 2.0 liters saw volumes drop 3% y-o-y."},
+    "gb_total_pc_market_share_fy16": {"v": 36.8, "q": "The company’s share of the Egyptian passenger car market, which includes Hyundai, Geely, Mazda, and Chery, rose to 36.8% YTD in December 2016 compared to 26.8% last year. [%; also 'we captured an all-time high market share of 45% in April 2016, closing the full year at 36.8% versus 26.8% the year before']"},
+    "amic_segmentation_fy16": {"v": null, "q": "Segmentation of the Egyptian Passenger Car Market (AMIC) (Units Sold and % Market Share as of Year-End 2016): Hyundai 38,372 (27.0%), Nissan 19,959 (14.1%), Chevrolet 13,993 (9.9%), Chery 8,173 (5.8%), Geely Emgrand 4,059 (2.9%)"},
+    "chery_first_year_fy16": {"v": 5.8, "q": "In FY16, Chery’s market share stood at 5.8% with over 8,000 units sold in its first year with GB Auto. With the addition of Chery’s two new CKD models, alongside the Hyundai Elantra, Karry, and Geely, GB Auto now offers five CKD models compared to only two last year. [%]"},
+    "brand_moves_fy16": {"v": null, "q": "Hyundai CBU sales volumes remained almost flat with a slight decrease of 0.5% y-o-y during the year, while CKD sales volumes witnessed a 23.5% y-o-y fall. Overall revenues from the brand increased 31.1% y-o-y … Mazda also did well during the year, with revenues rising 7.7% y-o-y despite a 12.3% y-o-y drop in volumes. Meanwhile, Geely’s revenues fell 25.8% over FY16 as sales volumes for both its CBU and CKD units decreased during the year."},
+    "pc_price_increases": {"v": 40, "q": "We raised prices on passenger cars by an average of 40% between January 2016 and October 2016 … we rolled out another 15% price increase on passenger cars between November 2016 and March 2017. [%]"},
+    "monthly_unit_sales_around_float": {"v": null, "q": "As anticipated, unit sales fell from almost 5,800 in October 2016 to c.2,600 units in November and December, and into a trough in demand of just over 200 vehicles in February 2017. … our Motorcycle & Three-Wheeler segment where sales declined from 9,000 units in October to about 2,000 in November, but quickly recovered to around 5,000 in December."},
+    "fx_losses_fy16": {"v": 1.2, "q": "improved profitability was offset by several factors, including FX losses of LE 1.2 billion, which was a non-cash expense recorded following the revaluation of foreign currency exposure, which stood at $106.6 million on 31 December 2016. [LE billion; the Highlights page footnote instead says '* Factoring out FX losses of LE 1.1 billion.']"},
+    "group_net_profit_ex_fx_fy16": {"v": 345.9, "q": "345.9 Group Net Profit* LE MN … 2.2% Group Net Profit Margin* … * Factoring out FX losses of LE 1.1 billion. [LE million, Highlights]"},
+    "group_ebit_fy16": {"v": 866, "q": "866 MN Group EBIT [LE million, 2016 Financial Highlights tile]"},
+    "operating_profit_fy16_mdna": {"v": 1.0, "q": "Operating profit grew more than revenues, up c.40% y-o-y to LE 1.0 billion in FY16 versus the LE 742 million posted in the previous year. [LE billion]"},
+    "finance_cost_hike_fy16": {"v": 642, "q": "The Group recorded an increase in finance cost owing to official interest rate hikes (+5.5% versus last year), reaching LE 642 million in FY16 [LE million]"},
+    "net_debt_fy16": {"v": 7.5, "q": "The Group’s net debt stood at LE 7.5 billion, an increase of LE 1.5 billion compared to 3Q16. Net debt/equity was maintained at c.1.5x as at 31 December 2016 compared to 1.4x at the end of September 2016. [LE billion]"},
+    "total_debt_fy16": {"v": 8.7, "q": "During the quarter, total consolidated debt increased to LE 8.7 billion compared to LE 6.7 billion in 3Q16, which includes LE 2.5 billion in Financing Business debt [LE billion]"},
+    "usd_fx_exposure_ye2016": {"v": -2453531, "q": "US Dollars 743 949 (3 197 480) (2 453 531) (862 869) [FX-exposure note, EGP 000s: assets / liabilities / net Dec-31-2016 / net Dec-31-2015; MD&A states the exposure as $106.6 million]"},
+    "financing_portfolio_quality_fy16": {"v": 0.42, "q": "the Financing Businesses maintained a healthy loan portfolio quality, with non-performing loans at 0.42% and a coverage ratio in excess of 100%. ROAE stood at 29.8%. … Total leverage for the Financing Businesses stood at 3.74x as of 31 December 2016. [%]"},
+    "gb_lease_rank_fy16": {"v": 10.66, "q": "As per the EFSA, at yeat end 2016 GB Lease ranked as the third leasing company in the Egyptian market with a market share of 10.66%, rising to the position of first place contender as at March 2017, with a market share of 14.7%. [%]"},
+    "drive_rank_fy16": {"v": 18.72, "q": "As per the EFSA, at year end 2016 Drive ranked as the third factoring company in Egypt with a market share of 18.72%, rising to second as at March 2017, with a market share of 20.86%. [%]"},
+    "gb_polo_stake_increase": {"v": 80, "q": "In 4Q16, GB Auto increased its share in GB Polo, its JV with global giant Marcopolo, to 80% from 51%, which should boost profitability as the company takes full control of the venture and bolsters its performance, with a focus on export potentials. [%]"},
+    "pc_capacity": {"v": 70000, "q": "Assembly and distribution of imported completely-knocked-down (CKD) kits with a production capacity of around 70,000 units per year for the Egyptian market [units/year]"},
+    "cta_bus_tender": {"v": 260, "q": "During 1H16, GB Auto was awarded a new tender from the Egyptian Public Transport Authority to deliver 260 Volvo city buses to the Cairo and Alexandria authorities. [buses; 'The year saw us successfully deliver 150 vehicles to the CTA and 10 Viaggio 1050 buses']"}
+  },
+  "guidance": [
+    {"q": "As we go into 2017, we are beginning to see clear signs that consumers will remain enthusiastic buyers of passenger cars, motorcycles and three-wheelers.", "where": "Message From the CEO"},
+    {"q": "2017 is providing to be challenging. With higher than usual inventory and debt levels at the end of 1Q17, in addition to the 200 bps hike in interest rate in May 2017, just before the release of this Annual Report, our strategy has shifted quite fast to conduct an inventory and debt reduction program that would see us return to a leaner form by the end of the year", "where": "Message From the CEO"},
+    {"q": "Overall, GB Auto maintained its strong position within the market compared to its rivals and continues to do so despite higher inventory levels at the close of the year. We expect to return to lower levels in the second half of 2017, with cash flow levels set to improve significantly.", "where": "Management Review and Financial Performance"},
+    {"q": "The value of the Egyptian pound is just one of the issues GB Auto will be assessing on a regular basis as we expect the exchange rate to continue to be volatile into 2018. The unpredictability is not only set to cause profitability to vary, but have a marked impact on consumer spending, particularly in the current highly inflationary environment. We plan to bring inventory back down to historical days-on-hand.", "where": "Outlook"},
+    {"q": "In the Passenger Car segment, management acknowledges the downside risk to the line of business due to the float of the Egyptian pound and how the move has impacted consumer demand. As it did throughout 2016, GB Auto plans to continue formulating cost-cutting schemes and pricing policies that will preserve margins and allow the company to leverage its leading market position and capitalize on the long-term upside. We also believe consumers will soon adapt to the new price realities and expect demand to pick up and return to close-to-normal sales levels before the end of the year.", "where": "Outlook"},
+    {"q": "Motorcycles and Three-Wheelers are anticipated to make an even faster recovery than Passenger Cars as the segment serves consumer demand for transportation. Performance is expected to begin to pick up starting 2Q17.", "where": "Outlook"},
+    {"q": "Management expects to see the Automotive Directive, a legislation that aims to benefit local assemblers and open up new opportunities for GB Auto and other local producers, finalized before the end of 2017.", "where": "Outlook"},
+    {"q": "We are strong believers in the Commercial Vehicles & Construction Equipment line of business due to the ramp-up in investments in infrastructure development in Egypt and the government turning its attention to transport demand.", "where": "Outlook"},
+    {"q": "GB Auto is expected to deliver 90 coaches for intercity usage worth LE 200 million in 1Q17.", "where": "CV&CE 2016 Business Review"},
+    {"q": "The segment is expected to continue providing a cushioning against hits taken by other lines of business and boosting the company’s profitability in 2017 and beyond.", "where": "Outlook (After-Sales)"},
+    {"q": "Meanwhile, our Financing Business is expected to continue outperforming in the coming year after having delivered strong results in FY16 that boosted the company’s profitability.", "where": "Outlook"},
+    {"q": "The Iraqi market continued to be pressured into 2017, having experienced turbulent market conditions throughout 2016. It is likely turmoil will remain a feature of the market for some time, but private-sector actors who stay the course will be ideally positioned to benefit from a potential turnaround.", "where": "Outlook (Regional)"},
+    {"q": "Finally, we note that guidance going forward remains subject to change in light of fluctuating regional geopolitical and macroeconomic conditions as well as the ongoing foreign exchange and local currency challenges in Egypt.", "where": "Outlook"}
+  ],
+  "accounting_changes": [
+    "First year under the updated Egyptian Accounting Standards: 'The consolidated financial statements have been prepared in accordance with an updated Egyptian Accounting Standards (EAS) issued as per the decree of the minister of investment No. 110 for the year 2015 [applicable to] financial years commence on 1st January 2016 and the related Egyptian laws and regulations.' (Note 2) — the notes carry multi-page tables of the newly effective standards/amendments; the income statement is re-presented with Continuing/Discontinued operations sections and a separate consolidated statement of comprehensive income is added.",
+    "EGP-float special accounting treatment (EAS 13 Annex A): 'The Company’s management adopted the special accounting treatment stated in annex (A) of the modified Egyptian Accounting Standard no. (13) as amended in 2015, \"The Effects of Changes in Foreign E[xchange rates]\" … cost and accumulated depreciation of some fixed assets categories are modified using modification factors which are stated in the above-mentioned annex, as described in details in Note (16).' (Note 2)",
+    "Note V, 'The impact of special accounting treatment to deal with the effects of liberalization of foreign exchange rates': applied 'some of the special accounting treatments listed in Appendix A of Egyptian Accounting Standard No. 13, amended in 2015, \"Effects of Changes in Foreign Exchange Rates\" issued on 7 February 2017 by the Minister of Investment Decision No. (16) of 2017' — modified cost model on Machinery and equipment, Vehicles, Furniture and office equipment, Tools and supplies; impact table: PPE before 4 580 689 / effect 318 250 / after 4 898 939; Deferred tax liabilities effect 61 163; 'Modification surplus of fixed assets - 257 087' recognized in OCI/equity; the realized portion is transferred to retained earnings (depreciation difference).",
+    "Central Bank float disclosure: 'The Central Bank of Egypt had decided in its meeting held on November 3, 2016 to f loat exchange rates of foreign currencies, to give the Egyptian banks more f lexibility in the process of pricing selling & buying foreign currencies.' (financial-risk note)",
+    "Effect-of-modification rows inside the fixed-asset note: 'Effect of cost modification using modification factor - 355 861 82 401 57 643 120 330 - 32 538 648 773' and 'Effect of accumulated depreciation modification using modification factor - 164 986 56 359 42 104 67 074 - - 330 523'.",
+    "Unrealized FX loss add-back appears in the cash flow statement: 'Foreign currency translation losses (Unrealized) 836 632 -'; OCI carries 'Foreign currency translation difference 1 808 645 95 456' and 'Modification surplus of fixed assets result 318 250 -'."
+  ],
+  "restatement_notes": [
+    "'T Comparative figures — Where necessary, comparative figures have been reclassified to conform to changes in presentation in the current period.'",
+    "FY2015 comparative balance sheet is re-presented: PPE shown as 3 175 486 vs 3 660 356 in the FY2015 report, total non-current liabilities 1 036 140 vs 1 521 010, and total assets 11 313 352 — each exactly 484 870 lower, the amount of the former 'Amounts under settlement on financial lease contract' line, which no longer appears (netting/re-presentation not separately narrated).",
+    "FY2015 comparative income statement re-presented: Cost of revenue (10 660 759) vs (10 670 326) originally and Gross profit 1 603 930 vs 1 594 363; on the balance sheet, current Provisions 88 470 vs 78 903 and Trade payables 1 786 876 vs 1 796 443 — a consistent 9 567 reclassification (my arithmetic observation; the report does not narrate it).",
+    "CF comparative line 'Trade payables and other credit balances … 479 457' vs 489 024 in the FY2015 report (same 9 567 shift); 'Dividends paid ( 54 434) ( 46 747)' — the FY2015 report labelled the comparative 'Dividends paid - Employees'."
+  ],
+  "oddities": [
+    "The auditor's-report page of the annual report prints a LIMITED REVIEW report for the consolidated INTERIM statements as at March 31, 2017 (dated Cairo May 11, 2017, KPMG Hazem Hassan) — not the FY2016 audit opinion. Note 1 states the FY2016 consolidated FS were authorized for issue by the Board on March 26, 2017.",
+    "The consolidated statement of cash flows page is headed 'for the financial year ended December 31, 2015' with columns 'Note 2015 2014', but its figures are unmistakably FY2016 vs FY2015 (e.g. loss before tax (987 390); comparative CFO 2 507 = FY2015's published figure) — header typo in the document.",
+    "Gross-profit comparative appears two ways in the same document: IS face 'Gross profit 2 202 059 1 603 930' vs segment reconciliation 'Consolidated Gross Profit 2 202 059 1 603 390' (transposed digits in one of them).",
+    "FX-loss size stated two ways: LE 1.2 billion (Management Review) vs LE 1.1 billion (Highlights footnote to the ex-FX net-profit figure).",
+    "FY2016 is a net-loss year: np_total (989 810), np_parent (865 656), basic loss per share (0.811) EGP; equity survives via OCI (FX translation +1 808 645 and modification surplus +318 250) — NCI equity rises to 1 169 638 despite the NCI loss.",
+    "The balance sheet finally prints Total assets / Total liabilities (modern EAS format) — unlike FY2014/FY2015 invested-funds format.",
+    "No investments-in-associates line (only 'Payments Under Investments 5 500'); no associates income line; income-tax expense only (2 420) despite the large pre-tax loss (deferred-tax assets rose to 159 355).",
+    "Note 5 gives segment revenue/result/assets/liabilities only as PERCENTAGES plus group reconciliation totals (before-elimination totals 17 557 695 revenue / 2 174 733 gross profit); absolute per-segment EGP figures come from the MD&A LOB summary table, which is 'net after elimination of inter-company accounts' and on a different segmentation (Egypt/Regional split).",
+    "Chart perimeter changed to Egypt-only across the MD&A vs prior reports, so histories differ from the FY2014/FY2015 reports' own charts: M3W revenue 2014 shown 1,270.7 (vs 1,334.0), 2015 1,892.5 (vs 1,997.2); CV&CE 2014 801.6 (vs 912.9), 2015 1,216.9 (vs 1,327.9); Tires 2012-2015 277.8/336.9/315.5/203.2 (vs 290.1/390.4/415.2/324.4); Motorcycle volumes 2015 50,840 (vs 51,065) and Three-Wheeler 2015 85,183 (vs 85,808).",
+    "'GB Auto Sales Volume Across All Brands and Markets' chart prints 7 CBU/CKD pairs (51,914/22,439; 50,103/17,749; 44,562/21,598; 34,869/28,764; 44,645/39,135; 38,316/27,718; 23,838/28,868) but only six year labels (2011-2016) survive in the txt; earlier reports date the first pair to 2010 (printed there as 51,924 — this report prints 51,914). Final-year FY16 pair: CBU 23,838 / CKD 28,868 by legend order.",
+    "'Egyptian PC Market Annual Sales' chart caption reads '(LE million)' but the values are clearly UNITS (FY16 141,983 = the -27.4% AMIC volume figure).",
+    "Fabrika revenue printed as 'LE 1,19.3 million' in the txt (comma misplaced; context and the 184.1% growth on LE 42.0 million fix it as 119.3).",
+    "Typo in EFSA quote: 'at yeat end 2016'; Outlook typo '2017 is providing to be challenging' (presumably 'proving') — quoted as printed.",
+    "Warranty-provision note prints 'EGP684 94' (garbled; long-term portion stated separately as EGP 49 174).",
+    "FX exposure table (EGP 000s): US Dollars net (2 453 531) [2015: (862 869)], Euros net 22 019 [2 324], Other currencies net 99 064 [316 626]; variable-rate borrowings EGP 8 732 109 [5 233 274]."
+  ]
+}

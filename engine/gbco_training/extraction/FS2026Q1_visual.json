@@ -1,0 +1,52 @@
+{
+ "period": "Q1-2026",
+ "source_doc": "GB_Corp_Consolidation_English_31_March-2026.pdf",
+ "source_url": "https://ir.gb-corporation.com/media/filings/GB_Corp_Consolidation_English_31_March-2026.pdf",
+ "doc_date": "2026-05-14",
+ "tier": "A",
+ "units": "EGP 000",
+ "audit": "KPMG limited review, qualified conclusion (MNT-BV)",
+ "read_method": "visual page read (no text layer), statements pp.3-4",
+ "is_q1": {
+  "revenue": 21570778,
+  "cogs": -18687313,
+  "gross_profit": 2883465,
+  "other_income": 154312,
+  "sm_exp": -946245,
+  "ga_exp": -820813,
+  "other_exp": -529,
+  "ecl": -85722,
+  "op_profit": 1184468,
+  "finance_cost_net": -941727,
+  "associates": 284759,
+  "pbt": 527500,
+  "tax": -207053,
+  "np_total": 320447,
+  "np_parent": 435747,
+  "np_nci": -115300,
+  "eps": 0.401
+ },
+ "is_q1_prior_2025": {
+  "revenue": 16760453,
+  "gross_profit": 2752663,
+  "op_profit": 1384736,
+  "finance_cost_net": -684181,
+  "associates": 59360,
+  "pbt": 759915,
+  "np_total": 602757,
+  "np_parent": 626522,
+  "eps": 0.577
+ },
+ "bs": {
+  "ta": 99225552,
+  "inventories": 26419387,
+  "cash": 10828897,
+  "equity_parent": 29927697,
+  "loans_nc": 12204809,
+  "loans_c": 27566128,
+  "trade_pay": 21351172
+ },
+ "notes": [
+  "31-Dec-2025 comparative here is the ORIGINAL FY25 (parent equity 28,788,713) \u2014 the +2.88bn restatement first appears in the H1-26 FS (filed 13-Aug-2026)"
+ ]
+}

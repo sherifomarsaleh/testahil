@@ -1,0 +1,183 @@
+{
+  "fy": 2017,
+  "source_doc": "GB_Annual_Report_2018.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2018.pdf",
+  "units_note": "consolidated FS in EGP 000s unless stated ('All amounts in thousand Egyptian Pound'); MD&A quotes EGP mn/bn. All figures are the SECOND (prior-year comparative) numeric column of AR2018's statements.",
+  "is": {
+    "revenue": {"v": 17656586, "q": "Revenue 25 811 964 17 656 586"},
+    "cogs": {"v": -15703786, "q": "Cost of revenue (22 248 011) (15 703 786)"},
+    "gross_profit": {"v": 1952800, "q": "GROSS PROFIT 3 563 953 1 952 800"},
+    "distribution_exp": {"v": -583586, "q": "Selling and marketing expenses (908 624) (583 586)"},
+    "admin_exp": {"v": -699205, "q": "General and administrative expenses (793 878) (699 205)"},
+    "other_income": {"v": 151528, "q": "Other income 173 107 151 528"},
+    "other_expense": {"v": -203364, "q": "Provisions and Impairment of Current and (7) (59 153) (203 364) Non-Current assets (Net)"},
+    "op_profit": {"v": 618173, "q": "OPERATING RESULTS 1 975 405 618 173"},
+    "finance_income": {"v": 35663, "q": "TOTAL FINANCE INCOME 171 992 35 663"},
+    "finance_cost": {"v": -1405565, "q": "TOTAL FINANCE INCOME (1 359 249) (1 405 565)"},
+    "associates_income": null,
+    "pbt": {"v": -751729, "q": "NET PROFIT / (LOSS) FOR THE YEAR 788 148 (751 729) BEFORE INCOME TAX"},
+    "income_tax": {"v": 28074, "q": "Income tax expense ( 9-C ) (151 414) 28 074"},
+    "np_total": {"v": -723655, "q": "NET PROFIT / (LOSS) FOR THE YEAR 636 734 (723 655)"},
+    "np_parent": {"v": -666900, "q": "ATTRIBUTABLE TO: 515 710 (666 900) / Owners of the company"},
+    "np_nci": {"v": -56755, "q": "Owners of the company 121 024 (56 755) / Non-controlling interests"}
+  },
+  "bs": {
+    "ppe_net": {"v": 5602626, "q": "Property, plant, equipment and projects (15) 6 271 129 5 602 626 under construction (Net)"},
+    "investments_associates": null,
+    "inventory": {"v": 3012824, "q": "Inventories (Net) (10) 4 820 828 3 012 824"},
+    "trade_notes_receivable": {"v": 2972213, "q": "Accounts and notes receivables (Net) (12) 4 610 991 2 972 213"},
+    "debtors_other": {"v": 1234882, "q": "Debtors and other debit balances (Net) (13) 1 625 165 1 234 882"},
+    "cash": {"v": 1242776, "q": "Cash on hand and at banks (14) 1 179 275 1 242 776"},
+    "total_current_assets": {"v": 8603036, "q": "TOTAL CURRENT ASSETS 12 438 278 8 603 036"},
+    "total_assets": {"v": 16030425, "q": "TOTAL ASSETS 21 070 927 16 030 425"},
+    "borrowings_current": {"v": 7040969, "q": "Loans, borrowings and overdrafts (24) 9 251 784 7 040 969"},
+    "borrowings_noncurrent": {"v": 2573823, "q": "Loans (24) 3 170 887 2 573 823"},
+    "trade_notes_payable": {"v": 1519834, "q": "Trade payables and other credit balances (25) 2 732 906 1 519 834"},
+    "total_liabilities": {"v": 11800761, "q": "TOTAL LIABILITIES 15 860 547 11 800 761"},
+    "equity_parent": {"v": 3066506, "q": "EQUITY ATTRIBUTABLE TO OWNERS OF 3 919 663 3 066 506 THE COMPANY (22)"},
+    "nci_equity": {"v": 1163158, "q": "Non-controlling interests 1 290 717 1 163 158"},
+    "total_equity": {"v": 4229664, "q": "TOTAL EQUITY 5 210 380 4 229 664"},
+    "provisions": {"v": 240928, "q": "Provisions (26) 253 540 240 928"}
+  },
+  "cf": {
+    "cfo": {"v": 1343369, "q": "NET CASH (USED IN) / PROVIDED (1 003 437) 1343 369 FROM OPERATING ACTIVITIES"},
+    "capex_ppe": {"v": -1429438, "q": "Acquisition of property, plant, equipment and (3 288 502) (1 429 438) projects under constructions"},
+    "dep_amort_addback": {"v": 434762, "q": "Depreciation and amortization for the year (16,15) 434 327 434 762"},
+    "interest_paid": {"v": -1164079, "q": "Interest paid (1 316 644) (1 164 079)"},
+    "cfi": {"v": -1082840, "q": "NET CASH USED IN INVESTING ACTIVITIES (629 048) (1 082 840)"},
+    "cff": {"v": -238178, "q": "NET CASH GENERATED FROM FINANCING 1 528 145 (238 178) ACTIVITIES"}
+  },
+  "segments": [
+    {
+      "name": "Egypt Passenger Cars",
+      "revenue": {"v": 6840.5, "unit": "EGP mn", "q": "FY18 saw GB Auto's Egypt Passenger Cars division increase its sales revenues by 52.2% y-o-y to EGP 10,407.8 million compared to EGP 6,840.5 million in FY17"},
+      "gross_profit": {"v": 283.4, "unit": "EGP mn", "q": "it increased 3.5x compared to the previous year coming at EGP 986.3 million in 2018 compared to EGP 283.4 million in 2017, reaching a 9.5% gross profit margin, vs 4.1% in 2017."},
+      "volume_units": null,
+      "brand_volumes": {
+        "chery": {"v": 5477, "q": "with 4,649 units sold during the year vs. 5,477 units in 2017"},
+        "geely": {"v": 2956, "q": "Geely sold 961units in FY18 vs. 2,956 units in FY17"},
+        "mazda": {"v": 851, "q": "While Mazda sold 800 units in 2018, compared to 851 in the previous year."}
+      }
+    },
+    {
+      "name": "Egypt Motorcycles & Three-Wheelers",
+      "revenue": {"v": 2206.2, "unit": "EGP mn", "q": "posting EGP 3,470.2 million vs EGP 2,206.2 million in 2017"},
+      "gross_profit": null,
+      "volume_units": {"v": 84427, "q": "reaching 128,160 units compared to 84,427 units in the previous year."},
+      "sub_volumes": {
+        "three_wheelers": {"v": 70507, "q": "volumes increasing 38.7% y-o-y from 97,798 units vs. 70,507 units in 2017."},
+        "motorcycles": {"v": 8662, "q": "In the motorcycles division, volumes nearly tripled coming at 8,662 units to 24,146 units in 2018."}
+      }
+    },
+    {
+      "name": "Egypt Commercial Vehicles & Construction Equipment",
+      "revenue": {"v": 1092.2, "unit": "EGP mn", "q": "overall revenues increase by 38.0% y-o-y to EGP 1,507.1 million from EGP 1,092.2 million in the previous"},
+      "gross_profit": {"v": 176.8, "unit": "EGP mn", "q": "the gross profit decreased to EGP 161.9 million compared to EGP 176.8 million in 2017"},
+      "volume_units": {"v": 1699, "q": "to 2,238 vehicles in FY18, a 31.7% increase y-o-y, compared to 1,699 vehicles in 2017."},
+      "sub_volumes": {
+        "trucks": {"v": 750, "q": "volumes increased 33.1% y-o-y to 998 units in FY18, compared to 750 in FY17."}
+      },
+      "sub_revenue": {
+        "buses": {"v": 526.2, "unit": "EGP mn", "q": "revenues gained 36.9% y-o-y from EGP 720.6 million in 2018 vs. EGP 526.2 million in 2017."}
+      }
+    },
+    {
+      "name": "Egypt Tires",
+      "revenue": {"v": 699.1, "unit": "EGP mn", "q": "posting revenues of EGP 1,103.5 million compared to EGP 699.1 million last year, up 57.8% y-o-y."},
+      "gross_profit": null,
+      "gross_margin_pct": {"v": 18.8, "q": "The gross profit margin stood at 16.4% in FY18 compared to 18.8% in FY17"},
+      "volume_units": null
+    },
+    {
+      "name": "Egypt After-Sales",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": null,
+      "sub_revenue": {
+        "passenger_cars": {"v": 684.7, "unit": "EGP mn", "q": "Revenues from After-Sales operations in Egypt reached EGP 706.5 million during the year compared to EGP 684.7 million in 2017"},
+        "two_three_wheelers": {"v": 143.8, "unit": "EGP mn", "q": "Revenues from 2&3 wheelers recorded a 29.0% y-o-y increase in FY18 to EGP 185.5 million compared to 143.8 million in FY17, whereas gross profit decreased 24.0% y-o-y to EGP 24.8 million vs EGP 32.6 million in the previous year."},
+        "cv_construction_equipment": {"v": 199.8, "unit": "EGP mn", "q": "revenues standing at EGP 238.0 million during the year, compared to EGP 199.8 million in 2017, up 19.1% y-o-y."}
+      }
+    },
+    {
+      "name": "Iraq Passenger Cars",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": {"v": 7465, "q": "The Iraqi Passenger Car division saw volumes grow 34.4% y-o-y to 10,034 units during the year vs. 7,465 units in 2017."}
+    },
+    {
+      "name": "Iraq Motorcycles & Three-Wheelers",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": {"v": 6441, "q": "volumes increased to 20,763 units in FY18 from 6,441 units in FY17."}
+    },
+    {
+      "name": "Iraq After-Sales",
+      "revenue": {"v": 241.7, "unit": "EGP mn", "q": "revenues up 38.4% y-o-y to EGP 334.5 million in 2018, compared to EGP 241.7 million in the previous year."},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Algeria Passenger Cars",
+      "revenue": {"v": 81.9, "unit": "EGP mn", "q": "Revenues from the Passenger Car division fell 86.7% y-o-y to EGP 10.9 million in 2018 compared to EGP 81.9 million in 2017."},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Regional Tires",
+      "revenue": {"v": 135.3, "unit": "EGP mn", "q": "to EGP 37 million in 2018 vs. EGP 135.3 million in 2017"},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Startups (PAL, Fabrika, 360)",
+      "revenue": {"v": 287.9, "unit": "EGP mn", "q": "posting EGP 522.2 million vs. EGP 287.9 million in FY17"},
+      "gross_profit": {"v": 45.3, "unit": "EGP mn", "q": "gross profit grew 18.4% to EGP 53.7 million in FY18 compared to EGP 45.3 million in the previous year."},
+      "volume_units": null,
+      "sub_revenue": {
+        "pal": {"v": 94.0, "unit": "EGP mn", "q": "PAL operations showed promising growth, as revenues increased by 35.9% from EGP 94.0 million to EGP 127.8 million in FY17."},
+        "fabrika": {"v": 163.7, "unit": "EGP mn", "q": "Fabrika recorded strong sales revenue, posting EGP 332.8 million in FY18, compared to EGP 163.7 million last year."}
+      }
+    },
+    {
+      "name": "GB Capital (Financing Businesses)",
+      "revenue": {"v": 3381.1, "unit": "EGP mn", "q": "GB Capital recorded revenues (pre intercompany eliminations) of EGP 5,118.1 million in FY18, up 51.4% y-o-y compared to EGP 3,381.1 million in FY17."},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "FS segment note (reportable segments, EGP 000s)",
+      "revenue": {"v": 19414477, "q": "Total revenues for reportable segments 28 484 515 19 414 477"},
+      "gross_profit": {"v": 1875154, "q": "Gross profit for reportable segment 3 558 343 1 875 154"},
+      "volume_units": null,
+      "revenue_shares_pct": {"passenger_car": 57.4, "buses_and_trucks": 7.3, "two_three_wheels": 14.4, "financial_services_non_banking": 14.5, "other_operations": 6.4, "q": "PASSENGER CAR 55.6% 57.4% / BUSES AND TRUCKS 6.8% 7.3% / 2 & 3 WHEELS 16.9% 14.4% / FINANCIAL SERVICES NON-BANKING 14.3% 14.5% / OTHER OPERATIONS 6.4% 6.4%"}
+    }
+  ],
+  "kpis": {
+    "amic_total_pc_market_units": {"v": 99530, "q": "the total automotive market grew 46.6% y-o-y to 145,886 units in FY18 compared to 99,530 units in FY17."},
+    "gb_capital_net_portfolio_egp_bn": {"v": 5.8, "q": "GB Capital's Net Portfolio assets stood at EGP 8.1 billion (after securitization) as of 31 December 2018 compared to EGP 5.8 billion in the same period last year"}
+  },
+  "guidance": [],
+  "accounting_changes": [
+    "The Company's management adopted the special accounting treatment stated in annex (A) of the modified Egyptian Accounting Standard no. (13) as amended in 2015, \"The Effects of Changes in Foreign Exchange Rates\" issued on 7 February 2017 by the Minister of Investment Decision No. (16) of 2017, whereby both the cost and accumulated depreciation of some fixed assets categories are modified using modification factors which are stated in the above- mentioned annex."
+  ],
+  "restatement_notes": [
+    "V- COMPARATIVE FIGURES: Where necessary, comparative figures have been reclassified to conform to changes in presentation in the current period."
+  ],
+  "oddities": [
+    "FY2017 taken from FY2018 report's comparative column — original AR2017 has no text layer",
+    "All is/bs/cf values are the SECOND numeric column of AR2018's statements (headed 'DECEMBER 31, 2017'); the quoted lines therefore show the 2018 figure first and the 2017 figure second.",
+    "finance_income/finance_cost come from AR2018 Note 6 comparative column (the IS itself shows only 'Finance costs (Net) ... (1 369 902)'); the finance-cost total line is mislabelled 'TOTAL FINANCE INCOME' in the pdftotext output.",
+    "income_tax 28 074 is a CREDIT in 2017 (printed without brackets in the comparative column).",
+    "investments_associates: the 'Investment in Assosiate' line shows no 2017 figure (blank comparative column) — null.",
+    "Balance sheet also carries non-current 'Notes receivables (Net) (11) 1 548 842 1 006 159' (2017: 1 006 159), not included in trade_notes_receivable; and non-current 'Warranty provisions (26) 15 159 42 834' (2017: 42 834), not included in provisions (current provisions only).",
+    "BS 2017 comparative includes 'Debit balances - 8 222' (non-current) and 'Payments Under Investments 1 000 6 478' (2017: 6 478) — no schema keys.",
+    "Total Egypt Passenger Cars sales volume for 2017 is not stated in AR2018 — only brand volumes (Chery 5,477 / Geely 2,956 / Mazda 851) and the AMIC market total 99,530 units; Hyundai 2017 volume and market share not stated.",
+    "Egypt M&3W 2017 sub-volumes (8,662 motorcycles + 70,507 three-wheelers = 79,169) do not sum to the stated 84,427 total; AR2018 does not name the remainder (AR2019's charts attribute the FY18 remainder to 'Tricycles').",
+    "Egypt After-Sales total revenue for 2017 not stated as one figure in AR2018 (FY18's EGP 1,129.9m is quoted with only the 9.9% y-o-y growth); sub-lines recorded instead.",
+    "No 2017-vintage management guidance for 2018 exists in AR2018 (that would be in the original AR2017) — guidance empty.",
+    "CF comparative printed with a missing thousands space: '1343 369' (= 1 343 369); NET CASH (USED IN)/PROVIDED FROM OPERATING ACTIVITIES 2017 similarly printed '1343 369'.",
+    "AR2019 later RESTATED these FY2018-report figures under EAS 49 (leases); this file records the original pre-EAS-49 presentation as printed in AR2018.",
+    "Segment reconciliation in AR2018 prints 2017 total consolidated assets 16 030 423 and total consolidated liabilities 11 800 759 (vs 16 030 425 / 11 800 761 on the balance sheet) — 2 EGP-thousand discrepancies as printed."
+  ]
+}

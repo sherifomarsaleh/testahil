@@ -1,0 +1,192 @@
+{
+  "fy": 2019,
+  "source_doc": "GB_Annual_Report_2019.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2019.pdf",
+  "units_note": "consolidated FS in EGP 000s unless stated ('All amounts in thousand Egyptian Pound'); MD&A quotes LE mn/bn. Comparative column is 'DECEMBER 31, 2018 RESTATED' (EAS 49 leases).",
+  "is": {
+    "revenue": {"v": 25398046, "q": "SALES 25 398 046 25 621 245"},
+    "cogs": {"v": -21582070, "q": "COST OF SALES (21 582 070) (21 973 811)"},
+    "gross_profit": {"v": 3815976, "q": "GROSS PROFIT 3 815 976 3 647 434"},
+    "distribution_exp": {"v": -1018504, "q": "SELLING AND MARKETING EXPENSES (1 018 504) ( 789 044)"},
+    "admin_exp": {"v": -1165702, "q": "GENERAL & ADMINISTRATIVE EXPENSES (1 165 702) ( 881 266)"},
+    "other_income": {"v": 157544, "q": "OTHER INCOME 157 544 158 921"},
+    "other_expense": {"v": -306360, "q": "PROVISIONS AND IMPAIRMENT OF CURRENT AND NON-CURRENT ASSETS (7) ( 306 360) (59 153) (NET)"},
+    "op_profit": {"v": 1482954, "q": "OPERATING RESULTS 1 482 954 2 076 892"},
+    "finance_income": {"v": 294937, "q": "TOTAL FINANCE INCOME 294 937 171 993"},
+    "finance_cost": {"v": -1461955, "q": "TOTAL FINANCE COST (1 461 955) (1 395 584)"},
+    "associates_income": null,
+    "pbt": {"v": 315936, "q": "NET PROFIT FOR THE YEAR BEFORE 315 936 853 301 INCOME TAX"},
+    "income_tax": {"v": -92380, "q": "INCOME TAX (EXPENSE) (9-C) ( 92 380) (180 988)"},
+    "np_total": {"v": 223556, "q": "NET PROFIT FOR THE YEAR 223 556 672 313"},
+    "np_parent": {"v": 42674, "q": "SHAREHOLDERS OF THE PARENT CO. 42 674 544 833"},
+    "np_nci": {"v": 180882, "q": "NON-CONTROLLING INTERESTS 180 882 127 480"}
+  },
+  "bs": {
+    "ppe_net": {"v": 4043219, "q": "PROPERTY, PLANT, EQUIPMENT AND (15) 4 043 219 3 839 165 PROJECTS UNDER CONSTRUCTION (NET)"},
+    "investments_associates": {"v": 58034, "q": "INVESTMENT IN ASSOCIATE 58 034 8 034"},
+    "inventory": {"v": 3788210, "q": "INVENTORIES (NET) (10) 3 788 210 4 820 828"},
+    "trade_notes_receivable": {"v": 6435527, "q": "ACCOUNTS AND NOTES RECEIVABLES (12) 6 435 527 5 328 993 (NET)"},
+    "debtors_other": {"v": 2226957, "q": "DEBTORS AND OTHER DEBIT BALANCES (13) 2 226 957 1 645 109 (NET)"},
+    "cash": {"v": 1408948, "q": "CASH ON HAND AND AT BANKS (14) 1 408 948 1 179 275"},
+    "total_current_assets": {"v": 14131844, "q": "TOTAL CURRENT ASSETS 14 131 844 13 176 224"},
+    "total_assets": {"v": 22609532, "q": "TOTAL ASSETS 22 609 532 21 517 951"},
+    "borrowings_current": {"v": 10661022, "q": "LOANS, BORROWINGS AND OVERDRAFTS (24) 10 661 022 9 251 784"},
+    "borrowings_noncurrent": {"v": 3002093, "q": "LOANS (24) 3 002 093 3 170 887"},
+    "trade_notes_payable": {"v": 2752183, "q": "TRADE PAYABLES AND OTHER CREDIT (25) 2 752 183 2 671 751 BALANCES"},
+    "total_liabilities": {"v": 17461802, "q": "TOTAL LIABILITIES 17 461 802 16 230 744"},
+    "equity_parent": {"v": 3782834, "q": "EQUITY ATTRIBUTABLE TO OWNERS OF 3 782 834 3 983 845 THE COMPANY"},
+    "nci_equity": {"v": 1364896, "q": "NON-CONTROLLING INTERESTS (22) 1 364 896 1 303 362"},
+    "total_equity": {"v": 5147730, "q": "TOTAL EQUITY 5 147 730 5 287 207"},
+    "provisions": {"v": 225629, "q": "PROVISIONS (26) 225 629 253 540"}
+  },
+  "cf": {
+    "cfo": {"v": 1727990, "q": "NET CASH PROVIDED FROM / (USED IN) 1 727 990 (1 053 649) OPERATING ACTIVITIES"},
+    "capex_ppe": {"v": -1736040, "q": "ACQUISITION OF PROPERTY, PLANT, EQUIPMENT AND PROJECTS UNDER (1 736 040) (3 238 290) CONSTRUCTIONS"},
+    "dep_amort_addback": {"v": 654742, "q": "DEPRECIATION AND AMORTIZATION FOR (16,15) 654 742 218 165 THE YEAR"},
+    "interest_paid": {"v": -1460926, "q": "INTEREST PAID (1 460 926) (1 316 644)"},
+    "cfi": {"v": -846941, "q": "NET CASH (USED IN) INVESTING (846 941) ( 578 836) ACTIVITIES"},
+    "cff": {"v": -328571, "q": "NET CASH (USED IN)/ PROVIDED FROM ( 328 571) 1 528 145 FINANCING ACTIVITIES"}
+  },
+  "segments": [
+    {
+      "name": "Egypt Passenger Cars",
+      "revenue": {"v": 7597.8, "unit": "LE mn", "q": "FY19 saw GB Auto's Egypt Passenger Cars division revenues were down 27.0% to LE7,597.8 million in FY19, compared to LE10,407.8 million in FY18 as demand for passenger cars decreased during the year."},
+      "gross_profit": {"v": 482.0, "unit": "LE mn", "q": "However, gross profit continued to be impacted on a year-on-year basis to LE 482.0 million in 2019 compared to LE986.3 million in 2018."},
+      "volume_units": {"v": 26887, "q": "Full-year volumes declined 28.1% in FY19 to 26,887 on account of the adverse market conditions that prevailed throughout 2019, as well as discontinuing the Verna model which used to account for 5% of total market share."},
+      "sub_volumes": {
+        "cbu": {"v": 10712, "q": "10,712 ... 39.9% 60.1% ... FY19 TOTAL SALES VOLUME: 26,887 UNITS ... CBU SALES VOLUME"},
+        "ckd": {"v": 16175, "q": "16,175 ... 39.9% 60.1% ... FY19 TOTAL SALES VOLUME: 26,887 UNITS ... CKD SALES VOLUME"}
+      }
+    },
+    {
+      "name": "Egypt Motorcycles & Three-Wheelers",
+      "revenue": {"v": 2100.2, "unit": "LE mn", "q": "Full-year revenues of the line of business declined 39.5% y-o-y to LE 2,100.2 million in FY19 vs LE 3,470.2 million in 2018."},
+      "gross_profit": {"v": 280.4, "unit": "LE mn", "q": "Gross profit recorded LE 280.4 million in FY19, down 41.7% y-o-y, however gross profit margin was relatively stable at 13.4% despite the pressure on volumes."},
+      "volume_units": {"v": 84999, "q": "Total volumes were down 33.7 % y-o-y to 84,999 units in 2019, driven by a 54.5% y-o-y decline in three-wheeler volumes."},
+      "sub_volumes": {
+        "motorcycles": {"v": 37322, "q": "Motorcycle Sales Volume 37,322 ... 43.9% 52.4% ... FY19 TOTAL SALES VOLUME: 84,999 UNITS"},
+        "three_wheelers": {"v": 44541, "q": "Three-Wheeler Sales Volume 44,541 ... FY19 TOTAL SALES VOLUME: 84,999 UNITS"},
+        "tricycles": {"v": 3136, "q": "Tricycles Sales Volume 3,136 3.7% ... FY19 TOTAL SALES VOLUME: 84,999 UNITS"}
+      }
+    },
+    {
+      "name": "Egypt Commercial Vehicles & Construction Equipment",
+      "revenue": {"v": 1394.6, "unit": "LE mn", "q": "GB Auto's Commercial Vehicles & Construction Equipment line of business saw overall revenues in FY19 dipped 7.5% y-o-y to LE 1,394.6 million from the LE 1,507.1 million in FY18."},
+      "gross_profit": null,
+      "volume_units": {"v": 2096, "q": "The LoB's volumes declined 6.3% y-o-y to 2,096 units in FY19, compared to 2,238 vehicles in FY18, with higher sales at the buses division being offset by a decrease in other products volumes on the back of lower spending by the corporate private sector."},
+      "sub_volumes": {
+        "chart_fy19_values": {"v": null, "q": "6.0% / 8.0% / 125 / 168 / 1.8% / 38 / 646 30.8% / 1,119 53.4% / FY19 TOTAL SALES VOLUME: 2,096 UNITS — legend: BUS SALES VOLUME, TRUCK SALES VOLUME, TRACTOR SALES VOLUME, TRAILER SALES VOLUME, CONSTRUCTION EQUIPMENT SALES VOLUME"}
+      }
+    },
+    {
+      "name": "Egypt Tires",
+      "revenue": {"v": 1180.8, "unit": "LE mn", "q": "In Egypt, the Tires division continued to outperform at both the top- and bottom-line levels in FY19, posting LE 1,180.8 million in revenues compared to LE 1,103.5 million in FY18, on the back of volume growth, 7.0% y-o-y."},
+      "gross_profit": {"v": 236.2, "unit": "LE mn", "q": "The gross profit growth stood at 30.9% y-o-y to LE 236.2 million in FY19, with GPM rising by 3.6 percentage points to 20.0%."},
+      "volume_units": null
+    },
+    {
+      "name": "Egypt After-Sales",
+      "revenue": {"v": 1157.5, "unit": "LE mn", "q": "Egypt After-Sales LoB reported a 2.4% y-o-y increase in revenues to LE 1,157.5 million in FY19."},
+      "gross_profit": {"v": 272.4, "unit": "LE mn", "q": "In addition, gross profit witnessed a decrease of 14.0% y-o-y to LE 272.4 million on the back of promotions to retain and regularly attract consumers yielding a gross profit margin of 23.5% compared to 28.0% in FY18."},
+      "volume_units": null,
+      "sub_revenue": {
+        "passenger_cars": {"v": 732.3, "unit": "LE mn", "q": "Revenues from After-Sales operations in Egypt reached LE 732.3 million during the year compared to LE 706.5 million in 2018, reflecting a 3.7% y-o-y increase."},
+        "two_three_wheelers": {"v": 155.7, "unit": "LE mn", "q": "Revenues from 2&3 wheelers recorded a 16.1% y-o-y decrease in FY19 to LE 155.7 million compared to 185.5 million in FY18, despite the strong decrease in 2&3 volumes."},
+        "cv_construction_equipment": {"v": 269.5, "unit": "LE mn", "q": "The After-Sales division for commercial vehicles & construction equipment continued to grow, with revenues standing at LE 269.5 million during the year, compared to LE 238.0 million in 2018, up 13.2% y-o-y."}
+      }
+    },
+    {
+      "name": "Iraq Passenger Cars",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": {"v": 19737, "q": "Iraq: Iraq PC operations reported an impressive 96.7% y-o-y in FY19, coming in at 19,737 units compared to 10,034 in FY18."}
+    },
+    {
+      "name": "Iraq Motorcycles & Three-Wheelers",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": {"v": 30661, "q": "Iraq: Results from Iraqi operations were promising this year showing growth where volumes witnessed a strong 47.7% y-o-y increase in FY19 to 30,661 units, with average sales per month increasing to 2,555 units per month in FY19 compared to 1,730 units per month in 2018."}
+    },
+    {
+      "name": "Regional (total)",
+      "revenue": {"v": 7156.6, "unit": "LE mn", "q": "Overall, revenues from regional operations expanded 79.9% y-o-y to LE 7,156.6 million in FY19, compared to 3,977.7 million in FY18."},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Egypt Startups (PAL, Fabrika, 360, TVD)",
+      "revenue": {"v": 461.2, "unit": "LE mn", "q": "Sales revenues from overall startup operations was down by 11.7% y-o-y at the end of the year, posting LE 461.2 million vs. LE 522.2 million in FY18, while gross profit decreased only 4.6% to LE 51.5 million in FY19 compared to LE 53.7 million in the previous year"},
+      "gross_profit": {"v": 51.5, "unit": "LE mn", "q": "gross profit decreased only 4.6% to LE 51.5 million in FY19 compared to LE 53.7 million in the previous year"},
+      "volume_units": null
+    },
+    {
+      "name": "GB Capital (Financing Businesses)",
+      "revenue": {"v": 5347.9, "unit": "LE mn", "q": "GB Capital accomplished a top-line before intercompany eliminations of LE 5,347.9 million in FY19, increasing by 10.1% y-o-y driven by impressive performance in Tasaheel and Haram Tourism, growing 75.5% and 30.5% y-o-y respectively in FY19."},
+      "gross_profit": null,
+      "volume_units": null,
+      "net_income_after_minority": {"v": 615.3, "unit": "LE mn", "q": "Net income after minority grew by 71.2% y-o-y to record LE 615.3 million in FY19 and was up 44.2% y-o-y in 4Q19 to LE 180.9 million."}
+    },
+    {
+      "name": "FS segment note (reportable segments, EGP 000s)",
+      "revenue": {"v": 27562160, "q": "TOTAL REVENUES FOR OPERATING SEGMENTS 27 562 160 28 245 193"},
+      "gross_profit": null,
+      "volume_units": null,
+      "revenue_shares_pct": {"passenger_car": 56.7, "buses_and_trucks": 6.6, "two_three_wheels": 13.2, "financial_services_non_banking": 17.1, "other_operations": 6.4, "q": "PASSENGER CAR 56.7% 56% / BUSES AND TRUCKS 6.6% 6.8% / 2 & 3 WHEELS 13.2% 17% / FINANCIAL SERVICES NON-BANKING 17.1% 13.7% / OTHER OPERATIONS 6.4% 6.5%"}
+    }
+  ],
+  "kpis": {
+    "amic_total_pc_market_units": {"v": 127443, "q": "According to the Egyptian Automotive Marketing Information Council (AMIC)'s full-year report in the Egyptian Passenger Cars market, the total automotive market dropped 14.5% y-o-y to 127,443 units in FY19 compared to 145,886 units in FY18."},
+    "gb_pc_egypt_market_share_pct": {"v": 21.0, "q": "GB Auto succeeded in defending its market share with a leading position in Egypt's PC segment, of 21.0% market share as of FY19 (Hyundai, Geely, Mazda, and Chery), versus 25.4% in FY18."},
+    "hyundai_iraq_market_share_pct": {"v": 24.9, "q": "Hyundai's market share in FY19 stood at 24.9% compared to 15.3% in FY18."},
+    "gb_capital_outstanding_portfolio_le_bn": {"v": 9.1, "q": "However, the current outstanding portfolio after the securitizations completed during 2019 stands at LE 9.1 billion."},
+    "gb_capital_portfolio_before_securitization_le_bn": {"v": 11, "q": "It is worth noting that GB Capital's portfolio would surpass the LE 11 billion mark when excluding the securitization transactions completed during the year, representing a 35.8% increase compared to FY18."},
+    "gb_capital_npl_pct": {"v": 1.45, "q": "Non-Performing Loans (NPLs) were at 1.45% in FY19 (1.2% excluding the securitization effect) vs 1.20% in FY18, maintaining an exceptionally healthy level relative to the industry; with the NPL coverage ratio for FY19 at 204%."},
+    "gb_capital_roae_pct": {"v": 35.1, "q": "GB Capital achieved an Annualized ROAE (excluding NCI) of 35.1% in FY19 versus 30.5% in FY18."},
+    "gb_capital_roaa_pct": {"v": 21.6, "q": "The Annualized ROAA reached 21.6% for FY19 vs 22.3% in FY18."},
+    "gb_capital_nim_pct": {"v": 14.1, "q": "GB Capital's annualized NIMs settled in at 14.1% in FY19."},
+    "gb_capital_debt_to_equity_x": {"v": 3.38, "q": "Debt to equity for GB Capital settled in at 3.38x as of FY19 vs 3.88x in FY18 and is 2.68x as per the regulator's definition."},
+    "gb_capital_debt_le_bn": {"v": 7.9, "q": "GB Capital related companies' debt stood at LE 7.9 billion as of 31 December 2019, with debt levels expected to continue rising"},
+    "group_revenue_le_mn": {"v": 25398.0, "q": "Revenues for the Group in FY19 declined by 0.9% y-o-y to LE 25,398.0 million compared to 25,621.2 in FY18. However, Gross profit for the year grew 4.6% y-o-y to LE 3,816.0 million."},
+    "pc_assembly_capacity_units_per_year": {"v": 80000, "q": "GB Auto has invested significantly in the expansion of its assembly capacity reaching approximately 80,000 units per year."},
+    "iraq_2_3w_avg_monthly_sales_units": {"v": 2555, "q": "with average sales per month increasing to 2,555 units per month in FY19 compared to 1,730 units per month in 2018."}
+  },
+  "guidance": [
+    {"q": "We are seeing clear signs that margins will start to normalize heading into 2020, particularly after the discontinuation of the loss-making models.", "where": "A Letter from the CEO"},
+    {"q": "Management also expects three-wheeler volumes to pick up as soon as the licensing cycle gains momentum and we are confident that the anticipated growth from regulatory adjustments will soon materialize.", "where": "A Letter from the CEO"},
+    {"q": "We have also started to see clear signs in 4Q19 after we have liquidated more than 90% of GB Auto's loss making models and we expect margins to normalize heading into 2020.", "where": "Divisional Review — Egypt Passenger Cars"},
+    {"q": "Management hopes that the current regulatory constraints will be resolved in 2020, which pave the way for a more sustainable path for the performance of the LoB.", "where": "Divisional Review — Egypt Motorcycles and Three-Wheelers"},
+    {"q": "GB Auto will thus sell its remaining Hyundai inventory during 2020 and will explore opportunities to introduce new PC models.", "where": "Divisional Review — Regional Footprint (Iraq Passenger Cars)"},
+    {"q": "has recently launched Tiggo 3 Facelift and has plans to launch new models in the second quarter of 2020.", "where": "Divisional Review — Egypt Passenger Cars (profile)"},
+    {"q": "Currently we are building the largest 3S facility and first of its kind for 2W and 3W to be a state of the art 3S on BAJAJ Store Power CI and will be inaugurated in Q2 2020 which has been delayed because of Corona.", "where": "Divisional Review — Regional Footprint (Iraq 2W/3W)"},
+    {"q": "management is in parallel working to streamline the division's working capital cycle, including inventory levels and supplier terms, to help drive up profitability going forward.", "where": "Divisional Review — Egypt Commercial Vehicles & Construction Equipment"}
+  ],
+  "accounting_changes": [
+    "On August 14, 2018, Law No. 176 of 2018 was issued, regulating the activities of financial leasing and factoring. And article 1 of this law stipulates the abolition of Law No. 95 of 1995 on financial leasing.",
+    "The Ministry of Investment and International Cooperation issued Resolution No. 69 of 2019 on April 7, 2019, amending some provisions of the Egyptian accounting standards, including the abolition of the Egyptian Accounting Standard No. (20) rules and accounting standards related to financial leasing and replaced it with the Egyptian Accounting Standard No. (49) leasing contracts.",
+    "The Egyptian standard is applied to financial periods beginning on or after January 2020. Early application is permitted if Egyptian Accounting Standard (48) '' Revenue from Contracts with Customers 2019 '' is applied at the same time. As an exception, the first date of application shall be the beginning of the annual report period in which the Financial Leasing Law No. 95 of 1995 -and its amendments - was abolished, The issuance of the Financial Leasing and Factoring Activities Law No. 176 of 2018 (January 1, 2018) for financial leasing contracts that were subject to Law 95 of 1995 as well as contracts that are subject to Law 176 of 2018 and were to be processed in accordance with the Egyptian Accounting Standard No. (20) \"Accounting Rules and Standards\" Related to finance lease"
+  ],
+  "restatement_notes": [
+    "34. THE FINANCIAL IMPACT FOR IMPLEMENTING EAS (49) - LEASE CONTRACTS: The Company's opening restated consolidated statement of financial position as of December 31, 2018 has been prepared (date of transformation), after making the necessary amendments to switch from Egyptian Accounting Standard EAS 20 related to Finance Lease Rules and Standards to EAS 49 Lease contracts. These adjustments include adjustments on restated equity as at December 31 2018, as at restated December 31 2018, as well as adjustments on the consolidated income and consolidated comprehensive income for the financial Year ended December 30, 2018",
+    "Every comparative column in the primary statements is headed 'DECEMBER 31, 2018 RESTATED'.",
+    "Note 34-2 (income statement impact, EGP 000s): SALES 25 811 964 ( 190 719) 25 621 245; COST OF SALES (22 248 011) 274 200 (21 973 811); NET PROFIT FOR THE YEAR 636 734 35 579 672 313; OWNERS OF THE COMPANY 515 710 29 123 544 833; BASIC EARNINGS / (LOSS) PER SHARE/ EGP 0.471 -> 0.498.",
+    "Note 34-1 (balance sheet impact, EGP 000s, selected): PROPERTY, PLANT, EQUIPMENT AND PROJECTS UNDER CONSTRUCTION (NET) 6 271 129 (2 431 964) 3 839 165; NOTES RECEIVABLES (NET) 1 548 842 1 967 944 3 516 786; ACCOUNTS AND NOTES RECEIVABLES (NET) 4 610 991 718 002 5 328 993; DEFERRED TAX ASSETS 282 584 173 098 455 682.",
+    "Statement of shareholders equity (2018 restated) carries 'ADJUSTMENTS ON OPENING BALANCE 35 059 ... 10 206 45 265' against the December 31, 2017 balance."
+  ],
+  "oddities": [
+    "Comparative (FY2018) figures are RESTATED under EAS 49 and do not match AR2018's original presentation (e.g. revenue 25 621 245 vs 25 811 964; parent net profit 544 833 vs 515 710; total assets 21 517 951 vs 21 070 927; CF dep/amort add-back 218 165 vs 434 327).",
+    "IS presents finance result as one net line: 'FINANCE COSTS (NET) (6) (1 167 018) (1 223 591)'. finance_income and finance_cost above are the totals printed in Note 6 (FINANCE COSTS): interest income 105 047 + interest income on installment sales 7 749 + foreign exchange gain 182 141 = 294 937; interest expense and bank charges (1 461 955).",
+    "No 'associates income' line in the income statement — associates_income null. Investment in associate rose to 58 034 (payment of 50 000 in investing cash flows).",
+    "The 'Provisions and impairment of current and non-current assets (net)' operating line has no schema key; recorded under other_expense per the nearest-key rule.",
+    "Balance sheet also carries non-current 'NOTES RECEIVABLES (NET) (11) 3 233 203 3 516 786' — not included in trade_notes_receivable (which is the current 'ACCOUNTS AND NOTES RECEIVABLES (NET)').",
+    "provisions = current provisions only; non-current 'WARRANTY PROVISIONS (26) 4 168 15 159' shown separately. Non-current also includes 'LONG TERM NOTES PAYABLES AND CREDITORS 163 504 301 151' (not in trade_notes_payable, which is the current trade payables line).",
+    "CV&CE FY19 sub-volumes: the chart prints values 1,119 (53.4%), 646 (30.8%), 168 (8.0%), 125 (6.0%), 38 (1.8%) summing to 2,096, with legend BUS / TRUCK / TRACTOR / TRAILER / CONSTRUCTION EQUIPMENT, but the pdftotext layout does not unambiguously pair each value with its legend label (prose confirms only 'higher sales at the buses division'; AR2018 prose puts FY18 trucks at 998, matching the 998 44.6% slice of the FY18 chart) — per-category values not asserted.",
+    "Egypt PC CBU/CKD split (10,712 / 16,175) and M&3W splits (37,322 / 44,541 / 3,136) are read from infographic charts; the percentage labels (39.9%/60.1%, 43.9%/52.4%/3.7%) sit between the FY18 and FY19 charts in the text layout.",
+    "The Iraq PC sentence omits the word 'growth': 'reported an impressive 96.7% y-o-y in FY19, coming in at 19,737 units' — recorded as printed.",
+    "The after-sales network table FY19 defines 1-S as '(SPARE PARTS CENTER)' whereas AR2018 defined 1-S as '(Sales or Service or Spare parts center)'.",
+    "AR2019's FY18 comparative infographic states TOTAL AFTER-SALES EGYPT REVENUE: 1,130.0 LE MILLION vs AR2018's 'EGP 1,129.9 million' — rounding difference between the two reports.",
+    "Note 34-3 comprehensive-income table prints 'FOREIGN CURRENCY TRANSLATION DIFFERENCE 53 545 - 53 54' — the restated figure is truncated in the text layer (evidently 53 545).",
+    "Note 34-2 heading reads 'ADJUSTMENT ON YEARIC CONSOLIDATED INCOME STATEMENT' (sic) and note 34 intro says 'financial Year ended December 30, 2018' (sic, = December 31).",
+    "No dedicated events-after-reporting-date note found in the FS text layer; COVID-19 ('Corona') is mentioned only in the strategic report (Iraq 3S facility delay, GB Academy sections).",
+    "Segment reconciliation prints FY18-restated total revenues for operating segments 28 245 193 with eliminations (2 623 948); AR2018's original note had 28 484 515 / (2 672 551)."
+  ]
+}

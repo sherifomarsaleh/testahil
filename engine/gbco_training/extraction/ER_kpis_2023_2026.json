@@ -1,0 +1,413 @@
+{
+ "units": "volumes in units; money in EGP million as printed in ER tables",
+ "fy2022_from_ER4Q23": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf",
+  "doc_date": "2024-02-29",
+  "tier": "A",
+  "pc_egypt": {
+   "cbu_units": 11158,
+   "ckd_units": 20383,
+   "units": 31541,
+   "rev": 9231.1
+  },
+  "m3w_egypt": {
+   "units": 59100,
+   "rev": 1915.0,
+   "note": "three-wheelers 27,312 + motorcycles 31,788"
+  },
+  "cvce_egypt": {
+   "units": 2005,
+   "rev": 1515.0,
+   "buses": 702,
+   "trucks": 1136,
+   "trailers": 88,
+   "constr": 79
+  },
+  "aftersales_egypt": {
+   "rev": 1803.4
+  },
+  "tires_egypt": {
+   "rev": 1634.2
+  },
+  "regional": {
+   "rev": 4731.5
+  },
+  "gb_auto": {
+   "total_rev": 21794.0,
+   "gp": 4001.6,
+   "ebitda": 2551.1,
+   "np_after_nci": 933.2,
+   "cogs_total": -17792.4,
+   "sga": -1890.4,
+   "finance": -663.2,
+   "ebitda_margin": 0.117
+  },
+  "gb_capital_restated_exMNT": {
+   "total_rev": 4274.3,
+   "gp": 903.6,
+   "np_after_nci": 9054.4,
+   "np_note": "includes 8,207.3 MNT-Halan revaluation gain; portfolio FY22 5,384.5"
+  },
+  "gb_auto_wc_4q22": {
+   "inventory": 3920.0,
+   "receivables": 1432.2,
+   "advances": 742.5,
+   "debtors": 1927.1,
+   "payables_net": 4715.9,
+   "wc": 3305.9
+  },
+  "gb_auto_netdebt_4q22": {
+   "total_debt": 4376.3,
+   "notes_pay_leasing": 1011.9,
+   "cash": 2776.9,
+   "net_debt": 2112.5
+  },
+  "gb_auto_cf_fy22": {
+   "da": 344.8,
+   "capex_ppe": -661.4,
+   "capex_projects": -549.4,
+   "interest_paid": -532.8,
+   "cfo_net": 2892.8,
+   "capital_increase": 1367.8
+  },
+  "gb_auto_roce_fy22": {
+   "capital_employed": 8177.3,
+   "ltm_roce": 0.272
+  }
+ },
+ "fy2023_from_ER4Q23": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf",
+  "doc_date": "2024-02-29",
+  "tier": "A",
+  "pc_egypt": {
+   "cbu_units": 3603,
+   "ckd_units": 12866,
+   "units": 16469,
+   "rev": 9545.2,
+   "market_share": 0.233,
+   "market_note": "Egypt PC market contracted 48.3% y-o-y in FY23"
+  },
+  "m3w_egypt": {
+   "units": 13610,
+   "rev": 513.4,
+   "note": "3W import ban from 1-Jul-2023; motorcycles 11,818, tricycles 1,785, 3W 7"
+  },
+  "cvce_egypt": {
+   "units": 943,
+   "rev": 1424.1,
+   "buses": 354,
+   "trucks": 533,
+   "trailers": 9,
+   "constr": 47
+  },
+  "aftersales_egypt": {
+   "rev": 2496.5
+  },
+  "tires_egypt": {
+   "rev": 1806.2
+  },
+  "regional": {
+   "rev": 6423.0,
+   "iraq_pc_units": 10523,
+   "iraq_mg_share": 0.083
+  },
+  "gb_auto": {
+   "total_rev": 23854.0,
+   "gp": 5813.1,
+   "ebitda": 3794.5,
+   "np_after_nci": 688.6,
+   "cogs_total": -18040.9,
+   "sga": -2723.8,
+   "finance": -1083.8,
+   "fx_loss": -1479.5,
+   "ebitda_margin": 0.159
+  },
+  "gb_capital": {
+   "total_rev": 4950.9,
+   "gp": 1091.8,
+   "np_after_nci": 1207.6,
+   "portfolio_onbook_bn": 9.0,
+   "npl": 0.0296,
+   "debt_bn": 6.7
+  },
+  "one_offs": [
+   "Algeria investment fully impaired EGP 522.0mn (4Q23)",
+   "4Q23 FX loss EGP 1,019.7mn",
+   "Red Sea shipping disruption 4Q23"
+  ],
+  "gb_auto_wc_4q23": {
+   "inventory": 6366.1,
+   "receivables": 1743.5,
+   "advances": 913.6,
+   "debtors": 1547.9,
+   "payables_net": 5828.9,
+   "wc": 4742.2
+  },
+  "gb_auto_netdebt_4q23": {
+   "total_debt": 5788.8,
+   "notes_pay_leasing": 1030.6,
+   "cash": 3446.1,
+   "net_debt": 2921.8
+  },
+  "gb_auto_cf_fy23": {
+   "da": 374.3,
+   "capex_ppe": -460.2,
+   "capex_projects": -1109.5,
+   "interest_paid": -1049.1,
+   "cfo_net": 1112.9,
+   "impair_fixed": 375.5
+  },
+  "gb_auto_roce_fy23": {
+   "capital_employed": 9826.4,
+   "ltm_roce": 0.352
+  }
+ },
+ "fy2024_from_ER4Q24": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_4Q24-_E_-_Final.pdf",
+  "doc_date": "2025-02-27",
+  "tier": "A",
+  "pc_all": {
+   "cbu_units": 20248,
+   "ckd_units": 21795,
+   "units": 42043,
+   "rev": 36533.4,
+   "note": "PC LoB now Egypt+Iraq+Jordan combined; Egypt/Iraq&Jordan rev split 71.8%/28.2%"
+  },
+  "l234w_egypt": {
+   "units": 20189,
+   "rev": 1378.2
+  },
+  "cvce_egypt": {
+   "units": 2101,
+   "rev": 3984.5,
+   "buses": 800,
+   "trucks": 1260,
+   "trailers": 17,
+   "constr": 19,
+   "note": "ER 4Q25 later prints FY24 total 2,096"
+  },
+  "trading": {
+   "rev": 3815.5,
+   "tires": 2873.4,
+   "ready_parts": 942.1,
+   "note": "Trading LoB = Tires Egypt + Ready Parts Egypt&Iraq; after-sales folded elsewhere from FY24 presentation"
+  },
+  "gb_auto": {
+   "total_rev": 47065.0,
+   "gp": 9057.4,
+   "ebitda": 5880.5,
+   "np_after_nci": 1932.8,
+   "sga": -3732.6,
+   "finance": -2554.4,
+   "fx": -332.4,
+   "ebitda_margin": 0.125
+  },
+  "gb_capital": {
+   "total_rev": 7383.6,
+   "gp": 1527.3,
+   "np_after_nci": 1091.5,
+   "portfolio_onbook_bn": 13.2,
+   "npl": 0.0207,
+   "debt_bn": 10.5,
+   "securitizations": "13 deals, EGP 28.8bn total bond size FY24"
+  },
+  "guidance": [
+   "Sadat factory fully operational by 4Q25, first assembly online in 2Q25",
+   "FY25 securitization target: exceed 13 deals, EGP 30bn bond size"
+  ],
+  "gb_auto_wc_4q24": {
+   "inventory": 21134.3,
+   "receivables": 3708.7,
+   "advances": 1583.0,
+   "debtors": 3258.5,
+   "payables_net": 18900.5,
+   "wc": 10783.9
+  },
+  "gb_auto_netdebt_4q24": {
+   "total_debt": 12119.3,
+   "notes_pay_leasing": 752.7,
+   "cash": 6580.5,
+   "net_debt": 5292.0
+  },
+  "gb_auto_cf_fy24": {
+   "da": 525.7,
+   "capex_ppe_intang": -1588.7,
+   "capex_projects": -1053.6,
+   "interest_paid": -2653.1,
+   "cfo_net": 1291.1,
+   "dividends_shareholder": -217.0
+  },
+  "gb_auto_roce_fy24": {
+   "capital_employed": 18731.3,
+   "ltm_roce": 0.315
+  }
+ },
+ "fy2025_from_ER4Q25": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_4Q25-_E_-_Final.pdf",
+  "doc_date": "2026-02-26",
+  "tier": "A",
+  "pc_all": {
+   "cbu_units": 25199,
+   "ckd_units": 31349,
+   "units": 56548,
+   "rev": 52827.3,
+   "egypt_share_of_pc_rev": 0.805,
+   "egypt_market": "~210,000 registrations 2025, up ~40% vs 2024; GB share 21%"
+  },
+  "l234w_egypt": {
+   "units": 33906,
+   "rev": 2203.8
+  },
+  "cvce_egypt": {
+   "units": 3404,
+   "rev": 5956.8,
+   "buses": 1723,
+   "trucks": 1659,
+   "trailers": 0,
+   "constr": 22,
+   "exports_note": "~50% of tourism buses production and 20% of minibuses sold outside Egypt"
+  },
+  "trading": {
+   "rev": 4242.8,
+   "tires": 3282.0,
+   "ready_parts": 960.7
+  },
+  "gb_auto": {
+   "total_rev": 66358.3,
+   "gp": 9837.1,
+   "ebitda": 6363.3,
+   "np_after_nci": 1508.6,
+   "sga": -4899.5,
+   "finance": -3689.4,
+   "ebitda_margin": 0.096,
+   "gpm": 0.148
+  },
+  "gb_capital": {
+   "total_rev": 14743.0,
+   "gp": 2766.4,
+   "np_after_nci": 1365.9,
+   "portfolio_onbook_bn": 19.5,
+   "npl": 0.021,
+   "debt_bn": 16.6,
+   "by_company_rev": {
+    "GB Lease": 2306.9,
+    "Drive": 11446.4,
+    "GB Auto Rental": 549.4,
+    "GBBR": 168.1,
+    "Capital Securitization": 22.9,
+    "Kredit": 248.4,
+    "GB Capital co": 1.0
+   },
+   "securitizations": "17 deals FY25, EGP 33bn total bond size, 36% market share; GB Lease 10th securitization EGP 4.2bn largest in market"
+  },
+  "mnt_halan": {
+   "loan_book": "USD 1.7bn+ at end-2025",
+   "note": "4Q25 hit by hyperinflationary accounting in Turkey + securitization timing"
+  },
+  "one_offs_4q25": [
+   "selective impairment and inventory provisioning",
+   "hyperinflation accounting Turkey on MNT-Halan contribution",
+   "goodwill impairment 47.8mn (CF)"
+  ],
+  "guidance": [
+   "CEO 26-Feb-2026: stabilizing FX, easing inflation, declining interest rates, improving purchasing power supportive for 2026; Sadat facility online; expects gradual easing of regional (Iraq/Jordan) pressures in H2-2026 subject to GSO enforcement",
+   "additional production shift under consideration at Ain Sokhna bus facility"
+  ],
+  "gb_auto_wc_4q25": {
+   "inventory": 24649.7,
+   "receivables": 5316.9,
+   "advances": 1299.6,
+   "debtors": 3371.0,
+   "payables_net": 15720.2,
+   "wc": 18917.0
+  },
+  "gb_auto_netdebt_4q25": {
+   "total_debt": 21486.3,
+   "notes_pay_leasing": 2576.2,
+   "cash": 7797.5,
+   "net_debt": 15210.0
+  },
+  "gb_auto_cf_fy25": {
+   "da": 683.3,
+   "capex_ppe_intang": -693.1,
+   "capex_projects": -2002.3,
+   "interest_paid": -3773.6,
+   "cfo_net": -2785.8,
+   "dividends_shareholder": -379.9
+  },
+  "gb_auto_roce_fy25": {
+   "capital_employed": 28513.0,
+   "ltm_roce": 0.213
+  },
+  "segment_is_fy25": {
+   "gb_auto_rev": 66358.3,
+   "gb_capital_rev": 14743.0,
+   "elim": -871.5,
+   "group_rev": 80229.8,
+   "gb_auto_pbt": 2053.1,
+   "gb_capital_pbt": 1807.8,
+   "gb_auto_np_nci": 1508.6,
+   "gb_capital_np_nci": 1365.9
+  }
+ },
+ "q1_2026_from_ER1Q26": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_1Q26-_E_-_Final.pdf",
+  "doc_date": "2026-05-14",
+  "tier": "A",
+  "note": "text-layer ER; group IS in FS2026Q1_visual.json"
+ },
+ "h1_2026_from_ER2Q26": {
+  "src": "https://ir.gb-corporation.com/media/earnings/releases/GB_Corp_ER_2Q26-_E_-_Final.pdf",
+  "doc_date": "2026-08-13",
+  "tier": "A",
+  "pc_all": {
+   "h1_units": 29554,
+   "h1_ckd": 15454,
+   "h1_cbu": 14100,
+   "h1_rev": 30595.7,
+   "q1_units": 13809,
+   "q2_units": 15745,
+   "prior_h1_units": 25989,
+   "prior_h1_rev": 24098.2
+  },
+  "cvce_egypt": {
+   "h1_units": 2490,
+   "h1_buses": 1002,
+   "h1_trucks": 1472,
+   "h1_rev": 4749.1,
+   "prior_h1_units": 1534,
+   "prior_h1_rev": 2640.6,
+   "minibus_share": 0.63
+  },
+  "l234w_egypt": {
+   "h1_units": 21173,
+   "h1_rev": 1435.2,
+   "prior_h1_units": 14216,
+   "prior_h1_rev": 928.4
+  },
+  "trading": {
+   "h1_rev": 2572.3,
+   "prior_h1_rev": 2438.2
+  },
+  "gb_auto": {
+   "h1_ebitda": 3484.8,
+   "q2_rev": 22286.5,
+   "gpm_h1": 0.143
+  },
+  "gb_capital": {
+   "portfolio_onbook_bn": 24.0,
+   "ecl_pct": 0.019
+  },
+  "ev": {
+   "group_ev_share": 0.175,
+   "reev_share": 0.4,
+   "deepal_reev_share": 0.31,
+   "new_ev_brand": "A/B-class launch Aug-2026"
+  },
+  "guidance": [
+   "Jordan rationalization impact to moderate in Q3, largely subside from Q4-2026",
+   "securitization to normalize as new FRA framework beds in; full-year activity broadly in line with pipeline",
+   "higher effective tax rate as more earnings in Egypt while regional losses"
+  ]
+ }
+}

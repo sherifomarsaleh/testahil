@@ -1,0 +1,112 @@
+{
+  "fy": 2022,
+  "source_doc": "GB_Annual_Report_2022.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2022.pdf",
+  "units_note": "consolidated FS in EGP 000s ('All amounts in thousand Egyptian Pound'); MD&A/segment figures in LE mn as printed; comparative 2021 column is Restated",
+  "is": {
+    "revenue": {"v": 29789079, "q": "Operating revenue 29,789,079 31,437,533"},
+    "cogs": {"v": -21676145, "q": "Operating cost (21,676,145) (25,134,960)"},
+    "gross_profit": {"v": 8112934, "q": "Gross profit 8,112,934 6,302,573"},
+    "distribution_exp": {"v": -2164790, "q": "Selling and marketing expenses (2,164,790) (1,849,389)"},
+    "admin_exp": {"v": -2048396, "q": "General and administrative expenses (2,048,396) (1,582,763)"},
+    "other_income": {"v": 285557, "q": "Other income (6) 285,557 184,364"},
+    "other_expense": {"v": -229788, "q": "Provisions and Impairment of Current and Non-Current assets (Net) (8) (229,788) (130,938)"},
+    "op_profit": {"v": 3955517, "q": "Operating Profit 3,955,517 2,923,847"},
+    "finance_income": null,
+    "finance_cost": {"v": -962993, "q": "Finance costs (Net) (7) (962,993) (551,569)"},
+    "associates_income": null,
+    "pbt": {"v": 11300420, "q": "Net profit for the year before income tax 11,300,420 2,331,686"},
+    "income_tax": {"v": -762322, "q": "Income tax (expense) ( 10-C ) (762,322) (563,274)"},
+    "np_total": {"v": 10538098, "q": "Net profit for the year after tax 10,538,098 1,768,412"},
+    "np_parent": {"v": 9984958, "q": "Shareholder's of the parent company 9,984,958 1,408,511"},
+    "np_nci": {"v": 553140, "q": "Non-controlling interests 553,140 359,901"}
+  },
+  "bs": {
+    "ppe_net": {"v": 4945174, "q": "Property, plant, equipment and projects under construction (Net) (16) 4,945,174 4,252,697"},
+    "investments_associates": {"v": 9559706, "q": "Investment in associate (35) 9,559,706 622,910"},
+    "inventory": {"v": 3920044, "q": "Inventories (Net) (11) 3,920,044 4,203,342"},
+    "trade_notes_receivable": {"v": 3060579, "q": "Accounts and notes receivables (Net) (13) 3,060,579 10,239,476"},
+    "debtors_other": {"v": 3323285, "q": "Debtors and other debit balances (Net) (14-B) 3,323,285 2,787,409"},
+    "cash": {"v": 4098083, "q": "Cash on hand and at banks (15-A) 4,098,083 1,935,644"},
+    "total_current_assets": {"v": 15441999, "q": "Total current assets 15,441,999 19,359,099"},
+    "total_assets": {"v": 34617566, "q": "Total assets 34,617,566 32,069,659"},
+    "borrowings_current": {"v": 6040231, "q": "Loans, borrowings and overdrafts (26) 6,040,231 13,628,224"},
+    "borrowings_noncurrent": {"v": 2940313, "q": "Loans (26) 2,940,313 3,514,992"},
+    "trade_notes_payable": {"v": 5812382, "q": "Trade payables and other credit balances (27) 5,812,382 5,508,618"},
+    "total_liabilities": {"v": 17156817, "q": "Total liabilities 17,156,817 24,689,585"},
+    "equity_parent": {"v": 16732554, "q": "Equity attributable to shareholders of the parent 16,732,554 5,739,354"},
+    "nci_equity": {"v": 728195, "q": "Non-controlling interests (24) 728,195 1,640,720"},
+    "total_equity": {"v": 17460749, "q": "Total equity 17,460,749 7,380,074"},
+    "provisions": {"v": 346315, "q": "Provisions (28) 346,315 282,521"}
+  },
+  "cf": {
+    "cfo": {"v": 6938200, "q": "Net cash provided from operating activities 6,938,200 988,171"},
+    "capex_ppe": {"v": -1160574, "q": "Payment for acquisition of property, plant, equipment and projects under constructions (1,160,574) (485,789)"},
+    "dep_amort_addback": {"v": 451098, "q": "Depreciation and amortization for the period (16،17,18) 451,098 426,281"},
+    "interest_paid": {"v": -943502, "q": "Interest expense paid (943,502) (766,910)"},
+    "cfi": {"v": -2911448, "q": "Net cash (used in) investing activities (2,911,448) (289,306)"},
+    "cff": {"v": -2289473, "q": "Net cash(used in) financing activities (2,289,473) (570,246)"}
+  },
+  "segments": [
+    {"name": "Egypt Passenger Cars", "revenue": {"v": 9231.1, "q": "Passenger Cars 12,880.4 9,231.1 -28.3% (LE mn, Breakdown of Revenue by Line of Business)"}, "gross_profit": null, "volume_units": {"v": 31541, "q": "31,541 Sales Volume (-30.8% y-o-y) CBU 11,158 vs. CKD 20,383"}},
+    {"name": "Egypt Motorcycles & Three-Wheelers", "revenue": {"v": 1915.0, "q": "Motorcycles & Three-Wheelers 3,719.9 1,915.0 -48.5% (LE mn)"}, "gross_profit": null, "volume_units": {"v": 59100, "q": "LE 1,915.0 MN Revenue (-48.5% y-o-y) 59,100 Sales Volume (-56.9% y-o-y)"}},
+    {"name": "Egypt Commercial Vehicles & Construction Equipment", "revenue": {"v": 1515.0, "q": "Commercial Vehicles & Construction Equipment 1,053.4 1,515.0 43.8% (LE mn)"}, "gross_profit": null, "volume_units": {"v": 2005, "q": "LE 1,515.0 MN Revenue (+43.8% y-o-y) 2,005 Sales Volume (+27.2% y-o-y)"}},
+    {"name": "Egypt After-Sales", "revenue": {"v": 1803.4, "q": "After-Sales 1,336.6 1,803.4 34.9% (LE mn); splits: LE 1,227.8 MN Passenger Cars After-Sales Revenue, LE 300.3 MN Motorcycles & Three-Wheelers After-Sales Revenue, LE 275.4 MN CV&CE After-Sales Revenue"}, "gross_profit": null, "volume_units": null},
+    {"name": "Egypt Tires", "revenue": {"v": 1634.2, "q": "Tires 1,431.7 1,634.2 14.1% (LE mn); LE 1,634.2 MN Revenue (+14.1% y-o-y) 10 Brands"}, "gross_profit": null, "volume_units": null},
+    {"name": "Regional (Iraq)", "revenue": {"v": 4731.5, "q": "Regional 3,009.7 4,731.5 52.6% (LE mn); Two and Three-Wheelers revenue increased 17.7% y-o-y in FY22"}, "gross_profit": null, "volume_units": null},
+    {"name": "Others (GB Auto)", "revenue": {"v": 963.7, "q": "Others 1,399.2 963.7 -31.1% (LE mn)"}, "gross_profit": null, "volume_units": null},
+    {"name": "GB Auto segment total", "revenue": {"v": 21794.0, "q": "In 2022, revenue at GB Auto fell 12.5% y-o-y to LE 21,794.0; however, net profit was up 16.6% y-o-y to LE 933.2 million"}, "gross_profit": null, "volume_units": null},
+    {"name": "GB Capital (before intercompany elimination)", "revenue": {"v": 9358.7, "q": "GB Capital's revenue grew 17.7% y-o-y to LE 9,358.7 million, and its net profit reached LE 9,054.4 million due to the sale of a 7.5% stake in MNT-Halan. Excluding capital gain, net profit grew by 24.8%. By company (LE mn, 2022): GB Capital 12.8, GB Lease 807.3, Drive 3,298.7, MNT-Halan 5,084.4, Haram 154.2, Capital Securitization 1.3, Total 9,358.7"}, "gross_profit": null, "volume_units": null}
+  ],
+  "kpis": {
+    "amic_egypt_pc_market_size_2022_units": {"v": 133857, "q": "As per the Egyptian Automotive Marketing Information Council (AMIC)'s full year report on the Egyptian passenger car market, the total automotive market contracted to 133,857 units in 2022 compared to 215,072 units in 2021."},
+    "gb_egypt_pc_market_share_2022": {"v": 23.5, "q": "GB Auto retained its position as the market leader in the passenger car market in 2022 with a market share of 23.5% compared to 21.1% in 2021."},
+    "ckd_contribution_2022": {"v": 65, "q": "GB Auto managed to significantly alter its product mix towards more CKD units, bringing up their contribution to 65% in 2022 from 45% in 2021."},
+    "cng_initiative_2022": {"v": 5821, "q": "In 2022, we delivered 5,821 vehicles out of the yearly total of 15,121 vehicles supplied through the initiative capturing a 38% market share of the CNG market."},
+    "mg_iraq_market_share_2022": {"v": 6.8, "q": "The MG brand maintained its momentum to close the year ranked fourth in the Iraqi market and first amongst Chinese brands with an enlarged market share of 6.8% compared to 4.7% in 2021."},
+    "gb_auto_ebitda_2022_le_mn": {"v": 2551.1, "q": "In 2022, EBITDA at GB Auto grew 35.5% y-o-y to LE 2,551.1 million, with a margin expansion of 4.2 percentage points to 11.7%."},
+    "gb_capital_share_of_consolidated_revenue": {"v": 26.8, "q": "In 2022, GB Capital's companies collectively contributed to 26.8% of GB Corp's consolidated revenues."},
+    "gb_capital_net_portfolio_assets_ex_mnt_halan_fy22_le_mn": {"v": 5384.5, "q": "Supplementary Financial Information - GB Capital (Excluding MNT-Halan) ... Net Portfolio Assets 6,273.6 7,935.6 5,384.5 (FY21 / 9M22 / FY22)"},
+    "gb_capital_net_profit_after_minority_le_mn": {"v": 9054, "q": "LE 9,054 MN GB Capital net profit after minority"},
+    "consolidated_revenue_ceo_letter_le_mn": {"v": 29789.1, "q": "Although our consolidated revenue fell 5.2% year-on-year (y-o-y) to LE 29,789.1 million due to the challenging operating environment ... Net profit increased nearly seven-folds y-o-y to LE 9,984.9 million in FY22, due to the capital gain realized in the last quarter of the year. Excluding the capital gain, net profit grew 26.2%."},
+    "prima_plant_capacity_units_per_year": {"v": 80000, "q": "The plant spans across nearly 58,000 m2 and has an assembly capacity of approximately 80,000 units per year."}
+  },
+  "guidance": [
+    {"q": "We are entering 2023 from a position of strength with undeniable knowledge acquired through years of experience and persistence. Looking ahead, we are hopeful that the economic reforms taking place will provide more visibility and yield a more positive outlook for our economy, country and business.", "where": "A Note from Our CEO"},
+    {"q": "While visibility regarding imports and supply availability remains limited, management believes that the adoption of the flexible exchange rate in October 2022 was the first step towards a turnaround period where FX availability and import restrictions improve in the coming year. Moreover, GB Auto is confident in its pricing strategy, which capitalizes on the high demand for its brand, to offset challenges in the supply chain that may affect sale volumes.", "where": "Egypt Passenger Cars - Market Review"},
+    {"q": "GB Auto is transforming a former facility in Sadat City into a passenger car manufacturing facility to cater for its newest Chinese brand additions, Changan and Haval. The facility is expected to be operational in the first quarter of 2024 and to have a capacity of 50,000 vehicles per year.", "where": "Egypt Passenger Cars - production capacity"},
+    {"q": "As part of GB Capital's strategy to mitigate risk exposure and hedge against fluctuations in interest rates, GB Capital portfolio companies will continue with a series of securitizations and corporate bond issuances. The transactions will drive further growth opportunities at GB Capital and help diversify funding sources.", "where": "Financial Review - GB Capital"},
+    {"q": "GB Auto has been closely following regulatory developments regarding the ban on importing key three-wheeler components. In response, the company phased out its remaining inventory during the year and has identified viable alternatives that would meet the needs of its customers and support the longer-term sustainability of the line of business.", "where": "Egypt Motorcycles & Three-Wheelers - Market Review"}
+  ],
+  "accounting_changes": [
+    "45. Foreign currency exchange through comprehensive income: On December 27, 2022, Prime Minister Decision No. 1568 of 2022 was issued to amend some provisions of the Egyptian Accounting Standards, represented in the issuance of Appendix (C) to Egyptian Accounting Standard No. (13), amended in 2015, \"The Effects of Changes in Foreign Currency Exchange Rates\" ... The company's management decided to apply accounting treatment No. (2), whereby the currency differences charged to the statement of comprehensive income amounted to an amount 447 997 thousand Egyptian pounds on December 31, 2022.",
+    "Appendix C treatment (2) verbatim: As an exception to the requirements of Paragraph No. 28 of the amended Egyptian Accounting Standard No. (13) ... an enterprise whose business results were affected by net profits or losses of currency differences as a result of moving the currency exchange rate Foreign companies may recognize in other comprehensive income the debit and credit currency differences resulting from the retranslation of the balances of monetary items outstanding at the end of December 31, 2022 using the closing price on the same date ... Considering that these differences were mainly caused by the decision of the unusual foreign exchange rate movements.",
+    "47. Significant Events: The Central Bank of Egypt decided, in its session held on October 27, 2022, to announce the implementation of a flexible exchange rate system for pricing foreign exchange ... accordingly the exchange rate of the US dollar increased against the Egyptian pound. In conjunction with the liberalization of the exchange rate, the Central Bank of Egypt also raised the deposit and lending rates, which affected the company's revenues and financing costs.",
+    "Egyptian Accounting Standard No. 48 - Revenue from contracts with customers. Egyptian Accounting Standard No. 48 specifies a comprehensive framework for determining the value and timing of revenue recognition. This standard replaces the following Egyptian accounting standards (Egyptian Accounting Standard No. (11) \"Revenue\" and Egyptian Accounting Standard No. (8) \"Construction Contracts\". ... the effect of Egyptian Accounting Standard No. 48 on the recognition of revenue by the group will be immaterial, as the net effect of retained earnings amounted to 12.5 million Egyptian pounds.",
+    "43. General Risk Reserve: A general risk reserve is the difference between applying the expected credit loss model according to the non-bank financial companies' application of the Egyptian Accounting Standard No. 47 on January 1, 2021 for the provision for doubtful debts ...",
+    "42. Private Risk Reserve: The risk reserve is represented in non-banking financial services, the effects of applying the Egyptian Accounting Standard No. 47 \"Financial Instruments\" equivalent to 1% of the assets listed in the risk weights ... the balance on December 31, 2022 reached 20 million Egyptian pounds.",
+    "Equity statement 2021 line: 'The impact of applying the new Egyptian standards. 15,016 22,732 37,748'"
+  ],
+  "restatement_notes": [
+    "2021 comparative columns are headed 'Restated' on the statement of financial position, statement of income, comprehensive income, equity and cash flows.",
+    "41.1. Adjustment on Consolidated statement of financial position as in 31 December 2021: Total assets 32,108,061 (38,402) 32,069,659; Equity attributable to shareholders of the parent 5,915,298 (175,944) 5,739,354; Non-controlling interests 1,649,730 (9,010) 1,640,720; Total liabilities 24,543,033 146,552 24,689,585 (before / adjustments / after).",
+    "41.2. Adjustment on Consolidated income statement as of December 31,2022 [table actually restates the 2021 year]: Operating results 3,002,299 (78,452) 2,923,847; Other income 229,992 (45,628) 184,364; General and administrative expenses (1,576,850) (5,913) (1,582,763); Provisions and Impairment (104,027) (26,911) (130,938); Shareholder's of the parent company 1,477,953 (69,442) 1,408,511; Non-controlling interests 368,911 (9,010) 359,901; Basic earnings per share/ EGP 1.352 (0.063) 1.288.",
+    "Equity statement, 31 December 2021 Restated: 'Adjustments on opening balance — Investment in associate losses (2,680); Adjustments (124,053) / (11,534) / (135,587)' against Balance at December 31, 2020.",
+    "R. Comparative figures: Where necessary, comparative figures have been reclassified to conform to changes in presentation in the current period."
+  ],
+  "oddities": [
+    "Source: the separate audited-FS PDF for 2022 (GB_Auto_Consolidated_E_31_December_2022.pdf) has no text layer; the audited consolidated FS embedded in the annual report (pages 83-90 of GB CORP 2022 ANNUAL REPORT) were used as the source, per task instruction.",
+    "The income statement carries TWO lines with the identical caption 'Gain from sale & Revaluation of investment': note (35) 100,587 and note (40) 8,207,309. Note 40 explains the 8,207,309: sale of 7.5% of MNT BV group ('MNT-Halan') left GB at 49.5%, loss of control, remaining stake revalued at fair value — 'Gain for the group from sale of 7.5% from shares of MNT BV Group 1,127,470' + 'Gain for the group from revaluation of the investment in associates 7,079,839' = 'Total Gain from Sale & revaluation of investment in associates 8,207,309'. The note-35 line (100,587; 2021: (40,592)) appears in the CF as 'Investment in associates and liquidation losses'. No 'share of profit of associates' line exists in the IS, so associates_income = null.",
+    "finance_income = null: the IS presents only 'Finance costs (Net)'. The CF adjustments disclose the gross components: 'Interest expense (7) 890,717 733,545' and 'Interest income (7) (166,751) (170,032)'.",
+    "other_expense holds 'Provisions and Impairment of Current and Non-Current assets (Net)' — the nearest available key; there is no separate 'other expense' line.",
+    "BS lines not covered by schema keys: Assets held for sale 855,000 (current); Long term notes receivables (Net) (12) 2,973,743; non-current Debtors and other debit balances (14-A) 398,886; Subordinated Loan 50,000; Bond Payable current (39) 241,538 and Bond Payable Long term (39) 280,000 (both excluded from borrowings_current/noncurrent, which carry only the note-26 loan lines); Long term notes payables and creditors 380,317; Warranty provisions (28) 13,935 non-current (provisions key carries only the current 346,315).",
+    "trade_notes_payable maps to 'Trade payables and other credit balances' — the document does not split trade/notes payables from other credit balances on the face of the BS.",
+    "Cash per CF at end of period is 4,098,184 (note 15-B) vs BS 'Cash on hand and at banks' 4,098,083 (note 15-A) — the two notes define cash differently.",
+    "Note 41.2's totals are internally inconsistent by exactly 40,592: it prints 'Net profit for the period before income tax 2,410,138 (78,452) 2,372,278' and 'Net profit for the period after tax 1,846,864 (78,452) 1,809,004', while the restated IS comparative shows PBT 2,331,686 and NP 1,768,412 (= the note's own attributable rows, 1,408,511 + 359,901). The 40,592 associates loss appears listed but not deducted in those two printed totals.",
+    "Note 41 has no prose heading explaining the reason for the restatement — only the 41.1/41.2/41.3 adjustment tables (and the 41.2 header mislabels the year as 'December 31,2022' while restating 2021).",
+    "The MD&A segment tables carry no gross profit per line of business (revenue only), so segment gross_profit = null throughout; the 4Q22 earnings release is the source for per-segment gross profit.",
+    "MD&A working-capital table shows FY22 inventory 3,920.0 LE mn consistent with BS 3,920,044 thousand; 'Payables (Net)' shown net of financial lease-related liabilities of LE 444.7 million per its footnote.",
+    "Note 48 Subsequent Events: sale of an indirect 45% of GB Lease to Chimera signed December 18, 2022 for EGP 855 mn, executed January 19, 2023 (matches BS 'Assets held for sale 855,000' and 'Paid to buy asset held for sale (855,000)' in CF).",
+    "Bond note (39) text contains obvious magnitude typos: 'EGP 300,000,000,000 (only three hundred million Egyptian pounds)' and '400,000,000,000 EGP (only four hundred million Egyptian pounds)'."
+  ]
+}

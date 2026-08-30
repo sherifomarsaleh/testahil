@@ -1,0 +1,172 @@
+{
+  "fy": 2012,
+  "source_doc": "GB_Annual_Report_2012.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2012.pdf",
+  "units_note": "consolidated FS in EGP 000s ('All amounts in thousand Egyptian pounds'); MD&A/highlights quote LE million; negative = printed in parentheses",
+  "is": {
+    "revenue": {"v": 8290147, "q": "Sales 8,290,147 7,415,292"},
+    "cogs": {"v": -7220107, "q": "Cost of sales (7,220,107) (6,531,989)"},
+    "gross_profit": {"v": 1070040, "q": "Gross profit 1,070,040 883,303"},
+    "distribution_exp": {"v": -159152, "q": "Selling and marketing expenses (159,152) (107,814)"},
+    "admin_exp": {"v": -304908, "q": "Administration expenses (304,908) (254,248)"},
+    "other_income": {"v": 27712, "q": "Other income 27,712 20,035"},
+    "other_expense": {"v": null, "q": "Other operating expenses - (1,187)"},
+    "op_profit": {"v": 614979, "q": "Operating profit 614,979 519,228"},
+    "finance_income": {"v": null, "q": null},
+    "finance_cost": {"v": -300182, "q": "Finance costs - net 35 (300,182) (219,233)"},
+    "associates_income": {"v": null, "q": null},
+    "pbt": {"v": 314797, "q": "Net profit before tax 314,797 299,995"},
+    "income_tax": {"v": -38867, "q": "Income tax 36 (38,867) (77,008)"},
+    "np_total": {"v": 275930, "q": "Net profit for the year 275,930 222,987"},
+    "np_parent": {"v": 217796, "q": "Shareholders of the parent 217,796 190,628"},
+    "np_nci": {"v": 58134, "q": "Minority interest 58,134 32,359"}
+  },
+  "bs": {
+    "ppe_net": {"v": 1721061, "q": "Property, plant and equipment 5 1,721,061 1,802,674"},
+    "investments_associates": {"v": null, "q": "Investment in associates 7 - 2,414"},
+    "inventory": {"v": 1752269, "q": "Inventories 11 1,752,269 1,259,846"},
+    "trade_notes_receivable": {"v": 781477, "q": "Accounts and notes receivables 13 781,477 638,894"},
+    "debtors_other": {"v": 456965, "q": "Debtors and other debit balances 14 456,965 433,455"},
+    "cash": {"v": 1173532, "q": "Cash on hand and at banks 17 1,173,532 881,041"},
+    "total_current_assets": {"v": 4591996, "q": "Total current assets 4,591,996 3,497,224"},
+    "total_assets": {"v": 6646474, "q": "Total distributed assets 4,281,039 3,313,551 1,320,160 1,337,492 329,641 274,497 715,634 679,732 6,646,474 5,605,272"},
+    "borrowings_current": {"v": 1778110, "q": "Loans and borrowings 20 1,778,110 1,046,825"},
+    "borrowings_noncurrent": {"v": 129302, "q": "Long-term loans 20 129,302 91,369"},
+    "trade_notes_payable": {"v": 1267371, "q": "Trade payables and other credit balances 21 1,267,371 1,056,078"},
+    "total_liabilities": {"v": 4115762, "q": "Segment liabilities 2,860,356 1,888,795 338,058 279,593 85,770 74,297 831,578 1,034,665 4,115,762 3,277,350"},
+    "equity_parent": {"v": 2106259, "q": "Total Shareholders' equity 2,106,259 1,983,980"},
+    "nci_equity": {"v": 424453, "q": "Minority interest 29 424,453 343,942"},
+    "total_equity": {"v": 2530712, "q": "Total equity 2,530,712 2,327,922"},
+    "provisions": {"v": 40658, "q": "Provisions 18 40,658 36,373"}
+  },
+  "cf": {
+    "cfo": {"v": 29008, "q": "Net cash flow generated from operating activities 29,008 364,753"},
+    "capex_ppe": {"v": -270386, "q": "Purchase of property, plant and equipment (270,386) (76,767)"},
+    "dep_amort_addback": {"v": 123582, "q": "Depreciation and amortization 123,582 134,674"},
+    "interest_paid": {"v": -296985, "q": "Interest paid (296,985) (261,760)"},
+    "cfi": {"v": -361634, "q": "Net cash flow used in investing activities (361,634) (38,232)"},
+    "cff": {"v": 408012, "q": "Net cash flow generated from (used in) financing activities 408,012 (2,142)"}
+  },
+  "segments": [
+    {
+      "name": "Passenger Car (FS note 39, EGP 000s)",
+      "revenue": {"v": 6050515, "q": "Revenues 6,050,515 5,741,614 465,491 340,662 1,208,971 1,001,598 565,170 331,418 8,290,147 7,415,292"},
+      "gross_profit": {"v": 720416, "q": "Segment profit 720,416 566,563 20,439 7,210 228,492 255,659 100,693 53,874 1,070,040 883,303"},
+      "volume_units": {"v": null, "q": null}
+    },
+    {
+      "name": "Passenger Cars (MD&A summary table, LE million)",
+      "revenue": {"v": 6072.3, "q": "Revenue 6,072.3 5,741.9 5.8 5,383.0 6.7"},
+      "gross_profit": {"v": 719.0, "q": "Total Gross Profit 719.0 569.0 26.4 612.3 -7.1"},
+      "volume_units": {"v": null, "q": null}
+    },
+    {
+      "name": "Passenger Cars - Egypt (MD&A)",
+      "revenue": {"v": null, "q": null},
+      "gross_profit": {"v": null, "q": "Sharp supply constraints - particularly on high-demand models including Hyundai Elantra and Accent - throughout 3Q12 and into 4Q12 dampened unit sales, which in turn put pressure on revenue and gross profit for this segment on a full-year basis."},
+      "volume_units": {"v": null, "q": "GB Auto's market share of 28.9% in FY12 is more than 10 percentage points higher than that of its nearest competitor on a YTD basis."}
+    },
+    {
+      "name": "Passenger Cars - Iraq (MD&A)",
+      "revenue": {"v": null, "q": "Proving the essential soundness of the strategy, in 2012, Iraqi operations accounted for 32% of GB Auto's total revenues."},
+      "gross_profit": {"v": null, "q": "Gross profit for this segment was up in FY12, although management does not expect that this growth rate will prove to be sustainable. / Iraq witnessed record margins in FY12 despite a slight drop in unit sales."},
+      "volume_units": {"v": null, "q": "One-off supply constraints in 3Q12 dampened full-year unit sales, but had been addressed in 4Q12 and improved supplies are secured going forward, with a 30% rise in allocation for 2013."}
+    },
+    {
+      "name": "Motorcycles & Three-Wheelers (Two & Three Wheels in FS note 39, EGP 000s)",
+      "revenue": {"v": 1208971, "q": "Revenues 6,050,515 5,741,614 465,491 340,662 1,208,971 1,001,598 565,170 331,418 8,290,147 7,415,292"},
+      "gross_profit": {"v": 228492, "q": "Segment profit 720,416 566,563 20,439 7,210 228,492 255,659 100,693 53,874 1,070,040 883,303"},
+      "volume_units": {"v": null, "q": "Three-Wheeler Sales Volumes (Vehicle Units) chart '12 bar: 68,527 ; Motorcycle Sales Volumes (Vehicle Units) chart '12 bar: 33,648"}
+    },
+    {
+      "name": "Commercial Vehicles & Construction Equipment (Buses and Trailers in FS note 39, EGP 000s)",
+      "revenue": {"v": 465491, "q": "Revenues 6,050,515 5,741,614 465,491 340,662 1,208,971 1,001,598 565,170 331,418 8,290,147 7,415,292"},
+      "gross_profit": {"v": 20439, "q": "Segment profit 720,416 566,563 20,439 7,210 228,492 255,659 100,693 53,874 1,070,040 883,303"},
+      "volume_units": {"v": null, "q": "Bus Sales Volume by Year (Vehicle Units) chart '12 bar: 470 ; Truck Sales Volume by Year (Vehicle Units) chart '12 bar: 1,063"}
+    },
+    {
+      "name": "Tires (MD&A summary table, LE million)",
+      "revenue": {"v": 290.1, "q": "Revenue 290.1 163.4 77.5 111.7 46.3"},
+      "gross_profit": {"v": 42.7, "q": "Gross Profit 42.7 24.6 73.6 18.5 33.2"},
+      "volume_units": {"v": null, "q": null}
+    },
+    {
+      "name": "Financing Businesses (MD&A summary table, LE million)",
+      "revenue": {"v": 249.0, "q": "Revenue 249.0 156.5 59.1 101.3 54.5"},
+      "gross_profit": {"v": 69.4, "q": "Gross Profit 69.4 38.5 80.3 19.6 96.8"},
+      "volume_units": {"v": null, "q": null}
+    },
+    {
+      "name": "Others (MD&A summary table, LE million)",
+      "revenue": {"v": 4.0, "q": "Revenue 4.0 11.5 (65.1) 33.3 (65.5)"},
+      "gross_profit": {"v": -10.0, "q": "Gross Profit (10.0) (9.5) 5.9 (11.5) (18.0)"},
+      "volume_units": {"v": null, "q": null}
+    },
+    {
+      "name": "Other Operation (FS note 39, EGP 000s; spans Tires + Financing + Others)",
+      "revenue": {"v": 565170, "q": "Revenues 6,050,515 5,741,614 465,491 340,662 1,208,971 1,001,598 565,170 331,418 8,290,147 7,415,292"},
+      "gross_profit": {"v": 100693, "q": "Segment profit 720,416 566,563 20,439 7,210 228,492 255,659 100,693 53,874 1,070,040 883,303"},
+      "volume_units": {"v": null, "q": null}
+    }
+  ],
+  "kpis": {
+    "amic_source_note": {"v": null, "q": "Source: Automotive Marketing Information Council (AMIC). Please note that AMIC figures are based on individual companies willingly contributing/reporting their sales and that GB Auto cannot check the full accuracy of these or guarantee that all companies operating in Egypt report to AMIC."},
+    "hyundai_egypt_units_ye2012": {"v": 41238, "q": "Segmentation of the Egyptian Passenger Car Market (Units Sold and % Market Share as of Year-End 2012) ... 41,238 (28.6%)"},
+    "gb_pc_market_share_fy12_pct": {"v": 28.9, "q": "GB Auto's market share of 28.9% in FY12 is more than 10 percentage points higher than that of its nearest competitor on a YTD basis."},
+    "iraq_share_of_total_revenue_pct": {"v": 32, "q": "Proving the essential soundness of the strategy, in 2012, Iraqi operations accounted for 32% of GB Auto's total revenues."},
+    "geely_units_4q12": {"v": 306, "q": "Geely sales began in the fourth quarter following the mid-October launch of the Emgrand7, with the vehicle warmly greeted in the market and 306 units sold; more than 80% of those sales took place in December."},
+    "three_wheeler_units_2012": {"v": 68527, "q": "Three-Wheeler Sales Volumes (Vehicle Units) ... 68,527 [chart bar at '12]"},
+    "motorcycle_units_2012": {"v": 33648, "q": "Motorcycle Sales Volumes (Vehicle Units) ... 33,648 [chart bar at '12]"},
+    "motorcycle_unit_growth_2012_pct": {"v": 178.0, "q": "The Boxer 150, introduced in late 2011, proved to be wildly popular with consumers, driving a 178.0% growth in unit sales in 2012."},
+    "bus_units_2012": {"v": 470, "q": "Bus Sales Volume by Year (Vehicle Units) ... 470 [chart bar at '12]"},
+    "truck_units_2012": {"v": 1063, "q": "Truck Sales Volume by Year (Vehicle Units) ... 1,063 [chart bar at '12]"},
+    "prima_max_annual_capacity_units": {"v": null, "q": "The facility's maximum an- nual capacity now stands at c.60,000-70,000 units following the plant overhaul."},
+    "prima_cumulative_production_units": {"v": 210000, "q": "the Prima plant had produced more than 210,000 Hyundai passenger cars (Excel, Accent, Sonata and Verna models) since its establishment in 1994."},
+    "collection_period_days": {"v": 30, "q": "the close monitoring and control of receivables helped reduce the collection period from 32 days in 2011 to be 30 days in 2012."},
+    "mashroey_branches": {"v": 46, "q": "The divi- sion has actively grown its portfolio of two and three-wheelers, which continue to constitute the bulk of Mashroey's portfolio, accounting for c. 80%, and now operates out of 46 branches nation- wide."},
+    "employees": {"v": 5881, "q": "The number of employees at GB Auto and its subsidiaries as of December 31, 2012 was 5,881 including all subsidiaries and ventures."},
+    "inventory_increase_le_m": {"v": 492, "q": "the level of inventory had increased by LE 492 million at year-end."}
+  },
+  "guidance": [
+    {"q": "GB Auto's emphasis heading in 2013 will be two-pronged. The company will be focused on ensuring the stability and profitability of Egyptian operations, through careful oversight of the political and economic situations, inventory levels, customer care programs and strict cost controls. Simultaneously, management will be focused on nurturing our new regional and brand representations, capitalizing on efforts over the past year to diversify revenue streams by product line and geog- raphy. Management anticipates announce- ments of additional brand representations to come over the course of 2013.", "where": "Management Review - Outlook"},
+    {"q": "For our Passenger Cars line of busi- ness, management expects growth to be somewhat limited in Egypt, as ongoing political unrest and economic difficulties, particularly currency devaluation and the related high inflation, dampen consumer sentiment. This climate will see unit sales pushed even more toward CKD models, which will have the positive benefit of utilizing capacity at our newly revamped Prima factory.", "where": "Management Review - Outlook"},
+    {"q": "Regional performance is likely to act as a buffer to volatile condi- tions in Egypt, as consumer sentiment in Iraq remains quite strong as does demand for Hyundai passenger cars, and manage- ment has every reason to expect sales of Geely vehicles in Algeria and Libya to perform along the same lines.", "where": "Management Review - Outlook"},
+    {"q": "consum- ers of products in the Motorcycles and Three-Wheelers line of business are more de-coupled from economic shocks than purchasers of higher-value items, and management anticipates that the strong growth this segment reported in 2012 will continue.", "where": "Management Review - Outlook"},
+    {"q": "Management anticipates announcing new brand and product representations in the key Commercial Vehicles & Construc- tion Equipment line of business in 2013, which will address one of its historic diffi- culties, i.e., an incomplete product line-up.", "where": "Management Review - Outlook"},
+    {"q": "On the Financing Businesses front, man- agement expects the business to continue to grow and thrive, potentially benefitting from decreased lending appetite and li- quidity in the banking sector, as customers seek alternative financing options.", "where": "Management Review - Outlook"},
+    {"q": "The expected devaluation of the Egyp- tian pound against key import currencies presents a serious downside risk in that the company's ability to pass on price increases to consumers may be limited by develop- ments in the broader economy. This is, however, mitigated by the foreign currency generated from our regional operations.", "where": "Management Review - Outlook"},
+    {"q": "Management expects that 2013 will see the company maintaining its leading market position, although the fallout from devaluation of the Egyptian pound will likely see unit sales dropping significantly market- wide, particularly in the CBU segment. On the other hand, management anticipates higher margins as the product-mix shifts to higher-margin CKD sales.", "where": "Passenger Cars - 2012 Business Review (Egypt)"},
+    {"q": "Management anticipates steady growth in Geely sales throughout 2013 as the company begins full commercial assembly operations in late 1Q13 to maximize use of capacity at the newly renovated Prima facility.", "where": "Passenger Cars - 2012 Business Review (Egypt)"},
+    {"q": "One-off supply constraints in 3Q12 dampened full-year unit sales, but had been addressed in 4Q12 and improved supplies are secured going forward, with a 30% rise in allocation for 2013.", "where": "Passenger Cars - 2012 Business Review (Iraq)"},
+    {"q": "Management has continued high expectations for the development of Boxer sales heading into 2013, anticipating that sales will continue to grow regardless of the economic fallout of continued political unrest in the country.", "where": "Motorcycles & Three-Wheelers - 2012 Business Review"},
+    {"q": "Our Financing Business will post strong double-digit growth this year, and the After-Sales segment will deliver a full year of sales from Assiut and Cairo-Is- maliyya as well as at least a quarter from the Cairo Ring Road facility that will open in 2H13.", "where": "CEO letter"},
+    {"q": "Going forward, management expects the contribution from expansion territories and new brand representations to be on-par with Egypt's sales growth.", "where": "Tires - 2012 Business Review"}
+  ],
+  "accounting_changes": [
+    "G. Non-current assets (or disposal groups) held for sale - Non-current assets (or disposal groups) are classified as assets held for sale when their carrying amount is to be recovered principally [through a sale transaction] (policy and balance-sheet line 'Assets held-for-sale 12 329,998 -' appear for the first time this year; note 12: 'Assets held for sale represented in lands and buildings which the board of directors of the subsidiaries decided to sell it as no longer future economic benefits expected from holding it within the subsidiaries assets.')"
+  ],
+  "restatement_notes": [
+    "Y. Comparative figures - Where necessary, comparative figures have been reclassified to conform to changes in presentation in the current year.",
+    "2011 comparatives differ from the 2011 annual report as issued, with no line-by-line reconciliation disclosed: Intangible assets 261,043 (vs 179,722 in FY11 AR), Accounts and notes receivables 638,894 (vs 790,350), Debtors and other debit balances 433,455 (vs 518,176), Cash on hand and at banks 881,041 (vs 729,585), Total non-current assets 2,108,048 (vs 2,026,727), Total current assets 3,497,224 (vs 3,581,945), Provisions 36,373 (vs 43,238, with warranty provisions now split to 'Long-term warranty provisions 18 10,856 6,865'), Total current liabilities 3,351,460/2,474,229 (2011 comp vs 2,484,494); cash flow: 2011 'Cash and cash equivalents at end of the year' 1,158,759 (vs 1,010,104) and 2011 CFI (38,232) (vs (186,887)) - treasury bills moved into cash equivalents with a new 'Treasury bills' CFI line; segment note 2011 totals 5,605,272 assets / 3,277,350 liabilities (vs 5,608,672 / 3,280,750)."
+  ],
+  "oddities": [
+    "Balance sheet again uses the 'invested funds' format with no printed 'Total assets'/'Total liabilities' line; bs.total_assets and bs.total_liabilities are taken from FS note 39 Segment reporting ('Total distributed assets' / 'Segment liabilities', consolidated 2012 column).",
+    "IS 'Other operating expenses' prints '-' for 2012 (line kept for the 2011 comparative), so other_expense v=null. 'Provisions - net 33 (17,349)' and 'Stock option fair value for the managing director 34 (1,364)' are separate IS lines with no schema key.",
+    "Investment in associates prints '-' for 2012 (2,414 in 2011): associate no longer carried, so v=null.",
+    "No finance income or associates income lines; finance_cost is the net 'Finance costs - net' figure.",
+    "borrowings_current excludes 'Bond liabilities - short term 22 228,840'; borrowings_noncurrent excludes 'Bond liabilities 22 381,402'. capex_ppe excludes 'Payments for projects under constructions (147,471)'.",
+    "provisions is the current-liabilities line only; a separate 'Long-term warranty provisions 18 10,856' sits in non-current liabilities.",
+    "Note 39 discrepancies vs MD&A: PC revenue 6,050,515 (note) vs LE 6,072.3m (highlights/summary table); PC gross profit 720,416 vs 719.0m; CV&CE revenue 465,491 vs 465.8m; 'Other Operation' 565,170 revenue vs summary-table Tires+Financing+Others = 290.1+249.0+4.0 = 543.1m (does not tie); segment profit 100,693 vs 42.7+69.4-10.0 = 102.1m.",
+    "Note 39 prints obviously wrong 2012 values on two roll-down lines: 'Finance cost 217,796 (219,233)' and 'Income tax 58,134 (77,008)' - the 2012 figures shown equal np_parent and minority interest; the income statement itself shows (300,182) and (38,867). IS values used.",
+    "Note 39 2011 comparative for Two & Three Wheels segment profit is 255,659 vs 255,656 printed in the 2011 report's own note 39.",
+    "Summary table restates FY2010 group revenue as 6,919.4 LE m (the 2011 report's table said 6,873.8) and FY2011 Tires/Financing/Others splits not previously disclosed separately (Tires 163.4, Financing 156.5, Others 11.5).",
+    "Highlights quote FY11 comparatives that differ at the 0.1 level from the 2011 report (Financing 'LE 156.5 million in FY11' vs 156.4; CV&CE gross profit 'LE 6.3 million' vs 6.2; PC gross profit 569.0 vs 569.1).",
+    "Unit volumes for 2012 come mostly from bar-chart data labels whose year assignment was reconstructed from column positions in the layout text; the mapping is corroborated for M3W by 3W 61,722 + MC 12,105 = 73,827 units for FY11, exactly the FY11 total stated in the 2011 report, and by the stated 178.0% motorcycle growth (12,105 -> 33,648).",
+    "Egyptian PC market chart (AMIC, YE2012) other bars: 25,010 (17.4%), 20,305 (14.1%), 11,344 (7.9%), 6,640 (4.6%); brand labels are rendered vertically and garbled in the txt (reconstructable as Chevrolet, Kia, Renault, Toyota) - only the Hyundai bar (41,238 / 28.6%) is recorded as a kpi.",
+    "'GB Auto Sales Volume Across All Brands and Markets (Vehicle Units)' chart carries CBU/CKD pairs per year; by column position 2012 = 43,982 and 21,599 (2011 = 50,103 and 17,749; 2010 = 51,924 and 22,439; 2009 = 27,501 and 14,145; 2008 = 30,555 and 20,963), legend order suggests the larger series is CBU but the series assignment is not verifiable from the txt, so these are not recorded as kpis.",
+    "No absolute FY2012 unit total is printed for Passenger Cars Egypt or Iraq in prose (Egypt units only via the AMIC chart's Hyundai bar; Iraq only 'a slight drop in unit sales').",
+    "Prima capacity stated as a range 'c.60,000-70,000 units' in MD&A while the strategy page banner says '70,000 units per year'; kpi v left null with the range quoted.",
+    "equity_parent now has an explicit label ('Total Shareholders' equity'), unlike the unlabeled 2011 subtotal.",
+    "MD&A quotes retain hyphenated line-break artifacts from the two-column PDF layout."
+  ]
+}

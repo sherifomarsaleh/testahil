@@ -1,0 +1,169 @@
+{
+  "fy": 2015,
+  "source_doc": "GB_Annual_Report_2015.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2015.pdf",
+  "units_note": "consolidated FS in EGP 000s unless stated ('All amounts in thousand Egyptian Pounds'); MD&A quotes LE mn/bn",
+  "is": {
+    "revenue": {"v": 12264689, "q": "Sales 12 264 689 12 322 079"},
+    "cogs": {"v": -10670326, "q": "Cost of sales (10 670 326) (10 740 412)"},
+    "gross_profit": {"v": 1594363, "q": "Gross profit 1 594 363 1 581 667"},
+    "distribution_exp": {"v": -364486, "q": "Selling and marketing expenses ( 364 486) (298 599)"},
+    "admin_exp": {"v": -531124, "q": "Administrative expenses ( 531 124) (413 558)"},
+    "other_income": {"v": 126302, "q": "Other income (9) 126 302 55 720"},
+    "other_expense": {"v": -48893, "q": "Provisions (Net) (28) ( 48 893) (67 796) [separate one-off lines also on the face: 'Impairment of property, plant, equipment and project under construction ( 1 591) -', 'Impairment of non-current assets held of sale ( 18 719) -', 'Investment losses ( 5 688) -']"},
+    "op_profit": {"v": 750164, "q": "Operating profit 750 164 857 434"},
+    "finance_income": null,
+    "finance_cost": {"v": -513265, "q": "Finance costs (Net) (29) ( 513 265) (531 538)"},
+    "associates_income": null,
+    "pbt": {"v": 236899, "q": "Net profit for the year before tax 236 899 325 896"},
+    "income_tax": {"v": -45385, "q": "Income tax (30) ( 45 385) (90 206)"},
+    "np_total": {"v": 191514, "q": "Net profit for the year after tax 191 514 235 690"},
+    "np_parent": {"v": 233095, "q": "Owners of the parent Company 233 095 173 989"},
+    "np_nci": {"v": -41581, "q": "Non-controlling interests ( 41 581) 61 701"}
+  },
+  "bs": {
+    "ppe_net": {"v": 3660356, "q": "Property, plant, equipment and project under construction (Net) (5) 3 660 356 2 988 844"},
+    "investments_associates": null,
+    "inventory": {"v": 2950981, "q": "Inventories (Net) (10) 2 950 981 2 345 709"},
+    "trade_notes_receivable": {"v": 1649624, "q": "Accounts and notes receivables (Net) (12) 1 649 624 1 308 954"},
+    "debtors_other": {"v": 1069509, "q": "Debtors and other debit balances (Net) (13) 1 069 509 803 169"},
+    "cash": {"v": 1188704, "q": "Cash on hand and at banks (16) 1 188 704 1 176 841"},
+    "total_current_assets": {"v": 7274196, "q": "Total current assets 7 274 196 5 978 700"},
+    "total_assets": {"v": 11798222, "q": "Total distributed assets / 11 798 222 (Note 33 Segmental reporting, Total column; the balance sheet itself is in invested-funds format and prints no total-assets line)"},
+    "borrowings_current": {"v": 4334801, "q": "Loans, borrowings and overdrafts (19) 4 334 801 4 144 838"},
+    "borrowings_noncurrent": {"v": 898473, "q": "loans (19) 898 473 680 853"},
+    "trade_notes_payable": {"v": 1796443, "q": "Trade payables and other credit balances (20) 1 796 443 1 298 343"},
+    "total_liabilities": null,
+    "equity_parent": {"v": 3334446, "q": "Equity attributable to owners of the company 3 334 446 2 136 141"},
+    "nci_equity": {"v": 608660, "q": "Non-Controlling interests (25) 608 660 637 782"},
+    "total_equity": {"v": 3943106, "q": "Total equity 3 943 106 2 773 923"},
+    "provisions": {"v": 78903, "q": "Provisions (17) 78 903 48 639 [current liabilities; separate 'Warranty provisions (17) 54 741 64 753' under non-current liabilities]"}
+  },
+  "cf": {
+    "cfo": {"v": 2507, "q": "Net cash flows generated from / (used in) operating activities 2 507 (309 711)"},
+    "capex_ppe": {"v": -1259383, "q": "Acquisition of property, plant, equipment and projects under constructions (1 259 383) (1 008 896)"},
+    "dep_amort_addback": {"v": 254724, "q": "Depreciation and amortization (6,5) 254 724 199 145"},
+    "interest_paid": {"v": -349101, "q": "Interest paid ( 349 101) ( 356 358) [presented within financing activities]"},
+    "cfi": {"v": -1199045, "q": "Net cash flow used in investing activities (1 199 045) (969 379)"},
+    "cff": {"v": 1102869, "q": "Net cash flows generated from financing activities 1 102 869 1 377 316"}
+  },
+  "segments": [
+    {
+      "name": "Passenger Cars",
+      "revenue": {"v": 7489940, "q": "Note 33 Segmental reporting: Revenues — Passenger Cars, December 31, 2015: 7 489 940 (2014: 8 909 887) [rotated table, cells re-associated by position; matches MD&A chart 'Revenues by Year (LE million)' 7,489.9]"},
+      "gross_profit": {"v": 793044, "q": "Note 33 Segmental reporting: Segment result — Passenger Cars, December 31, 2015: 793 044 (2014: 1 010 764) [rotated table]"},
+      "volume_units": {"v": null, "q": "GB Auto’s Passenger Cars division saw total volumes and revenues drop by 14.6% and 3.4% y-o-y respectively during the year, affected by weaker market demand coupled with difficulties in sourcing foreign currency due to a national shortage. [no absolute FY15 unit total in prose; chart 'GB Auto Sales Volume Across All Brands and Markets (Vehicle Units)' 2015 bars: 38,316 and 27,718 (legend CBU / CKD; pairing by bar order, see oddities)]"}
+    },
+    {
+      "name": "Passenger Cars — Iraq",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": null,
+      "note_q": "Revenues from the market came in 50.9% lower y-o-y for the full year of 2015 on the back of a 44.0% decrease in sales volumes, largely due to the country’s sluggish economic backdrop, affecting market demand as well as oversupply problems. Despite the weakening demand for Passenger Cars, however, Iraqi After-Sales performed well during 2015, recording revenues of LE 64.3 million, an increase of 30.7% y-o-y."
+    },
+    {
+      "name": "Passenger Cars — After-Sales (Egypt)",
+      "revenue": {"v": 433.9, "q": "Revenues for the year reached LE 433.9 million, an increase of 15.9% y-o-y. [LE million, MD&A]"},
+      "gross_profit": {"v": 150.7, "q": "While the division’s gross profit rose by 26.7% to LE 150.7 million. [LE million, MD&A]"},
+      "volume_units": null
+    },
+    {
+      "name": "Motorcycles & Three-Wheelers (segment note: 'Two & Three Wheels')",
+      "revenue": {"v": 1997282, "q": "Note 33 Segmental reporting: Revenues — Two & Three Wheels, December 31, 2015: 1 997 282 (2014: 1 334 047) [rotated table; matches MD&A 'Revenues by Year (LE million)' 1,997.2 and 'a 40.3% y-o-y increase in sales volumes and 49.6% in revenues']"},
+      "gross_profit": {"v": 346694, "q": "Note 33 Segmental reporting: Segment result — Two & Three Wheels, December 31, 2015: 346 694 (2014: 245 557) [rotated table; MD&A: 'Gross profit also rose by 40.9% to LE 330 million']"},
+      "volume_units": {"v": 85808, "q": "Three-Wheeler Sales Volumes chart: 2015 = 85,808 (2014: 61,068; 2013: 60,801; 2012: 68,527; 2011: 61,722; 2010: 40,805); Motorcycle Sales Volumes (Vehicle Units) chart: 2015 = 51,065 (2014: 36,801; 2013: 33,235; 2012: 33,648; 2011: 12,105; 2010: 7,838) [v holds three-wheelers only; three-wheeler chart caption misprints '(LE million)' but values are vehicle units]"}
+    },
+    {
+      "name": "Commercial Vehicles & Construction Equipment (segment note: 'Buses and Trailers')",
+      "revenue": {"v": 1327913, "q": "Note 33 Segmental reporting: Revenues — Buses and Trailers, December 31, 2015: 1 327 913 (2014: 912 874) [rotated table; matches MD&A 'CV&CE Total Revenues by Year (LE million)' 1,327.9 and 'total revenues and gross profit rise by 45.5% and 79.3% y-o-y respectively during FY15']"},
+      "gross_profit": {"v": 175843, "q": "Note 33 Segmental reporting: Segment result — Buses and Trailers, December 31, 2015: 175 843 (2014: 98 080) [rotated table]"},
+      "volume_units": {"v": null, "q": "Bus Sales Volume by Year (Vehicle Units) chart: 2015 = 1,172 (2014: 1,055; 2013: 495; 2012: 470; 2011: 482; 2010: 927); Truck Sales Volume by Year (Vehicle Units) chart: 2015 = 1,415 (2014: 2,292; 2013: 1,090; 2012: 1,063; 2011: 542; 2010: 1,297); 'deliver a total of 450 buses to the Egyptian Public Transport Authority'; 'Trucks reported a y-o-y drop in volumes, impacted by currency shortages in the third and fourth quarters of the year'"}
+    },
+    {
+      "name": "Tires",
+      "revenue": {"v": 324.4, "q": "Total sales revenues dipped 21.9% y-o-y while gross profit decreased by 43.4% over the same period. [Tires Revenues by Year chart (LE million): 2015 = 324.4 (2014: 415.2; 2013: 390.4; 2012: 290.1; 2011: 163.4; 2010: 111.7); highlights tile: 'Tires Business Revenue 324 L.E MN']"},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Financing Businesses",
+      "revenue": {"v": 1046.2, "q": "The Financing Businesses under GB capital are on a path of constant growth; overall revenues for FY15 increased by 44.8% to LE 1,046.2 million compared to LE 722.7 million in FY14. [LE million, MD&A]"},
+      "gross_profit": {"v": 233.8, "q": "Total gross profit rose to LE 233.8 million in 2015 from LE 168.6 million the year before, showing an increase of 38.5% y-o-y. [LE million, MD&A; 'At 22.3%, the division’s gross profit margin, albeit 1% lower than FY14']"},
+      "volume_units": null
+    },
+    {
+      "name": "Other Operations (segment note residual)",
+      "revenue": {"v": 1449554, "q": "Note 33 Segmental reporting: Revenues — Other Operations, December 31, 2015: 1 449 554 (2014: 1 165 271) [rotated table]"},
+      "gross_profit": {"v": 278782, "q": "Note 33 Segmental reporting: Segment result — Other Operations, December 31, 2015: 278 782 (2014: 227 266) [rotated table]"},
+      "volume_units": null
+    },
+    {
+      "name": "Others (MD&A line of business: PAL lubricants, Fabrika pre-owned, 360 retail)",
+      "revenue": {"v": 79.0, "q": "Other Revenues 79.0 L.E MN [2015 Financial Highlights tile; components: 'PAL operations showed substantial and promising growth in 2015, as revenues jumped to LE 33.9 million from to LE 2 million during the previous year'; 'GB Auto’s pre-owned vehicles operation closed the year with LE 42.0 million in sales revenues, compared to LE 22.0 million the year before. The division’s gross profit margin also increased, coming in at 20.9%, showing an improvement of 14.4 percentage points over FY14.']"},
+      "gross_profit": null,
+      "volume_units": null
+    }
+  ],
+  "kpis": {
+    "amic_egypt_pc_market_units_fy15": {"v": 195559, "q": "According to the Egyptian Automotive Marketing Information Council (AMIC), the Egyptian Passenger Car market witnessed a 6% drop in total sales volumes during FY15, falling to 195,559 units this year from 207,973 units in FY14."},
+    "amic_engine_size_mix_fy15": {"v": null, "q": "AMIC’s full-year report on the Egyptian Passenger Cars market showed volumes for brands within the 1.0-1.3 liter range declining by 14% y-o-y, while those between 1.3-1.5 liters fell by 22%. Vehicles with higher-capacity engines witnessed slight increases in volumes, with those falling between 1.5-1.6 liters rising by 5%, while SUVs larger than 2.0 liters climbed up 27%."},
+    "gb_total_pc_market_share_fy15": {"v": 26.8, "q": "Across all its brands, GB Auto held a total market share of 26.8% (including Hyundai, Geely Emgrand, and Mazda), 3 percentage points below FY14’s share of 29.8%. [%]"},
+    "hyundai_market_share_fy15": {"v": 22.2, "q": "Hyundai continued to outperform during FY15, capturing a total market share of 22.2% during the year and contributing c.52.4% of the LOB’s total revenues. The brand’s CBU sales increased by 4.8% y-o-y, while CKD sales declined by 11.7% over the same period, hindered by disruptions in assembly operations due to FX challenges. [%; segmentation chart FY15: Hyundai 43,350 units 22.2%, Nissan 22,296 11.4%, Chevrolet 22,695 11.6%, Kia 14,736 7.5%, Geely Emgrand 7,128 3.6%]"},
+    "mazda_units_fy15": {"v": 1937, "q": "2015 also saw Mazda sustain its upward trend, with sales volumes increasing more than twofold over the course of the year to reach 1,937 from 823 units in the year prior."},
+    "geely_sales_fy15": {"v": null, "q": "Meanwhile, Geely’s CBU sales volumes increased by 12.7% over the same period, as CKD sales fell by 61.6%. Since its launch, GB Auto has sold over 30,000 units of Geely’s Emgrand 7 model."},
+    "m3w_iraq_units_since_launch": {"v": 850, "q": "Since the launch of operations, GB Auto has sold a total 850 units, in addition to the operation of one small service center and spare parts outlet in Baghdad and another in the area of Al Najaf that also includes a Bajaj showroom. [Iraq two/three-wheelers]"},
+    "group_revenue_change_fy15": {"v": -0.5, "q": "GB Auto saw total salea revenue decrease 23.0% y-o-y in 4Q15 and 0.5% y-o-y in FY 2015, mainly as a result of the challenging FX environment in Egypt (especially towards the end of the year) as well as the turbulent Iraqi market (throughout FY 2015). [%]"},
+    "gross_profit_margin_fy15": {"v": 13, "q": "Full year profitability also improved, as we ended the year at a GPM of 13%. [%; 'we reported GPMs of 15% in 4Q15 vs. 11.8% in 4Q14 as a result of price increases the group introduced in the quarter']"},
+    "net_profit_growth_fy15": {"v": 34.4, "q": "Overall, our operating profit decreased 30.5% y-o-y while our net profit showed a 34.4% increase compared to 2014 on the back of a one-time gain from the fair value reassessment of an investment property reported in 3Q15, as well as lower taxes paid due to a weak 4Q15 and an overall lower tax rate of 22.5%. [%]"},
+    "net_debt_fy15": {"v": 4.0, "q": "The group’s net debt stood at LE 4.0 billion, an increase of LE 1.2 billion compared to 3Q15, and LE 300 million above the final figure at the end of 2014. Net debt/equity dropped to 1.0x as of 31 December, 2015 from 1.3x at the end of 2014. Meanwhile, net debt/ EBITDA from continuing operations stood at 3.1x vs. 3.5x as at 31 December 2014. [LE billion]"},
+    "total_debt_fy15": {"v": 5.2, "q": "Total debt climbed to LE 5.2 billion at the end of 2015, and includes LE 1.3 billion of financing business debt, as we continue to expand and grow our operations. The figure also includes an FX exposure equivalent to LE 668.8 million. [LE billion]"},
+    "capex_fy15": {"v": 290.3, "q": "We continue to operate a relatively lean company, with CAPEX for the full year standing at LE 290.3 million (compared to a depreciation expense of LE 255 million) [LE million]"},
+    "financing_net_income_fy15": {"v": 99.6, "q": "the Financing Businesses reported a net bottom line of LE 99.6 million for FY15, up 56.9% y-o-y, and maintained a very healthy loan portfolio quality with non-performing loans below 1% and with a coverage ratio in excess of 100%. ROAE stands at 26.2%. [LE million]"},
+    "financing_leverage_fy15": {"v": 2.74, "q": "Total leverage for the Financing Businesses stood at 2.74x as at December 31st, 2015. [x]"},
+    "capital_increase_2015": {"v": 960, "q": "GB Auto concluded a LE 960 million capital increase in 2015 that saw the company’s issued and paid-in capital rise to LE 1,094,009,733 through the issuance of 958,672,188 new shares, which became eligible to trade on the Egyptian Exchange (EGX) on 22 June. [LE million]"},
+    "chery_agreement_capacity": {"v": 90000, "q": "In October 2015, GB Auto entered into a tripartite cooperation agreement with China’s Chery International and Egypt’s AF Automotive that will see GB Auto exclusively distribute Chery vehicles through its nationwide network in Egypt. … Together, GB Auto and AF Automotive’s combined capacity could reach up to 90,000 vehicles per annum. [vehicles per annum]"},
+    "prima_plant_cumulative_output": {"v": 285000, "q": "The plant, which spans across nearly 58,000 square meters, was established in 1994 and, by January 2016, had produced more than 285,000 Passenger Cars. [units, cumulative]"},
+    "algeria_stock_ye2015": {"v": 250, "q": "The focus of 2015 was on liquidating the company’s Algerian stock, leaving only 250 units by year-end, which management intends to sell during the first half of the coming year. [units]"}
+  },
+  "guidance": [
+    {"q": "As we enter 2016 with replenished inventory, a solid pricing strategy, and a rather healthy market demand (despite natural inflation), we are in a better position to reap the benefits from our high-growth markets.", "where": "Management Review and Financial Performance"},
+    {"q": "In the Passenger Car segment, management acknowledges the downside risk to previous guidance arising from the current national foreign-exchange crunch and a lack of visibility as to when this will be resolved. GB Auto will continue to prioritize a lean and efficient cost base, formulating pricing policies that will take judicious advantage of its pricing power to preserve margins for as long as possible.", "where": "Outlook"},
+    {"q": "Furthermore, the market still awaits the finalization of the Automotive Directive, which aims to benefit local assemblers and will be a game changer for our margins.", "where": "Outlook"},
+    {"q": "On the Commercial Vehicles and Construction Equipment line of business, management does not expect significant growth of the tourism market until 2016. However, given the ongoing investment in infrastructure and renewed economic activity – such as the recent overhaul in public transport that saw the government purchase more than 400 new city buses – divisions in this key line of business are expected to continue their current growth trends for so long as state spending on infrastructure (including urban transport fleets) continues.", "where": "Outlook"},
+    {"q": "As part of GB Auto’s ongoing drive for investment, the company intends to launch a pre-owned construction and heavy-truck distribution venture in the first half of 2016, propelled by the success of our pre-owned Passenger Car operation.", "where": "Outlook"},
+    {"q": "It is considered likely that After-Sales will turn in a particularly strong performance in 2016, especially as the company rolls out new outlets in key, underserved geographic locations.", "where": "Outlook"},
+    {"q": "Meanwhile, our Financing business delivered strong performance throughout the year and management expects this line of business to continue this trend, especially with company’s fifth financing venture, Tasaheel, posting promising results during its first months in operation.", "where": "Outlook"},
+    {"q": "Finally, we note that guidance going forward remains subject to change in light of changing regional geopolitical and macroeconomic conditions as well as the ongoing foreign exchange challenge in Egypt.", "where": "Outlook"},
+    {"q": "Management is optimistic about the LOB’s performance going forward, and GB Auto is expected to continue delivering units to the Transport Authority well into the second half of 2016.", "where": "CV&CE 2015 Business Review"},
+    {"q": "Management expects new product offers, that now cater to high- and low-end segments, to help ramp-up the division’s performance during 2016, especially as greater investments are made in infrastructure and other development-related projects.", "where": "CV&CE 2015 Business Review (Trucks)"},
+    {"q": "Overall required capacity will be above 100,000 tons, in line with our cost competitive strategy.", "where": "Tires — planned tire manufacturing facility"},
+    {"q": "Tasaheel is expected to grow into a thriving business and plans to establish over 100 branches across the country and employ more than 2,000 people within a five-year timeframe, empowering a new generation of entrepreneurs to shape the face of the new Egypt.", "where": "Latest Corporate Developments"},
+    {"q": "Overall, new divisions contributed positively to the group’s gross profits in 2015 and are set to deliver solid results and further contributions from 2016 onwards.", "where": "Others 2015 Business Review"}
+  ],
+  "accounting_changes": [
+    "AA. New Issues and Amendments issued to the Egyptian Accounting Standards (EAS) but not adopted. During the year 2015, a modified version of the Egyptian Accounting Standards (EAS) was issued including some of the new accounting standards and the amendments to some existing standards provided that [applied to] financial periods that start after January 1, 2016, while taking into consideration that the early implementation of these standards is not permissible. [followed by a multi-page table of the most prominent amendments — EAS (1), EAS (23), EAS (38), EAS (25), EAS (40), new Standards No. (42), (43), (44), (18) etc.]",
+    "ESOP fair value expense first charged in 2015: income statement by nature / segment note line 'ESOP Fair value (18 663) -' and equity statement 'ESOP fair value - 18 663' (Employee Stock Option Program launched in late 2014 under EAS 39).",
+    "Z. Comparative figures — Where necessary, comparative figures have been reclassified to conform to [changes in the current-year presentation]."
+  ],
+  "restatement_notes": [
+    "Consolidated statement of shareholders' equity carries rows 'Adjustments on beginning balances', 'Restated balance as at 1 January [2014]' and a 'Reclassification' row (continuation of the EAS-39 ESOP beginning-balance adjustments first made in the FY2014 statements).",
+    "FY2014 CF comparative combines 'Purchase of property, plant and equipment' and 'Payments for projects under constructions' (870 859 + 138 037 in the FY2014 report) into one line 'Acquisition of property, plant, equipment and projects under constructions (1 008 896)'.",
+    "Fixed-asset note shows 'Reclassification of some fixed assets' rows and an 'Opening balances reclassification 5 230 (5 195) - - (35)' movement."
+  ],
+  "oddities": [
+    "Note 33 Segmental reporting and Note 32 Income statement by nature render as rotated pages in the txt (each cell on its own line); values were re-associated by position and verified by cross-sums (segment revenues 7 489 940 + 1 997 282 + 1 327 913 + 1 449 554 = 12 264 689; segment results sum to 1 594 363) and against MD&A charts.",
+    "Balance sheet again in invested-funds format: no total-assets / total-liabilities lines ('Total investment 5 464 116'). total_assets taken from Note 33 'Total distributed assets' 11 798 222; total_liabilities null (Note 33 'Segment liabilities' total is 7 885 116 but is a segment-note measure, not a stated BS total).",
+    "Non-controlling interests show a LOSS of (41 581) in FY15 while owners' profit is 233 095 — MD&A: 'The positive minority interest reported throughout the year is mainly due to the reported regional losses, especially in Iraq where low oil prices have taken their toll on the economic situation'.",
+    "Basic and diluted EPS FY2015 both 0.342 (FY2014: 1.38 as re-presented in this report): 'Basic earnings per share/ EGP (31) 0.342 1.38'.",
+    "IS face has no finance-income or associates lines (finance costs shown net); several one-off FY15 lines (impairments 1 591 and 18 719, investment losses 5 688, ESOP 18 663 inside admin per note 33) have no schema key — quoted inside other_expense.q and accounting_changes.",
+    "Segment-note admin expense 2015 is (512 461) plus a separate 'ESOP Fair value (18 663)' line; the IS face shows a single 'Administrative expenses (531 124)' (= 512 461 + 18 663).",
+    "MD&A says PC division 'total volumes and revenues drop by 14.6% and 3.4% y-o-y' while the segment note shows PC revenue -15.9% (8 909 887 -> 7 489 940); the -3.4% appears to be an Egypt-only or different-perimeter figure — recorded verbatim, not reconciled.",
+    "The all-brands sales-volume chart's two bars per year carry legend 'CBU CKD'; by bar order 2015 = 38,316 (CBU) and 27,718 (CKD), 2014 = 44,645 / 39,135 — but the legend-to-bar assignment is by print order only, not explicit in the txt.",
+    "A stray chart label '1,070.0' prints inside the FY15 'Segmentation of the Egyptian Passenger Car Market' chart area with no attributable caption (decimal format suggests an LE-million figure, cannot be units) — left unattributed.",
+    "Financing Businesses Revenues by Year chart history in this report (2010: 55.7, 2011: 156.5, 2012: 249.0, 2013: 476.3) differs slightly from the same chart in the FY2014 report (56.4 / 157.0 / 250.4 / 485.1).",
+    "FY14 Financing gross profit is quoted here as LE 168.6 million vs LE 168.8 million in the FY2014 report's own MD&A.",
+    "The 2015 Financial Highlights tile prints 'Motorcycles and Three-Wheelers Revenue 1.9 L.E BN' while the segment note shows 1 997 282 (LE 2.0bn).",
+    "Income-tax note quotes Law No. (53) for the year 2014 amendments and 'At April 6, 2015 ministry decree No. (2/11) was issued for the year 2015 modifying the amendments of the Executive [regulations]' — tax-rate context for the 22.5% rate.",
+    "Auditor's report (KPMG Hazem Hassan, Cairo, March 15, 2016) contains no emphasis-of-matter paragraph — clean opinion."
+  ]
+}

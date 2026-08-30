@@ -1,0 +1,154 @@
+{
+  "fy": 2014,
+  "source_doc": "GB_Annual_Report_2014.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2014.pdf",
+  "units_note": "consolidated FS in EGP 000s unless stated ('All amounts in thousand Egyptian Pounds'); MD&A quotes LE mn/bn",
+  "is": {
+    "revenue": {"v": 12322079, "q": "Sales / 12 322 079 / 9 126 721 [rotated statement-of-income page: label and year columns on separate txt lines, re-associated by column offset]"},
+    "cogs": {"v": -10740412, "q": "Cost of sales / (10 740 412) / (7 956 434) [rotated page, see oddities]"},
+    "gross_profit": {"v": 1581667, "q": "Gross profit / 1 581 667 / 1 170 287 [rotated page, see oddities]"},
+    "distribution_exp": {"v": -298599, "q": "Selling and marketing expenses / (298 599) / (261 350) [rotated page, see oddities]"},
+    "admin_exp": {"v": -413558, "q": "Administration expenses / (413 558) / (332 051) [rotated page, see oddities]"},
+    "other_income": {"v": 55720, "q": "Other income / 55 720 / 30 013 [rotated page, see oddities]"},
+    "other_expense": {"v": -67796, "q": "Provisions - Net / (67 796) / (20 400) [rotated page, see oddities]"},
+    "op_profit": {"v": 857434, "q": "Operating profit / 857 434 / 586 499 [rotated page, see oddities]"},
+    "finance_income": null,
+    "finance_cost": {"v": -531538, "q": "Finance costs - net / (531 538) / (372 324) [rotated page, see oddities]"},
+    "associates_income": null,
+    "pbt": {"v": 325896, "q": "Net profit before tax / 325 896 / 214 175 [rotated page, see oddities]"},
+    "income_tax": {"v": -90206, "q": "Income tax / (90 206) / (29 794) [rotated page, see oddities]"},
+    "np_total": {"v": 235690, "q": "Net profit for the year / 235 690 / 184 381 [rotated page, see oddities]"},
+    "np_parent": {"v": 173989, "q": "Shareholders of the parent / 173 989 / 116 001 [rotated page, see oddities]"},
+    "np_nci": {"v": 61701, "q": "Minority interest / 61 701 / 68 380 [rotated page, see oddities]"}
+  },
+  "bs": {
+    "ppe_net": {"v": 2988844, "q": "Property, plant and equipment 5 2 988 844 2 212 743"},
+    "investments_associates": null,
+    "inventory": {"v": 2345709, "q": "Inventories-Net 10 2 345 709 2 127 589"},
+    "trade_notes_receivable": {"v": 1308954, "q": "Accounts and notes receivables-Net 12 1 308 954 875 491"},
+    "debtors_other": {"v": 803169, "q": "Debtors and other debit balances-Net 13 803 169 510 202"},
+    "cash": {"v": 1176841, "q": "Cash on hand and at banks 16 1 176 841 1 083 674"},
+    "total_current_assets": {"v": 5978700, "q": "Total current assets 5 978 700 4 914 930"},
+    "total_assets": {"v": 9585130, "q": "Total distributed assets / 9 585 130 (Note 35 Segmental reporting, Total column; the balance sheet itself is in invested-funds format and prints no total-assets line)"},
+    "borrowings_current": {"v": 4144838, "q": "Loans, borrowings and overdrafts 19 4 144 838 2 789 841"},
+    "borrowings_noncurrent": {"v": 680853, "q": "Long-term loans 19 680 853 217 012"},
+    "trade_notes_payable": {"v": 1298343, "q": "Trade payables and other credit balances 20 1 298 343 1 371 750"},
+    "total_liabilities": null,
+    "equity_parent": {"v": 2136141, "q": "Total Shareholders’ equity 2 136 141 2 011 302"},
+    "nci_equity": {"v": 637782, "q": "Minority interest 26 637 782 618 275"},
+    "total_equity": {"v": 2773923, "q": "Total equity 2 773 923 2 629 577"},
+    "provisions": {"v": 48639, "q": "Provisions 17 48 639 39 748 [current liabilities; separate 'Long-term warranty provisions 17 64 753 25 876' also on the BS]"}
+  },
+  "cf": {
+    "cfo": {"v": -309711, "q": "Net cash flows (used in)/ generated from operating activities (309 711) 171 706"},
+    "capex_ppe": {"v": -870859, "q": "Purchase of property, plant and equipment (870 859) (872 889)"},
+    "dep_amort_addback": {"v": 199145, "q": "Depreciation and amortization (5/6) 199 145 152 259"},
+    "interest_paid": {"v": -356358, "q": "Interest Paid (356 358) (377 842) [presented within financing activities]"},
+    "cfi": {"v": -969379, "q": "Net cash flow (used in) investing activities (969 379) (538 224)"},
+    "cff": {"v": 1377316, "q": "Net cash flows generated from financing activities 1 377 316 136 676"}
+  },
+  "segments": [
+    {
+      "name": "Passenger Cars",
+      "revenue": {"v": 8909887, "q": "Note 35 Segmental reporting: Revenues — Passenger Cars, December 31, 2014: 8 909 887 (2013: 6 537 328) [rotated table, cells re-associated; cross-checks: MD&A chart 'Revenues by Year (LE million)' 8,909.9 and 'Passenger Cars, 72.3%' revenue contribution]"},
+      "gross_profit": {"v": 1010764, "q": "Note 35 Segmental reporting: Segment result — Passenger Cars, December 31, 2014: 1 010 764 (2013: 766 489) [rotated table; matches 63.9% gross-profit contribution]"},
+      "volume_units": {"v": null, "q": "Across all brands, GB Auto held a total FY14 market share of 29.8% (including Hyundai, Geely Emgrand and Mazda), on par with FY13. … the company saw total unit sales surge 52.8% in FY14 … CKD units, which accounted for 55.3% of unit sales in FY14 [no absolute FY14 unit figure printed in prose; chart ambiguous, see oddities]"}
+    },
+    {
+      "name": "Passenger Cars — Iraq",
+      "revenue": null,
+      "gross_profit": null,
+      "volume_units": null,
+      "note_q": "On a full-year basis, gross profits for Iraqi operations dropped 10.1% y-o-y, while the division’s After-Sales operations report a y-o-y growth rate of 24.2%. [no absolute Iraq revenue/volume figures printed in FY14 report]"
+    },
+    {
+      "name": "Motorcycles & Three-Wheelers (segment note: 'Two & Three Wheels')",
+      "revenue": {"v": 1334047, "q": "Note 35 Segmental reporting: Revenues — Two & Three Wheels, December 31, 2014: 1 334 047 (2013: 1 228 982) [rotated table; matches MD&A 'Revenues by Year (LE million)' 1,334.0 and 'Motorcycles & Three-Wheelers revenue increased 8.5% in FY14 to LE 1.3 bn']"},
+      "gross_profit": {"v": 245557, "q": "Note 35 Segmental reporting: Segment result — Two & Three Wheels, December 31, 2014: 245 557 (2013: 190 383) [rotated table]"},
+      "volume_units": {"v": 61068, "q": "Three-Wheeler Sales Volumes (Vehicle Units) chart: 2014 = 61,068 (2013: 60,801; 2012: 68,527; 2011: 61,722; 2010: 40,805); Motorcycle Sales Volumes (Vehicle Units) chart: 2014 = 36,801 (2013: 33,235; 2012: 33,648; 2011: 12,105; 2010: 7,838) [v holds three-wheelers only]"}
+    },
+    {
+      "name": "Commercial Vehicles & Construction Equipment (segment note: 'Buses and Trailers')",
+      "revenue": {"v": 912874, "q": "Note 35 Segmental reporting: Revenues — Buses and Trailers, December 31, 2014: 912 874 (2013: 480 983) [rotated table; matches MD&A 'CV&CE Total Revenues by Year (LE million)' 912.9 and 'Commercial Vehicles & Construction Equipment revenues rose 89.8% in FY14']"},
+      "gross_profit": {"v": 98080, "q": "Note 35 Segmental reporting: Segment result — Buses and Trailers, December 31, 2014: 98 080 (2013: 37 866) [rotated table; MD&A: 'Gross profit margins for the line of business, overall, posted an increase year-on-year of 2.9 ppt in FY14, to 10.7%']"},
+      "volume_units": {"v": null, "q": "Bus Sales Volume by Year (Vehicle Units) chart: 2014 = 1,055 (2013: 495; 2012: 470; 2011: 482; 2010: 927); Truck Sales Volume by Year (Vehicle Units) chart: 2014 = 2,292 (2013: 1,090; 2012: 1,063; 2011: 542; 2010: 1,297) [two vehicle classes, no single combined unit figure printed]"}
+    },
+    {
+      "name": "Tires",
+      "revenue": {"v": 415.2, "q": "Tires revenues were LE 415.2 mn in FY14, a 6.4% improvement y-o-y [LE million, MD&A; Tires Revenues by Year chart: 2010: 111.7, 2011: 163.4, 2012: 290.1, 2013: 390.4, 2014: 415.2; regional sales climbing 86.5% in FY14]"},
+      "gross_profit": null,
+      "volume_units": null
+    },
+    {
+      "name": "Financing Businesses",
+      "revenue": {"v": 722.7, "q": "The Financing Businesses under GB Capital are growing steadily, with revenues up 49.0% year-on-year in FY14 to LE 722.7 million [LE million, MD&A; Financing Businesses Revenues by Year chart: 2010: 56.4, 2011: 157.0, 2012: 250.4, 2013: 485.1, 2014: 722.7]"},
+      "gross_profit": {"v": 168.8, "q": "and gross profit up 35.9% y-o-y to LE 168.8 million. At 23.4%, gross profit margin in FY14 remains robust compared to market norms [LE million, MD&A]"},
+      "volume_units": null
+    },
+    {
+      "name": "Other Operation (segment note residual: Tires + Financing Businesses + Others)",
+      "revenue": {"v": 1165271, "q": "Note 35 Segmental reporting: Revenues — Other Operation, December 31, 2014: 1 165 271 (2013: 879 428) [rotated table; equals MD&A Tires 415.2 + Financing 722.7 + Others 27.4 LE mn]"},
+      "gross_profit": {"v": 227266, "q": "Note 35 Segmental reporting: Segment result — Other Operation, December 31, 2014: 227 266 (2013: 175 549) [rotated table]"},
+      "volume_units": null
+    },
+    {
+      "name": "Others (MD&A line of business)",
+      "revenue": {"v": 27.4, "q": "The Others line of business revenues registered at LE 27.4 mn in FY14 [LE million, MD&A; includes Lubricants (Gazprom Neft alliance), Fabrika pre-owned cars — 'Fabrika closed its third full quarter of operations at the end of FY14 with LE 9.3 million in sales']"},
+      "gross_profit": null,
+      "volume_units": null
+    }
+  ],
+  "kpis": {
+    "amic_egypt_pc_market_units_fy14": {"v": 207973, "q": "According to the Egyptian Automotive Marketing Information Council (AMIC), the Egyptian passenger car market saw overall sales rise a sharp 55.5% to 207,973 units in FY14 from 133,760 units in FY13."},
+    "amic_pc_market_value_fy14": {"v": 30.2, "q": "AMIC’s full year 2014 Passenger Car Value Report notes that total sales value in the Egyptian passenger car market reached LE 30.2 billion in FY14. Fully 68.6% of those sales are in the LE 70,000 to 150,000 range, where the bulk of GB Auto sales fall. [LE billion]"},
+    "gb_total_pc_market_share_fy14": {"v": 29.8, "q": "Across all brands, GB Auto held a total FY14 market share of 29.8% (including Hyundai, Geely Emgrand and Mazda), on par with FY13. [%]"},
+    "hyundai_market_share_fy14": {"v": 21.6, "q": "Hyundai captured a market share of 21.6% as total sales of both CKD and CBU units rose substantially in 2014. [%; market segmentation chart: Hyundai 44,935 units 21.6%, Nissan 25,320 12.2%, Chevrolet 24,737 11.9%, Kia 16,410 7.9%, Geely Emgrand 16,265 7.8%]"},
+    "geely_market_share_fy14": {"v": 7.8, "q": "Geely Emgrand, meanwhile, also saw sales increase y-o-y in FY14, capturing a 7.8% share of the market, up from 7.3% the previous year. [%]"},
+    "gb_pc_unit_sales_growth_fy14": {"v": 52.8, "q": "This was reflected in GB Auto’s results, where the company saw total unit sales surge 52.8% in FY14, on par with the market average [%]"},
+    "ckd_share_of_unit_sales_fy14": {"v": 55.3, "q": "Sales were slightly weighted towards CKD units, which accounted for 55.3% of unit sales in FY14, while sales of CBU units increased nearly two-fold in FY14. [%]"},
+    "financing_receivables_ye2014": {"v": 1.6, "q": "At year-end 2014, total receivables for the financing businesses stood at approximately EGP 1.6 billion, with excellent portfolio quality. [EGP billion]"},
+    "financing_revenue_before_elimination_fy14": {"v": 1.11, "q": "Before elimination, revenues stood at LE 1.11 billion, a 50.2% increase y-o-y. [LE billion]"},
+    "gb_lease_market_share": {"v": 15.24, "q": "As at 31 December 2014, GB Lease ranked as Egypt’s second largest leasing company (ranked by total contracts value) with a 15.24% market share (with the market leader at 15.44%), as declared by the Egyptian Financial Services Authority (EFSA). [%]"},
+    "group_revenue_growth_fy14": {"v": 35, "q": "During the full year of 2014, GB Auto revenues increased 35% over FY13, while total gross profits increased 35.2% resulting in stable gross profit margins at 12.8%. [%]"},
+    "ebitda_fy14": {"v": 1.1, "q": "EBITDA margins improved by 50 basis points in the same period, as EBITDA reached LE 1.1 billion. [LE billion]"},
+    "net_income_fy14_mdna": {"v": 174.0, "q": "Net income was LE 174.0 mn in FY14, a 50.0% rise over FY13 [LE million]"},
+    "forex_expense_fy14": {"v": 157, "q": "a) the impact of FOREX expenses totaling LE 157 million during the year [LE million]"},
+    "effective_tax_rate_fy14": {"v": 27.7, "q": "b) the impact of an income tax expense in FY14 of LE 90 million as the company paid an effective tax rate of 27.7% because of the increase in tax rates [%]"},
+    "total_debt_fy14": {"v": 4.8, "q": "GB Auto’s total debt climbed to LE 4.8 billion, a figure that included the Financing Business’s debt, which represented c.20% of the total group debt reaching LE 907 million [LE billion]"},
+    "capital_increase_approved": {"v": 960, "q": "GB Auto’s extraordinary general assembly of shareholders approved a c.LE 960 million rights issue that will see the company’s issued capital rise to LE 1.095 billion. [LE million]"}
+  },
+  "guidance": [
+    {"q": "In particular, as the company continues to invest in higher-margin activities management foresees an improvement in net profit margins, noting that we cannot foresee the impact of extraordinary events.", "where": "MD&A — Performance"},
+    {"q": "Looking ahead, as the economy continues to improve and demand continues to grow, management expects to see continued improvement of key financial indicators. GB Auto is continuously working on growing its product portfolio while enhancing profitability by going up the value chain in its most profitable business divisions.", "where": "MD&A — Performance"},
+    {"q": "Given the fundamental strengths supporting Egypt’s economy, including a population of 90 million people, a key geographic position and basket of free trade agreements, GB Auto sees real growth potential in the Egyptian market and is continuing to invest accordingly.", "where": "MD&A — Outlook"},
+    {"q": "That said, GB Auto is looking forward to fairly strong growth of the passenger car market in the coming year.", "where": "MD&A — Outlook"},
+    {"q": "On the Commercial Vehicles & Construction Equipment line of business, management does not expect significant growth of the tourism market —and therefore the bus segment — until the latter half of the year. However, given the ongoing investment in infrastructure and renewed economic activity, the other divisions in this key line of business are expected to continue their current growth trends.", "where": "MD&A — Outlook"},
+    {"q": "With new outlets opening and the recent uptick in sales of new vehicles, it is considered likely that After-Sales will turn in a particularly strong performance in the coming period, boosting the contribution of the Passenger Cars, Motorcycles & Three-Wheelers and Commercial Vehicles & Construction Equipment.", "where": "MD&A — Outlook"},
+    {"q": "Tires and Financing Businesses both reported solid performances in 2014, a trend that management anticipates continuing in 2015.", "where": "MD&A — Outlook"},
+    {"q": "In Algeria, GB Auto is set for a good year.", "where": "MD&A — Outlook"},
+    {"q": "Finally, we note that our forecasts for the year do not include allowances for exogenous shocks that may have an impact on market sentiment. At present, these shocks are largely of a political nature, but extend to the potential for shocks related to economic policy swings.", "where": "MD&A — Outlook"},
+    {"q": "Management expects to see volume growth and margins at normal levels looking ahead, and the coming period promises to be quite strong on the back of persistent market demand, with any consumer reticence in the wake of the brief 2014 ban having faded entirely by the fourth quarter.", "where": "MD&A — Motorcycles & Three-Wheelers 2014 Business Review"},
+    {"q": "In FY14, the Bus division registered a more than two-fold increase in sales volumes on the back of a public stimulus and investments in fleet renewal. The division continues to expect a further lift when the rise in spending on public transportation projects begins to fully materialize.", "where": "MD&A — CV&CE 2014 Business Review"}
+  ],
+  "accounting_changes": [
+    "The company has applied the Accounting Standard of Employee Stock Option Plan in accordance with Egyptian Accounting Standard no. 39, which has been approved by the Extra Ordinary General Assembly Meeting. As a result, the following adjustments have been made:- (Note 38, Adjustments on beginning balances)"
+  ],
+  "restatement_notes": [
+    "Consolidated balance sheet comparative column headed 'December 31, 2013 **Restated' with footnote '** See Note (38)'.",
+    "Consolidated statement of cash flow comparative column headed 'December 31, 2013 restated'.",
+    "Statement of shareholders' equity shows 'Adjustments on beginning balances' and 'Restated balance as at January 1, 2013' (adjustment of 1 614 to total equity: retained earning +26 766 / other reserves (1 613) / payments under capital increase 2 256 / minority interest (26 510) per Note 38 table).",
+    "Auditor's report, Emphasis of matter: 'As it is mentioned in Note No.(32) of the notes to the financial statements, On June 30, 2014, a presidential decree has been issued by the Law No. (53) for the year 2014, Regarding amendments for some articles of Income Tax Law, and as the executive regulations related to the previously mentioned law has not been issued till the date of this report, the Company’s management has used the best practices in the light of its explanation of its articles. These values and results may differ if reliable information is available upon issuance of the executive regulations of this matter.'"
+  ],
+  "oddities": [
+    "The consolidated statement of income and the segmental-reporting note (Note 35) render as rotated pages in the pdftotext -layout output: every cell sits on its own text line. Values were re-associated with labels by exact column offset in the txt and verified against a raw-order pdftotext re-extraction of the same PDF pages and against MD&A cross-references (segment revenues sum exactly to 12 322 079 / 9 126 721; segment results sum exactly to 1 581 667 / 1 170 287).",
+    "The balance sheet is in the Egyptian invested-funds format: no 'Total assets' or 'Total liabilities' lines are printed (it runs Total current liabilities -> Working capital -> Total invested funds 3 991 593 -> equity + non-current liabilities). total_assets was taken from Note 35's 'Total distributed assets' (9 585 130); total_liabilities left null.",
+    "No 'Investments in associates' line appears on the FY2014 balance sheet; investments_associates set null.",
+    "The income statement has no separate finance income or associates lines: only 'Finance costs - net'; finance_income and associates_income set null. 'Provisions - Net' (67 796) is a separate operating charge line recorded here under other_expense per schema instruction (nearest key).",
+    "'Trade payables and other credit balances' nets trade payables with other credit balances — recorded under trade_notes_payable as the nearest key.",
+    "Basic and diluted EPS FY2014 both 1.38 (FY2013: basic 0.90, diluted 0.87), from the rotated income-statement page.",
+    "The MD&A chart 'GB Auto Sales Volume Across All Brands and Markets (Vehicle Units)' prints two unlabelled bars per year (values by year column: 2010: 51,924 & 22,439; 2011: 50,103 & 17,749; 2012: 44,562 & 21,598; 2013: 34,869 & 28,764; 2014: 44,645 & 39,135). The series legend (CKD/CBU vs Egypt/Iraq) is scrambled in the txt, so the pairs are recorded here without series attribution rather than guessed; no absolute FY14 passenger-car unit total appears in prose.",
+    "Segment note names differ from MD&A LOB names: note segments are Passenger Cars / Buses and Trailers / Two & Three Wheels / Other Operation; MD&A CV&CE (912.9) maps to 'Buses and Trailers', and Tires + Financing Businesses + Others (415.2 + 722.7 + 27.4 LE mn) map to 'Other Operation'.",
+    "CF statement: 'Interest Paid (356 358)' is presented inside financing activities, and interest received (8 961) inside investing activities.",
+    "Legal claim disclosure (Note 36 Contingent assets): 'The Group raised a legal claim against Egyptian Development Bank (EDB) with an amount of EGP 76 million which represents the value of the notes receivable of the Group customers deposited in the bank for collection.'"
+  ]
+}

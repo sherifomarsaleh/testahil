@@ -1,0 +1,107 @@
+{
+  "fy": 2025,
+  "source_doc": "GB_Corp_Annual_Report_2025.pdf",
+  "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Corp_Annual_Report_2025.pdf",
+  "units_note": "consolidated FS in EGP 000s ('All amounts in thousand of Egyptian Pound', figures printed with space separators e.g. 80 229 809); MD&A in EGP mn/bn as printed; BS comparative column headed '31 December 2024 Restated'",
+  "is": {
+    "revenue": {"v": 80229809, "q": "Operating revenue (5) 80 229 809 53 969 539"},
+    "cogs": {"v": -67798681, "q": "Operating costs (5) (67 798 681) (43 454 917)"},
+    "gross_profit": {"v": 12431128, "q": "Gross profit 12 431 128 10 514 622"},
+    "distribution_exp": {"v": -2987521, "q": "Selling and marketing expenses (36) (2 987 521) (1 815 019)"},
+    "admin_exp": {"v": -3559775, "q": "General and administrative expenses (36) (3 559 775) (3 028 632)"},
+    "other_income": {"v": 912225, "q": "Other income (6) 912 225 505 593"},
+    "other_expense": {"v": 64387, "q": "Other Revenue / (Expenses) (8) 64 387 (240 108)"},
+    "op_profit": {"v": 6630956, "q": "Operating Profit 6 630 956 5 820 840"},
+    "finance_income": null,
+    "finance_cost": {"v": -3747179, "q": "Finance costs (Net) (7) (3 747 179) (2 689 349)"},
+    "associates_income": {"v": 986361, "q": "Share of profit of equity accounted investees (34) 986 361 867 641"},
+    "pbt": {"v": 3866521, "q": "Net profit for the year before income tax 3 866 521 3 999 132"},
+    "income_tax": {"v": -1086066, "q": "Income tax expense (11-C ) (1 086 066) (939 239)"},
+    "np_total": {"v": 2780455, "q": "Net profit for the year after income tax 2 780 455 3 059 893"},
+    "np_parent": {"v": 2880046, "q": "Shareholder's of the parent company 2 880 046 2 928 121"},
+    "np_nci": {"v": -99591, "q": "Non-controlling interests (99 591) 131 772"}
+  },
+  "bs": {
+    "ppe_net": {"v": 10729640, "q": "Property, plant, equipment and projects under construction (17) 10 729 640 8 193 201"},
+    "investments_associates": {"v": 13272208, "q": "Equity accounted investees (34) 13 272 208 12 107 366"},
+    "inventory": {"v": 24649734, "q": "Inventories (12) 24 649 734 21 134 299"},
+    "trade_notes_receivable": {"v": 13465131, "q": "Accounts and notes receivables (14) 13 465 131 8 334 218"},
+    "debtors_other": {"v": 5818602, "q": "Debtors and other debit balances (15-B) 5 818 602 5 478 585"},
+    "cash": {"v": 9523553, "q": "Cash and cash equivalents (16) 9 523 553 7 420 866"},
+    "total_current_assets": {"v": 54327968, "q": "Total current assets 54 327 968 43 397 523"},
+    "total_assets": {"v": 91358685, "q": "Total assets 91 358 685 73 651 578"},
+    "borrowings_current": {"v": 27199462, "q": "Loans, borrowings and overdrafts (26) 27 199 462 15 572 866"},
+    "borrowings_noncurrent": {"v": 10721880, "q": "Loans (26) 10 721 880 6 835 835"},
+    "trade_notes_payable": {"v": 16762919, "q": "Trade payables and other credit balances (27) 16 762 919 19 121 835"},
+    "total_liabilities": {"v": 60768530, "q": "Total liabilities 60 768 530 45 402 017"},
+    "equity_parent": {"v": 28788713, "q": "Equity attributable to parent Company 28 788 713 26 233 452"},
+    "nci_equity": {"v": 1801442, "q": "Non-controlling interests (24) 1 801 442 2 016 109"},
+    "total_equity": {"v": 30590155, "q": "Total equity 30 590 155 28 249 561"},
+    "provisions": {"v": 771679, "q": "Provisions (28) 771 679 702 803"}
+  },
+  "cf": {
+    "cfo": {"v": -1133578, "q": "Net cash (used in) / provided from operating activities (1 133 578) 1 566 084"},
+    "capex_ppe": {"v": -3664188, "q": "Payment for acquisition of property, plant, equipment and projects under constructions (3 664 188) (3 171 932)"},
+    "dep_amort_addback": {"v": 999313, "q": "Depreciation and amortization for the year (17,18,19) 999 313 1 138 459"},
+    "interest_paid": {"v": -3842096, "q": "Interest expense paid (3 842 096) (2 711 478)"},
+    "cfi": {"v": -2472681, "q": "Net cash (used in) investing activities (2 472 681) (3 076 080)"},
+    "cff": {"v": 6033367, "q": "Net cash Provided from financing activities 6 033 367 3 417 853"}
+  },
+  "segments": [
+    {"name": "Passenger Cars and After Sales (Egypt, Iraq, Jordan)", "revenue": {"v": 52827.3, "q": "Passenger car revenues increased 44.6% year-on-year in FY25 to EGP 52,827 million; Revenue Breakdown by LoB (EGP mn): Passenger Cars 36,533.4 (2024) / 52,827.3 (2025); 2025 Revenue Contribution: Egypt 80.5%, Iraq and Jordan 19.5%"}, "gross_profit": null, "volume_units": {"v": 56500, "q": "Passenger car demand across Egypt, Iraq, and Jordan rebounded in FY25, with volumes rising 34.5% year-on-year; Sales Volume (000s) chart: 42.0 (2024) / 56.5 (2025), of which CBU 25.2 / CKD 31.3; Production Capacity (000s) 80 / 80"}},
+    {"name": "Two-, Three-, Four-Wheelers (Light Mobility)", "revenue": {"v": 2203.8, "q": "revenues rose 59.9% to EGP 2,204 million; Revenue Breakdown by LoB (EGP mn): Light Mobility 1,378.2 (2024) / 2,203.8 (2025)"}, "gross_profit": null, "volume_units": {"v": 33900, "q": "Volumes increased 68% year-on-year; Sales Volume (000s) chart: 20.2 (2024) / 33.9 (2025)"}},
+    {"name": "Egypt Commercial Vehicles & Construction Equipment", "revenue": {"v": 5956.8, "q": "revenues expanded 49.5% year-on-year to EGP 5,957 million; Revenue Breakdown by LoB (EGP mn): Egypt Commercial Vehicles & Construction Equipment 3,984.5 (2024) / 5,956.8 (2025)"}, "gross_profit": null, "volume_units": {"v": null, "q": "Volumes increased 62.4% year-on-year, supported by rising demand for light trucks, buses, and minibuses, alongside growing export activity (absolute unit count not stated in running text; chart values partly garbled: Bus Sales Volumes (000s) 1,723 / Truck Sales Volumes 1,260 -> 1,659)"}},
+    {"name": "Trading Business (Tires and Ready Parts, Egypt and Iraq)", "revenue": {"v": 4242.8, "q": "In 2025, the Trading business delivered revenues of EGP 4,243 million, up 11.2% year-on-year; chart (EGP bn): 3.8 (2024: Tires 2.9 + Ready Parts 0.9) / 4.2 (2025: Tires 3.3 + Ready Parts 0.9)"}, "gross_profit": null, "volume_units": null},
+    {"name": "GB Auto total (before intercompany eliminations)", "revenue": {"v": 66358.3, "q": "In 2025, GB Auto achieved revenues of EGP 66,358.3 million (before intercompany eliminations), representing a 41.0% year-on-year increase ... net profit reached EGP 1,509 million ... By year-end 2025, GB Auto's EBITDA stood at EGP 6,363 million, reflecting an 8.2% year-on-year increase and generating an associated margin of 9.6%"}, "gross_profit": null, "volume_units": null},
+    {"name": "GB Capital (before intercompany eliminations)", "revenue": {"v": 14743.0, "q": "GB Capital ... revenues (before intercompany eliminations) rising 99.7% year-on-year to EGP 14,743 million ... Net profit grew 25.1% year-on-year to EGP 1,366 million; Revenue Breakdown by Subsidiary (EGP mn), 2025 chart values: Kredit 248.4, Capital Securitization 22.9, Drive Finance 11,446.4, GB Bus Rental 168.1, GB Auto Rental 549.4, GB Lease & Factoring 2,306.9 (labels inferred from legend order on a stacked chart)"}, "gross_profit": null, "volume_units": null}
+  ],
+  "kpis": {
+    "egypt_pc_market_registrations_2025_units": {"v": 210000, "q": "The passenger car market continued its recovery, with 2025 registrations reaching approximately 210,000 units, up around 40% compared to 2024."},
+    "gb_auto_egypt_pc_market_share_2025": {"v": 21.0, "q": "we maintained our market-leading position with a 21% market share ... GB Auto Market Share (as of year-end 2025); Market Share in Egypt chart: 20.1% (2024) / 21.0% (2025)"},
+    "consolidated_income_statement_summary_egp_mn": {"v": 80229.8, "q": "Consolidated Income Statement EGP Million 2024/2025/Change: Revenue 53,969.5 / 80,229.8 / 48.7%; Gross Profit 10,514.6 / 12,431.1 / 18.2%; Gross Margin 19.5% / 15.5% / (4.0); EBIT 6,688.5 / 7,605.7 / 13.7%; EBIT Margin 12.4% / 9.5% / (2.9); Net Profit 2,928.1 / 2,880.0 / (1.6%); Net Margin 5.4% / 3.6% / (1.8)"},
+    "gb_capital_loan_portfolio_egp_bn": {"v": 19.5, "q": "EGP 19.5 Bn Loan Portfolio (+47.9% y-o-y) ... GB Capital's aggregate loan portfolio reached EGP 19.5 billion by year-end 2025, up strongly year-on-year, with a healthy non-performing loan ratio of 2.1%"},
+    "gb_capital_net_portfolio_assets_ex_mnt_halan_egp_mn": {"v": 19495.2, "q": "Supplementary Financial Information - GB Capital (Excluding MNT-Halan): Net Portfolio Assets (EGP million) 13,183.4 (2024) / 19,495.2 (2025); ROAE 15.1% / 15.1%; Annualized ROAA 12.8% / 16.0%; Annualized net interest margin 10.6% / 5.0%; NPL / Loan portfolio 1.98% / 2.13%"},
+    "drive_finance_auto_loan_market_share_fy2025": {"v": 25, "q": "Drive Finance secured a 25% share of Egypt's auto loan market in FY2025, reflecting the scale and competitiveness of our financing operations."},
+    "mnt_halan_loan_book_usd_bn": {"v": 1.7, "q": "In 2025, MNT-Halan delivered solid growth, with its loan book exceeding USD 1.7 billion as of 31 December 2025"},
+    "cvce_export_share": {"v": 50, "q": "Exports remained a key growth driver, with approximately 50% of tourism bus production and 20% of minibuses sold outside Egypt."},
+    "gb_auto_ebitda_2025_egp_mn": {"v": 6363.3, "q": "GB Auto EBITDA Progression (EGP mn): 2,551.1 (2022, 11.7%) / 3,794.5 (2023, 15.9%) / 5,880.5 (2024, 12.5%) / 6,363.3 (2025, 9.6%)"},
+    "kredit_portfolio_growth_2025": {"v": 111.3, "q": "The company's portfolio expanded 111.3% year-on-year, reflecting robust booking activity and consistent market traction."},
+    "mnt_bv_equity_method_record": {"v": 12853321, "q": "MNT Investment B.V. Group 44.01% 11 378 583 509 093 11 887 676 965 645 - - 12 853 321 (note 34, thousand EGP: opening / adjustment / restated opening / share of profit / closing)"}
+  },
+  "guidance": [
+    {"q": "Looking ahead, we remain confident in GB Corp's ability to sustain its growth trajectory. The combination of stabilizing FX conditions in Egypt, easing inflation, declining interest rates, and improving purchasing power provides a supportive foundation for demand and investment. With the Sadat facility coming online, our product portfolio expanding across conventional and new energy segments, and GB Capital positioned to benefit from the easing cycle — particularly in fixed-rate lending products, we believe the Group is well positioned to capture emerging opportunities and continue delivering sustainable value for our shareholders.", "where": "Message from Our CEO"},
+    {"q": "We are encouraged by the introduction of GSO certification standards, which we expect will gradually improve market dynamics and support a more balanced competitive environment over time.", "where": "Message from Our CEO (regional, Iraq and Jordan)"},
+    {"q": "the implementation of GSO certification standards in both markets is expected to improve competitive dynamics and support a more balanced operating environment in the coming year.", "where": "Passenger Cars - Operational and Financial Highlights"},
+    {"q": "To further capture rising demand, GB Auto continues to expand capacities at its flagship Ain Sokhna facility, a purpose-built hub for bus and commercial vehicle production, including an additional production shift to increase volumes and better serve regional exports.", "where": "CV & CE - Operational and Financial Highlights"},
+    {"q": "we also took further steps to integrate renewable energy into our manufacturing processes, supporting our target of achieving 75% renewable energy usage across all facilities by 2030.", "where": "Message from Our CEO (sustainability)"}
+  ],
+  "accounting_changes": [
+    "No 'newly applied standards' note appears in the FY2025 consolidated FS; the recurring EAS 47-derived reserves notes continue (40- Private risk reserve, 41- General risk reserve per 'the non-bank financial companies' application of the Egyptian Accounting Standard No. 47 on January 1, 2021', 42- Reserve for financial Solvency risk, balance 192 044).",
+    "A 'Fair value reserve' line (1 348 087 at 31 December 2024, 2 012 393 at 31 December 2025) is presented for the first time via the note 39 restatement, reclassified out of Other reserves (Other reserves adjustment (407 612), Fair value reserve adjustment 1 348 087).",
+    "Hyperinflationary accounting in Turkey affected associate income: 'performance was partially affected by hyperinflationary accounting in Turkey and intentional delays in securitization transactions, which weighed on overall contribution and investment income' (MNT-Halan MD&A); CEO letter cites 'lower investment income from associates, including the impact of hyperinflationary accounting treatment in Turkey'.",
+    "45- Significant Events: The year 2025 witnessed a series of decisions by the Central Bank of Egypt regarding interest rate cuts. The Monetary Policy Committee, in its meeting held on April 17, 2025, decided to lower the overnight deposit and lending rates, as well as the main operation rate, by 225 basis points, bringing them to 25.00% for deposits, 26.00% for lending, and 25.50% for the main operation ... Subsequent rate-cut decisions continued in the following meetings held on May 22, August 28, October 2, and finally December 25, 2025 ... further reduced by a total of 500 basis points, bringing them to 20.00% for deposits, 21.00% for lending, and 20.50% for the main operation.",
+    "46- Subsequent Events: On February 12, 2026, the Monetary Policy Committee of the Central Bank of Egypt decided to reduce the overnight deposit rate, the overnight lending rate, and the main operation rate by 100 basis points, bringing the deposit rate to 19.00%, the lending rate to 20.00%, and the main operation and discount rate to 19.50%.",
+    "Q- Comparative figures: When necessary, comparative figures have been reclassified to conform with changes in presentation in the current year."
+  ],
+  "restatement_notes": [
+    "Statement of financial position comparative column is headed '31 December 2024 Restated'.",
+    "39-1 Adjustments to the consolidtated statement of financial position as of December 2024 [sic]: 'During the current fiscal year, the company's management has reconfciled certain items in the financial statements from previous years. The following is a statement of asset, liability, and equity balances as of December 31, 2024, and the adjustments are on MNT Investment B.V. Group and GB Company for Financial Lease and Factoring and Drive for Financing and Non Banking Service.'",
+    "39-1 key adjustments (thousand EGP, before / adjustment / after): Investment in associate 11 598 273 / 509 093 / 12 107 366; Long term accounts and notes receivables 7 610 377 / (335 413) / 7 274 964; Accounts and notes receivables 7 581 323 / 752 895 / 8 334 218; Total assets 72 725 003 / 926 575 / 73 651 578; Other reserves 7 890 066 / (407 612) / 7 482 454; Fair value reserve - / 1 348 087 / 1 348 087; Retained Earning 12 680 163 / (145 525) / 12 534 638; Equity attributable to shareholders of the parent 25 438 502 / 794 950 / 26 233 452; Non-controlling interests 1 978 417 / 37 692 / 2 016 109; Deferred tax liabilities 401 974 / 93 933 / 495 907; Total liabilities 45 308 084 / 93 933 / 45 402 017.",
+    "39-2 Adjustment on consolidated Comprehnsive income 31 December 2024 [sic]: Net change of financial assets at fair value - / 417 483 / 417 483; Income tax Related to other comprehensive income item 3 455 / (93 934) / (90 479); Total other comprehensive income for the year 6 783 288 / 323 549 / 7 106 837. Net Profit for the year before income tax unchanged at 3 059 893.",
+    "The statement of profit or loss's 2024 column is not itself labelled 'Restated' (net profit 2024 comparative unchanged: 2 928 121 parent / 3 059 893 total)."
+  ],
+  "oddities": [
+    "Source: the separate audited-FS PDF (GB_Corp_Consolidated_E_31_December_2025.pdf) has no text layer; the audited consolidated FS embedded in the annual report (pages 102-157) were used as the source, per task instruction.",
+    "QUALIFIED AUDIT OPINION (KPMG Hazem Hassan, Cairo February 26, 2026): 'We were not provided with the consolidated audited financial statements for the financial year ended December 31, 2025 for one of the associate companies (MNT - BV - Consolidated) which it accounted for using the equity method, as the group owns approximately 44% of the shares of this company, in order to verify the accuracy of calculating the group's share of the profits resulting from this investment amounted to EGP 965,6 Million recorded by the company's management during the year'. Opinion is qualified 'Except for the impact of the potential adjustments...'.",
+    "np_parent (2 880 046) EXCEEDS np_total (2 780 455) because non-controlling interests booked a LOSS of (99 591) in 2025 — not an extraction error.",
+    "IS lines with no schema key: 'Expected Credit Losses (9) (229 488) (115 616)' (presented separately from other operating costs, included in Operating Profit); 'Change in fair value of financial investments at fair value through the profit or loss (35-B ) 7 967 -'; 'Losses from revaluation of disposal of subsidiaries companies (11 584) -'. other_expense holds the net 'Other Revenue / (Expenses)' line, which is POSITIVE (64 387) in 2025.",
+    "finance_income = null: the IS presents only 'Finance costs (Net)'; the CF adjustments disclose 'Interest expense (7) 4 287 126 2 882 401' and 'Interest income (7) (577 055) (484 619)'.",
+    "BS lines not covered by schema keys: Assets held for sale (43) 866 096 (note 43: land obtained from one of the group's subsidiaries customers; 'exceptional economic changes have prevented the completion of the sale despite receiving purchase offers'); Long term accounts and notes receivables (13) 9 370 162; non-current Debtors and other debit balances (15-A) 347 282; Investments in fair value through OCI (35-A) 417 197; Bonds non-current (38) 40 000 and current (38) 80 000 (excluded from borrowings keys); Lease liabilities non-current 1 554 311 and current 320 781; Long term notes payables and creditors 1 352 805; Warranty provisions (28) 22 955 non-current (provisions key carries only current 771 679).",
+    "The statements of changes in equity, comprehensive income and cash flows are printed on rotated (landscape) pages; pdftotext scrambled them into vertical label stacks. The cash-flow figures above were reconstructed by pairing each label line with its two-column figures where they survived on one line; CF labels are interleaved with equity-statement fragments in the txt.",
+    "The CF 'Changes in:' section contains its own 'Proceeds from loans and borrowings 6 145 669 3 840 496' line (financing-business book, inside operating activities) distinct from the financing-activities 'Proceeds from oans and borrowings 9 366 972 6 330 535' [sic 'oans' — typo in document].",
+    "AMIC is not cited by name anywhere in the 2025 annual report text; the Egypt PC market size appears only as 'approximately 210,000 units' of 2025 registrations in the CEO letter (no source attribution), so kpis carry no AMIC-attributed quote for FY2025.",
+    "GB Capital 'Revenue Breakdown by Subsidiary' values are chart labels in the txt; the subsidiary-to-value mapping is inferred from legend order (2025 components sum to 14,742.1 vs stated total 14,743.0; the 2024 components sum to 7,370.0 vs 7,383.6).",
+    "MD&A consolidated revenue progression chart shows 2023 = 28,317.2 EGP mn and its net-profit chart shows 2023 = 1,890.8 EGP mn with footnote '*Includes one off capital gain transaction amounting to EGP 8.2bn generated from the sale of 7.5% MNT BV stake' attached to the 2022 bar (9,985.0).",
+    "Segment gross profit is not disclosed in the MD&A (revenue and EBITDA only), and the segment-reporting note in the FS is a rotated page whose figures did not survive text extraction legibly; segments gross_profit = null throughout."
+  ]
+}

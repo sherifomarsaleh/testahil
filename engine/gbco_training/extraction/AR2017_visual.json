@@ -1,0 +1,110 @@
+{
+ "fy": 2017,
+ "source_doc": "GB_Annual_Report_2017.pdf",
+ "source_url": "https://ir.gb-corporation.com/media/annual_reports/files/GB_Annual_Report_2017.pdf",
+ "tier": "A",
+ "read_method": "visual page read pp.10-29 (no text layer)",
+ "group_fy17": {
+  "revenue_mn": 17656.6,
+  "gpm": 0.111,
+  "gp_bn": 1.9,
+  "op_mn": 800,
+  "market_share_dec17_ytd": 0.311,
+  "hyundai_share_fy17": 0.219,
+  "finance_costs_mn": 1277.4,
+  "net_loss_mn": 666.9,
+  "prior_net_loss_mn": 865.7,
+  "auto_related_rev_bn": 15.0,
+  "gb_capital_rev_after_elim_mn": 2561.6,
+  "gb_capital_np_mn": 294.6,
+  "auto_net_debt_mn": 4130.7,
+  "auto_net_debt_fy16_mn": 5120.6,
+  "nd_e": 1.07
+ },
+ "amic_pc_market_units": {
+  "2006": 133391,
+  "2007": 179178,
+  "2008": 198800,
+  "2009": 158926,
+  "2010": 192848,
+  "2011": 133165,
+  "2012": 144204,
+  "2013": 133760,
+  "2014": 207973,
+  "2015": 195559,
+  "2016": 141983,
+  "2017": 99530,
+  "q": "Egyptian PC Market Annual Sales chart, AR2017 p.25 (AMIC full-year report cited; FY17 total automotive market fell 29.9% y-o-y)"
+ },
+ "pc_egypt_revenue_mn": {
+  "2010": 5383.0,
+  "2011": 5741.9,
+  "2012": 6072.3,
+  "2013": 6536.9,
+  "2014": 8909.9,
+  "2015": 7489.9,
+  "2016": 8016.1,
+  "2017": 6840.5,
+  "q": "Revenues by Year chart, p.24"
+ },
+ "m3w": {
+  "rev_mn": {
+   "2011": 967.3,
+   "2012": 1156.2,
+   "2013": 1168.4,
+   "2014": 1270.7,
+   "2015": 1892.5,
+   "2016": 1708.2,
+   "2017": 2206.2
+  },
+  "three_wheeler_units": {
+   "2014": 61068,
+   "2015": 85183,
+   "2016": 65988,
+   "2017": 70507
+  },
+  "motorcycle_units": {
+   "2014": 36801,
+   "2015": 50840,
+   "2016": 28997,
+   "2017": 8662
+  },
+  "q": "charts pp.26-27"
+ },
+ "cvce": {
+  "bus_units": {
+   "2011": 482,
+   "2012": 470,
+   "2013": 495,
+   "2014": 1055,
+   "2015": 1172,
+   "2016": 735,
+   "2017": 642
+  },
+  "rev_fy17_mn": 1092.2,
+  "rev_fy16_mn": 1113.3,
+  "vol_yoy_fy17": -0.365,
+  "q": "pp.28-29"
+ },
+ "brand_units_2017": {
+  "Hyundai": 21897,
+  "Nissan": 21181,
+  "Chevrolet": 29345,
+  "Chery": 5477,
+  "Geely": 2804,
+  "q": "Revenue Segmentation of the Egyptian PC Market by Year (units sold and % share, year-end 2017), p.24 \u2014 note these are MARKET brand volumes incl. non-GB brands"
+ },
+ "guidance_for_2018": [
+  "Management expects the Passenger Car market to hit volumes of 120,000 units, of which GB Auto's market share is set to be at least 30% in 2018",
+  "Automotive Directive legislation expected finalized before end of 2018",
+  "Motorcycles & Three-Wheelers: two-wheeler chassis manufacturing begun 2017, expected to boost volumes in 2018",
+  "Tires: distributing Turkish-made tuk-tuk tires from 1Q18; commercialize Pirelli and Pharos truck tires from February 2018",
+  "guidance subject to change in light of fluctuating regional geopolitical and macroeconomic conditions"
+ ],
+ "notes": [
+  "FY17 disclosure re-cut: core automotive reported as 'GB Auto & Auto Related' separate from GB Capital (adopted 2Q17)",
+  "Iraq PC revenue up ~3x y-o-y FY17; GP LE 27.6mn vs 11.4mn FY16",
+  "GB Polo stake raised to 80% from 51% at end-2017",
+  "PC market includes Hyundai/Geely/Mazda/Chery for GB; Hyundai #1 at 21.9% share FY17"
+ ]
+}
