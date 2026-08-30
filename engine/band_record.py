@@ -123,7 +123,8 @@ STRENGTH_SHORT_MIN = 22   # below this the name's own coverage is unreadable
 TARGET_COVERAGE = 0.90    # the band the record is stated against
 FLAG_ALPHA = 0.05         # two-sided binomial level for narrow/wide
 
-FLAG_LABEL = {"narrow": "bands ran narrow", "wide": "bands ran wide"}
+FLAG_LABEL = {"narrow": "bands ran narrow (too tight)",
+              "wide": "bands ran wide (over-cautious)"}
 
 # Reader-facing market names come from the registry that already generates them
 # into assets/markets.js, so a panel has ONE public name. Two generator scripts
@@ -219,15 +220,34 @@ class BandRecord:
              f"band {pct(self.cov90)} of the time, against the 90% that band aims at")
         s += (f" — and inside the 80% and 50% bands {pct(self.cov80)} and {pct(self.cov50)} "
               f"of the time." if inner_bands else ".")
-        join = (" — ", "") if one_sentence else (" That is ", "That is ")
+        # join[0] replaces the base sentence's final "." (s[:-1] below), so the
+        # two-sentence joiner must RESTORE that period. It didn't — "…of the
+        # time That is a shortfall…" — and the defect sat unseen because no
+        # FLAGGED name's clause went through build_band_prose until ISPH's
+        # hand-baked copy was brought under the span machinery (30-Aug-2026);
+        # the app.js transliteration had the period all along, so the static
+        # text and the render-time rewrite disagreed by exactly one character.
+        # Caught by the build-vs-render parity check, not by reading.
+        join = (" — ", "") if one_sentence else (". That is ", "That is ")
+        # The flag sentences lead with what the flag MEANS, not with the band
+        # jargon: "narrow" read as praise (a tight, precise forecast) and "wide"
+        # as the sloppy one, when the truth is the reverse — narrow is the
+        # over-confident miss and wide the over-cautious one. Reworded on a
+        # legibility instruction, 30-Aug-2026, same species as [R-CAL-02]'s own
+        # adoption. Each stays ONE sentence: build_band_theses splices by
+        # sentence, and build_band_prose asserts the span is self-contained.
         if self.flag == "narrow":
-            s = s[:-1] + join[0] + ("short of what the bands promise: they have been running "
-                 "narrower than the evidence supports, so read the range as a floor on how far "
-                 "price can travel, not a ceiling.")
+            s = s[:-1] + join[0] + ("a shortfall with a plain meaning: the range was drawn "
+                 "too tight for this stock — price broke out more often than a 90% range "
+                 "should allow, the forecast more confident than its record justifies — so "
+                 "treat the published range as a floor on how far price can travel, not a "
+                 "ceiling.")
         elif self.flag == "wide":
-            s = s[:-1] + join[0] + ("more than the bands promise: the real spread of outcomes "
-                 "has been tighter than the cone shows — the safer direction to be wrong in, "
-                 "but still a miss.")
+            s = s[:-1] + join[0] + ("an overshoot in the cautious direction: the range was "
+                 "drawn roomier than this stock needed — price stayed inside almost every "
+                 "time, so the realistic spread of outcomes is tighter than the cone shows "
+                 "— a safer miss than the reverse, but a miss all the same, published "
+                 "rather than trimmed.")
         return s
 
     def width_clause(self):

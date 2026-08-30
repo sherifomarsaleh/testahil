@@ -980,12 +980,16 @@ function bandRecordSentence(tk){
   let s = 'Over ' + b.n + ' resolved three-month forecasts, the price finished inside the 90% band ' +
           bandPct(b.c90) + ' of the time, against the 90% that band aims at \u2014 and inside the ' +
           '80% and 50% bands ' + bandPct(b.c80) + ' and ' + bandPct(b.c50) + ' of the time.';
-  if (b.flag === 'narrow') s += ' That is short of what the bands promise: they have been running ' +
-                               'narrower than the evidence supports, so read the range as a floor ' +
-                               'on how far price can travel, not a ceiling.';
-  else if (b.flag === 'wide') s += ' That is more than the bands promise: the real spread of ' +
-                                   'outcomes has been tighter than the cone shows \u2014 the safer ' +
-                                   'direction to be wrong in, but still a miss.';
+  if (b.flag === 'narrow') s += ' That is a shortfall with a plain meaning: the range was drawn ' +
+                               'too tight for this stock \u2014 price broke out more often than a ' +
+                               '90% range should allow, the forecast more confident than its record ' +
+                               'justifies \u2014 so treat the published range as a floor on how far ' +
+                               'price can travel, not a ceiling.';
+  else if (b.flag === 'wide') s += ' That is an overshoot in the cautious direction: the range was ' +
+                                   'drawn roomier than this stock needed \u2014 price stayed inside ' +
+                                   'almost every time, so the realistic spread of outcomes is tighter ' +
+                                   'than the cone shows \u2014 a safer miss than the reverse, but a ' +
+                                   'miss all the same, published rather than trimmed.';
   return s;
 }
 function refreshBandRecords(){
