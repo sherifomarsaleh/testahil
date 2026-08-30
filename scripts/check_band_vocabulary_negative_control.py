@@ -26,7 +26,7 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CASES = [
-    ("the FAIL banner", "ledger.html",
+    ("the FAIL banner", "legacy/ledger.html",
      lambda s: s.replace("</body>",
                          '<p>⚠ INDICATIVE ONLY · FAILED CALIBRATION TEST</p></body>', 1)),
     ("a PARITY verdict in a thesis", "assets/coverage.js",
@@ -35,13 +35,13 @@ CASES = [
                          'const COVERAGE_EN = [', 1)),
     ("a matches-benchmark chip", "method.html",
      lambda s: s.replace("</body>", "<p>◆ Indicative · matches benchmark</p></body>", 1)),
-    ("CRPS beside a company", "savola.html",
+    ("CRPS beside a company", "legacy/savola.html",
      lambda s: s.replace("</body>", "<p>SAVOLA scored +0.9% CRPS skill.</p></body>", 1)),
     ("a band record that disagrees with its panel", "assets/data.js",
      lambda s: re.sub(r'(  SAVOLA: \{mkt:"SA", n:)\d+', r'\g<1>999', s, count=1)),
     ("a hand-edited coverage figure", "assets/data.js",
      lambda s: re.sub(r'(  SAVOLA: \{mkt:"SA", n:\d+, hits:)\d+', r'\g<1>58', s, count=1)),
-    ("a span naming no record", "savola.html",
+    ("a span naming no record", "legacy/savola.html",
      lambda s: s.replace('data-band-record="SAVOLA"', 'data-band-record="NOSUCHNAME"', 1)),
     # The figures are images; only their caption TEMPLATE is readable, and this
     # arm is live only because the ratchet is now empty. It is the one that would
@@ -55,16 +55,16 @@ CASES = [
 # lowercase "parity" is an ordinary word in this book, and CRPS is taught on the
 # methodology page on purpose.
 CLEAN = [
-    ("a currency peg", "savola.html",
+    ("a currency peg", "legacy/savola.html",
      lambda s: s.replace("</body>", "<p>the riyal's fixed parity to the dollar</p></body>", 1)),
-    ("export parity pricing", "savola.html",
+    ("export parity pricing", "legacy/savola.html",
      lambda s: s.replace("</body>", "<p>subsidised vs. export parity feedstock</p></body>", 1)),
     ("CRPS where the rule is taught", "method.html",
      lambda s: s.replace("</body>", "<p>Forecasts are graded with CRPS.</p></body>", 1)),
 ]
 
 # Only what the gate opens.
-COPY = ["*.html", "assets/*.js", "engine/band_record.py", "engine/panels/*_3m.csv",
+COPY = ["*.html", "legacy/*.html", "assets/*.js", "engine/band_record.py", "engine/panels/*_3m.csv",
         "engine/panel_refresh.py", "engine/mc_v3.py", "engine/primitives.py",
         "engine/market_profiles.py", "engine/fv_overlay.py", "engine/__init__.py",
         "engine/build_depth_audit/band_outstanding.json", "engine/metal_backtest.py",
