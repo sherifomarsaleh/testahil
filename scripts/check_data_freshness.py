@@ -518,7 +518,15 @@ def main() -> int:
     #    A listed key with no file is the mirror defect: a broken <img>.
     #    Counting one side alone cannot see either, which is the same lesson
     #    check 1 encodes for published-vs-ledger names.
+    # Since the 30-Aug-2026 cutover, root ledger.html is a redirect stub and the
+    # hand-maintained HAS_BACKTEST registry lives on the preserved page at
+    # legacy/ledger.html (still served, still the page that renders the panel).
+    # Root is preferred if it ever carries the set again.
     ledger_html = os.path.join(ROOT, 'ledger.html')
+    _root_has_set = (os.path.exists(ledger_html)
+                     and 'HAS_BACKTEST' in open(ledger_html, encoding='utf-8').read())
+    if not _root_has_set and os.path.exists(os.path.join(ROOT, 'legacy', 'ledger.html')):
+        ledger_html = os.path.join(ROOT, 'legacy', 'ledger.html')
     if os.path.exists(ledger_html):
         html = open(ledger_html, encoding='utf-8').read()
         m = re.search(r'const HAS_BACKTEST = new Set\(\[(.*?)\]\);', html, re.S)
