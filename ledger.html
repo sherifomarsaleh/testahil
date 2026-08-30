@@ -158,7 +158,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc-3lenses.html">Palm Hills</a> &middot; <a href="tmgh-3lenses.html">Talaat Moustafa</a> &middot; <a href="ocdi-3lenses.html">SODIC</a> &middot; <a href="orhd-3lenses.html">Orascom Dev</a> &middot; <a href="oras-3lenses.html">Orascom Const</a> &middot; <a href="comi-3lenses.html">CIB</a> &middot; <a href="emfd-3lenses.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260830emaarrf"></script><script src="assets/app.js?v=20260805b"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260830emaarrf"></script><script src="assets/app.js?v=20260830bandcopy"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -212,9 +212,9 @@ const bandState = tk => { const b = band(tk); return !b ? null
   : (b.flag || (b.strength === "market-only" ? "market" : null)); };
 const BAND_UI = {
   narrow: {row:"row-band-narrow", chip:"chip narrow",  line:"band-flag band-narrow", icon:"\u26a0",
-           chipText:"bands ran narrow"},
+           chipText:"bands ran narrow (too tight)"},
   wide:   {row:"row-band-wide",   chip:"chip wide", line:"band-flag band-wide",   icon:"\u25c6",
-           chipText:"bands ran wide"},
+           chipText:"bands ran wide (over-cautious)"},
   market: {row:"",                chip:"chip",       line:"band-flag band-market", icon:"\u25c7",
            chipText:"market record only"},
 };
@@ -321,10 +321,10 @@ const HAS_BACKTEST = new Set(["ADNOCLS", "ADNOCDRILL", "DU", "BOROUGE", "EMPOWER
 const bandLine = t => bandRecordSentence(t) || '';
 // One banner, keyed by the same derived state the rows use.
 const BAND_BANNER_COPY = {
-  narrow: ["\u26a0 THESE BANDS HAVE RUN NARROW", "band-banner-narrow",
-    "These bands aim at 90%, so this one has been <b>narrower than advertised</b>: price has left the range more often than the cone implies. Read it as a floor on how far price can travel, not a ceiling. The range is published exactly as the model produced it \u2014 nothing is widened after the fact to flatter the record."],
-  wide: ["\u25c6 THESE BANDS HAVE RUN WIDE", "band-banner-wide",
-    "These bands aim at 90%, so this one has been <b>wider than it needs to be</b>: the real spread of outcomes has been tighter than the cone shows. That is the safe direction to be wrong in, but it is still a miss, and it is published rather than quietly trimmed."],
+  narrow: ["\u26a0 THESE BANDS HAVE RUN NARROW \u2014 TOO TIGHT FOR THIS STOCK", "band-banner-narrow",
+    "In plain terms: a 90% range is built to contain the close <b>nine times in ten</b>, and this one has not managed that \u2014 the model has been too sure of itself on this name, so the range understates how far the price can really move. The range is published exactly as the model produced it \u2014 nothing is widened after the fact to flatter the record."],
+  wide: ["\u25c6 THESE BANDS HAVE RUN WIDE \u2014 ROOMIER THAN THIS STOCK NEEDED", "band-banner-wide",
+    "In plain terms: a 90% range is built to contain the close <b>nine times in ten</b>, and this one has contained nearly everything \u2014 over-caution rather than over-confidence, so the realistic spread of outcomes is tighter than the picture shows. The safer direction to be wrong in, and it is published rather than quietly trimmed."],
   market: ["\u25c7 MARKET RECORD ONLY \u2014 THIS NAME'S OWN RECORD IS STILL SHORT", "band-banner-wide",
     "A handful of windows cannot tell an honest cone from a broken one, so <b>no name-level claim is made</b>. The bands you are shown are that market's bands. Every cohort this name matures adds a window to its own record, which is how a newly listed stock earns one."],
 };
