@@ -444,6 +444,18 @@ def main() -> int:
         if n not in NON_TICKER_PAGES and n not in STUB_PAGES
         and not n.endswith(THREE_LENS_SUFFIX) and not is_redirect_stub(p)
     }
+    # Since the 30-Aug-2026 cutover the static five-lens studies live at
+    # legacy/{slug}.html (byte-preserved) and the root slugs are redirect
+    # stubs. Checks 1/2/4 walk the legacy studies — still served, still the
+    # real static population — so [R-ENF-04]'s "93 libraries -> examined
+    # pages" invariant holds against them, not against an emptied root.
+    legacy_dir = REPO / "legacy"
+    if legacy_dir.is_dir():
+        for p in sorted(legacy_dir.glob("*.html")):
+            n = p.name
+            if n in NON_TICKER_PAGES or n in STUB_PAGES or n.endswith(THREE_LENS_SUFFIX):
+                continue
+            ticker_pages.setdefault("legacy/" + n, p)
     data_js_path = REPO / "assets" / "data.js"
     if not data_js_path.exists():
         print(f"FATAL: {data_js_path} not found — run this from the repo root.")

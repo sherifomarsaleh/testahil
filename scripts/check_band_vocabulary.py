@@ -37,7 +37,7 @@ OUTSTANDING = os.path.join("engine", "build_depth_audit", "band_outstanding.json
 
 
 def surfaces(root):
-    for f in sorted(glob.glob(os.path.join(root, "*.html"))):
+    for f in sorted(glob.glob(os.path.join(root, "*.html")) + glob.glob(os.path.join(root, "legacy", "*.html"))):
         yield f
     # Every reader-facing asset script, not a hand-listed two: markets.js and
     # fv_overlay.js are equally rendered and were going unscanned.
@@ -146,7 +146,7 @@ def main():
                          "re-run scripts/build_band_records.py --write")
 
     # ---- 3. every data-band-record span names a real record -----------------
-    for path in sorted(glob.glob(os.path.join(root, "*.html"))):
+    for path in sorted(glob.glob(os.path.join(root, "*.html")) + glob.glob(os.path.join(root, "legacy", "*.html"))):
         rel = os.path.relpath(path, root)
         for m in re.finditer(r'data-band-record="([^"]+)"',
                              open(path, encoding="utf-8").read()):
