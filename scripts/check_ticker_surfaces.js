@@ -38,13 +38,13 @@ const SURFACES = [
   { file: 'stocks.html',    what: 'coverage index',        search: '#topsearch' },
   { file: 'trade.html',     what: 'Trade name search',     search: '#t-sym' },
   { file: 'portfolio.html', what: 'Portfolio name search', search: '#p-sel' },
-  { file: 'ledger.html',    what: 'forecast ledger' },
+  { file: 'ledger.html',    what: 'forecast ledger',    marker: 'HAS_BACKTEST' },
   // [CHANGED 10-Aug-2026] The picker now carries EVERY covered name, each row computed
   // under its own market's committed fit and cash hurdle (fv_overlay.py resolves markets
   // per row from assets/markets.js). The old EGX-only carve-out let the first non-EG
   // publish ship an overlay that silently recomputed every EGX row under the AE config
   // -- this gate skipped the one page that would have shown it.
-  { file: 'picker.html',    what: 'Ticker Picker' },
+  { file: 'picker.html',    what: 'Ticker Picker',      marker: 'fv_overlay.js' },
 ];
 
 (async () => {
@@ -92,11 +92,41 @@ const SURFACES = [
   const re = new RegExp('\\b' + esc(TK) + '\\b|' +
                         alts.slice(1).map(a => esc(a)).join('|'), 'i');
 
+  /* THE CUTOVER MOVED THE REGISTER SURFACES (30-Aug-2026). All five of these are
+   * redirect stubs at root now; the pages that actually render the registers are
+   * the byte-preserved copies under legacy/, which are still served. A file://
+   * render of a stub runs its location.replace() against a file URL and lands
+   * nowhere, so every surface reported "not in the rendered DOM" or timed out on
+   * a selector that only exists on the real page -- five confident failures about
+   * a ticker that was present on all five. Resolve each surface to the copy a
+   * reader is served, root first, exactly as check_data_freshness.py resolves
+   * HAS_BACKTEST and publish_site.py resolves the ticker page. */
+  const servedPage = (file, marker) => {
+    const rootP = path.join(ROOT, file);
+    if (fs.existsSync(rootP) && fs.readFileSync(rootP, 'utf8').includes(marker)) return file;
+    const legP = path.join(ROOT, 'legacy', file);
+    if (fs.existsSync(legP) && fs.readFileSync(legP, 'utf8').includes(marker)) return 'legacy/' + file;
+    // [R-ENF-04] Neither copy is the real page: that is a finding, not a default.
+    return null;
+  };
+
   for (const s of targets) {
     const errs = [];
     const onErr = e => errs.push(String(e));
+    // Each surface is identified by something only the REAL page carries: its own
+    // search box where it has one, else the registry it renders from.
+    // A CSS selector is not a substring of the markup: the page carries id="t-sym",
+    // never "#t-sym". Matching the raw selector found nothing on either copy and
+    // reported "the page layout moved" about a page sitting right there.
+    const marker = s.marker || (s.search ? `id="${s.search.slice(1)}"` : 'data.js');
+    const served = servedPage(s.file, marker);
+    if (!served) {
+      bad.push(`${s.file} (${s.what}) — no served copy found at root or legacy/ carrying ` +
+               `${marker}; the page layout moved`);
+      continue;
+    }
     p.on('pageerror', onErr);
-    await p.goto(base + s.file);
+    await p.goto(base + served);
     // These pages build their tables from data.js on DOMContentLoaded and some of them
     // simulate paths first; a short wait renders an empty table and reports a false miss.
     await p.waitForTimeout(2000);
@@ -110,9 +140,9 @@ const SURFACES = [
       body = await p.innerText('body');
     } catch (e) { errs.push(String(e)); }
     p.off('pageerror', onErr);
-    if (errs.length) bad.push(`${s.file} (${s.what}) — page errors: ${errs.slice(0, 2).join(' | ')}`);
-    else if (!re.test(body)) bad.push(`${s.file} (${s.what}) — ${TK} is not in the rendered DOM`);
-    else console.log(`  ok  ${s.file.padEnd(16)} ${TK} visible on the ${s.what}`);
+    if (errs.length) bad.push(`${served} (${s.what}) — page errors: ${errs.slice(0, 2).join(' | ')}`);
+    else if (!re.test(body)) bad.push(`${served} (${s.what}) — ${TK} is not in the rendered DOM`);
+    else console.log(`  ok  ${served.padEnd(22)} ${TK} visible on the ${s.what}`);
   }
   await b.close();
 

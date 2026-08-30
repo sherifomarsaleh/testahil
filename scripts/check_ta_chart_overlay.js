@@ -21,9 +21,26 @@ const ROOT = path.join(__dirname, '..');
 const PAD = 2;                       // px tolerance at the plot edges
 
 (async () => {
-  const pages = fs.readdirSync(ROOT)
-    .filter(f => f.endsWith('.html'))
-    .filter(f => fs.readFileSync(path.join(ROOT, f), 'utf8').includes('id="ta-chart-svg"'));
+  /* THE CUTOVER MOVED THE CHART-CARRYING PAGES (30-Aug-2026). The new IA put a
+   * data-driven template under {TICKER}/ at root and byte-preserved the old site
+   * under legacy/, so the root slugs are redirect stubs. A flat-root scan found
+   * 93 chart pages one day and ZERO the next, and this gate would have PASSED on
+   * an empty list — the precise failure [R-ENF-04] names. legacy/ is served
+   * content (same conclusion check_page_integrity.py and check_band_vocabulary.py
+   * reached the same day), so walk it, and refuse to pass on an empty population. */
+  const roots = [ROOT, path.join(ROOT, 'legacy')].filter(d => fs.existsSync(d));
+  const pages = roots.flatMap(dir =>
+    fs.readdirSync(dir)
+      .filter(f => f.endsWith('.html'))
+      .filter(f => fs.readFileSync(path.join(dir, f), 'utf8').includes('id="ta-chart-svg"'))
+      .map(f => path.relative(ROOT, path.join(dir, f))));
+
+  if (pages.length === 0) {
+    console.error('FAIL — no page carries id="ta-chart-svg" under ' + ROOT +
+      ' or ' + ROOT + '/legacy. The page layout moved; refusing to report clean ' +
+      'having rendered nothing.');
+    process.exit(1);
+  }
 
   /* PORTABLE BROWSER RESOLUTION (25-Aug-2026). The path below is where this
    * project's dev sandbox pre-installs Chromium; a GitHub runner installing via

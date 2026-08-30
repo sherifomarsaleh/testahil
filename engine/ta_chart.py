@@ -194,7 +194,27 @@ def apply(write: bool = False, only=None):
               **top_level_blocks(data, 'const METALS = {')}
     files = [os.path.join(ROOT, f) for f in sorted(os.listdir(ROOT))
              if f.endswith('.html')]
+    # THE CUTOVER MOVED THE CHART-CARRYING PAGES (30-Aug-2026). The new IA put a
+    # data-driven template under {TICKER}/ at root and byte-preserved the old
+    # site under legacy/, leaving the root slugs as redirect stubs. This scan
+    # was flat-root-only, so it went from 93 chart pages to ZERO overnight and
+    # reported "0 page(s) carry a chart / no page binds this key" while exiting
+    # 0 — a stale technical read shipping under a green run, which is exactly
+    # the staleness the 29-Jul rule was written to stop. Same fix and same
+    # reason as scripts/check_page_integrity.py and check_band_vocabulary.py
+    # took on the same day: legacy/ is SERVED CONTENT, so walk it.
+    legacy = os.path.join(ROOT, 'legacy')
+    if os.path.isdir(legacy):
+        files += [os.path.join(legacy, f) for f in sorted(os.listdir(legacy))
+                  if f.endswith('.html')]
     files = [f for f in files if 'id="ta-chart-svg"' in open(f, encoding='utf-8').read()]
+    # [R-ENF-04] AN EMPTY POPULATION IS NOT A CLEAN ONE. Finding no chart page at
+    # all means the layout moved again, not that there is no work: fail loudly
+    # rather than skip every name and report success.
+    if not files:
+        raise SystemExit('ta_chart: NO page carries id="ta-chart-svg" under '
+                         f'{ROOT} or {ROOT}/legacy — the page layout moved. '
+                         'Refusing to report clean having examined nothing.')
     print(f'{len(todo)} name(s) in scope, {len(files)} page(s) carry a chart')
 
     done, skipped = [], []
