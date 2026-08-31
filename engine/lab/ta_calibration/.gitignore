@@ -4,7 +4,9 @@ claims.pkl
 analysis.log
 __pycache__/
 claims_short.pkl
-register_payload.json
+# register_payload.json IS committed [R-TCAL-01]: it is the generated
+# evidence the outside check byte-compares against its generator, the same
+# role Lessons_Register.md plays for the fundamental register.
 short.log
 *.pdf
 short2.log

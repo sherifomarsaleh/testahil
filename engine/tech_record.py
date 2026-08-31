@@ -239,6 +239,21 @@ def build(horizons=HORIZON_SESSIONS, step: int = 5, verbose: bool = False,
     return out, skipped, len(libs)
 
 
+def read_sha256() -> str:
+    """The content hash of the read this record grades. [R-TCAL-01]
+
+    The record certifies engine/technicals.py as it stood when the claims were
+    harvested. Storing the hash makes "the read moved, the record did not" a
+    checkable condition rather than a remembered one: scripts/check_tech_calibration.py
+    compares this against the module on disk and fails on a mismatch, the same
+    species of binding as the 29-Jul rule that a technical read moves with its
+    library in the same pass.
+    """
+    import hashlib
+    p = os.path.join(_HERE, 'technicals.py')
+    return hashlib.sha256(open(p, 'rb').read()).hexdigest()
+
+
 if __name__ == '__main__':
     import pandas as pd
     cache = os.path.join(_LAB, 'claims_short.pkl')
@@ -247,6 +262,8 @@ if __name__ == '__main__':
     payload = {k: asdict(v) for k, v in recs.items()}
     path = os.path.join(_HERE, 'tech_records.json')
     json.dump({'built_from': 'engine/raw_ohlc, replayed through technicals.compute()',
+               'read_sha256': read_sha256(),
+               'horizons': list(HORIZON_SESSIONS),
                'libraries': total, 'recorded': len(recs),
                'skipped': [{'market': m, 'ticker': t, 'why': w} for m, t, w in skipped],
                'records': payload}, open(path, 'w'), indent=1)

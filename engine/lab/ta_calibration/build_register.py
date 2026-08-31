@@ -46,7 +46,7 @@ payload = dict(
         ['  - other level sources', 'the three averages, the 52-week extremes, round numbers',
          'Admitted only when swing structure does not fill the slot, and scored below it.'],
         ['Volume', 'tested here, used nowhere',
-         'Present in every library. Scored in T-013 and not adopted.'],
+         'Present in every library. Scored in T-15 and not adopted.'],
     ],
     figures={x['id']: x['fig'] for x in L.LESSONS if x.get('fig')},
     lessons=[dict(id=x['id'], scope=x['scope'], cls=x.get('cls'), status=x['status'],
