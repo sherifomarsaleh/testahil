@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1246,8 +1246,9 @@ per market only when all four gate rows pass. Egypt's overlay is untouched.
 
 ### The name, and the confusion it exists to prevent
 
-TWO DIFFERENT TESTS IN THIS SYSTEM ARE BOTH CALLED A WALK-FORWARD, AND THEY ARE NOT
-THE SAME THING. Conflating them once already understated this project's evidence base
+THREE DIFFERENT TESTS IN THIS SYSTEM ARE ALL CALLED A WALK-FORWARD, AND THEY ARE NOT
+THE SAME THING [AMENDED 31-Aug-2026 by R-TCAL-01 — the count was two at this rule's
+adoption]. Conflating them once already understated this project's evidence base
 badly, in a document written to describe it.
 
 **PRICE-ENGINE CALIBRATION [R-CAL-01 … R-CAL-03]** tests the Monte Carlo cone: strike
@@ -1260,11 +1261,17 @@ rebuild the driver model as it would have stood at a past origin, project it for
 and score each driver against what the company actually reported. Its evidence base is
 narrow and must be described as such.
 
-They test different machinery on different evidence and neither substitutes for the
-other. NEVER write "the walk-forward" without saying which. READ THE POPULATION LIVE —
-`python3 scripts/check_lessons_register.py` prints both counts — and never from this
-document, because a written count of how many names have been through either test
-drifts the moment one more runs, exactly as the stale-library list did.
+**TECHNICAL CALIBRATION [R-TCAL-01]** tests the TECHNICAL READ: replay the shipped
+read at every historical origin and grade each templated sentence against what price
+then did, on the lens's own under-one-month clock. Its evidence base is the broadest
+of the three.
+
+They test different machinery on different evidence and none substitutes for another.
+NEVER write "the walk-forward" without saying which. READ THE POPULATIONS LIVE —
+`python3 scripts/check_lessons_register.py` prints the fundamental and price-engine
+counts, `python3 scripts/check_tech_calibration.py` the technical record's — and never
+from this document, because a written count of how many names have been through any of
+the tests drifts the moment one more runs, exactly as the stale-library list did.
 
 ### When it runs
 
@@ -1509,6 +1516,239 @@ costume of a clean result, which is [R-ENF-04] applied here.
 READ IT ON DEMAND: `python3 engine/lessons.py [TICKER] [--class X]` returns exactly the
 set that binds on the name in hand. ENFORCED FROM OUTSIDE per [R-ENF-01] by
 `scripts/check_lessons_register.py`, negative-controlled, both in CI.
+
+
+## [R-TCAL-01] TECHNICAL CALIBRATION — the technical read is walk-forward tested on its own clock, sentence by sentence, against a null that could have been believed instead (31-Aug-2026, per instruction — "It is time now to add the walk forward technical training to the research protocol and the standing instructions")
+
+### The third test called a walk-forward
+
+[R-FCAL-01] opens by separating the two tests this system called a walk-forward. This
+rule adds the third, and the disambiguation in [R-FCAL-01] is amended to count it:
+
+**PRICE-ENGINE CALIBRATION [R-CAL-01 … R-CAL-03]** tests the Monte Carlo cone — band
+coverage against a stated target.
+
+**FUNDAMENTAL CALIBRATION [R-FCAL-01]** tests the forecasting method — rebuild the
+driver model at a past origin, score each driver against what the company reported.
+
+**TECHNICAL CALIBRATION [R-TCAL-01], this rule** tests the TECHNICAL READ — replay the
+shipped read at every historical origin and grade each templated sentence it emits
+against what price then did. Its evidence base is the broadest of the three, because
+every OHLC library supplies hundreds of weekly origins: at adoption the harvest replayed
+the read across the full book of libraries and 89,190 graded claims spanning 2011–2026,
+and the register itself rests on 45,331 tape readings across 85 names — figures that
+grow with every posting, so READ THE POPULATIONS LIVE:
+`python3 scripts/check_tech_calibration.py` prints the current record's counts, and
+never quote them from this document.
+
+The three tests share one bar (the block bootstrap over {2,3,4}, LONO, split-half — the
+same robustness battery everything else must survive) and none substitutes for another.
+NEVER write "the walk-forward" without saying which.
+
+### The clock is the lens's own — grading on another lens's clock understates every claim
+
+In this project the technical read is the UNDER-ONE-MONTH lens: the fundamental study
+owns the year, the cone owns one to three months, and the chart read owns the weeks
+(per instruction, 31-Aug-2026 — "we use technical analysis for less than 1 month price
+monitoring"). THE CALIBRATION IS THEREFORE SCORED AT 5, 10 AND 21 SESSIONS AHEAD, on
+weekly origins, and every record and result carries the horizon it was measured at.
+
+This was learned by doing it wrong first: the first edition graded every claim at three
+calendar months — the cone's exam, not the chart's — and the published level edge
+measured +3.4pp there against +9.8pp at one week, so the wrong clock reported the
+weakest available reading of every sentence and one wrong conclusion (that per-name
+level records were merely data-starved) was drawn from it before the mistake was
+caught. A LENS IS GRADED OVER THE HORIZON IT IS USED FOR. The general form is already
+in this protocol — the band record prints its count beside its percentage because a
+number without its basis misleads — and the horizon is part of the basis.
+
+### The shipped read is replayed, never re-implemented
+
+The harvest (`engine/lab/ta_calibration/replay.py`) calls the production module's own
+`technicals.compute(frame=...)` at each origin, on the same cleaned series the pages
+are built from, through the same Step 0.0 gate. NO RE-IMPLEMENTATION, EVER: a
+re-implementation is graded instead of the read, and the two drift — the same species
+as [R-ENF-03]'s checker that modelled the parser and checked a different file from the
+one that shipped. The read itself has no fitted parameter, so the PROMOTION RULE's
+out-of-sample test does not bind on the read — but it binds in full on anything this
+calibration might promote INTO the read or the engine, and on the calibration's own
+findings (below).
+
+### The null is the whole point — every level is raced against a placebo that could have been believed
+
+"Price stopped at support" is unfalsifiable until you say how often price stops at a
+line that means nothing. EVERY LEVEL CLAIM IS THEREFORE SCORED AGAINST A DISTANCE-
+MATCHED, NON-STRUCTURAL PLACEBO: an invented price the same distance from spot, placed
+where the chart shows no structure at all, and the claim earns only the DIFFERENCE.
+
+THE PLACEBO IS DRAWN TWO-SIDED BY CONSTRUCTION — an inner and an outer candidate
+straddling the real level's distance, both clear of all published structure by the
+module's own cluster tolerance — because the first cut searched inward first and drew
+placebos 1.4% to 4.3% NEARER than the levels they stood in for, and a nearer price is
+touched more and broken more for reasons of arithmetic, not structure. That offset was
+enough on its own to manufacture "support holds". A trigger's two-rung ladder is
+placebo'd the same way, both rungs scaled together, so the null preserves the
+geometry of the claim. THE GENERAL RULE: A BENCHMARK MUST BE MATCHED ON EVERYTHING
+EXCEPT THE THING CLAIMED, and an unmatched benchmark does not weaken the test — it
+reverses it, producing confident evidence for whichever side the mismatch favours.
+
+And every directional claim is measured against ITS OWN MARKET'S BASE RATE, never
+against 50%: over a month the coin is tilted, by different amounts in different
+markets, and a "signal" credited against a fair coin inherits the tilt as fake skill.
+
+### Three scopes, and the guard the narrowest one must pass
+
+Findings are scored at the same three scopes as [R-LESSON-01]'s register, per the
+adopting instruction ("learning per stock, per asset class (if that is a thing) and
+across all tickers"):
+
+- **EVERY TICKER** — the pooled book, under the house bar.
+- **A CLASS OF TICKER** — and A SET OF PER-CLASS NUMBERS IS NOT A CLASS FINDING: the
+  classes must genuinely DIFFER, tested by Cochran's Q with I² beside it, or the
+  finding is the pooled one wearing subscripts. At adoption the exchange was a real
+  class — on the level test Q returned p=0.008 at one week with I² 79%, Saudi roughly
+  doubling Egypt — while sector splits mostly dissolved once the venue was accounted
+  for. THE VENUE (price limits, liquidity, the trading week) IS THE CLASS THAT EARNS
+  ITS KEEP ON CHARTS; the industry mostly does not, which is the reverse of the
+  fundamental register's taxonomy, and each register uses its own.
+- **ONE TICKER ONLY** — the highest bar in the calibration, guarded by the SYMMETRIC-
+  SPLIT TEST: single names clear significance by chance, so a per-name claim exists
+  only if the names clearing it lean overwhelmingly ONE way (a sign test on earned
+  versus reversed). The precedent is the withdrawn per-name trend claim: the first
+  edition named the tickers the stack sentence "works on"; on the correct clock the
+  split came back 13 earned against 12 reversed (p = 1.00) — more significance than
+  chance produces, pointing both ways, WHICH IS PER-NAME HETEROGENEITY, NOT A PER-NAME
+  CLAIM. The clause was withdrawn, the record prints the sign test at every rebuild,
+  and the pooled finding (+3.2pp at adoption) belongs to every ticker or to none.
+
+A claim can also be UN-EARNABLE at a scope for reasons of arithmetic, and the record
+says so rather than waiting for data that cannot arrive: a per-name LEVEL record needs
+roughly 560 paired observations to resolve a 3–4pp edge, fifteen years of weekly
+origins yield a median of 62 per name (best name 239), and denser origins do not help
+because the windows overlap. A FIGURE THAT CANNOT SEPARATE AN HONEST READ FROM A
+BROKEN ONE IS NOT PUBLISHED AT THAT SCOPE.
+
+### What the calibration may change, and what it may never touch
+
+THE CALIBRATION GRADES THE READ'S SENTENCES AND CORRECTS THEIR WORDING; IT FEEDS
+NOTHING INTO THE OTHER LENSES. [R-LENS-01] stands in full: no finding here becomes an
+MC drift signal (technical-family constructions remain ineligible there even where
+they test well), no fair value is touched, and this rule creates no promotion path
+around that independence. A finding that would change the ENGINE goes through the
+promotion rule like anything else.
+
+What it has already changed — four corrections adopted 31-Aug-2026, shipped through
+the normal regeneration pass and live on every page:
+
+1. RSI words: "stretched" and "washed out" whisper reversal, and both were followed by
+   the OPPOSITE — strong kept going, weak kept sliding. Replaced with "very strong" /
+   "very weak". THE CAUTIOUS-SOUNDING WORD WAS THE ONE POINTING BACKWARDS, which is
+   [R-CAL-02]'s lesson again: conservative-sounding language is audited like a claim,
+   because it is one.
+2. The far-zone promise ("a close above resistance opens the next zone") measured
+   BACKWARDS — clearing a real level makes the far target LESS likely than clearing a
+   placebo, because the far level is real too and holds against the approach. The
+   sentence now reports the crossing and names the next charted level, promising
+   nothing about it.
+3. The fresh-cross drama ("a momentum-regime change rather than noise") measured as
+   noise: a fresh golden cross is followed by slightly worse months than a stale one,
+   a fresh death cross by slightly better, and volatility does not shift. The read
+   still reports the cross; the regime clause is deleted.
+4. The retired skill-verdict emitter was removed from the roll-forward path entirely
+   ([R-CAL-03] applied at the source rather than filtered downstream).
+
+THE STANDING RULE THESE FOUR INSTANTIATE: A TEMPLATED CLAUSE IS A CLAIM AND IS
+CALIBRATED LIKE ONE. Every sentence the read emits is either measured, or worded to
+promise nothing unmeasured. A clause added to the read after this rule adopts arrives
+with its measurement or arrives hedged.
+
+### The per-name record — the band record's analogue for this lens
+
+`engine/tech_record.py` builds `engine/tech_records.json`: per name, per horizon, what
+that name's own history has EARNED the right to say. What it may and may not say is
+settled by measurement, recorded in the module's own header — the tape sentence is
+per-name (the one claim that survives that bar: significantly positive on 84 of 92
+names at one week, 87 at one month, against 1 and 2 significantly negative), the trend
+sentence is pooled-only (the symmetric split above), and levels are never per-name
+(the arithmetic above). It is keyed on (market, ticker) because ticker strings collide
+across markets, counted against the libraries on disk per [R-ENF-04], and REGENERATED
+IN THE SAME PASS AS ANY CHANGE TO THE READ — the record stores the sha256 of the
+`technicals.py` it graded, so "the read moved but its record did not" is a checkable
+condition in CI, not a remembered one.
+
+IT RENDERS NOWHERE UNTIL INSTRUCTED — the same disposition as CALIB under [R-REC-01]:
+generated, committed, regenerated, consulted when investigating the read, and shown to
+a reader only on an explicit instruction that has not been given.
+
+### The register — every finding in plain words, scoped, drawn, and never typed
+
+The findings live in the TECHNICAL LESSONS REGISTER
+(`engine/lab/ta_calibration/Technical_Lessons_Register.docx`, lessons T-01 through
+T-27 at adoption), the sibling of [R-LESSON-01]'s register and built to the same
+discipline: three scopes, plain language, every lesson carrying what would overturn
+it, and EVERY NUMBER RESOLVED FROM THE COMMITTED RESULTS FILES AT BUILD TIME
+(`lessons_source.py` → `build_register.py` → `build_register.js`) — a lesson whose
+evidence disappears from those files fails the build rather than printing a stale
+figure. Real named tickers demonstrate every demonstrable finding, because a lesson a
+reader cannot see happening on a chart is a lesson half-taught.
+
+THE TWO REGISTERS STAY SEPARATE ON PURPOSE. [R-LESSON-01]'s register is append-only
+judgement — a human scopes each lesson and signs it. This one is REGENERATED WHOLESALE
+from the panels at every rebuild, figures included, so hand-appending to it would be
+hand-editing a generated file. A technical finding that generalises beyond the lens
+(about method, arithmetic, or how work is checked) is additionally filed to
+[R-LESSON-01]'s register through the ordinary harvest-and-judge path, and the two
+cross-reference rather than duplicate.
+
+STATUS VOCABULARY, deliberately its own: **ACTED ON** (the finding changed the shipped
+read — the four corrections above), **WATCH** (real in aggregate but failed a
+durability guard — at adoption the stack-sentence lean, which held before 2020 and has
+not since, and the sector taxonomy; recorded, re-tested at every rebuild, acted on by
+nobody), **PROVISIONAL** (measured and robust, standing as a finding, consulted but
+binding nowhere). PROVISIONAL here is the register's own caution about acting, not
+[R-FCAL-01]'s one-name caveat — this calibration's evidence base is broad — and the
+path from any status to a change in the read or the engine runs through the promotion
+rule, never through the register.
+
+### When it re-runs
+
+- **MANDATORY, in the same pass, whenever `engine/technicals.py` changes** in any way
+  that could move a computed value or an emitted clause: re-harvest, rebuild
+  `tech_records.json`, rebuild the register. The stored hash makes skipping this
+  visible in CI. This is the 29-Jul-2026 rule one layer up — the read moves with its
+  library; the record moves with its read.
+- **On instruction, as libraries lengthen.** Staleness of the calibration against
+  freshly posted data is a data-supply fact like library staleness — reported by the
+  live population print, never silently "fixed", and not a gate, because a gate nobody
+  in the room can clear is one everybody learns to ignore.
+- The harvest cache (`claims_short.pkl`) is a regenerable convenience, never
+  committed; the committed evidence is the RESULTS files, the record, and the payload.
+
+### Enforced from outside, per [R-ENF-01]
+
+`scripts/check_tech_calibration.py`, in CI beside the lessons-register gate, fails —
+never warns — when: the record grades a `technicals.py` that is no longer the one on
+disk; the population does not anchor to the OHLC libraries per [R-ENF-04] (including a
+HALF-LOST record — one horizon missing while the name survives — which this checker's
+own negative control caught it missing on its first run); the register payload is not
+byte-identical to its generator's output; or the delivered document cites a lesson id
+that resolves to nothing. That last check caught a real defect the day it was written:
+the 31-Aug-2026 renumbering mapped every id in the sources it knew about and missed
+one in `build_register.py`, so the delivered document told readers volume was "scored
+in T-013" — an id that no longer existed. `scripts/check_tech_calibration_negative_control.py`
+injects all four defects and fails if any is missed.
+
+### The honest limits, stated here rather than discovered later
+
+Everything this calibration found is a LEAN, NOT A SIGNAL: the largest robust edge in
+the book at adoption was under ten points in a hundred at one week, most are three to
+five, and every one is quoted against its own market's tilted coin. The register says
+so in its own voice ("anyone offering +40 in 100 is selling something"). Nothing here
+is a trading rule, nothing here changes what a reader is promised — it changes what
+the read is allowed to CLAIM, which is the direction the errors actually ran. What
+remains untested is listed in the register rather than implied absent: intraday
+structure, and level-drawing methods other than the module's own.
+
 
 ## [R-CAL-02] The band record replaces PASS / PARITY / FAIL on every public surface (24-Aug-2026, per instruction — "I want to challenge the concept of pass, parity or fail for the MC. Too complicated and the investor would not necessarily understand it")
 

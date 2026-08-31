@@ -55,6 +55,17 @@ diff-only summary leaves that copy silently behind.
   numbers, you decide each scope (the one step deliberately not automated), `lessons_add.py TK`
   appends, `build_lessons_docx.py` refreshes Word. Fundamental lessons are PROVISIONAL while the
   method rests on too few names — read them, don't cite them as authority.
+- **Technical calibration — the shipped technical read, walk-forward tested on its own
+  under-one-month clock (5/10/21 sessions) against distance-matched placebos → the lab is
+  `engine/lab/ta_calibration/`, the per-name record `engine/tech_record.py` →
+  `engine/tech_records.json` (renders nowhere until instructed), the findings
+  `engine/lab/ta_calibration/Technical_Lessons_Register.docx` (T-01…, generated, never
+  typed) [R-TCAL-01].** The THIRD test called a walk-forward — never write "the
+  walk-forward" without saying which. Any change to `engine/technicals.py` re-runs the
+  harvest and the record IN THE SAME PASS (the record stores the hash of the read it
+  graded; `scripts/check_tech_calibration.py` in CI goes red if they diverge). Findings
+  feed nothing into the MC engine or the fundamentals — [R-LENS-01] stands; a change to
+  the read or engine still clears the promotion rule.
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
 - SIGCM (source-integrity & ground-up construction mandate, QC hard gate) →
