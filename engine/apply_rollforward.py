@@ -332,14 +332,19 @@ def js_row(d: dict) -> str:
     sig = ''
     if 'signal_z' in d and 'signal_alpha' in d:
         sig = f'    signal_z:{d["signal_z"]}, signal_alpha:{d["signal_alpha"]},\n'
-    # THE NAME-LEVEL CALIBRATION VERDICT IS PART OF THE RECORD. Publish_Protocol.md:
-    # "Set the row's `cal` field ONLY for matches / untested / fail -- absent means
-    # PASS." Until now only first-publish rows carried it, so a roll-forward struck
-    # for a name whose own verdict had since turned FAIL emitted a row that asserted
-    # PASS by omission -- the exact silence R-CAL-01 exists to prevent. Emitted only
-    # when the caller supplies it, so every PASS name still produces a byte-identical
-    # row. Placed after anchor_vol, matching the existing first-publish rows.
-    cal = f', cal:{v(d["cal"])}' if d.get('cal') else ''
+    # THE NAME-LEVEL CALIBRATION VERDICT IS RETIRED AND IS NO LONGER EMITTED.
+    # This emitter was written under the older rule (Publish_Protocol.md: "set the
+    # row's `cal` field ONLY for matches / untested / fail -- absent means PASS"),
+    # which [R-CAL-03] retired outright on 25-Aug-2026: no gate, no materiality
+    # trigger, no field with standing, and nothing on any public surface. The
+    # emitter outlived the rule, so a roll-forward kept writing a verdict token
+    # into the shipped ledger and the page-integrity gate rejected it -- two LULU
+    # rows reached main that way and the check has been red there since.
+    # Removing the field retro-edits NO FORECAST: every percentile, touch
+    # probability, anchor and grade date is frozen exactly as published, which is
+    # the same line [R-CAL-02] drew when it corrected labels without touching a
+    # single registered number.
+    cal = ''
     # run_date is a FIELD, never prose. scripts/check_data_freshness.py hard-fails a
     # row without one ("the strike date must be a field, never scraped out of the note"),
     # and this emitter silently omitted it — caught on the 05-Aug-2026 QNB strike, the
