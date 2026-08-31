@@ -1,0 +1,86 @@
+{
+ "screened": 93,
+ "name_years": 1206,
+ "interior_name_years": 1006,
+ "dead_bar_name_years": 36,
+ "names_with_dead_bars": 11,
+ "names": {
+  "AE/IHC": {
+   "bad_years": 3,
+   "first": 2012,
+   "last": 2016,
+   "worst_liveness": 0.034482758620689655,
+   "share_of_interior": 0.21428571428571427
+  },
+  "AE/MODON": {
+   "bad_years": 3,
+   "first": 2018,
+   "last": 2020,
+   "worst_liveness": 0.2727272727272727,
+   "share_of_interior": 0.375
+  },
+  "EG/ABUK": {
+   "bad_years": 3,
+   "first": 2014,
+   "last": 2016,
+   "worst_liveness": 0.5056818181818182,
+   "share_of_interior": 0.21428571428571427
+  },
+  "EG/BTFH": {
+   "bad_years": 2,
+   "first": 2013,
+   "last": 2016,
+   "worst_liveness": 0.42424242424242425,
+   "share_of_interior": 0.14285714285714285
+  },
+  "EG/DSCW": {
+   "bad_years": 5,
+   "first": 2013,
+   "last": 2018,
+   "worst_liveness": 0.0,
+   "share_of_interior": 0.38461538461538464
+  },
+  "EG/EFID": {
+   "bad_years": 2,
+   "first": 2018,
+   "last": 2019,
+   "worst_liveness": 0.5752688172043011,
+   "share_of_interior": 0.2
+  },
+  "EG/EGAL": {
+   "bad_years": 1,
+   "first": 2015,
+   "last": 2015,
+   "worst_liveness": 0.6257309941520468,
+   "share_of_interior": 0.07142857142857142
+  },
+  "EG/GBCO": {
+   "bad_years": 2,
+   "first": 2013,
+   "last": 2014,
+   "worst_liveness": 0.5526315789473685,
+   "share_of_interior": 0.14285714285714285
+  },
+  "EG/LCSW": {
+   "bad_years": 1,
+   "first": 2018,
+   "last": 2018,
+   "worst_liveness": 0.6748466257668712,
+   "share_of_interior": 0.07142857142857142
+  },
+  "EG/PHAR": {
+   "bad_years": 7,
+   "first": 2012,
+   "last": 2018,
+   "worst_liveness": 0.536144578313253,
+   "share_of_interior": 0.5
+  },
+  "EG/RAYA": {
+   "bad_years": 7,
+   "first": 2012,
+   "last": 2020,
+   "worst_liveness": 0.2839506172839506,
+   "share_of_interior": 0.5
+  }
+ }
+}
