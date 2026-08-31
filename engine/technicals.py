@@ -301,17 +301,39 @@ def _trend_line(pos, slopes, close, ma):
 
 
 def _momentum_words(rsi):
+    """A word for the RSI level that does not assert what comes next.
+
+    Two of these words used to point the opposite way to the tape. Replayed over
+    fifteen years and 92 names (engine/lab/ta_calibration), against each name's
+    own base rate:
+
+        RSI >= 70   forward up-rate  +7.6pp ABOVE base at three months (robust)
+        RSI 30-40   forward up-rate  -3.0pp below base            (robust)
+        RSI <  30   forward up-rate  -1.8pp below base            (robust)
+
+    "Stretched" reads to an investor as over-extended and due a pullback; it was
+    followed by the best three-month outcomes in the book. "Washed out" reads as
+    exhausted selling due a bounce; it was followed by continued weakness. Both
+    words carried real information and both connoted its opposite. "Soft",
+    "firm" and "neutral" were measured and are right, and are left alone.
+
+    The replacements describe the READING, monotonically, and forecast nothing —
+    the technical lens says where the tape is, and the cone says where price may
+    go. This is the [R-CAL-02] lesson applied to prose rather than to a verdict:
+    a cautious-sounding label is still a claim about the world, and because it
+    sounds like caution nobody checks which way it points.
+    """
     if rsi is None:
         return "not computable on this history"
     if rsi >= 70:
-        return "stretched"
+        return "very strong"
     if rsi >= 60:
         return "firm"
     if rsi > 40:
         return "neutral"
     if rsi > 30:
         return "soft"
-    return "washed out"
+    return "very weak"
 
 
 def _tape_words(atr_pct):
@@ -420,9 +442,18 @@ def build_narrative(st: dict) -> dict:
 
 
 # ------------------------------------------------------------------- compute
-def compute(market: str, series: str, computed_on: str | None = None) -> dict:
-    """The whole technical read for one name, from the cleaned library."""
-    df, rep = load_clean(market, series)
+def compute(market: str, series: str, computed_on: str | None = None,
+            frame=None) -> dict:
+    """The whole technical read for one name, from the cleaned library.
+
+    ``frame`` is an optional pre-loaded ``(df, rep)`` pair, already through the
+    Step 0.0 gate. It exists so a walk-forward replay can re-run THIS function
+    on a truncated library rather than re-implementing the read against it — a
+    checker that models the thing it checks is checking a different thing
+    (the [R-ENF-03] lesson, in Python rather than JS). Production always passes
+    None and loads the full library exactly as before.
+    """
+    df, rep = load_clean(market, series) if frame is None else frame
     dates = pd.to_datetime(df['Date'])
     close = df['Price'].to_numpy(dtype=float)
     high = df['High'].to_numpy(dtype=float)
