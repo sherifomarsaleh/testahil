@@ -6,7 +6,10 @@ Training record only. **Nothing here is published, nothing reaches the live
 site, and there is no rating, target or recommendation anywhere in it.** The
 output is a measured record of how this repository's fundamental method would
 have performed on this company's own history, and a small set of driver
-corrections that were tested rather than asserted.
+corrections that were tested rather than asserted. *(31-Aug-2026: adopted under
+[R-LENS-02] as the worked precedent and pattern for the fundamental lens's
+walk-forward calibration — beside the MC calibration, never an input to it. The
+disclaimer above otherwise stands: nothing here is published.)*
 
 Companion files: `PRE_REGISTRATION_30-08-2026.md` (written before any error was
 computed), `BASIS_BREAKS_30-08-2026.md`, `phdc_IS_projected_vs_actual_all_origins.md`,

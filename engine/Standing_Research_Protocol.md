@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-08-25h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 24 August 2026 (rev. 8) — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01] (investor sessions)
+Updated 31 August 2026 (rev. 9) — [R-LENS-02] each lens calibrated on its own clock, beside the MC calibration, never inside it (lens-calibration sessions)
+(rev. 8, 24 August 2026 — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01] (investor sessions))
 (rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
@@ -1499,3 +1500,91 @@ flagged ([R-CAL-02]). **BEFORE ADDING OR KEEPING A GATE, ASK WHAT IT HAS EVER RE
 If the answer is nothing, either the bar is in the wrong place or the thing it measures is
 not the thing that matters — and the honest move is to find the check that would have
 caught something, not to keep the one that reads as rigour.
+
+
+## [R-LENS-02] Each lens is calibrated on its own clock — beside the MC calibration, never inside it (31-Aug-2026, per instruction — "beside MC and not added to it. Technical is up to 1 month, MC 1 to 3 months and fundamental up to 1 year")
+
+**The rule.** The system carries THREE lens-level calibrations, one per lens, each of the
+same species as the MC band record: a dated claim, frozen when it is made, graded against
+what happened. They stand BESIDE each other, never inside each other. Calibrating a lens
+does not couple it to another — this extends [R-LENS-01] from lens outputs to lens
+calibration records: no record, score, or lesson from one lens's calibration is ever an
+input to another lens's fit, drift, width, or read. Side-by-side comparison surfaces
+(`fv_overlay`, `engine/lab/three_lens_trial/`) remain the one sanctioned place the lenses
+meet.
+
+**Where it came from.** Adopted from the exchange in which the proposal itself carried the
+construction this rule forecloses. Sherif, 31-Aug-2026, on the technical and fundamental
+calibrations: "we have made two worthy additions to the testahil system to be added to the
+MC calibration" — and, settling it after the [R-LENS-01] conflict was pointed out: "You are
+right beside MC and not added to it. Technical is up to 1 month, MC 1 to 3 months and
+fundamental up to 1 year." The additions are worthy for a measured reason: until they
+existed, the MC lens was the only lens whose claims were ever recorded and graded.
+`technicals.py` is idempotent and overwrote itself on every pass — it stated claims and
+recorded none of them, so there was nothing to grade and nothing ever had been — and a
+study's fair value was tested by the price going forward but never replayed against its own
+history. "Added to the MC calibration" would have been the retired construction: the
+ta_calibration write-up had already excluded its own trend finding from MC promotion under
+[R-LENS-01] clause 2, because wiring one lens's evidence into another makes two lenses
+agree by construction rather than as information.
+
+**The three records, and where each lives:**
+
+1. **MC** — the band record (`engine/band_record.py`, BANDS in `assets/data.js`),
+   published per [R-CAL-02]. Unchanged by this rule.
+2. **TECHNICAL** — the walk-forward replay of the SHIPPED read
+   (`engine/lab/ta_calibration/`: every claim re-run through `technicals.compute()`
+   itself, never re-implemented — the [R-ENF-03] lesson in Python — and scored against
+   distance-matched nulls under the house robustness bar), plus `engine/tech_record.py` /
+   `tech_records.json`, the per-name record built as `band_record.py`'s analogue. What the
+   record may say per name is settled by measurement, not taste: tape per name; trend
+   pooled only; levels never — an effect-size limit that more history does not cure, so it
+   is permanent rather than pending — and momentum-words no record, because the words
+   carried real information backwards and the fix was to the wording in `technicals.py`,
+   not a figure to publish. Read `tech_record.py`'s header and the lab's dated files for
+   the evidence; re-run rather than quote.
+3. **FUNDAMENTAL** — the pre-registered walk-forward training record
+   (`engine/phdc_walkforward/` is the worked precedent and the pattern): the study method
+   re-run at every historical origin on only what was knowable there, graded against naive
+   benchmarks (freeze, trend), the macro share of the error isolated, and corrections
+   TESTED against the record rather than asserted — with the pre-registration written
+   before any error was computed.
+
+**The horizon ladder — each lens speaks on its own clock:**
+
+| lens | speaks to | the claim |
+|---|---|---|
+| TECHNICAL | up to 1 month | immediate entry/exit reference — levels, tape, trend, on the short clock its calibration graded; the read no longer promises the far zone |
+| MC | 1 to 3 months | the calendar cones — the 1M/3M product horizons stand by the 23-Aug instruction |
+| FUNDAMENTAL | up to 1 year | the fair-value range — the published claim is the roughly-twelve-month shelf |
+
+The ladder is a ROLE assignment for presentation and product surfaces — which lens a
+reader is pointed to at which horizon — NOT a strike, grading, or method change. Binding
+clarifications, each anchored to something already in the record:
+
+- **The MC 1-month cone and the monthly metronome are untouched.** MC owning "1 to 3
+  months" does not retire the 1M strike; technical-vs-MC at one month is two lenses
+  speaking on the same date, which is exactly the agreement-as-information the three-lens
+  product sells. Metals' 12-month clock is likewise untouched.
+- **The fundamental DCF still projects five forward years to DERIVE the value.** The
+  ladder assigns the horizon of the published CLAIM — the fair-value range — not the span
+  of the model behind it. The walk-forward's own finding is the measured support: the far
+  years of a projection support ranges, not points, and must never be published as points.
+- **No lens gains a claim its evidence does not support because a horizon was assigned to
+  it.** The assignment says where each lens is the one a reader consults, not that
+  everything it says inside that window is per-name earned — the strength ladders
+  ([R-CAL-02]'s long/short/market-only and `tech_record.py`'s) still decide that, name by
+  name.
+- **The precedent surface already drew this.** The three-clocks canvas
+  (`engine/lab/three_lens_trial/`, 26-Aug-2026) rendered exactly this ladder — technical
+  for immediate reference, the MC cone for the 1–3-month range, the fair-value bracket on
+  its own twelve-month shelf behind an explicit clock break — with [R-LENS-01] holding by
+  construction. This rule ratifies the architecture that page trialled.
+
+**Render disposition unchanged.** What a reader is shown remains exactly [R-CAL-02]'s
+list. The technical and fundamental records stay generated-never-typed internal records on
+the CALIB disposition ([R-REC-01] as settled under the [R-CAL-03] precedent): built,
+committed, regenerated in the same pass as any refit, panel rebuild or roll-forward,
+consulted whenever a lens is investigated — and rendering nowhere until a render
+instruction names what a reader sees. Surfacing any of them beside the band record is its
+own explicitly-requested step.

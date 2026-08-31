@@ -1,7 +1,9 @@
 # Calibrating the technical lens — method and first measurement
 
-**Run 31-Aug-2026. Research only. Nothing here is adopted, published, or wired into
-any lens.** Numbers below are the state of this run; re-run `run_all.py` +
+**Run 31-Aug-2026.** The method and record here were adopted 31-Aug-2026 as the
+technical lens's standing calibration under [R-LENS-02] — BESIDE the MC calibration, on
+the lens's own clock, never an input to any other lens. **Nothing here is published or
+wired into any lens.** Numbers below are the state of this run; re-run `run_all.py` +
 `analyse.py` rather than quoting them from this file.
 
 ## The problem
