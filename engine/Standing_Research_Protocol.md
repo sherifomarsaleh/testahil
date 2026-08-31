@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -943,6 +943,18 @@ its face, without reading a word of it. Bump the stamp on every edit, however sm
 is worse than none, because it certifies a copy that has moved. The
 identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
 is testing rather than paraphrasing it.
+
+**THE DIGEST FILE IS NAMED FOR THE DAY OF ITS LATEST AMENDMENT** [AMENDED 31-Aug-2026, per
+instruction — "The project instructions need to be named as of today and the revision a, b,
+c"]: `engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md`, so the filename and the revision stamp
+agree on their face, and the revision letters restart at "a" on each new amendment day. The
+rename happens IN THE SAME COMMIT as the first edit of a new day, and every live reference
+moves with it: the sync gate, the text gate and the digest-page builder resolve the file BY
+PATTERN (exactly one file on the `engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md` pattern, or they fail loudly), so a rename
+cannot strand them; the CI trigger paths glob it; and the one reference that cannot glob —
+the include line at the top of CLAUDE.md — is updated in that same commit. DATED RECORDS ARE
+NOT REWRITTEN: a session note, QC gate or PENDING_REVIEW file that quotes an older digest
+filename quotes it as it stood, the same append-only discipline as the ledgers.
 
 ### What rev. 6 deliberately does NOT change
 

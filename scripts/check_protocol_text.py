@@ -29,7 +29,12 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, 'engine')
-DOCS = {'digest': os.path.join(ENGINE, 'PROJECT_INSTRUCTIONS_11-07-2026.md'),
+# [R-DOC-01] the digest filename carries its latest amendment date — resolve by
+# pattern (exactly one match or fail loudly), never by a typed name
+import glob as _glob
+_digests = sorted(_glob.glob(os.path.join(ENGINE, 'PROJECT_INSTRUCTIONS_*.md')))
+assert len(_digests) == 1, 'expected exactly one digest file, found %r' % _digests
+DOCS = {'digest': _digests[0],
         'full protocol': os.path.join(ENGINE, 'Standing_Research_Protocol.md')}
 sys.path.insert(0, ENGINE)
 

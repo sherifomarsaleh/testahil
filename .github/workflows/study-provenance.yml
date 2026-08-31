@@ -37,7 +37,7 @@ on:
       - 'engine/technicals.py'
       - 'engine/lab/ta_calibration/**'
       - 'engine/Standing_Research_Protocol.md'
-      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
+      - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
   pull_request:
     paths:
@@ -62,7 +62,7 @@ on:
       - 'engine/technicals.py'
       - 'engine/lab/ta_calibration/**'
       - 'engine/Standing_Research_Protocol.md'
-      - 'engine/PROJECT_INSTRUCTIONS_11-07-2026.md'
+      - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
   workflow_dispatch: {}
 

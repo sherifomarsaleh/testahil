@@ -202,7 +202,7 @@ footer{{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);font-s
   <p class="eyebrow">TESTAHIL &middot; 23 Aug 2026 &middot; review of the governing documents</p>
   <h1>Are the rules enough to stop this happening again?</h1>
   <p class="lede">A read of <code>Standing_Research_Protocol.md</code> and
-  <code>PROJECT_INSTRUCTIONS_11-07-2026.md</code> against the failures they were written to prevent
+  the condensed digest against the failures they were written to prevent
   &mdash; and against what the repository actually does today.</p>
 </header>
 
