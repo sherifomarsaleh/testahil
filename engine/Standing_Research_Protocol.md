@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1012,6 +1012,55 @@ is three independently-computed answers to the same question. The moment one len
 another's output, their agreement stops being evidence and the reader has no way to see that
 it stopped. Independence is also what makes the grading honest — each lens can be scored on
 its own record, and a lens that fails can be fixed or retired without contaminating the others.
+
+### [R-LENS-02] Each lens is calibrated on its own clock, beside the MC calibration and never inside it (31-Aug-2026, per instruction — "beside MC and not added to it. Technical is up to 1 month, MC 1 to 3 months and fundamental up to 1 year")
+
+Adopted in a parallel session on the same day the technical and fundamental calibrations
+were adopted, and folded in here SLIMMED: the original text restated both of those
+calibrations in miniature, and a rule restated in two places is the drift disease
+[R-DOC-01] exists to close — the per-lens machinery is owned by [R-CAL-02] (MC),
+[R-TCAL-01] (technical) and [R-FCAL-01] (fundamental), and this rule states only what
+none of them states alone.
+
+**THE SYSTEM CARRIES THREE LENS-LEVEL CALIBRATIONS OF THE SAME SPECIES** — a dated
+claim, frozen when made, graded against what happened:
+
+- **MC** — the band record, per [R-CAL-02]. The only one published.
+- **TECHNICAL** — the walk-forward replay of the shipped read plus the per-name record,
+  per [R-TCAL-01].
+- **FUNDAMENTAL** — the pre-registered walk-forward training record, per [R-FCAL-01];
+  `engine/phdc_walkforward/` is the worked precedent and pattern.
+
+**CALIBRATING A LENS DOES NOT COUPLE IT — [R-LENS-01] EXTENDS FROM LENS OUTPUTS TO LENS
+CALIBRATION RECORDS.** No record, score or lesson from one lens's calibration is ever an
+input to another lens's fit, drift, width or read. The reasoning is the parent rule's
+own: a calibration record is a measurement OF a lens, and feeding it sideways recreates
+the echo [R-LENS-01] removed — two lenses that agree because one was tuned on the
+other's report card are one lens wearing two hats. Comparison surfaces (`fv_overlay`,
+`three_lens_trial`) remain the one sanctioned meeting place: they read outputs and
+records to compare them, and feed nothing back.
+
+**THE HORIZON LADDER IS A ROLE ASSIGNMENT, NOT A STRIKE, GRADING OR METHOD CHANGE.**
+TECHNICAL speaks to up to one month — the immediate entry/exit reference, on its own
+short clock, and per [R-TCAL-01] the read no longer promises the far zone. MC speaks to
+one to three months — the calendar cones, 1M/3M standing by the 23-Aug-2026 instruction.
+FUNDAMENTAL speaks to up to one year — the fair-value range. Three clarifications keep
+the ladder honest:
+
+1. The DCF still projects five forward years to DERIVE the value. The ladder assigns
+   the horizon of the published CLAIM, never the modelling horizon — and the fundamental
+   walk-forward's own finding is that the far years of a projection support ranges,
+   never points.
+2. **No lens gains a claim its evidence does not support because a horizon was assigned
+   to it.** The strength ladders — [R-CAL-02]'s and tech_record's — still decide per
+   name what may be said at all.
+3. The MC 1-month cone, the monthly metronome, and metals' 12-month clock are untouched.
+   Nothing here strikes, grades, or re-times anything.
+
+**RENDER DISPOSITION UNCHANGED.** What a reader is shown remains exactly [R-CAL-02]'s
+list. The technical and fundamental records stay generated-never-typed internal records
+on the CALIB disposition until a render instruction names what a reader sees —
+surfacing any of them beside the band record is its own explicitly-requested step.
 
 ### [R-DRIFT-01] Addendum, same day — COMMITTED DRIFT ADOPTED (23-Aug-2026, per instruction)
 
