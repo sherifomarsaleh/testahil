@@ -480,12 +480,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -716,12 +716,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -808,12 +808,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -913,12 +913,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.07,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0193,
+    "market_skill": 0.0206,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.009,
-      0.031
+      0.01,
+      0.033
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -1097,14 +1097,14 @@
         ]
       },
       "AMR": {
-        "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": -0.0106,
-        "skill_raw_basis": -0.016,
+        "nu": 8.0,
+        "width_cal": 0.916,
+        "skill": -0.013,
+        "skill_raw_basis": -0.0187,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.034,
-          0.01
+          -0.038,
+          0.008
         ]
       },
       "BOROUGE": {
@@ -1153,13 +1153,13 @@
       },
       "DU": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": -0.0,
-        "skill_raw_basis": 0.0068,
+        "width_cal": 0.916,
+        "skill": 0.0007,
+        "skill_raw_basis": 0.0074,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.054,
-          0.047
+          -0.052,
+          0.046
         ]
       },
       "EAND": {
@@ -1175,9 +1175,9 @@
       },
       "EMAAR": {
         "nu": 12.0,
-        "width_cal": 0.909,
-        "skill": 0.0393,
-        "skill_raw_basis": 0.0499,
+        "width_cal": 0.902,
+        "skill": 0.0389,
+        "skill_raw_basis": 0.0496,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.001,
@@ -1230,9 +1230,9 @@
       },
       "FERTIGLB": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0015,
-        "skill_raw_basis": -0.0055,
+        "width_cal": 0.909,
+        "skill": -0.0017,
+        "skill_raw_basis": -0.0059,
         "verdict": "PARITY",
         "ci_block2": [
           -0.021,
@@ -1253,12 +1253,12 @@
       "LULU": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": -0.0619,
-        "skill_raw_basis": -0.0629,
+        "skill": 0.0761,
+        "skill_raw_basis": 0.0752,
         "verdict": "PROVISIONAL(insufficient-windows)",
         "ci_block2": [
-          -0.062,
-          -0.062
+          0.076,
+          0.076
         ]
       },
       "MODON": {
@@ -1275,12 +1275,12 @@
       "SALIK": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": 0.0039,
-        "skill_raw_basis": 0.0043,
-        "verdict": "PARITY",
+        "skill": 0.0295,
+        "skill_raw_basis": 0.0255,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.007,
-          0.014
+          -0.004,
+          0.056
         ]
       },
       "TWOPOINTZERO": {
@@ -1315,22 +1315,22 @@
       ],
       "cov50": {
         "mle": 0.528,
-        "reshaped": 0.5012,
+        "reshaped": 0.4988,
         "lono_heldout": 0.5012
       },
-      "delta_ll": 2.8,
+      "delta_ll": 2.76,
       "crps_parity_ci": {
         "2": [
-          -0.0016,
-          0.0022
+          -0.0015,
+          0.0023
         ],
         "3": [
-          -0.0015,
-          0.0022
+          -0.0014,
+          0.0023
         ],
         "4": [
-          -0.0016,
-          0.0023
+          -0.0015,
+          0.0024
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
@@ -1426,12 +1426,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.021,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1509,12 +1509,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1576,12 +1576,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1635,12 +1635,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,

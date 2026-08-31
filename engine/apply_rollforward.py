@@ -138,6 +138,25 @@ def fmt_price(x: float, ref: float) -> str:
     return f'{x:.2f}'
 
 
+def fmt_spot(x: float) -> str:
+    """The published spot is a MEASURED FACT — the library's close — not a model
+    output, so it must render as the number it reports.
+
+    fmt_price floors every sub-1000 price at 2 decimals. That is lossless for the
+    whole book except a sub-unit price, where the third decimal carries real money:
+    LULU's 0.945 close published as 0.94 is a 0.53% understatement, and
+    check_data_freshness catches it as 'published spot != library close'. Below 1.0
+    the exact literal is written; at and above it the existing convention is kept
+    byte-for-byte, so no other name's entry moves (LULU is the only sub-unit name in
+    the book, and the 89 others replay identical).
+
+    Deliberately NOT applied to the cone: p5..p95 and the touch ladder stay on
+    fmt_price's 2dp display convention, which is a presentational choice about model
+    output rather than a claim about what traded.
+    """
+    return f'{x:g}' if x < 1 else fmt_price(x, x)
+
+
 def in_scope(src: str):
     """Yield (key, market, series) for every published EG/AE/SA cone."""
     out = []

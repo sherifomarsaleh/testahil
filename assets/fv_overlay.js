@@ -4100,6 +4100,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "SALIK",
+   "name": "Salik Company",
+   "code": "DFM:SALIK",
+   "ccy": "AED",
+   "spot": 5.37,
+   "anchor_date": "2026-08-27",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 47,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.32,
+   "fv_base": 4.62,
+   "fv_full": 7.05,
+   "gap_base_pct": -14.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.081158,
+    "mu_h": -0.005602,
+    "G": {
+     "bear": -5.93,
+     "base": -1.85,
+     "full": 3.35
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.0339,
+     "full": 0.0038
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.0497,
+     "full": 0.0064
+    },
+    "required_cagr": {
+     "bear": -0.9969,
+     "base": -0.8356,
+     "full": 25.2167
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00195
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.148466,
+    "mu_h": -0.01501,
+    "G": {
+     "bear": -3.24,
+     "base": -1.01,
+     "full": 1.83
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0053,
+     "base": 0.1406,
+     "full": 0.0269
+    },
+    "p_touch": {
+     "bear": 0.0085,
+     "base": 0.2397,
+     "full": 0.0505
+    },
+    "required_cagr": {
+     "bear": -0.8539,
+     "base": -0.4521,
+     "full": 1.9707
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00296
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "COMI",
    "name": "Commercial International Bank",
    "code": "EGX:COMI",
@@ -4374,98 +4466,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00093
    },
    "market": "SA"
-  },
-  {
-   "ticker": "SALIK",
-   "name": "Salik Company",
-   "code": "DFM:SALIK",
-   "ccy": "AED",
-   "spot": 5.47,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.32,
-   "fv_base": 4.62,
-   "fv_full": 7.05,
-   "gap_base_pct": -15.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.078177,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -6.39,
-     "base": -2.16,
-     "full": 3.25
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.0192,
-     "full": 0.0047
-    },
-    "p_touch": {
-     "bear": 0.0003,
-     "base": 0.0291,
-     "full": 0.0076
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.8682,
-     "full": 20.0098
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0014
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.14672,
-    "mu_h": -0.00183,
-    "G": {
-     "bear": -3.4,
-     "base": -1.15,
-     "full": 1.73
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0039,
-     "base": 0.0968,
-     "full": 0.0362
-    },
-    "p_touch": {
-     "bear": 0.0066,
-     "base": 0.169,
-     "full": 0.0646
-    },
-    "required_cagr": {
-     "bear": -0.8643,
-     "base": -0.4911,
-     "full": 1.7594
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00079
-   },
-   "market": "AE"
   },
   {
    "ticker": "FERTIGLB",
@@ -5940,98 +5940,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "LULU",
-   "name": "Lulu Retail Holdings",
-   "code": "ADX:LULU",
-   "ccy": "AED",
-   "spot": 0.96,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 11,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 0.78,
-   "fv_base": 1.28,
-   "fv_full": 1.74,
-   "gap_base_pct": 33.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.084611,
-    "mu_h": -0.010471,
-    "G": {
-     "bear": -2.45,
-     "base": 3.4,
-     "full": 7.03
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.015,
-     "base": 0.0034,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.0221,
-     "base": 0.0054,
-     "full": 0.0003
-    },
-    "required_cagr": {
-     "bear": -0.9172,
-     "base": 30.5693,
-     "full": 1256.0026
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00657
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.156999,
-    "mu_h": -0.021053,
-    "G": {
-     "bear": -1.32,
-     "base": 1.83,
-     "full": 3.79
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0891,
-     "base": 0.0256,
-     "full": 0.0022
-    },
-    "p_touch": {
-     "bear": 0.1478,
-     "base": 0.0487,
-     "full": 0.0038
-    },
-    "required_cagr": {
-     "bear": -0.5642,
-     "base": 2.1605,
-     "full": 9.7923
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0012
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "EMAARDEV",
    "name": "Emaar Development PJSC",
    "code": "DFM:EMAARDEV",
@@ -6304,6 +6212,90 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base above p95",
     "selftest_max_dev": 0.00349
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "LULU",
+   "name": "Lulu Retail Holdings",
+   "code": "ADX:LULU",
+   "ccy": "AED",
+   "spot": 0.945,
+   "anchor_date": "2026-08-27",
+   "fv_asof": "2026-07-13",
+   "fv_lag_days": 45,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 0.78,
+   "fv_base": 1.28,
+   "fv_full": 1.74,
+   "gap_base_pct": 35.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.075547,
+    "mu_h": -0.005305,
+    "G": {
+     "bear": -2.54,
+     "base": 4.02,
+     "full": 8.08
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9,
+     "base": 37.1362,
+     "full": 1517.4807
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00422
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.158699,
+    "mu_h": -0.016,
+    "G": {
+     "bear": -1.21,
+     "base": 1.91,
+     "full": 3.85
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1017,
+     "base": 0.0239,
+     "full": 0.0022
+    },
+    "p_touch": {
+     "bear": 0.1746,
+     "base": 0.0448,
+     "full": 0.0037
+    },
+    "required_cagr": {
+     "bear": -0.5359,
+     "base": 2.366,
+     "full": 10.494
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0012
    },
    "market": "AE"
   },

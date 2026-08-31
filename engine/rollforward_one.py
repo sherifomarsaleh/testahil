@@ -42,7 +42,7 @@ import pandas as pd                                        # noqa: E402
 from strike_cohorts import strike, touch_probs, rel_touch   # noqa: E402
 import market_profiles as MP                                # noqa: E402
 import adaptive_width as AW                                # noqa: E402
-from apply_rollforward import (ticker_blocks, fmt_price,  # noqa: E402
+from apply_rollforward import (ticker_blocks, fmt_price, fmt_spot,  # noqa: E402
                                prior_anchor, js_row,
                                bump_site_updated, MONTHS, RF_SRC)
 from apply_technicals import (LEDGER_ALIAS,               # noqa: E402
@@ -290,7 +290,7 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True,
     # it off `spotDate:`. Spacing after the colon is captured and replayed so the
     # entry keeps its own house style.
     new, n1 = re.subn(r'(?<![\w.$])spot:([ \t]*)[\d.,]+,',
-                      lambda m: f'spot:{m.group(1)}{fmt_price(spot, spot)},',
+                      lambda m: f'spot:{m.group(1)}{fmt_spot(spot)},',
                       new, count=1)
     new, n2 = re.subn(r'(?<![\w.$])spotDate:([ \t]*)"[^"]*",',
                       lambda m: f'spotDate:{m.group(1)}"{sd}",', new, count=1)
