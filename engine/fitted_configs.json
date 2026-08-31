@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-30",
+    "last_updated": "2026-08-31",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -480,12 +480,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -716,12 +716,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -808,12 +808,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -913,12 +913,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.07,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0155,
+    "market_skill": 0.0163,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.007,
-      0.025
+      0.008,
+      0.026
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -1131,24 +1131,24 @@
       },
       "DEWA": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": 0.0076,
-        "skill_raw_basis": 0.0073,
+        "width_cal": 0.916,
+        "skill": 0.0089,
+        "skill_raw_basis": 0.0086,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.029,
-          0.047
+          -0.028,
+          0.05
         ]
       },
       "DIB": {
         "nu": 12.0,
-        "width_cal": 0.909,
-        "skill": 0.0347,
-        "skill_raw_basis": 0.0306,
+        "width_cal": 0.902,
+        "skill": 0.0342,
+        "skill_raw_basis": 0.0302,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.004,
-          0.058
+          -0.003,
+          0.057
         ]
       },
       "DU": {
@@ -1275,12 +1275,12 @@
       "SALIK": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": 0.0039,
-        "skill_raw_basis": 0.0043,
-        "verdict": "PARITY",
+        "skill": 0.0295,
+        "skill_raw_basis": 0.0255,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.007,
-          0.014
+          -0.004,
+          0.056
         ]
       },
       "TWOPOINTZERO": {
@@ -1299,9 +1299,9 @@
       "nu": 4.5,
       "width_cal": 0.965,
       "market_verdict": "PASS",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "mid_band_reshape": {
       "applied": true,
       "mle_shape": [
@@ -1314,23 +1314,23 @@
         0.965
       ],
       "cov50": {
-        "mle": 0.5304,
-        "reshaped": 0.5036,
-        "lono_heldout": 0.5036
+        "mle": 0.528,
+        "reshaped": 0.4988,
+        "lono_heldout": 0.5012
       },
       "delta_ll": 2.47,
       "crps_parity_ci": {
         "2": [
-          -0.0017,
-          0.0021
+          -0.0016,
+          0.0022
         ],
         "3": [
           -0.0016,
-          0.0021
+          0.0022
         ],
         "4": [
           -0.0017,
-          0.0022
+          0.0023
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
@@ -1426,12 +1426,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.021,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1509,12 +1509,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1576,12 +1576,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1635,12 +1635,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-30",
+    "auto_refreshed": "2026-08-31",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-30"
+      "replaced_on": "2026-08-31"
     },
     "mid_band_reshape": {
       "applied": false,
