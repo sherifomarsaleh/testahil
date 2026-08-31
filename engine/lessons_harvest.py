@@ -1,4 +1,6 @@
-"""Harvest candidate lessons from a walk-forward run's own committed outputs.
+"""Harvest candidate lessons from a fundamental walk-forward run.  [R-FCAL-01]
+
+Reads the run's own committed outputs.
 
 WHAT IS AUTOMATED, AND WHAT DELIBERATELY IS NOT.
 

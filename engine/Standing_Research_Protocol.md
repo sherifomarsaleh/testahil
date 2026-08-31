@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-25h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1240,6 +1240,275 @@ CRPS parity, cov90 in-band) and SA DECLINED on the pooled measure (0.051→0.053
 7-of-9 breadth) — the GCC's histories are still mostly below the 28-window gate, so the
 evidence is thin exactly where the mechanism would act. Re-run at any roll-forward; adopt
 per market only when all four gate rows pass. Egypt's overlay is untouched.
+
+
+## [R-FCAL-01] FUNDAMENTAL CALIBRATION — the forecasting method is walk-forward tested on the company's own history before it is trusted on its future (31-Aug-2026, per instruction — "It is time now to add the walk forward fundamental training (fundamental calibration) to the research protocol and the standing instructions")
+
+### The name, and the confusion it exists to prevent
+
+TWO DIFFERENT TESTS IN THIS SYSTEM ARE BOTH CALLED A WALK-FORWARD, AND THEY ARE NOT
+THE SAME THING. Conflating them once already understated this project's evidence base
+badly, in a document written to describe it.
+
+**PRICE-ENGINE CALIBRATION [R-CAL-01 … R-CAL-03]** tests the Monte Carlo cone: strike
+it at a past origin, score band coverage and a proper score against a carry-anchored
+random walk. Its evidence base is broad — every covered name with a
+`{ticker}_study/backtest_rows.csv`.
+
+**FUNDAMENTAL CALIBRATION [R-FCAL-01], this rule** tests the FORECASTING METHOD:
+rebuild the driver model as it would have stood at a past origin, project it forward,
+and score each driver against what the company actually reported. Its evidence base is
+narrow and must be described as such.
+
+They test different machinery on different evidence and neither substitutes for the
+other. NEVER write "the walk-forward" without saying which. READ THE POPULATION LIVE —
+`python3 scripts/check_lessons_register.py` prints both counts — and never from this
+document, because a written count of how many names have been through either test
+drifts the moment one more runs, exactly as the stale-library list did.
+
+### When it runs
+
+FUNDAMENTAL CALIBRATION IS A STANDING STEP OF EVERY NEW STUDY AND EVERY UPDATE, on the
+same footing as Step 0.0 and the Step 2A sweep. The canonical prompt is
+`engine/Fundamental_Walkforward_Prompt.md`; it is the operative text and this section
+is the reasoning behind it.
+
+**Scope is decided FIRST and stated in the study**, because the honest scope depends on
+what the archive supports and a run that quietly shrinks is a run nobody can weigh:
+
+- **FULL** where at least 8 fiscal years are sourceable under the data rule below: every
+  origin from the first year with five years of history, horizons 1–5.
+- **LIGHT** at 5–7 years: the last five origins, horizons 1–3, every other rule unchanged.
+- **SKIP** below 5 years: record *"walk-forward not run — insufficient sourceable history
+  (N years)"* in the study's register and its QC table, in those words.
+
+**NEVER DELAY A FIRST DELIVERY FOR IT.** On a new study the training runs alongside the
+build and its corrections feed the next edition; the first edition carries a one-line
+note that the training is pending or running. On an update it is a standing step.
+
+**INCREMENTAL THEREAFTER.** Each update adds one origin, grades the forecasts that have
+matured, and re-tests the corrections. The full rebuild happens once per name.
+
+**TWO PURPOSES, NOT THREE.** The training exists for per-driver bias detection and for
+calibrated ranges on years three to five. A better point estimate is a by-product and
+never the aim — TUNING TOWARD ONE IS THE CRPS-SELECTION MISTAKE IN A NEW COSTUME, and
+the PROMOTION RULE forbids it.
+
+### Data — the same source discipline as any study, plus one gate
+
+Target 15 complete fiscal years of IS, BS, CF and operating KPIs, plus every disclosed
+quarter of the current year. **THE MOST RECENT THREE FISCAL YEARS AND ALL CURRENT-YEAR
+QUARTERS MUST COME FROM THE COMPANY'S OWN AUDITED STATEMENTS OR ITS OWN IR DOCUMENTS**
+— no exception; if they cannot be obtained, STOP AND ASK, exactly as SIGCM clause 1
+requires of any study. Older years may come from any credible source that supports a
+DCF, the company's own documents preferred.
+
+Four fields on every number (value, source, date, tier A/B/C). **NEVER ESTIMATE,
+INTERPOLATE OR INFER A FIGURE TO FILL A GAP** — leave the year out and shorten the
+window, because a fabricated cell corrupts the very error it is being scored on.
+
+**ACCEPT A STATEMENT ONLY IF IT FOOTS AGAINST ITS OWN ARITHMETIC.** Fonts with a broken
+character map extract figures that look perfectly clean and are wrong: one PHDC filing
+renders revenue of 3,560,584,644 while its text layer yields 1,654,670,500 — right
+positions, wrong glyphs, and nothing about the extraction looks broken. Every statement
+is therefore accepted only if it foots; a page that does not foot is re-read by OCR off
+the rendered pixels, and the route each figure came by is recorded. ARITHMETIC IS THE
+ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.
+
+A basis-break register precedes the modelling (standards changes, segment re-cuts, KPI
+redefinitions, FX-regime changes, attributed one-offs), with the overlap year, chain
+factor and treatment for each; unit drivers are scored only inside their own definition
+window. POINT-IN-TIME DISCIPLINE IS ABSOLUTE: each origin sees only what had been
+published by that date, as originally reported, and later restatements are noted beside
+it rather than substituted for it.
+
+### Pre-registration — before a single error is computed
+
+Written down in advance: origins, horizons, the driver list by class, the MECHANICAL
+rule for each driver with its parameters, the naive benchmarks (freeze = every line flat
+at last actual; trend = trailing three-year CAGR), the score, the block bootstrap over
+origins, the macro/regulatory conditioning and how the error is split into macro versus
+company, and the roles of the two samples. **NO JUDGEMENT DRIVERS AT HISTORICAL
+ORIGINS** — the exercise tests the method, not the analyst, and a driver the analyst
+would have set by hand cannot be scored. Parameters are stated, never fitted;
+sensitivities are reported, never selected.
+
+**BEFORE WRITING THE PRE-REGISTRATION, READ WHAT ALREADY BINDS ON THE NAME AND ITS
+CLASS**: `python3 engine/lessons.py {TICKER} --class {CLASS}` per [R-LESSON-01].
+
+### Building at every origin — two traps this project has already fallen into
+
+The build is the ordinary ground-up construction of SIGCM clause 2, run at a past date.
+Two specific errors are called out because each produced a large, robust, entirely
+spurious bias:
+
+**INTEREST COMES FROM THE BORROWINGS THAT ACTUALLY BEAR IT.** Dividing the finance
+charge by a broader liabilities total — customer deposits, supplier balances, cheques
+under collection, none of which pay interest — understates the borrowing rate by a
+multiple. On PHDC the denominator was 4.4x too big (EGP 105,099mn against EGP 24,069mn),
+implying a 3.19% borrowing rate for a company that borrows at 13.91%, and it produced a
+finance-cost bias of −1.074 log that looked exactly like evidence.
+
+**REVENUE AND COST MUST SIT ON THE SAME RECOGNITION CLOCK.** Where revenue is recognised
+as work completes, cost must be too. On PHDC, revenue accrued with construction while
+cost accrued with handover, and the two clocks produced a gross-profit bias of +0.540
+log — over-forecast in 86% of cells — which operating leverage on a thin residual turned
+into a net-profit bias of +1.116, about three times too high, in 97% of cells, WORSE
+THAN FREEZING LAST YEAR'S NUMBER AT EVERY ONE OF THE FIVE HORIZONS. THAT IS A
+SPECIFICATION ERROR, NOT A CALIBRATION ONE, and no correction factor may be allowed to
+hide it.
+
+### Scoring, and what the numbers are allowed to mean
+
+Per driver and per horizon: bias, MAE, block-bootstrap CI, share of origins over- and
+under-forecast, sign by era. The revenue and net-profit errors are decomposed into their
+drivers. Each miss is split into macro/regulatory versus company by re-running every
+origin twice — once on the inflation path knowable there, once with perfect foresight.
+Every one-off is identified and the record shown with it classified. The
+projected-versus-actual income statement is shown side by side for every origin. Skill
+is reported against BOTH naive benchmarks at every horizon.
+
+**A METHOD THAT CANNOT BEAT "NO CHANGE" HAS NOT EARNED THE PRECISION IT DISPLAYS.** That
+is not a figure of speech: on PHDC the net-profit build lost to freezing last year's
+number at all five horizons and to the trend line at four of five, and the study says so.
+
+**A BIAS THAT CHANGES SIGN BETWEEN ERAS IS NOT A BIAS.** Report the instability; do not
+correct for it. The average of two opposite regimes is a number that was never true in
+either.
+
+**THE MACRO SPLIT IS THE CHECK THAT THE DECOMPOSITION MEASURES WHAT IT CLAIMS**: volume
+drivers carry no inflation term and must come back at a zero macro share by
+construction. On PHDC, across four devaluations, macro explained 21.5% of the revenue
+error and 3.9% of the net-profit error — so the currency was not the story, and the
+decomposition earned the right to say so.
+
+### Corrections — the two-clause promotion test, and why the second clause exists
+
+Expanding window only. Corrections at HALF STRENGTH by default, applied only where the
+bias holds its sign across eras, reset after a structural break. Aggregates are rebuilt
+from adjusted drivers and tested adjusted-against-raw on the origins that carried a
+correction, reported by origin.
+
+**A CORRECTION ENTERS THE LIVE DRIVERS ONLY IF IT PASSES ITS OWN TEST *AND* IS
+CONSISTENT WITH HOW THAT DRIVER CLASS IS BUILT ACROSS THE MARKET'S BOOK.** Otherwise it
+is a WATCH FLAG — recorded, graded live, revisited at every refit, acted on by nobody.
+
+THE SECOND CLAUSE IS NOT A FORMALITY, AND IT HAS ALREADY DONE ITS JOB. PHDC's
+finance-cost correction passed the first test convincingly — half strength, MAE 0.848 →
+0.403. It failed the second, because every other Egyptian study builds interest from a
+named facility-by-facility schedule, and that failure is what exposed the wrong
+denominator described above. THE "BIAS" WAS ARITHMETIC, NOT EVIDENCE. Adopting the
+correction would have produced roughly the right answer today while leaving a broken
+model in place to fail differently tomorrow.
+
+**THE GENERAL RULE: A CORRECTION FACTOR IS HONEST WHEN THE MODEL IS RIGHT AND REALITY IS
+AWKWARD. WHEN THE MODEL IS WRONG, A CORRECTION HIDES IT.** A number out of line with the
+rest of the book usually means our own method slipped on this one name, not that the
+company is unusual — and asking which is the only way to tell them apart.
+
+**GUIDANCE IS SCORED AND NEVER CONSUMED.** Management's forward targets lean the same
+way an optimistic model does: on the only two PHDC targets gradable BEFORE the outcome,
+handovers were over-forecast by +0.220 log, while every target quoted retrospectively
+had been beaten. A driver that takes guidance as an input inherits the lean instead of
+correcting for it.
+
+### What a run must produce — two documents, and neither is optional
+
+**DOCUMENT 1 — THE UPDATED FUNDAMENTAL ANALYSIS**, at full model-report depth: the
+16-section Word document, the 16-sheet workbook, the standalone bibliography and the QC
+gate, exactly as the MODEL REPORT section requires. It carries the corrections that
+passed, and it publishes YEARS THREE TO FIVE AS RANGES built from this record's own
+driver-error distribution, never as points. On PHDC the measured five-year spread on
+revenue ran 83,620 to 214,090 EGP mn on five resolved observations, and a single figure
+would have implied a precision ten origins cannot support.
+
+**DOCUMENT 2 — THE UPDATED LESSONS-LEARNT DOCUMENT**, per [R-LESSON-01].
+
+A run that produces one and not the other is NOT FINISHED. The training record, the
+panel, the error tables and the pre-registration are INTERNAL and never shown to a
+reader; the two documents above are the deliverables. Nothing reaches the live site
+without a separate explicit publish request.
+
+### The honest limits, stated in the rule rather than discovered later
+
+**THIS METHOD IS NOT YET VALIDATED, AND THE PROTOCOL SAYS SO.** As at adoption, one
+company had been through a full fundamental run. That run's own record states its
+corrections rest on two origins, its bootstrap intervals are wide with several
+straddling zero, and its cells are not independent because the horizons overlap.
+
+THE PROMOTION RULE THEREFORE APPLIES TO THIS RULE'S OWN OUTPUT. What is adopted here is
+the PROCESS — a standing step, with a stated scope decision, a fixed pre-registration
+and two required documents. What is NOT adopted is any particular finding as a house
+rule: every lesson a fundamental run produces is PROVISIONAL under [R-LESSON-01] until
+the method has been validated across more names. **A FINDING MEASURED ON ONE NAME HAS
+NOT SURVIVED THE OUT-OF-SAMPLE TEST THE FORECASTS MUST SURVIVE**, and this project does
+not exempt itself from its own bar.
+
+### Enforced from outside, per [R-ENF-01]
+
+The register gate (`scripts/check_lessons_register.py`, in CI) fails when a fundamental
+run exists on disk with no lesson behind it, or when a harvested finding was never ruled
+on. The study gates (`scripts/check_study_provenance.py`) are unchanged and still bind
+the study this run feeds. THE POPULATION IS ANCHORED OFF THE RUN DIRECTORIES ON DISK per
+[R-ENF-04], so a register that has stopped being fed FAILS rather than reporting clean.
+
+
+## [R-LESSON-01] Every lesson is registered, explained plainly, and scoped (31-Aug-2026, per instruction — "I want lessons learnt from all the walk forward fundamental training from all stocks to be kept in a register, explained simply and then categorized")
+
+A LESSON IS USELESS UNTIL YOU KNOW HOW FAR IT CARRIES. Findings had been accumulating in
+three places with no scope on any of them — the standing protocol (implicitly "every
+study, always"), each study's own critique response and self-audit (implicitly "this
+study, once"), and the Fundamental Driver Ledger (meant to be "the next company of this
+class") — so the universal ones were applied and the rest were lost.
+
+THE REGISTER IS `engine/Lessons_Register.md` AND `engine/Lessons_Register.docx`,
+GENERATED from `engine/lessons_register.py` and NEVER hand-edited. A document that
+states a fact which moves must not be the thing that remembers it — the same rule the
+as-of stamps and the band records already obey.
+
+**THREE SCOPES, NOT INTERCHANGEABLE.** ALL — method, arithmetic, or how work is checked;
+binds on every study ever run. CLASS — true of every company that works the same way;
+the next study of that class must read them and a study of a different class must not,
+because a rule true of developers is not evidence about airlines. STOCK — true of one
+company and nothing else; APPLYING A STOCK LESSON TO ANOTHER COMPANY IS SUPERSTITION.
+
+**CHOOSING THE SCOPE IS THE JUDGEMENT AND IT IS COSTLY IN BOTH DIRECTIONS**: too narrow
+and the next study repeats the mistake, too broad and one company's quirk becomes a
+house rule nobody can dislodge. WHEN UNSURE, FILE AT THE NARROWER SCOPE AND WIDEN WHEN A
+SECOND COMPANY SHOWS THE SAME THING — one observation is not a pattern.
+
+**EVERY LESSON RECORDS HOW IT WAS LEARNED**, because the evidence differs enormously in
+strength: a fundamental walk-forward, a price-engine walk-forward, an outside critique, a
+self-audit, or a defect found while building. WHERE TWO DISAGREE THE WALK-FORWARD ONE
+WINS, and the register says which is which rather than presenting them as equals.
+
+**EVERY LESSON CARRIES WHAT WOULD OVERTURN IT.** A lesson with no falsifier is a habit,
+not a finding, and habits are how a house method quietly stops being tested. The field is
+required and may not be empty.
+
+**FUNDAMENTAL WALK-FORWARD LESSONS ARE PROVISIONAL** while [R-FCAL-01]'s method rests on
+too few names to be called validated — the code refuses to write one as adopted.
+Price-engine lessons are not, because their evidence base is broad. THE REGISTER IS A
+RECORD AND NOT A GATE: no QC item consults it, and a provisional lesson is read, never
+cited as authority.
+
+**THE LOOP IS AUTOMATED UP TO THE JUDGEMENT AND STOPS THERE ON PURPOSE.**
+`engine/lessons_harvest.py` reads a run's OWN committed outputs and drafts every
+candidate lesson those numbers support, with the evidence clause filled in from the
+measured figures — nothing in a "how we know" clause is typed by hand, so it cannot
+drift from what the run measured. Its selection rules are fixed in the module AHEAD of
+any run, so they cannot be tuned after seeing a particular run's numbers. Every draft is
+emitted UNSCOPED with `confirmed: false`, and `engine/lessons_add.py` refuses anything
+unconfirmed, anything scoped to an unregistered class, and anything with no falsifier.
+THE EVIDENCE IS MECHANICAL; THE JUDGEMENT IS SIGNED.
+
+**NOTHING IS SILENTLY DROPPED.** Every harvested draft ends `registered: "L-nnn"` or
+`declined: "<reason>"`. A candidate nobody ruled on is an unanswered question wearing the
+costume of a clean result, which is [R-ENF-04] applied here.
+
+READ IT ON DEMAND: `python3 engine/lessons.py [TICKER] [--class X]` returns exactly the
+set that binds on the name in hand. ENFORCED FROM OUTSIDE per [R-ENF-01] by
+`scripts/check_lessons_register.py`, negative-controlled, both in CI.
 
 ## [R-CAL-02] The band record replaces PASS / PARITY / FAIL on every public surface (24-Aug-2026, per instruction — "I want to challenge the concept of pass, parity or fail for the MC. Too complicated and the investor would not necessarily understand it")
 

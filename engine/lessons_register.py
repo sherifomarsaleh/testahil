@@ -1,5 +1,7 @@
 """THE LESSONS REGISTER — what every study taught us, and how far it travels.
 
+[R-LESSON-01] is the standing rule this module implements.
+
 is the standing rule this module implements.
 
 This is the single source of truth. `Lessons_Register.md` is GENERATED from it

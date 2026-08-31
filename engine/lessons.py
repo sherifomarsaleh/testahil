@@ -1,4 +1,4 @@
-"""Read the lessons register.
+"""Read the lessons register.  [R-LESSON-01]
 
   python3 engine/lessons.py                 everything that binds on every study
   python3 engine/lessons.py PHDC            every ALL lesson + PHDC's own

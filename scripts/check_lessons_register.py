@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the lessons register from OUTSIDE the register.
+"""Check the lessons register from OUTSIDE the register.  [R-LESSON-01] [R-FCAL-01]
 
 A register that validates itself is a self-attested boolean, and this project
 has been bitten by those repeatedly. This job runs over the register rather than

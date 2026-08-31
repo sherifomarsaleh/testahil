@@ -40,6 +40,21 @@ diff-only summary leaves that copy silently behind.
 - Re-deriving a study's beta against its exchange's index and rebuilding on it →
   `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
+- **Fundamental calibration — walk-forward testing the forecasting method on a company's own
+  history, a standing step of every new study and every update → `engine/Fundamental_Walkforward_Prompt.md`
+  [R-FCAL-01].** NOT the same test as the price-engine calibration; never write "the
+  walk-forward" without saying which. Every run produces TWO documents: the updated
+  fundamental analysis at full model-report depth, and the updated lessons register — a run
+  that produces one and not the other is not finished.
+- **What every study taught us, and how far it travels → `engine/Lessons_Register.md` (and
+  `.docx`) [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE:
+  `python3 engine/lessons.py TICKER --class CLASS` returns exactly what binds on that name —
+  ALL (every study), CLASS (every company that works the same way), STOCK (that name alone;
+  applying one of these elsewhere is superstition). GENERATED from `engine/lessons_register.py`,
+  never hand-edited. After a run: `lessons_harvest.py TK` drafts candidates from the run's own
+  numbers, you decide each scope (the one step deliberately not automated), `lessons_add.py TK`
+  appends, `build_lessons_docx.py` refreshes Word. Fundamental lessons are PROVISIONAL while the
+  method rests on too few names — read them, don't cite them as authority.
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
 - SIGCM (source-integrity & ground-up construction mandate, QC hard gate) →

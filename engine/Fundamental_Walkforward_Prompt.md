@@ -1,5 +1,7 @@
 # PROMPT — FUNDAMENTAL WALK-FORWARD TRAINING (run with every new study or update)
 
+**Standing rules: [R-FCAL-01] (this exercise) and [R-LESSON-01] (its second document).**
+
 Ticker: {TICKER} · Exchange: {EXCHANGE} · Market code: {MARKET} · Update date: {DATE}
 
 Train the fundamental method on this company's own history and carry the result into the update.
