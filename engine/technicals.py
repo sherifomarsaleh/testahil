@@ -420,9 +420,18 @@ def build_narrative(st: dict) -> dict:
 
 
 # ------------------------------------------------------------------- compute
-def compute(market: str, series: str, computed_on: str | None = None) -> dict:
-    """The whole technical read for one name, from the cleaned library."""
-    df, rep = load_clean(market, series)
+def compute(market: str, series: str, computed_on: str | None = None,
+            frame=None) -> dict:
+    """The whole technical read for one name, from the cleaned library.
+
+    ``frame`` is an optional pre-loaded ``(df, rep)`` pair, already through the
+    Step 0.0 gate. It exists so a walk-forward replay can re-run THIS function
+    on a truncated library rather than re-implementing the read against it — a
+    checker that models the thing it checks is checking a different thing
+    (the [R-ENF-03] lesson, in Python rather than JS). Production always passes
+    None and loads the full library exactly as before.
+    """
+    df, rep = load_clean(market, series) if frame is None else frame
     dates = pd.to_datetime(df['Date'])
     close = df['Price'].to_numpy(dtype=float)
     high = df['High'].to_numpy(dtype=float)
