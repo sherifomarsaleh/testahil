@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-08-31b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -942,6 +942,50 @@ came from that one name and the rest were learned from delivered studies,
 critiques and build failures. That is real evidence but weaker evidence, and the
 counts are printed at the head of the document. The register gets stronger as
 more names are put through training; it does not wait for them.
+
+THE LOOP IS AUTOMATED UP TO THE JUDGEMENT, AND STOPS THERE ON PURPOSE
+[AMENDED 31-Aug-2026, per instruction — "I want this register to be
+automatically updated with every new fundamental walk forward and kept for
+whenever I call for it"].
+
+`engine/lessons_harvest.py` reads a walk-forward run's OWN committed outputs
+(`scores.json`, `diagnostics.json`, `corrections_log.json`) and drafts every
+candidate lesson those numbers support, with the evidence clause filled in from
+the measured figures. Nothing in a "how we know" clause is typed by hand, so it
+cannot drift from what the run actually measured. The selection rules are fixed
+in the module ahead of any run — a robust bias past a stated size, a driver
+beaten by the naive benchmark at enough horizons, a large error the macro
+decomposition does not explain, a bias whose sign flips between eras, a
+correction that improved its own driver, and a gradable guidance record — so
+they cannot be tuned after seeing a particular run's numbers.
+
+WHAT IS NOT AUTOMATED IS THE SCOPE, AND THAT IS THE POINT. A machine cannot
+decide from a bias figure whether a finding binds on one company, on its class,
+or on every study, and this rule already records that getting it wrong is costly
+in both directions. Every draft is therefore emitted as `UNSCOPED` with
+`confirmed: false`, and `engine/lessons_add.py` REFUSES to append anything still
+unconfirmed, anything scoped to an unregistered class, and anything with no
+falsifier. The evidence is mechanical; the judgement is signed.
+
+NOTHING IS SILENTLY DROPPED. Every harvested draft must end either
+`registered: "L-nnn"` or `declined: "<reason>"`, and the gate fails on a draft
+that is neither, or declined with an empty reason. A candidate nobody ruled on
+is not a clean result — it is an unanswered question wearing the costume of one,
+which is [R-ENF-04] applied to this register. The gate also fails a walk-forward
+directory that has never been harvested at all.
+
+THREE RENDERINGS, ONE SOURCE. `lessons_register.py` is the source; the Markdown
+(`build_lessons_register.py`) and the Word document (`build_lessons_docx.py`)
+are generated from it and neither is hand-edited. The Markdown is checked byte
+for byte against its generator; the Word file cannot be (python-docx stamps it),
+so it is checked BY CONTENT — every lesson id must appear in the text a reader
+sees, counted against the module's own total.
+
+READING IT ON DEMAND: `python3 engine/lessons.py [TICKER] [--class X]` returns
+exactly the set that binds on the name in hand, plus `--classes`, `--scope`,
+`--search`, `--open` and `--counts`. The `/lessons` skill
+(`.claude/skills/lessons/SKILL.md`) makes the same available in any session.
+READ THE COUNTS LIVE from that command, never from any document.
 
 ### [R-SIGCM-02] The ground-up clause is attested on a record, not a flag
 

@@ -65,7 +65,12 @@ diff-only summary leaves that copy silently behind.
   fails the build if the document is not its generator's byte-for-byte output, if a
   walk-forward run exists with no lesson behind it, or if a registered class is empty.
   APPEND IN THE SAME COMMIT that records a finding, and read the counts live rather than from
-  any document.
+  any document. **After a walk-forward run: `python3 engine/lessons_harvest.py TK` drafts the
+  candidate lessons from the run's own numbers, you decide each one's scope (the one step that
+  is deliberately not automated), then `python3 engine/lessons_add.py TK` appends them and
+  `python3 engine/build_lessons_docx.py` refreshes the Word file. Every draft must end
+  registered or declined with a reason — the gate fails on one that is neither.** Read it any
+  time with `python3 engine/lessons.py [TICKER] [--class X]`, or the `/lessons` skill.
 
 **Shared code every study should use, not reinvent:**
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced

@@ -61,6 +61,35 @@ def main():
         else:
             print("  [ok]   Lessons_Register.md matches its generator exactly")
 
+    # 2b — THE WORD FILE CARRIES EVERY LESSON. A .docx cannot be compared byte
+    # for byte (python-docx stamps it), so it is checked by CONTENT against the
+    # module's own total: every id must appear in the text the reader sees. A
+    # document regenerated from a stale source would fail here rather than sit
+    # quietly out of date beside a correct Markdown file.
+    DOCX = os.path.join(ENGINE, "Lessons_Register.docx")
+    if not os.path.exists(DOCX):
+        fails.append("Lessons_Register.docx does not exist — run: "
+                     "python3 engine/build_lessons_docx.py")
+    else:
+        try:
+            from docx import Document
+            d = Document(DOCX)
+            text = "\n".join(p.text for p in d.paragraphs)
+            for t in d.tables:
+                for row in t.rows:
+                    text += "\n" + "\n".join(c.text for c in row.cells)
+            absent = sorted(x["id"] for x in LR.LESSONS if x["id"] not in text)
+            if absent:
+                fails.append("Lessons_Register.docx is missing %d lesson(s) "
+                             "%s — regenerate it: python3 "
+                             "engine/build_lessons_docx.py"
+                             % (len(absent), absent[:6]))
+            else:
+                print("  [ok]   Lessons_Register.docx carries all %d lessons"
+                      % len(LR.LESSONS))
+        except ImportError:
+            print("  [--]   python-docx not installed; Word file not checked")
+
     # 3 — bijection both ways, counted against the module's own total
     if os.path.exists(MD):
         text = open(MD).read()
@@ -97,6 +126,41 @@ def main():
                       for f in fails):
         print("  [ok]   %d walk-forward run(s) on disk, every one represented"
               % len(wf))
+
+    # 4b — EVERY HARVESTED DRAFT IS RESOLVED. The harvester finds candidates
+    # mechanically; a candidate nobody ruled on is not a clean result, it is an
+    # unanswered question wearing the costume of one. Each draft must end as
+    # registered (an id) or declined (a reason). Neither is allowed to be blank,
+    # and a run with no draft file at all has not been harvested.
+    import json as _json
+    for d in wf:
+        rd = os.path.join(ENGINE, d)
+        dp = os.path.join(rd, "lessons_draft.json")
+        if not os.path.exists(dp):
+            fails.append("%s has never been harvested — run "
+                         "engine/lessons_harvest.py %s"
+                         % (d, d[:-len("_walkforward")].upper()))
+            continue
+        doc = _json.load(open(dp))
+        drafts = doc.get("drafts", [])
+        if not drafts:
+            fails.append("%s/lessons_draft.json holds no drafts at all; an "
+                         "empty harvest must not read as a clean one" % d)
+        open_ones = [x["proposed_id"] for x in drafts
+                     if not x.get("registered") and not x.get("declined")]
+        if open_ones:
+            fails.append("%s: %d harvested finding(s) neither registered nor "
+                         "declined: %s" % (d, len(open_ones), open_ones))
+        bad = [x["proposed_id"] for x in drafts
+               if x.get("declined") is not None and not str(x["declined"]).strip()]
+        if bad:
+            fails.append("%s: declined with no reason given: %s" % (d, bad))
+        if not open_ones and not bad and drafts:
+            print("  [ok]   %s — %d harvested finding(s), all resolved "
+                  "(%d registered, %d declined with a reason)"
+                  % (d, len(drafts),
+                     sum(1 for x in drafts if x.get("registered")),
+                     sum(1 for x in drafts if x.get("declined"))))
 
     # 5 — every registered class reachable, no unregistered class in use
     used = {x["applies_to"] for x in LR.LESSONS if x["scope"] == "CLASS"}

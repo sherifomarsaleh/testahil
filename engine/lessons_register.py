@@ -679,6 +679,61 @@ LESSONS = [
       "FY2025. Every affected cell records the lag rather than filling it.",
       "The company publishing a full-year results release for the latest filed "
       "year."),
+
+    L("L-028", "ALL", None,
+      "Depreciation forecast from an asset base that is itself "
+      "forecast compounds its own error.",
+      "Depreciation is usually projected as a rate on a fixed-asset "
+      "balance that the model has also projected. Two forecasts "
+      "stacked on each other drift much further than either one "
+      "alone.",
+      "PHDC walk-forward, 30-Aug-2026",
+      "walk_forward",
+      "Bias +0.586 log (about 1.8 times too high), average miss "
+      "1.112, wrong in the same direction in 77% of cases, and the "
+      "sign holds across every bootstrap block tested (n=39).",
+      "A build where depreciation is taken from a disclosed schedule "
+      "rather than from a projected asset base, and the error stays "
+      "large."),
+
+    L("L-114", "CLASS", "real-estate developer, off-plan, percentage-of-completion",
+      "A developer's new-sales value is under-forecast whenever price "
+      "and volume are projected separately.",
+      "Sales value is units times price. Project each one "
+      "conservatively and the two shortfalls multiply, so the value "
+      "comes out much lower than it should. Check the product, not "
+      "just the parts.",
+      "PHDC walk-forward, 30-Aug-2026",
+      "walk_forward",
+      "Bias -0.369 log (about 45% too low), average miss 0.480, wrong "
+      "in the same direction in 66% of cases, and the sign holds "
+      "across every bootstrap block tested (n=35).",
+      "A developer where price and volume are projected jointly and "
+      "the value forecast is still biased low."),
+
+    L("L-029", "ALL", None,
+      "A bias that changes direction between regimes must never be "
+      "corrected for.",
+      "If a driver runs high in one period and low in the next, the "
+      "average is a number that was never true. Record the "
+      "instability and leave the driver alone.",
+      "PHDC walk-forward, 30-Aug-2026",
+      "walk_forward",
+      "By era: E1 pre-float -0.315; E2 post-float +0.089; E3 "
+      "devaluation -0.015.",
+      "A record long enough that one sign dominates across every "
+      "regime tested."),
+
+    L("L-030", "ALL", None,
+      "Test every measured bias for stability across regimes before "
+      "acting on it.",
+      "A bias measured over a whole history can hide two opposite "
+      "halves. Split the record by regime and check the sign holds in "
+      "both before you treat it as a fact.",
+      "PHDC walk-forward, 30-Aug-2026",
+      "walk_forward",
+      "By era: E2 post-float +0.507; E3 devaluation -0.196.",
+      "Nothing. This is a rule about how to read a measured bias."),
 ]
 
 

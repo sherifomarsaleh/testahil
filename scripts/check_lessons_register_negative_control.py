@@ -24,6 +24,30 @@ def run():
     return r.returncode, r.stdout + r.stderr
 
 
+def _unresolve_a_draft():
+    """Take one resolved draft back to open, as if nobody had ruled on it."""
+    import json
+    for d in sorted(os.listdir(ENGINE)):
+        if not d.endswith("_walkforward"):
+            continue
+        p = os.path.join(ENGINE, d, "lessons_draft.json")
+        if not os.path.exists(p):
+            continue
+        doc = json.load(open(p))
+        for x in doc.get("drafts", []):
+            if x.get("registered") or x.get("declined"):
+                DRAFTS_TOUCHED.append((p, json.dumps(doc)))
+                x.pop("registered", None)
+                x.pop("declined", None)
+                json.dump(doc, open(p, "w"), indent=1)
+                return
+    raise RuntimeError("no resolved draft to un-resolve — this control cannot "
+                       "test the case it claims to")
+
+
+DRAFTS_TOUCHED = []
+
+
 def main():
     rc, _ = run()
     if rc != 0:
@@ -52,11 +76,22 @@ def main():
         ("a class is registered with no lesson under it",
          lambda: open(PY, "a").write(
              '\nCLASSES = CLASSES + ("a class nobody wrote a lesson for",)\n')),
+
+        ("a lesson exists that the Word file does not carry",
+         lambda: open(PY, "a").write(
+             '\nLESSONS.append(L("L-097", "ALL", None, "x.", "x.", "x",'
+             ' "build", "x", "x"))\n')),
+
+        ("a harvested finding is left neither registered nor declined",
+         _unresolve_a_draft),
     ]
 
     for name, inject in cases:
         shutil.copy2(os.path.join(backup, os.path.basename(MD)), MD)
         shutil.copy2(os.path.join(backup, os.path.basename(PY)), PY)
+        for path, original in DRAFTS_TOUCHED:
+            open(path, "w").write(original)
+        DRAFTS_TOUCHED.clear()
         inject()
         rc, out = run()
         if rc == 0:
@@ -67,6 +102,8 @@ def main():
 
     shutil.copy2(os.path.join(backup, os.path.basename(MD)), MD)
     shutil.copy2(os.path.join(backup, os.path.basename(PY)), PY)
+    for path, original in DRAFTS_TOUCHED:
+        open(path, "w").write(original)
     shutil.rmtree(backup, ignore_errors=True)
 
     rc, out = run()

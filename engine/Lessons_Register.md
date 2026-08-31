@@ -44,9 +44,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**45 lessons**, of which 27 bind on every study, 13 on a class of company, and 5 on a single name.
+**49 lessons**, of which 30 bind on every study, 14 on a class of company, and 5 on a single name.
 
-By how they were learned: **10 from walk-forward testing**, 10 from outside critiques, 7 from self-audits, 18 found while building.
+By how they were learned: **14 from walk-forward testing**, 10 from outside critiques, 7 from self-audits, 18 found while building.
 
 **The honest gap: only one company has had a full walk-forward run so far — PHDC, on 30 August 2026.** Every walk-forward lesson below comes from it. The rest were learned from delivered studies, outside critiques and build failures, which is real evidence but weaker evidence, and the register says which is which rather than presenting them as equals. The register gets stronger as more names are put through walk-forward training; it does not need to wait for them.
 
@@ -328,6 +328,36 @@ A company with a manufacturing arm and a lending arm is two businesses. Forcing 
 
 > **What would overturn it.** Legs so similar that one method genuinely fits both — stated, not assumed.
 
+### L-028 · Depreciation forecast from an asset base that is itself forecast compounds its own error.
+
+Depreciation is usually projected as a rate on a fixed-asset balance that the model has also projected. Two forecasts stacked on each other drift much further than either one alone.
+
+**Applies to:** every study  ·  *Learned from:* walk-forward test, PHDC walk-forward, 30-Aug-2026
+
+> **What it cost, or how we know.** Bias +0.586 log (about 1.8 times too high), average miss 1.112, wrong in the same direction in 77% of cases, and the sign holds across every bootstrap block tested (n=39).
+
+> **What would overturn it.** A build where depreciation is taken from a disclosed schedule rather than from a projected asset base, and the error stays large.
+
+### L-029 · A bias that changes direction between regimes must never be corrected for.
+
+If a driver runs high in one period and low in the next, the average is a number that was never true. Record the instability and leave the driver alone.
+
+**Applies to:** every study  ·  *Learned from:* walk-forward test, PHDC walk-forward, 30-Aug-2026
+
+> **What it cost, or how we know.** By era: E1 pre-float -0.315; E2 post-float +0.089; E3 devaluation -0.015.
+
+> **What would overturn it.** A record long enough that one sign dominates across every regime tested.
+
+### L-030 · Test every measured bias for stability across regimes before acting on it.
+
+A bias measured over a whole history can hide two opposite halves. Split the record by regime and check the sign holds in both before you treat it as a fact.
+
+**Applies to:** every study  ·  *Learned from:* walk-forward test, PHDC walk-forward, 30-Aug-2026
+
+> **What it cost, or how we know.** By era: E2 post-float +0.507; E3 devaluation -0.196.
+
+> **What would overturn it.** Nothing. This is a rule about how to read a measured bias.
+
 
 ---
 
@@ -386,6 +416,16 @@ If buyers pay over three years and revenue is growing 40% a year, the money goin
 > **What it cost, or how we know.** Holding the collection cycle produces free cash flow negative in all five years and needs EGP 168.5bn of new borrowing by 2030, whose interest alone exceeds operating profit. Holding cash conversion instead requires the collection period to fall from 948 days to 299.
 
 > **What would overturn it.** A developer collecting substantially at or before handover.
+
+### L-114 · A developer's new-sales value is under-forecast whenever price and volume are projected separately.
+
+Sales value is units times price. Project each one conservatively and the two shortfalls multiply, so the value comes out much lower than it should. Check the product, not just the parts.
+
+**Applies to:** every real-estate developer, off-plan, percentage-of-completion  ·  *Learned from:* walk-forward test, PHDC walk-forward, 30-Aug-2026
+
+> **What it cost, or how we know.** Bias -0.369 log (about 45% too low), average miss 0.480, wrong in the same direction in 66% of cases, and the sign holds across every bootstrap block tested (n=35).
+
+> **What would overturn it.** A developer where price and volume are projected jointly and the value forecast is still biased low.
 
 
 ## Telecom operator
