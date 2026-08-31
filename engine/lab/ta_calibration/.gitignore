@@ -3,3 +3,7 @@
 claims.pkl
 analysis.log
 __pycache__/
+claims_short.pkl
+register_payload.json
+short.log
+*.pdf

@@ -64,6 +64,19 @@ STEP = 21
 MIN_HISTORY = 520          # 500 pivot lookback + slack, so the read is never degraded
 HORIZON_MONTHS = (1, 3)
 
+# SHORT HORIZONS — THE TECHNICAL LENS'S OWN CLOCK.
+# The first pass scored the technical read at 1 and 3 calendar months. That is
+# the MC lens's horizon, not this one: in this project the technical read is the
+# under-one-month view, the cone owns 1-3 months and the fundamental study owns
+# the year. Scoring a short-term read against a quarterly outcome measures the
+# wrong thing, and it also throttled the evidence — non-overlapping quarterly
+# windows yield about 60 tests per name, against the ~560 a 3-4pp effect needs,
+# which is why the first pass concluded a level record could never be per name.
+# At a one-week horizon fifteen years yields roughly 750 non-overlapping tests
+# per name. The limit was the horizon, not the level.
+HORIZON_SESSIONS = (5, 10, 21)      # ~1 week, ~2 weeks, ~1 month
+SHORT_STEP = 5                      # weekly origins; windows at h=5 barely overlap
+
 
 # ----------------------------------------------------------------- utilities
 def _grade_index(dates: pd.Series, i: int, months: int):
@@ -132,6 +145,78 @@ def _all_structure(high, low, close, spot):
 
 
 # -------------------------------------------------------------------- harvest
+def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
+                  horizons=HORIZON_SESSIONS, frame=None):
+    """The same claims, graded on the technical lens's own clock.
+
+    Identical to harvest() except the forward window is counted in SESSIONS
+    rather than calendar months, and origins are weekly. The read itself is
+    still the shipped technicals.compute(), re-run and never re-implemented.
+    """
+    df, rep = load_clean(market, ticker) if frame is None else frame
+    dates = pd.to_datetime(df['Date'])
+    close = df['Price'].to_numpy(dtype=float)
+    high = df['High'].to_numpy(dtype=float)
+    low = df['Low'].to_numpy(dtype=float)
+    n = len(df)
+    hmax = max(horizons)
+
+    rows = []
+    for i in range(MIN_HISTORY, n - hmax - 1, step):
+        try:
+            st = T.compute(market, ticker,
+                           frame=(df.iloc[:i + 1].reset_index(drop=True), rep))
+        except ValueError:
+            continue
+        spot = st['close']
+        struct = _all_structure(high[:i + 1], low[:i + 1], close[:i + 1], spot)
+        published = [float(x) for x in st['levels']['res'] + st['levels']['sup']]
+        base = dict(market=market, ticker=ticker,
+                    origin=dates.iloc[i].date().isoformat(), origin_idx=i, spot=spot,
+                    rsi=st['rsi'], atr_pct=st['atr_pct'],
+                    trend=st['tech']['trend'].split(';')[0],
+                    macd_hist=(st['macd'] or {}).get('hist'),
+                    cross_ago=(st['ma_cross'] or {}).get('ago'),
+                    cross_kind=(st['ma_cross'] or {}).get('kind'))
+
+        for h in horizons:
+            g = i + h
+            if g >= n:
+                continue
+            fh, fl, fc = high[i + 1:g + 1], low[i + 1:g + 1], close[i + 1:g + 1]
+            if not len(fc):
+                continue
+            fwd_ret = float(fc[-1] / spot - 1.0)
+            rlz_vol = (float(np.std(np.diff(np.log(close[i:g + 1])), ddof=1) * np.sqrt(252))
+                       if g - i > 2 else np.nan)
+            for side, above in (('res', True), ('sup', False)):
+                for rank, lv in enumerate(st['levels'][side], start=1):
+                    lv = float(lv)
+                    pair = _placebo_pair(lv, spot, above, struct + published)
+                    got = [p for p in pair if p is not None]
+                    if not got:
+                        continue
+                    hit = (lambda x: (fh >= x).any()) if above else (lambda x: (fl <= x).any())
+                    thr = (lambda x: (fc >= x).any()) if above else (lambda x: (fc <= x).any())
+                    pt = [(pp, dd) for pp, dd in got if hit(pp)]
+                    rows.append(dict(base, h=h, claim='level', side=side, rank=rank,
+                                     level=lv, dist=abs(lv - spot) / spot,
+                                     placebo_dist=float(np.mean([dd for _, dd in got])),
+                                     n_sides=len(got),
+                                     touched=bool(hit(lv)), broke=bool(thr(lv)),
+                                     p_touched=bool(len(pt)),
+                                     p_broke=(float(np.mean([thr(pp) for pp, _ in pt]))
+                                              if pt else np.nan),
+                                     p_touch_dist=(float(np.mean([dd for _, dd in pt]))
+                                                   if pt else np.nan),
+                                     fwd_ret=fwd_ret, rlz_vol=rlz_vol))
+            rows.append(dict(base, h=h, claim='state', side=None, rank=None, level=None,
+                             dist=None, placebo_dist=None, n_sides=None, touched=None,
+                             broke=None, p_touched=None, p_broke=None, p_touch_dist=None,
+                             fwd_ret=fwd_ret, rlz_vol=rlz_vol))
+    return pd.DataFrame(rows)
+
+
 def harvest(market: str, ticker: str, step: int = STEP, verbose=False, frame=None):
     """Every claim the shipped read would have published, graded on the tape.
 
