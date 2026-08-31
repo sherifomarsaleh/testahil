@@ -49,10 +49,23 @@ diff-only summary leaves that copy silently behind.
   It would need to hold live-sourced, per-market rf/ERP/policy-rate figures with dates — exactly
   the volatile-number class this protocol says never to reconstruct from memory. Source it live
   per-market before relying on it, don't assume it exists.
-- Prior driver decisions by name/class → `engine/Fundamental_Driver_Ledger.md` — **also
-  referenced but not present as of 07-Aug-2026.** Rebuilding it means compiling real driver
-  decisions out of each delivered study's own compute.py/QC docs — a real research task, not
-  something to fabricate from a template.
+- Prior driver decisions by name/class → `engine/Fundamental_Driver_Ledger.md` — created
+  30-Aug-2026 after being referenced since 07-Aug-2026 while absent. It holds the PHDC
+  walk-forward entry; entries for the studies delivered before that date have NOT been
+  compiled, and that is stated in the file rather than implied. Compiling them means reading
+  each study's own committed compute and QC docs — a real research task, not something to
+  fabricate from a template.
+- **What every study taught us, and how far it travels → `engine/Lessons_Register.md`
+  [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE. Every lesson is tagged ALL
+  (binds on every study), CLASS (binds on every off-plan developer, telecom operator, bank…)
+  or STOCK (binds on one company and nowhere else — applying one of these to another company
+  is superstition). Call `lessons_register.lessons_for(ticker, klass)` for exactly the set
+  that binds on the name in hand. GENERATED from `engine/lessons_register.py` by
+  `engine/build_lessons_register.py` and never hand-edited; `scripts/check_lessons_register.py`
+  fails the build if the document is not its generator's byte-for-byte output, if a
+  walk-forward run exists with no lesson behind it, or if a registered class is empty.
+  APPEND IN THE SAME COMMIT that records a finding, and read the counts live rather than from
+  any document.
 
 **Shared code every study should use, not reinvent:**
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced
