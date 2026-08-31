@@ -114,7 +114,7 @@ jobs:
       - name: Study provenance gate
         run: python3 scripts/check_study_provenance.py
 
-      # [R-LESSON-01] the lessons register, checked from outside itself: the
+      # the lessons register, checked from outside itself: the
       # document must BE its generator's output, every id must resolve both
       # ways, every walk-forward run on disk must have produced a lesson, and
       # every registered class must be reachable. An empty register fails here

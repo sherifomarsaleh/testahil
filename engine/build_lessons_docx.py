@@ -1,5 +1,4 @@
 """Build Lessons_Register.docx from the same source as the Markdown.
-[R-LESSON-01]
 
 Three renderings, one source: `lessons_register.py` -> the module a study calls,
 the Markdown a reader browses, and this Word document. None of the three is
@@ -20,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 import lessons_register as LR
+import build_lessons_register as MD
 
 OUT = os.path.join(HERE, "Lessons_Register.docx")
 
@@ -33,8 +33,10 @@ SCOPE_WORD = {
     "CLASS": ("A class of company", RGBColor(0x7E, 0x4A, 0x94)),
     "STOCK": ("One company only", RULE),
 }
-ORIGIN_WORD = {"walk_forward": "walk-forward test", "critique": "outside critique",
-               "self_audit": "self-audit", "build": "found while building"}
+ORIGIN_WORD = {"walk_forward_fundamental": "fundamental walk-forward test",
+               "walk_forward_price": "price-engine walk-forward test",
+               "critique": "outside critique", "self_audit": "self-audit",
+               "build": "found while building"}
 
 
 def _style(doc):
@@ -139,6 +141,19 @@ def build(path=OUT):
          % datetime.date.today().strftime("%d %B %Y"),
          size=9, italic=True, color=MUTED, space_after=14)
 
+    p = doc.add_paragraph()
+    r = p.add_run("Nothing in this register binds any study.")
+    r.bold = True; r.font.size = Pt(11); r.font.color.rgb = RULE
+    r2 = p.add_run(
+        "  It is a record, not a gate. No standing rule refers to it and no "
+        "quality gate consults it, deliberately \u2014 the walk-forward method "
+        "that produced its strongest lessons has not itself been validated. "
+        "The house rule is that nothing enters the method without surviving "
+        "the same out-of-sample test the forecasts must survive. Read this to "
+        "think with; do not cite it as authority.")
+    r2.font.size = Pt(10.5); r2.font.color.rgb = INK
+    p.paragraph_format.space_after = Pt(14)
+
     doc.add_heading("How to read this", level=1)
     para(doc, "A lesson is useless until you know how far it carries. Every "
               "entry is therefore tagged with one of three scopes, and the "
@@ -173,23 +188,46 @@ def build(path=OUT):
            ["Bind on a single company (STOCK)", c["STOCK"]],
            ["Total", c["total"]],
            ["", ""],
-           ["Learned from walk-forward testing", c["by_origin"]["walk_forward"]],
-           ["Learned from outside critiques", c["by_origin"]["critique"]],
-           ["Learned from self-audits", c["by_origin"]["self_audit"]],
+           ["From fundamental walk-forward testing",
+            c["by_origin"]["walk_forward_fundamental"]],
+           ["From price-engine walk-forward testing",
+            c["by_origin"]["walk_forward_price"]],
+           ["From outside critiques", c["by_origin"]["critique"]],
+           ["From self-audits", c["by_origin"]["self_audit"]],
            ["Found while building", c["by_origin"]["build"]]],
           [11.0, 4.8])
-    wf = sorted(d[:-len("_walkforward")].upper() for d in os.listdir(HERE)
-                if d.endswith("_walkforward")
-                and os.path.isdir(os.path.join(HERE, d)))
-    para(doc, "The honest gap. %s %s been through a full walk-forward run so "
-              "far, so every walk-forward lesson below comes from %s. The rest "
-              "were learned from delivered studies, outside critiques and "
-              "build failures — real evidence, but weaker evidence, and this "
-              "register says which is which rather than presenting them as "
-              "equals. It gets stronger as more names go through training; it "
-              "does not wait for them."
-         % (" and ".join(wf), "has" if len(wf) == 1 else "have",
-            "it" if len(wf) == 1 else "them"),
+
+    doc.add_heading("Two different tests are both called a walk-forward",
+                    level=2)
+    para(doc, "They test different machinery on different evidence, and the "
+              "first edition of this register conflated them — which "
+              "understated the evidence base badly and is recorded here rather "
+              "than quietly corrected.")
+    pop = MD.population()
+    table(doc, ["", "What it tests", "Names", "Resolved forecasts"],
+          [["Fundamental",
+            "The forecasting method — project each driver from a past origin, "
+            "score revenue, cost and profit against what happened",
+            "%d (%s)" % (len(pop["fundamental"]), ", ".join(pop["fundamental"])),
+            "10 origins x 5 horizons"],
+           ["Price engine",
+            "The probability cone — strike it at a past origin and score band "
+            "coverage and a proper score against a naive rule",
+            str(len(pop["price"])), str(pop["price_origins"])]],
+          [3.0, 7.4, 2.6, 2.8])
+    para(doc, "The price engine is well tested; the fundamental method is not. "
+              "%d names carry price-engine evidence, DU (%s forecasts) and "
+              "GBCO (%s) among them. The fundamental method has been through a "
+              "full training run on %s alone, and that run's own record states "
+              "its corrections rest on two starting points, its intervals are "
+              "wide with several straddling zero, and its observations are not "
+              "independent. Every lesson from the fundamental method is "
+              "therefore marked PROVISIONAL; price-engine lessons are not, "
+              "because they rest on %d forecasts across %d names."
+         % (len(pop["price"]), dict(pop["price"]).get("DU", "no"),
+            dict(pop["price"]).get("GBCO", "no"),
+            " and ".join(pop["fundamental"]), pop["price_origins"],
+            len(pop["price"])),
          bold=True)
     outstanding = [x for x in LR.LESSONS if x["status"] != "adopted"]
     if outstanding:

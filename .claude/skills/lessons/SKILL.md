@@ -1,6 +1,6 @@
 ---
 name: lessons
-description: Read or update the TESTAHIL lessons register — what every study taught us, scoped to one company, to a class of company, or to every study. Use when the user asks what we learned from a study or walk-forward, what binds on a stock or a class before starting work, to add a lesson, or to rebuild the register documents. Also use before starting any new study or update, to load what already binds on that name.
+description: Read or update the TESTAHIL lessons register — a RECORD (it binds nothing) of what every study taught us, scoped to one company, to a class of company, or to every study. Use when the user asks what we learned from a study or walk-forward, what binds on a stock or a class before starting work, to add a lesson, or to rebuild the register documents. Also use before starting any new study or update, to load what already binds on that name.
 ---
 
 # The lessons register
@@ -65,11 +65,24 @@ records the finding**, then regenerate both documents and run the check. Every
 entry needs a plain-English statement, a scope, the evidence, and what would
 overturn it — the module refuses one missing any of them.
 
-## Rules this obeys
+## Standing force: none, deliberately
 
-The standing rule is **[R-LESSON-01]**, in both governing documents. The
-register is generated from `engine/lessons_register.py`; a document that states
-a fact which moves must not be the thing that remembers it.
+**Nothing in the register binds any study.** No standing rule refers to it and no
+QC gate consults it. The walk-forward method that produced its strongest lessons
+has not been validated — one company has been through a run, whose own training
+record says its corrections rest on two starting points and its intervals are
+wide. The house promotion rule requires an out-of-sample test before anything
+enters the method, so **every walk-forward lesson is marked PROVISIONAL** until
+the method is validated across more names. Read the register to think with; do
+not cite it as authority, and do not treat a provisional lesson as a rule.
+
+Lessons that genuinely became house rules live in the standing protocol and got
+there by their own route, not through this register.
+
+## How it is kept honest
+
+The register is generated from `engine/lessons_register.py`; a document that
+states a fact which moves must not be the thing that remembers it.
 `scripts/check_lessons_register.py` runs in CI and FAILS — never warns — if the
 Markdown is not its generator's byte-for-byte output, if the Word file is
 missing a lesson, if any id fails to resolve both ways, if a registered class is

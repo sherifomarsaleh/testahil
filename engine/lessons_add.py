@@ -1,4 +1,4 @@
-"""Append confirmed drafts into the register, and close the loop.  [R-LESSON-01]
+"""Append confirmed drafts into the register, and close the loop.
 
 Reads a run's `lessons_draft.json`, appends every draft whose scope has been
 decided and marked `confirmed: true`, regenerates `Lessons_Register.md`, and

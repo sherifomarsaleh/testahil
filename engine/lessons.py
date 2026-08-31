@@ -1,4 +1,4 @@
-"""Read the lessons register.  [R-LESSON-01]
+"""Read the lessons register.
 
   python3 engine/lessons.py                 everything that binds on every study
   python3 engine/lessons.py PHDC            every ALL lesson + PHDC's own
@@ -16,8 +16,10 @@ sys.path.insert(0, HERE)
 
 import lessons_register as LR
 
-ORIGIN = {"walk_forward": "walk-forward test", "critique": "outside critique",
-          "self_audit": "self-audit", "build": "found while building"}
+ORIGIN = {"walk_forward_fundamental": "fundamental walk-forward test",
+          "walk_forward_price": "price-engine walk-forward test",
+          "critique": "outside critique", "self_audit": "self-audit",
+          "build": "found while building"}
 
 
 def show(rows, header):

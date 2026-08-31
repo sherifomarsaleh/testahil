@@ -1,6 +1,6 @@
 """THE LESSONS REGISTER — what every study taught us, and how far it travels.
 
-[R-LESSON-01] is the standing rule this module implements.
+is the standing rule this module implements.
 
 This is the single source of truth. `Lessons_Register.md` is GENERATED from it
 and is never hand-edited, so the two cannot drift apart the way this project's
@@ -40,8 +40,42 @@ the register says which is which rather than presenting them as equals.
 """
 
 SCOPES = ("STOCK", "CLASS", "ALL")
-ORIGINS = ("walk_forward", "critique", "self_audit", "build")
-STATUSES = ("adopted", "watch", "outstanding")
+# TWO DIFFERENT THINGS ARE BOTH CALLED A WALK-FORWARD HERE, and conflating them
+# is an error this register made in its first edition. They test different
+# machinery, on different evidence, and a lesson from one is not a lesson from
+# the other:
+#
+#   walk_forward_fundamental  the FUNDAMENTAL method — project each driver from
+#                             a past origin, score revenue, cost and profit
+#                             against what happened, decompose macro from
+#                             company, test corrections. One name so far.
+#   walk_forward_price        the PRICE ENGINE — strike the Monte Carlo cone at
+#                             a past origin and score the outcome against it:
+#                             band coverage, the probability-integral transform,
+#                             and a proper score against a carry-anchored random
+#                             walk. Nineteen names, 317 resolved forecasts.
+ORIGINS = ("walk_forward_fundamental", "walk_forward_price", "critique",
+           "self_audit", "build")
+STATUSES = ("provisional", "adopted", "watch", "outstanding")
+
+# NOTHING IN THIS REGISTER BINDS ANY STUDY. It is a RECORD, not a gate. No
+# standing rule refers to it and no QC gate consults it, deliberately: the
+# walk-forward method itself has not been validated. As at 31-Aug-2026 exactly
+# one company had been through a run, and that run's own training record states
+# that its corrections rest on two origins, that the bootstrap intervals are
+# wide with several straddling zero, and that the cells are not independent.
+#
+# The house promotion rule says nothing enters the method — from a human or
+# from the pipeline — without surviving the same out-of-sample test the
+# forecasts must survive. A finding measured on one name has not survived that
+# test, so every lesson learned from a walk-forward run is marked PROVISIONAL
+# and stays that way until the method is validated across more names.
+#
+# Lessons from critiques, self-audits and build failures are a different case:
+# each is a defect that was actually found in delivered work, not an inference
+# from a fitted record. They are marked adopted. They still bind nothing here —
+# the ones that genuinely became house rules live in the standing protocol, and
+# reached it through their own route, not through this file.
 
 # Classes are named here once so a typo cannot silently create a new class that
 # no study will ever match.
@@ -58,7 +92,19 @@ CLASSES = (
 
 
 def L(id, scope, applies_to, headline, plain, source, origin, evidence,
-      overturned_by, status="adopted"):
+      overturned_by, status=None):
+    # A walk-forward finding is PROVISIONAL by construction — it cannot be
+    # written in as adopted, whatever the caller passes, until the method that
+    # produced it has been validated on more than one name.
+    if status is None:
+        # A FUNDAMENTAL walk-forward finding is provisional by construction —
+        # one name is not a validated method. A PRICE-ENGINE finding rests on
+        # nineteen names and 317 resolved forecasts, so it is not.
+        status = ("provisional" if origin == "walk_forward_fundamental"
+                  else "adopted")
+    if origin == "walk_forward_fundamental" and status == "adopted":
+        raise ValueError("%s: a fundamental walk-forward lesson may not be "
+                         "adopted while the method rests on one name" % id)
     return {"id": id, "scope": scope, "applies_to": applies_to,
             "headline": headline, "plain": plain, "source": source,
             "origin": origin, "evidence": evidence,
@@ -77,7 +123,7 @@ LESSONS = [
       "only when you hand over the keys, and the costs arrive late — so every "
       "year looks more profitable than it is.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Gross profit came out about 72% too high, in 86% of tested cases, and "
       "that fed through into a net profit about 3x too high in 97% of cases — "
       "worse than simply assuming last year's profit repeats.",
@@ -91,7 +137,7 @@ LESSONS = [
       "something is wired wrong, and a fudge factor hides the wiring instead "
       "of fixing it. Fix the wiring.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Interest was being divided by total current liabilities (EGP 105.1bn) "
       "instead of by debt that actually pays interest (EGP 24.1bn) — a "
       "denominator 4.4x too big, implying a 3.19% borrowing rate for a company "
@@ -106,7 +152,7 @@ LESSONS = [
       "own method slipped on this one name — not that the company is unusual. "
       "That second question is what tells the two apart.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "The finance-cost correction passed its own test and was blocked by this "
       "one, which is how the wrong denominator in L-002 was found. Every other "
       "Egyptian study builds interest from named facilities, each at its own "
@@ -202,7 +248,7 @@ LESSONS = [
       "one by the other does not give you a price. It gives you a number with "
       "no meaning.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Taking each series' latest available year separately produced a price "
       "per unit of 28.5 against a true figure of 11.2 — off by a factor of "
       "two and a half.",
@@ -213,7 +259,7 @@ LESSONS = [
       "A five-year forecast is not one number. Show the spread the method has "
       "actually produced in testing, so a reader can see how much is known.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "At five years the measured spread on revenue ran from 83,620 to 214,090 "
       "EGP mn, and rested on five resolved observations. Publishing a single "
       "figure would have implied precision that ten origins cannot support.",
@@ -226,7 +272,7 @@ LESSONS = [
       "Feeding them in imports the bias instead of correcting for it. Grade "
       "them against outcomes instead.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Every target quoted retrospectively had been beaten; both targets that "
       "could be graded BEFORE the outcome were missed, over-forecasting "
       "handovers by about 25%. The model's own delivery bias leaned the same "
@@ -254,11 +300,15 @@ LESSONS = [
       "PHDC study build, 30-Aug-2026",
       "build",
       "The table-width audit read cell widths back and reported clean, while "
-      "the renderer reads a separate column grid that nothing had set — so "
-      "every table in the document had been rendering with roughly equal "
-      "columns. The same species had already appeared twice: a beta check that "
-      "trusted a self-set flag, and page checks that parsed with a regex where "
-      "the browser reads the last value.",
+      "the renderer reads a separate column grid that nothing had set. "
+      "MEASURED ACROSS THE BOOK RATHER THAN ASSUMED: 39 of 984 tables in 44 "
+      "delivered documents have a grid disagreeing with their stated widths, "
+      "concentrated in two (31 of 33, and 8 of 10). Most builders escape it "
+      "only because they happen to set COLUMN widths, which the library "
+      "propagates into the grid — an accident of which call was used, not "
+      "something any check was testing. The same species had already appeared "
+      "twice: a beta check that trusted a self-set flag, and page checks that "
+      "parsed with a regex where the browser reads the last value.",
       "Nothing. When this species appears again, close the class, not the "
       "instance."),
 
@@ -434,6 +484,53 @@ LESSONS = [
       "Legs so similar that one method genuinely fits both — stated, not "
       "assumed."),
 
+
+    L("L-031", "ALL", None,
+      "Band coverage and a skill score answer different questions, and can "
+      "disagree.",
+      "A forecast range can hold exactly as often as promised while still "
+      "being no better than a simple rule of thumb. Both facts are true at "
+      "once. Ask which question you are answering before you quote either "
+      "number.",
+      "Price-engine walk-forward, 19 names",
+      "walk_forward_price",
+      "Across 317 resolved three-month forecasts on 19 companies, the 90% band "
+      "caught the outcome 94% of the time and the 80% band 86% — close to what "
+      "was promised — while the same forecasts beat a carry-anchored random "
+      "walk on a proper score only 44% of the time. Coverage said the cone was "
+      "honest; the score said it was no better than the naive rule.",
+      "A book where the two measures agree closely across most names, which "
+      "would mean one of them had stopped being informative."),
+
+    L("L-032", "ALL", None,
+      "A book-level average hides how differently individual names behave.",
+      "Averaging a measure across every company can look reassuring while "
+      "individual names are far off in both directions. Report the spread, not "
+      "just the average.",
+      "Price-engine walk-forward, 19 names",
+      "walk_forward_price",
+      "The middle band caught the outcome half the time on average, as "
+      "designed — but per name it ran from 20% to 92% against the same 50% "
+      "target. The average was right and told you almost nothing about any "
+      "particular company.",
+      "A book whose per-name spread narrows enough that the average is "
+      "representative — which would itself have to be measured, not assumed."),
+
+    L("L-033", "ALL", None,
+      "Check the column name before believing a column of zeros.",
+      "A measurement that comes back the same for everything is more often a "
+      "broken query than a real finding. Look at the actual field names before "
+      "you conclude anything from a suspiciously uniform answer.",
+      "Price-engine walk-forward, 19 names",
+      "build",
+      "Scoring the whole book against its benchmark returned 0% for 18 of 19 "
+      "names and 53% for the nineteenth. The 18 files name the column crps_b "
+      "and the one name crps_bench; the query asked for crps_bench. The real "
+      "answer is 44%. This is the same species as L-015 and it recurred inside "
+      "the very session that recorded it.",
+      "Nothing. When a probe comes back uniform or empty, the first hypothesis "
+      "is that the probe did not run."),
+
     # -------------------------------------------------------------- CLASS ---
     L("L-101", "CLASS", DEV,
       "Volume is set by the launch calendar, and no demographic anchor can see "
@@ -443,7 +540,7 @@ LESSONS = [
       "population anchor to keep the driver honest, but say out loud that it "
       "runs low.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Units sold were under-forecast by about 19%, consistently, and the miss "
       "widened sharply during the devaluation years. One region's annual unit "
       "count ran 726, 1,552, 800, 1,231, 4,192 — not a trend, a launch "
@@ -457,7 +554,7 @@ LESSONS = [
       "profit line in the model is wrong, no matter how carefully the rest is "
       "built.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "This is the class-specific form of L-001. Palm Hills moved to "
       "percentage-of-completion in January 2016; a model built without noticing "
       "produced a net-profit forecast three times too high.",
@@ -661,7 +758,7 @@ LESSONS = [
       "pays no interest at all. Measuring the borrowing rate against everything "
       "it owes makes it look four times cheaper than it is.",
       "PHDC walk-forward and study, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Total current liabilities of EGP 105,099mn against EGP 24,069mn that "
       "bears interest. The correct rate is 13.91%, not 3.19%. Part of the "
       "charge is also capitalised into work in progress rather than expensed.",
@@ -674,7 +771,7 @@ LESSONS = [
       "release that carries units and sales — so the volume anchor is always "
       "one to two years behind the revenue figure.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Units sold stop at FY2023 and new sales at FY2024 while revenue runs to "
       "FY2025. Every affected cell records the lag rather than filling it.",
       "The company publishing a full-year results release for the latest filed "
@@ -688,7 +785,7 @@ LESSONS = [
       "stacked on each other drift much further than either one "
       "alone.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Bias +0.586 log (about 1.8 times too high), average miss "
       "1.112, wrong in the same direction in 77% of cases, and the "
       "sign holds across every bootstrap block tested (n=39).",
@@ -704,7 +801,7 @@ LESSONS = [
       "comes out much lower than it should. Check the product, not "
       "just the parts.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "Bias -0.369 log (about 45% too low), average miss 0.480, wrong "
       "in the same direction in 66% of cases, and the sign holds "
       "across every bootstrap block tested (n=35).",
@@ -718,7 +815,7 @@ LESSONS = [
       "average is a number that was never true. Record the "
       "instability and leave the driver alone.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "By era: E1 pre-float -0.315; E2 post-float +0.089; E3 "
       "devaluation -0.015.",
       "A record long enough that one sign dominates across every "
@@ -731,7 +828,7 @@ LESSONS = [
       "halves. Split the record by regime and check the sign holds in "
       "both before you treat it as a fact.",
       "PHDC walk-forward, 30-Aug-2026",
-      "walk_forward",
+      "walk_forward_fundamental",
       "By era: E2 post-float +0.507; E3 devaluation -0.196.",
       "Nothing. This is a rule about how to read a measured bias."),
 ]

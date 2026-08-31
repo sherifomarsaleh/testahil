@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prove the lessons-register check can actually fail.  [R-LESSON-01]
+"""Prove the lessons-register check can actually fail.
 
 A check nobody has seen go red is not evidence that it works. This injects each
 defect the checker claims to catch, one at a time, and fails if the checker

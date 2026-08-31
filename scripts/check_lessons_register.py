@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the lessons register from OUTSIDE the register.  [R-LESSON-01]
+"""Check the lessons register from OUTSIDE the register.
 
 A register that validates itself is a self-attested boolean, and this project
 has been bitten by those repeatedly. This job runs over the register rather than
@@ -117,11 +117,11 @@ def main():
     for d in wf:
         tk = d[:-len("_walkforward")].upper()
         got = [x for x in LR.LESSONS
-               if x["origin"] == "walk_forward"
+               if x["origin"] == "walk_forward_fundamental"
                and (x["applies_to"] == tk or tk in x["source"].upper())]
         if not got:
-            fails.append("%s has a walk-forward run and no lesson in the "
-                         "register" % tk)
+            fails.append("%s has a fundamental walk-forward run and no "
+                         "lesson in the register" % tk)
     if wf and not any(f.startswith(tuple(d[:-13].upper() for d in wf))
                       for f in fails):
         print("  [ok]   %d walk-forward run(s) on disk, every one represented"

@@ -1,5 +1,4 @@
 """Harvest candidate lessons from a walk-forward run's own committed outputs.
-[R-LESSON-01]
 
 WHAT IS AUTOMATED, AND WHAT DELIBERATELY IS NOT.
 
@@ -73,7 +72,7 @@ def load(run_dir):
 
 
 def _draft(key, ticker, headline, plain, evidence, scope, why_scope,
-           overturned_by, origin="walk_forward"):
+           overturned_by, origin="walk_forward_fundamental"):
     return {"proposed_id": None, "ticker": ticker, "headline": headline,
             "plain": plain, "evidence": evidence, "scope": scope,
             "why_scope": why_scope, "overturned_by": overturned_by,
