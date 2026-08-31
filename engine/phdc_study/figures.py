@@ -43,25 +43,26 @@ def _save(fig, name):
     return p
 
 
-def fig1_football(val, spot, prior):
+def fig1_football(bars, spot, prior):
     """The value of each lens as a range, against spot and the prior edition.
 
     A football field, because the job is comparing RANGES on one axis — not a
     point per case, which is the claim this study explicitly does not make.
+
+    bars is a list of (label, low, high, mid_or_None, colour_index). Every
+    number in it is COMPUTED by the caller from the published sensitivity grid,
+    so the figure and the table beneath it cannot drift apart; the labels used
+    to carry the conversion rates as typed text and would have kept printing
+    the old rates after the model changed.
     """
     fig, ax = plt.subplots(figsize=(7.6, 3.5))
-    rows = [
-        ("Cash conversion 3.9%\n(FY2023 and FY2025 actual)", val["c039"], CAT[1]),
-        ("Cash conversion 8.7%\n(three-year mean)", val["c087"], CAT[0]),
-        ("Cash conversion 17.9%\n(FY2024 actual)", val["c179"], CAT[2]),
-        ("Book equity per share", (val["book"], val["book"]), CAT[3]),
-    ]
-    for i, (label, (lo, hi), c) in enumerate(rows):
-        y = len(rows) - 1 - i
+    n = len(bars)
+    for i, (label, lo, hi, mid, ci) in enumerate(bars):
+        y = n - 1 - i
+        c = CAT[ci]
         if hi > lo:
             ax.barh(y, hi - lo, left=lo, height=0.42, color=c, zorder=3)
-            mid = val.get(label.split("\n")[0] + "_mid")
-            if mid:
+            if mid is not None:
                 ax.plot([mid], [y], marker="|", ms=16, mew=2.2, color="#FFFFFF",
                         zorder=5)
             ax.text(lo - 0.6, y, "%.2f" % lo, va="center", ha="right",
@@ -72,26 +73,25 @@ def fig1_football(val, spot, prior):
             ax.plot([lo], [y], marker="D", ms=8, color=c, zorder=3)
             ax.text(lo + 1.1, y, "%.2f" % lo, va="center", ha="left",
                     fontsize=8.5, color=INK)
-    # The close and the prior edition's base sit 0.69 apart, so inline labels on
-    # the two lines would always overlap each other and whichever bar end lands
-    # between them. Both are keyed once, in the empty upper-right instead.
+    # The close and the prior edition's base sit close together, so inline
+    # labels on the two lines would overlap each other and whichever bar end
+    # lands between them. Both are keyed once, in the empty upper-right.
     ax.axvline(spot, color=INK, lw=1.6, zorder=4)
     ax.axvline(prior, color=FAINT, lw=1.2, ls=(0, (4, 3)), zorder=2)
-    xmax = max(val["c179"][1], spot) * 1.18
-    ax.plot([xmax * 0.62], [len(rows) - 0.30], marker="|", ms=11, mew=1.6, color=INK)
-    ax.text(xmax * 0.645, len(rows) - 0.30, "close %.2f (23 Aug 2026)" % spot,
+    xmax = max(max(b[2] for b in bars), spot) * 1.18
+    ax.plot([xmax * 0.62], [n - 0.30], marker="|", ms=11, mew=1.6, color=INK)
+    ax.text(xmax * 0.645, n - 0.30, "close %.2f (23 Aug 2026)" % spot,
             color=INK, fontsize=8.5, va="center", ha="left")
-    ax.plot([xmax * 0.62], [len(rows) - 0.62], marker="|", ms=11, mew=1.4,
-            color=FAINT)
-    ax.text(xmax * 0.645, len(rows) - 0.62, "prior edition base %.2f" % prior,
+    ax.plot([xmax * 0.62], [n - 0.62], marker="|", ms=11, mew=1.4, color=FAINT)
+    ax.text(xmax * 0.645, n - 0.62, "prior edition base %.2f" % prior,
             color=MUTED, fontsize=8.5, va="center", ha="left")
-    ax.set_yticks(range(len(rows)))
-    ax.set_yticklabels([r[0] for r in reversed(rows)], fontsize=8.5, color=INK)
+    ax.set_yticks(range(n))
+    ax.set_yticklabels([b[0] for b in reversed(bars)], fontsize=8.5, color=INK)
     ax.set_xlabel("EGP per share")
     ax.set_title("Value across the range of the crux",
                  fontsize=10.5, pad=12, loc="left")
     ax.set_xlim(0, xmax)
-    ax.set_ylim(-0.7, len(rows) - 0.02)
+    ax.set_ylim(-0.7, n - 0.02)
     ax.grid(axis="y", visible=False)
     return _save(fig, "fig1_football.png")
 
@@ -127,14 +127,19 @@ def fig2_sensitivity(waccs, cfos, grid, spot):
 
 
 def fig3_cone(dist, spot, touch):
-    """The published probability cone. Bands, because the job is a distribution."""
+    """The published probability cone. Bands, because the job is a distribution.
+
+    Horizons are calendar months. The two keys used to be the retired
+    session-counted names, which is why this figure could not be rebuilt from
+    the current numbers file at all.
+    """
     fig, ax = plt.subplots(figsize=(7.2, 3.4))
     xs = [0, 1, 3]
-    p5 = [spot, dist["t20"]["p5"], dist["t60"]["p5"]]
-    p25 = [spot, dist["t20"]["p25"], dist["t60"]["p25"]]
-    p50 = [spot, dist["t20"]["p50"], dist["t60"]["p50"]]
-    p75 = [spot, dist["t20"]["p75"], dist["t60"]["p75"]]
-    p95 = [spot, dist["t20"]["p95"], dist["t60"]["p95"]]
+    p5 = [spot, dist["m1"]["p5"], dist["m3"]["p5"]]
+    p25 = [spot, dist["m1"]["p25"], dist["m3"]["p25"]]
+    p50 = [spot, dist["m1"]["p50"], dist["m3"]["p50"]]
+    p75 = [spot, dist["m1"]["p75"], dist["m3"]["p75"]]
+    p95 = [spot, dist["m1"]["p95"], dist["m3"]["p95"]]
     ax.fill_between(xs, p5, p95, color="#D7E6EF", zorder=1, label="5th–95th percentile")
     ax.fill_between(xs, p25, p75, color="#9CC2D8", zorder=2, label="25th–75th percentile")
     ax.plot(xs, p50, color=CAT[0], lw=2.0, zorder=3, label="median")
@@ -145,7 +150,7 @@ def fig3_cone(dist, spot, touch):
         ax.axvline(x, color=RULE, lw=0.9, zorder=0)
     # percentile labels go BESIDE their vertical, not above and below it, so
     # they cannot collide with the axis tick labels or the plot edge
-    for x, arr, ha, dx in ((1, "t20", "right", -0.06), (3, "t60", "left", 0.06)):
+    for x, arr, ha, dx in ((1, "m1", "right", -0.06), (3, "m3", "left", 0.06)):
         ax.text(x + dx, dist[arr]["p95"], "%.2f" % dist[arr]["p95"],
                 ha=ha, va="center", fontsize=8, color=MUTED)
         ax.text(x + dx, dist[arr]["p5"], "%.2f" % dist[arr]["p5"],

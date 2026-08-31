@@ -40,6 +40,21 @@ diff-only summary leaves that copy silently behind.
 - Re-deriving a study's beta against its exchange's index and rebuilding on it →
   `engine/Beta_Reissue_Prompt.md` (canonical prompt + the FERTIGLB worked precedent)
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
+- **Fundamental calibration — walk-forward testing the forecasting method on a company's own
+  history, a standing step of every new study and every update → `engine/Fundamental_Walkforward_Prompt.md`
+  [R-FCAL-01].** NOT the same test as the price-engine calibration; never write "the
+  walk-forward" without saying which. Every run produces TWO documents: the updated
+  fundamental analysis at full model-report depth, and the updated lessons register — a run
+  that produces one and not the other is not finished.
+- **What every study taught us, and how far it travels → `engine/Lessons_Register.md` (and
+  `.docx`) [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE:
+  `python3 engine/lessons.py TICKER --class CLASS` returns exactly what binds on that name —
+  ALL (every study), CLASS (every company that works the same way), STOCK (that name alone;
+  applying one of these elsewhere is superstition). GENERATED from `engine/lessons_register.py`,
+  never hand-edited. After a run: `lessons_harvest.py TK` drafts candidates from the run's own
+  numbers, you decide each scope (the one step deliberately not automated), `lessons_add.py TK`
+  appends, `build_lessons_docx.py` refreshes Word. Fundamental lessons are PROVISIONAL while the
+  method rests on too few names — read them, don't cite them as authority.
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
 - SIGCM (source-integrity & ground-up construction mandate, QC hard gate) →
@@ -49,10 +64,10 @@ diff-only summary leaves that copy silently behind.
   It would need to hold live-sourced, per-market rf/ERP/policy-rate figures with dates — exactly
   the volatile-number class this protocol says never to reconstruct from memory. Source it live
   per-market before relying on it, don't assume it exists.
-- Prior driver decisions by name/class → `engine/Fundamental_Driver_Ledger.md` — **also
-  referenced but not present as of 07-Aug-2026.** Rebuilding it means compiling real driver
-  decisions out of each delivered study's own compute.py/QC docs — a real research task, not
-  something to fabricate from a template.
+- Prior driver decisions by name/class → `engine/Fundamental_Driver_Ledger.md` — created
+  30-Aug-2026 after being referenced since 07-Aug-2026 while absent. It holds the PHDC
+  walk-forward entry; entries for the studies delivered before that date have NOT been
+  compiled, and that is stated in the file rather than implied.
 
 **Shared code every study should use, not reinvent:**
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced
