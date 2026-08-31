@@ -812,29 +812,29 @@ const TICKERS = {
     name: "Lulu Retail Holdings",
     nameAr: "\u0644\u0648\u0644\u0648 \u0644\u0644\u062a\u062c\u0632\u0626\u0629",
     code: "ADX:LULU",
-    spot: 0.96,
-    spotDate: "close 24 Jul 2026",
+    spot: 0.945,
+    spotDate: "close 27 Aug 2026",
     ccy: "AED",
     fair: { bear: 0.78, base: 1.28, full: 1.74 },      // 12 Jul 2026 (v3) — four-lens weighted central 1.28 (+36% vs spot 0.94). Lenses: FCFF DCF, segment-built from six country models (30%) 1.54; relative EV/EBITDA (30%) 1.18; dividend discount (25%) 1.15; normalized earnings (15%) 1.16. bear/full = weighted bear/bull. THE COMPANY DOES NOT REPORT SALES DENSITY, SO WE BUILT IT. Revenue per square metre fell -1.4% in FY2025 and roughly -8% in Q1-2026 (bounded -4.3% to -9.4% — one input, Q1-2025 floor space, is not disclosed). Lulu is adding space into falling productivity. THE ENGINE: operating cost tracks SPACE; revenue tracks SPACE x DENSITY. So the EBITDA margin is flat only when density growth equals mature-store cost inflation — a break-even that is DERIVED, not assumed, and which ties on both periods we can test. It reproduces the Q1 margin bridge with nothing modelled: 10.23% -> 9.50%, of which -65bp is OPERATING DELEVERAGE (revenue -2.9%, cash opex +1.1% — both disclosed) and only -7bp is gross margin. The margin is not a lever management pulls; it falls out of the density. TWO MORE FINDINGS. (1) SAUDI: we rebuilt segment floor space from the company's own hypermarket/express split and its disclosed 9,200 sqm average hypermarket — it reconstructs the disclosed 1.380m sqm estate to 0.6%. Saudi sells US$4,489 per sqm against Qatar's US$9,027. Its stores are not small: 46% are hypermarkets, the same share as the group. They are UNPRODUCTIVE, which is why Saudi opex runs 22.1% of revenue against the UAE's 14.5% and its EBITDA margin is 4.66%. (2) THE DIVIDEND: 7 fils is 96% of EARNINGS but 1.33x covered by CASH (after charging working capital — the 12-Jul revision omitted it and printed 1.40x), because depreciation (US$388mn) is nearly three times capex (US$139mn) — the leases ARE the capex. A cash-covered 7.45% yield is a very different proposition from an uncovered one. AND THE HONEST CAVEAT: at 7.15x EV/EBITDAaL (after lease payments) Lulu is NOT cheap on an absolute basis. It is cheap RELATIVE to how its peers are quoted, because every peer multiple is struck on the same post-IFRS-16 basis. Two different claims; we make only the second. REVISION r1 (13-Jul-2026, build e9fc9b7dba6a): twelve corrections after two external audits, listed in full at the end of the study. The most important CUTS AGAINST US — the 12-Jul revision claimed a -6% density year puts the central at spot; its own grid says the central is 1.12 there, and density alone NEVER reaches spot. The market is pricing lost density AND a terminal de-rating AND a higher cost of capital AND a dividend cut. The crux was overclaimed. Also corrected: the beta diagnostics (mutually impossible as printed), a circular debt cross-check (withdrawn), the dividend cover (now charges working capital: 1.40x -> 1.33x), FY2024 stores (247 -> 250, per the company release), and Pillar Two / UAE DMTT (15% floor, in force since FY2025) is now modelled and in the risk register. THE REGISTERED FORECAST BELOW IS UNCHANGED: the Monte-Carlo drift is carry plus the event ledger, and no correction touches either. The study is revised; the forecast is not.
     dist: {
-      t20: { label:"1 month",   p5:0.84, p25:0.91, p50:0.95, p75:1.00, p95:1.09, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:0.74, p25:0.86, p50:0.94, p75:1.02, p95:1.20, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:0.84, p25:0.90, p50:0.94, p75:0.98, p95:1.06, resolve:"2026-09-28" },
+      t60: { label:"3 months",  p5:0.73, p25:0.85, p50:0.93, p75:1.01, p95:1.19, resolve:"2026-11-27" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-31" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month %. The UAE market cone is OVER-COVERED, so read these as UPPER BOUNDS. */
-      [1.30, 0, 4], [1.20, 1, 9], [1.10, 6, 23], [1.05, 16, 39], [1.00, 44, 64], [0.90, 32, 61], [0.85, 10, 36], [0.80, 3, 19], [0.75, 1, 10]
+      [1.30, 0, 4], [1.20, 1, 8], [1.10, 4, 20], [1.05, 10, 33], [1.00, 31, 56], [0.90, 40, 68], [0.85, 12, 41], [0.80, 3, 22], [0.75, 1, 11]
     ],
-    levels: { res:[1.08, 1.16, 1.21], sup:[0.95, 0.93, 0.91] },
+    levels: { res:[0.96, 1.08, 1.21], sup:[0.93, 0.91, 0.89] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 0.96 below a falling 50-day (0.97) and a falling 200-day (1.07), but above a falling 20-day (0.94). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 0.02 (~1.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.01 / \u22120.01 / +0.00). Over the last year it has ranged 0.91\u20131.27; the last close sits 24% below that high and 5% above that low.",
-      bull: "A daily close back above 1.08 would clear the nearest resistance and open the 1.21 zone.",
-      bear: "A close below 0.95 would break the nearest support and open the 0.91 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 0.94 below a rising 20-day (0.97), a flat 50-day (0.96) and a falling 200-day (1.04). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.01 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.00 / +0.00 / \u22120.00). Over the last year it has ranged 0.91\u20131.23; the last close sits 23% below that high and 4% above that low.",
+      bull: "A daily close back above 0.96 would clear the nearest resistance and open the 1.21 zone.",
+      bear: "A close below 0.93 would break the nearest support and open the 0.89 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-08-25" },
-      tech: { data:"2026-07-24", computed:"2026-08-30" }
+      mc:   { data:"2026-08-27", computed:"2026-08-31" },
+      tech: { data:"2026-08-27", computed:"2026-08-31" }
     },
     files: {
       study: "files/LULU_Valuation_Study_13-07-2026_public.docx?v=20260713b",
@@ -3211,7 +3211,7 @@ const BANDS = {
   Kakao: {mkt:"KR", n:57, hits:49, c50:0.4561, c80:0.7719, c90:0.8596, width:0.988, strength:"long", flag:null},
   LCSW: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8421, c90:0.9123, width:1.422, strength:"long", flag:null},
   LGES: {mkt:"KR", n:13, hits:11, c50:0.6154, c80:0.8462, c90:0.8462, width:0.863, strength:"market-only", flag:null},
-  LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, width:1.454, strength:"market-only", flag:null},
+  LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, width:1.427, strength:"market-only", flag:null},
   MAADEN: {mkt:"SA", n:57, hits:50, c50:0.5088, c80:0.7719, c90:0.8772, width:1.034, strength:"long", flag:null},
   MODON: {mkt:"AE", n:23, hits:20, c50:0.5652, c80:0.8261, c90:0.8696, width:1.116, strength:"short", flag:null},
   NVDA: {mkt:"US", n:58, hits:50, c50:0.5000, c80:0.7586, c90:0.8621, width:1.000, strength:"long", flag:null},
@@ -4801,9 +4801,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
     p5:0.84, p25:0.91, p50:0.96, p75:1.02, p95:1.1,
     touch:{ "+5":47, "+10":20, "+15":8, "+20":3, "-5":43, "-10":15 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:0.953, realized_high:0.988, realized_low:0.945,
+    in_90:true, in_50:true, realized_quantile:0.465, median_err:-0.0073,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"LULU", asset_class:"equity",
@@ -6826,6 +6826,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 31-Aug-2026 single-name roll-forward: LULU, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"LULU", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-31", anchor_price:0.945, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.2747, cal:"untested",
+    signal_z:-0.8839, signal_alpha:-0.007478,
+    note:"Cycle 3 roll-forward, 31-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: PROVISIONAL(insufficient-windows) — this name has too few resolved windows for the robust bar to be evaluated at all, so its cone is published untested at the name level. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.884 (outside the 0.25 dead zone); tilt -0.75% at 1M and -2.51% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:0.84, p25:0.9, p50:0.94, p75:0.98, p95:1.06,
+    touch:{ "+5":36, "+10":13, "+15":5, "+20":2, "-5":38, "-10":12 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LULU", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-31", anchor_price:0.945, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-27", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.3203, cal:"untested",
+    signal_z:-0.8839, signal_alpha:-0.025471,
+    note:"Cycle 3 roll-forward, 31-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: PROVISIONAL(insufficient-windows) — this name has too few resolved windows for the robust bar to be evaluated at all, so its cone is published untested at the name level. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.884 (outside the 0.25 dead zone); tilt -0.75% at 1M and -2.51% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:0.73, p25:0.85, p50:0.93, p75:1.01, p95:1.19,
+    touch:{ "+5":60, "+10":37, "+15":23, "+20":14, "-5":67, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7065,7 +7094,7 @@ const CALIB = {
   "ADX:FAB": {w: 58, in50: 52, in90: 91, through: "2026-08-13"},
   "ADX:FERTIGLB": {w: 14, in50: 43, in90: 86, through: "2026-05-19"},
   "ADX:IHC": {w: 47, in50: 64, in90: 81, through: "2026-07-21"},
-  "ADX:LULU": {w: 2, in50: 50, in90: 100, through: "2026-06-01"},
+  "ADX:LULU": {w: 2, in50: 100, in90: 100, through: "2026-06-01"},
   "ADX:MODON": {w: 23, in50: 52, in90: 87, through: "2026-06-01"},
   "DFM:AIRARABIA": {w: 58, in50: 47, in90: 86, through: "2026-07-28"},
   "DFM:DEWA": {w: 13, in50: 54, in90: 100, through: "2026-07-28"},
