@@ -28,7 +28,12 @@ payload = dict(
                   over=x['over']) for x in L.LESSONS],
 )
 json.dump(payload, open(os.path.join(HERE, 'register_payload.json'), 'w'), indent=1)
+# COUNT AGAINST THE SOURCE, not against a number typed here. The first version
+# asserted == 10 and fired the moment three lessons were added, which is the
+# check working but measuring the wrong thing: what must hold is that every
+# lesson in the source reaches the payload, whatever the total.
 n = len(payload['lessons'])
-assert n == 10, n
+assert n == len(L.LESSONS), f'{n} in payload vs {len(L.LESSONS)} in source'
+assert len({x['id'] for x in payload['lessons']}) == n, 'duplicate lesson id'
 print(f"payload written: {n} lessons, {payload['coverage']['names']} names, "
       f"{payload['coverage']['obs']:,} readings")

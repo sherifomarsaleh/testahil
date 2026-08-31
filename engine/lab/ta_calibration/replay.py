@@ -125,6 +125,61 @@ def _placebo_pair(level: float, spot: float, above: bool, banned: list[float]):
     return out
 
 
+def _volume(series):
+    """Vendor volume strings ('2.87M', '640.00K') to floats. NaN where absent."""
+    v = series.astype(str).str.strip().str.replace(',', '', regex=False)
+    mult = v.str[-1].map({'K': 1e3, 'M': 1e6, 'B': 1e9})
+    num = pd.to_numeric(v.str.rstrip('KMB'), errors='coerce')
+    return (num * mult.fillna(1.0)).where(num.notna())
+
+
+def _placebo_ladder(near, far, spot, above, banned):
+    """A two-rung ladder at the same distances, moved together off structure.
+
+    The bull trigger is a claim about a PAIR of levels — close above the near
+    one and the far one opens — so its null has to be a pair too, and the gap
+    between the rungs has to survive the move. Scaling both by one factor keeps
+    the near/far ratio exactly and shifts the whole ladder off charted
+    structure; scaling them independently would change the very thing the claim
+    is about.
+    """
+    dn = abs(near - spot) / spot
+    dfar = abs(far - spot) / spot
+    # A wide, symmetric grid. The first cut offered six offsets and only 6% of
+    # origins found a pair clearing every charted level on both rungs, which
+    # would have made this the thinnest claim in the set for a reason that is
+    # about the search, not about the market.
+    grid = []
+    for step in (0.08, 0.14, 0.20, 0.27, 0.34, 0.42, 0.50):
+        grid += [1 + step, 1 - step]
+    for m in grid:
+        pn = spot * (1 + dn * m) if above else spot * (1 - dn * m)
+        pf = spot * (1 + dfar * m) if above else spot * (1 - dfar * m)
+        if all(abs(pn - b) / spot > T.CLUSTER_TOL for b in banned) and \
+           all(abs(pf - b) / spot > T.CLUSTER_TOL for b in banned):
+            return float(pn), float(pf), float(m)
+    return None, None, None
+
+
+def _trigger(fc, fh, fl, near, far, above):
+    """Did the trigger fire, and did the far rung then open?
+
+    'A daily close back above R1 would clear the nearest resistance and open the
+    R3 zone' is the only explicitly CONDITIONAL forecast the read makes, and the
+    grading has to respect the order: the far rung must be reached AFTER the
+    close that fired the trigger, not merely somewhere in the window.
+    """
+    fired = (fc >= near) if above else (fc <= near)
+    if not fired.any():
+        return False, None
+    k = int(np.argmax(fired))                     # first firing close
+    rest_h, rest_l = fh[k + 1:], fl[k + 1:]
+    if not len(rest_h):
+        return True, False
+    opened = bool((rest_h >= far).any()) if above else bool((rest_l <= far).any())
+    return True, opened
+
+
 def _all_structure(high, low, close, spot):
     """Every charted cluster the read could have drawn on, for placebo exclusion.
 
@@ -158,6 +213,7 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
     close = df['Price'].to_numpy(dtype=float)
     high = df['High'].to_numpy(dtype=float)
     low = df['Low'].to_numpy(dtype=float)
+    vol = _volume(df['Vol.']).to_numpy(dtype=float) if 'Vol.' in df.columns else None
     n = len(df)
     hmax = max(horizons)
 
@@ -171,13 +227,25 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
         spot = st['close']
         struct = _all_structure(high[:i + 1], low[:i + 1], close[:i + 1], spot)
         published = [float(x) for x in st['levels']['res'] + st['levels']['sup']]
+        # VOLUME IS IN EVERY LIBRARY AND THE READ HAS NEVER LOOKED AT IT.
+        # Carried here as a trailing-60 z-score of log volume, walk-forward safe
+        # (the window ends at the origin), so the claim families below can be
+        # tested against it without the technical read asserting anything yet.
+        vz = np.nan
+        if vol is not None and i >= 60:
+            w = np.log(vol[i - 59:i + 1])
+            w = w[np.isfinite(w)]
+            if len(w) >= 30 and w.std(ddof=1) > 0:
+                vz = float((np.log(vol[i]) - w.mean()) / w.std(ddof=1)) \
+                    if np.isfinite(vol[i]) and vol[i] > 0 else np.nan
         base = dict(market=market, ticker=ticker,
                     origin=dates.iloc[i].date().isoformat(), origin_idx=i, spot=spot,
                     rsi=st['rsi'], atr_pct=st['atr_pct'],
                     trend=st['tech']['trend'].split(';')[0],
                     macd_hist=(st['macd'] or {}).get('hist'),
                     cross_ago=(st['ma_cross'] or {}).get('ago'),
-                    cross_kind=(st['ma_cross'] or {}).get('kind'))
+                    cross_kind=(st['ma_cross'] or {}).get('kind'),
+                    vol_z=vz)
 
         for h in horizons:
             g = i + h
@@ -210,6 +278,24 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
                                      p_touch_dist=(float(np.mean([dd for _, dd in pt]))
                                                    if pt else np.nan),
                                      fwd_ret=fwd_ret, rlz_vol=rlz_vol))
+            for side, above in (('res', True), ('sup', False)):
+                lad = [float(x) for x in st['levels'][side]]
+                if len(lad) < 2:
+                    continue
+                near, far = lad[0], lad[-1]
+                pn, pf, mult = _placebo_ladder(near, far, spot, above,
+                                               struct + published)
+                if pn is None:
+                    continue
+                fired, opened = _trigger(fc, fh, fl, near, far, above)
+                p_fired, p_opened = _trigger(fc, fh, fl, pn, pf, above)
+                rows.append(dict(base, h=h, claim='trigger', side=side, rank=None,
+                                 level=near, dist=abs(near - spot) / spot,
+                                 placebo_dist=abs(pn - spot) / spot, n_sides=int(mult * 100),
+                                 touched=fired, broke=opened,
+                                 p_touched=p_fired, p_broke=p_opened,
+                                 p_touch_dist=abs(far - spot) / spot,
+                                 fwd_ret=fwd_ret, rlz_vol=rlz_vol))
             rows.append(dict(base, h=h, claim='state', side=None, rank=None, level=None,
                              dist=None, placebo_dist=None, n_sides=None, touched=None,
                              broke=None, p_touched=None, p_broke=None, p_touch_dist=None,
