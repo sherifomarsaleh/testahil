@@ -47,8 +47,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a flat 200-day",
       summary: "The price closed 5.94 above a rising 20-day (5.78), a falling 50-day (5.81) and a flat 200-day (5.51). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.12 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.06 / +0.02 / +0.04). Over the last year it has ranged 4.51\u20136.67; the last close sits 11% below that high and 32% above that low.",
-      bull: "A daily close back above 6.00 would clear the nearest resistance and open the 6.67 zone.",
-      bear: "A close below 5.86 would break the nearest support and open the 5.17 zone."
+      bull: "A daily close back above 6.00 would clear the nearest resistance; the next charted level above it is 6.67.",
+      bear: "A close below 5.86 would break the nearest support; the next charted level below it is 5.17."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -81,9 +81,9 @@ const TICKERS = {
     levels: { res:[4.15, 4.30, 4.40], sup:[4, 3.77, 3.65] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
-      summary: "The price closed 4.07 above a rising 20-day (4.00), a rising 50-day (3.94) and a rising 200-day (3.87). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.06 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.03 / +0.01). The 50-day crossed above the 200-day 23 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 3.47\u20134.18; the last close sits 3% below that high and 17% above that low.",
-      bull: "A daily close back above 4.15 would clear the nearest resistance and open the 4.40 zone.",
-      bear: "A close below 4.00 would break the nearest support and open the 3.65 zone."
+      summary: "The price closed 4.07 above a rising 20-day (4.00), a rising 50-day (3.94) and a rising 200-day (3.87). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.06 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.03 / +0.01). The 50-day crossed above the 200-day 23 sessions ago. Over the last year it has ranged 3.47\u20134.18; the last close sits 3% below that high and 17% above that low.",
+      bull: "A daily close back above 4.15 would clear the nearest resistance; the next charted level above it is 4.40.",
+      bear: "A close below 4.00 would break the nearest support; the next charted level below it is 3.65."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -117,8 +117,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a flat 200-day",
       summary: "The price closed 6.16 above a rising 50-day (6.03) and a flat 200-day (5.70), but below a rising 20-day (6.19). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.11 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.05 / +0.07 / \u22120.01). Over the last year it has ranged 4.65\u20136.44; the last close sits 4% below that high and 32% above that low.",
-      bull: "A daily close back above 6.30 would clear the nearest resistance and open the 6.60 zone.",
-      bear: "A close below 5.93 would break the nearest support and open the 5.26 zone."
+      bull: "A daily close back above 6.30 would clear the nearest resistance; the next charted level above it is 6.60.",
+      bear: "A close below 5.93 would break the nearest support; the next charted level below it is 5.26."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -156,8 +156,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day",
       summary: "The price closed 25.40 below a falling 20-day (25.98), a falling 50-day (27.39) and a flat 200-day (25.42). Momentum is soft: RSI(14) is ~40 and the daily ATR near 0.67 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.41 / \u22120.42 / +0.01). Over the last year it has ranged 20.45\u201330.30; the last close sits 16% below that high and 24% above that low.",
-      bull: "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
-      bear: "A close below 24.90 would break the nearest support and open the 22.59 zone."
+      bull: "A daily close back above 26.29 would clear the nearest resistance; the next charted level above it is 27.98.",
+      bear: "A close below 24.90 would break the nearest support; the next charted level below it is 22.59."
     },
     asof: {
       mc:   { data:"2026-08-18", computed:"2026-08-19" },
@@ -196,8 +196,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 104.90 below a falling 20-day (105.87), a falling 50-day (114.23) and a falling 200-day (122.45). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 3.06 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.69 / \u22122.30 / +0.60). Over the last year it has ranged 99.60\u2013143.80; the last close sits 27% below that high and 5% above that low.",
-      bull: "A daily close back above 113.69 would clear the nearest resistance and open the 134.73 zone.",
-      bear: "A close below 99.82 would break the nearest support and open the 90.00 zone."
+      bull: "A daily close back above 113.69 would clear the nearest resistance; the next charted level above it is 134.73.",
+      bear: "A close below 99.82 would break the nearest support; the next charted level below it is 90.00."
     },
     asof: {
       mc:   { data:"2026-08-18", computed:"2026-08-19" },
@@ -232,8 +232,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 2.40 below a falling 20-day (2.41), a falling 50-day (2.48) and a falling 200-day (2.54). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.03 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.03 / +0.00). Over the last year it has ranged 2.38\u20132.68; the last close sits 10% below that high and 1% above that low.",
-      bull: "A daily close back above 2.43 would clear the nearest resistance and open the 2.61 zone.",
-      bear: "A close below 2.38 would break the nearest support and open the 2.20 zone."
+      bull: "A daily close back above 2.43 would clear the nearest resistance; the next charted level above it is 2.61.",
+      bear: "A close below 2.38 would break the nearest support; the next charted level below it is 2.20."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -267,8 +267,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 12.30 above a rising 20-day (12.18), a rising 50-day (11.92) and a rising 200-day (10.60). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 0.27 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.07 / +0.10 / \u22120.03). Over the last year it has ranged 9.05\u201312.80; the last close sits 4% below that high and 36% above that low.",
-      bull: "A daily close back above 12.52 would clear the nearest resistance and open the 13.00 zone.",
-      bear: "A close below 11.85 would break the nearest support and open the 9.85 zone."
+      bull: "A daily close back above 12.52 would clear the nearest resistance; the next charted level above it is 13.00.",
+      bear: "A close below 11.85 would break the nearest support; the next charted level below it is 9.85."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -301,9 +301,9 @@ const TICKERS = {
     levels: { res:[1.56, 1.61, 1.68], sup:[1.47, 1.40, 1.30] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh golden-cross",
-      summary: "The price closed 1.50 below a falling 20-day (1.60), a flat 50-day (1.62) and a flat 200-day (1.62). Momentum is very weak: RSI(14) is ~29 and the daily ATR near 0.03 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). The 50-day crossed above the 200-day 16 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 1.48\u20131.96; the last close sits 23% below that high and 1% above that low.",
-      bull: "A daily close back above 1.56 would clear the nearest resistance and open the 1.68 zone.",
-      bear: "A close below 1.47 would break the nearest support and open the 1.30 zone."
+      summary: "The price closed 1.50 below a falling 20-day (1.60), a flat 50-day (1.62) and a flat 200-day (1.62). Momentum is very weak: RSI(14) is ~29 and the daily ATR near 0.03 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). The 50-day crossed above the 200-day 16 sessions ago. Over the last year it has ranged 1.48\u20131.96; the last close sits 23% below that high and 1% above that low.",
+      bull: "A daily close back above 1.56 would clear the nearest resistance; the next charted level above it is 1.68.",
+      bear: "A close below 1.47 would break the nearest support; the next charted level below it is 1.30."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -337,8 +337,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 5.24 above a falling 20-day (5.09), a rising 50-day (5.20) and a rising 200-day (4.82). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.15 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.06 / +0.04). Over the last year it has ranged 3.63\u20136.03; the last close sits 13% below that high and 44% above that low.",
-      bull: "A daily close back above 5.40 would clear the nearest resistance and open the 6.03 zone.",
-      bear: "A close below 3.80 would break the nearest support and open the 3.60 zone."
+      bull: "A daily close back above 5.40 would clear the nearest resistance; the next charted level above it is 6.03.",
+      bear: "A close below 3.80 would break the nearest support; the next charted level below it is 3.60."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -371,9 +371,9 @@ const TICKERS = {
     levels: { res:[2.59, 2.69, 2.74], sup:[2.45, 2.34, 2.25] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
-      summary: "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
-      bull: "A daily close back above 2.59 would clear the nearest resistance and open the 2.74 zone.",
-      bear: "A close below 2.45 would break the nearest support and open the 2.25 zone."
+      summary: "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
+      bull: "A daily close back above 2.59 would clear the nearest resistance; the next charted level above it is 2.74.",
+      bear: "A close below 2.45 would break the nearest support; the next charted level below it is 2.25."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -407,8 +407,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 2.23 above a rising 20-day (2.11), a rising 50-day (2.05) and a rising 200-day (1.87). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.06 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.05 / +0.04 / +0.01). Over the last year it has ranged 1.55\u20132.28; the last close sits 2% below that high and 44% above that low.",
-      bull: "A daily close back above 2.36 would clear the nearest resistance and open the 2.68 zone.",
-      bear: "A close below 2.16 would break the nearest support and open the 1.82 zone."
+      bull: "A daily close back above 2.36 would clear the nearest resistance; the next charted level above it is 2.68.",
+      bear: "A close below 2.16 would break the nearest support; the next charted level below it is 1.82."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -443,8 +443,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 2.83 below a falling 20-day (2.88), a falling 50-day (2.95) and a falling 200-day (3.21). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.05 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.04 / \u22120.04 / +0.00). Over the last year it has ranged 2.76\u20133.82; the last close sits 26% below that high and 3% above that low.",
-      bull: "A daily close back above 2.88 would clear the nearest resistance and open the 3.57 zone.",
-      bear: "A close below 2.76 would break the nearest support and open the 2.40 zone."
+      bull: "A daily close back above 2.88 would clear the nearest resistance; the next charted level above it is 3.57.",
+      bear: "A close below 2.76 would break the nearest support; the next charted level below it is 2.40."
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
@@ -483,8 +483,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 130.05 above a rising 20-day (101.58), a rising 50-day (92.49) and a rising 200-day (82.58). Momentum is very strong: RSI(14) is ~71 and the daily ATR near 7.84 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+11.68 / +7.24 / +4.44). Over the last year it has ranged 43.60\u2013156.00; the last close sits 17% below that high and 198% above that low.",
-      bull: "A daily close back above 140.00 would clear the nearest resistance and open the 156.00 zone.",
-      bear: "A close below 92.40 would break the nearest support and open the 85.40 zone."
+      bull: "A daily close back above 140.00 would clear the nearest resistance; the next charted level above it is 156.00.",
+      bear: "A close below 92.40 would break the nearest support; the next charted level below it is 85.40."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
@@ -522,8 +522,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 13.98 above a rising 20-day (13.34), a rising 50-day (13.44) and a rising 200-day (12.12). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.44 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.23 / +0.09 / +0.14). Over the last year it has ranged 9.50\u201315.37; the last close sits 9% below that high and 47% above that low.",
-      bull: "A daily close back above 14.98 would clear the nearest resistance and open the 16.00 zone.",
-      bear: "A close below 12.49 would break the nearest support and open the 9.83 zone."
+      bull: "A daily close back above 14.98 would clear the nearest resistance; the next charted level above it is 16.00.",
+      bear: "A close below 12.49 would break the nearest support; the next charted level below it is 9.83."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
@@ -555,8 +555,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 79.00 above a rising 20-day (74.76), a rising 50-day (67.92) and a rising 200-day (63.51). Momentum is neutral: RSI(14) is ~60 and the daily ATR near 3.66 (~4.6%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+4.15 / +4.28 / \u22120.13). Over the last year it has ranged 40.92\u201387.99; the last close sits 10% below that high and 93% above that low.",
-      bull: "A daily close back above 80.00 would clear the nearest resistance and open the 87.99 zone.",
-      bear: "A close below 67.47 would break the nearest support and open the 60.24 zone."
+      bull: "A daily close back above 80.00 would clear the nearest resistance; the next charted level above it is 87.99.",
+      bear: "A close below 67.47 would break the nearest support; the next charted level below it is 60.24."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
@@ -590,8 +590,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 59.00 above a rising 20-day (56.27), a rising 50-day (56.25) and a rising 200-day (51.73). Momentum is firm: RSI(14) is ~65 and the daily ATR near 1.28 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.46 / +0.25 / +0.20). Over the last year it has ranged 35.01\u201360.40; the last close sits 2% below that high and 69% above that low.",
-      bull: "A daily close back above 60.34 would clear the nearest resistance and open the 63.00 zone.",
-      bear: "A close below 54.25 would break the nearest support and open the 48.10 zone."
+      bull: "A daily close back above 60.34 would clear the nearest resistance; the next charted level above it is 63.00.",
+      bear: "A close below 54.25 would break the nearest support; the next charted level below it is 48.10."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
@@ -626,8 +626,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 9.10 above a rising 20-day (8.51), a rising 50-day (8.19) and a rising 200-day (7.66). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.28 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.30 / +0.21 / +0.09). Over the last year it has ranged 6.66\u20139.85; the last close sits 8% below that high and 37% above that low.",
-      bull: "A daily close back above 9.20 would clear the nearest resistance and open the 9.86 zone.",
-      bear: "A close below 7.84 would break the nearest support and open the 6.81 zone."
+      bull: "A daily close back above 9.20 would clear the nearest resistance; the next charted level above it is 9.86.",
+      bear: "A close below 7.84 would break the nearest support; the next charted level below it is 6.81."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
@@ -660,8 +660,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 105.20 above a rising 20-day (93.77), a rising 50-day (90.04) and a rising 200-day (81.88). Momentum is very strong: RSI(14) is ~72 and the daily ATR near 3.50 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+3.59 / +2.35 / +1.24). Over the last year it has ranged 62.03\u2013114.50; the last close sits 8% below that high and 70% above that low.",
-      bull: "A daily close back above 110.00 would clear the nearest resistance and open the 120.00 zone.",
-      bear: "A close below 90.98 would break the nearest support and open the 76.36 zone."
+      bull: "A daily close back above 110.00 would clear the nearest resistance; the next charted level above it is 120.00.",
+      bear: "A close below 90.98 would break the nearest support; the next charted level below it is 76.36."
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
@@ -694,8 +694,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 2.19 above a rising 20-day (2.18) and a flat 50-day (2.14), but below a falling 200-day (2.40). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.05 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.01 / \u22120.00). Over the last year it has ranged 1.90\u20133.36; the last close sits 35% below that high and 15% above that low.",
-      bull: "A daily close back above 2.31 would clear the nearest resistance and open the 2.67 zone.",
-      bear: "A close below 2.15 would break the nearest support and open the 1.90 zone."
+      bull: "A daily close back above 2.31 would clear the nearest resistance; the next charted level above it is 2.67.",
+      bear: "A close below 2.15 would break the nearest support; the next charted level below it is 1.90."
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
@@ -728,8 +728,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 17.71 above a rising 20-day (17.43), a rising 50-day (16.70) and a rising 200-day (13.87). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 0.58 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.22 / +0.27 / \u22120.06). Over the last year it has ranged 8.07\u201319.72; the last close sits 10% below that high and 119% above that low.",
-      bull: "A daily close back above 17.90 would clear the nearest resistance and open the 19.72 zone.",
-      bear: "A close below 17.29 would break the nearest support and open the 12.10 zone."
+      bull: "A daily close back above 17.90 would clear the nearest resistance; the next charted level above it is 19.72.",
+      bear: "A close below 17.29 would break the nearest support; the next charted level below it is 12.10."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -761,8 +761,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 6.35 above a rising 20-day (6.06), a rising 50-day (5.43) and a rising 200-day (4.28). Momentum is neutral: RSI(14) is ~59 and the daily ATR near 0.33 (~5.2%) points to a volatile tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.28 / +0.32 / \u22120.03). Over the last year it has ranged 3.02\u20137.39; the last close sits 14% below that high and 110% above that low.",
-      bull: "A daily close back above 6.50 would clear the nearest resistance and open the 7.39 zone.",
-      bear: "A close below 5.38 would break the nearest support and open the 4.93 zone."
+      bull: "A daily close back above 6.50 would clear the nearest resistance; the next charted level above it is 7.39.",
+      bear: "A close below 5.38 would break the nearest support; the next charted level below it is 4.93."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -795,8 +795,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day",
       summary: "The price closed 2.70 below a rising 20-day (2.74), a rising 50-day (2.75) and a flat 200-day (2.79). Momentum is neutral: RSI(14) is ~45 and the daily ATR near 0.05 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / \u22120.00 / \u22120.01). Over the last year it has ranged 2.47\u20133.15; the last close sits 14% below that high and 9% above that low.",
-      bull: "A daily close back above 2.73 would clear the nearest resistance and open the 3.14 zone.",
-      bear: "A close below 2.61 would break the nearest support and open the 2.46 zone."
+      bull: "A daily close back above 2.73 would clear the nearest resistance; the next charted level above it is 3.14.",
+      bear: "A close below 2.61 would break the nearest support; the next charted level below it is 2.46."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -829,8 +829,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 0.94 below a rising 20-day (0.97), a flat 50-day (0.96) and a falling 200-day (1.04). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.01 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.00 / +0.00 / \u22120.00). Over the last year it has ranged 0.91\u20131.23; the last close sits 23% below that high and 4% above that low.",
-      bull: "A daily close back above 0.96 would clear the nearest resistance and open the 1.21 zone.",
-      bear: "A close below 0.93 would break the nearest support and open the 0.89 zone."
+      bull: "A daily close back above 0.96 would clear the nearest resistance; the next charted level above it is 1.21.",
+      bear: "A close below 0.93 would break the nearest support; the next charted level below it is 0.89."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-31" },
@@ -864,8 +864,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a falling 200-day",
       summary: "The price closed 1.25 above a rising 20-day (1.25), a rising 50-day (1.17) and a falling 200-day (1.21). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.04 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.03 / +0.03 / \u22120.00). Over the last year it has ranged 1.00\u20131.51; the last close sits 17% below that high and 25% above that low.",
-      bull: "A daily close back above 1.29 would clear the nearest resistance and open the 1.43 zone.",
-      bear: "A close below 1.19 would break the nearest support and open the 1.03 zone."
+      bull: "A daily close back above 1.29 would clear the nearest resistance; the next charted level above it is 1.43.",
+      bear: "A close below 1.19 would break the nearest support; the next charted level below it is 1.03."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -898,8 +898,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 5.37 below a falling 50-day (5.53) and a falling 200-day (5.86), but above a falling 20-day (5.30). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.11 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.08 / +0.02). Over the last year it has ranged 4.96\u20136.87; the last close sits 22% below that high and 8% above that low.",
-      bull: "A daily close back above 5.55 would clear the nearest resistance and open the 6.01 zone.",
-      bear: "A close below 5.21 would break the nearest support and open the 4.80 zone."
+      bull: "A daily close back above 5.55 would clear the nearest resistance; the next charted level above it is 6.01.",
+      bear: "A close below 5.21 would break the nearest support; the next charted level below it is 4.80."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-31" },
@@ -932,8 +932,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 7.40 below a flat 20-day (7.47), a rising 50-day (7.54) and a falling 200-day (8.27). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 0.13 (~1.7%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / \u22120.01 / \u22120.01). Over the last year it has ranged 6.97\u201310.20; the last close sits 27% below that high and 6% above that low.",
-      bull: "A daily close back above 7.70 would clear the nearest resistance and open the 9.94 zone.",
-      bear: "A close below 7.21 would break the nearest support and open the 6.08 zone."
+      bull: "A daily close back above 7.70 would clear the nearest resistance; the next charted level above it is 9.94.",
+      bear: "A close below 7.21 would break the nearest support; the next charted level below it is 6.08."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -966,8 +966,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 2.06 below a falling 20-day (2.13), a flat 50-day (2.13) and a falling 200-day (2.36). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.05 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 1.63\u20133.42; the last close sits 40% below that high and 26% above that low.",
-      bull: "A daily close back above 2.09 would clear the nearest resistance and open the 2.26 zone.",
-      bear: "A close below 1.95 would break the nearest support and open the 1.87 zone."
+      bull: "A daily close back above 2.09 would clear the nearest resistance; the next charted level above it is 2.26.",
+      bear: "A close below 1.95 would break the nearest support; the next charted level below it is 1.87."
     },
     asof: {
       mc:   { data:"2026-07-24", computed:"2026-08-25" },
@@ -1000,8 +1000,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 21.56 above a rising 20-day (20.79), a rising 50-day (20.18) and a rising 200-day (19.37). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.42 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.45 / +0.37 / +0.08). Over the last year it has ranged 17.40\u201322.00; the last close sits 2% below that high and 24% above that low.",
-      bull: "A daily close back above 22.00 would clear the nearest resistance and open the 24.00 zone.",
-      bear: "A close below 20.98 would break the nearest support and open the 17.59 zone."
+      bull: "A daily close back above 22.00 would clear the nearest resistance; the next charted level above it is 24.00.",
+      bear: "A close below 20.98 would break the nearest support; the next charted level below it is 17.59."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -1032,9 +1032,9 @@ const TICKERS = {
     levels: { res:[15.77, 16, 16.56], sup:[15.07, 14.08, 13.42] },
     tech: {
       trend: "Consolidating below the near-term moving averages, above a flat 200-day; fresh golden-cross",
-      summary: "The price closed 15.32 above a rising 50-day (14.95) and a flat 200-day (14.33), but below a rising 20-day (15.35). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 0.31 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.21 / +0.26 / \u22120.05). The 50-day crossed above the 200-day 15 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 11.58\u201316.54; the last close sits 7% below that high and 32% above that low.",
-      bull: "A daily close back above 15.77 would clear the nearest resistance and open the 16.56 zone.",
-      bear: "A close below 15.07 would break the nearest support and open the 13.42 zone."
+      summary: "The price closed 15.32 above a rising 50-day (14.95) and a flat 200-day (14.33), but below a rising 20-day (15.35). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 0.31 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.21 / +0.26 / \u22120.05). The 50-day crossed above the 200-day 15 sessions ago. Over the last year it has ranged 11.58\u201316.54; the last close sits 7% below that high and 32% above that low.",
+      bull: "A daily close back above 15.77 would clear the nearest resistance; the next charted level above it is 16.56.",
+      bear: "A close below 15.07 would break the nearest support; the next charted level below it is 13.42."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-21" },
@@ -1066,8 +1066,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 666.00 below a rising 50-day (685.68) and a falling 200-day (715.77), but above a falling 20-day (663.67). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 16.28 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22125.32 / \u22127.43 / +2.11). Over the last year it has ranged 504.50\u2013972.00; the last close sits 31% below that high and 32% above that low.",
-      bull: "A daily close back above 676.22 would clear the nearest resistance and open the 883.07 zone.",
-      bear: "A close below 659.50 would break the nearest support and open the 562.50 zone."
+      bull: "A daily close back above 676.22 would clear the nearest resistance; the next charted level above it is 883.07.",
+      bear: "A close below 659.50 would break the nearest support; the next charted level below it is 562.50."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -1099,8 +1099,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 7.47 below a rising 20-day (7.62), a rising 50-day (7.77) and a falling 200-day (8.36). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.19 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.03 / \u22120.01 / \u22120.01). Over the last year it has ranged 6.75\u201311.84; the last close sits 37% below that high and 11% above that low.",
-      bull: "A daily close back above 8.30 would clear the nearest resistance and open the 9.03 zone.",
-      bear: "A close below 7.40 would break the nearest support and open the 6.84 zone."
+      bull: "A daily close back above 8.30 would clear the nearest resistance; the next charted level above it is 9.03.",
+      bear: "A close below 7.40 would break the nearest support; the next charted level below it is 6.84."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -1132,8 +1132,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 68.50 below a falling 20-day (70.19), a falling 50-day (74.02) and a falling 200-day (82.87). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.98 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.74 / \u22121.84 / +0.10). Over the last year it has ranged 67.50\u201393.50; the last close sits 27% below that high and 1% above that low.",
-      bull: "A daily close back above 79.36 would clear the nearest resistance and open the 86.37 zone.",
-      bear: "A close below 67.50 would break the nearest support and open the 64.00 zone."
+      bull: "A daily close back above 79.36 would clear the nearest resistance; the next charted level above it is 86.37.",
+      bear: "A close below 67.50 would break the nearest support; the next charted level below it is 64.00."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -1165,8 +1165,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 23.80 below a falling 20-day (24.16) and a flat 50-day (24.31), but above a rising 200-day (22.88). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.32 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.19 / \u22120.13 / \u22120.06). Over the last year it has ranged 19.95\u201325.53; the last close sits 7% below that high and 19% above that low.",
-      bull: "A daily close back above 24.36 would clear the nearest resistance and open the 26.04 zone.",
-      bear: "A close below 23.26 would break the nearest support and open the 20.19 zone."
+      bull: "A daily close back above 24.36 would clear the nearest resistance; the next charted level above it is 26.04.",
+      bear: "A close below 23.26 would break the nearest support; the next charted level below it is 20.19."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -1198,8 +1198,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 29.51 below a falling 20-day (30.80) and a rising 50-day (30.83), but above a rising 200-day (28.04). Momentum is neutral: RSI(14) is ~40 and the daily ATR near 1.05 (~3.6%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.24 / +0.03 / \u22120.27). Over the last year it has ranged 19.10\u201334.20; the last close sits 14% below that high and 55% above that low.",
-      bull: "A daily close back above 30.12 would clear the nearest resistance and open the 33.16 zone.",
-      bear: "A close below 28.64 would break the nearest support and open the 23.99 zone."
+      bull: "A daily close back above 30.12 would clear the nearest resistance; the next charted level above it is 33.16.",
+      bear: "A close below 28.64 would break the nearest support; the next charted level below it is 23.99."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1232,8 +1232,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 12.76 below a falling 20-day (13.17), a falling 50-day (13.51) and a falling 200-day (14.98). Momentum is soft: RSI(14) is ~37 and the daily ATR near 0.28 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.16 / \u22120.15 / \u22120.01). Over the last year it has ranged 12.05\u201320.70; the last close sits 38% below that high and 6% above that low.",
-      bull: "A daily close back above 12.97 would clear the nearest resistance and open the 15.41 zone.",
-      bear: "A close below 12.02 would break the nearest support and open the 11.00 zone."
+      bull: "A daily close back above 12.97 would clear the nearest resistance; the next charted level above it is 15.41.",
+      bear: "A close below 12.02 would break the nearest support; the next charted level below it is 11.00."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
@@ -1265,8 +1265,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 13.22 above a rising 20-day (13.03), a rising 50-day (12.26) and a rising 200-day (11.45). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 0.71 (~5.4%) points to a volatile tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.34 / +0.42 / \u22120.08). Over the last year it has ranged 9.63\u201316.93; the last close sits 22% below that high and 37% above that low.",
-      bull: "A daily close back above 13.72 would clear the nearest resistance and open the 16.93 zone.",
-      bear: "A close below 12.21 would break the nearest support and open the 11.21 zone."
+      bull: "A daily close back above 13.72 would clear the nearest resistance; the next charted level above it is 16.93.",
+      bear: "A close below 12.21 would break the nearest support; the next charted level below it is 11.21."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1296,8 +1296,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 1272 below a falling 20-day (1297), a falling 50-day (1308) and a falling 200-day (1411). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 23 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22129 / \u22127 / \u22122). Over the last year it has ranged 1250\u20131612; the last close sits 21% below that high and 2% above that low.",
-      bull: "A daily close back above 1289 would clear the nearest resistance and open the 1354 zone.",
-      bear: "A close below 1250 would break the nearest support and open the 1156 zone."
+      bull: "A daily close back above 1289 would clear the nearest resistance; the next charted level above it is 1354.",
+      bear: "A close below 1250 would break the nearest support; the next charted level below it is 1156."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-29" },
@@ -1329,8 +1329,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 196.51 below a rising 20-day (203.57) and a flat 50-day (208.62), but above a rising 200-day (192.97). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 7.68 (~3.9%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.03 / +0.05 / \u22120.09). Over the last year it has ranged 164.07\u2013236.54; the last close sits 17% below that high and 20% above that low.",
-      bull: "A daily close back above 198.62 would clear the nearest resistance and open the 214.60 zone.",
-      bear: "A close below 189.13 would break the nearest support and open the 169.92 zone."
+      bull: "A daily close back above 198.62 would clear the nearest resistance; the next charted level above it is 214.60.",
+      bear: "A close below 189.13 would break the nearest support; the next charted level below it is 169.92."
     },
     asof: {
       mc:   { data:"2026-07-27", computed:"2026-07-29" },
@@ -1362,8 +1362,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 9.12 above a rising 20-day (8.59), a rising 50-day (7.62) and a rising 200-day (6.62). Momentum is firm: RSI(14) is ~65 and the daily ATR near 0.37 (~4.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.42 / +0.42 / +0.01). Over the last year it has ranged 4.63\u20139.85; the last close sits 7% below that high and 97% above that low.",
-      bull: "A daily close back above 9.20 would clear the nearest resistance and open the 9.85 zone.",
-      bear: "A close below 7.11 would break the nearest support and open the 5.95 zone."
+      bull: "A daily close back above 9.20 would clear the nearest resistance; the next charted level above it is 9.85.",
+      bear: "A close below 7.11 would break the nearest support; the next charted level below it is 5.95."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1394,8 +1394,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 10.70 below a falling 20-day (10.96), a falling 50-day (11.52) and a falling 200-day (11.96). Momentum is soft: RSI(14) is ~35 and the daily ATR near 0.19 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.18 / \u22120.20 / +0.02). Over the last year it has ranged 10.46\u201313.48; the last close sits 21% below that high and 2% above that low.",
-      bull: "A daily close back above 11.37 would clear the nearest resistance and open the 12.76 zone.",
-      bear: "A close below 10.46 would break the nearest support and open the 9.00 zone."
+      bull: "A daily close back above 11.37 would clear the nearest resistance; the next charted level above it is 12.76.",
+      bear: "A close below 10.46 would break the nearest support; the next charted level below it is 9.00."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-29" },
@@ -1427,8 +1427,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 7.07 below a falling 20-day (7.32) and a falling 50-day (7.49), but above a rising 200-day (5.41). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.22 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.14 / \u22120.11 / \u22120.04). Over the last year it has ranged 2.58\u20138.49; the last close sits 17% below that high and 174% above that low.",
-      bull: "A daily close back above 7.30 would clear the nearest resistance and open the 7.81 zone.",
-      bear: "A close below 6.94 would break the nearest support and open the 5.03 zone."
+      bull: "A daily close back above 7.30 would clear the nearest resistance; the next charted level above it is 7.81.",
+      bear: "A close below 6.94 would break the nearest support; the next charted level below it is 5.03."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1460,8 +1460,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 24.65 above a rising 20-day (23.85), a rising 50-day (22.55) and a rising 200-day (20.17). Momentum is neutral: RSI(14) is ~60 and the daily ATR near 0.83 (~3.4%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.58 / +0.58 / +0.00). Over the last year it has ranged 11.90\u201325.40; the last close sits 3% below that high and 107% above that low.",
-      bull: "A daily close back above 25.00 would clear the nearest resistance and open the 26.00 zone.",
-      bear: "A close below 23.68 would break the nearest support and open the 20.08 zone."
+      bull: "A daily close back above 25.00 would clear the nearest resistance; the next charted level above it is 26.00.",
+      bear: "A close below 23.68 would break the nearest support; the next charted level below it is 20.08."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1493,8 +1493,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 26.88 above a rising 20-day (25.86), a rising 50-day (24.86) and a rising 200-day (22.20). Momentum is firm: RSI(14) is ~62 and the daily ATR near 0.77 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.79 / +0.78 / +0.01). Over the last year it has ranged 16.22\u201328.80; the last close sits 7% below that high and 66% above that low.",
-      bull: "A daily close back above 28.00 would clear the nearest resistance and open the 30.00 zone.",
-      bear: "A close below 25.59 would break the nearest support and open the 22.79 zone."
+      bull: "A daily close back above 28.00 would clear the nearest resistance; the next charted level above it is 30.00.",
+      bear: "A close below 25.59 would break the nearest support; the next charted level below it is 22.79."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1526,8 +1526,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 330.00 above a rising 20-day (315.21), a rising 50-day (303.71) and a rising 200-day (269.17). Momentum is firm: RSI(14) is ~60 and the daily ATR near 12.63 (~3.8%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+9.70 / +8.03 / +1.66). Over the last year it has ranged 151.00\u2013359.85; the last close sits 8% below that high and 119% above that low.",
-      bull: "A daily close back above 340.00 would clear the nearest resistance and open the 359.85 zone.",
-      bear: "A close below 321.00 would break the nearest support and open the 291.59 zone."
+      bull: "A daily close back above 340.00 would clear the nearest resistance; the next charted level above it is 359.85.",
+      bear: "A close below 321.00 would break the nearest support; the next charted level below it is 291.59."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1559,8 +1559,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 33.20 above a rising 20-day (30.75), a rising 50-day (29.03) and a rising 200-day (27.59). Momentum is firm: RSI(14) is ~66 and the daily ATR near 1.16 (~3.5%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+1.31 / +1.18 / +0.14). Over the last year it has ranged 15.21\u201334.94; the last close sits 5% below that high and 118% above that low.",
-      bull: "A daily close back above 34.00 would clear the nearest resistance and open the 36.00 zone.",
-      bear: "A close below 29.18 would break the nearest support and open the 24.94 zone."
+      bull: "A daily close back above 34.00 would clear the nearest resistance; the next charted level above it is 36.00.",
+      bear: "A close below 29.18 would break the nearest support; the next charted level below it is 24.94."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1591,9 +1591,9 @@ const TICKERS = {
     levels: { res:[3.18, 3.34, 3.65], sup:[2.94, 2.38, 2.28] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
-      summary: "The price closed 3.01 below a flat 20-day (3.10), a flat 50-day (3.07) and a flat 200-day (3.08). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.06 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / +0.00 / \u22120.02). The 50-day crossed beneath the 200-day 17 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.65\u20133.66; the last close sits 18% below that high and 14% above that low.",
-      bull: "A daily close back above 3.18 would clear the nearest resistance and open the 3.65 zone.",
-      bear: "A close below 2.94 would break the nearest support and open the 2.28 zone."
+      summary: "The price closed 3.01 below a flat 20-day (3.10), a flat 50-day (3.07) and a flat 200-day (3.08). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.06 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / +0.00 / \u22120.02). The 50-day crossed beneath the 200-day 17 sessions ago. Over the last year it has ranged 2.65\u20133.66; the last close sits 18% below that high and 14% above that low.",
+      bull: "A daily close back above 3.18 would clear the nearest resistance; the next charted level above it is 3.65.",
+      bear: "A close below 2.94 would break the nearest support; the next charted level below it is 2.28."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
@@ -1625,8 +1625,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 118.49 above a rising 20-day (111.15), a rising 50-day (101.86) and a rising 200-day (84.76). Momentum is firm: RSI(14) is ~65 and the daily ATR near 4.35 (~3.7%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+4.40 / +4.12 / +0.28). Over the last year it has ranged 43.80\u2013120.00; the last close sits 1% below that high and 171% above that low.",
-      bull: "A daily close back above 120.00 would clear the nearest resistance and open the 140.00 zone.",
-      bear: "A close below 101.68 would break the nearest support and open the 89.30 zone."
+      bull: "A daily close back above 120.00 would clear the nearest resistance; the next charted level above it is 140.00.",
+      bear: "A close below 101.68 would break the nearest support; the next charted level below it is 89.30."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1658,8 +1658,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 19.20 above a flat 20-day (19.10), a falling 50-day (18.96) and a rising 200-day (17.88). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.38 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.03 / +0.02 / +0.01). Over the last year it has ranged 12.80\u201321.66; the last close sits 11% below that high and 50% above that low.",
-      bull: "A daily close back above 19.61 would clear the nearest resistance and open the 21.62 zone.",
-      bear: "A close below 19.02 would break the nearest support and open the 13.80 zone."
+      bull: "A daily close back above 19.61 would clear the nearest resistance; the next charted level above it is 21.62.",
+      bear: "A close below 19.02 would break the nearest support; the next charted level below it is 13.80."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1691,8 +1691,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 76.59 above a rising 20-day (74.70), a falling 50-day (72.52) and a rising 200-day (68.40). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 1.86 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+1.09 / +0.92 / +0.18). Over the last year it has ranged 45.18\u201395.00; the last close sits 19% below that high and 70% above that low.",
-      bull: "A daily close back above 78.00 would clear the nearest resistance and open the 91.65 zone.",
-      bear: "A close below 75.59 would break the nearest support and open the 51.34 zone."
+      bull: "A daily close back above 78.00 would clear the nearest resistance; the next charted level above it is 91.65.",
+      bear: "A close below 75.59 would break the nearest support; the next charted level below it is 51.34."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
@@ -1724,8 +1724,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 54.40 above a rising 20-day (53.46), a rising 50-day (49.40) and a rising 200-day (39.66). Momentum is firm: RSI(14) is ~62 and the daily ATR near 1.30 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+1.49 / +1.66 / \u22120.17). Over the last year it has ranged 20.01\u201355.65; the last close sits 2% below that high and 172% above that low.",
-      bull: "A daily close back above 55.65 would clear the nearest resistance and open the 58.00 zone.",
-      bear: "A close below 50.04 would break the nearest support and open the 44.06 zone."
+      bull: "A daily close back above 55.65 would clear the nearest resistance; the next charted level above it is 58.00.",
+      bear: "A close below 50.04 would break the nearest support; the next charted level below it is 44.06."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
@@ -1756,9 +1756,9 @@ const TICKERS = {
     levels: { res:[23.78, 24.72, 25.74], sup:[21.99, 21.45, 20.20] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh golden-cross",
-      summary: "The price closed 23.34 above a rising 20-day (22.78), a rising 50-day (21.89) and a flat 200-day (21.83). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.49 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.49 / +0.52 / \u22120.03). The 50-day crossed above the 200-day 1 session ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 18.28\u201327.96; the last close sits 17% below that high and 28% above that low.",
-      bull: "A daily close back above 23.78 would clear the nearest resistance and open the 25.74 zone.",
-      bear: "A close below 21.99 would break the nearest support and open the 20.20 zone."
+      summary: "The price closed 23.34 above a rising 20-day (22.78), a rising 50-day (21.89) and a flat 200-day (21.83). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.49 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.49 / +0.52 / \u22120.03). The 50-day crossed above the 200-day 1 session ago. Over the last year it has ranged 18.28\u201327.96; the last close sits 17% below that high and 28% above that low.",
+      bull: "A daily close back above 23.78 would clear the nearest resistance; the next charted level above it is 25.74.",
+      bear: "A close below 21.99 would break the nearest support; the next charted level below it is 20.20."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -1789,9 +1789,9 @@ const TICKERS = {
     levels: { res:[27.58, 30.04, 31.63], sup:[26, 25.29, 24.61] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
-      summary: "The price closed 26.32 below a flat 20-day (26.78), a flat 50-day (26.82) and a falling 200-day (27.06). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.49 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.15 / \u22120.05 / \u22120.09). The 50-day crossed beneath the 200-day 21 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 23.90\u201331.50; the last close sits 16% below that high and 10% above that low.",
-      bull: "A daily close back above 27.58 would clear the nearest resistance and open the 31.63 zone.",
-      bear: "A close below 26.00 would break the nearest support and open the 24.61 zone."
+      summary: "The price closed 26.32 below a flat 20-day (26.78), a flat 50-day (26.82) and a falling 200-day (27.06). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.49 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.15 / \u22120.05 / \u22120.09). The 50-day crossed beneath the 200-day 21 sessions ago. Over the last year it has ranged 23.90\u201331.50; the last close sits 16% below that high and 10% above that low.",
+      bull: "A daily close back above 27.58 would clear the nearest resistance; the next charted level above it is 31.63.",
+      bear: "A close below 26.00 would break the nearest support; the next charted level below it is 24.61."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1822,9 +1822,9 @@ const TICKERS = {
     levels: { res:[26.35, 26.80, 27.44], sup:[23.45, 22.77, 21.60] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
-      summary: "The price closed 26.00 above a rising 20-day (25.04), a rising 50-day (23.76) and a rising 200-day (23.15). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.76 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.69 / +0.74 / \u22120.05). The 50-day crossed above the 200-day 13 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 20.80\u201327.41; the last close sits 5% below that high and 25% above that low.",
-      bull: "A daily close back above 26.35 would clear the nearest resistance and open the 27.44 zone.",
-      bear: "A close below 23.45 would break the nearest support and open the 21.60 zone."
+      summary: "The price closed 26.00 above a rising 20-day (25.04), a rising 50-day (23.76) and a rising 200-day (23.15). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.76 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.69 / +0.74 / \u22120.05). The 50-day crossed above the 200-day 13 sessions ago. Over the last year it has ranged 20.80\u201327.41; the last close sits 5% below that high and 25% above that low.",
+      bull: "A daily close back above 26.35 would clear the nearest resistance; the next charted level above it is 27.44.",
+      bear: "A close below 23.45 would break the nearest support; the next charted level below it is 21.60."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1856,8 +1856,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 34.66 above a rising 20-day (34.62), a rising 50-day (31.61) and a rising 200-day (27.29). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 1.78 (~5.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.53 / +0.79 / \u22120.26). Over the last year it has ranged 22.82\u201337.79; the last close sits 8% below that high and 52% above that low.",
-      bull: "A daily close back above 35.00 would clear the nearest resistance and open the 37.79 zone.",
-      bear: "A close below 31.52 would break the nearest support and open the 23.34 zone."
+      bull: "A daily close back above 35.00 would clear the nearest resistance; the next charted level above it is 37.79.",
+      bear: "A close below 31.52 would break the nearest support; the next charted level below it is 23.34."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1889,8 +1889,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 1.96 above a rising 50-day (1.91) and a rising 200-day (1.83), but below a rising 20-day (2.03). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 0.07 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.02 / +0.04 / \u22120.03). Over the last year it has ranged 1.45\u20132.21; the last close sits 11% below that high and 35% above that low.",
-      bull: "A daily close back above 1.99 would clear the nearest resistance and open the 2.21 zone.",
-      bear: "A close below 1.89 would break the nearest support and open the 1.68 zone."
+      bull: "A daily close back above 1.99 would clear the nearest resistance; the next charted level above it is 2.21.",
+      bear: "A close below 1.89 would break the nearest support; the next charted level below it is 1.68."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1922,8 +1922,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 15.20 above a rising 20-day (15.15), a rising 50-day (15.10) and a rising 200-day (10.95). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.42 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.12 / +0.14 / \u22120.02). Over the last year it has ranged 6.99\u201316.43; the last close sits 7% below that high and 117% above that low.",
-      bull: "A daily close back above 15.38 would clear the nearest resistance and open the 16.08 zone.",
-      bear: "A close below 14.99 would break the nearest support and open the 13.01 zone."
+      bull: "A daily close back above 15.38 would clear the nearest resistance; the next charted level above it is 16.08.",
+      bear: "A close below 14.99 would break the nearest support; the next charted level below it is 13.01."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1955,8 +1955,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 97.80 above a flat 50-day (97.45) and a rising 200-day (86.12), but below a falling 20-day (98.17). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 1.97 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.18 / +0.01 / \u22120.19). Over the last year it has ranged 52.25\u2013103.87; the last close sits 6% below that high and 87% above that low.",
-      bull: "A daily close back above 100.12 would clear the nearest resistance and open the 103.87 zone.",
-      bear: "A close below 92.39 would break the nearest support and open the 74.19 zone."
+      bull: "A daily close back above 100.12 would clear the nearest resistance; the next charted level above it is 103.87.",
+      bear: "A close below 92.39 would break the nearest support; the next charted level below it is 74.19."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -1989,8 +1989,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 11.53 below a falling 20-day (11.72) and a rising 50-day (11.56), but above a rising 200-day (9.99). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 0.31 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.02 / +0.07 / \u22120.05). Over the last year it has ranged 7.92\u201312.70; the last close sits 9% below that high and 46% above that low.",
-      bull: "A daily close back above 12.00 would clear the nearest resistance and open the 12.65 zone.",
-      bear: "A close below 11.25 would break the nearest support and open the 8.92 zone."
+      bull: "A daily close back above 12.00 would clear the nearest resistance; the next charted level above it is 12.65.",
+      bear: "A close below 11.25 would break the nearest support; the next charted level below it is 8.92."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-08-25" },
@@ -2023,8 +2023,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 27.48 above a rising 20-day (26.67), a rising 50-day (23.76) and a rising 200-day (19.93). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.94 (~3.4%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+1.17 / +1.30 / \u22120.13). Over the last year it has ranged 14.60\u201328.70; the last close sits 4% below that high and 88% above that low.",
-      bull: "A daily close back above 28.00 would clear the nearest resistance and open the 30.00 zone.",
-      bear: "A close below 26.20 would break the nearest support and open the 18.79 zone."
+      bull: "A daily close back above 28.00 would clear the nearest resistance; the next charted level above it is 30.00.",
+      bear: "A close below 26.20 would break the nearest support; the next charted level below it is 18.79."
     },
     asof: {
       mc:   { data:"2026-07-27", computed:"2026-08-25" },
@@ -2057,8 +2057,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 40.16 above a rising 20-day (38.96), a rising 50-day (37.52) and a rising 200-day (28.36). Momentum is firm: RSI(14) is ~61 and the daily ATR near 1.01 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.70 / +0.72 / \u22120.02). Over the last year it has ranged 20.38\u201340.80; the last close sits 2% below that high and 97% above that low.",
-      bull: "A daily close back above 40.80 would clear the nearest resistance and open the 43.00 zone.",
-      bear: "A close below 39.66 would break the nearest support and open the 26.13 zone."
+      bull: "A daily close back above 40.80 would clear the nearest resistance; the next charted level above it is 43.00.",
+      bear: "A close below 39.66 would break the nearest support; the next charted level below it is 26.13."
     },
     asof: {
       mc:   { data:"2026-07-27", computed:"2026-08-25" },
@@ -2090,8 +2090,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 142.00 above a rising 20-day (134.94), a flat 50-day (134.21) and a rising 200-day (120.53). Momentum is firm: RSI(14) is ~64 and the daily ATR near 2.62 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+1.91 / +1.16 / +0.76). Over the last year it has ranged 79.59\u2013145.01; the last close sits 2% below that high and 78% above that low.",
-      bull: "A daily close back above 144.63 would clear the nearest resistance and open the 160.00 zone.",
-      bear: "A close below 137.30 would break the nearest support and open the 126.58 zone."
+      bull: "A daily close back above 144.63 would clear the nearest resistance; the next charted level above it is 160.00.",
+      bear: "A close below 137.30 would break the nearest support; the next charted level below it is 126.58."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-28" },
@@ -2121,8 +2121,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 220000 below a falling 20-day (275375) and a falling 50-day (302490), but above a rising 200-day (191062). Momentum is soft: RSI(14) is ~36 and the daily ATR near 23590 (~10.7%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221218188 / \u221214144 / \u22124043). Over the last year it has ranged 64400\u2013374500; the last close sits 41% below that high and 242% above that low.",
-      bull: "A daily close back above 223000 would clear the nearest resistance and open the 262000 zone.",
-      bear: "A close below 209000 would break the nearest support and open the 167145 zone."
+      bull: "A daily close back above 223000 would clear the nearest resistance; the next charted level above it is 262000.",
+      bear: "A close below 209000 would break the nearest support; the next charted level below it is 167145."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-28" },
@@ -2152,8 +2152,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 35650 below a falling 50-day (37871) and a falling 200-day (51486), but above a falling 20-day (35302). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 1901 (~5.3%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u2212445 / \u2212864 / +419). Over the last year it has ranged 32250\u201369700; the last close sits 49% below that high and 11% above that low.",
-      bull: "A daily close back above 36497 would clear the nearest resistance and open the 39979 zone.",
-      bear: "A close below 35302 would break the nearest support and open the 32384 zone."
+      bull: "A daily close back above 36497 would clear the nearest resistance; the next charted level above it is 39979.",
+      bear: "A close below 35302 would break the nearest support; the next charted level below it is 32384."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-28" },
@@ -2182,9 +2182,9 @@ const TICKERS = {
     levels: { res:[325382, 342170, 373453], sup:[310295, 305345, 287000] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
-      summary: "The price closed 314000 below a falling 20-day (333375), a falling 50-day (373930) and a falling 200-day (405920). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 22395 (~7.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221214592 / \u221216872 / +2280). The 50-day crossed beneath the 200-day 13 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 308000\u2013527000; the last close sits 40% below that high and 2% above that low.",
-      bull: "A daily close back above 325382 would clear the nearest resistance and open the 373453 zone.",
-      bear: "A close below 310295 would break the nearest support and open the 287000 zone."
+      summary: "The price closed 314000 below a falling 20-day (333375), a falling 50-day (373930) and a falling 200-day (405920). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 22395 (~7.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221214592 / \u221216872 / +2280). The 50-day crossed beneath the 200-day 13 sessions ago. Over the last year it has ranged 308000\u2013527000; the last close sits 40% below that high and 2% above that low.",
+      bull: "A daily close back above 325382 would clear the nearest resistance; the next charted level above it is 373453.",
+      bear: "A close below 310295 would break the nearest support; the next charted level below it is 287000."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-28" },
@@ -2216,8 +2216,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 349.30 below a falling 50-day (357.17) and a falling 200-day (359.31), but above a falling 20-day (333.53). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 7.97 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22124.33 / \u22127.20 / +2.86). Over the last year it has ranged 294.30\u2013447.79; the last close sits 22% below that high and 19% above that low.",
-      bull: "A daily close back above 366.82 would clear the nearest resistance and open the 415.94 zone.",
-      bear: "A close below 334.47 would break the nearest support and open the 294.30 zone."
+      bull: "A daily close back above 366.82 would clear the nearest resistance; the next charted level above it is 415.94.",
+      bear: "A close below 334.47 would break the nearest support; the next charted level below it is 294.30."
     },
     asof: {
       mc:   { data:"2026-08-03", computed:"2026-08-03" },
@@ -2249,8 +2249,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 1105 below a falling 50-day (1111) and a falling 200-day (1361), but above a flat 20-day (1066). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 33 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22127 / \u221212 / +5). Over the last year it has ranged 982\u20131728; the last close sits 36% below that high and 12% above that low.",
-      bull: "A daily close back above 1152 would clear the nearest resistance and open the 1431 zone.",
-      bear: "A close below 1089 would break the nearest support and open the 982 zone."
+      bull: "A daily close back above 1152 would clear the nearest resistance; the next charted level above it is 1431.",
+      bear: "A close below 1089 would break the nearest support; the next charted level below it is 982."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-29" },
@@ -2283,8 +2283,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 7.70 below a rising 50-day (7.95) and a falling 200-day (8.56), but above a falling 20-day (7.65). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.17 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.05 / \u22120.06 / +0.02). Over the last year it has ranged 7.03\u201311.80; the last close sits 35% below that high and 10% above that low.",
-      bull: "A daily close back above 7.78 would clear the nearest resistance and open the 9.22 zone.",
-      bear: "A close below 7.60 would break the nearest support and open the 7.08 zone."
+      bull: "A daily close back above 7.78 would clear the nearest resistance; the next charted level above it is 9.22.",
+      bear: "A close below 7.60 would break the nearest support; the next charted level below it is 7.08."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -2317,8 +2317,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 11.00 below a falling 20-day (11.20), a falling 50-day (11.54) and a falling 200-day (12.98). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 0.23 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.13 / \u22120.13 / \u22120.00). Over the last year it has ranged 10.15\u201317.25; the last close sits 36% below that high and 8% above that low.",
-      bull: "A daily close back above 12.75 would clear the nearest resistance and open the 13.81 zone.",
-      bear: "A close below 10.15 would break the nearest support and open the 8.71 zone."
+      bull: "A daily close back above 12.75 would clear the nearest resistance; the next charted level above it is 13.81.",
+      bear: "A close below 10.15 would break the nearest support; the next charted level below it is 8.71."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
@@ -2350,8 +2350,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 5.78 above a falling 20-day (5.34), a flat 50-day (5.25) and a rising 200-day (4.15). Momentum is firm: RSI(14) is ~68 and the daily ATR near 0.17 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.09 / +0.04 / +0.04). Over the last year it has ranged 2.20\u20135.90; the last close sits 2% below that high and 163% above that low.",
-      bull: "A daily close back above 5.90 would clear the nearest resistance and open the 6.10 zone.",
-      bear: "A close below 5.68 would break the nearest support and open the 4.93 zone."
+      bull: "A daily close back above 5.90 would clear the nearest resistance; the next charted level above it is 6.10.",
+      bear: "A close below 5.68 would break the nearest support; the next charted level below it is 4.93."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -2383,8 +2383,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 1.88 above a rising 20-day (1.66), a rising 50-day (1.51) and a rising 200-day (1.32). Momentum is very strong: RSI(14) is ~78 and the daily ATR near 0.06 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.11 / +0.09 / +0.02). Over the last year it has ranged 0.98\u20131.93; the last close sits 3% below that high and 92% above that low.",
-      bull: "A daily close back above 1.90 would clear the nearest resistance and open the 2.00 zone.",
-      bear: "A close below 1.42 would break the nearest support and open the 1.27 zone."
+      bull: "A daily close back above 1.90 would clear the nearest resistance; the next charted level above it is 2.00.",
+      bear: "A close below 1.42 would break the nearest support; the next charted level below it is 1.27."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -2416,8 +2416,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 782.25 above a rising 20-day (731.92), a rising 50-day (729.62) and a rising 200-day (564.45). Momentum is firm: RSI(14) is ~64 and the daily ATR near 22.79 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+14.87 / +9.72 / +5.15). Over the last year it has ranged 377.00\u2013812.50; the last close sits 4% below that high and 107% above that low.",
-      bull: "A daily close back above 799.99 would clear the nearest resistance and open the 830.00 zone.",
-      bear: "A close below 720.80 would break the nearest support and open the 681.76 zone."
+      bull: "A daily close back above 799.99 would clear the nearest resistance; the next charted level above it is 830.00.",
+      bear: "A close below 720.80 would break the nearest support; the next charted level below it is 681.76."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -2449,8 +2449,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, above a rising 200-day",
       summary: "The price closed 26.60 above a rising 20-day (26.51) and a rising 200-day (25.95), but below a falling 50-day (26.89). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.29 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.00 / \u22120.04 / +0.04). Over the last year it has ranged 23.04\u201327.96; the last close sits 5% below that high and 15% above that low.",
-      bull: "A daily close back above 26.94 would clear the nearest resistance and open the 29.00 zone.",
-      bear: "A close below 25.90 would break the nearest support and open the 23.04 zone."
+      bull: "A daily close back above 26.94 would clear the nearest resistance; the next charted level above it is 29.00.",
+      bear: "A close below 25.90 would break the nearest support; the next charted level below it is 23.04."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2481,9 +2481,9 @@ const TICKERS = {
     levels: { res:[53.87, 58.97, 61.71], sup:[51.54, 50.30, 48.20] },
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day; fresh death-cross",
-      summary: "The price closed 52.25 below a falling 50-day (54.73) and a falling 200-day (56.40), but above a falling 20-day (52.18). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.79 (~1.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.53 / \u22120.78 / +0.25). The 50-day crossed beneath the 200-day 16 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 48.20\u201364.00; the last close sits 18% below that high and 8% above that low.",
-      bull: "A daily close back above 53.87 would clear the nearest resistance and open the 61.71 zone.",
-      bear: "A close below 51.54 would break the nearest support and open the 48.20 zone."
+      summary: "The price closed 52.25 below a falling 50-day (54.73) and a falling 200-day (56.40), but above a falling 20-day (52.18). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.79 (~1.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.53 / \u22120.78 / +0.25). The 50-day crossed beneath the 200-day 16 sessions ago. Over the last year it has ranged 48.20\u201364.00; the last close sits 18% below that high and 8% above that low.",
+      bull: "A daily close back above 53.87 would clear the nearest resistance; the next charted level above it is 61.71.",
+      bear: "A close below 51.54 would break the nearest support; the next charted level below it is 48.20."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2514,9 +2514,9 @@ const TICKERS = {
     levels: { res:[58.67, 64.75, 73.42], sup:[56.14, 54.11, 51.45] },
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day; fresh death-cross",
-      summary: "The price closed 58.20 below a falling 50-day (60.65) and a falling 200-day (64.93), but above a falling 20-day (58.13). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 1.30 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.95 / \u22121.19 / +0.24). The 50-day crossed beneath the 200-day 22 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 49.78\u201379.90; the last close sits 27% below that high and 17% above that low.",
-      bull: "A daily close back above 58.67 would clear the nearest resistance and open the 73.42 zone.",
-      bear: "A close below 56.14 would break the nearest support and open the 51.45 zone."
+      summary: "The price closed 58.20 below a falling 50-day (60.65) and a falling 200-day (64.93), but above a falling 20-day (58.13). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 1.30 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.95 / \u22121.19 / +0.24). The 50-day crossed beneath the 200-day 22 sessions ago. Over the last year it has ranged 49.78\u201379.90; the last close sits 27% below that high and 17% above that low.",
+      bull: "A daily close back above 58.67 would clear the nearest resistance; the next charted level above it is 73.42.",
+      bear: "A close below 56.14 would break the nearest support; the next charted level below it is 51.45."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2548,8 +2548,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 3.30 below a flat 20-day (3.35), a flat 50-day (3.39) and a falling 200-day (3.39). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.04 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 3.12\u20133.76; the last close sits 12% below that high and 6% above that low.",
-      bull: "A daily close back above 3.43 would clear the nearest resistance and open the 3.72 zone.",
-      bear: "A close below 3.20 would break the nearest support and open the 2.71 zone."
+      bull: "A daily close back above 3.43 would clear the nearest resistance; the next charted level above it is 3.72.",
+      bear: "A close below 3.20 would break the nearest support; the next charted level below it is 2.71."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -2580,9 +2580,9 @@ const TICKERS = {
     levels: { res:[65.73, 67.55, 72.88], sup:[62.93, 59.36, 53.98] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
-      summary: "The price closed 64.50 below a falling 20-day (65.11), a falling 50-day (66.08) and a flat 200-day (67.88). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.75 (~1.2%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.62 / \u22120.59 / \u22120.03). The 50-day crossed beneath the 200-day 20 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 60.10\u201375.33; the last close sits 14% below that high and 7% above that low.",
-      bull: "A daily close back above 65.73 would clear the nearest resistance and open the 72.88 zone.",
-      bear: "A close below 62.93 would break the nearest support and open the 53.98 zone."
+      summary: "The price closed 64.50 below a falling 20-day (65.11), a falling 50-day (66.08) and a flat 200-day (67.88). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.75 (~1.2%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.62 / \u22120.59 / \u22120.03). The 50-day crossed beneath the 200-day 20 sessions ago. Over the last year it has ranged 60.10\u201375.33; the last close sits 14% below that high and 7% above that low.",
+      bull: "A daily close back above 65.73 would clear the nearest resistance; the next charted level above it is 72.88.",
+      bear: "A close below 62.93 would break the nearest support; the next charted level below it is 53.98."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2614,8 +2614,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day",
       summary: "The price closed 43.10 below a falling 20-day (43.39), a flat 50-day (43.65) and a flat 200-day (43.41). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 0.32 (~0.7%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.14 / \u22120.12 / \u22120.02). Over the last year it has ranged 40.20\u201345.38; the last close sits 5% below that high and 7% above that low.",
-      bull: "A daily close back above 43.99 would clear the nearest resistance and open the 46.45 zone.",
-      bear: "A close below 41.44 would break the nearest support and open the 39.00 zone."
+      bull: "A daily close back above 43.99 would clear the nearest resistance; the next charted level above it is 46.45.",
+      bear: "A close below 41.44 would break the nearest support; the next charted level below it is 39.00."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2646,9 +2646,9 @@ const TICKERS = {
     levels: { res:[21.41, 22.41, 24.01], sup:[20.57, 19.47, 18.98] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh death-cross",
-      summary: "The price closed 20.92 above a flat 20-day (20.50), a flat 50-day (20.50) and a flat 200-day (20.58). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.30 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.13 / +0.06 / +0.08). The 50-day crossed beneath the 200-day 11 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
-      bull: "A daily close back above 21.41 would clear the nearest resistance and open the 24.01 zone.",
-      bear: "A close below 20.57 would break the nearest support and open the 18.98 zone."
+      summary: "The price closed 20.92 above a flat 20-day (20.50), a flat 50-day (20.50) and a flat 200-day (20.58). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.30 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.13 / +0.06 / +0.08). The 50-day crossed beneath the 200-day 11 sessions ago. Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
+      bull: "A daily close back above 21.41 would clear the nearest resistance; the next charted level above it is 24.01.",
+      bear: "A close below 20.57 would break the nearest support; the next charted level below it is 18.98."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2679,9 +2679,9 @@ const TICKERS = {
     levels: { res:[40.52, 41.60, 42.88], sup:[38.22, 35.75, 33.83] },
     tech: {
       trend: "Mixed against the moving-average stack, below a flat 200-day; fresh death-cross",
-      summary: "The price closed 39.92 above a falling 20-day (38.68) and a falling 50-day (39.36), but below a flat 200-day (39.96). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 0.64 (~1.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.10 / \u22120.32 / +0.23). The 50-day crossed beneath the 200-day 16 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 33.30\u201345.24; the last close sits 12% below that high and 20% above that low.",
-      bull: "A daily close back above 40.52 would clear the nearest resistance and open the 42.88 zone.",
-      bear: "A close below 38.22 would break the nearest support and open the 33.83 zone."
+      summary: "The price closed 39.92 above a falling 20-day (38.68) and a falling 50-day (39.36), but below a flat 200-day (39.96). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 0.64 (~1.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.10 / \u22120.32 / +0.23). The 50-day crossed beneath the 200-day 16 sessions ago. Over the last year it has ranged 33.30\u201345.24; the last close sits 12% below that high and 20% above that low.",
+      bull: "A daily close back above 40.52 would clear the nearest resistance; the next charted level above it is 42.88.",
+      bear: "A close below 38.22 would break the nearest support; the next charted level below it is 33.83."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2714,8 +2714,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 31.00 above a rising 50-day (30.71) and a rising 200-day (29.65), but below a rising 20-day (31.26). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 0.76 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.07 / +0.20 / \u22120.13). Over the last year it has ranged 24.00\u201337.40; the last close sits 17% below that high and 29% above that low.",
-      bull: "A daily close back above 31.26 would clear the nearest resistance and open the 37.40 zone.",
-      bear: "A close below 27.80 would break the nearest support and open the 20.40 zone."
+      bull: "A daily close back above 31.26 would clear the nearest resistance; the next charted level above it is 37.40.",
+      bear: "A close below 27.80 would break the nearest support; the next charted level below it is 20.40."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
@@ -2747,8 +2747,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 17.15 below a falling 50-day (17.37) and a falling 200-day (18.28), but above a falling 20-day (17.02). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 0.33 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.12 / \u22120.18 / +0.06). Over the last year it has ranged 16.34\u201320.49; the last close sits 16% below that high and 5% above that low.",
-      bull: "A daily close back above 17.54 would clear the nearest resistance and open the 18.60 zone.",
-      bear: "A close below 16.79 would break the nearest support and open the 15.54 zone."
+      bull: "A daily close back above 17.54 would clear the nearest resistance; the next charted level above it is 18.60.",
+      bear: "A close below 16.79 would break the nearest support; the next charted level below it is 15.54."
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
@@ -2778,8 +2778,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 4.17 below a falling 20-day (4.25), a falling 50-day (4.30) and a falling 200-day (4.47). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.09 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.05 / \u22120.03 / \u22120.01). Over the last year it has ranged 3.80\u20135.00; the last close sits 17% below that high and 10% above that low.",
-      bull: "A daily close back above 4.31 would clear the nearest resistance and open the 4.94 zone.",
-      bear: "A close below 4.10 would break the nearest support and open the 3.80 zone."
+      bull: "A daily close back above 4.31 would clear the nearest resistance; the next charted level above it is 4.94.",
+      bear: "A close below 4.10 would break the nearest support; the next charted level below it is 3.80."
     },
     asof: {
       mc:   { data:"2026-07-28", computed:"2026-07-29" },
@@ -2811,9 +2811,9 @@ const TICKERS = {
     levels: { res:[20.13, 20.74, 22], sup:[18.18, 16.31, 13.19] },
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day; fresh golden-cross",
-      summary: "The price closed 19.64 above a rising 50-day (18.65) and a rising 200-day (18.00), but below a rising 20-day (19.74). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 0.41 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.25 / +0.36 / \u22120.11). The 50-day crossed above the 200-day 15 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 15.32\u201320.74; the last close sits 5% below that high and 28% above that low.",
-      bull: "A daily close back above 20.13 would clear the nearest resistance and open the 22.00 zone.",
-      bear: "A close below 18.18 would break the nearest support and open the 13.19 zone."
+      summary: "The price closed 19.64 above a rising 50-day (18.65) and a rising 200-day (18.00), but below a rising 20-day (19.74). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 0.41 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.25 / +0.36 / \u22120.11). The 50-day crossed above the 200-day 15 sessions ago. Over the last year it has ranged 15.32\u201320.74; the last close sits 5% below that high and 28% above that low.",
+      bull: "A daily close back above 20.13 would clear the nearest resistance; the next charted level above it is 22.00.",
+      bear: "A close below 18.18 would break the nearest support; the next charted level below it is 13.19."
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
@@ -2844,9 +2844,9 @@ const TICKERS = {
     levels: { res:[193.90, 201.03, 207.57], sup:[187.40, 182.34, 174.82] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a falling 200-day; fresh golden-cross",
-      summary: "The price closed 191.20 above a falling 20-day (190.49), a rising 50-day (191.13) and a falling 200-day (189.69). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 4.84 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.87 / \u22120.89 / +0.02). The 50-day crossed above the 200-day 4 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 149.40\u2013252.60; the last close sits 24% below that high and 28% above that low.",
-      bull: "A daily close back above 193.90 would clear the nearest resistance and open the 207.57 zone.",
-      bear: "A close below 187.40 would break the nearest support and open the 174.82 zone."
+      summary: "The price closed 191.20 above a falling 20-day (190.49), a rising 50-day (191.13) and a falling 200-day (189.69). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 4.84 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.87 / \u22120.89 / +0.02). The 50-day crossed above the 200-day 4 sessions ago. Over the last year it has ranged 149.40\u2013252.60; the last close sits 24% below that high and 28% above that low.",
+      bull: "A daily close back above 193.90 would clear the nearest resistance; the next charted level above it is 207.57.",
+      bear: "A close below 187.40 would break the nearest support; the next charted level below it is 174.82."
     },
     asof: {
       mc:   { data:"2026-07-26", computed:"2026-07-28" },
@@ -2878,8 +2878,8 @@ const TICKERS = {
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
       summary: "The price closed 3.35 below a falling 50-day (3.39) and a falling 200-day (3.62), but above a flat 20-day (3.28). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.07 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.01 / \u22120.03 / +0.02). Over the last year it has ranged 3.17\u20134.12; the last close sits 19% below that high and 6% above that low.",
-      bull: "A daily close back above 3.64 would clear the nearest resistance and open the 4.03 zone.",
-      bear: "A close below 3.32 would break the nearest support and open the 3.10 zone."
+      bull: "A daily close back above 3.64 would clear the nearest resistance; the next charted level above it is 4.03.",
+      bear: "A close below 3.32 would break the nearest support; the next charted level below it is 3.10."
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
@@ -2909,8 +2909,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 336.91 above a rising 20-day (317.06), a rising 50-day (307.00) and a rising 200-day (276.38). Momentum is firm: RSI(14) is ~67 and the daily ATR near 8.14 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+8.92 / +7.81 / +1.11). Over the last year it has ranged 201.50\u2013339.57; the last close sits 1% below that high and 67% above that low.",
-      bull: "A daily close back above 340.00 would clear the nearest resistance and open the 360.00 zone.",
-      bear: "A close below 278.20 would break the nearest support and open the 223.43 zone."
+      bull: "A daily close back above 340.00 would clear the nearest resistance; the next charted level above it is 360.00.",
+      bear: "A close below 278.20 would break the nearest support; the next charted level below it is 223.43."
     },
     asof: {
       mc:   { data:"2026-07-27", computed:"2026-07-29" },
@@ -2940,8 +2940,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 309.22 below a falling 20-day (385.20), a falling 50-day (399.84) and a falling 200-day (414.09). Momentum is very weak: RSI(14) is ~27 and the daily ATR near 18.44 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221219.54 / \u221210.10 / \u22129.44). Over the last year it has ranged 297.82\u2013498.83; the last close sits 38% below that high and 4% above that low.",
-      bull: "A daily close back above 327.23 would clear the nearest resistance and open the 382.68 zone.",
-      bear: "A close below 299.10 would break the nearest support and open the 214.52 zone."
+      bull: "A daily close back above 327.23 would clear the nearest resistance; the next charted level above it is 382.68.",
+      bear: "A close below 299.10 would break the nearest support; the next charted level below it is 214.52."
     },
     asof: {
       mc:   { data:"2026-07-27", computed:"2026-07-29" },
@@ -2974,8 +2974,8 @@ const TICKERS = {
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
       summary: "The price closed 372.00 below a falling 20-day (375.51), a falling 50-day (379.13) and a falling 200-day (391.22). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 3.05 (~0.8%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22122.51 / \u22122.29 / \u22120.22). Over the last year it has ranged 369.50\u2013404.00; the last close sits 8% below that high and 1% above that low.",
-      bull: "A daily close back above 375.51 would clear the nearest resistance and open the 400.16 zone.",
-      bear: "A close below 360.00 would break the nearest support and open the 340.00 zone."
+      bull: "A daily close back above 375.51 would clear the nearest resistance; the next charted level above it is 400.16.",
+      bear: "A close below 360.00 would break the nearest support; the next charted level below it is 340.00."
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-08-31" },
@@ -3007,8 +3007,8 @@ const TICKERS = {
     tech: {
       trend: "Consolidating below the near-term moving averages, above a rising 200-day",
       summary: "The price closed 7.75 above a rising 50-day (7.43) and a rising 200-day (5.34), but below a flat 20-day (8.08). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 0.29 (~3.7%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.02 / +0.14 / \u22120.12). Over the last year it has ranged 3.11\u20138.65; the last close sits 10% below that high and 149% above that low.",
-      bull: "A daily close back above 7.86 would clear the nearest resistance and open the 8.65 zone.",
-      bear: "A close below 7.20 would break the nearest support and open the 6.32 zone."
+      bull: "A daily close back above 7.86 would clear the nearest resistance; the next charted level above it is 8.65.",
+      bear: "A close below 7.20 would break the nearest support; the next charted level below it is 6.32."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -3040,8 +3040,8 @@ const TICKERS = {
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
       summary: "The price closed 9.69 above a falling 20-day (9.18), a rising 50-day (8.52) and a rising 200-day (5.45). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.44 (~4.5%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.15 / +0.19 / \u22120.04). Over the last year it has ranged 3.04\u201310.40; the last close sits 7% below that high and 219% above that low.",
-      bull: "A daily close back above 9.80 would clear the nearest resistance and open the 10.40 zone.",
-      bear: "A close below 9.03 would break the nearest support and open the 8.52 zone."
+      bull: "A daily close back above 9.80 would clear the nearest resistance; the next charted level above it is 10.40.",
+      bear: "A close below 9.03 would break the nearest support; the next charted level below it is 8.52."
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
@@ -7024,9 +7024,9 @@ const METALS = {
  levels: { res:[4230, 4382, 4577], sup:[3967, 3420, 3270] },
  tech: {
    trend: "Mixed against the moving-average stack, below a flat 200-day; fresh death-cross",
-   summary: "The price closed 4091 below a falling 50-day (4206) and a flat 200-day (4494), but above a falling 20-day (4077). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 86 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221234 / \u221250 / +16). The 50-day crossed beneath the 200-day 24 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 3311\u20135595; the last close sits 27% below that high and 24% above that low.",
-   bull: "A daily close back above 4230 would clear the nearest resistance and open the 4577 zone.",
-   bear: "A close below 3967 would break the nearest support and open the 3270 zone."
+   summary: "The price closed 4091 below a falling 50-day (4206) and a flat 200-day (4494), but above a falling 20-day (4077). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 86 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221234 / \u221250 / +16). The 50-day crossed beneath the 200-day 24 sessions ago. Over the last year it has ranged 3311\u20135595; the last close sits 27% below that high and 24% above that low.",
+   bull: "A daily close back above 4230 would clear the nearest resistance; the next charted level above it is 4577.",
+   bear: "A close below 3967 would break the nearest support; the next charted level below it is 3270."
  },
  asof: {
    mc:   { data:"2026-07-27", computed:"2026-07-27" },
@@ -7055,9 +7055,9 @@ const METALS = {
  levels: { res:[61.27, 63.28, 71.23], sup:[55.62, 54.45, 39.15] },
  tech: {
    trend: "Mixed against the moving-average stack, below a rising 200-day; fresh death-cross",
-   summary: "The price closed 58.27 below a falling 50-day (62.93) and a rising 200-day (71.14), but above a falling 20-day (58.15). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 2.60 (~4.5%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.28 / \u22121.72 / +0.44). The 50-day crossed beneath the 200-day 19 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 36.96\u2013121.67; the last close sits 52% below that high and 58% above that low.",
-   bull: "A daily close back above 61.27 would clear the nearest resistance and open the 71.23 zone.",
-   bear: "A close below 55.62 would break the nearest support and open the 39.15 zone."
+   summary: "The price closed 58.27 below a falling 50-day (62.93) and a rising 200-day (71.14), but above a falling 20-day (58.15). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 2.60 (~4.5%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.28 / \u22121.72 / +0.44). The 50-day crossed beneath the 200-day 19 sessions ago. Over the last year it has ranged 36.96\u2013121.67; the last close sits 52% below that high and 58% above that low.",
+   bull: "A daily close back above 61.27 would clear the nearest resistance; the next charted level above it is 71.23.",
+   bear: "A close below 55.62 would break the nearest support; the next charted level below it is 39.15."
  },
  asof: {
    mc:   { data:"2026-08-03", computed:"2026-08-04" },
@@ -7089,8 +7089,8 @@ const METALS = {
  tech: {
    trend: "Mixed against the moving-average stack, below a rising 200-day",
    summary: "The price closed 1881 above a rising 20-day (1726) and a flat 50-day (1673), but below a rising 200-day (1939). Momentum is firm: RSI(14) is ~68 and the daily ATR near 67 (~3.6%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+43 / +28 / +16). Over the last year it has ranged 1353\u20132924; the last close sits 36% below that high and 39% above that low.",
-   bull: "A daily close back above 1930 would clear the nearest resistance and open the 2484 zone.",
-   bear: "A close below 1697 would break the nearest support and open the 1350 zone."
+   bull: "A daily close back above 1930 would clear the nearest resistance; the next charted level above it is 2484.",
+   bear: "A close below 1697 would break the nearest support; the next charted level below it is 1350."
  },
  asof: {
    mc:   { data:"2026-08-21", computed:"2026-08-23" },
