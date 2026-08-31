@@ -155,6 +155,47 @@ def basis(up, lib):
                 tail_div=float(tail.median()), distinct_levels=int(n_levels))
 
 
+def resolve_duplicates(cands):
+    """Pick one source per (ticker, basis) — by SPLICING, not by choosing.
+
+    A vendor folder carries the same ticker more than once, and "use the latest
+    file" is right about intent but wrong as a rule on its own: on this AE
+    folder the latest FAB file starts in 2017 and the older one in 2011, so
+    taking the later one alone discards 1,610 sessions and 2,320 days. The
+    protocol already answers this — MERGE, NEVER OVERWRITE; splice new rows onto
+    the persistent series and verify overlapping dates match to the 4th decimal
+    — and splicing gets the longest history AND the newest data without anyone
+    having to choose.
+
+    TWO FILES ARE ONLY DUPLICATES IF THEY SHARE A BASIS. Six of the eight
+    repeated tickers here pair an Investing.com price export with a TradingView
+    total-return one; those are two different measurements of the stock, not two
+    copies of one, and under the two-series design they belong to two different
+    libraries. Splicing across a basis would weld a price series to a
+    dividend-adjusted one at whatever date the files happen to meet.
+
+    Returns {(ticker, basis): (frame, [files spliced])} plus any refusals.
+    """
+    out, refused = {}, []
+    for (tkr, basis), group in cands.items():
+        group = sorted(group, key=lambda g: g[1].Date.min())
+        merged, used = group[0][1], [group[0][0]]
+        for name, df in group[1:]:
+            ov = merged.merge(df, on='Date', suffixes=('_a', '_b')).dropna()
+            if len(ov):
+                rel = ((ov.Price_a - ov.Price_b).abs() / ov.Price_b)
+                if rel.max() > 1e-4:
+                    refused.append((tkr, basis, name,
+                                    f'overlap disagrees, worst {rel.max()*100:.2f}% '
+                                    f'over {len(ov)} rows — not a duplicate'))
+                    continue
+            merged = (pd.concat([merged, df[~df.Date.isin(merged.Date)]])
+                      .sort_values('Date').reset_index(drop=True))
+            used.append(name)
+        out[(tkr, basis)] = (merged, used)
+    return out, refused
+
+
 def main(updir):
     from data_quality import clean_ohlc
     dmap = data_js_map()
