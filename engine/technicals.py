@@ -301,17 +301,39 @@ def _trend_line(pos, slopes, close, ma):
 
 
 def _momentum_words(rsi):
+    """A word for the RSI level that does not assert what comes next.
+
+    Two of these words used to point the opposite way to the tape. Replayed over
+    fifteen years and 92 names (engine/lab/ta_calibration), against each name's
+    own base rate:
+
+        RSI >= 70   forward up-rate  +7.6pp ABOVE base at three months (robust)
+        RSI 30-40   forward up-rate  -3.0pp below base            (robust)
+        RSI <  30   forward up-rate  -1.8pp below base            (robust)
+
+    "Stretched" reads to an investor as over-extended and due a pullback; it was
+    followed by the best three-month outcomes in the book. "Washed out" reads as
+    exhausted selling due a bounce; it was followed by continued weakness. Both
+    words carried real information and both connoted its opposite. "Soft",
+    "firm" and "neutral" were measured and are right, and are left alone.
+
+    The replacements describe the READING, monotonically, and forecast nothing —
+    the technical lens says where the tape is, and the cone says where price may
+    go. This is the [R-CAL-02] lesson applied to prose rather than to a verdict:
+    a cautious-sounding label is still a claim about the world, and because it
+    sounds like caution nobody checks which way it points.
+    """
     if rsi is None:
         return "not computable on this history"
     if rsi >= 70:
-        return "stretched"
+        return "very strong"
     if rsi >= 60:
         return "firm"
     if rsi > 40:
         return "neutral"
     if rsi > 30:
         return "soft"
-    return "washed out"
+    return "very weak"
 
 
 def _tape_words(atr_pct):

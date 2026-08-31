@@ -301,7 +301,7 @@ const TICKERS = {
     levels: { res:[1.56, 1.61, 1.68], sup:[1.47, 1.40, 1.30] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh golden-cross",
-      summary: "The price closed 1.50 below a falling 20-day (1.60), a flat 50-day (1.62) and a flat 200-day (1.62). Momentum is washed out: RSI(14) is ~29 and the daily ATR near 0.03 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). The 50-day crossed above the 200-day 16 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 1.48\u20131.96; the last close sits 23% below that high and 1% above that low.",
+      summary: "The price closed 1.50 below a falling 20-day (1.60), a flat 50-day (1.62) and a flat 200-day (1.62). Momentum is very weak: RSI(14) is ~29 and the daily ATR near 0.03 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). The 50-day crossed above the 200-day 16 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 1.48\u20131.96; the last close sits 23% below that high and 1% above that low.",
       bull: "A daily close back above 1.56 would clear the nearest resistance and open the 1.68 zone.",
       bear: "A close below 1.47 would break the nearest support and open the 1.30 zone."
     },
@@ -482,7 +482,7 @@ const TICKERS = {
     levels: { res:[140, 150, 156], sup:[92.40, 88.49, 85.40] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 130.05 above a rising 20-day (101.58), a rising 50-day (92.49) and a rising 200-day (82.58). Momentum is stretched: RSI(14) is ~71 and the daily ATR near 7.84 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+11.68 / +7.24 / +4.44). Over the last year it has ranged 43.60\u2013156.00; the last close sits 17% below that high and 198% above that low.",
+      summary: "The price closed 130.05 above a rising 20-day (101.58), a rising 50-day (92.49) and a rising 200-day (82.58). Momentum is very strong: RSI(14) is ~71 and the daily ATR near 7.84 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+11.68 / +7.24 / +4.44). Over the last year it has ranged 43.60\u2013156.00; the last close sits 17% below that high and 198% above that low.",
       bull: "A daily close back above 140.00 would clear the nearest resistance and open the 156.00 zone.",
       bear: "A close below 92.40 would break the nearest support and open the 85.40 zone."
     },
@@ -659,7 +659,7 @@ const TICKERS = {
     levels: { res:[110, 114.50, 120], sup:[90.98, 82.61, 76.36] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 105.20 above a rising 20-day (93.77), a rising 50-day (90.04) and a rising 200-day (81.88). Momentum is stretched: RSI(14) is ~72 and the daily ATR near 3.50 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+3.59 / +2.35 / +1.24). Over the last year it has ranged 62.03\u2013114.50; the last close sits 8% below that high and 70% above that low.",
+      summary: "The price closed 105.20 above a rising 20-day (93.77), a rising 50-day (90.04) and a rising 200-day (81.88). Momentum is very strong: RSI(14) is ~72 and the daily ATR near 3.50 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+3.59 / +2.35 / +1.24). Over the last year it has ranged 62.03\u2013114.50; the last close sits 8% below that high and 70% above that low.",
       bull: "A daily close back above 110.00 would clear the nearest resistance and open the 120.00 zone.",
       bear: "A close below 90.98 would break the nearest support and open the 76.36 zone."
     },
@@ -2382,7 +2382,7 @@ const TICKERS = {
     levels: { res:[1.90, 1.93, 2], sup:[1.42, 1.35, 1.27] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 1.88 above a rising 20-day (1.66), a rising 50-day (1.51) and a rising 200-day (1.32). Momentum is stretched: RSI(14) is ~78 and the daily ATR near 0.06 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.11 / +0.09 / +0.02). Over the last year it has ranged 0.98\u20131.93; the last close sits 3% below that high and 92% above that low.",
+      summary: "The price closed 1.88 above a rising 20-day (1.66), a rising 50-day (1.51) and a rising 200-day (1.32). Momentum is very strong: RSI(14) is ~78 and the daily ATR near 0.06 (~3.0%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.11 / +0.09 / +0.02). Over the last year it has ranged 0.98\u20131.93; the last close sits 3% below that high and 92% above that low.",
       bull: "A daily close back above 1.90 would clear the nearest resistance and open the 2.00 zone.",
       bear: "A close below 1.42 would break the nearest support and open the 1.27 zone."
     },
@@ -2939,7 +2939,7 @@ const TICKERS = {
     levels: { res:[327.23, 360.99, 382.68], sup:[299.10, 293.42, 214.52] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 309.22 below a falling 20-day (385.20), a falling 50-day (399.84) and a falling 200-day (414.09). Momentum is washed out: RSI(14) is ~27 and the daily ATR near 18.44 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221219.54 / \u221210.10 / \u22129.44). Over the last year it has ranged 297.82\u2013498.83; the last close sits 38% below that high and 4% above that low.",
+      summary: "The price closed 309.22 below a falling 20-day (385.20), a falling 50-day (399.84) and a falling 200-day (414.09). Momentum is very weak: RSI(14) is ~27 and the daily ATR near 18.44 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221219.54 / \u221210.10 / \u22129.44). Over the last year it has ranged 297.82\u2013498.83; the last close sits 38% below that high and 4% above that low.",
       bull: "A daily close back above 327.23 would clear the nearest resistance and open the 382.68 zone.",
       bear: "A close below 299.10 would break the nearest support and open the 214.52 zone."
     },

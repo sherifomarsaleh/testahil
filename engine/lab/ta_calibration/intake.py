@@ -37,7 +37,10 @@ sys.path.insert(0, os.path.join(ROOT, 'engine'))
 
 EXCHANGE_MARKET = {'ADX': 'AE', 'DFM': 'AE', 'EGX': 'EG', 'TADAWUL': 'SA',
                    'NSE': 'IN', 'NASDAQ': 'US', 'QSE': 'QA', 'KRX': 'KR'}
-FNAME = re.compile(r'^(?:[0-9a-f]{8}-)?([A-Z]+)_(?:DLY_)?(.+?)_1D\.csv$')
+# TradingView writes 'ADX_FAB, 1D.csv' — comma-space, not underscore — and an
+# upload harness may prepend a hex id. Both separators are accepted; anything
+# else is refused rather than guessed, because the prefix is the exchange.
+FNAME = re.compile(r'^(?:[0-9a-f]{8}-)?([A-Z]+)_(?:DLY_)?(.+?)[,_]\s*1D\.csv$')
 
 # A data.js TICKER KEY IS NOT A LIBRARY FILENAME, and every one of the three
 # places they diverge is already recorded in the protocol as a defect someone
@@ -127,6 +130,45 @@ def read_export(path):
     return df.dropna(subset=['Date', 'Price', 'High', 'Low']).sort_values('Date').reset_index(drop=True)
 
 
+def read_investing(path):
+    """An Investing.com 'Stock Price History' export mapped onto the schema."""
+    try:
+        d = pd.read_csv(path, encoding='utf-8-sig')
+    except Exception:
+        return None
+    d.columns = [c.strip().strip('"') for c in d.columns]
+    if not {'Date', 'Price'} <= set(d.columns):
+        return None
+    out = pd.DataFrame({'Date': pd.to_datetime(d['Date'], errors='coerce', format='mixed')})
+    for src, dst in (('Price', 'Price'), ('Open', 'Open'), ('High', 'High'), ('Low', 'Low')):
+        out[dst] = (pd.to_numeric(d[src].astype(str).str.replace(',', ''), errors='coerce')
+                    if src in d.columns else np.nan)
+    out['Vol.'] = d['Vol.'] if 'Vol.' in d.columns else np.nan
+    return out.dropna(subset=['Date', 'Price']).sort_values('Date').reset_index(drop=True)
+
+
+def content_match(up, libs):
+    """The held library this series IS, or None. Exact or nothing.
+
+    An exact match (median relative difference under 1e-4 over >=50 shared
+    sessions) is evidence. A NEAREST match is not: run on a total-return file or
+    an index, a best-guess matcher confidently returns the wrong name — on this
+    AE folder it put the FAB total-return export under ENBD and the FTSE ADX
+    index under IHC. Ambiguity and absence both return None.
+    """
+    hits = []
+    for key in libs:
+        mkt, tkr = key.split('/')
+        L = read_library(mkt, tkr)
+        if L is None:
+            continue
+        m = up[['Date', 'Price']].merge(L[['Date', 'Price']], on='Date',
+                                        suffixes=('_u', '_l')).dropna()
+        if len(m) >= 50 and float(((m.Price_u - m.Price_l).abs() / m.Price_l).median()) < 1e-4:
+            hits.append(key)
+    return hits[0] if len(hits) == 1 else None
+
+
 def read_library(market, ticker):
     p = os.path.join(RAW, market, f'{ticker}.csv')
     if not os.path.exists(p):
@@ -211,8 +253,31 @@ def main(updir):
         b = os.path.basename(f)
         mm = FNAME.match(b)
         if not mm:
-            problems.append((b, 'filename does not carry EXCHANGE_SYMBOL_1D — cannot '
-                                'resolve the exchange, and it must not be guessed'))
+            # A prose-named vendor file ("Aldar Properties Stock Price History.csv")
+            # carries no exchange, so it is identified by CONTENT instead: a series
+            # that matches a held library to the 4th decimal IS that library's, and
+            # that is evidence rather than a guess about a name. A file matching
+            # none, or more than one, is refused — never resolved to a best guess.
+            up0 = read_export(f) or read_investing(f)
+            hit = content_match(up0, libs) if up0 is not None else None
+            if hit is None:
+                problems.append((b, 'no exchange prefix in the filename and no exact '
+                                    'content match to a held library — cannot resolve, '
+                                    'and must not be guessed'))
+                continue
+            mkt, tkr = hit.split('/')
+            key, ex = hit, '(by content)'
+            up, lib = up0, read_library(mkt, tkr)
+            try:
+                cl, rep = clean_ohlc(up.copy(), tkr, verbose=False, market=mkt)
+                step0 = f'ok ({len(up)}->{len(cl)}' + (f', {len(list(rep))} repairs)' if rep else ')')
+            except Exception as e:
+                step0 = f'FAILED: {type(e).__name__}'
+            bs = basis(up, lib) if lib is not None else dict(verdict='no library held')
+            seen.add(key)
+            rows.append(dict(file=b, key=key, exchange=ex, rows=len(up),
+                             first=str(up.Date.min().date()), last=str(up.Date.max().date()),
+                             step0=step0, **{f'basis_{k}': v for k, v in bs.items()}))
             continue
         ex, sym = mm.group(1).upper(), mm.group(2).upper()
         mkt = EXCHANGE_MARKET.get(ex)
