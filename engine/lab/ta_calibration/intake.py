@@ -238,6 +238,52 @@ def resolve_duplicates(cands):
     return out, refused
 
 
+def backfill(new_df, old_df, label=''):
+    """Extend a total-return series backwards with an older price export.
+
+    Per instruction: "use the new csv file for the data back till 2017 and then
+    use the older file for data back till 2011." Right about the history, but a
+    literal splice welds two different measurements together. Measured on FAB,
+    concatenating at the boundary puts a -35.7% ONE-DAY MOVE at 2017-05-10
+    (11.200 -> 7.198), which is not a market event: it is the cumulative
+    dividend adjustment appearing as a single bar. Step 0.0 would then see a
+    move beyond the ADX 15% daily limit, classify it as an unadjusted corporate
+    action, and "repair" it — baking the error in where nothing downstream could
+    see it.
+
+    CHAIN-LINK INSTEAD. Scale the older segment by the ratio of the two series
+    ON the join date, so the level is continuous and the join-day return is the
+    real one. This is the standard way an adjusted series is carried backwards.
+
+    WHAT IT DOES NOT DO, AND THIS IS DISCLOSED RATHER THAN HIDDEN: the older
+    segment keeps its own ex-dividend drops, because the dividends paid before
+    the join are exactly the information a price export does not carry. The
+    result is total-return after the join and rescaled price before it — level-
+    continuous, basis-hybrid. It is the right construction for recovering
+    history and it must be labelled, never described as a total-return series
+    throughout.
+
+    Returns (frame, note) or (new_df, note) when there is nothing to backfill.
+    """
+    if old_df is None or not len(old_df) or old_df.Date.min() >= new_df.Date.min():
+        return new_df, f'{label}: no backfill — the newer file already reaches furthest back'
+    join = new_df.Date.min()
+    a = new_df.loc[new_df.Date == join, 'Price']
+    b = old_df.loc[old_df.Date == join, 'Price']
+    if not len(a) or not len(b) or float(b.iloc[0]) == 0:
+        return new_df, f'{label}: REFUSED — the two files share no observation on {join.date()}, so no join ratio can be measured'
+    factor = float(a.iloc[0]) / float(b.iloc[0])
+    prior = old_df[old_df.Date < join].copy()
+    for c in ('Price', 'Open', 'High', 'Low'):
+        if c in prior.columns:
+            prior[c] = pd.to_numeric(prior[c], errors='coerce') * factor
+    out = pd.concat([prior, new_df], ignore_index=True).sort_values('Date').reset_index(drop=True)
+    note = (f'{label}: backfilled {len(prior)} rows to {prior.Date.min().date()}, '
+            f'chain-linked at {join.date()} on a factor of {factor:.4f}; '
+            f'total-return after that date, rescaled price before it')
+    return out, note
+
+
 def main(updir):
     from data_quality import clean_ohlc
     dmap = data_js_map()
