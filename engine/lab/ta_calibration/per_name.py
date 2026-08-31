@@ -71,7 +71,9 @@ def state_rows(r, months):
 
 
 U = '/root/.claude/uploads/972d4834-4b15-5e35-8d2b-653ceed1c887/'
-NAMES = [('AE', 'EMAAR',    U + 'cf94e5a8-DFM_DLY_EMAAR_1D.csv'),
+NAMES = [('AE', 'LULU',     U + '6c4fe75f-ADX_LULU_1D.csv'),
+         ('AE', 'SALIK',    U + '193a1cb8-DFM_DLY_SALIK_1D.csv'),
+         ('AE', 'EMAAR',    U + 'cf94e5a8-DFM_DLY_EMAAR_1D.csv'),
          ('AE', 'EMAARDEV', U + 'a891bd31-DFM_DLY_EMAARDEV_1D.csv'),
          ('AE', 'ENBD',     U + '07977c4b-DFM_DLY_EMIRATESNBD_1D.csv'),
          ('AE', 'FAB',      U + 'ec2ea478-ADX_FAB_1D.csv'),
@@ -89,6 +91,15 @@ if __name__ == '__main__':
             df, rep = clean_ohlc(raw, tkr, verbose=False, market=mkt)
             frame = (df.reset_index(drop=True), {'rows_in': len(raw), 'repairs': list(rep)})
         r = replay.harvest(mkt, tkr, frame=frame)
+        if not len(r):
+            src = frame[0] if frame else None
+            n = len(src) if src is not None else None
+            print(f"--- {tkr} | NOT SCOREABLE: {n if n else '<'+str(replay.MIN_HISTORY)} clean "
+                  f"sessions against a first origin at {replay.MIN_HISTORY}. "
+                  f"The read IS published for this name; the calibration cannot reach it. ---\n",
+                  flush=True)
+            out[tkr] = dict(scoreable=False, clean_sessions=n, min_history=replay.MIN_HISTORY)
+            continue
         rec = {'rows': int(len(r)), 'origins': int(r[r.claim == 'state'].origin.nunique()),
                'first': r.origin.min(), 'last': r.origin.max(), 'levels': [], 'state': {}}
         for months in (1, 3):
