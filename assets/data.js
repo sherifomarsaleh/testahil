@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-30", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-31", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -2957,29 +2957,29 @@ const TICKERS = {
     name: "International Holding Company",
     nameAr: "الشركة العالمية القابضة",
     code: "ADX:IHC",
-    spot: 380.00,
-    spotDate: "close 24 Jul 2026",
+    spot: 371.20,
+    spotDate: "close 27 Aug 2026",
     ccy: "AED",
     fair: { bear: 78, base: 104.5, full: 150 },      // 4 Jul 2026 — five-lens weighted central 104.5 (−73% vs spot 382.30). Lenses: look-through SOTP/NAV 120 (primary), consolidated operating DCF 81 (floor), relative multiples 102, normalized earnings 91; weights 45/15/20/20. Swing: the premium the market pays over reconstructable NAV — IHC trades at ~3.2x look-through NAV / ~5.5x attributable book, the inverse of the usual holdco discount.
     dist: {
-      t20: { label:"1 month",   p5:365.41, p25:374.88, p50:380.24, p75:385.69, p95:395.95, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:347.87, p25:368.48, p50:380.17, p75:392.17, p95:415.62, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:348.08, p25:362.41, p50:370.58, p75:379.16, p95:395.09, resolve:"2026-09-28" },
+      t60: { label:"3 months",  p5:326.87, p25:353.59, p50:369.26, p75:385.49, p95:417.60, resolve:"2026-11-27" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-31" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [459.00, 0, 1], [440.00, 0, 2], [421.00, 0, 6], [405.00, 2, 18], [394.00, 11, 40], [371.00, 22, 55], [359.00, 3, 22], [344.00, 0, 7], [325.00, 0, 2]
+      [459.00, 0, 2], [440.00, 0, 3], [421.00, 1, 8], [405.00, 3, 17], [394.00, 9, 30], [371.00, 88, 93], [359.00, 29, 58], [344.00, 5, 25], [325.00, 1, 8]
     ],
-    levels: { res:[387.22, 394.19, 400.18], sup:[370, 360, 350] },
+    levels: { res:[375.51, 385.09, 400.16], sup:[360, 350, 340] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 380.00 below a falling 20-day (381.02), a falling 50-day (385.12) and a flat 200-day (394.19). Momentum is soft: RSI(14) is ~39 and the daily ATR near 1.69 (~0.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.61 / \u22121.72 / +0.12). Over the last year it has ranged 379.00\u2013404.00; the last close sits 6% below that high and 0% above that low.",
-      bull: "A daily close back above 387.22 would clear the nearest resistance and open the 400.18 zone.",
-      bear: "A close below 370.00 would break the nearest support and open the 350.00 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 372.00 below a falling 20-day (375.51), a falling 50-day (379.13) and a falling 200-day (391.22). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 3.05 (~0.8%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22122.51 / \u22122.29 / \u22120.22). Over the last year it has ranged 369.50\u2013404.00; the last close sits 8% below that high and 1% above that low.",
+      bull: "A daily close back above 375.51 would clear the nearest resistance and open the 400.16 zone.",
+      bear: "A close below 360.00 would break the nearest support and open the 340.00 zone."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-08-25" },
-      tech: { data:"2026-07-24", computed:"2026-08-30" }
+      mc:   { data:"2026-08-27", computed:"2026-08-31" },
+      tech: { data:"2026-08-31", computed:"2026-08-31" }
     },
     files: {
       study: "files/IHC_Valuation_Study_04-07-2026_public.docx?v=0407",
@@ -3202,7 +3202,7 @@ const BANDS = {
   Gold: {mkt:"XAU", n:62, hits:59, c50:0.4194, c80:0.8387, c90:0.9516, width:1.024, strength:"long", flag:null},
   HELI: {mkt:"EG", n:57, hits:52, c50:0.5614, c80:0.7895, c90:0.9123, width:1.372, strength:"long", flag:null},
   HRHO: {mkt:"EG", n:57, hits:53, c50:0.5439, c80:0.8421, c90:0.9298, width:1.500, strength:"long", flag:null},
-  IHC: {mkt:"AE", n:47, hits:38, c50:0.6383, c80:0.7872, c90:0.8085, width:1.225, strength:"long", flag:"narrow"},
+  IHC: {mkt:"AE", n:47, hits:40, c50:0.6596, c80:0.7872, c90:0.8511, width:1.262, strength:"long", flag:null},
   INFY: {mkt:"IN", n:57, hits:51, c50:0.5088, c80:0.8246, c90:0.8947, width:1.126, strength:"long", flag:null},
   IQCD: {mkt:"QA", n:58, hits:52, c50:0.4828, c80:0.8103, c90:0.8966, width:1.003, strength:"long", flag:null},
   ISPH: {mkt:"EG", n:30, hits:23, c50:0.4667, c80:0.7333, c90:0.7667, width:1.316, strength:"short", flag:"narrow"},
@@ -3246,7 +3246,7 @@ const BANDS = {
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
-  AE: {names:28, n:912, c90:0.9035, label:"UAE"},
+  AE: {names:28, n:912, c90:0.9057, label:"UAE"},
   EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
@@ -4681,9 +4681,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
     p5:365.12, p25:374.9, p50:381.13, p75:387.49, p95:397.56,
     touch:{ "+5":6, "+10":0, "+15":0, "+20":0, "-5":4, "-10":0 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:371, realized_high:384.6, realized_low:369.5,
+    in_90:true, in_50:false, realized_quantile:0.170, median_err:-0.0266,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"IHC", asset_class:"equity",
@@ -6797,6 +6797,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 31-Aug-2026 single-name roll-forward: IHC, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"IHC", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-31", anchor_price:371.2, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.1461,
+    signal_z:-1.005, signal_alpha:-0.004521,
+    note:"Cycle 3 roll-forward, 31-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -1.005 (outside the 0.25 dead zone); tilt -0.45% at 1M and -1.46% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:348.08, p25:362.41, p50:370.58, p75:379.16, p95:395.09,
+    touch:{ "+5":14, "+10":2, "+15":1, "+20":0, "-5":14, "-10":2 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"IHC", asset_class:"equity",
+    anchor_date:"2026-08-27", run_date:"2026-08-31", anchor_price:371.2, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-27", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.1628,
+    signal_z:-1.005, signal_alpha:-0.014722,
+    note:"Cycle 3 roll-forward, 31-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -1.005 (outside the 0.25 dead zone); tilt -0.45% at 1M and -1.46% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:326.87, p25:353.59, p50:369.26, p75:385.49, p95:417.6,
+    touch:{ "+5":38, "+10":14, "+15":6, "+20":3, "-5":42, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7035,7 +7064,7 @@ const CALIB = {
   "ADX:EAND": {w: 58, in50: 55, in90: 88, through: "2026-08-05"},
   "ADX:FAB": {w: 58, in50: 52, in90: 91, through: "2026-08-13"},
   "ADX:FERTIGLB": {w: 14, in50: 43, in90: 86, through: "2026-05-19"},
-  "ADX:IHC": {w: 47, in50: 64, in90: 81, through: "2026-07-21"},
+  "ADX:IHC": {w: 47, in50: 64, in90: 83, through: "2026-07-21"},
   "ADX:LULU": {w: 2, in50: 50, in90: 100, through: "2026-06-01"},
   "ADX:MODON": {w: 23, in50: 52, in90: 87, through: "2026-06-01"},
   "DFM:AIRARABIA": {w: 58, in50: 47, in90: 86, through: "2026-07-28"},
