@@ -39,6 +39,57 @@ EXCHANGE_MARKET = {'ADX': 'AE', 'DFM': 'AE', 'EGX': 'EG', 'TADAWUL': 'SA',
                    'NSE': 'IN', 'NASDAQ': 'US', 'QSE': 'QA', 'KRX': 'KR'}
 FNAME = re.compile(r'^(?:[0-9a-f]{8}-)?([A-Z]+)_(?:DLY_)?(.+?)_1D\.csv$')
 
+# A data.js TICKER KEY IS NOT A LIBRARY FILENAME, and every one of the three
+# places they diverge is already recorded in the protocol as a defect someone
+# found the hard way:
+#   2POINTZERO   a JS identifier cannot start with a digit, so data.js quotes
+#                the key and the library sidesteps it in the filename. The
+#                digest records this name being silently dropped by three
+#                separate tools, each of which reported success.
+#   ALRAJHI      data.js carries TADAWUL:1120; the library file is RAJHI.csv.
+#                Named in the digest as the miss the load-assert caught.
+#   ADIBUAE      ADIB is a different bank per market — ledger ADIB is Egyptian,
+#                ADIBUAE is the UAE one, and the two libraries are EG/ADIB.csv
+#                and AE/ADIB.csv. band_record.py resolves this through an
+#                explicit asserted alias rather than inferring from a filename.
+# GOLD/SILVER/PLATINUM hold libraries and carry no data.js TICKERS entry at all.
+ALIAS = {('AE', '2POINTZERO'): 'TWOPOINTZERO',
+         ('SA', 'ALRAJHI'): 'RAJHI',
+         ('AE', 'ADIBUAE'): 'ADIB'}
+METALS_ONLY = {'XAU/GOLD', 'XAU/SILVER', 'XPT/PLATINUM'}
+
+
+def library_key(market, ticker):
+    """The (market, library filename) a data.js ticker actually lives under."""
+    return f'{market}/{ALIAS.get((market, ticker), ticker)}'
+
+
+def assert_bijection(dmap, libs):
+    """Every data.js ticker resolves to a held library, and no library is orphaned.
+
+    Asserted BOTH WAYS, per the band_record rule: a tool reporting '0 skipped'
+    is not evidence. Without this the AE batch reads 27 of 28 forever and the
+    one missing name is re-sent again and again.
+    """
+    from collections import defaultdict
+    claimed, market_of = defaultdict(list), {}
+    for (ex, _), tkr in dmap.items():
+        mkt = EXCHANGE_MARKET.get(ex)
+        if mkt:
+            market_of[tkr] = mkt
+    for tkr, mkt in market_of.items():
+        k = library_key(mkt, tkr)
+        if k not in libs:
+            raise AssertionError(f'data.js ticker {tkr} resolves to {k}, which is not held')
+        claimed[k].append(tkr)
+    orphans = sorted(libs - set(claimed) - METALS_ONLY)
+    if orphans:
+        raise AssertionError(f'library files claimed by no data.js ticker: {orphans}')
+    dupes = {k: v for k, v in claimed.items() if len(v) > 1}
+    if dupes:
+        raise AssertionError(f'two data.js tickers claim one library: {dupes}')
+    return len(market_of), len(libs)
+
 
 def data_js_map():
     """{(exchange, symbol-or-code): ticker} straight out of the shipped data.js."""
@@ -109,6 +160,9 @@ def main(updir):
     dmap = data_js_map()
     libs = {f'{m}/{os.path.basename(f)[:-4]}'
             for m in os.listdir(RAW) for f in glob.glob(os.path.join(RAW, m, '*.csv'))}
+    n_tickers, n_libs = assert_bijection(dmap, libs)
+    print(f'name map reconciled: {n_tickers} data.js tickers -> {n_libs} libraries '
+          f'(+{len(METALS_ONLY)} metals with no data.js entry)')
     files = sorted(glob.glob(os.path.join(updir, '*.csv')))
     seen, rows, problems = set(), [], []
 
@@ -129,7 +183,7 @@ def main(updir):
             problems.append((b, f'{ex}:{sym} matches no code in data.js — needs an '
                                 f'explicit mapping, never a guess'))
             continue
-        key = f'{mkt}/{tkr}'
+        key = library_key(mkt, tkr)
         up = read_export(f)
         if up is None:
             problems.append((b, 'missing one of time/open/high/low/close'))
