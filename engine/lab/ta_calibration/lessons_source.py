@@ -11,6 +11,15 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 R = json.load(open(os.path.join(_HERE, 'RESULTS_scopes.json')))
 X = json.load(open(os.path.join(_HERE, 'RESULTS_extra.json')))
 VP = json.load(open(os.path.join(_HERE, 'RESULTS_volume_partial.json')))
+DP = json.load(open(os.path.join(_HERE, 'RESULTS_deep.json')))
+
+
+def dk(h, group, key):
+    return DP[f'h{h}'][group][key]
+
+
+def dv(h, group, key, field='effect'):
+    return DP[f'h{h}'][group][key][field]
 
 
 def xt(key):
@@ -53,7 +62,7 @@ METHOD = ('a technical walk-forward test, 93-ticker replay, 31-Aug-2026')
 
 LESSONS = [
     # ---------------------------------------------------------------- EVERY TICKER
-    dict(id='T-001', scope='ALL', status='PROVISIONAL',
+    dict(id='T-001', fig='01_horizon_decay.png', scope='ALL', status='PROVISIONAL',
          title='Score a lens on its own clock, not on the clock of the lens next to it.',
          body=('In this project the technical read is the under-one-month view, the '
                'probability cone owns one to three months, and the fundamental study '
@@ -71,7 +80,7 @@ LESSONS = [
          over=('A lens whose published claims genuinely span the horizon it is scored at. '
                'The rule is about matching the two, not about any particular horizon.')),
 
-    dict(id='T-002', scope='ALL', status='PROVISIONAL',
+    dict(id='T-002', fig='12_pername_tape.png', scope='ALL', status='PROVISIONAL',
          title='The tape reading is the most reliable statement a technical read makes.',
          body=('The ATR sentence — "an orderly tape", "a lively tape" — is a genuine '
                'forecast of how far the price is about to travel. It is the only clause '
@@ -86,7 +95,7 @@ LESSONS = [
          over=('A market where the ATR reading and realized forward movement decouple — '
                'which would show up as a name-level correlation at or below zero.')),
 
-    dict(id='T-003', scope='ALL', status='PROVISIONAL',
+    dict(id='T-003', fig='01_horizon_decay.png', scope='ALL', status='PROVISIONAL',
          title='A charted level is real, and it is worth most in the first week.',
          body=('Support and resistance are not decoration, but they are also not walls. '
                'Measured against a price the same distance away that sits at no charted '
@@ -102,7 +111,7 @@ LESSONS = [
          over=('A level-drawing method whose edge does not decay with horizon, which would '
                'mean the effect is not about the level being tested.')),
 
-    dict(id='T-004', scope='ALL', status='PROVISIONAL',
+    dict(id='T-004', fig='07_slope200.png', scope='ALL', status='PROVISIONAL',
          title='Above the whole moving-average stack is worth about three points, everywhere.',
          body=('The trend clause carries real direction, it is small, and it is the same '
                'size in every market tested. That combination is what makes it a rule '
@@ -135,7 +144,7 @@ LESSONS = [
          over=('A construction of the MACD other than the histogram sign — a crossing, a '
                'divergence — tested on its own and clearing the same bar.')),
 
-    dict(id='T-006', scope='ALL', status='ACTED ON',
+    dict(id='T-006', fig='05_rsi_curve.png', scope='ALL', status='ACTED ON',
          title='A cautious-sounding word is still a claim, and gets audited like one.',
          body=('The read described RSI at or above 70 as "stretched" and below 30 as '
                '"washed out". Both words imply a reversal to any reader. Both were '
@@ -151,7 +160,7 @@ LESSONS = [
                'replaceable by any phrasing that does not imply what it does not predict.')),
 
     # ---------------------------------------------------------------------- CLASS
-    dict(id='T-007', scope='CLASS', cls='market',
+    dict(id='T-007', fig='08_level_market.png', scope='CLASS', cls='market',
          status='PROVISIONAL',
          title='How much a level is worth depends on the market it is drawn in.',
          body=('The level edge holds everywhere, but not equally. A level in the Saudi '
@@ -208,7 +217,7 @@ LESSONS = [
                'markets — the pattern this lesson says is absent.')),
 
     # ---------------------------------------------------------------------- STOCK
-    dict(id='T-010', scope='STOCK', status='PROVISIONAL',
+    dict(id='T-010', fig='12_pername_tape.png', scope='STOCK', status='PROVISIONAL',
          title='Only the tape claim survives per name. The trend claim does not, and it looked as if it did.',
          body=('A per-name record needs the name\'s own history to resolve the effect. '
                'The tape claim clears that bar on almost the whole book. The trend claim '
@@ -229,7 +238,7 @@ LESSONS = [
          over=('A construction of the trend clause whose per-name hits outnumber its '
                'per-name reversals by more than chance. The counts are the test and are '
                're-run every pass.')),
-    dict(id='T-011', scope='ALL', status='PROVISIONAL',
+    dict(id='T-011', fig='09_trigger.png', scope='ALL', status='PROVISIONAL',
          title='The bull and bear trigger sentence promises the opposite of what happens.',
          body=('"A daily close back above R1 would clear the nearest resistance and open '
                'the R3 zone" is the only explicitly conditional forecast the read makes, '
@@ -255,7 +264,7 @@ LESSONS = [
                'too, so reaching it is harder, not easier. The prose was written as though '
                'only the near level were real.')),
 
-    dict(id='T-012', scope='ALL', status='PROVISIONAL',
+    dict(id='T-012', fig='10_cross.png', scope='ALL', status='PROVISIONAL',
          title='A fresh moving-average cross is not a regime change.',
          body=('The read calls a 50/200 cross inside the last 25 sessions "a momentum-'
                'regime change rather than noise inside an intact trend". Neither half of '
@@ -279,7 +288,7 @@ LESSONS = [
                'volatility shift. The 25-session window is the one the read publishes and '
                'is what was tested.')),
 
-    dict(id='T-013', scope='ALL', status='PROVISIONAL',
+    dict(id='T-013', fig='11_volume.png', scope='ALL', status='PROVISIONAL',
          title='Volume carries movement, not direction — and the tape reading already has it.',
          body=('Volume sits in every library and the read has never looked at it. Tested, '
                'it behaves exactly like a weaker version of the ATR sentence: it says '
@@ -300,4 +309,200 @@ LESSONS = [
          over=('A volume construction other than a trailing z-score — turnover against '
                'float, or volume conditioned on direction — retaining a materially larger '
                'partial correlation. What is ruled out is the plain surge.')),
+    # ------------------------------------------------- what the levels are made of
+    dict(id='T-014', fig='02_level_kind.png', scope='ALL', status='PROVISIONAL',
+         title='A moving average is as good a line as charted structure — for about a week.',
+         body=('The read draws its support and resistance from swing highs and lows, and '
+               'admits a moving average, a 52-week extreme or a round number only when '
+               'real structure does not fill the slot — they are scored as second class. '
+               'Over one week that ranking is wrong: the 20-day average holds better than '
+               'anything else on the board. Over a month it is right, and for an obvious '
+               'reason nobody had checked — a moving average MOVES, so as a fixed line it '
+               'goes stale in days.'),
+         know=lambda: (
+             f'At one week the 20-day average is broken through '
+             f'{pc(dv(5,"by_kind","20-day MA"))} less often than a matched non-level, '
+             f'against {pc(dv(5,"by_kind","swing"))} for a swing high or low, '
+             f'{pc(dv(5,"by_kind","round"))} for a round number and '
+             f'{pc(dv(5,"by_kind","52w high"))} for the 52-week high (n = '
+             f'{dv(5,"by_kind","20-day MA","n"):,} / {dv(5,"by_kind","swing","n"):,} / '
+             f'{dv(5,"by_kind","round","n"):,} / {dv(5,"by_kind","52w high","n"):,}). '
+             f'At one month the same average is worth {pc(dv(21,"by_kind","20-day MA"))} '
+             f'— nothing at all — while swing structure still holds '
+             f'{pc(dv(21,"by_kind","swing"))}.'),
+         over=('The moving-average counts are small (174 tests at one week) because the '
+               'read admits an average only when structure does not fill the slot. A '
+               'larger sample moving the estimate toward the swing figure would fold this '
+               'lesson into T-003.')),
+
+    dict(id='T-015', fig='03_touches.png', scope='ALL', status='PROVISIONAL',
+         title='How many times a level was tested tells you nothing about whether it holds.',
+         body=('It is an article of faith in chart reading that a level tested five times '
+               'is stronger than one tested once, and the read believes it too — it '
+               'weights each level by its touch count when deciding what to publish. '
+               'Across the whole book the edge is flat. A level tested once and a level '
+               'tested five times hold equally well.'),
+         know=lambda: (
+             f'At one month, by number of prior tests: none '
+             f'{pc(dv(21,"by_touches","none (MA/round/52w)"))}, once '
+             f'{pc(dv(21,"by_touches","1"))}, twice {pc(dv(21,"by_touches","2"))}, '
+             f'three or four {pc(dv(21,"by_touches","3-4"))}, five or more '
+             f'{pc(dv(21,"by_touches","5+"))} — on '
+             f'{sum(dv(21,"by_touches",k,"n") for k in ("none (MA/round/52w)","1","2","3-4","5+")):,} '
+             f'tests in total. There is no order in it.'),
+         over=('A touch count measured differently — tests clustered in time, or tests '
+               'that produced a large rejection rather than any touch at all. What is '
+               'ruled out is the plain count the read uses.')),
+
+    dict(id='T-016', fig='02_level_kind.png', scope='ALL', status='PROVISIONAL',
+         title='Round numbers work. Not as well as structure, but they are not superstition.',
+         body=('The read treats a round number as a filler — a line to publish when the '
+               'chart has nothing better to offer, scored below everything else. It earns '
+               'more than that. Round numbers hold about three quarters as well as real '
+               'charted structure, consistently, at every horizon.'),
+         know=lambda: (
+             f'A round number is broken through {pc(dv(5,"by_kind","round"))} less often '
+             f'than a matched non-level at one week and {pc(dv(21,"by_kind","round"))} at '
+             f'one month, on {dv(21,"by_kind","round","n"):,} tests — against '
+             f'{pc(dv(21,"by_kind","swing"))} for swing structure on the same clock. Both '
+             f'are far clear of chance.'),
+         over=('A market with no round-number convention in its tick sizes, where the '
+               'effect should vanish.')),
+
+    dict(id='T-017', scope='ALL', status='PROVISIONAL',
+         title='The nearest level is not the strongest one.',
+         body=('The read publishes three levels a side and orders them by distance, and it '
+               'is natural to read the first as the most important. It is not the '
+               'strongest. Over a month the FURTHEST of the three holds best, and the '
+               'nearest holds worst — nearly twice the difference.'),
+         know=lambda: (
+             f'At one month the three published rungs hold '
+             f'{pc(dv(21,"by_rank","1.0"))} (nearest), {pc(dv(21,"by_rank","2.0"))} and '
+             f'{pc(dv(21,"by_rank","3.0"))} (furthest), on '
+             f'{dv(21,"by_rank","1.0","n"):,}, {dv(21,"by_rank","2.0","n"):,} and '
+             f'{dv(21,"by_rank","3.0","n"):,} tests. At one week the middle rung is '
+             f'strongest ({pc(dv(5,"by_rank","2.0"))}) and the ordering is not '
+             f'monotonic either way.'),
+         over=('An ordering that reproduces on a different level-drawing method. As it '
+               'stands this may be about which levels survive the read\'s own distance '
+               'filter rather than about rank itself.')),
+
+    # -------------------------------------------- indicators published but unscored
+    dict(id='T-018', fig='07_slope200.png', scope='ALL', status='PROVISIONAL',
+         title='Which way the 200-day is sloping is worth more than where the price sits.',
+         body=('Every page states whether the 200-day average is rising, flat or falling, '
+               'and nothing has ever been made of it. It is a cleaner directional signal '
+               'than the moving-average stack the read leads with, and it moves in the '
+               'order you would hope: rising is best, falling is worst, flat sits between '
+               'them.'),
+         know=lambda: (
+             f'Against a base rate of '
+             f'{DP["h21"]["slope200"]["base"]*100:.1f}%, a rising 200-day is followed by a '
+             f'higher close one month later {pc(DP["h21"]["slope200"]["rows"][0]["lift"])} '
+             f'more often, a flat one '
+             f'{pc(DP["h21"]["slope200"]["rows"][1]["lift"])} and a falling one '
+             f'{pc(DP["h21"]["slope200"]["rows"][2]["lift"])} — a spread of '
+             f'{(DP["h21"]["slope200"]["rows"][0]["lift"]-DP["h21"]["slope200"]["rows"][2]["lift"])*100:.1f} '
+             f'points across '
+             f'{sum(x["n"] for x in DP["h21"]["slope200"]["rows"]):,} readings, against '
+             f'{pc(eff("trend",21))} for the stack claim the read leads with.'),
+         over=('A slope definition other than the ten-session change the read uses, '
+               'failing to reproduce it.')),
+
+    dict(id='T-019', fig='06_52week.png', scope='ALL', status='PROVISIONAL',
+         title='Stocks near their 52-week high keep doing better. The read states the distance and stops.',
+         body=('Every page prints how far the last close sits below the 52-week high. That '
+               'distance predicts what comes next, in the direction a momentum investor '
+               'would expect and a bargain hunter would not: the closer to the high, the '
+               'better the odds.'),
+         know=lambda: (
+             f'Sorted into eight equal groups by distance below the high, the closest '
+             f'group is followed by a higher close one month later '
+             f'{pc(DP["h21"]["w52"]["buckets"][0]["lift"])} more often than the base rate, '
+             f'and the group sitting about '
+             f'{DP["h21"]["w52"]["buckets"][-2]["mid"]*100:.0f}% below the high '
+             f'{pc(DP["h21"]["w52"]["buckets"][-2]["lift"])} — on about '
+             f'{DP["h21"]["w52"]["buckets"][0]["n"]:,} readings per group. The pattern is '
+             f'broadly monotonic across the middle.'),
+         over=('The deepest group breaks the pattern, which is what a genuine washed-out '
+               'rebound would look like. A larger sample confirming that turn would make '
+               'this a U-shape rather than a slope.')),
+
+    dict(id='T-020', fig='05_rsi_curve.png', scope='ALL', status='PROVISIONAL',
+         title='RSI is flat across nine tenths of its range.',
+         body=('The read has five words for RSI. Measured decile by decile, the first nine '
+               'are indistinguishable from one another and from the base rate. Everything '
+               'RSI knows sits in its top tenth. That is why the word for the top mattered '
+               'so much (T-006) and why the words for the middle carry nothing.'),
+         know=lambda: (
+             f'Across ten equal groups at one week, the lifts run between '
+             f'{min(b["lift"] for b in DP["h5"]["rsi"]["buckets"][:9])*100:+.1f} and '
+             f'{max(b["lift"] for b in DP["h5"]["rsi"]["buckets"][:9])*100:+.1f} points, '
+             f'each on about {DP["h5"]["rsi"]["buckets"][0]["n"]:,} readings and each '
+             f'inside its own error bar. The top group — RSI above '
+             f'{DP["h5"]["rsi"]["buckets"][-1]["lo"]:.0f} — is '
+             f'{pc(DP["h5"]["rsi"]["buckets"][-1]["lift"])}, and '
+             f'{pc(DP["h21"]["rsi"]["buckets"][-1]["lift"])} at one month.'),
+         over=('An RSI period other than 14, or a reading taken relative to the stock\'s '
+               'own history rather than the fixed 0-100 scale.')),
+
+    # ---------------------------------------------------------------- does it last
+    dict(id='T-021', fig='13_stability.png', scope='ALL', status='WATCH',
+         title='The trend claim has faded. It worked before 2020 and has not since.',
+         body=('Splitting the fifteen years in half is the cheapest honesty check there '
+               'is, and the trend claim fails it. Trading above the whole moving-average '
+               'stack was worth something in the first half and nothing in the second — '
+               'it does not merely weaken, it changes sign. The pooled figure this '
+               'register publishes for it is therefore an average of a real effect and '
+               'its absence.'),
+         know=lambda: (
+             f'At one month, split at {DP["h21"]["stability"]["early"]["split_at"]}: the '
+             f'above-versus-below gap is '
+             f'{pc(DP["h21"]["stability"]["early"]["trend"])} in the earlier half and '
+             f'{pc(DP["h21"]["stability"]["late"]["trend"])} in the later one. At one week '
+             f'it survives with the same sign but decays hard — '
+             f'{pc(DP["h5"]["stability"]["early"]["trend"])} to '
+             f'{pc(DP["h5"]["stability"]["late"]["trend"])}.'),
+         over=('The next few years restoring it. This is flagged as a WATCH rather than a '
+               'withdrawal because half a sample is a blunt instrument, and the shorter '
+               'horizon still holds.')),
+
+    dict(id='T-022', fig='13_stability.png', scope='ALL', status='PROVISIONAL',
+         title='Levels and the tape reading do survive that same test.',
+         body=('The split-half check that broke the trend claim leaves the other two '
+               'standing. The level edge is close to unchanged across the two halves, and '
+               'the tape reading is actually stronger in the recent one. A finding that '
+               'holds in both halves of fifteen years is a different quality of evidence '
+               'from one that holds only on average.'),
+         know=lambda: (
+             f'At one month the level edge is '
+             f'{pc(DP["h21"]["stability"]["early"]["levels"]["effect"])} before '
+             f'{DP["h21"]["stability"]["early"]["split_at"]} and '
+             f'{pc(DP["h21"]["stability"]["late"]["levels"]["effect"])} after; at one week, '
+             f'{pc(DP["h5"]["stability"]["early"]["levels"]["effect"])} and '
+             f'{pc(DP["h5"]["stability"]["late"]["levels"]["effect"])}. The tape '
+             f'correlation runs {DP["h21"]["stability"]["early"]["tape"]:+.3f} then '
+             f'{DP["h21"]["stability"]["late"]["tape"]:+.3f}.'),
+         over=('Either measure dropping toward zero in a future half. The check is cheap '
+               'and should be re-run at every calibration pass.')),
+
+    dict(id='T-023', fig='04_atr_ladder.png', scope='ALL', status='PROVISIONAL',
+         title='The four tape words are a properly calibrated ladder, not adjectives.',
+         body=('"An orderly tape", "a normal tape", "a lively tape", "a volatile tape". '
+               'Each maps to a distinct and correctly ordered amount of movement in the '
+               'month that follows, and the gaps between them are wide enough that the '
+               'words are doing real work. This is the one place the read already behaves '
+               'like a calibrated instrument.'),
+         know=lambda: (
+             ' · '.join(f'{b["word"]} → {b["med"]*100:.0f}%' for b in DP['h21']['atr'])
+             + f' (median annualised movement over the following month, on '
+               f'{sum(b["n"] for b in DP["h21"]["atr"]):,} readings). The middle half of '
+               f'outcomes for "an orderly tape" runs '
+               f'{DP["h21"]["atr"][0]["q25"]*100:.0f}–{DP["h21"]["atr"][0]["q75"]*100:.0f}% '
+               f'against {DP["h21"]["atr"][-1]["q25"]*100:.0f}–'
+               f'{DP["h21"]["atr"][-1]["q75"]*100:.0f}% for "a volatile tape" — barely '
+               f'overlapping.'),
+         over=('A market where the ladder inverts or collapses. The cut points are fixed '
+               'percentages of price and could in principle suit one market and not '
+               'another; tested per market, all of them keep the order.')),
 ]

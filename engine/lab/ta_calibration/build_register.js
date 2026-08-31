@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const D = require('docx');
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow,
-        TableCell, WidthType, ShadingType, AlignmentType, BorderStyle } = D;
+        TableCell, WidthType, ShadingType, AlignmentType, BorderStyle, ImageRun } = D;
 
 const P = JSON.parse(fs.readFileSync(path.join(__dirname, 'register_payload.json'), 'utf8'));
 const SCOPE = {
@@ -36,6 +36,27 @@ function table(header, rows, widths) {
                      rows: [ mk(header, true, true), ...rows.map(r=>mk(r)) ] });
 }
 
+const FIGDIR = path.join(__dirname, 'figures');
+const shown = new Set();
+function figure(name, caption) {
+  if (!name || shown.has(name)) return;      // an image repeated is an image ignored
+  const f = path.join(FIGDIR, name);
+  if (!fs.existsSync(f)) return;
+  shown.add(name);
+  kids.push(new Paragraph({ children: [ new ImageRun({
+    type: 'png', data: fs.readFileSync(f),
+    transformation: { width: 604, height: Math.round(604 * imgRatio(f)) } }) ],
+    spacing: { before: 140, after: 40 } }));
+  if (caption) kids.push(p([t(caption, { size: 16, italics: true, color: '777777' })],
+                           { spacing: { after: 200 } }));
+}
+// read the PNG header for its true aspect ratio, so nothing is squashed
+function imgRatio(f) {
+  const b = fs.readFileSync(f);
+  const w = b.readUInt32BE(16), h = b.readUInt32BE(20);
+  return h / w;
+}
+
 const kids = [];
 kids.push(p([t('TESTAHIL', { bold:true, size:22, color:'888888' })], { spacing:{after:40} }));
 kids.push(new Paragraph({ children:[t('The Technical Lessons Register', { bold:true, size:44 })], spacing:{after:80} }));
@@ -53,12 +74,25 @@ kids.push(table(['Scope','Means','Who must read it'], [
 kids.push(p(''));
 kids.push(p('Every lesson also records how it was learned, because the strength of the evidence differs enormously, and what would overturn it. A lesson with no falsifier is a habit, not a finding.'));
 
+kids.push(h1('The four things worth knowing, in pictures'));
+kids.push(p('If you read nothing else, read these four charts. The rest of the document is the evidence behind them.'));
+figure('01_horizon_decay.png', 'Levels matter, and they matter most over days rather than months. This is why the whole calibration was re-run — the first pass scored a short-term read against three-month outcomes and reported the weakest number in this chart.');
+figure('04_atr_ladder.png', 'The tape sentence is the best thing the read publishes. Four words, four clearly different amounts of movement in the month that follows.');
+figure('09_trigger.png', 'The trigger sentence said clearing a level opens the next one. It does the opposite — and that follows from levels being real, because the far level holds too.');
+figure('13_stability.png', 'Split the fifteen years in half and two of the three main claims survive. The trend claim does not.');
+
 kids.push(h1('What is in here, and what is honestly missing'));
 kids.push(h2('This tests the read, not the cone and not the study'));
 kids.push(p(`Three different tests in this project are all called a walk-forward, and they test different machinery on different evidence. This register covers only the first: the technical read, re-run at every historical origin on a truncated library and graded on what the tape actually did. It covers ${P.coverage.names} names carrying enough history to be assessed, over ${P.coverage.obs.toLocaleString()} readings per horizon.`));
 kids.push(table(['','What it tests','Names','Resolved observations'], P.evidence_rows, [2400, 4400, 1500, 2100]));
 kids.push(p(''));
 kids.push(p('Every sentence the read publishes has now been scored. The bull and bear trigger, the fresh golden-cross clause and volume were the three gaps in the first edition and all three are closed below — two of them by finding the published claim points the wrong way, which is why they were worth closing. What remains genuinely untested: intraday structure, which these libraries do not carry, and any level-drawing method other than the one the read uses.'));
+
+kids.push(h1('The indicators this read is built from'));
+kids.push(p('Everything below is computed from the same daily price history the probability cone runs on, through the same data-quality gate. Nothing is fitted and nothing is hand-drawn — every number is a fixed function of the price series, and every sentence on a page is chosen by one of these numbers.'));
+kids.push(table(['Indicator', 'Setting', 'What it is'], P.indicators, [2500, 3100, 3600]));
+kids.push(p(''));
+kids.push(p('The settings are conventional ones, chosen before any of this was measured. They are NOT fitted to the data, which is why the calibration can test them honestly — but it also means several of them are simply inherited, and three lessons below (T-014, T-015, T-017) find that the read\u2019s own ranking and weighting of levels do not match what the levels actually do.'));
 
 const bySc = (s) => P.lessons.filter(l => l.scope === s);
 function lesson(l) {
@@ -69,6 +103,7 @@ function lesson(l) {
   kids.push(p([t(l.body, { size:21 })]));
   kids.push(p([t('How we know.  ', { bold:true, size:21 }), t(l.know, { size:21 })]));
   kids.push(p([t('What would overturn it.  ', { bold:true, size:21 }), t(l.over, { size:21 })]));
+  figure(l.fig, `Figure for ${l.id}.`);
 }
 
 kids.push(h1('Lessons that bind on EVERY ticker'));

@@ -245,7 +245,13 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
                     macd_hist=(st['macd'] or {}).get('hist'),
                     cross_ago=(st['ma_cross'] or {}).get('ago'),
                     cross_kind=(st['ma_cross'] or {}).get('kind'),
-                    vol_z=vz)
+                    vol_z=vz,
+                    # 52-week position and MA slope state: both are published on
+                    # every page and neither had ever been scored.
+                    off_high=st.get('pct_off_high'), off_low=st.get('pct_off_low'),
+                    slope20=(st['ma_slope'] or {}).get(20),
+                    slope50=(st['ma_slope'] or {}).get(50),
+                    slope200=(st['ma_slope'] or {}).get(200))
 
         for h in horizons:
             g = i + h
@@ -258,8 +264,16 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
             rlz_vol = (float(np.std(np.diff(np.log(close[i:g + 1])), ddof=1) * np.sqrt(252))
                        if g - i > 2 else np.nan)
             for side, above in (('res', True), ('sup', False)):
+                # KIND AND TOUCH COUNT COME ALONG. technicals.py ranks a swing
+                # cluster ABOVE a moving average, a 52-week extreme and a round
+                # number, and weights a level by how many times it was tested.
+                # Both are assumptions the module makes about itself and neither
+                # had ever been checked; level_detail carries them in the same
+                # order as the published ladder.
+                detail = st['level_detail'][side]
                 for rank, lv in enumerate(st['levels'][side], start=1):
                     lv = float(lv)
+                    dk = detail[rank - 1] if rank - 1 < len(detail) else {}
                     pair = _placebo_pair(lv, spot, above, struct + published)
                     got = [p for p in pair if p is not None]
                     if not got:
@@ -268,6 +282,7 @@ def harvest_short(market: str, ticker: str, step: int = SHORT_STEP,
                     thr = (lambda x: (fc >= x).any()) if above else (lambda x: (fc <= x).any())
                     pt = [(pp, dd) for pp, dd in got if hit(pp)]
                     rows.append(dict(base, h=h, claim='level', side=side, rank=rank,
+                                     kind=dk.get('kind'), touches=dk.get('touches'),
                                      level=lv, dist=abs(lv - spot) / spot,
                                      placebo_dist=float(np.mean([dd for _, dd in got])),
                                      n_sides=len(got),
