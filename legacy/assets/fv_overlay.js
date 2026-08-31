@@ -7984,16 +7984,16 @@ const FV_OVERLAY = {
    "name": "International Holding Company",
    "code": "ADX:IHC",
    "ccy": "AED",
-   "spot": 380,
-   "anchor_date": "2026-07-24",
+   "spot": 371.2,
+   "anchor_date": "2026-08-27",
    "fv_asof": "2026-07-04",
-   "fv_lag_days": 20,
+   "fv_lag_days": 54,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 78,
    "fv_base": 104.5,
    "fv_full": 150,
-   "gap_base_pct": -72.5,
+   "gap_base_pct": -71.8,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
@@ -8006,13 +8006,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.026068,
-    "mu_h": 0.000631,
+    "h_sessions": 22,
+    "sigma_h": 0.041141,
+    "mu_h": -0.001672,
     "G": {
-     "bear": -60.74,
-     "base": -49.52,
-     "full": -35.66
+     "bear": -37.92,
+     "base": -30.81,
+     "full": -22.02
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -8027,16 +8027,16 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00016
+    "selftest_max_dev": 0.00092
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.057789,
-    "mu_h": 0.000447,
+    "h_sessions": 64,
+    "sigma_h": 0.079554,
+    "mu_h": -0.00524,
     "G": {
-     "bear": -27.4,
-     "base": -22.34,
-     "full": -16.09
+     "bear": -19.61,
+     "base": -15.93,
+     "full": -11.39
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -8044,14 +8044,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9982,
-     "base": -0.9943,
-     "full": -0.9757
+     "bear": -0.9981,
+     "base": -0.9937,
+     "full": -0.9733
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00036
+    "selftest_max_dev": 0.00116
    },
    "market": "AE"
   },

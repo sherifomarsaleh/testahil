@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0168,
+    "market_skill": 0.0206,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.008,
-      0.027
+      0.01,
+      0.033
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -999,35 +999,35 @@
       },
       "ADIB": {
         "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": 0.0415,
-        "skill_raw_basis": 0.0231,
+        "width_cal": 0.902,
+        "skill": 0.0406,
+        "skill_raw_basis": 0.0218,
         "verdict": "PASS",
         "ci_block2": [
-          0.005,
-          0.074
+          0.004,
+          0.073
         ]
       },
       "ADNOCDIST": {
-        "nu": 10.0,
+        "nu": 12.0,
         "width_cal": 0.923,
-        "skill": -0.0185,
-        "skill_raw_basis": -0.0197,
+        "skill": -0.0222,
+        "skill_raw_basis": -0.0236,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.048,
-          0.008
+          -0.053,
+          0.005
         ]
       },
       "ADNOCDRILL": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": -0.0066,
-        "skill_raw_basis": -0.0047,
+        "width_cal": 0.916,
+        "skill": -0.0055,
+        "skill_raw_basis": -0.0036,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.015,
-          0.006
+          -0.014,
+          0.008
         ]
       },
       "ADNOCGAS": {
@@ -1064,14 +1064,14 @@
         ]
       },
       "AIRARABIA": {
-        "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": 0.004,
-        "skill_raw_basis": -0.0006,
+        "nu": 12.0,
+        "width_cal": 0.909,
+        "skill": 0.0032,
+        "skill_raw_basis": -0.0015,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.013,
-          0.016
+          -0.014,
+          0.015
         ]
       },
       "ALDAR": {
@@ -1108,14 +1108,14 @@
         ]
       },
       "BOROUGE": {
-        "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": -0.0542,
-        "skill_raw_basis": -0.0522,
+        "nu": 12.0,
+        "width_cal": 0.916,
+        "skill": -0.0564,
+        "skill_raw_basis": -0.0542,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.095,
-          -0.02
+          -0.098,
+          -0.021
         ]
       },
       "BURJEEL": {
@@ -1141,47 +1141,47 @@
         ]
       },
       "DIB": {
-        "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": 0.0344,
-        "skill_raw_basis": 0.0303,
+        "nu": 12.0,
+        "width_cal": 0.902,
+        "skill": 0.0342,
+        "skill_raw_basis": 0.0302,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.003,
-          0.058
+          0.057
         ]
       },
       "DU": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": -0.0,
-        "skill_raw_basis": 0.0068,
+        "width_cal": 0.916,
+        "skill": 0.0007,
+        "skill_raw_basis": 0.0074,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.054,
-          0.047
+          -0.052,
+          0.046
         ]
       },
       "EAND": {
-        "nu": 10.0,
-        "width_cal": 0.916,
+        "nu": 12.0,
+        "width_cal": 0.909,
         "skill": 0.0408,
-        "skill_raw_basis": 0.0266,
+        "skill_raw_basis": 0.0269,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.027,
-          0.11
+          -0.026,
+          0.109
         ]
       },
       "EMAAR": {
-        "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": 0.0386,
+        "nu": 12.0,
+        "width_cal": 0.902,
+        "skill": 0.0389,
         "skill_raw_basis": 0.0496,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.002,
-          0.087
+          -0.001,
+          0.086
         ]
       },
       "EMAARDEV": {
@@ -1197,13 +1197,13 @@
       },
       "EMPOWER": {
         "nu": 10.0,
-        "width_cal": 0.923,
-        "skill": -0.0252,
-        "skill_raw_basis": -0.0254,
+        "width_cal": 0.916,
+        "skill": -0.0233,
+        "skill_raw_basis": -0.0235,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.036,
-          -0.007
+          -0.034,
+          -0.006
         ]
       },
       "ENBD": {
@@ -1229,25 +1229,25 @@
         ]
       },
       "FERTIGLB": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": -0.0031,
-        "skill_raw_basis": -0.0077,
+        "nu": 10.0,
+        "width_cal": 0.909,
+        "skill": -0.0017,
+        "skill_raw_basis": -0.0059,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
+          -0.021,
           0.011
         ]
       },
       "IHC": {
         "nu": 12.0,
         "width_cal": 0.909,
-        "skill": 0.0196,
-        "skill_raw_basis": 0.0125,
+        "skill": 0.1162,
+        "skill_raw_basis": 0.0858,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.137,
-          0.07
+          -0.178,
+          0.174
         ]
       },
       "LULU": {
@@ -1273,25 +1273,25 @@
         ]
       },
       "SALIK": {
-        "nu": 8.0,
-        "width_cal": 0.923,
-        "skill": 0.03,
-        "skill_raw_basis": 0.026,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0295,
+        "skill_raw_basis": 0.0255,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.004,
-          0.057
+          0.056
         ]
       },
       "TWOPOINTZERO": {
-        "nu": 8.0,
-        "width_cal": 0.909,
-        "skill": -0.0148,
-        "skill_raw_basis": -0.0165,
+        "nu": 10.0,
+        "width_cal": 0.902,
+        "skill": -0.0131,
+        "skill_raw_basis": -0.0148,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.025,
-          0.002
+          -0.023,
+          0.003
         ]
       }
     },
@@ -1314,22 +1314,22 @@
         0.965
       ],
       "cov50": {
-        "mle": 0.5304,
-        "reshaped": 0.5012,
+        "mle": 0.528,
+        "reshaped": 0.4988,
         "lono_heldout": 0.5012
       },
-      "delta_ll": 2.43,
+      "delta_ll": 2.76,
       "crps_parity_ci": {
         "2": [
-          -0.0016,
-          0.0022
+          -0.0015,
+          0.0023
         ],
         "3": [
-          -0.0015,
-          0.0022
+          -0.0014,
+          0.0023
         ],
         "4": [
-          -0.0016,
+          -0.0015,
           0.0024
         ]
       },
@@ -1359,7 +1359,7 @@
       "ENBD": null,
       "FAB": null,
       "FERTIGLB": null,
-      "IHC": "narrow",
+      "IHC": null,
       "LULU": null,
       "MODON": null,
       "SALIK": null,
