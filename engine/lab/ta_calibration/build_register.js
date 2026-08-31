@@ -58,7 +58,7 @@ kids.push(h2('This tests the read, not the cone and not the study'));
 kids.push(p(`Three different tests in this project are all called a walk-forward, and they test different machinery on different evidence. This register covers only the first: the technical read, re-run at every historical origin on a truncated library and graded on what the tape actually did. It covers ${P.coverage.names} names carrying enough history to be assessed, over ${P.coverage.obs.toLocaleString()} readings per horizon.`));
 kids.push(table(['','What it tests','Names','Resolved observations'], P.evidence_rows, [2400, 4400, 1500, 2100]));
 kids.push(p(''));
-kids.push(p('Honestly missing: the bull and bear trigger sentences ("a close above R1 would open the R3 zone") and the fresh golden-cross clause are not yet scored. Both are explicit conditional forecasts and both are gradeable; neither has been graded. Volume carries no lesson here at all — it is in the libraries and has never been tested.'));
+kids.push(p('Every sentence the read publishes has now been scored. The bull and bear trigger, the fresh golden-cross clause and volume were the three gaps in the first edition and all three are closed below — two of them by finding the published claim points the wrong way, which is why they were worth closing. What remains genuinely untested: intraday structure, which these libraries do not carry, and any level-drawing method other than the one the read uses.'));
 
 const bySc = (s) => P.lessons.filter(l => l.scope === s);
 function lesson(l) {
@@ -72,7 +72,7 @@ function lesson(l) {
 }
 
 kids.push(h1('Lessons that bind on EVERY ticker'));
-kids.push(p('Read these before reading any chart, of any company, in any market.'));
+kids.push(p('Read these before reading any chart, of any company, in any market. Four of them say a sentence the read currently publishes is wrong — the two momentum words, the trigger and the cross — which is what a calibration is for.'));
 bySc('ALL').forEach(lesson);
 
 kids.push(h1('Lessons that bind on a CLASS of ticker'));

@@ -9,6 +9,12 @@ import json, os
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 R = json.load(open(os.path.join(_HERE, 'RESULTS_scopes.json')))
+X = json.load(open(os.path.join(_HERE, 'RESULTS_extra.json')))
+VP = json.load(open(os.path.join(_HERE, 'RESULTS_volume_partial.json')))
+
+
+def xt(key):
+    return X[key]
 
 
 def cell(fam, h, cls='market_label'):
@@ -223,4 +229,75 @@ LESSONS = [
          over=('A construction of the trend clause whose per-name hits outnumber its '
                'per-name reversals by more than chance. The counts are the test and are '
                're-run every pass.')),
+    dict(id='T-011', scope='ALL', status='PROVISIONAL',
+         title='The bull and bear trigger sentence promises the opposite of what happens.',
+         body=('"A daily close back above R1 would clear the nearest resistance and open '
+               'the R3 zone" is the only explicitly conditional forecast the read makes, '
+               'and it is wrong in direction. Clearing a REAL level is followed by the far '
+               'level opening LESS often than clearing a non-level at the same distance '
+               'is. The sentence reads as a green light and the tape treats it as a '
+               'warning.'),
+         know=lambda: (
+             f'Scored in the order the sentence claims — the far rung must be reached '
+             f'AFTER the close that fired the trigger — against a null ladder moved off '
+             f'structure with the near/far ratio preserved. At one week the far zone opens '
+             f'{xt("trigger|h5|both")["p_real"]*100:.1f}% of the time after a real trigger '
+             f'against {xt("trigger|h5|both")["p_null"]*100:.1f}% after the null '
+             f'({pc(xt("trigger|h5|both")["effect"])}, z = {xt("trigger|h5|both")["z"]:.1f}, '
+             f'{xt("trigger|h5|both")["n_real"]:,} firings); at one month '
+             f'{pc(xt("trigger|h21|both")["effect"])} (z = {xt("trigger|h21|both")["z"]:.1f}). '
+             f'Both sides fail and the support side fails harder. The firing rates '
+             f'themselves match — {xt("trigger|h21|both")["fire_rate_real"]*100:.0f}% real '
+             f'against {xt("trigger|h21|both")["fire_rate_null"]*100:.0f}% null — so this is '
+             f'about what follows the trigger, not about how often it fires.'),
+         over=('Nothing about the direction — but note it FOLLOWS from T-003 rather than '
+               'contradicting it. If a charted level genuinely holds, the far level holds '
+               'too, so reaching it is harder, not easier. The prose was written as though '
+               'only the near level were real.')),
+
+    dict(id='T-012', scope='ALL', status='PROVISIONAL',
+         title='A fresh moving-average cross is not a regime change.',
+         body=('The read calls a 50/200 cross inside the last 25 sessions "a momentum-'
+               'regime change rather than noise inside an intact trend". Neither half of '
+               'that survives testing. Volatility does not shift, and the direction leans '
+               'gently the wrong way: a fresh golden cross is followed by a LOWER up-rate '
+               'than an established one, and a fresh death cross by a higher one.'),
+         know=lambda: (
+             f'Compared against origins in the SAME cross state without the freshness, so '
+             f'the test isolates the cross rather than re-measuring the trend. At one month '
+             f'a fresh golden cross is followed by an up-rate of '
+             f'{xt("cross|h21|golden")["p_real"]*100:.1f}% against '
+             f'{xt("cross|h21|golden")["p_null"]*100:.1f}% for a stale one '
+             f'({pc(xt("cross|h21|golden")["effect"])}, z = {xt("cross|h21|golden")["z"]:.1f}, '
+             f'n = {xt("cross|h21|golden")["n_real"]:,}); a fresh death cross runs '
+             f'{pc(xt("cross|h21|death")["effect"])} the other way. Realized forward '
+             f'volatility is essentially unchanged — a ratio of '
+             f'{xt("cross|h21|golden")["vol_ratio"]:.2f} on golden and '
+             f'{xt("cross|h21|death")["vol_ratio"]:.2f} on death — which is the reading '
+             f'that most directly refutes "regime change".'),
+         over=('A different freshness window, or a cross of different averages, showing a '
+               'volatility shift. The 25-session window is the one the read publishes and '
+               'is what was tested.')),
+
+    dict(id='T-013', scope='ALL', status='PROVISIONAL',
+         title='Volume carries movement, not direction — and the tape reading already has it.',
+         body=('Volume sits in every library and the read has never looked at it. Tested, '
+               'it behaves exactly like a weaker version of the ATR sentence: it says '
+               'something real about how far price will travel, nothing at all about which '
+               'way, and almost all of what it says is already said better by a reading '
+               'the page publishes today.'),
+         know=lambda: (
+             f'On {xt("volume|h5")["n"]:,} readings, a volume surge and a volume drought are '
+             f'followed by a higher close equally often — '
+             f'{pc(xt("volume|h5")["direction"]["effect"])} at one week '
+             f'(z = {xt("volume|h5")["direction"]["z"]:+.1f}) and '
+             f'{pc(xt("volume|h21")["direction"]["effect"])} at one month. Against realized '
+             f'forward volatility the volume z-score scores {VP["5"]["raw"]:+.3f} where the '
+             f'ATR reading scores {VP["5"]["atr"]:+.3f}; controlling for ATR, volume keeps '
+             f'{VP["5"]["partial"]:+.3f} at one week and {VP["21"]["partial"]:+.3f} at one '
+             f'month — real, highly significant, and about a twentieth of what the page '
+             f'already tells you.'),
+         over=('A volume construction other than a trailing z-score — turnover against '
+               'float, or volume conditioned on direction — retaining a materially larger '
+               'partial correlation. What is ruled out is the plain surge.')),
 ]

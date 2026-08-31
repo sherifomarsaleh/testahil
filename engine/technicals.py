@@ -403,11 +403,19 @@ def build_narrative(st: dict) -> dict:
             f"({sgn(md['macd'])} / {sgn(md['signal'])} / {sgn(md['hist'])}).")
     xo = st.get('ma_cross')
     if xo and xo['ago'] <= CROSS_FRESH:
+        # THE REGIME-CHANGE ASSERTION IS REMOVED. This clause used to call a
+        # cross inside CROSS_FRESH sessions "a momentum-regime change rather
+        # than noise inside an intact trend". Tested against origins in the SAME
+        # cross state without the freshness, neither half holds: realized
+        # forward volatility is unchanged (ratios of 0.92 on golden and 1.01 on
+        # death, so there is no regime to speak of), and the direction leans
+        # gently the wrong way — a fresh golden cross is followed by a LOWER
+        # up-rate than an established one (-2.6pp at one month, z=-2.7), a fresh
+        # death cross by a higher one. The crossing is a fact and is still
+        # reported; what it was said to mean is not.
         parts.append(
             f"The 50-day crossed {'above' if xo['kind'] == 'golden' else 'beneath'} "
-            f"the 200-day {xo['ago']} session{'s' if xo['ago'] != 1 else ''} ago — "
-            f"a fresh {xo['kind']}-cross, a momentum-regime change rather than "
-            f"noise inside an intact trend.")
+            f"the 200-day {xo['ago']} session{'s' if xo['ago'] != 1 else ''} ago.")
     if st['hi_52w'] and st['lo_52w']:
         parts.append(
             f"Over the last year it has ranged {_num(st['lo_52w'], ref)}–"
@@ -426,8 +434,20 @@ def build_narrative(st: dict) -> dict:
         bull = (f"A daily close back above {_num(r_near, ref)} would clear the "
                 f"only charted resistance in range.")
     else:
+        # THE FAR ZONE IS NOT PROMISED, and it used to be. "would clear the
+        # nearest resistance and open the R3 zone" was the only explicitly
+        # conditional forecast in this module, and replayed over fifteen years
+        # it pointed the WRONG way: after a close through a real level the far
+        # level opened 10.2% of the time against 15.2% after a matched
+        # non-level ladder at one week (-4.9pp, z=-5.1), and -5.3pp at one
+        # month. That is not a contradiction of the level finding, it is a
+        # consequence of it — if a charted level holds, the FAR level holds
+        # too, so reaching it is harder, and the sentence was written as though
+        # only the near level were real. What is stated now is the level to
+        # clear and where the next one sits, with no claim about getting there.
         bull = (f"A daily close back above {_num(r_near, ref)} would clear the "
-                f"nearest resistance and open the {_num(r_far, ref)} zone.")
+                f"nearest resistance; the next charted level above it is "
+                f"{_num(r_far, ref)}.")
     if not sup:
         bear = ("There is no charted support below the last close — the tape is "
                 "at the bottom of its own two-year structure.")
@@ -435,8 +455,11 @@ def build_narrative(st: dict) -> dict:
         bear = (f"A close below {_num(s_near, ref)} would break the only charted "
                 f"support in range.")
     else:
+        # Same correction as the bull clause, and the support side tested worse:
+        # -5.1pp at one week and -6.9pp at one month.
         bear = (f"A close below {_num(s_near, ref)} would break the nearest "
-                f"support and open the {_num(s_far, ref)} zone.")
+                f"support; the next charted level below it is "
+                f"{_num(s_far, ref)}.")
     return {'trend': _trend_line(None, sl, close, ma),
             'summary': " ".join(parts), 'bull': bull, 'bear': bear}
 
