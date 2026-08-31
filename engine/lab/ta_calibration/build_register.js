@@ -37,12 +37,16 @@ function table(header, rows, widths) {
 }
 
 const FIGDIR = path.join(__dirname, 'figures');
-const shown = new Set();
+// A figure may appear TWICE at most: once in the opening gallery, once beside
+// the lesson that owns it — a summary section repeats its evidence on purpose.
+// Beyond that, repetition is suppressed.
+const shown = {};
 function figure(name, caption) {
-  if (!name || shown.has(name)) return;      // an image repeated is an image ignored
+  if (!name) return;
+  shown[name] = (shown[name] || 0) + 1;
+  if (shown[name] > 2) return;
   const f = path.join(FIGDIR, name);
   if (!fs.existsSync(f)) return;
-  shown.add(name);
   kids.push(new Paragraph({ children: [ new ImageRun({
     type: 'png', data: fs.readFileSync(f),
     transformation: { width: 604, height: Math.round(604 * imgRatio(f)) } }) ],
@@ -60,12 +64,12 @@ function imgRatio(f) {
 const kids = [];
 kids.push(p([t('TESTAHIL', { bold:true, size:22, color:'888888' })], { spacing:{after:40} }));
 kids.push(new Paragraph({ children:[t('The Technical Lessons Register', { bold:true, size:44 })], spacing:{after:80} }));
-kids.push(p([t('Everything the price history has taught us about reading a chart, in plain language, and how far each lesson travels.', { size:22, italics:true })]));
+kids.push(p([t('Everything fifteen years of price history has taught us about reading a chart — in plain language, with the charts to show it, and with real stocks demonstrating each lesson.', { size:22, italics:true })]));
 kids.push(p([t(`Generated ${P.generated} from the register's own source. Not hand-written, and not hand-editable — every figure is resolved from the calibration results file at build time, so the register cannot drift from the measurement that produced it.`, { size:18, color:'666666' })]));
 kids.push(p([t('Nothing in this register binds any study. It is a record, not a gate. No standing rule refers to it and no quality gate consults it, deliberately — a lesson earns its way into the method by being adopted, not by being written down.', { size:18, color:'666666' })]));
 
 kids.push(h1('How to read this'));
-kids.push(p('A lesson is useless until you know how far it carries. Every entry is tagged with one of three scopes, and the difference is not a matter of emphasis: applying a one-ticker lesson to another company is superstition, and applying an every-ticker lesson is mandatory. The middle rung is where most of the value sits and it is the one that has to be earned — a set of per-class numbers is not a class-level finding, because ten draws from one distribution also look different. Each candidate class is therefore tested for heterogeneity, and only reported as a class when the classes differ by more than their own standard errors explain.'));
+kids.push(p('A lesson is only useful once you know how far it travels. Every entry carries one of three scopes. An EVERY TICKER lesson held across the whole book and no group of stocks disagreed. A CLASS lesson is one where groups of stocks genuinely answer differently — and that has to be proven, not assumed, because slicing any result into groups always produces different-looking numbers by luck alone. A ONE TICKER lesson was proven on that stock\u2019s own history, the hardest bar of the three.'));
 kids.push(table(['Scope','Means','Who must read it'], [
   ['EVERY TICKER','holds pooled across the book, and no class differs beyond noise','everyone, on every name'],
   ['A CLASS OF TICKER','the classes genuinely disagree (Cochran Q)','anyone reading a name in that class'],
@@ -73,6 +77,12 @@ kids.push(table(['Scope','Means','Who must read it'], [
 ], [1900, 4200, 3100]));
 kids.push(p(''));
 kids.push(p('Every lesson also records how it was learned, because the strength of the evidence differs enormously, and what would overturn it. A lesson with no falsifier is a habit, not a finding.'));
+
+kids.push(h1('How the test works, in plain words'));
+kids.push(p('Every finding in this document comes from one repeated exercise. Stand at some week in the past. Compute the page exactly as it would have been published that day, using only the prices up to that day. Write down what it claimed. Then watch the following week, two weeks and month, and score the claim against what actually happened. Move forward a week and do it again — every week of fifteen years, for 92 stocks. That is roughly 45,000 dated readings per horizon, and no reading ever peeks at its own future.'));
+figure('14_schematic.png', 'The one picture behind everything here: a read frozen at an origin, a made-up comparison line, and the weeks after.');
+kids.push(p('Two habits keep the scoring honest. First, a claim about a level is never judged on its own — it races an invented level a similar distance away, placed where the chart shows nothing, because "price stopped near our line" means little if price also stops near lines that mean nothing. Second, results are quoted as "so many in 100" against the market\u2019s own base rate, never against 50%, because stocks do not flip fair coins (see T-026).'));
+kids.push(p('One number to hold onto: "+5 in 100" means that out of 100 comparable situations, the thing being tested came out ahead in five more of them than the benchmark did. Small edges are the honest currency of this subject — anyone offering +40 in 100 is selling something.'));
 
 kids.push(h1('The four things worth knowing, in pictures'));
 kids.push(p('If you read nothing else, read these four charts. The rest of the document is the evidence behind them.'));
@@ -103,7 +113,8 @@ function lesson(l) {
   kids.push(p([t(l.body, { size:21 })]));
   kids.push(p([t('How we know.  ', { bold:true, size:21 }), t(l.know, { size:21 })]));
   kids.push(p([t('What would overturn it.  ', { bold:true, size:21 }), t(l.over, { size:21 })]));
-  figure(l.fig, `Figure for ${l.id}.`);
+  figure(l.fig, l.figcap || null);
+  figure(l.fig2, l.figcap2 || null);
 }
 
 kids.push(h1('Lessons that bind on EVERY ticker'));
@@ -118,7 +129,7 @@ kids.push(h2('Industry sector'));
 bySc('CLASS').filter(l=>l.cls==='sector').forEach(lesson);
 
 kids.push(h1('Lessons that bind on ONE ticker'));
-kids.push(p('No single-name lesson has been earned yet. What has been established is which claims can ever be stated per name on the evidence available, which is the entry below.'));
+kids.push(p('The hardest scope to earn: the stock\u2019s own history has to carry the proof by itself.'));
 bySc('STOCK').forEach(lesson);
 
 kids.push(h1('How a lesson gets added'));

@@ -48,8 +48,14 @@ VP = json.load(open(os.path.join(HERE, 'RESULTS_volume_partial.json')))
 
 
 def _finish(ax, title, sub=None, xlabel=None, ylabel=None):
-    ax.set_title(title, loc='left', pad=14 if sub else 8)
+    import textwrap
     if sub:
+        sub = textwrap.fill(sub, 108)
+    ax.set_title(title, loc='left', pad=(14 + 10 * sub.count('\n')) if sub else 8)
+    if sub:
+        # wrapped, because a single long line hangs past the axes and the tight
+        # bounding box then grows sideways — the plot ends up squeezed into the
+        # left third of its own figure
         ax.text(0, 1.02, sub, transform=ax.transAxes, fontsize=8.5, color=INK2,
                 va='bottom')
     for sp in ('top', 'right'):
@@ -359,3 +365,264 @@ if __name__ == '__main__':
     for f in ALL:
         print('  wrote', os.path.basename(f()))
     print(f'{len(ALL)} figures in {FIG}')
+
+
+# ============================ third edition: aggregates =========================
+M = json.load(open(os.path.join(HERE, 'RESULTS_more.json')))
+
+
+def fig_schematic():
+    """How the test works — drawn, not photographed."""
+    rng = np.random.default_rng(7)
+    n = 130
+    px = 100 * np.exp(np.cumsum(rng.normal(0.0006, 0.012, n)))
+    fig, ax = plt.subplots(figsize=(7.4, 3.9))
+    cut = 95
+    ax.plot(range(cut + 1), px[:cut + 1], color=INK, lw=1.8)
+    ax.plot(range(cut, n), px[cut:], color=MUTED, lw=1.6, ls=':')
+    lvl = px[:cut].max() * 1.004
+    fake = lvl * 1.045
+    ax.set_ylim(px.min() * 0.945, fake * 1.035)
+    ax.set_xlim(-2, n + 1)
+    ax.axvline(cut, color=BLUE, lw=1.4)
+    ax.axvspan(cut, cut + 21, color=BLUE, alpha=0.08)
+    ax.axhline(lvl, color=ORANGE, lw=1.8)
+    ax.text(2, lvl, 'a published level', va='bottom', fontsize=9, color=ORANGE,
+            weight='bold')
+    ax.axhline(fake, color=MUTED, lw=1.4, ls='--')
+    ax.text(2, fake, 'a made-up level at a similar distance, placed where the chart '
+            'shows nothing', va='bottom', fontsize=8.5, color=INK2)
+    ax.annotate('one origin — the read is computed here,\nusing only what is to '
+                'the left', xy=(cut, px.min() * 0.985),
+                xytext=(cut - 42, px.min() * 0.958), fontsize=8.5, color=BLUE,
+                ha='center', va='bottom',
+                arrowprops=dict(arrowstyle='->', color=BLUE, lw=1))
+    ax.text(cut + 10.5, fake * 1.005, 'then we watch\nwhat happens', ha='center',
+            va='bottom', fontsize=8.5, color=INK2)
+    ax.set_xticks([]); ax.set_yticks([])
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+    _finish(ax, 'How every test in this document works',
+            'Repeat at every week of fifteen years, on 92 stocks, and compare the '
+            'real line against the made-up one.')
+    ax.grid(visible=False)
+    return _save(fig, '14_schematic.png')
+
+
+def fig_res_sup():
+    fig, ax = plt.subplots(figsize=(7.0, 3.3))
+    hs = [5, 10, 21]
+    res = [M['side'][str(h)]['res']['effect'] for h in hs]
+    sup = [M['side'][str(h)]['sup']['effect'] for h in hs]
+    x = np.arange(3); w = 0.34
+    b1 = ax.bar(x - w / 2 - 0.01, sup, w, color=AQUA, label='support (below the price)')
+    b2 = ax.bar(x + w / 2 + 0.01, res, w, color=BLUE, label='resistance (above the price)')
+    for bs, vs in ((b1, sup), (b2, res)):
+        _labels(ax, bs, vs)
+    ax.set_xticks(x); ax.set_xticklabels(['1 week', '2 weeks', '1 month'])
+    ax.legend(frameon=False, fontsize=8.5)
+    ax.yaxis.set_major_formatter(PCT_PT)
+    _finish(ax, 'The floor is stronger than the ceiling',
+            'The same test, split by side. Support holds better than resistance at '
+            'every horizon.', ylabel='percentage points')
+    return _save(fig, '15_res_sup.png')
+
+
+def fig_touch_rate():
+    fig, ax = plt.subplots(figsize=(7.0, 3.3))
+    hs = [5, 10, 21]
+    near = [M['touch'][str(h)]['nearest'] for h in hs]
+    bars = ax.bar(['within 1 week', 'within 2 weeks', 'within 1 month'], near,
+                  color=VIOLET, width=0.55)
+    for b, v in zip(bars, near):
+        ax.text(b.get_x() + b.get_width() / 2, v + 0.008, f'{v*100:.0f}%', ha='center',
+                fontsize=9.5, color=INK, weight='bold')
+    ax.set_ylim(0, 0.52)
+    ax.yaxis.set_major_formatter(PCT)
+    _finish(ax, 'Most weeks, the nearest level is never even touched',
+            'How often price reaches the closest published level at all. The test of a '
+            'level only begins when price gets there.',
+            ylabel='price reached the nearest level')
+    return _save(fig, '16_touch_rate.png')
+
+
+def fig_coin():
+    fig, ax = plt.subplots(figsize=(7.4, 3.5))
+    mk = ['EG', 'AE', 'SA', 'QA', 'KR', 'IN', 'US']
+    w1 = [M['coin']['5']['by_market'][m]['up'] for m in mk]
+    m1 = [M['coin']['21']['by_market'][m]['up'] for m in mk]
+    x = np.arange(len(mk)); w = 0.34
+    b1 = ax.bar(x - w / 2 - 0.01, w1, w, color=MUTED, label='over 1 week')
+    b2 = ax.bar(x + w / 2 + 0.01, m1, w, color=BLUE, label='over 1 month')
+    ax.axhline(0.5, color=INK2, lw=1.2)
+    ax.text(len(mk) - 0.4, 0.502, 'a fair coin', fontsize=8, color=INK2)
+    for bs, vs in ((b1, w1), (b2, m1)):
+        for b, v in zip(bs, vs):
+            ax.text(b.get_x() + b.get_width() / 2, v + 0.004, f'{v*100:.0f}',
+                    ha='center', fontsize=8, color=INK)
+    ax.set_xticks(x)
+    ax.set_xticklabels(['Egypt', 'UAE', 'Saudi', 'Qatar', 'Korea', 'India', 'US'])
+    ax.set_ylim(0.44, 0.64)
+    ax.yaxis.set_major_formatter(PCT)
+    ax.legend(frameon=False, fontsize=8.5, loc='upper left')
+    _finish(ax, 'The coin is fair over a week and tilted over a month',
+            'How often a stock simply closes higher. Every claim in this document is '
+            'judged against this tilt, never against 50%.',
+            ylabel='closed higher')
+    return _save(fig, '17_tilted_coin.png')
+
+
+# ============================ third edition: real tickers =======================
+import sys as _sys
+_ENG = os.path.abspath(os.path.join(HERE, '..', '..'))
+if _ENG not in _sys.path:
+    _sys.path.insert(0, _ENG)
+
+
+def _lib(market, ticker):
+    from strike_cohorts import load_clean
+    df, _ = load_clean(market, ticker)
+    return df.reset_index(drop=True)
+
+
+def _demo_frame(ep, back=70, fwd=21):
+    df = _lib(ep['market'], ep['ticker'])
+    i = ep['origin_idx']
+    assert str(pd.to_datetime(df['Date']).iloc[i].date()) == ep['origin'], \
+        'library moved under the episode'
+    a, b = max(0, i - back), min(len(df) - 1, i + fwd)
+    return df.iloc[a:b + 1], i - a
+
+
+import pandas as pd  # noqa: E402
+
+
+CCY = {'AE': 'AED', 'EG': 'EGP', 'SA': 'SAR', 'QA': 'QAR', 'US': 'USD',
+       'IN': 'INR', 'KR': 'KRW'}
+NAMES_FULL = {'QNB': 'Qatar National Bank', 'ADCB': 'Abu Dhabi Commercial Bank',
+              'ETEL': 'Telecom Egypt', 'SABIC': 'SABIC',
+              'IHC': 'International Holding Company'}
+
+
+def fig_demo_level():
+    ep = M['ep_level']
+    d, k = _demo_frame(ep, back=55)
+    px = d['Price'].astype(float).to_numpy()
+    hi = d['High'].astype(float).to_numpy()
+    lo = d['Low'].astype(float).to_numpy()
+    fig, ax = plt.subplots(figsize=(7.4, 3.7))
+    # the intraday range matters here: a "touch" happens on the high of the day,
+    # and a close-only line would hide the very thing the chart demonstrates —
+    # the first cut of this figure did exactly that, and clipped its own
+    # annotation off the top of the axis into the bargain
+    ax.fill_between(range(len(d)), lo, hi, color='#dfe7f2', linewidth=0)
+    ax.plot(range(len(d)), px, color=INK, lw=1.6, label='daily close')
+    ax.axvspan(k, len(d) - 1, color=BLUE, alpha=0.06)
+    ax.axhline(ep['level'], color=ORANGE, lw=1.8)
+    ax.text(1, ep['level'] * 1.0015, f"published resistance {ep['level']:.2f}",
+            fontsize=9, color=ORANGE, weight='bold', va='bottom')
+    ax.axvline(k, color=BLUE, lw=1.2)
+    ax.text(k - 1.5, lo.min(), f"read published\n{ep['origin']} ", ha='right',
+            va='bottom', fontsize=8, color=BLUE)
+    fh = hi[k + 1:]
+    j = k + 1 + int(np.argmax(fh))
+    ax.plot([j], [fh.max()], 'o', ms=8, color=ORANGE, markeredgecolor=SURFACE,
+            markeredgewidth=1.8, zorder=5)
+    ax.annotate(f'poked to {fh.max():.2f} during the day —\nnever CLOSED above; '
+                f'month ended {ep["fwd_ret"]*100:+.1f}%',
+                xy=(j, fh.max()), xytext=(j - 26, fh.max() * 0.998), ha='center',
+                fontsize=8.5, color=INK,
+                arrowprops=dict(arrowstyle='->', color=MUTED, lw=1))
+    ax.set_ylim(lo.min() * 0.99, max(hi.max(), ep['level']) * 1.015)
+    ax.legend(frameon=False, fontsize=8, loc='lower right')
+    _finish(ax, f"{ep['ticker']} — a level doing its job",
+            f"{NAMES_FULL.get(ep['ticker'], ep['ticker'])}, {ep['origin']}: resistance "
+            f"published at {ep['level']:.2f} — a round number — with the price at "
+            f"{ep['spot']:.2f} after a month below it. Shaded band = each day's "
+            f"low-to-high range; the following month is tinted.",
+            ylabel=f"price ({CCY.get(ep['market'], '')})")
+    ax.set_xticks([])
+    return _save(fig, '18_demo_level.png')
+
+
+def fig_demo_trigger():
+    ep = M['ep_trigger']
+    d, k = _demo_frame(ep)
+    fig, ax = plt.subplots(figsize=(7.4, 3.8))
+    ax.plot(range(len(d)), d['Price'].astype(float), color=INK, lw=1.6)
+    ax.axvspan(k, len(d) - 1, color=BLUE, alpha=0.07)
+    ax.axhline(ep['level'], color=ORANGE, lw=1.8)
+    ax.text(1, ep['level'] * 1.003, f"nearest resistance {ep['level']:.2f} — cleared",
+            fontsize=8.5, color=ORANGE, weight='bold', va='bottom')
+    ax.axhline(ep['far'], color=BAD, lw=1.8, ls='--')
+    ax.text(1, ep['far'] * 0.997, f'the "zone" the old sentence promised: '
+            f"{ep['far']:.2f} — never approached", fontsize=8.5, color=BAD,
+            va='top', weight='bold')
+    fc = d['Price'].astype(float).iloc[k + 1:]
+    fired = int(np.argmax((fc >= ep['level']).values))
+    ax.plot([k + 1 + fired], [fc.iloc[fired]], 'o', ms=9, color=ORANGE,
+            markeredgecolor=SURFACE, markeredgewidth=2)
+    _finish(ax, f"{ep['ticker']} — the trigger fired, the promise did not",
+            f"Telecom Egypt, {ep['origin']}: price closed above {ep['level']:.2f} inside "
+            f"the month, and finished {ep['fwd_ret']*100:+.1f}% — nowhere near "
+            f"{ep['far']:.2f}. This is the TYPICAL outcome, not a cherry-picked one.",
+            ylabel='price (EGP)')
+    ax.set_xticks([])
+    return _save(fig, '19_demo_etel.png')
+
+
+def fig_demo_cross():
+    ep = M['ep_cross']
+    df = _lib(ep['market'], ep['ticker'])
+    i = ep['origin_idx']
+    a = max(0, i - 260)
+    d = df.iloc[a:i + 22].reset_index(drop=True)
+    px = d['Price'].astype(float).to_numpy()
+    full = df['Price'].astype(float).to_numpy()
+    ma50 = pd.Series(full).rolling(50).mean().iloc[a:i + 22].to_numpy()
+    ma200 = pd.Series(full).rolling(200).mean().iloc[a:i + 22].to_numpy()
+    k = i - a
+    fig, ax = plt.subplots(figsize=(7.4, 3.8))
+    ax.plot(px, color=INK, lw=1.3, label='price')
+    ax.plot(ma50, color=BLUE, lw=1.6, label='50-day average')
+    ax.plot(ma200, color=ORANGE, lw=1.6, label='200-day average')
+    ax.axvspan(k, len(d) - 1, color=BLUE, alpha=0.07)
+    cx = k - ep['cross_ago']
+    ax.plot([cx], [ma50[cx]], 'o', ms=10, color=VIOLET, markeredgecolor=SURFACE,
+            markeredgewidth=2, zorder=5)
+    ax.annotate('the "golden cross"', xy=(cx, ma50[cx]), xytext=(cx - 90, ma50[cx] * 1.03),
+                fontsize=9, color=VIOLET, weight='bold',
+                arrowprops=dict(arrowstyle='-', color=MUTED, lw=1))
+    ax.text(k + 10, px[k:].max() * 1.005, f'{ep["fwd_ret"]*100:+.1f}%\nin the month after',
+            ha='center', fontsize=9, color=BAD, weight='bold')
+    ax.legend(frameon=False, fontsize=8.5, loc='lower left')
+    _finish(ax, f"{ep['ticker']} — a fresh golden cross, and the month after",
+            f"SABIC, {ep['origin']}: the 50-day crossed above the 200-day "
+            f"{ep['cross_ago']} sessions earlier. The read used to call this a "
+            f"momentum-regime change.", ylabel='price (SAR)')
+    ax.set_xticks([])
+    return _save(fig, '20_demo_sabic.png')
+
+
+def fig_demo_ihc():
+    r = pd.read_pickle(os.path.join(HERE, 'claims_short.pkl'))
+    d = r[(r.claim == 'state') & (r.h == 21) & (r.ticker == 'IHC')].dropna(
+        subset=['atr_pct', 'rlz_vol'])
+    fig, ax = plt.subplots(figsize=(7.2, 3.8))
+    ax.scatter(d.atr_pct * 100, d.rlz_vol * 100, s=14, color=BLUE, alpha=0.35,
+               edgecolors='none')
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{v:.0f}%'))
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{v:.0f}%'))
+    ax.text(0.97, 0.06, f"rank correlation {M['ihc']['rho']:+.2f} over "
+            f"{M['ihc']['n']} readings", transform=ax.transAxes, ha='right',
+            fontsize=9.5, color=INK, weight='bold')
+    _finish(ax, 'IHC — every dot is one week of the last nine years',
+            'International Holding Company: how busy the tape looked that day (across), '
+            'and how much the price then moved over the next month (up).',
+            xlabel='daily range at the time of the read (ATR, % of price)',
+            ylabel='movement that followed (annualised)')
+    return _save(fig, '21_demo_ihc.png')
+
+
+ALL += [fig_schematic, fig_res_sup, fig_touch_rate, fig_coin,
+        fig_demo_level, fig_demo_trigger, fig_demo_cross, fig_demo_ihc]
