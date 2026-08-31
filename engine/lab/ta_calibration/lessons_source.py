@@ -203,20 +203,24 @@ LESSONS = [
 
     # ---------------------------------------------------------------------- STOCK
     dict(id='T-010', scope='STOCK', status='PROVISIONAL',
-         title='The tape claim is the only one that can be stated per name today.',
+         title='Only the tape claim survives per name. The trend claim does not, and it looked as if it did.',
          body=('A per-name record needs the name\'s own history to resolve the effect. '
-               'Only the tape claim is large enough relative to its noise for that to '
-               'happen on most of the book; the trend claim reaches it on a minority, and '
-               'the rest not at all.'),
+               'The tape claim clears that bar on almost the whole book. The trend claim '
+               'appears to clear it on a handful of names — and that appearance is the '
+               'trap. Count the names it appears to work BACKWARDS on and the two are the '
+               'same size, which is what per-name noise looks like when there is a real '
+               'pooled effect and no real per-name one.'),
          know=lambda: (
-             f'At one week the tape claim is individually significant on '
-             f'{sig("tape",5)[0]} of {sig("tape",5)[1]} names. The trend claim reaches '
-             f'{sig("trend",5)[0]} of {sig("trend",5)[1]} at one week and '
-             f'{sig("trend",21)[0]} of {sig("trend",21)[1]} at one month. The level claim '
-             f'reaches {sig("levels",21)[0]} of {sig("levels",21)[1]} at one month, but '
-             f'only {sig("levels",5)[1]} names have enough one-week tests to be assessed '
-             f'at all — price rarely travels far enough to reach a published level in a '
-             f'week.'),
-         over=('A longer library, or a denser origin grid, moving a claim above the bar on '
-               'most of the book. The counts are the test and they are re-run each pass.')),
+             f'The tape claim is significantly POSITIVE on {sig("tape",5)[0]} of '
+             f'{sig("tape",5)[1]} names at one week and {sig("tape",21)[0]} at one month, '
+             f'against one and two significantly negative — chance produces about 4.6 '
+             f'either way, so the asymmetry is the finding. The trend claim splits 7 for '
+             f'and 4 against at one week, 6 and 7 at two weeks, and 13 and 12 at one '
+             f'month; a sign test on the last of those returns p = 1.00. An earlier '
+             f'edition of this register read the positive half alone and reported "trend, '
+             f'per name where earned" — on the cone\'s horizon, where a quarter of the '
+             f'origins hid the other half.'),
+         over=('A construction of the trend clause whose per-name hits outnumber its '
+               'per-name reversals by more than chance. The counts are the test and are '
+               're-run every pass.')),
 ]

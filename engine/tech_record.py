@@ -7,17 +7,24 @@ in this name's technical read has its own history earned".
 WHAT IT MAY AND MAY NOT SAY, AND WHY — all three settled by measurement, not
 taste (evidence: engine/lab/ta_calibration/, 92 names, 89,190 claims, 2011-2026):
 
-  TAPE (the ATR word)      PER NAME. Spearman(ATR% at origin, realized forward
-                           vol) is significantly positive for 70 of 78 testable
-                           names at one month and 61 of 78 at three, median rho
-                           +0.39/+0.35. This is the best-calibrated statement
-                           the technical read makes.
-  TREND (the MA stack)     PER NAME ONLY WHERE EARNED. The above-stack vs
-                           below-stack gap in forward up-rate is significant for
-                           7 of 71 names at one month and 15 at three. No name
-                           is significantly REVERSED at either horizon. Where a
-                           name has not earned its own figure the market's is
-                           the honest one.
+  TAPE (the ATR word)      PER NAME, and it is not close. Spearman(ATR% at
+                           origin, realized forward vol) is significantly
+                           POSITIVE on 84 of 92 names at one week and 87 at one
+                           month, against 1 and 2 significantly negative -- an
+                           asymmetry chance cannot make, since 4.6 hits either
+                           way is what chance produces. The only claim that
+                           survives per name.
+  TREND (the MA stack)     NOT PER NAME AT ALL -- and this reverses the first
+                           edition, which said "per name where earned". On the
+                           correct clock, with four times the origins, the
+                           per-name split is SYMMETRIC: at one month 13 names
+                           clear the bar in the stated direction and 12 clear it
+                           BACKWARDS (sign test p = 1.00). There is more
+                           significance than chance produces -- 25 against 4.5 --
+                           but it points both ways, which is per-name
+                           heterogeneity, not a per-name claim. The pooled
+                           +3.2pp is real and belongs to every ticker; naming
+                           the names it "works on" is reading the noise.
   LEVELS (S/R)             NEVER PER NAME, AND NOT PENDING MORE DATA. Published
                            levels do hold ~3-4pp more often than a distance-
                            matched non-level (robust in 15 of 16 pooled cells),
@@ -72,11 +79,24 @@ ALPHA = 0.05          # the level every "earned" test is taken at
 TAPE_MIN_N = 30       # below this a rank correlation is noise with a decimal point
 TREND_MIN_N = 10      # per side; a gap needs both states populated to exist at all
 
+# THE TECHNICAL LENS'S OWN CLOCK. The first edition of this file scored every
+# name at three CALENDAR MONTHS, which is the probability cone's horizon, not
+# this lens's — in this project the technical read is the under-one-month view.
+# The re-run at short horizons measured what that cost: a published level beats
+# a matched non-level by +9.8pp at one week against +3.4pp at three months, so
+# the old clock reported the weakest reading available of every claim. The
+# record is now built at 5, 10 and 21 SESSIONS, and the horizon it was built at
+# is carried in the record rather than assumed by whoever reads it.
+HORIZON_SESSIONS = (5, 10, 21)
+DEFAULT_H = 5
+HORIZON_NAME = {5: 'one week', 10: 'two weeks', 21: 'one month'}
+
 
 @dataclass
 class TechRecord:
     market: str
     ticker: str
+    h: int
     origins: int
     first: str
     last: str
@@ -96,7 +116,7 @@ class TechRecord:
     trend_reversed: bool = False
     notes: list = field(default_factory=list)
 
-    def clause(self, horizon_label='three months'):
+    def clause(self, horizon_label=None):
         """The one place this record is put into words. Nothing else may phrase it.
 
         A TESTED NULL IS NOT MISSING DATA, and the first draft of this method said
@@ -107,6 +127,7 @@ class TechRecord:
         collapsing them into the softer one is the same defect as the momentum
         words and as "failed calibration test". The three cases are kept apart.
         """
+        horizon_label = horizon_label or HORIZON_NAME.get(self.h, f'{self.h} sessions')
         bits = []
         if self.tape_earned:
             bits.append(f"across {self.tape_n} readings, how busy the tape looked has "
@@ -119,7 +140,13 @@ class TechRecord:
             bits.append(f"over {self.tape_n} readings its tape reading has NOT tracked "
                         f"what followed (rank correlation {self.tape_rho:+.2f}), so no "
                         f"claim is made for this name")
-        if self.trend_earned and not self.trend_reversed:
+        # NO PER-NAME TREND SENTENCE IS EMITTED, deliberately. trend_earned
+        # and trend_reversed are still computed and stored, because they are
+        # what demonstrates the symmetry described above -- but a name that
+        # clears the bar is indistinguishable from one of the equally many that
+        # clear it backwards, so stating it for this name reads the noise. The
+        # trend claim is book-level and belongs on every page unchanged.
+        if False and self.trend_earned and not self.trend_reversed:
             bits.append(f"and when it has traded above its whole moving-average stack the "
                         f"price has finished higher {self.trend_up_above*100:.0f}% of the "
                         f"time against {self.trend_up_below*100:.0f}% below it "
@@ -154,58 +181,90 @@ def _trend(sub):
             earned and p1 > p2, earned and p1 < p2)
 
 
-def build(months: int = 3, step: int = 21, verbose: bool = False):
-    """Recompute every name's record from the libraries. Self-verifying."""
+def build(horizons=HORIZON_SESSIONS, step: int = 5, verbose: bool = False,
+          claims=None):
+    """Recompute every name's record on the short clock. Self-verifying.
+
+    ``claims`` accepts a pre-harvested frame (engine/lab/ta_calibration produces
+    one) so the record can be rebuilt without re-running the replay; passing
+    None harvests fresh through the shipped technicals.compute().
+    """
     import glob
     import pandas as pd
-    import replay
 
     raw = os.path.join(_HERE, 'raw_ohlc')
     libs = [(m, os.path.basename(f)[:-4])
             for m in sorted(os.listdir(raw))
             for f in sorted(glob.glob(os.path.join(raw, m, '*.csv')))]
+    if claims is None:
+        import replay
+        frames = []
+        for market, ticker in libs:
+            try:
+                frames.append(replay.harvest_short(market, ticker, step=step,
+                                                   horizons=horizons))
+            except Exception:
+                pass
+        claims = pd.concat([f for f in frames if len(f)], ignore_index=True)
+
     out, skipped = {}, []
     for market, ticker in libs:
-        try:
-            r = replay.harvest(market, ticker, step=step)
-        except Exception as e:
-            skipped.append((market, ticker, f'{type(e).__name__}: {e}'))
-            continue
-        s = r[(r.claim == 'state') & (r.months == months)] if len(r) else r
-        if not len(s):
+        sub = claims[(claims.market == market) & (claims.ticker == ticker)
+                     & (claims.claim == 'state')]
+        if not len(sub):
             skipped.append((market, ticker, 'too little history to reach a first origin'))
             continue
-        tn, tr, tp, te = _tape(s)
-        na, nb, ua, ub, gap, gp, ge, gr = _trend(s)
-        rec = TechRecord(market=market, ticker=ticker, origins=int(len(s)),
-                         first=str(s.origin.min()), last=str(s.origin.max()),
-                         tape_n=tn, tape_rho=tr, tape_p=tp, tape_earned=te,
-                         trend_n_above=na, trend_n_below=nb, trend_up_above=ua,
-                         trend_up_below=ub, trend_gap=gap, trend_p=gp,
-                         trend_earned=ge, trend_reversed=gr)
-        out[f'{market}/{ticker}'] = rec
+        for h in horizons:
+            s = sub[sub.h == h]
+            if not len(s):
+                continue
+            tn, tr, tp, te = _tape(s)
+            na, nb, ua, ub, gap, gp, ge, gr = _trend(s)
+            out[f'{market}/{ticker}@{h}'] = TechRecord(
+                market=market, ticker=ticker, h=int(h), origins=int(len(s)),
+                first=str(s.origin.min()), last=str(s.origin.max()),
+                tape_n=tn, tape_rho=tr, tape_p=tp, tape_earned=te,
+                trend_n_above=na, trend_n_below=nb, trend_up_above=ua,
+                trend_up_below=ub, trend_gap=gap, trend_p=gp,
+                trend_earned=ge, trend_reversed=gr)
         if verbose:
-            print(f'  {market}/{ticker}: {rec.clause()}', flush=True)
+            k = f'{market}/{ticker}@{DEFAULT_H}'
+            if k in out:
+                print(f'  {k}: {out[k].clause()}', flush=True)
 
-    # COUNT AGAINST A KNOWN TOTAL — the libraries on disk, counted on
-    # (market, ticker) and never on the bare ticker string.
-    assert len(out) + len(skipped) == len(libs), (
-        f'population mismatch: {len(out)} + {len(skipped)} != {len(libs)}')
+    # COUNT AGAINST A KNOWN TOTAL — the libraries on disk, on (market, ticker).
+    named = {k.split('@')[0] for k in out}
+    assert len(named) + len(skipped) == len(libs), (
+        f'population mismatch: {len(named)} + {len(skipped)} != {len(libs)}')
     return out, skipped, len(libs)
 
 
 if __name__ == '__main__':
-    recs, skipped, total = build(verbose='-v' in sys.argv)
+    import pandas as pd
+    cache = os.path.join(_LAB, 'claims_short.pkl')
+    claims = pd.read_pickle(cache) if os.path.exists(cache) else None
+    recs, skipped, total = build(verbose='-v' in sys.argv, claims=claims)
     payload = {k: asdict(v) for k, v in recs.items()}
     path = os.path.join(_HERE, 'tech_records.json')
     json.dump({'built_from': 'engine/raw_ohlc, replayed through technicals.compute()',
                'libraries': total, 'recorded': len(recs),
                'skipped': [{'market': m, 'ticker': t, 'why': w} for m, t, w in skipped],
                'records': payload}, open(path, 'w'), indent=1)
-    tape = sum(1 for r in recs.values() if r.tape_earned)
-    tr = sum(1 for r in recs.values() if r.trend_earned)
-    rv = sum(1 for r in recs.values() if r.trend_reversed)
-    print(f'{len(recs)} records of {total} libraries ({len(skipped)} skipped)')
-    print(f'  tape earned : {tape}')
-    print(f'  trend earned: {tr}   (reversed: {rv})')
+    names = {k.split('@')[0] for k in recs}
+    print(f'{len(recs)} records over {len(names)} of {total} libraries '
+          f'({len(skipped)} skipped), at horizons {HORIZON_SESSIONS} sessions')
+    for h in HORIZON_SESSIONS:
+        sub = [r for r in recs.values() if r.h == h]
+        print(f'  h={h:>2} ({HORIZON_NAME[h]:9}): tape earned '
+              f'{sum(1 for r in sub if r.tape_earned):>3} of {len(sub):>3} | '
+              f'trend earned {sum(1 for r in sub if r.trend_earned):>3} | '
+              f'reversed {sum(1 for r in sub if r.trend_reversed)}')
+        e = sum(1 for r in sub if r.trend_earned)
+        rv = sum(1 for r in sub if r.trend_reversed)
+        if e + rv:
+            from scipy import stats as _st
+            pv = _st.binomtest(e, e + rv, 0.5).pvalue
+            verdict = ('SYMMETRIC -- no per-name trend claim' if pv > 0.05
+                       else 'asymmetric')
+            print(f'{chr(32)*22}   trend sign test {e} vs {rv}: p={pv:.2f} -> {verdict}')
     print(f'wrote {path}')
