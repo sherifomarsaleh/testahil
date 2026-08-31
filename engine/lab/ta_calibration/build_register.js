@@ -81,7 +81,7 @@ kids.push(p('Every lesson also records how it was learned, because the strength 
 kids.push(h1('How the test works, in plain words'));
 kids.push(p('Every finding in this document comes from one repeated exercise. Stand at some week in the past. Compute the page exactly as it would have been published that day, using only the prices up to that day. Write down what it claimed. Then watch the following week, two weeks and month, and score the claim against what actually happened. Move forward a week and do it again — every week of fifteen years, for 92 stocks. That is roughly 45,000 dated readings per horizon, and no reading ever peeks at its own future.'));
 figure('14_schematic.png', 'The one picture behind everything here: a read frozen at an origin, a made-up comparison line, and the weeks after.');
-kids.push(p('Two habits keep the scoring honest. First, a claim about a level is never judged on its own — it races an invented level a similar distance away, placed where the chart shows nothing, because "price stopped near our line" means little if price also stops near lines that mean nothing. Second, results are quoted as "so many in 100" against the market\u2019s own base rate, never against 50%, because stocks do not flip fair coins (see T-026).'));
+kids.push(p('Two habits keep the scoring honest. First, a claim about a level is never judged on its own — it races an invented level a similar distance away, placed where the chart shows nothing, because "price stopped near our line" means little if price also stops near lines that mean nothing. Second, results are quoted as "so many in 100" against the market\u2019s own base rate, never against 50%, because stocks do not flip fair coins (see T-06).'));
 kids.push(p('One number to hold onto: "+5 in 100" means that out of 100 comparable situations, the thing being tested came out ahead in five more of them than the benchmark did. Small edges are the honest currency of this subject — anyone offering +40 in 100 is selling something.'));
 
 kids.push(h1('The four things worth knowing, in pictures'));
@@ -102,7 +102,7 @@ kids.push(h1('The indicators this read is built from'));
 kids.push(p('Everything below is computed from the same daily price history the probability cone runs on, through the same data-quality gate. Nothing is fitted and nothing is hand-drawn — every number is a fixed function of the price series, and every sentence on a page is chosen by one of these numbers.'));
 kids.push(table(['Indicator', 'Setting', 'What it is'], P.indicators, [2500, 3100, 3600]));
 kids.push(p(''));
-kids.push(p('The settings are conventional ones, chosen before any of this was measured. They are NOT fitted to the data, which is why the calibration can test them honestly — but it also means several of them are simply inherited, and three lessons below (T-014, T-015, T-017) find that the read\u2019s own ranking and weighting of levels do not match what the levels actually do.'));
+kids.push(p('The settings are conventional ones, chosen before any of this was measured. They are NOT fitted to the data, which is why the calibration can test them honestly — but it also means several of them are simply inherited, and three lessons below (T-16, T-18, T-19) find that the read\u2019s own ranking and weighting of levels do not match what the levels actually do.'));
 
 const bySc = (s) => P.lessons.filter(l => l.scope === s);
 function lesson(l) {

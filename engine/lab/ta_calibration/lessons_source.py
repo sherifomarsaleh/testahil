@@ -1,5 +1,38 @@
 """lessons_source.py — the technical register's source. Numbers are NEVER typed.
 
+LESSON IDS ARE READING ORDER, RENUMBERED 31-Aug-2026 on instruction. The
+first editions numbered lessons in the order they were LEARNED, which read
+as chaos once the document was reorganised for a reader (T-001, T-024,
+T-004, ...). IDs now follow document order, T-01 through T-27. For anyone
+holding an earlier edition, the old identifiers map as:
+    T-001 -> T-01
+    T-002 -> T-02
+    T-003 -> T-03
+    T-024 -> T-04
+    T-025 -> T-05
+    T-026 -> T-06
+    T-004 -> T-07
+    T-018 -> T-08
+    T-019 -> T-09
+    T-020 -> T-10
+    T-006 -> T-11
+    T-005 -> T-12
+    T-011 -> T-13
+    T-012 -> T-14
+    T-013 -> T-15
+    T-014 -> T-16
+    T-016 -> T-17
+    T-015 -> T-18
+    T-017 -> T-19
+    T-021 -> T-20
+    T-022 -> T-21
+    T-023 -> T-22
+    T-007 -> T-23
+    T-008 -> T-24
+    T-009 -> T-25
+    T-010 -> T-26
+    T-027 -> T-27
+
 Every figure in the document resolves from the results files at build time, so
 the register cannot drift from the measurement that produced it. A lesson whose
 evidence disappears from those files fails the build rather than printing a
@@ -63,7 +96,7 @@ METHOD = 'learned from a technical walk-forward test, 93-ticker replay, 31-Aug-2
 
 LESSONS = [
     # ============================================================ EVERY TICKER
-    dict(id='T-001', scope='ALL', status='PROVISIONAL', fig='01_horizon_decay.png',
+    dict(id='T-01', scope='ALL', status='PROVISIONAL', fig='01_horizon_decay.png',
          figcap='The same test at four horizons. The grey bar is the one the first '
                 'calibration reported.',
          title='Judge a tool over the time it is meant for.',
@@ -87,7 +120,7 @@ LESSONS = [
                'match the tool\'s own horizon — a tool that genuinely makes three-month '
                'claims should be tested at three months.')),
 
-    dict(id='T-002', scope='ALL', status='PROVISIONAL', fig='21_demo_ihc.png',
+    dict(id='T-02', scope='ALL', status='PROVISIONAL', fig='21_demo_ihc.png',
          figcap='One real stock, every weekly reading for nine years. Busier tape on '
                 'the left axis, bigger moves follow.',
          title='The single most trustworthy sentence on a page is the one about the tape.',
@@ -108,7 +141,7 @@ LESSONS = [
          over=('A market where busy days stop being followed by busy weeks. None of the '
                'nine tested here comes close.')),
 
-    dict(id='T-003', scope='ALL', status='PROVISIONAL', fig='18_demo_level.png',
+    dict(id='T-03', scope='ALL', status='PROVISIONAL', fig='18_demo_level.png',
          figcap='Qatar National Bank, August 2025. The read put resistance at the round '
                 '20.00; the month that followed is tinted.',
          title='The lines are real. Price respects a drawn level more than an empty one.',
@@ -128,7 +161,7 @@ LESSONS = [
          over=('The invented lines catching up. The race is re-run at every calibration '
                'pass, and it is the entire basis for keeping levels on the page.')),
 
-    dict(id='T-024', scope='ALL', status='PROVISIONAL', fig='15_res_sup.png',
+    dict(id='T-04', scope='ALL', status='PROVISIONAL', fig='15_res_sup.png',
          figcap='The same race, split by side of the price.',
          title='The floor is stronger than the ceiling.',
          body=('Support — the level below the price — holds better than resistance, the '
@@ -136,7 +169,7 @@ LESSONS = [
                'to say it: a support line on these pages deserves a little more '
                'confidence than a resistance line at the same distance.'),
          know=lambda: (
-             f'Same race as T-003, split by side. Over one week, support beats its '
+             f'Same race as T-03, split by side. Over one week, support beats its '
              f'invented twin by {pc(M["side"]["5"]["sup"]["effect"])} tests '
              f'({M["side"]["5"]["sup"]["n"]:,} paired tests) against '
              f'{pc(M["side"]["5"]["res"]["effect"])} for resistance '
@@ -146,7 +179,7 @@ LESSONS = [
          over=('A period in which sellers defend ceilings the way buyers defend floors — '
                'a long bear market in these names would be the natural test.')),
 
-    dict(id='T-025', scope='ALL', status='PROVISIONAL', fig='16_touch_rate.png',
+    dict(id='T-05', scope='ALL', status='PROVISIONAL', fig='16_touch_rate.png',
          figcap='How often price reaches the closest published level at all.',
          title='Most weeks, the levels are scenery. The test only starts when price arrives.',
          body=('A published ladder of six levels looks like six live predictions. In any '
@@ -163,7 +196,7 @@ LESSONS = [
                'that could be wrong about the levels themselves. It is here so the level '
                'lessons are read with the right expectations.')),
 
-    dict(id='T-026', scope='ALL', status='PROVISIONAL', fig='17_tilted_coin.png',
+    dict(id='T-06', scope='ALL', status='PROVISIONAL', fig='17_tilted_coin.png',
          figcap='How often a stock in each market simply closes higher.',
          title='The coin is not fair — and its tilt depends on the market and the clock.',
          body=('Before crediting any signal with "it works 53% of the time", ask what a '
@@ -183,7 +216,7 @@ LESSONS = [
                'regimes, which is exactly why it is measured fresh at every pass rather '
                'than remembered.')),
 
-    dict(id='T-004', scope='ALL', status='PROVISIONAL',
+    dict(id='T-07', scope='ALL', status='PROVISIONAL',
          title='Being above all three averages is worth about three extra wins in a hundred.',
          body=('The first sentence of every read says where price sits against its 20, '
                '50 and 200-day averages. Sitting above all three genuinely tilts the '
@@ -197,11 +230,11 @@ LESSONS = [
              f'({pc(klass("trend",5,"market_label","Egypt (EGX)"))}, '
              f'{pc(klass("trend",5,"market_label","UAE (ADX & DFM)"))}, '
              f'{pc(klass("trend",5,"market_label","Saudi (Tadawul)"))}), so it is one '
-             f'rule, not three. But see T-021: its recent record is in question.'),
-         over=('See T-021 — the second half of the data has already put this on watch at '
+             f'rule, not three. But see T-20: its recent record is in question.'),
+         over=('See T-20 — the second half of the data has already put this on watch at '
                'the one-month horizon.')),
 
-    dict(id='T-018', scope='ALL', status='PROVISIONAL', fig='07_slope200.png',
+    dict(id='T-08', scope='ALL', status='PROVISIONAL', fig='07_slope200.png',
          figcap='The odds shift by the direction of the 200-day average alone.',
          title='The slope of the 200-day average beats the position against it.',
          body=('Every page states whether the 200-day average is rising, flat or '
@@ -220,7 +253,7 @@ LESSONS = [
          over=('A different slope definition failing to reproduce it. This one is the '
                'read\'s own: the average\'s change over ten sessions.')),
 
-    dict(id='T-019', scope='ALL', status='PROVISIONAL', fig='06_52week.png',
+    dict(id='T-09', scope='ALL', status='PROVISIONAL', fig='06_52week.png',
          figcap='Odds of a higher close, by how far the stock sat below its 52-week high.',
          title='Stocks near their yearly high keep winning. "Cheap because it fell" loses.',
          body=('Every page prints how far the price sits below its 52-week high. That '
@@ -242,7 +275,7 @@ LESSONS = [
                'sample turns that bend into a real recovery effect, this becomes a '
                'U-shape lesson instead.')),
 
-    dict(id='T-020', scope='ALL', status='PROVISIONAL', fig='05_rsi_curve.png',
+    dict(id='T-10', scope='ALL', status='PROVISIONAL', fig='05_rsi_curve.png',
          figcap='Ten equal slices of RSI. Nine say nothing; the top one says continue.',
          title='RSI is silent across nine tenths of its range.',
          body=('RSI is the most quoted number in retail technical analysis. Sliced into '
@@ -260,7 +293,7 @@ LESSONS = [
          over=('A different RSI period, or RSI measured against the stock\'s own typical '
                'range instead of the fixed 0-100 scale, showing life in the middle.')),
 
-    dict(id='T-006', scope='ALL', status='ACTED ON',
+    dict(id='T-11', scope='ALL', status='ACTED ON',
          title='A word that sounds like caution still needs checking. Ours pointed backwards.',
          body=('For years the pages described RSI above 70 as "stretched" and below 30 '
                'as "washed out". Both words whisper "reversal coming" to any reader. '
@@ -277,7 +310,7 @@ LESSONS = [
          over=('Nothing about the finding. The lesson is the habit: audit '
                'conservative-sounding language exactly as hard as flattering language.')),
 
-    dict(id='T-005', scope='ALL', status='PROVISIONAL',
+    dict(id='T-12', scope='ALL', status='PROVISIONAL',
          title='The MACD paragraph is the least useful ink on the page.',
          body=('Every read prints MACD with three numbers and a carefully hedged '
                'sentence. Tested against what prices then did, the histogram\'s sign — '
@@ -294,7 +327,7 @@ LESSONS = [
          over=('A different MACD construction — a signal-line crossing, a divergence — '
                'earning its place on its own evidence. The plain histogram is done.')),
 
-    dict(id='T-011', scope='ALL', status='ACTED ON', fig='09_trigger.png', 
+    dict(id='T-13', scope='ALL', status='ACTED ON', fig='09_trigger.png', 
          fig2='19_demo_etel.png',
          figcap='Book-wide: the "zone" opens LESS often after a real level is cleared.',
          figcap2='And on one real stock: Telecom Egypt cleared 97.17 in June 2026; the '
@@ -305,7 +338,7 @@ LESSONS = [
                'sentence in technical analysis and it fails in the most instructive way '
                'possible — clearing a REAL level makes the next target LESS likely to be '
                'reached than clearing an empty price does. Why? Because the far level is '
-               'real too. If lines hold (T-003), they also hold when they are your '
+               'real too. If lines hold (T-03), they also hold when they are your '
                'target. The sentence was rewritten on 31-Aug-2026 to name the next level '
                'without promising it.'),
          know=lambda: (
@@ -320,7 +353,7 @@ LESSONS = [
                'method whose far targets are systematically weaker than its near ones — '
                'the opposite of how this one works.')),
 
-    dict(id='T-012', scope='ALL', status='ACTED ON', fig='10_cross.png',
+    dict(id='T-14', scope='ALL', status='ACTED ON', fig='10_cross.png',
          fig2='20_demo_sabic.png',
          figcap='Fresh crosses against established ones, book-wide.',
          figcap2='SABIC, May 2026: a textbook fresh golden cross, then −7.6% in a month.',
@@ -344,7 +377,7 @@ LESSONS = [
          over=('A cross of different averages, or a different freshness window, earning '
                'the regime language on its own evidence.')),
 
-    dict(id='T-013', scope='ALL', status='PROVISIONAL', fig='11_volume.png',
+    dict(id='T-15', scope='ALL', status='PROVISIONAL', fig='11_volume.png',
          figcap='Three ways to guess how far price will travel. Volume is the faint one.',
          title='Volume shouts about movement and says nothing about direction.',
          body=('Volume is in every library and the read has never used it — so this was '
@@ -364,7 +397,7 @@ LESSONS = [
                'by up-days and down-days — clearing the bar the plain surge missed.')),
 
     # ------------------------------------------------ what the levels are made of
-    dict(id='T-014', scope='ALL', status='PROVISIONAL', fig='02_level_kind.png',
+    dict(id='T-16', scope='ALL', status='PROVISIONAL', fig='02_level_kind.png',
          figcap='One week ahead: what each kind of line was worth when price reached it.',
          title='For a few days, the 20-day average is as strong a line as any on the chart.',
          body=('Our read believes in a hierarchy: real swing structure first, and '
@@ -383,14 +416,14 @@ LESSONS = [
              f'still holds {pc(dv(21,"by_kind","swing"))}.'),
          over=('The 20-day sample is small because the read only admits an average when '
                'structure leaves a slot open. More data pulling it back to the pack '
-               'would fold this into T-003.')),
+               'would fold this into T-03.')),
 
-    dict(id='T-016', scope='ALL', status='PROVISIONAL',
+    dict(id='T-17', scope='ALL', status='PROVISIONAL',
          title='Round numbers deserve more respect than we gave them.',
          body=('A price like 20.00 or 150 is where human orders cluster, and our read '
                'treats such lines as a last resort. Measured, a round number holds about '
                'three quarters as well as genuine charted structure — clearly weaker, '
-               'clearly not nothing. The QNB picture under T-003 is, fittingly, a round '
+               'clearly not nothing. The QNB picture under T-03 is, fittingly, a round '
                'number doing the work.'),
          know=lambda: (
              f'When price reached a published round-number line it failed to close '
@@ -401,7 +434,7 @@ LESSONS = [
          over=('A market whose price grid makes "round" meaningless — very high nominal '
                'prices, say — where the effect should fade.')),
 
-    dict(id='T-015', scope='ALL', status='PROVISIONAL', fig='03_touches.png',
+    dict(id='T-18', scope='ALL', status='PROVISIONAL', fig='03_touches.png',
          figcap='The edge, by how many times the level had been tested before.',
          title='A level tested five times is no stronger than a level tested once.',
          body=('Chart lore says every extra test proves a level. Our own read believes '
@@ -420,7 +453,7 @@ LESSONS = [
          over=('A touch counted differently — only touches that produced a sharp '
                'rejection, or touches close together in time — showing a real ladder.')),
 
-    dict(id='T-017', scope='ALL', status='PROVISIONAL',
+    dict(id='T-19', scope='ALL', status='PROVISIONAL',
          title='The level printed first is not the one to trust most.',
          body=('We publish three levels a side, nearest first, and a reader naturally '
                'weights them in that order. Over a month the order inverts: the '
@@ -439,7 +472,7 @@ LESSONS = [
                'as it stands it may partly reflect our own distance filters.')),
 
     # ---------------------------------------------------------------- durability
-    dict(id='T-021', scope='ALL', status='WATCH', fig='13_stability.png',
+    dict(id='T-20', scope='ALL', status='WATCH', fig='13_stability.png',
          figcap='Each claim, measured separately on the two halves of fifteen years.',
          title='The moving-average-stack effect worked before 2020 and has not worked since.',
          body=('The cheapest honesty test in research: cut the years in half and ask '
@@ -459,7 +492,7 @@ LESSONS = [
          over=('The next few years restoring it — WATCH, not withdrawn, because half a '
                'sample is a blunt instrument and the weekly horizon still holds.')),
 
-    dict(id='T-022', scope='ALL', status='PROVISIONAL',
+    dict(id='T-21', scope='ALL', status='PROVISIONAL',
          title='The level edge and the tape reading pass the same durability test.',
          body=('The split that embarrassed the stack sentence is exactly what makes the '
                'other two findings credible. The level edge is about the same size in '
@@ -475,9 +508,9 @@ LESSONS = [
              f'{DP["h21"]["stability"]["early"]["tape"]:+.2f} then '
              f'{DP["h21"]["stability"]["late"]["tape"]:+.2f}. Both re-run at every pass.'),
          over=('Either measure fading toward zero in a future half — the same check '
-               'that caught T-021 is standing guard here.')),
+               'that caught T-20 is standing guard here.')),
 
-    dict(id='T-023', scope='ALL', status='PROVISIONAL', fig='04_atr_ladder.png',
+    dict(id='T-22', scope='ALL', status='PROVISIONAL', fig='04_atr_ladder.png',
          figcap='What actually followed each of the four words, over fifteen years.',
          title='Four small words that keep four different promises.',
          body=('"An orderly tape. A normal tape. A lively tape. A volatile tape." They '
@@ -500,7 +533,7 @@ LESSONS = [
                'nine keep the order.')),
 
     # ================================================================ A CLASS
-    dict(id='T-007', scope='CLASS', cls='market', status='PROVISIONAL',
+    dict(id='T-23', scope='CLASS', cls='market', status='PROVISIONAL',
          fig='08_level_market.png',
          figcap='The level edge, per market, one week ahead.',
          title='Where the chart is drawn changes what a level is worth. Saudi doubles Egypt.',
@@ -521,7 +554,7 @@ LESSONS = [
                'landing in the middle would soften this; one landing outside would '
                'sharpen it.')),
 
-    dict(id='T-008', scope='CLASS', cls='market', status='PROVISIONAL',
+    dict(id='T-24', scope='CLASS', cls='market', status='PROVISIONAL',
          title='The tape reading works everywhere; it works hardest in the Gulf.',
          body=('Unlike the levels, the tape sentence never changes its answer with '
                'geography — only its volume. It is strongest in the UAE and Saudi and '
@@ -542,7 +575,7 @@ LESSONS = [
          over=('Any class of stocks where it reads at zero on at least four names. None '
                'found.')),
 
-    dict(id='T-009', scope='CLASS', cls='sector', status='WATCH',
+    dict(id='T-25', scope='CLASS', cls='sector', status='WATCH',
          title='For charts, the exchange is a real category. The industry mostly is not.',
          body=('The fundamental register learns lessons per kind of company — banks, '
                'developers, cement. It is tempting to assume charts work the same way. '
@@ -561,7 +594,7 @@ LESSONS = [
                'markets. None found so far.')),
 
     # ================================================================ ONE TICKER
-    dict(id='T-010', scope='STOCK', status='PROVISIONAL', fig='12_pername_tape.png',
+    dict(id='T-26', scope='STOCK', status='PROVISIONAL', fig='12_pername_tape.png',
          figcap='Each bar counts stocks; almost the whole book sits to the right of zero.',
          title='Only the tape sentence has earned the right to be said stock-by-stock.',
          body=('Saying "this works on THIS stock" needs the stock\'s own history to '
@@ -582,7 +615,7 @@ LESSONS = [
          over=('For the tape: nothing pending — 84-3 is not luck. For any future '
                'per-stock claim: it must beat its own mirror image, not just zero.')),
 
-    dict(id='T-027', scope='STOCK', status='PROVISIONAL',
+    dict(id='T-27', scope='STOCK', status='PROVISIONAL',
          title='IHC is the most readable chart in the book. SALIK and LULU cannot be read at all yet.',
          body=('Two honest extremes of the same rule. International Holding Company has '
                'nine years of readings and the strongest tape relationship of all 92 '
@@ -593,7 +626,7 @@ LESSONS = [
                'but it is a fact a reader deserves to see stated.'),
          know=lambda: (
              f'IHC: tape correlation {M["ihc"]["rho"]:+.2f} over {M["ihc"]["n"]} monthly '
-             f'readings — the highest in the book (see the chart under T-002). SALIK '
+             f'readings — the highest in the book (see the chart under T-02). SALIK '
              f'has {M["young_SALIK"]} weekly readings of history and LULU '
              f'{M["young_LULU"]}, against the roughly 60 this calibration requires '
              f'before it will print a stock-specific number.'),
