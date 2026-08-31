@@ -132,9 +132,14 @@ def _all_structure(high, low, close, spot):
 
 
 # -------------------------------------------------------------------- harvest
-def harvest(market: str, ticker: str, step: int = STEP, verbose=False):
-    """Every claim the shipped read would have published, graded on the tape."""
-    df, rep = load_clean(market, ticker)
+def harvest(market: str, ticker: str, step: int = STEP, verbose=False, frame=None):
+    """Every claim the shipped read would have published, graded on the tape.
+
+    ``frame`` accepts a pre-loaded (df, rep) already through Step 0.0, so an
+    alternative export can be scored without being written into the persistent
+    library. Nothing under raw_ohlc/ is read or touched when it is supplied.
+    """
+    df, rep = load_clean(market, ticker) if frame is None else frame
     dates = pd.to_datetime(df['Date'])
     close = df['Price'].to_numpy(dtype=float)
     high = df['High'].to_numpy(dtype=float)
@@ -147,7 +152,7 @@ def harvest(market: str, ticker: str, step: int = STEP, verbose=False):
         if grades[max(HORIZON_MONTHS)] is None:
             break
         try:
-            st = T.compute(market, ticker, frame=(df.iloc[:i + 1], rep))
+            st = T.compute(market, ticker, frame=(df.iloc[:i + 1].reset_index(drop=True), rep))
         except ValueError:
             continue
 
