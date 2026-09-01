@@ -1117,28 +1117,29 @@ const TICKERS = {
     name: "United Electronics Company (eXtra)",
     nameAr: "الشركة المتحدة للإلكترونيات (إكسترا)",
     code: "TADAWUL:4003",
-    spot: 68.50,
-    spotDate: "close 26 Jul 2026",
+    spot: 65.25,
+    spotDate: "close 31 Aug 2026",
     ccy: "SAR",
     fair: { bear: 66, base: 81, full: 92 },      // 10 Jul 2026 — weighted central 81 (+19% vs spot 68.10). Split-legs SOTP: retail operating-co DCF (SAR 65/sh, net-cash, Ke ~9.5%) + Tasheel, the 68.75%-owned captive consumer-finance lender (SAR 25/sh, equity book × justified P/B). SOTP 90 (primary), relative P/E 12× 75, Monte-Carlo 3-month median 68. bear/full = weighted bear/bull of the football field. Crux: the retail discount rate (regressed β 0.55 on a short window → 0.80 base, sensitized 0.55–1.0) and the Tasheel multiple. At a 52-week low with RSI 27.
     dist: {
-      t20: { label:"1 month",   p5:61.75, p25:65.93, p50:68.71, p75:71.65, p95:76.54, resolve:"2026-08-26" },
-      t60: { label:"3 months",  p5:56.29, p25:63.88, p50:69.25, p75:75.01, p95:85.14, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:57.85, p25:61.94, p50:64.71, p75:67.65, p95:72.44, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:51.68, p25:59.17, p50:64.47, p75:70.24, p95:80.60, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [81.70, 1, 15], [74.90, 14, 44], [71.50, 44, 69], [64.70, 29, 55], [61.30, 6, 30], [54.50, 0, 6]
+      [81.70, 0, 7], [74.90, 3, 23], [71.50, 12, 40], [64.70, 82, 90], [61.30, 33, 61], [54.50, 1, 17]
     ],
-    levels: { res:[79.36, 81.02, 86.37], sup:[67.50, 66, 64] },
+    levels: { res:[79.31, 83.97, 87.87], sup:[64, 62.50, 61] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 68.50 below a falling 20-day (70.19), a falling 50-day (74.02) and a falling 200-day (82.87). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.98 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.74 / \u22121.84 / +0.10). Over the last year it has ranged 67.50\u201393.50; the last close sits 27% below that high and 1% above that low.",
-      bull: "A daily close back above 79.36 would clear the nearest resistance; the next charted level above it is 86.37.",
-      bear: "A close below 67.50 would break the nearest support; the next charted level below it is 64.00."
+      summary: "The price closed 65.25 below a falling 20-day (65.76), a falling 50-day (68.29) and a falling 200-day (79.80). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 1.18 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.68 / \u22121.05 / +0.37). Over the last year it has ranged 62.50\u201393.50; the last close sits 30% below that high and 4% above that low.",
+      bull: "A daily close back above 79.31 would clear the nearest resistance; the next charted level above it is 87.87.",
+      bear: "A close below 64.00 would break the nearest support; the next charted level below it is 61.00."
     },
     asof: {
-      mc:   { data:"2026-07-26", computed:"2026-07-28" },
-      tech: { data:"2026-07-26", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/eXtra_Valuation_Study_10-07-2026_public.docx?v=0710d",
@@ -2435,29 +2436,28 @@ const TICKERS = {
     name: "Saudi Aramco",
     nameAr: "أرامكو السعودية",
     code: "TADAWUL:2222",
-    spot: 26.06,
-    spotDate: "close 31 Aug 2026",
+    spot: 26.60,
+    spotDate: "close 26 Jul 2026",
     ccy: "SAR",
     fair: { bear: 20, base: 25.04, full: 31 },      // 1 Jul 2026 — weighted central 25.04 (−4.6% vs spot 26.24). Lenses: DCF (5-yr FCFF) 23.47, dividend-yield 26.09, relative 21.48 (floor), reserves-NAV 29.63 (ceiling), normalized 23.24. bear/full = weighted bear/bull of the football field. Swing factor: the oil-price path and the base dividend's free-cash coverage.
     dist: {
-      t20: { label:"1 month",   p5:24.56, p25:25.56, p50:26.22, p75:26.91, p95:28.00, resolve:"2026-09-30" },
-      t60: { label:"3 months",  p5:23.44, p25:25.25, p50:26.47, p75:27.74, p95:29.92, resolve:"2026-11-30" }
+      t20: { label:"1 month",   p5:24.68, p25:25.89, p50:26.68, p75:27.51, p95:28.87, resolve:"2026-08-26" },
+      t60: { label:"3 months",  p5:23.52, p25:25.52, p50:26.88, p75:28.30, p95:30.71, resolve:"2026-10-26" }
     },
-    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low */
-      [30.00, 0, 7], [29.00, 1, 17], [28.00, 8, 35], [27.00, 35, 64], [25.00, 19, 44], [24.00, 3, 18], [23.00, 0, 6]
+      [30.00, 2, 14], [29.00, 7, 28], [28.00, 24, 51], [27.00, 68, 82], [25.00, 13, 34], [24.00, 2, 14], [23.00, 0, 5]
     ],
-    levels: { res:[26.48, 26.90, 27.96], sup:[25, 24.30, 23.04] },
+    levels: { res:[26.94, 27.96, 29], sup:[25.90, 24.30, 23.04] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 26.06 below a falling 20-day (26.48), a falling 50-day (26.49) and a flat 200-day (26.10). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.24 (~0.9%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.13 / \u22120.08 / \u22120.05). Over the last year it has ranged 23.04\u201327.96; the last close sits 7% below that high and 13% above that low.",
-      bull: "A daily close back above 26.48 would clear the nearest resistance; the next charted level above it is 27.96.",
-      bear: "A close below 25.00 would break the nearest support; the next charted level below it is 23.04."
+      trend: "Mixed against the moving-average stack, above a rising 200-day",
+      summary: "The price closed 26.60 above a rising 20-day (26.51) and a rising 200-day (25.95), but below a falling 50-day (26.89). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.29 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.00 / \u22120.04 / +0.04). Over the last year it has ranged 23.04\u201327.96; the last close sits 5% below that high and 15% above that low.",
+      bull: "A daily close back above 26.94 would clear the nearest resistance; the next charted level above it is 29.00.",
+      bear: "A close below 25.90 would break the nearest support; the next charted level below it is 23.04."
     },
     asof: {
-      mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      mc:   { data:"2026-07-26", computed:"2026-07-28" },
+      tech: { data:"2026-07-26", computed:"2026-08-31" }
     },
     files: {
       study: "files/Aramco_Valuation_Study_01-07-2026_public.docx?v=0107b",
@@ -2635,28 +2635,29 @@ const TICKERS = {
     name: "Riyad Bank",
     nameAr: "مصرف الرياض",
     code: "TADAWUL:1010",
-    spot: 20.92,
-    spotDate: "close 26 Jul 2026",
+    spot: 20.90,
+    spotDate: "close 31 Aug 2026",
     ccy: "SAR",
     fair: { bear: 20.85, base: 26.61, full: 33.24 },      // 09 Jul 2026 — weighted central 26.61 (+31.5% vs spot 20.23). Lenses: DDM (primary, 30%) 23.62, residual income (multi-period build, 20%) 33.24, FCFE (equity DCF, 15%) 32.18, relative multiples (20%) 24.62, normalized earnings power (15%) 20.85. bear/full = normalized floor / residual-income ceiling. Swing factors: the NIM path through the SAMA/Fed easing cycle and whether Riyad Bank's ~16% ROE persists (excess-return lenses) or fades toward the ~10.3% cost of equity (the market's implied ~1.2x book read).
     dist: {
-      t20: { label:"1 month",   p5:19.08, p25:20.23, p50:20.98, p75:21.78, p95:23.11, resolve:"2026-08-26" },
-      t60: { label:"3 months",  p5:17.84, p25:19.79, p50:21.14, p75:22.58, p95:25.04, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:19.17, p25:20.24, p50:20.97, p75:21.73, p95:22.95, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:17.90, p25:19.81, p50:21.12, p75:22.51, p95:24.95, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [23.26, 6, 28], [22.25, 24, 52], [21.24, 71, 84], [19.22, 10, 32], [18.21, 2, 13], [17.20, 0, 5]
+      [23.26, 5, 27], [22.25, 21, 51], [21.24, 68, 83], [19.22, 9, 32], [18.21, 1, 13], [17.20, 0, 4]
     ],
-    levels: { res:[21.41, 22.41, 24.01], sup:[20.57, 19.47, 18.98] },
+    levels: { res:[21.44, 22.41, 24.01], sup:[20.57, 20.16, 19.61] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh death-cross",
-      summary: "The price closed 20.92 above a flat 20-day (20.50), a flat 50-day (20.50) and a flat 200-day (20.58). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.30 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.13 / +0.06 / +0.08). The 50-day crossed beneath the 200-day 11 sessions ago. Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
-      bull: "A daily close back above 21.41 would clear the nearest resistance; the next charted level above it is 24.01.",
-      bear: "A close below 20.57 would break the nearest support; the next charted level below it is 18.98."
+      trend: "Trading above the whole moving-average stack, on a flat 200-day",
+      summary: "The price closed 20.90 above a flat 20-day (20.50), a flat 50-day (20.49) and a flat 200-day (20.59). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.27 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.11 / +0.04 / +0.06). Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
+      bull: "A daily close back above 21.44 would clear the nearest resistance; the next charted level above it is 24.01.",
+      bear: "A close below 20.57 would break the nearest support; the next charted level below it is 19.61."
     },
     asof: {
-      mc:   { data:"2026-07-26", computed:"2026-07-28" },
-      tech: { data:"2026-07-26", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/RIBL_Valuation_Study_09-07-2026_public.docx?v=0709d",
@@ -3174,7 +3175,7 @@ const BANDS = {
   ALRAJHI: {mkt:"SA", n:58, hits:50, c50:0.4483, c80:0.7069, c90:0.8621, width:1.071, strength:"long", flag:null},
   AMOC: {mkt:"EG", n:57, hits:49, c50:0.5614, c80:0.8070, c90:0.8596, width:1.225, strength:"long", flag:null},
   AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, width:0.899, strength:"market-only", flag:null},
-  ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7727, c90:0.9091, width:1.004, strength:"short", flag:null},
+  ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7273, c90:0.9091, width:1.012, strength:"short", flag:null},
   ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.432, strength:"long", flag:null},
   BOROUGE: {mkt:"AE", n:12, hits:12, c50:0.9167, c80:1.0000, c90:1.0000, width:1.249, strength:"market-only", flag:null},
   BTFH: {mkt:"EG", n:56, hits:47, c50:0.5893, c80:0.8036, c90:0.8393, width:1.370, strength:"long", flag:null},
@@ -3199,7 +3200,7 @@ const BANDS = {
   EMPOWER: {mkt:"AE", n:10, hits:10, c50:0.6000, c80:1.0000, c90:1.0000, width:1.278, strength:"market-only", flag:null},
   ENBD: {mkt:"AE", n:57, hits:52, c50:0.6316, c80:0.8421, c90:0.9123, width:1.233, strength:"long", flag:null},
   ETEL: {mkt:"EG", n:57, hits:56, c50:0.4211, c80:0.8421, c90:0.9825, width:1.342, strength:"long", flag:"wide"},
-  EXTRA: {mkt:"SA", n:53, hits:45, c50:0.4717, c80:0.7358, c90:0.8491, width:1.164, strength:"long", flag:null},
+  EXTRA: {mkt:"SA", n:54, hits:46, c50:0.4815, c80:0.7593, c90:0.8519, width:1.162, strength:"long", flag:null},
   FAB: {mkt:"AE", n:58, hits:54, c50:0.5690, c80:0.8276, c90:0.9310, width:1.034, strength:"long", flag:null},
   FERTIGLB: {mkt:"AE", n:14, hits:14, c50:0.4286, c80:0.7857, c90:1.0000, width:1.143, strength:"market-only", flag:null},
   FWRY: {mkt:"EG", n:23, hits:23, c50:0.6087, c80:0.9565, c90:1.0000, width:1.247, strength:"short", flag:null},
@@ -3233,7 +3234,7 @@ const BANDS = {
   QNB: {mkt:"QA", n:58, hits:55, c50:0.5690, c80:0.8621, c90:0.9483, width:0.992, strength:"long", flag:null},
   RAYA: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.9123, c90:0.9298, width:2.011, strength:"long", flag:null},
   RELIANCE: {mkt:"IN", n:57, hits:53, c50:0.5614, c80:0.9123, c90:0.9298, width:1.085, strength:"long", flag:null},
-  RIBL: {mkt:"SA", n:57, hits:45, c50:0.3860, c80:0.7018, c90:0.7895, width:0.946, strength:"long", flag:"narrow"},
+  RIBL: {mkt:"SA", n:58, hits:45, c50:0.3966, c80:0.7241, c90:0.7759, width:0.963, strength:"long", flag:"narrow"},
   RIYADHCABLE: {mkt:"SA", n:10, hits:9, c50:0.7000, c80:0.8000, c90:0.9000, width:1.083, strength:"market-only", flag:null},
   RMDA: {mkt:"EG", n:22, hits:21, c50:0.5909, c80:0.9091, c90:0.9545, width:1.369, strength:"short", flag:null},
   SABIC: {mkt:"SA", n:57, hits:52, c50:0.4561, c80:0.7895, c90:0.9123, width:1.052, strength:"long", flag:null},
@@ -3256,7 +3257,7 @@ const BAND_MARKETS = {
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
-  SA: {names:13, n:557, c90:0.8725, label:"Saudi"},
+  SA: {names:13, n:559, c90:0.8712, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
   XAU: {names:2, n:120, c90:0.9333, label:"precious-metals"},
   XPT: {names:1, n:58, c90:0.9483, label:"precious-metals"},
@@ -4133,9 +4134,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:24.68, p25:25.89, p50:26.68, p75:27.51, p95:28.87,
     touch:{ "+5":26, "+10":5, "+15":1, "+20":0, "-5":20, "-10":2 },
-    realized_close:26.1, realized_high:27.26, realized_low:26.04,
-    in_90:true, in_50:true, realized_quantile:0.316, median_err:-0.0217,
-    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
     instrument:"ARAMCO", asset_class:"equity",
@@ -4542,9 +4543,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:61.75, p25:65.93, p50:68.71, p75:71.65, p95:76.54,
     touch:{ "+5":39, "+10":12, "+15":3, "+20":1, "-5":33, "-10":8 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:66.25, realized_high:69.2, realized_low:62.5,
+    in_90:true, in_50:true, realized_quantile:0.279, median_err:-0.0358,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"EXTRA", asset_class:"equity",
@@ -5046,9 +5047,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:19.08, p25:20.23, p50:20.98, p75:21.78, p95:23.11,
     touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":29, "-10":5 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:21.06, realized_high:21.12, realized_low:19.6,
+    in_90:true, in_50:true, realized_quantile:0.525, median_err:0.0038,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"RIBL", asset_class:"equity",
@@ -7036,30 +7037,59 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
-  // ---- 2026-09-01 single-name roll-forward: ARAMCO, struck on its own
+  // ---- 01-Sep-2026 single-name roll-forward: EXTRA, struck on its own
   //      latest library close. Append-only.
   {
-    instrument:"ARAMCO", asset_class:"equity",
-    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:26.06, ccy:"SAR",
+    instrument:"EXTRA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:65.25, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:21,
-    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.132,
-    signal_z:0.749, signal_alpha:0.002821,
-    note:"Cycle 3 roll-forward, 2026-09-01 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP, from this name’s own mom_12_1 z of +0.749 (outside the 0.25 dead zone); tilt +0.28% at 1M and +0.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
-    p5:24.56, p25:25.56, p50:26.22, p75:26.91, p95:28.0,
-    touch:{ "+5":21, "+10":2, "+15":0, "+20":0, "-5":12, "-10":1 },
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.2268,
+    signal_z:-1.7785, signal_alpha:-0.011511,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0371 over 44 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.063,-0.022]). The cone is TOO NARROW: only 86% coverage against a 90% target and 52% against 50%, PIT mean 0.506. Read the bands as an OUTER bound. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -1.779 (outside the 0.25 dead zone); tilt -1.14% at 1M and -2.24% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:57.85, p25:61.94, p50:64.71, p75:67.65, p95:72.44,
+    touch:{ "+5":35, "+10":11, "+15":3, "+20":1, "-5":41, "-10":11 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
-    instrument:"ARAMCO", asset_class:"equity",
-    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:26.06, ccy:"SAR",
+    instrument:"EXTRA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:65.25, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
-    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.1416,
-    signal_z:0.749, signal_alpha:0.005241,
-    note:"Cycle 3 roll-forward, 2026-09-01 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP, from this name’s own mom_12_1 z of +0.749 (outside the 0.25 dead zone); tilt +0.28% at 1M and +0.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
-    p5:23.44, p25:25.25, p50:26.47, p75:27.74, p95:29.92,
-    touch:{ "+5":52, "+10":22, "+15":8, "+20":3, "-5":36, "-10":10 },
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.2577,
+    signal_z:-1.7785, signal_alpha:-0.022657,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0371 over 44 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.063,-0.022]). The cone is TOO NARROW: only 86% coverage against a 90% target and 52% against 50%, PIT mean 0.506. Read the bands as an OUTER bound. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -1.779 (outside the 0.25 dead zone); tilt -1.14% at 1M and -2.24% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:51.68, p25:59.17, p50:64.47, p75:70.24, p95:80.6,
+    touch:{ "+5":62, "+10":39, "+15":23, "+20":13, "-5":67, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: RIBL, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"RIBL", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:20.9, ccy:"SAR",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.1819,
+    signal_z:0.0054, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP but WEAK — this name’s own mom_12_1 z is +0.005, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:19.17, p25:20.24, p50:20.97, p75:21.73, p95:22.95,
+    touch:{ "+5":32, "+10":7, "+15":1, "+20":0, "-5":26, "-10":4 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RIBL", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:20.9, ccy:"SAR",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.1926,
+    signal_z:0.0054, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP but WEAK — this name’s own mom_12_1 z is +0.005, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:17.9, p25:19.81, p50:21.12, p75:22.51, p95:24.95,
+    touch:{ "+5":60, "+10":33, "+15":16, "+20":8, "-5":51, "-10":22 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -7362,16 +7392,16 @@ const CALIB = {
   "QSE:IQCD": {w: 58, in50: 47, in90: 90, through: "2026-07-28"},
   "QSE:QGTS": {w: 58, in50: 57, in90: 90, through: "2026-07-28"},
   "QSE:QNBK": {w: 58, in50: 48, in90: 93, through: "2026-07-28"},
-  "TADAWUL:1010": {w: 57, in50: 42, in90: 84, through: "2026-04-28"},
+  "TADAWUL:1010": {w: 58, in50: 40, in90: 78, through: "2026-07-28"},
   "TADAWUL:1120": {w: 58, in50: 48, in90: 88, through: "2026-07-28"},
   "TADAWUL:1150": {w: 58, in50: 41, in90: 88, through: "2026-07-28"},
   "TADAWUL:1180": {w: 42, in50: 64, in90: 93, through: "2026-06-03"},
   "TADAWUL:1211": {w: 57, in50: 51, in90: 88, through: "2026-04-28"},
   "TADAWUL:2010": {w: 57, in50: 53, in90: 91, through: "2026-04-28"},
-  "TADAWUL:2050": {w: 58, in50: 52, in90: 91, through: "2026-07-28"},
+  "TADAWUL:2050": {w: 58, in50: 50, in90: 91, through: "2026-07-28"},
   "TADAWUL:2082": {w: 15, in50: 47, in90: 87, through: "2026-07-28"},
-  "TADAWUL:2222": {w: 22, in50: 45, in90: 91, through: "2026-07-05"},
-  "TADAWUL:4003": {w: 53, in50: 53, in90: 89, through: "2026-04-27"},
+  "TADAWUL:2222": {w: 22, in50: 50, in90: 91, through: "2026-07-05"},
+  "TADAWUL:4003": {w: 54, in50: 57, in90: 87, through: "2026-07-27"},
   "TADAWUL:4142": {w: 10, in50: 70, in90: 90, through: "2026-07-06"},
   "TADAWUL:7010": {w: 57, in50: 54, in90: 91, through: "2026-04-28"},
   "TADAWUL:7203": {w: 13, in50: 31, in90: 85, through: "2026-06-11"},
