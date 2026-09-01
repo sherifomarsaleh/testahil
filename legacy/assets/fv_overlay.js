@@ -1984,98 +1984,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "2POINTZERO",
-   "name": "Two Point Zero Group",
-   "code": "ADX:2POINTZERO",
-   "ccy": "AED",
-   "spot": 2.06,
-   "anchor_date": "2026-07-24",
-   "fv_asof": "2026-07-11",
-   "fv_lag_days": 13,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.55,
-   "fv_base": 1.91,
-   "fv_full": 2.27,
-   "gap_base_pct": -7.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.098886,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -2.88,
-     "base": -0.76,
-     "full": 0.98
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0073,
-     "base": 0.1785,
-     "full": 0.1254
-    },
-    "p_touch": {
-     "bear": 0.0113,
-     "base": 0.2985,
-     "full": 0.2043
-    },
-    "required_cagr": {
-     "bear": -0.9671,
-     "base": -0.5964,
-     "full": 2.2056
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00132
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.188048,
-    "mu_h": -0.004866,
-    "G": {
-     "bear": -1.51,
-     "base": -0.4,
-     "full": 0.52
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0545,
-     "base": 0.3188,
-     "full": 0.2515
-    },
-    "p_touch": {
-     "bear": 0.0941,
-     "base": 0.5725,
-     "full": 0.4684
-    },
-    "required_cagr": {
-     "bear": -0.6795,
-     "base": -0.261,
-     "full": 0.4745
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00484
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "SAVOLA",
    "name": "Savola Group Company",
    "code": "TADAWUL:2050",
@@ -2166,6 +2074,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00196
    },
    "market": "SA"
+  },
+  {
+   "ticker": "2POINTZERO",
+   "name": "Two Point Zero Group",
+   "code": "ADX:2POINTZERO",
+   "ccy": "AED",
+   "spot": 2.08,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 51,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.55,
+   "fv_base": 1.91,
+   "fv_full": 2.27,
+   "gap_base_pct": -8.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.106095,
+    "mu_h": -0.004819,
+    "G": {
+     "bear": -2.77,
+     "base": -0.8,
+     "full": 0.82
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0088,
+     "base": 0.1803,
+     "full": 0.1508
+    },
+    "p_touch": {
+     "bear": 0.0124,
+     "base": 0.2945,
+     "full": 0.2601
+    },
+    "required_cagr": {
+     "bear": -0.9707,
+     "base": -0.6405,
+     "full": 1.8546
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00238
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.18383,
+    "mu_h": -0.009662,
+    "G": {
+     "bear": -1.6,
+     "base": -0.46,
+     "full": 0.48
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0494,
+     "base": 0.3037,
+     "full": 0.2568
+    },
+    "p_touch": {
+     "bear": 0.0834,
+     "base": 0.536,
+     "full": 0.4847
+    },
+    "required_cagr": {
+     "bear": -0.6916,
+     "base": -0.289,
+     "full": 0.4186
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00659
+   },
+   "market": "AE"
   },
   {
    "ticker": "EAND",
@@ -7984,16 +7984,16 @@ const FV_OVERLAY = {
    "name": "International Holding Company",
    "code": "ADX:IHC",
    "ccy": "AED",
-   "spot": 371.2,
-   "anchor_date": "2026-08-27",
+   "spot": 372,
+   "anchor_date": "2026-08-31",
    "fv_asof": "2026-07-04",
-   "fv_lag_days": 54,
+   "fv_lag_days": 58,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 78,
    "fv_base": 104.5,
    "fv_full": 150,
-   "gap_base_pct": -71.8,
+   "gap_base_pct": -71.9,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
@@ -8007,12 +8007,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.041141,
-    "mu_h": -0.001672,
+    "sigma_h": 0.036848,
+    "mu_h": -0.000861,
     "G": {
-     "bear": -37.92,
-     "base": -30.81,
-     "full": -22.02
+     "bear": -42.4,
+     "base": -34.46,
+     "full": -24.65
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -8027,16 +8027,16 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00092
+    "selftest_max_dev": 0.00081
    },
    "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.079554,
-    "mu_h": -0.00524,
+    "h_sessions": 62,
+    "sigma_h": 0.070874,
+    "mu_h": -0.002907,
     "G": {
-     "bear": -19.61,
-     "base": -15.93,
-     "full": -11.39
+     "bear": -22.04,
+     "base": -17.91,
+     "full": -12.82
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -8045,13 +8045,13 @@ const FV_OVERLAY = {
     "p_touch": null,
     "required_cagr": {
      "bear": -0.9981,
-     "base": -0.9937,
-     "full": -0.9733
+     "base": -0.9938,
+     "full": -0.9736
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00116
+    "selftest_max_dev": 0.00234
    },
    "market": "AE"
   },

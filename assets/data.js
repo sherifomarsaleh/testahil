@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-31", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-09-01", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -949,29 +949,29 @@ const TICKERS = {
     name: "Two Point Zero Group",
     nameAr: "مجموعة تو بوينت زيرو",
     code: "ADX:2POINTZERO",
-    spot: 2.06,
-    spotDate: "close 24 Jul 2026",
+    spot: 2.08,
+    spotDate: "close 31 Aug 2026",
     ccy: "AED",
     fair: { bear: 1.55, base: 1.91, full: 2.27 },      // 11 Jul 2026 — four-lens weighted central 1.91 (-11.7% vs spot 2.16). Lenses: sum-of-the-parts (primary, 45%) 1.95 — operating businesses marked on their own earnings, investment portfolio at management's mark less a 25% opacity discount, cash at par, less a 7.5% structural discount; DCF on the operating legs + portfolio (ceiling, 15%) 2.39 (TV 81% of operating EV, disclosed); relative on reported earnings with a normalised mark contribution (25%) 1.85; underlying earnings, no marks at all (floor, 15%) 1.39. THE CRUX: the AED 58.7bn investment portfolio is carried against AED 48.0bn invested — a AED 10.7bn gain. But the 7.29% TAQA stake sold on 11-Jun-2026 (9,095,702,934 shares at AED 2.37) was worth ~AED 21.6bn against AED 10bn paid. Strip it out and the REST of the portfolio — now entirely unlisted — is carried AED 0.9bn BELOW cost. The entire mark-up was one listed stake, and it has been sold, with ~AED 14.4bn of the proceeds redeployed into unlisted assets (Traverse, Mopani, Alphamin, ISEM). Operating economics are disclosed and modest: gross margin 30%, G&A 18% of revenue → ~12% operating margin — NOT the 25% that a blended adjusted-EBITDA figure implies, because that figure has AED 1.2bn/qtr of portfolio income inside it. Tax modelled at the statutory 15% DMTT floor (no phase-in exists). Attributable ratio 84.2%, derived from the PUBLISHED Q1-26 EPS of AED 0.056. Beta assumed 1.0 (regression failed our usability test; no downloadable ADX index series), sensitised 0.8–1.3.
     dist: {
-      t20: { label:"1 month",   p5:1.77, p25:1.95, p50:2.06, p75:2.17, p95:2.40, resolve:"2026-08-24" },
-      t60: { label:"3 months",  p5:1.53, p25:1.85, p50:2.05, p75:2.26, p95:2.73, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:1.76, p25:1.96, p50:2.07, p75:2.20, p95:2.44, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:1.55, p25:1.86, p50:2.06, p75:2.28, p95:2.73, resolve:"2026-11-30" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-01" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [2.60, 2, 14], [2.40, 8, 28], [2.20, 35, 59], [2.00, 63, 80], [1.90, 28, 56], [1.80, 11, 36]
+      [2.60, 3, 14], [2.40, 11, 30], [2.20, 43, 63], [2.00, 58, 75], [1.90, 27, 52], [1.80, 11, 34]
     ],
-    levels: { res:[2.09, 2.15, 2.26], sup:[1.95, 1.92, 1.87] },
+    levels: { res:[2.14, 2.26, 2.77], sup:[2.03, 1.98, 1.92] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 2.06 below a falling 20-day (2.13), a flat 50-day (2.13) and a falling 200-day (2.36). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.05 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.01). Over the last year it has ranged 1.63\u20133.42; the last close sits 40% below that high and 26% above that low.",
-      bull: "A daily close back above 2.09 would clear the nearest resistance; the next charted level above it is 2.26.",
-      bear: "A close below 1.95 would break the nearest support; the next charted level below it is 1.87."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 2.08 below a falling 50-day (2.09) and a falling 200-day (2.23), but above a flat 20-day (2.03). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.04 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.00 / \u22120.01 / +0.01). Over the last year it has ranged 1.63\u20133.42; the last close sits 39% below that high and 28% above that low.",
+      bull: "A daily close back above 2.14 would clear the nearest resistance; the next charted level above it is 2.77.",
+      bear: "A close below 2.03 would break the nearest support; the next charted level below it is 1.92."
     },
     asof: {
-      mc:   { data:"2026-07-24", computed:"2026-08-25" },
-      tech: { data:"2026-07-24", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/2POINTZERO_Valuation_Study_11-07-2026_public.docx?v=20260711f",
@@ -3150,7 +3150,7 @@ const COMING = [
 // market-only. flag = narrow | wide | null (two-sided binomial, 5%).
 // Derivation of the thresholds: engine/band_record.py. NEVER hand-edit.
 const BANDS = {
-  "2POINTZERO": {mkt:"AE", n:14, hits:11, c50:0.2857, c80:0.7143, c90:0.7857, width:1.026, strength:"market-only", flag:null},
+  "2POINTZERO": {mkt:"AE", n:14, hits:11, c50:0.3571, c80:0.7143, c90:0.7857, width:1.027, strength:"market-only", flag:null},
   AAPL: {mkt:"US", n:58, hits:50, c50:0.4310, c80:0.7414, c90:0.8621, width:1.016, strength:"long", flag:null},
   ABUK: {mkt:"EG", n:57, hits:52, c50:0.6140, c80:0.8772, c90:0.9123, width:1.325, strength:"long", flag:null},
   ACWA: {mkt:"SA", n:14, hits:12, c50:0.3571, c80:0.7143, c90:0.8571, width:0.949, strength:"market-only", flag:null},
@@ -5316,9 +5316,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
     p5:1.75, p25:1.94, p50:2.07, p75:2.2, p95:2.43,
     touch:{ "+5":53, "+10":27, "+15":13, "+20":6, "-5":49, "-10":22 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:2.09, realized_high:2.15, realized_low:1.98,
+    in_90:true, in_50:true, realized_quantile:0.538, median_err:0.0097,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"2POINTZERO", asset_class:"equity",
@@ -6881,6 +6881,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 31-Aug-2026 — struck on the 27-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -1.005 (outside the 0.25 dead zone); tilt -0.45% at 1M and -1.46% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
     p5:326.87, p25:353.59, p50:369.26, p75:385.49, p95:417.6,
     touch:{ "+5":38, "+10":14, "+15":6, "+20":3, "-5":42, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: 2POINTZERO, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"2POINTZERO", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:2.08, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.3747,
+    signal_z:-0.5734, signal_alpha:-0.006615,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.573 (outside the 0.25 dead zone); tilt -0.66% at 1M and -1.96% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:1.76, p25:1.96, p50:2.07, p75:2.2, p95:2.44,
+    touch:{ "+5":48, "+10":23, "+15":11, "+20":6, "-5":49, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"2POINTZERO", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:2.08, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-24", anchor_vol:0.3893,
+    signal_z:-0.5734, signal_alpha:-0.019768,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-24 and is graded in this same pass. The previous cone was anchored 2026-07-24; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.573 (outside the 0.25 dead zone); tilt -0.66% at 1M and -1.96% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:1.55, p25:1.86, p50:2.06, p75:2.28, p95:2.73,
+    touch:{ "+5":67, "+10":46, "+15":31, "+20":21, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
