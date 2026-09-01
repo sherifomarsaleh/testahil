@@ -97,3 +97,135 @@ macro, measured by re-running every origin on a perfect-foresight inflation path
 Units and deliveries carry zero macro share by construction, which is the check
 that the split measures what it claims. Egypt's four devaluations across
 FY2016–FY2024 do **not** explain this record.
+
+---
+
+## EMFD · Emaar Misr for Development · EGX · 01-Sep-2026
+**Class:** off-plan residential developer — **completed-contract basis to FY2020**,
+EAS 48 from FY2021 (see below; this is NOT the registered
+"off-plan, percentage-of-completion" class for the pre-2021 window)
+**Context:** fundamental walk-forward training run, **BLOCKED at [R-FCAL-01] §1** —
+`engine/emfd_walkforward_pending/`
+**Nothing in this entry has been published, and no driver here has been set on a delivered
+number.** The existing EMFD study and its published cone are untouched.
+
+### Why there are no driver decisions to record yet
+
+The run did not start. §1 requires the most recent three fiscal years and every disclosed
+current-year quarter to come from the company's own audited statements or its own IR
+documents, and FY2023–FY2025 cannot be obtained from any permitted route. The company's
+investor-relations register publishes financial statements from FY2013 to H1-2021 and then
+stops; the exchange holds the later filings and serves an anti-bot interstitial to automated
+requests; the company's own embedded IR backend serves on a port this session's egress
+policy does not permit. Every route and outcome is logged in
+`engine/emfd_walkforward_pending/SOURCE_REGISTER_01-09-2026.md`.
+
+Aggregator figures for the missing years exist and were not used. That is the rule working.
+
+### What IS recorded, because it was measured rather than assumed
+
+1. **The revenue-recognition basis is completed contract to FY2020, not
+   percentage-of-completion.** The company's own results releases say so in terms
+   ("revenues recognized according to the Completed Contract (CC) method", FY2016 and FY2017
+   releases). Revenue and cost of revenue are both released at handover, so the two clocks
+   coincide by construction and **L-001's own stated falsifier is met for this window**.
+   A same-class prior taken from a percentage-of-completion developer does not transfer to
+   EMFD's pre-2021 years.
+   *What would overturn it:* the FY2021+ statements showing the EAS 48 transition moved this
+   company to over-time recognition, which would make the post-2021 window a different class
+   again — and is one of the first things to check when those documents arrive.
+
+2. **EAS 47/48/49 redefine revenue at 1 January 2021, and the size of the redefinition is
+   measured, not assumed.** The six months to 30 June 2020 is the one period this company
+   published on both bases. Restated onto EAS 48 its revenue rises **+2.72%**, its cost of
+   revenue rises **+8.05%**, and its gross profit falls **−8.42%**. A revenue or
+   cost-per-unit driver may not be scored across that boundary.
+   *What would overturn it:* nothing about the measurement; it is two filings differenced.
+   The open question is only whether the FY2021 annual accounts restate FY2020 as well.
+
+3. **FY2019 was reclassified in the FY2020 accounts: a gross-up, invisible at the bottom
+   line.** Revenue restated **+3.78%** and cost of revenue **+5.46%** against an equal and
+   opposite fall in other income, with profit before tax and profit for the year identical
+   on both bases (FY2020 note 36). A revenue driver scored across FY2019 would carry a 3.8%
+   step that is presentation, not business, and no check that watches profit would see it.
+   *What would overturn it:* nothing — it is the company's own two presentations differenced.
+
+4. **This company is substantially unlevered, and that is a trap on the finance lines.**
+   FY2018 finance cost is under EGP 1 million against a multi-billion balance sheet, while
+   finance income is of the same order as operating profit. The pre-registration therefore
+   fixes, in advance, that finance cost is built from **interest-bearing borrowings only** —
+   and where the debt note discloses none, the borrowing rate is **undefined and not
+   computed**, the line carrying a trailing mean and the cell marked *rate not identified*.
+   Widening the denominator until the rate looks sensible is exactly the mis-specification
+   L-002 records, and the rule refuses it before any number exists.
+   *What would overturn it:* a debt note disclosing material interest-bearing facilities, at
+   which point the ordinary rate × opening-borrowings rule applies.
+
+5. **Finance income is a first-class driver for this name, not a residual.** It is built on
+   the assets that actually earn it — cash, time deposits and interest-bearing instalment
+   receivables — never on total assets, and it is additionally run on the exogenous CBE
+   deposit rate so its macro share can be priced. The FY2017 release attributes that year's
+   finance income to "the high interest rate environment", which is a macro attribution the
+   company itself makes and the split can therefore be checked against.
+   *What would overturn it:* a period where finance income is small relative to operating
+   profit, making a simpler treatment adequate.
+
+6. **The revenue line on this issuer is a presentation choice, and it has been revisited
+   more than once.** FY2013 was restated in the FY2014 accounts — revenue **−4.77%**, gross
+   profit **−12.67%**, offset in selling expenses and other income, with cost of revenue and
+   profit before tax identical on both bases. That is the same species as the FY2019
+   gross-up six years later. Two of the nine years in the panel carry a revenue
+   reclassification invisible at the bottom line, so the panel keeps the **as-first-reported**
+   figure at every origin and records the later presentation beside it.
+   *What would overturn it:* nothing about the measurement. What it does not tell us is
+   whether the practice continued through FY2021–FY2025, which the blocked filings answer.
+
+7. **A source document can be incomplete, and the arithmetic is what says so.** The FY2015
+   year-end PDF on the company's own register omits its profit-or-loss page entirely — the
+   file runs balance sheet, changes in equity, cash flows, notes. FY2015 is therefore taken
+   from the comparative column of the FY2016 filing and flagged as a comparative. A pipeline
+   that had assumed "the filing exists, therefore the year is sourced" would have carried a
+   hole.
+   *What would overturn it:* a complete FY2015 filing from the company or the exchange.
+
+8. **The operating KPIs this class needs stop three years before the statements do.**
+   Delivered-unit counts and contracted-sales values are published in the results releases,
+   and the company's register carries releases only for FY2015, FY2016 and FY2017. For
+   FY2018–FY2020 no unit count exists in any document on the register: no release was
+   published and the management annual reports for those years are Arabic scans of the
+   board's governance report, carrying no operating data. Units delivered, revenue per unit
+   and cost per unit — the three drivers that carry a developer — are unscoreable on those
+   years, and a unit count is never interpolated to fill the gap.
+   *What would overturn it:* the FY2018–FY2020 releases or an investor presentation carrying
+   the counts, from the company or the exchange.
+
+9. **The two pre-registered financing rules were checked against the disclosure, and one of
+   them refuses — as written.** On opening earning assets (cash, time deposits and
+   interest-bearing receivables) the implied D7 rate lands between **8.8% and 26.6%** across
+   FY2017–FY2020, which is where an Egyptian deposit rate belongs; on total assets it would
+   have landed near 3%, which is the trap the rule was written to avoid. D8's implied
+   borrowing rate on this name's disclosed interest-bearing borrowings comes out at **238%
+   in FY2019 and 69% in FY2020** — the company is effectively unlevered and the denominator
+   is noise — so the rule's "rate not identified" branch fires, exactly as pre-registered.
+   Nothing was widened to make the number look sensible.
+   *What would overturn it:* the FY2021+ filings disclosing material interest-bearing
+   borrowings, at which point the ordinary rate × opening-borrowings rule applies.
+
+10. **A rate formed on an opening base is not the same driver as one formed on an average
+    base when the base is doubling.** EMFD's earning-asset base roughly doubles across
+    FY2016–FY2017, and the opening-base D7 rate ranges from under 9% to over 26% on that
+    account alone. The pre-registration was **amended on 1 September 2026, dated, while no
+    error had been computed**, to compute both conventions at every origin and report both
+    without selecting either. Recorded here because the amendment is only legitimate at that
+    moment: after an error existed it would have been tuning.
+    *What would overturn it:* a company whose earning-asset base is stable enough that the
+    two conventions coincide.
+
+### Pre-registered predictions this run will test when it is unblocked
+
+Recorded here so they cannot be quietly dropped: **L-101** (a developer's volume is set by
+its launch calendar and no demographic anchor can see it) is run as the primary D1 rule
+rather than replaced by one, so its failure or success against *freeze* is a result rather
+than an assumption; and **L-114** (new-sales value is under-forecast when price and volume
+are projected separately) is computed both ways at every origin, with both reported and
+neither selected on its score.
