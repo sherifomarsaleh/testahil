@@ -1,0 +1,43 @@
+Forward projection from origin FY2025 — EGP mn, ranges from this record's own error distribution
+
+driver                year  model path band median           band (p10-p90)    n
+new_sales             2026      488369      462043         331477 - 1440120    8
+dev_revenue           2026       58890       63809            34636 - 67930    9
+recurring_revenue     2026       46304       55216            32711 - 71835   10
+total_revenue         2026      105194      111477           75360 - 124055    9
+gross_profit          2026       36051       36955            25750 - 46364    9
+net_profit            2026       24837       15253            10711 - 18520    8
+
+new_sales             2027      624029     1165908         689565 - 2344612    7
+dev_revenue           2027       94693      107569           76252 - 112944    8
+recurring_revenue     2027       83137      145098           36334 - 164387    9
+total_revenue         2027      177830      217607          134347 - 239344    8
+gross_profit          2027       61757       72912            40662 - 92078    8
+net_profit            2027       43518       31537            15356 - 48160    8
+
+new_sales             2028      797373     1917458         753101 - 6924549    7
+dev_revenue           2028      139210      159403          127756 - 203197    7
+recurring_revenue     2028      149269      226631           64634 - 416385    8
+total_revenue         2028      288479      399195          215174 - 492332    7
+gross_profit          2028      102594      152164           64394 - 184045    7
+net_profit            2028       73095       63840           24599 - 189003    7
+
+new_sales             2029     1018869     3452454       1371458 - 19987324    6
+dev_revenue           2029      194938      282580          214462 - 307167    6
+recurring_revenue     2029      268007      209910         119991 - 1537050    7
+total_revenue         2029      462945      606344         376923 - 1054944    6
+gross_profit          2029      169406      285627          112379 - 395698    6
+net_profit            2029      121325      113961           46835 - 402413    6
+
+new_sales             2030     1301894     3299124       1935862 - 17364016    5
+dev_revenue           2030      265066      350505          198631 - 554340    5
+recurring_revenue     2030      481197      404771         259696 - 3612177    6
+total_revenue         2030      746263      899167         398140 - 2222229    5
+gross_profit          2030      281313      329215          124396 - 798652    5
+net_profit            2030      201879      141528           44134 - 743411    5
+
+=== guidance ledger — scored, never consumed ===
+  FY2021 target 30000 -> outcome 32400 : under-promised (log error -0.077)
+  FY2022 target 25000 -> outcome 33200 : under-promised (log error -0.284)
+  FY2024 FY2024 earnings release: 'surpassing the company's internal sales targets for the entire year in just few [months]' — no figure published, so it cannot be graded
+  mean log error of published guidance: -0.180 (negative = management guided BELOW the outcome)

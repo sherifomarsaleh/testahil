@@ -1,0 +1,846 @@
+{
+ "panel": {
+  "2010": {
+   "new_sales_value": {
+    "value": 4144.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMG_FY2010_Earning_Release",
+    "page": 3,
+    "route": "text",
+    "sentence": ">> 3 TMG Holding Dec.31, 2010 Earnings Release \u2013 FY ending Dec 31 2010 Operating Performance City & Community Complexes a Y-o-Y growth of 43% in sales value and achievement of 2010 budgeted sales figure of EGP 4 bn Total new sales of real estate units in 2010 amounted to EGP 4.144 bn compared to EGP 2.805 bn in 2009 reflecting a significant Y-o-Y growth of 43% in sales value. For 4Q 2010, new sales amounted to EGP 1.163 bn compared to EGP 874 mn for the s",
+    "tier": "A",
+    "distinct_values": [
+     1163.0,
+     4000.0,
+     4144.0
+    ]
+   },
+   "backlog": {
+    "value": 22000.0,
+    "votes": 2,
+    "candidates": 3,
+    "doc": "TMG_FY2010_Earning_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "aw At December 31, 2010: \u25ab Total consolidated revenues for the year reached EGP 5,339 mn and total consolidated net profit after minority EGP 940 mn; \u25ab Initial budgeted real estate sales figure of EGP 4 bn is achieved; \u25ab the backlog of sold but unrecognized units exceeds the level of EGP 22 bn to be recognized as per the units\u2019 delivery schedule over the next four years; and \u25ab Total consolidated assets are EGP 54.32 bn; cash and cash equivalents EGP 2.17bn;",
+    "tier": "A",
+    "distinct_values": [
+     4000.0,
+     22000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_FY2010_Earning_Release",
+    "page": 9,
+    "route": "text",
+    "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 mn sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec.31, 2010 Earnings Release \u2013 FY ending Dec 31 2010 Summary of H&R Assets in Operation Four Seasons Sha",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2011": {
+   "new_sales_value": {
+    "value": 3000.0,
+    "votes": 4,
+    "candidates": 7,
+    "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+    "page": 1,
+    "route": "text",
+    "sentence": "consolidated revenues for the year is EGP 5,098 MN of which 90% is related to real estate,7% to hospitality and 3% to services. Total consolidated gross profit is EGP 1,187 MN and net profit after minority is EGP 578 MN; \u25ab Real estate new sales figure for the year is EGP 3 BN; \u25ab Backlog of sold but unrecognized units is at the level of EGP 20 BN to be recognized as per the units\u2019 delivery schedule over the next four years; and \u25ab Total consolidated assets are EGP 53.",
+    "tier": "A",
+    "distinct_values": [
+     578.0,
+     3000.0,
+     3012.6
+    ]
+   },
+   "backlog": {
+    "value": 20000.0,
+    "votes": 3,
+    "candidates": 5,
+    "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+    "page": 1,
+    "route": "text",
+    "sentence": "8 MN of which 90% is related to real estate,7% to hospitality and 3% to services. Total consolidated gross profit is EGP 1,187 MN and net profit after minority is EGP 578 MN; \u25ab Real estate new sales figure for the year is EGP 3 BN; \u25ab Backlog of sold but unrecognized units is at the level of EGP 20 BN to be recognized as per the units\u2019 delivery schedule over the next four years; and \u25ab Total consolidated assets are EGP 53.88 BN; cash and cash equivalents EGP 1.76 BN; a",
+    "tier": "A",
+    "distinct_values": [
+     3000.0,
+     20000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+    "page": 10,
+    "route": "text",
+    "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 11 route=text>>> 11 TMG Holding Dec. 31, 2011 Earnings Release \u2013 FY ending Dec 31 2011 Summary of H&R Assets in Operation Four Seasons",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2012": {
+   "new_sales_value": {
+    "value": 4480.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "se \u2013 12M & 4Q 2012 TMG Holding Full Year and Fourth Quarter ending December 31, 2012 Earning Release Cairo, March 5, 2013 -TMG Holding reports EGP 4.6 BN consolidated revenue, EGP 546 MN consolidated net profit after minority and EGP 4.48 BN of new sales value for 12 Months 2012 TMG Holding, the leading Egyptian community real estate developer is glad to announce its consolidated financial results for the financial year ending December 31, 2012. Key Operation",
+    "tier": "A",
+    "distinct_values": [
+     4480.0,
+     4482.0
+    ]
+   },
+   "backlog": {
+    "value": 18500.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+    "page": 2,
+    "route": "text",
+    "sentence": "since inception of related projects have not exceeded its normal rates of 4.3% up to the end 12M -12. Value of cancelled units is EGP 1,009 MN in 12M -12 compared to EGP 1,003 MN for the same period last year. At December 31, 2012: the backlog of sold but unrecognized units is approximately EGP 18.5 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding Dec. 31, 2012 Earnings Release",
+    "tier": "A",
+    "distinct_values": [
+     18500.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+    "page": 10,
+    "route": "text",
+    "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 11 route=text>>> 11 TMG Holding Dec. 31, 2012 Earnings Release \u2013 12M &4Q 2012 Summary of H&R Assets in Operation Four Seasons Sharm El S",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2013": {
+   "new_sales_value": {
+    "value": 6600.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "\u2013 12M & 4Q 2013 TMG Holding Full Year and Fourth Quarter ending December 31, 2013 Earning Release Cairo, March 6, 2014 -TMG Holding reports EGP 4.8 BN consolidated revenue, EGP 585MN consolidated net profit after minority and EGP 6.6 BN of new sales value for 12 Months 2013 TMG Holding, the leading Egyptian community real estate developer is glad to announce its consolidated financial results for the financial year ending December 31, 2013. Key Operationa",
+    "tier": "A",
+    "distinct_values": [
+     6581.0,
+     6600.0
+    ]
+   },
+   "backlog": {
+    "value": 19950.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+    "page": 2,
+    "route": "text",
+    "sentence": "g since inception of related projects have not exceeded its normal rates of 4.3% up to the end 12M -13. Value of cancelled units is EGP 678 mn in 12M -13 compared to EGP 1,009 MN for the same period last year. At December 31, 2013: the backlog of sold but unrecognized units is approximately EGP 19.95 bn to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding Dec. 31, 2013",
+    "tier": "A",
+    "distinct_values": [
+     19950.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+    "page": 9,
+    "route": "text",
+    "sentence": "be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2013 Earnings Release \u2013 12M & 4Q 2013 Summary of H&R Assets in Operation Four Seasons Sharm E",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2014": {
+   "new_sales_value": {
+    "value": 6600.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "\u2013 12M & 4Q 2014 TMG Holding Full Year and Fourth Quarter ending December 31, 2014 Earning Release Cairo, March 11, 2015 -TMG Holding reports EGP 5.3 BN consolidated revenue, EGP 682 MN consolidated net profit after minority and EGP 6.6 BN of new sales value for 12 Months 2014 TMG Holding, the leading Egyptian community real estate developer is glad to announce its consolidated financial results for the financial year ending December 31, 2014. Key Operationa",
+    "tier": "A",
+    "distinct_values": [
+     6585.0,
+     6600.0
+    ]
+   },
+   "backlog": {
+    "value": 20000.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+    "page": 2,
+    "route": "text",
+    "sentence": "og since inception of related projects have not exceeded its normal rates of 4.15% up to the end 12M -14. Value of cancelled units is EGP 700 MN in 12M -14 compared to EGP 678 MN for the same period last year. At December 31, 2014: the backlog of sold but unrecognized units is approximately EGP 20 Bn to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding D",
+    "tier": "A",
+    "distinct_values": [
+     20000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+    "page": 9,
+    "route": "text",
+    "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2014 Earnings Release \u2013 12M & 4Q 2014 Summary of H&R Assets in Operation Four Seasons Sharm E",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2015": {
+   "new_sales_value": {
+    "value": 6300.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+    "page": 1,
+    "route": "text",
+    "sentence": "\u2013 12M & 4Q 2015 TMG Holding Full Year and Fourth Quarter ending December 31, 2015 Earning Release Cairo, March 15, 2016 -TMG Holding reports EGP 6.2 BN consolidated revenue, EGP 762 MN consolidated net profit after minority and EGP 6.3 BN of new sales value for 12 Months 2015 TMG Holding, the leading Egyptian community real estate developer is glad to announce its consolidated financial results for the financial year ending December 31, 2015. Key Operationa",
+    "tier": "A",
+    "distinct_values": [
+     6260.0,
+     6300.0
+    ]
+   },
+   "backlog": {
+    "value": 20600.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+    "page": 2,
+    "route": "text",
+    "sentence": "acklog since inception of related projects have not exceeded its normal rates of 4 % up to the end 12M-15. Value of cancelled units is EGP 211 MN in 12M-15 compared to EGP 700 MN for the same period last year. At December 31, 2015: the backlog of sold but unrecognized units is approximately EGP 20.6 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holdin",
+    "tier": "A",
+    "distinct_values": [
+     20600.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+    "page": 9,
+    "route": "text",
+    "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2015 Earnings Release \u2013 12M & 4Q 2015 Summary of H&R Assets in Operation Four Seasons Sharm E",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2016": {
+   "new_sales_value": {
+    "value": 7400.0,
+    "votes": 3,
+    "candidates": 3,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+    "page": 1,
+    "route": "text",
+    "sentence": "\u2013 12M & 4Q-2016 TMG Holding Full Year and Fourth Quarter ending December 31, 2016 Earning Release Cairo, March 5, 2017 TMG holding reports EGP 6.55 BN consolidated revenues, EGP 832 MN consolidated net profit after minority and EGP 7.4 BN of new sales value for Full year 2016. TMG Holding (TMGH.CA), the leading Egyptian community real estate developer is glad to announce its consolidated financial results for the full year and fourth quarter ending December 31",
+    "tier": "A",
+    "distinct_values": [
+     7400.0
+    ]
+   },
+   "backlog": {
+    "value": 22000.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+    "page": 2,
+    "route": "text",
+    "sentence": "mal rates Total cancellations of the accumulated sales backlog since inception of projects have not exceeded its normal rates of approximately 4.2% up to the end 12M-16. Value of cancelled units is EGP 844 MN. At December 31, 2016: the backlog of sold but unrecognized units is approximately EGP 22 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Hold",
+    "tier": "A",
+    "distinct_values": [
+     22000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 1.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+    "page": 9,
+    "route": "text",
+    "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2016 Earnings Release \u2013 12M & 4Q 2016 Summary of H&R Assets in Operation Four Seasons Sharm El",
+    "tier": "A",
+    "distinct_values": [
+     1.0
+    ]
+   }
+  },
+  "2018": {
+   "backlog": {
+    "value": 41700.0,
+    "votes": 2,
+    "candidates": 2,
+    "doc": "TMG_Holding_FY2018_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "P1.77bn, up 28.0% y-o-y \u00a7 Net profit after tax and minority interest of EGP1.70bn, up 28.5% y-o-y \u00a7 Net cash position of EGP3.1bn as at end-FY2018, compared to EGP1.6bn as at end-FY2017 \u00a7 Debt-to-equity ratio of c16.9% only \u00a7 Total backlog of EGP41.7bn and remaining collections of EGP31.3bn, compared to EGP30bn and EGP22bn as at end-FY2017, respectively Key 4Q2018 financial highlights \u00a7 Revenues of EGP4.12bn, up 41.0% y-o-y \u00a7 Gross profit of EGP1.63bn, up",
+    "tier": "A",
+    "distinct_values": [
+     41700.0
+    ]
+   }
+  },
+  "2019": {
+   "new_sales_value": {
+    "value": 20400.0,
+    "votes": 3,
+    "candidates": 8,
+    "doc": "TMG_Holding_FY2019_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "\ufe94 \u0634.\u0645.\u0645. \u0664\u0663/\u0666\u0663 \ufef2\ufed7\ufeaa\ufedf\u0627 \u060c\u0642\ufeaa\ufebc\ufee3 \u0639\u0631\ufe8e\ufeb7 \u0627\ufedf\ufea0\ufef4\ufeb0\u0629\u060c \ufee3\ufebc\ufeae ( +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 1/6 TMG Holding reports net profit of EGP1.87bn in FY2019, growing 10% y-o-y, and new sales of EGP20.4bn Talaat Moustafa Group Holding (TMG Holding) has released its consolidated financial results for the financial year ended 31 December 2019 (FY2019). Key FY2019 financial highlights \u00a7 Revenues of EGP11.74bn,",
+    "tier": "A",
+    "distinct_values": [
+     900.0,
+     1870.0,
+     5700.0,
+     20400.0
+    ]
+   },
+   "backlog": {
+    "value": 49500.0,
+    "votes": 2,
+    "candidates": 2,
+    "doc": "TMG_Holding_FY2019_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "rofit after tax and minority interest of EGP1.87bn, up 9.8% y-o-y \u00a7 Net cash position of EGP3.20bn as at end-FY2019, compared to EGP3.11bn as at end-FY2018 \u00a7 Debt-to-equity ratio of c14.6% only, down from 16.9% a year earlier \u00a7 Total backlog of EGP49.5bn and remaining collections of EGP40.8bn, compared to EGP41.7bn and EGP31.3bn as at end-FY2018, respectively Key 4Q2019 financial highlights \u00a7 Revenues of EGP3.98bn, down 3.2% y-o-y \u00a7 Gross profit of EGP1.66bn",
+    "tier": "A",
+    "distinct_values": [
+     49500.0
+    ]
+   }
+  },
+  "2020": {
+   "new_sales_value": {
+    "value": 16600.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY2020_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "Mossadek St., Dokki Giza, Egypt \ufee3\ufea0\ufee4\ufeee\ufecb\ufe94 \ufec3\ufee0\ufecc\ufe96 \ufee3\ufebc\ufec4\ufed4\ufef0 \u0627\ufedf\ufed8\ufe8e\ufe91\ufec0\ufe94 \u0634.\u0645.\u0645. \u0664\u0663/\u0666\u0663 \ufef2\ufed7\ufeaa\ufedf\u0627 \u060c\u0642\ufeaa\ufebc\ufee3 \u0639\u0631\ufe8e\ufeb7 \u0627\ufedf\ufea0\ufef4\ufeb0\u0629\u060c \ufee3\ufebc\ufeae ( +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 1/7 TMG Holding reports net sales of EGP16.6bn in FY2020 despite pandemic headwinds, and net profit of EGP1.67bn Talaat Moustafa Group Holding (TMG Holding) has released its consolidated financial results for the financial year ended 31 December 2020 (FY202",
+    "tier": "A",
+    "distinct_values": [
+     16600.0
+    ]
+   },
+   "backlog": {
+    "value": 50800.0,
+    "votes": 2,
+    "candidates": 3,
+    "doc": "TMG_Holding_FY2020_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "t after tax and minority interest of EGP1.67bn, down 10.7% y-o-y \u00a7 Net cash position of EGP1.8bn as at end-FY2020, increasing by EGP1.5bn in new proceeds during first week of January 2021 \u00a7 Debt-to-equity ratio of 19.9% only \u00a7 Total backlog of EGP50.8bn and remaining collections of EGP43.0bn Financial review TMG Holding closed FY2020 with total consolidated revenues of EGP14.1bn, expanding 20.0% y-o-y despite negative headwinds from the prevailing COVID-19 pandemic",
+    "tier": "A",
+    "distinct_values": [
+     43000.0,
+     50800.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 21.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY2020_earnings_release",
+    "page": 3,
+    "route": "text",
+    "sentence": "4/36 Mossadek St., Dokki Giza, Egypt \ufee3\ufea0\ufee4\ufeee\ufecb\ufe94 \ufec3\ufee0\ufecc\ufe96 \ufee3\ufebc\ufec4\ufed4\ufef0 \u0627\ufedf\ufed8\ufe8e\ufe91\ufec0\ufe94 \u0634.\u0645.\u0645. \u0664\u0663/\u0666\u0663 \ufef2\ufed7\ufeaa\ufedf\u0627 \u060c\u0642\ufeaa\ufebc\ufee3 \u0639\u0631\ufe8e\ufeb7 \u0627\ufedf\ufea0\ufef4\ufeb0\u0629\u060c \ufee3\ufebc\ufeae ( +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 3/7 Acquisition of 21mn sqm of new land in Capital Gardens, East Cairo In January 2021, TMG Holding has signed a contract with the New Urban Communities Authority (NUCA) to acquire 5,000 feddans or 21.0mn square meters (sqm) of prime land in East Cairo, l",
+    "tier": "A",
+    "distinct_values": [
+     21.0
+    ]
+   }
+  },
+  "2021": {
+   "new_sales_value": {
+    "value": 32400.0,
+    "votes": 3,
+    "candidates": 7,
+    "doc": "TMG_Holding_FY2021_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "adek St., Dokki Giza, Egypt \u0645\u062c\u0645\u0648\u0639\u0629 \u0637\u0644\u0639\u062a .\u0645\u0635\u0637\u0641\u0649 \u0627\u0644\u0642\u0627\u0628\u0636\u0629 \u0634.\u0645.\u0645 \u0664\u0663 /\u0666\u0663 \u0634\u0627\u0631\u0639 \u0645\u0635\u062f\u0642\u060c \u0627\u0644\u062f\u0642\u064a \u0627\u0644\u062c\u064a\u0632\u0629\u060c \u0645\u0635\u0631 \uf028 +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 1/7 TMG Holding reports net sales of EGP32.4bn in FY2021, the highest in recent history, and an adjusted net profit of EGP2,200mn1, up 31.6% y-o-y Talaat Moustafa Group Holding (TMG Holding) has released its consolidated financial results for the full year, en",
+    "tier": "A",
+    "distinct_values": [
+     2000.0,
+     15000.0,
+     18600.0,
+     32400.0
+    ]
+   },
+   "units_delivered": {
+    "value": 2991.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY2021_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "revenue came in at EGP12.1bn in FY2021, growing by 2.5% y-o-y from a high base reported for the same period last year and supported by EGP4bn land sale transaction captured in 9M2020. Development revenue was supported by timely scheduled delivery of 2,991 residential and non-residential units. Gross margin on development operations came in at a wide 33.1% in FY2021, improving from the 30.8% margin reported in FY2020. The solid margin, in line with previously reported figu",
+    "tier": "A",
+    "distinct_values": [
+     2991.0
+    ]
+   },
+   "backlog": {
+    "value": 63100.0,
+    "votes": 2,
+    "candidates": 2,
+    "doc": "TMG_Holding_FY2021_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "ter tax and minority interest of EGP2,200mn up 31.6% y-o-y \u25aa Net cash position of EGP1.1bn as at end-FY2021, down from EGP1.8bn reported as at end-FY2020 \u25aa Debt-to-equity ratio of 26.9% only, one of the lowest in the industry \u25aa Total backlog of EGP63.1bn and remaining cash collections of EGP50.0bn (including receivables as stated on the balance sheet and additional expected collections stipulated by contractual agreements) Financial review TMG Holding closed FY2",
+    "tier": "A",
+    "distinct_values": [
+     63100.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 74.0,
+    "votes": 1,
+    "candidates": 2,
+    "doc": "TMG_Holding_FY2021_earnings_release",
+    "page": 3,
+    "route": "text",
+    "sentence": "ansactions set a clear and indisputable reference point for the inherent value of TMG Holding\u2019s remaining land assets which in the view of management, it is not accurately captured by the Group\u2019s current market capitalisation. Out of the 74mn sqm of total land bank, a small portion of fully-paid or almost fully-paid land bank of some 9.5mn sqm of prime residential and commercial land in Madinaty and Al Rehab Cities has been independently valued at circa EGP113bn. The valu",
+    "tier": "A",
+    "distinct_values": [
+     9.5,
+     74.0
+    ]
+   }
+  },
+  "2022": {
+   "new_sales_value": {
+    "value": 33200.0,
+    "votes": 5,
+    "candidates": 7,
+    "doc": "TMG_Holding_FY2022_Earnings_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "iza, Egypt \u0645\u062c\u0645\u0648\u0639\u0629 \u0637\u0644\u0639\u062a .\u0645\u0635\u0637\u0641\u0649 \u0627\u0644\u0642\u0627\u0628\u0636\u0629 \u0634.\u0645.\u0645 \u0664\u0663/\u0666\u0663 \u0634\u0627\u0631\u0639 \u0645\u0635\u062f\u0642\u060c \u0627\u0644\u062f\u0642\u064a \u0627\u0644\u062c\u064a\u0632\u0629\u060c \u0645\u0635\u0631 \uf028 +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 1/7 TMG Holding books exceptionally strong EGP33.2bn in new net sales in FY2022, and a net profit of EGP2.3bn, up by a substantial 30.8% y-o-y driven by timely real estate deliveries and further growth in recurring income lines Talaat Moustafa Group Holding (TMG Holding) has re",
+    "tier": "A",
+    "distinct_values": [
+     1400.0,
+     2300.0,
+     33200.0
+    ]
+   },
+   "units_sold": {
+    "value": 6102.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY2022_Earnings_Release",
+    "page": 2,
+    "route": "text",
+    "sentence": "\u0627\u0644\u062c\u064a\u0632\u0629\u060c \u0645\u0635\u0631 \uf028 +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 2/7 City and Community Complexes segment performance During FY2022, the company recorded net sales of EGP33.2bn, representing some 6,102 units, beating its own market sales record of the previous year, and exceeding the upper limit of its annual sales guidance of EGP24-26bn by a remarkable 28%. Sales during the year were strengthened by the devaluat",
+    "tier": "A",
+    "distinct_values": [
+     6102.0
+    ]
+   },
+   "units_delivered": {
+    "value": 4091.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY2022_Earnings_Release",
+    "page": 1,
+    "route": "text",
+    "sentence": "deliveries from the development operations and by a particularly strong performance in hospitality and other recurring income lines. Development revenue came in at EGP14.7bn, growing by a significant 21.2% y-o-y, supported by the timely delivery of 4,091 residential and non-residential units during the period. The gross margin on development operations came in at 29%, in line with the company\u2019s earlier guidance and historical track record. It is noteworthy that the compa",
+    "tier": "A",
+    "distinct_values": [
+     4091.0
+    ]
+   },
+   "backlog": {
+    "value": 77000.0,
+    "votes": 6,
+    "candidates": 14,
+    "doc": "TMGH_IR_Presentation_FY2022_-_March_2023",
+    "page": 3,
+    "route": "text",
+    "sentence": "e company is publicly held since 2007 and is the largest listed developer by market capitalization. TMG Holding is Shariah-compliant. It has a total land of 74mn sqm, the largest accessed by a listed developer in Egypt. It has the largest backlog among local developers, at EGP77bn, to be fully delivered within the coming five years. Market capitalization (as of March 2023) EGP19.7bn Backlog (FY2022) EGP77bn Turnover (FY2022) EGP19.9bn Total assets (FY2022) EGP163bn <<<PAGE",
+    "tier": "A",
+    "distinct_values": [
+     3700.0,
+     19000.0,
+     19700.0,
+     34200.0,
+     52900.0,
+     77000.0,
+     77400.0,
+     133000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 8.5,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMGH_IR_Presentation_FY2022_-_March_2023",
+    "page": 18,
+    "route": "text",
+    "sentence": "m yet to be developed. Future developments will leverage on our first-mover advantage as well as on the inherent competitive advantage realized through the size and scale of our projects. \u25a0A small portion of our land bank, consisting of 8.5mn sqm of infrastructured land, with no or minimal remaining liabilities attached, licensed primarily for non-residential development in Madinaty and in Al Rehab has a market value of not less than EGP133bn, based on independent valu",
+    "tier": "A",
+    "distinct_values": [
+     3.0,
+     8.5,
+     74.0
+    ]
+   }
+  },
+  "2023": {
+   "new_sales_value": {
+    "value": 94900.0,
+    "votes": 2,
+    "candidates": 3,
+    "doc": "TMG_Holding_4Q23_earnings_release",
+    "page": 2,
+    "route": "text",
+    "sentence": "l sales performance Total new sales in FY2023 soared to an unprecedented EGP142.8bn, marking the highest sales ever recorded in the history of the company and surpassing any other real estate firms in Egypt in the market\u2019s history. Total new sales comprise of EGP94.9bn in core sales and EGP47.8bn in sales generated for third parties, for which the company earns a commission. This remarkable accomplishment not only exceeds the guidance set at the beginning of the year but",
+    "tier": "A",
+    "distinct_values": [
+     94900.0,
+     142800.0
+    ]
+   },
+   "units_delivered": {
+    "value": 2661.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_4Q23_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "This remarkable performance was driven by solid growth in real estate deliveries and in recurring income lines. Development revenue reached EGP21.6bn, showing a substantial increase of 47% y-o-y. This growth was supported by the timely delivery of 2,661 residential and non-residential properties in the Group\u2019s projects. Furthermore, the recurring income segments, which include hotels, sporting clubs, retail, and other activities, experienced remarkable growth of 32% y-o",
+    "tier": "A",
+    "distinct_values": [
+     2661.0
+    ]
+   },
+   "backlog": {
+    "value": 145000.0,
+    "votes": 6,
+    "candidates": 8,
+    "doc": "TMG_Holding_4Q23_earnings_release",
+    "page": 1,
+    "route": "text",
+    "sentence": "ddition to EGP1.3bn of other income \u25aa Profit before minority interest and tax of EGP5.0bn, up 49% y-o-y \u25aa Net profit after tax and minority interest of EGP3.3bn, up 44% y-o-y \u25aa Net cash position of EGP7.7bn as at end-4Q2023 \u25aa Total backlog of EGP145bn, up from EGP77bn in FY2022, and remaining collections of EGP121bn Financial review TMG Holding closed FY2023 achieving total consolidated revenues of EGP28.4bn, expanding significantly by 43% y-o-y. This remarkable",
+    "tier": "A",
+    "distinct_values": [
+     7700.0,
+     145000.0,
+     150000.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 10.0,
+    "votes": 2,
+    "candidates": 4,
+    "doc": "TMGH_IR_Presentation_FY2023",
+    "page": 3,
+    "route": "text",
+    "sentence": "r achievements during 2023: Growth drivers within the next 5-10 years 1 Real Estate development Hospitality Leasing (Rentals) \u25a0Achieved unprecedented sales of EGP143bn, 4x higher than the previous year, unmatched in the market \u25a0Secured 10mn sqm of prime land in Riyadh, KSA, for a new mixed-use project, marking the first international expansion and new FX source \u25a0Began timely deliveries in the Privado neighborhood in Madinaty Sporting clubs Others \u25a0Expanded the port",
+    "tier": "A",
+    "distinct_values": [
+     7.7,
+     10.0,
+     84.0
+    ]
+   }
+  },
+  "2024": {
+   "units_sold": {
+    "value": 12000.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
+    "page": 3,
+    "route": "text",
+    "sentence": "d by a high-quality customer base driven by genuine end-user demand. It currently represents some 37,000 residential and non-residential units to be delivered within the coming four to five years, excluding the SouthMed project where some 12,000 units were sold during 2024. The backlog provides a strong revenue visibility and a clear trajectory for future profit recognition from this business segment alone. The Company expects to maintain and further enhance the profitabil",
+    "tier": "A",
+    "distinct_values": [
+     12000.0
+    ]
+   },
+   "backlog": {
+    "value": 294000.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
+    "page": 2,
+    "route": "text",
+    "sentence": "ng communities already established within our developments. This reaffirming the market\u2019s strong confidence in TMG\u2019s offering and the Group\u2019s ability to anticipate and meet evolving customer needs. As of December 31, 2024, the Group\u2019s backlog of recorded and yet undelivered sales (sales backlog) amounted to EGP 294 billion, marking a massive growth rate of 103% compared to EGP 145 billion reported in FY 2023. This substantial increase is attributed to <<<PAGE 3 route=",
+    "tier": "A",
+    "distinct_values": [
+     294000.0
+    ]
+   }
+  },
+  "2025": {
+   "new_sales_value": {
+    "value": 382200.0,
+    "votes": 4,
+    "candidates": 6,
+    "doc": "TMG_Holding_FY25_ER_-_EN",
+    "page": 1,
+    "route": "text",
+    "sentence": "aty, Al Rehab and Celia in Egypt, alongside the initial revenue recognition from the KSA-based Banan, TMG\u2019s first project in Saudi Arabia, totalling EGP 6.5 billion in FY 2025 and recognized under the percentage-of-completion method. \u2022 Contracted sales of EGP 382.2 billion in FY25, reflecting sustained demand at SouthMed, Madinaty and Banan (KSA), and supported by recent launches including Sharm Bay in Egypt, and Jood and Yamal in Oman which generated a combined EGP 2.1",
+    "tier": "A",
+    "distinct_values": [
+     62500.0,
+     128900.0,
+     382200.0
+    ]
+   },
+   "units_sold": {
+    "value": 3196.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY25_ER_-_EN",
+    "page": 4,
+    "route": "text",
+    "sentence": "N 2.0 3.8 90% 6.3 10.1 58% Gross Margin % 24% 25% 1.4 pp 26% 27% 1.5 pp During FY25, TMG\u2019s real estate segment delivered revenues of EGP 36.7 billion, up 50% YoY, supported by steady construction progress and the delivery of 3,196 units across the Group\u2019s core developments. Segment performance was also driven by the initial revenue from the KSA-based Banan, TMG\u2019s first project in Saudi Arabia, which is recognized under the percentage-of-completion method a",
+    "tier": "A",
+    "distinct_values": [
+     3196.0
+    ]
+   },
+   "units_delivered": {
+    "value": 3196.0,
+    "votes": 3,
+    "candidates": 3,
+    "doc": "TMG_Holding_FY25_ER_-_EN",
+    "page": 2,
+    "route": "text",
+    "sentence": "resulting in a net cash position of EGP 62.1 billion providing substantial financial flexibility to fund growth and manage market volatility. FY25 Key Operational Highlights \u2022 Strong construction execution and delivery momentum, with 3,196 units delivered across three projects, including Madinaty, Al Rehab and Celia, while Noor is expected to begin deliveries during the second half of 2026, further supporting revenue recognition and margin expansion. \u2022 Accelerated re",
+    "tier": "A",
+    "distinct_values": [
+     3196.0
+    ]
+   },
+   "backlog": {
+    "value": 441200.0,
+    "votes": 4,
+    "candidates": 6,
+    "doc": "TMG_Holding_FY25_ER_-_EN",
+    "page": 1,
+    "route": "text",
+    "sentence": "he year. FY25 Financial and Operational Performance Indicators EGP 382.2 bn Contracted Sales \u25bc24% YoY EGP 62.5 bn Revenues \uf070 46% YoY EGP 20.9 bn Gross Profit \uf070 49% YoY EGP 18.2 bn Net Profit \uf070 43% YoY c.115mn sqm Landbank EGP 441.2 bn Backlog 3,500 Keys 1,500 Under Construction EGP 25.8 bn Total Recurring Income 42% of Total Revenue FY25 Key Financial Highlights \u2022 Real estate revenues of EGP 36.7 billion, up 50% YoY, with growth supported by accele",
+    "tier": "A",
+    "distinct_values": [
+     25800.0,
+     382200.0,
+     441200.0
+    ]
+   },
+   "landbank_msqm": {
+    "value": 115.0,
+    "votes": 1,
+    "candidates": 1,
+    "doc": "TMG_Holding_FY25_ER_-_EN",
+    "page": 1,
+    "route": "text",
+    "sentence": "contribution during the year. FY25 Financial and Operational Performance Indicators EGP 382.2 bn Contracted Sales \u25bc24% YoY EGP 62.5 bn Revenues \uf070 46% YoY EGP 20.9 bn Gross Profit \uf070 49% YoY EGP 18.2 bn Net Profit \uf070 43% YoY c.115mn sqm Landbank EGP 441.2 bn Backlog 3,500 Keys 1,500 Under Construction EGP 25.8 bn Total Recurring Income 42% of Total Revenue FY25 Key Financial Highlights \u2022 Real estate revenues of EGP 36.7 billion, up 50% YoY, with growt",
+    "tier": "A",
+    "distinct_values": [
+     115.0
+    ]
+   }
+  }
+ },
+ "weak_cells": [
+  {
+   "year": 2010,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 mn sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec.31, 2010 Earnings Release \u2013 FY ending Dec 31 2010 Summary of H&R Assets in Operation Four Seasons Sha"
+  },
+  {
+   "year": 2011,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 11 route=text>>> 11 TMG Holding Dec. 31, 2011 Earnings Release \u2013 FY ending Dec 31 2011 Summary of H&R Assets in Operation Four Seasons"
+  },
+  {
+   "year": 2012,
+   "field": "backlog",
+   "value": 18500.0,
+   "why": "single unrepeated mention",
+   "sentence": "since inception of related projects have not exceeded its normal rates of 4.3% up to the end 12M -12. Value of cancelled units is EGP 1,009 MN in 12M -12 compared to EGP 1,003 MN for the same period last year. At December 31, 2012: the backlog of sold but unrecognized units is approximately EGP 18.5 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding Dec. 31, 2012 Earnings Release"
+  },
+  {
+   "year": 2012,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "o be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 11 route=text>>> 11 TMG Holding Dec. 31, 2012 Earnings Release \u2013 12M &4Q 2012 Summary of H&R Assets in Operation Four Seasons Sharm El S"
+  },
+  {
+   "year": 2013,
+   "field": "backlog",
+   "value": 19950.0,
+   "why": "single unrepeated mention",
+   "sentence": "g since inception of related projects have not exceeded its normal rates of 4.3% up to the end 12M -13. Value of cancelled units is EGP 678 mn in 12M -13 compared to EGP 1,009 MN for the same period last year. At December 31, 2013: the backlog of sold but unrecognized units is approximately EGP 19.95 bn to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding Dec. 31, 2013"
+  },
+  {
+   "year": 2013,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Riyadh \u2013 authorization obtained 8. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 9. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2013 Earnings Release \u2013 12M & 4Q 2013 Summary of H&R Assets in Operation Four Seasons Sharm E"
+  },
+  {
+   "year": 2014,
+   "field": "backlog",
+   "value": 20000.0,
+   "why": "single unrepeated mention",
+   "sentence": "og since inception of related projects have not exceeded its normal rates of 4.15% up to the end 12M -14. Value of cancelled units is EGP 700 MN in 12M -14 compared to EGP 678 MN for the same period last year. At December 31, 2014: the backlog of sold but unrecognized units is approximately EGP 20 Bn to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holding D"
+  },
+  {
+   "year": 2014,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2014 Earnings Release \u2013 12M & 4Q 2014 Summary of H&R Assets in Operation Four Seasons Sharm E"
+  },
+  {
+   "year": 2015,
+   "field": "backlog",
+   "value": 20600.0,
+   "why": "single unrepeated mention",
+   "sentence": "acklog since inception of related projects have not exceeded its normal rates of 4 % up to the end 12M-15. Value of cancelled units is EGP 211 MN in 12M-15 compared to EGP 700 MN for the same period last year. At December 31, 2015: the backlog of sold but unrecognized units is approximately EGP 20.6 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Holdin"
+  },
+  {
+   "year": 2015,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2015 Earnings Release \u2013 12M & 4Q 2015 Summary of H&R Assets in Operation Four Seasons Sharm E"
+  },
+  {
+   "year": 2016,
+   "field": "backlog",
+   "value": 22000.0,
+   "why": "single unrepeated mention",
+   "sentence": "mal rates Total cancellations of the accumulated sales backlog since inception of projects have not exceeded its normal rates of approximately 4.2% up to the end 12M-16. Value of cancelled units is EGP 844 MN. At December 31, 2016: the backlog of sold but unrecognized units is approximately EGP 22 BN to be recognized as per the units\u2019 delivery schedule over the next four years. <<<PAGE 3 route=text>>> 3 TMG Hold"
+  },
+  {
+   "year": 2016,
+   "field": "landbank_msqm",
+   "value": 1.0,
+   "why": "single unrepeated mention",
+   "sentence": "3. The built up area (\u201cBUA\u201d) still to be developed under phasing plan as per the CBRE report 4. Launch of sales 5. Delivery of final unit assumed in the CBRE report 6. Effective ownership 7. Land value only \u2013 Includes additional 1 MN sqm of land procured for future development 8. all sold except phase 6 <<<PAGE 10 route=text>>> 10 TMG Holding Dec. 31, 2016 Earnings Release \u2013 12M & 4Q 2016 Summary of H&R Assets in Operation Four Seasons Sharm El"
+  },
+  {
+   "year": 2020,
+   "field": "new_sales_value",
+   "value": 16600.0,
+   "why": "single unrepeated mention",
+   "sentence": "Mossadek St., Dokki Giza, Egypt \ufee3\ufea0\ufee4\ufeee\ufecb\ufe94 \ufec3\ufee0\ufecc\ufe96 \ufee3\ufebc\ufec4\ufed4\ufef0 \u0627\ufedf\ufed8\ufe8e\ufe91\ufec0\ufe94 \u0634.\u0645.\u0645. \u0664\u0663/\u0666\u0663 \ufef2\ufed7\ufeaa\ufedf\u0627 \u060c\u0642\ufeaa\ufebc\ufee3 \u0639\u0631\ufe8e\ufeb7 \u0627\ufedf\ufea0\ufef4\ufeb0\u0629\u060c \ufee3\ufebc\ufeae ( +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 1/7 TMG Holding reports net sales of EGP16.6bn in FY2020 despite pandemic headwinds, and net profit of EGP1.67bn Talaat Moustafa Group Holding (TMG Holding) has released its consolidated financial results for the financial year ended 31 December 2020 (FY202"
+  },
+  {
+   "year": 2020,
+   "field": "landbank_msqm",
+   "value": 21.0,
+   "why": "single unrepeated mention",
+   "sentence": "4/36 Mossadek St., Dokki Giza, Egypt \ufee3\ufea0\ufee4\ufeee\ufecb\ufe94 \ufec3\ufee0\ufecc\ufe96 \ufee3\ufebc\ufec4\ufed4\ufef0 \u0627\ufedf\ufed8\ufe8e\ufe91\ufec0\ufe94 \u0634.\u0645.\u0645. \u0664\u0663/\u0666\u0663 \ufef2\ufed7\ufeaa\ufedf\u0627 \u060c\u0642\ufeaa\ufebc\ufee3 \u0639\u0631\ufe8e\ufeb7 \u0627\ufedf\ufea0\ufef4\ufeb0\u0629\u060c \ufee3\ufebc\ufeae ( +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 3/7 Acquisition of 21mn sqm of new land in Capital Gardens, East Cairo In January 2021, TMG Holding has signed a contract with the New Urban Communities Authority (NUCA) to acquire 5,000 feddans or 21.0mn square meters (sqm) of prime land in East Cairo, l"
+  },
+  {
+   "year": 2021,
+   "field": "units_delivered",
+   "value": 2991.0,
+   "why": "single unrepeated mention",
+   "sentence": "revenue came in at EGP12.1bn in FY2021, growing by 2.5% y-o-y from a high base reported for the same period last year and supported by EGP4bn land sale transaction captured in 9M2020. Development revenue was supported by timely scheduled delivery of 2,991 residential and non-residential units. Gross margin on development operations came in at a wide 33.1% in FY2021, improving from the 30.8% margin reported in FY2020. The solid margin, in line with previously reported figu"
+  },
+  {
+   "year": 2021,
+   "field": "landbank_msqm",
+   "value": 74.0,
+   "why": "single unrepeated mention",
+   "sentence": "ansactions set a clear and indisputable reference point for the inherent value of TMG Holding\u2019s remaining land assets which in the view of management, it is not accurately captured by the Group\u2019s current market capitalisation. Out of the 74mn sqm of total land bank, a small portion of fully-paid or almost fully-paid land bank of some 9.5mn sqm of prime residential and commercial land in Madinaty and Al Rehab Cities has been independently valued at circa EGP113bn. The valu"
+  },
+  {
+   "year": 2022,
+   "field": "units_sold",
+   "value": 6102.0,
+   "why": "single unrepeated mention",
+   "sentence": "\u0627\u0644\u062c\u064a\u0632\u0629\u060c \u0645\u0635\u0631 \uf028 +20 2 3331 2000 IR@tmg.com.eg www.talaatmoustafa.com Publicly held since 2007 EGX: TMGH.CA / TMGH EY 2/7 City and Community Complexes segment performance During FY2022, the company recorded net sales of EGP33.2bn, representing some 6,102 units, beating its own market sales record of the previous year, and exceeding the upper limit of its annual sales guidance of EGP24-26bn by a remarkable 28%. Sales during the year were strengthened by the devaluat"
+  },
+  {
+   "year": 2022,
+   "field": "units_delivered",
+   "value": 4091.0,
+   "why": "single unrepeated mention",
+   "sentence": "deliveries from the development operations and by a particularly strong performance in hospitality and other recurring income lines. Development revenue came in at EGP14.7bn, growing by a significant 21.2% y-o-y, supported by the timely delivery of 4,091 residential and non-residential units during the period. The gross margin on development operations came in at 29%, in line with the company\u2019s earlier guidance and historical track record. It is noteworthy that the compa"
+  },
+  {
+   "year": 2023,
+   "field": "units_delivered",
+   "value": 2661.0,
+   "why": "single unrepeated mention",
+   "sentence": "This remarkable performance was driven by solid growth in real estate deliveries and in recurring income lines. Development revenue reached EGP21.6bn, showing a substantial increase of 47% y-o-y. This growth was supported by the timely delivery of 2,661 residential and non-residential properties in the Group\u2019s projects. Furthermore, the recurring income segments, which include hotels, sporting clubs, retail, and other activities, experienced remarkable growth of 32% y-o"
+  },
+  {
+   "year": 2024,
+   "field": "units_sold",
+   "value": 12000.0,
+   "why": "single unrepeated mention",
+   "sentence": "d by a high-quality customer base driven by genuine end-user demand. It currently represents some 37,000 residential and non-residential units to be delivered within the coming four to five years, excluding the SouthMed project where some 12,000 units were sold during 2024. The backlog provides a strong revenue visibility and a clear trajectory for future profit recognition from this business segment alone. The Company expects to maintain and further enhance the profitabil"
+  },
+  {
+   "year": 2024,
+   "field": "backlog",
+   "value": 294000.0,
+   "why": "single unrepeated mention",
+   "sentence": "ng communities already established within our developments. This reaffirming the market\u2019s strong confidence in TMG\u2019s offering and the Group\u2019s ability to anticipate and meet evolving customer needs. As of December 31, 2024, the Group\u2019s backlog of recorded and yet undelivered sales (sales backlog) amounted to EGP 294 billion, marking a massive growth rate of 103% compared to EGP 145 billion reported in FY 2023. This substantial increase is attributed to <<<PAGE 3 route="
+  },
+  {
+   "year": 2025,
+   "field": "units_sold",
+   "value": 3196.0,
+   "why": "single unrepeated mention",
+   "sentence": "N 2.0 3.8 90% 6.3 10.1 58% Gross Margin % 24% 25% 1.4 pp 26% 27% 1.5 pp During FY25, TMG\u2019s real estate segment delivered revenues of EGP 36.7 billion, up 50% YoY, supported by steady construction progress and the delivery of 3,196 units across the Group\u2019s core developments. Segment performance was also driven by the initial revenue from the KSA-based Banan, TMG\u2019s first project in Saudi Arabia, which is recognized under the percentage-of-completion method a"
+  },
+  {
+   "year": 2025,
+   "field": "landbank_msqm",
+   "value": 115.0,
+   "why": "single unrepeated mention",
+   "sentence": "contribution during the year. FY25 Financial and Operational Performance Indicators EGP 382.2 bn Contracted Sales \u25bc24% YoY EGP 62.5 bn Revenues \uf070 46% YoY EGP 20.9 bn Gross Profit \uf070 49% YoY EGP 18.2 bn Net Profit \uf070 43% YoY c.115mn sqm Landbank EGP 441.2 bn Backlog 3,500 Keys 1,500 Under Construction EGP 25.8 bn Total Recurring Income 42% of Total Revenue FY25 Key Financial Highlights \u2022 Real estate revenues of EGP 36.7 billion, up 50% YoY, with growt"
+  }
+ ]
+}

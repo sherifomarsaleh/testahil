@@ -1,0 +1,63 @@
+=== per driver, pooled over horizons, as-known macro ===
+driver                      n     bias      MAE   over%   robust era signs
+new_sales                  33   -0.877    1.022     24%      YES E2-0.27 E3-1.32
+dev_revenue                35   -0.055    0.276     31%       no E2-0.09 E3-0.02
+dev_cost                   35   -0.105    0.289     23%       no E2-0.08 E3-0.12
+recurring_revenue          40   -0.112    0.698     48%       no E2+0.18 E3-0.40
+recurring_cost             40   -0.044    0.610     50%       no E2+0.17 E3-0.26
+total_revenue              35   -0.090    0.365     37%       no E2-0.04 E3-0.13
+gross_profit               35   -0.079    0.421     37%       no E2-0.05 E3-0.10
+sga                        16   -0.107    0.458     31%       no E2+0.33 E3-0.17
+da                         30   -0.253    0.435     20%      YES E2-0.36 E3-0.20
+finance_cost               30   -1.224    1.224      0%      YES E2-1.12 E3-1.28
+net_profit                 34   +0.264    0.677     74%       no E2+0.58 E3+0.02
+customer_advances          11   +0.230    0.627     73%       no E2+0.60 E3-0.21
+development_properties     25   -0.528    0.528      0%      YES E2-0.32 E3-0.59
+backlog                    35   -0.284    0.441     29%      YES E2-0.12 E3-0.42
+ppe                        30   -0.459    0.808     50%       no E2+0.04 E3-0.71
+
+=== skill against the naive benchmarks (MAE, lower is better) ===
+driver                   h     model    freeze     trend   verdict
+total_revenue            1     0.216     0.231     0.104   beats freeze
+total_revenue            2     0.298     0.465     0.203   beats freeze
+total_revenue            3     0.449     0.674     0.297   beats freeze
+total_revenue            4     0.502     0.856     0.334   beats freeze
+total_revenue            5     0.460     1.043     0.286   beats freeze
+dev_revenue              1     0.272     0.198     0.110   BEATS NEITHER
+dev_revenue              2     0.206     0.390     0.142   beats freeze
+dev_revenue              3     0.259     0.591     0.174   beats freeze
+dev_revenue              4     0.326     0.771     0.269   beats freeze
+dev_revenue              5     0.357     0.965     0.330   beats freeze
+gross_profit             1     0.231     0.247     0.144   beats freeze
+gross_profit             2     0.366     0.460     0.295   beats freeze
+gross_profit             3     0.543     0.645     0.439   beats freeze
+gross_profit             4     0.584     0.798     0.493   beats freeze
+gross_profit             5     0.486     0.948     0.437   beats freeze
+net_profit               1     0.511     0.364     0.459   BEATS NEITHER
+net_profit               2     0.559     0.714     0.952   beats freeze+trend
+net_profit               3     0.712     0.870     1.527   beats freeze+trend
+net_profit               4     0.908     1.104     2.124   beats freeze+trend
+net_profit               5     0.808     1.380     2.106   beats freeze+trend
+new_sales                1     0.532     0.513     0.600   beats trend
+new_sales                2     0.928     1.093     1.051   beats freeze+trend
+new_sales                3     1.174     1.498     1.233   beats freeze+trend
+new_sales                4     1.283     1.710     1.016   beats freeze
+new_sales                5     1.411     2.140     0.839   beats freeze
+
+=== macro vs company split (bias, as-known minus perfect foresight) ===
+driver                     as-known  foresight macro part   check
+new_sales                    -0.877     -0.801     -0.075   
+dev_revenue                  -0.055     -0.021     -0.035   
+dev_cost                     -0.105     -0.070     -0.035   
+recurring_revenue            -0.112     -0.068     -0.044   
+recurring_cost               -0.044     +0.000     -0.044   
+total_revenue                -0.090     -0.048     -0.042   
+gross_profit                 -0.079     -0.039     -0.040   
+sga                          -0.107     +0.004     -0.112   
+da                           -0.253     -0.259     +0.006   
+finance_cost                 -1.224     -1.224     +0.000   zero by construction: OK
+net_profit                   +0.264     +0.307     -0.043   
+customer_advances            +0.230     -0.042     +0.272   
+development_properties       -0.528     -0.528     +0.000   
+backlog                      -0.284     -0.249     -0.035   
+ppe                          -0.459     -0.462     +0.003   

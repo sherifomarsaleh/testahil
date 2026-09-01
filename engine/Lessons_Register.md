@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**63 lessons**, of which 42 bind on every study, 16 on a class of company, and 5 on a single name.
+**70 lessons**, of which 47 bind on every study, 18 on a class of company, and 5 on a single name.
 
-By how they were learned: 14 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
+By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 1 (PHDC) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 2 (PHDC, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on PHDC alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -499,6 +499,56 @@ Fixing the rules in advance is worth nothing if they can be adjusted once the nu
 
 > **What would overturn it.** An amendment shown to be forced by an arithmetic error in the original rule, which is a correction rather than a choice.
 
+### L-043 · A depreciation forecast built on a projected asset base cannot see an acquisition.
+
+Depreciation is usually projected as a rate on a fixed-asset balance the model has also projected. That works until the company buys something. An acquisition multiplies the asset base overnight and the forecast has no way to know, so the error is not noise — it is the deal.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.253 log (about 29% too low), average miss 0.435, wrong in the same direction in 80% of cases, and the sign holds across every bootstrap block tested (n=30).
+
+> **What would overturn it.** A name with no acquisition inside the tested window whose depreciation forecast still misses in the same direction and by the same size.
+
+### L-044 · A reported finance charge is not always interest on borrowings.
+
+Before dividing a finance charge by debt to get a borrowing rate, check that the charge is actually interest on that debt. Where a company recognises a financing component on its customer contracts, the reported charge includes something no lender is being paid, and the implied rate is not a rate at all.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -1.224 log (about 3.4 times too low), average miss 1.224, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=30).
+
+> **What would overturn it.** An issuer whose finance-cost note splits interest on borrowings from every other financing charge, where the implied rate then matches its disclosed borrowing cost.
+
+### L-045 · For a balance-sheet stock, assuming no change is a strong benchmark.
+
+Stocks move slowly. A model that forecasts one has to beat simply carrying last year's balance forward, and it often does not. Check that explicitly before presenting a projected balance as if it added information.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons 1, 2, 3, 5, worst -0.555.
+
+> **What would overturn it.** A stock series volatile enough that carrying it forward is clearly worse than modelling it, at most horizons.
+
+### L-046 · Perfect foresight of inflation removes almost none of a forecast error, even across a devaluation.
+
+It is tempting to blame a bad forecast on the currency. Re-run every forecast knowing the inflation path in advance and see how much improves. Usually almost nothing does, which means the error is in how the business was modelled and looking for a macro fix wastes the effort.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 0.677 as known, 0.623 with perfect foresight of inflation — the macro share is only 8.1%.
+
+> **What would overturn it.** A market or period where the same re-run removes most of the error.
+
+### L-047 · In a high-inflation market, a driver bias that changes direction between regimes is the normal case, not the exception.
+
+A bias measured over a whole history can hide two opposite halves, and in a market with several currency regimes that is what usually happens. Split the record by regime before treating any measured bias as a fact — on this company a third of the drivers changed sign.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: E2 post-float +0.325; E3 devaluation -0.169.
+
+> **What would overturn it.** A market or period where fewer than one driver in ten changes sign between regimes.
+
 
 ---
 
@@ -688,6 +738,29 @@ Some metals have no history of their own in this system and borrow another metal
 > **What it cost, or how we know.** Gold is calibrated on its own data alone, so testing it against that same data proves nothing. Silver is published with no fit of its own at all — it borrows gold's. Neither may be presented with the confidence of a name that has a proper panel behind it.
 
 > **What would overturn it.** Enough silver, copper and platinum history to fit each on its own.
+
+
+## Real-estate developer, off-plan, point-in-time on handover
+
+### L-117 · A developer's work in progress runs ahead of its revenue, not with it.
+
+Half-built homes are an investment made years before the revenue they produce. Driving work in progress off revenue makes the model spend when the company has already spent, and it will understate the balance every time the company is building for a growing order book.
+
+**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.528 log (about 1.7 times too low), average miss 0.528, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=25).
+
+> **What would overturn it.** A developer whose work in progress tracks its revenue closely over a full cycle.
+
+### L-118 · The size of a demographic anchor's miss on a developer is set by the launch calendar, not by the method.
+
+A population-based volume driver runs low for every developer, but not by a fixed amount. How far low depends entirely on what the company launched, which means the miss cannot be corrected with a multiplier fitted on one name and carried to another.
+
+**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.877 log (about 2.4 times too low), average miss 1.022, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=33).
+
+> **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
 
 
 ---

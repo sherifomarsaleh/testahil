@@ -1,0 +1,32 @@
+{
+ "ticker": "TMGH",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 1.4717523730674444,
+ "r2": 0.3260974007269647,
+ "se": 0.18481225647980962,
+ "n": 251,
+ "ci90": [
+  1.1677362111581577,
+  1.7757685349767312
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.85,
+ "first_obs": "2021-09-09",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 1.3145015820449628,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [
+  "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true
+}
