@@ -2260,6 +2260,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "ALINMA",
+   "name": "Alinma Bank",
+   "code": "TADAWUL:1150",
+   "ccy": "SAR",
+   "spot": 25.72,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 52,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 19.9,
+   "fv_base": 27.32,
+   "fv_full": 31.23,
+   "gap_base_pct": 6.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.061943,
+    "mu_h": 0.006588,
+    "G": {
+     "bear": -4.14,
+     "base": 0.97,
+     "full": 3.13
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.1802,
+     "full": 0.0031
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.2857,
+     "full": 0.0039
+    },
+    "required_cagr": {
+     "bear": -0.954,
+     "base": 1.0631,
+     "full": 9.271
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00091
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.115308,
+    "mu_h": 0.016963,
+    "G": {
+     "bear": -2.22,
+     "base": 0.52,
+     "full": 1.68
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0116,
+     "base": 0.3437,
+     "full": 0.0591
+    },
+    "p_touch": {
+     "bear": 0.0208,
+     "base": 0.584,
+     "full": 0.098
+    },
+    "required_cagr": {
+     "bear": -0.6416,
+     "base": 0.273,
+     "full": 1.1737
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00143
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -5110,98 +5202,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00392
    },
    "market": "EG"
-  },
-  {
-   "ticker": "ALINMA",
-   "name": "Alinma Bank",
-   "code": "TADAWUL:1150",
-   "ccy": "SAR",
-   "spot": 23.8,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 16,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 19.9,
-   "fv_base": 27.32,
-   "fv_full": 31.23,
-   "gap_base_pct": 14.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.054221,
-    "mu_h": 0.002937,
-    "G": {
-     "bear": -3.3,
-     "base": 2.54,
-     "full": 5.01
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0016,
-     "base": 0.0092,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.0022,
-     "base": 0.0137,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.8832,
-     "base": 4.2341,
-     "full": 25.058
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.001
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.103273,
-    "mu_h": 0.010449,
-    "G": {
-     "bear": -1.73,
-     "base": 1.34,
-     "full": 2.63
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0338,
-     "base": 0.1006,
-     "full": 0.0085
-    },
-    "p_touch": {
-     "bear": 0.0594,
-     "base": 0.1693,
-     "full": 0.0134
-    },
-    "required_cagr": {
-     "bear": -0.5112,
-     "base": 0.7363,
-     "full": 1.9647
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00104
-   },
-   "market": "SA"
   },
   {
    "ticker": "AIRARABIA",
