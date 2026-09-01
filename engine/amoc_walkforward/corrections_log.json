@@ -1,0 +1,445 @@
+{
+ "policy": "Pre-registered: no correction is estimated from this record. Everything below is a WATCH FLAG \u2014 recorded, graded at the next update, acted on by nobody.",
+ "flags": [
+  {
+   "driver": "volume_t",
+   "n": 9,
+   "bias_log": 0.07305208004109377,
+   "bias_pct": 7.57865624641656,
+   "mae_log": 0.0811730326206813,
+   "share_over": 0.8888888888888888,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": true,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "net_sales",
+   "n": 9,
+   "bias_log": -0.5700577861265322,
+   "bias_pct": -43.45072398808274,
+   "mae_log": 0.5700577861265322,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "Revenue is volume x realisation on a disclosed unit in every ground-up study.",
+   "freeze_equivalent": true,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: Revenue is volume x realisation on a disclosed unit in every ground-up study.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "raw_materials",
+   "n": 9,
+   "bias_log": -0.627307565338928,
+   "bias_pct": -46.59722982007656,
+   "mae_log": 0.627307565338928,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "Feedstock is built as cost per unit on a disclosed volume and escalated on the commodity's own price path, in every study that has a physical input. A multiplier on feedstock would be unique to this name.",
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: Feedstock is built as cost per unit on a disclosed volume and escalated on the commodity's own price path, in every study that has a physical input. A multiplier on feedstock would be unique to this name.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "depreciation",
+   "n": 9,
+   "bias_log": -0.13553154457611033,
+   "bias_pct": -12.67483838580632,
+   "mae_log": 0.13553154457611033,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": true,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "other_cos",
+   "n": 9,
+   "bias_log": -0.18708305768885397,
+   "bias_pct": -17.062515243346198,
+   "mae_log": 0.18879281363449743,
+   "share_over": 0.1111111111111111,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "Energy and utilities escalate on their own driver class, never a blended index (L-009). A multiplier would re-blend them.",
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: Energy and utilities escalate on their own driver class, never a blended index (L-009). A multiplier would re-blend them.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "cost_of_sales",
+   "n": 9,
+   "bias_log": -0.5785576954122902,
+   "bias_pct": -43.92935068095717,
+   "mae_log": 0.5785576954122902,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "gross_profit",
+   "n": 9,
+   "bias_log": -0.49440059724730534,
+   "bias_pct": -39.00636046975791,
+   "mae_log": 0.5044073101577488,
+   "share_over": 0.1111111111111111,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "ga",
+   "n": 9,
+   "bias_log": -0.25993424364340817,
+   "bias_pct": -22.8897710986396,
+   "mae_log": 0.26381425158855704,
+   "share_over": 0.1111111111111111,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "Overheads are a fixed base escalated on CPI across the book.",
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: Overheads are a fixed base escalated on CPI across the book.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "marketing",
+   "n": 9,
+   "bias_log": -0.7469888914547955,
+   "bias_pct": -52.62089567240413,
+   "mae_log": 0.7562021736611313,
+   "share_over": 0.1111111111111111,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "operating_profit",
+   "n": 9,
+   "bias_log": -0.644778339341579,
+   "bias_pct": -47.52211479586828,
+   "mae_log": 0.6687983199889539,
+   "share_over": 0.2222222222222222,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "other_revenues",
+   "n": 9,
+   "bias_log": -2.0566419389219437,
+   "bias_pct": -87.21173124624892,
+   "mae_log": 2.0566419389219437,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "credit_interest",
+   "n": 9,
+   "bias_log": -1.0869432574425215,
+   "bias_pct": -66.27542066779111,
+   "mae_log": 1.1080537601473435,
+   "share_over": 0.1111111111111111,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "Interest income is a rate on a disclosed cash balance everywhere in the book. AMOC's cash is disclosed; a multiplier would substitute for reading it.",
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: Interest income is a rate on a disclosed cash balance everywhere in the book. AMOC's cash is disclosed; a multiplier would substitute for reading it.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "pbt",
+   "n": 9,
+   "bias_log": -1.0711558268665913,
+   "bias_pct": -65.73877120107741,
+   "mae_log": 1.0711558268665913,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "income_tax",
+   "n": 9,
+   "bias_log": -1.1740044778784138,
+   "bias_pct": -69.08734311056088,
+   "mae_log": 1.1740044778784138,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "npat",
+   "n": 9,
+   "bias_log": -1.032938020442078,
+   "bias_pct": -64.40403938512267,
+   "mae_log": 1.032938020442078,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  },
+  {
+   "driver": "majority",
+   "n": 9,
+   "bias_log": -1.0240449410560484,
+   "bias_pct": -64.08606991327268,
+   "mae_log": 1.0240449410560484,
+   "share_over": 0.0,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": true,
+    "passes": true
+   },
+   "clause2_convention": "No study in the book carries a multiplier on an aggregate. An aggregate is rebuilt from adjusted drivers, never adjusted itself.",
+   "freeze_equivalent": false,
+   "disposition": "WATCH FLAG",
+   "why_not_adopted": [
+    "Pre-registered: nine cells cannot support an estimated correction and a separate confirmation sample.",
+    "Clause 2: No study in the book carries a multiplier on an aggregate. An aggregate is rebuilt from adjusted drivers, never adjusted itself.",
+    "The dominant error on this record is a SPECIFICATION defect \u2014 a macro scenario that compounds domestic inflation while holding the currency flat \u2014 and a multiplier fitted on top of it would be fitting the defect, not correcting a bias."
+   ]
+  }
+ ],
+ "declined": [
+  {
+   "driver": "salaries",
+   "n": 9,
+   "bias_log": -0.11673773890138153,
+   "bias_pct": -11.018147265061229,
+   "mae_log": 0.17044524789849938,
+   "share_over": 0.3333333333333333,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": false,
+    "passes": false
+   },
+   "clause2_convention": "Payroll escalates on the market's own wage or CPI path everywhere in the book.",
+   "freeze_equivalent": false,
+   "disposition": "not a candidate \u2014 clause 1 fails"
+  },
+  {
+   "driver": "supporting_materials",
+   "n": 9,
+   "bias_log": -0.4051582368041608,
+   "bias_pct": -33.31287210707874,
+   "mae_log": 0.4441795804041597,
+   "share_over": 0.2222222222222222,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": false,
+    "passes": false
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": false,
+   "disposition": "not a candidate \u2014 clause 1 fails"
+  },
+  {
+   "driver": "other_expenses",
+   "n": 9,
+   "bias_log": 0.21672532607046985,
+   "bias_pct": 24.200290946191295,
+   "mae_log": 0.4075233136822337,
+   "share_over": 0.6666666666666666,
+   "clause1": {
+    "era_stable": true,
+    "n_eras": 2,
+    "bootstrap_same_sign": false,
+    "passes": false
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": true,
+   "disposition": "not a candidate \u2014 clause 1 fails"
+  },
+  {
+   "driver": "claims_provision",
+   "n": 9,
+   "bias_log": -0.03733443519157791,
+   "bias_pct": -3.664609797780549,
+   "mae_log": 0.605682833019145,
+   "share_over": 0.5555555555555556,
+   "clause1": {
+    "era_stable": false,
+    "n_eras": 2,
+    "bootstrap_same_sign": false,
+    "passes": false
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": true,
+   "disposition": "not a candidate \u2014 clause 1 fails"
+  },
+  {
+   "driver": "investment_revenues",
+   "n": 9,
+   "bias_log": 0.035172087869753316,
+   "bias_pct": 3.5797941724607485,
+   "mae_log": 1.4528923708567474,
+   "share_over": 0.3333333333333333,
+   "clause1": {
+    "era_stable": false,
+    "n_eras": 2,
+    "bootstrap_same_sign": false,
+    "passes": false
+   },
+   "clause2_convention": null,
+   "freeze_equivalent": true,
+   "disposition": "not a candidate \u2014 clause 1 fails"
+  }
+ ],
+ "specification_finding": {
+  "what": "Under the pre-registered knowable path, majority profit is under-forecast in 100% of cells, bias -64.1%, and the method scores -1.128 against simply assuming last year's profit repeats.",
+  "why": "The knowable path is not a coherent scenario. It compounds Egyptian CPI onto domestic costs while holding the currency and crude flat, so revenue is frozen in nominal EGP while conversion cost, overheads and marketing inflate. On a refiner whose revenue and dominant cost are the same commodity, that is a guaranteed one-sided miss.",
+  "evidence": {
+   "prereg": -1.1284150366369041,
+   "ppp": 0.04677245736305624,
+   "foresight": -0.13103420314997583
+  },
+  "residual": "Fixing it does not rescue the method. With PERFECT FORESIGHT of the crude-in-EGP path revenue is right to +6.0% and cost of sales to +0.1%, yet gross profit is over-forecast by 68% and the method still scores -0.131 against no change. The margin is a ~6.6% residual between two large numbers, so an error that is small on each is large on the difference.",
+  "treatment": "Reported. No correction factor may hide a specification error."
+ }
+}

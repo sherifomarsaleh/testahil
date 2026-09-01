@@ -367,14 +367,22 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
 # study built to an older one. Bump this ONLY when a change would alter a
 # delivered number or a required artefact — not for prose.
 # ---------------------------------------------------------------------------
-STANDARD_VERSION = "2026.08.23"
+STANDARD_VERSION = "2026.09.01"
 STANDARD_VERSION_NOTE = (
     "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
     "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
     "attested by assert_beta_provenance(); forecast built ground-up to the finest sourced "
     "level and attested by assert_ground_up() on a driver record; margins as outputs; "
-    "terminal growth reconciled; the three gates called in the study's own code."
+    "terminal growth reconciled; the three gates called in the study's own code; and "
+    "[R-GAP-01] a dated GAP_REVIEW covering all eight headings wherever the central fair "
+    "value sits more than 10% below the latest known market price."
 )
+# Bumped 01-Sep-2026 for [R-GAP-01]. This clears the "prose only" bar deliberately: the
+# rule adds a REQUIRED ARTEFACT — a study whose central sits more than 10% below the
+# traded price is not complete without its gap review — and the whole point of the
+# version stamp is that a study built before that requirement is countable rather than
+# silently assumed current. On adoption day four delivered studies were breaching with no
+# review; see engine/build_depth_audit/gap_outstanding.json.
 
 
 # ---------------------------------------------------------------------------

@@ -128,6 +128,10 @@ the before/after value of each headline, the gate output, and **any finding whos
 surfaced a further defect.** Restructuring for a fix routinely exposes something else; that
 discovery is part of the deliverable, not a distraction from it.
 
+### 9b. Re-check the answer against the price  [R-GAP-01]
+
+Implementing findings moves the number, so a study that did not breach before the response can breach after it. If the restruck central lands more than 10% BELOW the latest known market price, the response is not finished until `GAP_REVIEW_{DD-MM-YYYY}.md` covers all eight headings and `python3 scripts/check_valuation_gap.py` is clean. This applies to a self-audit exactly as it does to an outside critique — a self-audit that only re-checks the work it did will keep missing the work it never did.
+
 ### 10. Calibration, not capitulation
 
 The goal is to be right, not to be agreeable. Accepting a wrong finding is as much a failure as

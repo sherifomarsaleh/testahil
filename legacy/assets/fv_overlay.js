@@ -14,7 +14,7 @@ const FV_OVERLAY = {
   },
   "EG": {
    "nu": 5.0,
-   "width_cal": 0.958,
+   "width_cal": 0.951,
    "rf_live": 0.195,
    "width_overlay_active": true
   },
@@ -69,7 +69,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -161,7 +161,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -253,7 +253,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -1081,7 +1081,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -1173,7 +1173,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -1265,7 +1265,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -1522,6 +1522,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00224
    },
    "market": "AE"
+  },
+  {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 9.1,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.53,
+   "fv_base": 8.64,
+   "fv_full": 12.48,
+   "gap_base_pct": -5.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.111209,
+    "mu_h": 0.007663,
+    "G": {
+     "bear": -4.48,
+     "base": -0.47,
+     "full": 2.84
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.2601,
+     "full": 0.008
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.4642,
+     "full": 0.0124
+    },
+    "required_cagr": {
+     "bear": -0.9975,
+     "base": -0.4634,
+     "full": 43.2668
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0016
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.1929,
+    "mu_h": 0.024961,
+    "G": {
+     "bear": -2.58,
+     "base": -0.27,
+     "full": 1.64
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0086,
+     "base": 0.3145,
+     "full": 0.0546
+    },
+    "p_touch": {
+     "bear": 0.0161,
+     "base": 0.6419,
+     "full": 0.0905
+    },
+    "required_cagr": {
+     "bear": -0.8636,
+     "base": -0.1874,
+     "full": 2.5375
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00293
+   },
+   "market": "EG"
   },
   {
    "ticker": "ALPHADHABI",
@@ -1817,7 +1909,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -1909,7 +2001,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -2093,7 +2185,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -2829,7 +2921,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -3105,7 +3197,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -3473,7 +3565,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -3565,7 +3657,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -3841,7 +3933,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -3933,7 +4025,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -4393,7 +4485,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -4577,7 +4669,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -4669,7 +4761,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -4761,7 +4853,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -4832,6 +4924,98 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00239
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "ORHD",
+   "name": "Orascom Development Egypt",
+   "code": "EGX:ORHD",
+   "ccy": "EGP",
+   "spot": 41.5,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-25",
+   "fv_lag_days": 68,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 22.5,
+   "fv_base": 53.79,
+   "fv_full": 70.52,
+   "gap_base_pct": 29.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.104196,
+    "mu_h": 0.024986,
+    "G": {
+     "bear": -5.88,
+     "base": 2.49,
+     "full": 5.09
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.0168,
+     "full": 0.0008
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.0245,
+     "full": 0.0015
+    },
+    "required_cagr": {
+     "bear": -0.9994,
+     "base": 21.4823,
+     "full": 578.6562
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00126
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.196356,
+    "mu_h": 0.067095,
+    "G": {
+     "bear": -3.12,
+     "base": 1.32,
+     "full": 2.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0033,
+     "base": 0.1309,
+     "full": 0.0143
+    },
+    "p_touch": {
+     "bear": 0.0057,
+     "base": 0.2019,
+     "full": 0.0223
+    },
+    "required_cagr": {
+     "bear": -0.9136,
+     "base": 1.8224,
+     "full": 7.3379
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00312
    },
    "market": "EG"
   },
@@ -4945,7 +5129,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -5221,7 +5405,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -5497,7 +5681,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -5756,98 +5940,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "ORHD",
-   "name": "Orascom Development Egypt",
-   "code": "EGX:ORHD",
-   "ccy": "EGP",
-   "spot": 40.16,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-06-25",
-   "fv_lag_days": 32,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 22.5,
-   "fv_base": 53.79,
-   "fv_full": 70.52,
-   "gap_base_pct": 33.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.958,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.09408,
-    "mu_h": 0.027264,
-    "G": {
-     "bear": -6.16,
-     "base": 3.11,
-     "full": 5.98
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.0075,
-     "full": 0.0004
-    },
-    "p_touch": {
-     "bear": 0.0003,
-     "base": 0.0112,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": -0.999,
-     "base": 32.3345,
-     "full": 858.4551
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00013
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.177792,
-    "mu_h": 0.071811,
-    "G": {
-     "bear": -3.26,
-     "base": 1.64,
-     "full": 3.17
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0026,
-     "base": 0.0852,
-     "full": 0.008
-    },
-    "p_touch": {
-     "bear": 0.0045,
-     "base": 0.1288,
-     "full": 0.0131
-    },
-    "required_cagr": {
-     "bear": -0.9015,
-     "base": 2.2183,
-     "full": 8.5077
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00284
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "ADCB",
    "name": "Abu Dhabi Commercial Bank",
    "code": "ADX:ADCB",
@@ -6049,7 +6141,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -6409,7 +6501,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -6574,98 +6666,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00174
    },
    "market": "AE"
-  },
-  {
-   "ticker": "AMOC",
-   "name": "Alexandria Mineral Oils",
-   "code": "EGX:AMOC",
-   "ccy": "EGP",
-   "spot": 9.1,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 4.09,
-   "fv_base": 5.95,
-   "fv_full": 8.52,
-   "gap_base_pct": -34.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.958,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111209,
-    "mu_h": 0.007663,
-    "G": {
-     "bear": -7.19,
-     "base": -3.82,
-     "full": -0.59
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.002,
-     "full": 0.2162
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.0028,
-     "full": 0.3787
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9939,
-     "full": -0.5463
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1929,
-    "mu_h": 0.024961,
-    "G": {
-     "bear": -4.15,
-     "base": -2.2,
-     "full": -0.34
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0013,
-     "base": 0.0149,
-     "full": 0.2849
-    },
-    "p_touch": {
-     "bear": 0.0023,
-     "base": 0.0268,
-     "full": 0.5753
-    },
-    "required_cagr": {
-     "bear": -0.9592,
-     "base": -0.8172,
-     "full": -0.2316
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00293
-   },
-   "market": "EG"
   },
   {
    "ticker": "BURJEEL",
@@ -6861,7 +6861,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -6945,7 +6945,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7096,6 +7096,90 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "code": "NASDAQ:AAPL",
+   "ccy": "USD",
+   "spot": 325.71,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 182,
+   "fv_base": 208,
+   "fv_full": 244,
+   "gap_base_pct": -36.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.088534,
+    "mu_h": 0.002637,
+    "G": {
+     "bear": -6.57,
+     "base": -5.07,
+     "full": -3.26
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9991,
+     "base": -0.9954,
+     "full": -0.9688
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00147
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.153484,
+    "mu_h": 0.009929,
+    "G": {
+     "bear": -3.79,
+     "base": -2.92,
+     "full": -1.88
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.0033,
+     "full": 0.0272
+    },
+    "p_touch": {
+     "bear": 0.001,
+     "base": 0.0062,
+     "full": 0.0466
+    },
+    "required_cagr": {
+     "bear": -0.9025,
+     "base": -0.8337,
+     "full": -0.6851
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00202
+   },
+   "market": "US"
+  },
+  {
    "ticker": "DIB",
    "name": "Dubai Islamic Bank",
    "code": "DFM:DIB",
@@ -7197,7 +7281,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7264,90 +7348,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "AAPL",
-   "name": "Apple Inc.",
-   "code": "NASDAQ:AAPL",
-   "ccy": "USD",
-   "spot": 336.91,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 182,
-   "fv_base": 208,
-   "fv_full": 244,
-   "gap_base_pct": -38.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.084,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.085024,
-    "mu_h": 0.002638,
-    "G": {
-     "bear": -7.24,
-     "base": -5.67,
-     "full": -3.79
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.9994,
-     "base": -0.9969,
-     "full": -0.9792
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0014
-   },
-   "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.148916,
-    "mu_h": 0.010071,
-    "G": {
-     "bear": -4.14,
-     "base": -3.24,
-     "full": -2.17
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.0018,
-     "full": 0.0154
-    },
-    "p_touch": {
-     "bear": 0.0005,
-     "base": 0.0026,
-     "full": 0.026
-    },
-    "required_cagr": {
-     "bear": -0.9148,
-     "base": -0.8547,
-     "full": -0.7249
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00116
-   },
-   "market": "US"
-  },
-  {
    "ticker": "PHAR",
    "name": "Egyptian International Pharmaceutical Industries (EIPICO)",
    "code": "EGX:PHAR",
@@ -7365,7 +7365,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7449,7 +7449,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7533,7 +7533,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7617,7 +7617,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7693,7 +7693,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7845,7 +7845,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
@@ -7921,7 +7921,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
-    "width_cal": 0.958,
+    "width_cal": 0.951,
     "width_overlay_active": true,
     "n_paths": 50000,
     "seed": 42
