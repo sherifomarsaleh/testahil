@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1578,6 +1578,92 @@ READ IT ON DEMAND: `python3 engine/lessons.py [TICKER] [--class X]` returns exac
 set that binds on the name in hand. ENFORCED FROM OUTSIDE per [R-ENF-01] by
 `scripts/check_lessons_register.py`, negative-controlled, both in CI.
 
+
+## [R-CAMP-01] A name whose documents cannot be reached is PARKED, not skipped, and it never stalls the campaign (01-Sep-2026, per instruction — "IF A NAME IS BLOCKED ON DOCUMENTS, DO NOT STALL THE CAMPAIGN. Record it as parked with its reason, tell me exactly which filings you need, and move to the next name in the queue")
+
+### The gap this closes, found at the campaign's first name
+
+The book-wide campaign [Fundamental_Walkforward_Campaign_Prompt.md] ran its queue and stopped
+on position 1. AMOC's own IR host, the EGX disclosure archive and the FRA issuer portal were
+all rejected at the session's gateway, and the repository held four periods — about eighteen
+months — against the five-year minimum for even a LIGHT run.
+
+The single-name protocol's §0 offers three outcomes, FULL, LIGHT and SKIP, and **every one of
+them is a statement about the archive**: how many fiscal years the company actually published.
+None of them describes what had happened here. AMOC has published audited statements for
+decades. The shortfall was in the network, not in the company.
+
+Recording it as a SKIP would have written *"walk-forward not run — insufficient sourceable
+history (2 years)"* into the register: a sentence that reads as a finding about AMOC and is
+actually a finding about a proxy, and one that nothing downstream could ever have told apart
+from the real thing. That is [R-ENF-04] exactly — **an absent answer wearing the costume of a
+clean one**, which is strictly worse than a failure, because a failure announces itself.
+
+### Parking is a fourth outcome, and the difference from a SKIP is the whole point
+
+| outcome | what it says | the queue position |
+|---|---|---|
+| **SKIP** | the company never published five sourceable years | **CLOSED.** Nothing will change it. |
+| **PARK** | it published them; this session cannot reach them | **OPEN.** It reopens the day the filings arrive. |
+
+A SKIP is a fact about the world and is permanent. A PARK is a fact about an attempt and has
+an expiry date. Collapsing the two loses the only information that distinguishes work that is
+finished from work that is waiting.
+
+### And it must not stall the campaign
+
+The instruction is explicit and it matches a failure this project has already paid for. When
+[R-CAL-01]'s materiality gate could say STOP but nothing defined what saying GO looked like, it
+produced 66 unmerged review PRs in seventeen days while production went on publishing a
+month-old fit and said nothing — and those PRs could not have been accepted even in principle,
+because merging one applied nothing. **A GATE WITH NO RELEASE IS A STALL**, and a campaign that
+halts on its first unreachable host is that same shape: ninety names held behind one PDF.
+
+The release is defined here, in the same rule that permits the stop: record the park, name the
+exact filings needed, ask for them, and **start the next name**. The campaign's own design
+already requires that names finish one at a time; parking is what keeps that from meaning the
+queue finishes never.
+
+### Four things a park must carry, and why each is refused without it
+
+- **THE ATTEMPT LOG, AND EVERY ATTEMPT WITH ITS OUTCOME.** "Could not get the documents" is an
+  assertion. A dated list of URLs, each with what it actually returned, is evidence — and it is
+  the only form that lets a later session re-probe instead of believing this one. The gate
+  refuses a park whose attempts carry no outcomes, because a bare URL list read as evidence is
+  the same defeat as a self-attested boolean [R-ENF-01].
+- **THE FILINGS, NAMED — not the problem, described.** Which statements, which fiscal years,
+  which notes. A block only its author can clear is not a record, it is a memory.
+- **THE UNPARK CONDITION**, stated when the park is written rather than reconstructed later.
+- **NOTHING ELSE.** A park creates no `engine/{tk}_walkforward/` directory and freezes no
+  fair-value baseline. Both campaign gates anchor on the run directories on disk, so either
+  artefact would turn them red for a run that is not happening — and a permanently red check is
+  one everyone learns to ignore. The exclusions are enforced, not remembered.
+
+### RE-PROBE BEFORE BELIEVING ANY RECORDED BLOCK — the worked case is humbling
+
+`CLAUDE.md` carried `arabiancementcompany.com` as `connect_rejected`, recorded from a real
+earlier failure. On 01-Sep-2026 the same host answered 200 and served 175 filings covering
+eleven fiscal years — and ARCC became the campaign's first completed run precisely because the
+recorded block was re-tested rather than trusted.
+
+**WHEN A PROBE COMES BACK EMPTY THE FIRST HYPOTHESIS IS THAT THE PROBE DID NOT RUN.** Egress is
+per-host and it moves. A recorded block is a dated observation about one attempt, never a
+property of the name, and it is re-tested at the start of every resumption. This is [R-ENF-04]'s
+closing lesson applied to document supply, and the cost of getting it wrong is asymmetric: a
+wasted probe costs seconds, while a wrongly-believed block costs a name.
+
+### Enforced from outside, per [R-ENF-01]
+
+`engine/campaign_parked.py` holds the record and its `check()`; `scripts/check_campaign_parked.py`
+runs it in CI beside the two gates it complements. It needs its own gate precisely because a
+park is invisible to both of the others by construction — they anchor on run directories and a
+parked name deliberately has none, so without this check "we are waiting on documents" would
+decay into "nobody looked" with nothing able to tell the difference. It declares what it
+examined and counts against the queue's own total [R-ENF-04], and it is negative-controlled by
+`scripts/check_campaign_parked_negative_control.py`, which reinjects all seven defects — a park
+with no attempts, an attempt with its outcome blanked, a missing document request, a missing
+unpark condition, a parked name absent from the queue, a parked name given a run directory, and
+a parked name given a frozen baseline — and fails if any is reported clean.
 
 ## [R-TCAL-01] TECHNICAL CALIBRATION — the technical read is walk-forward tested on its own clock, sentence by sentence, against a null that could have been believed instead (31-Aug-2026, per instruction — "It is time now to add the walk forward technical training to the research protocol and the standing instructions")
 

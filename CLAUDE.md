@@ -5,7 +5,7 @@ probability cones, and a public ledger, published to the live site. Read this be
 doing any research, study-build, critique-response, or publishing work here.
 
 **Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_31-08-2026.md
+@engine/PROJECT_INSTRUCTIONS_01-09-2026.md
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,
@@ -55,8 +55,15 @@ diff-only summary leaves that copy silently behind.
   USA); within a market, oldest standard first [R-STD-01]. THE QUEUE IS NEVER WRITTEN IN A
   DOCUMENT — read it live with `python3 engine/campaign_queue.py` (`--next` for the next
   unstarted name), which refuses rather than returning a short list. Metals are excluded by
-  construction (no issuer, no statements, no drivers) and named in the exclusion list. HARD
-  STOP AFTER EGX to review whether the method generalises before UAE begins. FREEZE THE OLD
+  construction (no issuer, no statements, no drivers) and named in the exclusion list.
+  **DOCUMENT SUPPLY IS THE BINDING CONSTRAINT, NOT COMPUTE — a name whose filings cannot be
+  reached is PARKED, never recorded as a SKIP (a SKIP is a fact about the archive; this is a
+  fact about the network), and it never stalls the queue: log the attempts WITH their outcomes,
+  name the exact filings needed, ask for them, and start the next name [R-CAMP-01]. Read the
+  parked set live — `python3 engine/campaign_parked.py list` — and RE-PROBE a recorded block
+  before believing it: `arabiancementcompany.com` was recorded in this file as
+  `connect_rejected` and served 175 filings over eleven fiscal years the day it was re-tested.**
+  HARD STOP AFTER EGX to review whether the method generalises before UAE begins. FREEZE THE OLD
   FAIR VALUE FIRST — `python3 engine/fv_movement.py snapshot TK` — because the rebuild is the
   one sanctioned thing that moves `fair{bear,base,full}` and `data.js` carries no date or
   standard stamp, so a baseline taken afterwards is a fabricated zero.

@@ -179,6 +179,17 @@ def build_queue(path=DATA_JS):
     return queue, excluded, current, total
 
 
+def parked_tickers():
+    """Names parked on document supply [R-CAMP-01].  Imported lazily so the
+    queue still builds if the parking store has not been created yet."""
+    try:
+        sys.path.insert(0, ENGINE)
+        import campaign_parked
+        return campaign_parked.parked_tickers()
+    except Exception:
+        return set()
+
+
 def main(argv):
     market = None
     if '--market' in argv:
@@ -186,14 +197,31 @@ def main(argv):
     queue, excluded, current, total = build_queue()
 
     if '--next' in argv:
+        # [R-CAMP-01] A name parked on document supply is SKIPPED here and
+        # REPORTED, never silently offered again.  It is not a SKIP (that is a
+        # fact about the archive and closes the position) and not a deferral
+        # that stalls the queue -- the campaign moves on and comes back when
+        # the filings arrive.
+        parked = parked_tickers()
         done = [q for q in queue if os.path.isdir(os.path.join(ROOT, q['run_dir']))]
-        todo = [q for q in queue if not os.path.isdir(os.path.join(ROOT, q['run_dir']))]
-        print('run directories present: %d of %d' % (len(done), len(queue)))
+        todo = [q for q in queue
+                if not os.path.isdir(os.path.join(ROOT, q['run_dir']))
+                and q['ticker'] not in parked]
+        held = [q for q in queue if q['ticker'] in parked]
+        print('run directories present: %d of %d   parked on documents: %d'
+              % (len(done), len(queue), len(held)))
+        for q in held:
+            print('  PARKED #%d %s -- python3 engine/campaign_parked.py list'
+                  % (q['position'], q['ticker']))
         if todo:
             n = todo[0]
             print('NEXT: #%d %s (%s, %s, tier %s, built to %s)'
                   % (n['position'], n['ticker'], n['market_label'], n['exchange'],
                      n['tier'], n['built_to']))
+        elif held:
+            print('NEXT: none unparked -- every remaining name is parked on '
+                  'document supply. The campaign is waiting on filings, not on '
+                  'compute.')
         else:
             print('NEXT: none -- every name in the queue has a run directory.')
         return 0

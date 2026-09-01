@@ -1,6 +1,6 @@
 # PROMPT — BOOK-WIDE FUNDAMENTAL WALK-FORWARD CAMPAIGN
 
-CAMPAIGN REVISION 2026-09-01a — bump this on every edit, however small. A copy without the
+CAMPAIGN REVISION 2026-09-01b — bump this on every edit, however small. A copy without the
 current stamp is stale on its face, without reading a word of it [R-DOC-01].
 
 **Adopted 01-Sep-2026, per instruction — "fundamental backtest for all stocks in testahil
@@ -137,6 +137,66 @@ Two things about that protocol bind harder in a campaign than in a single run:
   years the run does not happen, and the words are fixed: *"walk-forward not run — insufficient
   sourceable history (N years)"*, recorded in the study's register and its QC table. A SKIP is a
   completed queue position, not a deferred one.
+
+### Step 3b — IF THE DOCUMENTS CANNOT BE REACHED: PARK IT AND MOVE ON  [R-CAMP-01]
+
+**DOCUMENT SUPPLY IS THE BINDING CONSTRAINT ON THIS CAMPAIGN, NOT COMPUTE.** Under SIGCM
+clause 1 the most recent three fiscal years and every disclosed current-year quarter must
+come from the company's own audited statements or its own IR documents. That is not
+negotiable and no aggregator substitutes for it — so a name whose filings cannot be
+obtained cannot be run, however much history the register implies it has.
+
+**A BLOCKED NAME IS NOT A SKIP.** §0 of the single-name protocol offers FULL, LIGHT and
+SKIP, and all three are statements about THE ARCHIVE — how many years the company actually
+published. None of them describes a company that published the years while this container
+cannot reach them. Writing *"walk-forward not run — insufficient sourceable history (N
+years)"* for an unreachable host would be a fact about the network wearing the costume of a
+fact about the company, which is precisely the [R-ENF-04] failure, and once written nothing
+in the register could ever tell the two apart again.
+
+| outcome | what it means | the position |
+|---|---|---|
+| SKIP | the company never published five sourceable years | CLOSED |
+| PARK | it published them; we cannot reach them | OPEN, and reopens on arrival |
+
+**AND A BLOCKED NAME MUST NOT STALL THE CAMPAIGN.** Halting the queue on one unreachable
+host would rebuild the failure [R-CAL-01] was amended to close — an unclearable gate that
+produced 66 unmerged review PRs in seventeen days while production went on publishing a
+month-old fit and said nothing. A GATE WITH NO RELEASE IS A STALL. The release is: record
+the park, state exactly which filings are needed, ask for them, and start the next name.
+
+```
+python3 engine/campaign_parked.py list          what is parked, and what each one needs
+python3 engine/campaign_parked.py check         the gate
+python3 engine/campaign_parked.py unpark TK     when the documents arrive
+```
+
+Four things bind:
+
+- **THE ATTEMPT LOG IS THE EVIDENCE, AND EVERY ATTEMPT CARRIES ITS OUTCOME.** "Could not
+  get the documents" is an assertion; a dated list of URLs each with what it returned is a
+  finding, and it is the only form that lets the next session re-probe rather than believe
+  this one. The gate refuses a park whose attempts have no outcomes. Log the failures in the
+  Sweep Register too — the company site attempted and logged, success or failure, is already
+  the standing rule.
+- **RE-PROBE BEFORE BELIEVING ANY RECORDED BLOCK.** ARCC is the worked case and it is
+  humbling: `CLAUDE.md` recorded `arabiancementcompany.com` as `connect_rejected`, and on
+  01-Sep-2026 it answered 200 and served 175 filings covering eleven fiscal years. WHEN A
+  PROBE COMES BACK EMPTY THE FIRST HYPOTHESIS IS THAT THE PROBE DID NOT RUN. Egress is
+  per-host and it moves; a recorded block is a dated observation, never a property of the
+  name.
+- **NAME THE FILINGS, NOT THE PROBLEM.** A park states the exact documents needed — which
+  statements, which years, which notes — and the condition that releases it. A block only
+  its author can clear is not a record, it is a memory.
+- **A PARK CREATES NOTHING.** No `engine/{tk}_walkforward/` directory and no frozen
+  fair-value baseline. Both campaign gates anchor on the run directories on disk, so either
+  one would turn them red for a run that is not happening, and a permanently red check is
+  one everyone learns to ignore. `campaign_parked.py check` enforces both exclusions rather
+  than trusting anyone to remember them; it is negative-controlled, and it runs in CI beside
+  the other two because a park is invisible to both of them by construction.
+
+Parked names are skipped by `campaign_queue.py --next` and REPORTED there, so the queue
+never silently offers a name that is waiting on paper, and never hides one either.
 
 ### Step 4 — Record what the fair value did
 
@@ -287,6 +347,9 @@ Three consequences follow, and they are the campaign's design rather than conces
 - **NEVER estimate, interpolate or infer a figure to fill a gap.** Leave the year out and
   shorten the window. A fabricated cell corrupts the error it is scored on.
 - **NEVER skip Step 1.** A movement computed against a post-run baseline is a fabricated zero.
+- **NEVER record an unreachable archive as a SKIP, and never let one stall the queue.**
+  Park it with its attempt log and its document request, and start the next name
+  [R-CAMP-01].
 - **NEVER promote a correction on the first clause alone.** It must also match how that driver
   class is built across the market's book. That second clause has already done its job once,
   and what it caught was arithmetic wearing the costume of evidence.

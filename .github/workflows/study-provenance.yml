@@ -41,6 +41,10 @@ on:
       - 'engine/fv_movement.json'
       - 'engine/**_walkforward/**'
       - 'scripts/check_campaign_register_negative_control.py'
+      - 'engine/campaign_parked.py'
+      - 'engine/campaign_parked.json'
+      - 'scripts/check_campaign_parked.py'
+      - 'scripts/check_campaign_parked_negative_control.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -71,6 +75,10 @@ on:
       - 'engine/fv_movement.json'
       - 'engine/**_walkforward/**'
       - 'scripts/check_campaign_register_negative_control.py'
+      - 'engine/campaign_parked.py'
+      - 'engine/campaign_parked.json'
+      - 'scripts/check_campaign_parked.py'
+      - 'scripts/check_campaign_parked_negative_control.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -188,3 +196,19 @@ jobs:
       # and fails if any of them is reported clean
       - name: Campaign register gate — negative control
         run: python3 scripts/check_campaign_register_negative_control.py
+
+      # [R-CAMP-01] the campaign's fourth outcome — a name whose documents
+      # cannot be reached is PARKED, not skipped, and never stalls the queue. It
+      # needs a gate of its own because a park is invisible to the two gates
+      # above BY CONSTRUCTION: they anchor on engine/*_walkforward/ and a parked
+      # name deliberately has none. Without this, "waiting on documents" decays
+      # into "nobody looked" and nothing can tell the difference.
+      - name: Campaign parked-names gate
+        run: python3 scripts/check_campaign_parked.py
+
+      # and the proof that gate can go red — it reinjects a park with no
+      # attempts, an attempt with its outcome blanked, a missing document
+      # request, a missing unpark condition, a name absent from the queue, and
+      # the two exclusions (a run directory, a frozen baseline)
+      - name: Campaign parked-names gate — negative control
+        run: python3 scripts/check_campaign_parked_negative_control.py

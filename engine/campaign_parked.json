@@ -1,0 +1,80 @@
+{
+ "entries": {
+  "AMOC": {
+   "attempts": [
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 0.7,
+     "seeking": "company IR site (primary route, SIGCM clause 1)",
+     "ts": "2026-09-01T09:16:19Z",
+     "url": "https://www.amoc.com.eg/"
+    },
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 0.37,
+     "seeking": "company IR site, apex domain",
+     "ts": "2026-09-01T09:16:19Z",
+     "url": "https://amoc.com.eg/"
+    },
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 0.06,
+     "seeking": "company IR site over plain HTTP",
+     "ts": "2026-09-01T09:16:19Z",
+     "url": "http://www.amoc.com.eg/"
+    },
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 2.84,
+     "seeking": "EGX listed-company disclosure pages",
+     "ts": "2026-09-01T09:16:22Z",
+     "url": "https://www.egx.com.eg/"
+    },
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 0.31,
+     "seeking": "EGX MIST disclosure archive (filings portal)",
+     "ts": "2026-09-01T09:16:23Z",
+     "url": "https://mist.egx.com.eg/"
+    },
+    {
+     "outcome": "no connection: agent gateway answered 502 to CONNECT (policy denial); confirmed in the proxy's own recentRelayFailures log as kind=connect_rejected",
+     "result": "connect_rejected",
+     "secs": 0.55,
+     "seeking": "FRA/EFSA issuer disclosure portal",
+     "ts": "2026-09-01T09:16:23Z",
+     "url": "https://disclosure.efsa.gov.eg/"
+    },
+    {
+     "outcome": "HTTP 200, 175 filings listed \u2014 so the probe works and egress is per-host; AMOC's blocks are policy on those hosts, not a broken prober or a dead network",
+     "result": "200",
+     "secs": 2.54,
+     "seeking": "NEGATIVE CONTROL \u2014 another EGX issuer's IR archive, same probe, same session",
+     "ts": "2026-09-01T09:16:26Z",
+     "url": "https://arabiancementcompany.com/investor-relations/financial-information/"
+    }
+   ],
+   "documents_needed": [
+    "Audited consolidated financial statements, FY ended 30-Jun-2012 through 30-Jun-2023 (the years the repo does NOT hold) \u2014 signed auditor's report, IS, BS, CF, changes in equity and the notes, Arabic or English.",
+    "Audited consolidated FS for the FY ended 30-Jun-2024 and 30-Jun-2025 in FULL \u2014 the repo holds only the majority profit for these two years, read off the equity roll of a later filing (1,699,154,493 and 1,488,520,098). A profit line alone cannot drive a walk-forward.",
+    "Note 14-A (net sales by product, tonnes and value) and note 15-A (cost of sales by component) for every one of those years \u2014 the unit build stands or falls on these two notes, and the repo holds them only for the Jul-Dec 2025 transition half.",
+    "Any interim filings for 2Q-2026 onward disclosed since 31-Mar-2026 (SIGCM: every study-year quarter already disclosed is swept before the build starts)."
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "note": "Repo holds four periods only (6M Dec-2024, 3M Mar-2025, 6M Dec-2025, 3M Mar-2026) in amoc_study/filings/AUDITED_EXTRACT.md and study_numbers.json \u2014 about 1.5 years, against the 5-year minimum for a LIGHT run. NOT recorded as SKIP: AMOC has published audited statements for decades and the shortfall is this container's egress, not the archive. Also carries a fiscal-year change (June year-end to December, via a 6-month transition period Jul-Dec 2025) which is a basis break the panel must handle when the documents arrive.",
+   "parked": "2026-09-01",
+   "position": 1,
+   "reason": "documents",
+   "ticker": "AMOC",
+   "tier": "reissue",
+   "unpark_when": "Any route that serves AMOC's own audited statements: the filings attached directly to this session, or amoc.com.eg / mist.egx.com.eg / disclosure.efsa.gov.eg allowed through the gateway. RE-PROBE FIRST \u2014 the hosts above are re-tested at the start of every resumption, because arabiancementcompany.com was recorded as connect_rejected in CLAUDE.md and answered 200 on the day this park was written.",
+   "unparked": null
+  }
+ }
+}
