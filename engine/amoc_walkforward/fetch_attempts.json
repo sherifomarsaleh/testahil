@@ -1,0 +1,461 @@
+[
+ {
+  "url": "https://amoceg.com/en/investor/financial-report/financial-statement",
+  "ts": "2026-09-01T13:21:03Z",
+  "status": 200,
+  "bytes": 43811,
+  "secs": 1.17,
+  "sha256": "2f68b0109cdb48d410ba975c7c65ffcfcef21af2aae2283c3b4e8c8848862dff",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/media-center/annual-report",
+  "ts": "2026-09-01T13:21:04Z",
+  "status": 200,
+  "bytes": 26219,
+  "secs": 0.54,
+  "sha256": "3963d0bbc32dba94a2f15a002e5bc9b16927c4733674afb938ccb563fbbc552e",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/corporate-governance/disclosures/bod-activity-report",
+  "ts": "2026-09-01T13:21:05Z",
+  "status": 200,
+  "bytes": 30121,
+  "secs": 0.53,
+  "sha256": "755d3490cab74ab316454aaa26692b6903456b495250f0543d7ccd6fac41a246",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/corporate-governance/disclosures/disclosure-reports",
+  "ts": "2026-09-01T13:21:05Z",
+  "status": 200,
+  "bytes": 37832,
+  "secs": 0.5,
+  "sha256": "de7e0b5fb1cd113c7253bca24c0637de392a059770f269f3c85e1408dda3b397",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/general-assembly/general-assembly-report",
+  "ts": "2026-09-01T13:21:06Z",
+  "status": 200,
+  "bytes": 30062,
+  "secs": 0.54,
+  "sha256": "054f941b014eabeaac19d95b72a9b7d5a116007348b5833988eed38302a353b6",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/corporate-governance/disclosures/corporate-governance-reports",
+  "ts": "2026-09-01T13:21:06Z",
+  "status": 200,
+  "bytes": 29963,
+  "secs": 0.54,
+  "sha256": "e049054f38bfc7d597a48a7164a3ddba90824c300a8f10a71b9292b613201d7e",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/financial-report/ir-presentation",
+  "ts": "2026-09-01T13:21:07Z",
+  "status": 200,
+  "bytes": 25567,
+  "secs": 3.62,
+  "sha256": "875efe4324f1bd3b8553a8e8bd9a09c3cb933934814f9ce552419ba75e50f7f0",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/sustainability/esg",
+  "ts": "2026-09-01T13:21:10Z",
+  "status": 200,
+  "bytes": 27568,
+  "secs": 0.51,
+  "sha256": "3c8c5b686a8b16fc73cc64fdc498f139fcdb44542f36daa1e63875bd3c59ffe3",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/en/investor/sustainability/sustainability-report",
+  "ts": "2026-09-01T13:21:11Z",
+  "status": 200,
+  "bytes": 29718,
+  "secs": 3.66,
+  "sha256": "8777ec567ea9d2dba0326cbd7992beaabfa325d34e5bfb125b1ffc576d3a3b7b",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/ar/investor/financial-report/financial-statement",
+  "ts": "2026-09-01T13:21:15Z",
+  "status": 200,
+  "bytes": 53385,
+  "secs": 0.57,
+  "sha256": "0ad6dd297b32f8c63177b16e87952a157446effe446ddc37a76f00517211890e",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/ar/media-center/annual-report",
+  "ts": "2026-09-01T13:21:15Z",
+  "status": 200,
+  "bytes": 28315,
+  "secs": 3.67,
+  "sha256": "4f745c56aa6a562c7f5bddae2011a39e5ce1a2ee613c26cf4b9352cd99f5cd54",
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/69-6829b154eb9f71747562836.pdf",
+  "ts": "2026-09-01T13:21:19Z",
+  "status": 200,
+  "bytes": 3002495,
+  "secs": 0.81,
+  "sha256": "92614d6e34b94a96e57d8697e59f81d4eed739e9dfa40a808a309763f0b9910f",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/70-6829b184801481747562884.pdf",
+  "ts": "2026-09-01T13:21:20Z",
+  "status": 200,
+  "bytes": 3856790,
+  "secs": 0.96,
+  "sha256": "8a71b84d9a5709a000ba1892fea1f7c37cf8cd1b015ccf47bc3a96e4f1cf4244",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/71-6829b20fe97531747563023.pdf",
+  "ts": "2026-09-01T13:21:21Z",
+  "status": 200,
+  "bytes": 3328504,
+  "secs": 0.95,
+  "sha256": "4788bd599676b9d6fd37b391d1af5fd9ff2eb185831019f8b7ef75d35c8f1763",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/73-6829b3fd977ea1747563517.pdf",
+  "ts": "2026-09-01T13:21:22Z",
+  "status": 200,
+  "bytes": 3927508,
+  "secs": 0.97,
+  "sha256": "f79ea047cd434ceac487d93b45c8a1350e8d0dfbafa93060f4cf7ef2bd351bf0",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/74-68a2dfafd04651755504559.pdf",
+  "ts": "2026-09-01T13:21:23Z",
+  "status": 200,
+  "bytes": 3589473,
+  "secs": 0.93,
+  "sha256": "86644727bf942bec67136c458c00819ab5d36cfbba0f965ff0c6b6ee65634f68",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/75-68a2dffc298e01755504636.pdf",
+  "ts": "2026-09-01T13:21:24Z",
+  "status": 200,
+  "bytes": 4507172,
+  "secs": 0.86,
+  "sha256": "381ef178d15f96d98dcd22b26f52b48d3750a16b5d7911011cd4613899bef0ba",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/76-68a2e0437ee331755504707.pdf",
+  "ts": "2026-09-01T13:21:25Z",
+  "status": 200,
+  "bytes": 4007177,
+  "secs": 0.84,
+  "sha256": "bae79d8f9274865976eb6168dd6801c19a20a4f92a1b55eae4c15bc282a943ec",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/77-68a2e07a3ff1f1755504762.pdf",
+  "ts": "2026-09-01T13:21:25Z",
+  "status": 200,
+  "bytes": 3254966,
+  "secs": 0.93,
+  "sha256": "3c37c7038fc6782f64d1a9181cbb65c214849d812fd60820e55341b581da4d45",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/79-6943ba2f4553d1766046255.pdf",
+  "ts": "2026-09-01T13:21:26Z",
+  "status": 200,
+  "bytes": 2736621,
+  "secs": 3.08,
+  "sha256": "ca41e4f0f88d9b93401802c955e17b7eaa0e82451a1af65e0a1bc7320cf32cb9",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/80-699ad090a76971771753616.pdf",
+  "ts": "2026-09-01T13:21:30Z",
+  "status": 200,
+  "bytes": 3347687,
+  "secs": 0.95,
+  "sha256": "87182dd172ba558770033557d8af6d2cf9c254cbb8a9b16dae67fe8d3e844b91",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/81-699ad06083a8d1771753568.pdf",
+  "ts": "2026-09-01T13:21:31Z",
+  "status": 200,
+  "bytes": 2378405,
+  "secs": 3.03,
+  "sha256": "e1de57cdee5086b7908f68a72a127cbb4cca638554d8279c1082fd63e28621d2",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/82-699ad12b0d8d61771753771.pdf",
+  "ts": "2026-09-01T13:21:34Z",
+  "status": 200,
+  "bytes": 2468891,
+  "secs": 1.08,
+  "sha256": "fd9d61c669e3cba2782bb245afc27b1e3cf66dec0f5d6c7035648d11c915c4ef",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/83-699ad1c0327a21771753920.pdf",
+  "ts": "2026-09-01T13:21:35Z",
+  "status": 200,
+  "bytes": 2811812,
+  "secs": 0.99,
+  "sha256": "bde257cc3c0e4e2b2b145d17973bb38da65f84e12c079120d52c625c43d85b2c",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/84-6a266d73282361780903283.pdf",
+  "ts": "2026-09-01T13:21:36Z",
+  "status": 200,
+  "bytes": 9714487,
+  "secs": 3.46,
+  "sha256": "99cd3940e86d18609b6e44a6f05d74c38db011e353ac3c3228381e0791f275d5",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/85-6a266dbc224ae1780903356.pdf",
+  "ts": "2026-09-01T13:21:39Z",
+  "status": 200,
+  "bytes": 2798253,
+  "secs": 1.1,
+  "sha256": "ed240b6c102e650fa21b6271ba7076405c3f7e921b003fb32cedba65ea912c47",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/86-6a266e186d3581780903448.pdf",
+  "ts": "2026-09-01T13:21:40Z",
+  "status": 200,
+  "bytes": 8192941,
+  "secs": 1.88,
+  "sha256": "9f059d797a67be315f106698a19fffc083d477a8586ae95177ef085fdf821ec6",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/87-6a266e78b86651780903544.pdf",
+  "ts": "2026-09-01T13:21:42Z",
+  "status": 200,
+  "bytes": 5743266,
+  "secs": 1.07,
+  "sha256": "70c7377f0ae1ca833853c79a9c0b2e638a4560d271f4a9a45b433d3d5f61fcdd",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/93-6a8425a18c8e71787045281.pdf",
+  "ts": "2026-09-01T13:21:44Z",
+  "status": 200,
+  "bytes": 6962869,
+  "secs": 1.2,
+  "sha256": "8c527d3e8b16401fda8c63cca7f75146f7cb6318496a2a12eedc76d64f33ed5b",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/94-6a842664d99861787045476.pdf",
+  "ts": "2026-09-01T13:21:45Z",
+  "status": 200,
+  "bytes": 8787319,
+  "secs": 4.39,
+  "sha256": "01b896f540204c1ac0cf785cbc4464f80f414dba88e6aa3220c30956a424ff6c",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/95-6a8427e9d627c1787045865.pdf",
+  "ts": "2026-09-01T13:21:50Z",
+  "status": 200,
+  "bytes": 6634308,
+  "secs": 4.17,
+  "sha256": "256ec628bc2e2a7976e07af3dbd33482b711e0d783acc0c48795b7885d064a4e",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/financialStatement/96-6a842f450863c1787047749.pdf",
+  "ts": "2026-09-01T13:21:54Z",
+  "status": 200,
+  "bytes": 5883967,
+  "secs": 0.98,
+  "sha256": "f366e1ef520472daa5faeba3e0eb80c90a2c39935044ad4f8e0cda9252ce2cb8",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/20-6628b8f12ced81713944817.pdf",
+  "ts": "2026-09-01T13:21:55Z",
+  "status": 200,
+  "bytes": 663610,
+  "secs": 0.73,
+  "sha256": "0b599be1fbbca1b40b39facb09e42ef7cec242f8b8a28e223b3cff7f96f3212b",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/28-66f121c43f3721727078852.pdf",
+  "ts": "2026-09-01T13:21:56Z",
+  "status": 200,
+  "bytes": 1125470,
+  "secs": 0.82,
+  "sha256": "5a55c044b4d93617ef572f85e64288ba77ff8a449786e958319236a6c7ecc084",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/31-68da28e1651521759127777.pdf",
+  "ts": "2026-09-01T13:21:56Z",
+  "status": 200,
+  "bytes": 922683,
+  "secs": 2.91,
+  "sha256": "ecab3a67224dd3a774dbca3b4708ce6846e8c5282ac7a050e2ead85152b288d7",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/32-68da31c71e7b41759130055.pdf",
+  "ts": "2026-09-01T13:21:59Z",
+  "status": 200,
+  "bytes": 486478,
+  "secs": 3.79,
+  "sha256": "48ee615e6032e9519b62a140d040c4e9f48ac2d06a6fd503ea5428930f2b72e2",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/34-69ca3d39553ba1774861625.pdf",
+  "ts": "2026-09-01T13:22:03Z",
+  "status": 200,
+  "bytes": 784792,
+  "secs": 0.74,
+  "sha256": "64c5e62ddda732c36590683f5485c8c4a8a6f4992d4d9caccc0ced684a636205",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/generalAssembly/35-69ca3d737e15f1774861683.pdf",
+  "ts": "2026-09-01T13:22:04Z",
+  "status": 200,
+  "bytes": 474530,
+  "secs": 0.79,
+  "sha256": "3b00a702802f973a11172ef84aeedbfd09d1e43b86304cfc8278880f512ddd6d",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/irPresentation/3-64185343f09651679315779.pdf",
+  "ts": "2026-09-01T13:22:05Z",
+  "status": 200,
+  "bytes": 1756070,
+  "secs": 4.72,
+  "sha256": "7af44733167f63e13a0f1444ab76073f06bca8e83df32f812bc8c2551e96bc99",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/sustainability/17-68b010be067611756369086.pdf",
+  "ts": "2026-09-01T13:22:09Z",
+  "status": 200,
+  "bytes": 2665823,
+  "secs": 0.82,
+  "sha256": "471bc2952ac6294add97e2af9ca421ad23c2be2cc6931f70f8549643c6b71ddb",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/sustainability/18-68b0120c379561756369420.pdf",
+  "ts": "2026-09-01T13:22:10Z",
+  "status": 200,
+  "bytes": 4188032,
+  "secs": 0.94,
+  "sha256": "d9c600233e27a0e226866fdb51c813e696f3d020bdb083ebc9069de536e98803",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/sustainability/19-69240c8d2ebf01763970189.pdf",
+  "ts": "2026-09-01T13:22:11Z",
+  "status": 200,
+  "bytes": 4160475,
+  "secs": 4.11,
+  "sha256": "30c11ad64b99895fe367d248c5dceebaa6708ecc4050236d29dee8f3f2b54936",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/sustainability/sustainability2020.pdf",
+  "ts": "2026-09-01T13:22:15Z",
+  "status": 200,
+  "bytes": 9434977,
+  "secs": 1.05,
+  "sha256": "e5c2b8f1a4d1f18ceb5f5e15336a075afbc5f3ca9937f69ea23d8a87bcd1640a",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/investor/sustainability/sustainabilty2021.pdf",
+  "ts": "2026-09-01T13:22:17Z",
+  "status": 200,
+  "bytes": 3589801,
+  "secs": 0.93,
+  "sha256": "8849c3e65695a6dd38e536fd23e6ce2ba0bdf6bbc2033dfb21121f3dfb751e99",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/media/annual/1-66e9834e57b561726579534.pdf",
+  "ts": "2026-09-01T13:22:18Z",
+  "status": 200,
+  "bytes": 4744942,
+  "secs": 4.09,
+  "sha256": "d76f0d2e10cecfab8a175df284cccd1fd58790e0b43de475c9fc1833cb17f93a",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/media/annual/2-66eabe82c3a971726660226.pdf",
+  "ts": "2026-09-01T13:22:22Z",
+  "status": 200,
+  "bytes": 4218149,
+  "secs": 4.1,
+  "sha256": "93a6ee36f318b967ba9b9b4ac859882fa0c58e79459dcbcd671e8248e6844e7e",
+  "is_pdf": true,
+  "ok": true
+ },
+ {
+  "url": "https://amoceg.com/reports/media/annual/3-68dcff3b53c341759313723.pdf",
+  "ts": "2026-09-01T13:22:26Z",
+  "status": 200,
+  "bytes": 1951857,
+  "secs": 3.02,
+  "sha256": "55afc53a7258c72a08eadbfd83dc713547f9985ab835503521a4d3a767578555",
+  "is_pdf": true,
+  "ok": true
+ }
+]
