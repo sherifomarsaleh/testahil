@@ -212,6 +212,60 @@ def main():
         print("  [ok]   calibrated-stocks table carries all %d run(s), each "
               "with a class and an after price" % len(runs))
 
+    # 8 — EVERY BLOCKED RUN SAYS WHY, AND THE DOCUMENT CARRIES IT [per
+    # instruction, 01-Sep-2026]. A run that stopped is evidence, and a stopped
+    # run missing from the document makes the calibrated list read as though
+    # nothing else was attempted. Anchored on the pending directories, so a
+    # blocked run that never recorded a reason fails rather than vanishing.
+    pend = sorted(d for d in os.listdir(ENGINE)
+                  if d.endswith("_walkforward_pending")
+                  and os.path.isdir(os.path.join(ENGINE, d)))
+    for b in BLR.blocked():
+        if b.get("_incomplete"):
+            fails.append("%s is blocked but its run recorded no blocked.json, "
+                         "so the document cannot say why" % b["ticker"])
+            continue
+        for f in ("blocked_at", "reason_short", "reason_full",
+                  "documents_needed"):
+            if not b.get(f):
+                fails.append("%s/blocked.json: %s is empty — a blocked run "
+                             "must state what stopped it and what would "
+                             "unblock it" % (b["ticker"], f))
+        if ("### %s" % b["ticker"]) not in md:
+            fails.append("%s is blocked but absent from the document" % b["ticker"])
+    if pend and not any(f.startswith(tuple(b["ticker"] for b in BLR.blocked()))
+                        for f in fails):
+        print("  [ok]   %d blocked run(s), each stating why and what would "
+              "unblock it" % len(pend))
+
+    # 9 — THE REMAINING LIST AGREES WITH THE LIVE QUEUE. The standing rule is
+    # that the queue is never WRITTEN in a document; this one is COMPUTED at
+    # build time, and this check is what makes that distinction real rather
+    # than a claim — a document built before the last run would disagree here.
+    rem = BLR.remaining()
+    for q in rem["todo"][:400]:
+        if q["ticker"] in rem["done"] or q["ticker"] in rem["blocked"]:
+            fails.append("%s is listed as still to do but has already been "
+                         "run or is blocked" % q["ticker"])
+    counted = sum(len(v) for v in rem["by_market"].values())
+    if counted != len(rem["todo"]):
+        fails.append("remaining list splits %d names into %d market rows"
+                     % (len(rem["todo"]), counted))
+    if len(rem["todo"]) + len(rem["done"]) + len(rem["blocked"]) != rem["total"]:
+        fails.append("done %d + blocked %d + remaining %d does not equal the "
+                     "%d names in the queue"
+                     % (len(rem["done"]), len(rem["blocked"]),
+                        len(rem["todo"]), rem["total"]))
+    for q in rem["todo"][:5]:
+        if q["ticker"] not in md:
+            fails.append("%s is still to be calibrated but is absent from the "
+                         "document's remaining list" % q["ticker"])
+    if not any("remaining" in f or "still to" in f for f in fails):
+        print("  [ok]   remaining list reconciles: %d done + %d blocked + %d "
+              "to go = %d in the queue"
+              % (len(rem["done"]), len(rem["blocked"]), len(rem["todo"]),
+                 rem["total"]))
+
     c = LR.counts()
     print("\n  scope   : ALL %d · CLASS %d · STOCK %d"
           % (c["ALL"], c["CLASS"], c["STOCK"]))

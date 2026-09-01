@@ -80,7 +80,17 @@ diff-only summary leaves that copy silently behind.
   figure cannot drift between them. A name with a run on disk and no row FAILS the gate
   rather than being quietly absent [R-ENF-04]; where the pre-calibration number came from no
   current-standard study its provenance is unknown and the row says so instead of printing a
-  movement.
+  movement. THE TABLE OPENS THE DOCUMENT [same instruction] and carries TWO COMPANION
+  SECTIONS beside it: **stocks attempted and BLOCKED**, each stating what stopped it and what
+  would unblock it — read from that run's own `blocked.json`, so the reason is recorded by the
+  run that hit it and a later session cannot quietly soften it, and a blocked run with no
+  reason FAILS; and **stocks still to be calibrated**. That last one is the ONE PLACE the
+  campaign queue may appear in a document, and it is not an exception to "THE QUEUE IS NEVER
+  WRITTEN IN A DOCUMENT" — that rule bars a queue kept BY HAND, which goes stale the moment a
+  name is run and looks authoritative the whole time it is wrong. This list is RESOLVED FROM
+  `campaign_queue.py` AT BUILD TIME and a name leaves it the moment its run directory exists.
+  The gate reconciles done + blocked + remaining against the queue's own total, so a document
+  built before the last run FAILS rather than printing a stale list.
 - **What every study taught us, and how far it travels → `engine/Lessons_Register.md` (and
   `.docx`) [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE:
   `python3 engine/lessons.py TICKER --class CLASS` returns exactly what binds on that name —

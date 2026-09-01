@@ -99,8 +99,164 @@ def calibrated():
     return rows
 
 
+def blocked():
+    """Names we tried to calibrate and could not, and why.  [per instruction,
+    01-Sep-2026 — "mention the stocks like EMFD that you tried calibrating but
+    could not and state why"]
+
+    A run that stopped is evidence too, and leaving it out makes the calibrated
+    list read as though nothing else was attempted. Each blocked run states its
+    own status in blocked.json, in its own directory, so the reason is recorded
+    by the run that hit it rather than retyped here from memory — and so a
+    later session cannot quietly soften it.
+    """
+    import json
+    out = []
+    for d in sorted(os.listdir(HERE)):
+        if not d.endswith("_walkforward_pending"):
+            continue
+        p = os.path.join(HERE, d, "blocked.json")
+        if not os.path.exists(p):
+            out.append({"ticker": d.split("_")[0].upper(),
+                        "reason_short": "blocked, but the run recorded no "
+                                        "blocked.json saying why",
+                        "_incomplete": True})
+            continue
+        b = json.load(open(p, encoding="utf-8"))
+        b["_incomplete"] = False
+        out.append(b)
+    return out
+
+
+def remaining():
+    """What is still to be calibrated, read LIVE from the campaign queue.
+
+    THE STANDING RULE IS THAT THE QUEUE IS NEVER WRITTEN IN A DOCUMENT, and it
+    is a good rule: a typed list goes stale the moment a name is run, and it
+    looks authoritative the whole time it is wrong. This does not type it. The
+    queue is resolved from campaign_queue.py at BUILD time, every build, and a
+    name drops off it the moment its run directory exists — so the list cannot
+    disagree with the queue unless the document was never rebuilt, which the
+    gate catches. Rendering a computed list is not the failure that rule
+    guards against; remembering one is.
+    """
+    sys.path.insert(0, HERE)
+    import campaign_queue as cq
+    queue, excluded, standard, _ = cq.build_queue()
+    done = {d[:-len("_walkforward")].upper() for d in os.listdir(HERE)
+            if d.endswith("_walkforward")
+            and os.path.isdir(os.path.join(HERE, d))}
+    blocked_tk = {b["ticker"] for b in blocked()}
+    todo = [q for q in queue
+            if q["ticker"] not in done and q["ticker"] not in blocked_tk]
+    by_market = {}
+    for q in todo:
+        by_market.setdefault(q["market_label"], []).append(q)
+    return {"todo": todo, "by_market": by_market, "excluded": excluded,
+            "standard": standard, "total": len(queue), "done": sorted(done),
+            "blocked": sorted(blocked_tk)}
+
+
 def money(v, ccy):
     return "—" if v is None else "%s %s" % (ccy, ("%.2f" % v).rstrip("0").rstrip("."))
+
+
+def status_block():
+    """Where the calibration campaign stands — done, blocked, and still to do.
+
+    AT THE FRONT [per instruction, 01-Sep-2026 — "I want you to bring this
+    table to the start"]. All three parts are computed at build time: the
+    fair values from fv_movement.json, the blocked runs from each run's own
+    blocked.json, the remainder from the live campaign queue. Nothing here is
+    typed, so nothing here can go stale while looking authoritative.
+    """
+    cal, blk, rem = calibrated(), blocked(), remaining()
+    b = ["\n---\n\n# Where the calibration stands\n\n"]
+
+    b.append("**%d calibrated · %d attempted and blocked · %d still to go**, "
+             "of %d names in the book.\n\n"
+             % (len(cal), len(blk), len(rem["todo"]), rem["total"]))
+
+    # ---- done -----------------------------------------------------------
+    b.append("## Stocks that have been calibrated\n\n"
+             "*Generated from the fair-value store, never typed — the same "
+             "figures the fair-value register renders, so the two cannot "
+             "disagree.*\n\n")
+    b.append("| Stock | Market | Class | Fair price before | "
+             "Fair price after | Move |\n|---|---|---|---|---|---|\n")
+    for r in cal:
+        b.append("| **%s** | %s | %s | %s | %s | %s |\n"
+                 % (r["ticker"], r["market"], r["klass"],
+                    money(r["before"], r["ccy"]), money(r["after"], r["ccy"]),
+                    "—" if r["move"] is None else "%+.1f%%" % r["move"]))
+    for r in [x for x in cal if x["note"]]:
+        b.append("\n- **%s** — %s.\n" % (r["ticker"], r["note"]))
+    b.append("\nThe fair price is the **central case**. Where a study "
+             "publishes several cases and no single point, this column carries "
+             "the median of them so the before-and-after can be compared at "
+             "all; the study's own range is the thing to quote, never this "
+             "cell. A move against a before-price that came from no "
+             "current-standard study measures a new study against a number of "
+             "unknown provenance, and the note above says so where that is the "
+             "case.\n\n")
+
+    # ---- blocked --------------------------------------------------------
+    b.append("## Stocks we tried to calibrate and could not\n\n"
+             "*A run that stopped is evidence too. Leaving these out would "
+             "make the list above read as though nothing else was attempted. "
+             "Each reason is recorded by the run that hit it, in its own "
+             "directory, rather than retyped here.*\n\n")
+    if not blk:
+        b.append("None. Every name attempted so far has completed.\n\n")
+    for x in blk:
+        b.append("### %s — %s\n\n" % (x["ticker"], x.get("company", "")))
+        b.append("**Blocked at %s.** %s.\n\n"
+                 % (x.get("blocked_at", "an unrecorded step"),
+                    x.get("reason_short", "no reason recorded")))
+        if x.get("reason_full"):
+            b.append("%s\n\n" % x["reason_full"])
+        if x.get("documents_needed"):
+            b.append("**What would unblock it:**\n\n")
+            for d in x["documents_needed"]:
+                b.append("- %s\n" % d)
+            b.append("\n")
+        if x.get("would_still_be_short"):
+            b.append("**And what would still be missing.** %s\n\n"
+                     % x["would_still_be_short"])
+        if x.get("what_was_still_learned"):
+            b.append("**What was learned anyway.** %s"
+                     % x["what_was_still_learned"])
+            if x.get("lessons"):
+                b.append(" (%s)" % ", ".join(x["lessons"]))
+            b.append("\n\n")
+        if x.get("not_filed"):
+            b.append("**What could not be recorded.** %s\n\n" % x["not_filed"])
+
+    # ---- remaining ------------------------------------------------------
+    b.append("## Stocks still to be calibrated\n\n"
+             "*Resolved from the campaign queue at the moment this document "
+             "was built, in the order the campaign runs them — never written "
+             "down and kept by hand. A name leaves this list the moment its "
+             "run exists.*\n\n")
+    b.append("| Market | Still to go | Names, in queue order |\n"
+             "|---|---|---|\n")
+    for label, rows in rem["by_market"].items():
+        b.append("| %s | %d | %s |\n"
+                 % (label, len(rows), ", ".join(r["ticker"] for r in rows)))
+    if rem["excluded"]:
+        ex = ", ".join(e[0] if isinstance(e, (tuple, list)) else str(e)
+                       for e in rem["excluded"])
+        why = (rem["excluded"][0][1]
+               if isinstance(rem["excluded"][0], (tuple, list))
+               else "excluded by construction")
+        b.append("\n%d name%s excluded from the campaign by construction "
+                 "(%s) — %s, so there is no forecasting method to test.\n"
+                 % (len(rem["excluded"]),
+                    "" if len(rem["excluded"]) == 1 else "s", ex, why))
+    b.append("\nThe campaign stops after the first market to review whether "
+             "the method generalises before the next one begins, so this list "
+             "is an order rather than a schedule.\n")
+    return "".join(b)
 
 
 HEAD = """# The Lessons Register
@@ -186,6 +342,7 @@ def build():
     LR.assert_lessons_register()
     c = LR.counts()
     body = [HEAD]
+    body.append(status_block())
     pop = population()
     body.append(
         "**%d lessons**, of which %d bind on every study, %d on a class of "
@@ -231,34 +388,6 @@ def build():
                     % (len(outstanding),
                        ", ".join("%s (%s)" % (x["id"], x["headline"].rstrip("."))
                                  for x in outstanding)))
-
-    cal = calibrated()
-    body.append("\n---\n\n# Stocks that have been calibrated\n\n"
-                "*One row per name that has been through a fundamental "
-                "calibration run. Generated from the fair-value store, never "
-                "typed — the same figures the fair-value register renders, so "
-                "the two cannot disagree.*\n\n")
-    body.append("| Stock | Market | Class | Fair price before | "
-                "Fair price after | Move |\n|---|---|---|---|---|---|\n")
-    for r in cal:
-        body.append("| **%s** | %s | %s | %s | %s | %s |\n"
-                    % (r["ticker"], r["market"], r["klass"],
-                       money(r["before"], r["ccy"]),
-                       money(r["after"], r["ccy"]),
-                       "—" if r["move"] is None else "%+.1f%%" % r["move"]))
-    notes = [r for r in cal if r["note"]]
-    if notes:
-        body.append("\n")
-        for r in notes:
-            body.append("- **%s** — %s.\n" % (r["ticker"], r["note"]))
-    body.append(
-        "\nThe fair price is the **central case**. Where a study publishes "
-        "several cases and no single point, this column carries the median of "
-        "them so the before-and-after can be compared at all; the study's own "
-        "range is the thing to quote, never this cell. A move against a "
-        "before-price that came from no current-standard study measures a new "
-        "study against a number of unknown provenance, and the row above says "
-        "so where that is the case.\n")
 
     body.append("\n---\n\n# Lessons that bind on EVERY study\n\n"
                 "*Read these before starting any study, of any company, in any "

@@ -56,6 +56,65 @@ tested.
 
 ## What is in here, and what is honestly missing
 
+
+---
+
+# Where the calibration stands
+
+**2 calibrated · 1 attempted and blocked · 87 still to go**, of 90 names in the book.
+
+## Stocks that have been calibrated
+
+*Generated from the fair-value store, never typed — the same figures the fair-value register renders, so the two cannot disagree.*
+
+| Stock | Market | Class | Fair price before | Fair price after | Move |
+|---|---|---|---|---|---|
+| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | — | EGP 15.89 | — |
+| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 147.12 | EGP 39.33 | -73.3% |
+
+- **PHDC** — before-calibration price not recoverable — run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement..
+
+The fair price is the **central case**. Where a study publishes several cases and no single point, this column carries the median of them so the before-and-after can be compared at all; the study's own range is the thing to quote, never this cell. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the note above says so where that is the case.
+
+## Stocks we tried to calibrate and could not
+
+*A run that stopped is evidence too. Leaving these out would make the list above read as though nothing else was attempted. Each reason is recorded by the run that hit it, in its own directory, rather than retyped here.*
+
+### EMFD — Emaar Misr for Development Company (S.A.E.)
+
+**Blocked at [R-FCAL-01] section 1 — source integrity.** the three most recent fiscal years cannot be obtained from the company's own audited statements or its own investor-relations documents.
+
+The company's investor-relations archive publishes financial statements from FY2013 to H1-2021 and then stops. Everything from FY2021 onward — the three most recent fiscal years and every quarter of the current one — is absent from it. The exchange holds the later filings and answers automated requests with an anti-bot page. The company's own embedded IR platform declares its data service on port 8080, which this environment's egress does not carry; the same host answers normally on the standard port, so the restriction is ours and not the company's. Aggregator figures for the missing years are readily available and were deliberately not used, because a data vendor may not be the source of a company's own reported historicals — a training record built on them would measure our method against somebody else's transcription.
+
+**What would unblock it:**
+
+- Audited annual financial statements for FY2023, FY2024 and FY2025
+- Every disclosed quarter of FY2026 (reviewed interim statements)
+- Results releases or investor presentations for those same periods — the statements carry no unit counts
+
+**And what would still be missing.** Even with those documents the middle of the window stays hollow: delivered-unit counts exist for FY2015-FY2017 and for FY2018, FY2019 and FY2020 they appear nowhere on the company's register, so the three drivers that carry this class are unscoreable across those years and interpolating a count is not permitted.
+
+**What was learned anyway.** The panel that could be built was built and footed — profit or loss FY2012-FY2020, balance sheet FY2016-FY2020 — and eleven lessons came out of it. They are recorded as found while building, not as walk-forward findings, because no forecast was ever scored. (L-034, L-035, L-036, L-037, L-038, L-039, L-040, L-041, L-042, L-115, L-116)
+
+**What could not be recorded.** Company-specific findings could not be filed at single-company scope, because such a lesson must name a real study directory and engine/emfd_study/ does not exist. They are held in this directory and in the Fundamental Driver Ledger until it does.
+
+## Stocks still to be calibrated
+
+*Resolved from the campaign queue at the moment this document was built, in the order the campaign runs them — never written down and kept by hand. A name leaves this list the moment its run exists.*
+
+| Market | Still to go | Names, in queue order |
+|---|---|---|
+| Egypt / EGX | 34 | AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, SCEM, SWDY, ABUK, ADIB, BTFH, CCAP, CLHO, COMI, DSCW, EFID, EFIH, EGAL, ETEL, FWRY, HELI, HRHO, ISPH, JUFO, KABO, LCSW, OCDI, OIH, ORAS, ORHD, ORWE, PRDC, RAYA, RMDA |
+| UAE / ADX + DFM | 28 | ADNOCDIST, ADNOCDRILL, ADNOCLS, AIRARABIA, AMR, BOROUGE, DU, EMPOWER, FERTIGLB, MODON, 2POINTZERO, ADCB, ADIBUAE, ADNOCGAS, AGTHIA, ALDAR, ALPHADHABI, BURJEEL, DEWA, DIB, EAND, EMAAR, EMAARDEV, ENBD, FAB, IHC, LULU, SALIK |
+| Saudi Arabia / Tadawul | 13 | RIYADHCABLE, SAVOLA, STC, ACWA, ALINMA, ALRAJHI, ARAMCO, ELM, EXTRA, MAADEN, RIBL, SABIC, SNB |
+| Qatar / QSE | 3 | IQCD, QGTS, QNB |
+| India / NSE | 3 | INFY, RELIANCE, TMPV |
+| Korea / KRX | 3 | KAKAO, LGES, SAMSUNG |
+| United States / NASDAQ | 3 | AAPL, NVDA, TSLA |
+
+3 names excluded from the campaign by construction (GOLD, SILVER, PLATINUM) — metals - no issuer, no statements, no drivers, so there is no forecasting method to test.
+
+The campaign stops after the first market to review whether the method generalises before the next one begins, so this list is an order rather than a schedule.
 **70 lessons**, of which 47 bind on every study, 18 on a class of company, and 5 on a single name.
 
 By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
@@ -72,21 +131,6 @@ They test different machinery on different evidence, and the first edition of th
 **The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
-
----
-
-# Stocks that have been calibrated
-
-*One row per name that has been through a fundamental calibration run. Generated from the fair-value store, never typed — the same figures the fair-value register renders, so the two cannot disagree.*
-
-| Stock | Market | Class | Fair price before | Fair price after | Move |
-|---|---|---|---|---|---|
-| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | — | EGP 15.89 | — |
-| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 147.12 | EGP 39.33 | -73.3% |
-
-- **PHDC** — before-calibration price not recoverable — run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement..
-
-The fair price is the **central case**. Where a study publishes several cases and no single point, this column carries the median of them so the before-and-after can be compared at all; the study's own range is the thing to quote, never this cell. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the row above says so where that is the case.
 
 ---
 

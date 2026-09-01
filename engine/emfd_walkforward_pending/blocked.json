@@ -1,0 +1,24 @@
+{
+  "ticker": "EMFD",
+  "company": "Emaar Misr for Development Company (S.A.E.)",
+  "market": "EG",
+  "exchange": "EGX",
+  "class": "real-estate developer, off-plan, completed contract to FY2020, EAS 48 from FY2021",
+  "class_registered": false,
+  "class_note": "NOT the registered percentage-of-completion class for the pre-2021 window. The company's own results releases say revenue was recognised on the completed-contract method, so a same-class prior taken from a percentage-of-completion developer does not transfer.",
+  "opened": "2026-09-01",
+  "blocked_at": "[R-FCAL-01] section 1 — source integrity",
+  "reason_short": "the three most recent fiscal years cannot be obtained from the company's own audited statements or its own investor-relations documents",
+  "reason_full": "The company's investor-relations archive publishes financial statements from FY2013 to H1-2021 and then stops. Everything from FY2021 onward — the three most recent fiscal years and every quarter of the current one — is absent from it. The exchange holds the later filings and answers automated requests with an anti-bot page. The company's own embedded IR platform declares its data service on port 8080, which this environment's egress does not carry; the same host answers normally on the standard port, so the restriction is ours and not the company's. Aggregator figures for the missing years are readily available and were deliberately not used, because a data vendor may not be the source of a company's own reported historicals — a training record built on them would measure our method against somebody else's transcription.",
+  "documents_needed": [
+    "Audited annual financial statements for FY2023, FY2024 and FY2025",
+    "Every disclosed quarter of FY2026 (reviewed interim statements)",
+    "Results releases or investor presentations for those same periods — the statements carry no unit counts"
+  ],
+  "would_still_be_short": "Even with those documents the middle of the window stays hollow: delivered-unit counts exist for FY2015-FY2017 and for FY2018, FY2019 and FY2020 they appear nowhere on the company's register, so the three drivers that carry this class are unscoreable across those years and interpolating a count is not permitted.",
+  "what_was_still_learned": "The panel that could be built was built and footed — profit or loss FY2012-FY2020, balance sheet FY2016-FY2020 — and eleven lessons came out of it. They are recorded as found while building, not as walk-forward findings, because no forecast was ever scored.",
+  "lessons": ["L-034", "L-035", "L-036", "L-037", "L-038", "L-039", "L-040", "L-041", "L-042", "L-115", "L-116"],
+  "not_filed": "Company-specific findings could not be filed at single-company scope, because such a lesson must name a real study directory and engine/emfd_study/ does not exist. They are held in this directory and in the Fundamental Driver Ledger until it does.",
+  "evidence": "engine/emfd_walkforward_pending/SOURCE_REGISTER_01-09-2026.md logs every route attempted and its outcome.",
+  "fair_value_untouched": true
+}

@@ -125,6 +125,93 @@ def lesson(doc, x):
          color=MUTED, space_after=8, left=0.5)
 
 
+def status_section(doc):
+    """Where the campaign stands — done, blocked, still to go. At the front.
+
+    Every figure comes from the SAME functions the Markdown calls, so the two
+    documents cannot disagree about what has been calibrated, what stopped, or
+    what is left. Three renderings, one source, as everywhere else here.
+    """
+    cal, blk, rem = MD.calibrated(), MD.blocked(), MD.remaining()
+
+    doc.add_heading("Where the calibration stands", level=1)
+    para(doc, "%d calibrated  ·  %d attempted and blocked  ·  %d still to go, "
+              "of %d names in the book."
+         % (len(cal), len(blk), len(rem["todo"]), rem["total"]),
+         size=11, bold=True, space_after=10)
+
+    doc.add_heading("Stocks that have been calibrated", level=2)
+    para(doc, "Generated from the fair-value store, never typed — the same "
+              "figures the fair-value register renders, so the two cannot "
+              "disagree.", italic=True, color=MUTED, size=9)
+    table(doc,
+          ["Stock", "Market", "Class", "Fair price before",
+           "Fair price after", "Move"],
+          [[r["ticker"], r["market"], r["klass"],
+            MD.money(r["before"], r["ccy"]), MD.money(r["after"], r["ccy"]),
+            "—" if r["move"] is None else "%+.1f%%" % r["move"]]
+           for r in cal],
+          [2.0, 2.2, 5.4, 2.9, 2.9, 1.8])
+    for r in [x for x in cal if x["note"]]:
+        para(doc, "%s — %s." % (r["ticker"], r["note"]), size=9, color=MUTED)
+    para(doc, "The fair price is the central case. Where a study publishes "
+              "several cases and no single point, this column carries the "
+              "median of them so the before-and-after can be compared at all; "
+              "the study's own range is the thing to quote, never this cell.",
+         size=9, color=MUTED)
+
+    doc.add_heading("Stocks we tried to calibrate and could not", level=2)
+    para(doc, "A run that stopped is evidence too. Leaving these out would "
+              "make the list above read as though nothing else was attempted.",
+         italic=True, color=MUTED, size=9)
+    if not blk:
+        para(doc, "None. Every name attempted so far has completed.")
+    for x in blk:
+        para(doc, "%s — %s" % (x["ticker"], x.get("company", "")),
+             bold=True, size=11, space_after=3)
+        para(doc, "Blocked at %s. %s."
+             % (x.get("blocked_at", "an unrecorded step"),
+                x.get("reason_short", "no reason recorded")),
+             bold=True, color=RULE, size=10, space_after=4)
+        if x.get("reason_full"):
+            para(doc, x["reason_full"], size=10)
+        if x.get("documents_needed"):
+            para(doc, "What would unblock it:", bold=True, size=9.5,
+                 space_after=2)
+            for d in x["documents_needed"]:
+                para(doc, "•  " + d, size=9.5, left=0.5, space_after=2)
+        if x.get("would_still_be_short"):
+            para(doc, "And what would still be missing.  "
+                 + x["would_still_be_short"], size=9.5, color=MUTED)
+        if x.get("what_was_still_learned"):
+            para(doc, "What was learned anyway.  " + x["what_was_still_learned"]
+                 + (("  (%s)" % ", ".join(x["lessons"]))
+                    if x.get("lessons") else ""), size=9.5, color=MUTED)
+        if x.get("not_filed"):
+            para(doc, "What could not be recorded.  " + x["not_filed"],
+                 size=9.5, color=MUTED)
+
+    doc.add_heading("Stocks still to be calibrated", level=2)
+    para(doc, "Resolved from the campaign queue at the moment this document "
+              "was built, in the order the campaign runs them — never written "
+              "down and kept by hand. A name leaves this list the moment its "
+              "run exists.", italic=True, color=MUTED, size=9)
+    table(doc, ["Market", "To go", "Names, in queue order"],
+          [[label, str(len(rows)), ", ".join(r["ticker"] for r in rows)]
+           for label, rows in rem["by_market"].items()],
+          [3.6, 1.4, 12.2])
+    if rem["excluded"]:
+        ex = ", ".join(e[0] if isinstance(e, (tuple, list)) else str(e)
+                       for e in rem["excluded"])
+        para(doc, "%d names excluded from the campaign by construction (%s): "
+                  "no issuer, no financial statements and no drivers, so there "
+                  "is no forecasting method to test."
+             % (len(rem["excluded"]), ex), size=9, color=MUTED)
+    para(doc, "The campaign stops after the first market to review whether the "
+              "method generalises before the next begins, so this list is an "
+              "order rather than a schedule.", size=9, color=MUTED)
+
+
 def build(path=OUT):
     LR.assert_lessons_register()
     c = LR.counts()
@@ -154,6 +241,9 @@ def build(path=OUT):
     r2.font.size = Pt(10.5); r2.font.color.rgb = INK
     p.paragraph_format.space_after = Pt(14)
 
+    status_section(doc)
+
+    doc.add_page_break()
     doc.add_heading("How to read this", level=1)
     para(doc, "A lesson is useless until you know how far it carries. Every "
               "entry is therefore tagged with one of three scopes, and the "
@@ -236,36 +326,6 @@ def build(path=OUT):
              % (len(outstanding),
                 "; ".join("%s — %s" % (x["id"], x["headline"].rstrip("."))
                           for x in outstanding)))
-
-    # The calibrated-stocks table [per instruction, 01-Sep-2026]. Rendered from
-    # the SAME builder the Markdown uses, reading the SAME fair-value store, so
-    # the Word file cannot carry a figure the Markdown does not — the two are
-    # renderings of one source, never two records of one fact.
-    doc.add_page_break()
-    doc.add_heading("Stocks that have been calibrated", level=1)
-    para(doc, "One row per name that has been through a fundamental "
-              "calibration run. Generated from the fair-value store, never "
-              "typed.", italic=True, color=MUTED)
-    cal = MD.calibrated()
-    table(doc,
-          ["Stock", "Market", "Class", "Fair price before",
-           "Fair price after", "Move"],
-          [[r["ticker"], r["market"], r["klass"],
-            MD.money(r["before"], r["ccy"]),
-            MD.money(r["after"], r["ccy"]),
-            "—" if r["move"] is None else "%+.1f%%" % r["move"]]
-           for r in cal],
-          [2.0, 2.2, 5.4, 2.9, 2.9, 1.8])
-    for r in [x for x in cal if x["note"]]:
-        para(doc, "%s — %s." % (r["ticker"], r["note"]), size=9, color=MUTED)
-    para(doc, "The fair price is the central case. Where a study publishes "
-              "several cases and no single point, this column carries the "
-              "median of them so the before-and-after can be compared at all; "
-              "the study's own range is the thing to quote, never this cell. A "
-              "move against a before-price that came from no current-standard "
-              "study measures a new study against a number of unknown "
-              "provenance, and the notes above say so where that is the case.",
-         size=9, color=MUTED)
 
     doc.add_page_break()
     doc.add_heading("Lessons that bind on EVERY study", level=1)
