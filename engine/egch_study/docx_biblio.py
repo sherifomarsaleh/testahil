@@ -1,4 +1,4 @@
-"""EGCH_Bibliography_08-08-2026.docx — a standalone source register.
+"""EGCH_Bibliography_01-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -20,7 +20,6 @@ from inputs import V
 from docprops import strip_stub_counts
 LN = json.load(open('lenses.json'))
 EXJ = json.load(open('experts.json'))
-LIVE = json.load(open('live_data.json'))
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
@@ -101,7 +100,7 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('Testahil · Bibliography and source register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — 8 August 2026')
+r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — 1 September 2026')
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(0)
 
@@ -119,6 +118,10 @@ P("Obtained from the company's investor-relations page at kimaegypt.com, which s
   "itself and crossfooted against its own subtotals.", size=9.2, color=GREY)
 rows = [["Document", "Period", "Report date", "Auditor", "Retrieved", "What it sources"]]
 DOCS = [
+ ("Audited financial statements, ten annuals", "Years to 30 June 2009, 2010, 2011, 2013, 2014, 2016, 2018, 2019, 2020 and 2021 (with each prior year as comparative)",
+  "2009 to Nov 2021", "Central Auditing Organization", "1 Sep 2026",
+  "The eighteen-year reported history on which the forecasting method was tested before use; "
+  "not a source of any forecast driver"),
  ("Audited financial statements", "Year to 30 June 2022 (as comparatives)", "8 Oct 2023",
   "Central Auditing Organization; PKF Rashed Badr & Co", "8 Aug 2026",
   "Opening income statement and balance sheet of the four-year history"),
@@ -148,7 +151,9 @@ DOCS = [
 for d in DOCS:
     rows.append(list(d))
 table(rows, [1.5, 1.5, 0.85, 1.9, 0.75, 3.3], size=8.2)
-P("Also indexed on the same portal but not used: annual statements for 2009 to 2021, and "
+P("The ten annual statements for 2009 to 2021 in the first row were retrieved on 1 September "
+  "2026 and used only to test the forecasting method on the company's own history; no "
+  "forecast driver is taken from them. Also indexed on the same portal but not used: the "
   "quarterly board and shareholder-structure disclosure reports through 30 June 2026. The "
   "portal's audit-reports section holds only audit-committee reports and its newest item "
   "covers the period to 31 December 2021; the statutory auditor's reports for the years "
@@ -157,34 +162,34 @@ P("Also indexed on the same portal but not used: annual statements for 2009 to 2
 # ----------------------------------------------- 2. market and macro data ----
 H1("2.  Market data, sovereign data and macroeconomic series")
 rows = [["Item", "Value used", "As of", "Source", "Where it is used"]]
-dam = LIVE['damodaran_egypt']['value']
 rows += [
- ["Share price", "EGP 13.98", "6 Aug 2026", "Exchange close, from the study's own price library",
+ ["Share price", f"EGP {V('spot_price'):.2f}", "6 Aug 2026", "Exchange close, from the study's own price library",
   "Market capitalisation, the equity weight in the cost of capital, and every comparison"],
  ["Share count", f"{V('shares_outstanding'):,}", "30 Jun 2025", "Note 14 of the audited statements",
   "Per-share values. NOT taken from an exchange page or an aggregator"],
- ["Ten-year government bond yield", "23.00%", "6 Aug 2026", "Market quote",
+ ["Ten-year government bond yield", f"{V('rf_observed')*100:.2f}%", "6 Aug 2026", "Market quote",
   "The observed risk-free rate before normalisation"],
- ["Treasury bond coupon cross-check", "23.098%", "2026", "New EGP 120.9bn issue to May 2029",
+ ["Treasury bond coupon cross-check", f"{V('sovereign_bond_coupon')*100:.3f}%", "2026", "New EGP 120.9bn issue to May 2029",
   "Corroborates the sovereign yield above"],
- ["Sovereign rating and default spread", f"{dam['moodys_rating']}, "
-  f"{dam['rating_based_adjusted_default_spread']*100:.2f}%", "Jan 2026",
+ ["Sovereign rating and default spread", f"{V('moodys_rating')}, "
+  f"{V('sov_spread_rating')*100:.2f}%", "Jan 2026",
   "Country-premium workbook, Egypt row, read from the original file",
   "Normalisation of the risk-free rate, rating basis"],
- ["Country equity risk premium", f"{dam['rating_based_country_risk_premium']*100:.2f}%",
-  "Jan 2026", "Same workbook", "The country component of the equity premium"],
- ["Total equity risk premium", f"{dam['rating_based_total_equity_risk_premium']*100:.2f}% "
-  f"(rating) / {dam['cds_based_total_equity_risk_premium']*100:.2f}% (CDS)", "Jan 2026",
+ ["Country equity risk premium", f"{V('country_risk_premium_rating')*100:.2f}%",
+  "Jan 2026", "Same workbook: the total rating-basis premium less the mature-market premium",
+  "The country component of the equity premium"],
+ ["Total equity risk premium", f"{V('erp_rating')*100:.2f}% "
+  f"(rating) / {V('erp_cds_damodaran')*100:.2f}% (CDS)", "Jan 2026",
   "Same workbook, both columns", "Cost of equity, published on both bases"],
- ["Exchange rate", "EGP 49.79 per US dollar", "7 Aug 2026", "Market quote",
+ ["Exchange rate", f"EGP {V('usd_egp_spot'):.2f} per US dollar", "7 Aug 2026", "Market quote",
   "The starting point of the currency path"],
- ["Urea, granular, free on board Egypt", "US$545 per tonne", "7 Aug 2026",
+ ["Urea, granular, free on board Egypt", f"US${V('urea_fob_egypt'):.0f} per tonne", "7 Aug 2026",
   "Listed futures contract", "The export-price anchor and the crux sensitivity"],
- ["Egyptian headline inflation", "14.3% year on year", "June 2026", "Official statistics",
+ ["Egyptian headline inflation", f"{V('cpi_latest')*100:.1f}% year on year", "June 2026", "Official statistics",
   "The domestic cost escalator"],
- ["Policy rate", "19.00 / 20.00% corridor", "9 July 2026", "Central bank decision",
+ ["Policy rate", f"{V('policy_rate')*100:.2f}% main operation rate, mid-corridor", "9 July 2026", "Central bank decision",
   "Context for the rate path; the terminal build uses the inflation target, not this rate"],
- ["Treasury-bill yields", "24.86% to 25.52% by tenor", "6 Aug 2026",
+ ["Treasury-bill yields", f"{V('tbill_yield_range')[0]*100:.2f}% to {V('tbill_yield_range')[1]*100:.2f}% by tenor", "6 Aug 2026",
   "Secondary market quotes — the central bank's own auction pages were unreachable",
   "Context only; no valuation figure depends on them"],
 ]
@@ -259,7 +264,9 @@ for L in sorted(IRJ['layers']):
     for rr in sorted(rowsL, key=lambda x: x['key']):
         v = rr['value']
         if isinstance(v, list):
-            sval = ", ".join(f"{x:,.4g}" for x in v)
+            sval = ", ".join((f"{x:,.4f}".rstrip("0").rstrip(".") if abs(x) < 1000
+                              else f"{x:,.0f}") if isinstance(x, float) else str(x)
+                             for x in v)
         elif isinstance(v, float):
             sval = f"{v:,.4f}".rstrip('0').rstrip('.') if abs(v) < 1000 else f"{v:,.0f}"
         else:
@@ -368,6 +375,6 @@ P("Every historical figure in the study appears in the accompanying workbook on 
   "watch the valuation move; the two grids that do not redraw are labelled on their own "
   "sheets, because each of their cells is a separate run of the whole model.", size=9.5)
 
-doc.save('EGCH_Bibliography_08-08-2026.docx')
-strip_stub_counts('EGCH_Bibliography_08-08-2026.docx')
-print("wrote EGCH_Bibliography_08-08-2026.docx")
+doc.save('EGCH_Bibliography_01-09-2026.docx')
+strip_stub_counts('EGCH_Bibliography_01-09-2026.docx')
+print("wrote EGCH_Bibliography_01-09-2026.docx")

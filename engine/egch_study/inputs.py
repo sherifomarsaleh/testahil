@@ -104,9 +104,12 @@ I("sell_other_FY2425", 176.305, "EGP m",
 I("dep_charge_FY2425", 771.213, "EGP m", FS25 + ", note 6 fixed-asset register", "2025-09-24", "L1")
 I("amort_FY2425", 119.378, "EGP m", FS25 + ", note 10 usufruct intangible", "2025-09-24", "L1")
 I("dep_rate_kima2_machinery", 0.0395, "per year", FS25 + ", note 5-2 depreciation rates", "2025-09-24", "L1")
-I("fx_terminal_wedge", 0.025, "ratio",
-  "Constructed: steady-state gap between the terminal inflation target and the currency wedge, held "
-  "constant in the terminal year", "2026-08-09", "L5")
+I("fx_terminal_wedge", (1 + 0.050) / (1 + 0.024) - 1, "ratio",
+  "DERIVED: the steady-state currency depreciation the terminal inflation (5%) implies against "
+  "long-run US inflation (2.4%) on the relative purchasing-power identity — the same wedge that "
+  "carries the dollar debt in the terminal year. RE-SET 1 September 2026 from a typed 2.5% so that "
+  "the terminal currency, the terminal cost of debt and the last explicit year share one number.",
+  "2026-09-01", "L5")
 I("dep_escalation", 0.02, "per year",
   "Constructed: escalation on the existing depreciation base, reflecting ordinary additions to the plant "
   "already in service", "2026-08-09", "L5")
@@ -225,7 +228,6 @@ I("usd_egp_spot", 49.79, "EGP/US$", "Market quote", "2026-08-07", "L2")
 I("urea_fob_egypt", 545.0, "US$/t",
   "Listed granular urea free-on-board Egypt futures contract, front-month settle", "2026-08-07", "L2")
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
-I("erp_cds", 0.09424719428808419, "ratio", CPF + ", CDS basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
 I("erp_cds_damodaran", 0.0941, "ratio",
   CPF + ", equity risk premium based on the sovereign credit default swap. CORRECTED "
@@ -233,13 +235,27 @@ I("erp_cds_damodaran", 0.0941, "ratio",
   "not carry. Damodaran's Egypt row reads 3.41% and 9.41%.", "2026-01-05", "L4")
 I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
+I("country_risk_premium_rating", 0.13937694320020103 - 0.0423, "ratio",
+  "DERIVED: erp_rating - mature_market_erp, the country component of the rating-basis equity premium "
+  "(the workbook's own construction, recomputed rather than read from a second file)", "2026-01-01", "L2")
 I("moodys_rating", "Caa1", "rating", CPF + ", sovereign rating", "2026-01-01", "L2")
 
 # ===================================================== L3 — OFFICIAL EXTERNAL =
 I("cpi_latest", 0.143, "ratio", "Egyptian headline urban consumer price inflation, official statistics",
   "2026-06-30", "L3")
 I("policy_rate", 0.1950, "ratio", "Central bank main operation rate, corridor 19.00/20.00", "2026-07-09", "L3")
-I("cbe_inflation_target", 0.070, "ratio", "Central bank published medium-term inflation target", "2026-07-09", "L3")
+I("tbill_yield_range", [0.2486, 0.2552], "ratio",
+  "Egyptian treasury-bill yields by tenor, secondary-market quotes (the central bank's own auction pages were unreachable); context only, no valuation figure depends on them",
+  "2026-08-06", "L3")
+I("cbe_inflation_target", 0.070, "ratio", "Central bank published medium-term inflation target (7% +/-2 for Q4 2026)", "2026-07-09", "L3")
+I("inflation_terminal", 0.050, "ratio",
+  "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon "
+  "published target, 5% (+/-2) for Q4 2028 — the SAME figure terminal growth is set at. "
+  "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
+  "7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a "
+  "year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal "
+  "growth, the terminal risk-free rate and the terminal currency wedge now share one inflation.",
+  "2026-09-01", "L3")
 I("quota_domestic_share_2021", 0.55, "ratio",
   "Cabinet decision 170 of 24 November 2021 — share of output to the subsidised system", "2021-11-24", "L3")
 I("quota_free_local_2021", 0.10, "ratio", "Cabinet decision 170 of 24 November 2021", "2021-11-24", "L3")
@@ -408,9 +424,14 @@ for k, vals, unit, src in [
      "marginal gas-based producer."),
     ("export_usd_path_bull", [560.0, 545.0, 530.0, 520.0, 515.0], "US$/t",
      "Constructed: upside export price path: urea holds nearer the August 2026 quote."),
-    ("usd_egp_path", [51.9, 54.2, 56.7, 59.2, 61.9], "EGP/US$",
-     "Constructed: currency path at 4.5% depreciation a year from the spot rate — the same wedge used to "
-     "carry the dollar debt at local-equivalent cost."),
+    ("usd_egp_path", [round(49.79 * __import__("functools").reduce(lambda a, b: a * b,
+                      [(1 + c) / (1 + 0.024) for c in [0.100, 0.070, 0.060, 0.050, 0.050][:k + 1]]), 2)
+                      for k in range(5)], "EGP/US$",
+     "DERIVED, not typed: the spot rate carried forward year by year on the relative "
+     "purchasing-power identity (1 + Egyptian inflation on the path above) / (1 + long-run US "
+     "inflation) — the same identity that carries the dollar debt at local-equivalent cost. The "
+     "08-08-2026 edition typed a 4.5%-a-year path beside a derivation that produced a different "
+     "number in every year; the register now carries the derived path itself."),
     ("subsidised_t_path", [155000, 160000, 165000, 170000, 175000], "tonnes",
      "Constructed: subsidised delivery path. The company met 147kt of a 322kt requirement in the fourteen "
      "months to August 2025, a 46% compliance rate the forecast does not assume away."),
@@ -425,8 +446,12 @@ for k, vals, unit, src in [
     ("abnormal_gas_path", [150.0, 120.0, 100.0, 90.0, 80.0], "EGP m",
      "Constructed: stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged "
      "in FY2024/25."),
-    ("cpi_path", [0.100, 0.085, 0.075, 0.070, 0.070], "ratio",
-     "Domestic inflation converging from the June 2026 print on the central bank's target."),
+    ("cpi_path", [0.100, 0.070, 0.060, 0.050, 0.050], "ratio",
+     "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own "
+     "target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for "
+     "Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the "
+     "explicit path lands on the terminal inflation rather than stepping down to it at the "
+     "terminal boundary."),
     ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
                          _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
      "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
@@ -437,6 +462,17 @@ for k, vals, unit, src in [
 ]:
     I(k, vals, unit, src, "2026-08-08", "L5")
 
+I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
+  "Weights of the four lenses in the weighted central this edition publishes inside its field: "
+  "cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings "
+  "20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published "
+  "the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens "
+  "and the only one that charges the capital programme, so it carries the largest weight; its "
+  "carried-through side enters because that is the company's own stated plan, and the stopped "
+  "side is published beside it as the contested judgement, never averaged in; the relative and "
+  "normalised lenses are cross-checks at equal weight; book value, which prices what has been paid "
+  "for rather than what it earns, the least. The bear and full readings are the low and high of "
+  "the field across every lens, never the weighted extremes.", "2026-09-01", "L5")
 I("g_terminal", 0.050, "ratio",
   "Terminal growth set at the central bank's LONGEST-HORIZON published inflation target: 5% "
   "(+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously "
@@ -544,12 +580,16 @@ I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
   M9 + ", note 6 accumulated depreciation", "2026-05-20", "L1")
 I("spot_price_date", "2026-08-06", "date",
   "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
-I("dimson_sum_beta", 0.8275754032593131, "ratio",
-  "Constructed: dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly "
-  "regression — the thin-trading correction, carried as the beta alternative", "2026-08-08", "L5")
-I("g_terminal_alt", 0.050, "ratio",
-  "Constructed: the alternative terminal growth rate: two points below the inflation target, which is "
-  "negative real maintenance growth", "2026-08-08", "L5")
+I("beta_ci90_low", 0.7165230052490117, "ratio",
+  "The lower bound of the ninety-per-cent confidence interval of the same beta estimate — a "
+  "five-year weekly regression of the stock's own returns on the EGX30 (253 weekly observations "
+  "to 16 July 2026) — carried as the beta alternative. REPLACES the 08-08-2026 edition's "
+  "thin-trading-adjusted beta, which belonged to a basket regression withdrawn as non-conforming.",
+  "2026-09-01", "L5")
+I("g_terminal_alt", 0.030, "ratio",
+  "Constructed: the alternative terminal growth rate: two points below the terminal inflation of 5%, "
+  "which is negative real maintenance growth. RE-SET 1 September 2026 from 5% (which had become "
+  "identical to the base case once terminal growth moved to 5%).", "2026-09-01", "L5")
 for k, v, u, s in [
     ("prod_urea_FY2526E", 520000, "tonnes",
      "Nine months reviewed output extended on the fourth-quarter run rate"),

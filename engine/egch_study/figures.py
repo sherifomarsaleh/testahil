@@ -28,7 +28,6 @@ plt.rcParams.update({'figure.facecolor': BG, 'axes.facecolor': BG,
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 GRIDJ = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
-BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 SPOT, DR, YEARS = D['spot'], D['drivers'], D['years']
 CASES = D['cases']
 df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'EGCH_Stock_Price_History.csv')),
@@ -289,7 +288,7 @@ ax.set_yticks(range(len(order9)))
 ax.set_yticklabels([SPANS[k]['label'].replace(" — ", "\n") for k in order9[::-1]],
                    fontsize=8.4)
 ax.set_xlabel('Value per share (Egyptian pounds)')
-ax.set_xlim(-4.2, SPOT * 1.16)
+ax.set_xlim(-4.2, max(SPOT * 1.16, max(SPANS[k]['high'] for k in order9) + 7.5))
 ax.set_ylim(-0.7, len(order9) - 0.3)
 ax.set_title('Four lenses, one field — each lens as its own bear-to-bull span',
              pad=12, fontsize=11.5)

@@ -1,0 +1,181 @@
+{
+ "resolved_domain": "https://www.kimaegypt.com -> https://www.mistnews.com/ir/ir.aspx?sk=1034241017 (Mist IR portal, the company's own publication channel)",
+ "domain_note": "kima.com.eg does NOT resolve and is not the company's site.",
+ "listing_gaps": "the portal lists no annual for 2012, 2015 or 2017 and nothing older than 2009 (the archive's own gaps, not fetch failures); no FY2025/26 annual was listed on 08-08-2026 and the listing page could not be re-read on 01-09-2026 (709-byte stub)",
+ "newest_document": "9M FY2025/26 reviewed interim, limited review dated 20-May-2026",
+ "documents": [
+  {
+   "file": "EGCH_FY2020-21_Annual.pdf",
+   "label": "ميزانية سنوية -- 2021",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2021/%D9%83%D9%8A%D9%85%D8%A7%2010-11-2021.PDF",
+   "retrieved": true,
+   "bytes": 8788814,
+   "sha256": "44caa4f5162275f6435dbdf358abf6c6ce03bcdb4070f7412b8c7763148890f2",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2021"
+  },
+  {
+   "file": "EGCH_FY2019-20_Annual.pdf",
+   "label": "ميزانية سنوية -- 2020",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2020/%D9%83%D9%8A%D9%85%D8%A7%20-12-11-2020.pdf",
+   "retrieved": true,
+   "bytes": 5450388,
+   "sha256": "89f28a1dfefc0a7cc09f50980c39fd928b7191fb69bc30a1f216783dad92cab1",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2020"
+  },
+  {
+   "file": "EGCH_FY2018-19_Annual.pdf",
+   "label": "ميزانية سنوية -- 2019",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2019/%28%D9%83%D9%8A%D9%85%D8%A7%29%20%D9%81%D9%89%2030-6-2019.PDF",
+   "retrieved": true,
+   "bytes": 2866756,
+   "sha256": "ac37123385a05e58b5e555f1373e3b7f02cbdf44ad0fe5c3113a7edda4067441",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2019"
+  },
+  {
+   "file": "EGCH_FY2017-18_Annual.pdf",
+   "label": "ميزانية سنوية -- 2018",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2018/%D9%83%D9%8A%D9%85%D8%A7%20%D9%82%D9%88%D8%A7%D8%A6%D9%85%2002-09-2018.pdf",
+   "retrieved": true,
+   "bytes": 10279347,
+   "sha256": "8b7fb18a7c209ae6984dbeca0f690d17a418fd1b68e93830a086f6d300302b7e",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2018"
+  },
+  {
+   "file": "EGCH_FY2015-16_Annual.pdf",
+   "label": "ميزانية سنوية -- 2016",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2016/%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA%201%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.pdf",
+   "retrieved": true,
+   "bytes": 50492401,
+   "sha256": "e2bab8bb4ee7bc736c262911dbfda74c1f4e0e6a93019afe70d2c18c14c1f5c0",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2016"
+  },
+  {
+   "file": "EGCH_FY2013-14_Annual.pdf",
+   "label": "ميزانية سنوية -- 2014",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2014/kimayearly614.pdf",
+   "retrieved": true,
+   "bytes": 2254718,
+   "sha256": "5e06390ffbc80e159952a5a7e1da8c4dfc98af6ce1540ed215f776d83105fc94",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2014"
+  },
+  {
+   "file": "EGCH_FY2012-13_Annual.pdf",
+   "label": "ميزانية سنوية -- 2013",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2013/%D9%83%D9%8A%D9%85%D8%A712ydv.pdf",
+   "retrieved": true,
+   "bytes": 5067515,
+   "sha256": "4cc947b587dcbfa3c227dd2dfd8ae1b7b932d3d32fd3098c10dcc2fc157f3730",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2013"
+  },
+  {
+   "file": "EGCH_FY2010-11_Annual.pdf",
+   "label": "ميزانية سنوية -- 2011",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2011/kimaaa2010-2011.pdf",
+   "retrieved": true,
+   "bytes": 591788,
+   "sha256": "e4b3b71c9fe31de67e8c5cf5ff73ac0bd448e3b0579e13ee3c51217159702cea",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2011"
+  },
+  {
+   "file": "EGCH_FY2009-10_Annual.pdf",
+   "label": "ميزانية سنوية -- 2010",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2010/kema2010.pdf",
+   "retrieved": true,
+   "bytes": 304033,
+   "sha256": "f45d0dacd53b2e35704785e7a11a8ef65e5190b71a578e85b02746cefd5c4021",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2010"
+  },
+  {
+   "file": "EGCH_FY2008-09_Annual.pdf",
+   "label": "ميزانية سنوية -- 2009",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2009/kma1.pdf",
+   "retrieved": true,
+   "bytes": 1134971,
+   "sha256": "bb4c84d6fdc7141e237f3b95836a5a288195f68934d722557998f8c63018dce8",
+   "held_in": "scratchpad (not committed)",
+   "kind": "audited annual statements",
+   "fiscal_year_end": "30 June 2009"
+  },
+  {
+   "file": "EGCH_FY2021-22_Annual.pdf",
+   "label": "ميزانية -- 2022",
+   "retrieved": true,
+   "bytes": 6186001,
+   "sha256": "01f7bd2017231b117ddd30ebe85a1db87b77aa6185bb0d8c6d2352125e88f0b0",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "audited annual statements"
+  },
+  {
+   "file": "EGCH_FY2022-23_Annual.pdf",
+   "label": "ميزانية -- 2023",
+   "retrieved": true,
+   "bytes": 15471256,
+   "sha256": "de705bed30492a3f89dcd3b782da6d7491066c0437d1d52f67c137a3e6ce9f38",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "audited annual statements"
+  },
+  {
+   "file": "EGCH_FY2023-24_Annual.pdf",
+   "label": "ميزانية -- 2024",
+   "retrieved": true,
+   "bytes": 12382440,
+   "sha256": "fda2aff5ebaf432378cded674e9c9652e8407c96a457f5ba6d8e6d7ea746857b",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "audited annual statements"
+  },
+  {
+   "file": "EGCH_FY2024-25_Annual.pdf",
+   "label": "ميزانية -- 2025",
+   "retrieved": true,
+   "bytes": 16748619,
+   "sha256": "ae208488057da82082dd9a9f95f5d51b0036f9223b3b465de65aa979c3bc4c7f",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "audited annual statements"
+  },
+  {
+   "file": "EGCH_FY2025-26_Q1_Sep2025.pdf",
+   "label": "ميزانية -- Q1 2026",
+   "retrieved": true,
+   "bytes": 26226683,
+   "sha256": "4e2ec650a978d4ad083fa804655c7530c86040a35d3e8e938a25030212ae0628",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "reviewed interim statements"
+  },
+  {
+   "file": "EGCH_FY2025-26_H1_Dec2025.pdf",
+   "label": "ميزانية -- H1 2026",
+   "retrieved": true,
+   "bytes": 12019692,
+   "sha256": "68d441d849069cd1b3577797b03c999923995e3c2228d9c3c7400510f74f8611",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "reviewed interim statements"
+  },
+  {
+   "file": "EGCH_FY2025-26_9M_Mar2026.pdf",
+   "label": "ميزانية -- 9M 2026",
+   "retrieved": true,
+   "bytes": 5860678,
+   "sha256": "c58cd8f3fd773810b81adc155926418762af0e80b82e5e0025999acbc2452089",
+   "held_in": "engine/egch_study/filings/ (committed 08-08-2026)",
+   "kind": "reviewed interim statements"
+  }
+ ]
+}

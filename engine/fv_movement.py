@@ -117,6 +117,14 @@ def snapshot(ticker, when=None, unrecoverable=None):
     return 0
 
 
+def _pct(new, old):
+    """Movement per leg. A leg whose old value is exactly zero has no percentage
+    movement -- EGCH's frozen bear was 0.00 -- so that leg is None rather than a
+    division that raises or a fabricated figure. The other legs still report."""
+    return {k: (None if old[k] == 0 else round(100.0 * (new[k] - old[k]) / old[k], 1))
+            for k in LEGS}
+
+
 def record(ticker, bear, base, full, scope, origins, lessons, when=None):
     """Append this run's delivered fair value beside the frozen baseline."""
     if scope not in SCOPES:
@@ -140,10 +148,8 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
         'delivered': when or date.today().isoformat(),
         'scope': scope, 'origins': origins,
         'fair': new,
-        'vs_baseline_pct': ({k: round(100.0 * (new[k] - base0[k]) / base0[k], 1)
-                             for k in LEGS} if base0 else None),
-        'vs_previous_pct': ({k: round(100.0 * (new[k] - prev[k]) / prev[k], 1)
-                             for k in LEGS} if prev else None),
+        'vs_baseline_pct': (_pct(new, base0) if base0 else None),
+        'vs_previous_pct': (_pct(new, prev) if prev else None),
         'lessons': sorted(lessons),
     })
     _save(d)
@@ -154,12 +160,21 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
               % (ticker, ed['edition'], new['base'], e['baseline']['unrecoverable']))
     else:
         m = ed['vs_baseline_pct']
-        print('%s edition %d recorded: base %s -> %s (%+.1f%% vs baseline); '
-              'bear %+.1f%%, full %+.1f%%; lessons %s'
+        f = lambda v: 'n/a (old leg was 0)' if v is None else '%+.1f%%' % v
+        print('%s edition %d recorded: base %s -> %s (%s vs baseline); '
+              'bear %s, full %s; lessons %s'
               % (ticker, ed['edition'], base0['base'], new['base'],
-                 m['base'], m['bear'], m['full'],
+                 f(m['base']), f(m['bear']), f(m['full']),
                  ', '.join(sorted(lessons)) or '(none)'))
     return 0
+
+
+def _fmt(mv, leg):
+    """n/a where the whole baseline is unrecoverable, or where that one leg's
+    old value was zero and a percentage would be a division by nothing."""
+    if not mv or mv.get(leg) is None:
+        return 'n/a'
+    return '%+.1f%%' % mv[leg]
 
 
 def build():
@@ -215,9 +230,7 @@ def build():
                      % (q['position'], q['ticker'], e['ccy'] or '', ed['scope'],
                         b['fair']['base'] if b['fair'] else 'unrecoverable',
                         ed['fair']['base'],
-                        '%+.1f%%' % mv['base'] if mv else 'n/a',
-                        '%+.1f%%' % mv['bear'] if mv else 'n/a',
-                        '%+.1f%%' % mv['full'] if mv else 'n/a',
+                        _fmt(mv, 'base'), _fmt(mv, 'bear'), _fmt(mv, 'full'),
                         b['built_to'], current, ', '.join(ed['lessons']) or '—'))
     L.append('')
     L.append('Percentages are the delivered edition against the **frozen pre-campaign '

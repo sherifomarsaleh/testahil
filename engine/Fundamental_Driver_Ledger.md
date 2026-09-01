@@ -441,3 +441,117 @@ a share), book equity EGP 4.70 a share, dividends payable halved.
 change"; the conforming beta; the flat volume path — the filed twelve-month tonnage of 1,502,325 t
 is a better base than the annualised half it replaced, and since the half to June 2026 annualises
 to 1,388,482 t, flat remains the optimistic case.
+
+---
+
+## EGCH — Egyptian Chemical Industries "KIMA" · EGX · gas-fed nitrogen fertiliser (registered class: petrochemical) · fundamental walk-forward 1 September 2026, FULL scope
+
+Run directory `engine/egch_walkforward/`; study rebuilt as the 1 September 2026 edition in
+`engine/egch_study/` (STANDARD_VERSION 2026.09.01). Eighteen fiscal years FY2008–FY2025 from the
+company's own audited statements (ten older annuals retrieved from its portal for this run), 13
+origins, horizons 1–5, 55 cells. Central EGP 3.76 (field 0.00–15.47) against a 13.98 close,
+audited under `engine/egch_study/GAP_REVIEW_01-09-2026.md` (the edition's first pass printed
+3.79; the cost-of-debt ruling in item 9 moved it).
+Lessons registered from this run: L-064 and L-065 (ALL), L-206 and L-207 (STOCK, EGCH only); the
+other 23 harvested drafts are declined with reasons in `engine/egch_walkforward/lessons_draft.json`.
+
+### Driver decisions, and what each would take to overturn
+
+1. **The macro path is ONE path, pre-registered (L-048 applied before the run).** World urea
+   flat in dollars, the currency by relative PPP on the last published CPI differential, costs on
+   the same CPI. Measured against the frozen-currency counterfactual it is better on every line
+   (net-profit MAE 162% vs 205%), and it is still far from the outturn because Egypt held the pound
+   through FY2017–FY2021 and then devalued in steps. The cost lives in the macro share (22% on
+   revenue), not in a multiplier.
+   *What would overturn it:* a currency regime that follows PPP, where the macro share would rise
+   and the coherent path would be the whole answer.
+
+2. **Currency losses on project debt do not sit in the income statement of a company that
+   capitalises borrowing costs.** Driver D7 (loss on dollar debt × ΔFX) was the single largest
+   source of net-profit error (−41% of revenue on average): the company booked a currency result of
+   0 in FY2023 and +279m in FY2024 during a 52% devaluation, because the revaluation of the KIMA-2
+   consortium loan goes to construction in progress (the 9M FY2026 auditor's letter names the
+   exception). For the study this means the translation loss reaches equity through net debt in
+   the bridge, never through EBIT — which the FCFF build already respects.
+   *What would overturn it:* a filing in which the loan revaluation is charged to profit, after the
+   qualifying asset is complete.
+
+3. **Interest formed on the borrowings that bear it was still wrong during construction.** Rates
+   of 0.0%, 0.5% and 2.4% at origins FY2018–FY2020 are what the income statement shows while
+   interest is capitalised; they are not the loan's cost. The rate was declared undefined below 10%
+   of revenue (L-041) and held flat there.
+   *What would overturn it:* a company that expenses all borrowing costs, where the opening-base
+   rate is the loan rate.
+
+4. **Tax by statutory formula on a company that has paid no current tax since the new complex
+   started** was the second-largest profit error. The study keeps 22.5% (the loss carry-forwards
+   and the accelerated first-year deduction are not sourced at line level) and prices the
+   explicit-window charge as an open construction: PV EGP 1,968m, EGP 0.99 a share.
+   *What would overturn it:* the deferred-tax note read at line level showing the shield and its
+   expiry, at which point the explicit-window tax becomes a sourced driver.
+
+5. **Flat urea tonnes over-forecast by 9.3% in all three unit-window cells** (586kt → 522kt →
+   513kt on gas curtailment) — the same flat-volume lean AMOC measured (+7.6%, 8 of 9). The study's
+   utilisation path (91–95% of plate) starts below the FY2022/23 actual and is banded by gas
+   availability.
+   *What would overturn it:* a year in which the summer gas curtailment does not recur.
+
+6. **The terminal inflation equals the terminal growth (5%/5%, zero real growth) — L-055
+   applied.** The 8 August edition discounted a 5%-growth perpetuity at a rate built on 7%
+   inflation. Worth +EGP 0.15 on the carried-through lens together with the conforming beta.
+   *What would overturn it:* a stated case for real decline, which the disclosed capacity does not make.
+
+7. **A conforming EGX30 beta (1.030) replaces a withdrawn 35-name composite (1.053)** through
+   `beta_regression.own_stock_beta()`; the interval is wide (0.72–1.34) and its lower bound is priced
+   as the beta alternative (+EGP 0.82).
+
+8. **The cost-by-nature notes in the prior extraction did not foot and were not used** (misses of
+   247k, 36.3m and 63k EGP against the printed cost of sales). An extracted note that does not foot
+   is not a source; cost of sales is one line on one escalator in the calibration, and the study's
+   gas/materials split remains a flagged construction.
+   *What would overturn it:* the notes re-read from the rendered pages and footing.
+
+9. **The cost of debt is built year by year on the study's own currency wedge, through the
+   house builder, with its warnings printed and the sovereign floor priced — not adopted.**
+   The book is 99.7% dollar; the 11.7% dollar coupon is carried at local-equivalent cost
+   Kd_t = (1 + 11.7%)(1 + wedge_t) − 1 on the same relative-PPP wedge the revenue build uses
+   (7.4% → 2.5%), giving 19.99% in year one gliding to 14.54%; the 0.3% local facility at its
+   disclosed 19.4%. Two consistency warnings fire and are printed in §1.8: the local facility
+   sits below the 23.00% sovereign yield, and the dollar leg sits below the 16.63% normalised
+   risk-free rate in FY2028/29–FY2030/31. The sovereign-floored alternative (every leg at
+   23.00% + the company's own spread over the policy rate, which its facilities print as nil)
+   is a labelled row in the contested-constructions table and the Sensitivity sheet: −EGP 0.44
+   on the carried-through lens (−0.63 → −1.06). The disclosed rates lean toward the price, so
+   using them as disclosed is the conservative direction for a study already far below it.
+   *What would overturn it:* a new facility priced at or above the sovereign, or a refinancing
+   of the dollar loan, at which point the disclosed rate and the floor coincide.
+
+### Constructed drivers carried without a source, with their values (the register's L5 layer)
+
+Each is an assumption the filings do not supply, flagged as such in the study, and priced
+where it moves the answer. Listed here so the next petrochemical study reads them before
+constructing its own.
+
+| driver | value | what it does | what would overturn it |
+|---|---|---|---|
+| `roc_terminal` — terminal return on invested capital | 18% | Sets terminal reinvestment (g / ROIC = 27.8% of NOPAT). **The largest unsourced input in the study**: the 30% alternative is +EGP 0.27 on the cash-flow lens. | A disclosed post-completion return on the new complex, or three years of the completed plant's own ROIC. |
+| `kd_usd_lt` — long-run dollar cost of debt | 9% | The terminal dollar coupon after the project loan reprices, carried at (1+9%)(1+2.54%)−1 = 11.77% local-equivalent on the dollar leg (11.79% once the 0.3% local facility is blended in). | A refinancing at a disclosed rate; a dollar loan priced off a published Egyptian corporate curve. |
+| `real_rate_lt` — long-run real policy rate | 3.5% | Builds the terminal normalised risk-free rate: (1+5%)(1+3.5%)−1 = 8.67%. | A published long-run neutral-rate estimate for Egypt, or a decade of real rates settling elsewhere. |
+| `anna_cash_margin` — nitrate conversion margin over own ammonia | 32% | The new complex's contribution before its depreciation; with it the complex earns −66m after depreciation at 50% utilisation. | The company's own first full-year segment disclosure for the complex. |
+| `anna_util_base` / `anna_util_bull` — project utilisation in the terminal year | 50% / 70% | Half is the existing plant's observed record against its own plate under the same gas regime; 70% is a well-run nitrate line. The 70% alternative is +EGP 0.23. | A year in which the existing plant runs above 70% of plate, or a gas-supply contract that removes the summer curtailment. |
+| `dep_escalation` — escalation on the existing depreciation base | 2% a year | Ordinary additions to the pre-project asset base; project depreciation is built separately from its own cost. | A fixed-asset note showing additions to the old base running materially above or below 2%. |
+| `fx_terminal_wedge` — terminal currency wedge | 2.54% (DERIVED) | (1+5%)/(1+2.4%)−1: the steady-state depreciation the terminal inflation implies against US inflation; carries the terminal dollar debt and the terminal revenue. Derived, not typed, from this edition. | A terminal inflation other than the 5% central-bank target, which would move the wedge with it. |
+| `anna_winddown_cost` — cost of stopping the programme | EGP 1,000m | Charged in year one of the capital-discipline case only: contractor settlement and preservation on a 27.8%-spent site. | A disclosed termination schedule in the consortium loan or the construction contract. |
+
+### Findings recorded but NOT acted on
+
+- **No correction was adopted.** Every driver correction that passed the expanding-window sign
+  test made the following origin worse when applied (revenue 0 helped / 3 hurt; cost of sales 0/3;
+  debit interest 0/2; selling 1/2; admin 2/1), and none matches how the driver class is built
+  across the book. All five are watch flags in `corrections_log.json`.
+- **The method loses to "no change" on net profit** (skill −0.559 on the log record, at four of
+  five horizons) and beats it on revenue (+0.146) and cost of sales (+0.273). Stated in the
+  delivered study's §7; years three to five published as ranges (Appendix A.4).
+- **The plant replacement** (old electrolytic plant shut FY2019; gas-fed complex from FY2020) is the
+  structural break the record turns on: excluding every cell touching FY2020–FY2022 halves the
+  revenue error and leaves the margin over "no change" about the same.

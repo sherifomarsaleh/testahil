@@ -15,7 +15,7 @@ import json, os, sys
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_08082026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 EXPECT = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -90,4 +90,9 @@ print(f"\n{'PASS' if ok else 'FAIL'}: "
       f"{checked - _bad} of {nform} formula cells reproduce the model, "
       f"{len(unresolvable)} unresolvable, "
       f"{len([m for m in mism if 'unchecked' in m])} unchecked")
+# the verdict is written for attest.py to READ, never re-asserted there [R-ENF-01]
+json.dump({"pass": bool(ok), "formula_cells": nform, "reproduce": checked - _bad,
+           "mismatches": len(mism), "unresolvable": len(unresolvable), "orphans": len(orphan),
+           "headline_checks": len(checks), "headline_failures": len(bad)},
+          open("recalc_result.json", "w"), indent=1)
 sys.exit(0 if ok else 1)

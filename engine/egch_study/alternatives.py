@@ -47,12 +47,13 @@ W = C.WACC
 flat_spot = reprice(wacc_path=[D['wacc_spot']] * 5, wacc_terminal=D['wacc_spot'])
 cds_basis = reprice(glide=True, rf_star_spot=W['rf_star_cds'], erp=W['erp_cds'])
 g_low = reprice(g_terminal=V('g_terminal_alt'))
-beta_dimson = reprice(glide=True, beta=V('dimson_sum_beta'))
+beta_low = reprice(glide=True, beta=V('beta_ci90_low'))
 gas_contract = reprice(gas_usd_mmbtu=V('gas_contract_usd_mmbtu'))
 util_bull = reprice(anna_util_base=V('anna_util_bull'))
 capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
 capex_house = reprice(maint_capex_pct_rev=0.030)          # the superseded house standard
 roc_high = reprice(roc_terminal=0.30)
+kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
 ALTS = [
@@ -81,15 +82,27 @@ ALTS = [
              "for a single plant at steady state. Below inflation implies the asset "
              "shrinks in real terms every year forever, which the maintenance capital "
              "expenditure in the model is sized to prevent."),
+    dict(key="cost_of_debt_floor",
+         made=(f"The cost of debt at the company's own disclosed rates — {W['kd_local']*100:.1f}% on the "
+               f"local facility, {W['kd_usd_nominal']*100:.1f}% in dollars on the project loan carried at "
+               f"local-equivalent cost on the derived currency path, {W['kd_fx_path'][0]*100:.1f}% in year "
+               f"one gliding to {D['kd_local_equiv_terminal']*100:.1f}% at the terminal"),
+         alt=(f"Every leg floored at the {W['sovereign_floor']*100:.2f}% sovereign ten-year yield — the "
+              f"company's own facilities print no spread above the policy rate, so no spread is added"),
+         value=kd_floored,
+         why=(f"A same-currency corporate cannot normally borrow below its sovereign, and the local "
+              f"facility does (its dollar leg sits below the normalised risk-free rate in "
+              f"{len(W['years_fx_leg_below_rf_star'])} of the five explicit years). The disclosed rates are "
+              f"what the company actually pays on state-bank facilities and are used as disclosed; the "
+              f"floored construction is published beside them, not averaged in.")),
     dict(key="beta",
-         made="Beta from the five-year weekly regression of the share against its own "
-              "local index",
-         alt="The Dimson sum-beta from the same regression, which corrects for co-movement "
-             "booked late because the share does not trade every session",
-         value=beta_dimson,
-         why="The regression passes all three conditions of the usability test and the "
-             "sum-beta sits inside its confidence interval, so the direct estimate is "
-             "adopted and the correction is disclosed rather than substituted."),
+         made="Beta from the five-year weekly regression of the share against the published "
+              "EGX30 index",
+         alt="The lower bound of that regression's own 90% confidence interval",
+         value=beta_low,
+         why="The regression passes all three conditions of the usability test, so the point "
+             "estimate is adopted; the interval is wide because the share is thinly traded, "
+             "and the lower bound is priced here rather than argued away."),
     dict(key="gas",
          made="Gas at the realised price the company's own loss disclosure implies",
          alt="The contract formula price in the operating agreement, which is higher",
@@ -117,10 +130,10 @@ ALTS = [
              "fifth of its depreciation forever — and it is carried as the downside case "
              "rather than averaged into the central."),
     dict(key="terminal_reinvestment",
-         made="Terminal reinvestment of 38.9% of operating profit after tax, from growth "
-              "over an 18% return on capital",
-         alt="23.3%, from a 30% return on capital — the rate a newly completed plant earns "
-             "on incremental capital while it is still filling",
+         made=f"Terminal reinvestment of {D['g_terminal'] / D['roc_terminal'] * 100:.1f}% of operating "
+              f"profit after tax, from growth over an {D['roc_terminal'] * 100:.0f}% return on capital",
+         alt=f"{D['g_terminal'] / 0.30 * 100:.1f}%, from a 30% return on capital — the rate a newly "
+             "completed plant earns on incremental capital while it is still filling",
          value=roc_high,
          why="Eighteen per cent is the conservative reading and is kept, but it is an "
              "assumption rather than a disclosure, and on a plant that has just been "

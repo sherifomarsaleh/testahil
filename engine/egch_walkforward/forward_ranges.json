@@ -1,0 +1,732 @@
+{
+ "note": "Ranges are MULTIPLIERS to apply to a point projection. A factor below 1.0 means the record says the method came in BELOW the outturn and the point should be read as a floor. Every figure carries its count; percentiles are printed only at n >= 9.",
+ "full_record": {
+  "1": {
+   "revenue": {
+    "n": 13,
+    "bias": -0.18781264992473543,
+    "mae": 0.40437734366310657,
+    "min": -1.4203707962025598,
+    "max": 0.752841717219547,
+    "low_factor": 0.5531146398622808,
+    "high_factor": 1.2418034196607775,
+    "span_low_factor": 0.24162440687202075,
+    "span_high_factor": 2.12302448788139,
+    "p10_factor": 0.3590014476241951,
+    "p90_factor": 1.2060366843551136
+   },
+   "cost_of_sales": {
+    "n": 13,
+    "bias": -0.15530839596033333,
+    "mae": 0.3406012700763721,
+    "min": -0.9992883723144086,
+    "max": 0.6122864776527797,
+    "low_factor": 0.6090166534761362,
+    "high_factor": 1.2035708832729675,
+    "span_low_factor": 0.36814132753848255,
+    "span_high_factor": 1.8446443185844952,
+    "p10_factor": 0.5487309361716581,
+    "p90_factor": 1.2239246236141477
+   },
+   "gross_profit": {
+    "n": 10,
+    "bias": 0.12845974111060618,
+    "mae": 0.5277534709822728,
+    "min": -0.6946156053803265,
+    "max": 2.0012405876756625,
+    "low_factor": 0.6707936402836261,
+    "high_factor": 1.9274795409249221,
+    "span_low_factor": 0.4992663263939093,
+    "span_high_factor": 7.398228559305998,
+    "p10_factor": 0.6163981988280516,
+    "p90_factor": 2.3359575462100226
+   },
+   "pbt": {
+    "n": 6,
+    "bias": -0.9507222489537219,
+    "mae": 0.9507222489537219,
+    "min": -1.6475099908651827,
+    "max": -0.26945285009739,
+    "low_factor": 0.14935272363305255,
+    "high_factor": 1.0,
+    "span_low_factor": 0.19252871051071374,
+    "span_high_factor": 0.7637972916412882
+   },
+   "net": {
+    "n": 6,
+    "bias": -1.0382067530548376,
+    "mae": 1.0382067530548376,
+    "min": -1.9895866436132363,
+    "max": -0.33745065410029823,
+    "low_factor": 0.12537907808758947,
+    "high_factor": 1.0,
+    "span_low_factor": 0.13675194105241198,
+    "span_high_factor": 0.7135871864394485
+   }
+  },
+  "2": {
+   "revenue": {
+    "n": 12,
+    "bias": -0.40007549086881083,
+    "mae": 0.7650327157432071,
+    "min": -2.506157680973926,
+    "max": 1.0692677015512246,
+    "low_factor": 0.31188891176421063,
+    "high_factor": 1.4404523912994283,
+    "span_low_factor": 0.08158109841020614,
+    "span_high_factor": 2.913245353602983,
+    "p10_factor": 0.23441526679025457,
+    "p90_factor": 2.1206705092935954
+   },
+   "cost_of_sales": {
+    "n": 12,
+    "bias": -0.34171796199887366,
+    "mae": 0.5769429805027446,
+    "min": -1.4109464439039119,
+    "max": 0.675024558865845,
+    "low_factor": 0.39905303844151735,
+    "high_factor": 1.265193428637237,
+    "span_low_factor": 0.24391232454333997,
+    "span_high_factor": 1.9640812109845154,
+    "p10_factor": 0.30203375236518887,
+    "p90_factor": 1.538264236766567
+   },
+   "gross_profit": {
+    "n": 8,
+    "bias": 0.142794073049729,
+    "mae": 0.5856905941263049,
+    "min": -0.6497484533977685,
+    "max": 2.040380436718714,
+    "low_factor": 0.6421736550882321,
+    "high_factor": 2.0719385511488735,
+    "span_low_factor": 0.5221771121201587,
+    "span_high_factor": 7.693535545617111
+   },
+   "pbt": {
+    "n": 6,
+    "bias": -0.857300718685481,
+    "mae": 1.2314114562037919,
+    "min": -2.3693827566192294,
+    "max": 0.6699985426186694,
+    "low_factor": 0.12384652582803451,
+    "high_factor": 1.453698120466212,
+    "span_low_factor": 0.09353844444883017,
+    "span_high_factor": 1.9542344725690282
+   },
+   "net": {
+    "n": 6,
+    "bias": -1.0374562005771641,
+    "mae": 1.2773569365206843,
+    "min": -2.6118375259047575,
+    "max": 0.4482011589098444,
+    "low_factor": 0.09878464146236217,
+    "high_factor": 1.2711229672367732,
+    "span_low_factor": 0.07339954620273999,
+    "span_high_factor": 1.5654935769631797
+   }
+  },
+  "3": {
+   "revenue": {
+    "n": 11,
+    "bias": -0.6395666713430715,
+    "mae": 0.8746991817394729,
+    "min": -2.83464710077431,
+    "max": 1.007294286246631,
+    "low_factor": 0.21996961559879274,
+    "high_factor": 1.2650763934010085,
+    "span_low_factor": 0.058739251212942725,
+    "span_high_factor": 2.738182245648475,
+    "p10_factor": 0.10696868349674137,
+    "p90_factor": 1.1753021008184967
+   },
+   "cost_of_sales": {
+    "n": 11,
+    "bias": -0.5284477714315795,
+    "mae": 0.6073653222590998,
+    "min": -1.713581665037377,
+    "max": 0.3798458815600399,
+    "low_factor": 0.32116088125621184,
+    "high_factor": 1.082115098897745,
+    "span_low_factor": 0.18021915064998814,
+    "span_high_factor": 1.4620592417800837,
+    "p10_factor": 0.20047955915142465,
+    "p90_factor": 1.055696404268497
+   },
+   "gross_profit": {
+    "n": 6,
+    "bias": -0.03666668054056025,
+    "mae": 0.7301750237379637,
+    "min": -1.043386836978992,
+    "max": 1.409526163617392,
+    "low_factor": 0.46447771217562367,
+    "high_factor": 2.0007224557290715,
+    "span_low_factor": 0.3522596134649602,
+    "span_high_factor": 4.094015051120403
+   },
+   "pbt": {
+    "n": 5,
+    "bias": -0.19382512644240893,
+    "mae": 0.5751301351495184,
+    "min": -1.194611003658834,
+    "max": 0.5372553943172077,
+    "low_factor": 0.4634970486195196,
+    "high_factor": 1.4641941292677598,
+    "span_low_factor": 0.30282172781804784,
+    "span_high_factor": 1.7113035573102833
+   },
+   "net": {
+    "n": 5,
+    "bias": -0.3374911721675281,
+    "mae": 0.5617888631138981,
+    "min": -1.2779681685970525,
+    "max": 0.2611184281211613,
+    "low_factor": 0.40686248094907573,
+    "high_factor": 1.2514435073845072,
+    "span_low_factor": 0.27860279967643803,
+    "span_high_factor": 1.2983814212012705
+   }
+  },
+  "4": {
+   "revenue": {
+    "n": 10,
+    "bias": -0.8828675686750526,
+    "mae": 0.9769440830512615,
+    "min": -2.75284051270679,
+    "max": 0.30083800863253857,
+    "low_factor": 0.15570195380060955,
+    "high_factor": 1.0986438047466742,
+    "span_low_factor": 0.06374653096198625,
+    "span_high_factor": 1.3509904750167754,
+    "p10_factor": 0.07840180494926183,
+    "p90_factor": 1.2004228956910292
+   },
+   "cost_of_sales": {
+    "n": 10,
+    "bias": -0.7192226580808492,
+    "mae": 0.7309528668394709,
+    "min": -1.8627130480151777,
+    "max": 0.058651043793108884,
+    "low_factor": 0.23452911877589686,
+    "high_factor": 1.0117992774565996,
+    "span_low_factor": 0.15525085545366774,
+    "span_high_factor": 1.0604051412138054,
+    "p10_factor": 0.1594830318730415,
+    "p90_factor": 0.9174819733639982
+   },
+   "gross_profit": {
+    "n": 5,
+    "bias": -0.44781109212478293,
+    "mae": 1.043069391343837,
+    "min": -2.4275564507422027,
+    "max": 1.2645058755556609,
+    "low_factor": 0.2251743059765271,
+    "high_factor": 1.8134993099239087,
+    "span_low_factor": 0.08825221796451241,
+    "span_high_factor": 3.5413424398472064
+   },
+   "pbt": {
+    "n": 3,
+    "bias": -0.22919108510956474,
+    "mae": 0.22919108510956474,
+    "min": -0.5308620533692444,
+    "max": -0.07779313234780737,
+    "low_factor": 0.6323057815869562,
+    "high_factor": 1.0,
+    "span_low_factor": 0.5880977794250326,
+    "span_high_factor": 0.925155791555753
+   },
+   "net": {
+    "n": 3,
+    "bias": -0.3624714876221536,
+    "mae": 0.3624714876221536,
+    "min": -0.5095276547085904,
+    "max": -0.06880635928911913,
+    "low_factor": 0.48435218823306697,
+    "high_factor": 1.0,
+    "span_low_factor": 0.6007792870702853,
+    "span_high_factor": 0.9335074276194928
+   }
+  },
+  "5": {
+   "revenue": {
+    "n": 9,
+    "bias": -1.0727686064078545,
+    "mae": 1.206533522230301,
+    "min": -2.958554535758949,
+    "max": 0.32834246963238617,
+    "low_factor": 0.10235561284742241,
+    "high_factor": 1.143124057676101,
+    "span_low_factor": 0.051893873724965955,
+    "span_high_factor": 1.3886644662729124,
+    "p10_factor": 0.08110877268123269,
+    "p90_factor": 1.3291613975128984
+   },
+   "cost_of_sales": {
+    "n": 9,
+    "bias": -0.9067633302385809,
+    "mae": 0.960401173693278,
+    "min": -1.934995601786176,
+    "max": 0.24137029554613762,
+    "low_factor": 0.15456129901828186,
+    "high_factor": 1.0551024207068769,
+    "span_low_factor": 0.14442490403375452,
+    "span_high_factor": 1.272992331434013,
+    "p10_factor": 0.14472866195063588,
+    "p90_factor": 0.8456050082907239
+   },
+   "gross_profit": {
+    "n": 5,
+    "bias": -1.085926712149595,
+    "mae": 1.3836173955608353,
+    "min": -2.76599749337376,
+    "max": 0.7442267085281001,
+    "low_factor": 0.08462342937789842,
+    "high_factor": 1.3467451528302077,
+    "span_low_factor": 0.06291331242618546,
+    "span_high_factor": 2.1048131714253
+   },
+   "pbt": {
+    "n": 3,
+    "bias": -1.2908271837194767,
+    "mae": 1.4176903479694565,
+    "min": -3.1442694550650736,
+    "max": 0.1902947463749699,
+    "low_factor": 0.06663551857301378,
+    "high_factor": 1.1352616627715746,
+    "span_low_factor": 0.04309839786517569,
+    "span_high_factor": 1.2096060721247925
+   },
+   "net": {
+    "n": 3,
+    "bias": -1.3336417187659633,
+    "mae": 1.4479591204821782,
+    "min": -3.2752288150645406,
+    "max": 0.1714761025743223,
+    "low_factor": 0.061939273150067614,
+    "high_factor": 1.121107909992458,
+    "span_low_factor": 0.03780821714985246,
+    "span_high_factor": 1.1870557748161752
+   }
+  }
+ },
+ "kima2_era": {
+  "1": {
+   "revenue": {
+    "n": 4,
+    "bias": -0.3675466118580004,
+    "mae": 0.40020337122681304,
+    "min": -1.1184479502779485,
+    "max": 0.0653135187376252,
+    "low_factor": 0.46405602844584776,
+    "high_factor": 1.0331958435783162,
+    "span_low_factor": 0.3267865902718849,
+    "span_high_factor": 1.0674936511875084
+   },
+   "cost_of_sales": {
+    "n": 4,
+    "bias": -0.19035713224551848,
+    "mae": 0.24270256528983603,
+    "min": -0.45001861239720703,
+    "max": 0.10469086608863512,
+    "low_factor": 0.6485217754977326,
+    "high_factor": 1.0537396761566458,
+    "span_low_factor": 0.6376162839437882,
+    "span_high_factor": 1.1103673051067127
+   },
+   "gross_profit": {
+    "n": 3,
+    "bias": -0.14225192811452847,
+    "mae": 0.3464157050176265,
+    "min": -0.46044504120599133,
+    "max": 0.30624566535464703,
+    "low_factor": 0.6134431813036125,
+    "high_factor": 1.2264990092173769,
+    "span_low_factor": 0.631002760779282,
+    "span_high_factor": 1.3583159567343026
+   },
+   "pbt": {
+    "n": 2,
+    "bias": -1.1613231286150638,
+    "mae": 1.1613231286150638,
+    "min": -1.6475099908651827,
+    "max": -0.6751362663649451,
+    "low_factor": 0.09801387220371495,
+    "high_factor": 1.0,
+    "span_low_factor": 0.19252871051071374,
+    "span_high_factor": 0.509087044439851
+   },
+   "net": {
+    "n": 2,
+    "bias": -1.3320735126248557,
+    "mae": 1.3320735126248557,
+    "min": -1.9895866436132363,
+    "max": -0.6745603816364749,
+    "low_factor": 0.06965874535072869,
+    "high_factor": 1.0,
+    "span_low_factor": 0.13675194105241198,
+    "span_high_factor": 0.5093803043280466
+   }
+  },
+  "2": {
+   "revenue": {
+    "n": 3,
+    "bias": -0.6708586267113802,
+    "mae": 0.6708586267113802,
+    "min": -1.4795984355849143,
+    "max": -0.1568935736444292,
+    "low_factor": 0.26139639907492584,
+    "high_factor": 1.0,
+    "span_low_factor": 0.2277291179351986,
+    "span_high_factor": 0.8547950266963606
+   },
+   "cost_of_sales": {
+    "n": 3,
+    "bias": -0.4733735575076426,
+    "mae": 0.4733735575076426,
+    "min": -0.7910143743383762,
+    "max": -0.1337195816660479,
+    "low_factor": 0.38800109584685594,
+    "high_factor": 1.0,
+    "span_low_factor": 0.4533846601824894,
+    "span_high_factor": 0.8748353500818065
+   },
+   "gross_profit": {
+    "n": 2,
+    "bias": -0.18158953719506088,
+    "mae": 0.18158953719506088,
+    "min": -0.1952493016661137,
+    "max": -0.16792977272400803,
+    "low_factor": 0.6954618829349802,
+    "high_factor": 1.0,
+    "span_low_factor": 0.8226295495728345,
+    "span_high_factor": 0.8454132036663545
+   },
+   "pbt": {
+    "n": 2,
+    "bias": -1.8430191081546041,
+    "mae": 1.8430191081546041,
+    "min": -2.3693827566192294,
+    "max": -1.3166554596899789,
+    "low_factor": 0.025071131948657194,
+    "high_factor": 1.0,
+    "span_low_factor": 0.09353844444883017,
+    "span_high_factor": 0.2680302424996201
+   },
+   "net": {
+    "n": 2,
+    "bias": -2.135284819171395,
+    "mae": 2.135284819171395,
+    "min": -2.6118375259047575,
+    "max": -1.658732112438033,
+    "low_factor": 0.013973820861582229,
+    "high_factor": 1.0,
+    "span_low_factor": 0.07339954620273999,
+    "span_high_factor": 0.19038020784194692
+   }
+  },
+  "3": {
+   "revenue": {
+    "n": 2,
+    "bias": -1.0384756632834495,
+    "mae": 1.0384756632834495,
+    "min": -1.430452913023976,
+    "max": -0.6464984135429231,
+    "low_factor": 0.12531166478423783,
+    "high_factor": 1.0,
+    "span_low_factor": 0.23920056065715595,
+    "span_high_factor": 0.523876969351447
+   },
+   "cost_of_sales": {
+    "n": 2,
+    "bias": -0.7901505950869187,
+    "mae": 0.7901505950869187,
+    "min": -0.9486226288375225,
+    "max": -0.6316785613363148,
+    "low_factor": 0.20591306987088023,
+    "high_factor": 1.0,
+    "span_low_factor": 0.3872740764091649,
+    "span_high_factor": 0.5316985628889032
+   },
+   "gross_profit": {
+    "n": 1,
+    "bias": -0.6707537635403961,
+    "mae": 0.6707537635403961,
+    "min": -0.6707537635403961,
+    "max": -0.6707537635403961,
+    "low_factor": 0.26145122653468783,
+    "high_factor": 1.0,
+    "span_low_factor": 0.5113230158468205,
+    "span_high_factor": 0.5113230158468205
+   },
+   "pbt": {
+    "n": 1,
+    "bias": -0.7277771503209846,
+    "mae": 0.7277771503209846,
+    "min": -0.7277771503209846,
+    "max": -0.7277771503209846,
+    "low_factor": 0.23327102577901876,
+    "high_factor": 1.0,
+    "span_low_factor": 0.4829813927875677,
+    "span_high_factor": 0.4829813927875677
+   },
+   "net": {
+    "n": 1,
+    "bias": -0.9702319196065129,
+    "mae": 0.9702319196065129,
+    "min": -0.9702319196065129,
+    "max": -0.9702319196065129,
+    "low_factor": 0.14363730970706307,
+    "high_factor": 1.0,
+    "span_low_factor": 0.37899513150839165,
+    "span_high_factor": 0.37899513150839165
+   }
+  },
+  "4": {
+   "revenue": {
+    "n": 1,
+    "bias": -1.6688280015827173,
+    "mae": 1.6688280015827173,
+    "min": -1.6688280015827173,
+    "max": -1.6688280015827173,
+    "low_factor": 0.03552011926544611,
+    "high_factor": 1.0,
+    "span_low_factor": 0.18846782023848557,
+    "span_high_factor": 0.18846782023848557
+   },
+   "cost_of_sales": {
+    "n": 1,
+    "bias": -1.0865231236162392,
+    "mae": 1.0865231236162392,
+    "min": -1.0865231236162392,
+    "max": -1.0865231236162392,
+    "low_factor": 0.11383033288636543,
+    "high_factor": 1.0,
+    "span_low_factor": 0.3373875114558413,
+    "span_high_factor": 0.3373875114558413
+   },
+   "gross_profit": null,
+   "pbt": null,
+   "net": null
+  },
+  "5": {
+   "revenue": null,
+   "cost_of_sales": null,
+   "gross_profit": null,
+   "pbt": null,
+   "net": null
+  }
+ },
+ "published_band": {
+  "1": {
+   "revenue": {
+    "n_full": 13,
+    "n_kima2": 4,
+    "low_factor": 0.3590014476241951,
+    "high_factor": 1.2060366843551136,
+    "width_x": 3.3594201146999274,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "cost_of_sales": {
+    "n_full": 13,
+    "n_kima2": 4,
+    "low_factor": 0.5487309361716581,
+    "high_factor": 1.2239246236141477,
+    "width_x": 2.2304640451896636,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "gross_profit": {
+    "n_full": 10,
+    "n_kima2": 3,
+    "low_factor": 0.6134431813036125,
+    "high_factor": 2.3359575462100226,
+    "width_x": 3.807944431374946,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "pbt": {
+    "n_full": 6,
+    "n_kima2": 2,
+    "low_factor": 0.09801387220371495,
+    "high_factor": 1.0,
+    "width_x": 10.202637417707264,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "net": {
+    "n_full": 6,
+    "n_kima2": 2,
+    "low_factor": 0.06965874535072869,
+    "high_factor": 1.0,
+    "width_x": 14.355699273150046,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   }
+  },
+  "2": {
+   "revenue": {
+    "n_full": 12,
+    "n_kima2": 3,
+    "low_factor": 0.23441526679025457,
+    "high_factor": 2.1206705092935954,
+    "width_x": 9.046639915270905,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "cost_of_sales": {
+    "n_full": 12,
+    "n_kima2": 3,
+    "low_factor": 0.30203375236518887,
+    "high_factor": 1.538264236766567,
+    "width_x": 5.093020977690773,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "gross_profit": {
+    "n_full": 8,
+    "n_kima2": 2,
+    "low_factor": 0.6421736550882321,
+    "high_factor": 2.0719385511488735,
+    "width_x": 3.2264458915932908,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "pbt": {
+    "n_full": 6,
+    "n_kima2": 2,
+    "low_factor": 0.025071131948657194,
+    "high_factor": 1.453698120466212,
+    "width_x": 57.98294721766928,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "net": {
+    "n_full": 6,
+    "n_kima2": 2,
+    "low_factor": 0.013973820861582229,
+    "high_factor": 1.2711229672367732,
+    "width_x": 90.96459585591441,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   }
+  },
+  "3": {
+   "revenue": {
+    "n_full": 11,
+    "n_kima2": 2,
+    "low_factor": 0.10696868349674137,
+    "high_factor": 1.1753021008184967,
+    "width_x": 10.987347533863035,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "cost_of_sales": {
+    "n_full": 11,
+    "n_kima2": 2,
+    "low_factor": 0.20047955915142465,
+    "high_factor": 1.055696404268497,
+    "width_x": 5.265855575186679,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "gross_profit": {
+    "n_full": 6,
+    "n_kima2": 1,
+    "low_factor": 0.26145122653468783,
+    "high_factor": 2.0007224557290715,
+    "width_x": 7.652373569812369,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "pbt": {
+    "n_full": 5,
+    "n_kima2": 1,
+    "low_factor": 0.23327102577901876,
+    "high_factor": 1.4641941292677598,
+    "width_x": 6.27679380402268,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "net": {
+    "n_full": 5,
+    "n_kima2": 1,
+    "low_factor": 0.14363730970706307,
+    "high_factor": 1.2514435073845072,
+    "width_x": 8.712523994891907,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   }
+  },
+  "4": {
+   "revenue": {
+    "n_full": 10,
+    "n_kima2": 1,
+    "low_factor": 0.03552011926544611,
+    "high_factor": 1.2004228956910292,
+    "width_x": 33.795576155590155,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "cost_of_sales": {
+    "n_full": 10,
+    "n_kima2": 1,
+    "low_factor": 0.11383033288636543,
+    "high_factor": 1.0,
+    "width_x": 8.78500461733939,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "gross_profit": {
+    "n_full": 5,
+    "n_kima2": 0,
+    "low_factor": 0.2251743059765271,
+    "high_factor": 1.8134993099239087,
+    "width_x": 8.053757741404802,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "pbt": {
+    "n_full": 3,
+    "n_kima2": 0,
+    "low_factor": 0.6323057815869562,
+    "high_factor": 1.0,
+    "width_x": 1.581513294865354,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "net": {
+    "n_full": 3,
+    "n_kima2": 0,
+    "low_factor": 0.48435218823306697,
+    "high_factor": 1.0,
+    "width_x": 2.0646133625369454,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   }
+  },
+  "5": {
+   "revenue": {
+    "n_full": 9,
+    "n_kima2": 0,
+    "low_factor": 0.08110877268123269,
+    "high_factor": 1.3291613975128984,
+    "width_x": 16.38739378706498,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "cost_of_sales": {
+    "n_full": 9,
+    "n_kima2": 0,
+    "low_factor": 0.14472866195063588,
+    "high_factor": 0.8456050082907239,
+    "width_x": 5.842692089415871,
+    "basis": "p10-p90 of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "gross_profit": {
+    "n_full": 5,
+    "n_kima2": 0,
+    "low_factor": 0.08462342937789842,
+    "high_factor": 1.3467451528302077,
+    "width_x": 15.914566010036278,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "pbt": {
+    "n_full": 3,
+    "n_kima2": 0,
+    "low_factor": 0.06663551857301378,
+    "high_factor": 1.1352616627715746,
+    "width_x": 17.03688493888807,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   },
+   "net": {
+    "n_full": 3,
+    "n_kima2": 0,
+    "low_factor": 0.061939273150067614,
+    "high_factor": 1.121107909992458,
+    "width_x": 18.100114079095132,
+    "basis": "bias +/- MAE of the full record, widened by the KIMA-2-era bias +/- MAE band where that is wider"
+   }
+  }
+ },
+ "published_band_rule": "The wider of the full-record band and the KIMA-2-era band, per horizon per line. The full record is the evidence; the era band cannot narrow a published range."
+}
