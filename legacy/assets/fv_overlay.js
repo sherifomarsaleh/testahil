@@ -20,7 +20,7 @@ const FV_OVERLAY = {
   },
   "IN": {
    "nu": 6.0,
-   "width_cal": 1.021,
+   "width_cal": 1.014,
    "rf_live": 0.065,
    "width_overlay_active": false
   },
@@ -2645,7 +2645,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 6.0,
-    "width_cal": 1.021,
+    "width_cal": 1.014,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2737,7 +2737,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 6.0,
-    "width_cal": 1.021,
+    "width_cal": 1.014,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2902,6 +2902,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00112
    },
    "market": "SA"
+  },
+  {
+   "ticker": "INFY",
+   "name": "Infosys Limited",
+   "code": "NSE:INFY",
+   "ccy": "INR",
+   "spot": 1154,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 995,
+   "fv_base": 1242,
+   "fv_full": 1556,
+   "gap_base_pct": 7.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 1.014,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.063703,
+    "mu_h": 0.005186,
+    "G": {
+     "bear": -2.33,
+     "base": 1.15,
+     "full": 4.69
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0128,
+     "base": 0.1186,
+     "full": 0.0007
+    },
+    "p_touch": {
+     "bear": 0.0203,
+     "base": 0.1874,
+     "full": 0.001
+    },
+    "required_cagr": {
+     "bear": -0.8312,
+     "base": 1.4154,
+     "full": 35.1115
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00101
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.13041,
+    "mu_h": 0.01633,
+    "G": {
+     "bear": -1.14,
+     "base": 0.56,
+     "full": 2.29
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0866,
+     "base": 0.3054,
+     "full": 0.0189
+    },
+    "p_touch": {
+     "bear": 0.1594,
+     "base": 0.5207,
+     "full": 0.0304
+    },
+    "required_cagr": {
+     "bear": -0.4473,
+     "base": 0.3417,
+     "full": 2.3053
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00113
+   },
+   "market": "IN"
   },
   {
    "ticker": "STC",
@@ -3362,98 +3454,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00059
    },
    "market": "AE"
-  },
-  {
-   "ticker": "INFY",
-   "name": "Infosys Limited",
-   "code": "NSE:INFY",
-   "ccy": "INR",
-   "spot": 1105,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 22,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 995,
-   "fv_base": 1242,
-   "fv_full": 1556,
-   "gap_base_pct": 12.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 1.021,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.093196,
-    "mu_h": 0.004515,
-    "G": {
-     "bear": -1.13,
-     "base": 1.25,
-     "full": 3.67
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1003,
-     "base": 0.0951,
-     "full": 0.0022
-    },
-    "p_touch": {
-     "bear": 0.1663,
-     "base": 0.1509,
-     "full": 0.0033
-    },
-    "required_cagr": {
-     "bear": -0.7159,
-     "base": 3.0655,
-     "full": 59.781
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00342
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.152507,
-    "mu_h": 0.017048,
-    "G": {
-     "bear": -0.69,
-     "base": 0.77,
-     "full": 2.24
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1827,
-     "base": 0.2266,
-     "full": 0.02
-    },
-    "p_touch": {
-     "bear": 0.3494,
-     "base": 0.3895,
-     "full": 0.0325
-    },
-    "required_cagr": {
-     "bear": -0.3426,
-     "base": 0.596,
-     "full": 2.9318
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0021
-   },
-   "market": "IN"
   },
   {
    "ticker": "EFID",

@@ -2250,28 +2250,29 @@ const TICKERS = {
     name: "Infosys Limited",
     nameAr: "إنفوسيس",
     code: "NSE:INFY",
-    spot: 1105,
-    spotDate: "close 28 Jul 2026",
+    spot: 1154,
+    spotDate: "close 01 Sep 2026",
     ccy: "INR",
     fair: { bear: 995, base: 1242, full: 1556 },      // 6 Jul 2026 — weighted central 1,242 (+19% vs spot 1,042.20). Four lenses: intrinsic DCF (primary) 1,143 (floor), owner-earnings / shareholder-yield 1,267, relative multiples 1,284, normalized earnings power 1,368 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: the GenAI effect on the labour-arbitrage margin — whether Infosys cannibalises its own hours and keeps the margin, or AI deflates pricing faster than it cuts cost. Net-cash (~₹43,000 cr), ~33% ROE, >100% FCF conversion, >₹37,500 cr returned to owners in FY26.
     dist: {
-      t20: { label:"1 month",   p5:959, p25:1046, p50:1110, p75:1180, p95:1289, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:882, p25:1017, p50:1124, p75:1241, p95:1431, resolve:"2026-10-28" }
+      t20: { label:"1 month",   p5:1049, p25:1117, p50:1160, p75:1205, p95:1284, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:954, p25:1087, p50:1173, p75:1266, p95:1443, resolve:"2026-12-01" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:6, cal:1.014, mult:1, eff:1.014, on:"2026-09-01" },
     touch: [ /* descending high -> low; P(touch) 1M %, 3M % */
-      [1250, 15, 40], [1200, 32, 57], [1150, 60, 76], [1100, 84, 90], [1050, 47, 64], [1000, 20, 41], [950, 6, 24], [900, 1, 12]
+      [1250, 16, 49], [1200, 44, 72], [1150, 82, 89], [1100, 31, 57], [1050, 9, 33], [1000, 2, 17], [950, 1, 9], [900, 0, 4]
     ],
-    levels: { res:[1152, 1270, 1431], sup:[1089, 1066, 982] },
+    levels: { res:[1196, 1431, 1542], sup:[1111, 1089, 1014] },
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 1105 below a falling 50-day (1111) and a falling 200-day (1361), but above a flat 20-day (1066). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 33 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22127 / \u221212 / +5). Over the last year it has ranged 982\u20131728; the last close sits 36% below that high and 12% above that low.",
-      bull: "A daily close back above 1152 would clear the nearest resistance; the next charted level above it is 1431.",
-      bear: "A close below 1089 would break the nearest support; the next charted level below it is 982."
+      summary: "The price closed 1154 above a rising 20-day (1147) and a flat 50-day (1104), but below a falling 200-day (1319). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 28 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+3 / +5 / \u22122). Over the last year it has ranged 982\u20131728; the last close sits 33% below that high and 17% above that low.",
+      bull: "A daily close back above 1196 would clear the nearest resistance; the next charted level above it is 1542.",
+      bear: "A close below 1111 would break the nearest support; the next charted level below it is 1014."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-29" },
-      tech: { data:"2026-07-28", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/INFY_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -3237,7 +3238,7 @@ const BANDS = {
   HELI: {mkt:"EG", n:57, hits:52, c50:0.5614, c80:0.7895, c90:0.9123, width:1.372, strength:"long", flag:null},
   HRHO: {mkt:"EG", n:57, hits:53, c50:0.5439, c80:0.8421, c90:0.9298, width:1.500, strength:"long", flag:null},
   IHC: {mkt:"AE", n:47, hits:40, c50:0.6596, c80:0.7872, c90:0.8511, width:1.262, strength:"long", flag:null},
-  INFY: {mkt:"IN", n:57, hits:51, c50:0.5088, c80:0.8246, c90:0.8947, width:1.126, strength:"long", flag:null},
+  INFY: {mkt:"IN", n:58, hits:52, c50:0.5172, c80:0.8276, c90:0.8966, width:1.125, strength:"long", flag:null},
   IQCD: {mkt:"QA", n:58, hits:52, c50:0.4828, c80:0.8103, c90:0.8966, width:1.003, strength:"long", flag:null},
   ISPH: {mkt:"EG", n:30, hits:23, c50:0.4667, c80:0.7333, c90:0.7667, width:1.316, strength:"short", flag:"narrow"},
   JUFO: {mkt:"EG", n:57, hits:54, c50:0.6667, c80:0.9123, c90:0.9474, width:1.516, strength:"long", flag:null},
@@ -3282,7 +3283,7 @@ const BANDS = {
 const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
   EG: {names:37, n:1795, c90:0.9276, label:"Egyptian"},
-  IN: {names:3, n:173, c90:0.8786, label:"Indian"},
+  IN: {names:3, n:174, c90:0.8793, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
   SA: {names:13, n:562, c90:0.8701, label:"Saudi"},
@@ -5373,9 +5374,9 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
     p5:959.15, p25:1045.89, p50:1110.42, p75:1179.88, p95:1288.55,
     touch:{ "+5":53, "+10":26, "+15":10, "+20":4, "-5":47, "-10":18 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:1143.7, realized_high:1195, realized_low:1106.7,
+    in_90:true, in_50:true, realized_quantile:0.620, median_err:0.0300,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"INFY", asset_class:"equity",
@@ -7642,6 +7643,34 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- 01-Sep-2026 single-name roll-forward: INFY, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"INFY", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:1154.0, ccy:"INR",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.2195,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) IN live fit nu=6.0, width_cal=1.014. rf_live 6.50% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on IN’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:1048.56, p25:1117.2, p50:1160.04, p75:1204.91, p95:1283.92,
+    touch:{ "+5":36, "+10":11, "+15":3, "+20":1, "-5":28, "-10":6 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"INFY", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:1154.0, ccy:"INR",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.2603,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) IN live fit nu=6.0, width_cal=1.014. rf_live 6.50% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on IN’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:953.72, p25:1086.74, p50:1173.46, p75:1266.13, p95:1443.31,
+    touch:{ "+5":66, "+10":41, "+15":24, "+20":14, "-5":55, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7938,8 +7967,8 @@ const CALIB = {
   "NASDAQ:AAPL": {w: 58, in50: 45, in90: 86, through: "2026-07-21"},
   "NASDAQ:NVDA": {w: 58, in50: 50, in90: 88, through: "2026-07-21"},
   "NASDAQ:TSLA": {w: 58, in50: 45, in90: 86, through: "2026-07-21"},
-  "NSE:INFY": {w: 57, in50: 51, in90: 91, through: "2026-04-29"},
-  "NSE:RELIANCE": {w: 58, in50: 55, in90: 93, through: "2026-07-29"},
+  "NSE:INFY": {w: 58, in50: 52, in90: 90, through: "2026-07-29"},
+  "NSE:RELIANCE": {w: 58, in50: 53, in90: 93, through: "2026-07-29"},
   "NSE:TMPV": {w: 58, in50: 43, in90: 81, through: "2026-07-29"},
   "QSE:IQCD": {w: 58, in50: 47, in90: 90, through: "2026-07-28"},
   "QSE:QGTS": {w: 58, in50: 57, in90: 90, through: "2026-07-28"},
