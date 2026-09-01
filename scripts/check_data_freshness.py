@@ -416,6 +416,41 @@ def main() -> int:
                               f'date {struck["grade"]} is unchanged, so the commitment '
                               f'stands and the cone is not re-sized.')
                     continue
+                #     THE SAME FORGIVENESS, FOR A ROW STRUCK BEFORE THE FIELDS EXISTED
+                #     (01-Sep-2026). horizon_days/grade_basis are written by
+                #     rollforward_one.py, so a cohort struck through an older path
+                #     carries NEITHER -- and the clause above needs both, so those rows
+                #     could only ever FAIL. The rule it enforces did not change; only
+                #     the evidence it happens to be able to read did, which is the
+                #     [R-ENF-04] species: an ABSENT record read as a wrong one.
+                #
+                #     Found on the 01-Sep-2026 INFY roll-forward. Splicing INFY to
+                #     2026-09-01 extended IN's realized calendar past 2026-08-28, so
+                #     RELIANCE -- library untouched at 2026-07-28, every published
+                #     percentile untouched, still committed to the SAME grade date --
+                #     re-resolved from a projected h1 of 22 onto a realized 23 and went
+                #     RED. That is verbatim the EG/ABUK case the comment above
+                #     describes; it was forgiven there only because those rows carried
+                #     the fields. A gate that passes or fails the identical situation on
+                #     which tool struck the row is checking the tool, not the number.
+                #
+                #     THE GUARD IS UNCHANGED AND IS STILL THE GRADE DATE. This forgives
+                #     only when resolve() is now on the REALIZED branch (so the sole
+                #     difference is the projected->realized transition, not a wrong
+                #     count) AND the commitment still resolves to the row's own stored
+                #     grade date. A moved grade date still FAILS, exactly as before, and
+                #     a row that carries the fields still takes the clause above.
+                if (struck and struck['grade_basis'] is None
+                        and struck['horizon_days'] is None
+                        and res['basis'] == 'realized'
+                        and struck['grade'] == res['grade_date']):
+                    warn(key, f'hz.{field} is {got_h}, the projection made at strike; '
+                              f'the span has since resolved to {want} sessions. This '
+                              f'cohort predates horizon_days/grade_basis, so the '
+                              f'projection is not recorded on the row — but grade date '
+                              f'{struck["grade"]} is unchanged, so the commitment stands '
+                              f'and the cone is not re-sized.')
+                    continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
