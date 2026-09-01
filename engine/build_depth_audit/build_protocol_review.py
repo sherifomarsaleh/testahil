@@ -125,6 +125,8 @@ props = ''.join(
   f'<div class="pr"><h3>{t}</h3><p>{b}</p></div>' for t, b in PROPOSE)
 
 HTML = f"""<title>Does the Protocol Hold?</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -202,7 +204,7 @@ footer{{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);font-s
   <p class="eyebrow">TESTAHIL &middot; 23 Aug 2026 &middot; review of the governing documents</p>
   <h1>Are the rules enough to stop this happening again?</h1>
   <p class="lede">A read of <code>Standing_Research_Protocol.md</code> and
-  <code>PROJECT_INSTRUCTIONS_11-07-2026.md</code> against the failures they were written to prevent
+  the condensed digest against the failures they were written to prevent
   &mdash; and against what the repository actually does today.</p>
 </header>
 

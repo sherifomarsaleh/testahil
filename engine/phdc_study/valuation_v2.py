@@ -75,6 +75,54 @@ def dcf(cfo_margin, wacc):
             "cfo_margin": cfo_margin, "wacc": wacc}
 
 
+def run(cfo_margin, wacc, terminal_growth=TG):
+    """The same discounted cash flow, in the shape the workbook and the case
+    tables read. One model, one set of figures: the study used to carry a
+    ten-year capacity-ratio valuation beside this one and publish both as
+    "fundamental value", which put two different ranges in one document.
+    """
+    d = dcf(cfo_margin, wacc)
+    rows = []
+    for r in ROWS:
+        cfo = r["revenue"] * cfo_margin
+        rows.append({"year": r["year"], "revenue": r["revenue"],
+                     "gross": r["gross"], "npbt": r["npbt"],
+                     "npat": r["npat"], "backlog": r["backlog"],
+                     "cfo": cfo,
+                     "fcff": cfo + r["interest"] * (1 - BU.TAX)
+                     - r["revenue"] * 0.01})
+    return {**d, "rows": rows,
+            "inputs": {"cfo_margin": cfo_margin, "wacc": wacc,
+                       "terminal_growth": terminal_growth}}
+
+
+def sensitivity():
+    """The crux, priced in real observable units.
+
+    Value is dominated by one quantity whose mechanics the company does not
+    disclose: how fast contracted sales convert to cash. Three disclosed
+    cash-flow statements put it across a spread wide enough that it, not the
+    discount rate, decides the answer.
+    """
+    L = lenses()["cfo"]
+    wr = W["wacc_rating"]
+    cfos = [L["lo"], 0.060, L["mid"], 0.120, L["hi"]]
+    waccs = [wr - 0.04, wr - 0.02, wr, wr + 0.02, wr + 0.04]
+    return waccs, [(c, [run(c, w)["per_share"] for w in waccs]) for c in cfos]
+
+
+def implied_conversion(spot, wacc):
+    """The conversion rate the market is paying for, solved on THIS model."""
+    lo, hi = 0.001, 0.40
+    for _ in range(96):
+        m = (lo + hi) / 2
+        if run(m, wacc)["per_share"] < spot:
+            lo = m
+        else:
+            hi = m
+    return (lo + hi) / 2
+
+
 def lenses():
     wr = W["wacc_rating"]
     lo = BU.REG["cfo_fy25"] / BU.REG["revenue_fy25"]

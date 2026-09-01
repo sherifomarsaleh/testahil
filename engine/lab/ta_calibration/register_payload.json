@@ -1,0 +1,503 @@
+{
+ "generated": "31 August 2026",
+ "coverage": {
+  "names": 85,
+  "obs": 45331
+ },
+ "horizons": [
+  {
+   "h": 5,
+   "name": "one week"
+  },
+  {
+   "h": 10,
+   "name": "two weeks"
+  },
+  {
+   "h": 21,
+   "name": "one month"
+  }
+ ],
+ "evidence_rows": [
+  [
+   "Technical walk-forward",
+   "the technical read, replayed at every historical origin and graded on the tape",
+   "85 names",
+   "45,331 readings"
+  ],
+  [
+   "Price-engine walk-forward",
+   "the probability cone, graded against resolved forecasts",
+   "19 names",
+   "per the fundamental register"
+  ],
+  [
+   "Fundamental walk-forward",
+   "the valuation method, graded against filed actuals",
+   "1 name (PHDC)",
+   "per the fundamental register"
+  ]
+ ],
+ "indicators": [
+  [
+   "Moving averages",
+   "20, 50 and 200 sessions",
+   "Simple averages of the closing price. The read states which of them price sits above."
+  ],
+  [
+   "Moving-average slope",
+   "change over 10 sessions; flat if within 0.3%",
+   "Whether each average is rising, flat or falling."
+  ],
+  [
+   "RSI",
+   "Wilder's, 14 sessions",
+   "A 0-100 momentum gauge. High means price has risen on most recent days."
+  ],
+  [
+   "ATR",
+   "Wilder's, 14 sessions, on the true range",
+   "The average distance price travels in a day, gaps included. The read turns it into the tape sentence."
+  ],
+  [
+   "MACD",
+   "12 and 26 session averages, 9-session signal",
+   "A trend-following oscillator. The read states the line, the signal and the histogram."
+  ],
+  [
+   "50/200 cross",
+   "flagged as fresh within 25 sessions",
+   "The golden cross and the death cross."
+  ],
+  [
+   "52-week range",
+   "252 sessions",
+   "The high, the low, and how far the last close sits from each."
+  ],
+  [
+   "Support and resistance",
+   "fractal pivots, half-width 5 bars, 500-session lookback",
+   "Turning points on the chart, grouped into levels when within 1.5% of each other."
+  ],
+  [
+   "  - level weighting",
+   "recency half-life 180 sessions, weighted by touch count",
+   "Recent tests count for more than old ones; more tests counts for more than fewer."
+  ],
+  [
+   "  - level filtering",
+   "at least 0.8% from spot, at most 35%; 3 published per side",
+   "A line too close to the price is not a level."
+  ],
+  [
+   "  - other level sources",
+   "the three averages, the 52-week extremes, round numbers",
+   "Admitted only when swing structure does not fill the slot, and scored below it."
+  ],
+  [
+   "Volume",
+   "tested here, used nowhere",
+   "Present in every library. Scored in T-15 and not adopted."
+  ]
+ ],
+ "figures": {
+  "T-01": "01_horizon_decay.png",
+  "T-02": "21_demo_ihc.png",
+  "T-03": "18_demo_level.png",
+  "T-04": "15_res_sup.png",
+  "T-05": "16_touch_rate.png",
+  "T-06": "17_tilted_coin.png",
+  "T-08": "07_slope200.png",
+  "T-09": "06_52week.png",
+  "T-10": "05_rsi_curve.png",
+  "T-13": "09_trigger.png",
+  "T-14": "10_cross.png",
+  "T-15": "11_volume.png",
+  "T-16": "02_level_kind.png",
+  "T-18": "03_touches.png",
+  "T-20": "13_stability.png",
+  "T-22": "04_atr_ladder.png",
+  "T-23": "08_level_market.png",
+  "T-26": "12_pername_tape.png"
+ },
+ "lessons": [
+  {
+   "id": "T-01",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "01_horizon_decay.png",
+   "fig2": null,
+   "figcap": "The same test at four horizons. The grey bar is the one the first calibration reported.",
+   "figcap2": null,
+   "title": "Judge a tool over the time it is meant for.",
+   "body": "In this project the chart read is for the weeks ahead, the probability cone owns one to three months, and the fundamental study owns the year. The first calibration graded the chart read on what prices did three months later \u2014 the cone's exam, not the chart's. Everything scored poorly, and one wrong conclusion was drawn from that before the mistake was caught.",
+   "know": "The test: draw a support or resistance line, draw a fake line the same distance away where the chart shows nothing, and count how often price closes through each. The real line is beaten less often \u2014 by +9.8 in 100 tests over one week, +7.1 in 100 over two weeks, +5.0 in 100 over one month, and only about +3.4 in 100 over three months. Graded at three months, we reported that weakest number and concluded a per-stock level record could never be built. Grading weekly also multiplied the evidence: about 60 tests per stock became a median of 636.",
+   "over": "Nothing about one week being special. The rule is that the test must match the tool's own horizon \u2014 a tool that genuinely makes three-month claims should be tested at three months."
+  },
+  {
+   "id": "T-02",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "21_demo_ihc.png",
+   "fig2": null,
+   "figcap": "One real stock, every weekly reading for nine years. Busier tape on the left axis, bigger moves follow.",
+   "figcap2": null,
+   "title": "The single most trustworthy sentence on a page is the one about the tape.",
+   "body": "Each page says whether the tape is orderly, normal, lively or volatile \u2014 a plain-language reading of how much the stock moves in a day (the ATR). That sentence turns out to be a genuine forecast: when the tape is busy today, the price travels further over the coming weeks, and when it is quiet, it travels less. No other sentence on the page is this reliable.",
+   "know": "The test: line up each day's tape reading against how far the price actually moved afterwards, across 45,331 readings. The two rise and fall together with a rank correlation of +0.52 at one week and +0.63 at one month \u2014 enormous by the standards of anything else in this document. On International Holding Company (IHC) alone the correlation is +0.82 across 468 months of readings; the chart below is that stock, one dot per week.",
+   "over": "A market where busy days stop being followed by busy weeks. None of the nine tested here comes close."
+  },
+  {
+   "id": "T-03",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "18_demo_level.png",
+   "fig2": null,
+   "figcap": "Qatar National Bank, August 2025. The read put resistance at the round 20.00; the month that followed is tinted.",
+   "figcap2": null,
+   "title": "The lines are real. Price respects a drawn level more than an empty one.",
+   "body": "The doubt about support and resistance is always the same: price has to stop somewhere, so how do you know the line meant anything? By racing it against a line that means nothing. For every level we publish, we also test an invented level a similar distance away, placed where the chart shows no structure at all. If our lines were decoration, the two would behave the same. They do not.",
+   "know": "Counting only the occasions price actually reached each line: it went on to CLOSE through the real one +9.8 in 100 tests less often than through the invented one over the following week (3,990 paired tests), and +5.0 in 100 over the following month. The picture below is one such occasion: QNB touched 20.00 intraday and never closed above it.",
+   "over": "The invented lines catching up. The race is re-run at every calibration pass, and it is the entire basis for keeping levels on the page."
+  },
+  {
+   "id": "T-04",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "15_res_sup.png",
+   "fig2": null,
+   "figcap": "The same race, split by side of the price.",
+   "figcap2": null,
+   "title": "The floor is stronger than the ceiling.",
+   "body": "Support \u2014 the level below the price \u2014 holds better than resistance, the level above it. The gap is consistent at every horizon. A practical way to say it: a support line on these pages deserves a little more confidence than a resistance line at the same distance.",
+   "know": "Same race as T-03, split by side. Over one week, support beats its invented twin by +11.4 in 100 tests (1,442 paired tests) against +8.8 in 100 for resistance (2,548); over one month, +6.0 in 100 against +4.5 in 100.",
+   "over": "A period in which sellers defend ceilings the way buyers defend floors \u2014 a long bear market in these names would be the natural test."
+  },
+  {
+   "id": "T-05",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "16_touch_rate.png",
+   "fig2": null,
+   "figcap": "How often price reaches the closest published level at all.",
+   "figcap2": null,
+   "title": "Most weeks, the levels are scenery. The test only starts when price arrives.",
+   "body": "A published ladder of six levels looks like six live predictions. In any given week it mostly is not, because price rarely travels far enough to meet one. Nothing in this document about levels applies until price actually gets there \u2014 and that is the exception, not the rule.",
+   "know": "Across every reading in the book, price reached the CLOSEST published level within a week only 19% of the time, within two weeks 29%, and within a month 41%. The other five rungs are reached even less often.",
+   "over": "Nothing \u2014 this is a description of how far prices travel, not a claim that could be wrong about the levels themselves. It is here so the level lessons are read with the right expectations."
+  },
+  {
+   "id": "T-06",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "17_tilted_coin.png",
+   "fig2": null,
+   "figcap": "How often a stock in each market simply closes higher.",
+   "figcap2": null,
+   "title": "The coin is not fair \u2014 and its tilt depends on the market and the clock.",
+   "body": "Before crediting any signal with \"it works 53% of the time\", ask what a stock does with no signal at all. Over one week the answer is almost exactly a coin flip. Over one month the coin tilts upward \u2014 and by very different amounts in different markets. Every claim in this document is therefore measured against its own market's tilt, never against 50%.",
+   "know": "Over one week, stocks here closed higher 49.2% of the time \u2014 a fair coin. Over one month, 52.4% \u2014 tilted, and unevenly: about 60% in the US against 50% in Qatar and roughly 52% across Egypt, the UAE and Saudi. Measured on 45,331 readings.",
+   "over": "Nothing to overturn \u2014 it is the baseline itself. It moves with rates and regimes, which is exactly why it is measured fresh at every pass rather than remembered."
+  },
+  {
+   "id": "T-07",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "Being above all three averages is worth about three extra wins in a hundred.",
+   "body": "The first sentence of every read says where price sits against its 20, 50 and 200-day averages. Sitting above all three genuinely tilts the odds of the coming weeks upward \u2014 but only slightly, and by the same small amount in every market tested. It is a lean, not a signal.",
+   "know": "The test: compare weeks that began above the whole stack with weeks that began below it, 26,943 readings in all. Above-the-stack weeks closed higher +3.2 in 100 more often. Egypt, the UAE and Saudi give statistically the same answer (+3.4 in 100, +3.3 in 100, +3.6 in 100), so it is one rule, not three. But see T-20: its recent record is in question.",
+   "over": "See T-20 \u2014 the second half of the data has already put this on watch at the one-month horizon."
+  },
+  {
+   "id": "T-08",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "07_slope200.png",
+   "fig2": null,
+   "figcap": "The odds shift by the direction of the 200-day average alone.",
+   "figcap2": null,
+   "title": "The slope of the 200-day average beats the position against it.",
+   "body": "Every page states whether the 200-day average is rising, flat or falling, almost in passing. Measured, that little word carries more information than the headline sentence about being above or below the averages \u2014 and it behaves exactly as it should: rising is best, falling is worst, flat sits in between.",
+   "know": "Across 45,331 monthly readings: when the 200-day was rising, the stock closed the month higher +2.1 in 100 more often than its base rate; flat, -0.4 in 100; falling, -3.2 in 100. Top to bottom that is a 5-in-100 spread \u2014 bigger than the stack sentence has ever measured.",
+   "over": "A different slope definition failing to reproduce it. This one is the read's own: the average's change over ten sessions."
+  },
+  {
+   "id": "T-09",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "06_52week.png",
+   "fig2": null,
+   "figcap": "Odds of a higher close, by how far the stock sat below its 52-week high.",
+   "figcap2": null,
+   "title": "Stocks near their yearly high keep winning. \"Cheap because it fell\" loses.",
+   "body": "Every page prints how far the price sits below its 52-week high. That number leans the opposite way to bargain-hunting instinct: the closer a stock is to its yearly high, the better its next month tends to be, and stocks 30% or more below their high tend to keep disappointing.",
+   "know": "Sorting all 45,331 readings into eight equal groups by distance below the high: the closest group closed the month higher +3.0 in 100 more often than base, while the group about 31% below its high ran -3.8 in 100. On a single stock the pattern is noisy \u2014 EMAAR shows 55% near its high against 49% deep below it, the right direction but on only 170+138 readings \u2014 which is why the book-wide curve is the evidence, not any one name.",
+   "over": "The very deepest group already bends back up a little. If a larger sample turns that bend into a real recovery effect, this becomes a U-shape lesson instead."
+  },
+  {
+   "id": "T-10",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "05_rsi_curve.png",
+   "fig2": null,
+   "figcap": "Ten equal slices of RSI. Nine say nothing; the top one says continue.",
+   "figcap2": null,
+   "title": "RSI is silent across nine tenths of its range.",
+   "body": "RSI is the most quoted number in retail technical analysis. Sliced into ten equal groups, the bottom nine are indistinguishable from each other and from the base rate \u2014 a stock with RSI 35 and a stock with RSI 65 face the same odds. Everything RSI knows lives in its top tenth, and what it says there is \"this keeps going\", not \"this reverses\".",
+   "know": "Nine of the ten slices sit within about a point of the base rate, each measured on roughly 4,534 readings \u2014 differences well inside their own error bars. The top slice (RSI above 69) closed higher +2.6 in 100 more often over the week and +2.0 in 100 over the month.",
+   "over": "A different RSI period, or RSI measured against the stock's own typical range instead of the fixed 0-100 scale, showing life in the middle."
+  },
+  {
+   "id": "T-11",
+   "scope": "ALL",
+   "cls": null,
+   "status": "ACTED ON",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "A word that sounds like caution still needs checking. Ours pointed backwards.",
+   "body": "For years the pages described RSI above 70 as \"stretched\" and below 30 as \"washed out\". Both words whisper \"reversal coming\" to any reader. Measured, both were followed by the OPPOSITE of what they whisper \u2014 strong stocks kept going, weak ones kept sliding. The words survived unchecked precisely because they sounded prudent. They were replaced with \"very strong\" and \"very weak\" on 31-Aug-2026, and the fix is live.",
+   "know": "Readings above 70 were followed by a higher close +2.4 in 100 more often than base over the week and +2.5 in 100 over the month (3,822 occasions) \u2014 momentum, not exhaustion. At the old three-month grading the same group ran 7.6 in 100 above base.",
+   "over": "Nothing about the finding. The lesson is the habit: audit conservative-sounding language exactly as hard as flattering language."
+  },
+  {
+   "id": "T-12",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "The MACD paragraph is the least useful ink on the page.",
+   "body": "Every read prints MACD with three numbers and a carefully hedged sentence. Tested against what prices then did, the histogram's sign \u2014 the thing chart traders act on \u2014 predicts nothing at any horizon. Not weakly something: measurably nothing, on a sample large enough to have found even a faint signal.",
+   "know": "Days with a positive histogram closed the week higher -0.00 in 100 more often than base and the month -0.38 in 100 \u2014 both a rounding error from zero, on 22,709 readings. Only 3 of 74 individual stocks show anything, which is what pure chance produces at this sample size.",
+   "over": "A different MACD construction \u2014 a signal-line crossing, a divergence \u2014 earning its place on its own evidence. The plain histogram is done."
+  },
+  {
+   "id": "T-13",
+   "scope": "ALL",
+   "cls": null,
+   "status": "ACTED ON",
+   "fig": "09_trigger.png",
+   "fig2": "19_demo_etel.png",
+   "figcap": "Book-wide: the \"zone\" opens LESS often after a real level is cleared.",
+   "figcap2": "And on one real stock: Telecom Egypt cleared 97.17 in June 2026; the promised 113 zone was never approached.",
+   "title": "\"A close above resistance opens the next zone\" \u2014 our data says the opposite.",
+   "body": "The old pages carried one genuinely conditional promise: close above the nearest resistance, and the far zone opens. It is the most natural sentence in technical analysis and it fails in the most instructive way possible \u2014 clearing a REAL level makes the next target LESS likely to be reached than clearing an empty price does. Why? Because the far level is real too. If lines hold (T-03), they also hold when they are your target. The sentence was rewritten on 31-Aug-2026 to name the next level without promising it.",
+   "know": "Counting only months in which the trigger actually fired (6,076 firings): the far zone was then reached 24.4% of the time after a real level was cleared, against 29.7% after an invented one \u2014 -5.3 in 100 the WRONG way, and worse over shorter windows. Telecom Egypt below is a typical firing, not a chosen embarrassment.",
+   "over": "Nothing about the direction. What it would take is a level-drawing method whose far targets are systematically weaker than its near ones \u2014 the opposite of how this one works."
+  },
+  {
+   "id": "T-14",
+   "scope": "ALL",
+   "cls": null,
+   "status": "ACTED ON",
+   "fig": "10_cross.png",
+   "fig2": "20_demo_sabic.png",
+   "figcap": "Fresh crosses against established ones, book-wide.",
+   "figcap2": "SABIC, May 2026: a textbook fresh golden cross, then \u22127.6% in a month.",
+   "title": "A golden cross is a description of the past, not a promise about the future.",
+   "body": "The read used to greet a fresh 50/200 cross with real drama: \"a momentum-regime change rather than noise\". Tested, a fresh golden cross is followed by slightly WORSE months than an old, established one, a fresh death cross by slightly better ones, and volatility does not change at all \u2014 there is no \"regime\" to speak of. The dramatic clause was deleted on 31-Aug-2026; the crossing itself is still reported, as the historical fact it is.",
+   "know": "Comparing fresh crosses only against the SAME cross state when it is old \u2014 so the trend itself cancels out: after a fresh golden cross the month closed higher 52.2% of the time versus 54.8% for an established one (3,024 fresh readings), and the ratio of volatility after fresh to after established is 0.92 \u2014 nothing. SABIC below is what that looks like on a real chart.",
+   "over": "A cross of different averages, or a different freshness window, earning the regime language on its own evidence."
+  },
+  {
+   "id": "T-15",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "11_volume.png",
+   "fig2": null,
+   "figcap": "Three ways to guess how far price will travel. Volume is the faint one.",
+   "figcap2": null,
+   "title": "Volume shouts about movement and says nothing about direction.",
+   "body": "Volume is in every library and the read has never used it \u2014 so this was exploration, not calibration. The result: a volume surge tells you the stock is about to MOVE, not which way. And the moving part is already said, far more clearly, by the tape sentence the pages carry today. Volume is not being added.",
+   "know": "On 43,167 readings, high-volume days and low-volume days were followed by a higher close equally often (a gap of +0.5 in 100, indistinguishable from zero). For predicting the SIZE of the coming move, volume scores +0.09 where the tape reading scores +0.51 \u2014 and once the tape reading is accounted for, volume adds only +0.07. Real, and not worth a sentence.",
+   "over": "A cleverer volume measure \u2014 turnover against free float, or volume split by up-days and down-days \u2014 clearing the bar the plain surge missed."
+  },
+  {
+   "id": "T-16",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "02_level_kind.png",
+   "fig2": null,
+   "figcap": "One week ahead: what each kind of line was worth when price reached it.",
+   "figcap2": null,
+   "title": "For a few days, the 20-day average is as strong a line as any on the chart.",
+   "body": "Our read believes in a hierarchy: real swing structure first, and moving averages, round numbers or the 52-week mark only as fillers. For the week ahead that hierarchy is wrong at the top \u2014 the 20-day average held at least as well as true structure. A month out it collapses to nothing, for a reason that is obvious once said: the average moves, so the line you drew from it goes stale in days.",
+   "know": "Over one week, price failed to close through the 20-day average +11.2 in 100 more often than through an invented line (174 tests), against +10.7 in 100 for swing structure (2,617 tests). Over one month the average is worth -0.9 in 100 \u2014 nothing \u2014 while structure still holds +5.2 in 100.",
+   "over": "The 20-day sample is small because the read only admits an average when structure leaves a slot open. More data pulling it back to the pack would fold this into T-03."
+  },
+  {
+   "id": "T-17",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "Round numbers deserve more respect than we gave them.",
+   "body": "A price like 20.00 or 150 is where human orders cluster, and our read treats such lines as a last resort. Measured, a round number holds about three quarters as well as genuine charted structure \u2014 clearly weaker, clearly not nothing. The QNB picture under T-03 is, fittingly, a round number doing the work.",
+   "know": "When price reached a published round-number line it failed to close through +7.8 in 100 more often than through an invented line over the week, and +5.0 in 100 over the month (2,772 tests) \u2014 against +5.2 in 100 for swing structure on the same clock.",
+   "over": "A market whose price grid makes \"round\" meaningless \u2014 very high nominal prices, say \u2014 where the effect should fade."
+  },
+  {
+   "id": "T-18",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "03_touches.png",
+   "fig2": null,
+   "figcap": "The edge, by how many times the level had been tested before.",
+   "figcap2": null,
+   "title": "A level tested five times is no stronger than a level tested once.",
+   "body": "Chart lore says every extra test proves a level. Our own read believes it \u2014 it ranks levels partly by touch count. Counted across the whole book, the edge is flat: once-tested and five-times-tested levels hold the same. What makes a level real appears to be that structure exists there at all, not how often it was rehearsed.",
+   "know": "Grouped by prior touches, the one-month edge runs +5.3 in 100 (one touch), +4.4 in 100 (two), +7.0 in 100 (three or four) and +4.7 in 100 (five or more) \u2014 no order, all within noise of each other, on 9,785 tests.",
+   "over": "A touch counted differently \u2014 only touches that produced a sharp rejection, or touches close together in time \u2014 showing a real ladder."
+  },
+  {
+   "id": "T-19",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "The level printed first is not the one to trust most.",
+   "body": "We publish three levels a side, nearest first, and a reader naturally weights them in that order. Over a month the order inverts: the furthest level held best and the nearest held worst. Distance to a level is part of what makes it hold \u2014 a far level is only reached by a strong move, and strong moves are exactly what break lines.",
+   "know": "Over one month the nearest published level held +3.1 in 100 better than its invented twin, the middle +5.1 in 100, the furthest +5.8 in 100 \u2014 on 2,190, 5,620 and 5,729 tests. Over one week the middle level was strongest, so the honest summary is \"not ordered the way the page implies\", rather than a new ordering to memorise.",
+   "over": "The same ordering reproducing under a different level-drawing method \u2014 as it stands it may partly reflect our own distance filters."
+  },
+  {
+   "id": "T-20",
+   "scope": "ALL",
+   "cls": null,
+   "status": "WATCH",
+   "fig": "13_stability.png",
+   "fig2": null,
+   "figcap": "Each claim, measured separately on the two halves of fifteen years.",
+   "figcap2": null,
+   "title": "The moving-average-stack effect worked before 2020 and has not worked since.",
+   "body": "The cheapest honesty test in research: cut the years in half and ask each finding to show up in both halves. The stack sentence fails it at the one-month horizon \u2014 a real effect in 2012-2020 and a slightly negative one since. What we publish as its overall figure is an average of \"used to work\" and \"does not\". It stays on the pages as a description; as a lean it is on watch.",
+   "know": "One-month horizon, split at 2020-08-14: above-stack weeks beat below-stack weeks by +5.1 in 100 in the first half and -1.2 in 100 in the second. At one week it survives with the same sign but shrinks, +4.0 in 100 to +1.6 in 100.",
+   "over": "The next few years restoring it \u2014 WATCH, not withdrawn, because half a sample is a blunt instrument and the weekly horizon still holds."
+  },
+  {
+   "id": "T-21",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "The level edge and the tape reading pass the same durability test.",
+   "body": "The split that embarrassed the stack sentence is exactly what makes the other two findings credible. The level edge is about the same size in both halves of fifteen years, and the tape reading is actually stronger in the recent half. Findings that show up twice, in two different market eras, are a different class of evidence from findings that show up on average.",
+   "know": "Levels: +9.2 in 100 before 2020-08-14 and +10.3 in 100 after, at one week. Tape: a correlation of +0.60 then +0.66. Both re-run at every pass.",
+   "over": "Either measure fading toward zero in a future half \u2014 the same check that caught T-20 is standing guard here."
+  },
+  {
+   "id": "T-22",
+   "scope": "ALL",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "04_atr_ladder.png",
+   "fig2": null,
+   "figcap": "What actually followed each of the four words, over fifteen years.",
+   "figcap2": null,
+   "title": "Four small words that keep four different promises.",
+   "body": "\"An orderly tape. A normal tape. A lively tape. A volatile tape.\" They read like colour, but each one corresponds to a genuinely different amount of movement in the month that follows, in the right order, with barely any overlap between the extremes. This is what a calibrated instrument looks like, and it is the standard every other sentence on the page is now held to.",
+   "know": "after \u201can orderly tape\u201d \u2192 15% \u00b7 after \u201ca normal tape\u201d \u2192 24% \u00b7 after \u201ca lively tape\u201d \u2192 34% \u00b7 after \u201ca volatile tape\u201d \u2192 47% (median movement at an annual pace over the following month, 45,331 readings). The middle half of outcomes after \u201corderly\u201d spans 11\u201320%; after \u201cvolatile\u201d, 36\u201361%.",
+   "over": "A market where the ladder collapses or inverts. Checked per market; all nine keep the order."
+  },
+  {
+   "id": "T-23",
+   "scope": "CLASS",
+   "cls": "market",
+   "status": "PROVISIONAL",
+   "fig": "08_level_market.png",
+   "fig2": null,
+   "figcap": "The level edge, per market, one week ahead.",
+   "figcap2": null,
+   "title": "Where the chart is drawn changes what a level is worth. Saudi doubles Egypt.",
+   "body": "The level test does not come out the same everywhere. A drawn level in Riyadh is worth roughly twice what the same construction is worth in Cairo, with the UAE in between \u2014 and the differences are too large to be sampling luck. This is the one place in the whole calibration where the market a stock trades on genuinely changes the answer, rather than just its strength.",
+   "know": "One week ahead, the edge over the invented line is +17.3 in 100 in Saudi, +12.2 in 100 in the UAE and +8.5 in 100 in Egypt. A formal test of whether three markets could differ this much by chance says no (p = 0.008).",
+   "over": "Only these three markets have enough stocks to be judged. A fourth landing in the middle would soften this; one landing outside would sharpen it."
+  },
+  {
+   "id": "T-24",
+   "scope": "CLASS",
+   "cls": "market",
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "The tape reading works everywhere; it works hardest in the Gulf.",
+   "body": "Unlike the levels, the tape sentence never changes its answer with geography \u2014 only its volume. It is strongest in the UAE and Saudi and mildest in Egypt, and positive with room to spare in every market and every sector tested. So the claim belongs on every page unchanged, while how much weight to put on it is a market fact.",
+   "know": "One week ahead the correlation between the tape reading and the movement that followed is +0.50 in the UAE, +0.50 in Saudi and +0.37 in Egypt; across ten industry sectors it spans +0.33 to +0.62, never near zero.",
+   "over": "Any class of stocks where it reads at zero on at least four names. None found."
+  },
+  {
+   "id": "T-25",
+   "scope": "CLASS",
+   "cls": "sector",
+   "status": "WATCH",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "For charts, the exchange is a real category. The industry mostly is not.",
+   "body": "The fundamental register learns lessons per kind of company \u2014 banks, developers, cement. It is tempting to assume charts work the same way. They largely do not: what moves a technical result is the venue (its price limits, its liquidity, its trading week), and once the venue is accounted for, industry adds little. Where a sector split looks interesting, the market split explains it better.",
+   "know": "The stack sentence is statistically one population across sectors at one week (p = 0.54); so is the MACD null. The repo's own sector labels also had to be repaired before testing \u2014 32 different labels for 84 stocks, including three spellings of \"financial\" \u2014 and four of the ten resulting groups hold five names or fewer.",
+   "over": "A claim that separates cleanly by industry while staying uniform across markets. None found so far."
+  },
+  {
+   "id": "T-26",
+   "scope": "STOCK",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": "12_pername_tape.png",
+   "fig2": null,
+   "figcap": "Each bar counts stocks; almost the whole book sits to the right of zero.",
+   "figcap2": null,
+   "title": "Only the tape sentence has earned the right to be said stock-by-stock.",
+   "body": "Saying \"this works on THIS stock\" needs the stock's own history to prove it, which is a far higher bar than proving it on the whole book. One claim clears that bar: the tape sentence, individually confirmed on nearly every name. The stack sentence looked like it cleared it on a handful of names \u2014 and for every stock where it seemed to work, there was one where it seemed to work BACKWARDS, which is what noise looks like. No per-stock trend claims are made, for anyone.",
+   "know": "The tape reading is individually significant and positive on 82 of 85 stocks with enough history at one week (against 1 negative, where chance alone would produce about 4.6 of each). The stack test splits 13 \"works\" against 12 \"works backwards\" at one month \u2014 a perfect coin flip. An earlier edition of this register read only the positive half of that split and published \"trend, per name where earned\"; this edition withdraws it.",
+   "over": "For the tape: nothing pending \u2014 84-3 is not luck. For any future per-stock claim: it must beat its own mirror image, not just zero."
+  },
+  {
+   "id": "T-27",
+   "scope": "STOCK",
+   "cls": null,
+   "status": "PROVISIONAL",
+   "fig": null,
+   "fig2": null,
+   "figcap": null,
+   "figcap2": null,
+   "title": "IHC is the most readable chart in the book. SALIK and LULU cannot be read at all yet.",
+   "body": "Two honest extremes of the same rule. International Holding Company has nine years of readings and the strongest tape relationship of all 92 names \u2014 its quiet spells and its storms both announce themselves. At the other end, Salik and Lulu simply have not lived long enough: their histories cannot yet prove or disprove anything about them, and their pages must lean on the book-wide record instead. Youth is not a defect, but it is a fact a reader deserves to see stated.",
+   "know": "IHC: tape correlation +0.82 over 468 monthly readings \u2014 the highest in the book (see the chart under T-02). SALIK has 88 weekly readings of history and LULU 0, against the roughly 60 this calibration requires before it will print a stock-specific number.",
+   "over": "Time. Both young names accrue about 50 readings a year and cross the threshold on their own."
+  }
+ ]
+}

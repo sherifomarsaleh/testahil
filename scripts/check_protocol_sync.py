@@ -26,7 +26,13 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FULL = os.path.join(ROOT, 'engine', 'Standing_Research_Protocol.md')
-DIGEST = os.path.join(ROOT, 'engine', 'PROJECT_INSTRUCTIONS_11-07-2026.md')
+# [R-DOC-01] The digest is named for the day of its latest amendment, so the
+# path is resolved by pattern — a typed filename here would strand this gate
+# at the first rename. Exactly one match or fail loudly.
+import glob as _glob
+_digests = sorted(_glob.glob(os.path.join(ROOT, 'engine', 'PROJECT_INSTRUCTIONS_*.md')))
+assert len(_digests) == 1, 'expected exactly one digest file, found %r' % _digests
+DIGEST = _digests[0]
 CODE_DIRS = [os.path.join(ROOT, 'engine'), os.path.join(ROOT, 'scripts')]
 
 RULE_ID = re.compile(r'\[(R-[A-Z]{2,6}-\d{2})[,\]]')

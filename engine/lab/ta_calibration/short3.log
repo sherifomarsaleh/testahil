@@ -1,0 +1,579 @@
+AE/ADCB: 9330 rows, 664 origins
+AE/ADIB: 8481 rows, 670 origins
+AE/ADNOCDIST: 3816 rows, 324 origins
+AE/ADNOCDRILL: 1449 rows, 135 origins
+AE/ADNOCGAS: 633 rows, 64 origins
+AE/ADNOCLS: 408 rows, 51 origins
+AE/AGTHIA: 8196 rows, 660 origins
+AE/AIRARABIA: 8628 rows, 674 origins
+AE/ALDAR: 8385 rows, 675 origins
+AE/ALPHADHABI: 2316 rows, 149 origins
+AE/AMR: 1191 rows, 75 origins
+AE/BOROUGE: 1248 rows, 102 origins
+AE/BURJEEL: 1401 rows, 86 origins
+AE/DEWA: 1338 rows, 110 origins
+AE/DIB: 8862 rows, 674 origins
+AE/DU: 7794 rows, 671 origins
+AE/EAND: 9402 rows, 669 origins
+AE/EMAAR: 8838 rows, 676 origins
+AE/EMAARDEV: 4407 rows, 330 origins
+AE/EMPOWER: 816 rows, 77 origins
+AE/ENBD: 8811 rows, 651 origins
+AE/FAB: 9093 rows, 670 origins
+AE/FERTIGLB: 1833 rows, 131 origins
+AE/IHC: 6033 rows, 468 origins
+AE/MODON: 2508 rows, 207 origins
+AE/SALIK: 1173 rows, 88 origins
+AE/TWOPOINTZERO: 1887 rows, 125 origins
+EG/ABUK: 8256 rows, 603 origins
+EG/ADIB: 8979 rows, 644 origins
+EG/AMOC: 9090 rows, 643 origins
+EG/ARCC: 7182 rows, 483 origins
+EG/BTFH: 9354 rows, 587 origins
+EG/CCAP: 9315 rows, 644 origins
+EG/CLHO: 5256 rows, 385 origins
+EG/COMI: 8634 rows, 642 origins
+EG/DSCW: 4701 rows, 305 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+EG/EFID: 5808 rows, 403 origins
+EG/EFIH: 1878 rows, 127 origins
+EG/EGAL: 9501 rows, 600 origins
+EG/EGCH: 9027 rows, 643 origins
+EG/ELEC: 9273 rows, 642 origins
+EG/EMFD: 5607 rows, 429 origins
+EG/ETEL: 8037 rows, 645 origins
+EG/FWRY: 3402 rows, 234 origins
+EG/GBCO: 8799 rows, 620 origins
+EG/HELI: 9672 rows, 645 origins
+EG/HRHO: 8766 rows, 645 origins
+EG/ISPH: 4575 rows, 314 origins
+EG/JUFO: 8517 rows, 633 origins
+EG/KABO: 9327 rows, 642 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+EG/LCSW: 8682 rows, 576 origins
+EG/OCDI: 8109 rows, 641 origins
+EG/OIH: 8181 rows, 600 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+EG/ORAS: 5868 rows, 447 origins
+EG/ORHD: 5973 rows, 444 origins
+EG/ORWE: 8700 rows, 642 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+EG/PHAR: 6693 rows, 537 origins
+EG/PHDC: 9327 rows, 645 origins
+EG/PRDC: 1713 rows, 128 origins
+EG/RAYA: 11610 rows, 632 origins
+EG/RMDA: 3009 rows, 217 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+EG/SCEM: 9009 rows, 617 origins
+EG/SWDY: 8760 rows, 639 origins
+EG/TMGH: 8469 rows, 645 origins
+IN/INFY: 8337 rows, 663 origins
+IN/RELIANCE: 8985 rows, 664 origins
+IN/TMPV: 8982 rows, 664 origins
+KR/KAKAO: 9675 rows, 657 origins
+KR/LGES: 1374 rows, 112 origins
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+/home/user/testahil/engine/lab/ta_calibration/replay.py:236: RuntimeWarning: divide by zero encountered in log
+  w = np.log(vol[i - 59:i + 1])
+KR/SAMSUNG: 7998 rows, 634 origins
+QA/IQCD: 8007 rows, 665 origins
+QA/QGTS: 7935 rows, 665 origins
+QA/QNB: 8535 rows, 666 origins
+SA/ACWA: 2145 rows, 130 origins
+SA/ALINMA: 8844 rows, 668 origins
+SA/ARAMCO: 2829 rows, 222 origins
+SA/ELM: 1299 rows, 112 origins
+SA/EXTRA: 8625 rows, 620 origins
+SA/MAADEN: 8973 rows, 668 origins
+SA/RAJHI: 8730 rows, 668 origins
+SA/RIBL: 8712 rows, 668 origins
+SA/RIYADHCABLE: 996 rows, 74 origins
+SA/SABIC: 8631 rows, 668 origins
+SA/SAVOLA: 8448 rows, 671 origins
+SA/SNB: 6198 rows, 476 origins
+SA/STC: 7812 rows, 668 origins
+US/AAPL: 8151 rows, 675 origins
+US/NVDA: 8952 rows, 675 origins
+US/TSLA: 10869 rows, 675 origins
+XAU/GOLD: 8862 rows, 753 origins
+XAU/SILVER: 9567 rows, 703 origins
+XPT/PLATINUM: 9300 rows, 703 origins
+
+=== 613,107 rows | 92 names | 355s ===
+ticker-origins (state rows, one horizon): 45,331
+origins per name: median 636
+libraries 93 | replayed 92 | skipped 1: [('AE', 'LULU', 'no origins')]

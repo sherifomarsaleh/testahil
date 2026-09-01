@@ -16,7 +16,7 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > listed on, then reproduce the valuation study and the Excel model on the corrected
 > number. Follow the standing protocol; this is not a new study and not a roll-forward.
 >
-> **1 — Read the live rules first.** `engine/PROJECT_INSTRUCTIONS_11-07-2026.md` and the
+> **1 — Read the live rules first.** the condensed digest (`engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md`, named for its latest amendment day) and the
 > BETA section of `engine/Standing_Research_Protocol.md`. Do not work from memory of them.
 >
 > **2 — Resolve the regressor, do not choose it.** Read the ticker's exchange from its

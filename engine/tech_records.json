@@ -1,5 +1,11 @@
 {
  "built_from": "engine/raw_ohlc, replayed through technicals.compute()",
+ "read_sha256": "a735789c81a95a9565ae424941855721179d9606ddeb093fa6c0afa0da8a745b",
+ "horizons": [
+  5,
+  10,
+  21
+ ],
  "libraries": 93,
  "recorded": 276,
  "skipped": [

@@ -108,7 +108,18 @@ def evidence():
     ev["document_chars"] = n1 + n2
     ev["column_audit"] = DX.column_audit(study) + BIB.column_audit(bib)
 
+    # REBUILD BEFORE CHECKING. Every figure is regenerated from the numbers
+    # file in this pass, then inspected. Checking figures nobody rebuilt is the
+    # failure this closes: the sensitivity figure went on reporting clean while
+    # it drew a grid the model had stopped producing, and the cone figure could
+    # not be rebuilt at all because it still read the retired horizon keys.
+    import build_figures as FIGS
+    rebuilt = [os.path.basename(x) for x in FIGS.main()]
+    ev["figures_rebuilt"] = sorted(rebuilt)
+
     figs = [f for f in os.listdir(HERE) if f.startswith("fig") and f.endswith(".png")]
+    stale = sorted(set(figs) - set(rebuilt))
+    ev["figures_not_rebuilt"] = stale
     bad = []
     for f in figs:
         im = Image.open(os.path.join(HERE, f))
@@ -135,6 +146,7 @@ def model_study_checklist(ev):
         bibliography_document=ev["bibliography_present"],
         external_reader_scrub=(not ev["scrub_hits"]),
         figure_discipline=(not ev["figures_with_transparency"]
+                           and not ev["figures_not_rebuilt"]
                            and len(ev["figures"]) >= 4),
         table_discipline=(not ev["column_audit"]),
         expert_appendix_max_detail=True,
@@ -182,7 +194,8 @@ def main():
             print("      %s" % v["detail"][:300])
     print("\nISSUABLE: %s" % out["issuable"])
     print()
-    for k in ("sections", "sheets", "formula_cells", "figures", "scrub_hits",
+    for k in ("sections", "sheets", "formula_cells", "figures",
+              "figures_rebuilt", "figures_not_rebuilt", "scrub_hits",
               "column_audit", "figures_with_transparency", "recalc_checks",
               "recalc_mismatches", "pdfs"):
         val = out["evidence"][k]

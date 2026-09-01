@@ -95,7 +95,7 @@ gate became its own form of silence. It is corrected here on 24-Aug-2026 because
 sentence was still being obeyed: an AGTHIA roll-forward stopped on a material verdict whose
 own ν and width_cal had not moved at all, while the unattended pipeline applied a material AE
 change on `main` that same day, exactly as [R-CAL-01] specifies. A gate with no release is a
-stall. See `PROJECT_INSTRUCTIONS_11-07-2026.md` and `Standing_Research_Protocol.md`, both of
+stall. See the condensed digest (`engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md`) and `Standing_Research_Protocol.md`, both of
 which have carried the amended rule since 23-Aug-2026 — this file was the odd one out.
 
 ## STEP 3 — GRADE EVERY NOW-MATURED COHORT

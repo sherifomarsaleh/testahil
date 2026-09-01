@@ -24,6 +24,7 @@ M, D, W = N["meta"], N["derived"], N["wacc"]
 REG, PM = N["registry"], N["price_map"]
 BU, LENS, BRIDGE, RANGED = (N["bottom_up"], N["lenses"], N["bridge"],
                             N["ranged_revenue"])
+ST = N["statements"]
 LW = N["lens_weighted"]
 CASES, SENS = N["cases"], N["sensitivity"]
 
@@ -105,6 +106,16 @@ def table(doc, headers, rows, widths, caption=None, size=8.5):
     lay = OxmlElement("w:tblLayout")
     lay.set(qn("w:type"), "fixed")
     tblPr.append(lay)
+    # UNDER FIXED LAYOUT THE RENDERER READS THE GRID, NOT THE CELL WIDTHS.
+    # python-docx writes a tblGrid of EQUAL columns and setting cell widths
+    # does not touch it, so every table in this document rendered with roughly
+    # equal columns however carefully the widths were chosen — and the column
+    # audit, which read the cell widths back, reported it clean. A checker that
+    # models something other than what the renderer reads is checking a
+    # different document. The grid is written here and audited below.
+    grid = t._tbl.find(qn("w:tblGrid"))
+    for gc, w in zip(grid.findall(qn("w:gridCol")), widths):
+        gc.set(qn("w:w"), str(int(round(w * 567))))
     # a table that breaks across a page must carry its header onto the next one,
     # or the continuation is a grid of numbers with nothing naming the columns
     trPr = t.rows[0]._tr.get_or_add_trPr()
@@ -120,7 +131,13 @@ def table(doc, headers, rows, widths, caption=None, size=8.5):
         r.font.size = Pt(size)
         r.font.color.rgb = MUTED
     for row in rows:
-        cells = t.add_row().cells
+        tr = t.add_row()
+        # A row allowed to split across a page break renders its continuation as
+        # an empty strip under the repeated header, which reads as a missing
+        # line rather than a wrapped one.
+        cant = OxmlElement("w:cantSplit")
+        tr._tr.get_or_add_trPr().append(cant)
+        cells = tr.cells
         for i, val in enumerate(row):
             cells[i].width = Cm(widths[i])
             cells[i].text = ""
@@ -132,6 +149,15 @@ def table(doc, headers, rows, widths, caption=None, size=8.5):
                 cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
     if caption:
         para(doc, caption, size=8, italic=True, color=MUTED, space_after=10)
+    else:
+        # TWO TABLES WITH NOTHING BETWEEN THEM ARE ONE TABLE TO THE RENDERER.
+        # Word and LibreOffice merge adjacent tables, so the second one loses
+        # its own header row to the first one's repeating header and its first
+        # row renders as an empty strip. A.3 published a cycle table under a
+        # header reading "Forecast cash flow" because of exactly this. A
+        # separator always follows a table that carries no caption, and
+        # adjacency is audited below rather than remembered.
+        para(doc, "", size=4, space_after=4)
     return t
 
 
@@ -170,7 +196,15 @@ def column_audit(doc_path):
     """Every table fixed-layout with explicit widths, none starved or bloated."""
     from docx import Document as Dx
     d = Dx(doc_path)
+    from docx.oxml.ns import qn as _qn
     bad = []
+    body = d.element.body
+    kids = [c.tag for c in body.iterchildren()]
+    TBL = _qn("w:tbl")
+    for i in range(len(kids) - 1):
+        if kids[i] == TBL and kids[i + 1] == TBL:
+            bad.append((i, "two tables with nothing between them — the "
+                           "renderer merges these into one"))
     for i, t in enumerate(d.tables):
         widths = [c.width for c in t.rows[0].cells]
         if any(w is None for w in widths):
@@ -181,6 +215,22 @@ def column_audit(doc_path):
             bad.append((i, "starved column %.2fcm" % min(cm)))
         if sum(cm) > 17.5:
             bad.append((i, "row overflows the text column at %.2fcm" % sum(cm)))
+        # AUDIT WHAT THE RENDERER ACTUALLY READS. Under fixed layout that is
+        # the grid; cell widths agreeing among themselves proves nothing if the
+        # grid disagrees with them.
+        grid = t._tbl.find(_qn("w:tblGrid"))
+        if grid is None:
+            bad.append((i, "no column grid"))
+            continue
+        gcm = [int(gc.get(_qn("w:w")) or 0) / 567.0
+               for gc in grid.findall(_qn("w:gridCol"))]
+        if len(gcm) != len(cm):
+            bad.append((i, "grid has %d columns, the row has %d"
+                        % (len(gcm), len(cm))))
+        elif max(abs(a - b) for a, b in zip(gcm, cm)) > 0.02:
+            bad.append((i, "the grid the renderer reads disagrees with the "
+                           "cell widths: %s vs %s"
+                        % (["%.2f" % x for x in gcm], ["%.2f" % x for x in cm])))
     return bad
 
 
@@ -324,15 +374,21 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     doc.add_heading("1  Fundamental valuation", level=1)
 
     doc.add_heading("1.1  The cash-flow model", level=2)
-    para(doc, "The model runs ten years from the audited 2025 base and then a "
-              "terminal value. Revenue is limited by how much the company can build "
-              "and hand over, not by how much it has sold: the order book is EGP "
-              "%sbn against 2025 revenue of EGP %sbn, so sales are not the binding "
-              "constraint and have not been for some years. Delivery capacity is "
-              "grown with construction inflation and the order book is rolled behind "
-              "it, converging back to the multiple of revenue it stood at in 2024."
+    para(doc, "The model runs five years from the audited 2025 base and then a "
+              "terminal value. Revenue is limited by how much the company can "
+              "build and hand over, not by how much it has sold: the order book "
+              "is EGP %sbn against 2025 revenue of EGP %sbn, so sales are not "
+              "the binding constraint and have not been for some years. Revenue "
+              "is therefore units handed over times the revenue each one "
+              "carries — %s units in 2026, growing %.0f per cent a year on the "
+              "company's own disclosed run of handovers, at EGP %.2f million a "
+              "unit escalating with inflation. Nothing here is a ratio applied "
+              "to last year's revenue."
               % (money(v("backlog_1q26") / 1000, 0),
-                 money(v("revenue_fy25") / 1000, 1)))
+                 money(v("revenue_fy25") / 1000, 1),
+                 "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
+                 100 * BU["anchors"]["delivery_growth"],
+                 BU["rows"][0]["rev_per_unit"]))
     para(doc, "Cost is recognised on the same completion schedule as revenue. That "
               "sounds obvious and it is the single most important correction in this "
               "edition. Since January 2016 the company has recognised revenue on "
@@ -367,7 +423,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     ]
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
-          [5.0, 2.3, 2.3, 2.3, 2.3, 2.3],
+          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
           "Every line follows from the two engines above. Gross margin is what "
           "price per unit and cost per unit leave behind, not an assumption.")
     a = BU["anchors"]
@@ -406,12 +462,82 @@ def _section_one(doc, sp, base, low, high, cds, prior):
           "from testing it across ten annual starting points on the company's "
           "2011-2025 history. It is not a scenario; it is the spread the method "
           "has actually produced.")
+    doc.add_heading("The cash-flow calculation in full", level=3)
+    para(doc, "Operating profit is not cash, and for a developer selling on "
+              "instalments the gap between the two is the whole question. The "
+              "table below runs every step from operating profit to a present "
+              "value, year by year, with nothing collapsed.")
+    wf = ST["dcf_b"]["waterfall"]
+    wy = [str(w["year"]) for w in wf]
+    def _w(key, fmt="{:,.0f}"):
+        return [fmt.format(w[key]) for w in wf]
+    table(doc, ["EGP million"] + wy,
+          [["Operating profit"] + _w("ebit"),
+           ["Cash from operations"] + _w("cfo"),
+           ["  as a share of revenue"]
+           + ["%.1f%%" % (100 * w["cfo"] / w["revenue"]) for w in wf],
+           ["plus finance cost, after tax"] + _w("interest_addback"),
+           ["less capital expenditure"] + _w("capex"),
+           ["Free cash flow to the firm"] + _w("fcff"),
+           ["Discount factor at %.2f%%" % (100 * ST["dcf_b"]["wacc"])]
+           + ["%.3f" % w["discount_factor"] for w in wf],
+           ["Present value"] + _w("pv")],
+          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          "The finance charge is added back after tax because the discount rate "
+          "already carries the cost of debt; leaving it in the cash flow would "
+          "charge for the same thing twice. Capital expenditure is maintenance "
+          "only, at one per cent of revenue: for this company the building "
+          "itself is inventory, and it is already inside operating cash.")
     table(doc, ["Bridge from enterprise value to equity, base case", "EGP mn"],
           [[lbl, "{:,.1f}".format(val)] for lbl, val in BRIDGE],
           [10.6, 5.6],
           "The terminal value is %.0f per cent of enterprise value, which is high "
           "and is one reason the range is published rather than a point."
           % (100 * (N["dcf_cases"]["base"]["terminal_share"] or 0)))
+
+    doc.add_heading("What the two statements disagree about, and why it is "
+                    "not resolved here", level=3)
+    wg = ST["wedge"]; cy = ST["cycle_measured"]
+    para(doc, "The audited balance sheet and the audited cash-flow statement "
+              "tell different stories about the same year, and the difference "
+              "is the largest single uncertainty in this valuation. Working "
+              "capital on the balance sheet rose EGP %s million in 2025. Net "
+              "profit plus depreciation less the operating cash the company "
+              "reported implies it rose EGP %s million. The difference is EGP "
+              "%s million — %.1f per cent of the year's revenue."
+              % ("{:,.0f}".format(wg["d_wc_book_fy25"]),
+                 "{:,.0f}".format(wg["d_wc_cash_fy25"]),
+                 "{:,.0f}".format(wg["wedge_fy25"]),
+                 100 * wg["wedge_over_revenue"]))
+    para(doc, "A difference that size is not depreciation and it is not "
+              "capitalised interest. It is consolidation, land taken on "
+              "deferred terms, and reclassification inside a book where "
+              "revenue is recognised as construction progresses. The 2025 "
+              "cash-flow statement is published in its three totals only, so "
+              "the difference cannot be split from what the company has "
+              "disclosed. It is therefore not split. It is measured, recorded "
+              "in the register of what is missing, and the forecast is "
+              "published two ways around it rather than one — set out in full "
+              "in Appendix A.3.")
+    table(doc, ["The collection cycle, as reported", "2025", "2024"],
+          [["Collection period, days", "%.0f" % cy["dso_fy25"],
+            "%.0f" % cy["dso_fy24"]],
+           ["Work in progress, days of cost", "%.0f" % cy["dio_fy25"],
+            "%.0f" % cy["dio_fy24"]],
+           ["Suppliers, days of cost", "%.0f" % cy["dpo_fy25"],
+            "%.0f" % cy["dpo_fy24"]],
+           ["Customer advances, share of the order book",
+            "%.1f%%" % (100 * cy["adv_of_backlog_fy25"]),
+            "%.1f%%" % (100 * cy["adv_of_backlog_fy24"])],
+           ["Net working capital (EGP mn)",
+            "{:,.0f}".format(cy["nwc_fy25"]), "{:,.0f}".format(cy["nwc_fy24"])],
+           ["  as a multiple of revenue", "%.2f" % cy["nwc_over_revenue_fy25"],
+            "%.2f" % cy["nwc_over_revenue_fy24"]]],
+          [8.4, 3.4, 3.4],
+          "Both years measured the same way on the two audited sheets. The "
+          "collection period is close to three years because units are sold on "
+          "multi-year instalments; customer advances against the order book "
+          "are what funds the building in the meantime.")
 
     doc.add_heading("1.2  Book value and sustainable return", level=2)
     para(doc, "Shareholders' funds were EGP %s million at the end of 2025, or EGP "
@@ -424,7 +550,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "rather than acting as a floor."
               % (money(v("total_equity")), D["book_equity_per_share"], sp,
                  sp / D["book_equity_per_share"], money(v("npat_mi_fy25")),
-                 pct(v("npat_mi_fy25") / ((v("total_equity") + 14624.7) / 2)),
+                 pct(v("npat_mi_fy25") / ((v("total_equity")
+                      + N["balance_sheet_subtotals"]["2024"]["total_equity"]["value"]) / 2)),
                  pct(W["ke_rating"], 1)))
 
     doc.add_heading("1.3  Relative multiples", level=2)
@@ -801,63 +928,242 @@ def _appendices(doc, sp, base):
     doc.add_heading("Appendix A  Financial statements", level=1)
 
     doc.add_heading("A.1  Income statement", level=2)
-    hist = [["Revenue", v("revenue_fy23"), v("revenue_fy24"), v("revenue_fy25")],
-            ["Cost of revenue", -v("cogs_fy24") * 0 - 11907.2, -v("cogs_fy24"),
-             -v("cogs_fy25")],
-            ["Gross profit", 5507.6, 9330.1, v("gross_profit_fy25")],
-            ["Overheads", -2060.5, -3435.8, -v("sga_fy25")],
-            ["Depreciation and amortisation", -178.6, -239.9, -v("da_fy25")],
-            ["Finance cost", None, -2311.4, -v("finance_cost_fy25")],
-            ["Profit before tax and minority", 2300.7, 4320.6, v("npbt_fy25")],
-            ["Tax", -567.3, -917.1, -v("tax_fy25")],
-            ["Profit after tax and minority", 1581.5, 3254.9, v("npat_mi_fy25")]]
-    rows = [[r[0]] + ["" if x is None else money(x, 1) for x in r[1:]] for r in hist]
-    table(doc, ["EGP million", "2023", "2024", "2025"], rows,
+    H = N["historical_is"]
+    hy = ["2023", "2024", "2025"]
+    def _h(key, sign=1, dp=1):
+        return [("" if key not in H[y] else money(sign * H[y][key]["value"], dp))
+                for y in hy]
+    table(doc, ["EGP million, as reported"] + hy,
+          [["Revenue"] + _h("revenue"),
+           ["Cost of revenue"] + _h("cogs", -1),
+           ["Cash discount"] + _h("cash_discount", -1),
+           ["Gross profit"] + _h("gross_profit"),
+           ["Overheads"] + _h("sga", -1),
+           ["Depreciation and amortisation"] + _h("da", -1),
+           ["Finance cost"] + _h("finance_cost", -1),
+           ["Profit before tax"] + _h("npbt"),
+           ["Tax"] + _h("tax_total", -1),
+           ["Profit after tax"] + _h("npat_pre_nci"),
+           ["Minority interest"] + _h("nci", -1),
+           ["Profit attributable to shareholders"] + _h("npat_mi")],
           [6.2, 3.3, 3.3, 3.3],
-          "Three years as reported in the company's audited statements.")
-    fwd = [[str(r["year"]), money(r["revenue"]), money(r["gross"]),
-            money(r["npbt"]), money(r["cfo"])] for r in base["rows"][:5]]
-    table(doc, ["Forecast, EGP million", "Revenue", "Gross profit",
-                "Pre-tax profit", "Operating cash"], fwd,
-          [4.4, 3.0, 3.0, 3.0, 3.0],
-          "Five forecast years, central case. Years three to five should be read as "
-          "the corresponding rows of the range in section 1.9, not as points.")
+          "Three years, each as that year's own audited statements reported "
+          "it. Revenue less cost of revenue less the cash discount foots to "
+          "reported gross profit in all three years, and profit before tax "
+          "less tax less minority interest foots to the attributable figure.")
+    para(doc, "One presentational difference is worth naming rather than "
+              "smoothing. Cost of revenue for 2024 is EGP %s million as the "
+              "company reported it that year and EGP %s million in the "
+              "comparative column of the 2025 statements — a difference of EGP "
+              "%.1f million, exactly that year's cash discount, which the later "
+              "presentation folds into cost. The forecast is built on the later "
+              "basis throughout; the table above shows each year as first "
+              "reported. Both figures are right on their own basis."
+              % ("{:,.1f}".format(N["fy24_cogs_basis"]["as_reported"]),
+                 "{:,.1f}".format(N["fy24_cogs_basis"]["fy25_comparative"]),
+                 N["fy24_cogs_basis"]["fy25_comparative"]
+                 - N["fy24_cogs_basis"]["as_reported"]))
+    FA, FB = ST["framing_a"], ST["framing_b"]
+    fy = [str(r["year"]) for r in FB]
+    def _f(rows, key, fmt="{:,.0f}", sign=1):
+        return [fmt.format(sign * r[key]) for r in rows]
+    table(doc, ["Forecast, EGP million"] + fy,
+          [["Units delivered"] + _f(FB, "units_delivered"),
+           ["Revenue per delivered unit"] + _f(FB, "rev_per_unit", "{:,.2f}"),
+           ["Revenue"] + _f(FB, "revenue"),
+           ["Cost per delivered unit"] + _f(FB, "cost_per_unit", "{:,.2f}"),
+           ["Cost of revenue"] + _f(FB, "cogs", "{:,.0f}", -1),
+           ["Gross profit"] + _f(FB, "gross"),
+           ["Gross margin"]
+           + ["%.1f%%" % (100 * r["gross_margin"]) for r in FB],
+           ["Overheads"] + _f(FB, "sga", "{:,.0f}", -1),
+           ["Depreciation and amortisation"] + _f(FB, "da", "{:,.0f}", -1),
+           ["Operating profit"] + _f(FB, "ebit"),
+           ["Finance cost"] + _f(FB, "interest", "{:,.0f}", -1),
+           ["Profit before tax"] + _f(FB, "npbt"),
+           ["Tax"] + _f(FB, "tax", "{:,.0f}", -1),
+           ["Net profit"] + _f(FB, "npat"),
+           ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
+          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          "Five forecast years. Gross margin is what price per unit and cost "
+          "per unit leave behind, never an input. Years three to five should be "
+          "read against the range in section 1.9, not as points.")
 
     doc.add_heading("A.2  Balance sheet", level=2)
-    bs = [["Non-current assets", v("total_noncurrent_assets"), 54166.4],
-          ["  of which notes receivable, long term",
-           v("notes_recv_lt") + v("notes_recv_lt_undel"), 46309.1],
-          ["Current assets", v("total_current_assets"), 69270.9],
-          ["  of which work in progress", v("work_in_progress"), 13209.8],
-          ["  of which trade receivables", v("accounts_receivable"), 15561.1],
-          ["  of which cash", v("cash"), 6372.4],
-          ["Total assets", v("total_assets"), 123437.3],
-          ["Current liabilities", 105099.0, 74496.9],
-          ["  of which advances from customers", v("advances_customers"), 47403.8],
-          ["Non-current liabilities", 48265.1, 34315.7],
-          ["Total liabilities", v("total_liabilities"), 108812.6],
-          ["Shareholders' funds", v("total_equity"), 14624.7],
-          ["Total equity and liabilities", v("total_assets"), 123437.3]]
-    table(doc, ["EGP million", "2025", "2024"],
-          [[r[0], money(r[1], 1), money(r[2], 1)] for r in bs],
+    SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
+    def _b(key):
+        return [money(SB[y][key]["value"], 1) for y in ("2025", "2024")]
+    def _bl(key):
+        return [money(v(key), 1), money(B24[key]["value"], 1)]
+    table(doc, ["EGP million, as reported", "2025", "2024"],
+          [["Non-current assets"] + _b("total_noncurrent_assets"),
+           ["  of which notes receivable, long term"]
+           + [money(v("notes_recv_lt") + v("notes_recv_lt_undel"), 1),
+              money(B24["notes_recv_lt"]["value"]
+                    + B24["notes_recv_lt_undel"]["value"], 1)],
+           ["Current assets"] + _b("total_current_assets"),
+           ["  of which work in progress"] + _bl("work_in_progress"),
+           ["  of which trade receivables"] + _bl("accounts_receivable"),
+           ["  of which notes receivable, short term"]
+           + [money(v("notes_recv_st") + v("notes_recv_st_undel"), 1),
+              money(B24["notes_recv_st"]["value"]
+                    + B24["notes_recv_st_undel"]["value"], 1)],
+           ["  of which cash"] + _bl("cash"),
+           ["Total assets"] + _b("total_assets"),
+           ["Current liabilities"] + _b("total_current_liabs"),
+           ["  of which advances from customers"] + _bl("advances_customers"),
+           ["  of which suppliers"] + _bl("suppliers"),
+           ["Non-current liabilities"] + _b("total_noncurrent_liabs"),
+           ["Total liabilities"] + _b("total_liabilities"),
+           ["Shareholders' funds"] + _b("total_equity"),
+           ["Total equity and liabilities"] + _b("total_assets")],
           [7.4, 4.4, 4.4],
-          "As reported. Total assets equal total liabilities plus shareholders' "
-          "funds in both years, and each subtotal reconciles to its components.")
+          "As reported. Total assets equal total liabilities plus "
+          "shareholders' funds in both years, and each subtotal reconciles to "
+          "its components.")
 
-    doc.add_heading("A.3  Forecast balance sheet and cash-flow markers", level=2)
-    table(doc, ["Marker", "2025 actual", "Basis carried forward"],
-          [["Gross borrowings (EGP mn)", money(D["gross_debt"], 1),
-            "held at the 2025 level; no repayment schedule is disclosed"],
-           ["Net debt (EGP mn)", money(D["net_debt"], 1),
-            "gross borrowings less cash"],
-           ["Order book (EGP mn)", "263,000 at 31 Mar 2026",
-            "converges to %.1f times revenue, its 2024 level"
-            % D["target_backlog_multiple"]],
-           ["Cash from operations", money(v("cfo_fy25"), 1),
-            "modelled as a share of revenue across the observed range"],
-           ["Overheads as a share of revenue", pct(D["sga_ratio_fy25"]),
-            "held at the 2025 rate"]],
-          [5.0, 4.2, 7.0])
+    doc.add_heading("A.3  Forecast balance sheet and cash flow", level=2)
+    wg = ST["wedge"]
+    para(doc, "Because the balance sheet and the cash-flow statement disagree "
+              "about 2025 by EGP %s million, and that difference cannot be "
+              "split from what has been disclosed, the forecast is published "
+              "two ways. Neither is averaged into the other. Both rest on the "
+              "same income statement above; they differ only in what they hold "
+              "fixed about cash."
+              % "{:,.0f}".format(wg["wedge_fy25"]))
+    bullets(doc, [
+        "The first holds the collection cycle. Every working-capital line "
+        "stays at the ratio to revenue it stood at in 2025, the balance sheet "
+        "is built from those ratios, and operating cash is what is left. It "
+        "asks what the growth costs to fund if nothing about collection "
+        "changes.",
+        "The second holds cash conversion. Operating cash is set at the "
+        "company's own disclosed rate — %.1f, %.1f and %.1f per cent of "
+        "revenue in the three published years, %.1f per cent on average — and "
+        "working capital is what is left. It asks what the collection cycle "
+        "must do for the cash to keep converting as it has."
+        % (100 * ST["cash_conversion"]["FY2023"],
+           100 * ST["cash_conversion"]["FY2024"],
+           100 * ST["cash_conversion"]["FY2025"],
+           100 * ST["cash_conversion"]["mean"])])
+    para(doc, "The valuation stands on the second, because that is the reading "
+              "the company's own cash-flow statements support. The first is "
+              "printed beside it because the two do not agree, and a single "
+              "set of figures would hide that they don't.")
+
+    for tag, rows, title in (
+            ("B", FB, "If cash conversion holds — the basis of the valuation"),
+            ("A", FA, "If the collection cycle holds")):
+        doc.add_heading(title, level=3)
+        table(doc, ["Forecast balance sheet, EGP million"] + fy,
+              [["Trade and notes receivable"] + _f(rows, "receivables"),
+               ["Work in progress"] + _f(rows, "wip"),
+               ["Other receivables and prepayments"]
+               + _f(rows, "bs_debtors_other"),
+               ["Advances to suppliers"] + _f(rows, "bs_suppliers_advances"),
+               ["Cash and equivalents"] + _f(rows, "cash"),
+               ["Property and equipment"] + _f(rows, "ppe"),
+               ["Other assets, held at the 2025 level"]
+               + _f(rows, "other_assets"),
+               ["Total assets"] + _f(rows, "total_assets"),
+               ["Customer advances"] + _f(rows, "advances"),
+               ["Suppliers"] + _f(rows, "suppliers"),
+               ["Other creditors"] + _f(rows, "bs_creditors_other"),
+               ["Cheques under collection"]
+               + _f(rows, "bs_checks_undelivered"),
+               ["Borrowings"] + _f(rows, "debt"),
+               ["Other liabilities, held at the 2025 level"]
+               + _f(rows, "other_liabs"),
+               ["Total liabilities"] + _f(rows, "total_liabilities"),
+               ["Shareholders' funds"] + _f(rows, "equity"),
+               ["Total liabilities and equity"]
+               + _f(rows, "total_liabs_and_equity")],
+              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              "Assets equal liabilities plus shareholders' funds in every "
+              "year, to the same tenth of a million the audited 2025 sheet "
+              "itself foots to.")
+        table(doc, ["Forecast cash flow, EGP million"] + fy,
+              [["Net profit"] + _f(rows, "npat"),
+               ["Depreciation and amortisation"] + _f(rows, "da"),
+               ["Change in working capital, cash effect"]
+               + _f(rows, "d_wc", "{:,.0f}", -1),
+               ["Cash from operations"] + _f(rows, "cfo"),
+               ["  as a share of revenue"]
+               + ["%.1f%%" % (100 * r["cash_conversion"]) for r in rows],
+               ["Capital expenditure"] + _f(rows, "cfi"),
+               ["New borrowing drawn"] + _f(rows, "drawn"),
+               ["Closing cash"] + _f(rows, "cash")],
+              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              None)
+        table(doc, ["The cycle this implies"] + fy,
+              [["Collection period, days"]
+               + ["%.0f" % r["dso"] for r in rows],
+               ["Work in progress, days of cost"]
+               + ["%.0f" % r["dio"] for r in rows],
+               ["Suppliers, days of cost"]
+               + ["%.0f" % r["dpo"] for r in rows],
+               ["Customer advances, share of the order book"]
+               + ["%.1f%%" % (100 * r["adv_of_backlog"]) for r in rows],
+               ["Net working capital"] + _f(rows, "net_wc"),
+               ["  as a multiple of revenue"]
+               + ["%.2f" % r["nwc_over_revenue"] for r in rows]],
+              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              ("The collection period falls from %.0f days to %.0f over five "
+               "years. That is what this reading requires, and it is a large "
+               "improvement to take on trust — which is exactly why the other "
+               "reading is printed too."
+               % (rows[0]["dso"], rows[-1]["dso"])) if tag == "B" else
+              ("Every ratio is held where 2025 left it, by construction. The "
+               "customer-advance share rises only because the order book grows "
+               "more slowly than revenue on this path."))
+        if tag == "A":
+            d = ST["dcf_a"]
+            para(doc, "This reading does not produce a value per share, and "
+                      "the reason is worth stating plainly rather than "
+                      "burying. Free cash flow is negative in every one of the "
+                      "five years and reaches minus EGP %s million in 2030. A "
+                      "terminal "
+                      "value taken on a negative flow returns a large negative "
+                      "number that looks like a valuation and is not one: it "
+                      "asserts the company burns cash for ever at a "
+                      "compounding rate, which is not a forecast anybody made. "
+                      "So none is taken. What this reading measures instead is "
+                      "the funding the growth would need."
+                      % "{:,.0f}".format(abs(d["terminal_flow"])))
+            table(doc, ["If the cycle holds, what the growth costs", "EGP mn"],
+                  [["Present value of the five forecast years",
+                    "{:,.0f}".format(d["pv_explicit"])],
+                   ["New borrowing required by 2030",
+                    "{:,.0f}".format(d["funding_required"])],
+                   ["Its annual interest by 2030, at %.2f per cent"
+                    % (100 * W["kd_pretax_local"]),
+                    "{:,.0f}".format(d["funding_interest"])],
+                   ["That interest as a share of 2030 operating profit",
+                    "%.0f%%" % (100 * d["funding_interest_vs_ebit"])]],
+                  [10.6, 5.6],
+                  "The interest on that borrowing is not in the profit "
+                  "forecast above, and by 2030 it would exceed operating "
+                  "profit outright. The collection cycle and this growth path "
+                  "cannot both hold — which is the finding, not a defect in "
+                  "the arithmetic.")
+        else:
+            d = ST["dcf_b"]
+            table(doc, ["Free cash flow to the firm, EGP million"] + fy,
+                  [["Cash from operations"]
+                   + ["{:,.0f}".format(w["cfo"]) for w in d["waterfall"]],
+                   ["plus finance cost, after tax"]
+                   + ["{:,.0f}".format(w["interest_addback"])
+                      for w in d["waterfall"]],
+                   ["less capital expenditure"]
+                   + ["{:,.0f}".format(-w["capex"]) for w in d["waterfall"]],
+                   ["Free cash flow to the firm"]
+                   + ["{:,.0f}".format(w["fcff"]) for w in d["waterfall"]],
+                   ["Present value at %.2f per cent"
+                    % (100 * d["wacc"])]
+                   + ["{:,.0f}".format(w["pv"]) for w in d["waterfall"]]],
+                  [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+                  "These are the figures discounted in section 1.1, shown "
+                  "again here beside the statements they come out of.")
 
     doc.add_page_break()
     doc.add_heading("Appendix B  Peer frame, risk register and research register",
