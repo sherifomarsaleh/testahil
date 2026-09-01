@@ -49,14 +49,15 @@
       <div class="t-card">
         <h3 style="margin-top:0">Technical — calibrated to the tape</h3>
         <p style="margin:0 0 8px">Every level is computed from the price series, never drawn by hand: the 20, 50 and 200-day moving averages and their slopes, RSI(14) and MACD for momentum, the daily ATR for how much this name moves on a normal day, and support and resistance taken from where price has actually turned. The published levels are the ones the study will be judged against.</p>
-        <p style="margin:0 0 8px">The shipped read is walk-forward tested on its own short clock — 5, 10 and 21 sessions ahead — against distance-matched placebos, so a signal only counts if it beats an equally-placed coin toss. <b>Run on 91 of the 92 covered names</b> (one lacks the history to reach a first test date), across all three horizons and <b>135,993 test origins</b> spanning 2011 to 2026.</p>
+        <p style="margin:0 0 8px">The shipped read is walk-forward tested on its own short clock — 5, 10 and 21 sessions ahead — against distance-matched placebos, so a signal only counts if it beats an equally-placed coin toss. <b>Run on 92 of the 93 covered names</b> (one lacks the history to reach a first test date), across all three horizons and <b>135,993 test origins</b> spanning 2011 to 2026.</p>
         <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the window. Levels are refitted on each name's own trading history — roughly 500 sessions — so a thin, jumpy stock and a heavily traded one are not held to the same yardstick.</p>
       </div>
 
       <div class="t-card">
         <h3 style="margin-top:0">Monte Carlo — calibrated to the name's own volatility</h3>
         <p style="margin:0 0 8px">The engine simulates 50,000 price paths per name over 22 trading days (1 month) and 62 trading days (3 months). The step size comes from that name's measured volatility, not a market average, so the cone is as wide as the stock has actually been. Everything downstream — the 90% and 50% bands, the odds buckets, the touch ladder — is read off those same paths.</p>
-        <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the spread. The band is checked against what the price did next; if a name's ranges keep landing too wide or too narrow, that shows up in its own record rather than being quietly corrected.</p>
+        <p style="margin:0 0 8px">The cone is walk-forward tested the same way it is judged in public: struck at a past date, then scored on where the price actually closed. Across every covered name that is <b><span id="m-mc-n">—</span> resolved, non-overlapping 3-month windows</b>, of which <b><span id="m-mc-h">—</span> finished inside the 90% band (<span id="m-mc-p">—</span>)</b> — the whole backtest, not only the forecasts published since this site launched.</p>
+        <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the spread. The band is checked against what the price did next; if a name's ranges keep landing too wide or too narrow, that shows up in its own record rather than being quietly corrected. Per-name results sit on each study's <a href="record.html">record</a>.</p>
       </div>
     </div>
 
@@ -108,6 +109,9 @@ renderChrome("method");
     set("m-cal-g",g.length);
     set("m-cal-gd","graded so far — "+(g.length?Math.round(in90/g.length*100):0)+"% inside the 90% band");
     set("m-cal-p",L.length-g.length);
+    set("m-mc-n",bn.toLocaleString());
+    set("m-mc-h",bh.toLocaleString());
+    set("m-mc-p",(bn?Math.round(bh/bn*100):0)+"% against a 90% promise");
     set("m-bt-n",bn.toLocaleString());
     set("m-bt-d","backtested 3-month windows — "+(bn?Math.round(bh/bn*100):0)+"% inside the band");
   }catch(e){}
