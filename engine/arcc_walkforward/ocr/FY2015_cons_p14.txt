@@ -1,0 +1,86 @@
+Deferred tax
+
+Deferred tax is recognized on temporary differences between the carrying amounts of
+
+assets and liabilities in the balance sheet and the corresponding tax bases used in the
+
+computation of taxable profit.
+
+Deferred tax liabilities are generally recognized for all taxable temporary differences.
+
+Deferred tax assets are generally recognized for all deductible temporary differences to
+
+the extent that it is probable that taxable profits will be available against which those
+
+deductible temporary differences can be utilized.
+
+The carrying amount of deferred tax assets is reviewed at the end of each reporting period
+
+and reduced to the extent that it is no longer probable that sufficient taxable profits will be
+
+available to allow all or part of the asset to be recovered.
+
+Deferred tax assets and liabilities are measured at the tax rates that are expected to apply
+
+in the period in which the liability is settled or the asset realized, based on tax rates that
+
+have been enacted or substantively enacted by the end of the reporting period.
+
+The measurement of deferred tax liabilities and assets reflects the tax consequences that
+
+would follow from the manner in which the company expects, at the end of the reporting
+
+period, to recover or settle the carrying amount of its assets and liabilities.
+
+Deferred tax assets and liabilities are offset when there is a legally enforceable right to set
+
+off current tax assets against current tax liabilities and when they relate to income taxes
+
+levied by the same taxation authority and the company intends to settle its current tax
+assets and liabilities on a net basis.
+
+Current and deferred tax for the year
+
+Current and deferred taxes are recognized as an expense or income in the income
+
+statement, except when they relate to items that are recognized outside of profit or loss
+
+(directly in equity).
+
+2.19 Trade payables
+
+Trade payables are generally carried at the fair value of goods or services received from
+others, whether invoiced or not.
+
+2.20 Lease
+
+a- Finance lease
+
+- Leases are accounted for under Law 95 of 1995 if the lessee is not obliged to purchase
+the asset at end of the lease period, the lease contract is recorded in the relevant register
+with the Companies Authority, the contract gives the option to the lessee to buy the
+asset at a specific date, and amount in addition to the period of the contract represent at
+least 75% of the useful life of the asset, or if the present value of total lease payments
+represents at least 90% of the asset value.
+
+- For leases within the scope of Law 95 of 1995, lease costs including maintenance
+expense of leased assets are recognized in the income statement in the period incurred.
+
+- If the company elects to exercise the purchase option on the leased asset, the option cost
+is capitalized as fixed assets and depreciated over their expected remaining useful lives
+on a basis consistent with similar assets.
+
+b- Operating lease
+
+- Operating lease contracts represent any lease contract which lessor has ownership risks
+and benefits.
+
+- Payments made under operating leases (net of any incentives received from the lessor)
+are charged to the income statement on a straight-line basis over the period of the lease.
+
+Arabian Cement Company 7/29
+An Egyptian Joint Steck Company
+
+Notes to the Consolidated Financial Statements
+
+For the Year Ended December 31, 2015

@@ -1,0 +1,53 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended oe OO esa EC
+Non-financial assets
+Non-financial assets that have an indefinite useful life, for example goodwill, are not subject to amartization
+but are tested annually for impairment or more frequently when indicators arise. Assets with a finite useful fife
+are subject to
+depreciation or amortization and are reviewed (at least at the balance sheet date) for impairment whenever
+events or changes in circumstances indicate that the carrying amount may not be fully recoverable. An
+impairment loss is recognized for the amount by which the assets’ carrying amount exceeds its recoverable
+amount. The recoverable amount is the higher of an asset's fair value fess costs of disposal and its value in use.
+For the purposes of assessing impairment,
+assets are entitled. based on the lowest level for which there are consolidated identifiable cash flows (cash-
+generating units). !mpairment is recognized as an expense in the consolidated statement of profit or loss. Non-
+financial assets, which are impaired, are tested periodically to determine whether the recoverable amount has
+increased, and the impairment must be (partially) reversed.
+Impairment losses on goodwill are not reversed. Reversal of impairments is only permitted if in a subsequent
+period after an impairment loss has been recognized, the amount of the impairment foss decreases, and the
+decrease can be related objectively to an event after the impairment loss was recognized.
+Effective interest method
+The effective interest method is a method of calculating the amortized cost of a debt instrument and of
+allocating the interest income over the relevant period. The effective interest rate is the rate that exactly
+discounts expected future cash inflows {including all fees and points paid or received that form an integral part
+of the effective interest rate, transaction costs and any other premiums or discounts) over the expected life of
+the debt instrument - or over the A shorter period of time, if appropriate ~ specifically up to the asset’s net
+carrying amount on initial recognition.
+The income from debt instruments, which is subsequently measured at amortized cost, is recognized in the
+consolidated statement of profit or loss on the basis of effective interest, and this interest income is presented
+under the fine “finance income”.
+2.15 Lease Contracts
+The Minister of Investment Decree No. 69 of 2019 issued in March 2019 amended certain provisions of the
+Egyptian Accounting Standards issued by the Minister of investment Decree No. 110 for the year 2015. These
+amendments included the addition of the Accounting Standard No. 49 to replace the Egyptian Accounting
+Standard No. (20) Accounting for Financial Leasing Operations, provided that it is applied to the financial
+periods beginning on or after January 1, 2020 and with the exception of the effective date, the date of the
+initial application is the beginning of the annual reporting period in which the Finance Lease Law No. 95 of 1995
+and its amendments were cancelled, and in light of Standard No. 49 as at the beginning of the lease recognition
+of the "right of use” and the lease liability.
+initial measurement of the right-of-use asset
+At the commencement date, a lessee shall measure the right-of-use asset at cost, the cost of the right-of-use
+asset shall comprise:
+(a) The amount of the initial measurement of the lease liability, at the commencement date, a lessee shall
+measure the lease liability at the present value of the lease payments that are not paid at that date. The lease
+payments shall be discounted using the interest rate implicit in the lease, if that rate can be readily determined.
+If that rate cannot be readily determined, the tessee shall use the lessee’s incremental borrowing rate.
+(b) Any lease payments made at or before the commencement date, less any lease incentives received
+{c) Any initial direct costs incurred by the lessee; and
+(d) an estimate of costs to be incurred by the lessee in dismantling and removing the underlying asset, restoring
+the site on which it is located or restoring the underlying asset to the condition required by the terms and
+conditions of the lease, unless those costs are incurred to produce inventories. The lessee incurs the obligation
+for those costs either at the commencement date or as a consequence of having used the underlying asset
+during a particular period.
+21

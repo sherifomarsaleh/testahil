@@ -1,0 +1,49 @@
+=== THE STUDY YEAR, SWEPT IN BEFORE THE BUILD ===
+  H1-2026 group sales   EGP 6080.6mn  (H1-2025: 5499.9mn, +10.6%)
+  Q1-2026 net profit    EGP 943.1mn
+  source: Q2_2026_cons note 3 / Q1_2026_cons p5
+
+=== FORWARD FROM FY2025, EGP million ===
+year   h        sales net profit        GM  published as
+2026   1        13543       4217     43.7%  POINT
+2027   2        15162       4878     44.9%  POINT
+2028   3        16973       5630     46.1%  RANGE ONLY
+2029   4        19002       6485     47.3%  RANGE ONLY
+2030   5        21272       7456     48.5%  RANGE ONLY
+
+=== YEARS 3-5 AS RANGES, from this run's own error distribution ===
+(a projection is divided by exp(error), because e = ln(proj/actual))
+year   h    n            low        central           high
+2028   3    5          13558          28222          49277
+2029   4    4          21731          47366          79424
+2030   5    3          27777          51880          93759
+
+the error distribution these ranges are built from (log, sales):
+  h1  n=7  p10 -0.308  p50 +0.002  p90 +0.193
+  h2  n=6  p10 -0.741  p50 -0.145  p90 +0.385
+  h3  n=5  p10 -1.066  p50 -0.508  p90 +0.225
+  h4  n=4  p10 -1.430  p50 -0.913  p90 -0.134
+  h5  n=3  p10 -1.483  p50 -0.892  p90 -0.267
+
+=== SENSITIVITY: the same ranges on the E3 (devaluation) cells only ===
+reported, NOT selected on — the two are shown together because the
+record cannot say which regime the next five years resemble.
+  h3  n=4  min -1.175  max -0.326
+  h4  n=4  min -1.497  max +0.045
+  h5  n=3  min -1.631  max -0.111
+
+!! HOW THIS RANGE MUST BE READ, and it is not a forecast of the company:
+   it is the measured record of HOW WRONG THIS METHOD HAS BEEN at this
+   distance, and that record is dominated by a single unrepeatable event
+   -- the pound going from 15.6 to 49.2 between 2021 and 2025. The median
+   error is negative because no origin could foresee that. Carrying the
+   width forward assumes another shock of that size is as likely as not,
+   which is a statement nobody has evidence for. The range is published
+   with that caveat attached, and the bias inside it is NOT promoted into
+   the drivers -- clause 2 refused exactly that correction on cost per
+   tonne, and re-centring the range would have smuggled it back in.
+
+AND THE WIDTH IS THE POINT. At h=5 the measured spread runs from
+-1.483 to -0.267 in log terms — a range of roughly 3.4x on the level.
+A POINT ESTIMATE AT FIVE YEARS WOULD BE A FICTION, AND THIS RECORD IS
+WHY THE STUDY PUBLISHES YEARS 3-5 AS RANGES.

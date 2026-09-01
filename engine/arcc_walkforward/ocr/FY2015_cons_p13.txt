@@ -1,0 +1,72 @@
+- Reversal of impairment losses recognized in prior years is recorded when there is an
+indication that the impairment losses recognized for the asset no longer exist or have
+decreased, but so that the increased carrying amount does not exceed the carrying
+amount that would have been determined had no impairment loss been recognized
+for the asset (net after depreciation) in prior years. A reversal of an impairment loss is
+recognized immediately in the income statement.
+
+2.14 Inventories
+
+Inventories are stated at the lower of cost and net realizable value. Cost is determined
+
+using the moving average method. The cost of finished goods and work in progress
+
+comprises raw materials, direct labour, other direct costs and related production
+overheads (based on normal operating capacity) but excludes borrowing costs.
+
+The net realizable value is the estimated selling price in the ordinary course of business,
+
+less the costs of completion and selling expenses. The required provision is determined to
+
+write down the value of the slow moving, obsolete and damaged inventory items,
+according to the management’ s estimates.
+
+The group evaluates inventory elements as follows
+
+a. Raw materials: cost (moving average)
+
+b. Spare parts: cost (moving average)
+
+c. Finished goods: measured at the lower of manufacturing cost and net realizable value,
+the manufacturing cost comprises raw materials, direct labour and cost includes an
+appropriate share of overheads based on normal operation capacity.
+
+2.15 Cash and cash equivalents
+
+For the purpose of cash flow statement, cash and cash equivalent comprise cash on hand
+
+and demand deposits with original maturities of three months or less.
+
+2.16 Capital
+
+Ordinary shares are classified as equity.
+
+2.17 Borrowing
+
+- Borrowings are recognized initially at the amount of the proceeds received, net of
+transaction costs incurred. Loans are subsequently stated at amortized cost using the
+effective yield method; any difference between proceeds (net of transaction costs) and
+the redemption value is recognized in the income statement over period the
+borrowings.
+
+- Borrowings are classified as current liabilities unless the company has an
+unconditional right to defer settlement of the liability for at least 12 months after the
+balance sheet date.
+
+2.18 Taxation
+
+Income tax expense represents the sum of the tax currently payable and deferred tax.
+Current tax
+The tax currently payable is based on taxable profit for the year. Taxable profit differs
+from profit as reported in the income statement due to items of income or expense that are
+taxable or deductible in other years, and items that are never taxable or deductible.
+The company’s liability for current tax is calculated using tax rates that have been enacted
+or substantively enacted as of the financial statements date.
+
+Arabian Cement Company 6/29
+
+An Egyptian Joint Stock Company
+
+Notes to the Consolidated Financial Statements
+
+For the Year Ended December 31, 2015

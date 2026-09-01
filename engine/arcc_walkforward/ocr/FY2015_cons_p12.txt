@@ -1,0 +1,48 @@
+2.10 Projects under construction
+Projects under construction are carried at cost, and are recognized as fixed assets when
+they meet the conditions of recognition of fixed assets, and when the value of project
+under construction exceeds the carrying amount, the cost of project under construction is
+impaired to the excepted recoverable amount, and the difference is recognized in the
+income statement.
+2.11 Intangible assets
+A- Goodwill
+Goodwill arising out of the acquisition of a subsidiary represents the excess of the cost of
+acquisition over the group’s interest in the net fair value of the identifiable assets,
+liabilities and contingent liabilities of the subsidiary recognized at the date of acquisition.
+Goodwill is initially recognized as an asset at cost and is subsequently measured at cost
+less any accumulated impairment losses.
+For the purpose of impairment testing, goodwill is allocated to each of the group’s cash-
+generating units expected to benefit from the synergies of the combination. Cash-
+generating units to which goodwill has been allocated are tested for impairment annually,
+or more frequently when there is an indication that the unit may be impaired.
+If the recoverable amount of the cash-generating unit is less than the carrying amount of
+the unit, the impairment loss is allocated first to reduce the carrying amount of any
+goodwill allocated to the unit and then to the other assets of the unit pro-rata on the basis
+of the carrying amount of each asset in the unit. An impairment loss recognized for
+goodwill is not reversed in a subsequent period.
+On disposal of a subsidiary, the attributable amount of goodwill is included in the
+determination of the profit or loss on disposal.
+B- Electricity supply agreement
+The expenditure directly attributable to the Electricity Generation fees agreement, and
+with a finite useful life is capitalized. Such expenditure is carried at cost less accumulated
+amortization. Amortization is calculated using the straight-line method to allocate these
+costs over 10 years.
+2.12 Investment in joint ventures
+Investment in joint ventures is the contractually agreed sharing of control over an
+economic activity, and exists only when the strategic financial and operating decisions
+relating to the activity require the unanimous consent of the parties sharing control. Joint
+ventures are accounted for using the cost method whereby the investment is recognized at
+cost less impairment. Impairment is determined on an individual basis for each type of
+investment and is recognized in the income statement.
+2.13 Impairment of non-financial assets
+- Fixed assets and intangible assets are reviewed for impairment losses whenever
+events or changes in circumstances indicate that the carrying amount may not be
+recoverable. An impairment loss is recognized in the income statement when the
+carrying amount of the asset exceeds its recoverable amount, which is the higher of
+fair value less cost of disposal and value in use. For the purposes of assessing
+impairment, assets are grouped at the lowest level, for which there are separate
+identifiable cash flows.
+Arabian Cement Company 5/29
+An Egyptian Joint Stock Company
+Notes to the Consolidated Financial Statements
+For the Year Ended December 31, 2015

@@ -1,0 +1,54 @@
+=== CLAUSE 1 — its own test ===
+driver         bias robust   era-stable     clause 1
+vol          -0.124 YES      NO             fail
+rpt          -0.276 YES      NO             fail
+cpt          -0.315 YES      yes            PASS
+seg          -0.400 YES      NO             fail
+other         0.162 no       yes            fail
+sales        -0.385 YES      NO             fail
+cash_cost    -0.439 YES      NO             fail
+ga           -0.318 YES      NO             fail
+fin          -0.545 YES      yes            PASS
+gp            0.028 no       NO             fail
+pbt          -0.002 no       NO             fail
+npat          0.059 no       NO             fail
+
+clause 1 passed by: cpt, fin
+
+=== ADJUSTED vs RAW, BY ORIGIN (half strength, expanding window) ===
+  cpt      1 of 4 origins improve
+      FY2021  adj -0.029   MAE 0.576 -> 0.605  WORSE
+      FY2022  adj +0.011   MAE 0.099 -> 0.088  better
+      FY2023  adj +0.069   MAE 0.372 -> 0.441  WORSE
+      FY2024  adj +0.131   MAE 0.217 -> 0.348  WORSE
+  fin      2 of 3 origins improve
+      FY2021  adj +0.054   MAE 0.850 -> 0.795  better
+      FY2022  adj +0.121   MAE 1.583 -> 1.461  better
+      FY2024  adj +0.214   MAE 1.108 -> 1.322  WORSE
+
+=== CLAUSE 2 — consistency with how the class is built across the book ===
+
+  cpt: WATCH FLAG
+      REFUSED. 71% of this driver's error disappears under perfect macro foresig
+      ht (MAE 0.406 knowable, 0.120 with the realised FX path). The driver is no
+      t biased; the MACRO PATH IT WAS GIVEN was wrong, and no origin could have 
+      known the pound would go from 15.6 to 49.2. Scaling cost per tonne up by 1
+      6% at every origin would be correcting for an unforecastable currency coll
+      apse, and would be flatly wrong in a stable-currency era -- which is most 
+      of this book. Every other cement and heavy-industrial study builds cost pe
+      r tonne from a disclosed cost stack escalated per driver class, with no na
+      me-level multiplier anywhere. WATCH FLAG.
+
+  fin: WATCH FLAG
+      REFUSED, and the refusal names a SPECIFICATION DEFECT rather than a bias. 
+      Eleven of twenty-five cells project finance costs of exactly zero against 
+      an actual charge: the pre-registered debt path amortises at the trailing a
+      verage repayment and never re-borrows, so once ARCC settled its debt in FY
+      2023 the rule had the company debt-free forever -- and it then signed a EU
+      R 25mn EBRD facility in 2025. A multiplier on zero is still zero. This is 
+      L-002 exactly: fix the wiring, do not reach for a factor. WATCH FLAG, with
+       the defect named for the next edition.
+
+========================================================================
+PROMOTED INTO THE LIVE DRIVERS: NOTHING
+WATCH FLAGS (recorded, graded live, acted on by nobody): cpt, fin

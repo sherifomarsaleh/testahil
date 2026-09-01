@@ -1,0 +1,50 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+3. Critical accounting judgements. and key sources of estimation uncertainty
+In the application of the Group’s accounting policies, which are described in note 2, management is required to
+make judgments, estimates and assumptions about the carrying amounts of assets and liabilities that are not readily
+apparent from other sources. The estimates and associated assumptions are based an historical experience and
+other factors that are considered to be relevant. Actual results may differ from these estimates.
+The estimates and underlying assumptions are reviewed on an ongoing basis. Revisions to accounting estimates are
+recognised in the period in which the estimate is revised if the revision affects only that period or in the period of
+the revision and future periods if the revision affects both current and future periods.
+3.1 Critical judgements in applying accounting policies
+The following are the critical judgements, apart from those involving estimations {see note (2.3) below), that
+the directors have made in the process of applying the Company’s accounting policies and that have the most
+significant effect on the amounts recognized in the financial statements.
+3.1.4 Revenue recognition from contracts with customers
+Management takes into account the detailed criteria for recognition of revenue from the sale of goods in
+accordance with Egyptian Accounting Standard No. (48) “Revenue from Contracts with Customers”, and in
+particular, whether the Company has transferred to the buyer full control over the sold goods. The additional
+costs of obtaining a contract with a customer are recognized as an asset if the Group expects to recover
+those costs, and the costs of fulfilling a contract are recognized as an asset when specific conditions are met.
+3.1.2 Deferred income taxes
+The measurement of deferred income tax assets and liabilities is based on the judgment of management.
+Deferred income tax assets are only capitalized if it is probable that they can be used.
+Whether or not they can be used depends on whether the deductible tax temporary difference can be offset
+against future taxable gains.
+in order to assess the probability of their future use, estimates must be made of various factors including
+future taxable profits. ff the actual values differ from the estimates, this can lead to a change in the
+assessment of recoverability of the deferred tax assets and accounting for such a change, if-any, is to be
+made on a prospective basis in the reporting periods affected by the change.
+3.2 Keysources of estimation uncertainty
+The following are the key assumptions concerning the future and other key sources of estimation uncertainty
+at the end of the reporting period, that have a significant risk of causing a material adjustment to the carrying
+amounts of assets and liabilities within the next financial year.
+3.2.1 Useful lives of property, plant and equipment
+The carrying value of the Group's property, plant and equipment at the end of year ended
+December 31, 2025, amounted to EGP 2 522 323 523 (2024: EGP 1 669 630 565) (Note 12).
+Management's assessment of the useful life of property, plant and equipment is based on the
+expected use of the assets, the expected physical wear and tear on the assets, technological
+developments as well as past experience with comparable assets. A change in the useful life of
+any asset may have an effect on the amount of depreciation that is to be recognized in the
+consolidated statement of profit or loss for future periods.
+3.2.2 Useful lives of intangible assets.
+The carrying value of the Group's intangible assets at the end of year ended December 31, 2025, amounted
+to EGP 106 799 617 (2024: EGP 134 955 866), (Note 14). Management’s assessment of the useful life of
+intangible assets is based on the expected use of the assets, the expected physical wear and tear on the
+assets, technological developments as well as past experience with comparable assets. A change in the useful
+life of any asset may have an effect on the amount of depreciation that is to be recognized in the consolidated
+statement of profit or loss for future periods.
+23

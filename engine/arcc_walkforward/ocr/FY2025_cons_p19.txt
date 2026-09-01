@@ -1,0 +1,43 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+Classification and subsequent measurement
+Financial assets
+On initial recognition, a financial asset is classified as measured at: amortized cost; fair value through other
+comprehensive income (FVOCI) — debt investment; FVOCI — equity investment; or FVTPL.
+Financial assets are not reclassified subsequent to their initial recognition unless the Group changes its business
+model for managing financial assets, in which case all affected financial assets are reclassified on the first day
+of the first reporting period following the change in the business model.
+A financial asset is measured at amortized cost if it meets both of the following conditions and is not designated
+as at FVTPL:
+* it is held within a business model whose objective is to hold assets to collect contractual cash flows; and
+e its contractual terms give rise on specified dates to cash flows that are solely payments of principal and
+interest on the principal amount outstanding.
+A debt investment is measured at FVOCI if it meets both of the following conditions and is not designated as
+at FVTPL:
+* it is held within a business model whose objective is achieved by both collecting contractual cash flows and
+selling financial assets; and
+« its contractual terms give rise on specified dates to cash flows that are solely payments of principal and
+interest on the principal amount outstanding.
+On initial recognition of an equity investment that is not held for trading, the Group may irrevocably elect to
+present subsequent changes in the investment’s fair value in OCI. This election is. made on an investment-by-
+investment basis.
+All financial assets not classified as measured at amortized cost or FVOCI as described above are measured at
+FVTPL.
+This includes all derivative financial assets. On initial recognition, the Group may irrevocably designate a
+financial asset that otherwise meets the requirements to be measured at amortized cost or at FVOCI| as at
+FVTPL if doing so eliminates or significantly reduces an accounting mismatch that would otherwise arise.
+Financial assets — Business model assessment:
+The Group assesses the objective of the business model in which a financial asset is held at a portfolio level
+because this best reflects the way the business is managed, and information is provided to management. The
+information considered includes:
+e the stated policies and objectives for the portfolio and the operation of those policies in practice. These
+include whether management's strategy focuses on earning contractual interest income, maintaining a
+particular interest rate profile, matching the duration of the financial assets to the duration of any related
+liabilities, or expected cash outflows or realizing cash flows through the sale of the assets.
+* how the performance of the portfolio is evaluated and reported to the Group’s management.
+* the cisks that affect the performance of the business model (and the financial assets held within that business
+model) and how those risks are managed.
+* how managers of the business are compensated — e.g., whether compensation is based on the fair value of
+the assets managed or the contractual cash flows collected; and
+17

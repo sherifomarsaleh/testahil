@@ -1,0 +1,62 @@
+Translation of the consolidated financial staternents
+originally issued in Arabic
+Arabian Cement Company (S.A.E)
+Consolidated Statement of Cash flow
+for the year ended December 31, 2022
+Note No. December 31, 2022 December 31, 2021
+EGP EGP
+Cash flows from operating activities
+Net profit for the year before tax 521 863 563 55 178 070
+Adjusted by:
+Finance costs (7) 58 081 220 70 126 214
+Interest income (9 967 780) ( 743 822)
+Share of profit of a joint venture (45 915) (68 875)
+Expected credit losses on trade receivables 700 000 --
+Gain on disposal of property, plant and equipment (200 000) (120 000)
+Depreciation of property, plant and equipment (11) 208 215 007 217 929 493
+Amortization of intangible assets (13) 28 156 249 34 624 973
+Amortization of right of use assets (32) 5 568 129 5 902 848
+Unrealized foreign currency exchange losses from borrowings 69 698 047 239 720
+Provisions (26) 111 939 885 7 368 018
+994 008 405 390 436 639
+(Increase) in inventories (254 755 629) (193 260 147)
+(Increase) in debtors and other debit balances (105 708 432) (16 888 662)
+(Increase) in trade receivables (21 378 724) (42 423 862)
+(Increase) in amounts due from related parties ( 76 140) =
+Increase in creditors and other credit balances 111 987 885 3.172 153
+Increase in trade and notes payable 150 208 602 217 251 339
+(Decrease) increase in amounts due to related parties (11 423 661) 5 025 874
+Provisions used (26) (73 866 262) (70 909)
+Cash flows generated from operating activities 788 996 044 363 242 425
+Finance costs paid** (53 673 411) (69 561 544)
+Current income tax paid (19 382 057) (438 220)
+Net cash flows generated from operating activities 715 940 576 293 242 661
+Cash flows from investing activities
+Payments for purchase of property, plant and equipment (27 374 376) (19 208 760)
+Proceeds from disposal of property, plant and equipment 200 000 120 000
+Payments for assets under construction ( 690 821) 2
+Interest income received 9 967 780 743 822
+Net cash flows used in investing activities {17 897 417) (18 344 938)
+Cash flows from financing activities
+Net change in borrowings (115 782 865) (99 165 217)
+Payment of operation license and electricity liability -- ( 769 250)
+Net change in credit facilities 120 257 242 (99 723 436)
+Repayment for lease liabilities (S 398 531) (6 914 249)
+Dividends paid* (6 927 439) (7 108 042)
+Net cash flows used in financing activities (7 851 593) (213 680 194)
+Net change in cash and cash equivalents during the year 690 191 566 61 217 529
+Cash and cash equivalents at the beginning of the year 128 250 456 67 032 927
+Cash and cash equivalents at the end of the year (19) 818 442 022 128 250 456
+Non-cash transactions
+*On December 15, 2022, the Ordinary General Assembly of the Company has approved to distribute dividends for the shareholders
+amounted to EGP 249 968 203 for the results of the period ended September 30, 2022. The approved amount has not been paid as of
+December 31, 2022 and was excluded from the consolidated statement of cash flows.
+**An amount of EGP 4 407 809 was excluded from finance costs paid during the year at the consolidated statement of cash flows which
+represent the total of the followings:
+- Accrued interest expenses for the borrowings amounted to EGP 2 759 721 (note 28)
+- Interest expenses for the notes payable amounted to EGP 588 878 (note 7)
+- Interest expenses for the finance lease amounted to EGP 1 059 210 (note 7).
+- The accompanying notes form an integral part of the consolidated financial statements and to be read therewith.
+Sergio Alcantarilla Rodriguez Salvador Lopez
+Chief Executive Officer Chief Financial Officer
+. <=

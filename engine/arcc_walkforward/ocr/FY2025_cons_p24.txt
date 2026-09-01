@@ -1,0 +1,48 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025 ee ___
+Subsequent measurement of the right-of-use asset
+After the commencement date, a lessee shall measure the right-of-use asset. Applying a cost model, a lessee
+shall measure the right-of-use asset at cost:
+(a) Less any accumulated depreciation and any accumulated impairment losses.
+{b) Adjusted for any re-measurement of the lease liability.
+initial measurement of the lease liability
+At the commencement date, a fessee shall measure the lease liability at the present value of the lease payments
+that are not paid at that date. The lease payments shall be discounted using the interest rate implicit in the
+lease, if that rate can be readily determined. If that rate cannot be readily determined, the lessee shall.use the
+lessee’s incremental borrowing rate.
+Subsequent measurement of the lease liability
+After the commencement date, a lessee shall measure the lease liability by
+(a) Increasing the carrying amount to reflect interest on the lease liability
+(b) Reducing the carrying amount to reflect the lease payments made
+(c) Re-measuring the carrying amount to reflect any reassessment or lease modifications, or to reflect revised
+in-substance fixed lease payments.
+Lease term
+The company shall determine the lease term as the non-cancellable period of a fease with periods covered by
+an option to extent the lease if the lessee is reasonably certain to exercise that option, and periods covered by
+an option to terminate the lease if the lessee is reasonably certain not to exercise the option. In assessing
+whether a lessee is reasonably certain to exercise an option to extend a lease, or not to exercise an option to
+terminate a lease.
+2.16 Grants
+Government grants are assistance by government in the form of transfers of resources to an Group in return
+for past or future compliance with certain conditions relating to the operating activities of the Group. They
+exclude those forms of government assistance which cannot reasonably have a value placed upon them and
+transactions with government which cannot be distinguished from the normat trading transactions of the
+Group.
+Grants related to assets are government grants whose primary condition is that an Group qualifying for them
+should purchase, construct or otherwise acquire long-term assets. Subsidiary conditions may also be attached
+restricting the type or location of the assets or the periods during which they are to be acquired or held.
+Government grants, including non-monetary grants at fair value, shall not be recognized until there is
+reasonable assurance that the Group will comply with the conditions attaching to them; and the grants will be
+received.
+Government grants related to assets, including non-monetary grants at fair value, shall be presented in the
+consolidated statement of financial position through recognizes the grant as deferred income that is recognized
+in the consolidated statement of profit or loss on a systematic basis over the useful life of the asset.
+2.17 Segment Reporting
+An operating segment is a component of a Group:
+— that engages in business activities from which it may earn revenues and incur expenses
+— whose operating results are regularly reviewed by the Group’s chief operating decision maker to make
+decisions about resources to be allocated to the segment and assess its performance.
+~ for which discrete financial information is available.
+The Group depends on determining the segments to be presented on the basis of products and services.
+22

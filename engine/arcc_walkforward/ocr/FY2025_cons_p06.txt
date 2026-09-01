@@ -1,0 +1,34 @@
+Translation of the consolidated financial statements
+originally issued in Arabic
+Arabian Cement Company (S.A.E)
+Consolidated Statement of profit and loss
+for the year ended December 31, 2025
+Note No. December 31, 2025 December 31, 2024
+= EGP
+Sales (net) (4) 12 447 320 081 8 729 782 821
+Cost of sales (5) (7 389 054 416) (6 642 972 487)
+Gross profit 5 058 265 665 2 086 810 334
+Add/(deduct):
+General and administrative expenses (6) (384 332 833) (267 798 104)
+Provisions (27) (74 505 707) (56 052 950)
+Expected credit losses on trade receivables (17) (3 603 563) --
+Reversal of expected credit losses on trade receivables (17) - 1106 452
+Reversal for impairment of investment in a joint venture - 780 000
+Gain on disposal of investment in a joint venture -- 1 270 000
+Interest income 226 274 781 56 458 493
+Other income (7) 53 339 508 18 292 936
+Finance costs (8) (49 841 733) (91 188 916)
+Gain on disposal of property, plant and equipment 1140 000 -
+Foreign currency exchange differences (101 578 240) (243 812 127)
+Net profit for the year before tax 4725 157 878 1505 866 118
+Income tax (10-1) (1 125 467 657) (345 730 996)
+Net profit for the year after tax 3 599 690 221 1160 135 122
+Profit attributable to:
+Owners of the Parent Company (23) 3 599 585 937 1160 129 411
+Non-controlling interests (24) 104 284 5711
+3 599 690 221 1160 135 122
+Earnings per share (11) 9.49 3.02
+- The accompanying notes form an integral part of the consolidated financial statements and to be read therewith.
+Sergio Alcantarilla Rodriguez Arturo Gallart Mauri
+Chief Executive Officer Chief Financial Officer
+4

@@ -1,68 +1,102 @@
 {
  "ticker": "ARCC",
- "beta": 0.6280798261200432,
- "r2": 0.09073396956447966,
- "n": 257,
- "se": 0.12451030053556583,
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 0.6980904117648513,
+ "r2": 0.046837594206086464,
+ "se": 0.2283633031992361,
+ "n": 253,
  "ci90": [
-  0.4232603817390374,
-  0.832899270501049
+  0.32243277800210796,
+  1.0737480455275947
  ],
- "usable": true,
- "gate_msg": "passes minimum usability gate",
- "composite_names": 34,
- "window_years": 5,
+ "usable": false,
+ "gate_msg": "R^2=0.047 < minimum 0.05 \u2014 index barely explains the stock's returns",
+ "dimson": {
+  "sum_beta": 0.6980904117648513,
+  "note": "NOT a Dimson sum-beta. This slot carries the OWN-STOCK regression against EGX30 (beta 0.6981, R2 0.047, n=253), which failed the usability gate and is published as the labelled alternative framing beside the adopted tier-2 peer median. Blume cross-check on the own-stock fit: 0.7987."
+ },
  "frequency": "weekly",
  "weak": true,
- "weak_reason": "R-squared = 9.1% against the 10% weak-instrument threshold; the 90% confidence interval [0.42, 0.83] spans 0.65x the point estimate",
  "warnings": [],
+ "window_years": 4.89,
+ "first_obs": "2021-08-26",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 0.7987269411765675,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "peers": {
+  "SCEM": {
+   "beta": 0.6072378805075793,
+   "r2": 0.02453166482055802,
+   "se": 0.27544045212883156,
+   "n": 252,
+   "usable": false,
+   "what": "Suez Cement \u2014 the direct cement peer"
+  },
+  "EGAL": {
+   "beta": 0.9186422462634102,
+   "r2": 0.15574060901699038,
+   "se": 0.2318217042548573,
+   "n": 251,
+   "usable": true,
+   "what": "Egypt Aluminium \u2014 heavy industrial, energy-intensive"
+  },
+  "ELEC": {
+   "beta": 1.0334031795739789,
+   "r2": 0.19301622562515164,
+   "se": 0.20866203019272797,
+   "n": 254,
+   "usable": true,
+   "what": "Electro Cable Egypt \u2014 heavy industrial"
+  },
+  "SWDY": {
+   "beta": 1.2083950982971998,
+   "r2": 0.37556243110767573,
+   "se": 0.1669594198701297,
+   "n": 254,
+   "usable": true,
+   "what": "Elsewedy Electric \u2014 heavy industrial"
+  },
+  "EGCH": {
+   "beta": 1.0302103069881783,
+   "r2": 0.25041984255357363,
+   "se": 0.19069136883839916,
+   "n": 253,
+   "usable": true,
+   "what": "Egyptian Chemical Industries \u2014 heavy industrial"
+  },
+  "ABUK": {
+   "beta": 0.6438127518651277,
+   "r2": 0.19383372666783893,
+   "se": 0.17870879789146524,
+   "n": 251,
+   "usable": true,
+   "what": "Abu Qir Fertilizers \u2014 heavy industrial, gas-intensive"
+  }
+ },
+ "tier2_peer_median": 1.0302103069881783,
  "adopted": {
-  "beta_used": 0.6280798261200432,
-  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-  "why": "n = 257 weekly observations, R-squared = 0.091 against the 0.05 floor, SE(beta) = 0.125 against |beta| = 0.628. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-  "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.919 with a 90% interval of [0.52, 1.32]; the adopted 0.63 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "beta_used": 1.0302103069881783,
+  "tier": 2,
+  "basis": "TIER 2 \u2014 same-country peer median. The own-stock regression against the published EGX30 index FAILS the usability gate (R2 0.047 < 0.05), so the strict preference order requires a peer beta rather than the failing estimate.",
+  "why": "Median of the 5 usable Egyptian heavy-industrial regressions against EGX30: ABUK 0.6438, EGAL 0.9186, EGCH 1.0302, ELEC 1.0334, SWDY 1.2084. Suez Cement, the direct cement peer, is excluded because it too fails the gate (R2 0.025) \u2014 neither Egyptian cement name is well explained by EGX30.",
+  "gap": "NOT unlevered and re-levered: peer balance sheets were not sourced from primary filings in this run. ARCC runs net cash, so re-levering to its own structure would give a LOWER beta and a HIGHER value \u2014 the unadjusted peer median understates value.",
   "sensitivity_required": [
-   0.6,
+   0.63,
    0.8,
-   1.0,
+   1.0303,
    1.15,
    1.3
   ]
  },
- "dimson": {
-  "sum_beta": 0.918924909028853,
-  "se_sum": 0.24260912388095088,
-  "r2": 0.10155378294262896,
-  "n": 254,
-  "ci90": [
-   0.5198329002446889,
-   1.3180169178130172
-  ],
-  "coefficients": {
-   "lead": 0.10214723053857666,
-   "contemporaneous": 0.6162184008893299,
-   "lag1": 0.20605160465425668,
-   "lag2": -0.005492327053310172
-  },
-  "uplift_vs_ols": 0.29084508290880984,
-  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
- },
- "self_inclusion_bias": {
-  "beta_index_including_subject": 0.7480736602766987,
-  "r2_including": 0.12649310023566973,
-  "beta_index_excluding_subject": 0.6280798261200432,
-  "r2_excluding": 0.09073396956447966,
-  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
- },
- "thin_trading": {
-  "flat_frac": 0.1221,
-  "eg_panel_median": 0.0896,
-  "ratio": 1.36,
-  "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
- },
- "plausibility": {
-  "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
-  "defensive_prior": "defensive or staple: 0.6-0.9",
-  "net_cash_note": "The company carries no net financial leverage, which genuinely damps equity beta relative to a levered sector peer and is a real reason for an estimate below the cyclical band rather than an excuse."
+ "retired_composite": {
+  "beta": 0.6280798261200432,
+  "note": "The beta this study carried until 01-Sep-2026, regressed against an equal-weight composite of the covered EGX names. A constituent composite is a HARD FAIL, not a tier. Recorded so the size of the correction is visible: 0.6281 -> 1.0302."
  }
 }

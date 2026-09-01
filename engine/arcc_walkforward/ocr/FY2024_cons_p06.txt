@@ -1,0 +1,36 @@
+_ Translation of the consolidated financial statements
+' originally issued in Arabic
+Arabian Cement Company {S.A.E)
+Consolidated Statement of profit and loss
+for the year ended December 31, 2024
+Note No. December 31, 2024 December 31, 2023
+EGP EGP
+Sales (net) (4) 8 729 782 821 6 042 831 338
+Cost of sales (5) (6 642 972 487) (4 759 815 212)
+Gross profit 2 086 810 334 1 283 016 126
+Add/{deduct):
+General and administrative expenses (6) (267 798 104) (183 940 276)
+Provisions (26) (56 052 950) (15 220 195)
+Expected credit losses on trade receivables (17) “ (4 745 753)
+Reversal of expected credit losses on trade receivables (17) 1106 452 -
+Imapairment losses on investment in a joint venture (15) -- ( 780 000)
+Reversal for impairment of investment in a joint venture (15) 780 000 -
+Gain on disposal of investment in a joint venture (15) 1 270 000 --
+Interest income 56 458 493 30 813 502
+Other income 18 292 936 14 913 053
+Finance costs (7) (91 188 916) (76 979 253)
+Gain on disposal of property, plant and equipment - 87 675
+Share of (loss) of a joint venture (15) - (1 789 276)
+Foreign currency exchange differences (243 812 127) (115 144 171)
+Net profit for the year before tax 1 505 866 118 930 231 432
+Income tax (9-1) (345 730 996) (232 732 802)
+Net profit for the year after tax 1160 135 122 697 498 630
+Profit attributable to:
+Owners of the Parent Company (22) 1160129 411 697 488 741
+Non-controlling interests (23) $714 9 889
+1160 135 122 697 498 630
+Earnings per share (10) 3.02 1.81
+- The accompanying notes form an integral part of the consolidated financial statements and to be read therewith.
+Sergio Alcantarilla Rodriguez Arturo Gallart Mauri
+Chief Executive Officer Chief Financial Officer
+: <

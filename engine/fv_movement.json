@@ -1,5 +1,82 @@
 {
  "entries": {
+  "ARCC": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-01",
+    "fair": {
+     "base": 54.65,
+     "bear": 49.53,
+     "full": 61.71
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 59,
+    "spot_date": "close 6 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 53.17,
+      "bear": 31.39,
+      "full": 70.02
+     },
+     "lessons": [
+      "L-034",
+      "L-035",
+      "L-115",
+      "L-206"
+     ],
+     "origins": "FY2018-FY2024, h=1-5, 25 graded cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -2.7,
+      "bear": -36.6,
+      "full": 13.5
+     },
+     "vs_previous_pct": {
+      "base": -2.7,
+      "bear": -36.6,
+      "full": 13.5
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 50.2,
+      "bear": 45.63,
+      "full": 56.37
+     },
+     "lessons": [
+      "L-034",
+      "L-035",
+      "L-115",
+      "L-206"
+     ],
+     "note": "SUPERSEDES EDITION 1, which was recorded from a leaner interim valuation written during this run before the study's own established build was re-run. Edition 2 is the authoritative one: engine/arcc_study/compute.py revision 4, which passes its own 23 assertions \u2014 among them that the unit build reproduces AUDITED FY2025 revenue and EBITDA to +0.000% and every disclosed tonne to within 0.012%. The substantive change against the pre-campaign baseline is the BETA: the study carried 0.6281 regressed against an equal-weight composite of the covered EGX names, which is a hard fail under SIGCM clause 6. Re-derived through beta_regression.own_stock_beta against the published EGX30, the own-stock fit returns 0.6981 with R2 0.047 and FAILS the usability gate, so the strict preference order falls to a tier-2 same-country peer median of 1.0302. That single correction carries Ke from about 25.2% to 29.24% and the centre from 54.65 to 50.20.",
+     "origins": "FY2018-FY2024, h=1-5, 25 graded cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -8.1,
+      "bear": -7.9,
+      "full": -8.7
+     },
+     "vs_previous_pct": {
+      "base": -5.6,
+      "bear": 45.4,
+      "full": -19.5
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ARCC",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",

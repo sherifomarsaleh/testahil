@@ -1,0 +1,46 @@
+2.8 Foreign currency exchange
+Functional and presentation currency
+Items included in the consolidated financial statements of the company are measured
+using the currency of the primary economic environment in which the group operates
+(‘the functional currency’). The consolidated financial statements are presented in
+Egyptian pound, which is the group’s functional and presentation currency.
+Transactions and balances
+Foreign currency transactions are translated into the functional currency using the
+exchange rates prevailing at the dates of the transactions. Foreign exchange gains and
+losses resulting from the settlement of such transactions and from the translation of the
+year-end exchange rates of monetary assets and monetary liabilities denominated in
+foreign currencies are recognized in the income statement.
+2.9 Fixed assets and their depreciation
+Fixed assets are stated at historical cost less accumulated depreciation, historical cost
+includes all costs associated with acquiring the asset and bringing it to a ready-for use
+condition.
+Depreciation is calculated on the straight-line method to write off the cost of each asset to
+its residual value over the estimated useful lives of assets excluding land, which is not
+depreciated.
+Estimated useful lives of assets are as follows:
+Asset description Estimated useful lives
+Machinery and equipment 20 years
+Other installations 20 years
+Buildings 10 : 20 years
+Vehicles 5:7 years
+Computer and software 3:5 years
+Furniture, fixtures and office equipment 16 years
+The assets’ residual values and useful lives are reviewed annually, and adjusted if
+appropriate.
+Where the carrying amount of an asset is greater than its estimated recoverable amount,
+it is written down immediately to its recoverable amount.
+Gains and losses on disposals are determined by comparing proceeds with the carrying
+amount of the asset and are included in the income statement.
+Repairs and maintenance are charged to the income statement during the financial year
+in which they are incurred. The cost of major overhauling is included in the carrying
+amount of the asset when it is probable that future economic benefits in excess of the
+originally assessed standard of performance of the existing asset will flow to the
+company, and it is depreciated over its estimated useful life or the remaining useful life
+of the related asset, whichever is less.
+Cost of machinery and equipment included operating license cost, issued by Industrial
+Development Authority, for each production line separately; it is depreciated according
+to the estimated useful life for the line.
+Arabian Cement Company 4/29
+An Egyptian Joint Stock Company
+Notes to the Consolidated Financial Statements
+For the Year Ended December 31, 2015 ;

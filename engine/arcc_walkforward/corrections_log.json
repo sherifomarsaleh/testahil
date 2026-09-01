@@ -1,0 +1,268 @@
+{
+ "candidates": {
+  "vol": {
+   "bias": -0.1238109571235105,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.13538297770285587,
+    "E3 devaluation": -0.2056616733844683
+   },
+   "passes_clause1": false
+  },
+  "rpt": {
+   "bias": -0.27624061384857,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.1596601903590657,
+    "E3 devaluation": -0.4138934993878234
+   },
+   "passes_clause1": false
+  },
+  "cpt": {
+   "bias": -0.31508142169575787,
+   "robust": true,
+   "sign_stable": true,
+   "by_era": {
+    "E2 post-float": -0.02103822323233713,
+    "E3 devaluation": -0.4079371685789434
+   },
+   "passes_clause1": true
+  },
+  "seg": {
+   "bias": -0.4000515709720805,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.29504316806192166,
+    "E3 devaluation": -0.6195551727722918
+   },
+   "passes_clause1": false
+  },
+  "other": {
+   "bias": 0.1615585669177998,
+   "robust": false,
+   "sign_stable": true,
+   "by_era": {
+    "E2 post-float": 0.3275180802560345,
+    "E3 devaluation": 0.10915029954783095
+   },
+   "passes_clause1": false
+  },
+  "sales": {
+   "bias": -0.3852791364697441,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.29602109960607137,
+    "E3 devaluation": -0.6004265794410543
+   },
+   "passes_clause1": false
+  },
+  "cash_cost": {
+   "bias": -0.4388923788192683,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.11434475447051869,
+    "E3 devaluation": -0.6135988419634116
+   },
+   "passes_clause1": false
+  },
+  "ga": {
+   "bias": -0.3182674340593083,
+   "robust": true,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 0.27177436965230645,
+    "E3 devaluation": -0.5045964247050815
+   },
+   "passes_clause1": false
+  },
+  "fin": {
+   "bias": -0.5450355904769394,
+   "robust": true,
+   "sign_stable": true,
+   "by_era": {
+    "E2 post-float": -0.24287093288962555,
+    "E3 devaluation": -0.7716590836674245
+   },
+   "passes_clause1": true
+  },
+  "gp": {
+   "bias": 0.02810612284520876,
+   "robust": false,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 2.168357473235241,
+    "E3 devaluation": -0.6477627246463802
+   },
+   "passes_clause1": false
+  },
+  "pbt": {
+   "bias": -0.0021377954584682517,
+   "robust": false,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 2.4454314438096794,
+    "E3 devaluation": -0.5174155300412364
+   },
+   "passes_clause1": false
+  },
+  "npat": {
+   "bias": 0.059437666252308494,
+   "robust": false,
+   "sign_stable": false,
+   "by_era": {
+    "E2 post-float": 2.610083296567462,
+    "E3 devaluation": -0.47754036118246057
+   },
+   "passes_clause1": false
+  }
+ },
+ "tests": {
+  "cpt": [
+   {
+    "origin": 2021,
+    "adj": -0.028595024005308195,
+    "mae_raw": 0.576212671025197,
+    "mae_adj": 0.6048076950305052,
+    "improves": false,
+    "n": 4
+   },
+   {
+    "origin": 2022,
+    "adj": 0.010519111616168565,
+    "mae_raw": 0.0988323064390146,
+    "mae_adj": 0.08831319482284601,
+    "improves": true,
+    "n": 3
+   },
+   {
+    "origin": 2023,
+    "adj": 0.06928310120057841,
+    "mae_raw": 0.37168867771725334,
+    "mae_adj": 0.4409717789178318,
+    "improves": false,
+    "n": 2
+   },
+   {
+    "origin": 2024,
+    "adj": 0.13088846790844405,
+    "mae_raw": 0.21689883747818922,
+    "mae_adj": 0.34778730538663327,
+    "improves": false,
+    "n": 1
+   }
+  ],
+  "fin": [
+   {
+    "origin": 2021,
+    "adj": 0.054160413898743466,
+    "mae_raw": 0.8496001382962975,
+    "mae_adj": 0.7954397243975541,
+    "improves": true,
+    "n": 1
+   },
+   {
+    "origin": 2022,
+    "adj": 0.12143546644481278,
+    "mae_raw": 1.582858432955572,
+    "mae_adj": 1.4614229665107592,
+    "improves": true,
+    "n": 3
+   },
+   {
+    "origin": 2024,
+    "adj": 0.21434927777556842,
+    "mae_raw": 1.107762633643869,
+    "mae_adj": 1.3221119114194375,
+    "improves": false,
+    "n": 1
+   }
+  ]
+ },
+ "decisions": {
+  "cpt": {
+   "promoted": false,
+   "reason": "REFUSED. 71% of this driver's error disappears under perfect macro foresight (MAE 0.406 knowable, 0.120 with the realised FX path). The driver is not biased; the MACRO PATH IT WAS GIVEN was wrong, and no origin could have known the pound would go from 15.6 to 49.2. Scaling cost per tonne up by 16% at every origin would be correcting for an unforecastable currency collapse, and would be flatly wrong in a stable-currency era -- which is most of this book. Every other cement and heavy-industrial study builds cost per tonne from a disclosed cost stack escalated per driver class, with no name-level multiplier anywhere. WATCH FLAG."
+  },
+  "fin": {
+   "promoted": false,
+   "reason": "REFUSED, and the refusal names a SPECIFICATION DEFECT rather than a bias. Eleven of twenty-five cells project finance costs of exactly zero against an actual charge: the pre-registered debt path amortises at the trailing average repayment and never re-borrows, so once ARCC settled its debt in FY2023 the rule had the company debt-free forever -- and it then signed a EUR 25mn EBRD facility in 2025. A multiplier on zero is still zero. This is L-002 exactly: fix the wiring, do not reach for a factor. WATCH FLAG, with the defect named for the next edition."
+  }
+ },
+ "log": [
+  {
+   "origin": 2021,
+   "driver": "cpt",
+   "corrections": {
+    "cpt": {
+     "applied": -0.028595024005308195,
+     "outcome_mae_change": 0.028595024005308223
+    }
+   }
+  },
+  {
+   "origin": 2022,
+   "driver": "cpt",
+   "corrections": {
+    "cpt": {
+     "applied": 0.010519111616168565,
+     "outcome_mae_change": -0.010519111616168586
+    }
+   }
+  },
+  {
+   "origin": 2023,
+   "driver": "cpt",
+   "corrections": {
+    "cpt": {
+     "applied": 0.06928310120057841,
+     "outcome_mae_change": 0.06928310120057846
+    }
+   }
+  },
+  {
+   "origin": 2024,
+   "driver": "cpt",
+   "corrections": {
+    "cpt": {
+     "applied": 0.13088846790844405,
+     "outcome_mae_change": 0.13088846790844405
+    }
+   }
+  },
+  {
+   "origin": 2021,
+   "driver": "fin",
+   "corrections": {
+    "fin": {
+     "applied": 0.054160413898743466,
+     "outcome_mae_change": -0.05416041389874349
+    }
+   }
+  },
+  {
+   "origin": 2022,
+   "driver": "fin",
+   "corrections": {
+    "fin": {
+     "applied": 0.12143546644481278,
+     "outcome_mae_change": -0.12143546644481273
+    }
+   }
+  },
+  {
+   "origin": 2024,
+   "driver": "fin",
+   "corrections": {
+    "fin": {
+     "applied": 0.21434927777556842,
+     "outcome_mae_change": 0.21434927777556845
+    }
+   }
+  }
+ ]
+}

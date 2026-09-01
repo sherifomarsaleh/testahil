@@ -1,0 +1,45 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2022
+eee
+2.4 Investments in a joint venture
+A joint venture is joint arrangement whereby the parties that they have joint control of the arrangement have rights to the
+net assets of the joint arrangement. Joint control is the contractually agreed sharing of control of an arraignment, which
+exists only when decisions about the relevant activities require unanimous consent of the parties sharing control.
+Investments in joint ventures are accounted for at the application of the equity method, and in case the investment is
+impaired, the carrying amount is adjusted by the value of this impairment and is charged to the statement of profits or
+losses for each investment consolidated.
+2.5 Revenue recognition
+The company recognizes revenue from contracts with customers based on a five-step model set out in Egyptian accounting
+standard no. (48) - Revenue from contracts with customers
+Step 1: identify the contract with the customer: A contract is defined as an agreement between two or more parties that
+create enforceable rights and obligations and sets out the criteria for every contract that must be met.
+Step 2: identify the performance obligations in the contract: A performance obligation is a promise in a contract with a
+customer to transfer a goods or services to the customer.
+Step 3: determine the transaction price: the transaction price is the amount of consideration to which the Group expects
+to be entitled in exchange for transferring promised goods or services to a customer, excluding amounts collected on behalf
+of third parties.
+Step 4: Allocate the transaction price to the performance obligation in the contract: for a contract that has more than one
+performance obligation, the Group will allocate the transaction price to each performance obligation in an amount that
+depicts the amount of consideration to which the Group expects to be entitled in exchange for satisfying each performance
+obligation.
+Step 5: recognize revenue when (or as) the Group satisfies the performance obligation.
+If the consideration promised in a contract include a variable amount, the Group shall estimate the amount of consideration
+to which the Group will be entitled in exchange for transferring the promised goods or services to a customer.
+An amount of consideration can vary because of discounts, rebates, refunds, credits, price concession, incentives,
+performance bounces, penalties, or other similar items. The promised consideration can also vary if the Group's
+entitlement to the consideration is contingent on the occurrence or non-occurrence of a future event.
+The Group sells packed and non-packed cement and clinker, where selling process is either through selling invoices and/or
+specific contract with a customer.
+Sales of goods
+For contracts with customers which the only obligation is going to be selling cement, revenues shall be recognized at the
+time in which control over asset is transferred to the customer at a specific point in time, which is usually at the delivery
+date.
+The Group recognizes revenue at the point in time at which the customer obtains control of a promised asset and the Group
+satisfies the performance obligation. The Group considers the below mentioned indicators to assess the transfer of control
+of the promised asset.
+— The Group has a present right to payment for the asset
+— The customer has the legal title to the asset
+— The Group has transferred physical possession of the asset
+— The customer has the significant risks and rewards of ownership of the asset
+— The customer has accepted the asset.

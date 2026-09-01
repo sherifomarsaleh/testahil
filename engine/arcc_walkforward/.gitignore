@@ -1,0 +1,18 @@
+# NOT COMMITTED, and this is the same disposition the technical calibration gives
+# its harvest cache: a regenerable convenience is never committed, and the
+# committed evidence is the RESULTS files and the record.
+#
+#   filings/*.pdf   ARCC's own documents, 88MB. Re-retrievable at any time by
+#                   `python3 fetch_sources.py`, and fetch_attempts.json holds the
+#                   URL, timestamp, byte count and sha256 of every one — so the
+#                   integrity of what was read is on the record even though the
+#                   bytes are not in the repository.
+#   ocr/*.png       300dpi renders of the scanned filings, 280MB. Pure
+#                   intermediate: `python3 ocr_statements.py` regenerates them.
+#
+# THE OCR TEXT IS COMMITTED. ocr/*.txt is what was actually read off the pixels
+# and is the evidence behind every figure in panel.py — a reader must be able to
+# check the transcription without re-running anything.
+filings/*.pdf
+ocr/*.png
+__pycache__/

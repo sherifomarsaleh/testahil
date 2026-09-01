@@ -1,0 +1,50 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+The company measures allowances for expected credit losses for receivables that are disclosed as trade
+receivables, debtors and other debit balances.
+The Group measures loss allowances at an amount equal to lifetime ECLs, except for the following, which are
+measured at 12-month ECLs:
+* debt securities that are determined to have low credit risk at the reporting date; and
+* other debt securities and bank balances for which credit risk (i.e., the risk of default occurring over the
+expected life of the financial instrument) has not increased significantly since initial recognition.
+The Group measures foss allowances for trade receivables and contract assets at an amount equal to lifetime
+ECLs.
+When determining whether the credit risk of a financial asset has increased significantly since initial recognition
+and when estimating ECLs, the Group considers reasonable and supportable information that is relevant and
+available without undue cost or effort. This includes both quantitative and qualitative information and analysis,
+based on the Group’s historical experience and informed credit assessment and including forward-looking
+information. The Group assumes that the credit risk ona financial asset has increased significantly if it is more
+than 90 days past due.
+The Group considers a financial asset to be in default when:
+* the trade receivable is unlikely to pay its credit obligations to the Group in full, without recourse by the Group
+to actions such as realizing security (if any is held); or
+e the financial asset is more than 90 days past due.
+The maximum period considered when estimating ECLs is the maximum contractual period over which the
+Group is exposed to credit risk.
+Measurement of expected credit losses:
+Expected credit losses are a probability-weighted estimate of credit losses. Credit losses are measured as the
+present value of all cash shortfalls (i.e., the difference between the cash flows due to the Group in accordance
+with the contract and the cash flows that the Group expects to receive). ECs are discounted at the effective
+interest rate of the financial asset.
+Credit-impaired financial assets
+At each reporting date, the Group assesses whether financial assets carried at amortized cost are credit
+impaired. A financial asset is ‘credit-impaired’ when one or more events that have a detrimental impact on the
+estimated future cash flows of the financial asset have occurred.
+Evidences that a financial asset is credit-impaired include observable data about the following events:
+¢ significant financial difficulty of the debtor.
+« a breach of contract, such as default of payment.
+* the company, for economic or contractual reasons accepted the debtor repayment schedule that the
+company would not otherwise consider.
+* it is becoming probable that the debtor will enter bankruptcy or other financial reorganization
+Presentation of expected credit losses in the consolidated statement of financial position
+Loss allowances for financial assets measured at amortized cost are deducted from the gross carrying amount
+of the assets. For debt securities at FVOCI, the loss allowance is recognized in OCI, instead of reducing the
+carrying amount of the asset.
+Write-off
+A Group shall directly reduce the gross carrying amount of a financial asset when the company has no
+reasonable expectations of recovering the full amount or portion of the financial asset. The Company expects
+not to recover a significant portion of the written-off amounts. However, the written-off financial assets may
+still be subject to enforcement activities in order to comply with the company's procedures for recovery of
+such receivable balances.
+20

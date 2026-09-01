@@ -358,32 +358,46 @@ caption('Table 7 — The schedule. The glide fractions are the cumulative progre
         'rate and brought home on year five\'s own cumulative factor — one date, one price '
         'of time.')
 
-H2('1.5  Beta, and how weak it is')
-P(f'The beta is a genuine regression, not a default. Weekly returns over five years '
-  f'against an equal-weight index of the {BETA["composite_names"]} other Egyptian names in '
-  f'the library, with the subject excluded from its own index, give a beta of '
-  f'{n3(BETA["beta"])} on {BETA["n"]} observations, an R-squared of '
-  f'{pc(BETA["r2"], 1)} and a standard error of {n3(BETA["se"])}. The 90% confidence '
-  f'interval is [{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}].')
-P(f'That clears the usability threshold, and it is also STATISTICALLY WEAK — on one of the '
-  f'two tests rather than both, which is worth being precise about. The R-squared of '
-  f'{pc(BETA["r2"], 1)} sits below the 10% mark, which triggers the flag. The confidence '
-  f'interval spans {n2((BETA["ci90"][1]-BETA["ci90"][0])/BETA["beta"])} times the point '
-  f'estimate, which does NOT: that test fires at two times and this is well inside it. The '
-  f'estimate is therefore never restated later as though it were precise, and the '
-  f'valuation is shown across a beta range rather than at a point.')
-P(f'Two cross-checks are run rather than asserted. The share closes unchanged on '
-  f'{pc(BETA["thin_trading"]["flat_frac"])} of sessions against an Egyptian library median '
-  f'of {pc(BETA["thin_trading"]["eg_panel_median"])}, and non-synchronous trading biases a '
-  f'contemporaneous beta downward; the lead-lag sum-beta that corrects for it is '
-  f'{n3(BETA["dimson"]["sum_beta"])}, an uplift of {n3(BETA["dimson"]["uplift_vs_ols"])} '
-  f'with a standard error of {n3(BETA["dimson"]["se_sum"])} — i.e. an uplift not '
-  f'statistically distinguishable from zero. And a simple prior would put a cyclical, '
-  f'capital-intensive materials business at 1.0 to 1.5, which is above where this '
-  f'regression lands. There is a real reason for that: the company carries no net '
-  f'financial leverage, and unlevered equity genuinely moves less than levered equity. '
-  f'The regression is adopted, the correction is published as a value, and the difference '
-  f'is worth {sg(CON[1]["effect"])} of the cash-flow lens.')
+H2('1.5  Beta — the regressor, and why this one is a peer beta')
+P('Beta is measured against the published index of the exchange the share is listed '
+  'on: the EGX30, read from the exchange series held in the research library as of '
+  f'{BETA["index_asof"]}. That is a change from the previous edition of this study, and '
+  'it is the substantive change in this one. The earlier figure of '
+  f'{n3(BETA["retired_composite"]["beta"])} was regressed against an equal-weight basket '
+  'of the other Egyptian names this research programme happens to cover. Such a basket is '
+  'not a market: it changes whenever a company is added to the coverage, it mixes '
+  'businesses that have nothing to do with cement, and it shares its constituents with '
+  'the very set the estimate is used to price. It is not a weaker version of the right '
+  'answer; it is a different question.')
+P(f'Measured properly, the regression gives a beta of {n3(BETA["beta"])} on '
+  f'{BETA["n"]} weekly observations, with an R-squared of {pc(BETA["r2"], 1)} and a '
+  f'standard error of {n3(BETA["se"])}. '
+  'THE R-SQUARED IS THE PROBLEM. A usable regression must explain at least 5% of the '
+  'share\'s weekly movement, and this one explains under five. The index barely tracks '
+  'the stock. So the regression is NOT adopted, however convenient its number would have '
+  'been — it is reported and set aside.')
+P('What replaces it is a peer beta, which is the next step in a fixed order of '
+  'preference rather than a matter of taste. Five Egyptian heavy-industrial companies '
+  'clear the same usability test against the same index, and their median is '
+  f'{n3(BETA["tier2_peer_median"])}: '
+  + ', '.join(f'{k} {n3(v["beta"])}' for k, v in sorted(BETA["peers"].items())
+              if v["usable"]) + '. '
+  'Suez Cement, the one direct cement peer, is excluded because it fails the same test '
+  f'({pc(BETA["peers"]["SCEM"]["r2"], 1)} R-squared) — neither Egyptian cement company is '
+  'well explained by the EGX30, which is itself worth knowing about a thirty-name index '
+  'in a market where cement is a small part of the listed economy.')
+P('Two things about this are stated plainly rather than left for a reader to find. '
+  'FIRST, the peer betas are not unlevered and re-levered to this company\'s own capital '
+  'structure, because the peers\' balance sheets were not built from primary filings for '
+  'this purpose. The direction of that omission is known and it runs against the '
+  'valuation: this company holds more cash than debt, and a business with no net '
+  'borrowings has a lower equity beta than a levered peer, so re-levering would lower the '
+  'cost of equity and RAISE the value. The number used here is the conservative one. '
+  f'SECOND, the correction is large — from {n3(BETA["retired_composite"]["beta"])} to '
+  f'{n3(BETA["adopted"]["beta_used"])} — and it is most of the reason the valuation in '
+  'this edition sits below the last one. The table below shows the value across a beta '
+  'range that spans both figures, so a reader can see the whole of that sensitivity '
+  'rather than take the chosen point on trust.')
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -864,6 +878,44 @@ caption('Table 20 — Zones, not forecasts. The four are exclusive and sum to 10
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
+    ('This method has been tested on this company\'s own history, and it is worth '
+     'knowing how it did. ',
+     'Before this edition was written, the forecasting approach used here was rebuilt as '
+     'it would have stood at each year-end from 2018 to 2024, projected forward, and '
+     'scored against what the company actually went on to report — twenty-five separate '
+     'tests across twelve audited years. Three results from it belong in front of a '
+     'reader. FIRST, the approach beat both naive alternatives on net profit: simply '
+     'assuming last year repeats, and extending the recent trend. That is not the usual '
+     'result and it is not assumed here. SECOND, it was nonetheless wrong in the same '
+     'direction almost every time — it under-forecast revenue and cost together, because '
+     'no forecast made before 2022 could have known the pound would fall from 15.6 to '
+     'the dollar to 49.2. Roughly seven-tenths of the cost error disappears if the model '
+     'is handed the exchange rate it could not have known. THIRD, and most important for '
+     'how this document should be read, the two errors partly cancelled: because they '
+     'ran the same way on both sides of the income statement, the profit forecast looked '
+     'better than the method deserved. Accuracy from offsetting errors is not skill, and '
+     'saying so is the point of testing at all.'),
+    ('The later years of the forecast are ranges, and that is not a stylistic choice. ',
+     'The same test measured how wrong this approach has been at each distance. At one '
+     'year ahead the middle of its error distribution is essentially zero. At five years '
+     'the spread runs to a factor of about three and a half on the level. A single number '
+     'five years out would therefore be a fiction dressed as an estimate, so years three '
+     'to five are shown as ranges built from that measured record rather than as points. '
+     'The width should be read as what it is — how wrong this method has been at that '
+     'distance — and not as a forecast of how wide the company\'s own outcomes will be. '
+     'It is dominated by one currency collapse, and nobody has evidence that another of '
+     'that size is as likely as not.'),
+    ('Two parts of the model are known to be weak, and neither is patched over. ',
+     'The test found that the interest-cost rule breaks after the company repaid its '
+     'debt in full in 2023: a rule that keeps repaying eventually reaches zero and stays '
+     'there, so it forecast no interest at all for a company that then signed a EUR 25mn '
+     'facility with the EBRD. And the volume rule — anchoring on Egypt\'s cement market '
+     'and this company\'s share of it — was beaten by simply carrying last year\'s '
+     'tonnage forward, because the company\'s own share moved much further than the '
+     'market did, from 8.1% to 5.4%, as it pivoted from domestic cement to clinker '
+     'exports. Both are recorded as defects to fix in the next edition. Neither is '
+     'corrected by a multiplier: a correction factor is honest when the model is right '
+     'and reality is awkward, and when the model is wrong a correction hides it.'),
     ('The accounts are audited, and this study is built on them. ', 'An earlier edition of '
      'this work was written without access to a source document and reconstructed the '
      'history by closing disclosed profit against modelled assumptions. That edition is '
@@ -1115,6 +1167,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'ARCC_Valuation_Study_08-08-2026_public.docx'
+OUT = 'ARCC_Valuation_Study_01-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

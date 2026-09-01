@@ -1,0 +1,443 @@
+{
+ "FY2015_cons": [
+  {
+   "page": 2,
+   "kind": "CF",
+   "chars": 3132
+  },
+  {
+   "page": 4,
+   "kind": "?",
+   "chars": 2147
+  },
+  {
+   "page": 5,
+   "kind": "?",
+   "chars": 1416
+  },
+  {
+   "page": 7,
+   "kind": "CF",
+   "chars": 2971
+  },
+  {
+   "page": 10,
+   "kind": "?",
+   "chars": 3067
+  },
+  {
+   "page": 11,
+   "kind": "?",
+   "chars": 2754
+  },
+  {
+   "page": 12,
+   "kind": "IS",
+   "chars": 3270
+  },
+  {
+   "page": 13,
+   "kind": "CF",
+   "chars": 2982
+  },
+  {
+   "page": 14,
+   "kind": "IS",
+   "chars": 3396
+  }
+ ],
+ "FY2016_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 368
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 808
+  },
+  {
+   "page": 6,
+   "kind": "BS",
+   "chars": 1589
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1551
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1784
+  },
+  {
+   "page": 12,
+   "kind": "BS",
+   "chars": 3589
+  },
+  {
+   "page": 13,
+   "kind": "IS",
+   "chars": 3840
+  }
+ ],
+ "FY2017_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 396
+  },
+  {
+   "page": 3,
+   "kind": "IS",
+   "chars": 3036
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 751
+  },
+  {
+   "page": 6,
+   "kind": "BS",
+   "chars": 1574
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1540
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1848
+  }
+ ],
+ "FY2018_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 385
+  },
+  {
+   "page": 3,
+   "kind": "BS",
+   "chars": 2936
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 751
+  },
+  {
+   "page": 6,
+   "kind": "BS",
+   "chars": 1580
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1405
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1675
+  }
+ ],
+ "FY2019_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 359
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 743
+  },
+  {
+   "page": 6,
+   "kind": "BS",
+   "chars": 1665
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1432
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1731
+  }
+ ],
+ "FY2020_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 382
+  },
+  {
+   "page": 3,
+   "kind": "IS",
+   "chars": 3003
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 795
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1423
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1643
+  },
+  {
+   "page": 13,
+   "kind": "IS",
+   "chars": 2732
+  }
+ ],
+ "FY2021_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 382
+  },
+  {
+   "page": 3,
+   "kind": "IS",
+   "chars": 3021
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 790
+  },
+  {
+   "page": 6,
+   "kind": "BS",
+   "chars": 1558
+  },
+  {
+   "page": 7,
+   "kind": "IS",
+   "chars": 1344
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 1614
+  },
+  {
+   "page": 13,
+   "kind": "IS",
+   "chars": 4640
+  }
+ ],
+ "FY2022_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 383
+  },
+  {
+   "page": 3,
+   "kind": "IS",
+   "chars": 2979
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 2447
+  },
+  {
+   "page": 6,
+   "kind": "IS",
+   "chars": 1428
+  },
+  {
+   "page": 9,
+   "kind": "CF",
+   "chars": 3625
+  },
+  {
+   "page": 11,
+   "kind": "IS",
+   "chars": 4727
+  },
+  {
+   "page": 13,
+   "kind": "?",
+   "chars": 3669
+  },
+  {
+   "page": 14,
+   "kind": "IS",
+   "chars": 3528
+  }
+ ],
+ "FY2023_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 431
+  },
+  {
+   "page": 6,
+   "kind": "IS",
+   "chars": 1550
+  },
+  {
+   "page": 9,
+   "kind": "CF",
+   "chars": 3192
+  },
+  {
+   "page": 11,
+   "kind": "IS",
+   "chars": 3975
+  },
+  {
+   "page": 13,
+   "kind": "IS",
+   "chars": 3932
+  },
+  {
+   "page": 14,
+   "kind": "IS",
+   "chars": 3149
+  }
+ ],
+ "FY2024_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 471
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 2433
+  },
+  {
+   "page": 6,
+   "kind": "IS",
+   "chars": 1714
+  },
+  {
+   "page": 9,
+   "kind": "CF",
+   "chars": 3601
+  },
+  {
+   "page": 11,
+   "kind": "IS",
+   "chars": 3858
+  },
+  {
+   "page": 13,
+   "kind": "IS",
+   "chars": 3697
+  }
+ ],
+ "FY2025_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 391
+  },
+  {
+   "page": 3,
+   "kind": "IS",
+   "chars": 2919
+  },
+  {
+   "page": 5,
+   "kind": "BS",
+   "chars": 2493
+  },
+  {
+   "page": 6,
+   "kind": "IS",
+   "chars": 1592
+  },
+  {
+   "page": 9,
+   "kind": "CF",
+   "chars": 3117
+  },
+  {
+   "page": 11,
+   "kind": "IS",
+   "chars": 3803
+  },
+  {
+   "page": 14,
+   "kind": "IS",
+   "chars": 3014
+  }
+ ],
+ "Q1_2026_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 514
+  },
+  {
+   "page": 4,
+   "kind": "BS",
+   "chars": 2422
+  },
+  {
+   "page": 5,
+   "kind": "IS",
+   "chars": 1334
+  },
+  {
+   "page": 8,
+   "kind": "CF",
+   "chars": 2671
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 3313
+  }
+ ],
+ "Q2_2026_cons": [
+  {
+   "page": 2,
+   "kind": "IS",
+   "chars": 436
+  },
+  {
+   "page": 4,
+   "kind": "BS",
+   "chars": 2373
+  },
+  {
+   "page": 8,
+   "kind": "CF",
+   "chars": 2785
+  },
+  {
+   "page": 10,
+   "kind": "IS",
+   "chars": 3493
+  },
+  {
+   "page": 12,
+   "kind": "IS",
+   "chars": 2365
+  }
+ ]
+}

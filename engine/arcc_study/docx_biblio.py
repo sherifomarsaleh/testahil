@@ -1,4 +1,4 @@
-"""ARCC_Bibliography_06-08-2026.docx — a standalone source register.
+"""ARCC_Bibliography_01-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -289,13 +289,23 @@ DER = [
   f'replacement cost of USD 130 — roughly a tenth. A return computed on that base measures '
   f'the devaluation rather than the economics of adding a tonne. The choice makes terminal '
   f'growth value-destroying and is the single most consequential judgement in the model.'),
- (f'Beta — {BR["beta"]:.3f} adopted',
-  f'A five-year weekly regression against a {BR["composite_names"]}-name equal-weight '
-  f'Egyptian composite, subject excluded from its own index: {BR["beta"]:.3f} on {BR["n"]} '
-  f'observations, R-squared {BR["r2"]:.3f}, standard error {BR["se"]:.3f}. Clears the '
-  f'usability gate so it is adopted rather than defaulted, and is flagged statistically weak. '
-  f'The lead-lag correction for thin trading gives {BR["dimson"]["sum_beta"]:.3f}; its effect '
-  f'is published as a value.'),
+ (f'Beta — {BR["adopted"]["beta_used"]:.4f} adopted (tier {BR["adopted"]["tier"]})',
+  f'Regressor: the PUBLISHED EGX30 index, {BR["index_file"]}, as of {BR["index_asof"]}. '
+  f'The own-stock five-year weekly regression gives {BR["beta"]:.4f} on {BR["n"]} '
+  f'observations with R-squared {BR["r2"]:.3f} and standard error {BR["se"]:.3f}, which '
+  f'FAILS the usability gate (R-squared floor 0.05) and is therefore reported and set '
+  f'aside, not adopted. Adopted instead: the median of the '
+  f'{sum(1 for v in BR["peers"].values() if v["usable"])} same-country heavy-industrial '
+  f'peers that do clear the gate against the same index — '
+  + ', '.join(f'{k} {v["beta"]:.4f}' for k, v in sorted(BR["peers"].items()) if v["usable"])
+  + f'. Suez Cement, the direct cement peer, fails the gate too (R-squared '
+  f'{BR["peers"]["SCEM"]["r2"]:.3f}) and is excluded. SUPERSEDES a beta of '
+  f'{BR["retired_composite"]["beta"]:.4f} regressed against an equal-weight composite of '
+  f'the covered Egyptian names, which is not a permissible regressor: a composite of the '
+  f'names a research programme happens to cover is a coverage artefact, not a market. '
+  f'NOT unlevered and re-levered — peer balance sheets were not built from primary '
+  f'filings for this purpose. The company runs net cash, so re-levering would give a '
+  f'LOWER beta and a HIGHER value; the figure used is the conservative one.'),
  ('Capital expenditure in the forecast',
   'Set at the economic maintenance level of USD 4.00 per tonne of installed capacity rather '
   'than at book depreciation, because a historic-cost base understates what it costs to keep '
@@ -342,6 +352,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_06-08-2026.docx'
+OUT = 'ARCC_Bibliography_01-09-2026.docx'
 doc.save(OUT)
 print('wrote', OUT)

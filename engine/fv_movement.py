@@ -117,7 +117,8 @@ def snapshot(ticker, when=None, unrecoverable=None):
     return 0
 
 
-def record(ticker, bear, base, full, scope, origins, lessons, when=None):
+def record(ticker, bear, base, full, scope, origins, lessons, when=None,
+           note=None):
     """Append this run's delivered fair value beside the frozen baseline."""
     if scope not in SCOPES:
         raise SystemExit('FATAL: scope must be one of %s.' % ', '.join(SCOPES))
@@ -145,6 +146,11 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
         'vs_previous_pct': ({k: round(100.0 * (new[k] - prev[k]) / prev[k], 1)
                              for k in LEGS} if prev else None),
         'lessons': sorted(lessons),
+        # A superseded edition is never deleted -- the register is append-only,
+        # like the ledgers. `note` is where an edition says what it replaced and
+        # why, so a reader of the register sees the correction rather than two
+        # unexplained numbers.
+        'note': note,
     })
     _save(d)
     ed = e['editions'][-1]
@@ -219,6 +225,32 @@ def build():
                         '%+.1f%%' % mv['bear'] if mv else 'n/a',
                         '%+.1f%%' % mv['full'] if mv else 'n/a',
                         b['built_to'], current, ', '.join(ed['lessons']) or '—'))
+    # Superseded editions and their notes. The register is append-only, so a
+    # corrected edition must be visible AS a correction rather than silently
+    # replacing the number it replaced.
+    notes = [(q, d['entries'][q['ticker']]) for q in queue
+             if q['ticker'] in d['entries']
+             and (len(d['entries'][q['ticker']]['editions']) > 1
+                  or any(x.get('note') for x in d['entries'][q['ticker']]['editions']))]
+    if notes:
+        L.append('')
+        L.append('## Editions and corrections')
+        L.append('')
+        L.append('A name with more than one edition shows every one. Nothing is '
+                 'overwritten: a superseded number stays on the record with the '
+                 'reason it was superseded, the same append-only discipline the '
+                 'ledgers keep.')
+        for q, e in notes:
+            L.append('')
+            L.append('**%s**' % q['ticker'])
+            L.append('')
+            L.append('| edition | delivered | bear | base | full | note |')
+            L.append('|---|---|---|---|---|---|')
+            for x in e['editions']:
+                L.append('| %d | %s | %s | %s | %s | %s |'
+                         % (x['edition'], x['delivered'], x['fair']['bear'],
+                            x['fair']['base'], x['fair']['full'],
+                            (x.get('note') or '—')))
     L.append('')
     L.append('Percentages are the delivered edition against the **frozen pre-campaign '
              'baseline**, captured before the run touched `assets/data.js`. Where a name '
@@ -287,7 +319,8 @@ def main(argv):
             return a[a.index(flag) + 1] if flag in a else dflt
         lessons = [x for x in (opt('--lessons', '') or '').split(',') if x]
         return record(a[0].upper(), opt('--bear'), opt('--base'), opt('--full'),
-                      opt('--scope', 'full'), opt('--origins', ''), lessons)
+                      opt('--scope', 'full'), opt('--origins', ''), lessons,
+                      note=opt('--note'))
     if cmd == 'build':
         return build()
     if cmd == 'check':

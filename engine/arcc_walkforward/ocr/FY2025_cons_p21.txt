@@ -1,0 +1,48 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+Equity investments at FVOCI
+These assets are subsequently measured at fair value. Dividends are recognized as income in the consolidated
+statement of profit or loss unless the dividend clearly represents a recovery of part of the cost of the
+investment. Other net gains and losses are recognized in OCI and are never reclassified to the consolidated
+statement of profit or loss.
+Financial liabilities — Classification, subsequent measurement and gains and losses
+Financial liabilities are classified as measured at amortized cost or FVTPL. A financial liability is classified as at
+FVTPL if it is classified as held-for-trading, it is a derivative or it is designated as such on initial recognition.
+Financial liabilities
+Financia} liabilities are measured at FVTPL and are measured at fair value and net gains and losses, including
+any interest expense, are recognized in profit or joss. Other financial liabilities are subsequently measured at
+amortized cost using the effective interest method. Interest
+expense and foreign exchange gains and losses are recognized in the consolidated statement of profit or loss.
+Any gain or loss on derecognition is also recognized in the consolidated statement of profit or loss.
+Derecognition
+Financial assets
+The Group derecognizes a financial asset when the contractual rights to the cash flows from the financial asset
+expire, or it transfers the rights to receive the contractual cash flows in a transaction in which substantially all
+the risks and rewards of ownership of the financial asset are transferred or in which the Group neither transfers
+nor retains substantially all the risks and rewards of ownership and it does not retain control of the financial
+asset.
+The Group enters transactions whereby it transfers assets recognized in its consolidated statement of financial
+position but retains either all or substantially all the risks and rewards of the transferred assets. In these cases,
+the transferred assets are not derecognized.
+Financial liabilities
+The Group derecognizes a financial liability when its contractual obligations are discharged or cancelled or
+expire. The Group also derecognizes a financial liability when its terms are modified and the cash flows of the
+modified liability are substantially different, in which case a new financial fiability based on the modified terms
+is recognized at fair value.
+On derecognition of a financial liability, the difference between the carrying amount extinguished and the
+consideration paid (including any non-cash assets transferred or liabilities assumed) is recognized in the
+consolidated statement of profit or loss.
+Offsetting
+Financial assets and financial liabilities are offset, and the net amount presented in the consolidated statement
+of financial position when, and only when, the Group currently has a legally enforceable right to set off the
+amounts and it intends either to settle them on a net basis or to realize the asset and settle the liability
+simultaneously.
+Impairment of assets
+Non-derivative financial assets
+Financial instruments and contract assets
+The Group recognizes toss allowances for ECLs on:
+« financial assets measured at amortized cost.
+e debt investments measured at FVOCI; and
+® contract assets.
+19

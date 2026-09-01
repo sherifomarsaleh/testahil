@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**52 lessons**, of which 33 bind on every study, 14 on a class of company, and 5 on a single name.
+**56 lessons**, of which 35 bind on every study, 15 on a class of company, and 6 on a single name.
 
-By how they were learned: 14 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 19 found while building.
+By how they were learned: 18 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 19 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 1 (PHDC) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 2 (ARCC, PHDC) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on PHDC alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on ARCC and PHDC alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -409,6 +409,26 @@ A measurement that comes back the same for everything is more often a broken que
 
 > **What would overturn it.** Nothing. When a probe comes back uniform or empty, the first hypothesis is that the probe did not run.
 
+### L-034 · A debt path that amortises to zero and never re-borrows will forecast no interest for ever.
+
+If the rule for future debt is 'keep repaying at the recent average', it eventually reaches zero and stays there — so the model shows a company with no borrowings and no interest cost, however much it later borrows. The fix is a debt schedule read from the disclosed facilities and their maturities, not a multiplier on the interest line.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.545 log (about 1.7 times too low), average miss 0.813, wrong in the same direction in 64% of cases, and the sign holds across every bootstrap block tested (n=14).
+
+> **What would overturn it.** A build whose debt path is read from disclosed facilities and maturities, where the finance-cost bias is still this large.
+
+### L-035 · When revenue and cost carry different currency weights, fixing the macro can make the profit forecast worse.
+
+If a model under-forecasts both revenue and cost, the two misses partly cancel and the profit looks better than the model deserves. Correct the currency path on both sides and the cancellation breaks, because the cost side usually carries far more of the exchange rate than the revenue side does. So a profit forecast that looks accurate may be accurate by offsetting errors — check the two sides separately before believing it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 1.106 as known, 1.504 with perfect foresight of inflation — the macro share is only -36.0%.
+
+> **What would overturn it.** A build where revenue and cost carry the same currency weight and the profit error still gets worse under perfect macro foresight.
+
 
 ---
 
@@ -514,6 +534,16 @@ A globally traded input like coal follows the world price and the exchange rate.
 
 > **What would overturn it.** An input genuinely priced domestically.
 
+### L-115 · In a devaluing currency a cement cost-per-tonne escalator built on the last known exchange-rate move runs far too low.
+
+Most of a cement producer's cash cost is imported fuel, priced in dollars. Escalating it by the exchange-rate move you last saw is the only honest thing to do at the time, and it will still be badly wrong when the currency goes on to fall by a factor of three. That is a limit of what can be forecast, not a defect to be corrected — 71% of this error disappears if you hand the model the exchange rate it could not have known.
+
+**Applies to:** every cement and heavy industrial  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.315 log (about 37% too low), average miss 0.406, wrong in the same direction in 72% of cases, and the sign holds across every bootstrap block tested (n=25).
+
+> **What would overturn it.** A cement producer whose fuel is genuinely priced in local currency, where the same escalator still runs this far low.
+
 
 ## Petrochemical
 
@@ -585,6 +615,19 @@ Some metals have no history of their own in this system and borrow another metal
 # Lessons that bind on ONE company
 
 *Read only the section for the company being updated. These do not generalise and must not be applied to another name.*
+
+## ARCC
+
+### L-206 · For ARCC, last year's own volume beats a national-market- times-share build.
+
+Anchoring volume on Egypt's cement market and ACC's share of it is supposed to be more disciplined than extrapolating the company. On this name it is worse, because ACC's own share moved much further than the market did — from 8.1% to 5.4% as it pivoted from domestic cement to clinker exports. The anchor was steady and the company was not.
+
+**Applies to:** ARCC only  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons 3, 4, 5, worst -1.673.
+
+> **What would overturn it.** A later ARCC run in which the market-share anchor beats the freeze benchmark, or a second cement name showing the same thing — which would make it a class finding rather than this company's.
+
 
 ## PHDC
 

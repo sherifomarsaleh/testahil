@@ -1242,9 +1242,24 @@ say("=" * 78)
 
 # ==================== EMIT ==================================================
 OUT = dict(
+    # [R-STD-01] TOP-LEVEL as well as inside meta: engine/campaign_queue.py's
+    # study_standards() reads the top level of each committed json, so a stamp
+    # buried one level down leaves the name sitting in the reissue tier for ever
+    # -- which is exactly what it did on the first attempt at this edition.
+    standard_version=__import__('research_protocol').STANDARD_VERSION,
     meta=dict(ticker='ARCC', company='Arabian Cement Company S.A.E.', market='EGX',
               market_code='EG', currency='EGP', asof='2026-08-06', spot=V['spot'],
-              shares_mn=SH, mktcap=MKTCAP, revision=3,
+              shares_mn=SH, mktcap=MKTCAP, revision=4,
+              # [R-STD-01] the standard this edition was built to. Without a
+              # stamp, 'is this study finished or finished-for-now?' has no
+              # answer in the repository and a book-wide re-issue is
+              # open-ended. Revision 4 is the campaign re-issue of
+              # 01-Sep-2026: the composite beta replaced by a conforming
+              # tier-2 peer beta, and the fundamental walk-forward
+              # (engine/arcc_walkforward) carried in.
+              standard_version=__import__('research_protocol').STANDARD_VERSION,
+              walkforward='engine/arcc_walkforward',
+              walkforward_scope='FULL — 12 audited fiscal years FY2014-FY2025, 7 origins, 25 graded cells',
               klass='single-asset cement operating company (net cash)',
               sector='Construction materials — cement',
               basis='audited consolidated financial statements FY2023-FY2025 and reviewed '

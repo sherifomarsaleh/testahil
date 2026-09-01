@@ -1,0 +1,46 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+e the frequency, volume, and timing of sales of financial assets in prior periods, the reasons for such sales and
+expectations about future sales activity.
+Transfers of financial assets to third parties in transactions that do not qualify for derecognition are not
+considered sales for this purpose, consistent with the Group’s continuing recognition of the assets.
+Financial assets that are held for trading or are managed and whose performance is evaluated on a fair value
+basis are measured at FVTPL.
+Financial assets — Assessment whether contractual cash flows. are solely payments of principal and interest:
+For the purposes of this assessment, ‘principal’ is defined as the fair value of the financial asset on initial
+recognition.
+‘interest’ is defined as consideration for the time value of money and for the credit risk associated with the
+principal! amount outstanding during a particular period and for other basic lending risks and costs (e.g.,
+liquidity risk and administrative costs), as well as a profit margin.
+In assessing whether the contractual cash flows are solely payments of principal and interest, the Group
+considers the contractual terms of the instrument. This includes assessing whether the financial asset contains
+a contractual term that could change the timing or amount of contractual cash flows such that it would not
+meet this condition. In making this assessment, the Group considers:
+* contingent events that would change the amount or timing of cash flows.
+* terms that may adjust the contractual coupon rate, including variable-rate features.
+* prepayment and extension features; and
+* terms that limit the Group’s claim-to cash flows from specified assets (e.g., non-recourse features).
+A prepayment feature is consistent with the solely payments of principal and interest criterion if the
+prepayment amount substantially represents unpaid amounts of principal and interest on the principal amount
+outstanding, which may include reasonable additional compensation for early termination of the contract.
+Additionally, for a financial asset acquired at a discount or premium to its contractual par amount, a feature
+that permits or requires prepayment at an amount that substantially represents the contractual par amount
+plus accrued (but unpaid) contractual interest (which may also include reasonable additional compensation for
+early termination) is treated as consistent with this criterion if the fair value of the prepayment feature is
+insignificant at initial recognition.
+Subsequent measurement — financial assets
+Financial assets at FVTPL
+These assets are subsequently measured at fair value, Net gains and losses, including any interest or dividend
+income, are recognized in the consolidated statement of profit or loss.
+Financial assets at amortized cost
+These assets are subsequently measured at amortized cost using the effective interest method. The amortized
+cost is reduced by impairment fosses. Interest income, foreign exchange gains and losses and impairment are
+recognized in the consolidated statement of profit or loss. Any gain or loss on de-recognition is recognized in
+the consolidated statement of profit or loss.
+Debt investments at FVOCI
+These assets are subsequently measured at fair value. interest income is calculated using the effective interest
+method, foreign exchange gains and losses and impairment are recognized in the consolidated statement of
+profit or loss. Other net gains and losses are recognized in OCI. On de-recognition, gains and losses accumulated
+in OCI are reclassified to the consolidated statement of profit or loss.
+18

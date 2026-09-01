@@ -1,0 +1,46 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the year ended December 31, 2025
+The following estimated useful lives are used in the subsidiaries in the calculation of depreciation:
+Andalus Ready-Mix Concrete
+Buildings 50 years
+Machinery-and equipment 20 years
+Furniture, fixtures and office equipment 16 years
+Other installations 5 years
+Vehicles 10 years
+Computer and software 3 years
+Evolve for investment and Project Management
+Furniture, fixtures and office equipment 3 years
+Vehicles 40 years
+Computer and software 3 years
+2.10 Intangible assets
+intangible assets with finite useful lives that are acquired consofidated are carried at cost less accumulated
+amortization and accumulated impairment losses. Amortization is recognized on a straight-line basis over their
+estimated useful lives.
+The estimated useful lives and amortization method are reviewed at the end of each reporting period, with the
+effect of any changes in estimating being accounted for ona prospective basis. Intangible assets with indefinite
+useful lives that are acquired consolidated are carried at cost less accumulated impairment losses.
+An intangible asset is derecognized on disposal, or when no future economic benefits are expected from use
+or disposal. Gains or losses arising from de-recognition of an intangible asset, measured as the difference
+between the net disposal proceeds and the carrying amount of the asset, are recognized in the consolidated
+statement of profit or loss when the asset is derecognized.
+Assets Years
+Operating licence 20 years
+Electricity contract 10 years
+2.11 fmpairment of tangible and intangible assets
+At the end of each reporting period, the Group reviews the carrying amounts of its tangible and intangible
+assets to determine whether there is any indication that those assets have suffered an impairment loss. If any
+such indication exists, the recoverable amount of the asset is estimated in order to determine the extent of
+the impairment loss (if any).
+When it is not possible to estimate the recoverable amount of an individual asset, the Group estimates the
+recoverable amount of the cash-generating unit to which the asset belongs.
+Where a reasonable and consistent basis of allocation can be identified, corporate assets are also allocated to
+individual cash-generating units, or otherwise they are allocated to the smallest Group of cash-generating units
+for which a reasonable and consistent allocation basis can be identified.
+intangible assets with indefinite useful lives and intangible assets not yet available for use are tested for
+impairment at least annually, and whenever there is an indication that the asset may be impaired.
+Recoverable amount is the higher of fair value less costs to sell and value in use. In assessing value in use, the
+estimated future cash flows are discounted to their present value using a pre-tax discount rate that reflects
+current market assessments of the time value of money and the risks specific to the asset for which the
+estimates of future cash flows have not been adjusted.
+15

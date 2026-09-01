@@ -1,0 +1,70 @@
+Arabian Cement Company S.A.E.
+Notes to the Consolidated Financial Statements
+For the ended December 31, 2025 _
+
+When assets of the subsidiary are carried at re-valued amounts or fair values and the related cumulative gain
+
+or loss has been recognised in other comprehensive income and accumulated in equity, the amounts previously
+
+recognised in other comprehensive income and accumulated in equity are accounted for as if the Parent
+
+Company had directly disposed of the relevant assets (i.e. reclassified to profit or loss or transferred directly to
+
+retained earnings as specified by applicable EASs). The fair value of any investment retained in the former
+
+subsidiary at the date when control is fost is regarded as the fair value on initial recognition for subsequent
+accounting under EAS 47 Financial Instruments or, when applicable, the cost on initial recognition of an
+investment in an associate or a jointly controlled Group.
+
+2.3 S8usiness combinations
+
+Acquisitions of businesses are accounted for using the acquisition method, The consideration transferred in a
+
+business combination is measured at fair value, which is calculated as the sum of the acquisition-date fair
+
+values of the assets transferred by the Group, liabilities incurred by the Group to the former owners of the
+acquiree and the equity interests issued by the Group in exchange for control of the acquiree. Acquisition-
+related costs are generally recognised in profit or loss as incurred.
+
+At the acquisition date, the identifiable assets acquired and the liabilities assumed are recognised at their fair
+
+value at the acquisition date, except that:
+
+. deferred tax assets or liabilities and liabilities or assets related to employee benefit arrangements are
+recognised and measured in accordance with EAS 24 Income Taxes and EAS 38 Employee Benefits
+respectively;
+
+- fiabilities or equity instruments related to share-based payment arrangements of the acquiree or share-
+based payment arrangements of the Group entered into to replace share-based payment arrangements of
+the acquiree are measured in accordance with EAS 39 Share-based Payment at the acquisition date; and
+
+- assets (or disposal groups) that are classified as held for sale in accordance with EAS 32 Non-current Assets
+Held for Sale and Discontinued Operations are measured in accordance with that Standard.
+
+Goodwill is measured as the excess of the sum of the consideration transferred, the amount of any non-
+
+controlling interests in the acquiree, and the fair value of the acquirer's previously held equity interest in the
+
+acquiree (if any) over the net of the acquisition-date amounts. of the identifiable assets acquired and the
+liabilities assumed. If, after reassessment, the net of the acquisition-date amounts of the identifiable assets
+acquired and liabilities assumed exceeds the sum of the consideration transferred, the amount of any non-
+controlling interests in the acquiree and the fair value of the acquirer's previously held interest in the acquiree
+
+(if any), the excess is recognised immediately in profit or loss as a bargain purchase gain.
+
+Non-controlling interests that are present ownership interests and entitle their holders to a proportionate
+
+share of the Groups net assets in the event of liquidation may be initially measured either at fair value or at
+
+the non-controlling interests’ proportionate share of the recognised amounts of the acquiree's identifiable net
+assets. The choice of measurement basis is made ona transaction-by-transaction basis. Other types of non-
+controlling interests are measured at fair value or, when applicable, on the basis specified in another EAS.
+
+When the consideration transferred by the Group in a business combination includes assets or liabilities
+
+resulting from a contingent consideration arrangement, the contingent consideration is measured at its
+acquisition-date fair value and included as part of the consideration transferred in a business combination.
+Changes in the fair value of the contingent consideration that qualify as measurement period adjustments are
+adjusted retrospectively, with corresponding adjustments against goodwill.
+
+10

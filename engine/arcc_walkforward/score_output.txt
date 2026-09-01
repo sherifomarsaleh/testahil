@@ -1,0 +1,45 @@
+=== PER-DRIVER LOG ERROR (build, knowable macro) ===
+driver        n     bias      MAE   over   signs robust   era-stable
+vol          25   -0.124    0.196    24%       0 YES      NO — unstable
+rpt          25   -0.276    0.396    32%       0 YES      NO — unstable
+cpt          25   -0.315    0.406    28%       0 YES      yes
+seg          25   -0.400    0.545    36%       0 YES      NO — unstable
+other        25    0.162    0.341    72%       0 no       yes
+sales        25   -0.385    0.533    36%       0 YES      NO — unstable
+cash_cost    25   -0.439    0.551    32%       0 YES      NO — unstable
+ga           25   -0.318    0.476    32%       0 YES      NO — unstable
+fin          14   -0.545    0.813    36%      11 YES      yes
+gp           25    0.028    1.159    40%       0 no       NO — unstable
+pbt          23   -0.002    1.122    35%       2 no       NO — unstable
+npat         23    0.059    1.144    39%       2 no       NO — unstable
+
+=== SKILL vs THE TWO NAIVE BENCHMARKS (MAE, pooled) ===
+driver        n    build   freeze    trend  verdict
+vol          25    0.196    0.157    0.227  beats trend only
+rpt          25    0.396    0.550    0.448  beats both
+cpt          25    0.406    0.417    0.307  beats freeze only
+seg          25    0.545    0.665    0.597  beats both
+other        25    0.341    0.247    0.626  beats trend only
+sales        25    0.533    0.653    0.586  beats both
+cash_cost    25    0.551    0.539    0.515  LOSES TO BOTH
+ga           25    0.476    0.574    0.580  beats both
+fin          14    0.813    0.420    1.006  beats trend only
+gp           25    1.159    1.943    2.690  beats both
+pbt          18    1.154    1.966    2.671  beats both
+npat         18    1.180    2.004    2.687  beats both
+
+=== MACRO vs COMPANY ===
+driver        n  knowable  foresight   macro%
+vol          25     0.196      0.196       0%
+rpt          25     0.396      0.192      51%
+cpt          25     0.406      0.120      71%
+seg          25     0.545      0.357      35%
+other        25     0.341      0.353      -4%
+sales        25     0.533      0.345      35%
+cash_cost    25     0.551      0.186      66%
+ga           25     0.476      0.271      43%
+fin          14     0.813      0.813       0%
+gp           20     1.094      1.293     -18%
+pbt          17     1.069      1.480     -38%
+npat         17     1.106      1.504     -36%
+negative control: volume macro share = 0 exactly, as required

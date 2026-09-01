@@ -37,3 +37,7 @@ engine/airarabia_study/sources/
 # one. A hash plus a public URL proves more than a committed binary does. The extracted
 # .txt the build actually reads IS committed. See engine/borouge_study/src/README.md.
 engine/borouge_study/src/*.pdf
+
+# npm artefacts from installing playwright to run scripts/check_ta_chart_overlay.js
+package.json
+package-lock.json

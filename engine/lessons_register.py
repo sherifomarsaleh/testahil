@@ -833,6 +833,82 @@ LESSONS = [
       "walk_forward_fundamental",
       "By era: E2 post-float +0.507; E3 devaluation -0.196.",
       "Nothing. This is a rule about how to read a measured bias."),
+
+    L("L-115", "CLASS", "cement and heavy industrial",
+      "In a devaluing currency a cement cost-per-tonne escalator "
+      "built on the last known exchange-rate move runs far too low.",
+      "Most of a cement producer's cash cost is imported fuel, priced "
+      "in dollars. Escalating it by the exchange-rate move you last "
+      "saw is the only honest thing to do at the time, and it will "
+      "still be badly wrong when the currency goes on to fall by a "
+      "factor of three. That is a limit of what can be forecast, not "
+      "a defect to be corrected — 71% of this error disappears if you "
+      "hand the model the exchange rate it could not have known.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.315 log (about 37% too low), average miss 0.406, wrong "
+      "in the same direction in 72% of cases, and the sign holds "
+      "across every bootstrap block tested (n=25).",
+      "A cement producer whose fuel is genuinely priced in local "
+      "currency, where the same escalator still runs this far low.",
+      "provisional"),
+
+    L("L-034", "ALL", None,
+      "A debt path that amortises to zero and never re-borrows will "
+      "forecast no interest for ever.",
+      "If the rule for future debt is 'keep repaying at the recent "
+      "average', it eventually reaches zero and stays there — so the "
+      "model shows a company with no borrowings and no interest cost, "
+      "however much it later borrows. The fix is a debt schedule read "
+      "from the disclosed facilities and their maturities, not a "
+      "multiplier on the interest line.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.545 log (about 1.7 times too low), average miss 0.813, "
+      "wrong in the same direction in 64% of cases, and the sign "
+      "holds across every bootstrap block tested (n=14).",
+      "A build whose debt path is read from disclosed facilities and "
+      "maturities, where the finance-cost bias is still this large.",
+      "provisional"),
+
+    L("L-206", "STOCK", "ARCC",
+      "For ARCC, last year's own volume beats a national-market- "
+      "times-share build.",
+      "Anchoring volume on Egypt's cement market and ACC's share of "
+      "it is supposed to be more disciplined than extrapolating the "
+      "company. On this name it is worse, because ACC's own share "
+      "moved much further than the market did — from 8.1% to 5.4% as "
+      "it pivoted from domestic cement to clinker exports. The anchor "
+      "was steady and the company was not.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Negative skill against the freeze benchmark at horizons 3, 4, "
+      "5, worst -1.673.",
+      "A later ARCC run in which the market-share anchor beats the "
+      "freeze benchmark, or a second cement name showing the same "
+      "thing — which would make it a class finding rather than this "
+      "company's.",
+      "provisional"),
+
+    L("L-035", "ALL", None,
+      "When revenue and cost carry different currency weights, fixing "
+      "the macro can make the profit forecast worse.",
+      "If a model under-forecasts both revenue and cost, the two "
+      "misses partly cancel and the profit looks better than the "
+      "model deserves. Correct the currency path on both sides and "
+      "the cancellation breaks, because the cost side usually carries "
+      "far more of the exchange rate than the revenue side does. So a "
+      "profit forecast that looks accurate may be accurate by "
+      "offsetting errors — check the two sides separately before "
+      "believing it.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 1.106 as known, 1.504 with perfect foresight of "
+      "inflation — the macro share is only -36.0%.",
+      "A build where revenue and cost carry the same currency weight "
+      "and the profit error still gets worse under perfect macro "
+      "foresight.",
+      "provisional"),
 ]
 
 

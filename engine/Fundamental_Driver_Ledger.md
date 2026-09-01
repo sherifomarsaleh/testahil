@@ -97,3 +97,30 @@ macro, measured by re-running every origin on a perfect-foresight inflation path
 Units and deliveries carry zero macro share by construction, which is the check
 that the split measures what it claims. Egypt's four devaluations across
 FY2016–FY2024 do **not** explain this record.
+
+---
+
+## ARCC — Arabian Cement Company (EGX) · 01-Sep-2026 · campaign position 2
+
+**Class:** cement and heavy industrial. **Walk-forward:** FULL, `engine/arcc_walkforward/`.
+
+| driver | how it is built | sourced? |
+|---|---|---|
+| Domestic volume | national domestic cement market × ACC's own share, both from ARCC's own releases; the computed share reproduces the company's published ratio (FY2019 8.14% against a printed 8.1%, FY2022 6.29% against 6.3%) | SOURCED — exogenous anchor |
+| Export volume | held flat at the origin's level | **UNSOURCED BY CONSTRUCTION** — ARCC's disclosure carries no exogenous anchor for global clinker demand, and inventing one would be a judgement driver at a historical origin. Stated, not hidden |
+| Revenue per tonne | two legs: domestic on Egyptian CPI, export on the EGP/USD path, weighted by the export share as it stood at the origin | SOURCED |
+| Cash cost per tonne | the note-5 cost stack: raw materials on the imported/USD path, transportation and overheads on domestic CPI. `w_raw` fixed at 0.79, stated not fitted | SOURCED, with a GAP: **fuel is not broken out inside raw materials**, so this driver is `derived`, not `unit` |
+| Non-cement revenue | ready-mix concrete and alternative fuels, note 36; domestic inflation | SOURCED (segment level only) |
+| G&A | ratio to sales at the origin | SOURCED |
+| D&A | held flat at the origin's disclosed charge, **not** projected off a projected asset base [L-028] | SOURCED |
+| Finance costs | interest-bearing borrowings only — note 25 credit facilities plus bank loans, never a broader liabilities total [L-002] | SOURCED. **KNOWN DEFECT:** the debt path amortises to zero and never re-borrows, so after ARCC repaid in full in FY2023 the rule forecast no interest at all for a company that then signed a EUR 25mn EBRD facility. Recorded as a watch flag, not patched with a multiplier |
+| Foreign exchange | zero at every origin and horizon, as a stated parameter | STATED PARAMETER |
+| Tax | 22.5% Egyptian statutory | SOURCED |
+
+**Class note for the next cement study.** The earnings release reports the CEMENT
+SEGMENT and the audited statements report the GROUP. On ARCC the gap runs 0.9% to
+3.5% of sales and note 36 reconciles it to the pound (FY2024: cement segment
+external revenue 8,585,462,048 against group net sales 8,729,782,821). **Check for
+this before dividing any group revenue by any segment volume** — the resulting
+"price per tonne" would be overstated by one to three and a half per cent, and no
+downstream diagnostic could separate that from a real price move.

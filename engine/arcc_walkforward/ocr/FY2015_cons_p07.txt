@@ -1,0 +1,56 @@
+Arabian Cement Company
+An Egyptian Joint Stock Company
+Consolidated Statement of Cash Flows
+For the Year Ended December 31, 2015
+Note December 31, 2015 December 31, 2014
+No. EGP EGP
+Cash flows from operating activities
+Net profits for the year before tax 327 193 180 524 314 491
+Adjusted by:
+Fixed assets' depreciation (5) 175 412 201 169 433 043
+Intangible assets’ amortization (7) 30 794 220 22 519 999
+Credit Interest (2 957 672) ( 826 015)
+Finance costs (21) 89 563 808 94 560 609
+Provisions (12) 12 660 442 2 584 364
+Reversal of provision = (555 431)
+Impairment in debtors (9) 5 631 155 147 782
+Provision used (12) (5 561 588) (369 693)
+Losses from foreign exchange differences *** 41 789 105 12 738 963
+Capital (gain) / Loss ( 190 000) 87 139
+Operating profit before changes in working capital 674 334 851 824 635 251
+Decrease / (increase) in inventory 3 422 029 (105 251 058)
+(Increase) in debtors and other debit balances* (18 598 327) (4 432 401)
+Decrease in due from related parties 827 715 198 802
+Increase in creditors and other credit balances 181 842 856 37 102 305
+Increase in due to related parties **** 1 860 683 1 983 482
+Income Tax paid” (131 525 949) ( 518 278)
+Net cash flows generated from operating activities 712 163 858 753 718 103
+Cash flows from investing activities
+Proceed from sale of assets 190 000 390 418
+Payments for fixed assets** (5) (17 479 672) (23 743 402)
+Payments for projects under construction** (6) (52 700 132) (125 378 267)
+Change of investments in subsidiaries and joint venture = 31 250
+Interest income 2 957 672 826 015
+Net cash flows (used in) investing activities (67 032 132) (147 873 986)
+Payments of operation and electricity license (77 616 712) (74 052 704)
+Interest paid (78 499 474) (97 430 044)
+Net change in the loans (113 712 577) (235 585 317)
+Dividends paid **"* (28) (157 177 402) (200 561 999)
+Proceeds from bank overdraft 1714317 -
+Net cash flows (used in) financing activities (425 291 848) (607 630 064)
+Net change in cash and cash equivalents during the year 219 839 878 (1 785 947)
+Cash and cash equivalents at the beginning of the year 159 366 746 161 152 693
+Cash and cash equivalents at the end of the year (11) 379 206 624 159 366 746
+Non-cash transactions
+* Non-cash transactions represented in the income tax paid and debtors and other debit balances of EGP 3 397 395 have been
+eliminated.
+** Non-cash transactions represented in the transferred from projects under construction to fixed assets of EGP 27 353 397
+have been eliminated.
+* Non-cash transactions represented in the net changes in the loans and the unrealized foreign exchange rate differences of
+EGP 41 789 105 have been eliminated.
++ The unpaid dividends for the main shareholder of EGP 46 000 000 have been eliminated.
+- The accompanying notes form an integral part of the consolidated financial statements and to be read therewith.
+Chief Financial Officer Chief Executive Officer
+Allan Hestbech Jose Maria Magrina
+Mae
+_\ owe VAT
