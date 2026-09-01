@@ -328,6 +328,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ACWA",
+   "name": "ACWA Power Company",
+   "code": "TADAWUL:2082",
+   "ccy": "SAR",
+   "spot": 191.9,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 129,
+   "fv_base": 195,
+   "fv_full": 299,
+   "gap_base_pct": 1.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.102112,
+    "mu_h": -5.2e-05,
+    "G": {
+     "bear": -3.89,
+     "base": 0.16,
+     "full": 4.34
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.433,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0007,
+     "base": 0.7655,
+     "full": 0.0003
+    },
+    "required_cagr": {
+     "bear": -0.9915,
+     "base": 0.212,
+     "full": 203.7173
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00121
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.188098,
+    "mu_h": 0.005042,
+    "G": {
+     "bear": -2.11,
+     "base": 0.09,
+     "full": 2.36
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0186,
+     "base": 0.475,
+     "full": 0.0127
+    },
+    "p_touch": {
+     "bear": 0.0315,
+     "base": 0.8721,
+     "full": 0.0217
+    },
+    "required_cagr": {
+     "bear": -0.7958,
+     "base": 0.0662,
+     "full": 4.8937
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00213
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "FAB",
    "name": "First Abu Dhabi Bank",
    "code": "ADX:FAB",
@@ -418,98 +510,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00149
    },
    "market": "AE"
-  },
-  {
-   "ticker": "ACWA",
-   "name": "ACWA Power Company",
-   "code": "TADAWUL:2082",
-   "ccy": "SAR",
-   "spot": 191.2,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 129,
-   "fv_base": 195,
-   "fv_full": 299,
-   "gap_base_pct": 2.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.107836,
-    "mu_h": 0.002872,
-    "G": {
-     "bear": -3.65,
-     "base": 0.18,
-     "full": 4.15
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0008,
-     "base": 0.4336,
-     "full": 0.0004
-    },
-    "p_touch": {
-     "bear": 0.0011,
-     "base": 0.7584,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.9911,
-     "base": 0.2664,
-     "full": 212.8945
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.189153,
-    "mu_h": 0.011337,
-    "G": {
-     "bear": -2.08,
-     "base": 0.1,
-     "full": 2.36
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0185,
-     "base": 0.4811,
-     "full": 0.0134
-    },
-    "p_touch": {
-     "bear": 0.032,
-     "base": 0.8644,
-     "full": 0.022
-    },
-    "required_cagr": {
-     "bear": -0.7928,
-     "base": 0.0819,
-     "full": 4.9804
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00233
-   },
-   "market": "SA"
   },
   {
    "ticker": "NVDA",
