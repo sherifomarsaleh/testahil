@@ -98,6 +98,15 @@ CLASSES = (
     # percentage-of-completion would be the superstition this register warns
     # about. The two are kept apart.
     "real-estate developer, off-plan, point-in-time on handover",
+    # AMOC buys fuel oil and wax distillate from the state oil company and sells
+    # refined products drawn from the same barrel, in the same months, at prices
+    # set off the same international quotes. Its margin is a ~6.6% SPREAD between
+    # two numbers each above EGP 35 billion. That is a different economic animal
+    # from a petrochemical producer, whose product prices can and do move
+    # independently of its feedstock for long stretches, and filing a spread
+    # business's lessons under "petrochemical" would be the superstition this
+    # register warns about — the two react to the same shock in opposite ways.
+    "refiner, commodity pass-through on a thin spread",
 )
 
 
@@ -1176,6 +1185,112 @@ LESSONS = [
       "A market or period where fewer than one driver in ten changes "
       "sign between regimes.",
       "provisional"),
+
+    L("L-048", "ALL", None,
+      "A forecast scenario must be internally consistent, or it "
+      "invents its own bias.",
+      "If you carry inflation forward at 25% a year, you cannot also "
+      "hold the exchange rate still — those are the same event seen "
+      "twice. Doing both inflates every cost and freezes every price, "
+      "and the profit forecast is then wrong for a reason that has "
+      "nothing to do with the company. Check that the macro "
+      "assumptions could all be true at once before reading anything "
+      "into the errors they produce.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.570 log (about 1.8 times too low), average miss 0.570, "
+      "wrong in the same direction in 100% of cases, and the sign "
+      "holds across every bootstrap block tested (n=9).",
+      "A scenario whose macro inputs are mutually inconsistent that "
+      "nonetheless produces no directional bias in the lines they "
+      "drive."),
+
+    L("L-049", "ALL", None,
+      "Test the method against 'assume no change' before trusting its "
+      "profit forecast.",
+      "The simplest possible forecast is to write down last year's "
+      "number and stop. It is surprisingly hard to beat, and a model "
+      "that loses to it has not earned the precision it displays. Run "
+      "the comparison explicitly — if the model loses, publish a "
+      "range and say so, rather than a point that looks more informed "
+      "than it is.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Negative skill against the freeze benchmark at horizons 1, 2, "
+      "3, worst -1.588.",
+      "A run where the model beats the no-change benchmark on the "
+      "profit line at every horizon tested."),
+
+    L("L-050", "ALL", None,
+      "Setting 'non-recurring' items to zero is a forecast, and "
+      "usually a bad one.",
+      "Provision releases, disposal gains and currency gains are each "
+      "unpredictable, so the tempting rule is to forecast none of "
+      "them. But something in that bucket lands almost every year, "
+      "and zero is further from the truth than simply carrying last "
+      "year's total forward. If the individual items cannot be "
+      "forecast, forecast the bucket.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Negative skill against the freeze benchmark at horizons 1, 2, "
+      "3, worst -0.785.",
+      "An issuer whose other-income line is genuinely empty in most "
+      "years, where zero beats carrying the previous year forward."),
+
+    L("L-051", "ALL", None,
+      "A number that is zero by construction is not a finding about "
+      "the world.",
+      "If a driver contains no inflation term, then re-running it "
+      "with perfect knowledge of inflation must change nothing, and "
+      "the 'macro share' of its error must come back at exactly zero. "
+      "That is arithmetic, not evidence. Declare which drivers those "
+      "are BEFORE running the split, so a structural zero cannot be "
+      "read back as a discovery.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 0.606 as known, 0.606 with perfect foresight of "
+      "inflation — the macro share is only 0.0%.",
+      "Nothing. A quantity fixed by construction cannot become "
+      "evidence about the world."),
+
+    L("L-119", "CLASS", "refiner, commodity pass-through on a thin spread",
+      "On a thin spread, being right about both sides separately is "
+      "not enough.",
+      "When profit is a small difference between two very large "
+      "numbers, an error that looks tiny on each of them is enormous "
+      "on the difference. Six per cent out on revenue and almost "
+      "exact on cost still left the gross profit forecast wrong by "
+      "two thirds. What has to be right is the two sides RELATIVE to "
+      "each other, and a model that forecasts them independently will "
+      "not deliver that however good each looks alone.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 0.504 as known, 0.519 with perfect foresight of "
+      "inflation — the macro share is only -2.8%.",
+      "A pass-through business with a comparably thin margin where "
+      "independent revenue and cost forecasts of similar accuracy "
+      "produce a proportionate, not amplified, profit error."),
+
+    L("L-052", "ALL", None,
+      "Check an annualised half-year base against every full year you "
+      "hold.",
+      "A base year built by doubling one good half can sit well above "
+      "anything the company has actually achieved over twelve months. "
+      "Growing from it then compounds a rebound into a trend. Before "
+      "forecasting growth off a part-year base, line it up against "
+      "the full-year record — and if the base is already the highest "
+      "number in that record, flat is the optimistic case, not the "
+      "neutral one.",
+      "AMOC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "AMOC's base half annualises to 1,616,167 tonnes against a "
+      "five-year mean of 1,436,781 and a most recent full year of "
+      "1,261,586; audited sales tonnage ran 1,492,273 / 1,547,816 / "
+      "1,448,889 / 1,433,341 / 1,261,586 over FY2021-FY2025. Even a "
+      "FLAT volume rule over-forecast, bias +7.6% and too high in 8 "
+      "of 9 tested cases.",
+      "A part-year base that is representative of the full-year "
+      "record, where growing from it does not over-forecast."),
 ]
 
 

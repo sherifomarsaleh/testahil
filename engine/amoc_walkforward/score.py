@@ -151,6 +151,69 @@ def main():
         res["sensitivity"]["beta_%.1f" % beta] = {
             d: agg(r2, "e", d) for d in ("net_sales", "cost_of_sales", "gross_profit", "majority")}
 
+    # ---- the shape lessons_harvest.py reads ---------------------------------
+    # The harvester keys on by_driver / by_horizon / macro_split / by_era. The first
+    # version of this module emitted a richer shape under different names, so the
+    # harvest matched NOTHING and reported "0 candidates" — an absent answer wearing
+    # the costume of a clean one, which is exactly the failure [R-ENF-04] names. The
+    # contract is met here rather than worked around by writing lessons out by hand.
+    res["by_driver"] = {}
+    res["by_horizon"] = {}
+    res["macro_split"] = {}
+    res["by_era"] = {}
+    for d, rec in res["drivers"].items():
+        a = rec["overall"]
+        bs = rec["bootstrap"]
+        robust = all(bs.get(L) and bs[L]["same_sign"] for L in (2, 3))
+        res["by_driver"][d] = {"n": a["n"], "bias": round(a["bias"], 4),
+                               "mae": round(a["mae"], 4), "over": round(a["share_over"], 3),
+                               "boot": {str(L): ({"lo": round(bs[L]["lo"], 4),
+                                                  "hi": round(bs[L]["hi"], 4)} if bs.get(L) else None)
+                                        for L in BLOCKS},
+                               "robust_sign": bool(robust)}
+        hh = {}
+        for h in B.HORIZONS:
+            v = rec["by_h"].get(h)
+            if not v:
+                continue
+            pairs_f = [(r["e"][d], r["ef"][d]) for r in rows
+                       if r["h"] == h and r["e"][d] is not None and r["ef"][d] is not None]
+            pairs_t = [(r["e"][d], r["et"][d]) for r in rows
+                       if r["h"] == h and r["e"][d] is not None and r["et"][d] is not None]
+
+            def _sk(pairs):
+                if not pairs:
+                    return None
+                m = sum(abs(x) for x, _ in pairs) / len(pairs)
+                b = sum(abs(y) for _, y in pairs) / len(pairs)
+                if b == 0:
+                    return None
+                return {"n": len(pairs), "model_mae": round(m, 4),
+                        "bench_mae": round(b, 4), "skill": round(1 - m / b, 4)}
+
+            ent = {"summary": {"n": v["n"], "bias": round(v["bias"], 4),
+                               "mae": round(v["mae"], 4), "over": round(v["share_over"], 3),
+                               "robust_sign": bool(robust)}}
+            # A rule that IS the benchmark cannot be scored against it. Declared in the
+            # pre-registration; recorded here so the harvester cannot read a structural
+            # zero as a measured defeat.
+            if not rec["freeze_equivalent"]:
+                sf = _sk(pairs_f)
+                if sf:
+                    ent["skill_freeze"] = sf
+            st = _sk(pairs_t)
+            if st:
+                ent["skill_trend"] = st
+            hh[str(h)] = ent
+        res["by_horizon"][d] = hh
+        res["macro_split"][d] = {"as_known_mae": round(rec["mae_knowable"], 4),
+                                 "perfect_mae": (round(rec["mae_foresight"], 4)
+                                                 if rec["mae_foresight"] is not None else None),
+                                 "macro_share": (round(rec["macro_share"], 3)
+                                                 if rec["macro_share"] is not None else None)}
+        res["by_era"][d] = {e: {"n": v["n"], "bias": round(v["bias"], 4)}
+                            for e, v in rec["by_era"].items() if v}
+
     json.dump(res, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
     return res, rows
 
