@@ -7096,6 +7096,90 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "code": "NASDAQ:AAPL",
+   "ccy": "USD",
+   "spot": 325.71,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 182,
+   "fv_base": 208,
+   "fv_full": 244,
+   "gap_base_pct": -36.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.088534,
+    "mu_h": 0.002637,
+    "G": {
+     "bear": -6.57,
+     "base": -5.07,
+     "full": -3.26
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9991,
+     "base": -0.9954,
+     "full": -0.9688
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00147
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.153484,
+    "mu_h": 0.009929,
+    "G": {
+     "bear": -3.79,
+     "base": -2.92,
+     "full": -1.88
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.0033,
+     "full": 0.0272
+    },
+    "p_touch": {
+     "bear": 0.001,
+     "base": 0.0062,
+     "full": 0.0466
+    },
+    "required_cagr": {
+     "bear": -0.9025,
+     "base": -0.8337,
+     "full": -0.6851
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00202
+   },
+   "market": "US"
+  },
+  {
    "ticker": "DIB",
    "name": "Dubai Islamic Bank",
    "code": "DFM:DIB",
@@ -7262,90 +7346,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00345
    },
    "market": "EG"
-  },
-  {
-   "ticker": "AAPL",
-   "name": "Apple Inc.",
-   "code": "NASDAQ:AAPL",
-   "ccy": "USD",
-   "spot": 336.91,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 182,
-   "fv_base": 208,
-   "fv_full": 244,
-   "gap_base_pct": -38.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.084,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.085024,
-    "mu_h": 0.002638,
-    "G": {
-     "bear": -7.24,
-     "base": -5.67,
-     "full": -3.79
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": -0.9994,
-     "base": -0.9969,
-     "full": -0.9792
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0014
-   },
-   "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.148916,
-    "mu_h": 0.010071,
-    "G": {
-     "bear": -4.14,
-     "base": -3.24,
-     "full": -2.17
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.0018,
-     "full": 0.0154
-    },
-    "p_touch": {
-     "bear": 0.0005,
-     "base": 0.0026,
-     "full": 0.026
-    },
-    "required_cagr": {
-     "bear": -0.9148,
-     "base": -0.8547,
-     "full": -0.7249
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00116
-   },
-   "market": "US"
   },
   {
    "ticker": "PHAR",
