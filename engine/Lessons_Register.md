@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**84 lessons**, of which 58 bind on every study, 19 on a class of company, and 7 on a single name.
+**92 lessons**, of which 65 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 31 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 9 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 4 (AMOC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 5 (AMOC, ARCC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -639,7 +639,77 @@ Superlatives are the sentences a reader remembers and the ones nobody checks, be
 
 > **What would overturn it.** A delivered superlative that a reader can verify from the study's own committed numbers without recomputing it — at which point it was computed, not typed.
 
-### L-057 · While a project is under construction, its interest and currency losses go to the asset, not the income statement.
+### L-057 · Interest income is a balance times a rate, and holding it flat cannot track either.
+
+A company that builds a cash pile into rising deposit rates earns dramatically more interest, and a company that spends one earns less. Carrying last year's figure forward misses both moves at once. Drive it off the cash balance at the deposit rate, the same way the rest of the book does.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -1.641 log (about 5.2 times too low), average miss 2.177, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=25).
+
+> **What would overturn it.** Nothing. This is arithmetic.
+
+### L-058 · An exogenous volume anchor has to be scored against 'no change' before it is trusted.
+
+The protocol asks for volume to be driven by something outside the company — population, credit, activity — rather than by its own trend. That is the right instinct and it is not self- validating: the anchor can point the wrong way. Score it against simply carrying last year's volume forward, and if it loses, the driver is mis-specified and no correction factor will repair it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons 1, 2, 3, 4, 5, worst -0.260.
+
+> **What would overturn it.** A study where the exogenous anchor loses to freeze and the anchor is still the better forecast out of sample.
+
+### L-059 · If perfect knowledge of the macro path makes a MARGIN forecast worse, the two legs were cancelling.
+
+A margin is a difference, so its error is the difference of two errors. When revenue and cost are both wrong in the same direction the margin can come out nearly right for the wrong reason. Handing the model the true inflation and currency path repairs the two legs by different amounts and breaks that cancellation — which is why the margin forecast can get WORSE with better information. The practical consequence is the important part: never recalibrate one leg onto a fresh actual without recalibrating the other on the same one.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 1.265 as known, 1.339 with perfect foresight of inflation — the macro share is only -5.8%.
+
+> **What would overturn it.** A run where the macro split is positive on the margin and negative on both of the legs that make it, which would mean the cancellation runs the other way.
+
+### L-060 · A bottom-line bias that flips sign between regimes is instability, and must not be corrected.
+
+Net profit is what is left after everything else, so it inherits every driver's error and the currency's on top. When its miss runs one way before a devaluation sequence and the other way through it, the average is a number that was true in neither period. Report the instability; do not correct for it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: E1 pre-2022 -0.581; E2 devaluation sequence +0.006.
+
+> **What would overturn it.** A record long enough that one sign dominates the bottom line across every regime it contains.
+
+### L-061 · A correction that makes the out-of-sample error WORSE is a specification defect, not a bias.
+
+It is tempting to treat any consistent miss as something a multiplier can fix. Test the multiplier the way you would test a forecast: estimate it only on data that had already resolved, then apply it forward. If the error gets worse, the problem is in how the driver is wired, and a correction would only hide it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Applied -0.108 at origin FY2022; average miss changed -0.108.
+
+> **What would overturn it.** A driver whose correction degrades out of sample and is nevertheless shown to be a calibration problem rather than a specification one.
+
+### L-062 · A sensitivity that does not reproduce the headline when nothing is changed is a second model.
+
+Every study has a block that re-values the company under a different assumption. If that block rebuilds the calculation instead of reusing it, it will drift from the answer it is supposed to be testing — and it will drift silently, because nobody compares a sensitivity to the base case. Call the function with nothing changed and require it to return the published number.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, ARCC walk-forward, date not recorded
+
+> **What it cost, or how we know.** On ARCC the re-valuation function discounted the terminal value at the last explicit year's mid-year factor while the headline used the end-of-window factor. Called with no change it returned 57.27 against a published 55.21, so every sensitivity and every contested judgement in the study was quoted on a basis 3.7% more generous than the number it was compared against. The assertion that now enforces it caught a SECOND instance on its first run, when a new income line was added to the headline and not to the rebuild.
+
+> **What would overturn it.** Nothing. A sensitivity that cannot reproduce its own base case is measuring something else.
+
+### L-063 · If every observation you have includes growth spending, they are a CEILING on maintenance, not a midpoint.
+
+When the only capital-spending figures available are years that also carried expansion projects, those figures are the most maintenance could possibly have been. Setting the maintenance assumption in the middle of that band puts it above some of the observations and treats an upper bound as a central estimate.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, ARCC walk-forward, date not recorded
+
+> **What it cost, or how we know.** ARCC's input note observed that FY2024 (USD 3.70/t) and FY2025 (USD 3.23/t) 'both carry the alternative-fuel and silo programmes' and then set maintenance at USD 4.00/t — above both. The H1-2026 cash-flow statement settled the direction by splitting the spend: EGP 102.9mn of property, plant and equipment against EGP 505.5mn of assets under construction, so 83% of it was the growth programme. Resetting the anchor to the most recent full year's total was worth EGP 0.84 on the central.
+
+> **What would overturn it.** A disclosure that separates maintenance from growth capital directly, which makes the inference unnecessary.
+
+### L-064 · While a project is under construction, its interest and currency losses go to the asset, not the income statement.
 
 Under IAS 23 and its Egyptian equivalent, the interest on a loan that funds a qualifying asset — and the exchange loss on that loan — is capitalised into the asset until it is ready for use. So a borrowing rate formed from the income-statement charge during construction understates what the loan actually costs, and a currency driver that charges the revaluation to profit invents a loss the company will never book there. Form the rate on the loan's own terms, put the construction-period charge on the balance sheet, and move it to the income statement only when the asset is commissioned.
 
@@ -649,7 +719,7 @@ Under IAS 23 and its Egyptian equivalent, the interest on a loan that funds a qu
 
 > **What would overturn it.** An issuer that expenses all borrowing costs as incurred, where the rate formed on the income-statement charge matches the loan's disclosed cost and the currency revaluation appears in profit in the year of the devaluation.
 
-### L-058 · A statutory-rate tax driver must first check whether the company pays current tax at the origin.
+### L-065 · A statutory-rate tax driver must first check whether the company pays current tax at the origin.
 
 Tax by formula at the statutory rate is the right rule for a regime, but a company carrying forward large losses, or taking an accelerated first-year deduction on new plant, books no current tax for years and then a deferred charge or credit that the formula cannot see. Read the current-tax line and the deferred-tax note at the origin before applying the rate; where current tax is nil, say so and carry the zero-tax case beside the statutory one rather than assuming it away.
 
@@ -783,6 +853,16 @@ A globally traded input like coal follows the world price and the exchange rate.
 > **What it cost, or how we know.** The class-specific form of L-009, and the case it was adopted from: a reconciliation against an outside broker's model showed the entire forecast margin decline was an artefact of one blended index.
 
 > **What would overturn it.** An input genuinely priced domestically.
+
+### L-120 · Haulage cost follows the EXPORT tonne, so a cost per tonne despatched misprices it.
+
+Cement sold at home moves a short distance to a local customer; clinker sold abroad moves to a port. Spreading haulage across every tonne despatched makes the cost look like a rate that inflation moves, when it is really a mix effect. When the export share falls, a per-despatched-tonne driver overstates the cost.
+
+**Applies to:** every cement and heavy industrial  ·  *Learned from:* fundamental walk-forward test, ARCC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.693 log (about 2.0 times too low), average miss 0.791, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=25).
+
+> **What would overturn it.** A producer whose local and export haulage rates per tonne are disclosed and turn out to be the same.
 
 
 ## Petrochemical

@@ -1,68 +1,236 @@
 {
- "ticker": "ARCC",
- "beta": 0.6280798261200432,
- "r2": 0.09073396956447966,
- "n": 257,
- "se": 0.12451030053556583,
- "ci90": [
-  0.4232603817390374,
-  0.832899270501049
- ],
- "usable": true,
- "gate_msg": "passes minimum usability gate",
- "composite_names": 34,
- "window_years": 5,
- "frequency": "weekly",
- "weak": true,
- "weak_reason": "R-squared = 9.1% against the 10% weak-instrument threshold; the 90% confidence interval [0.42, 0.83] spans 0.65x the point estimate",
- "warnings": [],
- "adopted": {
-  "beta_used": 0.6280798261200432,
-  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-  "why": "n = 257 weekly observations, R-squared = 0.091 against the 0.05 floor, SE(beta) = 0.125 against |beta| = 0.628. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-  "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.919 with a 90% interval of [0.52, 1.32]; the adopted 0.63 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
-  "sensitivity_required": [
-   0.6,
-   0.8,
-   1.0,
-   1.15,
-   1.3
-  ]
- },
- "dimson": {
-  "sum_beta": 0.918924909028853,
-  "se_sum": 0.24260912388095088,
-  "r2": 0.10155378294262896,
-  "n": 254,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 0.9275220650537075,
+ "conforming": true,
+ "tier": 2,
+ "r2": 0.046837594206086464,
+ "se": 0.2283633031992361,
+ "n": 253,
+ "usable": false,
+ "own_stock": {
+  "ticker": "ARCC",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 0.6980904117648513,
+  "r2": 0.046837594206086464,
+  "se": 0.2283633031992361,
+  "n": 253,
   "ci90": [
-   0.5198329002446889,
-   1.3180169178130172
+   0.32243277800210796,
+   1.0737480455275947
   ],
-  "coefficients": {
-   "lead": 0.10214723053857666,
-   "contemporaneous": 0.6162184008893299,
-   "lag1": 0.20605160465425668,
-   "lag2": -0.005492327053310172
+  "usable": false,
+  "gate_msg": "R^2=0.047 < minimum 0.05 \u2014 index barely explains the stock's returns",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": true,
+  "warnings": [],
+  "window_years": 4.89,
+  "first_obs": "2021-08-26",
+  "last_obs": "2026-07-16",
+  "blume_crosscheck": 0.7987269411765675,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "index_dq": [],
+  "stock_dq": [],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "peers": {
+  "LCSW": {
+   "ticker": "LCSW",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 0.8145183860817716,
+   "r2": 0.08853238623612225,
+   "se": 0.28473242625095113,
+   "n": 251,
+   "ci90": [
+    0.34613354489895704,
+    1.2829032272645862
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": true,
+   "warnings": [],
+   "window_years": 4.85,
+   "first_obs": "2021-09-09",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 0.876345590721181,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [
+    "dropped 1 interior stale/no-trade rows",
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+   ],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
   },
-  "uplift_vs_ols": 0.29084508290880984,
-  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
+  "EGAL": {
+   "ticker": "EGAL",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 0.9186422462634102,
+   "r2": 0.15574060901699038,
+   "se": 0.2318217042548573,
+   "n": 251,
+   "ci90": [
+    0.5372955427641699,
+    1.2999889497626504
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": [],
+   "window_years": 4.85,
+   "first_obs": "2021-09-09",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 0.9457614975089401,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  },
+  "ORAS": {
+   "ticker": "ORAS",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 0.9364018838440047,
+   "r2": 0.14316648552898492,
+   "se": 0.1654441254877991,
+   "n": 251,
+   "ci90": [
+    0.6642462974165751,
+    1.2085574702714341
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": [],
+   "window_years": 4.85,
+   "first_obs": "2021-09-09",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 0.957601255896003,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  },
+  "EGCH": {
+   "ticker": "EGCH",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 1.0302103069881783,
+   "r2": 0.25041984255357363,
+   "se": 0.19069136883839916,
+   "n": 253,
+   "ci90": [
+    0.7165230052490117,
+    1.3438976087273449
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": [],
+   "window_years": 4.89,
+   "first_obs": "2021-08-26",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 1.0201402046587855,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
+   ],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  },
+  "SCEM": {
+   "ticker": "SCEM",
+   "market": "EG",
+   "exchange": "EGX",
+   "beta": 0.6072378805075793,
+   "r2": 0.02453166482055802,
+   "se": 0.27544045212883156,
+   "n": 252,
+   "ci90": [
+    0.15413833675565142,
+    1.0603374242595072
+   ],
+   "usable": false,
+   "gate_msg": "R^2=0.025 < minimum 0.05 \u2014 index barely explains the stock's returns",
+   "dimson": true,
+   "frequency": "weekly",
+   "weak": true,
+   "warnings": [],
+   "window_years": 4.89,
+   "first_obs": "2021-08-26",
+   "last_obs": "2026-07-16",
+   "blume_crosscheck": 0.7381585870050529,
+   "index_file": "raw_indices/EG/EGX30.csv",
+   "index_asof": "2026-07-22",
+   "index_dq": [],
+   "stock_dq": [],
+   "week_rule": "W-THU",
+   "interim_note": null,
+   "conforming": true
+  }
  },
- "self_inclusion_bias": {
-  "beta_index_including_subject": 0.7480736602766987,
-  "r2_including": 0.12649310023566973,
-  "beta_index_excluding_subject": 0.6280798261200432,
-  "r2_excluding": 0.09073396956447966,
-  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
+ "adopted": {
+  "beta_used": 0.9275220650537075,
+  "tier": 2,
+  "basis": "SAME-COUNTRY PEER BETA (tier 2). The own-stock regression against the EGX30 \u2014 the only conforming regressor for an EGX listing \u2014 returns beta 0.698 on an R-squared of 0.047, BELOW the 5% usability floor, so tier 1 is not available.",
+  "why": "Median equity beta of the Egyptian building-materials and construction peers that clear the usability gate: LCSW 0.815, EGAL 0.919, ORAS 0.936, EGCH 1.030. Sinai Cement, the closest business match, fails the same gate more badly (R-squared 0.025) and is reported rather than used.",
+  "unlever_relever": "NOT PERFORMED \u2014 peer leverage is not sourced. The direction is unambiguous: ARCC holds net cash and its peers carry debt, so the step could only LOWER the beta and RAISE the value. The adopted figure is the conservative end of tier 2 and the whole peer range is published as a sensitivity.",
+  "corroboration": "The failed own-stock regression's own point estimate is 0.698 and its Blume cross-check 0.799, both below the adopted peer median, and its 90% interval [0.32, 1.07] contains it. The retired composite figure of 0.6281 sits below all of them, which is what a regressor sharing constituents with its subject does.",
+  "sensitivity_required": [
+   0.63,
+   0.81,
+   0.92,
+   0.94,
+   1.03,
+   1.2
+  ],
+  "retired": {
+   "beta": 0.6281,
+   "why": "regressed against an equal-weight composite of the covered Egyptian names. SIGCM clause 6: a constituent composite is a HARD FAIL, not a tier."
+  }
  },
- "thin_trading": {
-  "flat_frac": 0.1221,
-  "eg_panel_median": 0.0896,
-  "ratio": 1.36,
-  "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
- },
- "plausibility": {
-  "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
-  "defensive_prior": "defensive or staple: 0.6-0.9",
-  "net_cash_note": "The company carries no net financial leverage, which genuinely damps equity beta relative to a levered sector peer and is a real reason for an estimate below the cyclical band rather than an excuse."
- }
+ "peer_set": [
+  "LCSW",
+  "EGAL",
+  "ORAS",
+  "EGCH"
+ ],
+ "reported_not_used": [
+  "SCEM"
+ ],
+ "peer_betas_usable": [
+  0.8145183860817716,
+  0.9186422462634102,
+  0.9364018838440047,
+  1.0302103069881783
+ ],
+ "peer_median": 0.9275220650537075
 }

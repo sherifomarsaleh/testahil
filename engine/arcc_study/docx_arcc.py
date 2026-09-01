@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Study_06-08-2026_public.docx — TMPV house structure.
+"""ARCC_Valuation_Study_01-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -20,7 +20,11 @@ from docx_base import (doc, P, H1, H2, rich, bullet, table, figure, box, caption
                        masthead, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, Pt, Inches)
 
 D = json.load(open('study_numbers.json'))
-BETA = json.load(open('beta_result.json'))
+_B = json.load(open('beta_result.json'))
+BETA = dict(_B['adopted'], _peer_list=_B['peer_betas_usable'])
+SEA = D['seasonality']
+CALB = D['calibration']
+OWN = _B['own_stock']
 STK = json.load(open('strike_result.json'))
 S0 = json.load(open('step0_result.json'))
 TECH = json.load(open('technicals.json'))['state']
@@ -48,8 +52,8 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 6 August 2026, issued 8 '
-  'August 2026', size=11, color=GREY, space_after=10)
+P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 30 June 2026, the date of the latest disclosed balance sheet; issued 1 '
+  'September 2026', size=11, color=GREY, space_after=10)
 rich([(f'One of Egypt\'s largest cement plants, at the top of the best year the industry '
        f'has had in more than a decade — audited profit up '
        f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} in a single year on a '
@@ -64,9 +68,9 @@ box([('What this is. ', 'An independent valuation of Arabian Cement Company, an 
       f'{n1(IN["cap_cement_mt"])} million tonnes of cement a year and roughly '
       f'{pc(PE["sector"]["share_of_capacity"], 1)} of Egypt\'s nominal capacity, listed on '
       f'the Egyptian Exchange since May 2014, with cash of EGP '
-      f'{n0(IN["cash_fy25"])}mn against interest-bearing debt of EGP '
-      f'{n0(W["debt_total"])}mn. Every figure in this study is read from the audited '
-      f'consolidated accounts.'),
+      f'{n0(IN["cash_h1_26"])}mn against interest-bearing debt of EGP '
+      f'{n0(IN["debt_h1_26"])}mn at 30 June 2026. Every figure in this study is read from '
+      f'the company\'s own audited and reviewed accounts.'),
      ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
       f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
       f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
@@ -82,7 +86,7 @@ rows.append(['Weighted central fair value', n2(LN['central']), '100%',
              sg(LN['central'] / SPOT - 1), '—'])
 rows.append(['Range across the four lenses', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
              f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
-rows.append(['Market price, 6 August 2026', n2(SPOT), '—', '—', '—'])
+rows.append(['Market price, latest known close (6 August 2026)', n2(SPOT), '—', '—', '—'])
 table(rows, [2.55, 1.35, 0.72, 1.02, 1.36], band_rows={5})
 caption('Terminal value as a percentage of enterprise value is shown beside the cash-flow '
         'lens, and again in the enterprise-to-equity bridge in section 1.7.')
@@ -358,32 +362,49 @@ caption('Table 7 — The schedule. The glide fractions are the cumulative progre
         'rate and brought home on year five\'s own cumulative factor — one date, one price '
         'of time.')
 
-H2('1.5  Beta, and how weak it is')
-P(f'The beta is a genuine regression, not a default. Weekly returns over five years '
-  f'against an equal-weight index of the {BETA["composite_names"]} other Egyptian names in '
-  f'the library, with the subject excluded from its own index, give a beta of '
-  f'{n3(BETA["beta"])} on {BETA["n"]} observations, an R-squared of '
-  f'{pc(BETA["r2"], 1)} and a standard error of {n3(BETA["se"])}. The 90% confidence '
-  f'interval is [{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}].')
-P(f'That clears the usability threshold, and it is also STATISTICALLY WEAK — on one of the '
-  f'two tests rather than both, which is worth being precise about. The R-squared of '
-  f'{pc(BETA["r2"], 1)} sits below the 10% mark, which triggers the flag. The confidence '
-  f'interval spans {n2((BETA["ci90"][1]-BETA["ci90"][0])/BETA["beta"])} times the point '
-  f'estimate, which does NOT: that test fires at two times and this is well inside it. The '
-  f'estimate is therefore never restated later as though it were precise, and the '
-  f'valuation is shown across a beta range rather than at a point.')
-P(f'Two cross-checks are run rather than asserted. The share closes unchanged on '
-  f'{pc(BETA["thin_trading"]["flat_frac"])} of sessions against an Egyptian library median '
-  f'of {pc(BETA["thin_trading"]["eg_panel_median"])}, and non-synchronous trading biases a '
-  f'contemporaneous beta downward; the lead-lag sum-beta that corrects for it is '
-  f'{n3(BETA["dimson"]["sum_beta"])}, an uplift of {n3(BETA["dimson"]["uplift_vs_ols"])} '
-  f'with a standard error of {n3(BETA["dimson"]["se_sum"])} — i.e. an uplift not '
-  f'statistically distinguishable from zero. And a simple prior would put a cyclical, '
-  f'capital-intensive materials business at 1.0 to 1.5, which is above where this '
-  f'regression lands. There is a real reason for that: the company carries no net '
-  f'financial leverage, and unlevered equity genuinely moves less than levered equity. '
-  f'The regression is adopted, the correction is published as a value, and the difference '
-  f'is worth {sg(CON[1]["effect"])} of the cash-flow lens.')
+H2('1.5  Beta, and why it is a peer estimate rather than a regression')
+P('This edition changes the beta, and the change is worth setting out plainly because it '
+  'is the single largest driver of the difference between this valuation and the previous '
+  'one.')
+P(f'The only market index against which an Egyptian Exchange listing can properly be '
+  f'measured is the EGX30. Measured against it, over {n2(OWN["window_years"])} years of '
+  f'weekly returns to {OWN["last_obs"]}, Arabian Cement returns a beta of '
+  f'{n3(OWN["beta"])} on {OWN["n"]} observations — with an R-squared of '
+  f'{pc(OWN["r2"], 1)} and a standard error of {n3(OWN["se"])}. An R-squared of '
+  f'{pc(OWN["r2"], 1)} means the index explains under a twentieth of this share\'s '
+  f'movement. That is below the threshold at which a regression is treated as usable, so '
+  f'the regression is NOT adopted, and its diagnostics are printed here rather than '
+  f'tucked away.')
+P(f'Earlier editions of this study reported a beta of '
+  f'{n3(BETA["retired"]["beta"])} with a materially better R-squared. That figure was '
+  f'measured against a basket assembled from the other Egyptian companies this house '
+  f'follows, rather than against the market. A basket of covered names will always appear '
+  f'to explain a covered name better than the market does, because it is partly made of '
+  f'companies like it; the better statistic was the artefact, not the evidence. It is '
+  f'withdrawn.')
+P(f'What replaces it is the ordinary fallback when a company\'s own history cannot carry '
+  f'the estimate: the betas of comparable Egyptian companies. The peer set was named '
+  f'before any of it was measured — Lecico, Egypt Aluminium, Orascom Construction and '
+  f'Egyptian Chemical Industries, the country\'s building-materials and construction '
+  f'complex — and their betas against the EGX30 are '
+  f'{", ".join(n3(b) for b in BETA["_peer_list"])}. The median, '
+  f'{n3(BETA["beta_used"])}, is adopted. Sinai Cement is the closest business match of '
+  f'all and is deliberately NOT used: its own regression is weaker still, and a second '
+  f'unusable number does not make a usable one. It is reported here as evidence about how '
+  f'thinly this sector trades rather than as an input.')
+P('One step could not be completed and it is flagged rather than passed over. The proper '
+  'construction strips each peer\'s own borrowing out of its beta and then adds back the '
+  'borrowing of the company being valued. That needs each peer\'s balance sheet, which '
+  'this study has not sourced, so the peers\' betas are used as published. The direction '
+  'of the omission is not in doubt: Arabian Cement holds more cash than debt while its '
+  'peers carry borrowings, so completing the step could only LOWER the beta, lower the '
+  'discount rate and RAISE the value. The figure adopted here is therefore the cautious '
+  'end of the range, and the valuation is shown across the whole peer spread rather than '
+  'at a point.')
+P(f'The consequence is large and is published as a value rather than described: on the '
+  f'withdrawn basket figure the cash-flow lens would read '
+  f'{n2(CON[1]["fv_alternative"])} against {n2(CON[1]["fv_adopted"])} on the adopted one, '
+  f'a difference of {sg(CON[1]["effect"])}.')
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -483,25 +504,25 @@ for lab, v in [('Present value of explicit free cash flow', DCF['sum_pv']),
                ('Equity value', DCF['equity'])]:
     rows.append([lab, n0(v), n2(v / SH)])
 rows.append(['Terminal value as % of enterprise value', pc(DCF['tv_share']), '—'])
-rows.append(['Market price, 6 August 2026', '—', n2(SPOT)])
+rows.append(['Market price, latest known close (6 August 2026)', '—', n2(SPOT)])
 rows.append(['Upside / (downside) to this lens', '—', sg(DCF['fv'] / SPOT - 1)])
 table(rows, [3.30, 1.50, 1.50], band_rows={3, 6, 7})
 caption('Table 10 — The bridge. Terminal value as a share of enterprise value is stated '
         'here and again in the summary table on page 1.')
-P(f'Cash is added at face and is not in the discount rate. The audited balance sheet shows '
-  f'EGP {n0(IN["cash_fy25"])}mn of cash against EGP {n0(W["debt_total"])}mn of '
-  f'interest-bearing debt at 31 December 2025. Rolling that forward on the elapsed part of '
-  f'FY2026 and DEDUCTING the EGP {n0(IN["div_fy25_declared"])}mn FY2025 dividend — declared '
-  f'and still shown as payable in the March 2026 accounts, so a buyer at today\'s price does '
-  f'not receive it — puts net cash at EGP {n0(DCF["net_cash"])}mn at the valuation date, or '
-  f'EGP {n2(DCF["net_cash"]/SH)} a share. The March 2026 balance sheet is the independent '
-  f'check on that: cash of EGP {n0(IN["cash_q1_26"])}mn less debt of EGP '
-  f'{n0(IN["debt_q1_26"])}mn less the dividend payable of EGP {n0(IN["divpay_q1_26"])}mn is '
-  f'EGP {n0(IN["cash_q1_26"]-IN["debt_q1_26"]-IN["divpay_q1_26"])}mn at 31 March, four '
-  f'months before the valuation date.')
+P(f'Cash is added at face and is not in the discount rate. The valuation date is 30 June '
+  f'2026 and the bridge stands on the balance sheet OF THAT DATE rather than on a '
+  f'roll-forward: cash of EGP {n0(IN["cash_h1_26"])}mn less '
+  f'interest-bearing debt of EGP {n0(IN["debt_h1_26"])}mn is net cash of EGP '
+  f'{n0(DCF["net_cash"])}mn, or EGP {n2(DCF["net_cash"]/SH)} a share. The previous edition '
+  f'had no balance sheet for its own valuation date and had to build one — FY2025 cash, plus '
+  f'the cash the business would generate to that date, less the declared dividend — which '
+  f'came out EGP {n0(DCF["rollforward_gap"])}mn too generous, EGP '
+  f'{n2(DCF["rollforward_gap_per_share"])} a share, because a projection cannot see six '
+  f'months of stock-building, receivables and capital spending that had in fact happened. '
+  f'A disclosed balance sheet beats a projection of one.')
 P(f'Minority interests are deducted, and the audited figure is the reason this line is now '
-  f'immaterial: EGP {n0(IN["nci"]*1e6)} — one hundred and fifty-eight thousand pounds, or '
-  f'{pc(IN["nci"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
+  f'immaterial: EGP {n0(IN["nci_h1_26"]*1e6)} at 30 June 2026, or '
+  f'{pc(IN["nci_h1_26"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
   f'owned.')
 P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value carries less of this '
   f'valuation than the two-thirds to four-fifths a long-horizon discounted cash-flow model '
@@ -912,11 +933,32 @@ for head, body in [
      f'also means the euro debt is not compensated for pound depreciation beyond the '
      f'currency path assumed here; the pound-equivalent alternative is '
      f'{pc(KDG["kd_egp_equivalent"], 2)} and is worth {sg(CON[0]["effect"])}.'),
-    ('The forecast is well below the first-quarter run rate. ', f'This is the largest '
-     f'judgement in the model and section 1.6 states it with the numbers. The first quarter '
-     f'of 2026 ran a {pc(IN["gp_q1_26"]/IN["rev_q1_26"])} gross margin against '
-     f'{pc(H["gross_profit"][2]/H["revenue"][2])} for FY2025 as a whole. If that holds, this '
-     f'valuation is too cautious, and the margin sensitivity below is where to look.'),
+    ('Half a year has been turned into a whole one, and that is the largest assumption '
+     'here. ', f'The forecast starts from the reviewed six months to 30 June 2026 — revenue '
+     f'of EGP {n0(IN["rev_h1_26"])}mn at a {pc(IN["gp_h1_26"]/IN["rev_h1_26"])} gross '
+     f'margin — grossed up to a full year. HOW MUCH OF A YEAR ARCC\'S FIRST HALF IS varies: '
+     f'it was {pc(SEA["shares_rev"][0])}, {pc(SEA["shares_rev"][1])} and '
+     f'{pc(SEA["shares_rev"][2])} of the year in the three years that can be measured. The '
+     f'median is used, which puts FY2026 revenue at EGP {n0(CALB["fy26_rev_implied"])}mn; on '
+     f'the least favourable of the three it would be EGP {n0(SEA["fy26_low"])}mn and on the '
+     f'most favourable EGP {n0(SEA["fy26_high"])}mn. Simply doubling the half gives EGP '
+     f'{n0(SEA["fy26_if_doubled"])}mn.'),
+    ('And no interim tonnage is published, so the uplift cannot be split between price and '
+     'volume. ', f'Local sales of goods rose {pc(IN["rev_h1_26_loc_goods"]/IN["rev_h1_25_loc_goods"]-1)} '
+     f'against the same half of 2025 while export sales of goods fell '
+     f'{pc(IN["rev_h1_26_exp_goods"]/IN["rev_h1_25_exp_goods"]-1)}. The company publishes no '
+     f'tonnage with its half-year accounts, so this study cannot tell how much of the local '
+     f'rise was a higher price and how much was more tonnes. It is taken entirely as price '
+     f'and carried through every forecast year as a level shift of '
+     f'{n3(CALB["local"])} times. THAT IS THE ASSUMPTION IN THIS STUDY MOST CAPABLE OF BEING '
+     f'WRONG: if the rise was volume rather than price, and volume is capped by the plant, '
+     f'the later years are overstated.'),
+    ('A large collection of export subsidy is treated as one-off. ', f'The half-year accounts '
+     f'record EGP {n0(IN["export_subsidy_h1_26"])}mn of export subsidy collected in the '
+     f'second quarter, against EGP {n1(IN["export_subsidy_fy25"])}mn for the whole of FY2025. '
+     f'It is excluded from forward operating profit and left in the cash balance, on the '
+     f'reading that it settles accumulated claims. If a comparable amount arrives again with '
+     f'no accumulated-claims explanation, it is recurring and this study understates value.'),
     ('The terminal denominator is a choice. ', f'Return on capital is '
      f'{pc(TR["history"][2]["roic_book"])} on the audited book and {pc(TR["roic_repl"])} on '
      f'replacement cost. The terminal block uses replacement cost, which leaves the plant '
@@ -926,9 +968,13 @@ for head, body in [
      f'book basis growth would be close to free and the valuation materially higher. The '
      f'case for replacement cost is that the book carries a 2010-vintage plant at a tenth of '
      f'what one would cost to build today, but a reader is entitled to disagree.'),
-    ('The beta is weak. ', f'R-squared of {pc(BETA["r2"], 1)} and a 90% interval of '
-     f'[{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}]. The valuation is shown across a beta '
-     f'range for exactly this reason, and the lead-lag correction is published as a value.'),
+    ('The beta is not this company\'s own. ', f'Measured against the market index, Arabian '
+     f'Cement\'s own share history explains too little to be usable — an R-squared of '
+     f'{pc(OWN["r2"], 1)} — so the discount rate rests on the betas of four comparable '
+     f'Egyptian companies instead. That is the ordinary fallback and it is disclosed, but '
+     f'it means the risk measure in this valuation is a sector estimate rather than a '
+     f'measurement of this share. The valuation is shown across the whole peer spread for '
+     f'exactly that reason.'),
     ('The price map is over-wide. ', f'Its bands cover {pc(S0["cov80"], 0)} and '
      f'{pc(S0["cov90"], 0)} of outcomes against nominal 80% and 90%, and its skill against '
      f'a random walk is {sg(S0["skill_norm"], 1)}. It is carried as illustrative only.'),
@@ -1115,6 +1161,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'ARCC_Valuation_Study_08-08-2026_public.docx'
+OUT = 'ARCC_Valuation_Study_01-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

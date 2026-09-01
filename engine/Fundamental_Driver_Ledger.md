@@ -452,7 +452,7 @@ company's own audited statements (ten older annuals retrieved from its portal fo
 origins, horizons 1–5, 55 cells. Central EGP 3.76 (field 0.00–15.47) against a 13.98 close,
 audited under `engine/egch_study/GAP_REVIEW_01-09-2026.md` (the edition's first pass printed
 3.79; the cost-of-debt ruling in item 9 moved it).
-Lessons registered from this run: L-057 and L-058 (ALL), L-206 and L-207 (STOCK, EGCH only); the
+Lessons registered from this run: L-064 and L-065 (ALL), L-206 and L-207 (STOCK, EGCH only); the
 other 23 harvested drafts are declined with reasons in `engine/egch_walkforward/lessons_draft.json`.
 
 ### Driver decisions, and what each would take to overturn

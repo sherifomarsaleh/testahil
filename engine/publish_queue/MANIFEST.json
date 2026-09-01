@@ -1,0 +1,66 @@
+{
+ "_": "Staged for a SINGLE BATCH PUBLICATION at the end of the fundamental-calibration campaign, per instruction of 01-09-2026. Two files per calibrated ticker: the valuation report as a PDF and the workbook. assets/data.js deliberately still carries the PRE-CALIBRATION range for every name below; publishing is a separate, explicitly-requested step.",
+ "staged": 5,
+ "names": [
+  {
+   "ticker": "AMOC",
+   "report": "engine/amoc_study/AMOC_Valuation_Study_01-09-2026_public.pdf",
+   "workbook": "engine/amoc_study/AMOC_Valuation_Model_01092026_public.xlsx",
+   "fair": {
+    "base": 8.64,
+    "bear": 5.53,
+    "full": 12.48
+   },
+   "report_bytes": 846538,
+   "workbook_bytes": 117897
+  },
+  {
+   "ticker": "ARCC",
+   "report": "engine/arcc_study/ARCC_Valuation_Study_01-09-2026_public.pdf",
+   "workbook": "engine/arcc_study/ARCC_Valuation_Model_01092026_public.xlsx",
+   "fair": {
+    "base": 54.1,
+    "bear": 48.75,
+    "full": 59.53
+   },
+   "report_bytes": 1259817,
+   "workbook_bytes": 48847
+  },
+  {
+   "ticker": "EGCH",
+   "report": "engine/egch_study/EGCH_Valuation_Study_01-09-2026.pdf",
+   "workbook": "engine/egch_study/EGCH_Valuation_Model_01092026.xlsx",
+   "fair": {
+    "base": 3.76,
+    "bear": 0.0,
+    "full": 15.47
+   },
+   "report_bytes": 1643818,
+   "workbook_bytes": 46425
+  },
+  {
+   "ticker": "PHDC",
+   "report": "engine/phdc_study/PHDC_Valuation_Study_30-08-2026.pdf",
+   "workbook": "engine/phdc_study/PHDC_Valuation_Model_30082026.xlsx",
+   "fair": {
+    "base": 15.89,
+    "bear": 7.62,
+    "full": 24.92
+   },
+   "report_bytes": 1001305,
+   "workbook_bytes": 29501
+  },
+  {
+   "ticker": "TMGH",
+   "report": "engine/tmgh_study/TMGH_Valuation_Study_01-09-2026.pdf",
+   "workbook": "engine/tmgh_study/TMGH_Valuation_Model_01092026.xlsx",
+   "fair": {
+    "base": 39.333,
+    "bear": 22.295,
+    "full": 59.67
+   },
+   "report_bytes": 768388,
+   "workbook_bytes": 28198
+  }
+ ]
+}
