@@ -2009,29 +2009,29 @@ const TICKERS = {
     name: "Sixth of October Development & Investment",
     nameAr: "السادس من أكتوبر للتنمية والاستثمار (سوديك)",
     code: "EGX:OCDI",
-    spot: 27.48,
-    spotDate: "close 27 Jul 2026",
+    spot: 31.01,
+    spotDate: "close 01 Sep 2026",
     ccy: "EGP",
     fair: { bear: 16.72, base: 26.43, full: 30.77 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 30.77; four-method synthesis ~27.7
     dist: {
-      t20: { label:"1 month",   p5:23.26, p25:26.26, p50:28.14, p75:30.17, p95:34.18, resolve:"2026-08-27" },
-      t60: { label:"3 months",  p5:20.88, p25:25.93, p50:29.29, p75:33.08, p95:41.02, resolve:"2026-10-27" }
+      t20: { label:"1 month",   p5:25.85, p25:29.56, p50:31.87, p75:34.37, p95:39.29, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:22.81, p25:29.06, p50:33.30, p75:38.15, p95:48.51, resolve:"2026-12-01" }
     },
-    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:5, cal:0.958, mult:0.954892, eff:0.914787, on:"2026-08-25" },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.958, mult:0.954892, eff:0.914787, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [30.00, 41, 69], [28.00, 81, 91], [27.00, 70, 80], [25.00, 25, 44], [24.00, 14, 31], [19.50, 1, 6]
+      [30.00, 60, 74], [28.00, 25, 45], [27.00, 15, 34], [25.00, 6, 19], [24.00, 3, 14], [19.50, 0, 3]
     ],
-    levels: { res:[28, 28.70, 30], sup:[26.20, 20.09, 18.79] },
+    levels: { res:[32.38, 33, 36.97], sup:[28.70, 28, 26.60] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 27.48 above a rising 20-day (26.67), a rising 50-day (23.76) and a rising 200-day (19.93). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.94 (~3.4%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+1.17 / +1.30 / \u22120.13). Over the last year it has ranged 14.60\u201328.70; the last close sits 4% below that high and 88% above that low.",
-      bull: "A daily close back above 28.00 would clear the nearest resistance; the next charted level above it is 30.00.",
-      bear: "A close below 26.20 would break the nearest support; the next charted level below it is 18.79."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 31.01 above a rising 50-day (28.83) and a rising 200-day (21.73), but below a rising 20-day (32.38). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 1.43 (~4.6%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.82 / +1.35 / \u22120.52). Over the last year it has ranged 14.60\u201336.97; the last close sits 16% below that high and 112% above that low.",
+      bull: "A daily close back above 32.38 would clear the nearest resistance; the next charted level above it is 36.97.",
+      bear: "A close below 28.70 would break the nearest support; the next charted level below it is 26.60."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-08-25" },
-      tech: { data:"2026-07-27", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/OCDI_Valuation_Study_24-06-2026_public.docx?v=2406",
@@ -2048,7 +2048,7 @@ const TICKERS = {
     ccy: "EGP",
     fair: { bear: 22.5, base: 53.79, full: 70.52 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 70.52; four-method synthesis ~55.8
     dist: {
-      t20: { label:"1 month",   p5:35.68, p25:39.14, p50:41.27, p75:43.52, p95:47.86, resolve:"2026-08-27" },
+      t20: { label:"1 month",   p5:35.68, p25:39.14, p50:41.27, p75:43.52, p95:47.86, resolve:"2026-08-30" },
       t60: { label:"3 months",  p5:32.67, p25:39.04, p50:43.15, p75:47.69, p95:56.91, resolve:"2026-10-27" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
@@ -3235,7 +3235,7 @@ const BANDS = {
   MAADEN: {mkt:"SA", n:58, hits:51, c50:0.5172, c80:0.7759, c90:0.8793, width:1.047, strength:"long", flag:null},
   MODON: {mkt:"AE", n:23, hits:20, c50:0.5652, c80:0.8261, c90:0.8696, width:1.116, strength:"short", flag:null},
   NVDA: {mkt:"US", n:58, hits:50, c50:0.5000, c80:0.7586, c90:0.8621, width:1.000, strength:"long", flag:null},
-  OCDI: {mkt:"EG", n:57, hits:54, c50:0.5263, c80:0.8772, c90:0.9474, width:1.438, strength:"long", flag:null},
+  OCDI: {mkt:"EG", n:57, hits:54, c50:0.5263, c80:0.9123, c90:0.9474, width:1.427, strength:"long", flag:null},
   OIH: {mkt:"EG", n:53, hits:51, c50:0.5660, c80:0.8868, c90:0.9623, width:1.558, strength:"long", flag:null},
   ORAS: {mkt:"EG", n:41, hits:36, c50:0.4390, c80:0.8293, c90:0.8780, width:1.366, strength:"long", flag:null},
   ORHD: {mkt:"EG", n:41, hits:39, c50:0.5366, c80:0.8537, c90:0.9512, width:1.511, strength:"long", flag:null},
@@ -4864,14 +4864,14 @@ const LEDGER = [
   {
     instrument:"OCDI", asset_class:"equity",
     anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21,
+    horizon_label:"1 month", grade_date:"2026-08-30", grade_date_projected:"2026-08-27", grade_note:"Stored grade date 2026-08-27 was not a traded session in the library; graded on the next actual session 2026-08-30.", grade_basis:"projected", horizon_days:21,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4669,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
     p5:22.8, p25:25.87, p50:27.89, p75:30.08, p95:34.14,
     touch:{ "+5":61, "+10":38, "+15":22, "+20":12, "-5":52, "-10":26 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:31.5, realized_high:36.97, realized_low:27.7,
+    in_90:true, in_50:false, realized_quantile:0.820, median_err:0.1294,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false }
   },
   {
     instrument:"OCDI", asset_class:"equity",
@@ -4936,7 +4936,7 @@ const LEDGER = [
   {
     instrument:"ORHD", asset_class:"equity",
     anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21,
+    horizon_label:"1 month", grade_date:"2026-08-30",grade_date_projected:"2026-08-27",grade_note:"Stored grade date 2026-08-27 was a projection made at strike, when no EG library yet covered that date; the realized EGX calendar shows 2026-08-27 was not a traded session, so the calendar commitment (first real session on or after 2026-08-27) resolves to 2026-08-30. The published percentiles are unchanged - only the check date is resolved onto the session that satisfies the horizon it was struck for.", grade_basis:"projected", horizon_days:21,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.3648,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
     p5:34.82, p25:38.44, p50:40.76, p75:43.24, p95:47.74,
@@ -7368,6 +7368,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: OCDI, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:31.01, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:20,
+    cycle_no:4, reanchor_from:"2026-07-27", anchor_vol:0.5244,
+    signal_z:1.5141, signal_alpha:0.012687,
+    note:"Cycle 4 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 3 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.958. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9549 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9148, not the pooled 0.958. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.514 (outside the 0.25 dead zone); tilt +1.28% at 1M and +2.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:25.85, p25:29.56, p50:31.87, p75:34.37, p95:39.29,
+    touch:{ "+5":65, "+10":42, "+15":25, "+20":15, "-5":48, "-10":24 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:31.01, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:62,
+    cycle_no:4, reanchor_from:"2026-07-27", anchor_vol:0.5356,
+    signal_z:1.5141, signal_alpha:0.025023,
+    note:"Cycle 4 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 3 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.958. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9549 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9148, not the pooled 0.958. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.514 (outside the 0.25 dead zone); tilt +1.28% at 1M and +2.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:22.81, p25:29.06, p50:33.3, p75:38.15, p95:48.51,
+    touch:{ "+5":83, "+10":70, "+15":57, "+20":45, "-5":65, "-10":44 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7645,7 +7674,7 @@ const CALIB = {
   "EGX:JUFO": {w: 57, in50: 63, in90: 93, through: "2026-07-14"},
   "EGX:KABO": {w: 57, in50: 39, in90: 91, through: "2026-08-03"},
   "EGX:LCSW": {w: 57, in50: 49, in90: 89, through: "2026-07-26"},
-  "EGX:OCDI": {w: 57, in50: 47, in90: 95, through: "2026-07-12"},
+  "EGX:OCDI": {w: 57, in50: 42, in90: 95, through: "2026-07-12"},
   "EGX:OIH": {w: 53, in50: 57, in90: 96, through: "2026-06-02"},
   "EGX:ORAS": {w: 41, in50: 44, in90: 88, through: "2026-07-12"},
   "EGX:ORHD": {w: 41, in50: 51, in90: 93, through: "2026-07-22"},

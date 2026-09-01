@@ -696,98 +696,6 @@ const FV_OVERLAY = {
    "market": "US"
   },
   {
-   "ticker": "OCDI",
-   "name": "Sixth of October Development & Investment",
-   "code": "EGX:OCDI",
-   "ccy": "EGP",
-   "spot": 27.48,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-06-24",
-   "fv_lag_days": 33,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 16.72,
-   "fv_base": 26.43,
-   "fv_full": 30.77,
-   "gap_base_pct": -3.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.958,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.1233,
-    "mu_h": 0.023734,
-    "G": {
-     "bear": -4.03,
-     "base": -0.32,
-     "full": 0.92
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0014,
-     "base": 0.2703,
-     "full": 0.1962
-    },
-    "p_touch": {
-     "bear": 0.0022,
-     "base": 0.5418,
-     "full": 0.3019
-    },
-    "required_cagr": {
-     "bear": -0.9974,
-     "base": -0.3734,
-     "full": 2.8844
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00046
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.216314,
-    "mu_h": 0.063788,
-    "G": {
-     "bear": -2.3,
-     "base": -0.18,
-     "full": 0.52
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0102,
-     "base": 0.2833,
-     "full": 0.3902
-    },
-    "p_touch": {
-     "bear": 0.0199,
-     "base": 0.6799,
-     "full": 0.6067
-    },
-    "required_cagr": {
-     "bear": -0.863,
-     "base": -0.1443,
-     "full": 0.572
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00341
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "IQCD",
    "name": "Industries Qatar",
    "code": "QSE:IQCD",
@@ -2902,6 +2810,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0013
    },
    "market": "SA"
+  },
+  {
+   "ticker": "OCDI",
+   "name": "Sixth of October Development & Investment",
+   "code": "EGX:OCDI",
+   "ccy": "EGP",
+   "spot": 31.01,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-24",
+   "fv_lag_days": 69,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 16.72,
+   "fv_base": 26.43,
+   "fv_full": 30.77,
+   "gap_base_pct": -14.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.958,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.134113,
+    "mu_h": 0.027355,
+    "G": {
+     "bear": -4.61,
+     "base": -1.19,
+     "full": -0.06
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0008,
+     "base": 0.0657,
+     "full": 0.3745
+    },
+    "p_touch": {
+     "bear": 0.0013,
+     "base": 0.1125,
+     "full": 0.7822
+    },
+    "required_cagr": {
+     "bear": -0.9994,
+     "base": -0.8531,
+     "full": -0.089
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00171
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.241718,
+    "mu_h": 0.071248,
+    "G": {
+     "bear": -2.56,
+     "base": -0.66,
+     "full": -0.03
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0071,
+     "base": 0.136,
+     "full": 0.3453
+    },
+    "p_touch": {
+     "bear": 0.0137,
+     "base": 0.2875,
+     "full": 0.8591
+    },
+    "required_cagr": {
+     "bear": -0.9155,
+     "base": -0.4723,
+     "full": -0.0306
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00396
+   },
+   "market": "EG"
   },
   {
    "ticker": "TSLA",
