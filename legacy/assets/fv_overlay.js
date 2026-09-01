@@ -1616,6 +1616,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "ALRAJHI",
+   "name": "Al Rajhi Bank",
+   "code": "TADAWUL:1120",
+   "ccy": "SAR",
+   "spot": 67.45,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-02",
+   "fv_lag_days": 60,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 58,
+   "fv_base": 70,
+   "fv_full": 80,
+   "gap_base_pct": 3.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.061865,
+    "mu_h": 0.003256,
+    "G": {
+     "bear": -2.44,
+     "base": 0.6,
+     "full": 2.76
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0091,
+     "base": 0.28,
+     "full": 0.0059
+    },
+    "p_touch": {
+     "bear": 0.0134,
+     "base": 0.466,
+     "full": 0.0082
+    },
+    "required_cagr": {
+     "bear": -0.8366,
+     "base": 0.561,
+     "full": 6.7499
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00071
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.114032,
+    "mu_h": 0.010618,
+    "G": {
+     "bear": -1.32,
+     "base": 0.33,
+     "full": 1.5
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0733,
+     "base": 0.4017,
+     "full": 0.0751
+    },
+    "p_touch": {
+     "bear": 0.1321,
+     "base": 0.7038,
+     "full": 0.1275
+    },
+    "required_cagr": {
+     "bear": -0.4533,
+     "base": 0.16,
+     "full": 0.9789
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00132
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "HELI",
    "name": "Heliopolis Housing",
    "code": "EGX:HELI",
@@ -2992,98 +3084,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00098
-   },
-   "market": "SA"
-  },
-  {
-   "ticker": "ALRAJHI",
-   "name": "Al Rajhi Bank",
-   "code": "TADAWUL:1120",
-   "ccy": "SAR",
-   "spot": 64.5,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-02",
-   "fv_lag_days": 24,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 58,
-   "fv_base": 70,
-   "fv_full": 80,
-   "gap_base_pct": 8.5,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.061421,
-    "mu_h": 0.003096,
-    "G": {
-     "bear": -1.73,
-     "base": 1.33,
-     "full": 3.51
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0375,
-     "base": 0.0928,
-     "full": 0.0013
-    },
-    "p_touch": {
-     "bear": 0.0572,
-     "base": 0.1459,
-     "full": 0.0017
-    },
-    "required_cagr": {
-     "bear": -0.7205,
-     "base": 1.6697,
-     "full": 12.2545
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00089
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.111093,
-    "mu_h": 0.010641,
-    "G": {
-     "bear": -0.96,
-     "base": 0.74,
-     "full": 1.94
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1358,
-     "base": 0.248,
-     "full": 0.0332
-    },
-    "p_touch": {
-     "bear": 0.2524,
-     "base": 0.4286,
-     "full": 0.0559
-    },
-    "required_cagr": {
-     "bear": -0.3462,
-     "base": 0.3872,
-     "full": 1.3666
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0013
    },
    "market": "SA"
   },
