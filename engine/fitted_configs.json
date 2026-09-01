@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-01",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -975,11 +975,11 @@
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0206,
+    "market_skill": 0.0179,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.01,
-      0.033
+      0.007,
+      0.031
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -999,35 +999,35 @@
       },
       "ADIB": {
         "nu": 10.0,
-        "width_cal": 0.902,
-        "skill": 0.0406,
-        "skill_raw_basis": 0.0218,
+        "width_cal": 0.909,
+        "skill": 0.0415,
+        "skill_raw_basis": 0.0231,
         "verdict": "PASS",
         "ci_block2": [
-          0.004,
-          0.073
+          0.005,
+          0.074
         ]
       },
       "ADNOCDIST": {
-        "nu": 12.0,
+        "nu": 10.0,
         "width_cal": 0.923,
-        "skill": -0.0222,
-        "skill_raw_basis": -0.0236,
+        "skill": -0.0185,
+        "skill_raw_basis": -0.0197,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.053,
-          0.005
+          -0.048,
+          0.008
         ]
       },
       "ADNOCDRILL": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0055,
-        "skill_raw_basis": -0.0036,
+        "width_cal": 0.923,
+        "skill": -0.0066,
+        "skill_raw_basis": -0.0047,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.014,
-          0.008
+          -0.015,
+          0.006
         ]
       },
       "ADNOCGAS": {
@@ -1108,14 +1108,14 @@
         ]
       },
       "BOROUGE": {
-        "nu": 12.0,
-        "width_cal": 0.916,
-        "skill": -0.0564,
-        "skill_raw_basis": -0.0542,
+        "nu": 10.0,
+        "width_cal": 0.923,
+        "skill": -0.0542,
+        "skill_raw_basis": -0.0522,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.098,
-          -0.021
+          -0.095,
+          -0.02
         ]
       },
       "BURJEEL": {
@@ -1153,31 +1153,31 @@
       },
       "DU": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": 0.0007,
-        "skill_raw_basis": 0.0074,
+        "width_cal": 0.923,
+        "skill": -0.0,
+        "skill_raw_basis": 0.0068,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.052,
-          0.046
+          -0.054,
+          0.047
         ]
       },
       "EAND": {
-        "nu": 12.0,
-        "width_cal": 0.909,
+        "nu": 10.0,
+        "width_cal": 0.916,
         "skill": 0.0408,
-        "skill_raw_basis": 0.0269,
+        "skill_raw_basis": 0.0266,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.026,
-          0.109
+          -0.027,
+          0.11
         ]
       },
       "EMAAR": {
         "nu": 12.0,
-        "width_cal": 0.902,
-        "skill": 0.0389,
-        "skill_raw_basis": 0.0496,
+        "width_cal": 0.909,
+        "skill": 0.0393,
+        "skill_raw_basis": 0.0499,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.001,
@@ -1230,9 +1230,9 @@
       },
       "FERTIGLB": {
         "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": -0.0017,
-        "skill_raw_basis": -0.0059,
+        "width_cal": 0.916,
+        "skill": -0.0015,
+        "skill_raw_basis": -0.0055,
         "verdict": "PARITY",
         "ci_block2": [
           -0.021,
@@ -1286,11 +1286,11 @@
       "TWOPOINTZERO": {
         "nu": 10.0,
         "width_cal": 0.902,
-        "skill": -0.0131,
-        "skill_raw_basis": -0.0148,
+        "skill": -0.0552,
+        "skill_raw_basis": -0.0752,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
+          -0.086,
           0.003
         ]
       }
@@ -1299,9 +1299,9 @@
       "nu": 4.5,
       "width_cal": 0.965,
       "market_verdict": "PASS",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "mid_band_reshape": {
       "applied": true,
       "mle_shape": [
@@ -1318,19 +1318,19 @@
         "reshaped": 0.4988,
         "lono_heldout": 0.5012
       },
-      "delta_ll": 2.76,
+      "delta_ll": 2.65,
       "crps_parity_ci": {
         "2": [
-          -0.0015,
-          0.0023
+          -0.0017,
+          0.0021
         ],
         "3": [
-          -0.0014,
-          0.0023
+          -0.0016,
+          0.0022
         ],
         "4": [
-          -0.0015,
-          0.0024
+          -0.0017,
+          0.0023
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
