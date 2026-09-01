@@ -37,7 +37,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   },
   "SA": {
-   "nu": 12.0,
+   "nu": 15.0,
    "width_cal": 1.056,
    "rf_live": 0.0425,
    "width_overlay_active": false
@@ -344,7 +344,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 1.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -355,25 +355,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.102112,
+    "sigma_h": 0.101799,
     "mu_h": -5.2e-05,
     "G": {
-     "bear": -3.89,
+     "bear": -3.9,
      "base": 0.16,
-     "full": 4.34
+     "full": 4.36
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0006,
-     "base": 0.433,
-     "full": 0.0002
+     "bear": 0.0004,
+     "base": 0.4338,
+     "full": 0.0001
     },
     "p_touch": {
-     "bear": 0.0007,
-     "base": 0.7655,
-     "full": 0.0003
+     "bear": 0.0006,
+     "base": 0.7667,
+     "full": 0.0002
     },
     "required_cagr": {
      "bear": -0.9915,
@@ -383,14 +383,14 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00121
+    "selftest_max_dev": 0.00029
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.188098,
+    "sigma_h": 0.187521,
     "mu_h": 0.005042,
     "G": {
-     "bear": -2.11,
+     "bear": -2.12,
      "base": 0.09,
      "full": 2.36
     },
@@ -398,14 +398,14 @@ const FV_OVERLAY = {
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0186,
-     "base": 0.475,
-     "full": 0.0127
+     "bear": 0.018,
+     "base": 0.4753,
+     "full": 0.012
     },
     "p_touch": {
-     "bear": 0.0315,
-     "base": 0.8721,
-     "full": 0.0217
+     "bear": 0.0301,
+     "base": 0.8732,
+     "full": 0.0206
     },
     "required_cagr": {
      "bear": -0.7958,
@@ -415,7 +415,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00213
+    "selftest_max_dev": 0.00142
    },
    "market": "SA"
   },
@@ -528,7 +528,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -2.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -539,7 +539,7 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.102898,
+    "sigma_h": 0.102583,
     "mu_h": -0.005277,
     "G": {
      "bear": -1.78,
@@ -550,14 +550,14 @@ const FV_OVERLAY = {
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0413,
-     "base": 0.4135,
-     "full": 0.0981
+     "bear": 0.0411,
+     "base": 0.4145,
+     "full": 0.0991
     },
     "p_touch": {
-     "bear": 0.0625,
-     "base": 0.7074,
-     "full": 0.1632
+     "bear": 0.0624,
+     "base": 0.7089,
+     "full": 0.165
     },
     "required_cagr": {
      "bear": -0.8889,
@@ -567,29 +567,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00121
+    "selftest_max_dev": 0.0003
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.185852,
+    "sigma_h": 0.185283,
     "mu_h": -0.004283,
     "G": {
      "bear": -0.99,
      "base": -0.14,
-     "full": 0.66
+     "full": 0.67
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.1563,
-     "base": 0.4495,
-     "full": 0.2333
+     "bear": 0.1581,
+     "base": 0.4501,
+     "full": 0.2355
     },
     "p_touch": {
-     "bear": 0.2731,
-     "base": 0.8262,
-     "full": 0.4309
+     "bear": 0.2762,
+     "base": 0.8264,
+     "full": 0.4346
     },
     "required_cagr": {
      "bear": -0.5193,
@@ -599,7 +599,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00209
+    "selftest_max_dev": 0.00138
    },
    "market": "SA"
   },
@@ -988,7 +988,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 4.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -999,24 +999,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.113519,
+    "sigma_h": 0.113171,
     "mu_h": -0.001049,
     "G": {
-     "bear": -4.31,
+     "bear": -4.33,
      "base": 0.37,
-     "full": 5.59
+     "full": 5.6
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0003,
-     "base": 0.3441,
+     "bear": 0.0002,
+     "base": 0.3458,
      "full": 0.0
     },
     "p_touch": {
      "bear": 0.0003,
-     "base": 0.6073,
+     "base": 0.6116,
      "full": 0.0
     },
     "required_cagr": {
@@ -1027,29 +1027,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00165
+    "selftest_max_dev": 0.00284
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.19431,
+    "sigma_h": 0.193715,
     "mu_h": 0.001524,
     "G": {
-     "bear": -2.52,
+     "bear": -2.53,
      "base": 0.21,
-     "full": 3.26
+     "full": 3.27
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0085,
-     "base": 0.4126,
-     "full": 0.0019
+     "bear": 0.0078,
+     "base": 0.4137,
+     "full": 0.0016
     },
     "p_touch": {
-     "bear": 0.0143,
-     "base": 0.768,
-     "full": 0.0031
+     "bear": 0.0124,
+     "base": 0.7707,
+     "full": 0.0027
     },
     "required_cagr": {
      "bear": -0.859,
@@ -1059,7 +1059,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00238
+    "selftest_max_dev": 0.00325
    },
    "market": "SA"
   },
@@ -1724,7 +1724,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 3.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -1735,25 +1735,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.061865,
+    "sigma_h": 0.061676,
     "mu_h": 0.003256,
     "G": {
-     "bear": -2.44,
+     "bear": -2.45,
      "base": 0.6,
-     "full": 2.76
+     "full": 2.77
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0091,
-     "base": 0.28,
-     "full": 0.0059
+     "bear": 0.0085,
+     "base": 0.2821,
+     "full": 0.0053
     },
     "p_touch": {
-     "bear": 0.0134,
-     "base": 0.466,
-     "full": 0.0082
+     "bear": 0.0129,
+     "base": 0.4674,
+     "full": 0.0072
     },
     "required_cagr": {
      "bear": -0.8366,
@@ -1763,14 +1763,14 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00071
+    "selftest_max_dev": 0.0002
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.114032,
+    "sigma_h": 0.113682,
     "mu_h": 0.010618,
     "G": {
-     "bear": -1.32,
+     "bear": -1.33,
      "base": 0.33,
      "full": 1.5
     },
@@ -1778,14 +1778,14 @@ const FV_OVERLAY = {
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0733,
-     "base": 0.4017,
-     "full": 0.0751
+     "bear": 0.0738,
+     "base": 0.4029,
+     "full": 0.0757
     },
     "p_touch": {
-     "bear": 0.1321,
-     "base": 0.7038,
-     "full": 0.1275
+     "bear": 0.1333,
+     "base": 0.7068,
+     "full": 0.1282
     },
     "required_cagr": {
      "bear": -0.4533,
@@ -1795,7 +1795,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00132
+    "selftest_max_dev": 0.00089
    },
    "market": "SA"
   },
@@ -2092,7 +2092,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 7.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -2103,24 +2103,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.094255,
+    "sigma_h": 0.093966,
     "mu_h": 0.002752,
     "G": {
-     "bear": -9.12,
+     "bear": -9.15,
      "base": 0.74,
-     "full": 4.69
+     "full": 4.7
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.225,
+     "base": 0.2272,
      "full": 0.0001
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.3783,
+     "base": 0.3805,
      "full": 0.0001
     },
     "required_cagr": {
@@ -2131,29 +2131,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00146
+    "selftest_max_dev": 0.00245
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.160848,
+    "sigma_h": 0.160355,
     "mu_h": 0.010963,
     "G": {
-     "bear": -5.35,
-     "base": 0.43,
-     "full": 2.75
+     "bear": -5.36,
+     "base": 0.44,
+     "full": 2.76
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.3475,
-     "full": 0.0063
+     "base": 0.3492,
+     "full": 0.0057
     },
     "p_touch": {
-     "bear": 0.0,
-     "base": 0.6176,
-     "full": 0.0098
+     "bear": 0.0001,
+     "base": 0.6196,
+     "full": 0.009
     },
     "required_cagr": {
      "bear": -0.9679,
@@ -2163,7 +2163,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00196
+    "selftest_max_dev": 0.00268
    },
    "market": "SA"
   },
@@ -2368,7 +2368,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 6.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -2379,25 +2379,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.061943,
+    "sigma_h": 0.061753,
     "mu_h": 0.006588,
     "G": {
-     "bear": -4.14,
-     "base": 0.97,
-     "full": 3.13
+     "bear": -4.15,
+     "base": 0.98,
+     "full": 3.14
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0003,
-     "base": 0.1802,
-     "full": 0.0031
+     "bear": 0.0002,
+     "base": 0.1823,
+     "full": 0.0026
     },
     "p_touch": {
-     "bear": 0.0005,
-     "base": 0.2857,
-     "full": 0.0039
+     "bear": 0.0003,
+     "base": 0.2879,
+     "full": 0.0035
     },
     "required_cagr": {
      "bear": -0.954,
@@ -2407,29 +2407,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00091
+    "selftest_max_dev": 0.00034
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.115308,
+    "sigma_h": 0.114955,
     "mu_h": 0.016963,
     "G": {
-     "bear": -2.22,
+     "bear": -2.23,
      "base": 0.52,
-     "full": 1.68
+     "full": 1.69
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0116,
-     "base": 0.3437,
-     "full": 0.0591
+     "bear": 0.011,
+     "base": 0.3454,
+     "full": 0.0593
     },
     "p_touch": {
-     "bear": 0.0208,
-     "base": 0.584,
-     "full": 0.098
+     "bear": 0.0197,
+     "base": 0.5872,
+     "full": 0.0991
     },
     "required_cagr": {
      "bear": -0.6416,
@@ -2439,7 +2439,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00143
+    "selftest_max_dev": 0.00099
    },
    "market": "SA"
   },
@@ -2536,6 +2536,98 @@ const FV_OVERLAY = {
    "market": "IN"
   },
   {
+   "ticker": "ARAMCO",
+   "name": "Saudi Aramco",
+   "code": "TADAWUL:2222",
+   "ccy": "SAR",
+   "spot": 26.06,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 61,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 20,
+   "fv_base": 25.04,
+   "fv_full": 31,
+   "gap_base_pct": -3.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.040161,
+    "mu_h": 0.006121,
+    "G": {
+     "bear": -6.59,
+     "base": -0.99,
+     "full": 4.32
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.1185,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.208,
+     "full": 0.0003
+    },
+    "required_cagr": {
+     "bear": -0.9582,
+     "base": -0.3807,
+     "full": 7.0287
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0002
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.074473,
+    "mu_h": 0.01561,
+    "G": {
+     "bear": -3.55,
+     "base": -0.54,
+     "full": 2.33
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.2178,
+     "full": 0.0189
+    },
+    "p_touch": {
+     "bear": 0.0011,
+     "base": 0.45,
+     "full": 0.0308
+    },
+    "required_cagr": {
+     "bear": -0.6531,
+     "base": -0.1476,
+     "full": 1.0024
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00112
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "SABIC",
    "name": "Saudi Basic Industries Corp",
    "code": "TADAWUL:2010",
@@ -2552,7 +2644,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 6.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -2563,24 +2655,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.057935,
+    "sigma_h": 0.057757,
     "mu_h": 0.003058,
     "G": {
-     "bear": -3.36,
+     "bear": -3.37,
      "base": 1.04,
-     "full": 4.03
+     "full": 4.04
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0014,
-     "base": 0.15,
-     "full": 0.0005
+     "bear": 0.0011,
+     "base": 0.1518,
+     "full": 0.0003
     },
     "p_touch": {
-     "bear": 0.0018,
-     "base": 0.2426,
+     "bear": 0.0015,
+     "base": 0.2456,
      "full": 0.0005
     },
     "required_cagr": {
@@ -2591,11 +2683,11 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00082
+    "selftest_max_dev": 0.00142
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.105931,
+    "sigma_h": 0.105606,
     "mu_h": 0.010661,
     "G": {
      "bear": -1.84,
@@ -2606,14 +2698,14 @@ const FV_OVERLAY = {
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0275,
-     "base": 0.3084,
-     "full": 0.0199
+     "bear": 0.027,
+     "base": 0.3103,
+     "full": 0.0193
     },
     "p_touch": {
-     "bear": 0.048,
-     "base": 0.5354,
-     "full": 0.0337
+     "bear": 0.0469,
+     "base": 0.5385,
+     "full": 0.0314
     },
     "required_cagr": {
      "bear": -0.5413,
@@ -2623,7 +2715,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00127
+    "selftest_max_dev": 0.00174
    },
    "market": "SA"
   },
@@ -3088,98 +3180,6 @@ const FV_OVERLAY = {
    "market": "IN"
   },
   {
-   "ticker": "ARAMCO",
-   "name": "Saudi Aramco",
-   "code": "TADAWUL:2222",
-   "ccy": "SAR",
-   "spot": 26.6,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-01",
-   "fv_lag_days": 25,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 20,
-   "fv_base": 25.04,
-   "fv_full": 31,
-   "gap_base_pct": -5.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.04819,
-    "mu_h": 0.003003,
-    "G": {
-     "bear": -5.92,
-     "base": -1.25,
-     "full": 3.18
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0874,
-     "full": 0.0026
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.1418,
-     "full": 0.0039
-    },
-    "required_cagr": {
-     "bear": -0.9674,
-     "base": -0.5158,
-     "full": 5.2771
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00074
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.081972,
-    "mu_h": 0.010471,
-    "G": {
-     "bear": -3.48,
-     "base": -0.74,
-     "full": 1.87
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.001,
-     "base": 0.181,
-     "full": 0.0405
-    },
-    "p_touch": {
-     "bear": 0.0017,
-     "base": 0.3463,
-     "full": 0.0673
-    },
-    "required_cagr": {
-     "bear": -0.6804,
-     "base": -0.2147,
-     "full": 0.8447
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00098
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "INFY",
    "name": "Infosys Limited",
    "code": "NSE:INFY",
@@ -3564,7 +3564,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 12.7,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -3575,24 +3575,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.077493,
+    "sigma_h": 0.077256,
     "mu_h": 0.003002,
     "G": {
-     "bear": -1.33,
+     "bear": -1.34,
      "base": 1.55,
-     "full": 4.14
+     "full": 4.15
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0793,
-     "base": 0.0623,
-     "full": 0.0004
+     "bear": 0.0799,
+     "base": 0.0626,
+     "full": 0.0003
     },
     "p_touch": {
-     "bear": 0.1264,
-     "base": 0.0978,
+     "bear": 0.1297,
+     "base": 0.0967,
      "full": 0.0004
     },
     "required_cagr": {
@@ -3603,29 +3603,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00106
+    "selftest_max_dev": 0.00187
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.137634,
+    "sigma_h": 0.137212,
     "mu_h": 0.010962,
     "G": {
      "bear": -0.75,
      "base": 0.87,
-     "full": 2.33
+     "full": 2.34
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1904,
-     "base": 0.2017,
-     "full": 0.0149
+     "bear": 0.1925,
+     "base": 0.2038,
+     "full": 0.0143
     },
     "p_touch": {
-     "bear": 0.3548,
-     "base": 0.3492,
-     "full": 0.0249
+     "bear": 0.361,
+     "base": 0.3535,
+     "full": 0.0234
     },
     "required_cagr": {
      "bear": -0.3386,
@@ -3635,7 +3635,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00176
+    "selftest_max_dev": 0.00238
    },
    "market": "SA"
   },
@@ -4484,7 +4484,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 9.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -4495,24 +4495,24 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.042527,
+    "sigma_h": 0.042396,
     "mu_h": 0.003012,
     "G": {
-     "bear": -4.1,
-     "base": 2.09,
-     "full": 7.42
+     "bear": -4.12,
+     "base": 2.1,
+     "full": 7.45
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0003,
-     "base": 0.0235,
+     "bear": 0.0002,
+     "base": 0.0229,
      "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0005,
-     "base": 0.0356,
+     "bear": 0.0004,
+     "base": 0.0331,
      "full": 0.0
     },
     "required_cagr": {
@@ -4523,29 +4523,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00072
+    "selftest_max_dev": 0.00116
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.080647,
+    "sigma_h": 0.0804,
     "mu_h": 0.010387,
     "G": {
-     "bear": -2.16,
-     "base": 1.1,
-     "full": 3.91
+     "bear": -2.17,
+     "base": 1.11,
+     "full": 3.93
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0137,
-     "base": 0.1534,
-     "full": 0.0007
+     "bear": 0.013,
+     "base": 0.1552,
+     "full": 0.0005
     },
     "p_touch": {
-     "bear": 0.0239,
-     "base": 0.2574,
-     "full": 0.0011
+     "bear": 0.0219,
+     "base": 0.2612,
+     "full": 0.0006
     },
     "required_cagr": {
      "bear": -0.5023,
@@ -4555,7 +4555,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00093
+    "selftest_max_dev": 0.00129
    },
    "market": "SA"
   },
@@ -5480,98 +5480,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "EXTRA",
-   "name": "United Electronics Company (eXtra)",
-   "code": "TADAWUL:4003",
-   "ccy": "SAR",
-   "spot": 65.25,
-   "anchor_date": "2026-08-31",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 52,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 66,
-   "fv_base": 81,
-   "fv_full": 92,
-   "gap_base_pct": 24.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.069117,
-    "mu_h": -0.00831,
-    "G": {
-     "bear": 0.17,
-     "base": 3.13,
-     "full": 4.97
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3799,
-     "base": 0.002,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.728,
-     "base": 0.0026,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": 0.147,
-     "base": 12.3923,
-     "full": 60.7288
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00083
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.136579,
-    "mu_h": -0.012026,
-    "G": {
-     "bear": 0.08,
-     "base": 1.58,
-     "full": 2.52
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.427,
-     "base": 0.046,
-     "full": 0.0073
-    },
-    "p_touch": {
-     "bear": 0.8557,
-     "base": 0.0823,
-     "full": 0.0125
-    },
-    "required_cagr": {
-     "bear": 0.0468,
-     "base": 1.3748,
-     "full": 2.9521
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00142
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "FWRY",
    "name": "Fawry",
    "code": "EGX:FWRY",
@@ -5662,6 +5570,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0026
    },
    "market": "EG"
+  },
+  {
+   "ticker": "EXTRA",
+   "name": "United Electronics Company (eXtra)",
+   "code": "TADAWUL:4003",
+   "ccy": "SAR",
+   "spot": 65.25,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 52,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 66,
+   "fv_base": 81,
+   "fv_full": 92,
+   "gap_base_pct": 24.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.068905,
+    "mu_h": -0.00831,
+    "G": {
+     "bear": 0.17,
+     "base": 3.14,
+     "full": 4.99
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3813,
+     "base": 0.0016,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.7298,
+     "base": 0.0022,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": 0.147,
+     "base": 12.3923,
+     "full": 60.7288
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00019
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.13616,
+    "mu_h": -0.012026,
+    "G": {
+     "bear": 0.08,
+     "base": 1.59,
+     "full": 2.52
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4278,
+     "base": 0.0459,
+     "full": 0.0067
+    },
+    "p_touch": {
+     "bear": 0.8564,
+     "base": 0.0833,
+     "full": 0.0118
+    },
+    "required_cagr": {
+     "bear": 0.0468,
+     "base": 1.3748,
+     "full": 2.9521
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00091
+   },
+   "market": "SA"
   },
   {
    "ticker": "AGTHIA",
@@ -6684,7 +6684,7 @@ const FV_OVERLAY = {
    "gap_base_pct": 27.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -6695,12 +6695,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.055308,
+    "sigma_h": 0.055138,
     "mu_h": 0.003344,
     "G": {
      "bear": -0.04,
-     "base": 4.37,
-     "full": 8.39
+     "base": 4.38,
+     "full": 8.42
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6715,29 +6715,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00067
+    "selftest_max_dev": 0.00023
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.102051,
+    "sigma_h": 0.101738,
     "mu_h": 0.010471,
     "G": {
      "bear": -0.02,
      "base": 2.37,
-     "full": 4.55
+     "full": 4.56
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4462,
-     "base": 0.0145,
-     "full": 0.0002
+     "bear": 0.4469,
+     "base": 0.0138,
+     "full": 0.0001
     },
     "p_touch": {
      "bear": 0.9024,
-     "base": 0.0242,
-     "full": 0.0003
+     "base": 0.0234,
+     "full": 0.0001
     },
     "required_cagr": {
      "bear": -0.0095,
@@ -6747,7 +6747,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00126
+    "selftest_max_dev": 0.00087
    },
    "market": "SA"
   },
@@ -6936,7 +6936,7 @@ const FV_OVERLAY = {
    "gap_base_pct": -36.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
@@ -6947,11 +6947,11 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.097044,
+    "sigma_h": 0.096746,
     "mu_h": 0.006635,
     "G": {
-     "bear": -9.23,
-     "base": -4.67,
+     "bear": -9.25,
+     "base": -4.69,
      "full": -1.53
     },
     "band": "NOT-EXPRESSIBLE",
@@ -6967,29 +6967,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00112
+    "selftest_max_dev": 0.00031
    },
    "3M": {
     "h_sessions": 63,
-    "sigma_h": 0.169587,
+    "sigma_h": 0.169068,
     "mu_h": 0.016802,
     "G": {
-     "bear": -5.28,
-     "base": -2.67,
-     "full": -0.87
+     "bear": -5.3,
+     "base": -2.68,
+     "full": -0.88
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.0052,
-     "full": 0.1539
+     "base": 0.0046,
+     "full": 0.1557
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.0095,
-     "full": 0.2864
+     "base": 0.0085,
+     "full": 0.2898
     },
     "required_cagr": {
      "bear": -0.9722,
@@ -6999,7 +6999,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0425,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00197
+    "selftest_max_dev": 0.00133
    },
    "market": "SA"
   },
