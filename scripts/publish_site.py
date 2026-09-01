@@ -384,11 +384,18 @@ const { chromium } = require('playwright');
   const p = await b.newPage();
   const errs = [];
   p.on('pageerror', e => errs.push(String(e)));
+  // Hermetic render: every assertion below reads DOM built by LOCAL scripts
+  // (data.js/app.js) off file://. Third-party fonts/analytics are not what is
+  // being verified, and on a sandboxed runner one hanging external fetch stalls
+  // the 'load' event until the gate times out — so external requests are blocked
+  // and navigation waits on the DOM, which is the thing actually asserted on.
+  await p.route('**/*', r =>
+    r.request().url().startsWith('file://') ? r.continue() : r.abort());
   const base = 'file://' + process.argv[4] + '/';
-  await p.goto(base + TKP);
+  await p.goto(base + TKP, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(1500);
   const pageOK = (await p.content()).includes('id="gauge"');
-  await p.goto(base + LEDP);
+  await p.goto(base + LEDP, { waitUntil: 'domcontentloaded' });
   await p.waitForTimeout(1800);
   const body = await p.innerText('body');
   const listed = new RegExp('\\b' + INST + '\\b').test(body);
