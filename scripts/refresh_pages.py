@@ -177,10 +177,28 @@ def recover_q(data: dict, key: str) -> float | None:
     instruments; the 8 without carry an EMPTY note (TMPV, INFY, RELIANCE, AAPL,
     NVDA, TSLA, QGTS, IQCD) and are exactly the long-stale IN/US/QA names, so no
     older row helps either. Pass --q KEY=VALUE to supply one deliberately.
+
+    THE LEDGER INSTRUMENT IS NOT THE TICKERS KEY AND MUST NOT BE ASSUMED TO BE
+    [01-Sep-2026]. Five instruments are written in title case (Gold, Silver,
+    Platinum, Kakao, Samsung) against upper-case object keys. A hand-kept alias
+    covered the three metals and not the two Korean equities, so KAKAO and
+    SAMSUNG matched NO ledger row and this function returned None — reported by
+    the caller as "no sourced q_annual", which reads as a considered refusal and
+    was in fact an empty lookup ([R-ENF-04]). Both names state q_annual in their
+    own newest note. Resolution is now case-insensitive over the ledger's own
+    instrument set, and AMBIGUITY REFUSES rather than guesses: if two distinct
+    instruments differed only by case, no lookup here could tell them apart, so
+    the name is returned unresolved and the caller refuses it as before.
+    Measured on adoption: 93 instruments, no case-insensitive collision, and the
+    unresolved set falls from 10 back to the 8 the paragraph above names.
     """
-    alias = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'Platinum'}
-    want = {key, alias.get(key, key)}
-    rows = [r for r in data['l'] if r.get('instrument') in want]
+    want_ci = key.upper()
+    matched = {r.get('instrument') for r in data['l']
+               if isinstance(r.get('instrument'), str)
+               and r['instrument'].upper() == want_ci}
+    if len(matched) > 1:                      # two names one lookup cannot separate
+        return None
+    rows = [r for r in data['l'] if r.get('instrument') in matched]
     rows.sort(key=lambda r: r.get('anchor_date') or '', reverse=True)
     for r in rows:
         m = _Q.search(r.get('note') or '')
