@@ -1,0 +1,1186 @@
+{
+ "resolved_domain": "https://amoceg.com",
+ "domain_note": "amoc.com.eg does NOT resolve and is not the company's site; the IR archive is amoceg.com.",
+ "documents": [
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/84-6a266d73282361780903283.pdf",
+   "file": "84-6a266d73282361780903283.pdf",
+   "label": "Consolidated Financial Statement 31/3/2026",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/84-6a266d73282361780903283.pdf",
+   "bytes": 9714487,
+   "retrieved": true,
+   "sha256": "99cd3940e86d18609b6e44a6f05d74c38db011e353ac3c3228381e0791f275d5"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/85-6a266dbc224ae1780903356.pdf",
+   "file": "85-6a266dbc224ae1780903356.pdf",
+   "label": "Standalone Financial Statement 31/3/2026",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/85-6a266dbc224ae1780903356.pdf",
+   "bytes": 2798253,
+   "retrieved": true,
+   "sha256": "ed240b6c102e650fa21b6271ba7076405c3f7e921b003fb32cedba65ea912c47"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/93-6a8425a18c8e71787045281.pdf",
+   "file": "93-6a8425a18c8e71787045281.pdf",
+   "label": "consolidated financial statement 30-6-2026",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/93-6a8425a18c8e71787045281.pdf",
+   "bytes": 6962869,
+   "retrieved": true,
+   "sha256": "8c527d3e8b16401fda8c63cca7f75146f7cb6318496a2a12eedc76d64f33ed5b"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/94-6a842664d99861787045476.pdf",
+   "file": "94-6a842664d99861787045476.pdf",
+   "label": "Standalone financial statement 30-6-2026 2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/94-6a842664d99861787045476.pdf",
+   "bytes": 8787319,
+   "retrieved": true,
+   "sha256": "01b896f540204c1ac0cf785cbc4464f80f414dba88e6aa3220c30956a424ff6c"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/71-6829b20fe97531747563023.pdf",
+   "file": "71-6829b20fe97531747563023.pdf",
+   "label": "Consolidated financial statement 31-3-2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/71-6829b20fe97531747563023.pdf",
+   "bytes": 3328504,
+   "retrieved": true,
+   "sha256": "4788bd599676b9d6fd37b391d1af5fd9ff2eb185831019f8b7ef75d35c8f1763"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/73-6829b3fd977ea1747563517.pdf",
+   "file": "73-6829b3fd977ea1747563517.pdf",
+   "label": "Standalone financial statement 31-3-2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/73-6829b3fd977ea1747563517.pdf",
+   "bytes": 3927508,
+   "retrieved": true,
+   "sha256": "f79ea047cd434ceac487d93b45c8a1350e8d0dfbafa93060f4cf7ef2bd351bf0"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/74-68a2dfafd04651755504559.pdf",
+   "file": "74-68a2dfafd04651755504559.pdf",
+   "label": "Consolidated Financial Statement 30/6/2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/74-68a2dfafd04651755504559.pdf",
+   "bytes": 3589473,
+   "retrieved": true,
+   "sha256": "86644727bf942bec67136c458c00819ab5d36cfbba0f965ff0c6b6ee65634f68"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/75-68a2dffc298e01755504636.pdf",
+   "file": "75-68a2dffc298e01755504636.pdf",
+   "label": "Standalone Financial Statement 30/6/2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/75-68a2dffc298e01755504636.pdf",
+   "bytes": 4507172,
+   "retrieved": true,
+   "sha256": "381ef178d15f96d98dcd22b26f52b48d3750a16b5d7911011cd4613899bef0ba"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/81-699ad06083a8d1771753568.pdf",
+   "file": "81-699ad06083a8d1771753568.pdf",
+   "label": "Consolidated financial statement 31-12-2025",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/81-699ad06083a8d1771753568.pdf",
+   "bytes": 2378405,
+   "retrieved": true,
+   "sha256": "e1de57cdee5086b7908f68a72a127cbb4cca638554d8279c1082fd63e28621d2"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/82-699ad12b0d8d61771753771.pdf",
+   "file": "82-699ad12b0d8d61771753771.pdf",
+   "label": "Standalone Financial Statement 31/12/2025 2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/82-699ad12b0d8d61771753771.pdf",
+   "bytes": 2468891,
+   "retrieved": true,
+   "sha256": "fd9d61c669e3cba2782bb245afc27b1e3cf66dec0f5d6c7035648d11c915c4ef"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/49-66966fa413f561721135012.pdf",
+   "file": "49-66966fa413f561721135012.pdf",
+   "label": "Consolidated financial statment 31/3/2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/49-66966fa413f561721135012.pdf",
+   "bytes": 1183733,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/50-66966f84c12e21721134980.pdf",
+   "file": "50-66966f84c12e21721134980.pdf",
+   "label": "Standalone financial statment 31/3/2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/50-66966f84c12e21721134980.pdf",
+   "bytes": 1522230,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/53-66c5a1de728401724228062.pdf",
+   "file": "53-66c5a1de728401724228062.pdf",
+   "label": "Financial Statement 30/6/2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/53-66c5a1de728401724228062.pdf",
+   "bytes": 3930031,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/54-66c5a239056101724228153.pdf",
+   "file": "54-66c5a239056101724228153.pdf",
+   "label": "\u0650Consolidated Financial Statement 30/6/2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/54-66c5a239056101724228153.pdf",
+   "bytes": 3303875,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/58-66cad81ab56fa1724569626.pdf",
+   "file": "58-66cad81ab56fa1724569626.pdf",
+   "label": "Article 40 of Listing Rules 30-6-2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/58-66cad81ab56fa1724569626.pdf",
+   "bytes": 798923,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/60-673c734a638361732014922.pdf",
+   "file": "60-673c734a638361732014922.pdf",
+   "label": "Consolidated financial statement 30-9-2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/60-673c734a638361732014922.pdf",
+   "bytes": 3419746,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/62-673c7a689cb301732016744.pdf",
+   "file": "62-673c7a689cb301732016744.pdf",
+   "label": "Standalone financial statement 30-9-2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/62-673c7a689cb301732016744.pdf",
+   "bytes": 4219767,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/65-67b700dfc67cd1740046559.pdf",
+   "file": "65-67b700dfc67cd1740046559.pdf",
+   "label": "Consolidated financial statement 31-12-2024",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/65-67b700dfc67cd1740046559.pdf",
+   "bytes": 3830147,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/66-67b701ed708e11740046829.pdf",
+   "file": "66-67b701ed708e11740046829.pdf",
+   "label": "Standalone financial statement 31-12-2024 2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/66-67b701ed708e11740046829.pdf",
+   "bytes": 4553061,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/38-65e97f7f8f36d1709801343.pdf",
+   "file": "38-65e97f7f8f36d1709801343.pdf",
+   "label": "consolidated financial statement 30/12/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/38-65e97f7f8f36d1709801343.pdf",
+   "bytes": 2572409,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/39-65e97ffe4472c1709801470.pdf",
+   "file": "39-65e97ffe4472c1709801470.pdf",
+   "label": "standalone financial statement 30/12/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/39-65e97ffe4472c1709801470.pdf",
+   "bytes": 2994631,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/40-66279454b690b1713869908.pdf",
+   "file": "40-66279454b690b1713869908.pdf",
+   "label": "Financial Statement 30/6/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/40-66279454b690b1713869908.pdf",
+   "bytes": 3861440,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/41-662794b73ed5a1713870007.pdf",
+   "file": "41-662794b73ed5a1713870007.pdf",
+   "label": "\u0650Consolidated Financial Statement 30/6/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/41-662794b73ed5a1713870007.pdf",
+   "bytes": 5386266,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/42-66279505c2f3a1713870085.pdf",
+   "file": "42-66279505c2f3a1713870085.pdf",
+   "label": "\u0650Consolidated Financial Statement 30/9/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/42-66279505c2f3a1713870085.pdf",
+   "bytes": 4282174,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/43-66279540ac2821713870144.pdf",
+   "file": "43-66279540ac2821713870144.pdf",
+   "label": "\u0650Financial Statement 30/9/2023",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/43-66279540ac2821713870144.pdf",
+   "bytes": 4865055,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/48-6628bd4cd90c11713945932.pdf",
+   "file": "48-6628bd4cd90c11713945932.pdf",
+   "label": "BOD's Report on the Annual Financial Statments <h5 class=\"text-white mb-4\"",
+   "pages": [
+    "financial_statement"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/48-6628bd4cd90c11713945932.pdf",
+   "bytes": 653546,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/media/annual/1-66e9834e57b561726579534.pdf",
+   "file": "1-66e9834e57b561726579534.pdf",
+   "label": "Annual Report 2024",
+   "pages": [
+    "annual_report"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/1-66e9834e57b561726579534.pdf",
+   "bytes": 4744942,
+   "retrieved": true,
+   "sha256": "d76f0d2e10cecfab8a175df284cccd1fd58790e0b43de475c9fc1833cb17f93a"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/activity/30-68a2f0fe4765a1755508990.pdf",
+   "file": "30-68a2f0fe4765a1755508990.pdf",
+   "label": "Annual Report 2025 2024",
+   "pages": [
+    "bod_activity"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/30-68a2f0fe4765a1755508990.pdf",
+   "bytes": 2518594,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/activity/27-66e952573c9701726566999.pdf",
+   "file": "27-66e952573c9701726566999.pdf",
+   "label": "Annual Report 2024 2023",
+   "pages": [
+    "bod_activity"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/27-66e952573c9701726566999.pdf",
+   "bytes": 4744942,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/activity/24-675ffb0ec39731734343438.pdf",
+   "file": "24-675ffb0ec39731734343438.pdf",
+   "label": "Annual Report 2023 2022",
+   "pages": [
+    "bod_activity"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/24-675ffb0ec39731734343438.pdf",
+   "bytes": 4925424,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/activity/20-675ffbd56f0c41734343637.pdf",
+   "file": "20-675ffbd56f0c41734343637.pdf",
+   "label": "Annual Report 2022",
+   "pages": [
+    "bod_activity"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/20-675ffbd56f0c41734343637.pdf",
+   "bytes": 14919936,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/43-6a55dbe63a52a1784011750.pdf",
+   "file": "43-6a55dbe63a52a1784011750.pdf",
+   "label": "Disclosure Report 31/3/2026 2025",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/43-6a55dbe63a52a1784011750.pdf",
+   "bytes": 3141688,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/31-6829c3d9cd3d51747567577.pdf",
+   "file": "31-6829c3d9cd3d51747567577.pdf",
+   "label": "Disclosure Report 31/3/2025",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/31-6829c3d9cd3d51747567577.pdf",
+   "bytes": 3168049,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/36-68de2bbceeb351759390652.pdf",
+   "file": "36-68de2bbceeb351759390652.pdf",
+   "label": "Disclosure Report 30/6/2025",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/36-68de2bbceeb351759390652.pdf",
+   "bytes": 1735102,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/37-69240d6ae63dd1763970410.pdf",
+   "file": "37-69240d6ae63dd1763970410.pdf",
+   "label": "Disclosure Report 30/9/2025",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/37-69240d6ae63dd1763970410.pdf",
+   "bytes": 3392126,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/39-69d36d642ccc51775463780.pdf",
+   "file": "39-69d36d642ccc51775463780.pdf",
+   "label": "Disclosure Report 31/12/2025 2024",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/39-69d36d642ccc51775463780.pdf",
+   "bytes": 1414170,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/20-662786fab3c8d1713866490.pdf",
+   "file": "20-662786fab3c8d1713866490.pdf",
+   "label": "Disclosure Report on 31/3/2024",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/20-662786fab3c8d1713866490.pdf",
+   "bytes": 2335041,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/25-66977b11688371721203473.pdf",
+   "file": "25-66977b11688371721203473.pdf",
+   "label": "Disclosure Report 30/6/2024",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/25-66977b11688371721203473.pdf",
+   "bytes": 1208479,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/29-6829c37741bbd1747567479.pdf",
+   "file": "29-6829c37741bbd1747567479.pdf",
+   "label": "Disclosure Report 30/9/2024",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/29-6829c37741bbd1747567479.pdf",
+   "bytes": 3237986,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/30-6829c3aa34a9d1747567530.pdf",
+   "file": "30-6829c3aa34a9d1747567530.pdf",
+   "label": "Disclosure Report 31/12/2024 2023",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/30-6829c3aa34a9d1747567530.pdf",
+   "bytes": 3195084,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/13-655db0049cfec1700638724.pdf",
+   "file": "13-655db0049cfec1700638724.pdf",
+   "label": "Disclosure Report 30/9/2023",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/13-655db0049cfec1700638724.pdf",
+   "bytes": 2446252,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/17-660e6f6de44381712222061.pdf",
+   "file": "17-660e6f6de44381712222061.pdf",
+   "label": "Disclosure Report 31/12/2023 2022",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/17-660e6f6de44381712222061.pdf",
+   "bytes": 2355006,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/6-64184c1c93b111679313948.pdf",
+   "file": "6-64184c1c93b111679313948.pdf",
+   "label": "Disclosure Report 30/6/2022",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/6-64184c1c93b111679313948.pdf",
+   "bytes": 3740049,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/7-64184c50bc0431679314000.pdf",
+   "file": "7-64184c50bc0431679314000.pdf",
+   "label": "Disclosure Report 30/9/2022",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/7-64184c50bc0431679314000.pdf",
+   "bytes": 3790109,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/8-64184c847f0351679314052.pdf",
+   "file": "8-64184c847f0351679314052.pdf",
+   "label": "Disclosure Report 31/3/2022",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/8-64184c847f0351679314052.pdf",
+   "bytes": 3640253,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/disclosure/9-64184ce1016441679314145.pdf",
+   "file": "9-64184ce1016441679314145.pdf",
+   "label": "Disclosure Report 29/12/2022",
+   "pages": [
+    "disclosure_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/9-64184ce1016441679314145.pdf",
+   "bytes": 2722090,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/34-69ca3d39553ba1774861625.pdf",
+   "file": "34-69ca3d39553ba1774861625.pdf",
+   "label": "General Assembly Report 26/3/2026",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/34-69ca3d39553ba1774861625.pdf",
+   "bytes": 784792,
+   "retrieved": true,
+   "sha256": "64c5e62ddda732c36590683f5485c8c4a8a6f4992d4d9caccc0ced684a636205"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/35-69ca3d737e15f1774861683.pdf",
+   "file": "35-69ca3d737e15f1774861683.pdf",
+   "label": "Dividend Distribution 26/3/2026 2025",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/35-69ca3d737e15f1774861683.pdf",
+   "bytes": 474530,
+   "retrieved": true,
+   "sha256": "3b00a702802f973a11172ef84aeedbfd09d1e43b86304cfc8278880f512ddd6d"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/31-68da28e1651521759127777.pdf",
+   "file": "31-68da28e1651521759127777.pdf",
+   "label": "General Assembly Report 27/9/2025",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/31-68da28e1651521759127777.pdf",
+   "bytes": 922683,
+   "retrieved": true,
+   "sha256": "ecab3a67224dd3a774dbca3b4708ce6846e8c5282ac7a050e2ead85152b288d7"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/32-68da31c71e7b41759130055.pdf",
+   "file": "32-68da31c71e7b41759130055.pdf",
+   "label": "Dividend Distribution 27/9/2025 2024",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/32-68da31c71e7b41759130055.pdf",
+   "bytes": 486478,
+   "retrieved": true,
+   "sha256": "48ee615e6032e9519b62a140d040c4e9f48ac2d06a6fd503ea5428930f2b72e2"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/28-66f121c43f3721727078852.pdf",
+   "file": "28-66f121c43f3721727078852.pdf",
+   "label": "General Assembly Report 21/9/2024 2023",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/28-66f121c43f3721727078852.pdf",
+   "bytes": 1125470,
+   "retrieved": true,
+   "sha256": "5a55c044b4d93617ef572f85e64288ba77ff8a449786e958319236a6c7ecc084"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/generalAssembly/20-6628b8f12ced81713944817.pdf",
+   "file": "20-6628b8f12ced81713944817.pdf",
+   "label": "GM Resolutions",
+   "pages": [
+    "general_assembly"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/20-6628b8f12ced81713944817.pdf",
+   "bytes": 663610,
+   "retrieved": true,
+   "sha256": "0b599be1fbbca1b40b39facb09e42ef7cec242f8b8a28e223b3cff7f96f3212b"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/corporateGovernance/15-68a2e3815a8be1755505537.pdf",
+   "file": "15-68a2e3815a8be1755505537.pdf",
+   "label": "Corporate Governance Report 30/6/2025 2024",
+   "pages": [
+    "governance_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/15-68a2e3815a8be1755505537.pdf",
+   "bytes": 5192184,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/corporateGovernance/9-66c5a0551a64c1724227669.pdf",
+   "file": "9-66c5a0551a64c1724227669.pdf",
+   "label": "Corporate Governance Report 2024",
+   "pages": [
+    "governance_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/9-66c5a0551a64c1724227669.pdf",
+   "bytes": 3366027,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/corporateGovernance/10-67275935313911730631989.pdf",
+   "file": "10-67275935313911730631989.pdf",
+   "label": "Audit & CG Committee Report 27/10/2024 2023",
+   "pages": [
+    "governance_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/10-67275935313911730631989.pdf",
+   "bytes": 1691070,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/corporateGovernance/7-64f6ee51c92811693904465.pdf",
+   "file": "7-64f6ee51c92811693904465.pdf",
+   "label": "Corporate Governance Report 30/6/2023 Subscribe To",
+   "pages": [
+    "governance_reports"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/7-64f6ee51c92811693904465.pdf",
+   "bytes": 1107522,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/irPresentation/3-64185343f09651679315779.pdf",
+   "file": "3-64185343f09651679315779.pdf",
+   "label": "IR Presentation 2023",
+   "pages": [
+    "ir_presentation"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/3-64185343f09651679315779.pdf",
+   "bytes": 1756070,
+   "retrieved": true,
+   "sha256": "7af44733167f63e13a0f1444ab76073f06bca8e83df32f812bc8c2551e96bc99"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/esg/8-68a2ebc57420f1755507653.pdf",
+   "file": "8-68a2ebc57420f1755507653.pdf",
+   "label": "ESG Report 2025 2024",
+   "pages": [
+    "esg"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/8-68a2ebc57420f1755507653.pdf",
+   "bytes": 4411143,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/esg/6-66c586ebdac271724221163.pdf",
+   "file": "6-66c586ebdac271724221163.pdf",
+   "label": "ESG 2023",
+   "pages": [
+    "esg"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/6-66c586ebdac271724221163.pdf",
+   "bytes": 5083427,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/esg/4-662782cb7f4f91713865419.pdf",
+   "file": "4-662782cb7f4f91713865419.pdf",
+   "label": "ESG",
+   "pages": [
+    "esg"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/4-662782cb7f4f91713865419.pdf",
+   "bytes": 3842423,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/sustainability/19-69240c8d2ebf01763970189.pdf",
+   "file": "19-69240c8d2ebf01763970189.pdf",
+   "label": "Sustainability Report 2025 2022",
+   "pages": [
+    "sustainability"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/19-69240c8d2ebf01763970189.pdf",
+   "bytes": 4160475,
+   "retrieved": true,
+   "sha256": "30c11ad64b99895fe367d248c5dceebaa6708ecc4050236d29dee8f3f2b54936"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/sustainability/17-68b010be067611756369086.pdf",
+   "file": "17-68b010be067611756369086.pdf",
+   "label": "Sustainability Report 2022 2021",
+   "pages": [
+    "sustainability"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/17-68b010be067611756369086.pdf",
+   "bytes": 2665823,
+   "retrieved": true,
+   "sha256": "471bc2952ac6294add97e2af9ca421ad23c2be2cc6931f70f8549643c6b71ddb"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/sustainability/sustainabilty2021.pdf",
+   "file": "sustainabilty2021.pdf",
+   "label": "Sustainability Report 2021 2020",
+   "pages": [
+    "sustainability"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/sustainabilty2021.pdf",
+   "bytes": 3589801,
+   "retrieved": true,
+   "sha256": "8849c3e65695a6dd38e536fd23e6ce2ba0bdf6bbc2033dfb21121f3dfb751e99"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/sustainability/sustainability2020.pdf",
+   "file": "sustainability2020.pdf",
+   "label": "Sustainability Report 2020 2019",
+   "pages": [
+    "sustainability"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/sustainability2020.pdf",
+   "bytes": 9434977,
+   "retrieved": true,
+   "sha256": "e5c2b8f1a4d1f18ceb5f5e15336a075afbc5f3ca9937f69ea23d8a87bcd1640a"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/sustainability/18-68b0120c379561756369420.pdf",
+   "file": "18-68b0120c379561756369420.pdf",
+   "label": "Sustainability Report 2019",
+   "pages": [
+    "sustainability"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/18-68b0120c379561756369420.pdf",
+   "bytes": 4188032,
+   "retrieved": true,
+   "sha256": "d9c600233e27a0e226866fdb51c813e696f3d020bdb083ebc9069de536e98803"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/86-6a266e186d3581780903448.pdf",
+   "file": "86-6a266e186d3581780903448.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31/3/2026",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/86-6a266e186d3581780903448.pdf",
+   "bytes": 8192941,
+   "retrieved": true,
+   "sha256": "9f059d797a67be315f106698a19fffc083d477a8586ae95177ef085fdf821ec6"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/87-6a266e78b86651780903544.pdf",
+   "file": "87-6a266e78b86651780903544.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31/3/2026",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/87-6a266e78b86651780903544.pdf",
+   "bytes": 5743266,
+   "retrieved": true,
+   "sha256": "70c7377f0ae1ca833853c79a9c0b2e638a4560d271f4a9a45b433d3d5f61fcdd"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/95-6a8427e9d627c1787045865.pdf",
+   "file": "95-6a8427e9d627c1787045865.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30-6-2026",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/95-6a8427e9d627c1787045865.pdf",
+   "bytes": 6634308,
+   "retrieved": true,
+   "sha256": "256ec628bc2e2a7976e07af3dbd33482b711e0d783acc0c48795b7885d064a4e"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/96-6a842f450863c1787047749.pdf",
+   "file": "96-6a842f450863c1787047749.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30-6-2026 2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/96-6a842f450863c1787047749.pdf",
+   "bytes": 5883967,
+   "retrieved": true,
+   "sha256": "f366e1ef520472daa5faeba3e0eb80c90a2c39935044ad4f8e0cda9252ce2cb8"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/69-6829b154eb9f71747562836.pdf",
+   "file": "69-6829b154eb9f71747562836.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31-3-2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/69-6829b154eb9f71747562836.pdf",
+   "bytes": 3002495,
+   "retrieved": true,
+   "sha256": "92614d6e34b94a96e57d8697e59f81d4eed739e9dfa40a808a309763f0b9910f"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/70-6829b184801481747562884.pdf",
+   "file": "70-6829b184801481747562884.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31-3-2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/70-6829b184801481747562884.pdf",
+   "bytes": 3856790,
+   "retrieved": true,
+   "sha256": "8a71b84d9a5709a000ba1892fea1f7c37cf8cd1b015ccf47bc3a96e4f1cf4244"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/76-68a2e0437ee331755504707.pdf",
+   "file": "76-68a2e0437ee331755504707.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30/6/2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/76-68a2e0437ee331755504707.pdf",
+   "bytes": 4007177,
+   "retrieved": true,
+   "sha256": "bae79d8f9274865976eb6168dd6801c19a20a4f92a1b55eae4c15bc282a943ec"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/77-68a2e07a3ff1f1755504762.pdf",
+   "file": "77-68a2e07a3ff1f1755504762.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/6/2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/77-68a2e07a3ff1f1755504762.pdf",
+   "bytes": 3254966,
+   "retrieved": true,
+   "sha256": "3c37c7038fc6782f64d1a9181cbb65c214849d812fd60820e55341b581da4d45"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/79-6943ba2f4553d1766046255.pdf",
+   "file": "79-6943ba2f4553d1766046255.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30-9-2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/79-6943ba2f4553d1766046255.pdf",
+   "bytes": 2736621,
+   "retrieved": true,
+   "sha256": "ca41e4f0f88d9b93401802c955e17b7eaa0e82451a1af65e0a1bc7320cf32cb9"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/80-699ad090a76971771753616.pdf",
+   "file": "80-699ad090a76971771753616.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31/12/2025",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/80-699ad090a76971771753616.pdf",
+   "bytes": 3347687,
+   "retrieved": true,
+   "sha256": "87182dd172ba558770033557d8af6d2cf9c254cbb8a9b16dae67fe8d3e844b91"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/83-699ad1c0327a21771753920.pdf",
+   "file": "83-699ad1c0327a21771753920.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31/12/2025 2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/83-699ad1c0327a21771753920.pdf",
+   "bytes": 2811812,
+   "retrieved": true,
+   "sha256": "bde257cc3c0e4e2b2b145d17973bb38da65f84e12c079120d52c625c43d85b2c"
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/51-666165ab707df1717659051.pdf",
+   "file": "51-666165ab707df1717659051.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31/3/2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/51-666165ab707df1717659051.pdf",
+   "bytes": 9474807,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/52-666165fdd9ed01717659133.pdf",
+   "file": "52-666165fdd9ed01717659133.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31/3/2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/52-666165fdd9ed01717659133.pdf",
+   "bytes": 10723027,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/55-66c5a38aa53341724228490.pdf",
+   "file": "55-66c5a38aa53341724228490.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/ 6/ 2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/55-66c5a38aa53341724228490.pdf",
+   "bytes": 8649614,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/56-66c5a4105f51f1724228624.pdf",
+   "file": "56-66c5a4105f51f1724228624.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30/ 6/ 2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/56-66c5a4105f51f1724228624.pdf",
+   "bytes": 9022560,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/57-66cad79c4f5e91724569500.pdf",
+   "file": "57-66cad79c4f5e91724569500.pdf",
+   "label": "\u062a\u0642\u0631\u064a\u0631 \u0627\u0644\u0645\u0627\u062f\u0629 40 \u0628\u062a\u0627\u0631\u064a\u062e 30/6/2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/57-66cad79c4f5e91724569500.pdf",
+   "bytes": 747034,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/59-673c71f1decaa1732014577.pdf",
+   "file": "59-673c71f1decaa1732014577.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30-9-2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/59-673c71f1decaa1732014577.pdf",
+   "bytes": 3100694,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/61-673c76a4dd2c41732015780.pdf",
+   "file": "61-673c76a4dd2c41732015780.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30-9-2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/61-673c76a4dd2c41732015780.pdf",
+   "bytes": 3558466,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/63-67b6f9ee03c331740044782.pdf",
+   "file": "63-67b6f9ee03c331740044782.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31-12-2024",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/63-67b6f9ee03c331740044782.pdf",
+   "bytes": 3523255,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/64-67b6fadd5ba281740045021.pdf",
+   "file": "64-67b6fadd5ba281740045021.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31-12-2024 2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/64-67b6fadd5ba281740045021.pdf",
+   "bytes": 8248180,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/20-6469cf91405ec1684656017.pdf",
+   "file": "20-6469cf91405ec1684656017.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31/3/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/20-6469cf91405ec1684656017.pdf",
+   "bytes": 9836430,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/21-6469d0946fe761684656276.pdf",
+   "file": "21-6469d0946fe761684656276.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31/3/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/21-6469d0946fe761684656276.pdf",
+   "bytes": 9214634,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/25-64f6e68fc67951693902479.pdf",
+   "file": "25-64f6e68fc67951693902479.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0647 30/6/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/25-64f6e68fc67951693902479.pdf",
+   "bytes": 11860170,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/26-64f6e78562ada1693902725.pdf",
+   "file": "26-64f6e78562ada1693902725.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/6/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/26-64f6e78562ada1693902725.pdf",
+   "bytes": 10394140,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/30-655daa3028c521700637232.pdf",
+   "file": "30-655daa3028c521700637232.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30/9/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/30-655daa3028c521700637232.pdf",
+   "bytes": 3373727,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/31-655daaa1f3d891700637345.pdf",
+   "file": "31-655daaa1f3d891700637345.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/9/2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/31-655daaa1f3d891700637345.pdf",
+   "bytes": 3203575,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/44-662796340d1431713870388.pdf",
+   "file": "44-662796340d1431713870388.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31 / 12 / 2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/44-662796340d1431713870388.pdf",
+   "bytes": 6287980,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/45-662796759c7ec1713870453.pdf",
+   "file": "45-662796759c7ec1713870453.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31 / 12 / 2023",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/45-662796759c7ec1713870453.pdf",
+   "bytes": 5543957,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/47-6628bcdc082161713945820.pdf",
+   "file": "47-6628bcdc082161713945820.pdf",
+   "label": "\u062a\u0642\u0631\u064a\u0631 \u0645\u062c\u0644\u0633 \u0627\u0644\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0641\u0642 \u0628\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/47-6628bcdc082161713945820.pdf",
+   "bytes": 537844,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/13-6450c64c40dba1683015244.pdf",
+   "file": "13-6450c64c40dba1683015244.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31 / 12 / 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/13-6450c64c40dba1683015244.pdf",
+   "bytes": 1961806,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/14-641ad569c0b4b1679480169.pdf",
+   "file": "14-641ad569c0b4b1679480169.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30/ 6/ 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/14-641ad569c0b4b1679480169.pdf",
+   "bytes": 9934471,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/15-641ad5c4187951679480260.pdf",
+   "file": "15-641ad5c4187951679480260.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/ 6/ 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/15-641ad5c4187951679480260.pdf",
+   "bytes": 11949227,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/16-641ad5f6be6ff1679480310.pdf",
+   "file": "16-641ad5f6be6ff1679480310.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 30/ 9 / 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/16-641ad5f6be6ff1679480310.pdf",
+   "bytes": 1358426,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/17-641ad61b1f72d1679480347.pdf",
+   "file": "17-641ad61b1f72d1679480347.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 30/ 9/ 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/17-641ad61b1f72d1679480347.pdf",
+   "bytes": 1420015,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/18-641ad9a5a4f861679481253.pdf",
+   "file": "18-641ad9a5a4f861679481253.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 31 / 12 / 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/18-641ad9a5a4f861679481253.pdf",
+   "bytes": 9375167,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/19-641ada34122791679481396.pdf",
+   "file": "19-641ada34122791679481396.pdf",
+   "label": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 31 / 12 / 2022",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/19-641ada34122791679481396.pdf",
+   "bytes": 9735562,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/investor/financialStatement/46-6628bcc733c6a1713945799.pdf",
+   "file": "46-6628bcc733c6a1713945799.pdf",
+   "label": "\u062a\u0642\u0631\u064a\u0631 \u0645\u062c\u0644\u0633 \u0627\u0644\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0641\u0642 \u0628\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0625\u0634\u062a\u0631\u0643 \u0641\u064a",
+   "pages": [
+    "financial_statement_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/46-6628bcc733c6a1713945799.pdf",
+   "bytes": 930249,
+   "retrieved": true
+  },
+  {
+   "url": "https://amoceg.com/reports/media/annual/3-68dcff3b53c341759313723.pdf",
+   "file": "3-68dcff3b53c341759313723.pdf",
+   "label": "\u062a\u0642\u0631\u064a\u0631 \u0646\u0634\u0627\u0637 \u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u0645\u0627\u0644\u064a \u0662\u0660\u0662\u0664/\u0662\u0660\u0662\u0665 2024",
+   "pages": [
+    "annual_report_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/3-68dcff3b53c341759313723.pdf",
+   "bytes": 1951857,
+   "retrieved": true,
+   "sha256": "55afc53a7258c72a08eadbfd83dc713547f9985ab835503521a4d3a767578555"
+  },
+  {
+   "url": "https://amoceg.com/reports/media/annual/2-66eabe82c3a971726660226.pdf",
+   "file": "2-66eabe82c3a971726660226.pdf",
+   "label": "\u062a\u0642\u0631\u064a\u0631 \u0646\u0634\u0627\u0637 \u0627\u0644\u0639\u0627\u0645 \u0627\u0644\u0645\u0627\u0644\u064a \u0662\u0660\u0662\u0663/\u0662\u0660\u0662\u0664 \u0625\u0634\u062a\u0631\u0643 \u0641\u064a \u0627\u0644\u0646\u0634\u0631\u0629 \u0627\u0644\u0625\u062e\u0628\u0627\u0631\u064a\u0629",
+   "pages": [
+    "annual_report_ar"
+   ],
+   "local": "/tmp/claude-0/-home-user-testahil/50e83873-11d1-59bd-8752-622f52dccf21/scratchpad/amoc_src/2-66eabe82c3a971726660226.pdf",
+   "bytes": 4218149,
+   "retrieved": true,
+   "sha256": "93a6ee36f318b967ba9b9b4ac859882fa0c58e79459dcbcd671e8248e6844e7e"
+  }
+ ]
+}

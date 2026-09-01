@@ -54,7 +54,7 @@ Build the workbook formula-first:
 
 (c) Are these the best indicators for fundamental analysis of a company in the sector you identified
 
-(d) Calibration backtest done a full 5 years back, and it beats the random-walk benchmark on CRPS skill (> 0) with a roughly uniform PIT.
+(d) Calibration backtest done a full 5 years back. **The gate is whether the BANDS HELD** [R-CAL-03] — realized coverage against the stated target on non-overlapping 3-month calendar windows, two-sided binomial at 5%, which is the same test the reader is shown. The width ratio against a naive carry-anchored band is DISCLOSED beside it and carries no threshold. CRPS skill and PASS/PARITY/FAIL are RETIRED: internal diagnostics only, never a gate, never on any surface a reader sees.
 
 (e) Income statement and balance sheet carry 3 years historical + 5-year forecast, and a complete DCF valuation with 5-year forecast is included. DCF build to arrive at the Free Cashflow with EBITDA, D&A, EBIT, NOPAT (EBIT×(1−t)), + D&A, − Capex, − Δ working capital, Free cash flow to firm, Discount factor, PV of FCFF for the next 5 years.
 
@@ -97,7 +97,9 @@ company genuinely discloses only one prior year).
 
 (r) **Every formula cell reproduces the model, and drivers propagate.** Evidence, both run on the delivered file: "N of N formula cells reproduce the model, 0 unresolvable, 0 unchecked"; and the per-driver table showing each input perturbed in place moves the headline in the asserted direction, with zero dead inputs.
 
-Do NOT publish — I'll request that separately with a token.
+(s) **[R-GAP-01] If the central fair value lands more than 10% BELOW the latest known market price, the study is not finished.** Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
+
+Do NOT publish — publishing is a separate, explicitly-requested step. (The old token gate is retired: once I say "publish", go all the way to merged-and-deployed without stopping to ask. See `Publish_Protocol.md`.)
 
 ---
 
