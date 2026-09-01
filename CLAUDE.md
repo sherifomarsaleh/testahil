@@ -149,3 +149,16 @@ or from a document — always read `engine/market_profiles.py` and
 **Response style in this repo:** 3-4 sentences max, no preamble, lead with the answer.
 Expand only if asked. Never a rating or a price target — fair-value ranges and
 distributions only.
+
+**DO NOT ASK THE USER TO SCOPE A LESSON** [per instruction, 01-Sep-2026 — "do not ask me
+that question ... I leave that to you"]. [R-LESSON-01]'s scope judgement is still made and
+still signed, by whoever runs the harvest, and the rule itself is UNCHANGED: file at the
+NARROWER scope when unsure and widen when a second company shows the same thing. The user's
+own stated lean is the opposite — "everywhere, including class and across all tickers" —
+and they delegated the decision rather than imposing it, so the rule wins over the lean.
+Record that as the reason wherever a lesson is filed narrow, because a later session
+reading only the lean would widen everything and quietly turn one company's quirk into a
+house rule. The harvest is still fully resolved: every candidate ends registered or
+declined with a reason [R-ENF-04]. Nothing else about the loop changes — one name at a
+time, and the register is regenerated and sent at the end of each run rather than held by
+the user, whose own copy is what went stale on 01-Sep-2026.
