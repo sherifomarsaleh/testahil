@@ -788,98 +788,6 @@ const FV_OVERLAY = {
    "market": "US"
   },
   {
-   "ticker": "IQCD",
-   "name": "Industries Qatar",
-   "code": "QSE:IQCD",
-   "ccy": "QAR",
-   "spot": 10.7,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 23,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 6.9,
-   "fv_base": 10.9,
-   "fv_full": 15,
-   "gap_base_pct": 1.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.056458,
-    "mu_h": 0.0028,
-    "G": {
-     "bear": -7.77,
-     "base": 0.33,
-     "full": 5.98
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.3724,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.6362,
-     "full": 0.0003
-    },
-    "required_cagr": {
-     "bear": -0.9948,
-     "base": 0.2489,
-     "full": 56.6089
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00146
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.09959,
-    "mu_h": 0.010228,
-    "G": {
-     "bear": -4.41,
-     "base": 0.19,
-     "full": 3.39
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0007,
-     "base": 0.4611,
-     "full": 0.0034
-    },
-    "p_touch": {
-     "bear": 0.0013,
-     "base": 0.7992,
-     "full": 0.0057
-    },
-    "required_cagr": {
-     "bear": -0.8271,
-     "base": 0.0769,
-     "full": 2.8622
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00147
-   },
-   "market": "QA"
-  },
-  {
    "ticker": "RIYADHCABLE",
    "name": "Riyadh Cables Group Company",
    "code": "TADAWUL:4142",
@@ -4006,6 +3914,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00336
    },
    "market": "EG"
+  },
+  {
+   "ticker": "IQCD",
+   "name": "Industries Qatar",
+   "code": "QSE:IQCD",
+   "ccy": "QAR",
+   "spot": 9.96,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 58,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 6.9,
+   "fv_base": 10.9,
+   "fv_full": 15,
+   "gap_base_pct": 9.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.054753,
+    "mu_h": 0.004008,
+    "G": {
+     "bear": -6.7,
+     "base": 1.65,
+     "full": 7.48
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0511,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0781,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -0.9878,
+     "base": 1.9512,
+     "full": 135.1392
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00127
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.097523,
+    "mu_h": 0.010984,
+    "G": {
+     "bear": -3.76,
+     "base": 0.92,
+     "full": 4.2
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0016,
+     "base": 0.1792,
+     "full": 0.0012
+    },
+    "p_touch": {
+     "bear": 0.0028,
+     "base": 0.3051,
+     "full": 0.0019
+    },
+    "required_cagr": {
+     "bear": -0.7697,
+     "base": 0.4344,
+     "full": 4.1443
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00123
+   },
+   "market": "QA"
   },
   {
    "ticker": "COMI",
