@@ -23,6 +23,17 @@ session from exactly this drift. After editing it, send the user its full curren
 chat (not just a diff) — they paste it into their own external project files, so a
 diff-only summary leaves that copy silently behind.
 
+**SEND BOTH FILES, NOT JUST THE DIGEST** [corrected 01-Sep-2026, per instruction — "no I am
+talking about this file", attaching a `Standing_Research_Protocol.md` stranded at revision
+2026-08-31d]. The clause above names only the digest, and a session that reads it literally
+concludes the full protocol lives only in the repository. IT DOES NOT: the user keeps BOTH
+outside it. So whenever either file is amended, SEND BOTH, in the same message, without
+being asked — they are amended in the same commit and carry the same revision stamp, so a
+user holding one at 2026-09-01b and the other at 2026-08-31d has two documents that
+disagree about what the rules are, and the stamp that exists to make staleness obvious
+instead makes it look fine on the copy that happens to be current. Do not offer to send the
+protocol and wait for an answer; that is how this one was stranded for three amendments.
+
 **Other governing documents, by task:**
 - Starting a brand-new study → `engine/Study_Initiation_Prompt.md`
 - THE MODEL REPORT (the document every study is modelled on, adopted 19-Aug-2026) →
