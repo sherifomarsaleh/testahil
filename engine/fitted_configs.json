@@ -555,17 +555,17 @@
       "SNB",
       "STC"
     ],
-    "windows": 452,
+    "windows": 453,
     "rebuilt_this_run": [],
     "nu": 15.0,
     "width_cal": 1.056,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0057,
+    "market_skill": 0.0064,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
-      -0.003,
-      0.015
+      -0.002,
+      0.016
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -573,13 +573,13 @@
     "signal_active": false,
     "per_name": {
       "ACWA": {
-        "nu": 12.0,
+        "nu": 15.0,
         "width_cal": 1.056,
-        "skill": 0.008,
-        "skill_raw_basis": -0.0035,
+        "skill": 0.0081,
+        "skill_raw_basis": -0.0034,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.047,
+          -0.049,
           0.07
         ]
       },
@@ -674,12 +674,12 @@
       "SABIC": {
         "nu": 12.0,
         "width_cal": 1.063,
-        "skill": 0.0001,
-        "skill_raw_basis": -0.0032,
+        "skill": 0.0103,
+        "skill_raw_basis": 0.007,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
-          0.022
+          -0.026,
+          0.041
         ]
       },
       "SAVOLA": {
