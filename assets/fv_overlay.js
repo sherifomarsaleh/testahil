@@ -6392,6 +6392,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "EMFD",
+   "name": "Emaar Misr for Development",
+   "code": "EGX:EMFD",
+   "ccy": "EGP",
+   "spot": 13.7,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-17",
+   "fv_lag_days": 76,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 13.71,
+   "fv_base": 19.84,
+   "fv_full": 23.43,
+   "gap_base_pct": 44.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.958,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.105848,
+    "mu_h": 0.020232,
+    "G": {
+     "bear": 0.01,
+     "base": 3.5,
+     "full": 5.07
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.5893,
+     "base": 0.004,
+     "full": 0.0007
+    },
+    "p_touch": {
+     "bear": 0.9009,
+     "base": 0.0063,
+     "full": 0.0014
+    },
+    "required_cagr": {
+     "bear": 0.0088,
+     "base": 84.085,
+     "full": 625.0668
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00128
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.181398,
+    "mu_h": 0.056063,
+    "G": {
+     "bear": 0.0,
+     "base": 2.04,
+     "full": 2.96
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.645,
+     "base": 0.0378,
+     "full": 0.0094
+    },
+    "p_touch": {
+     "bear": 0.9549,
+     "base": 0.0598,
+     "full": 0.015
+    },
+    "required_cagr": {
+     "bear": 0.0029,
+     "base": 3.3983,
+     "full": 7.5547
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00281
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "EMAAR",
    "name": "Emaar Properties PJSC",
    "code": "DFM:EMAAR",
@@ -7336,90 +7428,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00301
-   },
-   "market": "EG"
-  },
-  {
-   "ticker": "EMFD",
-   "name": "Emaar Misr for Development",
-   "code": "EGX:EMFD",
-   "ccy": "EGP",
-   "spot": 11.53,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-17",
-   "fv_lag_days": 41,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 13.71,
-   "fv_base": 19.84,
-   "fv_full": 23.43,
-   "gap_base_pct": 72.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.958,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.085405,
-    "mu_h": 0.020602,
-    "G": {
-     "bear": 2.03,
-     "base": 6.36,
-     "full": 8.3
-    },
-    "band": "NOT-EXPRESSIBLE",
-    "informative": false,
-    "already_converged": false,
-    "p_term": null,
-    "p_touch": null,
-    "required_cagr": {
-     "bear": 6.9891,
-     "base": 672.8269,
-     "full": 4957.1056
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0003
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.158282,
-    "mu_h": 0.057303,
-    "G": {
-     "bear": 1.09,
-     "base": 3.43,
-     "full": 4.48
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.194,
-     "base": 0.0054,
-     "full": 0.0016
-    },
-    "p_touch": {
-     "bear": 0.2985,
-     "base": 0.0088,
-     "full": 0.0025
-    },
-    "required_cagr": {
-     "bear": 0.9991,
-     "base": 7.767,
-     "full": 16.0519
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00265
    },
    "market": "EG"
   },
