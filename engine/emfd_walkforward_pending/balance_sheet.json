@@ -1,0 +1,497 @@
+{
+ "driver_bases": {
+  "2016": {
+   "advances_from_customers": {
+    "DERIVED": null,
+    "value": 9382546247.0,
+    "why": "the contract-liability side of D5's backlog roll (L-103)"
+   },
+   "interest_bearing_borrowings": {
+    "DERIVED": "credit facilities (both blocks) + long term liabilities + its current portion + borrowings from related parties",
+    "value": 45244156.0,
+    "why": "D8's base. Advances from customers, trade payables and retentions bear no interest and are excluded \u2014 that exclusion is the whole point of the rule."
+   },
+   "interest_earning_asset_base": {
+    "DERIVED": "cash + investments + accounts_notes_receivable",
+    "value": 5179491782.0,
+    "why": "D7's base is the assets that actually earn the finance income. Total assets and total current assets are NOT used: development properties and prepayments earn nothing, and dividing finance income by a base that does not earn it manufactures a rate."
+   }
+  },
+  "2017": {
+   "advances_from_customers": {
+    "DERIVED": null,
+    "value": 12589925776.0,
+    "why": "the contract-liability side of D5's backlog roll (L-103)"
+   },
+   "interest_bearing_borrowings": {
+    "DERIVED": "credit facilities (both blocks) + long term liabilities + its current portion + borrowings from related parties",
+    "value": 37451420.0,
+    "why": "D8's base. Advances from customers, trade payables and retentions bear no interest and are excluded \u2014 that exclusion is the whole point of the rule."
+   },
+   "interest_earning_asset_base": {
+    "DERIVED": "cash + investments + accounts_notes_receivable",
+    "value": 12502937740.0,
+    "why": "D7's base is the assets that actually earn the finance income. Total assets and total current assets are NOT used: development properties and prepayments earn nothing, and dividing finance income by a base that does not earn it manufactures a rate."
+   }
+  },
+  "2018": {
+   "advances_from_customers": {
+    "DERIVED": null,
+    "value": 14690623133.0,
+    "why": "the contract-liability side of D5's backlog roll (L-103)"
+   },
+   "interest_bearing_borrowings": {
+    "DERIVED": "credit facilities (both blocks) + long term liabilities + its current portion + borrowings from related parties",
+    "value": 21942595.0,
+    "why": "D8's base. Advances from customers, trade payables and retentions bear no interest and are excluded \u2014 that exclusion is the whole point of the rule."
+   },
+   "interest_earning_asset_base": {
+    "DERIVED": "cash + investments + accounts_notes_receivable",
+    "value": 14718013656.0,
+    "why": "D7's base is the assets that actually earn the finance income. Total assets and total current assets are NOT used: development properties and prepayments earn nothing, and dividing finance income by a base that does not earn it manufactures a rate."
+   }
+  },
+  "2019": {
+   "advances_from_customers": {
+    "DERIVED": null,
+    "value": 17270405232.0,
+    "why": "the contract-liability side of D5's backlog roll (L-103)"
+   },
+   "interest_bearing_borrowings": {
+    "DERIVED": "credit facilities (both blocks) + long term liabilities + its current portion + borrowings from related parties",
+    "value": 20278835.0,
+    "why": "D8's base. Advances from customers, trade payables and retentions bear no interest and are excluded \u2014 that exclusion is the whole point of the rule."
+   },
+   "interest_earning_asset_base": {
+    "DERIVED": "cash + investments + accounts_notes_receivable",
+    "value": 14429278460.0,
+    "why": "D7's base is the assets that actually earn the finance income. Total assets and total current assets are NOT used: development properties and prepayments earn nothing, and dividing finance income by a base that does not earn it manufactures a rate."
+   }
+  },
+  "2020": {
+   "advances_from_customers": {
+    "DERIVED": null,
+    "value": 20655890322.0,
+    "why": "the contract-liability side of D5's backlog roll (L-103)"
+   },
+   "interest_bearing_borrowings": {
+    "DERIVED": "credit facilities (both blocks) + long term liabilities + its current portion + borrowings from related parties",
+    "value": 310065826.0,
+    "why": "D8's base. Advances from customers, trade payables and retentions bear no interest and are excluded \u2014 that exclusion is the whole point of the rule."
+   },
+   "interest_earning_asset_base": {
+    "DERIVED": "cash + investments + accounts_notes_receivable",
+    "value": 12629384739.0,
+    "why": "D7's base is the assets that actually earn the finance income. Total assets and total current assets are NOT used: development properties and prepayments earn nothing, and dividing finance income by a base that does not earn it manufactures a rate."
+   }
+  }
+ },
+ "dropped": [],
+ "financing_rule_specification_check": [
+  {
+   "finance_cost": -1392555.0,
+   "finance_income": 1376653874.0,
+   "implied_borrowing_rate": 0.030778671172471423,
+   "implied_earning_rate": 0.26578937315514406,
+   "opening_earning_assets": 5179491782.0,
+   "opening_interest_bearing_borrowings": 45244156.0,
+   "verdict": "pending \u2014 needs the Egyptian sovereign yield at this origin to test the floor (a corporate cannot borrow below its sovereign)",
+   "year": 2017
+  },
+  {
+   "finance_cost": -536779.0,
+   "finance_income": 1680929938.0,
+   "implied_borrowing_rate": 0.014332674168295888,
+   "implied_earning_rate": 0.134442798401074,
+   "opening_earning_assets": 12502937740.0,
+   "opening_interest_bearing_borrowings": 37451420.0,
+   "verdict": "pending \u2014 needs the Egyptian sovereign yield at this origin to test the floor (a corporate cannot borrow below its sovereign)",
+   "year": 2018
+  },
+  {
+   "finance_cost": -52330675.0,
+   "finance_income": 1763573596.0,
+   "implied_borrowing_rate": 2.3848899822468583,
+   "implied_earning_rate": 0.11982415815201089,
+   "opening_earning_assets": 14718013656.0,
+   "opening_interest_bearing_borrowings": 21942595.0,
+   "verdict": "NOT IDENTIFIED \u2014 implied rate is arithmetically impossible",
+   "year": 2019
+  },
+  {
+   "finance_cost": -14045352.0,
+   "finance_income": 1268725655.0,
+   "implied_borrowing_rate": 0.6926113852201076,
+   "implied_earning_rate": 0.087927172416631,
+   "opening_earning_assets": 14429278460.0,
+   "opening_interest_bearing_borrowings": 20278835.0,
+   "verdict": "pending \u2014 needs the Egyptian sovereign yield at this origin to test the floor (a corporate cannot borrow below its sovereign)",
+   "year": 2020
+  }
+ ],
+ "identity_checks": [
+  {
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+   "dpi": 600,
+   "identities": [
+    {
+     "derived": 22310969260.0,
+     "foots": true,
+     "identity": "total assets",
+     "printed": 22310969260.0
+    }
+   ],
+   "page": 3,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2016
+  },
+  {
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+   "dpi": 300,
+   "identities": [
+    {
+     "derived": 1157761224.0,
+     "foots": true,
+     "identity": "total non-current assets",
+     "printed": 1157761224.0
+    },
+    {
+     "derived": 27843992602.0,
+     "foots": true,
+     "identity": "total current assets",
+     "printed": 27843992602.0
+    },
+    {
+     "derived": 29001753826.0,
+     "foots": true,
+     "identity": "total assets",
+     "printed": 29001753826.0
+    },
+    {
+     "derived": 29001753826.0,
+     "foots": true,
+     "identity": "assets = equity + liabilities",
+     "printed": 29001753826.0
+    }
+   ],
+   "page": 3,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2017
+  },
+  {
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+   "dpi": 300,
+   "identities": [
+    {
+     "derived": 3146631681.0,
+     "foots": true,
+     "identity": "total non-current assets",
+     "printed": 3146631681.0
+    },
+    {
+     "derived": 33079122890.0,
+     "foots": true,
+     "identity": "total current assets",
+     "printed": 33079122890.0
+    },
+    {
+     "derived": 36225754571.0,
+     "foots": true,
+     "identity": "total assets",
+     "printed": 36225754571.0
+    },
+    {
+     "derived": 36225754571.0,
+     "foots": true,
+     "identity": "assets = equity + liabilities",
+     "printed": 36225754571.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2018
+  },
+  {
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+   "dpi": 450,
+   "identities": [
+    {
+     "derived": 3951702133.0,
+     "foots": true,
+     "identity": "total non-current assets",
+     "printed": 3951702133.0
+    },
+    {
+     "derived": 38619817856.0,
+     "foots": true,
+     "identity": "total current assets",
+     "printed": 38619817856.0
+    },
+    {
+     "derived": 42571519989.0,
+     "foots": true,
+     "identity": "total assets",
+     "printed": 42571519989.0
+    },
+    {
+     "derived": 42571519989.0,
+     "foots": true,
+     "identity": "assets = equity + liabilities",
+     "printed": 42571519989.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2019
+  },
+  {
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+   "dpi": 450,
+   "identities": [
+    {
+     "derived": 4876981871.0,
+     "foots": true,
+     "identity": "total non-current assets",
+     "printed": 4876981871.0
+    },
+    {
+     "derived": 44093781012.0,
+     "foots": true,
+     "identity": "total current assets",
+     "printed": 44093781012.0
+    },
+    {
+     "derived": 48970762883.0,
+     "foots": true,
+     "identity": "total assets",
+     "printed": 48970762883.0
+    },
+    {
+     "derived": 168629365.0,
+     "foots": true,
+     "identity": "total non-current liabilities",
+     "printed": 168629365.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2020
+  }
+ ],
+ "years": {
+  "2016": {
+   "lines": {
+    "accounts_notes_receivable": 2034577751.0,
+    "advances_from_customers": 9382546247.0,
+    "borrowings_related": 11296127.0,
+    "cash": 3077078395.0,
+    "credit_facilities_ncl": 33948029.0,
+    "development_properties": 10753680883.0,
+    "eosb_provision": 20115209.0,
+    "fixed_assets": 481673322.0,
+    "fixed_assets_under_constr": 142897443.0,
+    "investment_properties": 84592422.0,
+    "investments": 67835636.0,
+    "legal_reserve": 63878774.0,
+    "prepayments_other_recv": 2086660354.0,
+    "provisions_liab_ncl": 53558703.0,
+    "retained_earnings": 796455634.0,
+    "retentions_payable": 214021954.0,
+    "share_capital": 4529338000.0,
+    "total_assets": 22310969260.0,
+    "total_current_assets": 21458460396.0,
+    "total_current_liabilities": 13833374660.0,
+    "total_equity": 8423531362.0,
+    "total_non_current_assets": 852508864.0
+   },
+   "provenance": {
+    "column": "current",
+    "ocr_dpi": 600,
+    "page_index": 3,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2017": {
+   "lines": {
+    "accounts_notes_receivable": 2242874592.0,
+    "advances_from_customers": 12589925776.0,
+    "borrowings_related": 10948935.0,
+    "cash": 4990167462.0,
+    "credit_facilities_cl": 15682421.0,
+    "credit_facilities_ncl": 10820064.0,
+    "deferred_tax_assets": 198099085.0,
+    "development_properties": 11736727039.0,
+    "due_from_related": 2818.0,
+    "due_to_related": 106665120.0,
+    "eosb_provision": 27819413.0,
+    "fixed_assets": 539616495.0,
+    "fixed_assets_under_constr": 301988498.0,
+    "income_tax_payable": 237812881.0,
+    "investment_properties": 118057146.0,
+    "investments": 5269895686.0,
+    "legal_reserve": 148057414.0,
+    "prepayments_other_recv": 3604325005.0,
+    "provisions_liab_cl": 93845275.0,
+    "retained_earnings": 2395849780.0,
+    "retentions_payable": 264871084.0,
+    "share_capital": 4529338000.0,
+    "total_assets": 29001753826.0,
+    "total_current_assets": 27843992602.0,
+    "total_current_liabilities": 18239312663.0,
+    "total_equity": 10723801686.0,
+    "total_non_current_assets": 1157761224.0,
+    "total_non_current_liab": 38639477.0,
+    "trade_payables": 4919561171.0
+   },
+   "provenance": {
+    "column": "current",
+    "ocr_dpi": 300,
+    "page_index": 3,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2018": {
+   "lines": {
+    "accounts_notes_receivable": 2434163451.0,
+    "advances_from_customers": 14690623133.0,
+    "borrowings_related": 11122531.0,
+    "cash": 5325660847.0,
+    "credit_facilities_cl": 479589.0,
+    "credit_facilities_ncl": 10340475.0,
+    "deferred_tax_assets": 309830931.0,
+    "development_properties": 12316514109.0,
+    "due_from_related": 10318.0,
+    "due_to_related": 144690327.0,
+    "eosb_provision": 31491984.0,
+    "fixed_assets": 2071171897.0,
+    "fixed_assets_under_constr": 495136462.0,
+    "income_tax_payable": 329019799.0,
+    "investment_properties": 270492391.0,
+    "investments": 6958189358.0,
+    "legal_reserve": 263070930.0,
+    "prepayments_other_recv": 6044584807.0,
+    "provisions_liab_cl": 63630422.0,
+    "retained_earnings": 4581106588.0,
+    "retentions_payable": 376843488.0,
+    "share_capital": 4529338000.0,
+    "total_assets": 36225754571.0,
+    "total_current_assets": 33079122890.0,
+    "total_current_liabilities": 22041211579.0,
+    "total_equity": 14142710533.0,
+    "total_non_current_assets": 3146631681.0,
+    "total_non_current_liab": 41832459.0,
+    "trade_payables": 6424802290.0
+   },
+   "provenance": {
+    "column": "current",
+    "ocr_dpi": 300,
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2019": {
+   "lines": {
+    "accounts_notes_receivable": 2086227655.0,
+    "advances_from_customers": 17270405232.0,
+    "borrowings_related": 9938360.0,
+    "cash": 3510824546.0,
+    "credit_facilities_cl": 84885.0,
+    "credit_facilities_ncl": 10255590.0,
+    "deferred_tax_assets": 282530579.0,
+    "development_properties": 16495848060.0,
+    "due_from_related": 10318.0,
+    "due_to_related": 168354585.0,
+    "eosb_provision": 37890032.0,
+    "fixed_assets": 2148856278.0,
+    "fixed_assets_under_constr": 958519586.0,
+    "income_tax_payable": 369952503.0,
+    "investment_properties": 561795690.0,
+    "investments": 8832226259.0,
+    "legal_reserve": 434015997.0,
+    "prepayments_other_recv": 7694681018.0,
+    "provisions_liab_cl": 64860193.0,
+    "retained_earnings": 7829062868.0,
+    "retentions_payable": 431537664.0,
+    "share_capital": 4529338000.0,
+    "total_assets": 42571519989.0,
+    "total_current_assets": 38619817856.0,
+    "total_current_liabilities": 26641389960.0,
+    "total_equity": 15881984407.0,
+    "total_non_current_assets": 3951702133.0,
+    "total_non_current_liab": 48145622.0,
+    "trade_payables": 326256538.0
+   },
+   "provenance": {
+    "column": "current",
+    "ocr_dpi": 450,
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2020": {
+   "lines": {
+    "accounts_notes_receivable": 1862012926.0,
+    "advances_from_customers": 20655890322.0,
+    "borrowings_related": 0.0,
+    "cash": 6146324134.0,
+    "credit_facilities_cl": 10255590.0,
+    "credit_facilities_ncl": 0.0,
+    "current_portion_ltl": 167443686.0,
+    "deferred_tax_assets": 300022187.0,
+    "development_properties": 22017785039.0,
+    "due_from_related": 178177121.0,
+    "due_to_related": 36868462.0,
+    "eosb_provision": 36262815.0,
+    "fixed_assets": 2743482268.0,
+    "fixed_assets_under_constr": 974670923.0,
+    "income_tax_payable": 229890199.0,
+    "investment_properties": 858806493.0,
+    "investments": 4621047679.0,
+    "legal_reserve": 520979691.0,
+    "long_term_liabilities": 132366550.0,
+    "prepayments_other_recv": 9268434113.0,
+    "provisions_liab_cl": 61858941.0,
+    "retained_earnings": 11159781608.0,
+    "retentions_payable": 611040576.0,
+    "share_capital": 4529338000.0,
+    "total_assets": 48970762883.0,
+    "total_current_assets": 44093781012.0,
+    "total_equity": 17560392967.0,
+    "total_non_current_assets": 4876981871.0,
+    "total_non_current_liab": 168629365.0,
+    "trade_payables": 9468492775.0
+   },
+   "provenance": {
+    "column": "current",
+    "ocr_dpi": 450,
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  }
+ }
+}

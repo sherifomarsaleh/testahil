@@ -1,0 +1,237 @@
+{
+ "as_reported": {
+  "2017": {
+   "cost_of_revenue": -2797505966.0,
+   "finance_cost": -1392555.0,
+   "finance_income": 1376653874.0,
+   "g_and_a": -269147877.0,
+   "gross_profit": 1713501513.0,
+   "income_tax": -461621162.0,
+   "other_income": 216997097.0,
+   "pbt": 2761891486.0,
+   "profit": 2300270324.0,
+   "provisions": -45474441.0,
+   "provisions_released": 1988481.0,
+   "revenue": 4511007479.0,
+   "selling_marketing": -231234606.0
+  },
+  "2018": {
+   "cost_of_revenue": -3762184682.0,
+   "finance_cost": -536779.0,
+   "finance_income": 1680929938.0,
+   "g_and_a": -455877431.0,
+   "gross_profit": 2579498383.0,
+   "income_tax": -322590648.0,
+   "other_income": 225635088.0,
+   "pbt": 3741491995.0,
+   "profit": 3418901347.0,
+   "provisions": -17731894.0,
+   "provisions_released": 2243283.0,
+   "revenue": 6341683065.0,
+   "selling_marketing": -272668593.0
+  },
+  "2019": {
+   "cost_of_revenue": -3239514598.0,
+   "finance_cost": -52330675.0,
+   "finance_income": 1763573596.0,
+   "g_and_a": -1372422425.0,
+   "gross_profit": 2228412385.0,
+   "income_tax": -619568745.0,
+   "other_income": 229587011.0,
+   "pbt": 2358842619.0,
+   "profit": 1739273874.0,
+   "provisions": -18574842.0,
+   "provisions_released": 5784608.0,
+   "revenue": 5467926983.0,
+   "selling_marketing": -425187039.0
+  },
+  "2020": {
+   "cost_of_revenue": -2964761300.0,
+   "finance_cost": -14045352.0,
+   "finance_income": 1268725655.0,
+   "g_and_a": -539271112.0,
+   "gross_profit": 1718747435.0,
+   "income_tax": -441517166.0,
+   "other_income": 170772915.0,
+   "pbt": 2119925726.0,
+   "profit": 1678408560.0,
+   "provisions": -3360149.0,
+   "provisions_released": 2556624.0,
+   "revenue": 4683508735.0,
+   "selling_marketing": -484200290.0
+  }
+ },
+ "as_restated_one_year_later": {
+  "2016": {
+   "cost_of_revenue": -2406672071.0,
+   "finance_cost": -89801912.0,
+   "finance_income": 581218325.0,
+   "g_and_a": -210865409.0,
+   "gross_profit": 1602253007.0,
+   "income_tax": -121100289.0,
+   "other_income": 115268368.0,
+   "pbt": 1804673075.0,
+   "profit": 1683572786.0,
+   "provisions": -4007501.0,
+   "provisions_released": 626500.0,
+   "revenue": 4008925078.0,
+   "selling_marketing": -190018303.0
+  },
+  "2017": {
+   "cost_of_revenue": -2797505966.0,
+   "finance_cost": -1392555.0,
+   "finance_income": 1376653874.0,
+   "g_and_a": -269147877.0,
+   "gross_profit": 1713501513.0,
+   "income_tax": -461621162.0,
+   "other_income": 216997097.0,
+   "pbt": 2761891486.0,
+   "profit": 2300270324.0,
+   "provisions": -45474441.0,
+   "provisions_released": 1988481.0,
+   "revenue": 4511007479.0,
+   "selling_marketing": -231234606.0
+  },
+  "2018": {
+   "cost_of_revenue": -3762184682.0,
+   "finance_cost": -536779.0,
+   "finance_income": 1680929938.0,
+   "g_and_a": -455877431.0,
+   "gross_profit": 2579498383.0,
+   "income_tax": -322590648.0,
+   "other_income": 225635088.0,
+   "pbt": 3741491995.0,
+   "profit": 3418901347.0,
+   "provisions": -17731894.0,
+   "provisions_released": 2243283.0,
+   "revenue": 6341683065.0,
+   "selling_marketing": -272668593.0
+  },
+  "2019": {
+   "cost_of_revenue": -3416431687.0,
+   "finance_cost": -52330675.0,
+   "finance_income": 1763573596.0,
+   "g_and_a": -1372422425.0,
+   "gross_profit": 2258270518.0,
+   "income_tax": -619568745.0,
+   "other_income": 199728878.0,
+   "pbt": 2358842619.0,
+   "profit": 1739273874.0,
+   "provisions": -18574842.0,
+   "provisions_released": 5784608.0,
+   "revenue": 5674702205.0,
+   "selling_marketing": -425187039.0
+  }
+ },
+ "differences": [
+  {
+   "as_reported": -3239514598.0,
+   "as_restated": -3416431687.0,
+   "delta": -176917089.0,
+   "line": "cost_of_revenue",
+   "year": 2019
+  },
+  {
+   "as_reported": 2228412385.0,
+   "as_restated": 2258270518.0,
+   "delta": 29858133.0,
+   "line": "gross_profit",
+   "year": 2019
+  },
+  {
+   "as_reported": 229587011.0,
+   "as_restated": 199728878.0,
+   "delta": -29858133.0,
+   "line": "other_income",
+   "year": 2019
+  },
+  {
+   "as_reported": 5467926983.0,
+   "as_restated": 5674702205.0,
+   "delta": 206775222.0,
+   "line": "revenue",
+   "year": 2019
+  }
+ ],
+ "eas_48_interim": {
+  "lines": {
+   "cost_of_revenue": {
+    "as_reported": -683485164.0,
+    "as_restated": -738480440.0,
+    "delta": -54995276.0,
+    "pct": -8.046301353221473
+   },
+   "gross_profit": {
+    "as_reported": 326577008.0,
+    "as_restated": 299085494.0,
+    "delta": -27491514.0,
+    "pct": -8.418080062758122
+   },
+   "revenue": {
+    "as_reported": 1010062172.0,
+    "as_restated": 1037565934.0,
+    "delta": 27503762.0,
+    "pct": 2.7229771357084345
+   }
+  },
+  "period": "six months ended 30 June 2020",
+  "post_basis_source": "Emaar-Misr-IR-Reports-Financial-Statements-2021-Q2-EN-Consolidated.pdf",
+  "pre_basis_source": "Emaar-Misr-IR-Reports-Financial-Statements-2020-Q2-EN-Consolidated.pdf"
+ },
+ "footing_checks": {
+  "2017": {
+   "comparative": [
+    true,
+    true,
+    true
+   ],
+   "current": [
+    true,
+    true,
+    true
+   ]
+  },
+  "2018": {
+   "comparative": [
+    true,
+    true,
+    true
+   ],
+   "current": [
+    true,
+    true,
+    true
+   ]
+  },
+  "2019": {
+   "comparative": [
+    true,
+    true,
+    true
+   ],
+   "current": [
+    true,
+    true,
+    true
+   ]
+  },
+  "2020": {
+   "comparative": [
+    true,
+    true,
+    true
+   ],
+   "current": [
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "reporting_entity_by_filing": {
+  "2017": "single entity",
+  "2018": "consolidated",
+  "2019": "consolidated",
+  "2020": "consolidated"
+ }
+}
