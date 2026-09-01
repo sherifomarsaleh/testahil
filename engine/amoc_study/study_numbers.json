@@ -2080,7 +2080,7 @@
     "regressor": "33-name equal-weight EGX composite",
     "why_withdrawn": "A constituent composite is a coverage artefact, not a market. SIGCM clause 6 hard fail; never a fallback and never a tier."
    },
-   "standard_version": "2026.08.23"
+   "standard_version": "2026.09.01"
   }
  },
  "dcf": {
@@ -11668,7 +11668,7 @@
   "[Reachability gate \u2014 rewritten] 177 registered inputs. 139 DRIVE the model. 38 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
   "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 9.10 at a gross margin of 9.37% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",
   "[Fundamental walk-forward] LIGHT scope, 9 scoreable cells over five origins FY2021-FY2025. Majority profit was under-forecast in 100% of cells and the method scored -1.128 against assuming last year's profit repeats \u2014 it did NOT beat no change. No correction was adopted. What it changed in this edition is the volume driver, and the far-year bands it licenses are carried into Appendix A rather than a point.",
-  "[Gates] beta 0.9080 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.08.23."
+  "[Gates] beta 0.9080 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.09.01."
  ],
  "gm_required": {
   "shift": -0.002879698596976875,
@@ -11779,7 +11779,7 @@
   "what_it_changed": "The volume driver. The previous edition grew every product line and drew its ranking from two disclosed halves; the audited five-year record shows tonnage down 18.5% from its FY2022 peak with six of eight lines shrinking, and the walk-forward measures the flat-volume rule as ALREADY over-forecasting by 7.6% in eight of nine cells. The base path is now flat and the bear leg reverts to the five-year mean."
  },
  "gates": {
-  "standard_version": "2026.08.23",
+  "standard_version": "2026.09.01",
   "beta": {
    "ticker": "AMOC",
    "market": "EG",
@@ -11819,7 +11819,7 @@
     "regressor": "33-name equal-weight EGX composite",
     "why_withdrawn": "A constituent composite is a coverage artefact, not a market. SIGCM clause 6 hard fail; never a fallback and never a tier."
    },
-   "standard_version": "2026.08.23"
+   "standard_version": "2026.09.01"
   },
   "ground_up": {
    "ticker": "AMOC",
@@ -11831,7 +11831,7 @@
     "topdown": 0
    },
    "unit_share": 0,
-   "standard_version": "2026.08.23"
+   "standard_version": "2026.09.01"
   },
   "sigcm": [
    "historicals_official_only",
@@ -11846,5 +11846,5 @@
   ],
   "model_study_ok": true
  },
- "standard_version": "2026.08.23"
+ "standard_version": "2026.09.01"
 }

@@ -37,5 +37,5 @@
   "regressor": "33-name equal-weight EGX composite",
   "why_withdrawn": "A constituent composite is a coverage artefact, not a market. SIGCM clause 6 hard fail; never a fallback and never a tier."
  },
- "standard_version": "2026.08.23"
+ "standard_version": "2026.09.01"
 }
