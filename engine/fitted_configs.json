@@ -863,17 +863,17 @@
       "LGES",
       "SAMSUNG"
     ],
-    "windows": 125,
+    "windows": 126,
     "rebuilt_this_run": [],
     "nu": 8.0,
     "width_cal": 1.07,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0025,
+    "market_skill": 0.0018,
     "market_skill_raw_basis": 0.0078,
     "market_ci90": [
-      -0.002,
-      0.011
+      -0.003,
+      0.01
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.537,
@@ -882,9 +882,9 @@
     "per_name": {
       "KAKAO": {
         "nu": 8.0,
-        "width_cal": 1.035,
-        "skill": 0.0031,
-        "skill_raw_basis": 0.0021,
+        "width_cal": 1.042,
+        "skill": 0.0033,
+        "skill_raw_basis": 0.0026,
         "verdict": "PARITY",
         "ci_block2": [
           -0.005,
@@ -894,23 +894,23 @@
       "LGES": {
         "nu": 8.0,
         "width_cal": 1.084,
-        "skill": 0.0118,
-        "skill_raw_basis": 0.0152,
+        "skill": 0.0043,
+        "skill_raw_basis": 0.0084,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.022,
-          0.059
+          -0.026,
+          0.041
         ]
       },
       "SAMSUNG": {
-        "nu": 6.0,
-        "width_cal": 1.084,
-        "skill": -0.0037,
-        "skill_raw_basis": -0.0024,
+        "nu": 8.0,
+        "width_cal": 1.07,
+        "skill": -0.0022,
+        "skill_raw_basis": -0.001,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.013,
-          0.006
+          -0.011,
+          0.007
         ]
       }
     },
@@ -928,7 +928,7 @@
         1.07
       ],
       "w90_sigma": 1.7231,
-      "reason": "G-lono: held-out cov50 0.456 no better than MLE shape"
+      "reason": "G-split: early half does not move toward 50%"
     },
     "coverage_flags": {
       "KAKAO": null,
