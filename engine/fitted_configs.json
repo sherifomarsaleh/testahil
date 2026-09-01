@@ -555,17 +555,17 @@
       "SNB",
       "STC"
     ],
-    "windows": 447,
+    "windows": 449,
     "rebuilt_this_run": [],
     "nu": 12.0,
     "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": -0.002,
+    "market_skill": 0.0,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
-      -0.007,
-      0.004
+      -0.006,
+      0.008
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -586,12 +586,12 @@
       "ALINMA": {
         "nu": 12.0,
         "width_cal": 1.056,
-        "skill": 0.0056,
-        "skill_raw_basis": 0.0036,
+        "skill": 0.0094,
+        "skill_raw_basis": -0.0043,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.011,
-          0.026
+          -0.025,
+          0.051
         ]
       },
       "ARAMCO": {
@@ -607,20 +607,20 @@
       },
       "ELM": {
         "nu": 10.0,
-        "width_cal": 1.063,
-        "skill": 0.0033,
-        "skill_raw_basis": -0.0017,
+        "width_cal": 1.056,
+        "skill": 0.0022,
+        "skill_raw_basis": -0.0025,
         "verdict": "PARITY",
         "ci_block2": [
           -0.018,
-          0.014
+          0.013
         ]
       },
       "EXTRA": {
         "nu": 12.0,
-        "width_cal": 1.07,
-        "skill": -0.0372,
-        "skill_raw_basis": -0.0687,
+        "width_cal": 1.063,
+        "skill": -0.0371,
+        "skill_raw_basis": -0.0674,
         "verdict": "FAIL",
         "ci_block2": [
           -0.063,
@@ -640,35 +640,35 @@
       },
       "RAJHI": {
         "nu": 12.0,
-        "width_cal": 1.056,
-        "skill": 0.0135,
-        "skill_raw_basis": 0.0147,
-        "verdict": "PARITY",
+        "width_cal": 1.049,
+        "skill": 0.0304,
+        "skill_raw_basis": 0.0306,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.004,
-          0.029
+          -0.001,
+          0.064
         ]
       },
       "RIBL": {
         "nu": 12.0,
-        "width_cal": 1.049,
-        "skill": -0.0018,
-        "skill_raw_basis": -0.0039,
+        "width_cal": 1.042,
+        "skill": -0.0024,
+        "skill_raw_basis": -0.0043,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.02,
+          -0.021,
           0.018
         ]
       },
       "RIYADHCABLE": {
         "nu": 12.0,
-        "width_cal": 1.07,
-        "skill": -0.0219,
-        "skill_raw_basis": -0.0218,
+        "width_cal": 1.063,
+        "skill": -0.0214,
+        "skill_raw_basis": -0.0212,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.087,
-          0.009
+          -0.083,
+          0.008
         ]
       },
       "SABIC": {
@@ -684,9 +684,9 @@
       },
       "SAVOLA": {
         "nu": 12.0,
-        "width_cal": 1.07,
+        "width_cal": 1.063,
         "skill": 0.0016,
-        "skill_raw_basis": 0.0012,
+        "skill_raw_basis": 0.0011,
         "verdict": "PARITY",
         "ci_block2": [
           -0.009,
@@ -706,12 +706,12 @@
       },
       "STC": {
         "nu": 12.0,
-        "width_cal": 1.084,
-        "skill": -0.0001,
-        "skill_raw_basis": -0.0009,
+        "width_cal": 1.077,
+        "skill": 0.0006,
+        "skill_raw_basis": -0.0001,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.019,
+          -0.018,
           0.016
         ]
       }
@@ -730,7 +730,7 @@
         1.063
       ],
       "w90_sigma": 1.7295,
-      "reason": "G-improve: gain 0.004 < 0.01"
+      "reason": "G-improve: gain 0.002 < 0.01"
     },
     "coverage_flags": {
       "ACWA": null,
