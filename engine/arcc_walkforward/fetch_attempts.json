@@ -1,0 +1,1404 @@
+{
+ "source": "https://arabiancementcompany.com/investor-relations/financial-information/",
+ "fetched": 128,
+ "seen_not_fetched": 47,
+ "attempts": [
+  {
+   "url": "https://arabiancementcompany.com/investor-relations/financial-information/",
+   "role": "archive-index",
+   "found_pdfs": 175,
+   "http": "200",
+   "bytes": 532441,
+   "ok": true,
+   "secs": 2.31,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2015-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2511349,
+   "ok": true,
+   "secs": 0.96,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2015-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 435205,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2015-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2016-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4756752,
+   "ok": true,
+   "secs": 0.87,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2016-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 731428,
+   "ok": true,
+   "secs": 0.68,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2016-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2017-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4451698,
+   "ok": true,
+   "secs": 0.84,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1H-2017-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2015-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2352441,
+   "ok": true,
+   "secs": 0.74,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2015-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 426846,
+   "ok": true,
+   "secs": 0.52,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2015-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2016-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5219433,
+   "ok": true,
+   "secs": 0.75,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2016-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2017-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5229095,
+   "ok": true,
+   "secs": 0.76,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2017-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 455781,
+   "ok": true,
+   "secs": 0.57,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2017-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2018-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4236402,
+   "ok": true,
+   "secs": 0.77,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2018-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 651623,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q-2018-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2020_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5967906,
+   "ok": true,
+   "secs": 0.74,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2020_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2022_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 6361999,
+   "ok": true,
+   "secs": 0.76,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2022_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2023_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4919565,
+   "ok": true,
+   "secs": 0.87,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2023_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2024_ACC_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1405694,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2024_ACC_Investor_Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 768202,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2024_ACC_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2025_ACC_Investor_Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 793549,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2025_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1437274,
+   "ok": true,
+   "secs": 0.7,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q2025_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2019_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 668985,
+   "ok": true,
+   "secs": 0.64,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2019_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 552124,
+   "ok": true,
+   "secs": 0.53,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2019_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2020_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 259010,
+   "ok": true,
+   "secs": 0.5,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2021_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 316193,
+   "ok": true,
+   "secs": 0.53,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1Q_2022_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 279227,
+   "ok": true,
+   "secs": 0.51,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1q-2021-consolidated-financials-english.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4400265,
+   "ok": true,
+   "secs": 0.74,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/1q-2021-standalone-financials-english.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q-2017-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 469439,
+   "ok": true,
+   "secs": 0.55,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q-2018-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5145546,
+   "ok": true,
+   "secs": 0.73,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q-2018-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 286208,
+   "ok": true,
+   "secs": 0.54,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q-2018-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2019_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1011421,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2019_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2020_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 7330205,
+   "ok": true,
+   "secs": 0.82,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2020_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2021_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1400104,
+   "ok": true,
+   "secs": 0.67,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2021_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 338558,
+   "ok": true,
+   "secs": 0.54,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2021_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2022_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 6890419,
+   "ok": true,
+   "secs": 0.77,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2022_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2023_ACC_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4778223,
+   "ok": true,
+   "secs": 0.78,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2023_ACC_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2024_ACC_Investor_Presentation_.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 802039,
+   "ok": true,
+   "secs": 0.54,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2024_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3642394,
+   "ok": true,
+   "secs": 0.72,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q2024_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q_2019_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 475982,
+   "ok": true,
+   "secs": 0.53,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q_2020_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 333659,
+   "ok": true,
+   "secs": 0.57,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/2Q_2022_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 277145,
+   "ok": true,
+   "secs": 0.5,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q-2017-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 464366,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q-2018-Consolidated-Financials-English-1.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 6255203,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q-2018-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2019_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1821356,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2019_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2020_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2240577,
+   "ok": true,
+   "secs": 0.69,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2020_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2021_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 7450884,
+   "ok": true,
+   "secs": 0.92,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2021_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2022_Consolidated_Financials_English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4183791,
+   "ok": true,
+   "secs": 0.7,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2022_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2023_ACC_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3809242,
+   "ok": true,
+   "secs": 0.76,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2023_ACC_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2024_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3934672,
+   "ok": true,
+   "secs": 0.83,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2024_Investor_Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 862781,
+   "ok": true,
+   "secs": 0.56,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q2024_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q_2018_Earnings_Releae.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q_2019_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 283073,
+   "ok": true,
+   "secs": 0.48,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q_2020_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 334503,
+   "ok": true,
+   "secs": 0.5,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/3Q_2021_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 296735,
+   "ok": true,
+   "secs": 0.48,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q-2017-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 506692,
+   "ok": true,
+   "secs": 0.58,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q2023_ACC_Consolidated_Financials.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 9870687,
+   "ok": true,
+   "secs": 0.91,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q2023_ACC_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q_2018_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 688585,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q_2019_EARNINGS_RELEASEPDF.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 299563,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/4Q_2020_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 328230,
+   "ok": true,
+   "secs": 0.51,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2015-Consolidated-Financials-English-1.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2596850,
+   "ok": true,
+   "secs": 0.64,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2015-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 257926,
+   "ok": true,
+   "secs": 0.55,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2015-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2016-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5454394,
+   "ok": true,
+   "secs": 0.73,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2016-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 818210,
+   "ok": true,
+   "secs": 0.57,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2016-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2017-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 4602636,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/9M-2017-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1H-2015-Investors-presentation-2.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1215238,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1H-2016-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1917656,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1H-2017-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1162505,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1Q-2015-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1219376,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1Q-2016-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1983732,
+   "ok": true,
+   "secs": 0.7,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1Q-2017-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1205051,
+   "ok": true,
+   "secs": 0.68,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-1Q-2018-Investors-presentation-1.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1056163,
+   "ok": true,
+   "secs": 0.72,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-2015-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5039567,
+   "ok": true,
+   "secs": 0.75,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-2015-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-2Q-2018-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1047077,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-3Q18-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1005650,
+   "ok": true,
+   "secs": 0.58,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-9M-2015-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1004930,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-9M-2016-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1140087,
+   "ok": true,
+   "secs": 0.57,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-9M-2017-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1175509,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-FY-2015-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 860821,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-FY-2016-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1241273,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC-FY-2017-Investors-presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1299116,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1H_2020_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1048414,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1H_2021_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1005961,
+   "ok": true,
+   "secs": 0.67,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1H_2022_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1022368,
+   "ok": true,
+   "secs": 0.66,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q2025_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 572887,
+   "ok": true,
+   "secs": 0.56,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2019_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1195247,
+   "ok": true,
+   "secs": 0.66,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2020_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 996047,
+   "ok": true,
+   "secs": 0.68,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2021_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1023362,
+   "ok": true,
+   "secs": 0.62,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2022_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 967130,
+   "ok": true,
+   "secs": 0.63,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2023_Earnings_Release-3.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 346493,
+   "ok": true,
+   "secs": 0.49,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2023_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1282334,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_1Q_2024_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 502479,
+   "ok": true,
+   "secs": 0.53,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_2Q_2019_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1024667,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_2Q_2023_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 300679,
+   "ok": true,
+   "secs": 0.51,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_2Q_2023_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1250055,
+   "ok": true,
+   "secs": 0.64,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_3Q2024_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 493470,
+   "ok": true,
+   "secs": 0.74,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_3Q_19_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1020729,
+   "ok": true,
+   "secs": 0.64,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_3Q_2023_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1287142,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_4Q_2023_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 532961,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_4Q_2023_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1283060,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_9M_2020_Investors_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1015002,
+   "ok": true,
+   "secs": 0.66,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_9M_2021_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1026559,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_9M_2022_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 955013,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY18_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1201449,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY2019_Investor_Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1026094,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY2024_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 504118,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY_2021_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1051634,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY_2022_Investor_presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 950983,
+   "ok": true,
+   "secs": 0.67,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ACC_FY_20_INVESTOR_PRESENTATION.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 993690,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ARCC_FY_2018_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2653459,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/ARCC_FY_2018_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2015-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 373462,
+   "ok": true,
+   "secs": 0.51,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2016-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 5319227,
+   "ok": true,
+   "secs": 0.76,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2016-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 804433,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2016-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2017-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 6536127,
+   "ok": true,
+   "secs": 0.78,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2017-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2020-consolidated-financials-english.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 13839935,
+   "ok": true,
+   "secs": 0.97,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY-2020-standalone-financials-english.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY2024_ACC_Investor_Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 852438,
+   "ok": true,
+   "secs": 0.54,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY2024_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3180841,
+   "ok": true,
+   "secs": 0.72,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY2024_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2019_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3617716,
+   "ok": true,
+   "secs": 0.7,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2019_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2021_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 16630656,
+   "ok": true,
+   "secs": 0.98,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2021_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 293669,
+   "ok": true,
+   "secs": 0.48,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2021_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2022_Consolidated_Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 2984415,
+   "ok": true,
+   "secs": 0.69,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2022_Earnings_Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 282616,
+   "ok": true,
+   "secs": 0.49,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/06/FY_2022_Standalone_Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/10/2Q2025-ACC-Investor-Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 875220,
+   "ok": true,
+   "secs": 0.6,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/11/2Q-2025-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1471941,
+   "ok": true,
+   "secs": 0.59,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/11/2Q-2025-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/11/3Q2025-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1807121,
+   "ok": true,
+   "secs": 0.66,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/11/3Q2025-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2025/11/ACC-3Q2025-Earnings-Release.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 601761,
+   "ok": true,
+   "secs": 0.58,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/02/FY-2025-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 3041501,
+   "ok": true,
+   "secs": 0.75,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/02/FY-2025-Investor-Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 868480,
+   "ok": true,
+   "secs": 0.55,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/02/FY-2025-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/02/Q3-2025-Investor-Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 870591,
+   "ok": true,
+   "secs": 0.65,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/06/Q1-2026-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1059675,
+   "ok": true,
+   "secs": 0.66,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/06/Q1-2026-Investor-Presentation.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1764995,
+   "ok": true,
+   "secs": 0.71,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/06/Q1-2026-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/08/2Q2026-Consolidated-Financials-English.pdf",
+   "role": "primary",
+   "http": "200",
+   "bytes": 1558036,
+   "ok": true,
+   "secs": 0.61,
+   "err": null
+  },
+  {
+   "url": "https://arabiancementcompany.com/wp-content/uploads/2026/08/2Q2026-Standalone-Financials-English.pdf",
+   "role": "seen-not-fetched",
+   "reason": "arabic/standalone/non-financial"
+  }
+ ]
+}

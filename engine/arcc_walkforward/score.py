@@ -1,0 +1,196 @@
+"""ARCC walk-forward — scoring, benchmarks, bootstrap, macro split.
+
+Implements PRE_REGISTRATION_01-09-2026.md §4-§6. Nothing here chooses anything;
+it measures what the pre-registered rules produced.
+"""
+import os, sys, json, math, random
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import panel as P
+import bottom_up as B
+
+SEED = 42
+NBOOT = 2000
+BLOCKS = [2, 3, 4]
+
+DRIVERS = [
+    "vol_local", "vol_export", "vol_total", "price_local", "price_export", "services",
+    "raw_per_t", "transport_per_t", "overhead_per_t", "raw", "transport", "overhead",
+    "mfg_dep", "amort", "revenue", "cogs", "gross_profit", "ga", "provisions",
+    "interest_income", "other_income", "finance_costs", "pbt", "tax", "pat", "majority",
+]
+
+# Declared in the pre-registration §3, so it is reported rather than discovered:
+# these rules are level persistence and are therefore IDENTICAL to FREEZE by
+# construction. Their skill against FREEZE is zero by definition.
+EQUALS_FREEZE = {"vol_export", "mfg_dep", "amort", "provisions", "interest_income",
+                 "other_income", "finance_costs"}
+
+# §5's own check: these carry no CPI, FX, population or coal term, so their macro
+# share MUST come back exactly zero. A non-zero value is a wiring error.
+NO_MACRO_TERM = EQUALS_FREEZE | {"impairments", "disposals", "jv", "fx"}
+
+
+def logerr(proj, act):
+    if proj is None or act is None:
+        return None
+    if proj <= 0 or act <= 0:
+        return None
+    return math.log(proj / act)
+
+
+def build_cells(w=B.W_DEFAULT, foresight=False, cpi_only=False):
+    rows = []
+    for o, h, t in B.cells():
+        p = B.project(o, h, w=w, foresight=foresight, cpi_only=cpi_only)
+        a = B.actual(t)
+        f = B.freeze(o, h)
+        tr, fb = B.trend(o, h)
+        row = {"origin": o, "h": h, "target": t, "era": B.ERA[o],
+               "trend_fallbacks": fb, "e": {}, "ef": {}, "et": {},
+               "unscoreable": []}
+        for d in DRIVERS:
+            row["e"][d] = logerr(p.get(d), a.get(d))
+            row["ef"][d] = logerr(f.get(d), a.get(d))
+            row["et"][d] = logerr(tr.get(d) if tr else None, a.get(d))
+            if row["e"][d] is None:
+                row["unscoreable"].append(d)
+        row["proj"], row["act"], row["frz"] = p, a, f
+        rows.append(row)
+    return rows
+
+
+def agg(rows, key, driver, h=None, era=None):
+    v = [r[key][driver] for r in rows
+         if r[key][driver] is not None and (h is None or r["h"] == h)
+         and (era is None or r["era"] == era)]
+    if not v:
+        return None
+    n = len(v)
+    return {"n": n, "bias": sum(v) / n, "mae": sum(abs(x) for x in v) / n,
+            "share_over": sum(1 for x in v if x > 0) / n}
+
+
+def block_bootstrap(rows, driver, key="e", blocks=BLOCKS, nboot=NBOOT, seed=SEED):
+    """Moving-block bootstrap over ORIGINS. One CI per block length."""
+    out = {}
+    origins = [o for o in B.ORIGINS if any(r["origin"] == o for r in rows)]
+    by_o = {o: [r[key][driver] for r in rows
+                if r["origin"] == o and r[key][driver] is not None] for o in origins}
+    live = [o for o in origins if by_o[o]]
+    if len(live) < 3:
+        return {}
+    for L in blocks:
+        if L > len(live):
+            continue
+        rng = random.Random(seed + L)
+        means = []
+        nblocks = max(1, len(live) // L)
+        for _ in range(nboot):
+            vals = []
+            for _b in range(nblocks):
+                s = rng.randrange(0, len(live) - L + 1)
+                for o in live[s:s + L]:
+                    vals.extend(by_o[o])
+            if vals:
+                means.append(sum(vals) / len(vals))
+        means.sort()
+        lo = means[int(0.025 * len(means))]
+        hi = means[int(0.975 * len(means)) - 1]
+        out[L] = {"lo": lo, "hi": hi, "robust_sign": (lo > 0) == (hi > 0)}
+    return out
+
+
+def skill(rows, driver, bench="ef", h=None):
+    """1 - MAE(method) / MAE(benchmark), on the cells where BOTH exist."""
+    pairs = [(r["e"][driver], r[bench][driver]) for r in rows
+             if r["e"][driver] is not None and r[bench][driver] is not None
+             and (h is None or r["h"] == h)]
+    if not pairs:
+        return None
+    m = sum(abs(a) for a, _ in pairs) / len(pairs)
+    b = sum(abs(x) for _, x in pairs) / len(pairs)
+    if b == 0:
+        return None
+    return {"n": len(pairs), "mae": m, "mae_bench": b, "skill": 1.0 - m / b}
+
+
+def macro_split(driver, h=None):
+    """1 - MAE(perfect foresight) / MAE(knowable), per the pre-registration §5."""
+    k = agg(build_cells(), "e", driver, h=h)
+    f = agg(build_cells(foresight=True), "e", driver, h=h)
+    if not k or not f or k["mae"] == 0:
+        return None
+    return {"knowable_mae": k["mae"], "foresight_mae": f["mae"],
+            "macro_share": 1.0 - f["mae"] / k["mae"], "n": k["n"]}
+
+
+def run():
+    rows = build_cells()
+    out = {"n_cells": len(rows), "drivers": {}, "by_horizon": {}, "skill": {},
+           "bootstrap": {}, "macro": {}, "sensitivity": {}, "eras": {},
+           "unscoreable": {}, "trend_fallbacks": sum(r["trend_fallbacks"] for r in rows)}
+    for d in DRIVERS:
+        out["drivers"][d] = agg(rows, "e", d)
+        out["by_horizon"][d] = {h: agg(rows, "e", d, h=h) for h in B.HORIZONS}
+        out["skill"][d] = {"vs_freeze": skill(rows, d, "ef"),
+                           "vs_trend": skill(rows, d, "et"),
+                           "equals_freeze_by_construction": d in EQUALS_FREEZE}
+        out["bootstrap"][d] = block_bootstrap(rows, d)
+        out["eras"][d] = {e: agg(rows, "e", d, era=e)
+                          for e in sorted({r["era"] for r in rows})}
+        out["unscoreable"][d] = sum(1 for r in rows if r["e"][d] is None)
+    fs = build_cells(foresight=True)
+    for d in DRIVERS:
+        k, f = out["drivers"][d], agg(fs, "e", d)
+        if k and f and k["mae"]:
+            out["macro"][d] = {"knowable_mae": k["mae"], "foresight_mae": f["mae"],
+                               "macro_share": 1.0 - f["mae"] / k["mae"]}
+    for w in B.W_SENSITIVITY:
+        r = build_cells(w=w)
+        out["sensitivity"]["w=%.1f" % w] = {
+            d: agg(r, "e", d) for d in ("raw_per_t", "cogs", "gross_profit", "pbt", "pat")}
+    return rows, out
+
+
+def check_macro_wiring(out):
+    """The pre-registered check on the split itself: a driver with no macro term
+    MUST return a macro share of exactly zero. A non-zero value there is a wiring
+    error in the split, not a finding, and the run fails rather than reports it."""
+    bad = []
+    for d in NO_MACRO_TERM:
+        m = out["macro"].get(d)
+        if m and abs(m["macro_share"]) > 1e-9:
+            bad.append("%s has no macro term but a macro share of %.6f" % (d, m["macro_share"]))
+    return bad
+
+
+if __name__ == "__main__":
+    rows, out = run()
+    bad = check_macro_wiring(out)
+    json.dump(out, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    print("cells %d   trend fallbacks %d" % (out["n_cells"], out["trend_fallbacks"]))
+    print()
+    print("%-18s %4s %8s %8s %7s %9s %9s %8s" %
+          ("driver", "n", "bias", "MAE", "over", "vs freeze", "vs trend", "macro"))
+    for d in DRIVERS:
+        a = out["drivers"][d]
+        if not a:
+            continue
+        sf = out["skill"][d]["vs_freeze"]
+        st = out["skill"][d]["vs_trend"]
+        mc = out["macro"].get(d)
+        eq = out["skill"][d]["equals_freeze_by_construction"]
+        print("%-18s %4d %+8.3f %8.3f %6.0f%% %9s %9s %8s" %
+              (d, a["n"], a["bias"], a["mae"], 100 * a["share_over"],
+               "n/a" if eq else ("%+.3f" % sf["skill"] if sf else "-"),
+               "%+.3f" % st["skill"] if st else "-",
+               "%+.3f" % mc["macro_share"] if mc else "-"))
+    print()
+    if bad:
+        print("MACRO WIRING CHECK FAILED:")
+        for b in bad:
+            print("  ", b)
+        sys.exit(1)
+    print("macro wiring check: PASSED — every driver with no macro term returns exactly zero")
