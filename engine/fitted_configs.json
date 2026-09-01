@@ -555,17 +555,17 @@
       "SNB",
       "STC"
     ],
-    "windows": 451,
+    "windows": 452,
     "rebuilt_this_run": [],
-    "nu": 12.0,
+    "nu": 15.0,
     "width_cal": 1.056,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0054,
+    "market_skill": 0.0057,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
       -0.003,
-      0.014
+      0.015
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -595,14 +595,14 @@
         ]
       },
       "ARAMCO": {
-        "nu": 12.0,
-        "width_cal": 1.063,
-        "skill": -0.0009,
-        "skill_raw_basis": -0.0025,
+        "nu": 15.0,
+        "width_cal": 1.056,
+        "skill": -0.0211,
+        "skill_raw_basis": -0.027,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.022,
-          0.015
+          -0.069,
+          0.019
         ]
       },
       "ELM": {
@@ -617,10 +617,10 @@
         ]
       },
       "EXTRA": {
-        "nu": 12.0,
-        "width_cal": 1.063,
+        "nu": 15.0,
+        "width_cal": 1.056,
         "skill": -0.0119,
-        "skill_raw_basis": -0.04,
+        "skill_raw_basis": -0.0404,
         "verdict": "PARITY",
         "ci_block2": [
           -0.06,
@@ -630,12 +630,12 @@
       "MAADEN": {
         "nu": 12.0,
         "width_cal": 1.063,
-        "skill": 0.0073,
-        "skill_raw_basis": 0.0067,
+        "skill": 0.0141,
+        "skill_raw_basis": -0.0023,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.009,
-          0.028
+          -0.01,
+          0.051
         ]
       },
       "RAJHI": {
@@ -718,20 +718,19 @@
     },
     "auto_refreshed": "2026-09-01",
     "superseded": {
-      "nu": 12.0,
-      "width_cal": 1.063,
+      "nu": 15.0,
+      "width_cal": 1.056,
       "market_verdict": "PARITY",
       "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
       "mle_shape": [
-        12.0,
+        15.0,
         1.056
       ],
-      "w90_sigma": 1.7181,
-      "reason": "MLE shape already closest admissible point",
-      "cov50": 0.4989
+      "w90_sigma": 1.7234,
+      "reason": "G-improve: gain 0.000 < 0.01"
     },
     "coverage_flags": {
       "ACWA": null,
