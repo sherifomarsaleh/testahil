@@ -2172,26 +2172,29 @@ const TICKERS = {
     name: "LG Energy Solution, Ltd.",
     nameAr: "إل جي إنرجي سوليوشن",
     code: "KRX:373220",
-    spot: 314000,
-    spotDate: "close 28 Jul 2026",
+    spot: 367000,
+    spotDate: "close 01 Sep 2026",
     ccy: "KRW",
     fair: { bear: 150000, base: 248000, full: 415000 },      // 28 Jun 2026 — weighted central 248,000 (-25% vs spot); bear = AMPC-cut / EV-weak 150,000; full = recovery / ESS-AI supercycle 415,000. Going-concern DCF parent floor ~146,000 covered in the study text.
     dist: {
-    t20: { label: "1 month", p5: 239661.03, p25: 283872.78, p50: 314576.54, p75: 349157.25, p95: 412942.73, resolve: "2026-08-28" },
-    t60: { label: "3 months", p5: 203112.53, p25: 267452.66, p50: 317026.47, p75: 375503.78, p95: 493606.95, resolve: "2026-10-28" }
-  },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[450000,3,16],[410000,9,28],[370000,25,48],[300000,67,79],[270000,28,49],[240000,8,26]],
-    levels: { res:[325382, 342170, 373453], sup:[310295, 305345, 287000] },
+      t20: { label:"1 month",   p5:289867, p25:335990, p50:367881, p75:402854, p95:467760, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:243429, p25:315961, p50:370458, p75:433962, p95:562623, resolve:"2026-12-01" }
+    },
+    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:8, cal:1.084, mult:1, eff:1.084, on:"2026-09-01" },
+    touch: [ /* descending high -> low */
+      [450000, 13, 37], [410000, 35, 60], [370000, 84, 91], [300000, 12, 35], [270000, 3, 18], [240000, 1, 8]
+    ],
+    levels: { res:[373453, 401086, 422990], sup:[353307, 341940, 325382] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
-      summary: "The price closed 314000 below a falling 20-day (333375), a falling 50-day (373930) and a falling 200-day (405920). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 22395 (~7.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221214592 / \u221216872 / +2280). The 50-day crossed beneath the 200-day 13 sessions ago. Over the last year it has ranged 308000\u2013527000; the last close sits 40% below that high and 2% above that low.",
-      bull: "A daily close back above 325382 would clear the nearest resistance; the next charted level above it is 373453.",
-      bear: "A close below 310295 would break the nearest support; the next charted level below it is 287000."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 367000 above a rising 20-day (357125) and a falling 50-day (345430), but below a falling 200-day (395640). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 17778 (~4.8%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+6399 / +4304 / +2095). Over the last year it has ranged 290500\u2013527000; the last close sits 30% below that high and 26% above that low.",
+      bull: "A daily close back above 373453 would clear the nearest resistance; the next charted level above it is 422990.",
+      bear: "A close below 353307 would break the nearest support; the next charted level below it is 325382."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
-      tech: { data:"2026-07-28", computed:"2026-08-31" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -3221,7 +3224,7 @@ const BANDS = {
   KABO: {mkt:"EG", n:57, hits:54, c50:0.4561, c80:0.8246, c90:0.9474, width:1.383, strength:"long", flag:null},
   Kakao: {mkt:"KR", n:57, hits:49, c50:0.4561, c80:0.7719, c90:0.8596, width:0.988, strength:"long", flag:null},
   LCSW: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8421, c90:0.9123, width:1.422, strength:"long", flag:null},
-  LGES: {mkt:"KR", n:13, hits:11, c50:0.6154, c80:0.8462, c90:0.8462, width:0.863, strength:"market-only", flag:null},
+  LGES: {mkt:"KR", n:14, hits:13, c50:0.5714, c80:0.7857, c90:0.9286, width:0.855, strength:"market-only", flag:null},
   LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, width:1.427, strength:"market-only", flag:null},
   MAADEN: {mkt:"SA", n:58, hits:51, c50:0.5172, c80:0.7759, c90:0.8793, width:1.047, strength:"long", flag:null},
   MODON: {mkt:"AE", n:23, hits:20, c50:0.5652, c80:0.8261, c90:0.8696, width:1.116, strength:"short", flag:null},
@@ -3260,7 +3263,7 @@ const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
   EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
-  KR: {names:3, n:125, c90:0.8800, label:"Korean"},
+  KR: {names:3, n:126, c90:0.8889, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
   SA: {names:13, n:562, c90:0.8701, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
@@ -5299,9 +5302,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
     p5:239661.03, p25:283872.78, p50:314576.54, p75:349157.25, p95:412942.73,
     touch:{ "+5":67, "+10":47, "+15":32, "+20":21, "-5":64, "-10":42 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:370000, realized_high:373500, realized_low:290500,
+    in_90:true, in_50:false, realized_quantile:0.815, median_err:0.1762,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"LGES", asset_class:"other",
@@ -7243,6 +7246,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: LGES, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"LGES", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:367000.0, ccy:"KRW",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:20,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.4895,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.07. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:289867.0, p25:335989.79, p50:367880.67, p75:402854.06, p95:467760.2,
+    touch:{ "+5":63, "+10":41, "+15":26, "+20":16, "-5":60, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LGES", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:367000.0, ccy:"KRW",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:61,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.49,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.07. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:243428.93, p25:315961.14, p50:370458.27, p75:433961.56, p95:562622.78,
+    touch:{ "+5":78, "+10":64, "+15":52, "+20":41, "-5":76, "-10":59 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7532,7 +7564,7 @@ const CALIB = {
   "EGX:TMGH": {w: 57, in50: 44, in90: 93, through: "2026-07-12"},
   "KRX:005930": {w: 55, in50: 40, in90: 91, through: "2026-06-19"},
   "KRX:035720": {w: 57, in50: 47, in90: 86, through: "2026-05-11"},
-  "KRX:373220": {w: 13, in50: 62, in90: 92, through: "2026-05-26"},
+  "KRX:373220": {w: 14, in50: 57, in90: 100, through: "2026-08-20"},
   "NASDAQ:AAPL": {w: 58, in50: 45, in90: 86, through: "2026-07-21"},
   "NASDAQ:NVDA": {w: 58, in50: 50, in90: 88, through: "2026-07-21"},
   "NASDAQ:TSLA": {w: 58, in50: 45, in90: 86, through: "2026-07-21"},
