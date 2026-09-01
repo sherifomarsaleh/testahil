@@ -1,0 +1,2539 @@
+{
+ "TMG_FY2010_Earning_Release": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY2010%20Earning%20Release.pdf",
+  "period_from_filename": [
+   2010,
+   12
+  ],
+  "by_year": {
+   "2010": {
+    "dev_revenue": 608.0,
+    "hosp_revenue": 125.0,
+    "other_revenue": 5339.0,
+    "total_revenue": -3395.0,
+    "dev_cost": -347.0,
+    "hosp_cost": -3817.0,
+    "other_cost": 1522.0,
+    "total_cost": 1522.0,
+    "gross_profit": -423.0,
+    "sga": 0.07,
+    "finance_cost": 60.0,
+    "finance_income": 22.0,
+    "investment_income": 16.0,
+    "pbt": -199.0,
+    "tax": 1004.0
+   },
+   "2009": {
+    "dev_revenue": 540.0,
+    "hosp_revenue": 84.0,
+    "other_revenue": 4822.0,
+    "total_revenue": -2788.0,
+    "dev_cost": -317.0,
+    "hosp_cost": -3138.0,
+    "other_cost": 1685.0,
+    "total_cost": 1685.0,
+    "gross_profit": -326.0,
+    "sga": 7.0,
+    "finance_cost": 72.0,
+    "finance_income": 31.0,
+    "investment_income": 14.0,
+    "pbt": -114.0,
+    "tax": 1199.0
+   }
+  },
+  "prov": {
+   "2010": {
+    "dev_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "sga": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Selling, General and Administrative Expenses",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "pbt": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Net profit before tax",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "tax": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "income tax",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    }
+   },
+   "2009": {
+    "dev_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "sga": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Selling, General and Administrative Expenses",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "pbt": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Net profit before tax",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    },
+    "tax": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "income tax",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2010A",
+      "2009A",
+      "2010A",
+      "2009A"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Earning%20Release%20for%20the%20financial%20year%20ending%20December%2031,2011.pdf",
+  "period_from_filename": [
+   2011,
+   null
+  ],
+  "by_year": {
+   "2011": {
+    "dev_revenue": 4606.0,
+    "hosp_revenue": 348.0,
+    "other_revenue": 144.0,
+    "total_revenue": 5098.0,
+    "dev_cost": -3524.0,
+    "hosp_cost": -284.0,
+    "other_cost": -103.0,
+    "total_cost": -3912.0,
+    "gross_profit": 1187.0,
+    "sga": -325.0,
+    "finance_cost": -185.0,
+    "finance_income": 48.0,
+    "investment_income": 7.0,
+    "da": -144.0
+   },
+   "2010": {
+    "dev_revenue": 4606.0,
+    "hosp_revenue": 608.0,
+    "other_revenue": 126.0,
+    "total_revenue": 5339.0,
+    "dev_cost": -3395.0,
+    "hosp_cost": -347.0,
+    "other_cost": -3912.0,
+    "total_cost": -3817.0,
+    "gross_profit": 1522.0,
+    "sga": -310.0,
+    "finance_cost": -175.0,
+    "finance_income": 58.0,
+    "investment_income": 24.0,
+    "da": -113.0
+   }
+  },
+  "prov": {
+   "2011": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "sga": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Selling, General and Administrative Expenses",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    }
+   },
+   "2010": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "sga": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Selling, General and Administrative Expenses",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 5,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2011A",
+      "2010A",
+      "2011Q",
+      "2010Q"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Full%20Year%20and%20Fourth%20Quarter%20ending%20December%2031,%202015.pdf",
+  "period_from_filename": [
+   2015,
+   null
+  ],
+  "by_year": {
+   "2015": {
+    "dev_revenue": 5090.0,
+    "hosp_revenue": 696.0,
+    "other_revenue": 394.0,
+    "total_revenue": 6180.0,
+    "hosp_cost": -435.0,
+    "other_cost": -315.0,
+    "total_cost": -4051.0,
+    "gross_profit": 2129.0,
+    "finance_cost": -89.49,
+    "da": -129.42
+   },
+   "2014": {
+    "dev_revenue": 4392.0,
+    "hosp_revenue": 544.0,
+    "other_revenue": 335.0,
+    "total_revenue": 5271.0,
+    "hosp_cost": -366.0,
+    "other_cost": -267.0,
+    "total_cost": -3676.0,
+    "gross_profit": 1595.0,
+    "finance_cost": -110.0,
+    "da": -124.0
+   }
+  },
+  "prov": {
+   "2015": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    }
+   },
+   "2014": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2015A",
+      "2014A",
+      "2015Q",
+      "2014Q"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20full%20year%20and%20fourth%20quarter%20ending%20December%2031,%202012%20Earning%20Release.pdf",
+  "period_from_filename": [
+   2012,
+   null
+  ],
+  "by_year": {
+   "2012": {
+    "dev_revenue": 4000.0,
+    "hosp_revenue": 421.0,
+    "other_revenue": 215.0,
+    "total_revenue": 4636.0,
+    "dev_cost": -2929.0,
+    "hosp_cost": -312.0,
+    "other_cost": -167.0,
+    "total_cost": -3408.0,
+    "gross_profit": 1228.0,
+    "finance_cost": -158.0,
+    "finance_income": 53.0,
+    "investment_income": 21.0,
+    "da": -131.0
+   },
+   "2011": {
+    "dev_revenue": 4606.0,
+    "hosp_revenue": 348.0,
+    "other_revenue": 144.0,
+    "total_revenue": 5098.0,
+    "dev_cost": -3524.0,
+    "hosp_cost": -284.0,
+    "other_cost": -103.0,
+    "total_cost": -3912.0,
+    "gross_profit": 1187.0,
+    "finance_cost": -185.0,
+    "finance_income": 48.0,
+    "investment_income": 7.0,
+    "da": -144.0
+   }
+  },
+  "prov": {
+   "2012": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    }
+   },
+   "2011": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "finance_cost": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest expense",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "finance_income": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "interest income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "investment_income": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "investment income",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2012A",
+      "2011A",
+      "2012Q"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_full_year_and_fourth_quarter_2013_Earning_Release": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20full%20year%20and%20fourth%20quarter%202013%20Earning%20Release.pdf",
+  "period_from_filename": [
+   2013,
+   12
+  ],
+  "by_year": {
+   "2013": {
+    "dev_revenue": 4173.2,
+    "hosp_revenue": 374.0,
+    "other_revenue": 311.0,
+    "total_revenue": 4858.2,
+    "dev_cost": -3012.3,
+    "hosp_cost": -298.0,
+    "other_cost": -263.3,
+    "total_cost": -3573.6,
+    "gross_profit": 1284.6,
+    "da": -123.8
+   },
+   "2012": {
+    "dev_revenue": 4000.0,
+    "hosp_revenue": 421.2,
+    "other_revenue": 215.0,
+    "total_revenue": 4636.2,
+    "dev_cost": -2929.4,
+    "hosp_cost": -311.9,
+    "other_cost": -167.1,
+    "total_cost": -3408.4,
+    "gross_profit": 1227.8,
+    "da": -131.1
+   }
+  },
+  "prov": {
+   "2013": {
+    "dev_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    }
+   },
+   "2012": {
+    "dev_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    },
+    "da": {
+     "doc": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2013A",
+      "2012A",
+      "2013Q",
+      "2012Q"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_full_year_and_fourth_quarter_2014_Earning_Release": {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20full%20year%20and%20fourth%20quarter%202014%20Earning%20Release.pdf",
+  "period_from_filename": [
+   2014,
+   12
+  ],
+  "by_year": {
+   "2014": {
+    "dev_revenue": 4392.5,
+    "hosp_revenue": 543.7,
+    "other_revenue": 334.7,
+    "total_revenue": 5270.9,
+    "dev_cost": -3043.3,
+    "hosp_cost": -366.1,
+    "other_cost": -266.6,
+    "total_cost": -3676.1,
+    "gross_profit": 1594.8,
+    "da": -124.4
+   },
+   "2013": {
+    "dev_revenue": 4173.2,
+    "hosp_revenue": 373.5,
+    "other_revenue": 311.0,
+    "total_revenue": 4857.7,
+    "dev_cost": -3012.3,
+    "hosp_cost": -297.5,
+    "other_cost": -263.2,
+    "total_cost": -3573.1,
+    "gross_profit": 1284.6,
+    "da": -123.8
+   }
+  },
+  "prov": {
+   "2014": {
+    "dev_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "da": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    }
+   },
+   "2013": {
+    "dev_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    },
+    "da": {
+     "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+     "page": 4,
+     "route": "text",
+     "label": "Depreciation",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2014Q",
+      "2013Q",
+      "2014A",
+      "2013A"
+     ]
+    }
+   }
+  }
+ },
+ "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016": {
+  "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20Full%20Year%20and%20Fourth%20Quarter%20ending%20December%2031,%202016.pdf",
+  "period_from_filename": [
+   2016,
+   null
+  ],
+  "by_year": {
+   "2016": {
+    "dev_revenue": 5280.0,
+    "hosp_revenue": 741.0,
+    "other_revenue": 529.0,
+    "total_revenue": 6550.0,
+    "dev_cost": -3357.0,
+    "hosp_cost": -364.0,
+    "other_cost": -439.0,
+    "total_cost": -4160.0,
+    "gross_profit": 2390.0
+   },
+   "2015": {
+    "dev_revenue": 5091.0,
+    "hosp_revenue": 696.0,
+    "other_revenue": 394.0,
+    "total_revenue": 6180.0,
+    "dev_cost": -3301.0,
+    "hosp_cost": -435.0,
+    "other_cost": -315.0,
+    "total_cost": -4052.0,
+    "gross_profit": 2129.0
+   }
+  },
+  "prov": {
+   "2016": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    }
+   },
+   "2015": {
+    "dev_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from units sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "hosp_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Revenues from Hotels",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "other_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Other revenues",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "total_revenue": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Total consolidated revenue",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "dev_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Real Estate & Construction Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "hosp_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Hotels Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "other_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Services Cost",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "total_cost": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Total cost of goods sold",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    },
+    "gross_profit": {
+     "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+     "page": 4,
+     "route": "text",
+     "label": "Gross profit",
+     "scale": 1.0,
+     "unit_evidence": "Key Operational Highlights, EGPmn",
+     "columns": [
+      "2016A",
+      "2015A",
+      "2016Q",
+      "2015Q"
+     ]
+    }
+   }
+  }
+ }
+}

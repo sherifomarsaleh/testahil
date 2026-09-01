@@ -1,0 +1,39 @@
+[
+ {
+  "url": "https://talaatmoustafa.com/investor-relations/",
+  "ts": "2026-09-01T08:23:29Z",
+  "status": 200,
+  "bytes": 2071112,
+  "ok": true,
+  "secs": 0.87,
+  "sha256": "c0f578153a84159e976a65280a1231c6231f3bb6b92c380751aa4467d03ea584"
+ },
+ {
+  "url": "https://talaatmoustafa.com/Upload/Earning/TMG%201H-2009%20ER.pdf",
+  "ts": "2026-09-01T08:23:30Z",
+  "ok": false,
+  "error": "HTTPError: HTTP Error 404: Not Found",
+  "secs": 51.03
+ },
+ {
+  "url": "https://talaatmoustafa.com/upload/Earning/TMG%201H-2009%20ER.pdf",
+  "ts": "2026-09-01T08:24:21Z",
+  "ok": false,
+  "error": "HTTPError: HTTP Error 404: Not Found",
+  "secs": 43.5
+ },
+ {
+  "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20Second%20Quarter%202017%20Earning%20Release.pdf",
+  "ts": "2026-09-01T08:25:05Z",
+  "ok": false,
+  "error": "HTTPError: HTTP Error 404: Not Found",
+  "secs": 57.19
+ },
+ {
+  "url": "https://talaatmoustafa.com/Upload/TMG%20Holding%20Second%20Quarter%202017%20Earning%20Release.pdf",
+  "ts": "2026-09-01T08:26:02Z",
+  "ok": false,
+  "error": "HTTPError: HTTP Error 404: Not Found",
+  "secs": 50.72
+ }
+]
