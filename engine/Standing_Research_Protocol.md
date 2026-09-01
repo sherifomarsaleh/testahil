@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2281,26 +2281,27 @@ to revisit this clause. It is written down so the revisit does not depend on any
 
 ### The reporting threshold
 
-*Added 1-Sep-2026, per instruction — "Don't show me the number if it is within 10%. If the
-difference is more than 10%, then show me the number."*
+*Added 1-Sep-2026, per instruction — "tell me the number if it is more than 10% only."*
 
-**Within 10% either way: merge on green and do not quote the fair value.** An ordinary result does
-not need reporting, and a number quoted every time is a number nobody reads — the same reasoning
-[R-CAL-02] uses when it says nothing at all about a cone that held about as often as it promised.
+**Within 10% either way: merge on green and say nothing about the fair value.** An ordinary result
+does not need reporting, and a number quoted at the end of every one of ninety names is a number
+nobody reads by the tenth. This is the reasoning [R-CAL-02] already uses when it says nothing at all
+about a cone that held as often as it promised: **silence is the honest response to an ordinary
+outcome**, and it is what makes the exception legible.
 
-**More than 10% either way: the message carries the central, the spot and the gap.**
+**More than 10% either way: the closing message carries the central, the spot and the gap** — called
+out, not buried.
 
-**Symmetric on purpose, and deliberately unlike [R-GAP-01].** The *audit* gate fires only BELOW the
-price — one-sided by instruction — and [R-GAP-01] records as its own stated cost that an
-over-optimistic study therefore gets no automatic audit and nothing else supplies one. This
-threshold fires **both** ways, so a central far above the price no longer passes unremarked even
-though no gate stops it. Reporting is not auditing, and half a counterweight declared is better
-than none.
+**Symmetric on purpose, and deliberately unlike [R-GAP-01].** That *audit* gate fires only below the
+price — one-sided by instruction — and records as its own stated cost that an over-optimistic study
+gets no automatic audit and nothing else supplies one. This threshold fires **both** ways, so a
+central far above the price stops passing unremarked.
 
-**Merging is not gated on this clause, and the two must not be confused.** [R-GAP-01] already blocks
-a study more than 10% below the price at CI until its `GAP_REVIEW` exists, so the audit happens
-before the merge regardless of what is reported. This clause governs what reaches the user, never
-what reaches `main`.
+**Reporting is not auditing, and the two must not be confused.** The merge does not wait for a
+reply, so this clause buys a chance to catch a bad answer *after* the fact, never before it.
+Merging is not gated on it either: [R-GAP-01] already blocks a study more than 10% below the price
+at CI until its `GAP_REVIEW` exists, so the audit happens before the merge regardless of what is
+reported. This clause governs what reaches the user, never what reaches `main`.
 
 ### What is unchanged
 
