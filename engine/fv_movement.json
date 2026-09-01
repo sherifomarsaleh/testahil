@@ -82,6 +82,27 @@
    "ticker": "AMOC",
    "tier": "reissue"
   },
+  "EGCH": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-01",
+    "fair": {
+     "base": 3.64,
+     "bear": 0,
+     "full": 15.47
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 13.98,
+    "spot_date": "close 6 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "EGCH",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",
