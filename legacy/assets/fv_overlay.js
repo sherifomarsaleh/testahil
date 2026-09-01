@@ -236,6 +236,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "QGTS",
+   "name": "Nakilat",
+   "code": "QSE:QGTS",
+   "ccy": "QAR",
+   "spot": 4.31,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 58,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.71,
+   "fv_base": 4.29,
+   "fv_full": 6.4,
+   "gap_base_pct": -0.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.084344,
+    "mu_h": 0.002317,
+    "G": {
+     "bear": -5.5,
+     "base": -0.06,
+     "full": 4.69
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.4613,
+     "full": 0.0006
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.8337,
+     "full": 0.001
+    },
+    "required_cagr": {
+     "bear": -0.9962,
+     "base": -0.0543,
+     "full": 113.9297
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0019
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.144913,
+    "mu_h": 0.011534,
+    "G": {
+     "bear": -3.2,
+     "base": -0.03,
+     "full": 2.73
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0035,
+     "base": 0.4478,
+     "full": 0.0088
+    },
+    "p_touch": {
+     "bear": 0.0061,
+     "base": 0.8944,
+     "full": 0.0145
+    },
+    "required_cagr": {
+     "bear": -0.8437,
+     "base": -0.0184,
+     "full": 3.862
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00373
+   },
+   "market": "QA"
+  },
+  {
    "ticker": "CCAP",
    "name": "Qalaa Holdings",
    "code": "EGX:CCAP",
@@ -970,98 +1062,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00187
    },
    "market": "AE"
-  },
-  {
-   "ticker": "QGTS",
-   "name": "Nakilat",
-   "code": "QSE:QGTS",
-   "ccy": "QAR",
-   "spot": 4.165,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 23,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.71,
-   "fv_base": 4.29,
-   "fv_full": 6.4,
-   "gap_base_pct": 3.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.081473,
-    "mu_h": 0.002973,
-    "G": {
-     "bear": -5.27,
-     "base": 0.36,
-     "full": 5.27
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0003,
-     "base": 0.3516,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0004,
-     "base": 0.6028,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": -0.9942,
-     "base": 0.426,
-     "full": 172.2924
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00165
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.139708,
-    "mu_h": 0.010651,
-    "G": {
-     "bear": -3.08,
-     "base": 0.21,
-     "full": 3.07
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0042,
-     "base": 0.4369,
-     "full": 0.0052
-    },
-    "p_touch": {
-     "bear": 0.0073,
-     "base": 0.7719,
-     "full": 0.0088
-    },
-    "required_cagr": {
-     "bear": -0.8208,
-     "base": 0.1256,
-     "full": 4.5752
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00252
-   },
-   "market": "QA"
   },
   {
    "ticker": "PHDC",
