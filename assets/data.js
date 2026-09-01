@@ -3688,9 +3688,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
     p5:3725, p25:3948, p50:4102, p75:4263, p95:4516,
     touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":30, "-10":5 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:4602.15, realized_high:4697.1, realized_low:3996.05,
+    in_90:false, in_50:false, realized_quantile:null, median_err:0.1219,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
@@ -7243,6 +7243,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: GOLD, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:4369.32, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.2097,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (q=0 is SOURCED, not defaulted: a spot metal pays no holder yield — the lease rate is a borrower’s cost, not a return to the holder — so the carry is rf alone.) XAU live fit nu=12.0, width_cal=0.958. rf_live 3.63% Fed funds midpoint schedule (USD cost-of-carry anchor). No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on XAU’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 65) size the cone only.",
+    p5:3982.91, p25:4222.87, p50:4381.36, p75:4548.44, p95:4825.14,
+    touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":29, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:4369.32, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:65,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.2065,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (q=0 is SOURCED, not defaulted: a spot metal pays no holder yield — the lease rate is a borrower’s cost, not a return to the holder — so the carry is rf alone.) XAU live fit nu=12.0, width_cal=0.958. rf_live 3.63% Fed funds midpoint schedule (USD cost-of-carry anchor). No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on XAU’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 65) size the cone only.",
+    p5:3752.26, p25:4139.43, p50:4411.09, p75:4702.87, p95:5185.39,
+    touch:{ "+5":59, "+10":32, "+15":15, "+20":7, "-5":51, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7371,25 +7400,28 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الذهب",          // Arabic display name (AR feed)
- name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 27 Jul 2026", ccy:"USD",
+ name:"Gold", code:"XAU/USD", spot:4369, spotDate:"close 01 Sep 2026", ccy:"USD",
  fair:{ bear:4200, base:4600, full:5000 },
- dist:{
-   t20:{ label:"1 month",  p5:3731.05, p25:3954.13, p50:4103.08, p75:4258.48, p95:4514.88, resolve:"2026-08-27" },
-   t60:{ label:"3 months", p5:3516.74, p25:3876.91, p50:4129.38, p75:4397.44, p95:4852.47, resolve:"2026-10-27" },
+ dist: {
+   t20: { label:"1 month",   p5:3983, p25:4223, p50:4381, p75:4548, p95:4825, resolve:"2026-10-01" },
+   t60: { label:"3 months",  p5:3752, p25:4139, p50:4411, p75:4703, p95:5185, resolve:"2026-12-01" },
    t252:{ label:"12 months", p5:3139.64, p25:3778.26, p50:4241.75, p75:4761.14, p95:5721.35, resolve:"2027-06-25" }
  },
- hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
- touch:[[4800,1,11],[4600,4,22],[4500,9,31],[4300,33,58],[4200,57,75],[3800,15,36],[3700,6,23],[3600,2,14],[3500,1,8]],
- levels: { res:[4230, 4382, 4577], sup:[3967, 3420, 3270] },
+ hz: { h1:22, h3:65, l1:"1 month", l3:"3 months", cal:true },
+ fit: { nu:12, cal:0.958, mult:1, eff:0.958, on:"2026-09-01" },
+ touch: [ /* descending high -> low */
+   [4800, 9, 32], [4600, 32, 57], [4500, 54, 73], [4300, 67, 79], [4200, 39, 59], [3800, 2, 12], [3700, 1, 7], [3600, 0, 4], [3500, 0, 2]
+ ],
+ levels: { res:[4501, 4577, 4697], sup:[4209, 3973, 3420] },
  tech: {
-   trend: "Mixed against the moving-average stack, below a flat 200-day; fresh death-cross",
-   summary: "The price closed 4091 below a falling 50-day (4206) and a flat 200-day (4494), but above a falling 20-day (4077). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 86 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221234 / \u221250 / +16). The 50-day crossed beneath the 200-day 24 sessions ago. Over the last year it has ranged 3311\u20135595; the last close sits 27% below that high and 24% above that low.",
-   bull: "A daily close back above 4230 would clear the nearest resistance; the next charted level above it is 4577.",
-   bear: "A close below 3967 would break the nearest support; the next charted level below it is 3270."
+   trend: "Mixed against the moving-average stack, below a rising 200-day",
+   summary: "The price closed 4369 below a rising 20-day (4445) and a rising 200-day (4533), but above a rising 50-day (4218). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 101 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+82 / +100 / \u221217). Over the last year it has ranged 3628\u20135595; the last close sits 22% below that high and 20% above that low.",
+   bull: "A daily close back above 4501 would clear the nearest resistance; the next charted level above it is 4697.",
+   bear: "A close below 4209 would break the nearest support; the next charted level below it is 3420."
  },
  asof: {
-   mc:   { data:"2026-07-27", computed:"2026-07-27" },
-   tech: { data:"2026-07-27", computed:"2026-08-31" }
+   mc:   { data:"2026-09-01", computed:"2026-09-01" },
+   tech: { data:"2026-09-01", computed:"2026-09-01" }
  },
  files:{
    study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
