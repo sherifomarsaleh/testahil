@@ -61,10 +61,10 @@
     "width_cal": 0.958,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0091,
+    "market_skill": 0.0093,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
-      -0.005,
+      -0.004,
       0.021
     ],
     "market_verdict": "PARITY",
@@ -339,12 +339,12 @@
       "OCDI": {
         "nu": 5.0,
         "width_cal": 0.958,
-        "skill": 0.0329,
-        "skill_raw_basis": 0.0562,
-        "verdict": "BOUNDARY(PARITY-flagged)",
+        "skill": 0.0393,
+        "skill_raw_basis": 0.0549,
+        "verdict": "PARITY",
         "ci_block2": [
-          -0.005,
-          0.072
+          -0.009,
+          0.076
         ]
       },
       "OIH": {
