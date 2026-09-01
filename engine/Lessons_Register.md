@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**86 lessons**, of which 61 bind on every study, 20 on a class of company, and 5 on a single name.
+**88 lessons**, of which 63 bind on every study, 20 on a class of company, and 5 on a single name.
 
-By how they were learned: 33 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
+By how they were learned: 33 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 9 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -688,6 +688,26 @@ It is tempting to treat any consistent miss as something a multiplier can fix. T
 > **What it cost, or how we know.** Applied -0.108 at origin FY2022; average miss changed -0.108.
 
 > **What would overturn it.** A driver whose correction degrades out of sample and is nevertheless shown to be a calibration problem rather than a specification one.
+
+### L-062 · A sensitivity that does not reproduce the headline when nothing is changed is a second model.
+
+Every study has a block that re-values the company under a different assumption. If that block rebuilds the calculation instead of reusing it, it will drift from the answer it is supposed to be testing — and it will drift silently, because nobody compares a sensitivity to the base case. Call the function with nothing changed and require it to return the published number.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, ARCC walk-forward, date not recorded
+
+> **What it cost, or how we know.** On ARCC the re-valuation function discounted the terminal value at the last explicit year's mid-year factor while the headline used the end-of-window factor. Called with no change it returned 57.27 against a published 55.21, so every sensitivity and every contested judgement in the study was quoted on a basis 3.7% more generous than the number it was compared against. The assertion that now enforces it caught a SECOND instance on its first run, when a new income line was added to the headline and not to the rebuild.
+
+> **What would overturn it.** Nothing. A sensitivity that cannot reproduce its own base case is measuring something else.
+
+### L-063 · If every observation you have includes growth spending, they are a CEILING on maintenance, not a midpoint.
+
+When the only capital-spending figures available are years that also carried expansion projects, those figures are the most maintenance could possibly have been. Setting the maintenance assumption in the middle of that band puts it above some of the observations and treats an upper bound as a central estimate.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, ARCC walk-forward, date not recorded
+
+> **What it cost, or how we know.** ARCC's input note observed that FY2024 (USD 3.70/t) and FY2025 (USD 3.23/t) 'both carry the alternative-fuel and silo programmes' and then set maintenance at USD 4.00/t — above both. The H1-2026 cash-flow statement settled the direction by splitting the spend: EGP 102.9mn of property, plant and equipment against EGP 505.5mn of assets under construction, so 83% of it was the growth programme. Resetting the anchor to the most recent full year's total was worth EGP 0.84 on the central.
+
+> **What would overturn it.** A disclosure that separates maintenance from growth capital directly, which makes the inference unnecessary.
 
 
 ---

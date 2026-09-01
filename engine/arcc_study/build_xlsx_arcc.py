@@ -371,6 +371,10 @@ inp('Services as a share of goods revenue, recalibrated on the half', 'svccal',
     CAL['svc_share'], NUM4)
 inp("Depreciation correction from this name's own fundamental walk-forward",
     'wfdep', IN['wf_dep_correction'], NUM4)
+inp('Export subsidy as a share of export revenue, FY2025 DISCLOSED rate', 'subr',
+    IN['export_subsidy_fy25'] / IN['rev_exp_fy25'], NUM4)
+inp('Other income excluding the export subsidy, FY2025', 'othres',
+    IN['oth_inc_fy25'] - IN['export_subsidy_fy25'], NUM3)
 inp('Q1-2026 dividends payable', 'q1div', IN['divpay_q1_26'], NUM0)
 inp('Q1-2026 finance costs', 'q1fc', IN['fincost_q1_26'], NUM0)
 
@@ -588,7 +592,9 @@ for i in range(5):
     putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['margin'][i], PCT)
     putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}*{A['wfdep']}", F['dna'][i], NUM0)
-    putf(wsD, f'{c}9', f"={c}7-{c}8", F['ebit'][i], NUM0)
+    putf(wsD, f'{c}9', f"={c}7-{c}8+{A['subr']}*'Unit Build'!{BUC[i+1]}60"
+         f"+{A['subr']}*'Unit Build'!{BUC[i+1]}61+{A['othres']}*{A[f'infl{i+1}']}",
+         F['ebit'][i], NUM0)
     putf(wsD, f'{c}10', f"={A['taxe']}", TAXE, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
     putf(wsD, f'{c}12', f"={c}8", F['dna'][i], NUM0)
@@ -672,9 +678,13 @@ CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'],
        ('Cost of equity  (rf* + beta × premium)', 'C39',
         f"=C38+{A['beta']}*{A['erp']}", W['ke_exp'], PCT2),
        ('WACC — explicit window', 'C40', "=(1-C43)*C39+C43*C42", W['wacc_exp'], PCT2),
-       ('Cost of debt, blended by currency', 'C41',
-        f"=({A['dcib']}*{A['kdegp']}+{A['dnbe']}*({A['eur']}+0.03)"
-        f"+{A['debrd']}*({A['eur']}+0.0435)+{A['dlease']}*{A['kdegp']})/C44",
+       # THE POUND-EQUIVALENT cost of the euro book: the euro legs carry the
+       # expected pound depreciation, because these cash flows are in pounds and
+       # a foreign coupon inside a local-nominal WACC is a currency mismatch
+       # rather than a cheap borrowing.
+       ('Cost of debt, blended by currency, POUND-EQUIVALENT', 'C41',
+        f"=({A['dcib']}*{A['kdegp']}+{A['dnbe']}*({A['eur']}+0.03+{A['dep']})"
+        f"+{A['debrd']}*({A['eur']}+0.0435+{A['dep']})+{A['dlease']}*{A['kdegp']})/C44",
         W['kd'], PCT2),
        ('Cost of debt after tax', 'C42', f"=C41*(1-{A['tax']})", W['kd_at'], PCT2),
        ('Debt weight  D/(D+E)', 'C43', "=C44/(C44+C45)", W['wd_gross'], PCT2),
@@ -810,7 +820,12 @@ for i in range(5):
     putf(wsI, f'{c}14', f"=DCF!{DC[i]}7", F['ebitda'][i], NUM0, green=True, bold=True)
     putf(wsI, f'{c}15', f"={c}14/{c}5", F['margin'][i], PCT)
     putf(wsI, f'{c}13', f"=DCF!{DC[i]}8", F['dna'][i], NUM0, green=True)
-    putf(wsI, f'{c}11', f"={c}14-{c}13", F['ebit'][i], NUM0, bold=True)
+    # EBIT carries other operating income here too — the export subsidy at its
+    # DISCLOSED FY2025 rate plus the non-subsidy remainder. Leaving it out of one
+    # sheet and not another is how a workbook comes to hold two models.
+    _oi = (f"{A['subr']}*'Unit Build'!{BUC[i+1]}60+{A['subr']}*'Unit Build'!{BUC[i+1]}61"
+           f"+{A['othres']}*{A[f'infl{i+1}']}")
+    putf(wsI, f'{c}11', f"={c}14-{c}13+{_oi}", F['ebit'][i], NUM0, bold=True)
     putf(wsI, f'{c}12', f"={c}11", F['ebit'][i], NUM0)
     putf(wsI, f'{c}6', f"=-({c}5-{c}14-{A[f'ga{HK[2]}']}*{A[f'infl{i+1}']}/{A['infl0']})", None, NUM0)
     # FY2026 opens on the audited FY2025 cash LESS the FY2025 dividend declared and

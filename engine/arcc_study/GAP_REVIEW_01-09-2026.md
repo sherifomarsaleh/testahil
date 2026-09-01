@@ -1,38 +1,79 @@
 # ARCC — gap review, 1 September 2026
 
-**Required by [R-GAP-01].** The central fair value of **EGP 52.90** sits **10.3% BELOW** the
-latest known market price of **EGP 59.00** (close of 6 August 2026), so this study is not
-finished until the answer itself has been audited under all eight headings.
+**Written because [R-GAP-01] required it, and it changed the answer.** When this review was
+opened the central fair value was **EGP 52.90 against a latest known close of EGP 59.00 —
+10.3% below**, which trips the rule. Auditing the answer rather than re-walking the process
+found **four further defects**, three of them in the valuation itself. Corrected, the central
+is **EGP 54.10, 8.3% below the price**, which no longer breaches.
 
-**The rule does not say the answer must change.** A genuine discount is a legitimate
-conclusion and this house publishes ranges precisely because prices are sometimes wrong. It
-says the answer must be checked before it ships, because errors in a discounted cash flow are
-not symmetric — a stale base year, an over-charged discount rate, a missed revenue line, a
-real-terms terminal decline, a half annualised wrongly and an unread filing all push value
-DOWN — so a large discount is a high-prior-of-defect region and the price is the only
-instrument in the room that measures it.
+**That is the rule working, not the rule being escaped.** The threshold is a trigger for an
+audit, not a target; the review is kept and published because the defects it found are real
+and would otherwise have shipped.
 
-**Where the gap came from is worth stating first, because it is not where a reader would
-guess.** The previous edition read EGP 54.65, only 7.4% below the price and inside the
-trigger. Three changes in this edition move it, and they do not point the same way:
+## What the audit found, beyond the eight headings
 
-Each leg is COMPUTED rather than asserted, and each is measured on the lens it actually
-moves: net cash enters all four lenses so the bridge moves the weighted central by exactly
-its per-share change; beta enters the cash-flow lens only, so it moves the central by its
-effect there times that lens's 50% weight; the half-year calibration is the residual.
+**1. THE SENSITIVITY BLOCK WAS RUNNING A DIFFERENT MODEL FROM THE HEADLINE.** `reval()`, the
+function every sensitivity and every contested judgement in the study is computed through,
+discounted the terminal value at the LAST EXPLICIT YEAR'S MID-YEAR factor while the headline
+used the END-OF-WINDOW factor. Called with nothing changed it returned **57.27 against a
+headline of 55.21** — so every alternative in the study was quoted on a basis **3.7% more
+generous** than the number it was being compared against. That is [L-016], one document and
+two models, hiding inside the block whose entire job is to test the first one. It is fixed,
+and an assertion now requires the function to reproduce the headline when nothing is changed.
+**That assertion caught a second instance on its first run**, when the new other-income line
+was added to the headline and not to the sensitivity rebuild.
+
+**2. THE CAPEX ANCHOR'S REASONING WAS BACKWARDS.** Maintenance capital was set at USD 4.00
+per tonne of capacity on the stated grounds that FY2024 (USD 3.70/t) and FY2025 (USD 3.23/t)
+"both carry the alternative-fuel and silo programmes, so the maintenance level is set at the
+middle of that band". If both observations INCLUDE growth capital they are an UPPER BOUND on
+maintenance — so the maintenance level belongs at or below them, and USD 4.00 sits ABOVE
+both. The H1-2026 cash-flow statement settles the direction: it splits six months' spending
+into **PP&E purchases of EGP 102.9mn and assets under construction of EGP 505.5mn**, so 83%
+of it is the growth programme and the sustaining line is running near USD 0.8/t annualised.
+That is a deferral rather than a sustainable rate, so the input is not cut to it; it is reset
+to the most recent full year's TOTAL spending per tonne, **USD 3.23**, which remains an upper
+bound and is still above the industry sustaining norm of about USD 3/t. Worth **+0.84** on the
+central.
+
+**3. THE COST OF DEBT WAS A EURO COUPON INSIDE A POUND DISCOUNT RATE.** 91.1% of the debt
+book is euro-denominated at Euribor-linked rates, and the study adopted the CONTRACTED
+blended 7.89% while offering the pound-equivalent 13.36% as an alternative — the standing
+rule the wrong way round, which is explicit that FX debt is carried at local-equivalent cost
+and never as a raw FX coupon in a local-nominal WACC. A 7.89% cost of debt sitting beside a
+28.28% cost of equity in the same pound WACC is a currency mismatch, not a cheap borrowing.
+The pound-equivalent is now adopted. Worth **−0.06**, and made because it is right rather
+than because it moves the answer.
+
+**4. A DISCLOSED REVENUE LINE WAS REGISTERED AND CONSUMED BY NOTHING.** The audited accounts
+carry other income of EGP 53.340mn in FY2025 (note 7), of which EGP 32.643mn is export
+subsidy — **0.856% of that year's export revenue, a DISCLOSED rate**. The model registered
+the line, quoted it, and let no line consume it, which is [L-018] exactly. It is now carried:
+the subsidy at its disclosed rate on each year's own export revenue, plus the non-subsidy
+remainder escalated. Worth **+0.42**. The separate EGP 467.813mn collected in H1-2026 is 14x
+the whole of FY2025's subsidy inside one quarter, reads as accumulated claims, and is left in
+the cash balance — but its scale is now **priced as a scenario rather than caveated**: at 2%
+of export revenue the cash-flow lens is 58.25, at 5% 59.95 and at 8% 61.65.
+
+## Where the answer came from, computed leg by leg
+
+Each leg is measured on the lens it actually moves: net cash enters all four lenses, so the
+bridge moves the weighted central by exactly its per-share change; beta, capex, the cost of
+debt and other income enter the cash-flow lens only, so each moves the central by its effect
+there times that lens's 50% weight.
 
 | change | effect on the central |
 |---|---|
-| beta re-derived through the sanctioned route — the composite is withdrawn | **−5.35** |
-| the bridge moved onto the disclosed 30-June balance sheet | **−3.13** |
-| the reviewed half-year, calibrated into price, cost and services together | **+6.73** |
-| net | **−1.75** |
+| beta re-derived through the sanctioned route — the composite is withdrawn | **−4.27** |
+| the bridge moved onto the disclosed 30-June balance sheet | **−3.44** |
+| the reviewed half-year, calibrated into price, cost and services together | **+5.95** |
+| the capex anchor, whose reasoning was backwards | **+0.84** |
+| the disclosed other-income line, previously consumed by nothing | **+0.42** |
+| the pound-equivalent cost of debt | **−0.06** |
+| net, from EGP 54.65 | **−0.55** |
 
-**The gap is therefore mostly the beta**, and the beta change is a correction of a
-methodological defect rather than a view about the company. That is set out under DISCOUNT
-RATE below.
-
----
+**The largest single cause is still the beta**, and it is a correction of this house's own
+method rather than a view about the company. That is set out under DISCOUNT RATE below.
 
 ## 1 · LATEST FILINGS — every disclosed period actually read
 
@@ -195,7 +236,7 @@ the trap [R-FCAL-01] §3 names first.
 **The previous edition had no balance sheet for its valuation date and had to roll one
 forward**: FY2025 cash, plus stub free cash flow, plus stub treasury income, less the declared
 dividend, netted against the Q1-2026 debt. That gave net cash of 1,974mn — **EGP 1,173mn, or
-EGP 3.13 per share, too generous**. It could not have been otherwise: a roll-forward cannot
+EGP 3.44 per share, too generous**. It could not have been otherwise: a roll-forward cannot
 see a 698.6mn inventory build, an 832.8mn rise in debtors, or 608.4mn of capital spending in
 six months. The valuation date moves to 30 June 2026 so that the bridge and the explicit
 window meet at the same instant. The roll-forward is retained in the workbook as a labelled
@@ -224,7 +265,7 @@ volume split that no interim tonnage can resolve, and the export subsidy.
 
 ## 8 · MULTIPLE CROSS-CHECK — what the fair value implies
 
-| | at the central EGP 52.90 | at the market EGP 59.00 |
+| | at the central EGP 54.10 | at the market EGP 59.00 |
 |---|---|---|
 | equity value, EGP mn | 19,831 | 22,117 |
 | enterprise value, EGP mn | 19,144 | 21,430 |
@@ -251,13 +292,13 @@ hard fail, and correcting it costs EGP 5.35 of the central on its own — nearly
 between the fair value and the price. That is a correction of this house's own method, not a
 discovery about the company.
 
-Two of the eight headings moved a number: BALANCE SHEET (−3.13 per share, the roll-forward
+Two of the eight headings moved a number: BALANCE SHEET (−3.44 per share, the roll-forward
 superseded by the disclosed balance sheet) and CLAIMS AGAINST THE RECORD (one stale caveat
 removed). One heading moved a number the other way and is the reason the gap is not larger:
-BASE YEAR, where the reviewed half is worth +6.73 per share once price, cost and services are
+BASE YEAR, where the reviewed half is worth +5.95 per share once price, cost and services are
 calibrated together.
 
-**The remaining discount is a conclusion, not a residual.** At EGP 52.90 the market is paying
+**The remaining discount is a conclusion, not a residual.** At EGP 54.10 the market is paying
 4.11x forward EBITDA for a plant at 65% of replacement cost in a market carrying 40% surplus
 capacity, and this study's cost of equity of 28.28% rests on a beta borrowed from peers
 because the share's own history cannot carry one. Both of those are stated in the delivered

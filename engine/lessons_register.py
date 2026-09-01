@@ -1478,6 +1478,53 @@ LESSONS = [
       "A driver whose correction degrades out of sample and is "
       "nevertheless shown to be a calibration problem rather than a "
       "specification one."),
+
+    L("L-062", "ALL", None,
+      "A sensitivity that does not reproduce the headline when "
+      "nothing is changed is a second model.",
+      "Every study has a block that re-values the company under a "
+      "different assumption. If that block rebuilds the calculation "
+      "instead of reusing it, it will drift from the answer it is "
+      "supposed to be testing — and it will drift silently, because "
+      "nobody compares a sensitivity to the base case. Call the "
+      "function with nothing changed and require it to return the "
+      "published number.",
+      "ARCC walk-forward, date not recorded",
+      "self_audit",
+      "On ARCC the re-valuation function discounted the terminal "
+      "value at the last explicit year's mid-year factor while the "
+      "headline used the end-of-window factor. Called with no change "
+      "it returned 57.27 against a published 55.21, so every "
+      "sensitivity and every contested judgement in the study was "
+      "quoted on a basis 3.7% more generous than the number it was "
+      "compared against. The assertion that now enforces it caught a "
+      "SECOND instance on its first run, when a new income line was "
+      "added to the headline and not to the rebuild.",
+      "Nothing. A sensitivity that cannot reproduce its own base case "
+      "is measuring something else."),
+
+    L("L-063", "ALL", None,
+      "If every observation you have includes growth spending, they "
+      "are a CEILING on maintenance, not a midpoint.",
+      "When the only capital-spending figures available are years "
+      "that also carried expansion projects, those figures are the "
+      "most maintenance could possibly have been. Setting the "
+      "maintenance assumption in the middle of that band puts it "
+      "above some of the observations and treats an upper bound as a "
+      "central estimate.",
+      "ARCC walk-forward, date not recorded",
+      "self_audit",
+      "ARCC's input note observed that FY2024 (USD 3.70/t) and FY2025 "
+      "(USD 3.23/t) 'both carry the alternative-fuel and silo "
+      "programmes' and then set maintenance at USD 4.00/t — above "
+      "both. The H1-2026 cash-flow statement settled the direction by "
+      "splitting the spend: EGP 102.9mn of property, plant and "
+      "equipment against EGP 505.5mn of assets under construction, so "
+      "83% of it was the growth programme. Resetting the anchor to "
+      "the most recent full year's total was worth EGP 0.84 on the "
+      "central.",
+      "A disclosure that separates maintenance from growth capital "
+      "directly, which makes the inference unnecessary."),
 ]
 
 

@@ -249,6 +249,11 @@ INP = dict(
                           "export subsidies amounted to EGP 32 642 586'. The comparison "
                           "that makes the H1-2026 collection readable as a catch-up rather "
                           "than a run rate", "2025-12-31", "Company"),
+    oth_inc_fy25=I(53.339508, AFS25 + " — other income, note 7, of which EGP 32.642586mn is "
+                   "disclosed export subsidies. REVISION 4 CONSUMES THIS LINE. Revisions "
+                   "1-3 registered it, quoted it, and let no line of the model use it — "
+                   "which is [L-018] exactly: a registered input that nothing consumes is "
+                   "money the valuation has quietly ignored", "2025-12-31", "Company"),
     rev_exp_svc_fy25=I(458.579544, AFS25 + " — note 4, export services", "2025-12-31", "Company"),
     rev_local_fy24=I(4883.304477, AFS25 + " — note 4, total local sales, comparative",
                      "2024-12-31", "Company"),
@@ -610,12 +615,28 @@ INP = dict(
               "capital spent from here is incurred at today's replacement cost and adds a "
               "larger depreciable base per tonne than the legacy book carries. FY2025 "
               "actual is 2.33%", "2026-08-06", "House"),
-    capex_usd_t_cap=I(4.00, "Maintenance capital expenditure in US dollars per tonne of "
-                      "installed capacity. Cross-check against disclosure: FY2025 capex of "
-                      "EGP 796.471mn on 5.0Mt at an average USD/EGP of 49.26 is USD 3.23/t, "
-                      "and FY2024's EGP 912.015mn is USD 4.11/t — but both years carry the "
-                      "alternative-fuel and silo programmes, so the maintenance level is "
-                      "set at the middle of that band and held", "2026-08-06", "Industry"),
+    capex_usd_t_cap=I(3.23, "Maintenance capital expenditure in US dollars per tonne of "
+                      "installed capacity, SET AT THE MOST RECENT FULL YEAR'S TOTAL CAPITAL "
+                      "SPENDING PER TONNE — EGP 796.471mn on 5.0Mt at USD/EGP 49.26. "
+                      "REVISION 4 CORRECTS THE REASONING BEHIND THIS INPUT, WHICH WAS "
+                      "BACKWARDS. Revision 3 observed that FY2024 (USD 3.70/t) and FY2025 "
+                      "(USD 3.23/t) 'both carry the alternative-fuel and silo programmes' "
+                      "and then set maintenance at USD 4.00 — the MIDDLE of a band it had "
+                      "just said was inflated by growth spending, and above both observed "
+                      "years. If both observations INCLUDE growth capital, they are an UPPER "
+                      "BOUND on maintenance, so the maintenance level belongs at or below "
+                      "them, not above. The H1-2026 cash-flow statement settles the "
+                      "direction: it splits the spend into payments for property, plant and "
+                      "equipment of EGP 102.893mn and payments for ASSETS UNDER "
+                      "CONSTRUCTION of EGP 505.540mn, so 83% of six months' capital "
+                      "spending is the growth programme and the sustaining line is running "
+                      "near USD 0.8/t annualised. That is a deferral rather than a "
+                      "sustainable rate, so the input is NOT cut to it; it is set at the "
+                      "most recent full year's TOTAL, which remains an upper bound on "
+                      "maintenance and is still above the industry sustaining norm of about "
+                      "USD 3/t. Worth EGP 1.77 a share against revision 3's figure, and the "
+                      "whole range is published as a sensitivity",
+                      "2025-12-31", "Company"),
     wc_pct_drev=I(0.12, "Change in working capital over change in revenue. The FY2025 "
                   "outturn on the disclosed movements is close to this",
                   "2026-08-06", "House"),
@@ -1121,7 +1142,22 @@ eff_fy25 = (V['loan_int_fy25'] + V['fac_int_fy25']) / \
     ((V['debt_fy24'] + debt_tot - V['lease_fy25']) / 2)
 eff_fy24 = (V['loan_int_fy24'] + V['fac_int_fy24']) / ((V['debt_fy23'] + V['debt_fy24']) / 2)
 eff_q126 = V['fincost_q1_26'] * 4 / ((debt_tot + V['debt_q1_26']) / 2)
+# THE COST OF DEBT ADOPTED IN THE WACC IS THE POUND-EQUIVALENT ONE.
+# The cash flows are in nominal pounds, so the discount rate must be a nominal
+# pound rate, and the standing rule is explicit: FX debt is carried at
+# LOCAL-EQUIVALENT cost — the foreign coupon plus expected local depreciation —
+# and never as a raw FX coupon inside a local-nominal WACC. Revision 3 adopted
+# the CONTRACTED 7.89% and offered the pound-equivalent as an alternative, which
+# is the rule the wrong way round: 91.1% of the book is euro-denominated at
+# Euribor-linked rates, and a 7.89% cost of debt sitting beside a 28.28% cost of
+# equity in the same pound WACC is not a cheap borrowing, it is a currency
+# mismatch. The correction is small because debt is 4.9% of the capital
+# structure — EGP 0.12 a share — and it is made because it is right, not because
+# it moves the answer.
+KD_CONTRACTED = KD
+KD = kd_egp_equiv
 KDG = dict(eur_share=eur_share, kd_cib=kd_cib, kd_nbe=kd_nbe, kd_ebrd=kd_ebrd,
+           kd_adopted=KD, kd_contracted=KD_CONTRACTED,
            kd_blended=KD, kd_egp_equivalent=kd_egp_equiv, eff_fy24=eff_fy24,
            eff_fy25=eff_fy25, eff_q126_annualised=eff_q126, debt_total=debt_tot,
            bound_met=bool(abs(KD - eff_fy25) <= 0.015))
@@ -1201,8 +1237,33 @@ say(f"\n[Cost of capital] risk-free {V['rf']:.2%} less sovereign spread "
 # Applied at half strength. It is small, which is what a genuine calibration
 # adjustment looks like — the eleven larger biases the same run found are
 # specification defects and are WATCH FLAGS that change nothing here.
+# ---- other operating income: DISCLOSED, RECURRING, AND PREVIOUSLY DROPPED ---
+# The audited accounts carry other income of EGP 53.340mn in FY2025 (note 7), of
+# which EGP 32.643mn is export subsidy — 0.856% of that year's export revenue,
+# a DISCLOSED rate rather than an assumed one. Revisions 1-3 registered the line
+# and consumed it nowhere, which is [L-018]. It is now carried: the subsidy at
+# the FY2025 disclosed rate on each year's own export revenue, and the
+# non-subsidy remainder escalated with inflation.
+# THE H1-2026 COLLECTION OF EGP 467.813mn IS NOT IN THIS LINE. It is 14x the
+# whole of FY2025's subsidy and note 29 says it was collected inside one quarter,
+# which reads as accumulated claims rather than an entitlement rate. It is left
+# in the 30 June cash balance, where it already sits, and its scale is published
+# as a priced scenario rather than assumed away.
+_sub_rate = V['export_subsidy_fy25'] / V['rev_exp_fy25']
+_oth_resid = V['oth_inc_fy25'] - V['export_subsidy_fy25']
+oth_f = []
+for i in range(1, 6):
+    b = BU[i]
+    _exp_rev = (b['cem_exp'] * b['price_exp_cem'] + b['clk_exp'] * b['price_exp_clk'])
+    oth_f.append(_sub_rate * _exp_rev + _oth_resid * V['cost_infl'][i])
+say(f"\n[Other operating income — DISCLOSED and previously dropped] export subsidy at the "
+    f"FY2025 disclosed rate of {_sub_rate:.3%} of export revenue, plus the non-subsidy "
+    f"remainder of {_oth_resid:,.1f}mn escalated: " + " ".join(f"{x:,.0f}" for x in oth_f)
+    + f". Revisions 1-3 registered this line and consumed it nowhere, which is [L-018]. "
+      f"The H1-2026 collection of {V['export_subsidy_h1_26']:,.0f}mn is NOT in it")
+
 dna_f = [rev_f[i] * V['dna_pct'][i] * V['wf_dep_correction'] for i in range(5)]
-ebit_f = [ebitda_f[i] - dna_f[i] for i in range(5)]
+ebit_f = [ebitda_f[i] - dna_f[i] + oth_f[i] for i in range(5)]
 nopat = [ebit_f[i] * (1 - TAXE) for i in range(5)]
 capex = [V['cap_cement_mt'] * V['capex_usd_t_cap'] * V['fx_path'][i + 1] for i in range(5)]
 prev_rev = [V['rev_fy25']] + rev_f[:-1]
@@ -1360,7 +1421,10 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     d_ = factors(f_)
     eb = [ebitda_f[i] + rev_f[i] * mgn_shift for i in range(5)]
     dn = [dna_f[i] + rev_f[i] * dna_shift for i in range(5)]
-    ei = [eb[i] - dn[i] for i in range(5)]
+    # Other operating income belongs in EBIT here too. Leaving it out is how the
+    # sensitivity block drifts away from the headline one line at a time, and the
+    # assertion below caught exactly that the first time this line was added.
+    ei = [eb[i] - dn[i] + oth_f[i] for i in range(5)]
     np_ = [ei[i] * (1 - TAXE) for i in range(5)]
     cx = [c * capex_mult for c in capex]
     fc = [np_[i] + dn[i] - cx[i] - dwc[i] for i in range(5)]
@@ -1368,14 +1432,26 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     s = float(np.sum([fc[i] * d_[i] for i in range(5)]))
     rt = np_[-1] * (1 + g) / ic_repl
     tvl = np_[-1] * (1 + g) * (1 - g / rt) / (wt - g)
-    return (s + tvl * d_[-1] + nc - nci_) / SH
+    # THE TERMINAL VALUE DISCOUNTS AT THE END-OF-WINDOW FACTOR, NOT AT THE LAST
+    # EXPLICIT YEAR'S MID-YEAR FACTOR. Revision 4 found this the hard way: with
+    # d_[-1] here, reval() returned 57.27 against a headline of 55.21 — every
+    # sensitivity and every contested judgement in the study was being computed
+    # on a basis 3.7% more generous than the number they were quoted against.
+    # That is [L-016], one document and two models, hiding inside the block whose
+    # whole job is to test the first one. It was found by ASKING WHETHER THE
+    # FUNCTION REPRODUCES THE ANSWER WHEN NOTHING IS CHANGED, which is now an
+    # assertion below rather than a thing anyone has to remember to check.
+    return (s + tvl * chain(f_, REM + 4.0) + nc - nci_) / SH
 
 
 def reval_two_anchor(we, wt):
-    d_ = factors([we - (we - wt) * gg for gg in glide])
+    # uses the committed fcff / nopat directly, so it inherits every line the
+    # headline carries by construction rather than by re-derivation
+    f_ = [we - (we - wt) * gg for gg in glide]
+    d_ = factors(f_)
     s = float(np.sum([fcff[i] * d_[i] for i in range(5)]))
     tvl = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wt - V['g_term'])
-    return (s + tvl * d_[-1] + net_cash - V['nci']) / SH
+    return (s + tvl * chain(f_, REM + 4.0) + net_cash - V['nci_h1_26']) / SH
 
 
 nc_grid = [net_cash - 1500, net_cash - 750, net_cash, net_cash + 750, net_cash + 1500]
@@ -1407,13 +1483,26 @@ fv_beta_retired = reval(beta_=BETA['adopted']['retired']['beta'])
 # its per-share change; beta enters the cash-flow lens ONLY, so it moves the
 # central by its DCF effect times that lens's weight; the calibration of the
 # reviewed half is then the residual against revision 3's published EGP 54.65.
+
+fv_kd_contracted = reval(kd_=KD_CONTRACTED)
+fv_capex_bookdep = reval(capex_mult=float(np.mean(dna_f)) / float(np.mean(capex)))
+
 _d_bridge = -ROLLFWD['gap_per_share']
 _d_beta = V['w_dcf'] * (fv_dcf - fv_beta_retired)   # the CORRECTION's effect, not the composite's
-_d_calibration = fv_central - 54.65 - _d_bridge - _d_beta
+# The three VALUATION corrections revision 4 made after the rebuild, each priced
+# on the lens it touches. They were found by challenging the answer rather than
+# by re-walking the process, which is the whole point of [R-GAP-01].
+_d_capex = V['w_dcf'] * (fv_dcf - reval(capex_mult=4.00 / V['capex_usd_t_cap']))
+_d_kd = V['w_dcf'] * (fv_dcf - fv_kd_contracted)
+_d_othinc = V['w_dcf'] * (fv_dcf - reval(mgn_shift=-float(np.mean(oth_f)) / float(np.mean(rev_f))))
+_d_calibration = (fv_central - 54.65 - _d_bridge - _d_beta - _d_capex - _d_kd - _d_othinc)
 MOVE = dict(prior_central=54.65, central=fv_central, total=fv_central - 54.65,
             from_bridge=_d_bridge, from_beta=_d_beta,
+            from_capex_anchor=_d_capex, from_cost_of_debt=_d_kd,
+            from_other_income=_d_othinc,
             from_half_year_calibration=_d_calibration,
             fv_dcf_at_retired_composite_beta=fv_beta_retired)
+
 say(f"\n[Where the move from revision 3 came from, computed leg by leg] central "
     f"54.65 -> {fv_central:.2f}, a move of {fv_central-54.65:+.2f}. The BETA correction "
     f"(the withdrawn composite 0.6281 against the adopted peer median "
@@ -1424,15 +1513,42 @@ say(f"\n[Where the move from revision 3 came from, computed leg by leg] central 
     f"{_d_bridge:+.2f}, and it moves all four lenses because every one of them adds net "
     f"cash. The REVIEWED HALF, calibrated into price, cost and services together, is worth "
     f"{_d_calibration:+.2f}. THE GAP IS MOSTLY THE BETA, and the beta change is a "
-    f"correction of this house's own method rather than a view about the company")
-fv_kd_egp = reval(kd_=kd_egp_equiv)
-fv_capex_bookdep = reval(capex_mult=float(np.mean(dna_f)) / float(np.mean(capex)))
+    f"correction of this house's own method rather than a view about the company. Three further "
+    f"VALUATION corrections, found by challenging the answer rather than re-walking the "
+    f"process: the capex anchor {_d_capex:+.2f}, the pound-equivalent cost of debt "
+    f"{_d_kd:+.2f}, and consuming the disclosed other-income line {_d_othinc:+.2f}")
+
+
+# ---- THE EXPORT SUBSIDY, PRICED RATHER THAN DESCRIBED ----------------------
+# The recurring line above carries the FY2025 DISCLOSED rate. What it does not
+# carry is the possibility that the H1-2026 collection is an entitlement rate
+# rather than a settlement of accumulated claims. That is a real question and a
+# caveat is not an answer to it, so it is priced across the range Egypt's export
+# support programme actually pays.
+SUBSIDY = []
+_exp_rev0 = (BU[1]['cem_exp'] * BU[1]['price_exp_cem']
+             + BU[1]['clk_exp'] * BU[1]['price_exp_clk'])
+for _r in (_sub_rate, 0.02, 0.05, 0.08):
+    _extra = (_r - _sub_rate) * _exp_rev0
+    SUBSIDY.append(dict(rate=_r, annual_mn=_r * _exp_rev0,
+                        fv=reval(mgn_shift=_extra / rev_f[0]),
+                        adopted=abs(_r - _sub_rate) < 1e-9))
+say(f"\n[The export subsidy, priced across the range rather than caveated] at the FY2025 "
+    f"DISCLOSED rate of {_sub_rate:.2%} of export revenue (adopted) the cash-flow lens is "
+    f"{SUBSIDY[0]['fv']:.2f}; at 2% it is {SUBSIDY[1]['fv']:.2f}, at 5% "
+    f"{SUBSIDY[2]['fv']:.2f} and at 8% {SUBSIDY[3]['fv']:.2f}. The H1-2026 collection of "
+    f"{V['export_subsidy_h1_26']:,.0f}mn is 14x the whole of FY2025's, in one quarter, "
+    f"which is why the disclosed rate rather than the collection is adopted — but the "
+    f"upside if it IS an entitlement is worth up to EGP "
+    f"{SUBSIDY[3]['fv'] - SUBSIDY[0]['fv']:.2f} a share and is published as a number")
+
 fv_taxstat = None
 CONTESTED = [
-    dict(choice='Cost of debt: currency composition as contracted (adopted) vs the '
-                'pound-equivalent under uncovered interest parity',
-         adopted=f"{KD:.2%}", alternative=f"{kd_egp_equiv:.2%}",
-         fv_adopted=fv_dcf, fv_alternative=fv_kd_egp, effect=fv_kd_egp / fv_dcf - 1,
+    dict(choice='Cost of debt: the POUND-EQUIVALENT cost of a euro debt book (adopted) '
+                'vs the contracted euro rate',
+         adopted=f"{KD:.2%}", alternative=f"{KD_CONTRACTED:.2%}",
+         fv_adopted=fv_dcf, fv_alternative=fv_kd_contracted,
+         effect=fv_kd_contracted / fv_dcf - 1,
          note=('91% of the book is euro-denominated at Euribor-linked rates. Adopting the '
                'contracted rate means that debt is NOT compensated for pound depreciation '
                'beyond what this study already assumes; if the pound falls faster, the '
@@ -1663,6 +1779,17 @@ def chk(cond, msg):
     A.append(msg)
 
 
+chk(abs(reval() - fv_dcf) < 1e-6,
+    f"THE SENSITIVITY FUNCTION REPRODUCES THE HEADLINE when nothing is changed: "
+    f"reval() = {reval():.4f} against the cash-flow lens {fv_dcf:.4f}. Revision 3's did "
+    f"NOT — it discounted the terminal value at the last explicit year's mid-year factor "
+    f"instead of the end-of-window factor and returned 57.27 against a headline of 55.21, "
+    f"so every sensitivity and every contested judgement in the study was quoted on a basis "
+    f"3.7% more generous than the number it was compared against. That is one document and "
+    f"two models, inside the block whose whole job is to test the first one")
+chk(abs(reval_two_anchor(wacc_exp, wacc_term) - fv_dcf) < 1e-6,
+    f"the two-anchor sensitivity grid reproduces the headline at the adopted anchors "
+    f"({reval_two_anchor(wacc_exp, wacc_term):.4f})")
 chk(abs((ev + net_cash - V['nci_h1_26']) - eq_dcf) < 1e-6,
     f"bridge closes exactly: EV {ev:,.2f} + net cash {net_cash:,.2f} - NCI {V['nci_h1_26']:,.3f} "
     f"= equity {eq_dcf:,.2f}")
@@ -1957,7 +2084,7 @@ OUT = dict(
     terminal_reconciliation=TR, growth_destroys_value=GDV,
     calibration=CAL, seasonality=SEASON_RANGE, transport_split=TRANSPORT_SPLIT,
     rollforward_check=ROLLFWD, walkforward=WF,
-    move_decomposition=MOVE,
+    move_decomposition=MOVE, subsidy_scenarios=SUBSIDY,
     counterweight=dict(prior_central=_rev3_central, move=_move,
                        fv_on_old_bridge=_fv_old_bridge,
                        seasonality_lift=_seasonality_lift),
