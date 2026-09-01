@@ -6764,16 +6764,16 @@ const FV_OVERLAY = {
    "name": "Riyad Bank",
    "code": "TADAWUL:1010",
    "ccy": "SAR",
-   "spot": 20.92,
-   "anchor_date": "2026-07-26",
+   "spot": 20.9,
+   "anchor_date": "2026-08-31",
    "fv_asof": "2026-07-09",
-   "fv_lag_days": 17,
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 20.85,
    "fv_base": 26.61,
    "fv_full": 33.24,
-   "gap_base_pct": 27.2,
+   "gap_base_pct": 27.3,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
@@ -6786,13 +6786,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.058889,
-    "mu_h": 0.002864,
+    "h_sessions": 21,
+    "sigma_h": 0.055308,
+    "mu_h": 0.003344,
     "G": {
-     "bear": -0.06,
-     "base": 4.09,
-     "full": 7.86
+     "bear": -0.04,
+     "base": 4.37,
+     "full": 8.39
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -6800,46 +6800,46 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.0394,
-     "base": 16.939,
-     "full": 257.9358
+     "bear": -0.0283,
+     "base": 17.1461,
+     "full": 260.9249
     },
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00119
+    "selftest_max_dev": 0.00067
    },
    "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.104189,
-    "mu_h": 0.010461,
+    "h_sessions": 63,
+    "sigma_h": 0.102051,
+    "mu_h": 0.010471,
     "G": {
-     "bear": -0.03,
-     "base": 2.31,
-     "full": 4.44
+     "bear": -0.02,
+     "base": 2.37,
+     "full": 4.55
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4435,
-     "base": 0.0162,
+     "bear": 0.4462,
+     "base": 0.0145,
      "full": 0.0002
     },
     "p_touch": {
-     "bear": 0.8957,
-     "base": 0.0271,
-     "full": 0.0004
+     "bear": 0.9024,
+     "base": 0.0242,
+     "full": 0.0003
     },
     "required_cagr": {
-     "bear": -0.0133,
-     "base": 1.6178,
-     "full": 5.3738
+     "bear": -0.0095,
+     "base": 1.6278,
+     "full": 5.3982
     },
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00125
+    "selftest_max_dev": 0.00126
    },
    "market": "SA"
   },

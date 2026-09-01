@@ -2634,28 +2634,29 @@ const TICKERS = {
     name: "Riyad Bank",
     nameAr: "مصرف الرياض",
     code: "TADAWUL:1010",
-    spot: 20.92,
-    spotDate: "close 26 Jul 2026",
+    spot: 20.90,
+    spotDate: "close 31 Aug 2026",
     ccy: "SAR",
     fair: { bear: 20.85, base: 26.61, full: 33.24 },      // 09 Jul 2026 — weighted central 26.61 (+31.5% vs spot 20.23). Lenses: DDM (primary, 30%) 23.62, residual income (multi-period build, 20%) 33.24, FCFE (equity DCF, 15%) 32.18, relative multiples (20%) 24.62, normalized earnings power (15%) 20.85. bear/full = normalized floor / residual-income ceiling. Swing factors: the NIM path through the SAMA/Fed easing cycle and whether Riyad Bank's ~16% ROE persists (excess-return lenses) or fades toward the ~10.3% cost of equity (the market's implied ~1.2x book read).
     dist: {
-      t20: { label:"1 month",   p5:19.08, p25:20.23, p50:20.98, p75:21.78, p95:23.11, resolve:"2026-08-26" },
-      t60: { label:"3 months",  p5:17.84, p25:19.79, p50:21.14, p75:22.58, p95:25.04, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:19.17, p25:20.24, p50:20.97, p75:21.73, p95:22.95, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:17.90, p25:19.81, p50:21.12, p75:22.51, p95:24.95, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [23.26, 6, 28], [22.25, 24, 52], [21.24, 71, 84], [19.22, 10, 32], [18.21, 2, 13], [17.20, 0, 5]
+      [23.26, 5, 27], [22.25, 21, 51], [21.24, 68, 83], [19.22, 9, 32], [18.21, 1, 13], [17.20, 0, 4]
     ],
-    levels: { res:[21.41, 22.41, 24.01], sup:[20.57, 19.47, 18.98] },
+    levels: { res:[21.44, 22.41, 24.01], sup:[20.57, 20.16, 19.61] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a flat 200-day; fresh death-cross",
-      summary: "The price closed 20.92 above a flat 20-day (20.50), a flat 50-day (20.50) and a flat 200-day (20.58). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.30 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.13 / +0.06 / +0.08). The 50-day crossed beneath the 200-day 11 sessions ago. Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
-      bull: "A daily close back above 21.41 would clear the nearest resistance; the next charted level above it is 24.01.",
-      bear: "A close below 20.57 would break the nearest support; the next charted level below it is 18.98."
+      trend: "Trading above the whole moving-average stack, on a flat 200-day",
+      summary: "The price closed 20.90 above a flat 20-day (20.50), a flat 50-day (20.49) and a flat 200-day (20.59). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.27 (~1.3%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.11 / +0.04 / +0.06). Over the last year it has ranged 18.98\u201322.41; the last close sits 7% below that high and 10% above that low.",
+      bull: "A daily close back above 21.44 would clear the nearest resistance; the next charted level above it is 24.01.",
+      bear: "A close below 20.57 would break the nearest support; the next charted level below it is 19.61."
     },
     asof: {
-      mc:   { data:"2026-07-26", computed:"2026-07-28" },
-      tech: { data:"2026-07-26", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/RIBL_Valuation_Study_09-07-2026_public.docx?v=0709d",
@@ -3232,7 +3233,7 @@ const BANDS = {
   QNB: {mkt:"QA", n:58, hits:55, c50:0.5690, c80:0.8621, c90:0.9483, width:0.992, strength:"long", flag:null},
   RAYA: {mkt:"EG", n:57, hits:53, c50:0.7193, c80:0.9123, c90:0.9298, width:2.011, strength:"long", flag:null},
   RELIANCE: {mkt:"IN", n:57, hits:53, c50:0.5614, c80:0.9123, c90:0.9298, width:1.085, strength:"long", flag:null},
-  RIBL: {mkt:"SA", n:57, hits:45, c50:0.3860, c80:0.7018, c90:0.7895, width:0.946, strength:"long", flag:"narrow"},
+  RIBL: {mkt:"SA", n:58, hits:45, c50:0.3966, c80:0.7241, c90:0.7759, width:0.963, strength:"long", flag:"narrow"},
   RIYADHCABLE: {mkt:"SA", n:10, hits:9, c50:0.7000, c80:0.8000, c90:0.9000, width:1.083, strength:"market-only", flag:null},
   RMDA: {mkt:"EG", n:22, hits:21, c50:0.5909, c80:0.9091, c90:0.9545, width:1.369, strength:"short", flag:null},
   SABIC: {mkt:"SA", n:57, hits:52, c50:0.4561, c80:0.7895, c90:0.9123, width:1.052, strength:"long", flag:null},
@@ -3255,7 +3256,7 @@ const BAND_MARKETS = {
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
-  SA: {names:13, n:557, c90:0.8725, label:"Saudi"},
+  SA: {names:13, n:558, c90:0.8710, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
   XAU: {names:2, n:120, c90:0.9333, label:"precious-metals"},
   XPT: {names:1, n:58, c90:0.9483, label:"precious-metals"},
@@ -5045,9 +5046,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:19.08, p25:20.23, p50:20.98, p75:21.78, p95:23.11,
     touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":29, "-10":5 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:21.06, realized_high:21.12, realized_low:19.6,
+    in_90:true, in_50:true, realized_quantile:0.525, median_err:0.0038,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"RIBL", asset_class:"equity",
@@ -7033,6 +7034,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: RIBL, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"RIBL", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:20.9, ccy:"SAR",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.1819,
+    signal_z:0.0054, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP but WEAK — this name’s own mom_12_1 z is +0.005, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:19.17, p25:20.24, p50:20.97, p75:21.73, p95:22.95,
+    touch:{ "+5":32, "+10":7, "+15":1, "+20":0, "-5":26, "-10":4 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RIBL", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:20.9, ccy:"SAR",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.1926,
+    signal_z:0.0054, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call UP but WEAK — this name’s own mom_12_1 z is +0.005, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:17.9, p25:19.81, p50:21.12, p75:22.51, p95:24.95,
+    touch:{ "+5":60, "+10":33, "+15":16, "+20":8, "-5":51, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7332,7 +7362,7 @@ const CALIB = {
   "QSE:IQCD": {w: 58, in50: 47, in90: 90, through: "2026-07-28"},
   "QSE:QGTS": {w: 58, in50: 57, in90: 90, through: "2026-07-28"},
   "QSE:QNBK": {w: 58, in50: 48, in90: 93, through: "2026-07-28"},
-  "TADAWUL:1010": {w: 57, in50: 42, in90: 84, through: "2026-04-28"},
+  "TADAWUL:1010": {w: 58, in50: 40, in90: 79, through: "2026-07-28"},
   "TADAWUL:1120": {w: 58, in50: 48, in90: 88, through: "2026-07-28"},
   "TADAWUL:1150": {w: 58, in50: 41, in90: 88, through: "2026-07-28"},
   "TADAWUL:1180": {w: 42, in50: 64, in90: 93, through: "2026-06-03"},
