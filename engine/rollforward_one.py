@@ -115,6 +115,51 @@ def name_calibration(market: str, series: str, profile, wmult: float = 1.0):
                     f'bound.{over}')
 
 
+def _ledger_rows(src: str, instrument: str):
+    """Every LEDGER row for `instrument`, each as its own brace-matched object text.
+
+    VERIFY BY PARSING THE ROW, NOT BY GUESSING ITS LENGTH. This replaced
+    `re.finditer(r'instrument:"X"(.{0,900})')`, which read a FIXED 900-character
+    window after each hit. re.finditer returns NON-OVERLAPPING matches, so once a
+    row grew past 900 characters its window ran on into the NEXT row and consumed
+    that row's own `instrument:` marker — the scanner then stepped straight over
+    it and never looked at it at all.
+
+    A row crosses 900 characters exactly when it is GRADED: grading appends the
+    realized fields to a row that already carries a long note. So the rows this
+    silently skipped were the graded ones — which is precisely the set
+    _prior_1m_matured exists to find. Measured on the 01-Sep-2026 GOLD strike:
+    four Gold rows in the ledger, three inspected, and the one skipped was the
+    cycle-2 1-month graded minutes earlier in the same pass. The note therefore
+    published "off the monthly metronome — the prior cycle's 1-month has not yet
+    matured" over a cohort that had matured on 2026-08-27 and been graded that
+    morning, into an append-only record that is never retro-edited.
+
+    This is the third appearance of one defect — a pattern standing in for a
+    parser, dropping whichever entries happen to be shaped differently (the
+    unquoted-key regex that dropped 2POINTZERO; the indentation-keyed `dist` span
+    that deleted three fields on nine entries). Per [R-ENF-01] the class is closed
+    here rather than the instance: rows are delimited by matching their braces, so
+    a row of any length is read whole or not at all.
+    """
+    i = src.find('const LEDGER')
+    if i < 0:
+        return
+    led = src[i:src.find('\n];', i)]
+    needle = f'instrument:"{instrument}"'
+    j = 0
+    while True:
+        k = led.find(needle, j)
+        if k < 0:
+            return
+        o = led.rfind('{', 0, k)          # the row object this marker sits in
+        if o < 0:
+            return
+        end = match_brace(led, o)
+        yield led[o:end]
+        j = max(end, k + len(needle))     # never re-scan inside a row already read
+
+
 def ledger_instrument(key: str) -> str:
     """The LEDGER's name for a site key -- NOT always the site key itself.
 
@@ -418,11 +463,7 @@ def _prior_1m_matured(src: str, instrument: str, prior_cycle, as_of: str,
     """
     if prior_cycle is None:
         return None, False
-    i = src.find('const LEDGER')
-    led = src[i:src.find('\n];', i)]
-    for m in re.finditer(r'instrument:"' + re.escape(instrument) + r'"(.{0,900})',
-                         led, re.S):
-        e = m.group(1)
+    for e in _ledger_rows(src, instrument):
         cy = re.search(r'cycle_no:(\d+)', e)
         hl = re.search(r'horizon_label:"([^"]+)"', e)
         gd = re.search(r'grade_date:"([^"]+)"', e)
@@ -545,12 +586,30 @@ def run(market: str, series: str, key: str, today: str,
     # A number stated in prose must be COMPUTED, not typed, so the clause is DERIVED
     # from the value strike() actually applied and disappears when it is exactly 1.0.
     wmult = r.get('width_overlay_mult', 1.0)
+    # THE SAME DEFECT, ONE LAYER UP (01-Sep-2026). strike() reads engine/fit_overrides.json
+    # and, where a name carries a per-name (nu, width_cal) adopted on its own LONO
+    # verdict (KR/IN/QA/US names, 29-Jul-2026), simulates under THAT pair — but this
+    # note quoted `prof.nu` / `prof.width_cal`, the POOLED market fit, as "the live fit".
+    # On the 01-Sep-2026 SAMSUNG strike the entry's own `fit` stamp said nu=6/cal=1.084
+    # while the row's note said the pooled pair: two records of one cone, both
+    # published, disagreeing. The base pair is now taken from what strike() returned,
+    # so the clause is DERIVED from the config actually applied; for a name with no
+    # override r['nu'] IS prof.nu and r['width_cal'] IS prof.width_cal, so every such
+    # note is byte-identical to before (verified on SNB and ADIB dry runs). The
+    # overlay clause below multiplies the same base, never the pooled figure.
+    base_nu, base_cal = r['nu'], r['width_cal']
+    onote = '' if not r.get('fit_override_applied') else (
+        f' PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at '
+        f'nu={base_nu}, width_cal={base_cal} — the pair adopted on its OWN leave-one-name-out '
+        f'verdict — so the cone was simulated under that pair, not the pooled '
+        f'nu={prof.nu}, width_cal={prof.width_cal} quoted above.'
+    )
     wnote = '' if abs(wmult - 1.0) < 1e-9 else (
         f' PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has '
         f'cleared the {AW.MIN_WINDOWS}-window history gate, so live_width_mult() returns '
         f'{wmult:.4f} on its OWN resolved 3-month residuals and the cone was simulated at '
-        f'an effective width_cal of {prof.width_cal * wmult:.4f}, not the pooled '
-        f'{prof.width_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
+        f'an effective width_cal of {base_cal * wmult:.4f}, not the pooled '
+        f'{base_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
         f'carry drift and the tail nu are untouched by it.'
     )
     calflag, calnote = name_calibration(market, series, prof, wmult)
@@ -566,7 +625,7 @@ def run(market: str, series: str, key: str, today: str,
         f'→ simulate_paths_v3, 50,000 paths, seed 42, signal '
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
         f'{qnote} '
-        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{wnote}{calnote} rf_live '
+        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{onote}{wnote}{calnote} rf_live '
         f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. {call} Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
         f'a calendar commitment, not a session count; the session counts '

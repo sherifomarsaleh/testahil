@@ -83,6 +83,13 @@ STATUSES = ("provisional", "adopted", "watch", "outstanding")
 # no study will ever match.
 CLASSES = (
     "real-estate developer, off-plan, percentage-of-completion",
+    "telecom operator",
+    "cement and heavy industrial",
+    "petrochemical",
+    "airline",
+    "bank",
+    "holding company",
+    "commodity and metals",
     # TMGH is off-plan with a large backlog and long payment plans like the
     # class above, but it recognises revenue when the customer takes control of
     # the home, not as construction progresses. [L-102] makes the recognition
@@ -91,13 +98,6 @@ CLASSES = (
     # percentage-of-completion would be the superstition this register warns
     # about. The two are kept apart.
     "real-estate developer, off-plan, point-in-time on handover",
-    "telecom operator",
-    "cement and heavy industrial",
-    "petrochemical",
-    "airline",
-    "bank",
-    "holding company",
-    "commodity and metals",
 )
 
 
@@ -842,7 +842,224 @@ LESSONS = [
       "By era: E2 post-float +0.507; E3 devaluation -0.196.",
       "Nothing. This is a rule about how to read a measured bias."),
 
+    # ------------------------------------------------ EMFD, 01-Sep-2026 ---
+    # Learned while BUILDING the panel for a fundamental walk-forward that
+    # never ran: EMFD's own investor-relations register stops at H1-2021, so
+    # the run is blocked at [R-FCAL-01] §1 and no forecast was ever scored.
+    # These are therefore NOT walk-forward findings and are not written as
+    # any. They are defects found in our own work by the arithmetic that was
+    # put there to find them, plus two facts about this company's disclosure
+    # that a second name now confirms.
+    #
+    # NOTE ON SCOPE. Several of these findings are EMFD-specific and would be
+    # STOCK lessons, but a STOCK lesson must name a real study directory and
+    # engine/emfd_study/ does not exist. They are recorded in
+    # engine/emfd_walkforward_pending/ and the Fundamental Driver Ledger
+    # instead, and become STOCK entries when that directory does. Inventing a
+    # study directory to satisfy the gate would be defeating the check.
+
     L("L-034", "ALL", None,
+      "An extractor can be fluently, confidently wrong, and only arithmetic "
+      "will say so.",
+      "A tool that cannot read something usually says so. One that reads it "
+      "badly hands you clean-looking numbers that are simply not on the page, "
+      "and nothing about the output looks broken. Never accept a figure "
+      "because the extractor produced it; accept it because it foots.",
+      "EMFD source build, 01-Sep-2026",
+      "build",
+      "Two of EMFD's filings print EASTERN ARABIC NUMERALS. Tesseract's Arabic "
+      "model returned well-formed figures such as 51,052,159 that appear "
+      "nowhere on the page, at 300 and 400 dpi and at psm 4 and 6, so its "
+      "output was not used. The figures used instead were read from the "
+      "rendered page and accepted only because three arithmetic identities "
+      "closed on each year AND a different document — the FY2015 statement of "
+      "changes in equity, extracted independently by OCR in English — prints "
+      "the same profit figures, 417,946,327 for FY2014 and 1,026,245 for "
+      "FY2013.",
+      "An extractor that fails loudly on a script it cannot read instead of "
+      "emitting plausible digits."),
+
+    L("L-035", "ALL", None,
+      "Tolerance in a number parser is greed.",
+      "A separator you accept 'just in case' does not sit quietly. On a "
+      "two-column statement it runs straight through the gap between the "
+      "columns and welds both years into one number. Accept the separator the "
+      "document actually uses.",
+      "EMFD balance-sheet build, 01-Sep-2026",
+      "build",
+      "Allowing a space to stand in for a thousands separator turned 'Fixed "
+      "assets under construction 5 974,670,923 958,519,586' into a single "
+      "figure of 5,974,670,923,958,519,808 — both years and the note "
+      "reference together — where the value is 974,670,923. Found by the "
+      "statement's own subtotal, not by reading the output.",
+      "A single-column statement, where there is no adjacent column to run "
+      "into."),
+
+    L("L-036", "ALL", None,
+      "A nil printed as a dash is data, and dropping it shifts every column "
+      "left.",
+      "Reading a row as 'the first two numbers after the label' works until a "
+      "year is nil. Then the comparative slides into the current column and "
+      "the row is wrong by a whole year, silently.",
+      "EMFD balance-sheet build, 01-Sep-2026",
+      "build",
+      "EMFD's FY2020 non-current credit facilities print as 'Credit "
+      "facilities 13 - 10,255,590' — nil in 2020 against 10,255,590 in 2019. "
+      "Read as two numbers it put the 2019 figure into the 2020 column, and "
+      "that row is the denominator of the borrowing-rate driver. The same "
+      "species as L-033: a suspiciously simple reading of a table is usually a "
+      "broken one.",
+      "A statement that prints an explicit zero rather than a dash."),
+
+    L("L-037", "ALL", None,
+      "The first filing that mentions a year is not the year as first "
+      "reported.",
+      "Every annual statement prints the prior year again, as the company "
+      "chooses to present it a year later. Read filings newest-first and 'keep "
+      "the first record of each year' keeps the restated one — the opposite of "
+      "what point-in-time discipline requires.",
+      "EMFD panel build, 01-Sep-2026",
+      "build",
+      "EMFD's FY2013 revenue is 1,247,893,152 in its own filing and "
+      "1,188,328,131 as restated in the FY2014 accounts, a 4.8% difference. "
+      "Cost of revenue and profit before tax are IDENTICAL on both bases, so "
+      "nothing watching the bottom line would ever have seen it. The panel now "
+      "refuses to let a later filing's comparative overwrite a year's own "
+      "filing, and records the restatement beside it.",
+      "An issuer that never restates a comparative."),
+
+    L("L-038", "ALL", None,
+      "Judge a source by the payload it returns, never by its status code.",
+      "A page that refuses you can still answer 200. Ask what the bytes are, "
+      "not what the header claims, or a challenge page gets filed as a "
+      "financial statement.",
+      "EMFD source sweep, 01-Sep-2026",
+      "build",
+      "The Egyptian Exchange answers every request — including a request for a "
+      "named PDF — with HTTP 200 carrying an anti-bot interstitial. Of 79 "
+      "logged attempts, the ones against that host all 'succeeded'. The probe "
+      "now accepts a document only if its first five bytes are %PDF-. Same "
+      "family as L-014 and L-015: the check was looking at something other "
+      "than the thing it was judging.",
+      "A payload test that wrongly rejects a legitimate document — a filing "
+      "served in a format whose magic bytes we did not anticipate."),
+
+    L("L-039", "ALL", None,
+      "Reconcile a quoted figure at the quoting document's own precision.",
+      "A results release that says 'EGP 3.2 billion' is not disagreeing with "
+      "an audited 3,237,263,142 — it is rounder. Score agreement against what "
+      "the document actually promised, or invent disagreements and go looking "
+      "for causes that are not there.",
+      "EMFD KPI build, 01-Sep-2026",
+      "build",
+      "A fixed percentage band scored the FY2015 release as disagreeing with "
+      "the audited statement. At the release's own precision — one decimal of "
+      "a billion, so plus or minus 0.05bn — it agrees, and so do the FY2016 "
+      "and FY2017 releases against 4,008,925,078 and 4,511,007,479.",
+      "A document that quotes to full precision, where the two tests "
+      "coincide."),
+
+    L("L-040", "ALL", None,
+      "A source document can be incomplete, and 'the filing exists' is not "
+      "'the year is sourced'.",
+      "A register that lists a year's accounts is not a guarantee that the "
+      "accounts are all there. Check that the statement you need is in the "
+      "file before counting the year as held.",
+      "EMFD source build, 01-Sep-2026",
+      "build",
+      "The FY2015 year-end PDF on EMFD's own investor-relations register omits "
+      "its profit-or-loss page entirely: balance sheet, changes in equity, "
+      "cash flows, notes, and no income statement anywhere in 28 pages. The "
+      "year was taken from the FY2016 filing's comparative column instead and "
+      "flagged as a comparative rather than as first reported.",
+      "A register whose files are checked for completeness at publication."),
+
+    L("L-041", "ALL", None,
+      "A rate whose denominator is immaterial is not a rate — refuse it "
+      "rather than widen it.",
+      "When the base that should generate a flow is close to nothing, the "
+      "implied rate is nonsense, and the temptation at that moment is to widen "
+      "the base until the answer looks sensible. That is how a wrong model "
+      "gets a right-looking number. Leave the rate undefined and say so.",
+      "EMFD financing-rule check, 01-Sep-2026",
+      "build",
+      "EMFD's disclosed interest-bearing borrowings imply a borrowing rate of "
+      "238% in FY2019 and 69% in FY2020 — the company is effectively "
+      "unlevered and the denominator is noise. Dividing the same finance cost "
+      "by total liabilities would have produced about 0.04% and looked "
+      "perfectly reasonable. This is L-204 seen from the other side: that "
+      "lesson is about using too broad a base, this one about what to do when "
+      "the correct base is too small to divide by.",
+      "A filing disclosing material interest-bearing borrowings, where the "
+      "ordinary rate on opening borrowings applies."),
+
+    L("L-042", "ALL", None,
+      "A pre-registration may be amended only while no result exists.",
+      "Fixing the rules in advance is worth nothing if they can be adjusted "
+      "once the numbers are in. Before any error is computed a change is a "
+      "choice; afterwards the identical change is tuning. Date the amendment "
+      "and say which side of that line it fell on.",
+      "EMFD pre-registration, 01-Sep-2026",
+      "build",
+      "The rule for the finance-income driver formed its rate on the opening "
+      "asset base. The balance-sheet extraction then showed EMFD's "
+      "earning-asset base roughly doubling across FY2016-FY2017, making an "
+      "opening-base rate and an average-base rate materially different "
+      "quantities — the opening-base rate ranges from 8.8% to 26.6% on the "
+      "extracted window. Both conventions are now computed at every origin and "
+      "both reported, neither selected. The amendment was made and dated while "
+      "the run was blocked and no forecast error existed.",
+      "An amendment shown to be forced by an arithmetic error in the original "
+      "rule, which is a correction rather than a choice."),
+
+    # ------------------------------------------------------------- CLASS ---
+    L("L-115", "CLASS", DEV,
+      "An off-plan developer may be on completed contract, not "
+      "percentage-of-completion — the class label can be wrong.",
+      "Not every off-plan developer books revenue as it builds. Some book it "
+      "only on handover, which puts revenue and cost on the same clock and "
+      "makes the classic profit overstatement impossible. Read the issuer's "
+      "own words before applying anything learned from another developer.",
+      "EMFD source build, 01-Sep-2026",
+      "build",
+      "EMFD's own results releases state it in terms — 'revenues recognized "
+      "according to the Completed Contract (CC) method', in both the FY2016 "
+      "and FY2017 releases — so through FY2020 revenue and cost of revenue are "
+      "released together at handover and L-001's own stated falsifier is met "
+      "for that window. The basis then changed: EAS 48 took effect on 1 "
+      "January 2021 and the one period published on both bases restates "
+      "revenue by +2.72%, cost of revenue by +8.05% and gross profit by "
+      "-8.42%. This is the second name behind L-102, and it widens that "
+      "lesson: the basis can differ between issuers of the same class, not "
+      "merely change date.",
+      "A market where the recognition basis is mandated uniformly, so the "
+      "class and the basis always coincide."),
+
+    L("L-116", "CLASS", DEV,
+      "A developer's operating KPIs can stop years before its statements do.",
+      "Units delivered and contracted sales live in the results release, not "
+      "the accounts. An issuer that stops publishing releases still files "
+      "statements — so revenue keeps arriving while the drivers that explain "
+      "it do not, and the unit-level model simply cannot be scored on those "
+      "years.",
+      "EMFD KPI build, 01-Sep-2026",
+      "build",
+      "EMFD's register carries results releases for FY2015, FY2016 and FY2017 "
+      "only, giving delivered units of 819, 935 and 1,386. For FY2018-FY2020 "
+      "no unit count exists in ANY document it publishes — no release, and the "
+      "management annual reports for those years are the board's Arabic "
+      "governance report with no operating data in it — while audited "
+      "statements for all three years are on the same register. Units "
+      "delivered, revenue per unit and cost per unit are therefore unscoreable "
+      "on the three most recent years of the obtainable window. This is the "
+      "second name behind L-205, which is why it is filed at class scope: "
+      "PHDC's drivers lag its accounts by a year or two, EMFD's stop "
+      "altogether.",
+      "An issuer whose operating KPIs appear in the audited statements "
+      "themselves rather than only in a results release."),
+
+
+    L("L-043", "ALL", None,
       "A depreciation forecast built on a projected asset base cannot "
       "see an acquisition.",
       "Depreciation is usually projected as a rate on a fixed-asset "
@@ -860,7 +1077,7 @@ LESSONS = [
       "by the same size.",
       "provisional"),
 
-    L("L-115", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
+    L("L-117", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
       "A developer's work in progress runs ahead of its revenue, not "
       "with it.",
       "Half-built homes are an investment made years before the "
@@ -877,7 +1094,7 @@ LESSONS = [
       "over a full cycle.",
       "provisional"),
 
-    L("L-035", "ALL", None,
+    L("L-044", "ALL", None,
       "A reported finance charge is not always interest on "
       "borrowings.",
       "Before dividing a finance charge by debt to get a borrowing "
@@ -896,7 +1113,7 @@ LESSONS = [
       "implied rate then matches its disclosed borrowing cost.",
       "provisional"),
 
-    L("L-116", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
+    L("L-118", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
       "The size of a demographic anchor's miss on a developer is set "
       "by the launch calendar, not by the method.",
       "A population-based volume driver runs low for every developer, "
@@ -913,7 +1130,7 @@ LESSONS = [
       "two, which would suggest a stable offset after all.",
       "provisional"),
 
-    L("L-036", "ALL", None,
+    L("L-045", "ALL", None,
       "For a balance-sheet stock, assuming no change is a strong "
       "benchmark.",
       "Stocks move slowly. A model that forecasts one has to beat "
@@ -928,7 +1145,7 @@ LESSONS = [
       "clearly worse than modelling it, at most horizons.",
       "provisional"),
 
-    L("L-037", "ALL", None,
+    L("L-046", "ALL", None,
       "Perfect foresight of inflation removes almost none of a "
       "forecast error, even across a devaluation.",
       "It is tempting to blame a bad forecast on the currency. Re-run "
@@ -944,7 +1161,7 @@ LESSONS = [
       "error.",
       "provisional"),
 
-    L("L-038", "ALL", None,
+    L("L-047", "ALL", None,
       "In a high-inflation market, a driver bias that changes "
       "direction between regimes is the normal case, not the "
       "exception.",

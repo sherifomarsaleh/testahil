@@ -24,7 +24,7 @@
   <section class="t-sec" style="margin-top:26px">
     <h1>Method</h1>
     <p style="display:flex;gap:6px 16px;flex-wrap:wrap;font-size:var(--fs-small);font-weight:600">
-      <a href="#lenses">Three lenses</a> · <a href="#testing">How we test ourselves</a> · <a href="#open">Open models &amp; editions</a> · <a href="#who">Who writes this</a> · <a href="#disclaimer">Disclaimer</a>
+      <a href="#lenses">Three lenses</a> · <a href="#calibration">How each lens is calibrated</a> · <a href="#testing">How we test ourselves</a> · <a href="#open">Open models &amp; editions</a> · <a href="#who">Who writes this</a> · <a href="#disclaimer">Disclaimer</a>
     </p>
 
     <h2 id="lenses" style="margin-top:26px">Three lenses, one page per name</h2>
@@ -35,9 +35,43 @@
     </div>
     <p class="muted" style="font-size:var(--fs-small);max-width:70ch">The lenses answer different questions on different clocks — a valuation doesn’t move because a week passed, the odds do. When they disagree, the study says so; the "at a glance" strip on every page is exactly that disagreement check.</p>
 
+    <h2 id="calibration" style="margin-top:34px">How each lens is calibrated</h2>
+    <p style="max-width:70ch">Calibration is the step that turns a view into a number that can be graded. Each lens is fitted to that name's own history, then frozen at publish with the date it will be checked. Nothing is re-struck afterwards.</p>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px">
+      <div class="t-card">
+        <h3 style="margin-top:0">Fundamental — calibrated to the business</h3>
+        <p style="margin:0 0 8px">The valuation is built ground-up from the company's own accounts and matched to what it actually is: an asset-based read for developers and holdings, an earnings-and-book read for banks, a cash-flow read for operating businesses. Each lens in that mix carries a stated weight, and the weighted central value is published alongside a bear and a good case.</p>
+        <p style="margin:0 0 8px">The method itself is walk-forward tested on the company's own history: the model is rebuilt as it would have stood at past dates, using only what was known then, and its projections are scored against what the accounts went on to report. <b>Completed on 1 name to date</b> — Palm Hills, 10 starting points × 5 horizons. It is a standing step of every new study and every update, so the count grows study by study; until it covers more names, every lesson it has produced is marked provisional rather than folded into the method.</p>
+        <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the levers. Every input a reader could argue with — growth, margin, discount rate, launch pace, cost of risk — is published with the range it was tested across, and the sensitivity panel on each study lets you move them and watch the fair value change.</p>
+      </div>
+
+      <div class="t-card">
+        <h3 style="margin-top:0">Technical — calibrated to the tape</h3>
+        <p style="margin:0 0 8px">Every level is computed from the price series, never drawn by hand: the 20, 50 and 200-day moving averages and their slopes, RSI(14) and MACD for momentum, the daily ATR for how much this name moves on a normal day, and support and resistance taken from where price has actually turned. The published levels are the ones the study will be judged against.</p>
+        <p style="margin:0 0 8px">The shipped read is walk-forward tested on its own short clock — 5, 10 and 21 sessions ahead — against distance-matched placebos, so a signal only counts if it beats an equally-placed coin toss. <b>Run on 92 of the 93 covered names</b> (one lacks the history to reach a first test date), across all three horizons and <b>135,993 test origins</b> spanning 2011 to 2026.</p>
+        <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the window. Levels are refitted on each name's own trading history — roughly 500 sessions — so a thin, jumpy stock and a heavily traded one are not held to the same yardstick.</p>
+      </div>
+
+      <div class="t-card">
+        <h3 style="margin-top:0">Monte Carlo — calibrated to the name's own volatility</h3>
+        <p style="margin:0 0 8px">The engine simulates 50,000 price paths per name over 22 trading days (1 month) and 62 trading days (3 months). The step size comes from that name's measured volatility, not a market average, so the cone is as wide as the stock has actually been. Everything downstream — the 90% and 50% bands, the odds buckets, the touch ladder — is read off those same paths.</p>
+        <p style="margin:0 0 8px">The cone is walk-forward tested the same way it is judged in public: struck at a past date, then scored on where the price actually closed. Across every covered name that is <b><span id="m-mc-n">—</span> resolved, non-overlapping 3-month windows</b>, of which <b><span id="m-mc-h">—</span> finished inside the 90% band (<span id="m-mc-p">—</span>)</b> — the whole backtest, not only the forecasts published since this site launched.</p>
+        <p class="muted" style="margin:0;font-size:var(--fs-small)">What is calibrated: the spread. The band is checked against what the price did next; if a name's ranges keep landing too wide or too narrow, that shows up in its own record rather than being quietly corrected. Per-name results sit on each study's <a href="record.html">record</a>.</p>
+      </div>
+    </div>
+
     <h2 id="testing" style="margin-top:34px">How we test ourselves</h2>
     <p style="max-width:70ch">If a "9 times out of 10" range is honest, the real price should land inside it about 90% of the time. So every covered name carries a backtest across its resolved, non-overlapping 3-month windows, and every new forecast enters <a href="record.html">the public ledger</a> with the date it will be graded. The tally is live on every page of this site, and a graded forecast is never edited or removed.</p>
     <div class="t-note" id="m-tally">—</div>
+    <p style="max-width:70ch;margin-top:16px">Two separate tallies, never mixed: the <b>backtest</b> replays each name's history before this site existed, and <b>live calibrations</b> are the forecasts published here since June 2026, each graded on its stated date.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0 0">
+      <div class="t-stat"><div class="n" id="m-cal-n">—</div><div class="d">calibrations published</div></div>
+      <div class="t-stat"><div class="n hl" id="m-cal-g">—</div><div class="d" id="m-cal-gd">graded so far</div></div>
+      <div class="t-stat"><div class="n" id="m-cal-p">—</div><div class="d">still running, each with its grade date</div></div>
+      <div class="t-stat"><div class="n" id="m-bt-n">—</div><div class="d" id="m-bt-d">backtested 3-month windows</div></div>
+    </div>
+    <p class="muted" style="font-size:var(--fs-small);margin-top:10px">Every calibration and its result: <a href="record.html">the public record</a>.</p>
 
     <h2 id="open" style="margin-top:34px">Open models &amp; editions</h2>
     <p style="max-width:70ch">Every study ships as a readable document and the full Excel model behind it — the downloads sit on each name’s page. Superseded editions are preserved, never deleted, on each name’s own archive page — e.g. <a href="/PHDC/archive/">PHDC’s editions</a>; every study page links its own at the bottom. (The old sitewide library remains as a legacy page: <a href="/legacy/archive.html">archive.html ↗</a>.) If you find an error, attack the model — that’s what publishing it is for.</p>
@@ -60,6 +94,27 @@ renderChrome("method");
 (function(){
   var bt=bandTotals();
   document.getElementById("m-tally").innerHTML = "The record as this page loads: <b class='num'>"+tNum(bt.n)+"</b> windows checked, <b class='num'>"+tNum(bt.hits)+"</b> inside the 90% band (<b class='num'>"+(bt.pct*100).toFixed(1)+"%</b>) across <b class='num'>"+Object.keys(BANDS).length+"</b> names — read from the same data file the whole site publishes from.";
+})();
+
+(function(){
+  try{
+    var L=(typeof LEDGER!=="undefined")?LEDGER:[];
+    var B=(typeof BANDS!=="undefined")?BANDS:{};
+    var g=L.filter(function(r){return r.realized_close!=null});
+    var in90=g.filter(function(r){return r.in_90!=null?r.in_90:(r.realized_close>=r.p5&&r.realized_close<=r.p95)}).length;
+    var names={}; L.forEach(function(r){names[r.instrument]=1});
+    var bn=0,bh=0; Object.keys(B).forEach(function(k){bn+=B[k].n;bh+=B[k].hits});
+    var set=function(id,v){var e=document.getElementById(id); if(e) e.textContent=v;};
+    set("m-cal-n",L.length);
+    set("m-cal-g",g.length);
+    set("m-cal-gd","graded so far — "+(g.length?Math.round(in90/g.length*100):0)+"% inside the 90% band");
+    set("m-cal-p",L.length-g.length);
+    set("m-mc-n",bn.toLocaleString());
+    set("m-mc-h",bh.toLocaleString());
+    set("m-mc-p",(bn?Math.round(bh/bn*100):0)+"% against a 90% promise");
+    set("m-bt-n",bn.toLocaleString());
+    set("m-bt-d","backtested 3-month windows — "+(bn?Math.round(bh/bn*100):0)+"% inside the band");
+  }catch(e){}
 })();
 </script>
 </body>

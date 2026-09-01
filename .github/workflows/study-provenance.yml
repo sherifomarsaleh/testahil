@@ -36,6 +36,11 @@ on:
       - 'engine/tech_records.json'
       - 'engine/technicals.py'
       - 'engine/lab/ta_calibration/**'
+      - 'engine/campaign_queue.py'
+      - 'engine/fv_movement.py'
+      - 'engine/fv_movement.json'
+      - 'engine/**_walkforward/**'
+      - 'scripts/check_campaign_register_negative_control.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -61,6 +66,11 @@ on:
       - 'engine/tech_records.json'
       - 'engine/technicals.py'
       - 'engine/lab/ta_calibration/**'
+      - 'engine/campaign_queue.py'
+      - 'engine/fv_movement.py'
+      - 'engine/fv_movement.json'
+      - 'engine/**_walkforward/**'
+      - 'scripts/check_campaign_register_negative_control.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -81,6 +91,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      # campaign_queue reads assets/data.js through a real JS engine rather than
+      # by regex -- re.search takes the FIRST duplicate key and a JS object
+      # literal takes the LAST, which is how a checker once inspected the half
+      # the reader never saw [R-ENF-03].
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Install engine deps
         run: pip install numpy pandas scipy python-docx
 
@@ -152,3 +169,22 @@ jobs:
       # checker missing a half-lost record (one horizon deleted, name intact)
       - name: Technical calibration gate — negative control
         run: python3 scripts/check_tech_calibration_negative_control.py
+
+      # the book-wide campaign's own record, checked from outside itself. The
+      # queue must account for every covered name (queued + excluded == the
+      # register's own total) and every walk-forward run on disk must carry a
+      # frozen baseline AND a recorded fair value. Anchored on the run
+      # directories, never on the record's own JSON, so a register that stopped
+      # being fed FAILS rather than reporting clean [R-ENF-04]. Without this the
+      # campaign would ship a gate that nothing outside it ever ran, which is
+      # the defect [R-ENF-01] exists to close.
+      - name: Campaign queue and fair-value register gate
+        run: |
+          python3 engine/campaign_queue.py
+          python3 engine/fv_movement.py check
+
+      # and the proof that gate can go red -- it reinjects a run with no frozen
+      # baseline, a record with no run behind it, and an emptied population,
+      # and fails if any of them is reported clean
+      - name: Campaign register gate — negative control
+        run: python3 scripts/check_campaign_register_negative_control.py

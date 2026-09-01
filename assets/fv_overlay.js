@@ -26,7 +26,7 @@ const FV_OVERLAY = {
   },
   "KR": {
    "nu": 8.0,
-   "width_cal": 1.07,
+   "width_cal": 1.063,
    "rf_live": 0.03,
    "width_overlay_active": false
   },
@@ -694,98 +694,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0021
    },
    "market": "US"
-  },
-  {
-   "ticker": "KAKAO",
-   "name": "Kakao Corp.",
-   "code": "KRX:035720",
-   "ccy": "KRW",
-   "spot": 35650,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-28",
-   "fv_lag_days": 30,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 24517,
-   "fv_base": 34258,
-   "fv_full": 46401,
-   "gap_base_pct": -3.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.155316,
-    "mu_h": 0.001885,
-    "G": {
-     "bear": -2.41,
-     "base": -0.26,
-     "full": 1.7
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0116,
-     "base": 0.3822,
-     "full": 0.0438
-    },
-    "p_touch": {
-     "bear": 0.0179,
-     "base": 0.6783,
-     "full": 0.0672
-    },
-    "required_cagr": {
-     "bear": -0.9888,
-     "base": -0.3799,
-     "full": 22.6382
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00305
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.251392,
-    "mu_h": 0.009398,
-    "G": {
-     "bear": -1.49,
-     "base": -0.16,
-     "full": 1.05
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.058,
-     "base": 0.4134,
-     "full": 0.1383
-    },
-    "p_touch": {
-     "bear": 0.1012,
-     "base": 0.794,
-     "full": 0.2424
-    },
-    "required_cagr": {
-     "bear": -0.7763,
-     "base": -0.1473,
-     "full": 1.8699
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00528
-   },
-   "market": "KR"
   },
   {
    "ticker": "OCDI",
@@ -1524,6 +1432,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "KAKAO",
+   "name": "Kakao Corp.",
+   "code": "KRX:035720",
+   "ccy": "KRW",
+   "spot": 36550,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 64,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 24517,
+   "fv_base": 34258,
+   "fv_full": 46401,
+   "gap_base_pct": -6.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.147072,
+    "mu_h": 0.002405,
+    "G": {
+     "bear": -2.72,
+     "base": -0.44,
+     "full": 1.62
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0068,
+     "base": 0.3061,
+     "full": 0.0504
+    },
+    "p_touch": {
+     "bear": 0.0102,
+     "base": 0.5332,
+     "full": 0.0785
+    },
+    "required_cagr": {
+     "bear": -0.9917,
+     "base": -0.5403,
+     "full": 16.5259
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0015
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.250697,
+    "mu_h": 0.009314,
+    "G": {
+     "bear": -1.59,
+     "base": -0.26,
+     "full": 0.95
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0483,
+     "base": 0.3709,
+     "full": 0.1608
+    },
+    "p_touch": {
+     "bear": 0.0848,
+     "base": 0.7062,
+     "full": 0.2838
+    },
+    "required_cagr": {
+     "bear": -0.7975,
+     "base": -0.2282,
+     "full": 1.5975
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00384
+   },
+   "market": "KR"
+  },
+  {
    "ticker": "ENBD",
    "name": "Emirates NBD Bank",
    "code": "DFM:EMIRATESNBD",
@@ -1706,6 +1706,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00414
    },
    "market": "AE"
+  },
+  {
+   "ticker": "SNB",
+   "name": "The Saudi National Bank",
+   "code": "TADAWUL:1180",
+   "ccy": "SAR",
+   "spot": 43.3,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 58,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 36,
+   "fv_base": 45,
+   "fv_full": 55,
+   "gap_base_pct": 3.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.070457,
+    "mu_h": 0.005527,
+    "G": {
+     "bear": -2.62,
+     "base": 0.55,
+     "full": 3.39
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0055,
+     "base": 0.3112,
+     "full": 0.0014
+    },
+    "p_touch": {
+     "bear": 0.0083,
+     "base": 0.5104,
+     "full": 0.0018
+    },
+    "required_cagr": {
+     "bear": -0.8909,
+     "base": 0.5874,
+     "full": 16.64
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0003
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.132727,
+    "mu_h": 0.015127,
+    "G": {
+     "bear": -1.39,
+     "base": 0.29,
+     "full": 1.8
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0634,
+     "base": 0.4262,
+     "full": 0.0449
+    },
+    "p_touch": {
+     "bear": 0.1146,
+     "base": 0.7387,
+     "full": 0.0749
+    },
+    "required_cagr": {
+     "bear": -0.5222,
+     "base": 0.1665,
+     "full": 1.6031
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00162
+   },
+   "market": "SA"
   },
   {
    "ticker": "ALRAJHI",
@@ -1982,6 +2074,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0028
    },
    "market": "EG"
+  },
+  {
+   "ticker": "SAMSUNG",
+   "name": "Samsung Electronics Co., Ltd.",
+   "code": "KRX:005930",
+   "ccy": "KRW",
+   "spot": 261000,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-27",
+   "fv_lag_days": 66,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 214800,
+   "fv_base": 296502,
+   "fv_full": 410754,
+   "gap_base_pct": 13.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.206146,
+    "mu_h": 0.002357,
+    "G": {
+     "bear": -0.95,
+     "base": 0.62,
+     "full": 2.2
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1508,
+     "base": 0.2515,
+     "full": 0.0177
+    },
+    "p_touch": {
+     "bear": 0.25,
+     "base": 0.4233,
+     "full": 0.026
+    },
+    "required_cagr": {
+     "bear": -0.9035,
+     "base": 3.62,
+     "full": 229.8317
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00284
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.348624,
+    "mu_h": 0.010057,
+    "G": {
+     "bear": -0.56,
+     "base": 0.37,
+     "full": 1.3
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2583,
+     "base": 0.3537,
+     "full": 0.0901
+    },
+    "p_touch": {
+     "bear": 0.4753,
+     "base": 0.6405,
+     "full": 0.1567
+    },
+    "required_cagr": {
+     "bear": -0.5413,
+     "base": 0.6655,
+     "full": 5.1343
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0064
+   },
+   "market": "KR"
   },
   {
    "ticker": "HRHO",
@@ -2628,20 +2812,20 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "SABIC",
-   "name": "Saudi Basic Industries Corp",
-   "code": "TADAWUL:2010",
+   "ticker": "STC",
+   "name": "stc Group (Saudi Telecom)",
+   "code": "TADAWUL:7010",
    "ccy": "SAR",
-   "spot": 52.25,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-07",
-   "fv_lag_days": 19,
+   "spot": 44.72,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-09",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 43,
-   "fv_base": 55.5,
-   "fv_full": 66,
-   "gap_base_pct": 6.2,
+   "fv_bear": 36.2,
+   "fv_base": 47.11,
+   "fv_full": 59.1,
+   "gap_base_pct": 5.3,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 15.0,
@@ -2654,68 +2838,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.057757,
-    "mu_h": 0.003058,
+    "h_sessions": 21,
+    "sigma_h": 0.046523,
+    "mu_h": 0.004462,
     "G": {
-     "bear": -3.37,
-     "base": 1.04,
-     "full": 4.04
+     "bear": -4.54,
+     "base": 1.12,
+     "full": 5.99
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0011,
-     "base": 0.1518,
-     "full": 0.0003
+     "bear": 0.0001,
+     "base": 0.1445,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0015,
-     "base": 0.2456,
-     "full": 0.0005
+     "bear": 0.0002,
+     "base": 0.2274,
+     "full": 0.0
     },
     "required_cagr": {
-     "bear": -0.9035,
-     "base": 1.0629,
-     "full": 15.5003
+     "bear": -0.9208,
+     "base": 0.8678,
+     "full": 27.381
     },
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.00021
    },
    "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.105606,
-    "mu_h": 0.010661,
+    "h_sessions": 63,
+    "sigma_h": 0.086888,
+    "mu_h": 0.012886,
     "G": {
-     "bear": -1.84,
-     "base": 0.57,
-     "full": 2.21
+     "bear": -2.43,
+     "base": 0.6,
+     "full": 3.21
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.027,
-     "base": 0.3103,
-     "full": 0.0193
+     "bear": 0.0071,
+     "base": 0.3176,
+     "full": 0.0025
     },
     "p_touch": {
-     "bear": 0.0469,
-     "base": 0.5385,
-     "full": 0.0314
+     "bear": 0.013,
+     "base": 0.539,
+     "full": 0.004
     },
     "required_cagr": {
-     "bear": -0.5413,
-     "base": 0.273,
-     "full": 1.5458
+     "bear": -0.5706,
+     "base": 0.2315,
+     "full": 2.0503
     },
     "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00174
+    "selftest_max_dev": 0.0013
    },
    "market": "SA"
   },
@@ -3364,98 +3548,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "LGES",
-   "name": "LG Energy Solution, Ltd.",
-   "code": "KRX:373220",
-   "ccy": "KRW",
-   "spot": 314000,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-28",
-   "fv_lag_days": 30,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 150000,
-   "fv_base": 248000,
-   "fv_full": 415000,
-   "gap_base_pct": -21.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.168926,
-    "mu_h": 0.001834,
-    "G": {
-     "bear": -4.37,
-     "base": -1.4,
-     "full": 1.65
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.0714,
-     "full": 0.0474
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.1136,
-     "full": 0.0733
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9411,
-     "full": 27.4067
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00332
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.275699,
-    "mu_h": 0.009592,
-    "G": {
-     "bear": -2.68,
-     "base": -0.86,
-     "full": 1.01
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.007,
-     "base": 0.1669,
-     "full": 0.146
-    },
-    "p_touch": {
-     "bear": 0.0114,
-     "base": 0.3037,
-     "full": 0.2567
-    },
-    "required_cagr": {
-     "bear": -0.9479,
-     "base": -0.6109,
-     "full": 2.0512
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00579
-   },
-   "market": "KR"
-  },
-  {
    "ticker": "ORAS",
    "name": "Orascom Construction",
    "code": "EGX:ORAS",
@@ -3548,98 +3640,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "SNB",
-   "name": "The Saudi National Bank",
-   "code": "TADAWUL:1180",
-   "ccy": "SAR",
-   "spot": 39.92,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-04",
-   "fv_lag_days": 22,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 36,
-   "fv_base": 45,
-   "fv_full": 55,
-   "gap_base_pct": 12.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 15.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.077256,
-    "mu_h": 0.003002,
-    "G": {
-     "bear": -1.34,
-     "base": 1.55,
-     "full": 4.15
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0799,
-     "base": 0.0626,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.1297,
-     "base": 0.0967,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.7107,
-     "base": 3.2098,
-     "full": 45.7806
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00187
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.137212,
-    "mu_h": 0.010962,
-    "G": {
-     "bear": -0.75,
-     "base": 0.87,
-     "full": 2.34
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1925,
-     "base": 0.2038,
-     "full": 0.0143
-    },
-    "p_touch": {
-     "bear": 0.361,
-     "base": 0.3535,
-     "full": 0.0234
-    },
-    "required_cagr": {
-     "bear": -0.3386,
-     "base": 0.6147,
-     "full": 2.6032
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00238
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "QNB",
    "name": "QNB Group",
    "code": "QSE:QNBK",
@@ -3730,98 +3730,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00111
    },
    "market": "QA"
-  },
-  {
-   "ticker": "SAMSUNG",
-   "name": "Samsung Electronics Co., Ltd.",
-   "code": "KRX:005930",
-   "ccy": "KRW",
-   "spot": 220000,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-27",
-   "fv_lag_days": 31,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 214800,
-   "fv_base": 296502,
-   "fv_full": 410754,
-   "gap_base_pct": 34.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.219371,
-    "mu_h": 0.001648,
-    "G": {
-     "bear": -0.11,
-     "base": 1.36,
-     "full": 2.85
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4481,
-     "base": 0.0784,
-     "full": 0.0056
-    },
-    "p_touch": {
-     "bear": 0.7986,
-     "base": 0.1245,
-     "full": 0.0082
-    },
-    "required_cagr": {
-     "bear": -0.2495,
-     "base": 34.9136,
-     "full": 1793.3595
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00452
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.335477,
-    "mu_h": 0.009947,
-    "G": {
-     "bear": -0.07,
-     "base": 0.89,
-     "full": 1.86
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.455,
-     "base": 0.1749,
-     "full": 0.0337
-    },
-    "p_touch": {
-     "bear": 0.8716,
-     "base": 0.3104,
-     "full": 0.0559
-    },
-    "required_cagr": {
-     "bear": -0.0912,
-     "base": 2.2993,
-     "full": 11.1517
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00601
-   },
-   "market": "KR"
   },
   {
    "ticker": "DU",
@@ -4192,6 +4100,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "SABIC",
+   "name": "Saudi Basic Industries Corp",
+   "code": "TADAWUL:2010",
+   "ccy": "SAR",
+   "spot": 50.1,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-07",
+   "fv_lag_days": 56,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 43,
+   "fv_base": 55.5,
+   "fv_full": 66,
+   "gap_base_pct": 10.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.053847,
+    "mu_h": -0.001198,
+    "G": {
+     "bear": -2.84,
+     "base": 1.9,
+     "full": 5.12
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0043,
+     "base": 0.0283,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0062,
+     "base": 0.044,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.8402,
+     "base": 2.4156,
+     "full": 26.3196
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00028
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.102261,
+    "mu_h": 0.002193,
+    "G": {
+     "bear": -1.49,
+     "base": 1.0,
+     "full": 2.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0621,
+     "base": 0.1547,
+     "full": 0.0058
+    },
+    "p_touch": {
+     "bear": 0.108,
+     "base": 0.2748,
+     "full": 0.0101
+    },
+    "required_cagr": {
+     "bear": -0.4573,
+     "base": 0.506,
+     "full": 2.0118
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00132
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "SALIK",
    "name": "Salik Company",
    "code": "DFM:SALIK",
@@ -4466,98 +4466,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00402
    },
    "market": "EG"
-  },
-  {
-   "ticker": "STC",
-   "name": "stc Group (Saudi Telecom)",
-   "code": "TADAWUL:7010",
-   "ccy": "SAR",
-   "spot": 43.1,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-09",
-   "fv_lag_days": 17,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 36.2,
-   "fv_base": 47.11,
-   "fv_full": 59.1,
-   "gap_base_pct": 9.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 15.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.042396,
-    "mu_h": 0.003012,
-    "G": {
-     "bear": -4.12,
-     "base": 2.1,
-     "full": 7.45
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.0229,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0331,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.8768,
-     "base": 1.9082,
-     "full": 43.1899
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00116
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.0804,
-    "mu_h": 0.010387,
-    "G": {
-     "bear": -2.17,
-     "base": 1.11,
-     "full": 3.93
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.013,
-     "base": 0.1552,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0219,
-     "base": 0.2612,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": -0.5023,
-     "base": 0.4274,
-     "full": 2.5354
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00129
-   },
-   "market": "SA"
   },
   {
    "ticker": "FERTIGLB",
@@ -5386,6 +5294,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00226
    },
    "market": "EG"
+  },
+  {
+   "ticker": "LGES",
+   "name": "LG Energy Solution, Ltd.",
+   "code": "KRX:373220",
+   "ccy": "KRW",
+   "spot": 367000,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 65,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 150000,
+   "fv_base": 248000,
+   "fv_full": 415000,
+   "gap_base_pct": -32.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.148574,
+    "mu_h": 0.002398,
+    "G": {
+     "bear": -6.02,
+     "base": -2.64,
+     "full": 0.83
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0077,
+     "full": 0.1882
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0113,
+     "full": 0.3115
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9909,
+     "full": 3.371
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00152
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.260114,
+    "mu_h": 0.009378,
+    "G": {
+     "bear": -3.44,
+     "base": -1.51,
+     "full": 0.47
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0019,
+     "base": 0.0563,
+     "full": 0.3139
+    },
+    "p_touch": {
+     "bear": 0.0034,
+     "base": 0.0981,
+     "full": 0.5623
+    },
+    "required_cagr": {
+     "bear": -0.9721,
+     "base": -0.7915,
+     "full": 0.635
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00397
+   },
+   "market": "KR"
   },
   {
    "ticker": "ADNOCGAS",

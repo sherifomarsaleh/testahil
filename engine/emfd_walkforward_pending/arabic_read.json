@@ -1,0 +1,61 @@
+{
+  "_what_this_is": "Profit-or-loss figures from the two Arabic-language filings on the company's own register (FY2013 and FY2014), which tesseract cannot read.",
+  "_why_it_is_not_ocr": "These pages print EASTERN ARABIC NUMERALS (٠١٢٣٤٥٦٧٨٩). Tesseract's Arabic model returns confident, fluent-looking digit strings that are simply wrong -- at 300 and 400 dpi, psm 4 and 6, it produced figures such as '51,052,159' that appear nowhere on the page. An extractor that is wrong without erroring is the exact hazard [R-FCAL-01] §1 was written about, so its output is not used.",
+  "_route": "read from the page rendered at 200 dpi, then VERIFIED BY ARITHMETIC rather than by the reader's confidence: panel.py re-derives every subtotal from its components and cross-checks the profit line against a DIFFERENT statement extracted independently by OCR. Nothing here is trusted because it was read; it is trusted because it foots and because two documents agree.",
+  "_provenance_tier": "A - the company's own audited financial statements, from its own investor-relations register",
+  "sign_convention": "as printed: bracketed amounts are stored negative",
+
+  "FY2014_filing": {
+    "document": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+    "page_index": 4,
+    "statement": "قائمة الدخل — income statement for the year ended 31 December 2014",
+    "column_order": "left column 2013, right column 2014",
+    "lines": {
+      "revenue":              {"2014":  2603926691, "2013":  1188328131},
+      "cost_of_revenue":      {"2014": -1826867902, "2013":  -777782194},
+      "gross_profit":         {"2014":   777058789, "2013":   410545937},
+      "selling_marketing":    {"2014":  -136241423, "2013":  -145600758},
+      "g_and_a":              {"2014":  -192734877, "2013":  -144516713},
+      "finance_cost":         {"2014":   -27488703, "2013":   -40035199},
+      "interest_income":      {"2014":    29946133, "2013":     3698614},
+      "other_expenses":       {"2014":    -6445995, "2013":   -10249252},
+      "provisions":           {"2014":    -3538485, "2013":     -136242},
+      "fx_revaluation":       {"2014":   -84419319, "2013":  -169955768},
+      "other_income":         {"2014":    35294227, "2013":    27467272},
+      "pbt":                  {"2014":   391430347, "2013":   -68782109},
+      "deferred_income_tax":  {"2014":    26515980, "2013":    69808354},
+      "profit":               {"2014":   417946327, "2013":     1026245}
+    },
+    "pbt_components": ["gross_profit", "selling_marketing", "g_and_a",
+                       "finance_cost", "interest_income", "other_expenses",
+                       "provisions", "fx_revaluation", "other_income"]
+  },
+
+  "FY2013_filing": {
+    "document": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+    "page_index": 4,
+    "statement": "قائمة الدخل — income statement for the year ended 31 December 2013",
+    "column_order": "left column 2012, right column 2013",
+    "lines": {
+      "revenue":              {"2013":  1247893152, "2012":   783355641},
+      "cost_of_revenue":      {"2013":  -777782194, "2012":  -543918074},
+      "gross_profit":         {"2013":   470110958, "2012":   239437567},
+      "selling_marketing":    {"2013":  -147633778, "2012":   -79372753},
+      "g_and_a":              {"2013":  -144516713, "2012":  -125184245},
+      "fx_revaluation":       {"2013":  -169955768, "2012":   -77424880},
+      "operating_profit":     {"2013":     8004699, "2012":   -42544311},
+      "finance_cost":         {"2013":   -40035199, "2012":   -36091115},
+      "interest_income":      {"2013":     3698614, "2012":     2024187},
+      "other_net":            {"2013":   -40003483, "2012":   -22125819},
+      "provisions_released":  {"2013":     2033020, "2012":           0},
+      "disposal_result":      {"2013":    -2479760, "2012":        5500},
+      "pbt":                  {"2013":   -68782109, "2012":   -98731558},
+      "deferred_income_tax":  {"2013":    69808354, "2012":           0},
+      "profit":               {"2013":     1026245, "2012":   -98731558}
+    },
+    "operating_components": ["gross_profit", "selling_marketing", "g_and_a",
+                             "fx_revaluation"],
+    "pbt_components": ["operating_profit", "finance_cost", "interest_income",
+                       "other_net", "provisions_released", "disposal_result"]
+  }
+}

@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**59 lessons**, of which 38 bind on every study, 16 on a class of company, and 5 on a single name.
+**70 lessons**, of which 47 bind on every study, 18 on a class of company, and 5 on a single name.
 
-By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 19 found while building.
+By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -409,7 +409,97 @@ A measurement that comes back the same for everything is more often a broken que
 
 > **What would overturn it.** Nothing. When a probe comes back uniform or empty, the first hypothesis is that the probe did not run.
 
-### L-034 · A depreciation forecast built on a projected asset base cannot see an acquisition.
+### L-034 · An extractor can be fluently, confidently wrong, and only arithmetic will say so.
+
+A tool that cannot read something usually says so. One that reads it badly hands you clean-looking numbers that are simply not on the page, and nothing about the output looks broken. Never accept a figure because the extractor produced it; accept it because it foots.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD source build, 01-Sep-2026
+
+> **What it cost, or how we know.** Two of EMFD's filings print EASTERN ARABIC NUMERALS. Tesseract's Arabic model returned well-formed figures such as 51,052,159 that appear nowhere on the page, at 300 and 400 dpi and at psm 4 and 6, so its output was not used. The figures used instead were read from the rendered page and accepted only because three arithmetic identities closed on each year AND a different document — the FY2015 statement of changes in equity, extracted independently by OCR in English — prints the same profit figures, 417,946,327 for FY2014 and 1,026,245 for FY2013.
+
+> **What would overturn it.** An extractor that fails loudly on a script it cannot read instead of emitting plausible digits.
+
+### L-035 · Tolerance in a number parser is greed.
+
+A separator you accept 'just in case' does not sit quietly. On a two-column statement it runs straight through the gap between the columns and welds both years into one number. Accept the separator the document actually uses.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD balance-sheet build, 01-Sep-2026
+
+> **What it cost, or how we know.** Allowing a space to stand in for a thousands separator turned 'Fixed assets under construction 5 974,670,923 958,519,586' into a single figure of 5,974,670,923,958,519,808 — both years and the note reference together — where the value is 974,670,923. Found by the statement's own subtotal, not by reading the output.
+
+> **What would overturn it.** A single-column statement, where there is no adjacent column to run into.
+
+### L-036 · A nil printed as a dash is data, and dropping it shifts every column left.
+
+Reading a row as 'the first two numbers after the label' works until a year is nil. Then the comparative slides into the current column and the row is wrong by a whole year, silently.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD balance-sheet build, 01-Sep-2026
+
+> **What it cost, or how we know.** EMFD's FY2020 non-current credit facilities print as 'Credit facilities 13 - 10,255,590' — nil in 2020 against 10,255,590 in 2019. Read as two numbers it put the 2019 figure into the 2020 column, and that row is the denominator of the borrowing-rate driver. The same species as L-033: a suspiciously simple reading of a table is usually a broken one.
+
+> **What would overturn it.** A statement that prints an explicit zero rather than a dash.
+
+### L-037 · The first filing that mentions a year is not the year as first reported.
+
+Every annual statement prints the prior year again, as the company chooses to present it a year later. Read filings newest-first and 'keep the first record of each year' keeps the restated one — the opposite of what point-in-time discipline requires.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD panel build, 01-Sep-2026
+
+> **What it cost, or how we know.** EMFD's FY2013 revenue is 1,247,893,152 in its own filing and 1,188,328,131 as restated in the FY2014 accounts, a 4.8% difference. Cost of revenue and profit before tax are IDENTICAL on both bases, so nothing watching the bottom line would ever have seen it. The panel now refuses to let a later filing's comparative overwrite a year's own filing, and records the restatement beside it.
+
+> **What would overturn it.** An issuer that never restates a comparative.
+
+### L-038 · Judge a source by the payload it returns, never by its status code.
+
+A page that refuses you can still answer 200. Ask what the bytes are, not what the header claims, or a challenge page gets filed as a financial statement.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD source sweep, 01-Sep-2026
+
+> **What it cost, or how we know.** The Egyptian Exchange answers every request — including a request for a named PDF — with HTTP 200 carrying an anti-bot interstitial. Of 79 logged attempts, the ones against that host all 'succeeded'. The probe now accepts a document only if its first five bytes are %PDF-. Same family as L-014 and L-015: the check was looking at something other than the thing it was judging.
+
+> **What would overturn it.** A payload test that wrongly rejects a legitimate document — a filing served in a format whose magic bytes we did not anticipate.
+
+### L-039 · Reconcile a quoted figure at the quoting document's own precision.
+
+A results release that says 'EGP 3.2 billion' is not disagreeing with an audited 3,237,263,142 — it is rounder. Score agreement against what the document actually promised, or invent disagreements and go looking for causes that are not there.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD KPI build, 01-Sep-2026
+
+> **What it cost, or how we know.** A fixed percentage band scored the FY2015 release as disagreeing with the audited statement. At the release's own precision — one decimal of a billion, so plus or minus 0.05bn — it agrees, and so do the FY2016 and FY2017 releases against 4,008,925,078 and 4,511,007,479.
+
+> **What would overturn it.** A document that quotes to full precision, where the two tests coincide.
+
+### L-040 · A source document can be incomplete, and 'the filing exists' is not 'the year is sourced'.
+
+A register that lists a year's accounts is not a guarantee that the accounts are all there. Check that the statement you need is in the file before counting the year as held.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD source build, 01-Sep-2026
+
+> **What it cost, or how we know.** The FY2015 year-end PDF on EMFD's own investor-relations register omits its profit-or-loss page entirely: balance sheet, changes in equity, cash flows, notes, and no income statement anywhere in 28 pages. The year was taken from the FY2016 filing's comparative column instead and flagged as a comparative rather than as first reported.
+
+> **What would overturn it.** A register whose files are checked for completeness at publication.
+
+### L-041 · A rate whose denominator is immaterial is not a rate — refuse it rather than widen it.
+
+When the base that should generate a flow is close to nothing, the implied rate is nonsense, and the temptation at that moment is to widen the base until the answer looks sensible. That is how a wrong model gets a right-looking number. Leave the rate undefined and say so.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD financing-rule check, 01-Sep-2026
+
+> **What it cost, or how we know.** EMFD's disclosed interest-bearing borrowings imply a borrowing rate of 238% in FY2019 and 69% in FY2020 — the company is effectively unlevered and the denominator is noise. Dividing the same finance cost by total liabilities would have produced about 0.04% and looked perfectly reasonable. This is L-204 seen from the other side: that lesson is about using too broad a base, this one about what to do when the correct base is too small to divide by.
+
+> **What would overturn it.** A filing disclosing material interest-bearing borrowings, where the ordinary rate on opening borrowings applies.
+
+### L-042 · A pre-registration may be amended only while no result exists.
+
+Fixing the rules in advance is worth nothing if they can be adjusted once the numbers are in. Before any error is computed a change is a choice; afterwards the identical change is tuning. Date the amendment and say which side of that line it fell on.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EMFD pre-registration, 01-Sep-2026
+
+> **What it cost, or how we know.** The rule for the finance-income driver formed its rate on the opening asset base. The balance-sheet extraction then showed EMFD's earning-asset base roughly doubling across FY2016-FY2017, making an opening-base rate and an average-base rate materially different quantities — the opening-base rate ranges from 8.8% to 26.6% on the extracted window. Both conventions are now computed at every origin and both reported, neither selected. The amendment was made and dated while the run was blocked and no forecast error existed.
+
+> **What would overturn it.** An amendment shown to be forced by an arithmetic error in the original rule, which is a correction rather than a choice.
+
+### L-043 · A depreciation forecast built on a projected asset base cannot see an acquisition.
 
 Depreciation is usually projected as a rate on a fixed-asset balance the model has also projected. That works until the company buys something. An acquisition multiplies the asset base overnight and the forecast has no way to know, so the error is not noise — it is the deal.
 
@@ -419,7 +509,7 @@ Depreciation is usually projected as a rate on a fixed-asset balance the model h
 
 > **What would overturn it.** A name with no acquisition inside the tested window whose depreciation forecast still misses in the same direction and by the same size.
 
-### L-035 · A reported finance charge is not always interest on borrowings.
+### L-044 · A reported finance charge is not always interest on borrowings.
 
 Before dividing a finance charge by debt to get a borrowing rate, check that the charge is actually interest on that debt. Where a company recognises a financing component on its customer contracts, the reported charge includes something no lender is being paid, and the implied rate is not a rate at all.
 
@@ -429,7 +519,7 @@ Before dividing a finance charge by debt to get a borrowing rate, check that the
 
 > **What would overturn it.** An issuer whose finance-cost note splits interest on borrowings from every other financing charge, where the implied rate then matches its disclosed borrowing cost.
 
-### L-036 · For a balance-sheet stock, assuming no change is a strong benchmark.
+### L-045 · For a balance-sheet stock, assuming no change is a strong benchmark.
 
 Stocks move slowly. A model that forecasts one has to beat simply carrying last year's balance forward, and it often does not. Check that explicitly before presenting a projected balance as if it added information.
 
@@ -439,7 +529,7 @@ Stocks move slowly. A model that forecasts one has to beat simply carrying last 
 
 > **What would overturn it.** A stock series volatile enough that carrying it forward is clearly worse than modelling it, at most horizons.
 
-### L-037 · Perfect foresight of inflation removes almost none of a forecast error, even across a devaluation.
+### L-046 · Perfect foresight of inflation removes almost none of a forecast error, even across a devaluation.
 
 It is tempting to blame a bad forecast on the currency. Re-run every forecast knowing the inflation path in advance and see how much improves. Usually almost nothing does, which means the error is in how the business was modelled and looking for a macro fix wastes the effort.
 
@@ -449,7 +539,7 @@ It is tempting to blame a bad forecast on the currency. Re-run every forecast kn
 
 > **What would overturn it.** A market or period where the same re-run removes most of the error.
 
-### L-038 · In a high-inflation market, a driver bias that changes direction between regimes is the normal case, not the exception.
+### L-047 · In a high-inflation market, a driver bias that changes direction between regimes is the normal case, not the exception.
 
 A bias measured over a whole history can hide two opposite halves, and in a market with several currency regimes that is what usually happens. Split the record by regime before treating any measured bias as a fact — on this company a third of the drivers changed sign.
 
@@ -528,28 +618,25 @@ Sales value is units times price. Project each one conservatively and the two sh
 
 > **What would overturn it.** A developer where price and volume are projected jointly and the value forecast is still biased low.
 
+### L-115 · An off-plan developer may be on completed contract, not percentage-of-completion — the class label can be wrong.
 
-## Real-estate developer, off-plan, point-in-time on handover
+Not every off-plan developer books revenue as it builds. Some book it only on handover, which puts revenue and cost on the same clock and makes the classic profit overstatement impossible. Read the issuer's own words before applying anything learned from another developer.
 
-### L-115 · A developer's work in progress runs ahead of its revenue, not with it.
+**Applies to:** every real-estate developer, off-plan, percentage-of-completion  ·  *Learned from:* found while building, EMFD source build, 01-Sep-2026
 
-Half-built homes are an investment made years before the revenue they produce. Driving work in progress off revenue makes the model spend when the company has already spent, and it will understate the balance every time the company is building for a growing order book.
+> **What it cost, or how we know.** EMFD's own results releases state it in terms — 'revenues recognized according to the Completed Contract (CC) method', in both the FY2016 and FY2017 releases — so through FY2020 revenue and cost of revenue are released together at handover and L-001's own stated falsifier is met for that window. The basis then changed: EAS 48 took effect on 1 January 2021 and the one period published on both bases restates revenue by +2.72%, cost of revenue by +8.05% and gross profit by -8.42%. This is the second name behind L-102, and it widens that lesson: the basis can differ between issuers of the same class, not merely change date.
 
-**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+> **What would overturn it.** A market where the recognition basis is mandated uniformly, so the class and the basis always coincide.
 
-> **What it cost, or how we know.** Bias -0.528 log (about 1.7 times too low), average miss 0.528, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=25).
+### L-116 · A developer's operating KPIs can stop years before its statements do.
 
-> **What would overturn it.** A developer whose work in progress tracks its revenue closely over a full cycle.
+Units delivered and contracted sales live in the results release, not the accounts. An issuer that stops publishing releases still files statements — so revenue keeps arriving while the drivers that explain it do not, and the unit-level model simply cannot be scored on those years.
 
-### L-116 · The size of a demographic anchor's miss on a developer is set by the launch calendar, not by the method.
+**Applies to:** every real-estate developer, off-plan, percentage-of-completion  ·  *Learned from:* found while building, EMFD KPI build, 01-Sep-2026
 
-A population-based volume driver runs low for every developer, but not by a fixed amount. How far low depends entirely on what the company launched, which means the miss cannot be corrected with a multiplier fitted on one name and carried to another.
+> **What it cost, or how we know.** EMFD's register carries results releases for FY2015, FY2016 and FY2017 only, giving delivered units of 819, 935 and 1,386. For FY2018-FY2020 no unit count exists in ANY document it publishes — no release, and the management annual reports for those years are the board's Arabic governance report with no operating data in it — while audited statements for all three years are on the same register. Units delivered, revenue per unit and cost per unit are therefore unscoreable on the three most recent years of the obtainable window. This is the second name behind L-205, which is why it is filed at class scope: PHDC's drivers lag its accounts by a year or two, EMFD's stop altogether.
 
-**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
-
-> **What it cost, or how we know.** Bias -0.877 log (about 2.4 times too low), average miss 1.022, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=33).
-
-> **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
+> **What would overturn it.** An issuer whose operating KPIs appear in the audited statements themselves rather than only in a results release.
 
 
 ## Telecom operator
@@ -651,6 +738,29 @@ Some metals have no history of their own in this system and borrow another metal
 > **What it cost, or how we know.** Gold is calibrated on its own data alone, so testing it against that same data proves nothing. Silver is published with no fit of its own at all — it borrows gold's. Neither may be presented with the confidence of a name that has a proper panel behind it.
 
 > **What would overturn it.** Enough silver, copper and platinum history to fit each on its own.
+
+
+## Real-estate developer, off-plan, point-in-time on handover
+
+### L-117 · A developer's work in progress runs ahead of its revenue, not with it.
+
+Half-built homes are an investment made years before the revenue they produce. Driving work in progress off revenue makes the model spend when the company has already spent, and it will understate the balance every time the company is building for a growing order book.
+
+**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.528 log (about 1.7 times too low), average miss 0.528, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=25).
+
+> **What would overturn it.** A developer whose work in progress tracks its revenue closely over a full cycle.
+
+### L-118 · The size of a demographic anchor's miss on a developer is set by the launch calendar, not by the method.
+
+A population-based volume driver runs low for every developer, but not by a fixed amount. How far low depends entirely on what the company launched, which means the miss cannot be corrected with a multiplier fitted on one name and carried to another.
+
+**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* fundamental walk-forward test, TMGH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.877 log (about 2.4 times too low), average miss 1.022, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=33).
+
+> **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
 
 
 ---

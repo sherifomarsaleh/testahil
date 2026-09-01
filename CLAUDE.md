@@ -48,6 +48,27 @@ diff-only summary leaves that copy silently behind.
   walk-forward" without saying which. Every run produces TWO documents: the updated
   fundamental analysis at full model-report depth, and the updated lessons register — a run
   that produces one and not the other is not finished.
+- **Running that walk-forward across the WHOLE book, name after name →
+  `engine/Fundamental_Walkforward_Campaign_Prompt.md`** (adopted 01-Sep-2026, per instruction).
+  The campaign wrapper only — it changes no research method, and does not restate the
+  single-name protocol above. Market order is fixed (EGX → UAE → KSA → Qatar → India → Korea →
+  USA); within a market, oldest standard first [R-STD-01]. THE QUEUE IS NEVER WRITTEN IN A
+  DOCUMENT — read it live with `python3 engine/campaign_queue.py` (`--next` for the next
+  unstarted name), which refuses rather than returning a short list. Metals are excluded by
+  construction (no issuer, no statements, no drivers) and named in the exclusion list. HARD
+  STOP AFTER EGX to review whether the method generalises before UAE begins. FREEZE THE OLD
+  FAIR VALUE FIRST — `python3 engine/fv_movement.py snapshot TK` — because the rebuild is the
+  one sanctioned thing that moves `fair{bear,base,full}` and `data.js` carries no date or
+  standard stamp, so a baseline taken afterwards is a fabricated zero.
+- **What each rebuild did to fair value → `engine/Fundamental_Calibration_FV_Register.md`,
+  the fair-value half of the Fundamental Analysis Calibration Register** (the lessons half is
+  `Lessons_Register.md`; cross-referenced by lesson id, never duplicated). GENERATED from
+  `engine/fv_movement.py` ← `fv_movement.json`, never hand-edited. `fv_movement.py check`
+  anchors on the run directories on disk, so a register that stopped being fed FAILS rather
+  than reporting clean. Internal — nothing here reaches the live site. For the 67 names with
+  no prior study the "old" number came from no current-standard study at all, so the movement
+  column measures a new study against a number of unknown provenance — say so wherever it is
+  quoted.
 - **What every study taught us, and how far it travels → `engine/Lessons_Register.md` (and
   `.docx`) [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE:
   `python3 engine/lessons.py TICKER --class CLASS` returns exactly what binds on that name —

@@ -35,7 +35,11 @@ const path = require('path');
 // which is a gate that reports noise. Each is driven the way a reader drives it: type the
 // ticker, then read back what the page rendered.
 const SURFACES = [
-  { file: 'stocks.html',    what: 'coverage index',        search: '#topsearch' },
+  // `keyedBy: 'coverage'` — this register renders assets/coverage.js, so the symbol a
+  // reader searches and sees is that file's `tk`, which is NOT always the TICKERS key.
+  // See THE REGISTER'S OWN SYMBOL below.
+  { file: 'stocks.html',    what: 'coverage index',        search: '#topsearch',
+    keyedBy: 'coverage' },
   { file: 'trade.html',     what: 'Trade name search',     search: '#t-sym' },
   { file: 'portfolio.html', what: 'Portfolio name search', search: '#p-sel' },
   { file: 'ledger.html',    what: 'forecast ledger',    marker: 'HAS_BACKTEST' },
@@ -89,14 +93,46 @@ const SURFACES = [
   // through as "that one always fails". Case-insensitive as before (SAMSUNG/Samsung).
   const esc = x => String(x).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const alts = [TK, t.name, t.nameAr].filter(Boolean);
+  let covRows = null;
   try {
     const cov = {}; vm.createContext(cov);
     vm.runInContext(fs.readFileSync(path.join(ROOT, 'assets/coverage.js'), 'utf8')
-                    + ';globalThis.__S=SHORT;', cov);
+                    + ';globalThis.__S=SHORT;'
+                    + ';globalThis.__EN=typeof COVERAGE_EN!=="undefined"?COVERAGE_EN:null;',
+                    cov);
     if (cov.__S && cov.__S[TK]) alts.push(cov.__S[TK]);
+    covRows = cov.__EN;
   } catch (e) { /* SHORT is a convenience, not a requirement */ }
   const re = new RegExp('\\b' + esc(TK) + '\\b|' +
                         alts.slice(1).map(a => esc(a)).join('|'), 'i');
+
+  /* THE REGISTER'S OWN SYMBOL IS NOT ALWAYS THE SITE KEY (01-Sep-2026).
+   *
+   * This gate typed the TICKERS key into every register's search box and then looked
+   * for it in the DOM. That is an assumption about the DATA, not a fact about it, and
+   * it held for 87 of the 90 covered names only because their site key and their
+   * published symbol happen to be the same string. The three KRX names are keyed by
+   * their NUMERIC EXCHANGE TICKER in assets/coverage.js — LGES is listed as 373220,
+   * SAMSUNG as 005930, KAKAO as 035720 — which is how a Korean symbol is written
+   * everywhere a reader looks. So typing "LGES" filtered the coverage index to nothing
+   * and the gate reported the name missing from a page that carries it correctly. Same
+   * species as the RIYADHCABLE/"Riyadh Cables" miss the display-name alternative fixed
+   * above, one field further out: the identity a register uses is the register's to
+   * declare, not this script's to assume.
+   *
+   * So resolve it from the register's OWN authority. Match the coverage row on `code`
+   * (KRX:373220) — carried by both files, unique per exchange, and never a display
+   * string — then search and assert on the symbol and name that row publishes.
+   *
+   * WHERE THE TWO AGREE THIS IS A NO-OP BY CONSTRUCTION: `covAlias` is null unless the
+   * coverage symbol DIFFERS from the site key, and every equity outside KRX then takes
+   * the identical typed term and the identical regex it took before. */
+  const codeOf = x => String(x || '').trim().toUpperCase();
+  const covRow = (covRows || []).find(r => codeOf(r.code) === codeOf(t.code)) || null;
+  const covAlias = covRow && String(covRow.tk).toUpperCase() !== TK ? covRow : null;
+  const covRe = covAlias
+    ? new RegExp('\\b' + esc(covAlias.tk) + '\\b|' + esc(covAlias.name), 'i')
+    : null;
 
   /* THE CUTOVER MOVED THE REGISTER SURFACES (30-Aug-2026). All five of these are
    * redirect stubs at root now; the pages that actually render the registers are
@@ -136,19 +172,25 @@ const SURFACES = [
     // These pages build their tables from data.js on DOMContentLoaded and some of them
     // simulate paths first; a short wait renders an empty table and reports a false miss.
     await p.waitForTimeout(2000);
+    // The identity THIS register publishes for the name — the site key unless the
+    // register declares another one (see THE REGISTER'S OWN SYMBOL above).
+    const alias = (s.keyedBy === 'coverage' && covAlias) ? covAlias : null;
+    const term  = alias ? String(alias.tk) : TK;
+    const rx    = alias ? covRe : re;
     let body = '';
     try {
       if (s.search) {
         await p.click(s.search);
-        await p.fill(s.search, TK);
+        await p.fill(s.search, term);
         await p.waitForTimeout(600);
       }
       body = await p.innerText('body');
     } catch (e) { errs.push(String(e)); }
     p.off('pageerror', onErr);
+    const as = alias ? ` (as ${term})` : '';
     if (errs.length) bad.push(`${served} (${s.what}) — page errors: ${errs.slice(0, 2).join(' | ')}`);
-    else if (!re.test(body)) bad.push(`${served} (${s.what}) — ${TK} is not in the rendered DOM`);
-    else console.log(`  ok  ${served.padEnd(22)} ${TK} visible on the ${s.what}`);
+    else if (!rx.test(body)) bad.push(`${served} (${s.what}) — ${TK}${as} is not in the rendered DOM`);
+    else console.log(`  ok  ${served.padEnd(22)} ${TK} visible on the ${s.what}${as}`);
   }
   await b.close();
 
