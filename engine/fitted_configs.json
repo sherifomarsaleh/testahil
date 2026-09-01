@@ -561,11 +561,11 @@
     "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": -0.002,
+    "market_skill": -0.0005,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
       -0.007,
-      0.004
+      0.007
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -608,12 +608,12 @@
       "ELM": {
         "nu": 10.0,
         "width_cal": 1.063,
-        "skill": 0.0033,
-        "skill_raw_basis": -0.0017,
+        "skill": 0.0349,
+        "skill_raw_basis": 0.011,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.018,
-          0.014
+          -0.036,
+          0.082
         ]
       },
       "EXTRA": {
@@ -640,35 +640,35 @@
       },
       "RAJHI": {
         "nu": 12.0,
-        "width_cal": 1.056,
-        "skill": 0.0135,
-        "skill_raw_basis": 0.0147,
+        "width_cal": 1.049,
+        "skill": 0.013,
+        "skill_raw_basis": 0.0142,
         "verdict": "PARITY",
         "ci_block2": [
           -0.004,
-          0.029
+          0.028
         ]
       },
       "RIBL": {
         "nu": 12.0,
-        "width_cal": 1.049,
-        "skill": -0.0018,
-        "skill_raw_basis": -0.0039,
+        "width_cal": 1.042,
+        "skill": -0.0024,
+        "skill_raw_basis": -0.0043,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.02,
+          -0.021,
           0.018
         ]
       },
       "RIYADHCABLE": {
         "nu": 12.0,
-        "width_cal": 1.07,
-        "skill": -0.0219,
-        "skill_raw_basis": -0.0218,
+        "width_cal": 1.063,
+        "skill": -0.0214,
+        "skill_raw_basis": -0.0212,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.087,
-          0.009
+          -0.083,
+          0.008
         ]
       },
       "SABIC": {
@@ -706,12 +706,12 @@
       },
       "STC": {
         "nu": 12.0,
-        "width_cal": 1.084,
-        "skill": -0.0001,
-        "skill_raw_basis": -0.0009,
+        "width_cal": 1.077,
+        "skill": 0.0006,
+        "skill_raw_basis": -0.0001,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.019,
+          -0.018,
           0.016
         ]
       }

@@ -1050,28 +1050,29 @@ const TICKERS = {
     name: "Elm Company",
     nameAr: "شركة علم",
     code: "TADAWUL:7203",
-    spot: 666.00,
-    spotDate: "close 26 Jul 2026",
+    spot: 636.50,
+    spotDate: "close 31 Aug 2026",
     ccy: "SAR",
     fair: { bear: 530, base: 620, full: 720 },      // 10 Jul 2026 — weighted central ~620 (−5.8% vs spot 658.50): roughly fairly valued, a slight premium. Lenses: DCF (primary, β=1.0 neutral, WACC 10.5%, g 4%, 40%) 576, forward P/E (24× 2025e EPS 28.6, 30%) 686, EV/EBITDA (18–20× 2025e, 25%) ~625, MC 3-month median 664. bear/full = football-field range 530–720. The crux is the discount rate: 77% of DCF value is terminal, so a low-beta government-defensive read (β 0.7, WACC 9%) gives ~750, neutral (β 1.0) ~576, and a high-beta post-crash re-rate (β 1.6, WACC 13.5%) ~396. Second swing: registry-exclusivity durability behind the ~46%-margin Digital Business.
     dist: {
-      t20: { label:"1 month",   p5:557.58, p25:622.90, p50:667.90, p75:716.95, p95:801.78, resolve:"2026-08-26" },
-      t60: { label:"3 months",  p5:500.81, p25:600.12, p50:673.56, p75:755.15, p95:905.12, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:535.85, p25:593.13, p50:633.15, p75:676.42, p95:748.96, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:469.02, p25:563.84, p50:633.78, p75:712.07, p95:858.69, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [757.30, 20, 43], [724.40, 37, 59], [691.40, 64, 79], [625.60, 47, 64], [592.60, 22, 43], [559.70, 9, 26]
+      [757.30, 7, 28], [724.40, 15, 41], [691.40, 32, 58], [625.60, 77, 87], [592.60, 41, 64], [559.70, 17, 43]
     ],
-    levels: { res:[676.22, 724.44, 883.07], sup:[659.50, 632, 562.50] },
+    levels: { res:[676.22, 724.44, 824.04], sup:[622, 577.50, 562.50] },
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 666.00 below a rising 50-day (685.68) and a falling 200-day (715.77), but above a falling 20-day (663.67). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 16.28 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22125.32 / \u22127.43 / +2.11). Over the last year it has ranged 504.50\u2013972.00; the last close sits 31% below that high and 32% above that low.",
-      bull: "A daily close back above 676.22 would clear the nearest resistance; the next charted level above it is 883.07.",
-      bear: "A close below 659.50 would break the nearest support; the next charted level below it is 562.50."
+      summary: "The price closed 636.50 below a falling 50-day (646.32) and a falling 200-day (678.52), but above a falling 20-day (615.35). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 16.09 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.71 / \u22128.55 / +6.84). Over the last year it has ranged 504.50\u2013972.00; the last close sits 35% below that high and 26% above that low.",
+      bull: "A daily close back above 676.22 would clear the nearest resistance; the next charted level above it is 824.04.",
+      bear: "A close below 622.00 would break the nearest support; the next charted level below it is 562.50."
     },
     asof: {
-      mc:   { data:"2026-07-26", computed:"2026-07-28" },
-      tech: { data:"2026-07-26", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/Elm_Valuation_Study_10-07-2026_public.docx?v=0710b",
@@ -3188,7 +3189,7 @@ const BANDS = {
   EGAL: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8070, c90:0.9123, width:1.270, strength:"long", flag:null},
   EGCH: {mkt:"EG", n:57, hits:54, c50:0.5614, c80:0.8772, c90:0.9474, width:1.446, strength:"long", flag:null},
   ELEC: {mkt:"EG", n:57, hits:53, c50:0.5789, c80:0.8772, c90:0.9298, width:1.471, strength:"long", flag:null},
-  ELM: {mkt:"SA", n:13, hits:10, c50:0.3077, c80:0.5385, c90:0.7692, width:1.018, strength:"market-only", flag:null},
+  ELM: {mkt:"SA", n:13, hits:9, c50:0.3077, c80:0.5385, c90:0.6923, width:1.014, strength:"market-only", flag:null},
   EMAAR: {mkt:"AE", n:58, hits:46, c50:0.4828, c80:0.7241, c90:0.7931, width:0.957, strength:"long", flag:"narrow"},
   EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.8000, c90:0.9333, width:1.045, strength:"short", flag:null},
   EMFD: {mkt:"EG", n:39, hits:38, c50:0.6154, c80:0.8974, c90:0.9744, width:1.400, strength:"short", flag:null},
@@ -3252,7 +3253,7 @@ const BAND_MARKETS = {
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
-  SA: {names:13, n:555, c90:0.8703, label:"Saudi"},
+  SA: {names:13, n:555, c90:0.8685, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
   XAU: {names:2, n:120, c90:0.9333, label:"precious-metals"},
   XPT: {names:1, n:58, c90:0.9483, label:"precious-metals"},
@@ -4418,9 +4419,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:557.58, p25:622.9, p50:667.9, p75:716.95, p95:801.78,
     touch:{ "+5":57, "+10":32, "+15":17, "+20":8, "-5":53, "-10":26 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:644, realized_high:680, realized_low:577.5,
+    in_90:true, in_50:true, realized_quantile:0.367, median_err:-0.0358,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":true }
   },
   {
     instrument:"ELM", asset_class:"equity",
@@ -6943,6 +6944,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: ELM, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ELM", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:636.5, ccy:"SAR",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.3377,
+    signal_z:-0.8824, signal_alpha:-0.008503,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -0.882 (outside the 0.25 dead zone); tilt -0.85% at 1M and -1.52% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:535.85, p25:593.13, p50:633.15, p75:676.42, p95:748.96,
+    touch:{ "+5":51, "+10":26, "+15":12, "+20":6, "-5":54, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELM", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:636.5, ccy:"SAR",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.3507,
+    signal_z:-0.8824, signal_alpha:-0.015295,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -0.882 (outside the 0.25 dead zone); tilt -0.85% at 1M and -1.52% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:469.02, p25:563.84, p50:633.78, p75:712.07, p95:858.69,
+    touch:{ "+5":72, "+10":53, "+15":38, "+20":26, "-5":72, "-10":51 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7254,6 +7284,6 @@ const CALIB = {
   "TADAWUL:4003": {w: 53, in50: 53, in90: 89, through: "2026-04-27"},
   "TADAWUL:4142": {w: 10, in50: 70, in90: 90, through: "2026-07-06"},
   "TADAWUL:7010": {w: 57, in50: 54, in90: 91, through: "2026-04-28"},
-  "TADAWUL:7203": {w: 13, in50: 31, in90: 77, through: "2026-06-11"},
+  "TADAWUL:7203": {w: 13, in50: 31, in90: 85, through: "2026-06-11"},
 };
 // ==== END NAME_CALIBRATION ====
