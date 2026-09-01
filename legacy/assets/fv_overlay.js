@@ -38,7 +38,7 @@ const FV_OVERLAY = {
   },
   "SA": {
    "nu": 12.0,
-   "width_cal": 1.063,
+   "width_cal": 1.056,
    "rf_live": 0.0425,
    "width_overlay_active": false
   },
@@ -345,7 +345,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -529,7 +529,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -989,7 +989,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1725,7 +1725,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2093,7 +2093,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2369,7 +2369,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2553,7 +2553,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3105,7 +3105,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3565,7 +3565,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4485,7 +4485,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5497,7 +5497,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6484,98 +6484,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "MAADEN",
-   "name": "Saudi Arabian Mining Company (Ma'aden)",
-   "code": "TADAWUL:1211",
-   "ccy": "SAR",
-   "spot": 58.2,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 27,
-   "fv_base": 42,
-   "fv_full": 57,
-   "gap_base_pct": -27.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.086511,
-    "mu_h": 0.002917,
-    "G": {
-     "bear": -8.88,
-     "base": -3.77,
-     "full": -0.24
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0007,
-     "full": 0.3844
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.0009,
-     "full": 0.6922
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9801,
-     "full": -0.2212
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00132
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.152897,
-    "mu_h": 0.011106,
-    "G": {
-     "bear": -5.02,
-     "base": -2.13,
-     "full": -0.14
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0163,
-     "full": 0.4114
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0281,
-     "full": 0.8123
-    },
-    "required_cagr": {
-     "bear": -0.9537,
-     "base": -0.7288,
-     "full": -0.08
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00194
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "AMOC",
    "name": "Alexandria Mineral Oils",
    "code": "EGX:AMOC",
@@ -6777,7 +6685,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7010,6 +6918,90 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00356
    },
    "market": "EG"
+  },
+  {
+   "ticker": "MAADEN",
+   "name": "Saudi Arabian Mining Company (Ma'aden)",
+   "code": "TADAWUL:1211",
+   "ccy": "SAR",
+   "spot": 66.1,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 27,
+   "fv_base": 42,
+   "fv_full": 57,
+   "gap_base_pct": -36.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.097044,
+    "mu_h": 0.006635,
+    "G": {
+     "bear": -9.23,
+     "base": -4.67,
+     "full": -1.53
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9957,
+     "full": -0.8309
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00112
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.169587,
+    "mu_h": 0.016802,
+    "G": {
+     "bear": -5.28,
+     "base": -2.67,
+     "full": -0.87
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0052,
+     "full": 0.1539
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0095,
+     "full": 0.2864
+    },
+    "required_cagr": {
+     "bear": -0.9722,
+     "base": -0.837,
+     "full": -0.447
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00197
+   },
+   "market": "SA"
   },
   {
    "ticker": "DIB",
