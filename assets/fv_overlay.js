@@ -3456,98 +3456,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "LGES",
-   "name": "LG Energy Solution, Ltd.",
-   "code": "KRX:373220",
-   "ccy": "KRW",
-   "spot": 314000,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-28",
-   "fv_lag_days": 30,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 150000,
-   "fv_base": 248000,
-   "fv_full": 415000,
-   "gap_base_pct": -21.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.168926,
-    "mu_h": 0.001834,
-    "G": {
-     "bear": -4.37,
-     "base": -1.4,
-     "full": 1.65
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.0714,
-     "full": 0.0474
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.1136,
-     "full": 0.0733
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9411,
-     "full": 27.4067
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00332
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.275699,
-    "mu_h": 0.009592,
-    "G": {
-     "bear": -2.68,
-     "base": -0.86,
-     "full": 1.01
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.007,
-     "base": 0.1669,
-     "full": 0.146
-    },
-    "p_touch": {
-     "bear": 0.0114,
-     "base": 0.3037,
-     "full": 0.2567
-    },
-    "required_cagr": {
-     "bear": -0.9479,
-     "base": -0.6109,
-     "full": 2.0512
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00579
-   },
-   "market": "KR"
-  },
-  {
    "ticker": "ORAS",
    "name": "Orascom Construction",
    "code": "EGX:ORAS",
@@ -5386,6 +5294,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00226
    },
    "market": "EG"
+  },
+  {
+   "ticker": "LGES",
+   "name": "LG Energy Solution, Ltd.",
+   "code": "KRX:373220",
+   "ccy": "KRW",
+   "spot": 367000,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 65,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 150000,
+   "fv_base": 248000,
+   "fv_full": 415000,
+   "gap_base_pct": -32.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.07,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.148574,
+    "mu_h": 0.002398,
+    "G": {
+     "bear": -6.02,
+     "base": -2.64,
+     "full": 0.83
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0077,
+     "full": 0.1882
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0113,
+     "full": 0.3115
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9909,
+     "full": 3.371
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00152
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.260114,
+    "mu_h": 0.009378,
+    "G": {
+     "bear": -3.44,
+     "base": -1.51,
+     "full": 0.47
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0019,
+     "base": 0.0563,
+     "full": 0.3139
+    },
+    "p_touch": {
+     "bear": 0.0034,
+     "base": 0.0981,
+     "full": 0.5623
+    },
+    "required_cagr": {
+     "bear": -0.9721,
+     "base": -0.7915,
+     "full": 0.635
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00397
+   },
+   "market": "KR"
   },
   {
    "ticker": "ADNOCGAS",
