@@ -1207,6 +1207,70 @@ LESSONS = [
       "A market or period where fewer than one driver in ten changes "
       "sign between regimes.",
       "provisional"),
+    L("L-048", "ALL", None,
+      "A checklist that counts sections never asks whether the method was "
+      "right.",
+      "Verifying that a report has all its parts tells you nothing about "
+      "whether the company was valued the way that kind of company should be "
+      "valued. Those are different questions, and the second one is the one "
+      "that decides the answer.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "A real-estate developer shipped with no asset-based lens and the word "
+      "land nowhere in it. Six gates passed it: source integrity, the "
+      "model-report checklist, the beta attestation, 154 recalculations, the "
+      "table audit and the external-reader scrub.",
+      "A study that fails a structural checklist while carrying the right "
+      "method for its class, which would mean the two checks overlap more "
+      "than this claims.",
+      "adopted"),
+
+    L("L-049", "ALL", None,
+      "One model run at several settings is one opinion, not several.",
+      "Publishing a range built from the same model with different inputs "
+      "looks like several views and is not. The cases will cluster, because "
+      "they share every assumption that matters, and the spread will "
+      "understate how uncertain the answer really is.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "Four published cases were two cost-of-capital bases crossed with two "
+      "readings of one discounted cash flow. Adding a genuinely different "
+      "lens moved the answer by more than all four cases spanned.",
+      "A set of cases from one model whose spread is as wide as the spread "
+      "between genuinely different methods on the same company.",
+      "adopted"),
+
+    L("L-119", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
+      "A developer's land is the asset, and a cash-flow model credits most of "
+      "it at nothing.",
+      "A projection only earns money from land it builds on inside its "
+      "window. A developer holding decades of land gets almost all of it "
+      "valued at zero, and the gap to the market price will be roughly the "
+      "land that was left out.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "20mn sqm held against a projection that builds a fraction of it. The "
+      "market's premium over the cash-flow value implies EGP 10,863-24,388 "
+      "per square metre, inside the range serviced land trades at.",
+      "A developer whose landbank is short enough that the projection window "
+      "consumes it, where the two lenses would then agree.",
+      "provisional"),
+
+    L("L-050", "ALL", None,
+      "Where the disclosure cannot support a lens, publish a bound and say so.",
+      "When a company discloses an asset's size but not its value, the honest "
+      "output is an explicit bound plus what the market price implies — not a "
+      "figure built on a link between the two that nobody published.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "Sizing the overlap between landbank and projection used order book "
+      "divided by landbank as revenue per square metre. The book is units "
+      "already sold on land already committed; the bank is what remains. The "
+      "two do not divide into each other.",
+      "A disclosure that does link an asset's area to its value directly, "
+      "where a computed figure would beat a bound.",
+      "adopted"),
+
 ]
 
 

@@ -70,7 +70,7 @@ tested.
 | Stock | Market | Class | Fair price before | Fair price after | Move |
 |---|---|---|---|---|---|
 | **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | EGP 7.62 – 24.92  (central 15.89) | EGP 4.6 – 23.33  (central 10.94) | -31.2% |
-| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 83.6 – 189.6  (central 147.12) | EGP 48.83 – 77.58  (central 63.76) | -56.7% |
+| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 83.6 – 189.6  (central 147.12) | EGP 51.4 – 82.83  (central 68.73) | -53.3% |
 
 - **PHDC** — before-calibration price recovered from assets/data.js history: unchanged across all 281 commits touching that file between 11-Jun-2026 and 01-Sep-2026. The original record declared it unrecoverable on the evidence of a SHALLOW clone holding 23 commits; unshallowing the repository resolved it. An empty result was read as a clean one..
 
@@ -115,9 +115,9 @@ The company's investor-relations archive publishes financial statements from FY2
 3 names excluded from the campaign by construction (GOLD, SILVER, PLATINUM) — metals - no issuer, no statements, no drivers, so there is no forecasting method to test.
 
 The campaign stops after the first market to review whether the method generalises before the next one begins, so this list is an order rather than a schedule.
-**70 lessons**, of which 47 bind on every study, 18 on a class of company, and 5 on a single name.
+**74 lessons**, of which 50 bind on every study, 19 on a class of company, and 5 on a single name.
 
-By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
+By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -608,6 +608,36 @@ A bias measured over a whole history can hide two opposite halves, and in a mark
 
 > **What would overturn it.** A market or period where fewer than one driver in ten changes sign between regimes.
 
+### L-048 · A checklist that counts sections never asks whether the method was right.
+
+Verifying that a report has all its parts tells you nothing about whether the company was valued the way that kind of company should be valued. Those are different questions, and the second one is the one that decides the answer.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** A real-estate developer shipped with no asset-based lens and the word land nowhere in it. Six gates passed it: source integrity, the model-report checklist, the beta attestation, 154 recalculations, the table audit and the external-reader scrub.
+
+> **What would overturn it.** A study that fails a structural checklist while carrying the right method for its class, which would mean the two checks overlap more than this claims.
+
+### L-049 · One model run at several settings is one opinion, not several.
+
+Publishing a range built from the same model with different inputs looks like several views and is not. The cases will cluster, because they share every assumption that matters, and the spread will understate how uncertain the answer really is.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** Four published cases were two cost-of-capital bases crossed with two readings of one discounted cash flow. Adding a genuinely different lens moved the answer by more than all four cases spanned.
+
+> **What would overturn it.** A set of cases from one model whose spread is as wide as the spread between genuinely different methods on the same company.
+
+### L-050 · Where the disclosure cannot support a lens, publish a bound and say so.
+
+When a company discloses an asset's size but not its value, the honest output is an explicit bound plus what the market price implies — not a figure built on a link between the two that nobody published.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** Sizing the overlap between landbank and projection used order book divided by landbank as revenue per square metre. The book is units already sold on land already committed; the bank is what remains. The two do not divide into each other.
+
+> **What would overturn it.** A disclosure that does link an asset's area to its value directly, where a computed figure would beat a bound.
+
 
 ---
 
@@ -820,6 +850,16 @@ A population-based volume driver runs low for every developer, but not by a fixe
 > **What it cost, or how we know.** Bias -0.877 log (about 2.4 times too low), average miss 1.022, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=33).
 
 > **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
+
+### L-119 · A developer's land is the asset, and a cash-flow model credits most of it at nothing.
+
+A projection only earns money from land it builds on inside its window. A developer holding decades of land gets almost all of it valued at zero, and the gap to the market price will be roughly the land that was left out.
+
+**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* found while building, TMGH study, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** 20mn sqm held against a projection that builds a fraction of it. The market's premium over the cash-flow value implies EGP 10,863-24,388 per square metre, inside the range serviced land trades at.
+
+> **What would overturn it.** A developer whose landbank is short enough that the projection window consumes it, where the two lenses would then agree.
 
 
 ---

@@ -10,11 +10,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 0.0,
    "land_per_share": 0.0,
-   "rnav_upper_per_share": 52.411332661104396,
+   "rnav_upper_per_share": 57.104251320072535,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|1000": {
@@ -23,11 +23,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 7000.0,
    "land_per_share": 1.8610876499470956,
-   "rnav_upper_per_share": 54.27242031105149,
+   "rnav_upper_per_share": 58.96533897001963,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|2000": {
@@ -36,11 +36,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 14000.0,
    "land_per_share": 3.7221752998941913,
-   "rnav_upper_per_share": 56.133507960998585,
+   "rnav_upper_per_share": 60.826426619966725,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|3500": {
@@ -49,11 +49,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 24500.0,
    "land_per_share": 6.513806774814835,
-   "rnav_upper_per_share": 58.925139435919235,
+   "rnav_upper_per_share": 63.618058094887374,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|5000": {
@@ -62,11 +62,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 35000.0,
    "land_per_share": 9.305438249735479,
-   "rnav_upper_per_share": 61.71677091083988,
+   "rnav_upper_per_share": 66.40968956980801,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|7500": {
@@ -75,11 +75,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 52500.0,
    "land_per_share": 13.958157374603218,
-   "rnav_upper_per_share": 66.36949003570761,
+   "rnav_upper_per_share": 71.06240869467575,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|10000": {
@@ -88,11 +88,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 70000.0,
    "land_per_share": 18.610876499470958,
-   "rnav_upper_per_share": 71.02220916057536,
+   "rnav_upper_per_share": 75.7151278195435,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|capacity|15000": {
@@ -101,11 +101,11 @@
    "mode": "capacity",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 52.411332661104396,
+   "dcf_per_share": 57.104251320072535,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 105000.0,
    "land_per_share": 27.916314749206435,
-   "rnav_upper_per_share": 80.32764741031083,
+   "rnav_upper_per_share": 85.02056606927897,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|0": {
@@ -114,11 +114,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 0.0,
    "land_per_share": 0.0,
-   "rnav_upper_per_share": 70.19958268222028,
+   "rnav_upper_per_share": 74.89250134118839,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|1000": {
@@ -127,11 +127,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 7000.0,
    "land_per_share": 1.8610876499470956,
-   "rnav_upper_per_share": 72.06067033216738,
+   "rnav_upper_per_share": 76.75358899113549,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|2000": {
@@ -140,11 +140,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 14000.0,
    "land_per_share": 3.7221752998941913,
-   "rnav_upper_per_share": 73.92175798211447,
+   "rnav_upper_per_share": 78.61467664108258,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|3500": {
@@ -153,11 +153,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 24500.0,
    "land_per_share": 6.513806774814835,
-   "rnav_upper_per_share": 76.71338945703512,
+   "rnav_upper_per_share": 81.40630811600323,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|5000": {
@@ -166,11 +166,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 35000.0,
    "land_per_share": 9.305438249735479,
-   "rnav_upper_per_share": 79.50502093195576,
+   "rnav_upper_per_share": 84.19793959092387,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|7500": {
@@ -179,11 +179,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 52500.0,
    "land_per_share": 13.958157374603218,
-   "rnav_upper_per_share": 84.1577400568235,
+   "rnav_upper_per_share": 88.85065871579161,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|10000": {
@@ -192,11 +192,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 70000.0,
    "land_per_share": 18.610876499470958,
-   "rnav_upper_per_share": 88.81045918169124,
+   "rnav_upper_per_share": 93.50337784065935,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "rating|recovery|15000": {
@@ -205,11 +205,11 @@
    "mode": "recovery",
    "basis": "rating",
    "wacc_start": 0.3156916995522004,
-   "dcf_per_share": 70.19958268222028,
+   "dcf_per_share": 74.89250134118839,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 105000.0,
    "land_per_share": 27.916314749206435,
-   "rnav_upper_per_share": 98.11589743142672,
+   "rnav_upper_per_share": 102.80881609039483,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|0": {
@@ -218,11 +218,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 0.0,
    "land_per_share": 0.0,
-   "rnav_upper_per_share": 57.327385370729196,
+   "rnav_upper_per_share": 62.574679772608995,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|1000": {
@@ -231,11 +231,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 7000.0,
    "land_per_share": 1.8610876499470956,
-   "rnav_upper_per_share": 59.18847302067629,
+   "rnav_upper_per_share": 64.4357674225561,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|2000": {
@@ -244,11 +244,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 14000.0,
    "land_per_share": 3.7221752998941913,
-   "rnav_upper_per_share": 61.049560670623386,
+   "rnav_upper_per_share": 66.29685507250319,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|3500": {
@@ -257,11 +257,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 24500.0,
    "land_per_share": 6.513806774814835,
-   "rnav_upper_per_share": 63.84119214554403,
+   "rnav_upper_per_share": 69.08848654742383,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|5000": {
@@ -270,11 +270,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 35000.0,
    "land_per_share": 9.305438249735479,
-   "rnav_upper_per_share": 66.63282362046468,
+   "rnav_upper_per_share": 71.88011802234448,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|7500": {
@@ -283,11 +283,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 52500.0,
    "land_per_share": 13.958157374603218,
-   "rnav_upper_per_share": 71.2855427453324,
+   "rnav_upper_per_share": 76.5328371472122,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|10000": {
@@ -296,11 +296,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 70000.0,
    "land_per_share": 18.610876499470958,
-   "rnav_upper_per_share": 75.93826187020015,
+   "rnav_upper_per_share": 81.18555627207995,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|capacity|15000": {
@@ -309,11 +309,11 @@
    "mode": "capacity",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 57.327385370729196,
+   "dcf_per_share": 62.574679772608995,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 105000.0,
    "land_per_share": 27.916314749206435,
-   "rnav_upper_per_share": 85.24370011993562,
+   "rnav_upper_per_share": 90.49099452181542,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|0": {
@@ -322,11 +322,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 0.0,
    "land_per_share": 0.0,
-   "rnav_upper_per_share": 77.58249722218574,
+   "rnav_upper_per_share": 82.82979162406552,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|1000": {
@@ -335,11 +335,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 7000.0,
    "land_per_share": 1.8610876499470956,
-   "rnav_upper_per_share": 79.44358487213283,
+   "rnav_upper_per_share": 84.69087927401262,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|2000": {
@@ -348,11 +348,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 14000.0,
    "land_per_share": 3.7221752998941913,
-   "rnav_upper_per_share": 81.30467252207993,
+   "rnav_upper_per_share": 86.55196692395971,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|3500": {
@@ -361,11 +361,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 24500.0,
    "land_per_share": 6.513806774814835,
-   "rnav_upper_per_share": 84.09630399700058,
+   "rnav_upper_per_share": 89.34359839888036,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|5000": {
@@ -374,11 +374,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 35000.0,
    "land_per_share": 9.305438249735479,
-   "rnav_upper_per_share": 86.88793547192121,
+   "rnav_upper_per_share": 92.135229873801,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|7500": {
@@ -387,11 +387,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 52500.0,
    "land_per_share": 13.958157374603218,
-   "rnav_upper_per_share": 91.54065459678895,
+   "rnav_upper_per_share": 96.78794899866874,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|10000": {
@@ -400,11 +400,11 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 70000.0,
    "land_per_share": 18.610876499470958,
-   "rnav_upper_per_share": 96.1933737216567,
+   "rnav_upper_per_share": 101.44066812353648,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   },
   "cds|recovery|15000": {
@@ -413,18 +413,18 @@
    "mode": "recovery",
    "basis": "cds",
    "wacc_start": 0.28489091924119153,
-   "dcf_per_share": 77.58249722218574,
+   "dcf_per_share": 82.82979162406552,
    "sellable_sqm": 7000000.0,
    "land_value_egp_mn": 105000.0,
    "land_per_share": 27.916314749206435,
-   "rnav_upper_per_share": 105.49881197139217,
+   "rnav_upper_per_share": 110.74610637327196,
    "overlap_note": "an UPPER bound: part of this land is already built on inside the DCF window and is therefore counted twice. The overlap cannot be sized from disclosure."
   }
  },
  "implied_by_market": {
-  "rating|capacity": 24388.248097925876,
-  "rating|recovery": 14830.261926978183,
-  "cds|capacity": 21746.753641840187,
-  "cds|recovery": 10863.272763316103
+  "rating|capacity": 21866.648075970144,
+  "rating|recovery": 12308.661905022467,
+  "cds|capacity": 18927.276331339006,
+  "cds|recovery": 8043.795452814931
  }
 }

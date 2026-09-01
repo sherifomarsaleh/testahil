@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1810,6 +1810,60 @@ the read is allowed to CLAIM, which is the direction the errors actually ran. Wh
 remains untested is listed in the register rather than implied absent: intraday
 structure, and level-drawing methods other than the module's own.
 
+
+## [R-ENF-05] The valuation method is checked against the class, not just the section list (01-Sep-2026, adopted after the user asked why the market pays far more than the study's number — and the answer was a lens the study never carried)
+
+**`LENS BY CLASS` has been a standing rule since the template was adopted, and
+nothing has ever enforced it.**
+
+`assert_model_study()` verifies that the sixteen sections and sixteen sheets are
+present. It has never asked whether the company was valued the way its class
+requires. TMGH shipped as a real-estate developer — class rule **SOTP/RNAV** —
+carrying **no RNAV lens at all**, with the word "land" appearing nowhere in any
+lens. SIGCM passed. The model-study checklist passed. The beta was attested. 154
+recalculations reconciled. The external-reader scrub was clean.
+
+Structure verified, substance unexamined — the [R-SANITY-01] species one level
+up, and found the same way: by someone asking whether the answer made sense.
+
+**A discounted cash flow run at several settings is one lens, not several.**
+TMGH's four published cases were two cost-of-capital bases crossed with two
+readings of a single DCF, which is exactly why they clustered and why the study
+looked better diversified than it was.
+
+`research_protocol.assert_class_lens(klass, lenses)` now refuses a study
+carrying none of its class's lenses. It is deliberately weak — one required
+lens, not all of them — because the rule permits adapting the nearest pattern
+where a class does not fit exactly. What it refuses is a study that carries
+none. Negative-controlled both ways, and called from the study's own gate.
+
+### The cost of the hole was not cosmetic
+
+A developer's DCF monetises land only as it is built on inside the projection
+window. TMG holds 20mn sqm — decades of inventory at any delivery rate the model
+carries — and every square metre beyond the window was credited at **zero**. The
+entire gap between the study's number and the market price was an asset the
+study did not value. The market was not seeing something invisible; it was
+pricing land we had left out.
+
+### Where a disclosure cannot support a lens, publish a stated bound
+
+TMG discloses the landbank's **area** and nothing else: no land value, no
+carrying cost, no split by project — its project pages are scanned graphics
+carrying no land figures. So the RNAV publishes an explicit **upper bound**,
+with the overlap against the DCF window declared undisclosable, beside what the
+market price implies per square metre (EGP 10,863–24,388, inside the range
+serviced new-city land actually trades at).
+
+A first cut tried to size that overlap using backlog ÷ landbank as revenue per
+square metre. **That anchor is wrong**: the order book is for units *already
+sold*, on land *already committed*, while the bank is what *remains*. The two do
+not divide into each other. **A stated bound is honest; a fabricated netting is
+not.**
+
+Caught in the same pass: **land is consumed in real terms.** Measuring twenty
+years of nominal revenue against today's price per square metre makes any
+projection look as though it eats the whole landbank.
 
 ## [R-WACC-03] The cost of capital slides with the inflation it is quoted in, and country risk enters once (01-Sep-2026, per instruction — "In order to assume a reasonable say 4 to 6% terminal growth, it has to be built on reasonable inflation and consequently decreasing interest rates and consequently sliding Kd and Ke")
 

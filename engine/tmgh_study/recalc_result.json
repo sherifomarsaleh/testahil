@@ -16,135 +16,135 @@
   {
    "check": "DCF Revenue 2027",
    "status": "ok",
-   "got": 95682.499193344,
-   "want": 95682.499193344,
-   "difference": 0.0
+   "got": 100215.774713344,
+   "want": 100215.77471334398,
+   "difference": 1.4551915228366852e-11
   },
   {
    "check": "DCF Revenue 2028",
    "status": "ok",
-   "got": 112133.5339768776,
-   "want": 112133.53397687762,
-   "difference": -1.4551915228366852e-11
+   "got": 122723.2655915976,
+   "want": 122723.26559159759,
+   "difference": 1.4551915228366852e-11
   },
   {
    "check": "DCF Revenue 2029",
    "status": "ok",
-   "got": 129620.0867262457,
-   "want": 129620.0867262457,
-   "difference": 0.0
+   "got": 141819.4575464031,
+   "want": 141819.45754640314,
+   "difference": -2.9103830456733704e-11
   },
   {
    "check": "DCF Revenue 2030",
    "status": "ok",
-   "got": 147760.8689123304,
-   "want": 147760.86891233042,
+   "got": 161619.3541640292,
+   "want": 161619.35416402924,
    "difference": -2.9103830456733704e-11
   },
   {
    "check": "DCF Revenue 2031",
    "status": "ok",
-   "got": 166077.5965088486,
-   "want": 166077.5965088486,
+   "got": 181599.0999907513,
+   "want": 181599.0999907513,
    "difference": 0.0
   },
   {
    "check": "DCF Revenue 2032",
    "status": "ok",
-   "got": 184008.9000458804,
-   "want": 184008.9000458804,
-   "difference": 0.0
+   "got": 201144.639889901,
+   "want": 201144.63988990098,
+   "difference": 2.9103830456733704e-11
   },
   {
    "check": "DCF Revenue 2033",
    "status": "ok",
-   "got": 200933.2742190017,
-   "want": 200933.27421900173,
-   "difference": -2.9103830456733704e-11
+   "got": 219576.9591692961,
+   "want": 219576.9591692961,
+   "difference": 0.0
   },
   {
    "check": "DCF Revenue 2034",
    "status": "ok",
-   "got": 216200.4207920049,
-   "want": 216200.42079200488,
-   "difference": 2.9103830456733704e-11
+   "got": 236186.4510587204,
+   "want": 236186.45105872044,
+   "difference": -2.9103830456733704e-11
   },
   {
    "check": "DCF Revenue 2035",
    "status": "ok",
-   "got": 229169.2873935428,
-   "want": 229169.28739354276,
-   "difference": 2.9103830456733704e-11
+   "got": 250274.5353551944,
+   "want": 250274.5353551944,
+   "difference": 0.0
   },
   {
    "check": "DCF Revenue 2036",
    "status": "ok",
-   "got": 239250.0898231309,
-   "want": 239250.08982313093,
-   "difference": -2.9103830456733704e-11
+   "got": 261199.5477032487,
+   "want": 261199.54770324865,
+   "difference": 5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2037",
    "status": "ok",
-   "got": 249789.6974306805,
-   "want": 249789.69743068054,
-   "difference": -2.9103830456733704e-11
+   "got": 272617.1336260029,
+   "want": 272617.13362600293,
+   "difference": -5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2038",
    "status": "ok",
-   "got": 260809.8412666213,
-   "want": 260809.84126662125,
-   "difference": 5.820766091346741e-11
+   "got": 284550.3749097565,
+   "want": 284550.37490975653,
+   "difference": -5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2039",
    "status": "ok",
-   "got": 272333.3270570734,
-   "want": 272333.32705707336,
+   "got": 297023.4820459341,
+   "want": 297023.48204593407,
    "difference": 5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2040",
    "status": "ok",
-   "got": 284384.0906812427,
-   "want": 284384.0906812427,
+   "got": 310061.8518696578,
+   "want": 310061.8518696578,
    "difference": 0.0
   },
   {
    "check": "DCF Revenue 2041",
    "status": "ok",
-   "got": 296987.2566273254,
-   "want": 296987.25662732543,
+   "got": 323692.1282632772,
+   "want": 323692.12826327723,
    "difference": -5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2042",
    "status": "ok",
-   "got": 310169.1995922365,
-   "want": 310169.19959223655,
-   "difference": -5.820766091346741e-11
+   "got": 337942.2660936264,
+   "want": 337942.2660936264,
+   "difference": 0.0
   },
   {
    "check": "DCF Revenue 2043",
    "status": "ok",
-   "got": 323957.6093998931,
-   "want": 323957.6093998931,
+   "got": 352841.5985613385,
+   "want": 352841.5985613385,
    "difference": 0.0
   },
   {
    "check": "DCF Revenue 2044",
    "status": "ok",
-   "got": 338381.5594227531,
-   "want": 338381.55942275305,
+   "got": 368420.9081506563,
+   "want": 368420.90815065627,
    "difference": 5.820766091346741e-11
   },
   {
    "check": "DCF Revenue 2045",
    "status": "ok",
-   "got": 353471.5787018567,
-   "want": 353471.57870185666,
-   "difference": 5.820766091346741e-11
+   "got": 384712.501378876,
+   "want": 384712.50137887604,
+   "difference": -5.820766091346741e-11
   },
   {
    "check": "DCF Gross profit 2026",
@@ -156,135 +156,135 @@
   {
    "check": "DCF Gross profit 2027",
    "status": "ok",
-   "got": 30265.99327979724,
-   "want": 30265.993279797243,
-   "difference": -3.637978807091713e-12
+   "got": 32322.79907583125,
+   "want": 32322.79907583125,
+   "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2028",
    "status": "ok",
-   "got": 35470.78354283661,
-   "want": 35470.78354283661,
+   "got": 40275.48188237207,
+   "want": 40275.48188237207,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2029",
    "status": "ok",
-   "got": 41003.46893112274,
-   "want": 41003.46893112274,
+   "got": 46538.48141826762,
+   "want": 46538.48141826762,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2030",
    "status": "ok",
-   "got": 46743.46656024354,
-   "want": 46743.46656024354,
+   "got": 53031.24074564007,
+   "want": 53031.24074564007,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2031",
    "status": "ok",
-   "got": 52539.49448363986,
-   "want": 52539.494483639864,
-   "difference": -7.275957614183426e-12
+   "got": 59581.80157128404,
+   "want": 59581.80157128404,
+   "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2032",
    "status": "ok",
-   "got": 58213.96709501751,
-   "want": 58213.967095017506,
-   "difference": 7.275957614183426e-12
+   "got": 65988.67411977664,
+   "want": 65988.67411977664,
+   "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2033",
    "status": "ok",
-   "got": 63570.25106717244,
-   "want": 63570.251067172445,
-   "difference": -7.275957614183426e-12
+   "got": 72029.1323101104,
+   "want": 72029.1323101104,
+   "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2034",
    "status": "ok",
-   "got": 68402.5780346489,
-   "want": 68402.5780346489,
+   "got": 77470.49872707837,
+   "want": 77470.49872707837,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2035",
    "status": "ok",
-   "got": 72508.07763207541,
-   "want": 72508.07763207541,
+   "got": 82083.80188328095,
+   "want": 82083.80188328095,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2036",
    "status": "ok",
-   "got": 75700.07324267572,
-   "want": 75700.07324267572,
+   "got": 85658.82646392946,
+   "want": 85658.82646392946,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2037",
    "status": "ok",
-   "got": 79037.48236602338,
-   "want": 79037.48236602338,
+   "got": 89394.58571612724,
+   "want": 89394.58571612724,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2038",
    "status": "ok",
-   "got": 82527.19975087827,
-   "want": 82527.19975087827,
+   "got": 93298.58723498625,
+   "want": 93298.58723498625,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2039",
    "status": "ok",
-   "got": 86176.4614910123,
-   "want": 86176.4614910123,
+   "got": 97378.70447448466,
+   "want": 97378.70447448466,
    "difference": 0.0
   },
   {
    "check": "DCF Gross profit 2040",
    "status": "ok",
-   "got": 89992.86266475785,
-   "want": 89992.86266475785,
-   "difference": 0.0
+   "got": 101643.1953675691,
+   "want": 101643.19536756907,
+   "difference": 2.9103830456733704e-11
   },
   {
    "check": "DCF Gross profit 2041",
    "status": "ok",
-   "got": 93984.3759224707,
-   "want": 93984.3759224707,
-   "difference": 0.0
+   "got": 106100.7219333944,
+   "want": 106100.72193339444,
+   "difference": -4.3655745685100555e-11
   },
   {
    "check": "DCF Gross profit 2042",
    "status": "ok",
-   "got": 98159.37107456036,
-   "want": 98159.37107456036,
-   "difference": 0.0
+   "got": 110760.370925921,
+   "want": 110760.37092592102,
+   "difference": -1.4551915228366852e-11
   },
   {
    "check": "DCF Gross profit 2043",
    "status": "ok",
-   "got": 102526.6357357372,
-   "want": 102526.63573573722,
+   "got": 115631.6755811523,
+   "want": 115631.67558115232,
    "difference": -1.4551915228366852e-11
   },
   {
    "check": "DCF Gross profit 2044",
    "status": "ok",
-   "got": 107095.3970843074,
-   "want": 107095.39708430739,
-   "difference": 1.4551915228366852e-11
+   "got": 120724.6385235391,
+   "want": 120724.63852353906,
+   "difference": 4.3655745685100555e-11
   },
   {
    "check": "DCF Gross profit 2045",
    "status": "ok",
-   "got": 111875.344798704,
-   "want": 111875.344798704,
-   "difference": 0.0
+   "got": 126049.755895505,
+   "want": 126049.75589550496,
+   "difference": 4.3655745685100555e-11
   },
   {
    "check": "DCF Operating profit 2026",
@@ -296,134 +296,134 @@
   {
    "check": "DCF Operating profit 2027",
    "status": "ok",
-   "got": 22649.55925380848,
-   "want": 22649.55925380848,
-   "difference": 0.0
+   "got": 24400.31957193411,
+   "want": 24400.319571934106,
+   "difference": 3.637978807091713e-12
   },
   {
    "check": "DCF Operating profit 2028",
    "status": "ok",
-   "got": 26724.48727301322,
-   "want": 26724.487273013216,
+   "got": 30808.82344553071,
+   "want": 30808.823445530707,
    "difference": 3.637978807091713e-12
   },
   {
    "check": "DCF Operating profit 2029",
    "status": "ok",
-   "got": 31051.88770097738,
-   "want": 31051.887700977382,
-   "difference": -3.637978807091713e-12
+   "got": 35745.22744240223,
+   "want": 35745.227442402225,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "DCF Operating profit 2030",
    "status": "ok",
-   "got": 35536.61003395262,
-   "want": 35536.610033952624,
-   "difference": -7.275957614183426e-12
+   "got": 40856.28091997735,
+   "want": 40856.28091997735,
+   "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2031",
    "status": "ok",
-   "got": 40059.48743890599,
-   "want": 40059.48743890599,
-   "difference": 0.0
+   "got": 46005.17925435989,
+   "want": 46005.179254359886,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "DCF Operating profit 2032",
    "status": "ok",
-   "got": 44480.8258883238,
-   "want": 44480.8258883238,
+   "got": 51031.89823519469,
+   "want": 51031.89823519469,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2033",
    "status": "ok",
-   "got": 48646.13857426833,
-   "want": 48646.13857426833,
+   "got": 55759.82095798151,
+   "want": 55759.82095798151,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2034",
    "status": "ok",
-   "got": 52393.96231344009,
-   "want": 52393.96231344009,
-   "difference": 0.0
+   "got": 60004.72735838014,
+   "want": 60004.727358380136,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "DCF Operating profit 2035",
    "status": "ok",
-   "got": 55565.33125358343,
-   "want": 55565.331253583434,
+   "got": 63585.65180589128,
+   "want": 63585.651805891284,
    "difference": -7.275957614183426e-12
   },
   {
    "check": "DCF Operating profit 2036",
    "status": "ok",
-   "got": 58014.23105369662,
-   "want": 58014.23105369662,
+   "got": 66336.82774792807,
+   "want": 66336.82774792807,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2037",
    "status": "ok",
-   "got": 60574.67415791834,
-   "want": 60574.67415791834,
+   "got": 69211.86047991234,
+   "want": 69211.86047991234,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2038",
    "status": "ok",
-   "got": 63251.95045791042,
-   "want": 63251.95045791042,
+   "got": 72216.52976365754,
+   "want": 72216.52976365754,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2039",
    "status": "ok",
-   "got": 66051.61176848755,
-   "want": 66051.61176848755,
+   "got": 75356.89691096754,
+   "want": 75356.89691096754,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2040",
    "status": "ok",
-   "got": 68979.48536475014,
-   "want": 68979.48536475014,
+   "got": 78639.31910545817,
+   "want": 78639.31910545817,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2041",
    "status": "ok",
-   "got": 72041.68824675861,
-   "want": 72041.68824675861,
+   "got": 82070.46448331357,
+   "want": 82070.46448331357,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2042",
    "status": "ok",
-   "got": 75244.6421721654,
-   "want": 75244.6421721654,
+   "got": 85657.32801464645,
+   "want": 85657.32801464645,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2043",
    "status": "ok",
-   "got": 78595.08949952044,
-   "want": 78595.08949952044,
+   "got": 89407.2482294871,
+   "want": 89407.2482294871,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2044",
    "status": "ok",
-   "got": 82100.1098874085,
-   "want": 82100.1098874085,
+   "got": 93327.92483491471,
+   "want": 93327.92483491471,
    "difference": 0.0
   },
   {
    "check": "DCF Operating profit 2045",
    "status": "ok",
-   "got": 85767.13789715467,
-   "want": 85767.13789715467,
+   "got": 97427.43727248197,
+   "want": 97427.43727248197,
    "difference": 0.0
   },
   {
@@ -436,134 +436,134 @@
   {
    "check": "DCF Free cash flow to the firm 2027",
    "status": "ok",
-   "got": 15368.50845619121,
-   "want": 15368.508456191208,
-   "difference": 1.8189894035458565e-12
+   "got": 16272.02015073857,
+   "want": 16272.020150738572,
+   "difference": -1.8189894035458565e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2028",
    "status": "ok",
-   "got": 17516.71144199443,
-   "want": 17516.711441994434,
-   "difference": -3.637978807091713e-12
+   "got": 19628.53874484749,
+   "want": 19628.53874484749,
+   "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2029",
    "status": "ok",
-   "got": 19932.9488139974,
-   "want": 19932.9488139974,
-   "difference": 0.0
+   "got": 22368.43236098009,
+   "want": 22368.432360980092,
+   "difference": -3.637978807091713e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2030",
    "status": "ok",
-   "got": 22547.05552483774,
-   "want": 22547.05552483774,
+   "got": 25316.45652276265,
+   "want": 25316.45652276265,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2031",
    "status": "ok",
-   "got": 25278.81883059182,
-   "want": 25278.818830591823,
-   "difference": -3.637978807091713e-12
+   "got": 28383.32435306889,
+   "want": 28383.32435306889,
+   "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2032",
    "status": "ok",
-   "got": 28038.13576789546,
-   "want": 28038.13576789546,
-   "difference": 0.0
+   "got": 31468.4284336229,
+   "want": 31468.428433622903,
+   "difference": -3.637978807091713e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2033",
    "status": "ok",
-   "got": 30726.80990352692,
-   "want": 30726.80990352692,
+   "got": 34462.09229801692,
+   "want": 34462.09229801692,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2034",
    "status": "ok",
-   "got": 33241.87791155231,
-   "want": 33241.877911552314,
+   "got": 37249.49869428568,
+   "want": 37249.498694285685,
    "difference": -7.275957614183426e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2035",
    "status": "ok",
-   "got": 35480.22888435654,
-   "want": 35480.22888435654,
+   "got": 39716.02208133149,
+   "want": 39716.02208133149,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2036",
    "status": "ok",
-   "got": 37344.14360824008,
-   "want": 37344.143608240076,
-   "difference": 7.275957614183426e-12
+   "got": 41753.53928613197,
+   "want": 41753.53928613197,
+   "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2037",
    "status": "ok",
-   "got": 39215.76279796343,
-   "want": 39215.76279796343,
-   "difference": 0.0
+   "got": 43805.65500697248,
+   "want": 43805.655006972476,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2038",
    "status": "ok",
-   "got": 41114.81173073265,
-   "want": 41114.81173073265,
+   "got": 45892.37088365551,
+   "want": 45892.37088365551,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2039",
    "status": "ok",
-   "got": 43057.11471769403,
-   "want": 43057.11471769403,
-   "difference": 0.0
+   "got": 48029.79863722069,
+   "want": 48029.798637220694,
+   "difference": -7.275957614183426e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2040",
    "status": "ok",
-   "got": 45055.62155018427,
-   "want": 45055.621550184274,
-   "difference": -7.275957614183426e-12
+   "got": 50231.18695817297,
+   "want": 50231.18695817297,
+   "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2041",
    "status": "ok",
-   "got": 47121.17999002004,
-   "want": 47121.17999002004,
-   "difference": 0.0
+   "got": 52507.69445642918,
+   "want": 52507.694456429184,
+   "difference": -7.275957614183426e-12
   },
   {
    "check": "DCF Free cash flow to the firm 2042",
    "status": "ok",
-   "got": 49263.1179359743,
-   "want": 49263.1179359743,
+   "got": 54868.9723058354,
+   "want": 54868.9723058354,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2043",
    "status": "ok",
-   "got": 51489.68299851498,
-   "want": 51489.68299851498,
+   "got": 57323.60431606862,
+   "want": 57323.60431606862,
    "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2044",
    "status": "ok",
-   "got": 53808.37529029918,
-   "want": 53808.375290299184,
-   "difference": -7.275957614183426e-12
+   "got": 59879.44024017821,
+   "want": 59879.44024017821,
+   "difference": 0.0
   },
   {
    "check": "DCF Free cash flow to the firm 2045",
    "status": "ok",
-   "got": 56226.20029694128,
-   "want": 56226.20029694128,
+   "got": 62543.84918308332,
+   "want": 62543.84918308332,
    "difference": 0.0
   },
   {
@@ -576,135 +576,135 @@
   {
    "check": "attributable profit 2027",
    "status": "ok",
-   "got": 15814.18131975239,
-   "want": 15814.181319752392,
-   "difference": -1.8189894035458565e-12
+   "got": 16557.54687338477,
+   "want": 16557.546873384774,
+   "difference": -3.637978807091713e-12
   },
   {
    "check": "attributable profit 2028",
    "status": "ok",
-   "got": 19407.15889503546,
-   "want": 19407.158895035464,
-   "difference": -3.637978807091713e-12
+   "got": 21199.13872291364,
+   "want": 21199.13872291364,
+   "difference": 0.0
   },
   {
    "check": "attributable profit 2029",
    "status": "ok",
-   "got": 23486.95592855667,
-   "want": 23486.95592855667,
-   "difference": 0.0
+   "got": 25680.15581636823,
+   "want": 25680.155816368228,
+   "difference": 3.637978807091713e-12
   },
   {
    "check": "attributable profit 2030",
    "status": "ok",
-   "got": 28082.37229013855,
-   "want": 28082.37229013855,
-   "difference": 0.0
+   "got": 30723.52184128273,
+   "want": 30723.521841282734,
+   "difference": -3.637978807091713e-12
   },
   {
    "check": "attributable profit 2031",
    "status": "ok",
-   "got": 33216.04461884841,
-   "want": 33216.044618848406,
-   "difference": 7.275957614183426e-12
+   "got": 36350.16812542162,
+   "want": 36350.168125421624,
+   "difference": -7.275957614183426e-12
   },
   {
    "check": "attributable profit 2032",
    "status": "ok",
-   "got": 38905.85683646183,
-   "want": 38905.856836461826,
-   "difference": 7.275957614183426e-12
+   "got": 42575.29943836714,
+   "want": 42575.29943836714,
+   "difference": 0.0
   },
   {
    "check": "attributable profit 2033",
    "status": "ok",
-   "got": 45167.27043750712,
-   "want": 45167.27043750712,
-   "difference": 0.0
+   "got": 49411.03281903962,
+   "want": 49411.032819039625,
+   "difference": -7.275957614183426e-12
   },
   {
    "check": "attributable profit 2034",
    "status": "ok",
-   "got": 52016.61579628835,
-   "want": 52016.61579628835,
-   "difference": 0.0
+   "got": 56870.13642686138,
+   "want": 56870.136426861376,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "attributable profit 2035",
    "status": "ok",
-   "got": 59475.281535377,
-   "want": 59475.281535377,
-   "difference": 0.0
+   "got": 64970.78779741978,
+   "want": 64970.787797419776,
+   "difference": 7.275957614183426e-12
   },
   {
    "check": "attributable profit 2036",
    "status": "ok",
-   "got": 67574.63160513135,
-   "want": 67574.63160513135,
+   "got": 73742.14823204691,
+   "want": 73742.14823204691,
    "difference": 0.0
   },
   {
    "check": "attributable profit 2037",
    "status": "ok",
-   "got": 76767.51896065829,
-   "want": 76767.51896065829,
+   "got": 83694.16451883361,
+   "want": 83694.16451883361,
    "difference": 0.0
   },
   {
    "check": "attributable profit 2038",
    "status": "ok",
-   "got": 87191.14259333107,
-   "want": 87191.14259333107,
+   "got": 94975.30267040538,
+   "want": 94975.30267040538,
    "difference": 0.0
   },
   {
    "check": "attributable profit 2039",
    "status": "ok",
-   "got": 99001.91021629171,
-   "want": 99001.91021629171,
-   "difference": 0.0
+   "got": 107754.696336074,
+   "want": 107754.69633607396,
+   "difference": 4.3655745685100555e-11
   },
   {
    "check": "attributable profit 2040",
    "status": "ok",
-   "got": 112377.5835029558,
-   "want": 112377.58350295582,
-   "difference": -2.9103830456733704e-11
+   "got": 122224.4809848165,
+   "want": 122224.48098481652,
+   "difference": -1.4551915228366852e-11
   },
   {
    "check": "attributable profit 2041",
    "status": "ok",
-   "got": 127519.7877688876,
-   "want": 127519.78776888757,
+   "got": 138602.5170037353,
+   "want": 138602.51700373527,
    "difference": 2.9103830456733704e-11
   },
   {
    "check": "attributable profit 2042",
    "status": "ok",
-   "got": 144656.9117048486,
-   "want": 144656.9117048486,
-   "difference": 0.0
+   "got": 157135.5304895013,
+   "want": 157135.53048950128,
+   "difference": 2.9103830456733704e-11
   },
   {
    "check": "attributable profit 2043",
    "status": "ok",
-   "got": 164047.4314875624,
-   "want": 164047.4314875624,
-   "difference": 0.0
+   "got": 178102.7096395766,
+   "want": 178102.70963957655,
+   "difference": 5.820766091346741e-11
   },
   {
    "check": "attributable profit 2044",
    "status": "ok",
-   "got": 185983.7020924492,
-   "want": 185983.70209244918,
-   "difference": 2.9103830456733704e-11
+   "got": 201819.8036114484,
+   "want": 201819.80361144835,
+   "difference": 5.820766091346741e-11
   },
   {
    "check": "attributable profit 2045",
    "status": "ok",
-   "got": 210796.267218231,
-   "want": 210796.26721823096,
-   "difference": 2.9103830456733704e-11
+   "got": 228643.7798275485,
+   "want": 228643.77982754845,
+   "difference": 5.820766091346741e-11
   },
   {
    "check": "earnings per share 2026",
@@ -716,135 +716,135 @@
   {
    "check": "earnings per share 2027",
    "status": "ok",
-   "got": 7.674351373215817,
-   "want": 7.674351373215817,
+   "got": 8.035093946098453,
+   "want": 8.035093946098453,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2028",
    "status": "ok",
-   "got": 9.417961859986118,
-   "want": 9.417961859986118,
-   "difference": 0.0
+   "got": 10.28757898241502,
+   "want": 10.287578982415019,
+   "difference": 1.7763568394002505e-15
   },
   {
    "check": "earnings per share 2029",
    "status": "ok",
-   "got": 11.39781749295135,
-   "want": 11.397817492951347,
-   "difference": 3.552713678800501e-15
+   "got": 12.462139839486,
+   "want": 12.462139839486005,
+   "difference": -5.329070518200751e-15
   },
   {
    "check": "earnings per share 2030",
    "status": "ok",
-   "got": 13.62789435573241,
-   "want": 13.627894355732414,
-   "difference": -3.552713678800501e-15
+   "got": 14.90959900264796,
+   "want": 14.909599002647962,
+   "difference": -1.7763568394002505e-15
   },
   {
    "check": "earnings per share 2031",
    "status": "ok",
-   "got": 16.11917762161136,
-   "want": 16.119177621611357,
+   "got": 17.64011408681149,
+   "want": 17.640114086811487,
    "difference": 3.552713678800501e-15
   },
   {
    "check": "earnings per share 2032",
    "status": "ok",
-   "got": 18.88034605155986,
-   "want": 18.88034605155986,
-   "difference": 0.0
+   "got": 20.66106370626989,
+   "want": 20.661063706269893,
+   "difference": -3.552713678800501e-15
   },
   {
    "check": "earnings per share 2033",
    "status": "ok",
-   "got": 21.91890284409109,
-   "want": 21.918902844091093,
-   "difference": -3.552713678800501e-15
+   "got": 23.97832805250432,
+   "want": 23.97832805250432,
+   "difference": 0.0
   },
   {
    "check": "earnings per share 2034",
    "status": "ok",
-   "got": 25.24277285019364,
-   "want": 25.24277285019364,
-   "difference": 0.0
+   "got": 27.59810329462493,
+   "want": 27.598103294624927,
+   "difference": 3.552713678800501e-15
   },
   {
    "check": "earnings per share 2035",
    "status": "ok",
-   "got": 28.86233560211667,
-   "want": 28.862335602116666,
-   "difference": 3.552713678800501e-15
+   "got": 31.52921067935806,
+   "want": 31.529210679358062,
+   "difference": -3.552713678800501e-15
   },
   {
    "check": "earnings per share 2036",
    "status": "ok",
-   "got": 32.79281148785466,
-   "want": 32.79281148785466,
-   "difference": 0.0
+   "got": 35.78580168684663,
+   "want": 35.785801686846625,
+   "difference": 7.105427357601002e-15
   },
   {
    "check": "earnings per share 2037",
    "status": "ok",
-   "got": 37.25396229131661,
-   "want": 37.25396229131661,
+   "got": 40.61534476040255,
+   "want": 40.61534476040255,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2038",
    "status": "ok",
-   "got": 42.31236833345371,
-   "want": 42.31236833345371,
+   "got": 46.08988791344057,
+   "want": 46.08988791344057,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2039",
    "status": "ok",
-   "got": 48.04393159893802,
-   "want": 48.04393159893802,
+   "got": 52.2915088095215,
+   "want": 52.2915088095215,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2040",
    "status": "ok",
-   "got": 54.53491678367119,
-   "want": 54.53491678367119,
+   "got": 59.3134475013787,
+   "want": 59.3134475013787,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2041",
    "status": "ok",
-   "got": 61.88316920041958,
-   "want": 61.88316920041958,
+   "got": 67.26142790396682,
+   "want": 67.26142790396682,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2042",
    "status": "ok",
-   "got": 70.1995219696043,
-   "want": 70.1995219696043,
+   "got": 76.25518196676282,
+   "want": 76.25518196676282,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2043",
    "status": "ok",
-   "got": 79.6094091533291,
-   "want": 79.6094091533291,
+   "got": 86.43019494083701,
+   "want": 86.43019494083701,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2044",
    "status": "ok",
-   "got": 90.2547056145235,
-   "want": 90.2547056145235,
+   "got": 97.93969448504565,
+   "want": 97.93969448504565,
    "difference": 0.0
   },
   {
    "check": "earnings per share 2045",
    "status": "ok",
-   "got": 102.2958185495453,
-   "want": 102.29581854954527,
-   "difference": 2.842170943040401e-14
+   "got": 110.9569107763509,
+   "want": 110.95691077635091,
+   "difference": -1.4210854715202004e-14
   },
   {
    "check": "balance sheet closes 2026",
@@ -856,135 +856,135 @@
   {
    "check": "balance sheet closes 2027",
    "status": "ok",
-   "got": 526017.4606573987,
-   "want": 526017.4606573987,
+   "got": 527151.2902378563,
+   "want": 527151.2902378563,
    "difference": 0.0
   },
   {
    "check": "balance sheet closes 2028",
    "status": "ok",
-   "got": 566209.8125897233,
-   "want": 566209.8125897232,
+   "got": 570076.8865699295,
+   "want": 570076.8865699294,
    "difference": 1.1641532182693481e-10
   },
   {
    "check": "balance sheet closes 2029",
    "status": "ok",
-   "got": 616856.1849627667,
-   "want": 616856.1849627667,
-   "difference": 0.0
+   "got": 624068.4703218243,
+   "want": 624068.4703218242,
+   "difference": 1.1641532182693481e-10
   },
   {
    "check": "balance sheet closes 2030",
    "status": "ok",
-   "got": 677896.662830884,
-   "want": 677896.6628308841,
-   "difference": -1.1641532182693481e-10
+   "got": 689137.4015839236,
+   "want": 689137.4015839236,
+   "difference": 0.0
   },
   {
    "check": "balance sheet closes 2031",
    "status": "ok",
-   "got": 749322.6935687414,
-   "want": 749322.6935687414,
+   "got": 765343.8017150038,
+   "want": 765343.8017150038,
    "difference": 0.0
   },
   {
    "check": "balance sheet closes 2032",
    "status": "ok",
-   "got": 831135.224929656,
-   "want": 831135.2249296561,
-   "difference": -1.1641532182693481e-10
+   "got": 852753.2060349918,
+   "want": 852753.2060349918,
+   "difference": 0.0
   },
   {
    "check": "balance sheet closes 2033",
    "status": "ok",
-   "got": 923324.8395354013,
-   "want": 923324.8395354014,
-   "difference": -1.1641532182693481e-10
+   "got": 951415.6835506514,
+   "want": 951415.6835506517,
+   "difference": -2.3283064365386963e-10
   },
   {
    "check": "balance sheet closes 2034",
    "status": "ok",
-   "got": 1025873.878189574,
-   "want": 1025873.8781895739,
-   "difference": 1.1641532182693481e-10
+   "got": 1061367.628128316,
+   "want": 1061367.628128316,
+   "difference": 0.0
   },
   {
    "check": "balance sheet closes 2035",
    "status": "ok",
-   "got": 1138780.052677968,
-   "want": 1138780.0526779678,
+   "got": 1182655.906857413,
+   "want": 1182655.9068574128,
    "difference": 2.3283064365386963e-10
   },
   {
    "check": "balance sheet closes 2036",
    "status": "ok",
-   "got": 1262100.110191826,
-   "want": 1262100.1101918262,
-   "difference": -2.3283064365386963e-10
+   "got": 1315383.062608997,
+   "want": 1315383.0626089969,
+   "difference": 2.3283064365386963e-10
   },
   {
    "check": "balance sheet closes 2037",
    "status": "ok",
-   "got": 1398131.243477632,
-   "want": 1398131.2434776314,
-   "difference": 6.984919309616089e-10
+   "got": 1461979.167043692,
+   "want": 1461979.1670436922,
+   "difference": -2.3283064365386963e-10
   },
   {
    "check": "balance sheet closes 2038",
    "status": "ok",
-   "got": 1549228.368120088,
-   "want": 1549228.3681200882,
+   "got": 1624949.199855323,
+   "want": 1624949.1998553232,
    "difference": -2.3283064365386963e-10
   },
   {
    "check": "balance sheet closes 2039",
    "status": "ok",
-   "got": 1717871.537341149,
-   "want": 1717871.5373411486,
+   "got": 1806942.688802035,
+   "want": 1806942.6888020346,
    "difference": 4.656612873077393e-10
   },
   {
    "check": "balance sheet closes 2040",
    "status": "ok",
-   "got": 1906727.108991524,
-   "want": 1906727.1089915237,
-   "difference": 2.3283064365386963e-10
+   "got": 2010817.390120327,
+   "want": 2010817.390120327,
+   "difference": 0.0
   },
   {
    "check": "balance sheet closes 2041",
    "status": "ok",
-   "got": 2118705.600943165,
-   "want": 2118705.600943166,
-   "difference": -9.313225746154785e-10
+   "got": 2239699.982856933,
+   "want": 2239699.9828569326,
+   "difference": 4.656612873077393e-10
   },
   {
    "check": "balance sheet closes 2042",
    "status": "ok",
-   "got": 2357018.615080745,
-   "want": 2357018.6150807454,
+   "got": 2497046.199477675,
+   "want": 2497046.1994776754,
    "difference": -4.656612873077393e-10
   },
   {
    "check": "balance sheet closes 2043",
    "status": "ok",
-   "got": 2625236.816145979,
-   "want": 2625236.81614598,
-   "difference": -9.313225746154785e-10
+   "got": 2786702.426629056,
+   "want": 2786702.4266290567,
+   "difference": -4.656612873077393e-10
   },
   {
    "check": "balance sheet closes 2044",
    "status": "ok",
-   "got": 2927350.682281625,
-   "want": 2927350.6822816245,
-   "difference": 4.656612873077393e-10
+   "got": 3112970.546689482,
+   "want": 3112970.5466894824,
+   "difference": -4.656612873077393e-10
   },
   {
    "check": "balance sheet closes 2045",
    "status": "ok",
-   "got": 3267835.57149236,
-   "want": 3267835.571492359,
-   "difference": 9.313225746154785e-10
+   "got": 3480677.625084466,
+   "want": 3480677.625084467,
+   "difference": -1.3969838619232178e-09
   },
   {
    "check": "minority deducted at book",
@@ -996,85 +996,85 @@
   {
    "check": "enterprise value",
    "status": "ok",
-   "got": 96360.5118111689,
-   "want": 96360.5118111689,
+   "got": 106030.99247886249,
+   "want": 106030.99247886249,
    "difference": 0.0
   },
   {
    "check": "published case rating|capacity reproduces",
    "status": "ok",
-   "got": 52.411332661104396,
-   "want": 52.411332661104396,
+   "got": 57.104251320072535,
+   "want": 57.104251320072535,
    "difference": 0.0
   },
   {
    "check": "published case rating|recovery reproduces",
    "status": "ok",
-   "got": 70.19958268222028,
-   "want": 70.19958268222028,
+   "got": 74.89250134118839,
+   "want": 74.89250134118839,
    "difference": 0.0
   },
   {
    "check": "published case cds|capacity reproduces",
    "status": "ok",
-   "got": 57.327385370729196,
-   "want": 57.327385370729196,
+   "got": 62.574679772608995,
+   "want": 62.574679772608995,
    "difference": 0.0
   },
   {
    "check": "published case cds|recovery reproduces",
    "status": "ok",
-   "got": 77.58249722218574,
-   "want": 77.58249722218574,
+   "got": 82.82979162406552,
+   "want": 82.82979162406552,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.2200",
    "status": "ok",
-   "got": 70.16479609998046,
-   "want": 70.16479609998046,
+   "got": 76.86679522233983,
+   "want": 76.86679522233983,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.2500",
    "status": "ok",
-   "got": 63.76257054983443,
-   "want": 63.76257054983443,
+   "got": 69.7379746320292,
+   "want": 69.7379746320292,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.2849",
    "status": "ok",
-   "got": 57.32583665473236,
-   "want": 57.32583665473236,
+   "got": 62.57295613738459,
+   "want": 62.57295613738459,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.3157",
    "status": "ok",
-   "got": 52.41009407163257,
-   "want": 52.41009407163257,
+   "got": 57.102873289785514,
+   "want": 57.102873289785514,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.3237",
    "status": "ok",
-   "got": 51.23655514421238,
-   "want": 51.23655514421238,
+   "got": 55.79727422175603,
+   "want": 55.79727422175603,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.3579",
    "status": "ok",
-   "got": 46.64455562171646,
-   "want": 46.64455562171646,
+   "got": 50.68972727303409,
+   "want": 50.68972727303409,
    "difference": 0.0
   },
   {
    "check": "sensitivity at 0.4000",
    "status": "ok",
-   "got": 41.81648289180088,
-   "want": 41.81648289180088,
+   "got": 45.32203314800572,
+   "want": 45.32203314800572,
    "difference": 0.0
   }
  ],

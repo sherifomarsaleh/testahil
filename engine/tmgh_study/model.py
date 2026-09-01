@@ -136,7 +136,16 @@ SALES_GROWTH = 0.20              # the same nominal rate the recurring legs use
 # such rather than smoothed away.
 BACKLOG_CAPTURE = 0.481          # FY2025: (147,200 + 36,706) / 382,200
 CAPTURE_OBSERVED = (0.344, 0.873)   # FY2024 low, FY2022 high
-HOSP_REAL = 0.00      # hospitality grows with prices
+# HOSPITALITY GROWS WITH ITS KEYS, NOT JUST WITH PRICES. The 1H2026 release
+# states c.3,500 keys operating, c.1,500 under construction, "set to open in
+# 2028 and will bring total keys to 5,000" -- a 43% expansion the company has
+# already paid for and is building. Holding hospitality at inflation-only growth
+# earned nothing from any of it. Revenue per key is held FLAT in real terms; the
+# keys do the work.
+HOSP_KEYS_NOW = 3500.0
+HOSP_KEYS_TARGET = 5000.0
+HOSP_KEYS_COMPLETE_BY = 2028      # the release's own date
+HOSP_REAL = 0.00      # per key, real; the expansion is modelled as keys
 OTHER_REAL = 0.02     # other recurring adds a little real growth
 HOSP_GROWTH = 0.20    # retained for the workbook
 OTHER_GROWTH = 0.22
@@ -285,8 +294,17 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
         # the recurring legs ride the SAME inflation path, plus their own real
         # growth (they were on fixed 20%/22% nominal, which quietly assumed
         # inflation never falls)
+        # keys ramp to the disclosed target, then hold; revenue per key rides
+        # inflation and its own real rate
+        yr = FIRST_YEAR + i
+        span = max(HOSP_KEYS_COMPLETE_BY - FIRST_YEAR, 1)
+        keys = (HOSP_KEYS_NOW + (HOSP_KEYS_TARGET - HOSP_KEYS_NOW)
+                * min(max(yr - FIRST_YEAR, 0) / float(span), 1.0))
+        keys_prev = (HOSP_KEYS_NOW + (HOSP_KEYS_TARGET - HOSP_KEYS_NOW)
+                     * min(max(yr - FIRST_YEAR - 1, 0) / float(span), 1.0))
+        key_growth = keys / keys_prev - 1.0
         hosp_rev = (rows[-1]["hosp_revenue"] if rows else hosp0) * (
-            1 + (1 + infl[i]) * (1 + HOSP_REAL) - 1)
+            (1 + infl[i]) * (1 + HOSP_REAL) * (1 + key_growth))
         oth_rev = (rows[-1]["other_revenue"] if rows else oth0) * (
             1 + (1 + infl[i]) * (1 + OTHER_REAL) - 1)
         hosp_cost, oth_cost = hosp_rev * (1 - gm_h), oth_rev * (1 - gm_o)
