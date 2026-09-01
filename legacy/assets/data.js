@@ -2110,26 +2110,29 @@ const TICKERS = {
     name: "Samsung Electronics Co., Ltd.",
     nameAr: "سامسونج للإلكترونيات",
     code: "KRX:005930",
-    spot: 220000,
-    spotDate: "close 28 Jul 2026",
+    spot: 261000,
+    spotDate: "close 01 Sep 2026",
     ccy: "KRW",
     fair: { bear: 214800, base: 296502, full: 410754 },      // 26 Jun 2026 — weighted central 296,502 (-13% vs spot); bear = consolidated DCF cross-check 214,800; full = supercycle/bull 410,754. Deeper SOTP cycle-reversion bear ~95,000 covered in the study text.
     dist: {
-    t20: { label: "1 month", p5: 154820.6, p25: 193612.78, p50: 220362.84, p75: 251038.64, p95: 313821.44, resolve: "2026-08-28" },
-    t60: { label: "3 months", p5: 129392.31, p25: 181881.54, p50: 222199.19, p75: 270912.64, p95: 381214.94, resolve: "2026-10-28" }
-  },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[440000,1,4],[400000,1,7],[360000,3,11],[286000,17,35],[250000,44,62]],
-    levels: { res:[223000, 240000, 262000], sup:[209000, 191062, 167145] },
+      t20: { label:"1 month",   p5:187779, p25:231330, p50:261616, p75:296130, p95:364756, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:150011, p25:214075, p50:263638, p75:323496, p95:461079, resolve:"2026-12-01" }
+    },
+    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:6, cal:1.084, mult:1, eff:1.084, on:"2026-09-01" },
+    touch: [ /* descending high -> low */
+      [440000, 2, 11], [400000, 4, 17], [360000, 9, 28], [286000, 53, 72], [250000, 71, 82]
+    ],
+    levels: { res:[267000, 271060, 288000], sup:[245000, 240000, 227500] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 220000 below a falling 20-day (275375) and a falling 50-day (302490), but above a rising 200-day (191062). Momentum is soft: RSI(14) is ~36 and the daily ATR near 23590 (~10.7%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221218188 / \u221214144 / \u22124043). Over the last year it has ranged 64400\u2013374500; the last close sits 41% below that high and 242% above that low.",
-      bull: "A daily close back above 223000 would clear the nearest resistance; the next charted level above it is 262000.",
-      bear: "A close below 209000 would break the nearest support; the next charted level below it is 167145."
+      trend: "Mixed against the moving-average stack, above a rising 200-day",
+      summary: "The price closed 261000 above a rising 20-day (255150) and a rising 200-day (209480), but below a falling 50-day (271060). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 17851 (~6.8%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+29 / \u22121570 / +1599). Over the last year it has ranged 67500\u2013374500; the last close sits 30% below that high and 287% above that low.",
+      bull: "A daily close back above 267000 would clear the nearest resistance; the next charted level above it is 288000.",
+      bear: "A close below 245000 would break the nearest support; the next charted level below it is 227500."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
-      tech: { data:"2026-07-28", computed:"2026-08-31" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
@@ -3770,9 +3773,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
     p5:154820.6, p25:193612.78, p50:220362.84, p75:251038.64, p95:313821.44,
     touch:{ "+5":71, "+10":55, "+15":41, "+20":30, "-5":69, "-10":50 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:266000, realized_high:288000, realized_low:189200,
+    in_90:true, in_50:false, realized_quantile:0.798, median_err:0.2071,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":true, "-10":true }
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
@@ -7333,6 +7336,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.07. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
     p5:24612.88, p25:31646.43, p50:36891.76, p75:42968.93, p95:55187.32,
     touch:{ "+5":78, "+10":63, "+15":50, "+20":40, "-5":76, "-10":58 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: SAMSUNG, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"Samsung", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:261000.0, ccy:"KRW",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:20,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.692,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.063. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=6.0, width_cal=1.084 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=8.0, width_cal=1.063 quoted above. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:187778.72, p25:231330.07, p50:261615.8, p75:296130.43, p95:364755.69,
+    touch:{ "+5":69, "+10":52, "+15":38, "+20":28, "-5":68, "-10":48 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Samsung", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:261000.0, ccy:"KRW",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:61,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.6663,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.063. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=6.0, width_cal=1.084 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=8.0, width_cal=1.063 quoted above. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:150010.7, p25:214074.65, p50:263638.41, p75:323495.58, p95:461079.42,
+    touch:{ "+5":82, "+10":71, "+15":60, "+20":51, "-5":80, "-10":67 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }

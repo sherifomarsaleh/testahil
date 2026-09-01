@@ -26,7 +26,7 @@ const FV_OVERLAY = {
   },
   "KR": {
    "nu": 8.0,
-   "width_cal": 1.07,
+   "width_cal": 1.063,
    "rf_live": 0.03,
    "width_overlay_active": false
   },
@@ -1449,7 +1449,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 8.0,
-    "width_cal": 1.07,
+    "width_cal": 1.063,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2074,6 +2074,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0028
    },
    "market": "EG"
+  },
+  {
+   "ticker": "SAMSUNG",
+   "name": "Samsung Electronics Co., Ltd.",
+   "code": "KRX:005930",
+   "ccy": "KRW",
+   "spot": 261000,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-27",
+   "fv_lag_days": 66,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 214800,
+   "fv_base": 296502,
+   "fv_full": 410754,
+   "gap_base_pct": 13.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.206146,
+    "mu_h": 0.002357,
+    "G": {
+     "bear": -0.95,
+     "base": 0.62,
+     "full": 2.2
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1508,
+     "base": 0.2515,
+     "full": 0.0177
+    },
+    "p_touch": {
+     "bear": 0.25,
+     "base": 0.4233,
+     "full": 0.026
+    },
+    "required_cagr": {
+     "bear": -0.9035,
+     "base": 3.62,
+     "full": 229.8317
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00284
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.348624,
+    "mu_h": 0.010057,
+    "G": {
+     "bear": -0.56,
+     "base": 0.37,
+     "full": 1.3
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2583,
+     "base": 0.3537,
+     "full": 0.0901
+    },
+    "p_touch": {
+     "bear": 0.4753,
+     "base": 0.6405,
+     "full": 0.1567
+    },
+    "required_cagr": {
+     "bear": -0.5413,
+     "base": 0.6655,
+     "full": 5.1343
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0064
+   },
+   "market": "KR"
   },
   {
    "ticker": "HRHO",
@@ -3638,98 +3730,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00111
    },
    "market": "QA"
-  },
-  {
-   "ticker": "SAMSUNG",
-   "name": "Samsung Electronics Co., Ltd.",
-   "code": "KRX:005930",
-   "ccy": "KRW",
-   "spot": 220000,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-27",
-   "fv_lag_days": 31,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 214800,
-   "fv_base": 296502,
-   "fv_full": 410754,
-   "gap_base_pct": 34.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.219371,
-    "mu_h": 0.001648,
-    "G": {
-     "bear": -0.11,
-     "base": 1.36,
-     "full": 2.85
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4481,
-     "base": 0.0784,
-     "full": 0.0056
-    },
-    "p_touch": {
-     "bear": 0.7986,
-     "base": 0.1245,
-     "full": 0.0082
-    },
-    "required_cagr": {
-     "bear": -0.2495,
-     "base": 34.9136,
-     "full": 1793.3595
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00452
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.335477,
-    "mu_h": 0.009947,
-    "G": {
-     "bear": -0.07,
-     "base": 0.89,
-     "full": 1.86
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.455,
-     "base": 0.1749,
-     "full": 0.0337
-    },
-    "p_touch": {
-     "bear": 0.8716,
-     "base": 0.3104,
-     "full": 0.0559
-    },
-    "required_cagr": {
-     "bear": -0.0912,
-     "base": 2.2993,
-     "full": 11.1517
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00601
-   },
-   "market": "KR"
   },
   {
    "ticker": "DU",
@@ -5313,7 +5313,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 8.0,
-    "width_cal": 1.07,
+    "width_cal": 1.063,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
