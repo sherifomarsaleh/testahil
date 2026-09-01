@@ -125,7 +125,6 @@
   "KR_SAMSUNG": "f274dc9d13727ebc",
   "KR_SAMSUNG_3m": "4220c70c1f92453b",
   "QA_IQCD": "9f949134d758c56c",
-  "QA_IQCD_3m": "5b6ab87834cb583f",
   "QA_QGTS": "143c24bb0832f3fa",
   "QA_QGTS_3m": "0b04c81ad4548b80",
   "QA_QNB": "fe3fbd4863a5480a",
@@ -165,5 +164,6 @@
   "XAU_SILVER": "3227cab2ad22480f",
   "XAU_SILVER_3m": "ec7f04ad833be178",
   "XPT_PLATINUM": "2bdc24b4aa1fa9d4",
-  "XPT_PLATINUM_3m": "d312a2e515aa5385"
+  "XPT_PLATINUM_3m": "d312a2e515aa5385",
+  "QA_IQCD_3m": "d7cab64c4fe306ee"
 }
