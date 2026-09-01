@@ -480,12 +480,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -716,12 +716,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -808,12 +808,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -913,12 +913,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.07,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1426,12 +1426,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.021,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1509,12 +1509,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1576,12 +1576,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1635,12 +1635,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-08-31",
+    "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-08-31"
+      "replaced_on": "2026-09-01"
     },
     "mid_band_reshape": {
       "applied": false,
