@@ -115,9 +115,9 @@ The company's investor-relations archive publishes financial statements from FY2
 3 names excluded from the campaign by construction (GOLD, SILVER, PLATINUM) — metals - no issuer, no statements, no drivers, so there is no forecasting method to test.
 
 The campaign stops after the first market to review whether the method generalises before the next one begins, so this list is an order rather than a schedule.
-**74 lessons**, of which 50 bind on every study, 19 on a class of company, and 5 on a single name.
+**77 lessons**, of which 53 bind on every study, 19 on a class of company, and 5 on a single name.
 
-By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
+By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 37 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -637,6 +637,36 @@ When a company discloses an asset's size but not its value, the honest output is
 > **What it cost, or how we know.** Sizing the overlap between landbank and projection used order book divided by landbank as revenue per square metre. The book is units already sold on land already committed; the bank is what remains. The two do not divide into each other.
 
 > **What would overturn it.** A disclosure that does link an asset's area to its value directly, where a computed figure would beat a bound.
+
+### L-051 · Where a rule says "ask yourself", nobody asks.
+
+A rule written as a habit of mind only works if someone remembers it at the moment it applies, which is exactly when they are busiest. The same rule written as a list that something else reads works every time. When you find a rule of this shape was not followed, do not restate it more firmly — give it a register and a check.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** The instruction to ask what the filings disclose that the model does not use had been standing since 7 August 2026 and had never once been executed. Four separate rules of this shape were found unexecuted in a single session.
+
+> **What would overturn it.** A rule phrased as self-examination that is reliably followed over many studies without anything outside it checking.
+
+### L-052 · A funded expansion the company is already building is a fact, not a growth rate.
+
+When a company tells you it is adding capacity — rooms, lines, capacity of any kind — with a size and a date, model the capacity. Folding it into a growth percentage means a project already paid for and under construction earns nothing.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** Hotel keys disclosed as c.3,500 operating and c.1,500 under construction, reaching c.5,000 by 2028 — a 43% expansion. The model grew hospitality at inflation only, so none of it appeared. Modelling the keys moved value by about EGP 6 a share.
+
+> **What would overturn it.** A disclosed expansion whose value is fully captured by the growth rate it was folded into, which would mean the two are equivalent.
+
+### L-053 · The biggest thing you missed is usually on a page you already read.
+
+Omissions do not hide in documents you failed to obtain. They hide in the summary page of the document you cited, because reading for the number you came for is not the same as reading what is there.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH study, 1 September 2026
+
+> **What it cost, or how we know.** A landbank of 20mn sqm and a hotel-key expansion, together most of the gap to the market price, both printed on one page of one release the study had already downloaded, read and cited.
+
+> **What would overturn it.** An omission of comparable size traced to a document that was never obtained rather than one already in hand.
 
 
 ---

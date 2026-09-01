@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1810,6 +1810,59 @@ the read is allowed to CLAIM, which is the direction the errors actually ran. Wh
 remains untested is listed in the register rather than implied absent: intraday
 structure, and level-drawing methods other than the module's own.
 
+
+## [R-ENF-06] Every disclosed operating fact is consumed or declined with a reason, and a job checks it (01-Sep-2026, adopted after the user asked whether the hospitality leg had been taken into account — it had not)
+
+**No new rule is adopted here.** The rule has existed since 07-Aug-2026:
+
+> A self-audit that only re-checks the work it did will keep missing the work it
+> never did: ask explicitly, against the Sweep Register, **what the filings
+> disclose that the model does not consume** before declaring a self-audit
+> complete.
+
+Nothing enforced it, so nothing did it — the [R-ENF-01] species, and the fourth
+instance in a single session of a written rule that never executed.
+
+### The cost, measured
+
+TMG's own summary page carried a **20mn sqm landbank** and a hotel estate going
+from **c.3,500 keys to c.5,000 by 2028**. The model valued the land at zero and
+grew hospitality at inflation, so an expansion the company had already paid for
+and was building earned nothing at all. Six gates passed the study.
+
+**Both facts sat on one page of one document the study had already downloaded,
+read and cited.** Between them they were most of the gap to the market price,
+and neither was found by any check. Both were found by a reader asking a
+question.
+
+### The enforcement
+
+A study records a **disclosure register** naming every operating fact its
+sources publish. `research_protocol.assert_disclosure_consumed()` refuses:
+
+- an item that is neither **consumed** (naming the driver that uses it) nor
+  **declined** (with a reason);
+- an item recorded as both;
+- an empty reason, or a consumed item naming no driver;
+- an **empty register** — a study that lists no disclosures has not looked, and
+  an empty result is not a clean result [R-ENF-04].
+
+Negative-controlled on all four conditions, called from the study's own gate.
+TMGH's register carries 23 facts: 15 consumed, 8 declined with reasons.
+
+**Silence is not an option, because silence is exactly what happened.** The
+failure was never a decision to exclude the landbank. It was that nobody was
+ever made to say either way.
+
+### The general lesson, which is not about this study
+
+**Where a rule says "ask yourself", nobody asks.** A rule phrased as a habit of
+mind executes only when someone remembers it at the moment it binds — which is
+precisely when they are busiest and least likely to. The same rule phrased as a
+register that something else reads executes every time.
+
+When a rule of this shape is found unexecuted, do not restate it more firmly.
+Give it a register and a gate.
 
 ## [R-ENF-05] The valuation method is checked against the class, not just the section list (01-Sep-2026, adopted after the user asked why the market pays far more than the study's number — and the answer was a lens the study never carried)
 

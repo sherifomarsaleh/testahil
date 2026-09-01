@@ -137,6 +137,10 @@ def evidence():
 
 
 def main():
+    # every disclosed operating fact consumed or declined with a reason
+    import disclosure as DISC
+    _nd = RP.assert_disclosure_consumed(DISC.DISCLOSED)
+
     # the class-lens rule, checked from outside the study's own say-so
     import json as _j
     _n = _j.load(open(os.path.join(HERE, "study_numbers.json")))

@@ -1271,6 +1271,54 @@ LESSONS = [
       "where a computed figure would beat a bound.",
       "adopted"),
 
+    L("L-051", "ALL", None,
+      "Where a rule says \"ask yourself\", nobody asks.",
+      "A rule written as a habit of mind only works if someone remembers it at "
+      "the moment it applies, which is exactly when they are busiest. The same "
+      "rule written as a list that something else reads works every time. When "
+      "you find a rule of this shape was not followed, do not restate it more "
+      "firmly — give it a register and a check.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "The instruction to ask what the filings disclose that the model does "
+      "not use had been standing since 7 August 2026 and had never once been "
+      "executed. Four separate rules of this shape were found unexecuted in a "
+      "single session.",
+      "A rule phrased as self-examination that is reliably followed over many "
+      "studies without anything outside it checking.",
+      "adopted"),
+
+    L("L-052", "ALL", None,
+      "A funded expansion the company is already building is a fact, not a "
+      "growth rate.",
+      "When a company tells you it is adding capacity — rooms, lines, "
+      "capacity of any kind — with a size and a date, model the capacity. "
+      "Folding it into a growth percentage means a project already paid for "
+      "and under construction earns nothing.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "Hotel keys disclosed as c.3,500 operating and c.1,500 under "
+      "construction, reaching c.5,000 by 2028 — a 43% expansion. The model "
+      "grew hospitality at inflation only, so none of it appeared. Modelling "
+      "the keys moved value by about EGP 6 a share.",
+      "A disclosed expansion whose value is fully captured by the growth rate "
+      "it was folded into, which would mean the two are equivalent.",
+      "adopted"),
+
+    L("L-053", "ALL", None,
+      "The biggest thing you missed is usually on a page you already read.",
+      "Omissions do not hide in documents you failed to obtain. They hide in "
+      "the summary page of the document you cited, because reading for the "
+      "number you came for is not the same as reading what is there.",
+      "TMGH study, 1 September 2026",
+      "build",
+      "A landbank of 20mn sqm and a hotel-key expansion, together most of the "
+      "gap to the market price, both printed on one page of one release the "
+      "study had already downloaded, read and cited.",
+      "An omission of comparable size traced to a document that was never "
+      "obtained rather than one already in hand.",
+      "adopted"),
+
 ]
 
 

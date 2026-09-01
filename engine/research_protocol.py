@@ -247,6 +247,55 @@ LENS_BY_CLASS = {
 }
 
 
+
+# EVERY DISCLOSED OPERATING FACT IS CONSUMED OR DECLINED WITH A REASON.
+# [added 01-Sep-2026]
+#
+# The rule already existed: "ask explicitly, against the Sweep Register, WHAT
+# THE FILINGS DISCLOSE THAT THE MODEL DOES NOT CONSUME before declaring a
+# self-audit complete." Nothing enforced it, so nothing did it. On TMGH the
+# company's own release carried a 20mn sqm landbank and a hotel-key count going
+# from c.3,500 to c.5,000 by 2028; the model valued the land at zero and grew
+# hospitality at inflation, and six gates passed the study. Both facts were on
+# one page of one document the study had already downloaded and read.
+#
+# This is the [R-ENF-01] species: a rule that can be checked must be checked
+# from OUTSIDE the thing it governs, and a self-attested "I considered it" is
+# never a check. A study now lists what its sources disclose, and every item is
+# either CONSUMED (naming the driver that uses it) or DECLINED (with a reason).
+# Silence is not an option, because silence is what happened.
+
+def assert_disclosure_consumed(items):
+    """`items` maps a disclosed fact to {'consumed': driver} or {'declined': why}.
+
+    Refuses an item that is neither, an empty reason, and an empty register --
+    a study that declares no disclosures has not looked, and an empty result is
+    not a clean result [R-ENF-04].
+    """
+    if not items:
+        raise AssertionError(
+            "DISCLOSURE REGISTER EMPTY — a study that lists no disclosed "
+            "operating facts has not been asked what its sources contain. An "
+            "empty register is not a clean one.")
+    problems = []
+    for name, v in sorted(items.items()):
+        got_c = (v or {}).get("consumed")
+        got_d = (v or {}).get("declined")
+        if not got_c and not got_d:
+            problems.append("%s: neither consumed nor declined" % name)
+        elif got_c and got_d:
+            problems.append("%s: recorded as both consumed and declined" % name)
+        elif got_d is not None and not str(got_d).strip():
+            problems.append("%s: declined with no reason" % name)
+        elif got_c is not None and not str(got_c).strip():
+            problems.append("%s: consumed but no driver named" % name)
+    if problems:
+        raise AssertionError(
+            "DISCLOSED FACTS NOT ACCOUNTED FOR — study must not be issued:\n  "
+            + "\n  ".join(problems))
+    return len(items)
+
+
 def assert_class_lens(klass, lenses):
     """A study of a class must carry at least one lens that class requires.
 
