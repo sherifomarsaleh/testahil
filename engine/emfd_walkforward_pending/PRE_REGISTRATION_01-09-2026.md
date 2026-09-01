@@ -171,6 +171,15 @@ analyst.**
   have different drivers and pooling them would hide which one moved.
 * **D7 finance income.** This company's finance income is of the same order as its operating
   profit, so it is a first-class driver and not a residual.
+  **AMENDED 1 September 2026, before any error was computed, and dated here rather than
+  edited in silently.** The balance-sheet extraction showed this company's earning-asset base
+  moving by more than half in a single year (it roughly doubles across FY2016–FY2017), so a
+  rate formed on the OPENING base and a rate formed on the AVERAGE of opening and closing are
+  materially different quantities — on the pre-2021 window the opening-base rate ranges from
+  under 9% to over 26%. Both conventions are therefore computed at every origin and **both
+  are reported; neither is selected**, which is what §2 requires of a sensitivity. The
+  amendment is recorded now because it is being made while no error exists to tune towards;
+  it would not be permissible after one.
   `finance income_t = r_o × (opening cash and deposits + opening instalment/notes
   receivable)`, `r_o = TTM3(finance income / that same opening base, o)`, and the rate is
   additionally run on the **exogenous** setting `r = CBE overnight deposit rate known at the

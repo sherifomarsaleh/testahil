@@ -135,6 +135,15 @@ believed only because it foots:
   of the board's governance report, which carries no operating data. Those years therefore
   cannot enter the unit-level drivers, and the pre-registration says in advance that they are
   reported as dropped rather than interpolated.
+* **Balance sheets: FY2016–FY2020, all five accepted.** Every balance sheet in this archive
+  is an image, including the ones inside files whose profit-or-loss page carries a text
+  layer, so all of it comes by OCR — and OCR of a wide two-column statement damages numbers
+  in ways that look like data: one page renders 9,268,434,113 as "9 268,434,113", another
+  renders "2,743 ,482,268", and a nil column is a dash that shifts the comparative into the
+  current column if it is not read as a cell. Each year is therefore accepted only when the
+  subtotals the statement itself prints re-derive from the components above them — including
+  **total assets = total equity + total liabilities** — with the page re-read at higher
+  resolution until they do. All five close.
 * Where a release quotes revenue, it is reconciled against the audited statement **at the
   release's own precision** — "EGP 3.2 billion" promises nothing finer than ±0.05bn — and
   all of them agree.

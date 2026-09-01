@@ -87,13 +87,14 @@ def page(path, i, lang="eng", dpi=300, force_ocr=False):
     return best[2], "ocr", best[1]
 
 
-def find_statement(path, patterns, lang="eng", pages=14, min_money=8):
+def find_statement(path, patterns, lang="eng", pages=14, min_money=8,
+                   dpi=300):
     """First page that matches one of `patterns` AND carries enough money
     figures to be the statement rather than the table of contents naming it."""
     import pymupdf
     doc = pymupdf.open(path)
     for i in range(min(pages, doc.page_count)):
-        text, route, rot = page(path, i, lang)
+        text, route, rot = page(path, i, lang, dpi=dpi)
         if len(MONEY.findall(text)) < min_money:
             continue
         for p in patterns:

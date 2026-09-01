@@ -199,6 +199,28 @@ Aggregator figures for the missing years exist and were not used. That is the ru
    *What would overturn it:* the FY2018–FY2020 releases or an investor presentation carrying
    the counts, from the company or the exchange.
 
+9. **The two pre-registered financing rules were checked against the disclosure, and one of
+   them refuses — as written.** On opening earning assets (cash, time deposits and
+   interest-bearing receivables) the implied D7 rate lands between **8.8% and 26.6%** across
+   FY2017–FY2020, which is where an Egyptian deposit rate belongs; on total assets it would
+   have landed near 3%, which is the trap the rule was written to avoid. D8's implied
+   borrowing rate on this name's disclosed interest-bearing borrowings comes out at **238%
+   in FY2019 and 69% in FY2020** — the company is effectively unlevered and the denominator
+   is noise — so the rule's "rate not identified" branch fires, exactly as pre-registered.
+   Nothing was widened to make the number look sensible.
+   *What would overturn it:* the FY2021+ filings disclosing material interest-bearing
+   borrowings, at which point the ordinary rate × opening-borrowings rule applies.
+
+10. **A rate formed on an opening base is not the same driver as one formed on an average
+    base when the base is doubling.** EMFD's earning-asset base roughly doubles across
+    FY2016–FY2017, and the opening-base D7 rate ranges from under 9% to over 26% on that
+    account alone. The pre-registration was **amended on 1 September 2026, dated, while no
+    error had been computed**, to compute both conventions at every origin and report both
+    without selecting either. Recorded here because the amendment is only legitimate at that
+    moment: after an error existed it would have been tuning.
+    *What would overturn it:* a company whose earning-asset base is stable enough that the
+    two conventions coincide.
+
 ### Pre-registered predictions this run will test when it is unblocked
 
 Recorded here so they cannot be quietly dropped: **L-101** (a developer's volume is set by
