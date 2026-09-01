@@ -1,0 +1,28 @@
+side-by-side income statements written (158 lines)
+
+=== error decomposition: share of the aggregate's absolute error each driver accounts for ===
+
+total_revenue
+   dev_revenue                44.6%  (n=35)
+   recurring_revenue          42.7%  (n=35)
+
+gross_profit
+   recurring_revenue          19.3%  (n=35)
+   dev_revenue                 4.4%  (n=35)
+   recurring_cost            -77.6%  (n=35)
+   dev_cost                 -108.6%  (n=35)
+
+net_profit
+   gross_profit               54.6%  (n=16)
+   da                         -3.4%  (n=16)
+   finance_cost              -10.6%  (n=16)
+   sga                       -12.3%  (n=16)
+
+=== one-offs identified in the history ===
+  FY2023  non-core land transaction inside new sales               EGP 47.9bn of the EGP 142.8bn total (core EGP 94.9bn)
+  FY2024  seven-hotel acquisition (39% with management rights)     hospitality revenue 3,540.9 -> 11,496.5 EGP mn
+  FY2024  investment-property revaluation surplus                  EGP 4,924.1mn
+  FY2024  gain on the hotels acquisition                           EGP 718.8mn
+  FY2024  SouthMed launch (July 2024)                              contracted sales 142.8 -> 504.0 EGP bn
+  FY2025  investment-property revaluation surplus                  EGP 3,952.5mn
+  FY2025  first Saudi revenue (Banan) on percentage-of-completion  52.5% of real-estate segment revenue by 1H2026

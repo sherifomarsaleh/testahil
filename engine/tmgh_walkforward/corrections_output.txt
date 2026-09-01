@@ -1,0 +1,19 @@
+driver                       bias robust   eras   MAE raw   MAE adj  outcome
+finance_cost               -1.224    YES   same     0.812     0.445  WATCH FLAG — it passed its own test and FAILED the class-consistency claus
+new_sales                  -0.877    YES   same     1.587     1.440  ADOPTED at half strength
+development_properties     -0.528    YES   same     0.308     0.145  ADOPTED at half strength
+ppe                        -0.459     no   FLIP         -         -  no correction — the bias is not robust across bootstrap blocks
+backlog                    -0.284    YES   same     0.546     0.509  ADOPTED at half strength
+da                         -0.253    YES   same     0.629     0.584  ADOPTED at half strength
+recurring_revenue          -0.112     no   FLIP         -         -  no correction — the bias is not robust across bootstrap blocks
+sga                        -0.107     no   FLIP         -         -  no correction — the bias is not robust across bootstrap blocks
+dev_cost                   -0.105     no   same         -         -  no correction — the bias is not robust across bootstrap blocks
+total_revenue              -0.090     no   same         -         -  no correction — the bias is not robust across bootstrap blocks
+gross_profit               -0.079     no   same         -         -  no correction — the bias is not robust across bootstrap blocks
+dev_revenue                -0.055     no   same         -         -  no correction — the bias is not robust across bootstrap blocks
+recurring_cost             -0.044     no   FLIP         -         -  no correction — the bias is not robust across bootstrap blocks
+customer_advances          +0.230     no   FLIP         -         -  no correction — the bias is not robust across bootstrap blocks
+net_profit                 +0.264     no   same         -         -  no correction — the bias is not robust across bootstrap blocks
+
+ADOPTED: backlog, da, development_properties, new_sales
+WATCH:   finance_cost
