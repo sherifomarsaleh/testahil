@@ -379,7 +379,7 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
           "AE/EG/SA are adopted (committed drift), each on measured evidence.")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=8.0, width_cal=1.07,
+    nu=8.0, width_cal=1.063,
     fit_meta=(
         "REFIT 27-Jul-2026 on the 3-name KR panel after a 15-YEAR SAMSUNG INGEST - "
         "supersedes nu=Gaussian/cal=1.154. Samsung's library goes 1,515 -> 3,709 "

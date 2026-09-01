@@ -863,17 +863,17 @@
       "LGES",
       "SAMSUNG"
     ],
-    "windows": 126,
+    "windows": 127,
     "rebuilt_this_run": [],
     "nu": 8.0,
-    "width_cal": 1.07,
+    "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0018,
+    "market_skill": 0.0025,
     "market_skill_raw_basis": 0.0078,
     "market_ci90": [
-      -0.003,
-      0.01
+      -0.002,
+      0.011
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.537,
@@ -883,12 +883,12 @@
       "KAKAO": {
         "nu": 8.0,
         "width_cal": 1.042,
-        "skill": 0.0033,
-        "skill_raw_basis": 0.0026,
+        "skill": 0.0049,
+        "skill_raw_basis": 0.0042,
         "verdict": "PARITY",
         "ci_block2": [
           -0.005,
-          0.013
+          0.014
         ]
       },
       "LGES": {
@@ -904,9 +904,9 @@
       },
       "SAMSUNG": {
         "nu": 8.0,
-        "width_cal": 1.07,
-        "skill": -0.0022,
-        "skill_raw_basis": -0.001,
+        "width_cal": 1.063,
+        "skill": -0.0026,
+        "skill_raw_basis": -0.0018,
         "verdict": "PARITY",
         "ci_block2": [
           -0.011,
@@ -925,9 +925,9 @@
       "applied": false,
       "mle_shape": [
         8.0,
-        1.07
+        1.063
       ],
-      "w90_sigma": 1.7231,
+      "w90_sigma": 1.7119,
       "reason": "G-split: early half does not move toward 50%"
     },
     "coverage_flags": {
