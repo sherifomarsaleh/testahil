@@ -555,17 +555,17 @@
       "SNB",
       "STC"
     ],
-    "windows": 450,
+    "windows": 451,
     "rebuilt_this_run": [],
     "nu": 12.0,
-    "width_cal": 1.063,
+    "width_cal": 1.056,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0045,
+    "market_skill": 0.0054,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
       -0.003,
-      0.013
+      0.014
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -574,12 +574,12 @@
     "per_name": {
       "ACWA": {
         "nu": 12.0,
-        "width_cal": 1.063,
-        "skill": 0.0081,
-        "skill_raw_basis": -0.0034,
+        "width_cal": 1.056,
+        "skill": 0.008,
+        "skill_raw_basis": -0.0035,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.048,
+          -0.047,
           0.07
         ]
       },
@@ -652,30 +652,30 @@
       "RIBL": {
         "nu": 15.0,
         "width_cal": 1.042,
-        "skill": -0.0016,
-        "skill_raw_basis": -0.0037,
+        "skill": 0.0087,
+        "skill_raw_basis": 0.0003,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.02,
-          0.019
+          -0.025,
+          0.046
         ]
       },
       "RIYADHCABLE": {
         "nu": 15.0,
-        "width_cal": 1.063,
-        "skill": -0.0227,
-        "skill_raw_basis": -0.0226,
+        "width_cal": 1.056,
+        "skill": -0.0222,
+        "skill_raw_basis": -0.022,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.09,
-          0.009
+          -0.085,
+          0.008
         ]
       },
       "SABIC": {
         "nu": 12.0,
-        "width_cal": 1.07,
-        "skill": -0.0001,
-        "skill_raw_basis": -0.0034,
+        "width_cal": 1.063,
+        "skill": 0.0001,
+        "skill_raw_basis": -0.0032,
         "verdict": "PARITY",
         "ci_block2": [
           -0.023,
@@ -683,10 +683,10 @@
         ]
       },
       "SAVOLA": {
-        "nu": 12.0,
-        "width_cal": 1.063,
+        "nu": 15.0,
+        "width_cal": 1.056,
         "skill": 0.0016,
-        "skill_raw_basis": 0.0011,
+        "skill_raw_basis": 0.0012,
         "verdict": "PARITY",
         "ci_block2": [
           -0.009,
@@ -705,14 +705,14 @@
         ]
       },
       "STC": {
-        "nu": 12.0,
-        "width_cal": 1.077,
-        "skill": 0.0006,
-        "skill_raw_basis": -0.0001,
+        "nu": 15.0,
+        "width_cal": 1.07,
+        "skill": 0.0004,
+        "skill_raw_basis": -0.0004,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.018,
-          0.016
+          -0.019,
+          0.017
         ]
       }
     },
@@ -727,10 +727,11 @@
       "applied": false,
       "mle_shape": [
         12.0,
-        1.063
+        1.056
       ],
-      "w90_sigma": 1.7295,
-      "reason": "G-improve: gain 0.004 < 0.01"
+      "w90_sigma": 1.7181,
+      "reason": "MLE shape already closest admissible point",
+      "cov50": 0.4989
     },
     "coverage_flags": {
       "ACWA": null,
