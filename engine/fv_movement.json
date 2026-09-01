@@ -1,0 +1,41 @@
+{
+ "entries": {
+  "PHDC": {
+   "baseline": {
+    "built_to": "2026.08.23",
+    "captured": "2026-09-01",
+    "fair": null,
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 15.2,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 \u2014 so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 15.89,
+      "bear": 7.62,
+      "full": 24.92
+     },
+     "lessons": [
+      "L-028",
+      "L-029",
+      "L-030",
+      "L-114"
+     ],
+     "origins": "FY2015-FY2024, h=1-5",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": null
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "PHDC",
+   "tier": "current"
+  }
+ }
+}
