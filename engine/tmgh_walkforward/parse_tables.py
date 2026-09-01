@@ -47,6 +47,20 @@ def column_years(text, at, back=2600):
 NOTE = re.compile(r"^\(\w{1,3}\)$")
 
 
+# A note reference is stripped by SHAPE before tokenising, not skipped by
+# position afterwards. The positional rule handled "(33)" and "(3)" and missed
+# "(39+765+4)" and "(4,7,8)" — the multi-note forms — reading 39 and 478 as
+# figures and putting a D&A of EGP 0.0mn into two panel years, which then
+# produced a spectacular and entirely spurious D&A bias. A figure carries a
+# decimal point, a comma-separated group of three, or a run of four digits;
+# anything else in parentheses at the head of a row is a note.
+NOTEREF = re.compile(r"\((?![^)]*(?:\.\d|,\d{3}|\d{4}))[0-9A-Za-z][0-9A-Za-z+,\-/ ]{0,18}\)")
+
+
+def strip_notes(tail, head=30):
+    return NOTEREF.sub(" ", tail[:head]) + tail[head:]
+
+
 def values_after(text, m, want=2, window=300):
     """Numeric tokens after a label, with note references dropped.
 
@@ -54,7 +68,7 @@ def values_after(text, m, want=2, window=300):
     before any real figure. Dropping it by shape rather than by position is
     what lets the same reader handle both document families.
     """
-    tail = P.repair_ocr(text[m.end(): m.end() + window])
+    tail = strip_notes(P.repair_ocr(text[m.end(): m.end() + window]))
     out, seen_big = [], False
     for t in P.NUM.finditer(tail):
         tok = t.group().strip()

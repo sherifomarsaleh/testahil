@@ -11,22 +11,51 @@
     "dev_revenue": 85.0,
     "dev_cost": -71.0,
     "hosp_revenue": 11.0,
-    "hosp_cost": -59.0,
+    "hosp_cost": -56.0,
     "other_revenue": 4.0,
-    "other_cost": -58.0,
+    "other_cost": -33.0,
     "total_revenue": 100.0,
     "gross_profit": 31.0,
-    "sga": -7.0,
+    "sga": -5.0,
     "finance_income": 1.0,
     "investment_income": 1.0,
     "pbt": 27.0,
+    "tax": -196.0,
+    "deferred_tax": 4.0,
+    "gp_dev": 14.0,
+    "gp_hosp": -45.0,
+    "gp_other": -29.0,
+    "total_cost": -160.0,
+    "gp_recurring_combined": 17.0
+   }
+  },
+  {
+   "doc": "TMG_FY-Q4-2009_ER",
+   "year": 2009,
+   "broken": [
+    "I4",
+    "I11"
+   ],
+   "cells": {
+    "dev_revenue": 4074.0,
+    "dev_cost": -2898.0,
+    "hosp_revenue": 540.0,
+    "hosp_cost": -59.0,
+    "other_revenue": 208.0,
+    "other_cost": -58.0,
+    "total_revenue": 4822.0,
+    "gross_profit": 1486.0,
+    "sga": -7.0,
+    "finance_income": 38.0,
+    "investment_income": 36.0,
+    "pbt": 1312.0,
     "tax": -2.0,
     "deferred_tax": 2.0,
-    "gp_dev": 14.0,
-    "gp_hosp": -48.0,
-    "gp_other": -54.0,
-    "total_cost": -188.0,
-    "gp_recurring_combined": 17.0
+    "gp_dev": 1176.0,
+    "gp_hosp": 481.0,
+    "gp_other": 150.0,
+    "total_cost": -3015.0,
+    "gp_recurring_combined": 310.0
    }
   },
   {
@@ -40,20 +69,20 @@
     "dev_revenue": 86.0,
     "dev_cost": -74.0,
     "hosp_revenue": 11.0,
-    "hosp_cost": -57.0,
+    "hosp_cost": -59.0,
     "other_revenue": 3.0,
     "other_cost": -39.0,
     "total_revenue": 100.0,
     "gross_profit": 29.0,
-    "sga": -8.0,
+    "sga": -7.0,
     "finance_cost": -206921197.0,
     "finance_income": 1.0,
     "investment_income": 0.0,
     "pbt": 23.0,
-    "tax": -4.0,
-    "deferred_tax": -4.0,
+    "tax": -114.0,
+    "deferred_tax": -2.0,
     "eps": 31.0,
-    "investment_properties": -7.0,
+    "investment_properties": 15393653117.0,
     "puc": 582350774.0,
     "goodwill": 15135241851.0,
     "associates": 2120000.0,
@@ -62,16 +91,17 @@
     "total_ca": 34053451484.0,
     "paid_capital": 20302035500.0,
     "total_equity": 30267369424.0,
+    "lt_loans": 1240163530.0,
     "current_loans": 752207123.0,
     "overdraft": 48644960.0,
     "customer_advances": 20446576316.0,
     "creditors": 604004564.0,
     "gp_dev": 12.0,
-    "gp_hosp": -46.0,
+    "gp_hosp": -48.0,
     "gp_other": -36.0,
     "total_assets": 53888820009.0,
     "total_liab": 23621450585.0,
-    "total_cost": -170.0,
+    "total_cost": -172.0,
     "gp_recurring_combined": 17.0
    }
   },
@@ -86,18 +116,18 @@
     "dev_revenue": 4606.0,
     "dev_cost": -3395.0,
     "hosp_revenue": 608.0,
-    "hosp_cost": -347.0,
+    "hosp_cost": -57.0,
     "other_revenue": 125.0,
     "other_cost": -60.0,
     "total_revenue": 5339.0,
     "gross_profit": 1522.0,
-    "sga": -423.0,
+    "sga": -8.0,
     "finance_cost": -174616068.0,
     "finance_income": 60.0,
     "investment_income": 22.0,
     "pbt": 1203.0,
-    "tax": -199.0,
-    "deferred_tax": -199.0,
+    "tax": -4.0,
+    "deferred_tax": -4.0,
     "eps": 40.0,
     "investment_properties": 418952399.0,
     "puc": 189920850.0,
@@ -108,16 +138,17 @@
     "total_ca": 33987895452.0,
     "paid_capital": 20132314980.0,
     "total_equity": 31910459120.0,
+    "lt_loans": 2020531059.0,
     "current_loans": 752264645.0,
     "overdraft": 31674030.0,
     "customer_advances": 19040221267.0,
     "creditors": 1033052219.0,
     "gp_dev": 1211.0,
-    "gp_hosp": 261.0,
+    "gp_hosp": 551.0,
     "gp_other": 65.0,
     "total_assets": 54873258266.0,
     "total_liab": 22962799146.0,
-    "total_cost": -3802.0,
+    "total_cost": -3512.0,
     "gp_recurring_combined": 311.0
    }
   },
@@ -155,7 +186,7 @@
   {
    "doc": "TMG_First_Quarter_2012_Earning_Release",
    "year": 2011,
-   "n_cells": 16
+   "n_cells": 17
   },
   {
    "doc": "TMG_Holding_Second_Quarter_2014_Earning_Release",
@@ -165,7 +196,7 @@
   {
    "doc": "TMG_nine_months_and_third_quarter_2012_Earning_Release",
    "year": 2011,
-   "n_cells": 16
+   "n_cells": 17
   },
   {
    "doc": "TMG_Nine_Months_and_Third_Quarter_2017_Earning_Release",
@@ -483,31 +514,420 @@
    ]
   },
   "2009": {
-   "pbt": [
+   "puc": [
     {
-     "doc": "TMG_Q1-2009_ER",
-     "value": 422028996.0,
+     "doc": "TMG_1Q2010_ER",
+     "value": 82350774.0,
      "kind": "earnings_release",
-     "reports": 2009,
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 582350774.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 82350774.0,
+     "kind": "earnings_release",
+     "reports": 2010,
      "route": "ocr"
     }
    ],
-   "tax": [
+   "goodwill": [
     {
-     "doc": "TMG_Q1-2009_ER",
-     "value": -78334100.0,
+     "doc": "TMG_1Q2010_ER",
+     "value": 15135241851.0,
      "kind": "earnings_release",
-     "reports": 2009,
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 15135241851.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 15135241.85,
+     "kind": "earnings_release",
+     "reports": 2010,
      "route": "ocr"
     }
    ],
-   "deferred_tax": [
+   "associates": [
     {
-     "doc": "TMG_Q1-2009_ER",
-     "value": -2031145.0,
+     "doc": "TMG_1Q2010_ER",
+     "value": 2120000.0,
      "kind": "earnings_release",
-     "reports": 2009,
+     "reports": 2010,
      "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 2120000.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 2120000.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_nca": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 19835368525.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 19.84,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 19835368525.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "other_current_assets": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 3073022407.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 3073022407.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 3073022407.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "cash": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 398783476.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 398783476.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 33869759740.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_ca": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 34053451484.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 30267369424.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 34053.45,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_equity": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 24828802643.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 24828802.64,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "lt_loans": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 1240163530.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 1240163330.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 1.24,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "current_loans": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 752207123.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 752207123.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 752207123.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "overdraft": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 48644960.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 43644900.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 48644960.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "deferred_tax_liab": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 20783509.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 20783509.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 20783509.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_nc_liab": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 5438566781.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 6621090056.19,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
+    }
+   ],
+   "customer_advances": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 20446576316.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 808.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 20446576316.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "creditors": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 604004564.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 604004564.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 604004564.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "provisions_bs": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 55590.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 555590.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 55590.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_cl": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 23621450585.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 23621450585.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 23621450585.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": "ocr"
+    }
+   ],
+   "total_assets": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 53888820009.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 30267369443.84,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
+    },
+    {
+     "doc": "TMG_2Q2010_ER",
+     "value": 19835402578.45,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
+    }
+   ],
+   "total_liab": [
+    {
+     "doc": "TMG_1Q2010_ER",
+     "value": 29060017366.0,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
+    },
+    {
+     "doc": "TMG_3Q2010_ER",
+     "value": 30242540641.19,
+     "kind": "earnings_release",
+     "reports": 2010,
+     "route": null
     }
    ]
   },
@@ -646,7 +1066,7 @@
    "da": [
     {
      "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
-     "value": -124417927.0,
+     "value": -123849418.0,
      "kind": "earnings_release",
      "reports": 2014,
      "route": "ocr"
@@ -684,14 +1104,14 @@
    "da": [
     {
      "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
-     "value": -45.0,
+     "value": -124417927.0,
      "kind": "earnings_release",
      "reports": 2014,
      "route": "ocr"
     },
     {
      "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
-     "value": -129417278.0,
+     "value": -124417927.0,
      "kind": "earnings_release",
      "reports": 2015,
      "route": "ocr"
@@ -720,7 +1140,7 @@
    "da": [
     {
      "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
-     "value": -45.0,
+     "value": -129417278.0,
      "kind": "earnings_release",
      "reports": 2015,
      "route": "ocr"
@@ -796,24 +1216,6 @@
      "kind": "consolidated_fs",
      "reports": 2020,
      "route": "text"
-    }
-   ],
-   "finance_cost": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -302.26,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
-    }
-   ],
-   "da": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -302.26,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
     }
    ],
    "retained_earnings": [
@@ -915,38 +1317,6 @@
      "route": "text"
     }
    ],
-   "finance_cost": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -0.0,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
-    },
-    {
-     "doc": "TMG_Conso_FSs_31_December_2021_Final",
-     "value": -4343.3,
-     "kind": "consolidated_fs",
-     "reports": 2021,
-     "route": "ocr"
-    }
-   ],
-   "da": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -0.0,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
-    },
-    {
-     "doc": "TMG_Conso_FSs_31_December_2021_Final",
-     "value": -0.0,
-     "kind": "consolidated_fs",
-     "reports": 2021,
-     "route": "ocr"
-    }
-   ],
    "total_revenue": [
     {
      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
@@ -970,6 +1340,24 @@
      "kind": "earnings_release",
      "reports": 2021,
      "route": "text"
+    }
+   ],
+   "finance_cost": [
+    {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "value": -4343.3,
+     "kind": "consolidated_fs",
+     "reports": 2021,
+     "route": "ocr"
+    }
+   ],
+   "da": [
+    {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "value": -0.0,
+     "kind": "consolidated_fs",
+     "reports": 2021,
+     "route": "ocr"
     }
    ],
    "ppe": [
@@ -1179,13 +1567,6 @@
      "value": -4245.93,
      "kind": "consolidated_fs",
      "reports": 2021,
-     "route": "ocr"
-    },
-    {
-     "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
-     "value": -4245.93,
-     "kind": "consolidated_fs",
-     "reports": 2022,
      "route": "ocr"
     }
    ],
@@ -1398,28 +1779,12 @@
    ]
   },
   "2022": {
-   "finance_cost": [
-    {
-     "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
-     "value": -5209.46,
-     "kind": "consolidated_fs",
-     "reports": 2022,
-     "route": "ocr"
-    }
-   ],
    "da": [
     {
      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
      "value": -0.0,
      "kind": "consolidated_fs",
      "reports": 2022,
-     "route": "ocr"
-    },
-    {
-     "doc": "TMG_Consolidated_FS_31_Dec._2023",
-     "value": -0.0,
-     "kind": "consolidated_fs",
-     "reports": 2023,
      "route": "ocr"
     }
    ],
@@ -1439,15 +1804,15 @@
      "route": "ocr"
     },
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 9362.8,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 8019.5,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 8019.5,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 9362.8,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -1568,14 +1933,14 @@
      "route": "ocr"
     },
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
      "value": 16197.74,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "ocr"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "value": 16197.74,
      "kind": "consolidated_fs",
      "reports": 2023,
@@ -1591,15 +1956,15 @@
    ],
    "ppe": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 6251.48,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 6297.31,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 6297.31,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 6251.48,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -1614,15 +1979,15 @@
    ],
    "investment_properties": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 2146.89,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 2231.78,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 2231.78,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 2146.89,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -1637,14 +2002,14 @@
    ],
    "associates": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
      "value": 107.35,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "value": 107.35,
      "kind": "consolidated_fs",
      "reports": 2023,
@@ -1660,15 +2025,15 @@
    ],
    "development_properties": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 86468.54,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 78268.59,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 78268.59,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 86468.54,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -1683,29 +2048,6 @@
    ]
   },
   "2023": {
-   "da": [
-    {
-     "doc": "TMG_Holding_4Q23_earnings_release",
-     "value": -491.8,
-     "kind": "earnings_release",
-     "reports": 2023,
-     "route": "text"
-    },
-    {
-     "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
-     "value": -491.8,
-     "kind": "earnings_release",
-     "reports": 2024,
-     "route": "text"
-    },
-    {
-     "doc": "TMG_Conso_FS_31_December_2024-English",
-     "value": -491.82,
-     "kind": "consolidated_fs",
-     "reports": 2024,
-     "route": "ocr"
-    }
-   ],
    "creditors": [
     {
      "doc": "TMG_Holding_4Q23_earnings_release",
@@ -1797,10 +2139,10 @@
      "route": "ocr"
     }
    ],
-   "obligations_nr_undelivered": [
+   "lt_loans": [
     {
-     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
-     "value": 36322.39,
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2024,
      "route": "ocr"
@@ -1913,7 +2255,16 @@
    "da": [
     {
      "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
-     "value": -427.33,
+     "value": -296.63,
+     "kind": "consolidated_fs",
+     "reports": 2025,
+     "route": "ocr"
+    }
+   ],
+   "pbt": [
+    {
+     "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+     "value": 16490.18,
      "kind": "consolidated_fs",
      "reports": 2025,
      "route": "ocr"
@@ -2118,6 +2469,15 @@
      "route": null
     }
    ],
+   "notes_payable": [
+    {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "value": 24448.19,
+     "kind": "consolidated_fs",
+     "reports": 2025,
+     "route": "text"
+    }
+   ],
    "bank_facilities": [
     {
      "doc": "TMG_Conso_FS_30_June_2025_-_English",
@@ -2147,17 +2507,17 @@
    ]
   },
   "2025": {
-   "nr_undelivered": [
+   "time_deposits_c": [
     {
      "doc": "TMG_Cons._FS_30_June_2026_-_English",
-     "value": 13769.54,
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "text"
     },
     {
      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-     "value": 14964.89,
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "text"
@@ -2166,14 +2526,14 @@
    "obligations_nr_undelivered": [
     {
      "doc": "TMG_Cons._FS_30_June_2026_-_English",
-     "value": 13769.54,
+     "value": 15925.59,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "ocr"
     },
     {
      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-     "value": 14964.89,
+     "value": 15925.59,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "ocr"

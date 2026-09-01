@@ -73,9 +73,16 @@ IS = {
         r"Selling, [Gg]eneral and [Aa]dministrative [Ee]xpenses\b",
     ],
     "marketing": [r"^\s*Marketing expenses\b", r"Selling and marketing expenses\b"],
+    # From FY2022 TMG stops printing a single finance-cost line and prints
+    # "Finance expenses" and "Bank charges" separately; the note then sums them.
+    # Both are captured so the total can be rebuilt by identity rather than a
+    # year going missing.
     "finance_cost": [
-        r"Financing expenses\b", r"Finance costs?\b", r"[Ii]nterest expense\b",
+        r"^\s*Financing expenses\b", r"^\s*Finance costs?\b",
+        r"^\s*[Ii]nterest expense\b",
     ],
+    "finance_expenses": [r"^\s*Finance expenses\b"],
+    "bank_charges": [r"^\s*Bank charges\b"],
     "finance_income": [
         r"Financing revenues\b", r"Finance income\b", r"[Ii]nterest income\b",
     ],
@@ -85,6 +92,7 @@ IS = {
         r"Net profit for the year before taxes\b",
         r"Net income before tax and minority interest expense\b",
         r"Net profit .{0,40}before tax(?:es)?\b",
+        r"^\s*Profit for the year before tax\b",
         r"Profit before tax\b",
     ],
     "tax": [r"Income [Tt]ax\b", r"Current income tax\b"],
@@ -142,14 +150,19 @@ BS = {
     # understates the borrowing rate by a multiple and manufactures a bias.
     "lt_loans": [r"^\s*Long[- ]term loans?(?: and facilities)?\b",
                  r"^\s*Loans non-current portion\b",
-                 r"^\s*Bank loans\b", r"^\s*Loans - non-current portion\b"],
+                 r"^\s*Bank loans\b", r"^\s*Loans - non-current portion\b",
+                 r"^\s*Loans\b(?!\s*-)"],
+    "sukuk": [r"^\s*Sukuk Al-Ijarah\b(?!\s*-)"],
+    "sukuk_current": [r"^\s*Sukuk Al-Ijarah - current portion\b"],
     "notes_payable": [r"^\s*Notes payable\b"],
     "current_loans": [r"^\s*Current [Pp]ortion of (?:bank )?[Ll]oans(?: and [Ff]acilities)?\b",
                       r"^\s*Loans - current portion\b"],
     "bank_facilities": [r"^\s*Bank [Ff]acilities\b", r"^\s*Credit facilities\b"],
     "overdraft": [r"^\s*Banks? [Oo]verdraft\b"],
-    "lease_liab_nc": [r"^\s*Lease liability non-current portion\b"],
-    "lease_liab_c": [r"^\s*Lease liability - current portion\b"],
+    "lease_liab_nc": [r"^\s*Lease liability non-current portion\b",
+                      r"^\s*Non-current lease liabilities\b"],
+    "lease_liab_c": [r"^\s*Lease liability - current portion\b",
+                     r"^\s*Current lease liabilities\b"],
     "other_nc_liab": [r"^\s*Other non-current liabilities\b",
                       r"^\s*Non-current [Ll]iabilities\b"],
     "deferred_tax_liab": [r"^\s*Deferred tax liabilit(?:y|ies)\b"],

@@ -29,7 +29,7 @@ TOL_REL, TOL_ABS = 0.005, 1.0          # 0.5% or EGP 1mn, whichever is looser
 # plain sums and a sign slip cannot hide inside one.
 NEGATIVE = {"dev_cost", "hosp_cost", "other_cost", "total_cost",
             "recurring_combined_cost", "sga", "marketing", "finance_cost",
-            "da", "tax", "nci"}
+            "finance_expenses", "bank_charges", "da", "tax", "nci"}
 
 IDENTITIES = [
     ("I1", "gp_dev",        ["dev_revenue", "dev_cost"]),

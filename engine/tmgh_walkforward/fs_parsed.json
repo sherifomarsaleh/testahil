@@ -61,8 +61,8 @@
     "2025": 493.65097499999996
    },
    "da": {
-    "2026": -0.00047799999999999996,
-    "2025": -136.327394
+    "2026": -136.327394,
+    "2025": -94.784116
    },
    "tax": {
     "2026": -1390.7435249999999,
@@ -123,8 +123,8 @@
     "2025": 21716.321258
    },
    "nr_undelivered": {
-    "2026": 1.8e-05,
-    "2025": 13769.537527999999
+    "2026": 13769.537527999999,
+    "2025": 15925.586013999999
    },
    "other_current_assets": {
     "2026": 72647.727896,
@@ -162,6 +162,10 @@
     "2026": 167323.649581,
     "2025": 157708.140765
    },
+   "lt_loans": {
+    "2026": 13813.502647,
+    "2025": 9737.728638999999
+   },
    "bank_facilities": {
     "2026": 1661.567676,
     "2025": 1273.374323
@@ -183,8 +187,8 @@
     "2025": 117676.166566
    },
    "obligations_nr_undelivered": {
-    "2026": 1.8e-05,
-    "2025": 13769.537527999999
+    "2026": 13769.537527999999,
+    "2025": 15925.586013999999
    },
    "creditors": {
     "2026": 45167.189904,
@@ -858,6 +862,24 @@
      "unit_evidence": "declared LE"
     }
    },
+   "lt_loans": {
+    "2026": {
+     "doc": "TMG_Cons._FS_30_June_2026_-_English",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2025": {
+     "doc": "TMG_Cons._FS_30_June_2026_-_English",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "bank_facilities": {
     "2026": {
      "doc": "TMG_Cons._FS_30_June_2026_-_English",
@@ -1123,6 +1145,14 @@
     "2024": 3.9e-05,
     "2023": 7e-06
    },
+   "finance_expenses": {
+    "2024": -210.498123,
+    "2023": -204.016427
+   },
+   "bank_charges": {
+    "2024": -15.595170999999999,
+    "2023": -16.440967
+   },
    "da": {
     "2024": 3.9e-05,
     "2023": 7e-06
@@ -1201,6 +1231,10 @@
     "2024": 116427.359044,
     "2023": 39015.774786
    },
+   "lt_loans": {
+    "2024": 3762.8111249999997,
+    "2023": 9585.544247
+   },
    "notes_payable": {
     "2024": 452.266849,
     "2023": 37.815501
@@ -1212,6 +1246,14 @@
    "bank_facilities": {
     "2024": 883.3119439999999,
     "2023": 985.730454
+   },
+   "lease_liab_nc": {
+    "2024": 65.162418,
+    "2023": 61.388462999999994
+   },
+   "lease_liab_c": {
+    "2024": 9.945791999999999,
+    "2023": 9.945791999999999
    },
    "other_nc_liab": {
     "2024": 3762.8111249999997,
@@ -1230,8 +1272,8 @@
     "2023": 48929.217775
    },
    "obligations_nr_undelivered": {
-    "2024": 1.4999999999999999e-05,
-    "2023": 36322.38601
+    "2024": 36322.38601,
+    "2023": 37479.203175999995
    },
    "creditors": {
     "2024": 15307.628729,
@@ -1467,6 +1509,42 @@
      "page": 6,
      "route": "ocr",
      "label": "finance cost",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "finance_expenses": {
+    "2024": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 6,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 6,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2024": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -1815,6 +1893,24 @@
      "unit_evidence": "declared LE"
     }
    },
+   "lt_loans": {
+    "2024": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "notes_payable": {
     "2024": {
      "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
@@ -1865,6 +1961,42 @@
      "page": 5,
      "route": "ocr",
      "label": "Credit facilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_nc": {
+    "2024": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_c": {
+    "2024": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Current lease liabilities",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -2217,6 +2349,10 @@
    "total_equity": {
     "2024": 131482.227012,
     "2023": 39015.774786
+   },
+   "lt_loans": {
+    "2024": 6757.172011,
+    "2023": 9585.544247
    },
    "bank_facilities": {
     "2024": 1189.880894,
@@ -2928,6 +3064,24 @@
      "unit_evidence": "declared LE"
     }
    },
+   "lt_loans": {
+    "2024": {
+     "doc": "TMG_Conso_FS_31_December_2024-English",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Conso_FS_31_December_2024-English",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "bank_facilities": {
     "2024": {
      "doc": "TMG_Conso_FS_31_December_2024-English",
@@ -3176,8 +3330,8 @@
     "2024": 238.964044
    },
    "da": {
-    "2025": -0.000457,
-    "2024": -331.49013099999996
+    "2025": -331.49013099999996,
+    "2024": -178.810745
    },
    "pbt": {
     "2025": 4776.693289,
@@ -4076,13 +4230,21 @@
     "2023": -273.496736,
     "2022": 280.606661
    },
+   "finance_expenses": {
+    "2023": -1339.662765,
+    "2022": -817.100008
+   },
+   "bank_charges": {
+    "2023": -75.06773,
+    "2022": -65.232164
+   },
    "finance_income": {
     "2023": 541.675445,
     "2022": 153.522969
    },
    "da": {
-    "2023": 3.9e-05,
-    "2022": 0.000765
+    "2023": -491.823556,
+    "2022": -343.733348
    },
    "pbt": {
     "2023": 5022.386265,
@@ -4154,6 +4316,14 @@
     "2023": 39015.774786,
     "2022": 3.692833
    },
+   "lt_loans": {
+    "2023": 9585.544247,
+    "2022": 5423.811519
+   },
+   "sukuk_current": {
+    "2023": 350.0,
+    "2022": -3.9e-05
+   },
    "current_loans": {
     "2023": 567.5256949999999,
     "2022": 251.09169699999998
@@ -4161,6 +4331,14 @@
    "bank_facilities": {
     "2023": 985.730454,
     "2022": 1371.901063
+   },
+   "lease_liab_nc": {
+    "2023": 61.388462999999994,
+    "2022": 2e-06
+   },
+   "lease_liab_c": {
+    "2023": 9.945791999999999,
+    "2022": -1.9999999999999998e-05
    },
    "other_nc_liab": {
     "2023": 9585.544247,
@@ -4179,8 +4357,8 @@
     "2022": 36467.835179
    },
    "obligations_nr_undelivered": {
-    "2023": 2e-06,
-    "2022": 37479.203175999995
+    "2023": 37479.203175999995,
+    "2022": 33186.047687
    },
    "creditors": {
     "2023": 13471.610037999999,
@@ -4398,6 +4576,42 @@
      "page": 7,
      "route": "ocr",
      "label": "Marketing expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "finance_expenses": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 7,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 7,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 7,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 7,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -4746,6 +4960,42 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2023": {
      "doc": "TMG_Consolidated_FS_31_Dec._2023",
@@ -4778,6 +5028,42 @@
      "page": 6,
      "route": "ocr",
      "label": "Credit facilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_nc": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_c": {
+    "2023": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_FS_31_Dec._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Current lease liabilities",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -5021,9 +5307,13 @@
     "2023": -93.73857799999999,
     "2022": -66.51713099999999
    },
-   "finance_cost": {
-    "2023": 2081.943187,
-    "2022": 1670.371252
+   "finance_expenses": {
+    "2023": -383.268875,
+    "2022": -267.250363
+   },
+   "bank_charges": {
+    "2023": -13.052446,
+    "2022": -35.279635999999996
    },
    "da": {
     "2023": 7e-06,
@@ -5103,6 +5393,14 @@
     "2023": 39322.129087,
     "2022": 36928.331766999996
    },
+   "lt_loans": {
+    "2023": 9416.164365999999,
+    "2022": 5423.811519
+   },
+   "sukuk_current": {
+    "2023": 350.0,
+    "2022": -1.9999999999999998e-05
+   },
    "current_loans": {
     "2023": 554.829295,
     "2022": 251.09169699999998
@@ -5128,8 +5426,8 @@
     "2022": 36467.835179
    },
    "obligations_nr_undelivered": {
-    "2023": 2e-06,
-    "2022": 38742.886705
+    "2023": 38742.886705,
+    "2022": 33186.047687
    },
    "creditors": {
     "2023": 15474.75461,
@@ -5333,12 +5631,12 @@
      "unit_evidence": "no unit declared"
     }
    },
-   "finance_cost": {
+   "finance_expenses": {
     "2023": {
      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -5346,7 +5644,25 @@
      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2023": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -5693,6 +6009,42 @@
      "label": "Total equity",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2023": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2023": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "current_loans": {
@@ -5971,8 +6323,8 @@
     "2024": 605.0390729999999
    },
    "da": {
-    "2025": -0.00047799999999999996,
-    "2024": -352.898559
+    "2025": -352.898559,
+    "2024": -307.73031599999996
    },
    "tax": {
     "2025": -1020.886976,
@@ -6029,8 +6381,8 @@
     "2024": 17786.055837
    },
    "nr_undelivered": {
-    "2025": 1.8e-05,
-    "2024": 18579.924058
+    "2025": 18579.924058,
+    "2024": 27648.152656
    },
    "other_current_assets": {
     "2025": 48801.160060999995,
@@ -6109,8 +6461,8 @@
     "2024": 81000.925177
    },
    "obligations_nr_undelivered": {
-    "2025": 1.8e-05,
-    "2024": 18579.924058
+    "2025": 18579.924058,
+    "2024": 27648.152656
    },
    "creditors": {
     "2025": 34622.766321999996,
@@ -7095,9 +7447,13 @@
     "2024": -150.300887,
     "2023": -69.12091699999999
    },
-   "finance_cost": {
-    "2024": 2990.9371539999997,
-    "2023": 1646.565697
+   "finance_expenses": {
+    "2024": -194.924317,
+    "2023": -308.943602
+   },
+   "bank_charges": {
+    "2024": -16.075305999999998,
+    "2023": -30.786693
    },
    "da": {
     "2024": -178.810745,
@@ -7177,6 +7533,10 @@
     "2024": 119223.057504,
     "2023": 39015.774786
    },
+   "lt_loans": {
+    "2024": 4262.662805,
+    "2023": 9585.544247
+   },
    "current_loans": {
     "2024": 1218.583126,
     "2023": 567.5256949999999
@@ -7184,6 +7544,14 @@
    "bank_facilities": {
     "2024": 1342.165235,
     "2023": 985.730454
+   },
+   "lease_liab_nc": {
+    "2024": 68.936373,
+    "2023": 61.388462999999994
+   },
+   "lease_liab_c": {
+    "2024": 9.945791999999999,
+    "2023": 9.945791999999999
    },
    "other_nc_liab": {
     "2024": 4262.662805,
@@ -7403,12 +7771,12 @@
      "unit_evidence": "no unit declared"
     }
    },
-   "finance_cost": {
+   "finance_expenses": {
     "2024": {
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -7416,7 +7784,25 @@
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2024": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -7765,6 +8151,24 @@
      "unit_evidence": "declared LE"
     }
    },
+   "lt_loans": {
+    "2024": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2024": {
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
@@ -7797,6 +8201,42 @@
      "page": 5,
      "route": "ocr",
      "label": "Credit facilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_nc": {
+    "2024": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Non-current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lease_liab_c": {
+    "2024": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Current lease liabilities",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+     "page": 5,
+     "route": "ocr",
+     "label": "Current lease liabilities",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -8014,9 +8454,9 @@
     "2024": -87.268371,
     "2023": -93.73857799999999
    },
-   "finance_cost": {
-    "2024": 4328.076449,
-    "2023": 0.002081
+   "bank_charges": {
+    "2024": -39.928954999999995,
+    "2023": -13.052446
    },
    "finance_income": {
     "2024": 1033.5067259999998,
@@ -8079,6 +8519,10 @@
    "total_equity": {
     "2024": 122007.216777,
     "2023": 39015.774786
+   },
+   "lt_loans": {
+    "2024": 5413.262806,
+    "2023": 9.585e-06
    },
    "current_loans": {
     "2024": 367.525695,
@@ -8258,12 +8702,12 @@
      "unit_evidence": "no unit declared"
     }
    },
-   "finance_cost": {
+   "bank_charges": {
     "2024": {
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -8271,7 +8715,7 @@
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -8548,6 +8992,24 @@
      "unit_evidence": "declared LE"
     }
    },
+   "lt_loans": {
+    "2024": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2023": {
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2024": {
      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
@@ -8756,8 +9218,8 @@
     "2025": 571.269773
    },
    "da": {
-    "2026": -0.00047799999999999996,
-    "2025": -123.42528999999999
+    "2026": -123.42528999999999,
+    "2025": -105.90676599999999
    },
    "tax": {
     "2026": -1151.954006,
@@ -8822,8 +9284,8 @@
     "2025": 21716.321258
    },
    "nr_undelivered": {
-    "2026": 1.8e-05,
-    "2025": 14964.891561999999
+    "2026": 14964.891561999999,
+    "2025": 15925.586013999999
    },
    "other_current_assets": {
     "2026": 63490.450134,
@@ -8898,8 +9360,8 @@
     "2025": 117676.166566
    },
    "obligations_nr_undelivered": {
-    "2026": 1.8e-05,
-    "2025": 14964.891561999999
+    "2026": 14964.891561999999,
+    "2025": 15925.586013999999
    },
    "creditors": {
     "2026": 46757.948053,
@@ -10018,6 +10480,14 @@
     "2025": 134345.446441,
     "2024": 131482.227012
    },
+   "lt_loans": {
+    "2025": 8642.546145999999,
+    "2024": 6757.172011
+   },
+   "notes_payable": {
+    "2025": 24146.715731,
+    "2024": 24448.186639
+   },
    "bank_facilities": {
     "2025": 1418.671417,
     "2024": 1189.880894
@@ -10670,6 +11140,42 @@
      "page": 4,
      "route": "text",
      "label": "Total equity",
+     "scale": 1e-06,
+     "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2025": {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2024": {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "notes_payable": {
+    "2025": {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "page": 40,
+     "route": "text",
+     "label": "Notes payable",
+     "scale": 1e-06,
+     "unit_evidence": "declared LE"
+    },
+    "2024": {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "page": 40,
+     "route": "text",
+     "label": "Notes payable",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
     }
@@ -11973,6 +12479,10 @@
     "2010": -23107368.0,
     "2009": -24407643.0
    },
+   "pbt": {
+    "2010": 421854740.0,
+    "2009": 422028996.0
+   },
    "tax": {
     "2010": -77390047.0,
     "2009": -78334100.0
@@ -12022,6 +12532,10 @@
    "total_equity": {
     "2010": 25172607610.0,
     "2009": 24828802643.0
+   },
+   "lt_loans": {
+    "2010": 1441057810.0,
+    "2009": 1240163530.0
    },
    "current_loans": {
     "2010": 646705797.0,
@@ -12093,6 +12607,24 @@
      "page": 5,
      "route": "ocr",
      "label": "Depreciation and Amortization",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "pbt": {
+    "2010": {
+     "doc": "TMG_1Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "PROFIT FOR THE YEAR BEFORE TAX",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2009": {
+     "doc": "TMG_1Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "PROFIT FOR THE YEAR BEFORE TAX",
      "scale": 1.0,
      "unit_evidence": "no unit declared"
     }
@@ -12311,6 +12843,24 @@
      "page": 4,
      "route": "ocr",
      "label": "TOTAL SHAREHOLDERS' EQUITY",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lt_loans": {
+    "2010": {
+     "doc": "TMG_1Q2010_ER",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2009": {
+     "doc": "TMG_1Q2010_ER",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
      "scale": 1.0,
      "unit_evidence": "no unit declared"
     }
@@ -12561,6 +13111,10 @@
    "total_equity": {
     "2011": 26008656878.0,
     "2010": 25685064725.0
+   },
+   "lt_loans": {
+    "2011": 1945612512.0,
+    "2010": 2020531059.0
    },
    "current_loans": {
     "2011": 807827608.0,
@@ -12882,6 +13436,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2011": {
+     "doc": "TMG_1Q2011_Earning_Release",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2010": {
+     "doc": "TMG_1Q2011_Earning_Release",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2011": {
      "doc": "TMG_1Q2011_Earning_Release",
@@ -13056,6 +13628,10 @@
    "paid_capital": {
     "2010": 20132314980.0,
     "2009": 20302035500.0
+   },
+   "lt_loans": {
+    "2010": 1438693992.0,
+    "2009": 1.24016353
    },
    "current_loans": {
     "2010": 726099173.0,
@@ -13232,6 +13808,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2010": {
+     "doc": "TMG_2Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2009": {
+     "doc": "TMG_2Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2010": {
      "doc": "TMG_2Q2010_ER",
@@ -13387,8 +13981,8 @@
     "2009": 9.0
    },
    "hosp_cost": {
-    "2010": -242.0,
-    "2009": 57.0
+    "2010": 57.0,
+    "2009": 59.0
    },
    "other_revenue": {
     "2010": 71.0,
@@ -13419,12 +14013,12 @@
     "2009": 24.0
    },
    "tax": {
-    "2010": -185.0,
-    "2009": -4.0
+    "2010": -4.0,
+    "2009": -146.0
    },
    "deferred_tax": {
-    "2010": -185.0,
-    "2009": -4.0
+    "2010": -4.0,
+    "2009": -3.0
    }
   },
   "bs": {
@@ -13463,6 +14057,10 @@
    "total_equity": {
     "2010": 25085590546.0,
     "2009": 24828802.643
+   },
+   "lt_loans": {
+    "2010": 2121128025.0,
+    "2009": 1240163330.0
    },
    "current_loans": {
     "2010": 715883259.0,
@@ -13892,6 +14490,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2010": {
+     "doc": "TMG_3Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2009": {
+     "doc": "TMG_3Q2010_ER",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2010": {
      "doc": "TMG_3Q2010_ER",
@@ -14058,21 +14674,17 @@
     "2007": 2008.0,
     "2008": 2008.0
    },
-   "finance_cost": {
-    "2007": 64.0,
-    "2008": 160.0
-   },
    "pbt": {
     "2007": 1783.0,
     "2008": 1857.0
    },
    "tax": {
-    "2007": -196.0,
-    "2008": -197.0
+    "2007": -197.0,
+    "2008": 1737.0
    },
    "deferred_tax": {
-    "2007": -196.0,
-    "2008": -197.0
+    "2007": 1737.0,
+    "2008": 1661.0
    }
   },
   "bs": {},
@@ -14185,24 +14797,6 @@
      "unit_evidence": "declared EGP mn"
     }
    },
-   "finance_cost": {
-    "2007": {
-     "doc": "TMG_ER_FY_08_",
-     "page": 10,
-     "route": "text",
-     "label": "interest expense",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    },
-    "2008": {
-     "doc": "TMG_ER_FY_08_",
-     "page": 10,
-     "route": "text",
-     "label": "interest expense",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    }
-   },
    "pbt": {
     "2007": {
      "doc": "TMG_ER_FY_08_",
@@ -14287,16 +14881,16 @@
     "2008": 11.0
    },
    "hosp_cost": {
-    "2009": -317.0,
-    "2008": 59.0
+    "2009": 59.0,
+    "2008": 56.0
    },
    "other_revenue": {
     "2009": 208.0,
     "2008": 4.0
    },
    "other_cost": {
-    "2009": -121.0,
-    "2008": 58.0
+    "2009": 58.0,
+    "2008": 33.0
    },
    "total_revenue": {
     "2009": 4822.0,
@@ -14307,8 +14901,8 @@
     "2008": 31.0
    },
    "sga": {
-    "2009": -335.0,
-    "2008": 7.0
+    "2009": 7.0,
+    "2008": 5.0
    },
    "finance_income": {
     "2009": 38.0,
@@ -14323,12 +14917,12 @@
     "2008": 27.0
    },
    "tax": {
-    "2009": -113.0,
-    "2008": 2.0
+    "2009": 2.0,
+    "2008": -196.0
    },
    "deferred_tax": {
-    "2009": -113.0,
-    "2008": 2.0
+    "2009": 2.0,
+    "2008": 4.0
    }
   },
   "bs": {},
@@ -14618,8 +15212,8 @@
     "2009": 11.0
    },
    "hosp_cost": {
-    "2010": -347.0,
-    "2009": 57.0
+    "2010": 57.0,
+    "2009": 59.0
    },
    "other_revenue": {
     "2010": 125.0,
@@ -14638,8 +15232,8 @@
     "2009": 29.0
    },
    "sga": {
-    "2010": -423.0,
-    "2009": -8.0
+    "2010": -8.0,
+    "2009": -7.0
    },
    "finance_cost": {
     "2010": -174616068.0,
@@ -14658,12 +15252,12 @@
     "2009": 23.0
    },
    "tax": {
-    "2010": -199.0,
-    "2009": -4.0
+    "2010": -4.0,
+    "2009": -114.0
    },
    "deferred_tax": {
-    "2010": -199.0,
-    "2009": -4.0
+    "2010": -4.0,
+    "2009": -2.0
    },
    "eps": {
     "2010": 40.0,
@@ -14673,7 +15267,7 @@
   "bs": {
    "investment_properties": {
     "2010": 418952399.0,
-    "2009": -7.0
+    "2009": 15393653117.0
    },
    "puc": {
     "2010": 189920850.0,
@@ -14706,6 +15300,10 @@
    "total_equity": {
     "2010": 31910459120.0,
     "2009": 30267369424.0
+   },
+   "lt_loans": {
+    "2010": 2020531059.0,
+    "2009": 1240163530.0
    },
    "current_loans": {
     "2010": 752264645.0,
@@ -15177,6 +15775,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2010": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2009": {
+     "doc": "TMG_FY2010_Earning_Release",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2010": {
      "doc": "TMG_FY2010_Earning_Release",
@@ -15326,6 +15942,10 @@
    "total_equity": {
     "2012": 26427319222.0,
     "2011": 26302075949.0
+   },
+   "lt_loans": {
+    "2012": 2102752277.0,
+    "2011": 2057.0
    },
    "current_loans": {
     "2012": 647651747.0,
@@ -15625,6 +16245,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2012": {
+     "doc": "TMG_First_Quarter_2012_Earning_Release",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2011": {
+     "doc": "TMG_First_Quarter_2012_Earning_Release",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2012": {
      "doc": "TMG_First_Quarter_2012_Earning_Release",
@@ -15758,8 +16396,8 @@
     "2015": -27590159.0
    },
    "da": {
-    "2016": -45.0,
-    "2015": -33070117.0
+    "2016": -33070117.0,
+    "2015": -31690063.0
    },
    "pbt": {
     "2016": 291770919.0,
@@ -16098,6 +16736,10 @@
     "2012": 26656353134.0,
     "2011": 26302075949.0
    },
+   "lt_loans": {
+    "2012": 2002728310.0,
+    "2011": 2057986813.0
+   },
    "current_loans": {
     "2012": 752208109.0,
     "2011": 608829395.0
@@ -16309,6 +16951,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2012": {
+     "doc": "TMG_First_half_and_second_quarter_2012_Earning_Release",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2011": {
+     "doc": "TMG_First_half_and_second_quarter_2012_Earning_Release",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2012": {
      "doc": "TMG_First_half_and_second_quarter_2012_Earning_Release",
@@ -16491,6 +17151,10 @@
    "total_equity": {
     "2011": 26232097594.0,
     "2010": 25685064725.0
+   },
+   "lt_loans": {
+    "2011": 2226565441.0,
+    "2010": 2020531059.0
    },
    "current_loans": {
     "2011": 901750872.0,
@@ -16703,6 +17367,24 @@
      "page": 6,
      "route": "ocr",
      "label": "TOTAL SHAREHOLDERS' EQUITY",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lt_loans": {
+    "2011": {
+     "doc": "TMG_Holding_Earning_Release_for_1H_2011",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2010": {
+     "doc": "TMG_Holding_Earning_Release_for_1H_2011",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
      "scale": 1.0,
      "unit_evidence": "no unit declared"
     }
@@ -16936,6 +17618,10 @@
    "total_equity": {
     "2011": 26302075949.0,
     "2010": 25685064725.0
+   },
+   "lt_loans": {
+    "2011": 2057986813.0,
+    "2010": 2020531059.0
    },
    "current_loans": {
     "2011": 608829395.0,
@@ -17279,6 +17965,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2011": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 7,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2010": {
+     "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
+     "page": 7,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2011": {
      "doc": "TMG_Holding_Earning_Release_for_the_financial_year_ending_December_31_2011",
@@ -17448,8 +18152,8 @@
     "2014": -110416348.0
    },
    "da": {
-    "2015": -45.0,
-    "2014": -129417278.0
+    "2015": -129417278.0,
+    "2014": -124417927.0
    },
    "pbt": {
     "2015": 1108514678.0,
@@ -18522,8 +19226,8 @@
     "2014": -54.165494
    },
    "da": {
-    "2015": -45.0,
-    "2014": -61565595.0
+    "2015": -61565595.0,
+    "2014": -61506154.0
    },
    "tax": {
     "2015": -106024500.0,
@@ -19050,8 +19754,8 @@
     "2015": -54689927.0
    },
    "da": {
-    "2016": -45.0,
-    "2015": -67023621.0
+    "2016": -67023621.0,
+    "2015": -61565595.0
    },
    "tax": {
     "2016": -471877563.0,
@@ -20390,8 +21094,8 @@
     "2015": -71473378.0
    },
    "da": {
-    "2016": -45.0,
-    "2015": -101819400.0
+    "2016": -101819400.0,
+    "2015": -96756246.0
    },
    "tax": {
     "2016": -199781123.0,
@@ -21007,6 +21711,10 @@
     "2009": 24310171382.0,
     "2008": 23948654670.0
    },
+   "lt_loans": {
+    "2009": 1320136796.0,
+    "2008": 1295968157.0
+   },
    "notes_payable": {
     "2009": 303712253.0,
     "2008": 48286290.0
@@ -21273,6 +21981,24 @@
      "page": 4,
      "route": "ocr",
      "label": "TOTAL SHAREHOLDERS' EQUITY",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lt_loans": {
+    "2009": {
+     "doc": "TMG_Q1-2009_ER",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2008": {
+     "doc": "TMG_Q1-2009_ER",
+     "page": 4,
+     "route": "ocr",
+     "label": "Loans",
      "scale": 1.0,
      "unit_evidence": "no unit declared"
     }
@@ -21996,8 +22722,8 @@
     "2014": -26828863.0
    },
    "da": {
-    "2015": -45.0,
-    "2014": -31690063.0
+    "2015": -31690063.0,
+    "2014": -30662664.0
    },
    "pbt": {
     "2015": 275797196.0,
@@ -22764,8 +23490,8 @@
     "2013": -130890864.0
    },
    "da": {
-    "2014": -45.0,
-    "2013": -124417927.0
+    "2014": -124417927.0,
+    "2013": -123849418.0
    },
    "pbt": {
     "2014": 1155635323.0,
@@ -23364,6 +24090,10 @@
     "2012": 26851358054.0,
     "2011": 26302075949.0
    },
+   "lt_loans": {
+    "2012": 1929898563.0,
+    "2011": 2057986813.0
+   },
    "current_loans": {
     "2012": 719104189.0,
     "2011": 608829395.0
@@ -23553,6 +24283,24 @@
      "page": 6,
      "route": "ocr",
      "label": "TOTAL SHAREHOLDERS' EQUITY",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lt_loans": {
+    "2012": {
+     "doc": "TMG_nine_months_and_third_quarter_2012_Earning_Release",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1.0,
+     "unit_evidence": "no unit declared"
+    },
+    "2011": {
+     "doc": "TMG_nine_months_and_third_quarter_2012_Earning_Release",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
      "scale": 1.0,
      "unit_evidence": "no unit declared"
     }
@@ -24040,15 +24788,15 @@
     "2013": 11.0
    },
    "hosp_cost": {
-    "2014": -260.0,
-    "2013": -8.0
+    "2014": -8.0,
+    "2013": -7.0
    },
    "other_revenue": {
     "2014": 242.0,
     "2013": 7.0
    },
    "other_cost": {
-    "2014": -196.0,
+    "2014": -6.0,
     "2013": -6.0
    },
    "total_revenue": {
@@ -24060,12 +24808,12 @@
     "2013": 33.0
    },
    "sga": {
-    "2014": -266.0,
+    "2014": -8.0,
     "2013": -8.0
    },
    "finance_cost": {
     "2014": -2.0,
-    "2013": -102.0
+    "2013": -3.0
    },
    "finance_income": {
     "2014": 49.0,
@@ -24080,12 +24828,12 @@
     "2013": 25.0
    },
    "tax": {
-    "2014": -344.0,
-    "2013": -10.0
+    "2014": -10.0,
+    "2013": -144.0
    },
    "deferred_tax": {
-    "2014": -344.0,
-    "2013": -10.0
+    "2014": -10.0,
+    "2013": -4.0
    }
   },
   "bs": {
@@ -24784,8 +25532,8 @@
     "2014": -81832514.0
    },
    "da": {
-    "2015": -45.0,
-    "2014": -96756246.0
+    "2015": -96756246.0,
+    "2014": -92494910.0
    },
    "tax": {
     "2015": -118027856.0,
@@ -25139,8 +25887,8 @@
     "2016": -46186248.0
    },
    "da": {
-    "2017": -456.0,
-    "2016": -108544034.0
+    "2017": -108544034.0,
+    "2016": -101819400.0
    },
    "tax": {
     "2017": -176934862.0,
@@ -26298,6 +27046,14 @@
     "2023": -54.591238999999995,
     "2022": 0.080871
    },
+   "finance_expenses": {
+    "2023": -204.016427,
+    "2022": -110.72085799999999
+   },
+   "bank_charges": {
+    "2023": -16.440967,
+    "2022": -10.316583999999999
+   },
    "da": {
     "2023": 7e-06,
     "2022": 4.9999999999999996e-06
@@ -26376,6 +27132,18 @@
     "2023": 37285.982547,
     "2022": 36928.331766999996
    },
+   "lt_loans": {
+    "2023": 7668.020637,
+    "2022": 5423.811519
+   },
+   "sukuk": {
+    "2023": 1400.0,
+    "2022": 1400.0
+   },
+   "sukuk_current": {
+    "2023": 350.0,
+    "2022": 350.0
+   },
    "current_loans": {
     "2023": 285.166908,
     "2022": 251.09169699999998
@@ -26401,8 +27169,8 @@
     "2022": 36467.835179
    },
    "obligations_nr_undelivered": {
-    "2023": 2e-06,
-    "2022": 37392.170619
+    "2023": 37392.170619,
+    "2022": 33186.047687
    },
    "creditors": {
     "2023": 15322.712372,
@@ -26620,6 +27388,42 @@
      "page": 6,
      "route": "ocr",
      "label": "Marketing expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "finance_expenses": {
+    "2023": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2023": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -26966,6 +27770,60 @@
      "label": "Total equity",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2023": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk": {
+    "2023": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2023": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "current_loans": {
@@ -27228,16 +28086,16 @@
     "2020": -10.146072
    },
    "finance_cost": {
-    "2021": 685.208502,
-    "2020": -0.00045599999999999997
+    "2021": -103.07928299999999,
+    "2020": -104.18679
    },
    "finance_income": {
     "2021": 28.920724999999997,
     "2020": 71.669546
    },
    "da": {
-    "2021": -0.00045599999999999997,
-    "2020": -79.88969999999999
+    "2021": -79.88969999999999,
+    "2020": -71.425901
    },
    "pbt": {
     "2021": 594.648596,
@@ -27308,6 +28166,10 @@
    "total_equity": {
     "2021": 33720.862844999996,
     "2020": 33616.28357
+   },
+   "lt_loans": {
+    "2021": 3821.656743,
+    "2020": 3127.4392049999997
    },
    "bank_facilities": {
     "2021": 1463.58329,
@@ -27460,7 +28322,7 @@
      "doc": "Eng_version-_TMG_Consolidated_FS_31_March_2021_Signed",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -27468,7 +28330,7 @@
      "doc": "Eng_version-_TMG_Consolidated_FS_31_March_2021_Signed",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -27815,6 +28677,24 @@
      "label": "TOTAL EQUITY",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2021": {
+     "doc": "Eng_version-_TMG_Consolidated_FS_31_March_2021_Signed",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "Eng_version-_TMG_Consolidated_FS_31_March_2021_Signed",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "bank_facilities": {
@@ -28019,16 +28899,16 @@
     "2020": -38.3102
    },
    "finance_cost": {
-    "2021": 1522.4298569999999,
-    "2020": 1e-06
+    "2021": -210.39112,
+    "2020": -258.29585299999997
    },
    "finance_income": {
     "2021": 102.08147699999999,
     "2020": 134.68985999999998
    },
    "da": {
-    "2021": -0.00045599999999999997,
-    "2020": -82.168984
+    "2021": -82.168984,
+    "2020": -78.748734
    },
    "pbt": {
     "2021": 1230.494274,
@@ -28099,6 +28979,10 @@
    "total_equity": {
     "2021": 34978.400256,
     "2020": 33616.28357
+   },
+   "lt_loans": {
+    "2021": 4341.782308,
+    "2020": 3127.4392049999997
    },
    "bank_facilities": {
     "2021": 1515.9450869999998,
@@ -28237,7 +29121,7 @@
      "doc": "Eng-_TMG_Consolidated_FS_30_September_2021",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -28245,7 +29129,7 @@
      "doc": "Eng-_TMG_Consolidated_FS_30_September_2021",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -28592,6 +29476,24 @@
      "label": "TOTAL EQUITY",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2021": {
+     "doc": "Eng-_TMG_Consolidated_FS_30_September_2021",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "Eng-_TMG_Consolidated_FS_30_September_2021",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "bank_facilities": {
@@ -28833,9 +29735,9 @@
     "2022": -280.606661,
     "2021": -95.294939
    },
-   "finance_cost": {
-    "2022": 5209.459801999999,
-    "2021": 4245.925584
+   "bank_charges": {
+    "2022": -65.232164,
+    "2021": -24.725441999999997
    },
    "da": {
     "2022": 7e-06,
@@ -29089,12 +29991,12 @@
      "unit_evidence": "no unit declared"
     }
    },
-   "finance_cost": {
+   "bank_charges": {
     "2022": {
      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
      "page": 7,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -29102,7 +30004,7 @@
      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
      "page": 7,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -29458,6 +30360,10 @@
     "2021": 4245.925584,
     "2020": 4343.2976659999995
    },
+   "bank_charges": {
+    "2021": -24.725441999999997,
+    "2020": -19.627042
+   },
    "finance_income": {
     "2021": 170.49889299999998,
     "2020": 169.966243
@@ -29539,6 +30445,18 @@
    "total_equity": {
     "2021": 35043.495375,
     "2020": 33616.28357
+   },
+   "lt_loans": {
+    "2021": 4307.164817,
+    "2020": 3127.4392049999997
+   },
+   "sukuk": {
+    "2021": 1750.0,
+    "2020": 2000.0
+   },
+   "sukuk_current": {
+    "2021": 250.0,
+    "2020": -1.9999999999999998e-05
    },
    "current_loans": {
     "2021": 1579.988521,
@@ -29690,6 +30608,24 @@
      "page": 7,
      "route": "ocr",
      "label": "finance cost",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2021": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 7,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 7,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -30052,6 +30988,60 @@
      "page": 5,
      "route": "ocr",
      "label": "Total equity",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "lt_loans": {
+    "2021": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk": {
+    "2021": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2021": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "page": 6,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -30298,16 +31288,20 @@
     "2021": -21.253788999999998
    },
    "finance_cost": {
-    "2022": 968.276898,
-    "2021": 680.527233
+    "2022": -147.390653,
+    "2021": -62.182992
+   },
+   "bank_charges": {
+    "2022": -10.360153,
+    "2021": -7.450292999999999
    },
    "finance_income": {
     "2022": 104.213167,
     "2021": 77.745224
    },
    "da": {
-    "2022": 7e-06,
-    "2021": 4.9999999999999996e-06
+    "2022": -81.44652099999999,
+    "2021": -76.85376
    },
    "pbt": {
     "2022": 730.8997109999999,
@@ -30378,6 +31372,14 @@
    "total_equity": {
     "2022": 35739.911781999996,
     "2021": 35043.495375
+   },
+   "lt_loans": {
+    "2022": 4906.774483,
+    "2021": 4307.164817
+   },
+   "sukuk": {
+    "2022": 1750.0,
+    "2021": 1750.0
    },
    "current_loans": {
     "2022": 741.286402,
@@ -30542,7 +31544,7 @@
      "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -30550,7 +31552,25 @@
      "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance cost",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -30897,6 +31917,42 @@
      "label": "Total equity",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "current_loans": {
@@ -31155,8 +32211,12 @@
     "2021": 631.718167
    },
    "finance_cost": {
-    "2022": -0.076564,
-    "2021": -84.666994
+    "2022": -267.250363,
+    "2021": -208.225978
+   },
+   "bank_charges": {
+    "2022": -35.279635999999996,
+    "2021": -2.165142
    },
    "finance_income": {
     "2022": 98.93012999999999,
@@ -31223,6 +32283,18 @@
    "total_equity": {
     "2022": 36616.26616,
     "2021": 4.9999999999999996e-06
+   },
+   "lt_loans": {
+    "2022": 5058.369933999999,
+    "2021": 4307.164817
+   },
+   "sukuk": {
+    "2022": 1750.0,
+    "2021": 1750.0
+   },
+   "sukuk_current": {
+    "2022": 250.0,
+    "2021": 250.0
    },
    "current_loans": {
     "2022": 763.6689789999999,
@@ -31349,7 +32421,7 @@
      "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -31357,7 +32429,25 @@
      "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance cost",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -31652,6 +32742,60 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2022": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2021": {
+     "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "current_loans": {
     "2022": {
      "doc": "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf",
@@ -31822,12 +32966,12 @@
     "2019": -53.631279
    },
    "finance_cost": {
-    "2020": -0.00045599999999999997,
-    "2019": -225.82169199999998
+    "2020": -396.976904,
+    "2019": -297.382989
    },
    "da": {
-    "2020": -0.00045599999999999997,
-    "2019": -225.82169199999998
+    "2020": -225.82169199999998,
+    "2019": -220.782379
    },
    "tax": {
     "2020": -592.297461,
@@ -32010,7 +33154,7 @@
      "doc": "TMG_Consolidated_F_S_9-2020",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -32018,7 +33162,7 @@
      "doc": "TMG_Consolidated_F_S_9-2020",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -32371,16 +33515,16 @@
     "2019": -50.208901
    },
    "finance_cost": {
-    "2020": -0.00045599999999999997,
-    "2019": -302.26297999999997
+    "2020": -629.708307,
+    "2019": -345.100132
    },
    "finance_income": {
     "2020": 169.966243,
     "2019": 339.894097
    },
    "da": {
-    "2020": -0.00045599999999999997,
-    "2019": -302.26297999999997
+    "2020": -302.26297999999997,
+    "2019": -261.598824
    },
    "pbt": {
     "2020": 2607.772142,
@@ -32553,7 +33697,7 @@
      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -32561,7 +33705,7 @@
      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -32987,17 +34131,21 @@
     "2023": -69.12091699999999,
     "2022": -47.911812999999995
    },
-   "finance_cost": {
-    "2023": 1646.565697,
-    "2022": 968.276898
+   "finance_expenses": {
+    "2023": -308.943602,
+    "2022": -147.390653
+   },
+   "bank_charges": {
+    "2023": -30.786693,
+    "2022": -10.360153
    },
    "finance_income": {
     "2023": 188.179586,
     "2022": 104.213167
    },
    "da": {
-    "2023": 7e-06,
-    "2022": 4.9999999999999996e-06
+    "2023": -128.387223,
+    "2022": -81.44652099999999
    },
    "pbt": {
     "2023": 1172.116524,
@@ -33073,6 +34221,14 @@
     "2023": 38139.479541,
     "2022": 36928.331766999996
    },
+   "lt_loans": {
+    "2023": 9458.703980999999,
+    "2022": 5423.811519
+   },
+   "sukuk_current": {
+    "2023": 350.0,
+    "2022": -1.9999999999999998e-05
+   },
    "current_loans": {
     "2023": 385.81699399999997,
     "2022": 251.09169699999998
@@ -33098,8 +34254,8 @@
     "2022": 36467.835179
    },
    "obligations_nr_undelivered": {
-    "2023": 2e-06,
-    "2022": 37330.261534
+    "2023": 37330.261534,
+    "2022": 33186.047687
    },
    "creditors": {
     "2023": 11799.573849,
@@ -33303,12 +34459,12 @@
      "unit_evidence": "no unit declared"
     }
    },
-   "finance_cost": {
+   "finance_expenses": {
     "2023": {
      "doc": "TMG_Consolidated_english_FS_30_June_2023",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -33316,7 +34472,25 @@
      "doc": "TMG_Consolidated_english_FS_30_June_2023",
      "page": 6,
      "route": "ocr",
-     "label": "finance cost",
+     "label": "Finance expenses",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "bank_charges": {
+    "2023": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 6,
+     "route": "ocr",
+     "label": "Bank charges",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -33681,6 +34855,42 @@
      "label": "Total equity",
      "scale": 1e-06,
      "unit_evidence": "declared LE"
+    }
+   },
+   "lt_loans": {
+    "2023": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "sukuk_current": {
+    "2023": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2022": {
+     "doc": "TMG_Consolidated_english_FS_30_June_2023",
+     "page": 5,
+     "route": "ocr",
+     "label": "Sukuk Al-Ijarah - current portion",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
     }
    },
    "current_loans": {
@@ -39038,8 +40248,8 @@
     "2019": 144.904492
    },
    "finance_cost": {
-    "2020": 685.208502,
-    "2019": 632.263732
+    "2020": -104.18679,
+    "2019": -117.86032999999999
    },
    "pbt": {
     "2020": 508.35461499999997,
@@ -39216,7 +40426,7 @@
      "doc": "TMG_Holding_consilidated_financials_31-3-2020_",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -39224,7 +40434,7 @@
      "doc": "TMG_Holding_consilidated_financials_31-3-2020_",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -39617,12 +40827,12 @@
     "2019": -10.25761
    },
    "finance_cost": {
-    "2020": -0.00045599999999999997,
-    "2019": -147.072958
+    "2020": 1e-06,
+    "2019": 0.0
    },
    "da": {
-    "2020": -0.00045599999999999997,
-    "2019": -147.072958
+    "2020": -147.072958,
+    "2019": -92.630901
    },
    "tax": {
     "2020": -240.707853,
@@ -39752,7 +40962,7 @@
      "doc": "TMGH_FS_2020_Q2_CONSOLIDATED_EN",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -39760,7 +40970,7 @@
      "doc": "TMGH_FS_2020_Q2_CONSOLIDATED_EN",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -39874,16 +41084,16 @@
     "2020": 53.655936
    },
    "finance_cost": {
-    "2021": 680.527233,
-    "2020": 528.992455
+    "2021": -69.633285,
+    "2020": -34.494261
    },
    "finance_income": {
     "2021": 77.745224,
     "2020": 115.992724
    },
    "da": {
-    "2021": -0.00045599999999999997,
-    "2020": -76.85376
+    "2021": -76.85376,
+    "2020": -75.64705699999999
    },
    "pbt": {
     "2021": 533.938151,
@@ -39954,6 +41164,10 @@
    "total_equity": {
     "2021": 34136.777845,
     "2020": 33616.28357
+   },
+   "lt_loans": {
+    "2021": 4272.411357,
+    "2020": 3127.4392049999997
    },
    "bank_facilities": {
     "2021": 1499.60736,
@@ -40070,7 +41284,7 @@
      "doc": "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     },
@@ -40078,7 +41292,7 @@
      "doc": "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
      "page": 6,
      "route": "ocr",
-     "label": "FINANCE COST",
+     "label": "Finance cost",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -40427,6 +41641,24 @@
      "unit_evidence": "no unit declared"
     }
    },
+   "lt_loans": {
+    "2021": {
+     "doc": "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2020": {
+     "doc": "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
+     "page": 5,
+     "route": "ocr",
+     "label": "Loans",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
    "bank_facilities": {
     "2021": {
      "doc": "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
@@ -40685,8 +41917,12 @@
     "2024": 1572.121295
    },
    "da": {
-    "2025": -0.00047799999999999996,
-    "2024": -427.334012
+    "2025": -427.334012,
+    "2024": -296.628225
+   },
+   "pbt": {
+    "2025": 23653.557142999998,
+    "2024": 16490.175692
    },
    "tax": {
     "2025": -4334.189365,
@@ -40739,8 +41975,8 @@
     "2024": 623.60561
    },
    "time_deposits_nc": {
-    "2025": 1.2e-05,
-    "2024": 8978.073992
+    "2025": 8978.073992,
+    "2024": 4442.204028
    },
    "total_nca": {
     "2025": 137029.490911,
@@ -40759,16 +41995,16 @@
     "2024": 17786.055837
    },
    "nr_undelivered": {
-    "2025": 1.8e-05,
-    "2024": 15925.586013999999
+    "2025": 15925.586013999999,
+    "2024": 27648.152656
    },
    "other_current_assets": {
     "2025": 57596.016203,
     "2024": 24792.981062
    },
    "time_deposits_c": {
-    "2025": 1.2e-05,
-    "2024": 20085.613712
+    "2025": 20085.613712,
+    "2024": 10462.621831
    },
    "cash": {
     "2025": 44846.514337,
@@ -41058,6 +42294,24 @@
      "page": 7,
      "route": "ocr",
      "label": "Depreciation and amortization",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    }
+   },
+   "pbt": {
+    "2025": {
+     "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+     "page": 7,
+     "route": "ocr",
+     "label": "Profit for the year before tax",
+     "scale": 1e-06,
+     "unit_evidence": "no unit declared"
+    },
+    "2024": {
+     "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+     "page": 7,
+     "route": "ocr",
+     "label": "Profit for the year before tax",
      "scale": 1e-06,
      "unit_evidence": "no unit declared"
     }
@@ -42112,10 +43366,6 @@
     "2024": -56.4,
     "2025": -82.9
    },
-   "finance_cost": {
-    "2024": 5169.2,
-    "2025": 5712.6
-   },
    "finance_income": {
     "2024": 189.5,
     "2025": 601.1
@@ -42363,24 +43613,6 @@
      "page": 5,
      "route": "text",
      "label": "Marketing expenses",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    }
-   },
-   "finance_cost": {
-    "2024": {
-     "doc": "TMG_Holding_1Q25_earnings_release",
-     "page": 5,
-     "route": "text",
-     "label": "interest expense",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    },
-    "2025": {
-     "doc": "TMG_Holding_1Q25_earnings_release",
-     "page": 5,
-     "route": "text",
-     "label": "interest expense",
      "scale": 1.0,
      "unit_evidence": "declared EGP mn"
     }
@@ -42899,6 +44131,10 @@
    "bank_facilities": {
     "2022": 1371.9,
     "2023": 985.7
+   },
+   "lease_liab_c": {
+    "2022": 0.0,
+    "2023": 9.9
    },
    "deferred_tax_liab": {
     "2022": 351.9,
@@ -43648,6 +44884,24 @@
      "unit_evidence": "declared EGP mn"
     }
    },
+   "lease_liab_c": {
+    "2022": {
+     "doc": "TMG_Holding_4Q23_earnings_release",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    },
+    "2023": {
+     "doc": "TMG_Holding_4Q23_earnings_release",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    }
+   },
    "deferred_tax_liab": {
     "2022": {
      "doc": "TMG_Holding_4Q23_earnings_release",
@@ -44142,6 +45396,10 @@
    "bank_facilities": {
     "2023": 985.7,
     "2024": 1189.9
+   },
+   "lease_liab_c": {
+    "2023": 9.9,
+    "2024": 18.5
    },
    "deferred_tax_liab": {
     "2023": 539.4,
@@ -44945,6 +46203,24 @@
      "unit_evidence": "declared EGP mn"
     }
    },
+   "lease_liab_c": {
+    "2023": {
+     "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    },
+    "2024": {
+     "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    }
+   },
    "deferred_tax_liab": {
     "2023": {
      "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
@@ -45145,10 +46421,6 @@
     "2024": -206.7,
     "2025": -246.5
    },
-   "finance_cost": {
-    "2024": 6235.2,
-    "2025": 10489.3
-   },
    "finance_income": {
     "2024": 445.0,
     "2025": 1082.5
@@ -45266,6 +46538,10 @@
    "bank_facilities": {
     "2024": 1189.9,
     "2025": 1467.3
+   },
+   "lease_liab_c": {
+    "2024": 18.5,
+    "2025": 24.7
    },
    "deferred_tax_liab": {
     "2024": 1990.6,
@@ -45523,24 +46799,6 @@
      "page": 5,
      "route": "text",
      "label": "Marketing expenses",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    }
-   },
-   "finance_cost": {
-    "2024": {
-     "doc": "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025",
-     "page": 5,
-     "route": "text",
-     "label": "interest expense",
-     "scale": 1.0,
-     "unit_evidence": "declared EGP mn"
-    },
-    "2025": {
-     "doc": "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025",
-     "page": 5,
-     "route": "text",
-     "label": "interest expense",
      "scale": 1.0,
      "unit_evidence": "declared EGP mn"
     }
@@ -46065,6 +47323,24 @@
      "page": 6,
      "route": "text",
      "label": "Bank facilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    }
+   },
+   "lease_liab_c": {
+    "2024": {
+     "doc": "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
+     "scale": 1.0,
+     "unit_evidence": "declared EGP mn"
+    },
+    "2025": {
+     "doc": "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025",
+     "page": 6,
+     "route": "text",
+     "label": "Current lease liabilities",
      "scale": 1.0,
      "unit_evidence": "declared EGP mn"
     }

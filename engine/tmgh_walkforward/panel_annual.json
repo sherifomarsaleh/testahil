@@ -1,353 +1,4 @@
 {
- "2009": {
-  "cells": {
-   "dev_revenue": 4074.0,
-   "dev_cost": -2898.0,
-   "hosp_revenue": 540.0,
-   "hosp_cost": -317.0,
-   "other_revenue": 208.0,
-   "other_cost": -121.0,
-   "total_revenue": 4822.0,
-   "gross_profit": 1486.0,
-   "sga": -335.0,
-   "finance_income": 38.0,
-   "investment_income": 36.0,
-   "pbt": 1312.0,
-   "tax": -113.0,
-   "deferred_tax": -113.0,
-   "gp_dev": 1176.0,
-   "gp_hosp": 223.0,
-   "gp_other": 87.0,
-   "total_cost": -3336.0,
-   "gp_recurring_combined": 310.0
-  },
-  "provenance": {
-   "dev_revenue": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Revenues from units sold",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "dev_cost": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Real Estate & Construction Cost",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "hosp_revenue": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Revenues from Hotels",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "hosp_cost": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Hotels Cost",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "other_revenue": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Other revenues",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "other_cost": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Services Cost",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "total_revenue": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Total consolidated revenue",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "gross_profit": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Gross profit",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "sga": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "General and Administrative Expenses",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "finance_income": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "interest income",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "investment_income": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "investment income",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": []
-   },
-   "pbt": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "Net profit before tax",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Q1-2009_ER",
-      "value": 422028996.0,
-      "kind": "earnings_release",
-      "reports": 2009,
-      "route": "ocr"
-     }
-    ]
-   },
-   "tax": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "income tax",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Q1-2009_ER",
-      "value": -78334100.0,
-      "kind": "earnings_release",
-      "reports": 2009,
-      "route": "ocr"
-     }
-    ]
-   },
-   "deferred_tax": {
-    "doc": "TMG_FY-Q4-2009_ER",
-    "page": 3,
-    "route": "text",
-    "label": "deferred tax",
-    "scale": 1.0,
-    "unit_evidence": "declared EGP mn",
-    "interim_comparative": false,
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "A",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Q1-2009_ER",
-      "value": -2031145.0,
-      "kind": "earnings_release",
-      "reports": 2009,
-      "route": "ocr"
-     }
-    ]
-   },
-   "gp_dev": {
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "DERIVED",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "route": "identity",
-    "derivation": {
-     "how": "derived from the statement's own arithmetic",
-     "identity": "I1"
-    },
-    "corroborating_docs": []
-   },
-   "gp_hosp": {
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "DERIVED",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "route": "identity",
-    "derivation": {
-     "how": "derived from the statement's own arithmetic",
-     "identity": "I2"
-    },
-    "corroborating_docs": []
-   },
-   "gp_other": {
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "DERIVED",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "route": "identity",
-    "derivation": {
-     "how": "derived from the statement's own arithmetic",
-     "identity": "I3"
-    },
-    "corroborating_docs": []
-   },
-   "total_cost": {
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "DERIVED",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "route": "identity",
-    "derivation": {
-     "how": "derived from the statement's own arithmetic",
-     "identity": "I10"
-    },
-    "corroborating_docs": []
-   },
-   "gp_recurring_combined": {
-    "source": "TMG_FY-Q4-2009_ER",
-    "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
-    "tier": "DERIVED",
-    "kind": "earnings_release",
-    "reported_in": 2009,
-    "route": "identity",
-    "derivation": {
-     "how": "derived from the statement's own arithmetic",
-     "identity": "I13"
-    },
-    "corroborating_docs": []
-   }
-  },
-  "lead_document": "TMG_FY-Q4-2009_ER",
-  "lead_kind": "earnings_release",
-  "identities_ok": 8,
-  "foot": {
-   "I1": "ok",
-   "I2": "ok",
-   "I3": "ok",
-   "I4": "ok",
-   "I5": "ok",
-   "I6": "untestable",
-   "I7": "untestable",
-   "I8": "untestable",
-   "I9": "untestable",
-   "I10": "ok",
-   "I11": "ok",
-   "I12": "untestable",
-   "I13": "ok"
-  },
-  "blocks_available": 5,
-  "unit_note": null,
-  "quarantined_in_lead": [],
-  "restated_later": {}
- },
  "2011": {
   "cells": {
    "dev_revenue": 4606.0,
@@ -1558,7 +1209,7 @@
     "disagreeing": [
      {
       "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
-      "value": -124417927.0,
+      "value": -123849418.0,
       "kind": "earnings_release",
       "reports": 2014,
       "route": "ocr"
@@ -1600,7 +1251,7 @@
    "da": [
     {
      "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
-     "value": -124417927.0,
+     "value": -123849418.0,
      "kind": "earnings_release",
      "reports": 2014,
      "route": "ocr"
@@ -1876,14 +1527,14 @@
     "disagreeing": [
      {
       "doc": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
-      "value": -45.0,
+      "value": -124417927.0,
       "kind": "earnings_release",
       "reports": 2014,
       "route": "ocr"
      },
      {
       "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
-      "value": -129417278.0,
+      "value": -124417927.0,
       "kind": "earnings_release",
       "reports": 2015,
       "route": "ocr"
@@ -2006,7 +1657,7 @@
    "da": [
     {
      "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
-     "value": -129417278.0,
+     "value": -124417927.0,
      "kind": "earnings_release",
      "reports": 2015,
      "route": "ocr"
@@ -2271,7 +1922,7 @@
     "disagreeing": [
      {
       "doc": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
-      "value": -45.0,
+      "value": -129417278.0,
       "kind": "earnings_release",
       "reports": 2015,
       "route": "ocr"
@@ -4625,16 +4276,8 @@
     "kind": "earnings_release",
     "reported_in": 2019,
     "corroborating_docs": [
-     "TMG_Holding_FY2020_earnings_release"
-    ],
-    "disagreeing": [
-     {
-      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-      "value": -302.26,
-      "kind": "consolidated_fs",
-      "reports": 2020,
-      "route": "ocr"
-     }
+     "TMG_Holding_FY2020_earnings_release",
+     "TMG_Consolidated_FS_12-2020___Final___Eng"
     ]
    },
    "da": {
@@ -4651,16 +4294,8 @@
     "kind": "earnings_release",
     "reported_in": 2019,
     "corroborating_docs": [
-     "TMG_Holding_FY2020_earnings_release"
-    ],
-    "disagreeing": [
-     {
-      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-      "value": -302.26,
-      "kind": "consolidated_fs",
-      "reports": 2020,
-      "route": "ocr"
-     }
+     "TMG_Holding_FY2020_earnings_release",
+     "TMG_Consolidated_FS_12-2020___Final___Eng"
     ]
    },
    "pbt": {
@@ -5485,24 +5120,6 @@
      "route": "text"
     }
    ],
-   "finance_cost": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -302.26,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
-    }
-   ],
-   "da": [
-    {
-     "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-     "value": -302.26,
-     "kind": "consolidated_fs",
-     "reports": 2020,
-     "route": "ocr"
-    }
-   ],
    "retained_earnings": [
     {
      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
@@ -5897,16 +5514,10 @@
     "kind": "earnings_release",
     "reported_in": 2020,
     "corroborating_docs": [
+     "TMG_Consolidated_FS_12-2020___Final___Eng",
      "TMG_Holding_FY2021_earnings_release"
     ],
     "disagreeing": [
-     {
-      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-      "value": -0.0,
-      "kind": "consolidated_fs",
-      "reports": 2020,
-      "route": "ocr"
-     },
      {
       "doc": "TMG_Conso_FSs_31_December_2021_Final",
       "value": -4343.3,
@@ -5930,16 +5541,10 @@
     "kind": "earnings_release",
     "reported_in": 2020,
     "corroborating_docs": [
+     "TMG_Consolidated_FS_12-2020___Final___Eng",
      "TMG_Holding_FY2021_earnings_release"
     ],
     "disagreeing": [
-     {
-      "doc": "TMG_Consolidated_FS_12-2020___Final___Eng",
-      "value": -0.0,
-      "kind": "consolidated_fs",
-      "reports": 2020,
-      "route": "ocr"
-     },
      {
       "doc": "TMG_Conso_FSs_31_December_2021_Final",
       "value": -0.0,
@@ -6439,7 +6044,11 @@
     "kind": "earnings_release",
     "reported_in": 2020,
     "corroborating_docs": [
-     "TMG_Holding_FY2021_earnings_release"
+     "TMG_Conso_FSs_31_December_2021_Final",
+     "TMG_Holding_FY2021_earnings_release",
+     "TMGH_FS_2021_Q2_CONSOLIDATED_EN",
+     "Eng_version-_TMG_Consolidated_FS_31_March_2021_Signed",
+     "Eng-_TMG_Consolidated_FS_30_September_2021"
     ]
    },
    "notes_payable": {
@@ -6747,6 +6356,22 @@
      "route": "text"
     }
    ],
+   "marketing": [
+    {
+     "doc": "TMG_Conso_FSs_31_December_2021_Final",
+     "value": -81.79,
+     "kind": "consolidated_fs",
+     "reports": 2021,
+     "route": "ocr"
+    },
+    {
+     "doc": "TMG_Holding_FY2021_earnings_release",
+     "value": -81.8,
+     "kind": "earnings_release",
+     "reports": 2021,
+     "route": "text"
+    }
+   ],
    "finance_cost": [
     {
      "doc": "TMG_Conso_FSs_31_December_2021_Final",
@@ -6763,22 +6388,6 @@
      "kind": "consolidated_fs",
      "reports": 2021,
      "route": "ocr"
-    }
-   ],
-   "marketing": [
-    {
-     "doc": "TMG_Conso_FSs_31_December_2021_Final",
-     "value": -81.79,
-     "kind": "consolidated_fs",
-     "reports": 2021,
-     "route": "ocr"
-    },
-    {
-     "doc": "TMG_Holding_FY2021_earnings_release",
-     "value": -81.8,
-     "kind": "earnings_release",
-     "reports": 2021,
-     "route": "text"
     }
    ],
    "ppe": [
@@ -7275,13 +6884,6 @@
       "value": -4245.93,
       "kind": "consolidated_fs",
       "reports": 2021,
-      "route": "ocr"
-     },
-     {
-      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
-      "value": -4245.93,
-      "kind": "consolidated_fs",
-      "reports": 2022,
       "route": "ocr"
      }
     ]
@@ -7878,7 +7480,10 @@
     "kind": "earnings_release",
     "reported_in": 2021,
     "corroborating_docs": [
-     "TMG_Holding_FY2022_Earnings_Release"
+     "TMG_Conso_FSs_31_December_2021_Final",
+     "TMG_Holding_FY2022_Earnings_Release",
+     "TMG_Consolidated_Eng._FS_30_Jun._2022_V2_",
+     "TMG_Consolidated_Eng._FS_30_Sep._2022-DokL-SRaouf"
     ]
    },
    "notes_payable": {
@@ -8223,15 +7828,6 @@
   "unit_note": null,
   "quarantined_in_lead": [],
   "restated_later": {
-   "finance_cost": [
-    {
-     "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
-     "value": -4245.93,
-     "kind": "consolidated_fs",
-     "reports": 2022,
-     "route": "ocr"
-    }
-   ],
    "da": [
     {
      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
@@ -8675,15 +8271,6 @@
     "reported_in": 2022,
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release"
-    ],
-    "disagreeing": [
-     {
-      "doc": "Eng-_TMG_Consolidated_FS_31_December_2022",
-      "value": -5209.46,
-      "kind": "consolidated_fs",
-      "reports": 2022,
-      "route": "ocr"
-     }
     ]
    },
    "da": {
@@ -8700,7 +8287,8 @@
     "kind": "earnings_release",
     "reported_in": 2022,
     "corroborating_docs": [
-     "TMG_Holding_4Q23_earnings_release"
+     "TMG_Holding_4Q23_earnings_release",
+     "TMG_Consolidated_FS_31_Dec._2023"
     ],
     "disagreeing": [
      {
@@ -8708,13 +8296,6 @@
       "value": -0.0,
       "kind": "consolidated_fs",
       "reports": 2022,
-      "route": "ocr"
-     },
-     {
-      "doc": "TMG_Consolidated_FS_31_Dec._2023",
-      "value": -0.0,
-      "kind": "consolidated_fs",
-      "reports": 2023,
       "route": "ocr"
      }
     ]
@@ -8836,15 +8417,15 @@
     ],
     "disagreeing": [
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-      "value": 6251.48,
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "value": 6297.31,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-      "value": 6297.31,
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "value": 6251.48,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
@@ -8877,15 +8458,15 @@
     ],
     "disagreeing": [
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-      "value": 2146.89,
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "value": 2231.78,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-      "value": 2231.78,
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "value": 2146.89,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
@@ -8932,8 +8513,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -8957,14 +8538,14 @@
     ],
     "disagreeing": [
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
       "value": 107.35,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
       "value": 107.35,
       "kind": "consolidated_fs",
       "reports": 2023,
@@ -9013,8 +8594,8 @@
      "Eng-_TMG_Consolidated_FS_31_December_2022",
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9038,15 +8619,15 @@
     ],
     "disagreeing": [
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-      "value": 86468.54,
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "value": 78268.59,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-      "value": 78268.59,
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "value": 86468.54,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
@@ -9126,15 +8707,15 @@
       "route": "ocr"
      },
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-      "value": 9362.8,
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "value": 8019.5,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-      "value": 8019.5,
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "value": 9362.8,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "text"
@@ -9230,8 +8811,8 @@
      "Eng-_TMG_Consolidated_FS_31_December_2022",
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9251,8 +8832,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9273,8 +8854,8 @@
      "Eng-_TMG_Consolidated_FS_31_December_2022",
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9294,8 +8875,8 @@
     "corroborating_docs": [
      "Eng-_TMG_Consolidated_FS_31_December_2022",
      "TMG_Holding_4Q23_earnings_release",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9313,7 +8894,11 @@
     "kind": "earnings_release",
     "reported_in": 2022,
     "corroborating_docs": [
-     "TMG_Holding_4Q23_earnings_release"
+     "TMG_Holding_4Q23_earnings_release",
+     "TMG_Consolidated_FS_31_Dec._2023",
+     "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
    "notes_payable": {
@@ -9349,8 +8934,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9370,8 +8955,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9391,8 +8976,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9412,8 +8997,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9442,14 +9027,14 @@
       "route": "ocr"
      },
      {
-      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
       "value": 16197.74,
       "kind": "consolidated_fs",
       "reports": 2023,
       "route": "ocr"
      },
      {
-      "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+      "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
       "value": 16197.74,
       "kind": "consolidated_fs",
       "reports": 2023,
@@ -9480,8 +9065,8 @@
     "corroborating_docs": [
      "TMG_Holding_4Q23_earnings_release",
      "TMG_Consolidated_FS_31_Dec._2023",
-     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "TMG_Consolidated_english_FS_30_June_2023"
     ]
    },
@@ -9647,15 +9232,6 @@
   "unit_note": null,
   "quarantined_in_lead": [],
   "restated_later": {
-   "da": [
-    {
-     "doc": "TMG_Consolidated_FS_31_Dec._2023",
-     "value": -0.0,
-     "kind": "consolidated_fs",
-     "reports": 2023,
-     "route": "ocr"
-    }
-   ],
    "other_current_assets": [
     {
      "doc": "TMG_Holding_4Q23_earnings_release",
@@ -9672,15 +9248,15 @@
      "route": "ocr"
     },
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 9362.8,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 8019.5,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 8019.5,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 9362.8,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -9801,14 +9377,14 @@
      "route": "ocr"
     },
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
      "value": 16197.74,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "ocr"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "value": 16197.74,
      "kind": "consolidated_fs",
      "reports": 2023,
@@ -9824,15 +9400,15 @@
    ],
    "ppe": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 6251.48,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 6297.31,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 6297.31,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 6251.48,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -9847,15 +9423,15 @@
    ],
    "investment_properties": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 2146.89,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 2231.78,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 2231.78,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 2146.89,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -9870,14 +9446,14 @@
    ],
    "associates": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
      "value": 107.35,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
      "value": 107.35,
      "kind": "consolidated_fs",
      "reports": 2023,
@@ -9893,15 +9469,15 @@
    ],
    "development_properties": [
     {
-     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
-     "value": 86468.54,
+     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
+     "value": 78268.59,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
     },
     {
-     "doc": "Eng_V_-_TMG_Consolidated_FS_31_March_2023",
-     "value": 78268.59,
+     "doc": "TMG_Consolidated_Financials_as_of_30_Sep._2023",
+     "value": 86468.54,
      "kind": "consolidated_fs",
      "reports": 2023,
      "route": "text"
@@ -9929,8 +9505,10 @@
    "total_revenue": 28431.4005,
    "sga": -968.862,
    "marketing": -273.4967,
+   "finance_expenses": -1339.6628,
+   "bank_charges": -75.0677,
    "finance_income": 541.6754,
-   "da": -0.0,
+   "da": -491.8236,
    "pbt": 5022.3863,
    "tax": -1675.104,
    "net_profit": 3347.2823,
@@ -9948,13 +9526,17 @@
    "paid_capital": 20635.6229,
    "retained_earnings": 16959.4071,
    "total_equity": 39015.7748,
+   "lt_loans": 9585.5442,
+   "sukuk_current": 350.0,
    "current_loans": 567.5257,
    "bank_facilities": 985.7305,
+   "lease_liab_nc": 61.3885,
+   "lease_liab_c": 9.9458,
    "other_nc_liab": 9585.5442,
    "deferred_tax_liab": 539.4285,
    "total_nc_liab": 33834.7329,
    "customer_advances": 48929.2178,
-   "obligations_nr_undelivered": 0.0,
+   "obligations_nr_undelivered": 37479.2032,
    "creditors": 13471.61,
    "provisions_bs": 804.3554,
    "tax_payable": 1569.5242,
@@ -9965,7 +9547,8 @@
    "total_cost": -19794.0688,
    "gp_recurring_combined": 2724.2329,
    "equity_parent": 38348.8131,
-   "nci_equity": 666.9617
+   "nci_equity": 666.9617,
+   "notes_payable": 37.8155
   },
   "provenance": {
    "dev_revenue": {
@@ -10174,6 +9757,36 @@
      "TMG_Conso_FS_31_December_2024-English"
     ]
    },
+   "finance_expenses": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 7,
+    "route": "ocr",
+    "label": "Finance expenses",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": []
+   },
+   "bank_charges": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 7,
+    "route": "ocr",
+    "label": "Bank charges",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": []
+   },
    "finance_income": {
     "doc": "TMG_Consolidated_FS_31_Dec._2023",
     "page": 44,
@@ -10204,29 +9817,10 @@
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2023,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Holding_4Q23_earnings_release",
-      "value": -491.8,
-      "kind": "earnings_release",
-      "reports": 2023,
-      "route": "text"
-     },
-     {
-      "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
-      "value": -491.8,
-      "kind": "earnings_release",
-      "reports": 2024,
-      "route": "text"
-     },
-     {
-      "doc": "TMG_Conso_FS_31_December_2024-English",
-      "value": -491.82,
-      "kind": "consolidated_fs",
-      "reports": 2024,
-      "route": "ocr"
-     }
+    "corroborating_docs": [
+     "TMG_Holding_4Q23_earnings_release",
+     "TMG_Holding_FY24_earnings_release_vFINAL",
+     "TMG_Conso_FS_31_December_2024-English"
     ]
    },
    "pbt": {
@@ -10595,6 +10189,51 @@
      "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024"
     ]
    },
+   "lt_loans": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 6,
+    "route": "ocr",
+    "label": "Loans",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": [
+     "TMG_Holding_4Q23_earnings_release",
+     "TMG_Holding_FY24_earnings_release_vFINAL",
+     "TMG_Conso_FS_31_December_2024-English",
+     "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-"
+    ],
+    "disagreeing": [
+     {
+      "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
+      "value": 0.0,
+      "kind": "consolidated_fs",
+      "reports": 2024,
+      "route": "ocr"
+     }
+    ]
+   },
+   "sukuk_current": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 6,
+    "route": "ocr",
+    "label": "Sukuk Al-Ijarah - current portion",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": []
+   },
    "current_loans": {
     "doc": "TMG_Consolidated_FS_31_Dec._2023",
     "page": 6,
@@ -10652,6 +10291,44 @@
       "reports": 2024,
       "route": "ocr"
      }
+    ]
+   },
+   "lease_liab_nc": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 6,
+    "route": "ocr",
+    "label": "Non-current lease liabilities",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": [
+     "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-"
+    ]
+   },
+   "lease_liab_c": {
+    "doc": "TMG_Consolidated_FS_31_Dec._2023",
+    "page": 6,
+    "route": "ocr",
+    "label": "Current lease liabilities",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "TMG_Consolidated_FS_31_Dec._2023",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2023,
+    "corroborating_docs": [
+     "TMG_Holding_4Q23_earnings_release",
+     "TMG_Holding_FY24_earnings_release_vFINAL",
+     "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+     "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-"
     ]
    },
    "other_nc_liab": {
@@ -10792,15 +10469,8 @@
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2023,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
-      "value": 36322.39,
-      "kind": "consolidated_fs",
-      "reports": 2024,
-      "route": "ocr"
-     }
+    "corroborating_docs": [
+     "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024"
     ]
    },
    "creditors": {
@@ -11009,40 +10679,58 @@
     ]
    },
    "equity_parent": {
-    "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+    "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
     "page": 4,
     "route": "text",
     "label": "Equity attributable to shareholders of the Holding",
     "scale": 1e-06,
     "unit_evidence": "declared LE",
     "interim_comparative": true,
-    "source": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
-    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financial%20statements%20for%20thr%20period%20ended%20%2030%20June%202024-.pdf",
+    "source": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consilidated%20financial%20statments%20for%20thr%20period%20ended%20%2031%20March%202024.pdf",
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2024,
     "note": "supplied by a second document that agrees with the lead on every line the two share",
     "corroborating_docs": [
+     "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
      "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024"
     ]
    },
    "nci_equity": {
-    "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
+    "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
     "page": 4,
     "route": "text",
     "label": "Non-controlling interests",
     "scale": 1e-06,
     "unit_evidence": "declared LE",
     "interim_comparative": true,
-    "source": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
-    "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financial%20statements%20for%20thr%20period%20ended%20%2030%20June%202024-.pdf",
+    "source": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consilidated%20financial%20statments%20for%20thr%20period%20ended%20%2031%20March%202024.pdf",
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2024,
     "note": "supplied by a second document that agrees with the lead on every line the two share",
     "corroborating_docs": [
+     "TMG_Consolidated_financial_statements_for_thr_period_ended_30_June_2024-",
      "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024"
     ]
+   },
+   "notes_payable": {
+    "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+    "page": 41,
+    "route": "text",
+    "label": "Notes payable",
+    "scale": 1e-06,
+    "unit_evidence": "declared LE",
+    "interim_comparative": true,
+    "source": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Consilidated%20financial%20statments%20for%20thr%20period%20ended%20%2031%20March%202024.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2024,
+    "note": "supplied by a second document that agrees with the lead on every line the two share",
+    "corroborating_docs": []
    }
   },
   "lead_document": "TMG_Consolidated_FS_31_Dec._2023",
@@ -11067,22 +10755,6 @@
   "unit_note": null,
   "quarantined_in_lead": [],
   "restated_later": {
-   "da": [
-    {
-     "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
-     "value": -491.8,
-     "kind": "earnings_release",
-     "reports": 2024,
-     "route": "text"
-    },
-    {
-     "doc": "TMG_Conso_FS_31_December_2024-English",
-     "value": -491.82,
-     "kind": "consolidated_fs",
-     "reports": 2024,
-     "route": "ocr"
-    }
-   ],
    "creditors": [
     {
      "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
@@ -11167,10 +10839,10 @@
      "route": "ocr"
     }
    ],
-   "obligations_nr_undelivered": [
+   "lt_loans": [
     {
-     "doc": "TMG_Consilidated_financial_statments_for_thr_period_ended_31_March_2024",
-     "value": 36322.39,
+     "doc": "TMG_Consolidated_financial_statements_for_thr_period_ended_30_September_2024",
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2024,
      "route": "ocr"
@@ -11250,6 +10922,7 @@
    "notes_payable": 29529.6,
    "current_loans": 962.3,
    "bank_facilities": 1189.9,
+   "lease_liab_c": 18.5,
    "deferred_tax_liab": 1990.6,
    "total_nc_liab": 54351.1,
    "creditors": 26609.6,
@@ -11595,7 +11268,7 @@
     "disagreeing": [
      {
       "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
-      "value": -427.33,
+      "value": -296.63,
       "kind": "consolidated_fs",
       "reports": 2025,
       "route": "ocr"
@@ -11617,6 +11290,15 @@
     "reported_in": 2024,
     "corroborating_docs": [
      "TMG_Conso_FS_31_December_2024-English"
+    ],
+    "disagreeing": [
+     {
+      "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+      "value": 16490.18,
+      "kind": "consolidated_fs",
+      "reports": 2025,
+      "route": "ocr"
+     }
     ]
    },
    "tax": {
@@ -11758,8 +11440,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -11780,8 +11462,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -11954,8 +11636,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12052,8 +11734,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12074,8 +11756,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ],
     "disagreeing": [
@@ -12105,8 +11787,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12227,8 +11909,10 @@
     "kind": "earnings_release",
     "reported_in": 2024,
     "corroborating_docs": [
+     "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
+     "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
      "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
@@ -12248,6 +11932,15 @@
     "reported_in": 2024,
     "corroborating_docs": [
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
+    ],
+    "disagreeing": [
+     {
+      "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+      "value": 24448.19,
+      "kind": "consolidated_fs",
+      "reports": 2025,
+      "route": "text"
+     }
     ]
    },
    "current_loans": {
@@ -12299,6 +11992,25 @@
      }
     ]
    },
+   "lease_liab_c": {
+    "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
+    "page": 6,
+    "route": "text",
+    "label": "Current lease liabilities",
+    "scale": 1.0,
+    "unit_evidence": "declared EGP mn",
+    "interim_comparative": false,
+    "source": "TMG_Holding_FY24_earnings_release_vFINAL",
+    "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY24%20earnings%20release%20vFINAL.pdf",
+    "tier": "A",
+    "kind": "earnings_release",
+    "reported_in": 2024,
+    "corroborating_docs": [
+     "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+     "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
+     "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
+    ]
+   },
    "deferred_tax_liab": {
     "doc": "TMG_Holding_FY24_earnings_release_vFINAL",
     "page": 6,
@@ -12315,8 +12027,8 @@
     "corroborating_docs": [
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ],
     "disagreeing": [
@@ -12345,8 +12057,8 @@
     "corroborating_docs": [
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12414,8 +12126,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12435,8 +12147,8 @@
     "corroborating_docs": [
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ]
    },
@@ -12457,8 +12169,8 @@
      "TMG_Conso_FS_31_December_2024-English",
      "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
      "TMG_Consolidated_financial_statements_as_of_30_September_2025_-_English_version",
-     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "TMG_Conso_FS_30_June_2025_-_English",
      "TMG_Holding_First_Half_Ending_June_30_2025_Earning_Release._August_2025"
     ],
     "disagreeing": [
@@ -12607,7 +12319,16 @@
    "da": [
     {
      "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
-     "value": -427.33,
+     "value": -296.63,
+     "kind": "consolidated_fs",
+     "reports": 2025,
+     "route": "ocr"
+    }
+   ],
+   "pbt": [
+    {
+     "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+     "value": 16490.18,
      "kind": "consolidated_fs",
      "reports": 2025,
      "route": "ocr"
@@ -12812,6 +12533,15 @@
      "route": null
     }
    ],
+   "notes_payable": [
+    {
+     "doc": "TMG_Holding_Consilidated_financials_as_of_31_Mar_2025-_English_version",
+     "value": 24448.19,
+     "kind": "consolidated_fs",
+     "reports": 2025,
+     "route": "text"
+    }
+   ],
    "bank_facilities": [
     {
      "doc": "TMG_Conso_FS_30_June_2025_-_English",
@@ -12853,7 +12583,8 @@
    "marketing": -745.7723,
    "finance_cost": -3936.5484,
    "finance_income": 4230.0142,
-   "da": -0.0005,
+   "da": -427.334,
+   "pbt": 23653.5571,
    "tax": -4334.1894,
    "deferred_tax": -1117.3863,
    "net_profit": 18201.9815,
@@ -12866,14 +12597,14 @@
    "puc": 16370.5153,
    "goodwill": 12592.4869,
    "associates": 1426.7978,
-   "time_deposits_nc": 0.0,
+   "time_deposits_nc": 8978.074,
    "total_nca": 137029.4909,
    "development_properties": 130058.872,
    "inventories": 7372.1544,
    "notes_receivable": 21716.3213,
-   "nr_undelivered": 0.0,
+   "nr_undelivered": 15925.586,
    "other_current_assets": 57596.0162,
-   "time_deposits_c": 0.0,
+   "time_deposits_c": 20085.6137,
    "cash": 44846.5143,
    "total_ca": 299192.7158,
    "total_assets": 436222.2067,
@@ -13061,6 +12792,21 @@
     "page": 7,
     "route": "ocr",
     "label": "Depreciation and amortization",
+    "scale": 1e-06,
+    "unit_evidence": "no unit declared",
+    "interim_comparative": false,
+    "source": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+    "url": "https://talaatmoustafa.com/upload/Consolidated%20financial%20statements%20for%20the%20year%20ended%2031-12-2025-English.pdf",
+    "tier": "A",
+    "kind": "consolidated_fs",
+    "reported_in": 2025,
+    "corroborating_docs": []
+   },
+   "pbt": {
+    "doc": "Consolidated_financial_statements_for_the_year_ended_31-12-2025-English",
+    "page": 7,
+    "route": "ocr",
+    "label": "Profit for the year before tax",
     "scale": 1e-06,
     "unit_evidence": "no unit declared",
     "interim_comparative": false,
@@ -13365,22 +13111,9 @@
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2025,
-    "corroborating_docs": [],
-    "disagreeing": [
-     {
-      "doc": "TMG_Cons._FS_30_June_2026_-_English",
-      "value": 13769.54,
-      "kind": "consolidated_fs",
-      "reports": 2026,
-      "route": "text"
-     },
-     {
-      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-      "value": 14964.89,
-      "kind": "consolidated_fs",
-      "reports": 2026,
-      "route": "text"
-     }
+    "corroborating_docs": [
+     "TMG_Cons._FS_30_June_2026_-_English",
+     "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version."
     ]
    },
    "other_current_assets": {
@@ -13414,9 +13147,22 @@
     "tier": "A",
     "kind": "consolidated_fs",
     "reported_in": 2025,
-    "corroborating_docs": [
-     "TMG_Cons._FS_30_June_2026_-_English",
-     "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version."
+    "corroborating_docs": [],
+    "disagreeing": [
+     {
+      "doc": "TMG_Cons._FS_30_June_2026_-_English",
+      "value": 0.0,
+      "kind": "consolidated_fs",
+      "reports": 2026,
+      "route": "text"
+     },
+     {
+      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
+      "value": 0.0,
+      "kind": "consolidated_fs",
+      "reports": 2026,
+      "route": "text"
+     }
     ]
    },
    "cash": {
@@ -13571,6 +13317,7 @@
     "kind": "consolidated_fs",
     "reported_in": 2025,
     "corroborating_docs": [
+     "TMG_Cons._FS_30_June_2026_-_English",
      "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version."
     ]
    },
@@ -13732,14 +13479,14 @@
     "disagreeing": [
      {
       "doc": "TMG_Cons._FS_30_June_2026_-_English",
-      "value": 13769.54,
+      "value": 15925.59,
       "kind": "consolidated_fs",
       "reports": 2026,
       "route": "ocr"
      },
      {
       "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-      "value": 14964.89,
+      "value": 15925.59,
       "kind": "consolidated_fs",
       "reports": 2026,
       "route": "ocr"
@@ -13950,17 +13697,17 @@
   "unit_note": null,
   "quarantined_in_lead": [],
   "restated_later": {
-   "nr_undelivered": [
+   "time_deposits_c": [
     {
      "doc": "TMG_Cons._FS_30_June_2026_-_English",
-     "value": 13769.54,
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "text"
     },
     {
      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-     "value": 14964.89,
+     "value": 0.0,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "text"
@@ -13969,14 +13716,14 @@
    "obligations_nr_undelivered": [
     {
      "doc": "TMG_Cons._FS_30_June_2026_-_English",
-     "value": 13769.54,
+     "value": 15925.59,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "ocr"
     },
     {
      "doc": "TMG_Consolidated_financials_as_of_31_March_2026_-_English_version.",
-     "value": 14964.89,
+     "value": 15925.59,
      "kind": "consolidated_fs",
      "reports": 2026,
      "route": "ocr"
@@ -13985,11 +13732,10 @@
   }
  },
  "_span": {
-  "first": 2009,
+  "first": 2011,
   "last": 2025,
-  "n_years": 16,
+  "n_years": 15,
   "years": [
-   2009,
    2011,
    2012,
    2013,
@@ -14007,8 +13753,9 @@
    2025
   ],
   "excluded": {
-   "2007": "only 9 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved",
-   "2008": "only 9 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved",
+   "2007": "only 8 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved",
+   "2008": "only 8 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved",
+   "2009": "only 3 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved",
    "2010": "only 2 readable cells after footing (below the 12 the panel requires); the documents for this year are scans whose columns could not be resolved"
   },
   "note": "The span stops where it does because of what could be READ, not what was published: TMG's own archive reaches back to FY2007, but its pre-2011 releases survive only as scans whose summary tables do not resolve into columns. Nothing was estimated to extend it."
