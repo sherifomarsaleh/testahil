@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**78 lessons**, of which 54 bind on every study, 19 on a class of company, and 5 on a single name.
+**80 lessons**, of which 56 bind on every study, 19 on a class of company, and 5 on a single name.
 
-By how they were learned: 27 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 32 found while building.
+By how they were learned: 27 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -618,6 +618,26 @@ When a company holds more cash than debt, weighting its cost of capital on NET d
 > **What it cost, or how we know.** AMOC's operating cash flows were discounted at 31.19% against a cost of equity of 27.45% — 374 basis points higher — because net cash of 3.0bn against a market capitalisation of 11.8bn gives a debt weight of -26.2%. The bridge then added the 3.0bn at face. Gross borrowings are 0.14% of the capital structure, so the unlevered rate is the cost of equity to three decimals.
 
 > **What would overturn it.** A construction in which a net-cash-weighted rate is used on operating cash flows AND the cash is left out of the bridge — which is the other consistent pair, and equally acceptable.
+
+### L-055 · Terminal growth and the terminal discount rate must agree about inflation.
+
+The discount rate used past the forecast horizon has an inflation assumption buried inside it, usually through the risk-free rate. If terminal growth is set below that number, the model is quietly assuming the business shrinks in real terms for ever — a large, permanent claim that nobody wrote down and no disclosure supports. Read the inflation out of the terminal rate first, then choose growth against it and state the real growth you have assumed, even when it is zero.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's first pass carried terminal growth of 5.0% against a terminal risk-free of 12.5% embedding the central bank's 7% target — a perpetual real decline of about 2% a year, never stated. Set to 7% (inflation only, zero real), the central moved from 5.53 to 8.64 against a spot of 9.10 together with the other five corrections.
+
+> **What would overturn it.** A study that deliberately assumes real decline in perpetuity, says so, and shows the disclosure or industry evidence supporting it — that is a stated assumption, not this defect.
+
+### L-056 · A claim about the record — 'best ever', 'never' — is recomputed, never typed.
+
+Superlatives are the sentences a reader remembers and the ones nobody checks, because they read as colour rather than as arithmetic. They also go stale silently: typed once against an early version of the model, they survive every later change to it. Compute the claim from the filings in the same pass that computes the number it describes, and drive the sentence off that value rather than retyping it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's headline said the market price required a gross margin 'above the best single quarter this company has ever filed' at 12.2%. The figure was typed, never solved, and never revisited as the model moved. Solved by bisection it is 9.37% — below the 9.653% just filed for twelve months — and the company had already printed 13.84% for FY2022 and 13.92% in the quarter to June 2026, so the claim was false twice over.
+
+> **What would overturn it.** A delivered superlative that a reader can verify from the study's own committed numbers without recomputing it — at which point it was computed, not typed.
 
 
 ---

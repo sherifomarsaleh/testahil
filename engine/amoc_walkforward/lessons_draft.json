@@ -422,6 +422,34 @@
    "why_scope": "A rule about the arithmetic of a bridge. It bites on any net-cash issuer and has nothing to do with the industry.",
    "overturned_by": "A construction in which a net-cash-weighted rate is used on operating cash flows AND the cash is left out of the bridge \u2014 which is the other consistent pair, and equally acceptable.",
    "registered": "L-054"
+  },
+  {
+   "proposed_id": "DRAFT-AMOC-31",
+   "ticker": "AMOC",
+   "headline": "Terminal growth and the terminal discount rate must agree about inflation.",
+   "plain": "The discount rate used past the forecast horizon has an inflation assumption buried inside it, usually through the risk-free rate. If terminal growth is set below that number, the model is quietly assuming the business shrinks in real terms for ever \u2014 a large, permanent claim that nobody wrote down and no disclosure supports. Read the inflation out of the terminal rate first, then choose growth against it and state the real growth you have assumed, even when it is zero.",
+   "evidence": "AMOC's first pass carried terminal growth of 5.0% against a terminal risk-free of 12.5% embedding the central bank's 7% target \u2014 a perpetual real decline of about 2% a year, never stated. Set to 7% (inflation only, zero real), the central moved from 5.53 to 8.64 against a spot of 9.10 together with the other five corrections.",
+   "scope": "ALL",
+   "why_scope": "This is arithmetic about how a terminal value is built, not a fact about refiners or about Egypt. Any DCF with a nominal terminal rate can do it, and a high-inflation currency only makes it bigger, not different.",
+   "overturned_by": "A study that deliberately assumes real decline in perpetuity, says so, and shows the disclosure or industry evidence supporting it \u2014 that is a stated assumption, not this defect.",
+   "origin": "build",
+   "rule": "judgement",
+   "confirmed": true,
+   "registered": "L-055"
+  },
+  {
+   "proposed_id": "DRAFT-AMOC-32",
+   "ticker": "AMOC",
+   "headline": "A claim about the record \u2014 'best ever', 'never' \u2014 is recomputed, never typed.",
+   "plain": "Superlatives are the sentences a reader remembers and the ones nobody checks, because they read as colour rather than as arithmetic. They also go stale silently: typed once against an early version of the model, they survive every later change to it. Compute the claim from the filings in the same pass that computes the number it describes, and drive the sentence off that value rather than retyping it.",
+   "evidence": "AMOC's headline said the market price required a gross margin 'above the best single quarter this company has ever filed' at 12.2%. The figure was typed, never solved, and never revisited as the model moved. Solved by bisection it is 9.37% \u2014 below the 9.653% just filed for twelve months \u2014 and the company had already printed 13.84% for FY2022 and 13.92% in the quarter to June 2026, so the claim was false twice over.",
+   "scope": "ALL",
+   "why_scope": "A rule about how work is checked, which binds on every study ever run. It is the existing 'a number stated in prose must be computed, not typed' discipline extended from figures to claims about the historical record.",
+   "overturned_by": "A delivered superlative that a reader can verify from the study's own committed numbers without recomputing it \u2014 at which point it was computed, not typed.",
+   "origin": "build",
+   "rule": "judgement",
+   "confirmed": true,
+   "registered": "L-056"
   }
  ]
 }
