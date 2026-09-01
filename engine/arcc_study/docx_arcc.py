@@ -68,9 +68,9 @@ box([('What this is. ', 'An independent valuation of Arabian Cement Company, an 
       f'{n1(IN["cap_cement_mt"])} million tonnes of cement a year and roughly '
       f'{pc(PE["sector"]["share_of_capacity"], 1)} of Egypt\'s nominal capacity, listed on '
       f'the Egyptian Exchange since May 2014, with cash of EGP '
-      f'{n0(IN["cash_fy25"])}mn against interest-bearing debt of EGP '
-      f'{n0(W["debt_total"])}mn. Every figure in this study is read from the audited '
-      f'consolidated accounts.'),
+      f'{n0(IN["cash_h1_26"])}mn against interest-bearing debt of EGP '
+      f'{n0(IN["debt_h1_26"])}mn at 30 June 2026. Every figure in this study is read from '
+      f'the company\'s own audited and reviewed accounts.'),
      ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
       f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
       f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
@@ -509,20 +509,20 @@ rows.append(['Upside / (downside) to this lens', '—', sg(DCF['fv'] / SPOT - 1)
 table(rows, [3.30, 1.50, 1.50], band_rows={3, 6, 7})
 caption('Table 10 — The bridge. Terminal value as a share of enterprise value is stated '
         'here and again in the summary table on page 1.')
-P(f'Cash is added at face and is not in the discount rate. The audited balance sheet shows '
-  f'EGP {n0(IN["cash_fy25"])}mn of cash against EGP {n0(W["debt_total"])}mn of '
-  f'interest-bearing debt at 31 December 2025. Rolling that forward on the elapsed part of '
-  f'FY2026 and DEDUCTING the EGP {n0(IN["div_fy25_declared"])}mn FY2025 dividend — declared '
-  f'and still shown as payable in the March 2026 accounts, so a buyer at today\'s price does '
-  f'not receive it — puts net cash at EGP {n0(DCF["net_cash"])}mn at the valuation date, or '
-  f'EGP {n2(DCF["net_cash"]/SH)} a share. The March 2026 balance sheet is the independent '
-  f'check on that: cash of EGP {n0(IN["cash_q1_26"])}mn less debt of EGP '
-  f'{n0(IN["debt_q1_26"])}mn less the dividend payable of EGP {n0(IN["divpay_q1_26"])}mn is '
-  f'EGP {n0(IN["cash_q1_26"]-IN["debt_q1_26"]-IN["divpay_q1_26"])}mn at 31 March, four '
-  f'months before the valuation date.')
+P(f'Cash is added at face and is not in the discount rate. The valuation date is 30 June '
+  f'2026 and the bridge stands on the balance sheet OF THAT DATE rather than on a '
+  f'roll-forward: cash of EGP {n0(IN["cash_h1_26"])}mn less '
+  f'interest-bearing debt of EGP {n0(IN["debt_h1_26"])}mn is net cash of EGP '
+  f'{n0(DCF["net_cash"])}mn, or EGP {n2(DCF["net_cash"]/SH)} a share. The previous edition '
+  f'had no balance sheet for its own valuation date and had to build one — FY2025 cash, plus '
+  f'the cash the business would generate to that date, less the declared dividend — which '
+  f'came out EGP {n0(DCF["rollforward_gap"])}mn too generous, EGP '
+  f'{n2(DCF["rollforward_gap_per_share"])} a share, because a projection cannot see six '
+  f'months of stock-building, receivables and capital spending that had in fact happened. '
+  f'A disclosed balance sheet beats a projection of one.')
 P(f'Minority interests are deducted, and the audited figure is the reason this line is now '
-  f'immaterial: EGP {n0(IN["nci"]*1e6)} — one hundred and fifty-eight thousand pounds, or '
-  f'{pc(IN["nci"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
+  f'immaterial: EGP {n0(IN["nci_h1_26"]*1e6)} at 30 June 2026, or '
+  f'{pc(IN["nci_h1_26"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
   f'owned.')
 P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value carries less of this '
   f'valuation than the two-thirds to four-fifths a long-horizon discounted cash-flow model '
