@@ -3088,98 +3088,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "TSLA",
-   "name": "Tesla, Inc.",
-   "code": "NASDAQ:TSLA",
-   "ccy": "USD",
-   "spot": 309.22,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 27,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 105,
-   "fv_base": 254,
-   "fv_full": 350,
-   "gap_base_pct": -17.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.084,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.176058,
-    "mu_h": 0.002261,
-    "G": {
-     "bear": -6.13,
-     "base": -1.12,
-     "full": 0.7
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.1197,
-     "full": 0.2319
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.1962,
-     "full": 0.3937
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9056,
-     "full": 3.4219
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0032
-   },
-   "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.298385,
-    "mu_h": 0.011447,
-    "G": {
-     "bear": -3.62,
-     "base": -0.66,
-     "full": 0.42
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0009,
-     "base": 0.2297,
-     "full": 0.3435
-    },
-    "p_touch": {
-     "bear": 0.0012,
-     "base": 0.4248,
-     "full": 0.6216
-    },
-    "required_cagr": {
-     "bear": -0.9867,
-     "base": -0.5447,
-     "full": 0.6414
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00249
-   },
-   "market": "US"
-  },
-  {
    "ticker": "ADIBUAE",
    "name": "Abu Dhabi Islamic Bank",
    "code": "ADX:ADIB",
@@ -5294,6 +5202,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00133
    },
    "market": "AE"
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla, Inc.",
+   "code": "NASDAQ:TSLA",
+   "ccy": "USD",
+   "spot": 357.9,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 63,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 105,
+   "fv_base": 254,
+   "fv_full": 350,
+   "gap_base_pct": -29.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.141452,
+    "mu_h": 0.0024,
+    "G": {
+     "bear": -8.67,
+     "base": -2.42,
+     "full": -0.16
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0101,
+     "full": 0.4257
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0145,
+     "full": 0.7632
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9837,
+     "full": -0.235
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00258
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.252028,
+    "mu_h": 0.010589,
+    "G": {
+     "bear": -4.87,
+     "base": -1.36,
+     "full": -0.09
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0752,
+     "full": 0.4443
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.1326,
+     "full": 0.8585
+    },
+    "required_cagr": {
+     "bear": -0.9926,
+     "base": -0.7463,
+     "full": -0.0854
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00316
+   },
+   "market": "US"
   },
   {
    "ticker": "ADNOCDRILL",

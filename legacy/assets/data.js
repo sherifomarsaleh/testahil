@@ -2956,26 +2956,29 @@ const TICKERS = {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
     code: "NASDAQ:TSLA",
-    spot: 309.22,
-    spotDate: "close 27 Jul 2026",
+    spot: 357.90,
+    spotDate: "close 01 Sep 2026",
     ccy: "USD",
     fair: { bear: 105, base: 254, full: 350 },      // 01 Jul 2026 — five-lens weighted central 254 (−40% vs spot 420.60). Lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 172, normalized earnings 130, and autonomy-at-scale (SOTP bull) 560 carrying a full 25% weight. bear = operating-only floor / cash-returns 105; full = scenario real-options / weighted football bull ~350; autonomy-at-scale reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
     dist: {
-    t20: { label: "1 month", p5: 233.26, p25: 275.93, p50: 309.92, p75: 348.65, p95: 413.66, resolve: "2026-08-27" },
-    t60: { label: "3 months", p5: 192.65, p25: 256.31, p50: 312.78, p75: 381.08, p95: 508.68, resolve: "2026-10-27" }
-  },
-    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[540,0,5],[500,0,9],[485,1,12],[460,2,16],[380,20,45],[360,33,57],[320,76,85]],
-    levels: { res:[327.23, 360.99, 382.68], sup:[299.10, 293.42, 214.52] },
+      t20: { label:"1 month",   p5:285.53, p25:326.79, p50:358.76, p75:394.36, p95:452.43, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:240.39, p25:306.38, p50:361.71, p75:426.50, p95:545.86, resolve:"2026-12-01" }
+    },
+    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:250, cal:1.056, mult:1, eff:1.056, on:"2026-09-01" },
+    touch: [ /* descending high -> low */
+      [540.00, 0, 9], [500.00, 1, 16], [485.00, 2, 21], [460.00, 6, 29], [380.00, 60, 76], [360.00, 86, 92], [320.00, 35, 59]
+    ],
+    levels: { res:[363.10, 382.68, 438.38], sup:[337.24, 327.23, 298.12] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 309.22 below a falling 20-day (385.20), a falling 50-day (399.84) and a falling 200-day (414.09). Momentum is very weak: RSI(14) is ~27 and the daily ATR near 18.44 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221219.54 / \u221210.10 / \u22129.44). Over the last year it has ranged 297.82\u2013498.83; the last close sits 38% below that high and 4% above that low.",
-      bull: "A daily close back above 327.23 would clear the nearest resistance; the next charted level above it is 382.68.",
-      bear: "A close below 299.10 would break the nearest support; the next charted level below it is 214.52."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 357.90 below a falling 50-day (358.88) and a falling 200-day (400.21), but above a rising 20-day (342.64). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 13.74 (~3.8%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+2.04 / \u22121.81 / +3.85). Over the last year it has ranged 297.38\u2013498.83; the last close sits 28% below that high and 20% above that low.",
+      bull: "A daily close back above 363.10 would clear the nearest resistance; the next charted level above it is 438.38.",
+      bear: "A close below 337.24 would break the nearest support; the next charted level below it is 298.12."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-29" },
-      tech: { data:"2026-07-27", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0108",
@@ -5476,9 +5479,9 @@ const LEDGER = [
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:233.26, p25:275.93, p50:309.92, p75:348.65, p95:413.66,
     touch:{ "+5":70, "+10":51, "+15":37, "+20":25, "-5":67, "-10":47 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:354.81, realized_high:366.5, realized_low:297.38,
+    in_90:true, in_50:false, realized_quantile:0.769, median_err:0.1448,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"TSLA", asset_class:"equity",
@@ -7577,6 +7580,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) IN live fit nu=6.0, width_cal=1.021. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=6.0, width_cal=1.077 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=6.0, width_cal=1.021 quoted above. rf_live 6.50% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on IN’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
     p5:1096.87, p25:1237.99, p50:1329.3, p75:1426.34, p95:1610.46,
     touch:{ "+5":64, "+10":39, "+15":21, "+20":12, "-5":52, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: TSLA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"TSLA", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:357.9, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4519,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=250.0, width_cal=1.056 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=12.0, width_cal=1.084 quoted above. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:285.53, p25:326.79, p50:358.76, p75:394.36, p95:452.43,
+    touch:{ "+5":65, "+10":43, "+15":27, "+20":16, "-5":62, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TSLA", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:357.9, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4707,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=250.0, width_cal=1.056 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=12.0, width_cal=1.084 quoted above. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:240.39, p25:306.38, p50:361.71, p75:426.5, p95:545.86,
+    touch:{ "+5":80, "+10":66, "+15":54, "+20":43, "-5":77, "-10":61 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
