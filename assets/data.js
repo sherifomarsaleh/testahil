@@ -2220,28 +2220,29 @@ const TICKERS = {
     name: "Tata Motors Passenger Vehicles Ltd.",
     nameAr: "تاتا موتورز للسيارات (الركاب)",
     code: "NSE:TMPV",
-    spot: 349.30,
-    spotDate: "close 03 Aug 2026",
+    spot: 310.60,
+    spotDate: "close 01 Sep 2026",
     ccy: "INR",
     fair: { bear: 236, base: 378, full: 579 },      // 30 Jun 2026 — weighted central 378 (+7% vs spot 352.20). Lenses: SOTP 376, consolidated DCF 376, relative 324 (floor), normalized earnings 416 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: JLR through-cycle margin and the conglomerate discount.
     dist: {
-      t20: { label:"1 month",   p5:307.58, p25:333.61, p50:351.02, p75:369.65, p95:400.93, resolve:"2026-09-03" },
-      t60: { label:"3 months",  p5:280.07, p25:324.29, p50:355.26, p75:389.01, p95:449.43, resolve:"2026-11-03" }
+      t20: { label:"1 month",   p5:271.95, p25:295.73, p50:312.22, p75:329.57, p95:359.09, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:245.30, p25:286.71, p50:315.92, p75:347.96, p95:405.72, resolve:"2026-12-01" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:10, cal:0.93, mult:1, eff:0.93, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [420.00, 3, 19], [400.00, 8, 33], [380.00, 25, 53], [360.00, 63, 80], [340.00, 61, 76], [320.00, 20, 43], [300.00, 5, 21]
+      [420.00, 0, 6], [400.00, 1, 10], [380.00, 2, 18], [360.00, 7, 31], [340.00, 24, 52], [320.00, 64, 81], [300.00, 56, 72]
     ],
-    levels: { res:[366.82, 404.49, 415.94], sup:[334.47, 318.25, 294.30] },
+    levels: { res:[334.47, 366.82, 415.94], sup:[300, 294.30, 280] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 349.30 below a falling 50-day (357.17) and a falling 200-day (359.31), but above a falling 20-day (333.53). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 7.97 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22124.33 / \u22127.20 / +2.86). Over the last year it has ranged 294.30\u2013447.79; the last close sits 22% below that high and 19% above that low.",
-      bull: "A daily close back above 366.82 would clear the nearest resistance; the next charted level above it is 415.94.",
-      bear: "A close below 334.47 would break the nearest support; the next charted level below it is 294.30."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 310.60 below a falling 20-day (328.64), a falling 50-day (334.57) and a falling 200-day (351.34). Momentum is soft: RSI(14) is ~32 and the daily ATR near 7.02 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22127.29 / \u22126.15 / \u22121.14). Over the last year it has ranged 294.30\u2013447.79; the last close sits 31% below that high and 6% above that low.",
+      bull: "A daily close back above 334.47 would clear the nearest resistance; the next charted level above it is 415.94.",
+      bear: "A close below 300.00 would break the nearest support; the next charted level below it is 280.00."
     },
     asof: {
-      mc:   { data:"2026-08-03", computed:"2026-08-03" },
-      tech: { data:"2026-08-03", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -5420,9 +5421,9 @@ const LEDGER = [
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:287.2, p25:310.33, p50:325.75, p75:342.21, p95:369.77,
     touch:{ "+5":46, "+10":18, "+15":6, "+20":2, "-5":39, "-10":12 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:319, realized_high:353, realized_low:310.55,
+    in_90:true, in_50:true, realized_quantile:0.391, median_err:-0.0207,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"TMPV", asset_class:"equity",
@@ -7703,6 +7704,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: TMPV, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"TMPV", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:310.6, ccy:"INR",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.3212,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) IN live fit nu=6.0, width_cal=1.014. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=10.0, width_cal=0.93 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=6.0, width_cal=1.014 quoted above. rf_live 6.50% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on IN’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:271.95, p25:295.73, p50:312.22, p75:329.57, p95:359.09,
+    touch:{ "+5":48, "+10":22, "+15":9, "+20":3, "-5":43, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMPV", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:310.6, ccy:"INR",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:62,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.3363,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) IN live fit nu=6.0, width_cal=1.014. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=10.0, width_cal=0.93 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=6.0, width_cal=1.014 quoted above. rf_live 6.50% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on IN’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:245.3, p25:286.71, p50:315.92, p75:347.96, p95:405.72,
+    touch:{ "+5":71, "+10":50, "+15":34, "+20":22, "-5":63, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8004,7 +8034,7 @@ const CALIB = {
   "NSE:TMPV": {w: 58, in50: 43, in90: 81, through: "2026-07-29"},
   "QSE:IQCD": {w: 58, in50: 47, in90: 90, through: "2026-07-28"},
   "QSE:QGTS": {w: 58, in50: 57, in90: 90, through: "2026-07-28"},
-  "QSE:QNBK": {w: 58, in50: 48, in90: 93, through: "2026-07-28"},
+  "QSE:QNBK": {w: 58, in50: 48, in90: 95, through: "2026-07-28"},
   "TADAWUL:1010": {w: 58, in50: 40, in90: 78, through: "2026-07-28"},
   "TADAWUL:1120": {w: 58, in50: 48, in90: 88, through: "2026-07-28"},
   "TADAWUL:1150": {w: 58, in50: 41, in90: 88, through: "2026-07-28"},
