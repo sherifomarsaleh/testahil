@@ -120,6 +120,20 @@ errors in the numbers themselves.
 never did.** Before you close, ask explicitly against the Sweep Register: *what do
 the filings disclose that the model does not consume?* Answer it in the gate.
 
+## The answer, not only the process [R-GAP-01]
+
+Every gate below checks how the study was built. None of them looks at what it concluded,
+and on 1-Sep-2026 all of them passed a study whose central sat 39% below the traded price
+with six defects behind the discount. So one row of your table is about the answer: read
+the study's own committed central and the spot it was struck against, state the gap, and
+where the central is more than 10% BELOW the price confirm that `GAP_REVIEW_{DD-MM-YYYY}.md`
+exists in the study directory, covers all eight headings — LATEST FILINGS · BASE YEAR ·
+MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD ·
+MULTIPLE CROSS-CHECK — and that `python3 scripts/check_valuation_gap.py` is clean. A
+missing or heading-short review is a FAIL on delivery, not a note. The standard version
+the study is stamped with must be the live `research_protocol.STANDARD_VERSION`, which
+now names this artefact.
+
 ## The rest of the gate
 
 Step 0.0 data-quality gate · Step 0 calibration under the band record (coverage

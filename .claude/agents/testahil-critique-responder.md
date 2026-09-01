@@ -99,6 +99,13 @@ correction folds back into the build scripts, not just the delivered file. The
 `testahil-qc-auditor` fills the QC gate from outside after a restrike; do not fill it
 yourself.
 
+**Then re-check the answer against the price [R-GAP-01].** Implementing findings moves
+the number, so a study that did not breach before the response can breach after it. If the
+restruck central lands more than 10% BELOW the latest known market price, the response is
+not finished until `GAP_REVIEW_{DD-MM-YYYY}.md` covers all eight headings and
+`python3 scripts/check_valuation_gap.py` is clean. This applies to your own self-audit
+exactly as to the outside critique.
+
 ## Calibration, not capitulation
 
 The goal is to be right, not agreeable. A response that accepts everything is as

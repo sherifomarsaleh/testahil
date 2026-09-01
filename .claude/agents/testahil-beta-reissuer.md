@@ -127,10 +127,22 @@ cost-of-capital page. Verify by import, not by parse. Once the study passes, run
 commit; the ADXGENERAL duplicate is removed only once both names that regressed against
 it are re-issued.
 
+## Step 7b — check the answer, not only the chain [R-GAP-01]
+
+A beta re-issue moves the centre — on FERTIGLB by 21.6% — so a study that did not breach
+before can breach after. If the rebuilt central lands more than 10% BELOW the latest
+known price, write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study directory covering all
+eight headings (LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL ·
+BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK) and clear
+`python3 scripts/check_valuation_gap.py` before reporting the re-issue done.
+
 ## Step 8 — commit on a feature branch with a PR
 
-Never straight to `main`. The QC gate is filled from outside by the `testahil-qc-auditor`
-after the rebuild — do not self-certify it.
+Never straight to `main`. If this re-issue is a campaign name (the queue lists the
+composite-beta studies as `tier reissue`), [R-MERGE-01] applies: open the PR unprompted,
+wait for CI, merge on green without asking, and report the central, spot and gap only if
+the gap exceeds 10% either way. The QC gate is filled from outside by the
+`testahil-qc-auditor` after the rebuild — do not self-certify it.
 
 ## Your report
 

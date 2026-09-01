@@ -132,7 +132,21 @@ python3 scripts/check_tech_calibration_negative_control.py
 python3 engine/campaign_queue.py
 python3 engine/fv_movement.py check
 python3 scripts/check_campaign_register_negative_control.py
+python3 scripts/check_valuation_gap.py
+python3 scripts/check_valuation_gap_negative_control.py
 ```
+
+The valuation-gap gate [R-GAP-01] is the one check in this list that looks at a study's
+**answer** rather than its process: it reads each study's own committed central and spot,
+and where the central sits more than 10% below the price it requires a dated `GAP_REVIEW`
+covering all eight headings. It was written the day every other gate passed a study
+printing 39% below the traded price. A study whose numbers cannot be read FAILS rather
+than being skipped, and it holds its glob against `gap_outstanding.json` so an empty
+listing cannot pass as clean.
+
+**Green means every gate, not a subset [R-MERGE-01]** — this whole list plus the page
+and band gates below plus the PR's own CI runs. A gate that cannot be run is not a green
+gate; report it UNRUNNABLE and the answer to "safe to merge" is no.
 
 **Band record** (`.github/workflows/band-record.yml`)
 

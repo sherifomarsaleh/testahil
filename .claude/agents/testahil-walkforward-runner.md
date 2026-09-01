@@ -154,6 +154,24 @@ market's book; otherwise it is a **watch flag** — recorded, graded live, acted
 nobody. The second clause has already done its job once: what it caught was arithmetic
 wearing the costume of evidence. Guidance is scored and never consumed as an input.
 
+## Step 8b — look at the answer [R-GAP-01]
+
+Every process gate in this repository once passed a rebuild that printed a central 39%
+below the traded price; what caught it was a person asking, in four words, how the fair
+value could be half what the stock trades at. Six defects sat behind that discount — a
+downloaded half-year filing never opened, a coherence test built on an invented number,
+three macro paths contradicting each other, cash charged for twice, terminal growth
+above the inflation in the terminal rate, and a "best ever" claim that was false.
+
+**If the rebuilt central lands more than 10% BELOW the latest known market price, the
+run is not finished.** Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory
+covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT
+RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK —
+and clear `python3 scripts/check_valuation_gap.py`. The rule does not say the answer
+must change; it says the answer is audited before it ships, because a large discount is
+the one output shape consistent with almost every modelling error this house has made.
+Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
+
 ## Step 9 — the two documents. A run that produces one is not finished.
 
 1. **The updated fundamental analysis at full model-report depth**: 16-section Word,
@@ -194,6 +212,27 @@ full. Append this name's entry to `engine/Fundamental_Driver_Ledger.md`. Nothing
 half-done between names. **For a name with no prior current-standard study, the "old"
 number came from no study at all, so the movement column measures a new study against a
 number of unknown provenance — say so wherever it is quoted.**
+
+## Step 11 — a run that ends on a branch has not ended [R-MERGE-01]
+
+**Open the PR unprompted, wait for CI, and merge it yourself once every repo gate is
+green.** Do not ask, do not park it, do not end the session with the work on a branch.
+The reason is not convenience: an unmerged rule does not bind. The next name starts from
+a fresh clone of `main`, so every lesson, corrected prompt and `STANDARD_VERSION` bump
+reaches it through `main` or not at all — [R-GAP-01] itself was written, enforced and
+pushed to a branch on adoption day and would have bound on nothing.
+
+Green means every gate, not a subset: the whole list the `testahil-gate-runner` runs, plus
+the PR's own CI. A gate that cannot be run is not a green gate — fix it or stop, never
+merge around it.
+
+**Report the fair value only when it is worth reporting.** Within 10% of the latest
+known price either way: merge on green and say nothing about the number — silence is the
+honest response to an ordinary outcome, and a figure quoted on every one of ninety names
+is a figure nobody reads by the tenth. More than 10% either way: the closing message
+carries the central, the spot and the gap, called out, not buried. This threshold is
+symmetric and is reporting, not auditing — the audit is Step 8b and it happens before the
+merge regardless.
 
 ## What is internal and what is never done
 

@@ -95,8 +95,15 @@ correct.
 **7. Keep the neighbours in step.** If the rule touches publishing, the standing prompt
 in `engine/Publish_Protocol.md` moves in the same commit. If it touches roll-forward or
 grading, `engine/Rollforward_and_Grading_Protocol.md` does — that file was once the odd
-one out for a month while the other two carried the amended rule. If it adds a subagent
-or a shared module, `CLAUDE.md`'s pointer lists do.
+one out for a month while the other two carried the amended rule. If it changes a
+procedure, every prompt that carries that procedure moves too —
+`Study_Initiation_Prompt.md`, `Critique_Response_Prompt.md`, `Beta_Reissue_Prompt.md`,
+`Fundamental_Walkforward_Prompt.md`, `Fundamental_Walkforward_Campaign_Prompt.md` — and
+you grep for the stragglers rather than trusting the list: on 1-Sep-2026 [R-GAP-01] and
+[R-MERGE-01] reached four prompts and missed the campaign prompt they most concern. If it
+adds a subagent or a shared module, `CLAUDE.md`'s pointer lists do. If it adds a
+**required artefact** or would move a delivered number, `research_protocol.STANDARD_VERSION`
+is bumped in the same commit, with the reason in the comment beside it — never for prose.
 
 **8. Run the gates, all three, and read the output.**
 
