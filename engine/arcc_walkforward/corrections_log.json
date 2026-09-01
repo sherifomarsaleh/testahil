@@ -1,686 +1,1046 @@
-[
- {
-  "driver": "vol_local",
-  "bias": 0.19342151640041108,
-  "era1": 0.21404877777674294,
-  "era2": 0.1281018553753602,
-  "skill_vs_freeze": -0.16583929081828885,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.9752216835557892,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.09897154721309359,
-     "mae_adj": 0.09897154721309359,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.8972307027896931,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.2928119826518476,
-     "mae_adj": 0.18436972640534247,
-     "improves": true
-    },
-    {
-     "origin": "FY2023",
-     "k": 0.9309502158568342,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.0467035343599803,
-     "mae_adj": 0.07998285438442256,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 0.9026927775207634,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.09295806088020339,
-     "mae_adj": 0.19533106856424673,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.1460687266408081,
-   "mae_adj": 0.13042921454014936,
-   "improves_overall": true,
-   "origins_improved": 1,
-   "origins_tested": 4
+{
+ "candidates": [
+  {
+   "driver": "vol_local",
+   "bias": 0.19342151640041108,
+   "era1": 0.21404877777674294,
+   "era2": 0.1281018553753602,
+   "skill_vs_freeze": -0.16583929081828885,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.9752216835557892,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.09897154721309359,
+      "mae_adj": 0.09897154721309359,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.8972307027896931,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.2928119826518476,
+      "mae_adj": 0.18436972640534247,
+      "improves": true
+     },
+     {
+      "origin": "FY2023",
+      "k": 0.9309502158568342,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.0467035343599803,
+      "mae_adj": 0.07998285438442256,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 0.9026927775207634,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.09295806088020339,
+      "mae_adj": 0.19533106856424673,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.1460687266408081,
+    "mae_adj": 0.13042921454014936,
+    "improves_overall": true,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": true,
+   "clause_two_passes": false,
+   "clause_two_reason": "THE RULE IS WRONG, NOT MERELY BIASED. Local volume driven by Egyptian population growth scores WORSE THAN FREEZE (skill -0.166): holding last year's tonnage would have beaten it at every horizon. ARCC's local volume FELL through the window (3,944kt in FY2019 to 2,618kt in FY2024) while the population rose, because the company was reallocating clinker to export, not because demand grew. A multiplier on a rule that points the wrong way leaves a rule that points the wrong way ([L-002]). The finding is a specification defect and no correction may hide it.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": true,
-  "clause_two_passes": false,
-  "clause_two_reason": "THE RULE IS WRONG, NOT MERELY BIASED. Local volume driven by Egyptian population growth scores WORSE THAN FREEZE (skill -0.166): holding last year's tonnage would have beaten it at every horizon. ARCC's local volume FELL through the window (3,944kt in FY2019 to 2,618kt in FY2024) while the population rose, because the company was reallocating clinker to export, not because demand grew. A multiplier on a rule that points the wrong way leaves a rule that points the wrong way ([L-002]). The finding is a specification defect and no correction may hide it.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "vol_export",
-  "bias": -0.6665771729231174,
-  "era1": -0.7546600231961306,
-  "era2": -0.3876481470585751,
-  "skill_vs_freeze": 0.0,
-  "equals_freeze": true,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.8456064704449696,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 1.219442611496725,
-     "mae_adj": 1.387143804054085,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9125732313796328,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.6911722151041818,
-     "mae_adj": 0.7826591582830965,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.0840876047979047,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.2426047919848809,
-     "mae_adj": 0.16186607599865296,
-     "improves": true
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.2617323779345988,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.23283734693085636,
-     "mae_adj": 0.465323026703103,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.7669334022200063,
-   "mae_adj": 0.868560786976604,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+  {
+   "driver": "vol_export",
+   "bias": -0.6665771729231174,
+   "era1": -0.7546600231961306,
+   "era2": -0.3876481470585751,
+   "skill_vs_freeze": 0.0,
+   "equals_freeze": true,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.8456064704449696,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 1.219442611496725,
+      "mae_adj": 1.387143804054085,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9125732313796328,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.6911722151041818,
+      "mae_adj": 0.7826591582830965,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.0840876047979047,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.2426047919848809,
+      "mae_adj": 0.16186607599865296,
+      "improves": true
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.2617323779345988,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.23283734693085636,
+      "mae_adj": 0.465323026703103,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.7669334022200063,
+    "mae_adj": 0.868560786976604,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "SPECIFICATION, NOT CALIBRATION. Exports went from 50kt in FY2016 to 2,436kt in FY2024 \u2014 a channel that did not exist becoming half the book. A persistence rule against a structural build-out under-forecasts by construction, and the correction that would fix the average would be a growth assumption smuggled in as a constant.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "SPECIFICATION, NOT CALIBRATION. Exports went from 50kt in FY2016 to 2,436kt in FY2024 \u2014 a channel that did not exist becoming half the book. A persistence rule against a structural build-out under-forecasts by construction, and the correction that would fix the average would be a growth assumption smuggled in as a constant.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "price_local",
-  "bias": -0.2965663144475495,
-  "era1": -0.3251110222536665,
-  "era2": -0.20617473972817904,
-  "skill_vs_freeze": 0.2820529632763342,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.8518604359194192,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.6722700739815846,
-     "mae_adj": 0.8326026471586527,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9078663955461294,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.33995792531553654,
-     "mae_adj": 0.4366159779917688,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 0.9859413982241305,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.08595681716215277,
-     "mae_adj": 0.08595681716215277,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.0575663885682214,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.21475116965060845,
-     "mae_adj": 0.1587807608949019,
-     "improves": true
-    }
-   ],
-   "mae_raw": 0.4095618875847862,
-   "mae_adj": 0.49709529178291245,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+  {
+   "driver": "price_local",
+   "bias": -0.2965663144475495,
+   "era1": -0.3251110222536665,
+   "era2": -0.20617473972817904,
+   "skill_vs_freeze": 0.2820529632763342,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.8518604359194192,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.6722700739815846,
+      "mae_adj": 0.8326026471586527,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9078663955461294,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.33995792531553654,
+      "mae_adj": 0.4366159779917688,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 0.9859413982241305,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.08595681716215277,
+      "mae_adj": 0.08595681716215277,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.0575663885682214,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.21475116965060845,
+      "mae_adj": 0.1587807608949019,
+      "improves": true
+     }
+    ],
+    "mae_raw": 0.4095618875847862,
+    "mae_adj": 0.49709529178291245,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "THIS IS ONE FINDING ABOUT THE INFLATION PATH, NOT SIX ABOUT SIX DRIVERS. Local price, raw materials per tonne, transport per tonne, overheads per tonne and G&A are ALL under-forecast, all by the same mechanism: the origin's last published inflation rate understated what Egypt actually ran. Correcting the PRICE leg alone would manufacture a margin trend out of the correction, which is [L-009] and [L-110] in a new costume; correcting every leg together is not a driver correction at all, it is an inflation forecast, and no forecast of a macro variable is permitted at an origin. WATCH FLAG.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "THIS IS ONE FINDING ABOUT THE INFLATION PATH, NOT SIX ABOUT SIX DRIVERS. Local price, raw materials per tonne, transport per tonne, overheads per tonne and G&A are ALL under-forecast, all by the same mechanism: the origin's last published inflation rate understated what Egypt actually ran. Correcting the PRICE leg alone would manufacture a margin trend out of the correction, which is [L-009] and [L-110] in a new costume; correcting every leg together is not a driver correction at all, it is an inflation forecast, and no forecast of a macro variable is permitted at an origin. WATCH FLAG.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "price_export",
-  "bias": -0.4111725953974751,
-  "era1": -0.5309723948067425,
-  "era2": -0.03180656393479453,
-  "skill_vs_freeze": 0.027600988726088516,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 1.0228324715140686,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.8452866067020361,
-     "mae_adj": 0.8227108951038329,
-     "improves": true
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9954094635176146,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.2625743812791516,
-     "mae_adj": 0.26717548663105933,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.061107540462716,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.23946210627883613,
-     "mae_adj": 0.29877531842063515,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.148219703089743,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.11795954767101534,
-     "mae_adj": 0.2561722062557997,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.4765753330874286,
-   "mae_adj": 0.4946092883405579,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+  {
+   "driver": "price_export",
+   "bias": -0.4111725953974751,
+   "era1": -0.5309723948067425,
+   "era2": -0.03180656393479453,
+   "skill_vs_freeze": 0.027600988726088516,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 1.0228324715140686,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.8452866067020361,
+      "mae_adj": 0.8227108951038329,
+      "improves": true
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9954094635176146,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.2625743812791516,
+      "mae_adj": 0.26717548663105933,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.061107540462716,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.23946210627883613,
+      "mae_adj": 0.29877531842063515,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.148219703089743,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.11795954767101534,
+      "mae_adj": 0.2561722062557997,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.4765753330874286,
+    "mae_adj": 0.4946092883405579,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "Same finding as price_local on the currency leg, and worse conditioned: the bias is -0.531 in the pre-2022 era and -0.032 after it, so essentially the whole of it is one regime. The macro split attributes 80.5% of this miss to the exchange-rate path itself \u2014 the highest macro share of any driver here \u2014 which makes it a statement about Egypt's currency, not about how this company prices a tonne of clinker.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "Same finding as price_local on the currency leg, and worse conditioned: the bias is -0.531 in the pre-2022 era and -0.032 after it, so essentially the whole of it is one regime. The macro split attributes 80.5% of this miss to the exchange-rate path itself \u2014 the highest macro share of any driver here \u2014 which makes it a statement about Egypt's currency, not about how this company prices a tonne of clinker.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "services",
-  "bias": -0.5490247582291564,
-  "era1": -0.5809753513780842,
-  "era2": -0.4478478799242185,
-  "skill_vs_freeze": 0.19137383593124568,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.9305397471658876,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 1.0095755646817168,
-     "mae_adj": 1.0815660525713462,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9572263509947454,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 1.027166556360892,
-     "mae_adj": 1.070881950441238,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 0.9873309450154226,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.18678290406924972,
-     "mae_adj": 0.18678290406924972,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.1675162001697525,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.3307282728121966,
-     "mae_adj": 0.485606859225238,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.7824096008760238,
-   "mae_adj": 0.8398082728972837,
-   "improves_overall": false,
-   "origins_improved": 0,
-   "origins_tested": 4
+  {
+   "driver": "services",
+   "bias": -0.5490247582291564,
+   "era1": -0.5809753513780842,
+   "era2": -0.4478478799242185,
+   "skill_vs_freeze": 0.19137383593124568,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.9305397471658876,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 1.0095755646817168,
+      "mae_adj": 1.0815660525713462,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9572263509947454,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 1.027166556360892,
+      "mae_adj": 1.070881950441238,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 0.9873309450154226,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.18678290406924972,
+      "mae_adj": 0.18678290406924972,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.1675162001697525,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.3307282728121966,
+      "mae_adj": 0.485606859225238,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.7824096008760238,
+    "mae_adj": 0.8398082728972837,
+    "improves_overall": false,
+    "origins_improved": 0,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "Transportation services are a pass-through billed alongside export tonnage, and exports quadrupled. The bias tracks the export build-out (vol_export) and correcting it would double-count the same structural error twice.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "Transportation services are a pass-through billed alongside export tonnage, and exports quadrupled. The bias tracks the export build-out (vol_export) and correcting it would double-count the same structural error twice.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "raw_per_t",
-  "bias": -0.21359625970492602,
-  "era1": -0.24109853962510716,
-  "era2": -0.1265057066243526,
-  "skill_vs_freeze": 0.25722550824772017,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.9317980191154391,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.48261045138780556,
-     "mae_adj": 0.5532496568583198,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9507993653321255,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.2559121605359329,
-     "mae_adj": 0.30636437154158763,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.00185378671449,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.02506897032602366,
-     "mae_adj": 0.02506897032602366,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.0544471161761129,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.005068670037517324,
-     "mae_adj": 0.058085239101274874,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.27533848978485864,
-   "mae_adj": 0.32403149218113647,
-   "improves_overall": false,
-   "origins_improved": 0,
-   "origins_tested": 4
+  {
+   "driver": "raw_per_t",
+   "bias": -0.21359625970492602,
+   "era1": -0.24109853962510716,
+   "era2": -0.1265057066243526,
+   "skill_vs_freeze": 0.25722550824772017,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.9317980191154391,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.48261045138780556,
+      "mae_adj": 0.5532496568583198,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9507993653321255,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.2559121605359329,
+      "mae_adj": 0.30636437154158763,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.00185378671449,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.02506897032602366,
+      "mae_adj": 0.02506897032602366,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.0544471161761129,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.005068670037517324,
+      "mae_adj": 0.058085239101274874,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.27533848978485864,
+    "mae_adj": 0.32403149218113647,
+    "improves_overall": false,
+    "origins_improved": 0,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "Part of the same inflation-path finding as price_local, and the class rule cuts against it directly: [L-110] says a globally traded input follows the world price and the exchange rate, so a domestic-inflation correction applied to a line that is half imported coal would be the exact substitution that lesson was adopted to stop. WATCH FLAG.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "Part of the same inflation-path finding as price_local, and the class rule cuts against it directly: [L-110] says a globally traded input follows the world price and the exchange rate, so a domestic-inflation correction applied to a line that is half imported coal would be the exact substitution that lesson was adopted to stop. WATCH FLAG.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "transport_per_t",
-  "bias": -0.6747143878572309,
-  "era1": -0.7273327348534991,
-  "era2": -0.5080896223690483,
-  "skill_vs_freeze": 0.21705605284095464,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.9197152262736482,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.8669762169583022,
-     "mae_adj": 0.9328145058298545,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 1.0580343800846475,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 1.0212002944449816,
-     "mae_adj": 0.9647874661827274,
-     "improves": true
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.082982247079235,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.14361226398630908,
-     "mae_adj": 0.14361226398630908,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.2471315116409136,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.24438699264631522,
-     "mae_adj": 0.4652331162059893,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.7063117271787085,
-   "mae_adj": 0.7378078066046208,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+  {
+   "driver": "transport_per_t",
+   "bias": -0.6747143878572309,
+   "era1": -0.7273327348534991,
+   "era2": -0.5080896223690483,
+   "skill_vs_freeze": 0.21705605284095464,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.9197152262736482,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.8669762169583022,
+      "mae_adj": 0.9328145058298545,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 1.0580343800846475,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 1.0212002944449816,
+      "mae_adj": 0.9647874661827274,
+      "improves": true
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.082982247079235,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.14361226398630908,
+      "mae_adj": 0.14361226398630908,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.2471315116409136,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.24438699264631522,
+      "mae_adj": 0.4652331162059893,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.7063117271787085,
+    "mae_adj": 0.7378078066046208,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "The largest cost bias in the run (-0.675) and entirely structural: transport per tonne went from 19 EGP in FY2018 to 157 in FY2025 as the mix swung to export clinker moving to port. That is a mix effect, not an escalation error, and the fix is to drive transport off EXPORT tonnage rather than total tonnage.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "The largest cost bias in the run (-0.675) and entirely structural: transport per tonne went from 19 EGP in FY2018 to 157 in FY2025 as the mix swung to export clinker moving to port. That is a mix effect, not an escalation error, and the fix is to drive transport off EXPORT tonnage rather than total tonnage.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "overhead_per_t",
-  "bias": -0.14694411538314214,
-  "era1": -0.16674762161651566,
-  "era2": -0.08423301231079268,
-  "skill_vs_freeze": 0.4695609727344857,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.9589805882196867,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.18964069188130972,
-     "mae_adj": 0.20661705667141375,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 1.0388271412117476,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.19999696661174501,
-     "mae_adj": 0.18729952396801028,
-     "improves": true
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.0245845576425572,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.18839704819243758,
-     "mae_adj": 0.2126842690056479,
-     "improves": false
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.0493306672551075,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.33474951942505365,
-     "mae_adj": 0.28659701827651934,
-     "improves": true
-    }
-   ],
-   "mae_raw": 0.2070097283170403,
-   "mae_adj": 0.2100332354877501,
-   "improves_overall": false,
-   "origins_improved": 2,
-   "origins_tested": 4
+  {
+   "driver": "overhead_per_t",
+   "bias": -0.14694411538314214,
+   "era1": -0.16674762161651566,
+   "era2": -0.08423301231079268,
+   "skill_vs_freeze": 0.4695609727344857,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.9589805882196867,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.18964069188130972,
+      "mae_adj": 0.20661705667141375,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 1.0388271412117476,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.19999696661174501,
+      "mae_adj": 0.18729952396801028,
+      "improves": true
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.0245845576425572,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.18839704819243758,
+      "mae_adj": 0.2126842690056479,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.0493306672551075,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.33474951942505365,
+      "mae_adj": 0.28659701827651934,
+      "improves": true
+     }
+    ],
+    "mae_raw": 0.2070097283170403,
+    "mae_adj": 0.2100332354877501,
+    "improves_overall": false,
+    "origins_improved": 2,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "Part of the same inflation-path finding. Its skill against freeze is the highest of any cost driver (+0.470), so the RULE is working; what it misses is the size of the inflation, which is macro. WATCH FLAG.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "Part of the same inflation-path finding. Its skill against freeze is the highest of any cost driver (+0.470), so the RULE is working; what it misses is the size of the inflation, which is macro. WATCH FLAG.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "transport",
-  "bias": -0.6932980460723718,
-  "era1": -0.740172790147521,
-  "era2": -0.5448613565010664,
-  "skill_vs_freeze": 0.22438731579954063,
-  "equals_freeze": false,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.8830868291919408,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 1.2002866654341378,
-     "mae_adj": 1.324618414341107,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 0.9526369769409992,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 1.0390836719051135,
-     "mae_adj": 1.087605046413674,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.033969147885754,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.2229195323037221,
-     "mae_adj": 0.18951459429730308,
-     "improves": true
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.2114329453259196,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.29392194131638694,
-     "mae_adj": 0.48572585258683876,
-     "improves": false
-    }
-   ],
-   "mae_raw": 0.8658158683375723,
-   "mae_adj": 0.9426043837786896,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+  {
+   "driver": "transport",
+   "bias": -0.6932980460723718,
+   "era1": -0.740172790147521,
+   "era2": -0.5448613565010664,
+   "skill_vs_freeze": 0.22438731579954063,
+   "equals_freeze": false,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.8830868291919408,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 1.2002866654341378,
+      "mae_adj": 1.324618414341107,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.9526369769409992,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 1.0390836719051135,
+      "mae_adj": 1.087605046413674,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.033969147885754,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.2229195323037221,
+      "mae_adj": 0.18951459429730308,
+      "improves": true
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.2114329453259196,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.29392194131638694,
+      "mae_adj": 0.48572585258683876,
+      "improves": false
+     }
+    ],
+    "mae_raw": 0.8658158683375723,
+    "mae_adj": 0.9426043837786896,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "Same finding as transport_per_t, at the total rather than the unit level.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "Same finding as transport_per_t, at the total rather than the unit level.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "mfg_dep",
-  "bias": -0.058715368464575805,
-  "era1": -0.042465382643095184,
-  "era2": -0.11017365689926444,
-  "skill_vs_freeze": 0.0,
-  "equals_freeze": true,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 1.0120591714001377,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 0.0589250236239727,
-     "mae_adj": 0.060552565092928154,
-     "improves": false
-    },
-    {
-     "origin": "FY2022",
-     "k": 1.0198820408374754,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 0.1002300588850291,
-     "mae_adj": 0.08054308451416038,
-     "improves": true
-    },
-    {
-     "origin": "FY2023",
-     "k": 1.0107269317155574,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 0.10160252670814615,
-     "mae_adj": 0.09093272036771077,
-     "improves": true
-    },
-    {
-     "origin": "FY2024",
-     "k": 1.0118369678100405,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.15714671132420693,
-     "mae_adj": 0.14537925243870742,
-     "improves": true
-    }
-   ],
-   "mae_raw": 0.08967420358914772,
-   "mae_adj": 0.08110842070883227,
-   "improves_overall": true,
-   "origins_improved": 3,
-   "origins_tested": 4
+  {
+   "driver": "mfg_dep",
+   "bias": -0.058715368464575805,
+   "era1": -0.042465382643095184,
+   "era2": -0.11017365689926444,
+   "skill_vs_freeze": 0.0,
+   "equals_freeze": true,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 1.0120591714001377,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 0.0589250236239727,
+      "mae_adj": 0.060552565092928154,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 1.0198820408374754,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 0.1002300588850291,
+      "mae_adj": 0.08054308451416038,
+      "improves": true
+     },
+     {
+      "origin": "FY2023",
+      "k": 1.0107269317155574,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 0.10160252670814615,
+      "mae_adj": 0.09093272036771077,
+      "improves": true
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.0118369678100405,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.15714671132420693,
+      "mae_adj": 0.14537925243870742,
+      "improves": true
+     }
+    ],
+    "mae_raw": 0.08967420358914772,
+    "mae_adj": 0.08110842070883227,
+    "improves_overall": true,
+    "origins_improved": 3,
+    "origins_tested": 4
+   },
+   "clause_one_passes": true,
+   "clause_two_passes": true,
+   "clause_two_reason": "THE ONE CANDIDATE THAT SURVIVES BOTH CLAUSES. Depreciation held flat under-forecasts by 5.9% on average, the sign holds in both eras, and it is robust at all three block lengths. It matches the book: every other study in this repository builds depreciation off a PP&E roll-forward and therefore grows it with the capital programme, so a small upward adjustment to a flat-held depreciation line is consistent with how the driver class is built everywhere else rather than a quirk of this name. It is also the SMALLEST correction in the candidate set, which is what a genuine calibration adjustment ought to look like.",
+   "disposition": "ADOPTED"
   },
-  "clause_one_passes": true,
-  "clause_two_passes": true,
-  "clause_two_reason": "THE ONE CANDIDATE THAT SURVIVES BOTH CLAUSES. Depreciation held flat under-forecasts by 5.9% on average, the sign holds in both eras, and it is robust at all three block lengths. It matches the book: every other study in this repository builds depreciation off a PP&E roll-forward and therefore grows it with the capital programme, so a small upward adjustment to a flat-held depreciation line is consistent with how the driver class is built everywhere else rather than a quirk of this name. It is also the SMALLEST correction in the candidate set, which is what a genuine calibration adjustment ought to look like.",
-  "disposition": "ADOPTED"
- },
- {
-  "driver": "provisions",
-  "bias": -1.409129321475365,
-  "era1": -1.849779905292495,
-  "era2": -0.013735806054454264,
-  "skill_vs_freeze": 0.0,
-  "equals_freeze": true,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 1.5228372132445405,
-     "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 1.9472906722427306,
-     "mae_adj": 1.5267154896336184,
-     "improves": true
-    },
-    {
-     "origin": "FY2022",
-     "k": 1.50048517523252,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 1.0313634292494909,
-     "mae_adj": 1.4371519352139444,
-     "improves": false
-    },
-    {
-     "origin": "FY2023",
-     "k": 2.4717744690013137,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 1.4459630886544503,
-     "mae_adj": 0.5410267874438703,
-     "improves": true
-    },
-    {
-     "origin": "FY2024",
-     "k": 2.037472078592484,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 0.2845789467662975,
-     "mae_adj": 0.4271309155143957,
-     "improves": false
-    }
-   ],
-   "mae_raw": 1.4059758100794595,
-   "mae_adj": 1.1927502254578441,
-   "improves_overall": true,
-   "origins_improved": 2,
-   "origins_tested": 4
+  {
+   "driver": "provisions",
+   "bias": -1.409129321475365,
+   "era1": -1.849779905292495,
+   "era2": -0.013735806054454264,
+   "skill_vs_freeze": 0.0,
+   "equals_freeze": true,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 1.5228372132445405,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 1.9472906722427306,
+      "mae_adj": 1.5267154896336184,
+      "improves": true
+     },
+     {
+      "origin": "FY2022",
+      "k": 1.50048517523252,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 1.0313634292494909,
+      "mae_adj": 1.4371519352139444,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 2.4717744690013137,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 1.4459630886544503,
+      "mae_adj": 0.5410267874438703,
+      "improves": true
+     },
+     {
+      "origin": "FY2024",
+      "k": 2.037472078592484,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 0.2845789467662975,
+      "mae_adj": 0.4271309155143957,
+      "improves": false
+     }
+    ],
+    "mae_raw": 1.4059758100794595,
+    "mae_adj": 1.1927502254578441,
+    "improves_overall": true,
+    "origins_improved": 2,
+    "origins_tested": 4
+   },
+   "clause_one_passes": true,
+   "clause_two_passes": false,
+   "clause_two_reason": "The bias is -1.409 pooled and -1.850 against -0.014 by era \u2014 one era carries essentially all of it, and the level is a management estimate that jumped from 2,245,000 in FY2018 to 111,939,885 in FY2022 on a single legal matter. A correction on a line that moves fifty-fold on one event is fitting to an event.",
+   "disposition": "WATCH FLAG"
   },
-  "clause_one_passes": true,
-  "clause_two_passes": false,
-  "clause_two_reason": "The bias is -1.409 pooled and -1.850 against -0.014 by era \u2014 one era carries essentially all of it, and the level is a management estimate that jumped from 2,245,000 in FY2018 to 111,939,885 in FY2022 on a single legal matter. A correction on a line that moves fifty-fold on one event is fitting to an event.",
-  "disposition": "WATCH FLAG"
- },
- {
-  "driver": "interest_income",
-  "bias": -1.6412165192255261,
-  "era1": -1.6346149250584652,
-  "era2": -1.6621215674212193,
-  "skill_vs_freeze": 0.0,
-  "equals_freeze": true,
-  "clause_one": {
-   "per_origin": [
-    {
-     "origin": "FY2021",
-     "k": 0.6789254484525643,
+  {
+   "driver": "interest_income",
+   "bias": -1.6412165192255261,
+   "era1": -1.6346149250584652,
+   "era2": -1.6621215674212193,
+   "skill_vs_freeze": 0.0,
+   "equals_freeze": true,
+   "clause_one": {
+    "per_origin": [
+     {
+      "origin": "FY2021",
+      "k": 0.6789254484525643,
+      "estimated_on": 3,
+      "n_cells": 4,
+      "mae_raw": 4.0915951947324585,
+      "mae_adj": 4.478839148277357,
+      "improves": false
+     },
+     {
+      "origin": "FY2022",
+      "k": 0.5724588056883658,
+      "estimated_on": 6,
+      "n_cells": 3,
+      "mae_raw": 1.99504504462913,
+      "mae_adj": 2.5528595459012586,
+      "improves": false
+     },
+     {
+      "origin": "FY2023",
+      "k": 0.9664343257755768,
+      "estimated_on": 10,
+      "n_cells": 2,
+      "mae_raw": 1.2996749478910776,
+      "mae_adj": 1.3338168811020406,
+      "improves": false
+     },
+     {
+      "origin": "FY2024",
+      "k": 1.441526184642272,
+      "estimated_on": 15,
+      "n_cells": 1,
+      "mae_raw": 1.3882443748577724,
+      "mae_adj": 1.0225419720688027,
+      "improves": true
+     }
+    ],
+    "mae_raw": 2.6339110183457155,
+    "mae_adj": 2.926411096508609,
+    "improves_overall": false,
+    "origins_improved": 1,
+    "origins_tested": 4
+   },
+   "clause_one_passes": false,
+   "clause_two_passes": false,
+   "clause_two_reason": "THE LARGEST BIAS IN THE RUN (-1.641) AND A PURE SPECIFICATION DEFECT. Interest income went from 4.9mn in FY2018 to 226.3mn in FY2025 as ARCC built a net cash position and Egyptian deposit rates went to 27%. Held flat, it cannot track either. The fix is to drive it off the cash balance at the deposit rate \u2014 which is how every other study in the book builds it \u2014 not to multiply a flat line by a constant.",
+   "disposition": "WATCH FLAG"
+  }
+ ],
+ "log": [
+  {
+   "origin": "FY2021",
+   "corrections": {
+    "vol_local": {
+     "applied": -0.025090466078891916,
+     "outcome_mae_change": 0.0,
      "estimated_on": 3,
-     "n_cells": 4,
-     "mae_raw": 4.0915951947324585,
-     "mae_adj": 4.478839148277357,
-     "improves": false
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
     },
-    {
-     "origin": "FY2022",
-     "k": 0.5724588056883658,
-     "estimated_on": 6,
-     "n_cells": 3,
-     "mae_raw": 1.99504504462913,
-     "mae_adj": 2.5528595459012586,
-     "improves": false
+    "vol_export": {
+     "applied": -0.16770119255736018,
+     "outcome_mae_change": 0.16770119255736016,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
     },
-    {
-     "origin": "FY2023",
-     "k": 0.9664343257755768,
-     "estimated_on": 10,
-     "n_cells": 2,
-     "mae_raw": 1.2996749478910776,
-     "mae_adj": 1.3338168811020406,
-     "improves": false
+    "price_local": {
+     "applied": -0.16033257317706812,
+     "outcome_mae_change": 0.16033257317706817,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
     },
-    {
-     "origin": "FY2024",
-     "k": 1.441526184642272,
-     "estimated_on": 15,
-     "n_cells": 1,
-     "mae_raw": 1.3882443748577724,
-     "mae_adj": 1.0225419720688027,
-     "improves": true
+    "price_export": {
+     "applied": 0.022575711598203204,
+     "outcome_mae_change": -0.022575711598203263,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "services": {
+     "applied": -0.07199048788962918,
+     "outcome_mae_change": 0.07199048788962936,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "raw_per_t": {
+     "applied": -0.0706392054705143,
+     "outcome_mae_change": 0.07063920547051428,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport_per_t": {
+     "applied": -0.0836911935144889,
+     "outcome_mae_change": 0.0658382888715523,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "overhead_per_t": {
+     "applied": -0.04188444599315096,
+     "outcome_mae_change": 0.01697636479010403,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport": {
+     "applied": -0.12433174890696921,
+     "outcome_mae_change": 0.1243317489069693,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "mfg_dep": {
+     "applied": 0.011987038918965735,
+     "outcome_mae_change": 0.001627541468955454,
+     "estimated_on": 3,
+     "clause_two_passes": true,
+     "disposition": "ADOPTED"
+    },
+    "provisions": {
+     "applied": 0.4205751826091122,
+     "outcome_mae_change": -0.4205751826091122,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "interest_income": {
+     "applied": -0.3872439535448984,
+     "outcome_mae_change": 0.3872439535448988,
+     "estimated_on": 3,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
     }
-   ],
-   "mae_raw": 2.6339110183457155,
-   "mae_adj": 2.926411096508609,
-   "improves_overall": false,
-   "origins_improved": 1,
-   "origins_tested": 4
+   }
   },
-  "clause_one_passes": false,
-  "clause_two_passes": false,
-  "clause_two_reason": "THE LARGEST BIAS IN THE RUN (-1.641) AND A PURE SPECIFICATION DEFECT. Interest income went from 4.9mn in FY2018 to 226.3mn in FY2025 as ARCC built a net cash position and Egyptian deposit rates went to 27%. Held flat, it cannot track either. The fix is to drive it off the cash balance at the deposit rate \u2014 which is how every other study in the book builds it \u2014 not to multiply a flat line by a constant.",
-  "disposition": "WATCH FLAG"
- }
-]
+  {
+   "origin": "FY2022",
+   "corrections": {
+    "vol_local": {
+     "applied": -0.10844225624650515,
+     "outcome_mae_change": -0.10844225624650514,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "vol_export": {
+     "applied": -0.09148694317891486,
+     "outcome_mae_change": 0.0914869431789147,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_local": {
+     "applied": -0.09665805267623226,
+     "outcome_mae_change": 0.09665805267623229,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_export": {
+     "applied": -0.004601105351907798,
+     "outcome_mae_change": 0.004601105351907719,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "services": {
+     "applied": -0.043715394080346144,
+     "outcome_mae_change": 0.04371539408034586,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "raw_per_t": {
+     "applied": -0.050452211005654696,
+     "outcome_mae_change": 0.050452211005654723,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport_per_t": {
+     "applied": 0.05641282826225418,
+     "outcome_mae_change": -0.056412828262254244,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "overhead_per_t": {
+     "applied": 0.03809232793120431,
+     "outcome_mae_change": -0.012697442643734735,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport": {
+     "applied": -0.048521374508560484,
+     "outcome_mae_change": 0.04852137450856042,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "mfg_dep": {
+     "applied": 0.019686974370868703,
+     "outcome_mae_change": -0.01968697437086872,
+     "estimated_on": 6,
+     "clause_two_passes": true,
+     "disposition": "ADOPTED"
+    },
+    "provisions": {
+     "applied": 0.4057885059644533,
+     "outcome_mae_change": 0.4057885059644535,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "interest_income": {
+     "applied": -0.5578145012721288,
+     "outcome_mae_change": 0.5578145012721287,
+     "estimated_on": 6,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    }
+   }
+  },
+  {
+   "origin": "FY2023",
+   "corrections": {
+    "vol_local": {
+     "applied": -0.07154947697283348,
+     "outcome_mae_change": 0.033279320024442255,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "vol_export": {
+     "applied": 0.08073871598622795,
+     "outcome_mae_change": -0.08073871598622795,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_local": {
+     "applied": -0.014158359995529078,
+     "outcome_mae_change": 0.0,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_export": {
+     "applied": 0.059313212141799035,
+     "outcome_mae_change": 0.05931321214179902,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "services": {
+     "applied": -0.012749991783474295,
+     "outcome_mae_change": 0.0,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "raw_per_t": {
+     "applied": 0.0018520705724788802,
+     "outcome_mae_change": 0.0,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport_per_t": {
+     "applied": 0.07971857552922039,
+     "outcome_mae_change": 0.0,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "overhead_per_t": {
+     "applied": 0.024287220813210345,
+     "outcome_mae_change": 0.02428722081321033,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport": {
+     "applied": 0.033404938006419006,
+     "outcome_mae_change": -0.03340493800641903,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "mfg_dep": {
+     "applied": 0.010669806340435378,
+     "outcome_mae_change": -0.010669806340435378,
+     "estimated_on": 10,
+     "clause_two_passes": true,
+     "disposition": "ADOPTED"
+    },
+    "provisions": {
+     "applied": 0.90493630121058,
+     "outcome_mae_change": -0.90493630121058,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "interest_income": {
+     "applied": -0.034141933210962816,
+     "outcome_mae_change": 0.03414193321096293,
+     "estimated_on": 10,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    }
+   }
+  },
+  {
+   "origin": "FY2024",
+   "corrections": {
+    "vol_local": {
+     "applied": -0.10237300768404334,
+     "outcome_mae_change": 0.10237300768404334,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "vol_export": {
+     "applied": 0.23248567977224663,
+     "outcome_mae_change": 0.23248567977224663,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_local": {
+     "applied": 0.055970408755706545,
+     "outcome_mae_change": -0.05597040875570655,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "price_export": {
+     "applied": 0.13821265858478432,
+     "outcome_mae_change": 0.13821265858478432,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "services": {
+     "applied": 0.15487858641304142,
+     "outcome_mae_change": 0.15487858641304142,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "raw_per_t": {
+     "applied": 0.05301656906375755,
+     "outcome_mae_change": 0.05301656906375755,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport_per_t": {
+     "applied": 0.2208461235596741,
+     "outcome_mae_change": 0.22084612355967406,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "overhead_per_t": {
+     "applied": 0.04815250114853431,
+     "outcome_mae_change": -0.04815250114853431,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "transport": {
+     "applied": 0.19180391127045182,
+     "outcome_mae_change": 0.19180391127045182,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "mfg_dep": {
+     "applied": 0.011767458885499505,
+     "outcome_mae_change": -0.011767458885499515,
+     "estimated_on": 15,
+     "clause_two_passes": true,
+     "disposition": "ADOPTED"
+    },
+    "provisions": {
+     "applied": 0.7117098622806932,
+     "outcome_mae_change": 0.14255196874809817,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    },
+    "interest_income": {
+     "applied": 0.36570240278896965,
+     "outcome_mae_change": -0.3657024027889697,
+     "estimated_on": 15,
+     "clause_two_passes": false,
+     "disposition": "WATCH FLAG"
+    }
+   }
+  }
+ ]
+}

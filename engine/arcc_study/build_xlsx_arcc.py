@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Model_06082026_public.xlsx — 16 sheets, formula-first. REVISION 2.
+"""ARCC_Valuation_Model_01092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
 
 Rebuilt on the AUDITED consolidated financial statements for FY2023, FY2024 and FY2025 and
 the reviewed Q1-2026 interim accounts. Revision 1 was built without opening a source
@@ -46,6 +46,7 @@ M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 BU, PE, SHT, TR = D['bottom_up'], D['peers'], D['share_triangulation'], D['terminal_reconciliation']
 UC, KDG, CON = D['unit_calibration'], D['kd_gate'], D['contested']
+CAL = D['calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH, TAX, TAXE = M['spot'], M['shares_mn'], IN['tax_stat'], IN['tax_eff']
 YH, YF = H['years'], F['years']
@@ -358,6 +359,18 @@ inp('Q1-2026 gross profit', 'q1gp', IN['gp_q1_26'], NUM0)
 inp('Q1-2026 attributable profit', 'q1pat', IN['pat_q1_26'], NUM0)
 inp('Q1-2026 cash and bank balances', 'q1cash', IN['cash_q1_26'], NUM0)
 inp('Q1-2026 interest-bearing debt', 'q1debt', IN['debt_q1_26'], NUM0)
+inp('Cash and bank balances, reviewed 30 June 2026', 'cashh1', IN['cash_h1_26'], NUM0)
+inp('Interest-bearing debt, reviewed 30 June 2026', 'debth1', IN['debt_h1_26'], NUM0)
+inp('Non-controlling interests, reviewed 30 June 2026', 'ncih1', IN['nci_h1_26'], NUM4)
+inp('FY2026+ local price calibration on the H1-2026 reviewed half', 'calloc',
+    CAL['local'], NUM4)
+inp('FY2026+ export price calibration on the H1-2026 reviewed half', 'calexp',
+    CAL['export'], NUM4)
+inp('FY2026+ cash-cost calibration on the SAME half', 'calcst', CAL['cost'], NUM4)
+inp('Services as a share of goods revenue, recalibrated on the half', 'svccal',
+    CAL['svc_share'], NUM4)
+inp("Depreciation correction from this name's own fundamental walk-forward",
+    'wfdep', IN['wf_dep_correction'], NUM4)
 inp('Q1-2026 dividends payable', 'q1div', IN['divpay_q1_26'], NUM0)
 inp('Q1-2026 finance costs', 'q1fc', IN['fincost_q1_26'], NUM0)
 
@@ -489,18 +502,22 @@ for i in range(6):
     putf(wsU, f'{c}53', f"={c}75*{c}52", b['cem_exp'], NUM3)
     putf(wsU, f'{c}54', f"={c}75-{c}53", b['cem_loc'], NUM3)
     putf(wsU, f'{c}55', f"={c}75+{c}48", b['sold'], NUM3, bold=True)
-    putf(wsU, f'{c}56', f"=$B$22*{A[f'pli{i}']}", b['price_loc'], NUM0)
-    putf(wsU, f'{c}57', f"=$B$26*{A[f'pei{i}']}*{A[f'fxp{i}']}", b['price_exp_cem'], NUM0)
+    _k = '' if i == 0 else f"*{A['calloc']}"
+    _ke = '' if i == 0 else f"*{A['calexp']}"
+    _kc = '' if i == 0 else f"*{A['calcst']}"
+    _sv = A['svc'] if i == 0 else A['svccal']
+    putf(wsU, f'{c}56', f"=$B$22*{A[f'pli{i}']}{_k}", b['price_loc'], NUM0)
+    putf(wsU, f'{c}57', f"=$B$26*{A[f'pei{i}']}*{A[f'fxp{i}']}{_ke}", b['price_exp_cem'], NUM0)
     putf(wsU, f'{c}58', f"={c}57*$B$24", b['price_exp_clk'], NUM0)
     putf(wsU, f'{c}59', f"={c}54*{c}56", b['cem_loc'] * b['price_loc'], NUM0)
     putf(wsU, f'{c}60', f"={c}53*{c}57", b['cem_exp'] * b['price_exp_cem'], NUM0)
     putf(wsU, f'{c}61', f"={c}48*{c}58", b['clk_exp'] * b['price_exp_clk'], NUM0)
     putf(wsU, f'{c}62', f"=SUM({c}59:{c}61)", b['rev_goods'], NUM0)
-    putf(wsU, f'{c}63', f"={c}62*(1+{A['svc']})", b['rev'], NUM0, bold=True)
+    putf(wsU, f'{c}63', f"={c}62*(1+{_sv})", b['rev'], NUM0, bold=True)
     putf(wsU, f'{c}64', f"={c}63/{c}55", b['price'], NUM0)
-    putf(wsU, f'{c}65', f"=$B$35*{A[f'infl{i}']}*(1-{A[f'afs{i}']})*{c}46", b['c_mat'], NUM0)
-    putf(wsU, f'{c}66', f"=$B$36*{A[f'infl{i}']}*{c}55", b['c_tra'], NUM0)
-    putf(wsU, f'{c}67', f"=$B$37*{A[f'infl{i}']}*{c}55", b['c_ovh'], NUM0)
+    putf(wsU, f'{c}65', f"=$B$35*{A[f'infl{i}']}*(1-{A[f'afs{i}']})*{c}46{_kc}", b['c_mat'], NUM0)
+    putf(wsU, f'{c}66', f"=$B$36*{A[f'infl{i}']}*{c}55{_kc}", b['c_tra'], NUM0)
+    putf(wsU, f'{c}67', f"=$B$37*{A[f'infl{i}']}*{c}55{_kc}", b['c_ovh'], NUM0)
     putf(wsU, f'{c}68', f"=SUM({c}65:{c}67)", b['cc'], NUM0)
     putf(wsU, f'{c}69', f"={c}68/{c}55", b['cc_t'], NUM0)
     putf(wsU, f'{c}70', f"=({A['prov25']}+{A['ecl25']})/{A['rev25']}*{c}63", b['c_prv'], NUM0)
@@ -570,7 +587,7 @@ for i in range(5):
     putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
     putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['margin'][i], PCT)
-    putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}", F['dna'][i], NUM0)
+    putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}*{A['wfdep']}", F['dna'][i], NUM0)
     putf(wsD, f'{c}9', f"={c}7-{c}8", F['ebit'][i], NUM0)
     putf(wsD, f'{c}10', f"={A['taxe']}", TAXE, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
@@ -625,19 +642,21 @@ BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B31', "=SUM(B19:F19
       ('Present value of terminal value', 'B32', "=B28", DCF['pv_tv'], NUM0),
       ('Enterprise value', 'B33', "=B31+B32", DCF['ev'], NUM0),
       ('TERMINAL VALUE AS % OF ENTERPRISE VALUE', 'B34', "=B32/B33", DCF['tv_share'], PCT),
-      ('Audited cash at 31 December 2025', 'B35', f"={A['cash25']}", IN['cash_fy25'], NUM0),
-      ('Plus free cash flow AND treasury income earned to the valuation date', 'B36',
-       f"=B15/(1-{A['stub']})*{A['stub']}"
-       f"+{A['cash25']}*{A['cy0']}*{A['stub']}*(1-{A['taxe']})",
-       DCF['cash_at_val'] - IN['cash_fy25'] + IN['div_fy25_declared'], NUM0),
-      ('Less the FY2025 dividend declared and unpaid', 'B37', f"=-{A['div25']}",
-       -IN['div_fy25_declared'], NUM0),
-      ('Cash at the valuation date', 'B38', "=SUM(B35:B37)", DCF['cash_at_val'], NUM0),
-      ('Less interest-bearing debt (reviewed 31 March 2026, the FRESHER disclosure)',
-       'B39', f"=-{A['q1debt']}", -IN['debt_q1_26'], NUM0),
+      ('Cash and bank balances, reviewed 30 June 2026 — THE DISCLOSED BALANCE',
+       'B35', f"={A['cashh1']}", IN['cash_h1_26'], NUM0),
+      ('(memo) the roll-forward the previous edition had to use instead', 'B36',
+       f"={A['cash25']}+B15/(1-{A['stub']})*{A['stub']}"
+       f"+{A['cash25']}*{A['cy0']}*{A['stub']}*(1-{A['taxe']})-{A['div25']}",
+       DCF['net_cash_rolled'] + IN['debt_q1_26'], NUM0),
+      ('(memo) what that roll-forward missed, per share', 'B37',
+       f"=(B36-{A['q1debt']}-B38-B39)/B43", DCF['rollforward_gap_per_share'], NUM4),
+      ('Cash at the valuation date (30 June 2026)', 'B38', f"={A['cashh1']}",
+       IN['cash_h1_26'], NUM0),
+      ('Less interest-bearing debt, reviewed 30 June 2026', 'B39',
+       f"=-{A['debth1']}", -IN['debt_h1_26'], NUM0),
       ('Net cash (ADDED — the company is net cash)', 'B40', "=B38+B39", DCF['net_cash'], NUM0),
-      ('Less non-controlling interests (audited note 24)', 'B41', f"=-{A['nci']}",
-       -IN['nci'], NUM4),
+      ('Less non-controlling interests (reviewed 30 June 2026)', 'B41', f"=-{A['ncih1']}",
+       -IN['nci_h1_26'], NUM4),
       ('Equity value', 'B42', "=B33+B40+B41", DCF['equity'], NUM0),
       ('Shares outstanding (mn)', 'B43', f"={A['shiss']}-{A['shtre']}", SH, NUM4),
       ('FAIR VALUE PER SHARE (EGP)', 'B44', "=B42/B43", DCF['fv'], PX)]
@@ -714,7 +733,7 @@ BRW = [('Present value of explicit free cash flow', "=DCF!B31", DCF['sum_pv']),
        ('Present value of terminal value', "=DCF!B32", DCF['pv_tv']),
        ('Enterprise value', "=DCF!B33", DCF['ev']),
        ('Plus net cash at the valuation date', "=DCF!B40", DCF['net_cash']),
-       ('Less non-controlling interests', "=DCF!B41", -IN['nci']),
+       ('Less non-controlling interests', "=DCF!B41", -IN['nci_h1_26']),
        ('Equity value', "=DCF!B42", DCF['equity'])]
 for j, (lab, fm, ex) in enumerate(BRW):
     wsB.cell(row=5 + j, column=1, value=lab)
@@ -1066,9 +1085,9 @@ RLN = [('Justified EV/EBITDA', 'B18', f"={A['eveb']}", IN['ev_ebitda_just'], MUL
        ('Implied enterprise value', 'B19', "=B9*B18",
         LN['ebitda_norm'] * IN['ev_ebitda_just'], NUM0),
        ('Plus net cash', 'B20', "=DCF!B40", DCF['net_cash'], NUM0),
-       ('Less non-controlling interests', 'B21', "=DCF!B41", -IN['nci'], NUM4),
+       ('Less non-controlling interests', 'B21', "=DCF!B41", -IN['nci_h1_26'], NUM4),
        ('Equity value', 'B22', "=B19+B20+B21",
-        LN['ebitda_norm'] * IN['ev_ebitda_just'] + DCF['net_cash'] - IN['nci'], NUM0),
+        LN['ebitda_norm'] * IN['ev_ebitda_just'] + DCF['net_cash'] - IN['nci_h1_26'], NUM0),
        ('Value per share (EGP)', 'B23', "=B22/DCF!$B$43", LN['values']['Relative multiples'], PX)]
 for lab, ad, fm, ex, ft in RLN:
     wsN.cell(row=int(ad[1:]), column=1, value=lab)
@@ -1077,9 +1096,9 @@ band(wsN, 25, 7); wsN['A25'] = 'NORMALISED-EARNINGS LENS'
 NLN = [('Justified price / earnings', 'B26', f"={A['pej']}", IN['pe_just'], MULT),
        ('Capitalised operating earnings', 'B27', "=B12*B26", LN['nopat_norm'] * IN['pe_just'], NUM0),
        ('Plus net cash, at FACE', 'B28', "=DCF!B40", DCF['net_cash'], NUM0),
-       ('Less non-controlling interests', 'B29', "=DCF!B41", -IN['nci'], NUM4),
+       ('Less non-controlling interests', 'B29', "=DCF!B41", -IN['nci_h1_26'], NUM4),
        ('Equity value', 'B30', "=B27+B28+B29",
-        LN['nopat_norm'] * IN['pe_just'] + DCF['net_cash'] - IN['nci'], NUM0),
+        LN['nopat_norm'] * IN['pe_just'] + DCF['net_cash'] - IN['nci_h1_26'], NUM0),
        ('Value per share (EGP)', 'B31', "=B30/DCF!$B$43", LN['values']['Normalised earnings'], PX)]
 for lab, ad, fm, ex, ft in NLN:
     wsN.cell(row=int(ad[1:]), column=1, value=lab)
@@ -1098,7 +1117,7 @@ AL = [('Cement capacity (Mt/yr, audited note 1)', 'B5', f"={A['capcem']}", IN['c
        IN['ev_t_just'] / IN['repl_usd_t'] - 1, PCT),
       ('Implied enterprise value (EGP mn)', 'B9', f"=B7*B5*{A['fx']}", LN['ev_asset'], NUM0),
       ('Plus net cash', 'B10', "=DCF!B40", DCF['net_cash'], NUM0),
-      ('Less non-controlling interests', 'B11', "=DCF!B41", -IN['nci'], NUM4),
+      ('Less non-controlling interests', 'B11', "=DCF!B41", -IN['nci_h1_26'], NUM4),
       ('Equity value', 'B12', "=B9+B10+B11",
        LN['ev_asset'] + DCF['net_cash'] - IN['nci'], NUM0),
       ('Value per share (EGP)', 'B13', "=B12/DCF!$B$43",
@@ -1364,7 +1383,7 @@ note(wsP, 23, 'Every multiple here is RECOMPUTED from revenue, profit and market
 note(wsP, 24, 'quoted, because the published multiples for this peer set do not reconcile.')
 
 # ============ SAVE ============================================================
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_06082026_public.xlsx')
+OUT = os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx')
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

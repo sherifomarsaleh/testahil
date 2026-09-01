@@ -97,7 +97,59 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 52.9,
+      "bear": 48.47,
+      "full": 59.5
+     },
+     "lessons": [],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 52.9,
+      "bear": 48.47,
+      "full": 59.5
+     },
+     "lessons": [
+      "L-057",
+      "L-058",
+      "L-059",
+      "L-060",
+      "L-061",
+      "L-120"
+     ],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": 0.0,
+      "bear": 0.0,
+      "full": 0.0
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "ARCC",

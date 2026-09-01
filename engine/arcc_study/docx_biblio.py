@@ -1,4 +1,4 @@
-"""ARCC_Bibliography_06-08-2026.docx — a standalone source register.
+"""ARCC_Bibliography_01-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -245,10 +245,12 @@ doc.add_page_break()
 H1('3  Figures that are DERIVED rather than sourced')
 P('These do not appear in any source. They are computed, and the method is given so a '
   'reader can reproduce or reject each one.', size=9.5)
-BR = json.load(open('beta_result.json'))
+_BJ = json.load(open('beta_result.json'))
+BR = _BJ['adopted']
+BRO = _BJ['own_stock']
 SHT = D['share_triangulation']; TR = D['terminal_reconciliation']; UC = D['unit_calibration']
 KDG = D['kd_gate']
-BR = json.load(open('beta_result.json'))
+# (beta record already loaded above)
 DER = [
  ('Sales volume and realised price — the only material estimate in the operating build',
   f'No volume is disclosed. Volume is DERIVED from the audited revenue note: export sales of '
@@ -289,20 +291,38 @@ DER = [
   f'replacement cost of USD 130 — roughly a tenth. A return computed on that base measures '
   f'the devaluation rather than the economics of adding a tonne. The choice makes terminal '
   f'growth value-destroying and is the single most consequential judgement in the model.'),
- (f'Beta — {BR["beta"]:.3f} adopted',
-  f'A five-year weekly regression against a {BR["composite_names"]}-name equal-weight '
-  f'Egyptian composite, subject excluded from its own index: {BR["beta"]:.3f} on {BR["n"]} '
-  f'observations, R-squared {BR["r2"]:.3f}, standard error {BR["se"]:.3f}. Clears the '
-  f'usability gate so it is adopted rather than defaulted, and is flagged statistically weak. '
-  f'The lead-lag correction for thin trading gives {BR["dimson"]["sum_beta"]:.3f}; its effect '
-  f'is published as a value.'),
+ (f'Beta — {BR["beta_used"]:.3f} adopted, from comparable companies rather than from '
+  f'this share',
+  f'Measured against the EGX30 — the only index against which an Egyptian Exchange listing '
+  f'can properly be measured — Arabian Cement\'s own weekly returns over '
+  f'{BRO["window_years"]:.2f} years give a beta of {BRO["beta"]:.3f} on {BRO["n"]} '
+  f'observations with an R-squared of {BRO["r2"]:.3f} and a standard error of '
+  f'{BRO["se"]:.3f}. The index explains under a twentieth of the share\'s movement, which '
+  f'is below the level at which a regression is usable, so it is NOT adopted and its '
+  f'diagnostics are printed instead. Earlier editions reported {BR["retired"]["beta"]:.4f} '
+  f'measured against a basket built from the other Egyptian companies this house follows; a '
+  f'basket of covered names explains a covered name better because it partly consists of '
+  f'companies like it, so the better statistic was an artefact and the figure is withdrawn. '
+  f'Adopted instead: the median beta of the Egyptian building-materials and construction '
+  f'peers that do clear the threshold — '
+  f'{", ".join("%.3f" % b for b in _BJ["peer_betas_usable"])} — giving '
+  f'{BR["beta_used"]:.3f}. Sinai Cement is the closest business match and is deliberately '
+  f'NOT used: its own regression is weaker still. WHAT COULD NOT BE DONE: the peers\' own '
+  f'borrowings are not stripped out and Arabian Cement\'s added back, because their balance '
+  f'sheets are not sourced here. Arabian Cement holds net cash and its peers carry debt, so '
+  f'completing that step could only lower the beta and raise the value; the figure adopted '
+  f'is the cautious end and the whole peer spread is published as a sensitivity.'),
  ('Capital expenditure in the forecast',
   'Set at the economic maintenance level of USD 4.00 per tonne of installed capacity rather '
   'than at book depreciation, because a historic-cost base understates what it costs to keep '
   'a plant running. Bracketed by the audited outturns: FY2024 EGP 912.02mn and FY2025 EGP '
   '796.47mn, both of which also carried growth projects.'),
  ('Net cash at the valuation date',
-  'Audited cash of EGP 3,459.39mn less audited interest-bearing debt of EGP 1,135.11mn, '
+  'The DISCLOSED 30 June 2026 balance sheet: cash of EGP 1,970.50mn less interest-bearing '
+  'debt of EGP 1,283.29mn, giving net cash of EGP 687.21mn. The previous edition had no '
+  'balance sheet for its valuation date and had to roll one forward, which came out EGP '
+  '1,239mn too generous because it could not see six months of stock-building, receivables '
+  'and capital spending. Superseded rather than adjusted: '
   'rolled forward on the elapsed part of FY2026 and LESS the EGP 2,001.79mn FY2025 dividend '
   'shown as payable in the March 2026 accounts. Cross-checked against the reviewed 31 March '
   '2026 position.'),
@@ -342,6 +362,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_06-08-2026.docx'
+OUT = 'ARCC_Bibliography_01-09-2026.docx'
 doc.save(OUT)
 print('wrote', OUT)

@@ -166,10 +166,50 @@ def check_macro_wiring(out):
     return bad
 
 
+def harvest_shape(rows, out):
+    """The same measurements, in the schema engine/lessons_harvest.py reads.
+
+    The harvester's selection rules are fixed in its module AHEAD of any run so
+    they cannot be tuned after seeing the numbers, which means the RUN adapts to
+    the harvester and never the other way round.
+    """
+    by_driver, by_horizon, macro_split, by_era = {}, {}, {}, {}
+    for d in DRIVERS:
+        a = out["drivers"][d]
+        if not a:
+            continue
+        b = out["bootstrap"].get(d) or {}
+        by_driver[d] = {"bias": a["bias"], "mae": a["mae"], "over": a["share_over"],
+                        "n": a["n"],
+                        "robust_sign": bool(b) and all(v["robust_sign"] for v in b.values())}
+        hs = {}
+        for h in B.HORIZONS:
+            v = out["by_horizon"][d].get(h)
+            if not v:
+                continue
+            sk = skill([r for r in rows if r["h"] == h], d, "ef")
+            hs[str(h)] = {"bias": v["bias"], "mae": v["mae"], "n": v["n"],
+                          "skill_freeze": {"skill": (sk or {}).get("skill", 0.0)}}
+        if hs:
+            by_horizon[d] = hs
+        m = out["macro"].get(d)
+        if m:
+            macro_split[d] = {"macro_share": m["macro_share"],
+                              "as_known_mae": m["knowable_mae"],
+                              "perfect_mae": m["foresight_mae"]}
+        e = {k: v for k, v in out["eras"][d].items() if v}
+        if len(e) >= 2:
+            by_era[d] = {k: {"bias": v["bias"], "n": v["n"]} for k, v in e.items()}
+    return {"by_driver": by_driver, "by_horizon": by_horizon,
+            "macro_split": macro_split, "by_era": by_era,
+            "n_cells": out["n_cells"], "detail": out}
+
+
 if __name__ == "__main__":
     rows, out = run()
     bad = check_macro_wiring(out)
-    json.dump(out, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(harvest_shape(rows, out),
+              open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
     print("cells %d   trend fallbacks %d" % (out["n_cells"], out["trend_fallbacks"]))
     print()
     print("%-18s %4s %8s %8s %7s %9s %9s %8s" %

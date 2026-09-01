@@ -1,18 +1,25 @@
 {
+ "central": 52.90245829506221,
+ "spot": 59.0,
  "meta": {
   "ticker": "ARCC",
   "company": "Arabian Cement Company S.A.E.",
   "market": "EGX",
   "market_code": "EG",
   "currency": "EGP",
-  "asof": "2026-08-06",
+  "asof": "2026-06-30",
+  "asof_note": "valuation date = the date of the latest disclosed balance sheet; the price it is compared against is the latest known close, 6 August 2026",
   "spot": 59.0,
+  "spot_date": "2026-08-06",
+  "central": 52.90245829506221,
+  "gap_vs_spot": -0.10334816449047102,
   "shares_mn": 374.86744500000003,
   "mktcap": 22117.179255000003,
-  "revision": 3,
+  "revision": 4,
+  "standard_version": "2026.09.01",
   "klass": "single-asset cement operating company (net cash)",
   "sector": "Construction materials \u2014 cement",
-  "basis": "audited consolidated financial statements FY2023-FY2025 and reviewed Q1-2026 interim accounts"
+  "basis": "audited consolidated financial statements FY2014-FY2025 and the reviewed H1-2026 interim accounts, all from the company's own investor-relations archive"
  },
  "inputs": {
   "spot": {
@@ -73,6 +80,18 @@
    "value": 4759.815212,
    "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 cost of sales, comparative",
    "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "rev_fy22": {
+   "value": 4675.002824,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2022 \u2014 sales (net). Carried only to measure how much of a year ARCC's first half is",
+   "date": "2022-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy22": {
+   "value": 3789.816211,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2022 \u2014 cost of sales",
+   "date": "2022-12-31",
    "ring": "Company"
   },
   "cogs_fy24": {
@@ -258,6 +277,18 @@
   "rev_exp_goods_fy25": {
    "value": 3356.422381,
    "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, export sales of goods",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_exp_fy25": {
+   "value": 3815.001925,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, total export sales including transportation services",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "export_subsidy_fy25": {
+   "value": 32.642586,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 7: other income for FY2025 'includes export subsidies amounted to EGP 32 642 586'. The comparison that makes the H1-2026 collection readable as a catch-up rather than a run rate",
    "date": "2025-12-31",
    "ring": "Company"
   },
@@ -579,6 +610,222 @@
    "date": "2026-03-31",
    "ring": "Company"
   },
+  "rev_h1_26": {
+   "value": 6080.577747,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 sales (net), six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_25": {
+   "value": 5499.911617,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 sales (net), comparative six months",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_26_loc_goods": {
+   "value": 4536.783763,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, local sales of goods",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_26_exp_goods": {
+   "value": 1264.856099,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, export sales of goods",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_26_svc": {
+   "value": 278.937885,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, local transportation services 202.748365 plus export transportation services 76.189520",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_25_loc_goods": {
+   "value": 3828.61722,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, local sales of goods, comparative",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_25_exp_goods": {
+   "value": 1315.349787,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, export sales of goods, comparative",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_25_svc": {
+   "value": 355.94461,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 3, transportation services, comparative: local 127.753131 plus export 228.191479",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "cogs_h1_26": {
+   "value": 3619.039609,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 cost of sales",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cogs_h1_25": {
+   "value": 3404.81699,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 cost of sales, comparative six months",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "ga_h1_25": {
+   "value": 169.880277,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 general and administrative expenses, comparative",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_23": {
+   "value": 3184.034587,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2023 \u2014 sales (net). Foots: less cost of sales 2,536.411167 gives the printed gross profit of 647.623420",
+   "date": "2023-06-30",
+   "ring": "Company"
+  },
+  "cogs_h1_23": {
+   "value": 2536.411167,
+   "source": "Reviewed interim statements, six months ended 30 June 2023 \u2014 cost of sales",
+   "date": "2023-06-30",
+   "ring": "Company"
+  },
+  "rev_h1_22": {
+   "value": 2129.458953,
+   "source": "Reviewed interim statements, six months ended 30 June 2022, comparative column of the H1-2023 filing \u2014 sales (net). Foots: less cost of sales 1,704.834656 gives the printed gross profit of 424.624297",
+   "date": "2022-06-30",
+   "ring": "Company"
+  },
+  "cogs_h1_22": {
+   "value": 1704.834656,
+   "source": "Reviewed interim statements, six months ended 30 June 2022, comparative \u2014 cost of sales",
+   "date": "2022-06-30",
+   "ring": "Company"
+  },
+  "gp_h1_26": {
+   "value": 2461.538138,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 gross profit",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "ga_h1_26": {
+   "value": 225.744621,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 general and administrative expenses",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prov_h1_26": {
+   "value": 31.498214,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 provisions",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "int_inc_h1_26": {
+   "value": 136.861895,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 interest income",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "oth_inc_h1_26": {
+   "value": 480.336061,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 other income",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "export_subsidy_h1_26": {
+   "value": 467.813139,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 note 29: 'The other income for the period ended June 30, 2026, includes export subsidy amounted to EGP 467 813 139 which have been collected during the three months period ended June 30, 2026.' EXCLUDED from forward operating income and left in the 30 June cash balance",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "fincost_h1_26": {
+   "value": 23.471833,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 finance costs",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "fx_h1_26": {
+   "value": 64.66152,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 foreign currency exchange gains",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pbt_h1_26": {
+   "value": 2862.682946,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 net profit for the period before tax",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "tax_h1_26": {
+   "value": 690.229472,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 income tax",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pat_h1_26": {
+   "value": 2172.453474,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 net profit for the period after tax",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "maj_h1_26": {
+   "value": 2172.395425,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 profit attributable to owners of the Parent",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cash_h1_26": {
+   "value": 1970.50114,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 cash and bank balances at 30 June 2026",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "debt_h1_26": {
+   "value": 1283.288394,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 INTEREST-BEARING borrowings only: non-current borrowings 761.097643 plus current portion of long-term borrowings 269.115255 plus credit facilities 253.075496. Trade and notes payable, creditors and other credit balances and current tax liabilities bear no interest and are excluded by construction",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "nci_h1_26": {
+   "value": 0.216054,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 non-controlling interest at 30 June 2026",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "dna_h1_26": {
+   "value": 161.254762,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 cash flow statement: depreciation of property, plant and equipment 146.470318 plus amortisation of intangibles 13.962414 plus amortisation of right-of-use assets 0.822030",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "capex_h1_26": {
+   "value": 608.433906,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 cash flow statement: payments for purchase of property, plant and equipment 102.893492 plus payments for assets under construction 505.540414",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "auc_h1_26": {
+   "value": 897.084167,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 assets under construction at 30 June 2026, against 391.543753 at 31 December 2025",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "equity_h1_26": {
+   "value": 4794.303425,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 equity attributable to owners of the Parent Company at 30 June 2026",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "capital_h1_26": {
+   "value": 749.73489,
+   "source": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, Wafik, Ramy & Partners (Deloitte), limited review report attached; filed 13 August 2026 \u2014 issued and paid-up capital at 30 June 2026, against 757.479400 at 31 December 2025, the treasury shares having been CANCELLED. At the EGP 2 par value this is 374,867,445 shares \u2014 exactly the count this study already used (issued less treasury), so the cancellation confirms the share count rather than changing it",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "wf_dep_correction": {
+   "value": 1.0298,
+   "source": "Manufacturing depreciation correction from this name's own fundamental walk-forward (engine/arcc_walkforward, [R-FCAL-01]): held flat, depreciation under-forecasts by 5.9 log points across twenty-five cells; the sign holds in both eras, the bias is robust at all three bootstrap block lengths, the expanding-window test improves out-of-sample MAE from 0.090 to 0.081, and the adjustment matches how every other study in the book builds the line. Applied at HALF STRENGTH: exp(0.5 x 0.058715) = 1.0298. It is the ONLY one of twelve candidates that survived both clauses",
+   "date": "2026-09-01",
+   "ring": "House"
+  },
   "div_fy24_paid": {
    "value": 1102.110289,
    "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 28: the ordinary general assembly of 2 December 2025 approved EGP 1,102,110,289 to shareholders for FY2024, plus EGP 15,045,727 to employees",
@@ -889,9 +1136,9 @@
    "ring": "House"
   },
   "stub_years": {
-   "value": 0.583,
-   "source": "Elapsed fraction of FY2026 at the valuation date \u2014 seven of twelve months",
-   "date": "2026-08-06",
+   "value": 0.5,
+   "source": "Elapsed fraction of FY2026 at the valuation date. THE VALUATION DATE IS 30 JUNE 2026, the date of the latest disclosed balance sheet, not the date of the latest traded price. Revision 3 valued at 6 August and rolled the balance sheet forward to meet it; the interim accounts now make that unnecessary, and a bridge standing on a disclosed balance sheet is worth more than two months of freshness in the discounting. The price the range is compared against is still the latest known close, and the 37-day gap between the two is disclosed rather than closed",
+   "date": "2026-06-30",
    "ring": "House"
   },
   "repl_usd_t": {
@@ -1076,20 +1323,20 @@
    "sold": 4.807498223495703,
    "kiln_util": 0.92,
    "vol": 4.807498223495703,
-   "price_loc": 3085.0137107829605,
-   "price_exp_cem": 2262.6818661701027,
-   "price_exp_clk": 1470.7432130105667,
-   "rev_goods": 12249.94765885788,
-   "rev": 13024.756848280642,
-   "price": 2709.258795900267,
-   "c_mat": 6278.647668961064,
-   "c_tra": 844.092126295767,
-   "c_ovh": 1127.7896030434683,
-   "cc": 8250.5293983003,
-   "cc_t": 1716.1793961727242,
-   "c_prv": 81.73279410558621,
-   "ebitda": 4692.494655874756,
-   "mgn": 0.3602750293564365,
+   "price_loc": 3327.9907760823503,
+   "price_exp_cem": 2146.780904845988,
+   "price_exp_clk": 1395.407588149892,
+   "rev_goods": 12783.987864453517,
+   "rev": 13349.267943732259,
+   "price": 2776.759828738019,
+   "c_mat": 6130.246677826275,
+   "c_tra": 824.1413160646698,
+   "c_ovh": 1101.1333700921368,
+   "cc": 8055.521363983082,
+   "cc_t": 1675.616087513731,
+   "c_prv": 83.76916214366028,
+   "ebitda": 5209.977417605516,
+   "mgn": 0.3902818820901488,
    "util": 0.7064756446991404
   },
   {
@@ -1105,20 +1352,20 @@
    "sold": 4.847784527220631,
    "kiln_util": 0.925,
    "vol": 4.847784527220631,
-   "price_loc": 3362.664944753427,
-   "price_exp_cem": 2315.6031811728067,
-   "price_exp_clk": 1505.1420677623244,
-   "rev_goods": 13312.84257495907,
-   "rev": 14154.879867825231,
-   "price": 2919.8657218250205,
-   "c_mat": 6835.513178587107,
-   "c_tra": 935.9003889391124,
-   "c_ovh": 1250.4544175312283,
-   "cc": 9021.867985057448,
-   "cc_t": 1861.0290813048853,
-   "c_prv": 88.82452818909921,
-   "ebitda": 5044.187354578684,
-   "mgn": 0.3563567760150604,
+   "price_loc": 3627.509945929762,
+   "price_exp_cem": 2196.991440496519,
+   "price_exp_clk": 1428.0444363227375,
+   "rev_goods": 13922.854589968052,
+   "rev": 14538.492873565561,
+   "price": 2998.997334128809,
+   "c_mat": 6673.950214060211,
+   "c_tra": 913.7796150647312,
+   "c_ovh": 1220.898901006885,
+   "cc": 8808.628730131826,
+   "cc_t": 1817.0421314459818,
+   "c_prv": 91.23177180827959,
+   "ebitda": 5638.632371625456,
+   "mgn": 0.3878416023353996,
    "util": 0.720916905444126
   },
   {
@@ -1134,20 +1381,20 @@
    "sold": 4.888223896848139,
    "kiln_util": 0.93,
    "vol": 4.888223896848139,
-   "price_loc": 3631.746696193941,
-   "price_exp_cem": 2389.524871350293,
-   "price_exp_clk": 1553.1911663776905,
-   "rev_goods": 14436.533442953745,
-   "rev": 15349.64418322057,
-   "price": 3140.127070103686,
-   "c_mat": 7411.870581140101,
-   "c_tra": 1028.3794683085785,
-   "c_ovh": 1374.015508747201,
-   "cc": 9814.26555819588,
-   "cc_t": 2007.736504157264,
-   "c_prv": 96.32189853792069,
-   "ebitda": 5439.056726486768,
-   "mgn": 0.3543441568784025,
+   "price_loc": 3917.7846969547227,
+   "price_exp_cem": 2267.1266527416146,
+   "price_exp_clk": 1473.6323242820495,
+   "rev_goods": 15129.220134265117,
+   "rev": 15798.201272826962,
+   "price": 3231.88986556312,
+   "c_mat": 7236.684936332932,
+   "c_tra": 1004.0728754869887,
+   "c_ovh": 1341.5395244137153,
+   "cc": 9582.297336233634,
+   "cc_t": 1960.2820039426122,
+   "c_prv": 99.1366784740421,
+   "ebitda": 6116.7672581192855,
+   "mgn": 0.3871812463004998,
    "util": 0.7354727793696276
   },
   {
@@ -1163,20 +1410,20 @@
    "sold": 4.91113288538682,
    "kiln_util": 0.933,
    "vol": 4.91113288538682,
-   "price_loc": 3885.9746779158695,
-   "price_exp_cem": 2466.1166488245285,
-   "price_exp_clk": 1602.9758217359436,
-   "rev_goods": 15459.016409117821,
-   "rev": 16436.799196994525,
-   "price": 3346.844726173582,
-   "c_mat": 7964.38252850928,
-   "c_tra": 1115.9477628438624,
-   "c_ovh": 1491.015311323889,
-   "cc": 10571.345602677031,
-   "cc_t": 2152.5268913273135,
-   "c_prv": 103.14400031968042,
-   "ebitda": 5762.309593997814,
-   "mgn": 0.35057370507096386,
+   "price_loc": 4192.035788687434,
+   "price_exp_cem": 2339.795182864329,
+   "price_exp_clk": 1520.8668688618138,
+   "rev_goods": 16225.051042941637,
+   "rev": 16942.4874358029,
+   "price": 3449.812463070513,
+   "c_mat": 7776.137810327324,
+   "c_tra": 1089.5714215053647,
+   "c_ovh": 1455.7739406237197,
+   "cc": 10321.483172456408,
+   "cc_t": 2101.650151468758,
+   "c_prv": 106.31728894115648,
+   "ebitda": 6514.6869744053365,
+   "mgn": 0.3845177397410067,
    "util": 0.7431919770773641
   },
   {
@@ -1192,20 +1439,20 @@
    "sold": 4.928816332378224,
    "kiln_util": 0.935,
    "vol": 4.928816332378224,
-   "price_loc": 4138.488763131809,
-   "price_exp_cem": 2542.7038067705685,
-   "price_exp_clk": 1652.7574744008696,
-   "rev_goods": 16481.830420533945,
-   "rev": 17524.306194632718,
-   "price": 3555.4796553307538,
-   "c_mat": 8477.30684400726,
-   "c_tra": 1198.355794676344,
-   "c_ovh": 1601.1204984387161,
-   "cc": 11276.78313712232,
-   "cc_t": 2287.9292667172917,
-   "c_prv": 109.96831086625926,
-   "ebitda": 6137.5547466441385,
-   "mgn": 0.3502309694020256,
+   "price_loc": 4464.437996655657,
+   "price_exp_cem": 2412.4593300841407,
+   "price_exp_clk": 1568.0985645546914,
+   "rev_goods": 17322.313094611927,
+   "rev": 18088.26802379646,
+   "price": 3669.9010074633097,
+   "c_mat": 8276.9387386231,
+   "c_tra": 1170.031671865434,
+   "c_ovh": 1563.276701267366,
+   "cc": 11010.2471117559,
+   "cc_t": 2233.8521805788814,
+   "c_prv": 113.50727720577558,
+   "ebitda": 6964.513634834784,
+   "mgn": 0.3850293253987861,
    "util": 0.7501432664756448
   }
  ],
@@ -1360,39 +1607,39 @@
    "FY2030E"
   ],
   "revenue": [
-   13024.756848280642,
-   14154.879867825231,
-   15349.64418322057,
-   16436.799196994525,
-   17524.306194632718
+   13349.267943732259,
+   14538.492873565561,
+   15798.201272826962,
+   16942.4874358029,
+   18088.26802379646
   ],
   "ebitda": [
-   4692.494655874756,
-   5044.187354578684,
-   5439.056726486768,
-   5762.309593997814,
-   6137.5547466441385
+   5209.977417605516,
+   5638.632371625456,
+   6116.7672581192855,
+   6514.6869744053365,
+   6964.513634834784
   ],
   "dna": [
-   325.61892120701606,
-   382.18175643128126,
-   445.1396813133965,
-   509.54077510683027,
-   578.3021044228797
+   343.676903211387,
+   404.236978952341,
+   471.800642451959,
+   540.8685804030847,
+   614.7008475598847
   ],
   "ebit": [
-   4366.87573466774,
-   4662.005598147402,
-   4993.917045173372,
-   5252.768818890983,
-   5559.252642221259
+   4866.300514394129,
+   5234.395392673115,
+   5644.966615667327,
+   5973.818394002252,
+   6349.812787274899
   ],
   "nopat": [
-   3326.685934669885,
-   3551.5158646686914,
-   3804.3660050130748,
-   4001.5592862311514,
-   4235.038662844155
+   3707.147731865448,
+   3987.5624101383787,
+   4300.335567815369,
+   4550.854852550916,
+   4837.287381346018
   ],
   "capex": [
    1012.0,
@@ -1402,39 +1649,39 @@
    1230.0
   ],
   "dwc": [
-   69.29241207367704,
-   135.61476234535075,
-   143.37171784744052,
-   130.4586016528747,
-   130.50083971658313
+   108.23374352787104,
+   142.70699157999633,
+   151.16500791136806,
+   137.31433955711267,
+   137.493670559227
   ],
   "fcff": [
-   1072.1121890659444,
-   2736.082858754622,
-   2990.1339684790305,
-   3208.6414596851073,
-   3452.8399275504516
+   1465.295445774482,
+   3187.092397510724,
+   3504.9712023559605,
+   3782.409093396888,
+   4084.494558346676
   ],
   "df": [
-   0.9553128303049964,
-   0.8305717225918348,
-   0.6967236258160606,
-   0.5965280192910443,
-   0.5177771918414789
+   0.941632706241097,
+   0.7990702897844318,
+   0.6577273485745945,
+   0.5532105566904961,
+   0.4720798480657531
   ],
   "pv": [
-   1024.2025297410728,
-   2272.513053149818,
-   2083.2969801944764,
-   1914.0445345610822,
-   1787.8017615652082
+   1379.77011604738,
+   2546.710845648654,
+   2305.3154157558943,
+   2092.468640189287,
+   1928.207570529694
   ],
   "fwd_wacc": [
-   0.2451592218162085,
-   0.2073360262746093,
-   0.1770774698413299,
-   0.15892233598136227,
-   0.14530598558638658
+   0.2719611926825002,
+   0.2312781475826552,
+   0.19873171150277924,
+   0.1792038498548536,
+   0.16455795361890946
   ],
   "glide": [
    0.0,
@@ -1444,81 +1691,81 @@
    1.0
   ],
   "t_mid": [
-   0.20850000000000002,
-   0.917,
-   1.917,
-   2.917,
-   3.917
+   0.25,
+   1.0,
+   2.0,
+   3.0,
+   4.0
   ],
   "treasury": [
    127.08803423239996,
-   199.8303358175639,
-   279.11625142659204,
-   364.4846679974838,
-   468.87549348113487
+   219.0757553232148,
+   322.6905198198582,
+   433.58145362029916,
+   567.0114351158778
   ],
   "pbt": [
-   4493.96376890014,
-   4861.835933964966,
-   5273.033296599964,
-   5617.253486888467,
-   6028.128135702394
+   4993.388548626529,
+   5453.47114799633,
+   5967.657135487185,
+   6407.399847622551,
+   6916.824222390777
   ],
   "tax": [
-   1070.4621697520133,
-   1158.089319470455,
-   1256.0365312501115,
-   1338.0297805768328,
-   1435.90012192431
+   1189.4251522828392,
+   1299.0168274527257,
+   1421.4959296730474,
+   1526.2426437036916,
+   1647.587529773483
   ],
   "pat": [
-   3423.501599148127,
-   3703.746614494511,
-   4016.9967653498525,
-   4279.223706311634,
-   4592.228013778084
+   3803.96339634369,
+   4154.454320543604,
+   4546.161205814137,
+   4881.1572039188595,
+   5269.2366926172945
   ],
   "dividends": [
-   1903.4668891263586,
-   2059.2831176589484,
-   2233.4502015345183,
-   2379.2483807092685,
-   2553.278775660615
+   2115.003648367092,
+   2309.876602222244,
+   2527.6656304326607,
+   2713.923405378886,
+   2929.695601095216
   ],
   "cash": [
-   2221.9602881551073,
-   3050.9907790766006,
-   4020.3053063578914,
-   5127.362805414212,
-   6384.113308237977
+   2370.001976660114,
+   3414.1096823538187,
+   4637.240892275886,
+   6036.028931661832,
+   7622.777200184568
   ],
   "equity": [
-   4160.816785021769,
-   5805.280281857331,
-   7588.8268456726655,
-   9488.80217127503,
-   11527.751409392498
+   4329.741822976598,
+   6174.3195412979585,
+   8192.815116679434,
+   10360.048915219408,
+   12699.590006741486
   ],
   "ppe": [
-   3707.047971792984,
-   4386.866215361702,
-   5057.726534048306,
-   5720.185758941476,
-   6371.883654518596
+   3688.989989788613,
+   4346.753010836272,
+   4990.952368384313,
+   5622.083787981228,
+   6237.382940421343
   ],
   "wc": [
-   2372.134109073677,
-   2507.7488714190276,
-   2651.120589266468,
-   2781.5791909193426,
-   2912.0800306359256
+   2411.075440527871,
+   2553.782432107867,
+   2704.947440019235,
+   2842.2617795763476,
+   2979.755450135575
   ],
   "total_assets": [
-   8301.142369021767,
-   9945.605865857331,
-   11729.152429672666,
-   13629.12775527503,
-   15668.076993392498
+   8470.067406976597,
+   10314.645125297957,
+   12333.140700679432,
+   14500.374499219408,
+   16839.915590741486
   ],
   "volume_mt": [
    4.807498223495703,
@@ -1528,78 +1775,81 @@
    4.928816332378224
   ],
   "price_t": [
-   2709.258795900267,
-   2919.8657218250205,
-   3140.127070103686,
-   3346.844726173582,
-   3555.4796553307538
+   2776.759828738019,
+   2998.997334128809,
+   3231.88986556312,
+   3449.812463070513,
+   3669.9010074633097
   ],
   "margin": [
-   0.3602750293564365,
-   0.3563567760150604,
-   0.3543441568784025,
-   0.35057370507096386,
-   0.3502309694020256
+   0.3902818820901488,
+   0.3878416023353996,
+   0.3871812463004998,
+   0.3845177397410067,
+   0.3850293253987861
   ],
   "eps": [
-   9.13256577707922,
-   9.880150074100222,
-   10.71577918789361,
-   11.415298296472859,
-   12.25027159607867
+   10.14748932477636,
+   11.082462283550932,
+   12.127383336299413,
+   13.02102188126488,
+   14.056266456046334
   ],
   "dps": [
-   5.077706572056046,
-   5.493363441199724,
-   5.957973228468847,
-   6.34690585283891,
-   6.811151007419742
+   5.642004064575658,
+   6.161849029654319,
+   6.742825134982475,
+   7.2396881659832735,
+   7.815284149561762
   ]
  },
  "wacc": {
   "rf": 0.2295,
   "rf_star": 0.1955,
-  "beta": 0.6280798261200432,
-  "ke_exp": 0.2546023116378961,
+  "beta": 0.9275220650537075,
+  "ke_exp": 0.28277982632155385,
   "kd": 0.07892135739801572,
   "kd_at": 0.061164051983462184,
   "wd_gross": 0.04881707392610505,
   "wd_net": -0.11743013708947825,
-  "wacc_exp": 0.2451592218162085,
-  "beta_term": 0.7210890283283314,
-  "ke_term": 0.15547623198298322,
+  "wacc_exp": 0.2719611926825002,
+  "beta_term": 1.0648741717662407,
+  "ke_term": 0.17954119202363683,
   "kd_term_at": 0.10462500000000001,
-  "wacc_term": 0.14530598558638658,
-  "ke_raw_retired": 0.28860231163789607,
+  "wacc_term": 0.16455795361890946,
+  "ke_raw_retired": 0.3167798263215539,
   "mktcap": 22117.179255000003,
   "debt_total": 1135.108658,
   "eur_share": 0.9109398221152498
  },
  "dcf": {
-  "sum_pv": 9081.858859211658,
-  "tv": 20174.352997415568,
-  "pv_tv": 9760.718011512829,
-  "ev": 18842.576870724486,
-  "tv_share": 0.5180139679662368,
-  "df_tv": 0.4838181434003472,
-  "cash_at_val": 3186.9619263724344,
-  "net_cash": 1926.4528373724345,
-  "nci": 0.158005,
-  "equity": 20768.87170309692,
-  "fv": 55.40324181284112,
-  "roic_term": 0.08808826189903947,
-  "rr_term": 0.5676125163793839,
+  "sum_pv": 10252.47258817091,
+  "tv": 22303.97514705223,
+  "pv_tv": 9757.019690298506,
+  "ev": 20009.492278469414,
+  "tv_share": 0.4876195534854845,
+  "df_tv": 0.43745653525748424,
+  "cash_at_val": 1970.50114,
+  "net_cash": 687.2127460000002,
+  "nci": 0.216054,
+  "net_cash_rolled": 1860.0377436433967,
+  "rollforward_gap": 1172.8249976433965,
+  "rollforward_gap_per_share": 3.128639238447063,
+  "equity": 20696.488970469414,
+  "fv": 55.21015293944613,
+  "roic_term": 0.1006149581271502,
+  "rr_term": 0.4969440024694288,
   "ic_repl": 50481.079999999994,
-  "nopat_term": 4446.790595986363,
+  "nopat_term": 5079.151750413319,
   "net_debt_bs": -2324.2825709999997,
-  "rem": 0.41700000000000004
+  "rem": 0.5
  },
  "lenses": {
   "values": {
-   "DCF (cash flow)": 55.40324181284112,
-   "Relative multiples": 48.9606932457765,
-   "Normalised earnings": 52.94667167624527,
-   "Asset / replacement cost": 68.87446529898703
+   "DCF (cash flow)": 55.21015293944613,
+   "Relative multiples": 45.65472961275834,
+   "Normalised earnings": 49.64070804322712,
+   "Asset / replacement cost": 65.56850166596888
   },
   "weights": {
    "DCF (cash flow)": 0.5,
@@ -1607,65 +1857,65 @@
    "Normalised earnings": 0.22,
    "Asset / replacement cost": 0.08
   },
-  "central": 54.65198454826878,
-  "low": 48.9606932457765,
-  "high": 68.87446529898703,
+  "central": 52.90245829506221,
+  "low": 45.65472961275834,
+  "high": 65.56850166596888,
   "ebitda_norm": 3650.55003335568,
   "nopat_norm": 2560.2412428793573,
-  "ev_per_t_spot": 80.28184661084521,
+  "ev_per_t_spot": 85.20947341153082,
   "ev_asset": 23892.5,
-  "ev_spot": 20190.88442262757,
+  "ev_spot": 21430.182563000002,
   "bvps": 12.384575659804227,
   "roe_fy25": 0.7753426773153149
  },
  "lens_ranges": {
   "DCF (cash flow)": {
-   "bear": 50.5480545767635,
-   "base": 55.40324181284112,
-   "bull": 64.13577583906877
+   "bear": 51.396913977603894,
+   "base": 55.21015293944613,
+   "bull": 63.33997671719449
   },
   "Relative multiples": {
-   "bear": 44.06462392119885,
-   "base": 48.9606932457765,
-   "bull": 53.85676257035415
+   "bear": 41.08925665148251,
+   "base": 45.65472961275834,
+   "bull": 50.220202574034175
   },
   "Normalised earnings": {
-   "bear": 47.65200450862075,
-   "base": 52.94667167624527,
-   "bull": 58.241338843869805
+   "bear": 44.67663723890441,
+   "base": 49.64070804322712,
+   "bull": 54.60477884754984
   },
   "Asset / replacement cost": {
-   "bear": 61.98701876908833,
-   "base": 68.87446529898703,
-   "bull": 75.76191182888574
+   "bear": 59.01165149937199,
+   "base": 65.56850166596888,
+   "bull": 72.12535183256577
   },
   "Weighted central": {
-   "bear": 49.52935456604515,
-   "base": 54.65198454826878,
-   "bull": 61.71328792556743
+   "bear": 48.466100631607176,
+   "base": 52.90245829506221,
+   "bull": 59.49710836647031
   }
  },
  "sensitivity": {
   "nc_grid": [
-   426.4528373724345,
-   1176.4528373724345,
-   1926.4528373724345,
-   2676.4528373724343,
-   3426.4528373724343
+   -812.7872539999998,
+   -62.78725399999985,
+   687.2127460000002,
+   1437.2127460000002,
+   2187.212746
   ],
   "net_cash": [
-   53.22941162256606,
-   55.230118832550644,
-   57.23082604253523,
-   59.23153325251982,
-   61.2322404625044
+   53.26876672060349,
+   55.26947393058807,
+   57.27018114057266,
+   59.27088835055724,
+   61.271595560541826
   ],
   "wacc_grid": [
-   0.2151592218162085,
-   0.23015922181620851,
-   0.2451592218162085,
-   0.2601592218162085,
-   0.2751592218162085
+   0.2419611926825002,
+   0.2569611926825002,
+   0.2719611926825002,
+   0.2869611926825002,
+   0.3019611926825002
   ],
   "g_grid": [
    0.03,
@@ -1676,39 +1926,39 @@
   ],
   "wacc_g": [
    [
-    65.4358916875569,
-    62.501660281659845,
-    58.95167921684183,
-    54.56940460534815,
-    49.0232717487574
+    63.68177393875279,
+    61.59359575968167,
+    59.140854822093104,
+    56.21894997058018,
+    52.679031564482734
    ],
    [
-    64.4439240155076,
-    61.56426472056051,
-    58.08030774646356,
-    53.77953658279984,
-    48.33655311551247
+    62.64701306522353,
+    60.59895926648566,
+    58.19334778902891,
+    55.32758739048206,
+    51.85568857864073
    ],
    [
-    63.47697718452289,
-    60.65047312877611,
-    57.23082604253523,
-    53.00944222874014,
-    47.666930052856834
+    61.63891725772899,
+    59.629918815872486,
+    57.27018114057266,
+    54.459069352902496,
+    51.05337790692043
    ],
    [
-    62.534209175820116,
-    59.75949172543742,
-    56.402498684846876,
-    52.258458166282814,
-    47.013830360720064
+    60.65657237078804,
+    58.68559741718179,
+    56.37052152752652,
+    53.612614497909746,
+    50.27138117493181
    ],
    [
-    61.61481376702958,
-    58.890560465161506,
-    55.59462149526185,
-    51.52594918262109,
-    46.376706107654
+    59.69910370997297,
+    57.76515591739703,
+    55.49357154325129,
+    52.787475150550755,
+    49.50901095818169
    ]
   ],
   "beta_grid": [
@@ -1719,11 +1969,11 @@
    1.3
   ],
   "beta": [
-   57.47276405811282,
-   52.17638945894387,
-   47.995379097873936,
-   45.38931766855932,
-   43.13157219177125
+   66.99388979580507,
+   60.10910262517972,
+   54.689160431519255,
+   51.31929179150657,
+   48.40610720477044
   ],
   "mgn_grid": [
    -0.04,
@@ -1733,54 +1983,54 @@
    0.04
   ],
   "mgn": [
-   45.323478533341074,
-   51.27715228793815,
-   57.23082604253523,
-   63.184499797132325,
-   69.13817355172941
+   47.152198987724866,
+   52.211190064148774,
+   57.27018114057266,
+   62.32917221699657,
+   67.38816329342048
   ],
   "wt_grid": [
-   0.1253059855863866,
-   0.13530598558638657,
-   0.14530598558638658,
-   0.15530598558638659,
-   0.16530598558638657
+   0.14455795361890947,
+   0.15455795361890945,
+   0.16455795361890946,
+   0.17455795361890947,
+   0.18455795361890945
   ],
   "exp_term": [
    [
-    68.64597961649716,
-    63.244522868005326,
-    58.95167921684183,
-    55.452280308516265,
-    52.540467902875676
+    67.27793824599541,
+    62.831324940965665,
+    59.14100967416354,
+    56.025354385356046,
+    53.35669884588574
    ],
    [
-    67.58840394218933,
-    62.29070054744534,
-    58.08030774646356,
-    54.64811079075967,
-    51.792205620567564
+    66.1684505130693,
+    61.81036629928485,
+    58.19350264109935,
+    55.13984096087283,
+    52.52426500914405
    ],
    [
-    66.55767856176094,
-    61.360964335512776,
-    57.23082604253523,
-    53.864041226304245,
-    51.06255463427581
+    65.0877410195933,
+    60.815760114213276,
+    57.2703359926431,
+    54.27697027669902,
+    51.71302091165267
    ],
    [
-    65.55289576343243,
-    60.45450253462565,
-    56.402498684846876,
-    53.09939834102199,
-    50.35089334641367
+    64.03481882481229,
+    59.84660159736409,
+    56.37067637959696,
+    53.43596923979151,
+    50.92224501484644
    ],
    [
-    64.57318654984805,
-    59.57053799713047,
-    55.59462149526185,
-    52.35353740838655,
-    49.656626466998944
+    63.00873588457741,
+    58.90202505485783,
+    55.49372639532173,
+    52.616098041896,
+    50.15124679172289
    ]
   ]
  },
@@ -1789,27 +2039,27 @@
    "choice": "Cost of debt: currency composition as contracted (adopted) vs the pound-equivalent under uncovered interest parity",
    "adopted": "7.89%",
    "alternative": "13.36%",
-   "fv_adopted": 55.40324181284112,
-   "fv_alternative": 57.11539589886546,
-   "effect": 0.030903500048033328,
+   "fv_adopted": 55.21015293944613,
+   "fv_alternative": 57.14477981467617,
+   "effect": 0.0350411431997284,
    "note": "91% of the book is euro-denominated at Euribor-linked rates. Adopting the contracted rate means that debt is NOT compensated for pound depreciation beyond what this study already assumes; if the pound falls faster, the true pound cost of servicing it is understated by construction. The alternative is computed rather than described \u2014 and it is small, because debt is only 4.9% of the capital structure."
   },
   {
-   "choice": "Beta: contemporaneous regression (adopted) vs lead-lag sum-beta",
-   "adopted": "0.628",
-   "alternative": "0.919",
-   "fv_adopted": 55.40324181284112,
-   "fv_alternative": 49.580224350832346,
-   "effect": -0.1051024682216184,
-   "note": "The regression passes the usability gate, so it is adopted. It is also statistically weak, and the standard correction for a thinly traded share is higher."
+   "choice": "Beta: same-country peer median (adopted, tier 2) vs the own-stock regression against the EGX30 that FAILS the usability gate",
+   "adopted": "0.928",
+   "alternative": "0.698",
+   "fv_adopted": 55.21015293944613,
+   "fv_alternative": 63.39810772104384,
+   "effect": 0.14830523636799486,
+   "note": "THIS IS THE STUDY'S MOST CONSEQUENTIAL CONTESTED JUDGEMENT AND IT IS PUBLISHED BOTH WAYS. The only conforming regressor for an EGX listing is the EGX30, and ARCC regressed against it returns an R-squared of 4.7% \u2014 below the 5% usability floor, so tier 1 is not available. Revisions 1-3 carried 0.628 from an equal-weight COMPOSITE of the covered Egyptian names, which correlates better with a covered name precisely because it contains one; SIGCM clause 6 calls that a hard fail rather than a tier. The adopted figure is the median equity beta of the Egyptian building-materials and construction peers that do clear the gate. Peer leverage is NOT sourced, so the unlever-and-re-lever step could not be performed; ARCC holds net cash and its peers carry debt, so performing it could only lower the beta and raise the value \u2014 the adopted figure is the conservative end of tier 2, and the alternative is shown beside it."
   },
   {
    "choice": "Capex: economic maintenance in dollars per tonne (adopted) vs book depreciation",
    "adopted": "USD 4.00/t",
    "alternative": "book depreciation",
-   "fv_adopted": 55.40324181284112,
-   "fv_alternative": 62.66429612426797,
-   "effect": 0.131058293230486,
+   "fv_adopted": 55.21015293944613,
+   "fv_alternative": 62.31581762408445,
+   "effect": 0.12870213731216662,
    "note": "Setting capex equal to book depreciation would flatter free cash flow by construction. The adopted treatment is the conservative one and the size of the conservatism is published."
   }
  ],
@@ -1863,8 +2113,8 @@
    "FY2025"
   ],
   "stable_implied_g": 0.0658249510576888,
-  "roic_repl": 0.08808826189903947,
-  "rr_repl": 0.5676125163793839,
+  "roic_repl": 0.1006149581271502,
+  "rr_repl": 0.4969440024694288,
   "ic_repl": 50481.079999999994,
   "roic_book_fy25": 0.6059802218552789,
   "ic_book_fy25": 5777.682893,
@@ -1873,46 +2123,212 @@
   "share_of_gdp": 0.0006915177822777778
  },
  "growth_destroys_value": {
-  "fv_at_g3": 63.47697718452289,
-  "fv_at_g7": 47.666930052856834,
-  "roic_term": 0.08808826189903947,
-  "wacc_term": 0.14530598558638658,
-  "nopat_term": 4235.038662844155,
+  "fv_at_g3": 61.63891725772899,
+  "fv_at_g7": 51.05337790692043,
+  "roic_term": 0.1006149581271502,
+  "wacc_term": 0.16455795361890946,
+  "nopat_term": 4837.287381346018,
   "ic_replacement": 50481.079999999994,
-  "n_over_ic": 0.08389358276098996,
-  "hurdle": 0.12687088639634692,
+  "n_over_ic": 0.09582376964490495,
+  "hurdle": 0.14130507898515413,
   "analytic_adds_value": false,
   "model_adds_value": false,
-  "spread_pct": -0.2490674230706893,
+  "spread_pct": -0.17173467383516094,
   "holds": true
  },
+ "calibration": {
+  "local": 1.078760449086537,
+  "export": 0.9487771732045155,
+  "cost": 0.9763641792055924,
+  "svc_share": 0.0442178203915956,
+  "svc_share_fy25": 0.06325,
+  "fy26_cogs_implied": 7853.955347115548,
+  "fy26_ga_implied": 510.71890896105197,
+  "fy26_cashcost_implied": 8055.521363983082,
+  "h1_share_loc": 0.4584920700503035,
+  "h1_share_exp": 0.3918904231022645,
+  "fy26_rev_implied": 13349.26794373226,
+  "fy26_rev_model": 13024.756848280642,
+  "basis": "FY2026 channel prices scaled so the model reproduces the H1-2026 reviewed actual grossed up on FY2025's own per-channel seasonality"
+ },
+ "seasonality": {
+  "shares_rev": [
+   0.4418550805482416,
+   0.455498966132817,
+   0.5269110469751788
+  ],
+  "shares_cogs": [
+   0.4498462619510918,
+   0.4607919766604138,
+   0.5328801758113294
+  ],
+  "median": 0.455498966132817,
+  "fy26_low": 11540.046051238774,
+  "fy26_median": 13349.26794373226,
+  "fy26_high": 13761.475231778228,
+  "fy26_if_doubled": 12161.155494,
+  "fy26_on_fy25_only": 13702.83841366398,
+  "level_adjust": 0.974197282398138
+ },
+ "transport_split": {
+  "identified": false,
+  "pairs": 45,
+  "local_range": [
+   -425.0,
+   722.0
+  ],
+  "export_range": [
+   -4483.0,
+   1040.0
+  ],
+  "local_median": 17.0,
+  "export_median": 211.0,
+  "impossible_local_solves": 9,
+  "direction": "export-weighted; a per-despatched-tonne driver is CONSERVATIVE when the export share falls"
+ },
+ "rollforward_check": {
+  "rolled": 1860.0377436433967,
+  "disclosed": 687.2127460000002,
+  "gap": 1172.8249976433965,
+  "gap_per_share": 3.128639238447063
+ },
+ "walkforward": {
+  "source": "engine/arcc_walkforward, [R-FCAL-01], run 01-09-2026",
+  "origins": 8,
+  "cells": 25,
+  "span": "FY2014-FY2025",
+  "adopted_correction": {
+   "driver": "manufacturing depreciation",
+   "factor": 1.0298,
+   "of_candidates": 12,
+   "watch_flags": 11
+  },
+  "ranges": {
+   "revenue": {
+    "3": {
+     "n": 5,
+     "low": 0.49038433296420136,
+     "high": 2.9929446833526527,
+     "median": 1.6810059575218448
+    },
+    "4": {
+     "n": 4,
+     "low": 0.8109149993930299,
+     "high": 4.022412384953802,
+     "median": 1.3558038357961677
+    },
+    "5": {
+     "n": 3,
+     "low": 0.9067267473771717,
+     "high": 3.7737985422492404,
+     "median": 1.7810709200211148
+    }
+   },
+   "gross_profit": {
+    "3": {
+     "n": 5,
+     "low": 0.12915542758403606,
+     "high": 7.3312048894283715,
+     "median": 2.0199451497616043
+    },
+    "4": {
+     "n": 4,
+     "low": 0.5251889040536908,
+     "high": 11.754375299163017,
+     "median": 1.7208724330134957
+    },
+    "5": {
+     "n": 3,
+     "low": 0.5991333996985391,
+     "high": 16.67526717797839,
+     "median": 2.238732302774858
+    }
+   },
+   "pbt": {
+    "3": {
+     "n": 4,
+     "low": 0.053151365500126585,
+     "high": 6.48325838415298,
+     "median": 1.6589409391749506
+    },
+    "4": {
+     "n": 4,
+     "low": 0.3719717117206928,
+     "high": 37.780537615219885,
+     "median": 1.9956390964982467
+    },
+    "5": {
+     "n": 3,
+     "low": 0.5077077422119393,
+     "high": 46.668373505721256,
+     "median": 2.3555178261737537
+    }
+   },
+   "vol_total": {
+    "3": {
+     "n": 5,
+     "low": 0.6846006582762485,
+     "high": 1.5168970232121268,
+     "median": 1.0264010833889206
+    },
+    "4": {
+     "n": 4,
+     "low": 0.9032544883116214,
+     "high": 1.4382825391363208,
+     "median": 0.9573563642977928
+    },
+    "5": {
+     "n": 3,
+     "low": 0.9034292392852317,
+     "high": 1.1050118258386066,
+     "median": 1.0273554090609982
+    }
+   }
+  }
+ },
+ "move_decomposition": {
+  "prior_central": 54.65,
+  "central": 52.90245829506221,
+  "total": -1.7475417049377882,
+  "from_bridge": -3.128639238447063,
+  "from_beta": -5.352731140533024,
+  "from_half_year_calibration": 6.733828674042298,
+  "fv_dcf_at_retired_composite_beta": 65.91561522051218
+ },
+ "counterweight": {
+  "prior_central": 54.65,
+  "move": -1.7475417049377882,
+  "fv_on_old_bridge": 58.338792177893204,
+  "seasonality_lift": 0.09769733232326838
+ },
+ "standard_version": "2026.09.01",
  "experts": [
   {
    "label": "Expert 1",
    "method": "Replacement-cost industrialist",
-   "central": 68.87446529898703,
-   "low": 58.81090803276457,
-   "high": 78.93802256520951,
-   "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 80 per annual tonne.",
+   "central": 65.56850166596888,
+   "low": 55.50509925181686,
+   "high": 75.6322137842618,
+   "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 85 per annual tonne.",
    "falsifier": "Find an Egyptian line built, bought or restarted below USD 95 per annual tonne. The 12.6Mt revival programme is the live test and it runs against this lens: restarting a mothballed kiln costs a fraction of building one, which is why this valuation is a ceiling and carries only 8% of the weight."
   },
   {
    "label": "Expert 2",
    "method": "Mid-cycle earnings-power analyst",
-   "central": 52.94667167624527,
-   "low": 46.11694752434044,
-   "high": 59.77639582815011,
+   "central": 49.64070804322712,
+   "low": 42.81113874339273,
+   "high": 56.47058704720239,
    "summary": "Refuses to capitalise a peak, and refuses it on both legs. The audited EBITDA margin went 22.0% to 23.1% to 39.3% across FY2023 to FY2025 \u2014 the last of those is the best year the Egyptian industry has had in over a decade. The margin is normalised to 31.2%, the midpoint of the two most recent audited years, the revenue base is cut 6%, and what is left is capitalised at 7 times with cash added back at face.",
    "falsifier": "Two consecutive years of realised prices above EGP 4,200 a tonne WITH the revival proceeding would prove the mid-cycle base too low. Equally, the first quarter of 2026 already ran a 42.9% gross margin against 40.6% for FY2025 as a whole \u2014 if that holds for the year, this lens is too cautious."
   },
   {
    "label": "Expert 3",
    "method": "Cash-return and distribution investor",
-   "central": 52.3465209611052,
-   "low": 46.44553116758097,
-   "high": 60.214507352470825,
-   "summary": "Ignores the terminal value and asks what the cash stream is worth to someone who has to be paid in cash. Average free cash flow to the firm across FY2027-FY2030 is EGP 3097mn; required at a 17.5% cash return that is a business worth EGP 17697mn before net cash of EGP 1926mn is added back. This is not hypothetical: the company declared EGP 2002mn for FY2025 on EGP 3600mn of attributable profit, a 56% payout, and the audited cash flow shows EGP 1702mn actually paid out during 2025.",
-   "falsifier": "A required cash return above 20% takes this valuation to EGP 46.45. So would maintenance capital spending materially above the USD 4.00 per tonne assumed here \u2014 the audited FY2024 and FY2025 capex of EGP 912mn and EGP 796mn is the number to watch, and both years carried the alternative-fuel and silo programmes on top of maintenance."
+   "central": 57.31513811810864,
+   "low": 50.37984508234052,
+   "high": 66.5621954991328,
+   "summary": "Ignores the terminal value and asks what the cash stream is worth to someone who has to be paid in cash. Average free cash flow to the firm across FY2027-FY2030 is EGP 3640mn; required at a 17.5% cash return that is a business worth EGP 20799mn before net cash of EGP 687mn is added back. This is not hypothetical: the company declared EGP 2002mn for FY2025 on EGP 3600mn of attributable profit, a 56% payout, and the audited cash flow shows EGP 1702mn actually paid out during 2025.",
+   "falsifier": "A required cash return above 20% takes this valuation to EGP 50.38. So would maintenance capital spending materially above the USD 4.00 per tonne assumed here \u2014 the audited FY2024 and FY2025 capex of EGP 912mn and EGP 796mn is the number to watch, and both years carried the alternative-fuel and silo programmes on top of maintenance."
   }
  ],
  "peers": {
@@ -1952,12 +2368,12 @@
   }
  },
  "assert_log": [
-  "bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
-  "net cash carries a POSITIVE sign into the bridge (1,926.5)",
-  "minority interests are DEDUCTED (0.158), not added",
-  "terminal value is 51.8% of enterprise value",
-  "implied fair value to spot 0.93x is inside the plausibility band",
-  "terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
+  "bridge closes exactly: EV 20,009.49 + net cash 687.21 - NCI 0.216 = equity 20,696.49",
+  "net cash carries a POSITIVE sign into the bridge (687.2)",
+  "minority interests are DEDUCTED at the LATEST disclosed figure (0.216 at 30 June 2026, against 0.158 at 31 December 2025), not added",
+  "terminal value is 48.8% of enterprise value",
+  "implied fair value to spot 0.90x is inside the plausibility band",
+  "terminal rate 16.46% is BELOW the explicit-window rate 27.20%",
   "the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
   "the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
   "no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
@@ -1967,9 +2383,10 @@
   "the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
   "FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
   "the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
-  "the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
+  "the FY2026 EBITDA margin (39.0%) reproduces the margin the REVIEWED half implies (39.0%) to within half a point \u2014 the calibration moved price, cost and services together, so the margin is an output of the three rather than an artefact of calibrating one",
+  "the window does not MANUFACTURE margin expansion: FY2030 38.5% against FY2026 39.0%",
   "the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
-  "the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
+  "the terminal growth lever moves the model in the direction its own algebra requires: N/IC 9.58% against the hurdle W/(1+W) 14.13%, so growth destroys value, and the model destroys it \u2014 a spread of -17.2% from 3% to 7%, which is MATERIAL and is published",
   "the share count is confirmed by the declared FY2025 dividend to 0.0000%",
   "discount factors decline monotonically",
   "lens weights sum to exactly 1",
@@ -1989,35 +2406,50 @@
   "[Prices \u2014 DERIVED from the audited revenue note, not assumed] local cement EGP 2,856/t; export cement USD 46.2/t; export clinker USD 30.0/t at the 0.65 clinker ratio. Revision 3 ASSUMED EGP 3,500 and USD 62 and derived tonnes from them \u2014 the reverse, and untestable",
   "[Export cap] cement exports are 17.7% of cement production against a 30% statutory cap. Revision 3's single-product build put exports at 31.5% of volume and BREACHED the cap its own text called binding",
   "[Cost stack, DISCLOSED \u2014 notes 5 and 6, allocated to their own driver] materials and fuel EGP 1,480 per tonne of CLINKER (the kiln burns it, not the mill); transportation EGP 157 and overheads EGP 210 per tonne DESPATCHED; total cash cost EGP 1,542/t sold. Provisions and expected credit losses are EXCLUDED \u2014 revision 3 carried them inside 'cash cost', and they are not cash",
+  "\n[How much of a year IS ARCC's first half?] measured on every half the archive supports: 44.2%, 45.5% and 52.7% of the year. IT IS NOT STABLE, and it is the largest assumption in this revision, so the MEDIAN is used and the range is published: FY2026 revenue between 11,540mn and 13,761mn, central 13,349mn. Grossing up on FY2025 alone would have given 13,703mn and rested a +12.7% lift on a single year",
+  "\n[H1-2026, the latest disclosed period \u2014 filed 13-Aug-2026, a week AFTER revision 3's valuation date] revenue 6,081mn, +10.6% on H1-2025, at a gross margin of 40.5% against 40.6% for FY2025",
+  "[And the MIX TURNED] local goods 4,537mn (+18.5% y-o-y) against export goods 1,265mn (-3.8%). Revision 3 carried the export share broadly flat; local tonnes are the better-priced tonnes, and that is why the half-year margin holds",
+  "[FY2026 implied by the half, on FY2025's own per-channel seasonality] local 9,640 + export 3,144 + services 565 = 13,349mn against the pre-calibration model's 13,025mn (-2.4%)",
+  "[Export subsidy] EGP 468mn collected in the second quarter (note 29). EXCLUDED from forward operating income and left where it already is, inside the 30 June cash balance. FY2025's export subsidy was EGP 32.6mn on export revenue of 3,815mn (0.86%); a rate near the half-year figure would be implausible as a recurring entitlement, so this reads as a collection of accumulated claims. WHAT WOULD OVERTURN IT: a comparable collection in a later period with no accumulated-claims explanation",
+  "[Services recalibrated too] 6.325% of goods revenue in FY2025 against 4.422% implied by the half \u2014 export transportation services fell from 228mn to 76mn as the export leg shrank. Carrying the FY2025 ratio onto a calibrated goods base would bill revenue the company no longer earns",
+  "[Cost calibrated on the SAME half, so the margin stays an OUTPUT] H1-2026 cost of sales 3,619mn is 46.1% of a full year on the MEDIAN of the three measurable halves, implying 7,854mn for FY2026; G&A implies 511mn. Cash cost 8,056mn against the pre-calibration model's 8,251mn -> x0.9764. Calibrating price WITHOUT cost would have manufactured a margin out of the calibration",
+  "[Calibration] FY2026 local price x1.0788, export price x0.9488, and the SAME factors are carried through FY2027-FY2030 as a level shift \u2014 the path of growth is unchanged, only its starting point. NO INTERIM TONNAGE IS DISCLOSED, so the gap cannot be split into price and volume and is taken wholly on price; that is a disclosure gap, and it is flagged rather than filled",
+  "[Transport \u2014 an unidentified split, demonstrated not asserted] solving transport = a x local + b x export across all 45 available period pairs gives a local rate from -425 to +722 EGP/t and an export rate from -4,483 to +1,040, with 9 of 45 local solves NEGATIVE. The split is unidentified and is NOT built. What it hides is priced instead: the median export coefficient is 211 EGP/t against 17 local, so transport is overwhelmingly export-driven and a per-despatched-tonne driver OVERSTATES cost in a year when exports shrink \u2014 which is the year H1-2026 describes",
   "[Reconstruction] FY2025 revenue 12,447 vs AUDITED 12,447 (+0.000%); EBITDA 4,886 vs AUDITED 4,886 (+0.000%)",
   "[Capacity, and it BINDS] kiln 92% 92% 93% 93% 94%; mill 71% 72% 74% 74% 75%. Both are checked in every year against nameplate. Revision 3's kiln test could not bind because it ignored clinker exports altogether",
   "[Volume] 4.854Mt -> 4.929Mt (+1.6%), and it comes from RETAINING clinker (1.301Mt -> 1.178Mt) and grinding it into cement (3.480Mt -> 3.751Mt), not from a price assumption",
-  "[Forecast margins] 36.0%  35.6%  35.4%  35.1%  35.0%",
+  "[Forecast margins] 39.0%  38.8%  38.7%  38.5%  38.5%",
   "\n[Cost of debt \u2014 the integrity evidence, all from note 25 and note 8] 91.1% of the book is EURO-denominated. Contractual: CIB 20.60% (corridor + 0.6%), NBE 5.49% (Euribor + 3.00%), EBRD 6.84% (Euribor + 4.35%) -> blended 7.89%",
   "[Cost of debt \u2014 independently computed effective rates] FY2024 20.85%, FY2025 5.03%, Q1-2026 annualised 3.73%. The 150bp bound against the FY2025 check is NOT met: the book re-based mid-year from pound facilities to euro term debt, and interest on the under-construction alternative-fuel assets is capitalised rather than expensed, so the trailing effective rate understates the marginal contractual one. The contractual rate is adopted and the gap is disclosed rather than smoothed",
   "[Multi-currency alternative, computed as a VALUE not described] loading the euro legs with 6.0% annual pound depreciation under uncovered interest parity gives a pound-equivalent cost of debt of 13.36%",
-  "\n[Cost of capital] risk-free 22.95% less sovereign spread 3.40% = 19.55%; cost of equity 25.46% at beta 0.628; after-tax cost of debt 6.12% on a 4.88% weight -> explicit-window rate 24.52%; terminal 14.53%",
-  "\n[Free cash flow] 1,072 2,736 2,990 3,209 3,453",
-  "[Bridge] EV 18,843 = explicit 9,082 + terminal 9,761; plus net cash 1,926 (after deducting the EGP 2,002mn FY2025 dividend declared and unpaid at 31 March 2026), less minorities 0.158 = equity 20,769 -> EGP 55.40 per share",
-  "[Terminal value] 51.8% of enterprise value; terminal return on capital 8.81% against a terminal rate of 14.53%, reinvestment 56.8%",
-  "\n[Lenses] DCF 55.40 | Relative 48.96 | Normalised 52.95 | Asset 68.87",
-  "[Central] EGP 54.65 against a market price of EGP 59.00 (-7.4%); the market is paying USD 80.3 per annual tonne against a replacement cost of USD 130",
+  "\n[Cost of capital] risk-free 22.95% less sovereign spread 3.40% = 19.55%; cost of equity 28.28% at beta 0.928; after-tax cost of debt 6.12% on a 4.88% weight -> explicit-window rate 27.20%; terminal 16.46%",
+  "[The bridge, on the DISCLOSED 30-June balance sheet] cash 1,971mn less interest-bearing debt 1,283mn = net cash 687mn. The roll-forward revision 3 had to use gives 1,860mn \u2014 EGP 1,173mn or 3.13 per share too generous, because a roll-forward cannot see a working-capital build or six months of capital spending. A DISCLOSED BALANCE SHEET BEATS A ROLL-FORWARD, and the difference here is 5% of the share price",
+  "\n[Free cash flow] 1,465 3,187 3,505 3,782 4,084",
+  "[Bridge] EV 20,009 = explicit 10,252 + terminal 9,757; plus net cash 687 (the DISCLOSED 30-June balance: cash 1,971 less interest-bearing debt 1,283), less minorities 0.216 = equity 20,696 -> EGP 55.21 per share",
+  "[Terminal value] 48.8% of enterprise value; terminal return on capital 10.06% against a terminal rate of 16.46%, reinvestment 49.7%",
+  "\n[Lenses] DCF 55.21 | Relative 45.65 | Normalised 49.64 | Asset 65.57",
+  "[Central] EGP 52.90 against a market price of EGP 59.00 (-10.3%); the market is paying USD 85.2 per annual tonne against a replacement cost of USD 130",
+  "\n[THE COUNTERWEIGHT \u2014 asked because no gate will ask it] this revision moved the central UP by EGP -1.75 to 52.90. [R-GAP-01] audits a central far BELOW the price and, by the instruction that created it, does not fire on one above. So the three things that could take the upgrade back are priced here rather than left for a reader to find",
+  "[Counterweight 1 \u2014 the bridge] on revision 3's roll-forward the cash-flow lens would read EGP 58.34 instead of 55.21. The disclosed balance sheet COSTS the valuation 3.13 per share, and it is the half of this revision that moves the answer DOWN",
+  "[Counterweight 2 \u2014 the seasonality] FY2026 is grossed up from the half on the MEDIAN of the three measurable half-year shares, which lifts it +9.8% above simply doubling the half. The lift is real \u2014 FY2025's second half ran a 42.7% gross margin against 38.1% in the first \u2014 but the SHARE IS NOT STABLE (44.2% / 45.5% / 52.7%) and this remains the single largest assumption in the revision. On the WORST of the three shares FY2026 revenue is 11,540mn against the central 13,349mn and the best 13,761mn; simply doubling the half gives 12,161mn. An earlier cut of this revision grossed up on FY2025 alone, reached a central of EGP 61.15, and was wrong to rest a 12.7% lift on one year",
+  "[Counterweight 3 \u2014 is the uplift permanent?] the local price factor of x1.0788 is carried through every forecast year as a level shift. NO INTERIM TONNAGE IS DISCLOSED, so the 18.5% rise in local goods revenue cannot be split between price and volume; taking it wholly on price and carrying it forward is the assumption most capable of being wrong in this study, and \u00a77 of the delivered document says so in those words",
+  "\n[Where the move from revision 3 came from, computed leg by leg] central 54.65 -> 52.90, a move of -1.75. The BETA correction (the withdrawn composite 0.6281 against the adopted peer median 0.9275) is worth -5.35 on the weighted central \u2014 the cash-flow lens alone reads 65.92 on the withdrawn composite against 55.21 on the adopted figure. The BRIDGE moving onto the disclosed 30-June balance sheet is worth -3.13, and it moves all four lenses because every one of them adds net cash. The REVIEWED HALF, calibrated into price, cost and services together, is worth +6.73. THE GAP IS MOSTLY THE BETA, and the beta change is a correction of this house's own method rather than a view about the company",
   "\n[Contested choices, each computed]",
-  "  Cost of debt: currency composition as contracted (adopted) v: 55.40 -> 57.12 (+3.1%)",
-  "  Beta: contemporaneous regression (adopted) vs lead-lag sum-b: 55.40 -> 49.58 (-10.5%)",
-  "  Capex: economic maintenance in dollars per tonne (adopted) v: 55.40 -> 62.66 (+13.1%)",
+  "  Cost of debt: currency composition as contracted (adopted) v: 55.21 -> 57.14 (+3.5%)",
+  "  Beta: same-country peer median (adopted, tier 2) vs the own-: 55.21 -> 63.40 (+14.8%)",
+  "  Capex: economic maintenance in dollars per tonne (adopted) v: 55.21 -> 62.32 (+12.9%)",
   "\n[Terminal reconciliation \u2014 now buildable, because capex is disclosed for all three years] reinvestment rate -24% 48% 14%; book return on capital 43.9% 44.3% 60.6%",
   "[Terminal growth ceiling] profit compounded 127% a year over FY2023-FY2025; at that rate against 18% nominal economic growth this company equals the whole Egyptian economy in 11 years. Terminal growth is held at 5%",
-  "[Growth and value] terminal return on capital 8.8% against terminal rate 14.5%: EGP 63.48 at 3% growth against 47.67 at 7% \u2014 a spread of -24.9% across four points of growth, so the answer DOES rest partly on the terminal growth rate",
-  "[Growth and value \u2014 the correct hurdle] the terminal block reduces to [N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. N/IC = 8.389% against a hurdle of 12.687% -> growth DESTROYS value by 430bp. Revision 3 read 13.81% against a 13.61% hurdle and concluded growth added value by 21bp \u2014 but its denominator was in Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was larger than the margin it was measuring",
+  "[Growth and value] terminal return on capital 10.1% against terminal rate 16.5%: EGP 61.64 at 3% growth against 51.05 at 7% \u2014 a spread of -17.2% across four points of growth, so the answer DOES rest partly on the terminal growth rate",
+  "[Growth and value \u2014 the correct hurdle] the terminal block reduces to [N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. N/IC = 9.582% against a hurdle of 14.131% -> growth DESTROYS value by 455bp. Revision 3 read 13.81% against a 13.61% hurdle and concluded growth added value by 21bp \u2014 but its denominator was in Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was larger than the margin it was measuring",
   "\n==============================================================================",
   "ASSERT LOG",
-  "   1. bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
-  "   2. net cash carries a POSITIVE sign into the bridge (1,926.5)",
-  "   3. minority interests are DEDUCTED (0.158), not added",
-  "   4. terminal value is 51.8% of enterprise value",
-  "   5. implied fair value to spot 0.93x is inside the plausibility band",
-  "   6. terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
+  "   1. bridge closes exactly: EV 20,009.49 + net cash 687.21 - NCI 0.216 = equity 20,696.49",
+  "   2. net cash carries a POSITIVE sign into the bridge (687.2)",
+  "   3. minority interests are DEDUCTED at the LATEST disclosed figure (0.216 at 30 June 2026, against 0.158 at 31 December 2025), not added",
+  "   4. terminal value is 48.8% of enterprise value",
+  "   5. implied fair value to spot 0.90x is inside the plausibility band",
+  "   6. terminal rate 16.46% is BELOW the explicit-window rate 27.20%",
   "   7. the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
   "   8. the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
   "   9. no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
@@ -2027,14 +2459,17 @@
   "  13. the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
   "  14. FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
   "  15. the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
-  "  16. the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
-  "  17. the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
-  "  18. the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
-  "  19. the share count is confirmed by the declared FY2025 dividend to 0.0000%",
-  "  20. discount factors decline monotonically",
-  "  21. lens weights sum to exactly 1",
-  "  22. the weighted central sits inside the range of the four lenses",
-  "  23. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
-  "=============================================================================="
+  "  16. the FY2026 EBITDA margin (39.0%) reproduces the margin the REVIEWED half implies (39.0%) to within half a point \u2014 the calibration moved price, cost and services together, so the margin is an output of the three rather than an artefact of calibrating one",
+  "  17. the window does not MANUFACTURE margin expansion: FY2030 38.5% against FY2026 39.0%",
+  "  18. the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
+  "  19. the terminal growth lever moves the model in the direction its own algebra requires: N/IC 9.58% against the hurdle W/(1+W) 14.13%, so growth destroys value, and the model destroys it \u2014 a spread of -17.2% from 3% to 7%, which is MATERIAL and is published",
+  "  20. the share count is confirmed by the declared FY2025 dividend to 0.0000%",
+  "  21. discount factors decline monotonically",
+  "  22. lens weights sum to exactly 1",
+  "  23. the weighted central sits inside the range of the four lenses",
+  "  24. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
+  "==============================================================================",
+  "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
+  "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
  ]
 }
