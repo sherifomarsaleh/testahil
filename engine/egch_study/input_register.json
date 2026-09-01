@@ -1649,8 +1649,17 @@
    "key": "cbe_inflation_target",
    "value": 0.07,
    "unit": "ratio",
-   "source": "Central bank published medium-term inflation target",
+   "source": "Central bank published medium-term inflation target (7% +/-2 for Q4 2026)",
    "date": "2026-07-09",
+   "layer": "L3",
+   "note": ""
+  },
+  "inflation_terminal": {
+   "key": "inflation_terminal",
+   "value": 0.05,
+   "unit": "ratio",
+   "source": "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon published target, 5% (+/-2) for Q4 2028 \u2014 the SAME figure terminal growth is set at. CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the 7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal growth, the terminal risk-free rate and the terminal currency wedge now share one inflation.",
+   "date": "2026-09-01",
    "layer": "L3",
    "note": ""
   },
@@ -2134,14 +2143,14 @@
   "usd_egp_path": {
    "key": "usd_egp_path",
    "value": [
-    51.9,
-    54.2,
-    56.7,
-    59.2,
-    61.9
+    53.49,
+    55.89,
+    57.85,
+    59.32,
+    60.83
    ],
    "unit": "EGP/US$",
-   "source": "Constructed: currency path at 4.5% depreciation a year from the spot rate \u2014 the same wedge used to carry the dollar debt at local-equivalent cost.",
+   "source": "DERIVED, not typed: the spot rate carried forward year by year on the relative purchasing-power identity (1 + Egyptian inflation on the path above) / (1 + long-run US inflation) \u2014 the same identity that carries the dollar debt at local-equivalent cost. The 08-08-2026 edition typed a 4.5%-a-year path beside a derivation that produced a different number in every year; the register now carries the derived path itself.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""
@@ -2240,13 +2249,13 @@
    "key": "cpi_path",
    "value": [
     0.1,
-    0.085,
-    0.075,
     0.07,
-    0.07
+    0.06,
+    0.05,
+    0.05
    ],
    "unit": "ratio",
-   "source": "Domestic inflation converging from the June 2026 print on the central bank's target.",
+   "source": "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the explicit path lands on the terminal inflation rather than stepping down to it at the terminal boundary.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""
@@ -2262,6 +2271,20 @@
    ],
    "unit": "EGP m",
    "source": "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x 4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend against the bank-approved cost. The first issue opened at EGP 3,000m, above anything the company has actually spent in a year.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "lens_weights": {
+   "key": "lens_weights",
+   "value": [
+    0.45,
+    0.2,
+    0.2,
+    0.15
+   ],
+   "unit": "ratio",
+   "source": "Weights of the four lenses in the published central: cash flow (programme carried through) 45%, relative multiples 20%, normalised earnings 20%, book value 15% \u2014 the same weights the 08-08-2026 edition published. The bear and full readings are the low and high of the field across every lens, never the weighted extremes.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""
@@ -2554,21 +2577,21 @@
    "layer": "L2",
    "note": ""
   },
-  "dimson_sum_beta": {
-   "key": "dimson_sum_beta",
-   "value": 0.8275754032593131,
+  "beta_ci90_low": {
+   "key": "beta_ci90_low",
+   "value": 0.7165230052490117,
    "unit": "ratio",
-   "source": "Constructed: dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly regression \u2014 the thin-trading correction, carried as the beta alternative",
-   "date": "2026-08-08",
+   "source": "The lower bound of the 90% confidence interval of the same EGX30 regression (beta_result.json, beta_regression.own_stock_beta, 253 weekly observations to 16 July 2026) \u2014 carried as the beta alternative. REPLACES the 08-08-2026 edition's Dimson sum-beta, which belonged to a composite regression that is withdrawn as non-conforming.",
+   "date": "2026-09-01",
    "layer": "L5",
    "note": ""
   },
   "g_terminal_alt": {
    "key": "g_terminal_alt",
-   "value": 0.05,
+   "value": 0.03,
    "unit": "ratio",
-   "source": "Constructed: the alternative terminal growth rate: two points below the inflation target, which is negative real maintenance growth",
-   "date": "2026-08-08",
+   "source": "Constructed: the alternative terminal growth rate: two points below the terminal inflation of 5%, which is negative real maintenance growth. RE-SET 1 September 2026 from 5% (which had become identical to the base case once terminal growth moved to 5%).",
+   "date": "2026-09-01",
    "layer": "L5",
    "note": ""
   },

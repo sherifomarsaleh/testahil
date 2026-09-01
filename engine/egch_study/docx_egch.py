@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_08-08-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_01-09-2026.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -40,7 +40,7 @@ masthead()
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
   size=11, color=BRASS, space_after=1)
-P(f"Valuation study — 8 August 2026  ·  Reporting and valuation currency: Egyptian pounds  "
+P(f"Valuation study — 1 September 2026  ·  Reporting and valuation currency: Egyptian pounds  "
   f"·  Anchor price EGP {E2(SPOT)} at the close of {ST['anchor_date']}",
   size=10, color=GREY, space_after=10)
 
@@ -390,7 +390,7 @@ rows.append(["Export tonnes", "Output less the subsidised and free-market legs",
              E(R[0]['exp_t']), E(R[4]['exp_t'])])
 rows.append(["Export price (US$/t)", "US$385 realised FY2024/25; US$545 spot; mean reversion",
              E(R[0]['p_exp_usd']), E(R[4]['p_exp_usd'])])
-rows.append(["Exchange rate (EGP/US$)", "Spot, depreciating 4.5% a year",
+rows.append(["Exchange rate (EGP/US$)", "Spot, carried on the inflation differential year by year",
              E2(R[0]['fx']), E2(R[4]['fx'])])
 rows.append(["Subsidised price (EGP/t)", "Cooperative supply price on an administered path",
              E(R[0]['p_sub']), E(R[4]['p_sub'])])
@@ -526,8 +526,9 @@ P(f"Three things follow, and the first two correct this study rather than confir
   f"the terminal year. Third, and this is the correction: maintenance capital expenditure "
   f"is now set at the {PC(CX['pre_project_pooled'])} of revenue the company has actually "
   f"paid, not at a three per cent mature-plant standard. That standard was an assertion, "
-  f"it was almost three times anything this company has ever spent to keep this plant "
-  f"running, and no disclosure supported it.", bold=True)
+  f"it was {E1(0.03 / CX['pre_project_pooled'])} times the pooled rate of the two pre-project "
+  f"years and {E1(0.03 / max(V('capex_paid_FY2122') / V('is_revenue_FY2122'), V('capex_paid_FY2223') / V('is_revenue_FY2223')))} "
+  f"times the higher of them, and no disclosure supported it.", bold=True)
 P(f"The project path is anchored the same way. The company spent EGP "
   f"{E1(V('capex_paid_FY2425'))}m in the last audited year and EGP "
   f"{E1(V('capex_paid_9M_FY2526'))}m in nine months of this one — a full year at that "
@@ -626,14 +627,19 @@ P(f"The pound tranche of the project loan was repaid in June 2024, so {PC(1-WC['
   f"revenue build, so the two cannot quietly disagree.")
 H2("Where this construction is contested, and what the alternative is worth")
 P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in every future "
-  f"year, while the terminal value grows at the central bank's {PC(V('cbe_inflation_target'))} "
-  f"target. Capitalising one at the other is a units mismatch, and on a company whose value "
-  f"sits in its terminal year it would be the largest error in the study. The rate therefore "
-  f"glides to a terminal rate built from its own components: {PC(DR['inflation_lt'])} "
-  f"inflation compounded with a {PC(V('real_rate_lt'))} real rate gives a normalised "
-  f"risk-free rate of {PC2(DR['rf_star_terminal'])}, and the terminal cost of capital is "
+  f"year, while the terminal value grows at the central bank's longest-horizon target of "
+  f"{PC(V('g_terminal'))}. Capitalising one at the other is a units mismatch, and on a "
+  f"company whose value sits in its terminal year it would be the largest error in the "
+  f"study. The rate therefore glides to a terminal rate built from its own components: "
+  f"{PC(DR['inflation_lt'])} inflation — the same figure terminal growth is set at, so the "
+  f"perpetuity neither grows nor shrinks in real terms — compounded with a "
+  f"{PC(V('real_rate_lt'))} real rate gives a normalised risk-free rate of "
+  f"{PC2(DR['rf_star_terminal'])}, and the terminal cost of capital is "
   f"{PC2(DR['wacc_terminal'])}. Discount factors compound the glide year by year rather "
-  f"than raising one rate to a power.")
+  f"than raising one rate to a power. The earlier edition of this study discounted a "
+  f"{PC(V('g_terminal'))}-growth perpetuity at a terminal rate built on the shorter-horizon "
+  f"{PC(V('cbe_inflation_target'))} target, which assumed a real decline of about two per "
+  f"cent a year for ever that nothing disclosed; that is corrected here.")
 figure('fig7_glide.png', 6.9,
        "{F}.  The rate glides from its spot build to a terminal rate made from its own "
        "parts. The dotted line is the rate the traded price implies.")
@@ -688,7 +694,7 @@ SWINGS = [
      AL_BY['gas']['value'], AL['baseline']),
     ("Country-risk basis", "Rating spread against traded default swap",
      AL['baseline'], AL_BY['premium_basis']['value']),
-    ("Beta", f"{WC['beta']:.3f} against the Dimson sum-beta of {V('dimson_sum_beta'):.3f}",
+    ("Beta", f"{WC['beta']:.3f} against the lower bound of its own ninety-per-cent interval, {V('beta_ci90_low'):.3f}",
      AL['baseline'], AL_BY['beta']['value']),
     ("Project utilisation in the terminal year",
      f"{PC(V('anna_util_base'))} against {PC(V('anna_util_bull'))}",
@@ -712,22 +718,19 @@ caption("{T}.  Ranked by the size of the swing. The capital programme dominates 
 P(f"The beta deserves a note of its own, because it is the one input in the cost of "
   f"capital that comes from a statistical estimate rather than from a quote or a "
   f"disclosure. It is {WC['beta']:.3f}, from {BE['n']} weekly observations over "
-  f"{BE['window_years']} years against an equal-weight index of {BE['composite_names']} "
-  f"Egyptian names with the subject itself excluded — leaving a share inside its own "
-  f"index injects a self-covariance term, and doing so here would have returned "
-  f"{BE['self_inclusion_bias']['beta_index_including_subject']:.3f} instead. The "
-  f"regression explains {PC(BE['r2'])} of the variation with a standard error of "
-  f"{BE['se']:.3f}, so all three conditions of the usability test are met and the "
-  f"estimate is adopted rather than defaulted. It was cross-checked two ways. The Dimson "
-  f"sum-beta over one lead and two lags — the correction for co-movement booked late "
-  f"because the share does not trade every session — is {V('dimson_sum_beta'):.3f}, and "
-  f"the adopted figure sits inside its interval; the share closes unchanged on "
-  f"{PC(BE['thin_trading']['flat_frac'])} of sessions against "
-  f"{PC(BE['thin_trading']['eg_panel_median'])} for the Egyptian library, so it is not "
-  f"unusually thin. And the simple prior for a cyclical, capital-intensive materials "
-  f"business is 1.0 to 1.5. The alternative is priced with the other contested constructions in section 1.8 rather than argued: on "
-  f"the sum-beta the answer is EGP {E2(AL_BY['beta']['value'])} instead of EGP "
-  f"{E2(AL['baseline'])}.", size=9.8)
+  f"{BE['window_years']:.1f} years of the share against the published EGX30 index — the "
+  f"index of the exchange the share is listed on, as of {BE['index_asof']} — on the "
+  f"exchange's own Sunday-to-Thursday week. The regression explains {PC(BE['r2'])} of the "
+  f"variation with a standard error of {BE['se']:.3f}, so all three conditions of the "
+  f"usability test are met and the estimate is adopted rather than defaulted; the "
+  f"Blume-adjusted cross-check is {BE['blume_crosscheck']:.3f}. The interval is wide, "
+  f"{BE['ci90'][0]:.2f} to {BE['ci90'][1]:.2f} at ninety per cent, because the share is "
+  f"thinly traded, and the lower bound is priced with the other contested constructions in "
+  f"section 1.8 rather than argued away: at {V('beta_ci90_low'):.2f} the answer is EGP "
+  f"{E2(AL_BY['beta']['value'])} instead of EGP {E2(AL['baseline'])}. The earlier edition "
+  f"of this study regressed the share against an equal-weight basket of the Egyptian names "
+  f"this series happens to cover; that basket is a coverage artefact and not a market, and "
+  f"the figure it produced ({BE['superseded_composite']['beta']:.3f}) is withdrawn.", size=9.8)
 
 # ================================================== 2 TECHNICAL AND PRICE =====
 H1("2  Technical and price structure")
@@ -1016,6 +1019,25 @@ P(f"The share count is taken from the capital note rather than from the exchange
   f"page is behind an automated challenge. Two third-party sources carry figures "
   f"inconsistent with the note and with each other; both are recorded in the bibliography "
   f"as documented discrepancies and neither is used anywhere in the build.")
+WF = DD['walkforward']
+P(f"The method itself has been tested on this company's own history before being trusted on "
+  f"its future. Rebuilt as it would have stood at each of {WF['origins']} year-ends from June "
+  f"2012 to June 2024 and projected one to five years ahead — {WF['cells']} tested cases over "
+  f"eighteen fiscal years of the company's own audited statements — it forecast revenue and "
+  f"cost of sales better than simply assuming no change, and it did NOT forecast net profit "
+  f"better than assuming no change: on the profit line its average miss was "
+  f"{E1(1 - WF['headline']['net_skill_vs_freeze'])} times the miss of carrying last year's "
+  f"figure forward, and it came in below the outturn in "
+  f"{PC(1 - WF['headline']['net_share_over'])} of cases. Two lines account for most of that. "
+  f"The company capitalises the currency translation of its dollar project loans into the "
+  f"plant rather than charging it to profit, so a mechanical currency charge on the debt "
+  f"overstated the loss in every devaluation year; and a statutory-rate tax formula cannot "
+  f"see a company that has paid almost no current tax since the new complex started. No "
+  f"correction factor was adopted from that record: every one that passed its own test made "
+  f"the following year worse. What it changed in this edition is stated in the terminal-rate "
+  f"discussion above and in the currency path, and years three to five of the forecast are "
+  f"published in Appendix A as ranges built from the record's own error distribution rather "
+  f"than as points.")
 P(f"What would change our mind, specifically. Upward: a disclosed capacity for the new "
   f"complex that earns above the cost of capital on the approved cost; the programme "
   f"completing near that cost rather than above it; a sustained export price regime above "
@@ -1094,6 +1116,30 @@ table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.2, band_rows={8})
 caption(f"{{T}}.  Working capital is projected from the day counts the audited statements "
         f"themselves imply — {E1(V('dso'))} days of receivables, {E1(V('dio'))} of inventory "
         f"and {E1(V('dpo'))} of payables — rather than plugged.")
+
+H2("A.4  Years three to five as ranges — the method's own tested error, applied")
+_BND = WF['bands']
+rows = [["EGP million", YEARS[2], YEARS[3], YEARS[4]]]
+for lab, key in [("Revenue — point", 'revenue'), ("Gross profit — point", 'gross'),
+                 ("Operating profit before depreciation — point", 'ebitda')]:
+    rows.append([lab] + [E(R[k][key]) for k in (2, 3, 4)])
+for lab, key, bkey in [("Revenue — low of the range", 'revenue', 'revenue'),
+                       ("Revenue — high of the range", 'revenue', 'revenue'),
+                       ("Gross profit — low of the range", 'gross', 'gross_profit'),
+                       ("Gross profit — high of the range", 'gross', 'gross_profit')]:
+    side = 'low_factor' if 'low' in lab else 'high_factor'
+    rows.append([lab] + [E(R[k][key] * _BND[str(k + 1)][bkey][side]) for k in (2, 3, 4)])
+rows.append(["Tested cases behind the revenue band"] + [E(_BND[str(k + 1)]['revenue']['n_full']) for k in (2, 3, 4)])
+rows.append(["Tested cases behind the gross-profit band"] + [E(_BND[str(k + 1)]['gross_profit']['n_full']) for k in (2, 3, 4)])
+table(rows, [2.6, 1.4, 1.4, 1.4], size=8.2, band_rows={3, 7})
+caption("{T}.  The multipliers come from projecting this company's own past, year-end by "
+        "year-end, with the same rules and scoring each projection against what was later "
+        "reported. A range that runs from a tenth of the point to above it is not a forecast "
+        "of collapse; it is a measurement of how little a mechanical method knew, three years "
+        "out, about a company that replaced its plant, floated its currency and tripled its "
+        "output inside the tested window. The far years of any projection of this company "
+        "support a range and never a point, and the fair-value field in the summary already "
+        "spans that width.")
 
 # =============================================================== APPENDIX B ===
 H1("Appendix B  Peer frame, risk register and the research register")
@@ -1276,7 +1322,7 @@ box([("Educational analysis.  ", "This document is an independent educational an
       "is not investment advice, not a recommendation, and not an offer or solicitation."),
      ("No rating, no target.  ", "It contains no rating and no price target. It reports a "
       "range of fair values and the reasoning behind them."),
-     ("Point in time.  ", f"It reflects information available on 8 August 2026 and the "
+     ("Point in time.  ", f"It reflects information available on 1 September 2026 and the "
       f"closing price of {ST['anchor_date']}. It will age, and it is not updated."),
      ("Sources and their limits.  ", "Historical figures come from the company's own "
       "audited and reviewed statements. Those statements carry qualifications, set out in "
@@ -1287,5 +1333,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-finalise('EGCH_Valuation_Study_08-08-2026.docx')
-print("wrote EGCH_Valuation_Study_08-08-2026.docx")
+finalise('EGCH_Valuation_Study_01-09-2026.docx')
+print("wrote EGCH_Valuation_Study_01-09-2026.docx")

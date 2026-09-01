@@ -44,6 +44,18 @@ R.record_primary_access("https://www.cbe.org.eg/en/auctions/egp-t-bills", False,
     "CBE auction pages WAF-blocked ('requested URL was rejected') from the helper too; "
     "T-bill yields carried from secondary quotes (investing.com), labelled as such.")
 
+# ---- 1 September 2026 edition: the primary channel re-tried, and the archive read back to 2009
+R.record_primary_access("https://www.kimaegypt.com/InvestorsRelations.aspx", True, "2026-09-01",
+    "Reachable directly (HTTP 200) on 1 September 2026; the embedded Mist portal listing page "
+    "timed out once and returned a 709-byte stub on retry, so the 8 August index was used.")
+R.record_primary_access("https://www.mistnews.com/mistsat/companies/mezanyat/", True, "2026-09-01",
+    "Ten older annual statements (years to June 2009, 2010, 2011, 2013, 2014, 2016, 2018, 2019, "
+    "2020, 2021) retrieved as real PDFs from the company's own portal for the calibration of the "
+    "method on the company's history. The portal lists no annual for 2012, 2015 or 2017 and "
+    "nothing older than 2009; no FY2025/26 annual had been published.")
+R.record_primary_access("https://kima.com.eg/", False, "2026-09-01",
+    "Refused at the egress proxy; not the company's domain (kimaegypt.com is).")
+
 # ---- study year: FY2025/26 (ends 30-Jun-2026); all three disclosed interims swept
 R.declare_study_year("FY2025/26", ["Q1-2025/26", "H1-2025/26", "9M-2025/26"])
 
@@ -364,6 +376,19 @@ R.add_driver("Dividend / distribution policy (q)", DriverMode.BOTTOM_UP,
     "q=0 sourced from two consecutive appropriation statements (zero proposed both "
     "years); flagged to revisit when leverage normalises.",
     [f_mgmt, f_fs25])
+
+f_hist = R.add(Ring.COMPANY, "long-run reported history (calibration of the method)", FindingClass.S,
+    "Eighteen fiscal years of the company's own audited statements, FY2008-FY2025, read from the "
+    "rendered pages and footed subtotal by subtotal (17 of 18 years foot on every line; the 2014 "
+    "annual is a 367x519-pixel scan carried only for the blocks that foot). The old Aswan plant "
+    "was shut in FY2019 and the gas-fed complex commissioned through FY2020-FY2021 with two loss "
+    "years between; revenue FY2018 571m, FY2021 1,399m, FY2022 4,441m, FY2025 8,603m EGP",
+    "Audited annual statements for the years to 30 June 2009-2021 from the company's IR portal "
+    "(engine/egch_walkforward/panel.py carries every figure with its footing)", CO, "2026-09-01",
+    model_impact="Tests the forecasting method on the company's own past before it is trusted on "
+                 "its future: years three to five of the forecast are published as ranges from "
+                 "the measured error distribution, and the terminal inflation is reconciled to "
+                 "terminal growth.", is_fs_data=True)
 
 # ------------------------------------------------------------------ OUTPUT
 errors, warnings = R.validate()

@@ -1,4 +1,4 @@
-"""EGCH_Bibliography_08-08-2026.docx — a standalone source register.
+"""EGCH_Bibliography_01-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -101,7 +101,7 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('Testahil · Bibliography and source register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — 8 August 2026')
+r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — 1 September 2026')
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(0)
 
@@ -119,6 +119,10 @@ P("Obtained from the company's investor-relations page at kimaegypt.com, which s
   "itself and crossfooted against its own subtotals.", size=9.2, color=GREY)
 rows = [["Document", "Period", "Report date", "Auditor", "Retrieved", "What it sources"]]
 DOCS = [
+ ("Audited financial statements, ten annuals", "Years to 30 June 2009, 2010, 2011, 2013, 2014, 2016, 2018, 2019, 2020 and 2021 (with each prior year as comparative)",
+  "2009 to Nov 2021", "Central Auditing Organization", "1 Sep 2026",
+  "The eighteen-year reported history on which the forecasting method was tested before use; "
+  "not a source of any forecast driver"),
  ("Audited financial statements", "Year to 30 June 2022 (as comparatives)", "8 Oct 2023",
   "Central Auditing Organization; PKF Rashed Badr & Co", "8 Aug 2026",
   "Opening income statement and balance sheet of the four-year history"),
@@ -368,6 +372,6 @@ P("Every historical figure in the study appears in the accompanying workbook on 
   "watch the valuation move; the two grids that do not redraw are labelled on their own "
   "sheets, because each of their cells is a separate run of the whole model.", size=9.5)
 
-doc.save('EGCH_Bibliography_08-08-2026.docx')
-strip_stub_counts('EGCH_Bibliography_08-08-2026.docx')
-print("wrote EGCH_Bibliography_08-08-2026.docx")
+doc.save('EGCH_Bibliography_01-09-2026.docx')
+strip_stub_counts('EGCH_Bibliography_01-09-2026.docx')
+print("wrote EGCH_Bibliography_01-09-2026.docx")

@@ -1,0 +1,2130 @@
+{
+ "policy": "Expanding window, half strength, sign held across resolved eras and bootstrap blocks, reset at the plant replacement and after a two-sigma shock. Everything that passes clause 1 is tested against clause 2 and, failing it, filed as a WATCH FLAG \u2014 recorded, graded at the next update, acted on by nobody.",
+ "log": [
+  {
+   "origin": "FY2012",
+   "era": "E1 old plant, pre-float",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": true,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -0.24501170644750553,
+      "adjusted": -0.24501170644750553
+     },
+     "cost_of_sales": {
+      "raw": -0.2380027409210164,
+      "adjusted": -0.2380027409210164
+     },
+     "gross_profit": {
+      "raw": -0.26072995433911794,
+      "adjusted": -0.26072995433911794
+     },
+     "pbt": {
+      "raw": -0.26945285009739,
+      "adjusted": -0.26945285009739
+     },
+     "net": {
+      "raw": -0.33745065410029823,
+      "adjusted": -0.33745065410029823
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -0.22529991582323108,
+      "adjusted": -0.22529991582323108
+     },
+     "cost_of_sales": {
+      "raw": -0.40310109469634364,
+      "adjusted": -0.40310109469634364
+     },
+     "gross_profit": {
+      "raw": 0.4488717660431207,
+      "adjusted": 0.4488717660431207
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -0.11667857749870582,
+      "adjusted": -0.11667857749870582
+     },
+     "cost_of_sales": {
+      "raw": -0.19307737466960367,
+      "adjusted": -0.19307737466960367
+     },
+     "gross_profit": {
+      "raw": 0.13725114461453003,
+      "adjusted": 0.13725114461453003
+     },
+     "pbt": {
+      "raw": 0.16500040965192816,
+      "adjusted": 0.16500040965192816
+     },
+     "net": {
+      "raw": 0.16086789862550913,
+      "adjusted": 0.16086789862550913
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -0.03368728379751231,
+      "adjusted": -0.03368728379751231
+     },
+     "cost_of_sales": {
+      "raw": -0.10220827909490375,
+      "adjusted": -0.10220827909490375
+     },
+     "gross_profit": {
+      "raw": 0.2236398724919741,
+      "adjusted": 0.2236398724919741
+     },
+     "pbt": {
+      "raw": -0.07891806961164241,
+      "adjusted": -0.07891806961164241
+     },
+     "net": {
+      "raw": -0.06880635928911913,
+      "adjusted": -0.06880635928911913
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -0.7147069553195234,
+      "adjusted": -0.7147069553195234
+     },
+     "cost_of_sales": {
+      "raw": -0.7426598181461681,
+      "adjusted": -0.7426598181461681
+     },
+     "gross_profit": {
+      "raw": -0.6048313635930652,
+      "adjusted": -0.6048313635930652
+     },
+     "pbt": {
+      "raw": -0.918506842468326,
+      "adjusted": -0.918506842468326
+     },
+     "net": {
+      "raw": -0.897172443807672,
+      "adjusted": -0.897172443807672
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2013",
+   "era": "E1 old plant, pre-float",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.0031120569507210767,
+      "adjusted": 0.0031120569507210767
+     },
+     "cost_of_sales": {
+      "raw": -0.19229629172025733,
+      "adjusted": -0.19229629172025733
+     },
+     "gross_profit": {
+      "raw": 0.7203309248020089,
+      "adjusted": 0.7203309248020089
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": 0.0951336616016929,
+      "adjusted": 0.0951336616016929
+     },
+     "cost_of_sales": {
+      "raw": -0.009470509638447895,
+      "adjusted": -0.009470509638447895
+     },
+     "gross_profit": {
+      "raw": 0.42468646594230053,
+      "adjusted": 0.42468646594230053
+     },
+     "pbt": {
+      "raw": 0.45233366993626345,
+      "adjusted": 0.45233366993626345
+     },
+     "net": {
+      "raw": 0.4482011589098444,
+      "adjusted": 0.4482011589098444
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": 0.16152522162933297,
+      "adjusted": 0.16152522162933297
+     },
+     "cost_of_sales": {
+      "raw": 0.054200647991321634,
+      "adjusted": 0.054200647991321634
+     },
+     "gross_profit": {
+      "raw": 0.5337477213602883,
+      "adjusted": 0.5337477213602883
+     },
+     "pbt": {
+      "raw": 0.25100671779863787,
+      "adjusted": 0.25100671779863787
+     },
+     "net": {
+      "raw": 0.2611184281211613,
+      "adjusted": 0.2611184281211613
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -0.5360941835662316,
+      "adjusted": -0.5360941835662316
+     },
+     "cost_of_sales": {
+      "raw": -0.6134488290048734,
+      "adjusted": -0.6134488290048734
+     },
+     "gross_profit": {
+      "raw": -0.2633064659533056,
+      "adjusted": -0.2633064659533056
+     },
+     "pbt": {
+      "raw": -0.5308620533692444,
+      "adjusted": -0.5308620533692444
+     },
+     "net": {
+      "raw": -0.5095276547085904,
+      "adjusted": -0.5095276547085904
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -0.4254437526711571,
+      "adjusted": -0.4254437526711571
+     },
+     "cost_of_sales": {
+      "raw": -0.48223050203959567,
+      "adjusted": -0.48223050203959567
+     },
+     "gross_profit": {
+      "raw": -0.21641407779027425,
+      "adjusted": -0.21641407779027425
+     },
+     "pbt": {
+      "raw": 0.1902947463749699,
+      "adjusted": 0.1902947463749699
+     },
+     "net": {
+      "raw": 0.1714761025743223,
+      "adjusted": 0.1714761025743223
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2014",
+   "era": "E1 old plant, pre-float",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.11973719158469646,
+      "adjusted": 0.11973719158469646
+     },
+     "cost_of_sales": {
+      "raw": 0.20460127171049153,
+      "adjusted": 0.20460127171049153
+     },
+     "gross_profit": {
+      "raw": -0.3081216399406561,
+      "adjusted": -0.3081216399406561
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": 0.21384433854606105,
+      "adjusted": 0.21384433854606105
+     },
+     "cost_of_sales": {
+      "raw": 0.29004791896894333,
+      "adjusted": 0.29004791896894333
+     },
+     "gross_profit": {
+      "raw": -0.21829439145801413,
+      "adjusted": -0.21829439145801413
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -0.456059479715779,
+      "adjusted": -0.456059479715779
+     },
+     "cost_of_sales": {
+      "raw": -0.3558260683985696,
+      "adjusted": -0.3558260683985696
+     },
+     "gross_profit": {
+      "raw": -1.043386836978992,
+      "adjusted": -1.043386836978992
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -0.3176934618869799,
+      "adjusted": -0.3176934618869799
+     },
+     "cost_of_sales": {
+      "raw": -0.20283225180460987,
+      "adjusted": -0.20283225180460987
+     },
+     "gross_profit": {
+      "raw": -1.0363382919760409,
+      "adjusted": -1.0363382919760409
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": 0.27359965156862454,
+      "adjusted": 0.27359965156862454
+     },
+     "cost_of_sales": {
+      "raw": 0.24137029554613762,
+      "adjusted": 0.24137029554613762
+     },
+     "gross_profit": {
+      "raw": 0.7442267085281001,
+      "adjusted": 0.7442267085281001
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2015",
+   "era": "E1 old plant, pre-float",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 6,
+     "mean_resolved": -0.06150121493872201,
+     "sd_resolved": 0.1581817787841331,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.06150121493872201
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "bootstrap sign unstable"
+    },
+    "cost_of_sales": {
+     "n_resolved": 6,
+     "mean_resolved": -0.13855778998919624,
+     "sd_resolved": 0.2098353342924861,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.13855778998919624
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "bootstrap sign unstable"
+    },
+    "selling": {
+     "n_resolved": 6,
+     "mean_resolved": 0.03874478252021787,
+     "sd_resolved": 0.10726796567362132,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.03874478252021787
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": -0.019372391260108934,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": -0.019372391260108812,
+     "outcome_n": 1
+    },
+    "admin": {
+     "n_resolved": 6,
+     "mean_resolved": -0.13893733146531842,
+     "sd_resolved": 0.06595372508262067,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.13893733146531842
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.06946866573265921,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": -0.013893733146531773,
+     "outcome_n": 5
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.09802767277750916,
+      "adjusted": 0.09802767277750916
+     },
+     "cost_of_sales": {
+      "raw": 0.0909171522478172,
+      "adjusted": 0.0909171522478172
+     },
+     "gross_profit": {
+      "raw": 0.1289419883385121,
+      "adjusted": 0.1289419883385121
+     },
+     "pbt": {
+      "raw": -0.8295774865885648,
+      "adjusted": -0.8711009964519918
+     },
+     "net": {
+      "raw": -0.8840042974036124,
+      "adjusted": -0.9255278072670394
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -0.5679556196681863,
+      "adjusted": -0.5679556196681863
+     },
+     "cost_of_sales": {
+      "raw": -0.5494863301303299,
+      "adjusted": -0.5494863301303299
+     },
+     "gross_profit": {
+      "raw": -0.6497484533977685,
+      "adjusted": -0.6497484533977685
+     },
+     "pbt": {
+      "raw": -1.7336059744010812,
+      "adjusted": -1.787880649551301
+     },
+     "net": {
+      "raw": -1.7768100968779983,
+      "adjusted": -1.8310847720282184
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -0.4256690760232426,
+      "adjusted": -0.4256690760232426
+     },
+     "cost_of_sales": {
+      "raw": -0.3910220085470043,
+      "adjusted": -0.3910220085470043
+     },
+     "gross_profit": {
+      "raw": -0.586384512316184,
+      "adjusted": -0.586384512316184
+     },
+     "pbt": {
+      "raw": -1.194611003658834,
+      "adjusted": -1.27086886269874
+     },
+     "net": {
+      "raw": -1.2779681685970525,
+      "adjusted": -1.354226027636959
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": 0.16954456324850653,
+      "adjusted": 0.16954456324850653
+     },
+     "cost_of_sales": {
+      "raw": 0.058651043793108884,
+      "adjusted": 0.058651043793108884
+     },
+     "gross_profit": {
+      "raw": 1.2645058755556609,
+      "adjusted": 1.2645058755556609
+     },
+     "pbt": {
+      "raw": -0.07779313234780737,
+      "adjusted": -0.20097335609485514
+     },
+     "net": {
+      "raw": -0.5090804488687515,
+      "adjusted": -0.6322606726157993
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": 0.32834246963238617,
+      "adjusted": 0.32834246963238617
+     },
+     "cost_of_sales": {
+      "raw": -0.26997122598389944,
+      "adjusted": -0.26997122598389944
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2016",
+   "era": "E1 old plant, pre-float",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 10,
+     "mean_resolved": 0.007070265952305886,
+     "sd_resolved": 0.15981445553942586,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.007070265952305886
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "bootstrap sign unstable"
+    },
+    "cost_of_sales": {
+     "n_resolved": 10,
+     "mean_resolved": -0.049838929982199895,
+     "sd_resolved": 0.21506657408551436,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.049838929982199895
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "bootstrap sign unstable"
+    },
+    "selling": {
+     "n_resolved": 10,
+     "mean_resolved": 0.20050422692260655,
+     "sd_resolved": 0.22698968667954805,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.20050422692260655
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": -0.10025211346130328,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.10025211346130325,
+     "outcome_n": 1
+    },
+    "admin": {
+     "n_resolved": 10,
+     "mean_resolved": -0.02807076738427931,
+     "sd_resolved": 0.1649353576789766,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.02807076738427931
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "bootstrap sign unstable"
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -0.64835248950128,
+      "adjusted": -0.64835248950128
+     },
+     "cost_of_sales": {
+      "raw": -0.6376791664730614,
+      "adjusted": -0.6376791664730614
+     },
+     "gross_profit": {
+      "raw": -0.6946156053803265,
+      "adjusted": -0.6946156053803265
+     },
+     "pbt": {
+      "raw": -1.5415267141494986,
+      "adjusted": -1.4840924924994963
+     },
+     "net": {
+      "raw": -1.5519410138034249,
+      "adjusted": -1.4945067921534227
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -0.48843514291192097,
+      "adjusted": -0.48843514291192097
+     },
+     "cost_of_sales": {
+      "raw": -0.4764905289846505,
+      "adjusted": -0.4764905289846505
+     },
+     "gross_profit": {
+      "raw": -0.540364165060399,
+      "adjusted": -0.540364165060399
+     },
+     "pbt": {
+      "raw": -0.8464923339575289,
+      "adjusted": -0.778382454841143
+     },
+     "net": {
+      "raw": -0.8970596760727566,
+      "adjusted": -0.8289497969563709
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": 0.12440929930424359,
+      "adjusted": 0.12440929930424359
+     },
+     "cost_of_sales": {
+      "raw": -0.02409316073945168,
+      "adjusted": -0.02409316073945168
+     },
+     "gross_profit": {
+      "raw": 1.409526163617392,
+      "adjusted": 1.409526163617392
+     },
+     "pbt": {
+      "raw": 0.5372553943172077,
+      "adjusted": 0.6192256608184227
+     },
+     "net": {
+      "raw": 0.1387579006192544,
+      "adjusted": 0.22072816712046942
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": 0.30083800863253857,
+      "adjusted": 0.30083800863253857
+     },
+     "cost_of_sales": {
+      "raw": -0.34999111461137444,
+      "adjusted": -0.34999111461137444
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -1.0916644343379016,
+      "adjusted": -1.0916644343379016
+     },
+     "cost_of_sales": {
+      "raw": -1.3381854181381292,
+      "adjusted": -1.3381854181381292
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2017",
+   "era": "E2 old plant post-float / transition",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 15,
+     "mean_resolved": -0.19016440454986275,
+     "sd_resolved": 0.32038549417214673,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.19016440454986275
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.09508220227493137,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.019016440454986495,
+     "outcome_n": 5
+    },
+    "cost_of_sales": {
+     "n_resolved": 15,
+     "mean_resolved": -0.22649930079833341,
+     "sd_resolved": 0.32011583625393963,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.22649930079833341
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.11324965039916671,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.022649930079833337,
+     "outcome_n": 5
+    },
+    "selling": {
+     "n_resolved": 10,
+     "mean_resolved": 0.20050422692260655,
+     "sd_resolved": 0.22698968667954805,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.20050422692260655
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": -0.10025211346130328,
+     "why": "clause 1 passed on the resolved record"
+    },
+    "admin": {
+     "n_resolved": 15,
+     "mean_resolved": -0.14104260967786938,
+     "sd_resolved": 0.22117459075539345,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.14104260967786938
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.07052130483893469,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": -0.04231278290336089,
+     "outcome_n": 5
+    },
+    "debit_interest": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": true,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.1792852759602966,
+      "adjusted": 0.274367478235228
+     },
+     "cost_of_sales": {
+      "raw": 0.19190791405452867,
+      "adjusted": 0.30515756445369546
+     },
+     "gross_profit": {
+      "raw": 0.1243068942935643,
+      "adjusted": 0.13316954762235034
+     },
+     "pbt": {
+      "raw": -0.7411301856567505,
+      "adjusted": -0.8072599044135303
+     },
+     "net": {
+      "raw": -0.7916975277719783,
+      "adjusted": -0.8578272465287583
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": 0.8114976475473985,
+      "adjusted": 0.9065798498223298
+     },
+     "cost_of_sales": {
+      "raw": 0.675024558865845,
+      "adjusted": 0.7882742092650118
+     },
+     "gross_profit": {
+      "raw": 2.040380436718714,
+      "adjusted": 2.0425894305586287
+     },
+     "pbt": {
+      "raw": 0.6699985426186694,
+      "adjusted": 0.5696637726224667
+     },
+     "net": {
+      "raw": 0.2715010489207161,
+      "adjusted": 0.17116627892451328
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": 1.007294286246631,
+      "adjusted": 1.1023764885215623
+     },
+     "cost_of_sales": {
+      "raw": 0.3798458815600399,
+      "adjusted": 0.4930955319592067
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -0.3658402273528716,
+      "adjusted": -0.2707580250779403
+     },
+     "cost_of_sales": {
+      "raw": -0.5776291454005971,
+      "adjusted": -0.4643794950014304
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -1.404390829521181,
+      "adjusted": -1.30930862724625
+     },
+     "cost_of_sales": {
+      "raw": -0.9474738716363289,
+      "adjusted": -0.834224221237162
+     },
+     "gross_profit": {
+      "raw": -2.586617334518977,
+      "adjusted": -2.6115033275464383
+     },
+     "pbt": {
+      "raw": -3.1442694550650736,
+      "adjusted": -3.6119885149854114
+     },
+     "net": {
+      "raw": -3.2752288150645406,
+      "adjusted": -3.742947874984878
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2018",
+   "era": "E2 old plant post-float / transition",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 20,
+     "mean_resolved": -0.21652111128904727,
+     "sd_resolved": 0.3057091471744006,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.2373530264074338,
+      "E2 old plant post-float / transition": 0.1792852759602966
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "cost_of_sales": {
+     "n_resolved": 20,
+     "mean_resolved": -0.23790784446481666,
+     "sd_resolved": 0.30458094531999236,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.2605297264921506,
+      "E2 old plant post-float / transition": 0.19190791405452867
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "selling": {
+     "n_resolved": 10,
+     "mean_resolved": 0.20050422692260655,
+     "sd_resolved": 0.22698968667954805,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.20050422692260655
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": -0.10025211346130328,
+     "why": "clause 1 passed on the resolved record"
+    },
+    "admin": {
+     "n_resolved": 20,
+     "mean_resolved": -0.10998487824366551,
+     "sd_resolved": 0.22078173180874586,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.13150986115678562,
+      "E2 old plant post-float / transition": 0.2989897971056166
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "debit_interest": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.752841717219547,
+      "adjusted": 0.752841717219547
+     },
+     "cost_of_sales": {
+      "raw": 0.6122864776527797,
+      "adjusted": 0.6122864776527797
+     },
+     "gross_profit": {
+      "raw": 2.0012405876756625,
+      "adjusted": 2.0012405876756625
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": 1.0692677015512246,
+      "adjusted": 1.0692677015512246
+     },
+     "cost_of_sales": {
+      "raw": 0.4462776331884377,
+      "adjusted": 0.4462776331884377
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -0.18323746641583316,
+      "adjusted": -0.18323746641583316
+     },
+     "cost_of_sales": {
+      "raw": -0.3820275609307359,
+      "adjusted": -0.3820275609307359
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -1.101158722951698,
+      "adjusted": -1.101158722951698
+     },
+     "cost_of_sales": {
+      "raw": -0.6227024543250045,
+      "adjusted": -0.6227024543250045
+     },
+     "gross_profit": {
+      "raw": -2.4275564507422027,
+      "adjusted": -2.4275564507422027
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -1.2617825145165797,
+      "adjusted": -1.2617825145165797
+     },
+     "cost_of_sales": {
+      "raw": -0.7543544972632349,
+      "adjusted": -0.7543544972632349
+     },
+     "gross_profit": {
+      "raw": -2.76599749337376,
+      "adjusted": -2.76599749337376
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2019",
+   "era": "E2 old plant post-float / transition",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 25,
+     "mean_resolved": -0.087941173875705,
+     "sd_resolved": 0.4012672133871047,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.17918881761908487,
+      "E2 old plant post-float / transition": 0.5812082135757474
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": true,
+      "4": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "cost_of_sales": {
+     "n_resolved": 25,
+     "mean_resolved": -0.12779670696711654,
+     "sd_resolved": 0.3752308908552317,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.21246075567050304,
+      "E2 old plant post-float / transition": 0.4930729835243845
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "selling": {
+     "n_resolved": 10,
+     "mean_resolved": 0.20050422692260655,
+     "sd_resolved": 0.22698968667954805,
+     "era_signs": {
+      "E1 old plant, pre-float": 0.20050422692260655
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": -0.10025211346130328,
+     "why": "clause 1 passed on the resolved record"
+    },
+    "admin": {
+     "n_resolved": 25,
+     "mean_resolved": -0.31825264254681707,
+     "sd_resolved": 0.4753515317073649,
+     "era_signs": {
+      "E1 old plant, pre-float": -0.287021471322845,
+      "E2 old plant post-float / transition": -0.547281231522612
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true,
+      "4": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.15912632127340853,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.0954757927640451,
+     "outcome_n": 5
+    },
+    "debit_interest": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.18935307606901702,
+      "adjusted": 0.18935307606901702
+     },
+     "cost_of_sales": {
+      "raw": -0.2900268627391326,
+      "adjusted": -0.2900268627391326
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -1.1902250001607015,
+      "adjusted": -1.1902250001607015
+     },
+     "cost_of_sales": {
+      "raw": -1.2423500751330971,
+      "adjusted": -1.2423500751330971
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -2.2352191649592266,
+      "adjusted": -2.2352191649592266
+     },
+     "cost_of_sales": {
+      "raw": -1.6070429868021565,
+      "adjusted": -1.6070429868021565
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -2.522915864786769,
+      "adjusted": -2.522915864786769
+     },
+     "cost_of_sales": {
+      "raw": -1.8627130480151777,
+      "adjusted": -1.8627130480151777
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -2.4003165567464078,
+      "adjusted": -2.4003165567464078
+     },
+     "cost_of_sales": {
+      "raw": -1.934995601786176,
+      "adjusted": -1.934995601786176
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2020",
+   "era": "E2 old plant post-float / transition",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -1.4203707962025598,
+      "adjusted": -1.4203707962025598
+     },
+     "cost_of_sales": {
+      "raw": -0.9992883723144086,
+      "adjusted": -0.9992883723144086
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -2.506157680973926,
+      "adjusted": -2.506157680973926
+     },
+     "cost_of_sales": {
+      "raw": -1.4109464439039119,
+      "adjusted": -1.4109464439039119
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -2.83464710077431,
+      "adjusted": -2.83464710077431
+     },
+     "cost_of_sales": {
+      "raw": -1.713581665037377,
+      "adjusted": -1.713581665037377
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -2.75284051270679,
+      "adjusted": -2.75284051270679
+     },
+     "cost_of_sales": {
+      "raw": -1.8328293787288197,
+      "adjusted": -1.8328293787288197
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "5": {
+     "revenue": {
+      "raw": -2.958554535758949,
+      "adjusted": -2.958554535758949
+     },
+     "cost_of_sales": {
+      "raw": -1.9323693326998324,
+      "adjusted": -1.9323693326998324
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2021",
+   "era": "E3 KIMA-2 operating, devaluations",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 0,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -1.1184479502779485,
+      "adjusted": -1.1184479502779485
+     },
+     "cost_of_sales": {
+      "raw": -0.45001861239720703,
+      "adjusted": -0.45001861239720703
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -1.4795984355849143,
+      "adjusted": -1.4795984355849143
+     },
+     "cost_of_sales": {
+      "raw": -0.7910143743383762,
+      "adjusted": -0.7910143743383762
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -1.430452913023976,
+      "adjusted": -1.430452913023976
+     },
+     "cost_of_sales": {
+      "raw": -0.9486226288375225,
+      "adjusted": -0.9486226288375225
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    },
+    "4": {
+     "revenue": {
+      "raw": -1.6688280015827173,
+      "adjusted": -1.6688280015827173
+     },
+     "cost_of_sales": {
+      "raw": -1.0865231236162392,
+      "adjusted": -1.0865231236162392
+     },
+     "gross_profit": {
+      "raw": null,
+      "adjusted": null
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2022",
+   "era": "E3 KIMA-2 operating, devaluations",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "cost_of_sales": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "selling": {
+     "n_resolved": 1,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "debit_interest": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    }
+   },
+   "confirm_origin": true,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -0.39318993938635055,
+      "adjusted": -0.39318993938635055
+     },
+     "cost_of_sales": {
+      "raw": -0.33938711198026333,
+      "adjusted": -0.33938711198026333
+     },
+     "gross_profit": {
+      "raw": -0.46044504120599133,
+      "adjusted": -0.46044504120599133
+     },
+     "pbt": {
+      "raw": -0.6751362663649451,
+      "adjusted": -0.6751362663649451
+     },
+     "net": {
+      "raw": -0.6745603816364749,
+      "adjusted": -0.6745603816364749
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -0.37608387090479733,
+      "adjusted": -0.37608387090479733
+     },
+     "cost_of_sales": {
+      "raw": -0.49538671651850386,
+      "adjusted": -0.49538671651850386
+     },
+     "gross_profit": {
+      "raw": -0.16792977272400803,
+      "adjusted": -0.16792977272400803
+     },
+     "pbt": {
+      "raw": -1.3166554596899789,
+      "adjusted": -1.3166554596899789
+     },
+     "net": {
+      "raw": -1.658732112438033,
+      "adjusted": -1.658732112438033
+     }
+    },
+    "3": {
+     "revenue": {
+      "raw": -0.6464984135429231,
+      "adjusted": -0.6464984135429231
+     },
+     "cost_of_sales": {
+      "raw": -0.6316785613363148,
+      "adjusted": -0.6316785613363148
+     },
+     "gross_profit": {
+      "raw": -0.6707537635403961,
+      "adjusted": -0.6707537635403961
+     },
+     "pbt": {
+      "raw": -0.7277771503209846,
+      "adjusted": -0.7277771503209846
+     },
+     "net": {
+      "raw": -0.9702319196065129,
+      "adjusted": -0.9702319196065129
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2023",
+   "era": "E3 KIMA-2 operating, devaluations",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 6,
+     "mean_resolved": -1.6254019838666685,
+     "sd_resolved": 0.9029562257488023,
+     "era_signs": {
+      "E2 old plant post-float / transition": -2.2537251926502653,
+      "E3 KIMA-2 operating, devaluations": -0.9970787750830711
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.8127009919333342,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.6558074182889049,
+     "outcome_n": 2
+    },
+    "cost_of_sales": {
+     "n_resolved": 6,
+     "mean_resolved": -0.950706096661924,
+     "sd_resolved": 0.5377845017609524,
+     "era_signs": {
+      "E2 old plant post-float / transition": -1.374605493751899,
+      "E3 KIMA-2 operating, devaluations": -0.5268066995719488
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.475353048330962,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.2649197959716755,
+     "outcome_n": 2
+    },
+    "selling": {
+     "n_resolved": 3,
+     "applied": 0.0,
+     "why": "fewer than five resolved cells"
+    },
+    "admin": {
+     "n_resolved": 6,
+     "mean_resolved": 0.2725965347278495,
+     "sd_resolved": 0.3262008659512029,
+     "era_signs": {
+      "E2 old plant post-float / transition": 0.5621199060459332,
+      "E3 KIMA-2 operating, devaluations": -0.016926836590234185
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "debit_interest": {
+     "n_resolved": 6,
+     "mean_resolved": -0.6507334124178926,
+     "sd_resolved": 0.6532640036740782,
+     "era_signs": {
+      "E2 old plant post-float / transition": -1.0866188363766816,
+      "E3 KIMA-2 operating, devaluations": -0.2148479884591037
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.3253667062089463,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.13760746883874067,
+     "outcome_n": 2
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": 0.0653135187376252,
+      "adjusted": 0.8780145106709594
+     },
+     "cost_of_sales": {
+      "raw": -0.07671367069323862,
+      "adjusted": 0.3986393776377234
+     },
+     "gross_profit": {
+      "raw": 0.30624566535464703,
+      "adjusted": 1.4566516480027298
+     },
+     "pbt": {
+      "raw": -1.6475099908651827,
+      "adjusted": 0.9902571626937098
+     },
+     "net": {
+      "raw": -1.9895866436132363,
+      "adjusted": 0.6481805099456559
+     }
+    },
+    "2": {
+     "revenue": {
+      "raw": -0.1568935736444292,
+      "adjusted": 0.655807418288905
+     },
+     "cost_of_sales": {
+      "raw": -0.1337195816660479,
+      "adjusted": 0.3416334666649141
+     },
+     "gross_profit": {
+      "raw": -0.1952493016661137,
+      "adjusted": 1.0153898985763126
+     },
+     "pbt": {
+      "raw": -2.3693827566192294,
+      "adjusted": 1.794986145847853
+     },
+     "net": {
+      "raw": -2.6118375259047575,
+      "adjusted": 1.552531376562325
+     }
+    }
+   }
+  },
+  {
+   "origin": "FY2024",
+   "era": "E3 KIMA-2 operating, devaluations",
+   "corrections": {
+    "revenue": {
+     "n_resolved": 10,
+     "mean_resolved": -1.4246475681097948,
+     "sd_resolved": 1.0220928316335653,
+     "era_signs": {
+      "E2 old plant post-float / transition": -2.3785040226643965,
+      "E3 KIMA-2 operating, devaluations": -0.7887432650733937
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.7123237840548974,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.6645996310442415,
+     "outcome_n": 1
+    },
+    "cost_of_sales": {
+     "n_resolved": 10,
+     "mean_resolved": -0.9057788974749629,
+     "sd_resolved": 0.5939697563934636,
+     "era_signs": {
+      "E2 old plant post-float / transition": -1.4891614649961293,
+      "E3 KIMA-2 operating, devaluations": -0.5168571857941852
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.45288944873748144,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.4528894487374814,
+     "outcome_n": 1
+    },
+    "selling": {
+     "n_resolved": 6,
+     "mean_resolved": -1.04184344976029,
+     "sd_resolved": 0.6450430670497082,
+     "era_signs": {
+      "E3 KIMA-2 operating, devaluations": -1.04184344976029
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.520921724880145,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.43432736724725546,
+     "outcome_n": 1
+    },
+    "admin": {
+     "n_resolved": 10,
+     "mean_resolved": 0.08150466125953539,
+     "sd_resolved": 0.38987995334408265,
+     "era_signs": {
+      "E2 old plant post-float / transition": 0.484832334752235,
+      "E3 KIMA-2 operating, devaluations": -0.18738045440226428
+     },
+     "era_stable": false,
+     "bootstrap_same_sign": {
+      "2": false,
+      "3": false
+     },
+     "bootstrap_ok": false,
+     "two_sigma_shock": false,
+     "applied": 0.0,
+     "why": "era sign unstable"
+    },
+    "debit_interest": {
+     "n_resolved": 10,
+     "mean_resolved": -0.7354620714860055,
+     "sd_resolved": 0.6495374235105189,
+     "era_signs": {
+      "E2 old plant post-float / transition": -1.2278202222661672,
+      "E3 KIMA-2 operating, devaluations": -0.4072233042992312
+     },
+     "era_stable": true,
+     "bootstrap_same_sign": {
+      "2": true,
+      "3": true
+     },
+     "bootstrap_ok": true,
+     "two_sigma_shock": false,
+     "applied": 0.36773103574300275,
+     "why": "clause 1 passed on the resolved record",
+     "outcome_mae_change": 0.3677310357430028,
+     "outcome_n": 1
+    }
+   },
+   "confirm_origin": false,
+   "adjusted_vs_raw": {
+    "1": {
+     "revenue": {
+      "raw": -0.023862076505328,
+      "adjusted": 0.6884617075495695
+     },
+     "cost_of_sales": {
+      "raw": 0.10469086608863512,
+      "adjusted": 0.5575803148261165
+     },
+     "gross_profit": {
+      "raw": -0.2725564084922411,
+      "adjusted": 0.8681991881732092
+     },
+     "pbt": {
+      "raw": null,
+      "adjusted": null
+     },
+     "net": {
+      "raw": null,
+      "adjusted": null
+     }
+    }
+   }
+  }
+ ],
+ "summary": {
+  "revenue": {
+   "origins_applied": [
+    "FY2017",
+    "FY2023",
+    "FY2024"
+   ],
+   "n_applied": 3,
+   "mean_mae_change_when_applied": 0.44647449659604427,
+   "helped_count": 0,
+   "hurt_count": 3,
+   "confirm_origins_applied": [
+    "FY2017"
+   ],
+   "clause2_convention": "Revenue is volume x realisation on a disclosed unit in every ground-up study; a multiplier on the revenue LEVEL would be unique to this name.",
+   "disposition": "WATCH FLAG \u2014 clause 1 passed at 3 origin(s) (helped 0 / hurt 3); NOT promoted: clause 2 \u2014 Revenue is volume x realisation on a disclosed unit in every ground-up study; a multiplier on the revenue LEVEL would be unique to this name."
+  },
+  "cost_of_sales": {
+   "origins_applied": [
+    "FY2017",
+    "FY2023",
+    "FY2024"
+   ],
+   "n_applied": 3,
+   "mean_mae_change_when_applied": 0.2468197249296634,
+   "helped_count": 0,
+   "hurt_count": 3,
+   "confirm_origins_applied": [
+    "FY2017"
+   ],
+   "clause2_convention": "Each physical cost class escalates on its own driver (gas on its administered dollar price through FX, labour on CPI) everywhere in the book \u2014 never a blended index and never a multiplier on the total (L-009).",
+   "disposition": "WATCH FLAG \u2014 clause 1 passed at 3 origin(s) (helped 0 / hurt 3); NOT promoted: clause 2 \u2014 Each physical cost class escalates on its own driver (gas on its administered dollar price through FX, labour on CPI) everywhere in the book \u2014 never a blended index and never a multiplier on the total (L-009)."
+  },
+  "selling": {
+   "origins_applied": [
+    "FY2015",
+    "FY2016",
+    "FY2017",
+    "FY2018",
+    "FY2019",
+    "FY2024"
+   ],
+   "n_applied": 6,
+   "mean_mae_change_when_applied": 0.17173569648281664,
+   "helped_count": 1,
+   "hurt_count": 2,
+   "confirm_origins_applied": [
+    "FY2017"
+   ],
+   "clause2_convention": "Freight is cost per tonne shipped, escalated on domestic CPI, across the book.",
+   "disposition": "WATCH FLAG \u2014 clause 1 passed at 6 origin(s) (helped 1 / hurt 2); NOT promoted: clause 2 \u2014 Freight is cost per tonne shipped, escalated on domestic CPI, across the book."
+  },
+  "admin": {
+   "origins_applied": [
+    "FY2015",
+    "FY2017",
+    "FY2019"
+   ],
+   "n_applied": 3,
+   "mean_mae_change_when_applied": 0.013089758904717476,
+   "helped_count": 2,
+   "hurt_count": 1,
+   "confirm_origins_applied": [
+    "FY2017"
+   ],
+   "clause2_convention": "Overheads are a fixed base escalated on CPI across the book.",
+   "disposition": "WATCH FLAG \u2014 clause 1 passed at 3 origin(s) (helped 2 / hurt 1); NOT promoted: clause 2 \u2014 Overheads are a fixed base escalated on CPI across the book."
+  },
+  "debit_interest": {
+   "origins_applied": [
+    "FY2023",
+    "FY2024"
+   ],
+   "n_applied": 2,
+   "mean_mae_change_when_applied": 0.2526692522908717,
+   "helped_count": 0,
+   "hurt_count": 2,
+   "confirm_origins_applied": [],
+   "clause2_convention": "Interest is a disclosed rate on the borrowings that bear it, in the currency they are borrowed in, across the book. A multiplier on the charge would hide a rate or a currency that was read wrongly (L-002).",
+   "disposition": "WATCH FLAG \u2014 clause 1 passed at 2 origin(s) (helped 0 / hurt 2); NOT promoted: clause 2 \u2014 Interest is a disclosed rate on the borrowings that bear it, in the currency they are borrowed in, across the book. A multiplier on the charge would hide a rate or a currency that was read wrongly (L-002)."
+  }
+ },
+ "adopted": []
+}

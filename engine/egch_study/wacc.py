@@ -67,12 +67,16 @@ i = WaccInputs(
                 f"{dam['cds_spread_2025_12_31']*100:.2f}%, total ERP "
                 f"{dam['cds_based_total_equity_risk_premium']*100:.2f}%."),
     beta=BETA['beta'],
-    beta_source=(f"Tier-1 own-stock regression: {BETA['n']} weekly observations over 5 "
-                 f"years against an equal-weight EGX composite of "
-                 f"{BETA['composite_names']} names (EGCH excluded from its own index), "
+    beta_source=(f"Tier-1 own-stock weekly regression through beta_regression.own_stock_beta(): "
+                 f"{BETA['n']} weekly observations over {BETA['window_years']:.2f} years "
+                 f"({BETA['first_obs']} to {BETA['last_obs']}) against the PUBLISHED EGX30 index "
+                 f"({BETA['index_file']}, as of {BETA['index_asof']}), Sunday-Thursday grid, "
                  f"R-squared {BETA['r2']:.3f}, SE {BETA['se']:.3f}, 90% CI "
-                 f"[{BETA['ci90'][0]:.2f}, {BETA['ci90'][1]:.2f}] — usability gate PASSED. "
-                 f"Dimson sum-beta {BETA['dimson']['sum_beta']:.3f} as cross-check."),
+                 f"[{BETA['ci90'][0]:.2f}, {BETA['ci90'][1]:.2f}] — usability gate PASSED, "
+                 f"conforming={BETA['conforming']}. Blume-adjusted cross-check "
+                 f"{BETA['blume_crosscheck']:.3f}. The 08-08-2026 edition's 35-name equal-weight "
+                 f"composite beta of {BETA['superseded_composite']['beta']:.4f} is withdrawn as "
+                 f"non-conforming (SIGCM clause 6)."),
     kd_pretax_local=KD_LOCAL,
     kd_source=("MARGINAL, from the company's own two live facilities. Local: the EGP "
                "500,000,000 holding-company loan drawn in FY2024/25 carried EGP "
@@ -105,7 +109,7 @@ i = WaccInputs(
 res = build_wacc(i)
 print(res.report())
 print()
-print(sensitivity_grid(i, beta_range=[0.6, 0.8, 1.0, 1.053, 1.2, 1.4]))
+print(sensitivity_grid(i, beta_range=[0.6, 0.8, 1.0, round(BETA['beta'], 3), 1.2, 1.4]))
 
 out = dict(
     spot=SPOT, shares=SHARES, market_cap=MKT_CAP, total_debt=DEBT,

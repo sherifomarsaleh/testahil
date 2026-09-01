@@ -1,7 +1,7 @@
 {
  "model_study": {
-  "sections": "50 headings, 0 model-study sections missing",
-  "sheets": "16 sheets in the model order",
+  "sections": "51 headings, 0 model-study sections missing ",
+  "sheets": "16 sheets in the model order, 0 mismatches",
   "lenses": [
    "Book value and sustainable return",
    "Cash flow \u2014 programme carried through",
@@ -9,12 +9,31 @@
    "Normalised earnings power",
    "Relative multiples"
   ],
-  "inputs": "294 inputs, all four-field complete",
+  "four_lenses": true,
+  "inputs": "296 inputs, all four-field complete",
   "scrub": "49 patterns, 0 hits",
   "figures": "15 figures, 0 with transparency",
-  "tables": "55 tables, 0 problems",
+  "tables": "56 tables, 0 problems",
   "builders": "4 builders, 0 typed numerals",
-  "contested": "EGP 4.00 a share between the two sides"
+  "contested": "EGP 4.14 a share between the two sides"
  },
- "passed": true
+ "passed": true,
+ "beta": {
+  "beta": 1.0302103069881783,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "conforming": true
+ },
+ "standard_version": "2026.09.01",
+ "ground_up": {
+  "ticker": "EGCH",
+  "lines": 5,
+  "share_by_level": {
+   "unit": 0.7440692809426528,
+   "derived": 0.2435525226301467,
+   "segment": 0.012378196427200576,
+   "topdown": 0
+  },
+  "unit_share": 0.7440692809426528,
+  "standard_version": "2026.09.01"
+ }
 }

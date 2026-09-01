@@ -97,7 +97,35 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 3.79,
+      "bear": 0.0,
+      "full": 15.47
+     },
+     "lessons": [
+      "L-057",
+      "L-058",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 4.1,
+      "bear": null,
+      "full": 0.0
+     },
+     "vs_previous_pct": {
+      "base": 4.1,
+      "bear": null,
+      "full": 0.0
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "EGCH",

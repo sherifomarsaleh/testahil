@@ -22,9 +22,9 @@ sys.path.insert(0, HERE)
 
 D = json.load(open('study_numbers.json'))
 AL = json.load(open('alternatives.json'))
-WB = openpyxl.load_workbook('EGCH_Valuation_Model_08082026.xlsx')
+WB = openpyxl.load_workbook('EGCH_Valuation_Model_01092026.xlsx')
 BK = xlcalc.Book(WB)
-DOC = Document('EGCH_Valuation_Study_08-08-2026.docx')
+DOC = Document('EGCH_Valuation_Study_01-09-2026.docx')
 
 TEXT = " ".join(p.text for p in DOC.paragraphs)
 for t in DOC.tables:

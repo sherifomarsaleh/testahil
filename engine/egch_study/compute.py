@@ -193,7 +193,7 @@ D['roc_terminal'] = _V('roc_terminal')              # reinvestment = g / RoC
 # So the rate glides from the spot build to a NORMALISED long-run build, and the
 # discount factors compound the glide year by year rather than powering one rate.
 D['rf_star_spot'] = WACC['rf_star_rating']            # 23.00% observed - 6.37% spread
-D['inflation_lt'] = _V('cbe_inflation_target')                              # CBE medium-term target
+D['inflation_lt'] = _V('inflation_terminal')   # the SAME inflation terminal growth carries (L-055)
 D['real_rate_lt'] = _V('real_rate_lt')                              # EM long-run real policy rate
 D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1   # 10.75%
 D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD corporate cost
@@ -565,9 +565,96 @@ print(f"ANNA programme cost to shareholders: "
       f"EGP {CASES['halt']['bridge']['per_share'] - CASES['base']['bridge']['per_share']:.2f} "
       f"per share (capital-discipline case less committed-capital case).")
 
+# ==================== FUNDAMENTAL WALK-FORWARD, CARRIED IN ====================
+# [R-FCAL-01] is a standing step of every study and every update, and its result belongs in
+# the delivered document rather than only in the internal record. The training record itself
+# (panel, error cells, pre-registration) stays internal; what a reader sees is the scope, the
+# honest headline, and the bands the record licenses on the far forecast years.
+_WF = os.path.join(HERE, '..', 'egch_walkforward')
+_FR = json.load(open(os.path.join(_WF, 'forward_ranges.json')))
+_WS = json.load(open(os.path.join(_WF, 'scores.json')))
+_WD = json.load(open(os.path.join(_WF, 'diagnostics.json')))
+WALKFORWARD = dict(
+    ran=True, scope='FULL', origins=len(_WS['origins']), horizons='1-5', cells=_WS['cells'],
+    window='FY2008-FY2025, KIMA\'s own audited statements (18 fiscal years, FY2014 partial)',
+    headline=dict(
+        net_bias=_WS['drivers']['net']['overall']['bias'],
+        net_mae=_WS['drivers']['net']['overall']['mae'],
+        net_n=_WS['drivers']['net']['overall']['n'],
+        net_share_over=_WS['drivers']['net']['overall']['share_over'],
+        net_skill_vs_freeze=_WS['drivers']['net']['skill_vs_freeze']['skill'],
+        revenue_bias=_WS['drivers']['revenue']['overall']['bias'],
+        revenue_skill_vs_freeze=_WS['drivers']['revenue']['skill_vs_freeze']['skill'],
+        cost_skill_vs_freeze=_WS['drivers']['cost_of_sales']['skill_vs_freeze']['skill'],
+        volume_bias=_WS['drivers']['urea_t']['overall']['bias'],
+        volume_n=_WS['drivers']['urea_t']['overall']['n'],
+        fx_contribution_pct_revenue=_WD['net_decomposition_mean']['fx'],
+        tax_contribution_pct_revenue=_WD['net_decomposition_mean']['tax_current']),
+    bands=_FR['published_band'],
+    corrections_adopted=0,
+    corrections_note=('None. Every correction that passed its own sign test on the expanding record '
+                      'made the next origin worse when applied, and none matches how the driver is '
+                      'built across the book. All are watch flags.'),
+    what_it_changed=('Three things. The terminal inflation now equals the inflation terminal growth '
+                     'is set at (the previous edition discounted a 5%-growth perpetuity at a rate '
+                     'built on 7% inflation). The currency path is derived from the same inflation '
+                     'identity that carries the dollar debt. And years three to five of the forecast '
+                     'are published as ranges from the record\'s own error distribution, because on '
+                     'this company the method did not beat "no change" on the profit line.'))
+
+# ============================ THE GATES =================================
+# [R-ENF-02] A study must call these in its OWN code; scripts/check_study_provenance.py runs the
+# same tests from outside so a study cannot pass by not checking itself.
+sys.path.insert(0, os.path.join(HERE, '..'))
+import research_protocol as _rp
+BETA_REC = json.load(open(os.path.join(HERE, 'beta_result.json')))
+_rp.assert_beta_provenance(BETA_REC)
+assert abs(BETA_REC['beta'] - WACC['beta']) < 5e-4, "the WACC beta and the regression record disagree"
+
+# --- ground-up: a RECORD per revenue line, covering 100% of revenue [R-SIGCM-02] ----
+_R0 = CASES['base']['rows'][0]
+_TOT = _R0['revenue']
+_TSRC = ("Auditor's product-cost table in the audited FY2024/25 statements (urea 513,385 t; "
+         "ammonia 318,242 t; granulated and low-density nitrate 26,058 t)")
+DRIVER_LINES = [
+    _rp.DriverLine(name='export urea', level='unit', share_of_revenue=_R0['rev_exp'] / _TOT, unit='tonne',
+                   unit_source=_TSRC + "; export tonnes = output less the two domestic legs",
+                   price_basis="world urea f.o.b. Egypt in US$/t through the derived currency path, net of the 10% ad-valorem duty",
+                   cost_basis="gas at the administered dollar price x m3 per tonne of ammonia; other materials, wages and services per tonne"),
+    _rp.DriverLine(name='subsidised urea', level='derived', share_of_revenue=_R0['rev_sub'] / _TOT, unit='tonne',
+                   unit_source=_TSRC, price_basis="administered cooperative supply price",
+                   cost_basis="same physical cost stack as export urea",
+                   gap_note="Tonnes are the auditor's 147kt over fourteen months annualised, not a year the company disclosed as such."),
+    _rp.DriverLine(name='free-market urea', level='derived', share_of_revenue=_R0['rev_free'] / _TOT, unit='tonne',
+                   unit_source=_TSRC, price_basis="90% of export parity",
+                   cost_basis="same physical cost stack as export urea",
+                   gap_note="Tonnes are the residual of the note-20 local revenue after the subsidised leg at an implied price; the filings do not split the three domestic channels."),
+    _rp.DriverLine(name='nitrates', level='derived', share_of_revenue=_R0['rev_an'] / _TOT, unit='tonne',
+                   unit_source=_TSRC, price_basis="FY2024/25 implied EGP/t carried on the currency path",
+                   cost_basis="ammonia embodied at the disclosed ammonia unit cost plus disclosed conversion cost",
+                   gap_note="The realised nitrate price is implied from the revenue note, not disclosed per tonne."),
+    _rp.DriverLine(name='other (merchant nitric acid, plant rent, services)', level='segment',
+                   share_of_revenue=_R0['rev_other'] / _TOT,
+                   gap_note="A small residual line the filings disclose in total only; grown on domestic inflation."),
+]
+GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
+D['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
+
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
+           walkforward=WALKFORWARD, gates=D['gates'], standard_version=_rp.STANDARD_VERSION,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},
            wacc=WACC, spot=_V('spot_price'), spot_date=_V('spot_price_date'))
+# compute.py is IMPORTED by alternatives.py, sensitivity.py and the ladder, each of which re-runs
+# this module and would otherwise overwrite the answer lenses.py wrote back (central, fair, spot)
+# with a file that no longer carries it. The answer keys are carried over from the file on disk;
+# lenses.py, which runs immediately after the first compute pass, always refreshes them.
+try:
+    _prev = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+    for _k in ('central', 'fair'):
+        if _k in _prev:
+            out[_k] = _prev[_k]
+except (OSError, ValueError):
+    pass
 json.dump(out, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 print("\nwrote study_numbers.json")

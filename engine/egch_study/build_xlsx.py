@@ -259,9 +259,10 @@ SPRC = drv(r, "Sovereign default spread, CDS basis", V('sov_spread_cds'), "%", s
 ERPC = drv(r, "Equity risk premium, CDS basis", V('erp_cds_damodaran'), "%",
            src('erp_cds_damodaran'), PC2); r += 1
 BETAC = drv(r, "Beta", W['beta'], "x",
-            f"Own-stock weekly regression, {BETA['n']} observations over five years against an "
-            f"equal-weight index of {BETA['composite_names']} Egyptian names with the subject "
-            f"excluded, R-squared {BETA['r2']:.3f}, standard error {BETA['se']:.3f}", N3); r += 1
+            f"Own-stock weekly regression, {BETA['n']} observations over {BETA['window_years']:.1f} "
+            f"years against the published EGX30 index (as of {BETA['index_asof']}), R-squared "
+            f"{BETA['r2']:.3f}, standard error {BETA['se']:.3f}, 90% interval "
+            f"{BETA['ci90'][0]:.2f} to {BETA['ci90'][1]:.2f}", N3); r += 1
 KE_R = r; put(ws, f"A{r}", "Cost of equity, rating basis"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={RFSTAR}+{BETAC}*{ERP}", fmt=PC2, expect=W['ke_rating']); r += 1
 put(ws, f"A{r}", "Cost of equity, CDS basis"); put(ws, f"B{r}", "%")
@@ -284,7 +285,7 @@ WD = drv(r, "Debt weight", W['wd'], "%", "One less the equity weight", PC1); r +
 W1 = r; put(ws, f"A{r}", "Cost of capital, year one"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_R}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_path'][0]); r += 1
-INFLT = drv(r, "Long-run inflation", DR['inflation_lt'], "%", src('cbe_inflation_target'), PC1); r += 1
+INFLT = drv(r, "Terminal inflation (the same figure terminal growth is set at)", DR['inflation_lt'], "%", src('inflation_terminal'), PC1); r += 1
 REALLT = drv(r, "Long-run real rate", V('real_rate_lt'), "%", src('real_rate_lt'), PC1); r += 1
 RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"=(1+{INFLT})*(1+{REALLT})-1", fmt=PC2, expect=DR['rf_star_terminal'])
@@ -1020,6 +1021,37 @@ for lab, key, fmt in SF:
                 put(ws, f"{c}{r}", f"={EXPP[k]}", fmt=fmt, expect=R[k][key], link=True)
     r += 1
 
+# ---- years three to five as RANGES, from the method's own tested error distribution ----
+# The multiplicative bands are read from the calibration record's committed file; the low
+# and high rows are live formulas off the DCF revenue and EBITDA rows, so a reader who moves
+# a driver watches the range move with it.
+_FR = json.load(open(os.path.join(HERE, '..', 'egch_walkforward', 'forward_ranges.json')))['published_band']
+r += 1
+put(ws, f"A{r}", "YEARS THREE TO FIVE AS RANGES — multipliers measured on the company's own history").font = SUB; r += 1
+put(ws, f"A{r}", "Every figure below carries the number of tested cases it rests on; years one and two are left as points.").font = NOTE; r += 1
+RB = {}
+for lab, key in [("Revenue — low multiplier", 'low'), ("Revenue — high multiplier", 'high')]:
+    put(ws, f"A{r}", lab); put(ws, f"B{r}", "x")
+    for k, c in enumerate(CO):
+        h = str(k + 1)
+        if k >= 2 and 'revenue' in _FR[h]:
+            band = _FR[h]['revenue']
+            put(ws, f"{c}{r}", band['low_factor'] if key == 'low' else band['high_factor'], fmt=N2)
+    RB[key] = r; r += 1
+for lab, key in [("Revenue — low of the range (EGP m)", 'low'), ("Revenue — high of the range (EGP m)", 'high')]:
+    put(ws, f"A{r}", lab)
+    for k, c in enumerate(CO):
+        if k >= 2:
+            band = _FR[str(k + 1)]['revenue']
+            f_ = band['low_factor'] if key == 'low' else band['high_factor']
+            put(ws, f"{c}{r}", f"='DCF'!{c}5*{c}{RB[key]}", fmt=N0, expect=R[k]['revenue'] * f_, link=True)
+    r += 1
+put(ws, f"A{r}", "Tested cases behind the revenue band")
+for k, c in enumerate(CO):
+    if k >= 2:
+        put(ws, f"{c}{r}", _FR[str(k + 1)]['revenue']['n_full'], fmt=N0)
+r += 1
+
 # ============================================================ 13 Monte Carlo ==
 ws = wb.create_sheet("Monte Carlo")
 title(ws, "PROBABILISTIC PRICE MAP — SIMULATION OUTPUT",
@@ -1169,16 +1201,16 @@ para(ws, 14, "The freight line is the difference that matters. A coastal produce
 import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
-wb._sheets = [wb[n] for n in _MS["sheets"]]
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_08082026.xlsx'))
+wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
+wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_R}", "wacc_year_one": f"C{W1}",
            "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS}", "terminal_growth": f"C{r}"},
           open(os.path.join(HERE, 'xlsx_addresses.json'), 'w'), indent=1)
 import sys
 sys.path.insert(0, os.path.join(HERE, '..'))
-from research_protocol import check_sheets
-missing = check_sheets(wb.sheetnames)
+from research_protocol import MODEL_STUDY as _MS2
+missing = [n for n in _MS2["excel_sheets"] if n not in wb.sheetnames] + [n for n in wb.sheetnames if n not in _MS2["excel_sheets"]]
 assert not missing, f"SHEET LIST DOES NOT MATCH THE MODEL STUDY: {missing}"
 print(f"workbook: {len(wb.sheetnames)} sheets matching the model study, "
       f"{len(EXPECT)} formula cells recorded")

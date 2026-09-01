@@ -47,7 +47,7 @@ W = C.WACC
 flat_spot = reprice(wacc_path=[D['wacc_spot']] * 5, wacc_terminal=D['wacc_spot'])
 cds_basis = reprice(glide=True, rf_star_spot=W['rf_star_cds'], erp=W['erp_cds'])
 g_low = reprice(g_terminal=V('g_terminal_alt'))
-beta_dimson = reprice(glide=True, beta=V('dimson_sum_beta'))
+beta_low = reprice(glide=True, beta=V('beta_ci90_low'))
 gas_contract = reprice(gas_usd_mmbtu=V('gas_contract_usd_mmbtu'))
 util_bull = reprice(anna_util_base=V('anna_util_bull'))
 capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
@@ -82,14 +82,13 @@ ALTS = [
              "shrinks in real terms every year forever, which the maintenance capital "
              "expenditure in the model is sized to prevent."),
     dict(key="beta",
-         made="Beta from the five-year weekly regression of the share against its own "
-              "local index",
-         alt="The Dimson sum-beta from the same regression, which corrects for co-movement "
-             "booked late because the share does not trade every session",
-         value=beta_dimson,
-         why="The regression passes all three conditions of the usability test and the "
-             "sum-beta sits inside its confidence interval, so the direct estimate is "
-             "adopted and the correction is disclosed rather than substituted."),
+         made="Beta from the five-year weekly regression of the share against the published "
+              "EGX30 index",
+         alt="The lower bound of that regression's own 90% confidence interval",
+         value=beta_low,
+         why="The regression passes all three conditions of the usability test, so the point "
+             "estimate is adopted; the interval is wide because the share is thinly traded, "
+             "and the lower bound is priced here rather than argued away."),
     dict(key="gas",
          made="Gas at the realised price the company's own loss disclosure implies",
          alt="The contract formula price in the operating agreement, which is higher",
