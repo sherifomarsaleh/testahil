@@ -512,6 +512,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "ELM",
+   "name": "Elm Company",
+   "code": "TADAWUL:7203",
+   "ccy": "SAR",
+   "spot": 636.5,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 52,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 530,
+   "fv_base": 620,
+   "fv_full": 720,
+   "gap_base_pct": -2.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.102898,
+    "mu_h": -0.005277,
+    "G": {
+     "bear": -1.78,
+     "base": -0.26,
+     "full": 1.2
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0413,
+     "base": 0.4135,
+     "full": 0.0981
+    },
+    "p_touch": {
+     "bear": 0.0625,
+     "base": 0.7074,
+     "full": 0.1632
+    },
+    "required_cagr": {
+     "bear": -0.8889,
+     "base": -0.2703,
+     "full": 3.3894
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00121
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.185852,
+    "mu_h": -0.004283,
+    "G": {
+     "bear": -0.99,
+     "base": -0.14,
+     "full": 0.66
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.1563,
+     "base": 0.4495,
+     "full": 0.2333
+    },
+    "p_touch": {
+     "bear": 0.2731,
+     "base": 0.8262,
+     "full": 0.4309
+    },
+    "required_cagr": {
+     "bear": -0.5193,
+     "base": -0.0997,
+     "full": 0.6373
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00209
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "NVDA",
    "name": "NVIDIA Corporation",
    "code": "NASDAQ:NVDA",
@@ -1982,98 +2074,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00186
    },
    "market": "EG"
-  },
-  {
-   "ticker": "ELM",
-   "name": "Elm Company",
-   "code": "TADAWUL:7203",
-   "ccy": "SAR",
-   "spot": 666,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 16,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 530,
-   "fv_base": 620,
-   "fv_full": 720,
-   "gap_base_pct": -6.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.111625,
-    "mu_h": 0.002849,
-    "G": {
-     "bear": -2.05,
-     "base": -0.64,
-     "full": 0.7
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0212,
-     "base": 0.2396,
-     "full": 0.2376
-    },
-    "p_touch": {
-     "bear": 0.031,
-     "base": 0.4131,
-     "full": 0.4012
-    },
-    "required_cagr": {
-     "bear": -0.9355,
-     "base": -0.5763,
-     "full": 1.5486
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00167
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.181881,
-    "mu_h": 0.011287,
-    "G": {
-     "bear": -1.26,
-     "base": -0.39,
-     "full": 0.43
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0872,
-     "base": 0.3134,
-     "full": 0.3475
-    },
-    "p_touch": {
-     "bear": 0.1551,
-     "base": 0.5996,
-     "full": 0.6199
-    },
-    "required_cagr": {
-     "bear": -0.5989,
-     "base": -0.2489,
-     "full": 0.3659
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00225
-   },
-   "market": "SA"
   },
   {
    "ticker": "SAVOLA",
