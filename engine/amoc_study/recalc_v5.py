@@ -24,7 +24,7 @@ sys.path.insert(0, HERE)
 import openpyxl                                                        # noqa: E402
 import xlcalc                                                          # noqa: E402
 
-XLSX = os.path.join(HERE, 'AMOC_Valuation_Model_08082026_public.xlsx')
+XLSX = os.path.join(HERE, 'AMOC_Valuation_Model_01092026_public.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected_v5.json')))
