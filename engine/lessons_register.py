@@ -1379,6 +1379,152 @@ LESSONS = [
       "A delivered superlative that a reader can verify from the "
       "study's own committed numbers without recomputing it — at "
       "which point it was computed, not typed."),
+
+    L("L-057", "ALL", None,
+      "Interest income is a balance times a rate, and holding it flat "
+      "cannot track either.",
+      "A company that builds a cash pile into rising deposit rates "
+      "earns dramatically more interest, and a company that spends "
+      "one earns less. Carrying last year's figure forward misses "
+      "both moves at once. Drive it off the cash balance at the "
+      "deposit rate, the same way the rest of the book does.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -1.641 log (about 5.2 times too low), average miss 2.177, "
+      "wrong in the same direction in 76% of cases, and the sign "
+      "holds across every bootstrap block tested (n=25).",
+      "Nothing. This is arithmetic."),
+
+    L("L-120", "CLASS", "cement and heavy industrial",
+      "Haulage cost follows the EXPORT tonne, so a cost per tonne "
+      "despatched misprices it.",
+      "Cement sold at home moves a short distance to a local "
+      "customer; clinker sold abroad moves to a port. Spreading "
+      "haulage across every tonne despatched makes the cost look like "
+      "a rate that inflation moves, when it is really a mix effect. "
+      "When the export share falls, a per-despatched-tonne driver "
+      "overstates the cost.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.693 log (about 2.0 times too low), average miss 0.791, "
+      "wrong in the same direction in 76% of cases, and the sign "
+      "holds across every bootstrap block tested (n=25).",
+      "A producer whose local and export haulage rates per tonne are "
+      "disclosed and turn out to be the same."),
+
+    L("L-058", "ALL", None,
+      "An exogenous volume anchor has to be scored against 'no "
+      "change' before it is trusted.",
+      "The protocol asks for volume to be driven by something outside "
+      "the company — population, credit, activity — rather than by "
+      "its own trend. That is the right instinct and it is not self- "
+      "validating: the anchor can point the wrong way. Score it "
+      "against simply carrying last year's volume forward, and if it "
+      "loses, the driver is mis-specified and no correction factor "
+      "will repair it.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Negative skill against the freeze benchmark at horizons 1, 2, "
+      "3, 4, 5, worst -0.260.",
+      "A study where the exogenous anchor loses to freeze and the "
+      "anchor is still the better forecast out of sample."),
+
+    L("L-059", "ALL", None,
+      "If perfect knowledge of the macro path makes a MARGIN forecast "
+      "worse, the two legs were cancelling.",
+      "A margin is a difference, so its error is the difference of "
+      "two errors. When revenue and cost are both wrong in the same "
+      "direction the margin can come out nearly right for the wrong "
+      "reason. Handing the model the true inflation and currency path "
+      "repairs the two legs by different amounts and breaks that "
+      "cancellation — which is why the margin forecast can get WORSE "
+      "with better information. The practical consequence is the "
+      "important part: never recalibrate one leg onto a fresh actual "
+      "without recalibrating the other on the same one.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 1.265 as known, 1.339 with perfect foresight of "
+      "inflation — the macro share is only -5.8%.",
+      "A run where the macro split is positive on the margin and "
+      "negative on both of the legs that make it, which would mean "
+      "the cancellation runs the other way."),
+
+    L("L-060", "ALL", None,
+      "A bottom-line bias that flips sign between regimes is "
+      "instability, and must not be corrected.",
+      "Net profit is what is left after everything else, so it "
+      "inherits every driver's error and the currency's on top. When "
+      "its miss runs one way before a devaluation sequence and the "
+      "other way through it, the average is a number that was true in "
+      "neither period. Report the instability; do not correct for it.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "By era: E1 pre-2022 -0.581; E2 devaluation sequence +0.006.",
+      "A record long enough that one sign dominates the bottom line "
+      "across every regime it contains."),
+
+    L("L-061", "ALL", None,
+      "A correction that makes the out-of-sample error WORSE is a "
+      "specification defect, not a bias.",
+      "It is tempting to treat any consistent miss as something a "
+      "multiplier can fix. Test the multiplier the way you would test "
+      "a forecast: estimate it only on data that had already "
+      "resolved, then apply it forward. If the error gets worse, the "
+      "problem is in how the driver is wired, and a correction would "
+      "only hide it.",
+      "ARCC walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Applied -0.108 at origin FY2022; average miss changed -0.108.",
+      "A driver whose correction degrades out of sample and is "
+      "nevertheless shown to be a calibration problem rather than a "
+      "specification one."),
+
+    L("L-062", "ALL", None,
+      "A sensitivity that does not reproduce the headline when "
+      "nothing is changed is a second model.",
+      "Every study has a block that re-values the company under a "
+      "different assumption. If that block rebuilds the calculation "
+      "instead of reusing it, it will drift from the answer it is "
+      "supposed to be testing — and it will drift silently, because "
+      "nobody compares a sensitivity to the base case. Call the "
+      "function with nothing changed and require it to return the "
+      "published number.",
+      "ARCC walk-forward, date not recorded",
+      "self_audit",
+      "On ARCC the re-valuation function discounted the terminal "
+      "value at the last explicit year's mid-year factor while the "
+      "headline used the end-of-window factor. Called with no change "
+      "it returned 57.27 against a published 55.21, so every "
+      "sensitivity and every contested judgement in the study was "
+      "quoted on a basis 3.7% more generous than the number it was "
+      "compared against. The assertion that now enforces it caught a "
+      "SECOND instance on its first run, when a new income line was "
+      "added to the headline and not to the rebuild.",
+      "Nothing. A sensitivity that cannot reproduce its own base case "
+      "is measuring something else."),
+
+    L("L-063", "ALL", None,
+      "If every observation you have includes growth spending, they "
+      "are a CEILING on maintenance, not a midpoint.",
+      "When the only capital-spending figures available are years "
+      "that also carried expansion projects, those figures are the "
+      "most maintenance could possibly have been. Setting the "
+      "maintenance assumption in the middle of that band puts it "
+      "above some of the observations and treats an upper bound as a "
+      "central estimate.",
+      "ARCC walk-forward, date not recorded",
+      "self_audit",
+      "ARCC's input note observed that FY2024 (USD 3.70/t) and FY2025 "
+      "(USD 3.23/t) 'both carry the alternative-fuel and silo "
+      "programmes' and then set maintenance at USD 4.00/t — above "
+      "both. The H1-2026 cash-flow statement settled the direction by "
+      "splitting the spend: EGP 102.9mn of property, plant and "
+      "equipment against EGP 505.5mn of assets under construction, so "
+      "83% of it was the growth programme. Resetting the anchor to "
+      "the most recent full year's total was worth EGP 0.84 on the "
+      "central.",
+      "A disclosure that separates maintenance from growth capital "
+      "directly, which makes the inference unnecessary."),
 ]
 
 

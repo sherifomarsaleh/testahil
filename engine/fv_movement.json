@@ -82,6 +82,108 @@
    "ticker": "AMOC",
    "tier": "reissue"
   },
+  "ARCC": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-01",
+    "fair": {
+     "base": 54.65,
+     "bear": 49.53,
+     "full": 61.71
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 59,
+    "spot_date": "close 6 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 52.9,
+      "bear": 48.47,
+      "full": 59.5
+     },
+     "lessons": [],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 52.9,
+      "bear": 48.47,
+      "full": 59.5
+     },
+     "lessons": [
+      "L-057",
+      "L-058",
+      "L-059",
+      "L-060",
+      "L-061",
+      "L-120"
+     ],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -3.2,
+      "bear": -2.1,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": 0.0,
+      "bear": 0.0,
+      "full": 0.0
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 3,
+     "fair": {
+      "base": 54.1,
+      "bear": 48.75,
+      "full": 59.53
+     },
+     "lessons": [
+      "L-057",
+      "L-058",
+      "L-059",
+      "L-060",
+      "L-061",
+      "L-120"
+     ],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -1.0,
+      "bear": -1.6,
+      "full": -3.5
+     },
+     "vs_previous_pct": {
+      "base": 2.3,
+      "bear": 0.6,
+      "full": 0.1
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ARCC",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",
