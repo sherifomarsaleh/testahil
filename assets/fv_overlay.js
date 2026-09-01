@@ -2628,98 +2628,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "SABIC",
-   "name": "Saudi Basic Industries Corp",
-   "code": "TADAWUL:2010",
-   "ccy": "SAR",
-   "spot": 52.25,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-07",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 43,
-   "fv_base": 55.5,
-   "fv_full": 66,
-   "gap_base_pct": 6.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 15.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.057757,
-    "mu_h": 0.003058,
-    "G": {
-     "bear": -3.37,
-     "base": 1.04,
-     "full": 4.04
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0011,
-     "base": 0.1518,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0015,
-     "base": 0.2456,
-     "full": 0.0005
-    },
-    "required_cagr": {
-     "bear": -0.9035,
-     "base": 1.0629,
-     "full": 15.5003
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00142
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.105606,
-    "mu_h": 0.010661,
-    "G": {
-     "bear": -1.84,
-     "base": 0.57,
-     "full": 2.21
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.027,
-     "base": 0.3103,
-     "full": 0.0193
-    },
-    "p_touch": {
-     "bear": 0.0469,
-     "base": 0.5385,
-     "full": 0.0314
-    },
-    "required_cagr": {
-     "bear": -0.5413,
-     "base": 0.273,
-     "full": 1.5458
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00174
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "TSLA",
    "name": "Tesla, Inc.",
    "code": "NASDAQ:TSLA",
@@ -4190,6 +4098,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00114
    },
    "market": "AE"
+  },
+  {
+   "ticker": "SABIC",
+   "name": "Saudi Basic Industries Corp",
+   "code": "TADAWUL:2010",
+   "ccy": "SAR",
+   "spot": 50.1,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-07",
+   "fv_lag_days": 56,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 43,
+   "fv_base": 55.5,
+   "fv_full": 66,
+   "gap_base_pct": 10.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.053847,
+    "mu_h": -0.001198,
+    "G": {
+     "bear": -2.84,
+     "base": 1.9,
+     "full": 5.12
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0043,
+     "base": 0.0283,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0062,
+     "base": 0.044,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.8402,
+     "base": 2.4156,
+     "full": 26.3196
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00028
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.102261,
+    "mu_h": 0.002193,
+    "G": {
+     "bear": -1.49,
+     "base": 1.0,
+     "full": 2.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0621,
+     "base": 0.1547,
+     "full": 0.0058
+    },
+    "p_touch": {
+     "bear": 0.108,
+     "base": 0.2748,
+     "full": 0.0101
+    },
+    "required_cagr": {
+     "bear": -0.4573,
+     "base": 0.506,
+     "full": 2.0118
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00132
+   },
+   "market": "SA"
   },
   {
    "ticker": "SALIK",
