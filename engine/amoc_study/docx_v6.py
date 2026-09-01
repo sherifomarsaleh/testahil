@@ -29,6 +29,9 @@ STK, S0, BETA, BT = D['strike'], D['step0'], D['wacc']['beta'], D['backtest']
 EXP, SCEN = D['experts'], D['scen']
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 SPOT, SH, C = D['spot'], IN['shares_mn'], D['central']
+GMR = D['gm_required']
+GP_H1_GM = IN['gp_h1cy26'] / IN['rev_h1cy26']
+TVS = D['dcf'].get('tv_share') or D['terminal_recon'].get('tv_share', 0.0)
 
 # --- the band record, GENERATED not typed -------------------------------------
 # What a reader is shown about this cone's track record is the BAND RECORD: how many
@@ -109,9 +112,9 @@ box([
      'of proof is on this study and Section 1.14 states exactly what a buyer at the market price '
      'would have to believe; the forecasting method behind it has been tested against this '
      'company’s own past and did NOT beat a simple no-change rule, which is why the range is wide '
-     'and why Section 7 leads with that rather than burying it; and roughly half the base year is '
-     'a disclosure to the exchange rather than an audited filing. Everything here is reproducible '
-     'from the companion workbook, which recalculates the whole study live.'),
+     'and why Section 7 leads with that rather than burying it; and the second half of the base '
+     'year is reviewed rather than fully audited. Everything here is reproducible from the '
+     'companion workbook, which recalculates the whole study live.'),
 ])
 H1('Headline')
 box([
@@ -128,15 +131,19 @@ box([
      f'{p2(ADV["ALL_GIVEBACKS"]["central"])}, {pc(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1)} '
      f'against the price. Section 1.13 walks the whole stack, one full model re-run per row.'),
     ('WHAT A BUYER AT THE PRICE MUST BELIEVE.  ',
-     f'For EGP {p2(SPOT)} to be fair the cash-flow lens must reach EGP {p2(REQ_DCF)}, '
-     f'{pc(REQ_DCF/LN["dcf"]["base"]-1,0)} above this model. On the study’s own live grids '
-     f'that means a PERMANENT gross margin near 12.2% — above the best single quarter this '
-     f'company has ever filed — or volume growth at roughly ten times the assumed path. '
-     f'Section 1.14 derives both.'),
+     f'Solving the model at the market price rather than asserting a number: EGP {p2(SPOT)} is '
+     f'fair if AMOC sustains a gross margin of {pc(GMR["level"], 2)} in every forecast year and '
+     f'in perpetuity. The twelve months just filed ran {pc(GMR["base"], 2)} and the six months '
+     f'to June 2026 ran {pc(GP_H1_GM, 2)}. The market price therefore requires a margin BELOW '
+     f'what this company has just reported and well inside the range it has printed since 2021. '
+     f'A buyer at EGP {p2(SPOT)} is not making a heroic assumption; the burden of proof sits '
+     f'with the seller. Section 1.14 derives it.'),
     ('AND THE HONEST WEAKNESS.  ',
-     'Half the base year is a press release rather than a filing, and two exchange disclosures '
-     'that would move the answer in OPPOSITE directions could not be reached from this '
-     'environment. Both are named and priced in section 7 rather than left out.'),
+     f'The far years carry a wide range and the terminal block is {pc(TVS, 0)} of enterprise '
+     'value, which is high. The forecasting method behind Section 1 was tested against this '
+     'company’s own history and did NOT beat a simple no-change rule — Section 7 leads with '
+     'that. Two exchange disclosures that would move the answer in opposite directions could '
+     'not be opened.'),
 ])
 
 H1('Valuation summary — every read at a glance')
@@ -271,32 +278,30 @@ caption('Table 4 — the base year. Every operating line is struck on the SAME t
         'base-year gross margin of 7.081% corresponded to no filed period at all. One period, '
         'both sides, or the margin is an artefact of the scalars.')
 
-P('THE RELEASED GROSS PROFIT IS REJECTED. The release states gross profit of EGP '
-  f'{n0(TTM["gp_h1_released"])}mn for the half. Run through the company’s own first-quarter '
-  f'expense run rates, that figure implies profit after tax of EGP {n0(TTM["pat_if_released"])}mn '
-  f'against the EGP {n0(IN["pat_h1cy26_rep"]/1e6)}mn the SAME release reports — '
-  f'{pc(TTM["ct3"])} too high. At least one of the two released lines is wrong. Three tests '
-  'decide which:')
-table([['Test', 'What is compared', 'Result', 'Verdict'],
-       ['1 — profit', 'reported majority profit against the "+109%" growth applied to Jan-Jun '
-        '2025 majority profit read off the AUDITED statement of changes in equity',
-        f'agree within {pc(TTM["ct1"])}', 'CONFIRMS the profit line'],
-       ['2 — revenue', 'reported revenue triangulated back to a twelve-month figure to Jun-2025 '
-        'against an independent route through the audited comparatives',
-        f'agree within {pc(TTM["ct2"])}', 'CONFIRMS the revenue line'],
-       ['3 — gross profit', 'released gross profit run down to profit after tax on Q1-2026 '
-        'expense run rates, against the profit in the same release',
-        f'disagree by {pc(TTM["ct3"])}', 'REFUTES the gross-profit line']],
-      [1.1, 3.3, 1.25, 1.65], size=8.8, left_cols=(1, 3))
-caption('Table 5 — three coherence tests, run before the figure was used. Two independent tests '
-        'confirm the profit and revenue lines; the third refutes the gross-profit line. Gross '
-        f'profit is therefore SOLVED from the release’s own profit: EGP {n0(TTM["gp_h1"])}mn, '
-        f'putting the implied Q2-2026 gross margin at '
-        f'{pc((TTM["gp_h1"]-(IN["rev_q1_26"]-IN["cogs_q1_26"])/1e6)/((IN["rev_h1cy26_rep"]-IN["rev_q1_26"])/1e6), 1)} '
-        f'rather than the '
-        f'{pc((TTM["gp_h1_released"]-(IN["rev_q1_26"]-IN["cogs_q1_26"])/1e6)/((IN["rev_h1cy26_rep"]-IN["rev_q1_26"])/1e6), 1)} '
-        'the released line would require. The whole solve is a live formula block on the Base '
-        'Year sheet of the companion workbook.')
+P('THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT. The reviewed consolidated '
+  f'statements for the six months to 30 June 2026 report net sales of EGP {n0(IN["rev_h1cy26"]/1e6)}mn, '
+  f'gross profit of EGP {n0(IN["gp_h1cy26"]/1e6)}mn — a margin of {pc(GP_H1_GM, 2)} — and profit '
+  f'attributable to shareholders of EGP {n0(IN["maj_h1cy26"]/1e6)}mn. That is MORE IN SIX MONTHS '
+  f'than the whole financial year to June 2025 earned. The previous edition of this study did not '
+  'have these statements, believed the half existed only as a press release, rejected the '
+  'released gross-profit line on a coherence test and solved gross profit from the profit line '
+  'instead. The filing settles it in the release\'s favour:')
+table([['Line, six months to 30 June 2026', 'As released', 'As filed', 'Difference'],
+       ['Net sales', n0(IN['rev_h1cy26_rep'] / 1e6), n0(IN['rev_h1cy26'] / 1e6),
+        pc(IN['rev_h1cy26_rep'] / IN['rev_h1cy26'] - 1, 2)],
+       ['Gross profit', n0(IN['gp_h1cy26_rep'] / 1e6), n0(IN['gp_h1cy26'] / 1e6),
+        pc(IN['gp_h1cy26_rep'] / IN['gp_h1cy26'] - 1, 2)],
+       ['Profit after tax', n0(IN['pat_h1cy26_rep'] / 1e6), n0(IN['pat_h1cy26'] / 1e6),
+        pc(IN['pat_h1cy26_rep'] / IN['pat_h1cy26'] - 1, 2)]],
+      [3.0, 1.35, 1.35, 1.6], size=8.8, left_cols=(1,))
+caption('Table 5 — the press release against the filing. All three lines tie. The coherence test '
+        'that rejected the gross-profit line estimated the half\'s other income by DOUBLING the '
+        'first quarter\'s, which put EGP 451mn where the filing shows EGP 197mn — other income '
+        'is the most volatile line in this income statement and the least suited to being '
+        'doubled. A test built on an extrapolated volatile line refuted a correct disclosure, '
+        'and the study then carried a gross margin roughly two-thirds of a point too low into '
+        'every lens. The lesson is kept rather than the conclusion: a coherence test is only as '
+        'good as the estimate inside it.')
 
 P('The fully-audited alternative is published beside the headline rather than discarded: the '
   f'nine audited-and-reviewed months to 31 March 2026, annualised by four thirds, give revenue '
@@ -665,24 +670,27 @@ P('What survives the give-backs is the part of the verdict that cannot be negoti
   f'{pc(W["ke_term"], 1)}, is worth less than EGP {p2(SPOT)} a share on any internally '
   'consistent arithmetic this study can construct.')
 
-H2('1.14  What a buyer at EGP 9.10 must believe')
-P('Inverting the model at the market price, holding everything else at its published value:')
-bullet(f'the cash-flow lens must reach EGP {p2(REQ_DCF)} against this model’s '
-       f'{p2(LN["dcf"]["base"])} — an uplift of {pc(REQ_DCF/LN["dcf"]["base"]-1, 0)};',
-       bold_head='THE REQUIRED LENS — ')
-bullet('read off the margin grid, that needs roughly +3.6 percentage points of gross margin on '
-       'EVERY forecast year and in perpetuity: a permanent ~12.2% against a four-period filed '
-       'record of 5.05% to 10.19% whose best single quarter is 10.19%;', bold_head='AS MARGIN — ')
-bullet('or, read off the volume grid, roughly ten and a half times the assumed volume-growth '
-       'path — a plant adding capacity it has not announced, which the built capital line would '
-       'then have to fund;', bold_head='AS VOLUME — ')
-bullet(f'the discount rate cannot get there. Even at a beta of 0.60 the lens reaches only EGP '
-       f'{p2(grid_vals("Beta")[0][1])}, and terminal growth cannot do it at any rate the '
-       'reinvestment identity permits.', bold_head='NOT VIA THE RATE — ')
-P('The one belief that WOULD close the gap honestly is the released H1-2026 gross-profit line '
-  'taken at face value — and section 1.2 shows that line contradicts the profit printed in the '
-  'same release by 12.6%. A buyer at the price is, in effect, trusting the single number in that '
-  'disclosure which fails its own internal arithmetic.')
+H2(f'1.14  What a buyer at EGP {p2(SPOT)} must believe')
+P('The model is inverted at the market price rather than argued with. Every other driver is held '
+  'at its published value and the gross margin is solved for.')
+bullet(f'a gross margin of {pc(GMR["level"], 2)} sustained in EVERY forecast year and in '
+       f'perpetuity, against a base year of {pc(GMR["base"], 2)} — that is a REDUCTION of '
+       f'{pc(GMR["base"]-GMR["level"], 2)} from what the company has just filed, not an '
+       f'increase;', bold_head='AS MARGIN — ')
+bullet(f'the filed record puts that requirement well inside the range: {pc(GMR["filed_max_year"], 2)} '
+       f'for the whole year to June 2022, {pc(GP_H1_GM, 2)} for the half to June 2026 and '
+       f'{pc(GMR["filed_max_quarter"], 2)} for the June 2026 quarter alone;',
+       bold_head='AGAINST THE RECORD — ')
+bullet('so the price does not require a re-rating, a capacity addition or a change in the '
+       'business. It requires the company to hold slightly less margin than it is holding now.',
+       bold_head='WHAT THAT MEANS — ')
+P('THE PREVIOUS EDITION OF THIS STUDY PUT THIS FIGURE AT A PERMANENT 12.2% AND DESCRIBED IT AS '
+  '"ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED". Both halves of that sentence '
+  'were wrong. The number was typed rather than solved and was never recomputed as the model '
+  f'moved; solved, it is {pc(GMR["level"], 2)}. And the company had already filed '
+  f'{pc(GMR["filed_max_year"], 2)} for a full year and {pc(GMR["filed_max_quarter"], 2)} for a '
+  'quarter. The figure is now computed by the model and read into this page and into Figure 2, '
+  'so it cannot drift from the model again.')
 
 # ============================ 2-7 ============================================
 H1('2  The price record')
@@ -866,10 +874,14 @@ bullet('THE TEST ITSELF IS SMALL. Five origins, nine scored forecasts, one compa
        'publishes no accounts older than FY2022, so the window could not be lengthened. Nothing '
        'from it has been adopted as a correction — that was decided before any error was '
        'computed — and every finding is provisional.')
-bullet('HALF THE BASE YEAR IS NOT AUDITED. The six months to 30 June 2026 is an exchange '
-       'disclosure, not a filing. Its gross-profit line is rejected on a coherence test and '
-       'solved from its own profit line; its revenue and profit lines pass two independent '
-       'tests. If the audited half-year statements restate either, the base moves.')
+bullet('THE SECOND HALF OF THE BASE YEAR IS REVIEWED, NOT AUDITED. The six months to 30 June '
+       '2026 carries a limited review report rather than a full audit. The PREVIOUS edition of '
+       'this study went further and called it “a press release rather than a filing”, rejected '
+       'its gross-profit line on a coherence test and solved gross profit from the profit line '
+       'instead. The reviewed statements are in hand and the released figure was right to three '
+       'hundredths of a per cent; the test failed because it estimated the half’s other income '
+       'by doubling one quarter’s, which put 451mn where the filing shows 197mn. That error ran '
+       'through every lens in the previous edition.')
 bullet('TWO DISCLOSURES WERE UNREACHABLE, AND ONE EARLIER CLAIM OF UNREACHABILITY WAS WRONG. '
        'A board-approved FY2025/26 capital-expenditure budget and a revised FY2026 '
        'operating-profit budget were both reported by outside reviewers and neither could be '

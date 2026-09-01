@@ -391,3 +391,53 @@ are refused at this environment's egress proxy.
   warranted corrections.
 - **The method loses to "no change" on the profit line** (skill −1.128). Registered as **L-050**
   and stated in the delivered study's §7.
+
+### AMOC — second pass, 1 September 2026: what the first pass of this rebuild got wrong
+
+The first pass published EGP 5.53 against a market price of 9.10 and was challenged on exactly
+the right ground — a fair value at half the traded price is a finding about the model until it
+has been shown to be a finding about the company. Recorded here because four of the five defects
+are driver decisions, and because one of them is this run's own lesson going unapplied.
+
+6. **The reviewed H1-2026 statements were downloaded on day one and never opened.** The study
+   went on calling that half "a press release rather than a filing", rejected its gross-profit
+   line and solved gross profit from the profit line. The filing confirms the released figure to
+   0.03%. Base-year gross margin 8.997% → 9.653%.
+   *What would overturn it:* nothing. Read the filings you have.
+
+7. **The coherence test that rejected it estimated the half's other income by doubling one
+   quarter's** — 451mn against a filed 197mn — and other income is the most volatile line in
+   this statement. Registered as **L-053**.
+   *What would overturn it:* a rejection built on an extrapolated volatile line that a later
+   filing confirms was right.
+
+8. **Three macro paths ran side by side and contradicted each other**: costs at Egyptian
+   inflation 14.5%→9.5%, realisation at 9.0%→5.2%, the currency at 7.7%→3.6%. Both the price
+   path and the currency path are now DERIVED from the one registered inflation series by
+   relative purchasing-power parity, with crude held flat in dollars. **Two free parameters were
+   removed, not added.** THIS IS L-048 — the lesson this name's own walk-forward produced hours
+   earlier — sitting unapplied in the study being rebuilt. A register is only worth what it
+   changes.
+   *What would overturn it:* a disclosed pricing formula that decouples AMOC's realisations from
+   the currency.
+
+9. **The cash was charged for twice.** Operating cash flows discounted at a net-cash-weighted
+   31.19% — 374bp above the cost of equity — and the same cash added back at face in the bridge.
+   Now discounted at the unlevered rate, which for gross borrowings of 0.14% of the capital
+   structure is the cost of equity. Registered as **L-054**.
+   *What would overturn it:* nothing; the other consistent pair (blended rate, no add-back) is
+   equally acceptable and is named in the lesson.
+
+10. **Terminal growth of 5% against a terminal risk-free of 12.5%** that embeds the 7% inflation
+    target — a business contracting 2% a year in real terms for ever, never stated as an
+    assumption. Now 7%, inflation only, zero real growth.
+    *What would overturn it:* a stated case for real decline, which the disclosed tonnage does
+    not yet make.
+
+**The balance sheet was a year stale** and is rolled to 30 June 2026: net cash 3,002mn (EGP 2.32
+a share), book equity EGP 4.70 a share, dividends payable halved.
+
+**What survived unchanged:** the walk-forward and its finding that the method does not beat "no
+change"; the conforming beta; the flat volume path — the filed twelve-month tonnage of 1,502,325 t
+is a better base than the annualised half it replaced, and since the half to June 2026 annualises
+to 1,388,482 t, flat remains the optimistic case.

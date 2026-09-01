@@ -1291,6 +1291,48 @@ LESSONS = [
       "of 9 tested cases.",
       "A part-year base that is representative of the full-year "
       "record, where growing from it does not over-forecast."),
+
+    L("L-053", "ALL", None,
+      "A coherence test is only as good as the estimate inside it.",
+      "Checking a disclosure against your own reconstruction of it is "
+      "a good habit, but the reconstruction can be the thing that is "
+      "wrong. Before rejecting a company's own figure, ask which line "
+      "in your test is estimated and how volatile that line is. If "
+      "the answer is the most volatile line in the statement, the "
+      "test cannot carry the weight of a rejection.",
+      "AMOC walk-forward, date not recorded",
+      "build",
+      "AMOC's released gross profit for the half to June 2026 was "
+      "rejected on a test that estimated the half's other income by "
+      "DOUBLING the March quarter's 225,556,509, giving 451mn against "
+      "the 196,526,615 the filing later showed. The released figure "
+      "was right to 0.03%. Gross profit was then solved from the "
+      "profit line at 8.997% against a filed 9.653%, and that base- "
+      "year margin ran through all four lenses.",
+      "A rejection built on an extrapolated volatile line that a "
+      "later filing confirms was correct."),
+
+    L("L-054", "ALL", None,
+      "Value the whole firm, or value the operations and add the cash "
+      "— never both.",
+      "When a company holds more cash than debt, weighting its cost "
+      "of capital on NET debt makes the debt weight negative and "
+      "pushes the rate used on the OPERATING cash flows above the "
+      "cost of equity. If the cash is then added back at face in the "
+      "bridge, the same cash has been charged for twice: once by "
+      "discounting the business as though owning a deposit made it "
+      "riskier, and once by counting the deposit at par.",
+      "AMOC walk-forward, date not recorded",
+      "build",
+      "AMOC's operating cash flows were discounted at 31.19% against "
+      "a cost of equity of 27.45% — 374 basis points higher — because "
+      "net cash of 3.0bn against a market capitalisation of 11.8bn "
+      "gives a debt weight of -26.2%. The bridge then added the 3.0bn "
+      "at face. Gross borrowings are 0.14% of the capital structure, "
+      "so the unlevered rate is the cost of equity to three decimals.",
+      "A construction in which a net-cash-weighted rate is used on "
+      "operating cash flows AND the cash is left out of the bridge — "
+      "which is the other consistent pair, and equally acceptable."),
 ]
 
 

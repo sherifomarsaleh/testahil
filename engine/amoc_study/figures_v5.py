@@ -40,7 +40,7 @@ fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig1_football.png'), dpi=170
 # ---- fig 2: the margin record vs what a buyer at spot must believe -----------
 fig, ax = plt.subplots(figsize=(7.4, 3.0))
 hist = D['hist_is']
-periods = ['6M Dec-2024', '3M Mar-2025', '6M Dec-2025', '3M Mar-2026']
+periods = ['6M Dec-2024', '3M Mar-2025', '6M Dec-2025', '3M Mar-2026', '6M Jun-2026']
 gm = [hist[p]['gm'] * 100 for p in periods]
 fx = [g * 100 for g in D['fcst']['gm']]
 x1 = np.arange(len(periods)); x2 = np.arange(len(periods) + 1, len(periods) + 1 + 5)
@@ -48,21 +48,28 @@ ax.bar(x1, gm, color=PANEL, edgecolor=INK, lw=0.8, label='Filed record')
 ax.bar(len(periods), D['ttm']['gm'] * 100, color=GOLD, edgecolor=INK, lw=0.8,
        label='Base year (TTM to 30-Jun-26)')
 ax.bar(x2, fx, color='#CBD9D4', edgecolor=INK, lw=0.8, label='Forecast (output of the build)')
-req = 12.16
+# SOLVED by the model, not typed. The previous edition hardcoded 12.16 here, in the headline
+# and in section 1.14, and none of the three moved when the model did.
+req = D['gm_required']['level'] * 100
 ax.axhline(req, color=RED, lw=1.4, ls='--')
 # The annotation sits BELOW its own line and to the right of the legend. Rendered, the
 # previous placement put it straight through the legend's first entry and the two were
 # unreadable on top of each other; a figure is checked as an image, not as code.
-ax.text(len(periods) + 0.6, req - 0.95,
-        'margin required IN PERPETUITY for spot to be fair  ~12.2%',
-        color=RED, fontsize=8.2, ha='left')
+# The required margin now sits INSIDE the bars rather than above them all, so the label goes
+# under the axis line's left end where nothing is drawn, not across the forecast columns.
+# Placed over the FORECAST columns, which are the shortest bars the line crosses. On the left
+# it clipped the two 2026 filed bars, which are the ones a reader most needs to see.
+ax.text(len(periods) + 5.4, req + 0.55,
+        'required IN PERPETUITY for the market price to be fair: %.2f%%' % req,
+        color=RED, fontsize=8.2, ha='right', va='bottom')
 ax.set_xticks(list(x1) + [len(periods)] + list(x2))
 # The four filed periods are long labels on adjacent ticks and ran into one another.
 # Stagger them onto two lines rather than shrinking the type until nobody can read it.
 _perlab = [p.replace(' ', '\n') for p in periods]
 ax.set_xticklabels(_perlab + ['TTM\nJun-26'] + list(D['fcst']['years']), fontsize=7.4)
-ax.set_ylabel('Gross margin, %'); ax.set_ylim(0, 14.6)
-ax.legend(fontsize=7.4, frameon=False, loc='upper left', ncol=1)
+ax.set_ylabel('Gross margin, %'); ax.set_ylim(0, max(gm + fx + [req]) + 2.2)
+ax.legend(fontsize=7.4, frameon=False, loc='upper left', ncol=3,
+          bbox_to_anchor=(0.0, 1.16), borderaxespad=0.0)
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_margin.png'), dpi=170)
 

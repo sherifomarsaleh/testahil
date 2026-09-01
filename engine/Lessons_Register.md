@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**76 lessons**, of which 52 bind on every study, 19 on a class of company, and 5 on a single name.
+**78 lessons**, of which 54 bind on every study, 19 on a class of company, and 5 on a single name.
 
-By how they were learned: 27 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
+By how they were learned: 27 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 32 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -598,6 +598,26 @@ A base year built by doubling one good half can sit well above anything the comp
 > **What it cost, or how we know.** AMOC's base half annualises to 1,616,167 tonnes against a five-year mean of 1,436,781 and a most recent full year of 1,261,586; audited sales tonnage ran 1,492,273 / 1,547,816 / 1,448,889 / 1,433,341 / 1,261,586 over FY2021-FY2025. Even a FLAT volume rule over-forecast, bias +7.6% and too high in 8 of 9 tested cases.
 
 > **What would overturn it.** A part-year base that is representative of the full-year record, where growing from it does not over-forecast.
+
+### L-053 · A coherence test is only as good as the estimate inside it.
+
+Checking a disclosure against your own reconstruction of it is a good habit, but the reconstruction can be the thing that is wrong. Before rejecting a company's own figure, ask which line in your test is estimated and how volatile that line is. If the answer is the most volatile line in the statement, the test cannot carry the weight of a rejection.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's released gross profit for the half to June 2026 was rejected on a test that estimated the half's other income by DOUBLING the March quarter's 225,556,509, giving 451mn against the 196,526,615 the filing later showed. The released figure was right to 0.03%. Gross profit was then solved from the profit line at 8.997% against a filed 9.653%, and that base- year margin ran through all four lenses.
+
+> **What would overturn it.** A rejection built on an extrapolated volatile line that a later filing confirms was correct.
+
+### L-054 · Value the whole firm, or value the operations and add the cash — never both.
+
+When a company holds more cash than debt, weighting its cost of capital on NET debt makes the debt weight negative and pushes the rate used on the OPERATING cash flows above the cost of equity. If the cash is then added back at face in the bridge, the same cash has been charged for twice: once by discounting the business as though owning a deposit made it riskier, and once by counting the deposit at par.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's operating cash flows were discounted at 31.19% against a cost of equity of 27.45% — 374 basis points higher — because net cash of 3.0bn against a market capitalisation of 11.8bn gives a debt weight of -26.2%. The bridge then added the 3.0bn at face. Gross borrowings are 0.14% of the capital structure, so the unlevered rate is the cost of equity to three decimals.
+
+> **What would overturn it.** A construction in which a net-cash-weighted rate is used on operating cash flows AND the cash is left out of the bridge — which is the other consistent pair, and equally acceptable.
 
 
 ---

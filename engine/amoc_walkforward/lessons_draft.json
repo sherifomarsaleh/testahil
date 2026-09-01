@@ -394,6 +394,34 @@
    "rule": "judgement_added",
    "confirmed": true,
    "registered": "L-052"
+  },
+  {
+   "ticker": "AMOC",
+   "origin": "build",
+   "rule": "judgement_added",
+   "confirmed": true,
+   "scope": "ALL",
+   "proposed_id": "DRAFT-AMOC-29",
+   "headline": "A coherence test is only as good as the estimate inside it.",
+   "plain": "Checking a disclosure against your own reconstruction of it is a good habit, but the reconstruction can be the thing that is wrong. Before rejecting a company's own figure, ask which line in your test is estimated and how volatile that line is. If the answer is the most volatile line in the statement, the test cannot carry the weight of a rejection.",
+   "evidence": "AMOC's released gross profit for the half to June 2026 was rejected on a test that estimated the half's other income by DOUBLING the March quarter's 225,556,509, giving 451mn against the 196,526,615 the filing later showed. The released figure was right to 0.03%. Gross profit was then solved from the profit line at 8.997% against a filed 9.653%, and that base-year margin ran through all four lenses.",
+   "why_scope": "A rule about how to run a coherence test, not about refining or about Egypt. Any test that reconstructs a disclosure from run-rates can be defeated the same way.",
+   "overturned_by": "A rejection built on an extrapolated volatile line that a later filing confirms was correct.",
+   "registered": "L-053"
+  },
+  {
+   "ticker": "AMOC",
+   "origin": "build",
+   "rule": "judgement_added",
+   "confirmed": true,
+   "scope": "ALL",
+   "proposed_id": "DRAFT-AMOC-30",
+   "headline": "Value the whole firm, or value the operations and add the cash \u2014 never both.",
+   "plain": "When a company holds more cash than debt, weighting its cost of capital on NET debt makes the debt weight negative and pushes the rate used on the OPERATING cash flows above the cost of equity. If the cash is then added back at face in the bridge, the same cash has been charged for twice: once by discounting the business as though owning a deposit made it riskier, and once by counting the deposit at par.",
+   "evidence": "AMOC's operating cash flows were discounted at 31.19% against a cost of equity of 27.45% \u2014 374 basis points higher \u2014 because net cash of 3.0bn against a market capitalisation of 11.8bn gives a debt weight of -26.2%. The bridge then added the 3.0bn at face. Gross borrowings are 0.14% of the capital structure, so the unlevered rate is the cost of equity to three decimals.",
+   "why_scope": "A rule about the arithmetic of a bridge. It bites on any net-cash issuer and has nothing to do with the industry.",
+   "overturned_by": "A construction in which a net-cash-weighted rate is used on operating cash flows AND the cash is left out of the bridge \u2014 which is the other consistent pair, and equally acceptable.",
+   "registered": "L-054"
   }
  ]
 }

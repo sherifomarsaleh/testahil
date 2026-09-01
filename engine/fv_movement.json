@@ -44,6 +44,37 @@
       "bear": -11.1,
       "full": -2.7
      }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 8.64,
+      "bear": 5.53,
+      "full": 12.48
+     },
+     "lessons": [
+      "L-048",
+      "L-049",
+      "L-050",
+      "L-051",
+      "L-052",
+      "L-053",
+      "L-054",
+      "L-119"
+     ],
+     "origins": "FY2021-FY2025, h=1-3, 9 cells",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": 45.2,
+      "bear": 35.2,
+      "full": 46.5
+     },
+     "vs_previous_pct": {
+      "base": 56.1,
+      "bear": 52.1,
+      "full": 50.6
+     }
     }
    ],
    "exchange": "EGX",

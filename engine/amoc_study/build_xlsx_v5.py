@@ -150,9 +150,30 @@ arow('shares_mn', 'Shares outstanding, mn', SH, NUM1)
 put(wsA, f'A{r}', 'THE TWELVE MONTHS TO 30 JUNE 2026 — the base year', bold=True); band(wsA, r, 6); r += 1
 for k, lab, fmt in [('rev_h2_25', 'Net sales, 6M to 31-Dec-2025 (AUDITED)', NUM0),
                     ('cogs_h2_25', 'Cost of sales, 6M to 31-Dec-2025 (AUDITED)', NUM0),
-                    ('rev_h1cy26_rep', 'Net sales, 6M to 30-Jun-2026 (REPORTED)', NUM0),
-                    ('pat_h1cy26_rep', 'Profit after tax, 6M to 30-Jun-2026 (REPORTED)', NUM0),
-                    ('gp_h1cy26_rep', 'Gross profit as RELEASED — rejected, see coherence test', NUM0),
+                    ('rev_h1cy26', 'Net sales, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('cogs_h1cy26', 'Cost of sales, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('gp_h1cy26', 'Gross profit, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('ga_h1cy26', 'General and administrative, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('mkt_h1cy26', 'Marketing and selling, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('othexp_h1cy26', 'Other expenses, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('prov_h1cy26', 'Formed provisions, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('ecl_h1cy26', 'Expected credit losses, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('fin_h1cy26', 'Finance expenses, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('othrev_h1cy26', 'Other income, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('pat_h1cy26', 'Profit after tax, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('nci_h1cy26', 'Non-controlling interest, 6M to 30-Jun-2026 (FILED)', NUM0),
+                    ('maj_h1cy26', "Majority's share, 6M to 30-Jun-2026 (FILED)", NUM0),
+                    ('cos_ttm_salaries', 'Salaries in cost of sales, twelve months (note 15-A)', NUM0),
+                    ('cos_ttm_raw', 'Raw materials, twelve months (note 15-A)', NUM0),
+                    ('cos_ttm_support', 'Supporting materials, twelve months (note 15-A)', NUM0),
+                    ('cos_ttm_dep', 'Depreciation in cost of sales, twelve months (note 15-A)', NUM0),
+                    ('cos_ttm_other', 'Other cost of sales, twelve months (note 15-A)', NUM0),
+                    ('dep_ttm', 'Depreciation and RoU, twelve months (both cash-flow statements)', NUM0),
+                    ('capex_ttm', 'Cash capital expenditure, twelve months (both cash-flow statements)', NUM0),
+                    ('credint_h1cy26', 'Credit interest, 6M to 30-Jun-2026 (note 14-B)', NUM0),
+                    ('rev_h1cy26_rep', 'Net sales, 6M to 30-Jun-2026 (press release, cross-check)', NUM0),
+                    ('pat_h1cy26_rep', 'Profit after tax, 6M to 30-Jun-2026 (press release, cross-check)', NUM0),
+                    ('gp_h1cy26_rep', 'Gross profit (press release) — the filing confirms it', NUM0),
                     ('rev_q1_26', 'Net sales, 3M to 31-Mar-2026 (reviewed)', NUM0),
                     ('cogs_q1_26', 'Cost of sales, 3M to 31-Mar-2026 (reviewed)', NUM0),
                     ('ga_q1_26', 'Administrative expense, 3M to 31-Mar-2026', NUM0),
@@ -284,19 +305,18 @@ putf(wsB, 'B11',
      f"=({L('tax_h2_25')}-{L('dtax_h2_25')}+{L('tax_q1_26')}-{L('dtax_q1_26')})/"
      f"(({L('tax_h2_25')}-{L('dtax_h2_25')}+{L('tax_q1_26')}-{L('dtax_q1_26')})/{RT['tax_eff']})",
      RT['tax_eff'], PCT2)
-put(wsB, 'A13', 'GROSS PROFIT, 6M to 30-Jun-2026 — SOLVED from the profit', bold=True)
-putf(wsB, 'B13', f"={L('pat_h1cy26_rep')}/(1-B11)+B7-B8+B9+B10", TTM['gp_h1'] * 1e6, NUM0,
-     bold=True)
-put(wsB, 'A14', 'Gross profit AS RELEASED — rejected')
-putf(wsB, 'B14', f"={L('gp_h1cy26_rep')}", TTM['gp_h1_released'] * 1e6, NUM0)
-put(wsB, 'A15', 'Profit the released gross profit would imply')
-putf(wsB, 'B15', '=(B14-B7+B8-B9-B10)*(1-B11)', TTM['pat_if_released'] * 1e6, NUM0)
-put(wsB, 'A16', 'against the profit the same release reports')
+put(wsB, 'A13', 'GROSS PROFIT, 6M to 30-Jun-2026 — AS FILED', bold=True)
+putf(wsB, 'B13', f"={L('gp_h1cy26')}", IN['gp_h1cy26'], NUM0, bold=True)
+put(wsB, 'A14', 'Gross profit as the press release stated it')
+putf(wsB, 'B14', f"={L('gp_h1cy26_rep')}", IN['gp_h1cy26_rep'], NUM0)
+put(wsB, 'A15', 'Profit after tax, 6M to 30-Jun-2026 — AS FILED')
+putf(wsB, 'B15', f"={L('pat_h1cy26')}", IN['pat_h1cy26'], NUM0)
+put(wsB, 'A16', 'against the profit the press release reported')
 putf(wsB, 'B16', f"={L('pat_h1cy26_rep')}", IN['pat_h1cy26_rep'], NUM0)
-put(wsB, 'A17', 'Overstatement in the released gross-profit line', bold=True)
-putf(wsB, 'B17', '=B15/B16-1', TTM['ct3'], PCT2, bold=True)
+put(wsB, 'A17', 'Release against filing, gross profit', bold=True)
+putf(wsB, 'B17', '=B13/B14-1', TTM['ct3'], PCT2, bold=True)
 put(wsB, 'A19', 'BASE-YEAR REVENUE — twelve months to 30-Jun-2026', bold=True)
-putf(wsB, 'B19', f"=({L('rev_h2_25')}+{L('rev_h1cy26_rep')})/10^6", TTM['rev'], NUM0, bold=True)
+putf(wsB, 'B19', f"=({L('rev_h2_25')}+{L('rev_h1cy26')})/10^6", TTM['rev'], NUM0, bold=True)
 put(wsB, 'A20', 'BASE-YEAR GROSS PROFIT', bold=True)
 putf(wsB, 'B20', f"=({L('rev_h2_25')}-{L('cogs_h2_25')}+B13)/10^6", TTM['gp'], NUM0, bold=True)
 put(wsB, 'A21', 'BASE-YEAR COST OF SALES', bold=True)
@@ -311,14 +331,14 @@ putf(wsB, 'B25',
      f"({L('rev_h2_25')}+{L('rev_q1_26')})", TTM['gm9'], PCT2)
 put(wsB, 'A27', 'Operating lines, SAME twelve months', bold=True); band(wsB, 27, 5)
 for i, (lab, key, val) in enumerate([
-        ('Administrative expense', f"={L('ga_h2_25')}+{L('ga_q1_26')}*2", TTM['ga']),
-        ('Selling expense', f"={L('mkt_h2_25')}+{L('mkt_q1_26')}*2", TTM['mkt']),
-        ('Other operating expense', f"={L('othexp_h2_25')}+{L('othexp_q1_26')}*2", TTM['oth']),
-        ('Provisions and credit losses', f"={L('prov_h2_25')}+({L('prov_q1_26')}+{L('ecl_q1_26')})*2",
-         TTM['prov']),
-        ('Depreciation', f"={L('dep_h2_25')}+{L('dep_q1_26')}*2", TTM['dep']),
-        ('Cash capital expenditure', f"={L('capex_h2_25')}+{L('capex_q1_26')}*2", TTM['capex']),
-        ('Credit interest', f"={L('credint_h2_25')}+{L('credint_q1_26')}*2", TTM['credint']),
+        ('Administrative expense', f"={L('ga_h2_25')}+{L('ga_h1cy26')}", TTM['ga']),
+        ('Selling expense', f"={L('mkt_h2_25')}+{L('mkt_h1cy26')}", TTM['mkt']),
+        ('Other operating expense', f"={L('othexp_h2_25')}+{L('othexp_h1cy26')}", TTM['oth']),
+        ('Provisions and credit losses',
+         f"={L('prov_h2_25')}+{L('prov_h1cy26')}+{L('ecl_h1cy26')}", TTM['prov']),
+        ('Depreciation', f"={L('dep_ttm')}", TTM['dep']),
+        ('Cash capital expenditure', f"={L('capex_ttm')}", TTM['capex']),
+        ('Credit interest', f"={L('credint_h2_25')}+{L('credint_h1cy26')}", TTM['credint']),
         ("Employees' profit share", f"={L('emp_h2_25')}*2", TTM['emp'])]):
     put(wsB, f'A{28+i}', lab)
     putf(wsB, f'B{28+i}', '=(' + key[1:] + ')/10^6', val, NUM0)
@@ -331,11 +351,11 @@ note(wsB, 37,
 
 put(wsB, 'A39', 'RATES — solved, not assumed', bold=True); band(wsB, 39, 5)
 put(wsB, 'A40', "Employees' profit share, % of profit after tax")
-putf(wsB, 'B40', f"=B35/(({L('pat_h2_25')}+{L('pat_h1cy26_rep')})/10^6)", RT['emp_rate'], PCT2)
+putf(wsB, 'B40', f"=B35/(({L('pat_h2_25')}+{L('pat_h1cy26')})/10^6)", RT['emp_rate'], PCT2)
 put(wsB, 'A41', 'Minority interest, % of OPERATING profit, whole base year')
 putf(wsB, 'B41',
-     f"=(({L('nci_h2_25')}+{L('nci_q1_26')}*2)/10^6)/"
-     f"(({L('pat_h2_25')}+{L('pat_h1cy26_rep')})/10^6-B34*(1-{RT['tax_eff']}))",
+     f"=(({L('nci_h2_25')}+{L('nci_h1cy26')})/10^6)/"
+     f"(({L('pat_h2_25')}+{L('pat_h1cy26')})/10^6-B34*(1-{RT['tax_eff']}))",
      RT['nci_op'], PCT2)
 put(wsB, 'A42', 'Implied asset life, years = fixed assets at cost / depreciation')
 putf(wsB, 'B42', f"={L('ppe_gross')}/10^6/B32", RT['asset_life'], NUM1)
@@ -367,14 +387,14 @@ for i, k in enumerate(LINES):
     putf(wsP, f'B{rr}', f"={L('pt_'+k)}", IN['prod_t'][k], NUM3, green=True)
     putf(wsP, f'C{rr}', f"={L('pv_'+k)}", IN['prod_v'][k], NUM0, green=True)
     putf(wsP, f'D{rr}', f'=C{rr}/B{rr}', IN['prod_v'][k] / IN['prod_t'][k], NUM0)
-    putf(wsP, f'E{rr}', f'=B{rr}*2/10^6', UB['t0'][k], NUM3)
+    putf(wsP, f'E{rr}', f'=B{rr}/10^6', UB['t0'][k], NUM3)
     putf(wsP, f'F{rr}', f'=D{rr}*$B$16', UB['px0'][k], NUM0)
     PR[k] = rr
 put(wsP, 'A14', 'TOTAL', bold=True)
 putf(wsP, 'B14', '=SUM(B6:B13)', sum(IN['prod_t'].values()), NUM3, bold=True)
 putf(wsP, 'C14', '=SUM(C6:C13)', sum(IN['prod_v'].values()), NUM0, bold=True)
 putf(wsP, 'E14', '=SUM(E6:E13)', UB['T0'], NUM3, bold=True)
-put(wsP, 'A15', 'Revenue at the disclosed realisations, annualised')
+put(wsP, 'A15', 'Revenue at the disclosed realisations, twelve months as filed')
 putf(wsP, 'B15', '=SUMPRODUCT(E6:E13,D6:D13)',
      sum(UB['t0'][k] * IN['prod_v'][k] / IN['prod_t'][k] for k in LINES), NUM0)
 put(wsP, 'A16', 'REALISATION INDEX — solved so the base year foots', bold=True)
@@ -386,8 +406,8 @@ put(wsP, 'A19', 'Cost of sales, base year')
 putf(wsP, 'B19', "='Base Year'!B21", TTM['cogs'], NUM0)
 put(wsP, 'A20', 'Feedstock share of cost (note 15-A)')
 putf(wsP, 'B20',
-     f"={L('cos_raw')}/({L('cos_raw')}+{L('cos_salaries')}+{L('cos_other')}+"
-     f"{L('cos_support')}+{L('cos_dep')})", AU['cost_share']['raw'], PCT2)
+     f"={L('cos_ttm_raw')}/({L('cos_ttm_raw')}+{L('cos_ttm_salaries')}+{L('cos_ttm_other')}+"
+     f"{L('cos_ttm_support')}+{L('cos_ttm_dep')})", AU['cost_share']['raw'], PCT2)
 put(wsP, 'A21', 'Feedstock total')
 putf(wsP, 'B21', '=B19*B20', UB['raw_tot0'] / 1e6, NUM0)
 put(wsP, 'A22', 'Conversion total')
@@ -603,17 +623,18 @@ put(wsF, 'A9', 'Working-capital cycle multiplier'); put(wsF, 'B9', 1.0, color=BL
 put(wsF, 'A10', 'Explicit cost of capital')
 putf(wsF, 'B10',
      f"={L('rf')}-{L('sov_spread_cds')}+{L('beta')}*{L('erp_cds')}", W['ke_exp'], PCT2)
-put(wsF, 'A11', 'Equity weight')
-putf(wsF, 'B11', f"={L('spot')}*{L('shares_mn')}/({L('spot')}*{L('shares_mn')}"
-                 f"+({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)", W['we_exp'], PCT2)
-put(wsF, 'A12', 'Debt weight'); putf(wsF, 'B12', '=1-B11', W['wd_exp'], PCT2)
-put(wsF, 'A13', 'After-tax cost of net debt')
+put(wsF, 'A11', 'Gross borrowings as a share of the capital structure')
+putf(wsF, 'B11', f"=({L('debt_lt')}+{L('debt_st')})/10^6/({L('spot')}*{L('shares_mn')})",
+     (IN['debt_lt'] + IN['debt_st']) / 1e6 / (IN['spot'] * IN['shares_mn']), PCT2)
+put(wsF, 'A12', 'Equity weight — unlevered'); putf(wsF, 'B12', '=1-B11',
+     1 - (IN['debt_lt'] + IN['debt_st']) / 1e6 / (IN['spot'] * IN['shares_mn']), PCT2)
+put(wsF, 'A13', 'After-tax cost of net debt (shown; not used to discount operations)')
 putf(wsF, 'B13',
      f"=({L('kd')}*({L('debt_lt')}+{L('debt_st')})/10^6-{L('cash_yield')}*{L('cash')}/10^6)/"
      f"(({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)*(1-{RT['tax_eff']})",
      W['k_nd_at'], PCT2)
-put(wsF, 'A14', 'WACC — explicit window', bold=True)
-putf(wsF, 'B14', '=B11*B10+B12*B13', W['wacc_exp'], PCT2, bold=True)
+put(wsF, 'A14', 'OPERATING DISCOUNT RATE — unlevered; the cash is added in the bridge', bold=True)
+putf(wsF, 'B14', '=B10', W['wacc_exp'], PCT2, bold=True)
 put(wsF, 'A15', 'Terminal risk-free — DERIVED from the target in force')
 putf(wsF, 'B15', f"={L('cbe_target')}+{L('real_rate_term')}", RT['rf_term'], PCT2)
 put(wsF, 'A16', 'Terminal cost of equity')
