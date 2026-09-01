@@ -180,6 +180,38 @@ def main():
                          "repository" % (x["id"], x["applies_to"]))
     print("  [ok]   every single-company lesson names a real study")
 
+    # 7 — THE CALIBRATED-STOCKS TABLE COVERS EVERY RUN ON DISK, WITH A CLASS
+    # [per instruction, 01-Sep-2026]. Anchored on the run directories, not on
+    # the fair-value store's own key list: a run that was never recorded must
+    # FAIL here rather than be absent from a table that then looks complete.
+    # That is the whole [R-ENF-04] point — an empty row is not a clean row.
+    import build_lessons_register as BLR
+    cal = {r["ticker"]: r for r in BLR.calibrated()}
+    runs = [d[:-len("_walkforward")].upper() for d in wf]
+    for tk in runs:
+        r = cal.get(tk)
+        if not r:
+            fails.append("%s has a run on disk but no row in the "
+                         "calibrated-stocks table" % tk)
+            continue
+        if r["note"].startswith("no fair-value record"):
+            fails.append("%s has a run on disk and no recorded fair value, so "
+                         "its before/after cannot be stated" % tk)
+        if r["klass"] == "— not mapped —":
+            fails.append("%s is calibrated but carries no class in "
+                         "COMPANY_CLASS, so its Class column is blank" % tk)
+        if r["after"] is None:
+            fails.append("%s has no after-calibration fair value" % tk)
+    # and the documents must actually carry it, not merely be able to build it
+    md = open(MD, encoding="utf-8").read()
+    for tk in runs:
+        if ("| **%s** |" % tk) not in md:
+            fails.append("%s is missing from the calibrated-stocks table in "
+                         "the Markdown" % tk)
+    if not fails:
+        print("  [ok]   calibrated-stocks table carries all %d run(s), each "
+              "with a class and an after price" % len(runs))
+
     c = LR.counts()
     print("\n  scope   : ALL %d · CLASS %d · STOCK %d"
           % (c["ALL"], c["CLASS"], c["STOCK"]))

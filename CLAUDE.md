@@ -69,6 +69,18 @@ diff-only summary leaves that copy silently behind.
   no prior study the "old" number came from no current-standard study at all, so the movement
   column measures a new study against a number of unknown provenance — say so wherever it is
   quoted.
+- **THE LESSONS DOCUMENT CARRIES A CALIBRATED-STOCKS TABLE** [per instruction, 01-Sep-2026 —
+  "I want the lessons document to keep track of all stocks that have been calibrated stating
+  their Market / Class / Fair Price before calibration / Fair Price after calibration"].
+  One row per calibrated name, in both the `.md` and the `.docx`. It is GENERATED at build
+  time from `fv_movement.json` and `COMPANY_CLASS`, never typed and never hand-maintained —
+  the same discipline as every other number in that document. THIS IS NOT A SECOND COPY OF
+  THE FV REGISTER: the "never duplicated" clause below bars a number being *remembered* in
+  two places, not being *rendered* in two, and both documents read the one store, so a
+  figure cannot drift between them. A name with a run on disk and no row FAILS the gate
+  rather than being quietly absent [R-ENF-04]; where the pre-calibration number came from no
+  current-standard study its provenance is unknown and the row says so instead of printing a
+  movement.
 - **What every study taught us, and how far it travels → `engine/Lessons_Register.md` (and
   `.docx`) [R-LESSON-01].** READ IT BEFORE STARTING ANY STUDY OR UPDATE:
   `python3 engine/lessons.py TICKER --class CLASS` returns exactly what binds on that name —

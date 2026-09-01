@@ -237,6 +237,36 @@ def build(path=OUT):
                 "; ".join("%s — %s" % (x["id"], x["headline"].rstrip("."))
                           for x in outstanding)))
 
+    # The calibrated-stocks table [per instruction, 01-Sep-2026]. Rendered from
+    # the SAME builder the Markdown uses, reading the SAME fair-value store, so
+    # the Word file cannot carry a figure the Markdown does not — the two are
+    # renderings of one source, never two records of one fact.
+    doc.add_page_break()
+    doc.add_heading("Stocks that have been calibrated", level=1)
+    para(doc, "One row per name that has been through a fundamental "
+              "calibration run. Generated from the fair-value store, never "
+              "typed.", italic=True, color=MUTED)
+    cal = MD.calibrated()
+    table(doc,
+          ["Stock", "Market", "Class", "Fair price before",
+           "Fair price after", "Move"],
+          [[r["ticker"], r["market"], r["klass"],
+            MD.money(r["before"], r["ccy"]),
+            MD.money(r["after"], r["ccy"]),
+            "—" if r["move"] is None else "%+.1f%%" % r["move"]]
+           for r in cal],
+          [2.0, 2.2, 5.4, 2.9, 2.9, 1.8])
+    for r in [x for x in cal if x["note"]]:
+        para(doc, "%s — %s." % (r["ticker"], r["note"]), size=9, color=MUTED)
+    para(doc, "The fair price is the central case. Where a study publishes "
+              "several cases and no single point, this column carries the "
+              "median of them so the before-and-after can be compared at all; "
+              "the study's own range is the thing to quote, never this cell. A "
+              "move against a before-price that came from no current-standard "
+              "study measures a new study against a number of unknown "
+              "provenance, and the notes above say so where that is the case.",
+         size=9, color=MUTED)
+
     doc.add_page_break()
     doc.add_heading("Lessons that bind on EVERY study", level=1)
     para(doc, "Read these before starting any study, of any company, in any "

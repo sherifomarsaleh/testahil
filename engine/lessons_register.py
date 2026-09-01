@@ -143,9 +143,16 @@ DEV_HANDOVER = "real-estate developer, off-plan, point-in-time on handover"
 # listing — and because assert_lessons_register() can then refuse a STOCK
 # lesson whose subject has no class, which is what stops this map going stale
 # the moment a name is added.
-STOCK_CLASS = {
+# It also answers the Class column of the calibrated-stocks table [per
+# instruction, 01-Sep-2026], which is why it covers every CALIBRATED name and
+# not only the ones that happen to carry a single-company lesson.
+COMPANY_CLASS = {
     "PHDC": DEV,
+    "TMGH": DEV_HANDOVER,
 }
+
+# The former name, kept so nothing that imported it breaks. One dict, two uses.
+STOCK_CLASS = COMPANY_CLASS
 
 LESSONS = [
 

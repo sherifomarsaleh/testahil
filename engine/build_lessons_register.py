@@ -43,6 +43,66 @@ def population():
             origins += n
     return {"fundamental": fund, "price": price, "price_origins": origins}
 
+def calibrated():
+    """The calibrated-stocks table, read from the one store that holds it.
+
+    [per instruction, 01-Sep-2026 — "I want the lessons document to keep track
+    of all stocks that have been calibrated stating their Market / Class /
+    Fair Price before calibration / Fair Price after calibration"]
+
+    NOT A SECOND COPY OF THE FAIR-VALUE REGISTER.  The rule that the two halves
+    of the calibration register are "cross-referenced, never duplicated" bars a
+    figure being REMEMBERED in two places, because then the two can disagree
+    and nothing says which is right.  It does not bar the same store being
+    RENDERED twice.  Both documents read fv_movement.json, so a number here
+    cannot drift from the number there -- editing the store moves both, and
+    editing either document moves neither.
+
+    Anchored on the RUNS ON DISK, not on the store's own key list: a run whose
+    fair value was never recorded must show up as missing rather than be
+    silently absent, which is what an empty result looks like when nobody
+    counted [R-ENF-04].
+    """
+    import json
+    sys.path.insert(0, HERE)
+    import lessons_register as LR
+    store = os.path.join(HERE, "fv_movement.json")
+    entries = (json.load(open(store, encoding="utf-8"))["entries"]
+               if os.path.exists(store) else {})
+    runs = sorted(d[:-len("_walkforward")].upper() for d in os.listdir(HERE)
+                  if d.endswith("_walkforward")
+                  and os.path.isdir(os.path.join(HERE, d)))
+    rows = []
+    for tk in runs:
+        e = entries.get(tk)
+        if not e:
+            rows.append({"ticker": tk, "market": "?", "klass": "?", "ccy": "",
+                         "before": None, "after": None, "move": None,
+                         "note": "no fair-value record — the run is on disk and "
+                                 "its fair value was never recorded"})
+            continue
+        ed = e["editions"][-1] if e["editions"] else None
+        base = e["baseline"]["fair"]
+        rows.append({
+            "ticker": tk,
+            "market": "%s / %s" % (e.get("market") or "?", e.get("exchange") or "?"),
+            "klass": LR.COMPANY_CLASS.get(tk, "— not mapped —"),
+            "ccy": e.get("ccy") or "",
+            "before": base["base"] if base else None,
+            "after": ed["fair"]["base"] if ed else None,
+            "move": (ed["vs_baseline_pct"]["base"]
+                     if ed and ed.get("vs_baseline_pct") else None),
+            "note": ("" if base else
+                     "before-calibration price not recoverable — %s"
+                     % (e["baseline"]["unrecoverable"] or "reason not recorded")),
+        })
+    return rows
+
+
+def money(v, ccy):
+    return "—" if v is None else "%s %s" % (ccy, ("%.2f" % v).rstrip("0").rstrip("."))
+
+
 HEAD = """# The Lessons Register
 
 **Every lesson this project has learned, in plain language, and how far each one
@@ -171,6 +231,34 @@ def build():
                     % (len(outstanding),
                        ", ".join("%s (%s)" % (x["id"], x["headline"].rstrip("."))
                                  for x in outstanding)))
+
+    cal = calibrated()
+    body.append("\n---\n\n# Stocks that have been calibrated\n\n"
+                "*One row per name that has been through a fundamental "
+                "calibration run. Generated from the fair-value store, never "
+                "typed — the same figures the fair-value register renders, so "
+                "the two cannot disagree.*\n\n")
+    body.append("| Stock | Market | Class | Fair price before | "
+                "Fair price after | Move |\n|---|---|---|---|---|---|\n")
+    for r in cal:
+        body.append("| **%s** | %s | %s | %s | %s | %s |\n"
+                    % (r["ticker"], r["market"], r["klass"],
+                       money(r["before"], r["ccy"]),
+                       money(r["after"], r["ccy"]),
+                       "—" if r["move"] is None else "%+.1f%%" % r["move"]))
+    notes = [r for r in cal if r["note"]]
+    if notes:
+        body.append("\n")
+        for r in notes:
+            body.append("- **%s** — %s.\n" % (r["ticker"], r["note"]))
+    body.append(
+        "\nThe fair price is the **central case**. Where a study publishes "
+        "several cases and no single point, this column carries the median of "
+        "them so the before-and-after can be compared at all; the study's own "
+        "range is the thing to quote, never this cell. A move against a "
+        "before-price that came from no current-standard study measures a new "
+        "study against a number of unknown provenance, and the row above says "
+        "so where that is the case.\n")
 
     body.append("\n---\n\n# Lessons that bind on EVERY study\n\n"
                 "*Read these before starting any study, of any company, in any "

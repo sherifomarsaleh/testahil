@@ -75,6 +75,21 @@ They test different machinery on different evidence, and the first edition of th
 
 ---
 
+# Stocks that have been calibrated
+
+*One row per name that has been through a fundamental calibration run. Generated from the fair-value store, never typed — the same figures the fair-value register renders, so the two cannot disagree.*
+
+| Stock | Market | Class | Fair price before | Fair price after | Move |
+|---|---|---|---|---|---|
+| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | — | EGP 15.89 | — |
+| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 147.12 | EGP 39.33 | -73.3% |
+
+- **PHDC** — before-calibration price not recoverable — run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement..
+
+The fair price is the **central case**. Where a study publishes several cases and no single point, this column carries the median of them so the before-and-after can be compared at all; the study's own range is the thing to quote, never this cell. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the row above says so where that is the case.
+
+---
+
 # Lessons that bind on EVERY study
 
 *Read these before starting any study, of any company, in any market.*
