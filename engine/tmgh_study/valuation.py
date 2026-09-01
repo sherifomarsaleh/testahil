@@ -38,16 +38,50 @@ def _v(d, k):
     return d[k]["value"]
 
 
+
+
+def _house_wacc():
+    try:
+        return json.load(open(os.path.join(HERE, "wacc.json")))["wacc_rating"]
+    except Exception:
+        return None
+
+
+BETA = 1.4718
+TAX_ = 0.225
+
 def discounted(mode, wacc):
     p = M.project(mode)
     rows = p["rows"]
-    pv = 0.0
+    # THE DISCOUNT RATE SLIDES WITH THE INFLATION IT IS QUOTED IN, so the
+    # discount factor is a CUMULATIVE PRODUCT of each year's own rate, not a
+    # single rate raised to a power. Compounding today's 35.79% for twenty years
+    # would discount a converged Egypt at crisis rates, which is the same
+    # inconsistency in the other direction.
+    import wacc as W
+    w_now = wacc
+    _w = json.load(open(os.path.join(HERE, "wacc.json")))
+    w_term, _ke = W.terminal_wacc(BETA, _w["weight_equity"], _w["weight_debt"], TAX)
+    # THE TERMINAL RATE IS A PROPERTY OF THE CONVERGED ECONOMY, NOT OF WHERE
+    # THE PATH STARTS. Scaling it by the starting rate made a sensitivity at 22%
+    # converge to 10.8%, which is barely above the 6.08% terminal growth and
+    # would have printed a number the perpetuity cannot support. Whatever rate
+    # Egypt is at today, a normalised Egypt is the same normalised Egypt: the
+    # terminal inputs are stated once (rf 8%, ERP 7%, Kd 10.5%) and every path
+    # lands there. The glide never rises, so a starting rate already below the
+    # terminal one simply stays flat.
+    path = W.wacc_path(w_now, min(w_term, w_now), len(rows))
+    pv, df = 0.0, 1.0
     for i, r in enumerate(rows):
         r = dict(r)
-        r["discount_factor"] = 1 / (1 + wacc) ** (i + 1)
-        r["pv"] = r["fcff"] * r["discount_factor"]
+        df /= (1 + path[i])
+        r["wacc_this_year"] = path[i]
+        r["discount_factor"] = df
+        r["pv"] = r["fcff"] * df
         pv += r["pv"]
         rows[i] = r
+    df_end = df
+    wacc_terminal = path[-1]
     # TERMINAL — A GOING CONCERN, NOT A PIPELINE RUNNING OUT.
     #
     # The first cut valued the terminal as a level annuity on the RESIDUAL ORDER
@@ -71,12 +105,13 @@ def discounted(mode, wacc):
     last = rows[-1]
     n = p["conversion_years"]
     g = M.TERMINAL_GROWTH
-    spread = wacc - g
+    spread = wacc_terminal - g
     if spread < 0.02:
         raise ValueError("terminal growth %.3f is too close to a WACC of %.3f "
-                         "for a perpetuity to mean anything" % (g, wacc))
+                         "for a perpetuity to mean anything"
+                         % (g, wacc_terminal))
     tv = last["fcff"] * (1 + g) / spread
-    pv_terminal = tv / (1 + wacc) ** len(rows)
+    pv_terminal = tv * df_end
     pv_book, pv_rec, pv_excess, excess_pud = 0.0, pv_terminal, 0.0, 0.0
     resid_cf = resid_collections = resid_build = resid_opex = resid_tax = 0.0
     rec_fcff, tv_rec = last["fcff"], tv
@@ -90,7 +125,8 @@ def discounted(mode, wacc):
             "closing_advances": last["customer_advances"],
             "closing_properties_under_development": last["properties_under_development"],
             "pv_residual_book": pv_book, "pv_terminal": pv_terminal,
-            "terminal_multiple_on_fcff": (1 + M.TERMINAL_GROWTH) / (wacc - M.TERMINAL_GROWTH),
+            "terminal_multiple_on_fcff": (1 + M.TERMINAL_GROWTH) / spread,
+            "wacc_terminal": wacc_terminal, "wacc_start": w_now,
             "terminal_recurring_fcff": rec_fcff, "terminal_value_recurring": tv_rec,
             "pv_terminal_recurring": pv_rec,
             "enterprise_value": pv + pv_terminal,
@@ -137,21 +173,50 @@ def main():
     w = json.load(open(os.path.join(HERE, "wacc.json")))
     out = {"parameters": {k: getattr(M, k) for k in
                           ("CAPACITY_YEARS", "RECOVERY_YEARS", "CAPACITY_RAMP",
-                           "RECOVERY_RAMP", "DELIVERY_GROWTH_CAPACITY", "DELIVERY_GROWTH_RECOVERY",
+                           "RECOVERY_RAMP", "DELIVERY_REAL_CAPACITY", "DELIVERY_REAL_RECOVERY", "TERMINAL_REAL_GROWTH",
                            "COVER_TARGET_CAPACITY", "BACKLOG_CAPTURE", "FADE_START",
                            "HOSP_GROWTH", "OTHER_GROWTH", "PUD_COVER_YEARS",
                            "PUD_ADJUST_YEARS", "TERMINAL_GROWTH", "PAYOUT", "TAX")},
            "ratios": M.ratios()}
-    for basis, wacc in (("rating", w["wacc_rating"]), ("cds", w["wacc_cds"])):
+    # THE ADOPTED CONSTRUCTION counts country risk ONCE and slides the whole
+    # rate path down as Egypt disinflates. The house construction -- beta
+    # multiplied through a country-risk-inclusive premium -- is retained beside
+    # it as a labelled cross-check under the dual-framing rule, never dropped.
+    import wacc as WC
+    b = WC.beta_record()["beta"]
+    adopted = {
+        "rating": WC.wacc_country_risk_once(
+            w["rf_star_rating"], b, WC.CRP_RATING,
+            w["weight_equity"], w["weight_debt"], w["kd_aftertax"])[0],
+        "cds": WC.wacc_country_risk_once(
+            w["rf_star_cds"], b, WC.DAMODARAN_EGYPT["sovereign_cds"],
+            w["weight_equity"], w["weight_debt"], w["kd_aftertax"])[0],
+    }
+    out["cost_of_capital"] = {
+        "adopted": adopted,
+        "house_cross_check": {"rating": w["wacc_rating"], "cds": w["wacc_cds"]},
+        "note": ("Country risk enters ONCE. Beta 1.4718 is measured against "
+                 "EGX30, an index that already carries Egyptian country risk, "
+                 "so multiplying it through a premium that also contains that "
+                 "risk levers the country premium to 14.3 points against a "
+                 "sovereign compensated 6.37 for its own default risk. A price "
+                 "beta measures relative volatility, not relative exposure to a "
+                 "sovereign, and this issuer's revenues are essentially all "
+                 "Egyptian. Both constructions are published."),
+    }
+    for basis, wacc in adopted.items():
         for mode in ("capacity", "recovery"):
             out["%s|%s" % (basis, mode)] = sotp(mode, wacc)
+    for basis, wacc in (("rating", w["wacc_rating"]), ("cds", w["wacc_cds"])):
+        for mode in ("capacity", "recovery"):
+            out["crosscheck_%s|%s" % (basis, mode)] = sotp(mode, wacc)
     json.dump(out, open(os.path.join(HERE, "valuation.json"), "w"), indent=1)
 
     print("%-9s %-10s %8s %11s %11s %11s %9s %9s"
           % ("ERP", "crux", "WACC", "PV explicit", "PV residual", "EV",
              "per share", "vs 97.80"))
     for k, s in out.items():
-        if "|" not in k:
+        if "|" not in k or k.startswith("crosscheck_"):
             continue
         basis, mode = k.split("|")
         ps = s["per_share_nci_book"]

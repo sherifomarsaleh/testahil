@@ -37,7 +37,12 @@ def build():
 
     spot = WC.SPOT
     sh = _v(IN.KPI, "shares_outstanding")
-    cases = {k: val[k] for k in val if "|" in k}
+    # THE PUBLISHED CASES ARE THE ADOPTED CONSTRUCTION ONLY. The house
+    # construction is carried beside them as a labelled cross-check and must not
+    # widen the published envelope -- a cross-check that silently sets the range
+    # is not a cross-check, it is a second answer.
+    cases = {k: val[k] for k in val if "|" in k and not k.startswith("crosscheck_")}
+    crosscheck = {k: val[k] for k in val if k.startswith("crosscheck_")}
     per_share = {k: v["per_share_nci_book"] for k, v in cases.items()}
     ps_prop = {k: v["per_share_nci_proportional"] for k, v in cases.items()}
 
@@ -61,6 +66,9 @@ def build():
         "model_parameters": val["parameters"],
         "valuation_cases": cases,
         "per_share_nci_book": per_share,
+        "crosscheck_per_share_nci_book":
+            {k: v["per_share_nci_book"] for k, v in crosscheck.items()},
+        "cost_of_capital": val.get("cost_of_capital"),
         "per_share_nci_proportional": ps_prop,
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "

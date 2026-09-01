@@ -70,7 +70,7 @@ tested.
 | Stock | Market | Class | Fair price before | Fair price after | Move |
 |---|---|---|---|---|---|
 | **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | EGP 7.62 – 24.92  (central 15.89) | EGP 4.6 – 23.33  (central 10.94) | -31.2% |
-| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 83.6 – 189.6  (central 147.12) | EGP 43.94 – 69.95  (central 54.24) | -63.1% |
+| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 83.6 – 189.6  (central 147.12) | EGP 48.83 – 77.58  (central 63.76) | -56.7% |
 
 - **PHDC** — before-calibration price recovered from assets/data.js history: unchanged across all 281 commits touching that file between 11-Jun-2026 and 01-Sep-2026. The original record declared it unrecoverable on the evidence of a SHALLOW clone holding 23 commits; unshallowing the repository resolved it. An empty result was read as a clean one..
 

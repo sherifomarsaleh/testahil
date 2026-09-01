@@ -171,7 +171,7 @@ def sensitivity():
     """
     sh = _v(IN.KPI, "shares_outstanding")
     grid = {}
-    for wacc in (0.24, 0.26, 0.28, 0.3157, 0.3237, 0.3579, 0.40):
+    for wacc in (0.22, 0.25, 0.2849, 0.3157, 0.3237, 0.3579, 0.40):
         for mode in ("capacity", "recovery"):
             s = VAL.sotp(mode, wacc)
             grid["%0.4f|%s" % (wacc, mode)] = {
@@ -254,7 +254,7 @@ def main():
             print("   %-22s %8.2f" % (k, v))
     print("\n=== sensitivity: value per share against the discount rate ===")
     print("%8s %12s %12s" % ("WACC", "capacity", "recovery"))
-    for wacc in (0.24, 0.26, 0.28, 0.3157, 0.3237, 0.3579, 0.40):
+    for wacc in (0.22, 0.25, 0.2849, 0.3157, 0.3237, 0.3579, 0.40):
         c = out["sensitivity"]["wacc_grid"]["%0.4f|capacity" % wacc]
         r = out["sensitivity"]["wacc_grid"]["%0.4f|recovery" % wacc]
         print("%7.2f%% %12.2f %12.2f"

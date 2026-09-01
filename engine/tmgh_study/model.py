@@ -57,8 +57,18 @@ FIRST_YEAR = 2026
 # So deliveries are now the DRIVER and contracted sales the BALANCING ITEM: the
 # company sells what keeps its book at a stated cover, which is what a developer
 # with demand in excess of capacity actually does.
-DELIVERY_GROWTH_CAPACITY = 0.20    # inflation only -- no real scaling at all
-DELIVERY_GROWTH_RECOVERY = 0.285   # its own 2019-2025 compound rate
+# GROWTH IS QUOTED IN REAL TERMS AND INFLATED BY THE SAME PATH THE DISCOUNT
+# RATE SLIDES DOWN. That is the whole point: a rate that embeds 20% inflation
+# must not discount cash flows growing at 5%, and a rate that has fallen to a
+# converged 17.5% must not discount cash flows still growing at 20%. One
+# inflation path, used by both sides.
+#
+# The real rates are the company's own: development revenue compounded 28.5% a
+# year in nominal terms from 2019 to 2025 against inflation near 20%, which is
+# about 7% real.
+DELIVERY_REAL_CAPACITY = 0.00      # it scales with prices and no more
+DELIVERY_REAL_RECOVERY = 0.071     # its own 2019-2025 real rate
+TERMINAL_REAL_GROWTH = 0.02        # long-run real growth in the converged state
 # ONE CRUX, NOT TWO. Cover is held at the same level in both readings so the
 # crux is a single question a reader can weigh -- how fast can TMG build? -- and
 # 10 years is between the 5.2 it ran in 2021 and the 12.0 it reached in 2025.
@@ -126,7 +136,9 @@ SALES_GROWTH = 0.20              # the same nominal rate the recurring legs use
 # such rather than smoothed away.
 BACKLOG_CAPTURE = 0.481          # FY2025: (147,200 + 36,706) / 382,200
 CAPTURE_OBSERVED = (0.344, 0.873)   # FY2024 low, FY2022 high
-HOSP_GROWTH = 0.20
+HOSP_REAL = 0.00      # hospitality grows with prices
+OTHER_REAL = 0.02     # other recurring adds a little real growth
+HOSP_GROWTH = 0.20    # retained for the workbook
 OTHER_GROWTH = 0.22
 HOSP_CAPEX_RATIO = 0.10
 OTHER_CAPEX_RATIO = 0.04
@@ -158,10 +170,10 @@ PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
 PUD_ADJUST_YEARS = 4    # how fast the stock is moved toward that cover
 DA_RATE_ON_PPE = 0.012          # the group's own charge against gross PP&E
 DEPOSIT_YIELD = 0.20            # below the policy rate, on a mixed deposit book
-# A terminal rate BELOW inflation is a perpetual real decline. 15% against ~20%
-# nominal growth shrank the recurring legs for ever, again without anyone
-# deciding to.
-TERMINAL_GROWTH = 0.20
+# The terminal rate is quoted in the CONVERGED world, beside a converged
+# discount rate: 4% inflation and 2% real growth. Quoting it beside a 35.79%
+# rate -- which embeds 20% inflation -- was the inconsistency this fixes.
+TERMINAL_GROWTH = (1 + 0.04) * (1 + TERMINAL_REAL_GROWTH) - 1   # 6.08%
 PAYOUT = 0.30                   # of attributable profit, at the company's own
                                 # recent distribution behaviour
 
@@ -208,8 +220,10 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
     r = ratios()
     n = CAPACITY_YEARS if mode == "capacity" else RECOVERY_YEARS
     ramp = CAPACITY_RAMP if mode == "capacity" else RECOVERY_RAMP
-    delivery_growth = (DELIVERY_GROWTH_CAPACITY if mode == "capacity"
-                       else DELIVERY_GROWTH_RECOVERY)
+    import wacc as W
+    infl = W.inflation_path(years)
+    delivery_real = (DELIVERY_REAL_CAPACITY if mode == "capacity"
+                     else DELIVERY_REAL_RECOVERY)
     cover_target = (COVER_TARGET_CAPACITY if mode == "capacity"
                     else COVER_TARGET_RECOVERY)
     bl = _v(IN.KPI, "backlog_jun26")
@@ -253,11 +267,10 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
             # 1-10 run at the crux rate, years 11-20 fade linearly to the
             # long-run nominal rate, and the perpetuity picks up there -- the
             # ordinary two-stage treatment, stated rather than assumed.
-            if i < FADE_START:
-                g_i = delivery_growth
-            else:
-                k = (i - FADE_START + 1) / float(EXPLICIT_YEARS - FADE_START)
-                g_i = delivery_growth + (TERMINAL_GROWTH - delivery_growth) * k
+            # nominal growth = this year's inflation compounded with the real
+            # rate the crux specifies. The fade is now IN the inflation path,
+            # not a separate parameter bolted on top of it.
+            g_i = (1 + infl[i]) * (1 + delivery_real) - 1
             dev_rev = rows[-1]["dev_revenue"] * (1 + g_i)
         # CONTRACTED SALES ARE THE BALANCING ITEM: enough to hold the book at
         # the cover this reading specifies. TMG has demonstrated demand far in
@@ -269,8 +282,13 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
         new_sales = max(dev_rev + (target_book - bl) / COVER_ADJUST_YEARS, 0.0)
         dev_rev = min(dev_rev, bl + new_sales)      # THE ORDER-BOOK GUARD [L-104]
         dev_cost = dev_rev * (1 - gm_dev)
-        hosp_rev = hosp0 * (1 + HOSP_GROWTH) ** (i + 1)
-        oth_rev = oth0 * (1 + OTHER_GROWTH) ** (i + 1)
+        # the recurring legs ride the SAME inflation path, plus their own real
+        # growth (they were on fixed 20%/22% nominal, which quietly assumed
+        # inflation never falls)
+        hosp_rev = (rows[-1]["hosp_revenue"] if rows else hosp0) * (
+            1 + (1 + infl[i]) * (1 + HOSP_REAL) - 1)
+        oth_rev = (rows[-1]["other_revenue"] if rows else oth0) * (
+            1 + (1 + infl[i]) * (1 + OTHER_REAL) - 1)
         hosp_cost, oth_cost = hosp_rev * (1 - gm_h), oth_rev * (1 - gm_o)
         revenue = dev_rev + hosp_rev + oth_rev
         cost = dev_cost + hosp_cost + oth_cost

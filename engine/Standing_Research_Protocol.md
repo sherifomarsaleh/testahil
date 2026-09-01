@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1810,6 +1810,61 @@ the read is allowed to CLAIM, which is the direction the errors actually ran. Wh
 remains untested is listed in the register rather than implied absent: intraday
 structure, and level-drawing methods other than the module's own.
 
+
+## [R-WACC-03] The cost of capital slides with the inflation it is quoted in, and country risk enters once (01-Sep-2026, per instruction — "In order to assume a reasonable say 4 to 6% terminal growth, it has to be built on reasonable inflation and consequently decreasing interest rates and consequently sliding Kd and Ke")
+
+**A single flat nominal discount rate paired with a terminal growth rate from a
+different inflation world is an arithmetic error, not a conservative choice.**
+
+TMGH was discounted at a flat 35.79% — a rate that embeds Egyptian inflation
+near 20% — against a terminal growth rate of first 15% and then 20%. The first
+is a perpetual real decline; the second capitalises a currency crisis into
+perpetuity. Neither was a view anyone formed. Both were the arithmetic of two
+numbers that had never been asked whether they agreed about inflation, and the
+error survived three rebuilds because **each rate is individually defensible and
+only their pairing is wrong** — which is exactly the kind of defect no
+consistency check catches.
+
+### One inflation path feeds both sides
+
+- Cash-flow growth is stated in **real** terms and inflated by that path.
+- The discount rate is built at today's sourced inputs and **glides** to a
+  terminal rate quoted in the converged world.
+- The discount factor is the **cumulative product of each year's own rate**,
+  never one rate raised to a power. Compounding today's crisis rate for twenty
+  years discounts a normalised economy at crisis rates — the same error mirrored.
+- The terminal growth and the terminal rate are quoted in the **same world as
+  each other**. On TMGH: 4% inflation and 2% real growth, so 6.08% terminal
+  growth against a 17.51% terminal WACC, sliding from 35.79% against 20%
+  inflation at the near end.
+- **Kd slides with the sovereign and still sits above it at every point on the
+  path**, which is the existing marginal-cost-of-debt rule applied along a curve
+  rather than at one date.
+
+Both ends are stated and sourced, never fitted, and the glide is sensitised.
+
+### Country risk is counted once
+
+The house construction `Ke = rf* + β × ERP` multiplies a country-risk-inclusive
+premium by a beta measured against **the local index — which already carries
+that risk**. On TMGH that levered a 9.71% country premium to 14.3 points,
+against a sovereign compensated 6.37 points for its own default risk.
+
+**A price beta measures relative volatility. It is not a measure of relative
+exposure to a sovereign.** For an issuer whose revenues are essentially all
+domestic the premium enters at λ = 1:
+
+    Ke = rf* + β × MATURE ERP + CRP
+
+Both constructions are published under the dual-framing rule, and the house one
+is retained as a **labelled cross-check**. A cross-check may never widen the
+published envelope — a cross-check that silently sets the range is not a
+cross-check, it is a second answer. Where revenues are materially foreign, λ is
+estimated and stated rather than assumed to be 1.
+
+**The general lesson.** Every rate in a valuation carries an implied inflation
+assumption. Two rates that disagree about inflation produce a confident wrong
+answer, and they do it quietly, because each survives its own review.
 
 ## [R-RANGE-01] A fair value is a range and is always stated as one — "no single value" is never an answer (01-Sep-2026, per instruction — "you can not say no single value. Even if it is a range mention the range")
 

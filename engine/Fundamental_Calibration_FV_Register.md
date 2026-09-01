@@ -20,7 +20,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 
 | # | name | ccy | scope | old base | new base | base | bear | full | built to → | lessons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 9 | TMGH | EGP | full | 147.12 | 54.24 | -63.1% | -47.4% | -63.1% | (study carries no stamp) → 2026.08.23 | L-043, L-044, L-045, L-046, L-047, L-117, L-118 |
+| 9 | TMGH | EGP | full | 147.12 | 63.76 | -56.7% | -41.6% | -59.1% | (study carries no stamp) → 2026.08.23 | L-043, L-044, L-045, L-046, L-047, L-117, L-118 |
 | 37 | PHDC | EGP | full | 15.89 | 10.94 | -31.2% | -39.6% | -6.4% | 2026.08.23 → 2026.08.23 | L-028, L-029, L-030, L-114 |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.

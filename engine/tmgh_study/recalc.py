@@ -59,7 +59,12 @@ def main():
     # 2. the model, recomputed here from source rather than read back
     p = M.project("capacity")
     rows = p["rows"]
-    d = VAL.discounted("capacity", N["wacc"]["wacc_rating"])
+    # THE RECALCULATION MUST CHECK THE RATE THE WORKBOOK WAS BUILT ON, not the
+    # cross-check. Reading the house rate here compared the delivered document
+    # against a construction it does not publish and reported 40 mismatches
+    # that were the checker's own, which is worse than no check at all.
+    _adopted = N["cost_of_capital"]["adopted"]["rating"]
+    d = VAL.discounted("capacity", _adopted)
     b = VAL.bridge(d)
 
     # 3. DCF sheet: revenue, FCFF and present value, by label
@@ -114,8 +119,10 @@ def main():
     ws = wb["Summary"]
     for k in N["per_share_nci_book"]:
         want = N["per_share_nci_book"][k]
+        # the ADOPTED rate, which is what the Summary sheet publishes
         got = VAL.sotp(k.split("|")[1],
-                       N["wacc"]["wacc_%s" % k.split("|")[0]])["per_share_nci_book"]
+                       N["cost_of_capital"]["adopted"][k.split("|")[0]]
+                       )["per_share_nci_book"]
         check("published case %s reproduces" % k, got, want, results=res)
 
     # 8. Sensitivity grid reproduces

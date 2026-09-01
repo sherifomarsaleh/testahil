@@ -116,7 +116,7 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
-     "superseded_by": "edition 3",
+     "superseded_by": "edition 4",
      "vs_baseline_pct": {
       "base": -73.3,
       "bear": -73.3,
@@ -149,7 +149,7 @@
      "open_question": "The discount rate still sits 12.7 points above the rate the study own reverse DCF implies (35.79% against 23.09%). Beta is 1.4718 measured against EGX30, a regressor that already carries Egyptian country risk, and the house method multiplies the FULL country-risk-inclusive premium by it. Adding country risk once instead gives WACC 31.57%. That is a change to the standing cost-of-capital method, not a study decision, so it is RAISED and NOT applied.",
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
-     "superseded_by": "edition 3",
+     "superseded_by": "edition 4",
      "vs_baseline_pct": {
       "base": -62.4,
       "bear": -42.0,
@@ -182,6 +182,7 @@
      "open_question": "The discount rate is the whole of the residual gap and it is NOT resolved here. On the house method (WACC 35.79%) the range is EGP 43.94\u201354.08; on the CDS premium basis (32.37%) EGP 54.39\u201369.95; and counting country risk ONCE rather than multiplying it by a beta measured against EGX30 \u2014 the standard treatment for an issuer whose revenues are all domestic \u2014 the WACC is 31.57% and the range EGP 57.76\u201375.18. The market implies 23.09%; reaching the market price needs roughly 23\u201325%. Whether a 1.4718 price beta should lever a 9.71% country risk premium is a change to the STANDING cost-of-capital method and not a study decision, so all three are computed and published and none is adopted unilaterally.",
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
+     "superseded_by": "edition 4",
      "vs_baseline_pct": {
       "base": -63.1,
       "bear": -47.4,
@@ -191,6 +192,38 @@
       "base": -2.0,
       "bear": -9.4,
       "full": 11.2
+     }
+    },
+    {
+     "cross_check": "House construction, beta through a country-risk-inclusive premium: EGP 45.67-61.58. Published beside the adopted range, never inside it.",
+     "delivered": "2026-09-01",
+     "edition": 4,
+     "fair": {
+      "base": 63.76,
+      "bear": 48.83,
+      "full": 77.58
+     },
+     "lessons": [
+      "L-043",
+      "L-044",
+      "L-045",
+      "L-046",
+      "L-047",
+      "L-117",
+      "L-118"
+     ],
+     "note": "Third rebuild, adopting [R-WACC-03]. The remaining error was that a FLAT 35.79% nominal rate -- which embeds Egyptian inflation near 20% -- was being paired with a terminal growth rate from a different inflation world. Each number was individually defensible; only their PAIRING was wrong, which is why it survived three rebuilds. Now ONE inflation path feeds both sides: growth is stated in real terms and inflated by that path, the discount rate glides from 35.79% at 20% inflation to 17.51% at 4%, the discount factor is the cumulative product of each year's own rate, and the terminal growth of 6.08% is quoted in the same converged world as the terminal rate. Country risk is also counted ONCE rather than multiplied by a beta measured against EGX30, which already carries it; the house construction is retained as a labelled cross-check and may not widen the published envelope.",
+     "origins": "FY2015-FY2024, h=1-5",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -56.7,
+      "bear": -41.6,
+      "full": -59.1
+     },
+     "vs_previous_pct": {
+      "base": 17.6,
+      "bear": 11.1,
+      "full": 10.9
      }
     }
    ],

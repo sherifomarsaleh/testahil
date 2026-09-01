@@ -142,3 +142,94 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# THE GLIDE PATH  [per instruction, 01-Sep-2026]
+#
+# A 35.79% nominal discount rate embeds Egyptian inflation near 20%. Pairing it
+# with a 4-6% terminal growth rate is INTERNALLY INCONSISTENT: it discounts as
+# though inflation runs at 20% for ever while growing the cash flows as though
+# it runs at 4%. The two must sit on ONE inflation path. Pairing it instead with
+# 20% terminal growth is consistent but capitalises a currency crisis into
+# perpetuity, which is its own absurdity.
+#
+# So the rate SLIDES. Egypt is disinflating under its own programme; as
+# inflation falls the policy rate falls, the government bond yield falls, the
+# marginal cost of debt falls with it, and the country risk premium compresses
+# as the rating normalises. The cost of capital follows them down. The terminal
+# rate and the terminal growth are then both quoted in the SAME converged
+# world.
+#
+# Nothing here is fitted. The near end is the sourced figure this study already
+# publishes. The far end is a stated normalisation, and it is sensitised.
+
+INFLATION_NOW = 0.20        # Egypt's current nominal environment
+INFLATION_TERMINAL = 0.04   # a converged Egypt
+GLIDE_YEARS = 10            # over which the normalisation happens
+
+# The converged cost of capital, built the same way as the near-end one but on
+# normalised inputs: a converged EGP government bond, a compressed country risk
+# premium as the rating recovers, the same beta, and a marginal cost of debt
+# that still sits above its own sovereign.
+RF_TERMINAL = 0.08          # converged EGP 10-year
+ERP_TERMINAL = 0.070        # mature ERP plus a residual country premium
+KD_TERMINAL = 0.105         # above the converged sovereign, as the rule requires
+
+
+def terminal_wacc(beta, weight_equity, weight_debt, tax):
+    ke = RF_TERMINAL + beta * ERP_TERMINAL
+    return weight_equity * ke + weight_debt * KD_TERMINAL * (1 - tax), ke
+
+
+def inflation_path(years):
+    """Linear disinflation from today to the converged rate, then flat."""
+    out = []
+    for i in range(years):
+        k = min(i / float(GLIDE_YEARS), 1.0)
+        out.append(INFLATION_NOW + (INFLATION_TERMINAL - INFLATION_NOW) * k)
+    return out
+
+
+def wacc_path(wacc_now, wacc_term, years):
+    """The discount rate slides with the inflation it is quoted in."""
+    out = []
+    for i in range(years):
+        k = min(i / float(GLIDE_YEARS), 1.0)
+        out.append(wacc_now + (wacc_term - wacc_now) * k)
+    return out
+
+
+# COUNTRY RISK ENTERS ONCE.  [per instruction, 01-Sep-2026 — "The cost of
+# capital is too high ... let's stick to the lowering interest rates, lower kd
+# and Ke, sliding cost of capital and reasonable perpetual growth"]
+#
+# The house construction is Ke = rf* + beta x ERP, where the ERP already
+# contains a 9.71% country risk premium. Beta is 1.4718 measured against EGX30 —
+# an index that is ITSELF Egyptian and already carries that risk — so
+# multiplying through levers the country premium to 14.3 points, against a
+# sovereign that is compensated 6.37 points for its own default risk. A price
+# beta measures relative VOLATILITY; it is not a measure of relative exposure to
+# a sovereign, and TMG's revenues are essentially all Egyptian, so its exposure
+# is the market's own.
+#
+# Counting it once is the standard treatment for a wholly domestic issuer
+# (lambda = 1). Both are computed and both are published: the house
+# construction is retained as a labelled cross-check under the dual-framing
+# rule, never dropped.
+
+MATURE_ERP = 0.0423     # Damodaran's mature-market premium
+CRP_RATING = 0.0971     # Egypt's country risk premium, rating basis
+CRP_CDS = DAMODARAN_EGYPT["sovereign_cds"] * (
+    DAMODARAN_EGYPT["total_erp_cds"] / DAMODARAN_EGYPT["total_erp_cds"])
+
+
+def ke_country_risk_once(rf_star, beta, crp):
+    """rf* + beta x the MATURE premium + the country premium, counted once."""
+    return rf_star + beta * MATURE_ERP + crp
+
+
+def wacc_country_risk_once(rf_star, beta, crp, weight_equity, weight_debt,
+                           kd_aftertax):
+    ke = ke_country_risk_once(rf_star, beta, crp)
+    return weight_equity * ke + weight_debt * kd_aftertax, ke
