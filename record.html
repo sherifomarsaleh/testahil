@@ -38,6 +38,11 @@
     </div>
 
     <h2 style="margin-top:34px">Graded so far</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0 16px">
+      <div class="t-stat"><div class="n" id="g-n">—</div><div class="d">live calibrations graded</div></div>
+      <div class="t-stat"><div class="n hl" id="g-h90">—</div><div class="d" id="g-d90">inside the 90% band</div></div>
+      <div class="t-stat"><div class="n" id="g-h50">—</div><div class="d" id="g-d50">inside the 50% band</div></div>
+    </div>
     <div class="t-tablewrap">
       <table style="min-width:640px">
         <thead><tr><th>Name</th><th>Horizon</th><th class="num">Said (p5–p95)</th><th class="num">Real close</th><th>Result</th></tr></thead>
@@ -151,6 +156,17 @@ renderChrome("record");
       '<td>'+r.horizon_label+'</td><td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+fmtPx(r.realized_close,r.ccy)+'</td>'+
       '<td><span class="t-badge '+(inBand?'good':'bad')+'">'+(inBand?'inside the band':'outside the band')+'</span></td></tr>';
   }).join("") || '<tr><td colspan="5" class="muted">The first live forecasts are still running toward their check dates — the backtest tally above is the record so far.</td></tr>';
+  (function(){
+    var n=graded.length;
+    var inside90=graded.filter(function(r){ return r.in_90!=null ? r.in_90 : (r.realized_close>=r.p5 && r.realized_close<=r.p95); }).length;
+    var inside50=graded.filter(function(r){ return r.in_50!=null ? r.in_50 : (r.p25!=null && r.p75!=null && r.realized_close>=r.p25 && r.realized_close<=r.p75); }).length;
+    var pct=function(x){ return n ? Math.round(x/n*100)+"%" : "—"; };
+    document.getElementById("g-n").textContent=n;
+    document.getElementById("g-h90").textContent=inside90;
+    document.getElementById("g-d90").textContent="inside the 90% band — "+pct(inside90)+" of graded (90% promised)";
+    document.getElementById("g-h50").textContent=inside50;
+    document.getElementById("g-d50").textContent="inside the 50% band — "+pct(inside50)+" of graded (50% promised)";
+  })();
   if(graded.length) document.getElementById("r-gnote").textContent = graded.length+" live forecast"+(graded.length>1?"s":"")+" graded so far, on top of the backtest record above.";
 })();
 </script>
