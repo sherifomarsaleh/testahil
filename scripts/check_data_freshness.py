@@ -407,15 +407,53 @@ def main() -> int:
                 struck = next((r for r in by_inst.get(inst_l, [])
                                if r['horizon'] == hlabel and r['anchor'] == anchor),
                               None)
-                if (struck and struck['grade_basis'] == 'projected'
-                        and struck['horizon_days'] is not None
-                        and int(float(struck['horizon_days'])) == got_h
-                        and struck['grade'] == res['grade_date']):
-                    warn(key, f'hz.{field} is {got_h}, the projection made at strike; '
-                              f'the span has since resolved to {want} sessions. Grade '
-                              f'date {struck["grade"]} is unchanged, so the commitment '
-                              f'stands and the cone is not re-sized.')
-                    continue
+                #     THE FORGIVENESS PATH RUNS IN TWO TIERS, because the durable
+                #     record differs by row age. Both are gated on the same
+                #     load-bearing condition the note above names — THE GRADE DATE
+                #     MUST BE UNCHANGED — so neither can wave through a moved
+                #     commitment.
+                #
+                #     Tier 1: the row itself records the projection it committed to
+                #     (horizon_days + grade_basis), so the match is exact.
+                #
+                #     Tier 2: rows struck BEFORE those two fields existed carry
+                #     neither, so tier 1 cannot fire on them and every one of them
+                #     hard-FAILED the moment a peer's library ran ahead — the exact
+                #     defect this note describes, left open for the whole legacy
+                #     book. What keeps tier 2 tight is that the mismatch must be a
+                #     projected -> realized FLIP: if resolve() is still on the
+                #     PROJECTED branch and disagrees, the entry genuinely
+                #     contradicts today's projection and still fails.
+                #
+                #     Found 01-Sep-2026 on the NVDA roll-forward: merging one month
+                #     of NVDA extended the US calendar past 2026-08-27, and AAPL and
+                #     TSLA — struck 2026-07-27 with a projected h1 of 22, both
+                #     committed to the correct and UNCHANGED grade date 2026-08-27,
+                #     every published percentile untouched — were suddenly measured
+                #     against a realized 23. Same shape as the ABUK/EG case above,
+                #     which is why this is fixed as a CLASS and not as two names.
+                if struck and struck['grade'] == res['grade_date']:
+                    if (struck['grade_basis'] == 'projected'
+                            and struck['horizon_days'] is not None
+                            and int(float(struck['horizon_days'])) == got_h):
+                        warn(key, f'hz.{field} is {got_h}, the projection made at '
+                                  f'strike; the span has since resolved to {want} '
+                                  f'sessions. Grade date {struck["grade"]} is '
+                                  f'unchanged, so the commitment stands and the cone '
+                                  f'is not re-sized.')
+                        continue
+                    if (struck['grade_basis'] is None
+                            and struck['horizon_days'] is None
+                            and res['basis'] == 'realized'):
+                        warn(key, f'hz.{field} is {got_h}, the projection made at '
+                                  f'strike; the span has since resolved to {want} '
+                                  f'sessions. This row predates horizon_days/'
+                                  f'grade_basis, so the projection itself is not on '
+                                  f'record — but resolve() has flipped to the '
+                                  f'realized branch and grade date {struck["grade"]} '
+                                  f'is unchanged, so the commitment stands and the '
+                                  f'cone is not re-sized.')
+                        continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
