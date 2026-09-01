@@ -4928,98 +4928,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "EXTRA",
-   "name": "United Electronics Company (eXtra)",
-   "code": "TADAWUL:4003",
-   "ccy": "SAR",
-   "spot": 68.5,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-10",
-   "fv_lag_days": 16,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 66,
-   "fv_base": 81,
-   "fv_full": 92,
-   "gap_base_pct": 18.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.063,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.065986,
-    "mu_h": 0.003061,
-    "G": {
-     "bear": -0.56,
-     "base": 2.54,
-     "full": 4.47
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.2584,
-     "base": 0.0091,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.4545,
-     "base": 0.0137,
-     "full": 0.0002
-    },
-    "required_cagr": {
-     "bear": -0.3599,
-     "base": 6.4737,
-     "full": 33.4482
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0009
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.127161,
-    "mu_h": 0.010889,
-    "G": {
-     "bear": -0.29,
-     "base": 1.32,
-     "full": 2.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3431,
-     "base": 0.1009,
-     "full": 0.0154
-    },
-    "p_touch": {
-     "bear": 0.6741,
-     "base": 0.1708,
-     "full": 0.0259
-    },
-    "required_cagr": {
-     "bear": -0.1382,
-     "base": 0.9551,
-     "full": 2.2538
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00159
-   },
-   "market": "SA"
-  },
-  {
    "ticker": "EMPOWER",
    "name": "Emirates Central Cooling Systems Corporation PJSC",
    "code": "DFM:EMPOWER",
@@ -5570,6 +5478,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00291
    },
    "market": "AE"
+  },
+  {
+   "ticker": "EXTRA",
+   "name": "United Electronics Company (eXtra)",
+   "code": "TADAWUL:4003",
+   "ccy": "SAR",
+   "spot": 65.25,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 52,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 66,
+   "fv_base": 81,
+   "fv_full": 92,
+   "gap_base_pct": 24.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.063,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.069117,
+    "mu_h": -0.00831,
+    "G": {
+     "bear": 0.17,
+     "base": 3.13,
+     "full": 4.97
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3799,
+     "base": 0.002,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.728,
+     "base": 0.0026,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": 0.147,
+     "base": 12.3923,
+     "full": 60.7288
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00083
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.136579,
+    "mu_h": -0.012026,
+    "G": {
+     "bear": 0.08,
+     "base": 1.58,
+     "full": 2.52
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.427,
+     "base": 0.046,
+     "full": 0.0073
+    },
+    "p_touch": {
+     "bear": 0.8557,
+     "base": 0.0823,
+     "full": 0.0125
+    },
+    "required_cagr": {
+     "bear": 0.0468,
+     "base": 1.3748,
+     "full": 2.9521
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00142
+   },
+   "market": "SA"
   },
   {
    "ticker": "FWRY",
