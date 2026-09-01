@@ -142,6 +142,33 @@ All of the above — plus `technicals.py`, `apply_technicals.py`, `ta_chart.py`,
 on them (`nu=Gaussian` parses cleanly and only dies at import — that exact bug once reached
 `main`).
 
+**Subagents, for the jobs that are better done by someone who did not do the work:**
+`.claude/agents/` holds committed subagent definitions. Each one loads the rules it needs
+and reports evidence rather than a verdict on itself.
+- `testahil-gate-runner` — runs every gate exactly as CI runs it, plus import-not-parse and
+  the JS load-assert, and reports what it examined and the population it was held against
+  [R-ENF-04]. Read-only: it reports, it never fixes.
+- `testahil-qc-auditor` — fills the QC gate table for a delivered study from outside it,
+  every row naming the artefact, command or number that carries it. Writes only
+  `QC_GATE_{DD-MM-YYYY}.md`; it never edits the study it audits [R-ENF-02].
+- `testahil-sweep-researcher` — the Step 2A four-ring sweep, primary-source-first, into
+  `research_sweep.py`'s register. Stops and asks rather than substituting.
+- `testahil-rollforward-operator` — trigger (b) end to end, from the library merge to the
+  lifecycle invariant. Never publishes; never touches `fair{}` or the slider constants.
+- `testahil-walkforward-runner` — the FUNDAMENTAL walk-forward [R-FCAL-01] on one name inside
+  the campaign wrapper: freezes the old fair value first, pre-registers, builds at every
+  origin, scores against both naive benchmarks, drafts the lessons and stops for the scope
+  ruling. Never publishes; never marks a fundamental lesson adopted.
+- `testahil-protocol-scribe` — amends a rule in both governing documents in one commit,
+  assigns the [R-AREA-NN] id, bumps both stamps, renames the digest on a new day and moves
+  the CLAUDE.md include with it, runs the sync and text gates, returns the full digest text.
+- `testahil-critique-responder` — Critique_Response_Prompt v2: self-audit first, one row per
+  finding, priced before judged, receipts on every rejection, stops to report before
+  implementing anything.
+- `testahil-beta-reissuer` — clears the composite-beta backlog in `outstanding.json` one name
+  at a time through `own_stock_beta()`, attested, with the stale prose hunted and the study
+  rebuilt; stops and asks where v2 cost-of-capital inputs cannot be sourced live.
+
 **Never** quote a calibration figure, fitted parameter, or panel membership from memory
 or from a document — always read `engine/market_profiles.py` and
 `engine/fitted_configs.json` live first; they are volatile and refit on every post.
