@@ -1708,6 +1708,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "SNB",
+   "name": "The Saudi National Bank",
+   "code": "TADAWUL:1180",
+   "ccy": "SAR",
+   "spot": 43.3,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 58,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 36,
+   "fv_base": 45,
+   "fv_full": 55,
+   "gap_base_pct": 3.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.070457,
+    "mu_h": 0.005527,
+    "G": {
+     "bear": -2.62,
+     "base": 0.55,
+     "full": 3.39
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0055,
+     "base": 0.3112,
+     "full": 0.0014
+    },
+    "p_touch": {
+     "bear": 0.0083,
+     "base": 0.5104,
+     "full": 0.0018
+    },
+    "required_cagr": {
+     "bear": -0.8909,
+     "base": 0.5874,
+     "full": 16.64
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0003
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.132727,
+    "mu_h": 0.015127,
+    "G": {
+     "bear": -1.39,
+     "base": 0.29,
+     "full": 1.8
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0634,
+     "base": 0.4262,
+     "full": 0.0449
+    },
+    "p_touch": {
+     "bear": 0.1146,
+     "base": 0.7387,
+     "full": 0.0749
+    },
+    "required_cagr": {
+     "bear": -0.5222,
+     "base": 0.1665,
+     "full": 1.6031
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00162
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "ALRAJHI",
    "name": "Al Rajhi Bank",
    "code": "TADAWUL:1120",
@@ -2628,6 +2720,98 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
+   "ticker": "STC",
+   "name": "stc Group (Saudi Telecom)",
+   "code": "TADAWUL:7010",
+   "ccy": "SAR",
+   "spot": 44.72,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-09",
+   "fv_lag_days": 53,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 36.2,
+   "fv_base": 47.11,
+   "fv_full": 59.1,
+   "gap_base_pct": 5.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 15.0,
+    "width_cal": 1.056,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.046523,
+    "mu_h": 0.004462,
+    "G": {
+     "bear": -4.54,
+     "base": 1.12,
+     "full": 5.99
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.1445,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.2274,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9208,
+     "base": 0.8678,
+     "full": 27.381
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00021
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.086888,
+    "mu_h": 0.012886,
+    "G": {
+     "bear": -2.43,
+     "base": 0.6,
+     "full": 3.21
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0071,
+     "base": 0.3176,
+     "full": 0.0025
+    },
+    "p_touch": {
+     "bear": 0.013,
+     "base": 0.539,
+     "full": 0.004
+    },
+    "required_cagr": {
+     "bear": -0.5706,
+     "base": 0.2315,
+     "full": 2.0503
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0013
+   },
+   "market": "SA"
+  },
+  {
    "ticker": "TSLA",
    "name": "Tesla, Inc.",
    "code": "NASDAQ:TSLA",
@@ -3454,98 +3638,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00315
    },
    "market": "EG"
-  },
-  {
-   "ticker": "SNB",
-   "name": "The Saudi National Bank",
-   "code": "TADAWUL:1180",
-   "ccy": "SAR",
-   "spot": 39.92,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-04",
-   "fv_lag_days": 22,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 36,
-   "fv_base": 45,
-   "fv_full": 55,
-   "gap_base_pct": 12.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 15.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.077256,
-    "mu_h": 0.003002,
-    "G": {
-     "bear": -1.34,
-     "base": 1.55,
-     "full": 4.15
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0799,
-     "base": 0.0626,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.1297,
-     "base": 0.0967,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.7107,
-     "base": 3.2098,
-     "full": 45.7806
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00187
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.137212,
-    "mu_h": 0.010962,
-    "G": {
-     "bear": -0.75,
-     "base": 0.87,
-     "full": 2.34
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.1925,
-     "base": 0.2038,
-     "full": 0.0143
-    },
-    "p_touch": {
-     "bear": 0.361,
-     "base": 0.3535,
-     "full": 0.0234
-    },
-    "required_cagr": {
-     "bear": -0.3386,
-     "base": 0.6147,
-     "full": 2.6032
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00238
-   },
-   "market": "SA"
   },
   {
    "ticker": "QNB",
@@ -4466,98 +4558,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00402
    },
    "market": "EG"
-  },
-  {
-   "ticker": "STC",
-   "name": "stc Group (Saudi Telecom)",
-   "code": "TADAWUL:7010",
-   "ccy": "SAR",
-   "spot": 43.1,
-   "anchor_date": "2026-07-26",
-   "fv_asof": "2026-07-09",
-   "fv_lag_days": 17,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 36.2,
-   "fv_base": 47.11,
-   "fv_full": 59.1,
-   "gap_base_pct": 9.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 15.0,
-    "width_cal": 1.056,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.042396,
-    "mu_h": 0.003012,
-    "G": {
-     "bear": -4.12,
-     "base": 2.1,
-     "full": 7.45
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.0229,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0331,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.8768,
-     "base": 1.9082,
-     "full": 43.1899
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00116
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.0804,
-    "mu_h": 0.010387,
-    "G": {
-     "bear": -2.17,
-     "base": 1.11,
-     "full": 3.93
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.013,
-     "base": 0.1552,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0219,
-     "base": 0.2612,
-     "full": 0.0006
-    },
-    "required_cagr": {
-     "bear": -0.5023,
-     "base": 0.4274,
-     "full": 2.5354
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00129
-   },
-   "market": "SA"
   },
   {
    "ticker": "FERTIGLB",
