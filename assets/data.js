@@ -1975,29 +1975,29 @@ const TICKERS = {
     name: "Emaar Misr for Development",
     nameAr: "إعمار مصر للتنمية",
     code: "EGX:EMFD",
-    spot: 11.53,
-    spotDate: "close 28 Jul 2026",
+    spot: 13.70,
+    spotDate: "close 01 Sep 2026",
     ccy: "EGP",
     fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month",   p5:10.31, p25:11.22, p50:11.77, p75:12.35, p95:13.46, resolve:"2026-08-30" },
-      t60: { label:"3 months",  p5:9.53, p25:11.17, p50:12.21, p75:13.35, p95:15.62, resolve:"2026-10-28" }
+      t20: { label:"1 month",   p5:11.85, p25:13.17, p50:13.98, p75:14.84, p95:16.49, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:10.91, p25:13.08, p50:14.49, p75:16.05, p95:19.22, resolve:"2026-12-01" }
     },
-    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:5, cal:0.958, mult:0.917431, eff:0.878899, on:"2026-08-25" },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.958, mult:0.917431, eff:0.878899, on:"2026-09-01" },
     touch: [ /* descending high → low — same absolute levels, reprobabilised on the 28-Jul cycle-4 paths; ladder still sits entirely above spot and wants a human re-pick */
-      [17.00, 0, 3], [16.00, 0, 6], [15.00, 1, 12], [14.00, 3, 24], [13.00, 15, 48]
+      [17.00, 5, 24], [16.00, 12, 40], [15.00, 33, 63], [14.00, 77, 89], [13.00, 40, 56]
     ],
-    levels: { res:[12, 12.22, 12.65], sup:[11.25, 9.48, 8.92] },
+    levels: { res:[13.85, 15, 16], sup:[12.11, 11.27, 8.92] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 11.53 below a falling 20-day (11.72) and a rising 50-day (11.56), but above a rising 200-day (9.99). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 0.31 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.02 / +0.07 / \u22120.05). Over the last year it has ranged 7.92\u201312.70; the last close sits 9% below that high and 46% above that low.",
-      bull: "A daily close back above 12.00 would clear the nearest resistance; the next charted level above it is 12.65.",
-      bear: "A close below 11.25 would break the nearest support; the next charted level below it is 8.92."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 13.70 above a rising 20-day (12.04), a rising 50-day (11.82) and a rising 200-day (10.32). Momentum is very strong: RSI(14) is ~82 and the daily ATR near 0.39 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.33 / +0.15 / +0.18). Over the last year it has ranged 7.92\u201313.85; the last close sits 1% below that high and 73% above that low.",
+      bull: "A daily close back above 13.85 would clear the nearest resistance; the next charted level above it is 16.00.",
+      bear: "A close below 12.11 would break the nearest support; the next charted level below it is 8.92."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-08-25" },
-      tech: { data:"2026-07-28", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/EMFD_Valuation_Study_17-06-2026_public.docx?v=1706",
@@ -3211,7 +3211,7 @@ const BANDS = {
   ELM: {mkt:"SA", n:13, hits:9, c50:0.3077, c80:0.5385, c90:0.6923, width:1.014, strength:"market-only", flag:null},
   EMAAR: {mkt:"AE", n:58, hits:46, c50:0.4828, c80:0.7241, c90:0.7931, width:0.957, strength:"long", flag:"narrow"},
   EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.8000, c90:0.9333, width:1.045, strength:"short", flag:null},
-  EMFD: {mkt:"EG", n:39, hits:38, c50:0.6154, c80:0.8974, c90:0.9744, width:1.400, strength:"short", flag:null},
+  EMFD: {mkt:"EG", n:40, hits:39, c50:0.6250, c80:0.9000, c90:0.9750, width:1.387, strength:"long", flag:null},
   EMPOWER: {mkt:"AE", n:10, hits:10, c50:0.6000, c80:1.0000, c90:1.0000, width:1.278, strength:"market-only", flag:null},
   ENBD: {mkt:"AE", n:57, hits:52, c50:0.6316, c80:0.8421, c90:0.9123, width:1.233, strength:"long", flag:null},
   ETEL: {mkt:"EG", n:57, hits:56, c50:0.4211, c80:0.8421, c90:0.9825, width:1.342, strength:"long", flag:"wide"},
@@ -3268,7 +3268,7 @@ const BANDS = {
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
-  EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
+  EG: {names:37, n:1795, c90:0.9281, label:"Egyptian"},
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
@@ -5258,9 +5258,9 @@ const LEDGER = [
     note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
     p5:10.12, p25:11.09, p50:11.7, p75:12.36, p95:13.54,
     touch:{ "+5":53, "+10":25, "+15":11, "+20":5, "-5":39, "-10":14 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:12.7, realized_high:12.7, realized_low:11.08,
+    in_90:true, in_50:false, realized_quantile:0.808, median_err:0.0855,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"EMFD", asset_class:"equity",
@@ -7400,6 +7400,35 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
+  // ---- 01-Sep-2026 single-name roll-forward: EMFD, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:13.7, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:20,
+    cycle_no:5, reanchor_from:"2026-07-28", anchor_vol:0.4311,
+    signal_z:0.8298, signal_alpha:0.005492,
+    note:"Cycle 5 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 4 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.958. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9174 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8789, not the pooled 0.958. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.830 (outside the 0.25 dead zone); tilt +0.55% at 1M and +1.04% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:11.85, p25:13.17, p50:13.98, p75:14.84, p95:16.49,
+    touch:{ "+5":58, "+10":31, "+15":16, "+20":8, "-5":41, "-10":17 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:13.7, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:62,
+    cycle_no:5, reanchor_from:"2026-07-28", anchor_vol:0.4186,
+    signal_z:0.8298, signal_alpha:0.010298,
+    note:"Cycle 5 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 4 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.958. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9174 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8789, not the pooled 0.958. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.830 (outside the 0.25 dead zone); tilt +0.55% at 1M and +1.04% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:10.91, p25:13.08, p50:14.49, p75:16.05, p95:19.22,
+    touch:{ "+5":79, "+10":61, "+15":45, "+20":32, "-5":57, "-10":33 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- 01-Sep-2026 single-name roll-forward: COMI, struck on its own
   //      latest library close. Append-only.
   {
@@ -7694,7 +7723,7 @@ const CALIB = {
   "EGX:EGAL": {w: 57, in50: 56, in90: 89, through: "2026-07-22"},
   "EGX:EGCH": {w: 57, in50: 53, in90: 95, through: "2026-07-12"},
   "EGX:ELEC": {w: 57, in50: 51, in90: 93, through: "2026-07-12"},
-  "EGX:EMFD": {w: 39, in50: 59, in90: 95, through: "2026-05-11"},
+  "EGX:EMFD": {w: 40, in50: 62, in90: 95, through: "2026-08-11"},
   "EGX:ETEL": {w: 57, in50: 40, in90: 96, through: "2026-07-12"},
   "EGX:FWRY": {w: 23, in50: 48, in90: 100, through: "2026-06-10"},
   "EGX:GBCO": {w: 57, in50: 58, in90: 91, through: "2026-08-03"},
