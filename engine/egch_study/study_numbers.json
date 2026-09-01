@@ -191,6 +191,7 @@
   "wacc_spot": 0.2563781912398291,
   "wacc_cds": 0.24523293932683204,
   "kd_pretax_spot": 0.19988381501754648,
+  "kd_fx_terminal": 0.11767578125,
   "wacc_terminal": 0.182375535243325,
   "ke_terminal": 0.23033756344135287,
   "wacc_path": [
@@ -1774,10 +1775,13 @@
     "FX(local-equiv) Kd 14.54% < rf* 16.63% \u2014 looks like a raw FX coupon not grossed up for expected depreciation."
    ]
   },
+  "builder_warnings": [
+   "FX(local-equiv) Kd 14.54% < rf* 16.63% \u2014 looks like a raw FX coupon not grossed up for expected depreciation.",
+   "FX(local-equiv) Kd 15.63% < rf* 16.63% \u2014 looks like a raw FX coupon not grossed up for expected depreciation."
+  ],
   "disclosures": [
-   "The company's own local-currency facility carries 19.40% against a 23.00% sovereign ten-year yield: a same-currency corporate borrowing below its sovereign. It is the company's disclosed rate and it is used as disclosed; the sovereign-floored construction is priced beside it.",
-   "FX(local-equiv) Kd 15.63% < rf* 16.63% \u2014 looks like a raw FX coupon not grossed up for expected depreciation.",
-   "FX(local-equiv) Kd 14.54% < rf* 16.63% \u2014 looks like a raw FX coupon not grossed up for expected depreciation."
+   "The company's own local-currency facility carries 19.40% against a 23.00% sovereign ten-year yield: a same-currency corporate borrowing below its sovereign. It is the company's disclosed rate on a state-bank facility and is used as disclosed.",
+   "The dollar leg's local-equivalent cost sits below the 16.63% normalised risk-free rate in FY2028/29 (15.63%), FY2029/30 (14.54%), FY2030/31 (14.54%), because the currency wedge in those years (3.5%, 2.5%, 2.5%) is smaller than the gap between the 11.7% coupon and that rate. It is left as built, because the wedge is the study's one currency path and the debt may not carry a second."
   ],
   "company_spread_over_policy": 0.0,
   "sovereign_floor": 0.23,

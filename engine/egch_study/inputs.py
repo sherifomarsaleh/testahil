@@ -228,7 +228,6 @@ I("usd_egp_spot", 49.79, "EGP/US$", "Market quote", "2026-08-07", "L2")
 I("urea_fob_egypt", 545.0, "US$/t",
   "Listed granular urea free-on-board Egypt futures contract, front-month settle", "2026-08-07", "L2")
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
-I("erp_cds", 0.09424719428808419, "ratio", CPF + ", CDS basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
 I("erp_cds_damodaran", 0.0941, "ratio",
   CPF + ", equity risk premium based on the sovereign credit default swap. CORRECTED "
@@ -236,6 +235,9 @@ I("erp_cds_damodaran", 0.0941, "ratio",
   "not carry. Damodaran's Egypt row reads 3.41% and 9.41%.", "2026-01-05", "L4")
 I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
+I("country_risk_premium_rating", 0.13937694320020103 - 0.0423, "ratio",
+  "DERIVED: erp_rating - mature_market_erp, the country component of the rating-basis equity premium "
+  "(the workbook's own construction, recomputed rather than read from a second file)", "2026-01-01", "L2")
 I("moodys_rating", "Caa1", "rating", CPF + ", sovereign rating", "2026-01-01", "L2")
 
 # ===================================================== L3 — OFFICIAL EXTERNAL =
@@ -461,10 +463,16 @@ for k, vals, unit, src in [
     I(k, vals, unit, src, "2026-08-08", "L5")
 
 I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
-  "Weights of the four lenses in the published central: cash flow (programme carried through) "
-  "45%, relative multiples 20%, normalised earnings 20%, book value 15% — the same weights the "
-  "08-08-2026 edition published. The bear and full readings are the low and high of the field "
-  "across every lens, never the weighted extremes.", "2026-08-08", "L5")
+  "Weights of the four lenses in the weighted central this edition publishes inside its field: "
+  "cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings "
+  "20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published "
+  "the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens "
+  "and the only one that charges the capital programme, so it carries the largest weight; its "
+  "carried-through side enters because that is the company's own stated plan, and the stopped "
+  "side is published beside it as the contested judgement, never averaged in; the relative and "
+  "normalised lenses are cross-checks at equal weight; book value, which prices what has been paid "
+  "for rather than what it earns, the least. The bear and full readings are the low and high of "
+  "the field across every lens, never the weighted extremes.", "2026-09-01", "L5")
 I("g_terminal", 0.050, "ratio",
   "Terminal growth set at the central bank's LONGEST-HORIZON published inflation target: 5% "
   "(+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously "

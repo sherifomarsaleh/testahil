@@ -20,7 +20,6 @@ from inputs import V
 from docprops import strip_stub_counts
 LN = json.load(open('lenses.json'))
 EXJ = json.load(open('experts.json'))
-LIVE = json.load(open('live_data.json'))
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
@@ -163,32 +162,32 @@ P("The ten annual statements for 2009 to 2021 in the first row were retrieved on
 # ----------------------------------------------- 2. market and macro data ----
 H1("2.  Market data, sovereign data and macroeconomic series")
 rows = [["Item", "Value used", "As of", "Source", "Where it is used"]]
-dam = LIVE['damodaran_egypt']['value']
 rows += [
- ["Share price", "EGP 13.98", "6 Aug 2026", "Exchange close, from the study's own price library",
+ ["Share price", f"EGP {V('spot_price'):.2f}", "6 Aug 2026", "Exchange close, from the study's own price library",
   "Market capitalisation, the equity weight in the cost of capital, and every comparison"],
  ["Share count", f"{V('shares_outstanding'):,}", "30 Jun 2025", "Note 14 of the audited statements",
   "Per-share values. NOT taken from an exchange page or an aggregator"],
- ["Ten-year government bond yield", "23.00%", "6 Aug 2026", "Market quote",
+ ["Ten-year government bond yield", f"{V('rf_observed')*100:.2f}%", "6 Aug 2026", "Market quote",
   "The observed risk-free rate before normalisation"],
- ["Treasury bond coupon cross-check", "23.098%", "2026", "New EGP 120.9bn issue to May 2029",
+ ["Treasury bond coupon cross-check", f"{V('sovereign_bond_coupon')*100:.3f}%", "2026", "New EGP 120.9bn issue to May 2029",
   "Corroborates the sovereign yield above"],
- ["Sovereign rating and default spread", f"{dam['moodys_rating']}, "
-  f"{dam['rating_based_adjusted_default_spread']*100:.2f}%", "Jan 2026",
+ ["Sovereign rating and default spread", f"{V('moodys_rating')}, "
+  f"{V('sov_spread_rating')*100:.2f}%", "Jan 2026",
   "Country-premium workbook, Egypt row, read from the original file",
   "Normalisation of the risk-free rate, rating basis"],
- ["Country equity risk premium", f"{dam['rating_based_country_risk_premium']*100:.2f}%",
-  "Jan 2026", "Same workbook", "The country component of the equity premium"],
- ["Total equity risk premium", f"{dam['rating_based_total_equity_risk_premium']*100:.2f}% "
-  f"(rating) / {dam['cds_based_total_equity_risk_premium']*100:.2f}% (CDS)", "Jan 2026",
+ ["Country equity risk premium", f"{V('country_risk_premium_rating')*100:.2f}%",
+  "Jan 2026", "Same workbook: the total rating-basis premium less the mature-market premium",
+  "The country component of the equity premium"],
+ ["Total equity risk premium", f"{V('erp_rating')*100:.2f}% "
+  f"(rating) / {V('erp_cds_damodaran')*100:.2f}% (CDS)", "Jan 2026",
   "Same workbook, both columns", "Cost of equity, published on both bases"],
- ["Exchange rate", "EGP 49.79 per US dollar", "7 Aug 2026", "Market quote",
+ ["Exchange rate", f"EGP {V('usd_egp_spot'):.2f} per US dollar", "7 Aug 2026", "Market quote",
   "The starting point of the currency path"],
- ["Urea, granular, free on board Egypt", "US$545 per tonne", "7 Aug 2026",
+ ["Urea, granular, free on board Egypt", f"US${V('urea_fob_egypt'):.0f} per tonne", "7 Aug 2026",
   "Listed futures contract", "The export-price anchor and the crux sensitivity"],
- ["Egyptian headline inflation", "14.3% year on year", "June 2026", "Official statistics",
+ ["Egyptian headline inflation", f"{V('cpi_latest')*100:.1f}% year on year", "June 2026", "Official statistics",
   "The domestic cost escalator"],
- ["Policy rate", "19.00 / 20.00% corridor", "9 July 2026", "Central bank decision",
+ ["Policy rate", f"{V('policy_rate')*100:.2f}% main operation rate, mid-corridor", "9 July 2026", "Central bank decision",
   "Context for the rate path; the terminal build uses the inflation target, not this rate"],
  ["Treasury-bill yields", f"{V('tbill_yield_range')[0]*100:.2f}% to {V('tbill_yield_range')[1]*100:.2f}% by tenor", "6 Aug 2026",
   "Secondary market quotes — the central bank's own auction pages were unreachable",

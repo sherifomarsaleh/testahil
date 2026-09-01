@@ -744,6 +744,20 @@ put(ws, "B27", f"='Assumptions'!C{W1}", fmt=PC2, expect=DR['wacc_path'][0])
 para(ws, 31, "Terminal value as a share of enterprise value is reported beside the "
      "cash-flow lens on the DCF sheet, in both columns, because on this company it is the "
      "number that decides the answer.", 9)
+put(ws, "A33", "THE WEIGHTED CENTRAL INSIDE THE FIELD — stated weights, reading the lens cells above").font = SUB
+_CW = LN['central']['weights']
+put(ws, "A34", "Weight: cash flow, programme carried through"); put(ws, "B34", _CW['cashflow'], fmt=PC1)
+put(ws, "A35", "Weight: relative multiples");                 put(ws, "B35", _CW['relative'], fmt=PC1)
+put(ws, "A36", "Weight: normalised earnings power");          put(ws, "B36", _CW['normalised'], fmt=PC1)
+put(ws, "A37", "Weight: book value and sustainable return");  put(ws, "B37", _CW['book'], fmt=PC1)
+put(ws, "A38", "Weighted central (EGP/share)")
+put(ws, "B38", "=B34*B5+B35*B7+B36*B8+B37*B6", fmt=N2, expect=LN['central']['base'])
+put(ws, "A39", "Against spot")
+put(ws, "B39", "=B38/$B$14-1", fmt=PC1, expect=LN['central']['base'] / SPOT - 1)
+put(ws, "A40", "Only the carried-through side of the cash-flow lens enters the weighting (the "
+    "company's stated plan); the stopped reading is the contested judgement above, published "
+    "beside it and never averaged in. Bear and full are the field's floor and ceiling, never "
+    "the weighted extremes.").font = NOTE
 
 # =================================================== 3 Fundamental Valuation ==
 ws = wb.create_sheet("Fundamental Valuation")

@@ -1573,15 +1573,6 @@
    "layer": "L2",
    "note": ""
   },
-  "erp_cds": {
-   "key": "erp_cds",
-   "value": 0.09424719428808419,
-   "unit": "ratio",
-   "source": "Country risk premium workbook, original file, Egypt row, CDS basis total equity risk premium",
-   "date": "2026-01-01",
-   "layer": "L2",
-   "note": ""
-  },
   "sov_spread_rating": {
    "key": "sov_spread_rating",
    "value": 0.06372478453347744,
@@ -1614,6 +1605,15 @@
    "value": 0.0423,
    "unit": "ratio",
    "source": "Country risk premium workbook, original file, Egypt row, mature-market equity risk premium",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "country_risk_premium_rating": {
+   "key": "country_risk_premium_rating",
+   "value": 0.09707694320020102,
+   "unit": "ratio",
+   "source": "DERIVED: erp_rating - mature_market_erp, the country component of the rating-basis equity premium (the workbook's own construction, recomputed rather than read from a second file)",
    "date": "2026-01-01",
    "layer": "L2",
    "note": ""
@@ -2296,8 +2296,8 @@
     0.15
    ],
    "unit": "ratio",
-   "source": "Weights of the four lenses in the published central: cash flow (programme carried through) 45%, relative multiples 20%, normalised earnings 20%, book value 15% \u2014 the same weights the 08-08-2026 edition published. The bear and full readings are the low and high of the field across every lens, never the weighted extremes.",
-   "date": "2026-08-08",
+   "source": "Weights of the four lenses in the weighted central this edition publishes inside its field: cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings 20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens and the only one that charges the capital programme, so it carries the largest weight; its carried-through side enters because that is the company's own stated plan, and the stopped side is published beside it as the contested judgement, never averaged in; the relative and normalised lenses are cross-checks at equal weight; book value, which prices what has been paid for rather than what it earns, the least. The bear and full readings are the low and high of the field across every lens, never the weighted extremes.",
+   "date": "2026-09-01",
    "layer": "L5",
    "note": ""
   },

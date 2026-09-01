@@ -33,6 +33,7 @@ E2 = lambda x: f"{x:,.2f}"
 PC = lambda x: f"{x*100:.1f}%"
 PC2 = lambda x: f"{x*100:.2f}%"
 PC0 = lambda x: f"{x*100:+.0f}%"
+PCW = lambda x: f"{x*100:.0f}%"          # unsigned: weights, shares, distances stated with a word
 M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 
 masthead()
@@ -60,8 +61,14 @@ box([("What this is.  ",
       "are computed and both are published side by side throughout this document. Neither "
       "is averaged into the other, because the average would be true in neither world."),
      ("How to read the numbers.  ",
-      "Four lenses give a field, not a point. Where they disagree, the disagreement is the "
-      "information — section 4 isolates which assumption drives which gap.")])
+      f"Four lenses give a field, and inside it one weighted central — EGP "
+      f"{E2(LN['central']['base'])} a share on stated weights: cash flow with the programme "
+      f"carried through {PCW(LN['central']['weights']['cashflow'])}, relative multiples "
+      f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
+      f"{PCW(LN['central']['weights']['normalised'])}, book value "
+      f"{PCW(LN['central']['weights']['book'])}. The central is a reading inside the field, "
+      f"never a point target. Where the lenses disagree, the disagreement is the "
+      f"information — section 4 isolates which assumption drives which gap.")])
 
 # ---------------------------------------------------------------- HEADLINE ---
 H1("Headline")
@@ -91,10 +98,16 @@ for k in ("cashflow_carry", "cashflow_stopped", "relative", "normalised", "book"
     sp = SP[k]
     rng = (f"{E2(sp['low'])} to {E2(sp['high'])}" if sp['high'] > sp['low'] else "—")
     rows.append([sp['label'], sp['basis'], rng, E2(sp['base']), PC0(sp['vs_spot'])])
-rows.append(["THE FIELD, all four lenses",
-             "Low to high across every read above. The two cash-flow readings are the "
-             "contested judgement and are never averaged into one another",
-             f"{E2(LN['synthesis']['low'])} to {E2(LN['synthesis']['high'])}", "—", "—"])
+_CW = LN['central']['weights']
+rows.append(["THE FIELD, all four lenses — and the weighted central inside it",
+             f"Low to high across every read above. The central weights the reads: cash flow "
+             f"carried through {PCW(_CW['cashflow'])}, relative {PCW(_CW['relative'])}, "
+             f"normalised {PCW(_CW['normalised'])}, book {PCW(_CW['book'])}. Only the "
+             f"carried-through side of the cash-flow lens enters it — that is the company's "
+             f"stated plan; the stopped reading is the contested judgement, published beside "
+             f"it and never averaged in",
+             f"{E2(LN['synthesis']['low'])} to {E2(LN['synthesis']['high'])}",
+             E2(LN['central']['base']), PC0(LN['central']['base'] / SPOT - 1)])
 rows.append(["Market price", "Closing price on the anchor date", "—", E2(SPOT), "—"])
 rows.append(["ALTERNATIVE READINGS — each a full re-run of the model with ONE component "
              "moved, and none of them inside the field above", "", "", "", ""])
@@ -349,6 +362,21 @@ P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesi
   f"against EGP {E2(SPOT)}. That is a change from the first issue of this study, which "
   f"used a lower multiple band it could not source, and it is reported rather than "
   f"resisted.")
+P(f"Inside that field the study publishes one weighted central, EGP {E2(LN['central']['base'])} "
+  f"a share, {PCW(abs(LN['central']['base'] / SPOT - 1))} "
+  f"{'below' if LN['central']['base'] < SPOT else 'above'} the traded price. The weights are "
+  f"stated and fixed before the lenses were read: cash flow with the programme carried through "
+  f"{PCW(LN['central']['weights']['cashflow'])}, relative multiples "
+  f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
+  f"{PCW(LN['central']['weights']['normalised'])}, book value "
+  f"{PCW(LN['central']['weights']['book'])}. The cash-flow lens carries the most because it is "
+  f"the one lens that charges the capital programme against the years in which it is spent; its "
+  f"carried-through side alone enters the weighting because that is the company's own stated "
+  f"plan, and the stopped reading (EGP {E2(LN['cashflow']['stopped'])}) is published beside it "
+  f"as the contested judgement rather than blended in. The relative and normalised lenses are "
+  f"cross-checks at equal weight; book value, which prices what has been paid for rather than "
+  f"what it earns, carries the least. The bear and full readings are the floor and ceiling of the "
+  f"field, never the weighted extremes.")
 P(f"The ordering is itself informative. The asset-backed and multiple-based lenses sit "
   f"highest because they value what has been built without asking what it earns. The "
   f"cash-flow lens sits lowest because it asks exactly that, and gets an uncomfortable "
@@ -639,17 +667,20 @@ P(f"The pound tranche of the project loan was repaid in June 2024, so {PC(1-WC['
   f"{PC(WC['fx_wedge_path'][0])} in {YEARS[0]}, giving a local-equivalent "
   f"{PC2(WC['kd_fx_path'][0])}, gliding to {PC(WC['fx_wedge_path'][4])} in {YEARS[4]} and "
   f"{PC2(WC['kd_fx_path'][4])} — and to {PC(DR['deprec_lt'])} on the long-run dollar cost of "
-  f"{PC(DR['kd_usd_lt'])} in the terminal year, {PC2(DR['kd_local_equiv_terminal'])}. The wedge "
-  f"is the one the revenue build uses, so the debt and the currency cannot quietly disagree.")
-P("What the cost-of-capital builder's own consistency checks say about that construction, "
-  "printed rather than suppressed: " + " ".join(WC['disclosures'])
-  + (f" The dollar leg's local-equivalent cost sits below the {PC2(WC['rf_star_rating'])} normalised "
-     f"risk-free rate in {', '.join(WC['years_fx_leg_below_rf_star'])}, because the currency wedge "
-     f"in those years is smaller than the gap between the coupon and the risk-free rate. "
-     if WC['years_fx_leg_below_rf_star'] else "")
-  + f"The disclosed rates are what the company pays on state-bank facilities and are used as "
-  f"disclosed; the construction with every leg floored at the sovereign yield is priced in the "
-  f"table below rather than argued.", size=9.6)
+  f"{PC(DR['kd_usd_lt'])} in the terminal year, {PC2(DR['kd_fx_terminal'])} on the dollar leg "
+  f"({PC2(DR['kd_local_equiv_terminal'])} once the {PC(WC['pct_debt_local'])} local facility is "
+  f"blended in). The wedge is the one the revenue build uses, so the debt and the currency "
+  f"cannot quietly disagree.")
+_FLOOR = next(a for a in AL['alternatives'] if a['key'] == 'cost_of_debt_floor')
+P("Two things about that construction are disclosed rather than argued, because the cost-of-"
+  "capital build tests for both. " + " ".join(WC['disclosures'])
+  + f" A same-currency borrower does not normally borrow below its sovereign, so the construction "
+  f"with every leg floored at the {PC2(V('rf_observed'))} sovereign yield plus the company's own "
+  f"spread over the policy rate — which its facilities print as nil — is priced in the table "
+  f"below: EGP {E2(_FLOOR['value'])} a share on the carried-through cash-flow lens against EGP "
+  f"{E2(AL['baseline'])}, a difference of EGP {E2(_FLOOR['value'] - AL['baseline'])}. The lower "
+  f"disclosed rates raise the answer, so the choice made leans toward the traded price, not away "
+  f"from it.", size=9.6)
 H2("Where this construction is contested, and what the alternative is worth")
 P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in every future "
   f"year, while the terminal value grows at the central bank's longest-horizon target of "
@@ -828,8 +859,12 @@ P(f"How this has done, in plain terms. Over {_BR['n']} resolved three-month fore
   f"share the price finished inside the ninety-per-cent band {PC(_BR['c90'])} of the time, "
   f"inside the eighty-per-cent band {PC(_BR['c80'])} and inside the fifty-per-cent band "
   f"{PC(_BR['c50'])} — against the ninety, eighty and fifty they promise. "
-  + ("The record earns no flag either way." if not _BR.get('flag') else
-     f"The record carries the flag '{_BR['flag']}'."))
+  + ("The record earns no flag either way. " if not _BR.get('flag') else
+     f"The record carries the flag '{_BR['flag']}'. ")
+  + f"By the count ladder this house uses it is a {_BR['strength']} record, and the "
+  f"ninety-per-cent band ran {_BR['width']:.2f} times the width of a naive band anchored on "
+  f"the carry alone — a width disclosed beside the record and never used as a threshold, "
+  f"because a wider band is not automatically a wrong one.")
 P("Two honest limits. The bands are wide because this share is volatile — an annualised "
   f"{PC(M3['anchor_vol_ann'])} at the anchor date — and a wide band that is right is worth "
   "more than a narrow one that is wrong. And the map says nothing about value: a price can "

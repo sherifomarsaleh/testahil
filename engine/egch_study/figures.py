@@ -28,7 +28,6 @@ plt.rcParams.update({'figure.facecolor': BG, 'axes.facecolor': BG,
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 GRIDJ = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
-BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 SPOT, DR, YEARS = D['spot'], D['drivers'], D['years']
 CASES = D['cases']
 df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'EGCH_Stock_Price_History.csv')),

@@ -97,7 +97,8 @@ gap between the coupon and rf*. **The sovereign-floored alternative is priced, n
 adopted**: every leg floored at 23.00% plus the company's own spread over the policy
 rate (which its facilities print as nil) is a labelled row in the contested-constructions
 table and on the Sensitivity sheet — carried-through cash-flow value −1.06 a share
-against −0.63 (−EGP 0.44), the stopped case 3.43 → about 3.0. The lower disclosed rates
+against −0.63 (−EGP 0.44; the alternative is priced on the carried-through case, as every
+row of that table is). The lower disclosed rates
 *raise* the answer, so the construction adopted leans toward the price, not away from it.
 
 **What the year-by-year cost of debt moved.** The first pass of this edition grossed the

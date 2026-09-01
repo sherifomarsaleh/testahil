@@ -36,7 +36,6 @@ from inputs import V as _V          # the study's input register — the single 
 FY25 = json.load(open(os.path.join(HERE, 'extract_fy2425.json')))
 HIST = json.load(open(os.path.join(HERE, 'extract_history.json')))
 NINE = json.load(open(os.path.join(HERE, 'extract_9m_fy2526.json')))
-LIVE = json.load(open(os.path.join(HERE, 'live_data.json')))
 
 K = 1_000.0            # statements are in EGP thousand; the model works in EGP million
 def m(th):             # EGP thousand -> EGP million
@@ -208,7 +207,8 @@ def set_glide():
     coupon and that year's derived currency wedge (the same wedge the revenue build uses)."""
     D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1
     _kd_fx_T = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
-    D['kd_local_equiv_terminal'] = kd_blend(D['kd_local'], _kd_fx_T)
+    D['kd_fx_terminal'] = _kd_fx_T                                  # the dollar leg alone
+    D['kd_local_equiv_terminal'] = kd_blend(D['kd_local'], _kd_fx_T)   # blended with the local leg
     D['wacc_terminal'], D['ke_terminal'] = _wacc_from(D['rf_star_terminal'],
                                                      D['kd_local_equiv_terminal'])
     D['wacc_path'], D['rf_star_path'], D['kd_path'] = [], [], []
@@ -271,6 +271,16 @@ def _wacc_inputs(k):
 
 _res = [_wb.build_wacc(_wacc_inputs(k)) for k in range(5)]
 _r0 = _res[0]
+_below = [k for k in range(5) if kd_fx_year(k) < _r0.rf_star_rating]
+_fx_leg_sentence = None
+if _below:
+    _yrs = ", ".join("%s (%.2f%%)" % (YEARS[k], kd_fx_year(k) * 100) for k in _below)
+    _wdg = ", ".join("%.1f%%" % (D['fx_wedge_path'][k] * 100) for k in _below)
+    _fx_leg_sentence = (
+        "The dollar leg's local-equivalent cost sits below the %.2f%% normalised risk-free rate in %s, "
+        "because the currency wedge in those years (%s) is smaller than the gap between the %.1f%% "
+        "coupon and that rate. It is left as built, because the wedge is the study's one currency path "
+        "and the debt may not carry a second." % (_r0.rf_star_rating * 100, _yrs, _wdg, D['kd_usd_nominal'] * 100))
 WACC = dict(
     spot=_V('spot_price'), shares=_SHARES, market_cap=_MCAP, total_debt=_DEBT_M * 1e6,
     rf_observed=_V('rf_observed'), sov_spread_rating=_V('sov_spread_rating'), sov_spread_cds=_V('sov_spread_cds'),
@@ -286,13 +296,17 @@ WACC = dict(
     warnings_by_year={YEARS[k]: r.warnings for k, r in enumerate(_res)},
     # the builder gates its local-below-sovereign check on an all-local book; on a 0.3%-local
     # book it stays silent, so the fact is stated here in the same words and printed in §1.8
+    # the builder's own warning strings are kept as a record and NEVER printed: a reader is
+    # handed the fact each warning detects, in the study's words, with the priced alternative
+    builder_warnings=sorted({w for r in _res for w in r.warnings}),
     disclosures=[
         (f"The company's own local-currency facility carries {D['kd_local']*100:.2f}% against a "
          f"{_V('rf_observed')*100:.2f}% sovereign ten-year yield: a same-currency corporate borrowing "
-         f"below its sovereign. It is the company's disclosed rate and it is used as disclosed; the "
-         f"sovereign-floored construction is priced beside it.")
+         f"below its sovereign. It is the company's disclosed rate on a state-bank facility and is "
+         f"used as disclosed.")
         if D['kd_local'] < _V('rf_observed') else None,
-    ] + [w for k, r in enumerate(_res) for w in r.warnings if k > 0 and w not in _res[0].warnings],
+        _fx_leg_sentence,
+    ],
     company_spread_over_policy=D['company_spread_over_policy'],
     sovereign_floor=_V('rf_observed') + D['company_spread_over_policy'],
 )
