@@ -29,15 +29,48 @@ sys.path.insert(0, HERE)
 import inputs as IN
 
 TAX = 0.225
-EXPLICIT_YEARS = 10
+# THE WINDOW MUST BE LONG ENOUGH TO DELIVER THE BOOK IT CAN SEE. The order book
+# converts over 10-14 years, so a 10-year window pushed the majority of a
+# FINITE, CONTRACTED, ALREADY-SOLD pipeline into a terminal stub -- and at a
+# 35.79% discount rate a stub starting in year 11 is worth almost nothing. The
+# model valued EGP 1.6 TRILLION of contracted book at about EGP 9bn. Twenty
+# years lets the current book and one replenishment cycle actually be built,
+# handed over and collected inside the explicit period, which is what the
+# company will in fact do.
+EXPLICIT_YEARS = 20
 FIRST_YEAR = 2026
 
 # THE CRUX, in two readings. TMG's order book is EGP 491.0bn against 1H2026
 # deliveries of EGP 17.0bn — about fourteen years at the current rate. Neither
 # reading can be dismissed from what the company discloses, so both are carried
 # through to the answer and published side by side.
-CAPACITY_YEARS = 14   # constrained: the book converts at roughly the rate the
-                      # last three years have actually managed
+# THE CRUX, RESTATED. It was "how many years does a STATIC book take to
+# convert", which forced deliveries to a fraction of a book that kept growing
+# and made the company shrink in real terms. The binding constraint on a
+# developer with more demand than capacity is HOW FAST IT CAN BUILD AND HAND
+# OVER, and TMG's own record answers it: development revenue went EGP 8,152mn
+# (2019) to EGP 36,706mn (2025), a compound 28.5% a year in nominal terms,
+# about 7% real. Meanwhile cover -- the book divided by a year's deliveries --
+# went from 5.2 years (2021) to 12.0 (2025), because it sold far faster than it
+# built.
+#
+# So deliveries are now the DRIVER and contracted sales the BALANCING ITEM: the
+# company sells what keeps its book at a stated cover, which is what a developer
+# with demand in excess of capacity actually does.
+DELIVERY_GROWTH_CAPACITY = 0.20    # inflation only -- no real scaling at all
+DELIVERY_GROWTH_RECOVERY = 0.285   # its own 2019-2025 compound rate
+# ONE CRUX, NOT TWO. Cover is held at the same level in both readings so the
+# crux is a single question a reader can weigh -- how fast can TMG build? -- and
+# 10 years is between the 5.2 it ran in 2021 and the 12.0 it reached in 2025.
+# Letting cover FALL was its own error: a shrinking book starves the customer
+# advances that fund construction, so the faster reading turned cash-negative
+# while building more, which is backwards for a company paid up front.
+COVER_TARGET_CAPACITY = 10.0
+COVER_TARGET_RECOVERY = 10.0
+COVER_ADJUST_YEARS = 6
+FADE_START = 10        # years 1-10 at the crux rate, 11-20 fading to the economy
+
+CAPACITY_YEARS = 14   # retained only for the residual annuity below
 RECOVERY_YEARS = 10   # the build programme catches up and the conversion rate
                       # moves back toward its pre-2023 level. Eight years was
                       # tried and rejected: it drove development revenue to
@@ -64,7 +97,14 @@ SEASONAL = 2.9078     # FY2025 development revenue over its own first half
 # Egyptian inflation -- and is the "freeze" benchmark this name's own
 # walk-forward found the method could not beat at one year out.
 REPLENISHMENT_SALES = 382200.0   # FY2025 contracted sales, as reported
-SALES_GROWTH = 0.00              # flat nominal -- the freeze benchmark
+# EVERY NOMINAL DRIVER INFLATES AT THE SAME RATE OR THE MODEL IS FORECASTING A
+# REAL DECLINE IT NEVER DECIDED ON. Hospitality grows at 20% and other recurring
+# at 22% -- both roughly Egyptian nominal growth. Contracted sales were held at
+# 0%, which in a 20%-inflation economy is an 84% REAL decline across the window:
+# the model was saying TMG's new business shrinks to a sixth of its size while
+# its hotels grow with the price level. That is not a view anyone formed; it is
+# the 15% fade again, wearing inflation instead of a parameter.
+SALES_GROWTH = 0.20              # the same nominal rate the recurring legs use
 
 # CONTRACTED SALES AND THE ORDER BOOK ARE NOT ON THE SAME BASIS, AND THE FIRST
 # CUT FED ONE STRAIGHT INTO THE OTHER.  Measured on the company's own two
@@ -93,8 +133,24 @@ OTHER_CAPEX_RATIO = 0.04
 # CUSTOMER ADVANCES AGAINST THE ORDER BOOK, from the company's own balance
 # sheet: EGP 133,993.1mn of advances at 30 June 2026 against a book of EGP
 # 491,000mn. A disclosed ratio, not a chosen one.
-ADV_COVER_ON_BOOK = 133993.1 / 491000.0     # 27.3%
-ADV_ADJUST_YEARS = 4                        # how fast the stock moves to cover
+# ADVANCES SIT AGAINST WORK IN PROGRESS, NOT AGAINST THE WHOLE BOOK. At 30 June
+# 2026 customer advances were EGP 133,993.1mn against properties under
+# development of EGP 148,315.4mn -- 90.3%. The company's construction is very
+# nearly funded by the people who will live in it, which is what off-plan IS.
+# Tying advances to the BOOK instead made growth cash-CONSUMPTIVE: work in
+# progress grew with deliveries while advances grew with a book whose cover was
+# falling, so profits rose and free cash flow did not. That is contradicted by
+# the balance sheet -- TMG holds EGP 47bn of cash and deposits against EGP 17bn
+# of borrowings and pays dividends, while growing deliveries 28.5% a year. A
+# company financing growth out of its own pocket does not look like that.
+ADV_COVER_ON_PUD = 133993.1 / 148315.4      # 90.3%
+# ADVANCES TRACK CONSTRUCTION CONTEMPORANEOUSLY. A four-year adjustment lag
+# meant the company built now and collected a quarter of it a year for four
+# years, which is not how a payment plan works and is not what the disclosed
+# 90.3% relationship shows -- that ratio holds at the balance-sheet date, not
+# four years after it. The lag alone was the drag that kept free cash flow at a
+# fifth of net profit while the company grew.
+ADV_ADJUST_YEARS = 1
 
 PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
                         # held EGP 148.3bn at 30 June 2026 against a modelled
@@ -102,7 +158,10 @@ PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
 PUD_ADJUST_YEARS = 4    # how fast the stock is moved toward that cover
 DA_RATE_ON_PPE = 0.012          # the group's own charge against gross PP&E
 DEPOSIT_YIELD = 0.20            # below the policy rate, on a mixed deposit book
-TERMINAL_GROWTH = 0.15
+# A terminal rate BELOW inflation is a perpetual real decline. 15% against ~20%
+# nominal growth shrank the recurring legs for ever, again without anyone
+# deciding to.
+TERMINAL_GROWTH = 0.20
 PAYOUT = 0.30                   # of attributable profit, at the company's own
                                 # recent distribution behaviour
 
@@ -149,6 +208,10 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
     r = ratios()
     n = CAPACITY_YEARS if mode == "capacity" else RECOVERY_YEARS
     ramp = CAPACITY_RAMP if mode == "capacity" else RECOVERY_RAMP
+    delivery_growth = (DELIVERY_GROWTH_CAPACITY if mode == "capacity"
+                       else DELIVERY_GROWTH_RECOVERY)
+    cover_target = (COVER_TARGET_CAPACITY if mode == "capacity"
+                    else COVER_TARGET_RECOVERY)
     bl = _v(IN.KPI, "backlog_jun26")
     gm_dev, gm_h, gm_o = r["gm_dev_h1_26"], r["gm_hosp_h1_26"], r["gm_other_h1_26"]
 
@@ -178,26 +241,32 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
         # rates left to diverge rather than a forecast about a company.
         # Replenishment therefore FADES from the launch-era rate toward the
         # delivery rate, and never falls below it.
-        # What enters the BOOK, not what the release headlines as sales.
-        new_sales = max(REPLENISHMENT_SALES * (1 + SALES_GROWTH) ** i
-                        * capture,
-                        rows[-1]["dev_revenue"] if rows else 0.0)
-        # DELIVERIES ARE ANCHORED ON THE REVIEWED HALF-YEAR ACTUAL and then grow
-        # at the rate the crux specifies. Jumping straight to book/n instead put
-        # FY2026 development revenue 78% above what the company reported in the
-        # half-year just closed — a forecast has to start from the last actual
-        # [L-013], not from an average of a period that has not happened.
+        # DELIVERIES ARE THE DRIVER. Anchored on the reviewed half-year actual
+        # in the first year [L-013], then growing at the rate the crux states.
         if i == 0:
             dev_rev = _v(IN.H1_26, "dev_revenue") * SEASONAL
         else:
-            # Deliveries CONVERGE on the rate the book supports rather than
-            # compounding at a fixed rate. A constant growth rate held for ten
-            # years took development revenue to EGP 1.2 trillion in the faster
-            # reading — a rate is a description of the next year or two, not a
-            # shape for a decade, and the thing that actually bounds handovers
-            # is the size of the book being worked off.
-            target = (bl + new_sales) / n
-            dev_rev = rows[-1]["dev_revenue"] + (target - rows[-1]["dev_revenue"]) * ramp
+            # GROWTH FADES TO THE ECONOMY'S. Holding the crux rate for ever
+            # would capitalise a scaling phase as a permanent state; dropping
+            # straight to nominal GDP at year 11 pretends a company mid-build
+            # stops the day the window closes. Neither is what happens. Years
+            # 1-10 run at the crux rate, years 11-20 fade linearly to the
+            # long-run nominal rate, and the perpetuity picks up there -- the
+            # ordinary two-stage treatment, stated rather than assumed.
+            if i < FADE_START:
+                g_i = delivery_growth
+            else:
+                k = (i - FADE_START + 1) / float(EXPLICIT_YEARS - FADE_START)
+                g_i = delivery_growth + (TERMINAL_GROWTH - delivery_growth) * k
+            dev_rev = rows[-1]["dev_revenue"] * (1 + g_i)
+        # CONTRACTED SALES ARE THE BALANCING ITEM: enough to hold the book at
+        # the cover this reading specifies. TMG has demonstrated demand far in
+        # excess of what it can build -- it sold about ten times its deliveries
+        # in FY2025 -- so what bounds the business is construction, not orders,
+        # and the model now says so instead of letting two independent growth
+        # rates diverge into a book of EGP 27 trillion.
+        target_book = cover_target * dev_rev
+        new_sales = max(dev_rev + (target_book - bl) / COVER_ADJUST_YEARS, 0.0)
         dev_rev = min(dev_rev, bl + new_sales)      # THE ORDER-BOOK GUARD [L-104]
         dev_cost = dev_rev * (1 - gm_dev)
         hosp_rev = hosp0 * (1 + HOSP_GROWTH) ** (i + 1)
@@ -234,9 +303,11 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
         # and collections fall out of the identity the ratios block uses on the
         # actual half-year: collections = revenue recognised + the rise in
         # advances.
-        target_adv = ADV_COVER_ON_BOOK * (bl + new_sales)
-        d_adv_target = (target_adv - adv) / ADV_ADJUST_YEARS
-        collections = dev_rev + d_adv_target
+        # WORK IN PROGRESS FIRST, THEN THE ADVANCES THAT FUND IT. Order
+        # matters: reading advances off the OPENING stock collects against
+        # construction that has not been done yet and lags a year behind the
+        # build every year of the window.
+        #
         # PROPERTIES UNDER DEVELOPMENT IS A STOCK, and build spend is what moves
         # it toward the cover the programme needs. Modelling build as a fixed
         # multiple of cost instead — 2.47x, which is what the company spent in
@@ -246,6 +317,10 @@ def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
         # up CONSUMES its work in progress; the stock adjustment lets it.
         target_pud = PUD_COVER_YEARS * dev_cost
         build = max(dev_cost + (target_pud - pud) / PUD_ADJUST_YEARS, 0.0)
+        pud_close = pud + build - dev_cost
+        target_adv = ADV_COVER_ON_PUD * pud_close
+        d_adv_target = (target_adv - adv) / ADV_ADJUST_YEARS
+        collections = dev_rev + d_adv_target
         capex = hosp_rev * HOSP_CAPEX_RATIO + oth_rev * OTHER_CAPEX_RATIO
         d_adv, d_pud = collections - dev_rev, build - dev_cost
 

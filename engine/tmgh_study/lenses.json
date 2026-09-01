@@ -264,117 +264,117 @@
  },
  "sensitivity": {
   "wacc_grid": {
-   "0.1800|capacity": {
-    "wacc": 0.18,
+   "0.2400|capacity": {
+    "wacc": 0.24,
     "mode": "capacity",
-    "per_share_nci_book": 201.60369141695256,
-    "per_share_nci_proportional": 130.56545827138487,
-    "enterprise_value": 403794.3128123707
+    "per_share_nci_book": 156.08381050977437,
+    "per_share_nci_proportional": 105.6266935145559,
+    "enterprise_value": 309993.5972454466
    },
-   "0.1800|recovery": {
-    "wacc": 0.18,
+   "0.2400|recovery": {
+    "wacc": 0.24,
     "mode": "recovery",
-    "per_share_nci_book": 189.998087394918,
-    "per_share_nci_proportional": 124.2071501475869,
-    "enterprise_value": 379879.1807830699
-   },
-   "0.2200|capacity": {
-    "wacc": 0.22,
-    "mode": "capacity",
-    "per_share_nci_book": 112.68467056235438,
-    "per_share_nci_proportional": 81.84980921197128,
-    "enterprise_value": 220562.99459606374
-   },
-   "0.2200|recovery": {
-    "wacc": 0.22,
-    "mode": "recovery",
-    "per_share_nci_book": 102.00122246057927,
-    "per_share_nci_proportional": 75.99671834942586,
-    "enterprise_value": 198548.10666803812
+    "per_share_nci_book": 237.82172698203794,
+    "per_share_nci_proportional": 150.40806442305643,
+    "enterprise_value": 478427.145428099
    },
    "0.2600|capacity": {
     "wacc": 0.26,
     "mode": "capacity",
-    "per_share_nci_book": 84.40119551906773,
-    "per_share_nci_proportional": 66.35427371071431,
-    "enterprise_value": 162280.54427090992
+    "per_share_nci_book": 105.91034220880174,
+    "per_share_nci_proportional": 78.13838954592983,
+    "enterprise_value": 206603.44913186773
    },
    "0.2600|recovery": {
     "wacc": 0.26,
     "mode": "recovery",
-    "per_share_nci_book": 74.73108003622716,
-    "per_share_nci_proportional": 61.056352661894046,
-    "enterprise_value": 142353.78405475564
+    "per_share_nci_book": 153.40610683580803,
+    "per_share_nci_proportional": 104.15967249686662,
+    "enterprise_value": 304475.7769944138
    },
-   "0.3000|capacity": {
-    "wacc": 0.3,
+   "0.2800|capacity": {
+    "wacc": 0.28,
     "mode": "capacity",
-    "per_share_nci_book": 69.20894631831915,
-    "per_share_nci_proportional": 58.03096702814243,
-    "enterprise_value": 130974.57822484037
+    "per_share_nci_book": 80.87409058419072,
+    "per_share_nci_proportional": 64.42189518751661,
+    "enterprise_value": 155012.40208385687
    },
-   "0.3000|recovery": {
-    "wacc": 0.3,
+   "0.2800|recovery": {
+    "wacc": 0.28,
     "mode": "recovery",
-    "per_share_nci_book": 60.526577847430445,
-    "per_share_nci_proportional": 53.2741983259322,
-    "enterprise_value": 113083.22264230339
+    "per_share_nci_book": 112.14566383927722,
+    "per_share_nci_proportional": 81.55450611360463,
+    "enterprise_value": 219452.28834392928
+   },
+   "0.3157|capacity": {
+    "wacc": 0.3157,
+    "mode": "capacity",
+    "per_share_nci_book": 57.75526827071646,
+    "per_share_nci_proportional": 51.75589387906976,
+    "enterprise_value": 107372.5130320713
+   },
+   "0.3157|recovery": {
+    "wacc": 0.3157,
+    "mode": "recovery",
+    "per_share_nci_book": 75.17953446617932,
+    "per_share_nci_proportional": 61.302045297943344,
+    "enterprise_value": 143277.8933799634
    },
    "0.3237|capacity": {
     "wacc": 0.3237,
     "mode": "capacity",
-    "per_share_nci_book": 62.9177551183162,
-    "per_share_nci_proportional": 54.58424146009805,
-    "enterprise_value": 118010.61117202774
+    "per_share_nci_book": 54.41105716024056,
+    "per_share_nci_proportional": 49.923716542064014,
+    "enterprise_value": 100481.25169926693
    },
    "0.3237|recovery": {
     "wacc": 0.3237,
     "mode": "recovery",
-    "per_share_nci_book": 54.786147850245186,
-    "per_share_nci_proportional": 50.1292157282235,
-    "enterprise_value": 101254.18375496958
+    "per_share_nci_book": 69.98160596090575,
+    "per_share_nci_proportional": 58.45428046129608,
+    "enterprise_value": 132566.7622534431
    },
    "0.3579|capacity": {
     "wacc": 0.3579,
     "mode": "capacity",
-    "per_share_nci_book": 55.877367055332584,
-    "per_share_nci_proportional": 50.72705690248539,
-    "enterprise_value": 103502.80875656591
+    "per_share_nci_book": 43.947533402681486,
+    "per_share_nci_proportional": 44.191114603817134,
+    "enterprise_value": 78919.55170686253
    },
    "0.3579|recovery": {
     "wacc": 0.3579,
     "mode": "recovery",
-    "per_share_nci_book": 48.483862098486924,
-    "per_share_nci_proportional": 46.67641183987613,
-    "enterprise_value": 88267.35467192308
+    "per_share_nci_book": 54.090192657664254,
+    "per_share_nci_proportional": 49.747926004191456,
+    "enterprise_value": 99820.06104274794
    },
    "0.4000|capacity": {
     "wacc": 0.4,
     "mode": "capacity",
-    "per_share_nci_book": 49.34699464482212,
-    "per_share_nci_proportional": 47.1492922406599,
-    "enterprise_value": 90045.97203343235
+    "per_share_nci_book": 35.992405291357294,
+    "per_share_nci_proportional": 39.832775684097626,
+    "enterprise_value": 62526.78673477552
    },
    "0.4000|recovery": {
     "wacc": 0.4,
     "mode": "recovery",
-    "per_share_nci_book": 42.76571683996426,
-    "per_share_nci_proportional": 43.54363827795791,
-    "enterprise_value": 76484.23691599636
+    "per_share_nci_book": 42.5113807850869,
+    "per_share_nci_proportional": 43.4042963703044,
+    "enterprise_value": 75960.13835803633
    }
   },
   "conversion_years_grid": {
-   "8": 46.41982156593504,
-   "10": 50.65079038861755,
-   "12": 53.641005884782274,
-   "14": 55.87125667167204,
-   "16": 57.60028647411903,
-   "20": 60.108089153277554
+   "8": 43.93936943614966,
+   "10": 43.93936943614966,
+   "12": 43.93936943614966,
+   "14": 43.93936943614966,
+   "16": 43.93936943614966,
+   "20": 43.93936943614966
   }
  },
  "implied_discount_rate": {
-  "capacity": 0.237271115555085,
-  "recovery": 0.22435570377263253
+  "capacity": 0.26528369419950437,
+  "recovery": 0.2907215393505239
  },
  "spot": 97.8,
  "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to"

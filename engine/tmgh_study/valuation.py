@@ -48,50 +48,38 @@ def discounted(mode, wacc):
         r["pv"] = r["fcff"] * r["discount_factor"]
         pv += r["pv"]
         rows[i] = r
-    # TERMINAL. Two pieces, and neither is a perpetuity on the development leg:
-    # the order book is finite, and capitalising a finite pipeline for ever is a
-    # free number.
-    #   (a) the residual order book converts over a further n years at the same
-    #       margin, discounted as a level annuity from the window's end;
-    #   (b) the recurring legs get a growing perpetuity on their OWN last
-    #       explicit-year cash flow, because a hotel and a shopping centre do
-    #       carry on.
+    # TERMINAL — A GOING CONCERN, NOT A PIPELINE RUNNING OUT.
+    #
+    # The first cut valued the terminal as a level annuity on the RESIDUAL ORDER
+    # BOOK, reasoning that "the order book is finite, and capitalising a finite
+    # pipeline for ever is a free number." That is true of the book and FALSE of
+    # the business. TMG holds a landbank measured in decades, it has replenished
+    # its book every year of its history, and it sells about ten times what it
+    # delivers -- demand is not what limits it. Treating it as a pipeline
+    # emptying out valued EGP 1.6 TRILLION of contracted, already-sold backlog
+    # at about EGP 9bn, because at a 35.79% discount rate an annuity that starts
+    # in year eleven is worth almost nothing. The user's objection was exactly
+    # this: the contracted units WILL be built, delivered, booked as revenue and
+    # collected, and that is where most of the value is.
+    #
+    # So the terminal is a growing perpetuity on the whole business's free cash
+    # flow, at a long-run nominal rate NO HIGHER than the economy's -- the
+    # company grows with prices and nothing more, which is the conservative
+    # reading for a developer with this much land. The residual-book annuity and
+    # the separate recurring perpetuity are both GONE: they double-counted with
+    # each other at the edges and neither described a company that carries on.
     last = rows[-1]
     n = p["conversion_years"]
-    gm = p["ratios"]["gm_dev_h1_26"]
-    # The residual is built the same way the explicit years are, on the CLOSING
-    # balance sheet: what is still owed on the book, less what is still to be
-    # built after crediting the work in progress already paid for, less overhead
-    # and tax. Valuing the residual on margin alone ignored EGP 400bn+ of
-    # properties under development that the faster reading had just spent the
-    # window building, and turned that reading's whole enterprise value
-    # negative — the model was charging for the construction twice and crediting
-    # the inventory once.
-    resid_rev = p["closing_backlog"] / n
-    resid_collections = max(p["closing_backlog"] - last["customer_advances"], 0.0) / n
-    resid_build = max(p["closing_backlog"] * (1 - gm)
-                      - last["properties_under_development"], 0.0) / n
-    resid_opex = resid_rev * p["ratios"]["opex_ratio_fy25"]
-    resid_tax = max(resid_rev * gm - resid_opex, 0.0) * TAX
-    resid_cf = resid_collections - resid_build - resid_opex - resid_tax
-    ann = sum(1 / (1 + wacc) ** (len(rows) + k) for k in range(1, n + 1))
-    # Work in progress beyond what the residual book needs is a real asset the
-    # company has already paid for. It is credited AT COST, not at margin — the
-    # conservative reading, and the only one the disclosure supports.
-    excess_pud = max(last["properties_under_development"]
-                     - p["closing_backlog"] * (1 - gm), 0.0)
-    pv_excess = excess_pud / (1 + wacc) ** len(rows)
-    pv_book = resid_cf * ann + pv_excess
-
-    rec_rev = last["hosp_revenue"] + last["other_revenue"]
-    rec_gp = (last["hosp_revenue"] - last["hosp_cost"]
-              + last["other_revenue"] - last["other_cost"])
-    rec_ebit = rec_gp - rec_rev * p["ratios"]["opex_ratio_fy25"]
-    rec_capex = (last["hosp_revenue"] * M.HOSP_CAPEX_RATIO
-                 + last["other_revenue"] * M.OTHER_CAPEX_RATIO)
-    rec_fcff = rec_ebit * (1 - TAX) - rec_capex
-    tv_rec = rec_fcff * (1 + M.TERMINAL_GROWTH) / max(wacc - M.TERMINAL_GROWTH, 0.02)
-    pv_rec = tv_rec / (1 + wacc) ** len(rows)
+    g = M.TERMINAL_GROWTH
+    spread = wacc - g
+    if spread < 0.02:
+        raise ValueError("terminal growth %.3f is too close to a WACC of %.3f "
+                         "for a perpetuity to mean anything" % (g, wacc))
+    tv = last["fcff"] * (1 + g) / spread
+    pv_terminal = tv / (1 + wacc) ** len(rows)
+    pv_book, pv_rec, pv_excess, excess_pud = 0.0, pv_terminal, 0.0, 0.0
+    resid_cf = resid_collections = resid_build = resid_opex = resid_tax = 0.0
+    rec_fcff, tv_rec = last["fcff"], tv
 
     return {"mode": mode, "wacc": wacc, "conversion_years": n,
             "rows": rows, "pv_explicit": pv,
@@ -101,10 +89,11 @@ def discounted(mode, wacc):
             "excess_work_in_progress": excess_pud, "pv_excess_wip": pv_excess,
             "closing_advances": last["customer_advances"],
             "closing_properties_under_development": last["properties_under_development"],
-            "pv_residual_book": pv_book,
+            "pv_residual_book": pv_book, "pv_terminal": pv_terminal,
+            "terminal_multiple_on_fcff": (1 + M.TERMINAL_GROWTH) / (wacc - M.TERMINAL_GROWTH),
             "terminal_recurring_fcff": rec_fcff, "terminal_value_recurring": tv_rec,
             "pv_terminal_recurring": pv_rec,
-            "enterprise_value": pv + pv_book + pv_rec,
+            "enterprise_value": pv + pv_terminal,
             "ratios": p["ratios"], "model": p}
 
 
@@ -148,8 +137,8 @@ def main():
     w = json.load(open(os.path.join(HERE, "wacc.json")))
     out = {"parameters": {k: getattr(M, k) for k in
                           ("CAPACITY_YEARS", "RECOVERY_YEARS", "CAPACITY_RAMP",
-                           "RECOVERY_RAMP", "REPLENISHMENT_SALES", "SALES_GROWTH",
-                           "BACKLOG_CAPTURE",
+                           "RECOVERY_RAMP", "DELIVERY_GROWTH_CAPACITY", "DELIVERY_GROWTH_RECOVERY",
+                           "COVER_TARGET_CAPACITY", "BACKLOG_CAPTURE", "FADE_START",
                            "HOSP_GROWTH", "OTHER_GROWTH", "PUD_COVER_YEARS",
                            "PUD_ADJUST_YEARS", "TERMINAL_GROWTH", "PAYOUT", "TAX")},
            "ratios": M.ratios()}

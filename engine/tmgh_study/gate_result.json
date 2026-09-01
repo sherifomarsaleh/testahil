@@ -86,10 +86,10 @@
    }
   },
   "scrub_hits": [],
-  "document_chars": 59805,
+  "document_chars": 59801,
   "column_audit": [],
   "recalc_mismatches": 0,
-  "recalc_checks": 84,
+  "recalc_checks": 154,
   "sheets": [
    "READ FIRST",
    "Summary",
@@ -108,7 +108,7 @@
    "Per-Share & Ratios",
    "Peer & Sector"
   ],
-  "formula_cells": 74,
+  "formula_cells": 94,
   "headings": [
    "Read first",
    "Headline",
