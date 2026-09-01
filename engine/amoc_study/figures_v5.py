@@ -50,12 +50,19 @@ ax.bar(len(periods), D['ttm']['gm'] * 100, color=GOLD, edgecolor=INK, lw=0.8,
 ax.bar(x2, fx, color='#CBD9D4', edgecolor=INK, lw=0.8, label='Forecast (output of the build)')
 req = 12.16
 ax.axhline(req, color=RED, lw=1.4, ls='--')
-ax.text(0.05, req + 0.15, 'margin required IN PERPETUITY for spot to be fair  ~12.2%',
-        color=RED, fontsize=8.5)
+# The annotation sits BELOW its own line and to the right of the legend. Rendered, the
+# previous placement put it straight through the legend's first entry and the two were
+# unreadable on top of each other; a figure is checked as an image, not as code.
+ax.text(len(periods) + 0.6, req - 0.95,
+        'margin required IN PERPETUITY for spot to be fair  ~12.2%',
+        color=RED, fontsize=8.2, ha='left')
 ax.set_xticks(list(x1) + [len(periods)] + list(x2))
-ax.set_xticklabels(periods + ['TTM\nJun-26'] + D['fcst']['years'], fontsize=7.6)
-ax.set_ylabel('Gross margin, %'); ax.set_ylim(0, 13.5)
-ax.legend(fontsize=7.6, frameon=False, loc='upper left')
+# The four filed periods are long labels on adjacent ticks and ran into one another.
+# Stagger them onto two lines rather than shrinking the type until nobody can read it.
+_perlab = [p.replace(' ', '\n') for p in periods]
+ax.set_xticklabels(_perlab + ['TTM\nJun-26'] + list(D['fcst']['years']), fontsize=7.4)
+ax.set_ylabel('Gross margin, %'); ax.set_ylim(0, 14.6)
+ax.legend(fontsize=7.4, frameon=False, loc='upper left', ncol=1)
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_margin.png'), dpi=170)
 

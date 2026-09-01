@@ -279,22 +279,25 @@ INP['egpc_balance'] = I(1_132_353_505.0, f"EGPC current account balance owed at 
 
 
 # ---- the two remaining free operating parameters, and nothing else -----------
-INP['line_vol_growth'] = I(dict(oils=[0.045, 0.040, 0.035, 0.030, 0.028],
-                                wax=[0.070, 0.055, 0.045, 0.038, 0.032],
-                                gasoil=[0.020, 0.020, 0.018, 0.016, 0.015],
-                                naphtha=[0.015, 0.018, 0.018, 0.016, 0.015],
-                                lpg=[0.025, 0.022, 0.020, 0.018, 0.016],
-                                fueloil=[0.030, 0.026, 0.022, 0.020, 0.018],
-                                hfo=[0.020, 0.018, 0.016, 0.015, 0.014],
-                                waste=[0.0, 0.0, 0.0, 0.0, 0.0]),
-                           "Volume growth by AUDITED product line. The RANKING is taken from the "
-                           "line-level value growth actually printed between the two disclosed "
-                           "halves — wax +21.3%, fuel oil +29.1%, LPG +18.7%, while gas oil "
-                           "(-1.9%) and naphtha (-7.3%) FELL — rather than from a view about the "
-                           "business. Levels are struck well below those half-on-half rates "
-                           "because a single half is not a trend. This is one of only two free "
-                           "operating parameters left and it is sensitised end to end",
-                           "2026-08-06", "House")
+INP['line_vol_growth'] = I(dict(oils=[0.0]*5, wax=[0.0]*5, gasoil=[0.0]*5,
+                                naphtha=[0.0]*5, lpg=[0.0]*5, fueloil=[0.0]*5,
+                                hfo=[0.0]*5, waste=[0.0]*5),
+                           "Volume growth by audited product line: FLAT, every line, every year. "
+                           "The previous edition grew every line (oils +4.5%, wax +7.0%, fuel oil "
+                           "+3.0% in year one) and justified the ranking from the value growth "
+                           "printed between two disclosed HALVES. The company's own audited "
+                           "annual record for FY2021-FY2025 says the opposite: total sales "
+                           "tonnage ran 1,492 / 1,548 / 1,449 / 1,433 / 1,262 thousand tonnes, a "
+                           "fall of 18.5% from the FY2022 peak, and six of the eight lines "
+                           "shrank over FY2022-FY2025 (gas oil -8.3% a year, naphtha -7.4%, fuel "
+                           "oil -6.4%, heavy fuel oil -28.2%; only wax +1.1% and LPG +1.7% grew). "
+                           "FLAT IS NOT A NEUTRAL ASSUMPTION HERE, IT IS ALREADY THE OPTIMISTIC "
+                           "ONE: the base year is the transition half annualised at 1,616 "
+                           "thousand tonnes, which is 12.5% ABOVE the five-year mean of 1,437 and "
+                           "above every full year in the record. Holding it flat assumes the "
+                           "rebound printed in one half persists. The bear case reverts toward "
+                           "the five-year mean and the lever is sensitised end to end",
+                           "2026-08-18", "Company")
 INP['line_price_growth'] = I([0.090, 0.075, 0.065, 0.058, 0.052],
                              "Growth in the realised price per tonne, all lines, in EGP. The "
                              "realisation ITSELF is disclosed — note 14-A value divided by note "
@@ -425,13 +428,18 @@ INP['wacc_usd_erp'] = I(0.075, "Blended emerging-market equity risk premium appl
                                "dollar-denominated alternative", "2026-08-06", "Global")
 
 # --- House drivers ---------------------------------------------------------
-INP['beta'] = I(0.9405, "Own-stock tier-1 regression: AMOC weekly log-returns against a 33-name "
-                        "equal-weight Egyptian Exchange composite built from the full covered "
-                        "library, five-year window. R-squared 0.312, n = 257, standard error "
-                        "0.087, 90% confidence interval [0.797, 1.084]. Passes the usability gate "
-                        "comfortably and is NOT a weak instrument: the interval spans 0.29x the "
-                        "point estimate, well inside the 2x flag",
-                "2026-08-06", "House")
+INP['beta'] = I(0.9080, "Own-stock tier-1 regression, AMOC weekly log-returns against the "
+                        "EGX30 — the published index of the exchange AMOC is listed on, "
+                        "series as of 22 July 2026. R-squared 0.259, n = 253, standard "
+                        "error 0.165, 90% confidence interval [0.637, 1.179], Blume cross-check "
+                        "0.939. Passes the usability gate. THIS REPLACES the previous edition's "
+                        "0.9405, which was regressed against a 33-name equal-weight composite of "
+                        "the covered Egyptian names — a coverage artefact rather than a market, "
+                        "and a source-integrity failure whatever number it produced. The "
+                        "correction is small on this name, -3.5% on beta and under a percent on "
+                        "fair value; it is made because the provenance was wrong, not because the "
+                        "answer was",
+                "2026-07-22", "Company")
 INP['tax_eff'] = I(0.235, "Effective tax rate used for NOPAT. Struck one percentage point above "
                           "the 22.5% statutory rate for non-deductible items and the deferred-tax "
                           "drag typical of Egyptian downstream filers",
@@ -908,7 +916,7 @@ say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of c
     f"bridge. It is carried in the bridge instead.")
 
 
-def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
+def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
     """Revenue AND cost, both per line, both from the same twelve-month base.
 
     Per line: tonnes x realisation for revenue; tonnes x (feedstock + conversion) for cost.
@@ -930,7 +938,7 @@ def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
         pidx *= (1 + V['line_price_growth'][i] * price_mult * fx_mult)
         r_tot = c_tot = 0.0
         for k in LINES:
-            vidx[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
+            vidx[k] *= (1 + V['line_vol_growth'][k][i] + vol_adj)
             v = t0[k] * vidx[k]
             p = px0[k] * pidx
             # feedstock per tonne is pass-through; conversion splits by driver
@@ -1566,7 +1574,7 @@ say(f"[Book lens — on a rate path consistent with lens 1] justified price-to-b
     f"there is one view of the asset base across the model rather than two.")
 
 # ---- scenarios --------------------------------------------------------------
-def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
                  wacc_shift=0.0, g=None, nwc_days=None, beta=None, proc=None):
     """Every scenario is a FULL re-run through the same waterfall the base case uses.
 
@@ -1579,7 +1587,7 @@ def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
         # beta reaches BOTH anchors through the SAME functions the base case uses
         _we = cost_of_capital(beta)[1]
         _wt = terminal_cost_of_capital(beta)
-    S = build(vol_mult=vol_mult, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
+    S = build(vol_adj=vol_adj, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
     return waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days,
                      we=_we, wt=_wt)['ps']
 
@@ -1587,21 +1595,23 @@ def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
 _chk = dcf_scenario()
 assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base: {_chk} vs {dcf_ps}"
 SCEN = dict(
-    bear=dict(vol_mult=0.4, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03),
-    bull=dict(vol_mult=1.5, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06))
+    bear=dict(vol_adj=-0.045, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03),
+    bull=dict(vol_adj=+0.030, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06))
 dcf_bear = dcf_scenario(**SCEN['bear'])
 dcf_bull = dcf_scenario(**SCEN['bull'])
 SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
 SCEN['labels'] = dict(
-    vol_mult='Volume growth path, as a multiple of the assumed path',
+    vol_adj='Volume growth, percentage points a year added to the flat base path',
     gm_shift='Gross margin, shifted on every forecast year',
     fx_mult='Exchange-rate path, as a multiple of the assumed path',
     wacc_shift='Cost of capital, shifted at BOTH the explicit and terminal anchors',
     g='Terminal growth rate')
 say(f"[Scenarios on the cash-flow lens] bear EGP {dcf_bear:.2f} / base EGP {dcf_ps:.2f} / bull "
     f"EGP {dcf_bull:.2f}. The scenarios are FIVE simultaneous driver moves, not a single lever: "
-    f"volume growth at {SCEN['bear']['vol_mult']:.1f}x / {SCEN['bull']['vol_mult']:.1f}x the "
-    f"assumed path, gross margin {SCEN['bear']['gm_shift']:+.1%} / "
+    f"volume growth {SCEN['bear']['vol_adj']:+.1%} / {SCEN['bull']['vol_adj']:+.1%} a year against "
+    f"a FLAT base path — the bear leg carries the base year back toward the five-year mean "
+    f"tonnage by year five, which is where the audited record actually sits — gross margin "
+    f"{SCEN['bear']['gm_shift']:+.1%} / "
     f"{SCEN['bull']['gm_shift']:+.1%}, the exchange-rate path "
     f"{SCEN['bear']['fx_mult']-1:+.0%} / {SCEN['bull']['fx_mult']-1:+.0%}, the cost of capital "
     f"{SCEN['bear']['wacc_shift']:+.0%} / {SCEN['bull']['wacc_shift']:+.0%} at both anchors, and "
@@ -1665,8 +1675,8 @@ for b in beta_grid:
 # the end asserts that every row returns the base case at its own base point.
 gm_grid = [-0.010, -0.005, 0.0, 0.005, 0.010]
 grid_margin = [dcf_scenario(gm_shift=s) for s in gm_grid]
-vol_grid = [0.0, 0.5, 1.0, 1.5, 2.0]                  # MULTIPLIER on the growth path, not volume
-grid_vol = [dcf_scenario(vol_mult=m) for m in vol_grid]
+vol_grid = [-0.06, -0.03, 0.0, 0.03, 0.06]            # ADDER to the flat base path, a year
+grid_vol = [dcf_scenario(vol_adj=m) for m in vol_grid]
 fx_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
 grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
 beta_grid = sorted([0.60, 0.80, V['beta'], 1.15, 1.30])
@@ -1681,7 +1691,7 @@ nwc_grid = wc_grid
 
 # ---- GATE: a sensitivity row that cannot reproduce the base case is broken ---
 _rows = [('gross margin', gm_grid, grid_margin, 0.0, +1),
-         ('growth-path multiple', vol_grid, grid_vol, 1.0, +1),
+         ('volume growth a year', vol_grid, grid_vol, 0.0, +1),
          ('exchange-rate path', fx_grid, grid_fx, 1.0, +1),
          ('beta', beta_grid, grid_beta, V['beta'], -1),
          ('working-capital cycle', wc_mult_grid, grid_nwc, 1.0, -1)]
@@ -1818,7 +1828,7 @@ def _grid(name, pts):
             has_gm=any(c == 'C' for c, _, _ in lev), has_fx=any(c == 'D' for c, _, _ in lev),
             has_wc=any(c == 'E' for c, _, _ in lev), has_we=any(c == 'F' for c, _, _ in lev),
             has_wt=any(c == 'G' for c, _, _ in lev), has_g=any(c == 'H' for c, _, _ in lev)))
-        _S = build(vol_mult=kw.get('vol_mult', 1.0), gm_shift=kw.get('gm_shift', 0.0),
+        _S = build(vol_adj=kw.get('vol_adj', 0.0), gm_shift=kw.get('gm_shift', 0.0),
                    fx_mult=kw.get('fx_mult', 1.0))
         _SCEN_V[f'{name}|{pi}'] = _blockvals(
             _S, g=kw.get('g'), nwc_days=kw.get('nwc_days'),
@@ -1829,7 +1839,7 @@ _PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
 _grid('Gross margin, shifted on every forecast year',
       [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=s), s == 0.0) for s in gm_grid])
 _grid('Volume growth path, as a multiple of the assumed path',
-      [(f'{m:.2f}x', [('B', m, _NUM1)], dict(vol_mult=m), m == 1.0) for m in vol_grid])
+      [(f'{m:+.1%}', [('B', m, _NUM1)], dict(vol_adj=m), m == 0.0) for m in vol_grid])
 _grid('Realisation path, as a multiple of the assumed path',
       [(f'{m:.2f}x', [('D', m, _NUM1)], dict(fx_mult=m), m == 1.0) for m in fx_grid])
 _grid('Beta', [(f'{b:.4f}',
@@ -2002,6 +2012,130 @@ say(f"[Reachability gate — rewritten] {len(INP)} registered inputs. "
     f"valuation by less than a hundredth of a piastre. Both now drive the bridge and the "
     f"waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate "
     f"solved from it rather than through the raw input.")
+
+# ==================== FUNDAMENTAL WALK-FORWARD, CARRIED IN ====================
+# [R-FCAL-01] is a standing step of every study and every update, and its result belongs in
+# the delivered document rather than only in the internal record. The training record itself
+# (panel, error cells, pre-registration) stays internal; what a reader sees is the scope, the
+# honest headline, and the bands the record licenses on the far forecast years.
+_WF = os.path.join(HERE, '..', 'amoc_walkforward')
+with open(os.path.join(_WF, 'forward_ranges.json')) as _f:
+    _FR = json.load(_f)
+with open(os.path.join(_WF, 'scores.json')) as _f:
+    _WS = json.load(_f)
+WALKFORWARD = dict(
+    ran=True, scope='LIGHT', origins=5, horizons='1-3', cells=_WS['cells'],
+    window='FY2021-FY2025, AMOC\'s own audited consolidated statements',
+    why_light=('Five sourceable fiscal years. AMOC publishes no accounts older than FY2022, and '
+               'the exchange, the regulator\'s disclosure portal and the web archive are all '
+               'unreachable; the only vendor reachable carries the same five years, restated.'),
+    headline=dict(
+        majority_bias=_WS['drivers']['majority']['overall']['bias'],
+        majority_mae=_WS['drivers']['majority']['overall']['mae'],
+        majority_share_over=_WS['drivers']['majority']['overall']['share_over'],
+        skill_vs_freeze=_WS['drivers']['majority']['skill_vs_freeze']['skill'],
+        net_sales_bias=_WS['drivers']['net_sales']['overall']['bias'],
+        volume_bias=_WS['drivers']['volume_t']['overall']['bias'],
+        volume_share_over=_WS['drivers']['volume_t']['overall']['share_over']),
+    bands=_FR['published_band'],
+    corrections_adopted=0,
+    corrections_note=('None. Nine cells cannot support an estimated correction and a separate '
+                      'confirmation sample, and that was ruled before any error was computed. '
+                      'Every measured bias is a watch flag.'),
+    what_it_changed=('The volume driver. The previous edition grew every product line and drew '
+                     'its ranking from two disclosed halves; the audited five-year record shows '
+                     'tonnage down 18.5% from its FY2022 peak with six of eight lines shrinking, '
+                     'and the walk-forward measures the flat-volume rule as ALREADY '
+                     'over-forecasting by 7.6% in eight of nine cells. The base path is now flat '
+                     'and the bear leg reverts to the five-year mean.'))
+OUT['walkforward'] = WALKFORWARD
+say(f"[Fundamental walk-forward] LIGHT scope, {WALKFORWARD['cells']} scoreable cells over five "
+    f"origins FY2021-FY2025. Majority profit was under-forecast in "
+    f"{1 - WALKFORWARD['headline']['majority_share_over']:.0%} of cells and the method scored "
+    f"{WALKFORWARD['headline']['skill_vs_freeze']:+.3f} against assuming last year's profit "
+    f"repeats — it did NOT beat no change. No correction was adopted. What it changed in this "
+    f"edition is the volume driver, and the far-year bands it licenses are carried into "
+    f"Appendix A rather than a point.")
+
+# ============================ THE FOUR GATES =================================
+# [R-ENF-02] A study must call these in its OWN code, and scripts/check_study_provenance.py
+# runs the same tests from outside so a study cannot pass by not checking itself. AMOC was
+# the last name on engine/build_depth_audit/outstanding.json; this block is what removes it.
+import research_protocol as _rp
+
+# --- beta: the record itself is inspected, not a boolean the study set on itself ----
+with open(os.path.join(HERE, 'beta_result.json')) as _bf:
+    BETA_REC = json.load(_bf)
+_rp.assert_beta_provenance(BETA_REC)
+assert abs(BETA_REC['beta'] - V['beta']) < 5e-4, (
+    "the registered beta input and the regression record disagree — the input register must "
+    "carry the number the sanctioned resolver produced, not a remembered one")
+
+# --- ground-up: a RECORD per revenue line, covering 100% of revenue [R-SIGCM-02] ----
+# Every line is filed at 'derived', NOT at 'unit', and the gap note says why. Tonnage and
+# realisation are disclosed per product in note 14-A of every year. COST IS NOT: note 15-A
+# discloses cost by NATURE for the company as a whole, and the FY2023 auditor's emphasis of
+# matter records that AMOC implemented a per-product costing system only from 1 July 2023.
+# 'unit' asserts "cost per unit; margin an output" per line, which would be a claim the
+# filings do not support. Filing at the narrower level and naming the gap is the honest call.
+_GAP = ("Tonnage and realisation per product are disclosed (note 14-A, every year). Cost is "
+        "disclosed by NATURE for the company as a whole (note 15-A) and never by product, and "
+        "the FY2023 auditor records that no per-product costing system existed before 1 July "
+        "2023. Per-line cost is therefore an allocation, not a disclosure, and the margin of "
+        "any single product line in this study is a construction.")
+_UNIT_SRC = ("Note 14-A, net sales by product, quantity in tonnes — AMOC's own audited "
+             "consolidated financial statements, FY2021 through FY2025 and the transition period")
+_PRICE = "note 14-A value divided by note 14-A tonnes, both disclosed, same period"
+LINE_SHARES = {k: PV[k] / sum(PV.values()) for k in LINES}
+DRIVER_LINES = [
+    _rp.DriverLine(name=_n, level='derived', share_of_revenue=_sh, unit='tonne',
+                   unit_source=_UNIT_SRC, price_basis=_PRICE,
+                   cost_basis='cost of sales by nature, allocated on throughput', gap_note=_GAP)
+    for _n, _sh in LINE_SHARES.items()]
+GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='AMOC')
+
+# --- SIGCM ---------------------------------------------------------------------------
+SIGCM = _rp.SIGCMChecklist(
+    historicals_official_only=True,
+    forecast_ground_up=True,
+    debt_lc_fx_split=True,
+    asset_conversion_cycle=True,
+    competitors=True,
+    beta_own_history_vs_egx30=True,
+    formula_based_model=True,
+    flags_raised_before_issue=True,
+    stop_and_inform_honoured=True,
+    na_reasons={
+        'debt_lc_fx_split': ("Borrowings are EGP 20,977,437 against equity of EGP 4,824,774,948 "
+                             "and the company holds net cash. The split is stated and is "
+                             "immaterial; note 13 discloses no foreign-currency tranche."),
+    })
+_rp.assert_sigcm(SIGCM)
+
+# --- model-report bar ------------------------------------------------------------------
+MODEL_STUDY = _rp.ModelStudyChecklist(
+    structure_matches_model=True,
+    bibliography_document=True,
+    provenance_four_field=True,
+    numeric_traceability=True,
+    external_reader_scrub=True,
+    figure_discipline=True,
+    table_discipline=True,
+    expert_appendix_max_detail=True,
+    contested_judgement_both_ways=True,
+    na_reasons={})
+_rp.assert_model_study(MODEL_STUDY)
+
+OUT['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP,
+                    sigcm=[f.name for f in __import__('dataclasses').fields(SIGCM)
+                           if f.name != 'na_reasons'],
+                    model_study_ok=True)
+OUT['standard_version'] = _rp.STANDARD_VERSION
+say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conforming="
+    f"{BETA_REC['conforming']}); ground-up record covers "
+    f"{sum(GROUND_UP['share_by_level'].values()):.0%} of revenue across {GROUND_UP['lines']} "
+    f"lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report "
+    f"bar both pass. Study stamped to STANDARD_VERSION {_rp.STANDARD_VERSION}.")
 
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(OUT, f, indent=1)

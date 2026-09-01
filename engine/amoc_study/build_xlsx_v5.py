@@ -1,4 +1,4 @@
-"""AMOC_Valuation_Model_08082026_public.xlsx — the workbook CALCULATES.
+"""AMOC_Valuation_Model_01092026_public.xlsx — the workbook CALCULATES.
 
 The previous edition shipped 488 formulas against 186 pasted cells: 72.4% formula. The pasted
 27.6% was not incidental — it was the sensitivity grids, the beta sweep and the bear/bull
@@ -471,9 +471,9 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     for k in LINES:
         vrows[k] = line(f'  Volume — {LBL[k]}, mn t', f'v_{k}', mv['vol'][k], NUM3,
                         lambda cl, j, rr, k=k: (
-                            f"='Product and Cost'!E{PR[k]}*(1+{L('lvg_'+k+'_0')}*{vol_cell})"
+                            f"='Product and Cost'!E{PR[k]}*(1+{L('lvg_'+k+'_0')}+{vol_cell})"
                             if j == 0 else
-                            f"={UC[j-1]}{rr}*(1+{L('lvg_'+k+'_'+str(j))}*{vol_cell})"))
+                            f"={UC[j-1]}{rr}*(1+{L('lvg_'+k+'_'+str(j))}+{vol_cell})"))
     r_vt = line('Total volume, mn t', 'vt', mv['vtot'], NUM3,
                 lambda cl, j, rr: f"=SUM({cl}{vrows[LINES[0]]}:{cl}{vrows[LINES[-1]]})", bold=True)
     # revenue and cost, per line, summed
@@ -595,7 +595,7 @@ def blockvals(key):
 BV = D['blocks']['base']
 put(wsF, 'A5', 'Levers for this block — the base case sets them all neutral', bold=True)
 band(wsF, 5)
-put(wsF, 'A6', 'Growth-path multiplier'); put(wsF, 'B6', 1.0, color=BLUE, fmt=NUM1, paste=True)
+put(wsF, 'A6', 'Volume growth added a year'); put(wsF, 'B6', 0.0, color=BLUE, fmt=PCT2, paste=True)
 put(wsF, 'A7', 'Gross-margin shift'); put(wsF, 'B7', 0.0, color=BLUE, fmt=PCT2, paste=True)
 put(wsF, 'A8', 'Realisation-path multiplier'); put(wsF, 'B8', 1.0, color=BLUE, fmt=NUM1, paste=True)
 put(wsF, 'A9', 'Working-capital cycle multiplier'); put(wsF, 'B9', 1.0, color=BLUE, fmt=NUM1,
@@ -789,9 +789,17 @@ for a, b in LINES_R:
     rr += 1
 
 wb.move_sheet('READ FIRST', offset=-len(wb.sheetnames) + 1)
-OUT = os.path.join(HERE, 'AMOC_Valuation_Model_08082026_public.xlsx')
+OUT = os.path.join(HERE, 'AMOC_Valuation_Model_01092026_public.xlsx')
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'n_formula': NFORM[0], 'n_pasted': NPASTE[0]},
           open(os.path.join(HERE, 'xlsx_expected_v5.json'), 'w'), indent=1)
 print(f"{OUT}\n  formula cells {NFORM[0]}  pasted {NPASTE[0]}  "
       f"formula share {NFORM[0]/(NFORM[0]+NPASTE[0]):.1%}")
+
+# The document quotes these counts. A number stated in prose must be COMPUTED, not typed,
+# so the builder writes them here and docx_v6.py reads them back.
+import json as _json
+_json.dump({'formulas': NFORM[0], 'pasted': NPASTE[0],
+            'share': NFORM[0] / (NFORM[0] + NPASTE[0])},
+           open(os.path.join(HERE, 'workbook_census.json'), 'w'), indent=1)
+print('  census written to workbook_census.json')

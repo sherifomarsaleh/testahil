@@ -1,17 +1,41 @@
 {
- "beta": 0.9404669016938088,
- "r2": 0.31243483206998157,
- "n": 257,
- "se": 0.08736764640128777,
+ "ticker": "AMOC",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 0.9079854792123889,
+ "r2": 0.2589419143627705,
+ "se": 0.16494576521273835,
+ "n": 253,
  "ci90": [
-  0.7967471233636904,
-  1.0841866800239273
+  0.6366496954374343,
+  1.1793212629873435
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "composite_names": 33,
- "window_years": 5,
+ "dimson": true,
  "frequency": "weekly",
  "weak": false,
- "warnings": []
+ "warnings": [],
+ "window_years": 4.89,
+ "first_obs": "2021-08-26",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 0.9386569861415925,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [
+  "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "superseded_composite": {
+  "beta": 0.9404669016938088,
+  "r2": 0.31243483206998157,
+  "n": 257,
+  "se": 0.08736764640128777,
+  "regressor": "33-name equal-weight EGX composite",
+  "why_withdrawn": "A constituent composite is a coverage artefact, not a market. SIGCM clause 6 hard fail; never a fallback and never a tier."
+ },
+ "standard_version": "2026.08.23"
 }
