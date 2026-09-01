@@ -68,6 +68,12 @@ const SURFACES = [
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium',
                                     args: ['--no-sandbox'] });
   const p = await b.newPage();
+  // Hermetic render: the registers are built by LOCAL scripts off file://, and
+  // that DOM is all this gate asserts on. A hanging third-party font/analytics
+  // fetch on a sandboxed runner stalls the default 'load' wait until the gate
+  // times out, so external requests are blocked and navigation waits on the DOM.
+  await p.route('**/*', r =>
+    r.request().url().startsWith('file://') ? r.continue() : r.abort());
   const bad = [];
   // Word boundary, not substring: "SCEM" must not be satisfied by some longer token, and
   // a three-letter ticker must not match inside a sentence.
