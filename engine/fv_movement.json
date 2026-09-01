@@ -192,7 +192,7 @@
     "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
     "spot": 15.2,
     "spot_date": "close 23 Aug 2026",
-    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 \u2014 so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
+    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
    },
    "ccy": "EGP",
    "editions": [
@@ -200,9 +200,9 @@
      "delivered": "2026-09-01",
      "edition": 1,
      "fair": {
-      "base": 15.89,
-      "bear": 7.62,
-      "full": 24.92
+      "bear": 4.5998,
+      "base": 10.9412,
+      "full": 23.3342
      },
      "lessons": [
       "L-028",
@@ -212,6 +212,15 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
+     "corrected": {
+      "on": "2026-09-01",
+      "was": {
+       "base": 15.89,
+       "bear": 7.62,
+       "full": 24.92
+      },
+      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying — the PRE-campaign range — not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
+     },
      "vs_baseline_pct": null,
      "vs_previous_pct": null
     }

@@ -18,10 +18,8 @@
   "EMPOWER",
   "GBCO",
   "PHAR",
-  "PHDC",
   "SCEM",
   "STC",
-  "TMGH",
   "XPT"
  ],
  "note_on_unreadable": "These studies commit numbers files that do not expose a central fair value and the spot it was struck against, so the gate cannot see their answer. That is tracked as a defect rather than passed over: a gate that reports clean having examined nothing is the [R-ENF-04] failure. Each is cleared by making the study's own numbers file carry central and spot, which every current-standard study already does.",

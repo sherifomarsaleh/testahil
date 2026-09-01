@@ -1,0 +1,9 @@
+{
+ "entries": {
+  "GBCO": "16 sheets \u2014 missing ['SOTP Bridge']; unexpected ['SOTP']",
+  "SCEM": "16 sheets \u2014 missing ['SOTP Bridge', 'Segments']; unexpected ['EV Bridge', 'Unit Build']",
+  "STC": "no workbook in the study directory",
+  "XPT": "no workbook in the study directory"
+ },
+ "note": "Studies whose delivered workbook was already off the model-report sheet list when this gate was adopted (01-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it."
+}

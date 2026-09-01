@@ -1,0 +1,16 @@
+{
+ "lens_gap_contrib": {
+  "Discounted cash flow": -0.15111748182260662,
+  "Book value of equity": -1.295752188872416,
+  "Earnings multiple on own history": -0.8061261617457831,
+  "Normalised earnings power": -2.0058452824846635
+ },
+ "nep_published": 5.170773587576682,
+ "nep_at_tg": 8.392881296239116,
+ "nci_per_share": 0.4665515119304037,
+ "wacc_gross": 0.2625000851091697,
+ "wacc_net": 0.27153935806364266,
+ "dcf_on_net_debt_weights": 13.429501707946152,
+ "bs_1q26_effect_per_share": 0.25874537289504607,
+ "central_on_latest_bs": 11.199904257969576
+}

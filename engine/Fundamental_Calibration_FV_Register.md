@@ -20,7 +20,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 
 | # | name | ccy | scope | old base | new base | base | bear | full | built to → | lessons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 5 | PHDC | EGP | full | unrecoverable | 15.89 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | L-028, L-029, L-030, L-114 |
+| 5 | PHDC | EGP | full | unrecoverable | 10.9412 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | L-028, L-029, L-030, L-114 |
 | 8 | TMGH | EGP | full | 147.12 | 39.333 | -73.3% | -73.3% | -68.5% | (study carries no stamp) → 2026.09.01 | L-043, L-044, L-045, L-046, L-047, L-117, L-118 |
 | 36 | AMOC | EGP | light | 5.95 | 8.64 | +45.2% | +35.2% | +46.5% | (study carries no stamp) → 2026.09.01 | L-048, L-049, L-050, L-051, L-052, L-053, L-054, L-119 |
 | 37 | ARCC | EGP | full | 54.65 | 54.1 | -1.0% | -1.6% | -3.5% | (study carries no stamp) → 2026.09.01 | L-057, L-058, L-059, L-060, L-061, L-120 |

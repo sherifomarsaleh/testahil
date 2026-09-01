@@ -29,19 +29,22 @@ decomposed BEFORE the sign was set, not after a test failed.
     version of this test asserted the terminal mechanism against a mid-window bump and
     failed. The expectation was wrong, not the model.
 
-  * Cash and debt are NOT clean one-way bridge levers, and this is the structural finding
-    the test surfaced. The effective tax rate is INFERRED from the FY2025 closure —
-    disclosed operating profit plus modelled net finance income against DISCLOSED profit
-    after tax — so a balance-sheet change moves the imputed tax rate on every forecast
-    year. Adding EGP 1bn of cash adds EGP 924mn to net cash and simultaneously lifts the
-    effective rate 2.8 points, cutting enterprise value EGP 940mn; the two legs cancel to
-    within four piastres a share. Adding EGP 2bn of debt cuts net cash EGP 1,823mn, cuts
-    the effective rate 6.5 points, cuts the blended rate 62 basis points, and lifts
-    enterprise value EGP 2,333mn — a net GAIN. Neither is a defect: profit after tax is a
-    fact, so more finance income necessarily means the operating business was taxed
-    harder. Each leg is asserted separately below. The clean net-cash sensitivity the
-    reader wants — the tax rate held, the balance varied — is on the Sensitivity sheet,
-    and there the value rises monotonically with net cash.
+  * Cash and debt WERE not clean one-way bridge levers, and in revision 4 they are. In the
+    earlier revisions the effective tax rate was INFERRED from the FY2025 closure —
+    disclosed operating profit plus modelled net finance income against disclosed profit
+    after tax — so a balance-sheet change moved the imputed tax rate on every forecast
+    year and the two legs very nearly cancelled. Revision 4 takes the effective rate from
+    a disclosed figure, so EGP 1,000mn of cash on the reviewed 30-June-2026 balance sheet
+    now moves the value by exactly 1,000 / shares outstanding and by nothing else.
+
+WHICH BALANCE SHEET IS THE BRIDGE ON. Revision 4 moved the valuation date to 30 June 2026
+and put the bridge on the reviewed balance sheet of that date. The FY2025 cash, minority
+and declared-dividend rows are therefore HISTORY: they open the cash roll-forward and close
+the audited year, and they no longer touch the headline. Revision 3's assertions said they
+did, and those assertions passed for a month because this gate was pointed at the
+superseded 06-08-2026 workbook rather than the delivered one — an empty answer wearing the
+costume of a clean one [R-ENF-04]. It is pointed at the delivered file now, and each of
+those five drivers is asserted against what it actually moves.
 """
 import json, os
 import openpyxl
@@ -51,7 +54,7 @@ GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   'study_numbers.json')))['growth_destroys_value']
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_06082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -84,17 +87,17 @@ def read(overrides=None):
         roic_book=bk.cell_value('DCF', 'B25'),
         kd_eff25=bk.cell_value('DCF', 'B61'),
         kd_egp=bk.cell_value('DCF', 'B63'),
-        vol25=bk.cell_value('Unit Build', 'B18'),
-        util25=bk.cell_value('Unit Build', 'B14'),
-        ccost25=bk.cell_value('Unit Build', 'B38'),
-        cmat25=bk.cell_value('Unit Build', 'B35'),
-        rev26=bk.cell_value('Unit Build', 'C63'),
-        vol26=bk.cell_value('Unit Build', 'C55'),
-        cc26=bk.cell_value('Unit Build', 'C69'),
-        cmat26=bk.cell_value('Unit Build', 'C65'),
-        ebitda25=bk.cell_value('Unit Build', 'B71'),
-        ebitda26=bk.cell_value('Unit Build', 'C71'),
-        resid_rev=bk.cell_value('Unit Build', 'B78'),
+        vol25=bk.cell_value('Segments', 'B18'),
+        util25=bk.cell_value('Segments', 'B14'),
+        ccost25=bk.cell_value('Segments', 'B38'),
+        cmat25=bk.cell_value('Segments', 'B35'),
+        rev26=bk.cell_value('Segments', 'C63'),
+        vol26=bk.cell_value('Segments', 'C55'),
+        cc26=bk.cell_value('Segments', 'C69'),
+        cmat26=bk.cell_value('Segments', 'C65'),
+        ebitda25=bk.cell_value('Segments', 'B71'),
+        ebitda26=bk.cell_value('Segments', 'C71'),
+        resid_rev=bk.cell_value('Segments', 'B78'),
         gp23=bk.cell_value('Income Statement', 'B7'),
         gp25=bk.cell_value('Income Statement', 'D7'),
         ebit25=bk.cell_value('Income Statement', 'D11'),
@@ -138,15 +141,15 @@ def read(overrides=None):
         # corners of the workbook that no headline touches.
         # the corners of the physical build: both capacity constraints, all three
         # DERIVED prices, and the product split. None of these existed in revision 3.
-        kiln_pk=bk.cell_value('Unit Build', 'B94'),
-        mill_pk=bk.cell_value('Unit Build', 'B98'),
-        mill26=bk.cell_value('Unit Build', 'C51'),
-        p_loc=bk.cell_value('Unit Build', 'B22'),
-        p_ecem=bk.cell_value('Unit Build', 'B26'),
-        p_eclk=bk.cell_value('Unit Build', 'B27'),
-        clk_prod=bk.cell_value('Unit Build', 'B7'),
-        cem_prod=bk.cell_value('Unit Build', 'B12'),
-        cap_chk=bk.cell_value('Unit Build', 'B28'),
+        kiln_pk=bk.cell_value('Segments', 'B94'),
+        mill_pk=bk.cell_value('Segments', 'B98'),
+        mill26=bk.cell_value('Segments', 'C51'),
+        p_loc=bk.cell_value('Segments', 'B22'),
+        p_ecem=bk.cell_value('Segments', 'B26'),
+        p_eclk=bk.cell_value('Segments', 'B27'),
+        clk_prod=bk.cell_value('Segments', 'B7'),
+        cem_prod=bk.cell_value('Segments', 'B12'),
+        cap_chk=bk.cell_value('Segments', 'B28'),
         nonop25=bk.cell_value('Income Statement', 'D16'),
         nonop_chk=bk.cell_value('Income Statement', 'B24'),
         roe24=bk.cell_value('Balance Sheet', 'C18'),
@@ -218,8 +221,11 @@ CASES = [
     ('Alternative-fuel saving on materials', 'C', +0.05, 'ebitda26', +1,
      'and the saving must reach EBITDA — this is the company-specific lever, and the EBRD '
      'facility funding it is on the audited balance sheet'),
-    ('Services revenue as a share of goods revenue', 'B', +0.02, 'rev26', +1,
-     'more transportation revenue on the same tonnes'),
+    ('Services revenue as a share of goods revenue', 'B', +0.02, 'ebitda25', +1,
+     'more transportation revenue on the same tonnes, in the BASE year. It does not move '
+     'FY2026 revenue and must not: revision 4 calibrates price, cost AND services on the '
+     'same reviewed half of 2026, so the forecast year is anchored on a filed actual '
+     'rather than grown off the base-year share'),
     ('Cement capacity', 'B', +0.30, 'mill26', -1,
      'the mill is now a CONSTRAINT, not a volume driver: tonnes come off the kiln, so more '
      'mill capacity lowers mill utilisation and does not create cement. Revision 3 drove '
@@ -285,8 +291,12 @@ CASES = [
      'and because the euro rate is far below the pound rate, it LOWERS the blended cost'),
     ('Statutory tax rate', 'B', +0.02, 'wacc', -1,
      'a higher statutory rate deepens the tax shield on debt and lowers the blended rate'),
-    ('Elapsed fraction of FY2026 at the valuation date', 'B', +0.10, 'cashval', +1,
-     'more of FY2026 already earned means more cash at the valuation date'),
+    ('Elapsed fraction of FY2026 at the valuation date', 'B', +0.10, 'dcf', +1,
+     'a longer elapsed fraction means less of FY2026 left to discount and a shorter '
+     'discount period on every year behind it, so the value rises. It does NOT move the '
+     'cash at the valuation date any more: revision 4 reads that off the reviewed 30-June '
+     '2026 balance sheet instead of rolling FY2025 forward, and a filed figure does not '
+     'respond to a modelling assumption'),
     # ---- CAPITAL INTENSITY AND THE BRIDGE --------------------------------------
     ('Maintenance capital expenditure', 'B', +1.00, 'dcf', -1,
      'more capital spending leaves less free cash flow'),
@@ -305,24 +315,38 @@ CASES = [
      'a better return on the cash pile leaves more cash at the end of the forecast'),
     ('Dividend payout ratio', 'B', +0.20, 'cash30', -1,
      'paying more out leaves less cash at the end of the forecast'),
-    ('Cash and bank balances FY2025', 'B', +1000.0, 'dcf', +1,
-     'more audited cash flows straight through the bridge. Unlike revision 1 this is now a '
-     'CLEAN one-way lever, because the effective tax rate is a disclosed figure rather than '
-     'one inferred by closing a modelled finance income'),
+    ('Cash and bank balances, reviewed 30 June 2026', 'B', +1000.0, 'dcf', +1,
+     'THE bridge cash lever, and in revision 4 it is exactly clean: EGP 1,000mn of cash '
+     'moves the value by 1,000 / shares outstanding and by nothing else, because the '
+     'effective tax rate is now a disclosed figure rather than one inferred by closing a '
+     'modelled finance income'),
     ('CIB credit facilities — EGP', 'B', +500.0, 'dcf', +1,
      'more debt RAISES the value, and that is a structural consequence of a correction '
      'made this revision rather than a defect. The bridge now deducts the FRESHER reviewed '
-     '31-March-2026 debt, so a change to the FY2025 facility no longer moves net cash; it '
+     '30-June-2026 debt, so a change to the FY2025 facility no longer moves net cash; it '
      'moves only the WACC weight, and after-tax debt is far cheaper than equity'),
-    ('Non-controlling interests FY2025', 'B', +500.0, 'dcf', -1,
-     'minorities own part of the enterprise and must be deducted'),
+    ('Interest-bearing debt, reviewed 30 June 2026', 'B', +500.0, 'dcf', -1,
+     'the bridge deducts the debt on the LATEST reviewed balance sheet, so more of it is '
+     'less equity, one for one'),
+    ('Non-controlling interests, reviewed 30 June 2026', 'B', +0.02, 'dcf', -1,
+     'minorities own part of the enterprise and must be deducted — on the same reviewed '
+     'balance sheet the cash and the debt come off'),
+    ('Cash and bank balances FY2025', 'B', +1000.0, 'cash30', +1,
+     'the FY2025 balance is HISTORY in revision 4, not a bridge lever: it opens the cash '
+     'roll-forward and so moves the closing FY2030 balance, while the bridge stands on the '
+     'reviewed 30-June-2026 sheet above. Revision 3 asserted this against the headline and '
+     'the assertion was never run, because the gate was pointed at the superseded workbook'),
+    ('Non-controlling interests FY2025', 'B', +0.02, 'close', -1,
+     'likewise history: it moves the balance-sheet closure check on the audited year and '
+     'not the valuation, whose minority is the reviewed 30-June-2026 figure'),
     ('Ordinary shares issued', 'B', +20.0, 'dcf', -1,
      'the same equity across more shares must lower the value per share'),
     ('Treasury shares held', 'B', +5.0, 'dcf', +1,
      'treasury shares are NOT outstanding, so buying more raises the value of each remaining share'),
-    ('FY2025 dividend declared', 'B', +500.0, 'dcf', -1,
-     'a dividend declared and unpaid at the last balance-sheet date is cash a buyer at '
-     'today\'s price does not receive'),
+    ('FY2025 dividend declared', 'B', +500.0, 'cash30', -1,
+     'a dividend declared out of FY2025 was PAID before the 30-June-2026 balance sheet the '
+     'bridge now stands on, so it is already inside that cash figure and must not be '
+     'deducted a second time. What it still moves is the cash roll-forward to FY2030'),
     # ---- THE AUDITED HISTORY ----------------------------------------------------
     ('FY2025 sales (net)', 'B', +500.0, 'gp25', +1, 'more audited revenue is more gross profit'),
     ('FY2025 cost of sales', 'B', +500.0, 'gp25', -1, 'more cost of sales is less gross profit'),

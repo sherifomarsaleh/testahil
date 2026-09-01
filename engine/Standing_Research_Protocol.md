@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -772,6 +772,58 @@ The job is a RATCHET, not a cliff. Studies knowingly outstanding are listed in
 NEW violation or a study directory added with no gate at all. The list may only ever shorten —
 `--prune` rewrites it — and its length is the honest measure of progress. A permanently red
 check is one everybody learns to ignore, which is worse than no check.
+
+#### [AMENDED 01-Sep-2026] `assert_model_study()` is itself a self-attestation, and one of its
+#### nine fields is now measured from outside
+
+`ModelStudyChecklist` has nine boolean fields and a study sets all nine on itself. On
+01-Sep-2026 the AMOC rebuild set `structure_matches_model=True`, `assert_model_study()`
+passed on that boolean, and the delivered workbook carried **seven sheets** — READ FIRST,
+Assumptions, Base Year, Product and Cost, Forecast, Sensitivity, Lenses — against the model
+report's sixteen.
+
+What makes this the [R-ENF-01] species rather than an oversight is what the other gates were
+doing at the time. The workbook recalculated through an independent evaluator with **zero
+disagreements across 5,775 formula cells**. The external-reader scrub was clean. Table
+discipline reported zero problems across both documents. The valuation-gap review had just
+been written and passed. Every one of them was examining the workbook's **contents**; not one
+was examining its **shape**, and the only thing that claimed to was a boolean the study had
+written about itself.
+
+`scripts/check_workbook_structure.py` now opens the LATEST-DATED workbook in every
+`engine/*_study/` — the one that would be published, chosen by the date in the filename rather
+than by modification time, so the answer does not depend on what a checkout happened to touch —
+and asserts its sheet names ARE `research_protocol.MODEL_STUDY['excel_sheets']`, in that order.
+It **imports** that list rather than carrying a copy: a check holding its own copy of a standard
+stops testing the standard the moment one of them moves.
+
+Same discipline as the gates around it. A RATCHET per this rule
+(`engine/build_depth_audit/workbook_outstanding.json`, `--prune`, may only ever shorten — GBCO,
+SCEM, STC and XPT were already off the standard on adoption day and are listed). The population
+anchored elsewhere per [R-ENF-04]: a run that examined zero workbooks FAILS, and every listed
+ticker must resolve to a directory on disk. Negative-controlled by
+`scripts/check_workbook_structure_negative_control.py`, which reinjects the seven-sheet file
+exactly as it shipped, a renamed sheet, a right-names-wrong-order file, a study with no
+workbook, one that will not open, a listed study that vanished and an emptied population — and
+runs three CLEAN cases that must stay green, among them a superseded off-standard edition
+sitting beside a good current one.
+
+**The general form, which is [R-ENF-01] applied to the attestations themselves: where a standard
+can be read off the delivered file, read it off the delivered file.** An attestation is worth
+only what an outside reader could not otherwise see. The fields that should survive as
+attestations are the judgements a script genuinely cannot make — whether an expert appendix is at
+maximum detail, whether the contested judgement was the right one to publish both ways — not the
+ones a script can measure in a line.
+
+A second defect of the same family surfaced in the same pass, and it is named here because it
+will recur at every re-issue rather than once. Two of ARCC's own gates, `driver_test.py` and
+`label_gate.py`, opened `ARCC_Valuation_Model_06082026_public.xlsx` while the delivered file was
+the 01-09-2026 edition. Both reported clean. Re-pointed at the delivered file, five of 144
+driver assertions failed immediately: revision 4 had moved the valuation date to 30 June 2026 and
+put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and declared-dividend
+rows no longer move the headline, and the assertions saying they did had never been run against
+the model that shipped. **A check that opens a delivered file by name moves with the re-issue.**
+Both findings are registered as L-064 and L-065 under [R-LESSON-01].
 
 ### [R-ENF-03] The published technical read is checked from outside, through a real JS parse
 

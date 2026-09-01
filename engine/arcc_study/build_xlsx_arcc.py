@@ -407,7 +407,7 @@ note(wsA, R[0] + 1, 'Every cell on this sheet is BLUE — an input. Nothing here
 note(wsA, R[0] + 2, 'Everything on every other sheet that can be derived from these is a formula.')
 
 # ============ 3 UNIT BUILD ====================================================
-wsU = sheet('Unit Build')
+wsU = sheet('Segments')
 title(wsU, 'Unit build — the PLANT drives the tonnes, and the prices come OUT',
       'Revision 3 assumed a price and divided revenue by it. That made the FY2025 check an '
       'identity that could not fail. Here the drivers are physical and all three realised '
@@ -588,12 +588,12 @@ for j, lab in enumerate(ROWS):
     wsD.cell(row=5 + j, column=1, value=lab)
 for i in range(5):
     c = DC[i]
-    putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
-    putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
+    putf(wsD, f'{c}5', f"='Segments'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
+    putf(wsD, f'{c}7', f"='Segments'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['margin'][i], PCT)
     putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}*{A['wfdep']}", F['dna'][i], NUM0)
-    putf(wsD, f'{c}9', f"={c}7-{c}8+{A['subr']}*'Unit Build'!{BUC[i+1]}60"
-         f"+{A['subr']}*'Unit Build'!{BUC[i+1]}61+{A['othres']}*{A[f'infl{i+1}']}",
+    putf(wsD, f'{c}9', f"={c}7-{c}8+{A['subr']}*'Segments'!{BUC[i+1]}60"
+         f"+{A['subr']}*'Segments'!{BUC[i+1]}61+{A['othres']}*{A[f'infl{i+1}']}",
          F['ebit'][i], NUM0)
     putf(wsD, f'{c}10', f"={A['taxe']}", TAXE, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
@@ -736,7 +736,7 @@ note(wsD, 69, 'The glide on row 16 is derived from the POUND cost-of-debt path: 
 note(wsD, 70, 'on pound cash flows, so the pound easing calendar sets its slope while the euro book sets its level.')
 
 # ============ 5 EV BRIDGE =====================================================
-wsB = sheet('EV Bridge')
+wsB = sheet('SOTP Bridge')
 title(wsB, 'Enterprise value to equity bridge', None, 6, 56, 16)
 hdr(wsB, 4, ['', 'EGP mn', 'Per share (EGP)'])
 BRW = [('Present value of explicit free cash flow', "=DCF!B31", DCF['sum_pv']),
@@ -823,7 +823,7 @@ for i in range(5):
     # EBIT carries other operating income here too — the export subsidy at its
     # DISCLOSED FY2025 rate plus the non-subsidy remainder. Leaving it out of one
     # sheet and not another is how a workbook comes to hold two models.
-    _oi = (f"{A['subr']}*'Unit Build'!{BUC[i+1]}60+{A['subr']}*'Unit Build'!{BUC[i+1]}61"
+    _oi = (f"{A['subr']}*'Segments'!{BUC[i+1]}60+{A['subr']}*'Segments'!{BUC[i+1]}61"
            f"+{A['othres']}*{A[f'infl{i+1}']}")
     putf(wsI, f'{c}11', f"={c}14-{c}13+{_oi}", F['ebit'][i], NUM0, bold=True)
     putf(wsI, f'{c}12', f"={c}11", F['ebit'][i], NUM0)
@@ -1031,9 +1031,9 @@ for i, c in enumerate(allc):
          nd_all[i] / eb_all[i], MULT)
 for i in range(3, 8):
     c = allc[i]
-    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Unit Build'!{BUC[i-2]}55",
+    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Segments'!{BUC[i-2]}55",
          eb_all[i] / F['volume_mt'][i - 3], NUM0)
-putf(wsR, 'D9', "='Income Statement'!D14/'Unit Build'!B55", H['ebitda'][2] / BU[0]['vol'], NUM0)
+putf(wsR, 'D9', "='Income Statement'!D14/'Segments'!B55", H['ebitda'][2] / BU[0]['vol'], NUM0)
 
 band(wsR, 13, 10); wsR['A13'] = 'RECONCILIATIONS AGAINST THE AUDITED ACCOUNTS'
 REC = [('Shares issued (audited note 20)', 'B14', f"={A['shiss']}", IN['shares_issued'], NUM4),
@@ -1390,7 +1390,7 @@ SEC = [('Nameplate capacity (Mt)', 'B13', f"={A['egcap']}", PE['sector']['capaci
        ('Revival capacity as a share of consumption', 'B20', "=B17/B15",
         PE['sector']['revival_pct_of_consumption'], PCT),
        ('The subject\'s own volume as a share of national production', 'B21',
-        "='Unit Build'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
+        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
 for lab, ad, fm, ex, ft in SEC:
     wsP.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsP, ad, fm, ex, ft, green=(int(ad[1:]) <= 17))
@@ -1398,6 +1398,20 @@ note(wsP, 23, 'Every multiple here is RECOMPUTED from revenue, profit and market
 note(wsP, 24, 'quoted, because the published multiples for this peer set do not reconcile.')
 
 # ============ SAVE ============================================================
+# The sheet list IS the model report's, in its order, asserted against the protocol
+# module rather than a copy typed here. A study attesting structure_matches_model on
+# itself is not a check [R-ENF-01] — that boolean was True on a seven-sheet workbook.
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import research_protocol as _RP                                        # noqa: E402
+_WANT = list(_RP.MODEL_STUDY['excel_sheets'])
+_missing = [x for x in _WANT if x not in wb.sheetnames]
+_extra = [x for x in wb.sheetnames if x not in _WANT]
+assert not _missing and not _extra, (
+    'workbook does not match the model-report sheet list — missing %s, unexpected %s'
+    % (_missing, _extra))
+wb._sheets = [wb[n] for n in _WANT]
+assert wb.sheetnames == _WANT, wb.sheetnames
 OUT = os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx')
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:

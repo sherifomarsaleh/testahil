@@ -44,6 +44,9 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'scripts/check_workbook_structure.py'
+      - 'scripts/check_workbook_structure_negative_control.py'
+      - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -77,6 +80,9 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'scripts/check_workbook_structure.py'
+      - 'scripts/check_workbook_structure_negative_control.py'
+      - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -105,7 +111,7 @@ jobs:
         with:
           node-version: '20'
       - name: Install engine deps
-        run: pip install numpy pandas scipy python-docx
+        run: pip install numpy pandas scipy python-docx openpyxl
 
       # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
       # import, and that bug reached main while a regex check reported the file intact.
@@ -211,3 +217,20 @@ jobs:
       # exists is the permanently-red check everyone learns to ignore)
       - name: Valuation-gap gate — negative control
         run: python3 scripts/check_valuation_gap_negative_control.py
+
+      # [R-ENF-01] the DELIVERED WORKBOOK's shape, read off the file itself. On
+      # 01-Sep-2026 the AMOC rebuild shipped seven sheets against the model report's
+      # sixteen while its own compute.py attested structure_matches_model=True and
+      # assert_model_study() passed on that boolean — a study's opinion of its work is
+      # not a check. Every other gate in this job was looking at the workbook's contents;
+      # none was looking at its shape.
+      - name: Workbook-structure gate
+        run: python3 scripts/check_workbook_structure.py
+
+      # and the proof that gate can go red — it reinjects the seven-sheet workbook
+      # exactly as it shipped, a renamed sheet, a right-names-wrong-order file, a study
+      # with no workbook, one that will not open, a listed study that vanished and an
+      # emptied population, plus three clean cases (among them a superseded off-standard
+      # edition sitting beside a good current one, which must NOT fire)
+      - name: Workbook-structure gate — negative control
+        run: python3 scripts/check_workbook_structure_negative_control.py

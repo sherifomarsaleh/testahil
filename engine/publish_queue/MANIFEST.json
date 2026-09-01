@@ -11,8 +11,8 @@
     "bear": 5.53,
     "full": 12.48
    },
-   "report_bytes": 846538,
-   "workbook_bytes": 117897
+   "report_bytes": 846551,
+   "workbook_bytes": 133282
   },
   {
    "ticker": "ARCC",
@@ -24,16 +24,16 @@
     "full": 59.53
    },
    "report_bytes": 1259817,
-   "workbook_bytes": 48847
+   "workbook_bytes": 48853
   },
   {
    "ticker": "PHDC",
    "report": "engine/phdc_study/PHDC_Valuation_Study_30-08-2026.pdf",
    "workbook": "engine/phdc_study/PHDC_Valuation_Model_30082026.xlsx",
    "fair": {
-    "base": 15.89,
-    "bear": 7.62,
-    "full": 24.92
+    "bear": 4.5998,
+    "base": 10.9412,
+    "full": 23.3342
    },
    "report_bytes": 1001305,
    "workbook_bytes": 29501

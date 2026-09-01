@@ -14,7 +14,7 @@ os.chdir(HERE)
 D = json.load(open('study_numbers.json'))
 H, F, DCF, UC = D['history'], D['forecast'], D['dcf'], D['unit_calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
-wb = openpyxl.load_workbook('ARCC_Valuation_Model_06082026_public.xlsx')
+wb = openpyxl.load_workbook('ARCC_Valuation_Model_01092026_public.xlsx')
 XP = json.load(open('xlsx_expected.json'))
 
 
@@ -39,10 +39,10 @@ CASES = [
     ('DCF',              'A42', 'B42', 'Equity value',       DCF['equity']),
     ('DCF',              'A43', 'B43', 'Shares outstanding', D['meta']['shares_mn']),
     ('DCF',              'A44', 'B44', 'FAIR VALUE PER SHARE', DCF['fv']),
-    ('Unit Build',       'A18', 'B18', 'TOTAL DESPATCHES',   UC['vol_fy25']),
-    ('Unit Build',       'A22', 'B22', 'LOCAL CEMENT PRICE', UC['price_loc_derived']),
-    ('Unit Build',       'A12', 'B12', 'Cement produced',    UC['cem_prod']),
-    ('Unit Build',       'A7',  'B7',  'Clinker produced',   UC['clk_prod']),
+    ('Segments',       'A18', 'B18', 'TOTAL DESPATCHES',   UC['vol_fy25']),
+    ('Segments',       'A22', 'B22', 'LOCAL CEMENT PRICE', UC['price_loc_derived']),
+    ('Segments',       'A12', 'B12', 'Cement produced',    UC['cem_prod']),
+    ('Segments',       'A7',  'B7',  'Clinker produced',   UC['clk_prod']),
 ]
 fails, checked = [], 0
 print('LABEL GATE — does each label describe its own row?\n')

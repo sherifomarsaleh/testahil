@@ -1525,6 +1525,51 @@ LESSONS = [
       "central.",
       "A disclosure that separates maintenance from growth capital "
       "directly, which makes the inference unnecessary."),
+
+    L("L-064", "ALL", None,
+      "A checklist a study fills in about itself measures its opinion "
+      "of the work, not the work.",
+      "Where a standard can be read off the delivered file, read it "
+      "off the delivered file. An attestation is only worth what an "
+      "outside reader could not otherwise see; anything a script can "
+      "measure directly should be measured directly, and the "
+      "attestation kept for the judgements that genuinely cannot be.",
+      "AMOC and ARCC delivered-workbook audit, 01-Sep-2026",
+      "self_audit",
+      "AMOC's compute.py set structure_matches_model=True and "
+      "assert_model_study() passed on that boolean, while the "
+      "delivered workbook carried SEVEN sheets against the model "
+      "report's sixteen. Every other gate that could see the file was "
+      "examining its contents: the recalculation reconciled 5,775 "
+      "formula cells with zero disagreements, the external-reader "
+      "scrub was clean and table discipline reported zero problems "
+      "across both documents. None of them was looking at its shape. "
+      "Reading the sheet list off the .xlsx from outside found it in "
+      "one line.",
+      "A standard that cannot be expressed as a test of the delivered "
+      "artefact, where the attestation is the only evidence "
+      "available."),
+
+    L("L-065", "ALL", None,
+      "A gate pointed at a superseded file reports on something "
+      "nobody receives.",
+      "When a study is re-issued, every check that opens the "
+      "delivered file by name has to move with it. A check left "
+      "pointing at the previous edition keeps passing, and its green "
+      "says nothing about what was actually shipped.",
+      "AMOC and ARCC delivered-workbook audit, 01-Sep-2026",
+      "self_audit",
+      "ARCC's driver_test.py and label_gate.py both opened "
+      "ARCC_Valuation_Model_06082026_public.xlsx while the delivered "
+      "file was the 01092026 edition, and both reported clean. Re- "
+      "pointed at the delivered file, five of the driver assertions "
+      "failed at once: revision 4 had moved the valuation date to 30 "
+      "June 2026 and put the bridge on that reviewed balance sheet, "
+      "so the FY2025 cash, minority and declared-dividend rows no "
+      "longer move the headline and the assertions that said they did "
+      "had never run against the model that shipped.",
+      "A build that writes to one filename per study, so there is no "
+      "superseded edition for a check to open."),
 ]
 
 

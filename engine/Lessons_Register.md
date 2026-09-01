@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**88 lessons**, of which 63 bind on every study, 20 on a class of company, and 5 on a single name.
+**90 lessons**, of which 65 bind on every study, 20 on a class of company, and 5 on a single name.
 
-By how they were learned: 33 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 9 from self-audits, 34 found while building.
+By how they were learned: 33 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 11 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -708,6 +708,26 @@ When the only capital-spending figures available are years that also carried exp
 > **What it cost, or how we know.** ARCC's input note observed that FY2024 (USD 3.70/t) and FY2025 (USD 3.23/t) 'both carry the alternative-fuel and silo programmes' and then set maintenance at USD 4.00/t — above both. The H1-2026 cash-flow statement settled the direction by splitting the spend: EGP 102.9mn of property, plant and equipment against EGP 505.5mn of assets under construction, so 83% of it was the growth programme. Resetting the anchor to the most recent full year's total was worth EGP 0.84 on the central.
 
 > **What would overturn it.** A disclosure that separates maintenance from growth capital directly, which makes the inference unnecessary.
+
+### L-064 · A checklist a study fills in about itself measures its opinion of the work, not the work.
+
+Where a standard can be read off the delivered file, read it off the delivered file. An attestation is only worth what an outside reader could not otherwise see; anything a script can measure directly should be measured directly, and the attestation kept for the judgements that genuinely cannot be.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, AMOC and ARCC delivered-workbook audit, 01-Sep-2026
+
+> **What it cost, or how we know.** AMOC's compute.py set structure_matches_model=True and assert_model_study() passed on that boolean, while the delivered workbook carried SEVEN sheets against the model report's sixteen. Every other gate that could see the file was examining its contents: the recalculation reconciled 5,775 formula cells with zero disagreements, the external-reader scrub was clean and table discipline reported zero problems across both documents. None of them was looking at its shape. Reading the sheet list off the .xlsx from outside found it in one line.
+
+> **What would overturn it.** A standard that cannot be expressed as a test of the delivered artefact, where the attestation is the only evidence available.
+
+### L-065 · A gate pointed at a superseded file reports on something nobody receives.
+
+When a study is re-issued, every check that opens the delivered file by name has to move with it. A check left pointing at the previous edition keeps passing, and its green says nothing about what was actually shipped.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, AMOC and ARCC delivered-workbook audit, 01-Sep-2026
+
+> **What it cost, or how we know.** ARCC's driver_test.py and label_gate.py both opened ARCC_Valuation_Model_06082026_public.xlsx while the delivered file was the 01092026 edition, and both reported clean. Re- pointed at the delivered file, five of the driver assertions failed at once: revision 4 had moved the valuation date to 30 June 2026 and put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and declared-dividend rows no longer move the headline and the assertions that said they did had never run against the model that shipped.
+
+> **What would overturn it.** A build that writes to one filename per study, so there is no superseded edition for a check to open.
 
 
 ---

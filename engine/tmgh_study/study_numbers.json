@@ -10,7 +10,10 @@
   "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
   "shares_mn": 2060.6538,
   "market_cap": 201531.94164,
-  "class": "real-estate developer, off-plan \u2014 point-in-time on handover"
+  "class": "real-estate developer, off-plan \u2014 point-in-time on handover",
+  "central": 39.333232488527784,
+  "gap_vs_spot": -0.5978197087062599,
+  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 its fair_value_range note says the four cases 'are never averaged'. A figure is exposed here only because two things downstream require one: assets/data.js carries a fair{bear,base,full} triple, and [R-GAP-01]'s gate reported this study as 'carries no central/spot pair', which that rule treats as a FAILURE rather than a skip. The figure is the MEDIAN of the four published cases on the book-minority framing (39.333), labelled as a summary statistic and not as a central the study computed. NOTHING TURNS ON THE CHOICE: every one of the four cases sits below the price, from 22.30 to 59.67 against 97.80, so the gap rule fires on any reading of it."
  },
  "inputs": {
   "IS": {
@@ -8612,5 +8615,7 @@
     }
    }
   }
- }
+ },
+ "central": 39.333232488527784,
+ "spot": 97.8
 }
