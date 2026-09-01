@@ -48,7 +48,7 @@
   "kd_local": 0.255,
   "kd_source": "Marginal, forward-looking, in the cash-flow currency: Egypt 10-year sovereign 23.00% plus a 250bp corporate spread, giving 25.50%. TMG's own facility pricing is NOT disclosed in any statement or release held (recorded as a GAP in the input register), so the company's own latest issue cannot be used. The result sits ABOVE the local sovereign, as a same-currency corporate must. TMG's borrowings are EGP-denominated bank facilities and loans; no foreign-currency tranche is disclosed separately, so no local-equivalent FX adjustment applies.",
   "spot": 97.8,
-  "spot_source": "EGX close 23 August 2026, engine/raw_ohlc/EG/TMGH.csv \u2014 the same cleaned series the price engine runs on",
+  "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
   "shares_mn": 2060.6538,
   "interest_bearing_debt": 17006.9,
   "market_cap": 201531.94164,

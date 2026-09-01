@@ -22,7 +22,6 @@ FS24 = ("TMG Holding consolidated financial statements for the year ended "
         "31 December 2024, via " + IR)
 FS23 = ("TMG Holding consolidated financial statements for the year ended "
         "31 December 2023, via " + IR)
-WF = "engine/tmgh_walkforward — this name's own fundamental walk-forward, 1 Sep 2026"
 
 
 def I(value, source, date, tier, unit="EGP mn", gap=None, note=None):
@@ -57,9 +56,9 @@ IS = {
     "operating_income_fy25": I(23749.3, FS25, "2025-12-31", "A"),
     "finance_income_fy25": I(4230.0, FS25, "2025-12-31", "A"),
     "finance_cost_fy25":  I(3936.5,  FS25, "2025-12-31", "A",
-                            note="finance expenses 3,820.4 + bank charges 116.2 per "
-                                 "note 37. NOT interest on borrowings alone — see the "
-                                 "walk-forward's blocked correction"),
+                            note="finance expenses 3,820.4 plus bank charges 116.2 "
+                                 "per note 37. NOT interest on borrowings alone; the "
+                                 "statements do not split the two"),
     "associates_fy25":    I(38.1,    FS25, "2025-12-31", "A"),
     "da_fy25":            I(427.3,   FS25, "2025-12-31", "A"),
     "pbt_fy25":           I(23653.6, FS25, "2025-12-31", "A"),

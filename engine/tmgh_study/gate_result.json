@@ -1,0 +1,154 @@
+{
+ "standard_built_against": "2026.08.23",
+ "beta_record": {
+  "ticker": "TMGH",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 1.4717523730674444,
+  "r2": 0.3260974007269647,
+  "se": 0.18481225647980962,
+  "n": 251,
+  "ci90": [
+   1.1677362111581577,
+   1.7757685349767312
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 4.85,
+  "first_obs": "2021-09-09",
+  "last_obs": "2026-07-16",
+  "blume_crosscheck": 1.3145015820449628,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "index_dq": [],
+  "stock_dq": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "ground_up": {
+  "ticker": "TMGH",
+  "lines": 3,
+  "share_by_level": {
+   "unit": 0,
+   "derived": 0,
+   "segment": 1.0,
+   "topdown": 0
+  },
+  "unit_share": 0,
+  "standard_version": "2026.08.23"
+ },
+ "sigcm_failures": [],
+ "model_study_failures": [],
+ "evidence": {
+  "figures_manifest": {
+   "fig1_football.png": {
+    "mode": "RGBA",
+    "size": [
+     1634,
+     798
+    ],
+    "has_alpha": true,
+    "opaque": true
+   },
+   "fig2_sensitivity.png": {
+    "mode": "RGBA",
+    "size": [
+     1634,
+     760
+    ],
+    "has_alpha": true,
+    "opaque": true
+   },
+   "fig3_cone.png": {
+    "mode": "RGBA",
+    "size": [
+     1634,
+     741
+    ],
+    "has_alpha": true,
+    "opaque": true
+   },
+   "fig4_segments.png": {
+    "mode": "RGBA",
+    "size": [
+     1634,
+     760
+    ],
+    "has_alpha": true,
+    "opaque": true
+   }
+  },
+  "scrub_hits": [],
+  "document_chars": 60042,
+  "column_audit": [],
+  "recalc_mismatches": 0,
+  "recalc_checks": 84,
+  "sheets": [
+   "READ FIRST",
+   "Summary",
+   "Fundamental Valuation",
+   "Assumptions",
+   "SOTP Bridge",
+   "Segments",
+   "Relative & Normalized",
+   "DCF",
+   "Income Statement",
+   "Balance Sheet",
+   "Cash Flow",
+   "Summary Financials",
+   "Monte Carlo",
+   "Sensitivity",
+   "Per-Share & Ratios",
+   "Peer & Sector"
+  ],
+  "formula_cells": 74,
+  "headings": [
+   "Read first",
+   "Headline",
+   "Valuation summary",
+   "Company overview",
+   "1. Fundamental valuation",
+   "1.1 The cash-flow model",
+   "1.2 Book value and the return earned on it",
+   "1.3 What the shares have been worth before",
+   "1.4 Normalised earnings power",
+   "1.5 Synthesis \u2014 four lenses, one field",
+   "1.6 The drivers, and how well this method has forecast them",
+   "1.7 The crux",
+   "1.8 The cost of capital, priced line by line",
+   "1.9 Sensitivity",
+   "2. Technical and price structure",
+   "3. Where the price itself could be",
+   "4. Comparing the lenses",
+   "5. What would move this",
+   "6. How to read the ranges in this document",
+   "7. Caveats, and what would change our mind",
+   "Appendix A \u2014 financial statements",
+   "A.1 Income statement: three years reported, five projected",
+   "A.2 Balance sheet as reported",
+   "A.3 Projected balance sheet and cash flow",
+   "Appendix B \u2014 competitors, risks and open questions",
+   "B.1 Competitors",
+   "B.2 Risks",
+   "B.3 Questions this study asked",
+   "Appendix C \u2014 three ways of valuing this company",
+   "C.1 Expert 1 \u2014 the order book as a receivable stream",
+   "C.2 Expert 2 \u2014 net asset value, goodwill excluded",
+   "C.3 Expert 3 \u2014 capitalise only what recurs",
+   "C.4 Cross-examination",
+   "C.5 The three in one room",
+   "C.6 What drives the differences",
+   "About this study",
+   "Disclosure"
+  ],
+  "h1_count": 16,
+  "tables": 32
+ }
+}

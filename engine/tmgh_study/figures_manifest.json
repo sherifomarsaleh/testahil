@@ -1,0 +1,38 @@
+{
+ "fig1_football.png": {
+  "mode": "RGBA",
+  "size": [
+   1634,
+   798
+  ],
+  "has_alpha": true,
+  "opaque": true
+ },
+ "fig2_sensitivity.png": {
+  "mode": "RGBA",
+  "size": [
+   1634,
+   760
+  ],
+  "has_alpha": true,
+  "opaque": true
+ },
+ "fig3_cone.png": {
+  "mode": "RGBA",
+  "size": [
+   1634,
+   741
+  ],
+  "has_alpha": true,
+  "opaque": true
+ },
+ "fig4_segments.png": {
+  "mode": "RGBA",
+  "size": [
+   1634,
+   760
+  ],
+  "has_alpha": true,
+  "opaque": true
+ }
+}

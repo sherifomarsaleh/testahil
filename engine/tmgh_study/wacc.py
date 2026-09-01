@@ -71,8 +71,8 @@ KD_SOURCE = (
 )
 
 SPOT = 97.80
-SPOT_SOURCE = ("EGX close 23 August 2026, engine/raw_ohlc/EG/TMGH.csv — the same cleaned "
-               "series the price engine runs on")
+SPOT_SOURCE = ("Egyptian Exchange close, 23 August 2026, from the same cleaned "
+               "price history the probability distribution is fitted to")
 
 
 def beta_record():
