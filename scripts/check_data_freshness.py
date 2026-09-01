@@ -416,6 +416,34 @@ def main() -> int:
                               f'date {struck["grade"]} is unchanged, so the commitment '
                               f'stands and the cone is not re-sized.')
                     continue
+                #     THE SAME FORGIVENESS, FOR A ROW STRUCK BEFORE THE DURABLE
+                #     RECORD EXISTED (01-Sep-2026). horizon_days/grade_basis are
+                #     what the branch above reads to prove the published h was a
+                #     projection, and rows struck before those fields were emitted
+                #     carry neither -- so the branch could not fire for them and
+                #     the check hard-FAILED on a number nobody got wrong. Real
+                #     case: splicing one month of TSLA extended the US calendar to
+                #     2026-09-01, and AAPL and NVDA -- struck 2026-07-27, h1=22,
+                #     grade date 2026-08-27 -- were re-measured against a realized
+                #     23. Identical in shape to the ABUK case above, blocked only
+                #     by the age of the row.
+                #
+                #     THE GUARD IS UNCHANGED AND IS STILL THE GRADE DATE. This
+                #     forgives only where the ledger row for that exact strike
+                #     exists, its commitment still resolves to the same date, and
+                #     the disagreement comes from resolve() having crossed to its
+                #     REALIZED branch. A moved grade date, a missing row, or a
+                #     durable record that disagrees all still FAIL.
+                if (struck and struck['horizon_days'] is None
+                        and struck['grade'] == res['grade_date']
+                        and res['basis'] == 'realized'):
+                    warn(key, f'hz.{field} is {got_h}, the projection made at strike; '
+                              f'the span has since resolved to {want} sessions. This '
+                              f'row predates the horizon_days/grade_basis record, so '
+                              f'the grade date is the whole guard: {struck["grade"]} '
+                              f'is unchanged, so the commitment stands and the cone '
+                              f'is not re-sized.')
+                    continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
