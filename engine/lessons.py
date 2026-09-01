@@ -103,6 +103,27 @@ def main(argv):
     elif klass:
         who = "a new %s study" % klass
     show(rows, "What binds on %s" % who)
+
+    # The widening path, printed under its own heading and never mixed into the
+    # set above. These are other companies' single-company lessons: they do NOT
+    # bind here, and the only legitimate use is to check whether the same thing
+    # happens on this name too. If it does, that is the second observation the
+    # scope rule waits for and the lesson is refiled at CLASS scope.
+    if klass:
+        watch = LR.watchlist(klass, ticker)
+        if watch:
+            print("\nDoes any of this repeat here? — %d single-company lesson%s "
+                  "from other %s\n" % (len(watch), "" if len(watch) == 1 else "s",
+                                       klass))
+            print("  These do NOT bind on this name. Applying one as-is would be "
+                  "superstition.\n  Check each against this company's own "
+                  "numbers; where one repeats, that is the\n  second observation "
+                  "and the lesson is refiled at class scope.\n")
+            for x in watch:
+                print("  %s  %s   [%s only]" % (x["id"], x["headline"],
+                                                x["applies_to"]))
+                print("      %s\n" % x["plain"])
+
     if not ticker and not klass:
         print("  (%d more bind on a class or a single name — "
               "add a ticker or --class to see them)\n"

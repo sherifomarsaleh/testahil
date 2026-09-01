@@ -122,6 +122,30 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
+DEV_HANDOVER = "real-estate developer, off-plan, point-in-time on handover"
+
+# WHAT CLASS EACH SINGLE-COMPANY LESSON'S SUBJECT BELONGS TO.  [per instruction,
+# 01-Sep-2026 — "hold and save the lesson, maybe when another company from the
+# same class comes and exhibits a similar problem we apply the lesson across the
+# same class"]
+#
+# THE WIDENING PATH HAD NO MACHINERY BEHIND IT.  The register has always said to
+# file at the narrower scope and widen when a second company shows the same
+# thing, but lessons_for() returns a company's OWN stock lessons and nothing
+# else — so running the next name of the same class would never surface the
+# first one's, and the second observation that licenses the widening could not
+# be noticed.  A rule whose trigger nobody can see is a rule that never fires:
+# the [R-ENF-01] species, one layer up.
+#
+# A STOCK lesson records its subject and not its class, so the map has to live
+# somewhere.  It lives here rather than in the queue because a company's class
+# is a research judgement made when its study is built, not a fact about its
+# listing — and because assert_lessons_register() can then refuse a STOCK
+# lesson whose subject has no class, which is what stops this map going stale
+# the moment a name is added.
+STOCK_CLASS = {
+    "PHDC": DEV,
+}
 
 LESSONS = [
 
@@ -1210,6 +1234,18 @@ def assert_lessons_register():
         if x["scope"] == "CLASS" and x["applies_to"] not in CLASSES:
             problems.append("%s: class %r is not a registered class"
                             % (x["id"], x["applies_to"]))
+        # A single-company lesson must say which class its subject belongs to,
+        # or the widening path cannot see it when the next company of that
+        # class is run — and an invisible watch item is the same as no watch
+        # item. This is what keeps STOCK_CLASS from going stale silently.
+        if x["scope"] == "STOCK" and x["applies_to"] not in STOCK_CLASS:
+            problems.append("%s: %s carries a single-company lesson but no "
+                            "class in STOCK_CLASS, so it can never be widened"
+                            % (x["id"], x["applies_to"]))
+    for tk, kl in STOCK_CLASS.items():
+        if kl not in CLASSES:
+            problems.append("STOCK_CLASS[%s]: %r is not a registered class"
+                            % (tk, kl))
     if problems:
         raise AssertionError("lessons register invalid:\n  "
                              + "\n  ".join(problems))
@@ -1234,6 +1270,34 @@ def lessons_for(ticker=None, klass=None):
         out += [x for x in LESSONS
                 if x["scope"] == "STOCK" and x["applies_to"] == ticker.upper()]
     return sorted(out, key=lambda x: x["id"])
+
+
+def watchlist(klass, ticker=None):
+    """Single-company lessons from OTHER companies of this class.
+
+    THESE DO NOT BIND AND THIS FUNCTION IS DELIBERATELY NOT lessons_for().
+    A stock lesson applied to another company is superstition — the register
+    says so in those words — so this returns the one thing that is legitimate
+    to do with it: CHECK WHETHER THE SAME THING HAPPENS HERE TOO.  If it does,
+    that is the second observation, and the lesson is refiled at CLASS scope
+    through the ordinary judge-and-add path.  If it does not, nothing happens
+    and the lesson stays where it is.
+
+    Keeping the two functions apart is the whole safeguard.  Folding these rows
+    into what binds would quietly convert every unconfirmed one-company finding
+    into a class rule on first sight, which is the failure the scope rule
+    exists to prevent and would be worse than having no widening path at all.
+    """
+    if klass not in CLASSES:
+        raise KeyError("%r is not a registered class; have %s"
+                       % (klass, list(CLASSES)))
+    here = (ticker or "").upper()
+    return sorted(
+        (x for x in LESSONS
+         if x["scope"] == "STOCK"
+         and STOCK_CLASS.get(x["applies_to"]) == klass
+         and x["applies_to"] != here),
+        key=lambda x: x["id"])
 
 
 def counts():
