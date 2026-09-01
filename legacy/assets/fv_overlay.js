@@ -696,98 +696,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "NVDA",
-   "name": "NVIDIA Corporation",
-   "code": "NASDAQ:NVDA",
-   "ccy": "USD",
-   "spot": 196.51,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 21,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 147,
-   "fv_base": 204,
-   "fv_full": 287,
-   "gap_base_pct": 3.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 12.0,
-    "width_cal": 1.084,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.140364,
-    "mu_h": 0.00244,
-    "G": {
-     "bear": -2.07,
-     "base": 0.27,
-     "full": 2.7
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0207,
-     "base": 0.3948,
-     "full": 0.0062
-    },
-    "p_touch": {
-     "bear": 0.0301,
-     "base": 0.6909,
-     "full": 0.0096
-    },
-    "required_cagr": {
-     "bear": -0.9693,
-     "base": 0.5666,
-     "full": 93.1818
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00252
-   },
-   "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.249028,
-    "mu_h": 0.011033,
-    "G": {
-     "bear": -1.17,
-     "base": 0.15,
-     "full": 1.52
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.1049,
-     "base": 0.4548,
-     "full": 0.0659
-    },
-    "p_touch": {
-     "bear": 0.1884,
-     "base": 0.823,
-     "full": 0.1144
-    },
-    "required_cagr": {
-     "bear": -0.6869,
-     "base": 0.1614,
-     "full": 3.5498
-    },
-    "hurdle_rf": 0.0363,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0021
-   },
-   "market": "US"
-  },
-  {
    "ticker": "IQCD",
    "name": "Industries Qatar",
    "code": "QSE:IQCD",
@@ -1798,6 +1706,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00162
    },
    "market": "SA"
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "code": "NASDAQ:NVDA",
+   "ccy": "USD",
+   "spot": 220.78,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 56,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 147,
+   "fv_base": 204,
+   "fv_full": 287,
+   "gap_base_pct": -7.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.141937,
+    "mu_h": 0.002443,
+    "G": {
+     "bear": -2.87,
+     "base": -0.56,
+     "full": 1.85
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0041,
+     "base": 0.2706,
+     "full": 0.034
+    },
+    "p_touch": {
+     "bear": 0.0054,
+     "base": 0.4697,
+     "full": 0.0529
+    },
+    "required_cagr": {
+     "bear": -0.9924,
+     "base": -0.6127,
+     "full": 22.2845
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00209
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.249712,
+    "mu_h": 0.010543,
+    "G": {
+     "bear": -1.63,
+     "base": -0.32,
+     "full": 1.05
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0461,
+     "base": 0.3506,
+     "full": 0.1455
+    },
+    "p_touch": {
+     "bear": 0.0785,
+     "base": 0.667,
+     "full": 0.2553
+    },
+    "required_cagr": {
+     "bear": -0.8035,
+     "base": -0.2711,
+     "full": 1.8555
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0028
+   },
+   "market": "US"
   },
   {
    "ticker": "ALRAJHI",

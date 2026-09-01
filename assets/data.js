@@ -1319,28 +1319,29 @@ const TICKERS = {
     name: "NVIDIA Corporation",
     nameAr: "\u0625\u0646\u0641\u064a\u062f\u064a\u0627",
     code: "NASDAQ:NVDA",
-    spot: 196.51,
-    spotDate: "close 27 Jul 2026",
+    spot: 220.78,
+    spotDate: "close 31 Aug 2026",
     ccy: "USD",
     fair: { bear: 147, base: 204, full: 287 },      // 6 Jul 2026 \u2014 weighted central 204 (+3.9% vs spot 196.44). Lenses: DCF 5-yr FCFF 189 (primary, TV ~79% of EV), relative multiples 200, forward-earnings power 230. bear/full = weighted bear/bull of the football field. Swing: how many years AI data-center capex sustains super-normal growth; China export controls; customer concentration. International name: zero secular drift, DCF-primary lens.
     dist: {
-      t20: { label:"1 month",   p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97, resolve:"2026-08-27" },
-      t60: { label:"3 months",  p5:132.59, p25:168.27, p50:198.69, p75:234.29, p95:298.15, resolve:"2026-10-27" }
+      t20: { label:"1 month",   p5:175.92, p25:202.53, p50:221.32, p75:242.19, p95:279.19, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:148.89, p25:190.68, p50:223.12, p75:260.91, p95:335.55, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.084, mult:1, eff:1.084, on:"2026-09-01" },
     touch: [ /* descending high -> low */
-      [240.00, 13, 39], [230.00, 22, 49], [220.00, 36, 61], [210.00, 56, 74], [200.00, 81, 89], [190.00, 71, 83], [180.00, 45, 66], [170.00, 24, 50], [160.00, 11, 35]
+      [240.00, 47, 68], [230.00, 68, 81], [220.00, 86, 92], [210.00, 61, 76], [200.00, 39, 61], [190.00, 22, 46], [180.00, 11, 34], [170.00, 5, 23], [160.00, 2, 15]
     ],
-    levels: { res:[198.62, 208.78, 214.60], sup:[189.13, 177.36, 169.92] },
+    levels: { res:[227.92, 232.28, 236.54], sup:[214.54, 195.17, 169.92] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 196.51 below a rising 20-day (203.57) and a flat 50-day (208.62), but above a rising 200-day (192.97). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 7.68 (~3.9%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.03 / +0.05 / \u22120.09). Over the last year it has ranged 164.07\u2013236.54; the last close sits 17% below that high and 20% above that low.",
-      bull: "A daily close back above 198.62 would clear the nearest resistance; the next charted level above it is 214.60.",
-      bear: "A close below 189.13 would break the nearest support; the next charted level below it is 169.92."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 220.78 above a rising 20-day (218.75), a rising 50-day (208.64) and a rising 200-day (195.97). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 7.48 (~3.4%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+2.48 / +2.76 / \u22120.28). Over the last year it has ranged 164.07\u2013236.54; the last close sits 7% below that high and 35% above that low.",
+      bull: "A daily close back above 227.92 would clear the nearest resistance; the next charted level above it is 236.54.",
+      bear: "A close below 214.54 would break the nearest support; the next charted level below it is 169.92."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-29" },
-      tech: { data:"2026-07-27", computed:"2026-09-01" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/NVDA_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -5459,9 +5460,9 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
     p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97,
     touch:{ "+5":65, "+10":43, "+15":27, "+20":16, "-5":62, "-10":38 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:227.98, realized_high:230.47, realized_low:190.01,
+    in_90:true, in_50:false, realized_quantile:0.823, median_err:0.1573,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"NVDA", asset_class:"equity",
@@ -7515,6 +7516,22 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+
+  // ---- 01-Sep-2026 single-name roll-forward: NVDA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"NVDA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:220.78, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4462,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:175.92, p25:202.53, p50:221.32, p75:242.19, p95:279.19,
+    touch:{ "+5":64, "+10":42, "+15":26, "+20":15, "-5":61, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   {
     instrument:"AAPL", asset_class:"equity",
     anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:325.71, ccy:"USD",
@@ -7610,6 +7627,19 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=250.0, width_cal=1.056 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=12.0, width_cal=1.084 quoted above. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
     p5:240.39, p25:306.38, p50:361.71, p75:426.5, p95:545.86,
     touch:{ "+5":80, "+10":66, "+15":54, "+20":43, "-5":77, "-10":61 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"NVDA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:220.78, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4621,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:148.89, p25:190.68, p50:223.12, p75:260.91, p95:335.55,
+    touch:{ "+5":79, "+10":65, "+15":52, "+20":41, "-5":76, "-10":59 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
