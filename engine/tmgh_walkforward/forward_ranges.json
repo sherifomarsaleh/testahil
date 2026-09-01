@@ -402,12 +402,7 @@
    }
   }
  },
- "corrections_applied": [
-  "backlog",
-  "da",
-  "development_properties",
-  "new_sales"
- ],
+ "corrections_applied": [],
  "guidance_ledger": {
   "entries": [
    {

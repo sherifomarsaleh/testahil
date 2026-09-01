@@ -83,6 +83,14 @@ STATUSES = ("provisional", "adopted", "watch", "outstanding")
 # no study will ever match.
 CLASSES = (
     "real-estate developer, off-plan, percentage-of-completion",
+    # TMGH is off-plan with a large backlog and long payment plans like the
+    # class above, but it recognises revenue when the customer takes control of
+    # the home, not as construction progresses. [L-102] makes the recognition
+    # basis the class-defining question for developers, so filing a
+    # point-in-time issuer's lessons under a class whose name asserts
+    # percentage-of-completion would be the superstition this register warns
+    # about. The two are kept apart.
+    "real-estate developer, off-plan, point-in-time on handover",
     "telecom operator",
     "cement and heavy industrial",
     "petrochemical",
@@ -833,6 +841,124 @@ LESSONS = [
       "walk_forward_fundamental",
       "By era: E2 post-float +0.507; E3 devaluation -0.196.",
       "Nothing. This is a rule about how to read a measured bias."),
+
+    L("L-034", "ALL", None,
+      "A depreciation forecast built on a projected asset base cannot "
+      "see an acquisition.",
+      "Depreciation is usually projected as a rate on a fixed-asset "
+      "balance the model has also projected. That works until the "
+      "company buys something. An acquisition multiplies the asset "
+      "base overnight and the forecast has no way to know, so the "
+      "error is not noise — it is the deal.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Bias -0.253 log (about 29% too low), average miss 0.435, wrong "
+      "in the same direction in 80% of cases, and the sign holds "
+      "across every bootstrap block tested (n=30).",
+      "A name with no acquisition inside the tested window whose "
+      "depreciation forecast still misses in the same direction and "
+      "by the same size.",
+      "provisional"),
+
+    L("L-115", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
+      "A developer's work in progress runs ahead of its revenue, not "
+      "with it.",
+      "Half-built homes are an investment made years before the "
+      "revenue they produce. Driving work in progress off revenue "
+      "makes the model spend when the company has already spent, and "
+      "it will understate the balance every time the company is "
+      "building for a growing order book.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Bias -0.528 log (about 1.7 times too low), average miss 0.528, "
+      "wrong in the same direction in 100% of cases, and the sign "
+      "holds across every bootstrap block tested (n=25).",
+      "A developer whose work in progress tracks its revenue closely "
+      "over a full cycle.",
+      "provisional"),
+
+    L("L-035", "ALL", None,
+      "A reported finance charge is not always interest on "
+      "borrowings.",
+      "Before dividing a finance charge by debt to get a borrowing "
+      "rate, check that the charge is actually interest on that debt. "
+      "Where a company recognises a financing component on its "
+      "customer contracts, the reported charge includes something no "
+      "lender is being paid, and the implied rate is not a rate at "
+      "all.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Bias -1.224 log (about 3.4 times too low), average miss 1.224, "
+      "wrong in the same direction in 100% of cases, and the sign "
+      "holds across every bootstrap block tested (n=30).",
+      "An issuer whose finance-cost note splits interest on "
+      "borrowings from every other financing charge, where the "
+      "implied rate then matches its disclosed borrowing cost.",
+      "provisional"),
+
+    L("L-116", "CLASS", "real-estate developer, off-plan, point-in-time on handover",
+      "The size of a demographic anchor's miss on a developer is set "
+      "by the launch calendar, not by the method.",
+      "A population-based volume driver runs low for every developer, "
+      "but not by a fixed amount. How far low depends entirely on "
+      "what the company launched, which means the miss cannot be "
+      "corrected with a multiplier fitted on one name and carried to "
+      "another.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Bias -0.877 log (about 2.4 times too low), average miss 1.022, "
+      "wrong in the same direction in 76% of cases, and the sign "
+      "holds across every bootstrap block tested (n=33).",
+      "A third developer whose miss lands close to one of the first "
+      "two, which would suggest a stable offset after all.",
+      "provisional"),
+
+    L("L-036", "ALL", None,
+      "For a balance-sheet stock, assuming no change is a strong "
+      "benchmark.",
+      "Stocks move slowly. A model that forecasts one has to beat "
+      "simply carrying last year's balance forward, and it often does "
+      "not. Check that explicitly before presenting a projected "
+      "balance as if it added information.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Negative skill against the freeze benchmark at horizons 1, 2, "
+      "3, 5, worst -0.555.",
+      "A stock series volatile enough that carrying it forward is "
+      "clearly worse than modelling it, at most horizons.",
+      "provisional"),
+
+    L("L-037", "ALL", None,
+      "Perfect foresight of inflation removes almost none of a "
+      "forecast error, even across a devaluation.",
+      "It is tempting to blame a bad forecast on the currency. Re-run "
+      "every forecast knowing the inflation path in advance and see "
+      "how much improves. Usually almost nothing does, which means "
+      "the error is in how the business was modelled and looking for "
+      "a macro fix wastes the effort.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "Average miss 0.677 as known, 0.623 with perfect foresight of "
+      "inflation — the macro share is only 8.1%.",
+      "A market or period where the same re-run removes most of the "
+      "error.",
+      "provisional"),
+
+    L("L-038", "ALL", None,
+      "In a high-inflation market, a driver bias that changes "
+      "direction between regimes is the normal case, not the "
+      "exception.",
+      "A bias measured over a whole history can hide two opposite "
+      "halves, and in a market with several currency regimes that is "
+      "what usually happens. Split the record by regime before "
+      "treating any measured bias as a fact — on this company a third "
+      "of the drivers changed sign.",
+      "TMGH walk-forward, 1 September 2026",
+      "walk_forward_fundamental",
+      "By era: E2 post-float +0.325; E3 devaluation -0.169.",
+      "A market or period where fewer than one driver in ten changes "
+      "sign between regimes.",
+      "provisional"),
 ]
 
 

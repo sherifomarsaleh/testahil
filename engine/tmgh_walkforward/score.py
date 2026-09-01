@@ -177,7 +177,8 @@ def main():
                                "%s/%s/h%d" % (setting, d, h))
                 if sh:
                     scores["%s|%s|h%d" % (setting, d, h)] = sh
-    json.dump(scores, open(os.path.join(HERE, "scores.json"), "w"), indent=1)
+    json.dump(canonical(rows, scores),
+              open(os.path.join(HERE, "scores.json"), "w"), indent=1)
 
     print("=== per driver, pooled over horizons, as-known macro ===")
     print("%-24s %4s %8s %8s %7s %8s %s" % ("driver", "n", "bias", "MAE",
@@ -225,6 +226,78 @@ def main():
                    else "NON-ZERO - the rule has an inflation term it should not have")
         print("%-24s %+10.3f %+10.3f %+10.3f   %s"
               % (d, a["bias"], f["bias"], a["bias"] - f["bias"], chk))
+
+
+
+
+# ---------------------------------------------------------------------------
+# The canonical shape the shared harvester reads.
+#
+# engine/lessons_harvest.py applies selection rules that were fixed BEFORE any
+# run was read, so they cannot be tuned to a particular result. It reads a
+# specific schema, and a run that writes a different one harvests zero
+# candidates and reports it as a clean pass — which is exactly the empty result
+# masquerading as a clean one that this project has had to close before. The
+# canonical view is therefore emitted from the same cells everything else is
+# scored on, not assembled by hand.
+
+def canonical(rows, scores):
+    from collections import defaultdict
+
+    def boot(rs):
+        bs = block_bootstrap(rs)
+        return {k.replace("block_", ""): {"lo": round(v["ci_lo"], 4),
+                                          "hi": round(v["ci_hi"], 4)}
+                for k, v in bs.items()}
+
+    def summ(s, rs):
+        return {"n": s["n"], "bias": round(s["bias"], 4), "mae": round(s["mae"], 4),
+                "median": round(sorted(r["log_error"] for r in rs
+                                       if "log_error" in r)[len(
+                                           [r for r in rs if "log_error" in r]) // 2], 4)
+                if any("log_error" in r for r in rs) else None,
+                "over": round(s["share_over"], 3), "boot": boot(rs),
+                "robust_sign": bool(s["robust_sign"])}
+
+    by_driver, by_horizon, macro_split, by_era = {}, {}, {}, {}
+    for d in DRIVERS:
+        sel = [r for r in rows if r["setting"] == "asknown" and r["driver"] == d]
+        s = scores.get("asknown|%s|all" % d)
+        if not s:
+            continue
+        by_driver[d] = summ(s, sel)
+        by_era[d] = {k: {"n": v["n"], "bias": round(v["bias"], 4)}
+                     for k, v in s["by_era"].items()}
+        f = scores.get("foresight|%s|all" % d)
+        if f:
+            denom = abs(s["mae"]) or 1e-9
+            macro_split[d] = {"as_known_mae": round(s["mae"], 4),
+                              "perfect_mae": round(f["mae"], 4),
+                              "macro_share": round((s["mae"] - f["mae"]) / denom, 4)}
+        hs = {}
+        for h in BU.HORIZONS:
+            sh = scores.get("asknown|%s|h%d" % (d, h))
+            if not sh:
+                continue
+            cell = {"summary": {"n": sh["n"], "bias": round(sh["bias"], 4),
+                                "mae": round(sh["mae"], 4),
+                                "over": round(sh["share_over"], 3),
+                                "robust_sign": bool(sh["robust_sign"])}}
+            for nm in ("freeze", "trend"):
+                b = scores.get("%s|%s|h%d" % (nm, d, h))
+                if b and b["mae"]:
+                    cell["skill_" + nm] = {
+                        "n": min(sh["n"], b["n"]),
+                        "model_mae": round(sh["mae"], 4),
+                        "bench_mae": round(b["mae"], 4),
+                        "skill": round(1 - sh["mae"] / b["mae"], 4)}
+            hs[str(h)] = cell
+        if hs:
+            by_horizon[d] = hs
+    sign_cases = sum(1 for r in rows if r.get("sign_case"))
+    return {"by_driver": by_driver, "by_horizon": by_horizon,
+            "macro_split": macro_split, "by_era": by_era,
+            "sign_cases": sign_cases, "detail": scores}
 
 
 if __name__ == "__main__":

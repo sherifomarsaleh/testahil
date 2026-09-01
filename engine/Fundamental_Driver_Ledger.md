@@ -97,3 +97,74 @@ macro, measured by re-running every origin on a perfect-foresight inflation path
 Units and deliveries carry zero macro share by construction, which is the check
 that the split measures what it claims. Egypt's four devaluations across
 FY2016–FY2024 do **not** explain this record.
+
+---
+
+## TMGH — Talaat Moustafa Group Holding (EGX) · 1 September 2026
+
+**Class:** real-estate developer, off-plan — **point-in-time on handover**, not
+percentage-of-completion. That distinction is the entry's most important line: it
+is a different class from PHDC's, and it is registered as one, because [L-102]
+makes the recognition basis the class-defining question for developers and filing
+a point-in-time issuer under a percentage-of-completion class would be exactly the
+superstition the lessons register warns about.
+
+**Evidence base:** ten annual origins (FY2015–FY2024), horizons 1–5, both macro
+settings, scored against both naive benchmarks. Panel span FY2009 and
+FY2011–FY2025 from the company's own archive; FY2007, FY2008 and FY2010 excluded
+because their releases survive only as scans whose tables do not resolve.
+
+### Drivers set without a company disclosure, and what stands behind each
+
+| Driver | What was used | Why, and what would replace it |
+|---|---|---|
+| Order-book conversion period | 14 years (slower) and 10 years (faster), published side by side | The company publishes no delivery schedule. Its own conversion rate fell from ~15% before 2023 to 5.4% in FY2025 as the book quadrupled — construction capacity binds, not the order book. **A disclosed delivery schedule by project replaces this.** |
+| Replenishment sales | EGP 300bn a year, fading 15% a year toward the delivery rate | TMG sold roughly **ten times** what it delivered in FY2025. That is not a steady state and is not extrapolated: modelling sales and deliveries as independent compounding series drove the order book to EGP 4.8 **trillion** inside ten years. **Sustained sales at the current rate alongside deliveries rising to meet them would replace it.** |
+| Work-in-progress cover | 4.0 years of development cost, moved over 4 years | The company's own position at 30 June 2026. A fixed multiple of cost was tried and rejected: it made the company build ever faster for ever and drove cash to minus EGP 4 trillion — [L-105] made quantitative. |
+| Marginal cost of debt | Sovereign 23.00% + 250bp = 25.50% | **TMG discloses no rate on any of its own facilities**, in any statement or release held. Labelled rather than presented as the company's own cost. **Any disclosed facility pricing replaces it.** |
+| Recurring-leg growth | 20% hospitality, 22% other recurring | Stated, sensitised. No segment capex or occupancy disclosure exists to build them finer. |
+| Minority deduction | Computed BOTH at book and proportionally, on every case | Non-controlling interests are **45.2%** of consolidated equity and the company does not disclose its economic share project by project. |
+
+### What the record decided
+
+1. **The backlog-conversion rule works and the volume rule does not.** Development
+   revenue: bias −0.055 log, MAE 0.276, n=35 — the strongest positive result in the
+   run, and the reason the valuation is built on the order book rather than on a
+   revenue growth rate. New contracted sales: bias **−0.877**, robust across every
+   bootstrap block, in both eras.
+2. **The volume miss is a launch calendar, and its SIZE is not transferable.**
+   PHDC's equivalent miss was −19%; TMGH's is −58%. Registered as [L-116]: a
+   multiplier fitted on one developer cannot be carried to another.
+3. **The method is a long-horizon instrument.** It beats "no change" almost
+   everywhere from two years out and beats a trailing three-year growth rate on net
+   profit at three to five years, where that benchmark compounds into nonsense
+   (MAE 2.106 at h=5). At **one year** it beats **neither** benchmark on development
+   revenue or net profit, and the study says so.
+4. **Almost none of the error is the currency.** Perfect foresight of Egyptian
+   inflation removes 4 points of a 9-point revenue miss and 5 of a 68-point
+   net-profit miss, across three devaluations. Registered as [L-037].
+
+### Corrections tested and NOT promoted
+
+The **finance-cost** correction (−0.612 at half strength) cut that driver's MAE
+from 0.812 to 0.445 and **passed** its own test convincingly — robust across every
+block, sign holding in both eras, zero origins over-forecast. It was **not
+promoted**. TMG's reported finance charge of EGP 3,936.5mn against opening
+interest-bearing debt of EGP 8,928mn implies **44%**, against an Egyptian policy
+rate that peaked near 27.25%; the excess is the unwinding of the significant
+financing component recognised on customer contracts, and the statements do not
+split it. **This is the same species as the correction blocked on PHDC, reached
+from the opposite direction: there the DENOMINATOR was too broad, here the
+NUMERATOR is.** Recorded as a watch flag and as [L-035].
+
+Adopted at half strength, expanding window: new sales, backlog, development
+properties and D&A. The two-sigma structural-break reset fires at the FY2024 and
+FY2025 launch origins, so the new-sales correction carried into the forward
+projection is **0.000** — the pre-registered reset doing exactly its job.
+
+### Macro conditioning
+
+Macro share of the error: revenue **4.2 points of 9.0**, net profit **4.3 of
+68.0**, new sales **7.5 of 87.7**. Finance cost and development properties both
+return a macro share of **exactly zero by construction**, which is the check that
+the split measures what it claims — their rules carry no inflation term.
