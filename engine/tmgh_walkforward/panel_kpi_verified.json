@@ -1,0 +1,392 @@
+{
+ "new_sales_value": {
+  "2011": {
+   "value": 3012.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+   "page": 2,
+   "sentence": "new sales of real estate units amounted to EGP 4,482 MN for 12M -12, compared to EGP 3,012 MN for the same period last year",
+   "precision": "exact",
+   "tier": "A",
+   "note": "prior-year column of the FY2012 release",
+   "read": "verified against the sentence as printed"
+  },
+  "2012": {
+   "value": 4482.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+   "page": 2,
+   "sentence": "Total new sales of real estate units amounted to EGP 4,482 MN for 12M -12",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2013": {
+   "value": 6581.0,
+   "unit": "EGP mn",
+   "source": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+   "page": 2,
+   "sentence": "Total new sales of real estate units amounted to EGP 6,581 mn for 12M -13",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2014": {
+   "value": 6585.0,
+   "unit": "EGP mn",
+   "source": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+   "page": 2,
+   "sentence": "Total new sales of real estate units amounted to EGP 6,585 MN for 12M -14",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2015": {
+   "value": 6260.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+   "page": 2,
+   "sentence": "Total new sales of real estate units amounted to EGP 6.26 BN for 12M -15",
+   "precision": "0.01bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2016": {
+   "value": 7400.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+   "page": 2,
+   "sentence": "Total new sales of real estate units witnessed an increase of 17% amounted to EGP 7.4 BN for 12M-16",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2018": {
+   "value": 21300.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2018_earnings_release",
+   "page": 1,
+   "sentence": "Total presales came in at a record-high EGP21.3bn in FY2018, growing 62% y-o-y",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2019": {
+   "value": 20400.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_market_update_on_FY2019_sales_6_January_2020_",
+   "page": 1,
+   "sentence": "TMG Holding records total sales of EGP20.4bn in FY2019",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2020": {
+   "value": 16600.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2020_earnings_release",
+   "page": 1,
+   "sentence": "net sales of EGP16.6bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2021": {
+   "value": 32400.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2021_earnings_release",
+   "page": 1,
+   "sentence": "New sales surpass EGP32.4bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2022": {
+   "value": 33200.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2022_Earnings_Release",
+   "page": 1,
+   "sentence": "EGP33.2bn in new net sales",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2023": {
+   "value": 142800.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_4Q23_earnings_release",
+   "page": 2,
+   "sentence": "Total new sales in FY2023 soared to an unprecedented EGP142.8bn, marking the highest sales ever recorded in the history of the company",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": "TOTAL, not the EGP94.9bn core figure the same release quotes beside it; the difference is a large non-core land transaction and is a basis break, recorded in BASIS_BREAKS",
+   "read": "verified against the sentence as printed"
+  },
+  "2024": {
+   "value": 504000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY24_earnings_release_vFINAL",
+   "page": 1,
+   "sentence": "recorded unprecedented sales of over EGP 504 billion (approximately USD 10 billion), tripling the previous",
+   "precision": "1bn",
+   "tier": "A",
+   "note": "cross-checks against the FY25 release's stated 24% decline to EGP 382.2bn",
+   "read": "verified against the sentence as printed"
+  },
+  "2025": {
+   "value": 382200.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY25_ER_-_EN",
+   "page": 1,
+   "sentence": "EGP 382.2 bn Contracted Sales  24% YoY",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  }
+ },
+ "backlog": {
+  "2012": {
+   "value": 18000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_full_year_and_fourth_quarter_ending_December_31_2012_Earning_Release",
+   "page": 2,
+   "sentence": "the backlog of sold but unrecognized units is approximately EGP 18 BN",
+   "precision": "approximate",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2013": {
+   "value": 19950.0,
+   "unit": "EGP mn",
+   "source": "TMG_full_year_and_fourth_quarter_2013_Earning_Release",
+   "page": 2,
+   "sentence": "the backlog of sold but unrecognized units is approximately EGP 19.95 bn",
+   "precision": "approximate",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2014": {
+   "value": 20000.0,
+   "unit": "EGP mn",
+   "source": "TMG_full_year_and_fourth_quarter_2014_Earning_Release",
+   "page": 2,
+   "sentence": "the backlog of sold but unrecognized units is approximately EGP 20 Bn",
+   "precision": "approximate",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2015": {
+   "value": 20600.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2015",
+   "page": 2,
+   "sentence": "the backlog of sold but unrecognized units is approximately EGP 20.6 BN",
+   "precision": "approximate",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2016": {
+   "value": 22000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_Full_Year_and_Fourth_Quarter_ending_December_31_2016",
+   "page": 2,
+   "sentence": "the backlog of sold but unrecognized units is approximately EGP 22 BN",
+   "precision": "approximate",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2017": {
+   "value": 30000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2018_earnings_release",
+   "page": 2,
+   "sentence": "Our backlog stood at an unmatched EGP41.7bn as at end FY2018, compared to EGP30bn as at end-FY2017",
+   "precision": "1bn",
+   "tier": "A",
+   "note": "prior-year figure stated in the FY2018 release",
+   "read": "verified against the sentence as printed"
+  },
+  "2018": {
+   "value": 41700.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2018_earnings_release",
+   "page": 1,
+   "sentence": "backlog of EGP41.7bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2019": {
+   "value": 49500.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2019_earnings_release",
+   "page": 1,
+   "sentence": "backlog of EGP49.5bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2020": {
+   "value": 50800.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2020_earnings_release",
+   "page": 1,
+   "sentence": "backlog of EGP50.8bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2021": {
+   "value": 63100.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2021_earnings_release",
+   "page": 1,
+   "sentence": "backlog of EGP63.1bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2022": {
+   "value": 77400.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY2022_Earnings_Release",
+   "page": 1,
+   "sentence": "backlog stood at an unmatched EGP77.4bn",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2023": {
+   "value": 145000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_4Q23_earnings_release",
+   "page": 1,
+   "sentence": "backlog of sold but not yet delivered units stood at a remarkable EGP145bn",
+   "precision": "1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2024": {
+   "value": 294000.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY24_earnings_release_vFINAL",
+   "page": 2,
+   "sentence": "the Group's backlog of recorded and yet undelivered sales (sales backlog) amounted to EGP 294 billion",
+   "precision": "1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2025": {
+   "value": 441200.0,
+   "unit": "EGP mn",
+   "source": "TMG_Holding_FY25_ER_-_EN",
+   "page": 2,
+   "sentence": "Backlog build-up to EGP 441.2 billion",
+   "precision": "0.1bn",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  }
+ },
+ "units_delivered": {
+  "2021": {
+   "value": 2991.0,
+   "unit": "units",
+   "source": "TMG_Holding_FY2021_earnings_release",
+   "page": 1,
+   "sentence": "delivery of 2,991 residential and non-residential units",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2022": {
+   "value": 4091.0,
+   "unit": "units",
+   "source": "TMG_Holding_FY2022_Earnings_Release",
+   "page": 1,
+   "sentence": "delivery of 4,091 residential and non-residential units during the period",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2023": {
+   "value": 2661.0,
+   "unit": "units",
+   "source": "TMG_Holding_4Q23_earnings_release",
+   "page": 1,
+   "sentence": "delivery of 2,661 residential and non-residential units",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  },
+  "2025": {
+   "value": 3196.0,
+   "unit": "units",
+   "source": "TMG_Holding_FY25_ER_-_EN",
+   "page": 2,
+   "sentence": "3,196 units delivered across three projects",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  }
+ },
+ "units_sold": {
+  "2022": {
+   "value": 6102.0,
+   "unit": "units",
+   "source": "TMG_Holding_FY2022_Earnings_Release",
+   "page": 2,
+   "sentence": "representing some 6,102 units",
+   "precision": "exact",
+   "tier": "A",
+   "note": null,
+   "read": "verified against the sentence as printed"
+  }
+ },
+ "not_disclosed": {
+  "new_sales_value": {
+   "2009": "no full-year sales figure survives in a readable release",
+   "2010": "the FY2010 release states EGP 4.144bn of new sales, but its own summary table does not resolve and the year is excluded from the panel",
+   "2017": "no FY2017 sales total is stated in any release held. The FY2018 release gives 62% growth, from which 13.1bn follows arithmetically \u2014 that is an INFERENCE, not a disclosure, and the cell is left empty rather than filled"
+  },
+  "backlog": {
+   "2009": "not stated in a readable release",
+   "2010": "stated only as 'exceeds the level of EGP 22 bn' \u2014 a floor, not a figure",
+   "2011": "not stated in the FY2011 release"
+  },
+  "units_sold": {
+   "all_but_2022": "TMG does not publish a continuous unit-count series. Occasional mentions exist and are not a series; building a price-per-unit driver on them would divide one year's value by another year's count, which is the arithmetic error L-010 records."
+  },
+  "units_delivered": {
+   "all_but_2021_2023_2025": "same \u2014 occasional, not continuous"
+  }
+ },
+ "_note": "The operating drivers, one cell at a time, each read against its own sentence.\n\nThe automatic pass (parse_kpi.py + kpi_panel.py) proposes; this file disposes.\nEvery cell below was read in the sentence the release actually prints, and the\nsentence is carried with it. That is deliberate and not a shortcut: a mode vote\nover prose put FY2023's CORE sales figure in the headline slot, read a sentence\nabout 37,000 units still to be delivered as 12,000 units sold, and took a\ndelivery count for a sales count \u2014 three wrong cells that every arithmetic\ncheck in the panel would have accepted, because prose has no arithmetic.\n\nWHAT TMG DISCLOSES, AND WHAT IT DOES NOT. New sales value and backlog run the\nwhole span. Units sold and units delivered are published only occasionally and\nnever as a continuous series, so THE UNIT LEVEL IS NOT AVAILABLE for this\nissuer and the driver build stands at segment level with that gap stated \u2014\n[R-SIGCM-02]'s \"segment\" level, not \"unit\". Backlog before FY2018 is disclosed\nonly as an approximation (\"approximately EGP 20 BN\"), which is recorded as\nsuch rather than carried at false precision.\n"
+}
