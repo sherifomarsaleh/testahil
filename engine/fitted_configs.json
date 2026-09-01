@@ -561,11 +561,11 @@
     "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0,
+    "market_skill": 0.0016,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
       -0.006,
-      0.008
+      0.01
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -608,12 +608,12 @@
       "ELM": {
         "nu": 10.0,
         "width_cal": 1.056,
-        "skill": 0.0022,
-        "skill_raw_basis": -0.0025,
+        "skill": 0.0337,
+        "skill_raw_basis": 0.0102,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.018,
-          0.013
+          -0.036,
+          0.081
         ]
       },
       "EXTRA": {
