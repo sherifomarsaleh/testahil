@@ -137,6 +137,14 @@ def evidence():
 
 
 def main():
+    # the class-lens rule, checked from outside the study's own say-so
+    import json as _j
+    _n = _j.load(open(os.path.join(HERE, "study_numbers.json")))
+    _lenses = list(_n.get("lenses", {}).keys()) + (
+        ["rnav"] if os.path.exists(os.path.join(HERE, "rnav.json")) else [])
+    RP.assert_class_lens(
+        "real-estate developer, off-plan, point-in-time on handover", _lenses)
+
     ev = evidence()
     beta = beta_gate()
     gu = RP.assert_ground_up(ground_up_record(), "TMGH")

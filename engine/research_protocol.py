@@ -223,6 +223,52 @@ class ModelStudyChecklist:
         return not self.failures()
 
 
+
+# THE VALUATION METHOD MUST MATCH THE CLASS.  [added 01-Sep-2026]
+#
+# assert_model_study() verified that the sixteen sections and sixteen sheets
+# were present and never once asked whether the study valued the company the way
+# its class requires. TMGH shipped four "cases" that were two cost-of-capital
+# bases crossed with two readings of ONE discounted cash flow -- one lens with
+# four settings -- for a real-estate developer, whose class rule is SOTP/RNAV.
+# The word "land" appeared nowhere in any lens, and every gate passed it.
+# Structure verified, substance unexamined: the same species of hole that
+# [R-SANITY-01] closes one level up.
+LENS_BY_CLASS = {
+    "real-estate developer, off-plan, percentage-of-completion": ("sotp", "rnav"),
+    "real-estate developer, off-plan, point-in-time on handover": ("sotp", "rnav"),
+    "telecom operator": ("dcf",),
+    "cement and heavy industrial": ("dcf",),
+    "petrochemical": ("dcf",),
+    "airline": ("dcf",),
+    "bank": ("ddm", "fcfe", "residual_income"),
+    "holding company": ("sotp", "nav"),
+    "commodity and metals": ("dcf",),
+}
+
+
+def assert_class_lens(klass, lenses):
+    """A study of a class must carry at least one lens that class requires.
+
+    `lenses` is the study's own list of lens names. The check is deliberately
+    weak -- one required lens, not all of them -- because the rule permits
+    adapting the nearest pattern where a class does not fit exactly. What it
+    refuses is a study that carries NONE of them, which is what happened.
+    """
+    want = LENS_BY_CLASS.get(klass)
+    if want is None:
+        raise AssertionError(
+            "%r is not a class with a registered lens rule; register it or "
+            "state which pattern was adapted and why." % klass)
+    have = {str(x).lower() for x in lenses}
+    if not any(w in h for w in want for h in have):
+        raise AssertionError(
+            "CLASS-LENS RULE NOT MET — study must not be issued. A %s is valued "
+            "on %s; this study carries only %s. A discounted cash flow with "
+            "several settings is one lens, not several."
+            % (klass, " or ".join(want), sorted(have) or "no lens at all"))
+
+
 def assert_model_study(checklist: ModelStudyChecklist) -> None:
     """Raise before a study is allowed to be issued if it falls short of the model-report bar.
 
