@@ -2720,6 +2720,98 @@ const FV_OVERLAY = {
    "market": "IN"
   },
   {
+   "ticker": "RELIANCE",
+   "name": "Reliance Industries Limited",
+   "code": "NSE:RELIANCE",
+   "ccy": "INR",
+   "spot": 1307,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 57,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1112,
+   "fv_base": 1395,
+   "fv_full": 1719,
+   "gap_base_pct": 6.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 1.014,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.064637,
+    "mu_h": 0.005341,
+    "G": {
+     "bear": -2.5,
+     "base": 1.01,
+     "full": 4.24
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0097,
+     "base": 0.1501,
+     "full": 0.0011
+    },
+    "p_touch": {
+     "bear": 0.0157,
+     "base": 0.241,
+     "full": 0.0015
+    },
+    "required_cagr": {
+     "bear": -0.8561,
+     "base": 1.1857,
+     "full": 25.7919
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00085
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.120905,
+    "mu_h": 0.016692,
+    "G": {
+     "bear": -1.34,
+     "base": 0.54,
+     "full": 2.27
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0605,
+     "base": 0.3204,
+     "full": 0.0202
+    },
+    "p_touch": {
+     "bear": 0.111,
+     "base": 0.5426,
+     "full": 0.0325
+    },
+    "required_cagr": {
+     "bear": -0.476,
+     "base": 0.2978,
+     "full": 1.9923
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0013
+   },
+   "market": "IN"
+  },
+  {
    "ticker": "ARAMCO",
    "name": "Saudi Aramco",
    "code": "TADAWUL:2222",
@@ -3454,98 +3546,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00059
    },
    "market": "AE"
-  },
-  {
-   "ticker": "RELIANCE",
-   "name": "Reliance Industries Limited",
-   "code": "NSE:RELIANCE",
-   "ccy": "INR",
-   "spot": 1272,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 22,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1112,
-   "fv_base": 1395,
-   "fv_full": 1719,
-   "gap_base_pct": 9.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 1.014,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.06964,
-    "mu_h": 0.004839,
-    "G": {
-     "bear": -1.93,
-     "base": 1.33,
-     "full": 4.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0249,
-     "base": 0.0875,
-     "full": 0.001
-    },
-    "p_touch": {
-     "bear": 0.039,
-     "base": 0.1371,
-     "full": 0.0015
-    },
-    "required_cagr": {
-     "bear": -0.8007,
-     "base": 2.0272,
-     "full": 36.1078
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00141
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1249,
-    "mu_h": 0.016522,
-    "G": {
-     "bear": -1.08,
-     "base": 0.74,
-     "full": 2.41
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0947,
-     "base": 0.2427,
-     "full": 0.0158
-    },
-    "p_touch": {
-     "bear": 0.1754,
-     "base": 0.4127,
-     "full": 0.025
-    },
-    "required_cagr": {
-     "bear": -0.4159,
-     "base": 0.4466,
-     "full": 2.3355
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00149
-   },
-   "market": "IN"
   },
   {
    "ticker": "EFID",
