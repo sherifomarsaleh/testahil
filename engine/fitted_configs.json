@@ -555,17 +555,17 @@
       "SNB",
       "STC"
     ],
-    "windows": 448,
+    "windows": 449,
     "rebuilt_this_run": [],
     "nu": 12.0,
     "width_cal": 1.063,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": -0.0001,
+    "market_skill": 0.0016,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
-      -0.007,
-      0.008
+      -0.006,
+      0.01
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.138,
@@ -606,25 +606,25 @@
         ]
       },
       "ELM": {
-        "nu": 12.0,
+        "nu": 10.0,
         "width_cal": 1.056,
-        "skill": 0.0358,
-        "skill_raw_basis": 0.0118,
+        "skill": 0.0337,
+        "skill_raw_basis": 0.0102,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.035,
-          0.083
+          -0.036,
+          0.081
         ]
       },
       "EXTRA": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.063,
-        "skill": -0.0372,
-        "skill_raw_basis": -0.0691,
+        "skill": -0.0371,
+        "skill_raw_basis": -0.0674,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.064,
-          -0.021
+          -0.063,
+          -0.022
         ]
       },
       "MAADEN": {
@@ -641,34 +641,34 @@
       "RAJHI": {
         "nu": 12.0,
         "width_cal": 1.049,
-        "skill": 0.013,
-        "skill_raw_basis": 0.0142,
-        "verdict": "PARITY",
+        "skill": 0.0304,
+        "skill_raw_basis": 0.0306,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.004,
-          0.028
+          -0.001,
+          0.064
         ]
       },
       "RIBL": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.042,
-        "skill": -0.0016,
-        "skill_raw_basis": -0.0037,
+        "skill": -0.0024,
+        "skill_raw_basis": -0.0043,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.02,
-          0.019
+          -0.021,
+          0.018
         ]
       },
       "RIYADHCABLE": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.063,
-        "skill": -0.0227,
-        "skill_raw_basis": -0.0226,
+        "skill": -0.0214,
+        "skill_raw_basis": -0.0212,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.09,
-          0.009
+          -0.083,
+          0.008
         ]
       },
       "SABIC": {
@@ -694,13 +694,13 @@
         ]
       },
       "SNB": {
-        "nu": 15.0,
+        "nu": 12.0,
         "width_cal": 1.077,
-        "skill": -0.0096,
-        "skill_raw_basis": -0.0142,
+        "skill": -0.0086,
+        "skill_raw_basis": -0.0129,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.028,
+          -0.025,
           0.005
         ]
       },
