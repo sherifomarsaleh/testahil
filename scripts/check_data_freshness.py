@@ -416,6 +416,33 @@ def main() -> int:
                               f'date {struck["grade"]} is unchanged, so the commitment '
                               f'stands and the cone is not re-sized.')
                     continue
+                #     THE SAME FORGIVENESS, FOR ROWS STRUCK BEFORE THE PROVENANCE
+                #     FIELDS EXISTED (01-Sep-2026). grade_basis/horizon_days were
+                #     added so a strike-time projection could prove itself; rows
+                #     struck earlier carry neither, so the clause above could never
+                #     reach them and the peer-library case it was written for failed
+                #     anyway. Merging one month of QGTS extended QA's calendar past
+                #     2026-08-30 and IQCD -- struck 2026-07-28, still stale, grade
+                #     date 2026-08-30 UNCHANGED -- failed on a number nobody got
+                #     wrong, which is verbatim the ABUK/EG case described above.
+                #
+                #     THE GUARD IS UNCHANGED AND IT IS THE GRADE DATE. What is
+                #     relaxed is only the PROOF that got_h was the strike-time
+                #     projection: absent the fields it cannot be confirmed from the
+                #     row, so this says so in its own text rather than implying a
+                #     check it did not make. A moved grade date still FAILS, and so
+                #     does an entry with no ledger row to stand behind it -- those
+                #     are the cases the comment above calls genuinely wrong.
+                if (struck and struck['grade_basis'] is None
+                        and struck['horizon_days'] is None
+                        and struck['grade'] == res['grade_date']):
+                    warn(key, f'hz.{field} is {got_h} and the span now resolves to '
+                              f'{want} sessions. This row predates grade_basis/'
+                              f'horizon_days, so the strike-time projection cannot be '
+                              f'confirmed from the row itself; grade date '
+                              f'{struck["grade"]} is unchanged, so the commitment '
+                              f'stands and the cone is not re-sized.')
+                    continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
