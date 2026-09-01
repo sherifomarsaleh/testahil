@@ -279,7 +279,7 @@ SAUDI = MarketProfile(
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=+1, ic=0.093, signal_active=True,
     ic_by_h={"1M": 0.093, "3M": 0.093},
-    nu=12.0, width_cal=1.056,
+    nu=15.0, width_cal=1.056,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 11-name SA panel "
         "(ACWA/ALINMA/ARAMCO/ELM/EXTRA/MAADEN/RAJHI/RIBL/SABIC/SNB/STC, 190 windows) "
