@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-01b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2278,6 +2278,29 @@ rather than discovered later: [R-GAP-01] is now the only thing standing between 
 run old with no live catch to its name** — its four seeded breaches are historical, not caught in
 flight. If it ever passes a study a reader then finds wrong by a large margin, that is the evidence
 to revisit this clause. It is written down so the revisit does not depend on anyone remembering.
+
+### The reporting threshold
+
+*Added 1-Sep-2026, per instruction — "Don't show me the number if it is within 10%. If the
+difference is more than 10%, then show me the number."*
+
+**Within 10% either way: merge on green and do not quote the fair value.** An ordinary result does
+not need reporting, and a number quoted every time is a number nobody reads — the same reasoning
+[R-CAL-02] uses when it says nothing at all about a cone that held about as often as it promised.
+
+**More than 10% either way: the message carries the central, the spot and the gap.**
+
+**Symmetric on purpose, and deliberately unlike [R-GAP-01].** The *audit* gate fires only BELOW the
+price — one-sided by instruction — and [R-GAP-01] records as its own stated cost that an
+over-optimistic study therefore gets no automatic audit and nothing else supplies one. This
+threshold fires **both** ways, so a central far above the price no longer passes unremarked even
+though no gate stops it. Reporting is not auditing, and half a counterweight declared is better
+than none.
+
+**Merging is not gated on this clause, and the two must not be confused.** [R-GAP-01] already blocks
+a study more than 10% below the price at CI until its `GAP_REVIEW` exists, so the audit happens
+before the merge regardless of what is reported. This clause governs what reaches the user, never
+what reaches `main`.
 
 ### What is unchanged
 
