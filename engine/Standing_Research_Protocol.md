@@ -1,8 +1,10 @@
-PROTOCOL REVISION 2026-08-31d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 24 August 2026 (rev. 8) — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01] (investor sessions)
+Updated 1 September 2026 (rev. 10) — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01] (an unmerged rule binds on nothing)
+(rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
+(rev. 8, 24 August 2026 — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01], investor sessions)
 (rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
 (rev. 5, 07 August 2026 — cost-stack escalation · primary-source financial research)
@@ -2069,3 +2071,255 @@ flagged ([R-CAL-02]). **BEFORE ADDING OR KEEPING A GATE, ASK WHAT IT HAS EVER RE
 If the answer is nothing, either the bar is in the wrong place or the thing it measures is
 not the thing that matters — and the honest move is to find the check that would have
 caught something, not to keep the one that reads as rigour.
+
+---
+
+## [R-GAP-01] A fair value far below the traded price is a claim about the world, and it is audited like one (1-Sep-2026, per instruction — "Whenever the fair value is less than the latest known market price for a stock by more than 10% then check thoroughly what you have missed and do a thorough check on all valuation aspects")
+
+### The incident that produced it
+
+On 1 September 2026 the AMOC rebuild finished, and its central fair value printed at
+EGP 5.53 against a market price of EGP 9.10 — thirty-nine per cent below.
+
+Every gate in this repository passed it. Step 0.0 passed. SIGCM passed, clause by clause.
+The beta was conforming, regressed against EGX30 through `beta_regression.own_stock_beta()`
+and attested by `assert_beta_provenance()`. The model-report depth bar passed on all eight
+standards. The workbook recalculated with zero disagreements across 5,775 formula cells.
+The external-reader scrub returned zero hard hits. The table-discipline check returned zero
+problems in both delivered documents. Nothing in that list was wrong, and not one item on
+it was looking at the answer.
+
+The user looked at the answer, in four words: *how come the fair value is half what AMOC is
+trading today.*
+
+What the discount was hiding, found only because that question was asked:
+
+1. **The reviewed half-year statements had been downloaded and never opened.** They sat in
+   the run's own source directory, retrieved from the company's archive and logged as
+   retrieved. The study was still describing that period as "a press release rather than a
+   filing" and had *solved* its gross profit out of the profit line rather than reading it.
+2. **The coherence test that licensed the solve was itself wrong.** It estimated the half's
+   other income by doubling one quarter's — EGP 451mn against a filed 197mn — and then
+   rejected the released gross profit for disagreeing with a number the model had invented.
+3. **Three macro paths contradicted each other** inside one model: domestic inflation, the
+   currency path, and the product-price path each carried their own assumption, none
+   reconciled to the others. This is [L-048], a lesson produced by *this same run's own
+   walk-forward* hours earlier and not applied to the study being rebuilt beside it.
+4. **The company's cash was charged for twice.** AMOC holds net cash, so a debt weight below
+   zero levered the equity weight above one and pushed the operating discount rate 374bp
+   ABOVE the cost of equity — and then the same cash was added back at face in the bridge.
+5. **Terminal growth of 5% sat against a terminal discount rate embedding 7% inflation**, so
+   the terminal business was assumed to shrink in real terms forever with nothing saying so.
+6. **A headline claim was typed rather than computed, and was false.** The study said the
+   traded price required a gross margin "above the best single quarter this company has ever
+   filed". The company had filed a higher one twice (13.84% in FY2022, 13.92% in Q2-2026);
+   the margin actually required, solved by bisection, is 9.37% — comfortably inside the
+   company's own filed range.
+
+Corrected, the study prints 5.53 / **8.64** / 12.48 against a spot of 9.10 — a five per cent
+discount rather than a thirty-nine per cent one.
+
+### What the rule is
+
+**Whenever a study's central fair value sits more than 10% BELOW the latest known market
+price for that name, the study is not finished until a thorough review of every valuation
+aspect has been done and written down.** The review is a dated document in the study's own
+directory (`GAP_REVIEW_{DD-MM-YYYY}.md`) and it covers, at minimum, the eight headings
+below. It is a hard gate on delivery, not a note in the QC table.
+
+The eight headings are not invented. Each names a defect that was actually present in AMOC
+on the day this rule was adopted, and **each one was individually capable of producing the
+whole gap**:
+
+| Heading | What it must establish |
+|---|---|
+| LATEST FILINGS | every disclosed period has actually been READ, the most recent named with its date and its route |
+| BASE YEAR | the base year foots to filed periods, and anything annualised, scaled or solved is named as such |
+| MACRO COHERENCE | inflation, currency and price paths are one path, mutually consistent — [L-048] |
+| DISCOUNT RATE | the rate operations are discounted at is the right one, and cash is charged for exactly once |
+| TERMINAL | terminal growth is coherent with the inflation embedded in the terminal discount rate |
+| BALANCE SHEET | the equity bridge stands on the latest disclosed balance sheet, not a stale one |
+| CLAIMS AGAINST THE RECORD | every "best ever" / "never" / "unprecedented" statement recomputed against the filings |
+| MULTIPLE CROSS-CHECK | the earnings and enterprise multiples the fair value implies, stated and defended |
+
+### Why the trigger is the market price, and why that is not deference to it
+
+This project does not treat the market price as correct. It publishes fair-value ranges
+precisely because it thinks prices are sometimes wrong, and a genuine 39% discount is a
+legitimate thing for a study to conclude. **The rule does not say the answer must change.**
+It says the answer must be *audited* before it ships.
+
+The reason is evidential, not deferential. A large discount is the one output shape that is
+consistent with almost every modelling error this repository has ever made: a stale base
+year, an over-charged discount rate, a missed revenue line, a real-terms terminal decline, a
+half-year annualised wrongly, an unread filing. Errors are not symmetric in their effect on
+a DCF — most of them push the value DOWN. So a large discount is a **high-prior-of-defect
+region**, and the price is the only instrument in the room that measures it.
+
+Note what happened at AMOC: all six defects were of the *the model was wrong* kind. Not one
+was of the *the company turned out better than we thought* kind. That is the pattern the
+rule is fitted to, and it is why the review's headings are all about the MODEL and none of
+them about the company's prospects.
+
+### One-sided, on purpose, and the cost of that is stated
+
+The rule fires on a central far BELOW the price. It does **not** fire on a central far
+above. That is the instruction as given, and it is left as given rather than symmetrised on
+my own initiative — but the asymmetry is a real cost and is recorded here rather than
+discovered later: a study that is too optimistic gets no automatic audit from this gate, and
+nothing else in the protocol supplies one. The counterweight is that an optimistic study
+faces the guidance rule ([R-FCAL-01]: *guidance is scored and never consumed*), the
+margins-are-outputs rule, and the fundamental walk-forward's own finding that this house's
+forecasts lean optimistic — none of which have a downside analogue. Revisit on instruction.
+
+### The threshold is the instruction's, and it is not disguised as a derivation
+
+10% is the number the instruction gave. It is not derived from anything, and this document
+does not dress it up as though it were — the PROMOTION RULE forbids a free parameter with no
+out-of-sample evidence behind it, and inventing a justification for a number somebody chose
+is the same offence wearing better clothes. What is defensible is the SHAPE: a threshold
+here is cheap in both directions (a review costs an hour; a shipped 39% error costs the
+study), so precision in the cutoff buys very little. AMOC's own first pass was at −39% and
+its corrected pass is at −5%, so on this one worked case the line at −10% separates them
+with room on both sides.
+
+### Enforced from outside, per [R-ENF-01]
+
+`scripts/check_valuation_gap.py` runs over every `engine/*_study/` from outside the studies,
+in CI. It reads each study's OWN committed numbers for a central fair value and the spot it
+was struck against, computes the gap, and where the gap breaches, requires a dated review
+covering all eight headings. **A self-attested boolean is never a check**: the study does not
+get to declare that it looked.
+
+Three refusals are built in:
+
+- **An unreadable answer is not a clean answer.** A study whose committed numbers do not
+  expose a central/spot pair FAILS rather than being skipped. On adoption day 16 of 24 study
+  directories were in that state, and every one of them would silently have been "clean".
+- **The population is anchored somewhere else** [R-ENF-04]. The gate globs `engine/*_study`,
+  so a mis-resolved path would find nothing and report no violations — an absent answer
+  wearing the costume of a clean one. It therefore holds its glob against the tickers named
+  in `gap_outstanding.json`, every one of which must resolve on disk, and it FAILS outright
+  on a run that examined zero studies.
+- **A review that skips a heading is not a review.** The rubber stamp is how a review
+  requirement normally dies, so heading coverage is checked, not the file's existence.
+
+It is a RATCHET, not a cliff, per [R-ENF-02]: `engine/build_depth_audit/gap_outstanding.json`
+lists what was already breaching or unreadable on adoption day and allows it to fail; the
+build breaks on a NEW breach, a NEW unreadable study, or a study directory with no entry
+either way, and the list may only ever SHORTEN (`--prune` rewrites it). Seeded 1-Sep-2026
+with four breaching studies and sixteen unreadable ones. Negative-controlled by
+`scripts/check_valuation_gap_negative_control.py`, which reinjects all five failure
+conditions and three clean cases — including a central far ABOVE spot, which must NOT fire,
+because a check that goes red where no rule exists is the permanently-red check [R-ENF-02]
+forbids.
+
+The worked precedent is `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
+
+### The general lesson, which is not about this threshold
+
+**Every gate in this repository checked the study's PROCESS and none of them looked at its
+ANSWER.** That is not an accident of which gates happened to get written; it is what
+process gates are for, and it is why they are all individually right and were collectively
+blind. Provenance, arithmetic, source discipline and recalculation can every one of them be
+perfect while the number at the end is absurd, and on 1 September 2026 they all were and it
+was.
+
+So: **when a result is surprising, that is evidence, and evidence gets a gate.** The place to
+look for a missing check is not among the steps — those are well covered — but at the
+output, asking the question a reader would ask on seeing it. Here the reader asked it in
+four words and found six defects. A gate that asks the same question automatically is
+cheaper than a reader who has to.
+
+---
+
+## [R-MERGE-01] A run that ends on a branch has not ended (1-Sep-2026, per instruction — "can you merge the branch to the main automatically in this exercise from now on or at least create a PR to draw my attention, otherwise I will forget")
+
+### The rule
+
+At the end of every campaign name: **open the PR unprompted, wait for CI, and merge it once every
+repo gate is green.** Don't ask, don't park it, don't end a session with the work on a branch.
+
+### Why this is not about convenience
+
+On adoption day, [R-GAP-01] was written into both governing documents, enforced in code,
+negative-controlled and pushed to a feature branch. **It would have bound on nothing.** The next
+name in the campaign starts from a fresh clone of `main`, and `main` did not carry it. The rule
+would have existed and not executed — which is [R-ENF-01]'s exact failure one level up: nobody
+disagreed with it, it simply was not present at the moment it bound.
+
+That generalises past this one rule. Every lesson in the register, every corrected prompt, every
+`STANDARD_VERSION` bump reaches the next study through `main` or it does not reach it at all. The
+branch is where work is *made*; it is not where work *lands*.
+
+Measured the same day: the AMOC branch carried eight commits and sat unmerged for the entire
+session, including the digest rename, the two stale QC items in the study-initiation checklist
+(one of which would have had a new study gate on a verdict retired on 25-Aug), and lessons
+L-048 through L-056.
+
+### Green means every gate, not a subset
+
+Protocol sync · protocol text and its negative control · study provenance · lessons register and
+its negative control · technical calibration and its negative control · campaign queue ·
+fair-value register · valuation gap and its negative control · band vocabulary · technical read ·
+coverage floor — plus the PR's own CI runs. **A gate that cannot be run is not a green gate.**
+
+### The pause that was proposed and overruled
+
+It was proposed that a name be held for a human look before merging in the two cases where this
+session actually went wrong: where the central lands more than 10% below the price, or where fair
+value moves a long way. The evidence for it was direct — the first AMOC pass cleared *every* gate
+at 39% below the traded price, and what caught it was a person looking at the answer, in four
+words.
+
+**The instruction declined the pause, and the instruction stands.** The cost is recorded here
+rather than discovered later: [R-GAP-01] is now the only thing standing between a wrong study and
+`main` on precisely the shape of error that produced this session's worst defect, and it is **one
+run old with no live catch to its name** — its four seeded breaches are historical, not caught in
+flight. If it ever passes a study a reader then finds wrong by a large margin, that is the evidence
+to revisit this clause. It is written down so the revisit does not depend on anyone remembering.
+
+### The reporting threshold
+
+*Added 1-Sep-2026, per instruction — "tell me the number if it is more than 10% only."*
+
+**Within 10% either way: merge on green and say nothing about the fair value.** An ordinary result
+does not need reporting, and a number quoted at the end of every one of ninety names is a number
+nobody reads by the tenth. This is the reasoning [R-CAL-02] already uses when it says nothing at all
+about a cone that held as often as it promised: **silence is the honest response to an ordinary
+outcome**, and it is what makes the exception legible.
+
+**More than 10% either way: the closing message carries the central, the spot and the gap** — called
+out, not buried.
+
+**Symmetric on purpose, and deliberately unlike [R-GAP-01].** That *audit* gate fires only below the
+price — one-sided by instruction — and records as its own stated cost that an over-optimistic study
+gets no automatic audit and nothing else supplies one. This threshold fires **both** ways, so a
+central far above the price stops passing unremarked.
+
+**Reporting is not auditing, and the two must not be confused.** The merge does not wait for a
+reply, so this clause buys a chance to catch a bad answer *after* the fact, never before it.
+Merging is not gated on it either: [R-GAP-01] already blocks a study more than 10% below the price
+at CI until its `GAP_REVIEW` exists, so the audit happens before the merge regardless of what is
+reported. This clause governs what reaches the user, never what reaches `main`.
+
+### What is unchanged
+
+**Publishing to the live site is still a separate, explicitly-requested step, and nothing here
+touches it.** Merging a rebuild to `main` moves `fair{bear,base,full}` in the repository, not on
+testahil.com; the campaign prompt's NEVER PUBLISH FROM THIS CAMPAIGN clause stands in full.
+
+Engine and protocol changes still go through a PR rather than a direct push to `main`. What changed
+is who closes it, not whether one is opened.
+
+### Enforcement is prose, and that is said plainly
+
+Per [R-ENF-01], a rule that can be tested is tested — and this one cannot be, honestly. It governs
+what the operator does at the end of a run, not a property of the repository a checker can read. A
+gate running on the feature branch cannot know whether that branch will be merged, and one
+demanding that every run directory already be on `main` would be red on every branch by
+construction, which is the permanently-red check [R-ENF-02] forbids.
+
+The honest backstop is the campaign register itself: `fv_movement.py check` anchors on the run
+directories on disk, so a name whose work never reached `main` surfaces as a run with no delivered
+edition the next time the campaign is read from a fresh clone.

@@ -86,7 +86,18 @@ RECHECK = re.compile(r'(?:re-verified|verify live|read live|check (?:it )?again|
 # Prescriptive markers separate them, and getting this wrong in the permissive direction is
 # cheaper than in the strict one: a missed status claim is one stale sentence, while a check
 # that flags the repo's own standing rules is the permanently-red check [R-ENF-02] forbids.
-PRESCRIPTIVE = re.compile(r'\b(?:never|must|always|should|are required to|is required to)\b', re.I)
+PRESCRIPTIVE = re.compile(
+    r'\b(?:never|must|always|should|are required to|is required to'
+    r'|do not|don\'t|do NOT)\b'
+    # A sentence carrying a rule identifier IS a rule. [R-MERGE-01]'s own text tripped this
+    # check on 01-Sep-2026 — "A RUN THAT ENDS ON A BRANCH HAS NOT ENDED" and "do not end the
+    # session with the work on a branch" are the rule being STATED, not a claim that some
+    # particular branch is unmerged today. The first cut listed only modal verbs, so an
+    # imperative ("do not X") and a rule heading both read as status claims. The gate's own
+    # standing note says which way to err: a missed status claim is one stale sentence, while
+    # a check that flags the repository's own rules is the permanently-red check [R-ENF-02]
+    # forbids. A rule id is a precise marker — it appears on rules and essentially nowhere else.
+    r'|\[R-[A-Z]{2,6}-\d{2}[,\]]', re.I)
 
 
 def check_paths(text, label, fails):

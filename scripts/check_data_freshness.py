@@ -56,7 +56,33 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, 'engine'))
 
+import pandas as pd  # noqa: E402
 import horizons  # noqa: E402
+
+
+def _projected_h(market, anchor, months, res):
+    """The h resolve() WOULD have returned while the target was still ahead.
+
+    resolve() switches from a PROJECTED h to a REALIZED one the moment the
+    market's calendar covers the target date, and markets share one calendar —
+    so extending any single name's library re-resolves every other name in that
+    market. Recomputing the projection lets a published session count be checked
+    against what was knowable at strike, for ledger rows too old to record it.
+
+    Both legs are properties of the market's long-run calendar (session density,
+    month-of-year seasonality), not of the window being resolved, which is why
+    re-running them today reproduces the strike-time number. Returns None if
+    either leg cannot be computed, so the caller fails closed.
+    """
+    try:
+        gd = pd.Timestamp(res['grade_date'])
+        hd = horizons._h_density(market, pd.Timestamp(anchor), gd)
+        hs = horizons._h_seasonal(market, pd.Timestamp(anchor), months)
+    except Exception:
+        return None
+    if hd is None:
+        return None
+    return max(hd if hs is None else int(round((hd + hs) / 2)), 1)
 import technicals as TA  # noqa: E402
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
@@ -416,40 +442,48 @@ def main() -> int:
                               f'date {struck["grade"]} is unchanged, so the commitment '
                               f'stands and the cone is not re-sized.')
                     continue
-                #     THE FORGIVENESS ABOVE READS A FIELD 28 OF 331 LEDGER ROWS
-                #     PREDATE (01-Sep-2026). horizon_days/grade_basis were added
-                #     after those rows were struck, so on a legacy row the guard
-                #     fell through to fail() — and it fires on exactly the case the
-                #     comment above says is not a defect. Measured here: merging one
-                #     month of RELIANCE ran IN's calendar to 2026-09-01, and INFY —
-                #     struck 2026-07-28, still awaiting its own export — flipped from
-                #     a projected h1 of 22 to a realized 23 while its grade date
-                #     (2026-08-28) and every published percentile stood untouched.
-                #     A gate that fails on a row for being OLD is measuring the
-                #     schema, not the claim.
+                #     THE SAME FORGIVENESS, FOR ROWS STRUCK BEFORE THE LEDGER
+                #     CARRIED ITS OWN PROVENANCE (01-Sep-2026). The branch above
+                #     recognises a resolved projection by reading horizon_days off
+                #     the LEDGER row. Rows struck before those two fields existed
+                #     carry neither, so they fell straight through to fail -- and
+                #     the failure fires on names NOBODY TOUCHED: merging one month
+                #     of AAPL extended the US calendar past 2026-08-27, and NVDA and
+                #     TSLA, both struck 2026-07-27 with a projected h1 of 22 and both
+                #     committed to the CORRECT and UNCHANGED grade date, were
+                #     suddenly measured against a realized 23. That is the ABUK case
+                #     one paragraph up, arriving through a name whose ledger row
+                #     predates the fix for it.
                 #
-                #     So reconstruct what the missing field would have recorded, by
-                #     CALLING resolve()'s own projected branch rather than
-                #     re-implementing it ([R-ENF-03]: grade what ships). The guard is
-                #     unchanged and is still the GRADE DATE — this only supplies the
-                #     provenance the row cannot carry, and a published h that is NOT
-                #     the projection still fails.
-                if struck and struck['horizon_days'] is None and struck['grade_basis'] is None:
-                    tgt = horizons.target_date(anchor, months)
-                    gd = horizons._projected_next_open(mkt, tgt)
-                    hd = horizons._h_density(mkt, anchor, gd)
-                    hs = horizons._h_seasonal(mkt, anchor, months)
-                    proj = max(hd if hs is None else int(round((hd + hs) / 2)), 1)
-                    if (proj == got_h
-                            and gd.date().isoformat() == struck['grade']
-                            and struck['grade'] == res['grade_date']):
-                        warn(key, f'hz.{field} is {got_h}, the projection made at '
-                                  f'strike (reconstructed: density {hd}, seasonal '
-                                  f'{hs} — the row predates horizon_days); the span '
-                                  f'has since resolved to {want} sessions. Grade date '
-                                  f'{struck["grade"]} is unchanged, so the commitment '
-                                  f'stands and the cone is not re-sized.')
-                        continue
+                #     NO POWER IS GIVEN UP AND NO THRESHOLD IS INTRODUCED. The
+                #     stored horizon_days is simply RECOMPUTED: resolve() projects h
+                #     from two legs (density, seasonal) that are properties of the
+                #     market's long-run calendar, not of the window in question, so
+                #     re-running them for the same (market, anchor, months) returns
+                #     the number resolve() WOULD have returned at strike. Forgive
+                #     only when the published h IS that projection, the span has
+                #     since RESOLVED, and the grade date is unchanged. An h that is
+                #     merely stale, mistyped or carried from another anchor does not
+                #     equal the projection and still FAILS: negative-controlled
+                #     01-Sep-2026 by setting NVDA's hz.h1 to 15 -- neither the
+                #     projection (22) nor the realization (23) -- which took the
+                #     gate red (exit 1) with the branch in place. The first attempt
+                #     at that control was itself the [R-ENF-04] defect: it asserted
+                #     on 'h1:\s*22' and then replaced the literal 'h1: 22', which
+                #     data.js writes UNSPACED, so it modified nothing and its green
+                #     proved only that the file was untouched. A control is not
+                #     evidence until the file it corrupts is observed to change.
+                if (struck and struck['grade_basis'] is None
+                        and struck['horizon_days'] is None
+                        and res['basis'] == 'realized'
+                        and struck['grade'] == res['grade_date']
+                        and got_h == _projected_h(mkt, anchor, months, res)):
+                    warn(key, f'hz.{field} is {got_h}, the projection made at strike '
+                              f'(recomputed: the ledger row predates horizon_days); '
+                              f'the span has since resolved to {want} sessions. Grade '
+                              f'date {struck["grade"]} is unchanged, so the commitment '
+                              f'stands and the cone is not re-sized.')
+                    continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
