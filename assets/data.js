@@ -7428,7 +7428,7 @@ const CALIB = {
   "TADAWUL:1180": {w: 42, in50: 64, in90: 93, through: "2026-06-03"},
   "TADAWUL:1211": {w: 58, in50: 52, in90: 88, through: "2026-07-28"},
   "TADAWUL:2010": {w: 57, in50: 53, in90: 91, through: "2026-04-28"},
-  "TADAWUL:2050": {w: 58, in50: 50, in90: 91, through: "2026-07-28"},
+  "TADAWUL:2050": {w: 58, in50: 52, in90: 91, through: "2026-07-28"},
   "TADAWUL:2082": {w: 15, in50: 47, in90: 87, through: "2026-07-28"},
   "TADAWUL:2222": {w: 22, in50: 50, in90: 91, through: "2026-07-05"},
   "TADAWUL:4003": {w: 54, in50: 57, in90: 87, through: "2026-07-27"},
