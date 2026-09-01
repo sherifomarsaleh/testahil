@@ -1,4 +1,4 @@
-"""AMOC_Bibliography_08-08-2026.docx — the companion bibliography document.
+"""AMOC_Bibliography_01-09-2026.docx — the companion bibliography document.
 
 Every input in the model: value, source, date and research layer — emitted directly from
 study_numbers.json (the compute script's own INPUTS block), plus the document bibliography,
@@ -235,11 +235,11 @@ table([['Source', 'Publisher', 'Date', 'What was taken from it'],
         'Amwal Al Ghad; house cost-of-capital reference', 'Jul–Aug 2026',
         'USD/EGP at 50.25 (close of 50.30/50.40 on 4 August 2026) and the 10-year local-currency '
         'yield of 22.31%'],
-       ['engine/raw_ohlc/EG/AMOC.csv — daily open, high, low, close and volume',
+       ['AMOC daily price history — open, high, low, close and volume',
         'Vendor export, screened through the house data-quality gate', '2 Jan 2011 – 6 Aug 2026',
         'The full price history: the closing price the study is anchored on, the beta regression, '
         'the volatility estimate and the simulated price distribution']],
-      [1.85, 1.30, 0.80, 3.10], size=7.9)
+      [1.85, 1.72, 0.80, 2.68], size=7.9)
 
 # ---- what the filings replaced ----------------------------------------------
 H1('Triangulated figures — RETIRED')
@@ -318,7 +318,7 @@ for ring in ('Company', 'Industry', 'Country', 'Global', 'House'):
     rows = [['Input', 'Value', 'Date', 'Source and reasoning']]
     for k, v in by_ring[ring]:
         rows.append([k, fmt(v['value']), v['date'], v['source']])
-    table(rows, [1.30, 1.00, 0.72, 4.05], size=7.5)
+    table(rows, [1.90, 1.55, 0.95, 2.67], size=7.5)
 
 # ---- negative results -------------------------------------------------------
 H1('Negative results — what could not be sourced')
@@ -385,7 +385,7 @@ table([['What was sought', 'Why it matters', 'Outcome'],
         'NO DIRECT LISTED COMPARATOR EXISTS — the company is the only listed refinery on the '
         'exchange. The multiple range used is taken from the international Group I base-oil and '
         'independent-processor band and is disclosed as such rather than presented as a peer set']],
-      [1.95, 2.10, 2.90], size=7.9)
+      [2.30, 2.00, 2.65], size=7.9)
 
 H1('Method note')
 P('All financial arithmetic in the study originates in an executed, asserting compute script. '
@@ -400,5 +400,5 @@ P('The companion workbook was verified on the DELIVERED file rather than on the 
   'in place with the whole workbook re-evaluated to confirm it moves the headline in the '
   'asserted direction.')
 
-doc.save(os.path.join(HERE, 'AMOC_Bibliography_08-08-2026.docx'))
-print('wrote AMOC_Bibliography_08-08-2026.docx')
+doc.save(os.path.join(HERE, 'AMOC_Bibliography_01-09-2026.docx'))
+print('wrote AMOC_Bibliography_01-09-2026.docx')

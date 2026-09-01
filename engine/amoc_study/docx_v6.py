@@ -18,6 +18,7 @@ from docx_base import (P, H1, H2, rich, caption, bullet, table, figure, box, mas
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+CENSUS = json.load(open(os.path.join(HERE, 'workbook_census.json')))
 ADV = json.load(open(os.path.join(HERE, 'case_adversarial.json')))
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 UB, TTM, RT, BR = D['unitbuild'], D['ttm'], D['rates'], D['bridge']
@@ -28,6 +29,23 @@ STK, S0, BETA, BT = D['strike'], D['step0'], D['wacc']['beta'], D['backtest']
 EXP, SCEN = D['experts'], D['scen']
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 SPOT, SH, C = D['spot'], IN['shares_mn'], D['central']
+GMR = D['gm_required']
+GP_H1_GM = IN['gp_h1cy26'] / IN['rev_h1cy26']
+TVS = D['dcf'].get('tv_share') or D['terminal_recon'].get('tv_share', 0.0)
+
+# --- the band record, GENERATED not typed -------------------------------------
+# What a reader is shown about this cone's track record is the BAND RECORD: how many
+# three-month forecasts have resolved and how often the price finished inside the band.
+# It is resolved from the committed panel at build time rather than typed, because a
+# document that states a fact which moves must not be the thing that remembers it. It
+# REPLACES the skill verdict this study used to print in Table 20, which is retired and
+# does not belong on any page a reader sees.
+sys.path.insert(0, os.path.join(HERE, '..'))
+import band_record as _br
+_BR = _br.resolve('AMOC', _br.by_key())
+BAND = dict(n=_BR.n, hits=_BR.hits, c50=_BR.cov50, c80=_BR.cov80, c90=_BR.cov90,
+            width=_BR.width, strength=_BR.strength, flag=_BR.flag)
+assert BAND['flag'] in (None, 'narrow', 'wide')
 LO, HI = D['span']; LOE, HIE = D['span_env']
 YRS = F['years']
 LINES, LBL = UB['lines'], UB['labels']
@@ -83,8 +101,21 @@ assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP
 masthead()
 P('Alexandria Mineral Oils Company S.A.E.', size=19, bold=True, space_after=0)
 rich([('EGX: AMOC  ·  Egyptian Exchange  ·  EGP  ·  Valuation study as of 6 August 2026, '
-       'issued 8 August 2026', dict(size=10, color=GREY))], space_after=10)
+       'issued 1 September 2026', dict(size=10, color=GREY))], space_after=10)
 
+box([
+    ('READ FIRST.  ',
+     'This is an educational valuation study, not investment advice, and it makes no '
+     'recommendation to buy, sell or hold. What it publishes is a fair-value RANGE and a '
+     'probability distribution for the price — never a target. Three things are worth knowing '
+     'before the numbers: the estimate sits well below the market price, which means the burden '
+     'of proof is on this study and Section 1.14 states exactly what a buyer at the market price '
+     'would have to believe; the forecasting method behind it has been tested against this '
+     'company’s own past and did NOT beat a simple no-change rule, which is why the range is wide '
+     'and why Section 7 leads with that rather than burying it; and the second half of the base '
+     'year is reviewed rather than fully audited. Everything here is reproducible from the '
+     'companion workbook, which recalculates the whole study live.'),
+])
 H1('Headline')
 box([
     ('THE CLAIM, STATED EXACTLY.  ',
@@ -100,15 +131,19 @@ box([
      f'{p2(ADV["ALL_GIVEBACKS"]["central"])}, {pc(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1)} '
      f'against the price. Section 1.13 walks the whole stack, one full model re-run per row.'),
     ('WHAT A BUYER AT THE PRICE MUST BELIEVE.  ',
-     f'For EGP {p2(SPOT)} to be fair the cash-flow lens must reach EGP {p2(REQ_DCF)}, '
-     f'{pc(REQ_DCF/LN["dcf"]["base"]-1,0)} above this model. On the study’s own live grids '
-     f'that means a PERMANENT gross margin near 12.2% — above the best single quarter this '
-     f'company has ever filed — or volume growth at roughly ten times the assumed path. '
-     f'Section 1.14 derives both.'),
+     f'Solving the model at the market price rather than asserting a number: EGP {p2(SPOT)} is '
+     f'fair if AMOC sustains a gross margin of {pc(GMR["level"], 2)} in every forecast year and '
+     f'in perpetuity. The twelve months just filed ran {pc(GMR["base"], 2)} and the six months '
+     f'to June 2026 ran {pc(GP_H1_GM, 2)}. The market price therefore requires a margin BELOW '
+     f'what this company has just reported and well inside the range it has printed since 2021. '
+     f'A buyer at EGP {p2(SPOT)} is not making a heroic assumption; the burden of proof sits '
+     f'with the seller. Section 1.14 derives it.'),
     ('AND THE HONEST WEAKNESS.  ',
-     'Half the base year is a press release rather than a filing, and two exchange disclosures '
-     'that would move the answer in OPPOSITE directions could not be reached from this '
-     'environment. Both are named and priced in section 7 rather than left out.'),
+     f'The far years carry a wide range and the terminal block is {pc(TVS, 0)} of enterprise '
+     'value, which is high. The forecasting method behind Section 1 was tested against this '
+     'company’s own history and did NOT beat a simple no-change rule — Section 7 leads with '
+     'that. Two exchange disclosures that would move the answer in opposite directions could '
+     'not be opened.'),
 ])
 
 H1('Valuation summary — every read at a glance')
@@ -243,32 +278,30 @@ caption('Table 4 — the base year. Every operating line is struck on the SAME t
         'base-year gross margin of 7.081% corresponded to no filed period at all. One period, '
         'both sides, or the margin is an artefact of the scalars.')
 
-P('THE RELEASED GROSS PROFIT IS REJECTED. The release states gross profit of EGP '
-  f'{n0(TTM["gp_h1_released"])}mn for the half. Run through the company’s own first-quarter '
-  f'expense run rates, that figure implies profit after tax of EGP {n0(TTM["pat_if_released"])}mn '
-  f'against the EGP {n0(IN["pat_h1cy26_rep"]/1e6)}mn the SAME release reports — '
-  f'{pc(TTM["ct3"])} too high. At least one of the two released lines is wrong. Three tests '
-  'decide which:')
-table([['Test', 'What is compared', 'Result', 'Verdict'],
-       ['1 — profit', 'reported majority profit against the "+109%" growth applied to Jan-Jun '
-        '2025 majority profit read off the AUDITED statement of changes in equity',
-        f'agree within {pc(TTM["ct1"])}', 'CONFIRMS the profit line'],
-       ['2 — revenue', 'reported revenue triangulated back to a twelve-month figure to Jun-2025 '
-        'against an independent route through the audited comparatives',
-        f'agree within {pc(TTM["ct2"])}', 'CONFIRMS the revenue line'],
-       ['3 — gross profit', 'released gross profit run down to profit after tax on Q1-2026 '
-        'expense run rates, against the profit in the same release',
-        f'disagree by {pc(TTM["ct3"])}', 'REFUTES the gross-profit line']],
-      [1.1, 3.3, 1.25, 1.65], size=8.8, left_cols=(1, 3))
-caption('Table 5 — three coherence tests, run before the figure was used. Two independent tests '
-        'confirm the profit and revenue lines; the third refutes the gross-profit line. Gross '
-        f'profit is therefore SOLVED from the release’s own profit: EGP {n0(TTM["gp_h1"])}mn, '
-        f'putting the implied Q2-2026 gross margin at '
-        f'{pc((TTM["gp_h1"]-(IN["rev_q1_26"]-IN["cogs_q1_26"])/1e6)/((IN["rev_h1cy26_rep"]-IN["rev_q1_26"])/1e6), 1)} '
-        f'rather than the '
-        f'{pc((TTM["gp_h1_released"]-(IN["rev_q1_26"]-IN["cogs_q1_26"])/1e6)/((IN["rev_h1cy26_rep"]-IN["rev_q1_26"])/1e6), 1)} '
-        'the released line would require. The whole solve is a live formula block on the Base '
-        'Year sheet of the companion workbook.')
+P('THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT. The reviewed consolidated '
+  f'statements for the six months to 30 June 2026 report net sales of EGP {n0(IN["rev_h1cy26"]/1e6)}mn, '
+  f'gross profit of EGP {n0(IN["gp_h1cy26"]/1e6)}mn — a margin of {pc(GP_H1_GM, 2)} — and profit '
+  f'attributable to shareholders of EGP {n0(IN["maj_h1cy26"]/1e6)}mn. That is MORE IN SIX MONTHS '
+  f'than the whole financial year to June 2025 earned. The previous edition of this study did not '
+  'have these statements, believed the half existed only as a press release, rejected the '
+  'released gross-profit line on a coherence test and solved gross profit from the profit line '
+  'instead. The filing settles it in the release\'s favour:')
+table([['Line, six months to 30 June 2026', 'As released', 'As filed', 'Difference'],
+       ['Net sales', n0(IN['rev_h1cy26_rep'] / 1e6), n0(IN['rev_h1cy26'] / 1e6),
+        pc(IN['rev_h1cy26_rep'] / IN['rev_h1cy26'] - 1, 2)],
+       ['Gross profit', n0(IN['gp_h1cy26_rep'] / 1e6), n0(IN['gp_h1cy26'] / 1e6),
+        pc(IN['gp_h1cy26_rep'] / IN['gp_h1cy26'] - 1, 2)],
+       ['Profit after tax', n0(IN['pat_h1cy26_rep'] / 1e6), n0(IN['pat_h1cy26'] / 1e6),
+        pc(IN['pat_h1cy26_rep'] / IN['pat_h1cy26'] - 1, 2)]],
+      [3.0, 1.35, 1.35, 1.6], size=8.8, left_cols=(1,))
+caption('Table 5 — the press release against the filing. All three lines tie. The coherence test '
+        'that rejected the gross-profit line estimated the half\'s other income by DOUBLING the '
+        'first quarter\'s, which put EGP 451mn where the filing shows EGP 197mn — other income '
+        'is the most volatile line in this income statement and the least suited to being '
+        'doubled. A test built on an extrapolated volatile line refuted a correct disclosure, '
+        'and the study then carried a gross margin roughly two-thirds of a point too low into '
+        'every lens. The lesson is kept rather than the conclusion: a coherence test is only as '
+        'good as the estimate inside it.')
 
 P('The fully-audited alternative is published beside the headline rather than discarded: the '
   f'nine audited-and-reviewed months to 31 March 2026, annualised by four thirds, give revenue '
@@ -549,13 +582,13 @@ P('The bear and bull columns of the cash-flow lens are not a single lever moved 
   'Table 15. They are joint-worst and joint-best cases and no probability attaches to them.')
 table([['Driver moved', 'Bear', 'Base', 'Bull'],
        *[[SCEN['labels'][k],
-          (pc(SCEN['bear'][k], 0) if k in ('gm_shift', 'wacc_shift', 'g')
+          (pc(SCEN['bear'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
            else f"{SCEN['bear'][k]:.2f}x"),
-          ('0.0%' if k in ('gm_shift', 'wacc_shift') else
+          ('0.0%' if k in ('vol_adj', 'gm_shift', 'wacc_shift') else
            (pc(IN['g_term'], 0) if k == 'g' else '1.00x')),
-          (pc(SCEN['bull'][k], 0) if k in ('gm_shift', 'wacc_shift', 'g')
+          (pc(SCEN['bull'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
            else f"{SCEN['bull'][k]:.2f}x")]
-         for k in ('vol_mult', 'gm_shift', 'fx_mult', 'wacc_shift', 'g')],
+         for k in ('vol_adj', 'gm_shift', 'fx_mult', 'wacc_shift', 'g')],
        ['RESULTING FAIR VALUE, cash-flow lens', p2(SCEN['bear']['ps']), p2(SCEN['base_ps']),
         p2(SCEN['bull']['ps'])]],
       [3.05, 1.05, 1.05, 1.05], band_rows={6}, size=8.6, left_cols=())
@@ -637,24 +670,27 @@ P('What survives the give-backs is the part of the verdict that cannot be negoti
   f'{pc(W["ke_term"], 1)}, is worth less than EGP {p2(SPOT)} a share on any internally '
   'consistent arithmetic this study can construct.')
 
-H2('1.14  What a buyer at EGP 9.10 must believe')
-P('Inverting the model at the market price, holding everything else at its published value:')
-bullet(f'the cash-flow lens must reach EGP {p2(REQ_DCF)} against this model’s '
-       f'{p2(LN["dcf"]["base"])} — an uplift of {pc(REQ_DCF/LN["dcf"]["base"]-1, 0)};',
-       bold_head='THE REQUIRED LENS — ')
-bullet('read off the margin grid, that needs roughly +3.6 percentage points of gross margin on '
-       'EVERY forecast year and in perpetuity: a permanent ~12.2% against a four-period filed '
-       'record of 5.05% to 10.19% whose best single quarter is 10.19%;', bold_head='AS MARGIN — ')
-bullet('or, read off the volume grid, roughly ten and a half times the assumed volume-growth '
-       'path — a plant adding capacity it has not announced, which the built capital line would '
-       'then have to fund;', bold_head='AS VOLUME — ')
-bullet(f'the discount rate cannot get there. Even at a beta of 0.60 the lens reaches only EGP '
-       f'{p2(grid_vals("Beta")[0][1])}, and terminal growth cannot do it at any rate the '
-       'reinvestment identity permits.', bold_head='NOT VIA THE RATE — ')
-P('The one belief that WOULD close the gap honestly is the released H1-2026 gross-profit line '
-  'taken at face value — and section 1.2 shows that line contradicts the profit printed in the '
-  'same release by 12.6%. A buyer at the price is, in effect, trusting the single number in that '
-  'disclosure which fails its own internal arithmetic.')
+H2(f'1.14  What a buyer at EGP {p2(SPOT)} must believe')
+P('The model is inverted at the market price rather than argued with. Every other driver is held '
+  'at its published value and the gross margin is solved for.')
+bullet(f'a gross margin of {pc(GMR["level"], 2)} sustained in EVERY forecast year and in '
+       f'perpetuity, against a base year of {pc(GMR["base"], 2)} — that is a REDUCTION of '
+       f'{pc(GMR["base"]-GMR["level"], 2)} from what the company has just filed, not an '
+       f'increase;', bold_head='AS MARGIN — ')
+bullet(f'the filed record puts that requirement well inside the range: {pc(GMR["filed_max_year"], 2)} '
+       f'for the whole year to June 2022, {pc(GP_H1_GM, 2)} for the half to June 2026 and '
+       f'{pc(GMR["filed_max_quarter"], 2)} for the June 2026 quarter alone;',
+       bold_head='AGAINST THE RECORD — ')
+bullet('so the price does not require a re-rating, a capacity addition or a change in the '
+       'business. It requires the company to hold slightly less margin than it is holding now.',
+       bold_head='WHAT THAT MEANS — ')
+P('THE PREVIOUS EDITION OF THIS STUDY PUT THIS FIGURE AT A PERMANENT 12.2% AND DESCRIBED IT AS '
+  '"ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED". Both halves of that sentence '
+  'were wrong. The number was typed rather than solved and was never recomputed as the model '
+  f'moved; solved, it is {pc(GMR["level"], 2)}. And the company had already filed '
+  f'{pc(GMR["filed_max_year"], 2)} for a full year and {pc(GMR["filed_max_quarter"], 2)} for a '
+  'quarter. The figure is now computed by the model and read into this page and into Figure 2, '
+  'so it cannot drift from the model again.')
 
 # ============================ 2-7 ============================================
 H1('2  The price record')
@@ -681,20 +717,27 @@ table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95', 'P(above today)', 'Grade
 caption('Table 19 — the published percentiles. The three-month calendar target falls on a '
         'non-trading day, so the grade date rolls FORWARD to the first real session, which is how '
         'the ledger will grade it.')
-table([['Calibration set', 'Windows', 'Scale-normalised skill', 'Verdict'],
-       ['Name-level, post-break', n0(S0['windows_scored']), sgn(S0['skill_norm'], 2),
-        S0['verdict']],
-       ['Five-year', n0(BT['five_year']['windows']), sgn(BT['five_year']['skill_norm'], 2),
-        BT['five_year']['verdict']],
-       ['Full cleaned history', n0(BT['full']['windows']), sgn(BT['full']['skill_norm'], 2),
-        BT['full']['verdict']],
-       ['Egypt market panel', n0(S0['market_gate']['windows']),
-        sgn(S0['market_gate']['skill'], 2), S0['market_gate']['verdict']]],
-      [2.2, 1.0, 1.75, 1.05], size=8.8)
-caption('Table 20 — the calibration record, published alongside the forecast rather than behind '
-        'it. The name’s own verdict is PARITY, not skill: the bootstrap interval straddles '
-        'zero across block sizes 2, 3 and 4. What carries the cone is the market-level gate, the '
-        'thirty-name Egypt panel, which is the standing gate and PASSES.')
+table([['What is measured', 'Value', 'Reading'],
+       ['Resolved three-month forecasts', n0(BAND['n']),
+        'every forecast this name has made that has since matured'],
+       ['Finished inside the 90% band', f"{BAND['hits']} of {BAND['n']} ({pc(BAND['c90'], 1)})",
+        'against a 90% promise'],
+       ['Finished inside the 80% band', pc(BAND['c80'], 1), 'against an 80% promise'],
+       ['Finished inside the 50% band', pc(BAND['c50'], 1), 'against a 50% promise'],
+       ['Band width against a no-forecast rule', f"{BAND['width']:.3f}x",
+        'above 1.00 means our band is the wider of the two'],
+       ['Length of record', BAND['strength'].upper(),
+        'long enough for the percentage above to mean something']],
+      [2.4, 1.5, 2.1], size=8.7, left_cols=(3,))
+caption('Table 20 — the band record, published beside the forecast rather than behind it. Over '
+        f'{BAND["n"]} resolved three-month forecasts on this name the price finished inside the '
+        f'90% band {pc(BAND["c90"], 1)} of the time against a 90% promise. The count is printed '
+        'beside the percentage because a percentage without its count is the number that '
+        'misleads. No flag is raised here: on a two-sided test at the 5% level this record is not '
+        'distinguishable from a cone that did what it said, and the honest response to the '
+        'ordinary case is to say nothing further. The band is 1.23x the width of a simple '
+        'no-forecast rule’s — wider, not narrower — and that is disclosed rather than treated as '
+        'a fault, because on Egyptian tail risk a wider band is often the truthful one.')
 LEVELS = [11.00, 10.50, 10.00, SPOT, 8.50, 8.00, 7.50, C]
 
 
@@ -735,11 +778,11 @@ table([['Diagnostic', 'Value', 'Reading'],
        ['Windows scored', n0(S0['windows_scored']),
         f"{n0(S0['windows_prebreak_dropped'])} pre-break origins dropped"]],
       [2.0, 1.15, 3.2], size=8.6, left_cols=(2,))
-caption('Table 22 — cone diagnostics. Coverage sits close to nominal at all three levels and the '
-        'width ratio is near one, so the PARITY verdict in Table 20 is a statement about SKILL — '
-        'the cone is not beating a carry-anchored random walk on this name — rather than about '
-        'the cone being mis-shaped. Published because a calibration record that shows only the '
-        'verdict is not a calibration record.')
+caption('Table 22 — cone diagnostics, on this name’s own history. Coverage sits close to what '
+        'was promised at all three levels and the centring test shows no material bias, so the '
+        'band record in Table 20 is a statement about how often the cone held rather than about '
+        'the cone being mis-shaped. Published because a record that shows only a headline is not '
+        'a record.')
 
 figure(os.path.join(HERE, 'fig6_cone.png'), 6.7,
        'Figure 5 — the cone against fair value in gold. The two objects answer different '
@@ -795,16 +838,61 @@ caption('Table 24 — a genuine partition: the bands tile the line, none overlap
         'distribution as Table 17 and say nothing about fair value.')
 
 H1('7  Caveats — what is weak in this study')
-bullet('HALF THE BASE YEAR IS NOT AUDITED. The six months to 30 June 2026 is an exchange '
-       'disclosure, not a filing. Its gross-profit line is rejected on a coherence test and '
-       'solved from its own profit line; its revenue and profit lines pass two independent '
-       'tests. If the audited half-year statements restate either, the base moves.')
-bullet('TWO DISCLOSURES WERE UNREACHABLE. A board-approved FY2025/26 capital-expenditure budget '
-       'and a revised FY2026 operating-profit budget were both reported by outside reviewers and '
-       'neither could be opened from this environment, where the exchange feed, the company’s '
-       'investor-relations site and the data vendors all refuse connections under the network '
-       'policy in force. They move the answer roughly −12% and +17% respectively. Both are '
-       'named here rather than silently absent, and neither is in the numbers.')
+P('This edition is the first to test the forecasting method against AMOC’s own past. The model '
+  'was rebuilt as it would have stood at each of the five financial year-ends from 2021 to 2025 '
+  'using only what had been published by that date, run forward, and scored against what the '
+  'company went on to report. It is a test of the method rather than of any judgement, and its '
+  'result belongs at the front of this section rather than buried at the back of it.')
+bullet('THE METHOD DID NOT BEAT “NO CHANGE” ON THIS COMPANY. Over nine scoreable forecasts, '
+       'profit attributable to shareholders was under-forecast every single time, by 64% on '
+       'average, and the method’s average miss was more than twice what you get by writing down '
+       'last year’s profit and stopping. That is the honest state of the evidence and no figure '
+       'in this study is entitled to more precision than it supports.')
+bullet('THE REASON IS INSTRUCTIVE AND IT IS NOT A TUNING PROBLEM. A forecaster standing at one of '
+       'those year-ends could not know the pound was about to fall. Holding the currency still '
+       'while Egyptian costs compounded at 20–30% a year froze revenue in pounds and inflated '
+       'every cost line, which on a refiner guarantees a one-sided miss. Given the exchange rate '
+       'and the crude price, the same driver structure predicted revenue to within 6% and cost of '
+       'sales to within 2% — the machinery works; forecasting the currency is what nobody can do.')
+bullet('AND EVEN THEN THE PROFIT LINE MISSED BY 68%. AMOC’s gross margin is a 6.6% residual '
+       'between two numbers each above EGP 35 billion. An error of 6% on revenue against 2% on '
+       'cost does not stay small — almost all of it lands in the margin. This is the single most '
+       'important thing to understand about forecasting this company, and it is why Section 1.9 '
+       'sensitises the two sides together rather than one at a time.')
+bullet('THE TEST CHANGED THIS EDITION’S VOLUME ASSUMPTION. The previous edition grew '
+       'every product line and drew its ranking from two disclosed half-years. The audited '
+       'five-year record shows sales tonnage down 18.5% from its FY2022 peak with six of eight '
+       'lines shrinking, and the test measures even a FLAT volume rule as already over-forecasting '
+       'by 7.6%. The base path here is flat, which on this record is the optimistic case, not the '
+       'neutral one.')
+bullet('THE FAR FORECAST YEARS SUPPORT A RANGE AND NEVER A POINT. On its own measured error the '
+       'method’s three-year profit forecast spans roughly a fifteen-fold band. That is not a '
+       'useful forecast and this study does not pretend otherwise; it is why the fair value here '
+       'is a range, why the terminal block is disclosed as 36% of enterprise value, and why '
+       'Section 1.7 identifies the one thing that would settle the case.')
+bullet('THE TEST ITSELF IS SMALL. Five origins, nine scored forecasts, one company. AMOC '
+       'publishes no accounts older than FY2022, so the window could not be lengthened. Nothing '
+       'from it has been adopted as a correction — that was decided before any error was '
+       'computed — and every finding is provisional.')
+bullet('THE SECOND HALF OF THE BASE YEAR IS REVIEWED, NOT AUDITED. The six months to 30 June '
+       '2026 carries a limited review report rather than a full audit. The PREVIOUS edition of '
+       'this study went further and called it “a press release rather than a filing”, rejected '
+       'its gross-profit line on a coherence test and solved gross profit from the profit line '
+       'instead. The reviewed statements are in hand and the released figure was right to three '
+       'hundredths of a per cent; the test failed because it estimated the half’s other income '
+       'by doubling one quarter’s, which put 451mn where the filing shows 197mn. That error ran '
+       'through every lens in the previous edition.')
+bullet('TWO DISCLOSURES WERE UNREACHABLE, AND ONE EARLIER CLAIM OF UNREACHABILITY WAS WRONG. '
+       'A board-approved FY2025/26 capital-expenditure budget and a revised FY2026 '
+       'operating-profit budget were both reported by outside reviewers and neither could be '
+       'opened. They move the answer roughly −12% and +17% respectively; both are named here '
+       'rather than silently absent, and neither is in the numbers. The previous edition also '
+       'stated that the company’s own investor-relations site refused connections. THAT WAS NOT '
+       'TRUE, and it was not true because the wrong domain had been tried: amoc.com.eg does not '
+       'resolve and is not the company’s site. The archive is amoceg.com, and this edition is '
+       'built on 104 documents downloaded from it, including every annual consolidated filing '
+       'from FY2022 to FY2025. A source recorded as unreachable is a claim about the world and it '
+       'is audited like one.')
 bullet('THE PROCESSING-INTENSITY WEIGHTS ARE A JUDGEMENT. Note 15-A discloses the cost stack for '
        'the company and not by line, and no weight derivable from note 14-A alone can '
        'differentiate per-line margins, because that note contains only price and volume. The '
@@ -886,15 +974,23 @@ table([['Statistic', 'Value', 'Test'],
         f"[{n3(BETA['ci90'][0])}, {n3(BETA['ci90'][1])}]",
         f"spans {(BETA['ci90'][1]-BETA['ci90'][0])/BETA['beta']:.2f}x the estimate, inside the "
         f"2x flag"],
-       ['Benchmark', f"{BETA['composite_names']}-name composite",
-        'equal-weight Egyptian Exchange basket from the covered library']],
+       ['Benchmark', 'EGX30',
+        'the published index of the exchange AMOC is listed on'],
+       ['Benchmark as of', str(BETA['index_asof']), 'the index series carries its own date'],
+       ['Superseded', n3(BETA['superseded_composite']['beta']),
+        'the previous edition, regressed on a house composite — withdrawn']],
       [1.75, 1.5, 3.35], size=8.6, left_cols=(2,))
-caption('Table B.1 — the regression passes its usability gate on every limb. ONE WEAKNESS IS '
-        'RECORDED AGAINST IT: the benchmark is a house composite rather than a published index, '
-        'so a reader cannot reproduce the regression from public data. Two reviewers raised this '
-        'independently and both are right. The beta sensitivity in Table 15 bounds what it can '
-        'cost: across the whole plausible range the cash-flow lens moves from EGP '
-        f'{p2(grid_vals("Beta")[0][1])} to {p2(grid_vals("Beta")[-1][1])}, and neither end '
+caption('Table B.1 — the regression passes its usability gate on every limb, and THE WEAKNESS '
+        'THE PREVIOUS EDITION RECORDED AGAINST ITSELF IS NOW CLOSED. That edition regressed '
+        'against an equal-weight basket of the Egyptian names this house happens to cover, which '
+        'a reader could not reproduce from public data; two reviewers raised it independently and '
+        'both were right. The regressor is now the EGX30 itself. The correction is worth '
+        f'recording for its SIZE as well as its direction: beta moves from '
+        f'{n3(BETA["superseded_composite"]["beta"])} to {n3(BETA["beta"])}, about 3.5% lower, and '
+        'the effect on the valuation is under one per cent. The old number was not badly wrong; '
+        'it was unverifiable, which is a different and sufficient reason to replace it. The beta '
+        'sensitivity in Table 15 bounds the whole plausible range: the cash-flow lens moves from '
+        f'EGP {p2(grid_vals("Beta")[0][1])} to {p2(grid_vals("Beta")[-1][1])}, and neither end '
         'reaches the market price.')
 
 H2('B.2  The cost of debt, and why it does not matter here')
@@ -939,7 +1035,7 @@ table([['Step', 'EGP mn unless stated'],
        ['Attributable earnings per share, EGP', f"{E1['eps']:.3f}"],
        ['Justified price / earnings', f"{E1['pe']:.1f}x"],
        ['VALUE PER SHARE, EGP', p2(E1['base'])]],
-      [4.0, 2.0], band_rows={6}, size=8.6, left_cols=())
+      [4.9, 1.1], band_rows={6}, size=8.6, left_cols=())
 caption(f'Table C.1 — Expert 1. Range EGP {p2(E1["rng"][0])} to {p2(E1["rng"][1])} on a 5.0x to '
         f'9.5x multiple band. This is the HIGHEST of the three and it is still '
         f'{pc(E1["base"]/SPOT-1)} against the market price. Note that it is an undiscounted '
@@ -963,7 +1059,7 @@ table([['Step', 'EGP mn'],
         f"({n0(BR['prov'] + BR['divp'])})"],
        ['EQUITY VALUE', n0(E2['base'] * SH)],
        ['VALUE PER SHARE, EGP', p2(E2['base'])]],
-      [4.0, 2.0], band_rows={5}, size=8.6, left_cols=())
+      [4.9, 1.1], band_rows={5}, size=8.6, left_cols=())
 caption(f'Table C.2 — Expert 2. Range EGP {p2(E2["rng"][0])} to {p2(E2["rng"][1])}. This is the '
         f'LOWEST of the three at {pc(E2["base"]/SPOT-1)} against the price, and the reason is '
         f'the discount rate: an equity claim discounted on the equity glide from '
@@ -982,7 +1078,7 @@ table([['Step', 'EGP mn'],
        ['plus present value of economic profit, terminal', n0(E3['pv_ep_term'])],
        ['ENTERPRISE VALUE', n0(E3['ev'])],
        ['VALUE PER SHARE after the bridge, EGP', p2(E3['base'])]],
-      [4.0, 2.0], band_rows={4}, size=8.6, left_cols=())
+      [4.9, 1.1], band_rows={4}, size=8.6, left_cols=())
 table([['', *YRS],
        ['Economic profit', *[n0(x) for x in E3['ep']]],
        ['Return spread over the cost of capital', *[pc(x, 2) for x in E3['spread']]]],
@@ -1016,26 +1112,55 @@ box([
      'distribution for the price, and the model behind both, and it grades its own forecasts '
      'publicly when they resolve.'),
     ('WHAT IT RESTS ON.  ',
-     'Audited consolidated statements for the transition period 1 July to 31 December 2025 '
-     '(Crowe — Dr A. M. Hegazy & Co, unqualified, signed at Giza 18 February 2026); reviewed '
-     'statements for the three months to 31 March 2026; and the half-year results disclosed to '
-     'the Egyptian Exchange on 29-30 July 2026, which are REPORTED and not audited. Every input '
-     'carries a value, a source, a date and a research ring in the companion source register.'),
+     'The company’s own audited consolidated financial statements, taken from its own '
+     'investor-relations archive: the five financial years to 30 June 2021, 2022, 2023, 2024 and '
+     '2025; the transition period 1 July to 31 December 2025 (Crowe — Dr A. M. Hegazy & Co, '
+     'unqualified, signed at Giza 18 February 2026); reviewed statements for the three months to '
+     '31 March 2026; and the half-year results disclosed to the Egyptian Exchange on 29-30 July '
+     '2026, which are REPORTED and not audited. The financial year to 30 June 2023 carries a '
+     'QUALIFIED audit opinion, on two balance-sheet matters that do not touch the revenue or cost '
+     'lines this study forecasts; it is named here rather than left for a reader to find. Every '
+     'input carries a value, a source, a date and a research ring in the companion source '
+     'register.'),
     ('THE COMPANION FILES.  ',
-     'The workbook recalculates this entire study live: 5,775 formulas against 198 pasted filing '
-     'values, with all thirty sensitivity grid points written out as complete formula engines '
-     'and every formula cell verified against the model by an independent evaluator — 0 '
-     'unresolvable, 0 unchecked, 0 disagreements. The bibliography lists all 152 registered '
-     'inputs with their sources, the triangulations, and the negative results.'),
-    ('WHAT CHANGED IN THIS EDITION.  ',
-     'The base year moved from nine annualised months to the twelve contiguous months to 30 June '
-     '2026; the cost side is now built per product line; capital expenditure, depreciation and '
-     'working capital are built rather than extrapolated; and the equity bridge now carries three '
-     'disclosed claims it previously omitted. The fair-value estimate moved from EGP 9.38 (before '
-     'the filings) to 7.16 (on the audited nine months) to EGP '
-     f'{p2(C)}. Each restatement is part of the record and none is silently overwritten.'),
+     f'The workbook recalculates this entire study live: {n0(CENSUS["formulas"])} formulas '
+     f'against {n0(CENSUS["pasted"])} pasted filing values ({pc(CENSUS["share"], 1)} live), with '
+     'all thirty sensitivity grid points written out as complete formula engines and every '
+     'formula cell verified against the model by an independent evaluator — 0 unresolvable, 0 '
+     f'unchecked, 0 disagreements. The bibliography lists all {n0(len(IN))} registered inputs '
+     'with their sources, the triangulations, and the negative results.'),
+    ('HOW FAR THIS METHOD HAS BEEN TESTED.  ',
+     'The forecasting method behind Section 1 was rebuilt at each of the five financial year-ends '
+     'from 2021 to 2025 and scored against what the company went on to report. It did not beat '
+     'the simple rule of assuming last year’s profit repeats. Section 7 sets out what that means '
+     'and what it changed here; the short version is that nobody standing at those year-ends '
+     'could forecast the pound, and on a business whose margin is a six-per-cent residual '
+     'between two very large numbers, that is enough to make the profit line unreliable more '
+     'than a year out. The range in this study is wide because the evidence says it should be.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_08-08-2026_public.docx')
+H1('Disclosure')
+box([
+    ('NO RECOMMENDATION.  ',
+     'Nothing in this document is a recommendation to buy, sell or hold any security, and no '
+     'price target is expressed or implied. A fair-value range is an estimate of what a business '
+     'is worth on stated assumptions; it is not a forecast of where a share price will go, and '
+     'the two regularly disagree for long periods.'),
+    ('NO POSITION, NO RELATIONSHIP, NO FEE.  ',
+     'The author holds no position in the security, has no relationship with the company, its '
+     'management, its advisers or its shareholders, and received no payment or consideration '
+     'from any of them for this work.'),
+    ('WHAT COULD BE WRONG.  ',
+     'The estimate rests on published filings, a forecasting method whose measured accuracy on '
+     'this company is set out in Section 7, and judgements listed with what would overturn each '
+     'of them in the companion bibliography. Section 7 states the known weaknesses; it is written '
+     'to be read, not to be skipped.'),
+    ('EDUCATIONAL PURPOSE.  ',
+     'This study is published to show a valuation method being applied and graded in public. Its '
+     'forecasts are recorded when made and scored when they resolve, including the ones that '
+     'turn out wrong.'),
+])
+
+OUT = os.path.join(HERE, 'AMOC_Valuation_Study_01-09-2026_public.docx')
 doc.save(OUT)
 print('wrote', OUT)

@@ -41,6 +41,9 @@ on:
       - 'engine/fv_movement.json'
       - 'engine/**_walkforward/**'
       - 'scripts/check_campaign_register_negative_control.py'
+      - 'scripts/check_valuation_gap.py'
+      - 'scripts/check_valuation_gap_negative_control.py'
+      - 'engine/build_depth_audit/gap_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -71,6 +74,9 @@ on:
       - 'engine/fv_movement.json'
       - 'engine/**_walkforward/**'
       - 'scripts/check_campaign_register_negative_control.py'
+      - 'scripts/check_valuation_gap.py'
+      - 'scripts/check_valuation_gap_negative_control.py'
+      - 'engine/build_depth_audit/gap_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -188,3 +194,20 @@ jobs:
       # and fails if any of them is reported clean
       - name: Campaign register gate — negative control
         run: python3 scripts/check_campaign_register_negative_control.py
+
+      # [R-GAP-01] the gate that looks at the ANSWER rather than the process. Every other
+      # check in this job examines how a study was built; on 01-Sep-2026 all of them passed
+      # a study whose central fair value sat 39% below the traded price with six modelling
+      # defects behind it. A central more than 10% below the latest known price now requires
+      # a dated review covering all eight headings, and a study whose committed numbers do
+      # not even expose its answer FAILS rather than being skipped [R-ENF-04].
+      - name: Valuation-gap gate
+        run: python3 scripts/check_valuation_gap.py
+
+      # and the proof that gate can go red — it reinjects an unreviewed breach, a review
+      # that skips a heading, an unreadable answer, an emptied population and a vanished
+      # study, plus three clean cases (including a central far ABOVE spot, which must NOT
+      # fire: the rule is one-sided by instruction and a check going red where no rule
+      # exists is the permanently-red check everyone learns to ignore)
+      - name: Valuation-gap gate — negative control
+        run: python3 scripts/check_valuation_gap_negative_control.py
