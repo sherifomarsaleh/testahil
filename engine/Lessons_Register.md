@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**70 lessons**, of which 47 bind on every study, 18 on a class of company, and 5 on a single name.
+**80 lessons**, of which 56 bind on every study, 19 on a class of company, and 5 on a single name.
 
-By how they were learned: 21 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 30 found while building.
+By how they were learned: 27 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 7 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 2 (PHDC, TMGH) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 3 (AMOC, PHDC, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -549,6 +549,96 @@ A bias measured over a whole history can hide two opposite halves, and in a mark
 
 > **What would overturn it.** A market or period where fewer than one driver in ten changes sign between regimes.
 
+### L-048 · A forecast scenario must be internally consistent, or it invents its own bias.
+
+If you carry inflation forward at 25% a year, you cannot also hold the exchange rate still — those are the same event seen twice. Doing both inflates every cost and freezes every price, and the profit forecast is then wrong for a reason that has nothing to do with the company. Check that the macro assumptions could all be true at once before reading anything into the errors they produce.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.570 log (about 1.8 times too low), average miss 0.570, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=9).
+
+> **What would overturn it.** A scenario whose macro inputs are mutually inconsistent that nonetheless produces no directional bias in the lines they drive.
+
+### L-049 · Test the method against 'assume no change' before trusting its profit forecast.
+
+The simplest possible forecast is to write down last year's number and stop. It is surprisingly hard to beat, and a model that loses to it has not earned the precision it displays. Run the comparison explicitly — if the model loses, publish a range and say so, rather than a point that looks more informed than it is.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons 1, 2, 3, worst -1.588.
+
+> **What would overturn it.** A run where the model beats the no-change benchmark on the profit line at every horizon tested.
+
+### L-050 · Setting 'non-recurring' items to zero is a forecast, and usually a bad one.
+
+Provision releases, disposal gains and currency gains are each unpredictable, so the tempting rule is to forecast none of them. But something in that bucket lands almost every year, and zero is further from the truth than simply carrying last year's total forward. If the individual items cannot be forecast, forecast the bucket.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons 1, 2, 3, worst -0.785.
+
+> **What would overturn it.** An issuer whose other-income line is genuinely empty in most years, where zero beats carrying the previous year forward.
+
+### L-051 · A number that is zero by construction is not a finding about the world.
+
+If a driver contains no inflation term, then re-running it with perfect knowledge of inflation must change nothing, and the 'macro share' of its error must come back at exactly zero. That is arithmetic, not evidence. Declare which drivers those are BEFORE running the split, so a structural zero cannot be read back as a discovery.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 0.606 as known, 0.606 with perfect foresight of inflation — the macro share is only 0.0%.
+
+> **What would overturn it.** Nothing. A quantity fixed by construction cannot become evidence about the world.
+
+### L-052 · Check an annualised half-year base against every full year you hold.
+
+A base year built by doubling one good half can sit well above anything the company has actually achieved over twelve months. Growing from it then compounds a rebound into a trend. Before forecasting growth off a part-year base, line it up against the full-year record — and if the base is already the highest number in that record, flat is the optimistic case, not the neutral one.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** AMOC's base half annualises to 1,616,167 tonnes against a five-year mean of 1,436,781 and a most recent full year of 1,261,586; audited sales tonnage ran 1,492,273 / 1,547,816 / 1,448,889 / 1,433,341 / 1,261,586 over FY2021-FY2025. Even a FLAT volume rule over-forecast, bias +7.6% and too high in 8 of 9 tested cases.
+
+> **What would overturn it.** A part-year base that is representative of the full-year record, where growing from it does not over-forecast.
+
+### L-053 · A coherence test is only as good as the estimate inside it.
+
+Checking a disclosure against your own reconstruction of it is a good habit, but the reconstruction can be the thing that is wrong. Before rejecting a company's own figure, ask which line in your test is estimated and how volatile that line is. If the answer is the most volatile line in the statement, the test cannot carry the weight of a rejection.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's released gross profit for the half to June 2026 was rejected on a test that estimated the half's other income by DOUBLING the March quarter's 225,556,509, giving 451mn against the 196,526,615 the filing later showed. The released figure was right to 0.03%. Gross profit was then solved from the profit line at 8.997% against a filed 9.653%, and that base- year margin ran through all four lenses.
+
+> **What would overturn it.** A rejection built on an extrapolated volatile line that a later filing confirms was correct.
+
+### L-054 · Value the whole firm, or value the operations and add the cash — never both.
+
+When a company holds more cash than debt, weighting its cost of capital on NET debt makes the debt weight negative and pushes the rate used on the OPERATING cash flows above the cost of equity. If the cash is then added back at face in the bridge, the same cash has been charged for twice: once by discounting the business as though owning a deposit made it riskier, and once by counting the deposit at par.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's operating cash flows were discounted at 31.19% against a cost of equity of 27.45% — 374 basis points higher — because net cash of 3.0bn against a market capitalisation of 11.8bn gives a debt weight of -26.2%. The bridge then added the 3.0bn at face. Gross borrowings are 0.14% of the capital structure, so the unlevered rate is the cost of equity to three decimals.
+
+> **What would overturn it.** A construction in which a net-cash-weighted rate is used on operating cash flows AND the cash is left out of the bridge — which is the other consistent pair, and equally acceptable.
+
+### L-055 · Terminal growth and the terminal discount rate must agree about inflation.
+
+The discount rate used past the forecast horizon has an inflation assumption buried inside it, usually through the risk-free rate. If terminal growth is set below that number, the model is quietly assuming the business shrinks in real terms for ever — a large, permanent claim that nobody wrote down and no disclosure supports. Read the inflation out of the terminal rate first, then choose growth against it and state the real growth you have assumed, even when it is zero.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's first pass carried terminal growth of 5.0% against a terminal risk-free of 12.5% embedding the central bank's 7% target — a perpetual real decline of about 2% a year, never stated. Set to 7% (inflation only, zero real), the central moved from 5.53 to 8.64 against a spot of 9.10 together with the other five corrections.
+
+> **What would overturn it.** A study that deliberately assumes real decline in perpetuity, says so, and shows the disclosure or industry evidence supporting it — that is a stated assumption, not this defect.
+
+### L-056 · A claim about the record — 'best ever', 'never' — is recomputed, never typed.
+
+Superlatives are the sentences a reader remembers and the ones nobody checks, because they read as colour rather than as arithmetic. They also go stale silently: typed once against an early version of the model, they survive every later change to it. Compute the claim from the filings in the same pass that computes the number it describes, and drive the sentence off that value rather than retyping it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC walk-forward, date not recorded
+
+> **What it cost, or how we know.** AMOC's headline said the market price required a gross margin 'above the best single quarter this company has ever filed' at 12.2%. The figure was typed, never solved, and never revisited as the model moved. Solved by bisection it is 9.37% — below the 9.653% just filed for twelve months — and the company had already printed 13.84% for FY2022 and 13.92% in the quarter to June 2026, so the claim was false twice over.
+
+> **What would overturn it.** A delivered superlative that a reader can verify from the study's own committed numbers without recomputing it — at which point it was computed, not typed.
+
 
 ---
 
@@ -761,6 +851,19 @@ A population-based volume driver runs low for every developer, but not by a fixe
 > **What it cost, or how we know.** Bias -0.877 log (about 2.4 times too low), average miss 1.022, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=33).
 
 > **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
+
+
+## Refiner, commodity pass-through on a thin spread
+
+### L-119 · On a thin spread, being right about both sides separately is not enough.
+
+When profit is a small difference between two very large numbers, an error that looks tiny on each of them is enormous on the difference. Six per cent out on revenue and almost exact on cost still left the gross profit forecast wrong by two thirds. What has to be right is the two sides RELATIVE to each other, and a model that forecasts them independently will not deliver that however good each looks alone.
+
+**Applies to:** every refiner, commodity pass-through on a thin spread  ·  *Learned from:* fundamental walk-forward test, AMOC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 0.504 as known, 0.519 with perfect foresight of inflation — the macro share is only -2.8%.
+
+> **What would overturn it.** A pass-through business with a comparably thin margin where independent revenue and cost forecasts of similar accuracy produce a proportionate, not amplified, profit error.
 
 
 ---
