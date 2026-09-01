@@ -586,12 +586,30 @@ def run(market: str, series: str, key: str, today: str,
     # A number stated in prose must be COMPUTED, not typed, so the clause is DERIVED
     # from the value strike() actually applied and disappears when it is exactly 1.0.
     wmult = r.get('width_overlay_mult', 1.0)
+    # THE SAME DEFECT, ONE LAYER UP (01-Sep-2026). strike() reads engine/fit_overrides.json
+    # and, where a name carries a per-name (nu, width_cal) adopted on its own LONO
+    # verdict (KR/IN/QA/US names, 29-Jul-2026), simulates under THAT pair — but this
+    # note quoted `prof.nu` / `prof.width_cal`, the POOLED market fit, as "the live fit".
+    # On the 01-Sep-2026 SAMSUNG strike the entry's own `fit` stamp said nu=6/cal=1.084
+    # while the row's note said the pooled pair: two records of one cone, both
+    # published, disagreeing. The base pair is now taken from what strike() returned,
+    # so the clause is DERIVED from the config actually applied; for a name with no
+    # override r['nu'] IS prof.nu and r['width_cal'] IS prof.width_cal, so every such
+    # note is byte-identical to before (verified on SNB and ADIB dry runs). The
+    # overlay clause below multiplies the same base, never the pooled figure.
+    base_nu, base_cal = r['nu'], r['width_cal']
+    onote = '' if not r.get('fit_override_applied') else (
+        f' PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at '
+        f'nu={base_nu}, width_cal={base_cal} — the pair adopted on its OWN leave-one-name-out '
+        f'verdict — so the cone was simulated under that pair, not the pooled '
+        f'nu={prof.nu}, width_cal={prof.width_cal} quoted above.'
+    )
     wnote = '' if abs(wmult - 1.0) < 1e-9 else (
         f' PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has '
         f'cleared the {AW.MIN_WINDOWS}-window history gate, so live_width_mult() returns '
         f'{wmult:.4f} on its OWN resolved 3-month residuals and the cone was simulated at '
-        f'an effective width_cal of {prof.width_cal * wmult:.4f}, not the pooled '
-        f'{prof.width_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
+        f'an effective width_cal of {base_cal * wmult:.4f}, not the pooled '
+        f'{base_cal}. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the '
         f'carry drift and the tail nu are untouched by it.'
     )
     calflag, calnote = name_calibration(market, series, prof, wmult)
@@ -607,7 +625,7 @@ def run(market: str, series: str, key: str, today: str,
         f'→ simulate_paths_v3, 50,000 paths, seed 42, signal '
         f'{"ON" if prof.signal_active else "OFF"}. q_annual={q_annual:g} '
         f'{qnote} '
-        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{wnote}{calnote} rf_live '
+        f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}.{onote}{wnote}{calnote} rf_live '
         f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. {call} Horizons '
         f'resolved by horizons.resolve() on {market}’s own realized calendar — '
         f'a calendar commitment, not a session count; the session counts '
