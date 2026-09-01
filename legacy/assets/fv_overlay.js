@@ -32,7 +32,7 @@ const FV_OVERLAY = {
   },
   "QA": {
    "nu": 6.0,
-   "width_cal": 0.951,
+   "width_cal": 0.958,
    "rf_live": 0.0425,
    "width_overlay_active": false
   },
@@ -253,7 +253,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 6.0,
-    "width_cal": 0.951,
+    "width_cal": 0.958,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2536,98 +2536,6 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "TMPV",
-   "name": "Tata Motors Passenger Vehicles Ltd.",
-   "code": "NSE:TMPV",
-   "ccy": "INR",
-   "spot": 349.3,
-   "anchor_date": "2026-08-03",
-   "fv_asof": "2026-06-30",
-   "fv_lag_days": 34,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 236,
-   "fv_base": 378,
-   "fv_full": 579,
-   "gap_base_pct": 8.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 1.014,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.083528,
-    "mu_h": 0.004912,
-    "G": {
-     "bear": -4.69,
-     "base": 0.95,
-     "full": 6.05
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0006,
-     "base": 0.1596,
-     "full": 0.0002
-    },
-    "p_touch": {
-     "bear": 0.0007,
-     "base": 0.2594,
-     "full": 0.0003
-    },
-    "required_cagr": {
-     "bear": -0.991,
-     "base": 1.5794,
-     "full": 429.2885
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00201
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.149042,
-    "mu_h": 0.016919,
-    "G": {
-     "bear": -2.63,
-     "base": 0.53,
-     "full": 3.39
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0076,
-     "base": 0.3142,
-     "full": 0.0035
-    },
-    "p_touch": {
-     "bear": 0.0135,
-     "base": 0.5393,
-     "full": 0.0057
-    },
-    "required_cagr": {
-     "bear": -0.7916,
-     "base": 0.3714,
-     "full": 6.5495
-    },
-    "hurdle_rf": 0.065,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00292
-   },
-   "market": "IN"
-  },
-  {
    "ticker": "RELIANCE",
    "name": "Reliance Industries Limited",
    "code": "NSE:RELIANCE",
@@ -3565,7 +3473,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 6.0,
-    "width_cal": 0.951,
+    "width_cal": 0.958,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3841,7 +3749,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 6.0,
-    "width_cal": 0.951,
+    "width_cal": 0.958,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4650,6 +4558,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00426
    },
    "market": "EG"
+  },
+  {
+   "ticker": "TMPV",
+   "name": "Tata Motors Passenger Vehicles Ltd.",
+   "code": "NSE:TMPV",
+   "ccy": "INR",
+   "spot": 310.6,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 63,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 236,
+   "fv_base": 378,
+   "fv_full": 579,
+   "gap_base_pct": 21.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 1.014,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.087594,
+    "mu_h": 0.005202,
+    "G": {
+     "bear": -3.14,
+     "base": 2.24,
+     "full": 7.11
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0039,
+     "base": 0.0184,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.006,
+     "base": 0.0283,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -0.963,
+     "base": 9.5556,
+     "full": 1759.8621
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0016
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.158572,
+    "mu_h": 0.016983,
+    "G": {
+     "bear": -1.73,
+     "base": 1.24,
+     "full": 3.93
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0326,
+     "base": 0.1076,
+     "full": 0.0017
+    },
+    "p_touch": {
+     "bear": 0.0577,
+     "base": 0.1796,
+     "full": 0.003
+    },
+    "required_cagr": {
+     "bear": -0.6667,
+     "base": 1.1936,
+     "full": 11.0756
+    },
+    "hurdle_rf": 0.065,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0031
+   },
+   "market": "IN"
   },
   {
    "ticker": "ABUK",
