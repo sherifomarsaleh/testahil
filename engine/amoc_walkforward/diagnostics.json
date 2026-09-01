@@ -1,0 +1,298 @@
+{
+ "revenue_decomposition": [
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "target": "FY2022",
+   "volume_effect": 0.03654428660814383,
+   "mix_effect": -0.005480579609560082,
+   "realisation_effect": 0.5628699136558887,
+   "total": 0.5939336206544723
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "target": "FY2023",
+   "volume_effect": -0.02950371984057454,
+   "mix_effect": 0.004440606891341353,
+   "realisation_effect": 0.8910709376125903,
+   "total": 0.866007824663357
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "target": "FY2024",
+   "volume_effect": -0.04029304648738246,
+   "mix_effect": 0.01366294424276529,
+   "realisation_effect": 1.225449772911371,
+   "total": 1.1988196706667538
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "target": "FY2023",
+   "volume_effect": -0.06604800644871871,
+   "mix_effect": 0.00664112372598288,
+   "realisation_effect": 0.33148108673162047,
+   "total": 0.2720742040088847
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "target": "FY2024",
+   "volume_effect": -0.07683733309552686,
+   "mix_effect": 0.018824242834068645,
+   "realisation_effect": 0.6628991402737395,
+   "total": 0.6048860500122814
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "target": "FY2025",
+   "volume_effect": -0.20447563800107402,
+   "mix_effect": 0.02097911946274215,
+   "realisation_effect": 0.8964788895886017,
+   "total": 0.7129823710502698
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "target": "FY2024",
+   "volume_effect": -0.010789326646808092,
+   "mix_effect": 0.015886091174500138,
+   "realisation_effect": 0.3277150814757047,
+   "total": 0.33281184600339664
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "target": "FY2025",
+   "volume_effect": -0.13842763155235493,
+   "mix_effect": 0.0162605883758342,
+   "realisation_effect": 0.5630752102179061,
+   "total": 0.4409081670413853
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "target": "FY2025",
+   "volume_effect": -0.12763830490554703,
+   "mix_effect": 0.0010415040205136604,
+   "realisation_effect": 0.23469312192302197,
+   "total": 0.10809632103798862
+  }
+ ],
+ "revenue_decomposition_mean": {
+  "volume_effect": -0.07305208004109365,
+  "mix_effect": 0.010250626790909803,
+  "realisation_effect": 0.6328592393767161,
+  "total": 0.5700577861265322
+ },
+ "specification_test": {
+  "net_sales": {
+   "prereg": {
+    "n": 9,
+    "bias": -0.5700577861265322,
+    "mae": 0.5700577861265322,
+    "share_over": 0.0
+   },
+   "ppp": {
+    "n": 9,
+    "bias": -0.37439511553025656,
+    "mae": 0.4105114802746768,
+    "share_over": 0.1111111111111111
+   },
+   "foresight": {
+    "n": 9,
+    "bias": 0.058571290981047075,
+    "mae": 0.06169758954403808,
+    "share_over": 0.8888888888888888
+   }
+  },
+  "cost_of_sales": {
+   "prereg": {
+    "n": 9,
+    "bias": -0.5785576954122902,
+    "mae": 0.5785576954122902,
+    "share_over": 0.0
+   },
+   "ppp": {
+    "n": 9,
+    "bias": -0.40330538621080503,
+    "mae": 0.4365616850644625,
+    "share_over": 0.1111111111111111
+   },
+   "foresight": {
+    "n": 9,
+    "bias": 0.001476389305576856,
+    "mae": 0.01557004110318488,
+    "share_over": 0.5555555555555556
+   }
+  },
+  "gross_profit": {
+   "prereg": {
+    "n": 9,
+    "bias": -0.49440059724730534,
+    "mae": 0.5044073101577488,
+    "share_over": 0.1111111111111111
+   },
+   "ppp": {
+    "n": 9,
+    "bias": -0.09598390631135392,
+    "mae": 0.4175350232558857,
+    "share_over": 0.6666666666666666
+   },
+   "foresight": {
+    "n": 9,
+    "bias": 0.5185868722755691,
+    "mae": 0.5185868722755691,
+    "share_over": 1.0
+   }
+  },
+  "pbt": {
+   "prereg": {
+    "n": 9,
+    "bias": -1.0711558268665913,
+    "mae": 1.0711558268665913,
+    "share_over": 0.0
+   },
+   "ppp": {
+    "n": 9,
+    "bias": -0.3343161781637378,
+    "mae": 0.4837117249594787,
+    "share_over": 0.4444444444444444
+   },
+   "foresight": {
+    "n": 9,
+    "bias": 0.4640987632434105,
+    "mae": 0.5009069542940617,
+    "share_over": 0.8888888888888888
+   }
+  },
+  "majority": {
+   "prereg": {
+    "n": 9,
+    "bias": -1.0240449410560484,
+    "mae": 1.0240449410560484,
+    "share_over": 0.0
+   },
+   "ppp": {
+    "n": 9,
+    "bias": -0.28720529235319536,
+    "mae": 0.45862664278817367,
+    "share_over": 0.4444444444444444
+   },
+   "foresight": {
+    "n": 9,
+    "bias": 0.511209649053953,
+    "mae": 0.5441748126940522,
+    "share_over": 0.8888888888888888
+   }
+  }
+ },
+ "skill_vs_freeze_majority": {
+  "prereg": -1.1284150366369041,
+  "ppp": 0.04677245736305624,
+  "foresight": -0.13103420314997583
+ },
+ "mae_freeze_majority": 0.4811302887025905,
+ "beta_sensitivity_on_foresight": {
+  "beta_0.8": {
+   "net_sales": {
+    "n": 9,
+    "bias": -0.06715452444046868,
+    "mae": 0.06715452444046868,
+    "share_over": 0.0
+   },
+   "cost_of_sales": {
+    "n": 9,
+    "bias": -0.11364415203071504,
+    "mae": 0.11364415203071504,
+    "share_over": 0.0
+   },
+   "gross_profit": {
+    "n": 9,
+    "bias": 0.3271219229802839,
+    "mae": 0.33576163376987517,
+    "share_over": 0.8888888888888888
+   },
+   "pbt": {
+    "n": 9,
+    "bias": 0.2210804838481079,
+    "mae": 0.27746305994065174,
+    "share_over": 0.7777777777777778
+   },
+   "majority": {
+    "n": 9,
+    "bias": 0.2681913696586504,
+    "mae": 0.31435604069330864,
+    "share_over": 0.8888888888888888
+   }
+  },
+  "beta_1.0": {
+   "net_sales": {
+    "n": 9,
+    "bias": 0.058571290981047075,
+    "mae": 0.06169758954403808,
+    "share_over": 0.8888888888888888
+   },
+   "cost_of_sales": {
+    "n": 9,
+    "bias": 0.001476389305576856,
+    "mae": 0.01557004110318488,
+    "share_over": 0.5555555555555556
+   },
+   "gross_profit": {
+    "n": 9,
+    "bias": 0.5185868722755691,
+    "mae": 0.5185868722755691,
+    "share_over": 1.0
+   },
+   "pbt": {
+    "n": 9,
+    "bias": 0.4640987632434105,
+    "mae": 0.5009069542940617,
+    "share_over": 0.8888888888888888
+   },
+   "majority": {
+    "n": 9,
+    "bias": 0.511209649053953,
+    "mae": 0.5441748126940522,
+    "share_over": 0.8888888888888888
+   }
+  },
+  "beta_1.2": {
+   "net_sales": {
+    "n": 9,
+    "bias": 0.184297106402563,
+    "mae": 0.184297106402563,
+    "share_over": 1.0
+   },
+   "cost_of_sales": {
+    "n": 9,
+    "bias": 0.11806503508775432,
+    "mae": 0.11853609910199189,
+    "share_over": 0.8888888888888888
+   },
+   "gross_profit": {
+    "n": 9,
+    "bias": 0.6972170476139232,
+    "mae": 0.6972170476139232,
+    "share_over": 1.0
+   },
+   "pbt": {
+    "n": 9,
+    "bias": 0.680538406018218,
+    "mae": 0.7046574535261984,
+    "share_over": 0.8888888888888888
+   },
+   "majority": {
+    "n": 9,
+    "bias": 0.7276492918287606,
+    "mae": 0.7479253119261886,
+    "share_over": 0.8888888888888888
+   }
+  }
+ },
+ "beta_note": "Under the pre-registered knowable path the crude ratio is 1.0, so beta multiplies nothing and all three values are identical. Reported here on perfect foresight, where beta is the quantity it was meant to test."
+}
