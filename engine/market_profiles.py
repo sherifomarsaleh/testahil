@@ -102,7 +102,7 @@ EGYPT = MarketProfile(
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="mom_combo", signal_sign=+1, ic=0.062, signal_active=True,
     ic_by_h={"1M": 0.062, "3M": 0.068},
-    nu=5.0, width_cal=0.958,
+    nu=5.0, width_cal=0.951,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
         "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit "
