@@ -416,6 +416,40 @@ def main() -> int:
                               f'date {struck["grade"]} is unchanged, so the commitment '
                               f'stands and the cone is not re-sized.')
                     continue
+                #     THE FORGIVENESS ABOVE READS A FIELD 28 OF 331 LEDGER ROWS
+                #     PREDATE (01-Sep-2026). horizon_days/grade_basis were added
+                #     after those rows were struck, so on a legacy row the guard
+                #     fell through to fail() — and it fires on exactly the case the
+                #     comment above says is not a defect. Measured here: merging one
+                #     month of RELIANCE ran IN's calendar to 2026-09-01, and INFY —
+                #     struck 2026-07-28, still awaiting its own export — flipped from
+                #     a projected h1 of 22 to a realized 23 while its grade date
+                #     (2026-08-28) and every published percentile stood untouched.
+                #     A gate that fails on a row for being OLD is measuring the
+                #     schema, not the claim.
+                #
+                #     So reconstruct what the missing field would have recorded, by
+                #     CALLING resolve()'s own projected branch rather than
+                #     re-implementing it ([R-ENF-03]: grade what ships). The guard is
+                #     unchanged and is still the GRADE DATE — this only supplies the
+                #     provenance the row cannot carry, and a published h that is NOT
+                #     the projection still fails.
+                if struck and struck['horizon_days'] is None and struck['grade_basis'] is None:
+                    tgt = horizons.target_date(anchor, months)
+                    gd = horizons._projected_next_open(mkt, tgt)
+                    hd = horizons._h_density(mkt, anchor, gd)
+                    hs = horizons._h_seasonal(mkt, anchor, months)
+                    proj = max(hd if hs is None else int(round((hd + hs) / 2)), 1)
+                    if (proj == got_h
+                            and gd.date().isoformat() == struck['grade']
+                            and struck['grade'] == res['grade_date']):
+                        warn(key, f'hz.{field} is {got_h}, the projection made at '
+                                  f'strike (reconstructed: density {hd}, seasonal '
+                                  f'{hs} — the row predates horizon_days); the span '
+                                  f'has since resolved to {want} sessions. Grade date '
+                                  f'{struck["grade"]} is unchanged, so the commitment '
+                                  f'stands and the cone is not re-sized.')
+                        continue
                 fail(key, f'hz.{field} is {got_h} but this name\'s own '
                           f'{months}-month span projects to {want} sessions')
 
