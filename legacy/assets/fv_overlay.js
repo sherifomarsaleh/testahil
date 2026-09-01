@@ -696,98 +696,6 @@ const FV_OVERLAY = {
    "market": "US"
   },
   {
-   "ticker": "KAKAO",
-   "name": "Kakao Corp.",
-   "code": "KRX:035720",
-   "ccy": "KRW",
-   "spot": 35650,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-28",
-   "fv_lag_days": 30,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 24517,
-   "fv_base": 34258,
-   "fv_full": 46401,
-   "gap_base_pct": -3.9,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 8.0,
-    "width_cal": 1.07,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.155316,
-    "mu_h": 0.001885,
-    "G": {
-     "bear": -2.41,
-     "base": -0.26,
-     "full": 1.7
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0116,
-     "base": 0.3822,
-     "full": 0.0438
-    },
-    "p_touch": {
-     "bear": 0.0179,
-     "base": 0.6783,
-     "full": 0.0672
-    },
-    "required_cagr": {
-     "bear": -0.9888,
-     "base": -0.3799,
-     "full": 22.6382
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00305
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.251392,
-    "mu_h": 0.009398,
-    "G": {
-     "bear": -1.49,
-     "base": -0.16,
-     "full": 1.05
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.058,
-     "base": 0.4134,
-     "full": 0.1383
-    },
-    "p_touch": {
-     "bear": 0.1012,
-     "base": 0.794,
-     "full": 0.2424
-    },
-    "required_cagr": {
-     "bear": -0.7763,
-     "base": -0.1473,
-     "full": 1.8699
-    },
-    "hurdle_rf": 0.03,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00528
-   },
-   "market": "KR"
-  },
-  {
    "ticker": "OCDI",
    "name": "Sixth of October Development & Investment",
    "code": "EGX:OCDI",
@@ -1522,6 +1430,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00204
    },
    "market": "EG"
+  },
+  {
+   "ticker": "KAKAO",
+   "name": "Kakao Corp.",
+   "code": "KRX:035720",
+   "ccy": "KRW",
+   "spot": 36550,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 64,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 24517,
+   "fv_base": 34258,
+   "fv_full": 46401,
+   "gap_base_pct": -6.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 1.07,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.147072,
+    "mu_h": 0.002405,
+    "G": {
+     "bear": -2.72,
+     "base": -0.44,
+     "full": 1.62
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0068,
+     "base": 0.3061,
+     "full": 0.0504
+    },
+    "p_touch": {
+     "bear": 0.0102,
+     "base": 0.5332,
+     "full": 0.0785
+    },
+    "required_cagr": {
+     "bear": -0.9917,
+     "base": -0.5403,
+     "full": 16.5259
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0015
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.250697,
+    "mu_h": 0.009314,
+    "G": {
+     "bear": -1.59,
+     "base": -0.26,
+     "full": 0.95
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0483,
+     "base": 0.3709,
+     "full": 0.1608
+    },
+    "p_touch": {
+     "bear": 0.0848,
+     "base": 0.7062,
+     "full": 0.2838
+    },
+    "required_cagr": {
+     "bear": -0.7975,
+     "base": -0.2282,
+     "full": 1.5975
+    },
+    "hurdle_rf": 0.03,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00384
+   },
+   "market": "KR"
   },
   {
    "ticker": "ENBD",

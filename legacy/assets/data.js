@@ -2141,26 +2141,29 @@ const TICKERS = {
     name: "Kakao Corp.",
     nameAr: "كاكاو",
     code: "KRX:035720",
-    spot: 35650,
-    spotDate: "close 28 Jul 2026",
+    spot: 36550,
+    spotDate: "close 31 Aug 2026",
     ccy: "KRW",
     fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 — weighted central 34,258 (+3% vs spot); bear = consolidated DCF 24,517 (excludes stakes, conservative floor); full = discount-compression / SOTP bull 46,401. Gross net-asset value ~51,788 at no discount; deeper SOTP bear ~21,745 at a wide discount, covered in the study text.
     dist: {
-    t20: { label: "1 month", p5: 27814.21, p25: 32498.94, p50: 35717.27, p75: 39311.86, p95: 45869.23, resolve: "2026-08-28" },
-    t60: { label: "3 months", p5: 23978.91, p25: 30817.91, p50: 35986.62, p75: 41993.13, p95: 53885.8, resolve: "2026-10-28" }
-  },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[44000,13,34],[40000,36,58],[37000,71,82],[32000,38,57],[28000,9,26],[24000,1,9]],
-    levels: { res:[36497, 38431, 39979], sup:[35302, 33400, 32384] },
+      t20: { label:"1 month",   p5:28938, p25:33492, p50:36638, p75:40084, p95:46472, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:24613, p25:31646, p50:36892, p75:42969, p95:55187, resolve:"2026-11-30" }
+    },
+    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:8, cal:1.035, mult:1, eff:1.035, on:"2026-09-01" },
+    touch: [ /* descending high -> low */
+      [44000, 15, 39], [40000, 43, 65], [37000, 82, 90], [32000, 27, 50], [28000, 5, 22], [24000, 1, 7]
+    ],
+    levels: { res:[38477, 39979, 41450], sup:[34650, 33472, 32384] },
     tech: {
       trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 35650 below a falling 50-day (37871) and a falling 200-day (51486), but above a falling 20-day (35302). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 1901 (~5.3%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u2212445 / \u2212864 / +419). Over the last year it has ranged 32250\u201369700; the last close sits 49% below that high and 11% above that low.",
-      bull: "A daily close back above 36497 would clear the nearest resistance; the next charted level above it is 39979.",
-      bear: "A close below 35302 would break the nearest support; the next charted level below it is 32384."
+      summary: "The price closed 36550 below a rising 20-day (37955) and a falling 200-day (48782), but above a falling 50-day (36401). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 1858 (~5.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u2212234 / +46 / \u2212280). Over the last year it has ranged 32250\u201369700; the last close sits 48% below that high and 13% above that low.",
+      bull: "A daily close back above 38477 would clear the nearest resistance; the next charted level above it is 41450.",
+      bear: "A close below 34650 would break the nearest support; the next charted level below it is 32384."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
-      tech: { data:"2026-07-28", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/Kakao_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -3219,7 +3222,7 @@ const BANDS = {
   ISPH: {mkt:"EG", n:30, hits:23, c50:0.4667, c80:0.7333, c90:0.7667, width:1.316, strength:"short", flag:"narrow"},
   JUFO: {mkt:"EG", n:57, hits:54, c50:0.6667, c80:0.9123, c90:0.9474, width:1.516, strength:"long", flag:null},
   KABO: {mkt:"EG", n:57, hits:54, c50:0.4561, c80:0.8246, c90:0.9474, width:1.383, strength:"long", flag:null},
-  Kakao: {mkt:"KR", n:57, hits:49, c50:0.4561, c80:0.7719, c90:0.8596, width:0.988, strength:"long", flag:null},
+  Kakao: {mkt:"KR", n:58, hits:50, c50:0.4655, c80:0.7759, c90:0.8621, width:0.987, strength:"long", flag:null},
   LCSW: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8421, c90:0.9123, width:1.422, strength:"long", flag:null},
   LGES: {mkt:"KR", n:13, hits:11, c50:0.6154, c80:0.8462, c90:0.8462, width:0.863, strength:"market-only", flag:null},
   LULU: {mkt:"AE", n:2, hits:2, c50:1.0000, c80:1.0000, c90:1.0000, width:1.427, strength:"market-only", flag:null},
@@ -3260,7 +3263,7 @@ const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
   EG: {names:37, n:1794, c90:0.9281, label:"Egyptian"},
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
-  KR: {names:3, n:125, c90:0.8800, label:"Korean"},
+  KR: {names:3, n:126, c90:0.8810, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
   SA: {names:13, n:562, c90:0.8701, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
@@ -5273,9 +5276,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
     p5:27814.21, p25:32498.94, p50:35717.27, p75:39311.86, p95:45869.23,
     touch:{ "+5":65, "+10":44, "+15":28, "+20":18, "-5":62, "-10":39 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:36850, realized_high:41450, realized_low:33600,
+    in_90:true, in_50:true, realized_quantile:0.579, median_err:0.0317,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"Kakao", asset_class:"other",
@@ -7243,6 +7246,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: KAKAO, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"Kakao", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:36550.0, ccy:"KRW",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:20,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.5075,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.07. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:28937.58, p25:33492.23, p50:36637.73, p75:40084.12, p95:46472.38,
+    touch:{ "+5":63, "+10":41, "+15":26, "+20":16, "-5":60, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Kakao", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:36550.0, ccy:"KRW",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:61,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.4947,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-28 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) KR live fit nu=8.0, width_cal=1.07. rf_live 3.00% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on KR’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 61) size the cone only.",
+    p5:24612.88, p25:31646.43, p50:36891.76, p75:42968.93, p95:55187.32,
+    touch:{ "+5":78, "+10":63, "+15":50, "+20":40, "-5":76, "-10":58 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7531,7 +7563,7 @@ const CALIB = {
   "EGX:SWDY": {w: 57, in50: 46, in90: 91, through: "2026-07-12"},
   "EGX:TMGH": {w: 57, in50: 44, in90: 93, through: "2026-07-12"},
   "KRX:005930": {w: 55, in50: 40, in90: 91, through: "2026-06-19"},
-  "KRX:035720": {w: 57, in50: 47, in90: 86, through: "2026-05-11"},
+  "KRX:035720": {w: 58, in50: 48, in90: 86, through: "2026-08-11"},
   "KRX:373220": {w: 13, in50: 62, in90: 92, through: "2026-05-26"},
   "NASDAQ:AAPL": {w: 58, in50: 45, in90: 86, through: "2026-07-21"},
   "NASDAQ:NVDA": {w: 58, in50: 50, in90: 88, through: "2026-07-21"},
