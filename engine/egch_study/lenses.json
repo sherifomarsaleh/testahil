@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": -0.5572364806610506,
-  "stopped": 3.585910769087703,
-  "upside": 1.9792902730985564,
-  "downside": -2.3482882894528516
+  "carry_through": -0.6254255245924404,
+  "stopped": 3.427492145329595,
+  "upside": 1.8413424695455536,
+  "downside": -2.371673898787964
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -35,7 +35,7 @@
   "value_per_share": 15.474444319299197,
   "value_high": 20.071943456320042,
   "implied_at_market": 8.071508700510604,
-  "implied_at_model": 1.1502646159973053
+  "implied_at_model": 1.121342666976044
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -70,16 +70,16 @@
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": -0.5572364806610506,
-   "Cash flow \u2014 programme stopped": 3.585910769087703,
+   "Cash flow \u2014 programme carried through": -0.6254255245924404,
+   "Cash flow \u2014 programme stopped": 3.427492145329595,
    "Book value and sustainable return": 0.5841958982966984,
    "Relative multiples": 15.474444319299197,
    "Normalised earnings power": 4.289630624386951
   },
   "low": 0.0,
   "high": 15.474444319299197,
-  "central_carry_through": -0.5572364806610506,
-  "central_stopped": 3.585910769087703,
+  "central_carry_through": -0.6254255245924404,
+  "central_stopped": 3.427492145329595,
   "spot": 13.98,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
@@ -91,7 +91,7 @@
    "normalised": 0.2,
    "book": 0.15
   },
-  "base": 3.789687957184262,
+  "base": 3.7590028874151367,
   "bear": 0.0,
   "bull": 15.474444319299197,
   "note": "The central is the weighted cash-flow (carried-through), relative, normalised and book readings; bear and full are the floor and ceiling of the field across every lens."
@@ -99,11 +99,11 @@
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": -0.5572364806610506,
+  "side_a": -0.6254255245924404,
   "side_b_label": "Stopped",
-  "side_b": 3.585910769087703,
-  "gap": 4.143147249748754,
-  "gap_equity": 8230.689316115482,
+  "side_b": 3.427492145329595,
+  "gap": 4.052917669922035,
+  "gap_equity": 8051.441127743129,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }
 }

@@ -104,9 +104,12 @@ I("sell_other_FY2425", 176.305, "EGP m",
 I("dep_charge_FY2425", 771.213, "EGP m", FS25 + ", note 6 fixed-asset register", "2025-09-24", "L1")
 I("amort_FY2425", 119.378, "EGP m", FS25 + ", note 10 usufruct intangible", "2025-09-24", "L1")
 I("dep_rate_kima2_machinery", 0.0395, "per year", FS25 + ", note 5-2 depreciation rates", "2025-09-24", "L1")
-I("fx_terminal_wedge", 0.025, "ratio",
-  "Constructed: steady-state gap between the terminal inflation target and the currency wedge, held "
-  "constant in the terminal year", "2026-08-09", "L5")
+I("fx_terminal_wedge", (1 + 0.050) / (1 + 0.024) - 1, "ratio",
+  "DERIVED: the steady-state currency depreciation the terminal inflation (5%) implies against "
+  "long-run US inflation (2.4%) on the relative purchasing-power identity — the same wedge that "
+  "carries the dollar debt in the terminal year. RE-SET 1 September 2026 from a typed 2.5% so that "
+  "the terminal currency, the terminal cost of debt and the last explicit year share one number.",
+  "2026-09-01", "L5")
 I("dep_escalation", 0.02, "per year",
   "Constructed: escalation on the existing depreciation base, reflecting ordinary additions to the plant "
   "already in service", "2026-08-09", "L5")
@@ -239,6 +242,9 @@ I("moodys_rating", "Caa1", "rating", CPF + ", sovereign rating", "2026-01-01", "
 I("cpi_latest", 0.143, "ratio", "Egyptian headline urban consumer price inflation, official statistics",
   "2026-06-30", "L3")
 I("policy_rate", 0.1950, "ratio", "Central bank main operation rate, corridor 19.00/20.00", "2026-07-09", "L3")
+I("tbill_yield_range", [0.2486, 0.2552], "ratio",
+  "Egyptian treasury-bill yields by tenor, secondary-market quotes (the central bank's own auction pages were unreachable); context only, no valuation figure depends on them",
+  "2026-08-06", "L3")
 I("cbe_inflation_target", 0.070, "ratio", "Central bank published medium-term inflation target (7% +/-2 for Q4 2026)", "2026-07-09", "L3")
 I("inflation_terminal", 0.050, "ratio",
   "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon "
@@ -567,10 +573,11 @@ I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
 I("spot_price_date", "2026-08-06", "date",
   "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
 I("beta_ci90_low", 0.7165230052490117, "ratio",
-  "The lower bound of the 90% confidence interval of the same EGX30 regression (beta_result.json, "
-  "beta_regression.own_stock_beta, 253 weekly observations to 16 July 2026) — carried as the beta "
-  "alternative. REPLACES the 08-08-2026 edition's Dimson sum-beta, which belonged to a composite "
-  "regression that is withdrawn as non-conforming.", "2026-09-01", "L5")
+  "The lower bound of the ninety-per-cent confidence interval of the same beta estimate — a "
+  "five-year weekly regression of the stock's own returns on the EGX30 (253 weekly observations "
+  "to 16 July 2026) — carried as the beta alternative. REPLACES the 08-08-2026 edition's "
+  "thin-trading-adjusted beta, which belonged to a basket regression withdrawn as non-conforming.",
+  "2026-09-01", "L5")
 I("g_terminal_alt", 0.030, "ratio",
   "Constructed: the alternative terminal growth rate: two points below the terminal inflation of 5%, "
   "which is negative real maintenance growth. RE-SET 1 September 2026 from 5% (which had become "

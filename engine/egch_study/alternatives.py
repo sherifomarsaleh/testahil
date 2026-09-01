@@ -53,6 +53,7 @@ util_bull = reprice(anna_util_base=V('anna_util_bull'))
 capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
 capex_house = reprice(maint_capex_pct_rev=0.030)          # the superseded house standard
 roc_high = reprice(roc_terminal=0.30)
+kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
 ALTS = [
@@ -81,6 +82,19 @@ ALTS = [
              "for a single plant at steady state. Below inflation implies the asset "
              "shrinks in real terms every year forever, which the maintenance capital "
              "expenditure in the model is sized to prevent."),
+    dict(key="cost_of_debt_floor",
+         made=(f"The cost of debt at the company's own disclosed rates — {W['kd_local']*100:.1f}% on the "
+               f"local facility, {W['kd_usd_nominal']*100:.1f}% in dollars on the project loan carried at "
+               f"local-equivalent cost on the derived currency path, {W['kd_fx_path'][0]*100:.1f}% in year "
+               f"one gliding to {D['kd_local_equiv_terminal']*100:.1f}% at the terminal"),
+         alt=(f"Every leg floored at the {W['sovereign_floor']*100:.2f}% sovereign ten-year yield — the "
+              f"company's own facilities print no spread above the policy rate, so no spread is added"),
+         value=kd_floored,
+         why=(f"A same-currency corporate cannot normally borrow below its sovereign, and the local "
+              f"facility does (its dollar leg sits below the normalised risk-free rate in "
+              f"{len(W['years_fx_leg_below_rf_star'])} of the five explicit years). The disclosed rates are "
+              f"what the company actually pays on state-bank facilities and are used as disclosed; the "
+              f"floored construction is published beside them, not averaged in.")),
     dict(key="beta",
          made="Beta from the five-year weekly regression of the share against the published "
               "EGX30 index",
@@ -116,10 +130,10 @@ ALTS = [
              "fifth of its depreciation forever — and it is carried as the downside case "
              "rather than averaged into the central."),
     dict(key="terminal_reinvestment",
-         made="Terminal reinvestment of 38.9% of operating profit after tax, from growth "
-              "over an 18% return on capital",
-         alt="23.3%, from a 30% return on capital — the rate a newly completed plant earns "
-             "on incremental capital while it is still filling",
+         made=f"Terminal reinvestment of {D['g_terminal'] / D['roc_terminal'] * 100:.1f}% of operating "
+              f"profit after tax, from growth over an {D['roc_terminal'] * 100:.0f}% return on capital",
+         alt=f"{D['g_terminal'] / 0.30 * 100:.1f}%, from a 30% return on capital — the rate a newly "
+             "completed plant earns on incremental capital while it is still filling",
          value=roc_high,
          why="Eighteen per cent is the conservative reading and is kept, but it is an "
              "assumption rather than a disclosure, and on a plant that has just been "

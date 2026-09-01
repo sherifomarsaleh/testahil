@@ -333,10 +333,10 @@
   },
   "fx_terminal_wedge": {
    "key": "fx_terminal_wedge",
-   "value": 0.025,
+   "value": 0.025390625,
    "unit": "ratio",
-   "source": "Constructed: steady-state gap between the terminal inflation target and the currency wedge, held constant in the terminal year",
-   "date": "2026-08-09",
+   "source": "DERIVED: the steady-state currency depreciation the terminal inflation (5%) implies against long-run US inflation (2.4%) on the relative purchasing-power identity \u2014 the same wedge that carries the dollar debt in the terminal year. RE-SET 1 September 2026 from a typed 2.5% so that the terminal currency, the terminal cost of debt and the last explicit year share one number.",
+   "date": "2026-09-01",
    "layer": "L5",
    "note": ""
   },
@@ -1645,6 +1645,18 @@
    "layer": "L3",
    "note": ""
   },
+  "tbill_yield_range": {
+   "key": "tbill_yield_range",
+   "value": [
+    0.2486,
+    0.2552
+   ],
+   "unit": "ratio",
+   "source": "Egyptian treasury-bill yields by tenor, secondary-market quotes (the central bank's own auction pages were unreachable); context only, no valuation figure depends on them",
+   "date": "2026-08-06",
+   "layer": "L3",
+   "note": ""
+  },
   "cbe_inflation_target": {
    "key": "cbe_inflation_target",
    "value": 0.07,
@@ -2581,7 +2593,7 @@
    "key": "beta_ci90_low",
    "value": 0.7165230052490117,
    "unit": "ratio",
-   "source": "The lower bound of the 90% confidence interval of the same EGX30 regression (beta_result.json, beta_regression.own_stock_beta, 253 weekly observations to 16 July 2026) \u2014 carried as the beta alternative. REPLACES the 08-08-2026 edition's Dimson sum-beta, which belonged to a composite regression that is withdrawn as non-conforming.",
+   "source": "The lower bound of the ninety-per-cent confidence interval of the same beta estimate \u2014 a five-year weekly regression of the stock's own returns on the EGX30 (253 weekly observations to 16 July 2026) \u2014 carried as the beta alternative. REPLACES the 08-08-2026 edition's thin-trading-adjusted beta, which belonged to a basket regression withdrawn as non-conforming.",
    "date": "2026-09-01",
    "layer": "L5",
    "note": ""

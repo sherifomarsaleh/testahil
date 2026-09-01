@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
                             SourceType, DriverMode)
 
-SWEEP_DATE = "2026-08-08"
+SWEEP_DATE = "2026-09-01"
 R = SweepRegister("EGCH", AssetClass.STOCK, SWEEP_DATE)
 CO, IR, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.COMPANY_IR,
                                 SourceType.REGULATOR_OFFICIAL, SourceType.PRIMARY_MARKET_DATA,
@@ -344,10 +344,12 @@ R.add_driver("Natural-gas cost (feedstock + fuel)", DriverMode.BOTTOM_UP,
     "loss history (781m cumulative) carries as a standing inefficiency line.",
     [f_fs25, f_urea, f_gasav])
 R.add_driver("Non-gas cost stack (wages, services, electricity, freight)", DriverMode.BOTTOM_UP,
-    "Each class its own escalator: wages (212.9m FY2024/25) on domestic CPI-wage path; "
-    "freight-to-port (610.2m) scales with export tonnage; electricity per the "
-    "transmission-tariff dispute record; anchored to the company's own FY2025/26 "
-    "budget column in the 9M interim (the sourced near-term anchor).",
+    "Two escalator classes: the domestic lines (wages 212.9m, services, other materials, "
+    "freight-to-port 610.2m per export tonne, other selling and administration, all FY2024/25) "
+    "share the domestic inflation path, while gas, the export price and the subsidised price "
+    "each carry their own; every unit rate is anchored on the FY2024/25 auditor's product-cost "
+    "table and the reviewed FY2025/26 quarters. The company's own budget column in the 9M "
+    "interim is registered and scored against the outturn; no driver consumes it.",
     [f_fs25, f_9m])
 R.add_driver("Depreciation & amortization", DriverMode.BOTTOM_UP,
     "Note 6 register: KIMA-2 machinery at 3.95%/yr, intangible usufruct at 4.75%/yr; "

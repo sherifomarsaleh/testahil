@@ -59,13 +59,17 @@ in_one_room = any('three in one room' in h.lower() for h in heads)
 divergence = any('divergence' in h.lower() for h in heads)
 contested = (LN['contested']['side_a'] != LN['contested']['side_b']
              and abs(LN['contested']['gap']) > 0)
-recalc_ok = 'PASS' in open('recalc_evidence.txt').read() if os.path.exists('recalc_evidence.txt') else True
+# the recalculation verdict is read from what recalc.py wrote this pass; a missing file is a
+# FAIL, never a default pass [R-ENF-04]
+assert os.path.exists('recalc_result.json'), "recalc_result.json missing — run recalc.py first"
+_RC = json.load(open('recalc_result.json'))
+recalc_ok = bool(_RC['pass']) and _RC['mismatches'] == 0 and _RC['unresolvable'] == 0
 
 c = ModelStudyChecklist(
     structure_matches_model=(not sec_missing) and (not sheet_missing),
     bibliography_document=os.path.exists('EGCH_Bibliography_01-09-2026.docx'),
     provenance_four_field=four_field,
-    numeric_traceability=not QC['typed_numerals'],
+    numeric_traceability=(not QC['typed_numerals']) and recalc_ok,
     external_reader_scrub=not QC['scrub_hits'],
     figure_discipline=not QC['transparent'],
     table_discipline=not QC['table_problems'],

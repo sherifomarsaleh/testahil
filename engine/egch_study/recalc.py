@@ -90,4 +90,9 @@ print(f"\n{'PASS' if ok else 'FAIL'}: "
       f"{checked - _bad} of {nform} formula cells reproduce the model, "
       f"{len(unresolvable)} unresolvable, "
       f"{len([m for m in mism if 'unchecked' in m])} unchecked")
+# the verdict is written for attest.py to READ, never re-asserted there [R-ENF-01]
+json.dump({"pass": bool(ok), "formula_cells": nform, "reproduce": checked - _bad,
+           "mismatches": len(mism), "unresolvable": len(unresolvable), "orphans": len(orphan),
+           "headline_checks": len(checks), "headline_failures": len(bad)},
+          open("recalc_result.json", "w"), indent=1)
 sys.exit(0 if ok else 1)

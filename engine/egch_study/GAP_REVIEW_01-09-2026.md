@@ -1,8 +1,9 @@
 # EGCH (KIMA) — valuation gap review [R-GAP-01]
 
-**1 September 2026.** The rebuilt central fair value is **EGP 3.79** (field EGP 0.00 to
+**1 September 2026.** The rebuilt central fair value is **EGP 3.76** (field EGP 0.00 to
 15.47) against the latest known market price of **EGP 13.98** (the last close in the
-price library, 6 August 2026) — **72.9% below**. Under [R-GAP-01] a central more than 10%
+price library, 6 August 2026) — **73.1% below**. (The first pass of this edition printed
+3.79; the cost-of-debt rebuild recorded under DISCOUNT RATE moved it to 3.76.) Under [R-GAP-01] a central more than 10%
 below the price is a claim about the world and is audited like one before it ships. Eight
 headings, none invented; each individually capable of producing the whole gap. The
 previous edition (8 August 2026) printed EGP 3.64 against the same price and was on the
@@ -10,7 +11,9 @@ gate's outstanding list as *unreadable* (its numbers file exposed no central/spo
 this edition exposes both.
 
 **Verdict in one line:** the audit found and fixed two defects (terminal inflation
-incoherent with terminal growth; a typed superlative), found one open construction
+incoherent with terminal growth; a typed superlative), rebuilt the cost of debt year by
+year through the house builder with its warnings printed and the sovereign-floored
+construction priced beside it, found one open construction
 that is priced but not adopted (tax at the statutory rate on a company that pays none),
 and otherwise the discount is a *conclusion* — about a capital programme that on the
 disclosed cost and nameplate does not earn its cost of capital, and about an Egyptian
@@ -71,11 +74,37 @@ before the answer was read, not after.
 ## DISCOUNT RATE
 
 Rating basis: rf* 16.63% (23.00% ten-year less Egypt's own 6.37% default spread) + β
-1.030 × ERP 13.94% = **Ke 30.99%**; after-tax cost of debt 11.28% on a book that is 99.7%
-dollar (11.7% in dollars grossed up by the depreciation wedge); market-value weights
-65.5% / 34.5% on **gross** debt of EGP 14.64bn → WACC 24.18% in year one, gliding to a
-terminal 18.23% built from 5% inflation, a 3.5% real rate, the same β and ERP, and a
-long-run dollar cost of debt.
+1.030 × ERP 13.94% = **Ke 30.99%**. The cost of debt is built through the house
+cost-of-capital builder from the register alone — the 8 August edition's separate
+cost-of-debt file, which carried a different wedge and a different CDS spread from the
+model beside it, is retired, so no two files hold two costs of debt. The book is 99.7%
+dollar: the 11.7% dollar coupon is carried at local-equivalent cost **year by year** on the
+study's own derived currency wedge — 7.4% in FY2026/27 (Kd 19.99%), 4.5% (16.72%), 3.5%
+(15.63%), 2.5% (14.54%), 2.5% (14.54%) — and the 0.3% local facility at its disclosed
+19.4%; the blended after-tax cost is 15.49% in year one. Market-value weights 65.5% /
+34.5% on **gross** debt of EGP 14.64bn → WACC **25.64%** in year one (24.52% on the CDS
+basis), gliding 23.72%, 22.39%, 21.06%, 20.02%, to a terminal **18.24%** built from 5%
+inflation, a 3.5% real rate, the same β and ERP, and a 9% long-run dollar cost of debt on
+the 2.5% terminal wedge (11.79% local-equivalent).
+
+**The builder's own consistency checks fire twice, and both are printed in section 1.8
+rather than suppressed.** (i) The local facility at 19.40% sits below the 23.00% sovereign
+ten-year yield — a same-currency corporate borrowing below its sovereign. It is the
+company's disclosed rate on a state-bank facility and is used as disclosed. (ii) The dollar
+leg's local-equivalent cost sits below the 16.63% normalised risk-free rate in FY2028/29,
+FY2029/30 and FY2030/31, because the wedge in those years (3.5%, 2.5%) is smaller than the
+gap between the coupon and rf*. **The sovereign-floored alternative is priced, not
+adopted**: every leg floored at 23.00% plus the company's own spread over the policy
+rate (which its facilities print as nil) is a labelled row in the contested-constructions
+table and on the Sensitivity sheet — carried-through cash-flow value −1.06 a share
+against −0.63 (−EGP 0.44), the stopped case 3.43 → about 3.0. The lower disclosed rates
+*raise* the answer, so the construction adopted leans toward the price, not away from it.
+
+**What the year-by-year cost of debt moved.** The first pass of this edition grossed the
+dollar coupon up by one flat 2.54% terminal wedge in every year; the rebuild uses the
+7.4% year-one wedge the revenue build already used, which is what a coherent single
+macro path (L-048) requires. Year-one WACC 24.18% → 25.64%; carried-through lens −0.56 →
+−0.63; stopped 3.59 → 3.43; central 3.79 → 3.76.
 
 **Cash is charged for exactly once.** The weights use gross debt (positive debt weight,
 equity weight below one — the L-054 failure cannot occur), and the bridge subtracts *net*
@@ -86,12 +115,13 @@ flows are discounted at a rate below the cost of equity, as they must be.
 **The beta is conforming**: 1.030 against the published EGX30 through
 `beta_regression.own_stock_beta()`, attested by `assert_beta_provenance()`; the 8 August
 composite beta (1.053) is withdrawn. The change is −2.1% on beta and +EGP 0.15 on the
-carried-through cash-flow value (the terminal fix is the larger mover, −0.67 → −0.56).
+carried-through cash-flow value, measured before the cost-of-debt rebuild (the terminal fix
+is the larger mover, −0.67 → −0.56; the year-by-year wedge then took it to −0.63).
 
 **What the audit notes without changing:** the terminal cost of equity is 23.0% nominal on
 5% inflation — a real 17% in perpetuity — because the house method carries Egypt's Caa1
 country premium (9.71% of the 13.94% ERP) for ever. That is the v2 cost-of-capital method
-applied as written, and the CDS-basis alternative (+EGP 0.75) is priced in section 1.8.
+applied as written, and the CDS-basis alternative (+EGP 0.73) is priced in section 1.8.
 The market price implies a *flat* nominal discount rate of 7.8% on the committed-capital
 case and 9.0% on the capital-discipline case — below the sovereign's own 23% yield. That
 is the whole of the disagreement with the price, and the study says so.
@@ -102,13 +132,14 @@ Terminal growth **5.0%** = the inflation inside the terminal rate (5.0%) → **z
 growth**, stated. Terminal EBIT 2,296m = the year-five urea business grown once (2,362m)
 plus the new nitrate complex at half its nameplate, which after its own depreciation
 contributes −66m; NOPAT 1,779m; reinvestment 27.8% (g / an 18% return on capital); FCFF
-1,285m; value 9,713m at a 13.23% cap rate; present value 3,625m = 67% of enterprise
+1,285m; value 9,707m at a 13.24% cap rate; present value 3,512m = 67% of enterprise
 value. The previous edition's terminal (7% inflation in the rate, 5% growth) implied a
 perpetual real decline of about 2% a year that nothing disclosed; corrected.
 
 The terminal is where the answer lives and the two cases are both published: with the
-programme carried through the equity is worth −0.56 a share; stopped, 3.59. The
-disagreement is EGP 4.14 a share and is the study's contested judgement, never averaged.
+programme carried through the equity is worth −0.63 a share; stopped, 3.43. The
+disagreement is EGP 4.05 a share (EGP 8.05bn of equity) and is the study's contested
+judgement, never averaged.
 
 ## BALANCE SHEET
 
@@ -148,8 +179,8 @@ comparables trade at 4.4× (Ezz Steel) to 8.2× (Abu Qir) to 11.5×–17.6× (EF
 the same basis; the relative lens at 6.0–9.9× centres at EGP 15.47, *above* the price,
 and it is the one lens that reaches the price — by never charging the capital programme.
 
-At the rebuilt central: enterprise value 5.4bn = **1.2× first-year EBITDA**. The gap
-between 1.2× and 8× is arithmetic the reader can follow: the explicit window's free cash
+At the rebuilt central: enterprise value 5.3bn = **1.1× first-year EBITDA**. The gap
+between 1.1× and 8× is arithmetic the reader can follow: the explicit window's free cash
 flow (1,963m, 298m, −156m, −219m, 450m) is consumed by EGP 14.7bn of programme spend, and
 the terminal value capitalises a business whose EBIT falls from 3,793m to 2,250m as the
 export price mean-reverts against a cost base inflating at the central bank's target,
@@ -158,7 +189,7 @@ of those is a stated, sensitised driver; none is a defect the audit could find.
 
 **The one open construction the audit surfaces, priced and not adopted.** The model charges
 tax at the statutory 22.5% on EBIT from year one — EGP 853m, 762m, 643m, 554m, 506m, a
-present value of EGP 1,968m, **EGP 0.99 a share**. The company has booked no current tax
+present value of EGP 1,931m, **EGP 0.97 a share** on the carried-through cash-flow lens. The company has booked no current tax
 in any year of the new complex (only deferred credits: +234m FY2023/24, +11m FY2024/25,
 +30m in the nine months), and its own calibration record (the fundamental walk-forward
 run beside this edition) measures the statutory-rate formula as the second-largest source
@@ -166,17 +197,23 @@ of profit error on this name. The mechanism — loss carry-forwards from the FY2
 losses of EGP 1.70bn before tax and the accelerated first-year deduction on new plant —
 is not sourced in this edition's register because the deferred-tax note has not been read
 at the line level, and an unsourced tax holiday would be a fabricated driver. The audit
-therefore states the size (EGP 0.99 a share on the explicit window, a bound), carries it
-in section 7 as what would move the answer up, and leaves the statutory rate in place.
-Adopting it would move the central from 3.79 to about 4.78 — still 66% below the price.
+therefore states the size (EGP 0.97 a share on the cash-flow lens over the explicit
+window, a bound), carries it in section 7 as what would move the answer up, and leaves
+the statutory rate in place. Adopting it would move the cash-flow lens by +0.97 and, at
+that lens's 45% weight, the central from 3.76 to about 4.20 — still 70% below the price.
+(The first pass of this review added the whole per-share figure to the weighted central
+and printed "about 4.78"; that was an arithmetic slip, corrected here.)
 
 ---
 
 **Conclusion.** Two defects fixed (terminal inflation, a typed superlative: net +EGP 0.15
-on the carried-through lens), one construction priced and left open (+EGP 0.99 bound),
+on the carried-through lens), the cost of debt rebuilt year by year on audit (−EGP 0.07 on
+that lens against this edition's first pass, its warnings printed and the sovereign floor
+priced at −EGP 0.44), one construction priced and left open (+EGP 0.97 bound on the
+cash-flow lens),
 and the remainder is the study's conclusion stated in its own units: at the market price
 a buyer is paying 8.4× base-year EBITDA for a plant that must fund a EGP 14.7bn programme
 earning, on the disclosed cost and nameplate, less than its own depreciation — and is
 discounting the whole thing at 7.8% in a country whose sovereign borrows at 23%. The
-central stays at EGP 3.79 in a field of 0.00 to 15.47; `scripts/check_valuation_gap.py`
+central stays at EGP 3.76 in a field of 0.00 to 15.47; `scripts/check_valuation_gap.py`
 is cleared by this review's existence and its eight headings, not by a changed answer.

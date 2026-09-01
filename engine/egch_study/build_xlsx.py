@@ -200,11 +200,19 @@ EXPP = []
 for k, y in enumerate(YEARS):
     EXPP.append(drv(r, f"Export urea price — {y}", V('export_usd_path')[k], "US$/tonne",
                     src('export_usd_path'), N1)); r += 1
-FXP = []
+SPOTFX = drv(r, "Egyptian pounds per US dollar, spot", V('usd_egp_spot'), "EGP/US$", src('usd_egp_spot'), N2); r += 1
+USINF = drv(r, "Long-run United States inflation", V('us_inflation_lt'), "%", src('us_inflation_lt'), PC1); r += 1
+FXP, WEDGE = [], []
+_cpi_rows = [r + 2 * k + 1 for k in range(len(YEARS))]     # the CPI rows are written further down; addresses are fixed here
 for k, y in enumerate(YEARS):
-    FXP.append(drv(r, f"Egyptian pounds per US dollar — {y}", DR['usd_egp_path'][k], "EGP/US$",
-                   "Derived: the spot rate compounded at the relative-purchasing-power wedge "
-                   "against the model's own inflation path, year by year", N2)); r += 1
+    prev = SPOTFX if k == 0 else FXP[-1]
+    WEDGE.append(drvf(r, f"Currency wedge — {y}", f"=(1+'Assumptions'!C{{CPI_ROW_{k}}})/(1+{USINF})-1",
+                      DR['fx_wedge_path'][k], "%", "Derived: the relative-purchasing-power depreciation the "
+                      "inflation path implies against long-run US inflation, the SAME wedge that carries "
+                      "the dollar debt in that year", PC2)); r += 1
+    FXP.append(drvf(r, f"Egyptian pounds per US dollar — {y}", f"={prev}*(1+{WEDGE[-1]})",
+                    DR['usd_egp_path'][k], "EGP/US$", "Derived: the prior year's rate carried on that "
+                    "year's wedge", N2)); r += 1
 DUTY = drv(r, "Export duty", V('export_duty_2026'), "% of export value", src('export_duty_2026'), PC1); r += 1
 SUBP = []
 for k, y in enumerate(YEARS):
@@ -245,6 +253,10 @@ for k, y in enumerate(YEARS):
 CPI = []
 for k, y in enumerate(YEARS):
     CPI.append(drv(r, f"Egyptian inflation — {y}", V('cpi_path')[k], "%", src('cpi_path'), PC1)); r += 1
+# the wedge rows were written before the inflation rows they read; resolve their placeholders now
+for k in range(len(YEARS)):
+    _wr = int(WEDGE[k].split('C')[-1])
+    ws[f"C{_wr}"].value = ws[f"C{_wr}"].value.replace(f"{{CPI_ROW_{k}}}", CPI[k].split('C')[-1])
 r += 1
 put(ws, f"A{r}", "COST OF CAPITAL").font = SUB; r += 1
 RF = drv(r, "Observed ten-year government yield", V('rf_observed'), "%", src('rf_observed'), PC2); r += 1
@@ -269,9 +281,9 @@ put(ws, f"A{r}", "Cost of equity, CDS basis"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={RF}-{SPRC}+{BETAC}*{ERPC}", fmt=PC2, expect=W['ke_cds']); r += 1
 KDL = drv(r, "Cost of debt, local currency", V('kd_local'), "%", src('kd_local'), PC2); r += 1
 KDU = drv(r, "Cost of debt, dollar tranche, in dollars", V('kd_usd_nominal'), "%", src('kd_usd_nominal'), PC2); r += 1
-DEP = drv(r, "Expected currency depreciation", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
-KDFX = r; put(ws, f"A{r}", "Dollar debt at local-equivalent cost"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{KDU})*(1+{DEP})-1", fmt=PC2, expect=W['kd_fx_local_equiv'])
+DEP = drv(r, "Terminal currency wedge (the same identity, at the terminal inflation)", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
+KDFX = r; put(ws, f"A{r}", f"Dollar debt at local-equivalent cost, year one ({YEARS[0]} wedge)"); put(ws, f"B{r}", "%")
+put(ws, f"C{r}", f"=(1+{KDU})*(1+{WEDGE[0]})-1", fmt=PC2, expect=W['kd_fx_local_equiv'])
 KDFXC = f"'Assumptions'!C{r}"; r += 1
 PCTL = drv(r, "Share of debt in local currency", W['pct_debt_local'], "%",
            "The pound tranche of the project loan was repaid in June 2024, so the book is "
@@ -292,7 +304,7 @@ put(ws, f"C{r}", f"=(1+{INFLT})*(1+{REALLT})-1", fmt=PC2, expect=DR['rf_star_ter
 RFTC = f"'Assumptions'!C{r}"; r += 1
 KDLT = drv(r, "Long-run dollar cost of debt", V('kd_usd_lt'), "%", src('kd_usd_lt'), PC2); r += 1
 KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{KDLT})*(1+{DEP})-1", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
+put(ws, f"C{r}", f"={PCTL}*{KDL}+(1-{PCTL})*((1+{KDLT})*(1+{DEP})-1)", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
 KDTC = f"'Assumptions'!C{r}"; r += 1
 WT = r; put(ws, f"A{r}", "TERMINAL COST OF CAPITAL"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERP})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC2,
@@ -566,8 +578,12 @@ for k, c in enumerate(CO):
     put(ws, f"{c}12", f"=-($I$5*{ANNAC[k]}{wind}+{c}5*{MCAP})", fmt=N0, expect=-RW[k]['capex'])
     put(ws, f"{c}13", f"=-'Cash Flow'!{c}12", fmt=N0, expect=-RW[k]['dwc'], link=True)
     put(ws, f"{c}14", f"={c}10+{c}11+{c}12+{c}13", fmt=N0, expect=RW[k]['fcff'])
-    put(ws, f"{c}15", f"='Assumptions'!C{W1}+({WTC}-'Assumptions'!C{W1})*{k}/5", fmt=PC2,
-        expect=DR['wacc_path'][k], link=True)
+    # year one reads the Assumptions sheet's own year-one rate; later years glide the risk-free
+    # rate and carry the dollar debt on that year's wedge, the same construction the model runs
+    _rate = (f"='Assumptions'!C{W1}" if k == 0 else
+             f"={WE}*(({RFSTAR}+({RFTC}-{RFSTAR})*{k}/5)+{BETAC}*{ERP})"
+             f"+{WD}*({PCTL}*{KDL}+(1-{PCTL})*((1+{KDU})*(1+{WEDGE[k]})-1))*(1-{TAXR})")
+    put(ws, f"{c}15", _rate, fmt=PC2, expect=DR['wacc_path'][k], link=True)
     df = "=1/(1+B15)" if k == 0 else f"={CO[k-1]}16/(1+{c}15)"
     put(ws, f"{c}16", df, fmt='0.0000', expect=RW[k]['df'])
     put(ws, f"{c}17", f"={c}14*{c}16", fmt=N0, expect=RW[k]['pv'])

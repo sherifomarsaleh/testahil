@@ -36,7 +36,6 @@ from inputs import V as _V          # the study's input register — the single 
 FY25 = json.load(open(os.path.join(HERE, 'extract_fy2425.json')))
 HIST = json.load(open(os.path.join(HERE, 'extract_history.json')))
 NINE = json.load(open(os.path.join(HERE, 'extract_9m_fy2526.json')))
-WACC = json.load(open(os.path.join(HERE, 'wacc_result.json')))
 LIVE = json.load(open(os.path.join(HERE, 'live_data.json')))
 
 K = 1_000.0            # statements are in EGP thousand; the model works in EGP million
@@ -179,8 +178,6 @@ D['dso'] = _V('dso')
 D['dio'] = _V('dio')
 D['dpo'] = _V('dpo')
 D['tax_rate'] = _V('tax_statutory')
-D['wacc_spot'] = WACC['wacc_rating']
-D['wacc_cds'] = WACC['wacc_cds']
 D['g_terminal'] = _V('g_terminal')               # CBE medium-term inflation target: nominal
                                       # maintenance growth, no real growth assumed
 D['roc_terminal'] = _V('roc_terminal')              # reinvestment = g / RoC
@@ -192,17 +189,12 @@ D['roc_terminal'] = _V('roc_terminal')              # reinvestment = g / RoC
 # whose value sits in its terminal year it is the single largest number in the study.
 # So the rate glides from the spot build to a NORMALISED long-run build, and the
 # discount factors compound the glide year by year rather than powering one rate.
-D['rf_star_spot'] = WACC['rf_star_rating']            # 23.00% observed - 6.37% spread
 D['inflation_lt'] = _V('inflation_terminal')   # the SAME inflation terminal growth carries (L-055)
 D['real_rate_lt'] = _V('real_rate_lt')                              # EM long-run real policy rate
 D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1   # 10.75%
 D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD corporate cost
 D['deprec_lt'] = _V('expected_depreciation')                                 # same wedge used in the Kd build
 D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
-D['erp'] = WACC['erp_rating']
-D['beta'] = WACC['beta']
-D['we'] = WACC['we']
-D['wd'] = WACC['wd']
 
 def _wacc_from(rf_star, kd_pretax):
     ke = rf_star + D['beta'] * D['erp']
@@ -211,42 +203,106 @@ def _wacc_from(rf_star, kd_pretax):
 def set_glide():
     """Rebuild the whole rate structure from its own components. Called once here and
     again by alternatives.py, which moves one component at a time and reprices — so an
-    alternative construction can never be a hand-adjusted rate."""
+    alternative construction can never be a hand-adjusted rate. The risk-free rate glides
+    linearly from spot to terminal; the cost of debt is built YEAR BY YEAR from the dollar
+    coupon and that year's derived currency wedge (the same wedge the revenue build uses)."""
     D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1
-    D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
+    _kd_fx_T = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
+    D['kd_local_equiv_terminal'] = kd_blend(D['kd_local'], _kd_fx_T)
     D['wacc_terminal'], D['ke_terminal'] = _wacc_from(D['rf_star_terminal'],
                                                      D['kd_local_equiv_terminal'])
-    # linear glide across the explicit window, spot in year 1 -> terminal-adjacent in year 5
     D['wacc_path'], D['rf_star_path'], D['kd_path'] = [], [], []
     for _k in range(5):
         _f = _k / 5.0                                 # glide fraction, visibly derived
         _rf = D['rf_star_spot'] + (D['rf_star_terminal'] - D['rf_star_spot']) * _f
-        _kd = D['kd_pretax_spot'] + (D['kd_local_equiv_terminal'] - D['kd_pretax_spot']) * _f
+        _kd = kd_blend(D['kd_local'], kd_fx_year(_k))
         _w, _ = _wacc_from(_rf, _kd)
         D['rf_star_path'].append(_rf); D['kd_path'].append(_kd); D['wacc_path'].append(_w)
     D['wacc'] = D['wacc_path'][0]
 
 
-# THE COST OF DEBT IS RE-DERIVED HERE, not read frozen from wacc_result.json. Changing the
-# expected-depreciation wedge in the register used to leave the dollar debt's local-
-# equivalent cost untouched, because that figure was computed once and cached -- so the
-# model and the workbook, which rebuilds it from the register, disagreed. The wedge that
-# carries long-dated dollar debt is the LONG-RUN one, not the near-term path.
-# the CDS basis is re-derived from the register too: the spread was corrected from 3.55%
-# to Damodaran's actual 3.41% and the cached file still held the old premium
-WACC['sov_spread_cds'] = _V('sov_spread_cds')
-WACC['rf_star_cds'] = _V('rf_observed') - _V('sov_spread_cds')
-WACC['erp_cds'] = _V('erp_cds_damodaran')
-WACC['ke_cds'] = WACC['rf_star_cds'] + WACC['beta'] * WACC['erp_cds']
-WACC['kd_fx_local_equiv'] = ((1 + WACC['kd_usd_nominal'])
-                             * (1 + _V('expected_depreciation')) - 1)
-WACC['kd_pretax_blended'] = (WACC['pct_debt_local'] * WACC['kd_local']
-                             + (1 - WACC['pct_debt_local']) * WACC['kd_fx_local_equiv'])
-WACC['kd_aftertax'] = WACC['kd_pretax_blended'] * (1 - WACC['tax_rate'])
-for _basis in ('rating', 'cds'):
-    WACC[f'wacc_{_basis}'] = (WACC['we'] * WACC[f'ke_{_basis}']
-                              + WACC['wd'] * WACC['kd_aftertax'])
-WACC['wacc_published'] = WACC['wacc_rating']
+# =============================================================================
+# THE COST OF CAPITAL IS BUILT HERE, ONCE, THROUGH wacc_builder — the register is the only
+# source, and no second file holds a second cost of debt. [Edition 1 September 2026, on
+# audit: the 8 August edition's wacc_result.json carried a 4.5% wedge and a 3.55% CDS spread
+# while this module re-derived both, so the Word table and the workbook disagreed.]
+#
+# THE FX LEG IS BUILT YEAR BY YEAR ON THE STUDY'S OWN DERIVED CURRENCY PATH (L-048, one
+# path): Kd_fx(t) = (1 + dollar coupon) x (1 + wedge_t) - 1, where wedge_t is the relative
+# purchasing-power depreciation the inflation path implies in that year (7.4% in year one
+# gliding to the 2.5% terminal wedge). A flat wedge on the debt beside a gliding wedge on
+# revenue would be the same event counted two ways.
+# =============================================================================
+import wacc_builder as _wb
+_BETA_REC = json.load(open(os.path.join(HERE, 'beta_result.json')))
+_SHARES = _V('shares_outstanding')
+_MCAP = _V('spot_price') * _SHARES
+_DEBT_M = (_V('bs_debt_lt_M9FY2526') + _V('bs_debt_holdco_M9FY2526') + _V('bs_debt_cur_M9FY2526'))
+D['kd_local'] = _V('kd_local')
+D['kd_usd_nominal'] = _V('kd_usd_nominal')
+D['pct_debt_local'] = _V('bs_debt_holdco_M9FY2526') / _DEBT_M
+D['kd_floor'] = None            # set only by the sovereign-floored ALTERNATIVE in alternatives.py
+D['company_spread_over_policy'] = max(0.0, _V('kd_local') - _V('policy_rate'))
+
+
+def kd_fx_year(k):
+    """Dollar leg at local-equivalent cost in explicit year k, on the derived wedge path."""
+    return (1 + D['kd_usd_nominal']) * (1 + D['fx_wedge_path'][k]) - 1
+
+
+def kd_blend(kd_local, kd_fx):
+    if D['kd_floor'] is not None:
+        kd_local, kd_fx = max(kd_local, D['kd_floor']), max(kd_fx, D['kd_floor'])
+    return D['pct_debt_local'] * kd_local + (1 - D['pct_debt_local']) * kd_fx
+
+
+def _wacc_inputs(k):
+    return _wb.WaccInputs(
+        rf_observed=_V('rf_observed'), erp_rating=_V('erp_rating'),
+        sov_default_spread_rating=_V('sov_spread_rating'), erp_cds=_V('erp_cds_damodaran'),
+        sov_default_spread_cds=_V('sov_spread_cds'), beta=_BETA_REC['beta'],
+        beta_source="beta_result.json — own-stock weekly regression on the published EGX30",
+        kd_pretax_local=D['kd_local'], kd_pretax_fx_local_equiv=kd_fx_year(k),
+        pct_debt_local_ccy=D['pct_debt_local'], tax_rate=D['tax_rate'],
+        market_cap=_MCAP, total_debt=_DEBT_M * 1e6, kd_is_marginal=True,
+        rf_source="register: rf_observed", erp_source="register: erp_rating",
+        kd_source="register: kd_local, kd_usd_nominal, fx_wedge_path", weights_source="register: spot_price x shares_outstanding; balance-sheet debt at 31 March 2026")
+
+
+_res = [_wb.build_wacc(_wacc_inputs(k)) for k in range(5)]
+_r0 = _res[0]
+WACC = dict(
+    spot=_V('spot_price'), shares=_SHARES, market_cap=_MCAP, total_debt=_DEBT_M * 1e6,
+    rf_observed=_V('rf_observed'), sov_spread_rating=_V('sov_spread_rating'), sov_spread_cds=_V('sov_spread_cds'),
+    rf_star_rating=_r0.rf_star_rating, rf_star_cds=_r0.rf_star_cds,
+    erp_rating=_V('erp_rating'), erp_cds=_V('erp_cds_damodaran'), beta=_BETA_REC['beta'],
+    ke_rating=_r0.ke_rating, ke_cds=_r0.ke_cds,
+    kd_local=D['kd_local'], kd_usd_nominal=D['kd_usd_nominal'], pct_debt_local=D['pct_debt_local'],
+    fx_wedge_path=list(D['fx_wedge_path']), kd_fx_path=[kd_fx_year(k) for k in range(5)],
+    kd_fx_local_equiv=kd_fx_year(0), kd_pretax_blended=_r0.kd_pretax_blended, kd_aftertax=_r0.kd_aftertax,
+    kd_pretax_path=[r.kd_pretax_blended for r in _res],
+    tax_rate=D['tax_rate'], we=_r0.we, wd=_r0.wd,
+    wacc_rating=_r0.wacc_rating, wacc_cds=_r0.wacc_cds, wacc_published=_r0.wacc_rating,
+    warnings_by_year={YEARS[k]: r.warnings for k, r in enumerate(_res)},
+    # the builder gates its local-below-sovereign check on an all-local book; on a 0.3%-local
+    # book it stays silent, so the fact is stated here in the same words and printed in §1.8
+    disclosures=[
+        (f"The company's own local-currency facility carries {D['kd_local']*100:.2f}% against a "
+         f"{_V('rf_observed')*100:.2f}% sovereign ten-year yield: a same-currency corporate borrowing "
+         f"below its sovereign. It is the company's disclosed rate and it is used as disclosed; the "
+         f"sovereign-floored construction is priced beside it.")
+        if D['kd_local'] < _V('rf_observed') else None,
+    ] + [w for k, r in enumerate(_res) for w in r.warnings if k > 0 and w not in _res[0].warnings],
+    company_spread_over_policy=D['company_spread_over_policy'],
+    sovereign_floor=_V('rf_observed') + D['company_spread_over_policy'],
+)
+WACC['disclosures'] = list(dict.fromkeys(d for d in WACC['disclosures'] if d))   # each distinct warning once
+WACC['years_fx_leg_below_rf_star'] = [YEARS[k] for k in range(5) if kd_fx_year(k) < _r0.rf_star_rating]
+D['rf_star_spot'] = WACC['rf_star_rating']
+D['erp'] = WACC['erp_rating']
+D['beta'] = WACC['beta']
+D['we'] = WACC['we']
+D['wd'] = WACC['wd']
 D['wacc_spot'] = WACC['wacc_rating']
 D['wacc_cds'] = WACC['wacc_cds']
 D['kd_pretax_spot'] = WACC['kd_pretax_blended']

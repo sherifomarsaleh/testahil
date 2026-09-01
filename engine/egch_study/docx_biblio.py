@@ -152,7 +152,9 @@ DOCS = [
 for d in DOCS:
     rows.append(list(d))
 table(rows, [1.5, 1.5, 0.85, 1.9, 0.75, 3.3], size=8.2)
-P("Also indexed on the same portal but not used: annual statements for 2009 to 2021, and "
+P("The ten annual statements for 2009 to 2021 in the first row were retrieved on 1 September "
+  "2026 and used only to test the forecasting method on the company's own history; no "
+  "forecast driver is taken from them. Also indexed on the same portal but not used: the "
   "quarterly board and shareholder-structure disclosure reports through 30 June 2026. The "
   "portal's audit-reports section holds only audit-committee reports and its newest item "
   "covers the period to 31 December 2021; the statutory auditor's reports for the years "
@@ -188,7 +190,7 @@ rows += [
   "The domestic cost escalator"],
  ["Policy rate", "19.00 / 20.00% corridor", "9 July 2026", "Central bank decision",
   "Context for the rate path; the terminal build uses the inflation target, not this rate"],
- ["Treasury-bill yields", "24.86% to 25.52% by tenor", "6 Aug 2026",
+ ["Treasury-bill yields", f"{V('tbill_yield_range')[0]*100:.2f}% to {V('tbill_yield_range')[1]*100:.2f}% by tenor", "6 Aug 2026",
   "Secondary market quotes — the central bank's own auction pages were unreachable",
   "Context only; no valuation figure depends on them"],
 ]

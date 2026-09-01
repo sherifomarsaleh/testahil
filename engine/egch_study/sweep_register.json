@@ -1,7 +1,7 @@
 {
  "ticker": "EGCH",
  "asset_class": "STOCK",
- "sweep_date": "2026-08-08",
+ "sweep_date": "2026-09-01",
  "findings": [
   {
    "fid": "F01",
@@ -146,7 +146,7 @@
    "headline": "Negative search \u2014 nothing found (new Egyptian nitrogen/urea plant announcements 2025-2026 beyond existing producers' debottlenecks (searched: Egypt new urea plant 2026, NCIC expansion, green ammonia greenfield urea))",
    "source_name": "negative search",
    "source_type": "SEARCH",
-   "source_date": "2026-08-08",
+   "source_date": "2026-09-01",
    "detail": "",
    "url": "",
    "model_impact": "",
@@ -326,7 +326,7 @@
    "headline": "Negative search \u2014 nothing found (KIMA investor presentation, earnings call transcript, guidance deck (searched IR portal index + web: 'KIMA investor presentation', '\u0643\u064a\u0645\u0627 \u0645\u0624\u062a\u0645\u0631 \u0627\u0644\u0645\u062d\u0644\u0644\u064a\u0646'))",
    "source_name": "negative search",
    "source_type": "SEARCH",
-   "source_date": "2026-08-08",
+   "source_date": "2026-09-01",
    "detail": "",
    "url": "",
    "model_impact": "",
@@ -386,7 +386,7 @@
    "headline": "Negative search \u2014 nothing found (maintenance-capex guidance or an investment plan beyond ANNA (searched filings' board reports + news: '\u0643\u064a\u0645\u0627 \u062e\u0637\u0629 \u0627\u0633\u062a\u062b\u0645\u0627\u0631\u064a\u0629', 'KIMA capex plan'))",
    "source_name": "negative search",
    "source_type": "SEARCH",
-   "source_date": "2026-08-08",
+   "source_date": "2026-09-01",
    "detail": "",
    "url": "",
    "model_impact": "",
@@ -445,7 +445,7 @@
   {
    "driver": "Non-gas cost stack (wages, services, electricity, freight)",
    "mode": "BOTTOM_UP",
-   "justification": "Each class its own escalator: wages (212.9m FY2024/25) on domestic CPI-wage path; freight-to-port (610.2m) scales with export tonnage; electricity per the transmission-tariff dispute record; anchored to the company's own FY2025/26 budget column in the 9M interim (the sourced near-term anchor).",
+   "justification": "Two escalator classes: the domestic lines (wages 212.9m, services, other materials, freight-to-port 610.2m per export tonne, other selling and administration, all FY2024/25) share the domestic inflation path, while gas, the export price and the subsidised price each carry their own; every unit rate is anchored on the FY2024/25 auditor's product-cost table and the reviewed FY2025/26 quarters. The company's own budget column in the 9M interim is registered and scored against the outturn; no driver consumes it.",
    "sweep_refs": [
     "F16",
     "F19"
@@ -503,25 +503,25 @@
   {
    "url": "https://www.kimaegypt.com/InvestorsRelations.aspx",
    "reachable": true,
-   "attempt_date": "2026-08-08",
+   "attempt_date": "2026-09-01",
    "note": "Company's own IR page. This session's original proxy refused CONNECT (403); the user opened an unrestricted environment and a network-enabled helper session retrieved the page and every filing. The page embeds the IR portal from mistnews.com (the company's IR-portal provider); the PDFs are the company's own issued filings."
   },
   {
    "url": "https://www.mistnews.com/ir/ir.aspx?sk=1034241017",
    "reachable": true,
-   "attempt_date": "2026-08-08",
+   "attempt_date": "2026-09-01",
    "note": "KIMA's IR portal (Financial Statements / Disclosure Reports / Audit Reports / Share Price / News). Source of all seven filing PDFs; full index in filings/SOURCES.md."
   },
   {
    "url": "https://www.egx.com.eg/en/CompanyProfile.aspx?ISIN=EGS38201C017",
    "reachable": false,
-   "attempt_date": "2026-08-08",
+   "attempt_date": "2026-09-01",
    "note": "Exchange disclosure portal behind an F5/TSPD JS bot-challenge: WebFetch 503, curl got the challenge HTML, headless Chromium reset \u2014 even from the unrestricted helper. Exchange-stated share count therefore NOT obtained from EGX; the share count is taken from note 14 of the audited FY2024/25 statements instead (1,986,578,999 x EGP 5)."
   },
   {
    "url": "https://www.cbe.org.eg/en/auctions/egp-t-bills",
    "reachable": false,
-   "attempt_date": "2026-08-08",
+   "attempt_date": "2026-09-01",
    "note": "CBE auction pages WAF-blocked ('requested URL was rejected') from the helper too; T-bill yields carried from secondary quotes (investing.com), labelled as such."
   },
   {
@@ -549,5 +549,5 @@
   "H1-2025/26",
   "9M-2025/26"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [EGCH, 2026-08-08]: PASS \u2014 4/4 rings, 27 findings (1 B \u00b7 12 S \u00b7 7 D \u00b7 4 C \u00b7 3 NEG), driver gate 9 rows (9 bottom-up / 0 top-down) | primary access: attempted (7) | FS years: 4 ['FY2021/22', 'FY2022/23', 'FY2023/24', 'FY2024/25'] | IR findings: 1"
+ "qc_line": "QC(m) \u2014 Information Sweep [EGCH, 2026-09-01]: PASS \u2014 4/4 rings, 27 findings (1 B \u00b7 12 S \u00b7 7 D \u00b7 4 C \u00b7 3 NEG), driver gate 9 rows (9 bottom-up / 0 top-down) | primary access: attempted (7) | FS years: 4 ['FY2021/22', 'FY2022/23', 'FY2023/24', 'FY2024/25'] | IR findings: 1"
 }

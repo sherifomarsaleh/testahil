@@ -1,0 +1,10 @@
+{
+ "pass": true,
+ "formula_cells": 626,
+ "reproduce": 626,
+ "mismatches": 0,
+ "unresolvable": 0,
+ "orphans": 0,
+ "headline_checks": 16,
+ "headline_failures": 0
+}

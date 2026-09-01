@@ -111,9 +111,9 @@
     ""
    ]
   ],
-  "low": 4.466057905684122,
-  "high": 7.443429842806869,
-  "sensitivity": "The build cost is the swing factor. At US$550 per annual tonne the range starts at EGP 3.82; at US$700 it reaches EGP 5.11. The control discount moves it by about a third either way.",
+  "low": 3.817688934755521,
+  "high": 8.524044794354538,
+  "sensitivity": "The build cost and the control discount are the two swing factors, and the range is their product: at US$550 per annual tonne with the 40% discount the reading is EGP 3.82; at US$700 with no discount it is EGP 8.52. The mid-point build cost with the discount, the central reading, is EGP 4.47.",
   "reading": "This is the highest of the three readings and it should be read as a ceiling rather than a centre. It values the plant at what a buyer would pay to avoid building one, and on a plate of 574,875 tonnes at the mid-point of the industry build range that is EGP 17,889m before anything is owed against it. What the method cannot see is that the plant has been running at about ninety per cent of that plate on rationed gas, and that the asset under construction \u2014 carried here at 60% of what has been spent on it \u2014 is exactly the asset whose return the cash-flow lens finds inadequate. The gap between this expert and the panel's lowest is not a disagreement about the plant. It is a disagreement about whether an asset that cannot earn its cost of capital is worth its replacement cost.",
   "falsifier": "A comparable Egyptian nitrogen asset transacting above US$700 per annual tonne, or a state-held listed subsidiary changing hands without a control discount. Either would show this method is set too low and the cash-flow lens should govern."
  },
@@ -273,7 +273,7 @@
   "rows": [
    [
     "Enterprise value including non-operating assets (EGP m)",
-    8925.488710042087,
+    8790.025787406099,
     "the underlying"
    ],
    [
@@ -298,17 +298,17 @@
    ],
    [
     "Call value on those parameters (EGP m)",
-    4830.134000220725,
+    4716.24112282147,
     ""
    ],
    [
     "At 35% volatility (EGP m)",
-    4354.469953367357,
+    4239.622740398097,
     ""
    ],
    [
     "At 55% volatility (EGP m)",
-    5307.063590286969,
+    5192.459186649552,
     ""
    ],
    [
@@ -318,18 +318,18 @@
    ],
    [
     "Adjusted call value (EGP m)",
-    3622.600500165544,
+    3537.180842116102,
     ""
    ],
    [
     "PER SHARE (EGP)",
-    1.8235370966818238,
+    1.7805387270763664,
     ""
    ]
   ],
   "low": 0.0,
-  "high": 2.0035939646592564,
-  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 1.64 a share, at 55% EGP 2.00. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
+  "high": 1.9603269701066461,
+  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 1.60 a share, at 55% EGP 1.96. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
   "falsifier": "Enterprise value rising above the face value of the debt \u2014 which needs roughly a US$120 a tonne sustained improvement in the export price, or the capital programme being stopped. Either would retire the option framing and hand the question back to the cash-flow lens.",
   "grid": {
    "vols": [
@@ -346,34 +346,43 @@
    ],
    "values": [
     [
-     0.8376154281948884,
-     0.941922096411852,
-     1.147482075566335,
-     1.3470737279055274,
-     1.4440977167540803
+     0.8032080901518805,
+     0.9072118237536797,
+     1.1118518819482544,
+     1.3103220754222433,
+     1.406752264469644
     ],
     [
-     1.5582546048738979,
-     1.6439580135848995,
-     1.8235370966818238,
-     2.0035939646592564,
-     2.091468470962743
+     1.5143087335638552,
+     1.6005993503903808,
+     1.7805387270763664,
+     1.9603269701066461,
+     2.047935331017812
     ],
     [
-     2.109016794680003,
-     2.168106967772382,
-     2.303694674652525,
-     2.447065034801752,
-     2.517975319642265
+     2.0611119450089785,
+     2.1208534360637366,
+     2.25708596998944,
+     2.400495736180359,
+     2.471285393506248
     ]
    ]
   },
-  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 8,925m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 0.84 a share, and at 60% over seven years EGP 2.52. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires."
+  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 8,790m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 0.80 a share, and at 60% over seven years EGP 2.47. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires.",
+  "contested": {
+   "carried_through": 1.7805387270763664,
+   "carried_low": 0.0,
+   "carried_high": 1.9603269701066461,
+   "stopped": 4.538908302693493,
+   "stopped_low": 4.41113457576539,
+   "stopped_high": 4.7012233258816005,
+   "ev_incl_halt": 16841.46691514923
+  }
  },
  "ranges": {
   "e1": [
-   4.466057905684122,
-   7.443429842806869
+   3.817688934755521,
+   8.524044794354538
   ],
   "e2": [
    2.7778632977985582,
@@ -381,7 +390,7 @@
   ],
   "e3": [
    0.0,
-   2.0035939646592564
+   1.9603269701066461
   ]
  },
  "spot": 13.98

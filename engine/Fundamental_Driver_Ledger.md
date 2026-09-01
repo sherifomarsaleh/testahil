@@ -449,8 +449,9 @@ to 1,388,482 t, flat remains the optimistic case.
 Run directory `engine/egch_walkforward/`; study rebuilt as the 1 September 2026 edition in
 `engine/egch_study/` (STANDARD_VERSION 2026.09.01). Eighteen fiscal years FY2008–FY2025 from the
 company's own audited statements (ten older annuals retrieved from its portal for this run), 13
-origins, horizons 1–5, 55 cells. Central EGP 3.79 (field 0.00–15.47) against a 13.98 close,
-audited under `engine/egch_study/GAP_REVIEW_01-09-2026.md`.
+origins, horizons 1–5, 55 cells. Central EGP 3.76 (field 0.00–15.47) against a 13.98 close,
+audited under `engine/egch_study/GAP_REVIEW_01-09-2026.md` (the edition's first pass printed
+3.79; the cost-of-debt ruling in item 9 moved it).
 Lessons registered from this run: L-057 and L-058 (ALL), L-206 and L-207 (STOCK, EGCH only); the
 other 23 harvested drafts are declined with reasons in `engine/egch_walkforward/lessons_draft.json`.
 
@@ -509,6 +510,38 @@ other 23 harvested drafts are declined with reasons in `engine/egch_walkforward/
    is not a source; cost of sales is one line on one escalator in the calibration, and the study's
    gas/materials split remains a flagged construction.
    *What would overturn it:* the notes re-read from the rendered pages and footing.
+
+9. **The cost of debt is built year by year on the study's own currency wedge, through the
+   house builder, with its warnings printed and the sovereign floor priced — not adopted.**
+   The book is 99.7% dollar; the 11.7% dollar coupon is carried at local-equivalent cost
+   Kd_t = (1 + 11.7%)(1 + wedge_t) − 1 on the same relative-PPP wedge the revenue build uses
+   (7.4% → 2.5%), giving 19.99% in year one gliding to 14.54%; the 0.3% local facility at its
+   disclosed 19.4%. Two consistency warnings fire and are printed in §1.8: the local facility
+   sits below the 23.00% sovereign yield, and the dollar leg sits below the 16.63% normalised
+   risk-free rate in FY2028/29–FY2030/31. The sovereign-floored alternative (every leg at
+   23.00% + the company's own spread over the policy rate, which its facilities print as nil)
+   is a labelled row in the contested-constructions table and the Sensitivity sheet: −EGP 0.44
+   on the carried-through lens (−0.63 → −1.06). The disclosed rates lean toward the price, so
+   using them as disclosed is the conservative direction for a study already far below it.
+   *What would overturn it:* a new facility priced at or above the sovereign, or a refinancing
+   of the dollar loan, at which point the disclosed rate and the floor coincide.
+
+### Constructed drivers carried without a source, with their values (the register's L5 layer)
+
+Each is an assumption the filings do not supply, flagged as such in the study, and priced
+where it moves the answer. Listed here so the next petrochemical study reads them before
+constructing its own.
+
+| driver | value | what it does | what would overturn it |
+|---|---|---|---|
+| `roc_terminal` — terminal return on invested capital | 18% | Sets terminal reinvestment (g / ROIC = 27.8% of NOPAT). **The largest unsourced input in the study**: the 30% alternative is +EGP 0.27 on the cash-flow lens. | A disclosed post-completion return on the new complex, or three years of the completed plant's own ROIC. |
+| `kd_usd_lt` — long-run dollar cost of debt | 9% | The terminal dollar coupon after the project loan reprices, carried at (1+9%)(1+2.5%)−1 = 11.79% local-equivalent. | A refinancing at a disclosed rate; a dollar loan priced off a published Egyptian corporate curve. |
+| `real_rate_lt` — long-run real policy rate | 3.5% | Builds the terminal normalised risk-free rate: (1+5%)(1+3.5%)−1 = 8.67%. | A published long-run neutral-rate estimate for Egypt, or a decade of real rates settling elsewhere. |
+| `anna_cash_margin` — nitrate conversion margin over own ammonia | 32% | The new complex's contribution before its depreciation; with it the complex earns −66m after depreciation at 50% utilisation. | The company's own first full-year segment disclosure for the complex. |
+| `anna_util_base` / `anna_util_bull` — project utilisation in the terminal year | 50% / 70% | Half is the existing plant's observed record against its own plate under the same gas regime; 70% is a well-run nitrate line. The 70% alternative is +EGP 0.23. | A year in which the existing plant runs above 70% of plate, or a gas-supply contract that removes the summer curtailment. |
+| `dep_escalation` — escalation on the existing depreciation base | 2% a year | Ordinary additions to the pre-project asset base; project depreciation is built separately from its own cost. | A fixed-asset note showing additions to the old base running materially above or below 2%. |
+| `fx_terminal_wedge` — terminal currency wedge | 2.54% (DERIVED) | (1+5%)/(1+2.4%)−1: the steady-state depreciation the terminal inflation implies against US inflation; carries the terminal dollar debt and the terminal revenue. Derived, not typed, from this edition. | A terminal inflation other than the 5% central-bank target, which would move the wedge with it. |
+| `anna_winddown_cost` — cost of stopping the programme | EGP 1,000m | Charged in year one of the capital-discipline case only: contractor settlement and preservation on a 27.8%-spent site. | A disclosed termination schedule in the consortium loan or the construction contract. |
 
 ### Findings recorded but NOT acted on
 

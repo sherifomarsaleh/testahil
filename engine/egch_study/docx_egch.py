@@ -16,9 +16,8 @@ LN = json.load(open('lenses.json'))
 EX = json.load(open('experts.json'))
 ST = json.load(open('strike_result.json'))
 TC = json.load(open('technicals.json'))
-BT = json.load(open('backtest_5y.json'))
 BE = json.load(open('beta_result.json'))
-WC = json.load(open('wacc_result.json'))
+WC = DD['wacc']                      # the cost of capital, built once in compute.py
 AL = json.load(open('alternatives.json'))
 AL_BY = {a['key']: a for a in AL['alternatives']}
 GRD = json.load(open('sensitivity_grid.json'))
@@ -119,11 +118,15 @@ rows = [["Terminal value as a share of enterprise value", "Programme carried thr
         ["Discounted cash-flow lens", PC(BASE['bridge']['tv_pct_ev']),
          PC(HALT['bridge']['tv_pct_ev'])]]
 table(rows, [3.2, 1.9, 1.9], size=8.9)
+_TVW = ("The explicit years contribute a present value of EGP "
+        f"{E(BASE['bridge']['pv_explicit'])} million on the carried-through case, so the terminal "
+        f"block carries {PC(BASE['bridge']['tv_pct_ev'])} of enterprise value"
+        + (" — above one hundred per cent, because the capital programme absorbs more cash than "
+           "the plant generates inside the window." if BASE['bridge']['tv_pct_ev'] > 1 else
+           "; the capital programme takes most of the window's operating cash, which is why the "
+           "share is high for a going concern."))
 caption("{T}.  Reported beside the cash-flow lens because on this company it is the "
-        "number that decides the answer. Above one hundred per cent means the five explicit "
-        "years contribute negative present value: the capital programme absorbs more cash "
-        "than the plant generates, so the terminal block carries the whole enterprise value "
-        "and then some.")
+        "number that decides the answer. " + _TVW)
 figure('fig9_field.png', 6.9,
        "{F}.  Each lens as its own bear-to-bull span, with the central marked, "
        "against the traded price.")
@@ -280,12 +283,18 @@ rows = [["Line", "Value"],
         ["Value per share on this lens (EGP)", E2(B['value_per_share'])],
         ["Price-to-book the market pays", f"{B['pb_at_market']:.2f}x"]]
 table(rows, [4.4, 2.5], size=8.9, band_rows={7, 12})
-caption("{T}.  The justified multiple of book is negative before flooring, and that is "
-        "the finding rather than a rounding artefact: a sustainable return of "
-        f"{PC(B['roe_sustainable'])} does not cover even nominal maintenance growth of "
-        f"{PC(B['g'])}, let alone a {PC2(B['ke'])} cost of equity. On this lens the book is "
-        "worth nothing beyond what the assets would fetch, and the market pays "
-        f"{B['pb_at_market']:.2f} times it.")
+caption("{T}.  " + (
+        f"The justified multiple of book is {B['pb_raw']:.3f} times: a sustainable return of "
+        f"{PC(B['roe_sustainable'])} clears nominal maintenance growth of {PC(B['g'])} by only "
+        f"{PC(B['roe_sustainable'] - B['g'])}, against a {PC2(B['ke'])} cost of equity, so the "
+        f"book of EGP {E2(B['book_per_share'])} a share is worth EGP {E2(B['value_per_share'])} on "
+        f"this lens"
+        if B['pb_raw'] > 0 else
+        f"The justified multiple of book is negative before flooring: a sustainable return of "
+        f"{PC(B['roe_sustainable'])} does not cover nominal maintenance growth of {PC(B['g'])}, "
+        f"let alone a {PC2(B['ke'])} cost of equity, so on this lens the book is worth nothing "
+        f"beyond what the assets would fetch")
+        + f", and the market pays {B['pb_at_market']:.2f} times it.")
 
 H2("1.3  Relative multiples")
 RL = LN['relative']
@@ -343,10 +352,11 @@ P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesi
 P(f"The ordering is itself informative. The asset-backed and multiple-based lenses sit "
   f"highest because they value what has been built without asking what it earns. The "
   f"cash-flow lens sits lowest because it asks exactly that, and gets an uncomfortable "
-  f"answer. The book lens sits at zero because a {PC(B['roe_sustainable'])} sustainable "
-  f"return on equity does not clear a {PC2(B['ke'])} cost of equity — a company earning "
-  f"below its cost of capital destroys value by growing, which is the same finding the "
-  f"capital programme produces from a different direction.")
+  f"answer. The book lens sits at EGP {E2(B['value_per_share'])} because a "
+  f"{PC(B['roe_sustainable'])} sustainable return on equity barely clears nominal growth and "
+  f"does not approach a {PC2(B['ke'])} cost of equity — a company earning below its cost of "
+  f"capital destroys value by growing, which is the same finding the capital programme "
+  f"produces from a different direction.")
 
 figure('fig1_range.png', 6.9,
        "{F}.  The same cash-flow model run in four states of the world. The spread "
@@ -403,10 +413,12 @@ rows.append(["Gross margin — OUTPUT", "Falls out of the above", PC(R[0]['gross
 rows.append(["EBITDA margin — OUTPUT", "Falls out of the above", PC(R[0]['ebitda_pct']),
              PC(R[4]['ebitda_pct'])])
 table(rows, [1.6, 2.75, 1.28, 1.28], size=8.5, band_rows={8, 9}, text_cols=(1,))
-caption("{T}.  Each cost class escalates on its own driver and never on one blended "
-        "index: gas is a globally traded input and escalates on its dollar price through "
-        "the exchange rate, while wages, inland haulage and administration escalate on "
-        "Egyptian consumer prices and the subsidised price follows its own administered path.")
+caption("{T}.  The physically distinct classes each carry their own escalator: gas on its "
+        "administered dollar price through the exchange rate, the export price on the "
+        "commodity path, the subsidised price on its administered path. The domestic lines — "
+        "other materials, wages, purchased services, inland haulage, other selling and "
+        "administration — share the one domestic inflation path, because that is the index "
+        "they are paid in; a globally traded input is never put on it.")
 figure('fig3_revenue.png', 6.9, "{F}.  Revenue built channel by channel.")
 figure('fig6_coststack.png', 6.9,
        "{F}.  Where a tonne of urea costs its money. Gas dominates, which is why the "
@@ -596,8 +608,9 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
          f"Own-stock weekly regression, {BE['n']} observations, R-squared {BE['r2']:.3f}, "
          f"standard error {BE['se']:.3f}"],
         ["Cost of equity", PC2(WC['ke_rating']), PC2(WC['ke_cds']), ""],
-        ["Cost of debt after tax", PC2(WC['kd_aftertax']), PC2(WC['kd_aftertax']),
-         f"{PC(1-WC['pct_debt_local'])} dollar, carried at local-equivalent cost"],
+        ["Cost of debt after tax, year one", PC2(WC['kd_aftertax']), PC2(WC['kd_aftertax']),
+         f"{PC(1-WC['pct_debt_local'])} dollar, carried at local-equivalent cost on that year's "
+         f"currency wedge of {PC(WC['fx_wedge_path'][0])}"],
         ["Weights, equity and debt", f"{PC(WC['we'])} / {PC(WC['wd'])}",
          f"{PC(WC['we'])} / {PC(WC['wd'])}", "Market-value equity, never book"],
         ["Cost of capital, year one", PC2(DR['wacc_path'][0]), PC2(WC['wacc_cds']),
@@ -621,10 +634,22 @@ table(rows, [1.9, 3.6, 1.4], size=8.5, text_cols=(1,))
 P(f"The pound tranche of the project loan was repaid in June 2024, so {PC(1-WC['pct_debt_local'])} "
   f"of the book is dollar-denominated. A dollar coupon cannot be dropped into a cost of "
   f"capital denominated in pounds: the company earns pounds and must buy dollars to service "
-  f"it. The dollar cost of {PC(V('kd_usd_nominal'))} is therefore grossed up by a "
-  f"{PC(V('expected_depreciation'))} expected depreciation to a local-equivalent "
-  f"{PC2(WC['kd_fx_local_equiv'])} — and the same wedge drives the currency path in the "
-  f"revenue build, so the two cannot quietly disagree.")
+  f"it. The dollar cost of {PC(V('kd_usd_nominal'))} is therefore grossed up, year by year, by "
+  f"the depreciation the study's own currency path implies in that year — "
+  f"{PC(WC['fx_wedge_path'][0])} in {YEARS[0]}, giving a local-equivalent "
+  f"{PC2(WC['kd_fx_path'][0])}, gliding to {PC(WC['fx_wedge_path'][4])} in {YEARS[4]} and "
+  f"{PC2(WC['kd_fx_path'][4])} — and to {PC(DR['deprec_lt'])} on the long-run dollar cost of "
+  f"{PC(DR['kd_usd_lt'])} in the terminal year, {PC2(DR['kd_local_equiv_terminal'])}. The wedge "
+  f"is the one the revenue build uses, so the debt and the currency cannot quietly disagree.")
+P("What the cost-of-capital builder's own consistency checks say about that construction, "
+  "printed rather than suppressed: " + " ".join(WC['disclosures'])
+  + (f" The dollar leg's local-equivalent cost sits below the {PC2(WC['rf_star_rating'])} normalised "
+     f"risk-free rate in {', '.join(WC['years_fx_leg_below_rf_star'])}, because the currency wedge "
+     f"in those years is smaller than the gap between the coupon and the risk-free rate. "
+     if WC['years_fx_leg_below_rf_star'] else "")
+  + f"The disclosed rates are what the company pays on state-bank facilities and are used as "
+  f"disclosed; the construction with every leg floored at the sovereign yield is priced in the "
+  f"table below rather than argued.", size=9.6)
 H2("Where this construction is contested, and what the alternative is worth")
 P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in every future "
   f"year, while the terminal value grows at the central bank's longest-horizon target of "
@@ -643,7 +668,7 @@ P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in eve
 figure('fig7_glide.png', 6.9,
        "{F}.  The rate glides from its spot build to a terminal rate made from its own "
        "parts. The dotted line is the rate the traded price implies.")
-P(f"Seven choices in the construction above are legitimately arguable, and every one of "
+P(f"{['Seven','Eight','Nine','Ten','Eleven'][len(AL['alternatives']) - 7]} choices in the construction above are legitimately arguable, and every one of "
   f"them has been priced rather than defended in prose. Each row below is a complete "
   f"re-run of the model with that single component moved and everything else held, so the "
   f"figure in the third column is what this study would have published had it made the "
@@ -653,9 +678,10 @@ rows = [["Choice made", "The alternative", "On the alternative",
 for a in AL['alternatives']:
     rows.append([a['made'], a['alt'], E2(a['value']), f"{a['delta']:+.2f}", a['why']])
 table(rows, [1.72, 1.78, 0.66, 0.66, 2.18], size=7.8, text_cols=(0, 1, 4))
-caption("{T}.  The premium basis and the gas price are the two that move the answer "
-        "most, in opposite directions, and both are published on both readings elsewhere "
-        "in this study. None of the seven, and no combination of them, closes the gap to "
+_TOP = sorted(AL['alternatives'], key=lambda a: -abs(a['delta']))[:2]
+caption(f"{{T}}.  The two that move the answer most are {_TOP[0]['key'].replace('_', ' ')} "
+        f"({_TOP[0]['delta']:+.2f}) and {_TOP[1]['key'].replace('_', ' ')} ({_TOP[1]['delta']:+.2f}); "
+        f"none of the {len(AL['alternatives'])}, and no combination of them, closes the gap to "
         "the traded price.")
 
 H2("1.9  Sensitivity")
@@ -694,6 +720,8 @@ SWINGS = [
      AL_BY['gas']['value'], AL['baseline']),
     ("Country-risk basis", "Rating spread against traded default swap",
      AL['baseline'], AL_BY['premium_basis']['value']),
+    ("Cost of debt", f"Disclosed rates against every leg floored at the {PC2(WC['sovereign_floor'])} sovereign yield",
+     AL['baseline'], AL_BY['cost_of_debt_floor']['value']),
     ("Beta", f"{WC['beta']:.3f} against the lower bound of its own ninety-per-cent interval, {V('beta_ci90_low'):.3f}",
      AL['baseline'], AL_BY['beta']['value']),
     ("Project utilisation in the terminal year",
@@ -795,20 +823,13 @@ for pct in (5, 10, 15, 20):
     rows.append([f"Down {pct}%", PC(M1['ladder'][f'touch_dn{pct}']), PC(M3['ladder'][f'touch_dn{pct}'])])
 table(rows, [2.4, 2.25, 2.25], size=8.9)
 caption("{T}.  Probability of touching each level at any point before the check date.")
-prod = BT['production']
-P(f"How this was tested, in plain terms. The same method was run backwards over the "
-  f"company's own price history in non-overlapping three-month windows and scored against a "
-  f"random walk that carries the same interest-rate drift. Over the {prod['windows']} "
-  f"windows since the market's last structural break it beat that benchmark by "
-  f"{prod['skill_norm']*100:.2f} per cent on a proper scoring rule, and the advantage held "
-  f"across every resampling block size tested, so it is not an artefact of how the windows "
-  f"were cut. Outcomes fell inside the fifty, eighty and ninety per cent bands "
-  f"{PC(prod['cov50'])}, {PC(prod['cov80'])} and {PC(prod['cov90'])} of the time against "
-  f"the fifty, eighty and ninety they promise. A uniformity test on where each outcome "
-  f"landed within its predicted distribution returns a p-value of {prod['chi2_p']:.3f}, "
-  f"which is to say the bands are neither too wide nor too narrow to a degree the data can "
-  f"detect. Over the last five years of windows the advantage was "
-  f"{BT['five_year']['skill_norm']*100:.2f} per cent.")
+_BR = json.load(open('band_record.json'))
+P(f"How this has done, in plain terms. Over {_BR['n']} resolved three-month forecasts on this "
+  f"share the price finished inside the ninety-per-cent band {PC(_BR['c90'])} of the time, "
+  f"inside the eighty-per-cent band {PC(_BR['c80'])} and inside the fifty-per-cent band "
+  f"{PC(_BR['c50'])} — against the ninety, eighty and fifty they promise. "
+  + ("The record earns no flag either way." if not _BR.get('flag') else
+     f"The record carries the flag '{_BR['flag']}'."))
 P("Two honest limits. The bands are wide because this share is volatile — an annualised "
   f"{PC(M3['anchor_vol_ann'])} at the anchor date — and a wide band that is right is worth "
   "more than a narrow one that is wrong. And the map says nothing about value: a price can "
@@ -985,11 +1006,12 @@ P(f"The new plant's capacity is derived, not disclosed. No filing states it. It 
   f"derived wherever it appears, and the utilisation applied to it is sensitised in both "
   f"directions.")
 P(f"Terminal value is {PC(BASE['bridge']['tv_pct_ev'])} of enterprise value on the "
-  f"carried-through case and {PC(HALT['bridge']['tv_pct_ev'])} on the stopped case. Above "
-  f"one hundred per cent is unusual and is explained rather than smoothed: the explicit "
-  f"window is a construction window with negative free cash flow, so the terminal block "
-  f"carries the whole enterprise value and then some. It is a real characteristic of an "
-  f"asset being rebuilt, not a modelling artefact — but it does mean the answer rests "
+  f"carried-through case and {PC(HALT['bridge']['tv_pct_ev'])} on the stopped case. The "
+  f"explicit years are a construction window: free cash flow to the firm is "
+  f"{'negative' if sum(1 for r in R if r['fcff'] < 0) >= 3 else 'positive in ' + str(sum(1 for r in R if r['fcff'] > 0)) + ' of the five years and negative in the other ' + str(sum(1 for r in R if r['fcff'] < 0))}, "
+  f"and their present value is EGP {E(BASE['bridge']['pv_explicit'])} million against a "
+  f"terminal block of EGP {E(BASE['bridge']['pv_tv'])} million. That is a real characteristic "
+  f"of an asset being rebuilt, not a modelling artefact — but it does mean the answer rests "
   f"more heavily on one year than most studies do.")
 P(f"The forecast for the year to June 2026 rests on nine reviewed months and one "
   f"run-rated quarter. The fourth quarter is run-rated on the third quarter's revenue "
@@ -1217,6 +1239,14 @@ for tag, num in [('e1', '1'), ('e2', '2'), ('e3', '3')]:
     caption(f"{{T}}.  Expert {num}'s workings in full — every intermediate "
             f"line, not a summary of them.")
     P(f"Range: EGP {E2(X['low'])} to EGP {E2(X['high'])} a share.", bold=True)
+    if 'contested' in X:
+        CJ = X['contested']
+        P(f"On both sides of the contested judgement.  With the programme carried through the "
+          f"claim is worth EGP {E2(CJ['carried_through'])} a share (EGP {E2(CJ['carried_low'])} to "
+          f"{E2(CJ['carried_high'])} across the volatility range); with the programme stopped the "
+          f"enterprise value rises to EGP {E(CJ['ev_incl_halt'])} million and the same claim is "
+          f"worth EGP {E2(CJ['stopped'])} (EGP {E2(CJ['stopped_low'])} to {E2(CJ['stopped_high'])}). "
+          f"The two are published side by side and never averaged.", size=9.8)
     P("Reading it.  " + X['reading'], size=9.8)
     if 'grid' in X:
         G3 = X['grid']
@@ -1296,10 +1326,13 @@ rows = [["Pair", "Gap (EGP/share)", "The single assumption that drives it"],
          "The capital programme. Every expert method treats it more kindly than a "
          "year-by-year cash-flow model does, because none of them charges the full "
          "expenditure against the years in which it is actually spent."],
-        ["The whole study against the market", E2(LN['synthesis']['high'] - SPOT),
+        ["The cash-flow lens against the market", E2(LN['cashflow']['carry_through'] - SPOT),
          "The discount rate, and only the discount rate. At about "
          f"{PC(DR['implied_wacc_base'])} the market's price is reproduced; at any rate "
-         "anchored to Egypt's sovereign it is not."]]
+         "anchored to Egypt's sovereign it is not."],
+        ["The top of the field against the market", E2(LN['synthesis']['high'] - SPOT),
+         "The relative lens, which never charges the capital programme, is the one reading "
+         "that sits above the price."]]
 table(rows, [1.9, 1.0, 4.1], size=8.3, text_cols=(2,))
 caption("{T}.  Each gap isolated to the one assumption that creates it.")
 
