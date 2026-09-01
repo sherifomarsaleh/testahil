@@ -177,6 +177,10 @@ def main():
     }
     json.dump(out, open(os.path.join(HERE, "gate_result.json"), "w"), indent=1,
               default=str)
+    # the beta artefact the repository-level check reads, written from the
+    # record the sanctioned resolver returned rather than transcribed from it
+    json.dump(beta, open(os.path.join(HERE, "beta_result.json"), "w"), indent=1,
+              default=str)
     print("\n" + "=" * 78)
     print("TMGH — quality gate, %s" % STANDARD_BUILT_AGAINST)
     print("=" * 78)
