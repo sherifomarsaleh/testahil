@@ -148,7 +148,8 @@ def main():
     w = json.load(open(os.path.join(HERE, "wacc.json")))
     out = {"parameters": {k: getattr(M, k) for k in
                           ("CAPACITY_YEARS", "RECOVERY_YEARS", "CAPACITY_RAMP",
-                           "RECOVERY_RAMP", "REPLENISHMENT_SALES", "SALES_FADE",
+                           "RECOVERY_RAMP", "REPLENISHMENT_SALES", "SALES_GROWTH",
+                           "BACKLOG_CAPTURE",
                            "HOSP_GROWTH", "OTHER_GROWTH", "PUD_COVER_YEARS",
                            "PUD_ADJUST_YEARS", "TERMINAL_GROWTH", "PAYOUT", "TAX")},
            "ratios": M.ratios()}

@@ -116,7 +116,7 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
-     "under_revision": "REJECTED BY THE USER, 01-Sep-2026, and the sanity gate [R-SANITY-01] reproduces the objection on three counts. (1) New sales open at EGP 300,000mn against an FY2025 actual of 382,200mn and then fade 15% a year to 96,173mn by 2033 -- a nominal collapse in an economy near 20% inflation, for a company whose order book is at a record. The fade was added to stop an earlier version's order book exploding and over-corrected past sensible into the opposite error. (2) The model discounts at 35.79% while the study's OWN reverse DCF puts the market's implied rate at 23.09% -- a 12.7 point gap that was computed, printed and not acted on. (3) The result says the market is paying about 2.5 times what the company is worth, which was never put to the user before delivery. The valuation is being rebuilt; this figure is recorded as delivered and NOT as sound.",
+     "superseded_by": "edition 2 \u2014 rejected on delivery [R-SANITY-01]; three defects found and fixed",
      "vs_baseline_pct": {
       "base": -73.3,
       "bear": -73.3,
@@ -126,6 +126,38 @@
       "base": -73.3,
       "bear": -73.3,
       "full": -68.5
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 55.32,
+      "bear": 48.48,
+      "full": 62.91
+     },
+     "lessons": [
+      "L-043",
+      "L-044",
+      "L-045",
+      "L-046",
+      "L-047",
+      "L-117",
+      "L-118"
+     ],
+     "note": "rebuilt after the delivered figure was rejected [R-SANITY-01]. Three defects fixed, each evidenced from the company own disclosure: (1) contracted sales anchored on the FY2025 actual instead of a figure below every reported year, and the 15% annual fade removed; (2) CONTRACTED SALES AND THE ORDER BOOK ARE NOT ON THE SAME BASIS -- only about half a year of sales enters the book (FY2024 34.4%, FY2025 48.1%) and the model had been feeding them in one-for-one, which is arithmetically impossible against what the company reports and is what the fade had been hiding; (3) COLLECTIONS AND BUILD SPEND WERE ON DIFFERENT CLOCKS -- collections ran off the order book while build spend ran off deliveries, so accelerating handovers destroyed value and free cash flow went negative in the faster reading. The module docstring already stated the rule the code broke.",
+     "open_question": "The discount rate still sits 12.7 points above the rate the study own reverse DCF implies (35.79% against 23.09%). Beta is 1.4718 measured against EGX30, a regressor that already carries Egyptian country risk, and the house method multiplies the FULL country-risk-inclusive premium by it. Adding country risk once instead gives WACC 31.57%. That is a change to the standing cost-of-capital method, not a study decision, so it is RAISED and NOT applied.",
+     "origins": "FY2015-FY2024, h=1-5",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -62.4,
+      "bear": -42.0,
+      "full": -66.8
+     },
+     "vs_previous_pct": {
+      "base": 40.6,
+      "bear": 117.4,
+      "full": 5.4
      }
     }
    ],

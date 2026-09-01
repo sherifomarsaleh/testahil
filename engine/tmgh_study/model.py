@@ -50,15 +50,52 @@ RECOVERY_RAMP = 0.35   # the build programme catches up faster
 SEASONAL = 2.9078     # FY2025 development revenue over its own first half
                       # (36,705.7 / 12,621.8), the company's own relationship
 
-REPLENISHMENT_SALES = 300000.0  # normalised annual contracted sales, below the
-                      # 1H2026 annualised run rate of EGP 438bn and the FY2025
-                      # EGP 382bn, and far below FY2024's launch-year EGP 504bn
-SALES_FADE = 0.85     # replenishment sales converge on the delivery rate;
-                      # 300bn fading at 15% a year reaches about 59bn by 2035
+# REPLENISHMENT SALES ARE ANCHORED ON THE LAST REPORTED YEAR AND HELD THERE.
+# [R-SANITY-01] The first cut set this to 300,000 -- BELOW every year the
+# company has reported -- and then faded it 15% a year to 96,173 by 2033. In an
+# economy running near 20% inflation that is a real decline of about a third a
+# year, for a company whose order book is at a record. It was not a forecast
+# about the business; it was a guard added to stop an earlier version's book
+# exploding, which kept going until it became an assumption.
+#
+# The anchor is now the LAST FULL REPORTED YEAR and nothing else is invented:
+# FY2025 contracted sales, from the company's own results release. Held FLAT IN
+# NOMINAL TERMS, which is already conservative -- it is a real decline at
+# Egyptian inflation -- and is the "freeze" benchmark this name's own
+# walk-forward found the method could not beat at one year out.
+REPLENISHMENT_SALES = 382200.0   # FY2025 contracted sales, as reported
+SALES_GROWTH = 0.00              # flat nominal -- the freeze benchmark
+
+# CONTRACTED SALES AND THE ORDER BOOK ARE NOT ON THE SAME BASIS, AND THE FIRST
+# CUT FED ONE STRAIGHT INTO THE OTHER.  Measured on the company's own two
+# disclosed series, the share of a year's contracted sales that shows up in the
+# book -- the rise in backlog plus the development revenue recognised out of it
+# -- is nowhere near all of it:
+#
+#     FY2021 75.3%   FY2022 87.3%   FY2023 62.5%   FY2024 34.4%   FY2025 48.1%
+#
+# FY2024 is the clearest case: EGP 504,000mn of sales against a backlog that
+# rose EGP 149,000mn. Feeding sales in one-for-one is arithmetically impossible
+# against what the company reports, and it is what drove the book to EGP 3.2
+# TRILLION when the fade that had been hiding it was removed. The 15% fade was
+# never a view about the business; it was compensating for this.
+#
+# Anchored on the MOST RECENT FULL YEAR rather than an average across a
+# definition that is visibly moving -- the near-term-actual rule -- and
+# sensitised across the whole observed range, which is wide and is published as
+# such rather than smoothed away.
+BACKLOG_CAPTURE = 0.481          # FY2025: (147,200 + 36,706) / 382,200
+CAPTURE_OBSERVED = (0.344, 0.873)   # FY2024 low, FY2022 high
 HOSP_GROWTH = 0.20
 OTHER_GROWTH = 0.22
 HOSP_CAPEX_RATIO = 0.10
 OTHER_CAPEX_RATIO = 0.04
+# CUSTOMER ADVANCES AGAINST THE ORDER BOOK, from the company's own balance
+# sheet: EGP 133,993.1mn of advances at 30 June 2026 against a book of EGP
+# 491,000mn. A disclosed ratio, not a chosen one.
+ADV_COVER_ON_BOOK = 133993.1 / 491000.0     # 27.3%
+ADV_ADJUST_YEARS = 4                        # how fast the stock moves to cover
+
 PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
                         # held EGP 148.3bn at 30 June 2026 against a modelled
                         # FY2026 development cost of about EGP 36bn
@@ -108,7 +145,7 @@ def ratios():
     }
 
 
-def project(mode, years=EXPLICIT_YEARS):
+def project(mode, years=EXPLICIT_YEARS, capture=BACKLOG_CAPTURE):
     r = ratios()
     n = CAPACITY_YEARS if mode == "capacity" else RECOVERY_YEARS
     ramp = CAPACITY_RAMP if mode == "capacity" else RECOVERY_RAMP
@@ -141,7 +178,9 @@ def project(mode, years=EXPLICIT_YEARS):
         # rates left to diverge rather than a forecast about a company.
         # Replenishment therefore FADES from the launch-era rate toward the
         # delivery rate, and never falls below it.
-        new_sales = max(REPLENISHMENT_SALES * SALES_FADE ** i,
+        # What enters the BOOK, not what the release headlines as sales.
+        new_sales = max(REPLENISHMENT_SALES * (1 + SALES_GROWTH) ** i
+                        * capture,
                         rows[-1]["dev_revenue"] if rows else 0.0)
         # DELIVERIES ARE ANCHORED ON THE REVIEWED HALF-YEAR ACTUAL and then grow
         # at the rate the crux specifies. Jumping straight to book/n instead put
@@ -179,7 +218,25 @@ def project(mode, years=EXPLICIT_YEARS):
         parent = net - nci_profit
         dividend = max(parent, 0.0) * PAYOUT
 
-        collections = r["collection_rate_on_book"] * (new_sales + bl)
+        # COLLECTIONS AND BUILD SPEND MUST SIT ON THE SAME CLOCK.  The first
+        # cut set collections as a flat rate on the ORDER BOOK while build
+        # spend moved with DELIVERIES, so accelerating handovers spent cash
+        # faster than it collected any and the faster reading's free cash flow
+        # went NEGATIVE from 2029 -- building a home became value-destroying.
+        # For an off-plan developer that is backwards: the customer pays AS
+        # CONSTRUCTION PROGRESSES, which is why the advances are there.
+        #
+        # This module's own docstring already stated the rule ("the two
+        # contract positions -- customer advances and properties under
+        # development -- are driven off the SAME order book, never one off
+        # revenue and the other off backlog") and the code did not obey it.
+        # Advances are now driven off the book on their own disclosed cover,
+        # and collections fall out of the identity the ratios block uses on the
+        # actual half-year: collections = revenue recognised + the rise in
+        # advances.
+        target_adv = ADV_COVER_ON_BOOK * (bl + new_sales)
+        d_adv_target = (target_adv - adv) / ADV_ADJUST_YEARS
+        collections = dev_rev + d_adv_target
         # PROPERTIES UNDER DEVELOPMENT IS A STOCK, and build spend is what moves
         # it toward the cover the programme needs. Modelling build as a fixed
         # multiple of cost instead — 2.47x, which is what the company spent in
