@@ -18,9 +18,14 @@
    "ccy": "EGP",
    "editions": [
     {
+     "basis": "four-lens weighted synthesis, the range the study's own valuation summary publishes. The study withholds a single POINT estimate (its section 5) and publishes this range.",
      "delivered": "2026-09-01",
      "edition": 1,
-     "fair": null,
+     "fair": {
+      "base": 10.94,
+      "bear": 4.6,
+      "full": 23.33
+     },
      "lessons": [
       "L-028",
       "L-029",
@@ -29,9 +34,12 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
-     "vs_baseline_pct": null,
-     "vs_previous_pct": null,
-     "withdrawn": "no single fair value published \u2014 the study withdrew the prior edition's point estimate deliberately (its section 5): the crux rests on a schedule the company does not disclose, the method over-forecast net profit on this name's own history by +1.12 log in 97% of cells, and the per-project table the prior number rested on is not disclosed. Years 3-5 go out as ranges instead."
+     "vs_baseline_pct": {
+      "base": -31.2,
+      "bear": -39.6,
+      "full": -6.4
+     },
+     "vs_previous_pct": null
     }
    ],
    "exchange": "EGX",
@@ -108,6 +116,7 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
+     "under_revision": "REJECTED BY THE USER, 01-Sep-2026, and the sanity gate [R-SANITY-01] reproduces the objection on three counts. (1) New sales open at EGP 300,000mn against an FY2025 actual of 382,200mn and then fade 15% a year to 96,173mn by 2033 -- a nominal collapse in an economy near 20% inflation, for a company whose order book is at a record. The fade was added to stop an earlier version's order book exploding and over-corrected past sensible into the opposite error. (2) The model discounts at 35.79% while the study's OWN reverse DCF puts the market's implied rate at 23.09% -- a 12.7 point gap that was computed, printed and not acted on. (3) The result says the market is paying about 2.5 times what the company is worth, which was never put to the user before delivery. The valuation is being rebuilt; this figure is recorded as delivered and NOT as sound.",
      "vs_baseline_pct": {
       "base": -73.3,
       "bear": -73.3,

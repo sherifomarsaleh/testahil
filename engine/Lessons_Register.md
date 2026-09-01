@@ -69,12 +69,14 @@ tested.
 
 | Stock | Market | Class | Fair price before | Fair price after | Move |
 |---|---|---|---|---|---|
-| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | EGP 15.89 | *withdrawn — no single value* | — |
-| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 147.12 | EGP 39.33 | -73.3% |
+| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | EGP 7.62 – 24.92  (central 15.89) | EGP 4.6 – 23.33  (central 10.94) | -31.2% |
+| **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 83.6 – 189.6  (central 147.12) | EGP 22.3 – 59.67  (central 39.33)  **under revision** | -73.3% |
 
-- **PHDC** — before-calibration price recovered from assets/data.js history: unchanged across all 281 commits touching that file between 11-Jun-2026 and 01-Sep-2026. The original record declared it unrecoverable on the evidence of a SHALLOW clone holding 23 commits; unshallowing the repository resolved it. An empty result was read as a clean one.  after calibration, no single fair value published — the study withdrew the prior edition's point estimate deliberately (its section 5): the crux rests on a schedule the company does not disclose, the method over-forecast net profit on this name's own history by +1.12 log in 97% of cells, and the per-project table the prior number rested on is not disclosed. Years 3-5 go out as ranges instead..
+- **PHDC** — before-calibration price recovered from assets/data.js history: unchanged across all 281 commits touching that file between 11-Jun-2026 and 01-Sep-2026. The original record declared it unrecoverable on the evidence of a SHALLOW clone holding 23 commits; unshallowing the repository resolved it. An empty result was read as a clean one..
 
-The fair price is the **central case**. Where a study publishes several cases and no single point, this column carries the median of them so the before-and-after can be compared at all; the study's own range is the thing to quote, never this cell. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the note above says so where that is the case.
+- **TMGH** — UNDER REVISION — REJECTED BY THE USER, 01-Sep-2026, and the sanity gate [R-SANITY-01] reproduces the objection on three counts. (1) New sales open at EGP 300,000mn against an FY2025 actual of 382,200mn and then fade 15% a year to 96,173mn by 2033 -- a nominal collapse in an economy near 20% inflation, for a company whose order book is at a record. The fade was added to stop an earlier version's order book exploding and over-corrected past sensible into the opposite error. (2) The model discounts at 35.79% while the study's OWN reverse DCF puts the market's implied rate at 23.09% -- a 12.7 point gap that was computed, printed and not acted on. (3) The result says the market is paying about 2.5 times what the company is worth, which was never put to the user before delivery. The valuation is being rebuilt; this figure is recorded as delivered and NOT as sound..
+
+**Both price columns are ranges, low to high, with the central figure beside them.** A fair value is a range and is always stated as one — a study that withholds a single point still publishes low, central and high, and printing "no single value" instead would tell a reader nothing while sounding careful. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the note above says so where that is the case.
 
 ## Stocks we tried to calibrate and could not
 

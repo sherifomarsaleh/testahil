@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-08-31d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-01a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1810,6 +1810,82 @@ the read is allowed to CLAIM, which is the direction the errors actually ran. Wh
 remains untested is listed in the register rather than implied absent: intraday
 structure, and level-drawing methods other than the module's own.
 
+
+## [R-RANGE-01] A fair value is a range and is always stated as one — "no single value" is never an answer (01-Sep-2026, per instruction — "you can not say no single value. Even if it is a range mention the range")
+
+Declining to publish a single POINT estimate is often the right call. It is what
+you do when the crux rests on something the company does not disclose, and
+PHDC's 30-Aug-2026 edition did exactly that, for good reasons it stated: the
+conversion schedule is undisclosed, the method over-forecast net profit on that
+name's own history by +1.12 log in 97% of cells, and the per-project table the
+prior edition rested on is not disclosed by the company at all.
+
+What is never right is writing **"no single fair value is published"** where the
+numbers should be. A study that withholds a point still publishes a **low, a
+central and a high** — PHDC's own valuation summary carries bear 4.60, central
+10.94 and full 23.33 on its front page — and those are what every surface
+prints: the summary table, the movement register, the calibrated-stocks table,
+and any before-and-after comparison.
+
+The failure this closes is not a formatting one. PHDC's movement record carried
+its withdrawn POINT as a withheld VALUE, and the row read as though the rebuild
+had produced nothing at all. The misreading survived review because *"no single
+value"* **sounds like diligence**. That is [R-CAL-02]'s lesson wearing new
+clothes: a cautious-sounding label is still a claim about the world and is
+audited like one, and understating in the careful direction is not a safe error.
+
+The only honest empty cell is one where no value of any kind exists, and it says
+why. Ranges render **low–high with the central figure beside them**, never a
+bare central figure — a point printed alone invites exactly the precision the
+range was chosen to avoid.
+
+## [R-SANITY-01] A result that does not make sense goes to the user before it is delivered (01-Sep-2026, per instruction — "Whenever you have nonsensical things like that refer back to me. Also this is a rule that you should write and record and implement")
+
+**Every existing gate passed the study that forced this rule.**
+
+TMGH's rebuild delivered a fair-value range of EGP 22.30–59.67 against a market
+price of EGP 97.80 and a prior published central of EGP 147.12 — a 73% cut,
+asserting that the market pays roughly two and a half times what the company is
+worth. SIGCM passed. The model-study checklist passed. The beta was conforming
+and attested. An 84-check recalculation reconciled the workbook. The
+external-reader scrub came back clean.
+
+Not one of those gates asks whether the answer is **sensible**. Each checks that
+the arithmetic is faithful to the inputs; none checks the inputs against the
+world. **A study can be perfectly self-consistent and absurd**, and this one was.
+
+Both defects were sitting in the study's own committed outputs:
+
+1. **New sales opened below the last reported year and then decayed.** FY2025
+   actual new sales were EGP 382,200mn. The projection opened at 300,000 and
+   faded 15% a year to 96,173 by 2033 — a nominal collapse in an economy running
+   near 20% inflation, for a company whose order book was at a record. The fade
+   had been added to stop an earlier version's order book exploding, and it
+   over-corrected straight past sensible into the opposite error. **A guard added
+   for one problem had quietly become an assumption about the business.**
+2. **The discount rate disagreed with the market by 12.7 points, and the study
+   had already measured the gap.** Its own reverse DCF put the market's implied
+   rate at 23.09%; the model discounted at 35.79%. That number was computed,
+   printed in the study, and not acted on.
+
+The check is `engine/sanity_gate.py`, and it is deliberately **not a threshold on
+the answer**. A fair value far from the market price is frequently the whole
+point of doing the work, and a gate that forbade it would be a gate that forbids
+finding anything. What it forbids is shipping such a number **silently**.
+
+It returns questions — a central far from spot, a rebuild moving the published
+central leg by more than half, our discount rate far from the rate our own
+reverse DCF implies, a first projected year below the last reported actual, a
+range spanning more than sixfold — and each one goes to the user **before**
+delivery. Not into a caveats section, and not resolved by the model's own
+author. A study may still publish a number that trips a check; it may not
+publish one nobody was told about.
+
+**The general rule, which is not about this study.** When a result would make a
+careful reader say *"that cannot be right"*, that reaction **is the finding**.
+Raise it, do not rationalise it. The instinct to explain why the number is
+defensible is the same instinct that let a 15%-a-year sales decline sit unexamined
+in a model for a company at a record order book.
 
 ## [R-CAL-02] The band record replaces PASS / PARITY / FAIL on every public surface (24-Aug-2026, per instruction — "I want to challenge the concept of pass, parity or fail for the MC. Too complicated and the investor would not necessarily understand it")
 

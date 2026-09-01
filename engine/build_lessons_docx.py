@@ -148,7 +148,7 @@ def status_section(doc):
           ["Stock", "Market", "Class", "Fair price before",
            "Fair price after", "Move"],
           [[r["ticker"], r["market"], r["klass"],
-            MD.money(r["before"], r["ccy"]), MD.after_cell(r),
+            MD.rng(r.get("before_range"), r["ccy"]), MD.after_cell(r),
             "—" if r["move"] is None else "%+.1f%%" % r["move"]]
            for r in cal],
           [2.0, 2.2, 5.4, 2.9, 2.9, 1.8])

@@ -98,13 +98,19 @@ def calibrated():
         if withdrawn:
             note = (note + "  ") if note else ""
             note += "after calibration, %s" % withdrawn
+        if ed and ed.get("under_revision"):
+            note = (note + "  ") if note else ""
+            note += "UNDER REVISION — %s" % ed["under_revision"]
         rows.append({
             "ticker": tk,
             "market": "%s / %s" % (e.get("market") or "?", e.get("exchange") or "?"),
             "klass": LR.COMPANY_CLASS.get(tk, "— not mapped —"),
             "ccy": e.get("ccy") or "",
             "before": base["base"] if base else None,
+            "before_range": base,
             "after": (ed["fair"]["base"] if ed and ed.get("fair") else None),
+            "after_range": (ed.get("fair") if ed else None),
+            "under_revision": (ed.get("under_revision") if ed else None),
             "withdrawn": bool(withdrawn),
             "move": (ed["vs_baseline_pct"]["base"]
                      if ed and ed.get("vs_baseline_pct") else None),
@@ -175,11 +181,29 @@ def money(v, ccy):
     return "—" if v is None else "%s %s" % (ccy, ("%.2f" % v).rstrip("0").rstrip("."))
 
 
+def rng(fair, ccy):
+    """A fair-value cell is a RANGE.  [R-RANGE-01]
+
+    Never a bare central figure and NEVER a refusal. "No single value" tells a
+    reader nothing while sounding careful, and a study that withholds a point
+    estimate still publishes low, central and high -- so print those. The only
+    honest empty cell is one where no value of any kind exists.
+    """
+    if not fair:
+        return "—"
+    lo, mid, hi = fair.get("bear"), fair.get("base"), fair.get("full")
+    if lo is None or hi is None:
+        return money(mid, ccy)
+    return "%s %s – %s  (central %s)" % (
+        ccy, ("%.2f" % lo).rstrip("0").rstrip("."),
+        ("%.2f" % hi).rstrip("0").rstrip("."),
+        ("%.2f" % mid).rstrip("0").rstrip("."))
+
+
 def after_cell(r):
-    """The after-calibration cell. A withdrawn number is a result, not a gap."""
-    if r.get("withdrawn"):
-        return "*withdrawn — no single value*"
-    return money(r["after"], r["ccy"])
+    if r.get("under_revision"):
+        return rng(r.get("after_range"), r["ccy"]) + "  **under revision**"
+    return rng(r.get("after_range"), r["ccy"])
 
 
 def status_block():
@@ -208,15 +232,16 @@ def status_block():
     for r in cal:
         b.append("| **%s** | %s | %s | %s | %s | %s |\n"
                  % (r["ticker"], r["market"], r["klass"],
-                    money(r["before"], r["ccy"]), after_cell(r),
+                    rng(r.get("before_range"), r["ccy"]), after_cell(r),
                     "—" if r["move"] is None else "%+.1f%%" % r["move"]))
     for r in [x for x in cal if x["note"]]:
         b.append("\n- **%s** — %s.\n" % (r["ticker"], r["note"]))
-    b.append("\nThe fair price is the **central case**. Where a study "
-             "publishes several cases and no single point, this column carries "
-             "the median of them so the before-and-after can be compared at "
-             "all; the study's own range is the thing to quote, never this "
-             "cell. A move against a before-price that came from no "
+    b.append("\n**Both price columns are ranges, low to high, with the "
+             "central figure beside them.** A fair value is a range and is "
+             "always stated as one — a study that withholds a single point "
+             "still publishes low, central and high, and printing \"no single "
+             "value\" instead would tell a reader nothing while sounding "
+             "careful. A move against a before-price that came from no "
              "current-standard study measures a new study against a number of "
              "unknown provenance, and the note above says so where that is the "
              "case.\n\n")
