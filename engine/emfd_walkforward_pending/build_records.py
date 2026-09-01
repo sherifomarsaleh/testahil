@@ -34,6 +34,12 @@ def facts():
     reg, sur, res = load("ir_register.json"), load("extraction_survey.json"), \
         load("restatements.json")
     att = load("fetch_attempts.json")
+    # panel.json and kpi.json are built after the first pass of this file, so
+    # they are optional here and the records simply say less without them
+    pan = load("panel.json") if os.path.exists(
+        os.path.join(HERE, "panel.json")) else None
+    kpi = load("kpi.json") if os.path.exists(
+        os.path.join(HERE, "kpi.json")) else None
 
     docs = reg["documents"]
     fs = [d for d in docs if d["kind"] == "FS"]
@@ -41,18 +47,30 @@ def facts():
     year_end = sorted({d["year"] for d in cons
                        if d["period"] in ("Q4", "Year-End")})
 
-    # A fiscal year is COMPLETE for this purpose when the company's own register
-    # carries a year-end consolidated statement for it. Counting quarters would
-    # count FY2021 as present on the strength of two of its four quarters.
-    complete = year_end
+    # A fiscal year is COMPLETE for this purpose when a year-end profit-or-loss
+    # statement for it has been extracted AND FOOTS -- which is what panel.json
+    # records. Counting the register's filenames instead would count FY2021 as
+    # present on the strength of two quarters, and would miss FY2012, which is
+    # carried only as the comparative column of the FY2013 filing.
+    complete = ([int(y) for y in sorted(pan["years"], key=int)] if pan
+                else year_end)
     partial = sorted({d["year"] for d in cons} - set(complete))
 
     origins = [y for y in complete if len([x for x in complete if x <= y]) >= 5]
     cells = [(o, h) for o in origins for h in range(1, 6)
              if o + h <= max(complete)]
 
+    units = sorted(int(y) for y, r in (kpi or {}).get("by_year", {}).items()
+                   if "units_delivered" in r)
+    no_units = sorted(u["year"] for u in (kpi or {}).get(
+        "years_without_a_unit_count", []))
+
     return {
         "reg": reg, "sur": sur, "res": res, "att": att,
+        "pan": pan, "kpi": kpi, "units": units, "no_units": no_units,
+        "panel_restated": (pan or {}).get("restated_in_a_later_filing", []),
+        "routes": sorted({(pan or {}).get("years", {})[y]["provenance"]["route"]
+                          .split(";")[0] for y in (pan or {}).get("years", {})}),
         "n_docs": len(docs), "n_fs": len(fs), "n_cons": len(cons),
         "n_er": len([d for d in docs if d["kind"] == "ER"]),
         "n_ar": len([d for d in docs if d["kind"] == "AR"]),
@@ -188,7 +206,40 @@ A JavaScript-capable browser was also tried, and could not be used: Chromium is 
 here but cannot reach any host through this session's proxy — verified against a control
 (`https://example.com` fails identically), so the failure is the transport, not the target.
 
-## 5. Conclusion of the sweep
+## 5. What was extracted from what was obtained
+
+The window the register reaches has been extracted and is in `panel.json`. Every year is
+believed only because it foots:
+
+* **Fiscal years in the panel: {panel_first}–{panel_last} ({n_panel} years.)** FY{panel_first}
+  is carried as the comparative column of the FY{panel_first_plus} filing, the earliest year
+  the archive reaches at all.
+* **Three routes, all recorded per year:** {routes}. Four of the year-end filings are scans;
+  the two oldest are Arabic and print **Eastern Arabic numerals**, which tesseract reads
+  fluently and wrongly, so they were read from the rendered page and then verified — see
+  below.
+* **Every year foots** on revenue − cost = gross profit, on the sum of the lines below gross
+  profit = profit before tax, and on PBT − tax = profit. None was dropped.
+* **Cross-document verification.** The FY2013 and FY2014 profit figures also appear in the
+  FY2015 statement of changes in equity — a different document, extracted independently by
+  OCR in English — and match exactly. The read is trusted because two documents agree, not
+  because it was read carefully.
+* **The FY2015 filing is missing its own profit-or-loss page.** Its pages run balance sheet,
+  changes in equity, cash flows, notes; no page carries an income statement. That is a defect
+  in the company's own scan, and FY2015 is taken instead from the comparative column of the
+  FY2016 filing, flagged as a comparative.
+* **Operating KPIs are thinner than the statements.** Delivered-unit counts and contracted
+  sales values exist for {units} — from the company's results releases — and for
+  {no_units} **no unit count exists in any document on the register**: no results release
+  was published for those years and the management annual reports for them are Arabic scans
+  of the board's governance report, which carries no operating data. Those years therefore
+  cannot enter the unit-level drivers, and the pre-registration says in advance that they are
+  reported as dropped rather than interpolated.
+* Where a release quotes revenue, it is reconciled against the audited statement **at the
+  release's own precision** — "EGP 3.2 billion" promises nothing finer than ±0.05bn — and
+  all of them agree.
+
+## 6. Conclusion of the sweep
 
 Every fiscal year from **{first} to {last}** is available from the company's own audited
 statements. **FY{gap_start} onward is not** — not from the company's site, not from the
@@ -210,6 +261,11 @@ cell corrupts the very error the method is being scored on.
            partial_note=("Partial years also held: %s (quarters only, no year-end "
                          "statement)." % ", ".join(str(y) for y in F["partial"])
                          if F["partial"] else ""),
+           panel_first=F["complete"][0], panel_last=F["complete"][-1],
+           panel_first_plus=F["complete"][0] + 1, n_panel=len(F["complete"]),
+           routes=", ".join(F["routes"]),
+           units=", ".join("FY%d" % y for y in F["units"]) or "no year",
+           no_units=", ".join("FY%d" % y for y in F["no_units"]) or "no year",
            text_years=F["text_years"], ocr_years=F["ocr_years"],
            footed=F["footed"], not_footed=F["not_footed"] or "none",
            probes="\n".join(probes), fail_rows="\n".join(fail_rows),
@@ -236,6 +292,26 @@ def basis_breaks(F):
             k.replace("_", " "), v["as_reported"], v["as_restated"],
             v["delta"], v["pct"])
         for k, v in sorted(e.items()))
+
+    p13 = {d["line"]: d for d in
+           (load("panel.json").get("restated_in_a_later_filing") or [])
+           if d["year"] == 2013}
+    rows13 = "\n".join(
+        "| {} | {:,.0f} | {:,.0f} | {:+,.0f} | {:+.2f}% |".format(
+            k.replace("_", " "), p13[k]["as_first_reported"],
+            p13[k]["as_restated"], p13[k]["delta"],
+            100.0 * p13[k]["delta"] / abs(p13[k]["as_first_reported"]))
+        for k in sorted(p13)) or "| — | | | | |"
+    ent = load("restatements.json").get("reporting_entity_by_filing", {})
+    entity_rows = "\n".join("* FY%s filing — **%s**" % (y, b)
+                            for y, b in sorted(ent.items())) or "* (not read)"
+    n17 = len([d for d in load("restatements.json")["differences"]
+               if d["year"] == 2017])
+    moved17 = ("no profit-or-loss figure" if n17 == 0
+               else "%d profit-or-loss line(s)" % n17)
+    rev13_pct = (100.0 * p13["revenue"]["delta"]
+                 / abs(p13["revenue"]["as_first_reported"])) if "revenue" in p13 \
+        else float("nan")
 
     return """# EMFD — basis-break register
 
@@ -295,7 +371,28 @@ presentation change and is dated there.
 Under point-in-time discipline each origin keeps the **as-first-reported** figure and the
 restatement is recorded here beside it, never substituted.
 
-## B3 — the currency, which is not one break but four
+## B3 — FY2013 reclassified in the FY2014 accounts · the same gross-up, six years earlier
+
+The FY2013 income statement and the FY2014 income statement's comparative column
+disagree about FY2013 by a wide margin, and the pattern is the FY2019 one again:
+
+| line | FY2013 as first reported | FY2013 as restated one year later | delta | % |
+|---|---:|---:|---:|---:|
+{rows13}
+
+Cost of revenue is identical on both bases and profit before tax is identical on both
+bases — **{rev13_pct:+.1f}%** was moved off the revenue line into the other-income and
+selling-expense lines, with the composition re-cut and the FY2013 statement's operating-profit
+subtotal and separate currency-revaluation line both dropped from the FY2014 presentation.
+
+**Two reclassifications of the same kind, six years apart, each invisible at the bottom
+line.** That is not an accident of one year's presentation; on this issuer the revenue line
+is a presentation choice that has been revisited more than once. Every origin in the panel
+therefore keeps the **as-first-reported** figure, and `panel.py` refuses to let a later
+filing's comparative overwrite it — a plain "take the first filing that mentions the year"
+rule took exactly the wrong one here, silently, until the two figures were differenced.
+
+## B4 — the currency, which is not one break but four
 
 The Egyptian pound was floated in November 2016 and devalued again in March 2022, October
 2022 and March 2024. Only the first of those falls inside the obtainable window, and it
@@ -309,7 +406,23 @@ These dates are macro facts, not company disclosures, and they are marked here a
 be sourced and dated in the pre-registration's macro table before any origin is built —
 never reconstructed from memory into a driver.
 
-## B4 — presentation changes still to be registered when the blocked years arrive
+## B5 — the reporting entity changes at FY2018, with a measured effect of nil on the P&L
+
+Before FY2018 the company published a single set of statements. From FY2018 it publishes a
+**consolidated** set alongside a **separate** set. The panel uses the consolidated basis
+from FY2018 and the single set before it.
+
+The basis is read off each filing's own cover, never inferred from its filename:
+{entity_rows}
+
+The size of the break is measured rather than assumed. FY2017 appears twice — as the current
+column of its own single-entity filing and as the comparative column of the FY2018
+consolidated filing — and differencing the two gives **{n17} line(s) that differ**:
+consolidating the newly formed subsidiary moved {moved17} in its first year. The break is
+registered because it will matter for the balance sheet and for later years, not because it
+moved anything here.
+
+## B6 — presentation changes still to be registered when the blocked years arrive
 
 Recorded now as open, so that they are checked rather than discovered:
 
@@ -323,7 +436,8 @@ Recorded now as open, so that they are checked rather than discovered:
 * every one-off the company itself attributes in FY2021–FY2025, which cannot be enumerated
   from documents that have not been read.
 """.format(long_date=LONG_DATE, rows48=rows48, rows19=rows19,
-           rev_pct=pct("revenue"))
+           rev_pct=pct("revenue"), rows13=rows13, rev13_pct=rev13_pct,
+           entity_rows=entity_rows, n17=n17, moved17=moved17)
 
 
 # --------------------------------------------------------- scope decision ---
@@ -385,7 +499,7 @@ reference run on a comparable name carried 40 cells to horizon 5, and its own re
 states that its corrections rest on too few origins to be independent. {n_cells} overlapping
 cells is not a smaller version of that. It is not a training record.
 
-Three further things are true of that window, each of them sufficient on its own:
+Four further things are true of that window, each of them sufficient on its own:
 
 1. **No era split exists.** Every one of those cells sits after the November 2016 float and
    before the 2022–24 devaluations. §5 applies a correction *only where the bias holds its
@@ -396,7 +510,14 @@ Three further things are true of that window, each of them sufficient on its own
    revenue and cost (see `BASIS_BREAKS_{date}.md`, B1). §1 scores unit drivers only inside
    their own definition window. The obtainable window ends where the current definition
    begins, so the two do not overlap at all.
-3. **The purpose would not be served.** The two purposes are per-driver bias detection and
+3. **Half the window has no unit count at all.** Delivered-unit counts exist for {units}
+   and for {no_units} they exist nowhere on the company's register — no results release was
+   published for those years, and their management annual reports are Arabic scans of the
+   board's governance report with no operating data in them. The three drivers that carry
+   this class — units delivered, revenue per unit, cost per unit — are therefore unscoreable
+   on the three most recent years of the obtainable window, and interpolating a unit count
+   is precisely what §1 forbids.
+4. **The purpose would not be served.** The two purposes are per-driver bias detection and
    calibrated ranges for years 3–5 of the update now being written. A record whose newest
    origin is FY{last} produces neither for a forecast starting in 2026 — it would describe
    how the method behaved in a currency regime and an accounting basis that have both since
@@ -418,10 +539,10 @@ them: L-008 — *a period is not researched until both its statements and its re
 are in*, because the release carries the sales value, the delivery counts and the backlog
 that no financial statement holds, and this class of company is driven by exactly those.
 
-With FY2021–FY2025 in hand the panel spans FY{first}–FY2025 — thirteen complete fiscal
-years, comfortably a **FULL** run under §0 — and the origins run to FY2024 with horizons to
-five, spanning both currency eras and both revenue bases. That is a real record. It is
-about five documents away.
+With FY2021–FY2025 in hand the panel spans FY{first}–FY2025 — **{n_full} fiscal years**,
+comfortably a **FULL** run under §0 — and the origins run to FY2024 with horizons to five,
+spanning both currency eras and both revenue bases. That is a real record. It is about five
+documents away.
 
 ## What was done anyway, and what was not
 
@@ -443,7 +564,10 @@ existing EMFD study and its published cone are untouched by this work.
            last=F["last_year"], gap=F["last_year"] + 1,
            n_complete=len(F["complete"]),
            origins=", ".join("FY%d" % o for o in F["origins"]),
-           grid="\n".join(grid), n_cells=len(F["cells"]), max_h=F["max_h"])
+           grid="\n".join(grid), n_cells=len(F["cells"]), max_h=F["max_h"],
+           n_full=len(range(F["first_year"], 2026)),
+           units=", ".join("FY%d" % y for y in F["units"]) or "no year",
+           no_units=", ".join("FY%d" % y for y in F["no_units"]) or "no year")
 
 
 # -------------------------------------------------------- pre-registration ---
@@ -747,16 +871,17 @@ So that none of it can be discovered later and quietly dropped:
   into two definitions of revenue. Pooling across it would manufacture a step; the era
   partition exists to prevent that, and any driver that cannot be scored inside one window
   is reported unscored rather than scored wrongly.
-* **Unit KPIs are thinner than the statements.** Delivered-unit counts and contracted-sales
-  values come from the earnings releases and management annual reports, which the company's
-  register carries less completely than the statements — and several of them are scans. Any
-  year where a unit count cannot be sourced drops out of the unit-level drivers and is
-  reported as dropped; it is never interpolated. A shorter window is a smaller claim, and a
-  filled cell is a false one.
+* **Unit KPIs are thinner than the statements, and this is already measured rather than
+  feared.** On the window obtained so far, delivered-unit counts exist for {units} and for
+  {no_units} they exist in no document on the company's register at all. Any year without a
+  sourced unit count drops out of D1, D2 and D3 and is reported as dropped; it is never
+  interpolated. A shorter window is a smaller claim, and a filled cell is a false one.
 """.format(long=LONG_DATE, date=DATE, first=FIRST, last=LAST, o1=origins[0],
            olast=origins[-1], rows="\n".join(rows), total=total,
            n_orig=len(origins), have_cells=len(F["cells"]),
-           nonover=", ".join("FY%d" % o for o in nonoverlap))
+           nonover=", ".join("FY%d" % o for o in nonoverlap),
+           units=", ".join("FY%d" % y for y in F["units"]) or "no year",
+           no_units=", ".join("FY%d" % y for y in F["no_units"]) or "no year")
 
 
 def main():

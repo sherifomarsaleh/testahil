@@ -224,8 +224,24 @@ def main():
                               "as_reported": a[k], "as_restated": b[k],
                               "delta": b[k] - a[k]})
 
+    # THE REPORTING ENTITY IS READ OFF THE FILING, NEVER INFERRED FROM THE
+    # FILENAME. The company published a single set of statements to FY2017 and a
+    # consolidated set from FY2018; a panel that mixes the two without saying so
+    # is comparing two different entities.
+    entity = {}
+    for year, name in sorted(FILES.items()):
+        path = os.path.join(PDFS, name)
+        if not os.path.exists(path):
+            continue
+        head = " ".join(" ".join(pymupdf.open(path)[i].get_text()
+                                 for i in range(3)).split())
+        entity[year] = ("consolidated"
+                        if re.search(r"CONSOLIDATED FINANCIAL STATEMENTS", head,
+                                     re.I) else "single entity")
+
     out = {"as_reported": reported, "as_restated_one_year_later": restated,
            "footing_checks": footing, "differences": diffs,
+           "reporting_entity_by_filing": entity,
            "eas_48_interim": eas48()}
     with open(os.path.join(HERE, "restatements.json"), "w") as f:
         json.dump(out, f, indent=1, sort_keys=True)

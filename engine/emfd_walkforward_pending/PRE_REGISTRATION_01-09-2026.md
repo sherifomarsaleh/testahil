@@ -54,8 +54,8 @@ progressed. Three consequences, all of them structural:
 Annual origins at the fiscal year-end (31 December). An origin is admissible once the panel
 holds **five prior complete fiscal years** for the driver being projected.
 
-* Panel span **required by §1**: FY2013 – FY2025.
-* First admissible origin: **FY2017**. Last scored origin: **FY2024** (h=1 resolves at
+* Panel span **required by §1**: FY2012 – FY2025.
+* First admissible origin: **FY2016**. Last scored origin: **FY2024** (h=1 resolves at
   FY2025).
 * Origin FY2025 is *struck but unresolved*: it produces the forward projection the update
   consumes and contributes no error.
@@ -71,6 +71,7 @@ it. Two such restatements are already measured there and neither is adopted.
 
 | origin | horizons that resolve | cells |
 |---|---|---|
+| FY2016 | 1, 2, 3, 4, 5 | 5 |
 | FY2017 | 1, 2, 3, 4, 5 | 5 |
 | FY2018 | 1, 2, 3, 4, 5 | 5 |
 | FY2019 | 1, 2, 3, 4, 5 | 5 |
@@ -80,8 +81,8 @@ it. Two such restatements are already measured there and neither is adopted.
 | FY2023 | 1, 2 | 2 |
 | FY2024 | 1 | 1 |
 
-**30 scoreable (origin, horizon) cells per driver** on the required span. On the span
-currently obtainable there are 6, which is why the run is blocked rather than
+**35 scoreable (origin, horizon) cells per driver** on the required span. On the span
+currently obtainable there are 10, which is why the run is blocked rather than
 narrowed.
 
 ## 3. Drivers, by class
@@ -238,7 +239,7 @@ that happens the record says so in those words.
   driver is a wiring fault, not a finding, and the run stops there.
 * **Eras — two independent partitions, pre-registered, dated, not chosen by outcome.** They
   do not coincide, and a driver must sit inside **both** windows to be scored:
-  * *FX regime:* E1 pre-float FY2013–FY2016 · E2 post-float FY2017–FY2021 ·
+  * *FX regime:* E1 pre-float FY2012–FY2016 · E2 post-float FY2017–FY2021 ·
     E3 devaluation cycle FY2022–FY2025.
   * *Recognition basis:* R1 completed contract, to FY2020 · R2 EAS 48, FY2021 onward — the
     exact boundary to be confirmed from the FY2021 statements when they arrive.
@@ -248,7 +249,7 @@ that happens the record says so in those words.
 * The **rolling record** — all admissible cells, horizons overlapping — **estimates** the
   corrections.
 * The **non-overlapping origins** — spaced five apart so no two share a forecast year;
-  on the required span that is FY2017, FY2022 — **confirm** them. This set is thin. Its thinness
+  on the required span that is FY2016, FY2021 — **confirm** them. This set is thin. Its thinness
   is stated here in advance as a limit of a single-name study and is not worked around.
 
 ## 8. Corrections — the rule, fixed before any error exists
@@ -273,7 +274,7 @@ that happens the record says so in those words.
 
 So that none of it can be discovered later and quietly dropped:
 
-* **One name, few origins.** 30 cells across 8 origins is a small sample for a
+* **One name, few origins.** 35 cells across 9 origins is a small sample for a
   five-horizon claim. Block-bootstrap intervals will be wide, and are reported wide.
 * **Overlapping horizons.** The rolling record's cells are not independent. That is why the
   non-overlapping set exists and why it is reported even though it is thin.
@@ -285,9 +286,8 @@ So that none of it can be discovered later and quietly dropped:
   into two definitions of revenue. Pooling across it would manufacture a step; the era
   partition exists to prevent that, and any driver that cannot be scored inside one window
   is reported unscored rather than scored wrongly.
-* **Unit KPIs are thinner than the statements.** Delivered-unit counts and contracted-sales
-  values come from the earnings releases and management annual reports, which the company's
-  register carries less completely than the statements — and several of them are scans. Any
-  year where a unit count cannot be sourced drops out of the unit-level drivers and is
-  reported as dropped; it is never interpolated. A shorter window is a smaller claim, and a
-  filled cell is a false one.
+* **Unit KPIs are thinner than the statements, and this is already measured rather than
+  feared.** On the window obtained so far, delivered-unit counts exist for FY2015, FY2016, FY2017 and for
+  FY2018, FY2019, FY2020 they exist in no document on the company's register at all. Any year without a
+  sourced unit count drops out of D1, D2 and D3 and is reported as dropped; it is never
+  interpolated. A shorter window is a smaller claim, and a filled cell is a false one.

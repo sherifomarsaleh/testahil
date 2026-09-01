@@ -1,0 +1,138 @@
+{
+ "by_year": {
+  "2015": {
+   "document": "Emaar-Misr-IR-Reports-Earning-Releases-2015-Year-End-EN.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Earning-Releases-2015-Year-End-EN.pdf"
+   ],
+   "kind": "ER",
+   "net_sales": 8600000000.0,
+   "period": "Year-End",
+   "revenue_quote_precision": "3.2",
+   "revenue_quoted": 3200000000.0,
+   "route": "text",
+   "tier": "A \u2014 the company's own results release",
+   "units_delivered": 819,
+   "units_quote": "Y2014) \uf0b7 Committed net sales of EGP 8.6 billion, up 21.2% \uf0b7 Delivered 819 units \uf0b7 Revenues of EGP 3",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2015-Year-End-EN.pdf"
+  },
+  "2016": {
+   "document": "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2016.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2016.pdf",
+    "Emaar-Misr-IR-Reports-Earning-Releases-2016-Year-End-EN.pdf"
+   ],
+   "gross_sales": 9800000000.0,
+   "kind": "AR",
+   "net_sales": 8400000000.0,
+   "period": "Year-End",
+   "revenue_quote_precision": "4.01",
+   "revenue_quoted": 4010000000.0,
+   "route": "ocr",
+   "tier": "A \u2014 the company's own results release",
+   "units_delivered": 935,
+   "units_quote": " EGP 9.8 billion. Committed net sales of EGP 8.4 billion, \u2022 Delivered 935 units compared to 820 uni",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2016.pdf"
+  },
+  "2017": {
+   "document": "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2017.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2017.pdf",
+    "Emaar-Misr-IR-Reports-Earning-Releases-2017-Year-End-EN.pdf"
+   ],
+   "gross_sales": 11970000000.0,
+   "kind": "AR",
+   "net_sales": 10893000000.0,
+   "period": "Year-End",
+   "revenue_quote_precision": "4.51",
+   "revenue_quoted": 4510000000.0,
+   "route": "ocr",
+   "tier": "A \u2014 the company's own results release",
+   "units_delivered": 1386,
+   "units_quote": " 31 December 2017 \u2022 Gross sales reached EGP 11.97 billion \u2022 Delivered units reached 1,386 units, with recognized re",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2017.pdf"
+  },
+  "2018": {
+   "document": "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2018.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2018.pdf"
+   ],
+   "kind": "AR",
+   "period": "Year-End",
+   "route": "ocr",
+   "tier": "A \u2014 the company's own results release",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2018.pdf"
+  },
+  "2019": {
+   "document": "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2019.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2019.pdf"
+   ],
+   "kind": "AR",
+   "period": "Year-End",
+   "route": "ocr",
+   "tier": "A \u2014 the company's own results release",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2019.pdf"
+  },
+  "2020": {
+   "document": "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2020.pdf",
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2020.pdf"
+   ],
+   "kind": "AR",
+   "period": "Year-End",
+   "route": "ocr",
+   "tier": "A \u2014 the company's own results release",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2020.pdf"
+  }
+ },
+ "reconciliation_release_vs_statement": [
+  {
+   "agrees_within_rounding": true,
+   "release_precision": "3.2",
+   "release_says": 3200000000.0,
+   "statement_says": 3237263142.0,
+   "tolerance": 50000000.0,
+   "year": 2015
+  },
+  {
+   "agrees_within_rounding": true,
+   "release_precision": "4.01",
+   "release_says": 4010000000.0,
+   "statement_says": 4008925078.0,
+   "tolerance": 5000000.0,
+   "year": 2016
+  },
+  {
+   "agrees_within_rounding": true,
+   "release_precision": "4.51",
+   "release_says": 4510000000.0,
+   "statement_says": 4511007479.0,
+   "tolerance": 5000000.0,
+   "year": 2017
+  }
+ ],
+ "years_without_a_unit_count": [
+  {
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2018.pdf"
+   ],
+   "why": "no delivered-unit count in any document the company's register carries for this year \u2014 the FY2018-FY2020 management reports are Arabic scans of the board report and no results release for those years is on the register",
+   "year": 2018
+  },
+  {
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2019.pdf"
+   ],
+   "why": "no delivered-unit count in any document the company's register carries for this year \u2014 the FY2018-FY2020 management reports are Arabic scans of the board report and no results release for those years is on the register",
+   "year": 2019
+  },
+  {
+   "documents": [
+    "Emaar-Misr-IR-Reports-Annual-Reports-Management-Annual-Report-\u2013-2020.pdf"
+   ],
+   "why": "no delivered-unit count in any document the company's register carries for this year \u2014 the FY2018-FY2020 management reports are Arabic scans of the board report and no results release for those years is on the register",
+   "year": 2020
+  }
+ ]
+}

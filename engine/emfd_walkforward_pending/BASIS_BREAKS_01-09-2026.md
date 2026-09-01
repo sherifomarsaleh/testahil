@@ -61,7 +61,30 @@ presentation change and is dated there.
 Under point-in-time discipline each origin keeps the **as-first-reported** figure and the
 restatement is recorded here beside it, never substituted.
 
-## B3 — the currency, which is not one break but four
+## B3 — FY2013 reclassified in the FY2014 accounts · the same gross-up, six years earlier
+
+The FY2013 income statement and the FY2014 income statement's comparative column
+disagree about FY2013 by a wide margin, and the pattern is the FY2019 one again:
+
+| line | FY2013 as first reported | FY2013 as restated one year later | delta | % |
+|---|---:|---:|---:|---:|
+| gross profit | 470,110,958 | 410,545,937 | -59,565,021 | -12.67% |
+| revenue | 1,247,893,152 | 1,188,328,131 | -59,565,021 | -4.77% |
+| selling marketing | -147,633,778 | -145,600,758 | +2,033,020 | +1.38% |
+
+Cost of revenue is identical on both bases and profit before tax is identical on both
+bases — **-4.8%** was moved off the revenue line into the other-income and
+selling-expense lines, with the composition re-cut and the FY2013 statement's operating-profit
+subtotal and separate currency-revaluation line both dropped from the FY2014 presentation.
+
+**Two reclassifications of the same kind, six years apart, each invisible at the bottom
+line.** That is not an accident of one year's presentation; on this issuer the revenue line
+is a presentation choice that has been revisited more than once. Every origin in the panel
+therefore keeps the **as-first-reported** figure, and `panel.py` refuses to let a later
+filing's comparative overwrite it — a plain "take the first filing that mentions the year"
+rule took exactly the wrong one here, silently, until the two figures were differenced.
+
+## B4 — the currency, which is not one break but four
 
 The Egyptian pound was floated in November 2016 and devalued again in March 2022, October
 2022 and March 2024. Only the first of those falls inside the obtainable window, and it
@@ -75,7 +98,26 @@ These dates are macro facts, not company disclosures, and they are marked here a
 be sourced and dated in the pre-registration's macro table before any origin is built —
 never reconstructed from memory into a driver.
 
-## B4 — presentation changes still to be registered when the blocked years arrive
+## B5 — the reporting entity changes at FY2018, with a measured effect of nil on the P&L
+
+Before FY2018 the company published a single set of statements. From FY2018 it publishes a
+**consolidated** set alongside a **separate** set. The panel uses the consolidated basis
+from FY2018 and the single set before it.
+
+The basis is read off each filing's own cover, never inferred from its filename:
+* FY2017 filing — **single entity**
+* FY2018 filing — **consolidated**
+* FY2019 filing — **consolidated**
+* FY2020 filing — **consolidated**
+
+The size of the break is measured rather than assumed. FY2017 appears twice — as the current
+column of its own single-entity filing and as the comparative column of the FY2018
+consolidated filing — and differencing the two gives **0 line(s) that differ**:
+consolidating the newly formed subsidiary moved no profit-or-loss figure in its first year. The break is
+registered because it will matter for the balance sheet and for later years, not because it
+moved anything here.
+
+## B6 — presentation changes still to be registered when the blocked years arrive
 
 Recorded now as open, so that they are checked rather than discovered:
 

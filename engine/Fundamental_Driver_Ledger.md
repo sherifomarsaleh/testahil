@@ -170,6 +170,35 @@ Aggregator figures for the missing years exist and were not used. That is the ru
    *What would overturn it:* a period where finance income is small relative to operating
    profit, making a simpler treatment adequate.
 
+6. **The revenue line on this issuer is a presentation choice, and it has been revisited
+   more than once.** FY2013 was restated in the FY2014 accounts — revenue **−4.77%**, gross
+   profit **−12.67%**, offset in selling expenses and other income, with cost of revenue and
+   profit before tax identical on both bases. That is the same species as the FY2019
+   gross-up six years later. Two of the nine years in the panel carry a revenue
+   reclassification invisible at the bottom line, so the panel keeps the **as-first-reported**
+   figure at every origin and records the later presentation beside it.
+   *What would overturn it:* nothing about the measurement. What it does not tell us is
+   whether the practice continued through FY2021–FY2025, which the blocked filings answer.
+
+7. **A source document can be incomplete, and the arithmetic is what says so.** The FY2015
+   year-end PDF on the company's own register omits its profit-or-loss page entirely — the
+   file runs balance sheet, changes in equity, cash flows, notes. FY2015 is therefore taken
+   from the comparative column of the FY2016 filing and flagged as a comparative. A pipeline
+   that had assumed "the filing exists, therefore the year is sourced" would have carried a
+   hole.
+   *What would overturn it:* a complete FY2015 filing from the company or the exchange.
+
+8. **The operating KPIs this class needs stop three years before the statements do.**
+   Delivered-unit counts and contracted-sales values are published in the results releases,
+   and the company's register carries releases only for FY2015, FY2016 and FY2017. For
+   FY2018–FY2020 no unit count exists in any document on the register: no release was
+   published and the management annual reports for those years are Arabic scans of the
+   board's governance report, carrying no operating data. Units delivered, revenue per unit
+   and cost per unit — the three drivers that carry a developer — are unscoreable on those
+   years, and a unit count is never interpolated to fill the gap.
+   *What would overturn it:* the FY2018–FY2020 releases or an investor presentation carrying
+   the counts, from the company or the exchange.
+
 ### Pre-registered predictions this run will test when it is unblocked
 
 Recorded here so they cannot be quietly dropped: **L-101** (a developer's volume is set by

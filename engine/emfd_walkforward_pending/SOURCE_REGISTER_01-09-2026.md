@@ -41,7 +41,7 @@ had used the ordinary string would have concluded the register was unreachable. 
 | 2020 | Q1, Q2, Q3, Q4 | Q1, Q2, Q3, Q4 | — | 1 |
 | 2021 | Q1, Q2 | Q1, Q2 | — | — |
 
-**Complete fiscal years carried by a year-end statement: 2013–2020 (8 years).**
+**Complete fiscal years carried by a year-end statement: 2012–2020 (9 years).**
 Partial years also held: 2021 (quarters only, no year-end statement).
 
 ## 3. Extraction route, per document
@@ -106,9 +106,42 @@ A JavaScript-capable browser was also tried, and could not be used: Chromium is 
 here but cannot reach any host through this session's proxy — verified against a control
 (`https://example.com` fails identically), so the failure is the transport, not the target.
 
-## 5. Conclusion of the sweep
+## 5. What was extracted from what was obtained
 
-Every fiscal year from **2013 to 2020** is available from the company's own audited
+The window the register reaches has been extracted and is in `panel.json`. Every year is
+believed only because it foots:
+
+* **Fiscal years in the panel: 2012–2020 (9 years.)** FY2012
+  is carried as the comparative column of the FY2013 filing, the earliest year
+  the archive reaches at all.
+* **Three routes, all recorded per year:** ocr, read from the rendered page, text. Four of the year-end filings are scans;
+  the two oldest are Arabic and print **Eastern Arabic numerals**, which tesseract reads
+  fluently and wrongly, so they were read from the rendered page and then verified — see
+  below.
+* **Every year foots** on revenue − cost = gross profit, on the sum of the lines below gross
+  profit = profit before tax, and on PBT − tax = profit. None was dropped.
+* **Cross-document verification.** The FY2013 and FY2014 profit figures also appear in the
+  FY2015 statement of changes in equity — a different document, extracted independently by
+  OCR in English — and match exactly. The read is trusted because two documents agree, not
+  because it was read carefully.
+* **The FY2015 filing is missing its own profit-or-loss page.** Its pages run balance sheet,
+  changes in equity, cash flows, notes; no page carries an income statement. That is a defect
+  in the company's own scan, and FY2015 is taken instead from the comparative column of the
+  FY2016 filing, flagged as a comparative.
+* **Operating KPIs are thinner than the statements.** Delivered-unit counts and contracted
+  sales values exist for FY2015, FY2016, FY2017 — from the company's results releases — and for
+  FY2018, FY2019, FY2020 **no unit count exists in any document on the register**: no results release
+  was published for those years and the management annual reports for them are Arabic scans
+  of the board's governance report, which carries no operating data. Those years therefore
+  cannot enter the unit-level drivers, and the pre-registration says in advance that they are
+  reported as dropped rather than interpolated.
+* Where a release quotes revenue, it is reconciled against the audited statement **at the
+  release's own precision** — "EGP 3.2 billion" promises nothing finer than ±0.05bn — and
+  all of them agree.
+
+## 6. Conclusion of the sweep
+
+Every fiscal year from **2012 to 2020** is available from the company's own audited
 statements. **FY2021 onward is not** — not from the company's site, not from the
 exchange, not from the company's own embedded IR backend, and not from an archive. The
 walk-forward's §1 requirement that the most recent three fiscal years come from the

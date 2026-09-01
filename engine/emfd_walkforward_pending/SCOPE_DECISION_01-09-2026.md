@@ -19,7 +19,7 @@ Those are different facts and they call for different words.
 come from the company's audited financial statements or its own website/investor-relations
 documents. No exception: if they cannot be obtained, STOP and ask for the documents."*
 
-The company's own investor-relations register publishes financial statements from FY2013
+The company's own investor-relations register publishes financial statements from FY2012
 to H1-2021 and stops. Everything from FY2021 onward — which is to say the three most
 recent fiscal years and every quarter of the current one — is absent from it. The exchange
 carries those filings and answers automated requests with an anti-bot interstitial; the
@@ -37,23 +37,24 @@ the company reported.
 ## What the obtainable window would and would not support
 
 Even setting §1's rule aside, the window that IS obtainable does not carry a training
-record. Complete fiscal years from the company's own statements: **2013–2020
-(8 years)**. An origin needs five prior complete years, so the admissible
-origins are FY2017, FY2018, FY2019, FY2020, and actuals stop at FY2020:
+record. Complete fiscal years from the company's own statements: **2012–2020
+(9 years)**. An origin needs five prior complete years, so the admissible
+origins are FY2016, FY2017, FY2018, FY2019, FY2020, and actuals stop at FY2020:
 
 | origin | horizons that resolve | cells |
 |---|---|---|
+| 2016 | 1, 2, 3, 4 | 4 |
 | 2017 | 1, 2, 3 | 3 |
 | 2018 | 1, 2 | 2 |
 | 2019 | 1 | 1 |
 | 2020 | — | 0 |
 
-**6 scoreable (origin, horizon) cells in total, none beyond horizon 3.** The
+**10 scoreable (origin, horizon) cells in total, none beyond horizon 4.** The
 reference run on a comparable name carried 40 cells to horizon 5, and its own record still
-states that its corrections rest on too few origins to be independent. 6 overlapping
+states that its corrections rest on too few origins to be independent. 10 overlapping
 cells is not a smaller version of that. It is not a training record.
 
-Three further things are true of that window, each of them sufficient on its own:
+Four further things are true of that window, each of them sufficient on its own:
 
 1. **No era split exists.** Every one of those cells sits after the November 2016 float and
    before the 2022–24 devaluations. §5 applies a correction *only where the bias holds its
@@ -64,7 +65,14 @@ Three further things are true of that window, each of them sufficient on its own
    revenue and cost (see `BASIS_BREAKS_01-09-2026.md`, B1). §1 scores unit drivers only inside
    their own definition window. The obtainable window ends where the current definition
    begins, so the two do not overlap at all.
-3. **The purpose would not be served.** The two purposes are per-driver bias detection and
+3. **Half the window has no unit count at all.** Delivered-unit counts exist for FY2015, FY2016, FY2017
+   and for FY2018, FY2019, FY2020 they exist nowhere on the company's register — no results release was
+   published for those years, and their management annual reports are Arabic scans of the
+   board's governance report with no operating data in them. The three drivers that carry
+   this class — units delivered, revenue per unit, cost per unit — are therefore unscoreable
+   on the three most recent years of the obtainable window, and interpolating a unit count
+   is precisely what §1 forbids.
+4. **The purpose would not be served.** The two purposes are per-driver bias detection and
    calibrated ranges for years 3–5 of the update now being written. A record whose newest
    origin is FY2020 produces neither for a forecast starting in 2026 — it would describe
    how the method behaved in a currency regime and an accounting basis that have both since
@@ -86,10 +94,10 @@ them: L-008 — *a period is not researched until both its statements and its re
 are in*, because the release carries the sales value, the delivery counts and the backlog
 that no financial statement holds, and this class of company is driven by exactly those.
 
-With FY2021–FY2025 in hand the panel spans FY2013–FY2025 — thirteen complete fiscal
-years, comfortably a **FULL** run under §0 — and the origins run to FY2024 with horizons to
-five, spanning both currency eras and both revenue bases. That is a real record. It is
-about five documents away.
+With FY2021–FY2025 in hand the panel spans FY2012–FY2025 — **14 fiscal years**,
+comfortably a **FULL** run under §0 — and the origins run to FY2024 with horizons to five,
+spanning both currency eras and both revenue bases. That is a real record. It is about five
+documents away.
 
 ## What was done anyway, and what was not
 

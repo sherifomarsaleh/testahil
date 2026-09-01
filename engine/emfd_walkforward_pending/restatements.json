@@ -227,5 +227,11 @@
     true
    ]
   }
+ },
+ "reporting_entity_by_filing": {
+  "2017": "single entity",
+  "2018": "consolidated",
+  "2019": "consolidated",
+  "2020": "consolidated"
  }
 }
