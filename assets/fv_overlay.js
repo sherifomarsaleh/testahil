@@ -3916,6 +3916,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "COMI",
+   "name": "Commercial International Bank",
+   "code": "EGX:COMI",
+   "ccy": "EGP",
+   "spot": 139,
+   "anchor_date": "2026-09-01",
+   "fv_asof": "2026-06-29",
+   "fv_lag_days": 64,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 90.86,
+   "fv_base": 123.3,
+   "fv_full": 169.7,
+   "gap_base_pct": -11.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.958,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.06885,
+    "mu_h": 0.018179,
+    "G": {
+     "bear": -6.18,
+     "base": -1.74,
+     "full": 2.9
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.0245,
+     "full": 0.0096
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.0408,
+     "full": 0.0143
+    },
+    "required_cagr": {
+     "bear": -0.9939,
+     "base": -0.7627,
+     "full": 9.9649
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00084
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.128993,
+    "mu_h": 0.052347,
+    "G": {
+     "bear": -3.3,
+     "base": -0.93,
+     "full": 1.55
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0025,
+     "base": 0.0727,
+     "full": 0.1003
+    },
+    "p_touch": {
+     "bear": 0.0044,
+     "base": 0.1561,
+     "full": 0.1515
+    },
+    "required_cagr": {
+     "bear": -0.8174,
+     "base": -0.3809,
+     "full": 1.2216
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00203
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "MODON",
    "name": "Modon Holding PSC",
    "code": "ADX:MODON",
@@ -4282,98 +4374,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00296
    },
    "market": "AE"
-  },
-  {
-   "ticker": "COMI",
-   "name": "Commercial International Bank",
-   "code": "EGX:COMI",
-   "ccy": "EGP",
-   "spot": 142,
-   "anchor_date": "2026-07-28",
-   "fv_asof": "2026-06-29",
-   "fv_lag_days": 29,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 90.86,
-   "fv_base": 123.3,
-   "fv_full": 169.7,
-   "gap_base_pct": -13.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.958,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.074145,
-    "mu_h": 0.014819,
-    "G": {
-     "bear": -6.02,
-     "base": -1.9,
-     "full": 2.4
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.021,
-     "full": 0.018
-    },
-    "p_touch": {
-     "bear": 0.0003,
-     "base": 0.0348,
-     "full": 0.0274
-    },
-    "required_cagr": {
-     "bear": -0.9953,
-     "base": -0.8163,
-     "full": 7.4864
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00078
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.134929,
-    "mu_h": 0.045566,
-    "G": {
-     "bear": -3.31,
-     "base": -1.05,
-     "full": 1.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0026,
-     "base": 0.067,
-     "full": 0.1301
-    },
-    "p_touch": {
-     "bear": 0.0045,
-     "base": 0.1375,
-     "full": 0.201
-    },
-    "required_cagr": {
-     "bear": -0.8324,
-     "base": -0.4315,
-     "full": 1.0397
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00183
-   },
-   "market": "EG"
   },
   {
    "ticker": "EGAL",
