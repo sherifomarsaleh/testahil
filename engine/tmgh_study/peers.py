@@ -1,0 +1,135 @@
+"""TMGH — Appendix B: peers, the risk register and the research register.
+
+Peers are studied for operating KPIs and valuation multiples, inside and outside
+the country, as a CROSS-CHECK only. Nothing about a peer is ever a source for
+TMG's own reported numbers (SIGCM clause 5).
+"""
+import csv, datetime, json, os, sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ENGINE = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+import inputs as IN
+
+EGYPT = [
+    {"ticker": "EMFD", "name": "Emaar Misr for Development", "market": "EG",
+     "why": "off-plan developer, comparable payment plans and handover clock"},
+    {"ticker": "OCDI", "name": "Sixth of October Development & Investment (SODIC)",
+     "market": "EG", "why": "integrated-community developer, similar product mix"},
+    {"ticker": "PHDC", "name": "Palm Hills Developments", "market": "EG",
+     "why": "closest listed comparator by scale and by land position; note it "
+            "recognises revenue on PERCENTAGE OF COMPLETION, not handover, so its "
+            "margin and revenue timing are not directly comparable"},
+    {"ticker": "HELI", "name": "Heliopolis Housing & Development", "market": "EG",
+     "why": "land-rich developer with a comparable legacy landbank"},
+    {"ticker": "ORHD", "name": "Orascom Development Egypt", "market": "EG",
+     "why": "developer with a substantial hospitality leg — the nearest listed "
+            "analogue for TMG's three-segment shape"},
+]
+OUTSIDE = [
+    {"name": "Emaar Properties (DFM: EMAAR)", "country": "UAE",
+     "why": "the regional template for a developer with a large recurring-income "
+            "and hospitality platform alongside a development book"},
+    {"name": "Aldar Properties (ADX: ALDAR)", "country": "UAE",
+     "why": "development plus investment-property and management legs, with a "
+            "disclosed backlog the market prices explicitly"},
+    {"name": "Dar Al Arkan (Tadawul: 4300)", "country": "Saudi Arabia",
+     "why": "the market TMG has just entered with Banan; a reference for how a "
+            "Saudi development book is priced"},
+]
+
+RISKS = [
+    {"risk": "The order book converts more slowly than either reading here",
+     "why": "handovers are constrained by construction capacity, and the conversion "
+            "rate has already fallen from about 15% to 5.4%",
+     "priced_at": "the crux, both readings, section 1.7 and figure 2",
+     "what_would_change_it": "a disclosed delivery schedule by project"},
+    {"risk": "Minority interests absorb more of the value than the book suggests",
+     "why": "non-controlling interests are 45.2% of consolidated equity after the "
+            "2024 hotel acquisition and the project-company structures",
+     "priced_at": "computed both ways — at book and proportionally — throughout",
+     "what_would_change_it": "a disclosure of TMG's economic share by project"},
+    {"risk": "The Egyptian pound devalues again",
+     "why": "four step devaluations since 2016; the cost base and the customer's "
+            "capacity to pay both move",
+     "priced_at": "the discount rate, and the testing of this method against the company's own "
+            "history, which finds the country-level share of the historical "
+            "error small",
+     "what_would_change_it": "a sustained period of currency stability"},
+    {"risk": "Cash strain if handovers accelerate",
+     "why": "a developer that accelerates handovers builds before it collects; the "
+            "faster reading goes cash-negative from FY2030 and needs funding",
+     "priced_at": "the faster-conversion reading's own cash-flow statement, A.3",
+     "what_would_change_it": "shorter payment plans, or pre-sales collected earlier"},
+    {"risk": "The Saudi leg is recognised on a different clock",
+     "why": "Banan is percentage-of-completion under EAS 48 while the Egyptian book "
+            "is point-in-time; it is already 52.5% of segment revenue by 1H2026",
+     "priced_at": "flagged, and excluded from the conversion-rate history",
+     "what_would_change_it": "a geographic segment note"},
+    {"risk": "Finance cost is not what it appears",
+     "why": "the reported charge implies 44% on interest-bearing debt against a "
+            "policy rate that peaked near 27.25%; the excess is contract-financing "
+            "unwind that the statements do not split out",
+     "priced_at": "recorded as a gap; a correction for this line was tested and "
+                  "deliberately not adopted, for the reason given in section 1.6",
+     "what_would_change_it": "the split, or a disclosed average borrowing rate"},
+]
+
+RESEARCH_REGISTER = [
+    {"question": "How fast does the disclosed order book actually convert?",
+     "answered": "partly — the conversion rate is computable from disclosed backlog "
+                 "and revenue, but the forward schedule is not published",
+     "where": "sections 1.6 and 1.7"},
+    {"question": "What is TMG's economic share of each project company?",
+     "answered": "no", "where": "recorded as the study's second gap"},
+    {"question": "What does TMG pay on its borrowings?",
+     "answered": "no — no facility pricing appears in any statement or release held",
+     "where": "the accompanying source document"},
+    {"question": "What are the unit economics — area, price per sqm, cost per sqm?",
+     "answered": "no — unit counts appear occasionally and never as a series",
+     "where": "the accompanying source document, under what is not disclosed"},
+    {"question": "How has this method actually performed on this company's history?",
+     "answered": "yes — measured, per driver, over ten origins",
+     "where": "measured against the company's own history and reported in "
+              "sections 1.6 and 1.9"},
+]
+
+
+def prices():
+    out = []
+    for p in EGYPT:
+        f = os.path.join(ENGINE, "raw_ohlc", p["market"], p["ticker"] + ".csv")
+        if not os.path.exists(f):
+            out.append(dict(p, close=None, note="no committed price library held"))
+            continue
+        best = None
+        for r in csv.DictReader(open(f, encoding="utf-8-sig")):
+            d = datetime.datetime.strptime(r["Date"].strip('"'), "%m/%d/%Y").date()
+            if best is None or d > best[0]:
+                best = (d, float(r["Price"].strip('"').replace(",", "")))
+        out.append(dict(p, close=best[1], as_of=str(best[0]),
+                        source="engine/raw_ohlc/%s/%s.csv" % (p["market"], p["ticker"]),
+                        tier="A (this repository's own committed price library)"))
+    return out
+
+
+def main():
+    d = {"egypt": prices(), "outside_country": OUTSIDE,
+         "risk_register": RISKS, "research_register": RESEARCH_REGISTER,
+         "note": ("Peer MULTIPLES are not tabulated here. This study holds committed "
+                  "price libraries for the Egyptian names but has not sourced their "
+                  "financial statements, and a peer multiple built on an unsourced "
+                  "denominator is a number wearing a decimal point. The relative "
+                  "lens is therefore built on TMGH's OWN history of multiples, which "
+                  "is sourced end to end, and the peer set is carried as context with "
+                  "its sourcing stated.")}
+    json.dump(d, open(os.path.join(HERE, "peers.json"), "w"), indent=1)
+    for p in d["egypt"]:
+        print("%-6s %-48s %8s  %s" % (p["ticker"], p["name"][:46],
+                                      "%.2f" % p["close"] if p.get("close") else "-",
+                                      p.get("as_of", "")))
+    print("\n%d risks, %d research questions" % (len(RISKS), len(RESEARCH_REGISTER)))
+
+
+if __name__ == "__main__":
+    main()

@@ -36,6 +36,58 @@
    "market": "EG",
    "ticker": "PHDC",
    "tier": "current"
+  },
+  "TMGH": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-01",
+    "fair": {
+     "base": 147.12,
+     "bear": 83.6,
+     "full": 189.6
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 97.8,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 39.333,
+      "bear": 22.295,
+      "full": 59.67
+     },
+     "lessons": [
+      "L-043",
+      "L-044",
+      "L-045",
+      "L-046",
+      "L-047",
+      "L-117",
+      "L-118"
+     ],
+     "origins": "FY2015-FY2024, h=1-5",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -73.3,
+      "bear": -73.3,
+      "full": -68.5
+     },
+     "vs_previous_pct": {
+      "base": -73.3,
+      "bear": -73.3,
+      "full": -68.5
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "TMGH",
+   "tier": "reissue"
   }
  }
 }

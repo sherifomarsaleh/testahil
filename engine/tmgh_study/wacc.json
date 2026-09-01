@@ -1,0 +1,66 @@
+{
+ "ke_rating": 0.37146228080560173,
+ "ke_cds": 0.33439189830564653,
+ "rf_star_rating": 0.1663,
+ "rf_star_cds": 0.19590000000000002,
+ "kd_pretax": 0.255,
+ "kd_aftertax": 0.19762500000000002,
+ "weight_equity": 0.9221790512278109,
+ "weight_debt": 0.07782094877218915,
+ "wacc_rating": 0.35793409868133236,
+ "wacc_cds": 0.3237485685188716,
+ "warnings": [],
+ "beta_record": {
+  "ticker": "TMGH",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 1.4717523730674444,
+  "r2": 0.3260974007269647,
+  "se": 0.18481225647980962,
+  "n": 251,
+  "ci90": [
+   1.1677362111581577,
+   1.7757685349767312
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 4.85,
+  "first_obs": "2021-09-09",
+  "last_obs": "2026-07-16",
+  "blume_crosscheck": 1.3145015820449628,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-07-22",
+  "index_dq": [],
+  "stock_dq": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true
+ },
+ "inputs": {
+  "rf_observed": 0.23,
+  "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about four points, which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
+  "kd_local": 0.255,
+  "kd_source": "Marginal, forward-looking, in the cash-flow currency: Egypt 10-year sovereign 23.00% plus a 250bp corporate spread, giving 25.50%. TMG's own facility pricing is NOT disclosed in any statement or release held (recorded as a GAP in the input register), so the company's own latest issue cannot be used. The result sits ABOVE the local sovereign, as a same-currency corporate must. TMG's borrowings are EGP-denominated bank facilities and loans; no foreign-currency tranche is disclosed separately, so no local-equivalent FX adjustment applies.",
+  "spot": 97.8,
+  "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
+  "shares_mn": 2060.6538,
+  "interest_bearing_debt": 17006.9,
+  "market_cap": 201531.94164,
+  "damodaran": {
+   "moodys_rating": "Caa1",
+   "adj_default_spread": 0.0637,
+   "country_risk_premium": 0.0971,
+   "total_erp_rating": 0.1394,
+   "corporate_tax_rate": 0.225,
+   "sovereign_cds": 0.0341,
+   "total_erp_cds": 0.0941,
+   "source": "Damodaran country-premium file ctryprem.html, EGYPT row, read fresh 1-Sep-2026 from pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html"
+  }
+ }
+}

@@ -1,0 +1,381 @@
+{
+ "own_multiple_history": [
+  {
+   "year": 2011,
+   "close": 2.96,
+   "date": "2011-12-29",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2012,
+   "close": 4.43,
+   "date": "2012-12-31",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2013,
+   "close": 6.18,
+   "date": "2013-12-31",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2014,
+   "close": 9.86,
+   "date": "2014-12-31",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2015,
+   "close": 6.47,
+   "date": "2015-12-31",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2016,
+   "close": 9.13,
+   "date": "2016-12-29",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": null,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2017,
+   "close": 9.8,
+   "date": "2017-12-31",
+   "eps": 0.6438733182643295,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 14.147403120310651,
+   "pe": 15.220385318058488,
+   "pb": null
+  },
+  {
+   "year": 2018,
+   "close": 9.89,
+   "date": "2018-12-31",
+   "eps": 0.8273102449329431,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 14.799914473746147,
+   "pe": 11.95440291060535,
+   "pb": null
+  },
+  {
+   "year": 2019,
+   "close": 8.17,
+   "date": "2019-12-31",
+   "eps": 0.9085465981719006,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 15.641103808897933,
+   "pe": 8.99238411814977,
+   "pb": null
+  },
+  {
+   "year": 2020,
+   "close": 6.57,
+   "date": "2020-12-31",
+   "eps": null,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 16.313414703624648,
+   "pe": null,
+   "pb": null
+  },
+  {
+   "year": 2021,
+   "close": 9.07,
+   "date": "2021-12-30",
+   "eps": 0.8549228405081921,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 17.00601042251736,
+   "pe": 10.609144556962026,
+   "pb": null
+  },
+  {
+   "year": 2022,
+   "close": 9.99,
+   "date": "2022-12-29",
+   "eps": 1.118334384941323,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 17.920671584911545,
+   "pe": 8.93292751659796,
+   "pb": null
+  },
+  {
+   "year": 2023,
+   "close": 24.15,
+   "date": "2023-12-31",
+   "eps": 1.6079075000371241,
+   "bvps": 18.61002226574886,
+   "book_basis": "parent equity",
+   "group_bvps": 18.933687356896147,
+   "pe": 15.019520712132017,
+   "pb": 1.2976878616876932
+  },
+  {
+   "year": 2024,
+   "close": 56.0,
+   "date": "2024-12-31",
+   "eps": 5.203736794603732,
+   "bvps": null,
+   "book_basis": "not disclosed in panel",
+   "group_bvps": 63.80605999901585,
+   "pe": 10.761497402803293,
+   "pb": null
+  },
+  {
+   "year": 2025,
+   "close": 80.0,
+   "date": "2025-12-31",
+   "eps": 6.980255635371647,
+   "bvps": 39.33100067561082,
+   "book_basis": "parent equity",
+   "group_bvps": 76.533059944373,
+   "pe": 11.460898307879892,
+   "pb": 2.0340189322873767
+  }
+ ],
+ "book_and_sustainable_return": {
+  "book_value_per_share": 44.48631788610003,
+  "equity_parent": 91670.9,
+  "roe_fy25": 0.16655888049050913,
+  "ke_rating": 0.37146228080560173,
+  "ke_cds": 0.33439189830564653,
+  "cases": {
+   "rating|g=10%": {
+    "justified_pb": 0.2451864778155789,
+    "value_per_share": 10.907443593477057
+   },
+   "rating|g=15%": {
+    "justified_pb": 0.0747706581467226,
+    "value_per_share": 3.3262712668680163
+   },
+   "cds|g=10%": {
+    "justified_pb": 0.28396408310886445,
+    "value_per_share": 12.632516469415872
+   },
+   "cds|g=15%": {
+    "justified_pb": 0.08980264666000273,
+    "value_per_share": 3.994989086330001
+   }
+  },
+  "note": "ROE below the cost of equity means each retained pound is worth less than a pound, and the justified multiple falls below one. That is what this arithmetic says here, and it is stated rather than softened."
+ },
+ "peers": [
+  {
+   "ticker": "EMFD",
+   "name": "Emaar Misr for Development",
+   "market": "EG",
+   "close": 11.53,
+   "as_of": "2026-07-28",
+   "source": "engine/raw_ohlc/EG/EMFD.csv"
+  },
+  {
+   "ticker": "OCDI",
+   "name": "Sixth of October Development & Investment (SODIC)",
+   "market": "EG",
+   "close": 27.48,
+   "as_of": "2026-07-27",
+   "source": "engine/raw_ohlc/EG/OCDI.csv"
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments",
+   "market": "EG",
+   "close": 15.2,
+   "as_of": "2026-08-23",
+   "source": "engine/raw_ohlc/EG/PHDC.csv"
+  },
+  {
+   "ticker": "HELI",
+   "name": "Heliopolis Housing & Development",
+   "market": "EG",
+   "close": 7.75,
+   "as_of": "2026-08-23",
+   "source": "engine/raw_ohlc/EG/HELI.csv"
+  },
+  {
+   "ticker": "ORHD",
+   "name": "Orascom Development Egypt",
+   "market": "EG",
+   "close": 40.16,
+   "as_of": "2026-07-27",
+   "source": "engine/raw_ohlc/EG/ORHD.csv"
+  }
+ ],
+ "normalised_earnings": {
+  "years": {
+   "2023": {
+    "npat": 3313.3,
+    "reval": 0.0
+   },
+   "2024": {
+    "npat": 10723.1,
+    "reval": 4924.1
+   },
+   "2025": {
+    "npat": 14383.9,
+    "reval": 3952.5
+   }
+  },
+  "cleaned_attributable_profit": {
+   "2023": 3313.3,
+   "2024": 8025.3563088530245,
+   "2025": 12218.462267366946
+  },
+  "average": 7852.372858739989,
+  "average_eps": 3.810622074770633,
+  "revaluation_note": "FY2024 and FY2025 attributable profit each carry a non-cash investment-property revaluation gain (EGP 4,924.1mn and EGP 3,952.5mn at group level). They are stripped: capitalising a revaluation gain capitalises a valuation opinion.",
+  "cap|rating|g=10%": 15.441129684051484,
+  "cap|rating|g=15%": 19.78763774149382,
+  "cap|cds|g=10%": 17.883230233417667,
+  "cap|cds|g=15%": 23.765769679979662
+ },
+ "sensitivity": {
+  "wacc_grid": {
+   "0.1800|capacity": {
+    "wacc": 0.18,
+    "mode": "capacity",
+    "per_share_nci_book": 195.37547272048374,
+    "per_share_nci_proportional": 127.15323315502202,
+    "enterprise_value": 390960.1102882612
+   },
+   "0.1800|recovery": {
+    "wacc": 0.18,
+    "mode": "recovery",
+    "per_share_nci_book": 144.65633402848,
+    "per_share_nci_proportional": 99.36597529536003,
+    "enterprise_value": 286445.5244098567
+   },
+   "0.2200|capacity": {
+    "wacc": 0.22,
+    "mode": "capacity",
+    "per_share_nci_book": 107.56093731799736,
+    "per_share_nci_proportional": 79.04269338672724,
+    "enterprise_value": 210004.7542158931
+   },
+   "0.2200|recovery": {
+    "wacc": 0.22,
+    "mode": "recovery",
+    "per_share_nci_book": 61.557816699096215,
+    "per_share_nci_proportional": 53.83917834383333,
+    "enterprise_value": 115208.24890069608
+   },
+   "0.2600|capacity": {
+    "wacc": 0.26,
+    "mode": "capacity",
+    "per_share_nci_book": 80.14561888690895,
+    "per_share_nci_proportional": 64.02279079777614,
+    "enterprise_value": 153511.2741126607
+   },
+   "0.2600|recovery": {
+    "wacc": 0.26,
+    "mode": "recovery",
+    "per_share_nci_book": 39.01394934194048,
+    "per_share_nci_proportional": 41.4881749245646,
+    "enterprise_value": 68753.14296447717
+   },
+   "0.3000|capacity": {
+    "wacc": 0.3,
+    "mode": "capacity",
+    "per_share_nci_book": 65.63699362659911,
+    "per_share_nci_proportional": 56.074017973662784,
+    "enterprise_value": 123614.02033722725
+   },
+   "0.3000|recovery": {
+    "wacc": 0.3,
+    "mode": "recovery",
+    "per_share_nci_book": 29.083061898298503,
+    "per_share_nci_proportional": 36.04738595834218,
+    "enterprise_value": 48289.02201636403
+   },
+   "0.3237|capacity": {
+    "wacc": 0.3237,
+    "mode": "capacity",
+    "per_share_nci_book": 59.68128664954667,
+    "per_share_nci_proportional": 52.81109258147676,
+    "enterprise_value": 111341.37012327764
+   },
+   "0.3237|recovery": {
+    "wacc": 0.3237,
+    "mode": "recovery",
+    "per_share_nci_book": 25.626854775966965,
+    "per_share_nci_proportional": 34.15384988889454,
+    "enterprise_value": 41166.97567614447
+   },
+   "0.3579|capacity": {
+    "wacc": 0.3579,
+    "mode": "capacity",
+    "per_share_nci_book": 53.051266992360226,
+    "per_share_nci_proportional": 49.17873464756901,
+    "enterprise_value": 97679.19492262167
+   },
+   "0.3579|recovery": {
+    "wacc": 0.3579,
+    "mode": "recovery",
+    "per_share_nci_book": 22.297899884599985,
+    "per_share_nci_proportional": 32.33003090546647,
+    "enterprise_value": 34307.152129220514
+   },
+   "0.4000|capacity": {
+    "wacc": 0.4,
+    "mode": "capacity",
+    "per_share_nci_book": 46.92942906943123,
+    "per_share_nci_proportional": 45.82479186923266,
+    "enterprise_value": 85064.20634375393
+   },
+   "0.4000|recovery": {
+    "wacc": 0.4,
+    "mode": "recovery",
+    "per_share_nci_book": 19.75271103450331,
+    "per_share_nci_proportional": 30.93561016601644,
+    "enterprise_value": 29062.399053551177
+   }
+  },
+  "conversion_years_grid": {
+   "8": 14.82779888043417,
+   "10": 31.919344509366613,
+   "12": 44.007080880715684,
+   "14": 53.045527467810885,
+   "16": 60.06333889357035,
+   "20": 70.27885274962011
+  }
+ },
+ "implied_discount_rate": {
+  "capacity": 0.230888996245817,
+  "recovery": 0.19434626592683724
+ },
+ "spot": 97.8,
+ "spot_source": "EGX close 23 August 2026, engine/raw_ohlc/EG/TMGH.csv \u2014 the same cleaned series the price engine runs on"
+}

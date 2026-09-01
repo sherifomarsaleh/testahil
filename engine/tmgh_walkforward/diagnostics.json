@@ -1,0 +1,113 @@
+{
+ "decomposition": {
+  "total_revenue|dev_revenue": {
+   "n": 35,
+   "share_of_absolute_error": 0.446431660124604
+  },
+  "total_revenue|recurring_revenue": {
+   "n": 35,
+   "share_of_absolute_error": 0.4268747029301994
+  },
+  "gross_profit|dev_revenue": {
+   "n": 35,
+   "share_of_absolute_error": 0.0441285548746193
+  },
+  "gross_profit|dev_cost": {
+   "n": 35,
+   "share_of_absolute_error": -1.0857293290354555
+  },
+  "gross_profit|recurring_revenue": {
+   "n": 35,
+   "share_of_absolute_error": 0.19303460653199642
+  },
+  "gross_profit|recurring_cost": {
+   "n": 35,
+   "share_of_absolute_error": -0.7764170843366301
+  },
+  "net_profit|gross_profit": {
+   "n": 16,
+   "share_of_absolute_error": 0.5458636938297929
+  },
+  "net_profit|sga": {
+   "n": 16,
+   "share_of_absolute_error": -0.12330737254215932
+  },
+  "net_profit|da": {
+   "n": 16,
+   "share_of_absolute_error": -0.034480527427433245
+  },
+  "net_profit|finance_cost": {
+   "n": 16,
+   "share_of_absolute_error": -0.10601008095193368
+  }
+ },
+ "one_offs": [
+  {
+   "year": 2023,
+   "item": "non-core land transaction inside new sales",
+   "size": "EGP 47.9bn of the EGP 142.8bn total (core EGP 94.9bn)",
+   "source": "FY2023 earnings release",
+   "affects": [
+    "new_sales",
+    "backlog"
+   ]
+  },
+  {
+   "year": 2024,
+   "item": "seven-hotel acquisition (39% with management rights)",
+   "size": "hospitality revenue 3,540.9 -> 11,496.5 EGP mn",
+   "source": "FY2024 consolidated financial statements, business combinations note",
+   "affects": [
+    "recurring_revenue",
+    "recurring_cost",
+    "ppe"
+   ]
+  },
+  {
+   "year": 2024,
+   "item": "investment-property revaluation surplus",
+   "size": "EGP 4,924.1mn",
+   "source": "FY2024 statements",
+   "affects": [
+    "net_profit"
+   ]
+  },
+  {
+   "year": 2024,
+   "item": "gain on the hotels acquisition",
+   "size": "EGP 718.8mn",
+   "source": "FY2024 statements",
+   "affects": [
+    "net_profit"
+   ]
+  },
+  {
+   "year": 2024,
+   "item": "SouthMed launch (July 2024)",
+   "size": "contracted sales 142.8 -> 504.0 EGP bn",
+   "source": "FY2024 earnings release",
+   "affects": [
+    "new_sales",
+    "backlog"
+   ]
+  },
+  {
+   "year": 2025,
+   "item": "investment-property revaluation surplus",
+   "size": "EGP 3,952.5mn",
+   "source": "FY2025 statements",
+   "affects": [
+    "net_profit"
+   ]
+  },
+  {
+   "year": 2025,
+   "item": "first Saudi revenue (Banan) on percentage-of-completion",
+   "size": "52.5% of real-estate segment revenue by 1H2026",
+   "source": "FY2025 statements note 2.3; 1H2026 earnings release",
+   "affects": [
+    "dev_revenue"
+   ]
+  }
+ ]
+}
