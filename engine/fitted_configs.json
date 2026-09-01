@@ -561,7 +561,7 @@
     "width_cal": 1.056,
     "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0054,
+    "market_skill": 0.0049,
     "market_skill_raw_basis": -0.0037,
     "market_ci90": [
       -0.003,
@@ -597,12 +597,12 @@
       "ARAMCO": {
         "nu": 12.0,
         "width_cal": 1.063,
-        "skill": -0.0009,
-        "skill_raw_basis": -0.0025,
+        "skill": -0.0212,
+        "skill_raw_basis": -0.0271,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.022,
-          0.015
+          -0.07,
+          0.019
         ]
       },
       "ELM": {
@@ -683,10 +683,10 @@
         ]
       },
       "SAVOLA": {
-        "nu": 15.0,
-        "width_cal": 1.056,
+        "nu": 12.0,
+        "width_cal": 1.063,
         "skill": 0.0016,
-        "skill_raw_basis": 0.0012,
+        "skill_raw_basis": 0.0011,
         "verdict": "PARITY",
         "ci_block2": [
           -0.009,
@@ -719,7 +719,7 @@
     "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 12.0,
-      "width_cal": 1.063,
+      "width_cal": 1.056,
       "market_verdict": "PARITY",
       "replaced_on": "2026-09-01"
     },
@@ -730,8 +730,7 @@
         1.056
       ],
       "w90_sigma": 1.7181,
-      "reason": "MLE shape already closest admissible point",
-      "cov50": 0.4989
+      "reason": "G-improve: gain 0.002 < 0.01"
     },
     "coverage_flags": {
       "ACWA": null,
