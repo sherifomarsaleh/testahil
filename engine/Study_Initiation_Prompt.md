@@ -22,6 +22,41 @@ Run a full valuation study for **{COMPANY NAME}**, listed on **{EXCHANGE}**. Thi
 
 Then follow the TESTAHIL Standing Research Protocol end-to-end without asking: read live state first (market_profiles.py + fitted_configs.json from the repo), then Step 0.0 data-quality gate → Step 0 calibration gate (scale-normalized, carry-anchored) → Step 2A four-ring Information Sweep → financials → build the 16-section Word + 16-sheet Excel + standalone bibliography document matching the MODEL REPORT, ADNOCLS_Valuation_Study_09-08-2026 (`engine/adnocls_study/`; machine-readable skeleton and depth bar in `engine/research_protocol.py` `MODEL_STUDY` / `MODEL_STUDY_DEPTH`) → unprompted QC gate as a filled evidence table, with `ModelStudyChecklist` attested alongside SIGCM.
 
+**Calibration elements — three lenses, three records [ADDED 31-Aug-2026; R-FCAL-01, R-LESSON-01, R-TCAL-01]:**
+
+- **Before any forecast driver is set, read what already binds on the name and its class:**
+  `python3 engine/lessons.py {TICKER} --class {CLASS}`. ALL- and CLASS-scope lessons shape the
+  build; a STOCK lesson from another company is superstition and is not applied.
+- **The fundamental walk-forward runs WITH this study — a standing step, and it never delays
+  first delivery.** Decide the scope FIRST from sourceable history and state it in the study:
+  FULL at ≥8 fiscal years (every origin from the first with five years behind it, horizons 1–5),
+  LIGHT at 5–7 (last five origins, horizons 1–3), SKIP below 5 — recorded as *"walk-forward not
+  run — insufficient sourceable history (N years)"*, in those words, in the register and the QC
+  table. Pre-register before a single error is computed — origins, horizons, the mechanical rule
+  per driver, both naive benchmarks (freeze; trailing-3y-CAGR trend), the score, the bootstrap,
+  the macro split — and use no judgement drivers at historical origins; each origin sees only
+  what was published by its date. Corrections enter the live drivers only through the two-clause
+  test (passes its own test AND is consistent with how the class is built across the book);
+  anything weaker is a watch flag. Where the record exists, years 3–5 of the forecast publish as
+  RANGES from the measured driver errors, never as points; if the run is still in flight at
+  delivery, the first edition carries a one-line pending note. **The run produces two documents
+  or it is not finished:** this study, and the updated lessons register — harvest candidates from
+  the run's own committed outputs (`engine/lessons_harvest.py`), rule on EVERY draft (registered
+  `L-nnn` or declined with a reason; nothing silently dropped), append via `engine/lessons_add.py`,
+  rebuild with `engine/build_lessons_docx.py`.
+- **Technical: the new OHLC library joins the calibration population the moment it lands.**
+  Regenerate the per-name technical record in the same pass — `python3 engine/tech_record.py` —
+  because CI anchors `engine/tech_records.json` to the libraries on disk and goes red on a name
+  it cannot account for. The page's technical read ships exactly as the production module
+  computes it; add no templated sentence the calibration has not measured; the per-name technical
+  record renders nowhere until instructed.
+- **MC: nothing extra to run** — the fresh library refits the whole market panel through the
+  Step 0.0 → materiality flow already ordered above, and the only calibration a reader ever sees
+  is the band record.
+- **The lenses stay independent and keep their own clocks** — technical up to 1 month, MC 1–3
+  months, fundamental up to 1 year. No calibration record, score or lesson from one lens is an
+  input to another lens's build.
+
 **Step 2A's Company ring, primary-source discipline [ADDED 07-Aug-2026].** Try the company's own
 official website / investor-relations page FIRST, before any aggregator — log the attempt and its
 outcome in the Sweep Register even when it fails (a real case: a company's own site returned
@@ -54,7 +89,7 @@ Build the workbook formula-first:
 
 (c) Are these the best indicators for fundamental analysis of a company in the sector you identified
 
-(d) Calibration backtest done a full 5 years back, and it beats the random-walk benchmark on CRPS skill (> 0) with a roughly uniform PIT.
+(d) Calibration backtest done a full 5 years back on non-overlapping 3-month calendar windows, and **the gate is whether the bands hold**: realized coverage consistent with the stated target on a two-sided binomial test at the 5% level. The CRPS-skill-vs-random-walk verdict is **RETIRED** [R-CAL-03] — do not run it as a gate, and never print PASS/PARITY/FAIL or any verdict vocabulary on anything a reader sees. What a reader gets is the band record — the count always beside the percentage — with a narrow/wide flag only when earned.
 
 (e) Income statement and balance sheet carry 3 years historical + 5-year forecast, and a complete DCF valuation with 5-year forecast is included. DCF build to arrive at the Free Cashflow with EBITDA, D&A, EBIT, NOPAT (EBIT×(1−t)), + D&A, − Capex, − Δ working capital, Free cash flow to firm, Discount factor, PV of FCFF for the next 5 years.
 
@@ -96,6 +131,10 @@ company genuinely discloses only one prior year).
 (q) **The workbook calculates.** Report the formula count against the pasted-value count. Every figure derivable from a driver is a live formula; the cost of capital, the glide, the discount factors, the DCF waterfall, the terminal block, the statement roll-forwards and every ratio are all built in the sheet. Only audited/disclosed history, the unit build's output, and whole-model re-run grids are pasted — and READ FIRST names those three classes explicitly.
 
 (r) **Every formula cell reproduces the model, and drivers propagate.** Evidence, both run on the delivered file: "N of N formula cells reproduce the model, 0 unresolvable, 0 unchecked"; and the per-driver table showing each input perturbed in place moves the headline in the asserted direction, with zero dead inputs.
+
+(t) **Fundamental walk-forward closed out.** The scope decision (FULL / LIGHT / SKIP, with the exact skip wording) is stated in the study and in this table; the pre-registration was committed before any error was computed; every harvested lesson draft is registered or declined; the register documents are rebuilt. Evidence: `python3 scripts/check_lessons_register.py` green.
+
+(u) **Technical record regenerated in the same pass as the new library.** Evidence: `python3 scripts/check_tech_calibration.py` green — the population anchors to the OHLC libraries on disk and the record's stored hash matches the technicals module on disk.
 
 Do NOT publish — I'll request that separately with a token.
 
