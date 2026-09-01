@@ -696,24 +696,24 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
-   "ticker": "NVDA",
-   "name": "NVIDIA Corporation",
-   "code": "NASDAQ:NVDA",
-   "ccy": "USD",
-   "spot": 196.51,
-   "anchor_date": "2026-07-27",
-   "fv_asof": "2026-07-06",
-   "fv_lag_days": 21,
+   "ticker": "IQCD",
+   "name": "Industries Qatar",
+   "code": "QSE:IQCD",
+   "ccy": "QAR",
+   "spot": 10.7,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 23,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 147,
-   "fv_base": 204,
-   "fv_full": 287,
-   "gap_base_pct": 3.8,
+   "fv_bear": 6.9,
+   "fv_base": 10.9,
+   "fv_full": 15,
+   "gap_base_pct": 1.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 12.0,
-    "width_cal": 1.084,
+    "nu": 6.0,
+    "width_cal": 0.951,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -723,69 +723,69 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 22,
-    "sigma_h": 0.140364,
-    "mu_h": 0.00244,
+    "sigma_h": 0.056458,
+    "mu_h": 0.0028,
     "G": {
-     "bear": -2.07,
-     "base": 0.27,
-     "full": 2.7
+     "bear": -7.77,
+     "base": 0.33,
+     "full": 5.98
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0207,
-     "base": 0.3948,
-     "full": 0.0062
+     "bear": 0.0,
+     "base": 0.3724,
+     "full": 0.0002
     },
     "p_touch": {
-     "bear": 0.0301,
-     "base": 0.6909,
-     "full": 0.0096
+     "bear": 0.0001,
+     "base": 0.6362,
+     "full": 0.0003
     },
     "required_cagr": {
-     "bear": -0.9693,
-     "base": 0.5666,
-     "full": 93.1818
+     "bear": -0.9948,
+     "base": 0.2489,
+     "full": 56.6089
     },
-    "hurdle_rf": 0.0363,
+    "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00252
+    "selftest_max_dev": 0.00146
    },
    "3M": {
-    "h_sessions": 64,
-    "sigma_h": 0.249028,
-    "mu_h": 0.011033,
+    "h_sessions": 63,
+    "sigma_h": 0.09959,
+    "mu_h": 0.010228,
     "G": {
-     "bear": -1.17,
-     "base": 0.15,
-     "full": 1.52
+     "bear": -4.41,
+     "base": 0.19,
+     "full": 3.39
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.1049,
-     "base": 0.4548,
-     "full": 0.0659
+     "bear": 0.0007,
+     "base": 0.4611,
+     "full": 0.0034
     },
     "p_touch": {
-     "bear": 0.1884,
-     "base": 0.823,
-     "full": 0.1144
+     "bear": 0.0013,
+     "base": 0.7992,
+     "full": 0.0057
     },
     "required_cagr": {
-     "bear": -0.6869,
-     "base": 0.1614,
-     "full": 3.5498
+     "bear": -0.8271,
+     "base": 0.0769,
+     "full": 2.8622
     },
-    "hurdle_rf": 0.0363,
+    "hurdle_rf": 0.0425,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0021
+    "selftest_max_dev": 0.00147
    },
-   "market": "US"
+   "market": "QA"
   },
   {
    "ticker": "RIYADHCABLE",
@@ -1706,6 +1706,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00162
    },
    "market": "SA"
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "code": "NASDAQ:NVDA",
+   "ccy": "USD",
+   "spot": 220.78,
+   "anchor_date": "2026-08-31",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 56,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 147,
+   "fv_base": 204,
+   "fv_full": 287,
+   "gap_base_pct": -7.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.141937,
+    "mu_h": 0.002443,
+    "G": {
+     "bear": -2.87,
+     "base": -0.56,
+     "full": 1.85
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0041,
+     "base": 0.2706,
+     "full": 0.034
+    },
+    "p_touch": {
+     "bear": 0.0054,
+     "base": 0.4697,
+     "full": 0.0529
+    },
+    "required_cagr": {
+     "bear": -0.9924,
+     "base": -0.6127,
+     "full": 22.2845
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00209
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.249712,
+    "mu_h": 0.010543,
+    "G": {
+     "bear": -1.63,
+     "base": -0.32,
+     "full": 1.05
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0461,
+     "base": 0.3506,
+     "full": 0.1455
+    },
+    "p_touch": {
+     "bear": 0.0785,
+     "base": 0.667,
+     "full": 0.2553
+    },
+    "required_cagr": {
+     "bear": -0.8035,
+     "base": -0.2711,
+     "full": 1.8555
+    },
+    "hurdle_rf": 0.0363,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0028
+   },
+   "market": "US"
   },
   {
    "ticker": "ALRAJHI",
@@ -3822,98 +3914,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00336
    },
    "market": "EG"
-  },
-  {
-   "ticker": "IQCD",
-   "name": "Industries Qatar",
-   "code": "QSE:IQCD",
-   "ccy": "QAR",
-   "spot": 9.96,
-   "anchor_date": "2026-09-01",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 58,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 6.9,
-   "fv_base": 10.9,
-   "fv_full": 15,
-   "gap_base_pct": 9.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.054753,
-    "mu_h": 0.004008,
-    "G": {
-     "bear": -6.7,
-     "base": 1.65,
-     "full": 7.48
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0511,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0781,
-     "full": 0.0001
-    },
-    "required_cagr": {
-     "bear": -0.9878,
-     "base": 1.9512,
-     "full": 135.1392
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00127
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.097523,
-    "mu_h": 0.010984,
-    "G": {
-     "bear": -3.76,
-     "base": 0.92,
-     "full": 4.2
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0016,
-     "base": 0.1792,
-     "full": 0.0012
-    },
-    "p_touch": {
-     "bear": 0.0028,
-     "base": 0.3051,
-     "full": 0.0019
-    },
-    "required_cagr": {
-     "bear": -0.7697,
-     "base": 0.4344,
-     "full": 4.1443
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00123
-   },
-   "market": "QA"
   },
   {
    "ticker": "COMI",
