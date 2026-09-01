@@ -2784,26 +2784,29 @@ const TICKERS = {
     name: "Nakilat",
     nameAr: "\u0646\u0627\u0642\u0644\u0627\u062a",
     code: "QSE:QGTS",
-    spot: 4.165,
-    spotDate: "close 28 Jul 2026",
+    spot: 4.31,
+    spotDate: "close 01 Sep 2026",
     ccy: "QAR",
     fair: { bear: 2.71, base: 4.29, full: 6.40 },      // 5 Jul 2026 \u2014 weighted central 4.29 (\u22120.7% vs spot 4.319). Four lenses: DCF on the contracted fleet (primary) 4.90, two-stage dividend-discount 3.56, relative EV/EBITDA & P/E 4.00, fleet-replacement NAV 4.06; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing factor: the discount rate on a bond-like ~20-year QatarEnergy charter stream (\u22487.5% base) and how much credit the newbuild programme (69\u2192112 vessels, first delivery end-2026) earns above its cost of capital.
     dist: {
-    t20: { label: "1 month", p5: 3.6712, p25: 3.9842, p50: 4.1774, p75: 4.3814, p95: 4.7543, resolve: "2026-08-30" },
-    t60: { label: "3 months", p5: 3.3721, p25: 3.881, p50: 4.2096, p75: 4.5655, p95: 5.2533, resolve: "2026-10-28" }
-  },
+      t20: { label:"1 month",   p5:3.78, p25:4.12, p50:4.32, p75:4.54, p95:4.94, resolve:"2026-10-01" },
+      t60: { label:"3 months",  p5:3.46, p25:4.00, p50:4.36, p75:4.74, p95:5.48, resolve:"2026-12-01" }
+    },
     hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[4.9,4,20],[4.7,10,32],[4.55,21,46],[4.4,39,63],[4.2,81,89],[4.05,59,74],[3.9,29,51]],
-    levels: { res:[4.31, 4.51, 4.94], sup:[4.10, 4, 3.80] },
+    fit: { nu:6, cal:0.979, mult:1, eff:0.979, on:"2026-09-01" },
+    touch: [ /* descending high -> low */
+      [4.90, 10, 31], [4.70, 23, 48], [4.55, 41, 64], [4.40, 70, 83], [4.20, 62, 76], [4.05, 33, 54], [3.90, 16, 37]
+    ],
+    levels: { res:[4.47, 4.74, 4.94], sup:[4.23, 4.01, 3.80] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 4.17 below a falling 20-day (4.25), a falling 50-day (4.30) and a falling 200-day (4.47). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.09 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.05 / \u22120.03 / \u22120.01). Over the last year it has ranged 3.80\u20135.00; the last close sits 17% below that high and 10% above that low.",
-      bull: "A daily close back above 4.31 would clear the nearest resistance; the next charted level above it is 4.94.",
-      bear: "A close below 4.10 would break the nearest support; the next charted level below it is 3.80."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 4.31 above a rising 20-day (4.27) and a flat 50-day (4.27), but below a falling 200-day (4.44). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 0.09 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.01 / \u22120.00 / +0.01). Over the last year it has ranged 3.80\u20135.00; the last close sits 14% below that high and 13% above that low.",
+      bull: "A daily close back above 4.47 would clear the nearest resistance; the next charted level above it is 4.94.",
+      bear: "A close below 4.23 would break the nearest support; the next charted level below it is 3.80."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-29" },
-      tech: { data:"2026-07-28", computed:"2026-09-01" }
+      mc:   { data:"2026-09-01", computed:"2026-09-01" },
+      tech: { data:"2026-09-01", computed:"2026-09-01" }
     },
     files: {
       study: "files/Nakilat_QGTS_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -5496,9 +5499,9 @@ const LEDGER = [
     config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
     p5:3.671, p25:3.984, p50:4.177, p75:4.381, p95:4.754,
     touch:{ "+5":44, "+10":18, "+15":7, "+20":3, "-5":39, "-10":13 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:4.307, realized_high:4.406, realized_low:4.01,
+    in_90:true, in_50:true, realized_quantile:0.659, median_err:0.0311,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"QGTS", asset_class:"equity",
@@ -7517,6 +7520,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-27 and is graded in this same pass. The previous cone was anchored 2026-07-27; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) US live fit nu=12.0, width_cal=1.084. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=8.0, width_cal=1.091 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=12.0, width_cal=1.084 quoted above. rf_live 3.63% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on US’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
     p5:256.47, p25:299.57, p50:328.96, p75:361.35, p95:422.61,
     touch:{ "+5":69, "+10":48, "+15":32, "+20":20, "-5":64, "-10":39 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: QGTS, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"QGTS", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:4.31, ccy:"QAR",
+    horizon_label:"1 month", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.2958,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) QA live fit nu=6.0, width_cal=0.951. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=6.0, width_cal=0.979 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=6.0, width_cal=0.951 quoted above. rf_live 4.25% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:3.78, p25:4.12, p50:4.32, p75:4.54, p95:4.94,
+    touch:{ "+5":45, "+10":19, "+15":8, "+20":3, "-5":40, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QGTS", asset_class:"equity",
+    anchor_date:"2026-09-01", run_date:"2026-09-01", anchor_price:4.31, ccy:"QAR",
+    horizon_label:"3 months", grade_date:"2026-12-01", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-28", anchor_vol:0.2977,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 01-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-30 and is graded in this same pass. The previous cone was anchored 2026-07-28; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) QA live fit nu=6.0, width_cal=0.951. PER-NAME FIT OVERRIDE (engine/fit_overrides.json): this name is struck at nu=6.0, width_cal=0.979 — the pair adopted on its OWN leave-one-name-out verdict — so the cone was simulated under that pair, not the pooled nu=6.0, width_cal=0.951 quoted above. rf_live 4.25% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 63) size the cone only.",
+    p5:3.46, p25:4.0, p50:4.36, p75:4.74, p95:5.48,
+    touch:{ "+5":67, "+10":44, "+15":27, "+20":17, "-5":60, "-10":35 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
