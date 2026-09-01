@@ -83,18 +83,32 @@ def calibrated():
             continue
         ed = e["editions"][-1] if e["editions"] else None
         base = e["baseline"]["fair"]
+        # A study may deliberately publish NO single fair value, and that is a
+        # result rather than a missing cell. Printing a dash beside a recovered
+        # before-price would read as "not computed yet"; the study withdrew the
+        # number on purpose and the table says which.
+        withdrawn = ed.get("withdrawn") if ed else None
+        note = ""
+        if not base:
+            note = ("before-calibration price not recoverable — %s"
+                    % (e["baseline"]["unrecoverable"] or "reason not recorded"))
+        elif e["baseline"].get("recovered"):
+            note = ("before-calibration price %s"
+                    % e["baseline"]["recovered"])
+        if withdrawn:
+            note = (note + "  ") if note else ""
+            note += "after calibration, %s" % withdrawn
         rows.append({
             "ticker": tk,
             "market": "%s / %s" % (e.get("market") or "?", e.get("exchange") or "?"),
             "klass": LR.COMPANY_CLASS.get(tk, "— not mapped —"),
             "ccy": e.get("ccy") or "",
             "before": base["base"] if base else None,
-            "after": ed["fair"]["base"] if ed else None,
+            "after": (ed["fair"]["base"] if ed and ed.get("fair") else None),
+            "withdrawn": bool(withdrawn),
             "move": (ed["vs_baseline_pct"]["base"]
                      if ed and ed.get("vs_baseline_pct") else None),
-            "note": ("" if base else
-                     "before-calibration price not recoverable — %s"
-                     % (e["baseline"]["unrecoverable"] or "reason not recorded")),
+            "note": note,
         })
     return rows
 
@@ -161,6 +175,13 @@ def money(v, ccy):
     return "—" if v is None else "%s %s" % (ccy, ("%.2f" % v).rstrip("0").rstrip("."))
 
 
+def after_cell(r):
+    """The after-calibration cell. A withdrawn number is a result, not a gap."""
+    if r.get("withdrawn"):
+        return "*withdrawn — no single value*"
+    return money(r["after"], r["ccy"])
+
+
 def status_block():
     """Where the calibration campaign stands — done, blocked, and still to do.
 
@@ -187,7 +208,7 @@ def status_block():
     for r in cal:
         b.append("| **%s** | %s | %s | %s | %s | %s |\n"
                  % (r["ticker"], r["market"], r["klass"],
-                    money(r["before"], r["ccy"]), money(r["after"], r["ccy"]),
+                    money(r["before"], r["ccy"]), after_cell(r),
                     "—" if r["move"] is None else "%+.1f%%" % r["move"]))
     for r in [x for x in cal if x["note"]]:
         b.append("\n- **%s** — %s.\n" % (r["ticker"], r["note"]))

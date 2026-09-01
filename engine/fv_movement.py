@@ -65,13 +65,26 @@ def _queue_row(ticker):
 def snapshot(ticker, when=None, unrecoverable=None):
     """Freeze the pre-campaign fair value.  Once, before the run touches it.
 
+    THE BEFORE-PRICE IS THE ONE ON THE WEBSITE [per instruction, 01-Sep-2026 —
+    "in the before fair value use the latest fair value from the website"].
+    That is what this reads: TICKERS.{TK}.fair out of assets/data.js, captured
+    before the run touches it.
+
+    BEFORE DECLARING ONE UNRECOVERABLE, CHECK THE HISTORY OF data.js -- AND
+    CHECK THE CLONE IS NOT SHALLOW.  PHDC was recorded unrecoverable on the
+    evidence of 23 reachable commits; the repository was a shallow clone, and
+    unshallowing it exposed 281 commits in which the number sat unchanged the
+    whole time.  The figure was always there and the probe could not see it,
+    which is [R-ENF-04] exactly: an empty result read as a clean one.  Run
+    `git rev-parse --is-shallow-repository` and `git fetch --unshallow` first,
+    then walk `git log -- assets/data.js`.
+
     `unrecoverable` declares, with a reason, that the pre-campaign number
-    cannot be established -- the run already happened, or the history that held
-    it is outside this clone.  It is recorded as absent rather than filled in
-    with whatever data.js holds today, because a baseline read AFTER the run is
-    not a baseline, and a movement computed against it would be a fabricated
-    zero.  This is the declared-exception ratchet, not an escape hatch: the
-    list may only ever shorten."""
+    cannot be established even after that.  It is recorded as absent rather
+    than filled in with whatever data.js holds today, because a baseline read
+    AFTER the run is not a baseline, and a movement computed against it would
+    be a fabricated zero.  This is the declared-exception ratchet, not an
+    escape hatch: the list may only ever shorten."""
     sys.path.insert(0, ENGINE)
     import campaign_queue as cq
     tickers, _ = cq.load_register()

@@ -200,8 +200,15 @@ def main():
         if r["klass"] == "— not mapped —":
             fails.append("%s is calibrated but carries no class in "
                          "COMPANY_CLASS, so its Class column is blank" % tk)
-        if r["after"] is None:
-            fails.append("%s has no after-calibration fair value" % tk)
+        # A study may deliberately publish NO single fair value — that is a
+        # result and must be stated as one. What must never pass is a blank
+        # cell with nothing saying why, which reads as "not computed yet".
+        if r["after"] is None and not r.get("withdrawn"):
+            fails.append("%s has no after-calibration fair value and no "
+                         "recorded reason for withholding one" % tk)
+        if r.get("withdrawn") and "withdrew" not in r["note"]:
+            fails.append("%s withholds a fair value but the document does not "
+                         "say why" % tk)
     # and the documents must actually carry it, not merely be able to build it
     md = open(MD, encoding="utf-8").read()
     for tk in runs:

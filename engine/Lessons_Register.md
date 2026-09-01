@@ -69,10 +69,10 @@ tested.
 
 | Stock | Market | Class | Fair price before | Fair price after | Move |
 |---|---|---|---|---|---|
-| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | — | EGP 15.89 | — |
+| **PHDC** | EG / EGX | real-estate developer, off-plan, percentage-of-completion | EGP 15.89 | *withdrawn — no single value* | — |
 | **TMGH** | EG / EGX | real-estate developer, off-plan, point-in-time on handover | EGP 147.12 | EGP 39.33 | -73.3% |
 
-- **PHDC** — before-calibration price not recoverable — run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement..
+- **PHDC** — before-calibration price recovered from assets/data.js history: unchanged across all 281 commits touching that file between 11-Jun-2026 and 01-Sep-2026. The original record declared it unrecoverable on the evidence of a SHALLOW clone holding 23 commits; unshallowing the repository resolved it. An empty result was read as a clean one.  after calibration, no single fair value published — the study withdrew the prior edition's point estimate deliberately (its section 5): the crux rests on a schedule the company does not disclose, the method over-forecast net profit on this name's own history by +1.12 log in 97% of cells, and the per-project table the prior number rested on is not disclosed. Years 3-5 go out as ranges instead..
 
 The fair price is the **central case**. Where a study publishes several cases and no single point, this column carries the median of them so the before-and-after can be compared at all; the study's own range is the thing to quote, never this cell. A move against a before-price that came from no current-standard study measures a new study against a number of unknown provenance, and the note above says so where that is the case.
 
