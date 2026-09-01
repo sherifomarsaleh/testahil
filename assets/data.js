@@ -2829,28 +2829,29 @@ const TICKERS = {
     name: "ACWA Power Company",
     nameAr: "شركة أكوا باور",
     code: "TADAWUL:2082",
-    spot: 191.20,
-    spotDate: "close 26 Jul 2026",
+    spot: 191.90,
+    spotDate: "close 31 Aug 2026",
     ccy: "SAR",
     fair: { bear: 129, base: 195, full: 299 },      // 5 Jul 2026 — weighted central 195.3 (+0.7% vs spot 193.90). Lenses: SOTP/NAV (primary) 215.3, consolidated DCF (normalized attributable FCFF) 184.2, relative P/E-P/B-EV/EBITDA blend 158.1, pipeline-maturation earnings 197.1. bear/full = weighted bear/bull of the football field. Swing factor: whether Vision-2030 growth capital earns above its cost (ROIC vs Ke) as the SAR 100bn-plus under-construction book reaches commercial operation.
     dist: {
-      t20: { label:"1 month",   p5:161.06, p25:179.25, p50:191.75, p75:205.33, p95:228.76, resolve:"2026-08-26" },
-      t60: { label:"3 months",  p5:142.09, p25:171.50, p50:193.38, p75:217.80, p95:262.95, resolve:"2026-10-26" }
+      t20: { label:"1 month",   p5:162.61, p25:179.85, p50:191.89, p75:204.90, p95:226.70, resolve:"2026-09-30" },
+      t60: { label:"3 months",  p5:142.21, p25:171.34, p50:192.87, p75:217.00, p95:262.27, resolve:"2026-11-30" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:12, cal:1.063, mult:1, eff:1.063, on:"2026-09-01" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [250.00, 2, 14], [230.00, 7, 29], [210.00, 31, 57], [195.00, 76, 86], [180.00, 47, 66], [165.00, 12, 35], [150.00, 2, 15]
+      [250.00, 1, 14], [230.00, 6, 29], [210.00, 30, 57], [195.00, 77, 87], [180.00, 44, 66], [165.00, 10, 35], [150.00, 2, 15]
     ],
-    levels: { res:[193.90, 201.03, 207.57], sup:[187.40, 182.34, 174.82] },
+    levels: { res:[193.90, 201.32, 207.57], sup:[183.98, 174.82, 166.87] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a falling 200-day; fresh golden-cross",
-      summary: "The price closed 191.20 above a falling 20-day (190.49), a rising 50-day (191.13) and a falling 200-day (189.69). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 4.84 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.87 / \u22120.89 / +0.02). The 50-day crossed above the 200-day 4 sessions ago. Over the last year it has ranged 149.40\u2013252.60; the last close sits 24% below that high and 28% above that low.",
+      trend: "Trading above the whole moving-average stack, on a falling 200-day",
+      summary: "The price closed 191.90 above a flat 20-day (190.04), a falling 50-day (191.03) and a falling 200-day (184.61). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 4.40 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.95 / +0.16 / +0.79). Over the last year it has ranged 149.40\u2013252.60; the last close sits 24% below that high and 28% above that low.",
       bull: "A daily close back above 193.90 would clear the nearest resistance; the next charted level above it is 207.57.",
-      bear: "A close below 187.40 would break the nearest support; the next charted level below it is 174.82."
+      bear: "A close below 183.98 would break the nearest support; the next charted level below it is 166.87."
     },
     asof: {
-      mc:   { data:"2026-07-26", computed:"2026-07-28" },
-      tech: { data:"2026-07-26", computed:"2026-08-31" }
+      mc:   { data:"2026-08-31", computed:"2026-09-01" },
+      tech: { data:"2026-08-31", computed:"2026-09-01" }
     },
     files: {
       study: "files/ACWA_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -3153,7 +3154,7 @@ const BANDS = {
   "2POINTZERO": {mkt:"AE", n:14, hits:11, c50:0.3571, c80:0.7143, c90:0.7857, width:1.027, strength:"market-only", flag:null},
   AAPL: {mkt:"US", n:58, hits:50, c50:0.4310, c80:0.7414, c90:0.8621, width:1.016, strength:"long", flag:null},
   ABUK: {mkt:"EG", n:57, hits:52, c50:0.6140, c80:0.8772, c90:0.9123, width:1.325, strength:"long", flag:null},
-  ACWA: {mkt:"SA", n:14, hits:12, c50:0.3571, c80:0.7143, c90:0.8571, width:0.949, strength:"market-only", flag:null},
+  ACWA: {mkt:"SA", n:15, hits:13, c50:0.4000, c80:0.8000, c90:0.8667, width:0.909, strength:"market-only", flag:null},
   ADCB: {mkt:"AE", n:58, hits:50, c50:0.5000, c80:0.8103, c90:0.8621, width:1.054, strength:"long", flag:null},
   ADIB: {mkt:"EG", n:57, hits:54, c50:0.6140, c80:0.8772, c90:0.9474, width:1.388, strength:"long", flag:null},
   ADIBUAE: {mkt:"AE", n:58, hits:50, c50:0.5345, c80:0.7586, c90:0.8621, width:1.140, strength:"long", flag:null},
@@ -3251,7 +3252,7 @@ const BAND_MARKETS = {
   IN: {names:3, n:172, c90:0.8779, label:"Indian"},
   KR: {names:3, n:125, c90:0.8800, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
-  SA: {names:13, n:554, c90:0.8700, label:"Saudi"},
+  SA: {names:13, n:555, c90:0.8703, label:"Saudi"},
   US: {names:3, n:174, c90:0.8563, label:"US"},
   XAU: {names:2, n:120, c90:0.9333, label:"precious-metals"},
   XPT: {names:1, n:58, c90:0.9483, label:"precious-metals"},
@@ -3887,9 +3888,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
     p5:161.06, p25:179.25, p50:191.75, p75:205.33, p95:228.76,
     touch:{ "+5":56, "+10":31, "+15":15, "+20":8, "-5":52, "-10":25 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:196.8, realized_high:202.2, realized_low:181.5,
+    in_90:true, in_50:true, realized_quantile:0.593, median_err:0.0263,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"ACWA", asset_class:"equity",
@@ -6913,6 +6914,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 01-Sep-2026 single-name roll-forward: ACWA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ACWA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:191.9, ccy:"SAR",
+    horizon_label:"1 month", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:21,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.3351,
+    signal_z:-0.3418, signal_alpha:-0.003269,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -0.342 (outside the 0.25 dead zone); tilt -0.33% at 1M and -0.60% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:162.61, p25:179.85, p50:191.89, p75:204.9, p95:226.7,
+    touch:{ "+5":53, "+10":27, "+15":13, "+20":6, "-5":52, "-10":23 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ACWA", asset_class:"equity",
+    anchor_date:"2026-08-31", run_date:"2026-09-01", anchor_price:191.9, ccy:"SAR",
+    horizon_label:"3 months", grade_date:"2026-11-30", grade_basis:"projected", horizon_days:63,
+    cycle_no:3, reanchor_from:"2026-07-26", anchor_vol:0.3549,
+    signal_z:-0.3418, signal_alpha:-0.005996,
+    note:"Cycle 3 roll-forward, 01-Sep-2026 — struck on the 31-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-26 and is graded in this same pass. The previous cone was anchored 2026-07-26; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) SA live fit nu=12.0, width_cal=1.063. rf_live 4.25% SAMA repo-anchored estimate. Direction call DOWN, from this name’s own mom_12_1 z of -0.342 (outside the 0.25 dead zone); tilt -0.33% at 1M and -0.60% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on SA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 63) size the cone only.",
+    p5:142.21, p25:171.34, p50:192.87, p75:217.0, p95:262.27,
+    touch:{ "+5":73, "+10":55, "+15":40, "+20":28, "-5":71, "-10":49 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -7219,7 +7249,7 @@ const CALIB = {
   "TADAWUL:1211": {w: 57, in50: 51, in90: 88, through: "2026-04-28"},
   "TADAWUL:2010": {w: 57, in50: 53, in90: 91, through: "2026-04-28"},
   "TADAWUL:2050": {w: 58, in50: 52, in90: 91, through: "2026-07-28"},
-  "TADAWUL:2082": {w: 14, in50: 43, in90: 86, through: "2026-04-28"},
+  "TADAWUL:2082": {w: 15, in50: 47, in90: 87, through: "2026-07-28"},
   "TADAWUL:2222": {w: 22, in50: 50, in90: 91, through: "2026-07-05"},
   "TADAWUL:4003": {w: 53, in50: 53, in90: 89, through: "2026-04-27"},
   "TADAWUL:4142": {w: 10, in50: 70, in90: 90, through: "2026-07-06"},
