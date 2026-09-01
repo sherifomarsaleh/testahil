@@ -1,0 +1,594 @@
+{
+ "cross_document_checks": [
+  {
+   "check": "FY2014 profit for the year also appears in the FY2015 statement of changes in equity",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2015-Year-End-EN.pdf",
+   "found": true,
+   "route": "ocr",
+   "value": 417946327
+  },
+  {
+   "check": "FY2013 profit for the year also appears in the FY2015 statement of changes in equity",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2015-Year-End-EN.pdf",
+   "found": true,
+   "route": "ocr",
+   "value": 1026245
+  }
+ ],
+ "dropped": [],
+ "footing": [
+  {
+   "column": "comparative",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 978121033.0,
+     "rhs": 978121033.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 882279364.0,
+     "rhs": 882279364.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 854673084.0,
+     "rhs": 854673084.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2015
+  },
+  {
+   "column": "current",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 1602253007.0,
+     "rhs": 1602253007.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 1804673075.0,
+     "rhs": 1804673075.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 1683572786.0,
+     "rhs": 1683572786.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "ocr",
+   "year": 2016
+  },
+  {
+   "column": "current",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 1713501513.0,
+     "rhs": 1713501513.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 2761891486.0,
+     "rhs": 2761891486.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 2300270324.0,
+     "rhs": 2300270324.0
+    }
+   ],
+   "page": 4,
+   "rotation": 0,
+   "route": "text",
+   "year": 2017
+  },
+  {
+   "column": "current",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 2579498383.0,
+     "rhs": 2579498383.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 3741491995.0,
+     "rhs": 3741491995.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 3418901347.0,
+     "rhs": 3418901347.0
+    }
+   ],
+   "page": 5,
+   "rotation": 0,
+   "route": "text",
+   "year": 2018
+  },
+  {
+   "column": "current",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 2228412385.0,
+     "rhs": 2228412385.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 2358842619.0,
+     "rhs": 2358842619.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 1739273874.0,
+     "rhs": 1739273874.0
+    }
+   ],
+   "page": 5,
+   "rotation": 0,
+   "route": "text",
+   "year": 2019
+  },
+  {
+   "column": "current",
+   "document": "Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 1718747435.0,
+     "rhs": 1718747435.0
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + the eight lines below it = PBT",
+     "lhs": 2119925726.0,
+     "rhs": 2119925726.0
+    },
+    {
+     "foots": true,
+     "identity": "PBT + tax = profit",
+     "lhs": 1678408560.0,
+     "rhs": 1678408560.0
+    }
+   ],
+   "page": 5,
+   "rotation": 0,
+   "route": "text",
+   "year": 2020
+  },
+  {
+   "filing": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 777058789,
+     "rhs": 777058789
+    },
+    {
+     "foots": true,
+     "identity": "components = PBT",
+     "lhs": 391430347,
+     "rhs": 391430347
+    },
+    {
+     "foots": true,
+     "identity": "PBT + deferred tax = profit",
+     "lhs": 417946327,
+     "rhs": 417946327
+    }
+   ],
+   "year": 2014
+  },
+  {
+   "filing": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 410545937,
+     "rhs": 410545937
+    },
+    {
+     "foots": true,
+     "identity": "components = PBT",
+     "lhs": -68782109,
+     "rhs": -68782109
+    },
+    {
+     "foots": true,
+     "identity": "PBT + deferred tax = profit",
+     "lhs": 1026245,
+     "rhs": 1026245
+    }
+   ],
+   "year": 2013
+  },
+  {
+   "filing": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 470110958,
+     "rhs": 470110958
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + opex + FX = operating profit",
+     "lhs": 8004699,
+     "rhs": 8004699
+    },
+    {
+     "foots": true,
+     "identity": "components = PBT",
+     "lhs": -68782109,
+     "rhs": -68782109
+    },
+    {
+     "foots": true,
+     "identity": "PBT + deferred tax = profit",
+     "lhs": 1026245,
+     "rhs": 1026245
+    }
+   ],
+   "year": 2013
+  },
+  {
+   "filing": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+   "identities": [
+    {
+     "foots": true,
+     "identity": "revenue + cost = gross profit",
+     "lhs": 239437567,
+     "rhs": 239437567
+    },
+    {
+     "foots": true,
+     "identity": "gross profit + opex + FX = operating profit",
+     "lhs": -42544311,
+     "rhs": -42544311
+    },
+    {
+     "foots": true,
+     "identity": "components = PBT",
+     "lhs": -98731558,
+     "rhs": -98731558
+    },
+    {
+     "foots": true,
+     "identity": "PBT + deferred tax = profit",
+     "lhs": -98731558,
+     "rhs": -98731558
+    }
+   ],
+   "year": 2012
+  }
+ ],
+ "note": "profit-or-loss only; the balance sheet and cash flow are extracted when the blocked years arrive and the whole panel is built in one pass on one definition of each line",
+ "restated_in_a_later_filing": [
+  {
+   "as_first_reported": 470110958,
+   "as_restated": 410545937,
+   "delta": -59565021,
+   "first_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+   "later_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+   "line": "gross_profit",
+   "year": 2013
+  },
+  {
+   "as_first_reported": 1247893152,
+   "as_restated": 1188328131,
+   "delta": -59565021,
+   "first_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+   "later_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+   "line": "revenue",
+   "year": 2013
+  },
+  {
+   "as_first_reported": -147633778,
+   "as_restated": -145600758,
+   "delta": 2033020,
+   "first_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+   "later_filing": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+   "line": "selling_marketing",
+   "year": 2013
+  }
+ ],
+ "window": [
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020
+ ],
+ "years": {
+  "2012": {
+   "lines": {
+    "cost_of_revenue": -543918074,
+    "deferred_income_tax": 0,
+    "disposal_result": 5500,
+    "finance_cost": -36091115,
+    "fx_revaluation": -77424880,
+    "g_and_a": -125184245,
+    "gross_profit": 239437567,
+    "interest_income": 2024187,
+    "operating_profit": -42544311,
+    "other_net": -22125819,
+    "pbt": -98731558,
+    "profit": -98731558,
+    "provisions_released": 0,
+    "revenue": 783355641,
+    "selling_marketing": -79372753
+   },
+   "provenance": {
+    "column": "comparative",
+    "document_date": "year-end statement, Arabic",
+    "page_index": 4,
+    "route": "read from the rendered page; Eastern Arabic numerals, which tesseract misreads \u2014 see arabic_read.json",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+    "tier": "A \u2014 the company's own audited financial statements",
+    "verified_by": "three arithmetic identities plus a cross-check against an independently OCR'd statement"
+   }
+  },
+  "2013": {
+   "lines": {
+    "cost_of_revenue": -777782194,
+    "deferred_income_tax": 69808354,
+    "disposal_result": -2479760,
+    "finance_cost": -40035199,
+    "fx_revaluation": -169955768,
+    "g_and_a": -144516713,
+    "gross_profit": 470110958,
+    "interest_income": 3698614,
+    "operating_profit": 8004699,
+    "other_net": -40003483,
+    "pbt": -68782109,
+    "profit": 1026245,
+    "provisions_released": 2033020,
+    "revenue": 1247893152,
+    "selling_marketing": -147633778
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement, Arabic",
+    "page_index": 4,
+    "route": "read from the rendered page; Eastern Arabic numerals, which tesseract misreads \u2014 see arabic_read.json",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2013-AR.pdf",
+    "tier": "A \u2014 the company's own audited financial statements",
+    "verified_by": "three arithmetic identities plus a cross-check against an independently OCR'd statement"
+   }
+  },
+  "2014": {
+   "lines": {
+    "cost_of_revenue": -1826867902,
+    "deferred_income_tax": 26515980,
+    "finance_cost": -27488703,
+    "fx_revaluation": -84419319,
+    "g_and_a": -192734877,
+    "gross_profit": 777058789,
+    "interest_income": 29946133,
+    "other_expenses": -6445995,
+    "other_income": 35294227,
+    "pbt": 391430347,
+    "profit": 417946327,
+    "provisions": -3538485,
+    "revenue": 2603926691,
+    "selling_marketing": -136241423
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement, Arabic",
+    "page_index": 4,
+    "route": "read from the rendered page; Eastern Arabic numerals, which tesseract misreads \u2014 see arabic_read.json",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2014-AR.pdf",
+    "tier": "A \u2014 the company's own audited financial statements",
+    "verified_by": "three arithmetic identities plus a cross-check against an independently OCR'd statement"
+   }
+  },
+  "2015": {
+   "lines": {
+    "cost_of_revenue": -2259142109.0,
+    "finance_cost": -6747281.0,
+    "finance_income": 240841640.0,
+    "g_and_a": -210992460.0,
+    "gross_profit": 978121033.0,
+    "income_tax": -27606280.0,
+    "other_income": 68127281.0,
+    "pbt": 882279364.0,
+    "profit": 854673084.0,
+    "provisions": -2275529.0,
+    "provisions_released": 2617272.0,
+    "revenue": 3237263142.0,
+    "selling_marketing": -187412592.0
+   },
+   "provenance": {
+    "column": "comparative",
+    "document_date": "year-end statement for FY2016",
+    "note": "the FY2015 year-end PDF on the company's own register omits its profit-or-loss page entirely; FY2015 is taken from the comparative column of the FY2016 filing",
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2016": {
+   "lines": {
+    "cost_of_revenue": -2406672071.0,
+    "finance_cost": -89801912.0,
+    "finance_income": 581218325.0,
+    "g_and_a": -210865409.0,
+    "gross_profit": 1602253007.0,
+    "income_tax": -121100289.0,
+    "other_income": 115268368.0,
+    "pbt": 1804673075.0,
+    "profit": 1683572786.0,
+    "provisions": -4007501.0,
+    "provisions_released": 626500.0,
+    "revenue": 4008925078.0,
+    "selling_marketing": -190018303.0
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement for FY2016",
+    "note": null,
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "ocr",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2016-Year-End-EN.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2017": {
+   "lines": {
+    "cost_of_revenue": -2797505966.0,
+    "finance_cost": -1392555.0,
+    "finance_income": 1376653874.0,
+    "g_and_a": -269147877.0,
+    "gross_profit": 1713501513.0,
+    "income_tax": -461621162.0,
+    "other_income": 216997097.0,
+    "pbt": 2761891486.0,
+    "profit": 2300270324.0,
+    "provisions": -45474441.0,
+    "provisions_released": 1988481.0,
+    "revenue": 4511007479.0,
+    "selling_marketing": -231234606.0
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement for FY2017",
+    "note": null,
+    "page_index": 4,
+    "page_rotation": 0,
+    "route": "text",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2018": {
+   "lines": {
+    "cost_of_revenue": -3762184682.0,
+    "finance_cost": -536779.0,
+    "finance_income": 1680929938.0,
+    "g_and_a": -455877431.0,
+    "gross_profit": 2579498383.0,
+    "income_tax": -322590648.0,
+    "other_income": 225635088.0,
+    "pbt": 3741491995.0,
+    "profit": 3418901347.0,
+    "provisions": -17731894.0,
+    "provisions_released": 2243283.0,
+    "revenue": 6341683065.0,
+    "selling_marketing": -272668593.0
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement for FY2018",
+    "note": null,
+    "page_index": 5,
+    "page_rotation": 0,
+    "route": "text",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2019": {
+   "lines": {
+    "cost_of_revenue": -3239514598.0,
+    "finance_cost": -52330675.0,
+    "finance_income": 1763573596.0,
+    "g_and_a": -1372422425.0,
+    "gross_profit": 2228412385.0,
+    "income_tax": -619568745.0,
+    "other_income": 229587011.0,
+    "pbt": 2358842619.0,
+    "profit": 1739273874.0,
+    "provisions": -18574842.0,
+    "provisions_released": 5784608.0,
+    "revenue": 5467926983.0,
+    "selling_marketing": -425187039.0
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement for FY2019",
+    "note": null,
+    "page_index": 5,
+    "page_rotation": 0,
+    "route": "text",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  },
+  "2020": {
+   "lines": {
+    "cost_of_revenue": -2964761300.0,
+    "finance_cost": -14045352.0,
+    "finance_income": 1268725655.0,
+    "g_and_a": -539271112.0,
+    "gross_profit": 1718747435.0,
+    "income_tax": -441517166.0,
+    "other_income": 170772915.0,
+    "pbt": 2119925726.0,
+    "profit": 1678408560.0,
+    "provisions": -3360149.0,
+    "provisions_released": 2556624.0,
+    "revenue": 4683508735.0,
+    "selling_marketing": -484200290.0
+   },
+   "provenance": {
+    "column": "current",
+    "document_date": "year-end statement for FY2020",
+    "note": null,
+    "page_index": 5,
+    "page_rotation": 0,
+    "route": "text",
+    "source_document": "Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+    "source_url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+    "tier": "A \u2014 the company's own audited financial statements"
+   }
+  }
+ }
+}
