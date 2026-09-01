@@ -12,7 +12,7 @@ this edition exposes both.
 
 **Verdict in one line:** the audit found and fixed two defects (terminal inflation
 incoherent with terminal growth; a typed superlative), rebuilt the cost of debt year by
-year through the house builder with its warnings printed and the sovereign-floored
+year through the house builder with its warnings disclosed and the sovereign-floored
 construction priced beside it, found one open construction
 that is priced but not adopted (tax at the statutory rate on a company that pays none),
 and otherwise the discount is a *conclusion* — about a capital programme that on the
@@ -85,10 +85,10 @@ study's own derived currency wedge — 7.4% in FY2026/27 (Kd 19.99%), 4.5% (16.7
 34.5% on **gross** debt of EGP 14.64bn → WACC **25.64%** in year one (24.52% on the CDS
 basis), gliding 23.72%, 22.39%, 21.06%, 20.02%, to a terminal **18.24%** built from 5%
 inflation, a 3.5% real rate, the same β and ERP, and a 9% long-run dollar cost of debt on
-the 2.5% terminal wedge (11.79% local-equivalent).
+the 2.5% terminal wedge (11.77% local-equivalent on the dollar leg; 11.79% once the 0.3% local facility is blended in).
 
-**The builder's own consistency checks fire twice, and both are printed in section 1.8
-rather than suppressed.** (i) The local facility at 19.40% sits below the 23.00% sovereign
+**The builder's own consistency checks fire twice, and both are restated in the study's own
+words in section 1.8 rather than suppressed.** (i) The local facility at 19.40% sits below the 23.00% sovereign
 ten-year yield — a same-currency corporate borrowing below its sovereign. It is the
 company's disclosed rate on a state-bank facility and is used as disclosed. (ii) The dollar
 leg's local-equivalent cost sits below the 16.63% normalised risk-free rate in FY2028/29,
@@ -209,7 +209,7 @@ and printed "about 4.78"; that was an arithmetic slip, corrected here.)
 
 **Conclusion.** Two defects fixed (terminal inflation, a typed superlative: net +EGP 0.15
 on the carried-through lens), the cost of debt rebuilt year by year on audit (−EGP 0.07 on
-that lens against this edition's first pass, its warnings printed and the sovereign floor
+that lens against this edition's first pass, its warnings disclosed and the sovereign floor
 priced at −EGP 0.44), one construction priced and left open (+EGP 0.97 bound on the
 cash-flow lens),
 and the remainder is the study's conclusion stated in its own units: at the market price

@@ -36,7 +36,7 @@ for f in ('study_numbers.json', 'lenses.json', 'alternatives.json', 'experts.jso
 # counterpart. Consumption is read from the builders' own V('key') / _V('key') / src('key') calls.
 _CONSUMED, _PREFIXES = set(), set()
 for _f in sorted(os.listdir('.')):
-    if _f.endswith('.py') and _f not in ('prose_check.py', 'build_xlsx_egch.py'):
+    if _f.endswith('.py') and _f != 'prose_check.py':
         _src = open(_f).read()
         _CONSUMED |= set(re.findall(r"\b(?:_?V|src)\(\s*['\"]([A-Za-z0-9_]+)['\"]\s*\)", _src))
         # keys read through an f-string (V(f'bs_{key}_{t}')) are consumed by PREFIX

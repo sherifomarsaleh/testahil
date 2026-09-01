@@ -264,7 +264,9 @@ for L in sorted(IRJ['layers']):
     for rr in sorted(rowsL, key=lambda x: x['key']):
         v = rr['value']
         if isinstance(v, list):
-            sval = ", ".join(f"{x:,.4g}" for x in v)
+            sval = ", ".join((f"{x:,.4f}".rstrip("0").rstrip(".") if abs(x) < 1000
+                              else f"{x:,.0f}") if isinstance(x, float) else str(x)
+                             for x in v)
         elif isinstance(v, float):
             sval = f"{v:,.4f}".rstrip('0').rstrip('.') if abs(v) < 1000 else f"{v:,.0f}"
         else:

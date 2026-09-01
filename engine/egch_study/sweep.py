@@ -74,7 +74,7 @@ f_urea = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S,
     "H1-2026; CME Urea (Granular) FOB EGYPT front month settled ~$545/t on 7-Aug-2026. "
     "Natural gas is the input; Egyptian fertilizer producers pay a formula price of "
     "$5.75/mmBtu (raised from $4.50 effective from Nov-2021 pricing decision)",
-    "CME/TradingView UFE front month (helper snapshot, live_data.json); Profercy/CRU "
+    "CME/TradingView UFE front month (helper snapshot taken 8 August 2026, since carried in the input register); Profercy/CRU "
     "coverage; gas formula price per note 28 of the audited FY2024/25 statements",
     PMD, "2026-08-07",
     model_impact="Sets the export-price driver's anchor ($545/t FOB Egypt today, mean-"
@@ -107,7 +107,7 @@ f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval r
     "remains a way of life: the EGP swung ~47 (Dec-2025) to ~50.4 (Mar-2026) and that "
     "single move produced a 1.46bn EGP Q3 FX loss on KIMA's USD debt",
     "CBE July-2026 MPC (FocusEconomics report); TradingEconomics CPI; investing.com "
-    "10Y/FX (helper snapshot live_data.json); FX-loss mechanics per the 9M-2025/26 "
+    "10Y/FX (helper snapshot taken 8 August 2026, since carried in the input register); FX-loss mechanics per the 9M-2025/26 "
     "interim statements", PMD, "2026-08-07",
     model_impact="Sets rf* build (23.0% less the sovereign's own default spread), the "
                  "USD/EGP path applied to the gas price, the USD debt service, and the "
