@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 re-issue — EGCH next, then AMOC",
-  "step": "ARCC done; EGCH is next (AMOC also fixes its Kd of 22.00% against its own recorded sovereign of 22.31%)",
+  "workstream": "WS8 re-issue — AMOC last",
+  "step": "EGCH done and referred; AMOC next (it also fixes its Kd of 22.00% against its own recorded sovereign of 22.31%)",
   "status": "ready to start"
  },
  "done": [
@@ -41,10 +41,12 @@
   "WS8: TMGH re-issued on the new standard. Central 69.92 -> 91.83 vs spot 97.80 (-6.1%, was -28.5%); envelope 63.70-123.03 so the price now sits inside it. First study conforming on all four construction gates; four ratchets pruned. 85 recalcs 0 mismatches, gate clean, fv_movement edition 3, queue re-staged.",
   "WS8: PHDC re-issued. Central 11.45 -> 17.15 vs spot 15.20 (+12.8%, was -24.7%). The schedule alone is worth +10.80/share; the horizon extension to 15 converged years runs the other way and cut the terminal from 74% to 31% of EV. Blend retired, normalised earnings dropped for the class. 228 recalcs 0 mismatches; two-sided gap review written (first study audited for optimism); conforming on all four construction gates; fv_movement edition 3.",
   "WS7 [R-ENF-05] done: the reverse read (what the price must believe, kept structurally out of the model) and the contested-judgement sign test; check_output_records + negative control (13/13); PHDC and TMGH carry both. PHDC's sign test reads p=1.00 — no lean — which is evidence for the rebuild.",
-  "WS8: ARCC re-issued on the new standard. Central 53.46 vs spot 59.00 (-9.4%, was -8.3% on the blend). The correction runs AGAINST the value — terminal rf 10.50->12.50 derived from the house path costs more than g 5->7 gains, and the derived currency path is more depreciated than the hand-set one. Price and cost now ride ONE path at zero real from FY2027 with the evidenced FY2026 anchors kept; the reviewed 1H2026 gross margin of 40.5% against FY2025's 40.6% is what settled that. Typed 50/20/22/8 blend retired (would read 52.03); normalised earnings dropped as a lens for this class. FOUND AND FIXED: external_reader_scrub was attested True with no scan in the study at all — scrub_gate.py now reads the delivered documents and the attestation is negative-controlled three ways; four tables ran past the text frame; the margin guard was re-pointed to test the escalators rather than forbid the funded alternative-fuel saving. 914/914 recalcs, 143 driver assertions, scrub 0 hits, table audit 0."
+  "WS8: ARCC re-issued on the new standard. Central 53.46 vs spot 59.00 (-9.4%, was -8.3% on the blend). The correction runs AGAINST the value — terminal rf 10.50->12.50 derived from the house path costs more than g 5->7 gains, and the derived currency path is more depreciated than the hand-set one. Price and cost now ride ONE path at zero real from FY2027 with the evidenced FY2026 anchors kept; the reviewed 1H2026 gross margin of 40.5% against FY2025's 40.6% is what settled that. Typed 50/20/22/8 blend retired (would read 52.03); normalised earnings dropped as a lens for this class. FOUND AND FIXED: external_reader_scrub was attested True with no scan in the study at all — scrub_gate.py now reads the delivered documents and the attestation is negative-controlled three ways; four tables ran past the text frame; the margin guard was re-pointed to test the escalators rather than forbid the funded alternative-fuel saving. 914/914 recalcs, 143 driver assertions, scrub 0 hits, table audit 0.",
+  "WS8: EGCH re-issued. Central -1.06 vs spot 13.98 (-107.6%, was 3.76 / -73.1%). THE BLEND WAS CONCEALING THE FINDING: 45% of it was a NEGATIVE cash-flow reading and 55% three positive ones, so a reader saw 3.47 and never learned the study's own primary lens was below zero. Retiring it publishes the disagreement: carried through -1.06, stopped +2.82, disclosed book 8.16, relative 15.47. Also corrected: the 'book lens' was a JUSTIFIED price-to-book of zero weighted at 15% — a derived valuation wearing the name of a disclosed figure; the floor is the disclosed 8.16 and is never weighted. House macro path applied (terminal inflation 5%->7%), which overrules an argument this study made well and costs it 0.28/share; the argument is kept in the record. Three construction records added, all three gates green. REFERRED, NOT SETTLED: whether the house publishes a negative central at all.",
+  "GATE FIX: the valuation-gap gate passed EGCH on a review written for a different answer — it checked a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares; ratcheted with a third list (seeded empty, every current review marked in the same commit) and negative-controlled on three new conditions including the EGCH incident itself. Its first run caught two live reviews."
  ],
  "next": [
-  "WS8 re-issue EGCH, then AMOC (AMOC also fixes Kd 22.00% vs its own sovereign 22.31%)",
+  "WS8 re-issue AMOC (also fixes Kd 22.00% vs its own sovereign 22.31%)",
   "WS5 walk-forward as actuator; WS6 valuation calibration (macro-history archive first)",
   "WS9 sweep report; WS10 governance and lessons"
  ],
@@ -58,7 +60,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T21:48:41Z",
+ "updated": "2026-09-02T21:59:46Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

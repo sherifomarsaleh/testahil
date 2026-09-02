@@ -147,3 +147,7 @@ Every correction above is of the *the model was wrong* kind. None is of the *the
 out better than we thought* kind, and the distinction matters: a review that reaches its number
 by finding reasons to be more generous has not audited anything. The test is whether each change
 would still be right if the price moved tomorrow — all six would.
+
+---
+
+*AUDITED CENTRAL: 8.6417* — the figure this review audits, stated so a job outside the study can tell whether the review still describes the answer the study publishes. A review of a number the study no longer carries is not a review of this study.

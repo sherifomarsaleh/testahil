@@ -26,5 +26,7 @@
  "exempt": {
   "XPT": "metals study - no issuer, no equity fair value of this shape"
  },
- "note_on_two_sided": "DU was added on 02-Sep-2026 when [R-GAP-01] became two-sided. Its central sits 13.0% ABOVE the spot it was struck at, which the one-sided rule could not see at all \u2014 the gate's first two-sided run found it. It is listed rather than fixed tonight because the list is the honest record of what is outstanding, and because DU is not one of the five calibrated names; it is reviewed when that study is next re-issued."
+ "note_on_two_sided": "DU was added on 02-Sep-2026 when [R-GAP-01] became two-sided. Its central sits 13.0% ABOVE the spot it was struck at, which the one-sided rule could not see at all \u2014 the gate's first two-sided run found it. It is listed rather than fixed tonight because the list is the honest record of what is outstanding, and because DU is not one of the five calibrated names; it is reviewed when that study is next re-issued.",
+ "review_central_unstated": [],
+ "note_on_review_central": "Added 02-Sep-2026. A review audits an ANSWER and the answer moves: EGCH's central went from 3.76 to -1.06 that day while its review, written for 3.76, sat unchanged in the directory and this gate passed the study \u2014 it checked that a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares. This list is empty because every current review was marked in the same commit; a name belongs here only as a deliberate deferral, and the list may only ever get SHORTER."
 }

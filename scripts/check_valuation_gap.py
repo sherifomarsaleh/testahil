@@ -51,6 +51,7 @@ USAGE
     python3 scripts/check_valuation_gap.py --prune  # drop the now-passing entries
 """
 import glob
+import re
 import json
 import os
 import re
@@ -139,20 +140,50 @@ def read_review(sdir):
     """The most recent gap review in a study directory, and the headings it covers."""
     hits = sorted(glob.glob(os.path.join(sdir, REVIEW_GLOB)))
     if not hits:
-        return None, []
-    txt = open(hits[-1], encoding='utf-8').read().upper()
+        return None, [], None
+    raw = open(hits[-1], encoding='utf-8').read()
+    txt = raw.upper()
     covered = [k for k in REQUIRED_SECTIONS if k in txt]
-    return os.path.basename(hits[-1]), covered
+    return os.path.basename(hits[-1]), covered, _audited_central(raw)
+
+
+# A REVIEW AUDITS AN ANSWER, AND THE ANSWER MOVES. On 2 September 2026 EGCH's
+# central went from 3.76 to -1.06 while its review — written for 3.76 — sat in
+# the directory unchanged, and this gate passed the study, because it checked
+# that a review EXISTED and covered the eight headings and never that it audited
+# the number the study now publishes. A check that green-lights a stale artefact
+# is reporting on something nobody receives, which is the same species as a gate
+# opening a superseded workbook.
+#
+# The review therefore states the central it audited, on its own line, and this
+# gate compares. The marker is deliberately plain text a person writing a review
+# will produce anyway.
+AUDITED_RX = re.compile(
+    r'AUDITED[ _]CENTRAL\s*[:=]\s*(-?[0-9][0-9,]*\.?[0-9]*)', re.I)
+AUDIT_TOL = 0.005          # half a per cent of the central, not a round number:
+                           # a review is stale when the answer has MOVED, not when
+                           # it has been re-rounded
+
+
+def _audited_central(raw):
+    m = AUDITED_RX.search(raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1).replace(',', ''))
+    except ValueError:
+        return None
 
 
 def load_outstanding():
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
-    return d, set(d.get('breach_no_review', [])), set(d.get('unreadable', []))
+    return (d, set(d.get('breach_no_review', [])), set(d.get('unreadable', [])),
+            set(d.get('review_central_unstated', [])))
 
 
 def main(argv):
     prune = '--prune' in argv
-    d, known_breach, known_unreadable = load_outstanding()
+    d, known_breach, known_unreadable, known_unstated = load_outstanding()
 
     sdirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
@@ -184,15 +215,30 @@ def main(argv):
             ok.append((tk, gap))
             continue
         side = 'below' if gap < 0 else 'above'
-        review, covered = read_review(sdir)
+        review, covered, audited = read_review(sdir)
         missing = [k for k in REQUIRED_SECTIONS if k not in covered]
-        if review and not missing:
-            reviewed.append((tk, gap, review))
+        if review and not missing and audited is None and tk not in known_unstated:
+            new_fail.append('%s: the review %s states no AUDITED CENTRAL, so nothing '
+                            'can tell whether it audits the answer the study now '
+                            'publishes.' % (tk, review))
+        stale = (audited is not None
+                 and abs(audited - central) > max(AUDIT_TOL * abs(central), 0.005))
+        if review and not missing and not stale:
+            reviewed.append((tk, gap, review, audited))
             continue
-        breaches.append((tk, gap, review, missing))
-        if tk not in known_breach:
-            why = ('no gap review in the study directory' if not review
-                   else 'the review %s does not cover %s' % (review, ', '.join(missing)))
+        breaches.append((tk, gap, review, missing, audited, stale))
+        if tk not in known_breach and tk not in known_unstated:
+            if not review:
+                why = 'no gap review in the study directory'
+            elif missing:
+                why = 'the review %s does not cover %s' % (review, ', '.join(missing))
+            elif stale:
+                why = ('the review %s audits a central of %.4f while the study now '
+                       'publishes %.4f. A review of a number the study no longer '
+                       'carries is not a review of this study.'
+                       % (review, audited, central))
+            else:
+                why = 'the review %s states no audited central' % review
             new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
                             % (tk, abs(100 * gap), side, why))
 
@@ -204,12 +250,17 @@ def main(argv):
 
     if reviewed:
         print('OUTSIDE THE BAND, AND REVIEWED (%d):' % len(reviewed))
-        for tk, gap, rv in reviewed:
-            print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, rv))
+        for tk, gap, rv, aud in reviewed:
+            print('   %-12s %+6.1f%%  %s%s'
+                  % (tk, 100 * gap, rv,
+                     '' if aud is None else '  (audits %.4f)' % aud))
     if breaches:
         print('\nOUTSIDE THE BAND, NOT REVIEWED (%d):' % len(breaches))
-        for tk, gap, rv, missing in breaches:
-            state = 'no review' if not rv else 'missing: ' + ', '.join(missing)
+        for tk, gap, rv, missing, aud, stale in breaches:
+            state = ('no review' if not rv
+                     else ('missing: ' + ', '.join(missing)) if missing
+                     else ('STALE — audits %.4f' % aud) if stale
+                     else 'no audited central stated')
             print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, state))
     if unreadable:
         print('\nANSWER NOT READABLE (%d) — tracked, because an unreadable answer is not a '
@@ -217,14 +268,14 @@ def main(argv):
         for tk, why in unreadable:
             print('   %-12s %s' % (tk, why))
 
-    now_passing = sorted(({tk for tk, _, _, _ in breaches} ^ known_breach) & known_breach) + \
+    now_passing = sorted(({b[0] for b in breaches} ^ known_breach) & known_breach) + \
         sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable)
     if now_passing:
         print('\nNOW PASSING — remove from the list (%d): %s'
               % (len(now_passing), ', '.join(now_passing)))
 
     if prune:
-        d['breach_no_review'] = sorted({tk for tk, _, _, _ in breaches} & known_breach)
+        d['breach_no_review'] = sorted({b[0] for b in breaches} & known_breach)
         d['unreadable'] = sorted({tk for tk, _ in unreadable} & known_unreadable)
         json.dump(d, open(OUTSTANDING, 'w'), indent=1)
         print('\npruned; %d breach + %d unreadable remain'

@@ -170,14 +170,14 @@
   "dio": 165.24752797477882,
   "dpo": 83.17161071710899,
   "tax_rate": 0.225,
-  "g_terminal": 0.05,
+  "g_terminal": 0.07,
   "roc_terminal": 0.18,
-  "inflation_lt": 0.05,
-  "real_rate_lt": 0.035,
-  "rf_star_terminal": 0.08674999999999988,
+  "inflation_lt": 0.07,
+  "real_rate_lt": 0.055,
+  "rf_star_terminal": 0.1288499999999999,
   "kd_usd_lt": 0.09,
-  "deprec_lt": 0.025390625,
-  "kd_local_equiv_terminal": 0.1179153794653607,
+  "deprec_lt": 0.044921875,
+  "kd_local_equiv_terminal": 0.1391376109978745,
   "kd_local": 0.194,
   "kd_usd_nominal": 0.117,
   "pct_debt_local": 0.0031392160874321715,
@@ -191,22 +191,22 @@
   "wacc_spot": 0.2563781912398291,
   "wacc_cds": 0.24523293932683204,
   "kd_pretax_spot": 0.19988381501754648,
-  "kd_fx_terminal": 0.11767578125,
-  "wacc_terminal": 0.182375535243325,
-  "ke_terminal": 0.23033756344135287,
+  "kd_fx_terminal": 0.13896484375000018,
+  "wacc_terminal": 0.21562104756136846,
+  "ke_terminal": 0.2724375634413529,
   "wacc_path": [
    0.2563781912398291,
-   0.23723654776461633,
-   0.22391256765136353,
-   0.21058858753811072,
-   0.20017343910583793
+   0.24275024233842446,
+   0.23493995679897972,
+   0.22712967125953498,
+   0.22222821740107024
   ],
   "rf_star_path": [
    0.16627521546652257,
-   0.15037017237321804,
-   0.1344651292799135,
-   0.11856008618660896,
-   0.10265504309330442
+   0.15879017237321805,
+   0.15130512927991352,
+   0.14382008618660896,
+   0.13633504309330444
   ],
   "kd_path": [
    0.19988381501754648,
@@ -216,12 +216,12 @@
    0.14551401542622122
   ],
   "wacc": 0.2563781912398291,
-  "anna_unit_cost_terminal": 5949.015787954367,
+  "anna_unit_cost_terminal": 6060.704119906085,
   "anna_ebit_built": 0.0,
   "anna_ebit_assumed": 0.0,
   "anna_margin_built_pct": 0.0,
-  "implied_wacc_base": 0.07750436005742409,
-  "implied_wacc_halt": 0.08969212114441305,
+  "implied_wacc_base": 0.0922769293049969,
+  "implied_wacc_halt": 0.10183317395054481,
   "gates": {
    "standard_version": "2026.09.01",
    "beta": {
@@ -739,8 +739,8 @@
      "wc": 2318.0275356191933,
      "dwc": 106.43919087144423,
      "fcff": 298.43804180687584,
-     "df": 0.6433197290700016,
-     "pv": 191.99108019938117,
+     "df": 0.6404655204136245,
+     "pv": 191.13927575706376,
      "cpi_cum": 1.1770000000000003
     },
     {
@@ -785,8 +785,8 @@
      "wc": 2409.62017500437,
      "dwc": 91.59263938517688,
      "fcff": -155.69962647620423,
-     "df": 0.5256255602510111,
-     "pv": -81.83970339742801,
+     "df": 0.5186207773807401,
+     "pv": -80.7490613209799,
      "cpi_cum": 1.2476200000000004
     },
     {
@@ -831,8 +831,8 @@
      "wc": 2502.0506644409033,
      "dwc": 92.43048943653321,
      "fcff": -218.827151354933,
-     "df": 0.4341900837839047,
-     "pv": -95.01257918099155,
+     "df": 0.4226291560927085,
+     "pv": -92.48273430730673,
      "cpi_cum": 1.3100010000000004
     },
     {
@@ -877,42 +877,42 @@
      "wc": 2610.1693188371173,
      "dwc": 108.11865439621397,
      "fcff": 450.0872451556447,
-     "df": 0.3617727818634182,
-     "pv": 162.8293147611999,
+     "df": 0.3457857952186552,
+     "pv": 155.63377598391844,
      "cpi_cum": 1.3755010500000004
     }
    ],
    "terminal": {
-    "fx": 62.32490060991154,
+    "fx": 63.541459859331084,
     "anna_util": 0.5,
     "an_t": 132000.0,
-    "anna_rev": 2303.5283265423304,
-    "anna_ebit": -66.36682150645413,
-    "base_ebit": 2362.020206412095,
-    "ebit_T": 2295.653384905641,
-    "nopat_T": 1779.1313733018717,
-    "reinv_rate": 0.2777777777777778,
-    "fcff_T": 1284.9282140513517,
-    "tv": 9706.689470146212,
-    "pv_tv": 3511.616052299144,
-    "wacc_terminal": 0.182375535243325,
-    "ke_terminal": 0.23033756344135287,
-    "rf_star_terminal": 0.08674999999999988,
-    "kd_terminal": 0.1179153794653607
+    "anna_rev": 2348.492356400877,
+    "anna_ebit": -51.97833195171938,
+    "base_ebit": 2407.011067486611,
+    "ebit_T": 2355.032735534892,
+    "nopat_T": 1825.1503700395413,
+    "reinv_rate": 0.38888888888888895,
+    "fcff_T": 1115.3696705797195,
+    "tv": 7659.398756279885,
+    "pv_tv": 2648.5112898370185,
+    "wacc_terminal": 0.21562104756136846,
+    "ke_terminal": 0.2724375634413529,
+    "rf_star_terminal": 0.1288499999999999,
+    "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 1740.462735106956,
-    "pv_tv": 3511.616052299144,
-    "ev": 5252.0787874061,
-    "tv_pct_ev": 0.6686145037884063,
+    "pv_explicit": 1736.0358788374897,
+    "pv_tv": 2648.5112898370185,
+    "ev": 4384.547168674508,
+    "tv_pct_ev": 0.604055832437923,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": -1242.4572125939003,
+    "equity": -2109.988831325492,
     "shares": 1986578999,
-    "per_share": -0.6254255245924404
+    "per_share": -1.0621217844282123
    }
   },
   "bull": {
@@ -1005,8 +1005,8 @@
      "wc": 2379.467065436178,
      "dwc": 128.69833692324528,
      "fcff": 915.9436615840928,
-     "df": 0.6433197290700016,
-     "pv": 589.2446282136638,
+     "df": 0.6404655204136245,
+     "pv": 586.6303338860167,
      "cpi_cum": 1.1770000000000003
     },
     {
@@ -1051,8 +1051,8 @@
      "wc": 2494.3276305230393,
      "dwc": 114.86056508686124,
      "fcff": 703.0842083955231,
-     "df": 0.5256255602510111,
-     "pv": 369.5590309415355,
+     "df": 0.5186207773807401,
+     "pv": 364.63407872220847,
      "cpi_cum": 1.2476200000000004
     },
     {
@@ -1097,8 +1097,8 @@
      "wc": 2603.432934590842,
      "dwc": 109.10530406780254,
      "fcff": 820.1832665488869,
-     "df": 0.4341900837839047,
-     "pv": 356.1154412210179,
+     "df": 0.4226291560927085,
+     "pv": 346.63336178291706,
      "cpi_cum": 1.3100010000000004
     },
     {
@@ -1143,42 +1143,42 @@
      "wc": 2721.6035766198547,
      "dwc": 118.17064202901292,
      "fcff": 1600.3910097245112,
-     "df": 0.3617727818634182,
-     "pv": 578.9779076572412,
+     "df": 0.3457857952186552,
+     "pv": 553.3924779583766,
      "cpi_cum": 1.3755010500000004
     }
    ],
    "terminal": {
-    "fx": 62.32490060991154,
+    "fx": 63.541459859331084,
     "anna_util": 0.7,
     "an_t": 184800.0,
-    "anna_rev": 3224.939657159263,
-    "anna_ebit": 228.48480429096412,
-    "base_ebit": 3957.0777303963455,
-    "ebit_T": 4185.562534687309,
-    "nopat_T": 3243.8109643826647,
-    "reinv_rate": 0.2777777777777778,
-    "fcff_T": 2342.752363165258,
-    "tv": 17697.774432858358,
-    "pv_tv": 6402.573089366447,
-    "wacc_terminal": 0.182375535243325,
-    "ke_terminal": 0.23033756344135287,
-    "rf_star_terminal": 0.08674999999999988,
-    "kd_terminal": 0.1179153794653607
+    "anna_rev": 3287.8892989612273,
+    "anna_ebit": 248.62868966759288,
+    "base_ebit": 4032.450639546752,
+    "ebit_T": 4281.079329214344,
+    "nopat_T": 3317.836480141117,
+    "reinv_rate": 0.38888888888888895,
+    "fcff_T": 2027.5667378640157,
+    "tv": 13923.582969759553,
+    "pv_tv": 4814.577209491232,
+    "wacc_terminal": 0.21562104756136846,
+    "ke_terminal": 0.2724375634413529,
+    "rf_star_terminal": 0.1288499999999999,
+    "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 3749.9351905995472,
-    "pv_tv": 6402.573089366447,
-    "ev": 10152.508279965994,
-    "tv_pct_ev": 0.6306395338776215,
+    "pv_explicit": 3707.3284349156074,
+    "pv_tv": 4814.577209491232,
+    "ev": 8521.90564440684,
+    "tv_pct_ev": 0.5649648576725526,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 3657.972279965994,
+    "equity": 2027.3696444068391,
     "shares": 1986578999,
-    "per_share": 1.8413424695455536
+    "per_share": 1.0205331101493433
    }
   },
   "bear": {
@@ -1271,8 +1271,8 @@
      "wc": 2318.0275356191933,
      "dwc": 106.43919087144423,
      "fcff": -396.2391670039715,
-     "df": 0.6433197290700016,
-     "pv": -254.90847356391805,
+     "df": 0.6404655204136245,
+     "pv": -253.77752430345967,
      "cpi_cum": 1.1770000000000003
     },
     {
@@ -1317,8 +1317,8 @@
      "wc": 2409.62017500437,
      "dwc": 91.59263938517688,
      "fcff": -881.0385555681637,
-     "df": 0.5256255602510111,
-     "pv": -463.09638437325765,
+     "df": 0.5186207773807401,
+     "pv": -456.92490059116545,
      "cpi_cum": 1.2476200000000004
     },
     {
@@ -1363,8 +1363,8 @@
      "wc": 2502.0506644409033,
      "dwc": 92.43048943653321,
      "fcff": -969.7805253659981,
-     "df": 0.4341900837839047,
-     "pv": -421.06908756066184,
+     "df": 0.4226291560927085,
+     "pv": -409.8575250305753,
      "cpi_cum": 1.3100010000000004
     },
     {
@@ -1409,42 +1409,42 @@
      "wc": 2610.1693188371173,
      "dwc": 108.11865439621397,
      "fcff": -327.31369302099574,
-     "df": 0.3617727818634182,
-     "pv": -118.41318526619453,
+     "df": 0.3457857952186552,
+     "pv": -113.1804256272198,
      "cpi_cum": 1.3755010500000004
     }
    ],
    "terminal": {
-    "fx": 62.32490060991154,
+    "fx": 63.541459859331084,
     "anna_util": 0.0,
     "an_t": 0.0,
     "anna_rev": 0.0,
     "anna_ebit": 0.0,
-    "base_ebit": 1308.7673224308398,
-    "ebit_T": 1308.7673224308398,
-    "nopat_T": 1014.2946748839009,
-    "reinv_rate": 0.2777777777777778,
-    "fcff_T": 732.5461540828173,
-    "tv": 5533.848476882783,
-    "pv_tv": 2001.9957578925241,
-    "wacc_terminal": 0.182375535243325,
-    "ke_terminal": 0.23033756344135287,
-    "rf_star_terminal": 0.08674999999999988,
-    "kd_terminal": 0.1179153794653607
+    "base_ebit": 1333.696223810475,
+    "ebit_T": 1333.696223810475,
+    "nopat_T": 1033.614573453118,
+    "reinv_rate": 0.38888888888888895,
+    "fcff_T": 631.6533504435721,
+    "tv": 4337.65146605869,
+    "pv_tv": 1499.8982615724697,
+    "wacc_terminal": 0.21562104756136846,
+    "ke_terminal": 0.2724375634413529,
+    "rf_star_terminal": 0.1288499999999999,
+    "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": -218.97731770114564,
-    "pv_tv": 2001.9957578925241,
-    "ev": 1783.0184401913784,
-    "tv_pct_ev": 1.1228127049979595,
+    "pv_explicit": -195.23056248953378,
+    "pv_tv": 1499.8982615724697,
+    "ev": 1304.667699082936,
+    "tv_pct_ev": 1.1496400674491773,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": -4711.517559808621,
+    "equity": -5189.868300917064,
     "shares": 1986578999,
-    "per_share": -2.371673898787964
+    "per_share": -2.6124650988103313
    }
   },
   "halt": {
@@ -1537,8 +1537,8 @@
      "wc": 2318.0275356191933,
      "dwc": 106.43919087144423,
      "fcff": 3375.3407984440264,
-     "df": 0.6433197290700016,
-     "pv": 2171.4233279739337,
+     "df": 0.6404655204136245,
+     "pv": 2161.789401048792,
      "cpi_cum": 1.1770000000000003
     },
     {
@@ -1583,8 +1583,8 @@
      "wc": 2409.62017500437,
      "dwc": 91.59263938517688,
      "fcff": 3093.651880160946,
-     "df": 0.5256255602510111,
-     "pv": 1626.1025027311912,
+     "df": 0.5186207773807401,
+     "pv": 1604.432143034458,
      "cpi_cum": 1.2476200000000004
     },
     {
@@ -1629,8 +1629,8 @@
      "wc": 2502.0506644409033,
      "dwc": 92.43048943653321,
      "fcff": 2901.195605282217,
-     "df": 0.4341900837839047,
-     "pv": 1259.670362930982,
+     "df": 0.4226291560927085,
+     "pv": 1226.1298503202981,
      "cpi_cum": 1.3100010000000004
     },
     {
@@ -1675,42 +1675,42 @@
      "wc": 2610.1693188371173,
      "dwc": 108.11865439621397,
      "fcff": 2830.9820537927917,
-     "df": 0.3617727818634182,
-     "pv": 1024.1722530060313,
+     "df": 0.3457857952186552,
+     "pv": 978.9133807204822,
      "cpi_cum": 1.3755010500000004
     }
    ],
    "terminal": {
-    "fx": 62.32490060991154,
+    "fx": 63.541459859331084,
     "anna_util": 0.0,
     "an_t": 0.0,
     "anna_rev": 0.0,
     "anna_ebit": 0.0,
-    "base_ebit": 2867.9673421053944,
-    "ebit_T": 2867.9673421053944,
-    "nopat_T": 2222.6746901316806,
-    "reinv_rate": 0.2777777777777778,
-    "fcff_T": 1605.2650539839915,
-    "tv": 12126.599156205764,
-    "pv_tv": 4387.073511283139,
-    "wacc_terminal": 0.182375535243325,
-    "ke_terminal": 0.23033756344135287,
-    "rf_star_terminal": 0.08674999999999988,
-    "kd_terminal": 0.1179153794653607
+    "base_ebit": 2922.595291478831,
+    "ebit_T": 2922.595291478831,
+    "nopat_T": 2265.011350896094,
+    "reinv_rate": 0.38888888888888895,
+    "fcff_T": 1384.1736033253906,
+    "tv": 9505.312772468995,
+    "pv_tv": 3286.8021358302317,
+    "wacc_terminal": 0.21562104756136846,
+    "ke_terminal": 0.2724375634413529,
+    "rf_star_terminal": 0.1288499999999999,
+    "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 8916.44640386609,
-    "pv_tv": 4387.073511283139,
-    "ev": 13303.519915149229,
-    "tv_pct_ev": 0.3297678764164821,
+    "pv_explicit": 8806.342732347981,
+    "pv_tv": 3286.8021358302317,
+    "ev": 12093.144868178213,
+    "tv_pct_ev": 0.2717905203037046,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 6808.983915149229,
+    "equity": 5598.608868178213,
     "shares": 1986578999,
-    "per_share": 3.427492145329595
+    "per_share": 2.818216074465918
    }
   }
  },
@@ -1793,10 +1793,136 @@
  },
  "spot": 13.98,
  "spot_date": "2026-08-06",
- "central": 3.7590028874151367,
+ "central": -1.0621217844282123,
  "fair": {
-  "bear": 0.0,
-  "base": 3.7590028874151367,
-  "full": 15.474444319299197
+  "bear": -2.6124650988103313,
+  "base": -1.0621217844282123,
+  "full": 1.0205331101493433
+ },
+ "macro_record": {
+  "market": "EG",
+  "path_as_of": "2026-09-02",
+  "growth_lines": [
+   {
+    "name": "terminal maintenance growth",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.07,
+     0.07,
+     0.07,
+     0.07,
+     0.07
+    ],
+    "real": 0.0,
+    "exempt_reason": "not an escalator: the forecast years are built from tonnes, dollar prices and the derived currency path, each disclosed or identity-derived, so there is no nominal growth rate here to sit on the ladder"
+   }
+  ],
+  "fx_path": null,
+  "fx_note": "the currency path is DERIVED year by year from the relative purchasing-power identity on the house terminal inflation against long-run United States inflation, and the SAME wedge carries the dollar cost of debt, so the two cannot disagree",
+  "terminal": {
+   "g_nominal": 0.07,
+   "real": 0.0,
+   "rf": 0.125,
+   "inflation_in_rf": 0.07
+  },
+  "explicit_years": 5,
+  "growth_at_horizon_end": 0.07,
+  "note": "THE HOUSE PATH OVERRULES AN ARGUMENT THIS STUDY MADE WELL. The 9 August 2026 edition moved terminal inflation to 5% after an external critique, reasoning that a perpetuity takes the longest-horizon published target there is. The house path takes 7% on a later reading of the same bank: its August 2026 guidance puts the return to the 7% BAND in the second half of 2027 and forecasts no 5% undershoot. Both are defensible; five studies each picking one is not. The change costs this study EGP 0.28 a share and the cost is stated rather than absorbed."
+ },
+ "lens_record": {
+  "class": "petrochemical",
+  "primary": {
+   "kind": "dcf",
+   "value": -1.0621217844282123,
+   "range": {
+    "low": -2.6124650988103313,
+    "high": 1.0205331101493433
+   },
+   "range_note": "the cash-flow lens across its own downside and upside on one clock, the programme carried through in both",
+   "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads -1.06, stopped it reads 2.82, and the two are published side by side and never averaged."
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 15.474444319299197,
+    "present_value": false,
+    "multiple_source": "forward EBITDA times a multiple from the company's own history and its regional peers, never one read off the current price"
+   },
+   {
+    "kind": "book_value",
+    "value": 8.15778582586335,
+    "present_value": false,
+    "note": "the DISCLOSED book equity per share, published as a floor and never weighted. The retired blend weighted a JUSTIFIED price-to-book of zero at 15% under this name \u2014 a derived valuation wearing the name of a disclosed figure. The justified multiple is 0.00x and is kept as a diagnostic: it says the company does not earn its cost of equity, which is a finding, not a book value."
+   }
+  ],
+  "retired": {
+   "blend": {
+    "cashflow": 0.45,
+    "relative": 0.2,
+    "normalised": 0.2,
+    "book": 0.15
+   },
+   "blend_value": 3.4748601857445345,
+   "why": "the weights were typed and had never cleared an out-of-sample test, and here the blend did something worse than average: it mixed a negative cash-flow read with three positive ones and published a positive number, so a reader saw EGP 3.47 and never learned that the study's own primary lens was below zero."
+  },
+  "diagnostics": {
+   "normalised_earnings": 4.289630624386951,
+   "justified_price_to_book": 0.0,
+   "book_value_floor": 8.15778582586335
+  }
+ },
+ "bridge_record": {
+  "market": "EG",
+  "balance_sheet_date": "2026-03-31",
+  "latest_disclosed_date": "2026-03-31",
+  "latest_disclosed_source": "the reviewed interim statements for the nine months ended 31 March 2026 (limited review dated 20 May 2026), read from the rendered pages and registered in this study's sweep. No later filing exists: the annual for the year to 30 June 2026 is filed in September or October on the company's own pattern.",
+  "register": "sweep_register.json",
+  "lines": [
+   {
+    "label": "Enterprise value",
+    "value": 4384.547168674508
+   },
+   {
+    "label": "plus cash, 31 March 2026",
+    "value": 4606.522
+   },
+   {
+    "label": "less borrowings, 31 March 2026",
+    "value": -14639.005000000001
+   },
+   {
+    "label": "plus investments at fair value through other comprehensive income",
+    "value": 1382.886
+   },
+   {
+    "label": "plus investment property",
+    "value": 2155.061
+   }
+  ],
+  "equity_value": -2109.988831325492,
+  "shares_mn": 1986.578999,
+  "per_share": -1.0621217844282123,
+  "cash": {
+   "treatment": "added_at_face",
+   "weights_basis": "gross"
+  },
+  "cash_charged_once": true,
+  "cash_note": "the operations are discounted at a rate weighted on gross debt and the cash is added once, at face, in the bridge.",
+  "nci": {
+   "basis": "none_disclosed",
+   "evidence": "the reviewed statements to 31 March 2026 show no non-controlling interest on the face of the balance sheet and none in the equity note; the company's subsidiaries are wholly owned."
+  },
+  "associates": {
+   "basis": "book",
+   "note": "investments at fair value through other comprehensive income and investment property are carried at their disclosed balance-sheet amounts; neither is a listed associate with a market quote."
+  },
+  "dividend_deducted": false,
+  "dividend_note": "no dividend was declared after the bridge's balance-sheet date."
  }
 }

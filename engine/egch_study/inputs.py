@@ -248,7 +248,29 @@ I("tbill_yield_range", [0.2486, 0.2552], "ratio",
   "Egyptian treasury-bill yields by tenor, secondary-market quotes (the central bank's own auction pages were unreachable); context only, no valuation figure depends on them",
   "2026-08-06", "L3")
 I("cbe_inflation_target", 0.070, "ratio", "Central bank published medium-term inflation target (7% +/-2 for Q4 2026)", "2026-07-09", "L3")
-I("inflation_terminal", 0.050, "ratio",
+# ---------------------------------------------------------------------------
+# THE HOUSE MACRO PATH [R-MACRO-01]. This study built its own terminal inflation,
+# its own real rate and its own currency wedge, all internally coherent — and so
+# did the four studies beside it, to five different answers for one economy. The
+# path now answers for all of them.
+#
+# THIS OVERRULES AN ARGUMENT THIS STUDY MADE WELL, AND THE ARGUMENT IS KEPT.
+# The edition of 9 August 2026 moved terminal inflation from 7% to 5% after an
+# external critique, reasoning that a perpetuity takes the longest-horizon
+# published target there is (5% +/-2 for Q4 2028) rather than one that expires a
+# quarter after the anchor date. That is a good argument. The house path takes
+# 7% on a different and later reading: the bank's own August 2026 guidance puts
+# the return to the 7% BAND in the second half of 2027 and does not forecast the
+# 5% undershoot, so a terminal built on 5% assumes something nobody published.
+# Both readings are defensible; what is not defensible is five studies each
+# picking one. The cost of the house choice is not hidden — alternatives.py
+# prices this study at its own 5% construction beside the adopted one.
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import macro_path as _MP
+_HOUSE = _MP.load('EG')
+
+I("inflation_terminal", _HOUSE.terminal_inflation, "ratio",
   "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon "
   "published target, 5% (+/-2) for Q4 2028 — the SAME figure terminal growth is set at. "
   "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
@@ -368,7 +390,7 @@ I("kd_usd_nominal", 0.117, "ratio",
 I("us_inflation_lt", 0.024, "ratio",
   "Long-run United States inflation, the other leg of the purchasing-power wedge",
   "2026-08-09", "L3")
-I("expected_depreciation", (1 + 0.050) / (1 + 0.024) - 1, "ratio",
+I("expected_depreciation", (1 + _HOUSE.terminal_inflation) / (1 + 0.024) - 1, "ratio",
   "Constructed: the central bank's LONG-RUN 5% target against about 2.4% in the United "
   "States, on the same relative-purchasing-power identity the study states. CORRECTED 9 "
   "August 2026: the study previously asserted 4.5% flat while stating a derivation that "
@@ -378,8 +400,8 @@ I("expected_depreciation", (1 + 0.050) / (1 + 0.024) - 1, "ratio",
 I("kd_local", 0.194, "ratio",
   "Constructed: EGP 96,896,001 of interest on the EGP 500,000,000 holding-company facility drawn "
   "in FY2024/25 — the company's own latest local borrowing", "2026-08-08", "L5")
-I("real_rate_lt", 0.035, "ratio",
-  "Constructed: long-run emerging-market real policy rate, used to build the terminal risk-free rate from "
+I("real_rate_lt", _HOUSE.real_rate_convention, "ratio",
+  "The house real-rate convention, used to build the terminal risk-free rate from "
   "its own components rather than from a spot yield", "2026-08-08", "L5")
 I("kd_usd_lt", 0.090, "ratio", "Constructed: long-run corporate dollar cost of debt", "2026-08-08", "L5")
 I("roc_terminal", 0.18, "ratio",
@@ -473,8 +495,10 @@ I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
   "normalised lenses are cross-checks at equal weight; book value, which prices what has been paid "
   "for rather than what it earns, the least. The bear and full readings are the low and high of "
   "the field across every lens, never the weighted extremes.", "2026-09-01", "L5")
-I("g_terminal", 0.050, "ratio",
-  "Terminal growth set at the central bank's LONGEST-HORIZON published inflation target: 5% "
+I("g_terminal", _HOUSE.terminal_growth(), "ratio",
+  "Terminal growth from the house macro path: terminal inflation plus a STATED real "
+  "growth of zero, so the real assumption is written down rather than inferred from "
+  "the gap to the discount rate. It was 5% "
   "(+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously "
   "used the 7% Q4-2026 target, which expires one quarter after the anchor date, as a "
   "perpetuity anchor -- and then defended it by calling 5% 'below the target', inverting the "

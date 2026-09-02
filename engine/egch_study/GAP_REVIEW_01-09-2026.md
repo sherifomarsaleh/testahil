@@ -218,3 +218,125 @@ earning, on the disclosed cost and nameplate, less than its own depreciation —
 discounting the whole thing at 7.8% in a country whose sovereign borrows at 23%. The
 central stays at EGP 3.76 in a field of 0.00 to 15.47; `scripts/check_valuation_gap.py`
 is cleared by this review's existence and its eight headings, not by a changed answer.
+
+---
+
+# Addendum, 2 September 2026 — the answer this audits has changed character
+
+**The central is now EGP -1.06, not EGP 3.76.** This addendum re-runs the
+eight headings against that number, because a review that audits a figure the study no
+longer publishes is reporting on something nobody receives.
+
+## What moved, and why
+
+| | 1 Sep 2026 | 2 Sep 2026 | Why |
+|---|---:|---:|---|
+| Terminal inflation | 5.00% | 7.00% | the house macro path, which overrules this study's own reading (below) |
+| Terminal risk-free | 8.67% | 12.88% | derived: terminal inflation plus the house real-rate convention |
+| Terminal growth | 5.00% | 7.00% | terminal inflation plus a stated real growth of zero |
+| Cash-flow lens, carried through | −1.06 | -1.06 | |
+| **Published central** | **3.76** | **-1.06** | the typed 45/20/20/15 blend retired |
+| Gap versus price | −73.1% | -107.6% | |
+
+**The house path overrules an argument this study made well, and the argument stands in
+the record.** The 9 August edition moved terminal inflation from 7% to 5% after an
+external critique, reasoning that a perpetuity takes the longest-horizon published target
+there is. The house path takes 7% on a later reading of the same central bank — its
+August 2026 guidance returns inflation to the 7% band in the second half of 2027 and
+forecasts no 5% undershoot. Both readings are defensible. Five studies each picking one
+is not, and that is the whole of the reason. The change costs EGP 0.28 a share.
+
+## THE THING THIS ADDENDUM EXISTS TO SAY
+
+The retired blend was 45% a **negative** cash-flow reading and 55% three positive ones,
+and it published EGP 3.47. A reader saw a positive number and never learned that the
+study's own primary lens was below zero. That is not a rounding matter or a presentational
+preference: **the blend concealed the study's actual finding.** Retiring it does not change
+what this model says about Arab Company for Chemical Industries — it changes whether
+anyone reading the study can tell.
+
+## The eight headings, against the new central
+
+**1 · LATEST FILINGS.** Unchanged and still current: the reviewed nine months to 31 March
+2026 is the most recent document in existence; the annual to 30 June 2026 is filed in
+September or October on the company's own pattern. Nothing downloaded was left unopened.
+
+**2 · BASE YEAR.** Unchanged. Every historical figure foots to its own filing.
+
+**3 · MACRO COHERENCE.** *Improved by this edition and now checked from outside.* One
+path carries the inflation ladder, the currency wedge on both revenue and the dollar cost
+of debt, the terminal risk-free rate and terminal growth. `check_macro_coherence.py`
+reports the study coherent against the EG path.
+
+**4 · DISCOUNT RATE.** The glide runs 25.64% to
+22.22% across the explicit years and
+21.56% in the terminal. Cash is charged exactly once — the
+operations are discounted at a gross-debt-weighted rate and the cash added at face in the
+bridge, and the bridge record says so.
+
+**5 · TERMINAL.** Terminal growth 7.00% against a terminal
+risk-free rate embedding the same 7.00% inflation: zero
+real growth, stated. The terminal is 60%
+of enterprise value in the base case and 27% in the halt case.
+
+**6 · BALANCE SHEET.** The bridge stands on the 31 March 2026 reviewed sheet — cash EGP
+4,607mn, borrowings EGP 14,639mn, net debt EGP 10,032mn —
+and is now recorded and checked from outside. **This heading is where the negative answer
+comes from and it is arithmetic, not judgement:** an enterprise value of EGP
+4,385mn against net debt of EGP 10,032mn leaves the equity below
+zero before the investments and the property are added back, and EGP
+3,538mn of those does not close the gap.
+
+**7 · CLAIMS AGAINST THE RECORD.** The study makes no unverified superlative. The one
+claim worth stating plainly is the negative equity value itself, and it is examined under
+the next heading rather than asserted.
+
+**8 · MULTIPLE CROSS-CHECK — and the honest limit of this study.** A negative equity value
+implies no meaningful earnings or book multiple, which is itself the finding: on this
+model the shares are an option on the capital programme being stopped, not a claim on
+earnings. Against that:
+
+| | EGP/share | versus the price of 13.98 |
+|---|---:|---:|
+| Cash-flow lens, programme carried through (the central) | -1.06 | -108% |
+| Cash-flow lens, programme stopped | 2.82 | -80% |
+| Disclosed book equity (a floor, never weighted) | 8.16 | -42% |
+| Relative multiple, forward EBITDA (a cross-check) | 15.47 | +11% |
+| Normalised earnings (a diagnostic this class does not weight) | 4.29 | -69% |
+
+The market capitalisation is EGP 27,772mn against disclosed book equity of EGP
+16,206mn — the shares trade at
+1.71 times book. The reverse read is the sharpest single
+statement in this study: **the traded price implies a flat nominal discount rate of about
+9.2% on the carried-through case, against an Egyptian ten-year sovereign yield of 23.0%.**
+Either the market is not discounting this company in Egyptian pounds at an Egyptian cost
+of capital, or it is paying for something this model does not contain.
+
+## Verdict
+
+**The number is what the model says, and the model's construction now passes every gate
+that can see it** — macro coherence, the cost-of-capital schedule, the lens architecture
+and the bridge, each checked from outside the study. No defect of the kind [R-GAP-01] was
+written to catch was found in this pass: the base year foots, the latest filing is read,
+the macro path is single, cash is charged once, the terminal is coherent, the bridge
+stands on the newest sheet.
+
+**But a published fair value below zero is a claim of a different kind from a published
+discount, and this review does not wave it through.** Three things are true at once and
+the study should say all three: the cash-flow model, carried through, gives a negative
+equity value; the same model with the programme stopped gives EGP 2.82;
+and the disclosed book equity is EGP 8.16 a share. The
+distance between those three IS the study's finding, and the retired blend was averaging
+it away.
+
+**Recommended before this edition is delivered to a reader**, and referred rather than
+settled here: whether the house publishes a negative central at all, or publishes the
+contested judgement as a two-sided answer (-1.06 carried through,
+2.82 stopped) with no single central figure. This is an editorial
+decision about what the house is willing to state, not a modelling one — every number
+above is unchanged either way — and it is the sort of decision the standing protocol
+reserves for a person rather than for a build script.
+
+---
+
+*AUDITED CENTRAL: -1.0621* — the figure this review audits, stated so a job outside the study can tell whether the review still describes the answer the study publishes. A review of a number the study no longer carries is not a review of this study.

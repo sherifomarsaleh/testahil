@@ -46,6 +46,12 @@ REAL_ENGINE, REAL_OUTSTANDING = gate.ENGINE, gate.OUTSTANDING
 FULL_REVIEW = '\n'.join('## %s\ncovered.\n' % k for k in gate.REQUIRED_SECTIONS)
 
 
+def review_auditing(central):
+    """A complete review that states the central it audited — what a current
+    review looks like once a review has to say which answer it examined."""
+    return FULL_REVIEW + '\nAUDITED CENTRAL: %.4f\n' % central
+
+
 def make_study(engine, tk, central=None, spot=None, review=None, numbers=True):
     d = os.path.join(engine, '%s_study' % tk.lower())
     os.makedirs(d, exist_ok=True)
@@ -130,11 +136,30 @@ def main():
         ('central 13% above spot, unreviewed — the DU case the one-sided rule could not see',
          lambda e: make_study(e, 'AMOC', 10.28, 9.10), EMPTY, True),
         ('CLEAN — central above spot WITH a complete review, must PASS',
-         lambda e: make_study(e, 'AMOC', 18.00, 9.10, review=FULL_REVIEW), EMPTY, False),
+         lambda e: make_study(e, 'AMOC', 18.00, 9.10, review=review_auditing(18.00)),
+         EMPTY, False),
         ('CLEAN — central 8% above spot, inside the band, must PASS',
          lambda e: make_study(e, 'AMOC', 9.83, 9.10), EMPTY, False),
         ('CLEAN — breach WITH a complete review, must PASS',
-         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=FULL_REVIEW), EMPTY, False),
+         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=review_auditing(5.53)),
+         EMPTY, False),
+        # A REVIEW AUDITS AN ANSWER, AND THE ANSWER MOVES. EGCH's central went from
+        # 3.76 to -1.06 on 02-Sep-2026 while its review, written for 3.76, sat in the
+        # directory unchanged and this gate passed the study. These three cases are
+        # that incident, seeded.
+        ('review audits a central the study no longer publishes — the EGCH case',
+         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=review_auditing(3.76)),
+         EMPTY, True),
+        ('review complete but states no audited central at all',
+         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=FULL_REVIEW),
+         {'breach_no_review': [], 'unreadable': [], 'review_central_unstated': [],
+          'exempt': {}}, True),
+        ('CLEAN — review audits the central the study publishes, must PASS',
+         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=review_auditing(5.53)),
+         EMPTY, False),
+        ('CLEAN — review audits it to the last decimal that matters, must PASS',
+         lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=review_auditing(5.5301)),
+         EMPTY, False),
     ]
     results = [run_case(n, b, o, f) for n, b, o, f in cases]
     print()

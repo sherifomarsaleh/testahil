@@ -156,3 +156,7 @@ market is wrong.
 - `gap_review_calcs_above.py` → `gap_review_calcs_above.json` — every computed figure above.
 - `study_numbers.json` — the committed numbers, including the macro, cost-of-capital, lens and bridge records the outside gates read.
 - `GAP_REVIEW_01-09-2026.md` — the earlier review, written when this same study sat 28% BELOW the price.
+
+---
+
+*AUDITED CENTRAL: 17.1517* — the figure this review audits, stated so a job outside the study can tell whether the review still describes the answer the study publishes. A review of a number the study no longer carries is not a review of this study.
