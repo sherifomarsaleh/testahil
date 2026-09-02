@@ -760,6 +760,217 @@ def assert_bridge(record: dict, ticker: str = "?") -> dict:
             "standard_version": STANDARD_VERSION}
 
 
+# --------------------------------------------------------------------------
+# LENS ARCHITECTURE v2  [R-LENS-03]
+#
+# The failure. PHDC's central was a weighted blend of four lenses at typed
+# weights -- 45% discounted cash flow, 15% book value, 20% an earnings multiple,
+# 20% normalised earnings power -- and three of the four value a developer on
+# its REPORTED ACCOUNTING EARNINGS AND HISTORICAL-COST BOOK. For a company whose
+# value sits in an undelivered order book carried at historical cost in a
+# currency that has lost most of its value since 2022, those three measure a
+# floor and not a value. The cash-flow lens landed within 2.2% of the market
+# price; the blend landed 28% below it. Nothing in the study was wrong except
+# the architecture, and the weights had never cleared any out-of-sample bar --
+# they were chosen, written down, and inherited.
+#
+# What is adopted. ONE class primary is the central. The other lenses are
+# CROSS-CHECKS: published in the same table, defining the bear/full envelope as
+# the range of PRESENT-VALUE reads, never averaged into the answer. Whether any
+# blend beats the primary alone is a question for the valuation calibration to
+# answer out of sample [R-VCAL-01]; until it does, the typed blend is retired,
+# because it never cleared the bar it was always required to clear.
+#
+# The registry is keyed on lessons_register.CLASSES BY IMPORT. A second taxonomy
+# for the same companies is how two registers drift apart, and this repository
+# has already paid for that once.
+LENS_KINDS = {
+    "dcf":          "a present-value discounted cash flow on the study's own drivers",
+    "rnav":         "a PRESENT-VALUE net asset value: land at cost with a labelled market "
+                    "cross-check, absorption on the company's own delivery rate, discounted "
+                    "on the cost-of-capital schedule -- never a gross NAV",
+    "sotp":         "disciplined sum of the parts, each part on its own present-value lens",
+    "ddm":          "dividend discount model",
+    "residual_income": "residual income on the same clock as the book it starts from",
+    "ev_ebitda_own_history": "enterprise value to EBITDA on the company's OWN history",
+    "ev_per_tonne": "enterprise value per tonne of capacity, on transactions or own history",
+    "replacement_cost": "what the assets would cost to build, at today's prices",
+    "relative_multiple": "forward earnings times a multiple from peers or own history -- "
+                         "never from the current price, which is circular",
+    "normalised_earnings": "mid-cycle earnings capitalised Fisher-consistently, at a real "
+                           "rate against real earnings or at a nominal rate net of growth",
+    "book_value":   "a DISCLOSED FLOOR, published as such -- not a lens and never weighted",
+}
+
+# class -> (primary, permitted cross-checks). The primary is the central.
+# NORMALISED EARNINGS IS NOT A DEVELOPER LENS, and its absence from the two
+# developer rows is deliberate rather than an oversight. A developer recognising
+# revenue on handover reports earnings that are an accident of which project
+# completed in which year; capitalising a mid-cycle figure treats that schedule
+# as if it were a steady state. It was PHDC's worst read at EGP 5.17 a share
+# against a cash-flow lens of 14.86, and it carried a fifth of the weight.
+LENS_REGISTRY = {
+    "real-estate developer, off-plan, percentage-of-completion":
+        ("dcf", ("rnav", "relative_multiple", "book_value")),
+    "real-estate developer, off-plan, point-in-time on handover":
+        ("dcf", ("rnav", "relative_multiple", "book_value")),
+    "telecom operator":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    "cement and heavy industrial":
+        ("dcf", ("ev_per_tonne", "replacement_cost", "relative_multiple", "book_value")),
+    "petrochemical":
+        ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
+    "refiner, commodity pass-through on a thin spread":
+        ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
+    "airline":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    "bank":
+        ("ddm", ("residual_income", "relative_multiple", "book_value")),
+    "holding company":
+        ("sotp", ("relative_multiple", "book_value")),
+    "commodity and metals":
+        ("dcf", ("replacement_cost", "relative_multiple", "book_value")),
+}
+
+# RNAV may be a class PRIMARY only where the disclosure supports it. Where land
+# value per square metre is an undisclosed gap, the primary stays the discounted
+# cash flow and RNAV is a cross-check -- SIGCM clause 8, stop rather than invent.
+RNAV_PRIMARY_REQUIRES = (
+    "disclosed land area by project",
+    "a sourced land value per unit of area, or a transaction that establishes one",
+    "the company's own delivery or absorption rate",
+)
+
+
+def _lens_classes_match_register():
+    """The registry is keyed on the lessons register's classes, by import."""
+    try:
+        import lessons_register as LR
+    except Exception:                                        # noqa: BLE001
+        return                                               # checked in CI, not here
+    missing = sorted(set(LR.CLASSES) - set(LENS_REGISTRY))
+    extra = sorted(set(LENS_REGISTRY) - set(LR.CLASSES))
+    if missing or extra:
+        raise AssertionError(
+            "LENS REGISTRY FAIL -- the registry and the lessons register disagree about "
+            "the classes. Missing from the registry: %s. Not a registered class: %s. "
+            "A second taxonomy for the same companies is how two registers drift apart."
+            % (missing or "none", extra or "none"))
+
+
+_lens_classes_match_register()
+
+
+def assert_lens_design(record: dict, ticker: str = "?") -> dict:
+    """Raise unless the study's lens architecture obeys [R-LENS-03].
+
+    `record`: class, primary {kind, value}, cross_checks [{kind, value, note}],
+    envelope {low, high}, central, and for each lens whatever its own clause
+    needs -- a relative multiple's source, a normalised-earnings basis, the
+    RNAV's disclosure evidence.
+    """
+    fails = []
+    r = record or {}
+    cls = r.get("class")
+    if cls not in LENS_REGISTRY:
+        fails.append("class %r is not registered. The lens architecture is decided by "
+                     "class, so an unregistered class has no primary." % cls)
+        raise AssertionError("LENS FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+
+    want_primary, permitted = LENS_REGISTRY[cls]
+    # the class's own primary is always an acceptable lens for that class,
+    # whichever role it plays: where RNAV substitutes as the primary on a
+    # developer, the cash-flow lens becomes a cross-check and must be permitted
+    permitted = tuple(permitted) + (want_primary,)
+    prim = r.get("primary") or {}
+    if prim.get("kind") != want_primary:
+        # a class primary may be substituted only with a stated reason, and never
+        # for a lens the class does not permit at all
+        if prim.get("kind") not in permitted or not prim.get("substitution_reason"):
+            fails.append(
+                "the primary lens is %r; the registry gives %r for this class. A "
+                "substitution is permitted only from the class's own cross-checks and "
+                "only with a stated reason." % (prim.get("kind"), want_primary))
+    if prim.get("kind") == "rnav":
+        have = set(prim.get("disclosure_evidence") or [])
+        missing = [k for k in RNAV_PRIMARY_REQUIRES if k not in have]
+        if missing:
+            fails.append(
+                "RNAV is the primary but the disclosure it needs is not evidenced: %s. "
+                "Where land value per unit of area is an undisclosed gap the primary "
+                "stays the cash-flow lens and RNAV is a cross-check." % "; ".join(missing))
+    if prim.get("value") is None:
+        fails.append("the primary lens carries no value")
+
+    seen = []
+    for x in (r.get("cross_checks") or []):
+        k = x.get("kind")
+        seen.append(k)
+        if k not in LENS_KINDS:
+            fails.append("cross-check %r is not a registered lens kind" % k)
+            continue
+        if k not in permitted:
+            fails.append("cross-check %r is not permitted for this class" % k)
+        if k == "relative_multiple":
+            src = (x.get("multiple_source") or "").lower()
+            if not src:
+                fails.append("the relative multiple names no source for its multiple")
+            elif "current price" in src or "spot" in src or "market price" in src:
+                fails.append(
+                    "the relative multiple takes its multiple from the CURRENT PRICE, which "
+                    "values the company at what it already trades at. The multiple comes "
+                    "from peers or from the company's own history.")
+        if k == "normalised_earnings":
+            basis = (x.get("basis") or "").lower()
+            if "real" not in basis and "less growth" not in basis and "ke - g" not in basis:
+                fails.append(
+                    "normalised earnings is capitalised at a nominal rate with no growth "
+                    "netted and no real-terms basis stated. In a currency whose discount "
+                    "rate embeds inflation that is a perpetual real decline, not prudence.")
+        if k == "book_value" and x.get("weight"):
+            fails.append("book value carries a weight. It is a disclosed floor, published "
+                         "as such, and is never weighted into a central.")
+
+    # the defect this rule exists for: a typed blend
+    weights = [x.get("weight") for x in (r.get("cross_checks") or []) if x.get("weight")]
+    if prim.get("weight") or weights:
+        fails.append(
+            "the lenses carry weights. The central is the class primary; the cross-checks "
+            "are published beside it and define the envelope. A typed weight is a free "
+            "parameter that has never cleared an out-of-sample test, and the blend it "
+            "produced put PHDC 28% below a market its own cash-flow lens sat within 2.2% of.")
+
+    central = r.get("central")
+    if central is not None and prim.get("value") is not None:
+        if abs(float(central) - float(prim["value"])) > max(0.01, 0.001 * abs(float(central))):
+            fails.append("the published central %.4f is not the primary lens's %.4f. The "
+                         "central IS the primary." % (central, prim["value"]))
+
+    env = r.get("envelope") or {}
+    if env:
+        pv = [prim.get("value")] + [x.get("value") for x in (r.get("cross_checks") or [])
+                                    if x.get("kind") != "book_value" and x.get("value") is not None
+                                    and x.get("present_value", True)]
+        pv = [float(v) for v in pv if v is not None]
+        if pv:
+            lo, hi = min(pv), max(pv)
+            for side, got, want in (("low", env.get("low"), lo), ("high", env.get("high"), hi)):
+                if got is not None and abs(float(got) - want) > max(0.01, 0.002 * abs(want)):
+                    fails.append(
+                        "the envelope's %s is %.4f against %.4f, the %s of the "
+                        "present-value lenses. The envelope is the RANGE of the "
+                        "present-value reads on one clock, not an average and not a "
+                        "spread invented around the central."
+                        % (side, float(got), want, side))
+
+    if fails:
+        raise AssertionError("LENS FAIL -- %s (%s):\n  - %s"
+                             % (ticker, cls, "\n  - ".join(fails)))
+    return {"ticker": ticker, "class": cls, "primary": prim.get("kind"),
+            "central": central, "cross_checks": seen,
+            "standard_version": STANDARD_VERSION}
+
+
 def assert_gates_called(study_dir: str) -> None:
     """Raise unless the study's own code calls the three gates.  [R-ENF-02]
 

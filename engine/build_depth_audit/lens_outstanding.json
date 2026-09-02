@@ -1,0 +1,30 @@
+{
+ "why": "[R-LENS-03] with the ratchet of [R-ENF-02]. Every study on disk when the lens architecture was adopted (02-Sep-2026) carries a typed blend or no lens record at all; each is allowed to fail while it waits its turn. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. This list may only ever get SHORTER (--prune).",
+ "adopted": "2026-09-02",
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "PHDC",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SCEM",
+  "STC",
+  "SWDY",
+  "TMGH",
+  "XPT"
+ ]
+}

@@ -1,0 +1,204 @@
+"""A CHECK NOBODY HAS SEEN FAIL IS NOT EVIDENCE.
+
+Reinjects every condition scripts/check_lens_design.py claims to catch and
+asserts the gate goes RED, plus clean cases that must NOT fire.
+
+The headline case is PHDC's own architecture, exactly as it shipped on
+30-Aug-2026: four lenses at typed weights of 45/15/20/20, three of them valuing
+a developer on reported accounting earnings and historical-cost book, producing
+a central 28% below a market its own cash-flow lens sat within 2.2% of.
+
+    python3 scripts/check_lens_design_negative_control.py
+"""
+import json, os, shutil, subprocess, sys, tempfile
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+GATE = os.path.join("scripts", "check_lens_design.py")
+
+GOOD = {
+    "class": "real-estate developer, off-plan, percentage-of-completion",
+    "primary": {"kind": "dcf", "value": 14.54},
+    "cross_checks": [
+        {"kind": "relative_multiple", "value": 11.17,
+         "multiple_source": "the multiples the shares have carried over five years of own history"},
+        {"kind": "rnav", "value": 12.80,
+         "note": "land at cost with a labelled market cross-check, absorption on the "
+                 "company's own delivery rate, discounted on the schedule"},
+        {"kind": "book_value", "value": 6.63, "present_value": False,
+         "note": "a disclosed floor, published as such"},
+    ],
+    "envelope": {"low": 11.17, "high": 14.54},
+    "central": 14.54,
+}
+
+
+def sandbox():
+    tmp = tempfile.mkdtemp(prefix="lens_nc_")
+    os.makedirs(os.path.join(tmp, "engine", "build_depth_audit"))
+    os.makedirs(os.path.join(tmp, "scripts"))
+    for f in ("research_protocol.py", "macro_path.py", "lessons_register.py"):
+        shutil.copy(os.path.join(ROOT, "engine", f), os.path.join(tmp, "engine", f))
+    shutil.copytree(os.path.join(ROOT, "engine", "macro_paths"),
+                    os.path.join(tmp, "engine", "macro_paths"))
+    shutil.copy(os.path.join(ROOT, "scripts", "check_lens_design.py"),
+                os.path.join(tmp, "scripts", "check_lens_design.py"))
+    return tmp
+
+
+def put_study(tmp, ticker, record, raw=None):
+    d = os.path.join(tmp, "engine", "%s_study" % ticker.lower())
+    os.makedirs(d, exist_ok=True)
+    p = os.path.join(d, "study_numbers.json")
+    if raw is not None:
+        open(p, "w").write(raw); return
+    doc = {"meta": {"ticker": ticker}}
+    if record is not None:
+        doc["lens_record"] = record
+    json.dump(doc, open(p, "w"), indent=1)
+
+
+def put_list(tmp, tickers):
+    json.dump({"why": "negative control", "adopted": "2026-09-02",
+               "outstanding": sorted(tickers)},
+              open(os.path.join(tmp, "engine", "build_depth_audit",
+                                "lens_outstanding.json"), "w"), indent=1)
+
+
+def case(name, build, expect_red, results):
+    tmp = sandbox()
+    try:
+        build(tmp)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout + r.stderr).strip()
+        red = r.returncode != 0
+        ok = red == expect_red
+        results.append((name, ok, r.returncode, out.splitlines()[-1] if out else ""))
+        if not ok:
+            print("\n---- %s ----\n%s" % (name, out))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def main():
+    results = []
+
+    def broken(mutate):
+        def build(tmp):
+            rec = json.loads(json.dumps(GOOD)); mutate(rec)
+            put_study(tmp, "NCL", rec); put_list(tmp, [])
+        return build
+
+    def m_phdc_as_shipped(r):
+        # the architecture exactly as PHDC published it on 30-Aug-2026
+        r["primary"] = {"kind": "dcf", "value": 14.86, "weight": 0.45}
+        r["cross_checks"] = [
+            {"kind": "book_value", "value": 6.56, "weight": 0.15},
+            {"kind": "relative_multiple", "value": 11.17, "weight": 0.20,
+             "multiple_source": "own history"},
+            {"kind": "normalised_earnings", "value": 5.17, "weight": 0.20,
+             "basis": "capitalised at the cost of equity"},
+        ]
+        r["central"] = 10.94
+
+    def m_typed_weights(r):
+        r["cross_checks"][0]["weight"] = 0.2
+
+    def m_central_not_primary(r):
+        r["central"] = 10.94
+
+    def m_circular(r):
+        r["cross_checks"][0]["multiple_source"] = "the multiple implied by the current price"
+
+    def m_nominal_stasis(r):
+        # a lens this class does not permit at all, added with the very basis
+        # that made it useless: nominal stasis in a 15%-inflation currency
+        r["cross_checks"].append({"kind": "normalised_earnings", "value": 5.17,
+                                  "basis": "capitalised at the cost of equity"})
+        r["envelope"] = {"low": 5.17, "high": 14.54}
+
+    def m_book_weighted(r):
+        r["cross_checks"][-1]["weight"] = 0.15
+
+    def m_wrong_primary(r):
+        r["primary"] = {"kind": "book_value", "value": 6.63}
+
+    def m_unregistered_class(r):
+        r["class"] = "widget assembler"
+
+    def m_envelope(r):
+        r["envelope"] = {"low": 2.0, "high": 40.0}
+
+    def m_rnav_unevidenced(r):
+        r["primary"] = {"kind": "rnav", "value": 14.54, "substitution_reason": "developer"}
+
+    for n, m in (("1 PHDC's architecture as shipped", m_phdc_as_shipped),
+                 ("2 a typed weight on a cross-check", m_typed_weights),
+                 ("3 central is not the primary", m_central_not_primary),
+                 ("4 multiple taken from the price", m_circular),
+                 ("5 nominal-stasis earnings power", m_nominal_stasis),
+                 ("6 book value weighted", m_book_weighted),
+                 ("7 wrong primary for the class", m_wrong_primary),
+                 ("8 unregistered class", m_unregistered_class),
+                 ("9 envelope invented around the central", m_envelope),
+                 ("10 RNAV primary, disclosure unevidenced", m_rnav_unevidenced)):
+        case(n, broken(m), True, results)
+
+    def b_norecord(tmp):
+        put_study(tmp, "NCL", None); put_list(tmp, [])
+    case("11 new study, no record, not listed", b_norecord, True, results)
+
+    def b_unreadable(tmp):
+        put_study(tmp, "NCL", None, raw="{nope"); put_list(tmp, [])
+    case("12 numbers file will not parse", b_unreadable, True, results)
+
+    def b_empty(tmp):
+        put_list(tmp, ["GHOST"])
+    case("13 empty population", b_empty, True, results)
+
+    # ---- clean ------------------------------------------------------------
+    def c_good(tmp):
+        put_study(tmp, "NCL", GOOD); put_list(tmp, [])
+    case("clean: primary central, cross-checks", c_good, False, results)
+
+    def c_listed(tmp):
+        rec = json.loads(json.dumps(GOOD)); m_phdc_as_shipped(rec)
+        put_study(tmp, "NCL", rec); put_list(tmp, ["NCL"])
+    case("clean: a listed outstanding study", c_listed, False, results)
+
+    def c_rnav(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["cross_checks"] = [c for c in rec["cross_checks"] if c["kind"] != "rnav"]
+        rec["cross_checks"].append({"kind": "dcf", "value": 14.54})
+        rec["envelope"] = {"low": 11.17, "high": 14.54}
+        rec["central"] = 14.54
+        rec["primary"] = {"kind": "rnav", "value": 14.54,
+                          "substitution_reason": "the land bank is disclosed by project and a "
+                                                 "transaction establishes its value per acre",
+                          "disclosure_evidence": [
+                              "disclosed land area by project",
+                              "a sourced land value per unit of area, or a transaction that establishes one",
+                              "the company's own delivery or absorption rate"]}
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: RNAV primary, fully evidenced", c_rnav, False, results)
+
+    def c_bank(tmp):
+        rec = {"class": "bank",
+               "primary": {"kind": "ddm", "value": 20.0},
+               "cross_checks": [{"kind": "residual_income", "value": 22.0},
+                                {"kind": "book_value", "value": 15.0, "present_value": False}],
+               "envelope": {"low": 20.0, "high": 22.0}, "central": 20.0}
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a bank on dividends and residual income", c_bank, False, results)
+
+    print("\nNEGATIVE CONTROL — scripts/check_lens_design.py")
+    for name, ok, rc, last in results:
+        print("  %-40s %-4s exit %d   %s" % (name, "ok" if ok else "MISS", rc, last[:66]))
+    bad = [n for n, ok, _, _ in results if not ok]
+    if bad:
+        print("\nFAILED on: %s" % ", ".join(bad)); return 1
+    print("\nAll %d conditions behave as claimed." % len(results))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

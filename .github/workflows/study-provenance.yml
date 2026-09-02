@@ -57,6 +57,9 @@ on:
       - 'scripts/check_bridge.py'
       - 'scripts/check_bridge_negative_control.py'
       - 'engine/build_depth_audit/bridge_outstanding.json'
+      - 'scripts/check_lens_design.py'
+      - 'scripts/check_lens_design_negative_control.py'
+      - 'engine/build_depth_audit/lens_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -103,6 +106,9 @@ on:
       - 'scripts/check_bridge.py'
       - 'scripts/check_bridge_negative_control.py'
       - 'engine/build_depth_audit/bridge_outstanding.json'
+      - 'scripts/check_lens_design.py'
+      - 'scripts/check_lens_design_negative_control.py'
+      - 'engine/build_depth_audit/lens_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -306,3 +312,20 @@ jobs:
       # re-added, which is legitimate and must NOT fire
       - name: Bridge-standard gate — negative control
         run: python3 scripts/check_bridge_negative_control.py
+
+      # [R-LENS-03] the lens architecture. PHDC's central was a blend of four
+      # lenses at typed weights, three of which value a developer on reported
+      # accounting earnings and historical-cost book — a floor, not a value, for
+      # a company whose worth sits in an undelivered order book carried at
+      # historical cost. Its cash-flow lens landed within 2.2% of the market; the
+      # blend landed 28% below. The weights had never cleared any out-of-sample
+      # bar; they were chosen, written down and inherited.
+      - name: Lens-architecture gate
+        run: python3 scripts/check_lens_design.py
+
+      # and the proof that gate can go red — among its cases is PHDC's own
+      # architecture exactly as it shipped. Its first run caught a real
+      # inconsistency in the registry itself: a "clean" example using a lens the
+      # class does not permit.
+      - name: Lens-architecture gate — negative control
+        run: python3 scripts/check_lens_design_negative_control.py
