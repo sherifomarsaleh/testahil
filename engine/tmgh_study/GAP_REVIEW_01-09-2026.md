@@ -336,3 +336,21 @@ retro-edited here.
 - `gap_review_calcs.py` → `gap_review_calcs.json` — every computed figure above.
   It imports the study's own `model` and `valuation` modules and asserts it
   reproduces the published `rating|capacity` case before varying anything.
+
+---
+
+## Addendum, 02-Sep-2026 — the two corrections applied (interim class-A edition)
+
+Both corrections this review computed were applied in the study's own code on 02-Sep-2026, under the standing rule that a computed correction is applied or blocks: contracted sales restated flat in real terms (`model.SALES_FADE` 0.85 → 1.15, the review's own figure), and the minority deducted at its share of **value**, proxied by the filed FY2025 profit share (20.98%), with book and proportional printed beside it as the more punitive reads (protocol lines 383–387). No rate, terminal, driver or bridge item other than these two moved. Reproduced by `build_numbers.py` from `valuation.py`:
+
+| Case | 01-Sep (book minority) | 02-Sep (value-share minority, flat-real sales) | vs 97.80 |
+|---|---:|---:|---:|
+| rating ERP · capacity | 53.05 | **89.47** | −8.5% |
+| CDS ERP · capacity | 59.67 | **98.17** | +0.4% |
+| rating ERP · recovery | 22.30 | 47.10 | −51.8% |
+| CDS ERP · recovery | 25.62 | 50.36 | −48.5% |
+| median (the exposed figure) | 39.33 | 69.92 | −28.5% |
+
+The capacity reading now sits inside the gate on both ERP bases, exactly as this review predicted (89.47). The recovery reading remains far below the price for the reason heading 4 named and this edition does not touch: every year of a ten-year window, a fourteen-year residual annuity and the perpetuity are discounted at a flat 35.79%, in breach of the protocol's own sliding-schedule rule. That is the cost-of-capital workstream (WS1 of the reassessment plan), a class-A item in its own right, and it is applied when the module lands — not here, because the module does not yet exist and a hand-made glide would be a second convention where the plan calls for one. The exposed median still breaches the gate at −28.5%; this addendum is the review of that breach: the residual is one named lever with a written rule behind it.
+
+The delivered document and workbook are rebuilt on these numbers with the minority basis stated as adopted; the reverse-DCF and the two-sided review of a re-issue that lands above the price (the CDS capacity case at +0.4% does not) follow when WS7 lands.

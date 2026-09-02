@@ -115,9 +115,9 @@ def build(path):
     r = put(s, r, "Shares in issue, million", M["shares_mn"], fmt=NUM2, blue=True)
     r = put(s, r, "Market capitalisation, EGP mn", "=B2*B3", fmt=NUM)
     r += 1
-    r = head(s, r, ["Case", "Enterprise value", "Equity value",
-                    "Per share, minority at book",
-                    "Per share, minority proportional", "Against last close"])
+    r = head(s, r, ["Case", "Enterprise value", "Equity value (adopted basis)",
+                    "Per share, minority at value share (adopted)",
+                    "Per share, minority at book", "Against last close"])
     first = r
     for k in ("rating|capacity", "rating|recovery", "cds|capacity", "cds|recovery"):
         basis, mode = k.split("|")
@@ -126,16 +126,16 @@ def build(path):
                % ("Rating" if basis == "rating" else "Swap",
                   "slower" if mode == "capacity" else "faster")).font = BLACK
         s.cell(row=r, column=2, value=CASES[k]["enterprise_value"]).number_format = NUM
-        s.cell(row=r, column=3, value=CASES[k]["equity_after_nci_book"]).number_format = NUM
+        s.cell(row=r, column=3, value=CASES[k]["equity_after_nci_value_share"]).number_format = NUM
         s.cell(row=r, column=4, value="=C%d/$B$3" % r).number_format = NUM2
-        s.cell(row=r, column=5, value=PSP[k]).number_format = NUM2
+        s.cell(row=r, column=5, value=PSB[k]).number_format = NUM2
         s.cell(row=r, column=6, value="=D%d/$B$2-1" % r).number_format = PCT
         r += 1
     last = r - 1
     r += 1
-    r = put(s, r, "Lowest published case, EGP/share", "=MIN(D%d:E%d)" % (first, last),
+    r = put(s, r, "Lowest published case, EGP/share", "=MIN(D%d:D%d)" % (first, last),
             fmt=NUM2, bold=True)
-    r = put(s, r, "Highest published case, EGP/share", "=MAX(D%d:E%d)" % (first, last),
+    r = put(s, r, "Highest published case, EGP/share", "=MAX(D%d:D%d)" % (first, last),
             fmt=NUM2, bold=True)
     r += 1
     r = put(s, r, "Discount rate the last close implies, slower conversion",
@@ -171,9 +171,9 @@ def build(path):
          "the crux, read the other way"),
         ("Normalised annual contracted sales, EGP mn", MP["REPLENISHMENT_SALES"],
          NUM, "below the 2025 figure and far below 2024's launch year"),
-        ("Sales fade toward the delivery rate, a year", MP["SALES_FADE"], NUM2,
-         "TMG currently sells about ten times what it delivers; that is not a "
-         "steady state and is not extrapolated"),
+        ("Contracted sales, nominal growth factor a year (flat in real terms)", MP["SALES_FADE"], NUM2,
+         "held flat in real terms against the inflation inside the terminal rate; "
+         "the order-book guard still caps recognised revenue at what has been sold"),
         ("Long-run growth", MP["TERMINAL_GROWTH"], PCT,
          "below Egypt's own nominal growth"),
         ("Tax rate", MP["TAX"], PCT, "Egypt's statutory corporate rate"),
@@ -231,7 +231,9 @@ def build(path):
     gross_row = r
     r = put(s, r, "Value of the whole group's equity",
             "=B%d+SUM(B%d:B%d)" % (ev_row, ev_row + 1, r - 1), fmt=NUM, bold=True)
-    r = put(s, r, "Non-controlling interests, at book", -c["nci_book"], fmt=NUM)
+    r = put(s, r, "Non-controlling interests at their share of value (adopted)",
+            -(c["equity_before_minority"] - c["equity_after_nci_value_share"]), fmt=NUM)
+    r = put(s, r, "  reference: minority at book", -c["nci_book"], fmt=NUM)
     eq_row = r
     r = put(s, r, "Equity attributable to TMG's shareholders",
             "=B%d+B%d" % (gross_row, r - 1), fmt=NUM, bold=True)
@@ -450,7 +452,7 @@ def add_rest(wb, ws):
     grid = LENS["sensitivity"]["wacc_grid"]
     waccs = sorted({x["wacc"] for x in grid.values()})
     r = head(s, 1, ["Discount rate", "Slower conversion, EGP/share",
-                    "Faster conversion, EGP/share", "Against last close"],
+                    "Faster conversion, EGP/share (minority at book)", "Against last close"],
              [16, 28, 28, 20])
     for w in waccs:
         s.cell(row=r, column=1, value=w).number_format = PCT2
@@ -514,7 +516,7 @@ def main():
     wb, ws = build(None)
     add_statements(wb, ws)
     add_rest(wb, ws)
-    out = os.path.join(HERE, "TMGH_Valuation_Model_01092026.xlsx")
+    out = os.path.join(HERE, "TMGH_Valuation_Model_02092026.xlsx")
     wb.save(out)
     from openpyxl import load_workbook
     chk = load_workbook(out)

@@ -16,7 +16,7 @@ import model as M
 import valuation as VAL
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
-BOOK = os.path.join(HERE, "TMGH_Valuation_Model_01092026.xlsx")
+BOOK = os.path.join(HERE, "TMGH_Valuation_Model_02092026.xlsx")
 TOL = 1e-6
 
 
@@ -102,9 +102,13 @@ def main():
 
     # 6. SOTP bridge: the equity value and the per-share figure
     ws = wb["SOTP Bridge"]
-    r = find_row(ws, "Non-controlling interests, at book")
-    check("minority deducted at book", ws.cell(row=r, column=2).value,
-          -b["nci_book"], results=res)
+    r = find_row(ws, "Non-controlling interests at their share of value (adopted)")
+    check("minority deducted at its share of value (adopted basis)",
+          None if r is None else ws.cell(row=r, column=2).value,
+          -(b["equity_before_minority"] - b["equity_after_nci_value_share"]), results=res)
+    r = find_row(ws, "reference: minority at book")
+    check("minority at book shown for reference",
+          None if r is None else ws.cell(row=r, column=2).value, -b["nci_book"], results=res)
     r = find_row(ws, "Enterprise value")
     check("enterprise value", None if r is None else
           d["pv_explicit"] + d["pv_residual_book"] + d["pv_terminal_recurring"],

@@ -16,6 +16,7 @@ import valuation as VAL
 import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
+import research_protocol as RP
 
 IN.assert_balance_sheet_foots()
 
@@ -47,6 +48,8 @@ def main():
             "exchange": "EGX", "market": "EG", "currency": "EGP",
             "edition": "2026-08-30", "prior_edition": "2026-06-11",
             "base_year": 2025, "information_set_ends": "1Q2026",
+            "standard_version": RP.STANDARD_VERSION,
+            "spot": 15.20, "spot_date": "close 23 Aug 2026",
         },
         "registry": {k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                     IN.OPERATING, IN.MARKET) for k, v in g.items()},
@@ -153,6 +156,13 @@ def main():
             "bridge_residual_all_drivers_correct": 0.130,
         },
     }
+    out["central"] = out["lens_weighted"]["base"]
+    out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    out["spot"] = 15.20
+    out["meta"]["central"] = out["central"]
+    out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
+    out["meta"]["central_note"] = ("the study's own lens_weighted base, exposed at the top level so "
+                                   "[R-GAP-01]'s gate can read the answer; written by the builder, never by hand")
     json.dump(out, open(os.path.join(HERE, "study_numbers.json"), "w"),
               indent=1, default=str)
     n = sum(1 for _ in json.dumps(out))

@@ -1,5 +1,5 @@
 {
- "standard_built_against": "2026.08.23",
+ "standard_built_against": "2026.09.01",
  "beta_record": {
   "ticker": "TMGH",
   "market": "EG",
@@ -42,7 +42,7 @@
    "topdown": 0
   },
   "unit_share": 0,
-  "standard_version": "2026.08.23"
+  "standard_version": "2026.09.01"
  },
  "sigcm_failures": [],
  "model_study_failures": [],
@@ -86,10 +86,10 @@
    }
   },
   "scrub_hits": [],
-  "document_chars": 60042,
+  "document_chars": 60244,
   "column_audit": [],
   "recalc_mismatches": 0,
-  "recalc_checks": 84,
+  "recalc_checks": 85,
   "sheets": [
    "READ FIRST",
    "Summary",

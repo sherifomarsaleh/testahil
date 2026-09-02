@@ -268,16 +268,25 @@
     "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
     "spot": 15.2,
     "spot_date": "close 23 Aug 2026",
-    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
+    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 \u2014 so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
    },
    "ccy": "EGP",
    "editions": [
     {
+     "corrected": {
+      "on": "2026-09-01",
+      "was": {
+       "base": 15.89,
+       "bear": 7.62,
+       "full": 24.92
+      },
+      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying \u2014 the PRE-campaign range \u2014 not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
+     },
      "delivered": "2026-09-01",
      "edition": 1,
      "fair": {
-      "bear": 4.5998,
       "base": 10.9412,
+      "bear": 4.5998,
       "full": 23.3342
      },
      "lessons": [
@@ -288,15 +297,6 @@
      ],
      "origins": "FY2015-FY2024, h=1-5",
      "scope": "full",
-     "corrected": {
-      "on": "2026-09-01",
-      "was": {
-       "base": 15.89,
-       "bear": 7.62,
-       "full": 24.92
-      },
-      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying — the PRE-campaign range — not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
-     },
      "vs_baseline_pct": null,
      "vs_previous_pct": null
     }
@@ -350,6 +350,28 @@
       "base": -73.3,
       "bear": -73.3,
       "full": -68.5
+     }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 2,
+     "fair": {
+      "base": 69.92,
+      "bear": 47.1,
+      "full": 98.17
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025 h=1-5, 15 cells; interim class-A edition 02-Sep-2026: flat-real contracted sales + minority at value share, applied from GAP_REVIEW_01-09-2026",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -52.5,
+      "bear": -43.7,
+      "full": -48.2
+     },
+     "vs_previous_pct": {
+      "base": 77.8,
+      "bear": 111.3,
+      "full": 64.5
      }
     }
    ],

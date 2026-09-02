@@ -128,7 +128,10 @@ def build(path):
     para(doc, "That range is the envelope of four published cases: two ways of "
               "measuring Egypt's equity risk premium, crossed with two readings "
               "of how fast the order book converts, each shown with the minority "
-              "interest deducted at book value and proportionally. The cases are "
+              "interest deducted on three bases — at its share of value, proxied by "
+              "the filed profit share, which is the basis adopted; at book; and pro "
+              "rata to book — because the protocol deducts a minority at what it is "
+              "worth, never at what it historically cost. The cases are "
               "not averaged, because averaging two answers to a question nobody "
               "has settled produces a number that was true in neither.")
     para(doc, "Run the same model backwards and ask what discount rate would "
@@ -156,12 +159,13 @@ def build(path):
                "slower" if mode == "capacity" else "faster"),
             pct(CASES[k]["wacc"], 2),
             money(CASES[k]["enterprise_value"]),
-            money(CASES[k]["equity_after_nci_book"]),
+            money(CASES[k]["equity_after_nci_value_share"]),
+            money(CASES[k]["per_share_nci_value_share"], 2),
             money(PSB[k], 2), money(PSP[k], 2)])
     table(doc, ["Case", "Discount rate", "Enterprise value",
-                "Equity value", "Per share, minority at book",
-                "Per share, minority pro rata"],
-          rows, [3.8, 1.9, 2.5, 2.3, 2.9, 2.8],
+                "Equity value (adopted)", "Per share, minority at value share",
+                "Per share, at book", "Per share, pro rata"],
+          rows, [3.4, 1.7, 2.3, 2.3, 2.6, 2.0, 2.0],
           "All values in EGP million except per-share figures, which are in EGP. "
           "The four cases are published side by side and never averaged.")
 
@@ -293,10 +297,13 @@ def section1(doc):
           ["Investments in associates and other financial assets",
            money(c["associates"] + c["fvoci"])],
           ["Value of the whole group's equity", money(c["equity_before_minority"])],
-          ["Non-controlling interests, at book",
-           "(%s)" % money(c["nci_book"])],
+          ["Non-controlling interests at their share of value (filed profit share, %s)"
+           % pct(c["nci_profit_share"]),
+           "(%s)" % money(c["equity_before_minority"] - c["equity_after_nci_value_share"])],
+          ["  for reference: at book %s; pro rata to book %s"
+           % (money(c["nci_book"]), money(c["equity_before_minority"] * c["nci_share_of_equity"])), ""],
           ["Equity attributable to TMG's own shareholders",
-           money(c["equity_after_nci_book"])],
+           money(c["equity_after_nci_value_share"])],
           ["Shares in issue, million", money(c["shares_mn"], 1)],
           ["Value per share, EGP", money(c["per_share_nci_book"], 2)]]
     table(doc, ["Bridge from enterprise value to equity", "EGP million"], br,
@@ -497,7 +504,7 @@ def section1_drivers(doc):
                    key=lambda kv: int(kv[0]))]
     table(doc, ["Years to convert the order book", "EGP per share"], conv,
           [7.0, 4.0],
-          "At this study's discount rate, with the minority deducted at book. "
+          "At this study's discount rate, with the minority deducted at its share of value. "
           "The company's own record over the last three years is consistent with "
           "the slower end of this table.")
     para(doc, "The evidence for the slower reading is the company's own "
@@ -1008,7 +1015,7 @@ def main():
     section1_drivers(doc)
     sections_2_to_7(doc)
     appendices(doc)
-    out = os.path.join(HERE, "TMGH_Valuation_Study_01-09-2026.docx")
+    out = os.path.join(HERE, "TMGH_Valuation_Study_02-09-2026.docx")
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

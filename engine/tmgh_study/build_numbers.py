@@ -17,6 +17,7 @@ import model as M
 import valuation as VAL
 import statements as ST
 import lenses as LN
+import research_protocol as RP
 import wacc as WC
 
 
@@ -40,15 +41,19 @@ def build():
     cases = {k: val[k] for k in val if "|" in k}
     per_share = {k: v["per_share_nci_book"] for k, v in cases.items()}
     ps_prop = {k: v["per_share_nci_proportional"] for k, v in cases.items()}
+    ps_value = {k: v["per_share_nci_value_share"] for k, v in cases.items()}
 
-    lo = min(list(per_share.values()) + list(ps_prop.values()))
-    hi = max(list(per_share.values()) + list(ps_prop.values()))
+    # The published envelope and the exposed central are on the ADOPTED minority basis
+    # (value share); book and proportional are printed beside it [class-A, 02-Sep-2026].
+    lo = min(ps_value.values())
+    hi = max(ps_value.values())
 
     return {
         "meta": {
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition_date": "2026-09-01",
+            "edition_date": "2026-09-02",
+            "standard_version": RP.STANDARD_VERSION,
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
             "shares_mn": sh,
             "market_cap": spot * sh,
@@ -62,6 +67,8 @@ def build():
         "valuation_cases": cases,
         "per_share_nci_book": per_share,
         "per_share_nci_proportional": ps_prop,
+        "per_share_nci_value_share": ps_value,
+        "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "
                                       "bases x two readings of the crux — on the "
@@ -86,6 +93,19 @@ def build():
 
 def main():
     d = build()
+    # THE ANSWER THE GAP GATE READS. This study deliberately publishes no central — four
+    # cases, never averaged — so the exposed figure is the MEDIAN of the four book-minority
+    # cases, labelled a summary statistic. Written by the builder, never by hand.
+    cases = sorted(d["per_share_nci_value_share"].values())
+    med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
+    d["central"] = med
+    d["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    d["spot"] = d["meta"]["spot"]
+    d["meta"]["central"] = med
+    d["meta"]["gap_vs_spot"] = med / d["spot"] - 1
+    d["meta"]["central_note"] = ("THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL — the four cases are never "
+                                 "averaged. The figure is the median of the four book-minority cases, exposed "
+                                 "only so [R-GAP-01]'s gate can read the answer; every case sits below the price.")
     p = os.path.join(HERE, "study_numbers.json")
     json.dump(d, open(p, "w"), indent=1)
     print("wrote %s (%d bytes)" % (p, os.path.getsize(p)))

@@ -9,11 +9,12 @@
   "prior_edition": "2026-06-11",
   "base_year": 2025,
   "information_set_ends": "1Q2026",
-  "central": 10.94115888507453,
+  "standard_version": "2026.09.01",
   "spot": 15.2,
   "spot_date": "close 23 Aug 2026",
+  "central": 10.94115888507453,
   "gap_vs_spot": -0.2801869154556229,
-  "central_note": "the study's own lens_weighted base. Exposed at the top level because [R-GAP-01]'s gate reported this study as 'carries no central/spot pair' \u2014 an UNREADABLE answer, which that rule treats as a failure rather than a skip, and rightly: the delivered document says EGP 10.94 while the fair-value movement register had recorded 15.89, the pre-campaign number read off assets/data.js. Nothing could see the disagreement."
+  "central_note": "the study's own lens_weighted base, exposed at the top level so [R-GAP-01]'s gate can read the answer; written by the builder, never by hand"
  },
  "registry": {
   "revenue_fy25": {
@@ -2895,5 +2896,6 @@
   "bridge_residual_all_drivers_correct": 0.13
  },
  "central": 10.94115888507453,
+ "standard_version": "2026.09.01",
  "spot": 15.2
 }

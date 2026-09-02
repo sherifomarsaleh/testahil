@@ -120,9 +120,22 @@ def bridge(d):
     fvoci = _v(IN.BS, "fvoci")
     nci_book = _v(IN.BS, "nci_equity")
     nci_share = nci_book / _v(IN.BS, "total_equity")
+    # [CLASS-A CORRECTION, 02-Sep-2026 — Standing_Research_Protocol.md lines 383-387, 13-Jul
+    # r3: "NCI — deduct at FAIR VALUE, never at book"; applied from GAP_REVIEW_01-09-2026
+    # heading 6.] The minority's subsidiaries are not disclosed individually, so its share of
+    # VALUE is proxied by its FILED share of group profit (FY2025: 3,818.1 / 18,202.0 = 20.98%),
+    # against a 45.21% share of BOOK equity that the two earlier framings both used. Book and
+    # proportional stay printed beside it as the more punitive reads; the adopted basis is
+    # the value-share proxy. The subsidiary-level fair value the rule asks for is the gap
+    # this closes when the disclosure arrives.
+    nci_profit_share = _v(IN.IS, "nci_profit_fy25") / _v(IN.IS, "net_profit_fy25")
     gross = d["enterprise_value"] + cash - debt - leases + ip + assoc + fvoci
     sh = _v(IN.KPI, "shares_outstanding")
     return {
+        "nci_profit_share": nci_profit_share,
+        "equity_after_nci_value_share": gross * (1 - nci_profit_share),
+        "per_share_nci_value_share": gross * (1 - nci_profit_share) / sh,
+        "nci_basis_adopted": "value share (filed profit share proxy)",
         "enterprise_value": d["enterprise_value"],
         "cash_and_deposits": cash, "borrowings": debt, "lease_liabilities": leases,
         "net_cash": cash - debt - leases,

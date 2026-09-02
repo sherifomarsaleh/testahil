@@ -53,8 +53,18 @@ SEASONAL = 2.9078     # FY2025 development revenue over its own first half
 REPLENISHMENT_SALES = 300000.0  # normalised annual contracted sales, below the
                       # 1H2026 annualised run rate of EGP 438bn and the FY2025
                       # EGP 382bn, and far below FY2024's launch-year EGP 504bn
-SALES_FADE = 0.85     # replenishment sales converge on the delivery rate;
-                      # 300bn fading at 15% a year reaches about 59bn by 2035
+SALES_FADE = 1.15     # [CLASS-A CORRECTION, 02-Sep-2026 — applied from the study's own
+                      # GAP_REVIEW_01-09-2026 heading 3.] The 01-Sep edition faded
+                      # replenishment sales 15% a year NOMINAL (0.85), which at the
+                      # ~14.6% inflation inside this study's own terminal rate is about
+                      # -26% a year REAL — a -91% real decline by 2035 with no precedent
+                      # in the 2011-2025 record, and never disclosed as a real-terms
+                      # assumption. The convergence-on-deliveries argument is a REAL
+                      # quantity argument; the series is nominal. Restated FLAT IN REAL
+                      # TERMS: +15% nominal a year, the review's own figure (76.51 on the
+                      # capacity case at the unchanged rate). The order-book guard below
+                      # still caps recognised revenue at what has been sold. Replaced by
+                      # the house macro path when [R-MACRO-01] lands.
 HOSP_GROWTH = 0.20
 OTHER_GROWTH = 0.22
 HOSP_CAPEX_RATIO = 0.10
