@@ -21,14 +21,21 @@
  "phase": "1",
  "current": {
   "workstream": "WS8 re-issue — ARCC",
-  "step": "ARCC's migration, diagnosed and ready to build",
-  "status": "analysed, not started",
+  "step": "the escalator question is settled by the disclosed half-year; build next",
+  "status": "decision made, build not started",
   "arcc_diagnosis": [
    "ARCC already implements the glide inline (compute.py:1187-1198) with the kd_path shape and the wacc_term<wacc_exp assert, so its cost-of-capital SHAPE conforms.",
    "TERMINAL ANCHOR CONFLICT, and it is exactly cause 3: ARCC builds rf_term = 10.50% from the CBE's '5% Q4-2028' target plus 5.5% real, and g_term = 5%. AMOC builds rf_term = 12.50% from the 7% target in force plus the same 5.5%, and g_term = 7%. Same country, same date, 200bp apart, each with a written argument. The house path settles it at 7% terminal inflation, because the bank's own August 2026 guidance puts the return to the 7% BAND in H2-2027 and does not forecast the 5% undershoot. ARCC moves to rf_term 12.50% and g_term 7.00%; both legs rise 200bp so the terminal spread barely moves.",
    "THE REAL SQUEEZE, the substantive change. ARCC escalates COST at headline inflation (11.5/10/9/8/7) and PRICE at 8.0/9.0/8.0/7.0/6.5 — cost above price in every year. The 2026 price step is genuinely evidenced (the disclosed Q4-2025 exit rate was 7.2% above the full-year average, so 8.0% is nearly a no-further-increase path) but the later steps are chosen and sit below the inflation the same model applies to the company's own costs. That is the artefact the study corrected once at the cost-stack level, surviving at the index level. Under [R-MACRO-01] price and cost sit on ONE path: keep the evidenced 2026 anchor, then escalate BOTH on the house path from 2027. Moving cost alone to the house path (16% in 2026) without moving price would make the squeeze far worse and would be wrong.",
    "Then the four records (macro, cost-of-capital, lens, bridge) and the two output records. Class 'cement and heavy industrial': primary DCF, cross-checks EV per tonne, replacement cost, relative multiple, book floor. Retiring the 50/20/22/8 blend alone moves the central from 54.10 to the DCF's 57.60 against a price of 59.00.",
    "ARCC already carries a contested-judgements block in its own numbers file (three judgements with both framings), so its output record is a reshaping rather than new work."
+  ],
+  "arcc_escalator_finding": [
+   "MEASURED, not assumed: expressed against the house path, ARCC's committed model assumes a REAL PRICE DECLINE of 11.0% cumulatively to 2030 and a real COST decline of 5.2%. Neither was stated as such. Both are artefacts of nominal paths typed against an inflation view (11.5/10/9/8/7) that sits 450bp below the house path in 2026.",
+   "THE DISCLOSED HALF-YEAR SETTLES IT. ARCC's reviewed 1H2026 shows a gross margin of 40.5% against FY2025's 40.6% — flat. Its realised price and its realised cost are moving together, whatever headline inflation is doing, and that is a reviewed actual published AFTER the study's paths were set.",
+   "So the SUBSTANCE of the model is right and is now corroborated by a filing; what is wrong is only the EXPRESSION. Two typed nominal index paths stand in for one relationship the company's own accounts disclose.",
+   "THE BUILD: anchor the 2026 nominal steps on the disclosed half-year rather than on either index (the study's own standing rule — a near-term reviewed actual outranks a stale full-year rate), and escalate BOTH price and cost on the house path from 2027 with their real growth STATED. That removes two free paths and replaces them with one sourced path plus a disclosed anchor. Do NOT move cost alone to the house path: that would put 16% cost inflation against an 8% price step and manufacture a 4.3% cumulative squeeze the company's own half-year contradicts.",
+   "Then the terminal anchors (rf_term 10.50% -> 12.50%, g_term 5% -> 7%), the four construction records, the two output records, the lens architecture (the 50/20/22/8 blend retired; the DCF at 57.60 becomes the central against a price of 59.00, from the blend's 54.10), and the full rebuild."
   ]
  },
  "done": [
@@ -65,7 +72,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T20:40:00Z",
+ "updated": "2026-09-02T20:43:35Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
