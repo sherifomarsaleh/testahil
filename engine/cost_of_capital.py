@@ -82,6 +82,9 @@ class DebtBook:
     effective_rate_periods: Sequence[str] = ()
     kd_fx_local_equivalent: Optional[float] = None   # FX coupon + expected depreciation, never a raw FX coupon
     interest_bearing_note: str = ""       # what the denominator of the effective rate actually was
+    # the ONE escape from the independent-rate check, and it is stop-and-inform:
+    # name the disclosure that is missing, never the inconvenience
+    effective_rate_unavailable: str = ""
 
     def blended_kd(self) -> float:
         if self.kd_fx_local_equivalent is None:
@@ -260,11 +263,35 @@ def _check_kd(book: DebtBook, rf_observed: float) -> Dict[str, object]:
             "with meaningful foreign-currency debt needs a currency-blended Kd, and a "
             "single-currency shortcut asserted rather than evidenced is a fail.")
     if len(book.effective_rates) < 2:
-        raise CostOfCapitalError(
-            "Kd gate (ii): an INDEPENDENTLY computed effective rate is required over at "
-            "least two periods (interest expense over average interest-bearing debt). "
-            "%d supplied. A disclosed contractual range's midpoint is not evidence."
-            % len(book.effective_rates))
+        # THE ONE ESCAPE, AND IT IS STOP-AND-INFORM RATHER THAN A WAIVER. Where the
+        # disclosure genuinely cannot support the check -- most often because part of
+        # the interest incurred is CAPITALISED into work in progress and the statements
+        # do not separate it, so the P&L charge over the debt understates the rate by a
+        # large multiple -- the study says so, names what is missing, and carries the
+        # limitation into its own gap list. It may not simply be silent, and the reason
+        # must name the disclosure, not the inconvenience.
+        why = (book.effective_rate_unavailable or "").strip()
+        if len(why) < 60 or "disclos" not in why.lower():
+            raise CostOfCapitalError(
+                "Kd gate (ii): an INDEPENDENTLY computed effective rate is required over "
+                "at least two periods (interest INCURRED over average interest-bearing "
+                "debt). %d supplied, and no adequate reason recorded. A disclosed "
+                "contractual range's midpoint is not evidence, and 'not available' is not "
+                "a reason -- name the disclosure that is missing."
+                % len(book.effective_rates))
+        return {
+            "adopted_kd": book.blended_kd(),
+            "effective_rates": list(book.effective_rates),
+            "effective_rate_periods": list(book.effective_rate_periods),
+            "effective_rate_unavailable": why,
+            "currency_source": book.currency_source,
+            "interest_bearing_note": book.interest_bearing_note,
+            "pct_local_currency": book.pct_local_currency,
+            "limitation": ("the independent effective-rate check could not be performed on "
+                           "this company's disclosure; the adopted rate rests on the "
+                           "sovereign plus a stated corporate spread and this is a "
+                           "limitation of the study, recorded rather than passed over"),
+        }
     if not book.interest_bearing_note:
         raise CostOfCapitalError(
             "Kd gate (ii): the effective rate's DENOMINATOR is not described. Dividing the "

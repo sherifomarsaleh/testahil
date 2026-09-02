@@ -153,10 +153,17 @@ def check_record(rec, ticker):
                          "all-local-currency book. A same-currency corporate cannot borrow "
                          "below its own sovereign." % (kd, rf))
         eff = ki.get("effective_rates") or []
-        if len(eff) < 2:
+        why = (ki.get("effective_rate_unavailable") or "").strip()
+        if len(eff) < 2 and not (len(why) >= 60 and "disclos" in why.lower()):
             fails.append("the cost-of-debt gate needs an independently computed effective rate "
-                         "over at least two periods; %d recorded. A disclosed contractual "
-                         "range's midpoint is not evidence." % len(eff))
+                         "over at least two periods; %d recorded, and no adequate reason. A "
+                         "disclosed contractual range's midpoint is not evidence, and 'not "
+                         "available' is not a reason — name the disclosure that is missing."
+                         % len(eff))
+        elif len(eff) < 2:
+            # stop-and-inform, honoured: the limitation is recorded and reported here so a
+            # reader of the gate's output can see which studies carry it
+            pass
         else:
             if abs(kd - eff[-1]) > 0.015 + TOL:
                 fails.append("the adopted cost of debt is %.0fbp from the latest independently "
@@ -197,8 +204,11 @@ def audit(sdir):
     fails = check_record(rec, tk)
     if fails:
         return "fail", "; ".join(fails)
-    return "ok", ("%s, %.2f%% gliding to %.2f%%"
-                  % (rec.get("market"), 100 * rec["wacc_exp"], 100 * rec["wacc_terminal"]))
+    note = ""
+    if (rec.get("kd_integrity") or {}).get("effective_rate_unavailable"):
+        note = "   [cost-of-debt check unavailable on this disclosure, stated]"
+    return "ok", ("%s, %.2f%% gliding to %.2f%%%s"
+                  % (rec.get("market"), 100 * rec["wacc_exp"], 100 * rec["wacc_terminal"], note))
 
 
 def main():

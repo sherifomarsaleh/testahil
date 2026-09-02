@@ -45,9 +45,9 @@
      "Per-Share & Ratios",
      "Peer & Sector"
     ],
-    "formula_cells": 75,
+    "formula_cells": 175,
     "scrub_hits": [],
-    "document_chars": 84316,
+    "document_chars": 86371,
     "column_audit": [],
     "figures_rebuilt": [
      "fig1_football.png",
@@ -63,7 +63,7 @@
      "fig4_peers.png"
     ],
     "figures_with_transparency": [],
-    "recalc_checks": 88,
+    "recalc_checks": 228,
     "recalc_mismatches": 0,
     "bibliography_present": true,
     "pdfs": [
@@ -94,9 +94,9 @@
    "Per-Share & Ratios",
    "Peer & Sector"
   ],
-  "formula_cells": 75,
+  "formula_cells": 175,
   "scrub_hits": [],
-  "document_chars": 84316,
+  "document_chars": 86371,
   "column_audit": [],
   "figures_rebuilt": [
    "fig1_football.png",
@@ -112,7 +112,7 @@
    "fig4_peers.png"
   ],
   "figures_with_transparency": [],
-  "recalc_checks": 88,
+  "recalc_checks": 228,
   "recalc_mismatches": 0,
   "bibliography_present": true,
   "pdfs": [

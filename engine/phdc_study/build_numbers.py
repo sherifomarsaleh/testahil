@@ -36,11 +36,12 @@ def main():
     waccs, grid = V2.sensitivity()
     cfos = [CF["lo"], 0.060, CF["mid"], 0.120, CF["hi"]]
     gv = [row for _c, row in grid]
-    base = V2.run(CF["mid"], W["wacc_rating"])
-    base_cds = V2.run(CF["mid"], W["wacc_cds"])
-    low = V2.run(CF["lo"], W["wacc_rating"])
-    high = V2.run(CF["hi"], W["wacc_rating"])
-    implied = V2.implied_conversion(V2.SPOT, W["wacc_rating"])
+    S = V2.SCHEDULES["rating"]
+    base = V2.run(CF["mid"], S)
+    base_cds = V2.run(CF["mid"], V2.SCHEDULES["cds"])
+    low = V2.run(CF["lo"], S)
+    high = V2.run(CF["hi"], S)
+    implied = V2.implied_conversion(V2.SPOT, S)
 
     gross_debt = sum(r["value"] for r in IN.DEBT_FY25.values())
     out = {
@@ -178,6 +179,69 @@ def main():
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
         "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
+        # [R-LENS-03] the architecture as a record the outside gate reads
+        "lens_record": {
+            "class": "real-estate developer, off-plan, percentage-of-completion",
+            "primary": {"kind": "dcf", "value": V2.lenses()["primary"]["value"],
+                        "range": {"low": V2.lenses()["rows"][0][1],
+                                  "high": V2.lenses()["rows"][0][3]},
+                        "range_note": ("the cash-flow lens across the full observed range of "
+                                       "the crux — cash conversion — with the whole schedule "
+                                       "shifted rather than flattened"),
+                        "note": ("the cash-flow lens on the company's own units and prices, "
+                                 "discounted on the cost-of-capital schedule over a window "
+                                 "that runs until growth has converged on the terminal")},
+            "cross_checks": [
+                {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
+                 "multiple_source": ("the multiples PHDC's own shares have carried over five "
+                                     "years of its own history, 6x to 14x trailing earnings")},
+                {"kind": "book_value", "value": V2.lenses()["book"], "present_value": False,
+                 "note": ("shareholders' funds attributable to the parent at 31 March 2026, "
+                          "per share: a disclosed floor, published as such and carrying no "
+                          "weight")},
+            ],
+            "retired_lenses": [
+                {"kind": "normalised_earnings",
+                 "why": ("not a lens for this class. A developer recognising revenue on "
+                         "completion reports earnings that are an accident of which project "
+                         "completed in which year, and capitalising a mid-cycle figure treats "
+                         "that schedule as a steady state. It was this study's lowest read and "
+                         "carried a fifth of the retired blend's weight; the working is kept "
+                         "as a disclosed diagnostic and carries no value claim.")},
+            ],
+            "envelope": V2.lenses()["envelope"],
+            "central": V2.lenses()["primary"]["value"],
+        },
+        # [R-MACRO-01] every growth rate, stored so it recomputes
+        "macro_record": {
+            "market": "EG",
+            "path_as_of": V2.PATH.as_of,
+            "growth_lines": [
+                {"name": "selling price and cost per delivered unit",
+                 "years": [r["year"] for r in BU.build()["rows"]],
+                 "nominal": [round(BU.price_growth(r["year"]), 6)
+                             for r in BU.build()["rows"]],
+                 "real": 0.0,
+                 "basis": ("the house inflation path, zero real: price and cost escalate "
+                           "together so the margin is an OUTPUT")},
+                {"name": "units delivered",
+                 "years": [r["year"] for r in BU.build()["rows"]],
+                 "nominal": [round(BU.delivery_growth(i), 6)
+                             for i in range(1, len(BU.build()["rows"]) + 1)],
+                 "exempt_reason": ("a physical handover rate, not a price: the company's own "
+                                   "disclosed 15% run, faded to nothing over ten years "
+                                   "because it is limited by what it can build and its order "
+                                   "book is finite")},
+            ],
+            "terminal": {"g_nominal": V2.TG, "real": V2.TERMINAL_REAL_GROWTH,
+                         "rf": V2.SCHEDULES["rating"].rf_terminal,
+                         "inflation_in_rf": V2.PATH.terminal_inflation},
+            "explicit_years": len(BU.build()["rows"]),
+            "growth_at_horizon_end": round(
+                BU.build()["rows"][-1]["revenue"] / BU.build()["rows"][-2]["revenue"] - 1, 6),
+        },
+        # [R-COC-01] the schedule, on this study's CENTRAL basis
+        "cost_of_capital_record": W["cost_of_capital_record"],
         "bridge": [list(x) for x in V2.bridge(V2.lenses()["dcf"]["base"])],
         "ranged_revenue": V2.ranged_revenue(),
         "dcf_cases": {k: {kk: vv for kk, vv in v.items()}
@@ -204,9 +268,9 @@ def main():
                                 "low": ST.CONV_LO, "high": ST.CONV_HI},
             "framing_a": ST.project("cycle"),
             "framing_b": ST.project("conversion"),
-            "dcf_a": ST.bridge(ST.project("cycle"), W["wacc_rating"], V2.TG,
+            "dcf_a": ST.bridge(ST.project("cycle"), S, V2.TG,
                                "cycle"),
-            "dcf_b": ST.bridge(ST.project("conversion"), W["wacc_rating"],
+            "dcf_b": ST.bridge(ST.project("conversion"), S,
                                V2.TG, "conversion"),
             "capex_ratio": ST.CAPEX_RATIO, "dividend": ST.DIVIDEND,
             "min_cash": ST.MIN_CASH, "other_assets": ST.OTHER_ASSETS,
@@ -225,13 +289,16 @@ def main():
             "bridge_residual_all_drivers_correct": 0.130,
         },
     }
-    out["central"] = out["lens_weighted"]["base"]
+    # [R-LENS-03] the central IS the class primary, not a blend of lenses
+    out["central"] = out["lens_record"]["primary"]["value"]
     out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
     out["spot"] = 15.20
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
-    out["meta"]["central_note"] = ("the study's own lens_weighted base, exposed at the top level so "
-                                   "[R-GAP-01]'s gate can read the answer; written by the builder, never by hand")
+    out["meta"]["central_note"] = (
+        "the cash-flow lens — the class primary — which IS the central under the lens "
+        "architecture of 02-Sep-2026. The cross-checks are published beside it and define "
+        "the range; nothing is averaged. Written by the builder, never by hand.")
     json.dump(out, open(os.path.join(HERE, "study_numbers.json"), "w"),
               indent=1, default=str)
     n = sum(1 for _ in json.dumps(out))

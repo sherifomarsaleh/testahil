@@ -46,6 +46,29 @@ def v(key):
     return REG[key]["value"]
 
 
+# The forecast window now runs fifteen years, because it must run until growth
+# has converged on the terminal. Fifteen columns do not fit a page, so the wide
+# forecast tables show the first five years and then every fifth — the shape of
+# the path, without pretending the table is the model. The workbook carries every
+# year.
+def display_years(rows):
+    """Indices of the years a wide table shows: the first five, then every fifth."""
+    n = len(rows)
+    idx = list(range(min(5, n)))
+    idx += [i for i in range(5, n) if (i + 1) % 5 == 0]
+    return idx
+
+
+def pick(rows, fmt):
+    """Format one row of a wide table on the displayed years only."""
+    return [fmt(rows[i]) for i in display_years(rows)]
+
+
+def wide_widths(rows, label_cm=4.6, total_cm=16.2):
+    n = len(display_years(rows))
+    return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
+
+
 def q(key):
     """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
     return N["balance_sheet_1q26"][key]["value"]
@@ -296,9 +319,10 @@ def build(path):
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
     para(doc, "Palm Hills is worth EGP %.2f a share on a base case built from the "
-              "company's own units and prices, in a range of EGP %.2f to EGP %.2f. "
+              "company's own units and prices, in a range of EGP %.2f to EGP %.2f "
+              "across the full observed range of the one thing that decides it. "
               "The shares trade at EGP %.2f."
-              % (LW["base"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
+              % (N["central"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
     bullets(doc, [
         "The forecast is built from units and prices the company itself "
         "discloses: %s units sold across three regions at EGP %.2f to %.2f million "
@@ -334,21 +358,22 @@ def build(path):
 
     # --- 3 Valuation summary ------------------------------------------------
     doc.add_heading("Valuation summary — every read at a glance", level=1)
-    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight"],
-          [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3], "%.0f%%" % (r[4]*100)]
-           for r in LENS]
-          + [["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
-              "%.2f" % LW["full"], "100%"],
-             ["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
-             ["vs the weighted central", "%+.0f%%" % (100*(sp/LW["bear"]-1)),
-              "%+.0f%%" % (100*(sp/LW["base"]-1)),
-              "%+.0f%%" % (100*(sp/LW["full"]-1)), ""]],
-          [5.6, 2.6, 2.6, 2.6, 2.0],
-          "EGP per share. Weights are stated in advance and are the same across "
-          "the three columns. The discounted cash flow carries the most weight "
-          "because it is the only lens built from the company's own units and "
-          "prices; book value carries the least because it is a floor, not a "
-          "value.")
+    LR = N["lens_record"]
+    table(doc, ["Lens", "Low", "Central", "High", "Role"],
+          [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3],
+            "the central" if i == 0 else "cross-check"]
+           for i, r in enumerate(LENS)]
+          + [["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
+             ["vs the central", "", "%+.0f%%" % (100 * (sp / LR["central"] - 1)), "", ""]],
+          [5.6, 2.6, 2.6, 2.6, 2.4],
+          "EGP per share. The cash-flow lens is the central because it is the only "
+          "one built from the company's own units and prices; the others are "
+          "cross-checks, published so that a reader can see where they disagree. "
+          "They are NOT averaged into the central. An earlier edition blended all "
+          "four at fixed weights, and because three of the four value a developer "
+          "on its reported earnings and its historical-cost book — a floor for a "
+          "company whose worth sits in an undelivered order book — the blend read "
+          "as a value when it was measuring a floor.")
     figure(doc, "fig1_football.png",
            "Figure 1 — each bar is one observed rate of cash conversion; the bar "
            "spans the discount rate from four points below the rebuilt cost of "
@@ -422,33 +447,33 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "different clocks, and it systematically overstates profit. Gross "
               "margin here is an output of price against cost, never an input.")
     def _r(key, fmt="%,.0f", scale=1.0):
-        return [("{:,.0f}".format(x[key]*scale) if "f" not in fmt
-                 else fmt % (x[key]*scale)) for x in BU["rows"]]
-    yrs = [str(x["year"]) for x in BU["rows"]]
+        return pick(BU["rows"], lambda x: ("{:,.0f}".format(x[key]*scale) if "f" not in fmt
+                 else fmt % (x[key]*scale)))
+    yrs = pick(BU["rows"], lambda x: str(x["year"]))
     body = [
-        ["Units sold", ["{:,.0f}".format(x["units_sold"]) for x in BU["rows"]]],
-        ["New sales (EGP mn)", ["{:,.0f}".format(x["new_sales"]) for x in BU["rows"]]],
-        ["Units delivered", ["{:,.0f}".format(x["units_delivered"]) for x in BU["rows"]]],
+        ["Units sold", pick(BU["rows"], lambda x: "{:,.0f}".format(x["units_sold"]))],
+        ["New sales (EGP mn)", pick(BU["rows"], lambda x: "{:,.0f}".format(x["new_sales"]))],
+        ["Units delivered", pick(BU["rows"], lambda x: "{:,.0f}".format(x["units_delivered"]))],
         ["Revenue per delivered unit (EGP mn)",
-         ["%.2f" % x["rev_per_unit"] for x in BU["rows"]]],
-        ["Revenue", ["{:,.0f}".format(x["revenue"]) for x in BU["rows"]]],
+         pick(BU["rows"], lambda x: "%.2f" % x["rev_per_unit"])],
+        ["Revenue", pick(BU["rows"], lambda x: "{:,.0f}".format(x["revenue"]))],
         ["Cost per delivered unit (EGP mn)",
-         ["%.2f" % x["cost_per_unit"] for x in BU["rows"]]],
-        ["Cost of revenue", ["{:,.0f}".format(x["cogs"]) for x in BU["rows"]]],
-        ["Gross profit", ["{:,.0f}".format(x["gross"]) for x in BU["rows"]]],
-        ["Gross margin (output)", ["%.1f%%" % (100*x["gross_margin"]) for x in BU["rows"]]],
-        ["Overheads", ["{:,.0f}".format(x["sga"]) for x in BU["rows"]]],
-        ["Operating profit", ["{:,.0f}".format(x["ebit"]) for x in BU["rows"]]],
-        ["Finance cost", ["{:,.0f}".format(x["interest"]) for x in BU["rows"]]],
-        ["Profit before tax", ["{:,.0f}".format(x["npbt"]) for x in BU["rows"]]],
-        ["Tax rate", ["%.1f%%" % (100*x["tax_rate"]) for x in BU["rows"]]],
-        ["Net profit", ["{:,.0f}".format(x["npat"]) for x in BU["rows"]]],
-        ["Earnings per share (EGP)", ["%.2f" % x["eps"] for x in BU["rows"]]],
-        ["Order book, closing", ["{:,.0f}".format(x["backlog"]) for x in BU["rows"]]],
+         pick(BU["rows"], lambda x: "%.2f" % x["cost_per_unit"])],
+        ["Cost of revenue", pick(BU["rows"], lambda x: "{:,.0f}".format(x["cogs"]))],
+        ["Gross profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["gross"]))],
+        ["Gross margin (output)", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
+        ["Overheads", pick(BU["rows"], lambda x: "{:,.0f}".format(x["sga"]))],
+        ["Operating profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["ebit"]))],
+        ["Finance cost", pick(BU["rows"], lambda x: "{:,.0f}".format(x["interest"]))],
+        ["Profit before tax", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npbt"]))],
+        ["Tax rate", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["tax_rate"]))],
+        ["Net profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npat"]))],
+        ["Earnings per share (EGP)", pick(BU["rows"], lambda x: "%.2f" % x["eps"])],
+        ["Order book, closing", pick(BU["rows"], lambda x: "{:,.0f}".format(x["backlog"]))],
     ]
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "Every line follows from the two engines above. Gross margin is what "
           "price per unit and cost per unit leave behind, not an assumption.")
     a = BU["anchors"]
@@ -493,21 +518,22 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "table below runs every step from operating profit to a present "
               "value, year by year, with nothing collapsed.")
     wf = ST["dcf_b"]["waterfall"]
-    wy = [str(w["year"]) for w in wf]
+    wy = pick(wf, lambda w: str(w["year"]))
     def _w(key, fmt="{:,.0f}"):
-        return [fmt.format(w[key]) for w in wf]
+        return pick(wf, lambda w: fmt.format(w[key]))
     table(doc, ["EGP million"] + wy,
           [["Operating profit"] + _w("ebit"),
            ["Cash from operations"] + _w("cfo"),
            ["  as a share of revenue"]
-           + ["%.1f%%" % (100 * w["cfo"] / w["revenue"]) for w in wf],
+           + pick(wf, lambda w: "%.1f%%" % (100 * w["cfo"] / w["revenue"])),
            ["plus finance cost, after tax"] + _w("interest_addback"),
            ["less capital expenditure"] + _w("capex"),
            ["Free cash flow to the firm"] + _w("fcff"),
-           ["Discount factor at %.2f%%" % (100 * ST["dcf_b"]["wacc"])]
-           + ["%.3f" % w["discount_factor"] for w in wf],
+           ["Cost of capital, that year"]
+           + pick(wf, lambda w: "%.1f%%" % (100 * w.get("forward_wacc", ST["dcf_b"]["wacc"]))),
+           ["Discount factor"] + pick(wf, lambda w: "%.3f" % w["discount_factor"]),
            ["Present value"] + _w("pv")],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "The finance charge is added back after tax because the discount rate "
           "already carries the cost of debt; leaving it in the cash flow would "
           "charge for the same thing twice. Capital expenditure is maintenance "
@@ -608,50 +634,50 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     NI = N["lens_detail"]["normalised_inputs"]
     para(doc, "Normalised earnings of EGP %s million — the average of the last two "
               "years' revenue carried one year forward at inflation, at the 2025 "
-              "net margin of %s — are capitalised at the cost of equity of %s less "
-              "the same %s growth the cash-flow model carries beyond its explicit "
-              "years, for EGP %.2f a share. The 30 August 2026 edition capitalised "
-              "the same earnings at the cost of equity alone, for EGP %.2f a share. "
-              "In a currency whose cost of equity embeds Egyptian inflation of "
-              "fourteen to fifteen per cent, capitalising at that rate with no "
-              "growth is not a conservative reading of earnings power; it assumes "
-              "the company shrinks by about thirteen per cent a year in real terms, "
-              "for ever, which nothing in its record supports. One clock for both "
-              "lenses: the growth netted here is the growth the discounted cash flow "
-              "assumes, so the two do not describe different futures."
+              "net margin of %s — would capitalise at the cost of equity of %s less "
+              "growth to about EGP %.2f a share, and at the cost of equity alone, "
+              "as an earlier edition did, to EGP %.2f. Neither figure is published "
+              "as a lens here, and the reason is not the arithmetic. This company "
+              "recognises revenue when a project completes, so its reported earnings "
+              "in any year are an accident of which project happened to complete: "
+              "capitalising a mid-cycle figure treats that schedule as though it "
+              "were a steady state. The working is kept as a diagnostic in the "
+              "workbook and it claims nothing."
               % (money(NI["norm_earn"]), pct(NI["norm_margin"], 1), pct(NI["ke"], 2),
-                 pct(NI["growth_netted"], 1), N["lenses"][3][2],
+                 N["lens_detail"].get("normalised_base",
+                                      NI["norm_earn"] / (NI["ke"] - NI["growth_netted"])
+                                      / N["derived"]["shares_mn"]),
                  NI["as_30aug_edition_e_over_ke"]))
 
     doc.add_heading("1.5  Synthesis — the lenses in one field", level=2)
-    para(doc, "The four lenses disagree, and the disagreement is the information. "
-              "The discounted cash flow is the widest because it carries the crux; "
-              "book value is the narrowest because it is arithmetic on a reported "
-              "balance sheet, and at EGP %.2f a share it is also the lowest read — "
-              "a floor for a company that carries an undelivered order book at "
-              "historical cost. Normalised earnings power sits at EGP %.2f: at a %s "
-              "cost of equity less %s growth, a company earning a %s net margin "
-              "capitalises to more than its book but well below its cash flows."
-              % (N["lenses"][1][2], N["lenses"][3][2], pct(W["ke_rating"], 1),
-                 pct(N["lens_detail"]["normalised_inputs"]["growth_netted"], 1),
-                 pct(v("npat_mi_fy25") / v("revenue_fy25"), 1)))
-    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight", "What moves it"],
-          [[LENS[0][0], "%.2f" % LENS[0][1], "%.2f" % LENS[0][2],
-            "%.2f" % LENS[0][3], "45%", "cash conversion, then the discount rate"],
-           [LENS[1][0], "%.2f" % LENS[1][1], "%.2f" % LENS[1][2],
-            "%.2f" % LENS[1][3], "15%", "nothing — it is a reported figure"],
-           [LENS[2][0], "%.2f" % LENS[2][1], "%.2f" % LENS[2][2],
-            "%.2f" % LENS[2][3], "20%", "the multiple the shares have historically "
-            "carried, 6x to 14x"],
-           [LENS[3][0], "%.2f" % LENS[3][1], "%.2f" % LENS[3][2],
-            "%.2f" % LENS[3][3], "20%", "the cost of equity, and the growth "
-            "netted from it"],
-           ["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
-            "%.2f" % LW["full"], "100%", ""]],
-          [4.2, 2.0, 2.0, 2.2, 1.6, 4.4],
-          "EGP per share, against a close of EGP %.2f. The weights are stated "
-          "before the numbers are read and are identical across the three "
-          "columns." % sp)
+    para(doc, "The lenses disagree, and the disagreement is the information — but "
+              "one of them is the answer and the others are checks on it. The "
+              "cash-flow lens is the central: it is the only one built from the "
+              "company's own units and prices, and it is the only one that values "
+              "an order book the company has sold but not yet handed over. The "
+              "multiple on its own trading history sits at EGP %.2f and book value "
+              "at EGP %.2f, and both are lower for the same reason: they measure "
+              "what has been reported, and what has been reported does not yet "
+              "include a backlog carried at historical cost in a currency that has "
+              "lost most of its value since 2022. That is a floor, and it is "
+              "published as one."
+              % (N["lenses"][1][2], N["lenses"][2][2]))
+    MOVES = ["cash conversion, then the cost of capital",
+             "the multiple the shares have historically carried, 6x to 14x",
+             "nothing — it is a reported figure"]
+    table(doc, ["Lens", "Low", "Central", "High", "Role", "What moves it"],
+          [[LENS[i][0], "%.2f" % LENS[i][1], "%.2f" % LENS[i][2], "%.2f" % LENS[i][3],
+            "the central" if i == 0 else "cross-check", MOVES[i]]
+           for i in range(len(LENS))],
+          [4.2, 1.8, 1.8, 1.8, 1.8, 4.4],
+          "EGP per share, against a close of EGP %.2f. The cash-flow lens is the "
+          "central and the others are cross-checks; they are not averaged. "
+          "Normalised earnings power, which an earlier edition carried at a fifth "
+          "of the weight, is not published as a lens here at all: a developer that "
+          "recognises revenue when a project completes reports earnings that are an "
+          "accident of which project completed in which year, and capitalising a "
+          "mid-cycle figure treats that schedule as a steady state. The working is "
+          "kept in the workbook as a diagnostic and claims nothing." % sp)
 
     doc.add_heading("1.6  Drivers — units and prices, by region", level=2)
     para(doc, "This is what the forecast is built from. For each operating region "
@@ -1014,9 +1040,9 @@ def _appendices(doc, sp, base):
                  N["fy24_cogs_basis"]["fy25_comparative"]
                  - N["fy24_cogs_basis"]["as_reported"]))
     FA, FB = ST["framing_a"], ST["framing_b"]
-    fy = [str(r["year"]) for r in FB]
+    fy = pick(FB, lambda r: str(r["year"]))
     def _f(rows, key, fmt="{:,.0f}", sign=1):
-        return [fmt.format(sign * r[key]) for r in rows]
+        return pick(rows, lambda r: fmt.format(sign * r[key]))
     table(doc, ["Forecast, EGP million"] + fy,
           [["Units delivered"] + _f(FB, "units_delivered"),
            ["Revenue per delivered unit"] + _f(FB, "rev_per_unit", "{:,.2f}"),
@@ -1025,7 +1051,7 @@ def _appendices(doc, sp, base):
            ["Cost of revenue"] + _f(FB, "cogs", "{:,.0f}", -1),
            ["Gross profit"] + _f(FB, "gross"),
            ["Gross margin"]
-           + ["%.1f%%" % (100 * r["gross_margin"]) for r in FB],
+           + pick(FB, lambda r: "%.1f%%" % (100 * r["gross_margin"])),
            ["Overheads"] + _f(FB, "sga", "{:,.0f}", -1),
            ["Depreciation and amortisation"] + _f(FB, "da", "{:,.0f}", -1),
            ["Operating profit"] + _f(FB, "ebit"),
@@ -1034,7 +1060,7 @@ def _appendices(doc, sp, base):
            ["Tax"] + _f(FB, "tax", "{:,.0f}", -1),
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "Five forecast years. Gross margin is what price per unit and cost "
           "per unit leave behind, never an input. Years three to five should be "
           "read against the range in section 1.9, not as points.")
@@ -1137,7 +1163,7 @@ def _appendices(doc, sp, base):
                ["Shareholders' funds"] + _f(rows, "equity"),
                ["Total liabilities and equity"]
                + _f(rows, "total_liabs_and_equity")],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              wide_widths(BU["rows"]),
               "Assets equal liabilities plus shareholders' funds in every "
               "year, to the same tenth of a million the audited 2025 sheet "
               "itself foots to.")
@@ -1148,25 +1174,25 @@ def _appendices(doc, sp, base):
                + _f(rows, "d_wc", "{:,.0f}", -1),
                ["Cash from operations"] + _f(rows, "cfo"),
                ["  as a share of revenue"]
-               + ["%.1f%%" % (100 * r["cash_conversion"]) for r in rows],
+               + pick(rows, lambda r: "%.1f%%" % (100 * r["cash_conversion"])),
                ["Capital expenditure"] + _f(rows, "cfi"),
                ["New borrowing drawn"] + _f(rows, "drawn"),
                ["Closing cash"] + _f(rows, "cash")],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              wide_widths(BU["rows"]),
               None)
         table(doc, ["The cycle this implies"] + fy,
               [["Collection period, days"]
-               + ["%.0f" % r["dso"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dso"]),
                ["Work in progress, days of cost"]
-               + ["%.0f" % r["dio"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dio"]),
                ["Suppliers, days of cost"]
-               + ["%.0f" % r["dpo"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dpo"]),
                ["Customer advances, share of the order book"]
-               + ["%.1f%%" % (100 * r["adv_of_backlog"]) for r in rows],
+               + pick(rows, lambda r: "%.1f%%" % (100 * r["adv_of_backlog"])),
                ["Net working capital"] + _f(rows, "net_wc"),
                ["  as a multiple of revenue"]
-               + ["%.2f" % r["nwc_over_revenue"] for r in rows]],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+               + pick(rows, lambda r: "%.2f" % r["nwc_over_revenue"])],
+              wide_widths(BU["rows"]),
               ("The collection period falls from %.0f days to %.0f over five "
                "years. That is what this reading requires, and it is a large "
                "improvement to take on trust — which is exactly why the other "
@@ -1209,18 +1235,16 @@ def _appendices(doc, sp, base):
             d = ST["dcf_b"]
             table(doc, ["Free cash flow to the firm, EGP million"] + fy,
                   [["Cash from operations"]
-                   + ["{:,.0f}".format(w["cfo"]) for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["cfo"])),
                    ["plus finance cost, after tax"]
-                   + ["{:,.0f}".format(w["interest_addback"])
-                      for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["interest_addback"])),
                    ["less capital expenditure"]
-                   + ["{:,.0f}".format(-w["capex"]) for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(-w["capex"])),
                    ["Free cash flow to the firm"]
-                   + ["{:,.0f}".format(w["fcff"]) for w in d["waterfall"]],
-                   ["Present value at %.2f per cent"
-                    % (100 * d["wacc"])]
-                   + ["{:,.0f}".format(w["pv"]) for w in d["waterfall"]]],
-                  [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["fcff"])),
+                   ["Present value, on the schedule"]
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["pv"]))],
+                  wide_widths(BU["rows"]),
                   "These are the figures discounted in section 1.1, shown "
                   "again here beside the statements they come out of.")
 

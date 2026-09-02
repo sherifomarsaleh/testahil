@@ -137,6 +137,12 @@ def main():
     def m_midpoint(r):
         r["kd_integrity"]["effective_rates"] = [0.240]
 
+    def m_escape_abused(r):
+        # the stop-and-inform escape used as a waiver: no rate, and a reason that
+        # names an inconvenience rather than a disclosure
+        r["kd_integrity"]["effective_rates"] = []
+        r["kd_integrity"]["effective_rate_unavailable"] = "not available"
+
     def m_denominator(r):
         r["kd_integrity"]["interest_bearing_note"] = ""
 
@@ -157,6 +163,7 @@ def main():
                  ("5 Kd below its own sovereign", m_kd_below_sovereign),
                  ("6 Kd on one period only", m_midpoint),
                  ("7 effective-rate denominator undescribed", m_denominator),
+                 ("7b stop-and-inform escape used as a waiver", m_escape_abused),
                  ("8 ladder not monotone", m_nonmonotone),
                  ("9 ladder off its own fractions", m_offladder),
                  ("10 no alternative premium basis", m_nobasis)):
@@ -177,6 +184,20 @@ def main():
     def c_good(tmp):
         put_study(tmp, "NCC", GOOD); put_list(tmp, [])
     case("clean: a conforming schedule", c_good, False, results)
+
+    def c_escape(tmp):
+        # the escape used HONESTLY: no independent rate, and a reason naming the
+        # disclosure that is missing
+        rec = json.loads(json.dumps(GOOD))
+        rec["kd_integrity"]["effective_rates"] = []
+        rec["kd_integrity"]["effective_rate_unavailable"] = (
+            "part of the interest incurred is capitalised into work in progress and the "
+            "statements do not disclose the capitalised amount separately, so interest "
+            "incurred over average interest-bearing debt cannot be computed from what the "
+            "company discloses; the charge that IS disclosed understates the rate by a "
+            "large multiple")
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("clean: escape used honestly, disclosure named", c_escape, False, results)
 
     def c_listed(tmp):
         rec = json.loads(json.dumps(GOOD)); m_flat(rec)

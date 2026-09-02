@@ -317,6 +317,24 @@
       "bear": 13.5,
       "full": 0.9
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 17.1517,
+      "bear": 3.7554,
+      "full": 44.8509
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four modules: the cost-of-capital SCHEDULE, the house macro path (prices 16%->7%, terminal growth 7% inflation-only replacing 12%), the explicit window extended to 15 years so growth converges on the terminal, and the lens architecture (the cash-flow lens IS the central; the typed 45/15/20/20 blend retired, normalised earnings dropped as a developer lens)",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 49.8,
+      "bear": -28.1,
+      "full": 90.5
+     }
     }
    ],
    "exchange": "EGX",

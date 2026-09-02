@@ -917,9 +917,18 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
             fails.append("cross-check %r is not permitted for this class" % k)
         if k == "relative_multiple":
             src = (x.get("multiple_source") or "").lower()
+            # look for the multiple being TAKEN from the price, not for the words
+            # appearing at all -- a source that says "never the current price" is
+            # doing the right thing, and a check that cannot tell the difference
+            # is one people learn to write around
+            circular = any(t in src for t in (
+                "from the current price", "from the price", "from spot",
+                "implied by the current price", "implied by the price",
+                "at the current price", "the multiple the shares trade at",
+                "today's multiple", "the market's own multiple"))
             if not src:
                 fails.append("the relative multiple names no source for its multiple")
-            elif "current price" in src or "spot" in src or "market price" in src:
+            elif circular:
                 fails.append(
                     "the relative multiple takes its multiple from the CURRENT PRICE, which "
                     "values the company at what it already trades at. The multiple comes "

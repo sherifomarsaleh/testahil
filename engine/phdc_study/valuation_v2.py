@@ -29,7 +29,21 @@ BS = BU.BS_BRIDGE
 NET_DEBT = BU.NET_DEBT_BRIDGE
 NCI_SHARE = BU.NCI_VALUE_SHARE   # minority at its share of value, never at book
 SPOT = REG["spot"]
-TG = 0.12                        # terminal growth, below nominal growth
+
+# [R-MACRO-01] Terminal growth is NOT chosen here. It is the house path's terminal
+# inflation plus a STATED real growth, and the real growth is zero: the company is
+# assumed to hold its real size for ever and to grow with prices alone. Earlier
+# editions carried 12% against a terminal rate embedding about 14.6% inflation,
+# which is a perpetual real DECLINE of two to three points a year that nothing
+# disclosed supports and no reader was told about [L-055].
+import macro_path as MP
+PATH = MP.load("EG")
+TERMINAL_REAL_GROWTH = 0.0
+TG = PATH.terminal_growth(TERMINAL_REAL_GROWTH)
+
+# [R-COC-01] the committed SCHEDULE, read back rather than recomputed
+import cost_of_capital as COC
+SCHEDULES = {b: COC.Schedule.from_record(W["schedule"][b]) for b in ("rating", "cds")}
 
 
 def error_band(field, h):
@@ -42,7 +56,10 @@ def error_band(field, h):
 
 
 def ranged_revenue():
-    """Years three to five as low / point / high, from the measured record."""
+    """Years three to five as low / point / high, from the measured record.
+
+    Beyond year five the walk-forward record has no measured error, so those years
+    carry a point and no range rather than an extrapolated one."""
     out = []
     for h, r in zip(range(1, 6), ROWS):
         b = error_band("is.revenue", h)
@@ -55,23 +72,29 @@ def ranged_revenue():
     return out
 
 
-def dcf(cfo_margin, wacc):
+def dcf(cfo_margin, sched):
     """Discount the cash the profit path actually produces.
 
     Cash conversion stays the crux: the profit above is an accrual figure and
     the company's own cash-flow statements put operating cash between 3.9% and
     17.9% of revenue, so the cash leg is run across that observed range.
     """
+    dc = COC.Discounter(sched)
+    wacc = sched.wacc_exp
     pv = 0.0
     for i, r in enumerate(ROWS, start=1):
         cfo = r["revenue"] * cfo_margin
         fcff = cfo + r["interest"] * (1 - BU.TAX) - r["revenue"] * 0.01
-        pv += fcff / (1 + wacc) ** i
+        pv += fcff * dc.factor(i)
     last = ROWS[-1]
     tail = (last["revenue"] * cfo_margin + last["interest"] * (1 - BU.TAX)
             - last["revenue"] * 0.01)
-    tv = tail * (1 + TG) / (wacc - TG)
-    pv_tv = tv / (1 + wacc) ** len(ROWS)
+    # capitalised at the TERMINAL rate, which is the rate that applies when it is
+    # struck, and brought home on the window's OWN factor -- one date, one price
+    # of time. Capitalising at the explicit-window rate gives the same pound
+    # arriving on the same day two different values.
+    pv_tv = tail * dc.perpetuity_factor(TG)
+    tv = pv_tv / dc.factor(len(ROWS))
     ev = pv + pv_tv
     eq_gross = ev - NET_DEBT + BS["investments_assoc"] + BS["investment_property"]
     nci = eq_gross * NCI_SHARE       # the minority's share of the value, not its book
@@ -79,16 +102,20 @@ def dcf(cfo_margin, wacc):
     return {"pv_explicit": pv, "pv_terminal": pv_tv, "ev": ev,
             "equity_before_nci": eq_gross, "nci_deduction": nci, "equity": eq,
             "per_share": eq / SHARES, "terminal_share": pv_tv / ev if ev else None,
-            "cfo_margin": cfo_margin, "wacc": wacc}
+            "cfo_margin": cfo_margin, "wacc": wacc,
+            "wacc_terminal": sched.wacc_terminal,
+            "forward_wacc": list(sched.forward_wacc),
+            "discount_factors": list(sched.discount_factors)}
 
 
-def run(cfo_margin, wacc, terminal_growth=TG):
+def run(cfo_margin, sched, terminal_growth=TG):
     """The same discounted cash flow, in the shape the workbook and the case
     tables read. One model, one set of figures: the study used to carry a
     ten-year capacity-ratio valuation beside this one and publish both as
     "fundamental value", which put two different ranges in one document.
     """
-    d = dcf(cfo_margin, wacc)
+    d = dcf(cfo_margin, sched)
+    wacc = sched.wacc_exp
     rows = []
     for r in ROWS:
         cfo = r["revenue"] * cfo_margin
@@ -112,18 +139,20 @@ def sensitivity():
     discount rate, decides the answer.
     """
     L = lenses()["cfo"]
-    wr = W["wacc_rating"]
+    S = SCHEDULES["rating"]
     cfos = [L["lo"], 0.060, L["mid"], 0.120, L["hi"]]
-    waccs = [wr - 0.04, wr - 0.02, wr, wr + 0.02, wr + 0.04]
-    return waccs, [(c, [run(c, w)["per_share"] for w in waccs]) for c in cfos]
+    shifts = [-0.04, -0.02, 0.0, 0.02, 0.04]
+    scheds = [S if d == 0.0 else S.shifted(d) for d in shifts]
+    waccs = [sc.wacc_exp for sc in scheds]
+    return waccs, [(c, [run(c, sc)["per_share"] for sc in scheds]) for c in cfos]
 
 
-def implied_conversion(spot, wacc):
+def implied_conversion(spot, sched):
     """The conversion rate the market is paying for, solved on THIS model."""
     lo, hi = 0.001, 0.40
     for _ in range(96):
         m = (lo + hi) / 2
-        if run(m, wacc)["per_share"] < spot:
+        if run(m, sched)["per_share"] < spot:
             lo = m
         else:
             hi = m
@@ -131,12 +160,17 @@ def implied_conversion(spot, wacc):
 
 
 def lenses():
-    wr = W["wacc_rating"]
     lo = BU.REG["cfo_fy25"] / BU.REG["revenue_fy25"]
     hi = BU.REG["cfo_fy24"] / BU.REG["revenue_fy24"]
     mid = (lo + hi + BU.REG["cfo_fy23"] / BU.REG["revenue_fy23"]) / 3.0
 
-    d_bear, d_base, d_full = dcf(lo, wr + 0.02), dcf(mid, wr), dcf(hi, wr - 0.01)
+    # the bear and full cases shift the WHOLE schedule, keeping its shape: replacing
+    # it with a flat rate would ask two questions at once, and the second one is the
+    # assumption the schedule exists to remove
+    S = SCHEDULES["rating"]
+    d_bear = dcf(lo, S.shifted(0.02))
+    d_base = dcf(mid, S)
+    d_full = dcf(hi, S.shifted(-0.01))
     # book value on the SAME numerator as the share count: equity attributable
     # to the parent, on the latest disclosed sheet (the 30-Aug edition divided
     # TOTAL equity, minority included, by parent shares)
@@ -161,17 +195,35 @@ def lenses():
     nep = {k: norm_earn / (W["ke_rating"] + adj - TG) / SHARES
            for k, adj in (("bear", 0.03), ("base", 0.0), ("full", -0.03))}
 
+    # [R-LENS-03] ONE PRIMARY IS THE CENTRAL; THE REST ARE CROSS-CHECKS.
+    #
+    # The 30-Aug and 02-Sep editions published a weighted blend of four lenses at
+    # typed weights — 45/15/20/20 — and three of the four value a developer on its
+    # reported accounting earnings and its historical-cost book. For a company
+    # whose value sits in an undelivered order book carried at historical cost, in
+    # a currency that has lost most of its value since 2022, those three measure a
+    # FLOOR and not a value. The weights had never cleared any out-of-sample test.
+    #
+    # Normalised earnings power is dropped as a lens entirely, not re-weighted: a
+    # developer recognising revenue on completion reports earnings that are an
+    # accident of which project completed in which year, and capitalising a
+    # mid-cycle figure treats that schedule as a steady state. The working is kept
+    # below as a disclosed diagnostic and carries no value claim.
     rows = [
         ("Discounted cash flow", d_bear["per_share"], d_base["per_share"],
-         d_full["per_share"], 0.45),
-        ("Book value of equity", book * 0.9, book, book * 1.3, 0.15),
+         d_full["per_share"], None),
         ("Earnings multiple on own history", rel["bear"], rel["base"],
-         rel["full"], 0.20),
-        ("Normalised earnings power", nep["bear"], nep["base"], nep["full"], 0.20),
+         rel["full"], None),
+        ("Book value of equity — a disclosed floor", book * 0.9, book, book * 1.3, None),
     ]
-    w = {k: sum(r[i] * r[4] for r in rows)
-         for i, k in ((1, "bear"), (2, "base"), (3, "full"))}
+    # the envelope is the RANGE of the present-value reads, never an average
+    pv_reads = [d_bear["per_share"], d_base["per_share"], d_full["per_share"],
+                rel["bear"], rel["base"], rel["full"]]
+    w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads)}
     return {"rows": rows, "weighted": w,
+            "primary": {"kind": "dcf", "value": d_base["per_share"]},
+            "envelope": {"low": min(pv_reads), "high": max(pv_reads)},
+            "normalised_diagnostic": nep,
             "dcf": {"bear": d_bear, "base": d_base, "full": d_full},
             "book": book, "relative": rel, "normalised": nep,
             "normalised_inputs": {"norm_rev": norm_rev, "norm_margin": norm_margin,
@@ -185,8 +237,9 @@ def lenses():
 
 def bridge(case):
     d = case
-    return [("Present value of the explicit five years", d["pv_explicit"]),
-            ("Present value beyond year five", d["pv_terminal"]),
+    n = len(ROWS)
+    return [("Present value of the explicit %d years" % n, d["pv_explicit"]),
+            ("Present value beyond year %d" % n, d["pv_terminal"]),
             ("Enterprise value", d["ev"]),
             ("less net debt, 31 March 2026", -NET_DEBT),
             ("plus investments in associates", BS["investments_assoc"]),
@@ -200,13 +253,15 @@ def bridge(case):
 
 if __name__ == "__main__":
     L = lenses()
-    print("FOUR LENSES, ONE FIELD  (EGP per share)")
-    print("%-36s %8s %8s %8s %8s" % ("Lens", "Bear", "Base", "Full", "Weight"))
-    for nm, b, ba, f, wt in L["rows"]:
-        print("%-36s %8.2f %8.2f %8.2f %7.0f%%" % (nm, b, ba, f, wt * 100))
-    print("%-36s %8.2f %8.2f %8.2f %7.0f%%"
-          % ("Weighted central", L["weighted"]["bear"], L["weighted"]["base"],
-             L["weighted"]["full"], 100))
+    print("ONE PRIMARY, THE REST CROSS-CHECKS  (EGP per share)")
+    print("%-44s %8s %8s %8s" % ("Lens", "Bear", "Base", "Full"))
+    for nm, b, ba, f, _ in L["rows"]:
+        print("%-44s %8.2f %8.2f %8.2f" % (nm, b, ba, f))
+    print("%-44s %8s %8.2f %8s"
+          % ("CENTRAL — the cash-flow lens", "", L["primary"]["value"], ""))
+    print("%-44s %8.2f %8s %8.2f"
+          % ("envelope of the present-value reads", L["envelope"]["low"], "",
+             L["envelope"]["high"]))
     print("%-36s %8.2f" % ("Market price, 23 Aug 2026", SPOT))
     print()
     print("BRIDGE — base case, every step")

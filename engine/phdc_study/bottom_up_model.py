@@ -30,7 +30,23 @@ for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25, IN.OPERATING, IN.MARK
 W = json.load(open(os.path.join(HERE, "wacc_result.json")))
 RJ = json.load(open(os.path.join(HERE, "regions.json")))
 
-YEARS = list(range(2026, 2031))
+# [R-MACRO-01] and the horizon rule. THE EXPLICIT WINDOW RUNS UNTIL GROWTH HAS
+# CONVERGED ON THE TERMINAL, and this company's did not: five years compounding
+# at 44% nominal, capitalised at a normalised terminal rate, left 74% of value in
+# the terminal and a 37-point discontinuity at the boundary. Neither the growth
+# nor the terminal was wrong on its own; the window between them was too short to
+# join them, so the model capitalised a rate it had never reached.
+#
+# Two changes, and they are the same change seen twice. Prices now escalate on
+# the HOUSE PATH — 16% in 2026 falling to 7% — rather than at a flat 25.2%
+# trailing mean that the central bank's own forecast contradicts. And deliveries
+# fade from their disclosed 15% run to zero over the window, because a company
+# cannot hand over 15% more homes every year for ever: it is limited by what it
+# can build, and its own order book is finite. Both leave the last explicit year
+# growing at inflation and nothing else, which is what the terminal assumes.
+YEARS = list(range(2026, 2041))
+import macro_path as _MP
+_PATH = _MP.load("EG")
 CPI = 0.2520                     # Egyptian CPI, 2023-25 mean, World Bank
 TAX = 0.225
 SHARES_MN = REG["shares_outstanding_bn"] * 1000.0
@@ -84,6 +100,28 @@ COST_PER_DELIVERED_FY24 = REG["cogs_fy24"] / DELIVERED_FY24
 # so the model's own revenue-per-unit path implies them and the implied figure
 # is reported beside the disclosed revenue it has to reproduce.
 DELIVERY_GROWTH = 0.15           # the disclosed run: 1,308 / 1,281 / 1,500 / ~2,000
+DELIVERY_FADE_YEARS = 10         # over which that run fades to zero
+
+
+def delivery_growth(i):
+    """Delivery growth in explicit year i (1-based), fading to nothing.
+
+    The disclosed run is 15% a year and it is real, but it is a RUN and not a
+    steady state: the company is limited by what it can build and its order book,
+    though large, is finite. Held flat for ever it would have PHD handing over
+    fourteen times as many homes in 2040 as in 2026. The fade is linear to zero
+    over ten years and it is STATED rather than fitted; the sensitivity below
+    prices the whole plausible range of it.
+    """
+    if i <= 1:
+        return 0.0
+    f = max(0.0, 1.0 - (i - 2) / float(DELIVERY_FADE_YEARS))
+    return DELIVERY_GROWTH * f
+
+
+def price_growth(y):
+    """Price and cost escalation: the house inflation path, zero real."""
+    return _PATH.inflation(y)
 
 # The P&L finance charge is NOT the marginal rate on gross borrowings, and using
 # it that way overstates the charge by more than two times. Two reasons, both
@@ -119,8 +157,9 @@ def region_forecast():
         units0 = sum(h["units"][-3:]) / 3.0        # trailing three-year mean
         asp0 = h["asp"][-1]                        # latest realised price
         rows = []
+        asp = asp0
         for i, y in enumerate(YEARS, start=1):
-            asp = asp0 * (1 + CPI) ** i
+            asp *= (1 + price_growth(y))
             rows.append({"year": y, "units": units0, "asp": asp,
                          "sales": units0 * asp})
         out[nm] = {"units_base": units0, "asp_base": asp0, "rows": rows}
@@ -159,13 +198,13 @@ def build():
 
     rows = []
     for i, y in enumerate(YEARS, start=1):
-        rev_per *= (1 + CPI)
+        rev_per *= (1 + price_growth(y))
         cost_per = rev_per * (1 - GM_FORWARD)
         if y == 2026:
             # deliveries implied by the reported anchor, not by the trend
             delivered = fy26_anchor / rev_per
         else:
-            delivered *= (1 + DELIVERY_GROWTH)
+            delivered *= (1 + delivery_growth(i))
         new_sales = sum(rf[nm]["rows"][i - 1]["sales"] for nm in rf)
         revenue = delivered * rev_per
         cogs = delivered * cost_per
@@ -184,6 +223,7 @@ def build():
             "gross": gross, "gross_margin": gross / revenue, "sga": sga,
             "da": da, "ebit": ebit, "interest": interest, "npbt": npbt,
             "tax_rate": TAX, "npat": npat, "eps": npat / SHARES_MN,
+            "price_growth": price_growth(y), "delivery_growth": delivery_growth(i),
             "new_sales": new_sales, "backlog": backlog,
             "units_sold": sum(rf[nm]["rows"][i - 1]["units"] for nm in rf),
         })

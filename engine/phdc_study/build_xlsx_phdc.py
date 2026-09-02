@@ -388,23 +388,51 @@ def _remaining(wb):
     A_CAPEX = AT("Maintenance capital expenditure, share of revenue")
     A_WACC = AT("Cost of capital")
 
-    def _driver(label, base_cell, growth_cell, fmt):
-        """One driver row: an input in the first year, then a growth formula."""
+    def _path_row(label, values, fmt, note=""):
+        """A per-year INPUT row: growth is a path, not a single number.
+
+        The 30-Aug workbook grew both drivers at one cell each — a flat 15% for
+        deliveries and a flat 25.2% for prices — for every forecast year. Neither
+        is a steady state: prices follow the central bank's own published
+        disinflation path, and a company cannot hand over 15% more homes every
+        year for ever. A single cell cannot express either, so each is a row.
+        """
+        nonlocal r
+        ws.cell(r, 1, label).font = FORM
+        for j, val in enumerate(values, start=2):
+            c = ws.cell(r, j, round(val, 6))
+            c.font = INPUT
+            c.number_format = fmt
+        if note:
+            ws.cell(r, 2 + len(values), note).font = MUT
+        r += 1
+        return r - 1
+
+    ROWS_BU = N["bottom_up"]["rows"]
+    pg_row = _path_row("Price and cost escalation",
+                       [x["price_growth"] for x in ROWS_BU], "0.0%",
+                       "the house inflation path")
+    dg_row = _path_row("Growth in units delivered",
+                       [x["delivery_growth"] for x in ROWS_BU], "0.0%",
+                       "the disclosed run, fading to nothing")
+
+    def _driver(label, base_cell, growth_row, fmt):
+        """One driver row: an input in the first year, then its own growth path."""
         nonlocal r
         ws.cell(r, 1, label).font = FORM
         c = ws.cell(r, 2, "=Assumptions!" + base_cell)
         c.font = FORM
         c.number_format = fmt
         for j in range(3, 2 + len(YEARS)):
-            c = ws.cell(r, j, "=%s%d*(1+Assumptions!%s)"
-                        % (get_column_letter(j - 1), r, growth_cell))
+            col_prev, col = get_column_letter(j - 1), get_column_letter(j)
+            c = ws.cell(r, j, "=%s%d*(1+%s%d)" % (col_prev, r, col, growth_row))
             c.font = FORM
             c.number_format = fmt
         r += 1
         return r - 1
 
-    u_row = _driver("Units delivered", A_UNITS, A_UGROW, "#,##0")
-    p_row = _driver("Revenue per delivered unit", A_PRICE, A_CPI, "#,##0.00")
+    u_row = _driver("Units delivered", A_UNITS, dg_row, "#,##0")
+    p_row = _driver("Revenue per delivered unit", A_PRICE, pg_row, "#,##0.00")
     rev_row = r
     ws.cell(r, 1, "Revenue").font = SUB
     for j in range(2, 2 + len(YEARS)):
@@ -443,9 +471,25 @@ def _remaining(wb):
         c.font = SUB
         c.number_format = "#,##0"
     r += 1
+    # THE COST OF CAPITAL IS A PATH, NOT A CELL. Each year carries its own forward
+    # rate, gliding from today's to the rate that applies once the economy has
+    # normalised, and the factor compounds them. The earlier workbook raised a
+    # single rate to the power of the year, which asserts that the rate never
+    # changes for fifteen years.
+    SCHED = N["cost_of_capital_record"]
+    ws.cell(r, 1, "Cost of capital, that year").font = FORM
+    for j, w in enumerate(SCHED["forward_wacc"], start=2):
+        c = ws.cell(r, j, round(w, 6))
+        c.font = INPUT
+        c.number_format = "0.00%"
+    fw_row = r
+    r += 1
     ws.cell(r, 1, "Discount factor").font = FORM
     for j in range(2, 2 + len(YEARS)):
-        ws.cell(r, j, "=1/(1+Assumptions!%s)^%d" % (A_WACC, j - 1)).font = FORM
+        col, prev = get_column_letter(j), get_column_letter(j - 1)
+        expr = ("=1/(1+%s%d)" % (col, fw_row) if j == 2
+                else "=%s%d/(1+%s%d)" % (prev, r, col, fw_row))
+        ws.cell(r, j, expr).font = FORM
         ws.cell(r, j).number_format = "0.000"
     df_row = r
     r += 1
