@@ -1,0 +1,237 @@
+{
+ "causes": [
+  {
+   "id": "C1",
+   "cause": "A flat crisis-era nominal WACC (PHDC 26.25%, TMGH 35.79%) is applied to every explicit year, TMGH's 14-year residual annuity and the perpetuity, with no glide and Egypt's Caa1 country premium (9.71 of the 13.94% ERP) held for ever on EGCH/PHDC/TMGH, in breach of the house's own 13-Jul r2 sliding-schedule rule (WACC_TERM < WACC_EXP 'hard ASSERT'; terminal ERP 'never held flat into perpetuity'; 'is a QC FAIL') which no gate enforces and both QC gates passed.",
+   "layer": "VALUATION — cost of capital: term structure and terminal rate (rate PATH, not level)",
+   "mechanism": "A 23% ten-year yield quoted at the top of an easing cycle (CBE policy 19%) embeds ~15% expected inflation; holding it flat asserts Egypt never disinflates while the same models' cash flows (PHDC 25.2% CPI escalation and g=12%; TMGH 20% deposit yield, 15% recurring g; AMOC/ARCC kd_path easing) assume it does. Terminal share of EV is 54-74%, so each point of terminal rate is 4-6% of value; discounting EGP 1,366bn of TMGH contracted book at 35.79% values it at EGP 1.1bn (0.08% of face). PHDC's published DCF (14.86, -2.2% vs price) is an accident of two errors cancelling: flat 26.25% with coherent g=7% gives 10.87; the incoherent g=12% adds back ~4; the r2 glide with g=7% gives ~26-28. Terminal ERP normalisation is ~75-80% of the glide's PHDC effect (rf_T glide with ERP kept at 13.94% gives DCF 16.8-17.8 only). AMOC (27.45%->18.14%, assert wacc_term<wacc_exp) and ARCC (27.40%->16.46%) obey the rule in study-local code; the protocol's own RMDA measurement of this defect is +162% on the DCF lens (SRP:493) with '~27 of them live'.",
+   "evidence": "engine/phdc_study/valuation_v2.py:54-74 dcf(): pv and tv at one scalar wacc = wacc_result.json wacc_rating 0.2625, TG=0.12 line 28. engine/tmgh_study/valuation.py:41-108 discounted(): one scalar (wacc.json wacc_rating 0.35793) for ten explicit rows, a 14-year level annuity and a perpetuity at TERMINAL_GROWTH 0.15. Standing_Research_Protocol.md:304 ('governs every new Egyptian study ... next substantively updated'), :314, :334, :348, :493 (RMDA +162%). engine/research_protocol.py asserts at 226/272/325/425/463 only — no rate-path field; scripts/check_valuation_gap.py:75-77 heading text only; grep glide|sliding|WACC_TERM in phdc QC_GATE_30-08-2026.md and tmgh QC_GATE_01-09-2026.md: zero hits; tmgh GAP_REVIEW:136 'a conforming rate is a conforming rate'. Reproduced by all three on the studies' own code: PHDC published 14.8642 exact; 5y linear glide to norm-built 16.26% terminal (rf_T 12.5%, ERP_T 7%, Kd_T 15%) with g=7% -> DCF 25.36-27.83 (TV share ~74%), central 15.66-16.78 (+3 to +10% vs 15.20); glide keeping 13.94% ERP -> DCF 17.80, central 12.26. TMGH published 53.0455 exact; 5y glide to 21.93-22.57% with g=7% -> capacity 74.38 / recovery 36.88; with shipped g=15% -> 89.89/52.40; 10y glide 65-72; flat at terminal 88.92-108.25. EGCH study_numbers drivers.ke_terminal 0.2542 with 13.94% ERP kept (GAP_REVIEW:122 'a real 17% in perpetuity'). Prior editions struck at a hardcoded 18%: PHDC DCF at 18% = 48.50 (derived.prior_edition_wacc 0.18); TMGH capacity at 18% = 195.38 (lenses.sensitivity.wacc_grid) — the -31%/-73% edition moves in fv_movement.json are this rate step. Price-implied flat rates: TMGH 23.09% capacity (= the sovereign), PHDC DCF lens 26.05%.",
+   "share_of_pessimism": "PHDC: rf glide alone (ERP kept) closes ~31% of the 4.26/sh gap; with terminal ERP normalised as AMOC/ARCC do, 100-137% (central 10.94 -> 15.7-16.8, +3 to +10% vs price) — overlaps C2 (either lever alone closes the whole PHDC gap; both overshoot to +74%) and C3 (rate inflation and g inflation are one Fisher pair). TMGH: 46-106% of the 44.75/sh capacity gap depending only on glide shape (g=7%: 48%; g=15%: 82%; flat-at-terminal 80-120%); joint with C5+C6 overshoots (96.45 with -15%-real fade, 119.90 flat-real), so honest joint attribution ~45% C1, ~45% C5/C6, remainder interaction. EGCH: terminal ERP normalisation ~+0.9-1.5/sh (4-15% of gap). AMOC/ARCC: ~0 (already glide). Book-wide: the ~27 live EGX DCFs on flat rates (SRP:493) plausibly most of the EGX median -15.1%.",
+   "names": [
+    "PHDC",
+    "TMGH",
+    "EGCH",
+    "~27 live EGX studies on flat WACC"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "Apply the r2 schedule exactly as written (glide fractions from each study's kd_path, terminal rf = CBE target + real rate, ERP normalised, Kd_T 15%) through PHDC's valuation_v2.dcf and TMGH's valuation.discounted: if the central moves <10% on either, C1 is not a cause there. Or show the r2 SCOPE clause excludes builds rebuilt 30-Aug/1-Sep-2026, or that a 23% nominal rf and 13.94% Caa1 ERP are unbiased expectations for years 6-30. Or a valuation-layer walk-forward in which flat-rate vintage fair values show smaller |ln(FV_t/P_t+h)| than glided ones on held-out origins and names."
+  },
+  {
+   "id": "C2",
+   "cause": "The published central is a weighted average of the DCF with three non-DCF lenses at typed, never-tested weights (PHDC 0.45/0.15/0.20/0.20; AMOC 0.45/0.20/0.20/0.15; ARCC 0.50/0.20/0.22/0.08), two of which are structural floors in a 15-25% inflation currency — normalised earnings capitalised at the NOMINAL Ke (27-37%) with zero nominal growth (E/Ke), and historical-cost book after a ~3x devaluation at a justified P/B of 0.07-1.28x against 1.7-4.8x paid — plus own-multiple lenses typed ('6-14x') or circular (AMOC at 0% rerating = price minus bridge); PHDC additionally lacks the class lens (no RNAV anywhere in engine/phdc_study/).",
+   "layer": "VALUATION — lens synthesis (§1.5 'four lenses, one field'); the PROMOTION RULE violated by the central itself",
+   "mechanism": "E/Ke at nominal Ke and g=0 is a perpetuity whose real cash flow shrinks at the inflation rate (a run-off): the Fisher-consistent no-real-growth EPV is E/(Ke-pi), larger by Ke/(Ke-pi) = 1.68-2.20x at pi=15% (PHDC implied P/E 3.2x vs 12.25x paid). Book at historical cost is below replacement value after EGP/USD ~30->49. The identical design lands +14.5% ABOVE price on the ADNOCLS reference (Ke 9.43%, pi 2%, wedge 1.27x) and below price on every Egyptian name where Ke-pi is 12-22pp; the constructions were transplanted with no inflation adaptation. The DCF lens itself sits at +7.4%/-2.4%/-2.2% of price on AMOC/ARCC/PHDC; the blend manufactures the discount. The lens construction also amplifies any Ke error (a 5pp Ke cut moves E/Ke +19% but E/(Ke-pi) +45% on PHDC). No script scores a lens value, weight or central against anything (Fundamental_Walkforward_Prompt.md pre-registers drivers only).",
+   "evidence": "engine/phdc_study/gap_review_calcs.json lens_gap_contrib {DCF -0.151, Book -1.296, Earnings multiple -0.806, NEP -2.006} of -4.26/sh; nep_published 5.171 vs nep_at_tg 8.393; valuation_v2.py:146 nep = norm_earn/(ke_rating+adj)/SHARES (no growth term), :133 book = total_equity/SHARES raw, :140 mult {6,9,14} typed, :151-155 weights typed. engine/amoc_study/study_numbers.json lenses {dcf 9.770, relative 8.319, normalized 8.388, book 6.023, central 8.642} vs spot 9.10; compute.py:533 'Study judgement'; :1609-1631 JUST_MULT = own trailing multiple x (1+rel_rerating 0.0). engine/arcc_study/study_numbers.json lenses.values {DCF 57.60, Rel 45.65, Norm 49.64, Asset 65.57}, weights .5/.2/.22/.08, central 54.10 vs 59.00; normalised EBITDA 3,650.6 = 74.7% of audited FY25 4,885.6 at 4.5x/7.0x vs market 4.39x/6.14x, peer 9.0x. adnocls compute.py:1649 LENS_W 'Study judgement'; docx_adnocls.py:2724-2733 concedes relative and normalised are 'one method presented as two reads'. Ke/(Ke-pi) at pi=15%: PHDC 1.92, EGCH 1.92, AMOC 2.20, ARCC 2.13, TMGH 1.68.",
+   "share_of_pessimism": "PHDC: 92-96% of the gap (-3.92 to -4.11 of -4.26/sh; DCF-only would print 14.86, -2.2%); NEP re-specified at Ke-g +0.65/sh (15%), at E/(Ke-pi) +0.95/sh (22%); on the C1-corrected DCF (27.83) the blend's drag is -11.05/sh, the largest remaining item once the rate is fixed. AMOC: >100% (DCF-only flips -5.1% to +7.4%; the book lens alone is 101% of the -0.46 gap). ARCC: 71-72% (DCF 57.60 vs central 54.10; the haircut relative/normalised lenses carry 96% of it). TMGH/EGCH: no blend published; a house-style blend would DEEPEN TMGH capacity 53.05 -> 44.1.",
+   "names": [
+    "PHDC",
+    "AMOC",
+    "ARCC",
+    "TMGH (would deepen if blended)",
+    "EGCH (book lens 0.58/sh at justified P/B 0.07x)"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "An out-of-sample, leave-one-name-out grade across the EG book (permitted under [R-LENS-01]) showing the four-lens weighted central predicted 1-3 year prices with lower bias and MAE than the DCF/class lens alone, or than a pre-registered Fisher-consistent E/(Ke-pi) and current-cost book. Narrow falsifier: E/Ke with g=0 outperforming E/(Ke-pi) at the same origins. No such grade exists; the weights have never been tested."
+  },
+  {
+   "id": "C3",
+   "cause": "No single house macro path exists (five year-1 inflation rates for one fiscal year — PHDC 25.2% trailing, AMOC 14.5%, ARCC 11.5%, EGCH 10%, TMGH none — three terminal inflations, three sovereign quotes), so terminal growth and terminal reinvestment are incoherent with the inflation inside the terminal rate: (a) nominal g below the rate's embedded inflation (PHDC 12% vs 13.6-15.6%; EGCH 5% vs 7%) = an unstated perpetual real decline, or above it once the rate is normalised (TMGH 15%); (b) ARCC charges terminal reinvestment rr = g_nominal/ROIC on REPLACEMENT-COST capital (rr 49.2%, ROIC 10.16% < WACC_T 16.46%) while maintenance capex is already inflation-indexed, so inflation-only growth is charged twice and the study's own grid says 'growth destroys value'; lessons L-048 (six recurrences) and L-055 (five) are registered and bind nothing.",
+   "layer": "STATEMENT <-> VALUATION interface — macro path, terminal growth, terminal reinvestment (Koller value-driver: g and RONIC on one basis; L-048/L-055)",
+   "mechanism": "Ke = r_real + pi implies the going-concern nominal growth floor is pi; any g < pi is a real decline that must be stated and sourced. Indexing capex to replacement cost already reinvests the inflation uplift of the capital base; g_nominal/ROIC_replacement charges it again, halving ARCC's terminal multiplier ((1-rr)/(w-g) 4.43x vs 8.73x at rr=0). EGCH reinvests 27.8% of NOPAT (0.05/0.18 on a 'Constructed' ROC) for zero real growth. The incoherence cuts both ways inside one model (PHDC's trailing 25.2% CPI escalation is the optimistic leg; its g=12% against a 26.25% rate the pessimistic one), which is why PHDC's DCF is two errors partly cancelling; net across the book it is pessimistic because rates are frozen at crisis and cash flows are not. This is C1's other half — a nominal rate and a nominal growth are one Fisher pair.",
+   "evidence": "PHDC valuation_v2.py:28 TG=0.12 vs rf* 16.63% (GAP_REVIEW_01-09-2026.md:138-149 'real decline 1.6-3.6%/yr'); bottom_up_model.py:34 CPI=0.2520 imported from the walk-forward's mechanical trailing-CPI convention (phdc_walkforward/bottom_up.py:102-108); reproduced: flat 26.25% at g 5/7/12% -> 9.80/10.87/14.86; glide at g 5/7/12% -> 22.90/27.83/60.41; forward CPI 14.5% + flat -> 10.44. TMGH model.py:68 TERMINAL_GROWTH 0.15, HOSP_GROWTH 0.20/OTHER_GROWTH 0.22/DEPOSIT_YIELD 0.20 with no CPI in inputs.py; glide g=15% 89.89 vs g=7% 74.38; recurring legs at 14.63% -> capacity 48.93. engine/arcc_study/study_numbers.json dcf {rr_term 0.4923, roic_term 0.1016, ic_repl 50,481, tv_share 0.474}; growth_destroys_value {fv_at_g3 61.55, fv_at_g7 51.97}; compute.py:1278-1285 ic_repl = cap x repl_usd_t x fx x cost_infl[5], :1268 capex indexed. EGCH compute.py:430 reinv_rate = 0.278; inputs.py:385 roc_terminal 'Constructed'; export urea 530->440 USD/t (-6.7%/yr real) frozen into perpetuity. engine/lessons_register.py:1338 L-055; digest 'THE REGISTER IS A RECORD AND NOT A GATE'; market_profiles.py carries only rf_live 0.195 for EG; Cost_of_Capital_Reference.md absent; AMOC's [R-GAP-01] audit found three contradictory macro paths hours after its own walk-forward produced L-048.",
+   "share_of_pessimism": "ARCC: rr -> 0 for inflation-only growth lifts DCF 57.60 -> 83.24 and central 54.10 -> 66.92 (+12.82/sh, 245-262% of the 4.90 gap — overshoots to +13%; the honest fix is real-g reinvestment, most of this is real); vs EFG the reinvestment charge is -2.51/sh (51% of gap). PHDC (a): -4.0/sh on the DCF at the flat rate vs coherent g, +13/sh against a coherent glide pair — C1's other half, quote together never additively; +-27% on the DCF lens depending on which leg is fixed alone. EGCH: +0.1-0.2/sh. TMGH: g 15% -> 7% at the normalised rate costs -15.5/sh (89.89 -> 74.38), i.e. runs OPTIMISTIC once C1 is fixed and must be corrected in the same pass; the nominal fade is C5. Not separately additive with C1/C5 — it is the reason they bite as hard as they do.",
+   "names": [
+    "ARCC",
+    "PHDC",
+    "EGCH",
+    "TMGH",
+    "AMOC (coherent only after the 01-Sep audit)"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "Show ARCC's capex line is NOT at replacement cost (so the terminal genuinely needs ~49% of NOPAT to hold real capacity), or that FY2026-28 filed maintenance capex exceeds D&A by what rr_term implies; show PHDC/EGCH's real terminal decline is a sourced management or industry expectation. Or a registered single Egyptian macro record with an assert_macro_coherence() gate that finds no nominal parameter inconsistent across the five studies; or evidence that trailing-CPI escalation with a flat crisis rate grades better than a coherent forward pair on the company's own history."
+  },
+  {
+   "id": "C4",
+   "cause": "The LEVEL and construction of the cost of equity: a stripped local yield (23.00% - 6.37% Caa1 spread) plus beta x 13.94% total ERP charges Egypt's default risk 1.52 x beta times net (1.4x AMOC/ARCC, 1.6x PHDC/EGCH, 2.2x TMGH) — every name with beta > 0.66 pays the country premium more than once and no lambda scaling exists; the rating basis (6.37%/13.94%) is adopted on the three names furthest below price while the two nearest use the CDS basis (3.41%/9.41%), with no rule, against the protocol's own line 327 'CDS PRIMARY'. Resulting nominal Ke 27.45-37.15% (real 10.8-19.3% at 15% inflation) exceeds every rolling 10-year EGX30 return ever realised, and nothing in the pipeline tests the level of Ke against anything.",
+   "layer": "VALUATION — cost of capital: level and basis (distinct from C1's path)",
+   "mechanism": "rf* normalisation is correct (country risk enters once, net), but which spread to strip and which ERP to add back is worth 1.2-3.7pp of Ke and is chosen per study. The 1.52 multiplier is the EM average relative vol while the same Damodaran file gives Egypt 2.66; for local-currency money the 23% bond IS the country risk and the construction charges it again scaled by beta. The market prices TMGH at rf* + beta x 4.58% (mature ERP, zero CRP; implied Ke 23.4%), the other extreme. But the DCF-implied rates on AMOC (>30%), ARCC (25.1-25.9%) and PHDC (26.05-30.9%) cluster at or near the house level, so the level is SECOND-ORDER and confounded with the term structure (C1): a uniform CRP removal overshoots PHDC to +24%, AMOC ~+17% while bringing TMGH only to +4%, and the defensible level cut is a few points plus a term structure, not 8-14pp. The terminal ERP held at 13.94% for ever is the largest single component of C1's move and belongs to this layer.",
+   "evidence": "engine/wacc_builder.py:376-389 ke_rating = rf_star_rating + beta x erp_rating; ke_cds likewise; no lambda field; wacc_builder warns and no study asserts on warnings (grep 'assert.*warnings' engine/*_study/*.py -> nothing). Damodaran snapshot engine/egch_study/ctryprem_snapshot.xlsx Egypt row: Caa1, spread 0.06372, total ERP 0.13938, CRP 0.09708, CDS 0.0341, CDS-ERP 0.09425; 'Equity vs Govt Bond vol' Egypt 2.66. Basis: AMOC compute.py:1142 ke_exp 0.27454 CDS (rating alt 0.28598); ARCC compute.py:1179 ke_exp 0.28278 CDS (rating 0.29511); PHDC wacc_result ke_rating 0.31257 published (cds 0.29464); TMGH wacc.json ke_rating 0.37146 (cds 0.33439); EGCH wacc_published = wacc_rating 0.24388. Standing_Research_Protocol.md:327 'Ke_explicit = (rf - CDS_spread) + beta x ERP_cds <- PRIMARY'. EGX30.csv recomputed: 15y 16.97%, 10y 21.91%, 5y 38.3%, 3y 45.3% price-only; rolling 10-year CAGR over 1,245 windows median 12.9%, p90 19.6%, max 25.1% (SE ~6.6pp). TMGH implied Ke = (0.2309 - 0.0778x0.1976)/0.9222 = 23.4%. R-GAP-01 DISCOUNT RATE heading asks only 'cash charged once'; assert_beta_provenance checks record shape; value_gap_backtest_EG_20260824 n=32, IC -0.140, INSUFFICIENT-POWER, 'wired into the engine: False'; Cost_of_Capital_Reference.md absent.",
+   "share_of_pessimism": "Basis switch to CDS: PHDC central 10.94 -> 11.83 (+0.89/sh, 21% of gap; +8%); TMGH capacity 53.05 -> 59.67 (+6.62, 15%; +12.5%); EGCH +0.4-0.7/sh (4-5%); would move AMOC/ARCC DOWN ~5% on the DCF lens. Lambda=1: TMGH +8.49/sh (19%), PHDC +2-5%. Country-risk-once-via-the-bond (raw 23% + beta x 4.23%): TMGH 70.29 (39%), PHDC 13.02 (49%), ARCC/AMOC DCF +6.9%. Full CRP removal overshoots (TMGH 101.75 +4%, PHDC 18.85 +24%, AMOC ~+17%). Terminal ERP held for ever: ~75-80% of C1's PHDC effect (overlap), EGCH +0.9-1.5/sh.",
+   "names": [
+    "TMGH",
+    "PHDC",
+    "EGCH",
+    "ARCC",
+    "AMOC"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "A point-in-time valuation-layer walk-forward (origins FY2015-24, Ke rebuilt from that year's sovereign yield and Damodaran vintage, beta regressed to origin) in which rf*+beta x ERP_total shows lower |bias| on ln(FV_t/P_t+h) than rf*+beta x mature ERP, the CDS basis, or a lambda construction; or an implied-ERP / local realised-return series for Egypt (EGX30 total return with dividends over rolling 10-year windows) supporting a 9.7% CRP on top of the local bond, i.e. 30%+ nominal delivered."
+  },
+  {
+   "id": "C5",
+   "cause": "TMGH's contracted-sales driver is set BELOW the house's own measured record and fades in NOMINAL terms: normalised to EGP 300bn (vs H1-2026 annualised 438bn, FY2025 382bn, FY2024 504bn, walk-forward central 488bn, -38.6%) then faded 15%/yr nominal (= -26%/yr real) after the walk-forward beside it measured the method 58% low on that exact driver in 33 of 33 cells; FY2026 total revenue sits 23.5% below and gross profit below the record's own p10. Quantified as a defect by the R-GAP-01 review and still shipped in model.py.",
+   "layer": "STATEMENT PROJECTION — driver specification (a judgement made against the study's own record; not the calibration machinery)",
+   "mechanism": "A nominal decline typed in a 15%-inflation currency is a real assumption nobody chose. The study 'measured its own bias on contracted sales (58% low), wrote the finding into the delivered document, and then built the forecast in the same direction as the bias' (TMGH GAP_REVIEW:296-303). Nothing requires a gap-review finding with a computed value effect to land in the model or be declined with a reason.",
+   "evidence": "engine/tmgh_study/model.py:53-57 REPLENISHMENT_SALES 300000.0, SALES_FADE 0.85 ('300bn fading at 15% a year reaches about 59bn by 2035'), unchanged on this checkout after the 01-Sep gap review. engine/tmgh_walkforward/scores.json by_driver.new_sales bias -0.8768, n 33, robust_sign true, boot {2,3,4} all negative. engine/tmgh_study/gap_review_calcs.json model_vs_walkforward_2026: new_sales [300000, 488369], total_revenue [80502, 105194], gross_profit [25463, 36051] (record p10 25,750); case_published 53.0455, case_both_corrections 89.4739. Reproduced through valuation.discounted(): fade flat-real alone 76.51; fade -15%-real alone 59.83.",
+   "share_of_pessimism": "TMGH: fade restated flat-real closes 52-60% of the capacity-case gap (+23.46/sh, 53.05 -> 76.51); with C6's minority fix 89.47 (81-85%, -8.5% vs price) at the UNCHANGED 35.79% rate; joint with C1 overshoots (96.45 with -15%-real fade, 119.90 flat-real), so attribute ~45% C1, ~45% C5+C6, rest interaction. The -16 to -39% shortfall against the walk-forward's FY2026 centrals is unpriced but its sign is known; consuming the record's own central would raise the capacity case materially further.",
+   "names": [
+    "TMGH"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "FY2026 contracted sales print at or below EGP 300bn and FY2027 at or below 255bn (the nominal fade was right); or a sourced management or industry expectation that contracted sales fall ~26%/yr in real terms."
+  },
+  {
+   "id": "C6",
+   "cause": "EV-to-equity bridge and minority conventions are invented per study with no rule and no assert, and on the two names with a material minority each study adopted the framing that deducts MORE: TMGH removes NCI at 45.2% of BOOK equity (both published framings; book inflated by a 2024 revaluation surplus) against a filed FY2025 profit share of 20.98%; AMOC removes it at profit share applied to the parent's own net cash (EGP 405.4mn = 5.6x book NCI 72.8mn). PHDC deducts no NCI (optimistic, -0.47/sh) but stands on a stale 31-Dec-2025 balance sheet with the reviewed 31-Mar-2026 statement available, leaves EGP 9,581.5mn of amortised-cost financial investments out of net cash (TMGH nets deposits in), and deducts EGP 9,380.7mn of non-interest land notes as debt while charging them at Kd 25.5% in the WACC weight.",
+   "layer": "VALUATION — EV-to-equity bridge (minority at value share, not book; balance-sheet classification)",
+   "mechanism": "A DCF of consolidated cash flows must remove the minority at its share of VALUE; book (after a revaluation surplus) and profit share are both proxies, and the house adopted book where it deducts 2x more and profit share where it deducts 5.6x more. TMGH's book basis removes 36.71/sh against ~18.8/sh at profit share. research_protocol.py has no assert on bridge, share count, minority basis or classification; [R-GAP-01]'s BALANCE SHEET heading asks only that the bridge stand on the latest balance sheet. The PHDC items are conditional on cash-flow-statement classification the study never registered — and that conditionality is itself the finding.",
+   "evidence": "engine/tmgh_study/valuation.py:121-135 bridge(): nci_book 75,652.8 / total_equity 167,323.6 = 0.4521; gap_review_calcs.json nci_profit_share 0.2098 (3,818.1/18,202.0); model.py project() applies nci_share to every year (FY2026 EPS 6.15 vs 8.87 at filed split). engine/amoc_study/compute.py:1511 nci_val = eq_gross x NCI_OP with eq_gross including net cash 3,001.5; study_numbers bridge.nci 405.437 vs compute.py:251 eq_nci 72.8mn; bridge.prov 996.9 at face undiscounted. engine/phdc_study/bottom_up_model.py GROSS_DEBT 33,552.7 incl. notes_payable 4,505.0 + 4,875.7 ('does not bear interest'), INTEREST_BEARING 24,069.4, NET_DEBT = GROSS_DEBT - cash; inputs.py fin_inv_amortised 9,581.5 (11,369.2 at 31-Mar-2026, bs_1q2026.json) not netted; gap_review_calcs.json nci_per_share 0.4666, bs_1q26_effect_per_share 0.2587, central_on_latest_bs 11.20, dcf_on_net_debt_weights 13.43. grep '^def assert_' engine/research_protocol.py -> beta, sigcm, model_study, ground_up, gates_called only. Reproduced: TMGH NCI at profit share alone 70.93; four-case median 39.33 -> 60.09 (+52.8%); proportional-to-EV framing 41.66.",
+   "share_of_pessimism": "TMGH: minority at filed profit share closes 40-47% of the capacity gap (+17.88/sh, 53.05 -> 70.93) and 47% of the median-central gap (39.33 -> 60.09); the book basis is the low end of three framings. PHDC: latest balance sheet +0.26/sh (6%) firm, NCI -0.44 to -0.47 firm (-10%), land notes +1.48 (35%) and amortised-cost investments +1.51 (35%) conditional; net +0.3 to +2.8/sh, 7-66% of gap. AMOC: minority basis +0.12-0.26/sh on the DCF lens, provisions/dividends not deducted +0.97/sh DCF — 0.12-0.44/sh central, second-order, overlapping C2's book lens.",
+   "names": [
+    "TMGH",
+    "PHDC",
+    "AMOC"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "TMGH: a subsidiary-level attribution from the FY2025 consolidation note showing the EGP 75.65bn NCI sits in hospitality/land legs carrying >=45% of SOTP value (book share approximates value share). PHDC: the FY2025 cash-flow note showing the amortised-cost investments are restricted or their income already sits inside the CFO margin, and land-seller settlements sit in financing cash flow."
+  },
+  {
+   "id": "C7",
+   "cause": "The [R-FCAL-01] statement calibration is a measurement instrument with no actuator and the wrong target: it scores per-driver log errors against later statements and never scores a lens, blend, discount rate, terminal, bridge or fair value against a later price, so it is blind by construction to C1-C4/C6; its pre-registered correction rules (half strength, sign-stable across eras, cross-book consistency, two-sigma break reset on 5-13 origins) converted every robust bias it found into a watch flag — one number changed in ~170 scored cells (ARCC manufacturing depreciation x1.0298); TMGH's four 'adopted' corrections carry 0.000 log into the forward path and its committed corrections_log.json is EMPTY while the delivered study claims four; the method under-forecasts revenue on four of five names and loses to 'freeze last year's profit' at h1 on four of five, and the studies then build BELOW its centrals.",
+   "layer": "FUNDAMENTAL CALIBRATION [R-FCAL-01] — target quantity and correction bar (the second half of the calibration)",
+   "mechanism": "A calibration is a loss function plus a rule for acting on it. The loss is on drivers, not value, and forward_ranges.json enters the studies only as display bands for years 3-5; the action rule is so restrictive on effective n ≈ origins (overlapping horizons, nominal bootstrap CIs, era splits degenerate on AMOC) that measured sign-stable under-forecasts produced nothing, while the half-strength constant is a stated-not-derived free parameter of the species the PROMOTION RULE forbids elsewhere. The one measured over-forecast (PHDC net profit +1.116) is a recognition-clock specification error (L-001) and was correctly fixed as a specification — yet the digest cites 'the walk-forward's own finding that this house leans optimistic' as the counterweight to the one-sided gap gate. Bookkeeping is broken: corrections.py reads a key commit 8fb64664 moved under 'detail' and `continue`s — the [R-ENF-04] empty-result-as-clean failure inside the calibration itself.",
+   "evidence": "engine/Fundamental_Walkforward_Prompt.md pre-registration lists drivers, benchmarks, per-driver log error only; grep walkforward|forward_ranges|corrections_log across every study's wacc/lenses/valuation module returns only tmgh_study/lenses.py:22. engine/arcc_study/compute.py:480-487 wf_dep_correction = exp(0.5 x 0.0587) = 1.0298 — the only walk-forward number in any valuation arithmetic. engine/tmgh_walkforward/forward_ranges.json projection.2026.*.correction_applied_log = 0.0 all drivers; corrections_log.json {adopted 0, watch_flags 0, refused 0, detail 0} on HEAD vs 4/1/10/15 at a2b51caa; corrections.py:150-156 reads scores.get('asknown|%s|all') at top level; engine/tmgh_study/study_numbers.json walkforward.adopted_corrections ['backlog','da','development_properties','new_sales']. scores.json by_driver: AMOC net_sales -0.570 robust n9, majority -1.024 robust share_over 0.0; ARCC revenue -0.278, pat -0.405 (E1 -0.581/E2 +0.006); PHDC is.npat_mi +1.116 robust, is.revenue +0.105 not robust; TMGH new_sales -0.877 robust n33; EGCH revenue -0.596 sign_hit_rate 1.0 over 55 cells, net -0.836. Skill vs freeze h1 on profit: PHDC -3.83, AMOC -1.08, EGCH -0.97, TMGH -0.41, ARCC +0.26. engine/fv_movement.json: walk-forward editions moved AMOC -7.0%, ARCC -3.2%, PHDC/TMGH not through the statements (the 18% -> 26.25%/35.79% rate step); every recovery (AMOC +56.1%, ARCC +2.3%) came from manual [R-GAP-01] audits. SRP:1508 half strength 'by default'.",
+   "share_of_pessimism": "Zero of the fair-value MOVEMENT (it changed one cost line by 3% on one name; the principal's attribution 'calibration made it worse' is mechanically wrong — the rebuild's rate step and lens blend did). But 100% of the MISSED CORRECTION: robust under-forecasts of -0.28 to -1.02 log on the bottom line of four names parked as watch flags; TMGH's FY2026 revenue line 23.5% below the record it produced (the upper bound of driver-layer pessimism is C5's +23.46/sh fade item). Between editions the five-name mean signed gap widened -12.2% -> -42.0%; after manual reviews -34.9%.",
+   "names": [
+    "TMGH",
+    "AMOC",
+    "ARCC",
+    "EGCH",
+    "PHDC"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "Show a walk-forward correction that entered any study's valuation and moved a central by >2%; or re-run each walk-forward with the measured revenue bias at FULL strength on an expanding window and show out-of-sample MAE at h=1-3 on the confirmation origins worsens on >=3 of 4 names (the refusal was right); or restore TMGH's corrections_log.json from a2b51caa and show the four corrections carry non-zero log into forward_ranges.json; or an origin-by-origin record showing the method does NOT under-forecast revenue once traps (i)/(ii) are fixed."
+  },
+  {
+   "id": "C8",
+   "cause": "A directional selection lean in how contested judgements are resolved: wherever two defensible constructions exist ('publish both'), the study adopted the lower one as the central — ERP basis (rating on the three far-below names), flat vs glide, minority basis (whichever deducts more), nominal vs real fade, PHDC land notes and investments, ARCC tier-2 vs own beta, haircut vs audited normalised EBITDA, replacement-cost lens at 8% weight, terminal reinvestment on nominal g, AMOC provisions at face and circular relative lens — roughly 18 of 22 choices worth >5% of value resolved pessimistic (p ≈ 0.002 under a symmetric coin); and the rule set was adopted from an audit (CLHO) where every defect biased UPWARD, so every procedural instinct and the one-sided [R-GAP-01] gate point down while its stated counterweight is false.",
+   "layer": "PROCESS — how judgement calls are resolved (cuts across C1-C6)",
+   "mechanism": "Standing_Research_Protocol.md:27 'every one of which biased the valuation in the same direction: upward ... the rules below exist to remove it' — rf normalisation, marginal Kd above sovereign, guidance never consumed, margins as outputs, the one-sided gap gate all lean down, and 'both framings published' has in practice meant 'the lower framing adopted'. Outside challenges to pessimistic constructions were rejected with 'receipts' (AMOC net-cash double charge survived two editions after a correct reviewer flag, GR7); nine of the ten largest AMOC findings came from outside; every valuation-layer correction that moved a number was triggered by a human question. The digest's justification for one-sidedness — 'the walk-forward finds this house optimistic' — rests on PHDC alone and is contradicted by scores.json on four of five names.",
+   "evidence": "Per-name choice sets: TMGH 4 low/1 high (hospitality/other real growth the high one), PHDC 5 low/1 high (trailing 25.2% CPI the high one), AMOC 4 low/1 high (CDS basis), ARCC 5 low/1 high (CDS basis). Reader tally over nine files: 65 valuation-affecting defects, 40 DOWN / 25 UP; 17 R-GAP-01 findings, 11 valuation-layer, all found after the human asked. engine/PROJECT_INSTRUCTIONS_01-09-2026.md [R-GAP-01] 'ONE-SIDED ON PURPOSE ... the counterweights are ... the fundamental walk-forward's own finding that this house leans optimistic'; engine/amoc_study/CRITIQUE_RESPONSE_06-08-2026.md GR7 'ACCEPT the economics, REJECT the double-count charge — receipt' vs GAP_REVIEW_01-09-2026.md (31.19% retired); CRITIQUE_REGISTER_08-08-2026.md §E.1 'Nine of the ten largest priced findings came from outside'; TMGH GAP_REVIEW:136 declining to treat 35.79% vs a 23.09% price-implied rate as a defect; ARCC efg_bridge.json zero of eight steps 'Testahil off' while the gap review found four house defects a month later. Basis adoption per C4 evidence.",
+   "share_of_pessimism": "Not separable from C1-C6 — it is the mechanism by which each was resolved downward; largest single instance TMGH minority framing (+34% capacity / +52.8% median). Joint: on TMGH the four low choices (basis +12.5%, glide +33-95%, minority +34%, fade +44%) compound from 53.05 to well above 97.80; on PHDC five low choices compound 10.94 -> 15.7-19. The direction is systematic (p ≈ 0.002), which is what 'ridiculously pessimistic' is measuring.",
+   "names": [
+    "PHDC",
+    "TMGH",
+    "AMOC",
+    "ARCC",
+    "EGCH"
+   ],
+   "claimed_by": [
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "Re-adjudicate the same ~22 contested choices under a stated house rule for each (one ERP basis, one term structure, one minority basis, real-terms parameters, audited bases) and recount: if the adopted framing was the lower-value one in fewer than half the cases — or if the count under the stated rules is still >=15 of 22 low — the lean is in the rules, not their application, and C8 collapses into C1-C6. Or a repository record of an over-optimistic EG study audited and revised down by a gate rather than a reader."
+  },
+  {
+   "id": "C9",
+   "cause": "Structural: no gate in the repository examines the valuation layer's OUTPUT or any of its constructions — the r2 sliding schedule, terminal coherence (L-048/L-055), ERP basis, minority basis, bridge, lens weights and lens specification, the Kd-integrity three-assert gate ('All three raise. The build fails') — all exist only as prose; the lessons register binds nothing by design; every mechanical gate (Step 0.0, SIGCM, beta provenance, ground-up, workbook structure, 5,775-cell recalculation, scrub, table discipline) checks process and passed AMOC at -39% with six 'model was wrong' defects behind it; the only output check ([R-GAP-01]) is one-sided, created after a human question, and its DISCOUNT RATE / TERMINAL headings ask about mechanics not level; gap-review corrections already computed then ship unapplied; and the only value-vs-price test (value_gap_backtest) is a one-date cross-section at n=32.",
+   "layer": "PROCESS / ENFORCEMENT — why the pessimism persists across editions rather than why it exists",
+   "mechanism": "The same defect species recurred despite registration (macro incoherence six times across four names; terminal real decline five times; unopened filings three times; minority basis three times). A method whose only grade is against the company's statements will never see an error that lives in the rate, the terminal, the lens or the bridge — and those are where the money is. Detection therefore runs through humans, and a gate premised on a false claim about the walk-forward supplies no counterweight.",
+   "evidence": "grep '^def assert_' engine/research_protocol.py -> lines 226/272/325/425/463 (sigcm, gates_called, beta_provenance, model_study, ground_up) — none reads a rate path, Ke level, terminal, lens weight, minority basis or bridge line; scripts/check_valuation_gap.py:75-77 heading presence only; digest 'THE REGISTER IS A RECORD AND NOT A GATE: no QC item consults it'; Lessons_Register.md header 'NOTHING IN THIS REGISTER BINDS ANY STUDY'; SRP:340-345 Kd gate exists in no code, arcc study_numbers kd_gate.bound_met false shipped; [R-GAP-01] adoption narrative 'PASSED EVERYTHING ... behind the discount sat SIX defects'. Still-shipping after review on this checkout: phdc valuation_v2.py:146 (E/Ke), no NCI, stale BS; tmgh model.py:56 SALES_FADE 0.85, valuation.py bridge() book-only NCI. engine/value_gap_backtest_EG_20260824.md:10-31 n=32, IC -0.140, p=0.45, 3M n=0.",
+   "share_of_pessimism": "Not a share of the level; it is the persistence term — the reason 100% of the level survived every gate. Measurable cost is the un-applied, already-computed corrections: TMGH +36.4/sh (+69% capacity, 53.05 -> 89.47) and PHDC +0.65 to +2.2/sh (+6 to +8% central) in committed gap_review_calcs.json and not in delivered numbers; plus the rule already written but not enforced (r2 glide) worth +43-48% on PHDC's central and +33-95% on TMGH's capacity case. Everything needed to move the two named studies inside +-10% is already in the repository as text.",
+   "names": [
+    "AMOC",
+    "ARCC",
+    "EGCH",
+    "PHDC",
+    "TMGH"
+   ],
+   "claimed_by": [
+    "valuation_theorist",
+    "em_practitioner",
+    "calibration_statistician"
+   ],
+   "falsifier": "Write the four asserts (rate path: WACC_TERM < WACC_EXP with a kd_path-shaped glide and normalised terminal ERP on any market with rf > norm; terminal coherence: g >= inflation inside the terminal rate unless a real decline is stated and sourced, every perpetuity lens capitalised at ke-g; single ERP basis and single dated rf per market per build; bridge: NCI deducted with all bases printed, every balance-sheet line classified, debt weight >= 0 or no cash add-back) and run them over engine/*_study/: if they go green on PHDC and TMGH as delivered, C9 is wrong about what a gate would have caught."
+  },
+  {
+   "id": "C10",
+   "cause": "Beta estimation: 5-year weekly Dimson regressions vs EGX30 with R² 0.26-0.33 and SE 0.16-0.18, no shrinkage applied (Blume computed as 'blume_crosscheck' and discarded; Vasicek absent), a usability gate of t > 1; TMGH's 1.47 spans a 24->80 re-rating (upside co-movement charged as risk); ARCC's own-stock 0.70 fails the R² >= 5% gate (0.047) and is replaced by a tier-2 peer median 0.93 of RAW equity betas with the unlever/relever step skipped ('could only LOWER the beta and RAISE the value').",
+   "layer": "VALUATION — cost of capital: beta (estimation uncertainty and shrinkage, distinct from provenance which is now conforming)",
+   "mechanism": "Beta CI90 alone spans Ke +-2.5-4.2pp and value +-13-15%; unshrunk betas from a crisis/re-rating window overstate systematic risk for names that led the index. The composite-to-index provenance fix on ARCC pushed value DOWN (0.628 -> 0.9275, -4.27/sh), so the beta-provenance campaign is itself a source of downward movement. The calibration_statistician judges beta NOT a cause (sampling error is not a -46% gap; ARCC's tier-2 defect is worth 5.6% on the central).",
+   "evidence": "engine/beta_regression.py:83-106 Dimson sum-beta, ci90 = beta +- 1.645 x se, blume_crosscheck stored only; engine/wacc_builder.py RegressionBetaAttempt.is_usable n>=24, r²>=0.05, se<|beta|; engine/arcc_study/beta_reg.py:34-43 tier-2 median of LCSW/EGAL/ORAS/EGCH equity betas. Records: AMOC 0.908 r² 0.259 se 0.165; ARCC own 0.698 r² 0.047 -> peer 0.928; PHDC 1.049 r² 0.299 se 0.182 ci [0.75,1.35] blume 1.033; TMGH 1.472 r² 0.326 se 0.185 ci [1.17,1.78] blume 1.315 -> Ke 32.9-41.4%. engine/arcc_study/study_numbers.json move_decomposition.from_beta -4.268/sh; contested[1] fv_adopted 57.60 vs fv_alternative 63.65 at own-stock 0.698.",
+   "share_of_pessimism": "ARCC: ~61% of its 4.90/sh gap closes on the own-stock beta (central 54.10 -> ~57.1; -5.6%); the composite->peer swap was -4.27/sh, 'nearly the whole gap'. TMGH: ~8% of the capacity gap on Blume shrinkage alone (56.73, +6.9%); +-30% of the gap from sampling error (47.3-60.8). PHDC: central 9.29-13.26 at CI90 bounds, +-13-15%. Second-order on AMOC.",
+   "names": [
+    "ARCC",
+    "TMGH",
+    "PHDC"
+   ],
+   "claimed_by": [
+    "em_practitioner",
+    "valuation_theorist"
+   ],
+   "falsifier": "Vasicek/Blume-shrunk or longer-window betas grade worse than raw 5y Dimson betas on ln(FV/P_t+h) in a valuation walk-forward; or ARCC's peer set, properly unlevered and re-levered, returns a beta at or above 0.93."
+  },
+  {
+   "id": "C11",
+   "cause": "Universal small-ticket cost-of-capital inputs: three different stale ten-year quotes for one sovereign (22.31%, 22.95%, 23.00%, 24-26 days old at build, CBE policy 19.00%, interbank 19.51%); an unsourced Kd of sovereign + 250bp (25.5%) on PHDC/TMGH against effective rates of 12.5% (PHDC FY25) and 24.7% (TMGH); the protocol's Kd-integrity gate existing in no code (ARCC kd_gate.bound_met=false shipped); the net-cash weights convention unsettled (AMOC's prose asserts unlevering-for-cash, its code and the other four use gross weights).",
+   "layer": "VALUATION — cost of capital: inputs and weights (symptom of the absent Cost_of_Capital_Reference.md)",
+   "mechanism": "Every Ke moves one-for-one with rf and every WACC by 0.56-0.92pp per 1pp; a 4pp gap between quote and policy rate at a cycle top is a systematic upward bias on every Egyptian rate, compounded by C1 when held flat for ever. Common to all five names, so not a driver of the cross-sectional pattern; em_practitioner and calibration_statistician rate it a hygiene defect worth ~1pp of Ke (4-6% of value), not a cause of -28%/-60%.",
+   "evidence": "amoc study_numbers wacc.rf 0.2231; arcc wacc.rf 0.2295; phdc/tmgh/egch rf_observed 0.23 ('FLAGGED: the quote is 24 days old', phdc wacc.py:43-51); tmgh wacc.py records policy 19.00%, interbank 19.51%. phdc_study/wacc.py:59-75 KD_SPREAD 0.025 'THIS BUILD'S ONE UNSOURCED COST-OF-CAPITAL INPUT'. Standing_Research_Protocol.md:340-345 'All three raise. The build fails' — no such code in wacc_builder.py; arcc kd_gate.bound_met false. amoc study_numbers wacc.we_exp 1.343, wd_exp -0.343 (retired 01-Sep), delivered text still 'ABOVE the 27.45% cost of equity'. ls engine/Cost_of_Capital_Reference.md -> absent (cited absent since 07-Aug-2026).",
+   "share_of_pessimism": "Second-order and universal: 1pp of rf is ~4-6% of value on a 55-75% terminal-share DCF, so the 4pp quote-vs-policy wedge is worth ~10-20% of the DCF lens on every Egyptian name IF the policy rate is the better expectation and ~0 if the bond quote is. PHDC Kd weight effect +-0.64/sh on the central; a +-2pp Kd error is +-0.7pp WACC. Not a driver of the cross-sectional pattern.",
+   "names": [
+    "AMOC",
+    "ARCC",
+    "EGCH",
+    "PHDC",
+    "TMGH"
+   ],
+   "claimed_by": [
+    "valuation_theorist"
+   ],
+   "falsifier": "A dated, sourced Egyptian curve file showing the 23% quote was the correct on-the-run 10y yield at each build date, and facility notes supporting a 25.5% marginal EGP borrowing cost for PHDC and TMGH."
+  },
+  {
+   "id": "C12",
+   "cause": "EGCH's -73% is produced by its driver model alone: the 264kt ANNA ammonium-nitrate complex (EGP 14.7bn unspent) modelled at ~zero EBIT after depreciation at 50% utilisation / USD 280/t, an export urea path 530 -> 440 USD/t (-6.7%/yr real USD) frozen into the perpetuity, and statutory tax on a no-tax company — while the walk-forward beside it measured a 55-of-55-cell revenue under-forecast of -0.60 log (net -0.84, tax_current -1.30) that the correction rule refused to act on. No discount rate closes it (price-implied flat rate 7.9%; grid max 3.67/sh across USD 380-540 x 17-24%).",
+   "layer": "STATEMENT PROJECTION — driver specification on one name (a conclusion about a capital programme, possibly wrong, but not the house's valuation-layer lean)",
+   "mechanism": "The gap is a judgement about the expansion's economics, so cost-of-capital, terminal and lens corrections close at most ~11% of it (terminal ERP normalisation +0.4-0.9, statutory tax +0.44-0.97, CDS basis +0.3-0.7/sh). The walk-forward's own record says the method misses this company's expansions, which is the only evidential lever against the conclusion. valuation_theorist and em_practitioner classify EGCH as NOT a cause — a legitimate contrarian conclusion that must not be swept into the pessimism diagnosis; calibration_statistician claims it as a driver-specification instance while agreeing it is not a rate problem.",
+   "evidence": "origin/main engine/egch_study/study_numbers.json drivers.implied_wacc_base 0.0793; sensitivity_grid.json max 3.67/sh; flat 15% rate reaches only 1.18; engine/egch_walkforward/scores.json drivers.revenue.overall bias -0.596 sign_hit_rate 1.0 over 55 cells, drivers.net -0.836, tax_current -1.298; study_numbers drivers.ke_terminal 0.2542 with 13.94% ERP kept; GAP_REVIEW:122 'a real 17% in perpetuity'.",
+   "share_of_pessimism": "EGCH: the driver model IS the gap (10.22/sh); method corrections combined close ~11%; the walk-forward's -0.60 log revenue under-forecast taken at face would be 1.8x the revenue path but was refused (C7). Zero share of the other four names' gaps.",
+   "names": [
+    "EGCH"
+   ],
+   "claimed_by": [
+    "calibration_statistician"
+   ],
+   "falsifier": "If the AN complex reports EBIT after depreciation <= 0 at >= 50% utilisation in its first two full years, and export urea realises at or below the modelled real path, the zero-EBIT construction was right and EGCH's discount is a correct disagreement with the market."
+  }
+ ]
+}
