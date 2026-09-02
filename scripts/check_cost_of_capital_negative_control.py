@@ -143,6 +143,27 @@ def main():
         r["kd_integrity"]["effective_rates"] = []
         r["kd_integrity"]["effective_rate_unavailable"] = "not available"
 
+    # THE SHAPE OF THE EVIDENCE, NOT ONLY ITS VALUES. Every case above hands the
+    # gate an effective_rates that is already a well-formed sequence, so none of
+    # them could ever have caught what happened on 02-Sep-2026: the ARCC re-issue
+    # recorded effective_rates as a MAPPING of fiscal year to rate, the gate
+    # reached eff[-1], died with a bare KeyError before printing anything at all,
+    # and a run of it read as "no ARCC failures" when it had examined nothing.
+    # Seventeen synthetic conditions passed while the gate was broken on real
+    # data. These three cases are that incident.
+    def m_eff_mapping(r):
+        # the shape that crashed it. A mapping NAMES its periods and is better
+        # evidence than a bare list, so the gate must ACCEPT it — this case is
+        # registered as one that must stay GREEN.
+        r["kd_integrity"]["effective_rates"] = {"FY2024": 0.243, "FY2025": 0.251}
+
+    def m_eff_garbage(r):
+        # a shape that is neither: the gate must REFUSE with a message, never die
+        r["kd_integrity"]["effective_rates"] = "0.243 and 0.251"
+
+    def m_eff_nonnumeric(r):
+        r["kd_integrity"]["effective_rates"] = [0.243, "n/a"]
+
     def m_denominator(r):
         r["kd_integrity"]["interest_bearing_note"] = ""
 
@@ -166,8 +187,14 @@ def main():
                  ("7b stop-and-inform escape used as a waiver", m_escape_abused),
                  ("8 ladder not monotone", m_nonmonotone),
                  ("9 ladder off its own fractions", m_offladder),
-                 ("10 no alternative premium basis", m_nobasis)):
+                 ("10 no alternative premium basis", m_nobasis),
+                 ("12 effective_rates neither a sequence nor a mapping", m_eff_garbage),
+                 ("13 effective_rates carries a non-numeric entry", m_eff_nonnumeric)):
         case(n, broken(m), True, results)
+
+    # a period-keyed mapping is GOOD evidence and must not be refused
+    case("CLEAN — effective_rates as a period-keyed mapping, must PASS",
+         broken(m_eff_mapping), False, results)
 
     def b_norecord(tmp):
         put_study(tmp, "NCC", None); put_list(tmp, [])

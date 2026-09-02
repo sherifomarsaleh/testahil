@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 re-issue — AMOC last",
-  "step": "EGCH done and referred; AMOC next (it also fixes its Kd of 22.00% against its own recorded sovereign of 22.31%)",
-  "status": "ready to start"
+  "workstream": "WS8 complete — all five re-issued",
+  "step": "next: WS5 walk-forward as actuator, WS6 valuation calibration (macro-history archive first), WS9 sweep report, WS10 governance",
+  "status": "ready"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -43,12 +43,14 @@
   "WS7 [R-ENF-05] done: the reverse read (what the price must believe, kept structurally out of the model) and the contested-judgement sign test; check_output_records + negative control (13/13); PHDC and TMGH carry both. PHDC's sign test reads p=1.00 — no lean — which is evidence for the rebuild.",
   "WS8: ARCC re-issued on the new standard. Central 53.46 vs spot 59.00 (-9.4%, was -8.3% on the blend). The correction runs AGAINST the value — terminal rf 10.50->12.50 derived from the house path costs more than g 5->7 gains, and the derived currency path is more depreciated than the hand-set one. Price and cost now ride ONE path at zero real from FY2027 with the evidenced FY2026 anchors kept; the reviewed 1H2026 gross margin of 40.5% against FY2025's 40.6% is what settled that. Typed 50/20/22/8 blend retired (would read 52.03); normalised earnings dropped as a lens for this class. FOUND AND FIXED: external_reader_scrub was attested True with no scan in the study at all — scrub_gate.py now reads the delivered documents and the attestation is negative-controlled three ways; four tables ran past the text frame; the margin guard was re-pointed to test the escalators rather than forbid the funded alternative-fuel saving. 914/914 recalcs, 143 driver assertions, scrub 0 hits, table audit 0.",
   "WS8: EGCH re-issued. Central -1.06 vs spot 13.98 (-107.6%, was 3.76 / -73.1%). THE BLEND WAS CONCEALING THE FINDING: 45% of it was a NEGATIVE cash-flow reading and 55% three positive ones, so a reader saw 3.47 and never learned the study's own primary lens was below zero. Retiring it publishes the disagreement: carried through -1.06, stopped +2.82, disclosed book 8.16, relative 15.47. Also corrected: the 'book lens' was a JUSTIFIED price-to-book of zero weighted at 15% — a derived valuation wearing the name of a disclosed figure; the floor is the disclosed 8.16 and is never weighted. House macro path applied (terminal inflation 5%->7%), which overrules an argument this study made well and costs it 0.28/share; the argument is kept in the record. Three construction records added, all three gates green. REFERRED, NOT SETTLED: whether the house publishes a negative central at all.",
-  "GATE FIX: the valuation-gap gate passed EGCH on a review written for a different answer — it checked a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares; ratcheted with a third list (seeded empty, every current review marked in the same commit) and negative-controlled on three new conditions including the EGCH incident itself. Its first run caught two live reviews."
+  "GATE FIX: the valuation-gap gate passed EGCH on a review written for a different answer — it checked a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares; ratcheted with a third list (seeded empty, every current review marked in the same commit) and negative-controlled on three new conditions including the EGCH incident itself. Its first run caught two live reviews.",
+  "WS8: AMOC re-issued, completing all five. Central 9.91 vs spot 9.10 (+8.9%, was 8.64 / -5.0%). Cost of debt rebuilt above the sovereign — 22.00% sat 31bp BELOW Egypt's own 22.31% in the same file, forbidden outright, and it moves the answer by ~1% because the book is 0.14% of the capital structure, which is exactly why it was worth correcting: a rule obeyed only when it is expensive is not a rule. Typed 45/20/20/15 blend retired (would read 8.74); normalised earnings dropped as a lens for a refiner earning a 6.6% spread, which has no mid-cycle margin to normalise. Three construction records added; all four gates green.",
+  "GATE FIX: check_cost_of_capital.py CRASHED on ARCC's record — effective_rates recorded as a period-keyed mapping where it expected a sequence — and because the gate defers all printing to the end of its loop, the crash produced ZERO output. A CI log would have shown a traceback and nothing else, and my own earlier run of it read as 'no ARCC failures' when it had examined nothing: the empty-result-is-not-a-clean-result failure, inside a gate written to prevent it. The gate now accepts a mapping (a record that names its periods is better evidence, not worse), refuses any other shape with a message, and catches per-study exceptions so one malformed record cannot silence the other twenty-three; an ERROR is never 'allowed for now' on the ratchet. Negative control extended by three cases — the crash shape, a garbage shape and a non-numeric entry — because all seventeen of its existing cases passed while the gate was broken on real data. FOUND BY THE GATE RUNNER, not by me."
  ],
  "next": [
-  "WS8 re-issue AMOC (also fixes Kd 22.00% vs its own sovereign 22.31%)",
   "WS5 walk-forward as actuator; WS6 valuation calibration (macro-history archive first)",
-  "WS9 sweep report; WS10 governance and lessons"
+  "WS9 sweep report; WS10 governance, lessons and the digest",
+  "ARCC's cost-of-capital record: the gate now reads it and reports two honest findings — the mid-year discount convention it cannot see, and the disclosed 833bp Kd/effective-rate gap the study explains but the record has no field for. ARCC stays on the ratchet; both belong in the next pass."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -60,7 +62,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T21:59:46Z",
+ "updated": "2026-09-02T22:07:27Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

@@ -152,7 +152,35 @@ def check_record(rec, ticker):
             fails.append("the cost of debt %.4f sits BELOW the sovereign yield %.4f on an "
                          "all-local-currency book. A same-currency corporate cannot borrow "
                          "below its own sovereign." % (kd, rf))
-        eff = ki.get("effective_rates") or []
+        # THE SHAPE IS CHECKED BEFORE THE VALUES. A record carrying effective_rates
+        # as a MAPPING of period to rate — which is the natural thing to write and
+        # which the ARCC re-issue of 02-Sep-2026 wrote — used to reach eff[-1] and
+        # die with a bare KeyError, and because this gate defers all printing until
+        # its loop finishes, the crash produced NO OUTPUT AT ALL: not a failure
+        # line, not even the count of studies examined. A CI log showed a traceback
+        # and nothing else, and a run of this gate against a working tree read as
+        # "no ARCC failures" when it had in fact examined nothing. That is the
+        # empty-result-is-not-a-clean-result failure inside a gate written to
+        # prevent it.
+        #
+        # A mapping is now ACCEPTED and ordered by its own keys, because a record
+        # that names its periods is better evidence than a bare list, not worse.
+        # Anything else REFUSES with a message naming the shape.
+        eff_raw = ki.get("effective_rates")
+        if isinstance(eff_raw, dict):
+            eff = [eff_raw[k] for k in sorted(eff_raw)]
+        elif isinstance(eff_raw, (list, tuple)):
+            eff = list(eff_raw)
+        elif eff_raw is None:
+            eff = []
+        else:
+            eff = []
+            fails.append("effective_rates is a %s; it must be a sequence of rates in "
+                         "period order, or a mapping of period to rate."
+                         % type(eff_raw).__name__)
+        if any(not isinstance(x, (int, float)) for x in eff):
+            fails.append("effective_rates carries a non-numeric entry: %r" % (eff,))
+            eff = [x for x in eff if isinstance(x, (int, float))]
         why = (ki.get("effective_rate_unavailable") or "").strip()
         if len(eff) < 2 and not (len(why) >= 60 and "disclos" in why.lower()):
             fails.append("the cost-of-debt gate needs an independently computed effective rate "
@@ -233,9 +261,22 @@ def main():
     ok, fixed, still, hard = [], [], [], []
     for d in sdirs:
         tk = ticker_of(d)
-        state, detail = audit(d)
+        try:
+            state, detail = audit(d)
+        except Exception as exc:
+            # A GATE THAT CRASHES REPORTS NOTHING, AND NOTHING READS AS CLEAN.
+            # Whatever is malformed in one study's record, the other twenty-three
+            # are still owed an answer and the operator is owed a line naming the
+            # study that broke.
+            state, detail = 'ERROR', ('%s while auditing this record: %s'
+                                      % (type(exc).__name__, exc))
         listed = tk in known
-        if state == "ok":
+        if state == "ERROR":
+            # A CRASH IS NEVER "ALLOWED FOR NOW". The ratchet forgives a study that
+            # does not yet CONFORM; it cannot forgive a record this gate could not
+            # read, because that is not a known shortfall, it is an unknown one.
+            hard.append((tk, detail))
+        elif state == "ok":
             (fixed if listed else ok).append((tk, detail))
         else:
             (still if listed else hard).append((tk, detail))

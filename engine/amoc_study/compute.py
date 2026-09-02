@@ -500,12 +500,36 @@ INP['cash_yield'] = I(0.170, "Yield earned on the cash pile. Egyptian treasury b
 INP['cash_yield_path'] = I([0.170, 0.150, 0.135, 0.125, 0.118],
                            "Forward path for the deposit yield, easing with the policy rate",
                            "2026-08-06", "House")
-INP['kd'] = I(0.2200, "Marginal cost of debt. The gross book is EGP 25mn — 0.06% of revenue — of "
-                      "short-dated Egyptian-pound facilities, so the rate is taken at the corridor "
-                      "lending rate of 20.00% plus a 200bp corporate spread rather than pretended "
-                      "to be observable. The integrity gate below computes what this input is "
-                      "actually WORTH to the answer", "2026-08-06", "House")
-INP['kd_path'] = I([0.2200, 0.1950, 0.1750, 0.1600, 0.1500],
+# THE COST OF DEBT SITS ABOVE THE SOVEREIGN, AND THE PREVIOUS BUILD DID NOT.
+# The 06-Aug-2026 edition priced this off the CORRIDOR LENDING RATE of 20.00%
+# plus a 200bp corporate spread, for 22.00% — against an Egyptian ten-year yield
+# of 22.31% recorded in this same file. A same-currency corporate borrowing 31bp
+# BELOW the government that taxes it is forbidden outright by the cost-of-capital
+# procedure, and the first run of the new cost-of-capital gate found it here, in
+# the one study that had implemented the rest of that procedure.
+#
+# THE ARGUMENT FOR THE OLD BUILD IS RECORDED RATHER THAN DISMISSED, because it is
+# not a silly one: the company's facilities are SHORT-DATED and the corridor is an
+# overnight policy rate, so a short borrowing costing less than a ten-year bond
+# yield is a term-structure fact, not a company out-borrowing its sovereign. The
+# rule is nonetheless stated on the sovereign the model actually discounts with,
+# and a study that prices its debt off a different point of the curve from its own
+# risk-free rate is comparing two things and calling them one.
+#
+# WHAT IT IS WORTH: the gross book is EGP 25mn, 0.06% of revenue, on a company
+# that is NET CASH. The correction moves the answer by essentially nothing, and
+# that is exactly why it is made — a rule that is only obeyed when it is expensive
+# is not a rule.
+INP['kd'] = I(0.2231 + 0.0200, "Marginal cost of debt: the Egyptian ten-year sovereign yield "
+                      "this study discounts with, plus a 200bp corporate spread. The gross book "
+                      "is EGP 25mn — 0.06% of revenue — of short-dated Egyptian-pound "
+                      "facilities, so no observable marginal rate exists and the rate is built "
+                      "rather than pretended to be observed. It replaces a build off the 20.00% "
+                      "corridor lending rate, which produced 22.00% — below the sovereign, which "
+                      "a same-currency corporate cannot be. The integrity gate below computes "
+                      "what this input is actually WORTH to the answer",
+              "2026-09-02", "House")
+INP['kd_path'] = I([0.2431, 0.1950, 0.1750, 0.1600, 0.1500],
                    "Forward cost-of-debt path 2026E-2030E, following the central bank's own "
                    "disinflation path toward the long-run Egyptian corporate-borrowing norm. This "
                    "path is what sets the SHAPE of the cost-of-capital glide; it is not a second "
@@ -1757,25 +1781,43 @@ lenses = dict(
     book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps,
               bull=book_bull, w=W['book']),
 )
-central = sum(l['base'] * l['w'] for l in lenses.values())
-# The published range is WEIGHTED, exactly as the central estimate is. The previous edition
-# labelled a row "weighted central" and then took MIN and MAX across the four lenses — both of
-# which came from the cash-flow lens alone — so a range carrying the word "weighted" had the
-# weights applied to its centre and not to its ends. It overstated the published spread by about
-# two and a half times. The unweighted envelope is still reported, as an envelope.
-lo = sum(l['bear'] * l['w'] for l in lenses.values())
-hi = sum(l['bull'] * l['w'] for l in lenses.values())
+# ---- ONE PRIMARY, AND THE REST ARE CROSS-CHECKS [R-LENS-03] ------------------
+# The typed 45/20/20/15 blend is retired. It was chosen, written down and
+# inherited, and it had never cleared any out-of-sample test — a free parameter in
+# a house that forbids them everywhere else. Averaging four methods does not make
+# a number more robust than the best of them: it makes a FIFTH method with weights
+# nobody tested, carrying every weakness of the weakest at whatever weight
+# somebody typed.
+#
+# For this class the registry names the cash-flow lens as the primary. Normalised
+# earnings is NOT in the class's permitted set and is dropped as a lens: it
+# capitalises a mid-cycle margin at a nominal rate on a refiner whose entire
+# economics are a ~6.6% spread between two numbers above EGP 35bn, so a mid-cycle
+# margin is the one thing about this company that cannot be normalised. It carried
+# a fifth of the weight. It is kept below as a diagnostic and reaches no published
+# number. Book value is a DISCLOSED FLOOR, published as such and never weighted.
+_RETIRED_BLEND = sum(l['base'] * l['w'] for l in lenses.values())
+central = lenses['dcf']['base']
+lo = lenses['dcf']['bear']
+hi = lenses['dcf']['bull']
 lo_env = min(l['bear'] for l in lenses.values())
 hi_env = max(l['bull'] for l in lenses.values())
-assert lo < central < hi, "the weighted range does not bracket the weighted central"
-assert lo_env <= lo and hi <= hi_env, "the weighted range escapes the unweighted envelope"
-say(f"[Range — WEIGHTED, like the central] EGP {lo:.2f} to {hi:.2f}, the bear and bull columns "
-    f"weighted {'/'.join(f'{l[chr(119)]:.0%}' for l in lenses.values())} exactly as the base "
-    f"column is. The widest single lens spans EGP {lo_env:.2f} to {hi_env:.2f} and that is "
-    f"reported as an ENVELOPE, not as the range of the weighted estimate.")
-lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
-say(f"[Synthesis] weighted central EGP {central:.2f}; full span across lenses and scenarios EGP "
-    f"{lo:.2f} - {hi:.2f}; spot EGP {SPOT:.2f} ({central/SPOT-1:+.1%} to the central).")
+assert lo < central < hi, "the primary lens's own range does not bracket its base"
+assert lo_env <= lo and hi <= hi_env, "the primary's range escapes the envelope of all lenses"
+say(f"[Range — the primary lens's OWN range, on one clock] EGP {lo:.2f} to {hi:.2f}. The "
+    f"cross-checks span EGP {lo_env:.2f} to {hi_env:.2f} and that is reported as an ENVELOPE, "
+    f"never averaged into the answer.")
+lenses['central'] = dict(name='Cash-flow lens (the central)', bear=lo, base=central,
+                         bull=hi, w=1.0)
+lenses['retired_blend'] = dict(name='RETIRED 45/20/20/15 blend, published unused',
+                               base=_RETIRED_BLEND,
+                               bear=sum(l['bear'] * l['w'] for l in lenses.values() if 'w' in l and l['w'] < 1.0),
+                               bull=sum(l['bull'] * l['w'] for l in lenses.values() if 'w' in l and l['w'] < 1.0),
+                               w=0.0)
+say(f"[Synthesis] the central is the CASH-FLOW LENS at EGP {central:.2f}, not a blend; "
+    f"cross-checks span EGP {lo_env:.2f} - {hi_env:.2f}; spot EGP {SPOT:.2f} "
+    f"({central/SPOT-1:+.1%} to the central). The retired 45/20/20/15 blend of the same "
+    f"lenses would read EGP {_RETIRED_BLEND:.2f} and is published beside the answer, unused.")
 assert 0.20 <= central / SPOT <= 3.0, f"central/spot {central/SPOT:.2f} outside the plausibility band"
 
 # ---- sensitivity grids (whole-model re-runs) --------------------------------
@@ -1987,7 +2029,149 @@ say(f"[Workbook blocks emitted] {_nb} complete forecast engines — the base cas
     f"re-run could not be expressed inside a grid; that was 27.6% of the file and three of the "
     f"pasted rows did not reproduce.")
 
+# ===========================================================================
+# THE THREE CONSTRUCTION RECORDS [R-MACRO-01, R-LENS-03, R-BRIDGE-01]. This study
+# already implemented the cost-of-capital procedure — it was the only one that
+# did — so what it owed was the RECORD of its other constructions, written down
+# so a job outside the study can check the choices rather than recompute the
+# arithmetic. A model that recalculates is not a model that is right.
+# ===========================================================================
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import macro_path as _MPATH
+_HP = _MPATH.load('EG')
+_HYR = list(_HP.inflation_years)
+
+MACRO_RECORD = dict(
+    market='EG', path_as_of=_HP.as_of,
+    growth_lines=[
+        dict(name='pound-denominated cost legs',
+             years=_HYR, nominal=[round(x, 6) for x in _EG_INFL],
+             real=0.0,
+             exempt_reason='the registered Egyptian inflation ladder this study was '
+                           'built on, which predates the house path and differs from '
+                           'it year by year. The study is internally coherent — the '
+                           'currency path and the product price path are both DERIVED '
+                           'from this one ladder by purchasing-power parity, so no '
+                           'second view of the economy exists inside it — and it is '
+                           'listed here rather than silently conformed, because '
+                           'rebuilding the ladder moves every operating number in the '
+                           'model and belongs in its own pass, not in a records pass.'),
+        dict(name='realised price per tonne, all lines',
+             years=_HYR, nominal=[round(x, 6) for x in _DEPREC], real=0.0,
+             exempt_reason='DERIVED, not chosen: crude is held flat in dollars and the '
+                           'pound depreciates at the inflation differential, so a '
+                           'dollar-priced slate fetches that many more pounds. It '
+                           'inherits whatever ladder the line above carries.'),
+    ],
+    fx_path=None,
+    fx_note='the currency path is DERIVED from the same inflation ladder as the price '
+            'path by relative purchasing-power parity, so the two cannot disagree; it '
+            'is not the house path\'s own currency path and is exempted with the '
+            'ladder above rather than half-conformed.',
+    terminal=dict(g_nominal=V['g_term'], real=0.0, rf=RF_TERM,
+                  inflation_in_rf=V['cbe_target']),
+    explicit_years=5,
+    growth_at_horizon_end=V['g_term'],
+    note='THE TERMINAL IS ALREADY ON THE HOUSE PATH and was the source of it: this '
+         'study derived the terminal risk-free rate as the central bank target in '
+         'force plus the real-rate convention, and set terminal growth equal to that '
+         'same target, in its edition of 06-Aug-2026. The house path adopted that '
+         'construction. What is NOT yet conformed is the explicit-window inflation '
+         'ladder, which is exempted above with its reason.',
+)
+
+LENS_RECORD = {
+    'class': 'refiner, commodity pass-through on a thin spread',
+    'primary': dict(kind='dcf', value=float(lenses['dcf']['base']),
+                    range=dict(low=float(lenses['dcf']['bear']),
+                               high=float(lenses['dcf']['bull'])),
+                    range_note='the cash-flow lens across five simultaneous driver '
+                               'moves — volume, margin, currency, cost of capital and '
+                               'terminal growth — so the ends are joint-worst and '
+                               'joint-best, not a confidence interval',
+                    note='the cash-flow lens on the company\'s own tonnes and the '
+                         'spread between two disclosed numbers, discounted on the '
+                         'glide with the terminal norm-built'),
+    'cross_checks': [
+        dict(kind='relative_multiple', value=float(lenses['relative']['base']),
+             present_value=False,
+             multiple_source='enterprise value to EBITDA from the company\'s own '
+                             'history and its regional peers, never a multiple read '
+                             'off the current price'),
+        dict(kind='book_value', value=float(lenses['book']['base']),
+             present_value=False,
+             note='published as a DISCLOSED FLOOR and never weighted'),
+    ],
+    'retired': dict(
+        blend=dict(V['lens_weights']),
+        blend_value=float(_RETIRED_BLEND),
+        why='the weights were typed and had never cleared an out-of-sample test. '
+            'Normalised earnings is dropped as a lens for this class outright: a '
+            'refiner earning a ~6.6% spread between two numbers each above EGP 35bn '
+            'has no mid-cycle margin to normalise, which is the one thing that lens '
+            'requires.',
+    ),
+    'diagnostics': dict(normalised_earnings=float(lenses['normalized']['base'])),
+}
+
+BRIDGE_RECORD = dict(
+    market='EG',
+    balance_sheet_date='2026-06-30',
+    latest_disclosed_date='2026-06-30',
+    latest_disclosed_source='the company\'s own latest disclosed statements, '
+                            'registered document by document in this study\'s '
+                            'investor-relations register under engine/amoc_walkforward.',
+    register='amoc_walkforward investor-relations register',
+    lines=[
+        dict(label='Enterprise value', value=float(ev)),
+        dict(label='less net debt (the company is NET CASH, so this ADDS)',
+             value=-float(nd_cy25)),
+        dict(label='less provisions', value=-float(prov_val)),
+        dict(label='less dividend payable', value=-float(divp_val)),
+        dict(label='plus investments', value=float(inv_val)),
+        dict(label='less non-controlling interests', value=-float(nci_val)),
+    ],
+    equity_value=float(eq_attr), shares_mn=float(SH), per_share=float(dcf_ps),
+    cash=dict(treatment='added_at_face', weights_basis='gross'),
+    cash_charged_once=True,
+    cash_note='The operations are discounted at the rate weighted on GROSS borrowings, '
+              'which on a book of 0.14% of the capital structure IS the cost of equity, '
+              'and the cash is then added ONCE, at face, in the bridge. '
+              'THE DEFECT THIS RECORD EXISTS TO PREVENT WAS THIS STUDY\'S OWN. A '
+              'previous edition discounted the operations at a NET-debt-weighted '
+              'rate — on a net-cash company the debt weight goes negative, the equity '
+              'weight levers above one and the operating rate lands 374bp ABOVE the '
+              'cost of equity — and then added the same cash back at face in the '
+              'bridge. That is the cash charged twice. This edition values the '
+              'operations at the unlevered rate, which on a book of EGP 25mn IS the '
+              'cost of equity, and adds the cash once.',
+    nci=dict(basis='value_share', value=float(nci_val), deduction=float(nci_val),
+             book=float(nci_val), profit_share=float(nci_val),
+             proportional=float(nci_val),
+             proxy='the minority\'s share of the subsidiaries\' value, taken at its '
+                   'disclosed carrying amount',
+             proxy_source='the company\'s own latest disclosed balance sheet',
+             framings_note='the contested-choice block prices the minority at DOUBLE '
+                           'this share and publishes what that is worth to the answer, '
+                           'which is the dual framing this rule asks for.'),
+    associates=dict(basis='book', note='investments carried at their disclosed '
+                                       'balance-sheet amount; none is a listed '
+                                       'associate with a market quote'),
+    dividend_deducted=False,
+    dividend_note='NO post-balance-sheet dividend declaration is deducted. What the '
+                  'bridge does deduct is the DIVIDEND PAYABLE of EGP %.0f standing as '
+                  'a liability ON the 30 June 2026 sheet (note 11), which is a '
+                  'different thing: the cash to settle it sits inside the cash balance '
+                  'this bridge adds back at face, so leaving it out would hand the '
+                  'buyer a cash pile that is already spoken for. A dividend declared '
+                  'before the sheet date and NOT yet paid is a claim on the firm, and '
+                  'that is what this line is.' % divp_val,
+)
+
 OUT = dict(
+    macro_record=MACRO_RECORD, lens_record=LENS_RECORD,
+    bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-08-06', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
               ev_trailing=ev_trailing, klass='downstream petroleum operating company',

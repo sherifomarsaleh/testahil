@@ -75,6 +75,28 @@
       "bear": 52.1,
       "full": 50.6
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 9.9142,
+      "bear": 4.9284,
+      "full": 16.7253
+     },
+     "lessons": [],
+     "origins": "re-issue 02-Sep-2026 on the new standard: cost of debt rebuilt above the sovereign (22.00% was 31bp BELOW Egypt's own 22.31%, forbidden outright, and the new cost-of-capital gate found it in the one study that had implemented the rest of that procedure); the typed 45/20/20/15 lens blend retired so the cash-flow lens is the central; normalised earnings dropped as a lens for this class; the three construction records added",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 66.6,
+      "bear": 20.5,
+      "full": 96.3
+     },
+     "vs_previous_pct": {
+      "base": 14.7,
+      "bear": -10.9,
+      "full": 34.0
+     }
     }
    ],
    "exchange": "EGX",
