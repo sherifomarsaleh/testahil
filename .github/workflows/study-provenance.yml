@@ -60,6 +60,10 @@ on:
       - 'scripts/check_lens_design.py'
       - 'scripts/check_lens_design_negative_control.py'
       - 'engine/build_depth_audit/lens_outstanding.json'
+      - 'engine/cost_of_capital.py'
+      - 'scripts/check_cost_of_capital.py'
+      - 'scripts/check_cost_of_capital_negative_control.py'
+      - 'engine/build_depth_audit/coc_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -109,6 +113,10 @@ on:
       - 'scripts/check_lens_design.py'
       - 'scripts/check_lens_design_negative_control.py'
       - 'engine/build_depth_audit/lens_outstanding.json'
+      - 'engine/cost_of_capital.py'
+      - 'scripts/check_cost_of_capital.py'
+      - 'scripts/check_cost_of_capital_negative_control.py'
+      - 'engine/build_depth_audit/coc_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -144,7 +152,7 @@ jobs:
       - name: Import the modules the gate depends on
         run: |
           cd engine
-          python3 -c "import wacc_builder, research_protocol, beta_regression, macro_path; print('imports OK')"
+          python3 -c "import wacc_builder, research_protocol, beta_regression, macro_path, cost_of_capital; print('imports OK')"
           python3 -c "
           import wacc_builder as w
           assert w.EXCHANGE_INDEX[('AE','DFM')] == 'FADGI', 'the DFM interim was changed without instruction'
@@ -329,3 +337,22 @@ jobs:
       # class does not permit.
       - name: Lens-architecture gate — negative control
         run: python3 scripts/check_lens_design_negative_control.py
+
+      # [R-COC-01] the cost-of-capital schedule. The sliding-schedule procedure has
+      # been in both governing documents since 13-Jul-2026 and on 02-Sep-2026
+      # exactly ONE study implemented it: PHDC and TMGH discount every explicit
+      # year and the terminal alike at 26.25% and 32.37%, asserting that Egypt's
+      # cost of capital never normalises while the central bank publishes a
+      # disinflation path their own cost-of-debt assumptions already follow.
+      - name: Cost-of-capital gate
+        run: |
+          python3 engine/cost_of_capital.py
+          python3 scripts/check_cost_of_capital.py
+
+      # and the proof that gate can go red — it reinjects the flat rate, two prices
+      # for one date, the sovereign counted twice, a quoted terminal, a Kd below its
+      # own sovereign (found in AMOC's committed record the day this was written),
+      # a Kd resting on one period, an undescribed effective-rate denominator, a
+      # non-monotone ladder and a missing premium basis
+      - name: Cost-of-capital gate — negative control
+        run: python3 scripts/check_cost_of_capital_negative_control.py
