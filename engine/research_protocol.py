@@ -11,7 +11,7 @@ This file holds RULES, not numbers — it never goes stale and is never overridd
 """
 
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List, Optional
 
 # --- The eight binding clauses (verbatim intent, enforceable) ---------------------------------
 SIGCM_CLAUSES = {
@@ -458,6 +458,158 @@ def assert_ground_up(lines, ticker: str = "?", tolerance: float = 0.01) -> dict:
     by = {k: sum(l.share_of_revenue for l in lines if l.level == k) for k in GROUND_UP_LEVELS}
     return {"ticker": ticker, "lines": len(lines), "share_by_level": by,
             "unit_share": by["unit"], "standard_version": STANDARD_VERSION}
+
+
+MACRO_TOLERANCE = 0.0005        # 5bp: below the precision any of these numbers is stated to
+HORIZON_CONVERGENCE = 0.02      # the explicit window runs until growth is within 2pp of terminal
+
+
+@dataclass
+class GrowthLine:
+    """One growth rate in a model, stored the only way it can be checked.
+
+    A nominal rate typed into a model is unfalsifiable: nobody can tell whether
+    12% was meant as inflation plus one point of real growth or as inflation
+    minus three. Stored as (real, inflation-path id) it recomputes, and the two
+    lessons this exists to enforce become arithmetic instead of advice:
+    [L-048] a scenario whose macro inputs cannot all be true at once invents its
+    own bias, and [L-055] terminal growth and the terminal discount rate must
+    agree about inflation.
+    """
+    name: str
+    years: List[int]
+    nominal: List[float]
+    real: float = 0.0
+    basis: str = "inflation + stated real"
+    # a line the path deliberately does not drive -- a volume ladder, a
+    # contracted price, a regulated tariff -- says so and is exempted BY NAME
+    exempt_reason: Optional[str] = None
+
+
+def assert_macro_coherence(record: dict, market: Optional[str] = None,
+                           ticker: str = "?") -> dict:
+    """Raise unless every growth rate in a model sits on the house macro path.
+
+    `record` is the study's own committed macro record:
+        market, path_as_of, growth_lines (GrowthLine or dicts), terminal
+        {g_nominal, real, rf, inflation_in_rf}, optional fx_path, and
+        explicit_years with growth_at_horizon_end.
+
+    Checks, each of which has a named failure behind it:
+      1. every non-exempt nominal rate recomputes to (1+inflation)(1+real)-1 on
+         the path's own ladder                                        [L-048]
+      2. terminal growth = terminal inflation + a STATED real growth, and the
+         inflation inside the terminal risk-free rate is that same number
+                                                                      [L-055]
+      3. the currency path, where the model has one, is the derived
+         purchasing-power path and not a hand-set one                 [L-048]
+      4. the explicit window runs until growth is within 2pp of terminal --
+         a five-year window on a name compounding at 44% nominal, capitalised
+         at a normalised terminal rate, puts 75-87% of value in the terminal
+         and is the second half of the PHDC swing
+      5. the path the study used is the path on disk, by as-of date
+    """
+    import macro_path as MP
+
+    mkt = (market or record.get("market") or "").upper()
+    path = MP.load(mkt)
+    fails = []
+
+    if record.get("path_as_of") and record["path_as_of"] != path.as_of:
+        fails.append(
+            "the study was built against the %s macro path as of %s; the path on "
+            "disk is as of %s. Re-run the study or say in it which vintage it "
+            "stands on -- a model quoting a path it did not use is the stale-copy "
+            "defect [R-DOC-01] in another costume."
+            % (mkt, record["path_as_of"], path.as_of))
+
+    lines = []
+    for g in record.get("growth_lines", []):
+        lines.append(g if isinstance(g, GrowthLine) else GrowthLine(**g))
+    if not lines:
+        fails.append("no growth lines recorded. A model with no recorded growth "
+                     "rates is not coherent by default; it is unchecked.")
+    for g in lines:
+        if g.exempt_reason:
+            continue
+        if len(g.years) != len(g.nominal):
+            fails.append("%s: %d years against %d rates" % (g.name, len(g.years), len(g.nominal)))
+            continue
+        for y, nom in zip(g.years, g.nominal):
+            want = (1.0 + path.inflation(y)) * (1.0 + g.real) - 1.0
+            if abs(nom - want) > MACRO_TOLERANCE:
+                fails.append(
+                    "%s in %d is %.4f; the path's inflation of %.4f with the stated "
+                    "real growth of %+.4f gives %.4f (out by %+.0fbp). Either the "
+                    "real growth is not what the model says it is, or the rate was "
+                    "typed."
+                    % (g.name, y, nom, path.inflation(y), g.real, want,
+                       10000 * (nom - want)))
+
+    t = record.get("terminal") or {}
+    if not t:
+        fails.append("no terminal block recorded")
+    else:
+        want_g = path.terminal_growth(t.get("real", 0.0))
+        if abs(t.get("g_nominal", 0.0) - want_g) > MACRO_TOLERANCE:
+            fails.append(
+                "terminal growth %.4f against terminal inflation %.4f plus the "
+                "stated real growth %+.4f = %.4f. A terminal growth below the "
+                "inflation inside its own discount rate is a perpetual real "
+                "decline; it may be assumed, but it must be STATED as the real "
+                "number it is."
+                % (t.get("g_nominal", 0.0), path.terminal_inflation,
+                   t.get("real", 0.0), want_g))
+        if "inflation_in_rf" in t and abs(t["inflation_in_rf"] - path.terminal_inflation) > MACRO_TOLERANCE:
+            fails.append(
+                "the terminal discount rate embeds inflation of %.4f while the "
+                "path's terminal inflation is %.4f. One economy, one inflation."
+                % (t["inflation_in_rf"], path.terminal_inflation))
+        if "rf" in t and abs(t["rf"] - path.terminal_rf) > MACRO_TOLERANCE:
+            fails.append(
+                "terminal risk-free %.4f against the derived %.4f (terminal "
+                "inflation %.4f + the real-rate convention %.4f). The terminal "
+                "risk-free rate is DERIVED; a quoted one is the lever the "
+                "protocol prohibits outright."
+                % (t["rf"], path.terminal_rf, path.terminal_inflation,
+                   path.real_rate_convention))
+
+    fx = record.get("fx_path")
+    if fx:
+        base = record.get("fx_base")
+        want = path.fx_path(len(fx), base=base)
+        off = [i for i, (a, b) in enumerate(zip(fx, want)) if abs(a - b) > max(0.01, 0.002 * b)]
+        if off:
+            fails.append(
+                "the currency path is not the derived purchasing-power path: year "
+                "%d has %.4f against %.4f. Escalating costs at domestic inflation "
+                "while depreciating the currency at some other rate is the same "
+                "event counted once and ignored once."
+                % (off[0] + 1, fx[off[0]], want[off[0]]))
+
+    n = record.get("explicit_years")
+    gend = record.get("growth_at_horizon_end")
+    if n is not None and gend is not None and t:
+        gap = abs(gend - t.get("g_nominal", 0.0))
+        if gap > HORIZON_CONVERGENCE:
+            fails.append(
+                "the explicit window ends with growth at %.2f%% against a terminal "
+                "of %.2f%% -- %.1fpp apart. The window must run until the two are "
+                "within %.0fpp, or the terminal capitalises a growth rate the model "
+                "never reached and takes most of the value with it."
+                % (100 * gend, 100 * t.get("g_nominal", 0.0), 100 * gap,
+                   100 * HORIZON_CONVERGENCE))
+
+    if fails:
+        raise AssertionError(
+            "MACRO COHERENCE FAIL -- %s (%s):\n  - %s" % (ticker, mkt, "\n  - ".join(fails)))
+    return {"ticker": ticker, "market": mkt, "path_as_of": path.as_of,
+            "growth_lines": len(lines),
+            "exempt_lines": sum(1 for g in lines if g.exempt_reason),
+            "terminal_growth": (record.get("terminal") or {}).get("g_nominal"),
+            "terminal_inflation": path.terminal_inflation,
+            "terminal_rf_derived": path.terminal_rf,
+            "standard_version": STANDARD_VERSION}
 
 
 def assert_gates_called(study_dir: str) -> None:

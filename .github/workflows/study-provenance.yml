@@ -47,6 +47,13 @@ on:
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/macro_path.py'
+      - 'engine/macro_paths/**'
+      - 'engine/build_coc_reference.py'
+      - 'engine/Cost_of_Capital_Reference.md'
+      - 'scripts/check_macro_coherence.py'
+      - 'scripts/check_macro_coherence_negative_control.py'
+      - 'engine/build_depth_audit/macro_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -83,6 +90,13 @@ on:
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/macro_path.py'
+      - 'engine/macro_paths/**'
+      - 'engine/build_coc_reference.py'
+      - 'engine/Cost_of_Capital_Reference.md'
+      - 'scripts/check_macro_coherence.py'
+      - 'scripts/check_macro_coherence_negative_control.py'
+      - 'engine/build_depth_audit/macro_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -118,7 +132,7 @@ jobs:
       - name: Import the modules the gate depends on
         run: |
           cd engine
-          python3 -c "import wacc_builder, research_protocol, beta_regression; print('imports OK')"
+          python3 -c "import wacc_builder, research_protocol, beta_regression, macro_path; print('imports OK')"
           python3 -c "
           import wacc_builder as w
           assert w.EXCHANGE_INDEX[('AE','DFM')] == 'FADGI', 'the DFM interim was changed without instruction'
@@ -234,3 +248,38 @@ jobs:
       # edition sitting beside a good current one, which must NOT fire)
       - name: Workbook-structure gate — negative control
         run: python3 scripts/check_workbook_structure_negative_control.py
+
+      # [R-MACRO-01] one house macro path per market, and every study's growth
+      # rates held to it from outside. Five studies carried five inflation rates
+      # for one fiscal year in one country, three sovereign quotes and terminal
+      # inflations of 5%, 7% and about 15%; each was defensible alone, and the
+      # differences moved fair values by more than most of the driver work did.
+      # The incoherence is DIRECTIONAL — escalating costs at domestic inflation
+      # while holding the currency still inflates every cost and freezes every
+      # price [L-048] — so this is not tidiness, it is bias removal. Ratcheted:
+      # every study predating the path is listed and allowed to fail.
+      - name: Macro-coherence gate
+        run: |
+          python3 engine/macro_path.py
+          python3 scripts/check_macro_coherence.py
+
+      # and the proof that gate can go red — it reinjects a typed growth rate, a
+      # terminal real decline (PHDC's 12% against ~14.6%, AMOC's 5% against 7%),
+      # a hand-set currency path (AMOC's 7.7% against 14.5% inflation), a quoted
+      # terminal risk-free, an unconverged explicit window, a study setting its
+      # own inflation, a new study with no record, an unparseable numbers file
+      # and an emptied population — plus three clean cases including a STATED
+      # real growth of 2%, which must NOT fire
+      - name: Macro-coherence gate — negative control
+        run: python3 scripts/check_macro_coherence_negative_control.py
+
+      # the cost-of-capital reference the protocol has named since July 2026 and
+      # which did not exist until 02-Sep-2026. GENERATED from the macro paths, so
+      # it cannot state a figure its source no longer carries; regenerated here
+      # and compared, byte for byte, with the copy on disk.
+      - name: Cost-of-capital reference is its generator's output
+        run: |
+          cp engine/Cost_of_Capital_Reference.md /tmp/coc_committed.md
+          python3 engine/build_coc_reference.py
+          diff -q /tmp/coc_committed.md engine/Cost_of_Capital_Reference.md \
+            || { echo 'FAIL — Cost_of_Capital_Reference.md is not what its generator produces; re-run engine/build_coc_reference.py and commit'; exit 1; }
