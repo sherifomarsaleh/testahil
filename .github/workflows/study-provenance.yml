@@ -381,3 +381,9 @@ jobs:
       # inconsistently in order to stay green
       - name: Output-records gate — negative control
         run: python3 scripts/check_output_records_negative_control.py
+
+      - name: Walk-forward actuation gate
+        run: python3 scripts/check_walkforward_actuation.py
+
+      - name: Walk-forward actuation gate — negative control
+        run: python3 scripts/check_walkforward_actuation_negative_control.py

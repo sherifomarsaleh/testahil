@@ -1,0 +1,11 @@
+{
+ "_": "Walk-forward runs knowingly outstanding against the actuation gate [R-FCAL-01 amended]. Seeded 03-Sep-2026, the day the decision rule was written, from the state of the repository on that day: every existing run measured and acted on nothing, which is the condition the rule was written to end, so seeding them as breaches would make the gate red on every branch and [R-ENF-02] forbids a permanently-red check. It may only ever get SHORTER: run scripts/check_walkforward_actuation.py --prune once a run's log reconciles to the rule. Adding a name here is a deliberate deferral and needs a reason, not a convenience.",
+ "seeded": "2026-09-03",
+ "outstanding": [
+  "ARCC",
+  "EGCH",
+  "PHDC",
+  "TMGH"
+ ],
+ "note_on_seeding": "All four ran under the PREVIOUS rule \u2014 a correction was applied where three or more errors had resolved, at half strength \u2014 which was the rule in force when they ran. Seeding them is not forgiveness of a defect; it is the ratchet doing its job, because a gate red on every branch from its first day is the permanently-red check [R-ENF-02] forbids. Each clears by re-scoring its record under the pre-registered rule, which is WS5's own deliverable and which moves delivered numbers, so it belongs in the next edition of each study rather than in the pass that wrote the rule. AMOC is NOT listed: its record adopts nothing under either rule, so it conforms today."
+}
