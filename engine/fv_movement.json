@@ -177,6 +177,28 @@
       "bear": 0.6,
       "full": 0.1
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 4,
+     "fair": {
+      "base": 53.4593,
+      "bear": 47.7778,
+      "full": 59.3294
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5; re-issue 02-Sep-2026 on the new standard: house macro path for prices, costs and currency; terminal anchors derived (rf 10.50->12.50, g 5->7); the typed 50/20/22/8 lens blend retired so the cash-flow lens is the central; normalised earnings dropped as a lens for this class; the four construction records and a real external-reader scrub added",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -2.2,
+      "bear": -3.5,
+      "full": -3.9
+     },
+     "vs_previous_pct": {
+      "base": -1.2,
+      "bear": -2.0,
+      "full": -0.3
+     }
     }
    ],
    "exchange": "EGX",

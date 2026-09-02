@@ -54,7 +54,7 @@ GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   'study_numbers.json')))['growth_destroys_value']
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -462,8 +462,9 @@ CASES = [
      'a smaller haircut leaves a bigger normalised base'),
     ('Replacement cost per annual tonne', 'B', +20.0, 'roic', -1,
      'more invested capital against the same terminal profit lowers the return on it'),
-    ('Weight — asset lens', 'B', +0.05, 'central', +1,
-     'the asset lens is the highest of the four, so weighting it more lifts the central'),
+    # The lens weights were drivers until this edition and are drivers no longer:
+    # the cash-flow lens IS the central. They are asserted ABSENT at the foot of
+    # this file rather than tested for a direction they can no longer have.
     ('Effective tax rate', 'B', +0.02, 'dcf', -1, 'a higher tax rate lowers every NOPAT'),
     ('Spot price', 'B', +5.0, 'ev_per_t', +1,
      'a higher share price is a higher enterprise value over the same capacity'),
@@ -529,6 +530,18 @@ json.dump(dict(base=base, cases=rows, dead=dead, n_cases=len(CASES), n_failed=le
           open(os.path.join(HERE, 'driver_test_result.json'), 'w'), indent=1, default=float)
 
 assert not fails, f'{len(fails)} drivers failed: {fails}'
+
+# THE RETIRED WEIGHTS ARE ASSERTED GONE. [R-LENS-03] retired the typed blend; this
+# checks the workbook actually stopped carrying the knobs, because a retirement
+# that leaves the levers on the sheet is a rule nobody can see was applied — and a
+# weight cell that a reader can type into and that moves nothing is worse than no
+# cell at all.
+_labels = {ws.cell(row=r, column=1).value
+           for ws in wb for r in range(1, ws.max_row + 1)}
+_left = sorted(l for l in _labels if isinstance(l, str) and l.startswith('Weight \u2014 '))
+assert not _left, ('the retired lens weights are still live inputs in the workbook: %s'
+                   % _left)
+print('  [OK ] the four retired lens weights carry no live input cell')
 assert not dead, f'dead inputs: {dead}'
 print(f'\nDRIVER TEST OK — {len(CASES)} driver assertions, every one in the asserted '
       f'direction; 0 dead inputs')

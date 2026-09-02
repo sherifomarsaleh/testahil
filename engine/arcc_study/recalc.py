@@ -17,7 +17,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx')
+XLSX = os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -134,8 +134,9 @@ checks = [
     ('Cash flow FY2026E free cash flow to the firm', ('Cash Flow', 'C13'), F['fcff'][0], 1.0),
     ('Relative lens implied value', ('Relative & Normalized', 'B23'),
      LN['values']['Relative multiples'], 0.02),
-    ('Normalised lens implied value', ('Relative & Normalized', 'B31'),
-     LN['values']['Normalised earnings'], 0.02),
+    ('Normalised earnings, the DIAGNOSTIC this class does not weight',
+     ('Relative & Normalized', 'B31'),
+     LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)'], 0.02),
     ('Asset lens implied value', ('Fundamental Valuation', 'B13'),
      LN['values']['Asset / replacement cost'], 0.02),
     ('Asset lens EV per tonne at spot', ('Fundamental Valuation', 'B14'),
@@ -145,8 +146,14 @@ checks = [
     ('Share reconciliation: dividend-implied difference', ('Per-Share & Ratios', 'B18'),
      D['share_triangulation']['from_fy25_dividend'] / D['meta']['shares_mn'] - 1, 0.0001),
     ('Summary — DCF lens', ('Summary', 'B5'), LN['values']['DCF (cash flow)'], 0.02),
-    ('Summary — weighted central', ('Summary', 'B9'), LN['central'], 0.02),
-    ('Summary — terminal value share beside the DCF lens', ('Summary', 'F5'),
+    ('Summary — the central IS the cash-flow lens, not a blend',
+     ('Summary', 'B9'), LN['central'], 0.02),
+    ('Summary — the retired 50/20/22/8 blend, published but unused',
+     ('Summary', 'B14'),
+     0.50 * LN['values']['DCF (cash flow)'] + 0.20 * LN['values']['Relative multiples']
+     + 0.22 * LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)']
+     + 0.08 * LN['values']['Asset / replacement cost'], 0.02),
+    ('Summary — terminal value share beside the DCF lens', ('Summary', 'E5'),
      DCF['tv_share'], 0.001),
     ('Peer sheet — subject price/earnings recomputed', ('Peer & Sector', 'E5'),
      D['peers']['self']['pe'], 0.01),

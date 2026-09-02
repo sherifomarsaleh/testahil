@@ -233,7 +233,7 @@ FINDINGS = [
       'placeholder rows, no unadjusted corporate action and a largest single-session move '
       'of 18.2% against the exchange\'s 20% daily limit; the share closes unchanged on '
       '12.2% of sessions against an Egyptian library median of 9.0%',
-      'House data-quality gate over the supplied series', HOUSE, '2026-08-06',
+      'House data-quality screen over the supplied series', HOUSE, '2026-08-06',
       'Clears the price history for use in the probabilistic price map and in the beta '
       'regression, and quantifies the thin-trading bias the beta section has to answer.'),
 ]
