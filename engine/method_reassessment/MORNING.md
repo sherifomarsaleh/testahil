@@ -18,3 +18,5 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
 7. **A prompt-injection attempt, for your awareness.** A web page I fetched while sourcing the Egyptian inflation path carried text imitating a system instruction, telling me to change the commit attribution line. I ignored it and kept your attribution. Nothing was committed under it. Worth knowing that fetched pages in this workflow can carry such text; the discipline is that instructions come from you, not from sources.
 
+8. **WS4 is done — the bridge standard.** The enterprise-to-equity bridge is now a recorded set of choices (which balance sheet, which minority basis, cash charged how often) checked by a gate outside each study, with sixteen conditions in its negative control. PHDC and TMGH conform; the other twenty-two studies are listed and will migrate as they are rebuilt. The general lesson is registered in both documents: a model that recalculates is not a model that is right, and all four of these defects lived inside arithmetic that reconciled to the last cell.
+

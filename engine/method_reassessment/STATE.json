@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS4 then WS3",
-  "step": "WS4 bridge standard in code (assert_bridge + check_bridge, migrate the five studies); then WS3 lens registry",
+  "workstream": "WS3 lens registry",
+  "step": "LENS_REGISTRY keyed on lessons_register.CLASSES; DCF (or the class primary) is the central; cross-checks define the envelope on one clock; assert_lens_design + scripts/check_lens_design.py + negative control",
   "status": "starting"
  },
  "done": [
@@ -33,13 +33,14 @@
   "Day 1-2: TMGH class-A interim edition 2 (02-09-2026): sales held flat in real terms (SALES_FADE 1.15) and minority deducted at its share of value; central 69.92 vs spot 97.80 (-28.5%, was -60%); 16 sheets, 85 recalcs 0 mismatches, scrub 0, QC gate clean; fv_movement edition 2; publish queue carries the 02-09 files",
   "Plan Gantt rebuilt as a data-driven table (markdown, page, Word) after the principal reported the block-character chart rendering wrong; docx builder committed",
   "Day 1-2: PHDC class-A interim edition 2 (02-09-2026): bridge/book/debt on the 31-Mar-2026 reviewed sheet, minority at its share of value, normalised earnings at ke less growth; central 11.45 vs spot 15.20 (-24.7%, was -28.0%); 16 sheets, 88 recalcs 0 mismatches, scrub 0, gate clean; fv_movement edition 2; publish queue re-staged",
-  "WS2 [R-MACRO-01] done: engine/macro_path.py + macro_paths/{7}.json (EG sourced, six pending and refusing), assert_macro_coherence, check_macro_coherence + negative control (12/12), Cost_of_Capital_Reference.md generated, CI wired, both governing documents amended to rev 2026-09-02b. The house path reproduces AMOC's corrected terminal exactly."
+  "WS2 [R-MACRO-01] done: engine/macro_path.py + macro_paths/{7}.json (EG sourced, six pending and refusing), assert_macro_coherence, check_macro_coherence + negative control (12/12), Cost_of_Capital_Reference.md generated, CI wired, both governing documents amended to rev 2026-09-02b. The house path reproduces AMOC's corrected terminal exactly.",
+  "WS4 [R-BRIDGE-01] done: assert_bridge + check_bridge + negative control (16/16), PHDC and TMGH migrated and re-gated, both documents at rev 2026-09-02c, CI wired."
  ],
  "next": [
-  "WS4 bridge standard: research_protocol.assert_bridge + scripts/check_bridge.py + negative control; migrate the five studies (PHDC and TMGH already deduct NCI at value share)",
-  "WS3 lens registry: LENS_REGISTRY keyed on lessons_register.CLASSES, DCF is the central, cross-checks define the envelope; check_lens_design",
+  "WS3 lens registry: DCF central, cross-checks as the envelope, RNAV specified before it can be a class primary; check_lens_design",
   "WS1 cost of capital: engine/cost_of_capital.py seeded from AMOC's glide, consuming the macro path; check_cost_of_capital",
-  "WS7 output gates + negative controls; WS5 actuator; WS8 re-issues on the new modules"
+  "WS7 output gates + negative controls; WS5 actuator (walk-forward as actuator)",
+  "WS8 re-issue TMGH -> PHDC -> ARCC on the new modules; WS6 valuation calibration"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -51,7 +52,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T19:51:28Z",
+ "updated": "2026-09-02T19:57:09Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
