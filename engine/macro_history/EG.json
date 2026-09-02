@@ -1,0 +1,9 @@
+{
+ "_": "POINT-IN-TIME macro vintages for Egypt: what was KNOWN at each year-end, for the valuation calibration [R-VCAL-01] to rebuild a fair value at that origin. NOT the forward path in engine/macro_paths/EG.json, which is what the house believes today. A rebuild that reaches for today's numbers is not a rebuild; it is the answer wearing a date.",
+ "market": "EG",
+ "currency": "EGP",
+ "target_span": "2013-2023 year-ends, the span the pre-registration of 03-Sep-2026 fixes",
+ "rule": "A VINTAGE IS SOURCED OR IT DOES NOT EXIST. Four fields on every figure \u2014 value, source, date, tier. No interpolation between years, no carrying a neighbouring year forward, no 'approximately'. An origin whose figures are not all sourced is DROPPED by the calibration and its window shortened, which the pre-registration fixes in advance precisely so that a thin archive shows up as fewer origins rather than as a fuller-looking record built on filled-in cells.",
+ "status": "ASSEMBLY NOT STARTED. This file is the schema and the rule, committed before any figure, so that every figure added later arrives under a standard rather than setting one. Origins are added ONE AT A TIME as their four figures are read off their own documents \u2014 CBE monetary policy statements and the treasury auction record for the policy rate and the sovereign yield, CAPMAS or the CBE bulletin for the CPI print, and the Damodaran country-premium vintage of that year for the equity risk premium. Read engine/macro_history.py report() for what is usable, never this note.",
+ "origins": []
+}
