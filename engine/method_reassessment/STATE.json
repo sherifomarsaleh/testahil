@@ -21,15 +21,15 @@
  "phase": "1",
  "current": {
   "workstream": "Day 0",
-  "step": "merge origin/main into the branch; refetch primary documents; standard stamps",
-  "status": "not started"
+  "step": "refetch and sha256-verify the primary documents from the committed registers; standard_version stamps in phdc/tmgh build_numbers.py",
+  "status": "in progress"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
-  "docx produced"
+  "docx produced",
+  "Day 0: main merged into the branch (EGCH in), six conflicts resolved, digest renamed PROJECT_INSTRUCTIONS_02-09-2026.md rev 2026-09-02a, fourteen gates green"
  ],
  "next": [
-  "Day 0: merge origin/main (EGCH) into the branch, resolve the six named conflicts, gates green",
   "Day 0: refetch and sha256-verify primary documents from the committed registers; STOP-AND-ASK items to MORNING.md",
   "Day 0: standard_version stamps in phdc/tmgh build_numbers.py",
   "Day 1-2: class-A interim edition \u2014 TMGH sales path + value-share minority (89.47 at the unchanged rate); PHDC 31-Mar-2026 balance sheet + minority; check_corrections_applied",
@@ -43,5 +43,8 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T18:55:00Z"
+ "updated": "2026-09-02T18:57:49Z",
+ "morning_list_items": [
+  "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight."
+ ]
 }
