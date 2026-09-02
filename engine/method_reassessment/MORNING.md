@@ -42,3 +42,7 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
 19. **Two names down, three to go.** ARCC, EGCH and AMOC remain, and AMOC also carries the cost-of-debt correction the new module found. Nothing is published; the queue holds the files for the batch.
 
+20. **Two instruments against the lean, now standing.** Every study will publish what the *price* must believe under its own drivers, so a disagreement becomes measurable rather than rhetorical: PHDC's price is paying for a cash conversion rate of 7.9% against the study's 8.7%, and the company's own three cash-flow statements show 3.9%, 17.9% and 4.4%. And every judgement worth more than 5% of value is recorded both ways with a sign test on the set. PHDC resolved two of its five material judgements upward, p=1.00 — no lean at all, which is evidence for the rebuild rather than against it.
+
+21. **Where the night ended.** Four new modules built and gated, two studies rebuilt on them, six new rules in both governing documents (now at revision 2026-09-02g), and eight gates in continuous integration each with its own negative control. Three studies remain to re-issue: ARCC, EGCH and AMOC. Nothing is published.
+
