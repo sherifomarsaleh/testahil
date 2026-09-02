@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 re-issue — PHDC next",
-  "step": "Rebuild PHDC on the four modules; expect the discount schedule and the lens architecture to move it most.",
+  "workstream": "WS8 re-issue — ARCC next",
+  "step": "Rebuild ARCC on the four modules; then EGCH, then AMOC (AMOC also carries the Kd-below-sovereign correction).",
   "status": "starting"
  },
  "done": [
@@ -38,11 +38,12 @@
   "WS3 [R-LENS-03] done: LENS_REGISTRY keyed on the lessons register's classes by import, assert_lens_design, check_lens_design + negative control (17/17, its first run caught a defect in the registry itself), CI wired, both documents at rev 2026-09-02d. No delivered number moved; the five studies migrate in WS8.",
   "WS1 [R-COC-01] done: engine/cost_of_capital.py (whole ladder from one call, terminal derived from the macro path, glide from the policy path, seven hard refusals, three-assert Kd gate, pegged markets flat), check_cost_of_capital + negative control (15/15), CI wired, both documents at rev 2026-09-02e. Reproduces AMOC's glide fractions exactly. FOUND: AMOC's committed Kd 22.00% sits 31bp below its own recorded sovereign 22.31% — immaterial on a net-cash name, registered for its re-issue.",
   "WS7(a) [R-GAP-01 amended] done: the gap gate is two-sided; the negative control's above-side case inverted rather than deleted (11/11). First two-sided run found DU at +13.0% with no review, invisible to the one-sided rule; listed on the ratchet. Both documents at rev 2026-09-02f.",
-  "WS8: TMGH re-issued on the new standard. Central 69.92 -> 91.83 vs spot 97.80 (-6.1%, was -28.5%); envelope 63.70-123.03 so the price now sits inside it. First study conforming on all four construction gates; four ratchets pruned. 85 recalcs 0 mismatches, gate clean, fv_movement edition 3, queue re-staged."
+  "WS8: TMGH re-issued on the new standard. Central 69.92 -> 91.83 vs spot 97.80 (-6.1%, was -28.5%); envelope 63.70-123.03 so the price now sits inside it. First study conforming on all four construction gates; four ratchets pruned. 85 recalcs 0 mismatches, gate clean, fv_movement edition 3, queue re-staged.",
+  "WS8: PHDC re-issued. Central 11.45 -> 17.15 vs spot 15.20 (+12.8%, was -24.7%). The schedule alone is worth +10.80/share; the horizon extension to 15 converged years runs the other way and cut the terminal from 74% to 31% of EV. Blend retired, normalised earnings dropped for the class. 228 recalcs 0 mismatches; two-sided gap review written (first study audited for optimism); conforming on all four construction gates; fv_movement edition 3."
  ],
  "next": [
-  "WS8 re-issue PHDC on the four modules",
-  "WS8 re-issue ARCC, then EGCH, then AMOC (AMOC also carries the Kd-below-sovereign correction)",
+  "WS8 re-issue ARCC on the four modules",
+  "WS8 re-issue EGCH, then AMOC (AMOC also fixes Kd 22.00% vs its own sovereign 22.31%)",
   "WS7 remaining: answer.json [R-ENF-05], reverse-DCF diagnostic, contested-judgements sign test, check_corrections_applied",
   "WS5 walk-forward as actuator; WS6 valuation calibration; WS9 sweep; WS10 governance"
  ],
@@ -56,7 +57,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T20:18:36Z",
+ "updated": "2026-09-02T20:33:35Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
