@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-02f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-02g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2469,3 +2469,19 @@ MANDATORY INSIDE THE PROGRAMME, NOT ONLY AT PUBLISH: every re-issue that lands m
 WHAT THE FIRST TWO-SIDED RUN FOUND. DU: a central thirteen per cent ABOVE the spot it was struck at, with no review — invisible to the one-sided rule by construction. It is listed on the ratchet rather than fixed on the night the rule changed, because the list is the honest record of what is outstanding, and it is reviewed when that study is next re-issued.
 
 THE NEGATIVE CONTROL'S OWN CASE IS INVERTED RATHER THAN DELETED. It carried a case asserting that a central far above the price must NOT fire, which was correct evidence for the one-sided rule. That same construction now must go red. Keeping the case and flipping its expectation is the sharpest available evidence that the extension actually took effect; deleting it would have left the change untested in exactly the place it matters.
+
+[R-ENF-05] THE STUDY AUDITS ITS OWN ANSWER: THE REVERSE READ AND THE SIGN TEST [ADOPTED 02-Sep-2026, method reassessment WS7]
+
+Every gate this repository had examined how a study was BUILT. [R-GAP-01] was the first to look at the answer, and it looked at one number in one direction. Two further instruments are adopted here, both aimed at the same failure: a house that leans one way and cannot see it, because each individual choice was defensible.
+
+THE REVERSE READ. Every study states what it believes; almost none states what the PRICE believes, and the two are the same model read backwards. Each study now publishes the growth, margin, conversion rate or discount rate that the traded price implies UNDER ITS OWN DRIVERS, solved by holding everything else at its published value. That turns a disagreement into a measurable one: not "we are 28% below" but "the price is paying for a conversion rate of 7.9% and we forecast 8.7%, and the company's own three cash-flow statements show 3.9%, 17.9% and 4.4%". A reader can then judge the disagreement rather than the conclusion.
+
+THE HARD PART IS KEEPING IT OUT OF THE MODEL, and the rule is structural rather than remembered. The reverse read lives in the study's own diagnostics.json, never in the numbers file every builder reads, and research_protocol.assert_reverse_dcf() REFUSES any study whose builders read that file back in. A quantity solved from a price and re-entering the valuation is the reverse-engineered terminal the cost-of-capital procedure prohibits outright, arriving through a side door; the prohibition is worth nothing if the side door is open.
+
+THE SIGN TEST. Any single contested choice in a valuation is defensible. What is not defensible is a study that resolves EVERY contested choice in the same direction and never notices — which is precisely how a lean survives an audit of its steps. Each study records every judgement worth more than five per cent of value with BOTH framings' values, the side adopted and why, and a binomial sign test is printed on the set. A study that lands them all one way at p < 0.05 is FLAGGED, NOT FAILED: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve their judgements inconsistently in order to stay green, which is the opposite of what this measures. What a study may not do is go unmeasured.
+
+WHAT THE FIRST RUN SHOWED. PHDC carries five material contested judgements and resolved two of them upward — a sign test of p = 1.00, no lean at all. That is the instrument doing its job in the direction nobody expects: the study whose central had just moved from 25% below the price to 13% above it turns out not to have taken every fork in the same direction, which is evidence for the rebuild rather than against it. TMGH shows the same, at p = 0.50.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_output_records.py over every engine/*_study/ in CI, ratcheted per [R-ENF-02] and population-anchored per [R-ENF-04], negative-controlled by scripts/check_output_records_negative_control.py — thirteen conditions including a builder importing the diagnostic, a judgement stated without its other framing, and a flagged study that must stay GREEN.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION: MEASURE THE DIRECTION OF YOUR OWN DECISIONS, NOT ONLY THEIR QUALITY. A process can pass every check on every step and still drift, because drift lives in the pattern of choices rather than in any one of them. The cheapest instrument against it is to write down which way each judgement went and count.

@@ -1,0 +1,32 @@
+{
+ "why": "[R-GAP-01 amended / WS7] with the ratchet of [R-ENF-02]. Every study other than PHDC and TMGH predates the reverse-read and contested-judgement records and is allowed to fail while it waits its turn. The build breaks on a NEW study with no entry either way, or on a listed study whose records have appeared and are wrong. The list may only SHORTEN.",
+ "adopted": "2026-09-02",
+ "conforming_at_adoption": [
+  "PHDC",
+  "TMGH"
+ ],
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SCEM",
+  "STC",
+  "SWDY",
+  "XPT"
+ ]
+}

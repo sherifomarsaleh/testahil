@@ -1,0 +1,15 @@
+{
+ "ticker": "TMGH",
+ "as_of": "2026-09-02",
+ "spot": 97.8,
+ "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A rate or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered terminal the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the traded price on this model",
+  "value": 0.29052463245332627,
+  "value_other_framing": 0.1656407888144581,
+  "study_value": 0.3237485685188716,
+  "study_value_terminal": 0.2193244111908764,
+  "solved_on": "this study's own model, holding every driver at its published value and varying only the discount rate, on each of the two readings of the crux",
+  "reading": "The study does not use a single rate: it discounts each year at its own, from 32.37% to 21.93%. Solved as one flat rate, the price is paying for 29.1% on the faster reading of the order book and 16.6% on the slower one. The study's own ladder sits between those two, which is why the price now falls inside its range."
+ }
+}

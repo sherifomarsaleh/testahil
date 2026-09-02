@@ -1004,6 +1004,122 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
             "standard_version": STANDARD_VERSION}
 
 
+def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
+    """Raise unless the study publishes what the PRICE must believe, and keeps it out
+    of the model.  [R-ENF-05]
+
+    The instrument. Every study states what IT believes; almost none states what
+    the market believes, and the two are the same model read backwards. A reverse
+    DCF -- the growth, margin, conversion or discount rate the traded price
+    implies under the study's own drivers -- turns a disagreement into a
+    measurable one: not "we are 28% below" but "the price is paying for a
+    conversion rate of 7.9% and we forecast 8.7%".
+
+    THE HARD PART IS KEEPING IT OUT OF THE MODEL. A rate solved from a price and
+    then used anywhere in a valuation is the reverse-engineered terminal the
+    protocol prohibits outright, arriving through a side door. So the diagnostic
+    lives in its own file, and this assert checks that NO BUILDER IMPORTS IT: a
+    study whose cost-of-capital or forecast code reads the diagnostics file fails
+    here, whatever the file says.
+    """
+    import glob as _glob
+    import os as _os
+    import re as _re
+
+    fails = []
+    d = diag or {}
+    if not d.get("implied"):
+        fails.append("no implied quantity recorded. The reverse read names the ONE "
+                     "quantity the price is paying for, solved on the study's own model.")
+    for k in ("quantity", "value", "study_value", "solved_on"):
+        if k not in (d.get("implied") or {}):
+            fails.append("the implied record carries no %s" % k)
+    if d.get("spot") is None:
+        fails.append("no spot recorded: a reverse read with no price is not one")
+
+    # the containment check: no builder may import the diagnostics
+    leaks = []
+    for f in sorted(_glob.glob(_os.path.join(study_dir, "*.py"))):
+        base = _os.path.basename(f)
+        if base.startswith(("diagnostic", "gap_review", "recalc", "gate_check")):
+            continue
+        try:
+            txt = open(f, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
+                      txt) and base not in ("lenses.py", "docx_arcc.py"):
+            # a builder that COMPUTES the reverse read is fine; one that reads the
+            # file back into the model is not
+            if "diagnostics.json" in txt:
+                leaks.append(base)
+    if leaks:
+        fails.append(
+            "these builders read the diagnostics file: %s. A quantity solved from the "
+            "traded price must never re-enter the model — that is the "
+            "reverse-engineered rate the protocol prohibits, arriving through a side "
+            "door." % ", ".join(leaks))
+
+    if fails:
+        raise AssertionError("REVERSE-DCF FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+    imp = d["implied"]
+    return {"ticker": ticker, "quantity": imp["quantity"], "implied": imp["value"],
+             "study": imp["study_value"], "spot": d["spot"],
+             "standard_version": STANDARD_VERSION}
+
+
+def assert_contested_judgements(record: dict, ticker: str = "?",
+                                threshold: float = 0.05) -> dict:
+    """Raise unless every judgement worth more than `threshold` of value is recorded
+    both ways, and report the SIGN TEST on which way they were resolved.
+
+    The instrument against the selection lean. Any single choice in a valuation is
+    defensible; what is not defensible is a study that resolves EVERY contested
+    choice in the same direction and never notices. This records each one with
+    both framings' values and the side adopted, and prints a binomial sign test:
+    a study that lands them all one way at p < 0.05 is flagged, not failed —
+    the flag is information, and a company can genuinely deserve a consistent
+    read. What it may not do is go unmeasured.
+    """
+    fails = []
+    items = (record or {}).get("judgements") or []
+    if not items:
+        fails.append("no contested judgements recorded. A valuation with no contested "
+                     "judgement is a valuation nobody looked at hard enough.")
+    signs = []
+    for j in items:
+        for k in ("name", "adopted", "alternative", "value_adopted", "value_alternative"):
+            if k not in j:
+                fails.append("judgement %r carries no %s" % (j.get("name", "?"), k))
+                break
+        else:
+            va, vb = float(j["value_adopted"]), float(j["value_alternative"])
+            base = abs(vb) or 1.0
+            j["_material"] = abs(va - vb) / base >= threshold
+            if j["_material"]:
+                signs.append(1 if va > vb else (-1 if va < vb else 0))
+            if not j.get("why"):
+                fails.append("judgement %r says which side was adopted but not why"
+                             % j.get("name", "?"))
+    if fails:
+        raise AssertionError("CONTESTED-JUDGEMENT FAIL -- %s:\n  - %s"
+                             % (ticker, "\n  - ".join(fails)))
+
+    n = len([s for s in signs if s])
+    k = len([s for s in signs if s > 0])
+    p = None
+    if n:
+        from math import comb
+        tail = sum(comb(n, i) for i in range(max(k, n - k), n + 1)) / float(2 ** n)
+        p = min(1.0, 2 * tail)
+    return {"ticker": ticker, "judgements": len(items), "material": n,
+            "resolved_upward": k, "sign_test_p": p,
+            "flag": bool(p is not None and p < 0.05 and n >= 3),
+            "note": ("a study that resolves every material contested judgement the same "
+                     "way is not necessarily wrong, and it is always worth knowing"),
+            "standard_version": STANDARD_VERSION}
+
+
 def assert_gates_called(study_dir: str) -> None:
     """Raise unless the study's own code calls the three gates.  [R-ENF-02]
 

@@ -64,6 +64,9 @@ on:
       - 'scripts/check_cost_of_capital.py'
       - 'scripts/check_cost_of_capital_negative_control.py'
       - 'engine/build_depth_audit/coc_outstanding.json'
+      - 'scripts/check_output_records.py'
+      - 'scripts/check_output_records_negative_control.py'
+      - 'engine/build_depth_audit/output_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -117,6 +120,9 @@ on:
       - 'scripts/check_cost_of_capital.py'
       - 'scripts/check_cost_of_capital_negative_control.py'
       - 'engine/build_depth_audit/coc_outstanding.json'
+      - 'scripts/check_output_records.py'
+      - 'scripts/check_output_records_negative_control.py'
+      - 'engine/build_depth_audit/output_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -356,3 +362,22 @@ jobs:
       # non-monotone ladder and a missing premium basis
       - name: Cost-of-capital gate — negative control
         run: python3 scripts/check_cost_of_capital_negative_control.py
+
+      # [R-ENF-05] the study audits its own ANSWER. Two instruments,
+      # both aimed at a house that leans one way and cannot see it: the reverse
+      # read (what the PRICE must believe, under the study's own drivers) and the
+      # sign test on every contested judgement worth more than 5% of value. The
+      # reverse read must stay OUT of the model — a rate solved from a price and
+      # re-entering the valuation is the reverse-engineered terminal the protocol
+      # prohibits, arriving through a side door — so the gate refuses any study
+      # whose builders read the diagnostics file back in.
+      - name: Output-records gate
+        run: python3 scripts/check_output_records.py
+
+      # and the proof that gate can go red — including a builder importing the
+      # diagnostic, a judgement stated without its other framing, and a study
+      # whose sign test FLAGS, which must stay GREEN: the flag is information, and
+      # a gate that failed on it would push studies to resolve their judgements
+      # inconsistently in order to stay green
+      - name: Output-records gate — negative control
+        run: python3 scripts/check_output_records_negative_control.py
