@@ -7,4 +7,6 @@ Verbatim structured returns from the diagnosis workflow of 02-Sep-2026 (run wf_d
 - `03_causes_merged.json` — the twelve distinct causes after de-duplication.
 - `04_refutation_verdicts.json` — thirty-five adversarial verdicts (three skeptics per cause: numbers, theory, causation), each instructed to default to "refuted" unless it could confirm the claim from the repository. Every cause survived; the `corrected_claim` fields carry the narrowed forms the plan uses.
 
+- `05_plan_panel.json` — three competing plan drafts (measure-first, fix-the-known, rebuild-from-practice), three judgments, four critics (completeness, protocol compliance, pessimism removal, execution realism) and the panel's revised plan; the delivered plan absorbed every must-fix directly.
+
 Nothing here is a delivered document. It is the record behind Part A of the plan.
