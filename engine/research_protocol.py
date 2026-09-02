@@ -899,8 +899,12 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                 "RNAV is the primary but the disclosure it needs is not evidenced: %s. "
                 "Where land value per unit of area is an undisclosed gap the primary "
                 "stays the cash-flow lens and RNAV is a cross-check." % "; ".join(missing))
-    if prim.get("value") is None:
-        fails.append("the primary lens carries no value")
+    if prim.get("value") is None and not (prim.get("range") or {}):
+        fails.append("the primary lens carries neither a value nor a published range")
+    pr = prim.get("range") or {}
+    if pr and not (pr.get("low") is not None and pr.get("high") is not None
+                   and float(pr["low"]) <= float(pr["high"])):
+        fails.append("the primary's published range is not an ordered low/high pair")
 
     seen = []
     for x in (r.get("cross_checks") or []):
@@ -945,12 +949,32 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
         if abs(float(central) - float(prim["value"])) > max(0.01, 0.001 * abs(float(central))):
             fails.append("the published central %.4f is not the primary lens's %.4f. The "
                          "central IS the primary." % (central, prim["value"]))
+    elif central is not None and (prim.get("range") or {}):
+        # a primary published as a range: the exposed figure must sit inside it and
+        # must say what it is, because a midpoint presented as an answer is the
+        # averaging the dual-framing rule forbids
+        pr = prim["range"]
+        if not (float(pr["low"]) <= float(central) <= float(pr["high"])):
+            fails.append("the exposed central %.4f sits outside the primary's own published "
+                         "range %.4f to %.4f" % (central, pr["low"], pr["high"]))
+        if not r.get("central_note"):
+            fails.append("the primary is published as a range and a single figure is exposed "
+                         "with no note saying what it is. A midpoint presented as an answer "
+                         "is the averaging the dual-framing rule forbids; exposing one for a "
+                         "gate to read is fine, and it says so.")
 
     env = r.get("envelope") or {}
     if env:
-        pv = [prim.get("value")] + [x.get("value") for x in (r.get("cross_checks") or [])
-                                    if x.get("kind") != "book_value" and x.get("value") is not None
-                                    and x.get("present_value", True)]
+        # A primary computed BOTH WAYS on a contested judgement publishes a RANGE
+        # rather than a point -- the dual-framing rule, which forbids averaging the
+        # two framings into one number. Where it does, the range is part of the
+        # envelope on the same footing as any other present-value read.
+        pv = [prim.get("value")]
+        pr = prim.get("range") or {}
+        pv += [pr.get("low"), pr.get("high")]
+        pv += [x.get("value") for x in (r.get("cross_checks") or [])
+               if x.get("kind") != "book_value" and x.get("value") is not None
+               and x.get("present_value", True)]
         pv = [float(v) for v in pv if v is not None]
         if pv:
             lo, hi = min(pv), max(pv)

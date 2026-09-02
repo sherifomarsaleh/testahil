@@ -26,6 +26,7 @@ import json, math, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.dirname(HERE))    # engine/, for the house macro path
 import inputs as IN
 
 TAX = 0.225
@@ -75,7 +76,17 @@ PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
 PUD_ADJUST_YEARS = 4    # how fast the stock is moved toward that cover
 DA_RATE_ON_PPE = 0.012          # the group's own charge against gross PP&E
 DEPOSIT_YIELD = 0.20            # below the policy rate, on a mixed deposit book
-TERMINAL_GROWTH = 0.15
+# [R-MACRO-01] Terminal growth is NOT a number this study chooses. It is the
+# house path's terminal inflation plus a STATED real growth, and the real growth
+# here is zero: the recurring legs — a hotel and a shopping centre — are assumed
+# to hold their real size for ever and grow with nothing but prices. The 02-Sep
+# and earlier editions carried 15%, which against the ~22% terminal discount rate
+# this study's own schedule now produces would be 8pp of real growth in
+# perpetuity that nothing disclosed supports [L-055].
+import macro_path as _MP
+_PATH = _MP.load("EG")
+TERMINAL_REAL_GROWTH = 0.0
+TERMINAL_GROWTH = _PATH.terminal_growth(TERMINAL_REAL_GROWTH)
 PAYOUT = 0.30                   # of attributable profit, at the company's own
                                 # recent distribution behaviour
 

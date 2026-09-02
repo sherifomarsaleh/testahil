@@ -59,7 +59,7 @@ def main():
     # 2. the model, recomputed here from source rather than read back
     p = M.project("capacity")
     rows = p["rows"]
-    d = VAL.discounted("capacity", N["wacc"]["wacc_rating"])
+    d = VAL.discounted("capacity", VAL.SCHEDULES["rating"])
     b = VAL.bridge(d)
 
     # 3. DCF sheet: revenue, FCFF and present value, by label
@@ -119,16 +119,20 @@ def main():
     for k in N["per_share_nci_book"]:
         want = N["per_share_nci_book"][k]
         got = VAL.sotp(k.split("|")[1],
-                       N["wacc"]["wacc_%s" % k.split("|")[0]])["per_share_nci_book"]
+                       VAL.SCHEDULES[k.split("|")[0]])["per_share_nci_book"]
         check("published case %s reproduces" % k, got, want, results=res)
 
     # 8. Sensitivity grid reproduces
     ws = wb["Sensitivity"]
     grid = N["lenses"]["sensitivity"]["wacc_grid"]
-    for wacc in sorted({x["wacc"] for x in grid.values()}):
-        got = VAL.sotp("capacity", wacc)["per_share_nci_book"]
-        check("sensitivity at %.4f" % wacc, got,
-              grid["%0.4f|capacity" % wacc]["per_share_nci_book"], results=res)
+    base = VAL.SCHEDULES["cds"]
+    for k in sorted((x for x in grid if x.endswith("|capacity")),
+                    key=lambda x: float(x.split("|")[0])):
+        shift = grid[k]["shift"]
+        sched = base if shift == 0.0 else base.shifted(shift)
+        got = VAL.sotp("capacity", sched)["per_share_nci_book"]
+        check("sensitivity at a %+.0fbp shift" % (10000 * shift), got,
+              grid[k]["per_share_nci_book"], results=res)
 
     bad = [x for x in res if x["status"] != "ok"]
     json.dump({"checks": res, "n_checks": len(res), "n_mismatches": len(bad)},

@@ -354,3 +354,32 @@ Both corrections this review computed were applied in the study's own code on 02
 The capacity reading now sits inside the gate on both ERP bases, exactly as this review predicted (89.47). The recovery reading remains far below the price for the reason heading 4 named and this edition does not touch: every year of a ten-year window, a fourteen-year residual annuity and the perpetuity are discounted at a flat 35.79%, in breach of the protocol's own sliding-schedule rule. That is the cost-of-capital workstream (WS1 of the reassessment plan), a class-A item in its own right, and it is applied when the module lands — not here, because the module does not yet exist and a hand-made glide would be a second convention where the plan calls for one. The exposed median still breaches the gate at −28.5%; this addendum is the review of that breach: the residual is one named lever with a written rule behind it.
 
 The delivered document and workbook are rebuilt on these numbers with the minority basis stated as adopted; the reverse-DCF and the two-sided review of a re-issue that lands above the price (the CDS capacity case at +0.4% does not) follow when WS7 lands.
+
+## Addendum, 02-Sep-2026 (second) — the re-issue on the new standard
+
+Edition 3 of the same day rebuilds this study on the four modules the method
+reassessment produced. Two of them move the number, and both were defects this
+review named as residual rather than as findings of its own:
+
+| | edition 2 (02-Sep, class A) | edition 3 (02-Sep, new standard) |
+|---|---:|---:|
+| Cost of capital | flat 32.37% in every year and the terminal | 32.37% falling to 21.93% on the central bank's own path |
+| Terminal growth | 15.0% | 7.0% — inflation only, zero real, on the house macro path |
+| Envelope | 47.10 to 98.17 | 63.70 to 123.03 |
+| Exposed median | 69.92 | 91.83 |
+| Gap vs spot 97.80 | −28.5% | -6.1% |
+
+The discount rate did most of it. This company's order book converts over
+fourteen years on the slower reading and the model discounts to year nineteen; a
+flat crisis-level rate values a pound arriving in year nineteen at about a
+quarter of what the schedule values it at, and the whole of that difference was
+an unstated assumption that Egypt never normalises. The terminal-growth
+correction runs the other way and is smaller: 15% nominal growth in perpetuity
+against a terminal rate embedding 7% inflation was 8pp of real growth a year for
+ever, which nothing disclosed supports.
+
+The price now sits inside the published envelope rather than above all four
+cases. Nothing here is a new view of the company: every driver, every filing and
+every operating assumption is the one edition 2 carried. What changed is the
+method, and it changed for every name at once rather than for this one.
+

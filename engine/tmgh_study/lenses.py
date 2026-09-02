@@ -171,11 +171,18 @@ def sensitivity():
     """
     sh = _v(IN.KPI, "shares_outstanding")
     grid = {}
-    for wacc in (0.18, 0.22, 0.26, 0.30, 0.3237, 0.3579, 0.40):
+    # The rate sensitivity shifts the WHOLE SCHEDULE, keeping its shape. Replacing
+    # the schedule with a flat rate would ask two questions at once — what if
+    # capital costs more, AND what if the economy never normalises — and the
+    # second is the assumption the schedule exists to remove [R-COC-01].
+    base_sched = VAL.SCHEDULES["cds"]
+    for delta in (-0.08, -0.04, -0.02, 0.0, 0.02, 0.04, 0.08):
+        sched = base_sched if delta == 0.0 else base_sched.shifted(delta)
+        wacc = sched.wacc_exp
         for mode in ("capacity", "recovery"):
-            s = VAL.sotp(mode, wacc)
+            s = VAL.sotp(mode, sched)
             grid["%0.4f|%s" % (wacc, mode)] = {
-                "wacc": wacc, "mode": mode,
+                "wacc": wacc, "shift": delta, "mode": mode,
                 "per_share_nci_book": s["per_share_nci_book"],
                 "per_share_nci_proportional": s["per_share_nci_proportional"],
                 "enterprise_value": s["enterprise_value"]}
@@ -184,7 +191,7 @@ def sensitivity():
     base = M.CAPACITY_YEARS
     for n in (8, 10, 12, 14, 16, 20):
         M.CAPACITY_YEARS = n
-        s = VAL.sotp("capacity", json.load(open(os.path.join(HERE, "wacc.json")))["wacc_rating"])
+        s = VAL.sotp("capacity", VAL.SCHEDULES["rating"])
         conv[str(n)] = s["per_share_nci_book"]
     M.CAPACITY_YEARS = base
     return {"wacc_grid": grid, "conversion_years_grid": conv}
@@ -193,20 +200,22 @@ def sensitivity():
 def implied_discount_rate(spot):
     """The reverse question: what discount rate does the market appear to use?
 
-    The house cost-of-capital method, applied consistently, gives a nominal EGP
-    WACC near 36%. The market is plainly not using that. Rather than average the
-    two — which would state a number neither party believes — the study solves
-    for the rate at which this same model reproduces the traded price, and
-    publishes it beside the house rate. It is a measurement of the disagreement,
-    not a second opinion.
+    This study discounts on a SCHEDULE, not a single rate, so the honest form of
+    the question is: what one flat rate, held for every year, would reproduce the
+    traded price? That is a fair thing to show a reader used to seeing one number,
+    and it is explicitly a degenerate construction rather than a valuation — the
+    schedule it is compared against is the thing this study actually uses.
     """
+    import cost_of_capital as COC
     sh = _v(IN.KPI, "shares_outstanding")
     out = {}
     for mode in ("capacity", "recovery"):
         lo, hi = 0.05, 0.90
         for _ in range(80):
             mid = (lo + hi) / 2
-            ps = VAL.sotp(mode, mid)["per_share_nci_book"]
+            flat = COC.flat_schedule(mid, VAL.SCHEDULES["cds"].years,
+                                     why="the reverse question in section 1.7")
+            ps = VAL.sotp(mode, flat)["per_share_nci_book"]
             if ps > spot:
                 lo = mid
             else:
@@ -252,13 +261,15 @@ def main():
     for k, v in n.items():
         if k.startswith("cap|"):
             print("   %-22s %8.2f" % (k, v))
-    print("\n=== sensitivity: value per share against the discount rate ===")
-    print("%8s %12s %12s" % ("WACC", "capacity", "recovery"))
-    for wacc in (0.18, 0.22, 0.26, 0.30, 0.3237, 0.3579, 0.40):
-        c = out["sensitivity"]["wacc_grid"]["%0.4f|capacity" % wacc]
-        r = out["sensitivity"]["wacc_grid"]["%0.4f|recovery" % wacc]
-        print("%7.2f%% %12.2f %12.2f"
-              % (100 * wacc, c["per_share_nci_book"], r["per_share_nci_book"]))
+    print("\n=== sensitivity: the whole schedule shifted, keeping its shape ===")
+    print("%8s %10s %12s %12s" % ("shift", "year 1", "capacity", "recovery"))
+    keys = sorted(out["sensitivity"]["wacc_grid"], key=lambda k: float(k.split("|")[0]))
+    for k in [x for x in keys if x.endswith("|capacity")]:
+        c = out["sensitivity"]["wacc_grid"][k]
+        r = out["sensitivity"]["wacc_grid"][k.replace("|capacity", "|recovery")]
+        print("%+7.0fbp %9.2f%% %12.2f %12.2f"
+              % (10000 * c["shift"], 100 * c["wacc"],
+                 c["per_share_nci_book"], r["per_share_nci_book"]))
     print("\n=== sensitivity: value per share against the conversion period ===")
     for k, v in out["sensitivity"]["conversion_years_grid"].items():
         print("   %2s years  %8.2f" % (k, v))

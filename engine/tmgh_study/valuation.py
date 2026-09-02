@@ -38,13 +38,39 @@ def _v(d, k):
     return d[k]["value"]
 
 
-def discounted(mode, wacc):
+def _load_schedules():
+    """The committed schedules, read back rather than recomputed, so the workbook,
+    the document and the gate all stand on one object."""
+    import cost_of_capital as COC
+    w = json.load(open(os.path.join(HERE, "wacc.json")))
+    return {b: COC.Schedule.from_record(w["schedule"][b]) for b in ("rating", "cds")}
+
+
+SCHEDULES = _load_schedules()
+
+
+def discounted(mode, sched):
+    """Discount on the SCHEDULE, not on a flat rate.
+
+    [R-COC-01]. Every explicit year carries its own forward rate, and everything
+    beyond the window — the residual order book converting over a further ten or
+    fourteen years, the recurring legs' perpetuity — compounds on the last
+    explicit factor at the terminal rate. This matters more on this company than
+    on almost any other in the book: its conversion runs to year nineteen, where
+    a flat crisis-level rate values a pound at a QUARTER of what the schedule
+    values it at, and the whole of that difference was an assumption that Egypt
+    never normalises.
+    """
+    import cost_of_capital as COC
+    dc = COC.Discounter(sched)
+    wacc = sched.wacc_exp
     p = M.project(mode)
     rows = p["rows"]
     pv = 0.0
     for i, r in enumerate(rows):
         r = dict(r)
-        r["discount_factor"] = 1 / (1 + wacc) ** (i + 1)
+        r["discount_factor"] = dc.factor(i + 1)
+        r["forward_wacc"] = sched.forward_wacc[i]
         r["pv"] = r["fcff"] * r["discount_factor"]
         pv += r["pv"]
         rows[i] = r
@@ -74,13 +100,13 @@ def discounted(mode, wacc):
     resid_opex = resid_rev * p["ratios"]["opex_ratio_fy25"]
     resid_tax = max(resid_rev * gm - resid_opex, 0.0) * TAX
     resid_cf = resid_collections - resid_build - resid_opex - resid_tax
-    ann = sum(1 / (1 + wacc) ** (len(rows) + k) for k in range(1, n + 1))
+    ann = dc.annuity(len(rows) + 1, n)
     # Work in progress beyond what the residual book needs is a real asset the
     # company has already paid for. It is credited AT COST, not at margin — the
     # conservative reading, and the only one the disclosure supports.
     excess_pud = max(last["properties_under_development"]
                      - p["closing_backlog"] * (1 - gm), 0.0)
-    pv_excess = excess_pud / (1 + wacc) ** len(rows)
+    pv_excess = excess_pud * dc.factor(len(rows))
     pv_book = resid_cf * ann + pv_excess
 
     rec_rev = last["hosp_revenue"] + last["other_revenue"]
@@ -90,8 +116,12 @@ def discounted(mode, wacc):
     rec_capex = (last["hosp_revenue"] * M.HOSP_CAPEX_RATIO
                  + last["other_revenue"] * M.OTHER_CAPEX_RATIO)
     rec_fcff = rec_ebit * (1 - TAX) - rec_capex
-    tv_rec = rec_fcff * (1 + M.TERMINAL_GROWTH) / max(wacc - M.TERMINAL_GROWTH, 0.02)
-    pv_rec = tv_rec / (1 + wacc) ** len(rows)
+    # the recurring perpetuity is capitalised at the TERMINAL rate — the rate that
+    # applies when it is struck — and brought home on the window's own factor. The
+    # earlier editions capitalised it at the explicit-window rate and floored the
+    # denominator at 2%, which is a free parameter hiding an impossible assumption.
+    pv_rec = rec_fcff * dc.perpetuity_factor(M.TERMINAL_GROWTH)
+    tv_rec = pv_rec / dc.factor(len(rows))
 
     return {"mode": mode, "wacc": wacc, "conversion_years": n,
             "rows": rows, "pv_explicit": pv,
@@ -150,8 +180,8 @@ def bridge(d):
     }
 
 
-def sotp(mode, wacc):
-    d = discounted(mode, wacc)
+def sotp(mode, sched):
+    d = discounted(mode, sched)
     b = bridge(d)
     d.update(b)
     return d
@@ -165,9 +195,10 @@ def main():
                            "HOSP_GROWTH", "OTHER_GROWTH", "PUD_COVER_YEARS",
                            "PUD_ADJUST_YEARS", "TERMINAL_GROWTH", "PAYOUT", "TAX")},
            "ratios": M.ratios()}
-    for basis, wacc in (("rating", w["wacc_rating"]), ("cds", w["wacc_cds"])):
+    for basis, sched in (("rating", SCHEDULES["rating"]), ("cds", SCHEDULES["cds"])):
+        wacc = sched.wacc_exp
         for mode in ("capacity", "recovery"):
-            out["%s|%s" % (basis, mode)] = sotp(mode, wacc)
+            out["%s|%s" % (basis, mode)] = sotp(mode, sched)
     json.dump(out, open(os.path.join(HERE, "valuation.json"), "w"), indent=1)
 
     print("%-9s %-10s %8s %11s %11s %11s %9s %9s"

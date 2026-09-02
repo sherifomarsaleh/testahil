@@ -24,7 +24,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 34 | ARCC | EGP | full | 54.65 | 54.1 | -1.0% | -1.6% | -3.5% | (study carries no stamp) → 2026.09.01 | L-057, L-058, L-059, L-060, L-061, L-120 |
 | 35 | EGCH | EGP | full | 3.64 | 3.76 | +3.3% | n/a | +0.0% | (study carries no stamp) → 2026.09.01 | L-064, L-065, L-206, L-207 |
 | 36 | PHDC | EGP | full | unrecoverable | 11.4478 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | — |
-| 37 | TMGH | EGP | full | 147.12 | 69.92 | -52.5% | -43.7% | -48.2% | (study carries no stamp) → 2026.09.01 | — |
+| 37 | TMGH | EGP | full | 147.12 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.01 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.
 

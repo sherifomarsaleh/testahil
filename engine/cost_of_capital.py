@@ -155,6 +155,8 @@ class Schedule:
             "rf_terminal": self.rf_terminal, "erp_terminal": self.erp_terminal,
             "ke_terminal": self.ke_terminal,
             "kd_terminal_pretax": self.kd_terminal_pretax,
+            "kd_terminal_aftertax": self.kd_terminal_aftertax,
+            "weight_debt_terminal": self.weight_debt_terminal,
             "wacc_terminal": self.wacc_terminal,
             "glide_fractions": self.glide_fractions,
             "forward_wacc": self.forward_wacc,
@@ -164,6 +166,50 @@ class Schedule:
             "sensitivity": self.sensitivity,
             "disclosures": self.disclosures,
         }
+
+    @classmethod
+    def from_record(cls, rec: dict) -> "Schedule":
+        """Rebuild a Schedule from the record a study committed.
+
+        A study reads back the schedule it published rather than recomputing one,
+        so the numbers in its workbook and the numbers its gate checks are the
+        same object. Any field the record does not carry is a defect in the
+        record, not something to default quietly.
+        """
+        fields = cls.__dataclass_fields__
+        missing = [k for k in fields
+                   if k not in rec and fields[k].default is fields[k].default_factory is None]
+        missing = [k for k in fields if k not in rec and
+                   fields[k].default.__class__.__name__ == "_MISSING_TYPE" and
+                   fields[k].default_factory.__class__.__name__ == "_MISSING_TYPE"]
+        if missing:
+            raise CostOfCapitalError(
+                "the committed schedule record is missing %s. A record that cannot rebuild "
+                "its own schedule is not a record of it." % ", ".join(missing))
+        return cls(**{k: v for k, v in rec.items() if k in fields})
+
+    def shifted(self, delta: float) -> "Schedule":
+        """The WHOLE ladder moved by delta — the honest shape of a rate sensitivity.
+
+        A sensitivity that replaces the schedule with a flat rate is not asking
+        "what if capital costs more"; it is asking "what if the economy also never
+        normalises", which is two questions at once and the second one is the
+        assumption this module exists to remove.
+        """
+        import copy
+        s = copy.deepcopy(self)
+        s.wacc_exp += delta
+        s.wacc_terminal += delta
+        s.forward_wacc = [w + delta for w in self.forward_wacc]
+        df, cum = [], 1.0
+        for w in s.forward_wacc:
+            cum /= (1 + w); df.append(cum)
+        s.discount_factors = df
+        s.terminal_discount_factor = df[-1]
+        s.disclosures = list(self.disclosures) + [
+            "SENSITIVITY: the whole schedule is shifted by %+.0f basis points; the shape "
+            "is unchanged." % (10000 * delta)]
+        return s
 
     def report(self) -> str:
         L = ["COST OF CAPITAL — %s (%s), %d explicit years" % (self.market, self.regime, self.years)]
@@ -431,6 +477,77 @@ def schedule(market: str,
         glide_fractions=fracs, forward_wacc=fwd, discount_factors=df,
         terminal_discount_factor=terminal_df,
         kd_integrity=kd_integrity, disclosures=disclosures, sensitivity=sens)
+
+
+class Discounter:
+    """The schedule's discount factor for ANY year, explicit or beyond.
+
+    The explicit years use the ladder. A cash flow arriving after the window --
+    a residual order book converting over a further ten years, a recurring
+    perpetuity's own capitalisation -- compounds on the LAST EXPLICIT FACTOR at
+    the terminal rate. That is the whole of "one date, one price of time" in
+    code: there is no year for which two different factors exist, and a study
+    cannot give the same pound a cheaper ride by relabelling which block of the
+    model it sits in.
+    """
+
+    def __init__(self, sched: "Schedule"):
+        self.sched = sched
+        self._df = list(sched.discount_factors)
+        self._n = len(self._df)
+        self._wt = sched.wacc_terminal
+
+    def factor(self, year: int) -> float:
+        """year is 1-based: 1 is the first explicit year."""
+        if year < 1:
+            raise CostOfCapitalError("year must be 1 or greater, not %r" % year)
+        if year <= self._n:
+            return self._df[year - 1]
+        return self._df[-1] / (1 + self._wt) ** (year - self._n)
+
+    def annuity(self, first_year: int, n: int) -> float:
+        """Sum of factors for n years starting at first_year."""
+        return sum(self.factor(first_year + k) for k in range(n))
+
+    def perpetuity_factor(self, growth: float, from_year: Optional[int] = None) -> float:
+        """The capitalisation multiple for a growing perpetuity struck at the end
+        of the explicit window, brought home on that window's own factor."""
+        y = from_year or self._n
+        if self._wt <= growth:
+            raise CostOfCapitalError(
+                "a growing perpetuity needs the terminal rate (%.4f) above the growth "
+                "(%.4f). A capped denominator is a free parameter hiding an impossible "
+                "assumption." % (self._wt, growth))
+        return (1 + growth) / (self._wt - growth) * self.factor(y)
+
+
+def flat_schedule(rate: float, years: int, market: str = "EG",
+                  why: str = "") -> Schedule:
+    """A DEGENERATE schedule at one rate for every year.
+
+    This exists for exactly one purpose: answering the question "what single flat
+    rate would reproduce the traded price", which is a fair question to put to a
+    reader who is used to seeing one rate. It is never a valuation construction,
+    and the disclosure it carries says so.
+    """
+    fwd = [rate] * years
+    df, cum = [], 1.0
+    for w in fwd:
+        cum /= (1 + w); df.append(cum)
+    return Schedule(
+        market=market, regime="flat (degenerate)", years=years,
+        rf_observed=float("nan"), default_spread=float("nan"), rf_star=float("nan"),
+        erp=float("nan"), erp_basis="cds", beta=float("nan"),
+        ke_exp=float("nan"), kd_pretax=float("nan"), kd_aftertax=float("nan"),
+        weight_equity=float("nan"), weight_debt=float("nan"), wacc_exp=rate,
+        rf_terminal=float("nan"), erp_terminal=float("nan"), ke_terminal=float("nan"),
+        kd_terminal_pretax=float("nan"), kd_terminal_aftertax=float("nan"),
+        weight_debt_terminal=float("nan"), wacc_terminal=rate,
+        glide_fractions=[0.0] * years, forward_wacc=fwd,
+        discount_factors=df, terminal_discount_factor=df[-1],
+        kd_integrity={"note": "not applicable to a degenerate flat schedule"},
+        disclosures=["A FLAT schedule, used only to answer 'what one rate would "
+                     "reproduce this price'. It is not a valuation construction. " + why])
 
 
 def vasicek_shrink(beta_hat: float, se: float, prior: float, prior_sd: float) -> float:

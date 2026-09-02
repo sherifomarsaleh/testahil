@@ -19,6 +19,7 @@ N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 EX = json.load(open(os.path.join(HERE, "experts.json")))
 PE = json.load(open(os.path.join(HERE, "peers.json")))
 M, W, R = N["meta"], N["wacc"], N["ratios"]
+SCHED = N["cost_of_capital_record"]
 IS, BSH, KPI, H1 = (N["inputs"]["IS"], N["inputs"]["BS"], N["inputs"]["KPI"],
                     N["inputs"]["H1_26"])
 LENS, ST, CASES = N["lenses"], N["statements"], N["valuation_cases"]
@@ -142,7 +143,8 @@ def build(path):
             LENS["implied_discount_rate"]["capacity"], fmt=PCT2)
     r = put(s, r, "Discount rate the last close implies, faster conversion",
             LENS["implied_discount_rate"]["recovery"], fmt=PCT2)
-    r = put(s, r, "Discount rate this workbook uses", W["wacc_rating"], fmt=PCT2)
+    r = put(s, r, "Cost of capital, first year", W["wacc_rating"], fmt=PCT2)
+    r = put(s, r, "Cost of capital, once normalised", SCHED["wacc_terminal"], fmt=PCT2)
 
     # ------------------------------------------------------- Assumptions
     s = ws["Assumptions"]

@@ -391,6 +391,28 @@
       "bear": 111.3,
       "full": 64.5
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 91.8306,
+      "bear": 63.696,
+      "full": 123.0284
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four new modules: the cost-of-capital SCHEDULE replacing a flat 32.37%, terminal growth on the house macro path (7%, inflation only, replacing 15%), the lens architecture (one primary published as a range), and the bridge standard",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -37.6,
+      "bear": -23.8,
+      "full": -35.1
+     },
+     "vs_previous_pct": {
+      "base": 31.3,
+      "bear": 35.2,
+      "full": 25.3
+     }
     }
    ],
    "exchange": "EGX",

@@ -55,12 +55,12 @@
    "report": "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.pdf",
    "workbook": "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
    "fair": {
-    "base": 69.92,
-    "bear": 47.1,
-    "full": 98.17
+    "base": 91.8306,
+    "bear": 63.696,
+    "full": 123.0284
    },
-   "report_bytes": 758299,
-   "workbook_bytes": 28382
+   "report_bytes": 771128,
+   "workbook_bytes": 28420
   }
  ]
 }

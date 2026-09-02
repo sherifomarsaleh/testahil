@@ -30,6 +30,7 @@ IS, BSH, KPI, H1 = (N["inputs"]["IS"], N["inputs"]["BS"], N["inputs"]["KPI"],
                     N["inputs"]["H1_26"])
 LENS, ST, WF = N["lenses"], N["statements"], N["walkforward"]
 CASES = N["valuation_cases"]
+SCHED = N["cost_of_capital_record"]
 PSB, PSP = N["per_share_nci_book"], N["per_share_nci_proportional"]
 FV = N["fair_value_range"]
 SPOT = M["spot"]
@@ -92,13 +93,17 @@ def build(path):
               "neither is averaged into the other.")
     para(doc, "Three things are worth knowing before the numbers.")
     bullets(doc, [
-        "The discount rate does most of the work. On the method used here it is "
-        "%s. The June 2026 edition of this study used 18%%, which is below the "
-        "Egyptian government's own ten-year borrowing cost of 23.00%% and "
-        "therefore cannot be a rate for a company that pays tax to that "
-        "government. Almost the whole difference between the two editions is "
-        "this one input, and section 1.9 prices it end to end."
-        % pct(W["wacc_rating"], 2),
+        "The discount rate does most of the work, and it is not one rate. A "
+        "company whose order book converts over the next fifteen years cannot be "
+        "discounted at today's crisis rate in every one of those years, because "
+        "the central bank publishes a path back to a seven per cent inflation "
+        "target and this study's own borrowing assumptions already follow it. "
+        "Each year therefore carries its own rate, falling from %s in the first "
+        "year to %s once the economy has normalised; a pound arriving in year "
+        "nineteen is worth about four times what a single flat rate would have "
+        "said. Earlier editions of this study used one flat rate throughout, and "
+        "that is the largest single change here."
+        % (pct(SCHED["forward_wacc"][0], 2), pct(SCHED["wacc_terminal"], 2)),
         "The order book is enormous and slow. TMG had sold but not yet handed "
         "over EGP %s billion of property at 30 June 2026, against EGP %s billion "
         "of development revenue recognised in the first half. How fast that "
@@ -134,14 +139,16 @@ def build(path):
               "worth, never at what it historically cost. The cases are "
               "not averaged, because averaging two answers to a question nobody "
               "has settled produces a number that was true in neither.")
-    para(doc, "Run the same model backwards and ask what discount rate would "
-              "reproduce the traded price, and the answer is %s to %s. That is "
-              "close to what the Egyptian government itself pays to borrow for "
-              "ten years, and it is well below the %s this study uses. The gap "
-              "is the disagreement, and it is reported rather than resolved."
+    para(doc, "Run the same model backwards and ask what single flat discount "
+              "rate would reproduce the traded price, and the answer is %s to %s. "
+              "This study does not use a single rate: it discounts each year at "
+              "its own, starting at %s and settling at %s once the central bank's "
+              "published path has played out. The comparison is still worth "
+              "making, and what it shows is that the market and this study are "
+              "closer than the headline rates suggest."
               % (pct(LENS["implied_discount_rate"]["recovery"], 1),
                  pct(LENS["implied_discount_rate"]["capacity"], 1),
-                 pct(W["wacc_rating"], 2)))
+                 pct(SCHED["forward_wacc"][0], 2), pct(SCHED["wacc_terminal"], 2)))
 
     figure(doc, os.path.join(HERE, "fig1_football.png"),
            "Every lens in this study, and the price the market is paying. The "
@@ -523,12 +530,11 @@ def section1_drivers(doc):
                  money(v(BSH, "properties_under_development") / 1000, 1)))
     para(doc, "Here is the part that is not obvious. Faster conversion is worth "
               "LESS, not more. A developer that accelerates handovers has to "
-              "build before it collects, and at a discount rate near %s that "
-              "investment does not pay back inside the window. The slower "
+              "build before it collects, and at first-year rates near %s that "
+              "investment pays back only slowly inside the window. The slower "
               "reading is worth EGP %s a share and the faster one EGP %s. Both "
-              "are published, and a reader who believes in the build-out should "
-              "note that believing in it does not make the shares cheaper."
-              % (pct(W["wacc_rating"], 0),
+              "are published, and the gap between them is the study's crux."
+              % (pct(SCHED["forward_wacc"][0], 0),
                  money(PSB["rating|capacity"], 2),
                  money(PSB["rating|recovery"], 2)))
 
@@ -567,10 +573,33 @@ def section1_drivers(doc):
            ["Weights", "%s equity / %s debt"
             % (pct(W["weight_equity"], 1), pct(W["weight_debt"], 1)),
             "market value of equity at the last close; borrowings at book"],
-           ["Discount rate", "%s / %s"
+           ["Cost of capital, first year", "%s / %s"
             % (pct(W["wacc_rating"], 2), pct(W["wacc_cds"], 2)),
-            "both bases published, neither averaged"]],
+            "both premium bases published, neither averaged"],
+           ["Cost of capital, once normalised", pct(SCHED["wacc_terminal"], 2),
+            "built from the central bank's own inflation target plus a standard "
+            "real return, not quoted from any market: %s risk-free, %s premium, "
+            "%s cost of debt"
+            % (pct(SCHED["rf_terminal"], 2), pct(SCHED["erp_terminal"], 2),
+               pct(SCHED["kd_terminal_pretax"], 2))],
+           ["The path between them",
+            " to ".join(pct(x, 1) for x in (SCHED["forward_wacc"][0],
+                                            SCHED["forward_wacc"][-1])),
+            "each year discounted at its own rate; the shape follows the central "
+            "bank's published easing calendar rather than a second assumption of "
+            "this study's own"]],
           [4.4, 2.6, 9.2])
+    table(doc, ["Year"] + [str(i + 1) for i in range(len(SCHED["forward_wacc"]))],
+          [["Cost of capital"] + [pct(w, 1) for w in SCHED["forward_wacc"]],
+           ["A pound arriving then is worth"]
+           + [money(d, 3) for d in SCHED["discount_factors"]]],
+          [3.6, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28])
+    para(doc, "The terminal value is brought home on the same factor as the last "
+              "year's cash flow, %s. The common alternative — discounting the "
+              "forecast years at one rate and the terminal value at a lower one — "
+              "gives the same pound arriving on the same day two different values, "
+              "and it is not done here."
+              % money(SCHED["terminal_discount_factor"], 3), size=9, color=MUTED)
     para(doc, "One caveat on the risk-free rate. The quote adopted is 26 days "
               "old at the date of this study. It was cross-checked against three "
               "current central-bank rates rather than accepted alone, and its "
@@ -735,10 +764,13 @@ def sections_2_to_7(doc):
     # --- 7. Caveats --------------------------------------------------------
     doc.add_heading("7. Caveats, and what would change our mind", level=1)
     bullets(doc, [
-        "The discount rate is the study. At the rate the market appears to be "
-        "using, the same model gives a value close to the traded price. This "
-        "study does not claim the market is wrong; it says what the house method "
-        "produces and shows the difference.",
+        "The discount rate is the study, and the shape of it matters as much as "
+        "its level. This edition discounts each year at its own rate, gliding "
+        "from %s to %s as the central bank's own published path plays out. A flat "
+        "rate held at today's level for fifteen years is not a conservative "
+        "assumption; it is a forecast that Egypt never normalises, and it was not "
+        "one any earlier edition of this study argued for."
+        % (pct(SCHED["forward_wacc"][0], 2), pct(SCHED["wacc_terminal"], 2)),
         "Nearly half the group belongs to somebody else. Non-controlling "
         "interests are %s of consolidated equity, and the company does not "
         "disclose its economic share project by project, so the deduction is "

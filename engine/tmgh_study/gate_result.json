@@ -86,7 +86,7 @@
    }
   },
   "scrub_hits": [],
-  "document_chars": 60244,
+  "document_chars": 61663,
   "column_audit": [],
   "recalc_mismatches": 0,
   "recalc_checks": 85,
@@ -149,6 +149,6 @@
    "Disclosure"
   ],
   "h1_count": 16,
-  "tables": 32
+  "tables": 33
  }
 }

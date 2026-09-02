@@ -68,6 +68,14 @@ def build():
         "per_share_nci_book": per_share,
         "per_share_nci_proportional": ps_prop,
         "per_share_nci_value_share": ps_value,
+        # ---- the four records the outside gates read ------------------------
+        # [R-COC-01] the schedule, on the CENTRAL premium basis
+        "cost_of_capital_record": w["cost_of_capital_record"],
+        # [R-MACRO-01] every growth rate in the model, stored so it recomputes
+        "macro_record": _macro_record(),
+        # [R-LENS-03] one primary, published as a range because its crux is
+        # computed both ways; the cross-checks beside it
+        "lens_record": _lens_record(ps_value, lo, hi),
         # [R-BRIDGE-01] the bridge as a RECORD, checked from outside the study.
         # The central case is the one the exposed central is taken from.
         "bridge_record": _bridge_record(cases, sh),
@@ -91,6 +99,95 @@ def build():
                               for k, v in scores.items() if k.endswith("|all")
                               and k.startswith("asknown|")},
         },
+    }
+
+
+def _macro_record():
+    """Every growth rate in this model, stored as (real, path) so it recomputes.
+
+    [R-MACRO-01]. The rates that ARE inflation carry real growth of zero; the
+    rates the path does not drive — a contracted sales ladder, a physical
+    delivery rate — are exempted BY NAME with the reason, which is the honest
+    alternative to either forcing them onto the path or going quiet about them.
+    """
+    import macro_path as MP
+    path = MP.load("EG")
+    yrs = list(range(2026, 2031))
+    return {
+        "market": "EG",
+        "path_as_of": path.as_of,
+        "growth_lines": [
+            {"name": "selling prices and unit costs",
+             "years": yrs, "nominal": [round(path.inflation(y), 6) for y in yrs],
+             "real": 0.0,
+             "basis": "the house inflation path, zero real: price and cost escalate "
+                      "together and the margin is an OUTPUT, never an input"},
+            {"name": "contracted sales replenishment",
+             "years": yrs, "nominal": [M.SALES_FADE - 1.0] * len(yrs),
+             "exempt_reason": ("a physical sales ladder held flat in REAL terms against the "
+                               "company's own record, not a price; the class-A correction of "
+                               "02-Sep-2026 replaced a 15%-a-year fade with this")},
+        ],
+        "terminal": {
+            "g_nominal": M.TERMINAL_GROWTH,
+            "real": M.TERMINAL_REAL_GROWTH,
+            "rf": path.terminal_rf,
+            "inflation_in_rf": path.terminal_inflation,
+        },
+        "explicit_years": 10,
+        "growth_at_horizon_end": M.TERMINAL_GROWTH,
+        "note": ("The explicit window ends at the terminal growth rate by construction: the "
+                 "recurring legs grow with prices and the development leg is a finite order "
+                 "book, so nothing is capitalised at a rate the model never reached."),
+    }
+
+
+def _lens_record(ps_value, lo, hi):
+    """[R-LENS-03]. One primary, published as a RANGE.
+
+    The class primary for a developer recognising revenue on handover is the
+    cash-flow lens. This study's crux — how fast the order book converts — is
+    computed BOTH WAYS and never averaged, so the primary is published as a range
+    rather than a point, and the figure exposed for the gap gate says what it is.
+
+    NORMALISED EARNINGS IS RETIRED HERE, and its retirement is the registry's own
+    reasoning rather than a convenience: a company recognising revenue when the
+    customer takes the home reports earnings that are an accident of which project
+    completed in which year, and capitalising a mid-cycle figure treats that
+    schedule as a steady state.
+    """
+    L = json.load(open(os.path.join(HERE, "lenses.json")))
+    book = L["book_and_sustainable_return"]["book_value_per_share"]
+    return {
+        "class": "real-estate developer, off-plan, point-in-time on handover",
+        "primary": {
+            "kind": "dcf",
+            "range": {"low": lo, "high": hi},
+            "note": ("four cases: two premium bases x two readings of the crux, on the "
+                     "cost-of-capital SCHEDULE rather than a flat rate. They are never "
+                     "averaged."),
+        },
+        "cross_checks": [
+            {"kind": "book_value", "value": book, "present_value": False,
+             "note": ("shareholders' funds attributable to the parent, per share, at "
+                      "30 June 2026 — a disclosed floor, published as such and carrying "
+                      "no weight")},
+        ],
+        "retired_lenses": [
+            {"kind": "normalised_earnings",
+             "why": ("not a lens for this class: the company recognises revenue when the "
+                     "customer takes control of the home, so its reported earnings are an "
+                     "accident of which project completed in which year, and capitalising a "
+                     "mid-cycle figure treats that schedule as a steady state. The working "
+                     "is kept as a disclosed diagnostic and carries no value claim.")},
+        ],
+        "envelope": {"low": lo, "high": hi},
+        "central": sorted(ps_value.values())[1:3] and
+                   (sorted(ps_value.values())[1] + sorted(ps_value.values())[2]) / 2.0,
+        "central_note": ("this study publishes NO central. The figure exposed here is the "
+                         "median of the four cases, so the valuation-gap gate can read an "
+                         "answer; the cases themselves are published side by side and are "
+                         "never averaged into a headline."),
     }
 
 
