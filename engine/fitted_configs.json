@@ -1376,10 +1376,10 @@
       "RELIANCE",
       "TMPV"
     ],
-    "windows": 172,
+    "windows": 174,
     "rebuilt_this_run": [],
     "nu": 6.0,
-    "width_cal": 1.021,
+    "width_cal": 1.014,
     "mle_scale": 1.03,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
     "market_skill": -0.0084,
@@ -1396,41 +1396,41 @@
       "INFY": {
         "nu": 5.0,
         "width_cal": 1.049,
-        "skill": -0.0114,
+        "skill": -0.0115,
         "skill_raw_basis": -0.0079,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.026,
+          -0.025,
           0.001
         ]
       },
       "RELIANCE": {
         "nu": 6.0,
-        "width_cal": 1.077,
-        "skill": 0.006,
-        "skill_raw_basis": 0.0083,
+        "width_cal": 1.07,
+        "skill": 0.0068,
+        "skill_raw_basis": 0.0089,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.013,
-          0.028
+          -0.012,
+          0.029
         ]
       },
       "TMPV": {
-        "nu": 10.0,
-        "width_cal": 0.93,
-        "skill": -0.0211,
-        "skill_raw_basis": 0.0007,
+        "nu": 12.0,
+        "width_cal": 0.923,
+        "skill": -0.0212,
+        "skill_raw_basis": 0.0003,
         "verdict": "PARITY",
         "ci_block2": [
           -0.04,
-          0.004
+          0.003
         ]
       }
     },
     "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 6.0,
-      "width_cal": 1.021,
+      "width_cal": 1.014,
       "market_verdict": "PARITY",
       "replaced_on": "2026-09-01"
     },
@@ -1438,11 +1438,10 @@
       "applied": false,
       "mle_shape": [
         6.0,
-        1.021
+        1.014
       ],
-      "w90_sigma": 1.6199,
-      "reason": "MLE shape already closest admissible point",
-      "cov50": 0.5
+      "w90_sigma": 1.6088,
+      "reason": "G-improve: gain 0.006 < 0.01"
     },
     "coverage_flags": {
       "INFY": null,
@@ -1462,7 +1461,7 @@
     "windows": 174,
     "rebuilt_this_run": [],
     "nu": 6.0,
-    "width_cal": 0.951,
+    "width_cal": 0.958,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
     "market_skill": 0.0075,
@@ -1490,8 +1489,8 @@
       "QGTS": {
         "nu": 6.0,
         "width_cal": 0.979,
-        "skill": 0.0081,
-        "skill_raw_basis": 0.0057,
+        "skill": 0.0082,
+        "skill_raw_basis": 0.0059,
         "verdict": "PARITY",
         "ci_block2": [
           -0.004,
@@ -1513,7 +1512,7 @@
     "auto_refreshed": "2026-09-01",
     "superseded": {
       "nu": 6.0,
-      "width_cal": 0.951,
+      "width_cal": 0.958,
       "market_verdict": "PARITY",
       "replaced_on": "2026-09-01"
     },
@@ -1521,10 +1520,10 @@
       "applied": false,
       "mle_shape": [
         6.0,
-        0.951
+        0.958
       ],
-      "w90_sigma": 1.5089,
-      "reason": "G-improve: gain 0.006 < 0.01"
+      "w90_sigma": 1.52,
+      "reason": "G-improve: gain 0.000 < 0.01"
     },
     "coverage_flags": {
       "IQCD": null,

@@ -1,68 +1,41 @@
 {
  "ticker": "EGCH",
- "beta": 1.0526645903529388,
- "r2": 0.2830573279012374,
- "n": 257,
- "se": 0.10491194482570484,
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 1.0302103069881783,
+ "r2": 0.25041984255357363,
+ "se": 0.19069136883839916,
+ "n": 253,
  "ci90": [
-  0.8800844411146543,
-  1.2252447395912234
+  0.7165230052490117,
+  1.3438976087273449
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "composite_names": 35,
- "window_years": 5,
+ "dimson": true,
  "frequency": "weekly",
  "weak": false,
- "weak_reason": "R-squared = 28.3% against the 10% weak-instrument threshold; the 90% confidence interval [0.88, 1.23] spans 0.33x the point estimate",
  "warnings": [],
- "adopted": {
-  "beta_used": 1.0526645903529388,
-  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-  "why": "n = 257 weekly observations, R-squared = 0.283 against the 0.05 floor, SE(beta) = 0.105 against |beta| = 1.053. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-  "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.828 with a 90% interval of [0.49, 1.16]; the adopted 1.05 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
-  "sensitivity_required": [
-   0.6,
-   0.8,
-   1.0,
-   1.15,
-   1.3
-  ]
+ "window_years": 4.89,
+ "first_obs": "2021-08-26",
+ "last_obs": "2026-07-16",
+ "blume_crosscheck": 1.0201402046587855,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-07-22",
+ "index_dq": [],
+ "stock_dq": [
+  "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "superseded_composite": {
+  "beta": 1.0526645903529388,
+  "r2": 0.2830573279012374,
+  "n": 257,
+  "se": 0.10491194482570484,
+  "regressor": "35-name equal-weight EGX composite",
+  "why_withdrawn": "A constituent composite is a coverage artefact, not a market. SIGCM clause 6 hard fail; never a fallback and never a tier."
  },
- "dimson": {
-  "sum_beta": 0.8275754032593131,
-  "se_sum": 0.2050022938417826,
-  "r2": 0.28620702402558207,
-  "n": 254,
-  "ci90": [
-   0.4903466298895808,
-   1.1648041766290453
-  ],
-  "coefficients": {
-   "lead": -0.02196500931313261,
-   "contemporaneous": 1.0486145216055687,
-   "lag1": -0.07795164004499619,
-   "lag2": -0.12112246898812659
-  },
-  "uplift_vs_ols": -0.2250891870936257,
-  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
- },
- "self_inclusion_bias": {
-  "beta_index_including_subject": 1.126240425933829,
-  "r2_including": 0.32621340078202654,
-  "beta_index_excluding_subject": 1.0526645903529388,
-  "r2_excluding": 0.2830573279012374,
-  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
- },
- "thin_trading": {
-  "flat_frac": 0.0495,
-  "eg_panel_median": 0.0874,
-  "ratio": 0.57,
-  "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
- },
- "plausibility": {
-  "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
-  "defensive_prior": "defensive or staple: 0.6-0.9",
-  "net_cash_note": "Leverage read deferred to the filings pass: the damping or amplification of equity beta by the actual net-debt position is assessed once the balance sheet is built from the audited statements, not assumed here."
- }
+ "standard_version": "2026.09.01"
 }

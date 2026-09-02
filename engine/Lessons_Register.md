@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**90 lessons**, of which 65 bind on every study, 20 on a class of company, and 5 on a single name.
+**94 lessons**, of which 67 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 33 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 11 from self-audits, 34 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 11 from self-audits, 34 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 4 (AMOC, ARCC, PHDC, TMGH) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 5 (AMOC, ARCC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -709,7 +709,27 @@ When the only capital-spending figures available are years that also carried exp
 
 > **What would overturn it.** A disclosure that separates maintenance from growth capital directly, which makes the inference unnecessary.
 
-### L-064 · A checklist a study fills in about itself measures its opinion of the work, not the work.
+### L-064 · While a project is under construction, its interest and currency losses go to the asset, not the income statement.
+
+Under IAS 23 and its Egyptian equivalent, the interest on a loan that funds a qualifying asset — and the exchange loss on that loan — is capitalised into the asset until it is ready for use. So a borrowing rate formed from the income-statement charge during construction understates what the loan actually costs, and a currency driver that charges the revaluation to profit invents a loss the company will never book there. Form the rate on the loan's own terms, put the construction-period charge on the balance sheet, and move it to the income statement only when the asset is commissioned.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, EGCH walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -1.276 log (about 3.6 times too low), average miss 1.372, wrong in the same direction in 86% of cases, and the sign holds across every bootstrap block tested (n=28).
+
+> **What would overturn it.** An issuer that expenses all borrowing costs as incurred, where the rate formed on the income-statement charge matches the loan's disclosed cost and the currency revaluation appears in profit in the year of the devaluation.
+
+### L-065 · A statutory-rate tax driver must first check whether the company pays current tax at the origin.
+
+Tax by formula at the statutory rate is the right rule for a regime, but a company carrying forward large losses, or taking an accelerated first-year deduction on new plant, books no current tax for years and then a deferred charge or credit that the formula cannot see. Read the current-tax line and the deferred-tax note at the origin before applying the rate; where current tax is nil, say so and carry the zero-tax case beside the statutory one rather than assuming it away.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, EGCH walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 1.500 as known, 2.028 with perfect foresight of inflation — the macro share is only -35.2%.
+
+> **What would overturn it.** A run on a company whose current tax at every origin equals the statutory rate on profit before tax, where the formula's error is inside the other drivers' noise.
+
+### L-066 · A checklist a study fills in about itself measures its opinion of the work, not the work.
 
 Where a standard can be read off the delivered file, read it off the delivered file. An attestation is only worth what an outside reader could not otherwise see; anything a script can measure directly should be measured directly, and the attestation kept for the judgements that genuinely cannot be.
 
@@ -719,7 +739,7 @@ Where a standard can be read off the delivered file, read it off the delivered f
 
 > **What would overturn it.** A standard that cannot be expressed as a test of the delivered artefact, where the attestation is the only evidence available.
 
-### L-065 · A gate pointed at a superseded file reports on something nobody receives.
+### L-067 · A gate pointed at a superseded file reports on something nobody receives.
 
 When a study is re-issued, every check that opens the delivered file by name has to move with it. A check left pointing at the previous edition keeps passing, and its green says nothing about what was actually shipped.
 
@@ -971,6 +991,29 @@ When profit is a small difference between two very large numbers, an error that 
 # Lessons that bind on ONE company
 
 *Read only the section for the company being updated. These do not generalise and must not be applied to another name.*
+
+## EGCH
+
+### L-206 · KIMA's urea output falls in the summer gas curtailment, so flat tonnes over-forecast every year.
+
+The complex is gas-fed and the state cuts industrial gas in the summer months when power demand peaks. Holding urea tonnes flat at the last reported year assumes a full year of gas the plant has not had since it opened. Read the auditor's tonnage table and the curtailment note before setting volume, and treat flat as the optimistic case.
+
+**Applies to:** EGCH only  ·  *Learned from:* fundamental walk-forward test, EGCH walk-forward, 1 September 2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Urea tonnes held flat at the origin over-forecast by 9.3% in all three scoreable unit-window cells (output 586kt to 522kt to 513kt); inside that window the revenue error was entirely realisation (+11%, +49%, +34%) and not volume (-11%, -12%, -2%). AMOC showed the same flat-volume lean (+7.6%, 8 of 9 cells) and the two are recorded separately until a third name shows it.
+
+> **What would overturn it.** A year in which reported urea tonnes reach or exceed the prior year with the curtailment still in force.
+
+### L-207 · EGCH: every level driver projects a plant that no longer exists.
+
+The 1960 electrolytic plant was shut inside the window and replaced by a gas-fed urea complex with about twelve times its revenue, with two loss years on either side. A rule that holds any level flat, or grows it on its own trend, from an origin before FY2020 is forecasting the old plant into years the new one reported, so revenue, cost and profit all come out far too low with a sign that never changes. On this name the record before and after the replacement must be read as two records.
+
+**Applies to:** EGCH only  ·  *Learned from:* fundamental walk-forward test, EGCH walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.596 log (about 1.8 times too low), average miss 0.812, wrong in the same direction in 67% of cases, and the sign holds across every bootstrap block tested (n=55).
+
+> **What would overturn it.** A re-run of the same rules on origins FY2020 onward only, where the revenue bias no longer holds its sign across bootstrap blocks.
+
 
 ## PHDC
 

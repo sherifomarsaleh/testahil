@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-01b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-02a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 1 September 2026 (rev. 9) — VALUATION-GAP AUDIT [R-GAP-01] (a central fair value more than 10% below the traded price is audited before it ships)
+Updated 1 September 2026 (rev. 10) — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01] (an unmerged rule binds on nothing)
+(rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
 (rev. 8, 24 August 2026 — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01], investor sessions)
 (rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
 (rev. 6, 23 August 2026 — ENFORCEMENT: the rules that make the other rules bind)
@@ -823,7 +824,7 @@ driver assertions failed immediately: revision 4 had moved the valuation date to
 put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and declared-dividend
 rows no longer move the headline, and the assertions saying they did had never been run against
 the model that shipped. **A check that opens a delivered file by name moves with the re-issue.**
-Both findings are registered as L-064 and L-065 under [R-LESSON-01].
+Both findings are registered as L-066 and L-067 under [R-LESSON-01].
 
 ### [R-ENF-03] The published technical read is checked from outside, through a real JS parse
 
@@ -2281,3 +2282,96 @@ look for a missing check is not among the steps — those are well covered — b
 output, asking the question a reader would ask on seeing it. Here the reader asked it in
 four words and found six defects. A gate that asks the same question automatically is
 cheaper than a reader who has to.
+
+---
+
+## [R-MERGE-01] A run that ends on a branch has not ended (1-Sep-2026, per instruction — "can you merge the branch to the main automatically in this exercise from now on or at least create a PR to draw my attention, otherwise I will forget")
+
+### The rule
+
+At the end of every campaign name: **open the PR unprompted, wait for CI, and merge it once every
+repo gate is green.** Don't ask, don't park it, don't end a session with the work on a branch.
+
+### Why this is not about convenience
+
+On adoption day, [R-GAP-01] was written into both governing documents, enforced in code,
+negative-controlled and pushed to a feature branch. **It would have bound on nothing.** The next
+name in the campaign starts from a fresh clone of `main`, and `main` did not carry it. The rule
+would have existed and not executed — which is [R-ENF-01]'s exact failure one level up: nobody
+disagreed with it, it simply was not present at the moment it bound.
+
+That generalises past this one rule. Every lesson in the register, every corrected prompt, every
+`STANDARD_VERSION` bump reaches the next study through `main` or it does not reach it at all. The
+branch is where work is *made*; it is not where work *lands*.
+
+Measured the same day: the AMOC branch carried eight commits and sat unmerged for the entire
+session, including the digest rename, the two stale QC items in the study-initiation checklist
+(one of which would have had a new study gate on a verdict retired on 25-Aug), and lessons
+L-048 through L-056.
+
+### Green means every gate, not a subset
+
+Protocol sync · protocol text and its negative control · study provenance · lessons register and
+its negative control · technical calibration and its negative control · campaign queue ·
+fair-value register · valuation gap and its negative control · band vocabulary · technical read ·
+coverage floor — plus the PR's own CI runs. **A gate that cannot be run is not a green gate.**
+
+### The pause that was proposed and overruled
+
+It was proposed that a name be held for a human look before merging in the two cases where this
+session actually went wrong: where the central lands more than 10% below the price, or where fair
+value moves a long way. The evidence for it was direct — the first AMOC pass cleared *every* gate
+at 39% below the traded price, and what caught it was a person looking at the answer, in four
+words.
+
+**The instruction declined the pause, and the instruction stands.** The cost is recorded here
+rather than discovered later: [R-GAP-01] is now the only thing standing between a wrong study and
+`main` on precisely the shape of error that produced this session's worst defect, and it is **one
+run old with no live catch to its name** — its four seeded breaches are historical, not caught in
+flight. If it ever passes a study a reader then finds wrong by a large margin, that is the evidence
+to revisit this clause. It is written down so the revisit does not depend on anyone remembering.
+
+### The reporting threshold
+
+*Added 1-Sep-2026, per instruction — "tell me the number if it is more than 10% only."*
+
+**Within 10% either way: merge on green and say nothing about the fair value.** An ordinary result
+does not need reporting, and a number quoted at the end of every one of ninety names is a number
+nobody reads by the tenth. This is the reasoning [R-CAL-02] already uses when it says nothing at all
+about a cone that held as often as it promised: **silence is the honest response to an ordinary
+outcome**, and it is what makes the exception legible.
+
+**More than 10% either way: the closing message carries the central, the spot and the gap** — called
+out, not buried.
+
+**Symmetric on purpose, and deliberately unlike [R-GAP-01].** That *audit* gate fires only below the
+price — one-sided by instruction — and records as its own stated cost that an over-optimistic study
+gets no automatic audit and nothing else supplies one. This threshold fires **both** ways, so a
+central far above the price stops passing unremarked.
+
+**Reporting is not auditing, and the two must not be confused.** The merge does not wait for a
+reply, so this clause buys a chance to catch a bad answer *after* the fact, never before it.
+Merging is not gated on it either: [R-GAP-01] already blocks a study more than 10% below the price
+at CI until its `GAP_REVIEW` exists, so the audit happens before the merge regardless of what is
+reported. This clause governs what reaches the user, never what reaches `main`.
+
+### What is unchanged
+
+**Publishing to the live site is still a separate, explicitly-requested step, and nothing here
+touches it.** Merging a rebuild to `main` moves `fair{bear,base,full}` in the repository, not on
+testahil.com; the campaign prompt's NEVER PUBLISH FROM THIS CAMPAIGN clause stands in full.
+
+Engine and protocol changes still go through a PR rather than a direct push to `main`. What changed
+is who closes it, not whether one is opened.
+
+### Enforcement is prose, and that is said plainly
+
+Per [R-ENF-01], a rule that can be tested is tested — and this one cannot be, honestly. It governs
+what the operator does at the end of a run, not a property of the repository a checker can read. A
+gate running on the feature branch cannot know whether that branch will be merged, and one
+demanding that every run directory already be on `main` would be red on every branch by
+construction, which is the permanently-red check [R-ENF-02] forbids.
+
+The honest backstop is the campaign register itself: `fv_movement.py check` anchors on the run
+directories on disk, so a name whose work never reached `main` surfaces as a run with no delivered
+edition the next time the campaign is read from a fresh clone.

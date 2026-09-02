@@ -33,6 +33,11 @@ gross_asset = repl_mid + cwip_valued + FVOCI + INVPROP
 eq_undiscounted = gross_asset - NET_DEBT
 disc = V('control_discount_eg_state')
 eq_discounted = eq_undiscounted * (1 - disc)
+# the published range is spanned by the SAME two factors the named sensitivity moves — the
+# build cost across the industry range and the control discount on or off — so the
+# sensitivity cannot land outside the range
+e1_lo = (repl_lo + cwip_valued + FVOCI + INVPROP - NET_DEBT) * (1 - disc) * 1e6 / SH
+e1_hi = (repl_hi + cwip_valued + FVOCI + INVPROP - NET_DEBT) * 1e6 / SH
 E['e1'] = dict(
     title="Replacement cost and asset backing",
     worldview=("A plant is worth what it would cost to build again, less what is owed "
@@ -62,12 +67,13 @@ E['e1'] = dict(
           ("Control discount on a state-held listed industrial", -disc, "observed"),
           ("Equity after the discount (EGP m)", eq_discounted, ""),
           ("PER SHARE (EGP)", eq_discounted * 1e6 / SH, "")],
-    low=eq_discounted * 1e6 / SH,
-    high=eq_undiscounted * 1e6 / SH,
-    sensitivity=("The build cost is the swing factor. At US$550 per annual tonne the range "
-                 f"starts at EGP {(repl_lo + cwip_valued + FVOCI + INVPROP - NET_DEBT) * (1 - disc) * 1e6 / SH:,.2f}; "
-                 f"at US$700 it reaches EGP {(repl_hi + cwip_valued + FVOCI + INVPROP - NET_DEBT) * (1 - disc) * 1e6 / SH:,.2f}. "
-                 "The control discount moves it by about a third either way."),
+    low=e1_lo,
+    high=e1_hi,
+    sensitivity=(f"The build cost and the control discount are the two swing factors, and the range "
+                 f"is their product: at US${cap_lo:,.0f} per annual tonne with the {disc*100:.0f}% discount "
+                 f"the reading is EGP {e1_lo:,.2f}; at US${cap_hi:,.0f} with no discount it is EGP "
+                 f"{e1_hi:,.2f}. The mid-point build cost with the discount, the central reading, is EGP "
+                 f"{eq_discounted * 1e6 / SH:,.2f}."),
     reading=(f"This is the highest of the three readings and it should be read as a "
              f"ceiling rather than a centre. It values the plant at what a buyer would pay "
              f"to avoid building one, and on a plate of {plate:,.0f} tonnes at the "
@@ -207,6 +213,21 @@ E['e3']['reading'] = (
     f"limited liability truncates the downside, so dispersion accrues to the holder. "
     f"What the method cannot do is tell that holder when the option expires.")
 
+# THE CONTESTED JUDGEMENT ON AN EXPERT'S RANGE: the option lens on both sides. With the
+# programme stopped the enterprise value is the halt case's, so the same call is re-struck
+# on it and both readings are published side by side, never averaged.
+_HB = D['cases']['halt']['bridge']
+ev_incl_halt = _HB['ev'] + FVOCI + INVPROP
+call_halt = bs_call(ev_incl_halt, strike, rf_opt, vol, T_yrs)
+call_halt_lo = bs_call(ev_incl_halt, strike, rf_opt, 0.35, T_yrs)
+call_halt_hi = bs_call(ev_incl_halt, strike, rf_opt, 0.55, T_yrs)
+E['e3']['contested'] = dict(
+    carried_through=call * (1 - dilution) * 1e6 / SH,
+    carried_low=0.0, carried_high=call_hi * (1 - dilution) * 1e6 / SH,
+    stopped=call_halt * (1 - dilution) * 1e6 / SH,
+    stopped_low=call_halt_lo * (1 - dilution) * 1e6 / SH,
+    stopped_high=call_halt_hi * (1 - dilution) * 1e6 / SH,
+    ev_incl_halt=ev_incl_halt)
 E['ranges'] = {k: (E[k]['low'], E[k]['high']) for k in ('e1', 'e2', 'e3')}
 E['spot'] = SPOT
 json.dump(E, open(os.path.join(HERE, 'experts.json'), 'w'), indent=1, default=float)

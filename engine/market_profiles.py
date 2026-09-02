@@ -549,7 +549,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "but the fit now conforms to the house cleaning gate."))
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
-    nu=6.0, width_cal=1.021,
+    nu=6.0, width_cal=1.014,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, "
         "2021-2026), RE-RUN through the market-aware data-quality gate and the "
@@ -602,7 +602,7 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=6.0, width_cal=0.951,
+    nu=6.0, width_cal=0.958,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, "
               "2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/"
               "0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-"

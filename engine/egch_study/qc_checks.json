@@ -1,9 +1,9 @@
 {
- "scrub_patterns": 49,
+ "scrub_patterns": 68,
  "scrub_hits": [],
  "figures": 15,
  "transparent": [],
- "tables": 55,
+ "tables": 56,
  "table_problems": [],
  "builders": [
   "docx_egch.py",

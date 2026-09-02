@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
                             SourceType, DriverMode)
 
-SWEEP_DATE = "2026-08-08"
+SWEEP_DATE = "2026-09-01"
 R = SweepRegister("EGCH", AssetClass.STOCK, SWEEP_DATE)
 CO, IR, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.COMPANY_IR,
                                 SourceType.REGULATOR_OFFICIAL, SourceType.PRIMARY_MARKET_DATA,
@@ -44,6 +44,18 @@ R.record_primary_access("https://www.cbe.org.eg/en/auctions/egp-t-bills", False,
     "CBE auction pages WAF-blocked ('requested URL was rejected') from the helper too; "
     "T-bill yields carried from secondary quotes (investing.com), labelled as such.")
 
+# ---- 1 September 2026 edition: the primary channel re-tried, and the archive read back to 2009
+R.record_primary_access("https://www.kimaegypt.com/InvestorsRelations.aspx", True, "2026-09-01",
+    "Reachable directly (HTTP 200) on 1 September 2026; the embedded Mist portal listing page "
+    "timed out once and returned a 709-byte stub on retry, so the 8 August index was used.")
+R.record_primary_access("https://www.mistnews.com/mistsat/companies/mezanyat/", True, "2026-09-01",
+    "Ten older annual statements (years to June 2009, 2010, 2011, 2013, 2014, 2016, 2018, 2019, "
+    "2020, 2021) retrieved as real PDFs from the company's own portal for the calibration of the "
+    "method on the company's history. The portal lists no annual for 2012, 2015 or 2017 and "
+    "nothing older than 2009; no FY2025/26 annual had been published.")
+R.record_primary_access("https://kima.com.eg/", False, "2026-09-01",
+    "Refused at the egress proxy; not the company's domain (kimaegypt.com is).")
+
 # ---- study year: FY2025/26 (ends 30-Jun-2026); all three disclosed interims swept
 R.declare_study_year("FY2025/26", ["Q1-2025/26", "H1-2025/26", "9M-2025/26"])
 
@@ -62,7 +74,7 @@ f_urea = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S,
     "H1-2026; CME Urea (Granular) FOB EGYPT front month settled ~$545/t on 7-Aug-2026. "
     "Natural gas is the input; Egyptian fertilizer producers pay a formula price of "
     "$5.75/mmBtu (raised from $4.50 effective from Nov-2021 pricing decision)",
-    "CME/TradingView UFE front month (helper snapshot, live_data.json); Profercy/CRU "
+    "CME/TradingView UFE front month (helper snapshot taken 8 August 2026, since carried in the input register); Profercy/CRU "
     "coverage; gas formula price per note 28 of the audited FY2024/25 statements",
     PMD, "2026-08-07",
     model_impact="Sets the export-price driver's anchor ($545/t FOB Egypt today, mean-"
@@ -95,7 +107,7 @@ f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval r
     "remains a way of life: the EGP swung ~47 (Dec-2025) to ~50.4 (Mar-2026) and that "
     "single move produced a 1.46bn EGP Q3 FX loss on KIMA's USD debt",
     "CBE July-2026 MPC (FocusEconomics report); TradingEconomics CPI; investing.com "
-    "10Y/FX (helper snapshot live_data.json); FX-loss mechanics per the 9M-2025/26 "
+    "10Y/FX (helper snapshot taken 8 August 2026, since carried in the input register); FX-loss mechanics per the 9M-2025/26 "
     "interim statements", PMD, "2026-08-07",
     model_impact="Sets rf* build (23.0% less the sovereign's own default spread), the "
                  "USD/EGP path applied to the gas price, the USD debt service, and the "
@@ -332,10 +344,12 @@ R.add_driver("Natural-gas cost (feedstock + fuel)", DriverMode.BOTTOM_UP,
     "loss history (781m cumulative) carries as a standing inefficiency line.",
     [f_fs25, f_urea, f_gasav])
 R.add_driver("Non-gas cost stack (wages, services, electricity, freight)", DriverMode.BOTTOM_UP,
-    "Each class its own escalator: wages (212.9m FY2024/25) on domestic CPI-wage path; "
-    "freight-to-port (610.2m) scales with export tonnage; electricity per the "
-    "transmission-tariff dispute record; anchored to the company's own FY2025/26 "
-    "budget column in the 9M interim (the sourced near-term anchor).",
+    "Two escalator classes: the domestic lines (wages 212.9m, services, other materials, "
+    "freight-to-port 610.2m per export tonne, other selling and administration, all FY2024/25) "
+    "share the domestic inflation path, while gas, the export price and the subsidised price "
+    "each carry their own; every unit rate is anchored on the FY2024/25 auditor's product-cost "
+    "table and the reviewed FY2025/26 quarters. The company's own budget column in the 9M "
+    "interim is registered and scored against the outturn; no driver consumes it.",
     [f_fs25, f_9m])
 R.add_driver("Depreciation & amortization", DriverMode.BOTTOM_UP,
     "Note 6 register: KIMA-2 machinery at 3.95%/yr, intangible usufruct at 4.75%/yr; "
@@ -364,6 +378,19 @@ R.add_driver("Dividend / distribution policy (q)", DriverMode.BOTTOM_UP,
     "q=0 sourced from two consecutive appropriation statements (zero proposed both "
     "years); flagged to revisit when leverage normalises.",
     [f_mgmt, f_fs25])
+
+f_hist = R.add(Ring.COMPANY, "long-run reported history (calibration of the method)", FindingClass.S,
+    "Eighteen fiscal years of the company's own audited statements, FY2008-FY2025, read from the "
+    "rendered pages and footed subtotal by subtotal (17 of 18 years foot on every line; the 2014 "
+    "annual is a 367x519-pixel scan carried only for the blocks that foot). The old Aswan plant "
+    "was shut in FY2019 and the gas-fed complex commissioned through FY2020-FY2021 with two loss "
+    "years between; revenue FY2018 571m, FY2021 1,399m, FY2022 4,441m, FY2025 8,603m EGP",
+    "Audited annual statements for the years to 30 June 2009-2021 from the company's IR portal "
+    "(engine/egch_walkforward/panel.py carries every figure with its footing)", CO, "2026-09-01",
+    model_impact="Tests the forecasting method on the company's own past before it is trusted on "
+                 "its future: years three to five of the forecast are published as ranges from "
+                 "the measured error distribution, and the terminal inflation is reconciled to "
+                 "terminal growth.", is_fs_data=True)
 
 # ------------------------------------------------------------------ OUTPUT
 errors, warnings = R.validate()

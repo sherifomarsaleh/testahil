@@ -1,0 +1,184 @@
+[
+ {
+  "url": "https://www.kimaegypt.com/InvestorsRelations.aspx",
+  "ts": "2026-09-01T19:10Z",
+  "status": 200,
+  "bytes": 10367,
+  "ok": true,
+  "note": "company IR page; embeds the Mist portal iframe"
+ },
+ {
+  "url": "https://www.mistnews.com/ir/ir.aspx?sk=1034241017",
+  "ts": "2026-09-01T19:10Z",
+  "status": 302,
+  "bytes": 328,
+  "ok": true,
+  "note": "redirect to the portal"
+ },
+ {
+  "url": "https://kima.com.eg/",
+  "ts": "2026-09-01T19:10Z",
+  "status": null,
+  "ok": false,
+  "error": "connect_rejected at the egress proxy — not the company's domain"
+ },
+ {
+  "url": "https://www.egx.com.eg/en/homepage.aspx",
+  "ts": "2026-09-01T19:10Z",
+  "status": null,
+  "ok": false,
+  "error": "empty reply from server"
+ },
+ {
+  "url": "https://www.mistnews.com/ir/financial.aspx?id=1&sk=1034241017",
+  "ts": "2026-09-01T19:14Z",
+  "status": null,
+  "ok": false,
+  "error": "timed out after 90s"
+ },
+ {
+  "url": "https://www.mistnews.com/ir/financial.aspx?id=1&sk=1034241017",
+  "ts": "2026-09-01T19:25Z",
+  "status": 200,
+  "bytes": 709,
+  "ok": false,
+  "error": "709-byte stub, no document links; the 08-08-2026 listing in egch_study/filings/SOURCES.md is the index used"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2021/%D9%83%D9%8A%D9%85%D8%A7%2010-11-2021.PDF",
+  "ts": "2026-09-01T19:14:06Z",
+  "status": 200,
+  "bytes": 8788814,
+  "ok": true,
+  "sha256": "44caa4f5162275f6435dbdf358abf6c6ce03bcdb4070f7412b8c7763148890f2",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2021"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2020/%D9%83%D9%8A%D9%85%D8%A7%20-12-11-2020.pdf",
+  "ts": "2026-09-01T19:14:11Z",
+  "status": 200,
+  "bytes": 5450388,
+  "ok": true,
+  "sha256": "89f28a1dfefc0a7cc09f50980c39fd928b7191fb69bc30a1f216783dad92cab1",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2020"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2019/%28%D9%83%D9%8A%D9%85%D8%A7%29%20%D9%81%D9%89%2030-6-2019.PDF",
+  "ts": "2026-09-01T19:14:23Z",
+  "status": 200,
+  "bytes": 2866756,
+  "ok": true,
+  "sha256": "ac37123385a05e58b5e555f1373e3b7f02cbdf44ad0fe5c3113a7edda4067441",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2019"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2018/%D9%83%D9%8A%D9%85%D8%A7%20%D9%82%D9%88%D8%A7%D8%A6%D9%85%2002-09-2018.pdf",
+  "ts": "2026-09-01T19:14:26Z",
+  "status": 200,
+  "bytes": 10279347,
+  "ok": true,
+  "sha256": "8b7fb18a7c209ae6984dbeca0f690d17a418fd1b68e93830a086f6d300302b7e",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2018"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2016/%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA%201%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.pdf",
+  "ts": "2026-09-01T19:14:43Z",
+  "status": 200,
+  "bytes": 50492401,
+  "ok": true,
+  "sha256": "e2bab8bb4ee7bc736c262911dbfda74c1f4e0e6a93019afe70d2c18c14c1f5c0",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2016"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2014/kimayearly614.pdf",
+  "ts": "2026-09-01T19:15:28Z",
+  "status": 200,
+  "bytes": 2254718,
+  "ok": true,
+  "sha256": "5e06390ffbc80e159952a5a7e1da8c4dfc98af6ce1540ed215f776d83105fc94",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2014"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2013/%D9%83%D9%8A%D9%85%D8%A712ydv.pdf",
+  "ts": "2026-09-01T19:15:32Z",
+  "status": 200,
+  "bytes": 5067515,
+  "ok": true,
+  "sha256": "4cc947b587dcbfa3c227dd2dfd8ae1b7b932d3d32fd3098c10dcc2fc157f3730",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2013"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2011/kimaaa2010-2011.pdf",
+  "ts": "2026-09-01T19:15:36Z",
+  "status": 200,
+  "bytes": 591788,
+  "ok": true,
+  "sha256": "e4b3b71c9fe31de67e8c5cf5ff73ac0bd448e3b0579e13ee3c51217159702cea",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2011"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2010/kema2010.pdf",
+  "ts": "2026-09-01T19:15:38Z",
+  "status": 200,
+  "bytes": 304033,
+  "ok": true,
+  "sha256": "f45d0dacd53b2e35704785e7a11a8ef65e5190b71a578e85b02746cefd5c4021",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2010"
+ },
+ {
+  "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2009/kma1.pdf",
+  "ts": "2026-09-01T19:15:39Z",
+  "status": 200,
+  "bytes": 1134971,
+  "ok": true,
+  "sha256": "bb4c84d6fdc7141e237f3b95836a5a288195f68934d722557998f8c63018dce8",
+  "is_pdf": true,
+  "label": "ميزانية سنوية -- 2009"
+ },
+ {
+  "url": "https://api.worldbank.org/v2/country/EGY/indicator/FP.CPI.TOTL.ZG",
+  "ts": "2026-09-01T19:20Z",
+  "status": 200,
+  "ok": true,
+  "note": "tier C macro"
+ },
+ {
+  "url": "https://api.worldbank.org/v2/country/EGY/indicator/PA.NUS.FCRF",
+  "ts": "2026-09-01T19:30Z",
+  "status": 200,
+  "ok": true,
+  "note": "tier C macro"
+ },
+ {
+  "url": "https://api.worldbank.org/v2/country/USA/indicator/FP.CPI.TOTL.ZG",
+  "ts": "2026-09-01T19:40Z",
+  "status": 200,
+  "ok": true,
+  "note": "tier C macro"
+ },
+ {
+  "url": "https://thedocs.worldbank.org/en/doc/5d903e848db1d1b83e0ec8f744e55570-0350012021/related/CMO-Historical-Data-Monthly.xlsx",
+  "ts": "2026-09-01T19:20Z",
+  "status": 200,
+  "bytes": 765246,
+  "ok": true,
+  "note": "pink sheet updated Jan-2025 — superseded by the Aug-2026 file"
+ },
+ {
+  "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+  "ts": "2026-09-01T19:38Z",
+  "status": 200,
+  "bytes": 577979,
+  "ok": true,
+  "note": "pink sheet updated 4-Aug-2026, urea and gas monthly through 2026M07"
+ }
+]

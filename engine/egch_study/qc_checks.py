@@ -16,7 +16,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_08-08-2026.docx', 'EGCH_Bibliography_08-08-2026.docx']
+DOCS = ['EGCH_Valuation_Study_01-09-2026.docx', 'EGCH_Bibliography_01-09-2026.docx']
 fails = []
 
 # ---------------------------------------------- (4) external-reader scrub -----
@@ -39,6 +39,13 @@ PATTERNS = [
     r"\bstudy_numbers\b", r"\binput_register\b", r"\bxlsx_expected\b",
     r"\bpanel verdict\b", r"\bparity[- ]flagged\b", r"\bboundary case\b",
     r"\bpass/fail verdict\b",
+    # added 1 September 2026 after an audit found the retired skill figure and engine names in prose
+    r"\bskill\b", r"\bproper scoring rule\b", r"\bscoring rule\b", r"\bskill score\b",
+    r"\b(non-overlapping|resolved|three-month|3-month|back-?tested|rolling) windows?\b",
+    r"\bwindows since\b", r"\bbeta_result\b", r"\bown_stock_beta\b", r"\bbeta_regression\b",
+    r"\bwacc_result\b", r"\bforward_ranges\b", r"\bscores\.json\b", r"\bdiagnostics\.json\b",
+    r"\bcorrections_log\b", r"\blessons_register\b", r"\bpanel\.py\b", r"\bcompute\.py\b",
+    r"\buniformity test\b", r"\bp-value\b",
 ]
 scrub_hits = []
 for f in DOCS:

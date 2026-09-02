@@ -200,11 +200,19 @@ EXPP = []
 for k, y in enumerate(YEARS):
     EXPP.append(drv(r, f"Export urea price — {y}", V('export_usd_path')[k], "US$/tonne",
                     src('export_usd_path'), N1)); r += 1
-FXP = []
+SPOTFX = drv(r, "Egyptian pounds per US dollar, spot", V('usd_egp_spot'), "EGP/US$", src('usd_egp_spot'), N2); r += 1
+USINF = drv(r, "Long-run United States inflation", V('us_inflation_lt'), "%", src('us_inflation_lt'), PC1); r += 1
+FXP, WEDGE = [], []
+_cpi_rows = [r + 2 * k + 1 for k in range(len(YEARS))]     # the CPI rows are written further down; addresses are fixed here
 for k, y in enumerate(YEARS):
-    FXP.append(drv(r, f"Egyptian pounds per US dollar — {y}", DR['usd_egp_path'][k], "EGP/US$",
-                   "Derived: the spot rate compounded at the relative-purchasing-power wedge "
-                   "against the model's own inflation path, year by year", N2)); r += 1
+    prev = SPOTFX if k == 0 else FXP[-1]
+    WEDGE.append(drvf(r, f"Currency wedge — {y}", f"=(1+'Assumptions'!C{{CPI_ROW_{k}}})/(1+{USINF})-1",
+                      DR['fx_wedge_path'][k], "%", "Derived: the relative-purchasing-power depreciation the "
+                      "inflation path implies against long-run US inflation, the SAME wedge that carries "
+                      "the dollar debt in that year", PC2)); r += 1
+    FXP.append(drvf(r, f"Egyptian pounds per US dollar — {y}", f"={prev}*(1+{WEDGE[-1]})",
+                    DR['usd_egp_path'][k], "EGP/US$", "Derived: the prior year's rate carried on that "
+                    "year's wedge", N2)); r += 1
 DUTY = drv(r, "Export duty", V('export_duty_2026'), "% of export value", src('export_duty_2026'), PC1); r += 1
 SUBP = []
 for k, y in enumerate(YEARS):
@@ -245,6 +253,10 @@ for k, y in enumerate(YEARS):
 CPI = []
 for k, y in enumerate(YEARS):
     CPI.append(drv(r, f"Egyptian inflation — {y}", V('cpi_path')[k], "%", src('cpi_path'), PC1)); r += 1
+# the wedge rows were written before the inflation rows they read; resolve their placeholders now
+for k in range(len(YEARS)):
+    _wr = int(WEDGE[k].split('C')[-1])
+    ws[f"C{_wr}"].value = ws[f"C{_wr}"].value.replace(f"{{CPI_ROW_{k}}}", CPI[k].split('C')[-1])
 r += 1
 put(ws, f"A{r}", "COST OF CAPITAL").font = SUB; r += 1
 RF = drv(r, "Observed ten-year government yield", V('rf_observed'), "%", src('rf_observed'), PC2); r += 1
@@ -259,18 +271,19 @@ SPRC = drv(r, "Sovereign default spread, CDS basis", V('sov_spread_cds'), "%", s
 ERPC = drv(r, "Equity risk premium, CDS basis", V('erp_cds_damodaran'), "%",
            src('erp_cds_damodaran'), PC2); r += 1
 BETAC = drv(r, "Beta", W['beta'], "x",
-            f"Own-stock weekly regression, {BETA['n']} observations over five years against an "
-            f"equal-weight index of {BETA['composite_names']} Egyptian names with the subject "
-            f"excluded, R-squared {BETA['r2']:.3f}, standard error {BETA['se']:.3f}", N3); r += 1
+            f"Own-stock weekly regression, {BETA['n']} observations over {BETA['window_years']:.1f} "
+            f"years against the published EGX30 index (as of {BETA['index_asof']}), R-squared "
+            f"{BETA['r2']:.3f}, standard error {BETA['se']:.3f}, 90% interval "
+            f"{BETA['ci90'][0]:.2f} to {BETA['ci90'][1]:.2f}", N3); r += 1
 KE_R = r; put(ws, f"A{r}", "Cost of equity, rating basis"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={RFSTAR}+{BETAC}*{ERP}", fmt=PC2, expect=W['ke_rating']); r += 1
 put(ws, f"A{r}", "Cost of equity, CDS basis"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={RF}-{SPRC}+{BETAC}*{ERPC}", fmt=PC2, expect=W['ke_cds']); r += 1
 KDL = drv(r, "Cost of debt, local currency", V('kd_local'), "%", src('kd_local'), PC2); r += 1
 KDU = drv(r, "Cost of debt, dollar tranche, in dollars", V('kd_usd_nominal'), "%", src('kd_usd_nominal'), PC2); r += 1
-DEP = drv(r, "Expected currency depreciation", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
-KDFX = r; put(ws, f"A{r}", "Dollar debt at local-equivalent cost"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{KDU})*(1+{DEP})-1", fmt=PC2, expect=W['kd_fx_local_equiv'])
+DEP = drv(r, "Terminal currency wedge (the same identity, at the terminal inflation)", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
+KDFX = r; put(ws, f"A{r}", f"Dollar debt at local-equivalent cost, year one ({YEARS[0]} wedge)"); put(ws, f"B{r}", "%")
+put(ws, f"C{r}", f"=(1+{KDU})*(1+{WEDGE[0]})-1", fmt=PC2, expect=W['kd_fx_local_equiv'])
 KDFXC = f"'Assumptions'!C{r}"; r += 1
 PCTL = drv(r, "Share of debt in local currency", W['pct_debt_local'], "%",
            "The pound tranche of the project loan was repaid in June 2024, so the book is "
@@ -284,14 +297,14 @@ WD = drv(r, "Debt weight", W['wd'], "%", "One less the equity weight", PC1); r +
 W1 = r; put(ws, f"A{r}", "Cost of capital, year one"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_R}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_path'][0]); r += 1
-INFLT = drv(r, "Long-run inflation", DR['inflation_lt'], "%", src('cbe_inflation_target'), PC1); r += 1
+INFLT = drv(r, "Terminal inflation (the same figure terminal growth is set at)", DR['inflation_lt'], "%", src('inflation_terminal'), PC1); r += 1
 REALLT = drv(r, "Long-run real rate", V('real_rate_lt'), "%", src('real_rate_lt'), PC1); r += 1
 RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"=(1+{INFLT})*(1+{REALLT})-1", fmt=PC2, expect=DR['rf_star_terminal'])
 RFTC = f"'Assumptions'!C{r}"; r += 1
 KDLT = drv(r, "Long-run dollar cost of debt", V('kd_usd_lt'), "%", src('kd_usd_lt'), PC2); r += 1
 KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{KDLT})*(1+{DEP})-1", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
+put(ws, f"C{r}", f"={PCTL}*{KDL}+(1-{PCTL})*((1+{KDLT})*(1+{DEP})-1)", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
 KDTC = f"'Assumptions'!C{r}"; r += 1
 WT = r; put(ws, f"A{r}", "TERMINAL COST OF CAPITAL"); put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERP})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC2,
@@ -565,8 +578,12 @@ for k, c in enumerate(CO):
     put(ws, f"{c}12", f"=-($I$5*{ANNAC[k]}{wind}+{c}5*{MCAP})", fmt=N0, expect=-RW[k]['capex'])
     put(ws, f"{c}13", f"=-'Cash Flow'!{c}12", fmt=N0, expect=-RW[k]['dwc'], link=True)
     put(ws, f"{c}14", f"={c}10+{c}11+{c}12+{c}13", fmt=N0, expect=RW[k]['fcff'])
-    put(ws, f"{c}15", f"='Assumptions'!C{W1}+({WTC}-'Assumptions'!C{W1})*{k}/5", fmt=PC2,
-        expect=DR['wacc_path'][k], link=True)
+    # year one reads the Assumptions sheet's own year-one rate; later years glide the risk-free
+    # rate and carry the dollar debt on that year's wedge, the same construction the model runs
+    _rate = (f"='Assumptions'!C{W1}" if k == 0 else
+             f"={WE}*(({RFSTAR}+({RFTC}-{RFSTAR})*{k}/5)+{BETAC}*{ERP})"
+             f"+{WD}*({PCTL}*{KDL}+(1-{PCTL})*((1+{KDU})*(1+{WEDGE[k]})-1))*(1-{TAXR})")
+    put(ws, f"{c}15", _rate, fmt=PC2, expect=DR['wacc_path'][k], link=True)
     df = "=1/(1+B15)" if k == 0 else f"={CO[k-1]}16/(1+{c}15)"
     put(ws, f"{c}16", df, fmt='0.0000', expect=RW[k]['df'])
     put(ws, f"{c}17", f"={c}14*{c}16", fmt=N0, expect=RW[k]['pv'])
@@ -727,6 +744,20 @@ put(ws, "B27", f"='Assumptions'!C{W1}", fmt=PC2, expect=DR['wacc_path'][0])
 para(ws, 31, "Terminal value as a share of enterprise value is reported beside the "
      "cash-flow lens on the DCF sheet, in both columns, because on this company it is the "
      "number that decides the answer.", 9)
+put(ws, "A33", "THE WEIGHTED CENTRAL INSIDE THE FIELD — stated weights, reading the lens cells above").font = SUB
+_CW = LN['central']['weights']
+put(ws, "A34", "Weight: cash flow, programme carried through"); put(ws, "B34", _CW['cashflow'], fmt=PC1)
+put(ws, "A35", "Weight: relative multiples");                 put(ws, "B35", _CW['relative'], fmt=PC1)
+put(ws, "A36", "Weight: normalised earnings power");          put(ws, "B36", _CW['normalised'], fmt=PC1)
+put(ws, "A37", "Weight: book value and sustainable return");  put(ws, "B37", _CW['book'], fmt=PC1)
+put(ws, "A38", "Weighted central (EGP/share)")
+put(ws, "B38", "=B34*B5+B35*B7+B36*B8+B37*B6", fmt=N2, expect=LN['central']['base'])
+put(ws, "A39", "Against spot")
+put(ws, "B39", "=B38/$B$14-1", fmt=PC1, expect=LN['central']['base'] / SPOT - 1)
+put(ws, "A40", "Only the carried-through side of the cash-flow lens enters the weighting (the "
+    "company's stated plan); the stopped reading is the contested judgement above, published "
+    "beside it and never averaged in. Bear and full are the field's floor and ceiling, never "
+    "the weighted extremes.").font = NOTE
 
 # =================================================== 3 Fundamental Valuation ==
 ws = wb.create_sheet("Fundamental Valuation")
@@ -1020,6 +1051,37 @@ for lab, key, fmt in SF:
                 put(ws, f"{c}{r}", f"={EXPP[k]}", fmt=fmt, expect=R[k][key], link=True)
     r += 1
 
+# ---- years three to five as RANGES, from the method's own tested error distribution ----
+# The multiplicative bands are read from the calibration record's committed file; the low
+# and high rows are live formulas off the DCF revenue and EBITDA rows, so a reader who moves
+# a driver watches the range move with it.
+_FR = json.load(open(os.path.join(HERE, '..', 'egch_walkforward', 'forward_ranges.json')))['published_band']
+r += 1
+put(ws, f"A{r}", "YEARS THREE TO FIVE AS RANGES — multipliers measured on the company's own history").font = SUB; r += 1
+put(ws, f"A{r}", "Every figure below carries the number of tested cases it rests on; years one and two are left as points.").font = NOTE; r += 1
+RB = {}
+for lab, key in [("Revenue — low multiplier", 'low'), ("Revenue — high multiplier", 'high')]:
+    put(ws, f"A{r}", lab); put(ws, f"B{r}", "x")
+    for k, c in enumerate(CO):
+        h = str(k + 1)
+        if k >= 2 and 'revenue' in _FR[h]:
+            band = _FR[h]['revenue']
+            put(ws, f"{c}{r}", band['low_factor'] if key == 'low' else band['high_factor'], fmt=N2)
+    RB[key] = r; r += 1
+for lab, key in [("Revenue — low of the range (EGP m)", 'low'), ("Revenue — high of the range (EGP m)", 'high')]:
+    put(ws, f"A{r}", lab)
+    for k, c in enumerate(CO):
+        if k >= 2:
+            band = _FR[str(k + 1)]['revenue']
+            f_ = band['low_factor'] if key == 'low' else band['high_factor']
+            put(ws, f"{c}{r}", f"='DCF'!{c}5*{c}{RB[key]}", fmt=N0, expect=R[k]['revenue'] * f_, link=True)
+    r += 1
+put(ws, f"A{r}", "Tested cases behind the revenue band")
+for k, c in enumerate(CO):
+    if k >= 2:
+        put(ws, f"{c}{r}", _FR[str(k + 1)]['revenue']['n_full'], fmt=N0)
+r += 1
+
 # ============================================================ 13 Monte Carlo ==
 ws = wb.create_sheet("Monte Carlo")
 title(ws, "PROBABILISTIC PRICE MAP — SIMULATION OUTPUT",
@@ -1169,16 +1231,16 @@ para(ws, 14, "The freight line is the difference that matters. A coastal produce
 import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
-wb._sheets = [wb[n] for n in _MS["sheets"]]
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_08082026.xlsx'))
+wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
+wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_R}", "wacc_year_one": f"C{W1}",
            "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS}", "terminal_growth": f"C{r}"},
           open(os.path.join(HERE, 'xlsx_addresses.json'), 'w'), indent=1)
 import sys
 sys.path.insert(0, os.path.join(HERE, '..'))
-from research_protocol import check_sheets
-missing = check_sheets(wb.sheetnames)
+from research_protocol import MODEL_STUDY as _MS2
+missing = [n for n in _MS2["excel_sheets"] if n not in wb.sheetnames] + [n for n in wb.sheetnames if n not in _MS2["excel_sheets"]]
 assert not missing, f"SHEET LIST DOES NOT MATCH THE MODEL STUDY: {missing}"
 print(f"workbook: {len(wb.sheetnames)} sheets matching the model study, "
       f"{len(EXPECT)} formula cells recorded")

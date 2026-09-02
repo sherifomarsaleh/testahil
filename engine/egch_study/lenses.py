@@ -141,6 +141,17 @@ L['synthesis'] = dict(
     note=("The two cash-flow readings are the contested judgement and are never averaged. "
           "The other three lenses are shown against both."),
 )
+# ---------------- THE PUBLISHED CENTRAL: four lenses, stated weights ----------------
+_w = V('lens_weights')
+L['central'] = dict(
+    name="Weighted central",
+    weights=dict(cashflow=_w[0], relative=_w[1], normalised=_w[2], book=_w[3]),
+    base=(_w[0] * L['cashflow']['carry_through'] + _w[1] * L['relative']['value_per_share']
+          + _w[2] * L['normalised']['value_per_share'] + _w[3] * L['book']['value_per_share']),
+    bear=L['synthesis']['low'], bull=L['synthesis']['high'],
+    note=("The central is the weighted cash-flow (carried-through), relative, normalised and book "
+          "readings; bear and full are the floor and ceiling of the field across every lens."),
+)
 L['contested'] = dict(
     question="Is the ANNA capital programme carried through, or stopped?",
     side_a_label="Carried through", side_a=L['cashflow']['carry_through'],
@@ -153,6 +164,12 @@ L['contested'] = dict(
 )
 
 json.dump(L, open(os.path.join(HERE, 'lenses.json'), 'w'), indent=1, default=float)
+# The study's ANSWER, exposed where the repo-level valuation-gap gate reads it: the numbers
+# file carries the central fair value and the spot it was struck against [R-GAP-01].
+D['central'] = float(L['central']['base'])
+D['spot'] = float(SPOT)
+D['fair'] = dict(bear=float(L['central']['bear']), base=float(L['central']['base']), full=float(L['central']['bull']))
+json.dump(D, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 print(f"{'lens':46s} {'value/share':>12s}")
 for k, v in field.items():
     print(f"{k:46s} {v:12.2f}")

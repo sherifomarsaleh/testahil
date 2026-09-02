@@ -184,6 +184,82 @@
    "ticker": "ARCC",
    "tier": "reissue"
   },
+  "EGCH": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-01",
+    "fair": {
+     "base": 3.64,
+     "bear": 0,
+     "full": 15.47
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 13.98,
+    "spot_date": "close 6 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-01",
+     "edition": 1,
+     "fair": {
+      "base": 3.79,
+      "bear": 0.0,
+      "full": 15.47
+     },
+     "lessons": [
+      "L-064",
+      "L-065",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 4.1,
+      "bear": null,
+      "full": 0.0
+     },
+     "vs_previous_pct": {
+      "base": 4.1,
+      "bear": null,
+      "full": 0.0
+     }
+    },
+    {
+     "delivered": "2026-09-01",
+     "edition": 2,
+     "fair": {
+      "base": 3.76,
+      "bear": 0.0,
+      "full": 15.47
+     },
+     "lessons": [
+      "L-064",
+      "L-065",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 3.3,
+      "bear": null,
+      "full": 0.0
+     },
+     "vs_previous_pct": {
+      "base": -0.8,
+      "bear": null,
+      "full": 0.0
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "EGCH",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",

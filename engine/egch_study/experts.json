@@ -111,9 +111,9 @@
     ""
    ]
   ],
-  "low": 4.466057905684122,
-  "high": 7.443429842806869,
-  "sensitivity": "The build cost is the swing factor. At US$550 per annual tonne the range starts at EGP 3.82; at US$700 it reaches EGP 5.11. The control discount moves it by about a third either way.",
+  "low": 3.817688934755521,
+  "high": 8.524044794354538,
+  "sensitivity": "The build cost and the control discount are the two swing factors, and the range is their product: at US$550 per annual tonne with the 40% discount the reading is EGP 3.82; at US$700 with no discount it is EGP 8.52. The mid-point build cost with the discount, the central reading, is EGP 4.47.",
   "reading": "This is the highest of the three readings and it should be read as a ceiling rather than a centre. It values the plant at what a buyer would pay to avoid building one, and on a plate of 574,875 tonnes at the mid-point of the industry build range that is EGP 17,889m before anything is owed against it. What the method cannot see is that the plant has been running at about ninety per cent of that plate on rationed gas, and that the asset under construction \u2014 carried here at 60% of what has been spent on it \u2014 is exactly the asset whose return the cash-flow lens finds inadequate. The gap between this expert and the panel's lowest is not a disagreement about the plant. It is a disagreement about whether an asset that cannot earn its cost of capital is worth its replacement cost.",
   "falsifier": "A comparable Egyptian nitrogen asset transacting above US$700 per annual tonne, or a state-held listed subsidiary changing hands without a control discount. Either would show this method is set too low and the cash-flow lens should govern."
  },
@@ -150,12 +150,12 @@
    ],
    [
     "Exchange rate",
-    54.2,
+    55.89,
     ""
    ],
    [
     "Export revenue (EGP m)",
-    6742.215504,
+    6952.4432568,
     "net of the 10% duty"
    ],
    [
@@ -165,12 +165,12 @@
    ],
    [
     "Local free-market revenue (EGP m)",
-    780.48,
+    804.816,
     ""
    ],
    [
     "Nitrate revenue (EGP m)",
-    575.1836734693879,
+    593.1183673469387,
     ""
    ],
    [
@@ -180,12 +180,12 @@
    ],
    [
     "MID-CYCLE REVENUE (EGP m)",
-    9404.409177469388,
+    9656.90762414694,
     ""
    ],
    [
     "Natural gas (EGP m)",
-    -3877.476146301763,
+    -3998.3790003100653,
     "consumption x price x the rate"
    ],
    [
@@ -220,7 +220,7 @@
    ],
    [
     "MID-CYCLE EBITDA (EGP m)",
-    2696.572970153251,
+    2828.1685628224996,
     ""
    ],
    [
@@ -230,17 +230,17 @@
    ],
    [
     "Tax at the statutory rate",
-    -406.3459432844815,
+    -435.95495163506246,
     ""
    ],
    [
     "MID-CYCLE OPERATING PROFIT AFTER TAX (EGP m)",
-    1399.6360268687697,
+    1501.6226111874373,
     ""
    ],
    [
     "At ten times \u2014 enterprise value (EGP m)",
-    13996.360268687697,
+    15016.226111874374,
     ""
    ],
    [
@@ -255,14 +255,14 @@
    ],
    [
     "PER SHARE (EGP)",
-    3.776252679840041,
+    4.289630624386951,
     ""
    ]
   ],
-  "low": 2.3671609421610307,
-  "high": 5.185344417519053,
-  "sensitivity": "The multiple is the swing factor: eight times gives EGP 2.37, twelve times EGP 5.19. The mid-cycle price matters almost as much \u2014 every US$50 a tonne is worth roughly a pound a share.",
-  "reading": "The middle reading, and the one closest to a conventional analyst's answer. It credits an ordinary year \u2014 EGP 9,404m of revenue and EGP 2,697m of operating profit before depreciation \u2014 and capitalises the after-tax result at ten times. Its blind spot is stated in its own worldview: a normalised year is a steady state, and this company is not in one. The capital programme sits entirely outside this table. Read strictly, this expert is valuing the plant that exists, and the reader who wants the whole company should subtract the programme's cost separately \u2014 which is what the cash-flow lens does inside a single model.",
+  "low": 2.7778632977985582,
+  "high": 5.801397950975343,
+  "sensitivity": "The multiple is the swing factor: eight times gives EGP 2.78, twelve times EGP 5.80. The mid-cycle price matters almost as much \u2014 every US$50 a tonne is worth roughly a pound a share.",
+  "reading": "The middle reading, and the one closest to a conventional analyst's answer. It credits an ordinary year \u2014 EGP 9,657m of revenue and EGP 2,828m of operating profit before depreciation \u2014 and capitalises the after-tax result at ten times. Its blind spot is stated in its own worldview: a normalised year is a steady state, and this company is not in one. The capital programme sits entirely outside this table. Read strictly, this expert is valuing the plant that exists, and the reader who wants the whole company should subtract the programme's cost separately \u2014 which is what the cash-flow lens does inside a single model.",
   "falsifier": "Two consecutive years of EBITDA above EGP 4 billion with the capital programme funded out of operating cash flow. That would show the normalisation is too harsh and the multiple too low."
  },
  "e3": {
@@ -273,7 +273,7 @@
   "rows": [
    [
     "Enterprise value including non-operating assets (EGP m)",
-    8707.250186548219,
+    8790.025787406099,
     "the underlying"
    ],
    [
@@ -298,17 +298,17 @@
    ],
    [
     "Call value on those parameters (EGP m)",
-    4646.894655726346,
+    4716.24112282147,
     ""
    ],
    [
     "At 35% volatility (EGP m)",
-    4169.755314369149,
+    4239.622740398097,
     ""
    ],
    [
     "At 55% volatility (EGP m)",
-    5122.62811095064,
+    5192.459186649552,
     ""
    ],
    [
@@ -318,18 +318,18 @@
    ],
    [
     "Adjusted call value (EGP m)",
-    3485.1709917947596,
+    3537.180842116102,
     ""
    ],
    [
     "PER SHARE (EGP)",
-    1.7543581169181381,
+    1.7805387270763664,
     ""
    ]
   ],
   "low": 0.0,
-  "high": 1.9339634039959868,
-  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 1.57 a share, at 55% EGP 1.93. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
+  "high": 1.9603269701066461,
+  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 1.60 a share, at 55% EGP 1.96. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
   "falsifier": "Enterprise value rising above the face value of the debt \u2014 which needs roughly a US$120 a tonne sustained improvement in the export price, or the capital programme being stopped. Either would retire the option framing and hand the question back to the cash-flow lens.",
   "grid": {
    "vols": [
@@ -346,42 +346,51 @@
    ],
    "values": [
     [
-     0.7824534612285122,
-     0.8862316288137813,
-     1.090254012183889,
-     1.2880023242892693,
-     1.3840556010802576
+     0.8032080901518805,
+     0.9072118237536797,
+     1.1118518819482544,
+     1.3103220754222433,
+     1.406752264469644
     ],
     [
-     1.4875853747552235,
-     1.5742220608146387,
-     1.7543581169181381,
-     1.9339634039959868,
-     2.021401306098542
+     1.5143087335638552,
+     1.6005993503903808,
+     1.7805387270763664,
+     1.9603269701066461,
+     2.047935331017812
     ],
     [
-     2.03190059084352,
-     2.0920391560629525,
-     2.2286579348304194,
-     2.372082451967762,
-     2.4427940003456103
+     2.0611119450089785,
+     2.1208534360637366,
+     2.25708596998944,
+     2.400495736180359,
+     2.471285393506248
     ]
    ]
   },
-  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 8,707m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 0.78 a share, and at 60% over seven years EGP 2.44. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires."
+  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 8,790m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 0.80 a share, and at 60% over seven years EGP 2.47. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires.",
+  "contested": {
+   "carried_through": 1.7805387270763664,
+   "carried_low": 0.0,
+   "carried_high": 1.9603269701066461,
+   "stopped": 4.538908302693493,
+   "stopped_low": 4.41113457576539,
+   "stopped_high": 4.7012233258816005,
+   "ev_incl_halt": 16841.46691514923
+  }
  },
  "ranges": {
   "e1": [
-   4.466057905684122,
-   7.443429842806869
+   3.817688934755521,
+   8.524044794354538
   ],
   "e2": [
-   2.3671609421610307,
-   5.185344417519053
+   2.7778632977985582,
+   5.801397950975343
   ],
   "e3": [
    0.0,
-   1.9339634039959868
+   1.9603269701066461
   ]
  },
  "spot": 13.98

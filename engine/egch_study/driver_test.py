@@ -38,7 +38,7 @@ import json, os, sys, copy
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_08082026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx')
 SHEET_A = 'Assumptions'
 HEAD = ('DCF', 'B44')          # value per share, programme carried through
 
@@ -104,9 +104,12 @@ TESTS = [
     ("Tax rate", 1.20, "down", "A larger share of operating profit leaves the firm."),
     ("Days inventory outstanding", 1.20, "down", "More cash locked in working capital."),
     ("Days payable outstanding", 1.20, "up", "Supplier financing releases cash."),
-    ("Egyptian inflation — FY2026/27", 1.30, "down",
-     "Only the pound-denominated cost lines are indexed; revenue is dollar-linked, so "
-     "domestic inflation is a pure cost shock."),
+    ("Egyptian inflation — FY2026/27", 1.30, "up",
+     "One macro path: the same inflation figure sets that year's currency wedge, so higher "
+     "domestic inflation depreciates the pound and lifts the dollar-linked revenue in pounds "
+     "by more than it lifts the pound cost lines and the local-equivalent cost of the dollar "
+     "debt. [Edition 1 September 2026: the 8 August edition held the currency as a separate "
+     "input, so inflation was a pure cost shock there.]"),
     ("Stoppage and abnormal gas cost — FY2026/27", 2.0, "down", "A direct charge against EBIT."),
     ("Project utilisation in the terminal year", 1.40, "up",
      "The only place ANNA earns anything in the committed-capital case."),
