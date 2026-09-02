@@ -1,0 +1,7 @@
+{
+ "_": "The hash of the pre-registration, written in the same commit as the document itself. The gate compares this to the file on disk: an edited pre-registration is a pre-registration that was not one, and the whole value of the exercise is that the levers were fixed before any score existed.",
+ "file": "PRE_REGISTRATION_03-09-2026.md",
+ "sha256": "744cfb559e4ba74beba545136d5aa5c3a2d77d0da02f2aaea722bc61ec0d1404",
+ "committed": "2026-09-03",
+ "note": "Nothing may be scored against a lever this document does not name, and nothing may be promoted out of the order it fixes. A correction is a NEW dated pre-registration that supersedes this one and says so."
+}
