@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-02e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-02f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2453,3 +2453,19 @@ Both premium bases are published and one is named CENTRAL; the swap basis is the
 WHAT THE MODULE FOUND ON ITS FIRST RUN. AMOC's own committed record carries a cost of debt of 22.00% against a sovereign yield of 22.31% recorded in the same file — thirty-one basis points below the government that taxes it, which the standing rule has forbidden since the method's adoption. On a company that is net cash the number barely moves the answer, and the rule is the rule: it is registered for correction at that study's next re-issue. A gate whose first run finds a real defect in the one study that implemented the procedure is the argument for gates.
 
 ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_cost_of_capital.py reads each study's own committed schedule record and asserts every clause above, ratcheted per [R-ENF-02] and population-anchored per [R-ENF-04], negative-controlled by scripts/check_cost_of_capital_negative_control.py — whose cases include the flat rate exactly as PHDC and TMGH publish it, the two-prices-for-one-date construction, the sovereign counted twice, and AMOC's own Kd pair.
+
+[R-GAP-01 AMENDED] THE GAP GATE IS TWO-SIDED [AMENDED 02-Sep-2026, method reassessment WS7]
+
+The rule as adopted on 1 September 2026 fired only where the central fair value sat more than ten per cent BELOW the latest known price. The one-sidedness was the instruction's, it was taken as given, and its cost was stated at adoption rather than discovered later: an over-optimistic study would get no automatic audit, and nothing else supplied one.
+
+The reassessment measured what that cost. Because only the downside was audited, every correction the house made ran the same way — each individually right, and collectively a lean. A GATE THAT CAN ONLY FIRE IN ONE DIRECTION TEACHES THE WORK TO DRIFT IN THE OTHER, and it does so while looking rigorous, because the audits it does perform are real.
+
+From 2 September 2026 the same ten per cent ABOVE the price fires the same eight-heading review. Nothing else changes: the headings, the ratchet, the enforcement and the negative control are as they were.
+
+The trigger stays EVIDENTIAL rather than deferential, in both directions. A large gap either way is a high-prior-of-defect region and the price is the only instrument in the room that measures it. The rule does not say the answer must change — a genuine thirty-nine per cent discount and a genuine thirty-nine per cent premium are both legitimate conclusions, and this project publishes ranges precisely because prices are sometimes wrong. It says the answer is AUDITED before it ships.
+
+MANDATORY INSIDE THE PROGRAMME, NOT ONLY AT PUBLISH: every re-issue that lands more than ten per cent either side of the price gets its review before its files are staged.
+
+WHAT THE FIRST TWO-SIDED RUN FOUND. DU: a central thirteen per cent ABOVE the spot it was struck at, with no review — invisible to the one-sided rule by construction. It is listed on the ratchet rather than fixed on the night the rule changed, because the list is the honest record of what is outstanding, and it is reviewed when that study is next re-issued.
+
+THE NEGATIVE CONTROL'S OWN CASE IS INVERTED RATHER THAN DELETED. It carried a case asserting that a central far above the price must NOT fire, which was correct evidence for the one-sided rule. That same construction now must go red. Keeping the case and flipping its expectation is the sharpest available evidence that the extension actually took effect; deleting it would have left the change untested in exactly the place it matters.

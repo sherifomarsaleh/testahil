@@ -3,6 +3,7 @@
  "seeded": "2026-09-01",
  "breach_no_review": [
   "AIRARABIA",
+  "DU",
   "FERTIGLOBE",
   "MODON",
   "SWDY"
@@ -24,5 +25,6 @@
  "note_on_unreadable": "These studies commit numbers files that do not expose a central fair value and the spot it was struck against, so the gate cannot see their answer. That is tracked as a defect rather than passed over: a gate that reports clean having examined nothing is the [R-ENF-04] failure. Each is cleared by making the study's own numbers file carry central and spot, which every current-standard study already does.",
  "exempt": {
   "XPT": "metals study - no issuer, no equity fair value of this shape"
- }
+ },
+ "note_on_two_sided": "DU was added on 02-Sep-2026 when [R-GAP-01] became two-sided. Its central sits 13.0% ABOVE the spot it was struck at, which the one-sided rule could not see at all \u2014 the gate's first two-sided run found it. It is listed rather than fixed tonight because the list is the honest record of what is outstanding, and because DU is not one of the five calibrated names; it is reviewed when that study is next re-issued."
 }

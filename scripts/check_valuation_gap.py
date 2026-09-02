@@ -27,7 +27,7 @@ WHY THIS EXISTS
 WHAT IT CHECKS, per study directory under engine/*_study/
     1. the study's own committed numbers resolve to a central fair value and the spot it
        was struck against — a study whose answer cannot be read is NOT clean [R-ENF-04]
-    2. where the central sits more than GAP_LIMIT below that spot, a dated gap review
+    2. where the central sits more than GAP_LIMIT below OR GAP_LIMIT_ABOVE above that spot, a dated gap review
        exists in the study directory
     3. that review actually covers the required headings, so it cannot be a rubber stamp
 
@@ -60,11 +60,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'gap_outstanding.json')
 
-# The trigger, per instruction of 1 September 2026: a central fair value more than ten per
-# cent BELOW the latest known market price. ONE-SIDED ON PURPOSE — see the protocol. The
-# reverse case (a valuation far above the price) is NOT covered here, and its absence is a
-# decision on the record rather than an oversight.
+# The trigger. As instructed on 1 September 2026: a central fair value more than ten per
+# cent BELOW the latest known market price. TWO-SIDED FROM 2 September 2026 [R-GAP-01
+# amended, method reassessment WS7]: the same ten per cent ABOVE the price fires the same
+# eight-heading review.
+#
+# Why the extension. The one-sidedness was on the record as a decision, and its stated cost
+# was that an over-optimistic study would get no automatic audit and that nothing else
+# supplied one. The method reassessment then measured what the one-sided defence had cost:
+# because only the downside was audited, every correction the house made ran the same way,
+# and the lean survived inside a process that looked rigorous. A gate that can only fire in
+# one direction teaches the work to drift in the other.
+#
+# The trigger stays EVIDENTIAL rather than deferential, in both directions. A large gap
+# either way is a high-prior-of-defect region, and the price is the only instrument in the
+# room that measures it. The rule does not say the answer must change: a genuine 39%
+# discount and a genuine 39% premium are both legitimate conclusions, and this project
+# publishes ranges precisely because prices are sometimes wrong. It says the answer is
+# AUDITED before it ships.
+#
+# The threshold is the instruction's own and is not dressed up as a derivation. What is
+# defensible is the shape: a review costs an hour and a shipped error costs the study.
 GAP_LIMIT = -0.10
+GAP_LIMIT_ABOVE = 0.10
 
 # What a review must cover. These are not invented headings: each one names a defect that
 # was actually present in the AMOC study the day this rule was adopted, and each was
@@ -162,9 +180,10 @@ def main(argv):
                                 'is not a study that passed.' % (tk, route))
             continue
         gap = central / spot - 1.0
-        if gap >= GAP_LIMIT:
+        if GAP_LIMIT <= gap <= GAP_LIMIT_ABOVE:
             ok.append((tk, gap))
             continue
+        side = 'below' if gap < 0 else 'above'
         review, covered = read_review(sdir)
         missing = [k for k in REQUIRED_SECTIONS if k not in covered]
         if review and not missing:
@@ -174,20 +193,21 @@ def main(argv):
         if tk not in known_breach:
             why = ('no gap review in the study directory' if not review
                    else 'the review %s does not cover %s' % (review, ', '.join(missing)))
-            new_fail.append('%s: central is %.1f%% below the spot it was struck at, and %s.'
-                            % (tk, 100 * gap, why))
+            new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
+                            % (tk, abs(100 * gap), side, why))
 
     print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   unreadable: %d'
           % (len(sdirs), len(ok) + len(reviewed) + len(breaches), len(reviewed),
              len(breaches), len(unreadable)))
-    print('trigger: central more than %.0f%% below the spot it was struck at\n' % (-100 * GAP_LIMIT))
+    print('trigger: central more than %.0f%% BELOW or %.0f%% ABOVE the spot it was struck at\n'
+          % (-100 * GAP_LIMIT, 100 * GAP_LIMIT_ABOVE))
 
     if reviewed:
-        print('BELOW THE LINE, AND REVIEWED (%d):' % len(reviewed))
+        print('OUTSIDE THE BAND, AND REVIEWED (%d):' % len(reviewed))
         for tk, gap, rv in reviewed:
             print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, rv))
     if breaches:
-        print('\nBELOW THE LINE, NOT REVIEWED (%d):' % len(breaches))
+        print('\nOUTSIDE THE BAND, NOT REVIEWED (%d):' % len(breaches))
         for tk, gap, rv, missing in breaches:
             state = 'no review' if not rv else 'missing: ' + ', '.join(missing)
             print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, state))
@@ -215,9 +235,9 @@ def main(argv):
         print('\nFAIL — %d new violation(s):' % len(new_fail))
         for m in new_fail:
             print('   ' + m)
-        print('\nA fair value far below the traded price is the case where the market is '
-              'telling you something the model may have missed. Write the review, or fix '
-              'what it would have found.')
+        print('\nA fair value far from the traded price, in EITHER direction, is the case '
+              'where the market is telling you something the model may have missed. Write '
+              'the review, or fix what it would have found.')
         return 1
     print('\nOK — no new violations.')
     return 0

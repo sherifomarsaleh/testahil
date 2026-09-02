@@ -19,7 +19,10 @@ The conditions are the ones that actually cost something:
      problems found  [R-ENF-04]
   5. a study on the outstanding list that no longer resolves on disk — the gate's own
      glob having silently stopped matching
-  6. a gap on the OTHER side (central far ABOVE spot) must NOT fire: the rule is
+  6. [AMENDED 02-Sep-2026] a gap on the other side (central far ABOVE spot) MUST now fire:
+     the rule is two-sided, and the case that used to prove the one-sidedness is inverted
+     here rather than deleted, because the same construction going from green to red is the
+     sharpest evidence the extension took effect. What used to read: the rule is
      one-sided by instruction, and a check that fires where no rule exists is the
      permanently-red check [R-ENF-02] forbids
 
@@ -118,16 +121,26 @@ def main():
          {'breach_no_review': ['SWDY'], 'unreadable': [], 'exempt': {}}, True),
         ('CLEAN — central 1% below spot, must PASS',
          lambda e: make_study(e, 'AMOC', 9.00, 9.10), EMPTY, False),
-        ('CLEAN — central far ABOVE spot, one-sided rule, must PASS',
-         lambda e: make_study(e, 'AMOC', 18.00, 9.10), EMPTY, False),
+        # [R-GAP-01 amended, 02-Sep-2026] the gate is TWO-SIDED. This case tested the
+        # one-sidedness and is INVERTED here rather than deleted: the same construction
+        # that had to stay green under the old rule must go red under the new one, which
+        # is the sharpest possible evidence that the extension actually took effect.
+        ('central far ABOVE spot, unreviewed — the two-sided extension',
+         lambda e: make_study(e, 'AMOC', 18.00, 9.10), EMPTY, True),
+        ('central 13% above spot, unreviewed — the DU case the one-sided rule could not see',
+         lambda e: make_study(e, 'AMOC', 10.28, 9.10), EMPTY, True),
+        ('CLEAN — central above spot WITH a complete review, must PASS',
+         lambda e: make_study(e, 'AMOC', 18.00, 9.10, review=FULL_REVIEW), EMPTY, False),
+        ('CLEAN — central 8% above spot, inside the band, must PASS',
+         lambda e: make_study(e, 'AMOC', 9.83, 9.10), EMPTY, False),
         ('CLEAN — breach WITH a complete review, must PASS',
          lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=FULL_REVIEW), EMPTY, False),
     ]
     results = [run_case(n, b, o, f) for n, b, o, f in cases]
     print()
     if all(results):
-        print('negative control OK — the gate goes red on every injected defect and stays '
-              'green on all three clean cases')
+        print('negative control OK — the gate goes red on every injected defect, on both '
+              'sides of the price, and stays green on every clean case')
         return 0
     print('NEGATIVE CONTROL FAILED — %d of %d cases came back wrong. A gate that cannot be '
           'shown to fail is not evidence.' % (sum(1 for r in results if not r), len(results)))
