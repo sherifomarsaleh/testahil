@@ -20,3 +20,7 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
 8. **WS4 is done — the bridge standard.** The enterprise-to-equity bridge is now a recorded set of choices (which balance sheet, which minority basis, cash charged how often) checked by a gate outside each study, with sixteen conditions in its negative control. PHDC and TMGH conform; the other twenty-two studies are listed and will migrate as they are rebuilt. The general lesson is registered in both documents: a model that recalculates is not a model that is right, and all four of these defects lived inside arithmetic that reconciled to the last cell.
 
+9. **WS3 is done — the lens architecture.** One class primary is now the central and the other lenses are cross-checks that define the envelope; the typed 45/15/20/20 blend is retired because it never cleared any out-of-sample test. The registry is keyed on the lessons register's own classes, so the two cannot drift apart. **This is the change that moves the published numbers most**, and it does so in WS8 when the five studies are re-issued: on PHDC the central goes from the blend's 11.45 to the cash-flow lens's 14.54 against a price of 15.20. Nothing has moved yet.
+
+10. **Three governing-document amendments landed overnight** ([R-MACRO-01], [R-BRIDGE-01], [R-LENS-03]); both documents are at revision 2026-09-02d and their full text is owed to you in chat at the 08:00 wake.
+
