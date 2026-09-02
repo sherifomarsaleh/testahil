@@ -2606,6 +2606,64 @@
    "fy2026_anchor": 40147.923
   }
  },
+ "bridge_record": {
+  "market": "EG",
+  "balance_sheet_date": "2026-03-31",
+  "latest_disclosed_date": "2026-03-31",
+  "latest_disclosed_source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), downloaded 01-Sep-2026 from the company's own result centre; registered line by line in bs_1q2026.json and accepted only because its own subtotals foot. The company had published no later statement at this edition's date \u2014 the half-year 2026 filing was not out.",
+  "lines": [
+   {
+    "label": "Present value of the explicit five years",
+    "value": 23030.17904260015
+   },
+   {
+    "label": "Present value beyond year five",
+    "value": 38969.296271590705
+   },
+   {
+    "label": "less net debt, 31 March 2026",
+    "value": -23244.718677999997
+   },
+   {
+    "label": "plus investments in associates",
+    "value": 3838.697211
+   },
+   {
+    "label": "plus investment property",
+    "value": 1020.474869
+   },
+   {
+    "label": "less minority interests at their share of value",
+    "value": -2042.7700235080124
+   }
+  ],
+  "nci": {
+   "basis": "value_share",
+   "deduction": 2042.7700235080124,
+   "applied_to": "equity_value",
+   "proxy_source": "the minority's filed share of FY2025 profit after tax (EGP 207.2mn of 4,423.8mn) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
+   "book": 1432.670535,
+   "profit_share": 0.0468375604683756,
+   "proportional": 0.07026885784273373
+  },
+  "cash": {
+   "treatment": "inside_the_flow",
+   "weights_basis": "gross",
+   "note": "Cash is inside net debt, which is deducted once; the discount-rate weights stand on GROSS debt, so no balance is netted twice. The company is net DEBT, so the net-cash pathology cannot arise here."
+  },
+  "associates": {
+   "basis": "book",
+   "listed": false,
+   "note": "no associate of this company is separately listed"
+  },
+  "dividend": {
+   "deducted": false,
+   "note": "the company has not paid a cash dividend"
+  },
+  "equity_value": 41571.158692682846,
+  "shares_mn": 2859.9199999999996,
+  "per_share": 14.535776767421064
+ },
  "lenses": [
   [
    "Discounted cash flow",

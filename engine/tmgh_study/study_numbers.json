@@ -5869,6 +5869,73 @@
   "cds|capacity": 98.16814005550036,
   "cds|recovery": 50.36245189667786
  },
+ "bridge_record": {
+  "market": "EG",
+  "case": "the case nearest the published central of 69.92; the four cases share one bridge construction and differ only in the discount rate and the conversion period",
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "TMG Holding interim consolidated financial statements for the three and six months ended 30 June 2026 (reviewed), taken from the company's own investor relations channel and registered line by line in inputs.BS; the walk-forward document register for this name records no later filing.",
+  "lines": [
+   {
+    "label": "Enterprise value",
+    "value": 44033.20019807658
+   },
+   {
+    "label": "plus cash and deposits",
+    "value": 75773.4
+   },
+   {
+    "label": "less borrowings",
+    "value": -16493.0
+   },
+   {
+    "label": "less lease liabilities",
+    "value": -513.9
+   },
+   {
+    "label": "plus investment property",
+    "value": 25228.0
+   },
+   {
+    "label": "plus associates",
+    "value": 1496.6
+   },
+   {
+    "label": "plus investments at fair value",
+    "value": 1802.8
+   },
+   {
+    "label": "less minority interests at their share of value",
+    "value": -27547.522319870128
+   }
+  ],
+  "nci": {
+   "basis": "value_share",
+   "deduction": 27547.522319870128,
+   "applied_to": "equity_value",
+   "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
+   "book": 75652.8,
+   "profit_share": 0.20976266344357763,
+   "proportional": 0.45213466600049246
+  },
+  "cash": {
+   "treatment": "added_at_face",
+   "weights_basis": "gross",
+   "note": "Cash is added once, at face, in the bridge; the discount-rate weights stand on GROSS debt, so the company's net cash position is not also netted inside the rate. Doing both is the defect that put an operating rate above the cost of equity on a net-cash company."
+  },
+  "associates": {
+   "basis": "book",
+   "listed": false,
+   "note": "no associate is separately listed"
+  },
+  "dividend": {
+   "deducted": false,
+   "note": "no dividend declared after the balance-sheet date is deducted here"
+  },
+  "equity_value": 103779.57787820644,
+  "shares_mn": 2060.6538,
+  "per_share": 50.36245189667786
+ },
  "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
  "fair_value_range": {
   "low": 47.098547518525926,

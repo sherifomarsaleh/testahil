@@ -1,0 +1,32 @@
+{
+ "why": "[R-BRIDGE-01] with the ratchet of [R-ENF-02]. Every study directory on disk when the bridge standard was adopted (02-Sep-2026) other than PHDC and TMGH carries no bridge record; each is allowed to fail while it waits its turn in the rebuild queue. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. This list may only ever get SHORTER (--prune).",
+ "adopted": "2026-09-02",
+ "conforming_at_adoption": [
+  "PHDC",
+  "TMGH"
+ ],
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SCEM",
+  "STC",
+  "SWDY",
+  "XPT"
+ ]
+}

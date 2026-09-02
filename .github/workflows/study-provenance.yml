@@ -54,6 +54,9 @@ on:
       - 'scripts/check_macro_coherence.py'
       - 'scripts/check_macro_coherence_negative_control.py'
       - 'engine/build_depth_audit/macro_outstanding.json'
+      - 'scripts/check_bridge.py'
+      - 'scripts/check_bridge_negative_control.py'
+      - 'engine/build_depth_audit/bridge_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -97,6 +100,9 @@ on:
       - 'scripts/check_macro_coherence.py'
       - 'scripts/check_macro_coherence_negative_control.py'
       - 'engine/build_depth_audit/macro_outstanding.json'
+      - 'scripts/check_bridge.py'
+      - 'scripts/check_bridge_negative_control.py'
+      - 'engine/build_depth_audit/bridge_outstanding.json'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -283,3 +289,20 @@ jobs:
           python3 engine/build_coc_reference.py
           diff -q /tmp/coc_committed.md engine/Cost_of_Capital_Reference.md \
             || { echo 'FAIL — Cost_of_Capital_Reference.md is not what its generator produces; re-run engine/build_coc_reference.py and commit'; exit 1; }
+
+      # [R-BRIDGE-01] the enterprise-to-equity bridge, read off each study's own
+      # committed record. Four defects shipped inside arithmetic that recalculated
+      # perfectly: a bridge standing on 31-Dec-2025 while a reviewed 31-Mar-2026
+      # sheet sat on the company's own archive; the minority deducted at book
+      # (CLHO) or not at all (PHDC) while dividing by parent shares; the same cash
+      # charged twice, once in net-debt weights and once at face (AMOC); and lines
+      # nobody outside the model ever added up.
+      - name: Bridge-standard gate
+        run: python3 scripts/check_bridge.py
+
+      # and the proof that gate can go red — it reinjects all nine construction
+      # defects plus a missing record, an unparseable file and an emptied
+      # population, and four clean cases including NET weights with the cash NOT
+      # re-added, which is legitimate and must NOT fire
+      - name: Bridge-standard gate — negative control
+        run: python3 scripts/check_bridge_negative_control.py

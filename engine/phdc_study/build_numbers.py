@@ -130,6 +130,51 @@ def main():
             "rows": BU.build()["rows"],
             "anchors": BU.build()["anchors"],
         },
+        # [R-BRIDGE-01] the bridge as a RECORD, so the standing rules are checked
+        # from outside the study rather than trusted inside it
+        "bridge_record": {
+            "market": "EG",
+            "balance_sheet_date": IN.BRIDGE_BS_DATE,
+            "latest_disclosed_date": IN.BRIDGE_BS_DATE,
+            "latest_disclosed_source": (
+                "PHD consolidated financial statements for the three months ended 31 March 2026 "
+                "(limited review report attached), downloaded 01-Sep-2026 from the company's own "
+                "result centre; registered line by line in bs_1q2026.json and accepted only "
+                "because its own subtotals foot. The company had published no later statement at "
+                "this edition's date — the half-year 2026 filing was not out."),
+            # the ADDITIVE lines only: the waterfall's own components, not the
+            # subtotals it prints beside them, so the record foots by construction
+            "lines": [{"label": lbl, "value": val} for lbl, val in
+                      V2.bridge(V2.lenses()["dcf"]["base"])
+                      if lbl.startswith(("Present value", "less", "plus"))],
+            "nci": {
+                "basis": "value_share",
+                "deduction": V2.lenses()["dcf"]["base"]["nci_deduction"],
+                "applied_to": "equity_value",
+                "proxy_source": (
+                    "the minority's filed share of FY2025 profit after tax "
+                    "(EGP 207.2mn of 4,423.8mn) — the company does not disclose the "
+                    "subsidiaries carrying the minority with their own economics, so their "
+                    "value cannot be built directly"),
+                "book": BU.NCI_BOOK_1Q26,
+                "profit_share": BU.NCI_VALUE_SHARE,
+                "proportional": BU.NCI_BOOK_SHARE_1Q26,
+            },
+            "cash": {
+                "treatment": "inside_the_flow",
+                "weights_basis": "gross",
+                "note": ("Cash is inside net debt, which is deducted once; the discount-rate "
+                         "weights stand on GROSS debt, so no balance is netted twice. The "
+                         "company is net DEBT, so the net-cash pathology cannot arise here."),
+            },
+            "associates": {"basis": "book", "listed": False,
+                           "note": "no associate of this company is separately listed"},
+            "dividend": {"deducted": False,
+                         "note": "the company has not paid a cash dividend"},
+            "equity_value": V2.lenses()["dcf"]["base"]["equity"],
+            "shares_mn": VAL.SHARES_MN,
+            "per_share": V2.lenses()["dcf"]["base"]["per_share"],
+        },
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
         "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},

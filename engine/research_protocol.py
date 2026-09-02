@@ -612,6 +612,154 @@ def assert_macro_coherence(record: dict, market: Optional[str] = None,
             "standard_version": STANDARD_VERSION}
 
 
+NCI_BASES = {
+    "subsidiary": "the subsidiaries carrying the minority, valued on their own disclosed "
+                  "economics, and the minority percentage of that deducted -- the standard",
+    "value_share": "the minority's share of EQUITY value, proxied where the subsidiaries are "
+                   "not separately disclosed; the proxy and its source must be named",
+    "none_disclosed": "the company has no minority interests -- must be evidenced, not assumed",
+}
+
+ASSOCIATE_BASES = ("market", "book", "none")
+CASH_TREATMENTS = ("added_at_face", "inside_the_flow", "none")
+WEIGHT_BASES = ("gross", "net", "not_applicable")
+
+
+def assert_bridge(record: dict, ticker: str = "?") -> dict:
+    """Raise unless the enterprise-to-equity bridge obeys the standing rules.  [R-BRIDGE-01]
+
+    Four defects this closes, each of which shipped:
+
+      THE BRIDGE STOOD ON A STALE SHEET. PHDC's bridge stood on 31-Dec-2025
+      while a reviewed 31-Mar-2026 balance sheet sat on the company's own
+      archive, in the same document set the study had already drawn its
+      first-quarter income figures from. AMOC's did the same. The bridge stands
+      on the LATEST DISCLOSED sheet, and the record must name the register that
+      establishes what "latest" is -- a name with neither a sweep register nor
+      an investor-relations register is a FAIL, not a skip [R-ENF-04].
+
+      THE MINORITY CAME OUT AT BOOK, OR NOT AT ALL. The model capitalises 100%
+      of the subsidiaries' cash flow, so the minority's claim is worth its share
+      of that VALUE, not what it historically cost. CLHO deducted book and
+      overstated parent equity by roughly a third of the minority; PHDC deducted
+      nothing at all while dividing by parent shares. Book is published as a
+      reference framing and is never the adopted basis.
+
+      THE CASH WAS CHARGED FOR TWICE. AMOC discounted its operations at a
+      net-debt-weighted rate -- which, on a net-cash company, levers the equity
+      weight above one and puts the operating rate above the cost of equity --
+      and then added the same cash back at face in the bridge. A reader may
+      value the whole firm at a blended rate and add nothing, or value the
+      operations at the operating rate and add the cash. Not both.
+
+      THE ARITHMETIC WAS NOT CHECKED. The lines are asserted to sum to the
+      equity value, and the equity value to divide to the per-share figure.
+    """
+    fails = []
+    r = record or {}
+
+    bs = r.get("balance_sheet_date")
+    latest = r.get("latest_disclosed_date")
+    src = r.get("latest_disclosed_source")
+    if not bs:
+        fails.append("no balance-sheet date recorded: the bridge does not say which sheet it stands on")
+    if not latest or not src:
+        fails.append(
+            "the record does not establish what the LATEST disclosed balance sheet is "
+            "(need latest_disclosed_date and latest_disclosed_source naming the sweep or "
+            "investor-relations register). A study with neither register cannot claim to "
+            "stand on the latest sheet, and an unestablished answer is not a clean one.")
+    elif bs and bs != latest:
+        fails.append(
+            "the bridge stands on the %s balance sheet while the latest disclosed is %s "
+            "(%s). A filing on the company's own archive that nobody opened is the "
+            "defect this rule exists for." % (bs, latest, str(src)[:120]))
+
+    nci = r.get("nci") or {}
+    basis = nci.get("basis")
+    if basis not in NCI_BASES:
+        fails.append("minority-interest basis %r is not one of %s"
+                     % (basis, ", ".join(sorted(NCI_BASES))))
+    elif basis == "none_disclosed":
+        if not nci.get("evidence"):
+            fails.append("the record claims there are no minority interests but cites no "
+                         "evidence. Absence is evidenced, never assumed.")
+    else:
+        if nci.get("deduction") in (None, 0) and not nci.get("zero_reason"):
+            fails.append("a minority basis is named but nothing is deducted, and no reason "
+                         "is given. The 30-Aug-2026 PHDC edition deducted nothing while "
+                         "dividing by parent shares.")
+        for alt in ("book", "profit_share", "proportional"):
+            if alt not in nci:
+                fails.append("the %s reference framing for the minority is not published. "
+                             "The adopted basis is published beside the alternatives so a "
+                             "reader can see the choice, not just its result." % alt)
+        if basis == "value_share" and not nci.get("proxy_source"):
+            fails.append("the value-share basis is a PROXY where the minority's subsidiaries "
+                         "are not separately disclosed; the proxy and its source must be named.")
+        if nci.get("applied_to") == "enterprise_value":
+            fails.append("the minority is deducted from ENTERPRISE value. That applies an "
+                         "equity share to an enterprise number and hands the minority a share "
+                         "of growth assets it does not own.")
+
+    cash = r.get("cash") or {}
+    treat = cash.get("treatment")
+    wb = cash.get("weights_basis")
+    if treat not in CASH_TREATMENTS:
+        fails.append("cash treatment %r is not one of %s" % (treat, ", ".join(CASH_TREATMENTS)))
+    if wb not in WEIGHT_BASES:
+        fails.append("discount-rate weights basis %r is not one of %s"
+                     % (wb, ", ".join(WEIGHT_BASES)))
+    if treat == "added_at_face" and wb == "net":
+        fails.append(
+            "cash is added at face in the bridge AND netted inside the discount-rate "
+            "weights. That is the same cash charged twice -- once by discounting the "
+            "operations as though holding a deposit made them riskier, and once by "
+            "counting the deposit at par.")
+
+    assoc = r.get("associates") or {}
+    if assoc.get("basis") not in ASSOCIATE_BASES:
+        fails.append("associates basis %r is not one of %s"
+                     % (assoc.get("basis"), ", ".join(ASSOCIATE_BASES)))
+    elif assoc.get("basis") == "book" and assoc.get("listed") and not assoc.get("book_reason"):
+        fails.append("a LISTED associate is carried at book with no reason given; where a "
+                     "market price exists it is the evidence.")
+
+    div = r.get("dividend") or {}
+    if div.get("deducted"):
+        if not div.get("declared_date") or not bs:
+            fails.append("a dividend is deducted with no declaration date to test against "
+                         "the balance-sheet date")
+        elif div["declared_date"] <= bs:
+            fails.append(
+                "a dividend declared %s is deducted from a bridge standing on the %s "
+                "balance sheet -- it is already out of the equity it is being deducted "
+                "from, so it comes out twice." % (div["declared_date"], bs))
+
+    lines = r.get("lines") or []
+    eq = r.get("equity_value")
+    sh = r.get("shares_mn")
+    ps = r.get("per_share")
+    if lines and eq is not None:
+        tot = sum(float(l.get("value", 0.0)) for l in lines)
+        if abs(tot - float(eq)) > max(1.0, 0.0005 * abs(float(eq))):
+            fails.append("the bridge lines sum to %.1f against a stated equity value of "
+                         "%.1f. A bridge that does not foot is not a bridge." % (tot, eq))
+    if eq is not None and sh and ps is not None:
+        if abs(float(eq) / float(sh) - float(ps)) > max(0.01, 0.001 * abs(float(ps))):
+            fails.append("equity value %.1f over %.1f shares is %.4f, not the stated %.4f"
+                         % (eq, sh, float(eq) / float(sh), ps))
+
+    if fails:
+        raise AssertionError(
+            "BRIDGE FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+    return {"ticker": ticker, "balance_sheet_date": bs,
+            "nci_basis": basis, "nci_deduction": nci.get("deduction"),
+            "cash_treatment": treat, "weights_basis": wb,
+            "lines": len(lines), "per_share": ps,
+            "standard_version": STANDARD_VERSION}
+
+
 def assert_gates_called(study_dir: str) -> None:
     """Raise unless the study's own code calls the three gates.  [R-ENF-02]
 

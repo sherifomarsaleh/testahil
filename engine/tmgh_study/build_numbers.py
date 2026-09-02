@@ -68,6 +68,9 @@ def build():
         "per_share_nci_book": per_share,
         "per_share_nci_proportional": ps_prop,
         "per_share_nci_value_share": ps_value,
+        # [R-BRIDGE-01] the bridge as a RECORD, checked from outside the study.
+        # The central case is the one the exposed central is taken from.
+        "bridge_record": _bridge_record(cases, sh),
         "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "
@@ -88,6 +91,74 @@ def build():
                               for k, v in scores.items() if k.endswith("|all")
                               and k.startswith("asknown|")},
         },
+    }
+
+
+def _bridge_record(cases, sh):
+    """The enterprise-to-equity bridge of the central case, in the shape
+    research_protocol.assert_bridge() checks [R-BRIDGE-01]."""
+    # The published central is the MEDIAN of the four value-share cases, and on an
+    # even number of cases a median is not any one of them. The record therefore
+    # describes the case NEAREST the central and says so: the bridge's
+    # construction — which balance sheet, which minority basis, cash charged how
+    # often — is identical across the four, and a bridge averaged out of two
+    # cases would be a bridge nobody built.
+    ordered = sorted(cases.values(), key=lambda v: v["per_share_nci_value_share"])
+    central = (ordered[1]["per_share_nci_value_share"]
+               + ordered[2]["per_share_nci_value_share"]) / 2.0
+    c = min(ordered, key=lambda v: abs(v["per_share_nci_value_share"] - central))
+    bs_date = max(r["date"] for r in IN.BS.values() if isinstance(r, dict) and r.get("date"))
+    return {
+        "market": "EG",
+        "case": ("the case nearest the published central of %.2f; the four cases share one "
+                 "bridge construction and differ only in the discount rate and the "
+                 "conversion period" % central),
+        "balance_sheet_date": bs_date,
+        "latest_disclosed_date": bs_date,
+        "latest_disclosed_source": (
+            "TMG Holding interim consolidated financial statements for the three and six "
+            "months ended 30 June 2026 (reviewed), taken from the company's own investor "
+            "relations channel and registered line by line in inputs.BS; the walk-forward "
+            "document register for this name records no later filing."),
+        "lines": [
+            {"label": "Enterprise value", "value": c["enterprise_value"]},
+            {"label": "plus cash and deposits", "value": c["cash_and_deposits"]},
+            {"label": "less borrowings", "value": -c["borrowings"]},
+            {"label": "less lease liabilities", "value": -c["lease_liabilities"]},
+            {"label": "plus investment property", "value": c["investment_property"]},
+            {"label": "plus associates", "value": c["associates"]},
+            {"label": "plus investments at fair value", "value": c["fvoci"]},
+            {"label": "less minority interests at their share of value",
+             "value": -(c["equity_before_minority"] - c["equity_after_nci_value_share"])},
+        ],
+        "nci": {
+            "basis": "value_share",
+            "deduction": c["equity_before_minority"] - c["equity_after_nci_value_share"],
+            "applied_to": "equity_value",
+            "proxy_source": (
+                "the minority's filed share of FY2025 profit after tax (%.2f%%) — the company "
+                "does not disclose the subsidiaries carrying the minority with their own "
+                "economics, so their value cannot be built directly"
+                % (100 * c["nci_profit_share"])),
+            "book": c["nci_book"],
+            "profit_share": c["nci_profit_share"],
+            "proportional": c["nci_share_of_equity"],
+        },
+        "cash": {
+            "treatment": "added_at_face",
+            "weights_basis": "gross",
+            "note": ("Cash is added once, at face, in the bridge; the discount-rate weights "
+                     "stand on GROSS debt, so the company's net cash position is not also "
+                     "netted inside the rate. Doing both is the defect that put an operating "
+                     "rate above the cost of equity on a net-cash company."),
+        },
+        "associates": {"basis": "book", "listed": False,
+                       "note": "no associate is separately listed"},
+        "dividend": {"deducted": False,
+                     "note": "no dividend declared after the balance-sheet date is deducted here"},
+        "equity_value": c["equity_after_nci_value_share"],
+        "shares_mn": sh,
+        "per_share": c["per_share_nci_value_share"],
     }
 
 
