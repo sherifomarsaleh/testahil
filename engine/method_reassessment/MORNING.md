@@ -24,3 +24,9 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
 10. **Three governing-document amendments landed overnight** ([R-MACRO-01], [R-BRIDGE-01], [R-LENS-03]); both documents are at revision 2026-09-02d and their full text is owed to you in chat at the 08:00 wake.
 
+11. **WS1 is done — the cost of capital.** A study now gets the whole ladder from one call: the explicit window, one forward rate per year gliding on the central bank's own easing path, and a terminal whose every line is derived rather than quoted. It refuses, rather than warns, on seven conditions including a flat rate in a market the house path calls a transition. This is the largest of the four levers: PHDC currently discounts every year and the perpetuity alike at 26.25%, where the schedule glides from 25.24% to 16.26%.
+
+12. **A real defect found by the new module on its first run.** AMOC's own committed record carries a cost of debt of 22.00% against a sovereign yield of 22.31% recorded in the same file, thirty-one basis points below the government that taxes it, which the standing rule has forbidden since the method was adopted. AMOC is net cash, so it barely moves the answer, and it is registered for correction when that study is re-issued. Worth noting that the one study which had implemented the procedure is where the gate found something.
+
+13. **Next is the re-issue, and it is where the numbers move.** The four modules are built and gated but no delivered number has changed yet. WS8 rebuilds the five calibrated studies on them, starting with TMGH. On PHDC the two known effects run the same way: the lens architecture takes the central from the blend's 11.45 to the cash-flow lens, and the discount-rate glide raises the cash-flow lens itself. Against a price of 15.20 that is the test of whether the pessimism was the method.
+
