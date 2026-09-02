@@ -12,3 +12,5 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
 4. **TMGH interim edition 2 (02-09-2026) is built and staged** — sales held flat in real terms and the minority deducted at its share of value; central EGP 69.92 against 97.80 (−28.5%, from −60%). The residual is the flat 35.79% discount rate, which is WS1's job, not a class-A fix. Not published; the publish queue holds it for the batch.
 
+5. **PHDC interim edition 2 (02-09-2026) is built and staged** — the three corrections of its 01-Sep review applied (31-Mar-2026 balance sheet in the bridge, minority at its share of value, normalised earnings at cost of equity less growth). Central EGP 11.45 against 15.20 (-24.7%, from −28.0%). As the review said, the discount survives these; the rest is the lens blend and the flat discount rate, which WS1–WS3 address for the whole book. Not published.
+

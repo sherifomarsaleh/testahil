@@ -308,3 +308,26 @@ combined release:
 
 - `gap_review_calcs.py` → `gap_review_calcs.json` — every computed figure above.
 - `bs_1q2026.json` — the 31-Mar-2026 balance sheet, four fields per line, footed.
+
+## Addendum, 02-Sep-2026 — the three corrections applied
+
+Edition 2 of 02-Sep-2026 applies all three obligations above, as class-A
+corrections under the method reassessment (existing rules, no new method):
+
+| | 01-Sep-2026 (edition 1) | 02-Sep-2026 (edition 2) |
+|---|---:|---:|
+| Discounted cash flow, base | 14.86 | 14.54 |
+| Book value | 6.56 | 6.63 |
+| Normalised earnings power, base | 5.17 | 8.39 |
+| Weighted central | 10.94 | 11.45 |
+| Gap vs spot 15.20 | -28.0% | -24.7% |
+
+Net debt on the 31-Mar-2026 sheet 23,244.7 (from 24,133.2); minority deducted at
+its share of value, 4.68% of equity value = EGP 2,042.8mn on the base case
+(book 1,432.7); normalised earnings at E/(ke − g), g = 12%. The review
+predicted "roughly 11.2 to 11.4" for the three together; the built figure is 11.45.
+The discount survives, as the verdict said it would: the residual is the lens
+blend and the flat discount rate, which are the reassessment's workstreams
+(lens registry, cost of capital), not a per-name correction. Evidence:
+`QC_GATE_02-09-2026.md`, `UPDATE_02-09-2026.md`, `study_numbers.json`.
+

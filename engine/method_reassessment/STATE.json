@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "Day 1-2 (class A)",
-  "step": "PHDC interim edition: 31-Mar-2026 balance sheet into the bridge, debt schedule and book lens; minority deducted; rebuild numbers/workbook/docx/PDFs; fv_movement edition 2",
-  "status": "in progress"
+  "workstream": "WS2 / WS3 / WS4 (parallel) and WS1",
+  "step": "start WS2 macro path (engine/macro_path.py + EG history), WS3 lens registry, WS4 bridge assert; WS1 cost of capital seeded from AMOC's glide (compute.py:1233-1249)",
+  "status": "starting"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -31,13 +31,15 @@
   "Day 0: primary documents re-fetched and sha256-verified against the committed registers — PHDC 88/88, AMOC 36/36, EGCH 10/10, TMGH 136/138 (two earnings releases unrecoverable: FY2020 release 502 at the proxy, 1H2021 release 404 at the company's archive) — statements kept under engine/*_walkforward/filings/ (gitignored)",
   "Day 0: standard_version + central/spot stamps in phdc and tmgh build_numbers.py; PHDC gate re-run so the campaign queue reads 2026.09.01",
   "Day 1-2: TMGH class-A interim edition 2 (02-09-2026): sales held flat in real terms (SALES_FADE 1.15) and minority deducted at its share of value; central 69.92 vs spot 97.80 (-28.5%, was -60%); 16 sheets, 85 recalcs 0 mismatches, scrub 0, QC gate clean; fv_movement edition 2; publish queue carries the 02-09 files",
-  "Plan Gantt rebuilt as a data-driven table (markdown, page, Word) after the principal reported the block-character chart rendering wrong; docx builder committed"
+  "Plan Gantt rebuilt as a data-driven table (markdown, page, Word) after the principal reported the block-character chart rendering wrong; docx builder committed",
+  "Day 1-2: PHDC class-A interim edition 2 (02-09-2026): bridge/book/debt on the 31-Mar-2026 reviewed sheet, minority at its share of value, normalised earnings at ke less growth; central 11.45 vs spot 15.20 (-24.7%, was -28.0%); 16 sheets, 88 recalcs 0 mismatches, scrub 0, gate clean; fv_movement edition 2; publish queue re-staged"
  ],
  "next": [
-  "Day 1-2: PHDC class-A interim edition — bs_1q2026.json registered as an input; bridge, debt schedule and book lens on the 31-Mar-2026 balance sheet; NCI deducted; rebuild; fv_movement edition 2; check_corrections_applied",
-  "WS2 macro path, WS3 lens registry, WS4 bridge assert in parallel (Sonnet); WS1 cost of capital seeded from AMOC's glide (compute.py:1233-1249)",
-  "WS7 output gates + negative controls; WS5 actuator",
-  "WS8 re-issue TMGH -> PHDC -> ARCC on the new modules"
+  "WS2 macro path: one dated inflation/FX/policy-rate path per market (EG first), consumed by every escalator and by the terminal; check_macro_coherence",
+  "WS3 lens registry: DCF is the central, other lenses are cross-checks with declared clocks; check_lens_design",
+  "WS4 bridge assert: latest disclosed sheet, cash once, NCI at value share, one clock; check_bridge",
+  "WS1 cost of capital: glide from AMOC's compute.py:1233-1249 generalised (kd_path-tied, WACC_TERM < WACC_EXP asserted); check_cost_of_capital",
+  "WS7 output gates + negative controls; WS5 actuator; WS8 re-issues TMGH -> PHDC -> ARCC on the new modules"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -49,10 +51,11 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-02T19:18:54Z",
+ "updated": "2026-09-02T19:38:11Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
-  "The plan's Gantt was rebuilt as a table after your report; the Word edition was re-sent at 22:25 Cairo."
+  "The plan's Gantt was rebuilt as a table after your report; the Word edition was re-sent at 22:25 Cairo.",
+  "PHDC interim edition 2 built and staged (central 11.45 vs 15.20); not published."
  ]
 }

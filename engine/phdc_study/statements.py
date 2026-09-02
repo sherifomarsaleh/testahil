@@ -244,11 +244,16 @@ def bridge(rows, wacc, tg, framing):
     tail, tv, pv_tv = terminal(rows, wacc, tg, framing)
     valuable = pv_tv is not None
     ev = (pv + pv_tv) if valuable else None
-    eq = (ev - BU.NET_DEBT + REG["investments_assoc"]
-          + REG["investment_property"]) if valuable else None
+    # the same bridge as valuation_v2: latest disclosed sheet, minority at its
+    # share of value
+    eq_gross = (ev - BU.NET_DEBT_BRIDGE + BU.BS_BRIDGE["investments_assoc"]
+                + BU.BS_BRIDGE["investment_property"]) if valuable else None
+    nci = (eq_gross * BU.NCI_VALUE_SHARE) if valuable else None
+    eq = (eq_gross - nci) if valuable else None
     return {"waterfall": wf, "pv_explicit": pv, "terminal_flow": tail,
             "terminal_value": tv, "pv_terminal": pv_tv, "ev": ev,
-            "net_debt": BU.NET_DEBT, "equity": eq,
+            "net_debt": BU.NET_DEBT_BRIDGE, "net_debt_date": BU.BRIDGE_BS_DATE,
+            "equity_before_nci": eq_gross, "nci_deduction": nci, "equity": eq,
             "per_share": (eq / SHARES) if valuable else None,
             "terminal_share": (pv_tv / ev) if valuable and ev else None,
             "wacc": wacc, "terminal_growth": tg, "framing": framing,

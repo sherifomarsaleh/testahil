@@ -45,9 +45,9 @@
      "Per-Share & Ratios",
      "Peer & Sector"
     ],
-    "formula_cells": 72,
+    "formula_cells": 75,
     "scrub_hits": [],
-    "document_chars": 65556,
+    "document_chars": 84316,
     "column_audit": [],
     "figures_rebuilt": [
      "fig1_football.png",
@@ -63,13 +63,13 @@
      "fig4_peers.png"
     ],
     "figures_with_transparency": [],
-    "recalc_checks": 85,
+    "recalc_checks": 88,
     "recalc_mismatches": 0,
     "bibliography_present": true,
     "pdfs": [
-     "PHDC_Bibliography_30-08-2026.pdf",
-     "PHDC_Valuation_Model_30082026.pdf",
-     "PHDC_Valuation_Study_30-08-2026.pdf"
+     "PHDC_Bibliography_02-09-2026.pdf",
+     "PHDC_Valuation_Model_02092026.pdf",
+     "PHDC_Valuation_Study_02-09-2026.pdf"
     ]
    }
   }
@@ -94,9 +94,9 @@
    "Per-Share & Ratios",
    "Peer & Sector"
   ],
-  "formula_cells": 72,
+  "formula_cells": 75,
   "scrub_hits": [],
-  "document_chars": 65556,
+  "document_chars": 84316,
   "column_audit": [],
   "figures_rebuilt": [
    "fig1_football.png",
@@ -112,13 +112,13 @@
    "fig4_peers.png"
   ],
   "figures_with_transparency": [],
-  "recalc_checks": 85,
+  "recalc_checks": 88,
   "recalc_mismatches": 0,
   "bibliography_present": true,
   "pdfs": [
-   "PHDC_Bibliography_30-08-2026.pdf",
-   "PHDC_Valuation_Model_30082026.pdf",
-   "PHDC_Valuation_Study_30-08-2026.pdf"
+   "PHDC_Bibliography_02-09-2026.pdf",
+   "PHDC_Valuation_Model_02092026.pdf",
+   "PHDC_Valuation_Study_02-09-2026.pdf"
   ]
  },
  "issuable": true

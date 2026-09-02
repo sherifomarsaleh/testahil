@@ -6,15 +6,27 @@
   "ok": true
  },
  {
-  "check": "equity value",
-  "workbook": 42510.4,
-  "study": 42510.3753,
+  "check": "equity value before minority interests",
+  "workbook": 43613.9534,
+  "study": 43613.9287,
+  "ok": true
+ },
+ {
+  "check": "minority interests at their share of value",
+  "workbook": -2042.7712,
+  "study": -2042.77,
+  "ok": true
+ },
+ {
+  "check": "equity value attributable to shareholders",
+  "workbook": 41571.1822,
+  "study": 41571.1587,
   "ok": true
  },
  {
   "check": "value per share",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 14.5358,
+  "study": 14.5358,
   "ok": true
  },
  {
@@ -25,8 +37,8 @@
  },
  {
   "check": "bridge sheet agrees with the valuation sheet on value per share",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 14.5358,
+  "study": 14.5358,
   "ok": true
  },
  {
@@ -481,8 +493,8 @@
  },
  {
   "check": "the study's discounted cash flow is the one in the statements",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 14.5358,
+  "study": 14.5358,
   "ok": true
  },
  {
@@ -499,12 +511,18 @@
  },
  {
   "check": "assumption B13",
-  "workbook": 24133.2,
-  "study": 24133.2,
+  "workbook": 23244.7187,
+  "study": 23244.7187,
   "ok": true
  },
  {
   "check": "assumption B16",
+  "workbook": 0.0468,
+  "study": 0.0468,
+  "ok": true
+ },
+ {
+  "check": "assumption B17",
   "workbook": 2859.92,
   "study": 2859.92,
   "ok": true

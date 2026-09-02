@@ -192,6 +192,50 @@ GAPS = {
 
 
 # ---------------------------------------------------------------------------
+# The LATEST disclosed balance sheet — 31 March 2026, reviewed — registered from
+# bs_1q2026.json, the four-field record the [R-GAP-01] review of 01-Sep-2026
+# read off the company's own interim statements (a scan; OCR at 300dpi, every
+# subtotal held to the statement's own arithmetic). The bridge, the book lens and
+# the debt stack stand on THIS sheet [GAP_REVIEW_01-09-2026 heading 6]; the
+# projected statements keep FY2025 as their audited base year, because a
+# working-capital cycle measured on full years is not restarted from a quarter.
+import json as _json, os as _os
+_BS26 = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                                     "bs_1q2026.json")))
+BRIDGE_BS_DATE = _BS26["as_of"]
+BALANCE_SHEET_1Q26 = {k: {"value": r["value"], "source": r["source"], "date": r["date"],
+                          "tier": r["tier"], "unit": r.get("unit", "EGP mn"),
+                          **({"note": r["note"]} if r.get("note") else {})}
+                      for k, r in _BS26["lines"].items()}
+# the same eight interest-bearing lines the FY2025 debt stack is built on, so the
+# two dates are compared like for like (the review reproduced FY2025 gross debt
+# of 33,552.7 from exactly these lines)
+DEBT_LINES = ["loans_long_term", "notes_payable_long_term", "credit_facilities",
+              "banks_credit_balances", "current_portion_st_loans",
+              "notes_payable_short_term", "lease_liabilities_lt", "lease_liabilities_st"]
+assert set(DEBT_LINES) == set(DEBT_FY25), "the FY2025 debt stack and DEBT_LINES have drifted apart"
+
+
+def assert_balance_sheet_1q26_foots():
+    """The 31-Mar-2026 parse is accepted only if the statement's own subtotals
+    reconcile: assets = liabilities + equity, parent equity + NCI = total equity,
+    and each side's subtotals sum to the totals printed beside them."""
+    q = {k: r["value"] for k, r in BALANCE_SHEET_1Q26.items()}
+    assert abs(q["total_assets"] - (q["total_liabilities"] + q["total_equity"])) < 0.5, "1Q26: A != L + E"
+    assert abs(q["total_noncurrent_assets"] + q["total_current_assets"] - q["total_assets"]) < 0.5
+    assert abs(q["total_noncurrent_liabs"] + q["total_current_liabs"] - q["total_liabilities"]) < 0.5
+    assert abs(q["equity_parent"] + q["nci_equity"] - q["total_equity"]) < 0.5, "1Q26: parent + NCI != equity"
+    ca = sum(q[k] for k in ("work_in_progress", "accounts_receivable", "debtors_other",
+                            "suppliers_advances", "due_from_related", "fin_inv_amortised",
+                            "inv_fair_value", "notes_recv_st", "notes_recv_st_undel", "cash"))
+    assert abs(ca - q["total_current_assets"]) < 0.5, "1Q26 current assets do not foot: %.3f vs %.3f" % (ca, q["total_current_assets"])
+    for k in DEBT_LINES:
+        assert k in q, "1Q26 sheet lacks debt line %s" % k
+    return {"gross_debt": round(sum(q[k] for k in DEBT_LINES), 3), "cash": q["cash"],
+            "net_debt": round(sum(q[k] for k in DEBT_LINES) - q["cash"], 3)}
+
+
+# ---------------------------------------------------------------------------
 def assert_balance_sheet_foots():
     """The parse is accepted only if the statement's own subtotals reconcile.
 

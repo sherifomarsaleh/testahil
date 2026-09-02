@@ -19,6 +19,7 @@ import statements as ST
 import research_protocol as RP
 
 IN.assert_balance_sheet_foots()
+BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
 
 
 def main():
@@ -46,14 +47,24 @@ def main():
         "meta": {
             "ticker": "PHDC", "name": "Palm Hills Developments",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition": "2026-08-30", "prior_edition": "2026-06-11",
+            "edition": "2026-09-02", "prior_edition": "2026-08-30",
+            "edition_note": ("interim edition applying the three corrections of the "
+                             "01-Sep-2026 valuation review: bridge, book lens and debt "
+                             "stack on the 31-Mar-2026 reviewed balance sheet; minority "
+                             "interests deducted at their share of value; normalised "
+                             "earnings capitalised at cost of equity less growth. The "
+                             "discount rate and the lens weights are unchanged."),
             "base_year": 2025, "information_set_ends": "1Q2026",
+            "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             "standard_version": RP.STANDARD_VERSION,
             "spot": 15.20, "spot_date": "close 23 Aug 2026",
         },
-        "registry": {k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
-                                    IN.OPERATING, IN.MARKET) for k, v in g.items()},
+        "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
+                                       IN.OPERATING, IN.MARKET) for k, v in g.items()},
+                     **{k + "_1q26": v for k, v in IN.BALANCE_SHEET_1Q26.items()}},
         "balance_sheet_fy24": IN.BALANCE_SHEET_FY24,
+        "balance_sheet_1q26": IN.BALANCE_SHEET_1Q26,
+        "balance_sheet_1q26_foot": BS26_FOOT,
         "balance_sheet_subtotals": IN.BALANCE_SHEET_SUBTOTALS,
         "historical_is": IN.HISTORICAL_IS,
         "fy24_cogs_basis": {"as_reported": IN.FY24_COGS_AS_REPORTED,
@@ -61,10 +72,21 @@ def main():
         "gaps": IN.GAPS,
         "wacc": W,
         "derived": {
-            "gross_debt": gross_debt,
-            "net_debt": gross_debt - VAL.V["cash"],
+            "gross_debt": gross_debt,                       # FY2025, the projection's base year
+            "net_debt": gross_debt - VAL.V["cash"],         # FY2025, for the projected statements
+            "gross_debt_bridge": BU.GROSS_DEBT_BRIDGE,      # 31-Mar-2026, what the bridge deducts
+            "cash_bridge": BU.BS_BRIDGE["cash"],
+            "net_debt_bridge": BU.NET_DEBT_BRIDGE,
+            "bridge_balance_sheet": BU.BRIDGE_BS_DATE,
+            "nci_value_share": BU.NCI_VALUE_SHARE,
+            "nci_profit_share_3y": BU.NCI_PROFIT_SHARE_3Y,
+            "nci_book_1q26": BU.NCI_BOOK_1Q26,
+            "nci_book_share_1q26": BU.NCI_BOOK_SHARE_1Q26,
+            "nci_basis": BU.NCI_BASIS,
             "shares_mn": VAL.SHARES_MN,
-            "book_equity_per_share": VAL.V["total_equity"] / VAL.SHARES_MN,
+            "book_equity_per_share": BU.BS_BRIDGE["equity_parent"] / VAL.SHARES_MN,
+            "book_equity_per_share_basis": "equity attributable to the parent, 31 March 2026, over parent shares",
+            "book_equity_per_share_30aug_edition": VAL.V["total_equity"] / VAL.SHARES_MN,
             "gross_margin_fy25": VAL.GM_FY25,
             "gross_margin_1q26": VAL.GM_1Q26,
             "sga_ratio_fy25": VAL.SGA_RATIO,
@@ -73,8 +95,9 @@ def main():
             "cpi_trailing3": VAL.CPI3,
             "target_backlog_multiple": VAL.TARGET_BACKLOG_MULT,
             "market_implied_cash_conversion": implied,
-            "prior_edition_wacc": 0.18,
-            "prior_edition_fair": {"bear": 7.62, "base": 15.89, "full": 24.92},
+            "edition_11jun_wacc": 0.18,      # the 11-Jun-2026 edition's typed rate, kept for the narrative
+            "prior_edition_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},   # 30-Aug-2026 edition
+            "prior_edition_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
         },
         "cases": {"low_conversion": low, "base": base,
                   "base_cds_erp": base_cds, "high_conversion": high},
@@ -109,6 +132,7 @@ def main():
         },
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
+        "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
         "bridge": [list(x) for x in V2.bridge(V2.lenses()["dcf"]["base"])],
         "ranged_revenue": V2.ranged_revenue(),
         "dcf_cases": {k: {kk: vv for kk, vv in v.items()}

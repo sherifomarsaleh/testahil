@@ -11,7 +11,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
-XL = os.path.join(HERE, "PHDC_Valuation_Model_30082026.xlsx")
+XL = os.path.join(HERE, "PHDC_Valuation_Model_02092026.xlsx")
 
 
 def evaluate(wb, sheet, ref, depth=0):
@@ -80,14 +80,18 @@ def main():
 
     ev = evaluate(wb, "Fundamental Valuation", "B6")
     chk("enterprise value", ev, base["ev"], 1.0)
-    eq = evaluate(wb, "Fundamental Valuation", "B10")
-    chk("equity value", eq, base["equity"], 1.0)
-    ps = evaluate(wb, "Fundamental Valuation", "B12")
+    eqg = evaluate(wb, "Fundamental Valuation", "B10")
+    chk("equity value before minority interests", eqg, base["equity_before_nci"], 1.0)
+    nci = evaluate(wb, "Fundamental Valuation", "B11")
+    chk("minority interests at their share of value", nci, -base["nci_deduction"], 1.0)
+    eq = evaluate(wb, "Fundamental Valuation", "B12")
+    chk("equity value attributable to shareholders", eq, base["equity"], 1.0)
+    ps = evaluate(wb, "Fundamental Valuation", "B14")
     chk("value per share", ps, base["per_share"], 0.01)
-    tv = evaluate(wb, "Fundamental Valuation", "B14")
+    tv = evaluate(wb, "Fundamental Valuation", "B16")
     chk("terminal share of enterprise value", tv, base["terminal_share"], 0.001)
 
-    sotp = evaluate(wb, "SOTP Bridge", "B10")
+    sotp = evaluate(wb, "SOTP Bridge", "B11")
     chk("bridge sheet agrees with the valuation sheet on value per share",
         sotp, base["per_share"], 0.02)
 
@@ -183,7 +187,8 @@ def main():
         ST["dcf_b"]["per_share"], base["per_share"], 0.01)
 
     for k, want in (("B5", D["cfo_mid"]), ("B12", N["wacc"]["wacc_rating"]),
-                    ("B13", D["net_debt"]), ("B16", D["shares_mn"])):
+                    ("B13", D["net_debt_bridge"]), ("B16", D["nci_value_share"]),
+                    ("B17", D["shares_mn"])):
         chk("assumption %s" % k, evaluate(wb, "Assumptions", k), want, 0.01)
 
     json.dump(checks, open(os.path.join(HERE, "recalc_result.json"), "w"), indent=1)

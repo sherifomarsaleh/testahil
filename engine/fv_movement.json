@@ -299,6 +299,24 @@
      "scope": "full",
      "vs_baseline_pct": null,
      "vs_previous_pct": null
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 2,
+     "fair": {
+      "base": 11.4478,
+      "bear": 5.223,
+      "full": 23.5404
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5 (10 origins); interim class-A edition 02-Sep-2026: bridge, book lens and debt stack on the 31-Mar-2026 reviewed balance sheet, minority at its share of value, normalised earnings at ke less growth \u2014 the three corrections of GAP_REVIEW_01-09-2026; discount rate and lens weights unchanged",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 4.6,
+      "bear": 13.5,
+      "full": 0.9
+     }
     }
    ],
    "exchange": "EGX",

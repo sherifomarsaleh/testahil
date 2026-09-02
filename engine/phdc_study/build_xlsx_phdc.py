@@ -44,6 +44,11 @@ def v(k):
     return REG[k]["value"]
 
 
+def q(k):
+    """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
+    return N["balance_sheet_1q26"][k]["value"]
+
+
 def head(ws, title, note=None, widths=None):
     ws["A1"] = title
     ws["A1"].font = Font(bold=True, size=13, color="1D6FA3")
@@ -72,7 +77,7 @@ def build(path):
     ws = wb.active
     ws.title = "READ FIRST"
     head(ws, "Palm Hills Developments — valuation workbook",
-         "Edition of 30 August 2026. Supersedes 11 June 2026.", [70])
+         "Edition of 2 September 2026. Supersedes 30 August 2026.", [70])
     r = 4
     for line in [
         "This workbook is for information and education. It is not investment "
@@ -138,7 +143,7 @@ def build(path):
     r = row(ws, r, "Cost of capital", [], bold=True)
     r = row(ws, r, "Weighted average, rating basis", [W["wacc_rating"]], fmt="0.00%")
     r = row(ws, r, "Weighted average, swap basis", [W["wacc_cds"]], fmt="0.00%")
-    r = row(ws, r, "Previous edition used", [D["prior_edition_wacc"]], fmt="0.00%")
+    r = row(ws, r, "11 June 2026 edition used", [D["edition_11jun_wacc"]], fmt="0.00%")
 
     # 3 Fundamental Valuation ------------------------------------------------
     ws = wb.create_sheet("Fundamental Valuation")
@@ -146,18 +151,26 @@ def build(path):
          "All formulas; drivers live on Assumptions.", [46, 18])
     b = CASES["base"]
     r = 4
-    r = row(ws, r, "Present value of the explicit ten years",
+    r = row(ws, r, "Present value of the explicit five years",
             [round(b["pv_explicit"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Present value of the terminal value",
             [round(b["pv_terminal"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Enterprise value", ["=B4+B5"], fmt="#,##0.0", bold=True)
-    r = row(ws, r, "less net debt", ["=-Assumptions!B13"], fmt="#,##0.0")
+    # the bridge stands on the 31 March 2026 reviewed balance sheet; the four
+    # Assumptions addresses below are asserted against their labels once that
+    # sheet is written (A_NET_DEBT .. A_SHARES)
+    r = row(ws, r, "less net debt, 31 March 2026", ["=-Assumptions!B13"], fmt="#,##0.0")
     r = row(ws, r, "plus investments in associates",
             ["=Assumptions!B14"], fmt="#,##0.0")
     r = row(ws, r, "plus investment property", ["=Assumptions!B15"], fmt="#,##0.0")
-    r = row(ws, r, "Equity value", ["=B6+B7+B8+B9"], fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!B16"], fmt="#,##0.0")
-    r = row(ws, r, "Value per share (EGP)", ["=B10/B11"], fmt="#,##0.00", bold=True)
+    r = row(ws, r, "Equity value before minority interests", ["=B6+B7+B8+B9"],
+            fmt="#,##0.0", bold=True)
+    r = row(ws, r, "less minority interests at their share of value",
+            ["=-B10*Assumptions!B16"], fmt="#,##0.0")
+    r = row(ws, r, "Equity value attributable to shareholders", ["=B10+B11"],
+            fmt="#,##0.0", bold=True)
+    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!B17"], fmt="#,##0.0")
+    r = row(ws, r, "Value per share (EGP)", ["=B12/B13"], fmt="#,##0.00", bold=True)
     r += 1
     r = row(ws, r, "Terminal value as a share of enterprise value",
             ["=B5/B6"], fmt="0%")
@@ -187,12 +200,14 @@ def build(path):
         ("Terminal growth", 0.12, "0.00%", "below nominal growth, stated"),
         ("Cost of capital", W["wacc_rating"], "0.00%",
          "built on the Fundamental Valuation and Peer sheets"),
-        ("Net debt (EGP mn)", D["net_debt"], "#,##0.0",
-         "gross borrowings less cash, FY2025 audited"),
-        ("Investments in associates (EGP mn)", v("investments_assoc"), "#,##0.0",
-         "FY2025 audited"),
-        ("Investment property (EGP mn)", v("investment_property"), "#,##0.0",
-         "FY2025 audited"),
+        ("Net debt (EGP mn)", D["net_debt_bridge"], "#,##0.0",
+         "gross borrowings less cash, 31 March 2026 reviewed balance sheet"),
+        ("Investments in associates (EGP mn)", q("investments_assoc"), "#,##0.0",
+         "31 March 2026 reviewed balance sheet"),
+        ("Investment property (EGP mn)", q("investment_property"), "#,##0.0",
+         "31 March 2026 reviewed balance sheet"),
+        ("Minority interests, share of equity value", D["nci_value_share"], "0.00%",
+         "the minority's filed share of FY2025 profit after tax, as its share of value"),
         ("Shares outstanding (mn)", D["shares_mn"], "#,##0.0", "FY2025"),
         ("Opening revenue (EGP mn)", v("revenue_fy25"), "#,##0.0", "FY2025 audited"),
         ("Opening order book (EGP mn)", v("backlog_1q26"), "#,##0.0",
@@ -217,6 +232,14 @@ def build(path):
         ws.cell(r, 3, src).font = MUT
         ASSUMPTION_AT[lbl] = "$B$%d" % r
         r += 1
+    # the bridge sheets reference these four rows by address; hold the
+    # addresses to the labels so an inserted driver cannot silently shift them
+    for lbl, addr in (("Net debt (EGP mn)", "$B$13"),
+                      ("Investments in associates (EGP mn)", "$B$14"),
+                      ("Investment property (EGP mn)", "$B$15"),
+                      ("Minority interests, share of equity value", "$B$16"),
+                      ("Shares outstanding (mn)", "$B$17")):
+        assert ASSUMPTION_AT[lbl] == addr, (lbl, ASSUMPTION_AT[lbl], addr)
     r += 1
     ws.cell(r, 1, "NOT DISCLOSED — absent by design, never estimated").font = SUB
     r += 1
@@ -253,13 +276,16 @@ def _remaining(wb):
          "the operating cash flows.", [46, 18])
     r = 4
     for lbl, val in (("Operating business, discounted cash flow", b["ev"]),
-                     ("Investments in associates", v("investments_assoc")),
-                     ("Investment property", v("investment_property")),
-                     ("Cash", v("cash")),
-                     ("Gross borrowings", -D["gross_debt"])):
+                     ("Investments in associates, 31 March 2026", q("investments_assoc")),
+                     ("Investment property, 31 March 2026", q("investment_property")),
+                     ("Cash, 31 March 2026", D["cash_bridge"]),
+                     ("Gross borrowings, 31 March 2026", -D["gross_debt_bridge"])):
         r = row(ws, r, lbl, [round(val, 1)], fmt="#,##0.0")
-    r = row(ws, r, "Equity value", ["=B4+B5+B6+B7+B8"], fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Per share (EGP)", ["=B9/Assumptions!B16"], fmt="#,##0.00",
+    r = row(ws, r, "Minority interests at their share of value",
+            ["=-(B4+B5+B6+B7+B8)*Assumptions!B16"], fmt="#,##0.0")
+    r = row(ws, r, "Equity value attributable to shareholders",
+            ["=B4+B5+B6+B7+B8+B9"], fmt="#,##0.0", bold=True)
+    r = row(ws, r, "Per share (EGP)", ["=B10/Assumptions!B17"], fmt="#,##0.00",
             bold=True)
 
     # 6 Segments -------------------------------------------------------------
@@ -682,7 +708,7 @@ def _remaining(wb):
         ("Price to book", PM["spot"] / D["book_equity_per_share"], "0.00"),
         ("Earnings per share, 2025 (EGP)",
          v("npat_mi_fy25") / D["shares_mn"], "#,##0.00"),
-        ("Net debt per share (EGP)", D["net_debt"] / D["shares_mn"], "#,##0.00"),
+        ("Net debt per share, 31 March 2026 (EGP)", D["net_debt_bridge"] / D["shares_mn"], "#,##0.00"),
         ("Order book per share (EGP)",
          v("backlog_1q26") / D["shares_mn"], "#,##0.00"),
         ("Gross margin, 2025", D["gross_margin_fy25"], "0.0%"),
@@ -720,7 +746,7 @@ def _remaining(wb):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Model_30082026.xlsx")
+    out = os.path.join(HERE, "PHDC_Valuation_Model_02092026.xlsx")
     wb = build(out)
     # the skeleton's order is part of the standard, so it is asserted, not assumed
     ORDER = ["READ FIRST", "Summary", "Fundamental Valuation", "Assumptions",

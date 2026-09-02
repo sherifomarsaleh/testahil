@@ -57,6 +57,7 @@ def fig1_football(bars, spot, prior):
     """
     fig, ax = plt.subplots(figsize=(7.6, 3.5))
     n = len(bars)
+    xmax = max(max(b[2] for b in bars), spot) * 1.18
     for i, (label, lo, hi, mid, ci) in enumerate(bars):
         y = n - 1 - i
         c = CAT[ci]
@@ -65,8 +66,14 @@ def fig1_football(bars, spot, prior):
             if mid is not None:
                 ax.plot([mid], [y], marker="|", ms=16, mew=2.2, color="#FFFFFF",
                         zorder=5)
-            ax.text(lo - 0.6, y, "%.2f" % lo, va="center", ha="right",
-                    fontsize=8.5, color=INK)
+            if lo - 0.6 < xmax * 0.05:
+                # a low end near the axis: the label to its left would collide
+                # with the category label, so it sits above the bar's left end
+                ax.text(lo, y + 0.27, "%.2f" % lo, va="bottom", ha="left",
+                        fontsize=8.5, color=INK)
+            else:
+                ax.text(lo - 0.6, y, "%.2f" % lo, va="center", ha="right",
+                        fontsize=8.5, color=INK)
             ax.text(hi + 0.6, y, "%.2f" % hi, va="center", ha="left",
                     fontsize=8.5, color=INK)
         else:
@@ -78,7 +85,6 @@ def fig1_football(bars, spot, prior):
     # lands between them. Both are keyed once, in the empty upper-right.
     ax.axvline(spot, color=INK, lw=1.6, zorder=4)
     ax.axvline(prior, color=FAINT, lw=1.2, ls=(0, (4, 3)), zorder=2)
-    xmax = max(max(b[2] for b in bars), spot) * 1.18
     ax.plot([xmax * 0.62], [n - 0.30], marker="|", ms=11, mew=1.6, color=INK)
     ax.text(xmax * 0.645, n - 0.30, "close %.2f (23 Aug 2026)" % spot,
             color=INK, fontsize=8.5, va="center", ha="left")

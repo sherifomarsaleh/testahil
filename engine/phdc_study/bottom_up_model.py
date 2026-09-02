@@ -37,6 +37,31 @@ SHARES_MN = REG["shares_outstanding_bn"] * 1000.0
 GROSS_DEBT = sum(r["value"] for r in IN.DEBT_FY25.values())
 NET_DEBT = GROSS_DEBT - REG["cash"]
 
+# --- the bridge stands on the LATEST disclosed balance sheet -----------------
+# 31 March 2026 (reviewed), per GAP_REVIEW_01-09-2026 heading 6. FY2025 stays
+# the base year of the PROJECTED statements above; only the enterprise-to-equity
+# bridge, the book lens and the debt stack move to the newer sheet.
+BS_BRIDGE = {k: r["value"] for k, r in IN.BALANCE_SHEET_1Q26.items()}
+BRIDGE_BS_DATE = IN.BRIDGE_BS_DATE
+GROSS_DEBT_BRIDGE = sum(BS_BRIDGE[k] for k in IN.DEBT_LINES)
+NET_DEBT_BRIDGE = GROSS_DEBT_BRIDGE - BS_BRIDGE["cash"]
+
+# Non-controlling interests come out of equity value at their SHARE OF VALUE,
+# never at book (the standing NCI rule: the model capitalises 100% of subsidiary
+# cash flow, so the minority's claim is worth its share of that value, not what
+# it historically cost). The company does not disclose the subsidiaries that
+# carry the minority with their own economics, so the share of value is proxied
+# by the minority's filed share of FY2025 profit after tax — the same
+# construction as the TMGH edition of 02-Sep-2026 — applied to EQUITY value
+# (never to enterprise value). Book (1,432.7 at 31-Mar-2026) and the three-year
+# mean profit share are published beside it as reference framings.
+_HIS = {y: {k: r["value"] for k, r in d.items()} for y, d in IN.HISTORICAL_IS.items()}
+NCI_VALUE_SHARE = _HIS["2025"]["nci"] / _HIS["2025"]["npat_pre_nci"]          # adopted proxy
+NCI_PROFIT_SHARE_3Y = sum(_HIS[y]["nci"] / _HIS[y]["npat_pre_nci"] for y in ("2023", "2024", "2025")) / 3.0
+NCI_BOOK_1Q26 = BS_BRIDGE["nci_equity"]                                        # reference: at book
+NCI_BOOK_SHARE_1Q26 = BS_BRIDGE["nci_equity"] / BS_BRIDGE["total_equity"]       # reference: book share
+NCI_BASIS = "share of equity value, proxied by the minority's filed share of FY2025 profit after tax"
+
 # --- the disclosed regional history ----------------------------------------
 LEGEND = {95082: "North Coast & Alexandria", 44570: "West Cairo & Badya",
           11364: "East Cairo"}

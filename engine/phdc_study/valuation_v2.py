@@ -23,7 +23,11 @@ WF = json.load(open(os.path.join(os.path.dirname(HERE), "phdc_walkforward",
 M = BU.build()
 ROWS = M["rows"]
 SHARES = BU.SHARES_MN
-NET_DEBT = BU.NET_DEBT
+# The bridge stands on the latest disclosed balance sheet (31-Mar-2026, reviewed),
+# not on the FY2025 sheet the projection starts from — GAP_REVIEW_01-09-2026 §6.
+BS = BU.BS_BRIDGE
+NET_DEBT = BU.NET_DEBT_BRIDGE
+NCI_SHARE = BU.NCI_VALUE_SHARE   # minority at its share of value, never at book
 SPOT = REG["spot"]
 TG = 0.12                        # terminal growth, below nominal growth
 
@@ -69,8 +73,11 @@ def dcf(cfo_margin, wacc):
     tv = tail * (1 + TG) / (wacc - TG)
     pv_tv = tv / (1 + wacc) ** len(ROWS)
     ev = pv + pv_tv
-    eq = ev - NET_DEBT + REG["investments_assoc"] + REG["investment_property"]
-    return {"pv_explicit": pv, "pv_terminal": pv_tv, "ev": ev, "equity": eq,
+    eq_gross = ev - NET_DEBT + BS["investments_assoc"] + BS["investment_property"]
+    nci = eq_gross * NCI_SHARE       # the minority's share of the value, not its book
+    eq = eq_gross - nci
+    return {"pv_explicit": pv, "pv_terminal": pv_tv, "ev": ev,
+            "equity_before_nci": eq_gross, "nci_deduction": nci, "equity": eq,
             "per_share": eq / SHARES, "terminal_share": pv_tv / ev if ev else None,
             "cfo_margin": cfo_margin, "wacc": wacc}
 
@@ -130,7 +137,10 @@ def lenses():
     mid = (lo + hi + BU.REG["cfo_fy23"] / BU.REG["revenue_fy23"]) / 3.0
 
     d_bear, d_base, d_full = dcf(lo, wr + 0.02), dcf(mid, wr), dcf(hi, wr - 0.01)
-    book = REG["total_equity"] / SHARES
+    # book value on the SAME numerator as the share count: equity attributable
+    # to the parent, on the latest disclosed sheet (the 30-Aug edition divided
+    # TOTAL equity, minority included, by parent shares)
+    book = BS["equity_parent"] / SHARES
 
     # earnings multiple on the company's OWN history, not on peers: the shares
     # have traded between roughly 6x and 14x trailing earnings over five years
@@ -139,11 +149,16 @@ def lenses():
     rel = {k: eps26 * m for k, m in mult.items()}
 
     # normalised earnings power: mid-cycle margin on mid-cycle revenue,
-    # capitalised at the cost of equity
+    # capitalised at the cost of equity LESS the same terminal growth the
+    # cash-flow model carries. The 30-Aug edition capitalised at E / ke — zero
+    # nominal growth against a cost of equity that embeds 14-15% inflation,
+    # which is a perpetual real decline of about 13% a year, undisclosed
+    # (GAP_REVIEW_01-09-2026 §5). One clock: the growth netted here is the
+    # DCF's own TG, so the two lenses assume the same future.
     norm_rev = (REG["revenue_fy24"] + REG["revenue_fy25"]) / 2 * (1 + BU.CPI)
     norm_margin = REG["npat_mi_fy25"] / REG["revenue_fy25"]
     norm_earn = norm_rev * norm_margin
-    nep = {k: norm_earn / (W["ke_rating"] + adj) / SHARES
+    nep = {k: norm_earn / (W["ke_rating"] + adj - TG) / SHARES
            for k, adj in (("bear", 0.03), ("base", 0.0), ("full", -0.03))}
 
     rows = [
@@ -159,6 +174,12 @@ def lenses():
     return {"rows": rows, "weighted": w,
             "dcf": {"bear": d_bear, "base": d_base, "full": d_full},
             "book": book, "relative": rel, "normalised": nep,
+            "normalised_inputs": {"norm_rev": norm_rev, "norm_margin": norm_margin,
+                                  "norm_earn": norm_earn, "ke": W["ke_rating"],
+                                  "growth_netted": TG,
+                                  "as_30aug_edition_e_over_ke": norm_earn / W["ke_rating"] / SHARES},
+            "book_reference": {"total_equity_fy25_over_parent_shares": REG["total_equity"] / SHARES,
+                               "parent_equity_1q26_over_parent_shares": book},
             "cfo": {"lo": lo, "mid": mid, "hi": hi}}
 
 
@@ -167,10 +188,12 @@ def bridge(case):
     return [("Present value of the explicit five years", d["pv_explicit"]),
             ("Present value beyond year five", d["pv_terminal"]),
             ("Enterprise value", d["ev"]),
-            ("less net debt", -NET_DEBT),
-            ("plus investments in associates", REG["investments_assoc"]),
-            ("plus investment property", REG["investment_property"]),
-            ("Equity value", d["equity"]),
+            ("less net debt, 31 March 2026", -NET_DEBT),
+            ("plus investments in associates", BS["investments_assoc"]),
+            ("plus investment property", BS["investment_property"]),
+            ("Equity value before minority interests", d["equity_before_nci"]),
+            ("less minority interests at their share of value", -d["nci_deduction"]),
+            ("Equity value attributable to shareholders", d["equity"]),
             ("Shares outstanding, millions", SHARES),
             ("Value per share, EGP", d["per_share"])]
 
