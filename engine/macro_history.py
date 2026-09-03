@@ -271,6 +271,22 @@ def report(market: str = "EG") -> dict:
         gap = [y for y in declared if y not in have]
         print("     %-16s %2d/%2d%s" % (f, len(have), len(declared),
               ("   missing: " + ", ".join(map(str, gap))) if gap else "   complete"))
+    # A FIGURE NOBODY COULD CHECK IS NOT THE SAME EVIDENCE AS ONE THAT WAS
+    # CHECKED, and a report that prints only "usable" hides the difference.
+    # Every origin leaning on an uncorroborated figure is named here, so a pooled
+    # result built on them cannot be read without seeing what it rests on.
+    uncorr = {}
+    for o in blob.get("origins", []):
+        for f in (o.get("uncorroborated_figures") or []):
+            uncorr.setdefault(f, []).append(int(o["year"]))
+    if uncorr:
+        print("\n  UNCORROBORATED — recorded, and no second source exists here:")
+        for f, yrs in sorted(uncorr.items()):
+            print("     %-16s %d origin(s): %s"
+                  % (f, len(yrs), ", ".join(map(str, yrs))))
+        print("     These are usable and they are NOT equal evidence. A calibration")
+        print("     that leans on them says so, or excludes them and shortens.")
+
     compromised = [int(o["year"]) for o in blob.get("origins", [])
                    if o.get("point_in_time_compromised")]
     if compromised:
@@ -282,7 +298,7 @@ def report(market: str = "EG") -> dict:
     print("\n  An origin is USABLE when all four of %s are sourced. Anything else "
           "is dropped, never filled." % ", ".join(REQUIRED))
     return {"market": market.upper(), "usable": usable, "declared": declared,
-            "compromised": compromised}
+            "compromised": compromised, "uncorroborated": uncorr}
 
 
 if __name__ == "__main__":

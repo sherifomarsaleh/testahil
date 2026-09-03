@@ -1793,11 +1793,11 @@
  },
  "spot": 13.98,
  "spot_date": "2026-08-06",
- "central": -1.0621217844282123,
+ "central": null,
  "fair": {
   "bear": -2.6124650988103313,
-  "base": -1.0621217844282123,
-  "full": 1.0205331101493433
+  "base": null,
+  "full": 2.818216074465918
  },
  "macro_record": {
   "market": "EG",
@@ -1924,5 +1924,33 @@
   },
   "dividend_deducted": false,
   "dividend_note": "no dividend was declared after the bridge's balance-sheet date."
+ },
+ "central_two_sided": {
+  "branches": [
+   {
+    "label": "Cash-flow lens, capital programme carried through",
+    "value": -1.0621217844282123,
+    "condition": "the ANNA programme is completed and commissioned as the company is currently doing"
+   },
+   {
+    "label": "Cash-flow lens, capital programme stopped",
+    "value": 2.818216074465918,
+    "condition": "the programme is halted and the remaining spend is not committed"
+   }
+  ],
+  "question": "Is the ANNA capital programme carried through, or stopped?",
+  "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing.",
+  "gap_per_share": 3.88033785889413,
+  "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant \u2014 a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
+  "both_sides_vs_spot": [
+   {
+    "label": "carried through",
+    "pct": -107.59743765685417
+   },
+   {
+    "label": "stopped",
+    "pct": -79.84108673486467
+   }
+  ]
  }
 }

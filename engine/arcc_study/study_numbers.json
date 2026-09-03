@@ -172,6 +172,48 @@
    },
    "adopted": 0.1335777467249307,
    "within_150bp": false,
+   "effective_rate_not_usable": {
+    "mechanisms": [
+     "capitalised_interest",
+     "book_rebased_in_period"
+    ],
+    "evidence": "note 8 capitalises borrowing costs on the alternative-fuel assets under construction, so the expensed finance charge is not the full interest incurred; note 25 shows the book re-based from pound credit facilities to euro term loans within FY2025, so a full-year average balance describes a mix that did not exist for most of the year.",
+    "event_date": "2025-12-31"
+   },
+   "contractual_anchor": {
+    "lines": [
+     {
+      "name": "CIB revolving credit facility",
+      "currency": "EGP",
+      "balance": 99.916937,
+      "rate": 0.206,
+      "rate_basis": "CBE corridor offer + 0.6%, note 25"
+     },
+     {
+      "name": "NBE euro term loan",
+      "currency": "EUR",
+      "balance": 145.741484,
+      "rate": 0.1149,
+      "rate_basis": "6-month Euribor + 3.00%, carried at LOCAL-EQUIVALENT cost (coupon + expected pound depreciation against the euro), note 25"
+     },
+     {
+      "name": "EBRD euro facility",
+      "currency": "EUR",
+      "balance": 888.274195,
+      "rate": 0.1284,
+      "rate_basis": "3-month Euribor + 4.35%, carried at LOCAL-EQUIVALENT cost, note 25"
+     },
+     {
+      "name": "lease liabilities",
+      "currency": "EGP",
+      "balance": 1.176042,
+      "rate": 0.206,
+      "rate_basis": "discounted at the marginal pound borrowing rate, note 8"
+     }
+    ],
+    "local_equivalent_note": "the euro legs carry the coupon PLUS expected pound depreciation against the euro, because the cash flows are nominal pounds and a raw euro coupon inside a pound WACC is a currency mismatch, not a cheap borrowing.",
+    "reproduces": 0.1335777467249307
+   },
    "limitation": "the 150bp bound against the FY2025 effective rate is NOT met and is disclosed rather than smoothed: the book re-based mid-year from pound facilities to euro term debt, and interest on the under-construction alternative-fuel assets is capitalised rather than expensed, so the trailing effective rate understates the marginal contractual one. The contractual blended rate is adopted and the euro legs are loaded with pound depreciation under uncovered interest parity, which is computed as a value rather than described.",
    "interest_bearing_note": "the borrowing lines only; trade and other payables bear no interest"
   },

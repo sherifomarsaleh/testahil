@@ -200,9 +200,57 @@ L['contested'] = dict(
 json.dump(L, open(os.path.join(HERE, 'lenses.json'), 'w'), indent=1, default=float)
 # The study's ANSWER, exposed where the repo-level valuation-gap gate reads it: the numbers
 # file carries the central fair value and the spot it was struck against [R-GAP-01].
-D['central'] = float(L['central']['base'])
+# ---------------- NO SINGLE CENTRAL, ON INSTRUCTION [03-Sep-2026] -------------
+# The contested judgement here is BINARY and it STRADDLES ZERO: carried through
+# the cash-flow lens reads about -1.06 a share, stopped it reads about +2.82, and
+# the difference is not uncertainty about a rate — it is whether a plant gets
+# finished. A number between them describes a world in which the capital
+# programme is half built, which nobody is proposing and the company is not doing.
+#
+# The dual-framing rule already forbade averaging that pair. This is the further
+# step, taken on the principal's instruction: the study publishes BOTH BRANCHES
+# AND NO SINGLE FIGURE. A reader gets the two answers and the condition that
+# decides between them, rather than a central that is true in neither world.
+#
+# central is therefore null and central_two_sided carries the pair. That is a
+# READABLE answer, not a missing one, and the gates distinguish the two: a study
+# with no answer at all is a defect, and this is a study whose answer the
+# repository's one-number shape cannot hold.
+D['central'] = None
+D['central_two_sided'] = dict(
+    branches=[
+        dict(label='Cash-flow lens, capital programme carried through',
+             value=float(L['contested']['side_a']),
+             condition='the ANNA programme is completed and commissioned as the '
+                       'company is currently doing'),
+        dict(label='Cash-flow lens, capital programme stopped',
+             value=float(L['contested']['side_b']),
+             condition='the programme is halted and the remaining spend is not '
+                       'committed'),
+    ],
+    question=L['contested']['question'],
+    decides=L['contested']['decides'],
+    gap_per_share=float(L['contested']['gap']),
+    why_not_averaged=(
+        'the judgement is binary and its two answers straddle zero, so an average '
+        'describes a half-built plant — a world nobody is proposing and the '
+        'company is not in. Averaging would also hide the finding: that on the '
+        'disclosed bank-approved cost and the derived nameplate, the programme '
+        'does not earn the capital sunk into it, which is why stopping is worth '
+        'more than finishing.'),
+    both_sides_vs_spot=[
+        dict(label='carried through',
+             pct=float(L['contested']['side_a'] / SPOT - 1.0) * 100.0),
+        dict(label='stopped',
+             pct=float(L['contested']['side_b'] / SPOT - 1.0) * 100.0),
+    ],
+)
 D['spot'] = float(SPOT)
-D['fair'] = dict(bear=float(L['central']['bear']), base=float(L['central']['base']), full=float(L['central']['bull']))
+# The envelope now spans BOTH branches, and its base is null for the same reason
+# the central is: there is no single number in the middle of a binary decision.
+D['fair'] = dict(bear=float(min(L['central']['bear'], L['contested']['side_b'])),
+                 base=None,
+                 full=float(max(L['central']['bull'], L['contested']['side_b'])))
 
 # ===========================================================================
 # THE THREE CONSTRUCTION RECORDS this study owed [R-MACRO-01, R-LENS-03,

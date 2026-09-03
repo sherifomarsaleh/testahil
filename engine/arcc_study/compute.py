@@ -1213,6 +1213,42 @@ eff_q126 = V['fincost_q1_26'] * 4 / ((debt_tot + V['debt_q1_26']) / 2)
 # it moves the answer.
 KD_CONTRACTED = KD
 KD = kd_egp_equiv
+
+# THE TRAILING EFFECTIVE RATE IS NOT A USABLE ANCHOR ON THIS BOOK, AND THE REASON
+# IS MECHANICAL RATHER THAN A MATTER OF OPINION. Two disclosed facts make the
+# expensed finance charge smaller than the interest this company actually incurs
+# on the debt it actually owes: interest on the alternative-fuel assets under
+# construction is CAPITALISED into those assets rather than expensed, so the
+# numerator is not the full interest incurred; and the book RE-BASED WITHIN THE
+# PERIOD from pound credit facilities to euro term loans, so a full-year average
+# balance describes a mix that did not exist for most of the year.
+#
+# The standing rule's 150bp bound is a check that the adopted rate is not invented,
+# and on a book like this the trailing average is the wrong instrument for that
+# check rather than a number the adopted rate should be dragged toward. So the
+# record supplies a CONTRACTUAL ANCHOR — every facility with its balance and its
+# own rate, euro legs at local-equivalent cost — and the adopted rate is
+# REPRODUCED from it. The check does not disappear; it re-points at arithmetic
+# that can actually be verified from outside.
+KD_ANCHOR_LINES = [
+    dict(name='CIB revolving credit facility', currency='EGP',
+         balance=float(V['debt_cib_fy25']), rate=float(kd_cib),
+         rate_basis='CBE corridor offer + 0.6%, note 25'),
+    dict(name='NBE euro term loan', currency='EUR',
+         balance=float(V['debt_nbe_fy25']),
+         rate=float(kd_nbe + V['egp_dep_vs_eur']),
+         rate_basis='6-month Euribor + 3.00%, carried at LOCAL-EQUIVALENT cost '
+                    '(coupon + expected pound depreciation against the euro), '
+                    'note 25'),
+    dict(name='EBRD euro facility', currency='EUR',
+         balance=float(V['debt_ebrd_fy25']),
+         rate=float(kd_ebrd + V['egp_dep_vs_eur']),
+         rate_basis='3-month Euribor + 4.35%, carried at LOCAL-EQUIVALENT cost, '
+                    'note 25'),
+    dict(name='lease liabilities', currency='EGP',
+         balance=float(V['lease_fy25']), rate=float(kd_cib),
+         rate_basis='discounted at the marginal pound borrowing rate, note 8'),
+]
 KDG = dict(eur_share=eur_share, kd_cib=kd_cib, kd_nbe=kd_nbe, kd_ebrd=kd_ebrd,
            kd_adopted=KD, kd_contracted=KD_CONTRACTED,
            kd_blended=KD, kd_egp_equivalent=kd_egp_equiv, eff_fy24=eff_fy24,
@@ -2279,6 +2315,30 @@ COC_RECORD = dict(
         effective_rates={'FY2024': eff_fy24, 'FY2025': eff_fy25},
         adopted=KD,
         within_150bp=False,
+        # THE EXCEPTION IS A COMPUTATION, NOT AN ATTESTATION. Naming a mechanism
+        # from the registered list is what buys the trailing-average check being
+        # re-pointed; the contractual anchor is what replaces it, and the gate
+        # reproduces the adopted rate from these lines rather than trusting the
+        # sentence above them.
+        effective_rate_not_usable=dict(
+            mechanisms=['capitalised_interest', 'book_rebased_in_period'],
+            evidence='note 8 capitalises borrowing costs on the alternative-fuel '
+                     'assets under construction, so the expensed finance charge is '
+                     'not the full interest incurred; note 25 shows the book '
+                     're-based from pound credit facilities to euro term loans '
+                     'within FY2025, so a full-year average balance describes a '
+                     'mix that did not exist for most of the year.',
+            event_date='2025-12-31',
+        ),
+        contractual_anchor=dict(
+            lines=KD_ANCHOR_LINES,
+            local_equivalent_note='the euro legs carry the coupon PLUS expected '
+                                  'pound depreciation against the euro, because '
+                                  'the cash flows are nominal pounds and a raw '
+                                  'euro coupon inside a pound WACC is a currency '
+                                  'mismatch, not a cheap borrowing.',
+            reproduces=KD,
+        ),
         limitation='the 150bp bound against the FY2025 effective rate is NOT met and '
                    'is disclosed rather than smoothed: the book re-based mid-year '
                    'from pound facilities to euro term debt, and interest on the '
