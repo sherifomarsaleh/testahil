@@ -21,8 +21,14 @@ Every number is read from study_numbers.json / case_adversarial.json — nothing
 import json
 import os
 
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import matplotlib
 matplotlib.use('Agg')
+# A FIGURE MAY NOT DRAW SOMETHING OUTSIDE ITS OWN AXIS AND SAY NOTHING. This wraps
+# savefig, so every figure below is checked; it caught a hardcoded x-axis that clipped
+# seven bars to the same length and threw away the price line the caption relies on.
+import figure_guard                                                   # noqa: F401,E402
 import matplotlib.pyplot as plt          # noqa: E402
 import numpy as np                       # noqa: E402
 

@@ -1,0 +1,23 @@
+{
+ "_why": "[R-ENF-02] ratchet for scripts/check_figure_axes.py. Figure scripts drawing a reference line or a bar outside the axis limits they set, and scripts that will not run so nothing checks their figures. Both lists MAY ONLY EVER SHORTEN (--prune).",
+ "_adopted": "2026-09-03",
+ "outstanding": {
+  "engine/elec_study/figures.py": [
+   "fig1_football.png: axes 0: a reference line at x=2.19 is outside the x limits (-0.07091, 1.763)",
+   "figD1_experts.png: axes 0: a reference line at x=2.19 is outside the x limits (-0.05468, 1.777)"
+  ],
+  "engine/empower_study/figures.py": [
+   "figD1_experts.png: axes 1: a bar at y=1.221 is outside the y limits (1.35, 3.05)"
+  ]
+ },
+ "unrunnable": [
+  "engine/gbco_study/figures.py",
+  "engine/stc_study/figures_stc.py",
+  "engine/xpt_study/figures_xpt.py"
+ ],
+ "_seeded": "03-Sep-2026: the population at adoption. ELEC clips the price line out of its HEADLINE football field and its expert figure \u2014 the same defect this gate was built on, already shipped in another study. EMPOWER clips a bar in its expert figure. AMOC's two were fixed in the pass that found them rather than listed, because that study was being re-issued. The three unrunnable scripts are listed separately: a figure script that cannot execute has not been checked, and an unchecked figure is what this gate exists to stop passing quietly.",
+ "_examined_at_adoption": {
+  "scripts": 26,
+  "ran": 23
+ }
+}

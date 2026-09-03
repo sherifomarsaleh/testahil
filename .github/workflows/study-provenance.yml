@@ -766,6 +766,15 @@ jobs:
       - name: Column widths — negative control
         run: python3 scripts/check_column_widths_negative_control.py
 
+      # A figure that draws its price line outside its own axis loses the line silently,
+      # and clipped bars all render the same length. Every other instrument here reads a
+      # document, a workbook or a number; this defect lives in a PNG.
+      - name: Figure axes — nothing drawn outside the axis it is drawn on
+        run: python3 scripts/check_figure_axes.py
+
+      - name: Figure axes — negative control
+        run: python3 scripts/check_figure_axes_negative_control.py
+
       # [R-GAP-02]'s GATE runs at PUBLISH time, as step 0 of publish_site.py, and that is
       # deliberate: it blocks a future act rather than condemning a past one, so a CI job
       # asserting that no held study exists would be red on every branch that holds one.

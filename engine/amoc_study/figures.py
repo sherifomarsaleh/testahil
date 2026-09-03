@@ -9,8 +9,14 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import matplotlib
 matplotlib.use('Agg')
+# A FIGURE MAY NOT DRAW SOMETHING OUTSIDE ITS OWN AXIS AND SAY NOTHING. This wraps
+# savefig, so every figure below is checked; it caught a hardcoded x-axis that clipped
+# seven bars to the same length and threw away the price line the caption relies on.
+import figure_guard                                                   # noqa: F401,E402
 import matplotlib.pyplot as plt
 from primitives import load_ohlc
 from data_quality import clean_ohlc
@@ -176,7 +182,19 @@ for tag, fn, out in [('one month', 'paths_1M.npy', 'fig5_dist.png'),
     ax.text(spot, yl * 0.97, f'spot {spot:.2f} ', color=INK, fontsize=8.4, ha='right', va='top')
     ax.text(np.median(x), yl * 0.84, f' median {np.median(x):.2f}', color=BRASS, fontsize=8.4,
             ha='left', va='top')
-    ax.set_xlim(np.percentile(x, 0.3), np.percentile(x, 99.7))
+    # THE TAIL IS CROPPED ON PURPOSE AND THE PRICE LINE MUST STILL BE INSIDE IT. Cropping
+    # a simulated distribution at its 0.3rd and 99.7th percentiles is an honest choice —
+    # the extreme paths are a handful of draws and drawing them flattens everything else.
+    # Losing the spot line off the edge is not: this figure drew the price at 13.50 with
+    # the axis ending at 13.35, so the line the reader is meant to compare against was
+    # clipped away. The crop is declared, and the limits are widened to hold whatever the
+    # figure actually draws.
+    _lo, _hi = np.percentile(x, 0.3), np.percentile(x, 99.7)
+    _refs = [spot, float(np.median(x))]
+    _pad = 0.02 * (_hi - _lo)
+    ax.set_xlim(min([_lo] + _refs) - _pad, max([_hi] + _refs) + _pad)
+    figure_guard.allow(ax, 'the simulated tail beyond the 0.3rd and 99.7th percentiles is '
+                           'cropped deliberately; every reference line is inside the axis')
     ax.set_xlabel('EGP / share'); ax.set_yticks([])
     ax.set_title(f'Price distribution at {tag}', fontsize=10, pad=8)
     style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, out)); plt.close(fig)
