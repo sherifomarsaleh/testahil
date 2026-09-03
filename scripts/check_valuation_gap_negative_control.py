@@ -160,6 +160,26 @@ def main():
         ('CLEAN — review audits it to the last decimal that matters, must PASS',
          lambda e: make_study(e, 'AMOC', 5.53, 9.10, review=review_auditing(5.5301)),
          EMPTY, False),
+        # A REVIEW AUDITS A DISAGREEMENT, AND THE DISAGREEMENT MOVES EVEN WHEN THE
+        # ANSWER DOES NOT [added 03-Sep-2026, per the principal: "the gate checks a
+        # review audits the current answer, not the current gap — that's why all
+        # four pass while every one was written for a much smaller disagreement"].
+        # PHDC's own case, seeded: its review audited 17.1517, exactly what the
+        # study published, so the central test passed it — while the review was
+        # written at +12.8% against a strike of 15.20 and the day's price of 14.40
+        # made the gap +19.1%.
+        ('review audits the right central but a much smaller gap — the PHDC case',
+         lambda e: make_study(e, 'PHDC', 17.1517, 14.40,
+                              review=review_auditing(17.1517) + '\nAUDITED GAP: +12.8%\n'),
+         EMPTY, True),
+        ('CLEAN — review states the gap it actually audited, must PASS',
+         lambda e: make_study(e, 'PHDC', 17.1517, 14.40,
+                              review=review_auditing(17.1517) + '\nAUDITED GAP: +19.1%\n'),
+         EMPTY, False),
+        ('CLEAN — a gap that moved less than half the trigger, must PASS',
+         lambda e: make_study(e, 'PHDC', 17.1517, 14.40,
+                              review=review_auditing(17.1517) + '\nAUDITED GAP: +16.0%\n'),
+         EMPTY, False),
     ]
     results = [run_case(n, b, o, f) for n, b, o, f in cases]
     print()

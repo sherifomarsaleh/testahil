@@ -292,7 +292,7 @@ WACC = dict(
     kd_fx_local_equiv=kd_fx_year(0), kd_pretax_blended=_r0.kd_pretax_blended, kd_aftertax=_r0.kd_aftertax,
     kd_pretax_path=[r.kd_pretax_blended for r in _res],
     tax_rate=D['tax_rate'], we=_r0.we, wd=_r0.wd,
-    wacc_rating=_r0.wacc_rating, wacc_cds=_r0.wacc_cds, wacc_published=_r0.wacc_rating,
+    wacc_rating=_r0.wacc_rating, wacc_cds=_r0.wacc_cds, wacc_published=_r0.wacc_cds,
     warnings_by_year={YEARS[k]: r.warnings for k, r in enumerate(_res)},
     # the builder gates its local-below-sovereign check on an all-local book; on a 0.3%-local
     # book it stays silent, so the fact is stated here in the same words and printed in §1.8
@@ -312,12 +312,23 @@ WACC = dict(
 )
 WACC['disclosures'] = list(dict.fromkeys(d for d in WACC['disclosures'] if d))   # each distinct warning once
 WACC['years_fx_leg_below_rf_star'] = [YEARS[k] for k in range(5) if kd_fx_year(k) < _r0.rf_star_rating]
-D['rf_star_spot'] = WACC['rf_star_rating']
-D['erp'] = WACC['erp_rating']
+# THE CDS BASIS IS THE HOUSE DEFAULT AND THIS STUDY WAS THE ONLY ONE NOT USING IT
+# [corrected 03-Sep-2026]. [R-COC-01]: "Both premium bases are published and one is
+# named CENTRAL (the swap basis by default -- the market's own live pricing of the
+# sovereign's credit, against an agency judgement updated in steps)." AMOC names the
+# CDS basis central and records the choice as its largest contested number; ARCC
+# records erp_basis "cds". EGCH published the RATING basis: an equity risk premium
+# of 13.94% against 9.41% for the SAME sovereign on the SAME day, and a sovereign
+# spread of 6.37% against 3.41%. Three studies in one market on two conventions is
+# the incoherence [R-MACRO-01] exists to close, and the odd one out took the higher
+# premium. Both remain published; the central is now the one the rule names.
+D['rf_star_spot'] = WACC['rf_star_cds']
+D['erp'] = WACC['erp_cds']
 D['beta'] = WACC['beta']
 D['we'] = WACC['we']
 D['wd'] = WACC['wd']
-D['wacc_spot'] = WACC['wacc_rating']
+D['wacc_spot'] = WACC['wacc_cds']
+D['wacc_rating_alt'] = WACC['wacc_rating']
 D['wacc_cds'] = WACC['wacc_cds']
 D['kd_pretax_spot'] = WACC['kd_pretax_blended']
 set_glide()
@@ -719,9 +730,26 @@ out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
 # this module and would otherwise overwrite the answer lenses.py wrote back (central, fair, spot)
 # with a file that no longer carries it. The answer keys are carried over from the file on disk;
 # lenses.py, which runs immediately after the first compute pass, always refreshes them.
+#
+# THE CARRY-OVER WAS AN ENUMERATED LIST AND IT WENT STALE THE MOMENT A KEY WAS ADDED
+# [generalised 03-Sep-2026]. It named ('central', 'fair'), which was complete when it
+# was written. lenses.py has since added central_two_sided, lens_record, macro_record
+# and bridge_record -- the records [R-LENS-03], [R-MACRO-01] and [R-BRIDGE-01] are
+# each checked from outside on -- and every one of them was silently dropped the next
+# time alternatives.py imported this module. Three repo gates went red at once and the
+# study looked, from the outside, like one that had never committed a record at all.
+#
+# A fix that names the keys it knows about is a fix that expires. So the rule is
+# inverted: EVERYTHING ON DISK THAT THIS MODULE DOES NOT ITSELF PRODUCE IS CARRIED
+# OVER, and a key added by any later stage survives an import of this one without
+# anybody remembering to come back here. That is [R-ENF-01]'s "close the class, not
+# the instance" applied to a build script.
 try:
     _prev = json.load(open(os.path.join(HERE, 'study_numbers.json')))
-    for _k in ('central', 'fair'):
+    for _k, _v in _prev.items():
+        if _k not in out:
+            out[_k] = _v
+    for _k in ('central', 'fair'):          # produced here, but the ANSWER is lenses.py's
         if _k in _prev:
             out[_k] = _prev[_k]
 except (OSError, ValueError):

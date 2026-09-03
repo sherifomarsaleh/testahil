@@ -173,13 +173,26 @@ STEPS = [
                  "2026'. A buyer on 6 August does not receive it. Their net cash of 3,119 "
                  "is 1,193 ABOVE our post-dividend 1,926 and cannot be a post-dividend "
                  "August figure. INFERRED, not proved: they do not print the date."),
-    dict(key='lenses', driver='lens weighting', touches={'presentation'},
-         label="Other three\nlenses", sub="50/20/22/8 weights\nand share count",
+    # THE BLEND IS RETIRED AND THIS STEP STILL DESCRIBED IT [corrected 03-Sep-2026].
+    # Under [R-LENS-03] the published central IS the cash-flow lens; the 50/20/22/8
+    # weights were dropped at the previous re-issue and the delivered bridge went on
+    # telling a reader that its END point was a weighted average of four lenses, with a
+    # receipt quoting the weights and the 0.73 they used to pull down. The arithmetic was
+    # already right — the step lands on the published central either way — which is
+    # exactly why nobody looked at the words. What the step actually reconciles now is
+    # the share count and the difference between walking one driver at a time and running
+    # the whole model, so it says that.
+    dict(key='lenses', driver='share count and reconciliation', touches={'presentation'},
+         label="Share count,\nreconciliation", sub="374.867 vs 375.0,\nand the full re-run",
          fn=s_lenses, off='NEITHER',
-         receipt="Not an error on either side. They publish a DCF; we weight DCF 50%, "
-                 "multiples 20%, normalised earnings 22%, replacement cost 8%. The three "
-                 "non-DCF lenses land at 48.96 / 52.95 / 68.87 and pull down 0.73 net. "
-                 "The share count (374.867 vs 375.0) is inside that."),
+         receipt="Not an error on either side, and not a lens weighting: this study's "
+                 "central IS the cash-flow lens, published alongside the other reads "
+                 "rather than averaged with them. Two things sit in this step. The share "
+                 "count (374.867mn against their 375.0mn), and the residual between "
+                 "walking one driver at a time down this bridge and running the whole "
+                 "model at once, which is what the published central is. A previous "
+                 "edition weighted four lenses 50/20/22/8 and this step carried those "
+                 "weights; the weights are retired and so is the description."),
 ]
 VERDICTS = {'EFG', 'TESTAHIL', 'OPEN', 'NEITHER'}
 
@@ -200,6 +213,26 @@ for s in STEPS:
     split[s['key']] = ((st['pv_exp'] + st['tv'] * st['df_tv'] - w0) / SH_E, (st['nc'] - c0) / SH_E)
     bars.append(round(after - before, 4))
 END = st['lens_override']
+
+# THE CAPTION UNDER THIS BAR WAS TYPED AND THE BAR WAS COMPUTED [corrected
+# 03-Sep-2026]. STEPS[5]['sub'] read "−3.33 out of window, +4.61 back as cash" and
+# its receipt cited a weighted central of 54.65 -- both true of the edition this
+# bridge was first built for, neither true after the re-strike. The study's own I9
+# invariant is what caught it: it recomputes the printed caption and matches it
+# against the split, and it went FAIL rather than quietly printing stale numbers,
+# which is the invariant doing exactly its job. The caption is now written FROM the
+# split it describes, so it cannot disagree with it again.
+_wc = split['valuation_date']
+for _s in STEPS:
+    if _s['key'] == 'valuation_date':
+        _s['sub'] = "%.2f out of window,\n+%.2f back as cash" % (_wc[0], _wc[1])
+        _s['receipt'] = (
+            "A price is what you pay today. Only the remainder of the current fiscal "
+            "year sits inside the discounted window, so the rest of that year's free "
+            "cash flow leaves it -- and arrives in the bridge as cash already earned. "
+            "This step %s value on net. The %+.2f of accumulated cash is INSIDE the "
+            "answer; it is not owed on top."
+            % ('ADDS' if sum(_wc) > 0 else 'REMOVES', _wc[1]))
 
 # ---- invariants -------------------------------------------------------------
 print('GATE (t) — EFG RECONCILIATION BRIDGE\n')
@@ -265,12 +298,17 @@ if not ok9: fails.append('I9')
 print(f"\n  {'START — EFG Hermes target':46s} {START:7.2f}")
 for s, b in zip(STEPS, bars):
     print(f"  {s['label'].replace(chr(10), ' '):46s} {b:+7.2f}   off: {s['off']}")
-print(f"  {'END — Testahil weighted central':46s} {END:7.2f}")
+print(f"  {'END — Testahil central (the cash-flow lens)':46s} {END:7.2f}")
 tally = {v: sum(b for s, b in zip(STEPS, bars) if s['off'] == v) for v in VERDICTS}
 print('\n  off mark:  ' + '   '.join(f"{v} {tally[v]:+.2f}" for v in
                                      ('EFG', 'TESTAHIL', 'OPEN', 'NEITHER')))
 
-out = dict(start=round(START, 4), end=round(END, 4), market=59.00,
+out = dict(start=round(START, 4), end=round(END, 4),
+           # the comparator is the study's OWN spot; it was typed 59.00 and
+           # survived a re-strike to 77.00 [corrected 03-Sep-2026]
+           market=float(json.load(open(os.path.join(HERE, 'study_numbers.json')))['spot']),
+           published_central=float(END), published_spot=float(
+               json.load(open(os.path.join(HERE, 'study_numbers.json')))['spot']),
            steps=[dict(key=s['key'], label=s['label'], sub=s['sub'], driver=s['driver'],
                        off=s['off'], receipt=s['receipt'], value=b)
                   for s, b in zip(STEPS, bars)])

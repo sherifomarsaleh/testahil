@@ -43,6 +43,23 @@ CASES = [
      lambda s: re.sub(r'(  SAVOLA: \{mkt:"SA", n:\d+, hits:)\d+', r'\g<1>58', s, count=1)),
     ("a span naming no record", "legacy/savola.html",
      lambda s: s.replace('data-band-record="SAVOLA"', 'data-band-record="NOSUCHNAME"', 1)),
+    # THE RETIRED VERDICT DESCRIBED RATHER THAN NAMED [added 03-Sep-2026]. ARCC's
+    # delivered study published "Its skill against a simple random walk is -1.8% —
+    # statistically indistinguishable from zero at every block size tested", TWICE,
+    # and every pattern this gate carried looked for the TOKENS. A rule saying a
+    # measure may never reach a reader is not enforced by banning the word somebody
+    # happened to use for it last time. These four are that sentence and its
+    # neighbours, injected on a page this gate already reads.
+    ("the skill verdict described rather than named", "legacy/savola.html",
+     lambda s: s.replace("</body>",
+                         "<p>Its skill against a simple random walk is -1.8%.</p></body>", 1)),
+    ("the skill verdict as a bare score", "legacy/savola.html",
+     lambda s: s.replace("</body>", "<p>The skill score is negative here.</p></body>", 1)),
+    ("a claim to beat the benchmark", "legacy/savola.html",
+     lambda s: s.replace("</body>", "<p>The cone beats a random walk.</p></body>", 1)),
+    ("a comparative against the benchmark", "legacy/savola.html",
+     lambda s: s.replace("</body>",
+                         "<p>It is worse than a naive random walk.</p></body>", 1)),
     # The figures are images; only their caption TEMPLATE is readable, and this
     # arm is live only because the ratchet is now empty. It is the one that would
     # catch the verdict creeping back into 93 pictures no text check can read.
@@ -55,6 +72,14 @@ CASES = [
 # lowercase "parity" is an ordinary word in this book, and CRPS is taught on the
 # methodology page on purpose.
 CLEAN = [
+    # The benchmark may be NAMED as a construction -- the width ratio is published
+    # against it and [R-CAL-02] requires that -- so these must NOT fire. A gate that
+    # could not tell them apart would make the disclosure the rule mandates
+    # impossible to write.
+    ("a carry-anchored random walk as the width benchmark", "legacy/savola.html",
+     lambda s: s.replace("</body>",
+                         "<p>The band ran 1.4 times the width of a carry-anchored "
+                         "random walk.</p></body>", 1)),
     ("a currency peg", "legacy/savola.html",
      lambda s: s.replace("</body>", "<p>the riyal's fixed parity to the dollar</p></body>", 1)),
     ("export parity pricing", "legacy/savola.html",

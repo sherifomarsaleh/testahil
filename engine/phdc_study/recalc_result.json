@@ -1,44 +1,44 @@
 [
  {
   "check": "enterprise value",
-  "workbook": 69848.4,
-  "study": 69848.3951,
+  "workbook": 71937.0,
+  "study": 71936.9428,
   "ok": true
  },
  {
   "check": "equity value before minority interests",
-  "workbook": 51462.8534,
-  "study": 51462.8485,
+  "workbook": 53551.4534,
+  "study": 53551.3962,
   "ok": true
  },
  {
   "check": "minority interests at their share of value",
-  "workbook": -2410.3945,
-  "study": -2410.3943,
+  "workbook": -2508.2194,
+  "study": -2508.2168,
   "ok": true
  },
  {
   "check": "equity value attributable to shareholders",
-  "workbook": 49052.4589,
-  "study": 49052.4542,
+  "workbook": 51043.234,
+  "study": 51043.1795,
   "ok": true
  },
  {
   "check": "value per share",
-  "workbook": 17.1517,
-  "study": 17.1517,
+  "workbook": 17.8478,
+  "study": 17.8478,
   "ok": true
  },
  {
   "check": "terminal share of enterprise value",
-  "workbook": 0.308,
-  "study": 0.308,
+  "workbook": 0.3124,
+  "study": 0.3124,
   "ok": true
  },
  {
   "check": "bridge sheet agrees with the valuation sheet on value per share",
-  "workbook": 17.1517,
-  "study": 17.1517,
+  "workbook": 17.8478,
+  "study": 17.8478,
   "ok": true
  },
  {
@@ -319,8 +319,8 @@
  },
  {
   "check": "DCF present value 2026",
-  "workbook": 4507.862,
-  "study": 4507.8716,
+  "workbook": 4548.9921,
+  "study": 4549.0027,
   "ok": true
  },
  {
@@ -331,8 +331,8 @@
  },
  {
   "check": "DCF present value 2027",
-  "workbook": 4250.2122,
-  "study": 4250.2203,
+  "workbook": 4316.1867,
+  "study": 4316.1954,
   "ok": true
  },
  {
@@ -343,8 +343,8 @@
  },
  {
   "check": "DCF present value 2028",
-  "workbook": 4056.5061,
-  "study": 4056.5115,
+  "workbook": 4135.9755,
+  "study": 4135.9835,
   "ok": true
  },
  {
@@ -355,8 +355,8 @@
  },
  {
   "check": "DCF present value 2029",
-  "workbook": 3907.603,
-  "study": 3907.6059,
+  "workbook": 3992.8745,
+  "study": 3992.881,
   "ok": true
  },
  {
@@ -367,8 +367,8 @@
  },
  {
   "check": "DCF present value 2030",
-  "workbook": 3787.564,
-  "study": 3787.5655,
+  "workbook": 3873.8679,
+  "study": 3873.8736,
   "ok": true
  },
  {
@@ -379,8 +379,8 @@
  },
  {
   "check": "DCF present value 2031",
-  "workbook": 3653.3637,
-  "study": 3653.3639,
+  "workbook": 3740.1354,
+  "study": 3740.1405,
   "ok": true
  },
  {
@@ -391,8 +391,8 @@
  },
  {
   "check": "DCF present value 2032",
-  "workbook": 3500.8766,
-  "study": 3500.8757,
+  "workbook": 3587.4083,
+  "study": 3587.4127,
   "ok": true
  },
  {
@@ -403,8 +403,8 @@
  },
  {
   "check": "DCF present value 2033",
-  "workbook": 3328.0023,
-  "study": 3328.0005,
+  "workbook": 3413.4788,
+  "study": 3413.4827,
   "ok": true
  },
  {
@@ -415,8 +415,8 @@
  },
  {
   "check": "DCF present value 2034",
-  "workbook": 3134.5903,
-  "study": 3134.5878,
+  "workbook": 3218.133,
+  "study": 3218.1364,
   "ok": true
  },
  {
@@ -427,8 +427,8 @@
  },
  {
   "check": "DCF present value 2035",
-  "workbook": 2922.2657,
-  "study": 2922.2626,
+  "workbook": 3002.9804,
+  "study": 3002.9834,
   "ok": true
  },
  {
@@ -439,8 +439,8 @@
  },
  {
   "check": "DCF present value 2036",
-  "workbook": 2694.1625,
-  "study": 2694.159,
+  "workbook": 2771.1892,
+  "study": 2771.1919,
   "ok": true
  },
  {
@@ -451,8 +451,8 @@
  },
  {
   "check": "DCF present value 2037",
-  "workbook": 2454.5822,
-  "study": 2454.5784,
+  "workbook": 2527.1415,
+  "study": 2527.1438,
   "ok": true
  },
  {
@@ -463,8 +463,8 @@
  },
  {
   "check": "DCF present value 2038",
-  "workbook": 2237.5758,
-  "study": 2237.5718,
+  "workbook": 2305.8939,
+  "study": 2305.896,
   "ok": true
  },
  {
@@ -475,8 +475,8 @@
  },
  {
   "check": "DCF present value 2039",
-  "workbook": 2040.8573,
-  "study": 2040.8532,
+  "workbook": 2105.1536,
+  "study": 2105.1555,
   "ok": true
  },
  {
@@ -487,20 +487,20 @@
  },
  {
   "check": "DCF present value 2040",
-  "workbook": 1862.3909,
-  "study": 1862.3868,
+  "workbook": 1922.8774,
+  "study": 1922.879,
   "ok": true
  },
  {
   "check": "DCF sheet's explicit-period total",
-  "workbook": 48338.4147,
-  "study": 48338.4144,
+  "workbook": 49462.2881,
+  "study": 49462.3581,
   "ok": true
  },
  {
   "check": "DCF sheet's enterprise value",
-  "workbook": 69848.4147,
-  "study": 69848.3951,
+  "workbook": 71936.8881,
+  "study": 71936.9428,
   "ok": true
  },
  {
@@ -1327,14 +1327,14 @@
  },
  {
   "check": "present values sum to the explicit-period figure",
-  "workbook": 48338.4144,
-  "study": 48338.4144,
+  "workbook": 49462.3581,
+  "study": 49462.3581,
   "ok": true
  },
  {
   "check": "the study's discounted cash flow is the one in the statements",
-  "workbook": 17.1517,
-  "study": 17.1517,
+  "workbook": 17.8478,
+  "study": 17.8478,
   "ok": true
  },
  {
@@ -1345,8 +1345,8 @@
  },
  {
   "check": "assumption B12",
-  "workbook": 0.2625,
-  "study": 0.2625,
+  "workbook": 0.261,
+  "study": 0.261,
   "ok": true
  },
  {

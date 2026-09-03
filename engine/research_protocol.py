@@ -122,7 +122,9 @@ MODEL_STUDY = {
         "7 Caveats and what would change our mind",
         "Appendix A Financial statements (A.1 income statement, 3y historical + 5y forecast; "
         "A.2 balance sheet; A.3 forecast balance sheet and cash-flow markers)",
-        "Appendix B Peer frame, risk register — and the research register",
+        "Appendix B Peer frame, risk register — and the research register "
+        "(B.1 peers and the sector frame; B.2 risk register; B.3 the research "
+        "register — layers, dated, negative results included)",
         "Appendix C Expert panel (C.1-C.3 Expert 1/2/3, cast by method, never persona names; "
         "C.4 cross-examination; C.5 the three in one room; C.6 reading the divergence)",
         "About this series",
@@ -945,6 +947,54 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     "the relative multiple takes its multiple from the CURRENT PRICE, which "
                     "values the company at what it already trades at. The multiple comes "
                     "from peers or from the company's own history.")
+            # ---- THE STRING WAS THE WHOLE CHECK, AND A STRING IS AN ATTESTATION
+            # [ADDED 03-Sep-2026, found by the AMOC re-strike]. Everything above
+            # this line reads the multiple_source PROSE. AMOC's record said the
+            # multiple came "from the company's own history and its regional
+            # peers, never a multiple read off the current price" while its code
+            # computed ev_trailing = MARKET CAP + net debt and divided by base-year
+            # EBITDA -- the traded multiple exactly, re-rated by zero. The gate
+            # read the sentence, found the reassuring words, and passed. The
+            # re-strike is what exposed it: the lens moved +51% when the price
+            # moved +48%, which is what a lens anchored on the price does and what
+            # a lens anchored on history cannot do.
+            #
+            # So the claim is now ARITHMETIC. A relative multiple commits the
+            # multiple it adopted and the three numbers that would reproduce the
+            # traded one, and the gate divides. A record that supplies no
+            # ingredients has switched the check off rather than passed it --
+            # [R-COC-01]'s lesson, which is why they are REQUIRED and not optional.
+            circ = x.get("circularity") or {}
+            mult = x.get("multiple")
+            if mult is None:
+                fails.append(
+                    "the relative multiple does not commit the MULTIPLE it adopted. A "
+                    "source named in prose is an attestation; the multiple is the thing "
+                    "that can be checked.")
+            need = ("spot", "shares", "net_debt", "metric_value")
+            missing = [k for k in need if circ.get(k) is None]
+            if missing:
+                fails.append(
+                    "the relative multiple commits no circularity check (%s). The traded "
+                    "multiple is (spot x shares + net debt) / the metric, and a lens that "
+                    "cannot be compared with it is one nobody can tell apart from the "
+                    "price." % ", ".join(missing))
+            elif mult is not None:
+                try:
+                    _mv = float(circ["metric_value"])
+                    _traded = (float(circ["spot"]) * float(circ["shares"])
+                               + float(circ["net_debt"])) / _mv
+                except (TypeError, ValueError, ZeroDivisionError):
+                    fails.append("the relative multiple's circularity check does not "
+                                 "compute: its own numbers do not divide.")
+                else:
+                    x["_traded_multiple"] = _traded
+                    if _traded and abs(float(mult) / _traded - 1.0) < 0.005:
+                        fails.append(
+                            "the relative multiple %.4fx IS the traded multiple %.4fx to "
+                            "within half a per cent. Whatever the source says, this lens "
+                            "values the company at what it already trades at, and its only "
+                            "distance from the price is the bridge." % (float(mult), _traded))
         if k == "normalised_earnings":
             basis = (x.get("basis") or "").lower()
             if "real" not in basis and "less growth" not in basis and "ke - g" not in basis:
@@ -1094,6 +1144,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
     here, whatever the file says.
     """
     import glob as _glob
+    import json as _json
     import os as _os
     import re as _re
 
@@ -1119,7 +1170,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
         except OSError:
             continue
         if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
-                      txt) and base not in ("lenses.py", "docx_arcc.py"):
+                      txt):
             # a builder that COMPUTES the reverse read is fine; one that reads the
             # file back into the model is not.
             #
@@ -1142,6 +1193,58 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
                     continue
                 leaks.append(base)
                 break
+    # THE VALUE ITSELF MUST NOT BE IN THE NUMBERS FILE, which is what the rule
+    # actually says: the reverse read lives outside "the numbers file builders
+    # read". Checking WHICH FILE reads WHAT is a proxy for that, and it needed two
+    # unexplained by-name exemptions (lenses.py, docx_arcc.py) to stop firing on
+    # studies doing the right thing — a study that COMPUTES the read, and a builder
+    # that only DISPLAYS it, are both fine and neither is distinguishable from a
+    # leak by grepping for a filename.
+    #
+    # This is checkable without guessing: take the diagnostic's OWN implied value
+    # and look for it in study_numbers.json. A float carried to full precision does
+    # not appear there by coincidence, so a hit means the quantity solved from the
+    # price is sitting in the file every builder reads — which is the thing
+    # prohibited, whether or not any builder currently computes from it. TMGH is
+    # the case that prompted this: its implied_discount_rate is in lenses.json and
+    # from there in study_numbers.json, and every use of it is display, so the
+    # rule's PURPOSE is met and its DEVICE is broken. The device is what is
+    # checkable, and widening the check to allow "display only" would delete it
+    # rather than sharpen it.
+    val = (d.get("implied") or {}).get("value")
+    nums = _os.path.join(study_dir, "study_numbers.json")
+    if isinstance(val, float) and _os.path.exists(nums):
+        try:
+            _doc = _json.load(open(nums, encoding="utf-8"))
+        except Exception:
+            _doc = None
+
+        def _hunt(node, trail=""):
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    r = _hunt(v, trail + "/" + str(k))
+                    if r:
+                        return r
+            elif isinstance(node, list):
+                for i2, v in enumerate(node[:200]):
+                    r = _hunt(v, trail + "[%d]" % i2)
+                    if r:
+                        return r
+            elif isinstance(node, float) and node == val:
+                return trail
+            return None
+
+        where = _hunt(_doc) if _doc is not None else None
+        if where:
+            fails.append(
+                "the reverse read's own value (%r) is committed in "
+                "study_numbers.json at %s. A quantity solved from the traded price "
+                "must not sit in the numbers file every builder reads, whether or "
+                "not a builder currently computes from it — that is the "
+                "reverse-engineered rate arriving through a side door, and the "
+                "prohibition is worth nothing if the side door is open."
+                % (val, where))
+
     if leaks:
         fails.append(
             "these builders read the diagnostics file: %s. A quantity solved from the "

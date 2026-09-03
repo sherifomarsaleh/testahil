@@ -237,7 +237,7 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_02-09-2026.docx")
+    out = os.path.join(HERE, "PHDC_Bibliography_03-09-2026.docx")
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

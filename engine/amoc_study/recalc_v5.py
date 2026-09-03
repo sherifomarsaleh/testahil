@@ -16,7 +16,9 @@ that wrote the file: an independent reimplementation that has to agree cell for 
 stronger check.
 """
 import json
+import fnmatch
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +26,26 @@ sys.path.insert(0, HERE)
 import openpyxl                                                        # noqa: E402
 import xlcalc                                                          # noqa: E402
 
-XLSX = os.path.join(HERE, 'AMOC_Valuation_Model_01092026_public.xlsx')
+# THE DELIVERED EDITION IS RESOLVED, NEVER TYPED [L-067]: a check pinned by name
+# reports on whatever edition that name was when the line was written.
+_D = re.compile(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})")
+
+
+def _stamp(n):
+    m = _D.search(n)
+    if not m:
+        return (0, 0, 0)
+    d, mo, y = (int(x) for x in m.groups())
+    return (y, mo, d) if (1 <= d <= 31 and 1 <= mo <= 12) else (0, 0, 0)
+
+
+_hits = [f for f in os.listdir(HERE)
+         if fnmatch.fnmatch(f, 'AMOC_Valuation_Model_*_public.xlsx')]
+if not _hits:
+    raise SystemExit("REFUSED: no delivered workbook in the study directory. An "
+                     "empty match is not a clean result [R-ENF-04].")
+XLSX = os.path.join(HERE, max(_hits, key=_stamp))
+print("recalculating %s" % os.path.basename(XLSX))
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected_v5.json')))

@@ -38,7 +38,7 @@ import json, os, sys, copy
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx')
 SHEET_A = 'Assumptions'
 HEAD = ('DCF', 'B44')          # value per share, programme carried through
 

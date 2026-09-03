@@ -12,7 +12,9 @@ house jargon in another — "register" is a commercial register, "step" is a ste
 so those are REPORTED with their surrounding words and adjudicated, never auto-failed.
 A check that cries wolf is one everyone learns to ignore.
 """
-import os, re, sys, json, zipfile
+import fnmatch
+import os
+import re, re, sys, json, zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -84,14 +86,51 @@ def scan(name, text):
     return hard, soft
 
 
+
+# ---------------------------------------------------------------------------
+# THE DELIVERED EDITION IS RESOLVED, NEVER TYPED.  [L-067]
+# ---------------------------------------------------------------------------
+# A check that opens a delivered file BY NAME reports on whatever edition that
+# name happened to be when the line was written. ARCC's driver_test and label_gate
+# were found on 01-Sep-2026 opening a workbook two editions old and reporting
+# clean; this file was doing the same thing on 03-Sep-2026, still pinned to the
+# 06-08-2026 workbook while two later editions had shipped. Resolving by PATTERN
+# and taking the newest date moves the check with the re-issue, which is the only
+# version of this fix that does not have to be remembered.
+_DATE_RE = re.compile(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})")
+
+
+def _stamp(name):
+    m = _DATE_RE.search(name)
+    if not m:
+        return (0, 0, 0)
+    d, mo, y = (int(x) for x in m.groups())
+    return (y, mo, d) if (1 <= d <= 31 and 1 <= mo <= 12) else (0, 0, 0)
+
+
+def latest(pattern):
+    """The newest-dated delivered file matching `pattern`, or REFUSE."""
+    hits = [f for f in os.listdir(HERE) if fnmatch.fnmatch(f, pattern)]
+    if not hits:
+        raise SystemExit("REFUSED: nothing matches %r in the study directory. An "
+                         "empty match is not a clean result [R-ENF-04]." % pattern)
+    return max(hits, key=_stamp)
+
+
+EDITION = _stamp(latest('AMOC_Valuation_Study_*_public.docx'))
+
+
+def _is_edition(fn):
+    return _stamp(fn) == EDITION
+
 def main():
     files = []
     for fn in sorted(os.listdir(HERE)):
-        if fn.endswith("_public.docx") and "01-09-2026" in fn:
+        if fn.endswith("_public.docx") and _is_edition(fn):
             files.append((fn, docx_text(os.path.join(HERE, fn))))
-        if fn.startswith("AMOC_Bibliography_01-09-2026") and fn.endswith(".docx"):
+        if fn.startswith("AMOC_Bibliography_") and fn.endswith(".docx") and _is_edition(fn):
             files.append((fn, docx_text(os.path.join(HERE, fn))))
-        if fn.endswith("01092026_public.xlsx"):
+        if fn.endswith("_public.xlsx") and _is_edition(fn):
             files.append((fn, xlsx_text(os.path.join(HERE, fn))))
     assert files, "SCRUB FAIL — no delivered files matched. An empty scan is not a clean scan."
     hard, soft = [], []
@@ -164,7 +203,7 @@ def table_discipline(path):
 
 if __name__ == "__main__" and os.environ.get("SCRUB_TABLES", "1") == "1":
     for fn in sorted(os.listdir(HERE)):
-        if fn.endswith(".docx") and "01-09-2026" in fn:
+        if fn.endswith(".docx") and _is_edition(fn):
             n, bad = table_discipline(os.path.join(HERE, fn))
             print("table discipline %-40s %2d tables, %d problem(s)" % (fn[:40], n, len(bad)))
             for b in bad[:12]:

@@ -12,7 +12,7 @@ fixed HERE by widening the rendering set, never by deleting the figure from the 
 import json, os, re, sys
 from docx import Document
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_01-09-2026.docx', 'EGCH_Bibliography_01-09-2026.docx']
+DOCS = ['EGCH_Valuation_Study_03-09-2026.docx', 'EGCH_Bibliography_03-09-2026.docx']
 
 
 def walk(x, out):
@@ -52,16 +52,30 @@ for k in _CONSUMED:
 walk(json.load(open(os.path.join('..', 'egch_walkforward', 'forward_ranges.json'))), vals)
 walk(json.load(open(os.path.join('..', 'egch_walkforward', 'scores.json')))['drivers'], vals)
 # derived renderings: a value v, its percentage forms, 1-v and v-1 (shares and changes), and its inverse
-# the technical ladder is published as a distance from spot, which the read does not store
+# THE TECHNICAL LADDER IS A DISTANCE FROM THE TECHNICAL READ'S OWN CLOSE, NOT FROM
+# SPOT [corrected 03-Sep-2026]. These are two clocks and the protocol says so: a
+# mid-cycle library arrival moves the technical read without re-striking the study,
+# so the read is computed on the last session in the price library while the study
+# is struck on the latest known price. They were the same number until the
+# principal supplied closes for 3 September against a library ending 6 August; this
+# checker then divided by 14.41 where the document divides by 13.98 and reported
+# the document's own correct figure as unmatched. A checker that models what a
+# document ought to do rather than reading what it does is checking a different
+# document -- the [R-ENF-03] species, in its own small way. Spot is kept as a
+# second divisor because some figures genuinely are quoted against it.
 _tech = json.load(open('technicals.json')) if os.path.exists('technicals.json') else {}
-_spot = json.load(open('study_numbers.json')).get('spot')
+_sn = json.load(open('study_numbers.json'))
+_spot = _sn.get('spot')
+_tclose = (_tech.get('close') if isinstance(_tech, dict) else None) or _spot
 def _levels(x, out):
     if isinstance(x, dict):
         for v in x.values(): _levels(v, out)
     elif isinstance(x, (list, tuple)):
         for v in x: _levels(v, out)
-    elif isinstance(x, (int, float)) and not isinstance(x, bool) and _spot:
-        out.append(x / _spot - 1)
+    elif isinstance(x, (int, float)) and not isinstance(x, bool):
+        for _den in (_tclose, _spot):
+            if _den:
+                out.append(x / _den - 1)
 _lv = []; _levels(_tech, _lv); vals.extend(_lv)
 RENDER = set()
 for v in vals:

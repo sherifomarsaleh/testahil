@@ -54,7 +54,7 @@ GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   'study_numbers.json')))['growth_destroys_value']
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]

@@ -1,45 +1,45 @@
 {
  "files": [
-  "AMOC_Bibliography_01-09-2026.docx",
-  "AMOC_Valuation_Model_01092026_public.xlsx",
-  "AMOC_Valuation_Study_01-09-2026_public.docx"
+  "AMOC_Bibliography_03-09-2026.docx",
+  "AMOC_Valuation_Model_03092026_public.xlsx",
+  "AMOC_Valuation_Study_03-09-2026_public.docx"
  ],
  "hard": [],
  "soft": [
   {
-   "file": "AMOC_Bibliography_01-09-2026.docx",
+   "file": "AMOC_Bibliography_03-09-2026.docx",
    "pattern": "\\bregister\\b",
    "hits": 5,
    "note": "ordinary sense: commercial register, input register"
   },
   {
-   "file": "AMOC_Bibliography_01-09-2026.docx",
+   "file": "AMOC_Bibliography_03-09-2026.docx",
    "pattern": "\\bgate\\b",
    "hits": 3,
    "note": "ordinary sense: a test the study describes to its reader"
   },
   {
-   "file": "AMOC_Bibliography_01-09-2026.docx",
+   "file": "AMOC_Bibliography_03-09-2026.docx",
    "pattern": "\\bstep\\b",
    "hits": 1,
    "note": "ordinary sense: a step-change"
   },
   {
-   "file": "AMOC_Valuation_Study_01-09-2026_public.docx",
+   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
    "pattern": "\\bregister\\b",
    "hits": 2,
    "note": "ordinary sense: commercial register, input register"
   },
   {
-   "file": "AMOC_Valuation_Study_01-09-2026_public.docx",
+   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
    "pattern": "\\bgate\\b",
    "hits": 4,
    "note": "ordinary sense: a test the study describes to its reader"
   },
   {
-   "file": "AMOC_Valuation_Study_01-09-2026_public.docx",
+   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
    "pattern": "\\bstep\\b",
-   "hits": 6,
+   "hits": 7,
    "note": "ordinary sense: a step-change"
   }
  ]

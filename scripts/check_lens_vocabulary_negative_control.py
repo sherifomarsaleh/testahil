@@ -51,8 +51,8 @@ CLEAN = ("The cash-flow lens is the central. Book value is published as a "
 CASES = []
 
 
-def case(name, red, body, ratchet=None, docs=1):
-    CASES.append((name, red, body, ratchet, docs))
+def case(name, red, body, ratchet=None, docs=1, workbook=None):
+    CASES.append((name, red, body, ratchet, docs, workbook))
 
 
 case("a delivered document publishing a weighted central as its own answer", True,
@@ -74,7 +74,7 @@ case("a ratchet naming a study with no delivered document", True, CLEAN,
      ratchet={"GHOST": "no document"})
 
 
-def build(body, ratchet, docs):
+def build(body, ratchet, docs, workbook=None):
     d = tempfile.mkdtemp()
     eng = os.path.join(d, "engine")
     os.makedirs(os.path.join(eng, "build_depth_audit"))
@@ -82,6 +82,14 @@ def build(body, ratchet, docs):
         sd = os.path.join(eng, "tk_study")
         os.makedirs(sd)
         open(os.path.join(sd, "TK_Valuation_Study_02-09-2026.pdf"), "w").write(body)
+        # THE WORKBOOK IS A DELIVERED ARTEFACT TOO, and the gate reads it. AMOC's
+        # document came back clean on 03-09-2026 while its workbook computed a
+        # 45/20/20/15 blend into three cells labelled WEIGHTED CENTRAL, so a gate
+        # that read only the PDF passed a study that shipped the retired
+        # architecture to any reader who opened the model.
+        if workbook is not None:
+            open(os.path.join(sd, "TK_Valuation_Model_02092026.xlsx"),
+                 "w").write(workbook)
     json.dump({"outstanding": ratchet or {}},
               open(os.path.join(eng, "build_depth_audit",
                                 "lens_vocabulary_outstanding.json"), "w",
@@ -89,16 +97,50 @@ def build(body, ratchet, docs):
     return d, eng
 
 
+# ---- the two false negatives, in AMOC's own words -------------------------
+# Both of these were WAIVED by this gate on 03-09-2026 and AMOC was pruned off the
+# ratchet as fixed on the strength of it. They are the sharpest cases here because
+# they are not invented: the first is the sentence that fooled the 260-character
+# window, the second is the row the layout split around its figures.
+ASSERTS_THEN_EXPLAINS = (
+    "Table 1 - the four lenses. The bear and bull columns of the weighted row are "
+    "WEIGHTED with the same 45/20/20/15 weights as the base column. The previous "
+    "edition labelled a row \"weighted central\" and then took the minimum and "
+    "maximum across all four lenses, both of which came from the cash-flow lens "
+    "alone, overstating the published spread by about two and a half times.")
+SPLIT_ROW = (
+    "Book and sustainable return  justified price-to-book  4.74 6.23 7.12 15% "
+    "-31.6%  WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL")
+
+case("a caption asserting the CURRENT weighting with a 'previous edition' "
+     "sentence right after it — the 260-character window waived this", True,
+     ASSERTS_THEN_EXPLAINS)
+case("a table row whose label the layout splits around its own figures", True,
+     SPLIT_ROW)
+
+
+# ---- the widened scope: the workbook is read too --------------------------
+WB_DIRTY = ("Lens · Value per share · WEIGHTED CENTRAL · "
+            "=B10*0.45+C11*0.2+D12*0.2+E13*0.15 · against spot")
+WB_CLEAN = ("Lens · Value per share · CENTRAL - the cash-flow lens · =B10 · "
+            "the retired 45/20/20/15 blend, published beside the answer and unused")
+
+case("a clean document beside a workbook that computes a weighted central — the "
+     "condition the widened scope was built for", True, CLEAN, workbook=WB_DIRTY)
+case("a clean document beside a workbook whose central IS the class primary",
+     False, CLEAN, workbook=WB_CLEAN)
+
+
 def main():
     real_text, real_out = G.text_of, G.OUTSTANDING
     # the extractor is stubbed: what is under test is the rule, not pdftotext
     G.text_of = lambda p: open(p, encoding="utf-8").read()
     caught = passed = 0
-    red = sum(1 for _, r, _, _, _ in CASES if r)
+    red = sum(1 for c in CASES if c[1])
     green = len(CASES) - red
     try:
-        for name, expect_red, body, ratchet, docs in CASES:
-            d, eng = build(body, ratchet, docs)
+        for name, expect_red, body, ratchet, docs, workbook in CASES:
+            d, eng = build(body, ratchet, docs, workbook)
             G.OUTSTANDING = os.path.join(eng, "build_depth_audit",
                                          "lens_vocabulary_outstanding.json")
             try:

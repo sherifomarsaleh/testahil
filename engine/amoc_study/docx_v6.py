@@ -49,7 +49,14 @@ assert BAND['flag'] in (None, 'narrow', 'wide')
 LO, HI = D['span']; LOE, HIE = D['span_env']
 YRS = F['years']
 LINES, LBL = UB['lines'], UB['labels']
-PERIODS = ['6M Dec-2024', '3M Mar-2025', '6M Dec-2025', '3M Mar-2026']
+# THE LATEST REVIEWED PERIOD WAS MISSING FROM THIS LIST, AND IT IS THE ONE A READER
+# NEEDS MOST [corrected 03-Sep-2026]. The typed list stopped at 3M Mar-2026 and
+# omitted the six months to 30 June 2026 -- the most recent filed period, at a
+# 12.43% gross margin against a forecast opening at 9.68%. Appendix A is where a
+# reader checks a forecast against the record, and leaving out the one period that
+# raises the question is how the question stayed invisible. Taken from the record
+# rather than typed, so a new filing appears here by arriving.
+PERIODS = list(D['hist_is'].keys())
 
 
 def n0(x): return f"{x:,.0f}"
@@ -61,6 +68,13 @@ def sgn(x, dp=1): return f"{x*100:+.{dp}f}%"
 
 
 GAP = C / SPOT - 1
+# Computed so the Headline's WORDS move with its numbers: how many lenses actually
+# sit below the price, and what the retired blend would read. Both were typed
+# before and both had stopped being true.
+_N_BELOW = {0: 'None', 1: 'One', 2: 'Two', 3: 'Three', 4: 'All four'}[
+    sum(1 for k in ('dcf', 'relative', 'normalized', 'book')
+        if LN[k]['base'] < SPOT)]
+RETIRED_BLEND = LN['retired_blend']['base']
 PREM = SPOT / C - 1
 REQ_DCF = (SPOT - 0.20 * LN['relative']['base'] - 0.20 * LN['normalized']['base']
            - 0.15 * LN['book']['base']) / 0.45
@@ -90,18 +104,36 @@ def cdf3m(x):
     return 0.5
 
 
-CUTS = [C, 7.50, SPOT, 11.00]
+# THE ZONE CUTS MUST ASCEND, AND THE GUARD THAT WAS HERE COULD NOT SEE THAT THEY
+# DID NOT [corrected 03-Sep-2026]. The list was written [C, 7.50, SPOT, 11.00] --
+# the central first, then a low level, then spot, then a level below spot -- and
+# once the central moved to 11.83 the sequence read 11.83, 7.50, 13.50, 11.00.
+# Differences of a decreasing cumulative distribution are NEGATIVE, so the table
+# published probabilities of -74.6% and -16.0% under a caption promising a
+# partition.
+#
+# The assert could not catch it: consecutive differences of a cumulative function
+# TELESCOPE, so the sum is 1.0 for any ordering whatever, ascending or not. It is
+# a check that cannot fail, which is the [R-ENF-04] species -- a green light that
+# examined nothing. Both are fixed: the cuts are SORTED, and the guard now tests
+# what actually matters, which is that no zone is negative.
+_CUTSET = (C, 7.50, SPOT, 11.00)
+CUTS = sorted(_CUTSET)
 ZP = [cdf3m(CUTS[0])]
 for i in range(len(CUTS) - 1):
     ZP.append(cdf3m(CUTS[i + 1]) - cdf3m(CUTS[i]))
 ZP.append(1 - cdf3m(CUTS[-1]))
 assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP)}'
+assert all(z >= -1e-9 for z in ZP), (
+    'a probability zone is NEGATIVE: %s at cuts %s. Consecutive differences of a '
+    'cumulative distribution telescope, so the sum-to-one assert above is 1.0 for '
+    'any ordering and cannot see this.' % ([round(z, 4) for z in ZP], CUTS))
 
 # ============================ FRONT MATTER ===================================
 masthead()
 P('Alexandria Mineral Oils Company S.A.E.', size=19, bold=True, space_after=0)
 rich([('EGX: AMOC  ·  Egyptian Exchange  ·  EGP  ·  Valuation study as of 6 August 2026, '
-       'issued 1 September 2026', dict(size=10, color=GREY))], space_after=10)
+       'issued 3 September 2026', dict(size=10, color=GREY))], space_after=10)
 
 box([
     ('READ FIRST.  ',
@@ -119,15 +151,25 @@ box([
 H1('Headline')
 box([
     ('THE CLAIM, STATED EXACTLY.  ',
+     # THE DIRECTION IS COMPUTED, NOT TYPED. This sentence read "-8.9% BELOW the
+     # price; equivalently the price stands -8.2% ABOVE fair value ... the price
+     # is outside it ... every one of the four lenses lands below the price" —
+     # four false statements in three lines, contradicted by the table directly
+     # beneath them. They were true of an edition whose central sat below the
+     # price and survived the central moving above it, because the words were
+     # typed and only the numbers were computed. A NUMBER STATED IN PROSE MUST BE
+     # COMPUTED, and so must the word that gives it its sign.
      f'Fair value EGP {p2(C)} a share against a market price of EGP {p2(SPOT)}. Fair value sits '
-     f'{pc(-GAP)} BELOW the price; equivalently the price stands {pc(PREM)} ABOVE fair value. '
-     f'The weighted range is EGP {p2(LO)} to {p2(HI)} and the price is outside it. Every one of '
-     f'the four lenses lands below the price.'),
+     f'{pc(abs(GAP))} {"ABOVE" if GAP > 0 else "BELOW"} the price; equivalently the price stands '
+     f'{pc(abs(PREM))} {"BELOW" if GAP > 0 else "ABOVE"} fair value. '
+     f'The range across the lenses is EGP {p2(LO)} to {p2(HI)} and the price is '
+     f'{"inside" if LO <= SPOT <= HI else "outside"} it. '
+     f'{_N_BELOW} of the four lenses land below the price.'),
     ('WHAT WOULD CHANGE OUR MIND.  ',
      f'Surrender every contested judgement in this study simultaneously — the tax provision '
      f'settles for nothing, the declared dividend never leaves, the employees’ profit share '
      f'is free, the terminal rate reverts to the softer inflation target, operating profit is '
-     f'taxed at the flattered effective rate — and the weighted central still reaches only EGP '
+     f'taxed at the flattered effective rate — and the central still reaches only EGP '
      f'{p2(ADV["ALL_GIVEBACKS"]["central"])}, {pc(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1)} '
      f'against the price. Section 1.13 walks the whole stack, one full model re-run per row.'),
     ('WHAT A BUYER AT THE PRICE MUST BELIEVE.  ',
@@ -147,33 +189,55 @@ box([
 ])
 
 H1('Valuation summary — every read at a glance')
-table([['Lens', 'What it measures', 'Bear', 'Base', 'Bull', 'Weight', 'vs price'],
-       ['Discounted cash flow', 'unlevered cash, discounted on a glide',
-        p2(LN['dcf']['bear']), p2(LN['dcf']['base']), p2(LN['dcf']['bull']), '45%',
-        pc(LN['dcf']['base'] / SPOT - 1)],
-       ['Relative multiples', 'own trailing EV/EBITDA, no re-rating',
-        p2(LN['relative']['bear']), p2(LN['relative']['base']), p2(LN['relative']['bull']), '20%',
-        pc(LN['relative']['base'] / SPOT - 1)],
-       ['Normalised earnings', 'mid-cycle operating EPS, discounted',
-        p2(LN['normalized']['bear']), p2(LN['normalized']['base']), p2(LN['normalized']['bull']),
-        '20%', pc(LN['normalized']['base'] / SPOT - 1)],
-       ['Book and sustainable return', 'justified price-to-book',
-        p2(LN['book']['bear']), p2(LN['book']['base']), p2(LN['book']['bull']), '15%',
-        pc(LN['book']['base'] / SPOT - 1)],
-       ['WEIGHTED CENTRAL', 'the four, weighted', p2(LO), p2(C), p2(HI), '100%', pc(GAP)]],
-      [1.55, 1.9, 0.72, 0.72, 0.72, 0.62, 0.72], band_rows={5}, size=9.0, left_cols=(1,))
-caption('Table 1 — the four lenses. The bear and bull columns of the weighted row are WEIGHTED '
-        'with the same 45/20/20/15 weights as the base column. The widest single lens spans EGP '
-        f'{p2(LOE)}–{p2(HIE)}; that is reported as an ENVELOPE, not as the range of a weighted '
-        'estimate. The previous edition labelled a row "weighted central" and then took the '
-        'minimum and maximum across all four lenses, both of which came from the cash-flow lens '
-        'alone, overstating the published spread by about two and a half times.')
+# THE WEIGHT COLUMN WAS THE RETIRED BLEND, PRINTED AS IF IT WERE LIVE [corrected
+# 03-Sep-2026]. The caption underneath already said the cross-checks "carry no
+# weight" while the table beside it published 45/20/20/15 in a column headed
+# Weight — a document contradicting itself by two inches. And the relative lens is
+# marked withdrawn: true in the committed record, because its multiple WAS the
+# traded one, yet it appeared here as a live 20%-weighted cross-check.
+#
+# The column is gone. The relative row now says what the record says.
+_REL = [c for c in D['lens_record']['cross_checks']
+        if c.get('kind') == 'relative_multiple']
+_REL_WITHDRAWN = bool(_REL and _REL[0].get('withdrawn'))
+_rows = [['Lens', 'What it measures', 'Bear', 'Base', 'Bull', 'vs price'],
+         ['Discounted cash flow — THE ANSWER', 'unlevered cash, discounted on a glide',
+          p2(LN['dcf']['bear']), p2(LN['dcf']['base']), p2(LN['dcf']['bull']),
+          pc(LN['dcf']['base'] / SPOT - 1)]]
+if _REL_WITHDRAWN:
+    _rows.append(['Relative multiples — WITHDRAWN',
+                  'its multiple WAS the traded one; a diagnostic of what the market '
+                  'pays, not a valuation',
+                  '—', p2(LN['relative']['base']), '—',
+                  pc(LN['relative']['base'] / SPOT - 1)])
+else:
+    _rows.append(['Relative multiples', 'own trailing EV/EBITDA, no re-rating',
+                  p2(LN['relative']['bear']), p2(LN['relative']['base']),
+                  p2(LN['relative']['bull']), pc(LN['relative']['base'] / SPOT - 1)])
+_rows += [
+    ['Normalised earnings — a cross-check', 'mid-cycle operating EPS, discounted',
+     p2(LN['normalized']['bear']), p2(LN['normalized']['base']),
+     p2(LN['normalized']['bull']), pc(LN['normalized']['base'] / SPOT - 1)],
+    ['Book value — a disclosed floor', 'justified price-to-book',
+     p2(LN['book']['bear']), p2(LN['book']['base']), p2(LN['book']['bull']),
+     pc(LN['book']['base'] / SPOT - 1)],
+    ['CENTRAL', 'the cash-flow lens, alone', p2(LO), p2(C), p2(HI), pc(GAP)]]
+table(_rows, [1.75, 2.0, 0.72, 0.72, 0.72, 0.72], band_rows={5}, size=9.0,
+      left_cols=(1,))
+caption('Table 1 — the lenses. ONE CLASS PRIMARY IS THE CENTRAL: the cash-flow lens is the '
+        'answer and the other three are cross-checks, published beside it and carrying no '
+        'weight. The bear and bull columns of the central row are that same lens\u2019s own '
+        f'downside and upside, not a weighted combination. The widest single lens spans EGP '
+        f'{p2(LOE)}\u2013{p2(HIE)}; that is reported as an ENVELOPE. The retired 45/20/20/15 '
+        'blend of these four would read EGP ' + p2(RETIRED_BLEND) + ' and is shown in the '
+        'workbook beside the answer, unused: three of the four value a refiner on reported '
+        'earnings and historical-cost book, and averaging them imports every weakness of the '
+        'weakest at a weight nobody tested out of sample.')
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       'Figure 1 — the football field. The price (red dashed) sits above every lens base and '
-       'above the top of the weighted range. It falls inside only the cash-flow lens’s bull '
-       'tail, which is five favourable driver moves at once.')
+       'Figure 1 — the football field. The price (red dashed) is shown against every lens base '
+       'and against the cash-flow lens\u2019s own bear-to-bull range.')
 
-H1('The company')
+H1('Company overview')
 P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian Exchange. It '
   f'takes atmospheric residue and distils it into base and special oils, paraffin wax, gas oil, '
   f'naphtha, liquefied petroleum gas and fuel oil. Alexandria Petroleum Company holds 20.77% — '
@@ -253,16 +317,24 @@ P('So the primary lens is free cash flow to the FIRM, discounted, with the three
   'reader wonders whether it was considered.')
 
 H2('1.2  The base year is constructed, and here is the construction')
+# THIS PARAGRAPH CONTRADICTED THE ONE FOUR LINES BELOW IT [corrected 03-Sep-2026].
+# It said "HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING", and §1.2's
+# own next paragraph says "THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS
+# RIGHT". Both were true of successive editions and only one is true now: the
+# reviewed statements for the six months to 30 June 2026 are in hand and the model
+# uses the FILED gross profit. The stale sentence survived because it was typed and
+# the correction was written beneath it rather than over it.
 P('The base year is the TWELVE contiguous months to 30 June 2026: the audited transition half '
-  '(July to December 2025) plus the half AMOC disclosed to the Egyptian Exchange on 29-30 July '
-  '2026, one week before this study’s anchor date. No annualisation scalar is applied to '
-  'either half. HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING, and this study says '
-  'so on every page that uses it.')
+  '(July to December 2025) plus the REVIEWED half to 30 June 2026. No annualisation scalar is '
+  'applied to either half and no period is estimated. BOTH HALVES ARE FILED — an earlier '
+  'edition of this study treated the second as a press release and solved its gross profit '
+  'from the profit line; the reviewed statements settle it, and the released figure was right '
+  'to within a fraction of a per cent.')
 table([['Line', 'Audited 6M to Dec-2025', 'Reported 6M to Jun-2026', 'Base year', 'Basis'],
        ['Net sales', n0(IN['rev_h2_25'] / 1e6), n0(IN['rev_h1cy26_rep'] / 1e6), n0(TTM['rev']),
         'both halves as disclosed'],
        ['Gross profit', n0((IN['rev_h2_25'] - IN['cogs_h2_25']) / 1e6), n0(TTM['gp_h1']),
-        n0(TTM['gp']), 'second half SOLVED, see below'],
+        n0(TTM['gp']), 'both halves FILED'],
        ['Gross margin', pc((IN['rev_h2_25'] - IN['cogs_h2_25']) / IN['rev_h2_25'], 2),
         pc(TTM['gp_h1'] * 1e6 / IN['rev_h1cy26_rep'], 2), pc(TTM['gm'], 2), 'output'],
        ['Operating expense', '', '', n0(TTM['ga'] + TTM['mkt'] + TTM['oth'] + TTM['prov']),
@@ -340,7 +412,7 @@ table([['Charge', 'Disclosed', 'Annualised', 'Where it belongs', 'Central WITHOU
         'removed from operating working capital and deducted in the bridge',
         f"{p2(ADV['no_divp']['central'])}  ({sgn(ADV['no_divp']['central']/C-1)})"]],
       [1.6, 1.5, 1.1, 2.35, 1.25], size=8.6, left_cols=(1, 2, 3))
-caption('Table 7 — the three charges. The rightmost column is the weighted central this study '
+caption('Table 7 — the three charges. The rightmost column is the central this study '
         'would print if the charge were NOT taken, from a full model re-run — so a positive figure '
         'is how much each charge costs the valuation. Setting the provision to zero in the previous edition '
         'moved its valuation by nothing at all, to four decimal places, because no formula read '
@@ -577,18 +649,22 @@ caption('Table 16 — the two terminal parameters moved together, cash-flow lens
         'signature of a terminal block where reinvestment funds growth before crediting it. Not '
         'one cell in this grid reaches the market price.')
 
-P('The bear and bull columns of the cash-flow lens are not a single lever moved twice — they '
-  'are FIVE drivers moved together, which is why they are much wider than any single row in '
-  'Table 15. They are joint-worst and joint-best cases and no probability attaches to them.')
+P('The bear and bull columns of the cash-flow lens move only what this company\'s own '
+  'audited filings have printed — the gross margin across its filed span and the tonnage '
+  'across its own — and the macro path does not move with them. A previous edition also '
+  'flexed the exchange-rate path, the cost of capital at both anchors and the terminal '
+  'growth rate; all three carry the same Egyptian inflation, so its bull corner needed '
+  'inflation to be high and low at the same time and its bear corner needed the mirror '
+  'image. The width of a range built that way is a choice of dial settings rather than '
+  'anything the world has shown. No probability attaches to either end.')
 table([['Driver moved', 'Bear', 'Base', 'Bull'],
        *[[SCEN['labels'][k],
-          (pc(SCEN['bear'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
+          (pc(SCEN['bear'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift')
            else f"{SCEN['bear'][k]:.2f}x"),
-          ('0.0%' if k in ('vol_adj', 'gm_shift', 'wacc_shift') else
-           (pc(IN['g_term'], 0) if k == 'g' else '1.00x')),
-          (pc(SCEN['bull'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
+          ('0.0%' if k in ('vol_adj', 'gm_shift', 'wacc_shift') else '1.00x'),
+          (pc(SCEN['bull'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift')
            else f"{SCEN['bull'][k]:.2f}x")]
-         for k in ('vol_adj', 'gm_shift', 'fx_mult', 'wacc_shift', 'g')],
+         for k in ('vol_adj', 'gm_shift', 'fx_mult', 'wacc_shift')],
        ['RESULTING FAIR VALUE, cash-flow lens', p2(SCEN['bear']['ps']), p2(SCEN['base_ps']),
         p2(SCEN['bull']['ps'])]],
       [3.05, 1.05, 1.05, 1.05], band_rows={6}, size=8.6, left_cols=())
@@ -704,10 +780,24 @@ P(f'The price series runs from {S0["series_first"]} to {S0["series_last"]} — '
   f'{pc(S0["flat_frac"], 1)} of sessions closed unchanged.')
 
 H1('3  Where the price could trade')
+# TWO CLOCKS, AND THE SECTION SAID ONE [added 03-Sep-2026]. The cone was simulated
+# from the price library's last session; the valuation is struck against the latest
+# known price. They were the same number until the library stopped moving. Stating
+# both, and which one every figure below is measured against, is the whole fix --
+# the probabilities themselves are now computed against the cone's own anchor.
 P(f'A calibrated Monte-Carlo cone, carry-anchored YZ-HAR-t, 50,000 paths, seed 42, '
   f'ν = {S0["nu"]}, width calibration {S0["width_cal"]}. The drift is the CARRY — '
   f'ln(1+risk-free) less ln(1+dividend yield) — and NO part of it comes from the valuation, so '
   f'the cone can and does sit above a fair value well below it.')
+P(f'READ THIS SECTION AGAINST EGP {p2(STK["spot"])}, NOT AGAINST THE PRICE ON THE '
+  f'MASTHEAD. The cone was simulated from the closing price of '
+  f'{STK["anchor_date"]}, which is the last session in the price history it was '
+  f'built on; the valuation is struck against the {IN.get("spot_date", "later")} '
+  f'close of EGP {p2(SPOT)}. Those are two different clocks and they are supposed '
+  f'to be: a fresh price moves the valuation without re-running the simulation, and '
+  f'a fresh price history moves the simulation without re-striking the valuation. '
+  f'Every percentile and every probability in this section is measured against EGP '
+  f'{p2(STK["spot"])}.')
 table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95', 'P(above today)', 'Grade date'],
        ['1 month', *[p2(H1M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],
         pc(H1M['p_above']), H1M['grade_date']],
@@ -745,9 +835,18 @@ def p_touch(level, h):
     """Probability the path TOUCHES a level, from the published percentiles and the anchor
     volatility — the reflection principle on a driftless-in-logs approximation, which is what
     the engine's own stored ladder is built on."""
+    # THE CONE HAS ITS OWN ANCHOR AND THIS FUNCTION WAS USING THE STUDY'S SPOT
+    # [corrected 03-Sep-2026]. The percentiles in h were simulated from the strike's
+    # anchor of EGP 9.10 on 6 August; SPOT is the 3-September close of 13.50. Mixing
+    # them embedded a one-month log drift of -0.3866 -- a 32% fall -- against the
+    # engine's own drift of +0.79%, and printed "EGP 11.83 -> 99.5%" beside the
+    # words THIS STUDY'S FAIR VALUE. The two are different clocks: a fresh price
+    # moves the valuation without re-striking the cone. Every probability here is
+    # now computed against the anchor the cone was actually simulated from.
+    _anchor = STK['spot']
     s_ = h['sigma_h']
-    m = math.log(h['pct']['p50'] / SPOT)
-    b = math.log(level / SPOT)
+    m = math.log(h['pct']['p50'] / _anchor)
+    b = math.log(level / _anchor)
     if abs(s_) < 1e-9:
         return 0.0
     from statistics import NormalDist
@@ -790,7 +889,7 @@ figure(os.path.join(HERE, 'fig6_cone.png'), 6.7,
 
 H1('4  The two answers side by side')
 table([['Question', 'Object', 'Answer', 'Horizon'],
-       ['What is the business worth?', 'weighted fair value',
+       ['What is the business worth?', 'fair value',
         f'EGP {p2(C)}  (range {p2(LO)}–{p2(HI)})', 'undated'],
        ['Where might the price go?', 'calibrated price cone',
         f'3-month median EGP {p2(H3M["pct"]["p50"])}  '
@@ -808,10 +907,12 @@ bullet(f'the margin is the thesis and it is administered, not competed. Half a p
        f'{abs(grid_vals("Gross margin, shifted on every forecast year")[1][1] - LN["dcf"]["base"]):.2f} '
        'on the cash-flow lens, and the filed record spans 514 basis points;',
        bold_head='GROSS MARGIN — ')
-bullet('the base year is half press release. Audited half-year statements that restate revenue '
-       'or profit materially would move the whole build — and note the direction: the '
-       'fully-audited nine-month alternative prices the central LOWER, not higher;',
-       bold_head='THE REPORTED HALF — ')
+bullet('the base year averages a strong reviewed half with a weaker audited one. If the '
+       'weakness before 2026 turns out to be a superseded level rather than a season, the '
+       'base is too low and the whole build moves with it — and note the direction, because '
+       'it is the opposite of the usual caveat: anchoring on the latest reviewed half alone '
+       'prices the central HIGHER, not lower, by about half again;',
+       bold_head='THE BASE ANCHOR — ')
 bullet('two exchange disclosures could not be reached from this environment and pull in '
        'OPPOSITE directions — a board capital budget (roughly −12% at face) and a revised '
        'FY2026 profit budget (roughly +17%);', bold_head='THE TWO UNREAD DISCLOSURES — ')
@@ -823,14 +924,21 @@ bullet(f'the state petroleum complex is both the dominant customer and the feeds
        f'business.', bold_head='THE COUNTERPARTY — ')
 
 H1('6  Probability zones')
-table([['Zone', 'Probability, 3 months'],
-       [f'Below fair value (under EGP {p2(C)})', pc(ZP[0])],
-       [f'EGP {p2(C)} to {p2(7.50)}', pc(ZP[1])],
-       [f'EGP {p2(7.50)} to {p2(SPOT)}', pc(ZP[2])],
-       [f'EGP {p2(SPOT)} to {p2(11.00)}', pc(ZP[3])],
-       [f'Above EGP {p2(11.00)}', pc(ZP[4])],
-       ['TOTAL', pc(sum(ZP))]],
-      [4.2, 1.9], band_rows={6}, size=9.0)
+# THE LABELS ARE BUILT FROM THE SORTED CUTS, NOT TYPED IN THE ORDER SOMEBODY
+# EXPECTED THEM [corrected 03-Sep-2026]. They previously named the bands in the
+# order the unsorted list happened to carry, so each label described a different
+# interval from the probability printed beside it -- which is how two negative
+# figures shipped under a caption promising a partition.
+_zn = lambda x: ('fair value' if x is C or abs(x - C) < 1e-6 else
+                 'the traded price' if x is SPOT or abs(x - SPOT) < 1e-6 else None)
+_lab = lambda x: (f'EGP {p2(x)} ({_zn(x)})' if _zn(x) else f'EGP {p2(x)}')
+_rows = [['Zone', 'Probability, 3 months'],
+         [f'Below {_lab(CUTS[0])}', pc(ZP[0])]]
+for _i in range(len(CUTS) - 1):
+    _rows.append([f'{_lab(CUTS[_i])} to {_lab(CUTS[_i + 1])}', pc(ZP[_i + 1])])
+_rows.append([f'Above {_lab(CUTS[-1])}', pc(ZP[-1])])
+_rows.append(['TOTAL', pc(sum(ZP))])
+table(_rows, [4.2, 1.9], band_rows={len(_rows) - 1}, size=9.0)
 caption('Table 24 — a genuine partition: the bands tile the line, none overlaps, and the total is '
         'asserted to be 100% in the build. The previous edition published five zones summing to '
         '103.4%, with one band written descending and nested inside the band above it, so every '
@@ -868,7 +976,8 @@ bullet('THE TEST CHANGED THIS EDITION’S VOLUME ASSUMPTION. The previous editio
 bullet('THE FAR FORECAST YEARS SUPPORT A RANGE AND NEVER A POINT. On its own measured error the '
        'method’s three-year profit forecast spans roughly a fifteen-fold band. That is not a '
        'useful forecast and this study does not pretend otherwise; it is why the fair value here '
-       'is a range, why the terminal block is disclosed as 36% of enterprise value, and why '
+       f'is a range, why the terminal block is disclosed as {pc(DCF["tv_share"], 1)} of '
+       f'enterprise value, and why '
        'Section 1.7 identifies the one thing that would settle the case.')
 bullet('THE TEST ITSELF IS SMALL. Five origins, nine scored forecasts, one company. AMOC '
        'publishes no accounts older than FY2022, so the window could not be lengthened. Nothing '
@@ -910,19 +1019,46 @@ bullet('THE MARGIN IS ADMINISTERED. A 514-basis-point range across four consecut
 # ============================ APPENDIX A =====================================
 H1('Appendix A  Financial statements')
 H2('A.1  Income statement — four filed periods and a five-year forecast (EGP mn)')
-table([['', *PERIODS, *YRS],
-       ['Net sales', *[n0(HIS[p]['rev']) for p in PERIODS], *[n0(x) for x in F['rev']]],
-       ['Cost of sales', *[n0(HIS[p]['rev'] - HIS[p]['gp']) for p in PERIODS],
-        *[n0(F['rev'][i] - F['gp'][i]) for i in range(5)]],
-       ['Gross profit', *[n0(HIS[p]['gp']) for p in PERIODS], *[n0(x) for x in F['gp']]],
-       ['Gross margin', *[pc(HIS[p]['gm'], 1) for p in PERIODS], *[pc(x, 1) for x in F['gm']]],
-       ['Operating profit', *[n0(HIS[p]['ebit']) for p in PERIODS], *[n0(x) for x in F['ebit']]],
-       ['Net finance income', *['' for _ in PERIODS], *[n0(x) for x in F['interest']]],
-       ['Attributable profit', *['' for _ in PERIODS], *[n0(x) for x in F['np_attr']]]],
-      [1.5, 0.72, 0.72, 0.72, 0.72, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.6)
-caption('Table A.1 — the four filed periods are AS FILED and are of unequal length (two six-month '
-        'periods and two quarters), so they are shown as reported rather than annualised. The '
-        'forecast columns are the model.')
+# SPLIT INTO FILED AND FORECAST [03-Sep-2026]. Adding the missing fifth filed
+# period took this to ten numeric columns, and ten columns of eight-character
+# figures do not fit a seven-inch text block at a readable size -- the table
+# discipline check said so, correctly. Two tables on the same rows read better than
+# one squeezed table, and each can now carry a column wide enough for its content.
+_w = lambda n: [1.55] + [min(0.85, 5.35 / n)] * n
+table([['EGP mn — AS FILED', *PERIODS],
+       ['Net sales', *[n0(HIS[p]['rev']) for p in PERIODS]],
+       ['Cost of sales', *[n0(HIS[p]['rev'] - HIS[p]['gp']) for p in PERIODS]],
+       ['Gross profit', *[n0(HIS[p]['gp']) for p in PERIODS]],
+       ['Gross margin', *[pc(HIS[p]['gm'], 2) for p in PERIODS]]],
+      _w(len(PERIODS)), size=7.9)
+table([['EGP mn — FORECAST', *YRS],
+       ['Net sales', *[n0(x) for x in F['rev']]],
+       ['Cost of sales', *[n0(F['rev'][i] - F['gp'][i]) for i in range(5)]],
+       ['Gross profit', *[n0(x) for x in F['gp']]],
+       ['Gross margin', *[pc(x, 2) for x in F['gm']]],
+       ['Operating profit', *[n0(x) for x in F['ebit']]],
+       ['Net finance income', *[n0(x) for x in F['interest']]],
+       ['Attributable profit', *[n0(x) for x in F['np_attr']]]],
+      _w(5), size=7.9)
+_LATEST_P = PERIODS[-1]
+_LATEST_GM = HIS[_LATEST_P]['gm']
+caption(f'Table A.1 — the {len(PERIODS)} filed periods are AS FILED and are of unequal length '
+        f'(six-month periods and quarters), so they are shown as reported rather than '
+        f'annualised. The forecast columns are the model.')
+P(f'READ THE LAST FILED COLUMN AGAINST THE FIRST FORECAST COLUMN. The most recent filed '
+  f'period, {_LATEST_P}, carries a gross margin of {pc(_LATEST_GM, 2)}; the first forecast '
+  f'year opens at {pc(F["gm"][0], 2)} and the path is held roughly flat from there. THE '
+  f'FORECAST IS THEREFORE BELOW THE LATEST FILED PERIOD, and a reader is entitled to know '
+  f'that without deriving it. The reason is the base year: the model is anchored on the '
+  f'twelve months to 30 June 2026, which averages that half with the weaker one before it '
+  f'({pc(HIS[PERIODS[2]]["gm"], 2)}), rather than on the latest half alone. Whether that '
+  f'weakness is seasonal or a superseded level is this study\u2019s largest contested '
+  f'judgement: the same quarter a year apart runs {pc(HIS[PERIODS[1]]["gm"], 2)} against '
+  f'{pc(HIS[PERIODS[3]]["gm"], 2)}, which no seasonal pattern produces. Anchoring on the '
+  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share against the '
+  f'published EGP {p2(C)}. It is priced here and NOT taken, because corrections are made one '
+  f'at a time and this study has already made one this edition; taking a second would carry '
+  f'it from below the traded price to well above it in a single step.')
 
 H2('A.2  Balance sheet — as filed at 31 December 2025, and the forecast (EGP mn)')
 table([['', 'Filed 31-Dec-2025', *YRS],
@@ -1024,7 +1160,7 @@ P('Three independent methods, cast by approach rather than by personality, each 
   'audited inputs and each free to disagree with the primary lens.')
 E1, E2, E3 = EXP['e1'], EXP['e2'], EXP['e3']
 
-H2(f'Expert 1 — {E1["method_short"]}')
+H2(f'C.1  Expert 1 — {E1["method_short"]}')
 P(f'Takes {E1["year"]} operating profit, adds the finance income the cash pile actually earns, '
   f'taxes the sum, strikes the minority, and applies a justified multiple struck BELOW the '
   f'primary lens deliberately — this is an independent opinion, not a restatement of it.')
@@ -1041,7 +1177,7 @@ caption(f'Table C.1 — Expert 1. Range EGP {p2(E1["rng"][0])} to {p2(E1["rng"][
         f'{pc(E1["base"]/SPOT-1)} against the market price. Note that it is an undiscounted '
         f'{E1["year"]} number, which is why it sits above the primary lens.')
 
-H2(f'Expert 2 — {E2["method_short"]}')
+H2(f'C.2  Expert 2 — {E2["method_short"]}')
 P('Discounts cash flow to the EQUITY holder rather than to the firm: free cash flow to the firm '
   'less after-tax finance costs plus after-tax finance income, discounted at the COST OF EQUITY '
   'on its own glide rather than at the weighted rate. It is the cleanest independent check on '
@@ -1066,7 +1202,7 @@ caption(f'Table C.2 — Expert 2. Range EGP {p2(E2["rng"][0])} to {p2(E2["rng"][
         f'{pc(E2["ke_path"][0], 1)} to {pc(E2["ke_path"][-1], 1)} is punished harder in the '
         f'near years than an unlevered claim on the weighted rate.')
 
-H2(f'Expert 3 — {E3["method_short"]}')
+H2(f'C.3  Expert 3 — {E3["method_short"]}')
 P('Values the business as invested capital plus the present value of the ECONOMIC PROFIT it '
   'earns above its cost of capital, rather than as a stream of cash. Arithmetically it must '
   'reconcile to the primary lens on the same inputs — that is the point of including it. Where '
@@ -1090,8 +1226,145 @@ caption(f'Table C.3 — Expert 3. Range EGP {p2(E3["rng"][0])} to {p2(E3["rng"][
         f'question here; the question is how much spread {pc(TTM["gm"])} of gross margin can '
         f'support.')
 
-for key, name in []:
-    e = EXP[key]
+# ---- C.4  cross-examination ------------------------------------------------
+H2('C.4  Cross-examination')
+P('Each expert is put the strongest objection the other two can make to their number, and each '
+  'objection is either CONCEDED or REJECTED with the arithmetic that settles it. Nothing here '
+  'is rhetorical: every figure in the table is computed from the three constructions above.')
+
+# Expert 1 is an UNDISCOUNTED forward number. Bringing it to the valuation date on the same
+# factor the normalised lens uses is the single largest correction anyone in the room can make.
+_e1_pv = E1['base'] * NRM['df']
+_e2_tv_share = E2['pv_tv'] / (E2['pv'] + E2['pv_tv'])
+_e3_tv_share = E3['pv_ep_term'] / E3['ev']
+_e3_cap_share = E3['ic0'] / E3['ev']
+
+table([['Objection', 'Raised by', 'Answered', 'The arithmetic'],
+       [f'Expert 1 values {E1["year"]} earnings and never brings them back to the valuation '
+        f'date.', 'Experts 2 and 3', 'CONCEDED',
+        f'Discounted {NRM["yrs"]:.1f} years at the cost of equity, Expert 1 is worth '
+        f'EGP {_e1_pv:.2f}, not {p2(E1["base"])} — below Expert 3 and above Expert 2.'],
+       [f'Expert 1 applies {E1["pe"]:.1f}x when this company trades at '
+        f'{REL["pe_trailing"]:.1f}x its own trailing earnings.', 'Expert 3', 'REJECTED',
+        f'{E1["pe"]:.1f}x is struck BELOW the trailing multiple deliberately. Using the '
+        f'traded multiple would value the company at what it already costs, which the '
+        f'relative lens is separately forbidden from doing.'],
+       ['Expert 2 carries no bridge at all, so the tax-disputes provision and the declared '
+        'dividend never reach the shareholder.', 'Expert 1', 'CONCEDED IN PART',
+        f'Both are deducted: EGP {n0(BR["prov"] + BR["divp"])}mn, or '
+        f'EGP {(BR["prov"] + BR["divp"]) / SH:.2f} a share. What is NOT added back is the '
+        f'cash itself — it reaches the holder through finance income instead, which is what '
+        f'keeps this read independent of the primary lens.'],
+       [f'Expert 2 puts {pc(_e2_tv_share)} of its value beyond year five.', 'Expert 3',
+        'REJECTED',
+        f'The primary lens puts {pc(DCF["tv_share"])} there on the same horizon. A terminal '
+        f'block this size is a property of a five-year window on a company still recovering, '
+        f'not of this expert\'s choices.'],
+       [f'Expert 3 must reconcile to the primary lens by construction, so it is not an '
+        f'independent read.', 'Experts 1 and 2', 'CONCEDED — AND THAT IS WHY IT IS HERE',
+        f'It is included to make the SPLIT visible: {pc(_e3_cap_share)} of its enterprise '
+        f'value is capital already in the ground and {pc(_e3_tv_share)} is economic profit '
+        f'beyond year five. Neither of the other two shows that.'],
+       ['Expert 3 charges the cost of capital on opening invested capital, which flatters '
+        'economic profit in a growing year.', 'Expert 2', 'REJECTED',
+        'Opening capital is the capital the year had available to earn on. Charging closing '
+        'capital would charge for assets bought with the year\'s own cash flow.']],
+      [2.15, 0.95, 1.15, 2.55], size=8.0, left_cols=(0, 1, 2, 3))
+caption('Table C.4 — cross-examination. Two of the six objections are conceded outright and one '
+        'in part; the three rejections each rest on a number rather than a preference. The '
+        'largest single correction in the room is the first one, and it is the reason the panel '
+        'median is not simply the highest of the three.')
+
+# ---- C.5  the three in one room --------------------------------------------
+H2('C.5  The three in one room')
+_lo3 = min(EXP[k]['base'] for k in ('e1', 'e2', 'e3'))
+_hi3 = max(EXP[k]['base'] for k in ('e1', 'e2', 'e3'))
+_below = sum(1 for k in ('e1', 'e2', 'e3') if EXP[k]['base'] < SPOT)
+P(f'Put in one room the three methods land between EGP {p2(_lo3)} and EGP {p2(_hi3)}, a spread '
+  f'of {pc(_hi3 / _lo3 - 1)} of the lower number, with a median of EGP {p2(D["panel_centre"])} '
+  f'against a market price of EGP {p2(SPOT)} — {pc(D["panel_centre"] / SPOT - 1)}. '
+  f'{"All three" if _below == 3 else ("Two of the three" if _below == 2 else "One of the three")} '
+  f'sit below the price.')
+P('Where they agree is more informative than where they differ, because the agreement is not '
+  'built in. All three are struck on the same audited base year and the same house macro path, '
+  'and none of them is allowed to set an inflation rate of its own — so the disagreement between '
+  'them is entirely about how a peso of operating profit should be capitalised, never about what '
+  'the economy is doing. All three also agree on the one thing that matters most for this name: '
+  f'the company earns a positive return over its cost of capital in every forecast year — '
+  f'Expert 3 measures the spread at {pc(E3["spread"][0], 1)} rising to '
+  f'{pc(E3["spread"][-1], 1)} — and is still not worth the market price on any of the three '
+  'constructions.')
+P(f'Where they part company is the treatment of TIME. Expert 1 states a value at '
+  f'{E1["year"]} and does not discount it; Expert 2 discounts an equity claim on the cost of '
+  f'equity\'s own glide, which is the harshest treatment of the near years available; Expert 3 '
+  f'discounts at the weighted rate and separates capital already in place from the return earned '
+  f'on it. Bring Expert 1 back to the valuation date and the three collapse into a band of '
+  f'EGP {p2(min(_e1_pv, E2["base"], E3["base"]))} to '
+  f'EGP {p2(max(_e1_pv, E2["base"], E3["base"]))} — narrower than the spread as published, '
+  'which says that most of the visible disagreement in this panel is a disagreement about the '
+  'valuation date rather than about the company.')
+
+# ---- C.6  reading the divergence -------------------------------------------
+H2('C.6  Reading the divergence')
+P('One row per pair, isolating the single assumption that accounts for most of the gap between '
+  'them. The last column is what is LEFT of the gap once that assumption is removed — the honest '
+  'measure of how much the two methods really disagree. Where removing it takes the pair past '
+  'each other rather than together, the cell says so: an assumption can over-explain a gap, and '
+  'that is worth more to a reader than a tidy number.')
+# The residual is what the NAMED driver does not account for, so it is only printed where
+# the driver can actually be removed and the two constructions re-compared. Where it cannot,
+# the cell says so: a residual printed equal to the whole gap would assert that the named
+# driver explains nothing, which contradicts the column it sits in.
+def _resid(a, b, a_adj):
+    """What is left of the gap once the named driver is removed — and a WORD where removing
+    it takes the pair past each other.
+
+    The first draft printed the bare absolute residual and produced a cell reading 4.48
+    against a gap of 2.04, which looks like an arithmetic error and is in fact a real and
+    interesting fact: bringing Expert 1 back to the valuation date does not close the gap to
+    Expert 3, it CROSSES it. A number that needs a sentence gets the sentence."""
+    before, after = a - b, a_adj - b
+    if before * after < 0:
+        return '%.2f — overshoots' % abs(after)
+    return '%.2f' % abs(after)
+
+
+_pairs = [
+    ('Expert 1 vs Expert 2', E1['base'], E2['base'],
+     'the valuation date — Expert 1 is an undiscounted forward number',
+     _resid(E1['base'], E2['base'], _e1_pv)),
+    ('Expert 1 vs Expert 3', E1['base'], E3['base'],
+     'the valuation date, again — which here CROSSES rather than closes: discounted, '
+     'Expert 1 falls below Expert 3',
+     _resid(E1['base'], E3['base'], _e1_pv)),
+    ('Expert 2 vs Expert 3', E2['base'], E3['base'],
+     f'the BRIDGE — Expert 3 adds net cash of {EXP["e2e3"]["cash"]:+.2f} a share at face, '
+     f'Expert 2 takes it through finance income only. The discount rate, measured by '
+     f're-running Expert 2 on the weighted rate, is worth only '
+     f'{EXP["e2e3"]["rate"]:+.2f}',
+     f'{abs(EXP["e2e3"]["resid"]):.2f}'),
+    ('Panel median vs the primary lens', D['panel_centre'], D['central'],
+     'nothing structural — the primary lens is one of the same constructions',
+     'not decomposed'),
+]
+table([['Pair', 'Gap, EGP', 'Gap, %', 'What drives it', 'Left after removing it'],
+       *[[nm, f'{abs(a - b):.2f}', pc(abs(a - b) / min(a, b)), why, res]
+         for nm, a, b, why, res in _pairs]],
+      [1.45, 0.60, 0.55, 2.45, 1.85], size=8.0, left_cols=(0, 3, 4))
+caption(f'Table C.6 — the divergence. The two largest gaps in the panel are both explained by '
+        f'ONE thing, and it is not an assumption about the business: Expert 1 states a value at '
+        f'{E1["year"]} while the other two state one today. The third row is measured the same '
+        f'way, and the measurement OVERTURNED the label this table first carried. Discounting '
+        f'Expert 2\'s own cash flows on the WEIGHTED rate rather than the cost of equity\'s '
+        f'glide gives EGP {p2(E2["ps_at_wacc"])} — so the price of time is worth only '
+        f'EGP {abs(EXP["e2e3"]["rate"]):.2f} of a {abs(EXP["e2e3"]["gap"]):.2f} gap, about '
+        f'{abs(EXP["e2e3"]["rate"]/EXP["e2e3"]["gap"]):.0%} of it. What carries the rest is the '
+        f'BRIDGE: Expert 3 adds the net cash at face and Expert 2 does not. '
+        f'The last row carries no residual because there is no single driver to remove: '
+        f'the median IS one of these three constructions and the primary lens is a fourth read '
+        f'of the same statements.')
+
+H2('C.7  The panel at a glance')
 table([['Expert', 'Method', 'Central', 'Range', 'vs price'],
        *[[k.upper(), EXP[k]['method_short'], p2(EXP[k]['base']),
           f"{p2(EXP[k]['rng'][0])}–{p2(EXP[k]['rng'][1])}", pc(EXP[k]['base'] / SPOT - 1)]
@@ -1099,9 +1372,11 @@ table([['Expert', 'Method', 'Central', 'Range', 'vs price'],
        ['PANEL', 'median of the three', p2(D['panel_centre']), '',
         pc(D['panel_centre'] / SPOT - 1)]],
       [0.85, 2.6, 0.85, 1.2, 0.9], band_rows={4}, size=8.7, left_cols=(1,))
-caption('Table C.4 — the panel. The three methods disagree with each other by more than any of '
-        'them disagrees with the primary lens, which is the honest reading of a company whose '
-        'margin is administered. All three land below the market price.')
+caption('Table C.7 — the panel. Each range is that expert\'s OWN method re-run at the two '
+        'filed-evidence corners the primary lens publishes — the worst gross margin in the '
+        'audited record and the best full year — so the panel and the envelope are read on one '
+        'clock. Earlier editions typed these bands beside the methods, and two of them had gone '
+        'stale enough to publish a central outside its own range.')
 
 # ============================ ABOUT ==========================================
 H1('About this study')
@@ -1162,6 +1437,6 @@ box([
      'turn out wrong.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_01-09-2026_public.docx')
+OUT = os.path.join(HERE, 'AMOC_Valuation_Study_03-09-2026_public.docx')
 doc.save(OUT)
 print('wrote', OUT)

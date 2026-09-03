@@ -8,5 +8,12 @@
   "2018": "no equity or per-share note found in the last 28 pages of EGCH_FY2017-18_Annual.pdf",
   "2019": "no equity or per-share note found in the last 28 pages of EGCH_FY2018-19_Annual.pdf"
  },
- "method": "pages rendered at 200dpi and read by tesseract, searched from the back of each document where the notes sit; a year is recorded only where its numbers foot"
+ "method": "pages rendered at 200dpi and read by tesseract, searched from the back of each document where the notes sit; a year is recorded only where its numbers foot",
+ "_CORRECTION": {
+  "date": "2026-09-03",
+  "what_this_record_is_not": "THIS IS NOT EVIDENCE THAT EGCH'S FILINGS CARRY NO CAPITAL NOTE. Every 'no note found' line below was produced by a run that read ARABIC SCANS WITH THE ENGLISH MODEL. EGCH files its annual report in Arabic; tesseract's Arabic model reads those same scans cleanly — verified on page 20 of the FY2015-16 report, which came back as legible accounting-policy prose. The finding here is about the reader, not the document.",
+  "what_happened_next": "The run was repeated with the Arabic model and a two-pass find-then-read scheme. It was still running after 80 minutes without completing a single document — tesseract's Arabic model is multi-threaded and two such runs saturated all four cores — and it was STOPPED deliberately rather than left to consume the machine: the share counts it would produce feed [R-VCAL-01]'s series (a), which the same day's census showed is blocked on capital expenditure regardless, so they unblock nothing today.",
+  "when_it_is_wanted": "At EGCH's next walk-forward run, where [R-FCAL-01 AMENDED] now REQUIRES the share count as part of the valuation-input block. Run it with OMP_THREAD_LIMIT=1 so the pages do not thrash, and narrow the page window: the capital note sits in the notes, not in the last few pages.",
+  "kept_rather_than_deleted": "so that nobody re-runs the English model on Arabic scans and reaches the same wrong conclusion a second time."
+ }
 }

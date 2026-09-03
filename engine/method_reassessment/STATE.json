@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — the five on the new standard, and the gates that read what ships",
-  "step": "[R-ENF-05] output records now conform on ARCC, EGCH, PHDC and TMGH; only AMOC of the five is left and it is blocked by a real defect (its contested alternatives sit on a superseded bridge, L-070). The big find of the day is that [R-LENS-03] is green in every lens RECORD and false in 14 of 20 delivered DOCUMENTS, ADNOCLS the model report among them; a gate now reads the delivered PDF and the model-report skeleton no longer teaches the blend. Measured across the book, the blend put the central below the class primary on 6 of 8 blended studies, median -5.8pp of spot, worst -40.6pp (DU) — the same near-zero-median, fat-tail shape as the delivered book, which is the second independent corroboration that the house was INCONSISTENT rather than uniformly pessimistic.",
-  "status": "in progress"
+  "workstream": "[R-ANCHOR-01] and [R-ENF-06] adopted; AMOC, ARCC, EGCH and PHDC re-struck on the 3-Sep prices",
+  "step": "Three independent outside audits returned NOT DELIVERABLE on the three re-struck editions, all for one reason an auditor put in a sentence: THE RE-STRIKE REACHED THE VALUATION AND NOT THE PAPER. AMOC's page one told a reader that conceding every contested charge reached EGP 7.47 — BELOW the published 11.83, which is impossible — because case_adversarial.json was READ BY THREE BUILDERS AND WRITTEN BY NOTHING. ARCC's efg_bridge.json carried a weighted central of 54.65 and a caption typed from a superseded model; EGCH's diagnostics were a full edition behind. [R-ENF-06] closes the class: any JSON a builder reads that carries a valuation figure declares the central and spot it was built against, and a gate compares. Its own first draft could not see ARCC's case (the figure sits under a key named `end`), which is now case 2 of its negative control. Also fixed from the audits: AMOC's two NEGATIVE probabilities under a partition caption (cuts not ascending, and the guard asserted a sum that telescopes to 1.0 for ANY ordering — a check that could not fail); AMOC's §3 measuring touch probabilities against the study spot while the percentiles came from the cone's own earlier anchor; AMOC's Weight column carrying the retired blend two inches under a caption saying the cross-checks carry no weight; ARCC's 'growth therefore ADDS value' against its own analytic_adds_value=False; ARCC's §4 rendering empty f-string slots because the prose assumed both sides of the price were occupied; EGCH's book lens published at 0.00 where the record carries the disclosed floor of 8.16.",
+  "status": "in progress — AMOC and ARCC document defects partly closed; PHDC QC gate outstanding"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -83,18 +83,18 @@
   "Day 3: check_lens_vocabulary.py reads the DELIVERED PDF — 14 of 20 publish the retired blend; negative control 6/6 + 4 clean; model-report skeleton amended, both documents to rev 2026-09-03d",
   "Day 3: ARCC and EGCH [R-ENF-05] records; engine/reverse_read.py makes the reverse read one construction; the containment check re-pointed (not widened) with case 4b proving it",
   "Day 3: lens_recentre.py — the blend measured across the book",
-  "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)"
+  "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)",
+  "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
-  "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
-  "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
-  "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
-  "AMOC: compute.py's prose calls gross-debt weights 'the construction this study rejects' while bridge_record records gross as adopted; the numbers say the bridge record is current, so the prose is what needs correcting",
-  "EGCH: [R-ENF-05] records on a two-sided central — decide which side the reverse read is solved against, or solve both",
-  "EGCH and ARCC share counts from the OCR now running, footed the same way",
-  "TMGH 2023 has no cash cell in its own committed panel — a gap in that run's parse, not in the census probe",
-  "the five IMF WEO vintages (2014, 2020-2023) — blocked by an IMF interstitial that defeats curl and a headless browser; an access limit, not a design gap",
-  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition"
+  "MERGE to main on green per [R-MERGE-01] — an unmerged rule binds nothing",
+  "AMOC's remaining audit items: Appendix A omits the latest reviewed period (6M Jun-2026, 12.43%) and carries ~18 months against a required 3 years; Appendix C has no cross-examination, three-in-one-room or divergence table and two experts sit outside their own ranges; the +55% base-anchor contested judgement returns 0 hits in all three delivered files; §1.2 contradicts itself four lines apart on whether the half is filed; terminal share stated 36% against a computed 58.0%",
+  "ARCC's remaining audit items: no Company overview / About / Disclosure sections; Appendix C has no C.4/C.5/C.6; Figure 2 plots EGP millions on an axis labelled EGP per tonne; workbook READ FIRST titled revision 3 against a meta of 4; Step-0 'TOO WIDE' flag is NOT earned (binomial p 0.804/0.055/0.396, live BANDS.ARCC flag null) and the retired skill verdict reaches a reader twice; sweep.py never imports research_sweep.py so its eight invariants never ran; no ARCC entry in the Driver Ledger against 23 House-ring drivers",
+  "ARCC's Sweep-Register answer, which runs AGAINST the value: the FY2025 investor presentation discloses Cash Cost/Ton EGP 1,448 and a 41% EBITDA margin on the same slide as the EGP 3,118/t price the study DOES use; the study anchors price on the exit quarter and cost on the full year (1,542/t)",
+  "PHDC QC gate (auditor running); its five undeclared artefacts under [R-ENF-06]",
+  "The 21 studies on anchor_outstanding.json and the 5 on artefact_outstanding.json — both lists may only SHORTEN",
+  "AMOC's base re-anchor, priced at +55% and deliberately not taken under [R-VCAL-01]'s one-lever guard",
+  "SAVOLA newly breaching at -10.1% against the 3-Sep price; TMGH re-issue"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -110,7 +110,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T08:17:27Z",
+ "updated": "2026-09-03T12:50:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

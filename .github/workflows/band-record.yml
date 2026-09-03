@@ -28,6 +28,7 @@ on:
       - 'scripts/build_band_theses.py'
       - 'scripts/check_band_vocabulary.py'
       - 'scripts/check_band_vocabulary_negative_control.py'
+      - 'engine/*_study/*.docx'
       - '.github/workflows/band-record.yml'
   pull_request:
     paths:
@@ -42,6 +43,7 @@ on:
       - 'scripts/build_band_theses.py'
       - 'scripts/check_band_vocabulary.py'
       - 'scripts/check_band_vocabulary_negative_control.py'
+      - 'engine/*_study/*.docx'
       - '.github/workflows/band-record.yml'
   workflow_dispatch: {}
 
@@ -61,7 +63,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install deps
-        run: pip install numpy pandas scipy
+        run: pip install numpy pandas scipy python-docx   # python-docx: this gate now reads the DELIVERED study documents, not only the site
 
       # VERIFY BY IMPORT, NOT BY PARSE — the standing rule, for the same reason as ever.
       - name: Import the record module and check its thresholds

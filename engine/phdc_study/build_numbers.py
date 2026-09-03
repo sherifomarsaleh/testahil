@@ -36,9 +36,22 @@ def main():
     waccs, grid = V2.sensitivity()
     cfos = [CF["lo"], 0.060, CF["mid"], 0.120, CF["hi"]]
     gv = [row for _c, row in grid]
-    S = V2.SCHEDULES["rating"]
+    # THE CDS BASIS IS THE HOUSE DEFAULT AND PHDC WAS THE SECOND STUDY NOT USING IT
+    # [corrected 03-Sep-2026]. [R-COC-01] names the swap basis as central -- the
+    # market's own live pricing of the sovereign's credit against an agency judgement
+    # updated in steps -- and AMOC, ARCC and (as of today) EGCH all follow it. Both
+    # bases stay published; only which one is CENTRAL moves.
+#
+    # THE REASON THIS IS DONE HERE AND NOT DEFERRED IS WORTH WRITING DOWN. The switch
+    # moves PHDC from 17.46 to 17.85, +2.2%, which carries it FURTHER above the traded
+    # price -- 21.2% to 23.9% -- while the same switch on EGCH moved that study TOWARD
+    # the market. Correcting the one that helps and deferring the one that hurts is
+    # precisely the lean [R-ENF-05]'s sign test exists to measure, and a basis chosen
+    # by which way it moves the answer is not a basis at all. The convention is a house
+    # convention; it does not get decided per study by its consequences.
+    S = V2.SCHEDULES["cds"]
     base = V2.run(CF["mid"], S)
-    base_cds = V2.run(CF["mid"], V2.SCHEDULES["cds"])
+    base_cds = V2.run(CF["mid"], V2.SCHEDULES["rating"])   # the published ALTERNATIVE now
     low = V2.run(CF["lo"], S)
     high = V2.run(CF["hi"], S)
     implied = V2.implied_conversion(V2.SPOT, S)
@@ -58,7 +71,7 @@ def main():
             "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             "standard_version": RP.STANDARD_VERSION,
-            "spot": 15.20, "spot_date": "close 23 Aug 2026",
+            "spot": 14.40, "spot_date": "close 3 Sep 2026",
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                        IN.OPERATING, IN.MARKET) for k, v in g.items()},
@@ -106,7 +119,7 @@ def main():
         "peers": peers,
         # published price engine output, read from the live site data, not re-derived
         "price_map": {
-            "spot": 15.20, "spot_date": "close 23 Aug 2026",
+            "spot": 14.40, "spot_date": "close 3 Sep 2026",
             "dist": {"m1": {"p5": 13.08, "p25": 14.67, "p50": 15.64,
                             "p75": 16.68, "p95": 18.71, "resolve": "2026-09-23"},
                      "m3": {"p5": 11.98, "p25": 14.61, "p50": 16.34,
@@ -190,9 +203,51 @@ def main():
                                        "shifted rather than flattened"),
                         "note": ("the cash-flow lens on the company's own units and prices, "
                                  "discounted on the cost-of-capital schedule over a window "
-                                 "that runs until growth has converged on the terminal")},
+                                 "that runs until growth has converged on the terminal"),
+                        # THIS BLOCK WAS PATCHED INTO study_numbers.json AND NOT INTO
+                        # THE THING THAT WRITES IT [folded back 03-Sep-2026]. The
+                        # committed artefact carried a range_basis; this generator did
+                        # not emit one, so the first honest rebuild dropped it and the
+                        # lens gate went red on a study that had been conforming. The
+                        # standing rule is that post-delivery corrections fold back
+                        # into the build scripts and not just the delivered file, and
+                        # this is what it looks like when they do not: the correction
+                        # survives exactly until somebody re-runs the builder.
+                        "range_basis": {
+                            "driver": ("cash conversion — the rate at which contracted "
+                                       "sales become operating cash"),
+                            "low": 0.039375934839767424,
+                            "high": 0.17870012846326283,
+                            "units": ("fraction of contracted sales converting to "
+                                      "operating cash in the year"),
+                            "evidence": (
+                                "the full observed span of that rate in the company's own "
+                                "filed cash-flow statements, recorded in this study's "
+                                "diagnostics as study_value_range against a forecast of "
+                                "0.0871. Not a chosen percentage band: the low and the "
+                                "high are values this company has actually printed."),
+                            "macro_held": True,
+                            "macro_note": (
+                                "one inflation path, one currency path, one cost-of-capital "
+                                "schedule across all three reads — the schedule is shifted "
+                                "whole rather than flattened, so no read discounts a year "
+                                "at a rate another read does not recognise."),
+                        }},
             "cross_checks": [
+                # THE INGREDIENTS, NOT THE SENTENCE [added 03-Sep-2026]. This
+                # lens was already non-circular -- 9x FY2026E earnings, from the
+                # 6x-14x band PHDC's own shares have carried -- but the gate that
+                # said so was reading this prose. AMOC's record used the same
+                # reassuring words while its code divided the MARKET CAP by
+                # base-year EBITDA, so the claim is now arithmetic everywhere.
+                # net_debt is 0 because this is an EQUITY multiple: the comparator
+                # is the traded price-to-earnings ratio on the same earnings.
                 {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
+                 "multiple": 9.0,
+                 "circularity": {"spot": 14.40,
+                                 "shares": float(V2.SHARES),
+                                 "net_debt": 0.0,
+                                 "metric_value": float(V2.ROWS[0]["npat"])},
                  "multiple_source": ("the multiples PHDC's own shares have carried over five "
                                      "years of its own history, 6x to 14x trailing earnings")},
                 {"kind": "book_value", "value": V2.lenses()["book"], "present_value": False,
@@ -292,7 +347,7 @@ def main():
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
     out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
-    out["spot"] = 15.20
+    out["spot"] = 14.40
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
     out["meta"]["central_note"] = (

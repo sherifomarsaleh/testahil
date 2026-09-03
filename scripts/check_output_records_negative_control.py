@@ -49,7 +49,7 @@ def sandbox():
     return tmp
 
 
-def put(tmp, diag=None, cj=None, builder=None, raw=None):
+def put(tmp, diag=None, cj=None, builder=None, raw=None, numbers=None):
     d = os.path.join(tmp, "engine", "nco_study")
     os.makedirs(d, exist_ok=True)
     if raw is not None:
@@ -60,6 +60,8 @@ def put(tmp, diag=None, cj=None, builder=None, raw=None):
         json.dump(cj, open(os.path.join(d, "contested_judgements.json"), "w"), indent=1)
     if builder:
         open(os.path.join(d, "compute.py"), "w").write(builder)
+    if numbers is not None:
+        json.dump(numbers, open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
 
 
 def put_list(tmp, tickers):
@@ -118,6 +120,22 @@ def main():
                                 "D = json.load(open(os.path.join(_WF, "
                                 "'diagnostics.json')))\n"
                                 "BIAS = D.get('bias')\n"), put_list(t, [])), False, R)
+
+    # THE OTHER HALF OF THE RULE, and it must go RED. [R-ENF-05] says the reverse
+    # read lives OUTSIDE the numbers file builders read; the assert used to check
+    # only that no builder read diagnostics.json back in. A study that commits the
+    # solved value into study_numbers.json has left the side door open whether or
+    # not anything walks through it today — which is the shape four of five
+    # studies were found in on 03-09-2026.
+    case("4c the solved value is committed in study_numbers.json",
+         lambda t: (put(t, diag=DIAG, cj=CJ,
+                        numbers={"lenses": {"implied_rate":
+                                            DIAG["implied"]["value"]}}),
+                    put_list(t, [])), True, R)
+
+    case("4d a numbers file that does NOT carry the solved value",
+         lambda t: (put(t, diag=DIAG, cj=CJ,
+                        numbers={"dcf": {"ps": 12.34}}), put_list(t, [])), False, R)
 
     c5 = copy.deepcopy(CJ); c5["judgements"][1].pop("why")
     case("5 a judgement with no reason", lambda t: (put(t, diag=DIAG, cj=c5), put_list(t, [])),

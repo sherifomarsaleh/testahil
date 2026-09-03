@@ -555,3 +555,64 @@ constructing its own.
 - **The plant replacement** (old electrolytic plant shut FY2019; gas-fed complex from FY2020) is the
   structural break the record turns on: excluding every cell touching FY2020–FY2022 halves the
   revenue error and leaves the margin over "no change" about the same.
+
+---
+
+## ARCC — Arabian Cement · EGX · integrated cement (registered class: cement and heavy industrial) · re-struck 3 September 2026
+
+The ledger carried **no ARCC entry at all** against 23 House-ring drivers until this date.
+An outside audit found that on 3 September 2026, and the omission is worth stating rather
+than quietly filled: the ledger exists so the NEXT study of a class does not re-derive what
+this one decided, and a study with no entry contributes nothing to that.
+
+### The driver decision this edition did NOT change, and why it is recorded
+
+**PRICE IS ANCHORED ON THE EXIT QUARTER AND COST ON THE FULL YEAR. The two legs are on
+different clocks and the study does not say so.**
+
+| leg | anchor | value |
+|---|---|---:|
+| realised local price | **Q4-2025 exit rate**, disclosed | EGP 3,118/t |
+| — the full-year average it is 7.2% above | FY2025 | ~EGP 2,908/t |
+| cash cost per tonne sold | **FY2025 full year**, from notes 5 and 6 | EGP 1,541.90/t |
+
+The price leg follows the standing rule that a near-term reviewed actual outranks a stale
+full-year rate. The cost leg does not. Applying that rule to one leg and not the other
+produces a spread that is **neither** of the two coherent readings — it sits between the
+full-year spread and the exit-quarter spread — and nothing in the study tells a reader that
+its numerator and its denominator come from different periods.
+
+**Direction, stated so it is not mistaken for a neutral choice:** on the figures above the
+mixed clock gives a **narrower** spread than an exit-quarter pair would. The inconsistency
+runs AGAINST the value.
+
+**Why it is not corrected in this edition.** The outside audit reports that the FY2025
+investor presentation discloses **Cash Cost/Ton of EGP 1,448** for 4Q2025 on the *same
+slide* as the EGP 3,118/t price this study already uses. **That figure is not in this
+repository**: `grep` returns zero hits across the study's committed artefacts, and the
+presentation itself is absent from `sweep_register.json`. Under SIGCM clause 1 a figure
+this desk cannot open is a figure this desk does not use, so it is recorded here with its
+source named rather than typed in from a report. It is the first thing the next ARCC pass
+should fetch.
+
+### Sweep gaps carried, both of which this edition inherited
+
+1. **The FY2025 investor presentation is not in the sweep register.** [The Step 2A rule
+   makes investor-relations material MANDATORY, not optional, for volumes, prices,
+   utilisation and segment data no financial statement carries — and it is the source of
+   every tonne in this build.] Tagged `COMPANY_IR` nowhere; the register carries no IR tag
+   at all.
+2. **The H1-2026 interim is not in the sweep register either** — and it is the balance
+   sheet the bridge stands on. The bridge is right; the register does not record where it
+   came from.
+3. **`engine/arcc_study/sweep.py` is hand-rolled and never imports `research_sweep.py`**, so
+   the eight enforced invariants that module exists to apply have never run over this
+   study's register. That is the [R-ENF-01] species inside a study rather than around one.
+
+### What would overturn any of this
+
+Fetching the presentation and finding the 4Q2025 cash cost is NOT 1,448, or that it is
+measured on a different basis from the study's own cash-cost definition (which excludes
+provisions and expected credit losses — revision 3 of this study carried them inside "cash
+cost" and they are not cash). Either would settle the question the other way, and neither
+can be decided from the repository as it stands.

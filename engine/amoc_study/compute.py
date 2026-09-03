@@ -49,7 +49,13 @@ AUD = "Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Cro
 REV = "Reviewed consolidated FS, three months to 31-Mar-2026"
 LRV = "Limited-review consolidated FS, six months to 31-Dec-2024"
 
-INP['spot'] = I(9.10, "AMOC closing price on the Egyptian Exchange, 6 August 2026", "2026-08-06", "Company")
+# RE-STRUCK ON THE LATEST KNOWN PRICE [R-GAP-01 AMENDED, 03-09-2026]. The study
+# had been carrying a 6-August close for four weeks while the stock rose 48%, and
+# a fair value published against a month-old price is a comparison a reader cannot
+# use. The price is an INPUT to the answer here, not only a benchmark beside it:
+# it sets market capitalisation and therefore the market-value equity weight the
+# cost of capital is built on.
+INP['spot'] = I(13.50, "AMOC closing price on the Egyptian Exchange, 3 September 2026", "2026-09-03", "Company")
 INP['shares_mn'] = I(1291.5, "Issued and paid-up capital EGP 1,291,500,000 at EGP 1 par = "
                              "1,291,500,000 shares (note 18-L, share split to EGP 1 par recorded "
                              "in the Commercial Register 24-Jan-2018)", "2025-12-31", "Company")
@@ -1033,7 +1039,8 @@ say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of c
     f"bridge. It is carried in the bridge instead.")
 
 
-def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
+def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
+          pound_on_price=None):
     """Revenue AND cost, both per line, both from the same twelve-month base.
 
     Per line: tonnes x realisation for revenue; tonnes x (feedstock + conversion) for cost.
@@ -1045,6 +1052,7 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
     rev, gp, gm, cogs_l = [], [], [], []
     lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
     lines_cost = {k: [] for k in LINES}; lmarg = {k: [] for k in LINES}
+    _pound_on_price = (POUND_ON_PRICE if pound_on_price is None else pound_on_price)
     infl = 1.0; pidx = 1.0; vidx = {k: 1.0 for k in LINES}
     _sal_sh = cos_share['salaries'] / (1 - cos_share['raw'])
     _oth_sh = cos_share['other'] / (1 - cos_share['raw'])
@@ -1059,8 +1067,20 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
             v = t0[k] * vidx[k]
             p = px0[k] * pidx
             # feedstock per tonne is pass-through; conversion splits by driver
+            # THE STUDY'S OWN PRINCIPLE, APPLIED TO ONE COST LEG AND NOT THE OTHER
+            # [found 03-Sep-2026 by the re-strike, on the principal's lead].
+            # raw_pass=1.0 is registered with the words "the gross SPREAD per tonne
+            # is held flat in real terms and the margin neither widens nor narrows".
+            # That is true of the FEEDSTOCK leg and false of the CONVERSION leg two
+            # lines below it: salaries and other conversion costs escalate at the
+            # full domestic inflation ladder (14.5% falling to 9.5%) while realised
+            # price grows only at the currency differential (11.7% falling to 6.8%),
+            # a REAL COST DRIFT of +2.7 to +2.8 points a year, compounding for ever.
+            # Nothing in the study declared it and nothing sourced it, and it is
+            # what produces the whole of the forecast margin decline.
+            _pound = pidx if _pound_on_price else infl
             cpt = (raw_pt[k] * pidx * RAW_PASS
-                   + conv_pt[k] * (_sal_sh * infl + _oth_sh * infl
+                   + conv_pt[k] * (_sal_sh * _pound + _oth_sh * _pound
                                    + _sup_sh * pidx + _dep_sh))
             r = v * p; c = v * cpt
             lines_vol[k].append(v); lines_rev[k].append(r); lines_cost[k].append(c)
@@ -1141,6 +1161,52 @@ say(f"[Cost of debt — MATERIALITY] gross debt is {wd_gross:.4%} of the capital
     f"says so rather than dressing an immaterial input as a precise one.")
 assert kd_swing_effect < 0.0005, 'cost of debt is material after all'
 RAW_PASS = V['raw_pass']
+# ---------------------------------------------------------------------------
+# THE REAL COST DRIFT IS REMOVED, AND THE COMPANY'S OWN FILED RECORD IS WHAT
+# REMOVED IT [03-Sep-2026, found by the re-strike on the principal's lead].
+#
+# The previous editions escalated the pound-denominated conversion legs at the
+# full Egyptian inflation ladder (14.5% falling to 9.5%) while realised price per
+# tonne grew only at the currency differential (11.7% falling to 6.8%). That is a
+# REAL COST DRIFT of +2.7 to +2.8 points a year, compounding for ever, and it
+# produced the whole of the forecast margin decline: 9.494% in 2026 falling to
+# 8.764% in 2030, against a base year of 9.653%.
+#
+# THREE THINGS ARE WRONG WITH IT, AND NONE OF THEM IS A MATTER OF TASTE.
+#
+# (i) IT CONTRADICTS THE STUDY'S OWN DECLARED PRINCIPLE. raw_pass = 1.0 is
+#     registered with the words "the gross SPREAD per tonne is held flat in real
+#     terms and the margin neither widens nor narrows". That principle is applied
+#     to the feedstock leg and silently broken on the conversion leg two lines
+#     below it.
+#
+# (ii) IT IS UNSOURCED. No input registers a real cost drift, no disclosure
+#     supports one, and no sentence in the study told a reader that its forecast
+#     margin decline was an escalator artefact rather than a finding. That is
+#     [L-048] exactly, and the digest already carries the ARCC precedent in these
+#     words: "the model's whole forecast margin decline was a mechanical artifact
+#     of the price path being set below a single blended cost-inflation index in
+#     every year, by construction". The lesson was registered, correct, and
+#     re-violated by this study.
+#
+# (iii) THE MEASURED DIRECTION IN THE COMPANY'S OWN RECORD IS THE OPPOSITE. The
+#     standing rule permits a unit rate to drift "only where a named structural
+#     mechanism has a MEASURED like-for-like direction in the company's own period
+#     pair". Cost per unit of revenue across the five filed periods runs
+#     93.146% -> 94.947% -> 93.855% -> 89.810% -> 87.572%: it FELL 5.58 points
+#     while the model asserts it rises 2.7 points a year for ever.
+#
+# So the study's own principle is now applied to EVERY cost leg, which is what
+# POUND_ON_PRICE=True means. It is worth +19.4% (EGP 9.9142 -> 11.8342) and it is
+# therefore this study's most consequential contested judgement, priced BOTH ways
+# below and published side by side rather than averaged.
+#
+# WHAT THIS IS NOT: it is not moving the number toward the price, which
+# [R-GAP-01] prohibits outright. The corrected margin path is roughly 9.7% flat --
+# still well BELOW the 12.43% this company filed for the half to 30 June 2026, and
+# below the 10.19% of the quarter before it. The correction removes an unsupported
+# decline; it does not adopt the improvement, which the rule says to hold flat.
+POUND_ON_PRICE = True
 DEP_ANN = dep_ttm / M
 CAPEX_ANN = capex_ttm / M
 say(f"[Depreciation and capital expenditure, ACTUAL] over the twelve months to 30-Jun-2026 the "
@@ -1282,7 +1348,7 @@ say("[Glide] forward cost of capital " + " -> ".join(f"{w:.2%}" for w in fwd) +
 # the scenario engine. They drifted, and a change to the terminal block applied to one and not the
 # other. There is now one function. Everything that reports a per-share number goes through it.
 def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
-              we=None, wt=None):
+              we=None, wt=None, nci=None):
     """From a build() result to enterprise value and value per share.
 
     Depreciation ROLLS off the asset register instead of being held flat: opening net book plus
@@ -1341,7 +1407,8 @@ def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
     #   - dividends payable is a declared claim, removed from working capital and carried here
     #   - the equity investment outside the operating enterprise is added at its carrying amount
     _eq_gross = _ev - nd_cy25
-    _eq = (_eq_gross * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
+    _nci = NCI_OP if nci is None else nci
+    _eq = (_eq_gross * (1 - _nci) - V['provisions'] / M - V['div_declared'] / M
            + V['fvoci'] / M + V['fin_inv'] / M)
     return dict(rev=_rev, gp=_gp, gm=S['gm'], opex=_opex, ebitda=_ebitda, ebit=_ebit,
                 nopat=_nopat, emp=_emp, dna=_dna, capex=_capex, ppe=_ppe_n, ppe_gross=_ppe_g,
@@ -1388,6 +1455,28 @@ say(f"[Free cash flow to the firm] " + " -> ".join(f"{f:,.0f}" for f in fcff) +
 # ---- one roll-forward, consumed everywhere ---------------------------------
 NCI_SHARE = V['nci_share']
 PAYOUT = V['payout_reported']
+def roll_forward(ebit_, fcff_):
+    """The balance-sheet roll-forward, as ONE implementation.
+
+    It was inline and therefore available only to the base case, which is why the expert
+    panel's ranges could not be re-run on a scenario and were typed instead. Same reasoning
+    as the single waterfall above: a second copy drifts, and the copy that drifts is the one
+    nobody is looking at."""
+    interest_, np_, div_, eq_, nd_, cash_ = [], [], [], [], [], []
+    _nd, _eq = nd_cy25, eqp_cy25
+    for i in range(5):
+        _cash = debt_b - _nd
+        _int = V['cash_yield_path'][i] * max(_cash, 0.0) - V['kd_path'][i] * debt_b
+        _pbt = ebit_[i] + _int
+        _npa = _pbt * (1 - TAX) * (1 - NCI_SHARE)
+        _div = PAYOUT * _npa
+        _eq += _npa - _div
+        _nd = _nd - (fcff_[i] + _int * (1 - TAX)) + _div
+        interest_.append(_int); np_.append(_npa); div_.append(_div)
+        eq_.append(_eq); nd_.append(_nd); cash_.append(debt_b - _nd)
+    return interest_, np_, div_, eq_, nd_, cash_
+
+
 interest_path, np_fc, div_fc, eq_fc, nd_fc, cash_fc = [], [], [], [], [], []
 _nd, _eq = nd_cy25, eqp_cy25
 for i in range(5):
@@ -1562,21 +1651,44 @@ wacc_term_rating = (1 - V['wd_term']) * (RF_TERM + V['beta'] * (V['erp_term'] + 
 
 
 def _val_at(we_, wt_, g_=None, nci_=None):
-    g_ = V['g_term'] if g_ is None else g_
-    nci_ = NCI_SHARE if nci_ is None else nci_
-    _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
-    _df, cc = [], 1.0
-    for w in _fwd:
-        cc /= (1 + w); _df.append(cc)
-    _roic = nopat[-1] * (1 + g_) / ic[-1]
-    _rr = min(g_ / _roic, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
-    _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return (_ev * (1 - nci_) - nd_cy25) / SH
+    """THERE IS ONE COPY OF THE ARITHMETIC, and this is it going through the same
+    waterfall the base case uses.
+
+    THIS FUNCTION WAS A SECOND COPY AND IT HAD DRIFTED — which is the defect this
+    study already diagnosed and cured once, in dcf_scenario's own docstring: *"the
+    previous edition kept one waterfall for the base and another inside this
+    function; they drifted, and a sensitivity row could report a number the model
+    could not reproduce."* The cure was applied to the scenario engine and this
+    function was left behind, still pricing the three contested choices AND every
+    cell of the sensitivity grids.
+
+    Measured before the fix, at the study's OWN adopted rates it returned EGP
+    10.8572 against the delivered EGP 9.9142 — 9.51% apart, from two independent
+    divergences. (i) It re-derived the terminal return from the FORECAST
+    invested-capital series while the delivered terminal is struck on invested
+    capital at REPLACEMENT cost, which is this study's own stated construction and
+    the reason its terminal reinvestment rate is what it is: terminal value
+    17,504.6 against 15,691.4, +11.56%. (ii) It deducted the minority as a share
+    of ENTERPRISE value, which [R-BRIDGE-01] (ii) forbids in as many words, and
+    omitted the provisions, the declared dividend and the non-operating
+    investments the delivered bridge carries.
+
+    Delegating removes both at once, and the assert below is the same one the
+    scenario engine carries: a helper that cannot reproduce the base case is not a
+    helper, it is a second model."""
+    return waterfall(B, g=g_, we=we_, wt=wt_, nci=nci_)['ps']
+
+
+_chk_val = _val_at(wacc_exp, wacc_term)
+assert abs(_chk_val - dcf_ps) < 0.01, (
+    "_val_at does not reproduce the base case: %.4f vs %.4f" % (_chk_val, dcf_ps))
 
 
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
-nci_alt = 0.06
+# "doubled" on the basis the DELIVERED bridge actually uses — the minority's share
+# of gross EQUITY value, 2.96% — rather than a round 6% that was a doubling of the
+# enterprise-value share the bridge does not use. It still prints as 6%.
+nci_alt = 2 * NCI_OP
 dcf_nci_alt_ps = _val_at(wacc_exp, wacc_term, nci_=nci_alt)
 dcf_grossbasis_ps = _val_at(wacc_exp_gross, wacc_term)
 say(f"[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: "
@@ -1602,7 +1714,16 @@ ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - exp_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
-ccy_ps = (ev_ccy * (1 - NCI_SHARE) - nd_cy25) / SH
+# THE SAME BRIDGE THE ANSWER USES. This line carried the third copy of the
+# superseded construction — minority off ENTERPRISE value, and no provisions,
+# declared dividend or non-operating investments — so the currency alternative was
+# not comparable with the headline it is published against. It cannot delegate to
+# waterfall() because its enterprise value is built on a different clock (the
+# export leg deflated to dollars and discounted at a dollar cost of capital), so
+# the bridge is applied here explicitly, in the same order and on the same lines.
+_ccy_eq_gross = ev_ccy - nd_cy25
+ccy_ps = (_ccy_eq_gross * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
+          + V['fvoci'] / M + V['fin_inv'] / M) / SH
 say(f"[Currency-of-discounting alternative] the export leg ({exp_frac[-1]:.0%} of cash flow) is "
     f"first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of "
     f"capital of {WACC_USD:.2%} with 3.5% terminal growth, and only then translated back at the "
@@ -1741,11 +1862,68 @@ def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
                      we=_we, wt=_wt)['ps']
 
 
+def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+                  wacc_shift=0.0, g=None, nwc_days=None):
+    """The same run as dcf_scenario, returning the WHOLE waterfall rather than one number.
+
+    The expert panel needs a scenario's own cash flows and invested capital, not just its
+    value per share, so that each expert's range can be its own method re-run at the two
+    filed-evidence corners instead of a band typed beside it. Two typed bands had already
+    gone stale and published a central OUTSIDE its own range: Expert 2's high used a
+    terminal growth of 6% against a house terminal of 7%, so the 'high' was lower than the
+    base, and its low carried a Gordon denominator written (ke_term + 0.03 - 0.03), which
+    is ke_term — a subtraction that cancels itself and looks like it is doing something.
+    Expert 3's high was the currency-alternative per-share number from a different
+    construction entirely. Both are replaced by re-runs through this function."""
+    S = build(vol_adj=vol_adj, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
+    return waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days)
+
+
 _chk = dcf_scenario()
 assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base: {_chk} vs {dcf_ps}"
+# ---- THE BEAR AND THE BULL COME OFF THE FILED RECORD, NOT OFF THE DIALS ------
+# [rebuilt 03-Sep-2026; the item engine/build_depth_audit/lens_outstanding.json
+# promised at this study's next re-issue]
+#
+# The previous corners moved FIVE things at once: volume, gross margin, the
+# CURRENCY PATH, the COST OF CAPITAL at both anchors, and TERMINAL GROWTH. Three
+# of those five are macro, and under [R-MACRO-01] all three are the same
+# assumption wearing different hats -- the currency path is relative
+# purchasing-power parity on the house inflation path, the terminal risk-free
+# rate is terminal inflation plus the real-rate convention, and terminal growth
+# is terminal inflation plus a stated real growth. So the old bull corner asked
+# for a WEAKER pound (helping an exporter's translated revenue) alongside a LOWER
+# cost of capital and HIGHER terminal growth, which needs Egyptian inflation to
+# be high and low simultaneously. The bear corner asked for the mirror image. The
+# two published ends were the two least coherent cells in the grid, and their
+# width was this desk's choice of dial settings rather than anything the world
+# had shown.
+#
+# What replaces them moves only what this company's OWN AUDITED FILINGS have
+# actually printed, and holds the macro path exactly still:
+#
+#   GROSS MARGIN, across the filed span. The low is 5.053%, the quarter to
+#   31-Mar-2025 -- the worst margin in the audited record this study holds. The
+#   high is 13.84%, the full year to 30-Jun-2022, the best FULL YEAR on that
+#   record; the best QUARTER is 13.92% and is deliberately not used, because a
+#   forecast margin is sustained for five years and a quarter is not a year.
+#   Base year 9.65%.
+#
+#   VOLUME, across the filed span. -4.5 percentage points a year carries the base
+#   year's tonnage back to the FIVE-YEAR MEAN by year five, which is where the
+#   audited record actually sits; +3.0 is the run-rate the last two filed periods
+#   show. Both were already evidence-based and both are kept.
+#
+# The macro path does not move: fx_mult stays 1.00, wacc_shift 0.00, and terminal
+# growth stays at the house terminal. The range is therefore ENTIRELY a business
+# range, which is the only kind that says anything.
+GM_FILED_LOW = 0.05053          # quarter to 31-Mar-2025, the worst in the audited record
+_GM_FILED_HIGH = 0.1384         # full year to 30-Jun-2022, the best full year filed
 SCEN = dict(
-    bear=dict(vol_adj=-0.045, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03),
-    bull=dict(vol_adj=+0.030, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06))
+    bear=dict(vol_adj=-0.045, gm_shift=GM_FILED_LOW - BASE_GM,
+              fx_mult=1.0, wacc_shift=0.0),
+    bull=dict(vol_adj=+0.030, gm_shift=_GM_FILED_HIGH - BASE_GM,
+              fx_mult=1.0, wacc_shift=0.0))
 dcf_bear = dcf_scenario(**SCEN['bear'])
 dcf_bull = dcf_scenario(**SCEN['bull'])
 SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
@@ -1755,19 +1933,66 @@ SCEN['labels'] = dict(
     fx_mult='Exchange-rate path, as a multiple of the assumed path',
     wacc_shift='Cost of capital, shifted at BOTH the explicit and terminal anchors',
     g='Terminal growth rate')
-say(f"[Scenarios on the cash-flow lens] bear EGP {dcf_bear:.2f} / base EGP {dcf_ps:.2f} / bull "
-    f"EGP {dcf_bull:.2f}. The scenarios are FIVE simultaneous driver moves, not a single lever: "
-    f"volume growth {SCEN['bear']['vol_adj']:+.1%} / {SCEN['bull']['vol_adj']:+.1%} a year against "
-    f"a FLAT base path — the bear leg carries the base year back toward the five-year mean "
-    f"tonnage by year five, which is where the audited record actually sits — gross margin "
-    f"{SCEN['bear']['gm_shift']:+.1%} / "
-    f"{SCEN['bull']['gm_shift']:+.1%}, the exchange-rate path "
-    f"{SCEN['bear']['fx_mult']-1:+.0%} / {SCEN['bull']['fx_mult']-1:+.0%}, the cost of capital "
-    f"{SCEN['bear']['wacc_shift']:+.0%} / {SCEN['bull']['wacc_shift']:+.0%} at both anchors, and "
-    f"terminal growth {SCEN['bear']['g']:.0%} / {SCEN['bull']['g']:.0%}. Because all five move "
-    f"together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best "
-    f"cases and are much wider than any single-driver row in the sensitivity table; they are not "
-    f"a confidence interval and no probability is attached to them.")
+say(f"[Scenarios on the cash-flow lens — BUSINESS DRIVERS ONLY] bear EGP {dcf_bear:.2f} / base "
+    f"EGP {dcf_ps:.2f} / bull EGP {dcf_bull:.2f}. TWO drivers move and both move across the span "
+    f"this company's own audited filings have actually printed: gross margin from "
+    f"{GM_FILED_LOW:.2%} — the quarter to 31 March 2025, the worst in the record — to "
+    f"{_GM_FILED_HIGH:.2%}, the full year to 30 June 2022 and the best FULL YEAR filed, against a "
+    f"base year of {BASE_GM:.2%}; and volume {SCEN['bear']['vol_adj']:+.1%} / "
+    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path, where the bear leg carries "
+    f"the base year's tonnage back to the five-year mean by year five, which is where the audited "
+    f"record sits. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
+    f"path, the cost of capital at both anchors and terminal growth; all three carry the same "
+    f"Egyptian inflation, so the old bull corner needed inflation high and low at the same time "
+    f"and the old bear corner needed the mirror image. The width of a range built that way is "
+    f"this desk's choice of dial settings. This one is the company's own filed record, and it is "
+    f"not a confidence interval — no probability is attached to either end.")
+
+# ---- THE TWO ALTERNATIVES THE PRINCIPAL'S LEAD EXPOSED ----------------------
+# Both are priced through THIS study's own waterfall, per L-070: an alternative
+# computed by a helper that reproduces neither the terminal nor the bridge
+# measures the helper, not the choice.
+#
+# (1) THE ESCALATOR, as the previous editions carried it: pound conversion legs at
+#     the full domestic inflation ladder against a price growing at the currency
+#     differential. Adopted value is the corrected one; this is what it replaced.
+_PS_POUND_AT_INFL = waterfall(build(pound_on_price=False))['ps']
+#
+# (2) THE BASE ANCHOR. The standing rule is that a near-term reviewed actual
+#     outranks a stale full-year rate, and the most recent reviewed period is the
+#     half to 30-Jun-2026 at 12.428% against a twelve-month base of 9.653%. The
+#     LIKE-FOR-LIKE test the rule prescribes says the weakness is a superseded
+#     LEVEL and not a season: Q1-2025 5.053% against Q1-2026 10.190%, the same
+#     quarter, doubled — which no seasonal pattern produces — and Q2-2026 higher
+#     again at 13.925%.
+#
+#     IT IS NOT ADOPTED IN THIS EDITION, AND THE REASON IS A RULE RATHER THAN A
+#     PREFERENCE. [R-VCAL-01]'s promotion guard: levers are taken one at a time and
+#     stop the moment the stack would cross zero by more than the bootstrap
+#     half-width. The escalator correction already moved this study from 26.6%
+#     below the traded price to 12.3% below it; adding this one lands 35.9% ABOVE
+#     it. That is the overshoot the guard exists to prevent — five individually
+#     justified moves stacking into a bias in the opposite direction is the exact
+#     failure that called the method reassessment — so the second lever is priced,
+#     published beside the answer, and left for the next edition to take on its own
+#     evidence rather than on the momentum of this one.
+_GM_H1_FILED = V['gp_h1cy26'] / V['rev_h1cy26']
+_GM_Q1_2025 = 0.05053126981775711
+_GM_Q1_2026 = 0.10189872213051045
+_PS_H1_ANCHOR = waterfall(build(gm_shift=_GM_H1_FILED - build()['gm'][0]))['ps']
+say(f"[The base anchor — PRICED, NOT ADOPTED] the most recent reviewed period is the half to "
+    f"30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, against the twelve-month base of "
+    f"{BASE_GM:.3%} this study forecasts forward. The standing rule prefers the near-term "
+    f"reviewed actual, and the like-for-like test it prescribes supports it: Q1-2025 "
+    f"{_GM_Q1_2025:.3%} against Q1-2026 {_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which "
+    f"seasonality cannot produce. Anchoring there and holding it flat gives EGP "
+    f"{_PS_H1_ANCHOR:.2f} a share ({_PS_H1_ANCHOR/SPOT-1:+.1%} against spot) against the "
+    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN HERE. One correction has already moved this "
+    f"study from {_PS_POUND_AT_INFL/SPOT-1:+.1%} to {dcf_ps/SPOT-1:+.1%} against the price; a "
+    f"second would land {_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the "
+    f"other in a single pass. Levers are taken one at a time and stop at the crossing, so this "
+    f"one is published as the study's most consequential contested judgement and left for the "
+    f"next edition.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -1903,8 +2128,44 @@ e2_ke = ke_term
 e2_fcff = float(np.mean(fcff[2:]))
 e2_fin_at = interest_path[3] * (1 - TAX)
 e2_base = (e2_pv + e2_pv_tv) / SH
-e2_lo = (e2_pv + e2_fcfe[-1] * 1.03 * (1 - rr_term) / (ke_term + 0.03 - 0.03) * e2_df[-1]) / SH
-e2_hi = (e2_pv + e2_fcfe[-1] * 1.06 * (1 - rr_term) / (ke_term - 0.06) * e2_df[-1]) / SH
+
+
+
+def e2_on(W_):
+    """Expert 2's construction, re-run on any scenario's own waterfall.
+
+    Free cash flow to the EQUITY holder, discounted on the cost of equity's own glide. The
+    terminal block uses THE HOUSE TERMINAL GROWTH — the same one the primary lens uses —
+    because under [R-MACRO-01] terminal growth is terminal inflation plus a stated real
+    growth and is not a dial an expert may turn on its own."""
+    _int, _, _, _, _, _ = roll_forward(W_['ebit'], W_['fcff'])
+    _fcfe = [(W_['fcff'][i] + _int[i] * (1 - TAX)) * (1 - NCI_SHARE) for i in range(5)]
+    _pv = sum(_fcfe[i] * e2_df[i] for i in range(5))
+    _tv = _fcfe[-1] * (1 + V['g_term']) * (1 - W_['rr_term']) / (ke_term - V['g_term'])
+    return _fcfe, _pv, _tv * e2_df[-1], (_pv + _tv * e2_df[-1]) / SH
+
+
+# THE PANEL IS RE-RUN AT THE FILED CORNERS, NOT BANDED BY HAND.
+# What was here published a central OUTSIDE its own stated range, in a table a reader sees:
+# the 'high' used a terminal growth of 6% against the house terminal of 7%, so it came out
+# BELOW the base, and the 'low' carried the denominator (ke_term + 0.03 - 0.03), which is
+# ke_term — a Gordon formula with the growth term cancelled against itself, arithmetically
+# wrong and written so that it looks deliberate. Both were typed beside the method rather
+# than produced by it, which is why neither moved when the house macro path moved the
+# terminal. Expert 2 is now its own construction re-run on the SAME two filed-evidence
+# corners the primary lens publishes, so the panel and the envelope are read on one clock.
+_W_BEAR = scenario_full(vol_adj=SCEN['bear']['vol_adj'], gm_shift=SCEN['bear']['gm_shift'])
+_W_BULL = scenario_full(vol_adj=SCEN['bull']['vol_adj'], gm_shift=SCEN['bull']['gm_shift'])
+e2_lo = e2_on(_W_BEAR)[3]
+e2_hi = e2_on(_W_BULL)[3]
+
+# Expert 2's own cash flows discounted on the WEIGHTED rate instead of the cost of equity's
+# glide. This is the ONE number that decomposes the Expert 2 / Expert 3 gap: everything else
+# about the two constructions is held still, so what is left is the price of time. Computed
+# here rather than in a builder, because a figure quoted in prose is computed, never typed.
+e2_ps_at_wacc = (sum(e2_fcfe[i] * df[i] for i in range(5))
+                 + e2_fcfe[-1] * (1 + V['g_term']) * (1 - rr_term)
+                 / (wacc_term - V['g_term']) * df[-1]) / SH
 say(f"[Expert 2 construction] free cash flow to equity " +
     " -> ".join(f"{x:,.0f}" for x in e2_fcfe) + f"; discounted on the cost of EQUITY's own glide "
     f"(" + " -> ".join(f"{k:.1%}" for k in e2_ke_path) + f") for a present value of "
@@ -1920,8 +2181,45 @@ ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1]
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_cy25 + pv_ep + pv_ep_term
 e3_base = (e3_ev * (1 - NCI_SHARE) - nd_cy25) / SH
-e3_lo = ((ic_cy25 + pv_ep * 0.6 + pv_ep_term * 0.55) * (1 - NCI_SHARE) - nd_cy25) / SH
-e3_hi = ccy_ps
+
+
+def e3_on(W_):
+    """Expert 3's construction — invested capital plus the present value of economic profit
+    — re-run on any scenario's own waterfall, on the same corners as Expert 2."""
+    _ic_beg = [ic_cy25] + W_['ic'][:-1]
+    _ep = [W_['nopat'][i] - W_['fwd_wacc'][i] * _ic_beg[i] for i in range(5)]
+    _pv_ep = sum(_ep[i] * W_['df'][i] for i in range(5))
+    _ep_t = W_['nopat'][-1] * (1 + V['g_term']) - wacc_term * W_['ic'][-1]
+    _pv_ep_t = _ep_t / (wacc_term - V['g_term']) * W_['df'][-1]
+    _ev = ic_cy25 + _pv_ep + _pv_ep_t
+    return _ev, (_ev * (1 - NCI_SHARE) - nd_cy25) / SH
+
+
+# The old 'high' here was ccy_ps — the CURRENCY-ALTERNATIVE per-share number, produced by a
+# different construction for a different purpose and borrowed as this method's upper bound.
+# It sat BELOW the base, so this table too published a central outside its own range.
+e3_lo = e3_on(_W_BEAR)[1]
+e3_hi = e3_on(_W_BULL)[1]
+
+# WHAT ACTUALLY DRIVES THE EXPERT 2 / EXPERT 3 GAP, measured rather than asserted. The first
+# draft of Appendix C labelled this row 'the discount rate' on the reasonable-sounding grounds
+# that one expert discounts at the cost of equity and the other at the weighted rate. The
+# measurement refutes it: the rate is worth less than a seventh of the gap. A mechanism
+# contradicted by the arithmetic is not a mechanism, it is the assumption wearing one
+# [R-ANCHOR-01], so the label follows the measurement and not the other way round.
+e2e3_gap = e3_base - e2_base
+e2e3_rate = e2_ps_at_wacc - e2_base
+e2e3_cash = (-nd_cy25) / SH                       # Expert 3 adds net cash at face; Expert 2 does not
+e2e3_resid = e2e3_gap - e2e3_rate - e2e3_cash
+say(f"[Expert 2 / Expert 3 decomposition — MEASURED] the gap is {e2e3_gap:+.2f} a share. "
+    f"Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of "
+    f"equity's glide gives EGP {e2_ps_at_wacc:.2f} against {e2_base:.2f}, so the price of time "
+    f"is worth {e2e3_rate:+.2f} — {abs(e2e3_rate/e2e3_gap):.0%} of it. The BRIDGE is what "
+    f"carries the rest: Expert 3 adds net cash of {e2e3_cash:+.2f} a share at face, while "
+    f"Expert 2 lets the cash reach the holder only through the finance-income line. "
+    f"{e2e3_resid:+.2f} is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE "
+    f"DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now "
+    f"says so.")
 say(f"[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested "
     f"capital, not ending. Charging ending capital would understate economic profit by about "
     f"{sum((ic[i]-ic_beg[i])*fwd[i] for i in range(5))/5:,.0f}mn a year.")
@@ -1931,11 +2229,27 @@ experts = dict(
             year=YRS[e1_i]),
     e2=dict(method_short='free cash flow to equity, discounted', base=e2_base,
             rng=[e2_lo, e2_hi], fcff=e2_fcff, fcfe=e2_fcfe, ke=e2_ke, fin_at=e2_fin_at,
-            ke_path=e2_ke_path, df=e2_df, pv=e2_pv, pv_tv=e2_pv_tv),
+            ke_path=e2_ke_path, df=e2_df, pv=e2_pv, pv_tv=e2_pv_tv,
+            ps_at_wacc=e2_ps_at_wacc),
+    # the measured decomposition of the Expert 2 / Expert 3 gap, so the divergence table
+    # names what the arithmetic names rather than what sounds plausible
+    e2e3=dict(gap=e2e3_gap, rate=e2e3_rate, cash=e2e3_cash, resid=e2e3_resid),
     e3=dict(method_short='cash returns against the cost of capital', base=e3_base,
             rng=[e3_lo, e3_hi], ic0=ic_cy25, pv_ep=pv_ep, pv_ep_term=pv_ep_term, ev=e3_ev,
             ep=ep_, spread=[roic[i] - fwd[i] for i in range(5)]),
 )
+# A table that publishes a central outside its own stated range contradicts itself in front
+# of the reader, and no gate in this repository could see it because every one of them was
+# checking how the number was BUILT. This is the [R-GAP-01] discipline applied to the panel:
+# look at the answer.
+for _k, _b, _l, _h in (('Expert 1', e1_base, e1_lo, e1_hi),
+                       ('Expert 2', e2_base, e2_lo, e2_hi),
+                       ('Expert 3', e3_base, e3_lo, e3_hi)):
+    assert _l <= _b <= _h, (
+        f"{_k} publishes a central of EGP {_b:.2f} OUTSIDE its own stated range "
+        f"[{_l:.2f}, {_h:.2f}]. A range is what the method produces at its corners, never a "
+        f"band typed beside it.")
+
 panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
 say(f"[Expert panel] Expert 1 EGP {e1_base:.2f} [{e1_lo:.2f}-{e1_hi:.2f}]; Expert 2 EGP "
     f"{e2_base:.2f} [{e2_lo:.2f}-{e2_hi:.2f}]; Expert 3 EGP {e3_base:.2f} [{e3_lo:.2f}-"
@@ -2086,19 +2400,79 @@ LENS_RECORD = {
     'primary': dict(kind='dcf', value=float(lenses['dcf']['base']),
                     range=dict(low=float(lenses['dcf']['bear']),
                                high=float(lenses['dcf']['bull'])),
-                    range_note='the cash-flow lens across five simultaneous driver '
-                               'moves — volume, margin, currency, cost of capital and '
-                               'terminal growth — so the ends are joint-worst and '
-                               'joint-best, not a confidence interval',
+                    range_note='the cash-flow lens with gross margin and volume each '
+                               'flexed across the span this company\'s own audited '
+                               'filings have printed, and the macro path held still. '
+                               'Not a confidence interval and no probability is '
+                               'attached to either end',
+                    range_basis=dict(
+                        driver='gross margin, and tonnage, each across its own filed span',
+                        low=float(GM_FILED_LOW), high=float(_GM_FILED_HIGH),
+                        macro_held=True,
+                        evidence='gross margin from %.3f%% — the quarter to 31 March 2025, '
+                                 'the worst in the audited record this study holds — to '
+                                 '%.2f%%, the full year to 30 June 2022 and the best FULL '
+                                 'YEAR filed, against a base year of %.2f%%. The best '
+                                 'single QUARTER on the record is 13.92%% and is '
+                                 'deliberately not used: a forecast margin is sustained '
+                                 'for five years and a quarter is not a year. Tonnage '
+                                 '%+.1f%% / %+.1f%% a year against a flat base path, the '
+                                 'bear leg carrying the base year back to the FIVE-YEAR '
+                                 'MEAN by year five, which is where the audited record '
+                                 'sits. The currency path, the cost of capital at both '
+                                 'anchors and terminal growth are all held at the house '
+                                 'macro path and do not move.'
+                                 % (GM_FILED_LOW * 100, _GM_FILED_HIGH * 100,
+                                    BASE_GM * 100, SCEN['bear']['vol_adj'] * 100,
+                                    SCEN['bull']['vol_adj'] * 100)),
                     note='the cash-flow lens on the company\'s own tonnes and the '
                          'spread between two disclosed numbers, discounted on the '
                          'glide with the terminal norm-built'),
     'cross_checks': [
+        # THIS RECORD SAID THE OPPOSITE OF WHAT THE CODE DID, AND SAID IT FOR
+        # THREE EDITIONS [corrected 03-Sep-2026, found by the re-strike]. It
+        # attested "enterprise value to EBITDA from the company's own history and
+        # its regional peers, never a multiple read off the current price". Twelve
+        # hundred lines above, ev_trailing is MARKET CAP plus net debt and the
+        # justified multiple is that divided by base-year EBITDA, re-rated by
+        # zero: the traded multiple exactly. The lens's whole distance from the
+        # share price was the bridge, and the code comment said so in as many
+        # words while the record denied it. [R-LENS-03]'s gate read the sentence,
+        # found the reassuring words, and passed it three times.
+        #
+        # What exposed it was moving the price: on 03-Sep-2026 the spot went from
+        # 9.10 to 13.50, +48%, and this lens went from 8.32 to 12.59, +51%. A lens
+        # built on five years of own history cannot do that. A lens built on
+        # today's price cannot do anything else.
+        #
+        # IT IS WITHDRAWN RATHER THAN REBUILT, and the reason is a measurement
+        # rather than a preference: an own-history EV/EBITDA needs this company's
+        # net debt and share count at each past year end, and AMOC's own
+        # walk-forward panel carries PPE at 2021-2023 and NOTHING ELSE --
+        # engine/valuation_calibration/bridge_inputs.py prints the census. That is
+        # precisely the gap [R-FCAL-01 AMENDED] was adopted to close, and AMOC is
+        # on its outstanding list. Inventing the multiple from a peer set nobody
+        # sourced would be the same offence in the other direction, so under SIGCM
+        # clause 8 the lens stops rather than guesses. It returns when AMOC's next
+        # walk-forward run commits the valuation-input block.
         dict(kind='relative_multiple', value=float(lenses['relative']['base']),
              present_value=False,
-             multiple_source='enterprise value to EBITDA from the company\'s own '
-                             'history and its regional peers, never a multiple read '
-                             'off the current price'),
+             withdrawn=True,
+             multiple_source='THE CURRENT PRICE. The multiple is the company\'s own '
+                             'traded enterprise value over base-year EBITDA, re-rated '
+                             'by zero, so this lens values the company at what it '
+                             'already trades at and its only distance from the share '
+                             'price is the bridge. It is published as a DIAGNOSTIC of '
+                             'what the market is paying, never as a valuation.',
+             multiple=float(JUST_MULT),
+             circularity=dict(spot=float(SPOT), shares=float(SH),
+                              net_debt=float(nd_cy25), metric_value=float(ebitda_cy25)),
+             cannot_rebuild='an own-history enterprise-value multiple needs net debt and '
+                            'the share count at each past year end. AMOC\'s committed '
+                            'record carries PPE at 2021-2023 and neither of those at any '
+                            'origin (engine/valuation_calibration/bridge_inputs.py). The '
+                            'valuation-input block [R-FCAL-01 AMENDED] is outstanding on '
+                            'this name and the lens returns with it.'),
         dict(kind='book_value', value=float(lenses['book']['base']),
              present_value=False,
              note='published as a DISCLOSED FLOOR and never weighted'),
@@ -2114,6 +2488,51 @@ LENS_RECORD = {
     ),
     'diagnostics': dict(normalised_earnings=float(lenses['normalized']['base'])),
 }
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# Committed so a job outside this study can check it. The record is what a person
+# had to read by hand on 03-Sep-2026 to find that this study forecast a gross
+# margin BELOW every recent filed period on an unsourced escalator; from now on
+# scripts/check_forecast_anchor.py does the reading.
+#
+# No mechanism is declared because none is claimed: with the real cost drift
+# removed the forecast opens at the twelve-month base rather than reversing away
+# from it. The remaining distance to the latest reviewed half is the base-anchor
+# question, which is priced in the contested judgements and NOT taken this
+# edition -- and that distance is what this gate is measuring, correctly.
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='six months to 30 June 2026, reviewed',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(V['gp_h1cy26'] / V['rev_h1cy26']),
+    first_forecast_rate=float(B['gm'][0]),
+    # the PATH, per [R-ANCHOR-01] clause two: the opening year alone would not have
+    # caught EGCH, whose forecast opened above its filed record and fell below it.
+    # With the real cost drift removed this path is flat-to-rising and the clause
+    # does not fire; before the correction it ran 9.494% down to 8.764% and would
+    # have fired on both clauses at once.
+    forecast_path=[float(x) for x in B['gm']],
+    # NO MECHANISM IS CLAIMED, AND THE GATE IS RIGHT TO REFUSE THIS STUDY FOR IT.
+    #
+    # A mechanism WAS drafted here on 03-Sep-2026 -- one_off_in_the_latest_period,
+    # on the argument that the twelve-month base blends an audited weak half with a
+    # reviewed strong one -- and scripts/check_forecast_anchor.py rejected it on the
+    # like-for-like measurement supplied beside it: cost per unit of revenue in the
+    # SAME QUARTER a year apart runs 94.947% to 89.810%, i.e. the driver moved the
+    # OPPOSITE way to the mechanism claimed. That is the clause the gate exists for
+    # and it fired on the study whose defect prompted the rule, on its first run,
+    # against a record this desk had just written. The draft is left in the history
+    # rather than quietly deleted, because a mechanism refused by the company's own
+    # filings is the finding.
+    #
+    # So the honest state is: this forecast opens 22% relatively below the latest
+    # reviewed period and CANNOT name a mechanism the filings support. The reason it
+    # is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard -- the
+    # move is priced at +55% in the contested judgements and would carry this study
+    # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
+    # therefore listed on the forecast-anchor ratchet with that reason, and comes off
+    # it when the base anchor is taken at the next edition.
+    mechanism=None)
 
 BRIDGE_RECORD = dict(
     market='EG',
@@ -2170,10 +2589,10 @@ BRIDGE_RECORD = dict(
 )
 
 OUT = dict(
-    macro_record=MACRO_RECORD, lens_record=LENS_RECORD,
+    macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
-              currency='EGP', asof='2026-08-06', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
+              currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
               ev_trailing=ev_trailing, klass='downstream petroleum operating company',
               sector='Oil & gas refining and marketing — lubricant base oils and waxes',
               fy_note='financial year moved from 30 June to 31 December'),
@@ -2228,7 +2647,14 @@ OUT = dict(
              roic_term=roic_term, rr_term=rr_term, g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=dcf_nci_alt_ps, nci_alt=nci_alt,
-             ps_gross_basis=dcf_grossbasis_ps, ccy_alt_ps=ccy_ps),
+             ps_gross_basis=dcf_grossbasis_ps, ccy_alt_ps=ccy_ps,
+             # THE TWO FRAMINGS OF THE BASE ANCHOR, AND THE ONE OF THE ESCALATOR
+             # [added 03-Sep-2026]. Both priced through THIS waterfall, so the
+             # difference measures the CHOICE and not the construction.
+             pound_on_price=bool(POUND_ON_PRICE),
+             ps_pound_at_inflation=_PS_POUND_AT_INFL,
+             ps_h1_anchor=_PS_H1_ANCHOR,
+             gm_h1_filed=_GM_H1_FILED, gm_q1_2025=_GM_Q1_2025, gm_q1_2026=_GM_Q1_2026),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
                         nopat_cagr=nopat_cagr, stable_g=stable_g, stable_keys=stable_keys,
@@ -2242,6 +2668,9 @@ OUT = dict(
              just_mult=JUST_MULT, year=YRS[REL_I]),
     norm=dict(rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit, dna=dna[NORM_I],
               interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
+              # the factor and the years it spans, so the expert appendix can bring a forward
+              # number back to the valuation date without a numeral being typed into a builder
+              df=norm_df, yrs=NORM_YRS, ke=ke_exp,
               year=YRS[NORM_I]),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing,
               ke_term=ke_term),

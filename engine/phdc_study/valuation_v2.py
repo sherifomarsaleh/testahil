@@ -139,7 +139,7 @@ def sensitivity():
     discount rate, decides the answer.
     """
     L = lenses()["cfo"]
-    S = SCHEDULES["rating"]
+    S = SCHEDULES["cds"]   # [R-COC-01] house default; see build_numbers.py
     cfos = [L["lo"], 0.060, L["mid"], 0.120, L["hi"]]
     shifts = [-0.04, -0.02, 0.0, 0.02, 0.04]
     scheds = [S if d == 0.0 else S.shifted(d) for d in shifts]
@@ -167,7 +167,7 @@ def lenses():
     # the bear and full cases shift the WHOLE schedule, keeping its shape: replacing
     # it with a flat rate would ask two questions at once, and the second one is the
     # assumption the schedule exists to remove
-    S = SCHEDULES["rating"]
+    S = SCHEDULES["cds"]   # [R-COC-01] house default; see build_numbers.py
     d_bear = dcf(lo, S.shifted(0.02))
     d_base = dcf(mid, S)
     d_full = dcf(hi, S.shifted(-0.01))

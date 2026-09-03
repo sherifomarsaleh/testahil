@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Model_02092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
+"""ARCC_Valuation_Model_03092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
 
 Rebuilt on the AUDITED consolidated financial statements for FY2023, FY2024 and FY2025 and
 the reviewed Q1-2026 interim accounts. Revision 1 was built without opening a source
@@ -1244,7 +1244,7 @@ putf(wsS, 'B14', "=B5*0.50+B6*0.20+B8*0.22+B7*0.08",
      0.50 * LN['values']['DCF (cash flow)'] + 0.20 * LN['values']['Relative multiples']
      + 0.22 * _NORM_DIAG + 0.08 * LN['values']['Asset / replacement cost'], PX)
 wsS.cell(row=14, column=3, value='weights nobody tested; kept visible, not used')
-wsS.cell(row=12, column=1, value='Market price, 6 August 2026')
+wsS.cell(row=12, column=1, value='Market price, %s' % D['meta'].get('spot_date', ''))
 putf(wsS, 'B12', f"={A['spot']}", SPOT, PX, green=True)
 wsS.cell(row=13, column=1, value='Market capitalisation (EGP mn)')
 putf(wsS, 'B13', "=DCF!C45", M['mktcap'], NUM0, green=True)
@@ -1424,7 +1424,7 @@ assert not _missing and not _extra, (
     % (_missing, _extra))
 wb._sheets = [wb[n] for n in _WANT]
 assert wb.sheetnames == _WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx')
+OUT = os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx')
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

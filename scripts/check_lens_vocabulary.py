@@ -44,8 +44,15 @@ OUTSTANDING = os.path.join(ENGINE, "build_depth_audit",
 # The retired architecture asserting itself as the study's own answer.
 BLEND = re.compile(
     r"weighted central|the central weights|weights the reads|on stated weights|"
-    r"four lenses,\s*weighted|weighted average of the (?:four|three)|"
+    r"(?:four|three)\s+lenses,\s*weighted|the\s+(?:four|three),\s*weighted|"
+    r"weighted average of the (?:four|three)|"
     r"blend(?:ed)?\s+(?:of\s+)?(?:the\s+)?(?:four|three)\s+lenses|"
+    r"weighted\s+(?:fair\s+value|range|row)|"
+    # A TABLE ROW IS NOT A SENTENCE. AMOC's Table 1 renders as
+    # "WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL" — the
+    # layout splits the label around the figures, so a pattern needing "weighted
+    # central" contiguous walked past the row carrying the claim.
+    r"WEIGHTED\b[^.\n]{0,120}?\bCENTRAL\b|"
     r"\b\d{1,2}/\d{1,2}/\d{1,2}/\d{1,2}\s+weights", re.I)
 
 # The same words used to explain that the construction was retired. Not an escape
@@ -54,30 +61,93 @@ RETIRED = re.compile(
     r"retired|previous edition|earlier edition|no longer|never averaged|"
     r"rather than blended|is not (?:a )?blend|was withdrawn|prohibit|"
     r"the blend this study does not|used to", re.I)
+
+# THE MARKER MUST BE IN THE SAME SENTENCE, and a 260-character window was not
+# good enough. AMOC's Table 1 caption asserts the CURRENT construction — "the bear
+# and bull columns of the weighted row are WEIGHTED with the same 45/20/20/15
+# weights as the base column" — and the very NEXT sentence describes what a
+# PREVIOUS edition did. The window swept the second in and waived the first; I
+# then pruned AMOC off this ratchet on that green and told the principal the
+# document was clean. A sentence saying what THIS study does is not excused by
+# standing next to one about what an earlier one did.
+SENT = re.compile(r"(?<=[.!?])\s+")
 WINDOW = 260
 
-DATED = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
+# Documents are dated 03-09-2026 and workbooks 03092026 — the same edition in two
+# spellings. A pattern that required the dashes returned (0,0,0) for EVERY
+# workbook, so `max` picked one arbitrarily and the gate read a SUPERSEDED
+# workbook: AMOC's first run under this gate flagged its 08-08-2026 file while the
+# delivered one was 03-09-2026 and clean. Separators optional.
+DATED = re.compile(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})")
 
 
 def _key(path):
     m = DATED.search(os.path.basename(path))
-    return (int(m.group(3)), int(m.group(2)), int(m.group(1))) if m else (0, 0, 0)
+    if not m:
+        return (0, 0, 0)
+    d, mo, y = (int(x) for x in m.groups())
+    return (y, mo, d) if (1 <= d <= 31 and 1 <= mo <= 12) else (0, 0, 0)
 
 
 def documents(engine=ENGINE):
-    """{ticker: latest delivered study PDF}. The PDF is what a reader opens."""
+    """{ticker: [delivered artefacts]} — the PDF a reader opens AND the workbook.
+
+    THE WORKBOOK IS A DELIVERED ARTEFACT AND IT WAS NOT BEING READ. On 03-09-2026
+    AMOC's delivered document was clean while its workbook computed a
+    45/20/20/15 blend into three cells labelled WEIGHTED CENTRAL, on the Lenses,
+    Summary and Per-Share sheets. The recalculation gate caught it only because
+    the study's own numbers file had already moved to the primary; had both been
+    left alone it would have shipped green. A reader opens both files, so both are
+    read — this is [R-ENF-03]'s rule (check the artefact that ships) applied to
+    the second artefact rather than only the first.
+    """
     out = {}
     for sd in sorted(glob.glob(os.path.join(engine, "*_study"))):
         tk = os.path.basename(sd).replace("_study", "").upper()
+        arts = []
         pdfs = glob.glob(os.path.join(sd, "*Valuation_Study*.pdf"))
         if pdfs:
-            out[tk] = max(pdfs, key=_key)
+            arts.append(max(pdfs, key=_key))
+        books = glob.glob(os.path.join(sd, "*Valuation_Model*.xlsx"))
+        if books:
+            arts.append(max(books, key=_key))
+        if arts:
+            out[tk] = arts
     return out
 
 
-def text_of(pdf):
+def xlsx_text(path):
+    """Every string a workbook cell carries, joined — labels, captions and notes.
+
+    Values are not read: a number cannot assert an architecture. What can is the
+    LABEL on the row that holds it, which is what "WEIGHTED CENTRAL" is.
+    """
     try:
-        return subprocess.run(["pdftotext", pdf, "-"], capture_output=True,
+        import openpyxl
+    except Exception:
+        return ""
+    try:
+        wb = openpyxl.load_workbook(path, read_only=True, data_only=False)
+    except Exception:
+        return ""
+    parts = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows():
+            for c in row:
+                if isinstance(c.value, str) and c.value.strip():
+                    parts.append(c.value.strip())
+    try:
+        wb.close()
+    except Exception:
+        pass
+    return " · ".join(parts)
+
+
+def text_of(path):
+    if path.lower().endswith(".xlsx"):
+        return xlsx_text(path)
+    try:
+        return subprocess.run(["pdftotext", path, "-"], capture_output=True,
                               text=True, timeout=300).stdout or ""
     except Exception:
         return ""
@@ -88,8 +158,13 @@ def scan(pdf):
     t = text_of(pdf)
     asserting, explained = [], 0
     for m in BLEND.finditer(t):
-        lo, hi = max(0, m.start() - WINDOW), m.end() + WINDOW
-        if RETIRED.search(t[lo:hi]):
+        lo = max(0, m.start() - WINDOW)
+        head = t[lo:m.start()]
+        _c = SENT.split(head)
+        sentence = (_c[-1] if _c else head) + t[m.start():m.end() + WINDOW]
+        _f = SENT.split(sentence)
+        sentence = _f[0] if len(_f) > 1 else sentence
+        if RETIRED.search(sentence):
             explained += 1
             continue
         asserting.append(re.sub(r"\s+", " ", t[max(0, m.start() - 90):
@@ -121,18 +196,26 @@ def main(argv):
     outstanding = load_outstanding()
     stale = [tk for tk in outstanding if tk not in docs]
     clean, dirty = [], {}
-    for tk, pdf in sorted(docs.items()):
-        asserting, explained = scan(pdf)
-        if asserting:
-            dirty[tk] = (os.path.basename(pdf), asserting, explained)
+    for tk, arts in sorted(docs.items()):
+        hits, expl, where = [], 0, []
+        for a in arts:
+            asserting, explained = scan(a)
+            expl += explained
+            if asserting:
+                hits += ["%s: %s" % (os.path.basename(a)[:34], h)
+                         for h in asserting]
+                where.append(os.path.basename(a))
+        if hits:
+            dirty[tk] = (", ".join(where), hits, expl)
         else:
-            clean.append((tk, os.path.basename(pdf), explained))
+            clean.append((tk, ", ".join(os.path.basename(a) for a in arts), expl))
 
     print("lens vocabulary in the DELIVERED documents [R-LENS-03]\n")
-    print("  documents scanned  %d" % len(docs))
+    print("  studies scanned    %d   artefacts %d"
+          % (len(docs), sum(len(v) for v in docs.values())))
     print("  clean              %d" % len(clean))
     for tk, f, ex in clean:
-        print("     %-11s %s%s" % (tk, f[:46],
+        print("     %-11s %s%s" % (tk, f[:60],
                                    "   (%d retirement mention(s))" % ex if ex else ""))
     new = {tk: v for tk, v in dirty.items() if tk not in outstanding}
     waived = {tk: v for tk, v in dirty.items() if tk in outstanding}
