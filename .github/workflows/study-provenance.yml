@@ -420,3 +420,9 @@ jobs:
 
       - name: Calibration deliverables — negative control
         run: python3 scripts/check_calibration_deliverables_negative_control.py
+
+      - name: Lens architecture in the delivered documents
+        run: python3 scripts/check_lens_vocabulary.py
+
+      - name: Lens architecture in the documents — negative control
+        run: python3 scripts/check_lens_vocabulary_negative_control.py
