@@ -295,6 +295,34 @@ def main():
         put_list(tmp, [])
     case("clean: stated real growth of 2%", c_real, False, results)
 
+    # ------------------------------------------------------------------------------
+    # THE IDENTITIES ARE GUARDED BY REGIME, NOT APPLIED UNCONDITIONALLY. Both defects
+    # below were found by PRINTING a newly sourced path, not by any gate — which is
+    # why they are pinned here. Relative purchasing-power parity describes a currency
+    # free to move; it was written for Egypt, the one market then sourced, and ran on
+    # every market after. On a hard peg it manufactures exactly the drift the peg
+    # forbids (a dirham sliding 3.6725 -> 3.65 over five years off a 0.5pp inflation
+    # differential a fixed nominal rate absorbs as REAL appreciation), and on the
+    # United States it compares the dollar with itself and returns the ladder's own
+    # deviation from its long-run figure as a "depreciation".
+    sys.path.insert(0, os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+    import macro_path as _MP
+    _idr = []
+    for mkt, want_zero, why in (("AE", True,  "pegged: the dirham cannot drift"),
+                                ("SA", True,  "pegged: the riyal cannot drift"),
+                                ("QA", True,  "pegged: the riyal cannot drift"),
+                                ("US", True,  "the dollar cannot move against itself"),
+                                ("EG", False, "floating: PPP must still run"),
+                                ("IN", False, "floating: PPP must still run"),
+                                ("KR", False, "floating: PPP must still run")):
+        d = _MP.load(mkt).depreciation_path(5)
+        allz = all(abs(x) < 1e-12 for x in d)
+        ok = (allz == want_zero)
+        _idr.append(("currency identity, %s (%s)" % (mkt, why), ok, 0,
+                     "zeros" if allz else "%.4f..%.4f" % (d[0], d[-1])))
+        results.append(_idr[-1])
+
     print("\nNEGATIVE CONTROL — scripts/check_macro_coherence.py")
     for name, ok, rc, last in results:
         print("  %-38s %-4s exit %d   %s" % (name, "ok" if ok else "MISS", rc, last[:70]))

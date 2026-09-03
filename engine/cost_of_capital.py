@@ -47,8 +47,35 @@ import macro_path as MP                                              # noqa: E40
 # swap basis is the market's own live pricing of the sovereign's credit; the
 # rating basis is an agency's judgement, updated in steps and often stale. Both
 # are published; a study may name either as central, and must name one.
-ERP_BASES = ("cds", "rating")
-DEFAULT_ERP_BASIS = "cds"
+# THE TWO BASES ARE MARKET AND RATING [RENAMED 03-Sep-2026]. The market basis was
+# called "cds" because Egypt, the first market sourced, has a credit-default-swap
+# quote. THE UAE HAS NONE — a study registers "NA for UAE" in as many words — and
+# its market basis is the spread its own federal Treasury bond prices at over the
+# comparable US Treasury. A field named for one instrument, holding another, is the
+# defect found the same hour in a study's own register: the arithmetic was right,
+# the document was right, and the KEY said the opposite of its own source. The
+# general name is stored; the instrument is what the source field names.
+ERP_BASES = ("market", "rating")
+DEFAULT_ERP_BASIS = "market"
+# "cds" IS ACCEPTED AS THE HISTORICAL SPELLING OF "market" AND NORMALISED TO IT.
+# It is not an alias kept for convenience. On EGYPT the market basis genuinely IS a
+# credit-default-swap quote, so every record already committed saying "cds" is
+# ACCURATE and rewriting those records to match a rename would be rewriting history
+# — which the append-only discipline forbids. What could not be honest is a UAE
+# record saying "cds" when the spread came from a Treasury bond, and that is what
+# the general name prevents. The deprecated spelling is accepted on the way IN and
+# never emitted on the way OUT, so the set of spellings in new records is one.
+DEPRECATED_ERP_BASES = {"cds": "market"}
+
+
+def normalise_erp_basis(basis):
+    """The stored spelling for a basis, refusing anything that is neither."""
+    b = DEPRECATED_ERP_BASES.get(basis, basis)
+    if b not in ERP_BASES:
+        raise ValueError("erp_basis must be one of %s (or the historical 'cds', "
+                         "which normalises to 'market'), not %r"
+                         % (", ".join(ERP_BASES), basis))
+    return b
 
 # The country premium may be scaled by lambda where a company's exposure to its
 # own sovereign genuinely differs from the market's. DEFAULT 1.0, and any other
@@ -350,6 +377,7 @@ def schedule(market: str,
     factor of 0.410 as a forecast cash flow and 0.532 inside the terminal value,
     a 30% premium for relabelling it.
     """
+    erp_basis = normalise_erp_basis(erp_basis)
     path = MP.load(market)
     if erp_basis not in ERP_BASES:
         raise CostOfCapitalError("erp_basis must be one of %s" % ", ".join(ERP_BASES))
@@ -482,7 +510,7 @@ def schedule(market: str,
                                                               SOVEREIGN_STALE_DAYS))
 
     # the other ERP basis, published as a sensitivity rather than hidden
-    other = "rating" if erp_basis == "cds" else "cds"
+    other = "rating" if normalise_erp_basis(erp_basis) == "market" else "market"
     other_spread = path.default_spread(other)
     sens = {}
     if erp_explicit is None:
@@ -564,7 +592,7 @@ def flat_schedule(rate: float, years: int, market: str = "EG",
     return Schedule(
         market=market, regime="flat (degenerate)", years=years,
         rf_observed=float("nan"), default_spread=float("nan"), rf_star=float("nan"),
-        erp=float("nan"), erp_basis="cds", beta=float("nan"),
+        erp=float("nan"), erp_basis="market", beta=float("nan"),
         ke_exp=float("nan"), kd_pretax=float("nan"), kd_aftertax=float("nan"),
         weight_equity=float("nan"), weight_debt=float("nan"), wacc_exp=rate,
         rf_terminal=float("nan"), erp_terminal=float("nan"), ke_terminal=float("nan"),
@@ -607,5 +635,5 @@ if __name__ == "__main__":
                                         "lines only — customer advances and notes payable to "
                                         "land sellers bear no interest"))
     s = schedule("EG", b, d, market_cap=43470.8, tax_rate=0.225, years=5,
-                 erp_explicit=0.0941, erp_basis="cds", allow_stale_sovereign=True)
+                 erp_explicit=0.0941, erp_basis="market", allow_stale_sovereign=True)
     print(s.report())

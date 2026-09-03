@@ -2,10 +2,126 @@
  "market": "US",
  "country": "United States",
  "currency": "USD",
- "as_of": null,
+ "as_of": "2026-09-03",
  "regime": "mature",
- "status": "pending",
- "pending_reason": "The Federal Reserve's 2% target and the Summary of Economic Projections path are not sourced here yet. 3 US names, all Phase 2.",
- "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
- "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+ "regime_note": "The policy rate sits near its own published long-run level \u2014 3.75% target upper against an FOMC longer-run median of 3.1% \u2014 so the cost-of-capital glide has essentially nothing to travel and cost_of_capital.py returns a FLAT schedule for any regime other than 'transition'. This is the reference economy the pegged paths import.",
+ "inflation": {
+  "latest": {
+   "value": 0.027,
+   "period": "2025, annual average consumer prices",
+   "source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), United States (USA), read live from the IMF datamapper API on 3 September 2026.",
+   "date": "2025-12-31",
+   "tier": "Country"
+  },
+  "path": [
+   {
+    "year": 2026,
+    "value": 0.032,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2027,
+    "value": 0.021,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2028,
+    "value": 0.022,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2029,
+    "value": 0.022,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2030,
+    "value": 0.022,
+    "basis": "IMF World Economic Outlook projection"
+   }
+  ],
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), United States (USA), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.2% flat from 2028 onward, so NO STEP HERE IS INTERPOLATED.",
+  "target": {
+   "value": 0.022,
+   "band": 0.003,
+   "horizon": "long run",
+   "source": "THE FEDERAL RESERVE'S 2 PERCENT OBJECTIVE IS ON THE PCE BASIS AND THIS LADDER IS CPI, WHICH IS NOT THE SAME INDEX. CPI has run persistently above PCE, so a CPI terminal of 2.2% against a 2.0% PCE objective is the coherent pairing rather than a 20bp house view; the 0.3pp band is the dispersion of the IMF's own published US CPI projections about it over 2027-2031. Stating the basis is the point: a target quoted on one index against a ladder built on another is two views of one economy.",
+   "date": "2026-09-03"
+  },
+  "terminal": {
+   "value": 0.022,
+   "source": "The IMF's own published United States CPI figure for 2028 through 2031, held.",
+   "date": "2026-09-03"
+  }
+ },
+ "policy_rate": {
+  "current": {
+   "headline": "fed_funds_target_upper",
+   "fed_funds_target_upper": 0.0375,
+   "fed_funds_effective": 0.0363,
+   "source": "Federal Reserve Economic Data (FRED), series DFEDTARU (target range upper limit) 3.75% and DFF (effective federal funds rate) 3.63%, read live 3 September 2026.",
+   "date": "2026-09-03"
+  },
+  "path": [
+   0.0375,
+   0.0345,
+   0.0325,
+   0.031,
+   0.031
+  ],
+  "path_basis": "A glide from the live 3.75% target upper limit to the FOMC's own longer-run median of 3.1% (SEP, 17 June 2026, FRED FEDTARMDLR), reached by 2029 and held. Both endpoints published; the two years between are a straight line and are the only interpolated figures here."
+ },
+ "sovereign": {
+  "yield_10y": {
+   "value": 0.0479,
+   "source": "Federal Reserve Economic Data (FRED), series DGS10 (10-year Treasury constant maturity), 4.79% on 2 September 2026, read live 3 September 2026.",
+   "date": "2026-09-02",
+   "tier": "Country"
+  },
+  "default_spread_rating": 0.0023,
+  "default_spread_market": 0.003,
+  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. United States row: Moody's Aa1; adjusted default spread 0.23% (rating basis); credit-default-swap spread 0.30% (market basis); total equity risk premium 4.46% on the rating basis and 4.69% on the CDS basis. THE UNITED STATES CARRIES A NON-ZERO DEFAULT SPREAD IN THIS FILE and that is not an error: the source explains that the Moody's downgrade means the USD risk-free rate is the Treasury yield MINUS the US default spread, so the normalisation applies here exactly as it does to an emerging sovereign.",
+  "damodaran_date": "2026-01-05"
+ },
+ "erp_market": 0.0469,
+ "erp_rating": 0.0446,
+ "erp_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. United States row, total equity risk premium 4.46% on the rating basis and 4.69% on the market/CDS basis.",
+ "corporate_tax_rate": {
+  "value": 0.25,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. United States row, 25.00%.",
+  "date": "2026-01-05"
+ },
+ "fx": {
+  "spot": {
+   "value": 1.0,
+   "pair": "USD/USD",
+   "source": "The domestic currency of this path IS the dollar; there is no pair to quote.",
+   "date": "2026-09-03"
+  },
+  "derivation": "No currency path. Relative purchasing-power parity here would be the dollar against itself, and depreciation_path() is not consulted for a market whose own currency is the numeraire."
+ },
+ "us_inflation_lt": {
+  "value": 0.022,
+  "source": "Long-run United States CPI inflation 2.2%, the IMF's own published figure for 2029-2031 \u2014 for this path it is the DOMESTIC terminal, and it is carried under this name because every other path measures its own currency against it.",
+  "date": "2026-09-03"
+ },
+ "cost_of_debt_norm": {
+  "terminal": 0.057,
+  "range": [
+   0.053,
+   0.062
+  ],
+  "source": "The long-run United States investment-grade corporate borrowing norm, taken as the derived terminal risk-free rate of 4.175% plus a 130-200bp investment-grade spread, midpoint 5.70%. NO US NAME IN THIS BOOK HAS YET HAD ITS FACILITY NOTE READ, so unlike the AE and SA norms this one rests on no in-house sourced Kd at all and is the floor of last resort in the strictest sense: the first US study to reach the three-assert Kd gate replaces it with its own note.",
+  "date": "2026-09-03"
+ },
+ "real_rate_convention": {
+  "value": 0.019751,
+  "source": "DERIVED, NEVER QUOTED. The long-run United States real ten-year rate = the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%, IMF WEO above) = 1.9751%. CROSS-CHECK, NOT AN INPUT: the observed ten-year TIPS real yield is 2.45% (FRED DFII10, 2 September 2026), a spot price carrying today's cyclical position, 48bp above this long-run construction. The derived terminal USD risk-free rate is 2.2% + 1.9751% = 4.175% against a live 4.79% ten-year: a mild normalisation, not a rate call.",
+  "date": "2026-09-03"
+ },
+ "erp_terminal": {
+  "value": 0.0446,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the rating-basis United States ERP of 4.46%; there is no country premium to converge.",
+  "date": "2026-01-05"
+ }
 }

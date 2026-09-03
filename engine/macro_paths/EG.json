@@ -13,11 +13,31 @@
    "tier": "Country"
   },
   "path": [
-   {"year": 2026, "value": 0.160, "basis": "CBE baseline, average annual headline"},
-   {"year": 2027, "value": 0.120, "basis": "CBE baseline, average annual headline"},
-   {"year": 2028, "value": 0.090, "basis": "interpolated on the CBE's own stated glide from the 2027 baseline to the Q4-2028 target band midpoint, no year outside the published endpoints"},
-   {"year": 2029, "value": 0.075, "basis": "interpolated, as 2028"},
-   {"year": 2030, "value": 0.070, "basis": "the target band midpoint in force, held"}
+   {
+    "year": 2026,
+    "value": 0.16,
+    "basis": "CBE baseline, average annual headline"
+   },
+   {
+    "year": 2027,
+    "value": 0.12,
+    "basis": "CBE baseline, average annual headline"
+   },
+   {
+    "year": 2028,
+    "value": 0.09,
+    "basis": "interpolated on the CBE's own stated glide from the 2027 baseline to the Q4-2028 target band midpoint, no year outside the published endpoints"
+   },
+   {
+    "year": 2029,
+    "value": 0.075,
+    "basis": "interpolated, as 2028"
+   },
+   {
+    "year": 2030,
+    "value": 0.07,
+    "basis": "the target band midpoint in force, held"
+   }
   ],
   "path_source": "Central Bank of Egypt Q1-2026 Monetary Policy Report as reported 11 May 2026: baseline average annual headline inflation 16.0% in 2026 and 12.0% in 2027 (alternative scenario, conflict persisting to end-2026: 17.0% and 13.0%, single digits in H2-2027). The 2028-2030 steps are a straight glide between the published 2027 baseline and the target midpoint; they are INTERPOLATION BETWEEN PUBLISHED ENDPOINTS and are labelled as such, never presented as a central-bank forecast.",
   "target": {
@@ -35,14 +55,21 @@
  },
  "policy_rate": {
   "current": {
+   "headline": "overnight_deposit",
    "overnight_deposit": 0.19,
-   "overnight_lending": 0.20,
+   "overnight_lending": 0.2,
    "main_operation": 0.195,
    "discount": 0.195,
-   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 — rates held for a fourth consecutive meeting.",
+   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 \u2014 rates held for a fourth consecutive meeting.",
    "date": "2026-08-20"
   },
-  "path": [0.190, 0.165, 0.145, 0.130, 0.120],
+  "path": [
+   0.19,
+   0.165,
+   0.145,
+   0.13,
+   0.12
+  ],
   "path_basis": "Overnight deposit rate, 2026-2030, gliding with the published inflation path at an approximately constant real policy rate. It is the SHAPE input for the cost-of-capital glide and for the cost-of-debt path; it is not a second free parameter and no valuation input is set from it independently."
  },
  "sovereign": {
@@ -53,8 +80,8 @@
    "tier": "Country"
   },
   "default_spread_rating": 0.0637,
-  "default_spread_cds": 0.0341,
-  "spread_source": "Damodaran country risk file, Egypt row, as registered by the studies' own cost-of-capital records (rating basis 6.37%, credit-default-swap basis 3.41%). Both bases are carried; which one is CENTRAL is a cost-of-capital decision, not a macro one."
+  "default_spread_market": 0.0341,
+  "spread_source": "Damodaran country risk file, Egypt row, as registered by the studies' own cost-of-capital records (rating basis 6.37%, market basis 3.41%, which for Egypt is the credit-default-swap quote). Both bases are carried; which one is CENTRAL is a cost-of-capital decision, not a macro one. [FIELD RENAMED 03-Sep-2026: the two bases are RATING and MARKET. A CDS is one market instrument and it is the one Egypt has; the UAE has no CDS series at all, so a field named cds could not be filled there honestly.]"
  },
  "fx": {
   "spot": {
@@ -73,7 +100,10 @@
  },
  "cost_of_debt_norm": {
   "terminal": 0.15,
-  "range": [0.14, 0.16],
+  "range": [
+   0.14,
+   0.16
+  ],
   "source": "The long-run Egyptian corporate-borrowing norm, 14-16%, midpoint 15% absent a name-specific reason to deviate [Standing_Research_Protocol 13-Jul r2, clause 4].",
   "date": "2026-08-06"
  },

@@ -344,7 +344,13 @@ def check_record(rec, ticker):
                          "by a multiple and manufactures a bias that looks like evidence.")
 
     # 6. both premium bases visible, one named central
-    if rec.get("erp_basis") not in ("cds", "rating"):
+    # "cds" is the HISTORICAL spelling of "market" and records already committed
+    # under it are ACCURATE — Egypt's market basis genuinely is a credit-default-swap
+    # quote — so it is accepted here rather than rewritten. cost_of_capital.py
+    # normalises on the way in and emits only "market", so new records carry one
+    # spelling. What the rename prevents is a UAE record saying "cds" when the
+    # spread came from a Treasury bond, which is a key that lies about its content.
+    if rec.get("erp_basis") not in ("market", "cds", "rating"):
         fails.append("no equity-risk-premium basis named as central; both are published and "
                      "one is named")
     if not (rec.get("sensitivity") or {}).get("other_basis"):
