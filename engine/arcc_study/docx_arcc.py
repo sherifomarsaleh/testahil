@@ -615,18 +615,27 @@ rows.append(['NOPAT  (EBIT × (1 − t))'] + [n0(x) for x in F['nopat']])
 rows.append(['Plus depreciation'] + [n0(x) for x in F['dna']])
 rows.append(['Less capital expenditure'] + [f'({n0(x)})' for x in F['capex']])
 rows.append(['Less change in working capital'] + [f'({n0(x)})' for x in F['dwc']])
+# THE FY2026 COLUMN DID NOT FOOT FOR A READER. Its components are full-year figures and
+# its free cash flow is the remaining part-year only, so the reader's arithmetic came out
+# at twice the printed number with nothing on the page to explain it. The scaling factor is
+# now a printed row.
+_REM = 1.0 - IN['stub_years']
+rows.append(['Remaining fraction of the year'] + [f'{(_REM if i == 0 else 1.0):.2f}'
+                                                  for i in range(5)])
 rows.append(['Free cash flow to the firm'] + [n0(x) for x in F['fcff']])
 rows.append(['Discount factor'] + [f'{x:.4f}' for x in F['df']])
 rows.append(['Present value of FCFF'] + [n0(x) for x in F['pv']])
-table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={12, 14}, size=8.8)
+table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={12, 15}, size=8.8)
 caption('Table 9 — The full build from revenue to present value, and every line of it is '
         'printed so the arithmetic closes on the page: EBITDA less depreciation PLUS other '
         'operating income is the EBIT shown. That last line is the export subsidy at the '
         'rate the company disclosed on its FY2025 export revenue, plus the non-subsidy '
         'remainder escalated; it is a real disclosed income and leaving it out of the '
         'printed build would have left a reader unable to reconcile the two rows either '
-        'side of it. FY2026 carries only the five months not yet earned at the valuation '
-        'date; the seven already earned are rolled into the opening cash balance instead, '
+        f'side of it. FY2026 carries only the '
+        f'{n0(round(_REM * 12))} months not yet earned at the valuation date; the '
+        f'{n0(round(IN["stub_years"] * 12))} already earned are rolled into the opening '
+        f'cash balance instead, '
         'so the period is counted exactly once rather than twice or not at all.')
 P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax of EGP '
   f'{n0(H["tax"][2])}mn against pre-tax profit of EGP {n0(H["pbt"][2])}mn. The company '
@@ -687,9 +696,15 @@ P(f'One reconciliation belongs here too, because it is the sharpest challenge to
   f'{n0(IN["rev_q1_26"])}mn, a gross margin of {pc(IN["gp_q1_26"]/IN["rev_q1_26"])} against '
   f'{pc(H["gross_profit"][2]/H["revenue"][2])} for FY2025 as a whole. Four times that '
   f'quarter is EGP {n0(4*IN["pat_q1_26"])}mn. This model forecasts EGP {n0(F["pat"][0])}mn '
-  f'for FY2026, {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} below the simple annualisation. '
-  f'Margins were still EXPANDING in the first quarter; the forecast assumes they turn. That '
-  f'is the assumption to attack.')
+  f'for FY2026, {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} '
+  f'{"above" if F["pat"][0] > 4*IN["pat_q1_26"] else "below"} the simple annualisation — a '
+  f'direction that is COMPUTED here rather than typed, because the earlier editions of this '
+  f'sentence said "below" beside a positive sign. The margin turn is visible in the two '
+  f'rates rather than in that one: revenue is forecast '
+  f'{sg(F["revenue"][0]/(4*IN["rev_q1_26"])-1)} against four times the quarter while profit '
+  f'is forecast {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)}, so the model has revenue running '
+  f'well ahead of earnings. Margins were still EXPANDING in the first quarter; the forecast '
+  f'assumes they turn. That is the assumption to attack.')
 
 H2('1.7  The enterprise-to-equity bridge')
 rows = [['', 'EGP mn', 'Per share (EGP)']]

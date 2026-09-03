@@ -2466,6 +2466,45 @@ LESSONS = [
       "A rule set that separates a roll-up from a list of line items by shape alone, which "
       "would make the per-study declaration unnecessary rather than merely narrower."),
 
+    L("L-213", "ALL", None,
+      "A DIRECTION WORD IS A CLAIM AND IS CHECKED AGAINST THE SIGN BESIDE IT. Compute the "
+      "word, not only the number.",
+      "Every figure-level gate here reconciles NUMBERS. The words around them are typed, and "
+      "a typed word does not look like a figure — so a correctly computed ratio can sit "
+      "beside a direction word that says the opposite and no check notices.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "ARCC shipped \'This model forecasts EGP 3,842mn for FY2026, +1.8% below the simple "
+      "annualisation\' — the ratio computed correctly, the word saying the opposite, in the "
+      "paragraph the study itself calls the sharpest challenge to its forecast. Measured "
+      "across every delivered document in its latest edition, a regular expression matching "
+      "a signed percentage against a contradicting direction word within three words finds "
+      "ONE further instance and no false positives: MODON publishes \'AED 2.50, -12% above "
+      "the market\'. Two innocent constructions fired against the first draft and taught the "
+      "pattern — a TEMPORAL \'over\' (fell -2.4% over the same span) and a RANGE DASH "
+      "(80-85% above the 2024 average) — so bare \'over\' is not in the upward set and a "
+      "sign preceded by a digit is not a minus.",
+      "A book where this pattern fires on constructions that are correct more often than on "
+      "ones that are wrong, which would make it a check people learn to ignore."),
+
+    L("L-214", "ALL", None,
+      "A PART-YEAR STUB MUST SHOW ITS SCALING FACTOR ON THE PAGE. A column whose components "
+      "are full-year and whose total is part-year cannot be footed by anyone.",
+      "The model is right and the reader is stranded: the arithmetic fails by exactly the "
+      "stub fraction, with nothing printed to explain it, and the natural inference is that "
+      "the total is wrong.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "ARCC\'s cash-flow waterfall printed NOPAT 3,745 plus depreciation 344 less capital "
+      "expenditure 890 less working capital 108 — which sums to 3,091 — against a printed "
+      "free cash flow of 1,545, exactly half, because the valuation date is 30 June and only "
+      "the remaining half-year is discounted. Every other column footed to the last unit. "
+      "The caption compounded it by stating FIVE months not yet earned and SEVEN already "
+      "earned, both typed, against a committed stub of 0.500 — six and six. The remaining "
+      "fraction is now a printed row and the months are computed from the stub.",
+      "A stub convention where the components are themselves pro-rated, in which case the "
+      "column foots without the extra row and printing it would be noise."),
+
 ]
 
 

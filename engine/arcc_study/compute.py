@@ -2111,6 +2111,18 @@ for _i in (0, 1, 5):
         f"recalculation gate can see because it reconciles the model to itself")
 
 for _i in range(5):
+    _scale = REM if _i == 0 else 1.0
+    chk(abs((nopat[_i] + dna_f[_i] - capex[_i] - dwc[_i]) * _scale - fcff[_i]) < 1e-6,
+        f"the printed free-cash-flow build FOOTS in {YRS[_i]}: NOPAT of EGP "
+        f"{nopat[_i]:,.0f}mn plus depreciation {dna_f[_i]:,.0f} less capital expenditure "
+        f"{capex[_i]:,.0f} less the working-capital change {dwc[_i]:,.0f}, times the "
+        f"remaining fraction of the year {_scale:.2f}, IS the free cash flow of "
+        f"{fcff[_i]:,.0f} the table prints. Until this edition that fraction appeared "
+        f"nowhere on the page, so FY2026's components were full-year figures against a "
+        f"part-year cash flow and a reader's arithmetic came out at exactly twice the "
+        f"printed number")
+
+for _i in range(5):
     chk(abs(ebitda_f[_i] - dna_f[_i] + oth_f[_i] - ebit_f[_i]) < 1e-6,
         f"the printed cash-flow waterfall FOOTS in {YRS[_i]}: EBITDA of EGP "
         f"{ebitda_f[_i]:,.0f}mn less depreciation and amortisation of {dna_f[_i]:,.0f} plus "

@@ -168,3 +168,48 @@ def report(checked, problems, label=''):
     for p in problems:
         print('  !', p)
     return 1 if problems else 0
+
+# ---------------------------------------------------------------------------------------
+# A DIRECTION WORD IS A CLAIM AND IT IS CHECKED AGAINST THE SIGN BESIDE IT.
+#
+# The figures in this file are computed; the WORDS around them are typed, and a typed word
+# does not look like a figure. ARCC shipped "+1.8% below the simple annualisation" — the
+# ratio computed correctly and the direction word said the opposite, so the sentence
+# understated the model's own forecast against the benchmark it was being challenged on.
+# MODON shipped "AED 2.50, -12% above the market".
+#
+# Measured across the book at 41 delivered documents in their latest editions, this finds
+# ONE contradiction and no false positives, once two innocent constructions are excluded:
+# a temporal "over" ("fell about -2.4% over the same span") and a RANGE dash ("80-85%
+# above the 2024 average"), both of which fired against the first draft. Bare "over" is
+# therefore dropped from the upward set — above, more than, higher than, ahead of, exceeds
+# and greater than cover it — and a sign preceded by a digit is a range, not a minus.
+_UP = r'above|more than|ahead of|higher than|exceeds?|greater than'
+_DOWN = r'below|under|less than|beneath|short of|lower than|behind'
+_SIGN_UP = re.compile(r'(?<![\d])[+]\s?\d[\d,]*\.?\d*\s?%\s+(?:\w+\s+){0,2}(' + _DOWN + r')\b',
+                      re.I)
+_SIGN_DOWN = re.compile(r'(?<![\d])[-\u2212\u2013]\s?\d[\d,]*\.?\d*\s?%\s+(?:\w+\s+){0,2}('
+                        + _UP + r')\b', re.I)
+
+
+def sign_word_conflicts(texts):
+    """Every place a signed percentage is contradicted by the direction word beside it."""
+    out = []
+    for t in texts:
+        for rx in (_SIGN_UP, _SIGN_DOWN):
+            for m in rx.finditer(t or ''):
+                i = max(0, m.start() - 60)
+                out.append((m.group(0).strip(), (t[i:m.end() + 25]).strip()))
+    return out
+
+
+def document_texts(path):
+    """Every string a reader sees in a .docx — paragraphs and table cells alike."""
+    import docx
+    d = docx.Document(path)
+    texts = [p.text for p in d.paragraphs]
+    for t in d.tables:
+        for r in t.rows:
+            for c in r.cells:
+                texts.append(c.text)
+    return texts
