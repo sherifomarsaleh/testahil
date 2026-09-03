@@ -36,18 +36,29 @@ S0 = json.load(open('step0_result.json'))
 # quoting the wrong one. It reads the generated record instead, which is the single
 # source that rule names.
 def _band_record(tk):
-    import re as _re
-    _src = open(os.path.join(HERE, '..', '..', 'assets', 'data.js'), encoding='utf-8').read()
-    _i = _src.find('BANDS')
-    _m = _re.search(r'\b%s\s*:\s*\{([^}]*)\}' % tk, _src[_i:_i + 200000])
-    if not _m:
+    """Read through a REAL JavaScript parse, never a regex over the file [R-ENF-03].
+
+    This function matched the record with a regular expression until 03-Sep-2026. That is
+    the exact construction the standing rule names: re.search returns the FIRST match and a
+    JavaScript object literal takes the LAST, so a duplicated key means the tool inspects
+    the half the reader never sees — which is how a ticker page once published a support
+    above its own close while both gates reported it clean. EGCH's band_record.py already
+    did this correctly; this study did not, and a shared discipline implemented in one
+    place is a discipline that binds in one place.
+    """
+    import subprocess
+    _p = os.path.join(HERE, '..', '..', 'assets', 'data.js')
+    _js = ("const fs=require('fs');const vm=require('vm');"
+           "const src=fs.readFileSync(%r,'utf8');const ctx=vm.createContext({});"
+           "vm.runInContext(src+';globalThis.__B=BANDS;',ctx);"
+           "const b=ctx.__B[%r];if(!b)throw new Error('no BANDS entry');"
+           "console.log(JSON.stringify(b));" % (_p, tk))
+    _r = subprocess.run(['node', '-e', _js], capture_output=True, text=True)
+    if _r.returncode != 0:
         raise SystemExit('no published band record for %s. [R-CAL-02] says what a '
-                         'reader is shown, and this study cannot show it without one.' % tk)
-    _out = {}
-    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|[-\w.]+)', _m.group(1)):
-        _out[_k] = (_v.strip('"') if _v.startswith('"')
-                    else (None if _v == 'null' else float(_v)))
-    return _out
+                         'reader is shown, and this study cannot show it without one. '
+                         '%s' % (tk, _r.stderr.strip()[:200]))
+    return json.loads(_r.stdout)
 
 
 BAND = _band_record('ARCC')
@@ -1015,20 +1026,29 @@ P('This section describes the tape and makes no claim about value. The two are c
 
 # ============================== 3 ============================================
 H1('3  A probabilistic price map')
-P('The following is NOT a valuation. It is a distribution of where the share price could '
-  'sit at two horizons, drawn from the price history alone and from nothing in the '
-  'preceding sections. It is included because a single fair-value number tells a reader '
-  'nothing about dispersion, and it is labelled illustrative because its own calibration '
-  'record says it should be.')
+_BR = _band_record('ARCC')
+P(f'The following is NOT a valuation. It is a distribution of where the share price could '
+  f'sit at two horizons, drawn from the price history alone and from nothing in the '
+  f'preceding sections. It is included because a single fair-value number tells a reader '
+  f'nothing about dispersion. Over {n0(_BR["n"])} resolved three-month forecasts this '
+  f'name\'s price finished inside the 90% band {pc(_BR["c90"], 1)} of the time, against a '
+  f'{pc(0.90, 0)} target — a record long enough to read, and one on which nothing further '
+  f'is claimed either way. Its bands run {n2(_BR["width"])} times the width of a naive '
+  f'carry-anchored random walk\'s, which is disclosed rather than judged: on this exchange '
+  f'that is the ordinary figure and a wider band is not automatically a worse one.')
 rows = [['', 'One month', 'Three months']]
 for lab, k in [('5th percentile', 'p5'), ('25th percentile', 'p25'), ('Median', 'p50'),
                ('75th percentile', 'p75'), ('95th percentile', 'p95')]:
     rows.append([lab, n2(STK['horizons']['1M']['pct'][k]), n2(STK['horizons']['3M']['pct'][k])])
-rows.append(['Probability of finishing above the current price',
+# THE ANCHOR IS NAMED, NOT CALLED "THE CURRENT PRICE". These probabilities are measured
+# from the close the simulation was anchored on, which on this edition is four weeks and
+# 30.5% below the latest known market price. A reader seeing "above the current price"
+# reads it against 77.00 and is wrong by the whole of that move.
+rows.append([f'Probability of finishing above the EGP {n2(STK["spot"])} anchor',
              pc(STK['horizons']['1M']['p_above']), pc(STK['horizons']['3M']['p_above'])])
-rows.append(['Probability of touching +10% at any point',
+rows.append([f'Probability of touching +10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_up10']), pc(STK['horizons']['3M']['touch_up10'])])
-rows.append(['Probability of touching −10% at any point',
+rows.append([f'Probability of touching −10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_dn10']), pc(STK['horizons']['3M']['touch_dn10'])])
 table(rows, [3.00, 1.60, 1.60], band_rows={3})
 caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulation anchored '

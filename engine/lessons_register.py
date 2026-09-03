@@ -2623,6 +2623,42 @@ LESSONS = [
       "A quantity genuinely quotable against two different anchors in the same document, "
       "where the reader is told which is which at each use."),
 
+    L("L-221", "ALL", None,
+      "A CAUTIOUS-SOUNDING VERDICT IS STILL A VERDICT AND IS PUBLISHED ONLY WHERE THE RECORD "
+      "EARNS IT. Understating in the wrong direction is not a safe error.",
+      "A flag that flatters gets checked; a flag that disparages our own work reads as "
+      "conservative disclosure and is waved through. Both are claims about the world.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "The cone figure was titled \'ILLUSTRATIVE ONLY, this cone is over-wide\' and the body "
+      "said the map was labelled illustrative \'because its own calibration record says it "
+      "should be\'. That name\'s published record carries NO flag: 41 of 44 resolved "
+      "three-month forecasts finished inside the 90% band, 93.2% against a 90% target, "
+      "which the two-sided test does not distinguish from the target, and its width of "
+      "1.43x a naive random walk is the ordinary figure for its exchange and is disclosed "
+      "rather than judged. The study was publishing a flag the record does not earn and "
+      "attributing it to that record. Replaced with the record\'s own numbers and a title "
+      "saying what the cone IS — anchored on the last session of the price history rather "
+      "than on the valuation date.",
+      "A record that does earn the flag, in which case publishing it is the rule working."),
+
+    L("L-222", "ALL", None,
+      "READ THE SITE\'S DATA THROUGH A REAL JAVASCRIPT PARSE, IN EVERY PLACE THAT READS IT — "
+      "not only in the checkers written after the lesson.",
+      "A regular expression over a JavaScript object literal returns the FIRST match where "
+      "the parser takes the LAST, so a duplicated key means the tool inspects the half no "
+      "reader ever sees.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "The standing rule was adopted after a reader — not a check — found a ticker page "
+      "publishing a support above its own close while both existing gates reported it "
+      "clean, and one study (EGCH) implements it correctly through node. ARCC\'s own "
+      "band-record reader was a regex over data.js the whole time. The rule was right, was "
+      "written down, and bound in one place, which is the same shape as the prose-figure "
+      "and sweep-module findings of the same week.",
+      "A data file that is genuinely a flat key-value format with no possibility of a "
+      "duplicate key, where a regex and a parser cannot disagree."),
+
 ]
 
 

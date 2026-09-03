@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**141 lessons**, of which 114 bind on every study, 20 on a class of company, and 7 on a single name.
+**143 lessons**, of which 116 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 66 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 68 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1218,6 +1218,26 @@ The standing rule that a false positive is fixed by widening the set, never by d
 > **What it cost, or how we know.** prose_check declared PF.relative_to(technicals, (read_close, spot)) — both anchors — so the levels table's wrong-clock distances were IN the rendering set and the gate reported 0 unmatched on a table showing the 52-week high below the current price. Narrowed to the read's own close, with the single figure that legitimately spans both clocks — the gap between them, stated in the caption — declared explicitly.
 
 > **What would overturn it.** A quantity genuinely quotable against two different anchors in the same document, where the reader is told which is which at each use.
+
+### L-221 · A CAUTIOUS-SOUNDING VERDICT IS STILL A VERDICT AND IS PUBLISHED ONLY WHERE THE RECORD EARNS IT. Understating in the wrong direction is not a safe error.
+
+A flag that flatters gets checked; a flag that disparages our own work reads as conservative disclosure and is waved through. Both are claims about the world.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** The cone figure was titled 'ILLUSTRATIVE ONLY, this cone is over-wide' and the body said the map was labelled illustrative 'because its own calibration record says it should be'. That name's published record carries NO flag: 41 of 44 resolved three-month forecasts finished inside the 90% band, 93.2% against a 90% target, which the two-sided test does not distinguish from the target, and its width of 1.43x a naive random walk is the ordinary figure for its exchange and is disclosed rather than judged. The study was publishing a flag the record does not earn and attributing it to that record. Replaced with the record's own numbers and a title saying what the cone IS — anchored on the last session of the price history rather than on the valuation date.
+
+> **What would overturn it.** A record that does earn the flag, in which case publishing it is the rule working.
+
+### L-222 · READ THE SITE'S DATA THROUGH A REAL JAVASCRIPT PARSE, IN EVERY PLACE THAT READS IT — not only in the checkers written after the lesson.
+
+A regular expression over a JavaScript object literal returns the FIRST match where the parser takes the LAST, so a duplicated key means the tool inspects the half no reader ever sees.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** The standing rule was adopted after a reader — not a check — found a ticker page publishing a support above its own close while both existing gates reported it clean, and one study (EGCH) implements it correctly through node. ARCC's own band-record reader was a regex over data.js the whole time. The rule was right, was written down, and bound in one place, which is the same shape as the prose-figure and sweep-module findings of the same week.
+
+> **What would overturn it.** A data file that is genuinely a flat key-value format with no possibility of a duplicate key, where a regex and a parser cannot disagree.
 
 
 ---
