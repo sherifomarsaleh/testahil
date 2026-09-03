@@ -348,6 +348,36 @@ def acceptance() -> list:
     return items
 
 
+def backtest_coverage() -> dict:
+    """2a — how many names carry a point-in-time backtest record, read at the frontier.
+
+    The score files are the record; a name is backtested when it has at least one
+    scored origin, and a name with none is NOT quietly excluded — it is counted
+    against the queue's own total [R-ENF-04].
+    """
+    best, where = {}, "this checkout"
+    refs = ["HEAD"] + [b["branch"] for b in live_branches()]
+    for ref in refs:
+        names = {}
+        listing = git("ls-tree", "-r", "--name-only", ref,
+                      "engine/valuation_calibration/")
+        for fn in listing.splitlines():
+            if "SCORES_" not in fn:
+                continue
+            blob = git("show", "%s:%s" % (ref, fn))
+            if not blob:
+                continue
+            try:
+                for r in json.loads(blob).get("rows", []):
+                    names.setdefault(str(r.get("ticker", "")).upper(),
+                                     set()).add(r.get("origin"))
+            except Exception:
+                continue
+        if len(names) > len(best):
+            best, where = names, ref
+    return {"names": {k: sorted(v) for k, v in best.items()}, "source": where}
+
+
 def phase2() -> dict:
     """The other 85 names, read off the live campaign queue — never a written list."""
     r = subprocess.run([sys.executable, os.path.join(ENGINE, "campaign_queue.py")],
@@ -367,7 +397,19 @@ def phase2() -> dict:
             if " current " in line:
                 cur["done"] += 1
                 done += 1
-    return {"done": done, "total": total, "markets": markets}
+    bt = backtest_coverage()
+    scored = [t for t in bt["names"] if bt["names"][t]]
+    return {"done": done, "total": total, "markets": markets,
+            "a": {"rebuilt": {"done": done, "total": total},
+                  "backtested": {"done": len(scored), "total": total,
+                                 "names": scored, "source": bt["source"]}},
+            "b": {"started": False,
+                  "why": "2b grades claims struck AFTER 2a closes — strictly "
+                         "sequential, per the instruction of 03-Sep-2026. Its clock "
+                         "has not started.",
+                  "horizon": "up to one year [R-LENS-02]",
+                  "earliest": "roughly one year after 2a closes — a MATURITY date, "
+                              "never a throughput estimate"}}
 
 
 def dates() -> dict:
@@ -418,8 +460,9 @@ def report() -> dict:
 
     print("TESTAHIL — method reassessment, progress at %s"
           % dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"))
-    print("counted from the repository. THERE IS NO PHASE 3: the plan defines Phase 1")
-    print("(the method) and Phase 2 (the other 85 names), and nothing beyond them.\n")
+    print("counted from the repository. THREE STAGES: Phase 1 (the method), Phase 2a")
+    print("(the backtest across the book) and Phase 2b (the live test, going forward).")
+    print("2a is bounded by WORK, 2b by the CALENDAR — never averaged together.\n")
 
     def bar(done, total, w=28):
         f = 0 if not total else int(round(w * done / total))
@@ -436,8 +479,13 @@ def report() -> dict:
     if "error" in p2:
         print("  PHASE 2             REFUSED — %s" % p2["error"])
     else:
-        print("  PHASE 2             %s   names on the current standard"
-              % bar(p2["done"], p2["total"]))
+        a = p2["a"]
+        print("  PHASE 2a rebuilt    %s   names on the current standard"
+              % bar(a["rebuilt"]["done"], a["rebuilt"]["total"]))
+        print("  PHASE 2a backtested %s   names with a point-in-time record (%s)"
+              % (bar(a["backtested"]["done"], a["backtested"]["total"]),
+                 ", ".join(a["backtested"]["names"]) or "none"))
+        print("  PHASE 2b            NOT STARTED — %s" % p2["b"]["why"].split(".")[0])
     print("\n  THESE ARE NOT AVERAGED INTO ONE NUMBER. A percentage blended at typed")
     print("  weights is a new method with free parameters nobody tested [R-LENS-03],")
     print("  and here the components disagree — which is the status, not a defect in it.")
@@ -465,9 +513,16 @@ def report() -> dict:
         print("                      %s" % a3["waits_on"])
         if a3.get("dated_half"):
             print("                      %s" % a3["dated_half"])
-    print("  Phase 2             held until Phase 1's record shows the method unbiased —")
-    print("                      85 studies on an unproven method is the mistake the")
-    print("                      campaign just made with five.")
+    print("  Phase 2a            bounded by WORK — ninety rebuilds and ninety backtests;")
+    print("                      throughput decides. Held until Phase 1's record shows the")
+    print("                      method unbiased: 85 studies on an unproven method is the")
+    print("                      mistake the campaign just made with five.")
+    print("  Phase 2b            bounded by the CALENDAR — %s. It cannot"
+          % p2.get("b", {}).get("horizon", "the lens's own clock"))
+    print("                      complete earlier than %s"
+          % p2.get("b", {}).get("earliest", "one year after 2a"))
+    print("                      Projecting it from a work rate would be a number nobody")
+    print("                      can know; 2b's date moves only when 2a's does.")
     print("\n  IF PHASE 2 STARTED TODAY, on the plan's own cap scenarios:")
     for s in dd.get("scenarios", []):
         print("    %d half-windows/week   both phases end %s   (%s)"

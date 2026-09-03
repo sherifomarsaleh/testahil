@@ -50,6 +50,9 @@ def build() -> str:
     b, dv, acc = p1["build"], p1["delivery"], p1["acceptance"]
     met = sum(1 for a in acc if a["state"] == "MET")
     a3 = next((a for a in acc if a["n"] == 3), None)
+    p2a = p2.get("a") or {"rebuilt": {"done": 0, "total": 0},
+                          "backtested": {"done": 0, "total": 0, "names": []}}
+    p2b = p2.get("b") or {}
     gen = dt.datetime.now(dt.timezone.utc).strftime("%d %B %Y, %H:%M UTC")
 
     # ---- the four measured rows -------------------------------------------------
@@ -73,9 +76,17 @@ def build() -> str:
                                      a3.get("origins_declared", 0))
           if a3 and a3["state"] == "RUNNING" else "criterion 3 is blocked"),
          ("warn" if a3 and a3["state"] == "RUNNING" else "none")),
-        ("Phase 2 — the other 85 names", "delivered on the current standard",
-         bar(p2.get("done", 0), p2.get("total", 0), "warn"),
-         "NO DATE", "held until criterion 3 reports", "none"),
+        ("Phase 2a — rebuilt", "the other 85 names on the current standard",
+         bar(p2a["rebuilt"]["done"], p2a["rebuilt"]["total"], "warn"),
+         "BOUNDED BY WORK", "throughput decides", "warn"),
+        ("Phase 2a — backtested", "names carrying a point-in-time record",
+         bar(p2a["backtested"]["done"], p2a["backtested"]["total"], "warn"),
+         "BOUNDED BY WORK", "%s scored so far" % (", ".join(p2a["backtested"]["names"])
+                                                  or "none"), "warn"),
+        ("Phase 2b — the live test", "claims struck after 2a closes, graded on what happens",
+         '<div class="meter"><div class="meter-track"></div><div class="meter-read">'
+         '<span class="pct">—</span><span class="frac">not started</span></div></div>',
+         "BOUNDED BY THE CALENDAR", "no work shortens it", "none"),
     ]
     row_html = "".join(
         '<div class="prow"><div class="prow-id"><h3>%s</h3><p>%s</p></div>%s'
@@ -101,10 +112,20 @@ def build() -> str:
             chain.append(("dated-far", a3["first_scoreable"],
                           "its as-delivered check cannot mature before this",
                           a3.get("dated_half", "")))
-    chain.append(("undated", "NO DATE", "Phase 2 opens",
-                  "the plan holds Phase 2 until Phase 1's record shows the method "
-                  "unbiased within its confidence interval. Eighty-five studies on an "
-                  "unproven method is the mistake the campaign just made with five."))
+    chain.append(("undated", "BY WORK", "Phase 2a — the backtest across the book",
+                  "ninety rebuilds and ninety backtests; throughput decides when it "
+                  "closes. Held until Phase 1's record shows the method unbiased, "
+                  "because eighty-five studies on an unproven method is the mistake "
+                  "the campaign just made with five. %d of %d names carry a "
+                  "point-in-time record so far."
+                  % (p2a["backtested"]["done"], p2a["backtested"]["total"])))
+    chain.append(("undated", "BY CALENDAR", "Phase 2b — the live test, going forward",
+                  "grades only claims struck AFTER 2a closes, on the fundamental "
+                  "lens's own clock (%s). It cannot complete earlier than %s. No "
+                  "amount of capacity shortens it, and projecting it from a work "
+                  "rate would be a number nobody can know."
+                  % (p2b.get("horizon", "up to one year"),
+                     p2b.get("earliest", "one year after 2a closes"))))
     chain_html = "".join(
         '<li class="node %s"><span class="node-when">%s</span>'
         '<div class="node-body"><h4>%s</h4><p>%s</p></div></li>'
@@ -194,8 +215,7 @@ TEMPLATE = """<title>Reassessment Progress Board</title>
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --ground:#0e1312; --surface:#161d1b; --sunk:#1c2422;
-    --ink:#e6ece9; --ink-2:#b3c0ba; --ink-3:#8496 8e;
-    --ink-3:#84968e;
+    --ink:#e6ece9; --ink-2:#b3c0ba; --ink-3:#84968e;
     --rule:#26302d; --rule-2:#35423e;
     --go:#5cbfa4; --go-soft:#1a3630;
     --warn:#dd9b52; --warn-soft:#3a2c1a;
@@ -342,10 +362,11 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   <header class="mast">
     <div class="eyebrow">TESTAHIL &nbsp;·&nbsp; standing research protocol</div>
     <h1>Fundamental method reassessment</h1>
-    <p class="lede">Two phases, not three: Phase&nbsp;1 rebuilds the method, Phase&nbsp;2
-      applies it to the other 85 names. Every figure below is counted from the repository
-      when this page is built — none of it is typed, and none of it is remembered
-      between builds.</p>
+    <p class="lede">Three stages. Phase&nbsp;1 rebuilds the method. Phase&nbsp;2a backtests it
+      across all ninety names — bounded by <em>work</em>. Phase&nbsp;2b grades what it claims
+      from that point forward against what actually happens — bounded by the
+      <em>calendar</em>, and no amount of capacity shortens it. Every figure below is counted
+      from the repository when this page is built; none of it is typed.</p>
     <div class="meta">
       <span>built <b>{{gen}}</b></span>
       <span>phase 1 opened <b>{{start}}</b></span>
@@ -381,14 +402,16 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   </section>
 
   <section>
-    <h2>If Phase 2 started today</h2>
-    <p class="intro">The plan's own cap scenarios, anchored on the measured start date.
-      These are not a forecast — they are three arithmetic consequences of three
-      assumptions, and the assumption has never been tested.</p>
+    <h2>If Phase 2a started today</h2>
+    <p class="intro">The plan's own cap scenarios for the build-and-backtest work,
+      anchored on the measured start date. These are not a forecast — they are three
+      arithmetic consequences of three assumptions, and the assumption has never been
+      tested. <strong>They do not apply to 2b at all</strong>: 2b is bounded by the
+      calendar, so a work rate cannot project it.</p>
     <div class="panel">
       <div class="tw"><table>
         <thead><tr><th>Half-windows / week</th><th>Assumption</th>
-          <th class="num">Both phases end</th></tr></thead>
+          <th class="num">2a would close</th></tr></thead>
         <tbody>{{scenarios}}</tbody>
       </table></div>
       <p class="note">{{rate_note}}</p>
@@ -417,7 +440,7 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   </section>
 
   <section>
-    <h2>Phase 2 — {{p2done}} of {{p2total}} names</h2>
+    <h2>Phase 2a — {{p2done}} of {{p2total}} names rebuilt</h2>
     <p class="intro">Read live from the campaign queue, which refuses rather than
       returning a short list. Market order is fixed and there is a hard stop after Egypt
       to ask whether the corrected method generalises before the UAE begins.</p>
