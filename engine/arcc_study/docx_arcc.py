@@ -1607,13 +1607,15 @@ rows.append([
 rows.append([
     'Growth is worth having, so a terminal that punishes it is wrong.', 'Expert 2',
     'REJECTED',
-    f'Measured on this company\'s own returns: at the terminal return and reinvestment rate '
-    f'this study computes ({pc(GDV["roic_term"], 2)} against a terminal cost of capital of '
-    f'{pc(GDV["wacc_term"], 2)}, a spread of {pc(GDV["spread_pct"], 2)}), moving terminal '
+    f'Measured on this company\'s own returns. The return on replacement-cost capital is '
+    f'{pc(GDV["n_over_ic"], 2)} against a terminal cost of capital of '
+    f'{pc(GDV["wacc_term"], 2)} — short of it by '
+    f'{n0(abs(GDV["n_over_ic"] - GDV["wacc_term"]) * 1e4)} basis points — so moving terminal '
     f'growth from 3% to 7% takes the value from EGP {n2(GDV["fv_at_g3"])} DOWN to '
-    f'EGP {n2(GDV["fv_at_g7"])} — about {n2(abs(GDV["fv_at_g7"] - GDV["fv_at_g3"]) / 4)} a '
-    f'share for each point of growth, the WRONG way. Growth funded at a return below the '
-    f'cost of capital destroys value, and section 1.8 shows the arithmetic.'])
+    f'EGP {n2(GDV["fv_at_g7"])}, {sg(GDV["spread_pct"])}, about '
+    f'{n2(abs(GDV["fv_at_g7"] - GDV["fv_at_g3"]) / 4)} a share for each point of growth, and '
+    f'the WRONG way. Growth funded at a return below the cost of capital destroys value, and '
+    f'section 1.8 shows the arithmetic.'])
 table(rows, [2.05, 1.05, 1.20, 2.50], size=8.0)
 caption('Table C2 — Cross-examination. Four of the six objections are conceded, which is the '
         'honest count for a study whose forecast sits at its subject\'s best filed year and '

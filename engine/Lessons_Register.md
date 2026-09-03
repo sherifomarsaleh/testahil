@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**146 lessons**, of which 119 bind on every study, 20 on a class of company, and 7 on a single name.
+**148 lessons**, of which 121 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 71 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 73 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1268,6 +1268,26 @@ Figure gates match numerals. A sentence saying which lenses sit above the price 
 > **What it cost, or how we know.** One sentence in section 4 said 'the two multiple-based lenses put fair value below the current price and the two forward-looking ones put it above', two paragraphs after the same page stated that EVERY lens sits below the market. Both could not be true; the second was. The same sentence carried a typed 98% restating a computed one, a typed 52-week high and low, a distance computed against spot while the high and low came from a read four weeks earlier, and a duplicated word. It is now computed from the lens values, and it says the uncomfortable thing plainly: no reading in the study supports the price.
 
 > **What would overturn it.** A study where the lens set is fixed and cannot move between editions, making a written count safe.
+
+### L-226 · A CHECK THAT READS A DELIVERED DOCUMENT READS ITS TABLE CELLS TOO. A reader does not distinguish a paragraph from a cell, so a check that does is checking a different document.
+
+python-docx exposes paragraphs and tables as separate collections, so the natural one-line way to get a document's text silently omits every table — which is where the densest and most quotable claims sit.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** The check written that morning to stop a retired diagnostic being quoted as the live figure read paragraphs only, and reported clean while the cross-examination TABLE carried 'the terminal return and reinvestment rate this study computes (11.26% ...)' — the retired construction's own number, in the cell whose job is to reject an objection on evidence. This is the PHDC precedent in this repository, where a standing-rule identifier leaked to a reader through a table cell for the same reason. Widened, it caught the defect on its first run.
+
+> **What would overturn it.** A document format where tables are part of the paragraph stream, making the omission impossible rather than merely easy.
+
+### L-227 · READING THE RENDERED PAGES IS NOT A FORMALITY AND NOTHING CURRENTLY REPLACES IT. Budget it per re-issue, and mine each finding for the check that would have caught it.
+
+Every automated gate here points from the page back to the model and asks whether each figure came from it. The defects that survive are the ones that live BETWEEN figures, in the words around them, inside pictures, or in a relationship between two tables — none of which a per-figure check can see.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** Reading all 32 pages of one delivered study found roughly forty distinct claim-level defects, in a study that had just passed the recalculation gate, the prose-figure check, the external-reader scrub, the column audit and every repository-level gate. The most serious stated a 51% probability for an outcome the model puts near 15%; several published a superseded edition's numbers; one contradicted its own page two paragraphs later. SIX of the classes were then made arithmetic in the same session and are now in CI — table footing, the sign-word check, the retired-input check, the shared site-data reader, delivered-PDF currency and artefact currency — so the next study cannot repeat them. The residue is the argument for keeping the read.
+
+> **What would overturn it.** A re-issue where the read finds nothing the gates did not, sustained over several studies, which would mean the instruments have caught up with the reader.
 
 
 ---
