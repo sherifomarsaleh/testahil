@@ -84,7 +84,12 @@ _MARKER_RX = re.compile(
     r'(?P<num>\d(?:\.\d)?)\.?\s|'                    # 1 , 1. , 1.4
     r'(?P<app>Appendix\s+[ABC])\b|'                  # Appendix A , Appendix A —
     r'(?P<sub>[ABC]\.\d)\.?\s|'                       # A.2 , C.5
-    r'(?P<about>About this (?:series|study))\b|'
+    # Measured across the whole book, EVERY heading beginning with 'About' is this one
+    # section, under three renderings — 'About', 'About this series', 'About this
+    # study'. So the marker is the word, not a list of spellings: a list would need
+    # extending the first time a study wrote a fourth, and a section is not absent
+    # because its title ends in a different noun.
+    r'(?P<about>About)\b|'
     r'(?P<named>Headline|Valuation summary|Company overview|Disclosure)\b'
     r')', re.I)
 

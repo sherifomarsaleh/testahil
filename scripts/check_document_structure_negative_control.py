@@ -137,6 +137,9 @@ case('13. CLEAN — numbers with a trailing period and "About this study" '
      '(the ADNOCDIST/TMGH convention)',
      False, {'X': ([re.sub(r'^(\d(?:\.\d)?)\s', r'\1. ', h).replace(
          'About this series', 'About this study') for h in FULL], 'bold')})
+case('13b. CLEAN — a bare "About" heading, the third rendering this book uses '
+     '(EGCH, Fertiglobe)',
+     False, {'X': ([h.replace('About this series', 'About') for h in FULL], 'bold')})
 case('14. CLEAN — a study carrying EXTRA sections beyond the model (ARCC 1.10, 1.11)',
      False, {'X': (FULL[:13] + ['1.10  Extra', '1.11  Extra'] + FULL[13:], 'bold')})
 case('15. CLEAN — a known breach that is on the ratchet stays green',
