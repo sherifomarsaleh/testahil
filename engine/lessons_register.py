@@ -3325,6 +3325,31 @@ LESSONS = [
       "A rule that maps a count noun in prose to a committed collection without a per-study "
       "declaration — which would make the general gate tractable after all."),
 
+    L("L-253", "ALL", None,
+      "A COLUMN AUDIT CANNOT SEE ONE ROW, BECAUSE AN AVERAGE CANNOT: A SINGLE CELL ONE "
+      "CHARACTER TOO WIDE WRAPS AFTER ITS MINUS SIGN AND PRINTS A NEGATIVE NUMBER AS A "
+      "POSITIVE ONE.",
+      "Table-discipline checks measure whether a column is starved or bloated, which is a "
+      "property of the column as a whole. The defect here is a property of ONE CELL, and it "
+      "changes a figure's SIGN as a reader reads it — the worst possible outcome from a "
+      "purely typographic cause.",
+      "reading PHDC's rendered appendix, 03-Sep-2026",
+      "build",
+      "The label column took 4.6cm of 16.2cm, leaving 1.66cm for each of seven years, and "
+      "\'-110,168\' is eight characters — one too many. Word breaks a line after a hyphen, "
+      "so the 2035 and 2040 cost-of-revenue cells rendered as a BARE DASH with 110,168 on "
+      "the line beneath, which a reader takes for a positive number or for a dash meaning "
+      "\'not applicable\'. The column audit reported the table CLEAN and was right by its "
+      "own lights: the column is not starved on average, and one row is a single character "
+      "wider than every other. THE FIRST FIX MADE IT WORSE AND THAT IS THE USEFUL PART — "
+      "U+2212 MINUS SIGN is typographically correct and does not offer a break, but it is "
+      "WIDER than a hyphen, so every cell in the row then wrapped mid-number. The character "
+      "was never the problem. Per [R-COC-01], when a fix makes the thing worse the "
+      "diagnosis was wrong: the column was too narrow for its content, and the fix is to "
+      "widen it.",
+      "A wrapped cell whose cause is genuinely the character rather than the width — which "
+      "would mean the substitution was right and the measurement of it was wrong."),
+
 ]
 
 

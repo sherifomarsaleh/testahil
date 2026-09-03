@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**173 lessons**, of which 146 bind on every study, 20 on a class of company, and 7 on a single name.
+**174 lessons**, of which 147 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 98 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 99 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1538,6 +1538,16 @@ The numeric-traceability rule matches NUMERALS. 'Five' is a word, so a count wri
 > **What it cost, or how we know.** PHDC's section 7 opened 'Five things are not disclosed by the company' while the READ FIRST twelve pages earlier COMPUTED the same count from the model and said SIX — the study contradicting itself in the sentence that introduces the list a reader is about to count. A sixth gap had been registered and the typed word stayed. Both now come from one helper. Measured across all 31 delivered studies: 775 spelled-out counts qualifying a noun, in every study. A general gate was attempted and DECLINED — of 92 that looked mappable to a committed collection, 74 disagreed and almost every one was the instrument being wrong (a lenses object holding the central and two beta-alternates beside the four actual lenses; 'two lenses' inside a sentence about a subset). A count word means something only against a collection somebody has NAMED, so this needs the per-study declaration prose_figures and footing_check already use.
 
 > **What would overturn it.** A rule that maps a count noun in prose to a committed collection without a per-study declaration — which would make the general gate tractable after all.
+
+### L-253 · A COLUMN AUDIT CANNOT SEE ONE ROW, BECAUSE AN AVERAGE CANNOT: A SINGLE CELL ONE CHARACTER TOO WIDE WRAPS AFTER ITS MINUS SIGN AND PRINTS A NEGATIVE NUMBER AS A POSITIVE ONE.
+
+Table-discipline checks measure whether a column is starved or bloated, which is a property of the column as a whole. The defect here is a property of ONE CELL, and it changes a figure's SIGN as a reader reads it — the worst possible outcome from a purely typographic cause.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading PHDC's rendered appendix, 03-Sep-2026
+
+> **What it cost, or how we know.** The label column took 4.6cm of 16.2cm, leaving 1.66cm for each of seven years, and '-110,168' is eight characters — one too many. Word breaks a line after a hyphen, so the 2035 and 2040 cost-of-revenue cells rendered as a BARE DASH with 110,168 on the line beneath, which a reader takes for a positive number or for a dash meaning 'not applicable'. The column audit reported the table CLEAN and was right by its own lights: the column is not starved on average, and one row is a single character wider than every other. THE FIRST FIX MADE IT WORSE AND THAT IS THE USEFUL PART — U+2212 MINUS SIGN is typographically correct and does not offer a break, but it is WIDER than a hyphen, so every cell in the row then wrapped mid-number. The character was never the problem. Per [R-COC-01], when a fix makes the thing worse the diagnosis was wrong: the column was too narrow for its content, and the fix is to widen it.
+
+> **What would overturn it.** A wrapped cell whose cause is genuinely the character rather than the width — which would mean the substitution was right and the measurement of it was wrong.
 
 
 ---

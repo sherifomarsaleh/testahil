@@ -83,7 +83,26 @@ def pick(rows, fmt):
     return [fmt(rows[i]) for i in display_years(rows)]
 
 
-def wide_widths(rows, label_cm=4.6, total_cm=16.2):
+def wide_widths(rows, label_cm=4.0, total_cm=16.2):
+    """Column widths for a seven-year table, sized on the WIDEST CELL rather than by feel.
+
+    THE LABEL COLUMN WAS 4.6cm AND IT COST A NUMBER [corrected 03-Sep-2026]. That left
+    1.66cm for each year, and "-110,168" — eight characters — does not fit it in Georgia at
+    this size. Word breaks a line after a hyphen, so the 2035 and 2040 cost-of-revenue
+    cells rendered as a bare "-" with "110,168" on the line beneath: a figure a reader
+    takes for a positive number, or for a dash meaning "not applicable".
+
+    The column audit called the table CLEAN, and correctly by its own lights — the column
+    is not starved ON AVERAGE. One row is a single character wider than every other, and
+    an average cannot see one row.
+
+    A NON-BREAKING MINUS WAS TRIED FIRST AND MADE IT WORSE, which is worth recording: U+2212
+    is typographically correct and is WIDER than a hyphen, so every cell in the row then
+    wrapped mid-number ("-25,90" / "2"). The character was never the problem. Per
+    [R-COC-01], when a fix makes the thing worse the diagnosis was wrong: the column is too
+    narrow for its content, and the fix is to widen it. The label column loses 0.6cm, which
+    it can afford — its longest label already wraps to two lines by design.
+    """
     n = len(display_years(rows))
     return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
 
@@ -305,6 +324,21 @@ def _edition_words(fname=EDITION_FILE):
 
 
 EDITION_WORDS = _edition_words()
+
+
+def _residual_is(H, years):
+    """Reported profit before tax less what the printed rows above it come to.
+
+    Computed, never typed, and never presented as a named line: it is the gap between the
+    rows this study's record holds and the profit before tax the company reported.
+    """
+    out = []
+    for y in years:
+        def g(k):
+            return (H[y].get(k) or {}).get("value", 0.0)
+        built = g("gross_profit") - g("sga") - g("da") - g("finance_cost")
+        out.append(money(g("npbt") - built, 1))
+    return out
 
 
 def _count_word(n):
@@ -1138,6 +1172,21 @@ def _appendices(doc, sp, base):
            ["Overheads"] + _h("sga", -1),
            ["Depreciation and amortisation"] + _h("da", -1),
            ["Finance cost"] + _h("finance_cost", -1),
+           # THE COLUMN DID NOT ADD UP AND NOTHING SAID SO [added 03-Sep-2026].
+           # Gross profit less overheads less depreciation less finance cost misses
+           # reported profit before tax by -967.8 in 2023, +977.6 in 2024 and +1,430.3 in
+           # 2025 — the 2023 finance-cost cell is BLANK because this study's committed
+           # record carries no such figure, and the other two years are short an income
+           # line the record does not hold separately. A reader adding the column finds a
+           # hole and no explanation, which is the ARCC Table 3 shape.
+           #
+           # IT IS A RESIDUAL AND IS LABELLED ONE. This study holds NO source filings on
+           # disk, so the missing lines cannot be sourced and are NOT invented (SIGCM
+           # clause 1). A residual computed as the total less what is printed foots by
+           # construction and proves nothing about what it contains — so it says what it
+           # is, and the caption says the record does not carry these lines separately.
+           ["Other income and items the record does not hold separately (residual)"]
+           + _residual_is(H, hy),
            ["Profit before tax"] + _h("npbt"),
            ["Tax"] + _h("tax_total", -1),
            ["Profit after tax"] + _h("npat_pre_nci"),
@@ -1147,7 +1196,13 @@ def _appendices(doc, sp, base):
           "Three years, each as that year's own audited statements reported "
           "it. Revenue less cost of revenue less the cash discount foots to "
           "reported gross profit in all three years, and profit before tax "
-          "less tax less minority interest foots to the attributable figure.")
+          "less tax less minority interest foots to the attributable figure. "
+          "The residual line is what the printed rows leave over against "
+          "reported profit before tax: this study holds no source filings of "
+          "its own, so the items inside it are not separated here and are not "
+          "guessed at. It is negative in 2023 because no finance cost for that "
+          "year is in the record at all, and positive in 2024 and 2025 because "
+          "an income line the company reports is not held separately.")
     para(doc, "One presentational difference is worth naming rather than "
               "smoothing. Cost of revenue for 2024 is EGP %s million as the "
               "company reported it that year and EGP %s million in the "
