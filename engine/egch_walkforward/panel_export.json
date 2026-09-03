@@ -3,7 +3,9 @@
  "run": "EGCH",
  "exported_by": "engine/valuation_calibration/export_panels.py",
  "sources": [
-  "IS"
+  "IS",
+  "BORROWINGS",
+  "UREA_TONNES"
  ],
  "years": [
   2008,
@@ -65,7 +67,12 @@
   "is.column": "comparative",
   "is.asrep": false,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  },
  "2009": {
   "is.revenue": 211143.239,
@@ -107,7 +114,12 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  },
  "2010": {
   "is.revenue": 209001.55,
@@ -149,7 +161,12 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  },
  "2011": {
   "is.revenue": 218989.721,
@@ -191,7 +208,12 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  },
  "2012": {
   "is.revenue": 215098.388,
@@ -233,7 +255,12 @@
   "is.column": "comparative",
   "is.asrep": false,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  },
  "2013": {
   "is.revenue": 293221.153,
@@ -275,7 +302,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": 0.0,
+  "borrowings.holdco": 0.0,
+  "borrowings.current": 0.0,
+  "borrowings.src": "FS2013"
  },
  "2015": {
   "is.revenue": 293604.526,
@@ -317,7 +348,12 @@
   "is.column": "comparative",
   "is.asrep": false,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": 0.0,
+  "borrowings.holdco": 327717.123,
+  "borrowings.current": 0.0,
+  "borrowings.src": "FS2016",
+  "borrowings.column": "comparative"
  },
  "2016": {
   "is.revenue": 288317.494,
@@ -359,7 +395,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "old",
-  "is.unit_route": "full EGP / 1000"
+  "is.unit_route": "full EGP / 1000",
+  "borrowings.bank": 0.0,
+  "borrowings.holdco": 300000.0,
+  "borrowings.current": 0.0,
+  "borrowings.src": "FS2016"
  },
  "2017": {
   "is.revenue": 607834,
@@ -393,7 +433,12 @@
   "is.column": "comparative",
   "is.asrep": false,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 251418,
+  "borrowings.holdco": 0.0,
+  "borrowings.current": 0.0,
+  "borrowings.src": "FS2018",
+  "borrowings.column": "comparative"
  },
  "2018": {
   "is.revenue": 571047,
@@ -427,7 +472,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 4466445,
+  "borrowings.holdco": 0.0,
+  "borrowings.current": 0.0,
+  "borrowings.src": "FS2018"
  },
  "2019": {
   "is.revenue": 341079,
@@ -461,7 +510,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 4863476,
+  "borrowings.holdco": 183475,
+  "borrowings.current": 587684,
+  "borrowings.src": "FS2019"
  },
  "2020": {
   "is.revenue": 315189,
@@ -495,7 +548,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 5690940,
+  "borrowings.holdco": 710516,
+  "borrowings.current": 988779,
+  "borrowings.src": "FS2020"
  },
  "2021": {
   "is.revenue": 1398509,
@@ -529,7 +586,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 6120358,
+  "borrowings.holdco": 1226570,
+  "borrowings.current": 334493,
+  "borrowings.src": "FS2021"
  },
  "2022": {
   "is.revenue": 4440701,
@@ -563,7 +624,11 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 5518347,
+  "borrowings.holdco": 71523,
+  "borrowings.current": 713732,
+  "borrowings.src": "FS2022"
  },
  "2023": {
   "is.revenue": 6612226,
@@ -597,7 +662,14 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 8424871,
+  "borrowings.holdco": 50266,
+  "borrowings.current": 21391,
+  "borrowings.src": "FS2023",
+  "urea_tonnes.t": 586373,
+  "urea_tonnes.src": "FS2023",
+  "urea_tonnes.where": "auditor's product cost table"
  },
  "2024": {
   "is.revenue": 6532126,
@@ -631,7 +703,14 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 11226246,
+  "borrowings.holdco": 0.0,
+  "borrowings.current": 354051,
+  "borrowings.src": "FS2024",
+  "urea_tonnes.t": 521868,
+  "urea_tonnes.src": "FS2024",
+  "urea_tonnes.where": "auditor's product cost table"
  },
  "2025": {
   "is.revenue": 8602606,
@@ -665,7 +744,14 @@
   "is.column": "own",
   "is.asrep": true,
   "is.layout": "new",
-  "is.unit_route": "EGP thousand as printed"
+  "is.unit_route": "EGP thousand as printed",
+  "borrowings.bank": 11183315,
+  "borrowings.holdco": 596896,
+  "borrowings.current": 397314,
+  "borrowings.src": "FS2025",
+  "urea_tonnes.t": 513385,
+  "urea_tonnes.src": "FS2025",
+  "urea_tonnes.where": "auditor's product cost table"
  },
  "2014": {
   "is.revenue": 306750.645,
@@ -695,6 +781,11 @@
   "is.layout": "old",
   "is.unit_route": "full EGP / 1000",
   "is.partial": true,
-  "is.partial_note": "The company's 2014 annual is a 367 x 519 pixel scan. The revenue block (306,750,645 - 262,347,323 = 44,403,322), the selling/administrative block (44,567,793 + 438,556 + 32,958,826 = 77,965,175), the burdens block (3,145,575 + 174,333 = 3,319,908), the investment-income block (38,182,572 + 43,380,573 = 81,563,145) and the currency-gain block (22,884,978 + 7,619 + 608 = 22,893,205) each foot on the page and are carried. Other revenues, credit interest, profit before tax, tax and net profit could not be read at that resolution and are NOT reconstructed."
+  "is.partial_note": "The company's 2014 annual is a 367 x 519 pixel scan. The revenue block (306,750,645 - 262,347,323 = 44,403,322), the selling/administrative block (44,567,793 + 438,556 + 32,958,826 = 77,965,175), the burdens block (3,145,575 + 174,333 = 3,319,908), the investment-income block (38,182,572 + 43,380,573 = 81,563,145) and the currency-gain block (22,884,978 + 7,619 + 608 = 22,893,205) each foot on the page and are carried. Other revenues, credit interest, profit before tax, tax and net profit could not be read at that resolution and are NOT reconstructed.",
+  "borrowings.bank": null,
+  "borrowings.holdco": null,
+  "borrowings.current": null,
+  "borrowings.src": null,
+  "borrowings.note": "liabilities page not read; income statement shows no finance cost"
  }
 }

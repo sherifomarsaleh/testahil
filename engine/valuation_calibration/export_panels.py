@@ -34,7 +34,12 @@ ENGINE = os.path.dirname(HERE)
 SOURCES = {
     "AMOC": ["IS", "OTHER_REVENUE", "COST_STACK", "PRODUCTS", "COMMON"],
     "ARCC": ["IS", "REV", "COST", "OTHER", "DEBT", "PHYS"],
-    "EGCH": ["IS"],
+    # EGCH's borrowings note and its urea tonnage sit in the same module and were
+    # left behind by the first export, which asked for the income statement alone.
+    # A census of what a valuation can stand on then read EGCH as committing
+    # nothing — an absent probe reported as an absent figure, [R-ENF-04] — so the
+    # companions are named here rather than discovered again later.
+    "EGCH": ["IS", "BORROWINGS", "UREA_TONNES"],
 }
 
 

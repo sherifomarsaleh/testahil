@@ -40,6 +40,28 @@ HINTS = re.compile(
     r"issued\s+and\s+paid|paid[\s-]*up\s+capital|par\s+value|authoriz|"
     r"weighted\s+average\s+number|earnings\s+per\s+share|share\s+capital",
     re.I)
+
+# The same note in Arabic. EGCH files its annual report in Arabic and the scans
+# read cleanly under tesseract's Arabic model, so the note is found on the words
+# the document itself uses — capital, issued, paid, par — rather than on a
+# transliteration or a page number. Anchored on RAS AL-MAL so that the word
+# "share", which appears on nearly every page of a company report, cannot on its
+# own pull in a page that is not the capital note.
+HINTS_AR = re.compile(
+    "(?=.*(?:\u0631\u0623\u0633|\u0631\u0627\u0633)\s*\u0627?\u0644?\s*\u0645\u0627\u0644)"
+    "(?=.*(?:\u0627\u0644\u0645\u0635\u062f\u0631|\u0627\u0644\u0645\u062f\u0641\u0648\u0639|"
+    "\u0627\u0633\u0645\u064a\u0629|\u0633\u0647\u0645))",
+    re.S)
+
+# Which model reads which company's filings. EGCH's are Arabic scans; ARCC's and
+# PHDC's are English ones. Reading an Arabic page with the English model returns
+# plausible-looking Latin noise with the digits mangled — the broken-character-map
+# failure the protocol names, arriving through OCR instead of a font.
+LANG = {"EGCH": "ara"}
+
+# Coarse to find the page, fine to read the figures on it.
+FIND_DPI = 100
+READ_DPI = 200
 NUM = re.compile(r"-?\d[\d,\.]{2,}")
 
 
@@ -57,7 +79,22 @@ def year_of(name):
     if m:
         end = m.group(2)
         return int(end) if len(end) == 4 else 2000 + int(end)
-    m = re.search(r"(?:31\s*Dec[^0-9]{0,12}|4Q\s*)((?:19|20)?\d{2})", name, re.I)
+    # "31 Dec 2023", "31 Dec. 2023", "31 December 2024", "31-12-2025", "4Q17".
+    # Only a YEAR-END document: an interim carries the same note but a different
+    # balance-sheet date, and a March or June sheet read as the annual one would
+    # put the wrong period's capital against the origin.
+    m = re.search(r"31[\s.\-]*(?:Dec[a-z.]*|12)[\s.\-]*((?:19|20)\d{2})", name, re.I)
+    if not m:
+        # "FS 12-2020" — the month-year form. Anchored on 12 so that the
+        # September file named "F S 9-2020" beside it cannot be read as an annual.
+        m = re.search(r"(?:^|[^\d])12[\s.\-_/]((?:19|20)\d{2})", name)
+    if not m:
+        m = re.search(r"4Q\s*((?:19|20)?\d{2})", name, re.I)
+    if not m:
+        # A single-year name — ARCC files as ARCC_FY2018_Consolidated. It is tried
+        # only after the two-part pattern above, so a June-closing FY2015-16 name
+        # can never fall through to it and be read as 2015.
+        m = re.search(r"FY[\s_-]*((?:19|20)\d{2})(?![\s_-]*\d)", name, re.I)
     if not m:
         return None
     y = int(m.group(1))
@@ -87,10 +124,15 @@ def npages(pdf):
         return 0
 
 
-def ocr_page(pdf, page, tmp):
+def ocr_page(pdf, page, tmp, lang="eng", dpi=200, timeout=600):
+    """One page, rendered then read. A page that will not read in time is SKIPPED
+    and reported, never silently treated as a page with no note on it: the Arabic
+    model is several times slower than the English one and a dense scanned table
+    can exceed any bound, so the distinction between "read it, no note" and "could
+    not read it" has to survive into the record."""
     base = os.path.join(tmp, "p%d" % page)
-    subprocess.run(["pdftoppm", "-r", "200", "-f", str(page), "-l", str(page),
-                    "-png", pdf, base], capture_output=True, timeout=180)
+    subprocess.run(["pdftoppm", "-r", str(dpi), "-f", str(page), "-l", str(page),
+                    "-png", pdf, base], capture_output=True, timeout=300)
     png = None
     for cand in ("%s-%d.png" % (base, page), "%s-%02d.png" % (base, page),
                  "%s-%03d.png" % (base, page)):
@@ -99,37 +141,100 @@ def ocr_page(pdf, page, tmp):
             break
     if not png:
         return ""
-    r = subprocess.run(["tesseract", png, "-"], capture_output=True, text=True,
-                       timeout=180)
+    try:
+        r = subprocess.run(["tesseract", png, "-", "-l", lang], capture_output=True,
+                           text=True, timeout=timeout)
+        out = r.stdout or ""
+    except subprocess.TimeoutExpired:
+        out = None                      # not "" — absence, not emptiness
     try:
         os.unlink(png)
     except OSError:
         pass
-    return r.stdout or ""
+    return out
 
 
-def scan(pdf, max_pages=None):
-    """OCR from the BACK of the document, where notes live, and stop at the note."""
+def text_layer(pdf):
+    """{page: text} from the embedded text layer, or {} if there is none worth reading.
+
+    Reading a text layer is not a shortcut past the protocol's warning about broken
+    character maps — it is the FIRST route, and the check on it is the same one the
+    OCR route faces: the numbers must foot against the identity the document itself
+    supplies. What changes is only which route produced the characters, and that is
+    recorded beside the figure so a later reader can tell.
+    """
     n = npages(pdf)
     if not n:
-        return []
+        return {}
+    try:
+        whole = subprocess.run(["pdftotext", pdf, "-"], capture_output=True,
+                               text=True, timeout=300).stdout or ""
+    except Exception:
+        return {}
+    if len(whole) < 40 * n:          # a scan yields about one form-feed per page
+        return {}
+    out = {}
+    for pg in range(1, n + 1):
+        try:
+            t = subprocess.run(["pdftotext", "-f", str(pg), "-l", str(pg), pdf, "-"],
+                               capture_output=True, text=True, timeout=120).stdout
+        except Exception:
+            continue
+        if t:
+            out[pg] = t
+    return out
+
+
+def scan(pdf, max_pages=None, lang="eng"):
+    """Find the note cheaply, then read it properly.
+
+    TWO PASSES, because the two jobs have different requirements. FINDING the page
+    needs only the words, which survive a coarse render; READING the figures on it
+    needs the resolution, because a share count misread by one digit is a fair
+    value wrong by a factor. Rendering every page at reading resolution costs
+    several minutes a document under the Arabic model and buys nothing on the
+    pages that turn out not to hold the note.
+    """
+    n = npages(pdf)
+    if not n:
+        return [], []
     order = list(range(n, 0, -1))
     if max_pages:
         order = order[:max_pages]
-    hits = []
+    hint = HINTS_AR if lang == "ara" else HINTS
+    hits, skipped = [], []
     with tempfile.TemporaryDirectory() as tmp:
         for pg in order:
-            txt = ocr_page(pdf, pg, tmp)
-            if txt and HINTS.search(txt):
-                hits.append((pg, txt))
-                if len(hits) >= 3:
-                    break
-    return hits
+            coarse = ocr_page(pdf, pg, tmp, lang=lang, dpi=FIND_DPI, timeout=300)
+            if coarse is None:
+                skipped.append(pg)
+                continue
+            if not hint.search(coarse):
+                continue
+            fine = ocr_page(pdf, pg, tmp, lang=lang, dpi=READ_DPI, timeout=900)
+            if fine is None:
+                skipped.append(pg)
+                continue
+            hits.append((pg, fine))
+            if len(hits) >= 3:
+                break
+    return hits, skipped
 
 
 def main(argv):
     ticker = (argv[0] if argv else "PHDC").upper()
-    years = set(int(y) for y in argv[1:]) if len(argv) > 1 else None
+    rest = [a for a in argv[1:] if not a.startswith("--")]
+    opts = [a for a in argv[1:] if a.startswith("--")]
+    years = set(int(y) for y in rest) if rest else None
+    lang = LANG.get(ticker, "eng")
+    pages_back = 28
+    for o in opts:
+        if o.startswith("--lang="):
+            lang = o.split("=", 1)[1]
+        elif o.startswith("--pages="):
+            pages_back = int(o.split("=", 1)[1])
+    print("reading %s with the %s model, last %d pages of each filing"
+          % (ticker, lang, pages_back))
     out = {"ticker": ticker, "read": {}, "unreadable": {}, "method": (
         "pages rendered at 200dpi and read by tesseract, searched from the back of "
         "each document where the notes sit; a year is recorded only where its "
@@ -137,19 +242,36 @@ def main(argv):
     for y, pdf in filings(ticker):
         if years and y not in years:
             continue
-        hits = scan(pdf, max_pages=28)
+        pages = text_layer(pdf)
+        route, skipped = "text layer", []
+        if pages:
+            hint = HINTS_AR if lang == "ara" else HINTS
+            # No cap on the text route: rendering is what costs, reading is free,
+            # and a three-page cap dropped two of six TMGH years whose note sat
+            # one hint-matching page further forward.
+            hits = [(pg, t) for pg, t in sorted(pages.items(), reverse=True)
+                    if hint.search(t)][:12]
+        else:
+            route = "OCR at %d dpi" % READ_DPI
+            hits, skipped = scan(pdf, max_pages=pages_back, lang=lang)
         if not hits:
-            out["unreadable"][str(y)] = "no equity or per-share note found in the " \
-                                        "last 28 pages of %s" % os.path.basename(pdf)
+            out["unreadable"][str(y)] = ("no equity or per-share note found in the "
+                                         "last %d pages of %s%s"
+                                         % (pages_back, os.path.basename(pdf),
+                                            ("; %d page(s) would not read in time: %s"
+                                             % (len(skipped), skipped)) if skipped else ""))
             print("  %d  no note found  (%s)" % (y, os.path.basename(pdf)[:52]))
             continue
         out["read"][str(y)] = {
             "file": os.path.basename(pdf),
             "pages": [p for p, _ in hits],
             "text": {str(p): t for p, t in hits},
+            "pages_that_would_not_read": skipped,
+            "route": route,
         }
-        print("  %d  note on page(s) %s  (%s)"
-              % (y, ", ".join(str(p) for p, _ in hits), os.path.basename(pdf)[:52]))
+        print("  %d  note on page(s) %s  via %s  (%s)"
+              % (y, ", ".join(str(p) for p, _ in hits), route,
+                 os.path.basename(pdf)[:44]))
     p = os.path.join(HERE, "_shares_ocr_%s.json" % ticker.lower())
     json.dump(out, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print("\nwrote %s — %d year(s) with a note, %d without"
@@ -253,5 +375,192 @@ def parse_all(ticker="PHDC"):
     q = os.path.join(HERE, "shares_%s.json" % ticker.lower())
     json.dump(out, open(q, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print("\nwrote %s — %d year(s) footed, %d dropped"
+          % (os.path.basename(q), len(out["shares_mn"]), len(out["dropped"])))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# The capital note as a RECITAL, and the second arbiter that makes it readable
+# ---------------------------------------------------------------------------
+# TMGH's note is a chronology: one paragraph per general-assembly resolution from
+# 2007 to 2011, each stating the capital and share count as they stood AFTER it.
+# The anchored parser above is defeated by it — the words "issued and paid-up
+# capital amounted to" sit on the FIRST paragraph, whose figure is LE 6,000,000
+# in 2007, three orders of magnitude below the capital in force. Reading that as
+# the current count would produce a share count wrong by a factor and a fair value
+# wrong by the same factor, footing perfectly all the way.
+#
+# Ordering alone is not a safe rule either: "the largest" fails on the 2010
+# capital REDUCTION, and "the last in the document" only works while the recital
+# stays chronological, which is a property of a document rather than of a company.
+#
+# So the recital is read WITH A SECOND ARBITER: the walk-forward has already
+# committed a paid-in capital for that year, read from a DIFFERENT document (that
+# year's own earnings release) and carrying its own provenance. The triple chosen
+# is the one that agrees with it. Two independent sources and one identity — which
+# is a stronger check than the anchored route gets, not a weaker one.
+
+# The clause between the capital and its share count is not fixed wording: the
+# FY2023 filing writes "LE 20,635,622,860 dividends over 2,063,562,286 shares"
+# and the FY2020 one writes "LE 20,635,622,860 par value, LE 10 per share dividend
+# over 2,063,562,286 shares" — same resolution, same figures, a printer's
+# difference. The gap is therefore permitted and BOUNDED, and the pairing it
+# produces is not trusted on the strength of the match: capital / par must
+# reproduce the count, which a mis-paired capital and count will not do.
+RECITAL = re.compile(
+    r"(?:LE|EGP|L\.E\.)\s*([\d][\d,\. ]{6,})\s*(?:.{0,90}?)?"
+    # "share" singular is not a typo worth refusing: TMGH's FY2020 filing writes
+    # "divided over 1,815,203,550 share of LE 10 par value each" and its FY2023
+    # writes "shares". A parser strict about the plural drops a year for a
+    # printer's choice, and the identity check is what actually guards the number.
+    r"(?:divid\w*|distribut\w*)\s+(?:over|on)\s+([\d][\d,\. ]{6,})\s*shares?",
+    re.I | re.S)
+PAR = re.compile(
+    r"(?:of\s*)?(?:LE|EGP|L\.E\.)\s*([\d][\d,\.]{0,12})\s*(?:\([^)]{0,80}\)\s*)?"
+    r"[-\s]*par\s*value", re.I | re.S)
+
+
+def parse_recital(text):
+    """([(capital, shares)], par) — every resolution the note recites, in order."""
+    flat = re.sub(r"\s+", " ", text)
+    par = None
+    m = PAR.search(flat)
+    if m:
+        par = _n(m.group(1))
+    pairs = []
+    for m in RECITAL.finditer(flat):
+        cap, sh = _n(m.group(1)), _n(m.group(2))
+        if cap and sh:
+            pairs.append((cap, sh))
+    return pairs, par
+
+
+def committed_capital(ticker):
+    """{year: paid-in capital, in the units the run committed} or {}.
+
+    Read from the run's OWN artefacts, so the corroborating figure carries that
+    run's provenance rather than this module's opinion.
+    """
+    d = os.path.join(ENGINE, "%s_walkforward" % ticker.lower())
+    out = {}
+    for fn in ("panel_annual.json", "bottom_up.json", "panel_export.json",
+               "fs_parsed.json"):
+        p = os.path.join(d, fn)
+        if not os.path.exists(p):
+            continue
+        try:
+            doc = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue
+
+        def walk(node, year):
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    m = re.fullmatch(r"(?:FY)?((?:19|20)\d{2})", str(k))
+                    y = int(m.group(1)) if m else year
+                    if str(k).lower() in ("paid_capital", "issued_capital",
+                                          "paid_up_capital") and year:
+                        val = v.get("value") if isinstance(v, dict) else v
+                        if isinstance(val, (int, float)) and val > 0:
+                            out.setdefault(year, float(val))
+                    else:
+                        walk(v, y)
+            elif isinstance(node, list):
+                for v in node[:40]:
+                    walk(v, year)
+
+        walk(doc, None)
+        if out:
+            break
+    return out
+
+
+def _scale_match(cap, target, tol=0.005):
+    """Does `cap` agree with `target` at ANY of the units a run might have used?
+
+    A run commits its figures in whatever unit its filings printed — EGP, EGP
+    thousand, EGP million — and the note prints full pounds. Matching across the
+    three is arithmetic, not a fudge: the tolerance is half a per cent, so a
+    genuine disagreement cannot pass as a unit difference.
+    """
+    for scale in (1.0, 1e3, 1e6):
+        if target and abs(cap / scale - target) <= tol * target:
+            return scale
+    return None
+
+
+def parse_all_recital(ticker):
+    """The recital route: read every triple, keep the one the run corroborates."""
+    p = os.path.join(HERE, "_shares_ocr_%s.json" % ticker.lower())
+    src = json.load(open(p, encoding="utf-8"))
+    committed = committed_capital(ticker)
+    out = {"ticker": ticker, "shares_mn": {}, "dropped": {},
+           "rule": ("every resolution the capital note recites is read; the one "
+                    "kept is the one whose capital agrees with the paid-in capital "
+                    "this run committed for that year from a different document, "
+                    "and whose capital divided by par reproduces its own share "
+                    "count"),
+           "corroborating_source": "the run's own committed paid-in capital"}
+    for y, rec in sorted(src.get("read", {}).items()):
+        target = committed.get(int(y))
+        best, why = None, None
+        for pg, txt in sorted(rec["text"].items()):
+            pairs, par = parse_recital(txt)
+            if not pairs:
+                why = why or "no capital recital on the page"
+                continue
+            if not par:
+                why = "the recital is there and no par value could be read"
+                continue
+            for cap, sh in pairs:
+                ok, note = foots(sh, cap, par)
+                if not ok:
+                    continue
+                if target is None:
+                    why = ("no committed paid-in capital for %s to corroborate "
+                           "against, so the recital is not resolved" % y)
+                    continue
+                scale = _scale_match(cap, target)
+                if scale is None:
+                    continue
+                # THE COUNT COMES FROM THE COMMITTED CAPITAL, NOT THE RECITAL.
+                # The recital stops at the last resolution that CHANGED the
+                # capital — TMGH's ends in 2011 — so it cannot see a later
+                # treasury movement, while the run's committed paid-in capital
+                # is that year's own figure and can. The recital's job is to
+                # establish the par value and to prove the identity holds; the
+                # count is then that year's capital divided by that par.
+                own = target * scale / par
+                best = {"shares_mn": own / 1e6,
+                        "issued_capital": target * scale,
+                        "par_value": par, "page": int(pg), "file": rec["file"],
+                        "check": note,
+                        "how": "par value read from the capital note and footed "
+                               "against the recital's own capital and count; the "
+                               "count is this year's committed paid-in capital "
+                               "(%.6g, unit scale %g) divided by that par"
+                               % (target, scale),
+                        "recital_count_mn": sh / 1e6,
+                        "difference_from_recital_pct":
+                            round(100.0 * (own - sh) / sh, 4),
+                        "route": rec.get("route", "unknown")}
+                break
+            if best:
+                break
+        if best:
+            out["shares_mn"][y] = best
+            d = best.get("difference_from_recital_pct") or 0.0
+            print("  %s  %10.2f mn shares   par %.4g   (%s, p%d)%s"
+                  % (y, best["shares_mn"], best["par_value"],
+                     best["file"][:34], best["page"],
+                     ("   recital %.2f mn, %+.3f%%" % (best["recital_count_mn"], d))
+                     if abs(d) > 1e-6 else ""))
+        else:
+            out["dropped"][y] = {"failed": why or "no footing triple agreed with "
+                                                  "the committed paid-in capital"}
+            print("  %s  DROPPED — %s" % (y, out["dropped"][y]["failed"][:95]))
+    q = os.path.join(HERE, "shares_%s.json" % ticker.lower())
+    json.dump(out, open(q, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("\nwrote %s — %d year(s) footed and corroborated, %d dropped"
           % (os.path.basename(q), len(out["shares_mn"]), len(out["dropped"])))
     return out

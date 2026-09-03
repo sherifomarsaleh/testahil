@@ -1,0 +1,80 @@
+{
+ "ticker": "TMGH",
+ "shares_mn": {
+  "2020": {
+   "shares_mn": 2063.56,
+   "issued_capital": 20635600000.0,
+   "par_value": 10.0,
+   "page": 31,
+   "file": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20635.6, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": -0.0001,
+   "route": "text layer"
+  },
+  "2021": {
+   "shares_mn": 2063.56,
+   "issued_capital": 20635600000.0,
+   "par_value": 10.0,
+   "page": 37,
+   "file": "TMG Conso  FSs 31 December 2021 Final.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20635.6, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": -0.0001,
+   "route": "text layer"
+  },
+  "2022": {
+   "shares_mn": 2063.56,
+   "issued_capital": 20635600000.0,
+   "par_value": 10.0,
+   "page": 42,
+   "file": "Eng- TMG Consolidated FS 31 December 2022.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20635.6, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": -0.0001,
+   "route": "text layer"
+  },
+  "2023": {
+   "shares_mn": 2063.56229,
+   "issued_capital": 20635622900.0,
+   "par_value": 10.0,
+   "page": 40,
+   "file": "TMG Consolidated FS 31 Dec. 2023.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20635.6, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": 0.0,
+   "route": "text layer"
+  },
+  "2024": {
+   "shares_mn": 2063.56,
+   "issued_capital": 20635600000.0,
+   "par_value": 10.0,
+   "page": 41,
+   "file": "TMG Conso  FS 31 December 2024-English.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20635.6, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": -0.0001,
+   "route": "text layer"
+  },
+  "2025": {
+   "shares_mn": 2060.65379,
+   "issued_capital": 20606537900.0,
+   "par_value": 10.0,
+   "page": 41,
+   "file": "Consolidated financial statements for the year ended 31-12-2025-English.pdf",
+   "check": "capital 20635622860 / par 10 = 2063562286, matching the stated count",
+   "how": "par value read from the capital note and footed against the recital's own capital and count; the count is this year's committed paid-in capital (20606.5, unit scale 1e+06) divided by that par",
+   "recital_count_mn": 2063.562286,
+   "difference_from_recital_pct": -0.1409,
+   "route": "text layer"
+  }
+ },
+ "dropped": {},
+ "rule": "every resolution the capital note recites is read; the one kept is the one whose capital agrees with the paid-in capital this run committed for that year from a different document, and whose capital divided by par reproduces its own share count",
+ "corroborating_source": "the run's own committed paid-in capital"
+}

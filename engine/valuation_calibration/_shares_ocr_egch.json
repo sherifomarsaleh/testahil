@@ -1,0 +1,12 @@
+{
+ "ticker": "EGCH",
+ "read": {},
+ "unreadable": {
+  "2013": "no equity or per-share note found in the last 28 pages of EGCH_FY2012-13_Annual.pdf",
+  "2014": "no equity or per-share note found in the last 28 pages of EGCH_FY2013-14_Annual.pdf",
+  "2016": "no equity or per-share note found in the last 28 pages of EGCH_FY2015-16_Annual.pdf",
+  "2018": "no equity or per-share note found in the last 28 pages of EGCH_FY2017-18_Annual.pdf",
+  "2019": "no equity or per-share note found in the last 28 pages of EGCH_FY2018-19_Annual.pdf"
+ },
+ "method": "pages rendered at 200dpi and read by tesseract, searched from the back of each document where the notes sit; a year is recorded only where its numbers foot"
+}
