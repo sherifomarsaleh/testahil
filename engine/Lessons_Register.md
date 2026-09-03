@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**155 lessons**, of which 128 bind on every study, 20 on a class of company, and 7 on a single name.
+**160 lessons**, of which 133 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 80 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 85 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1358,6 +1358,56 @@ The first run of any check over an existing book reports mostly its own ignoranc
 > **What it cost, or how we know.** The book-wide advisory fell 22.3% -> 10.5% across SEVEN instrument fixes in one session, and not one of them loosened a tolerance: a balance sheet foots over its SUBTOTALS; a row labelled Total assets HEADING a summary is a line item with nothing above it; a date column parses as numeric because 'Jan 2026' yields 2026; a TOTAL row is a sum in one column and a WEIGHTED MEAN in another; a weighted mean's band must carry the rounding of its own WEIGHT column; an 'OF WHICH' row is a breakdown of the line above and not a peer; a DASH in a total cell is 'not shown' rather than a claim of zero, while a dash in a component is zero; a PERCENTAGE is not a component of a currency total; and an EMPTY cell in a row that carries values elsewhere means 'does not apply here' rather than the end of the block. The negative control held at 14/14 through every one, which is what made the fixes safe to make quickly.
 
 > **What would overturn it.** A fix that lowers the rate by relaxing what counts as reproducible rather than by correcting what the instrument believes about tables.
+
+### L-235 · A CHECK'S POPULATION PREDICATE IS PART OF THE CHECK, AND KEYING IT ON A WORD RATHER THAN ON THE QUANTITY PUTS INNOCENT WORK ON THE RATCHET — WHERE IT WILL LATER EXCUSE THE REAL THING.
+
+A ratchet entry is an allowance. An allowance standing over a file that never committed the offence is not merely untidy: it is a standing permission that activates the day that file does commit it, silently, because the gate will read the name off the list and move on.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data reader port, 03-Sep-2026
+
+> **What it cost, or how we know.** The gate for [R-ENF-03] keyed its population on the STRING 'data.js' appearing anywhere in a file, and three of the thirteen files it ratcheted never open the file at all: two carry the word inside an external-reader SCRUB WORD LIST — the internal vocabulary a delivered document may not contain — and one names the path in a prose comment, while each separately uses a regular expression for something else entirely. Re-pointed at a PATH CONSTRUCTION per [R-COC-01], the population fell 44 -> 31 and the ratchet 13 -> 10, and the negative control gained the distinction that matters: green-because-EXCLUDED is not green-because-compliant, and an exit code cannot tell them apart, so the population COUNT is compared with and without each file.
+
+> **What would overturn it.** A population predicate that is broader than the rule and where the extra members are shown to be harmless — which would mean the ratchet's allowances cost nothing.
+
+### L-236 · A SYNTAX CHECK IS NOT A SEMANTIC CHECK, AND THE GAP BETWEEN THEM IS EXACTLY WHERE A DUPLICATED KEY LIVES.
+
+'It parses' feels like verification and is a much weaker claim than it sounds. A file can be perfectly well-formed and still not mean what its author wrote, and the form most likely to survive every check is the one that is legal in the language.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data writer port, 03-Sep-2026
+
+> **What it cost, or how we know.** Every tool that writes assets/data.js edits it as TEXT — correctly, since a JSON round-trip would destroy the file's formatting and its prose comments — and each verified with `node --check`. Demonstrated on a real copy of the file rather than asserted: plant a second `levels` key on one entry and `node --check` PASSES, the parser returns the SECOND, and a regular expression returns the FIRST. That is not a hypothetical shape; it is the exact defect [R-ENF-03] was adopted on, a ticker page publishing a support ABOVE its own close while both gates read the half the reader never saw. The write path could have produced that file again and nothing would have said so.
+
+> **What would overturn it.** A writer whose post-write verification is shown to catch a shadowed field without loading the file — which would mean the syntax check was sufficient after all.
+
+### L-237 · A READER AND A WRITER OWE DIFFERENT THINGS TO THE SAME RULE, AND HOLDING ONE TO THE OTHER'S OBLIGATION MANUFACTURES A DEBT THAT CAN NEVER BE PAID.
+
+A ratchet entry that cannot in principle be cleared is a permanently-red check [R-ENF-02] forbids, wearing a different hat — and it is worse than an obviously red one, because it looks like a backlog somebody will get to.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data writer port, 03-Sep-2026
+
+> **What it cost, or how we know.** Three files WRITE data.js by string surgery, which is the only sound way to preserve its formatting, so 'read it through a parse' forbids the job rather than the defect. Re-pointed at what a writer actually owes — proof that the PARSER agrees with what it wrote — the clause immediately surfaced FOUR MORE writers the string predicate had never counted, one of them a CONE writer with no post-write check of any kind, not even `node --check`; two more counted their records against a known total and never looked at a VALUE, which a block emitted twice leaves identical either way. The ratchet went 13 -> 0.
+
+> **What would overturn it.** A writer for which no verification is expressible, which would mean the obligation is unmeetable rather than merely different.
+
+### L-238 · AN EXEMPTION WIDER THAN ITS OWN REASON IS THE SAFEST HIDING PLACE THERE IS.
+
+Nobody is lying, the reason survives review, and the work simply happens where the check no longer reaches. This is [R-MACRO-01]'s finding — a TRUE exemption on the WRONG OBJECT — arriving again in a different area within a day, which is what makes it a house rule rather than an anecdote.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data reader port, 03-Sep-2026
+
+> **What it cost, or how we know.** A negative control plants a broken data.js on purpose, so requiring it to verify that the file it deliberately corrupted parses to what it meant is incoherent — a real exemption with a real reason. The first draft implemented it by skipping *_negative_control.py ENTIRELY, which also stopped checking whether a control READS data.js by regular expression, where nothing excuses it, and shrank the population from 31 to 26 for a reason that had nothing to do with reading. Scoped to the writer clause it was written for, and asserted in BOTH directions: a control that writes without verifying passes, a control that reads by regex still fails.
+
+> **What would overturn it.** An exemption whose scope cannot be narrowed to its reason without losing the reason — which would mean the two genuinely coincide.
+
+### L-239 · A RULE OF THE FORM 'AFTER ANY X, ASSERT Y' BINDS NOTHING UNTIL SOMETHING THAT DOES X CALLS Y.
+
+It is the most convincing kind of dead rule, because it names its own trigger and therefore reads as though it executes. The place to look is not the rule but the code that performs X.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data writer port, 03-Sep-2026
+
+> **What it cost, or how we know.** 'After ANY ledger write, assert the lifecycle invariant' has been standing since 29-Jul-2026. NEITHER writer that appends ledger rows checked it; it lived in the protocol and in whatever the operator remembered. Measured before it was asserted, per [R-ENF-02]: 0 violations across 187 (instrument, horizon) pairs, so it passes today rather than arriving red. And the invariant is NOT 'one open row per name' — steady state is four, because a fresh three-month strike demotes the prior cone to an aging tail; 114 pairs carry one open row and 73 carry two and every one is correct. What may never happen is two open rows sharing the LATEST anchor.
+
+> **What would overturn it.** A written trigger of this shape that turns out to be executed by every performer of X without anyone having wired it — which would mean prose triggers do bind.
 
 
 ---

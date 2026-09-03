@@ -2915,6 +2915,106 @@ LESSONS = [
       "A fix that lowers the rate by relaxing what counts as reproducible rather than by "
       "correcting what the instrument believes about tables."),
 
+    L("L-235", "ALL", None,
+      "A CHECK'S POPULATION PREDICATE IS PART OF THE CHECK, AND KEYING IT ON A WORD RATHER "
+      "THAN ON THE QUANTITY PUTS INNOCENT WORK ON THE RATCHET — WHERE IT WILL LATER EXCUSE "
+      "THE REAL THING.",
+      "A ratchet entry is an allowance. An allowance standing over a file that never "
+      "committed the offence is not merely untidy: it is a standing permission that "
+      "activates the day that file does commit it, silently, because the gate will read the "
+      "name off the list and move on.",
+      "the site-data reader port, 03-Sep-2026",
+      "build",
+      "The gate for [R-ENF-03] keyed its population on the STRING 'data.js' appearing "
+      "anywhere in a file, and three of the thirteen files it ratcheted never open the file "
+      "at all: two carry the word inside an external-reader SCRUB WORD LIST — the internal "
+      "vocabulary a delivered document may not contain — and one names the path in a prose "
+      "comment, while each separately uses a regular expression for something else "
+      "entirely. Re-pointed at a PATH CONSTRUCTION per [R-COC-01], the population fell 44 "
+      "-> 31 and the ratchet 13 -> 10, and the negative control gained the distinction that "
+      "matters: green-because-EXCLUDED is not green-because-compliant, and an exit code "
+      "cannot tell them apart, so the population COUNT is compared with and without each "
+      "file.",
+      "A population predicate that is broader than the rule and where the extra members are "
+      "shown to be harmless — which would mean the ratchet's allowances cost nothing."),
+
+    L("L-236", "ALL", None,
+      "A SYNTAX CHECK IS NOT A SEMANTIC CHECK, AND THE GAP BETWEEN THEM IS EXACTLY WHERE A "
+      "DUPLICATED KEY LIVES.",
+      "'It parses' feels like verification and is a much weaker claim than it sounds. A "
+      "file can be perfectly well-formed and still not mean what its author wrote, and the "
+      "form most likely to survive every check is the one that is legal in the language.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "Every tool that writes assets/data.js edits it as TEXT — correctly, since a JSON "
+      "round-trip would destroy the file's formatting and its prose comments — and each "
+      "verified with `node --check`. Demonstrated on a real copy of the file rather than "
+      "asserted: plant a second `levels` key on one entry and `node --check` PASSES, the "
+      "parser returns the SECOND, and a regular expression returns the FIRST. That is not a "
+      "hypothetical shape; it is the exact defect [R-ENF-03] was adopted on, a ticker page "
+      "publishing a support ABOVE its own close while both gates read the half the reader "
+      "never saw. The write path could have produced that file again and nothing would have "
+      "said so.",
+      "A writer whose post-write verification is shown to catch a shadowed field without "
+      "loading the file — which would mean the syntax check was sufficient after all."),
+
+    L("L-237", "ALL", None,
+      "A READER AND A WRITER OWE DIFFERENT THINGS TO THE SAME RULE, AND HOLDING ONE TO THE "
+      "OTHER'S OBLIGATION MANUFACTURES A DEBT THAT CAN NEVER BE PAID.",
+      "A ratchet entry that cannot in principle be cleared is a permanently-red check "
+      "[R-ENF-02] forbids, wearing a different hat — and it is worse than an obviously red "
+      "one, because it looks like a backlog somebody will get to.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "Three files WRITE data.js by string surgery, which is the only sound way to preserve "
+      "its formatting, so 'read it through a parse' forbids the job rather than the "
+      "defect. Re-pointed at what a writer actually owes — proof that the PARSER agrees "
+      "with what it wrote — the clause immediately surfaced FOUR MORE writers the string "
+      "predicate had never counted, one of them a CONE writer with no post-write check of "
+      "any kind, not even `node --check`; two more counted their records against a known "
+      "total and never looked at a VALUE, which a block emitted twice leaves identical "
+      "either way. The ratchet went 13 -> 0.",
+      "A writer for which no verification is expressible, which would mean the obligation "
+      "is unmeetable rather than merely different."),
+
+    L("L-238", "ALL", None,
+      "AN EXEMPTION WIDER THAN ITS OWN REASON IS THE SAFEST HIDING PLACE THERE IS.",
+      "Nobody is lying, the reason survives review, and the work simply happens where the "
+      "check no longer reaches. This is [R-MACRO-01]'s finding — a TRUE exemption on the "
+      "WRONG OBJECT — arriving again in a different area within a day, which is what makes "
+      "it a house rule rather than an anecdote.",
+      "the site-data reader port, 03-Sep-2026",
+      "build",
+      "A negative control plants a broken data.js on purpose, so requiring it to verify "
+      "that the file it deliberately corrupted parses to what it meant is incoherent — a "
+      "real exemption with a real reason. The first draft implemented it by skipping "
+      "*_negative_control.py ENTIRELY, which also stopped checking whether a control READS "
+      "data.js by regular expression, where nothing excuses it, and shrank the population "
+      "from 31 to 26 for a reason that had nothing to do with reading. Scoped to the writer "
+      "clause it was written for, and asserted in BOTH directions: a control that writes "
+      "without verifying passes, a control that reads by regex still fails.",
+      "An exemption whose scope cannot be narrowed to its reason without losing the reason "
+      "— which would mean the two genuinely coincide."),
+
+    L("L-239", "ALL", None,
+      "A RULE OF THE FORM 'AFTER ANY X, ASSERT Y' BINDS NOTHING UNTIL SOMETHING THAT DOES "
+      "X CALLS Y.",
+      "It is the most convincing kind of dead rule, because it names its own trigger and "
+      "therefore reads as though it executes. The place to look is not the rule but the "
+      "code that performs X.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "'After ANY ledger write, assert the lifecycle invariant' has been standing since "
+      "29-Jul-2026. NEITHER writer that appends ledger rows checked it; it lived in the "
+      "protocol and in whatever the operator remembered. Measured before it was asserted, "
+      "per [R-ENF-02]: 0 violations across 187 (instrument, horizon) pairs, so it passes "
+      "today rather than arriving red. And the invariant is NOT 'one open row per name' — "
+      "steady state is four, because a fresh three-month strike demotes the prior cone to "
+      "an aging tail; 114 pairs carry one open row and 73 carry two and every one is "
+      "correct. What may never happen is two open rows sharing the LATEST anchor.",
+      "A written trigger of this shape that turns out to be executed by every performer of "
+      "X without anyone having wired it — which would mean prose triggers do bind."),
+
 ]
 
 
