@@ -1729,6 +1729,16 @@ SENS = dict(
     wacc_grid=wacc_grid, g_grid=g_grid,
     wacc_g=[[reval(we=x, g=gg) for gg in g_grid] for x in wacc_grid],
     beta_grid=beta_grid, beta=[reval(beta_=b) for b in beta_grid],
+    # THE ANCHORS ARE FIXED ROUND NUMBERS SO STUDIES CAN BE COMPARED, and they therefore do
+    # NOT track any one regression's confidence interval. Until this edition the caption
+    # claimed they spanned it. On this name the own-stock 95% interval reaches BELOW the
+    # lowest anchor, and that is the value-RAISING end, so the claim overstated the coverage
+    # in exactly the direction a reader should be most sceptical of. The interval and the
+    # value at each of its ends are committed here so the caption can state them instead.
+    beta_ci_lo=BETA['own_stock']['beta'] - 1.96 * BETA['own_stock']['se'],
+    beta_ci_hi=BETA['own_stock']['beta'] + 1.96 * BETA['own_stock']['se'],
+    fv_at_ci_lo=reval(beta_=BETA['own_stock']['beta'] - 1.96 * BETA['own_stock']['se']),
+    fv_at_ci_hi=reval(beta_=BETA['own_stock']['beta'] + 1.96 * BETA['own_stock']['se']),
     mgn_grid=mgn_grid, mgn=[reval(mgn_shift=m) for m in mgn_grid],
     wt_grid=[wacc_term - 0.02, wacc_term - 0.01, wacc_term, wacc_term + 0.01,
              wacc_term + 0.02],
@@ -2099,6 +2109,17 @@ for _i in (0, 1, 5):
         f"{_b['rev'] - _b['c_mat'] - _b['c_tra'] - _b['c_ovh']:,.0f}mn and could not "
         f"reconcile it — the model was right and the page was incomplete, which no "
         f"recalculation gate can see because it reconciles the model to itself")
+
+for _i in range(5):
+    chk(abs(ebitda_f[_i] - dna_f[_i] + oth_f[_i] - ebit_f[_i]) < 1e-6,
+        f"the printed cash-flow waterfall FOOTS in {YRS[_i]}: EBITDA of EGP "
+        f"{ebitda_f[_i]:,.0f}mn less depreciation and amortisation of {dna_f[_i]:,.0f} plus "
+        f"other operating income of {oth_f[_i]:,.0f} IS the EBIT of {ebit_f[_i]:,.0f} the "
+        f"table prints. Until this edition other operating income was consumed by the model "
+        f"and printed nowhere, so a reader subtracting the printed depreciation from the "
+        f"printed EBITDA came out {ebitda_f[_i] - dna_f[_i] - ebit_f[_i]:,.0f}mn short of "
+        f"the printed EBIT — the third instance in this study of a line the model uses and "
+        f"the page does not show")
 
 chk(V['auc_altfuel_fy25'] + V['auc_silo_fy25'] <= V['auc_fy25'] + 1e-9,
     f"the two NAMED assets under construction — the alternative-fuel system for line 2 at "
@@ -2815,7 +2836,8 @@ OUT = dict(
                  nopat=nopat_h, tax_eff=TAXE,
                  volume_mt=[None, None, vol25], price_t=[None, None, BU[0]['price']],
                  utilisation=[None, None, p0['mill_util']]),
-    forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f, ebit=ebit_f,
+    forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f,
+                  other_income=oth_f, ebit=ebit_f,
                   nopat=nopat, capex=capex, dwc=dwc, fcff=fcff, df=df_, pv=pv,
                   fwd_wacc=fwd, glide=glide, t_mid=t_mid, treasury=treas_f, pbt=pbt_f,
                   tax=tax_f, pat=pat_f, dividends=div_f, cash=cash_b, equity=eq_b,

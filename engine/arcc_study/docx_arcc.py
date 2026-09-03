@@ -591,8 +591,15 @@ P(f'The consequence is large and is published as a value rather than described: 
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
-caption('Table 8 — Fair value across the fixed comparability anchors, which span the '
-        'regression\'s own confidence interval.')
+caption(f'Table 8 — Fair value across the fixed comparability anchors. These are round '
+        f'numbers held constant so studies can be compared, and they therefore do NOT track '
+        f'any one regression\'s confidence interval — on this name the withdrawn own-stock '
+        f'estimate carries a 95% interval of {n2(SN["beta_ci_lo"])} to '
+        f'{n2(SN["beta_ci_hi"])}, whose LOWER end sits below the lowest anchor here and '
+        f'would put the cash-flow lens at EGP {n2(SN["fv_at_ci_lo"])}. That end is the '
+        f'value-RAISING one, and it is stated rather than left off the table: a wider '
+        f'interval than the anchors show is a fact about how little this regression '
+        f'establishes, not a reason to print a narrower one.')
 
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The cash-flow waterfall')
@@ -600,6 +607,7 @@ rows = [['EGP mn'] + YF]
 for lab, key, fmt in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
                       ('EBITDA margin', 'margin', pc),
                       ('Depreciation and amortisation', 'dna', n0),
+                      ('Plus other operating income', 'other_income', n0),
                       ('EBIT', 'ebit', n0)]:
     rows.append([lab] + [fmt(x) for x in F[key]])
 rows.append([f'Tax rate (effective, {pc(TAXE)})'] + [pc(TAXE) for _ in YF])
@@ -610,11 +618,16 @@ rows.append(['Less change in working capital'] + [f'({n0(x)})' for x in F['dwc']
 rows.append(['Free cash flow to the firm'] + [n0(x) for x in F['fcff']])
 rows.append(['Discount factor'] + [f'{x:.4f}' for x in F['df']])
 rows.append(['Present value of FCFF'] + [n0(x) for x in F['pv']])
-table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={11, 13}, size=8.8)
-caption('Table 9 — The full build from revenue to present value. FY2026 carries only the '
-        'five months not yet earned at the valuation date; the seven already earned are '
-        'rolled into the opening cash balance instead, so the period is counted exactly '
-        'once rather than twice or not at all.')
+table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={12, 14}, size=8.8)
+caption('Table 9 — The full build from revenue to present value, and every line of it is '
+        'printed so the arithmetic closes on the page: EBITDA less depreciation PLUS other '
+        'operating income is the EBIT shown. That last line is the export subsidy at the '
+        'rate the company disclosed on its FY2025 export revenue, plus the non-subsidy '
+        'remainder escalated; it is a real disclosed income and leaving it out of the '
+        'printed build would have left a reader unable to reconcile the two rows either '
+        'side of it. FY2026 carries only the five months not yet earned at the valuation '
+        'date; the seven already earned are rolled into the opening cash balance instead, '
+        'so the period is counted exactly once rather than twice or not at all.')
 P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax of EGP '
   f'{n0(H["tax"][2])}mn against pre-tax profit of EGP {n0(H["pbt"][2])}mn. The company '
   f'separately states an average effective rate of {pc(IN["eff_rate_disclosed_fy25"], 2)} for '
