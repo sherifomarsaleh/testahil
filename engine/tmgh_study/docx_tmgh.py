@@ -1107,31 +1107,58 @@ def appendices(doc):
 
     doc.add_heading("A.3 Projected balance sheet and cash flow", level=2)
     full = ST["capacity"]["full_rows"][:5]
-    table(doc, ["EGP million"] + [str(r["year"]) for r in full],
-          [["Operating cash flow"] + [money(r["cfo"]) for r in full],
-           ["Capital spend"] + [money(-r["capex"]) for r in full],
-           ["Dividends"] + [money(-r["dividend"]) for r in full],
-           ["Movement in money collected ahead of handover"]
-           + [money(r["d_advances"]) for r in full],
-           ["Movement in homes built ahead of handover"]
-           + [money(-r["d_properties_under_development"]) for r in full],
-           ["Free cash flow to the firm"] + [money(r["fcff"]) for r in full],
-           ["Cash and deposits, closing"] + [money(r["cash"]) for r in full],
-           ["Properties under development, closing"]
-           + [money(r["properties_under_development"]) for r in full],
-           ["Customer advances, closing"]
-           + [money(r["customer_advances"]) for r in full],
-           ["Equity attributable to TMG's shareholders"]
-           + [money(r["equity_parent"]) for r in full],
-           ["Total assets"] + [money(r["total_assets"]) for r in full],
-           ["Total liabilities"] + [money(r["total_liabilities"]) for r in full],
-           ["Total equity"] + [money(r["total_equity"]) for r in full],
-           ["Assets less liabilities less equity"]
-           + [money(r["balance_check"], 2) for r in full]],
-          [5.4, 2.0, 2.0, 2.0, 2.0, 2.0],
-          "The slower-conversion case. The last line is the check that the sheet "
-          "closes: nothing here is plugged, and it closes because the cash flow "
-          "feeds it.")
+    # THE COLUMN DID NOT ADD UP AND EVERY FIGURE IN IT WAS CORRECT. Operating cash flow
+    # was printed FIRST, and it is built from net profit and ALREADY CONTAINS the two
+    # working-capital movements listed beneath it — so a reader adding the column counted
+    # them twice and reached 41,134 against a printed free cash flow of 24,855. The free
+    # cash flow is not the residual of those rows at all: it sits on operating profit
+    # after tax, before financing, while operating cash flow sits on net profit after it.
+    #
+    # The components now precede the subtotal they make up, so the block foots as a
+    # reader reads down it, and the free cash flow is separated and captioned for what it
+    # is. This is the ARCC Table 3 shape: figures individually right and the relationship
+    # between them unreadable, which nothing checking figures one at a time can see.
+    hdr_cf = ["EGP million"] + [str(r["year"]) for r in full]
+    rows_cf = [["Net profit"] + [money(r["net_profit"]) for r in full],
+               ["add back depreciation and amortisation"]
+               + [money(r["da"]) for r in full],
+               ["Movement in money collected ahead of handover"]
+               + [money(r["d_advances"]) for r in full],
+               ["Movement in homes built ahead of handover"]
+               + [money(-r["d_properties_under_development"]) for r in full],
+               ["Operating cash flow"] + [money(r["cfo"]) for r in full],
+               ["Capital spend"] + [money(-r["capex"]) for r in full],
+               ["Dividends"] + [money(-r["dividend"]) for r in full],
+               ["Free cash flow to the firm, before financing"]
+               + [money(r["fcff"]) for r in full],
+               ["Cash and deposits, closing"] + [money(r["cash"]) for r in full],
+               ["Properties under development, closing"]
+               + [money(r["properties_under_development"]) for r in full],
+               ["Customer advances, closing"]
+               + [money(r["customer_advances"]) for r in full],
+               ["Equity attributable to TMG's shareholders"]
+               + [money(r["equity_parent"]) for r in full],
+               ["Total assets"] + [money(r["total_assets"]) for r in full],
+               ["Total liabilities"] + [money(r["total_liabilities"]) for r in full],
+               ["Total equity"] + [money(r["total_equity"]) for r in full],
+               ["Assets less liabilities less equity"]
+               + [money(r["balance_check"], 2) for r in full]]
+    # the operating block foots as printed, on every year
+    for i, r in enumerate(full):
+        _made = (r["net_profit"] + r["da"] + r["d_advances"]
+                 - r["d_properties_under_development"])
+        assert abs(_made - r["cfo"]) < 1.0, (
+            "A.3's operating cash flow does not foot in %s: %.1f vs %.1f"
+            % (r["year"], _made, r["cfo"]))
+    table(doc, hdr_cf, rows_cf,
+          col_width.fit_widths(hdr_cf, rows_cf, 16.79, generous=0, equal_from=1),
+          "The slower-conversion case. The first four lines make up operating cash "
+          "flow. Free cash flow to the firm is NOT the residual of the rows above "
+          "it: it starts from operating profit after tax and stops before financing, "
+          "which is the measure section 1.1 discounts, while operating cash flow "
+          "starts from net profit and is after it. The last line is the check that "
+          "the sheet closes: nothing here is plugged, and it closes because the cash "
+          "flow feeds it.")
     para(doc, "On the faster-conversion reading the same statements go cash "
               "negative from %d, because accelerating handovers means building "
               "before collecting. That case would need external funding, and "

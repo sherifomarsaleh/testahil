@@ -3461,6 +3461,47 @@ LESSONS = [
       "A renderer whose metrics differ enough from the measured ones that the constants "
       "stop clearing their own experiment, which the module's import assertion would say."),
 
+    L("L-259", "ALL", None,
+      "A RELATIVE GLOB RUN FROM THE WRONG DIRECTORY MATCHES NOTHING AND REPORTS CLEAN, AND "
+      "IT IS THE COMMONEST WAY [R-ENF-04]'s FAILURE ACTUALLY HAPPENS HERE.",
+      "A sweep written as engine/*_study/*.json is correct from the repository root and "
+      "matches nothing from anywhere else. The result is not an error: it is a confident "
+      "zero, printed in the same words a genuinely clean run would print.",
+      "sweeping for stale peer prices, 03-Sep-2026",
+      "build",
+      "A sweep for artefacts older than the repository's own price libraries reported "
+      "'0 stale' and was believed. Counting what it had EXAMINED returned zero rows across "
+      "zero studies: the working directory was inside a study, so the glob resolved under "
+      "that directory and matched no file at all. Re-run from the root it examined 25 rows "
+      "and found the real case. THIS HAPPENED WITHIN THE HOUR OF REGISTERING L-255, which "
+      "is the same failure one level up, and twice more in the same session on other "
+      "commands. The habit that catches it is cheap and is the only thing that does: "
+      "ASSERT THE POPULATION BEFORE READING THE RESULT \u2014 a sweep prints what it "
+      "examined, and zero examined is a failure rather than a finding. Absolute paths help "
+      "and are not sufficient, because the next probe will be written in a hurry too.",
+      "A sweep whose population is genuinely empty for a stated reason, where the assertion "
+      "would be the false claim instead."),
+
+    L("L-260", "ALL", None,
+      "AN ARTEFACT BUILT FROM A COMMITTED LIBRARY GOES STALE SILENTLY, BECAUSE THE LIBRARY "
+      "MOVES BY THE CALENDAR AND THE ARTEFACT MOVES ONLY WHEN SOMEBODY RE-RUNS IT.",
+      "A file that reads a price library and writes a summary is correct on the day it is "
+      "written and drifts every day after. Nothing about it looks stale: it carries dates, "
+      "sources and tiers, and every figure in it was right when it was taken.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's delivered peer table published Emaar Misr at 11.53 as at 28 July, SODIC at "
+      "27.48 as at 27 July and Orascom at 40.16 as at 27 July, while THIS REPOSITORY'S OWN "
+      "committed libraries held 13.70, 31.01 and 41.50 at 1 September \u2014 the first "
+      "18.8% higher. The generator does nothing but read the last row of each library and "
+      "had simply not been re-run. No valuation number moves, because this study "
+      "deliberately tabulates no peer multiples; what moves is a table of prices a reader "
+      "takes as current. It is [R-ENF-06]'s shape with the staleness on the INPUT side, and "
+      "the standing library-staleness rule's shape too: a fact that moves by the calendar "
+      "must not be remembered by something that moves only when edited.",
+      "A peer table deliberately frozen at a stated date for a stated reason, which the "
+      "document would then have to say."),
+
 ]
 
 

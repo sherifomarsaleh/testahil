@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**179 lessons**, of which 152 bind on every study, 20 on a class of company, and 7 on a single name.
+**181 lessons**, of which 154 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 104 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 106 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1598,6 +1598,26 @@ L-253 established that a column must clear its widest cell. Two further things w
 > **What it cost, or how we know.** A 'Discount rate' header rendered 'Discou nt rate' at 1.7cm. A hand fix widened that column and narrowed 'Case' to 3.0cm, which needs 3.61 for 'Credit-default-swap' — the same error again, minutes later. The column was then sized from measured per-character widths and STILL printed 'Discoun', because the measurement had been taken on plain cells: bold needs 1.077x to 1.121x the ink of the same token plain, measured on seven tokens. The model was right about the string and wrong about the FACE IT IS SET IN. The shared width module now holds both measurements and asserts its constants still clear them at import; a percent sign is 0.30cm, which is why an entire ten-cell cost-of-capital row printed '32.4' with a bare '%' beneath it while the orphan detector — which scans for a stray DIGIT — reported the document clean.
 
 > **What would overturn it.** A renderer whose metrics differ enough from the measured ones that the constants stop clearing their own experiment, which the module's import assertion would say.
+
+### L-259 · A RELATIVE GLOB RUN FROM THE WRONG DIRECTORY MATCHES NOTHING AND REPORTS CLEAN, AND IT IS THE COMMONEST WAY [R-ENF-04]'s FAILURE ACTUALLY HAPPENS HERE.
+
+A sweep written as engine/*_study/*.json is correct from the repository root and matches nothing from anywhere else. The result is not an error: it is a confident zero, printed in the same words a genuinely clean run would print.
+
+**Applies to:** every study  ·  *Learned from:* found while building, sweeping for stale peer prices, 03-Sep-2026
+
+> **What it cost, or how we know.** A sweep for artefacts older than the repository's own price libraries reported '0 stale' and was believed. Counting what it had EXAMINED returned zero rows across zero studies: the working directory was inside a study, so the glob resolved under that directory and matched no file at all. Re-run from the root it examined 25 rows and found the real case. THIS HAPPENED WITHIN THE HOUR OF REGISTERING L-255, which is the same failure one level up, and twice more in the same session on other commands. The habit that catches it is cheap and is the only thing that does: ASSERT THE POPULATION BEFORE READING THE RESULT — a sweep prints what it examined, and zero examined is a failure rather than a finding. Absolute paths help and are not sufficient, because the next probe will be written in a hurry too.
+
+> **What would overturn it.** A sweep whose population is genuinely empty for a stated reason, where the assertion would be the false claim instead.
+
+### L-260 · AN ARTEFACT BUILT FROM A COMMITTED LIBRARY GOES STALE SILENTLY, BECAUSE THE LIBRARY MOVES BY THE CALENDAR AND THE ARTEFACT MOVES ONLY WHEN SOMEBODY RE-RUNS IT.
+
+A file that reads a price library and writes a summary is correct on the day it is written and drifts every day after. Nothing about it looks stale: it carries dates, sources and tiers, and every figure in it was right when it was taken.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH's delivered peer table published Emaar Misr at 11.53 as at 28 July, SODIC at 27.48 as at 27 July and Orascom at 40.16 as at 27 July, while THIS REPOSITORY'S OWN committed libraries held 13.70, 31.01 and 41.50 at 1 September — the first 18.8% higher. The generator does nothing but read the last row of each library and had simply not been re-run. No valuation number moves, because this study deliberately tabulates no peer multiples; what moves is a table of prices a reader takes as current. It is [R-ENF-06]'s shape with the staleness on the INPUT side, and the standing library-staleness rule's shape too: a fact that moves by the calendar must not be remembered by something that moves only when edited.
+
+> **What would overturn it.** A peer table deliberately frozen at a stated date for a stated reason, which the document would then have to say.
 
 
 ---
