@@ -22,6 +22,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem13.xls (Updated January 1, 2014), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2013-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 9.4697,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2013-12-31",
+     "tier": "Global"
     }
    }
   },
@@ -45,6 +51,12 @@
     "default_spread": {
      "value": 0.075,
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem14.xls (Updated January 1, 2015), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2014-12-31",
+     "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 10.0702,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
      "date": "2014-12-31",
      "tier": "Global"
     }
@@ -72,6 +84,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem15.xls (Updated July 1, 2016), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2015-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 10.3705,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2015-12-31",
+     "tier": "Global"
     }
    }
   },
@@ -95,6 +113,12 @@
     "default_spread": {
      "value": 0.075143,
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem16.xls (Updated January 5, 2017), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2016-12-31",
+     "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 13.8136,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
      "date": "2016-12-31",
      "tier": "Global"
     }
@@ -122,6 +146,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem17.xls (Updated January 1, 2018), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2017-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 29.5066,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2017-12-31",
+     "tier": "Global"
     }
    }
   },
@@ -145,6 +175,12 @@
     "default_spread": {
      "value": 0.073394,
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem18.xls (Updated January 1, 2019), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2018-12-31",
+     "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 14.4015,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
      "date": "2018-12-31",
      "tier": "Global"
     }
@@ -172,6 +208,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem19.xls (Updated January 1, 2020), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2019-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 9.1528,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2019-12-31",
+     "tier": "Global"
     }
    }
   },
@@ -195,6 +237,12 @@
     "default_spread": {
      "value": 0.048632,
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem20.xls (Updated January 1, 2021), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2020-12-31",
+     "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 5.0449,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
      "date": "2020-12-31",
      "tier": "Global"
     }
@@ -222,6 +270,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem21.xlsx (Updated January 1, 2022), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2021-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 5.214,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2021-12-31",
+     "tier": "Global"
     }
    }
   },
@@ -245,6 +299,12 @@
     "default_spread": {
      "value": 0.067302,
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem22.xlsx (Date of update: 2023-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2022-12-31",
+     "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 13.8957,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
      "date": "2022-12-31",
      "tier": "Global"
     }
@@ -272,6 +332,12 @@
      "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem23.xlsx (Date of update: 2024-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
      "date": "2023-12-31",
      "tier": "Global"
+    },
+    "cpi_annual_current_vintage": {
+     "value": 33.8848,
+     "source": "World Bank World Development Indicators, series FP.CPI.TOTL.ZG 'Inflation, consumer prices (annual %)', Egypt, retrieved 03-Sep-2026 via api.worldbank.org; series last updated 2026-07-13. THIS IS THE SERIES AS CURRENTLY REPORTED, NOT THE PRINT PUBLISHED AT THE ORIGIN. It is recorded under its own field name for exactly that reason: it does NOT satisfy the point-in-time cpi_annual this archive requires, because a revised or rebased figure is fabricated in VINTAGE even when it is right in value, and the calibration's whole claim is that each origin saw only what was published by that date. Useful as a cross-check on a vintage print once one is sourced; not a substitute for it.",
+     "date": "2023-12-31",
+     "tier": "Global"
     }
    }
   }
@@ -279,6 +345,7 @@
  "sources_used": {
   "erp_and_default_spread": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived by year at pages.stern.nyu.edu/~adamodar/pc/archives/. The filename convention ctryprem{YY} = the vintage published 1 January {YY+1} is CONFIRMED by each file's own 'Updated' line, not assumed: 2013->Jan 2014 through 2024->Jan 2025, with one exception recorded below.",
   "vintage_exception": "ctryprem15.xls carries 'Updated July 1, 2016' \u2014 a mid-year re-publication rather than the usual 1 January. Recorded as it stands.",
-  "stale_cell_trap": "ctryprem19.xls and ctryprem20.xls each carry a STALE 'Date of update' cell (2015-12-31 and 2016-12-31) beside a correct 'Updated January 1, 2020/2021' line. A first extraction pass read the stale cell and would have misdated two vintages by four years. Both stamps are recorded per origin and the conflict is stated in the source string."
+  "stale_cell_trap": "ctryprem19.xls and ctryprem20.xls each carry a STALE 'Date of update' cell (2015-12-31 and 2016-12-31) beside a correct 'Updated January 1, 2020/2021' line. A first extraction pass read the stale cell and would have misdated two vintages by four years. Both stamps are recorded per origin and the conflict is stated in the source string.",
+  "cpi_note": "The annual CPI is held so far only as the CURRENTLY REPORTED World Bank series, under the field cpi_annual_current_vintage, which deliberately does NOT satisfy the required cpi_annual. What closes it: the CBE monthly statistical bulletin or the CAPMAS release OF THAT YEAR, which is the figure an analyst standing at the origin actually had. Recording the modern series as though it were the vintage would be the quietest possible way to break this archive: right in value, wrong in date, and invisible afterwards."
  }
 }
