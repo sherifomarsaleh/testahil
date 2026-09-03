@@ -1284,11 +1284,17 @@ putf(wsS, 'D8', f"=B8/{A['spot']}-1", _NORM_DIAG / SPOT - 1, PCT)
 wsS.cell(row=9, column=1, value='CENTRAL FAIR VALUE — the cash-flow lens, not a blend')
 putf(wsS, 'B9', "=B5", LN['central'], PX, bold=True)
 putf(wsS, 'D9', f"=B9/{A['spot']}-1", LN['central'] / SPOT - 1, PCT, bold=True)
-wsS.cell(row=10, column=1, value='Lowest read of the three')
-putf(wsS, 'B10', "=MIN(B5:B7)", LN['low'], PX)
+wsS.cell(row=10, column=1, value='Lowest of the three cross-checks')
+# [R-LENS-03]. This range was B5:B7 under labels reading "the three", and it was wrong
+# twice over: B5 is the PRIMARY, so the span included the very lens it was meant to be
+# checked against, and B8 — normalised earnings — was left out, so it was not "the three"
+# either. The delivered document inherited it and told a reader that "the cross-checks
+# around it span EGP 45.65 to EGP 66.53", naming the primary as the top of its own
+# cross-check range. The cross-checks are B6:B8: every lens that is not the primary.
+putf(wsS, 'B10', "=MIN(B6:B8)", LN['low'], PX)
 putf(wsS, 'D10', f"=B10/{A['spot']}-1", LN['low'] / SPOT - 1, PCT)
-wsS.cell(row=11, column=1, value='Highest read of the three')
-putf(wsS, 'B11', "=MAX(B5:B7)", LN['high'], PX)
+wsS.cell(row=11, column=1, value='Highest of the three cross-checks')
+putf(wsS, 'B11', "=MAX(B6:B8)", LN['high'], PX)
 putf(wsS, 'D11', f"=B11/{A['spot']}-1", LN['high'] / SPOT - 1, PCT)
 wsS.cell(row=14, column=1, value='RETIRED: the 50/20/22/8 blend this edition dropped')
 _RB = LN['retired_blend']

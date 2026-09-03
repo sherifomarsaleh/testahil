@@ -2814,8 +2814,19 @@ OUT = dict(
     lenses=dict(values=LENS, primary=PRIMARY, diagnostic=LENS_DIAGNOSTIC,
                 retired_blend={'DCF (cash flow)': 0.50, 'Relative multiples': 0.20,
                                'Normalised earnings': 0.22, 'Asset / replacement cost': 0.08},
-                central=fv_central, low=min(LENS.values()),
-                high=max(LENS.values()), ebitda_norm=eb_norm, nopat_norm=nopat_norm,
+                central=fv_central,
+                # [R-LENS-03]: ONE class primary IS the central; every other lens is a
+                # CROSS-CHECK. low/high spanned ALL the lens values including the primary,
+                # so `high` came out equal to the central and the delivered document told a
+                # reader that "the cross-checks around it span EGP 45.65 to EGP 66.53" —
+                # naming the primary as the top of its own cross-check range. That blurs
+                # exactly the distinction this rule was written to enforce. The cross-check
+                # span now EXCLUDES the primary and is labelled for what it is; the all-lens
+                # span is kept beside it under its own name.
+                low=min(v for k, v in LENS.items() if k != PRIMARY),
+                high=max(v for k, v in LENS.items() if k != PRIMARY),
+                all_low=min(LENS.values()), all_high=max(LENS.values()),
+                ebitda_norm=eb_norm, nopat_norm=nopat_norm,
                 ev_per_t_spot=ev_per_t, ev_asset=ev_asset, ev_spot=ev_spot,
                 bvps=V['eq_fy25'] / SH, roe_fy25=V['pat_fy25'] / V['eq_fy25']),
     lens_ranges=LR, sensitivity=SENS, contested=CONTESTED,

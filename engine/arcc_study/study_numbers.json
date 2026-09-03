@@ -2357,7 +2357,9 @@
   },
   "central": 66.5300405232932,
   "low": 45.65472961275834,
-  "high": 66.5300405232932,
+  "high": 65.56850166596888,
+  "all_low": 45.65472961275834,
+  "all_high": 66.5300405232932,
   "ebitda_norm": 3650.55003335568,
   "nopat_norm": 2560.2412428793573,
   "ev_per_t_spot": 112.03895257654077,
@@ -3005,7 +3007,7 @@
   "  26. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
   "==============================================================================",
   "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
-  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 161,001 characters of delivered text, 0 hits; table column audit clean",
+  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 162,216 characters of delivered text, 0 hits; table column audit clean",
   "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
  ]
 }
