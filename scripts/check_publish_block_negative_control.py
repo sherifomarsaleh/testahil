@@ -95,6 +95,37 @@ def main():
             import check_publish_block as blk
             blk.ENGINE = eng
             blk.gap = gap
+            blk.phase1_proven = lambda: (True, "stubbed proven for the gap cases")
+            got, why, _ = blk.verdict("TK")
+            if got != must:
+                failures.append("%-32s expected %s, got %s (%s)"
+                                % (name, "PUBLISH" if must else "HELD",
+                                   "PUBLISH" if got else "HELD", why))
+            else:
+                print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    # THE METHOD HOLD IS TESTED SEPARATELY, and in BOTH directions. The gap cases
+    # above stub it proven so they measure the gap; these measure the method, so a
+    # future change that quietly drops one condition cannot pass by satisfying the
+    # other — which is exactly how a two-condition rule normally decays into one.
+    for name, proven, must in (("method proven, inside band", True, True),
+                               ("method NOT proven, inside band", False, False),
+                               ("method NOT proven, dissent filed", False, False)):
+        tmp = tempfile.mkdtemp()
+        try:
+            eng = build(tmp, "TK", 74.0, 77.0,
+                        DISSENT_OK if "dissent" in name else None, None)
+            for m in ("check_publish_block", "check_valuation_gap"):
+                sys.modules.pop(m, None)
+            import check_valuation_gap as gap
+            gap.ENGINE = eng
+            import check_publish_block as blk
+            blk.ENGINE = eng
+            blk.gap = gap
+            blk.phase1_proven = lambda p=proven: (
+                p, "stubbed" if p else "Phase 1 is not proven — stubbed")
             got, why, _ = blk.verdict("TK")
             if got != must:
                 failures.append("%-32s expected %s, got %s (%s)"
@@ -129,7 +160,7 @@ def main():
         for f in failures:
             print("  " + f)
         return 1
-    print("\n%d conditions reinjected, every one behaved" % (len(CASES) + 1))
+    print("\n%d conditions reinjected, every one behaved" % (len(CASES) + 4))
     return 0
 
 
