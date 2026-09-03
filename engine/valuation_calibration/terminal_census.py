@@ -340,6 +340,39 @@ def read_study(d):
         if rec.get('roic_term') and rec['charge'] > 0:
             rec['ic_implied'] = N / rec['roic_term']
             rec['implied_cycle_years'] = rec['ic_implied'] / rec['charge']
+            # THE BASE THE CHARGE USES AND THE BASE THE STUDY COMMITS ARE NOT ALWAYS THE
+            # SAME, and the difference decides what the cycle can be used FOR. The signature
+            # test is algebra on whatever base the charge uses, so it holds either way. But
+            # PRICING a disclosed asset life needs the real capital, and reading the implied
+            # base as though it were the committed one overstated one name's correction by
+            # two thirds before this line existed. ADNOCLS agrees to (1+g) exactly — the
+            # return is struck on terminal profit against a valuation-date base — while AMR
+            # sets a terminal return of exactly 30.0000%, A ROUND NUMBER THAT IS A CHOICE
+            # AND NOT A MEASUREMENT, against its own NOPAT/IC of 50.8%.
+            if rec.get('ic'):
+                rec['ic_ratio'] = rec['ic_implied'] / rec['ic']
+                # TWO LEGITIMATE CONVENTIONS, and the check accepts both while NAMING which.
+                # A terminal return may be struck on the terminal year's own profit (ratio
+                # 1.00) or on the next year's (ratio 1+g); they differ by exactly one year of
+                # growth and neither is wrong. What is not a convention is a ratio that is
+                # neither — that is a return chosen against some other base.
+                if abs(rec['ic_ratio'] - 1.0) < 0.02:
+                    rec['base_agrees'] = True
+                    rec['base_convention'] = "terminal-year profit on the committed capital"
+                elif abs(rec['ic_ratio'] / (1.0 + g) - 1.0) < 0.02:
+                    rec['base_agrees'] = True
+                    rec['base_convention'] = "next-year profit on the committed capital"
+                else:
+                    rec['base_agrees'] = False
+                if not rec['base_agrees']:
+                    rec['base_note'] = (
+                        'the terminal return is struck on a base %.2fx the committed '
+                        'invested capital, so the implied cycle diagnoses the CONSTRUCTION '
+                        'and the committed base is what a disclosed asset life must be '
+                        'priced against' % rec['ic_ratio'])
+            else:
+                rec['base_note'] = ('no invested capital is committed, so a disclosed asset '
+                                    'life cannot be priced from what this study publishes')
         elif rec.get('ic') and rec['charge'] > 0:
             rec['implied_cycle_years'] = rec['ic'] / rec['charge']
             rec['cycle_basis_note'] = ('computed on a committed ic_* field, not on the base '
