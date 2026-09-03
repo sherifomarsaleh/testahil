@@ -1,0 +1,26 @@
+{
+ "ticker": "ARCC",
+ "as_of": "2026-06-30",
+ "spot": 59.0,
+ "spot_date": "2026-08-06",
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the price on this study's own free cash flows and terminal",
+  "value": 0.18251014045091318,
+  "study_value": 0.19967273116827255,
+  "study_value_range": [
+   0.1828829536189095,
+   0.27402902055618733
+  ],
+  "solved_on": "this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price",
+  "reading": "At EGP 59.00 the price is paying for a flat 18.25% cost of capital on the same cash flows this study discounts at a schedule equivalent to a flat 19.97%. The study's own explicit-window rate is 27.40% gliding to a terminal 18.29%, so the market and the study disagree by about 172 basis points on the price of time and risk — not on the business. The study's own record names beta as its most consequential contested judgement, worth 9.6% of value, and beta enters through exactly this rate."
+ },
+ "construction": {
+  "terminal_cash_flow": 2178.807503443666,
+  "terminal_growth": 0.07,
+  "terminal_arrives_at_year": 4.5,
+  "enterprise_value_at_spot": 21430.182563000002,
+  "enterprise_value_in_study": 19353.16546743767,
+  "bridge_delta_equity_less_ev": 686.9966920000006
+ }
+}

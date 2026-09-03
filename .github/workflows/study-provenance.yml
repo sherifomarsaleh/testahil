@@ -414,3 +414,9 @@ jobs:
 
       - name: Valuation-input block — negative control
         run: python3 scripts/check_valuation_inputs_negative_control.py
+
+      - name: Every calibrated name ships a complete edition
+        run: python3 scripts/check_calibration_deliverables.py
+
+      - name: Calibration deliverables — negative control
+        run: python3 scripts/check_calibration_deliverables_negative_control.py

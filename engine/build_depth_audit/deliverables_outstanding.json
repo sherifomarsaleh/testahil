@@ -1,0 +1,6 @@
+{
+ "_": "Calibrated names whose delivered edition is incomplete or inconsistent, allowed to fail. THE LIST MAY ONLY SHORTEN [R-ENF-02].",
+ "outstanding": {
+  "TMGH": "edition 2 (02-09-2026) shipped without its QC gate; the one on disk covers edition 1. Found by this gate's first run and queued for the audit rather than waived away."
+ }
+}
