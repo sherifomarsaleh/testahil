@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — the five on the new standard, and the gates that read what ships",
-  "step": "[R-ENF-05] output records now conform on ARCC, EGCH, PHDC and TMGH; only AMOC of the five is left and it is blocked by a real defect (its contested alternatives sit on a superseded bridge, L-070). The big find of the day is that [R-LENS-03] is green in every lens RECORD and false in 14 of 20 delivered DOCUMENTS, ADNOCLS the model report among them; a gate now reads the delivered PDF and the model-report skeleton no longer teaches the blend. Measured across the book, the blend put the central below the class primary on 6 of 8 blended studies, median -5.8pp of spot, worst -40.6pp (DU) — the same near-zero-median, fat-tail shape as the delivered book, which is the second independent corroboration that the house was INCONSISTENT rather than uniformly pessimistic.",
-  "status": "in progress"
+  "workstream": "WS8 — EGCH document rebuild and gap re-reviews at the live price",
+  "step": "EGCH docs stale; four of five need their eight-heading review redone against the 2-3 Sep prices",
+  "status": "instructed by the principal 03-Sep-2026"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -86,6 +86,12 @@
   "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)"
  ],
  "next": [
+  "The OHLC libraries for ARCC, AMOC and EGCH still stop at 6 August. The snapshot is a PRICE, not a series, and was deliberately NOT written into engine/raw_ohlc/; a real export is an open entry in engine/escalations.json.",
+  "AMOC LEAD, committed in engine/amoc_study/diagnostics.json: the company's own filed gross margin for the half-year to 30 June 2026 is 12.43%, against 9.65% prior full year and 10.19% in Q1. The study forecasts 9.49% for 2026 declining to 8.76% by 2030 — an implied second half near 7%. The market at 13.50 pays for about 10.90%. That reversion assumption carries most of the -26.6% gap and is answerable from the second-half accounts.",
+  "THE GATE DOES NOT CATCH THIS AND A READER SHOULD KNOW: it checks that a review audits the current ANSWER, not that it audited the current GAP. A review written for a -9.4% disagreement is not an audit of a -30.6% one.",
+  "GAP REVIEWS ARE OWED AT THE LIVE PRICE on PHDC, AMOC, ARCC and EGCH. The principal supplied a dated export of 90 EGX closes (2-3 Sep), committed as engine/price_snapshot.json, and check_valuation_gap.py now reads it as the LATEST KNOWN PRICE where newer than the library. Deviations: PHDC 17.15 vs 14.40 = +19.1% (review written at +12.8%); AMOC 9.91 vs 13.50 = -26.6% (review audits 9.91 but at a +8.9% gap); ARCC 53.46 vs 77.00 = -30.6% (review written at -9.4%); EGCH far below 14.41 on both branches; TMGH 96.60 sits inside its published range, nothing owed.",
+  "EGCH is the last of the five whose documents are stale: newest study docx is 01-09-2026 and still states a weighted central of ~3.76, while the study publishes the two-sided answer (-1.06 carried through / +2.82 stopped). AMOC's 03-09 rebuild is correct and has been delivered to the principal.",
+  "PRINCIPAL INSTRUCTION 03-Sep-2026, relayed from the status session: FIX EGCH AND RE-REVIEW THE GAPS ON ALL FIVE. They have said the AMOC and ARCC gaps are UNACCEPTABLE.",
   "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
   "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
   "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
@@ -110,7 +116,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T08:17:27Z",
+ "updated": "2026-09-03T11:25:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
