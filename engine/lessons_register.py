@@ -2379,6 +2379,27 @@ LESSONS = [
       "accounting-policies note supports.",
       "A market parameter whose variation across the book is too small for the direction of "
       "a defect to flip — in which case a one-market diagnosis does generalise."),
+
+    L("L-098", "ALL", None,
+      "Rule candidates OUT by arithmetic before naming what is left. A gap review that lists "
+      "unresolved items without pricing them tells a reader nothing about which one matters.",
+      "Every study has open items and their existence is not evidence that they explain "
+      "anything. Price each at a generous bound: what survives is the answer, and what does "
+      "not is removed from the reader's attention rather than left to worry them.",
+      "EGCH gap review, 03-Sep-2026",
+      "build",
+      "EGCH's review named three unresolved items behind an 88% gap. Priced: the two "
+      "book-carried non-operating assets are 77% of the equity value and so the most "
+      "leveraged items in the bridge, yet closing the gap on them alone needs them at 7.8x "
+      "carrying value — at a generous 2x they move the answer EGP 1.78 against a gap of EGP "
+      "12.10. The ANNA programme, which the whole study is architected around as a binary "
+      "judgement, carries the answer from 2.31 to only 3.06 as its margin runs from 1.93% to "
+      "40%. The terminal charge is near value-neutral. All three ruled out; the gap is the "
+      "cost of capital, and the enterprise value stands at 2.25x terminal EBIT against a "
+      "market paying 7.13x.",
+      "A review where the unresolved items, priced at generous bounds, DO span the gap — in "
+      "which case listing them was the right answer and pricing them proves it."),
+
 ]
 
 
