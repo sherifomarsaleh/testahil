@@ -1,0 +1,64 @@
+{
+ "_": "The FIRST run of the mechanical lens sealed in MECHANICAL_LENS_03-09-2026.md, recorded exactly as it came out and BEFORE any change to the construction. The numbers are absurd and the record exists so that the change which follows can be audited against what triggered it.",
+ "sealed_lens": "MECHANICAL_LENS_03-09-2026.md",
+ "rows": [
+  {
+   "ticker": "PHDC",
+   "origin": 2016,
+   "fv": 6.622121982230088,
+   "price": 3.064,
+   "log": 0.7706946078306117,
+   "ke": 0.228994,
+   "g": 0.07109,
+   "shares_mn": 2308.949726,
+   "equity": 15290.146736408738,
+   "price_date": "2016-12-29"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2017,
+   "fv": 12.003132574519187,
+   "price": 3.854,
+   "log": 1.1360560936053563,
+   "ke": 0.211626,
+   "g": 0.0696,
+   "shares_mn": 2308.949726,
+   "equity": 27714.62966907775,
+   "price_date": "2017-12-31"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2018,
+   "fv": 6.709508321829525,
+   "price": 2.18,
+   "log": 1.1242007960625746,
+   "ke": 0.250947,
+   "g": 0.07034,
+   "shares_mn": 3078.599063,
+   "equity": 20655.88603277508,
+   "price_date": "2018-12-31"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2019,
+   "fv": 12.249865540514843,
+   "price": 1.748,
+   "log": 1.9470426834126497,
+   "ke": 0.201124,
+   "g": 0.07078,
+   "shares_mn": 3078.599063,
+   "equity": 37712.42457490499,
+   "price_date": "2019-12-31"
+  }
+ ],
+ "dropped": [
+  {
+   "ticker": "PHDC",
+   "origin": 2015,
+   "why": "the projection has no net profit at horizon 1"
+  }
+ ],
+ "reading": "mean log(FV/P) +1.2445, i.e. the lens reads PHDC between two and seven times its traded price at every one of four origins, none below. Against a delivered study that today prints 17.15 against a spot of 15.20 — near parity — this is not a measurement of the house lean. It is a mis-specified lens.",
+ "diagnosis": "A perpetuity on accounting NET PROFIT capitalises earnings the company must reinvest in land and construction to sustain, so the terminal alone exceeds the market capitalisation: the last projected profit grown at ~7% and capitalised at ~20-25% is worth more than the whole company. And the deeper objection was already written down in this repository before the lens was declared: [R-LENS-03] says NORMALISED EARNINGS IS NOT A DEVELOPER LENS AT ALL, because a developer recognising revenue on handover reports earnings that are an accident of which project completed in which year. The sealed lens is exactly that construction applied to exactly that class.",
+ "what_happens_next": "The declaration's own falsifier has fired on its first run. The lens is superseded by a new dated declaration — never edited — and the reason is a STANDING RULE that was available before any number was computed, not the size of the number. That distinction is the whole difference between a correction and a fit, and it is why this file is committed before the replacement."
+}

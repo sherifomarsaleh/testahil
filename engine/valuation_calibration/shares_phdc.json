@@ -1,0 +1,52 @@
+{
+ "ticker": "PHDC",
+ "shares_mn": {
+  "2015": {
+   "shares_mn": 2172.32,
+   "issued_capital": 4344640000.0,
+   "par_value": 2.0,
+   "page": 36,
+   "file": "4Q15 - Consolidated - Egyptian GAAP - English.pdf",
+   "check": "capital 4344640000 / par 2 = 2172320000, matching the stated count",
+   "how": "issued-and-paid-in-capital sentence"
+  },
+  "2016": {
+   "shares_mn": 2308.949726,
+   "issued_capital": 4617899452.0,
+   "par_value": 2.0,
+   "page": 37,
+   "file": "4Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "check": "capital 4617899452 / par 2 = 2308949726, matching the stated count",
+   "how": "issued-and-paid-in-capital sentence"
+  },
+  "2017": {
+   "shares_mn": 2308.949726,
+   "issued_capital": 4617899452.0,
+   "par_value": 2.0,
+   "page": 39,
+   "file": "4Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "check": "capital 4617899452 / par 2 = 2308949726, matching the stated count",
+   "how": "issued-and-paid-in-capital sentence"
+  },
+  "2018": {
+   "shares_mn": 3078.599063,
+   "issued_capital": 6157199270.0,
+   "par_value": 2.0,
+   "page": 39,
+   "file": "4Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "check": "capital 6157199270 / par 2 = 3078599635, matching the stated count",
+   "how": "issued-and-paid-in-capital sentence"
+  },
+  "2019": {
+   "shares_mn": 3078.599063,
+   "issued_capital": 6157199270.0,
+   "par_value": 2.0,
+   "page": 44,
+   "file": "4Q19 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "check": "capital 6157199270 / par 2 = 3078599635, matching the stated count",
+   "how": "issued-and-paid-in-capital sentence"
+  }
+ },
+ "dropped": {},
+ "rule": "recorded only where issued capital divided by par value reproduces the share count the same document states"
+}

@@ -1,55 +1,36 @@
 {
  "ticker": "ARCC",
- "as_of": "2026-09-03",
+ "as_of": "2026-06-30",
  "spot": 59.0,
+ "spot_date": "2026-08-06",
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
  "implied": {
-  "quantity": "the realised cement price, EGP per tonne, across the explicit window",
-  "value": 2877.2728123943343,
-  "study_value": 2776.759828738019,
+  "quantity": "the single flat discount rate that reproduces the price on this study's own free cash flows and terminal",
+  "value": 0.18251014045091318,
+  "study_value": 0.19967273116827255,
   "study_value_range": [
-   2776.759828738019,
-   3841.5027657184305
+   0.1828829536189095,
+   0.27402902055618733
   ],
-  "volume_held_at": [
-   4.807498223495703,
-   4.847784527220631,
-   4.888223896848139,
-   4.91113288538682,
-   4.928816332378224
-  ],
-  "solved_on": "this study's own model: volume, the cost stack in absolute pounds, depreciation, capex, working capital, the effective tax rate, the cost-of-capital glide, the terminal construction and the four-line bridge all held exactly at their published values, with only the price-per-tonne path scaled until the model reproduces the traded price. The reconstruction is proved to return the published 53.4593 a share at a scale of 1.0 first, including this study's HALF-YEAR STUB on its opening forecast year, which a reconstruction that missed would get confidently wrong.",
-  "at_prices": {
-   "struck": {
-    "price": 59.0,
-    "scale": 1.036197939272982,
-    "price_t": [
-     2877.2728123943343,
-     3202.9100945156956,
-     3484.856566629457,
-     3732.013836555339,
-     3980.557249548899
-    ],
-    "first_year": 2877.2728123943343
-   },
-   "latest_supplied": {
-    "price": 76.81,
-    "scale": 1.1525530386970733,
-    "price_t": [
-     3200.3629783439687,
-     3562.5662068944516,
-     3876.172566131793,
-     4151.083229136018,
-     4427.535685791988
-    ],
-    "first_year": 3200.3629783439687
-   }
-  },
-  "reading": "At the EGP 59.00 this study was struck at, the price is paying for a 2026 cement price of EGP 2877 a tonne against the EGP 2777 the study forecasts — a 3.6% difference. At EGP 76.81 it is paying for EGP 3200 a tonne, 15.3% above the study's path, with volume held at the company's own 4.81 million tonnes. That is the disagreement in the units the business actually sells in: not a view about discount rates, but a view about what a tonne of cement fetches."
+  "solved_on": "engine/reverse_read.py, on this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price. The discounting convention was declared by the study.",
+  "reading": "At EGP 59.00 the price is paying for a flat 18.25% cost of capital on the same cash flows this study discounts at a schedule equivalent to a flat 19.97%. The study's own explicit-window rate is 27.40% gliding to a terminal 18.29%, so the market and the study disagree by about 172 basis points on the price of time and risk — not on the business. The study's own record names beta as its most consequential contested judgement, worth 9.6% of value, and beta enters through exactly this rate."
  },
- "reconstruction_check": {
-  "published_ps": 53.459329228862934,
-  "rebuilt_ps": 53.459329228862934,
-  "tolerance": 0.001
+ "construction": {
+  "implied_rate_at_price": 0.18251014045091318,
+  "implied_rate_at_study_value": 0.19967273116827255,
+  "terminal_cash_flow": 2178.807503443666,
+  "terminal_growth": 0.07,
+  "terminal_arrives_at_year": 4.5,
+  "enterprise_value_at_spot": 21430.182563000002,
+  "enterprise_value_in_study": 19353.16546743767,
+  "bridge_delta_equity_less_ev": 686.9966920000006,
+  "discounting_times": [
+   0.25,
+   1.0,
+   2.0,
+   3.0,
+   4.0
+  ],
+  "times_resolved": "declared by the study"
  }
 }

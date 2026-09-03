@@ -67,6 +67,18 @@ on:
       - 'scripts/check_output_records.py'
       - 'scripts/check_output_records_negative_control.py'
       - 'engine/build_depth_audit/output_outstanding.json'
+      - 'scripts/check_valuation_inputs.py'
+      - 'scripts/check_valuation_inputs_negative_control.py'
+      - 'engine/build_depth_audit/valuation_inputs_outstanding.json'
+      - 'scripts/check_calibration_deliverables.py'
+      - 'scripts/check_calibration_deliverables_negative_control.py'
+      - 'engine/build_depth_audit/deliverables_outstanding.json'
+      - 'scripts/check_lens_vocabulary.py'
+      - 'scripts/check_lens_vocabulary_negative_control.py'
+      - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
+      - 'engine/valuation_calibration/**'
+      - 'engine/method_reassessment/**'
+      - 'engine/reverse_read.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -123,6 +135,18 @@ on:
       - 'scripts/check_output_records.py'
       - 'scripts/check_output_records_negative_control.py'
       - 'engine/build_depth_audit/output_outstanding.json'
+      - 'scripts/check_valuation_inputs.py'
+      - 'scripts/check_valuation_inputs_negative_control.py'
+      - 'engine/build_depth_audit/valuation_inputs_outstanding.json'
+      - 'scripts/check_calibration_deliverables.py'
+      - 'scripts/check_calibration_deliverables_negative_control.py'
+      - 'engine/build_depth_audit/deliverables_outstanding.json'
+      - 'scripts/check_lens_vocabulary.py'
+      - 'scripts/check_lens_vocabulary_negative_control.py'
+      - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
+      - 'engine/valuation_calibration/**'
+      - 'engine/method_reassessment/**'
+      - 'engine/reverse_read.py'
       - 'engine/Standing_Research_Protocol.md'
       - 'engine/PROJECT_INSTRUCTIONS_*.md'
       - '.github/workflows/study-provenance.yml'
@@ -422,3 +446,21 @@ jobs:
 
       - name: Valuation-calibration pre-registration — negative control
         run: python3 scripts/check_valuation_calibration_negative_control.py
+
+      - name: Valuation-input block committed by every walk-forward
+        run: python3 scripts/check_valuation_inputs.py
+
+      - name: Valuation-input block — negative control
+        run: python3 scripts/check_valuation_inputs_negative_control.py
+
+      - name: Every calibrated name ships a complete edition
+        run: python3 scripts/check_calibration_deliverables.py
+
+      - name: Calibration deliverables — negative control
+        run: python3 scripts/check_calibration_deliverables_negative_control.py
+
+      - name: Lens architecture in the delivered documents
+        run: python3 scripts/check_lens_vocabulary.py
+
+      - name: Lens architecture in the documents — negative control
+        run: python3 scripts/check_lens_vocabulary_negative_control.py

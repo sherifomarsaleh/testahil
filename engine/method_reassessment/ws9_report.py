@@ -37,6 +37,14 @@ GATES = [
     ("gap review      [R-GAP-01]", "gap_outstanding.json", "breach_no_review"),
     ("answer readable [R-GAP-01]", "gap_outstanding.json", "unreadable"),
     ("walk-forward    [R-FCAL-01]", "actuation_outstanding.json", "outstanding"),
+    # Adopted 03-09-2026. The first is a ratchet over RUNS rather than studies, so
+    # its count is read against the walk-forward directories, not the study ones;
+    # it is listed here anyway because a ratchet nobody prints is a ratchet nobody
+    # shortens.
+    ("valuation inputs [R-FCAL-01]", "valuation_inputs_outstanding.json", "runs"),
+    ("deliverables    [R-FCAL-01]", "deliverables_outstanding.json", "outstanding"),
+    ("lens in the document [R-LENS-03]", "lens_vocabulary_outstanding.json",
+     "outstanding"),
 ]
 
 
@@ -49,7 +57,16 @@ def _list(fn, key):
     except Exception:
         return None
     v = d.get(key)
-    return [str(x).upper() for x in v] if isinstance(v, list) else None
+    if isinstance(v, list):
+        return [str(x).upper() for x in v]
+    # A RATCHET MAY BE A MAPPING OF TICKER TO REASON RATHER THAN A BARE LIST, and
+    # three adopted on 03-09-2026 are. Returning None for those reported them as
+    # UNREADABLE, which the status reader escalates to a refusal — the right
+    # behaviour for a ratchet nobody can read, and the wrong answer for one that
+    # simply carries its reasons beside its names. The names are the keys.
+    if isinstance(v, dict):
+        return [str(k).upper() for k in v]
+    return None
 
 
 def report():

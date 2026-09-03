@@ -1,0 +1,19 @@
+{
+ "source": "method reassessment WS8, AMOC output records, 03-Sep-2026",
+ "run_date": "2026-09-03",
+ "drafts": [
+  {
+   "proposed_id": "D-1",
+   "scope": "ALL",
+   "applies_to": null,
+   "confirmed": true,
+   "origin": "self_audit",
+   "headline": "An alternative must go through the same bridge as the number it is compared with.",
+   "plain": "When a study prices a choice 'the other way', the two figures have to be built the same way apart from the choice itself. If the alternative runs through an older or simpler bridge, the difference between them measures the bridge as much as the choice \u2014 and it will usually look bigger than it is.",
+   "evidence": "AMOC's helper for contested choices deducts the minority as a share of ENTERPRISE value and omits provisions, the dividend payable and investments; the delivered bridge deducts a share of EQUITY value and carries all three lines. Same enterprise value, EGP 10.3528 against the delivered EGP 9.9142. Compared against the delivered headline, three of four contested choices clear the 5%-of-value materiality line; compared like for like, one does. A sign test on the first basis would have counted three material judgements where there is one.",
+   "overturned_by": "A case where the simpler construction is the one a reader receives \u2014 then it is the headline that is inconsistent with the alternatives, not the other way round, and the fix runs in the opposite direction.",
+   "status": "adopted",
+   "registered": "L-070"
+  }
+ ]
+}

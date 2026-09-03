@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**99 lessons**, of which 72 bind on every study, 20 on a class of company, and 7 on a single name.
+**103 lessons**, of which 76 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 15 from self-audits, 35 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 19 from self-audits, 35 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -748,6 +748,46 @@ When a study is re-issued, every check that opens the delivered file by name has
 > **What it cost, or how we know.** Three further instances have been found since, which is why this is filed at ALL and not as one study's mishap: a valuation-gap review green-lighted against an answer that had moved from 3.76 to -1.06; the fair-value register reporting [ok] while it sat two editions behind the study it records; and a vintage archive that would have done the same had its gate checked existence. Every one asked whether an artefact EXISTED. Originally: ARCC's driver_test.py and label_gate.py both opened ARCC_Valuation_Model_06082026_public.xlsx while the delivered file was the 01092026 edition, and both reported clean. Re- pointed at the delivered file, five of the driver assertions failed at once: revision 4 had moved the valuation date to 30 June 2026 and put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and declared-dividend rows no longer move the headline and the assertions that said they did had never run against the model that shipped.
 
 > **What would overturn it.** A build that writes to one filename per study, so there is no superseded edition for a check to open.
+
+### L-068 · What a process commits decides what can ever be asked of it later.
+
+A record answers the question it was built for. Anything else you later want to know has to have been written down at the time, and if it was not, it is usually gone rather than merely inconvenient. When you design what a piece of work leaves behind, spend a moment asking what a DIFFERENT question would need from it.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS6, valuation-input census, 03-Sep-2026
+
+> **What it cost, or how we know.** Five fundamental walk-forwards each scored their drivers properly and committed an income statement. When the valuation calibration came to rebuild a fair value at a past origin, a census of what they actually carry found NOT ONE of 55 name- origin cells with a complete enterprise-to-equity bridge and a capital-expenditure figure: cash on 25% of cells, debt on 60%, working capital on 27%, a footed share count on 16%, capex on none. Three cells (TMGH 2020-2022) allow capex to be derived by the identity capex = dPPE + D&A; five more (PHDC 2015-2019) carry the bridge and no route to capex at all. Every missing item sits on a balance sheet or cash-flow statement in filings those runs had already opened and parsed cell by cell, so carrying them out would have been a copy rather than new research.
+
+> **What would overturn it.** A run that commits the block and then finds nobody ever asks for it — if several names carry cash, debt, capex and a share count through a full cycle and no later question needs them, the cost was real and the benefit was not, and the block should shrink to what was used.
+
+### L-069 · An instrument whose bias points the same way as the hypothesis cannot test it.
+
+If the thing you are measuring with leans in the same direction as the thing you are trying to prove, a confirming answer means nothing — the instrument would have produced it whatever the truth was. Worse than a big known bias is one that changes direction from case to case, because that cannot be corrected, disclosed as a direction, or reasoned around.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS6, valuation-input census, 03-Sep-2026
+
+> **What it cost, or how we know.** The reassessment tests whether this house leans pessimistic. Two mechanical valuation lenses were declared to measure it and both were shaped by what happened to be committed rather than by the class rule: omitting cash UNDERSTATES equity value, omitting capex OVERSTATES it, and omitting working capital does either depending on growth — so a value assembled from whatever a cell carries has a bias whose sign is set by which items that cell is missing. On AMOC, a net-cash company, the omitted cash is most of the answer. The second declaration knew it was a floor and said so; what it did not say is that a floor cannot measure a pessimism lean.
+
+> **What would overturn it.** A demonstration that the omissions are small relative to value on a given name — a company with no debt, no material cash and no reinvestment — in which case a mechanical value on that name is honest and this caution is too strict there. The test is arithmetic and available.
+
+### L-070 · An alternative must go through the same bridge as the number it is compared with.
+
+When a study prices a choice 'the other way', the two figures have to be built the same way apart from the choice itself. If the alternative runs through an older or simpler bridge, the difference between them measures the bridge as much as the choice — and it will usually look bigger than it is.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS8, AMOC output records, 03-Sep-2026
+
+> **What it cost, or how we know.** AMOC's helper for contested choices deducts the minority as a share of ENTERPRISE value and omits provisions, the dividend payable and investments; the delivered bridge deducts a share of EQUITY value and carries all three lines. Same enterprise value, EGP 10.3528 against the delivered EGP 9.9142. Compared against the delivered headline, three of four contested choices clear the 5%-of-value materiality line; compared like for like, one does. A sign test on the first basis would have counted three material judgements where there is one.
+
+> **What would overturn it.** A case where the simpler construction is the one a reader receives — then it is the headline that is inconsistent with the alternatives, not the other way round, and the fix runs in the opposite direction.
+
+### L-071 · A rule enforced on the record is not enforced on the document.
+
+It is much easier to check a machine-readable record than the report a reader actually opens, so that is where checks get written — and the record can be brought into line while the document goes on saying the old thing. When a rule governs what a reader is TOLD, the check has to read what the reader receives.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS8, lens vocabulary in delivered documents, 03-Sep-2026
+
+> **What it cost, or how we know.** [R-LENS-03] retired the typed multi-lens blend and is enforced on each study's committed lens record, which was green everywhere. Reading the delivered PDFs instead: 6 of 20 carried no weighted blend and 14 published a weighted central as the study's own answer. ARCC had been RE-ISSUED after the rule and its document prints a weighted central of 54.65 beside a numbers file carrying 53.46. ADNOCLS, the model report every study is opened beside, carried twenty-two such assertions — so the exemplar was teaching the retired architecture to every study that followed.
+
+> **What would overturn it.** A rule whose whole content IS the record — a provenance field, a stamp, an attestation — has nothing in the document to check, and reading the document for it would find nothing. The test is whether the rule governs what a reader is told.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
