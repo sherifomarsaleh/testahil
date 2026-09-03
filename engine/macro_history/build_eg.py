@@ -206,6 +206,14 @@ def build():
                 "the one weakness this archive exists to make visible.",
                 "%d-12-31" % y, "Market", "observed",
                 corroborated=False,
+                corroboration_note=(
+                    "the market series the principal pointed to "
+                    "(worldgovernmentbonds.com) begins 11-Sep-2016, so this "
+                    "origin predates any series that could check it"
+                    if y <= 2015 else
+                    "a market series covering this origin exists but could not be "
+                    "read from here — the page renders client-side and the host "
+                    "resets a headless browser through this proxy"),
                 instrument=SUP["sovereign_10y"]["instrument"])
 
         origins.append({

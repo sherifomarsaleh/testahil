@@ -5,29 +5,74 @@
  "policy_rate": {
   "instrument": "CBE overnight deposit rate, the policy rate the house macro path uses",
   "origins": {
-   "2013": {"value": 0.0825, "supplied": 0.0825, "verified": true,
-            "source": "Derived from the CBE MPC statement of 17 July 2014, which raised the overnight deposit rate BY 100bp TO 9.25%: the level it was raised from is therefore 8.25%, and no MPC decision falls between 31-Dec-2013 and that meeting. Recorded as DERIVED from a dated decision rather than read from a summary."},
-   "2014": {"value": 0.0925, "supplied": 0.0875, "verified": true, "supplied_was_wrong": true,
-            "source": "CBE MPC, 17 July 2014: overnight deposit and lending rates raised by 100bp to 9.25% and 10.25%. The Committee then held rates at the following three meetings and did not cut until 15 January 2015, when it took the deposit rate to 8.75%. The year-end 2014 level is therefore 9.25%.",
-            "why_the_supplied_value_is_wrong": "The supplied table carries 8.75% for 2014, which is the level set on 15 JANUARY 2015 — the correct number attached to the wrong year-end. An off-by-one of exactly this kind is what an unsourced summary produces, and it is recorded here rather than quietly corrected because it is evidence about how far the rest of that table can be trusted."},
-   "2015": {"value": 0.0925, "supplied": 0.0925, "verified": true,
-            "source": "CBE MPC, 17 December 2015: overnight deposit and lending rates raised to 9.25% and 10.25%, and held unchanged at the following meeting of 28 January 2016."},
-   "2016": {"value": 0.1475, "supplied": 0.1475, "verified": true,
-            "source": "CBE MPC, 3 November 2016: rates raised by 300bp alongside the flotation of the pound, taking the overnight deposit and lending rates to 14.75% and 15.75%."},
-   "2017": {"value": 0.1875, "supplied": 0.1875, "verified": true,
-            "source": "CBE MPC, 6 July 2017: rates raised by 200bp to 18.75% and 19.75%, and not changed again before the year end."},
-   "2018": {"value": 0.1675, "supplied": 0.1675, "verified": "consistent",
-            "source": "The two 100bp cuts of February and March 2018 take 18.75% to 16.75%, and the Trading Economics chart supplied by the principal — whose own source line reads 'Central Bank of Egypt' — shows the level flat into the year end. Recorded as consistent with the decision record rather than attested from a single dated statement."},
-   "2019": {"value": 0.1225, "supplied": 0.1225, "verified": "consistent",
-            "source": "The 2019 easing cycle, ending at 12.25% on the same Central-Bank-sourced chart. Consistent, not individually attested."},
-   "2020": {"value": 0.0825, "supplied": 0.0825, "verified": true,
-            "source": "IMF Country Report 21/7 (January 2021), First Review Under the Stand-By Arrangement: 'the CBE lowered the policy rate by 300 bp in March and by another 50 bp in each of September and November', which takes 12.25% to 8.25%."},
-   "2021": {"value": 0.0825, "supplied": 0.0825, "verified": "consistent",
-            "source": "No MPC change through 2021; the level carries from the November 2020 cut, and the Central-Bank-sourced chart is flat across the year."},
-   "2022": {"value": 0.1625, "supplied": 0.1625, "verified": "consistent",
-            "source": "The 2022 tightening cycle (March, May, October and December) ending at 16.25% on the Central-Bank-sourced chart."},
-   "2023": {"value": 0.1925, "supplied": 0.1925, "verified": "consistent",
-            "source": "The March and August 2023 increases ending at 19.25% on the Central-Bank-sourced chart."}
+   "2013": {
+    "value": 0.0825,
+    "supplied": 0.0825,
+    "verified": true,
+    "source": "Derived from the CBE MPC statement of 17 July 2014, which raised the overnight deposit rate BY 100bp TO 9.25%: the level it was raised from is therefore 8.25%, and no MPC decision falls between 31-Dec-2013 and that meeting. Recorded as DERIVED from a dated decision rather than read from a summary."
+   },
+   "2014": {
+    "value": 0.0925,
+    "supplied": 0.0875,
+    "verified": true,
+    "supplied_was_wrong": true,
+    "source": "CBE MPC, 17 July 2014: overnight deposit and lending rates raised by 100bp to 9.25% and 10.25%. The Committee then held rates at the following three meetings and did not cut until 15 January 2015, when it took the deposit rate to 8.75%. The year-end 2014 level is therefore 9.25%.",
+    "why_the_supplied_value_is_wrong": "The supplied table carries 8.75% for 2014, which is the level set on 15 JANUARY 2015 — the correct number attached to the wrong year-end. An off-by-one of exactly this kind is what an unsourced summary produces, and it is recorded here rather than quietly corrected because it is evidence about how far the rest of that table can be trusted."
+   },
+   "2015": {
+    "value": 0.0925,
+    "supplied": 0.0925,
+    "verified": true,
+    "source": "CBE MPC, 17 December 2015: overnight deposit and lending rates raised to 9.25% and 10.25%, and held unchanged at the following meeting of 28 January 2016."
+   },
+   "2016": {
+    "value": 0.1475,
+    "supplied": 0.1475,
+    "verified": true,
+    "source": "CBE MPC, 3 November 2016: rates raised by 300bp alongside the flotation of the pound, taking the overnight deposit and lending rates to 14.75% and 15.75%."
+   },
+   "2017": {
+    "value": 0.1875,
+    "supplied": 0.1875,
+    "verified": true,
+    "source": "CBE MPC, 6 July 2017: rates raised by 200bp to 18.75% and 19.75%, and not changed again before the year end."
+   },
+   "2018": {
+    "value": 0.1675,
+    "supplied": 0.1675,
+    "verified": "consistent",
+    "source": "The two 100bp cuts of February and March 2018 take 18.75% to 16.75%, and the Trading Economics chart supplied by the principal — whose own source line reads 'Central Bank of Egypt' — shows the level flat into the year end. Recorded as consistent with the decision record rather than attested from a single dated statement."
+   },
+   "2019": {
+    "value": 0.1225,
+    "supplied": 0.1225,
+    "verified": "consistent",
+    "source": "The 2019 easing cycle, ending at 12.25% on the same Central-Bank-sourced chart. Consistent, not individually attested."
+   },
+   "2020": {
+    "value": 0.0825,
+    "supplied": 0.0825,
+    "verified": true,
+    "source": "IMF Country Report 21/7 (January 2021), First Review Under the Stand-By Arrangement: 'the CBE lowered the policy rate by 300 bp in March and by another 50 bp in each of September and November', which takes 12.25% to 8.25%."
+   },
+   "2021": {
+    "value": 0.0825,
+    "supplied": 0.0825,
+    "verified": "consistent",
+    "source": "No MPC change through 2021; the level carries from the November 2020 cut, and the Central-Bank-sourced chart is flat across the year."
+   },
+   "2022": {
+    "value": 0.1625,
+    "supplied": 0.1625,
+    "verified": "consistent",
+    "source": "The 2022 tightening cycle (March, May, October and December) ending at 16.25% on the Central-Bank-sourced chart."
+   },
+   "2023": {
+    "value": 0.1925,
+    "supplied": 0.1925,
+    "verified": "consistent",
+    "source": "The March and August 2023 increases ending at 19.25% on the Central-Bank-sourced chart."
+   }
   }
  },
  "sovereign_10y": {
@@ -35,8 +80,31 @@
   "CORROBORATION": "NONE. This column appears in the supplied AI-generated summary table and NOWHERE ELSE available here: the Trading Economics page the principal supplied carries no Egyptian bond yield, and that site does not publish one for Egypt at all. Unlike the policy rate, not a single one of these eleven figures could be checked against a dated primary statement.",
   "why_it_is_recorded_anyway": "The principal instructed that this data be used, and the instruction is followed. What is NOT done is to record it as though it carried the same evidence as the policy rate: every figure below is flagged uncorroborated, and the archive marks each origin so the valuation calibration can exclude or sensitivity-test them rather than discovering the weakness inside a pooled result.",
   "the_known_risk": "The policy-rate column of this same table was wrong on one origin in eleven, in a way that looked entirely plausible. There is no reason to assume this column is cleaner, and no way from here to find out.",
-  "origins": {"2013": 0.1415, "2014": 0.1435, "2015": 0.1465, "2016": 0.1620,
-              "2017": 0.1565, "2018": 0.1815, "2019": 0.1430, "2020": 0.1445,
-              "2021": 0.1485, "2022": 0.2235, "2023": 0.2195}
+  "origins": {
+   "2013": 0.1415,
+   "2014": 0.1435,
+   "2015": 0.1465,
+   "2016": 0.162,
+   "2017": 0.1565,
+   "2018": 0.1815,
+   "2019": 0.143,
+   "2020": 0.1445,
+   "2021": 0.1485,
+   "2022": 0.2235,
+   "2023": 0.2195
+  },
+  "cross_check_attempted": {
+   "source": "worldgovernmentbonds.com/bond-historical-data/egypt/10-years/, supplied by the principal 03-Sep-2026",
+   "what_the_page_states": {
+    "series_available_from": "2016-09-11",
+    "series_available_to": "2026-09-03",
+    "maximum_yield": "30.266% on 2024-04-01",
+    "minimum_yield": "4.087% on 2020-07-15"
+   },
+   "could_the_series_be_read": "NO. The page renders its chart client-side and the values load from JavaScript; a headless browser through this environment's proxy is reset by the host on every attempt. Only the page's own summary text could be read.",
+   "WHAT_THE_START_DATE_SETTLES": "The series begins 11 September 2016. The 2013, 2014 and 2015 yields in the supplied table therefore CANNOT be corroborated against this source by construction — not because of an access problem, but because no market series for the instrument exists before the table's own fourth origin. Those three origins are the weakest figures in this archive and nothing available here can strengthen them.",
+   "and_a_caution_about_the_source_itself": "Its stated minimum of 4.087% on 15 July 2020 is not consistent with its own plotted line, which sits near 14-15% across 2020 and never approaches 4%. That reads as a single bad tick in the underlying series. The site also names Investing.com and TradingEconomics as its sources, so it is an aggregator of aggregators. Recorded because a cross-check that turns up a defect in the checking source is still evidence — about how much weight the yield column can carry.",
+   "weak_agreement_where_it_overlaps": "The table's 2016 year-end of 16.20% sits inside the band the page's chart shows for late 2016. That is agreement in shape, not in value, and it is the only overlap that could be read at all."
+  }
  }
 }

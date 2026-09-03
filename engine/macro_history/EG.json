@@ -147,6 +147,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "the market series the principal pointed to (worldgovernmentbonds.com) begins 11-Sep-2016, so this origin predates any series that could check it",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -211,6 +212,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "the market series the principal pointed to (worldgovernmentbonds.com) begins 11-Sep-2016, so this origin predates any series that could check it",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -296,6 +298,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "the market series the principal pointed to (worldgovernmentbonds.com) begins 11-Sep-2016, so this origin predates any series that could check it",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -380,6 +383,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -464,6 +468,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -548,6 +553,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -632,6 +638,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -696,6 +703,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -760,6 +768,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -824,6 +833,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
@@ -888,6 +898,7 @@
      "tier": "Market",
      "revision_class": "observed",
      "corroborated": false,
+     "corroboration_note": "a market series covering this origin exists but could not be read from here — the page renders client-side and the host resets a headless browser through this proxy",
      "instrument": "Egypt 10-year EGP government bond yield at each year-end"
     },
     "cpi_annual_current_vintage": {
