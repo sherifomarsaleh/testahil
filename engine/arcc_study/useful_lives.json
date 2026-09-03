@@ -1,0 +1,42 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source.",
+  "_source": "ARCC FY2025 consolidated financial statements, note 2 (significant accounting policies), 'The following estimated useful lives are used in the calculation of depreciation', and note 3.2.1 'Useful lives of property, plant and equipment'.",
+  "_file": "engine/arcc_study/ARCC_FY2025_Consolidated_Financials.pdf",
+  "_route": "OCR off the rendered pixels at 200dpi (tesseract, eng). The filing carries NO usable text layer — pdftotext returns 47 characters for 47 pages — so under [R-FCAL-01] the route is recorded and arithmetic is the arbiter. Cross-checked against the FY2024 filing, which carries the identical table.",
+  "_extracted": "2026-09-03",
+  "parent": {
+    "entity": "Arabian Cement Company",
+    "lives_years": {
+      "buildings": [10, 20],
+      "machinery_and_equipment": [20, 20],
+      "furniture_and_fixtures": [16, 16],
+      "vehicles": [10, 10],
+      "other_installations": [20, 20],
+      "computer_and_software": [3, 5]
+    }
+  },
+  "subsidiaries": {
+    "Andalus Ready-Mix Concrete": {
+      "buildings": [50, 50],
+      "machinery_and_equipment": [20, 20],
+      "furniture_fixtures_office_equipment": [16, 16],
+      "other_installations": [5, 5],
+      "vehicles": [10, 10],
+      "computer_and_software": [3, 3]
+    },
+    "Evolve for Investment and Project Management": {
+      "furniture_fixtures_office_equipment": [3, 3],
+      "vehicles": [10, 10]
+    }
+  },
+  "intangibles_years": { "operating_licence": 20, "electricity_contract": 10 },
+  "ppe_carrying_value_egp": { "2025-12-31": 2522323523, "2024-12-31": 1669630565,
+                              "note": "note 12, quoted in note 3.2.1" },
+  "adopted_for_terminal": {
+    "years": 20.0,
+    "basis": "machinery and equipment, the dominant class",
+    "reasoning": "The replacement-cost base this study builds is capacity x replacement cost per tonne — the cost of a greenfield cement plant — which is overwhelmingly machinery and civil works. Machinery and equipment and other installations are both disclosed at 20 years and buildings at 10-20, so 20 years is the disclosed life of the assets the base actually represents. The 50-year buildings life belongs to a ready-mix subsidiary whose assets are not what the capacity-based replacement cost measures.",
+    "what_would_overturn_it": "a disclosed asset-class breakdown of PP&E by cost showing the base is dominated by a class with a different life, or a later filing revising these lives; management reviews them at every reporting date and accounts for changes prospectively, which note 2 states.",
+    "sensitivity": "the terminal at 14.3 years (the model's own implicit life, being 1/g) is 21,658 and BELOW its own floor; at the disclosed 20 years 31,318; at 30 years 39,365; at 50 years 45,805. The choice is worth EGP 55.92 / 66.63 / 75.55 / 82.69 per share, so it is a material contested judgement and belongs in the [R-ENF-05] register."
+  }
+}

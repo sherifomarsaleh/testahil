@@ -132,6 +132,37 @@ def _slope(pairs):
     return b, my - b * mh
 
 
+def era_stability():
+    """[R-FCAL-01] applies to THIS measurement too: a bias that changes sign between eras
+    is not a bias, and the average of two opposite regimes was true in neither. So the
+    pooled figures above are reported BESIDE the subset whose sign is stable across every
+    era the run defined, and the finding is whichever survives.
+
+    This is not a formality. Egypt's own record splits hard — CPI averaged 8.5% over
+    2018-21 and 22.5% over 2022-25 — so a pooled bias on Egyptian names is measuring an
+    era at least as much as a method, and a correction taken from it would be a correction
+    for having failed to predict a currency collapse.
+    """
+    stable, flipped = [], []
+    for tk, s in runs():
+        be = s.get('by_era') or {}
+        bd = s.get('by_driver') or {}
+        for axis, m in AXES:
+            for drv in m[tk]:
+                e = be.get(drv)
+                if not isinstance(e, dict):
+                    continue
+                bs = [(k, _bias(v)) for k, v in e.items()]
+                bs = [(k, b) for k, b in bs if b is not None]
+                if len(bs) < 2:
+                    continue
+                pooled_b = _bias(bd.get(drv))
+                rec = dict(ticker=tk, axis=axis, driver=drv, eras=bs, pooled=pooled_b)
+                (flipped if len({1 if b > 0 else -1 for _, b in bs}) > 1
+                 else stable).append(rec)
+    return stable, flipped
+
+
 def report():
     flat, byh, unclassified = pooled()
     print('THE THREE AXES, MEASURED  —  cost too high? revenue too low?')
@@ -185,6 +216,24 @@ def report():
     print('    error and nothing else: the base year was right and the path was wrong.')
     print('    Re-anchoring a base year cannot fix it — that moves today\'s number and')
     print('    leaves the model to fail identically next year.')
+
+    stable, flipped = era_stability()
+    tot = len(stable) + len(flipped)
+    if tot:
+        print('\n  ERA STABILITY — [R-FCAL-01] applied to this measurement itself:')
+        print('    %d drivers carry an era split; %d change SIGN across eras (%.0f%%).'
+              % (tot, len(flipped), 100.0 * len(flipped) / tot))
+        print("    Egypt's own record splits hard — CPI averaged 8.5% over 2018-21 and")
+        print('    22.5% over 2022-25 — so a pooled bias here measures an era at least as')
+        print('    much as a method. The finding is whichever survives on the STABLE set:')
+        for axis, _ in AXES:
+            a = [r['pooled'] for r in stable if r['axis'] == axis and r['pooled'] is not None]
+            f = [r['pooled'] for r in flipped if r['axis'] == axis and r['pooled'] is not None]
+            if a:
+                print('      %-8s stable %2d  mean %+8.4f     sign-changing %2d  mean %+8.4f'
+                      % (axis, len(a), st.mean(a), len(f), st.mean(f) if f else float('nan')))
+        print('    A sign-changing driver is REPORTED AND NEVER CORRECTED FOR. That is why')
+        print('    these runs adopted almost no corrections, and the restraint was right.')
 
     if unclassified:
         print('\n  EXCLUDED, not bucketed — a driver this module does not recognise is')
