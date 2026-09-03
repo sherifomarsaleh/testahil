@@ -16,6 +16,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "assets", "data.js")
 OUT  = os.path.join(ROOT, "og")
 
+sys.path.insert(0, os.path.join(ROOT, "engine"))
+import site_data  # noqa: E402
+
 from PIL import Image, ImageDraw, ImageFont
 
 BG=(28,58,54); GOLD=(192,164,95); BRASS=(137,111,54); WHITE=(255,255,255); SAGE=(159,176,172)
@@ -85,9 +88,15 @@ def card(out, headline, ticker, unit, p5, p25, p50, p75, p95, latest, spotDate, 
     print("wrote", os.path.relpath(out, ROOT))
 
 def load_metals():
-    js = 'const fs=require("fs");eval(fs.readFileSync(process.argv[1],"utf8")+"\\n;process.stdout.write(JSON.stringify(typeof METALS!==\\"undefined\\"?METALS:{}))");'
-    out = subprocess.check_output(["node","-e",js,DATA]).decode("utf-8")
-    return json.loads(out)
+    """The METALS object, through the shared reader [R-ENF-03].
+
+    This function already evaluated data.js in node rather than matching it with a regex,
+    so it was never the defect the rule names — but it was a SECOND implementation of the
+    same read, with its own eval, its own error handling and no refusal on an empty result.
+    A shared instrument beats a good local one; that is the whole finding behind the rule,
+    and it applies to the compliant copies as much as to the broken ones.
+    """
+    return site_data.read_object("METALS", DATA)
 
 def main():
     ensure_fonts()

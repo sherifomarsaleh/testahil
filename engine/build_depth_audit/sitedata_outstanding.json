@@ -4,14 +4,9 @@
  "outstanding": [
   "engine/apply_rollforward.py",
   "engine/apply_technicals.py",
-  "engine/metal_backtest.py",
   "engine/rollforward_one.py",
-  "engine/ta_chart.py",
-  "engine/tmgh_study/docx_tmgh.py",
-  "engine/tmgh_study/figures.py",
   "scripts/check_data_freshness.py",
-  "scripts/check_page_integrity.py",
-  "scripts/og_card.py"
+  "scripts/check_page_integrity.py"
  ],
  "_repointed": "03-Sep-2026: the gate's population keyed on the STRING \"data.js\" and so listed three files that never open it \u2014 two carrying the word inside an external-reader scrub list and one in a prose comment. Re-pointed at a PATH CONSTRUCTION per [R-COC-01] and the three removed; the population fell 44 -> 31 because the word appears in prose far more often than the file is read.",
  "_examined_at_repointing": 31

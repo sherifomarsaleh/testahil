@@ -18,6 +18,8 @@ from matplotlib.ticker import FuncFormatter
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
+sys.path.insert(0, ENGINE)
+import site_data                                     # noqa: E402
 NUMBERS = os.path.join(HERE, "study_numbers.json")
 
 BG = "#FBFAF7"
@@ -124,25 +126,23 @@ def fig2_sensitivity(n, path):
 
 
 def _cone_from_site():
-    """The published probability cone, read live from assets/data.js.
+    """The published probability cone, read live from the site's own data.
 
     Never quoted from memory or from a document: the fit is refitted whenever a
     stock is posted, and a written number goes stale the moment it is.
+
+    THROUGH A REAL PARSE [R-ENF-03]. The previous construction sliced a fixed 4,000-byte
+    window after the first js.index("\\n  TMGH: {") and searched inside it — first-match
+    where the parser takes the last, over a window that can truncate or overrun.
     """
-    js = open(os.path.join(ROOT, "assets", "data.js")).read()
-    i = js.index("\n  TMGH: {")
-    blk = js[i:i + 4000]
+    e = site_data.read('TICKERS', 'TMGH')
     out = {}
-    for tag in ("t20", "t60"):
-        m = re.search(tag + r":\s*\{([^}]*)\}", blk)
-        if not m:
-            continue
-        d = dict(re.findall(r"(p\d+|label|resolve):\s*\"?([^,\"]+)\"?", m.group(1)))
-        out[tag] = d
-    m = re.search(r'spot:\s*([\d.]+)', blk)
-    out["spot"] = float(m.group(1)) if m else None
-    m = re.search(r'spotDate:\s*"([^"]+)"', blk)
-    out["spot_date"] = m.group(1) if m else None
+    for tag in ('t20', 't60'):
+        d = (e.get('dist') or {}).get(tag)
+        if d:
+            out[tag] = d
+    out['spot'] = float(e['spot']) if e.get('spot') is not None else None
+    out['spot_date'] = e.get('spotDate')
     return out
 
 

@@ -37,31 +37,39 @@ SPOT = M["spot"]
 DATE = "1 September 2026"
 
 
+import sys as _sys
+_sys.path.insert(0, os.path.join(ROOT, "engine"))
+import site_data                                                    # noqa: E402
+
+
 def v(reg, k):
     return reg[k]["value"]
 
 
 def site_block():
-    """The published technical read and price distribution, read live."""
-    js = open(os.path.join(ROOT, "assets", "data.js")).read()
-    i = js.index("\n  TMGH: {")
-    blk = js[i:i + 4200]
+    """The published technical read and price distribution, read live.
+
+    THROUGH A REAL PARSE, NEVER BY REGULAR EXPRESSION [R-ENF-03]. This function used to
+    find the entry with js.index("\\n  TMGH: {") and slice a fixed 4,200 bytes after it,
+    then hunt inside that window with re.search — which is the exact construction the rule
+    names twice over: index and re.search both take the FIRST occurrence where a JavaScript
+    object literal takes the LAST, and a fixed byte window either truncates the entry or
+    bleeds into the next one, silently, with no error either way.
+    """
+    e = site_data.read('TICKERS', 'TMGH')
     out = {}
-    for tag in ("t20", "t60"):
-        m = re.search(tag + r":\s*\{([^}]*)\}", blk)
-        if m:
-            out[tag] = dict(re.findall(r'(p\d+|label|resolve):\s*"?([^,"]+)"?',
-                                       m.group(1)))
-    m = re.search(r"levels:\s*\{\s*res:\[([^\]]*)\],\s*sup:\[([^\]]*)\]", blk)
-    if m:
-        out["res"] = [float(x) for x in m.group(1).split(",")]
-        out["sup"] = [float(x) for x in m.group(2).split(",")]
-    for k in ("trend", "summary", "bull", "bear"):
-        m = re.search(k + r':\s*"((?:[^"\\]|\\.)*)"', blk)
-        if m:
-            out[k] = m.group(1).encode().decode("unicode_escape")
-    m = re.search(r'spotDate:\s*"([^"]+)"', blk)
-    out["spot_date"] = m.group(1) if m else ""
+    for tag in ('t20', 't60'):
+        d = (e.get('dist') or {}).get(tag)
+        if d:
+            out[tag] = d
+    lv = e.get('levels') or {}
+    if lv.get('res') and lv.get('sup'):
+        out['res'] = [float(x) for x in lv['res']]
+        out['sup'] = [float(x) for x in lv['sup']]
+    tech = e.get('tech') or {}
+    for k in ('trend', 'summary', 'bull', 'bear'):
+        if tech.get(k):
+            out[k] = tech[k]
     return out
 
 
@@ -663,8 +671,14 @@ def sections_2_to_7(doc):
         d = SITE.get(tag)
         if not d:
             continue
-        rows.append([d.get("label", tag), d["p5"], d["p25"], d["p50"], d["p75"],
-                     d["p95"], d.get("resolve", "")])
+        # TWO DECIMALS, EXPLICITLY. The regex this reader replaced captured the raw
+        # SOURCE TEXT, so a percentile written 95.00 in data.js reached the table as the
+        # string "95.00"; a real parse returns the NUMBER 95.0, which renders "95.0". The
+        # figure is identical and the cell a reader sees is not, so the format is pinned
+        # here rather than inherited from whichever reader happens to be in use.
+        rows.append([d.get("label", tag)]
+                    + ["%.2f" % float(d[k]) for k in ("p5", "p25", "p50", "p75", "p95")]
+                    + [d.get("resolve", "")])
     if rows:
         table(doc, ["Horizon", "5th", "25th", "50th", "75th", "95th",
                     "Resolves"], rows, [2.4, 1.9, 1.9, 1.9, 1.9, 1.9, 2.4],

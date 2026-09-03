@@ -103,6 +103,8 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
+import site_data                                             # noqa: E402
+sys.path.insert(0, HERE)
 
 import matplotlib
 matplotlib.use('Agg')
@@ -486,21 +488,29 @@ def resolve(site_key):
     if site_key in PANELS:
         mkt, ser, disp, panel = PANELS[site_key]
         return mkt, ser, panel, disp, 'USD'    # the metals panels are quoted in USD
-    src = open(os.path.join(ROOT, 'assets', 'data.js'), encoding='utf-8').read()
-    m = re.search(r'\n  "?' + re.escape(site_key) + r'"?: \{(.*?)\n  \},',
-                  src, re.S)
-    if not m:
+    # THROUGH A REAL PARSE [R-ENF-03]. The entry used to be located by a regex over the raw
+    # text and its fields picked out with two more — first-match where the object literal
+    # takes the last, and a `.*?` body that stops at the first "\n  }," it meets, which is
+    # the wrong one for any entry carrying a nested object.
+    entry = None
+    for obj in ('TICKERS', 'METALS'):
+        try:
+            entry = site_data.read(obj, site_key)
+            break
+        except RuntimeError:
+            continue
+    if entry is None:
         raise SystemExit(f'{site_key}: not found in data.js')
-    pre = re.search(r'code:\s*"([A-Z0-9]+):', m.group(1))
-    if not pre or pre.group(1) not in EX:
+    code = str(entry.get('code') or '')
+    pre = code.split(':')[0] if ':' in code else ''
+    if pre not in EX:
         raise SystemExit(f'{site_key}: no market resolved from its code: prefix')
-    mkt = EX[pre.group(1)]
+    mkt = EX[pre]
     ser = SERIES_OVERRIDE.get(site_key, site_key)
-    # The y-axis label is the QUOTE currency, read from the entry's own ccy: field. It was
+    # The y-axis label is the QUOTE currency, read from the entry's own ccy field. It was
     # hardcoded to USD for every ticker, which printed "Price (USD, log)" over an AED, EGP,
     # SAR or KRW series on every non-US calibration chart on the site.
-    cm = re.search(r'ccy:\s*"([A-Z]{3})"', m.group(1))
-    ccy = cm.group(1) if cm else 'USD'
+    ccy = entry.get('ccy') or 'USD'
     return mkt, ser, LEDGER_ALIAS.get(site_key, site_key), site_key, ccy
 
 
