@@ -941,13 +941,22 @@ caption(f'Table 15 — EBITDA margin, year by year. EFG’s FY2025a margin resta
         f'models classify oppositely — is removed, reproducing our own audited figure '
         f'exactly. The disagreement from FY2026 on is real, not definitional, and it widens '
         f'rather than staying flat.')
-sc_rows = [['Scenario', 'DCF lens', 'Central', 'vs spot']]
+# ONE COLUMN, NOT TWO. With the blend retired the cash-flow lens IS the central, so
+# printing both was the same number twice under two headings.
+sc_rows = [['Scenario', 'Cash-flow lens', 'vs spot']]
 for r in MSC['scenarios']:
-    sc_rows.append([r['name'], n2(r['dcf']), n2(r['central']), sg(r['central']/SPOT-1)])
-table(sc_rows, [3.60, 0.95, 0.95, 0.95], size=8.8)
+    sc_rows.append([r['name'], n2(r['dcf']), sg(r['dcf']/SPOT-1)])
+table(sc_rows, [3.90, 1.20, 1.20], size=8.8)
+_efg_ov = next(r for r in MSC['scenarios'] if r['name'].startswith('EFG margin, OUR'))
+_efg_bv = next(r for r in MSC['scenarios'] if 'EFG volumes' in r['name'])
 caption(f'Table 16 — What EFG’s margin view is worth, held against both volume '
-        f'assumptions. Their margin on OUR volumes clears spot; their margin AND their '
-        f'volumes, taken together, does not.')
+        f'assumptions. Their margin on OUR volumes reaches EGP {n2(_efg_ov["dcf"])}, '
+        f'{sg(_efg_ov["dcf"]/SPOT-1)} against the latest close; their margin AND their '
+        f'volumes together reach EGP {n2(_efg_bv["dcf"])}, {sg(_efg_bv["dcf"]/SPOT-1)}. '
+        f'NEITHER clears the price, and the volume assumption is worth '
+        f'{n2(_efg_ov["dcf"]-_efg_bv["dcf"])} a share between them — several times what the '
+        f'margin disagreement is worth, which is why the volume base carries its own '
+        f'sensitivity in section 1.2.')
 
 # ---- 1.11 -------------------------------------------------------------------
 H2('1.11  What a buyer at EGP ' + n2(SPOT) + ' must believe')

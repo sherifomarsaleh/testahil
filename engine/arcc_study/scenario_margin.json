@@ -1,54 +1,56 @@
 {
+ "published_central": 66.5300405232932,
+ "published_spot": 77.0,
  "wedge_pct": 0.010560407954853492,
  "wedge_egp": 131.448778,
  "margin_table": [
   {
    "year": "FY2026e",
-   "testahil": 0.3603,
+   "testahil": 0.3903,
    "efg_published": 0.3904,
    "efg_our_definition": 0.3799,
-   "gap_pt": 1.96,
-   "testahil_revenue": 13024.8,
+   "gap_pt": -1.04,
+   "testahil_revenue": 13349.3,
    "efg_revenue": 13144.0,
    "extended": false
   },
   {
    "year": "FY2027e",
-   "testahil": 0.3564,
+   "testahil": 0.3949,
    "efg_published": 0.4055,
    "efg_our_definition": 0.3949,
-   "gap_pt": 3.85,
-   "testahil_revenue": 14154.9,
+   "gap_pt": -0.01,
+   "testahil_revenue": 14984.6,
    "efg_revenue": 13528.0,
    "extended": false
   },
   {
    "year": "FY2028e",
-   "testahil": 0.3543,
+   "testahil": 0.3999,
    "efg_published": 0.4075,
    "efg_our_definition": 0.3969,
-   "gap_pt": 4.26,
-   "testahil_revenue": 15349.6,
+   "gap_pt": -0.29,
+   "testahil_revenue": 16439.7,
    "efg_revenue": 13792.0,
    "extended": false
   },
   {
    "year": "FY2029e",
-   "testahil": 0.3506,
+   "testahil": 0.402,
    "efg_published": 0.4075,
    "efg_our_definition": 0.3969,
-   "gap_pt": 4.63,
-   "testahil_revenue": 16436.8,
+   "gap_pt": -0.51,
+   "testahil_revenue": 17688.1,
    "efg_revenue": 14067.8,
    "extended": true
   },
   {
    "year": "FY2030e",
-   "testahil": 0.3502,
+   "testahil": 0.404,
    "efg_published": 0.4075,
    "efg_our_definition": 0.3969,
-   "gap_pt": 4.67,
-   "testahil_revenue": 17524.3,
+   "gap_pt": -0.71,
+   "testahil_revenue": 18934.1,
    "efg_revenue": 14349.2,
    "extended": true
   }
@@ -56,39 +58,39 @@
  "scenarios": [
   {
    "name": "Testahil base \u2014 our margin, our volumes",
-   "dcf": 55.4,
-   "central": 54.65,
-   "reinvest": 0.5676,
+   "dcf": 66.53,
+   "central": 66.53,
+   "reinvest": 0.3853,
    "mgn_path": [
-    0.3603,
-    0.3564,
-    0.3543,
-    0.3506,
-    0.3502
+    0.3903,
+    0.3949,
+    0.3999,
+    0.402,
+    0.404
    ],
    "rev_mult": null,
    "norm_mgn": 0.312
   },
   {
    "name": "Half way between the two margin paths",
-   "dcf": 61.75,
-   "central": 57.83,
-   "reinvest": 0.5287,
+   "dcf": 65.78,
+   "central": 65.78,
+   "reinvest": 0.3891,
    "mgn_path": [
-    0.3701,
-    0.3756,
-    0.3756,
-    0.3737,
-    0.3736
+    0.3851,
+    0.3949,
+    0.3984,
+    0.3995,
+    0.4005
    ],
    "rev_mult": null,
    "norm_mgn": 0.312
   },
   {
    "name": "EFG margin, OUR volumes",
-   "dcf": 68.1,
-   "central": 61.0,
-   "reinvest": 0.4948,
+   "dcf": 65.04,
+   "central": 65.04,
+   "reinvest": 0.3928,
    "mgn_path": [
     0.3799,
     0.3949,
@@ -101,9 +103,9 @@
   },
   {
    "name": "EFG margin, EFG volumes \u2014 their view whole",
-   "dcf": 50.83,
-   "central": 52.37,
-   "reinvest": 0.6166,
+   "dcf": 45.09,
+   "central": 45.09,
+   "reinvest": 0.5326,
    "mgn_path": [
     0.3799,
     0.3949,
@@ -112,19 +114,19 @@
     0.3969
    ],
    "rev_mult": [
-    1.0092,
-    0.9557,
-    0.8985,
-    0.8559,
-    0.8188
+    0.9846,
+    0.9028,
+    0.8389,
+    0.7953,
+    0.7579
    ],
    "norm_mgn": 0.312
   },
   {
    "name": "EFG margin, our volumes, mid-cycle lifted too",
-   "dcf": 68.1,
-   "central": 66.21,
-   "reinvest": 0.4948,
+   "dcf": 65.04,
+   "central": 65.04,
+   "reinvest": 0.3928,
    "mgn_path": [
     0.3799,
     0.3949,

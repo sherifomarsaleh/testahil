@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**137 lessons**, of which 110 bind on every study, 20 on a class of company, and 7 on a single name.
+**139 lessons**, of which 112 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 62 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 64 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1178,6 +1178,26 @@ Edition filenames carry DD-MM-YYYY, so alphabetical order is not chronological o
 > **What it cost, or how we know.** The first draft of the retired-weight assertion took sorted(glob(...))[-1] and opened the superseded 08-08-2026 edition, because '08-08-2026' sorts above '03-09-2026'. It reported that edition's defects as current and would equally have reported a clean superseded file as proof that a defective delivered one was fine. This is L-066 and L-067 — a check that opens a delivered file by name moves with the re-issue — recurring in a new form within a day of being registered, which is evidence that the lesson needed to be arithmetic rather than remembered.
 
 > **What would overturn it.** A repository whose delivered filenames sort chronologically as strings, which would make the distinction moot.
+
+### L-217 · A GENERATOR THAT CRASHES LEAVES ITS ARTEFACT EXACTLY AS IT WAS, AND THE DOCUMENT GOES ON PUBLISHING IT. A broken generator is silent in a way a wrong one is not.
+
+Nothing in a build pipeline distinguishes 'this file was not regenerated' from 'this file did not need regenerating'. The artefact keeps its timestamp, keeps its shape, and keeps the numbers of whichever edition last ran successfully.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** scenario_margin.py ended on sum(v[k] * L['weights'][k]), and when the typed lens blend was retired under [R-LENS-03] the weights left the numbers file and the generator began raising KeyError on every run. The delivered study went on publishing that file's LAST SUCCESSFUL output — a base case of 55.40 / 54.65 against a published 66.53, in a table headed 'Central', 29% below a spot the same study elsewhere reports it as 13.6% below. Re-running it then exposed a SECOND defect the crash had been hiding: the harness re-implemented the discounted cash flow rather than calling the model, so it still carried the retired rr = g / ROIC terminal and landed 27% below the study it exists to reproduce, and it dropped other operating income entirely. Its own G3 gate said so the moment it ran. Now it calls the shared terminal builder on the study's own committed terminal record and reproduces 66.53 exactly.
+
+> **What would overturn it.** A build system that fails the whole run when any generator raises, which would make the silence impossible rather than merely detectable.
+
+### L-218 · TEXT DRAWN INSIDE A FIGURE IS INVISIBLE TO EVERY CHECK THAT READS A DOCUMENT. Compute it, because nothing else will catch it.
+
+The prose-figure gate reads a document's text; a chart's annotation is pixels. A number typed into a figure therefore has NO instrument pointed at it at all, which inverts the usual intuition that a chart is somehow less load-bearing than a sentence.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** Figure 4's annotation read 'the whole EGP 15.10 gap is forward-looking' and 'that cash is inside the 54.65' — the superseded edition's gap and central — drawn directly above bars that already ended at 66.53, in a figure whose underlying record was current and declared its vintage correctly. It also claimed two thirds of the gap was capex and a dividend when those two steps together are several times the gap. Every figure in the annotation is now computed from the record the bars are drawn from, so the text and the picture cannot disagree.
+
+> **What would overturn it.** A rendering pipeline that emits figure text into the document's text layer, where the existing prose gate would reach it.
 
 
 ---
