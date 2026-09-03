@@ -2802,6 +2802,26 @@ LESSONS = [
       "A book where every red resolves to a legitimate structural exception, which would "
       "mean the instrument is measuring nothing."),
 
+    L("L-230", "ALL", None,
+      "A STATEMENT THAT CLOSES AT THE TOP CAN STILL FAIL A READER IN EVERY BLOCK BELOW IT. "
+      "Check the sub-totals, not only the identity.",
+      "Total assets equalling equity plus liabilities is the check every model already runs "
+      "on itself, and it passes whether or not the printed components of each block add up "
+      "to their own sub-total. The reader adds the column, not the identity.",
+      "TMGH 03-Sep-2026",
+      "build",
+      "TMGH\'s as-reported balance sheet closed PERFECTLY at the top — non-current plus "
+      "current is total assets to the pound, and equity plus liabilities is the same figure "
+      "— so every check that reconciles a model to itself passed it. Below that, the five "
+      "printed non-current lines came out EGP 748mn short of their own sub-total and the "
+      "seven current lines EGP 24mn short. The study was not wrong: it HELD every missing "
+      "figure as a registered input and simply did not print them — intangibles 84.6 plus "
+      "right-of-use 481.4 plus deferred tax 182.0 is 748.0 to the last hundred thousand, "
+      "and work in progress is 23.6. A reader adding a column had no way to tell a missing "
+      "line from a wrong total.",
+      "A presentation that deliberately shows principal lines only and SAYS so, where the "
+      "residual is labelled rather than absent."),
+
 ]
 
 

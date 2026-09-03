@@ -9,13 +9,18 @@ A FALSE POSITIVE IS FIXED BY DECLARING THE EXCEPTION WITH ITS REASON, NEVER BY D
 TOTAL. A total a reader cannot reproduce is indistinguishable from one that is wrong, so the
 reason is the whole point of the declaration.
 
-WHAT THIS FOUND AND DID NOT DECLARE AWAY. Table 19, the as-reported balance sheet, does not
-foot for a reader in either block: the five printed non-current lines sum to 748 SHORT of
-the stated total, and the seven printed current lines to 24 short. Either the statement
-carries lines this table does not print, or the totals are wrong; both are the reader's
-problem, and neither is resolved here. TMGH therefore stays on the repository ratchet with
-this as its recorded reason — declaring a total that genuinely does not foot would be the
-rubber stamp this whole mechanism exists to prevent.
+WHAT THIS FOUND AND WHAT IT COST TO FIX. Table 19, the as-reported balance sheet, did not
+foot for a reader in either block: the five printed non-current lines came out EGP 748mn
+short of the stated total and the seven printed current lines EGP 24mn short. The study was
+NOT wrong — it held every missing figure as a registered input and simply did not print
+them. The non-current gap is intangibles 84.6 plus right-of-use 481.4 plus the deferred tax
+asset 182.0, which is 748.0 to the last hundred thousand; the current gap is work in
+progress at 23.6. Both blocks now print those lines and both foot.
+
+That is the whole argument for this gate. The balance sheet closed perfectly at the TOP —
+non-current plus current is total assets to the pound, and equity plus liabilities is the
+same figure — so every check that reconciles a model to itself passed it, and a reader
+adding a column had no way to tell a missing line from a wrong total.
 """
 import glob
 import os

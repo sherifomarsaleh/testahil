@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**150 lessons**, of which 123 bind on every study, 20 on a class of company, and 7 on a single name.
+**151 lessons**, of which 124 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 75 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 76 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1308,6 +1308,16 @@ The temptation on a stubborn red is to declare the exception and move on; a decl
 > **What it cost, or how we know.** Four studies were given footing declarations in one pass. Three came off the ratchet with every exception naming a real structural fact — an input register keyed by name, a transposed cost-of-capital table, a blend across products whose weights live in another table, disclosed line items in a summary. The fourth did not: TMGH's as-reported balance sheet is 748 SHORT in its non-current block and 24 short in its current block against the rows it prints, so either the statement carries lines the table omits or the totals are wrong. That is the reader's problem either way, it was not resolved, and the study stays listed with that as its recorded reason.
 
 > **What would overturn it.** A book where every red resolves to a legitimate structural exception, which would mean the instrument is measuring nothing.
+
+### L-230 · A STATEMENT THAT CLOSES AT THE TOP CAN STILL FAIL A READER IN EVERY BLOCK BELOW IT. Check the sub-totals, not only the identity.
+
+Total assets equalling equity plus liabilities is the check every model already runs on itself, and it passes whether or not the printed components of each block add up to their own sub-total. The reader adds the column, not the identity.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH's as-reported balance sheet closed PERFECTLY at the top — non-current plus current is total assets to the pound, and equity plus liabilities is the same figure — so every check that reconciles a model to itself passed it. Below that, the five printed non-current lines came out EGP 748mn short of their own sub-total and the seven current lines EGP 24mn short. The study was not wrong: it HELD every missing figure as a registered input and simply did not print them — intangibles 84.6 plus right-of-use 481.4 plus deferred tax 182.0 is 748.0 to the last hundred thousand, and work in progress is 23.6. A reader adding a column had no way to tell a missing line from a wrong total.
+
+> **What would overturn it.** A presentation that deliberately shows principal lines only and SAYS so, where the residual is labelled rather than absent.
 
 
 ---
