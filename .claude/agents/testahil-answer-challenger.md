@@ -45,6 +45,20 @@ disagreement is genuine, and then you say what the price must believe and why it
      against the company's OWN filed return on book capital for every disclosed year. A
      terminal that reinvests at a return below the cost of capital is asserting the
      company destroys value forever; ask whether it has ever done so.
+   - **Capex against the volume it is supposed to buy.** THIS IS THE FIRST THING TO
+     CHECK ON ANY PRODUCER, and it is checked as a RATIO, not a level: five years of
+     capex over five years of extra tonnes. ARCC's study spent EGP 5,114mn of capex
+     across the window while volume went 4.81mt to 4.93mt and PP&E rose 59% — EGP 5.1bn
+     for 0.12mt. Nothing in the model was incoherent line by line; the incoherence was
+     between two lines nobody put side by side. If capex is not buying capacity it is
+     maintenance, and maintenance does not grow a balance sheet by half.
+   - **Whether "maintenance capex" is maintenance.** A maintenance rate anchored on the
+     most recent full year is wrong wherever that year carried a PROGRAMME. ARCC's
+     anchor was FY2025's total spend of EGP 796mn on 5.0Mt, while the study's own
+     falsifier said in as many words that FY2024 and FY2025 "both carried the
+     alternative-fuel and silo programmes on top of maintenance". The study wrote down
+     the objection to its own anchor and adopted the anchor anyway. Read the falsifiers:
+     a study often already knows.
    - **Invested capital basis.** Replacement cost, book, or something in between — and
      whether the study says which. This is where ARCC's whole gap lived.
    - **Terminal growth**, real and nominal, against the inflation inside the terminal
@@ -65,7 +79,27 @@ disagreement is genuine, and then you say what the price must believe and why it
    discount rate below the risk-free, a margin the company has never printed — say so
    with the number.
 
-4. **Report a table, not an essay.** Every candidate with the fair value it produces and
+4. **Count the direction of the contested judgements, and do not trust the sign test
+   to do it for you.** [R-ENF-05]'s binomial test cannot reach p<0.05 on fewer than five
+   judgements, so a study with three — all resolved the same way — passes unflagged.
+   ARCC's three were cost of debt, beta and capex, and its own record prices the
+   alternatives at +0.2%, +9.9% and +7.7%: every one of them upward, every one declined.
+   Report the direction as a count whatever the p-value says. A unanimous three is not
+   significant and it is still worth seeing.
+
+5. **Read the sell-side, as a CROSS-CHECK on our construction and never as a target.**
+   Their number is not evidence and you never move a driver toward it. What IS evidence
+   is the operating shape they and we both have to model from the same filings — capex,
+   reinvestment, realised returns on capital, the bridge — because where a house differs
+   from every outside model on the same disclosures, the difference is usually ours. On
+   ARCC, EFG Hermes forecast capex of EGP 308/300/248/261/416mn against our
+   890/973/1,034/1,085/1,132mn, and returns on average invested capital of 132%, 91%,
+   79%, 76% against our terminal 11.26%. Their target was more conservative than ours on
+   BOTH the discount rate (~20% flat vs our 18.34% terminal) and terminal growth (~2.45%
+   nominal vs our 7%), and still landed at EGP 70 against our 53.21 — which rules out the
+   discount rate as the explanation before you start.
+
+6. **Report a table, not an essay.** Every candidate with the fair value it produces and
    the gap it leaves. Rank by how much of the gap each closes. Name the one that closes
    it, or state that none does and hand over the reverse read.
 
