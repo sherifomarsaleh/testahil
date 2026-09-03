@@ -83,7 +83,7 @@ def pick(rows, fmt):
     return [fmt(rows[i]) for i in display_years(rows)]
 
 
-def wide_widths(rows, label_cm=4.0, total_cm=16.2):
+def wide_widths(rows, label_cm=3.5, total_cm=16.2):
     """Column widths for a seven-year table, sized on the WIDEST CELL rather than by feel.
 
     THE LABEL COLUMN WAS 4.6cm AND IT COST A NUMBER [corrected 03-Sep-2026]. That left
