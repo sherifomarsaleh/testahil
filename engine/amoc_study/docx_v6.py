@@ -237,9 +237,19 @@ caption('Table 1 — the lenses. ONE CLASS PRIMARY IS THE CENTRAL: the cash-flow
         'workbook beside the answer, unused: three of the four value a refiner on reported '
         'earnings and historical-cost book, and averaging them imports every weakness of the '
         'weakest at a weight nobody tested out of sample.')
+# THE CAPTION DESCRIBED A FIGURE THIS STUDY NO LONGER PUBLISHES. It promised a price
+# shown in red dashed against every lens base — and the file it captioned had been
+# overwritten by a SUPERSEDED generator carrying the retired 45/20/20/15 weights in its
+# row labels, a WEIGHTED RANGE bar at a central of 11.83 the study had stopped
+# publishing, and a hardcoded x-axis of 2 to 11 against a spot of 13.50 — so the
+# price line it drew fell outside the axis and was clipped away silently while the
+# caption said it was there. Two generators wrote the same filename; the older ran last.
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       'Figure 1 — the football field. The price (red dashed) is shown against every lens base '
-       'and against the cash-flow lens\u2019s own bear-to-bull range.')
+       'Figure 1 — the answer and the reads held beside it. The cash-flow lens is the '
+       'answer and carries its own bear-to-bull span; the relative multiple is drawn as '
+       'a point because it is withdrawn, book value as a disclosed floor, and normalised '
+       'earnings as a diagnostic this class does not value on. The vertical line is the '
+       'traded price.')
 
 H1('Company overview')
 P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian Exchange. It '

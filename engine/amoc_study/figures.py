@@ -41,31 +41,77 @@ def style(ax):
 
 
 # ---- F1 football field ------------------------------------------------------
+# THE FIGURE IS BUILT FROM lens_record, NOT FROM THE RAW LENS SPANS, AND THE REASON IS THAT
+# IT DISAGREED WITH THE STUDY'S OWN RECORD ON THREE ROWS OF FIVE. It carried a "Weighted
+# central" bar whose span and base were IDENTICAL to the cash-flow row above it — because
+# under [R-LENS-03] the primary lens IS the central, so the row duplicated the answer under
+# a name the protocol retired. It drew the relative multiple as a live 9.88-15.30 lens
+# while the record marks it withdrawn:true and the study's own Table 1 prints it WITHDRAWN
+# with dashes for bear and bull. And it drew normalised earnings as a lens, which the
+# record's retired note drops for this class outright and carries as a diagnostic.
+#
+# THE ANSWER IS ONE BAR. Everything else is a cross-check, drawn as a POINT where the
+# record says it has no present-value range, and labelled with what it is. A reader can now
+# see which number is the study's and which are held beside it, which is the whole of what
+# [R-LENS-03] asks a figure to show.
+LR = d['lens_record']
 L = d['lenses']
-names = ['Free cash flow\nto the firm (primary)', 'Relative\n(EV/EBITDA)',
-         'Normalised\nearnings power', 'Book value /\nsustainable return', 'Weighted central']
-keys = ['dcf', 'relative', 'normalized', 'book', 'central']
+PRIM = LR['primary']
+rows = [('%s\n(the answer)' % {'dcf': 'Free cash flow\nto the firm'}.get(
+             PRIM['kind'], PRIM['kind']),
+         PRIM['range']['low'], PRIM['value'], PRIM['range']['high'], True, '')]
+_LABEL = {'relative_multiple': 'Relative\n(EV/EBITDA)', 'book_value': 'Book value /\nsustainable return'}
+for c in LR['cross_checks']:
+    tag = 'withdrawn' if c.get('withdrawn') else 'cross-check'
+    if c.get('kind') == 'book_value':
+        tag = 'disclosed floor'
+    k = {'relative_multiple': 'relative', 'book_value': 'book'}.get(c['kind'])
+    lo = hi = None
+    if not c.get('withdrawn') and k and k in L:
+        lo, hi = L[k]['bear'], L[k]['bull']
+    rows.append((_LABEL.get(c['kind'], c['kind']), lo, c['value'], hi, False, tag))
+for name, val in LR.get('diagnostics', {}).items():
+    rows.append((name.replace('_', ' ').capitalize(), None, val, None, False, 'diagnostic'))
+
 fig, ax = plt.subplots(figsize=(9.7, 4.2), dpi=110)
-xmax = max(L[k]['bull'] for k in keys); xmin = min(L[k]['bear'] for k in keys)
-for i, k in enumerate(keys):
-    y = len(keys) - 1 - i
-    b, ba, bu = L[k]['bear'], L[k]['base'], L[k]['bull']
-    col = GOLD if k == 'central' else SAGE
-    ax.barh(y, bu - b, left=b, height=0.46, color=col,
-            alpha=0.5 if k == 'central' else 0.32, edgecolor=col, linewidth=1.1)
-    ax.plot([ba, ba], [y - 0.23, y + 0.23], color=BRASS, lw=3.4)
-    ax.text(bu + 0.02 * (xmax - xmin), y, f'{b:.2f}–{bu:.2f} · base {ba:.2f}',
-            va='center', fontsize=8.6, color=INK)
-ax.axvline(spot, color=INK, lw=1.6)
-ax.text(spot + 0.012 * (xmax - xmin), -0.62, f'spot {spot:.2f}', color=INK, fontsize=9,
-        ha='left', va='top')
-cB = L['central']
-ax.axvspan(cB['base'] * 0.95, cB['base'] * 1.05, color=GOLD, alpha=0.13)
-ax.set_yticks(range(len(keys)), names[::-1], fontsize=8.6)
+_all = [x for r in rows for x in (r[1], r[2], r[3]) if x is not None] + [spot]
+xmin, xmax = min(_all), max(_all)
+pad = 0.04 * (xmax - xmin)
+for i, (name, lo, base, hi, primary, tag) in enumerate(rows):
+    y = len(rows) - 1 - i
+    col = GOLD if primary else SAGE
+    if lo is not None and hi is not None:
+        ax.barh(y, hi - lo, left=lo, height=0.46, color=col,
+                alpha=0.5 if primary else 0.32, edgecolor=col, linewidth=1.1)
+        txt = f'{lo:.2f}-{hi:.2f} · base {base:.2f}'
+        at = hi
+    else:
+        # NO RANGE IS DRAWN WHERE THE RECORD SAYS THERE IS NONE. A withdrawn lens and a
+        # diagnostic have a value and no present-value span, and drawing a bar for them
+        # would state a range the study does not publish.
+        ax.plot([base], [y], marker='D', ms=7, color=col, zorder=3)
+        txt = f'{base:.2f}'
+        at = base
+    ax.plot([base, base], [y - 0.23, y + 0.23], color=BRASS, lw=3.4)
+    # A LABEL THAT CROSSES THE SPOT LINE IS A COLLISION, and depth-bar standard 5 says
+    # they are fixed in the pass that finds them. The line goes behind and the text
+    # carries the panel colour behind it, so both stay legible where they overlap.
+    ax.text(at + pad, y, txt + (f'  ({tag})' if tag else ''),
+            va='center', fontsize=8.6, color=INK, zorder=4,
+            bbox=dict(boxstyle='square,pad=0.12', fc=BG, ec="none"))
+ax.axvline(spot, color=INK, lw=1.6, zorder=1)
+ax.text(spot + 0.3 * pad, -0.62, f'spot {spot:.2f}', color=INK, fontsize=9,
+        ha='left', va='top', zorder=4)
+ax.set_yticks(range(len(rows)), [r[0] for r in rows][::-1], fontsize=8.6)
 ax.set_xlabel('EGP / share')
-ax.set_xlim(xmin - 0.06 * (xmax - xmin), xmax + 0.32 * (xmax - xmin))
-ax.set_ylim(-1.0, len(keys) - 0.4)
-ax.set_title('Alexandria Mineral Oils — valuation range by lens (bear–bull span; brass tick = base)',
+# THE LIMITS ARE DERIVED FROM WHAT IS DRAWN, SPOT INCLUDED. The superseded generator that
+# last wrote this file hardcoded set_xlim(2, 11) against a spot of 13.50, so the price line
+# it drew fell outside the axis and was clipped away silently — while the caption told a
+# reader the price was shown. That is the same defect the chart-overlay gate exists for,
+# arriving in a study figure instead of a ticker page.
+ax.set_xlim(xmin - 1.5 * pad, xmax + 9 * pad)
+ax.set_ylim(-1.0, len(rows) - 0.4)
+ax.set_title('Alexandria Mineral Oils — the answer, and the reads held beside it',
              fontsize=10, pad=10)
 style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig1_football.png')); plt.close(fig)
 

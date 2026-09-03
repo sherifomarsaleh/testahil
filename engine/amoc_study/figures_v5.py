@@ -1,7 +1,31 @@
-"""Figures for the 08-08-2026 study. Every number is read from study_numbers.json /
-case_adversarial.json — nothing is retyped."""
+"""Figures for the SUPERSEDED 08-08-2026 study. Kept as the record of how that edition
+was drawn; it must not run.
+
+IT WROTE THE SAME FILENAME AS THE CURRENT GENERATOR AND RAN LAST. figures.py and this file
+both saved fig1_football.png, and the delivered 03-09-2026 study therefore carried THIS
+file's picture: the retired 45/20/20/15 blend weights in its row labels, a WEIGHTED RANGE
+bar at a central of 11.83 the study had stopped publishing after the macro path conformance
+took it to 11.40, and a hardcoded x-axis of 2 to 11 against a spot of 13.50 — so the price
+line it drew fell outside the axis and was clipped away silently, while the caption told a
+reader the price was shown. Swept across the book, this was the ONLY figure filename
+written by two scripts: 470 study scripts, 73 figure filenames, one collision.
+
+The guard is a refusal rather than a deletion, because the file is the record of how a
+delivered edition was built and the ledgers' append-only discipline applies to that too.
+Run it deliberately with --superseded if that record ever has to be reproduced, into a
+directory of your own.
+"""
 import json
 import os
+import sys
+
+if '--superseded' not in sys.argv:
+    raise SystemExit(
+        'figures_v5.py is the SUPERSEDED generator for the 08-08-2026 edition and writes '
+        'the same filenames as figures.py, which is the current one. Running it silently '
+        'replaced the delivered football field with a picture of a retired lens blend, a '
+        'central the study no longer publishes and an axis too narrow to show the price. '
+        'Run figures.py. Pass --superseded only to reproduce the old edition.')
 
 import matplotlib
 matplotlib.use('Agg')
