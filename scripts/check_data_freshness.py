@@ -86,6 +86,8 @@ def _projected_h(market, anchor, months, res):
 import technicals as TA  # noqa: E402
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+sys.path.insert(0, os.path.join(ROOT, 'engine'))
+import site_data  # noqa: E402
 RAW = os.path.join(ROOT, 'engine', 'raw_ohlc')
 
 # Kept in step with engine/apply_technicals.py -- if a market is added there
@@ -121,87 +123,23 @@ def warn(name: str, msg: str) -> None:
     warns.append(f'{name}: {msg}')
 
 
+# THE HAND-WRITTEN JS SCANNER IS GONE [R-ENF-03, 03-Sep-2026]. A brace matcher, a
+# top-level-block splitter and a ledger-row splitter lived here — careful, correct code
+# that models a JavaScript parser — and eleven regular expressions read fields out of the
+# text they produced. Every one returns the FIRST match where the object literal the
+# browser reads takes the LAST. This gate exists to catch a page standing on a stale
+# library; nothing in it could catch a page standing on a SHADOWED field, which is the
+# defect [R-ENF-03] was adopted on. engine/site_data.py hands the file to node and reads
+# the object the page actually renders.
+#
+# Two field reads changed meaning in the port and both were wrong before: spotDate was
+# matched anywhere inside the entry rather than anchored to the whole value, and
+# `'grade_note' in r['raw']` was a SUBSTRING test over a ledger row's source text, which
+# is satisfied by a row that merely mentions the word or carries it commented out.
+#
+# Verified: byte-identical output over 93 entries and 345 ledger rows, 0 failures and 0
+# warnings before and after.
 # --------------------------------------------------------------- js scanning
-def _match_brace(src: str, i: int) -> int:
-    """Index just past the object that opens at src[i] == '{'."""
-    depth, in_s, esc, in_c = 0, None, False, None
-    while i < len(src):
-        c = src[i]
-        if in_c == '//':
-            if c == '\n':
-                in_c = None
-        elif in_c == '/*':
-            if c == '*' and src[i + 1:i + 2] == '/':
-                in_c, i = None, i + 1
-        elif in_s:
-            if esc:
-                esc = False
-            elif c == '\\':
-                esc = True
-            elif c == in_s:
-                in_s = None
-        elif c in '"\'':
-            in_s = c
-        elif c == '/' and src[i + 1:i + 2] in ('/', '*'):
-            in_c, i = '/' + src[i + 1], i + 1
-        elif c == '{':
-            depth += 1
-        elif c == '}':
-            depth -= 1
-            if depth == 0:
-                return i + 1
-        i += 1
-    raise ValueError('unbalanced braces')
-
-
-def top_level_blocks(src: str, decl: str) -> dict[str, str]:
-    """{key: block source} for one level inside a `const X = {` declaration."""
-    i = src.index(decl) + len(decl) - 1
-    end = _match_brace(src, i)
-    body, out, k = src[i + 1:end - 1], {}, 0
-    # keys may be quoted -- "2POINTZERO" MUST be, a JS identifier cannot
-    # start with a digit, and an unquoted-only pattern silently drops it.
-    pat = re.compile(r'\n\s*(?:"([A-Za-z0-9_]+)"|([A-Za-z_][A-Za-z0-9_]*))\s*:\s*\{')
-    while True:
-        m = pat.search(body, k)
-        if not m:
-            break
-        s = m.end() - 1
-        e = _match_brace(body, s)
-        out[m.group(1) or m.group(2)] = body[s:e]
-        k = e
-    return out
-
-
-def ledger_rows(src: str) -> list[dict]:
-    i = src.index('const LEDGER = [')
-    j = src.index('\n];', i)
-    body, rows, k = src[i:j], [], 0
-    starts = [m.start() for m in re.finditer(r'\n  \{', body)]
-    for s in starts:
-        s = body.index('{', s)
-        e = _match_brace(body, s)
-        rows.append(body[s:e])
-        k = e
-
-    def g(r, key):
-        m = re.search(key + r'\s*:\s*("([^"]*)"|[-\d.]+|null)', r)
-        if not m:
-            return None
-        return m.group(2) if m.group(2) is not None else m.group(1)
-
-    return [{'raw': r, 'instrument': g(r, 'instrument'),
-             'horizon': g(r, 'horizon_label'), 'anchor': g(r, 'anchor_date'),
-             'grade': g(r, 'grade_date'), 'run': g(r, 'run_date'),
-             'realized': g(r, 'realized_close'),
-             # the STRIKE-TIME horizon record, for check 5b: what resolve()
-             # returned on the day the cone was struck, and whether that session
-             # count was a projection or a realized count.
-             'horizon_days': g(r, 'horizon_days'),
-             'grade_basis': g(r, 'grade_basis')}
-            for r in rows if g(r, 'instrument')]
-
-
 def _read_csv(market: str, series: str):
     """(rows, date_col, price_col). Real CSV parsing -- these exports quote
     comma-thousands ("4,090.87"), so a naive line.split(',') reads gold's
@@ -251,19 +189,30 @@ def spot_on(market: str, series: str, iso: str):
     return None, False
 
 
+
+
 # -------------------------------------------------------------------- checks
 def main() -> int:
-    src = open(DATA_JS, encoding='utf-8').read()
+    # THROUGH A REAL PARSE [R-ENF-03]. Every field below used to be picked out of the
+    # entry's SOURCE TEXT with its own regular expression — eleven of them — and each one
+    # returns the FIRST match where the object literal the browser reads takes the LAST.
+    # This gate exists to catch a page standing on a stale library; it could not catch a
+    # page standing on a shadowed field, which is the defect the rule was adopted on.
     entries = {}
-    for key, blk in top_level_blocks(src, 'const TICKERS = {').items():
-        pre = re.search(r'code:\s*"([A-Z0-9]+):', blk)
-        mkt = EXCHANGE_MARKET.get(pre.group(1)) if pre else None
-        entries[key] = (blk, mkt, SERIES_OVERRIDE.get(key, key))
-    for key, blk in top_level_blocks(src, 'const METALS = {').items():
+    for key, e in site_data.read_object('TICKERS').items():
+        pre = str(e.get('code') or '').split(':')[0]
+        entries[key] = (e, EXCHANGE_MARKET.get(pre), SERIES_OVERRIDE.get(key, key))
+    for key, e in site_data.read_object('METALS').items():
         if key in METAL_MARKET:
-            entries[key] = (blk, *METAL_MARKET[key])
+            entries[key] = (e, *METAL_MARKET[key])
 
-    rows = ledger_rows(src)
+    rows = site_data.read_list('LEDGER')
+    for r in rows:
+        r['horizon'] = r.get('horizon_label')
+        r['anchor'] = r.get('anchor_date')
+        r['grade'] = r.get('grade_date')
+        r['run'] = r.get('run_date')
+        r['realized'] = r.get('realized_close')
     by_inst: dict[str, list[dict]] = {}
     for r in rows:
         by_inst.setdefault(r['instrument'], []).append(r)
@@ -283,7 +232,7 @@ def main() -> int:
 
     today = date.today().isoformat()
 
-    for key, (blk, mkt, series) in sorted(entries.items()):
+    for key, (ent, mkt, series) in sorted(entries.items()):
         if not mkt:
             fail(key, 'no market resolved from its code: prefix')
             continue
@@ -295,16 +244,15 @@ def main() -> int:
 
         # 2. the as-of stamp must be complete. This is the check that fires on
         #    a merge that drops the block -- the 29-Jul regression.
-        a = re.search(r'asof:\s*\{(.*?)\n\s*\}', blk, re.S)
-        if not a:
+        a = ent.get('asof')
+        if not isinstance(a, dict):
             fail(key, 'no asof stamp')
             continue
-        got = dict(re.findall(r'(data|computed):\s*"([\d-]+)"', a.group(1)))
-        pairs = re.findall(r'(mc|tech):\s*\{\s*data:\s*"([\d-]+)"\s*,\s*'
-                           r'computed:\s*"([\d-]+)"\s*\}', a.group(1))
-        stamp = {p[0]: (p[1], p[2]) for p in pairs}
+        stamp = {k: (v.get('data'), v.get('computed'))
+                 for k, v in a.items()
+                 if isinstance(v, dict) and v.get('data') and v.get('computed')}
         if set(stamp) != {'mc', 'tech'}:
-            fail(key, f'asof incomplete -- has {sorted(stamp) or sorted(got)}')
+            fail(key, f'asof incomplete -- has {sorted(stamp) or sorted(a)}')
             continue
         for kind, (d, c) in stamp.items():
             if not (ISO.match(d) and ISO.match(c)):
@@ -331,11 +279,11 @@ def main() -> int:
         #     An entry with no `fit` stamp yet is NOT failed: it predates the
         #     field and acquires one at its next strike. Silence there is the
         #     honest answer, not a pass.
-        fo = re.search(r'fit:\s*\{[^{}]*?\bon:\s*"([\d-]+)"[^{}]*?\}', blk)
-        if fo and 'mc' in stamp and fo.group(1) != stamp['mc'][1]:
+        fo = (ent.get('fit') or {}).get('on') if isinstance(ent.get('fit'), dict) else None
+        if fo and 'mc' in stamp and fo != stamp['mc'][1]:
             fail(key, f'asof.mc.computed {stamp["mc"][1]} disagrees with the '
                       f'strike date the entry itself records, fit.on '
-                      f'{fo.group(1)} -- the cone was struck on a day the page '
+                      f'{fo} -- the cone was struck on a day the page '
                       'does not admit to')
 
         # 3. the technical read must stand on the CURRENT library. "When the
@@ -363,19 +311,20 @@ def main() -> int:
 
         # 5. horizons are CALENDAR-ONLY. A retired session-counted resolve
         #    date is a protocol violation, not a rounding difference.
-        sd = re.search(r'spotDate:\s*"close (\d{1,2}) (\w{3}) (\d{4})"', blk)
+        sd = re.match(r'close (\d{1,2}) (\w{3}) (\d{4})$', str(ent.get('spotDate') or ''))
         if not sd:
             fail(key, 'spotDate not in the "close D Mon YYYY" form')
             continue
         anchor = (f'{sd.group(3)}-{MONTHS[sd.group(2)]:02d}-'
                   f'{int(sd.group(1)):02d}')
+        dist = ent.get('dist') or {}
         for field, months in HORIZON_MONTHS.items():
-            m = re.search(field + r':\s*\{[^}]*resolve:\s*"([\d-]+)"', blk)
-            if not m:
+            got_res = (dist.get(field) or {}).get('resolve')
+            if not got_res:
                 continue
             want = horizons.resolve(mkt, anchor, months)['grade_date']
-            if m.group(1) != want:
-                fail(key, f'{field} resolve {m.group(1)} != calendar '
+            if got_res != want:
+                fail(key, f'{field} resolve {got_res} != calendar '
                           f'{want} (anchor {anchor} + {months}m)')
 
         # 5b. the fan's session anchors must be this name's OWN projected
@@ -386,13 +335,12 @@ def main() -> int:
         #     22/63 and 23/66, and their axis and prose rendered the retired
         #     session naming. A missing hz is invisible on the page; it just
         #     draws the wrong cone.
-        hz = re.search(r'hz:\s*\{([^}]*)\}', blk)
+        hz = ent.get('hz') if isinstance(ent.get('hz'), dict) else None
         if not hz:
             fail(key, 'no hz block -- falls back to the retired 20/60 session '
                       'grid in app.js and mislabels its own axis')
         else:
-            body = hz.group(1)
-            if 'cal:true' not in body.replace(' ', ''):
+            if hz.get('cal') is not True:
                 fail(key, 'hz.cal is not true -- renders the retired session naming')
             #     A PUBLISHED SESSION COUNT IS A STRIKE-TIME PROJECTION, AND A
             #     PROJECTION THAT LATER RESOLVES ONE SESSION AWAY IS NOT A DEFECT
@@ -421,13 +369,12 @@ def main() -> int:
             inst_l = LEDGER_ALIAS.get(key, key)
             for field, months, hlabel in (('h1', 1, '1 month'),
                                           ('h3', 3, '3 months')):
-                m = re.search(field + r'\s*:\s*(\d+)', body)
                 res = horizons.resolve(mkt, anchor, months)
                 want = res['h']
-                if not m:
+                if hz.get(field) is None:
                     fail(key, f'hz.{field} missing')
                     continue
-                got_h = int(m.group(1))
+                got_h = int(hz[field])
                 if got_h == want:
                     continue
                 struck = next((r for r in by_inst.get(inst_l, [])
@@ -489,16 +436,16 @@ def main() -> int:
 
         # 6. published spot must be a real close in the library on the date
         #    the page claims. Gold published the 27-Jul close as "28 Jul".
-        sp = re.search(r'spot:\s*([\d.]+)', blk)
+        sp = ent.get('spot')
         close, found = spot_on(mkt, series, anchor)
         if not found:
             fail(key, f'spotDate claims {anchor} but the library has no such '
                       'session')
-        elif sp and close is not None and close:
+        elif sp is not None and close is not None and close:
             # relative tolerance: pages round for display (RELIANCE shows
             # 1272 for a 1271.8 close). 0.1% catches a wrong DAY, not rounding.
-            if abs(float(sp.group(1)) - close) / abs(close) > 0.001:
-                fail(key, f'published spot {sp.group(1)} != library close '
+            if abs(float(sp) - close) / abs(close) > 0.001:
+                fail(key, f'published spot {sp} != library close '
                           f'{close} on {anchor}')
 
     # 6b. the chart CAPTION must name the same session the chart is drawn to.
@@ -549,7 +496,11 @@ def main() -> int:
                 # Already graded. Ledgers are append-only -- a published
                 # forecast is never retro-edited -- and an unscheduled closure
                 # legitimately moves the graded date, provided the row says so.
-                if 'grade_note' not in r['raw']:
+                # A KEY, NOT A SUBSTRING. This tested the row's SOURCE TEXT for the
+                # literal "grade_note", which is true of a row that merely mentions the
+                # word — in a note, say — and of a commented-out field. The parsed row
+                # answers the question that was meant.
+                if not r.get('grade_note'):
                     fail(tag, f'graded on {r["grade"]} instead of the calendar '
                               f'{want} with no grade_note explaining why')
             else:
