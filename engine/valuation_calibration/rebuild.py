@@ -1,8 +1,12 @@
 """The mechanical fair value at each past origin, and log(FV/P) against the price
 it would have been struck at.  [R-VCAL-01], series (a), score (i).
 
-The construction is fixed in MECHANICAL_LENS_03-09-2026.md, which was sealed
-before any value here was computed. Nothing in this module chooses anything: it
+The construction is fixed in MECHANICAL_LENS_2_03-09-2026.md, sealed before any
+value under it was computed. It supersedes the first declaration, whose own first
+run is committed unaltered in FIRST_RUN_SEALED_LENS_03-09-2026.json — that run
+discounted accounting net profit into a perpetuity on a developer, which
+[R-LENS-03] forbids outright, and it read two to seven times the traded price at
+every origin. The rule was available before the lens was declared and was missed. Nothing in this module chooses anything: it
 reads the walk-forward's own projection at each origin, the point-in-time macro
 archive, the footed share count for that year, and the close on or before that
 year end, and does the arithmetic the declaration describes.
@@ -30,8 +34,13 @@ import macro_history as MH   # noqa: E402
 import panel as P            # noqa: E402
 
 BETA = 1.00          # fixed in the sealed declaration, every name, every origin
-REAL_G = 0.0         # fixed in the sealed declaration
 HORIZONS = (1, 2, 3, 4, 5)
+
+# Declaration 2. Every one of these is fixed in the sealed document and none is
+# fitted; they are here so the arithmetic can be read beside the text that fixed it.
+DELIVERY_YEARS = 4       # the contracted book converts to profit evenly over four
+TAX = 0.225              # statutory
+MARGIN_YEARS = 3         # the median reported gross margin of the three years to t
 
 
 def cost_of_equity(market, origin):
@@ -47,7 +56,10 @@ def cost_of_equity(market, origin):
     infl = fwd.get(last)
     if infl is None and fwd:
         infl = fwd[max(fwd, key=lambda k: int(k))]
-    g = None if infl is None else float(infl) + REAL_G
+    # Declaration 2 has NO TERMINAL VALUE, so terminal growth is not an input to
+    # the lens at all. The vintage's own forward inflation is still carried in the
+    # record, because it is what the origin knew and a later reader will want it.
+    g = None if infl is None else float(infl)
     return {"ke": ke, "rf_star": rf_star, "g": g,
             "sovereign_10y": need["sovereign_10y"],
             "default_spread": need["default_spread"], "erp": need["erp"],
@@ -55,6 +67,7 @@ def cost_of_equity(market, origin):
 
 
 def project_phdc(origin):
+    """The projection at one origin, plus the reported margins the lens needs."""
     sys.path.insert(0, os.path.join(ENGINE, "phdc_walkforward"))
     import bottom_up as B
     cwd = os.getcwd()
@@ -62,12 +75,50 @@ def project_phdc(origin):
         os.chdir(os.path.join(ENGINE, "phdc_walkforward"))
         panel = B.load()
         r = B.project(panel, origin, macro="as_known")
+        raw = json.load(open("panel.json", encoding="utf-8"))
     finally:
         os.chdir(cwd)
-    return {h: (r.get(h) or {}).get("is.npat_mi") for h in HORIZONS}
+    # the company's OWN realised gross margin in the three years to the origin,
+    # read as reported and never from a forecast
+    margins = []
+    for y in range(origin - MARGIN_YEARS + 1, origin + 1):
+        rec = raw.get(str(y)) or {}
+        gp = (rec.get("is.gross_profit") or {}).get("value")
+        rev = (rec.get("is.revenue") or {}).get("value")
+        if gp and rev and rev > 0:
+            margins.append(gp / rev)
+    return {"backlog": {h: (r.get(h) or {}).get("backlog") for h in HORIZONS},
+            "_margins": margins}
 
 
 PROJECTORS = {"PHDC": project_phdc}
+
+
+def backlog_value(tk, origin, ke, panel_years):
+    """The present value of the company's own contracted order book. No terminal.
+
+    A developer's backlog is revenue already sold and not yet delivered. Converting
+    it at the company's OWN realised gross margin over a fixed delivery period and
+    discounting at the point-in-time cost of equity is the present-value RNAV shape
+    [R-LENS-03] gives the class — and it is a FLOOR, because nothing is added for
+    land, options or recurring assets. That downward bias is stated, not hidden.
+    """
+    bl = (panel_years.get("backlog") or {}).get(1)
+    if not bl:
+        return None, "the projection carries no backlog at this origin"
+    margins = panel_years.get("_margins") or []
+    if len(margins) < MARGIN_YEARS:
+        return None, ("only %d reported gross margin(s) in the three years to the "
+                      "origin; the median needs %d" % (len(margins), MARGIN_YEARS))
+    margins = sorted(margins)
+    med = margins[len(margins) // 2]
+    if not (0 < med < 1):
+        return None, "the reported gross margin of %.4f is not a usable rate" % med
+    annual = bl * med * (1 - TAX) / DELIVERY_YEARS
+    pv = sum(annual / (1 + ke) ** h for h in range(1, DELIVERY_YEARS + 1))
+    return pv, ("backlog %.0f at a median reported margin of %.1f%% over %d years, "
+                "after tax, discounted at %.2f%% — no terminal, no land"
+                % (bl, med * 100, DELIVERY_YEARS, ke * 100))
 
 
 def value(profits, ke, g):
@@ -101,8 +152,8 @@ def run(market="EG"):
         except MH.VintageMissing as exc:
             dropped.append((tk, y, str(exc)[:90]))
             continue
-        prof = PROJECTORS[tk](y)
-        eq, why = value(prof, coc["ke"], coc["g"])
+        proj = PROJECTORS[tk](y)
+        eq, why = backlog_value(tk, y, coc["ke"], proj)
         if eq is None:
             dropped.append((tk, y, why))
             continue
@@ -111,24 +162,25 @@ def run(market="EG"):
         rows.append({"ticker": tk, "origin": y, "fv": per_share, "price": px,
                      "log": math.log(per_share / px) if per_share > 0 else None,
                      "ke": coc["ke"], "g": coc["g"], "shares_mn": c["shares"],
-                     "equity": eq, "price_date": c["price_date"]})
+                     "equity": eq, "price_date": c["price_date"], "how": why})
     return rows, dropped
 
 
 def report(market="EG"):
     rows, dropped = run(market)
     print("mechanical fair value at each past origin — [R-VCAL-01] series (a)\n")
-    print("  construction sealed in MECHANICAL_LENS_03-09-2026.md before any of "
-          "this was computed\n")
+    print("  construction sealed in MECHANICAL_LENS_2_03-09-2026.md before any of\n"
+          "  this was computed; the withdrawn first declaration and its own run are\n"
+          "  committed beside it, unedited\n")
     if not rows:
         print("  no cell produced a value.")
     else:
-        print("  %-6s %-7s %9s %9s %8s %8s %8s"
-              % ("name", "origin", "fair/sh", "close", "gap %", "Ke", "g"))
+        print("  %-6s %-7s %9s %9s %8s %8s"
+              % ("name", "origin", "floor/sh", "close", "gap %", "Ke"))
         for r in rows:
-            print("  %-6s %-7d %9.3f %9.3f %+7.1f%% %7.2f%% %7.2f%%"
+            print("  %-6s %-7d %9.3f %9.3f %+7.1f%% %7.2f%%"
                   % (r["ticker"], r["origin"], r["fv"], r["price"],
-                     (r["fv"] / r["price"] - 1) * 100, r["ke"] * 100, r["g"] * 100))
+                     (r["fv"] / r["price"] - 1) * 100, r["ke"] * 100))
         xs = [r["log"] for r in rows if r["log"] is not None]
         if xs:
             mean = sum(xs) / len(xs)
@@ -145,8 +197,10 @@ def report(market="EG"):
         print("\n  dropped (%d):" % len(dropped))
         for tk, y, why in dropped:
             print("    %-6s %d  %s" % (tk, y, why[:100]))
-    print("\n  READ THE BEHAVIOUR, NOT THE LEVEL. This is one fixed construction,")
-    print("  not the house method, and its absolute level is not a house fair value.")
+    print("\n  THIS IS A FLOOR, NOT A FAIR VALUE. It values the contracted order book")
+    print("  and nothing else — no land, no options, no recurring assets — so a")
+    print("  reading BELOW the price is the expected case and says little on its own.")
+    print("  What carries information is how the gap MOVES across origins.")
     print("  With this few origins on one name, nothing here is a finding yet — it is")
     print("  an instrument returning its first readings, and the honest thing to")
     print("  report is how few of them there are.")
