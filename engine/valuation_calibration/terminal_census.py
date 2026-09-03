@@ -118,10 +118,11 @@ CAND = {
     # WHICH answered, because a resolver that guesses is the defect [R-ENF-04] closes.
     'g':         ('g_term', 'g_terminal', 'terminal_g', 'terminal_growth',
                   'growth_at_horizon_end', 'TERMINAL_GROWTH', 'tg', 'g'),
-    'nopat_term':('nopat_term', 'nopat_t1', 'nopat_next', 'terminal_nopat'),
+    'nopat_term':('nopat_term', 'nopat_T', 'nopat_t1', 'nopat_next',
+                  'terminal_nopat'),
     'ic':        ('ic_repl', 'ic_replacement', 'ic_terminal', 'ic_T', 'invested_capital',
                   'ic_replacement_cost'),
-    'rr_term':   ('rr_term', 'rr_T', 'rr_repl', 'reinvest'),
+    'rr_term':   ('rr_term', 'rr_T', 'rr_repl', 'reinv_rate', 'reinvest'),
     'roic_term': ('roic_term', 'roic_T', 'roic_terminal', 'terminal_roc'),
     'df_tv':     ('df_tv', 'dftv'),
     'equity':    ('equity', 'eq_val', 'eq_attr', 'eq'),
@@ -307,6 +308,14 @@ def read_study(d):
         rec['nopat_term'] = N
         rec['routes']['nopat_term'] = rec['routes']['nopat_last'] + f' x (1+g)  [derived]'
     if N is not None and N > 0:
+        # A study may expose the REINVESTMENT RATE and not the return it came from. They
+        # are the same statement — rr = g/ROIC — so the return is DERIVED rather than the
+        # study being called unreadable. EGCH exposes reinv_rate and no roic, and without
+        # this it fell out of the census entirely while carrying the construction exactly.
+        if 'roic_term' not in rec and rec.get('rr_term') and g > 0:
+            rec['roic_term'] = g / float(rec['rr_term'])
+            rec['routes']['roic_term'] = (rec['routes'].get('rr_term', 'rr') +
+                                          '  -> g/rr  [derived]')
         rec['charge'] = N - rec['fcff_term_implied']
         rec['charge_share_of_nopat'] = rec['charge'] / N
         # THE CYCLE IS COMPUTED ON THE CAPITAL BASE THE CHARGE ACTUALLY USES, which the
