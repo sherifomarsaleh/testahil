@@ -91,6 +91,19 @@ def expert1(n):
         "value_per_share": equity / sh,
         "sensitivity": {
             "what": "the conversion period",
+            # THIS RUNS THE OPPOSITE WAY TO SECTION 1.7 AND THAT IS THE POINT, NOT A
+            # CONTRADICTION — but the document said nothing about it, and two tables
+            # headed by conversion years running opposite directions is the sort of thing
+            # a careful reader finds and nobody explains. Here the pot is FIXED (the
+            # disclosed book, less what is still to be spent) and a longer conversion only
+            # discounts that fixed pot for longer, so value falls with the period. In the
+            # study's own model the book replenishes and the customer pays ahead of
+            # handover, so a faster conversion means building before collecting — which is
+            # why section 1.7 says in terms that faster conversion is worth LESS.
+            "runs_opposite_to_the_study_because": (
+                "this expert discounts a FIXED pot for longer, while the study's model has "
+                "the company collecting ahead of handover, so accelerating means building "
+                "before collecting"),
             "numbers": {str(y): ((net_cash / y)
                                  * sum(1 / (1 + rate) ** k for k in range(1, y + 1))
                                  + rec_value + other - _v(bs, "nci_equity")) / sh
@@ -277,10 +290,22 @@ def cross_examination(e1, e2, e3, n):
                       % (100 * n["wacc"]["wacc_rating"],
                          100 * n["lenses"]["implied_discount_rate"]["recovery"],
                          100 * n["lenses"]["implied_discount_rate"]["capacity"]),
+         # THE OUTCOME WAS TYPED AND THE CORRECTED NUMBERS CONTRADICT IT. It read "the
+         # market appears to apply the sovereign yield with little more", which was a fair
+         # reading of an implied pair of 16.6% to 29.1% solved against a per-share this
+         # study does not publish. Solved against the basis it DOES publish the pair is
+         # 17.4% to 31.9% and STRADDLES the sovereign, so the market is not applying one
+         # rate at all — which reading of the order book you take decides the sign of the
+         # disagreement. Computed here so it cannot say the wrong thing again.
          "outcome": "ACKNOWLEDGED AND PUBLISHED. The house method levers Egypt's whole "
-                    "country risk premium by a beta of 1.47; the market appears to "
-                    "apply the sovereign yield with little more. The study reports "
-                    "both rather than picking one, and the gap IS the disagreement."},
+                    "country risk premium by a beta of %.2f. The implied pair STRADDLES "
+                    "the %.2f%% sovereign — below it on the faster reading of the order "
+                    "book, above it on the slower — so there is no single rate the market "
+                    "can be said to be applying, and which reading you take decides the "
+                    "sign of the disagreement. The study reports both rather than picking "
+                    "one, and the gap IS the disagreement."
+                    % (n["wacc"]["beta_record"]["beta"],
+                       100 * n["wacc"]["inputs"]["rf_observed"])},
     ]
 
 
@@ -323,6 +348,13 @@ def main():
     out = {"experts": [e1, e2, e3], "values": vals,
            "cross_examination": cross_examination(e1, e2, e3, n),
            "three_in_one_room": room, "divergence": div}
+    # [R-ENF-06]: an artefact a builder reads declares the answer it was generated
+    # against. This one had no such field and went stale twice over in one day — its
+    # cross-examination row quotes the reverse read, which moved when that read was
+    # corrected to solve against the basis this study adopts, and the delivered document
+    # went on printing the old pair because nothing re-ran the generator.
+    out["published_central"] = n["central"]
+    out["published_spot"] = n["meta"]["spot"]
     json.dump(out, open(os.path.join(HERE, "experts.json"), "w"), indent=1)
     for e in (e1, e2, e3):
         print("%-52s %8.2f" % (e["name"], e["value_per_share"]))

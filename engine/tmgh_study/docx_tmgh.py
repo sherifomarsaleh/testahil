@@ -1218,7 +1218,17 @@ def appendices(doc):
              bold=True)
         s = e["sensitivity"]
         table(doc, [s["what"].capitalize(), "EGP per share"],
-              [[k, money(vv, 2)] for k, vv in s["numbers"].items()], [7.0, 4.0])
+              [[k, money(vv, 2)] for k, vv in s["numbers"].items()], [7.0, 4.0],
+              # WHERE AN EXPERT'S SENSITIVITY RUNS THE OPPOSITE WAY TO THE STUDY'S, THE
+              # DOCUMENT SAYS SO. Expert 1's conversion table falls with the period while
+              # section 1.7's rises, and two tables headed by conversion years running
+              # opposite directions is the sort of thing a reader finds and nobody
+              # explains. It is a real difference of construction, not a contradiction,
+              # and the reason travels with the table rather than being left implicit.
+              ("This runs the OPPOSITE way to section 1.7, and the reason is a real "
+               "difference of construction rather than a disagreement about the "
+               "company: %s." % s["runs_opposite_to_the_study_because"])
+              if s.get("runs_opposite_to_the_study_because") else None)
         para(doc, "What would prove this wrong: " + e["falsifier"], italic=True)
 
     doc.add_heading("C.4 Cross-examination", level=2)

@@ -5,8 +5,7 @@
  "outstanding": [
   "DU",
   "MODON",
-  "PHDC",
-  "TMGH"
+  "PHDC"
  ],
  "note_on_the_seed": "AMOC comes off this list at adoption because both its artefacts now declare their vintage — case_adversarial.json through the generator this rule's adoption required somebody to write, since it had none at all, and contested_judgements.json through the shared reverse-read construction. ARCC and EGCH are half done for the same reason and stay listed until their remaining artefacts declare. PHDC carries five undeclared artefacts and is the largest single piece of work here; DU, MODON and TMGH one each. Every one is cleared by adding two lines to whatever generates the file — and where nothing generates it, by writing a generator, which is the deeper defect this gate exposes and the one that produced the impossible sentence on page one of AMOC."
 }

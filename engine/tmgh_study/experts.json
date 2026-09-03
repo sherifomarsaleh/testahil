@@ -70,6 +70,7 @@
    "value_per_share": 40.544759030713706,
    "sensitivity": {
     "what": "the conversion period",
+    "runs_opposite_to_the_study_because": "this expert discounts a FIXED pot for longer, while the study's model has the company collecting ahead of handover, so accelerating means building before collecting",
     "numbers": {
      "8": 44.55821537788812,
      "10": 42.260404325742726,
@@ -239,8 +240,8 @@
    "outcome": "CONCEDED AS A LIMIT, NOT AS AN ERROR. Expert 3's number is explicitly a floor for what an owner is paying for today, and it is presented as such rather than as a central estimate."
   },
   {
-   "challenge": "All three to the study: the house discount rate of 35.79% is above anything the market appears to use \u2014 19.4% to 23.1% on the reverse calculation.",
-   "outcome": "ACKNOWLEDGED AND PUBLISHED. The house method levers Egypt's whole country risk premium by a beta of 1.47; the market appears to apply the sovereign yield with little more. The study reports both rather than picking one, and the gap IS the disagreement."
+   "challenge": "All three to the study: the house discount rate of 35.79% is above anything the market appears to use \u2014 17.4% to 31.9% on the reverse calculation.",
+   "outcome": "ACKNOWLEDGED AND PUBLISHED. The house method levers Egypt's whole country risk premium by a beta of 1.47. The implied pair STRADDLES the 23.00% sovereign \u2014 below it on the faster reading of the order book, above it on the slower \u2014 so there is no single rate the market can be said to be applying, and which reading you take decides the sign of the disagreement. The study reports both rather than picking one, and the gap IS the disagreement."
   }
  ],
  "three_in_one_room": "Put in one room, the three agree on less than they disagree on, and the disagreement is legible. All three accept the same balance sheet, the same order book and the same margin; they differ on ONE question, which is whether an order book is an asset, a receivable or neither.\n\nExpert 3's EGP 9.74 is the floor, deliberately: it gives the shareholder nothing at all for EGP 491bn of sold product, and says so. Experts 1 and 2 arrive at EGP 40.54 and EGP 38.30 by routes that share almost no arithmetic \u2014 one discounts a twelve-year net cash stream, the other reconciles a balance sheet and strips goodwill \u2014 and land within EGP 2.25 of each other. Two independent methods converging that closely is the most reassuring thing in this appendix, and it is worth more than any one of the three numbers.\n\nNone of the three reaches the traded price of EGP 97.80, and none of them is trying to. The spread across the panel is EGP 9.74 to EGP 40.54.",
@@ -260,5 +261,7 @@
    "gap": 28.562031053799018,
    "driven_by": "whether land and work in progress at historical cost is a better guide than capitalised recurring profit"
   }
- ]
+ ],
+ "published_central": 91.8305824638648,
+ "published_spot": 97.8
 }
