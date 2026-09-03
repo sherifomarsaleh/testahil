@@ -136,17 +136,30 @@ def ratchets():
         except Exception:
             rows.append((os.path.basename(p), "UNREADABLE"))
             continue
-        # Count LISTS AND DICTS both. The ratchets do not share a shape — most
-        # carry a list of tickers, the valuation-input one carries a mapping of
-        # ticker to reason — and a counter that saw only lists reported the
-        # dict-shaped one as "0 outstanding" while it held five. An empty result
-        # is not a clean result [R-ENF-04], and a status line that under-reports
-        # a ratchet is exactly the silence these ratchets exist to break.
-        n = sum(len(v) for k, v in d.items()
-                if isinstance(v, (list, dict)) and not str(k).startswith("_"))
-        rows.append((os.path.basename(p).replace("_outstanding.json", ""), n))
-    for name, n in rows:
-        print("  %-26s %s" % (name, ("%d outstanding" % n) if isinstance(n, int) else n))
+        # THE RATCHETS DO NOT SHARE A SHAPE, so this says WHICH KEY it counted
+        # rather than guessing silently. Counting lists alone read the
+        # dict-shaped valuation-input ratchet as "0 outstanding" while it held
+        # five; counting every collection then over-read four others, because
+        # some files also carry a conforming-at-adoption list, an alias map or an
+        # exemption beside the thing that is actually outstanding. Both were
+        # wrong in the one place whose whole job is to break that silence
+        # [R-ENF-04], and the fix is not a cleverer guess — it is printing the
+        # key, so a miscount is visible instead of plausible.
+        keys = [k for k in ("outstanding", "runs", "entries", "figures",
+                            "breach_no_review", "unreadable",
+                            "review_central_unstated")
+                if isinstance(d.get(k), (list, dict))]
+        if keys:
+            n = sum(len(d[k]) for k in keys)
+        else:
+            keys = [k for k, v in d.items()
+                    if isinstance(v, (list, dict)) and not str(k).startswith("_")]
+            n = sum(len(d[k]) for k in keys)
+        rows.append((os.path.basename(p).replace("_outstanding.json", ""), n,
+                     "+".join(keys) or "nothing countable"))
+    for name, n, keys in rows:
+        print("  %-26s %-16s %s"
+              % (name, ("%d outstanding" % n) if isinstance(n, int) else n, keys))
 
 
 def gates():
