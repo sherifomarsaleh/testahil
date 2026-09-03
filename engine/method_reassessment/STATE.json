@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — AMOC audited from outside: NOT DELIVERABLE, 9 items, 2 fixed",
-  "step": "The QC gate for AMOC's 03-09-2026 edition is written and its verdict is NOT DELIVERABLE. It also caught a FALSE NEGATIVE IN MY OWN GATE: check_lens_vocabulary waived AMOC's Table 1 caption because a 'previous edition' sentence sat within its 260-character window, and never matched the table row whose label the layout splits around its figures — and I had pruned AMOC off that ratchet on the strength of it and reported the document clean. The gate now tests the SAME SENTENCE and matches the split row; its negative control carries both cases in AMOC's own words (9 defects / 5 clean). Two of the nine blocking items are fixed and the files rebuilt — the blend is out of the document and the Headline's four false statements are corrected with its DIRECTION WORDS NOW COMPUTED. Seven remain and the edition is not shipped.",
-  "status": "in progress"
+  "workstream": "[R-ANCHOR-01] adopted — the forecast anchor is arithmetic; AMOC, ARCC and EGCH re-struck on the 3-Sep prices",
+  "step": "The principal read AMOC's forecast margin path and found what every gate here had passed: 9.494% falling to 8.764% against a FILED half of 12.428%, an implied H2 of 6.56%. Cause was an unsourced real cost drift of +2.7pp/yr — pound legs at domestic inflation against a price growing at the currency differential — contradicting the study's own registered raw_pass=1.0 principle and the measured direction in its own filings (cost/revenue FELL 93.146%→87.572% over five filed periods). Corrected +19.4%, EGP 9.9142→11.8342, gap −26.6%→−12.3%. The same defect in two more costumes: EGCH's typed dollar export price falling 17% against a flat dollar input (−1.0621→+1.7854, and its rating ERP basis moved to CDS where both peer studies already were); ARCC forecasting at the top of its own filed range with no sentence saying so. ADOPTED A GATE RATHER THAN ANOTHER LESSON — [L-048] was registered, correct and bound nothing. check_forecast_anchor.py requires a mechanism from a CLOSED list with a LIKE-FOR-LIKE measurement, and it refused my own AMOC record on its first run. Its negative control caught a bug in my own tolerance, re-pointed from an absolute 0.002 to a relative 5% rather than widened. Also closed: assert_lens_design read a self-attested STRING (AMOC's said 'never read off the current price' while the code used the traded multiple exactly, passing three times — exposed by the price moving +48.4% and the lens +51.3%); check_valuation_gap read the stale OHLC library as 'latest known price' over the principal's newer export; compute.py's carry-over named two keys and silently dropped four records added since. Both governing documents at 2026-09-03g. PR #341 open.",
+  "status": "in progress — awaiting QC gates for ARCC and EGCH, then merge on green"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -87,18 +87,14 @@
   "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
-  "AMOC, the seven remaining blocking items from QC_GATE_03-09-2026.md: two superseded figures (fig3 ends at 9.77, fig5 draws 8.64); case_adversarial.json two editions stale (base 5.95) and driving Table 7, Table 18, Figure 4 and the Headline; Table 10 publishing the removed net-weight defect as the method; §1.2 contradicting itself four lines apart; Appendix C below the depth bar; three typed numerals disagreeing with computed values; no peer frame or risk register",
-  "PHDC: its workbook still computes the retired 45/15/20/20 blend into its central cells while its document is clean — the same fix AMOC just had",
-  "the four studies on the [R-ENF-05] value ratchet (AMOC, EGCH, PHDC, TMGH): move the solved reverse read out of study_numbers.json at each next edition, on ARCC's pattern",
-  "TMGH re-issue: 14 defects in QC_GATE_02-09-2026.md, 4 material",
-  "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
-  "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
-  "AMOC: compute.py's prose calls gross-debt weights 'the construction this study rejects' while bridge_record records gross as adopted; the numbers say the bridge record is current, so the prose is what needs correcting",
-  "EGCH: [R-ENF-05] records on a two-sided central — decide which side the reverse read is solved against, or solve both",
-  "EGCH and ARCC share counts from the OCR now running, footed the same way",
-  "TMGH 2023 has no cash cell in its own committed panel — a gap in that run's parse, not in the census probe",
-  "the five IMF WEO vintages (2014, 2020-2023) — blocked by an IMF interstitial that defeats curl and a headless browser; an access limit, not a design gap",
-  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition"
+  "MERGE PR #341 to main on green per [R-MERGE-01] — an unmerged rule binds nothing, which is the whole point of this exercise",
+  "AMOC's base re-anchor: priced at +55% (EGP 18.35, +35.9% vs price) and NOT taken under [R-VCAL-01]'s one-lever guard. Take it at the next edition on its own evidence — the like-for-like Q1-2025 5.053% vs Q1-2026 10.190% supports it",
+  "AMOC's seven remaining QC blocking items from the 03-09 gate: two superseded figures; case_adversarial.json two editions stale driving four surfaces; Table 10 publishing the removed net-weight defect; §1.2 self-contradiction; Appendix C below the depth bar; three typed numerals; no peer frame or risk register",
+  "build_xlsx_v5.py must emit an `anchors` block so AMOC's driver_test.py can run against the delivered edition rather than refusing (L-067)",
+  "EGCH's three unclosed items named in its own GAP_REVIEW: the derived ANNA nameplate/cost pair, investment property and the OCI portfolio at carrying value, the FX cost-of-debt disclosure carried as a warning",
+  "The 22 studies on anchor_outstanding.json each need a forecast_anchor record; the list may only SHORTEN",
+  "SAVOLA newly breaching at −10.1% against the 3-Sep price (inside the band when struck) — eight-heading review at its next re-issue",
+  "TMGH re-issue (14 defects, 4 material) — it sits inside its range against the day's price, so nothing is owed on the gap"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -114,7 +110,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T08:17:27Z",
+ "updated": "2026-09-03T12:20:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
