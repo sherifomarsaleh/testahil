@@ -2151,6 +2151,29 @@ LESSONS = [
       "instrument's — which would mean the shared module is the weaker one and should "
       "adopt the local checks, not the other way round."),
 
+    L("L-085", "ALL", None,
+      "A rule that one study implements is a rule that one study obeys.",
+      "A correct rule, written down and implemented well in the one place it exists, "
+      "binds nothing anywhere else. The instinct is to port the implementation study by "
+      "study; the cost of that is one hand-maintained copy per study, each with its own "
+      "hole. Make it arithmetic ONCE, in a shared place, and the rule survives everywhere "
+      "rather than in the place somebody remembered.",
+      "prose_check across the book, 03-Sep-2026",
+      "build",
+      "\"A number stated in prose must be computed, not typed\" had been standing for four "
+      "weeks and exactly one study of twenty-four implemented a check for it. Measured in "
+      "one afternoon on three studies that had just been rebuilt and passed every other "
+      "gate: AMOC published a 514-basis-point margin range whose own five named periods "
+      "span 737, alongside a summary row that summed five values and divided by four; ARCC "
+      "shipped a masthead a day stale and a price date a month stale; PHDC carried three "
+      "comments above one line, two of them wrong. Across the whole book, 373 of 8,824 "
+      "figures in the delivered documents had no computed counterpart. Shared as "
+      "engine/prose_figures.py rather than copied twenty-three times, and the first four "
+      "ports reached zero unmatched across 1,561 figures.",
+      "A rule whose right implementation is genuinely study-specific — where a shared "
+      "instrument would have to be so configurable that each study's declaration IS the "
+      "implementation, at which point the sharing buys nothing but a common vocabulary."),
+
 ]
 
 
