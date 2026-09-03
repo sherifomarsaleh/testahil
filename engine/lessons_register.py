@@ -2312,24 +2312,43 @@ LESSONS = [
       "which case it is not needed, and the record should say so rather than leave the note "
       "unopened."),
     L("L-094", "ALL", None,
-      "This house forecasts profit at about twice what companies report, and its valuations "
-      "still come out below the market. Those two facts locate the pessimism away from the "
-      "forecasts.",
-      "The projected-versus-actual record says the forecasts lean OPTIMISTIC. So a fair "
-      "value that lands below the market despite an optimistic profit line is not a "
-      "cautious forecast — it is a valuation construction consuming the optimism and more. "
-      "Look at the machinery, not the drivers.",
+      "EVERY NOMINAL LINE IS UNDER-FORECAST ON EVERY NAME. That is the house bias, and it "
+      "is about scale rather than about margin.",
+      "Revenue, cost of sales, operating expense, tax, finance income and provisions all "
+      "come in ABOVE forecast, with the same sign on all five names measured. Nothing about "
+      "any single line looks careless; what is systematic is that the whole nominal scale of "
+      "the business is set too low, which is a growth-path error rather than a base-year one.",
       "engine/valuation_calibration/systemic_bias.py, 03-Sep-2026",
       "walk_forward_fundamental",
-      "On 867 committed projected-versus-actual cells, PROFIT pools at +0.8084 in log terms "
-      "— x2.24 of actual — too high in 89% of cells, on both names (PHDC +1.107, 60 of 62; "
-      "TMGH +0.264, 25 of 34). It is FLAT across horizons (+0.859 at one year, +0.719 at "
-      "five), so a level error rather than a rate error, and it does NOT change sign between "
-      "eras. Gross profit is the same shape at +0.2303. Eight of the ten lines measured DO "
-      "change sign across eras and are reported rather than corrected for; these two do not.",
-      "A third and fourth name committing cells whose profit bias is near zero or negative, "
-      "which would make this a two-name developer finding rather than a house one. Both "
-      "names carrying cells are Egyptian real-estate developers."),
+      "Pooled by-driver bias across all five completed runs: revenue -0.316, cost of sales "
+      "-0.335, operating expense -0.272, tax -1.023, finance income -0.818, provisions "
+      "-0.656 — every one negative on every name that reports it. At cell level on the two "
+      "runs that commit cells the error COMPOUNDS with horizon (revenue -0.023 at one year "
+      "to -0.348 at five), with an intercept near zero, which is the signature of a rate "
+      "error and not a level error.",
+      "A name whose nominal lines are over-forecast, or a horizon profile that is flat "
+      "rather than compounding, either of which would move this from a growth-path finding "
+      "to a base-year one."),
+
+    L("L-094a", "ALL", None,
+      "A finding measured on whichever names happened to have the data is not a sample of "
+      "the book, and it will read like one.",
+      "The subset was not CHOSEN, which is exactly what makes it feel like a random draw. "
+      "It is not: whatever determined which runs committed their raw cells may well "
+      "correlate with the thing being measured, and here it did — the two runs holding cells "
+      "were both developers.",
+      "engine/valuation_calibration/systemic_bias.py, 03-Sep-2026",
+      "build",
+      "The cell-level pool said PROFIT was forecast at +0.8084, x2.24 of actual, too high in "
+      "89% of 867 cells, on both names that commit cells — and it was reported as a HOUSE "
+      "finding. Pooled across all five runs' aggregates it is -0.3424 and only 3 of 12 "
+      "bottom-line drivers are too high: the two DEVELOPERS forecast profit far too high "
+      "(PHDC +1.107, TMGH +0.264) and the three INDUSTRIALS far too LOW (AMOC -0.943, EGCH "
+      "-0.774, ARCC -0.422). The claim was true of the subset and false of the book, and it "
+      "was corrected within the hour by reading the aggregates the other three DO commit.",
+      "A case where the names holding the richer data are demonstrably unrelated to the "
+      "quantity under measurement — in which case the subset is a sample and may be treated "
+      "as one, once that is shown rather than assumed."),
 
     L("L-095", "ALL", None,
       "A forecast can under-forecast revenue AND under-forecast cost and still be "

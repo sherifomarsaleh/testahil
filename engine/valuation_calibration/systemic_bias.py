@@ -42,21 +42,42 @@ others:
     CPI averaged 8.5% over 2018-21 and 22.5% over 2022-25 — so a pooled figure on Egyptian
     names measures an era at least as much as a method.
 
-WHAT THE FIRST RUN FOUND, AND IT INVERTS THE FRAMING THIS REASSESSMENT BEGAN WITH.
+WHAT THE FIRST RUN FOUND, AND THE CORRECTION THAT FOLLOWED IT WITHIN THE HOUR.
 
-On 867 committed cells the single most robust bias in this house's record is that PROFIT IS
-FORECAST AT ABOUT TWICE WHAT THE COMPANY REPORTS: pooled +0.8084 in log terms, x2.24 of
-actual, too high in 89% of cells, on BOTH names (PHDC +1.107 with 60 of 62 cells too high;
-TMGH +0.264 with 25 of 34). It is FLAT across horizons — +0.859 at one year, +0.719 at five
-— so it is a LEVEL error rather than a rate error, and it does NOT change sign between
-eras, which is the one test that separates a bias from a regime. Gross profit is the same
-shape, +0.2303, x1.26 of actual, also flat and also sign-stable.
+THE CELL-LEVEL RUN SAID PROFIT WAS FORECAST AT TWICE ACTUAL, AND THAT WAS TRUE OF THE TWO
+NAMES THAT COMMIT CELLS AND FALSE OF THE BOOK. Pooled over 867 cells: +0.8084, x2.24 of
+actual, too high in 89% of cells, on both names. It was reported as a house finding. It is
+not one, and the way that was established is the point of this note.
 
-THIS HOUSE IS NOT PESSIMISTIC ABOUT PROFIT. IT IS OPTIMISTIC ABOUT PROFIT BY ROUGHLY A
-FACTOR OF TWO, AND ITS VALUATIONS NEVERTHELESS COME OUT BELOW THE MARKET. Those two facts
-together locate the pessimism, and they locate it away from the forecasts: it lives in the
-VALUATION MACHINERY, which is exactly where [R-TERM-01] found a terminal charging g x IC for
-ever on an asset life that was the reciprocal of the inflation rate.
+Only PHDC and TMGH commit cells, and BOTH ARE EGYPTIAN REAL-ESTATE DEVELOPERS. The other
+three runs commit by-driver aggregates, which carry the same quantity at lower resolution.
+Pooled across all five names, twelve bottom-line drivers:
+
+  AMOC    npat -1.0329   pbt -1.0712   majority -1.0240   operating profit -0.6448
+  ARCC    pat  -0.4049   pbt -0.4569   majority -0.4038
+  EGCH    net  -0.8361   pbt -0.7121
+  PHDC    npat_mi +1.1159   npbt +1.0982
+  TMGH    net_profit +0.2638
+
+  POOLED  -0.3424, and only 3 of 12 drivers forecast TOO HIGH.
+
+THE SPLIT IS BY CLASS AND NOT BY HOUSE. The two DEVELOPERS forecast profit far too high; the
+three INDUSTRIALS forecast it far too LOW — AMOC at a third of actual, EGCH at under half,
+ARCC at two thirds. Gross profit splits the same way (+0.5397 at PHDC against -0.4944 at
+AMOC, -0.3122 at ARCC, -0.1606 at EGCH).
+
+SO THE PESSIMISM IS REAL AND IT IS ON THE INDUSTRIALS, which is exactly where the complaint
+came from and exactly where the terminal defect bit hardest. And the valuation machinery is
+still implicated on top of it, because [R-TERM-01]'s g x IC charge fell on those same names.
+The two findings compound rather than cancel.
+
+THIS CORRECTION IS L-097 ARRIVING AGAIN, ONE TURN LATER, AGAINST THE DESK THAT WROTE IT: a
+bias whose direction depends on a class will look like a house bias in whichever class you
+happen to be measuring. The lesson had just been registered about markets. It was not
+applied to the very next measurement, which was taken on the two names that happened to have
+the data and reported as though it spoke for the book. THE SUBSET WAS NOT CHOSEN, WHICH IS
+WHAT MADE IT FEEL LIKE A SAMPLE RATHER THAN A SELECTION — it was whichever names had
+committed their cells, and that is not a random draw either.
 
 The mechanism behind the profit optimism is legible in the lines it is built from, and each
 step is small:
@@ -80,10 +101,11 @@ that changes sign between eras is not a bias, the average of two opposite regime
 in neither, and it is REPORTED rather than corrected for. Eight of the ten lines here change
 sign across eras. TWO DO NOT — profit and gross profit — and those two are the finding.
 
-THE LIMIT, STATED PLAINLY: both names carrying cells are Egyptian real-estate developers.
-The profit-optimism finding is robust across those two, across horizons and across eras, and
-it is NOT yet a claim about this book. Whether it generalises is what the three runs that
-commit no cells would have told us, and what the next ones will.
+THE LIMIT, WHICH TURNED OUT TO BE THE FINDING: both names carrying cells are Egyptian
+real-estate developers, and the aggregates from the other three reverse the sign. The
+cell-level detail — the horizon profile, the era split, the line decomposition — is
+available for developers and for nobody else, so everything below the pooled numbers is a
+DEVELOPER finding until a third class commits its cells.
 
 NOTHING HERE IS A CORRECTION. It is a measurement, and [R-FCAL-01]'s promotion rules decide
 what may ever be done with it: expanding window only, half strength by default, applied only
@@ -252,5 +274,74 @@ def report():
     return rows
 
 
+
+
+def aggregates():
+    """The by-driver aggregates from EVERY run, on the same taxonomy as the cells.
+
+    THIS EXISTS BECAUSE THE CELL-LEVEL POOL IS NOT A SAMPLE OF THE BOOK. Only two runs
+    commit cells and both are developers, so a finding taken there and reported as a house
+    finding was wrong within the hour. The aggregates carry the same quantity at lower
+    resolution — one bias per driver rather than one per cell — and they cover all five.
+
+    Lower resolution is the price: no horizon profile, no era split, no line decomposition.
+    What they CAN answer is the only question that matters first, which is whether the sign
+    is the same everywhere.
+    """
+    out, unmapped = [], set()
+    for d in sorted(glob(os.path.join(REPO, 'engine', '*_walkforward'))):
+        tk = os.path.basename(d).replace('_walkforward', '').upper()
+        f = os.path.join(d, 'scores.json')
+        if not os.path.exists(f):
+            continue
+        bd = json.load(open(f)).get('by_driver') or {}
+        for drv, v in bd.items():
+            line = _OF.get(drv)
+            if line is None:
+                unmapped.add(f'{tk}:{drv}')
+                continue
+            b = v.get('bias')
+            if b is None:
+                continue
+            out.append(dict(ticker=tk, line=line, driver=drv, bias=float(b),
+                            n=v.get('n'), over=v.get('over')))
+    return out, sorted(unmapped)
+
+
+def report_aggregates():
+    rows, _ = aggregates()
+    names = sorted({r['ticker'] for r in rows})
+    print('\n' + '=' * 78)
+    print('THE SAME QUESTION ACROSS ALL %d RUNS, from their by-driver aggregates.' % len(names))
+    print('   Lower resolution, wider population — and THE SIGN IS NOT THE SAME EVERYWHERE.')
+    print()
+    lines = sorted({r['line'] for r in rows},
+                   key=lambda L: -len([r for r in rows if r['line'] == L]))
+    hdr = ''.join(t.rjust(10) for t in names)
+    print('  ' + 'line'.ljust(16) + hdr + 'pooled'.rjust(10) + '  split')
+    print('  ' + '-' * (16 + 10 * len(names) + 18))
+    for L in lines:
+        a = [r for r in rows if r['line'] == L]
+        cells = []
+        for tk in names:
+            v = [r['bias'] for r in a if r['ticker'] == tk]
+            cells.append(('%+.3f' % st.mean(v)) if v else '—')
+        pooled = st.mean([r['bias'] for r in a])
+        pos = {tk for tk in names
+               if [r for r in a if r['ticker'] == tk]
+               and st.mean([r['bias'] for r in a if r['ticker'] == tk]) > 0}
+        split = ('SIGN SPLITS: %s high, %s low'
+                 % ('+'.join(sorted(pos)), '+'.join(t for t in names if t not in pos))
+                 ) if pos and len(pos) < len([t for t in names
+                                              if [r for r in a if r['ticker'] == t]]) else ''
+        print('  ' + L.ljust(16) + ''.join(c.rjust(10) for c in cells)
+              + ('%+.3f' % pooled).rjust(10) + '  ' + split)
+    print()
+    print('  A LINE WHOSE SIGN SPLITS BY NAME IS NOT A HOUSE BIAS. It is a class finding at')
+    print('  best, and at worst it is two findings that happen to share a row.')
+    return rows
+
+
 if __name__ == '__main__':
     report()
+    report_aggregates()

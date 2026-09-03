@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**130 lessons**, of which 103 bind on every study, 20 on a class of company, and 7 on a single name.
+**131 lessons**, of which 104 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 55 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 56 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1009,15 +1009,25 @@ Parsing a filing for its statements and treating it as read is the statement-lev
 
 > **What would overturn it.** A study where the accounting-policies note bears on no construction in the model — in which case it is not needed, and the record should say so rather than leave the note unopened.
 
-### L-094 · This house forecasts profit at about twice what companies report, and its valuations still come out below the market. Those two facts locate the pessimism away from the forecasts.
+### L-094 · EVERY NOMINAL LINE IS UNDER-FORECAST ON EVERY NAME. That is the house bias, and it is about scale rather than about margin.
 
-The projected-versus-actual record says the forecasts lean OPTIMISTIC. So a fair value that lands below the market despite an optimistic profit line is not a cautious forecast — it is a valuation construction consuming the optimism and more. Look at the machinery, not the drivers.
+Revenue, cost of sales, operating expense, tax, finance income and provisions all come in ABOVE forecast, with the same sign on all five names measured. Nothing about any single line looks careless; what is systematic is that the whole nominal scale of the business is set too low, which is a growth-path error rather than a base-year one.
 
 **Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
 
-> **What it cost, or how we know.** On 867 committed projected-versus-actual cells, PROFIT pools at +0.8084 in log terms — x2.24 of actual — too high in 89% of cells, on both names (PHDC +1.107, 60 of 62; TMGH +0.264, 25 of 34). It is FLAT across horizons (+0.859 at one year, +0.719 at five), so a level error rather than a rate error, and it does NOT change sign between eras. Gross profit is the same shape at +0.2303. Eight of the ten lines measured DO change sign across eras and are reported rather than corrected for; these two do not.
+> **What it cost, or how we know.** Pooled by-driver bias across all five completed runs: revenue -0.316, cost of sales -0.335, operating expense -0.272, tax -1.023, finance income -0.818, provisions -0.656 — every one negative on every name that reports it. At cell level on the two runs that commit cells the error COMPOUNDS with horizon (revenue -0.023 at one year to -0.348 at five), with an intercept near zero, which is the signature of a rate error and not a level error.
 
-> **What would overturn it.** A third and fourth name committing cells whose profit bias is near zero or negative, which would make this a two-name developer finding rather than a house one. Both names carrying cells are Egyptian real-estate developers.
+> **What would overturn it.** A name whose nominal lines are over-forecast, or a horizon profile that is flat rather than compounding, either of which would move this from a growth-path finding to a base-year one.
+
+### L-094a · A finding measured on whichever names happened to have the data is not a sample of the book, and it will read like one.
+
+The subset was not CHOSEN, which is exactly what makes it feel like a random draw. It is not: whatever determined which runs committed their raw cells may well correlate with the thing being measured, and here it did — the two runs holding cells were both developers.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The cell-level pool said PROFIT was forecast at +0.8084, x2.24 of actual, too high in 89% of 867 cells, on both names that commit cells — and it was reported as a HOUSE finding. Pooled across all five runs' aggregates it is -0.3424 and only 3 of 12 bottom-line drivers are too high: the two DEVELOPERS forecast profit far too high (PHDC +1.107, TMGH +0.264) and the three INDUSTRIALS far too LOW (AMOC -0.943, EGCH -0.774, ARCC -0.422). The claim was true of the subset and false of the book, and it was corrected within the hour by reading the aggregates the other three DO commit.
+
+> **What would overturn it.** A case where the names holding the richer data are demonstrably unrelated to the quantity under measurement — in which case the subset is a sample and may be treated as one, once that is shown rather than assumed.
 
 ### L-095 · A forecast can under-forecast revenue AND under-forecast cost and still be optimistic, because the margin is the difference.
 
