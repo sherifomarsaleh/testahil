@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**160 lessons**, of which 133 bind on every study, 20 on a class of company, and 7 on a single name.
+**162 lessons**, of which 135 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 85 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 87 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1408,6 +1408,26 @@ It is the most convincing kind of dead rule, because it names its own trigger an
 > **What it cost, or how we know.** 'After ANY ledger write, assert the lifecycle invariant' has been standing since 29-Jul-2026. NEITHER writer that appends ledger rows checked it; it lived in the protocol and in whatever the operator remembered. Measured before it was asserted, per [R-ENF-02]: 0 violations across 187 (instrument, horizon) pairs, so it passes today rather than arriving red. And the invariant is NOT 'one open row per name' — steady state is four, because a fresh three-month strike demotes the prior cone to an aging tail; 114 pairs carry one open row and 73 carry two and every one is correct. What may never happen is two open rows sharing the LATEST anchor.
 
 > **What would overturn it.** A written trigger of this shape that turns out to be executed by every performer of X without anyone having wired it — which would mean prose triggers do bind.
+
+### L-240 · THE BASE A RATE IS APPLIED TO IS AS MUCH A SPECIFICATION AS THE RATE, AND A BASE BUILT FROM WHATEVER THE BALANCE SHEET HAPPENS TO CARRY IS NOT A SPECIFICATION AT ALL.
+
+A reinvestment or maintenance charge is rate x base. Every argument this house has had about terminals has been about the RATE — the implied asset life, the growth assumption — while the base went unexamined because it looked like arithmetic somebody had already done.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the ADNOCLS terminal, measured 03-Sep-2026
+
+> **What it cost, or how we know.** THE MODEL REPORT — the document every other study is written against — computes its terminal invested capital as NET BOOK property, plant and equipment plus working capital plus intangibles plus goodwill, and divides the growth rate into it. Two of those three additions are not replaced by capital expenditure at all: a maintenance programme does not buy back goodwill, and working capital is charged separately as inflation x working capital in the corrected construction, so including it in the base charges for it twice. The first is NET BOOK rather than replacement cost, which is the very distinction the corrected terminal exists to draw. Measured: the model levies 228,793 a year for ever; book depreciation on the same assets alone is 612,111, which is 2.7x the charge and is itself struck on historical cost; on the disclosed 25-year life applied to gross cost the charge should be 3.1x to 3.7x what is levied. The shared terminal module REFUSES these inputs outright — implied payout 120.2% of terminal profit — and that refusal is the module reporting that the BASE is wrong rather than the life.
+
+> **What would overturn it.** A study whose invested-capital base is demonstrably at replacement cost and still produces a maintenance charge far below its own book depreciation.
+
+### L-241 · AN IDENTITY IS WRITTEN FOR THE CASE IN FRONT OF YOU AND THEN RUNS ON EVERY CASE AFTER IT. GUARD IT BY THE CONDITION IT ASSUMES, NOT BY THE MARKET IT WAS WRITTEN FOR.
+
+An identity carries its assumptions silently — that is what makes it an identity — so when the assumption stops holding there is no error, only a plausible number. It will not announce itself and no gate about provenance, arithmetic or sourcing can see it, because nothing about it is unsourced or miscalculated.
+
+**Applies to:** every study  ·  *Learned from:* found while building, sourcing six house macro paths, 03-Sep-2026
+
+> **What it cost, or how we know.** Relative purchasing-power parity was written for Egypt, the first market sourced, and ran unconditionally on every market added after. On a HARD PEG it manufactures exactly the drift the peg forbids: the first UAE print returned a dirham sliding 3.6725 to 3.65 over five years off a 0.5pp inflation differential that a fixed nominal rate absorbs as a REAL appreciation. A study reading it would have escalated dollar revenue against a depreciating dirham and called it derived — a claim that the peg breaks, made silently, by arithmetic. The same relation on the UNITED STATES path compared the dollar with itself and returned a 0.98% depreciation of the dollar against the dollar. Both were found by PRINTING a newly sourced path, not by any gate. Both are now guarded by regime and by numeraire and pinned in the negative control on all seven markets in both directions.
+
+> **What would overturn it.** A currency identity that produces the right answer under a regime it does not assume — which would mean the guard is unnecessary rather than merely quiet.
 
 
 ---
