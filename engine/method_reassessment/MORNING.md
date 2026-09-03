@@ -120,3 +120,46 @@ Questions and deliveries that arose overnight, each with the evidence and the re
     **The recommendation is to merge it, and the reason is not tidiness.** A rule that sits on a branch binds nothing: the next study starts from a fresh clone of `main`, and `main` carries none of this. That is [R-MERGE-01]'s own argument and it applies here at programme scale rather than at one name's. I have opened the PR unprompted as that rule requires but stopped short of merging, because the rule's merge half is written for a campaign name and this is forty commits rewriting both governing documents — a decision I would rather you took at a glance than have me take while you slept.
 
     Merging moves `fair{}` in the repository, not on testahil.com. **Nothing publishes to the live site**, and nothing will without the word.
+
+40. **The founding question, answered on the whole published book — and the answer changes what to do about it.** I built the dated vintage archive the programme was missing (`engine/fv_vintages.json`: 103 fair values across 90 names, 11-Jun to 01-Sep 2026, each with the spot recorded beside it at the time), and measured every one against its own price.
+
+    | | |
+    |---|---|
+    | mean log(FV/P) | **−10.6%** |
+    | **median** | **−0.3%** |
+    | below the price | 46 of 90 (51%) |
+    | mean absolute gap | 26.5% |
+    | 95% interval, clustered by exchange | −25.2% to +6.6% — straddles zero |
+
+    **The median name sits three tenths of a per cent from its price and the split is a coin flip.** The −10.6% mean is entirely a tail: ten names read more than 40% below their price against three more than 40% above. The typical *disagreement* is large in both directions; the typical *position* is neutral.
+
+    That is a different diagnosis from "ridiculously pessimistic", and I want to be plain about why it matters: **the obvious remedy would have been the wrong one.** A uniformly pessimistic house is fixed by moving a rate or a terminal — one change, whole book. A well-centred house with a long left tail is fixed by auditing the tail names one at a time. Had I acted on the mean, every centred name would have been pushed off its price to correct ten that were wrong.
+
+    Two limits, stated in the output rather than left implied: these vintages were struck on different dates under different standards and most predate the reassessment, so this is a picture of the *book*, never a measure of one method; and it measures agreement, which is not accuracy.
+
+41. **The tail, named — and a question about the order of Phase 2.**
+
+    | | | |
+    |---|---|---|
+    | ELEC | −84.5% | study, no gap review |
+    | EGCH | −74.0% | rebuilt, reviewed |
+    | KABO | −73.8% | **no study directory** |
+    | IHC | −71.9% | **no study directory** |
+    | OIH | −58.5% | **no study directory** |
+    | RMDA | −56.4% | **no study directory** |
+    | DSCW | −55.1% | **no study directory** |
+    | PHAR | −52.9% | study, no gap review |
+    | CLHO | −48.0% | **no study directory** |
+    | EFIH | −42.6% | **no study directory** |
+
+    These sixteen names (the table shows ten) are the whole of the book's lean, which makes them the highest-value rebuilds in the programme.
+
+    **The question: should Phase 2 follow this order rather than the campaign's market order?** I have not changed anything — the campaign queue still runs EGX → UAE → KSA and so on. The argument against re-ordering is real and I think it is the stronger one: the market order exists so a method is tested across a whole market before it travels, and starting with the largest gaps would test it first on exactly the names most likely to be unusual. But it is your call, and leaving it unasked would have been the wrong kind of quiet.
+
+42. **Seventy-six per cent of what the site publishes is outside every gate's population.** 68 of the 90 published fair values have no study directory. Every construction gate — bridge, lens, cost of capital, macro coherence, valuation gap, workbook structure, output records — globs `engine/*_study/`, so each is correct about the population it names and **silent about 68 numbers a reader can see on the site today**.
+
+    The shortfall itself is not news; the fair-value register already records that most covered names carry no current-standard study. What is new is the consequence measured: the gates report clean over a quarter of the book. That is [R-ENF-04]'s own question one level up — a population anchored on study directories, applied to a book anchored on `data.js`.
+
+    **And the obvious inference is wrong, which is why I computed it instead of assuming it:** the 22 names *with* a study average −20.3% against price; the 68 *without* average −7.3%. The examined names carry the larger discounts. It is confounded — a study gets written where the house has a view, and several of these are the names deliberately audited — but "the unexamined ones are where the errors are" is not what the numbers say.
+
+43. **A reader that invented a company, caught before the archive was trusted.** The first version of the vintage reader used a regular expression, and a nested horizon object (`hz:{...}`) let a non-greedy match run past its closing brace and swallow the next name's fair value — producing **sixteen vintages for a ticker that does not exist**, and 93 names where the file holds 90. That is the [R-ENF-03] lesson exactly: a checker that models the parser is reading a different file from the one that ships. It now loads each historical file with `node`, the way the site does, and counts what it read against the file's own total. A second version of the same disease: the walk included branch commits, so a value that lived on a branch for a few hours read as a published vintage and AMOC showed twelve, alternating within a single day. It now walks the published line only.
