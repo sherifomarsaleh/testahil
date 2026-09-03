@@ -1,0 +1,900 @@
+{
+ "_why": "What the table-footing gate found in the studies that do NOT yet carry a footing_check.py, recorded on 03-Sep-2026 so the finding is not lost between sessions. A case whose closest printed block lands within a few per cent of the stated total is the TMGH SIGNATURE \u2014 a summary statement omitting small lines it holds as registered inputs, which closes at the top and fails a reader in every block below. Those are REAL. The rest are probably structural (a disclosed line item among its peers, a transposed cost-of-capital table, a blend across a dimension the column does not carry) and need a declaration with a reason, not a fix. NEITHER IS RESOLVED HERE: these studies stay on the ratchet until somebody looks at each case, which is what the ratchet is for.",
+ "_recorded": "2026-09-03",
+ "findings": {
+  "ADNOCDIST": [
+   {
+    "document": "ADNOCDIST_Valuation_Study_09-08-2026.docx",
+    "table": 20,
+    "row": 13,
+    "col": 1,
+    "label": "WEIGHTED AVERAGE COST OF CAPITAL, today",
+    "printed": "7.44%",
+    "closest_block_gap_pct": 1244.086,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "ADNOCDRILL": [
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 17,
+    "row": 10,
+    "col": 1,
+    "label": "Weighted average cost of capital",
+    "printed": "8.01%",
+    "closest_block_gap_pct": 1095.88,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 17,
+    "row": 10,
+    "col": 2,
+    "label": "Weighted average cost of capital",
+    "printed": "8.05%",
+    "closest_block_gap_pct": 1089.938,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 14,
+    "col": 4,
+    "label": "Total liabilities",
+    "printed": "5,307",
+    "closest_block_gap_pct": 0.603,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 14,
+    "col": 5,
+    "label": "Total liabilities",
+    "printed": "5,420",
+    "closest_block_gap_pct": 0.609,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 14,
+    "col": 6,
+    "label": "Total liabilities",
+    "printed": "5,576",
+    "closest_block_gap_pct": 0.61,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 14,
+    "col": 7,
+    "label": "Total liabilities",
+    "printed": "5,725",
+    "closest_block_gap_pct": 0.576,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 14,
+    "col": 8,
+    "label": "Total liabilities",
+    "printed": "5,828",
+    "closest_block_gap_pct": 0.549,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 1,
+    "label": "Total equity",
+    "printed": "3,264",
+    "closest_block_gap_pct": 6.495,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 3,
+    "label": "Total equity",
+    "printed": "4,099",
+    "closest_block_gap_pct": 1.415,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 4,
+    "label": "Total equity",
+    "printed": "4,424",
+    "closest_block_gap_pct": 20.208,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 5,
+    "label": "Total equity",
+    "printed": "4,843",
+    "closest_block_gap_pct": 12.162,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 6,
+    "label": "Total equity",
+    "printed": "5,379",
+    "closest_block_gap_pct": 3.904,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 7,
+    "label": "Total equity",
+    "printed": "6,002",
+    "closest_block_gap_pct": 1.749,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "ADNOCDRILL_Valuation_Study_09-08-2026.docx",
+    "table": 28,
+    "row": 15,
+    "col": 8,
+    "label": "Total equity",
+    "printed": "6,665",
+    "closest_block_gap_pct": 2.836,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   }
+  ],
+  "ADNOCLS": [
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 4,
+    "col": 1,
+    "label": "Blended enterprise multiple",
+    "printed": "11.10\u00d7",
+    "closest_block_gap_pct": 256.126,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 5,
+    "col": 1,
+    "label": "Blended price-to-earnings multiple, forward",
+    "printed": "11.64\u00d7",
+    "closest_block_gap_pct": 261.684,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "5,746",
+    "closest_block_gap_pct": 14.88,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "7,003",
+    "closest_block_gap_pct": 19.834,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "9,965",
+    "closest_block_gap_pct": 11.801,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 4,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 5,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 6,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 7,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "ADNOCLS_Valuation_Study_09-08-2026_public.docx",
+    "table": 40,
+    "row": 10,
+    "col": 8,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "AMR": [
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 14,
+    "row": 5,
+    "col": 1,
+    "label": "Blended equity risk premium",
+    "printed": "6.20%",
+    "closest_block_gap_pct": 10.0,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 14,
+    "row": 5,
+    "col": 2,
+    "label": "Blended equity risk premium",
+    "printed": "5.93%",
+    "closest_block_gap_pct": 5.902,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "1,557",
+    "closest_block_gap_pct": 0.642,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "1,507",
+    "closest_block_gap_pct": 0.73,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "1,734",
+    "closest_block_gap_pct": 0.865,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 4,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 5,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 6,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 7,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "AMR_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 6,
+    "col": 8,
+    "label": "Total assets",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "BOROUGE": [
+   {
+    "document": "BOROUGE_Valuation_Study_09-08-2026_public.docx",
+    "table": 24,
+    "row": 4,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "8,944",
+    "closest_block_gap_pct": 14.177,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "BOROUGE_Valuation_Study_09-08-2026_public.docx",
+    "table": 24,
+    "row": 4,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "8,707",
+    "closest_block_gap_pct": 15.551,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "BOROUGE_Valuation_Study_09-08-2026_public.docx",
+    "table": 24,
+    "row": 4,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "8,489",
+    "closest_block_gap_pct": 17.152,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "DU": [
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 1,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "16.00",
+    "closest_block_gap_pct": 166.437,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 2,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "17.45",
+    "closest_block_gap_pct": 116.504,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 3,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "18.89",
+    "closest_block_gap_pct": 80.042,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 4,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "20.33",
+    "closest_block_gap_pct": 59.37,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 5,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "21.78",
+    "closest_block_gap_pct": 34.068,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 3,
+    "col": 6,
+    "label": "Blended ARPU (\u00d7)  (0.92 / 0.96 / 1.00 / 1.04 / 1.08)",
+    "printed": "5.77",
+    "closest_block_gap_pct": 132.756,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 6,
+    "col": 1,
+    "label": "Blended ARPU drift (%/yr)  (-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)",
+    "printed": "15.47",
+    "closest_block_gap_pct": 145.831,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 6,
+    "col": 2,
+    "label": "Blended ARPU drift (%/yr)  (-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)",
+    "printed": "16.81",
+    "closest_block_gap_pct": 125.461,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 6,
+    "col": 4,
+    "label": "Blended ARPU drift (%/yr)  (-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)",
+    "printed": "19.61",
+    "closest_block_gap_pct": 92.045,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 6,
+    "col": 5,
+    "label": "Blended ARPU drift (%/yr)  (-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)",
+    "printed": "20.33",
+    "closest_block_gap_pct": 84.604,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 12,
+    "row": 6,
+    "col": 6,
+    "label": "Blended ARPU drift (%/yr)  (-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)",
+    "printed": "4.86",
+    "closest_block_gap_pct": 12.551,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 1,
+    "label": "Total equity",
+    "printed": "9,243",
+    "closest_block_gap_pct": 37.412,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 2,
+    "label": "Total equity",
+    "printed": "9,878",
+    "closest_block_gap_pct": 39.472,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 3,
+    "label": "Total equity",
+    "printed": "10,148",
+    "closest_block_gap_pct": 41.614,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 4,
+    "label": "Total equity",
+    "printed": "10,213",
+    "closest_block_gap_pct": 43.748,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 5,
+    "label": "Total equity",
+    "printed": "10,279",
+    "closest_block_gap_pct": 45.082,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 6,
+    "label": "Total equity",
+    "printed": "10,349",
+    "closest_block_gap_pct": 45.86,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 7,
+    "label": "Total equity",
+    "printed": "10,421",
+    "closest_block_gap_pct": 45.264,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "DU_Valuation_Study_09-08-2026_public.docx",
+    "table": 17,
+    "row": 8,
+    "col": 8,
+    "label": "Total equity",
+    "printed": "10,497",
+    "closest_block_gap_pct": 44.222,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "EMPOWER": [
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 9,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "9,728",
+    "closest_block_gap_pct": 0.956,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 9,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "11,183",
+    "closest_block_gap_pct": 1.082,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 9,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "11,817",
+    "closest_block_gap_pct": 1.32,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 9,
+    "col": 4,
+    "label": "Total assets",
+    "printed": "12,267",
+    "closest_block_gap_pct": 1.761,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 13,
+    "col": 2,
+    "label": "Total liabilities",
+    "printed": "7,810",
+    "closest_block_gap_pct": 8.041,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 13,
+    "col": 3,
+    "label": "Total liabilities",
+    "printed": "8,320",
+    "closest_block_gap_pct": 7.812,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EMPOWER_Valuation_Study_09-08-2026_public.docx",
+    "table": 25,
+    "row": 13,
+    "col": 4,
+    "label": "Total liabilities",
+    "printed": "8,739",
+    "closest_block_gap_pct": 8.88,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "FERTIGLOBE": [
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 14,
+    "row": 8,
+    "col": 1,
+    "label": "Weighted average cost of capital",
+    "printed": "11.9%",
+    "closest_block_gap_pct": 699.16,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 14,
+    "row": 8,
+    "col": 2,
+    "label": "Weighted average cost of capital",
+    "printed": "10.7%",
+    "closest_block_gap_pct": 788.785,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 15,
+    "row": 5,
+    "col": 1,
+    "label": "Weighted average capitalisation rate",
+    "printed": "\u2014",
+    "closest_block_gap_pct": null,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 15,
+    "row": 5,
+    "col": 2,
+    "label": "Weighted average capitalisation rate",
+    "printed": "6.6%",
+    "closest_block_gap_pct": 23.485,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 32,
+    "row": 5,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "4,626",
+    "closest_block_gap_pct": 15.521,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 32,
+    "row": 5,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "4,411",
+    "closest_block_gap_pct": 16.436,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 32,
+    "row": 5,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "4,950",
+    "closest_block_gap_pct": 17.919,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 32,
+    "row": 5,
+    "col": 4,
+    "label": "Total assets",
+    "printed": "5,642",
+    "closest_block_gap_pct": 58.224,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "Fertiglobe_Valuation_Study_09-08-2026.docx",
+    "table": 32,
+    "row": 11,
+    "col": 4,
+    "label": "Total equity",
+    "printed": "2,163",
+    "closest_block_gap_pct": 20.897,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "PHAR": [
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 6,
+    "row": 8,
+    "col": 1,
+    "label": "Total enterprise value",
+    "printed": "17,163",
+    "closest_block_gap_pct": 0.431,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 6,
+    "row": 8,
+    "col": 2,
+    "label": "Total enterprise value",
+    "printed": "101.71",
+    "closest_block_gap_pct": 82.578,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 12,
+    "row": 4,
+    "col": 1,
+    "label": "TOTAL equity risk premium",
+    "printed": "9.52%",
+    "closest_block_gap_pct": 141.597,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 12,
+    "row": 4,
+    "col": 2,
+    "label": "TOTAL equity risk premium",
+    "printed": "13.48%",
+    "closest_block_gap_pct": 70.623,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 12,
+    "row": 11,
+    "col": 1,
+    "label": "Blended cost of debt, after tax",
+    "printed": "14.38%",
+    "closest_block_gap_pct": 37.969,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "EIPICO_Valuation_Study_09-08-2026.docx",
+    "table": 12,
+    "row": 11,
+    "col": 2,
+    "label": "Blended cost of debt, after tax",
+    "printed": "14.38%",
+    "closest_block_gap_pct": 37.969,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "RIYADHCABLE": [
+   {
+    "document": "RIYADHCABLE_Valuation_Study_18-08-2026_public.docx",
+    "table": 9,
+    "row": 5,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "4,831",
+    "closest_block_gap_pct": 3.022,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "RIYADHCABLE_Valuation_Study_18-08-2026_public.docx",
+    "table": 9,
+    "row": 5,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "5,812",
+    "closest_block_gap_pct": 2.529,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   },
+   {
+    "document": "RIYADHCABLE_Valuation_Study_18-08-2026_public.docx",
+    "table": 9,
+    "row": 5,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "7,282",
+    "closest_block_gap_pct": 5.905,
+    "verdict": "LIKELY REAL \u2014 a printed block that almost foots"
+   }
+  ],
+  "SCEM": [
+   {
+    "document": "SCEM_Valuation_Study_06-08-2026_public.docx",
+    "table": 16,
+    "row": 9,
+    "col": 1,
+    "label": "Weighted average cost of capital",
+    "printed": "28.30%",
+    "closest_block_gap_pct": 40.495,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "SCEM_Valuation_Study_06-08-2026_public.docx",
+    "table": 16,
+    "row": 9,
+    "col": 2,
+    "label": "Weighted average cost of capital",
+    "printed": "19.01%",
+    "closest_block_gap_pct": 66.334,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ],
+  "SWDY": [
+   {
+    "document": "SWDY_Valuation_Study_05-08-2026_public.docx",
+    "table": 26,
+    "row": 7,
+    "col": 1,
+    "label": "Total assets",
+    "printed": "151,449",
+    "closest_block_gap_pct": 6.888,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "SWDY_Valuation_Study_05-08-2026_public.docx",
+    "table": 26,
+    "row": 7,
+    "col": 2,
+    "label": "Total assets",
+    "printed": "249,527",
+    "closest_block_gap_pct": 6.31,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   },
+   {
+    "document": "SWDY_Valuation_Study_05-08-2026_public.docx",
+    "table": 26,
+    "row": 7,
+    "col": 3,
+    "label": "Total assets",
+    "printed": "311,099",
+    "closest_block_gap_pct": 6.563,
+    "verdict": "probably structural \u2014 a line item or a blend"
+   }
+  ]
+ }
+}

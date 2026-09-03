@@ -2822,6 +2822,29 @@ LESSONS = [
       "A presentation that deliberately shows principal lines only and SAYS so, where the "
       "residual is labelled rather than absent."),
 
+    L("L-231", "ALL", None,
+      "TRIAGE A GATE'S BACKLOG BY HOW CLOSE THE ARITHMETIC COMES, NOT BY THE LABEL. A block "
+      "that ALMOST foots is a missing line; one that is wildly off is a different kind of "
+      "row altogether.",
+      "Both arrive as the same complaint — a total that does not follow from the rows above "
+      "it — and reading eighty-seven of them one at a time is how a backlog becomes "
+      "permanent. The distance separates them in a single pass.",
+      "the table-footing port, 03-Sep-2026",
+      "build",
+      "Run across the nineteen studies carrying no footing check, the gate reported 87 "
+      "unreconciled totals. Sorting each by how close its nearest printed block comes to the "
+      "stated total split them cleanly: 21 land within six per cent, and every one inspected "
+      "is the TMGH signature — a summary statement omitting small lines it already holds as "
+      "registered inputs, closing perfectly at the top and short by half a point to two "
+      "points in each block below (ADNOCDRILL, AMR, EMPOWER, RIYADHCABLE, EIPICO). The other "
+      "66 are far off and are structural: a disclosed line item among its peers, a "
+      "transposed cost-of-capital table whose weights are a row, a blend across a dimension "
+      "the column does not carry. Recorded in footing_findings.json rather than resolved, "
+      "because recording a finding is what stops a backlog from silently becoming a "
+      "declaration.",
+      "A backlog where the two classes overlap in distance, which would mean the triage is "
+      "measuring the wrong thing and each case must be read individually."),
+
 ]
 
 
