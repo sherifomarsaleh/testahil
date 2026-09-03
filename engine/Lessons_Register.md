@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**152 lessons**, of which 125 bind on every study, 20 on a class of company, and 7 on a single name.
+**153 lessons**, of which 126 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 77 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 78 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1328,6 +1328,16 @@ Both arrive as the same complaint — a total that does not follow from the rows
 > **What it cost, or how we know.** Run across the nineteen studies carrying no footing check, the gate reported 87 unreconciled totals. Sorting each by how close its nearest printed block comes to the stated total split them cleanly: 21 land within six per cent, and every one inspected is the TMGH signature — a summary statement omitting small lines it already holds as registered inputs, closing perfectly at the top and short by half a point to two points in each block below (ADNOCDRILL, AMR, EMPOWER, RIYADHCABLE, EIPICO). The other 66 are far off and are structural: a disclosed line item among its peers, a transposed cost-of-capital table whose weights are a row, a blend across a dimension the column does not carry. Recorded in footing_findings.json rather than resolved, because recording a finding is what stops a backlog from silently becoming a declaration.
 
 > **What would overturn it.** A backlog where the two classes overlap in distance, which would mean the triage is measuring the wrong thing and each case must be read individually.
+
+### L-232 · WHEN A RULE KEEPS BREAKING, SUSPECT THE INSTRUMENT BEFORE THE WILL. Ask what mechanism is behind it and whether that mechanism can physically do the job.
+
+A rule that has been restated three times and broken three times is not a rule anyone disagrees with. Restating it a fourth time is the cheapest response and the one least likely to work; asking what enforces it is the expensive one.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the continuation routine, 03-Sep-2026
+
+> **What it cost, or how we know.** "Do not stop" was adopted, written into the operating protocol, and broken twice in one afternoon, each time by ending a turn on a progress report. The machinery behind it was an hourly cron, and a cron has three properties that make it unable to do this job: it CANNOT FIRE INTO A TURN THAT IS ALREADY RUNNING, so it shortens the gap after a stop and can never prevent one; its floor is SIXTY MINUTES, tested and refused below that; and nothing inside a turn forces a next action. Its own prompt admitted the first — "so that stopping costs an hour rather than half a day" — which describes a backstop. The replacement is SELF-RE-INVOCATION: the last act of a turn that ends with work remaining launches a background task whose EXIT re-invokes the session, caused by the stop rather than by a clock, inside the turn's own control, and costing a minute. The cron is demoted to the archived-session case it can actually serve.
+
+> **What would overturn it.** A rule that keeps breaking while its mechanism demonstrably can do the job, which would mean the diagnosis really is about will and the remedy is elsewhere.
 
 
 ---

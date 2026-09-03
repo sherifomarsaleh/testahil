@@ -2845,6 +2845,29 @@ LESSONS = [
       "A backlog where the two classes overlap in distance, which would mean the triage is "
       "measuring the wrong thing and each case must be read individually."),
 
+    L("L-232", "ALL", None,
+      "WHEN A RULE KEEPS BREAKING, SUSPECT THE INSTRUMENT BEFORE THE WILL. Ask what mechanism "
+      "is behind it and whether that mechanism can physically do the job.",
+      "A rule that has been restated three times and broken three times is not a rule anyone "
+      "disagrees with. Restating it a fourth time is the cheapest response and the one least "
+      "likely to work; asking what enforces it is the expensive one.",
+      "the continuation routine, 03-Sep-2026",
+      "build",
+      "\"Do not stop\" was adopted, written into the operating protocol, and broken twice in "
+      "one afternoon, each time by ending a turn on a progress report. The machinery behind "
+      "it was an hourly cron, and a cron has three properties that make it unable to do this "
+      "job: it CANNOT FIRE INTO A TURN THAT IS ALREADY RUNNING, so it shortens the gap after "
+      "a stop and can never prevent one; its floor is SIXTY MINUTES, tested and refused "
+      "below that; and nothing inside a turn forces a next action. Its own prompt admitted "
+      "the first — \"so that stopping costs an hour rather than half a day\" — which "
+      "describes a backstop. The replacement is SELF-RE-INVOCATION: the last act of a turn "
+      "that ends with work remaining launches a background task whose EXIT re-invokes the "
+      "session, caused by the stop rather than by a clock, inside the turn\'s own control, "
+      "and costing a minute. The cron is demoted to the archived-session case it can "
+      "actually serve.",
+      "A rule that keeps breaking while its mechanism demonstrably can do the job, which "
+      "would mean the diagnosis really is about will and the remedy is elsewhere."),
+
 ]
 
 
