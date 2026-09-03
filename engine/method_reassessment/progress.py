@@ -464,7 +464,28 @@ def documents_current(tk: str) -> tuple:
                         return round(float(src[k]), 4)
         return None
 
-    hist = git("log", "--format=%H|%ct", "--", os.path.relpath(nf, ROOT)).splitlines()
+    # THE ANSWER AND THE DOCUMENT MUST BE READ FROM THE SAME REF. The document was
+    # searched across every live branch while the central's history was read from
+    # this checkout, so a study revalued on another session's branch showed its
+    # document as current against an answer that had already moved past it — ARCC
+    # to 53.21 and AMOC to 11.83 while this reported both clean. Mixed populations,
+    # the same error this file has now made three times in one day.
+    ref_for_answer = "HEAD"
+    for b in live_branches():
+        blob = git("show", "%s:%s" % (b["branch"], os.path.relpath(nf, ROOT)))
+        if not blob:
+            continue
+        try:
+            j = json.loads(blob)
+        except Exception:
+            continue
+        cur = j.get("central")
+        here = json.loads(open(nf, encoding="utf-8").read()).get("central")
+        if cur != here:
+            ref_for_answer = b["branch"]
+            break
+    hist = git("log", "--format=%H|%ct", ref_for_answer,
+               "--", os.path.relpath(nf, ROOT)).splitlines()
     prev, moved = None, None
     for line in hist:                       # newest first
         sha, ct = line.split("|")
