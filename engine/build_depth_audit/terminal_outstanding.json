@@ -4,7 +4,6 @@
  "_seeded": "2026-09-03",
  "breaching": {
   "ADNOCLS": "terminal -4.9% below its own floor; predates [R-TERM-01] and gets engine/terminal_value.py at its next re-issue",
-  "ARCC": "terminal -34.6% below its own floor; predates [R-TERM-01] and gets engine/terminal_value.py at its next re-issue",
   "FERTIGLOBE": "terminal -30.7% below its own floor; predates [R-TERM-01] and gets engine/terminal_value.py at its next re-issue",
   "MODON": "terminal -8.4% below its own floor; predates [R-TERM-01] and gets engine/terminal_value.py at its next re-issue"
  },
