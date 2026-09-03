@@ -37,7 +37,23 @@ RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'sitedata_outstandin
 # — and once every offender is fixed the gate would examine ZERO and refuse. The negative
 # control caught exactly that: three of its cases failed on an empty population rather than
 # on the condition each was written to test.
-READS_RX = re.compile(r'data\.js|site_data')
+#
+# THE PREDICATE IS A PATH CONSTRUCTION, NOT THE WORD [RE-POINTED 03-Sep-2026]. The first
+# draft keyed the population on the STRING "data.js" appearing anywhere, and three of the
+# thirteen files it ratcheted never open the file at all: two carry "data.js" inside an
+# external-reader SCRUB WORD LIST — the list of internal vocabulary a delivered document
+# may not contain — and one names it in a prose comment, while each separately uses a
+# regular expression for something else entirely (matching a scrub word against a
+# paragraph, parsing a date out of a filename). Their work was right and the check fired
+# on it. Per [R-COC-01] the answer is to RE-POINT the check at the quantity it means,
+# never to widen it and never to change the work to satisfy it: a file reads the site's
+# data if it RESOLVES THE PATH to it, or if it goes through the shared reader. Naming the
+# file in a sentence is not reading it. The cost of the wrong predicate was not cosmetic —
+# a ratchet entry standing over innocent work is an entry that would silently EXCUSE that
+# file the day it did start parsing data.js by hand.
+READS_RX = re.compile(r"""['\"]assets['\"]\s*[,/]\s*['\"]data\.js['\"]"""
+                      r"""|['\"][^'\"]*assets/data\.js['\"]"""
+                      r"""|import\s+site_data|from\s+site_data\b|site_data\.""")
 # a real parse: either through the shared reader, or by evaluating the file in node
 OK_RX = re.compile(r'(import\s+site_data|from\s+site_data|site_data\.|'
                    r'runInContext|vm\.createContext)')
