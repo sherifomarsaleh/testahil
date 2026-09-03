@@ -143,9 +143,20 @@ def main():
         put_list(tmp, [])
     case("clean: an artefact carrying no valuation figure", k_no_valuation, False, results)
 
-    def k_two_sided(tmp):
-        # a two-sided study exposes no scalar central; its branches are checked by
-        # [R-GAP-01], not here, and this gate must not invent a comparison
+    # THIS CASE IS INVERTED, NOT DELETED [03-Sep-2026]. It asserted that a two-sided study
+    # must NOT fire, on the reasoning that its branches are [R-GAP-01]'s business and this
+    # gate must not invent a comparison. The reasoning was wrong in a way that mattered:
+    # the gate skipped every two-sided study ENTIRELY, with a comment claiming the branches
+    # were "handled by its branches" while nothing handled them, and EGCH's
+    # contested_judgements.json sat stale at 1.7854 against a published 2.3109 for the whole
+    # day. An artefact carrying a valuation figure must declare its vintage whether the
+    # study publishes one answer or two.
+    #
+    # Keeping the case and flipping its expectation is the sharpest available evidence the
+    # change took effect — the same discipline [R-GAP-01] recorded when its own one-sided
+    # case was inverted. Deleting it would have left the change untested exactly where it
+    # matters.
+    def m_two_sided_undeclared(tmp):
         d = os.path.join(tmp, "engine", "ncl_study")
         os.makedirs(d, exist_ok=True)
         json.dump({"central": None, "spot": 14.41,
@@ -154,8 +165,44 @@ def main():
         json.dump({"base": {"central": 1.79}},
                   open(os.path.join(d, "thing.json"), "w"), indent=1)
         put_list(tmp, [])
-    case("clean: a two-sided study, no scalar central to compare",
-         k_two_sided, False, results)
+    case("EGCH's shape: a two-sided study whose artefact declares no vintage",
+         m_two_sided_undeclared, True, results)
+
+    def k_two_sided_declared(tmp):
+        """And the construction that must still pass: two-sided, and the artefact SAYS what
+        it was built against."""
+        d = os.path.join(tmp, "engine", "ncl_study")
+        os.makedirs(d, exist_ok=True)
+        json.dump({"central": None, "spot": 14.41,
+                   "central_two_sided": {"branches": [{"value": 1.79}, {"value": 5.90}]}},
+                  open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
+        json.dump({"base": {"central": 1.79}, "published_central": 1.79,
+                   "published_spot": 14.41},
+                  open(os.path.join(d, "thing.json"), "w"), indent=1)
+        put_list(tmp, [])
+    case("clean: a two-sided study whose artefact declares its vintage",
+         k_two_sided_declared, False, results)
+
+    def m_unparseable_numbers(tmp):
+        """An unreadable answer is not a clean answer [R-ENF-04] — this was a silent skip."""
+        d = os.path.join(tmp, "engine", "ncl_study")
+        os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "study_numbers.json"), "w").write("{not json,")
+        json.dump({"base": {"central": 1.79}},
+                  open(os.path.join(d, "thing.json"), "w"), indent=1)
+        put_list(tmp, [])
+    case("an unparseable study_numbers.json beside a valuation artefact",
+         m_unparseable_numbers, True, results)
+
+    def m_no_numbers_file(tmp):
+        """Artefacts and no published answer to be current with — also a silent skip."""
+        d = os.path.join(tmp, "engine", "ncl_study")
+        os.makedirs(d, exist_ok=True)
+        json.dump({"base": {"central": 1.79}},
+                  open(os.path.join(d, "thing.json"), "w"), indent=1)
+        put_list(tmp, [])
+    case("valuation artefacts and no study_numbers.json at all",
+         m_no_numbers_file, True, results)
 
     print("\n  %-62s %-6s %s" % ("condition", "ok", "gate said"))
     print("  " + "-" * 104)

@@ -119,6 +119,37 @@ def main(argv):
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
     known = set(d.get('outstanding', []))
 
+    # A STUDY WHOSE ANSWER IS ALREADY RECORDED AS UNREADABLE IS RECORDED ONCE
+    # [added 03-Sep-2026]. Closing this gate's three silent skips turned up ten studies
+    # that expose no numeric central, no branches, or no numbers file at all — and every
+    # one of the ten is ALREADY on [R-GAP-01]'s own unreadable list, which that rule seeded
+    # on its adoption day with exactly this population ("16 of 24 study directories were in
+    # that state on adoption day and every one would have read as clean").
+    #
+    # This gate's ratchet may only ever SHORTEN, so it cannot be seeded again; and writing
+    # the same fact into a second list is the drift [R-DOC-01] closes — two records of one
+    # thing, diverging the moment one of them is pruned. The unreadable population lives in
+    # the gap ratchet, which is where it was first measured, and this gate defers to it.
+    # What this gate still catches on those studies is everything else: an artefact that
+    # declares a vintage and the vintage is wrong.
+    try:
+        _gap = json.load(open(os.path.join(ENGINE, 'build_depth_audit',
+                                           'gap_outstanding.json'), encoding='utf-8'))
+        _unreadable = set()
+        def _walk(o):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    _unreadable.add(str(k))
+                    _walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    _walk(v) if isinstance(v, (dict, list)) else _unreadable.add(str(v))
+        _walk(_gap)
+    except Exception:                                                   # noqa: BLE001
+        # An absent or unparseable gap ratchet is not a licence to skip: without it this
+        # gate cannot tell a deferred study from an unexamined one, so it defers to nothing.
+        _unreadable = set()
+
     dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
     if not dirs:
         print('FAIL - examined zero studies. An empty result is not a clean result.')
@@ -134,16 +165,55 @@ def main(argv):
     bad, ok_rows, conform = [], [], []
     for sdir in dirs:
         tk = os.path.basename(sdir)[:-6].upper()
+        # THREE SILENT SKIPS, ALL THREE CLOSED [corrected 03-Sep-2026, found by
+        # scripts/check_new_study_gauntlet.py planting an offending artefact in an empty
+        # study directory and watching this gate report clean].
+        #
+        # (1) NO NUMBERS FILE was a skip. A study with builder-read artefacts carrying a
+        #     valuation figure and no numbers file is [R-ENF-06]'s own case at its purest:
+        #     a figure frozen where nothing writes it and nothing to be current WITH.
+        # (2) AN UNPARSEABLE NUMBERS FILE was a skip, which is the [R-ENF-04] species
+        #     inside a gate — the valuation-gap gate already refuses exactly this way and
+        #     records the reason: an unreadable answer is not a clean answer.
+        # (3) A NON-NUMERIC CENTRAL was skipped with the comment "a two-sided study;
+        #     handled by its branches" AND NOTHING HANDLED THE BRANCHES. EGCH publishes a
+        #     two-sided answer, so it escaped this gate entirely while the comment said it
+        #     did not. A comment asserting a check that does not exist is worse than no
+        #     comment, because it stops the next reader looking.
         sn = os.path.join(sdir, 'study_numbers.json')
+        arts = [f for f in sorted(glob.glob(os.path.join(sdir, '*.json')))
+                if os.path.basename(f) not in ('study_numbers.json',) + tuple(NOT_OUTPUTS)]
         if not os.path.exists(sn):
+            if arts and tk not in known and tk not in _unreadable:
+                bad.append((tk, '(the study directory)',
+                            'no study_numbers.json, but %d other JSON artefact(s) present. '
+                            'An artefact carrying a valuation figure with no published '
+                            'answer to be current with cannot be checked, and cannot be '
+                            'assumed clean.' % len(arts)))
             continue
         try:
             doc = json.load(open(sn, encoding='utf-8'))
-        except Exception:
+        except Exception as e:                                          # noqa: BLE001
+            bad.append((tk, 'study_numbers.json',
+                        'will not parse (%s). An unreadable answer is not a clean answer '
+                        '[R-ENF-04].' % type(e).__name__))
             continue
         central, spot = doc.get('central'), doc.get('spot')
         if not isinstance(central, (int, float)):
-            continue                       # a two-sided study; handled by its branches
+            # A TWO-SIDED STUDY, NOW ACTUALLY HANDLED: its branches are the answer, so the
+            # artefacts are held to the branch nearest each figure. Where no branch can be
+            # read either, that is a study publishing nothing this gate can anchor on and
+            # it says so rather than passing.
+            _br = [b.get('value') for b in
+                   ((doc.get('central_two_sided') or {}).get('branches') or [])
+                   if isinstance(b.get('value'), (int, float))]
+            if not _br:
+                if arts and tk not in known and tk not in _unreadable:
+                    bad.append((tk, '(the study directory)',
+                                'no numeric central and no readable branches, so no answer '
+                                'this gate can hold %d artefact(s) to.' % len(arts)))
+                continue
+            central = _br[0]
         clean_here = True
         for f in sorted(glob.glob(os.path.join(sdir, '*.json'))):
             base = os.path.basename(f)

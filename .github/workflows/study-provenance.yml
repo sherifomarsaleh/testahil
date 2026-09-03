@@ -55,6 +55,8 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_new_study_gauntlet.py'
+      - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -137,6 +139,8 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_new_study_gauntlet.py'
+      - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -415,6 +419,29 @@ jobs:
       # the file would have reported clean
       - name: Prose-figure gate — negative control
         run: python3 scripts/check_prose_figures_negative_control.py
+
+      # THE PROPERTY THE WHOLE DESIGN RESTS ON, tested rather than assumed: a study
+      # directory created tomorrow with nothing in it goes RED everywhere. That is a
+      # property of the SYSTEM, so no individual gate can check it, and it is exactly the
+      # claim this programme was asked to deliver — a study produced correctly and passing
+      # several checks without anyone intervening. It is also true by construction right up
+      # to the day a ratchet is seeded one entry too generously.
+      #
+      # Twelve DIRECTORY gates must refuse an empty study by name; two ARTEFACT gates are
+      # tested by planting an offender, because a study with no documents cannot leak
+      # vocabulary and demanding it fail would be a false claim; three are excluded with
+      # their reasons, and an excluded gate that stops existing fails too.
+      - name: New-study gauntlet
+        run: python3 scripts/check_new_study_gauntlet.py
+
+      # and its falsifier: a WEAKENED gate must break it. The weakening tested is the one
+      # that would actually happen — a ratchet seeded with the unknown ticker, a one-line
+      # edit anybody could make in good faith and which --prune would then preserve. Its
+      # own first draft tried to blind a gate with a regex that matched nothing and reported
+      # all three cases green, which is why every mutation now asserts that it landed and
+      # the case count is asserted too.
+      - name: New-study gauntlet — negative control
+        run: python3 scripts/check_new_study_gauntlet_negative_control.py
 
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates
