@@ -388,6 +388,20 @@ jobs:
       - name: Output-records gate — negative control
         run: python3 scripts/check_output_records_negative_control.py
 
+      # [R-IND-01] — the escalation register. It re-checks every OPEN question
+      # against every live ref, so the register cannot go on asking the principal
+      # for something already supplied. It needs the branches to do that, hence
+      # fetch-depth 0 on this job.
+      - name: Escalation register
+        run: python3 scripts/check_escalations.py
+
+      # and the proof it goes red — the 3-Sep-2026 re-ask rebuilt exactly as it was
+      # written, plus a search of one ref, a remembered failure with no re-run, and
+      # an answer that lives nowhere. Three clean cases must stay GREEN, including
+      # an empty register: nothing escalated is a legitimate state.
+      - name: Escalation register — negative control
+        run: python3 scripts/check_escalations_negative_control.py
+
       - name: Walk-forward actuation gate
         run: python3 scripts/check_walkforward_actuation.py
 

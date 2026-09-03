@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2508,3 +2508,112 @@ ENFORCED FROM OUTSIDE per [R-ENF-01]. scripts/check_valuation_calibration.py est
 WHAT WOULD OVERTURN THIS. If the mechanically rebuilt fair-value series turns out not to resemble the as-delivered one once the delivered record is long enough to compare, this calibration is grading a method the house does not actually use, and every promotion it made must be withdrawn. That condition is written in the pre-registration in advance, because a test with no stated falsifier is a habit.
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION: AN INSTRUMENT HAS TO EXIST BEFORE THE CLOCK CAN START. Both archives this rule depends on record things that cannot be reconstructed after the fact — what a number was on the day it was published, and what the world knew on the day a forecast was made — and neither existed until it was built, which is why the first honest output of the scorer is a date in the future rather than a result. The cost of not having built them earlier is not a gap in a table; it is a year.
+
+
+## [R-IND-01] INDEPENDENCE: A QUESTION IS THE LAST RESORT, AND IT CARRIES THE PROOF THAT IT IS
+*Adopted 3 September 2026, per instruction — "when I say running independently, I mean it.
+You should run independently. Don't come to me with your problems. Sort it ... You need to
+strengthen your protocols and procedures in terms of independence and problem solving."*
+
+### The two failures this was adopted on, both in one session, three hours apart
+
+Part H of the reassessment plan already said *never ask*. It stopped neither of these,
+because it set no bar for what must be exhausted first, because it lived in a programme
+plan rather than in the standing protocol, and because it bound nothing.
+
+**(1) A question already answered.** The session asked the principal for the ten-year
+Egyptian government yield and the CBE policy rate at each year-end 2013–2023. **They had
+been supplied that morning.** One supplied figure had already been found wrong and
+corrected against the CBE decision record; six origins were live; the calibration had
+already produced its first readings on four of them. All of it was on another session's
+branch, and the session had read `main`. One `git branch -r` would have found it. Worse,
+the archive on `main` still read *"the one thing I would ask you for"*, so the record
+itself was asking — and nothing compared that sentence to the world.
+
+**(2) A failure that was not one.** The session reported that all five re-issued studies
+were missing two of their four deliverables. Every file was on disk. The check had counted
+keys in a publish manifest that lists two by design: it modelled one artefact and reported
+on another, which is the [R-ENF-03] species.
+
+**Neither was hard.** Each was one command away. What they have in common is not
+carelessness about facts — the reasoning in both was careful — but a DEFAULT THAT POINTED
+OUTWARD: on meeting an obstacle, the session composed a message instead of exhausting a
+search. That default is what this rule removes.
+
+### The rule
+
+**A QUESTION REACHING THE PRINCIPAL IS AN ARTEFACT, NOT A MESSAGE.** It is registered in
+`engine/escalations.json` before it is asked, and it carries: the routes actually run and
+what each returned, with dates; how many refs were searched; why only the principal can
+close it; **what was done in the meantime**; the default that will be taken if no answer
+comes; and the date that default fires. A question with no such record is not asked.
+
+**THE LADDER IS CLIMBED FIRST, AND CLIMBED, NOT RECALLED.** Before anything is escalated:
+the artefact itself is opened — never a document, manifest or register that describes it;
+the checkout is searched and then **every live ref**, because work in flight on another
+branch is work that exists; any probe whose failure is being relied on is **RE-RUN**, since
+an empty result is first evidence that the probe did not run [R-ENF-04] and a written
+outcome is a fact about the past; every tool the environment actually provides is used,
+its own description being the list — a headless browser defeats a JavaScript-rendered
+source, and calling one impossible with the browser installed is a claim about the operator
+rather than about the world; and the repository's own registers are searched for whether
+this was asked and **answered** before.
+
+**THE REPOSITORY IS NOT ONE REF.** No claim of the form *not present, not supplied, not
+done, cannot be obtained* may be made from a single checkout. Several sessions work at
+once. A status that reports a closed blocker as open is not cautious — it is wrong, and
+wrong in the direction that spends the principal's time on work already delivered.
+
+**AN ANSWER IS WRITTEN WHERE THE NEXT SESSION READS IT, NOT WHERE IT WAS GIVEN.** The
+moment a question is answered, the answer goes into the artefact that holds the block, and
+the register entry names that file. An answer that lives only in a conversation binds
+nothing: the container is rebuilt from the repository, and a session that cannot see the
+answer will ask again — which is exactly what happened.
+
+**THE DEFAULT IS TO ACT.** Where a choice is reversible and inside the stated scope, it is
+taken, recorded with its reasoning, and REPORTED AS TAKEN — never offered as a question.
+Where it is genuinely the principal's, it is registered with a recommendation and a default,
+and **the work routes around it** rather than stopping. Nothing waits on an answer that can
+proceed without one.
+
+**NEVER A MENU.** A turn does not end by handing the principal a list of options to choose
+between. That converts the operator's work into the principal's queue, which is the
+instruction's own complaint. One recommendation, taken or registered.
+
+**A GATE WITH NO RELEASE IS A STALL** [R-CAL-01], and it applies to questions too. Every
+registered escalation carries a default and a date. When the date arrives the default is
+taken and the entry closed. An open entry past its date means the work stopped to wait,
+which this rule forbids.
+
+**REPORTING IS NOT ESCALATING, AND THE DIFFERENCE IS WHETHER ANYTHING IS OWED.** Telling
+the principal what was found, decided and done is the job. Asking them to unblock something
+is the last resort. A message that ends in a question mark where the answer was available
+in the repository is the failure this rule names.
+
+### Enforced from outside, per [R-ENF-01]
+
+`scripts/check_escalations.py` reads the register and refuses five ways, each earned:
+a missing field; a ladder not climbed (fewer than three routes on a data escalation, no
+route marked as a re-run, or fewer than two refs searched); **an open entry whose own
+resolving condition is already met on some live ref** — the clause this rule exists for,
+which catches the re-ask mechanically rather than relying on anyone remembering; a resolved
+entry whose answer is written nowhere; and an entry left open past its own default date.
+Negative-controlled by `scripts/check_escalations_negative_control.py`, whose eighteen
+conditions include **the 3 September re-ask rebuilt exactly as it would have been written**,
+and four clean cases that must stay green — among them an empty register, because nothing
+escalated is a legitimate state, and an instruction-class entry, which needs no route
+ladder because no route could answer it.
+
+**There is deliberately no ratchet.** A ratchet exists so that a new standard does not
+redden work predating it; this register is created by this rule and holds only entries
+written under it, so an allowance would exempt the rule from itself.
+
+### The general lesson, which is not about escalation
+
+**AN OBSTACLE IS WORK, NOT NEWS.** The instinct on meeting one is to describe it accurately
+to somebody else, and describing it accurately feels like diligence — the message is
+truthful, the evidence is real, the tone is appropriately careful. That is what makes this
+failure mode survive: it looks exactly like good practice. The test is not whether the
+report is accurate; it is whether the search was finished. **Where a question can be
+answered by a command available in the room, asking it is not caution — it is the cost of
+not having run the command.**
