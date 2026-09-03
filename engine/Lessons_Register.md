@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**174 lessons**, of which 147 bind on every study, 20 on a class of company, and 7 on a single name.
+**179 lessons**, of which 152 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 99 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 104 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1548,6 +1548,56 @@ Table-discipline checks measure whether a column is starved or bloated, which is
 > **What it cost, or how we know.** The label column took 4.6cm of 16.2cm, leaving 1.66cm for each of seven years, and '-110,168' is eight characters — one too many. Word breaks a line after a hyphen, so the 2035 and 2040 cost-of-revenue cells rendered as a BARE DASH with 110,168 on the line beneath, which a reader takes for a positive number or for a dash meaning 'not applicable'. The column audit reported the table CLEAN and was right by its own lights: the column is not starved on average, and one row is a single character wider than every other. THE FIRST FIX MADE IT WORSE AND THAT IS THE USEFUL PART — U+2212 MINUS SIGN is typographically correct and does not offer a break, but it is WIDER than a hyphen, so every cell in the row then wrapped mid-number. The character was never the problem. Per [R-COC-01], when a fix makes the thing worse the diagnosis was wrong: the column was too narrow for its content, and the fix is to widen it.
 
 > **What would overturn it.** A wrapped cell whose cause is genuinely the character rather than the width — which would mean the substitution was right and the measurement of it was wrong.
+
+### L-254 · WHERE A STUDY COMPUTES A QUANTITY ON SEVERAL BASES AND ADOPTS ONE, EVERY PUBLISHED FIGURE MUST BE ASSERTED TO COME FROM THE ADOPTED ONE: THE WRONG KEY IS SILENT, REPRODUCES PERFECTLY, AND READS AS CORRECT.
+
+A study that offers a reader two or three ways of measuring the same thing has to pick one to answer with. Nothing in the code marks which key is the answer, so a display that reaches for a neighbouring one produces a number that is individually right, recalculates to the last cell, and is not the study's answer.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH deducts the minority at its share of value — its summary table says so, its headline range is stated on it, and [R-BRIDGE-01] requires it — and FIVE separate displays published the BOOK basis instead: the enterprise-to-equity bridge, whose lines summed to EGP 244,183mn and whose last row printed 113.24 where 244,183 / 2,060.7 is 118.50; the crux table, whose own caption states 'with the minority deducted at its share of value' beside numbers that were not; the discount-rate sensitivity grid, which did not carry the adopted basis at all; the reverse read, which solved what the traded price implies against a per-share the study does not publish; and the comparison of the lenses. NOTHING STATED A REASON ANYWHERE — it was the key that got written first and copied. Every figure passed the numeric-traceability gate, the recalculation gate and the prose-figure check, because each was computed and correct; what was wrong was WHICH of the three it was. The bridge case is the sharpest: [R-BRIDGE-01] already required the equity to divide to the stated per share, and the assertion existed in the rule and in no code.
+
+> **What would overturn it.** A study where the several bases are genuinely interchangeable for the purpose in hand, so that reading a neighbouring key changes nothing a reader would act on.
+
+### L-255 · A LOOKUP THAT MATCHES NOTHING BUILDS A TABLE WITH HEADERS AND NO ROWS, AND NOTHING RAISES, BECAUSE AN EMPTY COLLECTION IS A VALID TABLE.
+
+Code that filters a record into display rows returns an empty list when the record's keys have moved. The build succeeds, the document is written, and the page carries a heading, a table frame and a caption with nothing between them.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH's walk-forward results table asked for keys shaped 'asknown|<driver>|all' against a scores record whose keys are plain driver names — a schema borrowed from another study's file — matched nothing, and produced an empty list. The delivered page carried the table's headers and its caption under prose reading 'each driver scored against what the company actually reported. The results decided which of the model's habits were corrected'. The record was fine: fifteen drivers, thirty to forty observations each. The same silence had emptied the record itself one level up, where the numbers builder iterated the file's TOP-LEVEL keys looking for the same shape. [R-ENF-04] names this exactly — an empty result is not a clean result — and here the emptiness reached a reader. The fix is an assertion on the row count, not a corrected key: the corrected key would work until the schema moves again.
+
+> **What would overturn it.** A table legitimately empty on some editions, where a floor on the row count would be the false claim instead.
+
+### L-256 · A RATIO QUOTED IN PROSE MUST DIVIDE A NUMERATOR BY A DENOMINATOR OF THE SAME PERIOD, AND A PARAGRAPH CAN MAKE THE MISTAKE IT IS WARNING ABOUT.
+
+Where a sentence gives a reader both operands and the result, the three have to agree. Where they do not, the sentence refutes itself in front of the reader.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** The paragraph explaining why a finance-cost correction was REFUSED — on the ground that the reported charge and the borrowings describe different things — divided the FY2025 charge by the borrowings on the 30-JUNE-2026 balance sheet and reported 'about 44%'. That figure reconciles against neither pairing: 3,936.5 over the 16,493 the same sentence quotes is 23.9%, which is BELOW the policy peak it was being contrasted with, so the argument as printed refuted itself; and against the borrowings of the year that BORE the charge it is 33.4%. The correct figure supports the argument and the printed one destroyed it. This is [R-FCAL-01] trap (i) — the interest denominator — occurring in a paragraph written to explain that very trap.
+
+> **What would overturn it.** A ratio whose operands genuinely belong to different periods for a stated reason, with the mismatch named rather than silent.
+
+### L-257 · A FILE SOMETHING WRITES AND NOTHING READS IS A NUMBER FROZEN AT THE MOMENT SOMEBODY LAST RAN THE SCRIPT — THE MIRROR OF [R-ENF-06], AND IT HAS NO VINTAGE TO CHECK.
+
+[R-ENF-06] asks what WRITES a file that a builder reads. The same question the other way round is worth asking: a file with no consumer has nobody to notice when it goes stale, and it sits in the study directory looking exactly like a computed record.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH's statements.json was written by its statements module's main() and read by nothing — the numbers builder imports the module and calls build(), so the live path never touches the file. It sat two days stale, giving 2030 development revenue of 76,350 against the 102,747 the delivered document prints, a 35% divergence. IT WAS NOT HARMLESS: sizing a table column needed the widest cell in that row, the first attempt read this file, got 76,350, concluded the column was wide enough, and was wrong — the page had been printing '102,74' with a lone '7' beneath it for two days. The cheapest fix for a file with no consumer is not to declare its vintage; it is not to write it.
+
+> **What would overturn it.** A written-and-unread file that is genuinely an evidence record rather than a derived one — a critique register or a raw download, where freezing is the point.
+
+### L-258 · A COLUMN MUST CLEAR ITS WIDEST TOKEN, HEADER INCLUDED, AND A HEADER IS BOLD, WHICH IS TWELVE PER CENT WIDER ON THE INK.
+
+L-253 established that a column must clear its widest cell. Two further things were learned by getting it wrong twice more inside ten minutes: the widest cell is frequently the HEADER, and the header is set bold, which no plain-text measurement sees.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading TMGH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** A 'Discount rate' header rendered 'Discou nt rate' at 1.7cm. A hand fix widened that column and narrowed 'Case' to 3.0cm, which needs 3.61 for 'Credit-default-swap' — the same error again, minutes later. The column was then sized from measured per-character widths and STILL printed 'Discoun', because the measurement had been taken on plain cells: bold needs 1.077x to 1.121x the ink of the same token plain, measured on seven tokens. The model was right about the string and wrong about the FACE IT IS SET IN. The shared width module now holds both measurements and asserts its constants still clear them at import; a percent sign is 0.30cm, which is why an entire ten-cell cost-of-capital row printed '32.4' with a bare '%' beneath it while the orphan detector — which scans for a stray DIGIT — reported the document clean.
+
+> **What would overturn it.** A renderer whose metrics differ enough from the measured ones that the constants stop clearing their own experiment, which the module's import assertion would say.
 
 
 ---

@@ -3350,6 +3350,117 @@ LESSONS = [
       "A wrapped cell whose cause is genuinely the character rather than the width — which "
       "would mean the substitution was right and the measurement of it was wrong."),
 
+    L("L-254", "ALL", None,
+      "WHERE A STUDY COMPUTES A QUANTITY ON SEVERAL BASES AND ADOPTS ONE, EVERY PUBLISHED "
+      "FIGURE MUST BE ASSERTED TO COME FROM THE ADOPTED ONE: THE WRONG KEY IS SILENT, "
+      "REPRODUCES PERFECTLY, AND READS AS CORRECT.",
+      "A study that offers a reader two or three ways of measuring the same thing has to "
+      "pick one to answer with. Nothing in the code marks which key is the answer, so a "
+      "display that reaches for a neighbouring one produces a number that is individually "
+      "right, recalculates to the last cell, and is not the study's answer.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH deducts the minority at its share of value \u2014 its summary table says so, its "
+      "headline range is stated on it, and [R-BRIDGE-01] requires it \u2014 and FIVE separate "
+      "displays published the BOOK basis instead: the enterprise-to-equity bridge, whose "
+      "lines summed to EGP 244,183mn and whose last row printed 113.24 where 244,183 / "
+      "2,060.7 is 118.50; the crux table, whose own caption states 'with the minority "
+      "deducted at its share of value' beside numbers that were not; the discount-rate "
+      "sensitivity grid, which did not carry the adopted basis at all; the reverse read, "
+      "which solved what the traded price implies against a per-share the study does not "
+      "publish; and the comparison of the lenses. NOTHING STATED A REASON ANYWHERE \u2014 it "
+      "was the key that got written first and copied. Every figure passed the numeric-"
+      "traceability gate, the recalculation gate and the prose-figure check, because each "
+      "was computed and correct; what was wrong was WHICH of the three it was. The bridge "
+      "case is the sharpest: [R-BRIDGE-01] already required the equity to divide to the "
+      "stated per share, and the assertion existed in the rule and in no code.",
+      "A study where the several bases are genuinely interchangeable for the purpose in "
+      "hand, so that reading a neighbouring key changes nothing a reader would act on."),
+
+    L("L-255", "ALL", None,
+      "A LOOKUP THAT MATCHES NOTHING BUILDS A TABLE WITH HEADERS AND NO ROWS, AND NOTHING "
+      "RAISES, BECAUSE AN EMPTY COLLECTION IS A VALID TABLE.",
+      "Code that filters a record into display rows returns an empty list when the "
+      "record's keys have moved. The build succeeds, the document is written, and the page "
+      "carries a heading, a table frame and a caption with nothing between them.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's walk-forward results table asked for keys shaped 'asknown|<driver>|all' "
+      "against a scores record whose keys are plain driver names \u2014 a schema borrowed from "
+      "another study's file \u2014 matched nothing, and produced an empty list. The delivered "
+      "page carried the table's headers and its caption under prose reading 'each driver "
+      "scored against what the company actually reported. The results decided which of the "
+      "model's habits were corrected'. The record was fine: fifteen drivers, thirty to "
+      "forty observations each. The same silence had emptied the record itself one level "
+      "up, where the numbers builder iterated the file's TOP-LEVEL keys looking for the "
+      "same shape. [R-ENF-04] names this exactly \u2014 an empty result is not a clean result "
+      "\u2014 and here the emptiness reached a reader. The fix is an assertion on the row "
+      "count, not a corrected key: the corrected key would work until the schema moves "
+      "again.",
+      "A table legitimately empty on some editions, where a floor on the row count would "
+      "be the false claim instead."),
+
+    L("L-256", "ALL", None,
+      "A RATIO QUOTED IN PROSE MUST DIVIDE A NUMERATOR BY A DENOMINATOR OF THE SAME PERIOD, "
+      "AND A PARAGRAPH CAN MAKE THE MISTAKE IT IS WARNING ABOUT.",
+      "Where a sentence gives a reader both operands and the result, the three have to "
+      "agree. Where they do not, the sentence refutes itself in front of the reader.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "The paragraph explaining why a finance-cost correction was REFUSED \u2014 on the ground "
+      "that the reported charge and the borrowings describe different things \u2014 divided the "
+      "FY2025 charge by the borrowings on the 30-JUNE-2026 balance sheet and reported "
+      "'about 44%'. That figure reconciles against neither pairing: 3,936.5 over the 16,493 "
+      "the same sentence quotes is 23.9%, which is BELOW the policy peak it was being "
+      "contrasted with, so the argument as printed refuted itself; and against the "
+      "borrowings of the year that BORE the charge it is 33.4%. The correct figure supports "
+      "the argument and the printed one destroyed it. This is [R-FCAL-01] trap (i) \u2014 the "
+      "interest denominator \u2014 occurring in a paragraph written to explain that very trap.",
+      "A ratio whose operands genuinely belong to different periods for a stated reason, "
+      "with the mismatch named rather than silent."),
+
+    L("L-257", "ALL", None,
+      "A FILE SOMETHING WRITES AND NOTHING READS IS A NUMBER FROZEN AT THE MOMENT SOMEBODY "
+      "LAST RAN THE SCRIPT \u2014 THE MIRROR OF [R-ENF-06], AND IT HAS NO VINTAGE TO CHECK.",
+      "[R-ENF-06] asks what WRITES a file that a builder reads. The same question the other "
+      "way round is worth asking: a file with no consumer has nobody to notice when it goes "
+      "stale, and it sits in the study directory looking exactly like a computed record.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's statements.json was written by its statements module's main() and read by "
+      "nothing \u2014 the numbers builder imports the module and calls build(), so the live "
+      "path never touches the file. It sat two days stale, giving 2030 development revenue "
+      "of 76,350 against the 102,747 the delivered document prints, a 35% divergence. IT "
+      "WAS NOT HARMLESS: sizing a table column needed the widest cell in that row, the "
+      "first attempt read this file, got 76,350, concluded the column was wide enough, and "
+      "was wrong \u2014 the page had been printing '102,74' with a lone '7' beneath it for two "
+      "days. The cheapest fix for a file with no consumer is not to declare its vintage; it "
+      "is not to write it.",
+      "A written-and-unread file that is genuinely an evidence record rather than a derived "
+      "one \u2014 a critique register or a raw download, where freezing is the point."),
+
+    L("L-258", "ALL", None,
+      "A COLUMN MUST CLEAR ITS WIDEST TOKEN, HEADER INCLUDED, AND A HEADER IS BOLD, WHICH "
+      "IS TWELVE PER CENT WIDER ON THE INK.",
+      "L-253 established that a column must clear its widest cell. Two further things were "
+      "learned by getting it wrong twice more inside ten minutes: the widest cell is "
+      "frequently the HEADER, and the header is set bold, which no plain-text measurement "
+      "sees.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "A 'Discount rate' header rendered 'Discou nt rate' at 1.7cm. A hand fix widened that "
+      "column and narrowed 'Case' to 3.0cm, which needs 3.61 for 'Credit-default-swap' "
+      "\u2014 the same error again, minutes later. The column was then sized from measured "
+      "per-character widths and STILL printed 'Discoun', because the measurement had been "
+      "taken on plain cells: bold needs 1.077x to 1.121x the ink of the same token plain, "
+      "measured on seven tokens. The model was right about the string and wrong about the "
+      "FACE IT IS SET IN. The shared width module now holds both measurements and asserts "
+      "its constants still clear them at import; a percent sign is 0.30cm, which is why an "
+      "entire ten-cell cost-of-capital row printed '32.4' with a bare '%' beneath it while "
+      "the orphan detector \u2014 which scans for a stray DIGIT \u2014 reported the document clean.",
+      "A renderer whose metrics differ enough from the measured ones that the constants "
+      "stop clearing their own experiment, which the module's import assertion would say."),
+
 ]
 
 
