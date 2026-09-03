@@ -289,12 +289,12 @@ def read_review(sdir):
     """The most recent gap review in a study directory, and the headings it covers."""
     hits = sorted(glob.glob(os.path.join(sdir, REVIEW_GLOB)))
     if not hits:
-        return None, [], None, []
+        return None, [], None, [], None
     raw = open(hits[-1], encoding='utf-8').read()
     txt = raw.upper()
     covered = [k for k in REQUIRED_SECTIONS if k in txt]
     return (os.path.basename(hits[-1]), covered, _audited_central(raw),
-            _audited_centrals(raw))
+            _audited_centrals(raw), _audited_gap(raw))
 
 
 # A REVIEW AUDITS AN ANSWER, AND THE ANSWER MOVES. On 2 September 2026 EGCH's
@@ -313,6 +313,38 @@ AUDITED_RX = re.compile(
 AUDIT_TOL = 0.005          # half a per cent of the central, not a round number:
                            # a review is stale when the answer has MOVED, not when
                            # it has been re-rounded
+
+# A REVIEW AUDITS A DISAGREEMENT, AND THE DISAGREEMENT MOVES EVEN WHEN THE ANSWER
+# DOES NOT [added 03-Sep-2026, per the principal: "the gate checks a review audits
+# the current answer, not the current gap — that's why all four pass while every
+# one was written for a much smaller disagreement"].
+#
+# The AUDITED CENTRAL marker was added on 02-Sep-2026 and closed a real hole: a
+# review written for a central the study no longer publishes. It does not close
+# this one. A review can audit exactly the right central and still have been
+# written against a price four weeks old, and the whole point of the eight
+# headings is to interrogate a DISAGREEMENT — how large it is is the question,
+# not a detail beside it.
+#
+# Measured on the day it was named: PHDC's review audits 17.1517, which is
+# precisely what the study publishes, so this gate passed it — while the review
+# was written at +12.8% against a strike price of 15.20 and the day's price of
+# 14.40 makes the gap +19.1%. A review of a 13% disagreement is not a review of a
+# 19% one; a reader reaches the headings expecting them to have been asked at the
+# size the study now carries.
+#
+# So a review states the GAP it audited as well as the central, and this gate
+# compares both. The tolerance is in PERCENTAGE POINTS of gap rather than
+# relative, because the thing that matters is how far the disagreement has moved
+# in the units the trigger itself is stated in.
+AUDITED_GAP_RX = re.compile(
+    r'AUDITED[ _]GAP\s*[:=]\s*([+-]?[0-9][0-9,]*\.?[0-9]*)\s*%', re.I)
+AUDIT_GAP_TOL = 0.05       # five percentage points of gap. NOT a new free parameter:
+                           # it is half the ten-point trigger this rule is stated in,
+                           # so a review goes stale when the disagreement has moved by
+                           # half the distance that would have triggered one from
+                           # nothing. Anything tighter would fire on a price that
+                           # simply moved a little between build and delivery.
 
 
 def _audited_centrals(raw):
@@ -333,6 +365,17 @@ def _audited_centrals(raw):
 def _audited_central(raw):
     vals = _audited_centrals(raw)
     return vals[0] if vals else None
+
+
+def _audited_gap(raw):
+    """The gap a review states it audited, as a fraction, or None."""
+    m = AUDITED_GAP_RX.search(raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1).replace(',', '')) / 100.0
+    except ValueError:
+        return None
 
 
 def load_outstanding():
@@ -395,7 +438,7 @@ def main(argv):
                 if not out:
                     ok.append((tk, 0.0))
                     continue
-                review, covered, _a, audited_all = read_review(sdir)
+                review, covered, _a, audited_all, _ag = read_review(sdir)
                 missing = [k for k in REQUIRED_SECTIONS if k not in covered]
                 unaudited = [b for b in out
                              if not any(abs(a - b["value"])
@@ -435,7 +478,7 @@ def main(argv):
             ok.append((tk, gap))
             continue
         side = 'below' if gap < 0 else 'above'
-        review, covered, audited, audited_all = read_review(sdir)
+        review, covered, audited, audited_all, audited_gap = read_review(sdir)
         missing = [k for k in REQUIRED_SECTIONS if k not in covered]
         if review and not missing and audited is None and tk not in known_unstated:
             new_fail.append('%s: the review %s states no AUDITED CENTRAL, so nothing '
@@ -443,6 +486,11 @@ def main(argv):
                             'publishes.' % (tk, review))
         stale = (audited is not None
                  and abs(audited - central) > max(AUDIT_TOL * abs(central), 0.005))
+        # the SECOND way a review goes stale: the answer stood still and the
+        # disagreement moved
+        gap_stale = (audited_gap is not None and gap is not None
+                     and abs(audited_gap - gap) > AUDIT_GAP_TOL)
+        stale = stale or gap_stale
         if review and not missing and not stale:
             reviewed.append((tk, gap, review, audited))
             continue
@@ -452,6 +500,12 @@ def main(argv):
                 why = 'no gap review in the study directory'
             elif missing:
                 why = 'the review %s does not cover %s' % (review, ', '.join(missing))
+            elif gap_stale:
+                why = ('the review %s audits a gap of %+.1f%% while the study now sits '
+                       'at %+.1f%% against the latest known price. The answer has not '
+                       'moved and the DISAGREEMENT has, and the eight headings exist to '
+                       'interrogate a disagreement at the size it actually is.'
+                       % (review, 100 * audited_gap, 100 * gap))
             elif stale:
                 why = ('the review %s audits a central of %.4f while the study now '
                        'publishes %.4f. A review of a number the study no longer '

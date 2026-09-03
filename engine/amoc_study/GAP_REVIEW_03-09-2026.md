@@ -343,3 +343,6 @@ would move every operating number in an unknown direction. Neither is available 
 *AUDITED CENTRAL: 11.8342* — the figure this review audits, stated so a job outside the study
 can tell whether the review still describes the answer the study publishes. A review of a
 number the study no longer carries is not a review of this study.
+
+
+*AUDITED GAP: -12.3%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.

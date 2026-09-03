@@ -249,3 +249,6 @@ outstanding work and named in the register below.
 *AUDITED CENTRAL: 1.7854* — the carried-through branch.
 *AUDITED CENTRAL: 5.9001* — the capital-discipline branch. A two-sided study has two
 answers, and a review that audits one of them has audited half the study.
+
+
+*AUDITED GAP: -87.6%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.

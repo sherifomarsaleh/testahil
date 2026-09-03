@@ -36,9 +36,22 @@ def main():
     waccs, grid = V2.sensitivity()
     cfos = [CF["lo"], 0.060, CF["mid"], 0.120, CF["hi"]]
     gv = [row for _c, row in grid]
-    S = V2.SCHEDULES["rating"]
+    # THE CDS BASIS IS THE HOUSE DEFAULT AND PHDC WAS THE SECOND STUDY NOT USING IT
+    # [corrected 03-Sep-2026]. [R-COC-01] names the swap basis as central -- the
+    # market's own live pricing of the sovereign's credit against an agency judgement
+    # updated in steps -- and AMOC, ARCC and (as of today) EGCH all follow it. Both
+    # bases stay published; only which one is CENTRAL moves.
+#
+    # THE REASON THIS IS DONE HERE AND NOT DEFERRED IS WORTH WRITING DOWN. The switch
+    # moves PHDC from 17.46 to 17.85, +2.2%, which carries it FURTHER above the traded
+    # price -- 21.2% to 23.9% -- while the same switch on EGCH moved that study TOWARD
+    # the market. Correcting the one that helps and deferring the one that hurts is
+    # precisely the lean [R-ENF-05]'s sign test exists to measure, and a basis chosen
+    # by which way it moves the answer is not a basis at all. The convention is a house
+    # convention; it does not get decided per study by its consequences.
+    S = V2.SCHEDULES["cds"]
     base = V2.run(CF["mid"], S)
-    base_cds = V2.run(CF["mid"], V2.SCHEDULES["cds"])
+    base_cds = V2.run(CF["mid"], V2.SCHEDULES["rating"])   # the published ALTERNATIVE now
     low = V2.run(CF["lo"], S)
     high = V2.run(CF["hi"], S)
     implied = V2.implied_conversion(V2.SPOT, S)
@@ -58,7 +71,7 @@ def main():
             "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             "standard_version": RP.STANDARD_VERSION,
-            "spot": 15.20, "spot_date": "close 23 Aug 2026",
+            "spot": 14.40, "spot_date": "close 3 Sep 2026",
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                        IN.OPERATING, IN.MARKET) for k, v in g.items()},
@@ -106,7 +119,7 @@ def main():
         "peers": peers,
         # published price engine output, read from the live site data, not re-derived
         "price_map": {
-            "spot": 15.20, "spot_date": "close 23 Aug 2026",
+            "spot": 14.40, "spot_date": "close 3 Sep 2026",
             "dist": {"m1": {"p5": 13.08, "p25": 14.67, "p50": 15.64,
                             "p75": 16.68, "p95": 18.71, "resolve": "2026-09-23"},
                      "m3": {"p5": 11.98, "p25": 14.61, "p50": 16.34,
@@ -231,7 +244,7 @@ def main():
                 # is the traded price-to-earnings ratio on the same earnings.
                 {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
                  "multiple": 9.0,
-                 "circularity": {"spot": 15.20,
+                 "circularity": {"spot": 14.40,
                                  "shares": float(V2.SHARES),
                                  "net_debt": 0.0,
                                  "metric_value": float(V2.ROWS[0]["npat"])},
@@ -334,7 +347,7 @@ def main():
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
     out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
-    out["spot"] = 15.20
+    out["spot"] = 14.40
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
     out["meta"]["central_note"] = (

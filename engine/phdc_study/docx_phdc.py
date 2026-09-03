@@ -1457,7 +1457,7 @@ def _appendices(doc, sp, base):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Study_02-09-2026.docx")
+    out = os.path.join(HERE, "PHDC_Valuation_Study_03-09-2026.docx")
     doc = build(out)
     doc.save(out)
     hits, chars = scrub(out)

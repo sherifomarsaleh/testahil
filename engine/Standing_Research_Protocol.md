@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2357,6 +2357,32 @@ four words and found six defects. A gate that asks the same question automatical
 cheaper than a reader who has to.
 
 ---
+
+### The gap a review audited, not only the central it audited [amended 03-Sep-2026]
+
+**A review audits a DISAGREEMENT, and the disagreement moves even when the answer does not.**
+
+The `AUDITED CENTRAL` marker, added 02-Sep-2026, closed a real hole — a review written for a
+central the study no longer publishes. It does not close this one. A review can audit exactly
+the right central and still have been written against a price four weeks old, and the whole
+point of the eight headings is to interrogate a disagreement: **how large it is is the
+question, not a detail beside it.**
+
+Measured on the day it was named, by the principal: *"the gate checks a review audits the
+current answer, not the current gap — that's why all four pass while every one was written
+for a much smaller disagreement."* PHDC's review audited **17.1517**, precisely what the
+study published, so the gate passed it — while the review was written at **+12.8%** against
+a strike of 15.20, and the day's price of 14.40 made the gap **+19.1%**.
+
+A review therefore states the **gap** it audited as well as the central, and
+`check_valuation_gap.py` compares both. The tolerance is **five percentage points of gap** —
+not a new free parameter but **half the ten-point trigger this rule is stated in**, so a
+review goes stale once the disagreement has moved half the distance that would have
+triggered one from nothing. Anything tighter would fire on a price that simply moved a
+little between build and delivery.
+
+Negative-controlled on PHDC's own case exactly as it stood, plus two clean cases — a review
+stating the gap it actually audited, and a gap that moved less than half the trigger.
 
 ## [R-MERGE-01] A run that ends on a branch has not ended (1-Sep-2026, per instruction — "can you merge the branch to the main automatically in this exercise from now on or at least create a PR to draw my attention, otherwise I will forget")
 

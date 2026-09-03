@@ -284,3 +284,6 @@ the range now shows how quickly.
 *AUDITED CENTRAL: 53.2091* — the figure this review audits, stated so a job outside the study
 can tell whether the review still describes the answer the study publishes. A review of a
 number the study no longer carries is not a review of this study.
+
+
+*AUDITED GAP: -30.9%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.
