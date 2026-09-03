@@ -445,7 +445,149 @@ def published_book():
     return {"latest": latest, "all": all_v}
 
 
+def tail_queue(threshold=0.40):
+    """The names carrying the book's lean, ranked — with what is known about each.
+
+    This exists because the pooled measurement above changes what "fix the
+    pessimism" means. The book's median sits on the price; its mean does not; the
+    difference is a handful of names. Those names are therefore the highest-value
+    rebuilds in the programme, and they are NOT the order the campaign runs in,
+    which is fixed by market (EGX, then UAE, then KSA...) and knows nothing about
+    where the errors are.
+
+    NOTHING IS CONCLUDED FROM THE RANKING. A large gap is a high-prior-of-defect
+    region, which is [R-GAP-01]'s own reasoning, not proof of a defect: a genuine
+    84% discount is a legitimate conclusion and this house publishes ranges
+    precisely because prices are sometimes wrong. The ranking says where to LOOK.
+    """
+    arch = json.load(open(os.path.join(ENGINE, "fv_vintages.json"), encoding="utf-8"))
+    rows = []
+    for name, entries in arch.get("series", {}).items():
+        e = entries[-1]
+        fv = (e.get("fair") or {}).get("base")
+        sp = e.get("spot")
+        if not sp or fv is None or fv <= 0:
+            continue
+        lg = math.log(fv / sp)
+        if abs(lg) < threshold:
+            continue
+        sdir = os.path.join(ENGINE, "%s_study" % name.lower())
+        has_study = os.path.isdir(sdir)
+        std, review = None, None
+        if has_study:
+            nums = _json_or_none(os.path.join(sdir, "study_numbers.json")) or {}
+            std = nums.get("standard_version")
+            review = bool(glob.glob(os.path.join(sdir, "GAP_REVIEW_*.md")))
+        rows.append({"ticker": name, "log": lg, "fv": fv, "spot": sp,
+                     "when": e.get("struck") or e.get("first_seen"),
+                     "code": e.get("code"), "study": has_study,
+                     "standard": std, "gap_review": review})
+    rows.sort(key=lambda r: r["log"])
+
+    print("\n\n  THE TAIL — every published name more than %.0f%% from its own price"
+          % ((math.exp(threshold) - 1) * 100))
+    print("  %-12s %-11s %8s  %-9s %-11s %s"
+          % ("ticker", "exchange", "gap", "struck", "standard", "study / gap review"))
+    for r in rows:
+        print("  %-12s %-11s %+7.1f%%  %-9s %-11s %s"
+              % (r["ticker"], (r["code"] or "?").split(":")[0],
+                 (math.exp(r["log"]) - 1) * 100, r["when"] or "?",
+                 r["standard"] or ("—" if r["study"] else "no study"),
+                 ("study, review" if r["gap_review"] else
+                  ("study, NO review" if r["study"] else "no study directory"))))
+
+    nostudy = [r for r in rows if not r["study"]]
+    noreview = [r for r in rows if r["study"] and not r["gap_review"]]
+    print("\n    %d names in the tail. %d have no study directory at all, so there"
+          % (len(rows), len(nostudy)))
+    print("    is nothing for a gate to open — their fair value sits on the site")
+    print("    with no committed record behind it. %d have a study and no gap"
+          % len(noreview))
+    print("    review, which is what [R-GAP-01]'s ratchet carries.")
+    print()
+    print("    THE ORDER THIS SUGGESTS IS NOT THE ORDER THE CAMPAIGN RUNS IN. The")
+    print("    campaign queue is fixed by market and knows nothing about where the")
+    print("    errors are; this list is measured. Whether Phase 2 follows it is a")
+    print("    decision for the principal, not a change to make quietly — the")
+    print("    market order exists so that a method is tested on a whole market")
+    print("    before it travels, and re-ordering by gap size would test it first")
+    print("    on exactly the names most likely to be unusual.")
+    return rows
+
+
+def _json_or_none(p):
+    try:
+        return json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def gate_coverage():
+    """How much of what the SITE publishes is inside any gate's population.
+
+    Every construction gate in this repository globs `engine/*_study/`. That is
+    the right anchor for what it checks — a study's committed record — but it is
+    NOT the population of published fair values, and the two have been quietly
+    assumed to coincide. This measures the difference, because a suite of gates
+    reporting clean over a quarter of the book is a suite reporting on a quarter
+    of the book.
+
+    The shortfall itself is a known condition, not a discovery: the fair-value
+    register already records that most covered names carry no current-standard
+    study. What is worth measuring is the CONSEQUENCE — which published numbers no
+    gate can see.
+    """
+    arch = json.load(open(os.path.join(ENGINE, "fv_vintages.json"), encoding="utf-8"))
+    have = {ticker_of(d) for d in studies()}
+    pub = sorted(arch.get("series", {}))
+    inside = [n for n in pub if n in have]
+    outside = [n for n in pub if n not in have]
+
+    def _lean(names):
+        xs = []
+        for n in names:
+            e = arch["series"][n][-1]
+            fv = (e.get("fair") or {}).get("base")
+            sp = e.get("spot")
+            if sp and fv and fv > 0:
+                xs.append(math.log(fv / sp))
+        return (_mean(xs) if xs else float("nan")), len(xs)
+
+    li, ni = _lean(inside)
+    lo, no = _lean(outside)
+    print("\n\n  GATE COVERAGE — what the gates can and cannot see")
+    print("    published fair values          %d" % len(pub))
+    print("    inside engine/*_study/         %d  (%.0f%%)"
+          % (len(inside), 100.0 * len(inside) / max(1, len(pub))))
+    print("    OUTSIDE it, no study directory %d  (%.0f%%)"
+          % (len(outside), 100.0 * len(outside) / max(1, len(pub))))
+    print()
+    print("    Every construction gate — bridge, lens, cost of capital, macro")
+    print("    coherence, valuation gap, workbook structure, output records —")
+    print("    globs engine/*_study/. So each of them is correct about the")
+    print("    population it names and silent about %d published numbers a reader"
+          % len(outside))
+    print("    can see on the site today. That is not a defect in any one gate; it")
+    print("    is the [R-ENF-04] question one level up — a population anchored on")
+    print("    study directories, applied to a book anchored on data.js.")
+    print()
+    print("    AND THE LEAN DOES NOT SIT WHERE THAT WOULD SUGGEST: the %d names"
+          % ni)
+    print("    WITH a study average %+.1f%% against price, the %d WITHOUT average"
+          % ((math.exp(li) - 1) * 100, no))
+    print("    %+.1f%%. The examined names carry the LARGER discounts, not the"
+          % ((math.exp(lo) - 1) * 100))
+    print("    smaller ones — so 'the unexamined ones are where the errors are' is")
+    print("    not what the numbers say. It is confounded (a study gets written")
+    print("    where the house has a view, and several of these are the names")
+    print("    deliberately audited), and it is stated here so the obvious")
+    print("    inference is not drawn without it.")
+    return {"published": pub, "inside": inside, "outside": outside}
+
+
 if __name__ == "__main__":
     report()
     before_and_after()
     published_book()
+    tail_queue()
+    gate_coverage()
