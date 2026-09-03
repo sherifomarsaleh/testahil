@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "READING THE RENDERED PAGES IS STILL THE MOST PRODUCTIVE INSTRUMENT AND THAT IS THE FINDING. PHDC's first two pages produced two shipped defects and two new gates: a masthead a day stale (the ARCC defect, now a class at three studies) and a figure labelling a computed price with a typed date eleven days wrong, beside a table giving the right one. Measured across 31 delivered studies, SEVEN did not carry their own edition date and TWO \u2014 including ADNOCLS, THE MODEL REPORT \u2014 state it nowhere at all. Root cause in both cases was TYPING: PHDC's builder held the date in three string literals, two disagreeing with the file. Both now derive it. scripts/check_edition_date.py closes the class in two clauses, 17/17 on its control.",
+ "current": "READING ONE STUDY'S RENDERED PAGES PRODUCED NINE DEFECTS AND FOUR GATES. PHDC passed every gate in the repository and a reader found: a masthead a day stale; a figure dating a computed price eleven days wrong beside a table giving the right date; an income statement short its depreciation line (EGP 393mn in 2026 rising to 1,039mn); a comparative claim its own grid refutes; a heatmap caption naming a rule the code does not implement, with a free parameter behind it; \"Five gaps\" on page 13 against a computed \"six\" on page 1; an appendix income statement that does not foot to profit before tax; and a NEGATIVE NUMBER PRINTED AS A POSITIVE ONE because a cell was one character too narrow and Word breaks after a hyphen. NONE IS A MODELLING ERROR AND EVERY ONE REACHES A READER. Two gates adopted (edition date in two clauses, 17/17; the figure -date clause), two MEASURED AND DECLINED with the measurement committed (the income-statement chain at 27%, spelled-out counts at 74 of 92 false).",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -67,11 +67,10 @@
   "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated \u2014 three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt."
  ],
  "next": [
-  "Keep reading rendered pages \u2014 PHDC pages 3-26, then TMGH, AMOC, EGCH. Two pages of one study produced two gates; this is the highest-yield instrument in the programme.",
-  "Twelve studies still carry the 1/g terminal. THREE disclosed lives are now sourced and registered (AMR 4-20, ADNOCDIST 5-40, ADNOCLS 2-40) so those three can be rebuilt; the rest need their own accounting-policies note read. Most company IR sites are reachable.",
-  "The terminal defect's SIGN is set by the currency \u2014 pessimistic in Egypt, optimistic in the Gulf, and 44 of 90 names are Gulf. A single-signed correction would make half the book worse.",
-  "Nine studies expose no readable terminal; five remain after the census was widened.",
-  "Run the [R-ENF-05] sign test across all five rebuilt names.",
+  "Read TMGH, AMOC and EGCH pages the same way. One study yielded nine defects and the classes generalise \u2014 three of the four gates came from PHDC's first two pages.",
+  "Seven wrapped cells across the book are listed in wrapped_cells_OUTSTANDING.md; each gets its fix at that study's next re-issue, and the detector becomes a gate once the list is short enough not to be red on arrival.",
+  "The two declined gates both need the SAME thing \u2014 a per-study declaration mapping a prose claim to the collection or chain it describes, which is the pattern prose_figures and footing_check already use. Building that once would close both.",
+  "Twelve studies still carry the 1/g terminal; three disclosed lives are sourced (AMR 4-20, ADNOCDIST 5-40, ADNOCLS 2-40). The defect's SIGN is set by the currency \u2014 pessimistic in Egypt, optimistic in the Gulf, and 44 of 90 names are Gulf.",
   "BLOCKED ON THE PRINCIPAL (MORNING.md item 64): ARCC's OHLC library ends 6-Aug at 59.00 against a 3-Sep spot of 77.00; only a fresh export fixes the technical read."
  ],
  "stop_and_ask": [
@@ -88,7 +87,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T22:05Z",
+ "updated": "2026-09-03T22:30Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
