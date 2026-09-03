@@ -404,18 +404,38 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   </section>
 
   <section>
-    <h2>What the two Phase 2a rows mean</h2>
-    <p class="intro">They are different jobs on the same ninety names, and a name is not
-      finished until it has both.</p>
+    <h2>What every row above means</h2>
+    <p class="intro">Five measures of three different things. They are never averaged,
+      because they answer different questions and disagreeing is informative.</p>
     <div class="panel">
-      <h3>Rebuilt</h3>
+      <h3>Phase 1 — build</h3>
+      <p class="note"><strong>Are the tools that produce a valuation built?</strong> One house
+      macro path per market instead of each study carrying its own inflation view; a
+      cost-of-capital schedule that glides with the central bank's own easing path instead of
+      one crisis-level rate applied to every year and the perpetuity; one class primary as the
+      central instead of a weighted blend of four lenses; a checked enterprise-to-equity
+      bridge. Ten workstreams, twenty-nine artefacts. <strong>Complete.</strong> It is about
+      the method, not about any company.</p>
+      <h3 style="margin-top:18px">Phase 1 — delivery</h3>
+      <p class="note"><strong>Do the five test names have finished, current documents?</strong>
+      Three checks each: the study exposes a readable answer, its gap review audits the answer
+      the study actually publishes rather than a superseded one, and the publish queue holds
+      that same answer. Fifteen of fifteen. This is a currency check — it catches a document
+      or a queue still stating last week's number, which happened three times.</p>
+      <h3 style="margin-top:18px">Phase 1 — acceptance</h3>
+      <p class="note"><strong>Has the rebuilt method been shown to work?</strong> Six criteria,
+      and the third is the instrument: the valuation calibration must show that the house is
+      not systematically wrong. Five of six hold. The outstanding one is criterion 3, which is
+      running at six of eleven point-in-time origins and needs the rest of its historical
+      archive. <em>The other five criteria are hygiene; this one is the evidence.</em></p>
+      <h3 style="margin-top:18px">Phase 2a — rebuilt</h3>
       <p class="note"><strong>Does a study exist, built to today's method?</strong> One house
       macro path, the cost-of-capital schedule rather than a single crisis-level rate, one
       class primary as the central with the other lenses published beside it, a checked
       enterprise-to-equity bridge. It produces the four documents. This is the number that
       answers "have we valued this company properly yet" — and for 85 of the 90 the answer is
       still no, because most have no study at all.</p>
-      <h3 style="margin-top:18px">Backtested</h3>
+      <h3 style="margin-top:18px">Phase 2a — backtested</h3>
       <p class="note"><strong>Has that method been tested on the company's own history?</strong>
       Rebuild its fair value at each past year-end using only what was published by that date,
       and score it: did we agree with the market then, and did our disagreement predict what
@@ -425,8 +445,17 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
       <p class="note"><strong>Why rebuilt runs ahead of backtested, and should.</strong> The
       backtest needs point-in-time inputs for every origin — what the sovereign yield, the
       policy rate, the inflation print and the risk premium actually were on the day, not
-      today's revised readings. That archive is being assembled and is the binding constraint,
-      not the study count.</p>
+      today's revised readings. That archive is the binding constraint, not the study count.</p>
+      <h3 style="margin-top:18px">Phase 2b — the live test</h3>
+      <p class="note"><strong>Does the corrected method work going forward, on evidence nobody
+      can tune?</strong> From the day 2a closes, every fair value published is a dated claim
+      graded against what actually happens. It has no bar and no projected date on purpose:
+      2a is bounded by <em>work</em> and finishes faster with more capacity, while 2b is bounded
+      by the <em>calendar</em> — a claim made today cannot be graded until what it claimed has
+      happened, and no amount of effort shortens that.</p>
+      <p class="note"><strong>The one thing none of these rows measures.</strong> Whether a
+      given company's fair value is right. That is what the deviation column in the table above
+      is for, and why four of the five sit outside 10% of their market price today.</p>
     </div>
   </section>
 
