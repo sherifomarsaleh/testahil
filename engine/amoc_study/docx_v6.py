@@ -101,7 +101,7 @@ assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP
 masthead()
 P('Alexandria Mineral Oils Company S.A.E.', size=19, bold=True, space_after=0)
 rich([('EGX: AMOC  ·  Egyptian Exchange  ·  EGP  ·  Valuation study as of 6 August 2026, '
-       'issued 1 September 2026', dict(size=10, color=GREY))], space_after=10)
+       'issued 3 September 2026', dict(size=10, color=GREY))], space_after=10)
 
 box([
     ('READ FIRST.  ',
@@ -127,7 +127,7 @@ box([
      f'Surrender every contested judgement in this study simultaneously — the tax provision '
      f'settles for nothing, the declared dividend never leaves, the employees’ profit share '
      f'is free, the terminal rate reverts to the softer inflation target, operating profit is '
-     f'taxed at the flattered effective rate — and the weighted central still reaches only EGP '
+     f'taxed at the flattered effective rate — and the central still reaches only EGP '
      f'{p2(ADV["ALL_GIVEBACKS"]["central"])}, {pc(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1)} '
      f'against the price. Section 1.13 walks the whole stack, one full model re-run per row.'),
     ('WHAT A BUYER AT THE PRICE MUST BELIEVE.  ',
@@ -340,7 +340,7 @@ table([['Charge', 'Disclosed', 'Annualised', 'Where it belongs', 'Central WITHOU
         'removed from operating working capital and deducted in the bridge',
         f"{p2(ADV['no_divp']['central'])}  ({sgn(ADV['no_divp']['central']/C-1)})"]],
       [1.6, 1.5, 1.1, 2.35, 1.25], size=8.6, left_cols=(1, 2, 3))
-caption('Table 7 — the three charges. The rightmost column is the weighted central this study '
+caption('Table 7 — the three charges. The rightmost column is the central this study '
         'would print if the charge were NOT taken, from a full model re-run — so a positive figure '
         'is how much each charge costs the valuation. Setting the provision to zero in the previous edition '
         'moved its valuation by nothing at all, to four decimal places, because no formula read '
@@ -1162,6 +1162,6 @@ box([
      'turn out wrong.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_01-09-2026_public.docx')
+OUT = os.path.join(HERE, 'AMOC_Valuation_Study_03-09-2026_public.docx')
 doc.save(OUT)
 print('wrote', OUT)

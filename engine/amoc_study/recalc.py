@@ -15,13 +15,54 @@ Recalculation runs through the explicit evaluator in xlcalc.py rather than throu
 that wrote the file: an independent reimplementation that has to agree cell-for-cell is the
 stronger check.
 """
-import json, os, sys
+import fnmatch, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-XLSX = os.path.join(HERE, 'AMOC_Valuation_Model_06082026_public.xlsx')
+
+
+# ---------------------------------------------------------------------------
+# THE DELIVERED EDITION IS RESOLVED, NEVER TYPED.  [L-067]
+# ---------------------------------------------------------------------------
+# A check that opens a delivered file BY NAME reports on whatever edition that
+# name happened to be when the line was written. ARCC's driver_test and label_gate
+# were found on 01-Sep-2026 opening a workbook two editions old and reporting
+# clean; this file was doing the same thing on 03-Sep-2026, still pinned to the
+# 06-08-2026 workbook while two later editions had shipped. Resolving by PATTERN
+# and taking the newest date moves the check with the re-issue, which is the only
+# version of this fix that does not have to be remembered.
+_DATE_RE = re.compile(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})")
+
+
+def _stamp(name):
+    m = _DATE_RE.search(name)
+    if not m:
+        return (0, 0, 0)
+    d, mo, y = (int(x) for x in m.groups())
+    return (y, mo, d) if (1 <= d <= 31 and 1 <= mo <= 12) else (0, 0, 0)
+
+
+def latest(pattern):
+    """The newest-dated delivered file matching `pattern`, or REFUSE."""
+    hits = [f for f in os.listdir(HERE) if fnmatch.fnmatch(f, pattern)]
+    if not hits:
+        raise SystemExit("REFUSED: nothing matches %r in the study directory. An "
+                         "empty match is not a clean result [R-ENF-04]." % pattern)
+    return max(hits, key=_stamp)
+
+
+raise SystemExit(
+    "SUPERSEDED — this recalculator was written for the NINE-sheet workbook of "
+    "06-08-2026 (it expects a 'Product and Cost' sheet, which the model-report "
+    "standard does not have). THE LIVE RECALCULATION GATE IS recalc_v5.py, and it "
+    "is the one the QC gate cites. This file refuses rather than running, because "
+    "it was pinned by name to a workbook two editions old and would have reported "
+    "clean on it — a check that opens a delivered file by name reports on whatever "
+    "edition that name happened to be when the line was written [L-067]. It is "
+    "kept rather than deleted so that anything still calling it fails loudly "
+    "instead of silently checking the wrong file.")
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

@@ -1,4 +1,4 @@
-"""AMOC_Valuation_Model_01092026_public.xlsx — the workbook CALCULATES.
+"""AMOC_Valuation_Model_03092026_public.xlsx — the workbook CALCULATES.
 
 The previous edition shipped 488 formulas against 186 pasted cells: 72.4% formula. The pasted
 27.6% was not incidental — it was the sensitivity grids, the beta sweep and the bear/bull
@@ -748,18 +748,30 @@ putf(wsL, 'C13', f"={RT['ke_blend']:.10f}", RT['ke_blend'], PCT2)
 putf(wsL, 'D13', f"=({L('roe_sust')}-{L('g_term')})/(C13-{L('g_term')})", BK['pb_just'], MULT)
 putf(wsL, 'E13', '=B13*D13', LN['book']['base'], PX, bold=True)
 
-put(wsL, 'A15', 'WEIGHTED CENTRAL', bold=True); band(wsL, 15, 7)
-putf(wsL, 'B15',
-     f"=B10*{L('w_dcf')}+C11*{L('w_relative')}+D12*{L('w_normalized')}+E13*{L('w_book')}",
-     D['central'], PX, bold=True)
+# [R-LENS-03]: ONE CLASS PRIMARY IS THE CENTRAL. For a refiner that is the
+# cash-flow lens; the other three are CROSS-CHECKS published beside it, never
+# weighted into the answer. This row used to compute a 45/20/20/15 blend and
+# label it the central, which is the architecture the rule retired — and the
+# recalculation gate caught it, because compute.py's own central had already
+# moved to the primary while this formula had not.
+put(wsL, 'A15', 'CENTRAL — the cash-flow lens', bold=True); band(wsL, 15, 7)
+putf(wsL, 'B15', "=B10", D['central'], PX, bold=True)
 put(wsL, 'A16', 'against spot')
 putf(wsL, 'B16', f"=B15/{L('spot')}-1", D['central'] / SPOT - 1, PCT)
-note(wsL, 18,
-     'The weighted range on the Summary sheet is the bear and bull columns weighted with these '
-     'same weights. The previous edition labelled a row "weighted central" and then took the '
-     'minimum and maximum across the four lenses — both of which came from the cash-flow lens '
-     'alone — so the word "weighted" applied to the centre and not to the ends, and the '
-     'published spread was about two and a half times too wide.')
+putf(wsL, 'B17',
+     f"=B10*{L('w_dcf')}+C11*{L('w_relative')}+D12*{L('w_normalized')}+E13*{L('w_book')}",
+     D['lenses']['retired_blend']['base'], PX)
+put(wsL, 'A17', 'the retired 45/20/20/15 blend, published beside the answer and unused')
+note(wsL, 19,
+     'ONE CLASS PRIMARY IS THE CENTRAL. The cash-flow lens is the answer; the relative, '
+     'normalised-earnings and book rows are cross-checks and the range across them is an '
+     'ENVELOPE, not a spread around a weighted estimate. The blend on the row above is kept '
+     'visible and unused: three of the four lenses value a refiner on reported earnings and '
+     'historical-cost book, and averaging them into the answer imports every weakness of the '
+     'weakest at a weight nobody tested out of sample. An earlier edition labelled a row '
+     '"weighted central" and then took the minimum and maximum across all four lenses, both of '
+     'which came from the cash-flow lens alone, so the word "weighted" applied to the centre '
+     'and not to the ends and the published spread was about two and a half times too wide.')
 
 
 # =============================================================================
@@ -811,11 +823,11 @@ for lab, key, baseref in LNK:
     putf(wsSU, f'E{r}', f"={L('w_' + key)}", LN[key]['w'], PCT)
     r += 1
 band(wsSU, r, 6)
-put(wsSU, f'A{r}', 'WEIGHTED CENTRAL', bold=True)
+# [R-LENS-03]: the central IS the class primary — row 6, the cash-flow lens —
+# and the other three rows are cross-checks. This row used to weight all four.
+put(wsSU, f'A{r}', 'CENTRAL — the cash-flow lens', bold=True)
 for cl, k in (('B', 'bear'), ('C', 'base'), ('D', 'bull')):
-    putf(wsSU, f'{cl}{r}',
-         '=' + '+'.join(f"{cl}{6 + i}*$E${6 + i}" for i in range(4)),
-         LN['central'][k], PX, bold=True, green=True)
+    putf(wsSU, f'{cl}{r}', f"={cl}6", LN['central'][k], PX, bold=True, green=True)
 CEN_R = r
 r += 2
 _row(wsSU, r, 'Market price at the valuation date', f"={L('spot')}", SPOT, PX); r += 1
@@ -1113,10 +1125,10 @@ note(wsMC, r,
 # ================= PER-SHARE & RATIOS ========================================
 wsPR = sheet('Per-Share & Ratios', 58)
 title(wsPR, 'Per share, and the multiples the answer implies',
-      'What the weighted central and the market price each imply, on the same base-year '
+      'What the central and the market price each imply, on the same base-year '
       'figures. Every cell is a formula off the Summary and Income Statement sheets.', 6)
 r = 5
-_row(wsPR, r, 'Weighted central, EGP', f"=Summary!C{CEN_R}", D['central'], PX, bold=True,
+_row(wsPR, r, 'Central, EGP', f"=Summary!C{CEN_R}", D['central'], PX, bold=True,
      green=True); r += 1
 _row(wsPR, r, 'Market price, EGP', f"={L('spot')}", SPOT, PX); r += 1
 _row(wsPR, r, 'Book value per share, EGP', f"={FVS}!B13", BK['bvps'], PX); r += 1
@@ -1272,7 +1284,7 @@ assert not missing and not extra, (
     % (missing, extra))
 wb._sheets = [wb[n] for n in WANT]
 assert wb.sheetnames == WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'AMOC_Valuation_Model_01092026_public.xlsx')
+OUT = os.path.join(HERE, 'AMOC_Valuation_Model_03092026_public.xlsx')
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'n_formula': NFORM[0], 'n_pasted': NPASTE[0]},
           open(os.path.join(HERE, 'xlsx_expected_v5.json'), 'w'), indent=1)
