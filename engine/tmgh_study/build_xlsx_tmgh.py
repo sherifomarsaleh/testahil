@@ -453,15 +453,24 @@ def add_rest(wb, ws):
     s = ws["Sensitivity"]
     grid = LENS["sensitivity"]["wacc_grid"]
     waccs = sorted({x["wacc"] for x in grid.values()})
-    r = head(s, 1, ["Discount rate", "Slower conversion, EGP/share",
-                    "Faster conversion, EGP/share (minority at book)", "Against last close"],
+    # BOTH COLUMNS READ THE ADOPTED BASIS, AND ONLY ONE OF THEM SAID WHICH IT WAS. The
+    # first was headed plainly and the second "(minority at book)", while both took the
+    # book figure — so a reader taking the unlabelled column for the study's answer got a
+    # different one, and the same grid in the delivered document has since been corrected
+    # to the adopted basis. The workbook and the document now show the same number.
+    r = head(s, 1, ["Discount rate",
+                    "Slower conversion, EGP/share (minority at value share, adopted)",
+                    "Faster conversion, EGP/share (minority at value share, adopted)",
+                    "Against last close"],
              [16, 28, 28, 20])
     for w in waccs:
         s.cell(row=r, column=1, value=w).number_format = PCT2
         s.cell(row=r, column=2,
-               value=grid["%0.4f|capacity" % w]["per_share_nci_book"]).number_format = NUM2
+               value=grid["%0.4f|capacity" % w]["per_share_nci_value_share"]
+               ).number_format = NUM2
         s.cell(row=r, column=3,
-               value=grid["%0.4f|recovery" % w]["per_share_nci_book"]).number_format = NUM2
+               value=grid["%0.4f|recovery" % w]["per_share_nci_value_share"]
+               ).number_format = NUM2
         s.cell(row=r, column=4, value="=B%d/'Summary'!$B$2-1" % r).number_format = PCT
         r += 1
     r += 1

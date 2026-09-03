@@ -41,6 +41,12 @@ CASES = N["valuation_cases"]
 SCHED = N["cost_of_capital_record"]
 PSB, PSP = N["per_share_nci_book"], N["per_share_nci_proportional"]
 PSV = N["per_share_nci_value_share"]      # the ADOPTED basis
+# HOW MANY WAYS THE MINORITY IS ACTUALLY DEDUCTED, COUNTED RATHER THAN TYPED. The document
+# said "two different ways" in two places and "three bases" in a third, while the summary
+# table publishes three columns. A count a reader can check against the table it sits under
+# is not a figure of speech.
+_NBASES = len([k for k in N if k.startswith("per_share_nci_")])
+_NBASES_WORD = {2: "two", 3: "three", 4: "four"}[_NBASES]
 FV = N["fair_value_range"]
 SPOT = M["spot"]
 # THE EDITION DATE IS DERIVED FROM THE FILE THIS DOCUMENT SHIPS AS [ADDED 03-Sep-2026].
@@ -150,8 +156,8 @@ def build(path):
         "Nearly half the group does not belong to TMG's shareholders. "
         "Non-controlling interests are %s of consolidated equity after the 2024 "
         "hotel acquisition and the project-company structures. Every value here "
-        "is shown with that minority deducted two different ways."
-        % pct(CASES["rating|capacity"]["nci_share_of_equity"], 1),
+        "is shown with that minority deducted %s different ways."
+        % (pct(CASES["rating|capacity"]["nci_share_of_equity"], 1), _NBASES_WORD),
     ])
     para(doc, "Every figure about the company comes from its own audited or "
               "reviewed financial statements, or from documents it published "
@@ -950,8 +956,8 @@ def sections_2_to_7(doc):
         "Nearly half the group belongs to somebody else. Non-controlling "
         "interests are %s of consolidated equity, and the company does not "
         "disclose its economic share project by project, so the deduction is "
-        "made two ways and both are published."
-        % pct(CASES["rating|capacity"]["nci_share_of_equity"], 1),
+        "made %s ways and all are published."
+        % (pct(CASES["rating|capacity"]["nci_share_of_equity"], 1), _NBASES_WORD),
         "Unit economics cannot be built for this company. It publishes unit "
         "counts occasionally — 3,196 homes delivered in 2025, 6,102 units sold "
         "in 2022 — and never as a continuous series, and it publishes no average "

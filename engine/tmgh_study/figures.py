@@ -134,7 +134,10 @@ def fig2_sensitivity(n, path):
     fig, ax = plt.subplots(figsize=(8.6, 4.0))
     for mode, colour, lab in (("capacity", ACCENT, "slower conversion (14 years)"),
                               ("recovery", ACCENT2, "faster conversion (10 years)")):
-        ys = [grid["%0.4f|%s" % (w, mode)]["per_share_nci_book"] for w in waccs]
+        # THE ADOPTED BASIS, WHICH IS WHAT THE TABLE UNDER THIS CHART PRINTS. It read the
+        # book basis, so the picture and the table beneath it plotted different answers to
+        # the same question — the chart landing five to twenty pounds a share low.
+        ys = [grid["%0.4f|%s" % (w, mode)]["per_share_nci_value_share"] for w in waccs]
         ax.plot([100 * w for w in waccs], ys, marker="o", ms=4, lw=1.8,
                 color=colour, label=lab)
     ax.axhline(n["meta"]["spot"], color=MUTED, lw=1.2, ls="--")
