@@ -169,6 +169,17 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
     return 0
 
 
+def _money(v):
+    """Render a fair value at the register's own four decimals.
+
+    The stored value keeps full precision on purpose — the currency check
+    compares it against the study's committed central — but a column where one
+    row reads -1.0621217844282123 and its neighbours read 9.9142 is a column a
+    reader stops trusting. Rounding belongs at the render, never in the record.
+    """
+    return v if isinstance(v, str) else ('%.4f' % float(v))
+
+
 def _fmt(mv, leg):
     """n/a where the whole baseline is unrecoverable, or where that one leg's
     old value was zero and a percentage would be a division by nothing."""
@@ -228,8 +239,8 @@ def build():
             mv = ed['vs_baseline_pct']
             L.append('| %d | %s | %s | %s | %s | %s | %s | %s | %s | %s → %s | %s |'
                      % (q['position'], q['ticker'], e['ccy'] or '', ed['scope'],
-                        b['fair']['base'] if b['fair'] else 'unrecoverable',
-                        ed['fair']['base'],
+                        _money(b['fair']['base']) if b['fair'] else 'unrecoverable',
+                        _money(ed['fair']['base']),
                         _fmt(mv, 'base'), _fmt(mv, 'bear'), _fmt(mv, 'full'),
                         b['built_to'], current, ', '.join(ed['lessons']) or '—'))
     L.append('')
@@ -274,14 +285,68 @@ def check():
         if tk not in runs:
             fails.append('%s carries a record with no walk-forward run '
                          'directory behind it' % tk)
-    print('run directories: %d   in queue: %d   records: %d'
-          % (len(runs), len(runs & inq), len(d['entries'])))
+
+    # A RECORD THAT EXISTS IS NOT A RECORD THAT IS CURRENT. Until 03-Sep-2026 this
+    # check asked only whether a ticker had SOME recorded fair value, and it
+    # reported clean while EGCH's register sat at edition 2 (base 3.76) and the
+    # delivered study published -1.06 — a movement of the very quantity this
+    # register exists to track, invisible to the thing tracking it. That is the
+    # same species as the gap gate green-lighting a review written for a superseded
+    # answer, and as a study's own gates opening a superseded workbook: an artefact
+    # checked for existence rather than for currency. So the latest edition is now
+    # compared against the study's OWN committed numbers, through the same reader
+    # CI holds the book to.
+    stale = []
+    try:
+        import importlib.util as _ilu
+        _sp = _ilu.spec_from_file_location(
+            '_gapgate', os.path.join(ROOT, 'scripts', 'check_valuation_gap.py'))
+        _gg = _ilu.module_from_spec(_sp)
+        _sp.loader.exec_module(_gg)
+        read_answer = _gg.read_answer
+    except Exception as exc:                              # pragma: no cover
+        fails.append('could not load the study answer reader (%s: %s), so the '
+                     'currency of these records went unchecked — which is not the '
+                     'same as their being current'
+                     % (type(exc).__name__, exc))
+        read_answer = None
+    if read_answer is not None:
+        for tk in sorted(d['entries']):
+            eds = d['entries'][tk].get('editions') or []
+            if not eds:
+                continue
+            sdir = os.path.join(ENGINE, '%s_study' % tk.lower())
+            if not os.path.isdir(sdir):
+                continue
+            central, spot, route = read_answer(sdir)
+            if central is None:
+                fails.append("%s: the delivered study's central cannot be read "
+                             '(%s), so whether this register is current cannot be '
+                             'established. An unreadable answer is not a clean '
+                             'answer.' % (tk, route))
+                continue
+            recorded = (eds[-1].get('fair') or {}).get('base')
+            if recorded is None:
+                fails.append('%s: the latest edition records no base fair value' % tk)
+            elif round(float(recorded), 4) != round(float(central), 4):
+                stale.append((tk, float(recorded), float(central),
+                              eds[-1].get('edition'), eds[-1].get('delivered')))
+    for tk, rec, cur, ed, when in stale:
+        fails.append('%s: the register\'s latest entry is edition %s of %s at '
+                     '%.4f, and the delivered study publishes %.4f. The register '
+                     'is BEHIND the study it records — register the new edition '
+                     'rather than leaving the movement unrecorded.'
+                     % (tk, ed, when, rec, cur))
+
+    print('run directories: %d   in queue: %d   records: %d   editions current: %d'
+          % (len(runs), len(runs & inq), len(d['entries']),
+             len(d['entries']) - len(stale)))
     for f in fails:
         print('  FAIL  %s' % f)
     if fails:
         return 1
-    print('  [ok]   every run in the queue has a frozen baseline and a '
-          'recorded fair value')
+    print('  [ok]   every run in the queue has a frozen baseline and a recorded '
+          'fair value, and every record matches the study it records')
     return 0
 
 
@@ -299,8 +364,14 @@ def main(argv):
         def opt(flag, dflt=None):
             return a[a.index(flag) + 1] if flag in a else dflt
         lessons = [x for x in (opt('--lessons', '') or '').split(',') if x]
+        # --when exists because an edition is registered on the day it was
+        # DELIVERED, which is not always the day someone gets round to recording
+        # it. Without it the only way to record a past edition is to bypass this
+        # CLI and call record() directly, and a register written two ways is a
+        # register that will eventually disagree with itself.
         return record(a[0].upper(), opt('--bear'), opt('--base'), opt('--full'),
-                      opt('--scope', 'full'), opt('--origins', ''), lessons)
+                      opt('--scope', 'full'), opt('--origins', ''), lessons,
+                      when=opt('--when'))
     if cmd == 'build':
         return build()
     if cmd == 'check':

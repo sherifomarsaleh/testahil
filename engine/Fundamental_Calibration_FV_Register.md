@@ -20,11 +20,11 @@ Internal record. No rating, no price target, no recommendation — a range and w
 
 | # | name | ccy | scope | old base | new base | base | bear | full | built to → | lessons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 33 | AMOC | EGP | full | 5.95 | 9.9142 | +66.6% | +20.5% | +96.3% | (study carries no stamp) → 2026.09.01 | — |
-| 34 | ARCC | EGP | full | 54.65 | 53.4593 | -2.2% | -3.5% | -3.9% | (study carries no stamp) → 2026.09.01 | — |
-| 35 | EGCH | EGP | full | 3.64 | 3.76 | +3.3% | n/a | +0.0% | (study carries no stamp) → 2026.09.01 | L-064, L-065, L-206, L-207 |
+| 33 | AMOC | EGP | full | 5.9500 | 9.9142 | +66.6% | +20.5% | +96.3% | (study carries no stamp) → 2026.09.01 | — |
+| 34 | ARCC | EGP | full | 54.6500 | 53.4593 | -2.2% | -3.5% | -3.9% | (study carries no stamp) → 2026.09.01 | — |
+| 35 | EGCH | EGP | full | 3.6400 | -1.0621 | -129.2% | n/a | -93.4% | (study carries no stamp) → 2026.09.01 | L-064, L-065, L-206, L-207 |
 | 36 | PHDC | EGP | full | unrecoverable | 17.1517 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | — |
-| 37 | TMGH | EGP | full | 147.12 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.01 | — |
+| 37 | TMGH | EGP | full | 147.1200 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.01 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.
 

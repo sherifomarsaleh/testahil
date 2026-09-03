@@ -297,6 +297,33 @@
       "bear": null,
       "full": 0.0
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": -1.0621217844282123,
+      "bear": -2.6124650988103313,
+      "full": 1.0205331101493433
+     },
+     "lessons": [
+      "L-064",
+      "L-065",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -129.2,
+      "bear": null,
+      "full": -93.4
+     },
+     "vs_previous_pct": {
+      "base": -128.2,
+      "bear": null,
+      "full": -93.4
+     }
     }
    ],
    "exchange": "EGX",
