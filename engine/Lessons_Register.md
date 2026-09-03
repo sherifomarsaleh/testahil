@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**163 lessons**, of which 136 bind on every study, 20 on a class of company, and 7 on a single name.
+**165 lessons**, of which 138 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 88 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 90 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1438,6 +1438,26 @@ A written gate feels finished — it has a docstring, a negative control, a name
 > **What it cost, or how we know.** scripts/check_legacy_assets_sync.py was written on 30-Aug-2026 for a real shipped defect and was invoked by NO workflow. Run by hand four days later it went RED, and what it found was live: on 1 September the AMOC fair value was reverted in assets/data.js to its pre-calibration figure, because the standing instruction is that nothing from the calibration campaign goes live one name at a time. The revert reached assets/ and not the legacy mirror — and legacy/ holds the ONLY working copies of the ledger, picker, trade and portfolio pages, which read their own data.js. For two days testahil.com served 5.53/8.64/12.48 on /legacy/ and 4.09/5.95/8.52 on the new information architecture: TWO DIFFERENT FAIR VALUES FOR ONE COMPANY ON ONE DAY, with the public ledger showing the campaign number that was not supposed to be there. Confirmed by fetching both URLs from the live site before fixing it, rather than inferred from the repository. Separately measured the same hour: TWENTY-ONE of seventy-one gates were in no workflow's TRIGGER list, so editing a gate ran nothing — the one file whose correctness every other check depends on was the one file CI did not watch.
 
 > **What would overturn it.** A gate whose value does not depend on being run — which would mean it is documentation, and should be filed as such.
+
+### L-243 · WHEN A MEASUREMENT ON ONE NAME EXPLAINS EVERYTHING, THAT IS THE MOMENT TO POOL IT, NOT THE MOMENT TO CONCLUDE.
+
+A single name that answers the question cleanly is more persuasive than a pooled figure that answers it partly, and it is persuasive in the wrong direction: the cleanliness is what should make it suspect. This is [R-LESSON-01]'s one-observation rule turned on a finding ABOUT the findings, where it is easiest to forget.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the macro-share measurement, 03-Sep-2026
+
+> **What it cost, or how we know.** The driver census shows a bias that COMPOUNDS with the horizon — an intercept near zero with a large slope, the signature of a rate error. [R-FCAL-01] already requires every origin to be re-run on PERFECT FORESIGHT of the inflation path, so the explicit window's own escalator can be tested directly. On AMOC it answered completely: net sales 89.2% macro, raw materials 97.6%, cost of sales 97.3% — the revenue error collapsing from 0.5701 to 0.0617 and the cost error from 0.6273 to 0.0153 once the model is told the true path. That is a whole diagnosis from one name, and it is wrong as a general claim. Pooled across five names and 64 drivers carrying an inflation term the median macro share is 19.9%, the inflation path is most of the error on 10 of 64, and the total falls only 64.88 to 57.78 — 11%. EGCH goes the OTHER WAY: perfect foresight of inflation makes its forecast 13% WORSE, because its revenue is dollar tonnes at dollar prices and its errors are not in the pound at all. The pooled figure is now printed by the census beside the per-name ones so the one-name reading cannot be the one that gets read.
+
+> **What would overturn it.** A pooled macro share that rises toward AMOC's as more names are run — which would make the inflation path a general explanation after all.
+
+### L-244 · A RATE ERROR THAT SURVIVES PERFECT FORESIGHT OF THE RATE IS SOMEWHERE ELSE.
+
+Where a bias compounds with the horizon there is usually more than one rate it could live in, and the candidates are rarely tested against each other — the first plausible one gets the blame. Ruling one out is worth as much as finding one.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the macro-share measurement, 03-Sep-2026
+
+> **What it cost, or how we know.** Two rates could carry a compounding scale error: the inflation path the explicit window escalates on, and the terminal construction. Handing the model the true inflation path at every origin removes 11% of the pooled driver error and leaves 89% standing, which RULES THE EXPLICIT WINDOW'S ESCALATOR OUT as the general cause and is evidence FOR the terminal attribution rather than against it. What the inflation path does explain is concentrated and legible: pound-denominated cost and revenue lines on names whose currency moved a long way, which is a fact about one economy and two companies rather than a property of the method.
+
+> **What would overturn it.** A third rate — a demand path, a margin glide — that removes more of the residual than the terminal construction does when it is tested the same way.
 
 
 ---
