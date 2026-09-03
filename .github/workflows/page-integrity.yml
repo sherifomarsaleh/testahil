@@ -18,6 +18,8 @@ name: Page integrity check
 on:
   push:
     paths:
+      - 'legacy/assets/**'
+      - 'scripts/check_legacy_assets_sync.py'
       - '**.html'
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
@@ -78,3 +80,22 @@ jobs:
       # that were true of every correct page and false of those two.
       - name: Run technical-read coherence gate
         run: python3 scripts/check_technical_read.py
+
+      # LEGACY/ IS SERVED CONTENT AND IT READS ITS OWN COPY OF data.js. The 30-Aug-2026
+      # cutover left root ledger.html, picker.html, trade.html and portfolio.html as
+      # redirect stubs, so the ONLY working copies of those four surfaces are the legacy
+      # ones — and they load /legacy/assets/data.js, not the file every other gate here
+      # inspects. This gate was written for exactly that on 30-Aug-2026 AND WAS WIRED
+      # INTO NOTHING: measured 03-Sep-2026, it was the one gate in the repository invoked
+      # by no workflow at all, and running it by hand found it RED.
+      #
+      # WHAT WAS LIVE WHILE NOTHING RAN IT: on 1 September the AMOC fair value was
+      # reverted in assets/data.js to its PRE-CALIBRATION figure, because the standing
+      # instruction is that nothing from the calibration campaign goes live one name at a
+      # time. The revert reached assets/ and not the legacy mirror. For two days
+      # testahil.com served 5.53/8.64/12.48 on /legacy/ and 4.09/5.95/8.52 on the new IA —
+      # two different fair values for one company on one day, and the one on the public
+      # ledger was the campaign number that was not supposed to be there. Verified against
+      # the live site before it was fixed, not inferred from the repository.
+      - name: legacy/assets must not drift from assets/ — six served surfaces read it
+        run: python3 scripts/check_legacy_assets_sync.py

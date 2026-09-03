@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**162 lessons**, of which 135 bind on every study, 20 on a class of company, and 7 on a single name.
+**163 lessons**, of which 136 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 87 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 88 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1428,6 +1428,16 @@ An identity carries its assumptions silently — that is what makes it an identi
 > **What it cost, or how we know.** Relative purchasing-power parity was written for Egypt, the first market sourced, and ran unconditionally on every market added after. On a HARD PEG it manufactures exactly the drift the peg forbids: the first UAE print returned a dirham sliding 3.6725 to 3.65 over five years off a 0.5pp inflation differential that a fixed nominal rate absorbs as a REAL appreciation. A study reading it would have escalated dollar revenue against a depreciating dirham and called it derived — a claim that the peg breaks, made silently, by arithmetic. The same relation on the UNITED STATES path compared the dollar with itself and returned a 0.98% depreciation of the dollar against the dollar. Both were found by PRINTING a newly sourced path, not by any gate. Both are now guarded by regime and by numeraire and pinned in the negative control on all seven markets in both directions.
 
 > **What would overturn it.** A currency identity that produces the right answer under a regime it does not assume — which would mean the guard is unnecessary rather than merely quiet.
+
+### L-242 · A GATE THAT NOTHING RUNS IS A FILE. WIRING IT IN IS PART OF WRITING IT, NOT A FOLLOW-UP.
+
+A written gate feels finished — it has a docstring, a negative control, a name somebody can cite — and every property that makes it convincing is present whether or not anything ever executes it. It is [R-CAL-03]'s decorative test in a sharper form: not a check that never rejects anything, but a check that never RUNS.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the legacy-assets gate, found unwired 03-Sep-2026
+
+> **What it cost, or how we know.** scripts/check_legacy_assets_sync.py was written on 30-Aug-2026 for a real shipped defect and was invoked by NO workflow. Run by hand four days later it went RED, and what it found was live: on 1 September the AMOC fair value was reverted in assets/data.js to its pre-calibration figure, because the standing instruction is that nothing from the calibration campaign goes live one name at a time. The revert reached assets/ and not the legacy mirror — and legacy/ holds the ONLY working copies of the ledger, picker, trade and portfolio pages, which read their own data.js. For two days testahil.com served 5.53/8.64/12.48 on /legacy/ and 4.09/5.95/8.52 on the new information architecture: TWO DIFFERENT FAIR VALUES FOR ONE COMPANY ON ONE DAY, with the public ledger showing the campaign number that was not supposed to be there. Confirmed by fetching both URLs from the live site before fixing it, rather than inferred from the repository. Separately measured the same hour: TWENTY-ONE of seventy-one gates were in no workflow's TRIGGER list, so editing a gate ran nothing — the one file whose correctness every other check depends on was the one file CI did not watch.
+
+> **What would overturn it.** A gate whose value does not depend on being run — which would mean it is documentation, and should be filed as such.
 
 
 ---

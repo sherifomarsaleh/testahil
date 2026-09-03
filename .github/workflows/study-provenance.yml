@@ -16,6 +16,22 @@ name: Study provenance gate
 on:
   push:
     paths:
+      # ------------------------------------------------------------------------------
+      # THREE GLOBS, BECAUSE A HAND-MAINTAINED TRIGGER LIST IS THE SAME DEFECT ONE LEVEL
+      # UP [ADDED 03-Sep-2026]. The enumeration below is real and stays — it documents
+      # what each gate governs and a reader can follow it — but it had to be extended by
+      # hand every time a gate was added, and it was not: measured on 03-Sep-2026,
+      # TWENTY-ONE of seventy-one gates were in no workflow's path list, among them
+      # [R-TERM-01]'s check_terminal_floor.py, [R-IND-01]'s check_escalations.py,
+      # [R-ANCHOR-01]'s check_forecast_anchor.py, [R-VCAL-01]'s
+      # check_valuation_calibration.py and [R-ENF-06]'s check_artefact_currency.py. So a
+      # change to a GATE ITSELF ran nothing: the one file whose correctness every other
+      # check depends on was the one file CI did not watch. That is [R-ENF-01] applied to
+      # the enforcement rather than to the work — a rule that can be checked must be
+      # checked from OUTSIDE the thing it governs, and a gate is a thing.
+      - 'scripts/check_*.py'
+      - 'engine/*.py'
+      - 'engine/build_depth_audit/*.json'
       - 'engine/**_study/**'
       - 'engine/research_protocol.py'
       - 'engine/wacc_builder.py'
@@ -726,6 +742,18 @@ jobs:
 
       - name: Terminal floor — negative control
         run: python3 scripts/check_terminal_floor_negative_control.py
+
+      # [R-GAP-02]'s GATE runs at PUBLISH time, as step 0 of publish_site.py, and that is
+      # deliberate: it blocks a future act rather than condemning a past one, so a CI job
+      # asserting that no held study exists would be red on every branch that holds one.
+      # ITS NEGATIVE CONTROL IS A DIFFERENT THING and was running NOWHERE — measured
+      # 03-Sep-2026, the only control in the repository invoked by no workflow at all. A
+      # control nobody runs is not evidence, which is the whole argument for having one:
+      # "a check nobody has seen fail is not evidence" [R-CAL-02]. It is self-contained
+      # and sandboxed, so it costs nothing to run here and proves the publish block still
+      # refuses what it claims to.
+      - name: The publish block still refuses what it claims to — negative control
+        run: python3 scripts/check_publish_block_negative_control.py
 
       # VERIFY BY IMPORT, NOT BY PARSE — the standing rule. The shared terminal builder
       # must actually import, and its refusals must actually refuse.

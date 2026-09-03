@@ -3064,6 +3064,33 @@ LESSONS = [
       "A currency identity that produces the right answer under a regime it does not assume "
       "— which would mean the guard is unnecessary rather than merely quiet."),
 
+    L("L-242", "ALL", None,
+      "A GATE THAT NOTHING RUNS IS A FILE. WIRING IT IN IS PART OF WRITING IT, NOT A "
+      "FOLLOW-UP.",
+      "A written gate feels finished — it has a docstring, a negative control, a name "
+      "somebody can cite — and every property that makes it convincing is present whether "
+      "or not anything ever executes it. It is [R-CAL-03]'s decorative test in a sharper "
+      "form: not a check that never rejects anything, but a check that never RUNS.",
+      "the legacy-assets gate, found unwired 03-Sep-2026",
+      "build",
+      "scripts/check_legacy_assets_sync.py was written on 30-Aug-2026 for a real shipped "
+      "defect and was invoked by NO workflow. Run by hand four days later it went RED, and "
+      "what it found was live: on 1 September the AMOC fair value was reverted in "
+      "assets/data.js to its pre-calibration figure, because the standing instruction is "
+      "that nothing from the calibration campaign goes live one name at a time. The revert "
+      "reached assets/ and not the legacy mirror — and legacy/ holds the ONLY working "
+      "copies of the ledger, picker, trade and portfolio pages, which read their own "
+      "data.js. For two days testahil.com served 5.53/8.64/12.48 on /legacy/ and "
+      "4.09/5.95/8.52 on the new information architecture: TWO DIFFERENT FAIR VALUES FOR "
+      "ONE COMPANY ON ONE DAY, with the public ledger showing the campaign number that was "
+      "not supposed to be there. Confirmed by fetching both URLs from the live site before "
+      "fixing it, rather than inferred from the repository. Separately measured the same "
+      "hour: TWENTY-ONE of seventy-one gates were in no workflow's TRIGGER list, so "
+      "editing a gate ran nothing — the one file whose correctness every other check "
+      "depends on was the one file CI did not watch.",
+      "A gate whose value does not depend on being run — which would mean it is "
+      "documentation, and should be filed as such."),
+
 ]
 
 
