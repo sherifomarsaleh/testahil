@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS6/WS10",
-  "step": "[R-VCAL-01] adopted; archives, measurements, scorer and gates all in. Blocked only on the two observed macro fields.",
-  "status": "in progress"
+  "workstream": "WS6/WS9/WS10 complete for this stretch",
+  "step": "archives, measurements, scorer, gates, [R-VCAL-01] adopted, lessons registered, WS9 report produced. Blocked only on the two observed macro fields (morning item 35).",
+  "status": "awaiting the principal"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -60,15 +60,17 @@
   "INCIDENT, recorded rather than repaired quietly: scripts/run_ci_gates.py --all ran every workflow's steps against the LIVE working tree and reached one that rebases and auto-commits — the checkout was left mid-rebase on a detached HEAD, engine/valuation_calibration/ was emptied on disk, and an uncommitted file was swept into an auto-generated commit describing something else. Nothing lost (all commits were on the remote), which was luck about push timing rather than design. Repo-mutating verbs are now refused by name and --all is deleted; the misleading auto-commit is left in history rather than rewritten.",
   "WS10 [R-VCAL-01] ADOPTED in both governing documents in one commit — the fair value itself is graded against what happened, on a design committed before the data. Digest renamed PROJECT_INSTRUCTIONS_03-09-2026.md per [R-DOC-01] (first edit of a new day), revision letters restarted at 'a', both stamps 2026-09-03a, the digest's self-reference and CLAUDE.md's include line moved in the same commit. Sync gate, text gate and all 34 CI steps green. FULL DIGEST TEXT OWED IN CHAT at the morning delivery.",
   "GATE: check_protocol_sync.py compared the two documents to each other and never asked whether a rule id CITED IN CODE resolves in either — [R-DOC-01] requires all three populations. R-VCAL-01 was cited in eight files and defined nowhere while the gate reported perfect agreement. Its first run also found R-BETA-01, pre-existing, cited in build_protocol_review.py where the documents carry only R-BETA-04. Ratcheted with reasons; R-VCAL-01 pruned on adoption, R-BETA-01 outstanding and not mine.",
-  "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated — three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt."
+  "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated — three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt.",
+  "WS9 done: ws9_report.py reads the gates' own ratchets and reports what the new standard costs the rest of the book. 22 of 90 published fair values have a study directory and 68 do not — nothing for any gate to open, so they are unexamined rather than passing. Nineteen of the 22 are outstanding on 5-6 of 8 checks; the five rebuilt names' remainders are specific (AMOC/EGCH no coc record; ARCC's coc record carries two real defects; PHDC/TMGH the walk-forward alone). Macro, lens and bridge ratchets pruned of AMOC/ARCC/EGCH, which already conformed. Campaign order untouched."
  ],
  "next": [
-  "BLOCKED (morning item 35): sovereign_10y and policy_rate per origin — needs an export from the principal.",
-  "DECISION PENDING (morning item 41): whether Phase 2 follows the measured tail order or the campaign's market order. Default is UNCHANGED — the market order stands.",
-  "WS6 unblocked: score.py/decompose.py/report.py and scripts/check_valuation_calibration.py (must assert the pre-registration commit precedes every score file). Gap closure cannot be scored yet — the vintage archive spans three months and the fundamental lens claims up to a year.",
-  "WS5 remainder: apply the adopted corrections at each study's next edition (morning item 30)",
-  "WS9 sweep report; WS10 governance, lessons and the digest",
-  "Merge PR #336 once the principal clears it (morning item 39)"
+  "BLOCKED (morning item 35): sovereign_10y and policy_rate per origin — needs an export from the principal. No origin is usable until both arrive.",
+  "DECISION (morning item 41): whether Phase 2 follows the measured tail order or the campaign's market order. Default UNCHANGED — the market order stands.",
+  "DECISION (morning item 26): whether the house publishes a negative central at all (EGCH).",
+  "DECISION (morning item 39): merge PR #336. CI green; recommendation is to merge, since a rule on a branch binds nothing.",
+  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition (item 30)",
+  "ARCC's cost-of-capital record: the mid-year discount convention and the 833bp Kd gap, both real and both visible to the gate",
+  "R-BETA-01: a rule id cited in build_protocol_review.py that resolves in neither document (item 47)"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -80,7 +82,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T03:06:41Z",
+ "updated": "2026-09-03T03:12:13Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -94,6 +96,7 @@
   "Item 41 is the only new decision: whether Phase 2 rebuilds in the measured tail order or the campaign's market order. Nothing changed; the market order stands until you say otherwise, and I think it is the stronger argument.",
   "Item 42: 68 of 90 published fair values have no study directory, so every construction gate is silent about 76% of what the site shows.",
   "Items 44-45 appended. Item 45 is two failures of mine from last night — a 'gates green' claim made while CI was red, and a script that then rewrote the checkout. Nothing was lost and both are fixed; you should hear them from me.",
-  "Items 46-47 appended. [R-VCAL-01] is adopted in both documents and the digest is renamed PROJECT_INSTRUCTIONS_03-09-2026.md at revision 2026-09-03a — its full text is owed to you in chat and comes with this list."
+  "Items 46-47 appended. [R-VCAL-01] is adopted in both documents and the digest is renamed PROJECT_INSTRUCTIONS_03-09-2026.md at revision 2026-09-03a — its full text is owed to you in chat and comes with this list.",
+  "Item 48: WS9 done. The headline is its population — 68 of 90 published fair values have no study directory, so no gate can see them."
  ]
 }

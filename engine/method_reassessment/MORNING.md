@@ -191,3 +191,13 @@ Questions and deliveries that arose overnight, each with the evidence and the re
     It was not hypothetical. `[R-VCAL-01]` was cited in eight files including a pre-registration and two gates, and existed in neither document, while the gate reported perfect agreement. **A rule id that resolves nowhere reads to every later session exactly like settled law.**
 
     Its first run found a second one that is not mine: **`[R-BETA-01]`**, cited in `engine/build_depth_audit/build_protocol_review.py`, where the documents carry `R-BETA-04` and no `R-BETA-01`. Either a renumbering left a citation behind or an identifier was invented at the point of use. It is on the ratchet with that note, and it is resolved by *reading that file* — never by inventing a rule to fit the id. R-VCAL-01 was pruned off the same ratchet an hour after being seeded on it.
+
+48. **WS9 — what the new standard costs the rest of the book.** `engine/method_reassessment/ws9_report.py` answers it mechanically, built from the gates' own ratchets rather than by re-running the checks, because each gate already records which studies it is letting through and why.
+
+    **The first thing it says is about its own population.** Of 90 published fair values, 22 have a study directory and **68 do not** — for those there is nothing for any gate to open. They are not passing; they are unexamined, and they clear by being *built*, not by being re-gated. A queue listing only the failures would describe the smaller half.
+
+    Among the 22, nineteen are outstanding on five or six of the eight checks. The five rebuilt names are the exception, and their remainders are specific rather than structural: AMOC and EGCH carry no cost-of-capital schedule record; **ARCC's is recorded and the gate reads two real defects in it** — the mid-year discount convention it cannot see, and the disclosed 833bp gap between the adopted cost of debt and the latest independently computed effective rate; PHDC and TMGH are down to the walk-forward alone.
+
+    Three ratchets were also carrying names that already conform — AMOC, ARCC and EGCH pass the macro, lens and bridge gates on the records added when they were re-issued and were still listed. Pruned. A ratchet holding a name that no longer needs it is how an allow-list quietly becomes an exemption nobody rechecks.
+
+    **Nothing here changes the campaign's order.** It is a report and a queue; the market order and the hard stop after EGX stand.
