@@ -172,7 +172,8 @@ def phase1() -> dict:
     sys.path.insert(0, HERE)
     from status import WORKSTREAMS          # one list, imported, never a second copy
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
-    from check_valuation_gap import read_answer, read_review, read_branches
+    from check_valuation_gap import (read_answer, read_review, read_branches,
+                                     latest_known_price)
 
     # (a) BUILD — the artefacts each workstream had to produce.
     arts = [a for _, _, _, lst in WORKSTREAMS for a in lst]
@@ -194,7 +195,20 @@ def phase1() -> dict:
     for tk in REISSUED:
         sdir = os.path.join(ENGINE, "%s_study" % tk.lower())
         central, spot, _ = read_answer(sdir) if os.path.isdir(sdir) else (None, None, "")
-        row = {"ticker": tk, "central": central, "spot": spot, "issues": []}
+        # THE BOARD SHOWS WHAT THE NAME TRADES AT NOW, NOT WHAT IT TRADED AT WHEN
+        # THE STUDY WAS STRUCK. [R-GAP-01] compares against the LATEST KNOWN price,
+        # the gate was corrected to read it, and this table went on printing the
+        # frozen strike spot — so it showed AMOC at +8.9% while the gate had it at
+        # -26.6%, two surfaces disagreeing about the same name on the same day.
+        # The struck spot is kept beside it, because how far the price has moved
+        # since a study was built is itself the thing a reader wants.
+        live, pxdate, pxsrc = latest_known_price(tk)
+        row = {"ticker": tk, "central": central, "struck_spot": spot,
+               "spot": live if live else spot,
+               "price_date": pxdate, "price_source": pxsrc, "issues": []}
+        if live and spot and abs(live - spot) > max(0.005 * spot, 0.005):
+            row["moved_since_strike"] = live / spot - 1.0
+        spot = row["spot"]
         atoms_all += 3
         if central is None and spot and read_branches(sdir):
             row["two_sided"] = True

@@ -76,10 +76,10 @@ def build() -> str:
                                      a3.get("origins_declared", 0))
           if a3 and a3["state"] == "RUNNING" else "criterion 3 is blocked"),
          ("warn" if a3 and a3["state"] == "RUNNING" else "none")),
-        ("Phase 2a — rebuilt", "the other 85 names on the current standard",
+        ("Phase 2a — rebuilt", "a study exists, built to the current method",
          bar(p2a["rebuilt"]["done"], p2a["rebuilt"]["total"], "warn"),
          "BOUNDED BY WORK", "throughput decides", "warn"),
-        ("Phase 2a — backtested", "names carrying a point-in-time record",
+        ("Phase 2a — backtested", "that study has been tested on the company's own history",
          bar(p2a["backtested"]["done"], p2a["backtested"]["total"], "warn"),
          "BOUNDED BY WORK", "%s scored so far" % (", ".join(p2a["backtested"]["names"])
                                                   or "none"), "warn"),
@@ -154,14 +154,20 @@ def build() -> str:
         gcls = "flat"
         if gap is not None:
             gcls = "up" if gap > 0.10 else ("down" if gap < -0.10 else "flat")
+        moved = n.get("moved_since_strike")
         five += ('<tr><th scope="row">%s</th><td class="num">%s</td>'
-                 '<td class="num">%s</td><td class="num %s">%s</td><td class="notes">%s</td></tr>'
+                 '<td class="num">%s<span class="asof">%s</span></td>'
+                 '<td class="num %s">%s</td><td class="notes">%s%s</td></tr>'
                  % (e(n["ticker"]),
-                    "%.2f" % n["central"] if n.get("central") is not None else "—",
+                    "%.2f" % n["central"] if n.get("central") is not None else "two-sided",
                     "%.2f" % n["spot"] if n.get("spot") else "—",
+                    e(n.get("price_date") or ""),
                     gcls, "%+.1f%%" % (gap * 100) if gap is not None else "—",
                     "".join('<span class="flag">%s</span>' % e(i) for i in n["issues"])
-                    or '<span class="clear">current</span>'))
+                    or '<span class="clear">documents current</span>',
+                    "" if moved is None else
+                    '<span class="moved">struck at %.2f — the price has moved %+.1f%% '
+                    'since</span>' % (n["struck_spot"], moved * 100)))
 
     # ---- phase 2 markets --------------------------------------------------------
     mk = "".join(
@@ -325,6 +331,8 @@ tbody th{font-weight:600}
 td.up{color:var(--go)} td.down{color:var(--stop)}
 .notes .flag{display:block;font-family:var(--prose);font-size:13.5px;color:var(--warn)}
 .notes .clear{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.notes .moved{display:block;font-family:var(--prose);font-size:13px;color:var(--ink-3);margin-top:3px}
+.asof{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:400;margin-top:2px}
 tbody th code{font-family:var(--mono);font-size:12px;font-weight:400}
 
 /* criteria ---------------------------------------------------------------- */
@@ -396,6 +404,33 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   </section>
 
   <section>
+    <h2>What the two Phase 2a rows mean</h2>
+    <p class="intro">They are different jobs on the same ninety names, and a name is not
+      finished until it has both.</p>
+    <div class="panel">
+      <h3>Rebuilt</h3>
+      <p class="note"><strong>Does a study exist, built to today's method?</strong> One house
+      macro path, the cost-of-capital schedule rather than a single crisis-level rate, one
+      class primary as the central with the other lenses published beside it, a checked
+      enterprise-to-equity bridge. It produces the four documents. This is the number that
+      answers "have we valued this company properly yet" — and for 85 of the 90 the answer is
+      still no, because most have no study at all.</p>
+      <h3 style="margin-top:18px">Backtested</h3>
+      <p class="note"><strong>Has that method been tested on the company's own history?</strong>
+      Rebuild its fair value at each past year-end using only what was published by that date,
+      and score it: did we agree with the market then, and did our disagreement predict what
+      the price did next. A study tells you what we think a company is worth. The backtest is
+      the only thing that tells you whether our way of arriving at that number has ever been
+      right.</p>
+      <p class="note"><strong>Why rebuilt runs ahead of backtested, and should.</strong> The
+      backtest needs point-in-time inputs for every origin — what the sovereign yield, the
+      policy rate, the inflation print and the risk premium actually were on the day, not
+      today's revised readings. That archive is being assembled and is the binding constraint,
+      not the study count.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>Work in flight</h2>
     <p class="intro">The repository is not one line. Several sessions work at once,
       and a blocker closed on a live branch is closed. This section exists because an
@@ -436,12 +471,14 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
 
   <section>
     <h2>The five re-issued names</h2>
-    <p class="intro">Each name's own committed central against the spot it was struck at,
-      read through the gap gate's own reader. A flag is an artefact that exists but is no
+    <p class="intro">Each name's own committed central against <strong>the latest price the
+      house holds</strong> — the principal's dated export where it is newer than the price
+      library — not the spot the study was struck at. Those are the same number on the day a
+      study is built and diverge every day after. A flag is an artefact that exists but is no
       longer current — the failure shape this programme found three times, and the reason
       the column is here at all.</p>
     <div class="tw"><table>
-      <thead><tr><th>Name</th><th class="num">Central</th><th class="num">Spot</th>
+      <thead><tr><th>Name</th><th class="num">Central</th><th class="num">Latest price</th>
         <th class="num">vs price</th><th>State</th></tr></thead>
       <tbody>{{five}}</tbody>
     </table></div>
