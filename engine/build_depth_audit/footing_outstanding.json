@@ -1,0 +1,29 @@
+{
+  "_why": "[R-ENF-02] ratchet for scripts/check_table_footing.py. Studies with no footing check at adoption (03-Sep-2026). MAY ONLY EVER SHORTEN (--prune). A study reaching this list after adoption is a FAILURE, not an entry.",
+  "_adopted": "2026-09-03",
+  "outstanding": [
+    "ADNOCDIST",
+    "ADNOCDRILL",
+    "ADNOCLS",
+    "AIRARABIA",
+    "AMOC",
+    "AMR",
+    "BOROUGE",
+    "DU",
+    "EGCH",
+    "ELEC",
+    "EMPOWER",
+    "FERTIGLOBE",
+    "GBCO",
+    "MODON",
+    "PHAR",
+    "PHDC",
+    "RIYADHCABLE",
+    "SAVOLA",
+    "SCEM",
+    "STC",
+    "SWDY",
+    "TMGH",
+    "XPT"
+  ]
+}

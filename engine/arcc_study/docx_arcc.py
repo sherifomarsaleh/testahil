@@ -329,12 +329,18 @@ rows.append(['Mill utilisation', pc(UC['util_fy25'])])
 rows.append(['Plus draw from finished-goods stock', f'{n3(IN["cem_stock_draw"][0])}Mt'])
 rows.append(['Cement sold', f'{n3(UC["cem_sold"])}Mt'])
 rows.append(['Cement exported  (DRIVER)', pc(IN['cem_export_share'][0])])
+# THE TOTAL'S THREE COMPONENTS ARE PRINTED AND CONTIGUOUS. Until this edition the export
+# cement tonnage appeared nowhere — only its share — and the clinker tonnage sat eight rows
+# up, so a reader went from cement sold of 3.553Mt to total despatches of 4.854Mt with no
+# printed route between them, and clinker is 27% of the volume.
+rows.append(['Exported as cement', f'{n3(UC["cem_sold"] - UC["vol_local"])}Mt'])
 rows.append(['Local cement', f'{n3(UC["vol_local"])}Mt'])
+rows.append(['Exported as clinker  (from above)', f'{n3(UC["vol_clk_exp"])}Mt'])
 rows.append(['TOTAL DESPATCHES', f'{n3(UC["vol_fy25"])}Mt'])
 rows.append(['Local cement price — DERIVED', f'EGP {n0(UC["price_loc_derived"])}/t'])
 rows.append(['Export cement price — DERIVED', f'USD {n1(UC["price_exp_cem_usd"])}/t'])
 rows.append(['Export clinker price — DERIVED', f'USD {n1(UC["price_exp_clk_usd"])}/t'])
-table(rows, [4.10, 2.00], band_rows={14, 15, 16, 17})
+table(rows, [4.10, 2.00], band_rows={16, 17, 18, 19})
 caption('Table 2 — The plant in tonnes, and the prices that fall out of it. Every FY2025 '
         'physical figure is the company\'s own disclosure. The four '
         'drivers are physical; everything below them is derived. Cement exports of '
