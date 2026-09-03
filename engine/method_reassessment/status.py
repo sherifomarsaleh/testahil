@@ -270,7 +270,7 @@ def the_five() -> None:
     section("WS8 — THE FIVE RE-ISSUED NAMES, from their own committed numbers")
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     try:
-        from check_valuation_gap import read_answer, read_review   # the gate's own reader
+        from check_valuation_gap import read_answer, read_review, read_branches   # the gate's own reader
     except Exception as e:
         refuse("the gap gate's reader will not import (%s); the five cannot be read "
                "without re-implementing it, which would grade something other than "
@@ -297,6 +297,15 @@ def the_five() -> None:
             refuse("engine/%s_study/ does not exist" % tk.lower())
             continue
         central, spot, route = read_answer(sdir)
+        if central is None and spot and read_branches(sdir):
+            # A TWO-SIDED ANSWER IS NOT A MISSING ONE, and calling it unreadable
+            # reports a deliberate decision as a defect. EGCH publishes both
+            # branches of a contested judgement that straddles zero, on the
+            # principal's ruling, precisely because any single number would hide it.
+            print("  %-8s %10s %10.2f %8s   %s"
+                  % (tk, "two-sided", spot, "—",
+                     "published as two branches, by decision — no single central"))
+            continue
         if central is None or not spot:
             print("  %-8s %s" % (tk, "UNREADABLE — %s" % route))
             stale.append("%s: no central/spot pair" % tk)
@@ -387,7 +396,7 @@ def acceptance() -> None:
     # recalled — matching the price is explicitly not the goal (Part E's non-criterion).
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     try:
-        from check_valuation_gap import read_answer
+        from check_valuation_gap import read_answer, read_branches
     except Exception:
         return
     gaps = []
