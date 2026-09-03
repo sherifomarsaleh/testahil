@@ -1,0 +1,6 @@
+{
+ "file": "MECHANICAL_LENS_03-09-2026.md",
+ "sha256": "c326461e0ab42a3f00f0a9262428c025b0a2b56f649cf3b0a3336f4fda77fdfc",
+ "sealed": "2026-09-03",
+ "note": "the mechanical lens, sealed before any value was computed; the gate checks that this commit precedes every score file"
+}
