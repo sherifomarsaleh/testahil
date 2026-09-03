@@ -1,0 +1,9 @@
+{
+ "_": "Rule identifiers CITED IN CODE that resolve in neither governing document. Ratcheted per [R-ENF-02]: these were already in the tree when scripts/check_protocol_sync.py first looked for them, so they are allowed to fail while their rules are written up or their citations removed. THE LIST MAY ONLY EVER SHORTEN, and an entry that stops being cited anywhere FAILS rather than lingering — a stale allow-list is not a shortening.",
+ "seeded": "2026-09-03",
+ "why_each": {
+  "R-VCAL-01": "The valuation calibration, built across this method reassessment. It is cited in the pre-registration, the point-in-time archive, the vintage archive, score.py and two gates, and the plan names 'the rule in both governing documents' as a WS6 deliverable. It is written up next; until then it is an identifier that resolves nowhere and the gate says so.",
+  "R-BETA-01": "PRE-EXISTING, and found by this check on its first run. engine/build_depth_audit/build_protocol_review.py cites it; the documents carry R-BETA-04 and no R-BETA-01. Either the rule was renumbered and one citation was left behind, or an identifier was invented at the point of use. Resolve by reading that file rather than by inventing a rule to match the id."
+ },
+ "outstanding": ["R-BETA-01", "R-VCAL-01"]
+}
