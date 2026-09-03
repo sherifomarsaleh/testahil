@@ -21,6 +21,25 @@ from docx.oxml import OxmlElement
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, D, W = N["meta"], N["derived"], N["wacc"]
+# THE DATE BESIDE THE PRICE WAS TYPED IN FOUR PLACES AND THE PRICE WAS NOT
+# [corrected 03-Sep-2026]. Three delivered surfaces dated the 3-September close of
+# 14.40 to 23 August, while §2 said the shares closed at 15.20 on 23 August -- the
+# document contradicting itself about the same session. The valuation's date comes
+# from the committed record; the TECHNICAL read runs on the price library's own
+# last session, which is a different clock and now carries its own date.
+import datetime as _dt
+
+
+def _words(iso, fallback):
+    try:
+        return _dt.date.fromisoformat(str(iso)[:10]).strftime('%-d %B %Y')
+    except Exception:
+        return fallback
+
+
+SPOT_DATE_WORDS = _words(M.get('spot_date', '').replace('close ', ''), '3 September 2026')
+TECH_DATE_WORDS = _words((N.get('price_map', {}).get('asof', {}) or {}).get('tech_data'),
+                         '23 August 2026')
 REG, PM = N["registry"], N["price_map"]
 BU, LENS, BRIDGE, RANGED = (N["bottom_up"], N["lenses"], N["bridge"],
                             N["ranged_revenue"])
@@ -334,12 +353,21 @@ def build(path):
            max(d["asp_base"] for d in BU["regions"].values()),
            "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
            BU["rows"][0]["rev_per_unit"]),
+        # THE PROSE NAMED THE BASIS THIS EDITION RETIRED, AND SAID THE RATE WAS
+        # UNCHANGED [corrected 03-Sep-2026]. Both were false: the model discounts
+        # on the CDS schedule at 25.11%, and the change from the rating basis IS
+        # this edition's second correction. Every prose reference below now reads
+        # the adopted rate from the committed record.
         "The company's cost of capital, built from the ground up, is %s against "
-        "an Egyptian ten-year government bond yield of %s. The edition of 11 June "
-        "2026 discounted at %s, below the sovereign; that was corrected on 30 "
-        "August 2026 and the rate is unchanged here."
-        % (pct(W["wacc_rating"], 2), pct(W["rf_observed"], 2),
-           pct(D["edition_11jun_wacc"], 2)),
+        "an Egyptian ten-year government bond yield of %s. It CHANGED in this "
+        "edition: the equity risk premium moved from the credit-rating basis to "
+        "the traded default-swap basis, which is the house default and which the "
+        "other studies in this market already use, and the rate fell from %s to "
+        "%s. Both bases are published in section 1.8. The change RAISES the value, "
+        "and it was made for consistency across the book rather than for its "
+        "direction."
+        % (pct(W["wacc_cds"], 2), pct(W["rf_observed"], 2),
+           pct(W["wacc_rating"], 2), pct(W["wacc_cds"], 2)),
         "Value turns on how quickly contracted sales become cash. Over the three "
         "years the company has published a cash-flow statement, operating cash was "
         "%s, %s and %s of revenue. At the low end the shares are worth EGP %.2f; at "
@@ -363,7 +391,7 @@ def build(path):
           [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3],
             "the central" if i == 0 else "cross-check"]
            for i, r in enumerate(LENS)]
-          + [["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
+          + [["Market price, %s" % SPOT_DATE_WORDS, "", "%.2f" % sp, "", ""],
              ["vs the central", "", "%+.0f%%" % (100 * (sp / LR["central"] - 1)), "", ""]],
           [5.6, 2.6, 2.6, 2.6, 2.4],
           "EGP per share. The cash-flow lens is the central because it is the only "
@@ -518,6 +546,20 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "table below runs every step from operating profit to a present "
               "value, year by year, with nothing collapsed.")
     wf = ST["dcf_b"]["waterfall"]
+    # THE RATE IS DERIVED FROM THE FACTORS THIS TABLE ALREADY PUBLISHES, so the two
+    # rows cannot disagree [03-Sep-2026]. Reading the ladder from a separate key was
+    # how they came apart: the key does not exist on a waterfall row, the .get()
+    # default fired silently in every column, and the printed rate compounded to a
+    # factor 2.3 times the one printed two rows below it. A rate and a factor that
+    # are meant to be the same statement should be ONE number, not two that agree
+    # when somebody remembers.
+    _DF = [w["discount_factor"] for w in wf]
+    _FWD = [(_DF[i - 1] if i else 1.0) / _DF[i] - 1.0 for i in range(len(_DF))]
+    assert abs(_FWD[0] - ST["dcf_b"]["wacc"]) < 5e-4, (
+        "the first-year rate implied by the published discount factor (%.4f) is not "
+        "the study's own explicit-window rate (%.4f). The factors and the rate are "
+        "the same statement and must reconcile."
+        % (_FWD[0], ST["dcf_b"]["wacc"]))
     wy = pick(wf, lambda w: str(w["year"]))
     def _w(key, fmt="{:,.0f}"):
         return pick(wf, lambda w: fmt.format(w[key]))
@@ -529,8 +571,18 @@ def _section_one(doc, sp, base, low, high, cds, prior):
            ["plus finance cost, after tax"] + _w("interest_addback"),
            ["less capital expenditure"] + _w("capex"),
            ["Free cash flow to the firm"] + _w("fcff"),
+           # A .get() WITH A FALLBACK THAT ALWAYS FIRED [corrected 03-Sep-2026].
+           # forward_wacc sits on the CASE, not on each waterfall row, so this
+           # never found it and silently printed the flat rate in every column --
+           # a constant 25.1% above a row of gliding discount factors it cannot
+           # produce. Compounding the printed rate gives 0.639 for 2027 against a
+           # published 0.656, and 0.039 for 2040 against 0.090: 2.3 times out by
+           # year fifteen, in a table headed "with nothing collapsed". The
+           # workbook was right the whole time. A default on a key that is never
+           # present is not a default, it is a second answer with no label.
            ["Cost of capital, that year"]
-           + pick(wf, lambda w: "%.1f%%" % (100 * w.get("forward_wacc", ST["dcf_b"]["wacc"]))),
+           # displayed on the SAME year subset as every other row in this table
+           + [("%.1f%%" % (100 * _FWD[i])) for i in display_years(wf)],
            ["Discount factor"] + pick(wf, lambda w: "%.3f" % w["discount_factor"]),
            ["Present value"] + _w("pv")],
           wide_widths(BU["rows"]),
@@ -780,7 +832,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
            ["Equity weight at market value", pct(W["we"], 1), pct(W["we"], 1)],
            ["Debt weight", pct(W["wd"], 1), pct(W["wd"], 1)],
            ["Weighted average cost of capital", pct(W["wacc_rating"], 2),
-            pct(W["wacc_cds"], 2)]],
+            pct(W["wacc_cds"], 2) + "  \u2190 ADOPTED"]],
           [7.0, 4.6, 4.6],
           "Country risk is counted once, inside the equity risk premium, and the "
           "government bond yield is reduced by Egypt's own default spread on the "
@@ -821,7 +873,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
                0.179: " (2024)"}.get(c, "")
         rows.append([pct(c) + tag] + ["%.2f" % x for x in SENS["grid"][i]])
     table(doc, hdr, rows, [4.4, 2.4, 2.4, 2.4, 2.4, 2.4],
-          "Value per share in Egyptian pounds. The closing price on 23 August 2026 "
+          "Value per share in Egyptian pounds. The closing price on " + SPOT_DATE_WORDS + " "
           "was EGP %.2f." % sp)
     figure(doc, "fig2_sensitivity.png",
            "Figure 2 — the same grid. Darker cells are higher values; the two axes "
@@ -839,12 +891,12 @@ def _sections_two_to_seven(doc, sp):
     T, BR = N["technical"], PM["band_record"]
 
     doc.add_heading("2  Technical and price structure", level=1)
-    para(doc, "The shares closed at EGP %.2f on 23 August 2026, above a rising "
+    para(doc, "The shares closed at EGP %.2f on %s, above a rising "
               "20-day average at %.2f, a rising 50-day at %.2f and a rising 200-day "
               "at %.2f. The whole moving-average stack is beneath the price and "
               "sloping up, which is the least ambiguous configuration a trend read "
               "produces."
-              % (T["close"], T["sma20"], T["sma50"], T["sma200"]))
+              % (T["close"], TECH_DATE_WORDS, T["sma20"], T["sma50"], T["sma200"]))
     table(doc, ["Resistance", "EGP", "Support", "EGP"],
           [["First", "%.2f" % T["levels"]["res"][0], "First",
             "%.2f" % T["levels"]["sup"][0]],
@@ -1280,7 +1332,7 @@ def _appendices(doc, sp, base):
             "operating cash near %s of revenue" % pct(D["cfo_lo"]),
             "bottom row of the table in section 1.9"],
            ["Egyptian rates stay high or rise",
-            "cost of capital above %s" % pct(W["wacc_rating"], 2),
+            "cost of capital above %s" % pct(W["wacc_cds"], 2),
             "right-hand columns of the same table"],
            ["Order book converts more slowly than delivery history implies",
             "the order book keeps rising as a multiple of revenue",
@@ -1381,10 +1433,10 @@ def _appendices(doc, sp, base):
               "in 2025. Named sensitivity: at a %s cost of capital the implied rate "
               "would be lower still. Falsifier: if 2026 conversion prints above %s, "
               "the price was too low."
-              % (pct(W["wacc_rating"], 2), sp,
+              % (pct(W["wacc_cds"], 2), sp,
                  pct(D["market_implied_cash_conversion"]),
                  pct(D["cfo_margins"]["2023"]), pct(D["cfo_margins"]["2024"]),
-                 pct(D["cfo_margins"]["2025"]), pct(W["wacc_cds"], 2),
+                 pct(D["cfo_margins"]["2025"]), pct(W["wacc_rating"], 2),
                  pct(D["market_implied_cash_conversion"])))
 
     doc.add_heading("C.4  Cross-examination", level=2)
@@ -1412,7 +1464,7 @@ def _appendices(doc, sp, base):
               "Palm Hills is worth between EGP %.2f and EGP %.2f, that the price of "
               "EGP %.2f sits in the lower half of that range, and that the width is a "
               "property of the disclosure rather than of the analysis."
-              % (pct(W["wacc_rating"], 2),
+              % (pct(W["wacc_cds"], 2),
                  CASES["low_conversion"]["per_share"],
                  CASES["high_conversion"]["per_share"], sp))
 
@@ -1422,8 +1474,8 @@ def _appendices(doc, sp, base):
           [["Cash conversion", "%s to %s" % (pct(D["cfo_lo"]), pct(D["cfo_hi"])),
             "not forecast", "%s implied" % pct(D["market_implied_cash_conversion"]),
             "YES — this is the whole gap"],
-           ["Cost of capital", pct(W["wacc_rating"], 2), "not used",
-            pct(W["wacc_rating"], 2), "no — shared"],
+           ["Cost of capital", pct(W["wacc_cds"], 2), "not used",
+            pct(W["wacc_cds"], 2), "no — shared"],
            ["Receivable book", "collected on schedule", "at carrying value",
             "as the market judges", "partly"],
            ["Terminal value", "%s of the answer" % pct(base["terminal_share"], 0),

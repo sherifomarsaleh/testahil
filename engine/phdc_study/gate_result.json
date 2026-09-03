@@ -47,7 +47,7 @@
     ],
     "formula_cells": 175,
     "scrub_hits": [],
-    "document_chars": 86499,
+    "document_chars": 86771,
     "column_audit": [],
     "figures_rebuilt": [
      "fig1_football.png",
@@ -68,8 +68,11 @@
     "bibliography_present": true,
     "pdfs": [
      "PHDC_Bibliography_02-09-2026.pdf",
+     "PHDC_Bibliography_03-09-2026.pdf",
      "PHDC_Valuation_Model_02092026.pdf",
-     "PHDC_Valuation_Study_02-09-2026.pdf"
+     "PHDC_Valuation_Model_03092026.pdf",
+     "PHDC_Valuation_Study_02-09-2026.pdf",
+     "PHDC_Valuation_Study_03-09-2026.pdf"
     ]
    }
   }
@@ -96,7 +99,7 @@
   ],
   "formula_cells": 175,
   "scrub_hits": [],
-  "document_chars": 86499,
+  "document_chars": 86771,
   "column_audit": [],
   "figures_rebuilt": [
    "fig1_football.png",
@@ -117,8 +120,11 @@
   "bibliography_present": true,
   "pdfs": [
    "PHDC_Bibliography_02-09-2026.pdf",
+   "PHDC_Bibliography_03-09-2026.pdf",
    "PHDC_Valuation_Model_02092026.pdf",
-   "PHDC_Valuation_Study_02-09-2026.pdf"
+   "PHDC_Valuation_Model_03092026.pdf",
+   "PHDC_Valuation_Study_02-09-2026.pdf",
+   "PHDC_Valuation_Study_03-09-2026.pdf"
   ]
  },
  "issuable": true
