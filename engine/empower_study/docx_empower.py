@@ -1524,6 +1524,30 @@ cj['conc'] = (bjr['non_current_assets']['financial_assets_at_amortised_cost']
 COLS = [('FY2023', c23), ('FY2024', c24), ('FY2025', c25), ('30-Jun-2026', cj)]
 def bsr(label, key, neg=False):
     return [label] + [(f"({n0(c[key])})" if neg else n0(c[key])) for _, c in COLS]
+for _nm, _c in COLS:
+    _c['other_assets'] = _c['assets'] - sum(_c[k] for k in
+                                            ('ppe', 'intang', 'conc', 'invprop',
+                                             'inv', 'recv', 'dep', 'cash'))
+for _nm, _c in COLS:
+    _c['other_liab'] = _c['liab'] - sum(_c[k] for k in ('borrow', 'lease', 'pay'))
+_namedl23 = sum((b23r['non_current_liabilities'].get(k, 0) or 0) for k in
+                ('retentions_payable', 'deferred_government_grant',
+                 'employees_end_of_service_benefits')) / 1000.0 \
+    + sum((b23r['current_liabilities'].get(k, 0) or 0) for k in
+          ('due_to_related_parties', 'deferred_government_grant')) / 1000.0
+assert abs(c23['other_liab'] - _namedl23) < 0.05, (
+    'the residual liability row must BE the five named lines, not a plug: residual '
+    '%.3f against named %.3f' % (c23['other_liab'], _namedl23))
+
+_named23 = sum((b23r['non_current_assets'].get(k, 0) or 0) for k in
+               ('right_of_use_assets', 'deferred_tax_assets',
+                'financial_assets_fvtoci', 'investment_in_joint_venture')) / 1000.0 \
+    + sum((b23r['current_assets'].get(k, 0) or 0) for k in
+          ('due_from_related_parties', 'financial_assets_fvtpl')) / 1000.0
+assert abs(c23['other_assets'] - _named23) < 0.05, (
+    'the residual asset row must BE the six named lines, not a plug: residual '
+    '%.3f against named %.3f' % (c23['other_assets'], _named23))
+
 rows = [['AED mn'] + [nm for nm, _ in COLS],
         bsr('Property, plant and equipment', 'ppe'),
         bsr('Intangible assets', 'intang'),
@@ -1534,10 +1558,23 @@ rows = [['AED mn'] + [nm for nm, _ in COLS],
         bsr('Trade and other receivables', 'recv'),
         bsr('Term deposits', 'dep'),
         bsr('Cash and cash equivalents', 'cash'),
+        # THE BLOCK MUST FOOT FOR A READER. Six asset lines sit in the filings and in this
+        # study's own extraction and were mapped into no row, so the eight printed lines
+        # came out about 1% short of the total above them in every period. On FY2023 the
+        # residual is 94,729 thousand and the six named lines sum to 94,729 thousand — it
+        # is those lines and nothing else, which the assertion below holds to.
+        bsr('Right-of-use, deferred tax, other financial assets and due from related '
+            'parties', 'other_assets'),
         bsr('Total assets', 'assets'),
         bsr('Bank borrowings (current + non-current)', 'borrow'),
         bsr('Lease liabilities', 'lease'),
         bsr('Trade and other payables', 'pay'),
+        # and the same on the liability side: retentions, the deferred government grant,
+        # end-of-service benefits and amounts due to related parties are in the filings and
+        # in this study's extraction and were mapped into no row, leaving the three printed
+        # lines about AED 517mn short. Proven on FY2023 below, not assumed.
+        bsr('Retentions, deferred government grant, end-of-service benefits and due to '
+            'related parties', 'other_liab'),
         bsr('Total liabilities', 'liab'),
         bsr('Equity attributable to shareholders', 'eqp'),
         bsr('Non-controlling interests', 'nci'),

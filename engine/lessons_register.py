@@ -2822,6 +2822,99 @@ LESSONS = [
       "A presentation that deliberately shows principal lines only and SAYS so, where the "
       "residual is labelled rather than absent."),
 
+    L("L-231", "ALL", None,
+      "TRIAGE A GATE'S BACKLOG BY HOW CLOSE THE ARITHMETIC COMES, NOT BY THE LABEL. A block "
+      "that ALMOST foots is a missing line; one that is wildly off is a different kind of "
+      "row altogether.",
+      "Both arrive as the same complaint — a total that does not follow from the rows above "
+      "it — and reading eighty-seven of them one at a time is how a backlog becomes "
+      "permanent. The distance separates them in a single pass.",
+      "the table-footing port, 03-Sep-2026",
+      "build",
+      "Run across the nineteen studies carrying no footing check, the gate reported 87 "
+      "unreconciled totals. Sorting each by how close its nearest printed block comes to the "
+      "stated total split them cleanly: 21 land within six per cent, and every one inspected "
+      "is the TMGH signature — a summary statement omitting small lines it already holds as "
+      "registered inputs, closing perfectly at the top and short by half a point to two "
+      "points in each block below (ADNOCDRILL, AMR, EMPOWER, RIYADHCABLE, EIPICO). The other "
+      "66 are far off and are structural: a disclosed line item among its peers, a "
+      "transposed cost-of-capital table whose weights are a row, a blend across a dimension "
+      "the column does not carry. Recorded in footing_findings.json rather than resolved, "
+      "because recording a finding is what stops a backlog from silently becoming a "
+      "declaration.",
+      "A backlog where the two classes overlap in distance, which would mean the triage is "
+      "measuring the wrong thing and each case must be read individually."),
+
+    L("L-232", "ALL", None,
+      "WHEN A RULE KEEPS BREAKING, SUSPECT THE INSTRUMENT BEFORE THE WILL. Ask what mechanism "
+      "is behind it and whether that mechanism can physically do the job.",
+      "A rule that has been restated three times and broken three times is not a rule anyone "
+      "disagrees with. Restating it a fourth time is the cheapest response and the one least "
+      "likely to work; asking what enforces it is the expensive one.",
+      "the continuation routine, 03-Sep-2026",
+      "build",
+      "\"Do not stop\" was adopted, written into the operating protocol, and broken twice in "
+      "one afternoon, each time by ending a turn on a progress report. The machinery behind "
+      "it was an hourly cron, and a cron has three properties that make it unable to do this "
+      "job: it CANNOT FIRE INTO A TURN THAT IS ALREADY RUNNING, so it shortens the gap after "
+      "a stop and can never prevent one; its floor is SIXTY MINUTES, tested and refused "
+      "below that; and nothing inside a turn forces a next action. Its own prompt admitted "
+      "the first — \"so that stopping costs an hour rather than half a day\" — which "
+      "describes a backstop. The replacement is SELF-RE-INVOCATION: the last act of a turn "
+      "that ends with work remaining launches a background task whose EXIT re-invokes the "
+      "session, caused by the stop rather than by a clock, inside the turn\'s own control, "
+      "and costing a minute. The cron is demoted to the archived-session case it can "
+      "actually serve.",
+      "A rule that keeps breaking while its mechanism demonstrably can do the job, which "
+      "would mean the diagnosis really is about will and the remedy is elsewhere."),
+
+    L("L-233", "ALL", None,
+      "WHERE A TABLE DOES NOT ADD AND THE MISSING LINES ARE NOT HELD, PRINT A LABELLED "
+      "RESIDUAL. It is not inventing data — it is arithmetic on two figures the study "
+      "already has — and it is strictly better than a column that does not add.",
+      "The instinct on finding a gap that cannot be closed from the sources to hand is to "
+      "leave it, because naming the missing lines would be an invention. That is right about "
+      "the naming and wrong about the leaving: a reader facing a column that does not add "
+      "cannot tell a missing line from a wrong total, and the residual tells them which.",
+      "the footing port, 03-Sep-2026",
+      "build",
+      "Five studies came out short against their own disclosed totals. TMGH, ADNOCDRILL and "
+      "EMPOWER HELD every missing figure as a registered input and were fixed by printing "
+      "the lines — EMPOWER\'s eleven of them, with the builder asserting that each residual "
+      "IS the sum of the specific lines it names, because a residual computed as "
+      "total-less-printed foots BY CONSTRUCTION and proves nothing. AMR and RIYADHCABLE did "
+      "NOT hold them, and were fixed by a row labelled \'Other assets, not broken out in "
+      "this table (residual)\' with a caption saying why it is not named. RIYADHCABLE\'s "
+      "residual then became a finding in its own right: SAR 146, 147 and 430mn, so something "
+      "outside the four broken-out lines grew by SAR 283mn in one year, which that table "
+      "cannot explain and the next edition should.",
+      "A residual so large that labelling it is a way of not investigating it, where the "
+      "honest answer is to obtain the statements instead."),
+
+    L("L-234", "ALL", None,
+      "A NEW GATE'S FALSE-POSITIVE RATE IS A PROPERTY OF THE GATE, AND IT FALLS AS THE GATE "
+      "LEARNS THE WORK. Measure it, fix the instrument, measure again — never widen a bound "
+      "to make a number look better.",
+      "The first run of any check over an existing book reports mostly its own ignorance of "
+      "how that book is shaped. Treating that number as a defect rate leads to loosening; "
+      "treating it as a to-do list of things the instrument does not yet understand leads to "
+      "a sharper check.",
+      "the table-footing port, 03-Sep-2026",
+      "build",
+      "The book-wide advisory fell 22.3% -> 10.5% across SEVEN instrument fixes in one "
+      "session, and not one of them loosened a tolerance: a balance sheet foots over its "
+      "SUBTOTALS; a row labelled Total assets HEADING a summary is a line item with nothing "
+      "above it; a date column parses as numeric because \'Jan 2026\' yields 2026; a TOTAL "
+      "row is a sum in one column and a WEIGHTED MEAN in another; a weighted mean\'s band "
+      "must carry the rounding of its own WEIGHT column; an \'OF WHICH\' row is a breakdown "
+      "of the line above and not a peer; a DASH in a total cell is \'not shown\' rather than "
+      "a claim of zero, while a dash in a component is zero; a PERCENTAGE is not a component "
+      "of a currency total; and an EMPTY cell in a row that carries values elsewhere means "
+      "\'does not apply here\' rather than the end of the block. The negative control held at "
+      "14/14 through every one, which is what made the fixes safe to make quickly.",
+      "A fix that lowers the rate by relaxing what counts as reproducible rather than by "
+      "correcting what the instrument believes about tables."),
+
 ]
 
 
