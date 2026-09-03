@@ -61,6 +61,13 @@ def sgn(x, dp=1): return f"{x*100:+.{dp}f}%"
 
 
 GAP = C / SPOT - 1
+# Computed so the Headline's WORDS move with its numbers: how many lenses actually
+# sit below the price, and what the retired blend would read. Both were typed
+# before and both had stopped being true.
+_N_BELOW = {0: 'None', 1: 'One', 2: 'Two', 3: 'Three', 4: 'All four'}[
+    sum(1 for k in ('dcf', 'relative', 'normalized', 'book')
+        if LN[k]['base'] < SPOT)]
+RETIRED_BLEND = LN['retired_blend']['base']
 PREM = SPOT / C - 1
 REQ_DCF = (SPOT - 0.20 * LN['relative']['base'] - 0.20 * LN['normalized']['base']
            - 0.15 * LN['book']['base']) / 0.45
@@ -119,10 +126,20 @@ box([
 H1('Headline')
 box([
     ('THE CLAIM, STATED EXACTLY.  ',
+     # THE DIRECTION IS COMPUTED, NOT TYPED. This sentence read "-8.9% BELOW the
+     # price; equivalently the price stands -8.2% ABOVE fair value ... the price
+     # is outside it ... every one of the four lenses lands below the price" —
+     # four false statements in three lines, contradicted by the table directly
+     # beneath them. They were true of an edition whose central sat below the
+     # price and survived the central moving above it, because the words were
+     # typed and only the numbers were computed. A NUMBER STATED IN PROSE MUST BE
+     # COMPUTED, and so must the word that gives it its sign.
      f'Fair value EGP {p2(C)} a share against a market price of EGP {p2(SPOT)}. Fair value sits '
-     f'{pc(-GAP)} BELOW the price; equivalently the price stands {pc(PREM)} ABOVE fair value. '
-     f'The weighted range is EGP {p2(LO)} to {p2(HI)} and the price is outside it. Every one of '
-     f'the four lenses lands below the price.'),
+     f'{pc(abs(GAP))} {"ABOVE" if GAP > 0 else "BELOW"} the price; equivalently the price stands '
+     f'{pc(abs(PREM))} {"BELOW" if GAP > 0 else "ABOVE"} fair value. '
+     f'The range across the lenses is EGP {p2(LO)} to {p2(HI)} and the price is '
+     f'{"inside" if LO <= SPOT <= HI else "outside"} it. '
+     f'{_N_BELOW} of the four lenses land below the price.'),
     ('WHAT WOULD CHANGE OUR MIND.  ',
      f'Surrender every contested judgement in this study simultaneously — the tax provision '
      f'settles for nothing, the declared dividend never leaves, the employees’ profit share '
@@ -160,18 +177,24 @@ table([['Lens', 'What it measures', 'Bear', 'Base', 'Bull', 'Weight', 'vs price'
        ['Book and sustainable return', 'justified price-to-book',
         p2(LN['book']['bear']), p2(LN['book']['base']), p2(LN['book']['bull']), '15%',
         pc(LN['book']['base'] / SPOT - 1)],
-       ['WEIGHTED CENTRAL', 'the four, weighted', p2(LO), p2(C), p2(HI), '100%', pc(GAP)]],
+       # [R-LENS-03]: one class primary IS the central. This row was labelled
+       # WEIGHTED CENTRAL / 'the four, weighted' while its figures were the
+       # cash-flow lens's own, and the workbook's equivalent row was corrected in
+       # this edition while the document's was not.
+       ['CENTRAL', 'the cash-flow lens', p2(LO), p2(C), p2(HI), '—', pc(GAP)]],
       [1.55, 1.9, 0.72, 0.72, 0.72, 0.62, 0.72], band_rows={5}, size=9.0, left_cols=(1,))
-caption('Table 1 — the four lenses. The bear and bull columns of the weighted row are WEIGHTED '
-        'with the same 45/20/20/15 weights as the base column. The widest single lens spans EGP '
-        f'{p2(LOE)}–{p2(HIE)}; that is reported as an ENVELOPE, not as the range of a weighted '
-        'estimate. The previous edition labelled a row "weighted central" and then took the '
-        'minimum and maximum across all four lenses, both of which came from the cash-flow lens '
-        'alone, overstating the published spread by about two and a half times.')
+caption('Table 1 — the lenses. ONE CLASS PRIMARY IS THE CENTRAL: the cash-flow lens is the '
+        'answer and the other three are cross-checks, published beside it and carrying no '
+        'weight. The bear and bull columns of the central row are that same lens\u2019s own '
+        f'downside and upside, not a weighted combination. The widest single lens spans EGP '
+        f'{p2(LOE)}\u2013{p2(HIE)}; that is reported as an ENVELOPE. The retired 45/20/20/15 '
+        'blend of these four would read EGP ' + p2(RETIRED_BLEND) + ' and is shown in the '
+        'workbook beside the answer, unused: three of the four value a refiner on reported '
+        'earnings and historical-cost book, and averaging them imports every weakness of the '
+        'weakest at a weight nobody tested out of sample.')
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       'Figure 1 — the football field. The price (red dashed) sits above every lens base and '
-       'above the top of the weighted range. It falls inside only the cash-flow lens’s bull '
-       'tail, which is five favourable driver moves at once.')
+       'Figure 1 — the football field. The price (red dashed) is shown against every lens base '
+       'and against the cash-flow lens\u2019s own bear-to-bull range.')
 
 H1('The company')
 P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian Exchange. It '
@@ -790,7 +813,7 @@ figure(os.path.join(HERE, 'fig6_cone.png'), 6.7,
 
 H1('4  The two answers side by side')
 table([['Question', 'Object', 'Answer', 'Horizon'],
-       ['What is the business worth?', 'weighted fair value',
+       ['What is the business worth?', 'fair value',
         f'EGP {p2(C)}  (range {p2(LO)}–{p2(HI)})', 'undated'],
        ['Where might the price go?', 'calibrated price cone',
         f'3-month median EGP {p2(H3M["pct"]["p50"])}  '

@@ -846,7 +846,7 @@ _row(wsSU, r, 'Net cash added in the bridge', f"=DCF!B{BR_['netcash']}", -DCF['n
 note(wsSU, r,
      'The bear and bull columns of each lens are the blue cells here and the only pasted figures '
      'on the sheet: each is a complete re-run of the model at that scenario, computed in '
-     'compute.py and reproduced in formulas on the Sensitivity sheet. The weighted row is a live '
+     'compute.py and reproduced in formulas on the Sensitivity sheet. The central row is a live '
      'formula across them, because the defect being closed was a sheet that labelled a row '
      'weighted and then took the minimum and maximum across four lenses.')
 

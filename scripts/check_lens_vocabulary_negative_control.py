@@ -97,6 +97,28 @@ def build(body, ratchet, docs, workbook=None):
     return d, eng
 
 
+# ---- the two false negatives, in AMOC's own words -------------------------
+# Both of these were WAIVED by this gate on 03-09-2026 and AMOC was pruned off the
+# ratchet as fixed on the strength of it. They are the sharpest cases here because
+# they are not invented: the first is the sentence that fooled the 260-character
+# window, the second is the row the layout split around its figures.
+ASSERTS_THEN_EXPLAINS = (
+    "Table 1 - the four lenses. The bear and bull columns of the weighted row are "
+    "WEIGHTED with the same 45/20/20/15 weights as the base column. The previous "
+    "edition labelled a row \"weighted central\" and then took the minimum and "
+    "maximum across all four lenses, both of which came from the cash-flow lens "
+    "alone, overstating the published spread by about two and a half times.")
+SPLIT_ROW = (
+    "Book and sustainable return  justified price-to-book  4.74 6.23 7.12 15% "
+    "-31.6%  WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL")
+
+case("a caption asserting the CURRENT weighting with a 'previous edition' "
+     "sentence right after it — the 260-character window waived this", True,
+     ASSERTS_THEN_EXPLAINS)
+case("a table row whose label the layout splits around its own figures", True,
+     SPLIT_ROW)
+
+
 # ---- the widened scope: the workbook is read too --------------------------
 WB_DIRTY = ("Lens · Value per share · WEIGHTED CENTRAL · "
             "=B10*0.45+C11*0.2+D12*0.2+E13*0.15 · against spot")

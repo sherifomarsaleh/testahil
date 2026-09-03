@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — AMOC's re-issue, waiting only on its QC gate",
-  "step": "AMOC's 03-09-2026 edition is BUILT and every gate is green except the deliverables one, which correctly reports the missing QC gate; that gate is being written from outside the study. What the re-issue fixed, with the headline unmoved at 9.9142: _val_at() delegated to waterfall() (it was a second copy of the arithmetic with a terminal on the wrong capital base and the superseded bridge, and it priced the sensitivity grids too — their at-assumption cells were 10.8572 and now equal the headline); the workbook's three WEIGHTED CENTRAL cells now read the class primary; recalc.py refused after being found pinned to the nine-sheet 06-08-2026 workbook, and the live gates resolve the edition by pattern. The lens gate now reads WORKBOOKS as well as PDFs and found the same blend in PHDC's model, whose document is clean. assert_reverse_dcf now checks the half of [R-ENF-05] nobody was checking and found four of five studies committing the solved value into their numbers file — ratcheted, purpose met and device broken in all four.",
+  "workstream": "WS8 — AMOC audited from outside: NOT DELIVERABLE, 9 items, 2 fixed",
+  "step": "The QC gate for AMOC's 03-09-2026 edition is written and its verdict is NOT DELIVERABLE. It also caught a FALSE NEGATIVE IN MY OWN GATE: check_lens_vocabulary waived AMOC's Table 1 caption because a 'previous edition' sentence sat within its 260-character window, and never matched the table row whose label the layout splits around its figures — and I had pruned AMOC off that ratchet on the strength of it and reported the document clean. The gate now tests the SAME SENTENCE and matches the split row; its negative control carries both cases in AMOC's own words (9 defects / 5 clean). Two of the nine blocking items are fixed and the files rebuilt — the blend is out of the document and the Headline's four false statements are corrected with its DIRECTION WORDS NOW COMPUTED. Seven remain and the edition is not shipped.",
   "status": "in progress"
  },
  "done": [
@@ -87,7 +87,7 @@
   "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
-  "collect AMOC's QC gate from the audit, prune the deliverables ratchet, then PR and merge on green",
+  "AMOC, the seven remaining blocking items from QC_GATE_03-09-2026.md: two superseded figures (fig3 ends at 9.77, fig5 draws 8.64); case_adversarial.json two editions stale (base 5.95) and driving Table 7, Table 18, Figure 4 and the Headline; Table 10 publishing the removed net-weight defect as the method; §1.2 contradicting itself four lines apart; Appendix C below the depth bar; three typed numerals disagreeing with computed values; no peer frame or risk register",
   "PHDC: its workbook still computes the retired 45/15/20/20 blend into its central cells while its document is clean — the same fix AMOC just had",
   "the four studies on the [R-ENF-05] value ratchet (AMOC, EGCH, PHDC, TMGH): move the solved reverse read out of study_numbers.json at each next edition, on ARCC's pattern",
   "TMGH re-issue: 14 defects in QC_GATE_02-09-2026.md, 4 material",

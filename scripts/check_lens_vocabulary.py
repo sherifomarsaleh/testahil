@@ -44,8 +44,15 @@ OUTSTANDING = os.path.join(ENGINE, "build_depth_audit",
 # The retired architecture asserting itself as the study's own answer.
 BLEND = re.compile(
     r"weighted central|the central weights|weights the reads|on stated weights|"
-    r"four lenses,\s*weighted|weighted average of the (?:four|three)|"
+    r"(?:four|three)\s+lenses,\s*weighted|the\s+(?:four|three),\s*weighted|"
+    r"weighted average of the (?:four|three)|"
     r"blend(?:ed)?\s+(?:of\s+)?(?:the\s+)?(?:four|three)\s+lenses|"
+    r"weighted\s+(?:fair\s+value|range|row)|"
+    # A TABLE ROW IS NOT A SENTENCE. AMOC's Table 1 renders as
+    # "WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL" — the
+    # layout splits the label around the figures, so a pattern needing "weighted
+    # central" contiguous walked past the row carrying the claim.
+    r"WEIGHTED\b[^.\n]{0,120}?\bCENTRAL\b|"
     r"\b\d{1,2}/\d{1,2}/\d{1,2}/\d{1,2}\s+weights", re.I)
 
 # The same words used to explain that the construction was retired. Not an escape
@@ -54,6 +61,16 @@ RETIRED = re.compile(
     r"retired|previous edition|earlier edition|no longer|never averaged|"
     r"rather than blended|is not (?:a )?blend|was withdrawn|prohibit|"
     r"the blend this study does not|used to", re.I)
+
+# THE MARKER MUST BE IN THE SAME SENTENCE, and a 260-character window was not
+# good enough. AMOC's Table 1 caption asserts the CURRENT construction — "the bear
+# and bull columns of the weighted row are WEIGHTED with the same 45/20/20/15
+# weights as the base column" — and the very NEXT sentence describes what a
+# PREVIOUS edition did. The window swept the second in and waived the first; I
+# then pruned AMOC off this ratchet on that green and told the principal the
+# document was clean. A sentence saying what THIS study does is not excused by
+# standing next to one about what an earlier one did.
+SENT = re.compile(r"(?<=[.!?])\s+")
 WINDOW = 260
 
 # Documents are dated 03-09-2026 and workbooks 03092026 — the same edition in two
@@ -141,8 +158,13 @@ def scan(pdf):
     t = text_of(pdf)
     asserting, explained = [], 0
     for m in BLEND.finditer(t):
-        lo, hi = max(0, m.start() - WINDOW), m.end() + WINDOW
-        if RETIRED.search(t[lo:hi]):
+        lo = max(0, m.start() - WINDOW)
+        head = t[lo:m.start()]
+        _c = SENT.split(head)
+        sentence = (_c[-1] if _c else head) + t[m.start():m.end() + WINDOW]
+        _f = SENT.split(sentence)
+        sentence = _f[0] if len(_f) > 1 else sentence
+        if RETIRED.search(sentence):
             explained += 1
             continue
         asserting.append(re.sub(r"\s+", " ", t[max(0, m.start() - 90):
