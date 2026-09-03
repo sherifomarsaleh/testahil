@@ -1202,16 +1202,16 @@ fcff = [nopat[i] + dna[i] - capex[i] - rou_repl[i] - dnwc[i] for i in range(5)]
 say(f"[FCFF waterfall] " + " -> ".join(f"{f:,.0f}" for f in fcff))
 
 # ---- cost of capital: explicit window (sovereign double-count removed) -------
-rf_star = V['rf'] - V['sov_spread_rating']
+rf_star = V['rf'] - V['sov_spread_market_observed']
 # NO-ARBITRAGE FLOOR (added 17-Aug-2026): under a hard peg a DEFAULT-FREE dirham rate cannot sit
 # below the default-free dollar rate at matched tenor. The prior edition netted the 42bp RATING
 # spread, driving rf* to 4.06% — about 26bp through the matched-tenor UST — and nothing caught it.
 assert rf_star >= V['ust_matched'] - 0.0005, (
     f"rf* {rf_star:.4%} sits below the matched-tenor US Treasury {V['ust_matched']:.4%}: a "
     f"default-free AED rate cannot be below the default-free USD rate under a hard peg")
-ke_exp = rf_star + V['beta'] * V['erp_rating']
-ke_mkt_alt = (V['rf'] - V['sov_spread_mkt']) + V['beta'] * V['erp_mkt']  # rating basis
-ke_raw_retired = V['rf'] + V['beta'] * V['erp_rating']
+ke_exp = rf_star + V['beta'] * V['erp_market_basis']
+ke_mkt_alt = (V['rf'] - V['sov_spread_damodaran_rating']) + V['beta'] * V['erp_rating_basis']  # rating basis
+ke_raw_retired = V['rf'] + V['beta'] * V['erp_market_basis']
 kd_at = V['kd'] * (1 - TAX)
 LEASE, NETCASH = V['lease_fy25'], net_cash['FY25']
 wd_exp = LEASE / (LEASE + MKTCAP)
@@ -1219,15 +1219,15 @@ we_exp = 1 - wd_exp
 wacc_exp = we_exp * ke_exp + wd_exp * kd_at
 wacc_exp_mkt = we_exp * ke_mkt_alt + wd_exp * kd_at
 say(f"[Cost of equity] rf {V['rf']:.2%} (Jan-2031 AED T-bond) less UAE rating-basis default "
-    f"spread {V['sov_spread_rating']:.2%} = rf* {rf_star:.2%}; + beta {V['beta']:.3f} x ERP "
-    f"{V['erp_rating']:.2%} -> Ke {ke_exp:.2%}. ERP basis 2 (market-spread, implied-US base): "
+    f"spread {V['sov_spread_market_observed']:.2%} = rf* {rf_star:.2%}; + beta {V['beta']:.3f} x ERP "
+    f"{V['erp_market_basis']:.2%} -> Ke {ke_exp:.2%}. ERP basis 2 (market-spread, implied-US base): "
     f"{ke_mkt_alt:.2%}. RETIRED un-netted construction {ke_raw_retired:.2%} (audit trail only).")
 say(f"[WACC explicit] weights: lease debt {wd_exp:.1%} / market equity {we_exp:.1%} "
     f"(market cap {MKTCAP:,.0f}; du has no drawn borrowings) -> WACC {wacc_exp:.2%} "
     f"(basis 2: {wacc_exp_mkt:.2%}). Interest shields both fiscal legs (the royalty base is "
     f"profit AFTER interest), so the shield runs at the combined {TAX:.1%}.")
 
-ke_term = (V['rf_term'] - V['sov_spread_rating']) + V['beta'] * V['erp_term']
+ke_term = (V['rf_term'] - V['sov_spread_market_observed']) + V['beta'] * V['erp_term']
 kd_term_at = V['kd_term'] * (1 - TAX)
 wacc_term = (1 - V['wd_term']) * ke_term + V['wd_term'] * kd_term_at
 say(f"[WACC terminal] Ke {ke_term:.2%}; Kd after tax {kd_term_at:.2%}; weights "
@@ -1380,7 +1380,7 @@ say(f"[Post-2029 fiscal tail — no longer the contested judgement, du disclosed
 
 # ---- rf-tenor alternatives, both priced, neither averaged ---------------------
 def dcf_at_rf(rf_):
-    _ke = (rf_ - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
+    _ke = (rf_ - V['sov_spread_market_observed']) + V['beta'] * V['erp_market_basis']
     _w = we_exp * _ke + wd_exp * kd_at
     _sh = _w - wacc_exp
     _dfa, cc = [], 1.0
@@ -1556,11 +1556,11 @@ grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_gr
 _bci = json.load(open(os.path.join(HERE, 'beta_result.json')))['ci90']
 beta_grid = [round(_bci[0], 2), round(V['beta'], 3), round(_bci[1], 2), 0.65, 0.80]
 def dcf_beta(b):
-    ke = rf_star + b * V['erp_rating']
+    ke = rf_star + b * V['erp_market_basis']
     we_ = we_exp * ke + wd_exp * kd_at
     # the grid MUST use the same netted basis as the base case, or its base cell contradicts the
     # headline (it did, by AED 1.77, before 17-Aug-2026)
-    wt_ = (1 - V['wd_term']) * ((V['rf_term'] - V['sov_spread_rating']) + b * V['erp_term']) \
+    wt_ = (1 - V['wd_term']) * ((V['rf_term'] - V['sov_spread_market_observed']) + b * V['erp_term']) \
         + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
@@ -1835,8 +1835,8 @@ OUT = dict(
               wacc_rf_alt=wacc_rf_alt, ke_term=ke_term, kd_term=V['kd_term'],
               kd_term_at=kd_term_at, wacc_term=wacc_term, glide_frac=glide_frac,
               rf_path=V['rf_path'], lease_rate_disclosed=lease_rate, beta=beta_res,
-              erp_rating=V['erp_rating'], erp_mkt=V['erp_mkt'],
-              sov_spread_rating=V['sov_spread_rating'], sov_spread_mkt=V['sov_spread_mkt']),
+              erp_market_basis=V['erp_market_basis'], erp_rating_basis=V['erp_rating_basis'],
+              sov_spread_market_observed=V['sov_spread_market_observed'], sov_spread_damodaran_rating=V['sov_spread_damodaran_rating']),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              lease=LEASE, net_cash=NETCASH, investees=INVEST, eq_val=eq_val,
              ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL, anchor_days=V['anchor_days'],
