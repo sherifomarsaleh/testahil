@@ -141,10 +141,35 @@ def build():
     return diag, cj
 
 
+
+def _sn():
+    return json.load(open(os.path.join(HERE, "study_numbers.json"), encoding="utf-8"))
+
+
+def _pub_central():
+    d = _sn()
+    c = d.get("central")
+    if isinstance(c, (int, float)):
+        return c
+    lr = (d.get("lens_record") or {}).get("primary") or {}
+    return lr.get("value")
+
+
+def _pub_spot():
+    return _sn().get("spot")
+
+
 def main():
     diag, cj = build()
     json.dump(diag, open(os.path.join(HERE, "diagnostics.json"), "w",
                          encoding="utf-8"), indent=1, ensure_ascii=False)
+    # [R-ENF-06] AN ARTEFACT DECLARES THE ANSWER IT WAS BUILT AGAINST. This file
+    # is read by builders and by an outside gate, and until 03-Sep-2026 it carried
+    # no way to tell a current copy from one a full edition behind -- which is
+    # exactly what shipped on three studies at once.
+    cj["published_central"] = float(diag["ticker"] and _pub_central())
+    cj["published_spot"] = float(_pub_spot())
+
     json.dump(cj, open(os.path.join(HERE, "contested_judgements.json"), "w",
                        encoding="utf-8"), indent=1, ensure_ascii=False)
     print(diag["implied"]["reading"])

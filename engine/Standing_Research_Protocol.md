@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03j — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2383,6 +2383,63 @@ little between build and delivery.
 
 Negative-controlled on PHDC's own case exactly as it stood, plus two clean cases — a review
 stating the gap it actually audited, and a gap that moved less than half the trigger.
+
+## [R-ENF-06] An artefact a builder reads declares the answer it was built against (3-Sep-2026, on three outside audits reaching the same verdict for the same reason)
+
+On 3 September 2026 three studies were re-struck on fresh prices and three independent
+outside auditors returned **NOT DELIVERABLE** on all three, for a reason one of them put in
+a single sentence: **the re-strike reached the valuation and not the paper.**
+
+Every one of those documents was built from a numbers file that had moved, beside a SECOND
+artefact that had not:
+
+- **AMOC** — `case_adversarial.json`, base central **5.954** against a published **11.834**,
+  and it was **read by three builders and written by nothing**. No generator existed
+  anywhere in the repository. It drove Table 7, Table 18, Figure 4 and the opening
+  paragraph, which told a reader that surrendering every contested judgement reached
+  EGP 7.47 — *below* the published central, which is impossible, because every charge
+  conceded raises the value.
+- **ARCC** — `efg_bridge.json`, a weighted central of **54.65** against a market of 59.00,
+  printing a *falling* margin path against Appendix A's *rising* one.
+- **EGCH** — `diagnostics.json` and `contested_judgements.json`, a full edition behind:
+  spot 13.98, answer −1.06/2.82, the rating-basis glide, while the document published the
+  re-solved figures beside them.
+
+**Not one was visible to any gate, and the reason is exact: every gate in this repository
+reads `study_numbers.json`, and none of these files is in it.** A stale artefact is worse
+than a typed numeral in a builder — which the numeric-traceability gate catches — because
+**it has the shape of a computed record.**
+
+### The rule
+
+Any JSON in a study directory that a builder reads and that carries a valuation figure must
+declare, in a field named for the purpose (`published_central`, `published_spot`), the study
+central and spot it was generated against. `scripts/check_artefact_currency.py` compares
+that declaration with what the study publishes now.
+
+It is **the same instrument as [R-GAP-01]'s `AUDITED CENTRAL` marker on a review**, applied
+to generated artefacts, and for the same reason: an artefact cannot be checked for currency
+unless it says what it was current *with*.
+
+### What it deliberately does not do
+
+It does **not** require every figure in an artefact to equal the study's. An adversarial
+case, an alternative construction and a price-cone anchor all legitimately differ, and a
+gate that could not tell those apart would push studies to stop committing them — the
+opposite of what it is for. It requires the artefact to **state its own vintage**. A file
+whose declared vintage matches is current whatever else it holds; a file that declares
+nothing cannot be told from a stale one, and that is the failure this closes.
+
+Ratcheted [R-ENF-02] (`artefact_outstanding.json`; AMOC comes off at adoption because both
+its artefacts now declare — one of them through a generator this rule required somebody to
+write, since it had none at all). Population-anchored [R-ENF-04].
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION: AN ARTEFACT EVERY BUILDER READS AND
+NOTHING WRITES IS A NUMBER FROZEN AT THE DATE SOMEBODY LAST TYPED IT.** It will not announce
+itself, it will survive every rebuild, and it wears the appearance of a computed record
+while being a memory. Where a file is an input to a document, ask what writes it — and if
+the answer is nothing, that is the defect, before any question of whether its numbers are
+right.
 
 ## [R-MERGE-01] A run that ends on a branch has not ended (1-Sep-2026, per instruction — "can you merge the branch to the main automatically in this exercise from now on or at least create a PR to draw my attention, otherwise I will forget")
 

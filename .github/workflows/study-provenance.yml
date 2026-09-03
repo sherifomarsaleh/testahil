@@ -367,6 +367,32 @@ jobs:
       - name: Lens-architecture gate
         run: python3 scripts/check_lens_design.py
 
+      # [R-ANCHOR-01] the forecast anchor. The rule that a near-term reviewed
+      # actual outranks a stale full-year rate has been in both governing documents
+      # since 07-Aug-2026, and on 03-Sep-2026 three studies in one market violated
+      # it in three costumes, every one lowering the value, every one found by a
+      # person reading the numbers. [L-048] was registered after the first
+      # occurrence and bound nothing.
+      - name: Forecast-anchor gate
+        run: python3 scripts/check_forecast_anchor.py
+
+      # and the proof it can go red -- eighteen conditions including AMOC's forecast
+      # exactly as it stood, AMOC's mechanism contradicted by its own filings, and
+      # EGCH's path, which the opening-year clause alone would have passed. Its
+      # first run caught a bug in the gate's own tolerance.
+      - name: Forecast-anchor gate — negative control
+        run: python3 scripts/check_forecast_anchor_negative_control.py
+
+      # [R-ENF-06] artefact currency. Three outside audits on 03-Sep-2026 returned
+      # NOT DELIVERABLE on three re-struck studies for one reason: the re-strike
+      # reached the valuation and not the paper. AMOC's case_adversarial.json was
+      # read by three builders and written by NOTHING, and told a reader on page one
+      # that conceding every contested charge reached a value BELOW the published
+      # central. No gate could see it, because every gate reads study_numbers.json
+      # and that file is not in it.
+      - name: Artefact-currency gate
+        run: python3 scripts/check_artefact_currency.py
+
       # and the proof that gate can go red — among its cases is PHDC's own
       # architecture exactly as it shipped. Its first run caught a real
       # inconsistency in the registry itself: a "clean" example using a lens the

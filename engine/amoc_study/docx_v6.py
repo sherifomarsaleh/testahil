@@ -182,25 +182,41 @@ box([
 ])
 
 H1('Valuation summary — every read at a glance')
-table([['Lens', 'What it measures', 'Bear', 'Base', 'Bull', 'Weight', 'vs price'],
-       ['Discounted cash flow', 'unlevered cash, discounted on a glide',
-        p2(LN['dcf']['bear']), p2(LN['dcf']['base']), p2(LN['dcf']['bull']), '45%',
-        pc(LN['dcf']['base'] / SPOT - 1)],
-       ['Relative multiples', 'own trailing EV/EBITDA, no re-rating',
-        p2(LN['relative']['bear']), p2(LN['relative']['base']), p2(LN['relative']['bull']), '20%',
-        pc(LN['relative']['base'] / SPOT - 1)],
-       ['Normalised earnings', 'mid-cycle operating EPS, discounted',
-        p2(LN['normalized']['bear']), p2(LN['normalized']['base']), p2(LN['normalized']['bull']),
-        '20%', pc(LN['normalized']['base'] / SPOT - 1)],
-       ['Book and sustainable return', 'justified price-to-book',
-        p2(LN['book']['bear']), p2(LN['book']['base']), p2(LN['book']['bull']), '15%',
-        pc(LN['book']['base'] / SPOT - 1)],
-       # [R-LENS-03]: one class primary IS the central. This row was labelled
-       # WEIGHTED CENTRAL / 'the four, weighted' while its figures were the
-       # cash-flow lens's own, and the workbook's equivalent row was corrected in
-       # this edition while the document's was not.
-       ['CENTRAL', 'the cash-flow lens', p2(LO), p2(C), p2(HI), '—', pc(GAP)]],
-      [1.55, 1.9, 0.72, 0.72, 0.72, 0.62, 0.72], band_rows={5}, size=9.0, left_cols=(1,))
+# THE WEIGHT COLUMN WAS THE RETIRED BLEND, PRINTED AS IF IT WERE LIVE [corrected
+# 03-Sep-2026]. The caption underneath already said the cross-checks "carry no
+# weight" while the table beside it published 45/20/20/15 in a column headed
+# Weight — a document contradicting itself by two inches. And the relative lens is
+# marked withdrawn: true in the committed record, because its multiple WAS the
+# traded one, yet it appeared here as a live 20%-weighted cross-check.
+#
+# The column is gone. The relative row now says what the record says.
+_REL = [c for c in D['lens_record']['cross_checks']
+        if c.get('kind') == 'relative_multiple']
+_REL_WITHDRAWN = bool(_REL and _REL[0].get('withdrawn'))
+_rows = [['Lens', 'What it measures', 'Bear', 'Base', 'Bull', 'vs price'],
+         ['Discounted cash flow — THE ANSWER', 'unlevered cash, discounted on a glide',
+          p2(LN['dcf']['bear']), p2(LN['dcf']['base']), p2(LN['dcf']['bull']),
+          pc(LN['dcf']['base'] / SPOT - 1)]]
+if _REL_WITHDRAWN:
+    _rows.append(['Relative multiples — WITHDRAWN',
+                  'its multiple WAS the traded one; a diagnostic of what the market '
+                  'pays, not a valuation',
+                  '—', p2(LN['relative']['base']), '—',
+                  pc(LN['relative']['base'] / SPOT - 1)])
+else:
+    _rows.append(['Relative multiples', 'own trailing EV/EBITDA, no re-rating',
+                  p2(LN['relative']['bear']), p2(LN['relative']['base']),
+                  p2(LN['relative']['bull']), pc(LN['relative']['base'] / SPOT - 1)])
+_rows += [
+    ['Normalised earnings — a cross-check', 'mid-cycle operating EPS, discounted',
+     p2(LN['normalized']['bear']), p2(LN['normalized']['base']),
+     p2(LN['normalized']['bull']), pc(LN['normalized']['base'] / SPOT - 1)],
+    ['Book value — a disclosed floor', 'justified price-to-book',
+     p2(LN['book']['bear']), p2(LN['book']['base']), p2(LN['book']['bull']),
+     pc(LN['book']['base'] / SPOT - 1)],
+    ['CENTRAL', 'the cash-flow lens, alone', p2(LO), p2(C), p2(HI), pc(GAP)]]
+table(_rows, [1.75, 2.0, 0.72, 0.72, 0.72, 0.72], band_rows={5}, size=9.0,
+      left_cols=(1,))
 caption('Table 1 — the lenses. ONE CLASS PRIMARY IS THE CENTRAL: the cash-flow lens is the '
         'answer and the other three are cross-checks, published beside it and carrying no '
         'weight. The bear and bull columns of the central row are that same lens\u2019s own '

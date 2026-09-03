@@ -52,5 +52,7 @@
    "value_alternative": 12.225110944343598,
    "why": "a majority-export refiner can be read either way and the two answers differ by three per cent; the pound read is adopted because the cash flows, the tax and the debt are all struck in pounds and a mixed-currency discount would price the same inflation twice"
   }
- ]
+ ],
+ "published_central": 11.834177643160194,
+ "published_spot": 13.5
 }
