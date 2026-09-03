@@ -40,6 +40,26 @@ sys.path.insert(0, ENGINE)
 
 import macro_history as MH  # noqa: E402
 
+
+def _shares():
+    """Point-in-time share counts, per name, from the committed OCR records."""
+    out = {}
+    for p in sorted(glob.glob(os.path.join(HERE, "shares_*.json"))):
+        try:
+            d = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue
+        tk = (d.get("ticker") or "").upper()
+        if not tk:
+            continue
+        out[tk] = {y: rec.get("shares_mn")
+                   for y, rec in (d.get("shares_mn") or {}).items()
+                   if rec.get("shares_mn")}
+    return out
+
+
+SHARES = _shares()
+
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
 
@@ -56,8 +76,8 @@ def _panel(rundir):
     # panel_annual.json — so the search is by SHAPE (a dict keyed by
     # four-digit years) across the candidates, and the file that answered
     # is recorded so a reader knows which artefact a cell stands on.
-    for fn in ("panel.json", "panel_annual.json", "panel_kpi_verified.json",
-               "bottom_up.json", "fs_parsed.json"):
+    for fn in ("panel.json", "panel_annual.json", "panel_export.json",
+               "panel_kpi_verified.json", "bottom_up.json", "fs_parsed.json"):
         p = os.path.join(rundir, fn)
         if not os.path.exists(p):
             continue
@@ -127,14 +147,44 @@ def build(market="EG"):
         fwd = _forward(rundir)
         for y in declared:
             px, pxdate = close_at(tk, y)
+            # THE SHARE COUNT IS THE FIFTH INPUT AND IT IS THE ONE NOBODY
+            # COMMITTED. A model equity value cannot be compared with a share
+            # price without it, and today's count is NOT a substitute: share
+            # counts change on capital increases, so carrying the current one
+            # back to a 2013 origin is right only by luck — fabricated in
+            # vintage, invisible afterwards, and the exact error the macro
+            # archive was built to refuse. It is read from the panel where the
+            # panel has it and is otherwise missing.
+            # First the committed share record, which is the point-in-time count
+            # read off that year's own filing and footed against it. Only if it
+            # has nothing for this year does the panel look inside the run's own
+            # artefacts — and today's count is never a fallback.
+            sh = SHARES.get(tk, {}).get(str(y))
+            if sh is None and y in panel:
+                rec = panel[y]
+                cell = rec.get("cells") if isinstance(rec, dict) else None
+                for src in (rec, cell):
+                    if not isinstance(src, dict):
+                        continue
+                    for k in ("shares", "shares_mn", "share_count",
+                              "bs.shares", "is.shares"):
+                        v = src.get(k)
+                        v = v.get("value") if isinstance(v, dict) else v
+                        if isinstance(v, (int, float)) and v > 0:
+                            sh = float(v)
+                            break
+                    if sh:
+                        break
             cells[(tk, y)] = {
+                "shares": sh,
                 "macro": y in usable,
                 "statements": y in panel,
                 "statements_source": panel_src,
                 "drivers": fwd is not None,
                 "price": px,
                 "price_date": pxdate,
-                "ready": bool(y in usable and y in panel and fwd is not None and px),
+                "ready": bool(y in usable and y in panel and fwd is not None
+                              and px and sh),
             }
     return cells, sorted(names), declared, usable
 
@@ -154,8 +204,10 @@ def report(market="EG"):
             if c["ready"]:
                 row.append("READY  ")
             else:
-                missing = [k for k in ("macro", "statements", "drivers")
-                           if not c[k]] + ([] if c["price"] else ["price"])
+                missing = ([k for k in ("macro", "statements", "drivers")
+                            if not c[k]]
+                           + ([] if c["price"] else ["price"])
+                           + ([] if c["shares"] else ["shares"]))
                 row.append("%-7s" % ("-" + missing[0][:6] if missing else "?"))
         print("  %-8d " % y + " ".join(row))
 
@@ -180,6 +232,9 @@ def report(market="EG"):
         if not c["price"]:
             short.setdefault("price", 0)
             short["price"] += 1
+        if not c["shares"]:
+            short.setdefault("shares", 0)
+            short["shares"] += 1
     if short:
         print("\n  what is short, across all unready cells:")
         for k, n in sorted(short.items(), key=lambda kv: -kv[1]):
@@ -198,6 +253,21 @@ def report(market="EG"):
         print("     is committed, and the calibration cannot use them however good the")
         print("     original run was. That is a REPRODUCIBILITY gap, not a data one:")
         print("     the fix is for those runs to commit the panel PHDC and TMGH did.")
+
+    noshares = sum(1 for c in cells.values() if not c["shares"])
+    if noshares == len(cells):
+        print("\n  NO ORIGIN HAS A SHARE COUNT (%d of %d cells), and that alone stops"
+              % (noshares, len(cells)))
+        print("     every score. A model equity value cannot meet a share price")
+        print("     without one, and today's count is not a substitute: share counts")
+        print("     change on capital increases, so carrying the current one back to")
+        print("     a 2013 origin is right only by luck — fabricated in vintage and")
+        print("     invisible afterwards, which is the error the macro archive exists")
+        print("     to refuse.")
+        print("     WHAT CLOSES IT: the equity note of the filings these walk-forwards")
+        print("     already fetched gives issued capital and par value at each")
+        print("     year-end, and their quotient is the count. It is a defined piece")
+        print("     of work on those runs, not an unanswerable gap.")
 
     print("\n  A cell short of anything is DROPPED by the scorer, never filled. "
           "Every\n  gap above is an origin the calibration does not get, which is "

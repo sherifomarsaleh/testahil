@@ -1,0 +1,474 @@
+{
+ "_": "As-reported figures EXPORTED from this run's own panel.py, so a later job can rebuild at a past origin from something committed. Nothing here is re-parsed or re-derived — it is exactly what the run computed, which is the only thing that makes it evidence.",
+ "run": "AMOC",
+ "exported_by": "engine/valuation_calibration/export_panels.py",
+ "sources": [
+  "IS",
+  "OTHER_REVENUE",
+  "COST_STACK",
+  "PRODUCTS",
+  "COMMON"
+ ],
+ "years": [
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "2021": {
+  "is.src": "FS2022",
+  "is.column": "comparative",
+  "is.asrep": true,
+  "is.net_sales": 10182689818,
+  "is.cost_of_sales": 9145979677,
+  "is.gross_profit": 1036710141,
+  "is.other_revenues": 40625608,
+  "is.ga": 297900709,
+  "is.marketing": 26346538,
+  "is.claims_provision": 152936750,
+  "is.other_expenses": 42906480,
+  "is.operating_profit": 557245272,
+  "is.investment_revenues": 3120000,
+  "is.pbt": 560365272,
+  "is.income_tax": 72768952,
+  "is.deferred_tax": 11690125,
+  "is.npat": 499286445,
+  "is.nci": 13618561,
+  "is.majority": 485667884,
+  "is.layout": "ar2022",
+  "other_revenue.src": "FS2022",
+  "other_revenue.credit_interest": 34784431,
+  "other_revenue.provisions_reversed": 1860597,
+  "other_revenue.compensations_fines": 346335,
+  "other_revenue.capital_gains": 1327100,
+  "other_revenue.misc": 2307145,
+  "other_revenue.fx_gain": 0,
+  "cost_stack.src": "FS2022",
+  "cost_stack.salaries": 634512000,
+  "cost_stack.raw_materials": 7829360742,
+  "cost_stack.supporting_materials": 25216148,
+  "cost_stack.depreciation": 78603107,
+  "cost_stack.other": 578287680,
+  "products.src": "FS2022",
+  "products.lines": {
+   "oils": [
+    119231.44,
+    1669383226
+   ],
+   "wax": [
+    61630.896,
+    939583585
+   ],
+   "gasoil": [
+    411444.375,
+    2692404887
+   ],
+   "gasoil_bunker": [
+    3645.185,
+    31921219
+   ],
+   "naphtha": [
+    88272.098,
+    608375693
+   ],
+   "lpg": [
+    39840.576,
+    321976646
+   ],
+   "fueloil_export": [
+    637120.035,
+    3313762388
+   ],
+   "fueloil_export_authority": [
+    81588.324,
+    393382019
+   ],
+   "fueloil_blending": [
+    0.0,
+    0
+   ],
+   "hfo": [
+    49359.88,
+    211319149
+   ],
+   "aromatic_extract": [
+    89.46,
+    465576
+   ],
+   "waste": [
+    51.21,
+    115430
+   ]
+  },
+  "products.total": [
+   1492273.479,
+   10182689818
+  ]
+ },
+ "2022": {
+  "is.src": "FS2022",
+  "is.column": "own",
+  "is.asrep": true,
+  "is.net_sales": 18441855240,
+  "is.cost_of_sales": 15888827624,
+  "is.gross_profit": 2553027616,
+  "is.other_revenues": 133456159,
+  "is.ga": 442641214,
+  "is.marketing": 26573109,
+  "is.claims_provision": 464420145,
+  "is.other_expenses": 33022090,
+  "is.operating_profit": 1719827217,
+  "is.investment_revenues": 85541760,
+  "is.pbt": 1805368977,
+  "is.income_tax": 510108225,
+  "is.deferred_tax": -77678214,
+  "is.npat": 1217582538,
+  "is.nci": 23459773,
+  "is.majority": 1194122765,
+  "is.layout": "ar2022",
+  "other_revenue.src": "FS2022",
+  "other_revenue.credit_interest": 45325676,
+  "other_revenue.provisions_reversed": 1924255,
+  "other_revenue.compensations_fines": 3046240,
+  "other_revenue.capital_gains": 760644,
+  "other_revenue.misc": 3517830,
+  "other_revenue.fx_gain": 78881514,
+  "cost_stack.src": "FS2022",
+  "cost_stack.salaries": 716315666,
+  "cost_stack.raw_materials": 14431477328,
+  "cost_stack.supporting_materials": 59124378,
+  "cost_stack.depreciation": 78618923,
+  "cost_stack.other": 603291329,
+  "products.src": "FS2022",
+  "products.lines": {
+   "oils": [
+    110778.38,
+    2435360977
+   ],
+   "wax": [
+    69301.5,
+    1574014615
+   ],
+   "gasoil": [
+    366601.6,
+    4822673717
+   ],
+   "gasoil_bunker": [
+    51691.662,
+    643317018
+   ],
+   "naphtha": [
+    95206.676,
+    1139744069
+   ],
+   "lpg": [
+    41665.905,
+    608729431
+   ],
+   "fueloil_export": [
+    418285.918,
+    3368482953
+   ],
+   "fueloil_export_authority": [
+    0.0,
+    0
+   ],
+   "fueloil_blending": [
+    356513.932,
+    3587074872
+   ],
+   "hfo": [
+    37702.34,
+    262302968
+   ],
+   "aromatic_extract": [
+    0.0,
+    0
+   ],
+   "waste": [
+    68.34,
+    154620
+   ]
+  },
+  "products.total": [
+   1547816.253,
+   18441855240
+  ]
+ },
+ "2023": {
+  "is.src": "FS2023",
+  "is.column": "own",
+  "is.asrep": true,
+  "is.net_sales": 24208335757,
+  "is.cost_of_sales": 21893656788,
+  "is.gross_profit": 2314678969,
+  "is.ga": 503268507,
+  "is.marketing": 56197833,
+  "is.other_expenses": 18555702,
+  "is.operating_profit": 1736656927,
+  "is.claims_provision": 360960449,
+  "is.finance_expenses": 0,
+  "is.other_revenues": 404946540,
+  "is.investment_revenues": 6500000,
+  "is.pbt": 1787143018,
+  "is.income_tax": 432881118,
+  "is.deferred_tax": 17784401,
+  "is.npat": 1372046301,
+  "is.nci": 41546373,
+  "is.majority": 1330499928,
+  "is.layout": "en2023",
+  "other_revenue.src": "FS2023",
+  "other_revenue.credit_interest": 105105095,
+  "other_revenue.provisions_reversed": 12314761,
+  "other_revenue.compensations_fines": 740513,
+  "other_revenue.capital_gains": 208000,
+  "other_revenue.misc": 147147329,
+  "other_revenue.fx_gain": 139430842,
+  "cost_stack.src": "FS2023",
+  "cost_stack.salaries": 894101346,
+  "cost_stack.raw_materials": 20089327730,
+  "cost_stack.supporting_materials": 80411637,
+  "cost_stack.depreciation": 83410669,
+  "cost_stack.other": 746405406,
+  "products.src": "FS2023",
+  "products.lines": {
+   "oils": [
+    114402.6,
+    3264464780
+   ],
+   "wax": [
+    65880.52,
+    2175171259
+   ],
+   "gasoil": [
+    355643.938,
+    7067718244
+   ],
+   "gasoil_bunker": [
+    20596.612,
+    429180261
+   ],
+   "naphtha": [
+    92338.159,
+    1364192014
+   ],
+   "lpg": [
+    44594.272,
+    767091429
+   ],
+   "fueloil_export": [
+    0.0,
+    0
+   ],
+   "fueloil_export_authority": [
+    0.0,
+    0
+   ],
+   "fueloil_blending": [
+    711867.178,
+    8784943578
+   ],
+   "hfo": [
+    43513.84,
+    355205084
+   ],
+   "aromatic_extract": [
+    0.0,
+    0
+   ],
+   "waste": [
+    51.89,
+    369108
+   ]
+  },
+  "products.total": [
+   1448889.008,
+   24208335757
+  ]
+ },
+ "2024": {
+  "is.src": "FS2024",
+  "is.column": "own",
+  "is.asrep": true,
+  "is.net_sales": 33767840080,
+  "is.cost_of_sales": 31145748464,
+  "is.gross_profit": 2622091616,
+  "is.ga": 680847571,
+  "is.marketing": 115572185,
+  "is.other_expenses": 22996411,
+  "is.operating_profit": 1802675449,
+  "is.claims_provision": 372944903,
+  "is.finance_expenses": 515324,
+  "is.other_revenues": 950868836,
+  "is.investment_revenues": 10400000,
+  "is.pbt": 2390484058,
+  "is.income_tax": 534783622,
+  "is.deferred_tax": -90096927,
+  "is.npat": 1765603509,
+  "is.nci": 66449014,
+  "is.majority": 1699154495,
+  "is.layout": "en2023",
+  "other_revenue.src": "FS2024",
+  "other_revenue.credit_interest": 350152390,
+  "other_revenue.provisions_reversed": 16405125,
+  "other_revenue.compensations_fines": 776303,
+  "other_revenue.capital_gains": 0,
+  "other_revenue.misc": 368246666,
+  "other_revenue.fx_gain": 215288352,
+  "cost_stack.src": "FS2024",
+  "cost_stack.salaries": 1055498598,
+  "cost_stack.raw_materials": 28919657785,
+  "cost_stack.supporting_materials": 87800536,
+  "cost_stack.depreciation": 88208019,
+  "cost_stack.other": 994583526,
+  "products.src": "FS2024",
+  "products.lines": {
+   "oils": [
+    117762.98,
+    4454085019
+   ],
+   "wax": [
+    64870.76,
+    2864485650
+   ],
+   "gasoil": [
+    401759.672,
+    10752567461
+   ],
+   "gasoil_bunker": [
+    0.0,
+    0
+   ],
+   "naphtha": [
+    82941.509,
+    1742310319
+   ],
+   "lpg": [
+    45744.374,
+    963877589
+   ],
+   "fueloil_export": [
+    0.0,
+    0
+   ],
+   "fueloil_export_authority": [
+    0.0,
+    0
+   ],
+   "fueloil_blending": [
+    701999.847,
+    12757040812
+   ],
+   "hfo": [
+    18240.62,
+    233345580
+   ],
+   "aromatic_extract": [
+    0.0,
+    0
+   ],
+   "waste": [
+    20.74,
+    127650
+   ]
+  },
+  "products.total": [
+   1433340.502,
+   33767840080
+  ]
+ },
+ "2025": {
+  "is.src": "FS2025",
+  "is.column": "own",
+  "is.asrep": true,
+  "is.net_sales": 37622609782,
+  "is.cost_of_sales": 35127091419,
+  "is.gross_profit": 2495518363,
+  "is.ga": 876992444,
+  "is.marketing": 167217362,
+  "is.other_expenses": 28504803,
+  "is.operating_profit": 1422803754,
+  "is.claims_provision": 198000000,
+  "is.ecl": 925228,
+  "is.finance_expenses": 4965217,
+  "is.other_revenues": 800244158,
+  "is.investment_revenues": 11440000,
+  "is.pbt": 2030597467,
+  "is.income_tax": 552044321,
+  "is.deferred_tax": 73397185,
+  "is.npat": 1551950331,
+  "is.nci": 63430233,
+  "is.majority": 1488520098,
+  "is.layout": "en2023",
+  "other_revenue.src": "FS2025",
+  "other_revenue.credit_interest": 417377530,
+  "other_revenue.provisions_reversed": 279457477,
+  "other_revenue.compensations_fines": 3971675,
+  "other_revenue.capital_gains": 0,
+  "other_revenue.misc": 42124383,
+  "other_revenue.fx_gain": 47730203,
+  "other_revenue.reversed_ecl": 9582890,
+  "cost_stack.src": "FS2025",
+  "cost_stack.salaries": 1250908915,
+  "cost_stack.raw_materials": 32342980635,
+  "cost_stack.supporting_materials": 117487403,
+  "cost_stack.depreciation": 109320313,
+  "cost_stack.other": 1306394153,
+  "products.src": "FS2025",
+  "products.lines": {
+   "oils": [
+    98182.34,
+    5360390482
+   ],
+   "wax": [
+    71588.8,
+    4029314124
+   ],
+   "gasoil": [
+    322558.706,
+    10076712933
+   ],
+   "gasoil_bunker": [
+    0.0,
+    0
+   ],
+   "naphtha": [
+    75630.604,
+    2099685574
+   ],
+   "lpg": [
+    43876.366,
+    1408079637
+   ],
+   "fueloil_export": [
+    0.0,
+    0
+   ],
+   "fueloil_export_authority": [
+    0.0,
+    0
+   ],
+   "fueloil_blending": [
+    635744.475,
+    14386176125
+   ],
+   "hfo": [
+    13937.44,
+    261654307
+   ],
+   "aromatic_extract": [
+    0.0,
+    0
+   ],
+   "waste": [
+    66.98,
+    596600
+   ]
+  },
+  "products.total": [
+   1261585.711,
+   37622609782
+  ]
+ }
+}

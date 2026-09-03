@@ -109,7 +109,7 @@ MODEL_STUDY = {
         "Company overview",
         "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall + the "
         "EV-to-equity bridge; 1.2 book value & sustainable return; 1.3 relative multiples; "
-        "1.4 normalised earnings power; 1.5 synthesis — four lenses, one field; 1.6 drivers — "
+        "1.4 normalised earnings power; 1.5 synthesis — the class primary IS the central under [R-LENS-03], the other lenses published beside it as cross-checks and the RANGE of their present-value reads as the envelope; NEVER a weighted blend, and never a set of typed weights; 1.6 drivers — "
         "each disclosed segment grown on its own driver, margins as outputs; 1.7 the crux; "
         "1.8 macro & country — sourced cost of capital, the cost-of-debt evidence table, and "
         "every contested construction priced, not just named; 1.9 sensitivity)",
@@ -1121,9 +1121,27 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
         if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
                       txt) and base not in ("lenses.py", "docx_arcc.py"):
             # a builder that COMPUTES the reverse read is fine; one that reads the
-            # file back into the model is not
-            if "diagnostics.json" in txt:
+            # file back into the model is not.
+            #
+            # AND THE FILE HAS TO BE THIS STUDY'S OWN. `diagnostics.json` is not a
+            # reserved name: every statement walk-forward writes one too, holding
+            # its own per-driver error diagnostics, and a study consuming THAT is
+            # doing what [R-FCAL-01] asks — carrying its calibration into the
+            # delivered document. EGCH's compute.py opens
+            # ../egch_walkforward/diagnostics.json and was failed for it, which is
+            # a check firing on work that is right; the answer to that is never to
+            # widen the check but to point it at the right file. A reference
+            # qualified to another directory is not a leak; a bare one is, because
+            # a bare open() resolves inside the study.
+            for line in txt.splitlines():
+                if "diagnostics.json" not in line:
+                    continue
+                window = txt[max(0, txt.index(line) - 400):
+                             txt.index(line) + len(line) + 200]
+                if _re.search(r"_walkforward|\.\.[/'\"]|walkforward", window):
+                    continue
                 leaks.append(base)
+                break
     if leaks:
         fails.append(
             "these builders read the diagnostics file: %s. A quantity solved from the "

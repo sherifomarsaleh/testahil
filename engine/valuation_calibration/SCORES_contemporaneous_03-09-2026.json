@@ -1,0 +1,66 @@
+{
+ "_": "Series (a) under MECHANICAL_LENS_2_03-09-2026.md — the contracted-order-book floor at each origin, against the close it would have been struck at.",
+ "declaration": "MECHANICAL_LENS_2_03-09-2026.md",
+ "rows": [
+  {
+   "ticker": "PHDC",
+   "origin": 2016,
+   "fv": 0.8612786614191881,
+   "price": 3.064,
+   "log": -1.2690584302251662,
+   "ke": 0.228994,
+   "g": 0.07109,
+   "shares_mn": 2308.949726,
+   "equity": 1988.6491292934809,
+   "price_date": "2016-12-29",
+   "how": "backlog 12493 at a median reported margin of 33.5% over 4 years, after tax, discounted at 22.90% — no terminal, no land"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2017,
+   "fv": 1.1033132887882182,
+   "price": 3.854,
+   "log": -1.250793836697773,
+   "ke": 0.211626,
+   "g": 0.0696,
+   "shares_mn": 2308.949726,
+   "equity": 2547.4949158397153,
+   "price_date": "2017-12-31",
+   "how": "backlog 16299 at a median reported margin of 31.9% over 4 years, after tax, discounted at 21.16% — no terminal, no land"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2018,
+   "fv": 0.9559606920881443,
+   "price": 2.18,
+   "log": -0.8243633606396737,
+   "ke": 0.250947,
+   "g": 0.07034,
+   "shares_mn": 3078.599063,
+   "equity": 2943.0196909273927,
+   "price_date": "2018-12-31",
+   "how": "backlog 20228 at a median reported margin of 31.9% over 4 years, after tax, discounted at 25.09% — no terminal, no land"
+  },
+  {
+   "ticker": "PHDC",
+   "origin": 2019,
+   "fv": 1.684474834391478,
+   "price": 1.748,
+   "log": -0.03701843299280018,
+   "ke": 0.201124,
+   "g": 0.07078,
+   "shares_mn": 3078.599063,
+   "equity": 5185.822646804684,
+   "price_date": "2019-12-31",
+   "how": "backlog 29725 at a median reported margin of 34.9% over 4 years, after tax, discounted at 20.11% — no terminal, no land"
+  }
+ ],
+ "dropped": [
+  {
+   "ticker": "PHDC",
+   "origin": 2015,
+   "why": "only 2 reported gross margin(s) in the three years to the origin; the median needs 3"
+  }
+ ],
+ "how_to_read": "A FLOOR, not a fair value: it values the contracted book and nothing else, so a reading below the price is the expected case. What carries information is how the gap MOVES across origins — here it closes steadily from -72% to -4% over 2016-2019, which is a statement about the order book growing faster than the share price, not a valuation claim. Four origins on one name is not a finding."
+}

@@ -102,6 +102,23 @@ def main():
                         builder="import json\nD = json.load(open('diagnostics.json'))\n"
                                 "WACC = D['implied']['value']\n"), put_list(t, [])), True, R)
 
+    # THE CASE THE CONTAINMENT CHECK WAS RE-POINTED FOR, and it must stay GREEN.
+    # `diagnostics.json` is not a reserved name: every statement walk-forward
+    # writes one holding its own per-driver error diagnostics, and a study that
+    # consumes THAT is doing what [R-FCAL-01] asks — carrying its calibration into
+    # the delivered document. EGCH's compute.py opens
+    # ../egch_walkforward/diagnostics.json and was failed for it. A check firing on
+    # work that is right is never answered by widening it; it is answered by
+    # pointing it at the right file, and this case is what proves the re-pointing
+    # did not simply switch it off — case 4 above, the real leak, still goes red.
+    case("4b a builder reads the WALK-FORWARD's diagnostics, not the reverse read",
+         lambda t: (put(t, diag=DIAG, cj=CJ,
+                        builder="import json, os\n"
+                                "_WF = os.path.join(HERE, '..', 'nco_walkforward')\n"
+                                "D = json.load(open(os.path.join(_WF, "
+                                "'diagnostics.json')))\n"
+                                "BIAS = D.get('bias')\n"), put_list(t, [])), False, R)
+
     c5 = copy.deepcopy(CJ); c5["judgements"][1].pop("why")
     case("5 a judgement with no reason", lambda t: (put(t, diag=DIAG, cj=c5), put_list(t, [])),
          True, R)

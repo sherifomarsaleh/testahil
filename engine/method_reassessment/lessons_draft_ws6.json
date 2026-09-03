@@ -1,0 +1,32 @@
+{
+ "source": "method reassessment WS6, valuation-input census, 03-Sep-2026",
+ "run_date": "2026-09-03",
+ "drafts": [
+  {
+   "proposed_id": "D-1",
+   "scope": "ALL",
+   "applies_to": null,
+   "confirmed": true,
+   "origin": "self_audit",
+   "headline": "What a process commits decides what can ever be asked of it later.",
+   "plain": "A record answers the question it was built for. Anything else you later want to know has to have been written down at the time, and if it was not, it is usually gone rather than merely inconvenient. When you design what a piece of work leaves behind, spend a moment asking what a DIFFERENT question would need from it.",
+   "evidence": "Five fundamental walk-forwards each scored their drivers properly and committed an income statement. When the valuation calibration came to rebuild a fair value at a past origin, a census of what they actually carry found NOT ONE of 55 name-origin cells with a complete enterprise-to-equity bridge and a capital-expenditure figure: cash on 25% of cells, debt on 60%, working capital on 27%, a footed share count on 16%, capex on none. Three cells (TMGH 2020-2022) allow capex to be derived by the identity capex = dPPE + D&A; five more (PHDC 2015-2019) carry the bridge and no route to capex at all. Every missing item sits on a balance sheet or cash-flow statement in filings those runs had already opened and parsed cell by cell, so carrying them out would have been a copy rather than new research.",
+   "overturned_by": "A run that commits the block and then finds nobody ever asks for it \u2014 if several names carry cash, debt, capex and a share count through a full cycle and no later question needs them, the cost was real and the benefit was not, and the block should shrink to what was used.",
+   "status": "adopted",
+   "registered": "L-068"
+  },
+  {
+   "proposed_id": "D-2",
+   "scope": "ALL",
+   "applies_to": null,
+   "confirmed": true,
+   "origin": "self_audit",
+   "headline": "An instrument whose bias points the same way as the hypothesis cannot test it.",
+   "plain": "If the thing you are measuring with leans in the same direction as the thing you are trying to prove, a confirming answer means nothing \u2014 the instrument would have produced it whatever the truth was. Worse than a big known bias is one that changes direction from case to case, because that cannot be corrected, disclosed as a direction, or reasoned around.",
+   "evidence": "The reassessment tests whether this house leans pessimistic. Two mechanical valuation lenses were declared to measure it and both were shaped by what happened to be committed rather than by the class rule: omitting cash UNDERSTATES equity value, omitting capex OVERSTATES it, and omitting working capital does either depending on growth \u2014 so a value assembled from whatever a cell carries has a bias whose sign is set by which items that cell is missing. On AMOC, a net-cash company, the omitted cash is most of the answer. The second declaration knew it was a floor and said so; what it did not say is that a floor cannot measure a pessimism lean.",
+   "overturned_by": "A demonstration that the omissions are small relative to value on a given name \u2014 a company with no debt, no material cash and no reinvestment \u2014 in which case a mechanical value on that name is honest and this caution is too strict there. The test is arithmetic and available.",
+   "status": "adopted",
+   "registered": "L-069"
+  }
+ ]
+}
