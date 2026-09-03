@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**168 lessons**, of which 141 bind on every study, 20 on a class of company, and 7 on a single name.
+**169 lessons**, of which 142 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 93 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 94 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1488,6 +1488,16 @@ Dates escape the numeric-traceability discipline because they do not look like n
 > **What it cost, or how we know.** ARCC shipped a masthead a day stale and it was recorded as one study's defect. Reading PHDC's pages the same way found the identical thing — a 3 September edition whose masthead reads 'edition of 2 September 2026' — which made it a CLASS, and closing the class rather than the instance is what [R-ENF-01] requires. Measured across 31 delivered valuation studies, SEVEN do not carry their own edition date in their masthead, in three shapes: stated and WRONG (PHDC, TMGH, both a day stale), stated NOWHERE IN THE DOCUMENT AT ALL (ADNOCLS and SAVOLA — and ADNOCLS is THE MODEL REPORT, so a reader receives the exemplar every other study is written against with nothing on it saying when it was struck), and buried in the body (DU at paragraph 74 inside a licence sentence, GBCO at 167 in an expert-log note, RIYADHCABLE at 119 in the disclaimer). THE ROOT CAUSE WAS TYPING: PHDC's builder carried the date in THREE separate string literals — masthead, disclosure, output filename — and two of the three said 2 September while the file said 3 September; TMGH's carried two that disagreed. Both now derive it from the file the document ships as, so they cannot disagree, and the rebuilds changed two paragraphs and one paragraph respectively — nothing but the date moved.
 
 > **What would overturn it.** A delivered document whose date is derived from one source and is still wrong — which would mean the derivation, not the typing, is the defect.
+
+### L-248 · A SCRIPT THAT RUNS CLEAN AND WRITES NOTHING IS THE MOST CONVINCING FALSE CONFIRMATION THERE IS, BECAUSE IT LOOKS EXACTLY LIKE THE WORK SUCCEEDING.
+
+An exit code of zero is not evidence that anything happened. This is [R-ENF-04]'s empty-result rule pointed at your own hands rather than at a gate: the check that the fix landed has to be the ARTEFACT, not the command.
+
+**Applies to:** every study  ·  *Learned from:* found while building, correcting a figure label, 03-Sep-2026
+
+> **What it cost, or how we know.** A study's figure label typed a date beside a computed price and got it eleven days wrong. The fix went into figures.py, figures.py was run, it exited 0 and printed nothing — and the fix had not landed, because that module defines drawing functions and has NO main block, so running it as a script does nothing at all. The images are built by a separate build_figures.py that calls those functions, and the document embeds the images by filename without rebuilding them, so a change to the drawing code reaches a reader through TWO steps that nothing enforces. It was caught only by rendering the page again and looking at it, where the old date was still printed. The delivered document had been rebuilt in between and reported CLEAN by its own scrub and column audit, because both inspect text and the defect was inside a PNG.
+
+> **What would overturn it.** A pipeline where the delivered document rebuilds its own figures, so a change to the drawing code cannot fail to reach the page.
 
 
 ---

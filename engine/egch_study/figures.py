@@ -29,6 +29,23 @@ plt.rcParams.update({'figure.facecolor': BG, 'axes.facecolor': BG,
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 GRIDJ = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
 SPOT, DR, YEARS = D['spot'], D['drivers'], D['years']
+
+
+def _spot_date_words():
+    """'3 September 2026' from this study's OWN committed spot date. One source, one date."""
+    import datetime as _dt
+    _s = str((D.get('meta') or {}).get('spot_date') or D.get('spot_date') or '')
+    _s = _s.replace('close ', '').strip()
+    for _f in ('%Y-%m-%d', '%d %b %Y', '%d %B %Y'):
+        try:
+            _d = _dt.datetime.strptime(_s, _f).date()
+            return '%d %s %d' % (_d.day, _d.strftime('%B'), _d.year)
+        except ValueError:
+            pass
+    raise ValueError('cannot read a spot date out of %r' % _s)
+
+
+SPOT_DATE_WORDS = _spot_date_words()
 CASES = D['cases']
 df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'EGCH_Stock_Price_History.csv')),
                   'EGCH', verbose=False, market='EG')
@@ -225,7 +242,11 @@ d5 = df[df['Date'] >= df['Date'].max() - np.timedelta64(365 * 5, 'D')]
 ax.plot(d5['Date'], d5['Price'], color=CANVAS, lw=1.3)
 ax.axhline(SPOT, color=GOLD, lw=1.2, ls='--')
 ax.text(d5['Date'].iloc[int(len(d5) * 0.03)], SPOT + 0.5,
-        f"6 August 2026 close, EGP {SPOT:,.2f}", fontsize=9, color=BRASS, fontweight='bold')
+        # DERIVED, NOT TYPED [FIXED 03-Sep-2026]: this read "6 August 2026" against the
+        # study's own committed spot_date of 2026-09-03 — twenty-eight days stale, on a
+        # figure whose price is computed from that very spot.
+        f"{SPOT_DATE_WORDS} close, EGP {SPOT:,.2f}", fontsize=9, color=BRASS,
+        fontweight='bold')
 ax.set_ylabel('Share price (Egyptian pounds)')
 ax.set_title('Five years of the traded price', pad=12, fontsize=11.5)
 style(ax)

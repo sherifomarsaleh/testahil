@@ -3214,6 +3214,27 @@ LESSONS = [
       "A delivered document whose date is derived from one source and is still wrong — "
       "which would mean the derivation, not the typing, is the defect."),
 
+    L("L-248", "ALL", None,
+      "A SCRIPT THAT RUNS CLEAN AND WRITES NOTHING IS THE MOST CONVINCING FALSE CONFIRMATION "
+      "THERE IS, BECAUSE IT LOOKS EXACTLY LIKE THE WORK SUCCEEDING.",
+      "An exit code of zero is not evidence that anything happened. This is [R-ENF-04]'s "
+      "empty-result rule pointed at your own hands rather than at a gate: the check that "
+      "the fix landed has to be the ARTEFACT, not the command.",
+      "correcting a figure label, 03-Sep-2026",
+      "build",
+      "A study's figure label typed a date beside a computed price and got it eleven days "
+      "wrong. The fix went into figures.py, figures.py was run, it exited 0 and printed "
+      "nothing — and the fix had not landed, because that module defines drawing functions "
+      "and has NO main block, so running it as a script does nothing at all. The images are "
+      "built by a separate build_figures.py that calls those functions, and the document "
+      "embeds the images by filename without rebuilding them, so a change to the drawing "
+      "code reaches a reader through TWO steps that nothing enforces. It was caught only by "
+      "rendering the page again and looking at it, where the old date was still printed. "
+      "The delivered document had been rebuilt in between and reported CLEAN by its own "
+      "scrub and column audit, because both inspect text and the defect was inside a PNG.",
+      "A pipeline where the delivered document rebuilds its own figures, so a change to the "
+      "drawing code cannot fail to reach the page."),
+
 ]
 
 

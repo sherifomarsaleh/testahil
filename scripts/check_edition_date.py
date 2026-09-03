@@ -48,6 +48,8 @@ DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
 # the masthead is the block before the document gets going. Ten paragraphs is generous:
 # every study that states its date correctly does so within the first four.
 MASTHEAD_PARAS = 10
+_MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July',
+           'August', 'September', 'October', 'November', 'December')
 
 
 def renderings(d):
@@ -101,13 +103,89 @@ def audit():
         if where is None:
             # is some OTHER date stated in the masthead? that is the stale-masthead shape,
             # and it is worse than an absent date because it reads as a fact.
-            other = re.search(r'(\d{1,2} \w+ 20\d\d)', head)
+            # NAME A REAL DATE OR NAME NONE. A loose \w+ for the month matched any word
+            # and reported ADNOCLS's masthead as stating '16 on 2026', which is not a date
+            # and not what that document says — a diagnostic that misleads is worse than
+            # one that admits it found nothing, because the next reader chases it.
+            other = re.search(r'\b(\d{1,2}\s+(?:%s)[a-z]*\.?\s+20\d\d)\b'
+                              % '|'.join(m[:3] for m in _MONTHS), head)
             bad[rel] = ('the masthead states %r and the file is dated %s'
                         % (other.group(1), dt) if other
                         else 'the edition date %s appears NOWHERE in the document' % dt)
         else:
             bad[rel] = ('the edition date %s appears only at paragraph %d, not in the '
                         'masthead' % (dt, where))
+    return examined, bad
+
+
+# ---------------------------------------------------------------------------------------
+# THE SECOND CLAUSE: A DATE TYPED BESIDE A COMPUTED PRICE, INSIDE A FIGURE.
+# Reading PHDC's page 2 found the valuation-summary table saying "Market price, 3 September
+# 2026" and the figure directly beneath it labelling the SAME 14.40 as "close 14.40 (23 Aug
+# 2026)" — one price, two dates, eleven days apart, in one document a reader receives.
+# EGCH's price chart said "6 August 2026 close" against a committed spot date of 3
+# September, twenty-eight days stale. In both the PRICE was computed and the DATE beside it
+# was typed, which is why no gate saw it: everything that reconciles figures against a model
+# inspects the number, and a date does not look like one.
+#
+# SCOPED TO FIGURE BUILDERS ON PURPOSE. A study's PROSE legitimately names many dates — an
+# earlier edition, a filing, a licence expiry — and a check over prose would fire on work
+# that is right. A figure label is different: it annotates a computed quantity, and a date
+# there is describing THAT quantity. BOROUGE types one too and it is CORRECT (7 August 2026
+# against a committed 2026-08-07), which is the clean case the control keeps.
+_DATE_IN_TEXT = re.compile(
+    r'(\d{1,2})\s+(' + '|'.join(m[:3] for m in _MONTHS) + r')[a-z]*\.?\s+(20\d\d)')
+_PRICE_WORD = re.compile(r'(?i)\bclose\b|\bspot\b|\bprice\b|\blast\b')
+
+
+def _committed_spot_date(study_dir):
+    f = os.path.join(study_dir, 'study_numbers.json')
+    if not os.path.exists(f):
+        return None
+    try:
+        d = json.load(open(f))
+    except Exception:                                             # noqa: BLE001
+        return None
+    raw = str((d.get('meta') or {}).get('spot_date') or d.get('spot_date') or '')
+    raw = raw.replace('close ', '').strip()
+    for f_ in ('%Y-%m-%d', '%d %b %Y', '%d %B %Y', '%d-%m-%Y'):
+        try:
+            return datetime.datetime.strptime(raw, f_).date()
+        except ValueError:
+            pass
+    return None
+
+
+def audit_figure_dates():
+    """(examined, offenders) — a date typed in a figure label against the committed spot."""
+    examined, bad = 0, {}
+    for f in sorted(glob.glob(os.path.join(ROOT, 'engine', '*_study', 'figures.py'))):
+        rel = os.path.relpath(f, ROOT)
+        spot = _committed_spot_date(os.path.dirname(f))
+        try:
+            src = open(f, encoding='utf-8').read()
+        except Exception:                                         # noqa: BLE001
+            continue
+        for ln_no, line in enumerate(src.splitlines(), 1):
+            if line.lstrip().startswith('#'):
+                continue          # a comment recording a fixed defect is not the defect
+            m = _DATE_IN_TEXT.search(line)
+            if not m or not _PRICE_WORD.search(line):
+                continue
+            examined += 1
+            if spot is None:
+                bad['%s:%d' % (rel, ln_no)] = ('a date is typed beside a price and the '
+                                               'study commits no spot date to check it '
+                                               'against')
+                continue
+            try:
+                got = datetime.datetime.strptime(
+                    '%s %s %s' % (m.group(1), m.group(2), m.group(3)), '%d %b %Y').date()
+            except ValueError:
+                continue
+            if got != spot:
+                bad['%s:%d' % (rel, ln_no)] = (
+                    'a figure labels a price %s while the study commits %s' % (got, spot))
     return examined, bad
 
 
@@ -119,6 +197,8 @@ def main():
     allowed = set(rat.get('outstanding', {}))
 
     examined, bad = audit()
+    fx_examined, fx_bad = audit_figure_dates()
+    bad.update(fx_bad)
     if not examined:
         print('FAIL — examined zero delivered studies; an empty result is not a clean '
               'result [R-ENF-04]')
@@ -130,8 +210,8 @@ def main():
               % stranded)
         return 1
 
-    print('delivered valuation studies examined: %d;  not carrying their own edition '
-          'date: %d' % (examined, len(bad)))
+    print('delivered valuation studies examined: %d;  figure labels dating a price: %d;  '
+          'not carrying the right date: %d' % (examined, fx_examined, len(bad)))
     for p in sorted(bad):
         print('  [%s] %-52s %s' % ('ratcheted' if p in allowed else 'NEW',
                                    os.path.basename(p), bad[p]))

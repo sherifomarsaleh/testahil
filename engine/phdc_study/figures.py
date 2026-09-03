@@ -36,6 +36,28 @@ plt.rcParams.update({
 })
 
 
+# The spot date this study is struck on, read from its own committed numbers. One source.
+def _spot_date_short():
+    import datetime as _dt
+    import json as _json
+    import os as _os
+    import re as _re
+    _m = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                                       "study_numbers.json")))
+    _s = str((_m.get("meta") or {}).get("spot_date") or _m.get("spot_date") or "")
+    _s = _s.replace("close ", "").strip()
+    for _f in ("%Y-%m-%d", "%d %b %Y", "%d %B %Y"):
+        try:
+            _d = _dt.datetime.strptime(_s, _f).date()
+            return "%d %s %d" % (_d.day, _d.strftime("%b"), _d.year)
+        except ValueError:
+            pass
+    raise ValueError("cannot read a spot date out of %r" % _s)
+
+
+SPOT_DATE_SHORT = _spot_date_short()
+
+
 def _save(fig, name):
     p = os.path.join(HERE, name)
     fig.savefig(p, dpi=200, bbox_inches="tight", facecolor=CANVAS, transparent=False)
@@ -86,7 +108,14 @@ def fig1_football(bars, spot, prior):
     ax.axvline(spot, color=INK, lw=1.6, zorder=4)
     ax.axvline(prior, color=FAINT, lw=1.2, ls=(0, (4, 3)), zorder=2)
     ax.plot([xmax * 0.62], [n - 0.30], marker="|", ms=11, mew=1.6, color=INK)
-    ax.text(xmax * 0.645, n - 0.30, "close %.2f (23 Aug 2026)" % spot,
+    # THE DATE IS DERIVED FROM THE STUDY'S OWN COMMITTED SPOT, NOT TYPED BESIDE IT
+    # [FIXED 03-Sep-2026]. It read "23 Aug 2026" while the study's meta.spot_date said
+    # "close 3 Sep 2026" and the valuation-summary table two inches above the figure said
+    # "Market price, 3 September 2026" — one price, two dates, eleven days apart, in one
+    # document. The price was computed and the date beside it was typed, which is the
+    # standing computed-not-typed rule applied to a date: it does not look like a figure,
+    # so nothing that reconciles figures ever inspected it.
+    ax.text(xmax * 0.645, n - 0.30, "close %.2f (%s)" % (spot, SPOT_DATE_SHORT),
             color=INK, fontsize=8.5, va="center", ha="left")
     ax.plot([xmax * 0.62], [n - 0.62], marker="|", ms=11, mew=1.4, color=FAINT)
     ax.text(xmax * 0.645, n - 0.62, "prior edition base %.2f" % prior,

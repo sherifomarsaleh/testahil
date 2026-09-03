@@ -127,7 +127,49 @@ def main():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-    total = len(CASES) + 2
+    # ---- THE FIGURE-DATE CLAUSE, on the two constructions that shipped -----------------
+    # Both had a COMPUTED price with a TYPED date beside it, in a figure a reader sees, and
+    # both disagreed with their own study's committed spot: PHDC by eleven days, EGCH by
+    # twenty-eight. BOROUGE types one too and it is RIGHT, which is the clean case — the
+    # rule is that the date must be correct, not that a figure may never name one.
+    import importlib.util as _u
+    _sp = _u.spec_from_file_location('ced', os.path.join(ROOT, GATE))
+    _m = _u.module_from_spec(_sp)
+    sys.modules['ced'] = _m
+    _sp.loader.exec_module(_m)
+
+    for nm, spot, line, must_fire in (
+            ("PHDC as it shipped — a figure dating a computed close eleven days early",
+             '2026-09-03', 'ax.text(x, y, "close %.2f (23 Aug 2026)" % spot)', True),
+            ("EGCH as it shipped — twenty-eight days early",
+             '2026-09-03', 'ax.text(a, b, f"6 August 2026 close, EGP {SPOT:,.2f}")', True),
+            ("CLEAN — BOROUGE's, which types a date and gets it right",
+             '2026-08-07', 'ax.set_xlabel("Trading sessions from 7 August 2026 close")',
+             False),
+            ("CLEAN — a comment recording a defect that was FIXED is not the defect",
+             '2026-09-03', '    # this read "6 August 2026 close" and was wrong', False),
+            ("CLEAN — a date in a figure label with no price word beside it",
+             '2026-09-03', 'ax.set_title("Five years to 6 August 2026")', False)):
+        tmp = tempfile.mkdtemp(prefix='ncedf')
+        try:
+            sd = os.path.join(tmp, 'engine', 'zzz_study')
+            os.makedirs(sd, exist_ok=True)
+            open(os.path.join(sd, 'figures.py'), 'w').write(line + '\n')
+            json.dump({'spot_date': spot}, open(os.path.join(sd, 'study_numbers.json'), 'w'))
+            _m.ROOT = tmp
+            ex, offenders = _m.audit_figure_dates()
+            fired = bool(offenders)
+            ok = (fired == must_fire)
+            print('%-4s %s' % ('PASS' if ok else 'FAIL', nm[:96]))
+            if not ok:
+                print('      examined %d, offenders %s' % (ex, offenders))
+                globals()['_extra_bad'] = globals().get('_extra_bad', 0) + 1
+        finally:
+            _m.ROOT = ROOT
+            shutil.rmtree(tmp, ignore_errors=True)
+    bad += globals().get('_extra_bad', 0)
+
+    total = len(CASES) + 2 + 5
     print('\n%d/%d conditions behaved as specified' % (total - bad, total))
     return 1 if bad else 0
 
